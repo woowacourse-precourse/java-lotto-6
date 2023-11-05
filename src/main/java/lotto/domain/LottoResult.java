@@ -24,4 +24,8 @@ public class LottoResult {
                 .mapToLong(rank -> (long) rankCounts.get(rank) * rank.getPrize())
                 .sum();
     }
+
+    public double getProfitRate(PurchaseAmount purchaseAmount) {
+        return purchaseAmount.profitRate(getTotalPrize());
+    }
 }

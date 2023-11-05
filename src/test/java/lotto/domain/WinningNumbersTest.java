@@ -99,5 +99,17 @@ class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.INPUT_NUMBER.getMessage());
     }
+
+    @DisplayName("int 범위를 벗어난 숫자가 포함되어 있을 경우 NumberFormatException을 발생시켜야 한다.")
+    @Test
+    void testProcessWithOutOfRangeNumbers() {
+        // given
+        String numbersWithOutOfRange = "1, 2, 3, 4, 5, 2147483648";
+
+        // when & then
+        assertThatThrownBy(() -> winningNumbers.process(numbersWithOutOfRange))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INVALID_AMOUNT_MESSAGE.getMessage());
+    }
 }
 

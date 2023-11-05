@@ -1,29 +1,28 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.util.NumberGenerator;
 
 public class Lottos {
 
-    private final List<Lotto> lottos;
+    private static final int START_INDEX = 0;
 
-    private Lottos(final List<Lotto> lottos) {
-        this.lottos = lottos;
+    private final List<Lotto> purchasedLottos;
+
+    private Lottos(final List<Lotto> purchasedLottos) {
+        this.purchasedLottos = purchasedLottos;
     }
 
     public static Lottos of(final long buyCount, final NumberGenerator numberGenerator) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int count = 0; count < buyCount; count++) {
-            List<Integer> randomNumbers = numberGenerator.generateSortedList();
-            lottos.add(Lotto.fromNumbers(randomNumbers));
-        }
-
-        return new Lottos(lottos);
+        return IntStream.range(START_INDEX, (int) buyCount)
+                .mapToObj(count -> Lotto.fromNumbers(numberGenerator.generateSortedList()))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Lottos::new));
     }
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
+    public List<Lotto> getPurchasedLottos() {
+        return Collections.unmodifiableList(purchasedLottos);
     }
 }

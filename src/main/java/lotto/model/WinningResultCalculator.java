@@ -11,7 +11,7 @@ public class WinningResultCalculator {
 
     public Map<Rank, Integer> calculateWinningStatus(final WinningLotto winningLotto, final Lottos lottos) {
         Map<Rank, Integer> winningStatus = new EnumMap<>(Rank.class);
-        List<Lotto> purchasedLottos = lottos.getLottos();
+        List<Lotto> purchasedLottos = lottos.getPurchasedLottos();
 
         purchasedLottos.forEach(lotto -> {
             Rank rank = calculateRank(winningLotto, lotto);

@@ -16,6 +16,7 @@ public class LottoResult {
         List<Integer> lotto = numbers.stream()
                 .map(Number::getValue)
                 .toList();
+
         return new LottoResult(lotto);
     }
 

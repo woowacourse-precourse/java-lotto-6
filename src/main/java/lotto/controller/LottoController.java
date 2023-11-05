@@ -55,7 +55,7 @@ public class LottoController {
     }
 
     private void printLottos(final Lottos lottos) {
-        for (final Lotto lotto : lottos.getLottos()) {
+        for (final Lotto lotto : lottos.getPurchasedLottos()) {
             outputView.printLotto(LottoResult.from(lotto.getLottoNumbers()));
         }
     }

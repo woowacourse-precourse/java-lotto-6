@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.domain.Lotto.MAX_NUMBER;
-import static lotto.domain.Lotto.MIN_NUMBER;
-import static lotto.domain.Lotto.NUMBER_COUNT;
+import static lotto.domain.LottoConstants.MAX_NUMBER;
+import static lotto.domain.LottoConstants.MIN_NUMBER;
+import static lotto.domain.LottoConstants.NUMBER_COUNT;
 import static lotto.error.ExceptionCode.EXCEED_BUY_COUNT;
 import static lotto.error.ExceptionCode.INVALID_BUY_COUNT_UNIT;
 

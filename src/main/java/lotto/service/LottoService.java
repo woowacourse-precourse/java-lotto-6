@@ -20,6 +20,7 @@ public class LottoService {
     private Money money;
     private LottoResult lottoResult;
 
+
     public LottoService(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
@@ -27,9 +28,7 @@ public class LottoService {
     public List<List<Integer>> generateLottos(String moneyInput) {
         this.money = Money.of(moneyInput);
 
-        List<List<Integer>> generateNumber = IntStream.range(0, money.getCountBuyLotto())
-                .mapToObj(i -> numberGenerator.generate())
-                .collect(Collectors.toList());
+        List<List<Integer>> generateNumber = getGenerateNumbers();
 
         this.lottos = generateNumber.stream()
                 .map(numbers -> new Lotto(numbers))
@@ -55,5 +54,13 @@ public class LottoService {
 
     public int getPurchaseLottoCount() {
         return money.getCountBuyLotto();
+    }
+
+    private List<List<Integer>> getGenerateNumbers() {
+        List<List<Integer>> generateNumber = IntStream.range(0, money.getCountBuyLotto())
+                .mapToObj(i -> numberGenerator.generate())
+                .collect(Collectors.toList());
+
+        return generateNumber;
     }
 }

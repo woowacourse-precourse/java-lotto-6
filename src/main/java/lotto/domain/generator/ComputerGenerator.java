@@ -9,6 +9,7 @@ import static lotto.domain.constant.RangeConstant.*;
 public class ComputerGenerator implements NumberGenerator {
     @Override
     public List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(START_NUM.getNumber(), END_NUM.getNumber(), SIZE_NUM.getNumber());
+        return Randoms.pickUniqueNumbersInRange
+                (START_NUM.getNumber(), END_NUM.getNumber(), SIZE_NUM.getNumber());
     }
 }

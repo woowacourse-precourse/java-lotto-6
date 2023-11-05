@@ -32,4 +32,11 @@ public class WinningLotto {
         }
     }
 
+    public Lotto getAnswerLotto() {
+        return answerLotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

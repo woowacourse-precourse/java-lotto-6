@@ -104,7 +104,8 @@ public class LottoPlay implements Play{
     }
 
     private void printWinningStat(List<Rank> ranks) {
-
+        System.out.println();
+        System.out.print(view.getPrintWinningStat());
     }
 
     private void printYieldRate() {

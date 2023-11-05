@@ -17,4 +17,13 @@ public class LottoInputProvider {
 		return Integer.parseInt(Console.readLine());
 	}
 
+	public Lotto getInputWinningNumber() {
+		System.out.println("당첨 번호를 입력해 주세요.");
+		List<Integer> numbers = Arrays.stream(Console.readLine().split(","))
+			.map(num -> Integer.parseInt(num))
+			.collect(Collectors.toList());
+
+		return new Lotto(numbers);
+	}
+
 }

@@ -6,4 +6,8 @@ public class BonusNumber {
     public BonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
+
+    public int get() {
+        return bonusNumber;
+    }
 }

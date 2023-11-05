@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.data.BonusNumber;
-import lotto.data.LottoRepository;
-import lotto.data.PurchaseAmount;
-import lotto.data.WinningNumbers;
+import lotto.data.*;
 import lotto.input.InputManager;
 import lotto.output.ConsolePrinter;
 import lotto.service.Service;
@@ -14,6 +11,7 @@ public class Controller {
     LottoRepository lottoRepository;
     WinningNumbers winningNumbers;
     BonusNumber bonusNumber;
+    LottoResult lottoResult;
 
     public void inputPurchaseAmount(){
 
@@ -41,5 +39,13 @@ public class Controller {
 
         ConsolePrinter.printRequestBonusNumber();
         bonusNumber = InputManager.inputBonusNumber(winningNumbers);
+    }
+
+    public void outputLottoResult() {
+
+        lottoResult = Service.createLottoResult(lottoRepository,winningNumbers,bonusNumber);
+        ConsolePrinter.printLottoResult(lottoResult);
+
+
     }
 }

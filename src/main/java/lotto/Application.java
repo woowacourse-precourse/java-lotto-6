@@ -11,5 +11,6 @@ public class Application {
         controller.outputPurchasedLotto();
         controller.inputWinningNumbers();
         controller.inputBonusNumber();
+        controller.outputLottoResult();
     }
 }

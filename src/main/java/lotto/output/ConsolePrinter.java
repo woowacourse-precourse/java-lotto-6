@@ -1,12 +1,15 @@
 package lotto.output;
 
 import lotto.constant.Message;
+import lotto.constant.Rank;
 import lotto.data.Lotto;
 import lotto.data.LottoRepository;
+import lotto.data.LottoResult;
 import lotto.data.PurchaseAmount;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ConsolePrinter {
 
@@ -36,5 +39,17 @@ public class ConsolePrinter {
     public static void printRequestBonusNumber() {
         System.out.println();
         System.out.println(Message.INPUT_BONUS_NUMBER);
+    }
+
+    public static void printLottoResult(LottoResult lottoResult) {
+        Map<Rank, Integer> result = lottoResult.get();
+        System.out.println();
+        System.out.println(Message.WINNING_STATISTICS);
+        System.out.println(String.format(Rank.FIFTH.getMessage(),result.get(Rank.FIFTH)));
+        System.out.println(String.format(Rank.FOURTH.getMessage(),result.get(Rank.FOURTH)));
+        System.out.println(String.format(Rank.THIRD.getMessage(),result.get(Rank.THIRD)));
+        System.out.println(String.format(Rank.SECOND.getMessage(),result.get(Rank.SECOND)));
+        System.out.println(String.format(Rank.FIRST.getMessage(),result.get(Rank.FIRST)));
+
     }
 }

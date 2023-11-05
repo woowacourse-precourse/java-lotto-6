@@ -34,7 +34,7 @@ public class ValidateLottoNumberFormat {
     private static void checkNumberFormat(String[] value) {
         Arrays.stream(value)
                 .forEach(v -> {
-                    if (!v.matches("^[1-45]+$")) {
+                    if (!v.matches("^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|4{1}[0-5]{1}$")) {
                         throw new InvalidLottoNumberException();
                     }
                 });

@@ -34,7 +34,7 @@ public class LottoGame {
         int input = lottoStore.getMoney();
         long totalPrize = getTotalPrize();
 
-        rateOfReturn = ((double) totalPrize) / input;
+        rateOfReturn = ((double) totalPrize) / input * 100;
 
         return rateOfReturn;
     }
@@ -52,11 +52,11 @@ public class LottoGame {
     public void printResult() {
         ConsoleMessage.WINNING_STATUS.print();
 
-        for (Entry<WinnerType, Integer> entry : winner.entrySet()) {
-            if (entry.getKey().equals(WinnerType.NOTHING)) {
+        for (WinnerType winnerType : WinnerType.values()) {
+            if (winnerType.equals(WinnerType.NOTHING)) {
                 continue;
             }
-            System.out.printf("%s%d개%n", entry.getKey().message(), entry.getValue());
+            System.out.printf("%s%d개%n", winnerType.message(), winner.getOrDefault(winnerType, 0));
         }
 
         ConsoleMessage.RATE_OF_RETURN.print(getRateOfReturn());

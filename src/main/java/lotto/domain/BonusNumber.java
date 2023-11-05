@@ -1,6 +1,9 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.WinningGrade;
+
+import java.util.List;
 
 public final class BonusNumber {
 
@@ -17,5 +20,16 @@ public final class BonusNumber {
         if (MIN_BONUS_NUMBER > value || MAX_BONUS_NUMBER < value) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.toValue());
         }
+    }
+
+    public WinningGrade checkSecondWinning(final List<Integer> numbers) {
+        if (hasBonusNumber(numbers)) {
+            return WinningGrade.SECOND_GRADE;
+        }
+        return WinningGrade.THIRD_GRADE;
+    }
+
+    private boolean hasBonusNumber(final List<Integer> numbers) {
+        return numbers.contains(value);
     }
 }

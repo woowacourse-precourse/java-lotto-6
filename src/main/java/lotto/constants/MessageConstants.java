@@ -15,4 +15,9 @@ public class MessageConstants {
 	public static final String TOTAL_RATE_OF_RETURN = "총 수익률은 ";
 	public static final String ARE = "입니다.";
 	public static final String NUMBER = "개";
+	public static final String YES_EMPTY = "구입금액을 입력하지 않았습니다.";
+	public static final String YES_BLANK = "공백을 입력했습니다.";
+	public static final String NO_THOUSAND_UNITS = "1000단위로 입력해주세요.";
+	public static final String NO_NUMBER = "숫자를 입력해주세요.";
+
 }

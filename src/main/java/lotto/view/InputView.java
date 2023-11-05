@@ -5,13 +5,16 @@ import static lotto.constants.MessageConstants.INPUT_PURCHASE_AMOUT;
 import static lotto.constants.MessageConstants.INPUT_WINNING_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.BuyAmount;
 
 public class InputView {
 
 	public static int inputPurchaseAmout() {
 		System.out.println(INPUT_PURCHASE_AMOUT);
-		int purchaseAmount = Integer.parseInt(Console.readLine());
+		String buyAmount = Console.readLine();
+		BuyAmount.validate(buyAmount);
 		System.out.println();
+		int purchaseAmount = Integer.parseInt(buyAmount);
 		return purchaseAmount;
 	}
 

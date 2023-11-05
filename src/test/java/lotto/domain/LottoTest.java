@@ -1,10 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +30,6 @@ class LottoTest {
         assertThat(lotto.containsNumber(3)).isTrue();
     }
 
-    // 아래에 추가 테스트 작성 가능
     @DisplayName("로또 번호 주어지면 일치하는 숫자의 개수를 반환한다.")
     @Test
     void getCountingMatchingNumbers() {

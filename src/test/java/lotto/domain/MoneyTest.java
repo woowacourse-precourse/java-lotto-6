@@ -1,9 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +35,13 @@ public class MoneyTest {
     void exceptionDivideBy1000Money() {
         assertThatThrownBy(() -> new Money("1234"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1000으로 나눈 값이 반환된다.")
+    @Test
+    void getDividedThousandWonCount() {
+        Money money = new Money("8000");
+
+        assertThat(money.getDividedThousandWonCount()).isEqualTo(8);
     }
 }

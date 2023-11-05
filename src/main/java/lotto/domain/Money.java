@@ -25,7 +25,6 @@ public class Money {
         }
     }
 
-
     public int getDividedThousandWonCount() {
         return money / 1000;
     }

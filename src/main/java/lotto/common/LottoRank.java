@@ -3,24 +3,26 @@ package lotto.common;
 import java.util.Arrays;
 
 public enum LottoRank {
-    FIRST_RANK(6, false),
+    FIRST_RANK(6, false, 200000000),
 
-    SECOND_RANK(5, true),
+    SECOND_RANK(5, true, 30000000),
 
-    THIRD_RANK(5, false),
+    THIRD_RANK(5, false, 1500000),
 
-    FOURTH_RANK(4, false),
+    FOURTH_RANK(4, false, 50000),
 
-    FIFTH_RANK(3, false),
+    FIFTH_RANK(3, false, 5000),
 
-    NO_RANK(0, false);
+    NO_RANK(0, false, 0);
 
     private final int matchedNumber;
     private final boolean bonus;
+    private final int prize;
 
-    LottoRank(int matchedNumber, boolean bonus) {
+    LottoRank(int matchedNumber, boolean bonus, int prize) {
         this.matchedNumber = matchedNumber;
         this.bonus = bonus;
+        this.prize = prize;
     }
 
     public static LottoRank getRankByMatchedNumbers(int matchedNumber, boolean hasBonus) {
@@ -28,5 +30,9 @@ public enum LottoRank {
                 .filter(rank -> rank.matchedNumber == matchedNumber && rank.bonus == hasBonus)
                 .findFirst()
                 .orElse(NO_RANK);
+    }
+
+    public int getPrize() {
+        return prize;
     }
 }

@@ -1,13 +1,16 @@
 package lotto.model;
 
+import java.util.Arrays;
+import java.util.Collections;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 
 class LottoTest {
     @DisplayName("로또가 잘 생성된다")
@@ -42,6 +45,18 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,46)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+    @DisplayName("로또를 LottoDTO로 변환한다.")
+    @Test
+    void convertToLottoDTO() {
+        List<Integer> validNumbers = Arrays.asList(12, 5, 35, 25, 20, 42);
+        Lotto lotto = new Lotto(validNumbers);
+        Collections.sort(validNumbers);
+
+        LottoDTO lottoDTO = Lotto.toLottoDTO(lotto);
+
+        assertThat(lottoDTO).isNotNull();
+        assertThat(lottoDTO.numbers()).containsExactlyElementsOf(validNumbers);
     }
 
 

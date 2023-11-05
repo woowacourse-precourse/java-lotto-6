@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum Prize {
+    NO_PRIZE(0,0,false),
     FIFTH_PLACE(5_000, 3, false),
     FOURTH_PLACE(50_000, 4, false),
     THIRD_PLACE(1_500_000, 5, false),
@@ -15,5 +18,17 @@ public enum Prize {
         this.money = money;
         this.matchingNumberCount = matchingNumberCount;
         this.isBonusNumberMatched = isBonusNumberMatched;
+    }
+
+
+    public static Prize determineRank(int matchedCount, boolean isBonusNumberMatched) {
+        return Arrays.stream(Prize.values())
+                .filter(prize -> prize.isSame(matchedCount, isBonusNumberMatched))
+                .findAny()
+                .orElse(NO_PRIZE);
+    }
+
+    public boolean isSame(int matchedCount, boolean isBonusNumberMatched) {
+        return matchingNumberCount == matchedCount && this.isBonusNumberMatched == isBonusNumberMatched;
     }
 }

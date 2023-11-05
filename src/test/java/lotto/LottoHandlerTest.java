@@ -156,5 +156,29 @@ class LottoHandlerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자만 입력해 주세요.");
     }
+
+    @DisplayName("입력 받은 보너스 번호를 정수로 반환한다.")
+    @Test
+    void receiveBonusNumber() {
+        // given
+        String receivedBonusNumber = "1";
+
+        // when
+        int bonusNumber = lottoHandler.receiveBonusNumber(receivedBonusNumber);
+
+        // then
+        assertThat(bonusNumber).isEqualTo(1);
+    }
+
+    @DisplayName("입력 받은 보너스 번호에 문자가 있으면 예외가 발생한다.")
+    @Test
+    void receiveBonusNumberByString() {
+        // given
+        String receivedBonusNumber = "a";
+
+        // when // then
+        assertThatThrownBy(() -> lottoHandler.receiveBonusNumber(receivedBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자만 입력해 주세요.");
     }
 }

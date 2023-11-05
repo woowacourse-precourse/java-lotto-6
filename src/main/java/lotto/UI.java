@@ -100,6 +100,6 @@ public class UI {
     private static void printReturnRate(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
         Double returnRate = Calculator.returnRate(lottos, lottoDrawResult);
         String returnRateByRound = String.format("%.1f", returnRate);
-        System.out.println("총 수익률은 " + returnRateByRound + "%입니다.");
+        System.out.print("총 수익률은 " + returnRateByRound + "%입니다.");
     }
 }

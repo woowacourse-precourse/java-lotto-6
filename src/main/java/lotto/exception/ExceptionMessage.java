@@ -11,5 +11,6 @@ public class ExceptionMessage {
 
     public static final String WRONG_LOTTO_NUMBER_SIZE = "[ERROR] 당첨 번호는 1 이상 45 이하여야 합니다.";
     public static final String DUPLICATE_LOTTO_NUMBER = "[ERROR] 당첨 번호는 서로 중복될 수 없습니다.";
+    public static final String DUPLICATE_BONUS_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
     public static final String WRONG_BONUS_NUMBER_SIZE = "[ERROR] 보너스 번호는 1 이상 45 이하여야 합니다.";
 }

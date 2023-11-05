@@ -27,16 +27,12 @@ public class MoneyCalculator{
         totalMoney = prizeMoney.stream().mapToInt(Integer::intValue).sum();
     }
 
-    public void calculateRateOfReturn(Integer amountQuantity){
+    private void calculateRateOfReturn(Integer amountQuantity){
         int investmentMoney = amountQuantity * MIN_VALUE.getAmount();
         BigDecimal findInvestmentMoney = new BigDecimal(investmentMoney);
-        BigDecimal totalMoney = new BigDecimal(this.totalMoney);
-        BigDecimal profit = totalMoney.subtract(findInvestmentMoney);
-        this.rateOfReturn = profit.divide(findInvestmentMoney, 1, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
-    }
-
-    public Integer getTotalMoney() {
-        return totalMoney;
+        BigDecimal findTotalMoney = new BigDecimal(this.totalMoney);
+        BigDecimal profitRate = findTotalMoney.divide(findInvestmentMoney,3,RoundingMode.HALF_UP);
+        this.rateOfReturn = profitRate.multiply(BigDecimal.valueOf(100)).setScale(1, RoundingMode.HALF_UP);
     }
 
     public BigDecimal getRateOfReturn() {

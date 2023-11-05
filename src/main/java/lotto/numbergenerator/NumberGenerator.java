@@ -10,9 +10,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.IllegalAmountException;
-import lotto.exception.IllegalOverValueException;
 import lotto.exception.IllegalNullTypeException;
 import lotto.exception.IllegalNumberTypeException;
+import lotto.exception.IllegalOverValueException;
 
 public class NumberGenerator {
     private final static String DELIMITER = ",";
@@ -63,26 +63,46 @@ public class NumberGenerator {
 
     private void validateNumberType(String unprocessedNumbers) {
         if (!unprocessedNumbers.matches(NUMBER_REGEX)) {
-            throw new IllegalNumberTypeException();
+            try{
+                throw new IllegalNumberTypeException();
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                throw e;
+            }
         }
     }
 
     private void validateMinimumAmount(Integer amount) {
 
         if (amount % MIN_VALUE.getAmount() != ZERO_VALUE.getAmount()) {
-            throw new IllegalAmountException();
+            try{
+                throw new IllegalAmountException();
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                throw e;
+            }
         }
     }
 
     private void validateIsNull(String unprocessedNumbers) {
         if (unprocessedNumbers == null) {
-            throw new IllegalNullTypeException();
+            try{
+                throw new IllegalNullTypeException();
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                throw e;
+            }
         }
     }
 
     private void validateIsSingleNumber(Integer bonusNumber) {
         if (bonusNumber < START_VALUE.getValue() || bonusNumber > END_VALUE.getValue()) {
-            throw new IllegalOverValueException();
+            try{
+                throw new IllegalOverValueException();
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                throw e;
+            }
         }
     }
 

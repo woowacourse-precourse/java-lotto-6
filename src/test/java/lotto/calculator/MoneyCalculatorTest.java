@@ -29,7 +29,7 @@ class MoneyCalculatorTest {
     private final static WinningNumbers winningNumbers = new WinningNumbers(WINNING_NUMBERS);
     private final static BonusNumber winBonusNumber = new BonusNumber(15);
 
-    @DisplayName("총 상금액과 수익률을 반환한다.")
+    @DisplayName("총 수익률을 반환한다.")
     @Test
     void calculateTotalMoneyAndRate() {
         //if
@@ -40,12 +40,9 @@ class MoneyCalculatorTest {
 
         //when
         calculator.calculate(scratchedLottoTicketList,lottoTickets.size());
-        calculator.calculateRateOfReturn(lottoTickets.size() * MIN_VALUE.getAmount());
-        Integer totalMoney = calculator.getTotalMoney();
-        BigDecimal rateOfReturn = calculator.getRateOfReturn();
 
         //then
-        Assertions.assertThat(totalMoney).isEqualTo(30200000);
-        Assertions.assertThat(rateOfReturn).isEqualTo(new BigDecimal("603900.0"));
+        BigDecimal rateOfReturn = calculator.getRateOfReturn();
+        Assertions.assertThat(rateOfReturn).isEqualTo(new BigDecimal("604000.0"));
     }
 }

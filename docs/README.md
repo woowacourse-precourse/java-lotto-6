@@ -95,7 +95,7 @@
 - ✅ validateInputWinningNumber 메서드 구현
     - 6개의 숫자를 입력 했으며, (,)로 구분 했는지 검증
 
-## ❌ 보너스 번호 검증 기능
+## ✅ 보너스 번호 검증 기능
 
-- ❌ validateInputBonusNumber 메서드 구현
+- ✅ validateInputBonusNumber 메서드 구현
     - validateNumberRange를 통해 검증

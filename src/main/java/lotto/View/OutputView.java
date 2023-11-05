@@ -1,7 +1,7 @@
 package lotto.View;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.Domain.Lotto;
 
 public class OutputView {
     private final String BUY_LOTTO_MESSAGE_FORMAT = "%d개를 구매했습니다.";

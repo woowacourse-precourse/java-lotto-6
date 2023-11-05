@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Domain;
 
 import java.util.List;
 
@@ -17,4 +17,12 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public boolean hasNumber(int num) {
+        return numbers.contains(num);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

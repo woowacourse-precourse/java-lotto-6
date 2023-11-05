@@ -8,9 +8,7 @@ public class WinningLottoFactory {
     private static final String LOTTO_NUMBER_SEPERATOR = ",";
 
     public static WinningLotto of(String lottoNumbersInput) {
-        List<Integer> lottoNumbers = splitNumbers(lottoNumbersInput);
-        Lotto lotto = Lotto.of(lottoNumbers);
-        return WinningLotto.of(lotto);
+        return new WinningLotto(splitNumbers(lottoNumbersInput));
     }
 
     private static List<Integer> splitNumbers(String lottoNumbers) {

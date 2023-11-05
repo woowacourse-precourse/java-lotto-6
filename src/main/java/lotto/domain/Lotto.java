@@ -13,7 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
-        validateDuplicated(numbers);
+        validateDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -35,7 +35,7 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicated(List<Integer> numbers) {
+    private void validateDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (distinctNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 달라야 한다.");

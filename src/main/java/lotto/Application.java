@@ -1,7 +1,13 @@
 package lotto;
 
+import lotto.lotto.LottoNumberGenerator;
+import lotto.lotto.LottoSimulator;
+import lotto.lotto.RandomLottoNumberGenerator;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoNumberGenerator lottoNumberGenerator = new RandomLottoNumberGenerator();
+        LottoSimulator lottoSimulator = new LottoSimulator(lottoNumberGenerator);
+        lottoSimulator.start();
     }
 }

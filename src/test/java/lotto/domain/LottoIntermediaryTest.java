@@ -31,7 +31,7 @@ class LottoIntermediaryTest {
 
         // then
         assertThat(lottos).isNotEmpty();
-        assertThat(lottos).hasSize(purchaseAmount / 1_000);
+        assertThat(lottos).hasSize(purchaseAmount / Lotto.PRICE);
     }
 
     @DisplayName("구매 금액이 1,000원 이상이 아닌 경우(1개 이상 구매하지 않는 경우) 예외가 발생한다.")

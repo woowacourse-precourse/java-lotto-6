@@ -13,5 +13,7 @@ public class MessageList {
     public static final String SECOND_PLACE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     public static final String FIRST_PLACE = "6개 일치 (2,000,000,000원) - ";
     public static final String NUMBER = "개";
+    public static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 ";
+    public static final String FINISH_MESSAGE = "%입니다.";
 
 }

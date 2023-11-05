@@ -29,4 +29,8 @@ public class OutputView {
         System.out.println(SECOND_PLACE + winningCount.get(3) + NUMBER);
         System.out.println(FIRST_PLACE + winningCount.get(4) + NUMBER);
     }
+
+    public static void printTotalRateOfReturn(double rateOfReturn) {
+        System.out.println(TOTAL_RATE_OF_RETURN_MESSAGE + rateOfReturn + FINISH_MESSAGE);
+    }
 }

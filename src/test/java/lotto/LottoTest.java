@@ -39,4 +39,10 @@ class LottoTest {
     void printWinningStatistics() {
         OutputView.printWinningStatistics(new ArrayList<>(Arrays.asList(1, 0, 0, 0, 0, 0)));
     }
+
+    @Test
+    @DisplayName("수익률을 출력한다.")
+    void printTotalRateOfReturn() {
+        OutputView.printTotalRateOfReturn(62.5);
+    }
 }

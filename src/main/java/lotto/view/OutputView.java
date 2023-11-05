@@ -29,7 +29,7 @@ public class OutputView {
     private static final DecimalFormat NUMBER_FORMATTER = new DecimalFormat("###,###.#");
     private static final int NOT_EXIST = 0;
 
-    private static final String EXCEPTION_MESSAGE_FORMAT = "[ERROR] %s\n";
+    private static final String EXCEPTION_MESSAGE_FORMAT = "[ERROR] %s\n\n";
 
     public void printLotteries(LotteriesDto lotteries) {
         printCountOfLotteries(lotteries.getSize());

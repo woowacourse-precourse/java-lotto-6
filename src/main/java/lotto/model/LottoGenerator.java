@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerator {
@@ -20,6 +21,7 @@ public class LottoGenerator {
 
     private Lotto createLotto() {
         List<Integer> numbers = randomGenerator.createUniqueNumbers(1, 45, 6);
+        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 

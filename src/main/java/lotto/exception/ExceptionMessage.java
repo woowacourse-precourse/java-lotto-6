@@ -1,4 +1,4 @@
-package lotto;
+package lotto.exception;
 
 public enum ExceptionMessage {
     PURCHASE_UNIT_EXCEPTION("로또 구입은 1,000원 단위만 가능합니다."),

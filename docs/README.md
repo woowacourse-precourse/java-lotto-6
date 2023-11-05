@@ -43,3 +43,34 @@
 - [ ] 당첨 번호 입력 구분자 변동 가능성
 - [ ] 당첨 기준 변동 가능성
 - [ ] 당첨 금액 변동 가능성
+
+## 🧑🏻‍🏫 클래스 구조
+
+### InputView
+
+### OutputView
+
+### GameController
+- `InputView`
+- `OutputView`
+- `NumberService`
+
+### NumberService
+- `AllLottoNumbers`
+- `AllWinningNumbers`
+
+### AllLottoNumbers
+- List\<LottoNumbers>
+
+### LottoNumbers
+- List\<Number>
+
+### Number
+- int
+
+### AllWinningNumbers
+- `WinningNumbers`
+- bonusNumber
+
+### WinningNumbers
+- List\<Number>

@@ -1,8 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import camp.nextstep.edu.missionutils.Console;
 
 public class LottoWin {
@@ -35,20 +32,18 @@ public class LottoWin {
     public void setWinBonusNumber() {
         while (true) {
             try {
-                int input = Integer.parseInt(Console.readLine().trim());
-                validateNumberRange(input);
+                String inputString = Console.readLine().trim();
+                if (!inputString.matches("\\d+")) {
+                    throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+                }
+                int input = Integer.parseInt(inputString);
+                Lotto.validateNumberRange(input);
                 validateUniqueBonusNumber(input);
                 this.bonusNumber = input;
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-    
-    private void validateNumberRange(int num) {
-        if (num < 1 || num > 45) {
-            throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자를 입력해야 합니다.");
         }
     }
     

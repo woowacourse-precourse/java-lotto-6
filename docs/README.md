@@ -26,46 +26,47 @@
 - [ ] 수익률 계산에 대한 테스트 케이스 작성
 
 # 클래스 별 변수와 메소드
-1. **LottoWin 클래스:**
-   - **인스턴스 변수:**
-     - `winNumbers`: 당첨 번호를 담는 Lotto 객체
-     - `bonusNumber`: 보너스 번호를 저장하는 변수
-   - **메소드:**
-     - `public void setLottoWinNumbers()`: 사용자로부터 콘솔을 통해 입력받은 로또 당첨 번호를 설정합니다. 입력이 올바른 형식(6개의 숫자, 1부터 45까지의 범위)이 아니면 예외를 발생시킵니다.
-     - `public void setWinBonusNumber()`: 사용자로부터 콘솔을 통해 입력받은 보너스 번호를 설정합니다. 입력이 올바른 형식(1부터 45까지의 범위, 이미 선택한 번호가 아닌지 확인)이 아니면 예외를 발생시킵니다.
-     - `private List<Integer> splitNumbers(String input)`: 입력된 문자열을 쉼표(,)와 선택적 공백을 기준으로 분할하여 숫자 리스트로 반환합니다. 만약 분할된 숫자의 개수가 6이 아니면 예외를 발생시킵니다.
-     - `private void validateNumberRange(int num)`: 주어진 숫자가 1부터 45 사이의 범위에 속하는지 확인합니다. 범위를 벗어나면 예외를 발생시킵니다.
-     - `private void validateUniqueBonusNumber(int input)`: 보너스 번호가 이미 선택된 번호인지 확인합니다. 이미 선택된 번호일 경우 예외를 발생시킵니다.
+### Lotto 클래스:
+- **인스턴스 변수:**
+  - `numbers`: 로또 번호를 나타내는 정수 리스트입니다.
 
-2. **Lotto 클래스:**
-   - **인스턴스 변수:**
-     - `numbers`: 1부터 45까지의 6개의 숫자를 저장하는 리스트
-   - **메소드:**
-     - `public Lotto(List<Integer> numbers)`: 주어진 숫자 리스트로 Lotto 객체를 생성하고 유효성을 검사
-     - `public Lotto()`: 빈 리스트로 Lotto 객체를 생성
-     - `private void validate(List<Integer> numbers)`: 숫자 리스트의 유효성을 검사
-     - `public List<Integer> getNumbers()`: 숫자 리스트를 반환
-     - `public boolean containsNumber(int number)`: 특정 숫자가 리스트에 포함되어 있는지 확인
-     - `public void add(Integer number)`: 숫자를 리스트에 추가
-     - `public static Lotto createLottoFromUserInput()`: 콘솔에서 사용자 입력을 받아 Lotto 객체를 생성
+- **메서드:**
+  - `public Lotto(List<Integer> numbers)`: 로또 번호를 검증하고 초기화하는 생성자입니다.
+  - `private void validate(List<Integer> numbers)`: 로또 번호의 길이, 범위 및 고유성을 검증합니다.
+  - `public Lotto()`: 빈 로또 인스턴스를 초기화하는 기본 생성자입니다.
+  - `public List<Integer> getNumbers()`: 로또 번호 리스트를 반환합니다.
+  - `public boolean containsNumber(int number)`: 번호가 로또 번호에 포함되어 있는지 확인합니다.
+  - `public void add(Integer number)`: 번호를 로또 번호에 추가합니다.
+  - `public static Lotto createLottoFromUserInput()`: 사용자 입력을 읽어 검증하고 로또 인스턴스를 생성합니다.
+  - `public static void validateNumberRange(int num)`: 범위(1에서 45까지) 내의 단일 숫자를 검증합니다.
+  - `public static void validateUniqueNumber(List<Integer> numbers, int num)`: 리스트 내에서 고유한 숫자를 검증합니다.
 
-3. **LottoGame 클래스:**
-   - **상수:**
-     - `LOTTO_PRICE`: 로또 한 장의 가격 (1,000원)
-     - `MIN_NUMBER`: 로또 번호의 최소값 (1)
-     - `MAX_NUMBER`: 로또 번호의 최대값 (45)
-     - `LOTTO_NUMBERS_COUNT`: 한 게임당 로또 번호의 개수 (6)
-   - **인스턴스 변수:**
-     - `gameCount`: 구매한 로또 게임의 수
-     - `lottogame`: 로또 게임들을 저장하는 리스트
-   - **메소드:**
-     - `public void setLottoGame(int number)`: 구매한 로또 게임의 수를 설정
-     - `public void validatePurchaseAmount(String input)`: 구매 금액의 유효성을 검사
-     - `public void generateLottoNumbers()`: 구매한 게임 수에 따라 로또 번호를 생성하고 출력
-     - `public void printLotto()`: 생성된 로또 번호들을 정렬하여 출력
-     - `public void printLottoWin(LottoWin lottoWin)`: 당첨 번호와 비교하여 각 등수의 당첨 횟수를 출력하고 수익률을 계산하여 출력
-     - `private int countMatchingNumbers(Lotto userNumbers, Lotto winNumbers)`: 사용자 번호와 당첨 번호를 비교하여 일치하는 숫자 개수를 반환
-     - `public void getEarningRate(int match3, int match4, int match5, int match5WithBonus, int match6)`: 당첨 횟수를 이용하여 총 수익 및 수익률을 계산하여 출력
+### LottoWin 클래스:
+- **인스턴스 변수:**
+  - `winNumbers`: 로또의 당첨 번호를 나타내는 Lotto 클래스의 인스턴스입니다.
+  - `bonusNumber`: 로또 보너스 번호입니다.
+
+- **메서드:**
+  - `public LottoWin()`: 빈 Lotto 인스턴스로 LottoWin을 초기화하는 생성자입니다.
+  - `public Lotto getWinNumbers()`: 당첨 로또 번호를 반환합니다.
+  - `public int getBonusNumber()`: 보너스 번호를 반환합니다.
+  - `public void setLottoWinNumbers()`: 사용자 입력을 읽어 검증하고 당첨 번호를 설정합니다.
+  - `public void setWinBonusNumber()`: 사용자 입력을 읽어 검증하고 보너스 번호를 설정합니다.
+  - `private void validateUniqueBonusNumber(int input)`: 보너스 번호의 고유성을 검증합니다.
+
+### LottoGame 클래스:
+- **인스턴스 변수:**
+  - `gameCount`: 구매한 로또 게임의 수입니다.
+  - `lottogame`: 구매한 로또 게임을 나타내는 Lotto 인스턴스의 리스트입니다.
+
+- **메서드:**
+  - `public void setLottoGame(int number)`: 구매할 로또 게임 수를 설정합니다.
+  - `public void validatePurchaseAmount()`: 구매 금액을 읽어 검증합니다.
+  - `public void generateLottoNumbers()`: 지정된 게임 수에 기반하여 로또 번호를 생성하고 출력합니다.
+  - `public void printLotto()`: 생성된 로또 번호를 출력합니다.
+  - `public void printLottoWin(LottoWin lottoWin)`: 사용자 로또 번호를 당첨 번호와 비교하고 상금을 계산합니다.
+  - `private int countMatchingNumbers(Lotto userNumbers, Lotto winNumbers)`: 사용자 번호와 당첨 번호 간의 일치하는 숫자 수를 계산합니다.
+  - `public void getEarningRate(int match3, int match4, int match5, int match5WithBonus, int match6)`: 일치하는 숫자에 따른 총 수익과 수익률을 계산하고 출력합니다.
 
 ### 실행 결과 예시
 

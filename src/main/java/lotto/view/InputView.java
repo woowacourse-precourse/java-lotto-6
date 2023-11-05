@@ -21,22 +21,40 @@ public class InputView {
 
     public Integer getPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
-        String purchaseAmount = Console.readLine();
-        purchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
-        return Integer.valueOf(purchaseAmount);
+        while (true) {
+            try {
+                String purchaseAmount = Console.readLine();
+                purchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
+                return Integer.valueOf(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<String> getDrawnNumbers() {
         System.out.println();
         System.out.println(INPUT_DRAWN_NUMBERS_MESSAGE);
-        String drawnNumbers = Console.readLine();
-        return lottoNumberValidator.validateLottNumbers(drawnNumbers);
+        while (true) {
+            try {
+                String drawnNumbers = Console.readLine();
+                return lottoNumberValidator.validateLottNumbers(drawnNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public Integer getBonusNumber(List<String> lottoNumbers) {
         System.out.println();
         System.out.println(INPUT_BONUS_NUMBERS_MESSAGE);
-        String bonusNumber = Console.readLine();
-        return lottoNumberValidator.validateBonusNumber(bonusNumber, lottoNumbers);
+        while (true) {
+            try {
+                String bonusNumber = Console.readLine();
+                return lottoNumberValidator.validateBonusNumber(bonusNumber, lottoNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

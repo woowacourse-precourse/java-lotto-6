@@ -14,8 +14,10 @@ public class OutputView {
                 .format(String.valueOf(count)));
     }
 
-    public static void displayPurchaseNumbers(List<Lotto> lotto) {
-
+    public static void displayPurchaseNumbers(List<Lotto> lottoPapers) {
+        for (Lotto lotto : lottoPapers) {
+            System.out.println(lotto.getNumbers().toString());
+        }
     }
 
     public static void displayResults() {

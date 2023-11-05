@@ -25,7 +25,7 @@ public class BonusNumber {
     }
 
     private void hasCorrectRange(int bonusNumber) {
-        if (bonusNumber < NUMBER_RANGE_MAX || bonusNumber > NUMBER_RANGE_MAX) {
+        if (bonusNumber < NUMBER_RANGE_MIN || bonusNumber > NUMBER_RANGE_MAX) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
                     ErrorMessages.INVALID_RANGE.format(NUMBER_RANGE_MIN, NUMBER_RANGE_MAX) +
                     ErrorMessages.SUFFIX.getMessage());

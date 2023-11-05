@@ -6,9 +6,9 @@ import static lotto.constant.DisplayMessages.*;
 
 public class InputView {
 
-    public static String PurchaseAmount() {
+    public static int PurchaseAmount() {
         System.out.println(LOTTO_PURCHASE_AMOUNT.getMessage());
-        return Console.readLine();
+        return Integer.parseInt(Console.readLine());
     }
 
     public static String WinningNumber() {

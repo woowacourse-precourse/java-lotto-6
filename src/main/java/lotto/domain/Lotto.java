@@ -37,12 +37,12 @@ public class Lotto {
 
     private void validateNumberRange(List<Integer> numbers) {
         long count = numbers.stream()
-                .filter(num -> num > NUMBER_RANGE_MIN && num < NUMBER_RANGE_MAX)
+                .filter(num -> num >= NUMBER_RANGE_MIN && num <= NUMBER_RANGE_MAX)
                 .count();
 
         if (count != WINNING_NUMBER) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
-                    ErrorMessages.DUPLICATE_NUMBER.getMessage() +
+                    ErrorMessages.INVALID_RANGE.format(NUMBER_RANGE_MIN, NUMBER_RANGE_MAX) +
                     ErrorMessages.SUFFIX.getMessage());
         }
     }

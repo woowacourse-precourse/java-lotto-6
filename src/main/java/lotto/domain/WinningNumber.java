@@ -21,7 +21,7 @@ public class WinningNumber {
     private void hasCorrectNumberSize(List<Integer> winningNumber) {
         if (winningNumber.size() != WINNING_NUMBER) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
-                    ErrorMessages.INVALID_COUNT +
+                    ErrorMessages.INVALID_COUNT.getMessage() +
                     ErrorMessages.SUFFIX.getMessage());
         }
     }

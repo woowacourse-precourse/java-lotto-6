@@ -2,7 +2,7 @@ package lotto.constant;
 
 public enum ErrorMessages {
     PREFIX("[ERROR]"),
-    SUFFIX(" 다시 입력해 주세요"),
+    SUFFIX("\n 다시 입력해 주세요"),
     INVALID_COUNT("입력하신 번호의 개수가 잘못되었습니다."),
     DUPLICATE_NUMBER("중복된 번호가 있습니다."),
     NEGATIVE_AMOUNT("음수는 입력이 불가능합니다."),

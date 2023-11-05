@@ -1,12 +1,25 @@
 package lotto.domain;
 
-public class Profit {
+import lotto.util.WinnerRank;
 
-    public float calculateProfitRate(PurchasePrice purchasePrice, WinResult winResult) {
-        return 0f;
+public class Profit {
+    private final static int HUNDRED = 100;
+    public double calculateProfitRate(PurchasePrice purchasePrice, WinResult winResult) {
+        float moneyPrize = sumWinMoney(winResult);
+        float profit = (moneyPrize / purchasePrice.getPrice()) * HUNDRED;
+        return roundUpProfit(profit);
     }
 
-    private long calculateWinMoney(WinResult winResult) {
-        return 0L;
+    private double roundUpProfit (float profit) {
+        return Math.round(profit * HUNDRED)/100.0;
+    }
+
+    private float sumWinMoney(WinResult winResult) {
+        float moneyPrize = 0;
+        for(WinnerRank winnerRank : WinnerRank.values()){
+            int key = winnerRank.getValue();
+            moneyPrize += winResult.getWinResultValue(key) * winnerRank.getPrizeMoney();
+        }
+        return moneyPrize;
     }
 }

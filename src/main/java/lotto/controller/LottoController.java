@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.model.LottoNumber;
 import lotto.model.Player;
 import lotto.model.Prize;
 import lotto.model.Rank;
@@ -36,7 +35,7 @@ public class LottoController {
     }
 
     private Prize getPrize(Lotto lotto) {
-        LottoNumber bonus = LottoNumber.getInstance(InputView.getLottoBonus());
+        int bonus = InputView.getLottoBonus();
         try {
             return Prize.of(lotto, bonus);
         } catch (IllegalArgumentException e) {
@@ -47,7 +46,7 @@ public class LottoController {
 
     private Lotto getPrizeLotto() {
         try {
-            return new Lotto(Generator.generateIntegerToLottoNumber(InputView.getLottoPrize()));
+            return new Lotto(InputView.getLottoPrize());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPrizeLotto();

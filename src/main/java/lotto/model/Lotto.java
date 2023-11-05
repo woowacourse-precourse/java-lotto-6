@@ -1,32 +1,46 @@
 package lotto.model;
 
 import static lotto.constants.Error.DUPLICATE_INVALID;
+import static lotto.constants.Error.RANGE_INVALID;
 import static lotto.constants.Error.SIZE_INVALID;
 import static lotto.constants.Rule.LOTTO_SIZE;
+import static lotto.constants.Rule.MAX_LOTTO;
+import static lotto.constants.Rule.MIN_LOTTO;
 
 import java.util.List;
 import java.util.Objects;
 
 public class Lotto {
-    private final List<LottoNumber> numbers;
+    private final List<Integer> numbers;
 
-    public Lotto(List<LottoNumber> numbers) {
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<LottoNumber> numbers) {
+    private void validate(List<Integer> numbers) {
+        validateRange(numbers);
         validateSize(numbers);
         validateDuplicate(numbers);
     }
 
-    private void validateSize(List<LottoNumber> numbers) {
+    private static void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> !isValidNumber(number))) {
+            throw new IllegalArgumentException(RANGE_INVALID.getMessage());
+        }
+    }
+
+    private static boolean isValidNumber(int number) {
+        return number >= MIN_LOTTO.getValue() && number <= MAX_LOTTO.getValue();
+    }
+
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException(SIZE_INVALID.getMessage());
         }
     }
 
-    private void validateDuplicate(List<LottoNumber> numbers) {
+    private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_INVALID.getMessage());
         }
@@ -36,7 +50,7 @@ public class Lotto {
         return (int) numbers.stream().filter(prize.getLotto()::isMatchNumber).count();
     }
 
-    public boolean isMatchNumber(LottoNumber lottoNumber) {
+    public boolean isMatchNumber(int lottoNumber) {
         return numbers.contains(lottoNumber);
     }
 

@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Screen {
     public static void printAskingPurchasingAmountMessage() {
@@ -21,48 +23,35 @@ public class Screen {
         }
     }
 
+    public static void printAskingWinningNumbersMessage() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public static Lotto inputWinningNumbers() {
+        String[] splitNumbers = Console.readLine().split(",");
+
+        try {
+            return new Lotto(convertType(splitNumbers));
+        }
+        catch (IllegalArgumentException exception) {
+            printErrorMessage(exception.getMessage());
+        }
+        return inputWinningNumbers();
+    }
+
+    private static List<Integer> convertType(String[] numbers) {
+        try {
+            return Stream.of(numbers).map(Integer::parseInt).collect(Collectors.toList());
+        }
+        catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
     public static void printErrorMessage(String message) {
         System.out.println(message);
     }
 
-    static public Lotto inputWinningNumbers() {
-        String[] splitNumbers = Console.readLine().split(",");
-        Lotto lotto = null;
-
-        try {
-            lotto = new Lotto(convertNumbersType(List.of(splitNumbers)));
-        }
-        catch (IllegalArgumentException exception) {
-            printErrorMessage(exception.getMessage());
-            inputWinningNumbers();
-        }
-        return lotto;
-    }
-
-    static private List<Integer> convertNumbersType(List<String> winningNumbers) {
-        List<Integer> convertNumbers = new ArrayList<>();
-
-        for (String number : winningNumbers) {
-            convertNumbers.add(convertType(number));
-        }
-        return convertNumbers;
-    }
-
-    static private int convertType(String number) {
-        int convertNumber;
-
-        try {
-            convertNumber = Integer.parseInt(number);
-        }
-        catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-        return convertNumber;
-    }
-
-    static public void printAskingWinningNumbersMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-    }
 
     static public int inputBonusNumber(Lotto winningLotto) {
         String bonusNumber = Console.readLine();

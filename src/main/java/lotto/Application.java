@@ -2,9 +2,15 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
+        Lottos lottos;
+        Lotto winningNumber;
+
+
         Screen.printAskingPurchasingAmountMessage();
-        Lottos lottos = makeLottos();
+        lottos = makeLottos();
         Screen.printAllLottos(lottos.getLottos());
+        Screen.printAskingWinningNumbersMessage();
+        winningNumber = Screen.inputWinningNumbers();
     }
 
     private static Lottos makeLottos() {

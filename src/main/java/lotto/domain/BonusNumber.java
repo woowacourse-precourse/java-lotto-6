@@ -10,6 +10,6 @@ public class BonusNumber {
     }
 
     public boolean isContains(List<Integer> numbers) {
-        return true;
+        return numbers.contains(bonusNumber);
     }
 }

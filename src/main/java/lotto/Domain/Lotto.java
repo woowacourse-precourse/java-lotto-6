@@ -2,6 +2,7 @@ package lotto.Domain;
 
 import java.util.List;
 
+import static lotto.Validator.ValidatorConstant.SIZE_ERROR;
 import lotto.Validator.Validator;
 
 public class Lotto {
@@ -17,7 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(SIZE_ERROR.getMessage());
         }
     }
 

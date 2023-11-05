@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     static final String LOTTO_START_ERROR_MESSAGE = "[ERROR] ";
@@ -70,7 +71,8 @@ public class Lotto {
     }
 
     private List<Integer> sortAscending(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

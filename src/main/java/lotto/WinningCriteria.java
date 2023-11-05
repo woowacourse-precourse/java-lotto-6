@@ -2,28 +2,35 @@ package lotto;
 
 public enum WinningCriteria {
     FIRST_PLACE{
-        public int apply(int x) {
-            return x * 2000000000;
+        @Override
+        public int apply(int count) {
+            return count * 2_000_000_000;
         }
     },
     SECOND_PLACE{
-        public int apply(int x) {
-            return x * 30000000;
+        @Override
+        public int apply(int count) {
+            return count * 30_000_000;
         }
     },
     THIRD_PLACE{
-        public int apply(int x) {
-            return x * 1500000;
+        @Override
+        public int apply(int count) {
+            return count * 1_500_000;
         }
     },
     FOURTH_PLACE{
-        public int apply(int x) {
-            return x * 50000;
+        @Override
+        public int apply(int count) {
+            return count * 50_000;
         }
     },
     FIFTH_PLACE{
-        public int apply(int x) {
-            return x * 5000;
+        @Override
+        public int apply(int count) {
+            return count * 5_000;
         }
-    }
+    };
+
+    public abstract int apply(int count);
 }

@@ -36,6 +36,8 @@ public class Prize {
     static void separateNumbers() {
         for (int i = 0; i < Issue.lottoGroup.size(); i++) {
             separatedLotto = Issue.lottoGroup.get(i);
+            luckyCounts = 0;
+            bonusCounts = 0;
 
             checkNumbers();
             winPrize();

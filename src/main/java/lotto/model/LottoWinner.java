@@ -3,6 +3,8 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import lotto.util.Message;
 import lotto.util.ValidationCheck;
 import lotto.view.InputView;
@@ -10,6 +12,8 @@ import lotto.view.InputView;
 public class LottoWinner {
     private Lotto winningNumber;
     private Integer bonusNumber;
+
+    private Map<ScoreBoard, Integer> scoreResult;
 
     public void createWinnerLotto() {
         this.winningNumber = inputWinningNumber();
@@ -67,5 +71,12 @@ public class LottoWinner {
         }
 
         return checkedNumbers;
+    }
+
+    public void matchWinnerLotto(Set<Lotto> lottos) {
+        for (Lotto userLotto : lottos) {
+            ScoreBoard result = userLotto.matchNumbers(this.winningNumber, this.bonusNumber);
+            scoreResult.put(result, scoreResult.getOrDefault(result, 0) + 1);
+        }
     }
 }

@@ -38,15 +38,17 @@
 - [x] user input 구현 (view - InputView) (OutputEnum - 출력 문구 저장)
   - [x] 구입금액 입력
   - [x] 당첨번호 입력
-  - [x] 보너스번호 입력
+  - [x] 보너스번호 입력[Lotto.java]
 - [ ] 로또 구입 금액에 해당하는 만큼 로또 발행 (service - LottoService)
   - [x] 로또 구입 금액 확인 (service - MoneyValidator)
     - [x] 입력이 숫자로 이루어져 있는지 확인
     - [x] 1000원 단위 확인
     - [x] 1000원 이상 확인
     - [x] 10000000원 이하 확인
-  - [ ] 로또 번호 생성 (domain - Lotto)
+  - [ ] 로또 번호 생성 (Lotto) (Lotto List - domain) (생성 전 String -> 타입 검증 = 사용자 입력)
     - [ ] 로또 발행
     - [ ] 로또 번호 생성
-    - [ ] 로또 번호 중복 확인
-    - [ ] 로또 번호 정렬
+    - [x] 로또 사이즈 확인
+    - [x] 로또 번호 범위 확인
+    - [x] 로또 번호 중복 확인
+    - [x] 로또 번호 정렬

@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.ErrorMessages.NOT_INTEGER;
-import static lotto.domain.ErrorMessages.NOT_UNIQUE;
+import static lotto.domain.constant.ErrorMessages.NOT_INTEGER;
+import static lotto.domain.constant.ErrorMessages.NOT_UNIQUE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;

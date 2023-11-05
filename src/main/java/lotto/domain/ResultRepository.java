@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import lotto.domain.constant.Rank;
+
 public class ResultRepository {
-    private int numberOfCorrect;
-    private boolean hitBonusNumber;
+    final private int numberOfCorrect;
+    final private boolean hitBonusNumber;
 
     public ResultRepository(WinningLotto winningLotto, Lotto lotto) {
         numberOfCorrect = lotto.compareTo(winningLotto.winningLotto);

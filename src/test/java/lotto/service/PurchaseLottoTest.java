@@ -1,8 +1,8 @@
 package lotto.service;
 
-import static lotto.domain.ErrorMessages.NOT_INTEGER;
-import static lotto.domain.ErrorMessages.PURCHASE_RANGE;
-import static lotto.domain.ErrorMessages.PURCHASE_UNIT;
+import static lotto.domain.constant.ErrorMessages.NOT_INTEGER;
+import static lotto.domain.constant.ErrorMessages.PURCHASE_RANGE;
+import static lotto.domain.constant.ErrorMessages.PURCHASE_UNIT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

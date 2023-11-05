@@ -1,8 +1,11 @@
 package lotto.service;
 
-import static lotto.domain.ErrorMessages.NOT_INTEGER;
-import static lotto.domain.ErrorMessages.PURCHASE_RANGE;
-import static lotto.domain.ErrorMessages.PURCHASE_UNIT;
+import static lotto.domain.constant.ErrorMessages.NOT_INTEGER;
+import static lotto.domain.constant.ErrorMessages.PURCHASE_RANGE;
+import static lotto.domain.constant.ErrorMessages.PURCHASE_UNIT;
+import static lotto.domain.constant.Range.PURCHASE_COST_LOWER_LIMIT;
+import static lotto.domain.constant.Range.PURCHASE_COST_UNIT;
+import static lotto.domain.constant.Range.PURCHASE_COST_UPPER_LIMIT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -23,15 +26,16 @@ public class PurchaseLotto {
         if (!checkUnit(numberCost)) {
             throw new IllegalArgumentException(PURCHASE_UNIT.getMessage());
         }
-        return numberCost / 1000;
+        return numberCost / PURCHASE_COST_UNIT.getLimit();
     }
 
     private boolean checkRange(int number) {
-        return number >= 1000 && number <= 1_000_000;
+        return number >= PURCHASE_COST_LOWER_LIMIT.getLimit()
+                && number <= PURCHASE_COST_UPPER_LIMIT.getLimit();
     }
 
     private boolean checkUnit(int number) {
-        return number % 1000 == 0;
+        return number % PURCHASE_COST_UNIT.getLimit() == 0;
     }
 
     private int toNumber(String cost) {

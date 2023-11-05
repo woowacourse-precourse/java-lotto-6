@@ -2,8 +2,8 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Rank;
 import lotto.domain.ResultRepository;
+import lotto.domain.constant.Rank;
 
 public class WinningStatistics {
     private int numberOfPurchase;

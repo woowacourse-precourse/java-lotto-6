@@ -1,9 +1,11 @@
 package lotto.domain;
 
 import static java.util.Collections.sort;
-import static lotto.domain.ErrorMessages.NOT_INTEGER;
-import static lotto.domain.ErrorMessages.NOT_UNIQUE;
-import static lotto.domain.ErrorMessages.NUMBER_OF_LOTTO;
+import static lotto.domain.constant.ErrorMessages.NOT_INTEGER;
+import static lotto.domain.constant.ErrorMessages.NOT_UNIQUE;
+import static lotto.domain.constant.ErrorMessages.NUMBER_OF_LOTTO;
+import static lotto.domain.constant.Range.LOTTO_NUMBER_LOWER_LIMIT;
+import static lotto.domain.constant.Range.LOTTO_SIZE;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -50,7 +52,7 @@ public class Lotto implements Comparable<Lotto> {
     }
 
     private boolean checkSize(List<Integer> numbers) {
-        return numbers.size() == 6;
+        return numbers.size() == LOTTO_SIZE.getLimit();
     }
 
     private boolean checkUnique(List<Integer> numbers) {
@@ -59,6 +61,8 @@ public class Lotto implements Comparable<Lotto> {
     }
 
     private boolean checkRange(List<Integer> numbers) {
-        return numbers.stream().allMatch(number -> number >= 1 && number <= 45);
+        return numbers.stream().allMatch(number ->
+                number >= LOTTO_NUMBER_LOWER_LIMIT.getLimit()
+                        && number <= LOTTO_NUMBER_LOWER_LIMIT.getLimit());
     }
 }

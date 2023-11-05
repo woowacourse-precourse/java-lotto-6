@@ -1,16 +1,16 @@
 package lotto.domain;
 
-import static lotto.domain.ErrorMessages.NOT_INTEGER;
-import static lotto.domain.ErrorMessages.NOT_UNIQUE;
-import static lotto.domain.ErrorMessages.RANGE_NUMBER;
+import static lotto.domain.constant.ErrorMessages.NOT_INTEGER;
+import static lotto.domain.constant.ErrorMessages.NOT_UNIQUE;
+import static lotto.domain.constant.ErrorMessages.RANGE_NUMBER;
+import static lotto.domain.constant.Range.LOTTO_NUMBER_LOWER_LIMIT;
+import static lotto.domain.constant.Range.LOTTO_NUMBER_UPPER_LIMIT;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningLotto {
-    public static final Integer LOTTO_LOWER_LIMIT = 1;
-    public static final Integer LOTTO_UPPER_LIMIT = 45;
     public Lotto winningLotto;
     public Integer bonusNumber;
 
@@ -56,7 +56,8 @@ public class WinningLotto {
     }
 
     private static void checkRange(Integer bonusNumber) {
-        if (bonusNumber < LOTTO_LOWER_LIMIT || bonusNumber > LOTTO_UPPER_LIMIT) {
+        if (bonusNumber < LOTTO_NUMBER_LOWER_LIMIT.getLimit()
+                || bonusNumber > LOTTO_NUMBER_UPPER_LIMIT.getLimit()) {
             throw new IllegalArgumentException(RANGE_NUMBER.getMessage());
         }
     }

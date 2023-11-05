@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.domain.Rank.toRank;
+import static lotto.domain.constant.Rank.toRank;
 
 import java.util.List;
 import lotto.domain.Lotto;

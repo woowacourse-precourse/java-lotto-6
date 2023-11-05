@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.constant;
 
 public enum ErrorMessages {
     NOT_INTEGER("[ERROR] 정수가 아닙니다."),

@@ -27,7 +27,10 @@ public enum LottoMatch {
         return description;
     }
 
-    public static LottoMatch getLottoMatchByCount(int matchCount) {
+    public static LottoMatch getLottoMatchByCount(int matchCount, boolean containsBonus) {
+        if (matchCount == 5 && containsBonus) {
+            return LottoMatch.FIVE_MATCH_WITH_BONUS;
+        }
         for (LottoMatch match : LottoMatch.values()) {
             if (match.getMatchCount() == matchCount) {
                 return match;

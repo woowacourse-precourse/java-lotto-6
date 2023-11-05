@@ -1,14 +1,15 @@
 package lotto;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Player {
     private final int bonusNumber;
     private final Lotto sixLottoNumber;
 
     public Player(Lotto sixLottoNumber, int bonusNumber) {
-        isProperRange(bonusNumber);
-        isDuplicated(bonusNumber, sixLottoNumber.getNumbers());
+        validator(sixLottoNumber, bonusNumber);
         this.bonusNumber = bonusNumber;
         this.sixLottoNumber = sixLottoNumber;
     }
@@ -21,6 +22,13 @@ public class Player {
         return bonusNumber;
     }
 
+    private void validator(Lotto sixLottoNumber, int bonusNumber) {
+        isProperRange(bonusNumber);
+        isProperRange(sixLottoNumber.getNumbers());
+        isDuplicated(bonusNumber, sixLottoNumber.getNumbers());
+        isDuplicated(sixLottoNumber.getNumbers());
+    }
+
     private void isProperRange(int number) {
         if (number < IntConstants.MIN_RANGE.getValue()
                 || number > IntConstants.MAX_RANGE.getValue()) {
@@ -28,9 +36,25 @@ public class Player {
         }
     }
 
+    private void isProperRange(List<Integer> sixNumbers) {
+        for (Integer sixNumber : sixNumbers) {
+            if (sixNumber < IntConstants.MIN_RANGE.getValue()
+                    || sixNumber > IntConstants.MAX_RANGE.getValue()) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE_MESSAGE.getMessage());
+            }
+        }
+    }
+
+    private void isDuplicated(List<Integer> sixNumbers) {
+        Set<Integer> integerSet = sixNumbers.stream().collect(Collectors.toSet());
+        if (integerSet.size() != IntConstants.LOTTO_NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATED_NUMBER_MESSAGE.getMessage());
+        }
+    }
+
     private void isDuplicated(int number, List<Integer> sixNumbers) {
         if (sixNumbers.contains(number)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLIDATED_BOUNS_MESSAGE.getMessage());
         }
     }
 }

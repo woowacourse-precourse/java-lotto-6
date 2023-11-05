@@ -67,5 +67,6 @@ public class InputView {
     private void validateBonusNumber(String input) {
         inputValidator.checkInputEmpty(input);
         inputValidator.checkInputBlank(input);
+        inputValidator.checkInputDigit(input);
     }
 }

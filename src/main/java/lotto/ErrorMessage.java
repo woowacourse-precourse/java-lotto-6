@@ -8,6 +8,7 @@ public enum ErrorMessage {
     INVALID_NUMBER_MESSAGE("반드시 숫자로만 입력해야 합니다."),
     INPUT_BLANK_MESSAGE("입력은 공백일 수 없습니다."),
     INPUT_EMPTY_MESSGAE("값을 입력하지 않았습니다."),
+    INPUT_DUPLIDATED_BOUNS_MESSAGE("보너스 값은 입력된 6자리 값과 중복될 수 없습니다."),
     INVALID_MONEY_UNIT_MESSAGE("돈은 천원 단위로 투입 가능합니다.");
 
 

@@ -29,4 +29,12 @@ public class PaymentTest {
         });
         Assertions.assertEquals(zeroException.getMessage(),negativeException.getMessage());
     }
+    @Test
+    @DisplayName("1000원 단위로 숫자를 입력하지 않으면 예외를 발생한다.")
+    void ThrowExceptionWhenInputIsNotAlignedWithPaymentUnit(){
+        int notAlignedAmount = 999;
+        Assertions.assertThrows(PaymentException.class,()->{
+            new Payment(notAlignedAmount);
+        });
+    }
 }

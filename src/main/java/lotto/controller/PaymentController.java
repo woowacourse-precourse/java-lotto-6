@@ -6,7 +6,7 @@ import lotto.exception.PaymentExceptionMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class PaymentController {
+public final class PaymentController {
     public Payment createPayment(){
         OutputView.printPaymentMessage();
         Payment payment = generatePaymentFromAmount();

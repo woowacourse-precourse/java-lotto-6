@@ -1,5 +1,7 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
 
 
@@ -15,5 +17,9 @@ public class InputView {
             instance = new InputView();
         }
         return instance;
+    }
+
+    public String inputMoney() {
+        return Console.readLine();
     }
 }

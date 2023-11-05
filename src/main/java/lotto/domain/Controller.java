@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.model.LottoTicket;
 import lotto.model.Purchase;
 import lotto.validator.ValidatorPurchaseAmount;
 import lotto.view.View;
@@ -18,6 +19,11 @@ public class Controller {
             purchase = new Purchase(view.input());
             validatorPurchaseAmount = new ValidatorPurchaseAmount();
         }
+
+        LottoTicket lottoTicket = new LottoTicket(calculateLottoTicketCount(purchase));
     }
 
+    public int calculateLottoTicketCount(Purchase purchase) {
+        return Integer.parseInt(purchase.getPurchaseAmount())/1000;
+    }
 }

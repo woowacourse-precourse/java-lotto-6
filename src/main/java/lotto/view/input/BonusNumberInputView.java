@@ -1,10 +1,10 @@
-package lotto.view;
+package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.NumberErrorMessage;
 import lotto.util.NumberValidator;
 
 public class BonusNumberInputView {
+    private static final NumberValidator numberValidator = new NumberValidator();
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public int getInput() {
@@ -14,7 +14,7 @@ public class BonusNumberInputView {
             String bonusNumber = Console.readLine();
 
             try {
-                NumberValidator.validateBonusNumber(bonusNumber);
+                numberValidator.validateBonusNumber(bonusNumber);
                 return Integer.parseInt(bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

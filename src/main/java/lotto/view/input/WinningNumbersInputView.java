@@ -1,7 +1,6 @@
-package lotto.view;
+package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.NumberValidator;
 import lotto.util.WinningNumbersConverter;
 
 import java.util.List;
@@ -12,10 +11,10 @@ public class WinningNumbersInputView {
     public List<Integer> getInput() {
         while (true) {
             System.out.println(WINNING_NUMBERS_MESSAGE);
-            String winningNumbersAsString = Console.readLine();
+            String userInput = Console.readLine();
 
             try {
-                List<Integer> winningNumbers = WinningNumbersConverter.convertStringToList(winningNumbersAsString);
+                List<Integer> winningNumbers = WinningNumbersConverter.convertStringToList(userInput);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

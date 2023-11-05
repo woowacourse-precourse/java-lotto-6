@@ -14,6 +14,7 @@ public class LottoModel {
 
     private final InputUI inputUI;
     private final OutputUI outputUI;
+    private final int CHECK_BONUS = 999;
     private List<Lotto> publishedLottos;
     private int totalEarnedMoney;
     private HashMap<Rewards, Integer> winningTable;
@@ -75,6 +76,19 @@ public class LottoModel {
             winningNums.put(winningnum, 0);
         }
         return winningNums;
+    }
+
+    public HashMap<Integer, Integer> compareLotto(List<Integer> winnings, Lotto lotto, int bonusNum) {
+        HashMap<Integer, Integer> winningNumsTable = initWinningNumsTable(winnings);
+        for (int number : lotto.getNumbers()) {
+            if (winningNumsTable.containsKey(number)) {
+                winningNumsTable.put(number, 1);
+            }
+            if (number == bonusNum) {
+                winningNumsTable.put(CHECK_BONUS, 1);
+            }
+        }
+        return winningNumsTable;
     }
 
 

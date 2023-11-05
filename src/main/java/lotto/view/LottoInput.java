@@ -8,4 +8,8 @@ public class LottoInput {
         return Console.readLine();
     }
 
+    public String getWinningNumber() {
+        return Console.readLine();
+    }
+
 }

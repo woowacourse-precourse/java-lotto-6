@@ -28,7 +28,7 @@ public class ValidateException {
 
     public static void includeBlank(String strLine) {
         if (strLine.contains(BLANK)) {
-            throw new IllegalArgumentException("[ERROR] 입력에 공백이 포함되어 있습니다.");
+            throw new NumberFormatException("[ERROR] 입력에 공백이 포함되어 있습니다.");
         }
     }
 
@@ -37,7 +37,7 @@ public class ValidateException {
         Matcher matcher = pattern.matcher(strLine);
 
         if (matcher.matches()) {
-            throw new IllegalArgumentException("문자열에 특수 문자가 포함되어 있습니다.");
+            throw new NumberFormatException("문자열에 특수 문자가 포함되어 있습니다.");
         }
     }
 }

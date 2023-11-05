@@ -119,4 +119,7 @@ public final class Money {
     }
 
 
+    public long toLong() {
+        return amount;
+    }
 }

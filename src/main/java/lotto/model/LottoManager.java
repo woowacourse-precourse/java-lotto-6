@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Tickets;
+import lotto.utils.Validator;
 
 public class LottoManager {
     private Validator valid = new Validator();

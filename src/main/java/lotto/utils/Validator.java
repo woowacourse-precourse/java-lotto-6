@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.utils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Validator {
     private Set<Integer> winningNumbers;
 
-    
+
     public int validateMoney(String string) {
         int money = validateisNumber(string);
         validateMoneyCorrectAmount(money);

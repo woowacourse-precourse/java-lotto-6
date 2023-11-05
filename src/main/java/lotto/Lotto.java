@@ -19,4 +19,12 @@ public class Lotto {
         validateAllRange(numbers, MIN_NUMBER, MAX_NUMBER);
         validateNoDuplicates(numbers);
     }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }

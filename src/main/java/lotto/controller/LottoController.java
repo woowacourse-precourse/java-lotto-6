@@ -3,17 +3,20 @@ package lotto.controller;
 import static lotto.view.ExceptionView.printException;
 import static lotto.view.LottoInputView.getLottoWinningNumber;
 import static lotto.view.LottoInputView.getPurchaseAmount;
+import static lotto.view.LottoOutputView.printBonusNumber;
 import static lotto.view.LottoOutputView.printPurchaseAmount;
 import static lotto.view.LottoOutputView.printPurchaseLotto;
 import static lotto.view.LottoOutputView.printWinningNumber;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoBonusNumber;
 import lotto.model.LottoWallet;
 import lotto.model.LottoWinningNumbers;
 import lotto.model.Money;
 import lotto.service.LottoService;
 import lotto.service.LottoWalletService;
+import lotto.view.LottoInputView;
 
 public class LottoController {
 
@@ -40,10 +43,30 @@ public class LottoController {
         printWinningNumber();
         LottoWinningNumbers winningNumbers = getLottoWinningNumbers();
 
+        printBonusNumber();
+        LottoBonusNumber bonusNumber = getLottoBonusNumber();
+
         // 지갑에서 계산할 수 있도록 저장
-        lottoWalletService.saveRecentWinningNumbers(winningNumbers);
+        lottoWalletService.saveRecentWinningNumbers(winningNumbers, bonusNumber);
     }
 
+    /**
+     * 유저로부터 로또 당첨 보너스 번호를 입력받고, 반환한다.
+     *
+     * @return 로또 당첨 보너스 번호 객체
+     */
+    private LottoBonusNumber getLottoBonusNumber() {
+        while (true) {
+            try {
+                String number = LottoInputView.getLottoBonusNumber();
+                LottoBonusNumber bonusNumber = new LottoBonusNumber(number);
+
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                printException(e);
+            }
+        }
+    }
 
     /**
      * 로또 당첨 번호를 받아오고, 반환한다.

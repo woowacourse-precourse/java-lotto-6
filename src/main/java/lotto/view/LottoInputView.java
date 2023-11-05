@@ -17,4 +17,7 @@ public class LottoInputView {
         return Console.readLine();
     }
 
+    public static String getLottoBonusNumber() {
+        return Console.readLine();
+    }
 }

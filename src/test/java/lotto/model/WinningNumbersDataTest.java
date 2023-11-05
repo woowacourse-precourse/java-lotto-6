@@ -73,4 +73,17 @@ class WinningNumbersDataTest {
         // then
         org.junit.jupiter.api.Assertions.assertFalse(winningNumbersData.contains(7));
     }
+
+    @Test
+    public void 당첨_번호와_로또_번호의_일치하는_숫자의_개수_테스트() {
+        // given
+        final WinningNumbersData winningNumbersData = new WinningNumbersData(List.of(1, 2, 3, 4, 5, 6));
+        final Lotto lotto = new Lotto(List.of(1, 2, 4, 7, 8, 9));
+
+        // when
+        int matchingNumber = winningNumbersData.countMatchingNumber(lotto);
+
+        // then
+        org.junit.jupiter.api.Assertions.assertEquals(matchingNumber, 3);
+    }
 }

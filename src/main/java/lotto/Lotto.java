@@ -32,4 +32,8 @@ public class Lotto {
                 .count();
     }
 
+    // 보너스 번호가 포함되어 있는지 확인하는 기능을 추가합니다.
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

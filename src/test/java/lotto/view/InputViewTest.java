@@ -29,4 +29,14 @@ public class InputViewTest {
         assertThat(e.getMessage()).isEqualTo("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다.");
     }
 
+    @Test
+    void 입력된_당첨_번호에_중복이_있을_때(){
+        //given
+        String winningNumber = "1,2,3,4,5,5";
+        //when
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new WinningNumberValidator(winningNumber));
+        //then
+        assertThat(e.getMessage()).isEqualTo("[ERROR] 각각 다른 숫자를 입력해야 합니다.");
+    }
+
 }

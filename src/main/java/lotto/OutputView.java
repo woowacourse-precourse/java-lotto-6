@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 public class OutputView {
 
     public void printPurchasedLottos(List<Lotto> purchasedLottos) {
-        System.out.printf("%d개를 구매했습니다.\n", purchasedLottos.size());
+        System.out.printf("\n%d개를 구매했습니다.\n", purchasedLottos.size());
         for (Lotto purchasedLotto : purchasedLottos) {
             printPurchasedLotto(purchasedLotto);
         }
@@ -23,6 +23,8 @@ public class OutputView {
     }
 
     public void printWinningResult(Result winningResult) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
         EnumMap<Rank, Integer> rankToCount = winningResult.getRankToCount();
         double rateOfReturn = winningResult.getRateOfReturn();
 
@@ -43,7 +45,7 @@ public class OutputView {
             sb.append(value).append("개\n");
         }
 
-        sb.append("총 수익률은 ").append(rateOfReturn).append("%입니다.");
+        sb.append("총 수익률은 ").append(String.format("%.1f", rateOfReturn)).append("%입니다.");
         System.out.println(sb);
     }
 }

@@ -1,12 +1,10 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import lotto.Prize;
 
 public class LottoManager {
@@ -26,24 +24,29 @@ public class LottoManager {
 
     public static Map<Prize, Integer> initializePrize() {
         Map<Prize, Integer> result = new HashMap<>();
+
         for (Prize prize : Prize.values()) {
             result.put(prize, 0);
         }
+
         return result;
     }
 
     public static Integer countMatching(Lotto userLotto, Lotto winningLotto) {
         Integer countMatching = 0;
+
         for (int i = 0; i < 6; i++) {
             if (userLotto.getNumbers().contains(winningLotto.getNumbers().get(i))) {
                 countMatching++;
             }
         }
+
         return countMatching;
     }
 
     public static Map<Prize, Integer> checkWinning(List<Lotto> lottos, Lotto winningLotto, Integer bonusNumber) {
         Map<Prize, Integer> lottoResult = initializePrize();
+
         for (Lotto userLotto : lottos) {
             Integer countMatching = countMatching(userLotto, winningLotto);
 
@@ -63,7 +66,7 @@ public class LottoManager {
         for (Prize key : lottoResult.keySet()) {
             sum += key.getPrizeAmount() * lottoResult.get(key);
         }
-        return ((double) sum / (lottoCount * 1000)) * 100;
 
+        return ((double) sum / (lottoCount * 1000)) * 100;
     }
 }

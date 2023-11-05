@@ -1,7 +1,8 @@
 package lotto.view.output;
 
 import lotto.dto.LottoDto;
-
+import lotto.model.LottoResult;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,4 +32,50 @@ public class OutputFormatter {
                 .collect(Collectors.joining(COMMA + SPACE, LEFT_SQUARE_BRACKET, RIGHT_SQUARE_BRACKET));
         return result;
     }
+
+    public static String makeTotalEarningsRate(double totalEarningsRate) {
+        String formattedEarningsRate = String.format("%,.1f%%", totalEarningsRate);
+        return "총 수익률은 " + formattedEarningsRate + "입니다.";
+    }
+
+    public static String makeLottoResult(List<LottoResult> results) {
+        String result = "당첨 통계" + NEW_LINE + "---";
+
+        String resultLines = Arrays.stream(LottoResult.values())
+                .map(r -> makeLottoResultLine(results, r))
+                .collect(Collectors.joining(NEW_LINE));
+
+        return result + NEW_LINE + resultLines;
+    }
+
+    private static String makeLottoResultLine(List<LottoResult> results, LottoResult lottoResult) {
+        Long count = results.stream()
+                .filter(r -> r == lottoResult)
+                .count();
+
+        if (lottoResult == LottoResult.FIVE_MATCH_WITH_BONUS) {
+            return makeFiveMatchWithBonus(count, lottoResult);
+        }
+
+        return makeMatch(count, lottoResult);
+    }
+
+    private static String makeFiveMatchWithBonus(Long count, LottoResult lottoResult) {
+        return lottoResult.getMatchingNumbers()
+                + "개 일치, 보너스 볼 일치 ("
+                + lottoResult.getPrizeAmount()
+                + "원) - "
+                + count
+                + "개";
+    }
+
+    private static String makeMatch(Long count, LottoResult lottoResult) {
+        return lottoResult.getMatchingNumbers()
+                + "개 일치 ("
+                + lottoResult.getPrizeAmount()
+                + "원) - "
+                + count
+                + "개";
+    }
+
 }

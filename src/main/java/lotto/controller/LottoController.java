@@ -11,7 +11,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    public static void start() {
+    public void start() {
         int purchaseAmount = InputView.getPurchaseAmount();
         int lottoTicketCount = purchaseAmount / Constants.LOTTO_PRICE.getConstants();
         OutputView.printLottoTicketCount(lottoTicketCount);
@@ -22,21 +22,21 @@ public class LottoController {
         play(lottoTickets, winningNumbers, bonusNumber, purchaseAmount);
     }
 
-    private static void play(List<List<Integer>> lottoTickets, List<Integer> winningNumbers, int bonusNumber,
-                             int purchaseAmount) {
+    private void play(List<List<Integer>> lottoTickets, List<Integer> winningNumbers, int bonusNumber,
+                      int purchaseAmount) {
         LottoModel model = new LottoModel(lottoTickets, winningNumbers, bonusNumber);
         model.lottoPlaying();
 
         displayLottoStatistics(model.getResult(), purchaseAmount);
     }
 
-    private static void displayLottoStatistics(List<Integer> result, int purchaseAmount) {
+    private void displayLottoStatistics(List<Integer> result, int purchaseAmount) {
         System.out.println();
         Calculation calculation = new Calculation(result, purchaseAmount);
         calculation.displayStatistics();
     }
 
-    private static List<Integer> generateOneLottoTicket() {
+    private List<Integer> generateOneLottoTicket() {
         List<Integer> oneLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
                 Constants.MIN_NUMBER.getConstants(),
                 Constants.MAX_NUMBER.getConstants(),
@@ -46,7 +46,7 @@ public class LottoController {
         return oneLotto;
     }
 
-    private static List<List<Integer>> generateAllLottoTickets(int ticketCount) {
+    private List<List<Integer>> generateAllLottoTickets(int ticketCount) {
         List<List<Integer>> allLotto = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             allLotto.add(generateOneLottoTicket());

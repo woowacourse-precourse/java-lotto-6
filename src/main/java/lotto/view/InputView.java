@@ -12,11 +12,8 @@ public class InputView {
     public static int getPurchaseAmount() {
         while (true) {
             try {
-                System.out.println(InputMessage.PURCHASE_AMOUNT.getMessage());
-                String input = Console.readLine();
-                int purchaseAmount = InputValidation.validatePurchaseAmount(input);
-                Purchase purchase = new Purchase(purchaseAmount);
-                return purchase.getPurchase();
+                String input = inputPurchaseAmount();
+                return validateAllPurchase(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -27,11 +24,8 @@ public class InputView {
         System.out.println();
         while (true) {
             try {
-                System.out.println(InputMessage.LOTTO_NUMBERS.getMessage());
-                String[] numbers = Console.readLine().split(",");
-                List<Integer> lottoNumbers = InputValidation.validateWinningNumbers(numbers);
-                Lotto lotto = new Lotto(lottoNumbers);
-                return lotto.getLotto();
+                String[] numbers = inputWinningNumbers();
+                return validateAllWinningNumbers(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -42,14 +36,47 @@ public class InputView {
         System.out.println();
         while (true) {
             try {
-                System.out.println(InputMessage.BONUS_NUMBER.getMessage());
-                String input = Console.readLine();
-                int bonusNumber = InputValidation.validateBonusNumber(input);
-                Bonus bonus = new Bonus(bonusNumber, winningNumbers);
-                return bonus.getBonus();
+                String input = inputBonusNumber();
+                return validateAllBonusNumber(input, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static String inputPurchaseAmount() {
+        System.out.println(InputMessage.PURCHASE_AMOUNT.getMessage());
+        String input = Console.readLine();
+        return input;
+    }
+
+    private static int validateAllPurchase(String input) {
+        int purchaseAmount = InputValidation.validatePurchaseAmount(input);
+        Purchase purchase = new Purchase(purchaseAmount);
+        return purchase.getPurchase();
+    }
+
+    private static String[] inputWinningNumbers() {
+        System.out.println(InputMessage.LOTTO_NUMBERS.getMessage());
+        String[] numbers = Console.readLine().split(",");
+        return numbers;
+    }
+
+    private static List<Integer> validateAllWinningNumbers(String[] numbers) {
+        List<Integer> winningNumbers = InputValidation.validateWinningNumbers(numbers);
+        Lotto lotto = new Lotto(winningNumbers);
+        return lotto.getLotto();
+    }
+
+    private static String inputBonusNumber() {
+        System.out.println(InputMessage.BONUS_NUMBER.getMessage());
+        String input = Console.readLine();
+        return input;
+    }
+
+    private static int validateAllBonusNumber(String input, List<Integer> winningNumbers) {
+        int bonusNumber = InputValidation.validateBonusNumber(input);
+        Bonus bonus = new Bonus(bonusNumber, winningNumbers);
+        return bonus.getBonus();
     }
 }

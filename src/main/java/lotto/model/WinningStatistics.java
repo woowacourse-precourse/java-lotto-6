@@ -15,6 +15,14 @@ public class WinningStatistics {
     private final Map<LottoPrize, Integer> prizeCounter;
     private final double rateOfReturn;
 
+    private WinningStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased,
+                              Map<LottoPrize, Integer> prizeCounter, double rateOfReturn) {
+        this.winningLotto = winningLotto;
+        this.lottoTicketsPurchased = lottoTicketsPurchased;
+        this.prizeCounter = prizeCounter;
+        this.rateOfReturn = rateOfReturn;
+    }
+
     public WinningStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased, int usedBudget) {
         this.winningLotto = winningLotto;
         this.lottoTicketsPurchased = lottoTicketsPurchased;
@@ -24,14 +32,6 @@ public class WinningStatistics {
         }};
         calculateWinningStatistics();
         rateOfReturn = calculateRateOfReturn(usedBudget);
-    }
-
-    private WinningStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased,
-                              Map<LottoPrize, Integer> prizeCounter, double rateOfReturn) {
-        this.winningLotto = winningLotto;
-        this.lottoTicketsPurchased = lottoTicketsPurchased;
-        this.prizeCounter = prizeCounter;
-        this.rateOfReturn = rateOfReturn;
     }
 
     public static WinningStatistics createDefaultWinningStatistics() {

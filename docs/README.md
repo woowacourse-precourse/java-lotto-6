@@ -9,12 +9,15 @@
 
 ## 구현 기능 목록
 
-- [ ] controller) 사용자 구입 금액 입력 요청
-    - [ ] view) 사용자 로또 구입 금액 입력
-- [ ] controller) 사용자 구입 입력값에 대한 로또 발행 요청
-    - [ ] domain) 사용자 구입 금액 입력값 검사
-        - [ ] domain) 1000원으로 맞아 떨어지는지 확인
-    - [ ] domain) 사용자 구입 로또 발행
+- [x] controller) 사용자 구입 금액 입력 요청 - LottoController.lottoOrderRequest()
+    - [x] view) 사용자 로또 구입 금액 입력 - UI.sendLottoPurchaseRequest()
+- [x] controller) 사용자 구입 입력값에 대한 로또 발행 요청 LottoController.buyLottoTicketRequest()
+    - [x] domain) 로또 구매후 값저장 - LottoStore.buyLottoTickets()
+      - [x] domain) 로또 발행 - LottoStoreClerk.createLottoTickets()
+          - [x] domain) 주문 금액 처리 - LottoStoreClerk.handlingOrderAmount()
+            - [x] domain) 금액이 올바른 값인지 확인 - LottoStoreClerk.checkLottoOrderAmount()
+          - [x] domain) 주문 갯수에 맞게 로또 발행 - LottoStoreClerk.lottoGenerater()   
+    - [ ] domain) 저장된 로또 정보를 출력하는 문자열 생성 
     - [ ] view) 발행된 로또 출력
 - [ ] controller) 당첨 번호 입력 요청
     - [ ] view) 당첨 번호 입력
@@ -25,16 +28,15 @@
     - [ ] view) 보너스 번호 입력
 - [ ] controller) 입력된 보너스 번호 확인및 저장 요청
     - [ ] domain) 보너스 번호 입력값 검사
-    - [ ] domain) 보너스 번호 저장  
-  
-- [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교 요청
-  - [ ] domain) 사용자가 구매한 로또 번호와 당첨 번호를 비교
-    - [ ] domain) 각 로또 번호당 일치 갯수 확인
-    - [ ] domain) 각 로또 번호당 2등 확인 
-  - [ ] domain) 비교한 자료를 토대로 수익률계산
-  - [ ] domain) 결과들을 토대로 문자열 생성
-  - [ ] view) 생성된 문자열 출력
- 
+    - [ ] domain) 보너스 번호 저장
+- [ ] controller) 사용자가 구매한 로또 번호와 당첨 번호를 비교 요청
+    - [ ] domain) 사용자가 구매한 로또 번호와 당첨 번호를 비교
+        - [ ] domain) 각 로또 번호당 일치 갯수 확인
+        - [ ] domain) 각 로또 번호당 2등 확인
+    - [ ] domain) 비교한 자료를 토대로 수익률계산
+    - [ ] domain) 결과들을 토대로 문자열 생성
+    - [ ] view) 생성된 문자열 출력
+
 - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 

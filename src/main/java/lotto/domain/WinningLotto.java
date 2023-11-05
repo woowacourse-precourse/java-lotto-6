@@ -27,6 +27,6 @@ public class WinningLotto {
     }
 
     public boolean isBonusNumContain(Lotto userLotto) {
-        return true;
+        return userLotto.hasSameNumber(bonusLottoNum);
     }
 }

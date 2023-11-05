@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.UserLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,10 +17,11 @@ public class MainController {
     }
 
     public void start() {
-        // userLottoController 사용
-        int amount = inputView.inputBuyAmount();
-        UserLotto userLotto = new UserLotto(userLottoController.buyLotto(amount));
+        final int amount = inputView.inputBuyAmount();
+        final UserLotto userLotto = new UserLotto(userLottoController.buyLotto(amount));
         outputView.printUserLotto(userLotto.getMyLotto());
 
+        final List<Integer> winningNumber = inputView.inputWinningNumber();
+        final int bonusNumber = inputView.inputBonusNumber();
     }
 }

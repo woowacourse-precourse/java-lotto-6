@@ -2,7 +2,7 @@ package lotto.model;
 
 public class PurchaseAmount {
 
-    private static final int LOTTO_PRICE = 1_000;
+    public static final int LOTTO_PRICE = 1_000;
 
     public static final String INVALID_PURCHASE_AMOUNT =
             LOTTO_PRICE + "원 단위의 숫자를 입력하세요. 최소" + LOTTO_PRICE + "원, 최대 10만 원을 구입할 수 있습니다.";

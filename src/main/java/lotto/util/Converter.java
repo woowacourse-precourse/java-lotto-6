@@ -5,6 +5,7 @@ import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.vo.BonusNumber;
 import lotto.vo.PurchaseAmount;
 import lotto.vo.TicketQuantity;
 
@@ -26,6 +27,10 @@ public class Converter {
         return Arrays.stream(winningNumbers.split(DELIMITER))
                 .map(number -> getLottoNumber(number.trim()))
                 .toList();
+    }
+
+    public static BonusNumber convertToBonusNumber(final Integer number) {
+        return new BonusNumber(number);
     }
 
     private static Integer getTicketCount(final PurchaseAmount purchaseAmount) {

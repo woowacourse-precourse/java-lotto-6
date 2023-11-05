@@ -52,9 +52,10 @@ public class View {
         outputView.printRequestInputBonusNumberMessage();
         while (true) {
             try {
-                Integer bonusNumber = inputView.inputBonusNumbers();
-                validateBonusNumberContainsWinningNumber(numbers, bonusNumber);
-                return new BonusNumber(bonusNumber);
+                Integer number = inputView.inputBonusNumbers();
+                validateBonusNumberContainsWinningNumber(numbers, number);
+                BonusNumber bonusNumber = Converter.convertToBonusNumber(number);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }

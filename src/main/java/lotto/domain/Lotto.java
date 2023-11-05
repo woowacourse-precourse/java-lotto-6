@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static lotto.exception.ErrorMessage.*;
@@ -44,5 +46,13 @@ public class Lotto {
         return numbers.stream()
                 .anyMatch(number -> number < LOTTO_MIN_NUMBER
                         || number > LOTTO_MAX_NUMBER);
+    }
+
+    public String getSortedNumbers() {
+        return numbers.stream()
+                .sorted()
+                .map(number -> number.toString())
+                .toList()
+                .toString();
     }
 }

@@ -1,4 +1,4 @@
-package lotto.LottoException;
+package lotto.Exception;
 
 public class InvalidInputException extends IllegalArgumentException
 {

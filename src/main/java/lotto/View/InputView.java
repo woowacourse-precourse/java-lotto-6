@@ -2,7 +2,7 @@ package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Constant.LottoConstant;
-import lotto.LottoException.InvalidInputException;
+import lotto.Exception.InvalidInputException;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -30,7 +30,7 @@ public class InputView
         }
     }
 
-    private int getCost() throws IllegalArgumentException
+    public int getCost() throws IllegalArgumentException
     {
         while(true)
         {
@@ -79,7 +79,7 @@ public class InputView
         }
     }
 
-    private List<Integer> getWinningLotteryNumber()
+    public List<Integer> getWinningLotteryNumber()
     {
         while(true)
         {

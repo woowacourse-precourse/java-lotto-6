@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumber {
@@ -9,5 +10,13 @@ public class WinningNumber {
     public WinningNumber(List<Integer> numbers, int bonus) {
         this.numbers = numbers;
         this.bonus = bonus;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 }

@@ -21,6 +21,7 @@
 | Validator            | 데이터 검증 로직을 제공하는 유틸 클래스                      |
 | LottoGameException   | 로또 게임 전체의 예외를 관리하는 클래스                      |
 | LottoNumberGenerator | 로또 숫자를 생성하는 유틸 클래스                          |
+| LottoConstants       | 로또 관련 상수를 관리하는 유틸 클래스                       |
 
 ## 구현 기능 목록
 

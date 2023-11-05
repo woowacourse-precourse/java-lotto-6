@@ -20,7 +20,6 @@ public class InputNumberImpl implements InputNumber {
 	@Override
 	public int inputPurchasePrice() {
 		String price = Console.readLine();
-		validator.validateIsDigit(price);
-		return Integer.parseInt(price);
+		return validator.validate(price);
 	}
 }

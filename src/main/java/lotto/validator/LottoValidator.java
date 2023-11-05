@@ -4,5 +4,6 @@ import java.util.StringTokenizer;
 
 public interface LottoValidator {
 
-	void validateIsDigit(String price);
+	int validate(String price);
+
 }

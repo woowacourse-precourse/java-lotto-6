@@ -11,4 +11,12 @@ public class Player {
         this.cost = new Cost(cost);
         lotto = new ArrayList<>();
     }
+
+    public List<Lotto> getLotto() {
+        return this.lotto;
+    }
+
+    public Cost getCost() {
+        return this.cost;
+    }
 }

@@ -31,7 +31,7 @@ public class Lotto {
             OutputView.exceptionMessage(e);
             createWinningNumbers();
         }
-        return new Lotto(InputView.readIntegerList());
+        return new Lotto(userInput);
     }
 
     public static Lotto createAuto() {

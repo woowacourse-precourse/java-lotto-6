@@ -27,7 +27,7 @@ public class BonusNumber {
             OutputView.exceptionMessage(e);
             createManual();
         }
-        return new BonusNumber(InputView.readInt());
+        return new BonusNumber(userInput);
     }
 
     private void validate(int number) {

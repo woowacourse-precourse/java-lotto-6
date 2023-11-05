@@ -6,7 +6,7 @@ public class InputView {
     public static final String ENTER_BUDGET_TEXT = "구입금액을 입력해 주세요.";
     public static final String ENTER_WINNING_NUMBERS_TEXT = "당첨 번호를 입력해 주세요.";
     public static final String ENTER_BONUS_NUMBER_TEXT = "보너스 번호를 입력해 주세요.";
-    private InputValidator inputValidator;
+    private final InputValidator inputValidator;
 
     public InputView() {
         inputValidator = new InputValidator();

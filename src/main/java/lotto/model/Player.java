@@ -22,7 +22,7 @@ public class Player {
         lottoTickets.addAll(purchased);
     }
 
-    public void compareWinningLottoWithMine(WinningLotto winningLotto) {
+    public void calculateWinningLottoWithMine(WinningLotto winningLotto) {
         winningStatistics = new WinningStatistics(winningLotto, lottoTickets, usedBudget);
     }
 

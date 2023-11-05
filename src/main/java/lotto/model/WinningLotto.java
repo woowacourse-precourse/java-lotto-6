@@ -21,8 +21,8 @@ public class WinningLotto {
 
     public LottoPrize compare(Lotto lotto) {
         return LottoPrize.valueOf(
-                this.lotto.compare(lotto),
-                lotto.contains(bonusNumber)
+                lotto.compare(this.lotto),
+                lotto.contains(this.bonusNumber)
         );
     }
 }

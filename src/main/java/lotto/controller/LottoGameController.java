@@ -31,7 +31,7 @@ public class LottoGameController {
         WinningLotto winningLotto = inputController.askWinningLottoTicket();
 
         // player 스스로 당첨 결과 계산
-        player.compareWinningLottoWithMine(winningLotto);
+        player.calculateWinningLottoWithMine(winningLotto);
         outputController.printWinningStatistics(player.getWinningStatistics());
     }
 }

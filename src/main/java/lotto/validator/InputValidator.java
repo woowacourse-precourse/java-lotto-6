@@ -2,7 +2,7 @@ package lotto.validator;
 
 import java.util.regex.Pattern;
 import lotto.system.ExceptionMessage;
-import lotto.system.SystemMessage;
+import lotto.system.RegexConstant;
 
 public class InputValidator {
     public static void validate(String userInput) {
@@ -11,7 +11,7 @@ public class InputValidator {
     }
 
     private static void validateNumeric(String userInput) {
-        if (!Pattern.matches(SystemMessage.INPUT_PATTERN_REGEX.getMessage(), userInput)) {
+        if (!Pattern.matches(RegexConstant.INPUT_PATTERN.getRegex(), userInput)) {
             throw new IllegalArgumentException(ExceptionMessage.NUMERIC.getMessage());
         }
     }

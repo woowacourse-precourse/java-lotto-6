@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class ExceptionTest {
 
-    private User user;
+    private Exception exception;
 
     @BeforeEach
     void setUp() {
-        user = new User();
+        exception = new Exception();
     }
 
     @Test
@@ -24,79 +24,79 @@ class UserTest {
         String inputAmount6 = "80 00";
 
         Assertions.assertDoesNotThrow(() -> {
-            user.checkInvalidPaymentAmount(inputAmount1);
+            exception.checkInvalidNumber(inputAmount1);
         });
         Assertions.assertDoesNotThrow(() -> {
-            user.checkInvalidPaymentAmount(inputAmount2);
+            exception.checkInvalidNumber(inputAmount2);
         });
         Assertions.assertDoesNotThrow(() -> {
-            user.checkInvalidPaymentAmount(inputAmount3);
+            exception.checkInvalidNumber(inputAmount3);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.checkInvalidPaymentAmount(inputAmount4);
+            exception.checkInvalidNumber(inputAmount4);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.checkInvalidPaymentAmount(inputAmount5);
+            exception.checkInvalidNumber(inputAmount5);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.checkInvalidPaymentAmount(inputAmount6);
+            exception.checkInvalidNumber(inputAmount6);
         });
     }
 
     @Test
     void 지불금액이_1000원_단위인지_테스트() {
-        String inputAmount1 = "8000";
-        String inputAmount2 = "111000";
-        String inputAmount3 = "1000";
-        String inputAmount4 = "2200";
-        String inputAmount5 = "1001";
-        String inputAmount6 = "1100";
+        int inputAmount1 = 8000;
+        int inputAmount2 = 111000;
+        int inputAmount3 = 1000;
+        int inputAmount4 = 2200;
+        int inputAmount5 = 1001;
+        int inputAmount6 = 1100;
 
         Assertions.assertDoesNotThrow(() -> {
-            user.inputPaymentAmount(inputAmount1);
+            exception.checkUnitPaymentAmount(inputAmount1);
         });
         Assertions.assertDoesNotThrow(() -> {
-            user.inputPaymentAmount(inputAmount2);
+            exception.checkUnitPaymentAmount(inputAmount2);
         });
         Assertions.assertDoesNotThrow(() -> {
-            user.inputPaymentAmount(inputAmount3);
+            exception.checkUnitPaymentAmount(inputAmount3);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.inputPaymentAmount(inputAmount4);
+            exception.checkUnitPaymentAmount(inputAmount4);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.inputPaymentAmount(inputAmount5);
+            exception.checkUnitPaymentAmount(inputAmount5);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.inputPaymentAmount(inputAmount6);
+            exception.checkUnitPaymentAmount(inputAmount6);
         });
     }
 
     @Test
     void 지불금액이_1000_아래인지_확인하는_테스트() {
-        String inputAmount1 = "1000";
-        String inputAmount2 = "2000";
-        String inputAmount3 = "1000000";
-        String inputAmount4 = "0";
-        String inputAmount5 = "-1000";
-        String inputAmount6 = "-100000";
+        int inputAmount1 = 1000;
+        int inputAmount2 = 2000;
+        int inputAmount3 = 1000000;
+        int inputAmount4 = 0;
+        int inputAmount5 = 900;
+        int inputAmount6 = -1000;
         Assertions.assertDoesNotThrow(() -> {
-            user.inputPaymentAmount(inputAmount1);
-        });
-        Assertions.assertDoesNotThrow(() -> {
-            user.inputPaymentAmount(inputAmount2);
+            exception.checkRangePaymentAmount(inputAmount1);
         });
         Assertions.assertDoesNotThrow(() -> {
-            user.inputPaymentAmount(inputAmount3);
+            exception.checkRangePaymentAmount(inputAmount2);
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            exception.checkRangePaymentAmount(inputAmount3);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.inputPaymentAmount(inputAmount4);
+            exception.checkRangePaymentAmount(inputAmount4);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.inputPaymentAmount(inputAmount5);
+            exception.checkRangePaymentAmount(inputAmount5);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.inputPaymentAmount(inputAmount6);
+            exception.checkRangePaymentAmount(inputAmount6);
         });
     }
 }

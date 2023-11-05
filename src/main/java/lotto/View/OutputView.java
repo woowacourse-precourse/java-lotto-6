@@ -21,7 +21,8 @@ public class OutputView {
     public static void printPurchasedLottoList(List<Lotto> lottoList) {
 
         for (Lotto lotto : lottoList) {
-            System.out.println(lotto);
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            System.out.println(lottoNumbers);
         }
     }
 

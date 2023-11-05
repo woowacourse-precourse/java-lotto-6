@@ -27,7 +27,7 @@ public class LottoGame {
         bonusNumber = InputView.inputBonusNumber();
 
         OutputView.printLottoAmount(purchaseAmount);
-        //OutputView.printPurchasedLottoList(lottoList);
+        OutputView.printPurchasedLottoList(lottoList);
 
 /*
        int[] matchingCounts = CompareResults.compareLottoResults(lotto, winningNumbers, bonusNumber);

@@ -90,9 +90,9 @@
     - 숫자가 1부터 45사이의 숫자인지 검증
     - 조건에 부합 하지 않을 경우 false 리턴
 
-## ❌ 로또 당첨 번호 입력 검증
+## ✅ 로또 당첨 번호 입력 검증
 
-- ❌ validateInputWinningNumber 메서드 구현
+- ✅ validateInputWinningNumber 메서드 구현
     - 6개의 숫자를 입력 했으며, (,)로 구분 했는지 검증
 
 ## ❌ 보너스 번호 검증 기능

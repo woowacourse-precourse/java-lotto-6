@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.model.AutoLottoGenerator;
+import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
 import lotto.model.Lottos;
@@ -29,5 +29,6 @@ public class LottoGameController {
         int countOfLotto = lottoGameService.calculateLottoCountOnBuy(buyer);
         final Lottos lottos = lottoGameService.generateLottosOnSell(seller, countOfLotto);
         lottoGameService.printLottoNumbersByCount(lottos);
+        final Lotto lotto = lottoGameService.generateWinningLotto();
     }
 }

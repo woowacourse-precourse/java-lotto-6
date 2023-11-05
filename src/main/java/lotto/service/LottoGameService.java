@@ -1,7 +1,9 @@
 package lotto.service;
 
+import java.util.List;
 import lotto.dto.LottoNumbersDTO;
 import lotto.model.AutoLottoGenerator;
+import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
 import lotto.model.Lottos;
@@ -49,8 +51,23 @@ public class LottoGameService {
         }
     }
 
+    public Lotto generateWinningLotto() {
+        outputView.requestWinningLottoNumbers();
+        try {
+            List<Integer> winningLottoNumbers = readWinningLotto();
+            return new Lotto(winningLottoNumbers);
+        } catch (IllegalArgumentException e) {
+            handleIllegalArgumentException(e);
+            return generateWinningLotto();
+        }
+    }
+
     private int readPurchaseAmount() {
         return inputView.readPurchaseAmount();
+    }
+
+    private List<Integer> readWinningLotto() {
+        return inputView.readWinningLotto();
     }
 
     private void handleIllegalArgumentException(IllegalArgumentException e) {

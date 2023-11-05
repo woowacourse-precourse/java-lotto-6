@@ -17,14 +17,18 @@ public class User {
     private Integer useMoney;
     private Integer totalWinMoney;
     private RateResult rateResult;
+    private LottoTargetNumResults lottoTargetNumResults;
 
-    public User(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
-        this.lottoEnvelop = lottoEnvelop;
-        this.statistic = Config.statistic(lottoEnvelop, lottoTargetNumResults);
+    public User() {
+        this.lottoEnvelop = null;
+        this.statistic = null;
         this.useMoney = 0;
         this.totalWinMoney = 0;
         this.rateResult = Config.rateResult();
+    }
 
+    public void takeTargetNumResults(LottoTargetNumResults lottoTargetNumResults) {
+        this.lottoTargetNumResults = lottoTargetNumResults;
     }
 
     /**
@@ -65,6 +69,7 @@ public class User {
      * @return
      */
     public StringBuilder showStatisticLottoResult() {
+        statistic = Config.statistic(lottoEnvelop, lottoTargetNumResults);
         return statistic.show();
     }
 

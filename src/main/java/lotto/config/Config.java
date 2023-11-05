@@ -44,7 +44,7 @@ public class Config {
         return new Statistic(lottoEnvelop, lottoTargetNumResults);
     }
 
-    public static User user(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
-        return new User(lottoEnvelop, lottoTargetNumResults);
+    public static User user() {
+        return new User();
     }
 }

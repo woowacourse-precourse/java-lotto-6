@@ -3,14 +3,14 @@ package lotto.domain;
 import java.util.Objects;
 import lotto.util.ValidationUtils;
 
-public class Number {
+public class BonusNumber {
 
     private final int MIN_NUMBER_RANGE = 1;
     private final int MAX_NUMBER_RANGE = 45;
 
     private final int number;
 
-    public Number(int number) {
+    public BonusNumber(int number) {
         validate(number);
         this.number = number;
     }
@@ -34,8 +34,8 @@ public class Number {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Number number1 = (Number) o;
-        return number == number1.number;
+        BonusNumber bonusNumber1 = (BonusNumber) o;
+        return number == bonusNumber1.number;
     }
 
     @Override

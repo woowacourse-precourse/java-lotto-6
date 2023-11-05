@@ -19,6 +19,7 @@ public class User {
     private Integer thirdRank;
     private Integer fourthRank;
     private Integer fifthRank;
+    private Double earningRate;
     private List<Lotto> lottos;
     public User() {
         lottos = new ArrayList<>();
@@ -80,6 +81,20 @@ public class User {
             if (rank == Rank.FOURTH) {fourthRank++;}
             if (rank == Rank.FIFTH) {fifthRank++;}
         }
+    }
+
+    public void calculateEarningRate() {
+        Integer totalEarning = 0;
+        totalEarning += Rank.FIRST.getReward() * firstRank;
+        totalEarning += Rank.SECOND.getReward() * secondRank;
+        totalEarning += Rank.THIRD.getReward() * thirdRank;
+        totalEarning += Rank.FOURTH.getReward() * fourthRank;
+        totalEarning += Rank.FIFTH.getReward() * fifthRank;
+        this.earningRate = (double) totalEarning / purchaseAmount * 100;
+    }
+
+    public Double getEarningRate() {
+        return earningRate;
     }
 
     public Integer getFirstRank() {

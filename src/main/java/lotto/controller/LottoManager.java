@@ -32,6 +32,9 @@ public class LottoManager {
 
         user.calculateWinning();
         userView.printWinningStatistic(user);
+
+        user.calculateEarningRate();
+        userView.printEarningRate(user);
     }
 
 

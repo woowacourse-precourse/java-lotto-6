@@ -15,26 +15,25 @@ public class OutputController {
     }
 
     public void printLottoTickets(List<Lotto> lottoTickets) {
-        String countText = creatLottoTicketsCountText(lottoTickets);
-        String ticketsText = createLottoTicketsText(lottoTickets);
+        String lottoTicketsCountText = creatLottoTicketsCountText(lottoTickets);
+        String lottoTicketsText = createLottoTicketsText(lottoTickets);
 
-        outputView.updateLottoTicketsCountText(countText);
-        outputView.updateLottoTicketsText(ticketsText);
+        outputView.updateLottoTicketsCountText(lottoTicketsCountText);
+        outputView.updateLottoTicketsText(lottoTicketsText);
         outputView.renderLottoTicketsCountText();
         outputView.renderLottoTicketsText();
     }
 
     public void printWinningStatistics(WinningStatistics winningStatistics) {
-        String statisticsTest = createWinningStatisticsText(winningStatistics);
+        String winningStatisticsText = createWinningStatisticsText(winningStatistics);
         String rateOfReturnText = createRateOfReturnText(winningStatistics);
 
-        outputView.updateStatisticsText(statisticsTest);
+        outputView.updateWinningStatisticsText(winningStatisticsText);
         outputView.updateRateOfReturnText(rateOfReturnText);
-        outputView.renderStatisticsText();
+        outputView.renderWinningStatisticsText();
         outputView.renderRateOfReturnText();
     }
-
-
+    
     public String creatLottoTicketsCountText(List<Lotto> lottoTickets) {
         return String.valueOf(lottoTickets.size());
     }

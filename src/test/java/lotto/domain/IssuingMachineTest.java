@@ -39,4 +39,18 @@ class IssuingMachineTest {
         Assertions.assertThat(hasDuplicate).isEqualTo(false);
         Assertions.assertThat(size).isEqualTo(6);
     }
+
+    @Test
+    @DisplayName("입력된 금액만큼 로또를 발급해야한다.")
+    void 로또_생성_횟수() {
+        //given
+        IssuingMachine issuingMachine = IssuingMachine.turnOn(10000);
+
+        //then
+        issuingMachine.operate();
+        int size = issuingMachine.issueLotto().size();
+
+        //then
+        Assertions.assertThat(size).isEqualTo(10);
+    }
 }

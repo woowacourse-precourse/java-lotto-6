@@ -4,7 +4,6 @@ import java.util.List;
 
 public class InputValidator {
     private static final String NOT_A_NUMBER_MESSAGE = "입력은 숫자여야 합니다";
-    private static final String BONUS_NUMBER_NOT_A_NUMBER = "보너스 번호는 숫자여야 합니다";
     private static final String WINNING_NUMBERS_SIZE_6_REQUIRED = "당첨 번호는 6개여야합니다";
     private static final String WINNING_NUMBERS_RANGE_ERROR = "당첨 번호는 1~45 사이의 숫자여야합니다";
     private static final String NUMBER_REGEX = "[0-9]+";
@@ -54,15 +53,5 @@ public class InputValidator {
         }
 
         return false;
-    }
-
-    public void validateBonusNumber(String inputBonusNumber) {
-        if (isNumber(inputBonusNumber) == false) {
-            throw new IllegalArgumentException(BONUS_NUMBER_NOT_A_NUMBER);
-        }
-
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
-
-        validateNumberRange(bonusNumber);
     }
 }

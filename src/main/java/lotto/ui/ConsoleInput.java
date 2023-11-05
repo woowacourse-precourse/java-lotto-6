@@ -36,9 +36,8 @@ public class ConsoleInput implements Input {
     @Override
     public Integer getBonusNumbers() {
         String inputBonusNumber = Console.readLine();
+        inputValidator.validateIsNumber(inputBonusNumber);
 
-        inputValidator.validateBonusNumber(inputBonusNumber);
-
-        return Integer.parseInt(inputBonusNumber);
+        return parseNumber(inputBonusNumber);
     }
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class WinningNumbersManager {
     private static final String BONUS_NUMBER_NOT_OVERLAP_WITH_WINNING_NUMBERS = "보너스 번호는 당첨 번호와 중복되면 안됩니다";
+    private static final String BONUS_NUMBERS_RANGE_ERROR = "보너스 번호는 1~45 사이의 숫자여야합니다";
 
     private List<Integer> winningNumbers;
     private int bonusNumber;
@@ -14,11 +15,19 @@ public class WinningNumbersManager {
         this.winningNumbers = winningNumbers;
     }
 
-    public void validateBonusNumber(Integer invalidBonusNumber) {
+    public void validateBonusNumber(Integer inputBonusNumber) {
+        validateNumberRange(inputBonusNumber);
+
         for (Integer number : winningNumbers) {
-            if (number.equals(invalidBonusNumber)) {
+            if (number.equals(inputBonusNumber)) {
                 throw new IllegalArgumentException(BONUS_NUMBER_NOT_OVERLAP_WITH_WINNING_NUMBERS);
             }
+        }
+    }
+
+    private void validateNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(BONUS_NUMBERS_RANGE_ERROR);
         }
     }
 

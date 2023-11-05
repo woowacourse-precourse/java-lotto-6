@@ -56,4 +56,20 @@ public class Lotto {
         List<Integer> numbers = new ArrayList<>(this.numbers);
         return numbers;
     }
+
+    public int compareLotto(Lotto firstPrizeLotto) {
+        Set<Integer> check = new HashSet<>(firstPrizeLotto.getNumbers());
+        int match = 0;
+        for (Integer number : this.numbers) {
+            if (check.contains(number)) {
+                match += 1;
+            }
+        }
+        return match;
+    }
+
+    public boolean compareBonus(Bonus bonus) {
+        Set<Integer> check = new HashSet<>(this.numbers);
+        return check.contains(bonus.getNumber());
+    }
 }

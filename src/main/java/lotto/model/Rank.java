@@ -2,6 +2,8 @@ package lotto.model;
 
 import static lotto.model.SystemConstant.NUM_OF_NUMBERS;
 
+import java.text.DecimalFormat;
+
 public enum Rank {
     FIFTH(NUM_OF_NUMBERS - 3, 5000, false),
     FOURTH(NUM_OF_NUMBERS - 2, 50000, false),
@@ -19,15 +21,16 @@ public enum Rank {
         this.bonus = bonus;
     }
 
-    public int getMatchingNumbers() {
-        return matchingNumbers;
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
     }
 
-    public boolean isBonus() {
-        return bonus;
+    public String getMessage() {
+        String message = this.matchingNumbers + "개 일치";
+        if (this.bonus) {
+            message += ", 보너스 볼 일치";
+        }
+        message += " (" + new DecimalFormat("###,###").format(this.prizeMoney) + "원)";
+        return message;
     }
 }

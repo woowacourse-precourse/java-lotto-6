@@ -16,9 +16,9 @@ public class BonusTest {
     @ValueSource(ints = {1, 5, 2, 3, 4, 6})
     void createBonusByDuplicatedNumber(int input) {
         //given
-        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Set<Integer> firstPrizeNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         //when
-        assertThatThrownBy(() -> new Bonus(input, winningNumbers))
+        assertThatThrownBy(() -> new Bonus(input, firstPrizeNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -27,9 +27,9 @@ public class BonusTest {
     @ValueSource(ints = {46, 47, 48, 1023})
     void createBonusByGreaterThanMaxNumber(int input) {
         //given
-        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Set<Integer> firstPrizeNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         //when
-        assertThatThrownBy(() -> new Bonus(input, winningNumbers))
+        assertThatThrownBy(() -> new Bonus(input, firstPrizeNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -38,9 +38,9 @@ public class BonusTest {
     @ValueSource(ints = {0, -1, -123})
     void createBonusByLessThanMinNumber(int input) {
         //given
-        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Set<Integer> firstPrizeNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         //when
-        assertThatThrownBy(() -> new Bonus(input, winningNumbers))
+        assertThatThrownBy(() -> new Bonus(input, firstPrizeNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -50,9 +50,9 @@ public class BonusTest {
     void createBonus(int input) {
         //given
         int expect = input;
-        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Set<Integer> firstPrizeNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         //when
-        Bonus bonus = new Bonus(input, winningNumbers);
+        Bonus bonus = new Bonus(input, firstPrizeNumbers);
         int result = bonus.getNumber();
 
         //then

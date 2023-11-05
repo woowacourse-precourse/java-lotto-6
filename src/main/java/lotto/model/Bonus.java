@@ -10,18 +10,18 @@ import java.util.Set;
 public class Bonus {
     private int number;
 
-    public Bonus(int number, Set<Integer> winningNumbers) {
-        validate(number, winningNumbers);
+    public Bonus(int number, Set<Integer> firstPrizeNumbers) {
+        validate(number, firstPrizeNumbers);
         this.number = number;
     }
 
-    private void validate(int number, Set<Integer> winningNumbers) {
-        validateDuplicatedNumber(number, winningNumbers);
+    private void validate(int number, Set<Integer> firstPrizeNumbers) {
+        validateDuplicatedNumber(number, firstPrizeNumbers);
         validateRangeOfNumbers(number);
     }
 
-    private void validateDuplicatedNumber(int number, Set<Integer> winningNumbers) {
-        if (winningNumbers.contains(number)) {
+    private void validateDuplicatedNumber(int number, Set<Integer> firstPrizeNumbers) {
+        if (firstPrizeNumbers.contains(number)) {
             throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
         }
     }

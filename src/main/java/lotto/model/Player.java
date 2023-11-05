@@ -1,7 +1,7 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.util.NumberGenerator;
 import lotto.vo.TicketQuantity;
 
@@ -14,10 +14,9 @@ public class Player {
     }
 
     public static Player createPlayer(final TicketQuantity ticketQuantity, final NumberGenerator numberGenerator) {
-        List<Lotto> lotteries = new ArrayList<>();
-        for (int i = 0; i < ticketQuantity.quantity(); i++) {
-            lotteries.add(Lotto.createPlayerLotto(numberGenerator));
-        }
+        List<Lotto> lotteries = IntStream.range(0, ticketQuantity.quantity())
+                .mapToObj(i -> Lotto.createPlayerLotto(numberGenerator))
+                .toList();
         return new Player(lotteries);
     }
 

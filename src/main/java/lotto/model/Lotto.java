@@ -18,10 +18,6 @@ public class Lotto {
         validator.validate(numbers);
     }
 
-    public Set<Integer> toSet() {
-        return new HashSet<>(numbers);
-    }
-
     public int getDifferenceBetween(Lotto other) {
         Set<Integer> thisNumberSet = new HashSet<>(numbers);
         Set<Integer> otherNumberSet = new HashSet<>(other.numbers);

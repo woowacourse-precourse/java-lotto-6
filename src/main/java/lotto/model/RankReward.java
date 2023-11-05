@@ -26,6 +26,7 @@ public enum RankReward {
     private static RankReward findBy(Rank rank) {
         return Arrays.stream(values())
                 .filter(rankReward -> rankReward.rank == rank)
-                .findFirst().orElse(NONE_REWARD);
+                .findFirst()
+                .orElse(NONE_REWARD);
     }
 }

@@ -21,7 +21,7 @@ public enum Rank {
     }
 
     public static List<Rank> getReverseOrderValues() {
-        return Arrays.stream(Rank.values())
+        return Arrays.stream(values())
                 .sorted(Comparator.reverseOrder())
                 .toList();
     }

@@ -18,10 +18,6 @@ public class LottoResult {
         rankCounts.put(rank, rankCounts.get(rank) + 1);
     }
 
-    public int getCounts(Rank rank) {
-        return rankCounts.get(rank);
-    }
-
     public String buildResultString() {
         StringBuilder builder = new StringBuilder();
 

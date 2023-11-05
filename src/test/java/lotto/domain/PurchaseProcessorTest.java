@@ -43,5 +43,13 @@ class PurchaseProcessorTest {
                 .hasMessageContaining(ExceptionMessage.LOTTO_INPUT_AMOUNT_INCREMENT.getMessage());
     }
 
+    @DisplayName("입력 가격이 1000으로 나누어 떨어지지 않을 경우 예외 발생")
+    @Test
+    void priceIsNotMultipleOfThousand() {
+        assertThatThrownBy(() -> new PurchaseProcessor("2500"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.LOTTO_INPUT_AMOUNT_INCREMENT.getMessage());
+    }
+
 }
 

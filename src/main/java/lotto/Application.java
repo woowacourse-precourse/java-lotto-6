@@ -21,7 +21,7 @@ public class Application {
         return inputPurchaseAmount;
     }
 
-    public int inputPurchaseAmountValidation(String inputPurchaseAmount){
+    public static int inputPurchaseAmountValidation(String inputPurchaseAmount){
         try {
             int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
             return purchaseAmount;
@@ -30,7 +30,7 @@ public class Application {
         }
     }
 
-    public int lottoQuantity(int lottoPurchaseAmount){
+    public static int lottoQuantity(int lottoPurchaseAmount){
         int lottoQuantity = lottoPurchaseAmount % 1000;
         if(lottoQuantity != 0){
             throw new IllegalArgumentException("[ERROR] 구입금액을 1,000원 단위로 입력하세요.");
@@ -38,8 +38,9 @@ public class Application {
         return lottoQuantity;
     }
 
-    public List<Lotto> createLottos(int lottoQuantity){
+    public static List<Lotto> createLottos(int lottoQuantity){
         List<Lotto> lottos= new ArrayList<>();
+
         for(int quantity = 1; quantity <= lottoQuantity ; quantity++){
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(lottoNumbers);
@@ -48,7 +49,7 @@ public class Application {
         return lottos;
     }
 
-    public void purchaseLottoNumbersDisplay(List<Lotto> lottos){
+    public static void purchaseLottoNumbersDisplay(List<Lotto> lottos){
         int lottoQuantity = lottos.size();
         System.out.println(lottoQuantity+"개를 구매했습니다.");
         for (int quantity = 1 ; quantity <= lottoQuantity ; quantity++){
@@ -56,13 +57,13 @@ public class Application {
         }
     }
 
-    public String inputWinningNumber(){
+    public static String inputWinningNumber(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputWinningNumber = Console.readLine();
         return inputWinningNumber;
     }
 
-    public String[] inputWinningNumberSplit(String inputWinningNumber){
+    public static String[] inputWinningNumberSplit(String inputWinningNumber){
         String[] inputWinningNumberSplit = inputWinningNumber.split(",");
         if(inputWinningNumberSplit.length != 6){
             throw new IllegalArgumentException("[ERROR] 당첨 번호를 쉼표(,)를 기준으로 6자리를 입력해주세요.");
@@ -70,7 +71,7 @@ public class Application {
         return inputWinningNumberSplit;
     }
 
-    public List<Integer> inputWinningNumberValidation(String[] inputWinningNumberSplit){
+    public static List<Integer> inputWinningNumberValidation(String[] inputWinningNumberSplit){
         try {
             List<Integer> winningNumber = new ArrayList<>();
             for (int i = 0 ; i < inputWinningNumberSplit.length ; i++){
@@ -84,13 +85,13 @@ public class Application {
         }
     }
 
-    public String inputBonusNumber(){
+    public static String inputBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");
         String inputBonusNumber = Console.readLine();
         return inputBonusNumber;
     }
 
-    public int inputBonusNumberValidation(String inputBonusNumber){
+    public static int inputBonusNumberValidation(String inputBonusNumber){
         try {
             int bonusNumber = Integer.parseInt(inputBonusNumber);
             return bonusNumber;
@@ -99,14 +100,14 @@ public class Application {
         }
     }
 
-    public int inputBonusNumberRangeValidation(int inputBonusNumberValidation){
+    public static int inputBonusNumberRangeValidation(int inputBonusNumberValidation){
         if(inputBonusNumberValidation < 1 || inputBonusNumberValidation > 45){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해 주세요.");
         }
         return inputBonusNumberValidation;
     }
 
-    public int lottoWinningAmount(List<Integer> lotto ,List<Integer> winningNumber, int bonusNumber){
+    public static int lottoWinningAmount(List<Integer> lotto ,List<Integer> winningNumber, int bonusNumber){
         int matchCount = 0;
         for(int i = 0 ; i < winningNumber.size() ; i++){
             if(lotto.contains(winningNumber.get(i))){
@@ -132,10 +133,11 @@ public class Application {
         return 0;
     }
 
-    public void lottoWinningResult (List<Lotto> lottos ,List<Integer> winningNumber, int bonusNumber){
+    public static void lottoWinningResult (List<Lotto> lottos ,List<Integer> winningNumber, int bonusNumber){
         int totalWinningAmount = 0;
-        float totalReturnRate = 0;
+        double totalReturnRate = 0.0;
         int lottoQuantity = lottos.size();
+        double totalLottoPurchase = 1000 * lottoQuantity;
 
         int threeMatches = 0;
         int fourMatches = 0;
@@ -144,6 +146,7 @@ public class Application {
         int sixMatches = 0;
 
         for (int quantity = 0 ; quantity < lottoQuantity ; quantity ++){
+
             int winningAmount = lottoWinningAmount(lottos.get(quantity).getNumbers(), winningNumber, bonusNumber);
             totalWinningAmount += winningAmount;
 
@@ -169,7 +172,8 @@ public class Application {
 
         }
 
-        totalReturnRate = (totalWinningAmount - (lottoQuantity*1000))/totalWinningAmount*100;
+        totalReturnRate = (totalWinningAmount/totalLottoPurchase)*100;
+        String totalRate = String.format("%.1f",totalReturnRate);
 
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -178,7 +182,7 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + fiveMatches+"개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveBonusMatches+"개");
         System.out.println("6개 일치 (2,000,000,000원) - " + sixMatches+"개");
-        System.out.println("총 수익률은 "+ totalReturnRate +"%입니다.");
+        System.out.println("총 수익률은 "+ totalRate +"%입니다.");
     }
 
 

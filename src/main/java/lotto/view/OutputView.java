@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.controller.InputProcessor;
+import lotto.model.Ranking;
 
 public class OutputView {
   private final static String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
@@ -49,5 +50,20 @@ public class OutputView {
     }
   }
 
+  public static void printSuccessResult() {
+    System.out.println("당첨 통계");
+    System.out.println("---");
+  }
+
+  public static void printRanking(List<Integer> rank) {
+    int currentCount = 0;
+    for (Ranking ranking : Ranking.values()) {
+      int countOfMatch = ranking.getCountOfMatch();
+      int count = rank.get(currentCount);
+      currentCount++;
+      String message = ranking.getMessage();
+      System.out.println(message + " - " + count + "개");
+    }
+  }
 
 }

@@ -10,9 +10,9 @@ import java.util.List;
 
 public class LottoApplication {
     private static int LOTTO_PRICE = 1000;
-    private int matchingNumbersCounter;
+    private int[] matchingNumbersCounter;
     private boolean bonusMatch;
-    private boolean[] rankCounter = new boolean[6]; // 등수 결정 index 0은 사용하지 않음
+    private boolean[] rankingCounter = new boolean[6]; // 등수 결정 index 0은 사용하지 않음
 
     void execute() {
         int receivedAmount = getReceivedAmount();
@@ -28,9 +28,10 @@ public class LottoApplication {
 
         Ticket ticket = new Ticket(pickedNumbers, bonus); // 구매자의 티켓
 
-        compareTicketAndLottos(ticket, createdLottos);
+        matchingNumbersCounter = new int[getNumberOfLotto(receivedAmount)];
+        List<Result> results = compareTicketAndLottos(ticket, createdLottos);
 
-        decideRank();
+//        calculatePrize();
     }
 
     private int getReceivedAmount() {
@@ -81,47 +82,14 @@ public class LottoApplication {
         return receivedAmount / LOTTO_PRICE;
     }
 
-    private void compareTicketAndLottos(Ticket ticket, List<Lotto> lottos) {
+    private List<Result> compareTicketAndLottos(Ticket ticket, List<Lotto> lottos) {
+        List<Result> results = new ArrayList<>();
+
         for (Lotto lotto : lottos) {
-            compareTicketAndLotto(ticket, lotto);
+            results.add(new Result(ticket, lotto));
         }
+
+        return results;
     }
 
-    private void compareTicketAndLotto(Ticket ticket, Lotto lotto) {
-        List<Integer> ticketNumbers = ticket.getLotto().getNumbers();
-        int bonusNumber = ticket.getBonus().getNumber();
-
-        List<Integer> lottoNumbers = lotto.getNumbers();
-
-        for (Integer ticketNumber : ticketNumbers) {
-            if (lottoNumbers.contains(ticketNumber)) {
-                matchingNumbersCounter++;
-
-            }
-        }
-
-        bonusMatch = matchingNumbersCounter == 5 && lottoNumbers.contains(bonusNumber);
-    }
-
-    private void decideRank() {
-        if (matchingNumbersCounter == 6) {
-            rankCounter[1] = true;
-        }
-
-        if (matchingNumbersCounter == 5) {
-            if (bonusMatch) {
-                rankCounter[2] = true;
-            }
-
-            rankCounter[3] = true;
-        }
-
-        if (matchingNumbersCounter == 4) {
-            rankCounter[4] = true;
-        }
-
-        if (matchingNumbersCounter == 3) {
-            rankCounter[5] = true;
-        }
-    }
 }

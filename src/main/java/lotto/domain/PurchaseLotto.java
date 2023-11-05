@@ -6,12 +6,12 @@ import static lotto.constant.ErrorMessage.*;
 
 public class PurchaseLotto {
     public static int getLottoCount(String amount) {
-        validator(amount);
+        validate(amount);
         int amountNum = Integer.parseInt(amount);
         return amountNum / 1000;
     }
 
-    public static void validator(String amount){
+    public static void validate(String amount){
         validateSpace(amount);
         validateNumber(amount);
         validateFirstNumber(amount);

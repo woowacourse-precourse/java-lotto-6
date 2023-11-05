@@ -11,7 +11,7 @@ public class PurchaseLottoTest {
     @Test
     void purchaseLottoBySpace() {
         String purchaseAmount = "10 00";
-        assertThatThrownBy(() -> PurchaseLotto.validator(purchaseAmount))
+        assertThatThrownBy(() -> PurchaseLotto.validate(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -19,7 +19,7 @@ public class PurchaseLottoTest {
     @Test
     void purchaseLottoByNonNumber() {
         String purchaseAmount = "1000a";
-        assertThatThrownBy(() -> PurchaseLotto.validator(purchaseAmount))
+        assertThatThrownBy(() -> PurchaseLotto.validate(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -27,7 +27,7 @@ public class PurchaseLottoTest {
     @Test
     void purchaseLottoByLeadingZero() {
         String purchaseAmount = "01000";
-        assertThatThrownBy(() -> PurchaseLotto.validator(purchaseAmount))
+        assertThatThrownBy(() -> PurchaseLotto.validate(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,7 +35,7 @@ public class PurchaseLottoTest {
     @Test
     void purchaseLottoByNonMultipleOf1000() {
         String purchaseAmount = "1500";
-        assertThatThrownBy(() -> PurchaseLotto.validator(purchaseAmount))
+        assertThatThrownBy(() -> PurchaseLotto.validate(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -43,7 +43,7 @@ public class PurchaseLottoTest {
     @Test
     void purchaseLottoByOverMaxAmount() {
         String purchaseAmount = "110000";
-        assertThatThrownBy(() -> PurchaseLotto.validator(purchaseAmount))
+        assertThatThrownBy(() -> PurchaseLotto.validate(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

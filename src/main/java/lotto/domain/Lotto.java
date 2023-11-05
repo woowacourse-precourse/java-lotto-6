@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -10,11 +11,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+		Collections.sort(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6 || areUnique(numbers) || areInRange(numbers)) {
+        if (numbers.size() != 6 || !areUnique(numbers) || !areInRange(numbers)) {
             throw new IllegalArgumentException();
         }
     }
@@ -29,4 +31,10 @@ public class Lotto {
 		return numbers.stream()
 			.allMatch(num -> num >= MIN_LOTTO_NUMBER && num <= MAX_LOTTO_NUMBER);
 	}
+
+	@Override
+	public String toString() {
+		return "" + numbers;
+	}
+
 }

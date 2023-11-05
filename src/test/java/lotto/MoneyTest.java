@@ -29,4 +29,11 @@ public class MoneyTest {
         assertThatThrownBy(() -> Money.of(money)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"abc", "90 0", "-1a00"})
+    @DisplayName("숫자가 아닌 입력시 예외")
+    public void createByNonNumeric(String money) {
+        assertThatThrownBy(() -> Money.of(money)).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

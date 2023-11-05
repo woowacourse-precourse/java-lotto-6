@@ -15,6 +15,21 @@ public class Money {
         return new Money(money);
     }
 
+    public static Money of(String money){
+        validateNumeric(money);
+        return of(Integer.valueOf(money.trim()));
+    }
+
+    private static void validateNumeric(String money) {
+        if(isNotNumeric(money.trim())){
+            throw new IllegalArgumentException("숫자만 입력해주세요");
+        }
+    }
+
+    private static boolean isNotNumeric(String money) {
+        return !money.chars().allMatch(Character::isDigit);
+    }
+
     private void validateMinimumAmount(Integer money) {
         if (isMin(money)) {
             throw new IllegalArgumentException("천원 단위로 입력해주세요.");

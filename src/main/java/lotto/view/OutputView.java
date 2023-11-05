@@ -40,4 +40,8 @@ public class OutputView {
         System.out.println(LOTTO_WINNING_RESULT_MESSAGE.getMessage());
     }
 
+    public static void newLine() {
+        System.out.println();
+    }
+
 }

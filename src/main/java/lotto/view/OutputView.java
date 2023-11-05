@@ -4,10 +4,14 @@ import static lotto.view.Message.*;
 
 public class OutputView {
     public static void printPurchaseAmountMessage(){
-        System.out.println(PURCHASE_AMOUNT_MESSAGE.getMessage());
+        printMessage(PURCHASE_AMOUNT_MESSAGE.getMessage());
+    }
+    public static void printTicketCountMessage(int ticketCount){
+        printMessage();
+        printMessage(TICKET_COUNT_MESSAGE.formatMessage(ticketCount));
     }
     public static void printWinningNumbersMessage(){
-        System.out.println(WINNING_NUMBERS_MESSAGE.getMessage());
+        printMessage(WINNING_NUMBERS_MESSAGE.getMessage());
     }
     public static void printBonusNumberMessage(){
         System.out.println(BONUS_NUMBER_MESSAGE.getMessage());

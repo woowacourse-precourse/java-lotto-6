@@ -28,4 +28,7 @@ public class WinningLottoStorage {
         rankStorage.put(rank, count + 1);
     }
 
+    public int getRank(Rank rank) {
+        return rankStorage.get(rank);
+    }
 }

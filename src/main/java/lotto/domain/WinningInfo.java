@@ -23,6 +23,17 @@ public class WinningInfo {
         return new WinningInfo(winningNumbers, bonusNumber);
     }
 
+    public Rank match(Lotto lotto) {
+        boolean hasBonusNumber = false;
+        int matchCount = (int) lotto.getLottoNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+        if (matchCount == 5) {
+            return Rank.valueOf(matchCount, lotto.getLottoNumbers().contains(bonusNumber));
+        }
+        return Rank.valueOf(matchCount, hasBonusNumber);
+    }
+
     private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());

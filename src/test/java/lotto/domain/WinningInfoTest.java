@@ -3,9 +3,15 @@ package lotto.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningInfoTest {
 
@@ -76,6 +82,28 @@ public class WinningInfoTest {
         Assertions.assertThrows(
                 IllegalArgumentException.class,
                 () -> WinningInfo.from(winningNumbers, bonusNumber)
+        );
+    }
+
+    @DisplayName("당첨 번호와 로또 번호를 비교한다.")
+    @ParameterizedTest
+    @MethodSource("createLottoNumbersFixture")
+    void matchTest(List<Integer> winningNumbers, int bonusNumber, List<Integer> lottoNumbers, Rank expectedRank) {
+        WinningInfo winningInfo = WinningInfo.from(winningNumbers, bonusNumber);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        Rank result = winningInfo.match(lotto);
+        assertThat(expectedRank).isEqualTo(result);
+    }
+
+    private static Stream<Arguments> createLottoNumbersFixture() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 7, Arrays.asList(1, 2, 3, 4, 5, 6), Rank.FIRST),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 7, Arrays.asList(1, 2, 3, 4, 5, 7), Rank.SECOND),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 7, Arrays.asList(1, 2, 3, 4, 5, 8), Rank.THIRD),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 7, Arrays.asList(1, 2, 3, 4, 7, 8), Rank.FOURTH),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 7, Arrays.asList(1, 2, 3, 7, 8, 9), Rank.FIFTH),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 7, Arrays.asList(1, 7, 8, 9, 10, 11), Rank.MISS)
         );
     }
 }

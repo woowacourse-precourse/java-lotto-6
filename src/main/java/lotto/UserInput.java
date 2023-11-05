@@ -18,13 +18,13 @@ public class UserInput {
     }
 
     //후에 검증기능과, purchaseCount 리턴하는 기능 별도의 함수로 분리 리팩토링 예정!
-    public int validatePurchaseAmount(int purchaseAmount) {
-        int purchaseCount;
+    public void validatePurchaseAmount(int purchaseAmount) {
+//        int purchaseCount;
 
         if (purchaseAmount % 1000 == 0) {
             repeatPurchase = false;
-            purchaseCount = purchaseAmount / 1000;
-            return purchaseCount;
+//            purchaseCount = purchaseAmount / 1000;
+            return;
         }
 
         throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요");
@@ -94,7 +94,7 @@ public class UserInput {
 
         for(var winningNumber : winningNumbers){
             if(winningNumber == bonusNumber){
-                throw new IllegalArgumentException("당첨 번호dhk 다른 숫자를 입력해주세요.");
+                throw new IllegalArgumentException("당첨 번호와 다른 숫자를 입력해주세요.");
             }
         }
         repeatBonusNumber = false;

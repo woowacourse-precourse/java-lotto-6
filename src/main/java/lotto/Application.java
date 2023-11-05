@@ -14,10 +14,12 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
 
         UserInput userInput = new UserInput();
+        Process lottoCount = new Process();
 
         while(UserInput.repeatPurchase) {
             purchaseAmount = userInput.getPurchaseAmount();
-            purchaseCount = userInput.validatePurchaseAmount(purchaseAmount);
+            userInput.validatePurchaseAmount(purchaseAmount);
+            purchaseCount = lottoCount.countLottos(purchaseAmount);
         }
 
         System.out.println();
@@ -59,6 +61,16 @@ public class Application {
             userInputBonusNumber.overlapWithNumber(winningNumbers, bonusNumber);
         }
 
+        System.out.println();
+
+
+
+        //당첨 통계 출력
+
+
+
+
+        //수익률 출력
 
 
 

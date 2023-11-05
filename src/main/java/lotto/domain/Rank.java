@@ -20,6 +20,15 @@ public enum Rank {
         this.price = price;
     }
 
+    public static Rank calculateRank(final int matchCounts, final boolean matchBonus) {
+        for (Rank rank : values()) {
+            if (rank.matchCounts == matchCounts && rank.matchBonus == matchBonus) {
+                return rank;
+            }
+        }
+        return NONE;
+    }
+
     public int getMatchCounts() {
         return matchCounts;
     }

@@ -32,4 +32,8 @@ public class LottoEnvelop {
 
         return information;
     }
+
+    public Lotto takeLotto(Integer index) {
+        return this.lottoEnvelops.get(index);
+    }
 }

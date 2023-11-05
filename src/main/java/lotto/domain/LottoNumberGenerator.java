@@ -13,7 +13,6 @@ public class LottoNumberGenerator {
     }
 
     public static List<Integer> generateNumber() {
-        List<Integer> lottoNumbers = pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_LENGTH);
-        return lottoNumbers;
+        return pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_LENGTH);
     }
 }

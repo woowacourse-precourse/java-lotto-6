@@ -16,7 +16,7 @@ public class MainController {
 //        OutputView.printResult(answerLotto.getResult(lottos));
     }
 
-    private static void purchaseLottos(wallet purchaseMoney, List<Lotto> Lottos) {
+    private static void purchaseLottos(Wallet purchaseMoney, List<Lotto> Lottos) {
 //        while (purchaseMoney.canPurchase(LOTTO_COST)) {
 //            purchaseMoney.purchase(LOTTO_COST);
 //            Lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));

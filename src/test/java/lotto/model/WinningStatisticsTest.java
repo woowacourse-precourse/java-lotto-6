@@ -65,4 +65,16 @@ public class WinningStatisticsTest {
             assertThat(winningStatistics.get(Rank.FifthPlace)).isEqualTo(1);
         }
     }
+
+    @DisplayName("당첨금을 모두 합한 총액을 구한다.")
+    @Test
+    void getTotalWinningAmount() {
+        winningStatisticsObject.checkWinningResult(6, false);
+        winningStatisticsObject.checkWinningResult(5, true);
+        winningStatisticsObject.checkWinningResult(5, false);
+        winningStatisticsObject.checkWinningResult(4, false);
+        winningStatisticsObject.checkWinningResult(3, false);
+
+        assertThat(winningStatisticsObject.getTotalWinningAmount()).isEqualTo(2031555000);
+    }
 }

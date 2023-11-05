@@ -1,6 +1,7 @@
 package lotto.model.domain.result;
 
 import java.text.DecimalFormat;
+import lotto.model.domain.Lotto;
 
 public enum LottoResult {
 
@@ -8,7 +9,8 @@ public enum LottoResult {
     SECOND(30_000_000),
     THIRD(1_500_000),
     FOURTH(50_000),
-    FIFTH(5_000);
+    FIFTH(5_000),
+    LOSE(0);
 
     private static final String COLLECTION_FORMAT = "%d개 일치";
     private static final String BONUS_FORMAT = ", 보너스 볼 일치";

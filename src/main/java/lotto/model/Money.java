@@ -1,5 +1,11 @@
 package lotto.model;
 
+import static lotto.utils.Constants.DIVISION_UNIT_FOR_INPUT_MONEY;
+import static lotto.utils.Constants.MAXIMUM_INPUT_MONEY;
+import static lotto.utils.Constants.MINIMUM_INPUT_MONEY;
+
+import lotto.utils.ErrorMessage;
+
 public class Money {
     private int money;
 
@@ -15,24 +21,24 @@ public class Money {
     }
 
     public int calculateLottoCount() {
-        return money / 1000;
+        return money / DIVISION_UNIT_FOR_INPUT_MONEY;
     }
 
     private void validateMinAmount(int inputMoney) {
-        if (inputMoney < 1000) {
-            throw new IllegalArgumentException("최소 1000원을 입력해야합니다.");
+        if (inputMoney < MINIMUM_INPUT_MONEY) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_MONEY_BELOW_MIN_AMOUNT_ERROR.getMessage());
         }
     }
 
     private void validateMaxAmount(int inputMoney) {
-        if (inputMoney > 100_000_000) {
-            throw new IllegalArgumentException("최대 100,000,000원을 입력해야합니다.");
+        if (inputMoney > MAXIMUM_INPUT_MONEY) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_MONEY_ABOVE_MAX_AMOUNT_ERROR.getMessage());
         }
     }
 
     private void validateDivisible(int inputMoney) {
-        if (inputMoney % 1000 != 0) {
-            throw new IllegalArgumentException("1000원 단위의 값을 입력해야합니다.");
+        if (inputMoney % DIVISION_UNIT_FOR_INPUT_MONEY != 0) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_MONEY_NOT_DIVISIBLE_ERROR.getMessage());
         }
     }
 }

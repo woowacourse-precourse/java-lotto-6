@@ -19,9 +19,11 @@ public class OutputView {
         System.out.println();
     }
 
-    public static String returnLottery() {
+    public static void returnLottery(int lottoAmount, String lottoList) {
         // 로또 개수 + 각 로또 번호
-        return PrintMessage.RETURN_LOTTO_AMOUNT.toString();
+        System.out.println(lottoAmount
+                +PrintMessage.RETURN_LOTTO_AMOUNT.toString()
+                +lottoList);
     }
 
     public static String returnWinningStats() {

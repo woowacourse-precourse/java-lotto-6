@@ -9,7 +9,7 @@ import static lotto.domain.constants.LottoConstraint.*;
 
 public class LottoNumberGenerator {
 
-    private static List<Integer> generateSortedLottoNumber() {
+    public List<Integer> generateSortedLottoNumber() {
         List<Integer> numbers = generateSingleLottoNumber();
         Collections.sort(numbers);
         return numbers;

@@ -1,5 +1,6 @@
 package lotto;
 
+import constants.ErrorMessage;
 import constants.NumberType;
 
 public class BonusNumber {
@@ -22,7 +23,7 @@ public class BonusNumber {
 
     private void validateBonusNumberInAnswerLotto(int bonusNumber, AnswerLotto answerLotto) {
         if (checkBonusNumberInAnswerLotto(bonusNumber, answerLotto)) {
-            throw new IllegalArgumentException("당첨번호에 포함된 숫자는 보너스 번호가 될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IN_ANSWER_LOTTO_ERROR.getMessage());
         }
     }
 
@@ -32,7 +33,8 @@ public class BonusNumber {
 
     private void validateInRange(int bonusNumber) {
         if (checkBonusNumberInRange(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format(ErrorMessage.BONUS_NUMBER_RANGE_ERROR.getMessage(),
+                    NumberType.MIN_LOTTO_NUMBER.getValue(), NumberType.MAX_LOTTO_NUMBER.getValue()));
         }
     }
 

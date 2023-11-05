@@ -30,10 +30,6 @@ public enum LottoResults {
         return LottoResults.FAIL;
     }
 
-    public int getCorrectCount() {
-        return this.correctCount;
-    }
-
     public long getWinningAmount() {
         return this.winningAmount;
     }

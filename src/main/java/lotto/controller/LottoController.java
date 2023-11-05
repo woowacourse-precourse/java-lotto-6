@@ -21,3 +21,9 @@ public class LottoController {
         }
         return money;
     }
+
+    private void printTicketCountAndOutput(Money money) {
+        int ticketCount = money.calculateLottoCount();
+        OutputView.printTicketCount(ticketCount);
+    }
+}

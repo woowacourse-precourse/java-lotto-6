@@ -61,4 +61,10 @@ public class Lotto {
             }
         }
     }
+
+    public List<Integer> sortLottoNumbers() {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
 }

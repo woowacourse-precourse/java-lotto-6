@@ -32,7 +32,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer number : numbers) {
             if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException("중복된 숫자가 존재합니다: " + number);
+                throw new IllegalArgumentException("[ERROR] : 중복된 숫자가 존재합니다: " + number);
             }
         }
     }

@@ -8,8 +8,8 @@ public class Output {
     public void notifyPayment() {
         System.out.println("구입금액을 입력해 주세요.");
     }
-    public void notifyLottoCount(List<Lotto> lottoTickets) {
-        System.out.printf("%d개를 구매했습니다.\n", lottoTickets.size());
+    public void notifyLottoCount(int count) {
+        System.out.printf("%d개를 구매했습니다.\n", count);
     }
 
     public void notifyLottoNumbers(List<Integer> lottoTickets) {

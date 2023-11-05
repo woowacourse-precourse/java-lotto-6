@@ -22,8 +22,8 @@ public class Controller {
     public void lottoStart() {
         output.notifyPayment();
         int count = getLottoCount(input.getUserMoney());
+        output.notifyLottoCount(count);
         purchaseLotto(count);
-        output.notifyLottoCount(lottoTickets);
         for (int i = 0; i < count; i++) {
             output.notifyLottoNumbers(lottoTickets.get(i).getNumbers());
         }

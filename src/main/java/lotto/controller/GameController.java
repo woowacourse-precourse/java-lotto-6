@@ -47,6 +47,7 @@ public class GameController {
 
 
     private void init() {
+        LottoStore.getInstance().getLotto().clear();
         amount = inputView.printPurchaseAmount();
         count = amount / 1000;
         outputView.printPurchase(count);

@@ -56,8 +56,8 @@ public class LottoChecker {
 
         for (int i = 0; i < purchaseLottoTickets.size(); i++) {
             int count = compare(purchaseLottoTickets.get(i), winningLotto);
-            if (count == Lotto.Prize.THIRD.getMatchCount() && includeBonusNumberInLottoNumber(purchaseLottoTickets.get(i), bonusNumber)) {
-                count = Lotto.Prize.SECOND.getMatchCount();
+            if (count == Prize.THIRD.getMatchCount() && includeBonusNumberInLottoNumber(purchaseLottoTickets.get(i), bonusNumber)) {
+                count = Prize.SECOND.getMatchCount();
             }
             counts.add(count);
         }
@@ -71,7 +71,7 @@ public class LottoChecker {
 
     public List<Integer> lottoResult(List<Integer> counts) {
         List<Integer> result = new ArrayList<>();
-        for (Lotto.Prize prize : Lotto.Prize.values()) {
+        for (Prize prize : Prize.values()) {
             result.add(Collections.frequency(counts, prize.getMatchCount()));
         }
         return result;

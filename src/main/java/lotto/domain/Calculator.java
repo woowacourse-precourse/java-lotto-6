@@ -16,7 +16,7 @@ public class Calculator {
     public int calculateProfit(List<Integer> result) {
         int income = 0;
         int index = 0;
-        for (Lotto.Prize prize : Lotto.Prize.values()) {
+        for (Prize prize : Prize.values()) {
             income += result.get(index++) * prize.getPrizeMoney();
         }
         return income;

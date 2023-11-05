@@ -16,17 +16,18 @@ public class LottoryHost {
      *
      * @return
      */
-    public Boolean checkDuplicateWinNum(String targetNum) {
-        Boolean isSame = false;
-        Integer target = Integer.valueOf(targetNum);
-
-        for (int indexOfSpecial = 0; indexOfSpecial < 7; indexOfSpecial++) {
-            isSame = lottoNumResults.isSame(target, indexOfSpecial);
-            if (isSame) {
-                return true;
-            }
-        }
-
-        return false;
-    }
+    // TODO: 11/5/23 삭제 
+//    public Boolean checkDuplicateWinNum(String targetNum) {
+//        Boolean isSame = false;
+//        Integer target = Integer.valueOf(targetNum);
+//
+//        for (int indexOfSpecial = 0; indexOfSpecial < 7; indexOfSpecial++) {
+//            isSame = lottoNumResults.isSame(target, indexOfSpecial);
+//            if (isSame) {
+//                return true;
+//            }
+//        }
+//
+//        return false;
+//    }
 }

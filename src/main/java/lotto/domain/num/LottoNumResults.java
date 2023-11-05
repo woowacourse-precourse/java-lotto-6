@@ -1,6 +1,7 @@
 package lotto.domain.num;
 
 import lotto.config.Config;
+import lotto.domain.lotto.Lotto;
 import lotto.utill.Utii;
 
 /**
@@ -18,12 +19,13 @@ public class LottoNumResults {
         this.bonusLottoNum = Config.bonusLottoNum(strOfPickBonusNum);
     }
 
-    public Boolean isSame(Integer targetNum, Integer indexOfSpecial) {
-        if (isContainScopeOfWinNums(indexOfSpecial)) {
-            return isSameWinNums(targetNum, indexOfSpecial);
-        }
-        return isSameBonusNum(targetNum, indexOfSpecial);
-    }
+    // TODO: 11/5/23 삭제 해도 될꺼 같다. 확인 
+//    public Boolean isSame(Integer targetNum, Integer indexOfSpecial) {
+//        if (isContainScopeOfWinNums(indexOfSpecial)) {
+//            return isSameWinNums(targetNum, indexOfSpecial);
+//        }
+//        return isSameBonusNum(targetNum, indexOfSpecial);
+//    }
 
     /**
      * 당첨 번호 추첨 번호가 같은지 확인한다.
@@ -31,9 +33,11 @@ public class LottoNumResults {
      * @param targetNum 확인하기 위한 번호
      * @return
      */
-    public Boolean isSameWinNums(Integer targetNum, Integer indexOfSpecial) {
-        if (isContainScopeOfWinNums(indexOfSpecial)) {
-            return winLottoNums.isSame(targetNum, indexOfSpecial);
+    public Boolean isSameWinNums(Integer targetNum) {
+        for (int index = 0; index < 6; index++) {
+            if (winLottoNums.isSame(targetNum, index)) {
+                return true;
+            }
         }
 
         return false;
@@ -57,6 +61,5 @@ public class LottoNumResults {
         return indexOfSpecial >= START_PICK_NUM_INDEX
                 && indexOfSpecial <= END_PICK_NUM_INDEX;
     }
-
 
 }

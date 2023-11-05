@@ -22,23 +22,24 @@ class LottoNumResultsTest {
         lottoNumResults = new LottoNumResults("1,2,3,4,5,6", "7");
     }
 
-    @DisplayName("당첨 번호 추첨 번호들과, 보너스 번호들을 같은지 확인한다.")
-    @ParameterizedTest
-    @CsvSource({"1,0", "2,1", "3,2", "4,3", "5,4", "6,5", "7,6"})
-    void isSame(Integer targetNum, Integer indexOfSpecial) {
-        // when
-        Boolean result = lottoNumResults.isSame(targetNum, indexOfSpecial);
-
-        // than
-        assertThat(result).isTrue();
-    }
+    // TODO: 11/5/23 삭제 요망
+//    @DisplayName("당첨 번호 추첨 번호들과, 보너스 번호들을 같은지 확인한다.")
+//    @ParameterizedTest
+//    @CsvSource({"1,0", "2,1", "3,2", "4,3", "5,4", "6,5", "7,6"})
+//    void isSame(Integer targetNum, Integer indexOfSpecial) {
+//        // when
+//        Boolean result = lottoNumResults.isSame(targetNum);
+//
+//        // than
+//        assertThat(result).isTrue();
+//    }
 
     @DisplayName("당첨 번호 추첨 번호가 같은지 확인한다.")
     @ParameterizedTest
     @CsvSource({"1,0", "2,1", "3,2", "4,3", "5,4", "6,5"})
     void isSameWinNums(Integer targetNum, Integer indexOfSpecial) {
         // when
-        Boolean result = lottoNumResults.isSameWinNums(targetNum, indexOfSpecial);
+        Boolean result = lottoNumResults.isSameWinNums(targetNum);
 
         // than
         assertThat(result).isTrue();

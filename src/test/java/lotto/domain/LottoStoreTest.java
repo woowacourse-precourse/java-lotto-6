@@ -9,18 +9,19 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoMachineTest {
+class LottoStoreTest {
     @DisplayName("정해진 횟수 만큼 로또를 생성 한다")
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5, 6})
     void issueLottoPerAttempt(int attempt) {
-        LottoMachine lottoMachine = new LottoMachine();
-        List<Lotto> issuedLottos = new ArrayList<>();
+        LottoStore lottoStore = new LottoStore();
+        List<Lotto> issuedLotto = new ArrayList<>();
 
         for (int i = 0; i < attempt; i++) {
-            issuedLottos.add(lottoMachine.issueLotto());
+            lottoStore.issueLotto();
+            issuedLotto = lottoStore.getIssuedLotto();
         }
 
-        assertThat(issuedLottos.size()).isEqualTo(attempt);
+        assertThat(issuedLotto.size()).isEqualTo(attempt);
     }
 }

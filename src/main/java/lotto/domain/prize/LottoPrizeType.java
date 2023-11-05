@@ -40,4 +40,8 @@ public enum LottoPrizeType {
         return this.criteria.matchesWinningNumberCount(winningNumberCount);
     }
 
+    public BigDecimal calculateAmount(Integer winningCount) {
+        return this.amount.multiply(new BigDecimal(winningCount));
+    }
+
 }

@@ -13,8 +13,8 @@ public class UserView {
     public void printBuyMessageBefore() {
         System.out.println(BUY_MESSAGE_BEFORE);
     }
-    public void printBuyMessageAfter() {
-        System.out.println(BUY_MESSAGE_AFTER);
+    public void printBuyMessageAfter(Integer purchaseLottoNumber) {
+        System.out.println(purchaseLottoNumber + BUY_MESSAGE_AFTER);
     }
     public void printInputWinningNumbersMessage() {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);

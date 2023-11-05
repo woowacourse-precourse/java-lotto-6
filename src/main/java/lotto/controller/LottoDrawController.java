@@ -7,9 +7,9 @@ import lotto.factory.LottoFactory;
 import lotto.factory.UserLotteriesFactory;
 import lotto.factory.WinningLottoFactory;
 import lotto.model.LottoNumbersGenerator;
+import lotto.utils.LottoProfitCalculator;
 import lotto.model.UserLotteries;
 import lotto.model.WinningLotto;
-import lotto.utils.LottoProfitCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -40,6 +40,8 @@ public class LottoDrawController {
         Map<LottoPrize, Long> winningCountPerLottoPrize = userLotteries.findWinningCount(winningLotto);
         Double lottoProfitPercentage =
                 LottoProfitCalculator.findLottoProfitPercentage(winningCountPerLottoPrize, purchaseAmount);
+
+        showDrawResult(winningCountPerLottoPrize, lottoProfitPercentage);
     }
 
     private void showUserLottoDetails(Integer countOfPurchasedLotto, UserLotteries userLotteries) {
@@ -52,6 +54,12 @@ public class LottoDrawController {
         List<String> drawnNumbers = inputView.getDrawnNumbers();
         Integer bonusNumber = inputView.getBonusNumber(drawnNumbers);
         return winningLottoFactory.createWinningLotto(drawnNumbers, bonusNumber);
+    }
+
+    public void showDrawResult(Map<LottoPrize, Long> winningCountPerLottoPrize, Double lottoProfitPercentage) {
+        outputView.printLottoResultMessage();
+        outputView.printLottoResult(winningCountPerLottoPrize);
+        outputView.printLottoTotalProfit(lottoProfitPercentage);
     }
 
 }

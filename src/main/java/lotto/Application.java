@@ -10,6 +10,7 @@ import java.lang.Math;
 import java.text.DecimalFormat;
 
 import lotto.Lotto;
+import net.bytebuddy.description.field.FieldDescription.InGenericShape;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -31,7 +32,7 @@ public class Application {
             this.name = name; 
         } 
     }
-    
+
     public static int myParseInt(String s){
         int res;
 
@@ -78,11 +79,29 @@ public class Application {
         }
     }
 
+    public static List<Integer> strToIntegerList(String userString){
+        List<Integer> res = new ArrayList<>(); 
+        for (String s : userString.split(",")) {
+            int number = myParseInt(s);
+            if (number == -1) return new ArrayList<Integer>();
+            res.add(number);
+        }
+        return res;
+    }
+
+    public static List<Integer> setWinNumbers(){
+        List<Integer> res = new ArrayList<Integer>();
+        while(res.isEmpty()) res = strToIntegerList(Console.readLine());
+        return res;
+    }
+
     public static void main(String[] args) {
         int money = -1;
         List<Lotto> user;
+        Lotto winLotto;
         money = setMoney();
         user = setUser(money/1000);
         showUser(user);
+        winLotto = new Lotto(setWinNumbers());
     }
 }

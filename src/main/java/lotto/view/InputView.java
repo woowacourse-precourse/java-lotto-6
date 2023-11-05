@@ -17,7 +17,6 @@ public class InputView {
     //가격 입력받아서 가격을 리턴하고 구매할 로또
     public static int readLottoPrice() {
         System.out.println(READ_LOTTO_PRICE_MESSAGE);
-
         String input = Console.readLine();
 
         try {
@@ -34,13 +33,17 @@ public class InputView {
         System.out.println();
         System.out.println(READ_WINNING_NUMBER_MESSAGE);
         String input = Console.readLine();
-        //컴마 예외
-        WinningNumberValidator.validateFormat(input);
 
-        //변환
-        List<String> list = Arrays.asList(input.split(WINNING_NUMBER_DELIMETER));
-        //리스트 예외
-        WinningNumberValidator.validateDuplicate(list);
+        List<String> list;
+        try {
+            WinningNumberValidator.validateFormat(input);
+
+            list = Arrays.asList(input.split(WINNING_NUMBER_DELIMETER));
+            WinningNumberValidator.validateDuplicate(list);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readWinningNumber();
+        }
 
         return list.stream()
                 .map(Integer::parseInt)
@@ -52,8 +55,12 @@ public class InputView {
         System.out.println(READ_BONUS_NUMBER_MESSAGE);
         String num = Console.readLine();
 
-        //예외 처리
-        BonusNumberValidator.validateBonusNumber(winNumbers, num);
+        try {
+            BonusNumberValidator.validateBonusNumber(winNumbers, num);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBonusNumber(winNumbers);
+        }
 
         return Integer.parseInt(num);
     }

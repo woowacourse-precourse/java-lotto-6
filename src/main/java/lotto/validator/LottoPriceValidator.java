@@ -4,16 +4,13 @@ public class LottoPriceValidator {
 
     private static final int LOTTO_ONE_PRICE = 1000;
 
-    public static void validate(Object input) {
-        String inputStr = (String) input;
-        validateLottoPriceNotNumber(inputStr);
-        validateLottoPriceNotDivided(inputStr);
+    public static void validate(String input) {
+        validateLottoPriceNotNumber(input);
+        validateLottoPriceNotDivided(input);
     }
 
     private static void validateLottoPriceNotNumber(String input) throws IllegalArgumentException {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        if (!ValidationUtil.isNumber(input)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }

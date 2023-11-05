@@ -9,8 +9,8 @@ import view.InputView;
 public class LottoController {
 
     private Price price;
-    private LottoRepository lottoRepository;
-    private LottoNumberGenerator lottoNumberGenerator;
+    private LottoRepository lottoRepository = new LottoRepository();
+    private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
     public void run() {
 

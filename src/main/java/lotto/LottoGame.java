@@ -2,9 +2,24 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoGame {
 
+
+
     public LottoGame() {
+
+    }
+
+    public void startGame() {
+        int purchaseAmount = getPurchaseAmount();
+
+        ArrayList<Lotto> lottos = LottoMachine.buyLotto(purchaseAmount);
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+
+        lottos.forEach(Lotto::printNumbers);
 
     }
 
@@ -12,6 +27,7 @@ public class LottoGame {
         System.out.println("구매 금액을 입력해 주세요.");
         int purchaseAmount = Integer.parseInt(Console.readLine());
         isValidAmount(purchaseAmount);
+
         return purchaseAmount;
     }
 

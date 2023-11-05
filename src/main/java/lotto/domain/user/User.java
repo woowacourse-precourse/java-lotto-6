@@ -13,9 +13,11 @@ import java.util.List;
  */
 public class User {
     private LottoEnvelop lottoEnvelop;
+    private Statistic statistic;
 
     public User(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
         this.lottoEnvelop = lottoEnvelop;
+        this.statistic = Config.statistic(lottoEnvelop, lottoTargetNumResults);
     }
 
     /**
@@ -51,11 +53,10 @@ public class User {
     /**
      * 로또결과의 당첨에 대한 통계를 한다.
      *
-     * @param lottoTargetNumResults 당첨된, 보너스 번호 들의 모임
      * @return
      */
-    public List<Integer> doStatisticLottoResult(LottoTargetNumResults lottoTargetNumResults) {
-        return null;
+    public StringBuilder showStatisticLottoResult() {
+        return statistic.show();
     }
 
     /**

@@ -18,7 +18,8 @@
     - [x] 돈을 지불한다.
     - [x] 로또를 받는다.
     - [x] 로또를 보여준다. User#showLottos
-    - [ ] 로또결과의 당첨에 대한 통계를 한다. User#doStatisticLottoResult
+    - [x] 로또결과의 당첨에 대한 통계를 한다. User#doStatisticLottoResult
+    - [ ] 당첨 금액을 얻는다.
     - [ ] 로또결과의 당첨에 대한 총 수익률을 계산한다. User#calculateTotalRate
 
 - [x] 사용자의 당첨 판단 클래스. Judgment

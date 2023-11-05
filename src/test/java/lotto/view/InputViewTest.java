@@ -1,7 +1,7 @@
 package lotto.view;
 
 import static lotto.view.ErrorMessage.NOT_NUMBER;
-import static lotto.view.InputView.inputIntegerData;
+import static lotto.view.InputView.inputLongData;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,13 +22,13 @@ public class InputViewTest {
     @DisplayName("long 형 자료 입력 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"1423", "412312", "123123", "223123", "213123", "2147483647", "9223372036854775807"})
-    void 정상테스트_inputIntegerData(String input) {
+    void 정상테스트_inputLongData(String input) {
         //given
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
         String expect = input;
         //when
-        String result = inputIntegerData();
+        String result = inputLongData();
         //then
         assertThat(result).isEqualTo(expect);
     }
@@ -41,7 +41,7 @@ public class InputViewTest {
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
         //when
-        assertThatThrownBy(() -> inputIntegerData())
+        assertThatThrownBy(() -> inputLongData())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_NUMBER.getMessage());
     }

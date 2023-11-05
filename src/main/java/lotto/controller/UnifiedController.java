@@ -14,7 +14,7 @@ public class UnifiedController {
         boolean valid = false;
         while (!valid) {
             try {
-                Register.money = new Money(Integer.parseInt(InputView.inputIntegerData()));
+                Register.money = new Money(Long.parseLong(InputView.inputLongData()));
                 valid = true;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);

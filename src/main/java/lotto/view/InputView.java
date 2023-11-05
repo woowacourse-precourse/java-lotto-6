@@ -4,7 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.view.ErrorMessage.NOT_NUMBER;
 
 public class InputView {
-    public static String inputIntegerData() {
+    public static String inputLongData() {
         String input = readLine();
         validateParseLong(input);
         return input;

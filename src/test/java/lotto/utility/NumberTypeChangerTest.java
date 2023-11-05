@@ -16,5 +16,8 @@ public class NumberTypeChangerTest {
 
         // 문자열인 경우 예외 발생
         assertThrows(IllegalArgumentException.class, () -> NumberTypeChanger.changeNumberType("abc"));
+
+        // int 범위를 벗어나서 NumberFormatException을 일으키는 경우 예외 발생
+        assertThrows(IllegalArgumentException.class, () -> NumberTypeChanger.changeNumberType("1000000000000"));
     }
 }

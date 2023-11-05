@@ -72,11 +72,11 @@
 
 ## DTO
 
-- [ ] PurchasedLottoDTO : PurchasedLotto 대해 필요한 정보
-    - [ ] Input : 입력에 필요한 PurchasedLotto 정보
-        - [ ] 총 구입 금액
-    - [ ] Output : 출력에 필요한 PurchasedLotto 정보
-        - [ ] 각 로또들이 생성한 6자리 숫자(오름차순)
+- [x] PurchasedLottoDTO : PurchasedLotto 대해 필요한 정보
+    - [x] Input : 입력에 필요한 PurchasedLotto 정보
+        - [x] 총 구입 금액
+    - [x] Output : 출력에 필요한 PurchasedLotto 정보
+        - [x] 각 로또들이 생성한 6자리 숫자(오름차순)
 
 
 - [x] WinningLottoDTO : WinningLotto에 대한 필요한 정보

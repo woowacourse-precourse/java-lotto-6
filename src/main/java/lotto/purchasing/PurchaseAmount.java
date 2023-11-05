@@ -14,6 +14,7 @@ public class PurchaseAmount implements Askable {
 
         do {
             input = readLine();
+            input = stripCommas(input);
 
         } while (!validate(input));
 
@@ -49,4 +50,12 @@ public class PurchaseAmount implements Askable {
     };
 
     private final Predicate<String> isThousandUnit = input -> Integer.parseInt(input) % 1000 == 0;
+
+    private String stripCommas(String input) {
+        return input.replaceAll(",", "");
+    }
+
+    public String getInput() {
+        return input;
+    }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.controller.dto.input.LottoPurchaseAmountDto;
+import lotto.controller.dto.input.WinningLottoNumbersDto;
 import lotto.controller.dto.output.PurchasedLottosDto;
 import lotto.io.reader.Reader;
 import lotto.io.writer.Writer;
@@ -35,5 +36,10 @@ public class LottoView {
                 .map(LottoMessage.LOTTO_NUMBERS::getMessage)
                 .collect(Collectors.joining(lineSeparator));
         writer.writeLine(purchasedLottoNumbers + lineSeparator);
+    }
+
+    public WinningLottoNumbersDto inputWinningLottoNumbers() {
+        writer.writeLine(LottoMessage.INPUT_WINNING_LOTTO_NUMBERS.getMessage());
+        return new WinningLottoNumbersDto(reader.readLine());
     }
 }

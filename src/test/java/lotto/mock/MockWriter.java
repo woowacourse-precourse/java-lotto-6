@@ -3,7 +3,7 @@ package lotto.mock;
 import lotto.io.writer.Writer;
 
 public class MockWriter implements Writer {
-    private StringBuilder output = new StringBuilder();
+    private final StringBuilder output = new StringBuilder();
 
     @Override
     public void writeLine(String message) {

@@ -2,6 +2,7 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoGameControllerTest extends NsTest {
     private static LottoGameController controller;
@@ -65,6 +68,16 @@ public class LottoGameControllerTest extends NsTest {
         //then
         assertThat(winningLotto.getNumbersMessage()).isEqualTo("[1, 2, 3, 4, 5, 6]");
         winningNumbers.forEach((number) -> assertThat(winningLotto.isContains(number)).isTrue());
+    }
+
+    @DisplayName("보너스 번호 검증기능 예외처리")
+    @ParameterizedTest
+    @ValueSource(longs = {-1, 46, 1, 3, 6})
+    void 보너스번호_검증_기능_예외처리(long inputBonusNumber) {
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThatThrownBy(() -> controller.validateBonusNumber(winningLotto, inputBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override

@@ -45,7 +45,9 @@ public class LottoController {
     }
     public void startLotto(){
         for(int i=0;i<maxRound;i++){
-            List<Integer>item = makeNumber(); // 생성
+            List<Integer>item = new ArrayList<>();
+            item.addAll(makeNumber()); // 생성
+            Collections.sort(item);
             lottos.add(new Lotto(item)); // 추가
         }
     }

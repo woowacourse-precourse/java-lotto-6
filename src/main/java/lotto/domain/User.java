@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.util.MoneyValidator;
+import lotto.util.RateOfReturnUtil;
 
 public enum User {
     INSTANCE;
     private static final LottoWallet lottoWallet = new LottoWallet();
     private static List<Integer> prizeCounts = new ArrayList<Integer>();
     private static int cost;
-    private static long revenue;
     private static double rateOfReturn;
 
     public static void purchaseLotto(int money) {
@@ -36,16 +36,7 @@ public enum User {
     }
 
     public static void calcRateOfReturn() {
-        revenue = ZERO;
-        calcRevenue();
-        rateOfReturn = ((double) revenue / cost) * 100;
-    }
-
-    private static void calcRevenue() {
-        for(int i = ZERO; i < PRIZE_RANK_MAX; i++) {
-            String rank = PRIZE_RANK_INDEXES.get(i);
-            revenue += (long) prizeCounts.get(i) * PRIZE_RANK_MONEY.get(rank);
-        }
+        rateOfReturn = RateOfReturnUtil.calcRateOfReturn(cost, prizeCounts);
     }
 
     public static double getRateOfReturn() {

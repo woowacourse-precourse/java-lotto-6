@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.util.Constant;
-import lotto.util.RandomValueList;
+import lotto.util.RandomValues;
 
 public class LottoService {
     public static LottoService getInstance() {
@@ -16,7 +16,7 @@ public class LottoService {
     }
 
     private Lotto getLotto(){
-        return new Lotto(RandomValueList.getRandomValue());
+        return new Lotto(RandomValues.getRandomValues());
     }
 
     public List<Lotto> getLottoList(int purchaseNumber) {

@@ -16,7 +16,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getLotto() {
+    public List<Integer> getLottoNumbers() {
         return numbers;
     }
 }

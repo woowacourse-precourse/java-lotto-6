@@ -22,19 +22,23 @@ public class LottoController {
     }
 
     public void run() {
-        createUser();
-
+        createUser(getPurchase());
+        printUserLottoInfo();
     }
 
-    private void createUser() {
-        int purchaseNumber = getPurchase();
-        List<Lotto> lottoList = lottoService.getLottoList(purchaseNumber);
-        user = new User(purchaseNumber, lottoList);
+    private void createUser(int purchaseNumber) {
+        List<Lotto> lottos = lottoService.getLottoList(purchaseNumber);
+        user = new User(purchaseNumber, lottos);
     }
 
     private int getPurchase() {
         int purchaseAmount = inputView.getPurchaseAmount();
 
         return lottoService.getPurchaseNumber(purchaseAmount);
+    }
+
+    private void printUserLottoInfo() {
+        outputView.printPurchaseNotice(user.getPurchaseNumber());
+        outputView.printUserLottos(user.getLottos());
     }
 }

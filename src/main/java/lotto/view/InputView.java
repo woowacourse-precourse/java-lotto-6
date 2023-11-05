@@ -95,6 +95,13 @@ public class InputView {
 
     public int inputBonusNumber(List<Integer> answerNumber){
         String inputBonus = Console.readLine();
+        validateBonusNumber(answerNumber, inputBonus);
         return Integer.parseInt(inputBonus);
+    }
+
+    public void validateBonusNumber(List<Integer> answerNumber, String inputBonus){
+        if (inputBonus.contains(" ")) {
+            throw new IllegalArgumentException(VALIDATE_CONTAIN_WHITE_SPACE_MESSAGE);
+        }
     }
 }

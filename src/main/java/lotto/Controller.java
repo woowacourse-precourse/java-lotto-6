@@ -39,13 +39,9 @@ public class Controller {
         output.notifyProfitRate(profitRate);
     }
 
-    public List<Integer> getRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
     public void purchaseLotto(int count) {
         for (int i = 0; i < count; i++) {
-            Lotto lotto = new Lotto(getRandomNumbers());
+            Lotto lotto = new Lotto(lottoMachine.getRandomNumbers());
             lottoTickets.add(lotto);
         }
 

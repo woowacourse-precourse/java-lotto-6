@@ -29,8 +29,9 @@ class UserTest {
         lotto_2 = new Lotto(List.of(7, 6, 5, 4, 3, 2));
         lotto_3 = new Lotto(List.of(8, 7, 6, 5, 4, 3));
 
-        user = new User(lottoEnvelop, lottoTargetNumResults);
-
+        user = new User();
+        user.takeLottoEnvelop(lottoEnvelop);
+        user.takeTargetNumResults(lottoTargetNumResults);
     }
 
     @DisplayName("로또를 보여준다.")
@@ -72,7 +73,9 @@ class UserTest {
         lottoEnvelop.add(lotto_4);
         lottoEnvelop.add(lotto_5);
 
-        user = new User(lottoEnvelop, lottoTargetNumResults);
+        user = new User();
+        user.takeLottoEnvelop(lottoEnvelop);
+        user.takeTargetNumResults(lottoTargetNumResults);
 
         // when
         StringBuilder result = user.showStatisticLottoResult();

@@ -102,4 +102,20 @@ public class Lotto {
             }
         }
     }
+
+    public static double calculateReturnRate(Map<Rank, Integer> lottoResult, int purchaseAmount) {
+        double returnRate = 0;
+
+        Rank[] ranks = Rank.values();
+
+        for (Rank rank : ranks) {
+            int totalCount = lottoResult.get(rank);
+            int prizeMoney = rank.getPrizeMoney();
+            returnRate += totalCount * prizeMoney;
+        }
+
+        returnRate = 100 * (returnRate / purchaseAmount);
+
+        return returnRate;
+    }
 }

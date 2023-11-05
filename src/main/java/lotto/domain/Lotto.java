@@ -1,12 +1,12 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.ErrorMessage.DUPLICATE_NUMBER;
-import static lotto.ErrorMessage.NOT_IN_RANGE;
-import static lotto.ErrorMessage.NOT_SORT;
-import static lotto.ErrorMessage.OUT_OF_SIZE;
-import static lotto.LottoRule.MAXIMUM;
-import static lotto.LottoRule.MINIMUM;
-import static lotto.LottoRule.SIZE;
+import static lotto.domain.LottoRule.MAXIMUM;
+import static lotto.domain.LottoRule.MINIMUM;
+import static lotto.domain.LottoRule.SIZE;
+import static lotto.util.ErrorMessage.DUPLICATE_NUMBER;
+import static lotto.util.ErrorMessage.NOT_IN_RANGE;
+import static lotto.util.ErrorMessage.NOT_SORT;
+import static lotto.util.ErrorMessage.OUT_OF_SIZE;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,8 +1,8 @@
-package lotto;
+package lotto.util;
 
-import static lotto.LottoRule.MAXIMUM;
-import static lotto.LottoRule.MINIMUM;
-import static lotto.LottoRule.SIZE;
+import static lotto.domain.LottoRule.MAXIMUM;
+import static lotto.domain.LottoRule.MINIMUM;
+import static lotto.domain.LottoRule.SIZE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

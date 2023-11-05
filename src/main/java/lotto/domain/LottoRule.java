@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum LottoRule {
     SIZE(6),

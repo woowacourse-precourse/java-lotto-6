@@ -1,12 +1,12 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.LottoCriteria.FIFTH_PLACE;
-import static lotto.LottoCriteria.FIRST_PLACE;
-import static lotto.LottoCriteria.FOURTH_PLACE;
-import static lotto.LottoCriteria.SECOND_PLACE;
-import static lotto.LottoCriteria.THIRD_PLACE;
-import static lotto.LottoRule.PERCENT;
-import static lotto.LottoRule.PRICE;
+import static lotto.domain.LottoCriteria.FIFTH_PLACE;
+import static lotto.domain.LottoCriteria.FIRST_PLACE;
+import static lotto.domain.LottoCriteria.FOURTH_PLACE;
+import static lotto.domain.LottoCriteria.SECOND_PLACE;
+import static lotto.domain.LottoCriteria.THIRD_PLACE;
+import static lotto.domain.LottoRule.PERCENT;
+import static lotto.domain.LottoRule.PRICE;
 
 import java.util.HashMap;
 import java.util.List;

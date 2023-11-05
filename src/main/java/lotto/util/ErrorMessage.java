@@ -1,4 +1,4 @@
-package lotto;
+package lotto.util;
 
 public enum ErrorMessage {
     OUT_OF_SIZE("로또 숫자의 개수가 6개가 아닙니다."),

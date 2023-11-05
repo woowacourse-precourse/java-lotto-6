@@ -1,9 +1,9 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.ErrorMessage.DUPLICATE_NUMBER;
-import static lotto.ErrorMessage.NOT_IN_RANGE;
-import static lotto.ErrorMessage.NOT_SORT;
-import static lotto.ErrorMessage.OUT_OF_SIZE;
+import static lotto.util.ErrorMessage.DUPLICATE_NUMBER;
+import static lotto.util.ErrorMessage.NOT_IN_RANGE;
+import static lotto.util.ErrorMessage.NOT_SORT;
+import static lotto.util.ErrorMessage.OUT_OF_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;

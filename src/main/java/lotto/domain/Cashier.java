@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.LottoRule.PRICE;
+import static lotto.domain.LottoRule.PRICE;
 
 public class Cashier {
     public int calculateLotto(int money) {

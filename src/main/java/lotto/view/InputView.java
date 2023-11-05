@@ -7,7 +7,7 @@ import lotto.utils.ErrorMessage;
 import lotto.utils.LottoConstant;
 
 public class InputView {
-    public int getPurchaseAmout() {
+    public int getInteger() {
         String input = Console.readLine();
         validateNotNull(input);
         validateNotEmpty(input);

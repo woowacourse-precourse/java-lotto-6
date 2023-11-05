@@ -18,8 +18,8 @@ public class SystemController {
         try {
             Money.from(InputView.creatLong());
         } catch (Exception e) {
-
-            Money.from(InputView.creatLong());
+            OutputView.exceptionMessage(e);
+            doLotto();
         }
     }
 }

@@ -60,19 +60,19 @@
     </tr>
     <tr><td colspan="3"></td></tr>
     <tr>
-        <td rowspan="1"><b>✂️‍ parser</b></td>
+        <td rowspan="1"><b>✂️‍ lotto.parser</b></td>
         <td><b>📗 Parser</b></td>
         <td>입력을 형식에 맞게 파싱하는 클래스</td>
     </tr>
     <tr><td colspan="3"></td></tr>
     <tr>
-        <td rowspan="1"><b>👨‍⚖️ validator</b></td>
+        <td rowspan="1"><b>👨‍⚖️ lotto.validator</b></td>
         <td><b>📗 InputValidator</b></td>
         <td>입력 값에 대한 유효성 검사를 진행하는 클래스</td>
     </tr>
     <tr><td colspan="3"></td></tr>
     <tr>
-        <td rowspan="2"><b>📺️ view</b></td>
+        <td rowspan="2"><b>📺️ lotto.view</b></td>
         <td><b>📗 InputView</b></td>
         <td>입력을 담당하는 클래스</td>
     </tr>

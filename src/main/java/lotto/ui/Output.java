@@ -1,6 +1,8 @@
 package lotto.ui;
 
 import static lotto.constants.Message.BONUS_NUMBER;
+import static lotto.constants.Message.Count;
+import static lotto.constants.Message.EARNINGS_RATE;
 import static lotto.constants.Message.PURCHASE_LOTTO;
 import static lotto.constants.Message.PURCHASE_MONEY;
 import static lotto.constants.Message.RESULT;
@@ -47,9 +49,9 @@ public class Output {
         System.out.println(RESULT.getMessage());
 
         for (Prize prize : lottoResult.state.keySet()) {
-            System.out.println(prize.getDescription() + lottoResult.state.get(prize) + "개");
+            System.out.println(prize.getDescription() + lottoResult.state.get(prize) + Count.getMessage());
         }
 
-        System.out.printf("총 수익률은 %,.1f%%입니다.%n", earningRate);
+        System.out.printf(EARNINGS_RATE.getMessage(), earningRate);
     }
 }

@@ -17,7 +17,7 @@ public class LottoResult {
         }
     }
 
-    public Double calculateEarningRate(Integer lottoCount) {
+    public Double calculateEarningsRate(Integer lottoCount) {
         int sum = 0;
 
         for (Prize key : state.keySet()) {

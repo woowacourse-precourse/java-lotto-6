@@ -34,7 +34,7 @@ public class Application {
         LottoResult lottoResult = LottoManager.checkWinning(user.lottos, winningLotto, bonusNumber);
 
         // 9. 당첨 결과 출력
-        Output.printResult(lottoResult, lottoResult.calculateEarningRate(user.lottoCount));
+        Output.printResult(lottoResult, lottoResult.calculateEarningsRate(user.lottoCount));
 
 
     }

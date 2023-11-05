@@ -9,7 +9,7 @@ public class InputView {
     private static final String COMMA_SEPARATOR = ",";
     private static final String EMPTY_AMOUNT_ERROR = "[ERROR] 구입 금액을 입력해 주세요.";
     private static final String EMPTY_LOTTO_NUMBER_ERROR = "[ERROR] 로또 번호를 입력해 주세요.";
-    private static final String NOT_NUMBER_LOTTO_NUMBER_ERROR = "[ERROR] 로또 번호는 숫자여야 합니다.";
+    private static final String NOT_INTEGER_LOTTO_NUMBER_ERROR = "[ERROR] 로또 번호는 정수여야 합니다.";
     private static final String EMPTY_BONUS_NUMBER_ERROR = "[ERROR] 보너스 번호를 입력해 주세요.";
 
     public static String inputPurchaseAmount() {
@@ -30,7 +30,7 @@ public class InputView {
                     .map(numberStr -> Integer.parseInt(numberStr))
                     .collect(Collectors.toList());
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(NOT_NUMBER_LOTTO_NUMBER_ERROR);
+            throw new IllegalArgumentException(NOT_INTEGER_LOTTO_NUMBER_ERROR);
         }
     }
 

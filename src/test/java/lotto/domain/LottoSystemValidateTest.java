@@ -24,7 +24,7 @@ public class LottoSystemValidateTest extends MethodSourceTest {
     @DisplayName("구매 금액이 1,000원 이상이 아닌 경우(1개 이상 구매하지 않는 경우) 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 500, 999})
-    void buyLottosFailInvalidPurchasesNumber(int purchaseAmount) {
+    void buyLottosInvalidPurchasesNumber(int purchaseAmount) {
         // given & when & then
         Assertions.assertThatThrownBy(() -> lottoSystem.buyLotto(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -34,7 +34,7 @@ public class LottoSystemValidateTest extends MethodSourceTest {
     @DisplayName("구매 금액이 1,000원 단위가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {1_001, 1_999, 10_001, 100_001})
-    void buyLottosFailInvalidPurchaseAmount(int purchaseAmount) {
+    void buyLottosInvalidPurchaseAmount(int purchaseAmount) {
         // given & when & then
         Assertions.assertThatThrownBy(() -> lottoSystem.buyLotto(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -69,5 +69,31 @@ public class LottoSystemValidateTest extends MethodSourceTest {
         assertThatThrownBy(() -> lottoSystem.generateWinningLotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 1 ~ 45 중 하나이어야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호에 존재하는 수인 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void inputBonusNumberDuplicateNumber(int bonusNumber) {
+        // given
+        lottoSystem.generateWinningLotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when & then
+        Assertions.assertThatThrownBy(() -> lottoSystem.inputBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호에 존재하지 않아야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호에 존재하는 수인 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 46, 500, 999})
+    void inputBonusNumberOutOfRangeNumber(int bonusNumber) {
+        // given
+        lottoSystem.generateWinningLotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when & then
+        Assertions.assertThatThrownBy(() -> lottoSystem.inputBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1 ~ 45 중 하나이어야 합니다.");
     }
 }

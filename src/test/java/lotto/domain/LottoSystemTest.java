@@ -54,7 +54,7 @@ class LottoSystemTest extends MethodSourceTest {
 
     @DisplayName("보너스 번호를 입력한다.")
     @Test
-    void updateBonusNumber() {
+    void inputBonusNumber() {
         // given
         int number = 10;
         lottoSystem.generateWinningLotto(List.of(1, 2, 3, 4, 5, 6));

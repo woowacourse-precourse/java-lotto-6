@@ -45,7 +45,7 @@ public class LottoValidator {
 
     public static void validateBonusNumber(int bonusNumber, List<Integer> numbers) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호에 존재하지 않아야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 존재하지 않아야 합니다.");
         }
         if (isOutOfLottoNumberRange(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 중 하나이어야 합니다.");

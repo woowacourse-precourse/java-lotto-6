@@ -31,11 +31,23 @@ class LottoTest {
                 .hasMessageContaining("[ERROR] 로또 번호가 비었습니다.");
     }
 
-    @DisplayName("로또 번호에 빈 문자열이 들어갈 경우 예외가 발생한다.")
+    @DisplayName("로또 번호에 null이 들어갈 경우 예외가 발생한다.")
     @Test
-    void createLottoByEmpty2() {
+    void createLottoByNull() {
         assertThatThrownBy(() -> new Lotto(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호가 비었습니다.");
+    }
+
+    @DisplayName("로또 번호에 1부터 45 사이의 숫자가 아닌 값이 들어갈 경우 예외가 발생한다.")
+    @Test
+    void createLottoByInvalidRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 수여야 합니다.");
+
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 수여야 합니다.");
     }
 }

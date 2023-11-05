@@ -8,9 +8,13 @@ public class CompareResults {
 
     public static void compareLottoResults(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
 
+        int[] matchingCounts = new int[7];
+
         for (Lotto lotto : purchasedLottos) {
             int matchingCount = countMatchingNumbers(lotto, winningNumbers);
             boolean bonusMatch = lotto.contains(bonusNumber);
+
+            totalMatchingCounts(matchingCounts, matchingCount, bonusMatch);
         }
     }
 
@@ -24,6 +28,19 @@ public class CompareResults {
         return count;
     }
 
+    private static int totalMatchingCounts(int[] matchingCounts, int matchingCount, boolean bonusMatch) {
+        if (matchingCount == 6) {
+            matchingCounts[6]++;
+            return 6;
+        }
 
+        if (matchingCount == 5 && bonusMatch) {
+            matchingCounts[5]++;
+            return 5;
+        }
+
+        matchingCounts[matchingCount]++;
+        return matchingCount;
+    }
 
 }

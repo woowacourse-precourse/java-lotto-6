@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayInputStream;
@@ -59,5 +60,18 @@ public class InputViewTest {
         // then
         assertEquals(false, info.isValidate());
         assertEquals(ExceptionCode.INVALID_INPUT_DIVIDED.getMessage(), info.getExceptionMessage());
+    }
+
+    @Test
+    void 당첨_번호_6개를_입력_받아_쉼표를_기준으로_구분() {
+        // given
+        String userInput = "1,2,3,4,5,6";
+        InputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
+        // when
+        InputInfo info = inputView.inputWinningNumbers();
+        // then
+        assertEquals(true, info.isValidate());
+        assertThat(inputView.splitUserInput(userInput)).containsExactly("1", "2", "3", "4", "5", "6");
     }
 }

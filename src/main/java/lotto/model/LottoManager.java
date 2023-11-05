@@ -7,14 +7,17 @@ import java.util.stream.Collectors;
 import lotto.domain.Tickets;
 
 public class LottoManager {
+    private Validator valid = new Validator();
     private Tickets tickets = new Tickets();
     private int TICKET_PRICE = 1000;
 
 
-    public void buyTickets(int money) {
+    public void buyTickets(String string) {
+        int money = valid.validateMoney(string);
         int amount = calculateTicketAmount(money);
         tickets.generateTickets(amount);
     }
+
 
     public List<String> getTickets() {
         List<String> list = new ArrayList<>();

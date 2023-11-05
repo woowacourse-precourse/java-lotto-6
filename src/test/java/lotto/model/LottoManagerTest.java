@@ -13,7 +13,7 @@ class LottoManagerTest {
     void buyTicketsTest() {
         // 변수 설정
         LottoManager lotto = new LottoManager();
-        int MONEY = 2000;
+        String MONEY = "2000";
 
         // 초기값 저장
         int initialCount = lotto.getTicketsCount();
@@ -32,8 +32,9 @@ class LottoManagerTest {
     void getTicketsTest() {
         // 변수 설정
         LottoManager lotto = new LottoManager();
-        int MONEY = 2000;
-        int AMOUNT = MONEY / 1000;
+        String MONEY = "2000";
+        int money = 2000;
+        int AMOUNT = money / 1000;
 
         // 티켓 구입
         lotto.buyTickets(MONEY);
@@ -50,7 +51,7 @@ class LottoManagerTest {
     void checkTickets() {
         // 변수 설정
         LottoManager lotto = new LottoManager();
-        int MONEY = 2000;
+        String MONEY = "2000";
         String winning = "1,2,3,4,5,6";
         String bonus = "7";
         int POINT_MIN = 0;

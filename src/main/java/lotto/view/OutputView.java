@@ -8,11 +8,18 @@ public class OutputView {
     private final String prizingMessage = "\n당첨 통계\n---\n";
     private final String prizingMessageTemplate = "%s (%s원) - %d개\n";
     private final String profitRatioMessage = "총 수익률은 %.1f%%입니다.";
+    private final String buyErrorMessage = "[ERROR] 금액은 1000원 단위이며, 1장부터 구매할 수 있습니다.\n";
 
 
     public void displayBoughtTickets(List<String> tickets) {
         initializaCache();
         buildBoughtString(tickets);
+        print();
+    }
+
+    public void displayBuyError() {
+        initializaCache();
+        addToCache(buyErrorMessage);
         print();
     }
 

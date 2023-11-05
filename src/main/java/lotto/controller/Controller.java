@@ -13,12 +13,17 @@ public class Controller {
     PrizeManager prize = new PrizeManager();
 
     public void startGame() {
-        String amount = input.getUserBuyAmount();
-        int money = Integer.parseInt(amount);
+        while (true) {
+            try {
+                String amount = input.getUserBuyAmount();
+                lotto.buyTickets(amount);
+                break;
+            } catch (IllegalArgumentException e) {
+                output.displayBuyError();
+            }
+        }
 
-        lotto.buyTickets(money);
         List<String> list = lotto.getTickets();
-
         output.displayBoughtTickets(list);
 
         String winning = input.getPrizingNumbers();

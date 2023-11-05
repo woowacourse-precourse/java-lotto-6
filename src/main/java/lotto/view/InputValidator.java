@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Set;
 
 public class InputValidator {
-    private static final String INVALID_INPUT_MESSAGE = "[ERROR] 금액에는 정수를 입력해주세요.";
+
     private static final String NUMERIC = "^\\d+$"; // 수정된 부분
 
-    public void validateInputMoney(String inputMoney) {
+    public void validateInputMoneyAndBonusNumber(String inputMoney) {
         if (!isNumeric(inputMoney)) {
-            throw new InvalidInputException(INVALID_INPUT_MESSAGE);
+            throw new InvalidInputException();
         }
     }
 
@@ -24,7 +24,7 @@ public class InputValidator {
 
     public void validateWinningNumbers(List<Integer> winningNumbers) {
         if (isDuplicate(winningNumbers)) {
-            throw new DuplicateInputException();
+            throw new InvalidInputException();
         }
     }
 

@@ -19,26 +19,31 @@ public class InputView {
 
     public Integer purchaseLotto() {
         while (true) {
+            String inputMoney = getInput();
             try {
-                String inputMoney = Console.readLine();
-                inputValidator.validateInputMoney(inputMoney);
-
-                return Integer.parseInt(inputMoney);
+                validateInputMoney(inputMoney);
+                return convertInputToInteger(inputMoney);
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
+    private Integer convertInputToInteger(String inputMoney) {
+        return Integer.parseInt(inputMoney);
+    }
+
+    private void validateInputMoney(String inputMoney) {
+        inputValidator.validateInputMoneyAndBonusNumber(inputMoney);
+    }
+
 
     public List<Integer> inputWinningNumbers() {
         while (true) {
+            String inputWinningNumbers = getInput();
             try {
-                String inputWinningNumbers = Console.readLine();
-                List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers.split(SPLIT_STANDARD))
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList());
-                inputValidator.validateWinningNumbers(winningNumbers);
+                List<Integer> winningNumbers = convertInputToList(inputWinningNumbers);
+                validateWinningNumbers(winningNumbers);
 
                 return winningNumbers;
             } catch (DuplicateInputException e) {
@@ -47,9 +52,33 @@ public class InputView {
         }
     }
 
-    public Integer inputBonusNumber() {
-        Integer bonusNumber = Integer.valueOf(Console.readLine());
+    private String getInput() {
+        return Console.readLine();
+    }
 
-        return bonusNumber;
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
+        inputValidator.validateWinningNumbers(winningNumbers);
+    }
+
+    private List<Integer> convertInputToList(String inputWinningNumbers) {
+        return Arrays.stream(inputWinningNumbers.split(SPLIT_STANDARD))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
+    public Integer inputBonusNumber() {
+        while (true) {
+            String bonusNumber = getInput();
+            try {
+                validateBonusNumber(bonusNumber);
+                return convertInputToInteger(bonusNumber);
+            } catch (InvalidInputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBonusNumber(String bonusNumber) {
+        inputValidator.validateInputMoneyAndBonusNumber(bonusNumber);
     }
 }

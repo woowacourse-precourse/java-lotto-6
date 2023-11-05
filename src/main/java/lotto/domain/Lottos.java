@@ -18,4 +18,8 @@ public class Lottos {
     public void collectLottoNumbers(User user, Lotto lotto, Bonus bonus) {
         user.storePurchasedLotto(new Lottos(lotto, bonus));
     }
+
+    public List<Integer> purchaseLottoNumber(){
+        return lotto.getNumbers();
+    }
 }

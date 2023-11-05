@@ -23,6 +23,7 @@ public class LottoGameController {
         outputView.printIssuanceLotto(lottoGame.getUser().getIssuanceLotto());
         outputView.printRequestWinNumbers();
         WinLotto winLotto = new WinLotto(new Lotto(inputView.inputWinNumbers()), inputView.inputInteger());
-        outputView.printRequestAmount();
+        lottoGame.calculationResult(winLotto);
+        outputView.printResult(lottoGame);
     }
 }

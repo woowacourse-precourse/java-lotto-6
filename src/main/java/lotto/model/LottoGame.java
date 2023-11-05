@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.utils.GameMessage;
 
 public class LottoGame {
@@ -66,6 +67,10 @@ public class LottoGame {
 
     public double getRateOfReturn() {
         return this.rateOfReturn;
+    }
+
+    public Map<String, Integer> getMatchs() {
+        return this.matchs;
     }
 
     public void calculationResult(WinLotto winLotto) {

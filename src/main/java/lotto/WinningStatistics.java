@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.LottoInputMessages.COMPLETE_MESSAGE_LOTTO_COST;
+import static lotto.messages.LottoInputMessages.COMPLETE_MESSAGE_LOTTO_COST;
 import static lotto.UserInputHandler.DIVISION_ROLE;
 
 public class WinningStatistics {
@@ -48,7 +48,6 @@ public class WinningStatistics {
     private void calculateMatchingNumbers(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {
         int count = 0;
         List<Integer> lottoNumbers = lotto.getNumbers();
-
         for (int number : lottoNumbers) {
             if (winningNumber.contains(number)) {
                 count++;

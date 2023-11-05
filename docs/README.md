@@ -83,3 +83,20 @@
 1. WinningStatistics 테스트 클래스 생성
 
 2. Lotto 테스트 클래스 내용 추가
+## 패키지 구조 변경
+### 이전 구조
+
+- 패키지: lotto
+  - 클래스 : Application, Lotto, LottoResultPrinter, UserInputHandler, WinningStatistics, ErrorMessage, LottoInputMessages, LottoResultMessages
+  
+### 새로운 구조
+
+- 패키지 : lotto
+  - 클래스 : Application, Lotto, LottoResultPrinter, UserInputHandler, WinningStatistics
+  - 패키지: messages
+    - enum : ErrorMessage, LottoInputMessages, LottoResultMessages
+
+#### 이유
+- 모듈화: 코드를 작은 부분으로 나누어 관리 및 유지보수에 유리
+- 가독성 향상: 클래스와 enum을 구분하여 코드 가독성 향상
+- 유지 관리성 향상: 특정 부분만 수정할 수 있어 변경이 다른 부분에 미치는 영향 최소화

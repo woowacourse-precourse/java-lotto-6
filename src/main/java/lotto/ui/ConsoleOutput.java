@@ -8,15 +8,15 @@ import lotto.domain.WinningStatus;
 public class ConsoleOutput implements Output {
     private static final String LOTTO_PRICE_REQUEST = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_REQUEST = "당첨 번호를 입력해 주세요.";
-    private static final String NUMBER_OF_LOTTO = "%d개를 구매했습니다.";
     private static final String BONUS_NUMBER_REQUEST = "보너스 번호를 입력해 주세요.";
     private static final String MATCH3_MESSAGE = "3개 일치 (5,000원) - %d개\n";
     private static final String MATCH4_MESSAGE = "4개 일치 (50,000원) - %d개\n";
     private static final String MATCH5_MESSAGE = "5개 일치 (1,500,000원) - %d개\n";
     private static final String MATCH5_WITH_BONUS_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String MATCH6_MESSAGE = "6개 일치 (2,000,000,000원) - %d개\n";
+    private static final String BUY_NUMBER_OF_LOTTO_MESSAGE = "%d개를 구매했습니다.";
     private static final String RETURN_OF_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
-    private static String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printLottoPriceRequest() {
         System.out.println(LOTTO_PRICE_REQUEST);
@@ -35,7 +35,7 @@ public class ConsoleOutput implements Output {
     }
 
     private void printNumberOfLotto(int size) {
-        System.out.println(NUMBER_OF_LOTTO.formatted(size));
+        System.out.println(BUY_NUMBER_OF_LOTTO_MESSAGE.formatted(size));
     }
 
     @Override

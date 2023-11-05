@@ -32,7 +32,7 @@ public class LottoWinningRankingService {
 
     private int countMatchedNumbers(Lotto lotto, LottoWinningSet winningLotto) {
         int matchedNumberCount = 0;
-        for (LottoNumber number : winningLotto.getLotto().getNumbers()) {
+        for (LottoNumber number : winningLotto.lotto().getNumbers()) {
             if (lotto.getNumbers().contains(number)) {
                 matchedNumberCount++;
             }
@@ -41,7 +41,7 @@ public class LottoWinningRankingService {
     }
 
     private boolean hasBonusNumber(Lotto lotto, LottoWinningSet lottoWinningSet) {
-        return lotto.getNumbers().contains(lottoWinningSet.getBonusNumber());
+        return lotto.getNumbers().contains(lottoWinningSet.bonusNumber());
     }
 
     private LottoWinningRanking calculateRanking(int matchedNumberCount, boolean needsBonusNumber) {

@@ -26,4 +26,10 @@ class LottoNumberTest {
     void createLottoNumberByNonNumeric() {
         assertThatThrownBy(() -> new LottoNumber("한이삭")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_NUMERIC_INPUT_MESSAGE.getMessage());
     }
+
+    @DisplayName("숫자 가져오기")
+    @Test
+    void getNumber() {
+        assertThat(new LottoNumber("1").getNumber()).isEqualTo(1);
+    }
 }

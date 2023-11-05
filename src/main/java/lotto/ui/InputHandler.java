@@ -11,7 +11,7 @@ public class InputHandler {
     }
 
     public int getValidPurchaseAmount() {
-        outputHandler.printMessage(MessageForm.ASK_PURCHASE_AMOUNT);
+        outputHandler.printMessage(OutputForm.ASK_PURCHASE_AMOUNT);
         String userInput = Console.readLine();
         int purchaseAmount = Integer.parseInt(userInput);
         if (purchaseAmount % 1000 != 0) {
@@ -21,12 +21,12 @@ public class InputHandler {
     }
 
     public String getWinnerNumbers() {
-        outputHandler.printMessage(MessageForm.ASK_WINNER_NUMBERS);
+        outputHandler.printMessage(OutputForm.ASK_WINNER_NUMBERS);
         return Console.readLine();
     }
 
     public int getBonusNumber() {
-        outputHandler.printMessage(MessageForm.ASK_WINNER_NUMBERS);
+        outputHandler.printMessage(OutputForm.ASK_BONUS_NUMBER);
         return Integer.parseInt(Console.readLine());
     }
 

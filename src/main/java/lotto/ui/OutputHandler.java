@@ -2,7 +2,7 @@ package lotto.ui;
 
 public class OutputHandler {
 
-    void printMessage(MessageForm message) {
+    void printMessage(OutputForm message) {
         message.printText();
     }
 }

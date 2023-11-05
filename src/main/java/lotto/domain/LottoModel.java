@@ -17,6 +17,7 @@ public class LottoModel {
     private List<Lotto> publishedLottos;
     private int totalEarnedMoney;
     private HashMap<Rewards, Integer> winningTable;
+    private HashMap<Integer, Integer> winningNumsTable;
 
 
     public LottoModel() {
@@ -67,6 +68,15 @@ public class LottoModel {
         }
         return winningTable;
     }
+
+    public HashMap<Integer, Integer> initWinningNumsTable(List<Integer> winnings) {
+        HashMap<Integer, Integer> winningNums = new HashMap<>();
+        for (int winningnum : winnings) {
+            winningNums.put(winningnum, 0);
+        }
+        return winningNums;
+    }
+
 
 
 

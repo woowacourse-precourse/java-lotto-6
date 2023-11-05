@@ -13,9 +13,9 @@ public class LottoService {
     private Lotto lotto;
 
     // 로또 구매 건수
-    public List<SeasonLottoResultVO> numberOfLottoPurchases(int num){
+    public List<SeasonLottoResultVO> numberOfLottoPurchases(int pick){
         List<SeasonLottoResultVO> list = new ArrayList<>();
-        for(int i = 0; i < num; i++){
+        for(int i = 0; i < pick; i++){
             SeasonLottoResultVO row = dao.insertLotto();
             list.add(row);
         }

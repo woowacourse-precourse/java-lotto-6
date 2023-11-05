@@ -1,25 +1,28 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.model.vo.SeasonLottoResultVO;
+import lotto.service.domain.lotto.LottoIoService;
 import lotto.service.domain.lotto.LottoService;
+import lotto.view.LottoOutputPrint;
+
+import java.util.List;
 
 public class LottoController {
-
-    private LottoService ls = new LottoService();
-    public void insertUserInputNumbers(){
-        System.out.println("구매할 로또 금액을 입력하세요.");
-        System.out.println("1000원 - 1장 구매 입니다.");
-        System.out.println("단위가 1000원 을 벗어나는 경우 프로그램이 종료됩니다.");
-        String inputNumbers = Console.readLine();
-        // 위 부분은 view로 따로 빼기
-
-        // String 을 int로 바꿈 -> 이 경우에 익셉션을 터트리도록 설계
-        int price = 50000;
-
-        // 구매한 개수를 알고 싶을 때 출력 하도록 제작
-        // 이 결과를 뷰로 보내주기
-        int num = ls.numberOfLottoPurchases(price);
-
+    private final LottoService lottoService = new LottoService();
+    private final LottoIoService lottoIoService = new LottoIoService();
+    private final LottoOutputPrint outputPrint = new LottoOutputPrint();
+    public List<SeasonLottoResultVO> createAutoLottoBuyChoice(int pick){
+        // 구매한 금액 만큼 티켓을 만들어줌
+        return lottoService.numberOfLottoPurchases(pick);
     }
+
+    public void showAutoLottoTicks(int cycle,List<SeasonLottoResultVO> tickets){
+        // 구매 횟수와 티켓 정보를 입력 받아서 리스트를 출력해줌
+        outputPrint.autoLottoTickMaker(cycle,tickets);
+    }
+    //음의 기대값이라 반복중에 같은 것이 있는지 확인은 나중에 해도 괜찮을 듯
+
+
+
 
 }

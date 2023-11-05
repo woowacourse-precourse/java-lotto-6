@@ -10,4 +10,10 @@ public class SeasonLottoResultVO {
     public int getAutoBonusNumber() {
         return autoBonusNumber;
     }
+    public void setAutoLottoNumber(List<Integer> autoLottoNumber) {
+        this.autoLottoNumber = autoLottoNumber;
+    }
+    public void setAutoBonusNumber(int autoBonusNumber) {
+        this.autoBonusNumber = autoBonusNumber;
+    }
 }

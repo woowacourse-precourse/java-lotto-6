@@ -1,22 +1,33 @@
 package lotto;
 
-import lotto.io.LottoInputReader;
+import lotto.controller.LottoController;
 import lotto.model.dto.BuyInfo;
-import lotto.service.convert.ConvertService;
+import lotto.model.vo.SeasonLottoResultVO;
 import lotto.service.domain.lotto.LottoIoService;
-import lotto.view.LottoOutputPrint;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
-    private static LottoIoService ls = new LottoIoService();
-    private static LottoInputReader input = new LottoInputReader();
-    private static LottoOutputPrint result = new LottoOutputPrint();
-    private static ConvertService convert = new ConvertService();
+    private static final LottoIoService lottoIoService = new LottoIoService();
+    private static final LottoController lottoController = new LottoController();
     public static void main(String[] args) {
         BuyInfo buyPriceInfo = new BuyInfo();
-        buyPriceInfo = ls.inputAndOutputPrice(buyPriceInfo);
-
+        buyPriceInfo = lottoIoService.inputPriceGetBuyInfo(buyPriceInfo);
         System.out.println(buyPriceInfo.getBuyWon());
         System.out.println(buyPriceInfo.getBuyNumber());
+        int buyNumber = buyPriceInfo.getBuyNumber();
+        List<SeasonLottoResultVO> autoLottoTicket = lottoController
+                                                    .createAutoLottoBuyChoice(buyPriceInfo
+                                                    .getBuyNumber());
+
+
+
+
+
+        lottoController.showAutoLottoTicks(buyNumber,autoLottoTicket);
+
+
 
 
 

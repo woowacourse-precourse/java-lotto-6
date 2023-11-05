@@ -26,4 +26,13 @@ public enum LottoMatch {
     public String getDescription() {
         return description;
     }
+
+    public static LottoMatch getLottoMatchByCount(int matchCount) {
+        for (LottoMatch match : LottoMatch.values()) {
+            if (match.getMatchCount() == matchCount) {
+                return match;
+            }
+        }
+        return LottoMatch.NO_MATCH;
+    }
 }

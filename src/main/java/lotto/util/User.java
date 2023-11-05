@@ -9,7 +9,7 @@ import lotto.Lotto;
 
 public class User {
     private static int paymentAmount;
-    private static List<Integer> winningNumber;
+    private static Lotto winningNumber;
 
     public void inputPaymentAmount() {
         String input = Console.readLine();
@@ -26,7 +26,7 @@ public class User {
         String input = Console.readLine();
         List<String> numbers = Arrays.asList(input.split(","));
         checkWinningNumber(input, numbers);
-        winningNumber = new Lotto(parsNumber(numbers)).getNumbers();
+        winningNumber = new Lotto(parsNumber(numbers));
     }
 
     public void checkWinningNumber(String input, List<String> numbers) {
@@ -52,7 +52,7 @@ public class User {
         return paymentAmount / 1000;
     }
 
-    public List<Integer> getWinningNumber() {
+    public Lotto getWinningNumber() {
         return winningNumber;
     }
 }

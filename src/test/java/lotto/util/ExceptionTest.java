@@ -1,6 +1,8 @@
 package lotto.util;
 
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -97,6 +99,65 @@ class ExceptionTest {
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             exception.checkRangePaymentAmount(inputAmount6);
+        });
+    }
+
+    @Test
+    void 입력한_당첨번호_마지막_글자_테스트() {
+        String input1 = "1,2,3,4,5,6";
+        String input2 = "1,2,3,4,5,6,";
+
+        Assertions.assertDoesNotThrow(() -> {
+            Exception.checkLastComma(input1);
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Exception.checkLastComma(input2);
+        });
+    }
+
+    @Test
+    void 로또번호_중복_테스트() {
+        List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> numbers2 = Arrays.asList(1, 2, 2, 4, 5, 6);
+        List<Integer> numbers3 = Arrays.asList(1, 2, 3, 5, 5, 6);
+
+        Assertions.assertDoesNotThrow(() -> {
+            Exception.checkDuplicationNumber(numbers1);
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Exception.checkDuplicationNumber(numbers2);
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Exception.checkDuplicationNumber(numbers3);
+        });
+    }
+
+    @Test
+    void 로또번호_범위_테스트() {
+        List<Integer> numbers1 = Arrays.asList(1,2,3,4,5,6);
+        List<Integer> numbers2 = Arrays.asList(1,2,3,4,5,45);
+        List<Integer> numbers3 = Arrays.asList(1,10,20,30,40,45);
+        List<Integer> numbers4 = Arrays.asList(0,2,3,4,5,6);
+        List<Integer> numbers5 = Arrays.asList(1,2,3,4,5,46);
+        List<Integer> numbers6 = Arrays.asList(1,2,3,-1,5,6);
+
+        Assertions.assertDoesNotThrow(() -> {
+            Exception.checkRangeLottoNumber(numbers1);
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            Exception.checkRangeLottoNumber(numbers2);
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            Exception.checkRangeLottoNumber(numbers3);
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Exception.checkRangeLottoNumber(numbers4);
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Exception.checkRangeLottoNumber(numbers5);
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Exception.checkRangeLottoNumber(numbers6);
         });
     }
 }

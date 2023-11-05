@@ -34,7 +34,7 @@ public class Exception {
 
     public static void checkRangeLottoNumber(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 && number > 45) {
+            if (number < 1 || number > 45) {
                 throw new IllegalArgumentException(Message.OUT_OF_RANGE_LOTTO.getMessage());
             }
         }

@@ -40,7 +40,7 @@
             - 구입한 로또에 대한 정보를 갖고있는 클래스
             - 객체를 생성하고 반환하는 create 메서드
             - 구매한 로또를 반환하는 `getBuyLottos` 메서드
-        - [ ] LottoWithBonus
+        - [ ] WinLottoWithBonus
             - 당첨 로또와 보너스 번호에 대한 유효성 검사와 반환을 진행하는 클래스 
             - 객체를 생성하고 반환하는 create 메서드
             - 보너스 번호가 숫자로 반환이 가능한지 확인하는 `validateType` 메서드

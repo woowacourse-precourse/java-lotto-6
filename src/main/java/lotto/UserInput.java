@@ -53,4 +53,34 @@ public class UserInput {
         Collections.sort(winningNumbers);
     }
 
+
+    public checkDuplicatesInWinningNumbers(List<Integer> winningNumbers) {
+
+    }
+
+    public void hasDuplicates(List<Integer> winningNumbers) {
+        Set<Integer> set = new HashSet<>();
+        for (Integer number : winningNumbers) {
+            if (!set.add(number)) {
+                throw new IllegalArgumentException("서로 다른 당첨 번호를 입력해주세요.");
+            }
+        }
+        repeatWinningNumber = false;
+    }
+
+    // => while문으로 반복!
+
+
+
+    //나중에 main() 아래에서 각 입력값별로 메소드들 묶어서 하나의 메소드화 할꺼임 & while문으로 제대로된 값 입력될때까지 다시 물어보기
+//    public getInput(){
+//        while(repeatPurchase){
+//            int purchaseAmount = getPurchaseAmount();
+//
+//            validatePurchaseAmount(purchaseAmount);
+//    }
+
+
+
+
 }

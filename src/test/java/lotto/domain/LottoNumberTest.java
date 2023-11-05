@@ -1,0 +1,24 @@
+package lotto.domain;
+
+import static lotto.domain.LottoConfig.LOTTO_MAX_NUMBER;
+import static lotto.domain.LottoConfig.LOTTO_MIN_NUMBER;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import java.util.List;
+import java.util.stream.IntStream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+class LottoNumberTest {
+    private static List<Integer> provideLottoNumbers() {
+        return IntStream.rangeClosed(LOTTO_MIN_NUMBER.getValue(), LOTTO_MAX_NUMBER.getValue())
+                .boxed()
+                .toList();
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideLottoNumbers")
+    void 숫자가_LOTTO_MIN_NUMBER과_LOTTO_MAX_NUMBER사이일_경우_객체를_올바르게_생성한다(int number) {
+        assertDoesNotThrow(() -> new LottoNumber(number));
+    }
+}

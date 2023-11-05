@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
@@ -18,6 +19,11 @@ public class InputView {
     public static List<Integer> inputLottoWinningNum() {
         System.out.println(INPUT_LOTTO_WINNING);
         return numberList(Console.readLine());
+    }
+
+    public static int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER);
+        return Integer.parseInt(Console.readLine());
     }
 
 }

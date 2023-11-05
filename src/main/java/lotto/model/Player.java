@@ -6,7 +6,7 @@ import java.util.List;
 public class Player {
     private int budget;
     private int usedBudget;
-    private final List<Lotto> lottoTickets;
+    private List<Lotto> lottoTickets;
     private WinningStatistics winningStatistics;
 
     public Player() {

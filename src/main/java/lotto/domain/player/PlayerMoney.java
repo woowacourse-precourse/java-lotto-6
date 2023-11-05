@@ -14,7 +14,7 @@ class PlayerMoney {
 
     private final Money money;
 
-    public PlayerMoney(Money money) {
+    private PlayerMoney(Money money) {
         this.money = money;
     }
 

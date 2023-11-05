@@ -63,11 +63,11 @@ public class Application {
     }
 
     public String[] inputWinningNumberSplit(String inputWinningNumber){
-        String[] split = inputWinningNumber.split(",");
-        if(split.length != 6){
+        String[] inputWinningNumberSplit = inputWinningNumber.split(",");
+        if(inputWinningNumberSplit.length != 6){
             throw new IllegalArgumentException("[ERROR] 당첨 번호를 쉼표(,)를 기준으로 6자리를 입력해주세요.");
         }
-        return split;
+        return inputWinningNumberSplit;
     }
 
     public List<Integer> inputWinningNumberValidation(String[] inputWinningNumberSplit){

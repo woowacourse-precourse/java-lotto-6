@@ -13,10 +13,13 @@ public class MainController {
     public void run() {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         int amountOfPurchasedLotto = purchaseAmount.getAmountOfPurchasedLotto();
-        Lottos lottos = createLottos(amountOfPurchasedLotto);
 
+        Lottos lottos = createLottos(amountOfPurchasedLotto);
         printPurchasedLottoAmount(amountOfPurchasedLotto);
         printPurchasedLottos(lottos);
+
+        WinningNumber winningNumber = getWinningNumber();
+
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -40,5 +43,14 @@ public class MainController {
 
     private void printPurchasedLottoAmount(int amountOfPurchasedLotto) {
         outputView.printPurchasedLottoAmount(amountOfPurchasedLotto);
+    }
+
+    private WinningNumber getWinningNumber() {
+        try {
+            return inputController.getWinningNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumber();
+        }
     }
 }

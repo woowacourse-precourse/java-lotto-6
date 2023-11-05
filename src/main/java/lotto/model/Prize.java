@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum Prize {
     PRIZE_FIRST("2,000,000,000"),

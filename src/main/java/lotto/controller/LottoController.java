@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.model.Lotto;
+import lotto.model.WinningLotto;
+import lotto.view.OutputView;
 
 public class LottoController {
     private int money;

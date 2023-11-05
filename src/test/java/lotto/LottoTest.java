@@ -38,7 +38,7 @@ class LottoTest {
 		String actualResult = lotto.match(winningNumber, bonusNumber);
 
 		//then
-		String expectedResult = Prize.FIFTH.hitResult;
+		String expectedResult = Prize.FIFTH.getHitResult();
 		assertEquals(expectedResult, actualResult);
 
 	}
@@ -57,7 +57,7 @@ class LottoTest {
 		String actualResult = testLotto.match(winningNumber, bonusNumber);
 
 		//then
-		String expectedResult = Prize.SECOND.hitResult;
+		String expectedResult = Prize.SECOND.getHitResult();
 		assertEquals(expectedResult, actualResult);
 
 	}

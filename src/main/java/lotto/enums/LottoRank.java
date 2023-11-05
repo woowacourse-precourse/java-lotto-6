@@ -3,8 +3,6 @@ package lotto.enums;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import lotto.Lotto;
-
 public enum LottoRank {
 	RANK5(3, 5000, false),
 	RANK4(4, 50000, false),
@@ -30,7 +28,6 @@ public enum LottoRank {
 		}
 		return null;
 	}
-
 
 	public int getMatchingCount() {
 		return this.matchingCount;

@@ -11,7 +11,7 @@ public enum PriceInputError {
 		this.errorDescription = errorDescription;
 	}
 
-	public String getErrorDescription(){
+	public String getErrorDescription() {
 		return this.errorDescription;
 	}
 }

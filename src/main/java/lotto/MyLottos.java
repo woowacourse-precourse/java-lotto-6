@@ -61,7 +61,7 @@ public class MyLottos {
 
 	public void calculateEarningRate() {
 		double totalPrizeMoney = 0;
-		for (Map.Entry<LottoRank, Integer> entry :results.entrySet()) {
+		for (Map.Entry<LottoRank, Integer> entry : results.entrySet()) {
 			double prizeMoney = entry.getKey().getPrizeMoney();
 			int winCount = entry.getValue();
 			totalPrizeMoney += prizeMoney * winCount;

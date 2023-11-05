@@ -16,8 +16,7 @@ public class InputMoney {
 		}
 	}
 
-	public Integer getMoney(){
+	public Integer getMoney() {
 		return this.money;
 	}
-
 }

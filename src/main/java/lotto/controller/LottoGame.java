@@ -16,6 +16,7 @@ import lotto.view.OutputView;
 public class LottoGame {
     private final LottoService lottoService = new LottoService();
     private final HashMap<Rank, Integer> result = new HashMap<>();
+    private final int PERCENT = 100;
     private long payment;
     private Buyer buyer;
     private WinningLotto winningLotto;
@@ -25,7 +26,7 @@ public class LottoGame {
         initWinningLotto(inputWinningLotto(), inputBonusNumber());
         initResult();
         matchLottos();
-//        showResult();
+        showResult();
     }
 
     private List<Integer> inputWinningLotto() {
@@ -86,5 +87,10 @@ public class LottoGame {
         for (Rank rank : Rank.values()) {
             result.put(rank, 0);
         }
+    }
+
+    private void showResult() {
+        OutputView.showResult(result);
+        OutputView.showRateOfReturn(((double) reward / payment) * PERCENT);
     }
 }

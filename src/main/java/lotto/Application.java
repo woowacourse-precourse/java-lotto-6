@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    private static final LottoIoService lottoIoService = new LottoIoService();
     private static final LottoController lottoController = new LottoController();
     public static void main(String[] args) {
         BuyInfo buyPriceInfo = new BuyInfo();
-        buyPriceInfo = lottoIoService.inputPriceGetBuyInfo(buyPriceInfo);
+        buyPriceInfo = lottoController.buyInfo(buyPriceInfo);
         System.out.println(buyPriceInfo.getBuyWon());
         System.out.println(buyPriceInfo.getBuyNumber());
+
         int buyNumber = buyPriceInfo.getBuyNumber();
         List<SeasonLottoResultVO> autoLottoTicket = lottoController
                                                     .createAutoLottoBuyChoice(buyPriceInfo

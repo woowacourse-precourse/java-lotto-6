@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.dto.BuyInfo;
 import lotto.model.vo.SeasonLottoResultVO;
 import lotto.service.domain.lotto.LottoIoService;
 import lotto.service.domain.lotto.LottoService;
@@ -11,16 +12,21 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
     private final LottoIoService lottoIoService = new LottoIoService();
     private final LottoOutputPrint outputPrint = new LottoOutputPrint();
+    public BuyInfo buyInfo(BuyInfo input){
+        // 티켓의 구매 정보를 만들어 줌
+        return lottoIoService.inputPriceGetBuyInfo(input);
+    }
     public List<SeasonLottoResultVO> createAutoLottoBuyChoice(int pick){
-        // 구매한 금액 만큼 티켓을 만들어줌
+        // 구매한 금액 만큼 티켓을 만들어 줌
         return lottoService.numberOfLottoPurchases(pick);
     }
 
     public void showAutoLottoTicks(int cycle,List<SeasonLottoResultVO> tickets){
-        // 구매 횟수와 티켓 정보를 입력 받아서 리스트를 출력해줌
+        // 구매 횟수와 티켓 정보를 입력 받아서 List-Println 해줌
+        //음의 기대값 이라 반복 중에 같은 것이 있는지 확인은 나중에 해도 괜찮을 듯
         outputPrint.autoLottoTickMaker(cycle,tickets);
     }
-    //음의 기대값이라 반복중에 같은 것이 있는지 확인은 나중에 해도 괜찮을 듯
+
 
 
 

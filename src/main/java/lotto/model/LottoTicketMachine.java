@@ -6,8 +6,6 @@ import lotto.dto.LottoPurchase;
 import lotto.util.RandomNumberGenerator;
 
 public class LottoTicketMachine {
-    public static final int LOTTO_PRICE = 1000;
-    public static final int MAX_PURCHASE_AMOUNT = 100000;
 
     public LottoTicket getLottoTicket(LottoPurchase lottoPurchase) {
         int purchaseMoney = lottoPurchase.getMoney();
@@ -17,7 +15,7 @@ public class LottoTicketMachine {
     }
 
     private int getLottoCount(int price) {
-        return price / LOTTO_PRICE;
+        return price / LottoPurchase.LOTTO_PRICE;
     }
 
     private Lotto getOneLotto() {

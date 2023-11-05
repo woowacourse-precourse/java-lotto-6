@@ -1,7 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.constant.ErrorMessage;
+import lotto.dto.LottoPurchase;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.LottoDraw;
 import lotto.model.LottoTicket;
 import lotto.model.LottoTicketMachine;
 import lotto.view.InputView;
@@ -19,29 +23,31 @@ public class LottoController {
 
     public void run() {
         outputView.printRequestPurchaseAmountMessage();
-        int purchasePrice = getPurchasePrice();
+        LottoPurchase lottoPurchase = getLottoPurchase();
 
-        LottoTicket lottoTicket = getLottoTicket(purchasePrice);
+        LottoTicket lottoTicket = getLottoTicket(lottoPurchase);
         printLottoNumbers(lottoTicket);
 
         outputView.printRequestWinningNumberMessage();
-        Lotto winningLotto = getWinningLotto();
+        Lotto winningLotto = getWinningLottoNumbers();
 
         outputView.printRequestBonusNumberMessage();
-        int bonusNumber = getBonusNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningLotto);
+
+        LottoDraw lottoDraw = LottoDraw.of(winningLotto, bonusNumber);
     }
 
-    public int getPurchasePrice() {
+    public LottoPurchase getLottoPurchase() {
         while (true) {
             try {
-                return inputView.getDivisibleNumberInRange(LottoTicketMachine.LOTTO_PRICE, LottoTicketMachine.MAX_PURCHASE_AMOUNT, LottoTicketMachine.LOTTO_PRICE);
+                return inputView.getLottoPurchaseMoney();
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
-    public LottoTicket getLottoTicket(int purchasePrice) {
+    public LottoTicket getLottoTicket(LottoPurchase purchasePrice) {
         LottoTicketMachine lottoTicketMachine = new LottoTicketMachine();
         return lottoTicketMachine.getLottoTicket(purchasePrice);
     }
@@ -51,25 +57,31 @@ public class LottoController {
         outputView.printLottoTicketNumbers(lottoTicket.getLottoNumbers());
     }
 
-    public Lotto getWinningLotto() {
+    public Lotto getWinningLottoNumbers() {
         while (true) {
             try {
-                List<Integer> winningNumbers = inputView.getNumbersSplitByComma(Lotto.LOTTO_NUMBER_MIN,
-                        Lotto.LOTTO_NUMBER_MAX, Lotto.LOTTO_NUMBERS_SIZE);
-                return new Lotto(winningNumbers);
+                return inputView.getWinningLottoNumbers();
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
-    public int getBonusNumber() {
+    public BonusNumber getBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
-                return inputView.getNumberInRange(Lotto.LOTTO_NUMBER_MIN, Lotto.LOTTO_NUMBER_MAX);
+                BonusNumber bonusNumber = inputView.getBonusNumber();
+                checkBonusNumberDuplicatedWithWinningNumbers(winningLotto.getNumbers(), bonusNumber.getNumber());
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
+        }
+    }
+
+    private void checkBonusNumberDuplicatedWithWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
 }

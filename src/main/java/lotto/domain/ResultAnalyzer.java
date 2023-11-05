@@ -25,4 +25,10 @@ public class ResultAnalyzer {
                 .findFirst()
                 .orElse(Rank.OUT_OF_RANKS);
     }
+
+    public int calculateTotalProfit(RankCounter counter) {
+        return counter.getCounter().entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
 }

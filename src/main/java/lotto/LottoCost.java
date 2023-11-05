@@ -7,7 +7,7 @@ public class LottoCost {
 
     public LottoCost(String cost) {
         isNumber(cost);
-        isMultipleOf(UNIT, cost);
+        isMultipleOfUnit(cost);
 
         this.cost = Integer.parseInt(cost);
         ticket = this.cost / UNIT;
@@ -21,7 +21,7 @@ public class LottoCost {
         return ticket;
     }
 
-    public void isNumber(String cost) {
+    private void isNumber(String cost) {
         boolean hasOnlyNum = !cost.isEmpty() && cost.chars().allMatch(Character::isDigit);
 
         if (!hasOnlyNum) {
@@ -29,10 +29,10 @@ public class LottoCost {
         }
     }
 
-    public void isMultipleOf(int unit, String cost) {
+    private void isMultipleOfUnit(String cost) {
         int costValue = Integer.parseInt(cost);
         boolean isRemainderZero
-                = (costValue >= unit && costValue < Integer.MAX_VALUE && costValue % unit == 0);
+                = (costValue >= LottoCost.UNIT && costValue < Integer.MAX_VALUE && costValue % LottoCost.UNIT == 0);
 
         if (!isRemainderZero) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_MULTIPLE_OF_UNIT.getMessage());

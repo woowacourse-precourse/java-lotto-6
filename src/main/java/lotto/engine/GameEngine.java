@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
+import lotto.LottoScore;
 import lotto.numbergenerator.NumberGenerator;
 
 public class GameEngine {
@@ -53,5 +54,27 @@ public class GameEngine {
     public void createAnswerBonusNumber(String readLine) {
         gameEngineValidator.checkBonusNumber(readLine);
         bonusNumber = Integer.parseInt(readLine);
+    }
+
+    public List<LottoScore> getCalculateScore() {
+        List<LottoScore> lottoScores = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            long matchLottoNumberCount = getMatchLottoNumberCount(lotto);
+            long matchBonusLottoNumberCount = getMatchBonusLottoNumberCount(lotto);
+            lottoScores.add(LottoScore.getMatchLottoScore(matchLottoNumberCount, matchBonusLottoNumberCount));
+        }
+        return lottoScores;
+    }
+
+    private long getMatchLottoNumberCount(Lotto lotto) {
+        return lotto.getNumbers().stream()
+                .filter(lottoNumber -> answerLotto.getNumbers().contains(lottoNumber))
+                .count();
+    }
+
+    private long getMatchBonusLottoNumberCount(Lotto lotto) {
+        return lotto.getNumbers().stream()
+                .filter(lottoNumber -> bonusNumber == lottoNumber)
+                .count();
     }
 }

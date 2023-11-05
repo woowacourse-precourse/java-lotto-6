@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.LottoScore;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -82,6 +83,23 @@ class GameEngineTest {
                 Arguments.of("*", "*"),
                 Arguments.of("+", "+"),
                 Arguments.of("1,23,q,2,3,5", "q")
+        );
+    }
+
+    private static Stream<Arguments> 로또결과() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), "1", LottoScore.FIRST_PLACE),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), "27", LottoScore.FIRST_PLACE),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 7), "1", LottoScore.SECOND_PLACE),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 7), "27", LottoScore.THIRD_PLACE),
+                Arguments.of(List.of(1, 2, 3, 4, 8, 7), "27", LottoScore.FOURTH_PLACE),
+                Arguments.of(List.of(1, 2, 3, 4, 8, 7), "1", LottoScore.FOURTH_PLACE),
+                Arguments.of(List.of(1, 2, 3, 9, 8, 7), "27", LottoScore.FIFTH_PLACE),
+                Arguments.of(List.of(1, 2, 3, 9, 8, 7), "1", LottoScore.FIFTH_PLACE),
+                Arguments.of(List.of(1, 2, 10, 9, 8, 7), "27", LottoScore.NOTHING_PLACE),
+                Arguments.of(List.of(1, 3, 10, 9, 8, 7), "27", LottoScore.NOTHING_PLACE),
+                Arguments.of(List.of(1, 13, 10, 9, 8, 7), "27", LottoScore.NOTHING_PLACE),
+                Arguments.of(List.of(11, 13, 10, 9, 8, 7), "27", LottoScore.NOTHING_PLACE)
         );
     }
 
@@ -278,5 +296,20 @@ class GameEngineTest {
 
         Assertions.assertThatCode(() -> gameEngine.createAnswerLotto(readLine))
                 .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @MethodSource("로또결과")
+    void 예상되는_로또결과대로_나와야한다(List<Integer> lottoNumbers, String bonusLottoNumber, LottoScore expectLottoScore) {
+        String answerLotto = lottoNumbers.stream()
+                .map(x -> Integer.toString(x))
+                .collect(Collectors.joining(","));
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+        gameEngine.createLottos("1000");
+        gameEngine.createAnswerLotto(answerLotto);
+        gameEngine.createAnswerBonusNumber(bonusLottoNumber);
+
+        Assertions.assertThat(gameEngine.getCalculateScore().get(0)).isEqualTo(expectLottoScore);
     }
 }

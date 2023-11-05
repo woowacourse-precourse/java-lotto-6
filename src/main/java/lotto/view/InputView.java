@@ -8,8 +8,7 @@ public class InputView {
         try {
             return Integer.parseInt(readLine());
         } catch (NumberFormatException e) {
-            new IllegalArgumentException(ONLY_NUMERIC_INPUT_FOR_MONEY);
+            throw new IllegalArgumentException(ONLY_NUMERIC_INPUT_FOR_MONEY);
         }
-        return inputMoney();
     }
 }

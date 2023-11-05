@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputLottoNumView extends InputView {
-    private static final Pattern PATTERN = Pattern.compile("(\\d{1,2},){5}\\d{1,2}");
+    private static final Pattern PATTERN = Pattern.compile("(\\d+,)+\\d+");
     private static final String INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String ERROR_MESSAGE = "[ERROR] 당첨 번호의 형식을 맞추어 주세요.";
     public List<Integer> getValue() {

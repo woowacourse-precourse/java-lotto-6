@@ -15,15 +15,20 @@ public class UserInput {
         return purchaseAmount;
     }
 
+    //후에 검증기능과, purchaseCount 리턴하는 기능 별도의 함수로 분리 리팩토링 예정!
+    public int validatePurchaseAmount(int purchaseAmount) {
+        int purchaseCount;
 
-    public void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % 1000 == 0) {
             repeatPurchase = false;
-            return;
+            purchaseCount = purchaseAmount / 1000;
+            return purchaseCount;
         }
 
         throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요");
     }
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -69,6 +74,11 @@ public class UserInput {
     }
 
     // => while문으로 반복!
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+    //보너스 번호 입력
 
 
 

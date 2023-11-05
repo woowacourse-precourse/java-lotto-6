@@ -10,4 +10,11 @@ public class WinningNumbers {
         this.winningNumbers = winningNumbers;
     }
 
+    public static WinningNumbers createWinningNumbers(List<Integer> numbers) {
+        List<WinningNumber> winningNumbers = numbers.stream()
+                .map(WinningNumber::new)
+                .toList();
+        return new WinningNumbers(winningNumbers);
+    }
+
 }

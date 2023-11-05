@@ -2,13 +2,11 @@ package lotto.controller;
 
 import lotto.domain.LottoPack;
 import lotto.domain.Money;
-import lotto.domain.WinningNumber;
 import lotto.domain.WinningNumbers;
 import util.NumberGenerator.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class LottoController {
@@ -65,10 +63,7 @@ public class LottoController {
 
     private WinningNumbers getWinningNumbers() {
         outputView.printGetWinningNumbers();
-        List<WinningNumber> winningNumbers = inputView.getNumbers().stream()
-                .map(WinningNumber::new)
-                .toList();
-        return new WinningNumbers(winningNumbers);
+        return WinningNumbers.createWinningNumbers(inputView.getNumbers());
     }
 
 }

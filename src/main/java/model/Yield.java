@@ -5,7 +5,6 @@ public class Yield {
     private double yield;
 
 
-
     public double getYield() {
         return yield;
     }

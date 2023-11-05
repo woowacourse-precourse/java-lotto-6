@@ -2,12 +2,15 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.utils.Validator;
 
 public class UserView {
 
     private static String startMessage() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
+        String money = Console.readLine();
+        Validator.validateMoney(money);
+        return money;
     }
 
     private static List<Integer> printLotto(List<Integer> lotto) {
@@ -17,12 +20,16 @@ public class UserView {
 
     private static String winNumberMessage() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        return Console.readLine();
+        String numbers = Console.readLine();
+        Validator.validateWinningNumber(numbers);
+        return numbers;
     }
 
     private static String bonusNumberMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Console.readLine();
+        String bonusNumber = Console.readLine();
+        Validator.validateBonusNumber(bonusNumber);
+        return bonusNumber;
     }
 
     private static void winStatisticsMessage(int count) {

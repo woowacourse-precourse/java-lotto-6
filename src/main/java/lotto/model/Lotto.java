@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 import lotto.enums.LottoNumber;
 
@@ -24,6 +25,7 @@ public class Lotto {
     public static List<Integer> generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumber.MIN.getValue(),
                 LottoNumber.MAX.getValue(), LottoNumber.COUNT.getValue());
+        Collections.sort(numbers);
         return numbers;
     }
 }

@@ -3,7 +3,8 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.lottery.Lottos;
+import java.util.List;
+import lotto.Lotto;
 import lotto.domain.machine.LottoMachine;
 import lotto.domain.machine.LottoNumberGenerator;
 import lotto.domain.machine.LottoNumberGeneratorImpl;
@@ -25,17 +26,17 @@ public class LottoMachineTest {
         int expectedAmount = inputMoney / PRICE_PER_LOTTO;
 
         // When
-        Lottos lottos = lottoMachine.issueLottosForInputMoney(inputMoney);
+        List<Lotto> lottoList = lottoMachine.issueLottoListForInputMoney(inputMoney);
 
         // Then
-        assertThat(lottos.getLottos().size()).isEqualTo(expectedAmount);
+        assertThat(lottoList.size()).isEqualTo(expectedAmount);
     }
 
     @ParameterizedTest(name = "구입 금액으로 {0}원을 입력하면 예외가 발생한다.")
     @ValueSource(ints = {-1, 1234})
     void 잘못된_금액을_입력하다(int invalidInputMoney) {
         // When
-        assertThatThrownBy(() -> lottoMachine.issueLottosForInputMoney(invalidInputMoney))
+        assertThatThrownBy(() -> lottoMachine.issueLottoListForInputMoney(invalidInputMoney))
                 // Then
                 .isInstanceOf(IllegalArgumentException.class);
     }

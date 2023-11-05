@@ -4,7 +4,7 @@ public class LottoView implements Output{
 
 	@Override
 	public void Intro() {
-		System.out.println();
+		System.out.println(GameText.PURCHASE_PRICE.getText());
 	}
 
 	@Override

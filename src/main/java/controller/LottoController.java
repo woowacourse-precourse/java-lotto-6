@@ -1,13 +1,11 @@
 package controller;
 
-import View.MessagePrinter;
+import static View.InputView.inputLottoPurchaseAmount;
+
 
 public class LottoController {
     public void start() {
-        askLottoPurchaseAmount();
+        inputLottoPurchaseAmount();
     }
 
-    private void askLottoPurchaseAmount() {
-        MessagePrinter.inputAmount();
-    }
 }

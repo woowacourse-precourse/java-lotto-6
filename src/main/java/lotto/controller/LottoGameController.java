@@ -28,6 +28,7 @@ public class LottoGameController {
         drawResult.validateDuplication();
         lottoGame.calculationResult(drawResult);
         outputView.printResult(lottoGame);
+        outputView.printRateOfReturn(lottoGame.getRateOfReturn());
     }
 
     public LottoGame getNewLottoGame() {

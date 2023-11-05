@@ -69,6 +69,9 @@ public class OutputView {
         System.out.println(
                 SIX_MATCH.getMessage() + SIX_PRIZE.getMessage() + lottoGame.getMatchs().get(SIX_MATCH.getMessage())
                         + COUNT.getMessage());
-        System.out.println(RATE_OF_RETURN.getMessage() + lottoGame.getRateOfReturn() + IS.getMessage());
+    }
+
+    public void printRateOfReturn(Double rateOfReturn) {
+        System.out.println(RATE_OF_RETURN.getMessage() + rateOfReturn + IS.getMessage());
     }
 }

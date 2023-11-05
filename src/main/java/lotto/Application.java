@@ -8,23 +8,23 @@ import lotto.exception.NonMultipleOfPriceUnitException;
 
 public class Application {
 
-    private static final long PURCHASE_PRICE_UNIT = 1000;
+    private static final int PURCHASE_PRICE_UNIT = 1000;
     private static final int EMPTY = 0;
 
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Application application = new Application();
-        long lottoCount = application.calculateLottoPurchaseCount();
+        int lottoCount = application.calculateLottoPurchaseCount();
         application.printLottoPurchaseCount(lottoCount);
     }
 
-    private long calculateLottoPurchaseCount() {
-        long purchasePrice = getValidPurchasePrice();
+    private int calculateLottoPurchaseCount() {
+        int purchasePrice = getValidPurchasePrice();
         return purchasePrice / PURCHASE_PRICE_UNIT;
     }
 
-    private long getValidPurchasePrice() {
+    private int getValidPurchasePrice() {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
@@ -32,18 +32,17 @@ public class Application {
                 System.out.println();
                 checkValidPurchasePrice(purchasePrice);
 
-                return Long.parseLong(purchasePrice);
+                return Integer.parseInt(purchasePrice);
             } catch (IllegalArgumentException exception) {
                 printErrorMessage(exception);
             }
         }
-
     }
 
     private void checkValidPurchasePrice(String input) {
         long purchasePrice;
         try {
-            purchasePrice = Long.parseLong(input);
+            purchasePrice = Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
             throw new InvalidPurchasePriceFormatException(input);
         }

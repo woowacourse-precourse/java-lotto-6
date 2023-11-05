@@ -52,4 +52,26 @@ public class LottoMachineTest {
 
         assertThat(Prize.THREE.getCount()).isEqualTo(1);
     }
+
+
+
+    @DisplayName("수익률 계산 함수가 정상적으로 계산하는지 확인")
+    @Test
+    void checkCalculateProfit() {
+        // 1개의 로또를 구매하고 로또번호 3개가 당첨번호와 일치했을때
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(1, 2, 3, 43, 44, 45)));
+        List<Integer> winningNumbers = new ArrayList<>();
+        winningNumbers.add(1);
+        winningNumbers.add(2);
+        winningNumbers.add(3);
+        winningNumbers.add(4);
+        winningNumbers.add(5);
+        winningNumbers.add(6);
+        Integer bonusNumber = 7;
+        Integer price = 1000;
+        // 수익률을 계산하면
+        double profit = LottoMachine.calculateProfit(price);
+        assertThat(profit).isEqualTo(500);
+    }
 }

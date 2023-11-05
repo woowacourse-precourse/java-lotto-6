@@ -11,4 +11,8 @@ public class OutputView {
         System.out.println("---");
         System.out.println(result);
     }
+
+    public static void printProfitPercentage(String result) {
+        System.out.printf("총 수익률은 %s입니다.", result);
+    }
 }

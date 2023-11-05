@@ -13,9 +13,17 @@ public class PurchaseAmount {
     }
 
     private void validate(final Integer value) {
-        if (value <= NO_PURCHASE_AMOUNT || value % PURCHASE_AMOUNT_UNIT != NONE) {
+        if (hasNoAmount(value) || isDivideByUnit(value)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean hasNoAmount(final Integer value) {
+        return value <= NO_PURCHASE_AMOUNT;
+    }
+
+    private boolean isDivideByUnit(final Integer value) {
+        return value % PURCHASE_AMOUNT_UNIT != NONE;
     }
 
     public int numOfLotto() {

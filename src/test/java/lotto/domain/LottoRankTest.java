@@ -48,5 +48,15 @@ class LottoRankTest {
         assertThat(LottoRank.FIRST.isMatchBonus()).isFalse();
         assertThat(LottoRank.THIRD.isMatchBonus()).isFalse();
     }
+
+    @Test
+    @DisplayName("각 등수의 상금을 올바르게 반환하는지 확인")
+    void testGetPrize() {
+        assertThat(LottoRank.FIRST.getPrize()).isEqualTo(2_000_000_000);
+        assertThat(LottoRank.SECOND.getPrize()).isEqualTo(30_000_000);
+        assertThat(LottoRank.THIRD.getPrize()).isEqualTo(1_500_000);
+        assertThat(LottoRank.FOURTH.getPrize()).isEqualTo(50_000);
+        assertThat(LottoRank.FIFTH.getPrize()).isEqualTo(5_000);
+    }
 }
 

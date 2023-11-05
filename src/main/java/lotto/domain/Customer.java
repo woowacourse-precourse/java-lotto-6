@@ -2,14 +2,14 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.constants.SystemOption.*;
-import static lotto.message.GuideMessage.SHOW_LOTTOS_INFO_MESSAGE;
+import static lotto.constants.SystemOption.PAYMENT_UNIT_VALUE;
 
 public class Customer {
-
     private List<Lotto> lottos;
     private int payment;
     private int numberOfLottos;
@@ -26,6 +26,18 @@ public class Customer {
         return new Customer(payment);
     }
 
+    public int getNumberOfLottos() {
+        return this.numberOfLottos;
+    }
+
+    public List<Result> getResults() {
+        return this.results;
+    }
+
+    public int getPayment() {
+        return this.payment;
+    }
+
     public void buyLottos() {
         for (int i = 0; i < this.numberOfLottos; i++) {
             List<Integer> lottoNumbers = pickLottoNumbers();
@@ -34,7 +46,7 @@ public class Customer {
         }
     }
 
-    private static List<Integer> pickLottoNumbers() {
+    private List<Integer> pickLottoNumbers() {
         List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(lottoNumbers);
         return lottoNumbers;
@@ -53,15 +65,4 @@ public class Customer {
         }
     }
 
-    public int getNumberOfLottos() {
-        return this.numberOfLottos;
-    }
-
-    public List<Result> getResults() {
-        return this.results;
-    }
-
-    public int getPayment() {
-        return this.payment;
-    }
 }

@@ -2,6 +2,7 @@ package lotto.validation;
 
 import static lotto.validation.enumType.WinningNumbers.CHECK_COMMA_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.DUPLICATE_MESSAGE;
+import static lotto.validation.enumType.WinningNumbers.NUMBERS_COUNT_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.NUMBER_RANGE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -42,5 +43,16 @@ class WinningNumbersValidatorTest {
         assertThatThrownBy(() -> inputValidation.validateNumberDuplication(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DUPLICATE_MESSAGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5", "2,3"})
+    @DisplayName("입력값의 숫자들이 6개가 아니면 예외가 발생하는 테스트")
+    void testValidateNumbersCount(String input) {
+        WinningNumbersValidator inputValidation = new WinningNumbersValidator();
+
+        assertThatThrownBy(() -> inputValidation.validateNumbersCount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NUMBERS_COUNT_MESSAGE.getMessage());
     }
 }

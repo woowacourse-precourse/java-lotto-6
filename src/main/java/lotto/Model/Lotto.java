@@ -17,13 +17,13 @@ public class Lotto {
         return numbers;
     }
     private void validate(List<Integer> numbers) {
-        try {
+        try{
             validateLength(numbers);
-            validateNumbers(numbers);
+            validateScope(numbers);
             validateDuplicates(numbers);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            InputVIew.inputWinningNumbers();
+            validate(InputVIew.inputWinningNumbers());
         }
 
     }
@@ -32,21 +32,20 @@ public class Lotto {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_LENGTH);
         }
     }
-    private  void validateNumbers(List<Integer> numbers) {
+    private  void validateScope(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < ExceptionMessage.MIN_NUM|| number > ExceptionMessage.MAX_NUM) {
-                throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE);
+                throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_SCOPE);
             }
         }
     }
-    private  void validateDuplicates(List<Integer> numbers) {
-        Set<Integer> seen = new HashSet<>();
+    private void validateDuplicates(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer number : numbers) {
-            if (seen.contains(number)) {
+            if (uniqueNumbers.contains(number)) {
                 throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_INPUT_NUMBER);
             }
-            seen.add(number);
+            uniqueNumbers.add(number);
         }
     }
-
 }

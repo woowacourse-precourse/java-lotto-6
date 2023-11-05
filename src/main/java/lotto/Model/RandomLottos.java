@@ -11,8 +11,9 @@ public class RandomLottos {
     private static List<Integer> randomLottos;
     public static List<Integer> pickRandomNums(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(ExceptionMessage.MIN_NUM, ExceptionMessage.MAX_NUM, ExceptionMessage.LOTTO_LENGTH);
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> mutableNumbers = new ArrayList<>(numbers); // 가변 리스트로 복사
+        Collections.sort(mutableNumbers);
+        return mutableNumbers;
     }
 
     public static  List<List<Integer>> SetRandomLottos(int ticketsAmount){

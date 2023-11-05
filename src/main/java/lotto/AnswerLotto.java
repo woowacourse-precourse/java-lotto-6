@@ -13,6 +13,7 @@ public class AnswerLotto {
     private void validateAnswerLotto(List<Integer> numbers) {
         validateLength(numbers);
         validateDuplicateMember(numbers);
+        validateAllNumberInRange(numbers);
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -34,5 +35,22 @@ public class AnswerLotto {
         return numbers.stream()
                 .distinct()
                 .count() != numbers.size();
+    }
+
+    private void validateAllNumberInRange(List<Integer> numbers) {
+        if (checkAllNumberInRange(numbers)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean checkAllNumberInRange(List<Integer> numbers) {
+        return numbers.stream()
+                .mapToInt(Integer::intValue)
+                .filter(num -> checkNumberInRange(num))
+                .count() == numbers.size();
+    }
+
+    private boolean checkNumberInRange(int number) {
+        return number >= 1 && number <= 45;
     }
 }

@@ -3,10 +3,11 @@ package lotto.view;
 import java.util.List;
 
 public class OutputView {
+    private static final String NEW_LINE = "\n";
     private static final String ASK_FOR_MONEY = "구입금액을 입력해 주세요.";
-    private static final String ASK_FOR_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
-    private static final String PURCHASED_LOTTO_COUNT = "%d개를 구매했습니다.";
-    private static final String ASK_FOR_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final String ASK_FOR_WINNING_NUMBERS = NEW_LINE + "당첨 번호를 입력해 주세요.";
+    private static final String PURCHASED_LOTTO_COUNT = NEW_LINE + "%d개를 구매했습니다.";
+    private static final String ASK_FOR_BONUS_NUMBER = NEW_LINE + "보너스 번호를 입력해 주세요.";
 
     public void askForMoney() {
         System.out.println(ASK_FOR_MONEY);
@@ -40,7 +41,7 @@ public class OutputView {
     }
 
     public void printWinningStatistics() {
-        System.out.println("당첨 통계");
+        System.out.println(NEW_LINE + "당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - 1개");
         System.out.println("4개 일치 (50,000원) - 0개");

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoPack;
 import lotto.domain.Money;
+import lotto.domain.WinningNumber;
 import lotto.domain.WinningNumbers;
 import util.NumberGenerator.NumberGenerator;
 import view.InputView;
@@ -26,6 +27,7 @@ public class LottoController {
         outputView.newline();
 
         WinningNumbers winningNumbers = loop(this::getWinningNumbers);
+        WinningNumber bonusNumber = loop(this::getBonusNumber);
 
     }
 
@@ -64,6 +66,11 @@ public class LottoController {
     private WinningNumbers getWinningNumbers() {
         outputView.printGetWinningNumbers();
         return WinningNumbers.createWinningNumbers(inputView.getNumbers());
+    }
+
+    private WinningNumber getBonusNumber() {
+        outputView.printGetBonusNumber();
+        return new WinningNumber(inputView.getNumber());
     }
 
 }

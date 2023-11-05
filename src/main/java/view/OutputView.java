@@ -34,6 +34,10 @@ public class OutputView {
         printer.println(GET_WINNING_NUMBERS.getMessage());
     }
 
+    public void printGetBonusNumber() {
+        printer.println(GET_BONUS_NUMBER.getMessage());
+    }
+
     public void printException(Exception exception) {
         printer.println(exception.getMessage());
     }

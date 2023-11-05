@@ -1,6 +1,6 @@
-package lotto.Controller;
+package lotto.controller;
 
-import lotto.Model.Buyer;
+import lotto.model.Buyer;
 
 public class Controller {
     private Buyer buyer;

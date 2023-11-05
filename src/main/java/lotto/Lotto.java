@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +12,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
+        sortAscend(numbers);
         this.numbers = numbers;
     }
 
@@ -26,5 +28,9 @@ public class Lotto {
         if (duplicatedNumbers.size() < numbers.size()) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_DUPLICATE_LOTTO_NUMBER);
         }
+    }
+
+    private void sortAscend(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 }

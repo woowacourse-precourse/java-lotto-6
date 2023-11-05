@@ -8,13 +8,13 @@ public enum Rank {
     FourthPlace(4, false, 50000),
     FifthPlace(3, false, 5000);
 
-    final int matching;
-    final boolean bonus;
+    final int matchingCount;
+    final boolean isBonusNumberMatch;
     final int winningAmount;
 
-    Rank(int matching, boolean bonus, int winningAmount) {
-        this.matching = matching;
-        this.bonus = bonus;
+    Rank(int matchingCount, boolean isBonusNumberMatch, int winningAmount) {
+        this.matchingCount = matchingCount;
+        this.isBonusNumberMatch = isBonusNumberMatch;
         this.winningAmount = winningAmount;
     }
 }

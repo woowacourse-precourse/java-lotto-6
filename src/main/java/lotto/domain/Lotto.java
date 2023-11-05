@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.enums.LottoConstants.LOTTO_SIZE;
-
 import java.util.List;
+import lotto.util.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,9 +12,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
-        }
+        Validator.validateLottoSize(numbers);
+        Validator.validateNumbersRange(numbers);
+        Validator.validateDuplicateLottoNumbers(numbers);
     }
 
     // TODO: 추가 기능 구현

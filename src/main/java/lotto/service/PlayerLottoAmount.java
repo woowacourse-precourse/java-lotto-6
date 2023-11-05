@@ -11,4 +11,9 @@ public class PlayerLottoAmount {
         validateAmount(amountNum);
         this.amount = amountNum;
     }
+
+    public int calculateLottoCount() {
+        return amount / LOTTO_MIN_AMOUNT;
+    }
+
 }

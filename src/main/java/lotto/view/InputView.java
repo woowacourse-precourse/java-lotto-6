@@ -24,6 +24,7 @@ public class InputView {
                 .trim();
         try {
             return Arrays.stream(input.split(","))
+                    .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException exception) {

@@ -22,7 +22,7 @@ public class LottoDraw {
         Lotto winnerNumbers = pickWinnerNumbers();
         int bonusNumber = pickBonusNumber(winnerNumbers);
 
-        printSummarizeWithLottoNumbers(lottoNumbers, winnerNumbers, bonusNumber);
+        printTotalProfit(printSummarizeWithLottoNumbers(lottoNumbers, winnerNumbers, bonusNumber), lottoNumbers.length);
 
     }
 
@@ -97,5 +97,10 @@ public class LottoDraw {
             }
         }
         return innerMap;
+    }
+
+    public void printTotalProfit(Map<String, Integer> summary, int lottoPurchaseAmount) {
+        String totalProfit = lottoStatistics.calculateTotalProfit(summary, lottoPlacePrice, lottoPurchaseAmount);
+        printUtil.printProfit(totalProfit);
     }
 }

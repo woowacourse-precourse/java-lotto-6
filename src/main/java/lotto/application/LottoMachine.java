@@ -14,7 +14,7 @@ public abstract class LottoMachine {
     private static final int UPPER_LIMIT_NUMBER = 45;
     private static final int NUMBER_QUANTITY = 6;
 
-    public static Lotto issueAutomaticLotto() {
+    static Lotto issueAutomaticLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
                 LOWER_LIMIT_NUMBER, UPPER_LIMIT_NUMBER, NUMBER_QUANTITY
         );
@@ -23,13 +23,13 @@ public abstract class LottoMachine {
         return new Lotto(lottoNumbers);
     }
 
-    public static Lotto issueManualLotto(List<Integer> manualNumbers) {
+    static Lotto issueManualLotto(List<Integer> manualNumbers) {
         List<Integer> lottoNumbers = new ArrayList<>(manualNumbers);
         lottoNumbers.sort(Integer::compareTo);
         return new Lotto(lottoNumbers);
     }
 
-    public static MatchResultType match(Lotto lotto, Lotto winningLotto, int bonusNumber) {
+    static MatchResultType match(Lotto lotto, Lotto winningLotto, int bonusNumber) {
         if (isAllMatch(lotto, winningLotto)) {
             return MatchResultType.MATCH_SIX;
         }

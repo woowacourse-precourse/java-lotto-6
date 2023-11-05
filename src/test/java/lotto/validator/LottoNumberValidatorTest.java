@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class LottoNumberValidatorTest {
     @Test
     @DisplayName("주어진 리스트에 중복 숫자가 있는지 확인합니다.")
-    void duplicationTest(){
+    void duplicationTest() {
         // given
         List<Integer> numbers = Arrays.asList(new Integer[]{2, 2, 3, 4, 5, 6});
 
@@ -19,19 +19,34 @@ public class LottoNumberValidatorTest {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         // then
-        Assertions.assertThat(uniqueNumbers.size()==6).isEqualTo(false);
+        Assertions.assertThat(uniqueNumbers.size() == 6).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("숫자 범위 테스트")
+    void validateNumberRangeTest(){
+        // given
+        int min = 1;
+        int max = 45;
+        int value = 100;
+
+        // when
+        boolean check = value>max || value<min;
+
+        // then
+        Assertions.assertThat(check).isEqualTo(true);
     }
 
     @Test
     @DisplayName("모든 숫자가 1-45 사이의 값인지 확인합니다.")
-    void validateNumberRangeTest(){
+    void validateLottoNumbersRangeTest() {
         // given
         boolean check = true;
         List<Integer> numbers = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6});
 
         // when
-        for (Integer number : numbers){
-            if(number>45 || number<1){
+        for (Integer number : numbers) {
+            if (number > 45 || number < 1) {
                 check = false;
             }
         }
@@ -41,10 +56,11 @@ public class LottoNumberValidatorTest {
 
     @Test
     @DisplayName("입력 값이 숫자인지 확인합니다.")
-    void isIntegerTest(){
+    void isIntegerTest() {
         String input = "1,000";
 
-        Assertions.assertThatThrownBy(()->{
+        Assertions.assertThatThrownBy(() -> {
             Integer.parseInt(input);
-        }).isInstanceOf(NumberFormatException.class);    }
+        }).isInstanceOf(NumberFormatException.class);
+    }
 }

@@ -22,15 +22,16 @@ class TicketQuantityTest {
         assertEquals(result, quantity);
     }
 
-    @DisplayName("필드 값이 동일하면 두 객체는 동일하게 취급해야 한다.")
+    @DisplayName("필드 값이 동일하면 두 레코드는 동일해야 한다.")
     @Test
     public void quantity_equality_test() {
         // when
-        TicketQuantity ticketQuantity1 = new TicketQuantity(3);
-        TicketQuantity ticketQuantity2 = new TicketQuantity(3);
-        TicketQuantity ticketQuantity3 = new TicketQuantity(7);
+        TicketQuantity ticketQuantity1 = new TicketQuantity(1);
+        TicketQuantity ticketQuantity2 = new TicketQuantity(1);
+        TicketQuantity ticketQuantity3 = new TicketQuantity(2);
 
         // then
+        assertEquals(ticketQuantity1.hashCode(), ticketQuantity2.hashCode());
         assertEquals(ticketQuantity1, ticketQuantity2);
         assertNotEquals(ticketQuantity1, ticketQuantity3);
     }

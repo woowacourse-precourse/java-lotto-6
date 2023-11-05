@@ -46,6 +46,13 @@ class BonusNumberTest {
                 .hasMessageContaining(ExceptionMessage.DUPLICATE_NUMBERS_LOTTO.getMessage());
     }
 
+    @Test
+    @DisplayName("보너스 번호가 문자일 때 예외 발생")
+    void validateNumberIsNotNumeric() {
+        assertThatThrownBy(() -> bonusNumber.validateNumber("a"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INPUT_NUMBER.getMessage());
+    }
 
 }
 

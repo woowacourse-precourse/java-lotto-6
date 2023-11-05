@@ -27,7 +27,7 @@ public class RandNumberTest {
         numbers.add(1);
         numbers.add(1);
         numbers.add(1);
-        for (int n : checkDuplicate(numbers)) {
+        for (int n : makeUniqueNumber()) {
             System.out.println(n);
         }
         Assertions.assertThat(checkDuplicate(numbers)).isNotEqualTo(numbers);

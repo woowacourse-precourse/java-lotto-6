@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoWallet {
-    private final List<Lotto> LOTTOS = new ArrayList<Lotto>();
+    private final List<Lotto> myLotto = new ArrayList<Lotto>();
 
     public LottoWallet() {}
 
     public void addLotto(int number) {
         clearLottos();
         for (int i = ZERO; i < number; i++) {
-            LOTTOS.add(new Lotto(pickNumbers()));
+            myLotto.add(new Lotto(pickNumbers()));
         }
     }
 
     private void clearLottos() {
-        LOTTOS.clear();
+        myLotto.clear();
     }
 
     private List<Integer> pickNumbers() {
@@ -30,6 +30,6 @@ public class LottoWallet {
     }
 
     public List<Lotto> getLottos() {
-        return LOTTOS;
+        return myLotto;
     }
 }

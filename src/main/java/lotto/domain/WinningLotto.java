@@ -8,6 +8,7 @@ public class WinningLotto {
 
     private final List<Integer> winningLotto = new ArrayList<>();
     private int bonusNumber;
+    private int count = 0;
     private final Map<Statistics, Integer> winningCount = new HashMap<>(){{
            put(THREE, 0);
            put(FOUR, 0);
@@ -36,12 +37,12 @@ public class WinningLotto {
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             int count = compareLotto(lottoNumbers);
-            putWinningList(count);
+            putWinningList(count, lottoNumbers);
         }
     }
 
-    private void putWinningList(int count) {
-        Statistics statistics = getStatistics(count, bonusNumber, winningLotto);
+    private void putWinningList(int count, List<Integer> lottoNumbers) {
+        Statistics statistics = getStatistics(count, bonusNumber, lottoNumbers);
         if (!statistics.equals(NON)) {
             Integer plusCount = winningCount.get(statistics);
             plusCount++;
@@ -50,13 +51,13 @@ public class WinningLotto {
     }
 
     private int compareLotto(List<Integer> lottoNumbers) {
-        int count = 0;
+        count = 0;
         winningLotto.stream().forEach(
-                winningNumber -> checkLotto(lottoNumbers, winningNumber, count));
+                winningNumber -> checkLotto(lottoNumbers, winningNumber));
         return count;
     }
 
-    private void checkLotto(List<Integer> lottoNumbers, Integer winningNumber, int count) {
+    private void checkLotto(List<Integer> lottoNumbers, Integer winningNumber) {
         if (isExist(lottoNumbers, winningNumber)) {
             count++;
         }

@@ -29,8 +29,8 @@ public enum Statistics {
         return amount;
     }
 
-    public static Statistics getStatistics(int matchCount,int bonusNumber, List<Integer> winningLotto) {
-        if (isBonusNumber(matchCount, bonusNumber, winningLotto)) {
+    public static Statistics getStatistics(int matchCount,int bonusNumber, List<Integer> lottoNumbers) {
+        if (isBonusNumber(matchCount, bonusNumber, lottoNumbers)) {
             return FIVE_BONUS;
         }
         return Arrays.stream(Statistics.values())

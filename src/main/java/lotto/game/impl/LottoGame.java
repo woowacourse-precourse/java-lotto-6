@@ -1,5 +1,7 @@
 package lotto.game.impl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import lotto.adapter.IoAdapter;
 import lotto.domain.Statistics;
@@ -40,12 +42,11 @@ public class LottoGame implements Game {
     }
 
     private void printRateOfReturn(Money money, Statistics statistics) {
-        double calcRateOfReturn = statistics.calcRateOfReturn(money.getMoney());
+        BigDecimal calcRateOfReturn = statistics.calcRateOfReturn(money.getMoney());
         LottoMessage rateOfReturnHead = LottoMessage.RATE_OF_RETURN_HEAD;
         LottoMessage rateOfReturnTail = LottoMessage.RATE_OF_RETURN_TAIL;
         String rateOfReturn = rateOfReturnHead.getMessage() +
-                +Float.parseFloat(
-                        String.format("%.1f", calcRateOfReturn)) + rateOfReturnTail.getMessage();
+                calcRateOfReturn.setScale(1, RoundingMode.HALF_UP) + rateOfReturnTail.getMessage();
         ioAdapter.printMessage(rateOfReturn);
     }
 

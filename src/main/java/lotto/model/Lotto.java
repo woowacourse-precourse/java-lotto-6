@@ -10,7 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
-        this.numbers = convertLottoNumbers(numbers);
+        this.numbers = convertToLottoNumbers(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -26,7 +26,7 @@ public class Lotto {
         }
     }
 
-    private List<LottoNumber> convertLottoNumbers(List<Integer> numbers){
+    private List<LottoNumber> convertToLottoNumbers(List<Integer> numbers){
         return numbers.stream()
                 .map(LottoNumber::new)
                 .toList();

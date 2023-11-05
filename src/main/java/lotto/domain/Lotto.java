@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,6 +21,15 @@ public class Lotto {
         validateLengthNumber(numbers);
         validateRange(numbers);
         validateDuplication(numbers);
+    }
+
+    public static List<List<Integer>> generateLottosByAmount(int amount) {
+        List<List<Integer>> lottos = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            lottos.add(RandomNumber.generateLottoNumbers());
+        }
+
+        return lottos;
     }
 
     public List<Integer> getLottoNumbers() {
@@ -47,8 +57,9 @@ public class Lotto {
 
     private static void validateDuplication(List<Integer> numbers) {
         if (isDuplication(numbers)) {
-           throw new IllegalArgumentException(LOTTO_START_ERROR_MESSAGE + LOTTO_NUMBER_DUPLICATE_INVALID_MESSAGE);
-        };
+            throw new IllegalArgumentException(LOTTO_START_ERROR_MESSAGE + LOTTO_NUMBER_DUPLICATE_INVALID_MESSAGE);
+        }
+        ;
     }
 
     private static boolean isDuplication(List<Integer> numbers) {

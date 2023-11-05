@@ -24,4 +24,10 @@ public class Bonus {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateNoDuplicates(int number, List<Integer> numbers) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

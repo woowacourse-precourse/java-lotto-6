@@ -7,6 +7,7 @@ import java.util.List;
 
 public class UserLotto {
 
+    private static final String PURCHASE_PRICE_ERROR_MESSAGE = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
     private final List<Lotto> lottos = new ArrayList<>();
     private final int purchasePrice;
     private final int lottoCount;
@@ -20,7 +21,7 @@ public class UserLotto {
 
     private void validate(int purchasePrice) {
         if (purchasePrice % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PURCHASE_PRICE_ERROR_MESSAGE);
         }
     }
 

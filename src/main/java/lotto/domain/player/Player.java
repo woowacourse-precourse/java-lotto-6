@@ -1,9 +1,9 @@
 package lotto.domain.player;
 
 import java.util.function.Supplier;
-import lotto.domain.dto.LottoResultsDto;
 import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lottoresult.LottoResultsRepository;
 import lotto.domain.player.playermoney.PlayerWallet;
 
 public class Player {
@@ -24,8 +24,8 @@ public class Player {
         lottoTicket = lottoTicket.changeAllTicketToLotto(randomLotto, lottoBundle);
     }
 
-    public Profit getProfit(LottoResultsDto lottoResultsDto) {
-        return  playerWallet.calculateProfit(lottoResultsDto);
+    public Profit getProfit(LottoResultsRepository lottoResultsRepository) {
+        return  playerWallet.calculateProfit(lottoResultsRepository);
     }
 
     // 테스트를 위한 코드

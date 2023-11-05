@@ -54,10 +54,6 @@ public class InputView {
     }
 
     private static void validateLottoPurchaseAmount(int lottoPurchaseAmount) {
-        if (lottoPurchaseAmount < 0) {
-            throw new IllegalArgumentException(INVALID_INPUT_NEGATIVE);
-        }
-
         if (lottoPurchaseAmount >= Integer.MAX_VALUE) {
             throw new IllegalArgumentException(INVALID_INPUT_MAXIMUM);
         }

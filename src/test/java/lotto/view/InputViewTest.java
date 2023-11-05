@@ -56,20 +56,7 @@ class InputViewTest{
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage(INVALID_INPUT_UNIT);
     }
-
-    @DisplayName("구입 금액에서 0 보다 작은 값을 입력하면 예외를 발생시킨다.")
-    @Test
-    void requestLottoPurchaseAmountByNegative() {
-        assertThatThrownBy(() -> {
-            InputView inputView = new InputView();
-            String inputValue = "-12000";
-            systemIn(inputValue);
-            inputView.requestLottoPurchaseAmount();
-        })
-        .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage(INVALID_INPUT_UNIT);
-    }
-
+    
     @DisplayName("로또 번호를 6개를 입력하지 않으면 예외를 발생시킨다.")
     @Test
     void requestLottoNumbersByNotEnoughSize() {

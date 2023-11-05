@@ -18,7 +18,7 @@ public class BonusNumber {
     }
 
     public static BonusNumber createManual() {
-        OutputView.print(SystemMessage.INPUT_BONUS_NUMBER.getMessage());
+        OutputView.printFrom(SystemMessage.INPUT_BONUS_NUMBER);
         return new BonusNumber(InputView.readInt());
     }
 

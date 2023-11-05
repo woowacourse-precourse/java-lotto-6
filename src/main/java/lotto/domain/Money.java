@@ -19,7 +19,7 @@ public class Money {
     }
 
     public static Money createManual() {
-        OutputView.print(SystemMessage.INPUT_MONEY.getMessage());
+        OutputView.printFrom(SystemMessage.INPUT_MONEY);
         return new Money(InputView.readLong());
     }
 

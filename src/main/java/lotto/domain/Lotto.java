@@ -22,7 +22,7 @@ public class Lotto {
     }
 
     public static Lotto createWinningNumbers() {
-        OutputView.print(SystemMessage.INPUT_WINNING_NUMBER.getMessage());
+        OutputView.printFrom(SystemMessage.INPUT_WINNING_NUMBER);
         return new Lotto(InputView.readIntegerList());
     }
 

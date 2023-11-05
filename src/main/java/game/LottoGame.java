@@ -12,6 +12,7 @@ import static game.LottoRank.THIRD_RANK;
 import base.Converter;
 import java.util.ArrayList;
 import java.util.List;
+import lottoTicketPurchase.LottoTicketPurchase;
 
 public class LottoGame {
     public void run() {

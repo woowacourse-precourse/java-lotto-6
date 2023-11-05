@@ -1,4 +1,4 @@
-package game;
+package lottoTicketPurchase;
 
 import static constant.ConstantMessage.PURCHASE_AMOUNT_REQUEST_MESSAGE;
 

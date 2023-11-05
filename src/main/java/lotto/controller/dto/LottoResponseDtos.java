@@ -4,13 +4,13 @@ import java.util.List;
 
 public class LottoResponseDtos {
 
-    private List<LottoResponseDto> lottoResponseDtos;
+    private List<LottoResponseDto> dtos;
 
     public LottoResponseDtos(List<LottoResponseDto> lottoResponseDtos) {
-        this.lottoResponseDtos = lottoResponseDtos;
+        this.dtos = lottoResponseDtos;
     }
 
     public List<LottoResponseDto> toLottoResponseDto(){
-        return lottoResponseDtos;
+        return dtos;
     }
 }

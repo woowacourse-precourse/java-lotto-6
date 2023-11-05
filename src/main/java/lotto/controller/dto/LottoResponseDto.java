@@ -10,7 +10,8 @@ public class LottoResponseDto {
         this.lottoNumber = numbers;
     }
 
-    public List<Integer> getLottoNumber(){
+    public List<Integer> getLottoNumber() {
         return lottoNumber;
     }
+
 }

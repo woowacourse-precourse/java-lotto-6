@@ -1,10 +1,12 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.Controller.Validator;
 
 public class inputView {
     static final String GET_INPUT_PURCHASE_AMOUNT_MESSAGE = "당첨 번호를 입력해 주세요.";
+    static final String GET_INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public static int getInputPurchaseAmount() {
         System.out.println(GET_INPUT_PURCHASE_AMOUNT_MESSAGE);
@@ -21,7 +23,7 @@ public class inputView {
     }
 
     public static int getInputBonusNumber() {
-        System.out.println(GET_INPUT_PURCHASE_AMOUNT_MESSAGE);
+        System.out.println(GET_INPUT_BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();
         while(true){
             try {

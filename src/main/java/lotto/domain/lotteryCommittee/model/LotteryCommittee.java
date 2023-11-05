@@ -1,6 +1,6 @@
 package lotto.domain.lotteryCommittee.model;
 
-import lotto.domain.Lotto;
+import lotto.domain.lotto.model.Lotto;
 import lotto.domain.buyer.model.Buyer;
 
 public class LotteryCommittee {

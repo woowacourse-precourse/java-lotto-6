@@ -2,10 +2,17 @@ package lotto.domain.buyer.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.buyer.model.Buyer;
+import lotto.domain.lotto.model.Lotto;
+import lotto.domain.lotto.service.LottoService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class BuyerService {
 
     static final String ERROR_MSG_HEADER = "[ERROR]";
+    static final int LOTTO_PRICE = 1000;
 
     public void tryBuy(Buyer buyer) {
 
@@ -50,7 +57,7 @@ public class BuyerService {
             return ERROR_MSG_HEADER + "숫자는 0보다 큰 숫자여야 합니다.";
         }
 
-        if(parsedMoney % 1000 != 0) {
+        if(parsedMoney % LOTTO_PRICE != 0) {
             return ERROR_MSG_HEADER + "숫자는 1000 단위로 입력되어야 합니다.";
         }
 
@@ -58,6 +65,18 @@ public class BuyerService {
     }
 
     public void buy(Buyer buyer, int money) {
+
+        List<Lotto> lottos = new ArrayList<>();
+        int buyingNum = money/LOTTO_PRICE;
+
+        System.out.println("\n %d개를 구매했습니다.".formatted(buyingNum));
+
+        for(int i=0; i<buyingNum; i++) {
+            LottoService lottoService = new LottoService();
+            lottos.add(lottoService.createLotto());
+        }
+
+        buyer.setLottos(lottos);
 
         //TODO 로또 구매 로직
     }

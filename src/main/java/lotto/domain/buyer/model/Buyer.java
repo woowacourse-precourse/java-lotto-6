@@ -1,7 +1,6 @@
 package lotto.domain.buyer.model;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Lotto;
+import lotto.domain.lotto.model.Lotto;
 
 import java.util.List;
 import java.util.Map;

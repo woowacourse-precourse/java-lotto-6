@@ -1,23 +1,5 @@
 package lotto;
 
-import lotto.domain.Lotto;
-import lotto.domain.buyer.model.Buyer;
-import lotto.domain.buyer.service.BuyerService;
-import org.assertj.core.api.ThrowableAssert;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static org.assertj.core.api.Assertions.*;
-
 public class BuyerTest {
 
 //    @Test

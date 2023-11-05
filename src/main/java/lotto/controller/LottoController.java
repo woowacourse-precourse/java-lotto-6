@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.Lotto;
 import lotto.service.InputMoneyService;
+import lotto.service.InputWinnerNumberService;
 import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,8 +27,11 @@ public class LottoController {
 
     }
 
+
+
     private Long inputMoney(InputMoneyService inputMoneyService) {
         try {
+            outputView.printBeforeInputMoney();
             inputMoneyService.getRightMoneyProcess(validator, inputView.inputMoney());
             return Long.parseLong(inputView.inputMoney());
         } catch (IllegalArgumentException e) {

@@ -18,4 +18,8 @@ public class OutputView {
     public void printErrorMessage(String message) {
         System.out.println(message);
     }
+
+    public void printBeforeInputMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
 }

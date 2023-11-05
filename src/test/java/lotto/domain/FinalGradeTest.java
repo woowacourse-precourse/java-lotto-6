@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;
@@ -54,5 +55,40 @@ class FinalGradeTest {
             BigDecimal expectedAmount = new BigDecimal(11000L);
             Assertions.assertThat(finalGrade.getPlayerTotalPurchaseAmount()).isEqualTo(expectedAmount);
         }
+    }
+
+    /*
+     * test data:
+     * 1) Rank.FIRST: 10_000_000
+     * 2) totalPrize: 20_000_000_000_000_000
+     * success
+     *
+     * test data:
+     * 1) Rank.FIRST: 100_000_000
+     * 2) totalPrize: 200_000_000_000_000_000
+     * Heap Memory Leak
+     *
+     * result: Big Decimal 오버 플로우 발생 전에 메모리 릭 먼저 발생
+     */
+    @Test
+    @DisplayName("플레이어 전체 상금 계산 중 오버 플로우, 허용 가능치 스트레스 테스트")
+    void bigValueTest() {
+        // given
+        List<Rank> ranks = create();
+        FinalGrade finalGrade = new FinalGrade(ranks);
+        BigDecimal expectedTotalPrize = new BigDecimal("20000000000000000");
+        // when
+        BigDecimal resultTotalPrize = finalGrade.getPlayerTotalPrize();
+        // then
+        Assertions.assertThat(resultTotalPrize).isEqualTo(expectedTotalPrize);
+    }
+
+    private List<Rank> create() {
+        int total = 10000000;
+        List<Rank> ranks = new ArrayList<>();
+        for (int count = 0; count < total; count++) {
+            ranks.add(Rank.FIRST);
+        }
+        return ranks;
     }
 }

@@ -6,7 +6,8 @@ import lotto.views.Exceptions;
 
 public class LottoController {
     public void run() {
-        while (readPurchaseLotto());
+        while (readPurchaseLotto()) {
+        }
     }
 
     public boolean readPurchaseLotto() {

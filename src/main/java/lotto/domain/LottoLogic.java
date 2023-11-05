@@ -26,4 +26,14 @@ public class LottoLogic {
     public BigDecimal getNumberOfLottoPurchased() {
         return purchaseInfo.numberOfLottoPurchased;
     }
+
+    public float getRateOfReturn() {
+        HashMap<LottoResult, BigDecimal> result = getResult();
+        BigDecimal total = BigDecimal.ZERO;
+        result.forEach((key, value) -> {
+            BigDecimal prize = new BigDecimal(key.getPrize());
+            total.add(prize.multiply(value));
+        });
+        return total.divide(purchaseInfo.purchaseAmount).floatValue();
+    }
 }

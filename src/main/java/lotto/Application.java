@@ -63,18 +63,19 @@ public class Application {
         return res;
     }
 
-    public static List<Lotto> setUser(int ticketNum){
+    public static List<List<Integer>> setUser(int ticketNum){
         System.out.println(String.format("%d개를 구매했습니다.",ticketNum));
-        List<Lotto> res = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
         for (int index = 0; index < ticketNum; index++) {
-            res.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            res.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            System.out.println(res.get(index));
         }
         return res;
     }
 
-    public static void showUser(List<Lotto> user) {
-        for (Lotto l : user) {
-            System.out.println(l.getNumbers());
+    public static void showUser(List<List<Integer>> user) {
+        for (List<Integer> l : user) {
+            System.out.println(l);
         }
     }
 
@@ -110,16 +111,16 @@ public class Application {
         return res;
     }
 
-    public static int judge(Lotto winLotto, Lotto L, int bonus){
+    public static int judge(Lotto winLotto, List<Integer> L, int bonus){
         int count = winLotto.countMatch(L) - 3;
         if (count == 2 && winLotto.lottoContains(bonus)) return count+1;
         if (count == 3) return count+1;
         return count;
     }
 
-    public static int[] lottery(Lotto winLotto, List<Lotto> user, int bonus){
+    public static int[] lottery(Lotto winLotto, List<List<Integer>> user, int bonus){
         int[] res = {0,0,0,0,0};
-        for (Lotto L : user) {
+        for (List<Integer> L : user) {
             int grade = judge(winLotto,L,bonus);
             if(grade >= 0) res[grade]++;
         }
@@ -128,7 +129,7 @@ public class Application {
 
     public static void main(String[] args) {
         int money = -1, bonus;
-        List<Lotto> user;
+        List<List<Integer>> user;
         Lotto winLotto;
         int[] Lottery_result;
 

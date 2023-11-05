@@ -39,11 +39,11 @@ public class Lotto {
         return numbers;
     }
 
-    public int countMatch(Lotto user){
+    public int countMatch(List<Integer> user){
         int count = 0;
         int[] tmp = new int[46];
-        
-        for (Integer integer : user.getNumbers()) {
+
+        for (Integer integer : user) {
             tmp[integer] = 1;
         }
 

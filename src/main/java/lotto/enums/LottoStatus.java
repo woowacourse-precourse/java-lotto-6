@@ -27,10 +27,6 @@ public enum LottoStatus {
         return LottoStatus.SIXTH;
     }
 
-    public int getCorrectCount() {
-        return correctCount;
-    }
-
     public Long getPrize() {
         return prize;
     }

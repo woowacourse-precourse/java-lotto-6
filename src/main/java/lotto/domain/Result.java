@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import lotto.constant.Rank;
 
 public class Result {
+    private static float HUNDRED = 100.0F;
 
     private final Map<Rank, Long> rankCount;
 
@@ -20,17 +21,21 @@ public class Result {
     }
 
     public float calculateRateToReturn() {
+        return calculateTotalPrice() / calculateInputMoney() * HUNDRED;
+    }
+
+    private long calculateTotalPrice() {
         return rankCount.entrySet()
                 .stream()
                 .mapToLong(this::calculateEntryPrice)
-                .sum() / getInputMoney() * 100.0F;
+                .sum();
     }
 
     private long calculateEntryPrice(final Entry<Rank, Long> entry) {
         return entry.getKey().getReward() * entry.getValue();
     }
 
-    private float getInputMoney() {
+    private float calculateInputMoney() {
         return rankCount.values()
                 .stream()
                 .mapToLong(count -> count)

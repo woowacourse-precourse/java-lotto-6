@@ -29,7 +29,7 @@ public class LottoFactory {
     private static List<Lotto> createLottos(final NumberGenerator numberGenerator, final int money) {
         validateMoney(money);
 
-        final int lottoCount = money / MONEY_UNIT.getValue();
+        final int lottoCount = getLottoCount(money);
 
         return Stream.generate(numberGenerator::generate)
                 .limit(lottoCount)
@@ -37,17 +37,25 @@ public class LottoFactory {
                 .toList();
     }
 
+    private static int getLottoCount(int money) {
+        return money / MONEY_UNIT.getValue();
+    }
+
     private static void validateMoney(final int money) {
-        if (money <= ZERO) {
+        if (isNotPositive(money)) {
             throw LottoException.of(NOT_ENOUGH_MONEY);
         }
 
-        if (isCorrectUnit(money)) {
+        if (isNotCorrectUnit(money)) {
             throw LottoException.of(INVALID_UNIT);
         }
     }
 
-    private static boolean isCorrectUnit(final int money) {
+    private static boolean isNotPositive(int money) {
+        return money <= ZERO;
+    }
+
+    private static boolean isNotCorrectUnit(final int money) {
         return money % MONEY_UNIT.getValue() != 0;
     }
 

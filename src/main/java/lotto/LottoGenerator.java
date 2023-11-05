@@ -1,12 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
-    private static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String OUTPUT_PURCHASE_AMOUNT = "\n%d개를 구매했습니다.\n";
 
     private static final int LOTTO_PRICE = 1000;
@@ -17,18 +15,13 @@ public class LottoGenerator {
     private final List<Lotto> lottos;
     private final int lottoAmount;
 
-    public LottoGenerator() {
-        this.lottoAmount = getLottoAmount(inputPurchaseAmount());
+    public LottoGenerator(int purchaseAmount) {
+        this.lottoAmount = getLottoAmount(purchaseAmount);
         this.lottos = makeLottos();
     }
 
-    private int inputPurchaseAmount() {
-        System.out.println(INPUT_PURCHASE_AMOUNT);
-        return Integer.parseInt(Console.readLine());
-    }
-
-    private int getLottoAmount(int amount) {
-        return amount / LOTTO_PRICE;
+    private int getLottoAmount(int purchaseAmount) {
+        return purchaseAmount / LOTTO_PRICE;
     }
 
     private List<Lotto> makeLottos() {

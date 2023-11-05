@@ -87,7 +87,7 @@ class InputViewTest{
             inputView.requestLottoNumber();
         })
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage(INVALID_INPUT_FORMAT);
+        .hasMessage(String.format(INVALID_INPUT_FORMAT, LOTTO_NUMBER_FORMAT));
     }
 
     @DisplayName("로또 번호는 45 이하 값을 입력해야 된다.")

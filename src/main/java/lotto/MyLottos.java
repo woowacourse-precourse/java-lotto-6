@@ -12,6 +12,7 @@ import lotto.enums.LottoRank;
 
 public class MyLottos {
 	public static final int LOTTO_PRICE = 1000;
+	private static final int percent = 100;
 
 	private final List<Lotto> lottos;
 	private final EnumMap<LottoRank, Integer> results = new EnumMap<>(LottoRank.class);
@@ -56,7 +57,7 @@ public class MyLottos {
 	}
 
 	public void printProfit() {
-		System.out.printf("총 수익률은 %.1f%%입니다.", profit);
+		System.out.printf("총 수익률은 %.1f%%입니다.", profit * percent);
 	}
 
 	public void calculateEarningRate() {

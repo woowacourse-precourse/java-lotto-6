@@ -8,14 +8,14 @@ import java.util.List;
 
 public class MatchingMachine {
 
-    public List<Integer> getLottoNumbers (){
+    public List<Integer> getLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
     }
 
-    public List<Lotto> getLottoAsMuchAsVolume(int volume){
+    public List<Lotto> getLottoAsMuchAsVolume(int volume) {
         List<Lotto> allLotto = new ArrayList<>();
-        for(int i=0; i<volume; i++){
+        for (int i = 0; i < volume; i++) {
             List<Integer> lottoNumbers = getLottoNumbers();
             Collections.sort(lottoNumbers);
             Lotto lotto = new Lotto(lottoNumbers);
@@ -24,39 +24,34 @@ public class MatchingMachine {
         return allLotto;
     }
 
-    public int countSingleLottoMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers){
+    public int countSingleLottoMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int count = 0;
-        for(int lottoNum : lottoNumbers){
-            if(winningNumbers.contains(lottoNum)){
+        for (int lottoNum : lottoNumbers) {
+            if (winningNumbers.contains(lottoNum)) {
                 count++;
             }
         }
         return count;
     }
 
-    public boolean checkBonusNumber(List<Integer> singleLotto, int bonusNumber){
-        if(singleLotto.contains(bonusNumber)){
+    public boolean checkBonusNumber(Lotto lotto, int bonusNumber) {
+        List<Integer> singleLotto = lotto.getNumbers();
+        if (singleLotto.contains(bonusNumber)) {
             return true;
         }
         return false;
     }
 
-    public List<Integer> countAllLottoMatchingNumbers(List<Lotto> allLotto, List<Integer> winningNumbers){
+    public List<MatchingCount> countAllLottoMatchingNumbers(List<Lotto> allLotto, List<Integer> winningNumbers, int bonusNumber) {
         int count = 0;
-        List<Integer> lottoMatchingCount = new ArrayList<>();
-        for(Lotto singleLotto : allLotto){
+        boolean hasBonus = false;
+        List<MatchingCount> matchingCounts = new ArrayList<>();
+        for (Lotto singleLotto : allLotto) {
             count = countSingleLottoMatchingNumbers(singleLotto.getNumbers(), winningNumbers);
-            lottoMatchingCount.add(count);
+            hasBonus = checkBonusNumber(singleLotto, bonusNumber);
+            MatchingCount matchingCount = MatchingCount.findByMatchCount(count, hasBonus);
+            matchingCounts.add(matchingCount);
         }
-        return lottoMatchingCount;
-    }
-
-    public List<Boolean> checkAllLottoBonusNumber(List<Lotto> allLotto, int bonusNumber){
-        List<Boolean> hasBonusLotto = new ArrayList<>();
-        for(Lotto lotto : allLotto){
-            boolean hasBonus = checkBonusNumber(lotto.getNumbers(), bonusNumber);
-            hasBonusLotto.add(hasBonus);
-        }
-        return hasBonusLotto;
+        return matchingCounts;
     }
 }

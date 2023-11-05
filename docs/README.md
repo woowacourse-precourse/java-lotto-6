@@ -69,6 +69,7 @@
   - [X] WinningLotto
       - [X] WinningLotto는 Lotto를 상속
       - [X] WinningLotto 생성
+      - [ ] WinningLotto와 Lotto 일치 계수 계산
       - [X] 보너스 번호
           - [X] 보너스 번호 길이 검증
           - [X] 보너스 번호 범위 검증

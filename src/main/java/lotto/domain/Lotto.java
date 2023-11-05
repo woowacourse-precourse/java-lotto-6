@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
 
@@ -19,6 +16,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sortAscending();
     }
 
     public Ranking matchWithWinLotto(WinLotto winLotto) {
@@ -71,6 +69,9 @@ public class Lotto {
         return numbers.size() == Set.of(numbers).size();
     }
 
+    private void sortAscending() {
+        Collections.sort(numbers);
+    }
 
     // todo: OUTPUT에서 사용. 다른 방법 찾아보기.
     public List<Integer> getNumbers() {

@@ -1,6 +1,8 @@
 package lotto.service;
 
+import lotto.domain.LottoCollector;
+
 public interface LottoPublishService {
 
-    void publish(int purchaseAmount);
+    LottoCollector publish(int purchaseAmount);
 }

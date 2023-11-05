@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LottoCollector;
 import lotto.service.LottoPublishService;
 import lotto.utils.ExceptionMessage;
 
@@ -13,8 +14,7 @@ public class LottoController {
 
     public void publishLotto(String inputPurchaseAmount) throws IllegalArgumentException {
         int purchaseAmount = validatePurchaseAmountType(inputPurchaseAmount);
-        lottoPublishService.publish(purchaseAmount);
-
+        LottoCollector publishedLottos = lottoPublishService.publish(purchaseAmount);
     }
 
     private int validatePurchaseAmountType(String inputPurchaseAmount) {

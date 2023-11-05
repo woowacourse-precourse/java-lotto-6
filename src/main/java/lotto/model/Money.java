@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.util.Message;
+import lotto.util.ValidationCheck;
 
 public class Money {
     private static final int UNIT = 1_000;
@@ -18,11 +19,8 @@ public class Money {
     }
 
     private int inputNumberNumericValidate(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Message.EXCPTION_NOT_A_NUM);
-        }
+        ValidationCheck validationCheck = new ValidationCheck();
+        return validationCheck.checkNumericValidate(input);
     }
 
     public int countQuantity() {

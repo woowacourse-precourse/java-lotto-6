@@ -24,4 +24,12 @@ public class ValidationCheck {
             throw new IllegalArgumentException(Message.EXCPTION_DUPLICATED);
         }
     }
+
+    public int checkNumericValidate(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Message.EXCPTION_NOT_A_NUM);
+        }
+    }
 }

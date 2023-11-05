@@ -8,17 +8,17 @@ public class WinningRecord {
     private static int fifthPrizeCount = 0;
 
 
-    public void recorder(int count, boolean bonus) {
+    public void recorder(int count, int bonus) {
         if(count == 3) {
             fifthPrizeCount++;
         }
         if(count == 4) {
             fourthPrizeCount++;
         }
-        if(count == 5 && !bonus) {
+        if(count == 5 && bonus == 0) {
             thirdPrizeCount++;
         }
-        if(count == 5 && bonus) {
+        if(count == 5 && bonus == 1) {
             secondPrizeCount++;
         }
         if(count == 6) {

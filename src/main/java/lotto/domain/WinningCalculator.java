@@ -1,24 +1,24 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class WinningCalculator {
     private static List<Integer> winningNumber;
     private static Integer bonusNumber;
-    WinningRecord winningRecord = new WinningRecord();
 
     public WinningCalculator(List<Integer> winningNumber, Integer bonusNumber) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
     }
 
-    public void calculator(List<Integer> purchaseNumber) {
+    public List<Integer> calculator(List<Integer> purchaseNumber) {
         int count = winningNumberCounter(purchaseNumber);
-        boolean IsMatchedBonusNumber = false;
+        int IsMatchedBonusNumber = 0; // false
         if(count == 5) {
             IsMatchedBonusNumber = bonusNumberCounter(purchaseNumber);
         }
-        winningRecord.recorder(count, IsMatchedBonusNumber);
+        return Arrays.asList(count, IsMatchedBonusNumber);
     }
 
     private static Integer winningNumberCounter(List<Integer> purchaseNumber) {
@@ -31,7 +31,11 @@ public class WinningCalculator {
         return count;
     }
 
-    private static boolean bonusNumberCounter(List<Integer> purchaseNumber) {
-        return purchaseNumber.contains(bonusNumber);
+    private static int bonusNumberCounter(List<Integer> purchaseNumber) {
+        int number = 0;
+        if(purchaseNumber.contains(bonusNumber)) {
+            number =1;
+        }
+        return number;
     }
 }

@@ -8,6 +8,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.WinningCalculator;
 import lotto.domain.WinningNumber;
+import lotto.domain.WinningRecord;
 import lotto.io.LottoInputView;
 import lotto.io.LottoOutputView;
 
@@ -49,8 +50,10 @@ public class LottoManager {
         List<Integer> winningNumber = winningNumberManager();
         WinningCalculator winningCalculator
                 = new WinningCalculator(winningNumber, bonusNumberManager(winningNumber));
+        WinningRecord winningRecord = new WinningRecord();
         for(Lotto lotto : lottoPurchaseNumbers) {
-            winningCalculator.calculator(lotto.getNumbers());
+            List<Integer> winningStatus = winningCalculator.calculator(lotto.getNumbers());
+            winningRecord.recorder(winningStatus.get(0), winningStatus.get(1));
         }
     }
 }

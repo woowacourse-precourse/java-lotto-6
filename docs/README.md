@@ -79,9 +79,9 @@
 - ✅ validateInputIsNumeric 메서드 구현
     - 사용자가 숫자를 입력했는지 검증
 
-## ❌ 입력 널 값 검증
+## ✅ 입력 널 값 검증
 
-- ❌ validateInputIsNull 메서드 구현
+- ✅ validateInputIsNull 메서드 구현
     - 사용자가 Null을 입력 했는지 검증
 
 ## ❌ 로또 번호 검증

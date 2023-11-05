@@ -13,4 +13,8 @@ public class Validator {
         }
         return true;
     }
+
+    public static boolean validateInputIsNull(String input){
+        return input==null;
+    }
 }

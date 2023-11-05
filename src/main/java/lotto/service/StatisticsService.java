@@ -5,11 +5,15 @@ import lotto.domain.LottoRanking;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
 import lotto.repository.PrizeMoneyRepository;
+import lotto.utils.Constants;
 
 import java.util.List;
 import java.util.Map;
 
 public class StatisticsService {
+    private static final int HUNDRED = 100;
+    private static final int INITIAL_VALUE = 0;
+
     private final PrizeMoneyRepository prizeMoneyRepository;
 
     public StatisticsService(PrizeMoneyRepository prizeMoneyRepository) {
@@ -33,14 +37,14 @@ public class StatisticsService {
         double totalPrizeMoney = calculateTotalPrizeMoney(result);
         int totalPurchaseAmount = calculateTotalPurchaseAmount(result);
 
-        return totalPrizeMoney / totalPurchaseAmount * 100;
+        return totalPrizeMoney / totalPurchaseAmount * HUNDRED;
     }
 
     private int calculateTotalPurchaseAmount(Map<LottoRanking, Integer> result) {
         return result.values()
                 .stream()
-                .map(value -> value * 1000)
-                .reduce(0, Integer::sum);
+                .map(value -> value * Constants.LOTTO_PRICE)
+                .reduce(INITIAL_VALUE, Integer::sum);
     }
 
     private double calculateTotalPrizeMoney(Map<LottoRanking, Integer> result) {

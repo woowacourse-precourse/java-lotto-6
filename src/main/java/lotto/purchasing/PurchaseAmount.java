@@ -29,6 +29,9 @@ public class PurchaseAmount implements Askable {
             if (!isPositiveInteger.test(input)) {
                 throw new IllegalArgumentException(nonPositiveIntegerError);
             }
+            if (!isThousandUnit.test(input)) {
+                throw new IllegalArgumentException(nonThousandUnitError);
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             corretInput = false;
@@ -44,4 +47,6 @@ public class PurchaseAmount implements Askable {
             return false;
         }
     };
+
+    private final Predicate<String> isThousandUnit = input -> Integer.parseInt(input) % 1000 == 0;
 }

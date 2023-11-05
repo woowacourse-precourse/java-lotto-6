@@ -14,23 +14,23 @@ public class View {
     private static final String PRINT_YIELD_RATE = "총 수익률은 %.1f입니다.";
     private static final String PRINT_SEPARATOR = ", ";
 
-    public static String getAskPurchaseAmount() {
+    public String getAskPurchaseAmount() {
         return ASK_PURCHASE_AMOUNT;
     }
 
-    public static String getAskWinningNumber() {
+    public String getAskWinningNumber() {
         return ASK_WINNING_NUMBER;
     }
 
-    public static String getAskBonusNumber() {
+    public String getAskBonusNumber() {
         return ASK_BONUS_NUMBER;
     }
 
-    public static String getPrintPurchaseAmount(int purchaseAmount) {
+    public String getPrintPurchaseAmount(int purchaseAmount) {
         return String.format(PRINT_PURCHASE_AMOUNT, purchaseAmount);
     }
 
-    public static String getPrintPurchaseNumber(Lotto lotto) {
+    public String getPrintPurchaseNumber(Lotto lotto) {
         List<String> getLottoNumber = lotto.getLottoNumber().stream()
                 .map(Object::toString)
                 .collect(Collectors.toList());
@@ -40,15 +40,15 @@ public class View {
         return String.format(PRINT_PURCHASE_NUMBER, lottoNumber);
     }
 
-    public static String getPrintWinningStat() {
+    public String getPrintWinningStat() {
         return PRINT_WINNING_STAT;
     }
 
-    public static String getPrintMatches(Rank rank, int matchCount) {
+    public String getPrintMatches(Rank rank, int matchCount) {
         return String.format(PRINT_MATCHES, rank.getRank(), (int)rank.getPrize(), matchCount);
     }
 
-    public static String getPrintYieldRate(double yieldRate) {
+    public String getPrintYieldRate(double yieldRate) {
         return String.format(PRINT_YIELD_RATE, yieldRate);
     }
 

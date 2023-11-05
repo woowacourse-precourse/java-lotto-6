@@ -22,6 +22,10 @@ public enum WinningAmount {
         return prize;
     }
 
+    public static int size(){
+        return WinningAmount.values().length;
+    }
+
     public Integer getIntPrize(){
         String s = prize.replaceAll(",", "");
         return Integer.parseInt(s);

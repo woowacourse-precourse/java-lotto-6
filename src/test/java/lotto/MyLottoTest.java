@@ -3,9 +3,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
+import lotto.domain.Lottos;
 import lotto.view.LottoView;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +12,9 @@ public class MyLottoTest {
     @Test
     void 금액_입력시_로또_번호_발행() {
         String numberStr = "10000";
-
-        Lottos lottos = new Lottos(numberStr);
         LottoView lottoView = new LottoView();
 
-        lottoView.outputLottoList(lottos);
+        lottoView.lottoPay(numberStr);
     }
 
     @Test

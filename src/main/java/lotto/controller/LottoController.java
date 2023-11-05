@@ -38,7 +38,7 @@ public class LottoController {
         outputView.printTotalReturn(totalReturn);
     }
 
-    private Double calculate(List<LottoPrize> lottoPrizes, PurchaseAmount amount) { //TODO: LottoPrize에서 꽝은 넣지 않는 방법 고민하기
+    private Double calculate(List<LottoPrize> lottoPrizes, PurchaseAmount amount) {
         Calculator calculator = new Calculator();
         return calculator.calculatePrize(lottoPrizes, amount);
     }

@@ -26,13 +26,13 @@ class LottoPrizeTest {
 
     static Stream<Arguments> parametersProvider() {
         return Stream.of(
-                Arguments.of(new Lotto(List.of(3, 15, 9, 5, 40, 41)), LottoPrize.THREE_MATCH),
-                Arguments.of(new Lotto(List.of(3, 15, 9, 45, 40, 41)), LottoPrize.THREE_MATCH),
-                Arguments.of(new Lotto(List.of(3, 14, 15, 19, 12, 6)), LottoPrize.FOUR_MATCH),
-                Arguments.of(new Lotto(List.of(3, 14, 15, 5, 12, 6)), LottoPrize.FOUR_MATCH),
-                Arguments.of(new Lotto(List.of(3, 14, 15, 9, 12, 6)), LottoPrize.FIVE_MATCH),
-                Arguments.of(new Lotto(List.of(3, 14, 15, 9, 5, 6)), LottoPrize.FIVE_WITH_BONUS),
-                Arguments.of(new Lotto(List.of(3, 14, 15, 9, 6, 2)), LottoPrize.SIX_MATCH)
+                Arguments.of(new Lotto(List.of(3, 15, 9, 5, 40, 41)), LottoPrize.FIFTH_PLACE),
+                Arguments.of(new Lotto(List.of(3, 15, 9, 45, 40, 41)), LottoPrize.FIFTH_PLACE),
+                Arguments.of(new Lotto(List.of(3, 14, 15, 19, 12, 6)), LottoPrize.FOURTH_PLACE),
+                Arguments.of(new Lotto(List.of(3, 14, 15, 5, 12, 6)), LottoPrize.FOURTH_PLACE),
+                Arguments.of(new Lotto(List.of(3, 14, 15, 9, 12, 6)), LottoPrize.THIRD_PLACE),
+                Arguments.of(new Lotto(List.of(3, 14, 15, 9, 5, 6)), LottoPrize.SECOND_PLACE),
+                Arguments.of(new Lotto(List.of(3, 14, 15, 9, 6, 2)), LottoPrize.FIRST_PLACE)
         );
     }
 }

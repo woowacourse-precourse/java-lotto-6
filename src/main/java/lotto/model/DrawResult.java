@@ -2,7 +2,7 @@ package lotto.model;
 
 import lotto.utils.ExceptionMessage;
 
-public record DrawResult(Lotto lotto, int bonusNumber) {
+public record DrawResult(Lotto lotto, Integer bonusNumber) {
 
     public DrawResult {
         if (bonusNumber > 45 || bonusNumber < 1) {

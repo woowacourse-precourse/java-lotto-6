@@ -9,6 +9,8 @@ import domain.WinningNumbers;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Application {
     public static void main(String[] args) {
@@ -42,5 +44,14 @@ public class Application {
             numbers.add(Integer.parseInt(numberString));
         }
         return numbers;
+    }
+
+    private static LottoGameResult calculateResult(LottoTicket ticket, WinningNumbers winningNumbers) {
+        Map<Integer, Long> matchCounts = new HashMap<>();
+        for (Lotto lotto : ticket.getLottoNumbers()) {
+            int matchCount = countMatchingNumbers(lotto, winningNumbers.getWinningLotto());
+            matchCounts.put(matchCount, matchCounts.getOrDefault(matchCount, 0L) + 1);
+        }
+        return new LottoGameResult(matchCounts);
     }
 }

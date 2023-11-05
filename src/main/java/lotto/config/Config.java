@@ -7,6 +7,7 @@ import lotto.domain.num.LottoTargetNumResults;
 import lotto.domain.num.RanNumbers;
 import lotto.domain.num.WinLottoNums;
 import lotto.domain.user.Judgment;
+import lotto.domain.user.RateResult;
 import lotto.domain.user.Statistic;
 import lotto.domain.user.User;
 
@@ -33,6 +34,10 @@ public class Config {
 
     public static Judgment judgment(LottoTargetNumResults lottoTargetNumResults) {
         return new Judgment(lottoTargetNumResults);
+    }
+
+    public static RateResult rateResult() {
+        return new RateResult();
     }
 
     public static Statistic statistic(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {

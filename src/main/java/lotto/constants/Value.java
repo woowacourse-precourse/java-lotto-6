@@ -8,7 +8,8 @@ public enum Value {
     LOTTO_PRICE(1000),
     PERCENT(100),
     INITIAL_ZERO(0),
-    FIRST_CHARACTER(0);
+    FIRST_CHARACTER(0),
+    COUNT_ONE(1);
 
     private final Integer value;
 

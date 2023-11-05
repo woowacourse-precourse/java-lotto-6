@@ -1,22 +1,25 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
     public void run() {
         Output output = new Output();
 
-        int lottoTicket = getNumberOfTicket();
-
+        LottoCost lottoCost = createLottoCost();
+        int lottoTicket = lottoCost.getTicket();
         output.printNumberOfPurchase(lottoTicket);
 
-        output.printRandomLottoNumbers(lottoTicket);
+        LottoGenerate lottoGenerate = new LottoGenerate(lottoTicket);
+        HashMap<Integer, List<Integer>> randomLottoNumbers = lottoGenerate.getRandomLottoNumbers();
+        output.printRandomLottoNumbers(randomLottoNumbers);
 
         List<Integer> winningNumbers = getWinningNumbers();
     }
 
-    private int getNumberOfTicket() {
+    private LottoCost createLottoCost() {
         Input input = new Input();
         String cost;
         LottoCost lottoCost = null;
@@ -31,7 +34,7 @@ public class LottoController {
                 System.err.println(e.getMessage());
             }
         }
-        return lottoCost.getTicket();
+        return lottoCost;
     }
 
     private List<Integer> getWinningNumbers() {

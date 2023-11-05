@@ -37,4 +37,8 @@ public class OutputView {
 
         System.out.printf("총 수익률은 %.1f", revenue);
     }
+
+    public static void printException(String message) {
+        System.out.println(message);
+    }
 }

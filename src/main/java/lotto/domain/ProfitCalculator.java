@@ -1,21 +1,19 @@
 package lotto.domain;
 
-import java.util.List;
-
 import static lotto.domain.Constants.*;
 
 public class ProfitCalculator {
 
-    private final List<Integer> winningLottoCounts;
+    private final WinningLottoCounts winningLottoCounts;
 
-    public ProfitCalculator(List<Integer> winningLottoCounts) {
+    public ProfitCalculator(WinningLottoCounts winningLottoCounts) {
         this.winningLottoCounts = winningLottoCounts;
     }
 
     public double calculateProfit(Money money) {
         double sum = 0;
         for (Rank rank : Rank.values()) {
-            sum += winningLottoCounts.get(rank.getRankIndex()) * rank.getPrize();
+            sum += winningLottoCounts.getPrize(rank);
         }
         return sum / money.getMoney() * PERCENTAGE;
     }

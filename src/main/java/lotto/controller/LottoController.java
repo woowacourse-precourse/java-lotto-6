@@ -25,7 +25,7 @@ public class LottoController {
         WinningNumbers winningNumbers = new WinningNumbers(generateWinningNumbers());
         BonusNumber bonusNumber = new BonusNumber(generateBonusNumber(winningNumbers));
 
-        List<Integer> winningLottoCounts = getWinningLottosCount(myLottos, winningNumbers, bonusNumber);
+        WinningLottoCounts winningLottoCounts = new WinningLottoCounts(myLottos, winningNumbers, bonusNumber);
         double profit = getLottoProfit(winningLottoCounts, money);
         output.printResult(winningLottoCounts, profit);
     }
@@ -75,12 +75,7 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private List<Integer> getWinningLottosCount(List<Lotto> myLottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        WinningChecker winningChecker = new WinningChecker(myLottos, winningNumbers, bonusNumber);
-        return winningChecker.countWinningLottos();
-    }
-
-    private double getLottoProfit(List<Integer> winningLottoCounts, Money money) {
+    private double getLottoProfit(WinningLottoCounts winningLottoCounts, Money money) {
         ProfitCalculator profitCalculator = new ProfitCalculator(winningLottoCounts);
         double profit = profitCalculator.calculateProfit(money);
         return profit;

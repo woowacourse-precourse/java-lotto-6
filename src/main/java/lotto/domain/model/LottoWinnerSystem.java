@@ -30,6 +30,10 @@ public class LottoWinnerSystem {
         this.fifth = 0;
     }
 
+    public void printLottoResult() {
+        OutputView.printTotalResult(fifth, fourth, third, second, first);
+    }
+
     // 발행한 로또가 당첨인지 확인
     public void isWinnerLotto(List<Lotto> purchasedLotto, List<Integer> winNumber, List<Integer> bonusNumber) {
         for (int i = 0; i < purchasedLotto.size(); i++) {

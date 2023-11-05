@@ -6,6 +6,9 @@ import lotto.Lotto;
 import java.util.List;
 
 public class ConsoleView implements View {
+    private String in(){
+        return Console.readLine();
+    }
     private void out(String message) {
         System.out.println(message);
     }
@@ -17,19 +20,19 @@ public class ConsoleView implements View {
     @Override
     public String getPurchaseAmount() {
         out("구입금액을 입력해 주세요.");
-        return Console.readLine();
+        return in();
     }
 
     @Override
     public String getWinningNumbers() {
         out("당첨 번호를 입력해 주세요.");
-        return Console.readLine();
+        return in();
     }
 
     @Override
     public String getBonusNumber() {
         out("보너스 번호를 입력해 주세요.");
-        return Console.readLine();
+        return in();
     }
 
     @Override

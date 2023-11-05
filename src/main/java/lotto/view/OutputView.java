@@ -8,6 +8,6 @@ public class OutputView {
     }
 
     public void printLotto(String lotto) {
-        System.out.printf(lotto);
+        System.out.println(lotto);
     }
 }

@@ -2,7 +2,7 @@ package lotto.view;
 
 import static lotto.view.constants.ConstantMessage.REQUEST_BONUS_NUMBER;
 import static lotto.view.constants.ConstantMessage.REQUEST_PURCHASE_AMOUNT;
-import static lotto.view.constants.ConstantMessage.REQUEST_WINNING_NUMBER;
+import static lotto.view.constants.ConstantMessage.REQUEST_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.constants.ConstantMessage;
@@ -14,7 +14,7 @@ public class InputView {
     }
 
     public static String requestWinningNumber() {
-        ConstantMessage.printConstantMessage(REQUEST_WINNING_NUMBER);
+        ConstantMessage.printConstantMessage(REQUEST_WINNING_NUMBERS);
         return Console.readLine();
     }
 

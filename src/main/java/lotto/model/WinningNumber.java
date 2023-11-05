@@ -14,6 +14,7 @@ public class WinningNumber {
                 .toList();
         validateWinningNumbersForDuplicates(winningNumber);
         validateWinningNumbersForRange(winningNumber);
+        validateWinningNumbersCount(winningNumber);
         this.winningNumber = winningNumber;
     }
 

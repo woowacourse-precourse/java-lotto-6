@@ -25,4 +25,10 @@ public class LottoResult {
     public Integer getCount(LottoPrize lottoPrize) {
         return result.get(lottoPrize);
     }
+
+    public long getTotalAmount() {
+        return Arrays.stream(LottoPrize.values())
+                .mapToLong(lottoPrize -> lottoPrize.getAmount() * result.get(lottoPrize))
+                .sum();
+    }
 }

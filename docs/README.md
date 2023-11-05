@@ -5,8 +5,8 @@
 - [x] 돈을 지불한다. -Customer#pay()
 - [x] 구입 금액에 해당하는 발급 횟수를 구한다. -IssuingMachine#calculateCount()
 - [] 로또를 생성한다. -IssuingMachine#createLotto()
-  - [] 로또 번호의 숫자 범위는 1~45 까지이다.
-  - [] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
+  - [x] 로또 번호의 숫자 범위는 1~45 까지이다.
+  - [x] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다. -Random#makeNumber()
 - [x] 발급 횟수만큼 동작한다. -IssuingMachine#operate()
 -[] 사용자에게 로또를 발행한다. -IssuingMachine#issueLotto()
 - [] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다.

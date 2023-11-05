@@ -55,4 +55,22 @@ class WinningNumbersDataTest {
         Assertions.assertThatThrownBy(() -> new WinningNumbersData(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void 당첨_번호에_포함된_숫자이면_true를_반환한다() {
+        // given
+        final WinningNumbersData winningNumbersData = new WinningNumbersData(List.of(1, 2, 3, 4, 5, 6));
+
+        // then
+        org.junit.jupiter.api.Assertions.assertTrue(winningNumbersData.contains(2));
+    }
+
+    @Test
+    public void 당첨_번호에_포함되지_않은_숫자이면_false를_반환한다() {
+        // given
+        final WinningNumbersData winningNumbersData = new WinningNumbersData(List.of(1, 2, 3, 4, 5, 6));
+
+        // then
+        org.junit.jupiter.api.Assertions.assertFalse(winningNumbersData.contains(7));
+    }
 }

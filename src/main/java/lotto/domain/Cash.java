@@ -16,15 +16,15 @@ public class Cash {
         this.spendAmount = ZERO.getSetting();
     }
 
-    private void validateMoreThanUnit(Integer amount) {
+    private void validateMoreThanUnit(final Integer amount) {
         if (amount < UNIT.getSetting()) {
             throw new IllegalArgumentException(NOT_MORE_THAN_UNIT.getMessage());
         }
     }
 
 
-    private void validateDivisibleByUnit(Integer amount) {
-        int remainder = amount % UNIT.getSetting();
+    private void validateDivisibleByUnit(final Integer amount) {
+        final int remainder = amount % UNIT.getSetting();
         if (remainder != ZERO.getSetting()) {
             throw new IllegalArgumentException(NOT_DIVISIBLE_BY_UNIT.getMessage());
         }
@@ -32,12 +32,12 @@ public class Cash {
 
 
     public Boolean isAfford() {
-        int leftAmount = depositAmount - spendAmount;
+        final int leftAmount = depositAmount - spendAmount;
         return leftAmount >= UNIT.getSetting();
     }
 
     public Boolean spend() {
-        Boolean afford = isAfford();
+        final Boolean afford = isAfford();
         if (afford) {
             spendAmount += UNIT.getSetting();
         }

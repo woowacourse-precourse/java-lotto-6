@@ -32,7 +32,7 @@ public class LottoServiceTest {
         lottoService.buyLottoAll(user);
 
         for (Lotto lotto : user.getLottos()) {
-            System.out.println(lotto.getNumbers());
+            System.out.println(lotto.numbers());
         }
     }
 }

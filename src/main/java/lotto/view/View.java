@@ -21,10 +21,10 @@ public class View {
     }
 
     public TicketQuantity getTicketQuantity() {
-        outputView.printRequestInputPurchaseAmountMessage();
+        outputView.printRequestInputBuyAmountMessage();
         while (true) {
             try {
-                Integer amount = inputView.inputPurchaseAmount();
+                Integer amount = inputView.inputBuyAmount();
                 TicketQuantity ticketQuantity = Converter.convertToTicketCount(amount);
                 outputView.printTicketQuantityMessage(ticketQuantity.quantity());
                 return ticketQuantity;

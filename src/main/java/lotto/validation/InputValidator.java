@@ -11,14 +11,14 @@ public class InputValidator {
     private InputValidator() {
     }
 
-    public static void validatePurchaseAmount(final String purchaseAmount) {
-        if (purchaseAmount.isEmpty()) {
+    public static void validateBuyAmount(final String buyAmount) {
+        if (buyAmount.isEmpty()) {
             throw new EmptyInputException();
         }
-        if (!isNumeric(purchaseAmount)) {
+        if (!isNumeric(buyAmount)) {
             throw new NonNumericInputException();
         }
-        if (!isPositive(purchaseAmount)) {
+        if (!isPositive(buyAmount)) {
             throw new NegativeOrZeroInputException();
         }
     }

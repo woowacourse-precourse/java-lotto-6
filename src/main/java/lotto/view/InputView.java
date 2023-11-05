@@ -5,9 +5,9 @@ import lotto.validation.InputValidator;
 
 public class InputView {
 
-    public Integer inputPurchaseAmount() {
+    public Integer inputBuyAmount() {
         String amount = Console.readLine();
-        InputValidator.validatePurchaseAmount(amount);
+        InputValidator.validateBuyAmount(amount);
 
         return Integer.valueOf(amount);
     }

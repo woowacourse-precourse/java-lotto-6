@@ -9,7 +9,7 @@ import lotto.vo.TicketQuantity;
 
 public class OutputView {
 
-    private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String INPUT_BUY_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String TICKET_QUANTITY_MESSAGE = "%s개를 구매했습니다.";
     private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
@@ -25,8 +25,8 @@ public class OutputView {
     private static final Integer PERCENTAGE = 100;
     private static final Integer DEFAULT_COUNT = 0;
 
-    public void printRequestInputPurchaseAmountMessage() {
-        printMessage(INPUT_PURCHASE_AMOUNT_MESSAGE);
+    public void printRequestInputBuyAmountMessage() {
+        printMessage(INPUT_BUY_AMOUNT_MESSAGE);
     }
 
     public void printTicketQuantityMessage(final Integer quantity) {

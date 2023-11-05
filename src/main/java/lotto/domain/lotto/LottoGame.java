@@ -30,7 +30,7 @@ public class LottoGame {
 
         GameResult result = calculateGameResult(winningLotto, bonusNumber, lottos);
 
-        double profitPercentage = calculateProfitPercentage(result.calculateProfit(), money);
+        double profitPercentage = result.calculateProfitPercentage(money);
         printResult(result, profitPercentage);
     }
 
@@ -107,9 +107,5 @@ public class LottoGame {
     private void printResult(GameResult result, double profitPercentage) {
         String lottoResultMessage = LottoMessageConverter.convertLottoResultMessage(result, profitPercentage);
         outputView.println(lottoResultMessage);
-    }
-
-    private double calculateProfitPercentage(long profit, Money money) {
-        return (double) profit / money.getAmount() * 100;
     }
 }

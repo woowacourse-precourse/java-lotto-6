@@ -20,14 +20,13 @@ class GameResultTest {
     }
 
     @Test
-    void 카운트한_로또_랭크의_수익을_계산한다() {
+    void 카운트한_로또_랭크의_수익률을_계산한다() {
+        Money money = new Money(8000);
         GameResult gameResult = GameResult.create();
         gameResult.add(Rank.FIFTH);
-        gameResult.add(Rank.FIFTH);
-        gameResult.add(Rank.SECOND);
 
-        long expectedValue = (Rank.FIFTH.getPrizeMoney() * 2L) + Rank.SECOND.getPrizeMoney();
-        long actualValue = gameResult.calculateProfit();
+        double expectedValue = 62.5;
+        double actualValue = gameResult.calculateProfitPercentage(money);
 
         Assertions.assertEquals(expectedValue, actualValue);
     }

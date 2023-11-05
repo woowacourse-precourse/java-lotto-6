@@ -23,7 +23,14 @@ public class GameResult {
         gameResult.put(rank, gameResult.get(rank) + 1);
     }
 
-    public long calculateProfit() {
+
+    public double calculateProfitPercentage(Money money) {
+        long profit = calculateProfit();
+
+        return (double) profit / money.getAmount() * 100;
+    }
+
+    private long calculateProfit() {
         long profit = 0;
         for (Rank rank : Rank.values()) {
             profit += (long) rank.getPrizeMoney() * gameResult.get(rank);

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.system.SystemConstant;
 import lotto.system.SystemMessage;
 import lotto.validator.BallValidator;
 import lotto.view.InputView;
@@ -19,15 +18,14 @@ public class BonusNumber {
     }
 
     public static BonusNumber createManual() {
-        OutputView.printFrom(SystemMessage.INPUT_BONUS_NUMBER);
-        int userInput = SystemConstant.NOTHING.getValue();
-        try {
-            userInput = InputView.readInt();
-        } catch (Exception e) {
-            OutputView.exceptionMessage(e);
-            createManual();
+        while (true) {
+            OutputView.printFrom(SystemMessage.INPUT_BONUS_NUMBER);
+            try {
+                return new BonusNumber(InputView.readInt());
+            } catch (Exception e) {
+                OutputView.exceptionMessage(e);
+            }
         }
-        return new BonusNumber(userInput);
     }
 
     private void validate(int number) {

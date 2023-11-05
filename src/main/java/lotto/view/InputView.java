@@ -16,11 +16,11 @@ public class InputView {
     }
 
     public static List<Integer> readIntegerList() {
-        Stream<String> userInput = Arrays.stream(
-                Console.readLine().split(SystemMessage.WINNING_NUMBER_SEPARATOR.getMessage()));
+        List<String> userInput = Arrays.stream(Console.readLine()
+                .split(SystemMessage.WINNING_NUMBER_SEPARATOR.getMessage())).toList();
         userInput.forEach(InputValidator::validate);
         System.out.println();
-        return userInput
+        return userInput.stream()
                 .map(Integer::valueOf)
                 .toList();
     }

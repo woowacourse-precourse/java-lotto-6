@@ -19,21 +19,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Rank calculateRank(Lotto winningLotto, int bonusNumber) {
-        int matchingNumberCount = getMatchingNumberCount(winningLotto);
-        boolean isBonusNumberMatch = isMatchBonusNumber(bonusNumber);
-
-        return Rank.findRankBy(matchingNumberCount, isBonusNumberMatch);
-    }
-
-    private int getMatchingNumberCount(Lotto winningLotto) {
+    public int getMatchingNumberCount(Lotto targetLotto) {
         return this.numbers.stream()
-                .filter(winningLotto.numbers::contains)
+                .filter(targetLotto.numbers::contains)
                 .toList()
                 .size();
     }
 
-    private boolean isMatchBonusNumber(int bonusNumber) {
+    public boolean isContainBonusNumber(int bonusNumber) {
         return this.numbers.contains(bonusNumber);
     }
 

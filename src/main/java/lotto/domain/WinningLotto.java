@@ -21,6 +21,13 @@ public class WinningLotto {
         return new WinningLotto(lotto, bonusNumber);
     }
 
+    public Rank calcuateWinningRank(Lotto purchaseLotto){
+        int matchingNumberCount = purchaseLotto.getMatchingNumberCount(this.lotto);
+        boolean isMatchBonusNumber = purchaseLotto.isContainBonusNumber(this.bonusNumber);
+
+        return Rank.findRankBy(matchingNumberCount, isMatchBonusNumber);
+    }
+
     private void validateRange(int bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_RANGE_LOTTO_NUMBER.getDesc());

@@ -6,7 +6,6 @@ import java.util.List;
 
 public class LottoStore {
     private static final int COUNT = 6;
-
     private final List<Lotto> lottoes = new ArrayList<>();
 
     public LottoStore(int totalLottoNumber) {

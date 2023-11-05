@@ -13,5 +13,4 @@ public enum LottoNumberRange {
     public int getValue() {
         return this.value;
     }
-
 }

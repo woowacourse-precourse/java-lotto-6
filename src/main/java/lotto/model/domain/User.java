@@ -32,5 +32,7 @@ public class User {
         return this.lottoRanks;
     }
 
-
+    public void increaseUserRank(int rankIdx) {
+        this.lottoRanks[rankIdx]+=1;
+    }
 }

@@ -37,5 +37,6 @@ public class LottoController {
 
         List<Integer> resultRecord = lottoService.getResultRecordOfLotto(winningLotteryNumber, bonusWinningLotteryNumber);
         outputView.printResultRecord(resultRecord);
+        System.out.println(Double.toString(lottoService.getProfitRate(resultRecord)));
     }
 }

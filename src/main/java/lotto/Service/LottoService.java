@@ -9,4 +9,5 @@ public interface LottoService {
     int getNumberOfLotto();
     List<Lotto> getLotto();
     List<Integer> getResultRecordOfLotto(Lotto winningLotteryNumber, int bonusNumber);
+    public double getProfitRate(List<Integer> resultRecord);
 }

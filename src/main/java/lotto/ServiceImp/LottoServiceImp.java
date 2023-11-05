@@ -79,4 +79,17 @@ public class LottoServiceImp implements LottoService {
 
         throw new OutOfRankingException("랭킹 안의 범위가 아닙니다");
     }
+
+    public double getProfitRate(List<Integer> resultRecord)
+    {
+        long acc = 0;
+        for (RecordConstant.NameOfRanking ranking : RecordConstant.NameOfRanking.values())
+        {
+            acc += ranking.getReward() * resultRecord.get(ranking.getIndex());
+        }
+
+        double divResult = acc / lottery.getNumberOfLotto();
+        double result = (double) Math.round(divResult * 100) / 100;
+        return result;
+    }
 }

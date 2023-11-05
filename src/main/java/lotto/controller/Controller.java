@@ -1,7 +1,8 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
-import lotto.domain.LottoMachine;
+import lotto.domain.LottoNumber;
+import lotto.service.LottoService;
 import lotto.service.PurchasingService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,7 +10,8 @@ import lotto.view.OutputView;
 public class Controller {
 
     private PurchasingService purchasingService = new PurchasingService();
-    private LottoMachine lottoMachine = new LottoMachine();
+    private LottoService lottoService = new LottoService();
+    private LottoNumber lottoNumber = new LottoNumber();
     private Buyer buyer;
 
     public void run() {
@@ -17,6 +19,7 @@ public class Controller {
      showPurchaseLotto();
      setWinningNumbers();
      setBonusNumber();
+     showWiningResult();
 
 
     }
@@ -31,10 +34,16 @@ public class Controller {
     }
 
     private void setWinningNumbers() {
-        lottoMachine.drawWiningNumbers(InputView.enterWinningNumbers());
+        lottoNumber.drawWiningNumbers(InputView.enterWinningNumbers());
     }
 
     private void setBonusNumber() {
-        lottoMachine.drawBonusNumber(InputView.enterBonusNumbers());
+        lottoNumber.drawBonusNumber(InputView.enterBonusNumbers());
+    }
+
+    private void showWiningResult() {
+        lottoService.compareLottoNumber(buyer, lottoNumber);
+        OutputView.printWiningWiningResult(lottoService);
+
     }
 }

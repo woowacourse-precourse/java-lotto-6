@@ -23,7 +23,9 @@ public final class Error {
     }
 
     public enum View {
-        NOT_NUMBER("숫자만 입력가능합니다.");
+        NOT_NUMBER("숫자만 입력가능합니다."),
+        CAN_NOT_OVERRIDE("지정한 값은 변경할 수 없습니다"),
+        WRONG_INPUT("잘못된 값 입력입니다.");
         private final String text;
 
         View(String text) {

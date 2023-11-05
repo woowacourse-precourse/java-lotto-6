@@ -5,6 +5,7 @@
     feat - [x] Controller 사용자 입력 기능을 호출하는 기능
     feat - [x] View 사용자 입력 기능(Console)
     feat - [x] Controller 입력된 문자열(금액) 저장 기능
+        test - [ ] 입력된 문자열이 정수로 변환 가능하지 않으면 IllegalArgumentException 발생 확인 기능
     feat - [ ] Model 저장된 금액이 정수로 변환 가능하지 않으면 IllegalArgumentException을 발생시키는 기능
     feat - [ ] Controller IllegalArgumentException이 발생하면 [ERROR]로 시작하는 View의 에러 메세지 출력 기능 호출 기능
     feat - [ ] View “[ERROR] 유효하지 않은 입력입니다. 재입력 부탁드립니다.” 예외 메세지 출력 기능

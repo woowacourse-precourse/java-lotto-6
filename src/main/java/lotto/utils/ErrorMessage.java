@@ -8,7 +8,10 @@ public enum ErrorMessage {
     INPUT_MONEY_NOT_INTEGER_ERROR("[ERROR] 정수만 입력 가능합니다."),
 
     // 로또 관련 에러
-    LOTTO_NUMBER_INVALID_ERROR("[ERROR] 로또 번호는 6개의 숫자여야 합니다.");
+    LOTTO_NUMBER_COUNT_INVALID_ERROR("[ERROR] 로또 번호는 6개의 숫자여야 합니다."),
+    LOTTO_NUMBER_RANGE_INVALID_ERROR("[ERROR] 로또 번호는 1~45 사이여야 합니다.."),
+    LOTTO_NUMBER_DUPLICATION_ERROR("[ERROR] 로또 번호는 중복될 수 없습니다.");
+
 
     private final String message;
 

@@ -24,6 +24,7 @@ public class Parser {
     }
 
     public static List<Integer> parseWinningNumbers(String input) {
+        Validator.validateLastComma(input);
         return parseStringToInteger(parseStringSplitComma(input));
     }
 

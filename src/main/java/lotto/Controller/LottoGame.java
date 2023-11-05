@@ -120,7 +120,6 @@ public class LottoGame {
         while (true) {
             try {
                 String input = InputView.requestWinningNumbers();
-                Validator.validateLastComma(input);
                 List<Integer> lottoWinningNumbers = Parser.parseWinningNumbers(input);
                 Validator.valiateDuplicateNums(lottoWinningNumbers);
                 Validator.validateSize(lottoWinningNumbers);

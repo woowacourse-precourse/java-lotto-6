@@ -6,8 +6,8 @@ import java.util.List;
 
 public class User {
     private static final int LOTTO_SIZE = 6;
-    private List<Lotto> userLottos;
-    private int lottoQuantity;
+    private final List<Lotto> userLottos;
+    private final int lottoQuantity;
 
     public User(List<Lotto> userLottos, int lottoQuantity) {
         this.userLottos = userLottos;

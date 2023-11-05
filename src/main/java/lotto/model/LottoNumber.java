@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import static lotto.constants.Error.RANGE_INVALID;
 import static lotto.constants.Rule.MAX_LOTTO;

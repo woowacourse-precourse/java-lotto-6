@@ -1,9 +1,9 @@
-package lotto.domain;
+package lotto.model;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class RankTest {
     @DisplayName("로또 당첨 랭킹 객체 생성을 테스트한다.")

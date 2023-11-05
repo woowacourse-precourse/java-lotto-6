@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import static lotto.constants.Error.DUPLICATE_INVALID;
 import static lotto.constants.Error.SIZE_INVALID;

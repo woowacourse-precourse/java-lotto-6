@@ -1,11 +1,11 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.Player;
-import lotto.domain.Prize;
-import lotto.domain.Rank;
-import lotto.domain.Result;
+import lotto.model.Lotto;
+import lotto.model.LottoNumber;
+import lotto.model.Player;
+import lotto.model.Prize;
+import lotto.model.Rank;
+import lotto.model.Result;
 import lotto.utils.Generator;
 import lotto.view.InputView;
 import lotto.view.OutputView;

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import static lotto.constants.Error.DIVIDE_INVALID;
 import static lotto.constants.Error.MINIMUM_INVALID;

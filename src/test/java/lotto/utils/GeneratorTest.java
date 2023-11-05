@@ -5,7 +5,7 @@ import static lotto.constants.Rule.MIN_LOTTO;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.domain.LottoNumber;
+import lotto.model.LottoNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

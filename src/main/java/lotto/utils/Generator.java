@@ -7,7 +7,7 @@ import static lotto.constants.Rule.MIN_LOTTO;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.domain.LottoNumber;
+import lotto.model.LottoNumber;
 
 public class Generator {
     public static List<LottoNumber> generateIntegerToLottoNumber(List<Integer> lottoNumbers) {

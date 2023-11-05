@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.domain.constant.ExceptionMessage.INVALID_RANGE_LOTTO_NUMBER;
@@ -9,9 +10,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        List<Integer> unmodifiableNumbers = Collections.unmodifiableList(numbers);
+        validate(unmodifiableNumbers);
 
-        this.numbers = numbers;
+        this.numbers = unmodifiableNumbers;
     }
 
     public int countingMatchNumbers(Lotto lotto) {

@@ -43,6 +43,8 @@ public class Prizes {
     }
 
     public int calculateTotalPrize() {
-        return 0;
+        return Arrays.stream(Prize.values())
+                .mapToInt(prize -> calculateTotalPrizeForRank(prize))
+                .sum();
     }
 }

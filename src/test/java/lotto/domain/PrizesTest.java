@@ -29,7 +29,7 @@ class PrizesTest {
         assertThat(prizeAmount).isEqualTo(expectedAmount);
     }
 
-    @DisplayName("등수별 총 상금 계산하는 기능 테스트")
+    @DisplayName("등수별 총 상금을 계산하는 기능 테스트")
     @Test
     void calculateTotalPrizeForRank() {
         Prize prize = Prize.FIFTH_PLACE;
@@ -42,7 +42,19 @@ class PrizesTest {
         assertThat(totalPrizeForRank).isEqualTo(expectedPrize);
     }
 
+    @DisplayName("총 상금을 계산하는 기능 테스트")
     @Test
     void calculateTotalPrize() {
+        Prize prize = Prize.FIFTH_PLACE;
+        prizes.increasePrizeAmount(prize);
+        prizes.increasePrizeAmount(prize);
+
+        prize = Prize.FIRST_PLACE;
+        prizes.increasePrizeAmount(prize);
+        int expectedTotalPrize = 2_000_010_000;
+
+        int totalPrize = prizes.calculateTotalPrize();
+
+        assertThat(totalPrize).isEqualTo(expectedTotalPrize);
     }
 }

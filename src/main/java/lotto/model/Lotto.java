@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static lotto.utility.Constants.LOTTO_LENGTH;
 

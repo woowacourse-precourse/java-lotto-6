@@ -9,6 +9,7 @@ public class Constants {
 
     public static final int ZERO = 0;
 
+    public static final int NON_REWARD = 0;
     public static final int FIRST_PRIZE_MONEY = 2000000000;
     public static final int SECOND_PRIZE_MONEY = 30000000;
     public static final int THIRD_PRIZE_MONEY = 1500000;

@@ -8,7 +8,7 @@ public class PrizeManager {
     private List<Integer> prizes = new ArrayList<>();
     private final int TICKET_PRICE = 1000;
 
-    public void checkTicketAndAddPrizes(List<Integer> points) {
+    public void calculatePrizesByPoints(List<Integer> points) {
         for (int point : points) {
             int prize = Rank.getPrizeByPoint(point);
             prizes.add(prize);

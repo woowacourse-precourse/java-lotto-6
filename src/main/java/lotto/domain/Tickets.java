@@ -24,13 +24,13 @@ public class Tickets {
         return lotto.toString();
     }
 
-    public List<Integer> getMatchesForAllTickets(List<Integer> winningNumber) {
-        List<Integer> matchesList = new ArrayList<>();
+    public List<Integer> getPointsForAllTickets(List<Integer> winningNumber) {
+        List<Integer> points = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            int matches = lotto.getMatches(winningNumber);
-            matchesList.add(matches);
+            int point = lotto.getPoint(winningNumber);
+            points.add(point);
         }
-        return matchesList;
+        return points;
     }
 
 

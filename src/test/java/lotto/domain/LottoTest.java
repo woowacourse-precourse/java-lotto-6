@@ -51,7 +51,7 @@ class LottoTest {
         // 일치 점수 구하기
         List<Integer> matchesList = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            int matches = lotto.getMatches(winningNumbers);
+            int matches = lotto.getPoint(winningNumbers);
             matchesList.add(matches);
         }
 

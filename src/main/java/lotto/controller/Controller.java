@@ -70,8 +70,8 @@ public class Controller {
     }
 
     private void displayGameResult(String winning, String bonus) {
-        List<Integer> points = lotto.checkTicketPoints(winning, bonus);
-        prize.checkTicketAndAddPrizes(points);
+        List<Integer> points = lotto.getTicketPoint(winning, bonus);
+        prize.calculatePrizesByPoints(points);
 
         List<Integer> counts = prize.getPrizeCounts();
         announce.displayRankCounts(counts);

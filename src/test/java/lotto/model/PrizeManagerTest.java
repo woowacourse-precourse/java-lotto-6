@@ -22,7 +22,7 @@ class PrizeManagerTest {
         List<Integer> expectedPrizes = new ArrayList<>(List.of(2000000000, 30000000, 1500000, 50000, 5000));
 
         // 기능 실행 및 결과 저장
-        prize.checkTicketAndAddPrizes(points);
+        prize.calculatePrizesByPoints(points);
         List<Integer> prizes = prize.getPrizes();
 
         // 일치 여부 확인
@@ -38,7 +38,7 @@ class PrizeManagerTest {
 
         // 상금 목록 생성
         List<Integer> points = new ArrayList<>(List.of(7, 6, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3));
-        prize.checkTicketAndAddPrizes(points);
+        prize.calculatePrizesByPoints(points);
 
         // 예상 출력값 저장
         List<Integer> expectedPrizeCounts = new ArrayList<>(List.of(1, 2, 3, 4, 5));
@@ -58,7 +58,7 @@ class PrizeManagerTest {
 
         // 상금 생성
         List<Integer> points = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0, 0, 3));
-        prize.checkTicketAndAddPrizes(points);
+        prize.calculatePrizesByPoints(points);
 
         // 예상 출력값 저장
         double expectedRatio = 62.5;

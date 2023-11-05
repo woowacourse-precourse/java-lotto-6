@@ -22,25 +22,25 @@ public class Lotto {
         return string;
     }
 
-    public int getMatches(List<Integer> winningNumber) {
-        int matches = compareWithWinningNumber(winningNumber);
-
-        return matches;
+    public int getPoint(List<Integer> winningNumber) {
+        int point = compareWithWinningNumber(winningNumber);
+        
+        return point;
     }
 
 
     private int compareWithWinningNumber(List<Integer> winningNumber) {
-        int matches = 0;
+        int point = 0;
         for (int i = 0; i < winningNumber.size(); i++) {
             int target = winningNumber.get(i);
             if (numbers.contains(target)) {
-                matches++;
+                point++;
             }
-            if (i < 6 && matches == 6) {
-                matches++;
+            if (i < 6 && point == 6) {
+                point++;
             }
         }
-        return matches;
+        return point;
     }
 
     private void validate(List<Integer> numbers) {

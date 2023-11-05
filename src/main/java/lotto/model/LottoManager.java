@@ -21,25 +21,25 @@ public class LottoManager {
 
 
     public List<String> getTickets() {
-        List<String> list = new ArrayList<>();
+        List<String> ticketList = new ArrayList<>();
 
         for (int i = 0; i < tickets.getTicketsCount(); i++) {
             String ticket = tickets.getTicketOfIndex(i);
-            list.add(ticket);
+            ticketList.add(ticket);
         }
 
-        return list;
+        return ticketList;
     }
 
-    public List<Integer> checkTicketPoints(String winning, String bonus) {
-        List<Integer> winningNumber = winningNumbersToIntegerList(winning, bonus);
-        List<Integer> points = tickets.getMatchesForAllTickets(winningNumber);
+    public List<Integer> getTicketPoint(String winning, String bonus) {
+        List<Integer> winningNumber = parseWinningNumbersToIntegerList(winning, bonus);
+        List<Integer> points = tickets.getPointsForAllTickets(winningNumber);
 
         return points;
     }
 
 
-    private List<Integer> winningNumbersToIntegerList(String winning, String bonus) {
+    private List<Integer> parseWinningNumbersToIntegerList(String winning, String bonus) {
         List<Integer> numbers = Arrays
                 .stream(winning.split(","))
                 .map(Integer::parseInt)

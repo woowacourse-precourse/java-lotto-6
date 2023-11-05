@@ -52,3 +52,17 @@ class MyLotto{
         }
     }
 }
+
+class WinnigNum {
+    public static List<Integer> InputLottoNum() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningnum = Console.readLine();
+        String[] num = winningnum.split(",");
+        List<Integer> num_lst = new ArrayList<>();
+        for (String str : num) {
+            num_lst.add(Integer.parseInt(str.trim()));
+        }
+        return num_lst;
+    }
+}

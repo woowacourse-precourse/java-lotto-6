@@ -15,4 +15,10 @@ public class OutputView {
     public static void printPurchaseMsg(int lottoCount) {
         System.out.printf(PURCHASE_MSG, lottoCount);
     }
+    private static void printLotto(int[] lotto) {
+        System.out.println("[" + String.join(", ",
+                java.util.Arrays.stream(lotto)
+                        .mapToObj(String::valueOf)
+                        .toArray(String[]::new)) + "]");
+    }
 }

@@ -38,5 +38,16 @@ public class Lotto {
 
     }
 
+    @Override
+    public String toString() {
+        return "[" +
+                numbers.get(0) + ", " +
+                numbers.get(1) + ", " +
+                numbers.get(2) + ", " +
+                numbers.get(3) + ", " +
+                numbers.get(4) + ", " +
+                numbers.get(5) +
+                "]";
+    }
 
 }

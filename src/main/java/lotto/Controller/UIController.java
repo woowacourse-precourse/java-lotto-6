@@ -57,5 +57,6 @@ public class UIController {
 
     public static void makeLottoStatus(List<Lotto> lottos) {
         UIView.printLottoCount(lottos);
+        UIView.printLottoNumbers(lottos);
     }
 }

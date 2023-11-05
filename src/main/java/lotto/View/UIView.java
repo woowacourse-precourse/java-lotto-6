@@ -16,4 +16,10 @@ public class UIView {
         System.out.println(lottos.size() + PURCHASE_ANOUNCE);
     }
 
+    public static void printLottoNumbers(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
+    }
+
 }

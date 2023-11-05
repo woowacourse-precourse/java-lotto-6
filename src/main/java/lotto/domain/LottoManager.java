@@ -13,10 +13,9 @@ public class LottoManager {
         List<Lotto> sortedLottos = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
-            List<Integer> sortedNumber = new ArrayList<>(lotto.getNumbers());
-            Collections.sort(sortedNumber);
-            Lotto sortedLotto = new Lotto(sortedNumber);
-            sortedLottos.add(sortedLotto);
+            List<Integer> copiedNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(copiedNumbers);
+            sortedLottos.add(new Lotto(copiedNumbers));
         }
 
         return sortedLottos;

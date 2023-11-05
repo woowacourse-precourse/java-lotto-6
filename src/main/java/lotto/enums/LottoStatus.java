@@ -15,6 +15,18 @@ public enum LottoStatus {
         this.prize = prize;
     }
 
+    public static LottoStatus getLottoStatus(int correctCount, boolean hasBonusNumber) {
+        if (correctCount == LottoStatus.SECOND.correctCount && !hasBonusNumber) {
+            return LottoStatus.THIRD;
+        }
+        for (LottoStatus lottoStatus : LottoStatus.values()) {
+            if (lottoStatus.correctCount == correctCount) {
+                return lottoStatus;
+            }
+        }
+        return LottoStatus.SIXTH;
+    }
+
     public int getCorrectCount() {
         return correctCount;
     }

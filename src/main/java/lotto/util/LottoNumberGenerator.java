@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class LottoNumberGenerator {
-    static List<Integer> generate() {
+    public static List<Integer> generate() {
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getNum(), MAX_NUMBER.getNum(), TOTAL_PICK.getNum());
     }
 }

@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.util.Map;
+
 import lotto.domain.Lotto;
 import lotto.service.LottoPurchase;
 import lotto.service.LottoStatistics;
@@ -23,6 +24,7 @@ public class Application {
 
         List<Lotto> lottos = randomNumberGenerator.generateRandomNumber(userPurchase);
         Map<Lotto, Integer> winningLotto = winningNumberInput.inputWinningNumbers();
-        lottoStatistics.calculateWinRate(userPurchase,lottos,winningLotto);
+        String winrate = lottoStatistics.calculateWinRate(userPurchase, lottos, winningLotto);
+
     }
 }

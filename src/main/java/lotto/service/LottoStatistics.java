@@ -1,60 +1,84 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
+import lotto.enumClass.Result;
+
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.Lotto;
-import lotto.enumClass.Result;
 
 public class LottoStatistics {
 
-    public void calculateWinRate(int userPurchase, List<Lotto> userLottos, Map<Lotto, Integer> winNumber) {
-        Map<Result, Integer> result = new EnumMap<>(Result.class);
-        for (Result result1 : Result.values()) {
-            result.put(result1, 0);
-        }
+    public String calculateWinRate(int userPurchase, List<Lotto> userLottos, Map<Lotto, Integer> winNumber) {
+        Map<Result, Integer> resultPrize = crateResultPrize();
+        Lotto winLotto = winNumber.keySet().iterator().next();
+        int bonusNumber = winNumber.get(winLotto);
 
         for (Lotto lotto : userLottos) {
-            Lotto winLotto = winNumber.keySet().iterator().next();
-            int bonusNumber = winNumber.get(winLotto);
-            lotto.getNumbers().removeAll(winLotto.getNumbers());
-            int[] prizeResult = new int[2];
-            if (lotto.getNumbers().size() <4) {
-                prizeResult = new int[]{lotto.getNumbers().size(), 0};
-            }
-            if (lotto.getNumbers().size() == 1 && lotto.getNumbers().contains(bonusNumber)) {
-                prizeResult[1] = 1;
-            }
+            calculatePrize(resultPrize, lotto, winLotto, bonusNumber);
+        }
+//        resultPrize.forEach((key, value) -> System.out.println(key + "," + value));
 
-            for (Result result1 : Result.values()) {
-                if (Arrays.equals(result1.getPrize(), prizeResult)) {
-                    result.put(result1, +1);
-                }
+        long totalPrize = calculateTotalPrize(resultPrize);
+        return calculateWinningPercentage(userPurchase, totalPrize);
+    }
+
+    private String calculateWinningPercentage(int userPurchase, long totalPrize) {
+        double div = ((double) totalPrize / (userPurchase * 1000)) * 100.0;
+        double roundWinRate = Math.round(div * 100.0) / 100.0;
+        if (roundWinRate == (int) roundWinRate) {
+            return String.format("%d", (int) roundWinRate);
+        }
+        return formatDecimal(roundWinRate);
+    }
+
+    private String formatDecimal(double winrate) {
+        if (winrate != (int) winrate) {
+            String result = Double.toString(winrate);
+            result = result.replaceAll("0*$", "");
+            return result;
+        }
+        return Double.toString(winrate);
+    }
+
+    private Map<Result, Integer> crateResultPrize() {
+        Map<Result, Integer> resultPrize = new EnumMap<>(Result.class);
+        for (Result result : Result.values()) {
+            resultPrize.put(result, 0);
+        }
+        return resultPrize;
+    }
+
+    private int[] cratePrize(Lotto lotto, int bonusNumber) {
+        int[] prizeResult = new int[]{lotto.getNumbers().size(), 0};
+        if (lotto.getNumbers().size() == 1 && lotto.getNumbers().contains(bonusNumber)) {
+            prizeResult[1] = 1;
+        }
+        return prizeResult;
+    }
+
+    private void calculatePrize(Map<Result, Integer> resultPrize, Lotto lotto, Lotto winLotto, int bonusNumber) {
+        lotto.getNumbers().removeAll(winLotto.getNumbers());
+        int[] prizeResult = cratePrize(lotto, bonusNumber);
+        updateResult(resultPrize, prizeResult);
+    }
+
+    private void updateResult(Map<Result, Integer> resultPrize, int[] prizeResult) {
+        for (Result result : Result.values()) {
+            if (Arrays.equals(result.getPrize(), prizeResult)) {
+                resultPrize.put(result, resultPrize.get(result) + 1);
             }
         }
+    }
 
-        result.forEach((key, value) -> System.out.println(key + "," + value));
-
+    private long calculateTotalPrize(Map<Result, Integer> resultPrize) {
         long prize = 0;
-
-        for (Map.Entry<Result, Integer> entry : result.entrySet()) {
+        for (Map.Entry<Result, Integer> entry : resultPrize.entrySet()) {
             if (entry.getValue() > 0) {
                 prize += (entry.getKey().getMoney()) * entry.getValue();
             }
         }
-
-        double div =  ( (double) prize / (userPurchase * 1000))*100;
-
-        double realResult = Math.round(div * 100.0) / 100.0;
-
-        if(realResult == (int) realResult){
-            System.out.printf("%.0f",realResult);
-        }
-        if(realResult != (int) realResult){
-            System.out.printf("%.2f",realResult);
-        }
-
-        System.out.println(realResult);
+        return prize;
     }
 }

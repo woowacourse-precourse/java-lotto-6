@@ -10,7 +10,14 @@ public class CompareBonusNumber {
         this.lotto = lotto;
     }
 
-    public boolean isThereBonus() {
-        return lotto.isContainNumber(BonusNumbers.number);
+    public String isThereBonus() {
+        if (lotto.isContainNumber(BonusNumbers.number)) {
+            return "2nd";
+        } else if (!lotto.isContainNumber(BonusNumbers.number)) {
+            return "3rd";
+        }
+        return null;
     }
+
+
 }

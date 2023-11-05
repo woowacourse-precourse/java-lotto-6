@@ -5,15 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomNumbers {
-    public static List<Integer> numbers = new ArrayList<>();
 
-    public void draw() {
+    public static List<Integer> draw() {
+        List<Integer> numbers = new ArrayList<>();
         while(numbers.size() < 6) { // 상수로 치환 가능
             numbers.add(randomNumberPick());
         }
+        return numbers;
     }
 
-    public int randomNumberPick() {
+    public static int randomNumberPick() {
         return Randoms.pickNumberInRange(1, 45);    // 상수로 치환 가능.
     }
 }

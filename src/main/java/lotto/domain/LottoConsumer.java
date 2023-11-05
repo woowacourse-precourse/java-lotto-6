@@ -17,4 +17,5 @@ public class LottoConsumer {
     public List<Lotto> getIssuedLottos() {
         return issuedLottos;
     }
+
 }

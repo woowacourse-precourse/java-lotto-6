@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     public void showErrorReason(String message) {
-        System.out.println(new StringBuilder("\n").append(message));
+        System.out.println(message);
     }
 
     public void enterYourNumber() {

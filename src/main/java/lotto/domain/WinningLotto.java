@@ -1,13 +1,15 @@
 package lotto.domain;
 
 import lotto.constant.LottoRank;
+import java.util.List;
 
 public class WinningLotto {
     private final Lotto lotto;
+
     private int bonusNumber;
 
-    public WinningLotto(Lotto lotto) {
-        this.lotto = lotto;
+    public WinningLotto(List<Integer> numbers) {
+        this.lotto = new Lotto(numbers);
     }
 
     public void setBonusNumber(int bonusNumber) {

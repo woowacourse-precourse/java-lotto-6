@@ -124,7 +124,6 @@ class WinningLottoTest {
     }
 
     private void init(List<Integer> numbers) {
-        Lotto lotto = new Lotto(numbers);
-        winningLotto = new WinningLotto(lotto);
+        winningLotto = new WinningLotto(numbers);
     }
 }

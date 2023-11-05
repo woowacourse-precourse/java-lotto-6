@@ -44,7 +44,7 @@ public class LottoResult {
 
             // 4개 번호 일치
             if (matchCount == 4) {
-                resultsCount.put("4개 번호 일치 (50,000원)", resultsCount.get("4개 번호 일치 (50,000원)") + 1);
+                resultsCount.put("4개 일치 (50,000원)", resultsCount.get("4개 일치 (50,000원)") + 1);
             }
 
             // 3개 번호 일치

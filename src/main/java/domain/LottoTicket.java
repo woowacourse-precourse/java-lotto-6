@@ -15,11 +15,14 @@ public class LottoTicket {
     private int validateNumber(String inputValue) {
         try {
             int parseIntValue = Integer.parseInt(inputValue);
+            if(parseIntValue<=0){
+                // 입력 값이 정수가 아닌 경우 예외를 발생시킴
+                throw new LottoException(LottoException.ERROR_NOT_A_NATURAL_NUMBER);
+            }
             validateAmount(parseIntValue);
             return parseIntValue / 1000;
         } catch (NumberFormatException e) {
-            // 입력 값이 정수가 아닌 경우 예외를 발생시킴
-            throw new LottoException(LottoException.ERROR_NOT_A_NATURAL_NUMBER);
+            throw new LottoException(LottoException.ERROR_INVALID_NUMBER_FORMAT);
         }
     }
 

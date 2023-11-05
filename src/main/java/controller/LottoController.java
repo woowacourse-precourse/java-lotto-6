@@ -31,4 +31,9 @@ public class LottoController {
         LottoResult lottoResult = new LottoResult();
         return lottoResult.checkWinnersCountService(totalLottoTickets, winningNumber,bonusNumber);
     }
+
+    public float totalPrizeMoney(Map<String, Integer> resultsCount, int inputMoney) {
+        TotalPrizeMoney totalPrizeMoney = new TotalPrizeMoney();
+        return totalPrizeMoney.totalPrizeMoneyService(resultsCount,inputMoney);
+    }
 }

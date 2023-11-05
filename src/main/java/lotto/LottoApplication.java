@@ -12,7 +12,6 @@ public class LottoApplication {
     private static int LOTTO_PRICE = 1000;
     private int[] matchingNumbersCounter;
     private boolean bonusMatch;
-    private boolean[] rankingCounter = new boolean[6]; // 등수 결정 index 0은 사용하지 않음
 
     void execute() {
         int receivedAmount = getReceivedAmount();
@@ -30,7 +29,8 @@ public class LottoApplication {
 
         matchingNumbersCounter = new int[getNumberOfLotto(receivedAmount)];
         List<Result> results = compareTicketAndLottos(ticket, createdLottos);
-//        Output.printWinningStatistic(results);
+        Output.printWinningStatistic(getRankingCounter(results));
+
 //        calculatePrize();
     }
 
@@ -92,4 +92,13 @@ public class LottoApplication {
         return results;
     }
 
+    public int[] getRankingCounter(List<Result> results) {
+        int[] rankingCounter = new int[6]; // index 0은 사용 안 함
+
+        for (Result result: results) {
+            rankingCounter[result.getRanking()]++;
+        }
+
+        return rankingCounter;
+    }
 }

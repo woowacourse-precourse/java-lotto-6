@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 import lotto.constant.NumberConstant;
 
@@ -29,6 +30,11 @@ public class Lotteries {
                 NumberConstant.LOTTO_MAX_NUMBER.getNumber(),
                 NumberConstant.LOTTO_COUNT.getNumber()
         );
+        Collections.sort(randomNumbers);
         return randomNumbers;
+    }
+
+    public List<Lotto> getLotteries() {
+        return lotteries;
     }
 }

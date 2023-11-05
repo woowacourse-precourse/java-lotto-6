@@ -24,15 +24,16 @@ public class GameMainController {
 
     private void startGame() {
         String purchaseAmount = inputView.inputPurchaseAmount();
-        String winningNumber = inputView.inputWinningNumber();
-        String bonusNumber = inputView.inputBonusNumber();
         gameService.createPurchaseAmount(purchaseAmount);
-        gameService.createWinningLotto(winningNumber, bonusNumber);
+        gameService.createLotteries();
         outputView.printPurchaseAmount(purchaseAmount);
+        outputView.printLottoNumbers(gameService.printLottoNumbers());
     }
 
     private void playGame() {
-
+        String winningNumber = inputView.inputWinningNumber();
+        String bonusNumber = inputView.inputBonusNumber();
+        gameService.createWinningLotto(winningNumber, bonusNumber);
     }
 
     private void stopGame() {

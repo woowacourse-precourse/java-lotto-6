@@ -4,7 +4,7 @@ import static lotto.message.ErrorMessage.INVALID_COUNT_FORMAT;
 
 import lotto.message.ErrorMessage;
 
-public class ParseIntException extends IllegalArgumentException {
+public class ParseIntException extends UserInputException {
 
     public ParseIntException() {
     }

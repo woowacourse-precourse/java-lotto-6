@@ -41,11 +41,19 @@ public class NumberGenerator {
         return bonusNumber;
     }
 
-    public Integer createAmountFromConsole(String unprocessedAmount) {
+    public Integer createAmountToQuantity(String unprocessedAmount){
+        Integer amountFromConsole = this.createAmountFromConsole(unprocessedAmount);
+        return this.createAmountToQuantity(amountFromConsole);
+    }
+
+    private Integer createAmountFromConsole(String unprocessedAmount) {
         commonValidate(unprocessedAmount);
         Integer amount = Integer.valueOf(unprocessedAmount);
         this.validateMinimumAmount(amount);
         return amount;
+    }
+    private Integer createAmountToQuantity(Integer amount){
+        return amount/MIN_VALUE.getAmount();
     }
 
     private void commonValidate(String unprocessedNumbers) {

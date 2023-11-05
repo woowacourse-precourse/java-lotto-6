@@ -46,11 +46,12 @@ public class OutputService {
     }
 
     private static void printLottoResult(Map<MatchResult, Integer> result) {
-        System.out.println(THREE_MATCH_RESULT_MESSAGE + result.get(THREE) + MATCH_RESULT_UNIT_STRING);
-        System.out.println(FOUR_MATCH_RESULT_MESSAGE + result.get(FOUR) + MATCH_RESULT_UNIT_STRING);
-        System.out.println(FIVE_MATCH_RESULT_MESSAGE + result.get(FIVE) + MATCH_RESULT_UNIT_STRING);
-        System.out.println(BONUS_MATCH_RESULT_MESSAGE + result.get(BONUS) + MATCH_RESULT_UNIT_STRING);
-        System.out.println(SIX__MATCH_RESULT_MESSAGE + result.get(SIX) + MATCH_RESULT_UNIT_STRING);
+        result.keySet().forEach(matchResult -> {
+            String message = matchResult.getMessage();
+            int num = result.get(matchResult);
+
+            System.out.println(message + num + MATCH_RESULT_UNIT_STRING);
+        });
     }
 
     private static void printMargin(double margin) {

@@ -28,4 +28,11 @@ public class OutputView {
         wallet.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
+    public void printWinningLottoInputMessage() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public void printBonusNumberInputMessage() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
 }

@@ -5,8 +5,11 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoWallet;
 import lotto.domain.LottoWalletGenerator;
 import lotto.domain.Money;
+import lotto.domain.WinningLotto;
+import lotto.view.BonusNumberInputView;
 import lotto.view.MoneyInputView;
 import lotto.view.OutputView;
+import lotto.view.LottoInputView;
 
 public class LottoController {
     private final OutputView outputView;
@@ -18,6 +21,8 @@ public class LottoController {
     public void start() {
         Money money = getMoney();
         LottoWallet lottoWallet = buyLotto(money.getTicket());
+        WinningLotto winningLotto = getWinningLotto();
+
     }
 
     private Money getMoney() {
@@ -40,4 +45,34 @@ public class LottoController {
         outputView.printLottoList(wallet);
         return new LottoWallet(wallet);
     }
+
+    private WinningLotto getWinningLotto() {
+        BonusNumberInputView bonusNumberInputView = new BonusNumberInputView();
+        outputView.println();
+        Lotto lotto = getLotto();
+        while (true) {
+            try {
+                outputView.printBonusNumberInputMessage();
+                Integer bonusNumber = bonusNumberInputView.readBonusNumberInput();
+                return new WinningLotto(lotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto getLotto() {
+        LottoInputView LottoInputView = new LottoInputView();
+        outputView.println();
+        while (true) {
+            try {
+                outputView.printWinningLottoInputMessage();
+                List<Integer> winningLotto = LottoInputView.readLottoInput();
+                return new Lotto(winningLotto);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
 }

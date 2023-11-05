@@ -16,5 +16,6 @@ public class LottoController {
         PurchasePrice purchasePrice = PurchasePrice.from(inputView.getPurchaseAmount());
         Lottos lottos = Lottos.of(purchasePrice, new RandomUniqueListGenerator());
         LottoOwner lottoOwner = LottoOwner.of(purchasePrice, lottos);
+        outputView.printLottosInfo(lottoOwner.getLottoInfos());
     }
 }

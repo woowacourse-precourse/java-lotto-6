@@ -1,28 +1,40 @@
 package lotto.domain.lotto_policy;
 
+import static lotto.domain.lotto_prize.FixedLottoPrizeStandard.FIVE_NUMBER_WITH_BONUS;
+import static lotto.domain.lotto_prize.FixedLottoPrizeStandard.values;
+
+import java.util.Arrays;
 import java.util.List;
-import lotto.domain.prize_calculator.PrizeCalculator;
+import lotto.domain.lotto_prize.FixedLottoPrizeStandard;
 
-public class FixedLottoWinningPolicy implements LottoWinningPolicy {
-    private final PrizeCalculator prizeCalculator;
+public class FixedLottoWinningPolicy {
+    private final Integer bonusNumber;
+    private final List<FixedLottoPrizeStandard> fixedLottoPrizeStandards;
 
-    public FixedLottoWinningPolicy(PrizeCalculator prizeCalculator) {
-        this.prizeCalculator = prizeCalculator;
+    public FixedLottoWinningPolicy(Integer bonusNumber) {
+        this.bonusNumber = bonusNumber;
+        fixedLottoPrizeStandards = Arrays.stream(values()).toList();
     }
 
-    @Override
-    public Integer getWinningPrize(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-        Long matchCount = getMatchCount(lottoNumbers, winningNumbers);
-        return getPrize(matchCount);
+    public List<FixedLottoPrizeStandard> getWinningResult(List<Integer> lottoNumbers, List<Integer> winningNumbers){
+        return fixedLottoPrizeStandards.stream()
+                .filter(prizeStandard -> isWinning(prizeStandard, lottoNumbers, winningNumbers))
+                .toList();
     }
 
-    private Long getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers){
-        return lottoNumbers.stream()
+    private Boolean isWinning(FixedLottoPrizeStandard prizeStandard, List<Integer> lottoNumbers, List<Integer> winningNumbers){
+        Long matchCount = lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
+
+        if(prizeStandard.equals(FIVE_NUMBER_WITH_BONUS) && matchCount.equals(FIVE_NUMBER_WITH_BONUS.getMatchCount())){
+            return true;
+        }
+
+        return matchCount >= prizeStandard.getMatchCount();
     }
 
-    private Integer getPrize(Long matchCount){
-        return prizeCalculator.calculatePrize(matchCount);
+    public List<FixedLottoPrizeStandard> getFixedLottoPrizeStandards() {
+        return fixedLottoPrizeStandards;
     }
 }

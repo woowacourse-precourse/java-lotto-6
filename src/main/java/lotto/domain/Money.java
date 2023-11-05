@@ -6,7 +6,7 @@ import lotto.exception.IndivisibleByUnitException;
 public class Money {
     private static final int UNIT = 1000;
     private static final int ZERO = 0;
-    private int money;
+    private final int money;
     public Money(int money) {
         validateMoney(money);
         this.money = money;

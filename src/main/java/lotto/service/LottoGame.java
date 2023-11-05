@@ -30,14 +30,10 @@ public class LottoGame {
     }
 
     private double getRateOfReturn() {
-        double rateOfReturn = 0;
-
         int input = lottoStore.getMoney();
         long totalPrize = getTotalPrize();
 
-        rateOfReturn = ((double) totalPrize) / input * 100;
-
-        return rateOfReturn;
+        return ((double) totalPrize) / input * 100;
     }
 
     private long getTotalPrize() {

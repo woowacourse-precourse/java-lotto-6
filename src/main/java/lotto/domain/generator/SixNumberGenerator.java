@@ -10,7 +10,7 @@ public final class SixNumberGenerator {
     private SixNumberGenerator() {
     }
 
-    public static List<Integer> getRandomSixNumbers() {
+    public static List<Integer> run() {
         return Randoms.pickUniqueNumbersInRange(RegularConstant.START_OF_NUMBER_RANGE, RegularConstant.END_OF_NUMBER_RANGE, RegularConstant.COUNT_OF_NUMBERS_CAN_HAVE);
     }
 }

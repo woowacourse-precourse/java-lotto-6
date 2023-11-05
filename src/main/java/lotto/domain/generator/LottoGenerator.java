@@ -16,7 +16,7 @@ public class LottoGenerator {
 
     private Lotto issueLotto() {
         try {
-            Lotto lotto = new Lotto(SixNumberGenerator.getRandomSixNumbers());
+            Lotto lotto = new Lotto(SixNumberGenerator.run());
 
             return lotto;
         } catch (IllegalArgumentException e) {

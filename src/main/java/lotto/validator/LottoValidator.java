@@ -6,6 +6,8 @@ import lotto.domain.Lotto;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.domain.ErrorMessage.*;
+
 public class LottoValidator {
 
     private static final String NUMBER_REGEX = "^[0-9]+$";
@@ -36,6 +38,16 @@ public class LottoValidator {
     public static void validateNumberSeparate(String[] numbers) {
         for (String number : numbers) {
             validateNumbersType(number);
+        }
+    }
+
+    public static void validateDuplicateNumber(Lotto lotto){
+        boolean isDuplicate = lotto.getLotto().stream()
+                .distinct()
+                .count() != lotto.getLotto().size();
+
+        if (isDuplicate) {
+            throw new NumberFormatException(LOTTO_MUST_CONSIST_OF_NUMBERS);
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -17,4 +19,16 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    /**
+     * 로또를 오른 차순으로 정리
+     */
+    public List<Integer> organizeLotto() {
+        List<Integer> organizeLotto = new ArrayList<>(this.numbers);
+
+        Collections.sort(organizeLotto);
+
+        return organizeLotto;
+    }
+
 }

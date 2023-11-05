@@ -25,7 +25,7 @@ public class LottoPublisher {
     }
 
     private List<Integer> pickLottoNumbers() {
-        return this.randomNumberPicker.pickSixNumbersWithNotDuplicated(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+        return this.randomNumberPicker.pickSixUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
     }
 
 }

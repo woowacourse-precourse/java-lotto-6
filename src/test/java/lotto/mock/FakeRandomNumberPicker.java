@@ -12,7 +12,7 @@ public class FakeRandomNumberPicker implements RandomNumberPicker {
     }
 
     @Override
-    public List<Integer> pickSixNumbersWithNotDuplicated(int startInclusive, int endInclusive) {
+    public List<Integer> pickSixUniqueNumbersInRange(int startInclusive, int endInclusive) {
         return this.numbers;
     }
 

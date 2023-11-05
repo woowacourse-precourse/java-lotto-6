@@ -17,6 +17,7 @@ public class WinningCheckTest {
     @DisplayName("1등부터 6등을 한 번씩 했을 때 결과랑 일치하는 지 테스트")
     void 당첨_확인_기능_테스트() {
         // given
+        Payment payment = new Payment(5000);
         WinningNumber winningNumber = WinningNumber.create(Arrays.asList(1, 2, 3, 4, 5, 6)); //1등 번호
         BonusNumber bonusNumber = BonusNumber.create(7); //보너스 번호
         ResultNumber.create(winningNumber, bonusNumber);
@@ -26,8 +27,7 @@ public class WinningCheckTest {
         Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 39, 40)); //4등
         Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 38, 39, 40)); //5등
         List<Lotto> lottoList = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5);
-
-        User user = new User(5000, lottoList);
+        User user = new User(payment, lottoList);
         // when
         GameUtility.checkLottoWinning(user);
 //            // then

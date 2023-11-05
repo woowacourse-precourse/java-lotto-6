@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PurchaseAmountTest {
     @Test
@@ -12,5 +13,32 @@ public class PurchaseAmountTest {
         String amount = "2000";
         PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
         assertThat(purchaseAmount.getAmount()).isEqualTo(2000);
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액 예외 - '\n'이 입력된 경우")
+    void receiveEnterAmountTest() {
+        String amount = "\n";
+
+        assertThatThrownBy(() ->  new PurchaseAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액 예외 - 아무것도 입력되지 않은 경우")
+    void receiveEmptyAmountTest() {
+        String amount = "";
+
+        assertThatThrownBy(() ->  new PurchaseAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액 예외 - 공백만 입력된 경우")
+    void receiveSpaceAmountTest() {
+        String amount = "  ";
+
+        assertThatThrownBy(() -> new PurchaseAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

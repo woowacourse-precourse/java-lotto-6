@@ -28,16 +28,6 @@ public class ResultService {
             cnt = winningLottoRepo.countMatchingNumber(buyLotto);
             lotteryTracker.matchingNumber(cnt,buyLotto,bonusNum);
         }
-        printResult(lotteryTracker);
-    }
-
-    private static void printResult(LotteryTracker lotteryTracker) {
-
-        RankingRepository.create();
-
-        //등수별 결과 출력
-        for(int rank=5; rank>0;rank--){
-            View.result(RankingRepository.getPrizeBy(rank), lotteryTracker.countLottoIn(rank));
-        }
+        lotteryTracker.printResult();
     }
 }

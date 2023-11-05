@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.utils.Constants;
 
 public class LottoMatcher {
 
@@ -35,14 +36,15 @@ public class LottoMatcher {
     }
 
     private boolean hasBonusMatch(Lotto userLotto, int matchedCount) {
-        return matchedCount == 5 && userLotto.contains(winningLotto.bonus().bonusNumber());
+        return matchedCount == Constants.BONUS_CHECK_NUMBER && userLotto.contains(
+            winningLotto.bonus().bonusNumber());
     }
 
     private MatchCount findMatchCountByMatchedNumber(int matchedCount) {
         return Arrays.stream(MatchCount.values())
             .filter(matchCount -> matchCount.getMatchCount() == matchedCount)
             .findFirst()
-            .orElse(MatchCount.NON_REWARDING_MATCH);
+            .orElseThrow(IllegalStateException::new);
     }
 
 }

@@ -30,9 +30,10 @@ public class LottoWithBonus {
     public int findSameNumberCount(Lotto generatedRandomLotto) {
         // 같은 숫자가 있는지만 확인하면 된다
         int sameLottoNumberCount = userLotto.findSameNumberCountInLotto(generatedRandomLotto);
-        if (userBonus.hasSameNumberInLotto(generatedRandomLotto)) {
-            return sameLottoNumberCount + 1;
-        }
         return sameLottoNumberCount;
+    }
+
+    public boolean isBonusInLotto(Lotto generatedRandomLotto) {
+        return userBonus.hasSameNumberInLotto(generatedRandomLotto);
     }
 }

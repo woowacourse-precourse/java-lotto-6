@@ -15,6 +15,7 @@ public enum ExceptionMessage {
 
     private static final String PREFIX = "[ERROR] ";
 
+    //ErrorOutputView 를 하나 만들어도 될 듯 하다
     ExceptionMessage(String errorDescription) {
         this.errorDescription = errorDescription;
     }

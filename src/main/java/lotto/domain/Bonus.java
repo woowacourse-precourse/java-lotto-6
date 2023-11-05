@@ -14,7 +14,7 @@ public class Bonus {
         return new Bonus(inputToNumber);
     }
 
-    public boolean hasSameNumberInLotto(Lotto generatedRandomLotto) {
+    public boolean hasSameNumberInLotto(Lotto generatedRandomLotto) { // 보너스 번호로 맞은 경우 
         return generatedRandomLotto.hasSameNumber(bonusNumber);
     }
 

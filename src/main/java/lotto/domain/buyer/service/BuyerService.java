@@ -3,56 +3,42 @@ package lotto.domain.buyer.service;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.buyer.model.Buyer;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class BuyerService {
+
+    static final String ERROR_MSG_HEADER = "[ERROR] ";
 
     public void tryBuy(Buyer buyer) {
 
         System.out.println("구입금액을 입력해 주세요.");
         String inputMoney = Console.readLine();
 
-        Map<String, Object> checkResult = checkMoney(inputMoney);
+        String checkResult = checkMoney(inputMoney);
 
-        if(checkResult.get("CODE").toString().startsWith("F")) {
-            System.out.println("[ERROR] " + checkResult.get("MSG").toString());
+        if(checkResult.contains(ERROR_MSG_HEADER)) {
+            System.out.println(checkResult);
             tryBuy(buyer);
             return;
         }
 
-        //fixme 캐스팅 형변환 사용?
-        buy(buyer, (int) checkResult.get("DATA"));
+        buy(buyer, 0);
     }
 
-    public Map<String, Object> checkMoney(String inputMoney) {
+    public String checkMoney(String inputMoney) {
 
-        Map<String, Object> checkResult = new HashMap<>();
+        //TODO 파싱한 값을 돌려주려면?
         int parsedMoney;
 
-
-        //FIXME 15라인을 넘어가지 않게.
         try {
             parsedMoney = Integer.parseInt(inputMoney);
         } catch (NumberFormatException e){
-            checkResult.put("CODE", "F-1");
-            checkResult.put("MSG", "숫자만 입력이 가능합니다.");
-
-            return checkResult;
+            return ERROR_MSG_HEADER + "숫자만 입력이 가능합니다.";
         }
 
         if(parsedMoney == 0 || parsedMoney % 1000 != 0 || parsedMoney < 0) {
-            checkResult.put("CODE", "F-2");
-            checkResult.put("MSG", "1000단위의 숫자가 입력되어야 합니다.");
-
-            return checkResult;
+            return ERROR_MSG_HEADER + "1000단위의 숫자가 입력되어야 합니다.";
         }
 
-        checkResult.put("CODE", "S-1");
-        checkResult.put("MSG", "올바른 숫자가 입력되었습니다.");
-        checkResult.put("DATA", parsedMoney);
-
-        return checkResult;
+        return "올바른 숫자가 입력되었습니다.";
     }
 
     public void buy(Buyer buyer, int money) {

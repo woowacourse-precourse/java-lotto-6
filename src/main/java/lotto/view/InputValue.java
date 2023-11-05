@@ -9,6 +9,13 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputValue {
 
+    private static final String SPACING = " ";
+    private static final String EMPTY = "";
+    private static final String NUMBER_CHECK_REGEX = "\\d*";
+    private static final Integer ZERO = 0;
+    private static final Integer PRICE_UNIT = 1000;
+    private static final String SEPARATOR = ",";
+
     public static int getPurchasePrice() {
 
         String input = removeInputSpaces();
@@ -23,18 +30,18 @@ public class InputValue {
     }
 
     private static String removeInputSpaces() {
-        return readLine().replaceAll(" ", "");
+        return readLine().replaceAll(SPACING, EMPTY);
     }
 
     private static void emptyValueCheck(String input) {
-        if (input.length() == 0) {
+        if (input.isEmpty()) {
             throw new IllegalArgumentException(ErrorCode.EMPTY_VALUE.getMessage());
         }
     }
 
     private static int numberCheck(String input) {
 
-        if (!input.matches("\\d*")) {
+        if (!input.matches(NUMBER_CHECK_REGEX)) {
             throw new IllegalArgumentException(ErrorCode.NOT_NUMBER.getMessage());
         }
 
@@ -42,7 +49,7 @@ public class InputValue {
     }
 
     private static void priceUnitCheck(int price) {
-        if (price % 1000 != 0) {
+        if (price % PRICE_UNIT != ZERO) {
             throw new IllegalArgumentException(ErrorCode.INCORRECT_UNIT.getMessage());
         }
     }
@@ -52,7 +59,7 @@ public class InputValue {
         String input = removeInputSpaces();
 
         List<Integer> numbers = new ArrayList<>();
-        for(String number : input.split(","))
+        for(String number : input.split(SEPARATOR))
             numbers.add(numberCheck(number));
 
         return numbers;

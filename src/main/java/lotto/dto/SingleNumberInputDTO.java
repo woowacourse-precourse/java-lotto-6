@@ -1,13 +1,18 @@
-package lotto.domain;
+package lotto.dto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class UserInput {
+public class UserInputNumber {
 
-    public int convertToIntegerIfValid(String input) {
+    private int input;
+
+    public UserInputNumber(String input) {
+        convertToIntegerIfValid(input);
+    }
+
+    private int convertToIntegerIfValid(String input) {
         checkNullOrEmpty(input);
         try {
             return Integer.parseInt(input);

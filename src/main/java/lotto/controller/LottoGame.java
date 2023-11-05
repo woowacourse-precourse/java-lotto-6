@@ -2,33 +2,37 @@ package lotto.controller;
 
 import lotto.domain.*;
 import lotto.dto.LottoTicketsDTO;
+import lotto.dto.WinningStatisticsDTO;
 import lotto.utility.GameUtility;
 import lotto.validator.LottoNumberValidator;
 import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import static camp.nextstep.edu.missionutils.Console.close;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoGame {
 
-    private LottoGame() {}
+    private LottoGame() {
+    }
 
     public static void run() {
         Payment payment = getPaymentAndValidate();
-        User user = new User(payment,GameUtility.buyTickets(payment.getPayment()));
+        User user = new User(payment, GameUtility.buyTickets(payment.getPayment()));
         OutputView.printLottoTickets(new LottoTicketsDTO(
-                        user.getLottoTickets().size(),
-                        user.getLottoTickets())
+                user.getLottoTickets().size(),
+                user.getLottoTickets())
         );
-        OutputView.printLineBreak();
         WinningNumber winningNumber = getWinningNumberAndValidate();
         BonusNumber bonusNumber = getBonusNumberAndValidate();
         ResultNumber.create(winningNumber, bonusNumber);
         GameUtility.checkLottoWinning(user);
         user.setWinningPrize(GameUtility.calculateWinningPrize(user));
-        double rateOfReturn = GameUtility.calculateRateOfReturn(user.getWinningPrize(),user.getPayment());
+        double rateOfReturn = GameUtility.calculateRateOfReturn(user.getWinningPrize(), user.getPayment());
+        OutputView.printWinningStatistics(new WinningStatisticsDTO(user.getLottoResult(), rateOfReturn));
+        endGame();
     }
 
     private static Payment getPaymentAndValidate() {
@@ -86,5 +90,8 @@ public class LottoGame {
         return bonusNumber;
     }
 
+    private static void endGame() {
+        close();
+    }
 }
 

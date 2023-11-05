@@ -1,7 +1,6 @@
 package lotto.utils;
 
 import lotto.utils.validator.ParserValidator;
-import lotto.utils.validator.UnitValidator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +14,6 @@ public class Parser {
                 .boxed()
                 .collect(Collectors.toList());
         ParserValidator.countValid(integers);
-        UnitValidator.validNumberUnitCheck(integers);
 
         return integers;
     }

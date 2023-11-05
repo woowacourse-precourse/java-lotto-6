@@ -2,7 +2,6 @@ package lotto.utils.validator;
 
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static lotto.Const.Const.*;
 

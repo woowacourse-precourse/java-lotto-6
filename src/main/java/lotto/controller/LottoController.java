@@ -23,8 +23,9 @@ public class LottoController {
 
         OutputView.purchaseResult(member);
 
-        Lotto winnerLotto = new Lotto(InputView.getWinningNumberInput());
-        int bonusNumber = InputView.getBonusNumberInput();
+        List<Integer> winningNumberInput = InputView.getWinningNumberInput();
+        Lotto winnerLotto = new Lotto(winningNumberInput);
+        int bonusNumber = InputView.getBonusNumberInput(winningNumberInput);
         WinningNumber winningNumber = new WinningNumber(winnerLotto, bonusNumber);
 
         List<Rank> awardsResult = lottoService.awards(member, winningNumber);

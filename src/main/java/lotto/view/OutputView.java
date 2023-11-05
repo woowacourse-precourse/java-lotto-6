@@ -19,15 +19,13 @@ public class OutputView {
         member.getLottos().stream()
                 .forEach(lotto -> printLotto(lotto));
     }
+
     public static void gameResult(List<Rank> ranks,Member member) {
         println(STATISTIC_RESULT_OUTPUT);
         println(NEXT_LINE_OUTPUT);
 
-        for (Rank rank : Rank.getValidRanks(ranks)) {
-            print(rank.getMessage());
-            print(rank.getCount(ranks));
-            print("개");
-            System.out.println();
+        for (Rank rank : Rank.values()) {
+            println(rank.getMessage() + rank.getCount(ranks) +"개");
         }
         System.out.println("총 수익률은 " +
                 String.format("%,.1f", calcEarnRate(sumEarnMoney(ranks), member.getPurchasedPrice())) + "%입니다.");
@@ -54,5 +52,4 @@ public class OutputView {
     private static void print(int message) {
         System.out.print(message);
     }
-
 }

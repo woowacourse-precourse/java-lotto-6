@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public enum Rank {
     NO("0개 일치 - ",false,0,0),
@@ -22,19 +20,12 @@ public enum Rank {
         this.matchCount = matchCount;
         this.prize = prize;
     }
-
-    public static List<Rank> getValidRanks(List<Rank> ranks) {
-        return ranks.stream()
-                .filter(rank -> rank != Rank.NO)
-                .collect(Collectors.toList());
-    }
     public int getCount(List<Rank> ranks) {
         return (int) ranks.stream()
                 .filter(rank -> rank.matchCount == this.matchCount)
                 .filter(rank -> rank.bonusCheck == this.bonusCheck)
                 .count();
     }
-
     public String getMessage() {
         return message;
     }

@@ -28,7 +28,7 @@ public class LottoAwards {
     }
     private static int findMatchNumber(Lotto lotto, List<Integer> numbers) {
         return (int) numbers.stream()
-                .filter(num -> lotto.numberCheck(num))
+                .filter(lotto::numberCheck)
                 .count();
     }
 }

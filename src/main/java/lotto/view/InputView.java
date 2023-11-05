@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.Parser;
 import lotto.utils.validator.InputValidator;
+import lotto.utils.validator.NumberValidator;
 import lotto.utils.validator.UnitValidator;
 
 import java.util.List;
@@ -26,9 +27,12 @@ public class InputView {
         print(WINNING_NUMBERS_INPUT);
 
         String winningNumbers = Console.readLine();
-        return Parser.parse(winningNumbers);
+        List<Integer> integers = Parser.parse(winningNumbers);
+
+        UnitValidator.validNumberUnitCheck(integers);
+        return integers;
     }
-    public static int getBonusNumberInput() {
+    public static int getBonusNumberInput(final List<Integer> winningNumberInput) {
         print(WINNING_BONUS_NUMBER_INPUT);
         String bonus = Console.readLine();
         InputValidator.validBonusType(bonus);
@@ -36,6 +40,7 @@ public class InputView {
         int numberBonus = Integer.parseInt(bonus);
 
         UnitValidator.validBonusUnitCheck(numberBonus);
+        NumberValidator.duplicateBonusNumberCheck(winningNumberInput,numberBonus);
         return numberBonus;
 
     }

@@ -6,25 +6,28 @@ import java.util.List;
 
 public class MatchedNumbers {
     private final ArrayList<String> LOTTO_MATCHED_COUNT_LIST;
-    public MatchedNumbers(ArrayList<List<String>> winLottoNumber, ArrayList<String> myLottoNumber){
-        this.LOTTO_MATCHED_COUNT_LIST = matchedNumberCounterAll(winLottoNumber,myLottoNumber);
+    private int lottoMatchedCount;
+    public MatchedNumbers(ArrayList<List<String>> myLotto, ArrayList<String> winLotto){
+        this.LOTTO_MATCHED_COUNT_LIST = matchedNumberCounterAll(myLotto,winLotto);
     }
 
-
-    private ArrayList<String> matchedNumberCounterAll(ArrayList<List<String>> winLottoNumber, ArrayList<String> myLottoNumber){
+    public ArrayList<String> getLOTTO_MATCHED_COUNT_LIST(){
+        return LOTTO_MATCHED_COUNT_LIST;
+    }
+    private ArrayList<String> matchedNumberCounterAll(ArrayList<List<String>> myLotto, ArrayList<String> winLotto){
         ArrayList<String> matchedLottos = new ArrayList<>();
-        for(List<String> winLotto : winLottoNumber){
-            matchedLottos.add(String.valueOf(matchedNumberCountEach(winLotto,myLottoNumber)));
+        for(List<String> lotto : myLotto){
+            matchedNumberCountEach(lotto,winLotto);
+            matchedLottos.add(String.valueOf(lottoMatchedCount));
         }
         return matchedLottos;
     }
 
 
-
-    public static int matchedNumberCountEach(List<String> winLottoNumber, ArrayList<String> myLottoNumber){
-        HashSet<String> winHash = new HashSet<>(winLottoNumber);
-        HashSet<String> myHash = new HashSet<>(myLottoNumber);
-        winHash.retainAll(myHash);
-        return myHash.size() - winHash.size();
+    private void matchedNumberCountEach(List<String> myLotto, ArrayList<String> winLotto){
+        HashSet<String> myHash = new HashSet<>(myLotto);
+        HashSet<String> winHash = new HashSet<>(winLotto);
+        myHash.retainAll(winHash);
+        lottoMatchedCount =  myHash.size();
     }
 }

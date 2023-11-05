@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -14,7 +14,18 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if(isDuplicated(numbers)){
+            throw new IllegalArgumentException();
+        }
+
+    }
+    private boolean isDuplicated(List<Integer> numbers){
+        long distinctNumber = numbers.stream()
+                .distinct()
+                .count();
+
+        return distinctNumber < numbers.size();
     }
 
-    // TODO: 추가 기능 구현
 }

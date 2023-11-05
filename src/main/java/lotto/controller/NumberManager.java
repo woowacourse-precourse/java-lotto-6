@@ -19,6 +19,13 @@ public class NumberManager {
         }
     }
 
+    protected Boolean checkBonusNumberCondition(String readLine, Lotto lotto){
+        if (isItNumber(readLine) && checkNumberRange(readLine) && lotto.checkContainNumber(Integer.parseInt(readLine))){
+            return false;
+        }
+        return true;
+    }
+
     public Lotto createLotto(){
         List<Integer> lotto = new ArrayList<>();
         for(int i=0 ;i< MessageManager.LOTTO_SIZE; i++) {
@@ -69,5 +76,18 @@ public class NumberManager {
         }else{
             return true;
         }
+    }
+
+    private Boolean checkNumberRange(String readline){
+        try{
+            int number = Integer.parseInt(readline);
+            if(number < MessageManager.LOTTO_MIN || number > MessageManager.LOTTO_MAX){
+                throw new IllegalArgumentException();
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(MessageManager.ERROR_OUT_OF_RANGE);
+            return false;
+        }
+        return true;
     }
 }

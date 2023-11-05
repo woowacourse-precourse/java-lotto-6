@@ -57,6 +57,14 @@ public class Lotto {
         return true;
     }
 
+    public Boolean checkContainNumber(int number){
+        if(numbers.contains(number)){
+            System.out.println(MessageManager.ERROR_IS_ALREADY_CONTAIN);
+            return false;
+        }
+        return true;
+    }
+
     public void showNumbers(){
         System.out.println(numbers.toString());
     }

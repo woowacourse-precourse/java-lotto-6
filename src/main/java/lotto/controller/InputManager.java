@@ -37,6 +37,17 @@ public class InputManager {
         return new Lotto(numbers);
     }
 
+    public int inputBonusNumber(Lotto lotto){
+        String readLine;
+        do {
+            System.out.println(MessageManager.SET_BONUS_NUMBER);
+            readLine = Console.readLine();
+
+        }while(numberManager.checkBonusNumberCondition(readLine, lotto));
+
+        return Integer.parseInt(readLine);
+    }
+
     protected List<String> separateWinningNumber(String readLine){
         return Arrays.stream(readLine.split(","))
                 .toList();

@@ -5,7 +5,6 @@ import lotto.controller.MessageManager;
 import lotto.controller.NumberManager;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class User {
@@ -13,6 +12,7 @@ public class User {
     private int count;
     private List<Lotto> lottos;
     private Lotto winningNumber;
+    private int bonusNumber;
 
     private InputManager inputManager;
     private NumberManager numberManager;
@@ -41,6 +41,10 @@ public class User {
         do {
             winningNumber = inputManager.inputWinningNumber();
         }while(winningNumber == null || !winningNumber.validate());
+    }
+
+    public void predictBonusNumber(){
+        bonusNumber = inputManager.inputBonusNumber(winningNumber);
     }
 
     public void showMyLottos(){

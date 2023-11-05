@@ -20,6 +20,7 @@ public class GameManager {
         user.buyLottos();
         user.showMyLottos();
         user.predictWinningNumber();
+        user.predictBonusNumber();
     }
 
 

@@ -2,8 +2,6 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.Lotto;
 import lotto.domain.LottoTicket;
 import lotto.service.InputBonusNumberService;
 import lotto.service.InputMoneyService;
@@ -39,37 +37,30 @@ public class LottoController {
 
 
         List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinnerNumberService());
-        Integer bonusNumber = inputBonusNumber();
+        Integer bonusNumber = inputBonusNumber(lottoWinNumbers);
         Long result = lottoService.calculateMoney(lottoTickets, lottoWinNumbers, bonusNumber);
 
-
         outputView.printResult();
-
-        double v = result.doubleValue();
-        double v1 = v / money * 100;
-        outputView.printYield(v1);
-
-        /*
-            금액에 따른 로또 번호 뽑기!
-
-         */
-
-        /*
-        당첨 번호 입
-         */
+        outputView.printYield(calculateYield(result, money));
 
     }
 
-    private Integer inputBonusNumber() {
+    private static double calculateYield(Long result, Long money) {
+        double v = result.doubleValue();
+        double yield = v / money * 100;
+        return yield;
+    }
+
+    private Integer inputBonusNumber(List<Integer> lottoWinNumbers) {
         try {
             outputView.printBeforeInputBonusNumber();
             InputBonusNumberService inputBonusNumberService = new InputBonusNumberService();
             String bonusNumberInput = inputView.inputBonusNumber();
-            inputBonusNumberService.checkRightBonusNumberInput(validator, bonusNumberInput);
+            inputBonusNumberService.checkRightBonusNumberInput(validator,lottoWinNumbers, bonusNumberInput);
             return Integer.parseInt(bonusNumberInput);
         }catch (IllegalArgumentException e){
             outputView.printErrorMessage(e.getMessage());
-            return inputBonusNumber();
+            return inputBonusNumber(lottoWinNumbers);
         }
     }
 

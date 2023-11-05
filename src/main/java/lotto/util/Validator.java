@@ -70,4 +70,11 @@ public class Validator {
         if(convertedBonusNumber <1 || convertedBonusNumber >45)
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1-45 사이의 숫자여야 합니다!");
     }
+
+    public void validateIsBonusNumberInWinnerNumber(List<Integer> lottoWinNumbers,
+        int bonusNumberInput) {
+        if(lottoWinNumbers.contains(bonusNumberInput)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복이 되는 숫자로 와서는 안됩니다!");
+        }
+    }
 }

@@ -49,10 +49,10 @@ public class Lotto {
     }
 
     private int getSameCount(Lotto winningLotto) {
-        // count는 long타입을 반환하지만 반환할 수 있는 최대 값은 6이므로 int로 형변환해도 값의 손실이 없다.
-        return (int) numbers.stream()
+        return numbers.stream()
                 .filter(winningLotto.numbers::contains)
-                .count();
+                .toList()
+                .size();
     }
 
     private boolean doesHaveBonusNumber(LottoNumber bonusNumber) {

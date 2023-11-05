@@ -3,7 +3,8 @@
 ### ✅ 로또 번호 객체 생성
 - Lotto 객체에 순서 정렬 메서드, 번호를 문자열로 출력하는 메서드를 구현
 - Lotto 객체를 담을 Lottos 객체 생성 및 Lotto 객체를 담을 메서드 구현
-### ⬜ 당첨 번호 객체 생성
+### ✅ 당첨 번호 객체 생성
+- 당첨 번호 객체 WinningNumbers에 속성으로 numbers와 bonusNumber 생성
 ### ⬜ 출력 값을 관리할 OutputView와 Enum 생성
 ### ⬜️ 입력 값을 관리할 InputView 생성
 ## 2. 입력 값 유효성 검사

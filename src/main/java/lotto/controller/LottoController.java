@@ -34,6 +34,7 @@ public class LottoController {
         output.purchasedLotts(player);
         play(player);
         output.winningResult(player.getLotteryResults());
+        output.rateOfRevenue(player.findRateOfRevenue());
     }
 
     private Player start() {

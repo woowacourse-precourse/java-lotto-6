@@ -2,11 +2,13 @@ package lotto.domain;
 
 import static lotto.constant.WinningConstant.INIT_WINNING_COUNT;
 import static lotto.constant.WinningConstant.ONE_WINNING_COUNT;
+import static lotto.constant.WinningConstant.RATIO_BASE;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Player {
 
@@ -39,6 +41,23 @@ public class Player {
             this.lotteryResults.put(lotteryResult,
                     this.lotteryResults.get(lotteryResult) + ONE_WINNING_COUNT);
         });
+    }
+
+    public double findRateOfRevenue() {
+        return (double) (findAllWinningPrize() * RATIO_BASE) / purchasePrice.getPrice();
+    }
+
+
+    private Long findAllWinningPrize() {
+        long allWinningPrize = 0L;
+        for (Entry<LotteryResult, Integer> entry : lotteryResults.entrySet()) {
+            LotteryResult lotteryResult = entry.getKey();
+            Integer lotteryCount = entry.getValue();
+            if (lotteryResult.isWinning()) {
+                allWinningPrize += (long) lotteryResult.getPrize() * lotteryCount;
+            }
+        }
+        return allWinningPrize;
     }
 
     public PurchasePrice getPurchasePrice() {

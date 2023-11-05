@@ -111,8 +111,8 @@
 
 - [x] 진행 클래스 Process
     - [x] 로또를 산다. Process#buyLotto
-        - [ ] 유저가 로또를 산다.
-        - [ ] 로또 판매자가 로또를 판다.
+        - [x] 유저가 로또를 산다.
+        - [x] 로또 판매자가 로또를 판다.
     - [x] 로또를 보여준다. Process#showLotto
         - [ ] 유저가 로또를 보여준다.
     - [ ] 당첨 번호를 뽑는다. Process#pickNum

@@ -8,23 +8,29 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.User;
 import lotto.view.UserView;
 
 public class LottoManager {
-    private UserInput userInput;
     private UserView userView;
+    private User user;
     public LottoManager() {
-        userInput = new UserInput();
         userView = new UserView();
+        user = new User();
     }
 
     public void start() {
         userView.printBuyMessageBefore();
+        user.setPurchaseAmount(UserInput.PurchaseAmount());
+        user.setPurchaseLottoNumber(UserInput.calculatePurchaseLottoNumber(user.getPurchaseAmount()));
+        userView.printBuyMessageAfter(user.getPurchaseLottoNumber());
+
+        Lotto temp = generateLotto();
+        System.out.println(temp.getSortedNumbers());
     }
 
     private Lotto generateLotto() {
-        List<Integer> numbers = new ArrayList<>();
-        numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_LENGTH);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_LENGTH);
         Lotto newLotto = new Lotto(numbers);
         return newLotto;
     }

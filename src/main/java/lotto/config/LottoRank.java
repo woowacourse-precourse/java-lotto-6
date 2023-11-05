@@ -1,5 +1,7 @@
 package lotto.config;
 
+import java.util.EnumSet;
+
 public enum LottoRank {
 	FIFTH(3, 5_000, "3개 일치 (5,000원) - %d개"),
 	FOURTH(4, 50_000, "4개 일치 (50,000원) - %d개"),
@@ -17,10 +19,6 @@ public enum LottoRank {
 		this.winningMessage = winningMessage;
 	}
 
-	public int getCountOfMatch() {
-		return countOfMatch;
-	}
-
 	public long getWinningMoney() {
 		return winningMoney;
 	}
@@ -29,28 +27,18 @@ public enum LottoRank {
 		return winningMessage;
 	}
 
-	// TODO : 수정 예정
 	public static LottoRank findRank(int matchCount, boolean matchBonusNumber) {
-		if (matchCount == 6) {
-			return FIRST;
-		}
-
-		if (matchCount == 5 && matchBonusNumber) {
-			return SECOND;
-		}
-
 		if (matchCount == 5) {
+			if (matchBonusNumber) {
+				return SECOND;
+			}
+
 			return THIRD;
 		}
 
-		if (matchCount == 4) {
-			return FOURTH;
-		}
-
-		if (matchCount == 3) {
-			return FIFTH;
-		}
-
-		return null;
+		return EnumSet.allOf(LottoRank.class).stream()
+			.filter(rank -> rank.countOfMatch == matchCount)
+			.findFirst()
+			.orElse(null);
 	}
 }

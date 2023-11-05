@@ -47,7 +47,7 @@ public class Control {
                 .count();
     }
 
-    Map<SameNumber, Integer> countSameNumber(Lotto winner, Integer bonus, Lotto... tickets) {
+    Map<SameNumber, Integer> getCompareResult(Lotto winner, Integer bonus, Lotto... tickets) {
         Map<SameNumber, Integer> sameNumberCount = new HashMap<>();
         for (Lotto ticket : tickets) {
             SameNumber sameNumber = compareTicket(winner, ticket);

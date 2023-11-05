@@ -83,7 +83,7 @@ public class Output {
         System.out.println(System.lineSeparator() + "당첨 통계");
         System.out.println("---");
         Control control = new Control();
-        Map<SameNumber, Integer> sameNumberCount = control.countSameNumber(winnerTicket, bonusNumber, tickets);
+        Map<SameNumber, Integer> sameNumberCount = control.getCompareResult(winnerTicket, bonusNumber, tickets);
         printAllSameNumberResult(sameNumberCount);
         Long earned = calculateReward(sameNumberCount);
         Long spent = control.moneyForTickets(tickets.length);

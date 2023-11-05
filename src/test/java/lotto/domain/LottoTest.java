@@ -44,7 +44,7 @@ class LottoTest {
 
     @DisplayName("로또 번호 중에서 45보다 큰 번호가 존재하면 예외가 발생한다.")
     @Test
-    void createLotto_Fail_ByNumberIsLessThanMaximum() {
+    void createLotto_Fail_ByNumberIsMoreThanMaximum() {
         // when, then
         Assertions.assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 66)))
                 .isInstanceOf(IllegalArgumentException.class)

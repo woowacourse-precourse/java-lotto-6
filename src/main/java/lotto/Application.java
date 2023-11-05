@@ -32,13 +32,11 @@ public class Application {
         } 
     }
 
-    // 랜덤 번호 6개 뽑기
+    // 랜덤 번호 6개 뽑기(중첩 가능)
     public static List<Integer> setRandomNumbers() {
         List<Integer> box = new ArrayList<>();
         while (box.size() != 6) {
             int rd = Randoms.pickNumberInRange(1, 45);
-            if (box.contains(rd))
-                continue;
             box.add(rd);
         }
         return box;
@@ -56,16 +54,21 @@ public class Application {
         return res;
     }
 
-    public static int setMoney(String s){
-        int res;
-
-        res = myParseInt(s);
-        if (res == -1 || res%1000 != 0) {
-            System.err.println(res + ErrorType.MONEY.getName());
-            res = -1;
+    public static int vaildMoney(int m){
+        if (m == -1 || m%1000 != 0) {
+            System.err.println(m + ErrorType.MONEY.getName());
+            return -1;
         }
-        System.out.println();
+        return m;
+    }
 
+    public static int setMoney(){
+        int res = -1;
+        while(res == -1) {
+            res = myParseInt(Console.readLine());
+            res = vaildMoney(res);
+            System.out.println();
+        }
         return res;
     }
 
@@ -87,7 +90,7 @@ public class Application {
     public static void main(String[] args) {
         int money = -1;
         List<Lotto> user;
-        while(money == -1) money = setMoney(Console.readLine());
+        money = setMoney();
         user = setUser(money/1000);
         showUser(user);
     }

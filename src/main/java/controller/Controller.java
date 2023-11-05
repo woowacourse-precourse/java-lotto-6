@@ -26,7 +26,7 @@ public class Controller {
     private MoneyRepository moneyRepository = new MoneyRepository();
 
     public void run() {
-        saveMoney(parser.parseMoneyNumber(getMoneyNumberbyInput()));
+        saveMoney(parser.parseNumber(getMoneyNumberbyInput()));
     }
 
     private void saveMoney(int input) {
@@ -49,25 +49,26 @@ public class Controller {
         lottosList.add(lottoList);
         lottoService.lottoSave(lottosList);
 
-        saveLottoNumbers(parser.parseLottoNumber(getUserLottoNumberbyInput()));
-        saveBonusNumber(getUserBonusNumberbyInput());
+        saveLottoNumbers(parser.parseLottoNumberToInt(getUserLottoNumberbyInput()));
+        saveBonusNumber(parser.parseNumber(getUserBonusNumberbyInput()));
 
         play();
     }
 
     private void play() {
         OutputView.printLottoResult();
-        LottoService.play();
     }
 
 
-    private void saveLottoNumbers(List<String> lottoNumbers) {
-        for (String lottoNumber : lottoNumbers) {
+    private void saveLottoNumbers(List<Integer> lottoNumbers) {
+        new Lotto(lottoNumbers);
+
+        for (Integer lottoNumber : lottoNumbers) {
             lottoService.save(new Lottos(lottoNumber));
         }
     }
 
-    private void saveBonusNumber(String bonus_number) {
+    private void saveBonusNumber(Integer bonus_number) {
         lottoService.save(new Lottos(bonus_number));
     }
 
@@ -112,6 +113,7 @@ public class Controller {
 
         return checkBonusLottoValidation(input);
     }
+
     private String checkBonusLottoValidation(String input) {
         try {
             validator.checkBonusLottoInput(input);

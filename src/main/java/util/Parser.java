@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Parser {
 
-    public int parseMoneyNumber(String input) {
+    public int parseNumber(String input) {
         return Integer.parseInt(input);
     }
 
-    public List<String> parseLottoNumber(String input) {
-        return new ArrayList<>(Arrays.asList(input.split(",")));
+    public List<Integer> parseLottoNumberToInt(String input) {
+        return new ArrayList<>(Arrays.asList(Integer.parseInt(Arrays.toString(input.split(",")))));
     }
 }

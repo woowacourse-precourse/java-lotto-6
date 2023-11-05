@@ -11,6 +11,6 @@ public class Application {
         lottoController.createLottos();
 
         inputView.printWinningNumbersMessage();
-        lottoController.inputWinningLottoNumbers();
+        lottoController.createWinningLotto();
     }
 }

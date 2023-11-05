@@ -9,18 +9,18 @@ public class Lotto {
     private final int lottoTrials;
     private final int bonusNumber;
 
-    public Lotto() {
-        this.lottoTrials = LottoInput.getPurchaseAmount();
+    public Lotto(int lottoTrials, List<Integer> numbers, int bonusNumber) {
         validatePurchaseAmount(lottoTrials);
+        this.lottoTrials = lottoTrials;
         
-        this.numbers = LottoInput.getWinningNumber();
         validate(numbers);
         validateNumberRange(numbers);
         validateNumberDuplication(numbers);
+        this.numbers = numbers;
         
-        this.bonusNumber = LottoInput.getBonusNumber(numbers);
         validateNumberRange(bonusNumber);
         validateNumberDuplication(numbers, bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     private void validate(List<Integer> numbers) {

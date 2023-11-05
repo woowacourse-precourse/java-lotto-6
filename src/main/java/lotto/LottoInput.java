@@ -24,7 +24,7 @@ class LottoInput {
 		return winningNumbers;
 	}
 	
-	protected static int getBonusNumber(List<Integer> winningNumbers) {
+	protected static int getBonusNumber() {
 		int bonusNumber = Integer.valueOf(Console.readLine());
 		
 		return bonusNumber;

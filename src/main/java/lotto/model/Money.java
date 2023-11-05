@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.model.constant.LottoConfig.LOTTO_AMOUNT;
+import static lotto.model.constant.LottoConfig.ZERO;
+
 public class Money {
 
     private final Integer money;
@@ -11,7 +14,7 @@ public class Money {
     }
 
     public Integer availableLottoCount() {
-        return this.money / 1000;
+        return this.money / LOTTO_AMOUNT;
     }
 
     public Integer getMoney() {
@@ -25,12 +28,12 @@ public class Money {
     }
 
     private void validateWonUnit(Integer money) {
-        if (money % 1000 != 0) {
+        if (money % LOTTO_AMOUNT != ZERO) {
             throw new IllegalArgumentException("[ERROR] 돈은 1,000원 단위로 입력가능합니다.");
         }
     }
 
     private static boolean isOverMinimum(Integer money) {
-        return money < 1000;
+        return money < LOTTO_AMOUNT;
     }
 }

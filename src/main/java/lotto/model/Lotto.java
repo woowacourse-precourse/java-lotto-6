@@ -3,6 +3,8 @@ package lotto.model;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.model.constant.LottoConfig.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -52,7 +54,7 @@ public class Lotto {
     }
 
     private static boolean IsSizeSix(List<Integer> numbers) {
-        return numbers.size() != 6;
+        return numbers.size() != LOTTO_SIZE;
     }
 
     private static boolean hasDuplicated(List<Integer> numbers) {
@@ -60,6 +62,7 @@ public class Lotto {
     }
 
     private static boolean isValidRange(List<Integer> numbers) {
-        return numbers.stream().anyMatch(number -> number < 1 || number > 45);
+        return numbers.stream().anyMatch(number -> number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER
+        );
     }
 }

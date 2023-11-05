@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static lotto.model.constant.LottoConfig.*;
+
 public class Lottos {
     private final List<Lotto> lottos;
 
@@ -14,7 +16,7 @@ public class Lottos {
     }
 
     public void addLotto(Integer lottoCount) {
-        IntStream.range(0, lottoCount)
+        IntStream.range(ZERO, lottoCount)
                 .forEach(count -> lottos.add(new Lotto(lottoGenerator())));
     }
 
@@ -24,6 +26,6 @@ public class Lottos {
 
 
     private static List<Integer> lottoGenerator() {
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
+        return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER,MAXIMUM_LOTTO_NUMBER,LOTTO_SIZE);
     }
 }

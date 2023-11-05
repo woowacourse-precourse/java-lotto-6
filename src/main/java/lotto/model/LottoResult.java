@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 
+import static lotto.model.constant.LottoConfig.ZERO;
+
 public class LottoResult {
 
     private Purchase purchase;
@@ -23,7 +25,7 @@ public class LottoResult {
     }
 
     public Integer calculatePriceSum() {
-        Integer sum = 0;
+        Integer sum = ZERO;
 
         List<Lotto> lottos = purchase.getLottos();
         for (Lotto lotto : lottos) {

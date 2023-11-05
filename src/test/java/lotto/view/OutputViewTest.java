@@ -56,7 +56,7 @@ public class OutputViewTest {
     public void 로또_생성_결과_출력_테스트() {
         //given
         Lotto firstLotto = new Lotto(List.of(8, 21, 23, 41, 42, 43));
-        Lotto secondLotto = new Lotto(List.of(3, 5, 11, 16, 32, 38));
+        Lotto secondLotto = new Lotto(List.of(5, 38, 3, 11, 16, 32));
         List<Lotto> lottos = List.of(firstLotto, secondLotto);
         LottosDto lottosDto = LottosDto.create(lottos);
 

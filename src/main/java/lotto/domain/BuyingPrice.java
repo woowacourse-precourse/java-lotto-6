@@ -3,13 +3,13 @@ package lotto.domain;
 import lotto.config.ErrorMessage;
 import lotto.config.LottoConfig;
 
-public class LottoPrice {
+public class BuyingPrice {
     private static final int CORRECT_DIVISION = 0;
     private static final int LOTTO_PRICE = LottoConfig.PRICE.value();
 
     private final int price;
 
-    public LottoPrice(int buyingPrice) {
+    public BuyingPrice(int buyingPrice) {
         validateRange(buyingPrice);
         validateDivision(buyingPrice);
         this.price = buyingPrice;

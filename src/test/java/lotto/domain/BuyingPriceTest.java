@@ -9,19 +9,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LottoPriceTest {
+public class BuyingPriceTest {
     @DisplayName("1000 미만의 숫자를 입력하면 예외가 발생")
     @ParameterizedTest(name = "{displayName}({arguments})")
     @ValueSource(ints = {999, 500, 0, -500})
     void createLottoPriceByWrongRange(int price) {
-        assertThatThrownBy(() -> new LottoPrice(price))
+        assertThatThrownBy(() -> new BuyingPrice(price))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("1000으로 나누어 떨어지지 않는 숫자를 입력하면 예외가 발생")
     @Test
     void createLottoByOverRangeNumber() {
-        assertThatThrownBy(() -> new LottoPrice(2050))
+        assertThatThrownBy(() -> new BuyingPrice(2050))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,7 +29,7 @@ public class LottoPriceTest {
     @ParameterizedTest(name = "{displayName}({0})")
     @CsvSource(value = {"52000,52", "3000,3", "720000,720"})
     void checkLottoTryCount(int price, int answer) {
-        int tryCount = new LottoPrice(price).getTryCount();
+        int tryCount = new BuyingPrice(price).getTryCount();
         assertThat(tryCount).isEqualTo(answer);
     }
 }

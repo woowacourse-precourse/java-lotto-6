@@ -22,15 +22,15 @@ public class WinResult {
         winResult.put(WinnerRank.SIX.ordinal(), Number.WIN_RESULT_INIT.getValue());
     }
 
-    public void increaseWinResultValue(int value) {
-        winResult.put(value, winResult.get(value) + Number.PLUS_ONE.getValue());
+    public void increaseWinResultValue(int rankValue) {
+        winResult.put(rankValue, winResult.get(rankValue) + Number.PLUS_ONE.getValue());
     }
 
-    public boolean isOverTwo(int sameNumberCount) {
-        return sameNumberCount >= 2;
+    public boolean isOverTwo(int rankValue) {
+        return rankValue >= 2;
     }
 
-    public boolean isFiveSame(int sameNumberCount) {
+    public boolean isFiveSame(int rankValue) {
         return true;
     }
 }

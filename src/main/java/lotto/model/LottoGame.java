@@ -10,7 +10,7 @@ public class LottoGame {
 
     private final User user;
 
-    private HashMap<String, Double> matchs;
+    private HashMap<String, Integer> matchs;
 
     private Double rateOfReturn;
 
@@ -62,6 +62,10 @@ public class LottoGame {
 
     public User getUser() {
         return this.user;
+    }
+
+    public double getRateOfReturn() {
+        return this.rateOfReturn;
     }
 
     public void calculationResult(WinLotto winLotto) {

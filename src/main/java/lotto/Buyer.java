@@ -12,4 +12,9 @@ public class Buyer {
         this.purchaseAmount = purchaseAmount;
         this.lottoMachine = lottoMachine;
     }
+
+    public void buyLotteries() {
+        myLotteries = lottoMachine.publishLotteries(purchaseAmount);
+    }
+
 }

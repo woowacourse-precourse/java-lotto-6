@@ -1,8 +1,8 @@
 package lotto.util;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TypeConversionUtil {
 
@@ -12,7 +12,8 @@ public class TypeConversionUtil {
     }
     
     public static List<Integer> StringToIntegerList(String inputWinningNumber) {
-        List<String> strWinningNumber = Arrays.asList(inputWinningNumber.split(COMMA_SPLIT));
+        List<String> strWinningNumber = Stream.of(inputWinningNumber.split(COMMA_SPLIT))
+                .toList();
 
         return strWinningNumber.stream()
                 .map(Integer::parseInt)

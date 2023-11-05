@@ -2,6 +2,7 @@ package lotto.Controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Collections;
 import lotto.Service.LottoMachine;
 import java.util.List;
 import lotto.Model.Lotto;
@@ -82,14 +83,25 @@ public class UIController {
     private static List<Integer> getWinningNumber() {
         String[] line = Console.readLine().split(",");
         lineLengthCheck(line);
-
-        return null;
+        ArrayList<Integer> winningNumbers = new ArrayList<>();
+        for (String s : line) {
+            Integer number = Integer.parseInt(s);
+            numberDupCheck(winningNumbers, number);
+            winningNumbers.add(number);
+        }
+        Collections.sort(winningNumbers);
+        return winningNumbers;
     }
 
 
     private static void lineLengthCheck(String[] line) {
         if (line.length != 6) {
             throw new IllegalArgumentException("6개의 숫자만 입력 받을수 있습니다.");
+        }
+    }
+    private static void numberDupCheck(ArrayList<Integer> winningNumbers, Integer number) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException("중복 숫자는 입력할 수 없습니다.");
         }
     }
 }

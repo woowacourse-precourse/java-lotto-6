@@ -1,6 +1,8 @@
 package constants;
 
 public enum ErrorMessage {
+
+    INVALID_MONEY_ERROR("로또 구입 금액은 로또 1장의 금액(%d 원)으로 나누어떨어져야 합니다."),
     ANSWER_LOTTO_LENGTH_ERROR("당첨번호의 길이가 %d이(가) 아닙니다"),
     ANSWER_LOTTO_HAS_DUPLICATE_NUMBER_ERROR("당첨번호에 중복된 숫자가 포함되어 있습니다."),
     ANSWER_LOTTO_NOT_IN_RANGE_ERROR("당첨번호에 %d~%d 범위 외의 숫자가 포함되어 있습니다."),
@@ -10,7 +12,7 @@ public enum ErrorMessage {
     private final String message;
 
     ErrorMessage(String message) {
-        this.message = message;
+        this.message = "[ERROR] " + message;
     }
 
     public String getMessage() {

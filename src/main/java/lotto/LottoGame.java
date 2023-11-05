@@ -53,9 +53,8 @@ public class LottoGame {
         return num;
     }
     public List<Lotto> generateLottoNumbers(int count) {
-
         for (int i = 0; i < count; i++) {
-            List<Integer> generateNumbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, NUMBER);// 로또 번호 생성 코드
+            List<Integer> generateNumbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, NUMBER);
             Lotto lotto = new Lotto(generateNumbers);
             lottos.add(lotto);
         }
@@ -86,9 +85,17 @@ public class LottoGame {
     }
 
     public int bonusNumber(){
-        System.out.println(BONUS_NUMBER);
-        String bonusNumberStr = Console.readLine();
-        bonusNumber = Integer.parseInt(bonusNumberStr);
-        return bonusNumber;
+        while (true) {
+            System.out.println(BONUS_NUMBER);
+            try {
+                String bonusNumberStr = Console.readLine();
+                bonusNumber = Integer.parseInt(bonusNumberStr);
+                if (bonusNumber >= 1 && bonusNumber <= 45) {
+                    return bonusNumber;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(ERROR + " 올바른 숫자를 입력하세요.");
+            }
+        }
     }
 }

@@ -12,8 +12,8 @@ public class LottoGame {
     private final LottoGameService lottoGameService;
     private final InputOutputView inputOutputView;
 
-    public LottoGame() {
-        this.lottoGameService = new LottoGameService();
+    public LottoGame(LottoGameService lottoGameService) {
+        this.lottoGameService = lottoGameService;
         this.inputOutputView = new InputOutputView();
     }
 

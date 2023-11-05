@@ -3,6 +3,11 @@ package lotto.domain;
 import java.util.List;
 
 public class Lotto {
+    private static final String LOTTO_NUMBER_BOUNDARY_ERROR = "로또번호는 1에서 45 사이여야 합니다";
+    private static final int LOTTO_LOWER_BOUND = 1;
+    private static final int LOTTO_UPPER_BOUND = 45;
+    private static final int LOTTO_NUMBERS_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,10 +16,22 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        validateSizeOfLottoNumbers(numbers);
+        validateLottoNumberBoundary(numbers);
+    }
+
+    private void validateSizeOfLottoNumbers(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateLottoNumberBoundary(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < LOTTO_LOWER_BOUND || LOTTO_UPPER_BOUND < number) {
+                throw new IllegalArgumentException(LOTTO_NUMBER_BOUNDARY_ERROR);
+            }
+        }
+    }
+
 }

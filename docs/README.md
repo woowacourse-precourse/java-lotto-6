@@ -85,7 +85,7 @@
 
 
 ## 5. 기능 목록 정리
->- [ ] 구매 금액 입력받기 Numbers #inputPurchaseAmount
+>- [ ] 구매 금액 입력받기 Lotto #inputPurchaseAmount
 >- [ ] 로또번호 생성 Numbers #createLottoNumbers
 >- [ ] 당첨번호 입력 Numbers #inputLuckyNumbers
 >- [ ] 보너스번호 입력 Numbers #inputBonusNumber

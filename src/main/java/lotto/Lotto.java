@@ -16,6 +16,9 @@ public class Lotto {
         }
     }
 
+    public void inputPurchaseAmount(){
+    }
+
     public void run(){
 
     }

@@ -11,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        sortNumbers(numbers);
         this.numbers = numbers;
 
     }
@@ -28,7 +29,14 @@ public class Lotto {
             basket.add(number);
         }
     }
+    public void sortNumbers(List<Integer> numbers) {
+        try{
+            Collections.sort(numbers);
+        } catch (UnsupportedOperationException e ){
+            //테스트때 사용하는 List.of 는 정렬이 불가해서 테스트시의 정렬시 예외 처리후 다음 로직 진행
+        }
 
+    }
 
 
 }

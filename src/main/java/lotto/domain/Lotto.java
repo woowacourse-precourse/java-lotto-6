@@ -5,9 +5,7 @@ import lotto.exception.LottoException;
 import lotto.exception.LottoExceptionMessage;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Lotto implements LottoConstant {
     private final List<Integer> numbers;
@@ -18,7 +16,7 @@ public class Lotto implements LottoConstant {
         this.numbers = numbers;
     }
     public List<Integer> getNumbers(){
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
     private static void validateNumbers(List<Integer>numbers){
         validateNumbersSizeIsPickCount(numbers);

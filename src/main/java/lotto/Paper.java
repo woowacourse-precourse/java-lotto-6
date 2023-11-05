@@ -2,11 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
 
 public class Paper {
-
+    public List<Integer> originNumbers;
     public List<Integer> numbers;
     private int correspondNumber;
     private int winMoney;
@@ -16,7 +19,8 @@ public class Paper {
     }
 
     public void pickLottoNumber(){
-        this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        originNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers=new ArrayList<>(originNumbers);
         Collections.sort(numbers);
     }
 

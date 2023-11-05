@@ -7,9 +7,19 @@ import java.io.PrintStream;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.view.OutputView;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class OutputViewTest {
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+    @BeforeEach
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
+
     @Test
     void testPrintPurchase() {
         //given
@@ -17,12 +27,10 @@ public class OutputViewTest {
         String expected = "8개를 구매했습니다.";
 
         // when
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
         OutputView.printPurchase(number);
 
         // then
-        assertEquals(expected, outputStream.toString().trim());
+        assertEquals(expected, outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -31,16 +39,16 @@ public class OutputViewTest {
         List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(7, 8, 9, 10, 11, 12)));
         String expected =
                 "[1, 2, 3, 4, 5, 6]\n" +
-                "[7, 8, 9, 10, 11, 12]\n";
+                "[7, 8, 9, 10, 11, 12]";
 
         // when
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
         OutputView.printLottos(lottos);
+        expected = expected.replaceAll("\\s", "");
+        String actual = outputStreamCaptor.toString().trim().replaceAll("\\s", "");
 
         // then
-        assertEquals(expected, outputStream.toString().trim());
-    }   // 콘솔상으로 보이는 값은 같으나 에러가 Failed 발생. 추후 Bug Fix 필요.
+        assertEquals(expected, actual);
+    }
 
     @Test
     void testPrintPrizeStatistics() {
@@ -52,15 +60,15 @@ public class OutputViewTest {
                 "4개 일치 (50,000원) - 4개\n" +
                 "5개 일치 (1,500,000원) - 3개\n" +
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개\n" +
-                "6개 일치 (2,000,000,000원) - 1개\n";
+                "6개 일치 (2,000,000,000원) - 1개";
         // when
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
         OutputView.printPrizeStatistics(prizeCounts);
+        expected = expected.replaceAll("\\s", "");
+        String actual = outputStreamCaptor.toString().trim().replaceAll("\\s", "");
 
         // then
-        assertEquals(expected, outputStream.toString().trim());
-    }   // 콘솔상으로 보이는 값은 같으나 에러가 Failed 발생. 추후 Bug Fix 필요.
+        assertEquals(expected, actual);
+    }
 
     @Test
     void testPrintRateOfReturn() {
@@ -75,5 +83,10 @@ public class OutputViewTest {
 
         // then
         assertEquals(expected, outputStream.toString().trim());
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
     }
 }

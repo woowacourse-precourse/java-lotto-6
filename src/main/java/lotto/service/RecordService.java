@@ -14,19 +14,20 @@ public class RecordService {
     }
 
     private void recordResult(LottoTicket lottoTicket, Result value) {
-        if(value.getSameCount()==5){
-            bonusCalculate(lottoTicket);
-        }
-        else if (lottoTicket.getSameCount() == value.getSameCount()) {
-            value.addCount();
+        if (lottoTicket.getSameCount() == value.getSameCount()) {
+            if(value.getSameCount()==5){
+                checkIsSecond(lottoTicket, value);
+            }
+            else if(!lottoTicket.isBonus()) {
+                value.addCount();
+            }
         }
     }
 
-    private static void bonusCalculate(LottoTicket lottoTicket) {
-        if(lottoTicket.isBonus()){
+    private void checkIsSecond(LottoTicket lottoTicket, Result value) {
+        if(lottoTicket.isBonus() && value.isBonus()) {
             Result.SECOND.addCount();
-            return;
         }
-        Result.THIRD.addCount();
     }
+
 }

@@ -28,4 +28,21 @@ public class ConsoleInput implements Input {
             throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 숫자를 입력해주세요.");
         }
     }
+
+    @Override
+    public int inputBonusNumber() {
+        try{
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            validateBonusNumber(bonusNumber);
+            return bonusNumber;
+        }catch (Exception e){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자를 입력해주세요.");
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자입니다.");
+        }
+    }
 }

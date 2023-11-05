@@ -8,4 +8,6 @@ public interface Input {
 
     Lotto inputWinningNumbers();
 
+    int inputBonusNumber();
+
 }

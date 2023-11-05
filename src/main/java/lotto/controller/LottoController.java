@@ -36,7 +36,7 @@ public class LottoController {
         return WinningLotto.of(lotto, bonus);
     }
 
-    private WinningResult makeResult(Lottos userLottos, WinningLotto winningLotto){
-        return WinningResult.from(userLottos, winningLotto);
+    private WinningStatistics makeStatistics(Lottos userLottos, WinningLotto winningLotto){
+        return WinningStatistics.from(userLottos, winningLotto);
     }
 }

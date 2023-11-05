@@ -25,7 +25,7 @@ public class WinningLotto {
     }
 
     private void validateCorrectRange(int bonusNumber) {
-        if (bonusNumber < 1 && bonusNumber > 45) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] : 숫자가 1에서 45 사이의 범위를 벗어납니다.");
         }
     }

@@ -1,13 +1,11 @@
 package lotto.util;
 
-import java.util.List;
-
 import static lotto.util.LottoInformation.MIN_NUMBER;
 import static lotto.util.LottoInformation.MAX_NUMBER;
 
 public class NumberValidator {
 
-    public static void validatePurchaseAmount(String number) {
+    public void validatePurchaseAmount(String number) {
         if (number.isEmpty()) {
             throw new IllegalArgumentException(NumberErrorMessage.NUMBER_IN_EMPTY.getMessage());
         }
@@ -32,7 +30,7 @@ public class NumberValidator {
         }
     }
 
-    public static void validateBonusNumber(String bonusNumber) {
+    public void validateBonusNumber(String bonusNumber) {
         if (bonusNumber.isEmpty()) {
             throw new IllegalArgumentException(NumberErrorMessage.NUMBER_IN_EMPTY.getMessage());
         }
@@ -46,7 +44,7 @@ public class NumberValidator {
         }
     }
 
-    private static boolean isNumeric(String number) {
+    private boolean isNumeric(String number) {
         try {
             Integer.parseInt(number);
             return true;
@@ -55,7 +53,7 @@ public class NumberValidator {
         }
     }
 
-    private static boolean isWithinIntRange(String number) {
+    private boolean isWithinIntRange(String number) {
         int maxValue = Integer.MAX_VALUE;
 
         if (Integer.parseInt(number) <= maxValue) {
@@ -64,7 +62,7 @@ public class NumberValidator {
         return false;
     }
 
-    private static boolean isZero(String number) {
+    private boolean isZero(String number) {
         int numericValue = Integer.parseInt(number);
 
         if (numericValue == 0) {
@@ -73,17 +71,17 @@ public class NumberValidator {
         return false;
     }
 
-    private static boolean isNegative(String number) {
+    private boolean isNegative(String number) {
         int numericValue = Integer.parseInt(number);
         return numericValue < 0;
     }
 
-    private static boolean isDivisibleByThousands(String number) {
+    private boolean isDivisibleByThousands(String number) {
         int numericValue = Integer.parseInt(number);
         return numericValue % 1000 == 0;
     }
 
-    private static boolean isWithinRange(String bonusNumberAsString) {
+    private boolean isWithinRange(String bonusNumberAsString) {
         int bonusNumber = Integer.parseInt(bonusNumberAsString);
 
         if (bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER) {

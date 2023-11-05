@@ -31,6 +31,17 @@ public class Input {
         return answerNumber();
     }
 
+    public void bonusNumber(AnswerNumberRequestDto answerNumberRequestDto) {
+        try {
+            int bonusNumber = stringToInt(Console.readLine());
+            answerNumberRequestDto.addBonusNumber(bonusNumber);
+            return;
+        } catch (IllegalArgumentException errorMessage) {
+            Log.println(errorMessage.getMessage());
+        }
+        bonusNumber(answerNumberRequestDto);
+    }
+
     private AnswerNumberRequestDto makeRequestDto(String lottoNumbers) {
         try {
             return AnswerNumberRequestDto.createDto(

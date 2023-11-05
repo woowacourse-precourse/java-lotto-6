@@ -11,11 +11,10 @@ public class Application {
         lottoController.buyLotto(input.buyMoney());
 
         Log.println("당첨 번호를 입력해 주세요.");
-        input.answerNumber();
-        lottoController.saveAnswerNumber();
+        AnswerNumberRequestDto answerNumberRequestDto = input.answerNumber();
 
         Log.println("보너스 번호를 입력해주세요.");
-        lottoController.saveBonusNumber();
+        input.bonusNumber(answerNumberRequestDto);
 
         lottoController.getStatistics();
     }

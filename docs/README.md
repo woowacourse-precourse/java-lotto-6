@@ -1,7 +1,8 @@
 ## 구현할 기능 목록
 - [] 로또 구입 금액을 입력받는다. InputView#inputLottoPrice()
-- [] 로또 1개당 1000원으로 계산하여 로또 수량을 계산하여 출력한다. OutputView#printNumberOfLotto()
-- [] 1000원으로 나누어떨어지지 않으면 예외처리를 한다. Error#dividabilityBy1000Error
+- [] 로또 1개당 1000원으로 계산하여 로또 수량을 계산한다. InputView#calculateNumberOfLotto()
+- [] 계산한 로또의 개수를 출력한다. OutputView#printNumberOfLotto()
+- [] 1000원으로 나누어떨어지지 않으면 예외처리를 한다. validator#checkDividability()
 - [] 로또 1개당 중복되지 않는 6개의 숫자를 랜덤으로 생성한다. NumberGenerator#gererateRandomNumber()
 - [] 생성한 숫자들을 출력한다. OutputView#printRandomNumber
 - [] 당첨 번호를 입력받는다. InputView#inputWinningNumber()

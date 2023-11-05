@@ -25,22 +25,25 @@ public class OutputView {
         System.out.println();
     }
 
-    public void winningStatisicOutput(HashMap<LottoRank, Integer> lottoResult) {
+    public void winningStatisticOutput(HashMap<LottoRank, Integer> lottoResult) {
         System.out.println(WINNING_STATISTICS_OUTPUT_MESSAGE);
         System.out.println(LINE_OUTPUT_MESSAGE);
-
-        for (LottoRank result : lottoResult.keySet()) {
-            String resultMessage = "";
-            if (result.equals("SECOND")) {
-                resultMessage = String.format(SECOND_WINNING_RESULT_OUTPUT_MESSAGE, result.getNumberOfWins(),
-                        result.getOutputPrize(), lottoResult.get(result));
-                System.out.println(resultMessage);
-                continue;
-            }
-            resultMessage = String.format(DEFAULT_WINNING_RESULT_OUTPUT_MESSAGE, result.getNumberOfWins(),
-                    result.getOutputPrize(), lottoResult.get(result));
-
+        for (LottoRank lottoRank : lottoResult.keySet()) {
+            showRankResult(lottoResult, lottoRank);
         }
+    }
+
+    private void showRankResult(HashMap<LottoRank, Integer> lottoResult, LottoRank lottoRank) {
+
+        if (lottoRank.equals("NO_RANK")) {
+            System.out.println(String.format(SECOND_WINNING_RESULT_OUTPUT_MESSAGE, lottoRank.getMatchCount(),
+                    lottoRank.getOutputPrize(), lottoResult.get(lottoRank)));
+            return;
+        }
+        System.out.println(String.format(DEFAULT_WINNING_RESULT_OUTPUT_MESSAGE, lottoRank.getMatchCount(),
+                lottoRank.getOutputPrize(), lottoResult.get(lottoRank)));
+
+
     }
 
     public void totalReturnOutput(double totalReturn) {

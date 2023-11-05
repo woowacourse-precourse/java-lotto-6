@@ -30,8 +30,8 @@ class LottoShopTest {
         assertEquals(buyerLotto.size(), price / 1000);
     }
 
-    @Test
     @DisplayName("입력한 당첨 번호로 WinningLotto 생성 확인 테스트")
+    @Test
     void createWinningLottoWithInputNumbers() {
         List<Integer> inputWinningLotto = List.of(1, 2, 3, 4, 5, 6);
 
@@ -40,8 +40,8 @@ class LottoShopTest {
         assertThat(winningLotto).isInstanceOf(Lotto.class);
     }
 
-    @Test
     @DisplayName("입력한 보너스 번호로 BonusNumber 생성 확인 테스트")
+    @Test
     void createBonusNumberWithInputNumber() {
         int number = 7;
 

@@ -1,5 +1,5 @@
 package lotto.service;
 
-public interface NumberGenerator<T> {
+public interface Generator<T> {
     T generate();
 }

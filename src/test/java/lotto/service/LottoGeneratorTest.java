@@ -11,7 +11,7 @@ class LottoGeneratorTest {
     @DisplayName("로또 생성 테스트")
     @Test
     void checkNumberLength() {
-        NumberGenerator<Lotto> generator = new LottoGenerator();
+        Generator<Lotto> generator = new LottoGenerator();
         assertThat(generator.generate().getClass())
                 .isEqualTo(Lotto.class);
     }

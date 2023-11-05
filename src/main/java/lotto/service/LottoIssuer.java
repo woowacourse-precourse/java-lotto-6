@@ -11,9 +11,9 @@ import java.util.stream.IntStream;
 public class LottoIssuer {
 
     private final Integer lottoTicket;
-    private final NumberGenerator<Lotto> generator;
+    private final Generator<Lotto> generator;
 
-    private LottoIssuer(Integer lottoTicket, NumberGenerator<Lotto> generator) {
+    private LottoIssuer(Integer lottoTicket, Generator<Lotto> generator) {
         this.lottoTicket = lottoTicket;
         this.generator = generator;
     }

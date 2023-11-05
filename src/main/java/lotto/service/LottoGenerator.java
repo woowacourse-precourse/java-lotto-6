@@ -6,7 +6,7 @@ import lotto.model.Lotto;
 
 import java.util.List;
 
-public class LottoGenerator implements NumberGenerator<Lotto> {
+public class LottoGenerator implements Generator<Lotto> {
     @Override
     public Lotto generate() {
         return new Lotto(randomGenerate());

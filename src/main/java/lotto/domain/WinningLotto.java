@@ -46,6 +46,7 @@ public class WinningLotto {
                 .peek(WinningLotto::validateType)
                 .map(Integer::parseInt)
                 .peek(WinningLotto::validateRange)
+                .sorted()
                 .collect(Collectors.toList());
     }
 

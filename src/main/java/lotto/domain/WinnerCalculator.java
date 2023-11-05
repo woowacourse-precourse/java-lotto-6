@@ -48,13 +48,9 @@ public class WinnerCalculator {
     }
 
     private int getMatchCount(List<Integer> ticketNumbers, List<Integer> winningNumbers) {
-        int matchCount = 0;
-        for (int number : ticketNumbers) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
+        return (int) ticketNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 
     public LinkedHashMap<LottoRank, Integer> getWinnerCount() {

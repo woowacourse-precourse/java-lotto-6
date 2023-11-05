@@ -1,11 +1,14 @@
 package lotto;
 
+import java.util.List;
 import lotto.controller.LotteryStore;
 import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.dto.PurchasedLottosDto;
 import lotto.view.ConsoleMessageView;
 import lotto.view.MoneyInputView;
 import lotto.view.PurchasedLottoOutputView;
+import lotto.view.WinningLottoInputView;
 
 public class LottoApplication {
 
@@ -22,6 +25,12 @@ public class LottoApplication {
 
         PurchasedLottosDto purchasedLottos = fetchPurchasedLottos();
         printFrom(purchasedLottos);
+
+        List<String> winningLottoNumbers = WinningLottoInputView.inputWinningLottoNumbers();
+        String bonusNumber = WinningLottoInputView.inputBonusNumber();
+
+        WinningLotto winningLotto = createWinningLottoFrom(winningLottoNumbers, bonusNumber);
+
 
 
     }
@@ -45,5 +54,10 @@ public class LottoApplication {
         PurchasedLottoOutputView.outputPurchasedCount(count);
         PurchasedLottoOutputView.outputPurchasedLottos(purchasedLottosDto.show());
     }
-
+    
+    public WinningLotto createWinningLottoFrom(List<String> winningLottoNumbers, String BonusNumber) {
+        return new WinningLotto(winningLottoNumbers, BonusNumber);
+        
+    }
+    
 }

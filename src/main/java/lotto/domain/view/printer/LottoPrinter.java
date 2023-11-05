@@ -13,7 +13,7 @@ public class LottoPrinter {
         System.out.println(lottos.size() + PURCHASED_SIZE_PRINT_MESSAGE);
         for (Lotto lotto : lottos) {
             System.out.print(LEFT_SQUARE_BRACKETS);
-            System.out.println(arrayAscendingLottoWithComma(lotto));
+            System.out.print(arrayAscendingLottoWithComma(lotto));
             System.out.println(RIGHT_SQUARE_BRACKETS);
         }
         System.out.println();

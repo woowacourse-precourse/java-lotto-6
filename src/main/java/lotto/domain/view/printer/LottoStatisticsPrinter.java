@@ -1,5 +1,8 @@
 package lotto.domain.view.printer;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import lotto.domain.config.ScoreConfig;
 import lotto.domain.entity.Order;
@@ -8,10 +11,10 @@ import lotto.domain.entity.Statistics;
 public class LottoStatisticsPrinter {
     private static final String WINNING_STATISTICS_PRINT_MESSAGE = "당첨 통계";
     private static final String BASE_LINE = "---";
-    private static final String WINNING_POINT_PRINT_MESSAGE = "%d개 일치%s (%s원) - %d개";
+    private static final String WINNING_POINT_PRINT_MESSAGE = "%d개 일치%s (%s원) - %d개\n";
     private static final String BONUS_SUFFIX = ", 보너스 볼 일치";
     private static final String NULL_SUFFIX = "";
-    private static final String RATE_OF_RETURN_PRINT_MESSAGE = "총 수익률은 %.2f%%입니다.";
+    private static final String RATE_OF_RETURN_PRINT_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void printStatistics(Order order) {
         System.out.println(WINNING_STATISTICS_PRINT_MESSAGE);
@@ -19,9 +22,13 @@ public class LottoStatisticsPrinter {
 
         Statistics statistics = order.getStatistics();
         Map<ScoreConfig, Integer> winningInfo = statistics.getWinning();
-        winningInfo.forEach((key, value) -> {
-            printWinningPoint(key, value);
-        });
+
+        List<ScoreConfig> scores = Arrays.asList(ScoreConfig.values());
+        Collections.reverse(scores);
+
+        scores.stream()
+                .filter(score -> score != ScoreConfig.NOTHING)
+                .forEach(score -> printWinningPoint(score, winningInfo.getOrDefault(score, 0)));
     }
 
     private static void printWinningPoint(ScoreConfig score, Integer winningNumber) {

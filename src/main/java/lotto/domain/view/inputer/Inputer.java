@@ -7,25 +7,44 @@ import lotto.domain.view.printer.InputPrinter;
 
 public class Inputer {
     public static Integer inputPurchaseAmount() {
-        InputPrinter.printPurchaseAmount();
-        String userInput = InputManager.getReadLineWithTrim();
-        InputValidator.validateNumber(userInput);
+        while (true) {
+            try {
+                InputPrinter.printPurchaseAmount();
+                String userInput = InputManager.getReadLineWithTrim();
+                InputValidator.validateNumber(userInput);
 
-        return Integer.parseInt(userInput);
+                return Integer.parseInt(userInput);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public static List<Integer> inputWinningNumbers() {
-        InputPrinter.printWinningNumbers();
-        String userInput = InputManager.getReadLineWithTrim();
+        while (true) {
+            try {
+                InputPrinter.printWinningNumbers();
+                String userInput = InputManager.getReadLineWithTrim();
+                InputValidator.validateNumberOrComma(userInput);
 
-        return InputManager.getNumbersByInput(userInput);
+                return InputManager.getNumbersByInput(userInput);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public static Integer inputBonusNumber() {
-        InputPrinter.printBonusNumber();
-        String userInput = InputManager.getReadLineWithTrim();
-        InputValidator.validateNumber(userInput);
+        while (true) {
+            try {
+                InputPrinter.printBonusNumber();
+                String userInput = InputManager.getReadLineWithTrim();
+                InputValidator.validateNumber(userInput);
 
-        return Integer.parseInt(userInput);
+                return Integer.parseInt(userInput);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }

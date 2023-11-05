@@ -29,6 +29,6 @@ public class Order {
     }
 
     public double getRateOfReturn() {
-        return ((double) statistics.getRevenue() - property) / property * PERCENT_CONVERSION_FACTOR;
+        return ((double) statistics.getRevenue()) / property * PERCENT_CONVERSION_FACTOR;
     }
 }

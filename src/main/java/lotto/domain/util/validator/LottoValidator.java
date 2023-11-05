@@ -26,7 +26,7 @@ public class LottoValidator {
         Set unique = new HashSet(numbers);
 
         if (unique.size() != numbers.size()) {
-            throw new IllegalStateException("[ERROR] 로또 번호에 중복된 번호가 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 번호가 있습니다.");
         }
     }
 

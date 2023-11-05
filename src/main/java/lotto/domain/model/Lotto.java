@@ -1,6 +1,7 @@
 package lotto.domain.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.util.ErrorMessage;
 
 import java.util.List;
 
@@ -14,8 +15,9 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LENGTH_INPUT.getErrorMessage());
         }
+        LottoWinnerSystem.isDistinct(numbers);
     }
 
     public List<Integer> getLotto() {

@@ -3,8 +3,9 @@ package lotto.model;
 import java.util.Objects;
 
 public class LottoNumber {
-    private static final int MIN = 1;
-    private static final int MAX = 45;
+    public static final int MIN = 1;
+    public static final int MAX = 45;
+    public static final int SIZE = 6;
     private final Integer number;
 
     public LottoNumber(Integer number) {

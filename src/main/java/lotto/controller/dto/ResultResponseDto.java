@@ -21,7 +21,11 @@ public class ResultResponseDto {
         return sameNumberCount;
     }
 
-    public String getWinnerPrice() {
+    public int getWinnerPrice() {
+        return winnerPrice;
+    }
+
+    public String getWinnerPriceFormatted() {
         return toDecimalFormat(winnerPrice);
     }
 

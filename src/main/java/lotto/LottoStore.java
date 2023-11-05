@@ -12,11 +12,12 @@ public class LottoStore {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
-    public List<Lotto> sell(Amount purchaseAmount) {
+    public SoldLotto sell(Amount purchaseAmount) {
         int lottoTicketCount = getLottoTicketCount(purchaseAmount);
-        return IntStream.range(0, lottoTicketCount)
+        List<Lotto> lottos = IntStream.range(0, lottoTicketCount)
                 .mapToObj(count -> generateLotto())
                 .toList();
+        return new SoldLotto(lottos);
     }
 
     private int getLottoTicketCount(Amount purchaseAmount) {

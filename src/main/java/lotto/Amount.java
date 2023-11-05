@@ -10,7 +10,7 @@ public class Amount extends BigInteger {
     }
 
     public boolean lessThan(Amount amount) {
-        return this.compareTo(amount) == -1;
+        return this.compareTo(amount) < 0;
     }
 
     public boolean isMultipleOf(Amount amount) {

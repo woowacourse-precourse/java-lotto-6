@@ -35,13 +35,15 @@ public class LottoController {
         return lottosDto;
     }
 
-    private void drawLotto(final LottosDto lottosDto) {
+    private DrawingResultDto drawLotto(final LottosDto lottosDto) {
         WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
         BonusNumberDto bonusNumberDto = inputView.inputBonusNumber();
         validateBonusNumberDuplicate(winningLottoDto, bonusNumberDto);
 
         DrawingResultDto drawingResultDto = lottoMachine.draw(lottosDto, winningLottoDto, bonusNumberDto);
         outputView.printDrawingResult(drawingResultDto);
+
+        return drawingResultDto;
     }
 
     private void validateBonusNumberDuplicate(final WinningLottoDto winningLottoDto,

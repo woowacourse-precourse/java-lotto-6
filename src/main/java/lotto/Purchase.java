@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.Collections;
+import java.util.List;
 
 public class Purchase {
 
@@ -10,7 +14,8 @@ public class Purchase {
         int money = Integer.parseInt(Console.readLine());
 
         int lottoCount = checkLottoCount(money);
-        System.out.println("구매 로또 수 : " + lottoCount);
+
+        printLotto(lottoCount);
     }
 
     public int checkLottoCount(int money){
@@ -18,7 +23,16 @@ public class Purchase {
         if(money % 1000 != 0){
             throw new IllegalArgumentException("[ERROR] 구입 금액을 확인해주세요. 1장당 1000원");
         }
-
+        System.out.println(lottoCount + "개를 구매했습니다.");
         return lottoCount;
+    }
+
+    public void printLotto(int lottoCount){
+        while (lottoCount > 0){
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(lottoNumbers);
+            System.out.println(lottoNumbers);
+            lottoCount--;
+        }
     }
 }

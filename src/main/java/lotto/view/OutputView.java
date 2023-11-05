@@ -26,6 +26,11 @@ public class OutputView {
         System.out.println(result);
     }
 
+    public static void printTotalEarningsRate(double totalEarningsRate) {
+        String formattedEarningsRate = String.format("%,.1f%%", totalEarningsRate);
+        System.out.println("총 수익률은 " + formattedEarningsRate + "입니다.");
+    }
+
     public static void printLottoResult(List<LottoResult> results) {
         System.out.println("당첨 통계");
         System.out.println("---");

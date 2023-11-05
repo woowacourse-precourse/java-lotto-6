@@ -7,7 +7,7 @@ import lotto.domain.Rank;
 import lotto.domain.WinningResult;
 
 public class OutputView {
-    private static final String LOTTO_AMOUNT_MESSAGE = "개를 구매했습니다.";
+    private static final String LOTTO_AMOUNT_MESSAGE = "%d개를 구매했습니다.\n";
     private static final String LOTTO_WINNING_STATICS_MESSAGE = "당첨 통계";
     private static final String LINE_SEPARATE = "---";
     private static final String WINNING_STATICS_MESSAGE = "%d개 일치 (%s원) - %d개";
@@ -17,7 +17,7 @@ public class OutputView {
     private static final DecimalFormat floatDecFormat = new DecimalFormat("###,###.0");
 
     public static void printLottos(Lottos lottos) {
-        System.out.println(lottos.getLottos().size() + LOTTO_AMOUNT_MESSAGE);
+        System.out.printf(LOTTO_AMOUNT_MESSAGE, lottos.getAmount());
 
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.toString());

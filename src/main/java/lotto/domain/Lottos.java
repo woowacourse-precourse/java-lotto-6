@@ -18,4 +18,8 @@ public class Lottos {
     public int getMoney() {
         return lottos.size() * TEN_THOUSAND;
     }
+
+    public int getAmount() {
+        return lottos.size();
+    }
 }

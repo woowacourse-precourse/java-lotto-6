@@ -20,6 +20,7 @@ public class WinningResult {
         for (Lotto lotto : lottos.getLottos()) {
             Rank from = Rank.from(lotto.calculateMatchCount(winningNumber.getWinningNumber())
                     , lotto.isContain(winningNumber.getBonusNumber()));
+
             winningResult.put(from, winningResult.get(from) + 1);
         }
     }

@@ -53,14 +53,14 @@ public class Lotto {
 
     public Prize checkWinningNumber(List<Integer> winningNumbers, Integer bonusNumber) {
         Integer correctNomalNumberCount = 0;
+        Integer correctBonusNumberCount = 0;
 
         correctNomalNumberCount = countNomalNumber(winningNumbers, correctNomalNumberCount);
 
-        // TODO : 보너스 숫자 일치여부 추출 , 당첨 등수 추출
+        correctBonusNumberCount = countBonusNumber(bonusNumber, correctBonusNumberCount);
 
+        // TODO : 당첨 등수 추출
         return null;
-
-
     }
 
     private Integer countNomalNumber(List<Integer> winningNumbers,
@@ -71,5 +71,12 @@ public class Lotto {
             }
         }
         return collectNomalNumberCount;
+    }
+
+    private Integer countBonusNumber(Integer bonusNumber, Integer collectBonusNumberCount) {
+        if (numbers.contains(bonusNumber)) {
+            collectBonusNumberCount++;
+        }
+        return collectBonusNumberCount;
     }
 }

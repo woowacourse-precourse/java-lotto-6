@@ -1,9 +1,9 @@
 # 로또
 
 ## 기능 요구 목록
-- [ ] 구입 금액을 입력받는다. -> getAmountOfMoney()
-- [ ] 구입 금액에 해당하는 로또를 발행한다. -> Generator#createLottery()
-  - [ ] 발행한 로또 번호를 오름차순으로 정렬한다. -> sortLotteryToAsc()
+- [ ] 사용자로부터 구입 금액을 입력받는다. -> getAmountOfMoney()
+- [ ] 임의의 숫자 6개를 뽑는다. -> Generator#generateRandomNumbers()
+  - [ ] 숫자 6개를 오름차순으로 정렬한다. -> sortNumbersToAsc()
 - [ ] 발행한 로또번호의 수량을 출력한다. -> Printer#showLotteryCount()
 - [ ] 발행한 로또를 출력한다. -> Printer#showLotteryNumbers()
 - [ ] 당첨 번호를 입력받는다. -> getWinningNumber()

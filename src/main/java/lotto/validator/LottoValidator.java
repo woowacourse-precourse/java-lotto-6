@@ -47,7 +47,7 @@ public class LottoValidator {
                 .count() != lotto.getLotto().size();
 
         if (isDuplicate) {
-            throw new NumberFormatException(LOTTO_MUST_CONSIST_OF_NUMBERS);
+            throw new NumberFormatException(LOTTO_NUMBER_DUPLICATE_ERROR);
         }
     }
 

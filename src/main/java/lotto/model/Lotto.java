@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import lotto.exception.ErrorMessage;
@@ -45,7 +44,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        Collections.sort(numbers);
         return numbers.toString();
     }
 }

@@ -16,7 +16,7 @@ public class WinNumberValid {
     public static List<Integer> validWinNumber(String input) {
         List<String> nums = ConvertStr.splitByComma(input);
         validOnlyNum(nums);
-        List<Integer> intNums = ConvertStr.strListToIntList(nums);
+        List<Integer> intNums = ConvertStr.strsToIntegers(nums);
         validLottoNums(intNums);
         return intNums;
     }

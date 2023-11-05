@@ -9,7 +9,7 @@ public class ConvertStr {
         return Arrays.asList(input.split(","));
     }
 
-    public static List<Integer> strListToIntList(List<String> list) {
+    public static List<Integer> strsToIntegers(List<String> list) {
         return list.stream().map(Integer::parseInt).toList();
     }
 }

@@ -2,8 +2,13 @@ package lotto.view;
 
 import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
+import static lotto.view.constants.SymbolType.POSTFIX;
+import static lotto.view.constants.SymbolType.PREFIX;
+import static lotto.view.constants.SymbolType.SEPARATOR;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.view.constants.MessageType;
 
@@ -15,13 +20,36 @@ public final class View {
 
     public static void printLottos(Lottos lottos) {
         printLottosCount(lottos.getSize());
+        printLottosInfo(lottos.getLottos());
     }
 
     private static void printLottosCount(int count) {
         printlnFormat(LOTTO_COUNT_MESSAGE, count);
     }
 
+    private static void printLottosInfo(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            printLottoInfo(lotto);
+        }
+    }
+
+    private static void printLottoInfo(Lotto lotto) {
+        String result = String.join(SEPARATOR.getSymbol(), convertNumbers(lotto.getNumbers()));
+        printlnResult(PREFIX + result + POSTFIX);
+    }
+
+    private static String[] convertNumbers(List<Integer> numbers) {
+        return numbers
+                .stream()
+                .map(Object::toString)
+                .toArray(String[]::new);
+    }
+
     /* Output View */
+    private static void printlnResult(String result) {
+        System.out.println(result);
+    }
+
     private static void printlnMessage(MessageType messageType) {
         System.out.println(messageType.getMessage());
     }

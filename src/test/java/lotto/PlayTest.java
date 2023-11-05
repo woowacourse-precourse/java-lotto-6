@@ -10,6 +10,7 @@ import java.util.List;
 
 import static lotto.controller.Play.*;
 import static lotto.controller.Statistic.calLottoCount;
+import static lotto.controller.lotteryController.makeLottery;
 import static lotto.controller.winningController.compareLottoAndBonus;
 import static lotto.controller.winningController.compareLottoAndWinningNumber;
 

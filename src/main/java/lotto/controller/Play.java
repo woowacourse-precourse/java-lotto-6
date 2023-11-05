@@ -9,6 +9,7 @@ import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.RandNumber.*;
 import static lotto.controller.Statistic.*;
+import static lotto.controller.lotteryController.*;
 import static lotto.controller.winningController.*;
 import static lotto.view.Message.*;
 import static lotto.view.Print.*;
@@ -19,18 +20,12 @@ public class Play {
     private static final int size = 6;
     public static HashMap<Rank, Integer> result;
     public static List<Lotto> lottery;
-    //private static int price;
-
     public Play() {
         result = new HashMap<>();
         int price = createPrice();
         int count = calLottoCount(price, lottoPrice);
         printBoughtLottoCount(count);
-        lottery = new ArrayList<>();
-
-        for (int i=0; i<count; i++) {
-            lottery.add(makeLottery());
-        }
+        lottery = rotateLotteryCount(count);
 
         for (Lotto lotto : lottery) {
             printLottoNumber(sortLottery(lotto));
@@ -107,17 +102,7 @@ public class Play {
         return bonus;
     }
 
-    public static Lotto makeLottery() {
-        Lotto lotto = null;
-        List<Integer> number = makeUniqueNumber();;
-        lotto = new Lotto(number);
-        return lotto;
-    }
 
-    public static List<Integer> sortLottery(Lotto lotto) {
-        List<Integer> sortNumbers = new ArrayList<>(lotto.getLotto());
-        Collections.sort(sortNumbers);
-        return sortNumbers;
-    }
+
 
 }

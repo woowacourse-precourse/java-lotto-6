@@ -51,7 +51,7 @@
 - WinningNumber: 당첨 번호를 추상화한 클래스
   - [x] 당첨 번호를 반환한다.
   - 유효성 검증
-    - [ ] 당첨 번호의 원소가 6개가 아니라면 IllegalArgumentException을 발생시킨다.
+    - [x] 당첨 번호의 원소가 6개가 아니라면 IllegalArgumentException을 발생시킨다.
     - [ ] 당첨 번호의 원소가 1부터 45까지의 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
     - [ ] 당첨 번호의 원소가 중복된다면 IllegalArgumentException을 발생시킨다.
     - [ ] 당첨 번호가 공백이라면 IllegalArgumentException을 발생시킨다.

@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class WinningNumber {
 
+    private static final int WINNING_NUMBER_SIZE = 6;
+
     private final List<Integer> winningNumbers;
 
     public WinningNumber(String winningNumInput) {
@@ -18,5 +20,12 @@ public class WinningNumber {
     }
 
     private void validateWinningNumbers(String[] winningNumInput) {
+        validateWinningNumSize(winningNumInput);
+    }
+
+    private void validateWinningNumSize(String[] winningNumInput) {
+        if (winningNumInput.length != WINNING_NUMBER_SIZE) {
+            throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
+        }
     }
 }

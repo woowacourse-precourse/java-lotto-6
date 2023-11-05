@@ -1,9 +1,11 @@
 package lotto.validation;
 
 import static lotto.validation.enumType.WinningNumbers.CHECK_COMMA_MESSAGE;
+import static lotto.validation.enumType.WinningNumbers.COUNT_NUMBERS;
 import static lotto.validation.enumType.WinningNumbers.DUPLICATE_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.LOTTO_MAX_NUMBER;
 import static lotto.validation.enumType.WinningNumbers.LOTTO_MIN_NUMBER;
+import static lotto.validation.enumType.WinningNumbers.NUMBERS_COUNT_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.NUMBER_RANGE_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.SPLIT_MESSAGE;
 
@@ -49,5 +51,16 @@ public class WinningNumbersValidator {
 
     private List<String> stringToCollection(String input) {
         return Arrays.asList(input.split(SPLIT_MESSAGE.getMessage()));
+    }
+
+    public void validateNumbersCount(String input) {
+        if (hasNotValidNumbersCount(input)) {
+            throw new IllegalArgumentException(NUMBERS_COUNT_MESSAGE.getMessage());
+        }
+    }
+
+    private boolean hasNotValidNumbersCount(String input) {
+        String[] numbers = input.split(SPLIT_MESSAGE.getMessage());
+        return numbers.length != COUNT_NUMBERS.getNumber();
     }
 }

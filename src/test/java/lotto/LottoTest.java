@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -30,16 +31,15 @@ class LottoTest {
     @DisplayName("구입 금액이 1,000원으로 나누어 떨어 지지 않으면 예외가 발생한다.")
     @Test
     void inputPurchaseAmount() {
-        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,6)).checkPurchaseAmount(1550))
+        assertThatThrownBy(() -> new LottoInput().checkPurchaseAmount(1550))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("구입 금액은 1,000원 단위로 입력해야 합니다.");
     }
 
-    @DisplayName("로또 번호를 저장한다.")
+    @DisplayName("랜덤으로 로또 번호를 생성하여 저장")
     @Test
-    void showLotto() {
-        List<Set<Integer>> lottoNumbers = new ArrayList<>();
-        lottoNumbers.add(new HashSet<>(Arrays.asList(1,2,3,4,5,6)));
-        lottoNumbers.forEach(lotto -> System.out.println(lotto));
+    void randomLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        System.out.println(numbers);
     }
 }

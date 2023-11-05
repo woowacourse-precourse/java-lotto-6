@@ -9,4 +9,10 @@ public class InputView {
         int money = Integer.parseInt(Console.readLine());
         return money;
     }
+
+    public int inputWinningNumber(){
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        int winningNumber = Integer.parseInt(Console.readLine());
+        return winningNumber;
+    }
 }

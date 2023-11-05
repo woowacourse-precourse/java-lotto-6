@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.model.Rule;
 import lotto.utils.Converter;
 import lotto.view.InputView;
 
@@ -15,9 +14,9 @@ public class LottoController {
     }
 
     public void run() {
-        Integer budget = Converter.stringToInt(inputView.budget());
-        List<Integer> mainNumbers = Converter.stringToIntList(inputView.mainNumbers(), DELIMITER_FOR_INPUT);
-        Integer bonusNumber = Converter.stringToInt(inputView.bonusNumber());
+        Integer budget = Converter.stringToInt(inputView.ask(inputView.budget()));
+        List<Integer> mainNumbers = Converter.stringToIntList(inputView.ask(inputView.mainNumbers()), DELIMITER_FOR_INPUT);
+        Integer bonusNumber = Converter.stringToInt(inputView.ask(inputView.bonusNumber()));
 
     }
 }

@@ -8,11 +8,6 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     public void printLottos(List<Lotto> lottos) {
-//        StringBuilder lottoList = new StringBuilder();
-//        lottos.forEach(lotto -> {
-//            lottoList.append(String.join(",", lotto.getNumbers().stream().toString()));
-//        });
-
         String lottoList = lottos.stream()
                 .map(lotto -> String.join(",", lotto.getNumbers().stream()
                         .map(Object::toString)

@@ -12,7 +12,7 @@ public class LottosGeneratorMachine {
     public List<Lotto> generateLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int count = 0; count <= lottoCount; count++) {
+        for (int count = 0; count < lottoCount; count++) {
             lottos.add(generateLotto());
         }
 

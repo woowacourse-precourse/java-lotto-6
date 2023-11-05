@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class WriterViewTest {
 
-    @DisplayName("입력받은 문자가 양의 정수 또는 0이 아닐 경우 예외를 발생한다.")
+    @DisplayName("입력받은 문자가 양의 정수 또는 0이다.")
     @ParameterizedTest
     @ValueSource(strings = {"A", "111a", "-1", "-99"})
     void convertToInt(String input) {

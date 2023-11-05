@@ -26,30 +26,30 @@ class LottoFactoryTest {
         int money = 5000;
 
         // when
-        LottoFactory lottoFactory = LottoFactory.create(new RandomNumberGenerator(), money);
+        LottoFactory lottoFactory = LottoFactory.of(new RandomNumberGenerator(), money);
 
         // then
         assertThat(lottoFactory.getLottoNumbers()).hasSize(
                 money / LottoConstant.MONEY_UNIT.getValue());
     }
 
-    @DisplayName("투입한 금액이 단위에 맞지 않으면 예외를 발생한다.")
+    @DisplayName("투입한 금액이 1000원 단위이어야 한다.")
     @Test
     void createByNotUnit() {
         // given
         int money = 5100;
 
         // when then
-        assertThatThrownBy(() -> LottoFactory.create(new RandomNumberGenerator(), money))
+        assertThatThrownBy(() -> LottoFactory.of(new RandomNumberGenerator(), money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_UNIT.getMessage());
     }
 
-    @DisplayName("투입한 금액이 0원 보다 작거나 같으면 예외를 발생한다.")
+    @DisplayName("투입한 금액이 양수이어야 한다.")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
     void createByNotEnoughMoney(int money) {
-        assertThatThrownBy(() -> LottoFactory.create(new RandomNumberGenerator(), money))
+        assertThatThrownBy(() -> LottoFactory.of(new RandomNumberGenerator(), money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_ENOUGH_MONEY.getMessage());
     }
@@ -59,8 +59,8 @@ class LottoFactoryTest {
     @MethodSource("lottoDataProvider")
     void calculateResult(List<Integer> lotto, int bonusNumber, Rank rank, int count) {
         // given
-        LottoFactory lottoFactory = LottoFactory.create(() -> List.of(1, 2, 3, 4, 5, 6), 6000);
-        AnswerLotto answerLotto = AnswerLotto.create(new Lotto(lotto), bonusNumber);
+        LottoFactory lottoFactory = LottoFactory.of(() -> List.of(1, 2, 3, 4, 5, 6), 6000);
+        AnswerLotto answerLotto = AnswerLotto.of(new Lotto(lotto), bonusNumber);
 
         // when
         Result result = lottoFactory.calculateResult(answerLotto);
@@ -85,7 +85,7 @@ class LottoFactoryTest {
     @Test
     void getLottoNumbers() {
         // given
-        LottoFactory lottoFactory = LottoFactory.create(() -> List.of(1, 2, 3, 4, 5, 6), 4000);
+        LottoFactory lottoFactory = LottoFactory.of(() -> List.of(1, 2, 3, 4, 5, 6), 4000);
 
         // when
         List<String> lottoNumbers = lottoFactory.getLottoNumbers();

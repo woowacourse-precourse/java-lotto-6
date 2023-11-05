@@ -10,6 +10,7 @@ public class OutputView {
     }
 
     public static void printTicketCount(int ticketCount) {
+        System.out.println();
         System.out.printf(GameMessage.PURCHASED_TICKET_COUNT.getMessage(), ticketCount);
         System.out.println();
     }

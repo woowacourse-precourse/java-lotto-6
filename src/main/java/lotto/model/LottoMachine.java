@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    LottoGenerator lottoGenerator;
+    private final LottoGenerator lottoGenerator;
 
     public LottoMachine(LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
@@ -21,8 +21,8 @@ public class LottoMachine {
         }
         return lottoTickets;
     }
-    
-    public int getLottoPrice() {
+
+    public int getLottoTicketPrice() {
         return lottoGenerator.LOTTO_TICKET_PRICE;
     }
 }

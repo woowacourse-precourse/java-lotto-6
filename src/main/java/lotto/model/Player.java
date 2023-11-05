@@ -18,7 +18,7 @@ public class Player {
 
     public void buyLottoTickets(LottoShop lottoShop) {
         List<Lotto> purchased = lottoShop.createLottoTickets(budget);
-        usedBudget += purchased.size() * lottoShop.getLottoPrice();
+        usedBudget += purchased.size() * lottoShop.getLottoTicketPrice();
         lottoTickets.addAll(purchased);
     }
 

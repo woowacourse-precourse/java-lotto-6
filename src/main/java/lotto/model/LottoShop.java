@@ -10,11 +10,11 @@ public class LottoShop {
     }
 
     public List<Lotto> createLottoTickets(int budget) {
-        int quantity = budget / lottoMachine.getLottoPrice();
+        int quantity = budget / lottoMachine.getLottoTicketPrice();
         return lottoMachine.generateLottoTickets(quantity);
     }
 
-    public int getLottoPrice() {
-        return lottoMachine.getLottoPrice();
+    public int getLottoTicketPrice() {
+        return lottoMachine.getLottoTicketPrice();
     }
 }

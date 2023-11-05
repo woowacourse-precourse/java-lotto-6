@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.constants.LottoConstraint;
 import lotto.domain.lottery.BonusNumber;
 import lotto.domain.lottery.Lotto;
 import lotto.domain.lottery.Lottos;
@@ -9,6 +10,20 @@ import java.util.List;
 import java.util.Map;
 
 public class Computer {
+
+    public static int[] rewards;
+    public static double rateOfProfit;
+
+    public void setWinningReward() {
+        rewards = new int[]{
+                LottoConstraint.FIRST_REWARD.getValue(),
+                LottoConstraint.SECOND_REWARD.getValue(),
+                LottoConstraint.THIRD_REWARD.getValue(),
+                LottoConstraint.FOURTH_REWARD.getValue(),
+                LottoConstraint.FIFTH_REWARD.getValue()
+        };
+    }
+
     public void checkWinningLotto(Lottos purchasedLotto
             , WinningLotto winningLotto
             , BonusNumber bonusNumber
@@ -61,6 +76,16 @@ public class Computer {
         if (matchedNumbers == 3) {
             winningStats.put(5, winningStats.get(4) + 1);
         }
+    }
+
+    public void calcRateOfProfit(Map<Integer, Integer> winningStats, int purchaseAmount) {
+        double totalReward = 0.0;
+
+        for (int result : winningStats.keySet()) {
+            totalReward += winningStats.get(result) * rewards[result - 1];
+        }
+
+        rateOfProfit = totalReward / purchaseAmount;
     }
 
 }

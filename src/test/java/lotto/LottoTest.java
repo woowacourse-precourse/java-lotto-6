@@ -217,4 +217,15 @@ class LottoTest {
         assertThat(controller.compareTicket(winner, new Lotto(List.of(7, 8, 9, 10, 11, 12))))
                 .isEqualTo(SameNumber.SAME0);
     }
+
+    @DisplayName("로또 번호 중 보너스 번호의 여부를 확인한다.")
+    @Test
+    void compareBonusNumber() {
+        Control controller = new Control();
+        Lotto noBonusNumberTicket = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto bonusNumberTicket = new Lotto(List.of(2, 3, 4, 5, 6, 7));
+        Integer bonus = 7;
+        assertThat(controller.compareBonus(noBonusNumberTicket, bonus)).isEqualTo(0);
+        assertThat(controller.compareBonus(bonusNumberTicket, bonus)).isEqualTo(1);
+    }
 }

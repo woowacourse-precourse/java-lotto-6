@@ -1,14 +1,13 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import lotto.contents.ContentErrors;
 import lotto.utils.ValidationUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputTest {
     @DisplayName("음수 금액을 입력하면 예외가 발생한다.")

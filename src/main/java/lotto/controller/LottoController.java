@@ -3,50 +3,50 @@ package lotto.controller;
 import java.util.List;
 import lotto.application.LottoService;
 import lotto.application.LottoStatistics;
+import lotto.ui.InputHandler;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
 import lotto.utils.ParserUtil;
 import lotto.utils.ValidationUtil;
 
 public class LottoController {
-
     private final LottoService lottoService;
     private final InputView inputView;
     private final OutputView outputView;
+    private final InputHandler inputHandler;
 
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
         this.outputView = outputView;
+        this.inputHandler = new InputHandler(inputView, outputView);
+
     }
 
     public void run() {
-        int purchaseAmount = getValidatedInput(this::inputValidatePurchaseAmount);
+        int purchaseAmount = inputHandler.getValidatedInput(this::inputValidatePurchaseAmount);
+        purchaseLotto(purchaseAmount);
+
+        List<Integer> winningNumbers = inputHandler.getValidatedInput(this::inputValidateWinningNumbers);
+        int bonusNumber = inputHandler.getValidatedInput(() -> inputValidateBonusNumber(winningNumbers));
+        processWinningNumbers(winningNumbers, bonusNumber);
+
+        displayResults(purchaseAmount);
+    }
+
+    private void purchaseLotto(int purchaseAmount) {
         lottoService.purchaseLottoTickets(purchaseAmount);
         outputView.printLottos(lottoService.getLottoDtos());
+    }
 
-        List<Integer> winningNumbers = getValidatedInput(this::inputValidateWinningNumbers);
-        int bonusNumber = getValidatedInput(() -> inputValidateBonusNumber(winningNumbers));
-
+    private void processWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         lottoService.processWinningNumbers(winningNumbers, bonusNumber);
         outputView.printPrizeResults(lottoService.getPrizeCount());
+    }
 
+    private void displayResults(int purchaseAmount) {
         LottoStatistics statistics = new LottoStatistics(lottoService.getLottoResult(), purchaseAmount);
         outputView.printEarningsRate(statistics.calculateEarningsRate());
-    }
-
-    private <T> T getValidatedInput(InputSupplier<T> input) {
-        while (true) {
-            try {
-                return input.get();
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
-        }
-    }
-    private void validateBasicInput(String input) {
-        ValidationUtil.validateBlank(input);
-        ValidationUtil.validateSpecialCharacters(input);
     }
 
     private int inputValidatePurchaseAmount() {
@@ -72,12 +72,12 @@ public class LottoController {
         validateBasicInput(bonusNumberInput);
         int bonusNumber = ParserUtil.parseLottoNumber(bonusNumberInput);
         ValidationUtil.validateBonusNumber(bonusNumber);
-        ValidationUtil.validateBonusNumberNotInWinningNumbers(bonusNumber,winningNumbers);
+        ValidationUtil.validateBonusNumberNotInWinningNumbers(bonusNumber, winningNumbers);
         return bonusNumber;
     }
 
-    @FunctionalInterface
-    interface InputSupplier<T> {
-        T get() throws IllegalArgumentException;
+    private void validateBasicInput(String input) {
+        ValidationUtil.validateBlank(input);
+        ValidationUtil.validateSpecialCharacters(input);
     }
 }

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-
 public enum Prize {
     NONE(0, 0, false),
     THREE_MATCH(3, 5_000, false),

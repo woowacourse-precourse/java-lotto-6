@@ -1,6 +1,5 @@
 package lotto.ui;
 
-
 import static lotto.contents.ContentNumbers.ZERO;
 import static lotto.contents.ContentStrings.OUTPUT_DASH;
 import static lotto.contents.ContentStrings.OUTPUT_PURCHASED_LOTTO;

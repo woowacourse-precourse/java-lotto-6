@@ -21,7 +21,7 @@ public class WinningLotto {
         return winningLotto;
     }
 
-    public void getCollectLottoNumber(Map<Statistics, Integer> countForRate) {
+    public void getCollectLottoNumber() {
         List<Lotto> lottos = LottoStore.getInstance().getLotto();
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();

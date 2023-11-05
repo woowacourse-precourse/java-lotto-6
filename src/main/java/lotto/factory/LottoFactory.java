@@ -1,5 +1,6 @@
 package lotto.factory;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.RandomNumbersGenerator;
@@ -14,6 +15,7 @@ public class LottoFactory {
 
     public Lotto createLotto() {
         List<Integer> randomList = randomNumbersGenerator.createUniqueElementList();
-        return new Lotto(randomList);
+        List<Integer> sortedRandomList = new ArrayList<>(randomList);
+        return new Lotto(sortedRandomList);
     }
 }

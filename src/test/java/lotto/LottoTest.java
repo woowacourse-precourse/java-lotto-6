@@ -33,20 +33,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
-    @DisplayName("로또의 숫자를 오름차순으로 정렬한다.")
-    @Test
-    void sortLottoNumbers() {
-        //given
-        Lotto lotto = new Lotto(new ArrayList<>(List.of(5, 7, 11, 4, 1, 36)));
-
-        //when
-        lotto.sortAscending();
-
-        //then
-        assertThat(lotto.getNumbers()).usingRecursiveComparison().isEqualTo(List.of(1, 4, 5, 7, 11, 36));
-    }
-
     @DisplayName("로또 번호에 존재하는 값을 주면 true를 반환한다.")
     @ParameterizedTest
     @ValueSource(ints = {5, 7, 11, 4, 1, 36})

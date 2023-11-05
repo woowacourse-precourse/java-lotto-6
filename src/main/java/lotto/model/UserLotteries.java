@@ -14,10 +14,6 @@ public class UserLotteries {
         this.lotteries = lotteries;
     }
 
-    public void sortAscendingAllLotto() {
-        this.lotteries.forEach(Lotto::sortAscending);
-    }
-
     public int lotteriesCount() {
         return lotteries.size();
     }

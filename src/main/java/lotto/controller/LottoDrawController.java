@@ -46,7 +46,6 @@ public class LottoDrawController {
 
     private void showUserLottoDetails(Integer countOfPurchasedLotto, UserLotteries userLotteries) {
         outputView.printPurchasedCountMessage(countOfPurchasedLotto);
-        userLotteries.sortAscendingAllLotto();
         outputView.printUserLotteries(userLotteries);
     }
 

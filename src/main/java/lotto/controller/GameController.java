@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.model.LottoResult;
 import lotto.model.Money;
 import lotto.model.User;
 import lotto.model.WinningLotto;
@@ -10,6 +12,8 @@ public class GameController {
 
     private User user;
     private WinningLotto winningLotto;
+    private List<LottoResult> results;
+    private double statistics;
 
     public void startGame() {
         setUserLotto();
@@ -44,11 +48,12 @@ public class GameController {
     }
 
     private void calculateLottoStatistics() {
-
+        results = user.getLottoResults(winningLotto);
+        statistics = user.getStatistics();
     }
 
     private void printLottoStatistics() {
-
+        OutputView.printLottoStatistics(results, statistics);
     }
 
 }

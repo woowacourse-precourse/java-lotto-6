@@ -29,7 +29,7 @@ class ParserTest {
     @CsvSource(value = {"1000:1", "5000:5", "10000:10"}, delimiter = ':')
     void 구입_금액만큼의_개수를_반환하라(final String input, final int expected) {
         // when
-        int result = Parser.parseLottoCount(input);
+        int result = Parser.parseLottoAmount(input);
         // then
         assertEquals(expected, result);
     }

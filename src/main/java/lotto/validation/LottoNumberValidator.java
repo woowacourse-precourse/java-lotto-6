@@ -7,6 +7,14 @@ import lotto.constant.GameConfig;
 
 public class LottoNumberValidator {
 
+
+    public static void validateDuplicateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            ExceptionMessage message = ExceptionMessage.DUPLICATE_BONUS_NUMBER_EXCEPTION;
+            throw new IllegalArgumentException(message.getMessage());
+        }
+    }
+
     private static void validateRange(int number) {
         GameConfig minNumber = GameConfig.MIN_LOTTO_NUMBER;
         GameConfig maxNumber = GameConfig.MAX_LOTTO_NUMBER;

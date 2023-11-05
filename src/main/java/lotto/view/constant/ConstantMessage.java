@@ -1,4 +1,4 @@
-package lotto.domain.constant;
+package lotto.view.constant;
 
 import java.text.DecimalFormat;
 public enum ConstantMessage {

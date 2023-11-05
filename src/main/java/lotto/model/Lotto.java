@@ -4,6 +4,8 @@ import static lotto.constant.ErrorMessage.DUPLICATED_LOTTO_NUMBERS;
 import static lotto.constant.ErrorMessage.INVALID_LOTTO_NUMBERS_AMOUNT;
 import static lotto.constant.ErrorMessage.NOT_IN_RANGE_LOTTO_NUMBER;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -22,6 +24,13 @@ public class Lotto {
 
     public static Lotto from(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public static Lotto generateRandomLottoNumbers() {
+        List<Integer> randomNumbers =
+                Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, AMOUNT_OF_NUMBERS);
+        Collections.sort(randomNumbers);
+        return new Lotto(randomNumbers);
     }
 
     private void validateNumbersDuplicated(List<Integer> numbers) {

@@ -10,7 +10,7 @@ class BonusNumberTest {
 
     @DisplayName("BonusNumber는 필드 값을 포장해야 한다.")
     @Test
-    public void quantity_value_test() {
+    public void number_value_test() {
         // given
         Integer number = 5;
 
@@ -24,7 +24,7 @@ class BonusNumberTest {
 
     @DisplayName("두 BonusNumber의 필드 값이 동일하면 두 레코드는 동일해야 한다.")
     @Test
-    public void quantity_equality_test() {
+    public void number_equality_test() {
         // when
         BonusNumber bonusNumber1 = new BonusNumber(1);
         BonusNumber bonusNumber2 = new BonusNumber(1);

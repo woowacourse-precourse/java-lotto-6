@@ -10,7 +10,7 @@ class PurchaseAmountTest {
 
     @DisplayName("PurchaseAmount는 필드 값을 포장해야 한다.")
     @Test
-    public void quantity_value_test() {
+    public void amount_value_test() {
         // given
         Integer amount = 1000;
 
@@ -24,7 +24,7 @@ class PurchaseAmountTest {
 
     @DisplayName("두 PurchaseAmount의 필드 값이 동일하면 두 레코드는 동일해야 한다.")
     @Test
-    public void quantity_equality_test() {
+    public void amount_equality_test() {
         // when
         PurchaseAmount purchaseAmount1 = new PurchaseAmount(1000);
         PurchaseAmount purchaseAmount2 = new PurchaseAmount(1000);

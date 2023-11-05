@@ -16,6 +16,7 @@ public class LottoModel {
     private final OutputUI outputUI;
     private final int CHECK_BONUS = 999;
     private List<Lotto> publishedLottos;
+    private boolean bonus;
     private int totalEarnedMoney;
     private HashMap<Rewards, Integer> winningTable;
     private HashMap<Integer, Integer> winningNumsTable;
@@ -25,7 +26,8 @@ public class LottoModel {
         this.inputUI = new InputUI();
         this.outputUI = new OutputUI();
         this.publishedLottos = new ArrayList<>();
-        this.winningTable = new HashMap<>();
+        this.winningTable = initWinningTable();
+        this.totalEarnedMoney = 0;
     }
 
     public void publishLotto(int numOfLotto) {
@@ -61,6 +63,26 @@ public class LottoModel {
     }
 
 
+    public int sumOfWinningNumsTable() {
+        int result = 0;
+        for (int value : winningNumsTable.values()) {
+            result += value;
+        }
+        return result;
+    }
+
+    public HashMap<Rewards, Integer> makeWinningTable(int result, boolean bonus) {
+        Rewards[] rewards = Rewards.values();
+        for (Rewards reward : rewards) {
+            if (result == reward.correctLottos() && bonus == reward.correctBonus()) {
+                totalEarnedMoney += reward.money();
+                int updateNum = winningTable.getOrDefault(reward, 0) + 1;
+                winningTable.put(reward, updateNum);
+            }
+        }
+        return winningTable;
+    }
+
     public HashMap<Rewards, Integer> initWinningTable() {
         HashMap<Rewards, Integer> winningTable = new HashMap<>();
         Rewards[] rewards = Rewards.values();
@@ -90,8 +112,6 @@ public class LottoModel {
         }
         return winningNumsTable;
     }
-
-
 
 
 }

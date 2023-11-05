@@ -14,21 +14,25 @@ public class LottoController {
     private final LottoSystem lottoSystem = new LottoSystem(new Buyer(), new WinningLotto());
 
     public void start() {
-        repeatExecutionOnFailure(this::buyLotto);
-        repeatExecutionOnFailure(this::generateWinningLotto);
+        buyLotto();
+        generateWinningLotto();
     }
 
     private void buyLotto() {
-        int purchaseAmount = InputView.enterLottoPurchaseAmount();
-        lottoSystem.buyLotto(purchaseAmount);
+        repeatExecutionOnFailure(() -> {
+            int purchaseAmount = InputView.enterLottoPurchaseAmount();
+            lottoSystem.buyLotto(purchaseAmount);
 
-        PurchasedLotto purchasedLotto = lottoSystem.getPurchasedLotto();
-        OutputView.printPurchasedLotto(purchasedLotto);
+            PurchasedLotto purchasedLotto = lottoSystem.getPurchasedLotto();
+            OutputView.printPurchasedLotto(purchasedLotto);
+        });
     }
 
     private void generateWinningLotto() {
-        List<Integer> winningLottoNumbers = InputView.enterWinningLottoNumbers();
-        lottoSystem.generateWinningLotto(winningLottoNumbers);
+        repeatExecutionOnFailure(() -> {
+            List<Integer> winningLottoNumbers = InputView.enterWinningLottoNumbers();
+            lottoSystem.generateWinningLotto(winningLottoNumbers);
+        });
     }
 
     private void repeatExecutionOnFailure(Runnable runnable) {

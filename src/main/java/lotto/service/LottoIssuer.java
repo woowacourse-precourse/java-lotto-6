@@ -11,9 +11,9 @@ import java.util.stream.IntStream;
 public class LottoIssuer {
 
     private final Integer lottoTicket;
-    private final NumberGenerator<List<Integer>> generator;
+    private final NumberGenerator<Lotto> generator;
 
-    private LottoIssuer(Integer lottoTicket, NumberGenerator<List<Integer>> generator) {
+    private LottoIssuer(Integer lottoTicket, NumberGenerator<Lotto> generator) {
         this.lottoTicket = lottoTicket;
         this.generator = generator;
     }
@@ -24,7 +24,7 @@ public class LottoIssuer {
 
     public List<Lotto> issueLotto() {
         return IntStream.range(0, lottoTicket)
-                .mapToObj(i -> new Lotto(generator.generate()))
+                .mapToObj(idx -> generator.generate())
                 .toList();
     }
 }

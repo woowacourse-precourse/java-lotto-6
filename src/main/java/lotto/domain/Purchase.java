@@ -1,20 +1,33 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 import lotto.domain.vo.TicketCount;
 import lotto.domain.vo.TotalAmount;
 
 public class Purchase {
-    private TotalAmount totalAmount;
-    private TicketCount ticketCount;
+    private final TicketCount ticketCount;
 
-    private Purchase(TotalAmount totalAmount, TicketCount ticketCount) {
-        this.totalAmount = totalAmount;
+    private Purchase(TicketCount ticketCount) {
         this.ticketCount = ticketCount;
     }
 
-    public static Purchase createFrom(TotalAmount totalAmount) {
+    public static Purchase from(TotalAmount totalAmount) {
         TicketCount ticketCount = totalAmount.calculateTicketCount();
-        return new Purchase(totalAmount, ticketCount);
+        return new Purchase(ticketCount);
     }
 
+    public LottoTickets generateLottoTickets() {
+        List<Lotto> tickets = new ArrayList<>();
+        ticketCount.forEach(() -> {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            tickets.add(new Lotto(numbers));
+        });
+        return LottoTickets.from(tickets);
+    }
+
+    public int getTicketCount() {
+        return ticketCount.getCount();
+    }
 }

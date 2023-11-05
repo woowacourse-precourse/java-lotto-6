@@ -14,4 +14,10 @@ public class TicketCount {
     public int getCount() {
         return count;
     }
+
+    public void forEach(Runnable action) {
+        for (int i = 0; i < count; i++) {
+            action.run();
+        }
+    }
 }

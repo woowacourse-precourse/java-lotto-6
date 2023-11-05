@@ -10,7 +10,7 @@ public enum LottoRank {
     SECOND_RANK(5, 30000000, true),
     THIRD_RANK(5, 1500000, false),
     FOURTH_RANK(4, 50000, false),
-    FIFTH_RANK(3, 5000, true),
+    FIFTH_RANK(3, 5000, false),
     ;
 
     private final int count;
@@ -26,7 +26,7 @@ public enum LottoRank {
     public static LottoRank findRank(int count, boolean hasBonusNumber) {
         return Arrays.stream(LottoRank.values())
                 .filter(rank -> rank.getCount() == count)
-                .filter(rank -> hasBonusNumber == hasBonusNumber)
+                .filter(rank -> rank.hasBonusNumber() == hasBonusNumber)
                 .findFirst()
                 .orElse(null);
     }

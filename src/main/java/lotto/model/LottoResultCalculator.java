@@ -23,7 +23,7 @@ public class LottoResultCalculator {
         Map<LottoRank, Integer> rankCountMap = new HashMap<>();
 
         purchasedLottoList.forEach(pl -> {
-            LottoRank rank = LottoRank.findRank(getSameLottoCount(pl), isContainBonusNumber(lotto));
+            LottoRank rank = LottoRank.findRank(getSameLottoCount(pl), isContainBonusNumber(pl));
             rankCountMap.put(rank, rankCountMap.getOrDefault(rank, 0) + 1);
         });
 
@@ -35,8 +35,7 @@ public class LottoResultCalculator {
     }
 
     private int getSameLottoCount(Lotto lotto) {
-        List<Integer> resultList = this.lotto.getNumbers();
-        resultList.add(bonusNumber);
+        List<Integer> resultList = new ArrayList<>(this.lotto.getNumbers());
 
         List<Integer> duplicateList = new ArrayList<>(lotto.getNumbers());
         duplicateList.retainAll(resultList);

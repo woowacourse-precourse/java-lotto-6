@@ -51,7 +51,7 @@ public class PlayerTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    @DisplayName("player가 계산한 수익률이 예상과 틀리면 테스트에 실패한다.")
+    @DisplayName("player가 계산한 수익률이 예상과 틀리면 테스트에 실패한다. (주의: 소수점 둘째자리에서 반올림한 값으로 비교한다.)")
     @Test
     void 수익률_계산_테스트() {
         // given
@@ -63,16 +63,17 @@ public class PlayerTest {
             put(LottoPrize.FIFTH, 3);   // 5등 3개
             put(LottoPrize.NOTHING, 2);   // 꽝 2개
         }};
-        double expected = 0;
+        Long expectedSum = 0L;
         for (LottoPrize lottoPrize : expectedPrizeCounter.keySet()) {
             Long count = Long.valueOf(expectedPrizeCounter.get(lottoPrize));
             Long prize = lottoPrize.getPrize();
-            expected += prize * count;
+            expectedSum += prize * count;
         }
+        String expected = String.format("%.1f", (double) expectedSum / 8000 * 100.0);
 
         // when
         WinningStatistics winningStatistics = getFixedWinningStatistics();
-        double actual = winningStatistics.getRateOfReturn();
+        String actual = String.format("%.1f", winningStatistics.getRateOfReturn());
 
         // then
         assertThat(actual).isEqualTo(expected);

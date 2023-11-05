@@ -30,9 +30,16 @@ public class Computer {
             , BonusNumber bonusNumber
             , Map<Integer, Integer> winningStats) {
 
+        setWinningStats(winningStats);
         for (Lotto lotto : purchasedLotto.getLottos()) {
             int matchedNumbers = countMatchedNumbers(lotto, winningLotto, bonusNumber);
             updateWinningStats(winningStats, matchedNumbers, lotto, bonusNumber);
+        }
+    }
+
+    private void setWinningStats(Map<Integer, Integer> winningStats) {
+        for (int i = 0; i < 5; i++) {
+            winningStats.put(i + 1, 0);
         }
     }
 
@@ -54,40 +61,37 @@ public class Computer {
             }
         }
 
-        if (bonusNumber != null && lottoNumbers.contains(bonusNumber.getBonusNumber())) {
-            matchedNumbers++;
-        }
-
         return matchedNumbers;
     }
 
     private void updateWinningStats(Map<Integer, Integer> winningStats, int matchedNumbers, Lotto lotto, BonusNumber bonusNumber) {
         if (matchedNumbers >= 6) {
-            winningStats.put(1, winningStats.get(0) + 1);
+            winningStats.put(1, winningStats.get(1) + 1);
         }
         if (matchedNumbers == 5 && bonusNumberMatched(lotto, bonusNumber)) {
-            winningStats.put(2, winningStats.get(1) + 1);
+            winningStats.put(2, winningStats.get(2) + 1);
         }
         if (matchedNumbers == 5) {
-            winningStats.put(3, winningStats.get(2) + 1);
+            winningStats.put(3, winningStats.get(3) + 1);
         }
         if (matchedNumbers == 4) {
-            winningStats.put(4, winningStats.get(3) + 1);
+            winningStats.put(4, winningStats.get(4) + 1);
         }
         if (matchedNumbers == 3) {
-            winningStats.put(5, winningStats.get(4) + 1);
+            winningStats.put(5, winningStats.get(5) + 1);
         }
     }
 
     public void calcRateOfProfit(Map<Integer, Integer> winningStats, int purchaseAmount) {
         DecimalFormat decimalFormat = new DecimalFormat("#.#");
         double totalReward = 0.0;
+        setWinningReward();
 
         for (int result : winningStats.keySet()) {
             totalReward += winningStats.get(result) * rewards[result - 1];
         }
 
-        rateOfProfit = decimalFormat.format(totalReward / purchaseAmount);
+        rateOfProfit = decimalFormat.format((totalReward / purchaseAmount)*100);
     }
 
 }

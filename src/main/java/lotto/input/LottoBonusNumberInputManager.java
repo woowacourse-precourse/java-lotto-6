@@ -6,11 +6,11 @@ import static lotto.exception.ExceptionMessage.WRONG_BONUS_NUMBER_SIZE;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
-public class LottoBonusNumberInputManager {
+class LottoBonusNumberInputManager {
     private LottoBonusNumberInputManager() {
     }
 
-    public static int fromConsole(List<Integer> answerNumbers) {
+    static int fromConsole(List<Integer> answerNumbers) {
         String userInput = Console.readLine();
         return fromString(userInput, answerNumbers);
     }

@@ -12,13 +12,13 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LottoNumberInputManager {
+class LottoNumberInputManager {
     private static final Pattern numberOnly = Pattern.compile("\\d+");
 
     private LottoNumberInputManager() {
     }
 
-    public static List<Integer> fromConsole() {
+    static List<Integer> fromConsole() {
         String userInput = Console.readLine();
         return fromString(userInput);
     }

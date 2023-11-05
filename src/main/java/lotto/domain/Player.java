@@ -9,7 +9,7 @@ public class Player {
 
     public Player(String cost) {
         this.cost = new Cost(cost);
-        lotto = new ArrayList<>(getLottoCount());
+        this.lotto = new ArrayList<>(getLottoCount());
     }
 
     public List<Lotto> getLotto() {
@@ -17,7 +17,7 @@ public class Player {
     }
 
     public int getLottoCount() {
-        return cost.getValue() / 1000;
+        return this.cost.getValue() / 1000;
     }
 
     public void buyLotto(List<Integer> numbers) {

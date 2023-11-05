@@ -60,5 +60,6 @@ public class LottoManager {
         outputView.printWinningStatistics(winningRecord.getAllPrizeCount());
 
         RateOfReturn rateOfReturn = new RateOfReturn(LottoPurchase.getLottoPurchase(), winningRecord.getAllPrizeCount());
+        outputView.printRateOfReturn(rateOfReturn.getRateOfReturn());
     }
 }

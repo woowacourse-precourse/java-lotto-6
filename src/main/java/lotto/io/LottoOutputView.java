@@ -25,5 +25,8 @@ public class LottoOutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + prize.get("first") + "개");
     }
 
-
+    public void printRateOfReturn(double rate) {
+        rate = (double) Math.round(rate * 100) / 100;
+        System.out.println("총 수익률은 " + rate + "%입니다.");
+    }
 }

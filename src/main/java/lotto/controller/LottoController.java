@@ -22,11 +22,17 @@ public class LottoController {
     }
 
     private Lottos buyLotto(){
-        budget = Budget.from(InputView.getBudgetInput());
-        Lottos userMultipleLottos = lottoGenerator.generateLottosByBudget(budget);
-        OutputView.printUserLottos(userMultipleLottos, budget);
-        return userMultipleLottos;
+        try {
+            budget = Budget.from(InputView.getBudgetInput());
+            Lottos userMultipleLottos = lottoGenerator.generateLottosByBudget(budget);
+            OutputView.printUserLottos(userMultipleLottos, budget);
+            return userMultipleLottos;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return buyLotto();
+        }
     }
+
 
     private WinningLotto drawLotto(){
         InputView.printRequireWinningNumbersMessage();

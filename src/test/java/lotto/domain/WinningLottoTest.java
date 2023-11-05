@@ -3,21 +3,21 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.TestConstant;
 import lotto.constant.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class WinningLottoTest {
-    private final static List<Integer> normalNumbers = List.of(1, 2, 3, 4, 5, 6);
-    private final static Lotto lotto = new Lotto(normalNumbers);
+    private final static Lotto lotto = new Lotto(TestConstant.normalNumbers);
 
     private WinningLotto winningLotto;
 
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
     @Test
     void setBonusNumberByDuplicatedNumbers() {
-        init(normalNumbers);
+        init(TestConstant.normalNumbers);
 
         assertThatThrownBy(() -> winningLotto.setBonusNumber(1))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -26,7 +26,7 @@ class WinningLottoTest {
     @DisplayName("보너스 번호를 여러 번 할당 하려고 하면 예외가 발생한다.")
     @Test
     void setBonusNumberMultipleTimes() {
-        init(normalNumbers);
+        init(TestConstant.normalNumbers);
         winningLotto.setBonusNumber(45);
 
         assertThatThrownBy(() -> winningLotto.setBonusNumber(45))
@@ -36,14 +36,14 @@ class WinningLottoTest {
     @DisplayName("보너스 번호를 할당한다.")
     @Test
     void setBonusNumber() {
-        init(normalNumbers);
+        init(TestConstant.normalNumbers);
         winningLotto.setBonusNumber(45);
     }
 
     @DisplayName("보너스 번호를 할당하기 전 당첨 등수를 계산하려 하면 예외가 발생한다.")
     @Test
     void calculateRankBeforeSetBonusNumber() {
-        init(normalNumbers);
+        init(TestConstant.normalNumbers);
 
         assertThatThrownBy(() -> winningLotto.calculateRank(lotto))
                 .isInstanceOf(IllegalStateException.class);
@@ -53,7 +53,7 @@ class WinningLottoTest {
     @DisplayName("당첨 등수를 계산한다. - 6개 일치")
     @Test
     void calculateRankWhenSixMatched() {
-        init(normalNumbers);
+        init(TestConstant.normalNumbers);
         winningLotto.setBonusNumber(45);
 
         LottoRank lottoRank = winningLotto.calculateRank(lotto);
@@ -108,7 +108,7 @@ class WinningLottoTest {
     @DisplayName("당첨 등수를 계산한다. - 2개 이하 일치")
     @Test
     void calculateRankWhenUnderTwoMatched() {
-        init(normalNumbers);
+        init(TestConstant.normalNumbers);
         winningLotto.setBonusNumber(45);
         Lotto noMatchedLotto = new Lotto(List.of(40, 41, 42, 43, 44, 45));
         Lotto oneMatchedLotto = new Lotto(List.of(1, 41, 42, 43, 44, 45));

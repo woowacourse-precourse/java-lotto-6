@@ -3,14 +3,13 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.TestConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
 class LottoTest {
-    private final static List<Integer> normalNumbers = List.of(1, 2, 3, 4, 5, 6);
-
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -37,7 +36,7 @@ class LottoTest {
     @DisplayName("로또 번호를 생성한다.")
     @Test
     void createLotto() {
-        Lotto lotto = new Lotto(normalNumbers);
+        Lotto lotto = new Lotto(TestConstant.normalNumbers);
     }
 
     @DisplayName("로또 생성시 숫자가 정렬된다.")
@@ -45,13 +44,13 @@ class LottoTest {
     void createLottoExpectHasSortedNumbers() {
         Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
 
-        assertThat(lotto.getNumbers()).isEqualTo(normalNumbers);
+        assertThat(lotto.getNumbers()).isEqualTo(TestConstant.normalNumbers);
     }
 
     @DisplayName("로또의 numbers는 읽기 전용 컬렉션이다.")
     @Test
     void getNumbersExpectReadOnly() {
-        List<Integer> modifiableNumbers = new ArrayList<>(normalNumbers);
+        List<Integer> modifiableNumbers = new ArrayList<>(TestConstant.normalNumbers);
         Lotto lotto = new Lotto(modifiableNumbers);
 
         List<Integer> numbers = lotto.getNumbers();
@@ -63,8 +62,8 @@ class LottoTest {
     @DisplayName("로또 두 개를 비교하여 몇 개의 번호가 일치하는지 계산한다. - 6개 일치")
     @Test
     void calculateLottoNumberWhenMatchedSix() {
-        Lotto lotto1 = new Lotto(normalNumbers);
-        Lotto lotto2 = new Lotto(normalNumbers);
+        Lotto lotto1 = new Lotto(TestConstant.normalNumbers);
+        Lotto lotto2 = new Lotto(TestConstant.normalNumbers);
 
         int matchedNumberCount = lotto1.countMatchedNumber(lotto2);
 
@@ -74,7 +73,7 @@ class LottoTest {
     @DisplayName("로또 두 개를 비교하여 몇 개의 번호가 일치하는지 계산한다. - 0개 일치")
     @Test
     void calculateLottoNumberWhenMatchedZero() {
-        Lotto lotto1 = new Lotto(normalNumbers);
+        Lotto lotto1 = new Lotto(TestConstant.normalNumbers);
         Lotto lotto2 = new Lotto(List.of(45, 44, 43, 42, 41, 40));
 
         int matchedNumberCount = lotto1.countMatchedNumber(lotto2);
@@ -85,7 +84,7 @@ class LottoTest {
     @DisplayName("로또 두 개를 비교하여 몇 개의 번호가 일치하는지 계산한다. - 3개 일치")
     @Test
     void calculateLottoNumberWhenMatchedThree() {
-        Lotto lotto1 = new Lotto(normalNumbers);
+        Lotto lotto1 = new Lotto(TestConstant.normalNumbers);
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 45, 44, 43));
 
         int matchedNumberCount = lotto1.countMatchedNumber(lotto2);

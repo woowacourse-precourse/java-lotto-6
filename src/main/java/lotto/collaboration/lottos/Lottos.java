@@ -38,11 +38,11 @@ public class Lottos {
         }
     }
 
-    public void make() {
+    public void make(LottosRandoms lottosRandoms) {
         int ticketAmount = getTicketAmount();
 
         purchaseLottos = IntStream.range(0, ticketAmount)
-                .mapToObj(i -> Lotto.make(new LottosRandoms()))
+                .mapToObj(i -> Lotto.make(lottosRandoms))
                 .toList();
     }
 

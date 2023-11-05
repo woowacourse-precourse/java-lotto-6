@@ -8,7 +8,7 @@ public class LotteryPortfolio {
 
     private static int LOTTERY_TICKET_PRICE = 1000;
     private final List<Lotto> holdings;
-    private double totalWinnings;
+    private long totalWinnings;
 
     public LotteryPortfolio() {
         this.totalWinnings = 0;
@@ -21,13 +21,13 @@ public class LotteryPortfolio {
 
     public double profitRate(Lotto winningLotto, BonusNumber bonusNumber) {
         this.totalWinnings = 0;
-        for (Lotto ticket: holdings) {
+        for (Lotto ticket : holdings) {
             totalWinnings += calculateWinnings(ticket, winningLotto, bonusNumber);
         }
-        return roundToOneDecimalPlace(totalWinnings / totalSpending() * 100);
+        return roundToOneDecimalPlace((double) totalWinnings / totalSpending() * 100);
     }
 
-    private double calculateWinnings(Lotto ticket, Lotto winningLotto, BonusNumber bonusNumber) {
+    private long calculateWinnings(Lotto ticket, Lotto winningLotto, BonusNumber bonusNumber) {
         return DrawResult.resultOf(ticket.countHitNumbers(winningLotto),
                 ticket.containsBonusNumber(bonusNumber)).winnings();
     }

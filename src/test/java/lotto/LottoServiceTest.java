@@ -79,7 +79,7 @@ public class LottoServiceTest {
         // then
         double expectedProfitRate = ((double) FIRST_PRIZE.winnings() + SECOND_PRIZE.winnings() +
                 THIRD_PRIZE.winnings() + FOURTH_PRIZE.winnings() +
-                FIFTH_PRIZE.winnings() + NO_PRIZE.winnings()) / 6_000.0 * 100.0;
+                FIFTH_PRIZE.winnings() + NO_PRIZE.winnings()) / 6_000 * 100;
         assertThat(portfolio.profitRate(winningLotto, bonusNumber))
                 .isEqualTo(roundToOneDecimalPlace(expectedProfitRate));
     }
@@ -89,14 +89,14 @@ public class LottoServiceTest {
     void calculateExtremeProfitRate() {
         // given
         LotteryPortfolio portfolio = new LotteryPortfolio();
-        int firstPlaceCount = 1000;
+        int firstPlaceCount = 999999;
         // when
         for (int i = 0; i < firstPlaceCount; i++) {
             portfolio.add(new Lotto(winningNumbers));
         }
         // then
-        double expectedProfitRate = ((double) FIRST_PRIZE.winnings()) * firstPlaceCount
-                / (1000.0 * firstPlaceCount) * 100.0;
+        double expectedProfitRate = ((double) (FIRST_PRIZE.winnings() * firstPlaceCount))
+                / (1000 * firstPlaceCount) * 100.0;
         assertThat(portfolio.profitRate(winningLotto, bonusNumber))
                 .isEqualTo(roundToOneDecimalPlace(expectedProfitRate));
     }

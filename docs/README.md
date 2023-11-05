@@ -3,11 +3,11 @@
 ## 기능 목록
 
 - 로또 구입
-  - 1000원 단위로 입력받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다. LottoNumber - askHowManyLottoPurchase()
+  - 1000원 단위로 입력받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다. Input - askHowManyLottoPurchase()
     - 로또 구입 금액 입력값을 옳게 입력됐는지 검증한다. LottoNumber - validateMoneyUnit()
 - 당첨 번호 입력
-  - 1부터 45까지 서로 다른 임의의 숫자 6개를 입력받는다. WinningNumbers - askTheWinningLotteryNumbers()
-  - 위에서 입력한 6개의 번호와 다른 보너스 번호 1개를 입력받는다. WinningNumbers - askTheWinningLotteryBonusNumber()
+  - 1부터 45까지 서로 다른 임의의 숫자 6개를 입력받는다. Input - askTheWinningLotteryNumbers()
+  - 위에서 입력한 6개의 번호와 다른 보너스 번호 1개를 입력받는다. Input - askTheWinningLotteryBonusNumber()
   - 당첨 번호가 옳게 입력됐는지 검증한다. Lotto - validate()
   - 보너스 번호가 옳게 입력됐는지 검증한다. Lotto - validateBonusNumber
 

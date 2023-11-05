@@ -1,4 +1,4 @@
-package lotto;
+package domain;
 
 public class Converter {
     public int convertMoneyToLottoCount(int money) {

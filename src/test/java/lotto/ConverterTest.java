@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.Converter;
 import org.junit.jupiter.api.Test;
 
 class ConverterTest {

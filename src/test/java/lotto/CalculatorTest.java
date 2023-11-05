@@ -2,6 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.Calculator;
+import domain.Lotto;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

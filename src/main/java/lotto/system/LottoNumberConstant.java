@@ -11,6 +11,10 @@ public enum LottoNumberConstant {
         this.value = value;
     }
 
+    public boolean isNotEqual(int value) {
+        return this.value != value;
+    }
+
     public int getValue() {
         return value;
     }

@@ -3,9 +3,13 @@ package lotto.domain;
 import lotto.util.WinnerRank;
 
 public class Profit {
-
-    public float calculateProfitRate(PurchasePrice purchasePrice, WinResult winResult) {
+    private final static int HUNDRED = 100;
+    public double calculateProfitRate(PurchasePrice purchasePrice, WinResult winResult) {
         return 0f;
+    }
+
+    private double roundUpProfit (float profit) {
+        return Math.round(profit * HUNDRED)/100.0;
     }
 
     private float sumWinMoney(WinResult winResult) {

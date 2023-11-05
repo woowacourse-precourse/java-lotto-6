@@ -3,7 +3,6 @@ package lotto.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.Message.ErrorMessage.AMOUNT_RANGE_ERROR_MESSAGE;
 import static lotto.Message.ErrorMessage.LOTTO_RANGE_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

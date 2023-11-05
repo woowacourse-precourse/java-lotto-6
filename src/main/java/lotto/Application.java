@@ -29,6 +29,20 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = getBonusNumber();
         System.out.println();
+
+        // 당첨 통계 출력
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        
+        // 5등 확인 메서드
+        
+        // 4등 확인 메서드
+        
+        // 3등 확인 메서드
+        
+        // 2등 확인 메서드
+        
+        // 1등 확인 메서드
     }
 
     // 당첨 번호를 입력받는 메서드

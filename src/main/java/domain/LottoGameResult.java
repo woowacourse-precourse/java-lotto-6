@@ -8,4 +8,8 @@ public class LottoGameResult {
     public LottoGameResult(Map<Integer, Long> matchCounts) {
         this.matchCounts = matchCounts;
     }
+
+    public Map<Integer, Long> getMatchCounts() {
+        return matchCounts;
+    }
 }

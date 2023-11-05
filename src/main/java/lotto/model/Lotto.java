@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Set;
+import lotto.Score;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
@@ -39,5 +40,9 @@ public class Lotto {
 
     protected boolean contains(LottoNo number) {
         return numbers.contains(number);
+    }
+
+    public Score contains(Lotto lotto) {
+        return null;
     }
 }

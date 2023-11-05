@@ -1,10 +1,15 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import lotto.model.AnswerLotto;
 import lotto.model.Lotto;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
@@ -27,5 +32,50 @@ class LottoTest {
     void 로또_번호_범위에_벗어날_경우() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 50)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Nested
+    class 로또_개수_비교 {
+        private static AnswerLotto answerLotto;
+
+        @BeforeAll
+        static void beforeAll() {
+            answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        }
+
+        @Test
+        void 로또_1등() {
+            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+            assertEquals(answerLotto.contains(lotto), Score.First);
+        }
+
+        void 로또_2등() {
+            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+            assertEquals(answerLotto.contains(lotto), Score.Second);
+        }
+
+        void 로또_3등() {
+            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
+            assertEquals(answerLotto.contains(lotto), Score.Third);
+        }
+
+        void 로또_4등() {
+            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 10, 7));
+            assertEquals(answerLotto.contains(lotto), Score.Fourth);
+        }
+
+        void 로또_5등() {
+            Lotto lotto = new Lotto(List.of(1, 2, 3, 10, 20, 7));
+            assertEquals(answerLotto.contains(lotto), Score.Fifth);
+        }
+
+        void 로또_낙첨() {
+            Lotto lotto_1 = new Lotto(List.of(1, 10, 20, 30, 40, 7));
+            Lotto lotto_2 = new Lotto(List.of(1, 2, 20, 30, 40, 7));
+            assertAll(
+                    () -> assertEquals(answerLotto.contains(lotto_1), Score.Nothing),
+                    () -> assertEquals(answerLotto.contains(lotto_2), Score.Nothing)
+            );
+        }
     }
 }

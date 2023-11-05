@@ -94,3 +94,8 @@
 
 - ✅ validateInputBonusNumber 메서드 구현
     - validateNumberRange를 통해 검증
+  
+## ✅ 로또 생성 기능
+
+- ✅ generateLottos 메서드 구현
+  - 로또 번호 생성 기능

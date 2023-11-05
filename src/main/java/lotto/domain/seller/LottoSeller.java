@@ -20,7 +20,8 @@ public class LottoSeller {
      *
      * @return
      */
-    public LottoEnvelop sell() {
+    public LottoEnvelop sell(Integer money) {
+        makeLottoEnvelope(money);
         return lottoEnvelop;
     }
 

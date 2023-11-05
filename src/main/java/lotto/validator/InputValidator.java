@@ -1,7 +1,6 @@
 package lotto.validator;
 
 import lotto.exception.ParseIntException;
-import lotto.exception.UserInputException;
 import lotto.util.InputUtil;
 
 public class InputValidator {

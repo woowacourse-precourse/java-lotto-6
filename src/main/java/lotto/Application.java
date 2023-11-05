@@ -22,5 +22,7 @@ public class Application {
             Lotto lotto = new Lotto();
             lottos.add(lotto);
         }
+
+        List<Integer> winnerNumbers = InputUtils.getWinnerNumbers();
     }
 }

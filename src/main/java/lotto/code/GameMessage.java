@@ -11,6 +11,7 @@ package lotto.code;
 public enum GameMessage {
     INPUT_AMOUNT("구입금액을 입력해 주세요."),
     LOTTO_COUNT("개를 구매했습니다."),
+    INPUT_WINNER_NUMBERS("당첨 번호를 입력해 주세요."),
     ;
 
     private GameMessage(String message) {

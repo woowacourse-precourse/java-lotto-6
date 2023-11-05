@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.WinningLotto;
+import lotto.domain.LottoResult;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
@@ -49,8 +49,8 @@ public class TotalLottoController {
         outputView.showLottosNumber(lottos);
     }
 
-    public WinningLotto issueLottoResult(Lotto winningLotto) {
-        WinningLotto lottoResult = null;
+    public LottoResult issueLottoResult(Lotto winningLotto) {
+        LottoResult lottoResult = null;
         while (lottoResult == null) {
             try {
                 int bonusNumber = inputView.inputBonusNumber();

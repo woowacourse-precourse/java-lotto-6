@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.domain.Lotto;
 
 public class LottoConsumer {
     private final List<Lotto> issuedLottos;
@@ -11,7 +10,7 @@ public class LottoConsumer {
         this.winningAmount = 0;
     }
 
-    public int calculateWinningAmount(WinningLotto winningLotto) {
+    public int calculateWinningAmount(LottoResult lottoResult) {
         return winningAmount;
     }
 

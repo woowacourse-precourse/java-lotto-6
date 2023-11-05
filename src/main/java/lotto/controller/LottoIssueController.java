@@ -1,9 +1,8 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.WinningLotto;
+import lotto.domain.LottoResult;
 import lotto.service.LottoIssueService;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
@@ -31,8 +30,8 @@ public class LottoIssueController {
         return issueService.issueWinningLotto(winningNumber);
     }
 
-    public WinningLotto issueLottoResult(Lotto winningLotto, int bonusNumber) {
-        return new WinningLotto(winningLotto, bonusNumber);
+    public LottoResult issueLottoResult(Lotto winningLotto, int bonusNumber) {
+        return new LottoResult(winningLotto, bonusNumber);
     }
 
     private int getIssueCount(final int money) {

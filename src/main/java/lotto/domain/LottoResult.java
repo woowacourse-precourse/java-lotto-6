@@ -2,11 +2,11 @@ package lotto.domain;
 
 import lotto.util.ErrorMessages;
 
-public class WinningLotto {
+public class LottoResult {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, int bonusNumber) {
+    public LottoResult(Lotto winningLotto, int bonusNumber) {
         validateBonusNumber(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;

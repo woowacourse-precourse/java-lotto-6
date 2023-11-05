@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.controller.TotalLottoController;
 import lotto.domain.Lotto;
 import lotto.domain.LottoConsumer;
-import lotto.domain.WinningLotto;
+import lotto.domain.LottoResult;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class Application {
         totalLottoController.showLottoNumbers(issuedLottos);
         // 3. 당첨 번호를 보너스 번호와 함께 획득한다.
         Lotto winningLotto = totalLottoController.issueWinningLotto();
-        WinningLotto lottoResult = totalLottoController.issueLottoResult(winningLotto);
+        LottoResult lottoResult = totalLottoController.issueLottoResult(winningLotto);
         // 4. 모든 티켓과 당첨번호를 비교하여
     }
 }

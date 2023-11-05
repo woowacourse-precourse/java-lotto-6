@@ -19,3 +19,7 @@
 ## ResultStatus
 
 - [X] 로또 결과를 표현하는 Enum 생성
+
+## ETC
+
+- 에러 메세지를 관리하는 ErrorMessage 클래스 생성

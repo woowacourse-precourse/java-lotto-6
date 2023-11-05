@@ -1,7 +1,6 @@
 package lotto.ui;
 
 import java.util.List;
-import java.util.Map;
 import lotto.Prize;
 import lotto.domain.LottoManager;
 import lotto.domain.Lotto;
@@ -16,6 +15,7 @@ public class Output {
     public static void printPurchase() {
         System.out.println("구입금액을 입력해 주세요.");
     }
+
     public static void printCount(Integer lottoCount){
         System.out.println(lottoCount+"개를 구매했습니다.");
     }
@@ -43,7 +43,6 @@ public class Output {
 
         for (Prize prize : lottoResult.state.keySet()) {
             System.out.println(prize.getDescription() + lottoResult.state.get(prize) + "개");
-
         }
 
         System.out.printf("총 수익률은 %,.1f%%입니다.%n", earningRate);

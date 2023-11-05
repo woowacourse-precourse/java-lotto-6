@@ -17,18 +17,6 @@ public enum Prize {
         this.prizeAmount = prizeAmount;
     }
 
-    public Integer getMatchingNumber() {
-        return matchingNumber;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getPrizeAmount() {
-        return prizeAmount;
-    }
-
     public static Prize rank(int matchingCount, boolean hasBonus) {
         if (matchingCount == FIRST.matchingNumber) {
             return FIRST;
@@ -47,4 +35,18 @@ public enum Prize {
         }
         return null;
     }
+
+    public Integer getMatchingNumber() {
+        return matchingNumber;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
+
+
 }

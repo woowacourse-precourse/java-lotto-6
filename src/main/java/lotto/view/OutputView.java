@@ -2,36 +2,33 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.domain.Rank;
 import lotto.vo.Lotto;
 
 public class OutputView {
     private static final String LOTTO_COUNT_PRINT_MESSAGE = "개를 구매했습니다.";
+    private static final String LOTTO_NUMBERS_DELIMETER = ", ";
 
-    /**
-     * 3. 발급한 로또 번호 출력 기능
-     */
-    static private void printOutputMessage(String message) {
-        System.out.println(message);
+    public static void printLottos(List<Lotto> lottos) {
+        printLottoCount(lottos.size());
+        for (Lotto lotto : lottos) {
+            printCurrentLottoList(lotto);
+        }
     }
 
-    public static void printLottoCount(int lottoCount) {
+    private static void printLottoCount(int lottoCount) {
         System.out.print(lottoCount);
-        printOutputMessage(LOTTO_COUNT_PRINT_MESSAGE);
+        System.out.println(LOTTO_COUNT_PRINT_MESSAGE);
     }
 
-    public static void printCurrentLottoList(Lotto lotto) {
-        System.out.print("[");
-        List<Integer> lotto_num_list = lotto.getNumbers();
-
-        //-> 문자열로 변환해서
-        List<String> lotto_str_num = lotto_num_list.stream()
+    private static void printCurrentLottoList(Lotto lotto) {
+        String lottoNumbers = lotto.getNumbers()
+                .stream()
                 .map(String::valueOf)
-                .toList();
+                .collect(Collectors.joining(LOTTO_NUMBERS_DELIMETER));
 
-        System.out.print(String.join(", ", lotto_str_num));
-        System.out.print("]");
-        System.out.println();
+        System.out.println("[" + lottoNumbers + "]");
     }
 
 

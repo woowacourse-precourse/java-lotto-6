@@ -13,13 +13,13 @@ public class Validation {
 
     public static void validateNumberInRange(int number, int min, int max) {
         if (number < min || number > max) {
-            ExceptionMessages.NUMBER_IN_RANGE.throwException(min,max);
+            ExceptionMessages.NUMBER_IN_RANGE.throwException(min, max);
         }
     }
 
     public static void validateListNumberInRange(List<Integer> number, int min, int max) {
         if (number.stream().anyMatch(n -> n < min || n > max)) {
-            ExceptionMessages.NUMBER_IN_RANGE.throwException(min,max);
+            ExceptionMessages.NUMBER_IN_RANGE.throwException(min, max);
         }
     }
 

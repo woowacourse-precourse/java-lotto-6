@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.view;
 
 import static lotto.message.ErrorMessage.ERROR_PREFIX;
 

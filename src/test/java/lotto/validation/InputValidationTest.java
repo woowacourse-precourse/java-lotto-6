@@ -15,4 +15,12 @@ class InputValidationTest {
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 inputValidation.validationMoney(input));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "1a", "12345b", "a123", "*24809", ".,;'"})
+    public void 숫자검사(String input) {
+        //then (기능 작동 후 결과)
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                inputValidation.validationMoney(input));
+    }
 }

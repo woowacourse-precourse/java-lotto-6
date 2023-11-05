@@ -16,4 +16,14 @@ public class Lotteries {
     public List<Lotto> getLotteries() {
         return lotteries;
     }
+
+    public void showLotteries() {
+        for (Lotto lotto : lotteries) {
+            lotto.showNumbers();
+        }
+    }
+
+    public void confirmWinning(WinningNumber winningNumber) {
+
+    }
 }

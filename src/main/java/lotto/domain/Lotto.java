@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.LottoGenerator;
+import lotto.util.LottoGenerator;
 import lotto.controller.dto.LottoResponseDto;
 
 public class Lotto {

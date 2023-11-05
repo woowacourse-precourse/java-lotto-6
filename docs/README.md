@@ -31,8 +31,11 @@
      - `winNumbers`: 당첨 번호를 담는 Lotto 객체
      - `bonusNumber`: 보너스 번호를 저장하는 변수
    - **메소드:**
-     - `public void setLottoWinNumbers()`: 콘솔에서 입력받은 6개의 숫자를 당첨 번호로 설정
-     - `public void setWinBonusNumber()`: 콘솔에서 입력받은 보너스 번호를 설정
+     - `public void setLottoWinNumbers()`: 사용자로부터 콘솔을 통해 입력받은 로또 당첨 번호를 설정합니다. 입력이 올바른 형식(6개의 숫자, 1부터 45까지의 범위)이 아니면 예외를 발생시킵니다.
+     - `public void setWinBonusNumber()`: 사용자로부터 콘솔을 통해 입력받은 보너스 번호를 설정합니다. 입력이 올바른 형식(1부터 45까지의 범위, 이미 선택한 번호가 아닌지 확인)이 아니면 예외를 발생시킵니다.
+     - `private List<Integer> splitNumbers(String input)`: 입력된 문자열을 쉼표(,)와 선택적 공백을 기준으로 분할하여 숫자 리스트로 반환합니다. 만약 분할된 숫자의 개수가 6이 아니면 예외를 발생시킵니다.
+     - `private void validateNumberRange(int num)`: 주어진 숫자가 1부터 45 사이의 범위에 속하는지 확인합니다. 범위를 벗어나면 예외를 발생시킵니다.
+     - `private void validateUniqueBonusNumber(int input)`: 보너스 번호가 이미 선택된 번호인지 확인합니다. 이미 선택된 번호일 경우 예외를 발생시킵니다.
 
 2. **Lotto 클래스:**
    - **인스턴스 변수:**

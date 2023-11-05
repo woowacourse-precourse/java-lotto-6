@@ -6,7 +6,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 public class LottoWin {
-    private final Lotto winNumbers;
+    private Lotto winNumbers;
     private int bonusNumber;
 
     public LottoWin() {
@@ -24,15 +24,13 @@ public class LottoWin {
     public void setLottoWinNumbers() {
         while (true) {
             try {
-                String input = Console.readLine();
-                List<Integer> numbers = splitNumbers(input);
-                winNumbers.getNumbers().addAll(numbers);
+                winNumbers = Lotto.createLottoFromUserInput();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
+    }  
 
     public void setWinBonusNumber() {
         while (true) {
@@ -46,21 +44,6 @@ public class LottoWin {
                 System.out.println(e.getMessage());
             }
         }
-    }
-    
-    private List<Integer> splitNumbers(String input) {
-        String[] numbersString = input.split(",\\s*"); // Split the input string by commas and optional whitespace
-        if (numbersString.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.");
-        }
-    
-        List<Integer> numbers = new ArrayList<>();
-        for (String number : numbersString) {
-            int num = Integer.parseInt(number.trim());
-            validateNumberRange(num);
-            numbers.add(num);
-        }
-        return numbers;
     }
     
     private void validateNumberRange(int num) {

@@ -3,7 +3,6 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.collections.LottoBundle;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +29,7 @@ public class OutputView {
     }
 
     public static void printWinningNumbersMessage(){
+        printMessage();
         printMessage(WINNING_NUMBERS_MESSAGE.getMessage());
     }
     public static void printBonusNumberMessage(){

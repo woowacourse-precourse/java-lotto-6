@@ -1,17 +1,21 @@
 package lotto.controller;
 
+import lotto.model.WinningNumbers;
 import lotto.model.collections.LottoBundle;
 import lotto.model.collections.LottoPurchaseAmount;
 import lotto.model.collections.LottoTicketCount;
 import lotto.service.LottoTicketService;
+import lotto.service.WinningNumberService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoTicketService lottoTicketService;
+    private final WinningNumberService winningNumberService;
 
-    public LottoController(LottoTicketService lottoTicketService) {
+    public LottoController(LottoTicketService lottoTicketService, WinningNumberService winningNumberService) {
         this.lottoTicketService = lottoTicketService;
+        this.winningNumberService = winningNumberService;
     }
 
     public void run(){
@@ -21,5 +25,7 @@ public class LottoController {
         OutputView.printTicketCountMessage(ticketCount.getCount());
         LottoBundle lottoBundle = lottoTicketService.generateLottoBundle(ticketCount.getCount());
         OutputView.printLottoBundle(lottoBundle);
+        OutputView.printWinningNumbersMessage();
+        WinningNumbers winningNumbers = winningNumberService.createWinningNumbers(InputView.read());
     }
 }

@@ -5,7 +5,6 @@ import static lotto.constant.ErrorMessage.ANOTHER_COMMA;
 import static lotto.constant.ErrorMessage.CONTAIN_BLANK;
 import static lotto.constant.ErrorMessage.EMPTY;
 import static lotto.constant.ErrorMessage.INPUT_STRING;
-import static lotto.constant.ErrorMessage.SEQUENCE_COMMA;
 import static lotto.constant.LottoNumberMessage.ASK_Lotto_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;

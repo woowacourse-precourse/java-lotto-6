@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import lotto.errors.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -38,10 +39,19 @@ class LottosTest {
                 .withMessage(ErrorMessage.WRONG_COST.getMessage());
     }
 
+    @Test
+    @DisplayName("숫자 0이 들어올 때 예외처리")
+    void test_Lottos_4() {
+        String inputCost = "0";
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Lottos(inputCost))
+                .withMessage(ErrorMessage.NOT_ZERO.getMessage());
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {"1000", "21000", "512000"})
     @DisplayName("적절한 값이 들어올 때 테스트 통과")
-    void test_Lottos_4(String inputCost) {
+    void test_Lottos_5(String inputCost) {
         assertThatCode(() -> new Lottos(inputCost))
                 .doesNotThrowAnyException();
     }

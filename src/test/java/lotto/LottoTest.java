@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.utils.LottoException.DUPLICATED_LOTTO_NUMBER;
-import static lotto.utils.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;
-import static lotto.utils.LottoException.MORE_THAN_MAXIMUM_LOTTO_NUMBER;
+import static lotto.exception.LottoException.DUPLICATED_LOTTO_NUMBER;
+import static lotto.exception.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;
+import static lotto.exception.LottoException.MORE_THAN_MAXIMUM_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

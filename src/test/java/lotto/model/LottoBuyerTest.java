@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static lotto.utils.LottoException.LESS_THAN_MINIMUM_PURCHASE_AMOUNT;
-import static lotto.utils.LottoException.MORE_THAN_MAXIMUM_PURCHASE_AMOUNT;
-import static lotto.utils.LottoException.NOT_VALID_PURCHASE_AMOUNT_UNIT;
+import static lotto.exception.LottoException.LESS_THAN_MINIMUM_PURCHASE_AMOUNT;
+import static lotto.exception.LottoException.MORE_THAN_MAXIMUM_PURCHASE_AMOUNT;
+import static lotto.exception.LottoException.NOT_VALID_PURCHASE_AMOUNT_UNIT;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 

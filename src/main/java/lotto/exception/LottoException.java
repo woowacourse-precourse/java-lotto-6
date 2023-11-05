@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.exception;
 
 public enum LottoException {
     LESS_THAN_MINIMUM_LOTTO_NUMBER("로또 번호는 최소 1 이상의 숫자여야 합니다."),

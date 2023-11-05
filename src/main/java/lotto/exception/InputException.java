@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.exception;
 
 public enum InputException {
     NOT_DIGIT_FORM("입력은 숫자의 형식이어야 합니다."),

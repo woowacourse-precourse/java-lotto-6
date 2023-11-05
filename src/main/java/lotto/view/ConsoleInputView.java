@@ -1,7 +1,7 @@
 package lotto.view;
 
-import static lotto.utils.InputException.NOT_DIGIT_FORM;
-import static lotto.utils.InputException.NOT_LOTTO_NUMBERS_FORM;
+import static lotto.exception.InputException.NOT_DIGIT_FORM;
+import static lotto.exception.InputException.NOT_LOTTO_NUMBERS_FORM;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;

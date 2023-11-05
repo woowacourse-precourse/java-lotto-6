@@ -3,10 +3,10 @@ package lotto.message;
 public enum RunMessage {
 
     INPUT_AMOUNT_MESSAGE("구입금액을 입력해 주세요.\n"),
-    PRINT_LOTTO_COUNT("%d개를 구매했습니다.\n"),
-    INPUT_WINNING_MESSAGE("당첨 번호를 입력해 주세요.\n"),
-    INPUT_BONUS_MESSAGE("보너스 번호를 입력해 주세요.\n"),
-    PRINT_WINNING_STATISTIC_MESSAGE("당첨 통계\n---\n"),
+    PRINT_LOTTO_COUNT("\n%d개를 구매했습니다.\n"),
+    INPUT_WINNING_MESSAGE("\n당첨 번호를 입력해 주세요.\n"),
+    INPUT_BONUS_MESSAGE("\n보너스 번호를 입력해 주세요.\n"),
+    PRINT_WINNING_STATISTIC_MESSAGE("\n당첨 통계\n---\n"),
     PRINT_WINNING_FIRST("6개 일치 (2,000,000,000원) - %d개\n"),
     PRINT_WINNING_SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
     PRINT_WINNING_THIRD("5개 일치 (1,500,000원) - %d개\n"),

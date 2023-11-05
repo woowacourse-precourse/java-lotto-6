@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.BonusNumber;
+import lotto.domain.LottoTickets;
 import lotto.domain.WinningNumbers;
 import lotto.domain.PurchasePrice;
 import lotto.dto.PurchaseResult;
@@ -26,6 +27,7 @@ public class GameController {
         PurchasePrice money = inputView.getMoney();
         int purchaseLottoAmount = money.getPurchaseLottoAmount();
         List<PurchaseResult> purchaseResults = lottoService.purchaseLottos(purchaseLottoAmount);
+        LottoTickets lottoTickets = LottoTickets.create(purchaseResults);
         outputView.printPurchaseResult(purchaseResults);
         WinningNumbers winningNumbers = inputView.getWinningNumbers();
         BonusNumber bonusNumber = inputView.getBonusNumber();

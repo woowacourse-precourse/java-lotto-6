@@ -1,8 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import lotto.constants.GuideMessage;
-import lotto.domain.Buy;
 import lotto.validate.Validate;
 
 public class View {
@@ -12,13 +12,19 @@ public class View {
         validate = new Validate();
     }
 
-    public int buyPrice() {
+    public int buyPriceMessage() {
         System.out.println(GuideMessage.INPUT_BUY_PRICE_MESSAGE.getMessage());
         return inputBuyPrice();
     }
 
-    public void buyTicketCount(int ticketCount) {
+    public void buyTicketCountMessage(int ticketCount) {
         System.out.println(ticketCount + GuideMessage.OUTPUT_BUY_LOTTO_COUNT_MESSAGE.getMessage());
+    }
+
+    public void lottoTicketInformation(ArrayList<ArrayList<Integer>> lottoTickets) {
+        for (int i = 0; i < lottoTickets.size(); i++) {
+            System.out.println(lottoTickets.get(i));
+        }
     }
 
     private int inputBuyPrice() {

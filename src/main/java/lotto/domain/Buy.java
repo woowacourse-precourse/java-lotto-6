@@ -9,7 +9,7 @@ public class Buy {
         this.buyTicketCount = buyPrice / 1000;
     }
 
-    public int getBuy() {
+    public int getBuyTicketCount() {
         return buyTicketCount;
     }
 }

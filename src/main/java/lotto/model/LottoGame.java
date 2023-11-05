@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.utils.ExceptionMessage.UNIT_IS_INCORRECT;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +19,7 @@ public class LottoGame {
 
     public LottoGame(Integer amount) {
         this.user = new User(issuanceLotto(amount));
+        validate(amount);
         generateMatchs();
     }
 
@@ -101,6 +104,8 @@ public class LottoGame {
     }
 
     public void validate(int amount) {
-
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException(UNIT_IS_INCORRECT.getMessage());
+        }
     }
 }

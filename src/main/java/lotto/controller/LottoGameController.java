@@ -36,7 +36,7 @@ public class LottoGameController {
             try {
                 lottoGame = new LottoGame(inputView.inputInteger());
                 break;
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalStateException | IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

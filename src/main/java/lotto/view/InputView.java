@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.utils.ExceptionMessage.INPUT_ONLY_NUMBER;
+import static lotto.utils.ExceptionMessage.NOT_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class InputView {
             number = Integer.parseInt(Console.readLine());
             return number;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_ONLY_NUMBER.getMessage());
+            throw new IllegalStateException(NOT_NUMBER.getMessage());
         }
     }
 

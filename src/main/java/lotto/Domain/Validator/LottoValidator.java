@@ -1,11 +1,12 @@
-package lotto.Validator;
+package lotto.Domain.Validator;
+
+import static lotto.Util.Constants.LOTTO_NUMBER_LENGTH;
+import static lotto.Util.Constants.MAX_LOTTO_NUM;
+import static lotto.Util.Constants.MIN_LOTTO_NUM;
 
 import java.util.List;
 
 public class LottoValidator {
-    private static final int LOTTO_NUMBER_LENGTH = 6;
-    private static final int MIN_LOTTO_NUM = 1;
-    private static final int MAX_LOTTO_NUM = 45;
 
     public static void doValidate(List<Integer> numbers) throws IllegalArgumentException {
         if (!isLottoLength(numbers)) {

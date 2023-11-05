@@ -5,17 +5,15 @@ import java.util.regex.Pattern;
 
 public class Bonus {
     private int number;
-    private Lotto lotto;
     private static final Pattern BONUS_REGEX = Pattern.compile("^[0-9]+$");
 
 
     public Bonus(Lotto lotto, String inputBonusNumber) {
-        this.lotto = lotto;
-        validate(inputBonusNumber);
+        validate(lotto, inputBonusNumber);
         this.number = stringToInteger(inputBonusNumber);
     }
 
-    public void validate(String inputBonusNumber) {
+    public void validate(Lotto lotto, String inputBonusNumber) {
         validateNumeric(inputBonusNumber);
         int bonusNumber = stringToInteger(inputBonusNumber);
         validateDuplicate(lotto.getNumbers(), bonusNumber);

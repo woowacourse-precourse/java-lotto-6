@@ -1,10 +1,15 @@
 package lotto;
 
 import java.util.List;
+import camp.nextstep.edu.missionutils.Console;
+import static lotto.Constant.*;
+import static lotto.Validation.*;
 
 public class UI {
     public static int getMoney() {
-        return 0;
+        System.out.print(GET_MONEY_MSG);
+        String input = Console.readLine();
+        return validateMoney(input);
     }
 
     public static List<Integer> getWinningNumber(){
@@ -14,4 +19,5 @@ public class UI {
     public static int getBonusNumber(){
         return 0;
     }
+
 }

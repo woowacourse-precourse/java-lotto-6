@@ -1,9 +1,4 @@
 package lotto;
-
-import static lotto.Lotto.*;
-
-import camp.nextstep.edu.missionutils.Console;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
@@ -16,7 +11,8 @@ public class Application {
         int numberOfPurchasedLottos = LOTTO_TEST_PURCHASE/LOTTO_PRICE;
 
         for (int i = 0; i < numberOfPurchasedLottos; i++){
-            List<Integer> numbers = Lotto.getNumbers();
+            Lotto lotto = Lotto.generate();
+            List<Integer> numbers = lotto.getNumbers();
             System.out.println(numbers);
         }
     }

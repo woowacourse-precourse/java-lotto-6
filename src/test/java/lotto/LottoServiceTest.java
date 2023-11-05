@@ -12,11 +12,16 @@ public class LottoServiceTest {
     @DisplayName("5천원일 경우 로또 5개를 발행한다.")
     @Test
     void makeFiveWithFiveThousand() {
+        //given
         WinningNumbers winningNumbers = mock(WinningNumbers.class);
         Money fiveThousand = new Money(5_000);
         LottoMachine lottoMachine = new LottoMachine();
         LottoService lottoService = new LottoService(winningNumbers, lottoMachine);
+
+        //when
         List<Lotto> lottos = lottoService.getLottosWith(fiveThousand);
+
+        //then
         assertThat(lottos).hasSize(5);
     }
 

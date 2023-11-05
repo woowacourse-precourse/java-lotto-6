@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.repository.BuyLottoRepository;
+import lotto.repository.WinningLottoRepository;
 import lotto.service.InputService;
 import lotto.domain.PurchaseAmount;
 import lotto.service.LottoService;
@@ -15,8 +16,7 @@ public class LottoController {
 
         int purchaseCount = purchaseAmount.calculateCount();
         View.purchaseCount(purchaseCount);
-        BuyLottoRepository buyLottoRepository = lottoService.quickPick(purchaseCount);
-
-        lottoService.createWinningNumber();
+        BuyLottoRepository buyLottoRepo = lottoService.quickPick(purchaseCount);
+        WinningLottoRepository winningLottoRepo = lottoService.createWinningNumber();
     }
 }

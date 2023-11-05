@@ -6,21 +6,23 @@ import static lotto.settings.LottoSettings.MIN_VALUE;
 import static lotto.settings.LottoSettings.SIZE;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.repository.BuyLottoRepository;
+import lotto.repository.WinningLottoRepository;
 import lotto.view.View;
 
 public class LottoService {
-    private final BuyLottoRepository buyLottoRepository = new BuyLottoRepository();
+    private final BuyLottoRepository buyLottoRepo = new BuyLottoRepository();
     public BuyLottoRepository quickPick(int purchaseCount){
         while(purchaseCount>0){
             Lotto lotto = new Lotto(createRandomNumbers());
-            buyLottoRepository.add(lotto);
+            buyLottoRepo.add(lotto);
 
             numberExtraction(lotto.listToString());
             purchaseCount --;
         }
-        return buyLottoRepository;
+        return buyLottoRepo;
     }
 
     private static void numberExtraction(String lottoNumber) {
@@ -34,11 +36,13 @@ public class LottoService {
                 SIZE.getNumber());
     }
 
-    public void createWinningNumber(){
+    public WinningLottoRepository createWinningNumber(){
         View.requestWinningNumber();
-        InputService.winningNumbers();
+        Lotto lotto = new Lotto(InputService.winningNumbers());
 
         View.requestBonusNumber();
-        InputService.number();
+        BonusNumber bonusNumber = BonusNumber.from(InputService.number());
+
+        return WinningLottoRepository.of(lotto, bonusNumber);
     }
 }

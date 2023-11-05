@@ -4,8 +4,8 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 
 public class WinningLottoRepository {
-    private Lotto lotto;
-    private BonusNumber bonusNumber;
+    private final Lotto lotto;
+    private final BonusNumber bonusNumber;
 
     public WinningLottoRepository(Lotto lotto, BonusNumber bonusNumber) {
         this.lotto = lotto;

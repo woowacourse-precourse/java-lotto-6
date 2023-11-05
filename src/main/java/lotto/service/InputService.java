@@ -4,6 +4,7 @@ import static lotto.settings.ErrorMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.List;
 
 public class InputService {
 
@@ -14,12 +15,12 @@ public class InputService {
         return Integer.parseInt(input);
     }
 
-    public static Integer[] winningNumbers(){
+    public static List<Integer> winningNumbers(){
         String input = readLine();
         String[] inputs = input.split(",", -1);
         validateTrim(inputs);
         validateNumber(inputs);
-        return Arrays.stream(inputs).map(Integer::parseInt).toArray(Integer[]::new);
+        return Arrays.stream(inputs).map(Integer::parseInt).toList();
     }
 
     private static void validateNumber(String input) {

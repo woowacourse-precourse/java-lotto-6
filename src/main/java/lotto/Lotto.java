@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.model.HitsNumber;
+
 import java.util.List;
 
 public class Lotto {
@@ -18,8 +20,27 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    public String getLottoNumbersToPrint(){
+    public String getLottoNumbersToPrint() {
         return numbers.toString();
     }
 
+    public HitsNumber calculate(WinningLotto winningLotto) {
+        int hitsNumberCnt = 0;
+        int hitsBonusNumberCnt = 0;
+
+        for (Integer number : winningLotto.getNumbers()) {
+            if (this.numbers.contains(number)) {
+                hitsNumberCnt++;
+            }
+        }
+
+        if (this.numbers.contains(winningLotto.getBonusNum())) {
+            hitsBonusNumberCnt++;
+        }
+        return new HitsNumber(hitsNumberCnt, hitsBonusNumberCnt);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

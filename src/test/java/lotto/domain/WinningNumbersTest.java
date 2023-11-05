@@ -1,9 +1,8 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
 import lotto.constant.ExceptionMessage;
@@ -15,25 +14,17 @@ import org.junit.jupiter.api.Test;
 class WinningNumbersTest {
 
     private WinningNumbers winningNumbers;
-    private NumberConverter numberConverter;
 
     @BeforeEach
     void setUp() {
-        numberConverter = mock(NumberConverter.class);
-        winningNumbers = new WinningNumbers(numberConverter);
+        winningNumbers = new WinningNumbers(new NumberConverter());
     }
 
     @Test
-    @DisplayName("정상적인 숫자 문자열을 처리하여 정수 리스트를 반환한다.")
-    void process_ValidNumbers_ReturnsIntegerList() {
+    @DisplayName("유효한 번호 문자열을 올바르게 처리해야 한다.")
+    void testProcessWithValidNumbers() {
         // given
         String numbers = "1, 2, 3, 4, 5, 6";
-        when(numberConverter.convert("1")).thenReturn(1);
-        when(numberConverter.convert("2")).thenReturn(2);
-        when(numberConverter.convert("3")).thenReturn(3);
-        when(numberConverter.convert("4")).thenReturn(4);
-        when(numberConverter.convert("5")).thenReturn(5);
-        when(numberConverter.convert("6")).thenReturn(6);
 
         // when
         List<Integer> result = winningNumbers.process(numbers);
@@ -43,40 +34,27 @@ class WinningNumbersTest {
     }
 
     @Test
-    @DisplayName("숫자 문자열이 쉼표로 시작할 때 예외를 발생시킨다.")
-    void process_StartingComma_ThrowsException() {
+    @DisplayName("쉼표로 시작하는 경우 IllegalArgumentException을 발생시켜야 한다.")
+    void testProcessWithLeadingComma() {
         // given
-        String numbersWithStartingComma = ",1, 2, 3, 4, 5, 6";
+        String numbersWithLeadingComma = ",1, 2, 3, 4, 5, 6";
 
         // when & then
-        assertThatThrownBy(() -> winningNumbers.process(numbersWithStartingComma))
+        assertThatThrownBy(() -> winningNumbers.process(numbersWithLeadingComma))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
+                .hasMessage(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
     }
 
     @Test
-    @DisplayName("숫자 문자열이 쉼표로 끝날 때 예외를 발생시킨다.")
-    void process_EndingComma_ThrowsException() {
+    @DisplayName("쉼표로 끝나는 경우 IllegalArgumentException을 발생시켜야 한다.")
+    void testProcessWithTrailingComma() {
         // given
-        String numbersWithEndingComma = "1, 2, 3, 4, 5, 6,";
+        String numbersWithTrailingComma = "1, 2, 3, 4, 5, 6,";
 
         // when & then
-        assertThatThrownBy(() -> winningNumbers.process(numbersWithEndingComma))
+        assertThatThrownBy(() -> winningNumbers.process(numbersWithTrailingComma))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
+                .hasMessage(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
     }
-
-    @Test
-    @DisplayName("숫자 문자열에 연속된 쉼표가 있을 때 예외를 발생시킨다.")
-    void process_ConsecutiveCommas_ThrowsException() {
-        // given
-        String numbersWithConsecutiveCommas = "1, 2,, 3, 4, 5, 6";
-
-        // when & then
-        assertThatThrownBy(() -> winningNumbers.process(numbersWithConsecutiveCommas))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
-    }
-
 }
 

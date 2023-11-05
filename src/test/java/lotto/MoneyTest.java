@@ -42,7 +42,7 @@ public class MoneyTest {
 
 
     @Test
-    @DisplayName("[Error] 나누어 떨이지지 않는 돈이 입력 되었습니다.")
+    @DisplayName("[Error] 나누어 떨이지지 않는 돈이 입력 되면 예외가 발생한다.")
     void receiveMoneyByIndivisibleNumber() {
         // given
         String invalidMoney = "1050";
@@ -56,7 +56,7 @@ public class MoneyTest {
     }
 
     @Test
-    @DisplayName("[Error] 돈 0원이 입력되었습니다.")
+    @DisplayName("[Error] 돈 0원이 입력 되면 예외가 발생 한다.")
     void receiveMoneyByZero() {
         // given
         String invalidMoney = "0";
@@ -70,7 +70,7 @@ public class MoneyTest {
     }
 
     @Test
-    @DisplayName("돈이 숫자가 아닙니다.")
+    @DisplayName("돈이 숫자 형태가 아니면 예외가 발생한다.")
     void receiveMoneyByNotNumber() {
         // given
         String invalidMoney = "1000b";

@@ -3,11 +3,11 @@ package lotto.model;
 public class LottoStatistics {
     private final Lottos lottos;
     private final WinningNumbers winningNumbers;
-    private int threeNumbersMatch;
-    private int fourNumbersMatch;
-    private int fiveNumbersMatch;
-    private int fiveNumbersAndBonusNumberMatch;
-    private int sixNumbersMatch;
+    private int threeNumbersMatch = 0;
+    private int fourNumbersMatch = 0;
+    private int fiveNumbersMatch = 0;
+    private int fiveNumbersAndBonusNumberMatch = 0;
+    private int sixNumbersMatch = 0;
 
     public LottoStatistics(Lottos lottos, WinningNumbers winningNumbers) {
         this.lottos = lottos;
@@ -48,19 +48,19 @@ public class LottoStatistics {
     }
 
     public void checkMatch(int count, boolean lottoHasBonusNumber) {
-        if (count == 3) {
+        if (count == LottoRank.THREE_MATCH.getMatchCount()) {
             threeNumbersMatch++;
         }
-        if (count == 4) {
+        if (count == LottoRank.FOUR_MATCH.getMatchCount()) {
             fourNumbersMatch++;
         }
-        if (count == 5 && lottoHasBonusNumber == false) {
+        if (count == LottoRank.FIVE_MATCH.getMatchCount() && lottoHasBonusNumber == false) {
             fiveNumbersMatch++;
         }
-        if (count == 5 && lottoHasBonusNumber == true) {
+        if (count == LottoRank.FIVE_AND_BONUS_MATCH.getMatchCount() && lottoHasBonusNumber == true) {
             fiveNumbersAndBonusNumberMatch++;
         }
-        if (count == 6) {
+        if (count == LottoRank.SIX_MATCH.getMatchCount()) {
             sixNumbersMatch++;
         }
     }

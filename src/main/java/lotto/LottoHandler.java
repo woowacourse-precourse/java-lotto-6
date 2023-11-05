@@ -93,4 +93,30 @@ public class LottoHandler {
         }
         return new Lotto(winningNumbers);
     }
+
+    public int bonusNumber() {
+        boolean validBonusNumber = false;
+        int bonusNumber = 0;
+
+        while (!validBonusNumber) {
+            try {
+                OutputHandler.printLineBreakMessage("보너스 번호를 입력해 주세요.");
+                bonusNumber = receiveBonusNumber(Console.readLine());
+                validBonusNumber = true;
+            } catch (IllegalArgumentException e) {
+                OutputHandler.printMessage(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    public int receiveBonusNumber(String receivedBonusNumber) {
+        int bonusNumeber = 0;
+        try {
+            bonusNumeber = Integer.parseInt(receivedBonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+        }
+        return bonusNumeber;
+    }
 }

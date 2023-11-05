@@ -11,12 +11,13 @@ public class LottoGame implements Game {
     private LottoPurchase lottoPurchase;
     private LottoTickets lottoTickets;
     private WinningLotto winningLotto;
+    private WinningResult winningResult;
 
     @Override
     public void run() {
         collectPurchaseAmount();
-        printLottoTickets();
         generateLottoTickets();
+        printLottoTickets();
 
         collectWinningNumbers();
     }
@@ -46,6 +47,10 @@ public class LottoGame implements Game {
 
     private LottoNumber getBonusWinningNumber() {
         return new LottoNumber(InputView.winningLottoBonusNumberInput());
+    }
+
+    private void calculateWinningResult() {
+        winningResult = new WinningResult(lottoTickets, winningLotto);
     }
 }
 

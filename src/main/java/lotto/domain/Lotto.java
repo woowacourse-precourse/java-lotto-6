@@ -1,16 +1,21 @@
 package lotto.domain;
 
-import java.util.List;
+import static lotto.constants.Error.DUPLICATE_INVALID;
+import static lotto.constants.Error.RANGE_INVALID;
+import static lotto.constants.Error.SIZE_INVALID;
+import static lotto.constants.Rule.LOTTO_SIZE;
+import static lotto.constants.Rule.MAX_LOTTO;
+import static lotto.constants.Rule.MIN_LOTTO;
 
-import static lotto.constants.Error.*;
-import static lotto.constants.Rule.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortedLottoNumber(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -43,6 +48,10 @@ public class Lotto {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_INVALID.getMessage());
         }
+    }
+
+    private static List<Integer> sortedLottoNumber(List<Integer> numbers) {
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 
     public int countNumbers(Lotto prize) {

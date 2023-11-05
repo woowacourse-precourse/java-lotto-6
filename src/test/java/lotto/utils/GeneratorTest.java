@@ -1,21 +1,20 @@
 package lotto.utils;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static lotto.constants.Rule.MAX_LOTTO;
 import static lotto.constants.Rule.MIN_LOTTO;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LottoGeneratorTest {
+import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+class GeneratorTest {
     private List<Integer> lottoNumbers;
 
     @BeforeEach
     void setUp() {
-        lottoNumbers = LottoGenerator.generateLotto();
+        lottoNumbers = Generator.generateLottoNumbers();
     }
 
     @Test

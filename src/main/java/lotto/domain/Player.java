@@ -1,14 +1,13 @@
 package lotto.domain;
 
-import lotto.utils.LottoGenerator;
+import static lotto.constants.Error.DIVIDE_INVALID;
+import static lotto.constants.Error.MINIMUM_INVALID;
+import static lotto.constants.Rule.MIN_MONEY;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static lotto.constants.Error.DIVIDE_INVALID;
-import static lotto.constants.Error.MINIMUM_INVALID;
-import static lotto.constants.Rule.MIN_MONEY;
+import lotto.utils.Generator;
 
 public class Player {
     private final int money;
@@ -59,7 +58,7 @@ public class Player {
 
     private static List<Lotto> purchaseLotto(int amount) {
         return IntStream.range(0, amount)
-                .mapToObj(i -> new Lotto(LottoGenerator.generateLotto()))
+                .mapToObj(i -> new Lotto(Generator.generateLottoNumbers()))
                 .collect(Collectors.toList());
     }
 

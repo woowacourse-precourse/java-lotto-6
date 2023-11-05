@@ -25,7 +25,9 @@ public class InputView {
     }
 
     private String readMessage() {
-        return Console.readLine();
+        String message = Console.readLine();
+        System.out.println();
+        return message;
     }
 
     public List<Integer> requestWinningLottoNumbers() {

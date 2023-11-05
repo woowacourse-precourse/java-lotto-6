@@ -31,7 +31,6 @@ public class LottoService {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println();
         outputView.printPurchasedLottos(lottos);
         return lottos;
     }

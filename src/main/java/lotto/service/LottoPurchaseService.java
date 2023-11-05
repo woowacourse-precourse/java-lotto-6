@@ -4,6 +4,8 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.exception.LottoException;
 import lotto.exception.LottoStoreException;
+import lotto.service.generate.LottoAutoGenerateService;
+import lotto.service.generate.LottoManualGenerateService;
 
 import java.util.List;
 

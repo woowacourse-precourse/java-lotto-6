@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.exception.LottoException;
+import lotto.service.generate.LottoManualGenerateService;
 import lotto.vo.BonusNumber;
 
 import java.util.List;

@@ -31,24 +31,28 @@ public class LottoUtil {
     public static String convertResultToDisplayFormat(Map<Rank, Integer> result) {
         StringBuilder sb = new StringBuilder();
         for (Rank rank : Rank.values()) {
+            int count = result.getOrDefault(rank, 0);
             if (rank.equals(Rank.NO_RANK)) {
                 continue;
             }
             if (rank.equals(Rank.SECOND)) {
-                convertSecondRankToDisplayFormat(sb, result.getOrDefault(Rank.SECOND, 0));
+                sb.append(convertSecondRankToDisplayFormat(count));
                 continue;
             }
-            sb.append(String.format(MATCH_COUNT_FORMAT, rank.getMatchingCount(),
-                    convertPrizeToDisplayFormat(rank.getPrize()),
-                    result.getOrDefault(rank, 0)));
+            sb.append(convertRankToDisplayFormat(rank, count));
         }
         return sb.toString();
     }
 
-    public static void convertSecondRankToDisplayFormat(StringBuilder sb, int count) {
-        sb.append(String.format(SECOND_RANK_FORMAT, Rank.SECOND.getMatchingCount(),
+    private static String convertRankToDisplayFormat(Rank rank, int count) {
+        return String.format(MATCH_COUNT_FORMAT, rank.getMatchingCount(),
+                LottoUtil.convertPrizeToDisplayFormat(rank.getPrize()), count);
+    }
+
+    public static String convertSecondRankToDisplayFormat(int count) {
+        return String.format(SECOND_RANK_FORMAT, Rank.SECOND.getMatchingCount(),
                 LottoUtil.convertPrizeToDisplayFormat(Rank.SECOND.getPrize()),
-                count));
+                count);
     }
 
     public static String convertPrizeToDisplayFormat(long prize) {

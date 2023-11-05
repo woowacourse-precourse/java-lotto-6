@@ -6,13 +6,15 @@ import lotto.util.ErrorConstant;
 import java.util.regex.Pattern;
 
 public class PurchaseManager {
+    private Integer purchaseAmount;
     private Integer purchaseNumber;
 
     public PurchaseManager(String purchaseAmount){
         isNumber(purchaseAmount);
-        this.purchaseNumber = Integer.parseInt(purchaseAmount);
+        this.purchaseAmount = Integer.parseInt(purchaseAmount);
         canPurchase();
         hasNoChange();
+        calcPurchaseNumber();
     }
 
     private void isNumber(String purchaseAmount) {
@@ -22,14 +24,22 @@ public class PurchaseManager {
     }
 
     private void canPurchase() {
-        if(purchaseNumber<Constant.LOTTO_PRICE){
+        if(purchaseAmount<Constant.LOTTO_PRICE){
             throw new IllegalArgumentException(ErrorConstant.CANNOT_PURCHASE);
         }
     }
 
     private void hasNoChange() {
-        if(purchaseNumber%Constant.LOTTO_PRICE!=0){
+        if(purchaseAmount%Constant.LOTTO_PRICE!=0){
             throw new IllegalArgumentException(ErrorConstant.HAS_CHANGE);
         }
+    }
+
+    private void calcPurchaseNumber(){
+        purchaseNumber = purchaseAmount/Constant.LOTTO_PRICE;
+    }
+
+    public Integer getPurchaseNumber() {
+        return purchaseNumber;
     }
 }

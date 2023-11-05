@@ -2,14 +2,16 @@ package lotto.controller;
 
 import lotto.domain.PurchaseManager;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGame {
     private static InputView inputView;
+    private static OutputView outputView;
     private static PurchaseManager purchaseManager;
 
     public LottoGame(){
         inputView = new InputView();
-        //todo outputView
+        outputView = new OutputView();
     }
 
     public void startGame(){
@@ -20,6 +22,7 @@ public class LottoGame {
         while(!validateInput){
             validateInput = validatePurchaseAmount(inputView.inputPurchaseAmount());
         }
+        outputView.printResult(purchaseManager.getPurchaseNumber());
     }
     private boolean validatePurchaseAmount(String purchaseAmount){
         try {

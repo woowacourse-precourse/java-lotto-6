@@ -15,57 +15,63 @@ public class InputController {
     }
     
     void setBonusNum() {
-        int bonusNum = Integer.parseInt(Console.readLine());
+        int bonusNum = validateBonusNum(Console.readLine());
     }
 
-    int validateAmount(String input) {
-        int amount;
-        try {
-            amount = Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_TYPE.getMessage());
-        }
+    private int validateAmount(String input) {
+        int amount = validateType(input);
+        
         if ((amount % 1000) != 0 || amount < 1000) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_AMOUNT.getMessage());
         }
         return amount;
     }
 
-    List<Integer> validateWinningNum(String input) {
-        List<Integer> winningNum = new ArrayList<Integer>();
+    private List<Integer> validateWinningNum(String input) {
         String[] numbers = input.split(",");
-
+        List<Integer> winningNum = validateType(numbers);
         if (numbers.length != 6) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_LENGTH.getMessage());
         }
 
-        try {
-            for (String number : numbers) {
-                winningNum.add(Integer.parseInt(number));
-            }
-        } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_TYPE.getMessage());
-        }
-
         winningNum.forEach((number) -> {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE.getMessage());
-            }
+            validateRange(number);
         });
 
         return winningNum;
     }
 
-    int validateonusNum(String input) {
-        int bonusNum;
+    private int validateBonusNum(String input) {
+        int bonusNum = validateType(input);
+        validateRange(bonusNum);
+        return bonusNum;
+    }
+
+    private void validateRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE.getMessage());
+        }
+    }
+
+    private int validateType(String input) {
+        int result;
         try {
-            bonusNum = Integer.parseInt(input);
+            result = Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_TYPE.getMessage());
         }
-        if (bonusNum < 1 || bonusNum > 45) {
-                throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE.getMessage());
+        return result;
+    }
+
+    private List<Integer> validateType(String[] numbers) {  //오버로드
+        List<Integer> result = new ArrayList<Integer>();
+        try {
+            for (String number : numbers) {
+                result.add(Integer.parseInt(number));
             }
-        return bonusNum;
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_TYPE.getMessage());
+        }
+        return result;
     }
 }

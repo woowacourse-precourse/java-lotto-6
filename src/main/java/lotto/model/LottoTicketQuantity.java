@@ -9,7 +9,6 @@ public class LottoTicketQuantity {
     public int LottoTicketQuantity(int purchaseAmount) {
         nonDivisibleAmount(purchaseAmount);
         this.lottoTicketQuantity = calculateLottoTicketQuantity(purchaseAmount);
-
         return lottoTicketQuantity;
     }
 

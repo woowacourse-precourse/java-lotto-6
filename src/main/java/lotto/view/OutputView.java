@@ -69,4 +69,10 @@ public class OutputView {
     public static void printGetBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     }
+
+    public static void printEarningRate(double earningRate) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("총 수익률은 ").append(earningRate).append("%입니다.");
+        System.out.println(sb.toString());
+    }
 }

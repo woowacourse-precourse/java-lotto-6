@@ -29,6 +29,8 @@ public class LottoController {
         // 출력
         OutputView.printLottoResult(lottoService.convertToDto(results));
         // 수익률
+            double earningRate = calculatePriceRate(purchasePrice, dtos);
+            OutputView.printEarningRate(earningRate);
 
     }
 

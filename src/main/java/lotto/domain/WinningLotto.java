@@ -4,18 +4,18 @@ import java.util.List;
 
 public class WinningLotto {
 
-    private final Lotto winnginLotto;
+    private final Lotto answerLotto;
     private final BonusNumber bonusNumber;
 
-    public WinningLotto(Lotto winnginLotto, BonusNumber bonusNumber) {
-        this.winnginLotto = winnginLotto;
+    public WinningLotto(Lotto answerLotto, BonusNumber bonusNumber) {
+        this.answerLotto = answerLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public int getMatchCount(List<Integer> lotto) {
+    public int calculateMathCount(List<Integer> lotto) {
         int count = 0;
         for (Integer number : lotto) {
-            if(winnginLotto.contains(number)) {
+            if(answerLotto.contains(number)) {
                 count++;
             }
         }

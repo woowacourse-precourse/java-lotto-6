@@ -19,7 +19,7 @@ public class WinningLottoTest {
         List<Integer> myLottoNumbers = List.of(1, 2, 3, 8, 9, 10);
 
         //when
-        int matchCount = winningLotto.getMatchCount(myLottoNumbers);
+        int matchCount = winningLotto.calculateMathCount(myLottoNumbers);
 
         //then
         Assertions.assertThat(matchCount).isEqualTo(3);

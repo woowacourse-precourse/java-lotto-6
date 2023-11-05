@@ -12,8 +12,8 @@ import java.util.Map;
 public class LottoService {
 
     public LottoBundle buyLottoBundle(LottoMoney money) {
-        int amount = money.getLottoAmount();
         List<Lotto> bundle = new ArrayList<>();
+        int amount = money.getLottoAmount();
         for (int i = 0; i < amount; i++) {
             Lotto lotto = LottoMachine.buyLotto();
             bundle.add(lotto);
@@ -37,7 +37,7 @@ public class LottoService {
     }
 
     private int countMatchNumber(Lotto lotto, WinningLotto winningLotto) {
-        return winningLotto.getMatchCount(lotto.numbers());
+        return winningLotto.calculateMathCount(lotto.numbers());
     }
 
     private boolean checkBonus(Lotto lotto, WinningLotto winningLotto) {

@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class OutputView {
     private static final String ASK_FOR_MONEY = "구입금액을 입력해 주세요.";
     private static final String ASK_FOR_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
@@ -14,12 +16,19 @@ public class OutputView {
         System.out.printf((PURCHASED_LOTTO_COUNT) + "%n", lottoCount);
     }
 
-    public void printLottoNumbers() {
-
+    public void printLottoNumbers(List<Integer> numbers) {
+        System.out.print("[");
+        for (int i = 0; i < numbers.size(); i++) {
+            System.out.print(numbers.get(i));
+            printCommaBetweenNumbers(numbers, i);
+        }
+        System.out.println("]");
     }
 
-    private void printLottoNumber() {
-
+    private void printCommaBetweenNumbers(List<Integer> numbers, int i) {
+        if (i != numbers.size() - 1) {
+            System.out.print(", ");
+        }
     }
 
     public void askForWinningNumbers() {

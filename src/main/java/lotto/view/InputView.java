@@ -10,7 +10,6 @@ import lotto.validator.WinningNumbersInputValidator;
 public class InputView {
     private static final String COMMA = ",";
 
-
     public int inputMoney() {
         String input = Console.readLine();
         MoneyInputValidator.validate(input);

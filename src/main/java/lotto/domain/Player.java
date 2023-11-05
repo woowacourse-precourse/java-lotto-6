@@ -1,20 +1,33 @@
 package lotto.domain;
 
-import java.util.ArrayList;
+import static lotto.constant.WinningConstant.INIT_WINNING_COUNT;
+import static lotto.constant.WinningConstant.ONE_WINNING_COUNT;
+
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Player {
+
 
     private final PurchasePrice purchasePrice;
 
     private final List<Lotto> lottos;
     //일급 컬렉션으로 포장해줘야할까
-    private final List<LotteryResult> lotteryResults;
+    private final Map<LotteryResult, Integer> lotteryResults;
 
     public Player(PurchasePrice purchasePrice, List<Lotto> lottos) {
         this.purchasePrice = purchasePrice;
         this.lottos = lottos;
-        this.lotteryResults = new ArrayList<LotteryResult>();
+        this.lotteryResults = new HashMap<>();
+        initialLotteryResult();
+    }
+
+    private void initialLotteryResult() {
+        Arrays.stream(LotteryResult.values())
+                .filter(LotteryResult::isWinning)
+                .forEach(lotteryResult -> lotteryResults.put(lotteryResult, INIT_WINNING_COUNT));
     }
 
     public static Player of(PurchasePrice purchasePrice, List<Lotto> lottos) {
@@ -22,7 +35,10 @@ public class Player {
     }
 
     public void addLotteryResult(List<LotteryResult> lotteryResults) {
-        this.lotteryResults.addAll(lotteryResults);
+        lotteryResults.forEach((lotteryResult) -> {
+            this.lotteryResults.put(lotteryResult,
+                    this.lotteryResults.get(lotteryResult) + ONE_WINNING_COUNT);
+        });
     }
 
     public PurchasePrice getPurchasePrice() {
@@ -34,7 +50,7 @@ public class Player {
     }
 
     //지우기
-    public List<LotteryResult> getLotteryResults() {
+    public Map<LotteryResult, Integer> getLotteryResults() {
         return lotteryResults;
     }
 }

@@ -41,7 +41,7 @@ public class Input {
 
     private String defaultReadLine() {
         String input = Console.readLine();
-        System.out.println();
+        new Output();
         return input;
     }
 }

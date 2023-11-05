@@ -33,7 +33,7 @@ public class LottoController {
         Player player = start();    //가독성이 나쁘지는 않을까? start를 통해서 player가 생성된다는 의미가 전달되나?
         output.purchasedLotts(player);
         play(player);
-        System.out.println(player.getLotteryResults()); //지우기
+        output.winningResult(player.getLotteryResults());
     }
 
     private Player start() {
@@ -70,7 +70,6 @@ public class LottoController {
 
     private int tryCreateBonusNumber(Lotto winningLotto) {
         int bonusNumber = createBonusNumber();
-        System.out.println(bonusNumber);
         try {
             LotteryNumbers.of(winningLotto, bonusNumber);
         } catch (IllegalArgumentException e) {

@@ -23,6 +23,15 @@ public enum LotteryResult {
     public boolean isWinning() {
         return prize != 0;
     }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public String getConvertedPrize() {
+        return convertedPrize;
+    }
+
 }
 
 

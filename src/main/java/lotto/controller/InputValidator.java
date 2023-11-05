@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
+import lotto.util.Constants;
 import lotto.util.ErrorConstants;
 
 public class InputValidator {
@@ -27,7 +28,7 @@ public class InputValidator {
     }
 
     private static void isThousandUnit(int amount) {
-        if (amount < 1000 || amount % 1000 != 0) {
+        if (amount < Constants.LOTTO_PRICE || amount % Constants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorConstants.THOUSAND_UNIT);
         }
     }

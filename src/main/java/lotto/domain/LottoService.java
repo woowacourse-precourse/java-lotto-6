@@ -3,13 +3,13 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.util.Constants;
 
 public class LottoService {
     private static final LottoService LOTTO_SERVICE = new LottoService();
-    private static final int LOTTO_PRICE = 1000;
 
     public List<Lotto> purchaseLottos(int purchaseAmount) {
-        int numberOfLottos = purchaseAmount / LOTTO_PRICE;
+        int numberOfLottos = purchaseAmount / Constants.LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLottos; i++) {

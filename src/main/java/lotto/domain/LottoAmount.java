@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.LottoConfig.LOTTO_PRICE;
+import static lotto.enums.LottoConfig.LOTTO_PRICE;
 import static lotto.enums.ErrorMassage.INCORRECT_AMOUNT_UNIT;
 import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
 

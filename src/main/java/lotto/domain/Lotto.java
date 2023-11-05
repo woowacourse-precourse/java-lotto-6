@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.enums.ErrorMassage.*;
-import static lotto.domain.LottoConfig.LOTTO_COUNT;
+import static lotto.enums.LottoConfig.LOTTO_COUNT;
 
 import java.util.List;
 

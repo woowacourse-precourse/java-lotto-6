@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.enums;
 
 public enum LottoConfig {
     MIN_LOTTO_NUMBER(1),

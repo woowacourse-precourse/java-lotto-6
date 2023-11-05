@@ -1,6 +1,6 @@
 package lotto.application;
 
-import static lotto.domain.LottoConfig.LOTTO_COUNT;
+import static lotto.enums.LottoConfig.LOTTO_COUNT;
 
 import java.util.List;
 import lotto.domain.Lotto;

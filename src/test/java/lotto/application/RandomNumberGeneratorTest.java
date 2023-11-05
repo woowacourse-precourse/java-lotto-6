@@ -1,6 +1,6 @@
 package lotto.application;
 
-import static lotto.domain.LottoConfig.LOTTO_COUNT;
+import static lotto.enums.LottoConfig.LOTTO_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;

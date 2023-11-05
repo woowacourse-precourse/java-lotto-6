@@ -1,9 +1,9 @@
 package lotto.enums;
 
-import static lotto.domain.LottoConfig.LOTTO_COUNT;
-import static lotto.domain.LottoConfig.MAX_LOTTO_NUMBER;
-import static lotto.domain.LottoConfig.MIN_LOTTO_NUMBER;
-import static lotto.domain.LottoConfig.LOTTO_PRICE;
+import static lotto.enums.LottoConfig.LOTTO_COUNT;
+import static lotto.enums.LottoConfig.MAX_LOTTO_NUMBER;
+import static lotto.enums.LottoConfig.MIN_LOTTO_NUMBER;
+import static lotto.enums.LottoConfig.LOTTO_PRICE;
 import static lotto.enums.Delimiter.COMMA;
 
 public enum ErrorMassage {

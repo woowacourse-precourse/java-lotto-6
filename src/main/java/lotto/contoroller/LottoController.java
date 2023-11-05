@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Purchase;
 import lotto.service.LottoBonusComparer;
 import lotto.service.LottoPurchaseListComparer;
+import lotto.view.OutputValue;
 import lotto.view.PurchaseListPrinter;
 import lotto.utility.ListTypeChanger;
 import lotto.utility.NumberTypeChanger;
@@ -29,7 +30,8 @@ public class LottoController {
         // 임시(나중에 메소드화시킬것)
         LottoPurchaseListComparer test = new LottoPurchaseListComparer();
         test.compareBundle(purchaseList, lotto, bonus);
-        System.out.println(test.getResultList());
+//        System.out.println(test.getResultList());
+        OutputValue.guidePrize(test.getResultList());
         // 여기까지? 혹은 마지막 통계까지?
     }
 

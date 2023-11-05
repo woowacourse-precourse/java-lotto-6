@@ -28,14 +28,14 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-    @DisplayName("로또 장 수만큼 6개의 수를 랜덤 추출한 리스트가 생성된다.")
+    @DisplayName("로또 장 수만큼 6개의 수를 랜덤 추출한 리스트와 Lotto 객체가 생성된다.")
     @Test
     void getTotalCntFromPayment() {
         Round round = new Round();
         round.extractor(3);
     }
 
-    @DisplayName("1000원 단위로 나누어 떨어지지 않는 금액이 입력되면 예외가 발생한다.")
+    @DisplayName("1000원 단위로 나누어 떨어지지 않는 금액이 입력값으로 들어오면 예외가 발생한다.")
     @Test
     void failToConvertTotalCntFromPayment() {
         String payment = "12340";  // 12340원
@@ -51,7 +51,7 @@ class LottoTest {
                 .isEqualTo(5000);
     }
 
-    @DisplayName("빈 값 또는 숫자 타입이 아닌 값이 입력값으로 들어오면 예외가 발생한다.")
+    @DisplayName("빈 값 또는 숫자가 아닌 타입 값이 입력값으로 들어오면 예외가 발생한다.")
     @Test
     void validateInputNumValue() {
         String emptyValue = "";

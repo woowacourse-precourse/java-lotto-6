@@ -15,6 +15,7 @@ public class InputView {
                 break;
             }
         }
+        System.out.println();
         return Integer.parseInt(input);
     }
 }

@@ -14,6 +14,7 @@ public class LottoView {
     public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
+        // TODO : 예외처리
     }
 
     public List<Integer> inputWinningNumbers() {
@@ -22,8 +23,14 @@ public class LottoView {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+        // TODO: 예외처리
     }
 
-    
+    public int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
+        // TODO: 예외처리
+    }
+
 
 }

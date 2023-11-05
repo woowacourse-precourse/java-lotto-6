@@ -11,17 +11,12 @@ import lotto.repository.DomainRepository;
 import lotto.service.LottoService;
 import lotto.utils.LottoPublisher;
 
-public class ComponentFactory {
-
-    private static final ComponentFactory INSTANCE = new ComponentFactory();
+public enum ComponentFactory {
+    INSTANCE;
     private final LottoController lottoController;
 
-    public ComponentFactory() {
+    ComponentFactory() {
         this.lottoController = new LottoController(outputView(), inputManager(), lottoService());
-    }
-
-    public static ComponentFactory getInstance() {
-        return INSTANCE;
     }
 
     public LottoController lottoController() {

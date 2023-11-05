@@ -11,9 +11,11 @@
     + [x] 입력한 금액이 1,000으로 나누어 떨어지지 않으면 IllegalArgumentException을 발생시킨다.
     + [x] 입력한 금액을 수량으로 나눈다.
     + [x] 구매 수량을 화면에 표시한다.
-+ [ ] 로또 번호를 생성한다.
-    + [ ] camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용하여 랜덤값을 생성한다.
-    + [ ] 생성한 랜덤값을 화면에 표시한다.
++ [x] 로또 번호를 생성한다.
+    + [x] camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용하여 랜덤값을 생성한다.
+    + [x] 생성된 번호가 6자리가 맞는지 검증한다. 6자리가 아닐 경우 IllegalArgumentException을 발생시킨다.
+    + [x] 입력 번호가 중복되지 않는지 검증한다. 중복될 경우 IllegalArgumentException을 발생시킨다.
+    + [x] 생성한 랜덤값을 화면에 표시한다.
 + [ ] 당첨 번호를 입력 받는다.
     + [ ] 당첨 번호를 콤마(,) 기준으로 검증한다.
         + [ ] 입력 번호가 중복되지 않는지 검증한다. 중복될 경우 IllegalArgumentException을 발생시킨다.

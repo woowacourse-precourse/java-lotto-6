@@ -11,8 +11,12 @@ public class Cash {
     }
 
     private void validate(Integer amount) {
-        if (amount % LOTTO_PRICE != 0) {
+        if (isAmountNotInMultipleOfLottoPrice(amount)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isAmountNotInMultipleOfLottoPrice(Integer amount) {
+        return amount % LOTTO_PRICE != 0;
     }
 }

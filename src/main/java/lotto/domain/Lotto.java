@@ -16,5 +16,16 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validate_number(List<Integer> numbers){
+        if(isDuplicate(numbers)){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean isDuplicate(final List<Integer> numbers){
+        long distinctcount = numbers.stream()
+                .distinct()
+                .count();
+        return distinctcount < numbers.size();
+    }
 }

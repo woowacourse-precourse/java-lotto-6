@@ -26,4 +26,10 @@ public class InputNumber {
         String BonusNumber = Console.readLine();
         return Integer.parseInt(BonusNumber);
     }
+
+    private void moneyValidate(String money){
+        if(money != "^[0-9]*$"){
+            throw new IllegalArgumentException();
+        }
+    }
 }

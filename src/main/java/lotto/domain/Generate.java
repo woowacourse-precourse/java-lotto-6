@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Generate {
     public void LottoGenerate(int amountLotto){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        for(int i = 0; i < amountLotto; i++){
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        }
     }
 }

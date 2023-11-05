@@ -34,18 +34,20 @@ public class Application {
             System.out.println(e.getMessage());
             return inputPurchaseMoney();
         }
-        return money;
+        return getLottoAmount(money);
+    }
+
+    private static int getLottoAmount(int m) {
+        System.out.println("\n" + m / 1000 + "개를 구매했습니다.");
+        return m / 1000;
     }
 
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
-        int money = inputPurchaseMoney();
-        int amount = money / 1000;
-        System.out.println("\n" + amount + "개를 구매했습니다.");
+        int lottoAmount = inputPurchaseMoney();
 
         List<Lotto> lottos = new ArrayList<Lotto>();
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < lottoAmount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             System.out.println(lotto.getNumbers());

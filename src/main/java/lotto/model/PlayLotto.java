@@ -12,15 +12,15 @@ public class PlayLotto {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
-    public static List<Lotto> makeLottos(int LottoCount) {
+    public static List<Lotto> makeLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         Set<List<Integer>> uniquelottos = new HashSet<>();
 
-        while (LottoCount == 0) {
+        while (lottoCount != 0) {
             Lotto lotto = makeLotto();
             if (!uniquelottos.add(lotto.getNumbers())) {
                 lottos.add(lotto);
-                LottoCount--;
+                lottoCount--;
             }
         }
         return lottos;

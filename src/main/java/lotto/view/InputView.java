@@ -2,6 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InputView {
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
@@ -31,5 +34,11 @@ public class InputView {
         if (purchaseAmountNumber < MIN_PURCHASE_AMOUNT || purchaseAmountNumber > MAX_PURCHASE_AMOUNT) {
             throw new IllegalArgumentException("[ERROR] 입력 값은 1,000이상, 1,000,000이하의 숫자여야 합니다.");
         }
+    }
+
+    public List<Integer> inputAnswerNumber() {
+        String inputAnswer = Console.readLine();
+        List<Integer> answerNumber = new ArrayList<>();
+        return answerNumber;
     }
 }

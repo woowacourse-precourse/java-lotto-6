@@ -8,7 +8,6 @@ import lotto.view.InputView;
 public class LottoPurchase {
 
     LottoPurchaseValidation purchaseValidator = new LottoPurchaseValidation();
-    LottoValidation validator = new LottoValidation();
 
     public int lottoPurchaseCount(String input) {
 
@@ -22,7 +21,7 @@ public class LottoPurchase {
     }
 
     public void lottoPurchaseValidation(String input) {
-        validator.validatorOnlyNumber(input);
+        purchaseValidator.validatorPurchaseOnlyNumber(input);
         purchaseValidator.validatorNotDivided(input);
     }
 

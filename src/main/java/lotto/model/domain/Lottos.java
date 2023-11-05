@@ -13,4 +13,8 @@ public class Lottos {
     public ArrayList<Lotto> getLottos() {
         return lottos;
     }
+
+    public Lotto getLottoOfLottos(int idx) {
+        return lottos.get(idx);
+    }
 }

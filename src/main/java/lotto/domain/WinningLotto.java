@@ -14,4 +14,10 @@ public class WinningLotto {
     public static WinningLotto of(Lotto lotto, BonusNumber bonusNumber) {
         return new WinningLotto(lotto, bonusNumber);
     }
+
+    public Prize rankPrize(final Lotto lotto) {
+        int matches = lotto.countMatches(lotto);
+        boolean hasBonusNumber = lotto.contains(bonusNumber);
+        return Prize.of(matches, hasBonusNumber);
+    }
 }

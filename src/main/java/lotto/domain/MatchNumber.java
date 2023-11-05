@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public enum MatchNumber {
@@ -21,6 +22,22 @@ public enum MatchNumber {
 
     public int getMoney() {
         return money;
+    }
+
+    public String getResultMessage() {
+        return resultMessage;
+    }
+
+    public int getMatchNumber() {
+        return matchNumber;
+    }
+
+    public String getMoneyMessage() {
+        return moneyMessage;
+    }
+
+    public static List<MatchNumber> getMembers() {
+        return Collections.unmodifiableList(List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST));
     }
 
     MatchNumber(String resultMessage,
@@ -49,6 +66,10 @@ public enum MatchNumber {
                         match.matchNumber == count)
                 .findFirst()
                 .orElse(NOTHING);
+    }
+
+    public int countMatchNumber(List<MatchNumber> matchNumbers, MatchNumber match) {
+        return (int) matchNumbers.stream().filter(m -> m.getMatchNumber() == match.getMatchNumber()).count();
     }
 
 }

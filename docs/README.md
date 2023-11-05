@@ -113,7 +113,7 @@
     - [x] 로또를 산다. Process#buyLotto
         - [ ] 유저가 로또를 산다.
         - [ ] 로또 판매자가 로또를 판다.
-    - [ ] 로또를 보여준다. Process#showLotto
+    - [x] 로또를 보여준다. Process#showLotto
         - [ ] 유저가 로또를 보여준다.
     - [ ] 당첨 번호를 뽑는다. Process#pickNum
         - [ ] 로또진행자가 당첨 번호를 뽑는다.

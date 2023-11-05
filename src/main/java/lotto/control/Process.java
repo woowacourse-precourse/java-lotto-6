@@ -34,8 +34,7 @@ public class Process {
      * 로또를 보여준다.
      */
     public StringBuilder showLotto() {
-        // 유저가 로또를 보여준다.
-        return null;
+        return user.showLottoEnvelop();
     }
 
     /**

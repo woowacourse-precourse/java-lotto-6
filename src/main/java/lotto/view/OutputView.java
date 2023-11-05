@@ -12,4 +12,8 @@ public class OutputView {
         System.out.println("---");
     }
 
+    public static void printSuccessMessage(String message, int numberOfMatch) {
+        System.out.println(message + numberOfMatch + "개");
+    }
+
 }

@@ -5,16 +5,16 @@ import java.util.List;
 
 public class IOOperation {
     private static final Integer UNIT = 1000;
+    private static final Integer MINIMUM_RANGE = 1;
+    private static final Integer MAXIMUM_RANGE = 45;
 
-    public static Boolean isPriceCorrect(Integer price) {
+    public static void priceCorrect(Integer price) {
         if (price % UNIT != 0) {
             throw new IllegalArgumentException();
         }
-
-        return true;
     }
 
-    public static Boolean isWinningNumberNotDuplicated(List<Integer> winningNumbers) {
+    public static void winningNumberNotDuplicated(List<Integer> winningNumbers) {
         HashMap<Integer, Boolean> duplication = new HashMap<>();
 
         for (Integer winningNumber : winningNumbers) {
@@ -24,11 +24,29 @@ public class IOOperation {
 
             duplication.put(winningNumber, true);
         }
-
-        return true;
     }
 
     public static Integer numberOfLotto(Integer price) {
         return price / UNIT;
+    }
+
+    private static Boolean inRange(Integer number) {
+        if (MINIMUM_RANGE <= number && number <= MAXIMUM_RANGE) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static void winningNumberInRange(List<Integer> winningNumbers, Integer bonusNumber) {
+        for (Integer winningNumber : winningNumbers) {
+            if (!inRange(winningNumber)) {
+                throw new IllegalArgumentException();
+            }
+        }
+
+        if (!inRange(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
     }
 }

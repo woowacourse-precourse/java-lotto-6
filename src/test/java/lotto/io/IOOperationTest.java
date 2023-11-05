@@ -13,13 +13,8 @@ public class IOOperationTest {
     @Test
     void 가격이_1000원_단위로_나누어_떨어지지_않을_시_예외_리턴() {
         assertThatThrownBy(() -> {
-            IOOperation.isPriceCorrect(10001);
+            IOOperation.priceCorrect(10001);
         }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 가격이_1000원_단위로_나누어_떨어질_시_true_리턴() {
-        assertThat(IOOperation.isPriceCorrect(20000)).isTrue();
     }
 
     @Test
@@ -27,19 +22,22 @@ public class IOOperationTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 5);
 
         assertThatThrownBy(() -> {
-            IOOperation.isWinningNumberNotDuplicated(winningNumbers);
+            IOOperation.winningNumberNotDuplicated(winningNumbers);
         }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 당첨_번호_6개_중복_없을_시_true_리턴() {
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-
-        assertThat(IOOperation.isWinningNumberNotDuplicated(winningNumbers)).isTrue();
     }
 
     @Test
     void 금액_입력_시_로또_개수_리턴() {
         assertThat(IOOperation.numberOfLotto(12000)).isEqualTo(12);
+    }
+
+    @Test
+    void 당첨_번호_6개_및_보너스_번호_범위_초과_시_예외_리턴() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 46);
+        Integer bonusNumber = 50;
+
+        assertThatThrownBy(() -> {
+            IOOperation.winningNumberInRange(winningNumbers, bonusNumber);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }

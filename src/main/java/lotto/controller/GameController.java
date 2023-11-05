@@ -16,7 +16,7 @@ public class GameController {
 
         OutputView.printLottoAmount(payment.calculateLottoAmount());
 
-        //Lottos lottos = new Lottos(payment.calculateLottoAmount());
+        Lottos lottos = new Lottos(payment.calculateLottoAmount());
 
 
 

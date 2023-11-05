@@ -58,6 +58,38 @@ class UserInputTest extends NsTest {
         });
     }
 
+    @Test
+    void 당첨_번호_입력_성공_실패_중복되는_보너스번호() {
+        assertSimpleTest(() -> {
+            runException("2000" , "10,20,14,16,17,30" , "10");
+            assertThat(output()).contains(DUPLICATED_WINNING_NUMBER_ERROR.getMessage());
+        });
+    }
+
+    @Test
+    void 당첨_번호_입력_성공_실패_보너스번호_범위_초과() {
+        assertSimpleTest(() -> {
+            runException("2000" , "10,20,14,16,17,18" , "140");
+            assertThat(output()).contains(WINNING_NUMBER_RANGE_ERROR.getMessage());
+        });
+    }
+
+    @Test
+    void 당첨_번호_입력_성공_실패_보너스번호_문자열_입력() {
+        assertSimpleTest(() -> {
+            runException("2000" , "10,20,14,16,17,21" , "fwfw");
+            assertThat(output()).contains(INPUT_STRING_ERROR.getMessage());
+        });
+    }
+
+    @Test
+    void 당첨_번호_입력_성공() {
+        assertSimpleTest(() -> {
+            runException("2000" , "10,20,14,16,17,21" , "45");
+            assertThat(output()).doesNotContain("[ERROR]");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

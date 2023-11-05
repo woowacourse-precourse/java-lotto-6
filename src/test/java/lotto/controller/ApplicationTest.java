@@ -1,6 +1,7 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.Application;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -92,6 +93,34 @@ class ApplicationTest extends NsTest {
                             "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
                             "6개 일치 (2,000,000,000원) - 1개",
                             "총 수익률은 40000000.0%입니다."
+                    );
+                },
+                List.of(1,2,3,4,5,6),
+                List.of(7,8,9,10,11,12),
+                List.of(13,14,15,16,17,18),
+                List.of(19,20,21,22,23,24),
+                List.of(25,26,27,28,29,30)
+        );
+    }
+
+    @Test
+    void 로또게임_당첨_아무것도_안됐을때() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("5000", "11,45,44,43,42,41", "40");
+                    assertThat(output()).contains(
+                            "5개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "[7, 8, 9, 10, 11, 12]",
+                            "[13, 14, 15, 16, 17, 18]",
+                            "[19, 20, 21, 22, 23, 24]",
+                            "[25, 26, 27, 28, 29, 30]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 0.0%입니다."
                     );
                 },
                 List.of(1,2,3,4,5,6),

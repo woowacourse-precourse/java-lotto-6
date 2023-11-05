@@ -17,12 +17,12 @@ public class InputView {
 
     public int inputPurchaseMoney() {
         System.out.println(INPUT_PURCHASE_MONEY_MESSAGE);
-        return returnInputWithNumberValidation(PURCHASE_NUMBER_ERROR_MESSAGE);
+        String input = Console.readLine();
+        return convertInputWithNumberValidation(input, PURCHASE_NUMBER_ERROR_MESSAGE);
     }
 
-    private static int returnInputWithNumberValidation(String errorMessage) {
+    private static int convertInputWithNumberValidation(String input, String errorMessage) {
         try {
-            String input = Console.readLine();
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(errorMessage);
@@ -31,8 +31,8 @@ public class InputView {
 
     public List<Integer> inputWinLottoNumber() {
         System.out.println(INPUT_WIN_LOTTO_NUMBER_MESSAGE);
+        String input = Console.readLine();
         try {
-            String input = Console.readLine();
             checkLottoNumberDelimiter(input);
             String[] split = input.split(DELIMITER_FOR_LOTTO_NUMBER);
             return Arrays.stream(split)
@@ -57,6 +57,7 @@ public class InputView {
 
     public int inputBonusNumber() {
         System.out.println(INPUT_WIN_LOTTO_BONUS_NUMBER_MESSAGE);
-        return returnInputWithNumberValidation(BONUS_NUMBER_ERROR_MESSAGE);
+        String input = Console.readLine();
+        return convertInputWithNumberValidation(input, BONUS_NUMBER_ERROR_MESSAGE);
     }
 }

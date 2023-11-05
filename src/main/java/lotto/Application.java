@@ -16,7 +16,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 
 public class Application {
-    final static int[] prices = { 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000, 0 };
+    final static int[] prices = {  5_000,50_000,1_500_000,30_000_000,2_000_000_000 };
 
     enum ErrorType { 
         NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."), 
@@ -127,6 +127,18 @@ public class Application {
         return res;
     }
 
+    public static void printResult(int[] result){
+        DecimalFormat df = new DecimalFormat("###,###");
+        int i = 0;
+        System.out.println(
+            String.format("%d개 일치 (%s원) - %d개\n",i+3,df.format(prices[i]),result[i++])
+            +String.format("%d개 일치 (%s원) - %d개\n",i+3,df.format(prices[i]),result[i++])
+            +String.format("%d개 일치 (%s원) - %d개\n",i+3,df.format(prices[i]),result[i++])
+            +String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",i+2,df.format(prices[i]),result[i++])
+            +String.format("%d개 일치 (%s원) - %d개",i+2,df.format(prices[i]),result[i++])
+        );
+    }
+
     public static void main(String[] args) {
         int money = -1, bonus;
         List<List<Integer>> user;
@@ -139,6 +151,6 @@ public class Application {
         winLotto = new Lotto(setWinNumbers());
         bonus = setBonus(winLotto);
         Lottery_result = lottery(winLotto, user, bonus);
-
+        printResult(Lottery_result);
     }
 }

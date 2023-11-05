@@ -16,6 +16,9 @@ public class Lotto {
     private static final int LOTTO_LENGTH = 6;
     private static final int MINIMUM_NUMBER = 1;
     private static final int MAXIMUM_NUMBER = 45;
+    private static final String LOTTO_LENGTH_ERROR_MESSAGE = "로또 숫자는 6개 입니다.";
+    private static final String NUMBER_RANGE_ERROR_MESSAGE = "로또의 수는 1에서 45사이의 숫자 입니다.";
+    private static final String DUPLICATE_NUMBER_ERROR_MESSAGE = "로또에 중복된 수가 있습니다.";
 
     private final List<Integer> numbers;
 
@@ -34,14 +37,14 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_LENGTH_ERROR_MESSAGE);
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
             }
         }
     }
@@ -49,7 +52,7 @@ public class Lotto {
     private void validateDuplicateNumber(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
         }
     }
 

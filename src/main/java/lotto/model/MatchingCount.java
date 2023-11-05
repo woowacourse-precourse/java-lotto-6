@@ -6,10 +6,10 @@ import java.util.List;
 
 public class MatchingCount {
 
-    List<Integer> matchingCounts;
+    private List<Integer> matchingCounts;
 
-    public MatchingCount(int length){
-        matchingCounts = new ArrayList<>(Collections.nCopies(length,0));
+    public MatchingCount(){
+        matchingCounts = new ArrayList<>(Collections.nCopies(Statistic.values().length,0));
     }
 
     public void updateMatchingCounts(Lotto lotto, Lotto winningNumbers, BonusNumber bonusNumber){

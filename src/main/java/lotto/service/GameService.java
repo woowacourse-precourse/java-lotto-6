@@ -38,7 +38,7 @@ public class GameService {
     }
 
     public List<Integer> calculateMatchingCount(){
-        matchingCount = new MatchingCount(Statistic.values().length);
+        matchingCount = new MatchingCount();
         for(Lotto lotto : issuedLotto){
             matchingCount.updateMatchingCounts(lotto, winningNumbers, bonusNumber);
         }

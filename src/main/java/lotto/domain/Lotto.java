@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.validator.LottoValidator.validateLotto;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,15 +9,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLotto(numbers);
         numbers = sort(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
     }
 
     private List<Integer> sort(List<Integer> list) {

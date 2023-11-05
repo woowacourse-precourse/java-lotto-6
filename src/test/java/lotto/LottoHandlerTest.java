@@ -55,20 +55,17 @@ class LottoHandlerTest {
                 .hasMessage("[ERROR] 숫자만 입력해 주세요.");
     }
 
-    @DisplayName("구매한 로또 개수를 받아 개수에 해당하는 로또 번호들을 발행한다.")
+    @DisplayName("구매한 로또 개수를 받아 개수에 해당하는 로또들을 발행한다.")
     @Test
     void issueLottoNumbers() {
         // given
         int lottoTicket = 3;
 
         // when
-        List<List<Integer>> lottoNumbers = lottoHandler.issueLottoNumbers(lottoTicket);
+        List<Lotto> lottos = lottoHandler.issueLottoNumbers(lottoTicket);
 
         // then
-        assertThat(lottoNumbers.size()).isEqualTo(3);
-        assertThat(lottoNumbers.get(0).size()).isEqualTo(6);
-        assertThat(lottoNumbers.get(1).size()).isEqualTo(6);
-        assertThat(lottoNumbers.get(2).size()).isEqualTo(6);
+        assertThat(lottos.size()).isEqualTo(3);
     }
 
     @DisplayName("발행한 로또 번호는 오름차순으로 정렬되어 있다.")
@@ -78,10 +75,10 @@ class LottoHandlerTest {
         int lottoTicket = 1;
 
         // when
-        List<List<Integer>> lottoNumbers = lottoHandler.issueLottoNumbers(lottoTicket);
+        List<Lotto> lottos = lottoHandler.issueLottoNumbers(lottoTicket);
 
         // then
-        List<Integer> lottoNumber = lottoNumbers.get(0);
+        List<Integer> lottoNumber = lottos.get(0).getNumbers();
         for (int i = 0; i < lottoNumber.size() - 1; i++) {
             assertThat(lottoNumber.get(i) < lottoNumber.get(i + 1)).isTrue();
         }

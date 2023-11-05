@@ -3,11 +3,11 @@ package lotto.model;
 import java.util.List;
 
 public class Purchase<T> {
-    private final static int PURCHASE_MONEY_UNIT = 1_000;
-    private final static String PURCHASE_MONEY_NOT_NUMBER = "[ERROR] 구입 금액은 숫자여야 합니다.";
-    private final static String PURCHASE_MONEY_MINIMUM_LIMIT = "[ERROR] 구입 금액은 1000원 이상이어야 합니다.";
-    private final static String PURCHASE_MONEY_UNIT_LIMIT = "[ERROR] 구입 금액은 1000원 단위여야 합니다.";
-    private final static String PURCHASE_ITEMS_SIZE_NOT_MATCH = "[ERROR] 구입 금액과 구매 개수가 일치하지 않습니다.";
+    private static final int PURCHASE_MONEY_UNIT = 1_000;
+    private static final String PURCHASE_MONEY_NOT_NUMBER = "[ERROR] 구입 금액은 숫자여야 합니다.";
+    private static final String PURCHASE_MONEY_MINIMUM_LIMIT = "[ERROR] 구입 금액은 1000원 이상이어야 합니다.";
+    private static final String PURCHASE_MONEY_UNIT_LIMIT = "[ERROR] 구입 금액은 1000원 단위여야 합니다.";
+    private static final String PURCHASE_ITEMS_SIZE_NOT_MATCH = "[ERROR] 구입 금액과 구매 개수가 일치하지 않습니다.";
 
     private final int money;
     private List<T> items;

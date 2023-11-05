@@ -190,6 +190,15 @@ class LottoTest {
         assertThat(controller.ticketsForMoney(1000L)).isEqualTo(1);
         assertThat(controller.ticketsForMoney(10000L)).isEqualTo(10);
         assertThat(controller.ticketsForMoney(100000L)).isEqualTo(100);
-        assertThat(controller.ticketsForMoney(2147483000L)).isEqualTo(2147483);
+        assertThat(controller.ticketsForMoney(2147483647000L)).isEqualTo(2147483647);
+    }
+
+    @DisplayName("로또 갯수로 구매 금액을 계산한다.")
+    @Test
+    void moneyForTickets() {
+        Control controller = new Control();
+        assertThat(controller.moneyForTickets(1)).isEqualTo(1000);
+        assertThat(controller.moneyForTickets(100)).isEqualTo(100000);
+        assertThat(controller.moneyForTickets(2147483647)).isEqualTo(2147483647000L);
     }
 }

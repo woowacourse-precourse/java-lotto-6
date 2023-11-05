@@ -24,4 +24,14 @@ public class LottoResult {
         }
         return sortedRanks;
     }
+
+    public double calculatePercent() {
+        int sum = 0;
+        int totalPrice = 0;
+        for (WinningStatistics statistic : statistics.keySet()) {
+            sum += statistic.getReward() * statistics.get(statistic);
+            totalPrice += statistics.get(statistic) * 1000;
+        }
+        return (sum * 1.0 / totalPrice) * 100;
+    }
 }

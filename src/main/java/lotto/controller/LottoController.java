@@ -8,10 +8,7 @@ import static lotto.util.Validator.*;
 import static lotto.view.OutputView.*;
 import static lotto.view.InputView.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.IntStream;
 import lotto.Lotto;
 import lotto.exception.LottoException;
 import lotto.model.LottoResult;
@@ -34,6 +31,7 @@ public class LottoController {
 
         LottoResult lottoResult = LottoResult.of(randomLotto.checkResult(answerLotto, bonusNumber));
         printLottoResult(lottoResult);
+        checkResultAndReturn(money, lottoResult);
     }
 
     private Money initMoney() {
@@ -97,7 +95,11 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private void checkResultAndReturn() {
-
+    private void checkResultAndReturn(Money money, LottoResult lottoResult) {
+        printReturn(
+                money.calculateTotalReturn(
+                        lottoResult.calculateTotal()
+                )
+        );
     }
 }

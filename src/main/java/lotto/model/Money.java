@@ -4,7 +4,6 @@ import static lotto.util.ConstantNumbers.TICKET_PRICE;
 import static lotto.util.Validator.*;
 
 public class Money {
-    private static Money instance;
 
     private final Integer money;
 
@@ -17,13 +16,14 @@ public class Money {
     }
 
     public static Money of (String money) {
-        if (instance == null) {
-            instance = new Money(money);
-        }
-        return instance;
+        return new Money(money);
     }
 
     public Integer countTicketQuantity () {
         return money / TICKET_PRICE.getConstant();
+    }
+
+    public Double calculateTotalReturn (Integer total) {
+        return (double) total / money * 100.0;
     }
 }

@@ -48,7 +48,7 @@
 
 + [X] [Controller] 수익률을 출력한다.
 
-    * [LottoReturnCalculation] 컨트롤러에게 결과를 받아 수익률 계산 후 반환한다.
-    * [OutputView] 컨트롤러에게 [LottoReturnCalculation]의 결과를(LottoReturnCalculation.toString()) 받아 출력한다.
+    * [Money] 컨트롤러에게 결과를 받아 수익률 계산 후 반환한다.
+    * [OutputView] 컨트롤러에게 [Money]의 결과를(LottoReturnCalculation.toString()) 받아 출력한다.
 
 <br>

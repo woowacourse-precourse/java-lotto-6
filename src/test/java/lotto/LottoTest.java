@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import lotto.exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,28 +44,20 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
         Lotto answer = new Lotto(List.of(1, 32, 33, 34, 5, 10));
 
-        Integer bonus = 9;
-
         //when
-        Integer count = lotto.countSameNumber(answer, bonus);
+        Integer count = lotto.countSameNumber(answer);
 
         //then
-        assertThat(count).isEqualTo(1);
+        assertThat(count).isEqualTo(3);
     }
 
-    @DisplayName("같은 번호 수가 5개이며 보너스 넘버 포함시 key값이 증가되 반환한다.")
+    @DisplayName("보너스 번호 포함시 true 반환.")
     @Test
     void testBonusNumber() {
-        //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
-        Lotto answer = new Lotto(List.of(1, 2, 3, 34, 5, 10));
 
         Integer bonus = 4;
 
-        //when
-        Integer count = lotto.countSameNumber(answer, bonus);
-
-        //then
-        assertThat(count).isEqualTo(4);
+        assertThat(lotto.hasBonusNumber(bonus)).isEqualTo(true);
     }
 }

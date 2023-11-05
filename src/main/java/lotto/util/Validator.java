@@ -13,7 +13,6 @@ import static lotto.util.ConstantMessages.SPACE;
 import static lotto.util.ConstantNumbers.LOTTO_NUMBER_QUANTITY;
 import static lotto.util.ConstantNumbers.MAXIMUM_Lotto_NUMBER;
 import static lotto.util.ConstantNumbers.MINIMUM_Lotto_NUMBER;
-import static lotto.util.ConstantNumbers.RESET_INTEGER_NUMBER;
 import static lotto.util.ConstantNumbers.TICKET_PRICE;
 
 import java.util.HashSet;
@@ -41,7 +40,7 @@ public class Validator {
     }
 
     public static void validateHasRemainingNumber(Integer input) {
-        if (input % TICKET_PRICE.getConstant() != RESET_INTEGER_NUMBER.getConstant()) {
+        if (input % TICKET_PRICE.getConstant() != 0) {
             throw LottoException.of(HAS_REMAINING_NUMBER);
         }
     }

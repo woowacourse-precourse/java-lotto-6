@@ -46,18 +46,18 @@ class RandomLottoNumbersTest {
         Integer bonus = 7;
 
         Map<Integer, Integer> result = new HashMap<>();
-        result.put(1, 1);
+        result.put(0, 1);
+        result.put(1, 0);
         result.put(2, 0);
         result.put(3, 0);
         result.put(4, 0);
-        result.put(5, 0);
 
         assertRandomUniqueNumbersInRangeTest (
                 () -> {
                     RandomLottoNumbers randomLotto = RandomLottoNumbers.of(8);
                     Map<Integer, Integer> randomResult = randomLotto.checkResult(answerLotto, bonus);
 
-                    assertThat(randomResult.equals(result)).isEqualTo(true);
+                    assertThat(randomResult).isEqualTo(result);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),

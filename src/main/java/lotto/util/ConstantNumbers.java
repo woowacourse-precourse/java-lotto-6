@@ -1,9 +1,6 @@
 package lotto.util;
 
 public enum ConstantNumbers {
-    RESET_INTEGER_NUMBER(0),
-    RESET_INTEGER_ONE(1),
-    RESET_INTEGER_TWO(2),
     TICKET_PRICE(1000),
     MINIMUM_Lotto_NUMBER(1),
     MAXIMUM_Lotto_NUMBER(45),

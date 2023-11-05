@@ -4,9 +4,15 @@ public class User {
 
     private final int purchaseAmount;
     private int totalWinningAmount = 0;
+    private int amountLotto;
 
     public User(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
+        this.amountLotto = this.purchaseAmount/1000;
+    }
+
+    public int getAmountLotto() {
+        return amountLotto;
     }
 
     public int getPurchaseAmount() {

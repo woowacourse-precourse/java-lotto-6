@@ -15,11 +15,15 @@ public class WinResult {
     }
 
     private void initWinResult() {
-        winResult.put(WinnerRank.THREE.ordinal(), Number.WIN_RESULT_INIT.getValue());
-        winResult.put(WinnerRank.FOUR.ordinal(), Number.WIN_RESULT_INIT.getValue());
-        winResult.put(WinnerRank.FIVE_WITHOUT_BOUNUS.ordinal(), Number.WIN_RESULT_INIT.getValue());
-        winResult.put(WinnerRank.FIVE_WITH_BONUS.ordinal(), Number.WIN_RESULT_INIT.getValue());
-        winResult.put(WinnerRank.SIX.ordinal(), Number.WIN_RESULT_INIT.getValue());
+        winResult.put(WinnerRank.THREE.getValue(), 0);
+        winResult.put(WinnerRank.FOUR.getValue(), 0);
+        winResult.put(WinnerRank.FIVE_WITHOUT_BOUNUS.getValue(), 0);
+        winResult.put(WinnerRank.FIVE_WITH_BONUS.getValue(), 0);
+        winResult.put(WinnerRank.SIX.getValue(), 0);
+    }
+
+    public Integer getWinResultValue(int rankValue) {
+        return winResult.get(rankValue);
     }
 
     public void increaseWinResultValue(int rankValue) {

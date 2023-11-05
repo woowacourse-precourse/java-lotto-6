@@ -18,4 +18,10 @@ public class InputUtil {
 
         return Utils.stringToIntegerList(numbers);
     }
+
+    public static int readBonus(){
+        String input = Console.readLine();
+        Validation.validateInteger(input);
+        return Utils.stringToInteger(input);
+    }
 }

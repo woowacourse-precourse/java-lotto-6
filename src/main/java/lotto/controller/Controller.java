@@ -26,6 +26,7 @@ public class Controller {
 
     private void initLottoGame(){
         getWinningNumbers();
+        getBonus();
     }
 
     private void printBuyersLotto(){
@@ -38,6 +39,16 @@ public class Controller {
         }catch (IllegalArgumentException e){
             OutputView.printErrorMessage(e);
             getWinningNumbers();
+        }
+    }
+
+    private void getBonus(){
+        try{
+            bonus = InputView.readBonus();
+            lottoGame = new LottoGame(bonus, lotto);
+        }catch (IllegalArgumentException e){
+            OutputView.printErrorMessage(e);
+            getBonus();
         }
     }
 }

@@ -51,13 +51,14 @@ public class LottoController {
     private LottoAnswer createAnswer() {
         AnswerGenerator answerGenerator = handler.getResult(
                 () -> new AnswerGenerator(ui.getAnswerNumber(), ui.getBonusNumber()));
-        return (LottoAnswer) answerGenerator.generate();
+        return answerGenerator.generate();
     }
 
     private LottoResults computeResult(Lottos lottos, LottoAnswer answer) {
         lottos.getLottosDTO()
                 .stream()
-                .map((lotto) -> factory.getResult(lotto, answer))
+                .map(answer::compareLotto)
+                .map(factory::getLottoResult)
                 .forEach(lottoResults::addResult);
         ui.printResult(lottoResults.getResults());
         return lottoResults;

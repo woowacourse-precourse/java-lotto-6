@@ -2,8 +2,6 @@ package lotto.model.domain.result;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.model.domain.lotto.Lotto;
-import lotto.model.domain.lotto.LottoAnswer;
 
 public class LottoResultFactory {
     private final Map<LottoCompareResult, LottoResult> results;
@@ -17,8 +15,7 @@ public class LottoResultFactory {
         results.put(new LottoCompareResult(6, false), LottoResult.FIRST);
     }
 
-    public LottoResult getResult(Lotto lotto, LottoAnswer lottoAnswer) {
-        LottoCompareResult lottoCompareResult = lottoAnswer.compareLotto(lotto);
+    public LottoResult getLottoResult(LottoCompareResult lottoCompareResult) {
         return results.getOrDefault(lottoCompareResult, LottoResult.LOSE);
     }
 }

@@ -41,9 +41,16 @@ public class Lotto {
 
     public int countMatch(Lotto user){
         int count = 0;
+        int[] tmp = new int[46];
+        
         for (Integer integer : user.getNumbers()) {
-            if (lottoContains(integer)) count++;
+            tmp[integer] = 1;
         }
+
+        for (int i : numbers) {
+            count += tmp[i];
+        }
+
         return count;
     }
 }

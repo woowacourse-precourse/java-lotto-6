@@ -5,16 +5,22 @@ import static lotto.util.ConstantUtils.LOTTO_SIZE_CRITERION;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.enums.LottoPrize;
 import lotto.util.ValidationUtils;
 
 public class Lotto {
 
     private final List<Number> numbers;
-    private final int LOTTO_SIZE_CRITERION = 6;
 
     public Lotto(List<Number> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public LottoPrize matches(WinningLotto winningLotto) {
+        int matchCount = winningLotto.getMatchCount(this.numbers);
+        boolean isBonusMatched = winningLotto.isBonusMatched(this.numbers);
+        return LottoPrize.findLottoPrize(matchCount, isBonusMatched);
     }
 
     private void validate(List<Number> numbers) {

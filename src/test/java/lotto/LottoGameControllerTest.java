@@ -6,7 +6,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -80,9 +83,38 @@ public class LottoGameControllerTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구매 로또들과 당첨번호 비교 및 등수 결과 반환 기능")
+    @Test
+    void 결과_계산_기능() {
+        //given
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bounsNumber = 7;
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bounsNumber);
+
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(8, 21, 23, 41, 42, 43)));
+        lottos.add(new Lotto(List.of(3, 5, 11, 16, 32, 38)));
+        lottos.add(new Lotto(List.of(7, 11, 16, 35, 36, 44)));
+        lottos.add(new Lotto(List.of(1, 8, 11, 31, 41, 42)));
+        lottos.add(new Lotto(List.of(1, 3, 5, 14, 22, 45)));
+
+        Lottos userLottos = new Lottos(lottos);
+
+        Map<Rank, Long> expected = new EnumMap<>(Rank.class);
+        Arrays.stream(Rank.values()).forEach(rank -> expected.put(rank, 0L));
+        expected.put(Rank.FIFTH, 1L);
+
+        //when
+        Result result = controller.getResult(userLottos, winningLotto);
+
+        //then
+        Arrays.stream(Rank.values())
+                .forEach(rank -> assertThat(result.getProfit(rank)).isEqualTo(rank.getRankReward(expected.get(rank))));
+    }
+
     @Override
     public void runMain() {
 
     }
-
 }

@@ -15,12 +15,12 @@ public class OutputView {
         }
     }
 
-    public static void winningStaticsMessage(List<Integer> agreementCounts) {
-        int agreementThreeCount = agreementCounts.get(0);
-        int agreementFourCount = agreementCounts.get(1);
-        int agreementFiveCount = agreementCounts.get(2);
-        int agreementFiveAndBonusCount = agreementCounts.get(3);
-        int agreementSixCount = agreementCounts.get(4);
+    public static void showStatics(List<Integer> winningCounts) {
+        int agreementThreeCount = winningCounts.get(0);
+        int agreementFourCount = winningCounts.get(1);
+        int agreementFiveCount = winningCounts.get(2);
+        int agreementFiveAndBonusCount = winningCounts.get(3);
+        int agreementSixCount = winningCounts.get(4);
 
         System.out.println();
         System.out.println(WINNING_STATISTICS.getMessage());

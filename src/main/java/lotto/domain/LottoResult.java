@@ -8,6 +8,10 @@ import java.util.Map;
 
 public class LottoResult {
 
+    private static final double PERCENTAGE_SCALE = 100.0;
+    private static final int COST_PER_LOTTO = 1000;
+    private static final double TO_DECIMAL = 1.0;
+
     private final Map<WinningStatistics, Integer> statistics;
 
     public LottoResult(Map<WinningStatistics, Integer> statistics) {
@@ -28,10 +32,16 @@ public class LottoResult {
     public double calculatePercent() {
         int sum = 0;
         int totalPrice = 0;
+
         for (WinningStatistics statistic : statistics.keySet()) {
-            sum += statistic.getReward() * statistics.get(statistic);
-            totalPrice += statistics.get(statistic) * 1000;
+            int reward = statistic.getReward();
+            int count = statistics.get(statistic);
+
+            sum += reward * count;
+            totalPrice += count * COST_PER_LOTTO;
         }
-        return (sum * 1.0 / totalPrice) * 100;
+
+        return (sum * TO_DECIMAL / totalPrice) * PERCENTAGE_SCALE;
+        // sum이 5000이고 totalPrice이 8000이면 그냥 나눗셈을 하면 0이 된다. 하지만 1.0을 곱해 소숫점 형태로 만들고 나누면 0.625가 나온다.
     }
 }

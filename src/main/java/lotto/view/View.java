@@ -14,7 +14,11 @@ public final class View {
     }
 
     public static void printLottos(Lottos lottos) {
-        printlnFormat(LOTTO_COUNT_MESSAGE, lottos.getSize());
+        printLottosCount(lottos.getSize());
+    }
+
+    private static void printLottosCount(int count) {
+        printlnFormat(LOTTO_COUNT_MESSAGE, count);
     }
 
     /* Output View */

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +16,13 @@ public final class Lotto {
     }
 
     private void validate(final List<Integer> numbers) {
-        if (numbers.size() != NUM_OF_LOTTO_NUMBER) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != NUM_OF_LOTTO_NUMBER || isDuplicate(numbers)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.toValue());
         }
+    }
+
+    private boolean isDuplicate(final List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
     }
 
     public List<Integer> toValue() {
@@ -29,7 +35,7 @@ public final class Lotto {
         return values.size();
     }
 
-    public boolean contains(final Integer numbner) {
-        return numbers.contains(numbner);
+    public boolean contains(final Integer number) {
+        return numbers.contains(number);
     }
 }

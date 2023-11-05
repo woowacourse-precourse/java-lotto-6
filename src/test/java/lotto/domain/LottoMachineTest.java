@@ -83,4 +83,11 @@ class LottoMachineTest {
         assertEquals(5, lottos.size());
     }
 
+    @Test
+    @DisplayName("4500원이 주어질 때, 에러가 발생한다.")
+    public void given_4500Won_when_Purchase_Lottos_then_ThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, ()->{
+            lottoMachine.purchaseLottos(4500);
+        });
+    }
 }

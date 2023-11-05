@@ -31,5 +31,15 @@ class LottoRankTest {
         assertThat(LottoRank.valueOf(2, false)).isEqualTo(LottoRank.NONE);
     }
 
+    @Test
+    @DisplayName("각 등수의 매치되는 숫자 개수를 올바르게 반환하는지 확인")
+    void testGetMatchCount() {
+        assertThat(LottoRank.FIRST.getMatchCount()).isEqualTo(6);
+        assertThat(LottoRank.SECOND.getMatchCount()).isEqualTo(5);
+        assertThat(LottoRank.THIRD.getMatchCount()).isEqualTo(5);
+        assertThat(LottoRank.FOURTH.getMatchCount()).isEqualTo(4);
+        assertThat(LottoRank.FIFTH.getMatchCount()).isEqualTo(3);
+    }
+
 }
 

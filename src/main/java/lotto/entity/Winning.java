@@ -14,13 +14,13 @@ import static lotto.validation.ValidationForm.*;
 public class Winning {
     private final List<Integer> winningNumbers;
 
-    public Winning (String winningNumbersString,String winningBonusNumber){
-        this.winningNumbers = winningNumbersConvertToList(winningNumbersString, winningBonusNumber);
+    public Winning (String inputWinningNumbers,String winningBonusNumber){
+        this.winningNumbers = winningNumbersConvertToList(inputWinningNumbers, winningBonusNumber);
     }
 
-    private List<Integer> winningNumbersConvertToList(String winningNumbersString,String winningBonusNumber){
-        List<String> winningNumberList = Arrays.asList(winningNumbersString.split(DELIMITER));
-        validate(winningNumbersString,winningBonusNumber,winningNumberList);
+    private List<Integer> winningNumbersConvertToList(String inputWinningNumbers,String winningBonusNumber){
+        List<String> winningNumberList = Arrays.asList(inputWinningNumbers.split(DELIMITER));
+        validate(inputWinningNumbers,winningBonusNumber,winningNumberList);
         List<Integer> winningNumbers = new ArrayList<>(winningNumberList.stream().map(Integer::parseInt).toList());
         winningNumbers.add(Integer.parseInt(winningBonusNumber));
         return winningNumbers;

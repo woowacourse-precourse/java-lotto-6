@@ -3,7 +3,7 @@ package lotto.verifier;
 import lotto.exception.ExceptionMsg;
 
 public class LottoPurchaseVerifier {
-    private String purchaseAmount;
+    private final String purchaseAmount;
 
     public LottoPurchaseVerifier(String purchaseAmount) {
         this.purchaseAmount = purchaseAmount;

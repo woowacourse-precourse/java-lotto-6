@@ -13,8 +13,15 @@ public class Player {
     private Map<Ranking, Integer> results = new EnumMap<>(Ranking.class);
 
     public Player(int money) {
+        validate(money);
         this.money = money;
         initResults();
+    }
+
+    private void validate(int money) {
+        if (money % 1_000 != 0 || money < 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void initResults() {

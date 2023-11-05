@@ -27,7 +27,7 @@
             - 구입 금액이 0원 이하인지 확인하는 `validateMoney` 메서드
             - 구입 금액이 1000원으로 나눠 떨어지는지 확인하는 `validateDivision` 메서드
             - 구매 금액에 따른 티켓 수를 반환하는 `getTicket` 메서드
-        - [ ] Lotto
+        - [x] Lotto
             - 모든 로또 번호 리스트들에 대한 유효성 검사와 로또 번호의 오름차순 값을 반환하는 일급 컬렉션
             - 객체를 생성하고 반환하는 create 메서드
             - 로또 번호가 ,를 기준으로 나눠지고 숫자로 변환이 가능한지 확인하는 `validateType` 메서드
@@ -50,10 +50,10 @@
 
 
 - [ ] handler Package
-    - [ ] InputHandler
+    - [x] InputHandler
         - view Package의 ConsoleInput의 확장성과 변경 용이성을 위한 인터페이스
         - `inputValue` 메서드의 추상화
-    - [ ] OutputHandler
+    - [x] OutputHandler
         - view Package의 ConsoleOutput의 확장성과 변경 용이성을 위한 인터페이스
         - `printInputMoneyMessage` 메서드의 추상화
         - `printBuyLottoList` 메서드의 추상화
@@ -61,13 +61,11 @@
         - `printInputBonusLottoMessage` 메서드의 추상화
         - `printLottoResult` 메서드의 추상화
         - `printProfit` 메서드의 추상화
-    - [ ] ErrorHandler
+    - [x] ErrorHandler
         - Enum 클래스를 활용하여 프로그램에서 발생하는 에러 코드들을 관리하는 클래스
         - ErrorMessage와 함께 `IllegalArgumentException` 예외를 발생시키는 `getException` 메서드
-    - [ ] ConstantsHandler
+    - [x] ConstantsHandler
         - 프로그램내의 상수들을 관리하는 클래스
-    - [ ] InputValidator
-        - 입력에 대한 유효성 검사를 관리하는 클래스
     - [ ] LottoHandler
         - 로또 당첨 상태를 Enum으로 관리하는 클래스
 
@@ -75,10 +73,11 @@
 - [ ] service Package
     - [ ] LottoService
         - 로또 게임에 대한 비즈니스 로직을 담당하는 클래스
+        - 구매한 티켓 수 만큼 랜덤한 번호로 로또를 구매하는 `generateBuyLottos` 메서드
 
 
 - [ ] view Package
-    - [ ] ConsoleInput
+    - [x] ConsoleInput
         - 입력을 담당하는 클래스
         - 모든 입력값을 받아오는 `inputValue` 메서드 구현
     - [ ] ConsoleOutput

@@ -6,6 +6,7 @@ import lotto.domain.num.BonusLottoNum;
 import lotto.domain.num.LottoNumResults;
 import lotto.domain.num.RanNumbers;
 import lotto.domain.num.WinLottoNums;
+import lotto.domain.user.Statistic;
 import lotto.domain.user.User;
 
 public class Config {
@@ -27,6 +28,10 @@ public class Config {
 
     public static WinLottoNums winLottoNums(String strOfPickWinNum) {
         return new WinLottoNums(strOfPickWinNum);
+    }
+
+    public static Statistic statistic(LottoEnvelop lottoEnvelop, LottoNumResults lottoNumResults) {
+        return new Statistic(lottoEnvelop, lottoNumResults);
     }
 
     public static User user() {

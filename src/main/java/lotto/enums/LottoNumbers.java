@@ -14,6 +14,15 @@ public enum LottoNumbers {
             .map(LottoNumbers::getNumber)
             .toList();
     private final int number;
+
+    public static int getStart() {
+        return ONE.getNumber();
+    }
+
+    public static int getEnd() {
+        return FORTY_FIVE.getNumber();
+    }
+
     public static boolean contains(int number) {
         return LOTTO_NUMBERS.contains(number);
     }
@@ -24,13 +33,5 @@ public enum LottoNumbers {
 
     public int getNumber() {
         return number;
-    }
-
-    public static int getStart() {
-        return ONE.getNumber();
-    }
-
-    public static int getEnd() {
-        return FORTY_FIVE.getNumber();
     }
 }

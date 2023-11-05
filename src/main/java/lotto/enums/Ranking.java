@@ -8,7 +8,7 @@ public enum Ranking {
     FIFTH(5_000),
     BLANK(0);
 
-    final int prize;
+    private final int prize;
 
     Ranking(int prize) {
         this.prize = prize;

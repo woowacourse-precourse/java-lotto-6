@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.utils.Logs;
+import lotto.utils.Messages;
 import lotto.utils.Reader;
 
 import java.util.Arrays;
@@ -12,12 +12,12 @@ public class Game {
 
     public void joinPlayer() {
         try {
-            Logs.inputMoney();
+            Messages.inputMoney();
             player = new Player(inputMoney());
-            Logs.newLine();
+            Messages.newLine();
         } catch (IllegalArgumentException e) {
-            Logs.inputMoneyERROR();
-            Logs.newLine();
+            Messages.inputMoneyError();
+            Messages.newLine();
             joinPlayer();
         }
     }
@@ -25,33 +25,33 @@ public class Game {
     public void issueLotto() {
         checkPlayerJoin();
         player.issueLotto();
-        Logs.print(player.issuedLottos());
+        Messages.print(player.issuedLottos());
     }
 
     public void drawWinningLotto() {
         try {
             checkPlayerJoin();
-            Logs.inputWinningNumbers();
+            Messages.inputWinningNumbers();
             List<Integer> winningNumbers = inputWinningNumbers();
             Lotto lotto = new Lotto(winningNumbers);
-            Logs.newLine();
+            Messages.newLine();
             drawBonusNumber(lotto);
         } catch (IllegalArgumentException e) {
-            Logs.inputWinningNumbersERROR();
-            Logs.newLine();
+            Messages.inputWinningNumbersError();
+            Messages.newLine();
             drawWinningLotto();
         }
     }
 
     private void drawBonusNumber(Lotto lotto) {
         try {
-            Logs.inputBonusNumber();
+            Messages.inputBonusNumber();
             int bonusNumber = inputBonusNumber();
             winningLotto = new WinningLotto(lotto, bonusNumber);
-            Logs.newLine();
+            Messages.newLine();
         } catch (IllegalArgumentException e) {
-            Logs.inputBonusNumberERROR();
-            Logs.newLine();
+            Messages.inputBonusNumberError();
+            Messages.newLine();
             drawBonusNumber(lotto);
         }
     }
@@ -61,7 +61,7 @@ public class Game {
         checkWinningLottoDraw();
         player.findResults(winningLotto);
         player.findTotalPrize();
-        Logs.print(player.lottoResults());
+        Messages.print(player.lottoResults());
     }
 
     private int inputMoney() {

@@ -2,6 +2,9 @@ package view;
 
 import util.Scanner.IScanner;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import static lotto.constant.ExceptionMessage.NOT_NUMBER_MESSAGE;
 
 public class InputView {
@@ -23,6 +26,17 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMBER_MESSAGE.getMessage());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        String string = scanner.toString();
+        return convertNumbers(string);
+    }
+
+    private List<Integer> convertNumbers(String string) {
+        return Stream.of(string.split(","))
+                .map(this::convertNumber)
+                .toList();
     }
 
 }

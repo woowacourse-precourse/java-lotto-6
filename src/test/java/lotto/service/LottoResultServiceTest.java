@@ -40,18 +40,18 @@ class LottoResultServiceTest {
     void 로또_서비스_DTO_수익률_전달_정상(PurchasedLotto purchasedLotto) {
         //given
         LottoResultService service = new LottoResultService(winningLotto, purchasedLotto);
-        //when
         Map<LottoRankInfo, Integer> ranks = new EnumMap<>(LottoRankInfo.class);
+        //when
         purchasedLotto.lotto()
                 .stream()
                 .map(winningLotto::getLottoRank)
                 .forEach(e -> ranks.merge(e, 1, Integer::sum));
+
         String returnRatio = new LottoResult(ranks).getReturnRatio();
         //then
         assertThat(service.createLottoResultDto()
                 .returnRatio()).hasToString(returnRatio);
     }
-
 
     static Stream<Arguments> setLottoParam() {
         return Stream.of(

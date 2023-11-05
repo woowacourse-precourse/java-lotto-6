@@ -14,7 +14,7 @@ public class InputPurchaseAmountValidator {
     }
 
     private void validatePurchaseAmountIsBlank(String input) {
-        if (input.isBlank()) {
+        if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_DOES_NOT_BLANK.getMessage());
         }
     }

@@ -47,8 +47,10 @@ public class UserInput {
 
         return winningNumbers;
     }
-//
-//        }
 
+
+    public void sortWinningNumbers(List<Integer> winningNumbers) {
+        Collections.sort(winningNumbers);
+    }
 
 }

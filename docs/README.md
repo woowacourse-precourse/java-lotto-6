@@ -54,7 +54,6 @@
    - [ ] main
      - [ ] lottoController
      - [ ] domain
-     - [ ] model
      - [ ] service
      - [ ] view 
      - [x] Application

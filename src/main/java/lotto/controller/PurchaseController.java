@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
-import lotto.domain.Lottos;
+import lotto.domain.lottery.Lottos;
 import lotto.dto.LottoNumberResponses;
 import lotto.view.OutputView;
 

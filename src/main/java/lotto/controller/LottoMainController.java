@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
-import lotto.domain.Lottos;
-import lotto.domain.Prize;
+import lotto.domain.lottery.Lottos;
+import lotto.domain.lottery.Prize;
 
 public class LottoMainController {
     private LottoMainController() {

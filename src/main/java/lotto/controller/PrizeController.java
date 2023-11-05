@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.Prize;
+import lotto.domain.lottery.Lotto;
+import lotto.domain.lottery.Prize;
 import lotto.domain.parser.Parser;
 import lotto.exception.LottoException;
 import lotto.view.InputView;
@@ -39,7 +39,6 @@ public class PrizeController {
             final String jackpotNumbers = InputView.readLine();
             List<Integer> numbers = Parser.splitByDelimiter(jackpotNumbers);
 
-            OutputView.printNewLine();
             return new Lotto(numbers);
         } catch (LottoException exception) {
             OutputView.println(exception.getMessage());

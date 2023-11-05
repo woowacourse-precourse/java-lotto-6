@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.lottery;
+
+import lotto.domain.Buyer;
 
 import java.util.List;
 import java.util.stream.Stream;

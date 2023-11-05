@@ -1,14 +1,12 @@
-package lotto.domain;
+package lotto.domain.lottery;
 
+import lotto.domain.checker.NumberChecker;
 import lotto.domain.parser.Parser;
 import lotto.exception.LottoException;
 
-import static lotto.domain.constants.LottoConstraint.NUMBER_LOWER_BOUND;
-import static lotto.domain.constants.LottoConstraint.NUMBER_UPPER_BOUND;
 import static lotto.exception.ErrorMessage.BONUS_NUMBER_DUPLICATED;
-import static lotto.exception.ErrorMessage.NUMBER_OUT_OF_RANGE;
 
-public class Prize {
+public final class Prize extends NumberChecker {
     private final Lotto prizeNumbers;
     private final int bonusNumber;
 
@@ -32,27 +30,9 @@ public class Prize {
         return new Prize(prizeNumbers, bonusNumberInput);
     }
 
-    public void validateNumberRange(final int number) {
-        if (isOutOfRange(number)) {
-            throw LottoException.from(NUMBER_OUT_OF_RANGE);
-        }
-    }
-
     private void validateDuplicatedBonusNumber(final int number) {
         if (prizeNumbers.isAlreadyContainBonusNumber(number)) {
             throw LottoException.from(BONUS_NUMBER_DUPLICATED);
         }
-    }
-
-    private boolean isOutOfRange(int number) {
-        return isBiggerThanUpperBound(number) || isSmallerThanLowerBound(number);
-    }
-
-    private boolean isSmallerThanLowerBound(int number) {
-        return number > NUMBER_UPPER_BOUND.getValue();
-    }
-
-    private boolean isBiggerThanUpperBound(int number) {
-        return number < NUMBER_LOWER_BOUND.getValue();
     }
 }

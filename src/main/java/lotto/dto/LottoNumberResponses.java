@@ -1,8 +1,8 @@
 package lotto.dto;
 
 import lotto.domain.Buyer;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import lotto.domain.lottery.Lotto;
+import lotto.domain.lottery.Lottos;
 
 import java.util.List;
 

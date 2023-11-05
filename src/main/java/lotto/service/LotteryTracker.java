@@ -4,6 +4,7 @@ import static lotto.settings.LottoSettings.LOTTO_NUMBER_SIZE;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class LotteryTracker {
     List<List<Integer>> result = new ArrayList<>();
@@ -19,11 +20,21 @@ public class LotteryTracker {
         return result.get(index).size();
     }
 
-    public List<List<Integer>> getResult() {
-        return result;
+    public void matchingNumber(int cnt, Lotto buyLotto, int bonusNumber){
+        if(cnt==3){
+            result.get(5).add(cnt);}
+        else if(cnt==4){
+            result.get(4).add(cnt);}
+        else if(cnt==5){
+            if(buyLotto.has(bonusNumber)){
+                result.get(2).add(cnt);
+            }
+            result.get(3).add(cnt);
+        }
+        else if(cnt==6){
+            result.get(1).add(cnt);}
     }
 
-    public void matchingNumber(int cnt){
-    }
+
 
 }

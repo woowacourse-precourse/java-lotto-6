@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.settings.ErrorMessage.DUPLICATE_NUM;
 import static lotto.settings.ErrorMessage.INVALID_COUNT;
 import static lotto.settings.ErrorMessage.INVALID_RANGE;
 
@@ -11,7 +12,15 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        int uniqueSize = numbers.stream().distinct().toList().size();
+        if(numbers.size() != uniqueSize){
+            throw new IllegalArgumentException(DUPLICATE_NUM.getMessage());
+        }
     }
 
     public List<Integer> getNumbers() {
@@ -48,6 +57,10 @@ public class Lotto {
             }
         }
         return cnt;
+    }
+
+    public boolean has(int bonusNumber){
+        return numbers.contains(bonusNumber);
     }
 
     // TODO: 추가 기능 구현

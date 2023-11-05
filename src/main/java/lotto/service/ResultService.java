@@ -18,27 +18,16 @@ public class ResultService {
     public static void play(BuyLottoRepository buyLottoRepo, WinningLottoRepository winningLottoRepo){
         View.winningStatistics();
         BonusNumber bonusNumber = winningLottoRepo.getBonusNumber();
+        int bonusNum = bonusNumber.getNumber();
 
         // 몇개맞았는지 저장
         LotteryTracker lotteryTracker = new LotteryTracker();
         lotteryTracker.create();
-        int cnt =0;
-        List<List<Integer>> result = lotteryTracker.getResult();
 
+        int cnt =0;
         for (Lotto buyLotto : buyLottoRepo.getLottos()) {
             cnt = winningLottoRepo.countMatchingNumber(buyLotto);
-            if(cnt==3){
-                result.get(5).add(cnt);}
-            else if(cnt==4){
-                result.get(4).add(cnt);}
-            else if(cnt==5){
-                if(buyLotto.getNumbers().contains(bonusNumber.getNumber())){
-                    result.get(2).add(cnt);
-                }
-                result.get(3).add(cnt);
-            }
-            else if(cnt==6){
-                result.get(1).add(cnt);}
+            lotteryTracker.matchingNumber(cnt,buyLotto,bonusNum);
         }
         printResult(lotteryTracker);
     }

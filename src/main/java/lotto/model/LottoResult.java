@@ -19,4 +19,8 @@ public class LottoResult {
   public static double profitabilityCalculator (int money, int prize) {
     return ((double)(prize - money) / (double) money);
   }
+
+  public static double calculateRoundedProfitability(double value) {
+    return Math.round(value * 100.0) / 100.0;
+  }
 }

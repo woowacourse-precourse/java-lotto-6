@@ -1,6 +1,8 @@
 package lotto.model.domain;
 
 
+import lotto.model.domain.exception.LottoException;
+
 public class WinningNumbers {
     private final Lotto lotto;
     private final int bonus;

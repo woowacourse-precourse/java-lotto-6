@@ -10,6 +10,7 @@ public class WinningNumber {
     private WinningNumber(String winningNumbers) {
         List<String> seperatedNumbers = split(winningNumbers);
         checkOversize(seperatedNumbers);
+        List<Integer> candidateWinningNumbers = toInteger(seperatedNumbers);
     }
 
     public static WinningNumber create(String winningNumbers) {
@@ -23,6 +24,16 @@ public class WinningNumber {
     private void checkOversize(List<String> seperatedNumbers) {
         if (seperatedNumbers.size() != Lotto.NUMBER_COUNT) {
             throw new IllegalArgumentException(Error.WINNING_NUMBER_OVERSIZE.getMessage());
+        }
+    }
+
+    private List<Integer> toInteger(List<String> seperatedNumbers) {
+        try {
+            return seperatedNumbers.stream()
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Error.WINNING_NUMBER_NOT_INTEGER.getMessage());
         }
     }
 }

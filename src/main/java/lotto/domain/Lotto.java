@@ -3,8 +3,12 @@ package lotto.domain;
 import static lotto.domain.LottoConstants.MAX_NUMBER;
 import static lotto.domain.LottoConstants.MIN_NUMBER;
 import static lotto.domain.LottoConstants.NUMBER_COUNT;
+import static lotto.error.ExceptionCode.DUPLICATED_LOTTO_NUMBER;
+import static lotto.error.ExceptionCode.INVALID_LOTTO_NUMBER;
+import static lotto.error.ExceptionCode.INVALID_LOTTO_NUMBER_COUNT;
 
 import java.util.List;
+import lotto.error.LottoException;
 
 public class Lotto {
 
@@ -19,7 +23,7 @@ public class Lotto {
 
     private void validate(final List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
-            throw new IllegalArgumentException();
+            throw new LottoException(INVALID_LOTTO_NUMBER_COUNT);
         }
         numbers.forEach(this::validateNumber);
         validateNoDuplicatedNumbers(numbers);
@@ -27,13 +31,13 @@ public class Lotto {
 
     private void validateNumber(final Integer number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new LottoException(INVALID_LOTTO_NUMBER);
         }
     }
 
     private void validateNoDuplicatedNumbers(final List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new LottoException(DUPLICATED_LOTTO_NUMBER);
         }
     }
 

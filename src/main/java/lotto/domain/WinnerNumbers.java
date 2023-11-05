@@ -1,13 +1,17 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstants.MAX_NUMBER;
+import static lotto.domain.LottoConstants.MIN_NUMBER;
+import static lotto.domain.LottoConstants.NUMBER_COUNT;
+import static lotto.error.ExceptionCode.DUPLICATED_LOTTO_NUMBER;
+import static lotto.error.ExceptionCode.INVALID_LOTTO_NUMBER;
+import static lotto.error.ExceptionCode.INVALID_LOTTO_NUMBER_COUNT;
+
 import java.util.ArrayList;
 import java.util.List;
+import lotto.error.LottoException;
 
 public class WinnerNumbers {
-
-    private final static Integer MIN_NUMBER = 1;
-
-    private final static Integer MAX_NUMBER = 45;
 
     private final List<Integer> numbers;
 
@@ -21,8 +25,8 @@ public class WinnerNumbers {
     }
 
     private void validate(final List<Integer> numbers, final Integer bonusNumber) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != NUMBER_COUNT) {
+            throw new LottoException(INVALID_LOTTO_NUMBER_COUNT);
         }
         numbers.forEach(this::validateNumber);
         validateNumber(bonusNumber);
@@ -31,7 +35,7 @@ public class WinnerNumbers {
 
     private void validateNumber(final Integer number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new LottoException(INVALID_LOTTO_NUMBER);
         }
     }
 
@@ -39,7 +43,7 @@ public class WinnerNumbers {
         final List<Integer> numbersWithBonusNumber = new ArrayList<>(numbers);
         numbersWithBonusNumber.add(bonusNumber);
         if (numbersWithBonusNumber.stream().distinct().count() != numbersWithBonusNumber.size()) {
-            throw new IllegalArgumentException();
+            throw new LottoException(DUPLICATED_LOTTO_NUMBER);
         }
     }
 

@@ -1,6 +1,7 @@
 package lotto;
 
 import View.Input;
+import View.Output;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -14,15 +15,16 @@ public class LottoApplication {
     void execute() {
         int receivedAmount = getReceivedAmount();
 
-        Lotto pickedNumbers = getPickedNumbers();
-        Bonus bonus = getBonusNumber();
-
-        Ticket ticket = new Ticket(pickedNumbers, bonus); // 구매자의 티켓
-
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < getNumberOfLotto(receivedAmount); i++) {
             lottos.add(drawLotto());
         }
+        Output.printCreatedLottos(lottos);
+
+        Lotto pickedNumbers = getPickedNumbers();
+        Bonus bonus = getBonusNumber();
+
+        Ticket ticket = new Ticket(pickedNumbers, bonus); // 구매자의 티켓
     }
 
     private int getReceivedAmount() {

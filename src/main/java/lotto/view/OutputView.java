@@ -31,6 +31,7 @@ public class OutputView {
     }
 
     public void printLottoResultMessage() {
+        System.out.println();
         System.out.println(LOTTO_RESULT_MESSAGE);
         System.out.println(LOTTO_RESULT_LINE_MESSAGE);
     }

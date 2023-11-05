@@ -5,12 +5,12 @@ import java.util.Map;
 import lotto.constant.LottoRank;
 import lotto.dto.LottoDto;
 import lotto.model.LottoInfo;
-import lotto.vo.TicketQuantity;
+import lotto.vo.TicketCount;
 
 public class OutputView {
 
     private static final String INPUT_BUY_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String TICKET_QUANTITY_MESSAGE = "%s개를 구매했습니다.";
+    private static final String TICKET_COUNT_MESSAGE = "%s개를 구매했습니다.";
     private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %,.1f%%입니다.";
@@ -29,8 +29,8 @@ public class OutputView {
         printMessage(INPUT_BUY_AMOUNT_MESSAGE);
     }
 
-    public void printTicketQuantityMessage(final Integer quantity) {
-        printMessage(String.format(TICKET_QUANTITY_MESSAGE, quantity));
+    public void printTicketCountMessage(final Integer count) {
+        printMessage(String.format(TICKET_COUNT_MESSAGE, count));
     }
 
     public void printRequestInputWinningNumberMessage() {
@@ -58,13 +58,13 @@ public class OutputView {
         printMessage(String.format(FIRST_RANK_MESSAGE, result.getOrDefault(LottoRank.FIRST_RANK, DEFAULT_COUNT)));
     }
 
-    public void printRateOfProfit(final Map<LottoRank, Integer> result, TicketQuantity ticketQuantity) {
+    public void printRateOfProfit(final Map<LottoRank, Integer> result, TicketCount ticketCount) {
         double reward = result.keySet()
                 .stream()
                 .mapToDouble(lottoRank -> (lottoRank.getPrizeMoney() * result.get(lottoRank)))
                 .sum();
 
-        double totalCost = (double) ticketQuantity.quantity() * LottoInfo.ONE_LOTTO_PRICE.getValue();
+        double totalCost = (double) ticketCount.count() * LottoInfo.ONE_LOTTO_PRICE.getValue();
         double profitRate = (reward / totalCost) * PERCENTAGE;
 
         printMessage(String.format(PROFIT_RATE_MESSAGE, profitRate));

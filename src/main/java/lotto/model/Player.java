@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.util.NumberGenerator;
-import lotto.vo.TicketQuantity;
+import lotto.vo.TicketCount;
 
 public class Player {
 
@@ -13,8 +13,8 @@ public class Player {
         this.lotteries = lotteries;
     }
 
-    public static Player createPlayer(final TicketQuantity ticketQuantity, final NumberGenerator numberGenerator) {
-        List<Lotto> lotteries = IntStream.range(0, ticketQuantity.quantity())
+    public static Player createPlayer(final TicketCount ticketCount, final NumberGenerator numberGenerator) {
+        List<Lotto> lotteries = IntStream.range(0, ticketCount.count())
                 .mapToObj(eachTicket -> Lotto.createPlayerLotto(numberGenerator))
                 .toList();
         return new Player(lotteries);

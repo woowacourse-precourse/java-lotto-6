@@ -9,7 +9,7 @@ import lotto.model.Lotto;
 import lotto.util.Converter;
 import lotto.vo.BonusNumber;
 import lotto.vo.BuyAmount;
-import lotto.vo.TicketQuantity;
+import lotto.vo.TicketCount;
 
 public class View {
 
@@ -60,8 +60,8 @@ public class View {
         }
     }
 
-    public void printTicketQuantityMessage(final Integer count) {
-        outputView.printTicketQuantityMessage(count);
+    public void printTicketCountMessage(final Integer count) {
+        outputView.printTicketCountMessage(count);
     }
 
     public void showPlayerNumbers(final List<LottoDto> playerLotteries) {
@@ -72,8 +72,8 @@ public class View {
         outputView.printStatistics(result);
     }
 
-    public void showRateOfProfit(final Map<LottoRank, Integer> result, final TicketQuantity ticketQuantity) {
-        outputView.printRateOfProfit(result, ticketQuantity);
+    public void showRateOfProfit(final Map<LottoRank, Integer> result, final TicketCount ticketCount) {
+        outputView.printRateOfProfit(result, ticketCount);
     }
 
     private void validateBonusNumberContainsWinningNumber(final List<Integer> winningNumbers,

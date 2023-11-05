@@ -13,7 +13,7 @@ import lotto.util.RandomNumberGenerator;
 import lotto.view.View;
 import lotto.vo.BonusNumber;
 import lotto.vo.BuyAmount;
-import lotto.vo.TicketQuantity;
+import lotto.vo.TicketCount;
 
 public class LottoGameController {
 
@@ -25,28 +25,28 @@ public class LottoGameController {
 
     public void run() {
         BuyAmount buyAmount = initBuyAmount();
-        TicketQuantity ticketQuantity = initTicketQuantity(buyAmount);
+        TicketCount ticketCount = initTicketCount(buyAmount);
+        Player player = initPlayer(ticketCount);
 
-        Player player = initPlayer(ticketQuantity);
         showPlayerLottoNumber(player);
         LottoGame lottoGame = initLottoGame(player);
-        showResult(ticketQuantity, lottoGame);
+        showResult(ticketCount, lottoGame);
     }
 
     private BuyAmount initBuyAmount() {
         return view.getBuyAmount();
     }
 
-    private TicketQuantity initTicketQuantity(BuyAmount buyAmount) {
+    private TicketCount initTicketCount(BuyAmount buyAmount) {
         Integer count = buyAmount.amount() / ONE_LOTTO_PRICE.getValue();
-        TicketQuantity ticketQuantity = new TicketQuantity(count);
-        view.printTicketQuantityMessage(count);
-        
-        return ticketQuantity;
+        TicketCount ticketCount = new TicketCount(count);
+        view.printTicketCountMessage(count);
+
+        return ticketCount;
     }
 
-    private Player initPlayer(final TicketQuantity ticketQuantity) {
-        return Player.createPlayer(ticketQuantity, new RandomNumberGenerator());
+    private Player initPlayer(final TicketCount ticketCount) {
+        return Player.createPlayer(ticketCount, new RandomNumberGenerator());
     }
 
     private LottoGame initLottoGame(final Player player) {
@@ -68,9 +68,9 @@ public class LottoGameController {
         view.showPlayerNumbers(LottoDto.toDto(player.getLotteries()));
     }
 
-    private void showResult(final TicketQuantity ticketQuantity, final LottoGame lottoGame) {
+    private void showResult(final TicketCount ticketCount, final LottoGame lottoGame) {
         Map<LottoRank, Integer> result = lottoGame.calculateScore();
         view.showStatistics(result);
-        view.showRateOfProfit(result, ticketQuantity);
+        view.showRateOfProfit(result, ticketCount);
     }
 }

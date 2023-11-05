@@ -26,8 +26,8 @@ public class LottoController {
         BonusNumber bonusNumber = new BonusNumber(generateBonusNumber(winningNumbers));
 
         WinningLottoCounts winningLottoCounts = new WinningLottoCounts(myLottos, winningNumbers, bonusNumber);
-        double profit = getLottoProfit(winningLottoCounts, money);
-        output.printResult(winningLottoCounts, profit);
+        Profit profit = new Profit(winningLottoCounts, money);
+        output.printResult(winningLottoCounts, profit.calculate());
     }
 
     private int getUserAmount() {
@@ -73,11 +73,5 @@ public class LottoController {
             bonusNumber = generateBonusNumber(winningNumbers);
         }
         return bonusNumber;
-    }
-
-    private double getLottoProfit(WinningLottoCounts winningLottoCounts, Money money) {
-        ProfitCalculator profitCalculator = new ProfitCalculator(winningLottoCounts);
-        double profit = profitCalculator.calculateProfit(money);
-        return profit;
     }
 }

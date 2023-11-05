@@ -1,16 +1,18 @@
 package lotto.domain;
 
-import static lotto.domain.Constants.*;
+import static lotto.domain.Constants.PERCENTAGE;
 
-public class ProfitCalculator {
+public class Profit {
 
     private final WinningLottoCounts winningLottoCounts;
+    private final Money money;
 
-    public ProfitCalculator(WinningLottoCounts winningLottoCounts) {
+    public Profit(WinningLottoCounts winningLottoCounts, Money money) {
         this.winningLottoCounts = winningLottoCounts;
+        this.money = money;
     }
 
-    public double calculateProfit(Money money) {
+    public double calculate() {
         double sum = 0;
         for (Rank rank : Rank.values()) {
             sum += winningLottoCounts.getPrize(rank);

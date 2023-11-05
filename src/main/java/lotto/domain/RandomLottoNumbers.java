@@ -7,7 +7,7 @@ import lotto.constant.NumberConstant;
 public class RandomLottoNumbers implements LottoNumbers{
 
     @Override
-    public List<Integer> generateNumber() {
+    public List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 NumberConstant.LOTTO_MIN_NUMBER.getNumber(),
                 NumberConstant.LOTTO_MAX_NUMBER.getNumber(),

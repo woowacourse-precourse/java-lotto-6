@@ -1,12 +1,12 @@
 package lotto.service;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.domain.Lotto;
+import lotto.util.Constant;
 import lotto.util.RandomValueList;
 
 public class LottoService {
-    private Lotto lotto;
-
     public static LottoService getInstance() {
         return LottoService.LazyHolder.INSTANCE;
     }
@@ -15,8 +15,17 @@ public class LottoService {
         private static final LottoService INSTANCE = new LottoService();
     }
 
-    public List<Integer> getLotto(){
-        lotto = new Lotto(RandomValueList.getRandomValue());
-        return lotto.getLotto();
+    private Lotto getLotto(){
+        return new Lotto(RandomValueList.getRandomValue());
+    }
+
+    public List<Lotto> getLottoList(int purchaseNumber) {
+        return IntStream.range(0, purchaseNumber)
+                .mapToObj(i -> getLotto())
+                .toList();
+    }
+
+    public int getPurchaseNumber(int input) {
+        return input/Constant.AMOUNT_ONE_LOTTO;
     }
 }

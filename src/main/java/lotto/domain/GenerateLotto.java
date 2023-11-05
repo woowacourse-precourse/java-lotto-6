@@ -7,23 +7,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateLotto {
-    private static List<Integer> generateLottoNumbers() {
+    private final List<Lotto> lottos;
+
+    public GenerateLotto(int lottoCount) {
+        this.lottos = generateLottoGroup(lottoCount);
+    }
+
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
+
+    private List<Lotto> generateLottoGroup(int lottoCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        while (lottos.size() < lottoCount) {
+            lottos.add(new Lotto(sorted(generateLottoNumbers())));
+        }
+        return lottos;
+    }
+
+
+
+    private List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(LottoConfig.MIN_RANGE, LottoConfig.MAX_RANGE, LottoConfig.LOTTO_SIZE);
     }
 
-    private static List<Integer> sorted(List<Integer> numbers) {
+    private List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();
-    }
-
-    public static List<Lotto> generateLottoGroup(int LottoCount) {
-        List<Lotto> lottos = new ArrayList<>();
-
-        while (lottos.size() < LottoCount) {
-            lottos.add(new Lotto(sorted(generateLottoNumbers())));
-        }
-
-        return lottos;
     }
 }

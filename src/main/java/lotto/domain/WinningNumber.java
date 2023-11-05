@@ -62,4 +62,8 @@ public class WinningNumber {
     public static WinningNumber of(List<Integer> winningNumbers, int bonusNumber) {
         return new WinningNumber(Number.getList(winningNumbers), Number.from(bonusNumber));
     }
+
+    public int countMatchingWinningNumber(List<Number> numbers) {
+        return (int) winningNumbers.stream().filter(numbers::contains).count();
+    }
 }

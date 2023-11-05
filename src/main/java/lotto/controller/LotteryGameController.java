@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Computer;
 import lotto.domain.LotteryMessageBuilder;
 import lotto.domain.lottery.*;
 import lotto.view.OutputView;
@@ -17,9 +18,10 @@ public class LotteryGameController {
     private final InputView inputView = new InputView();
     private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
     private final LotteryMessageBuilder lotteryMessageBuilder = new LotteryMessageBuilder();
-    private final Lottos purchasedLotto = new Lottos();
+    private final Computer computer = new Computer();
 
     private int lottoAmount;
+    private final Lottos purchasedLotto = new Lottos();
     private WinningLotto winningLotto;
     private BonusNumber bonusNumber;
 
@@ -34,7 +36,12 @@ public class LotteryGameController {
         requestWinningNumber();
         requestBonusNumber();
 
-        OutputView.returnWinningStats();
+        returnLotteryResult();
+    }
+
+    private void returnLotteryResult() {
+        List<Integer> winningStats = new ArrayList<>();
+        computer.checkWinningLotto(purchasedLotto, winningLotto, bonusNumber, winningStats);
     }
 
     private void requestBonusNumber() {

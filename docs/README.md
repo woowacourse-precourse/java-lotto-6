@@ -45,24 +45,24 @@
 - ❌ displayErrorMessage
     -  검증에서 실패할 경우 실패한 사유 출력
 
-## ❌ 구입금액 입력
+## ✅ 구입금액 입력
 
-- ❌ getInputPurchaseAmount 메서드 구현
+- ✅ getInputPurchaseAmount 메서드 구현
     - '구입금액을 입력해 주세요.' 출력
     - 사용자의 입력을 통해 구매 금액을 입력
 
-## ✅ 당첨 번호 입력
+## ❌ 당첨 번호 입력
 
-- ✅ getInputWinningNumber 메서드 구현
+- ❌ getInputWinningNumber 메서드 구현
     - '당첨 번호를 입력해 주세요.' 출력
     - 사용자의 입력을 통해 로또 당첨 번호를 입력
         - 6개 번호를 입력
         - 번호를 쉼표(,)를 기준으로 구분
         - 1부터 45사이의 숫자를 입력
 
-## ❌ 보너스 번호 입력
+## ✅ 보너스 번호 입력
 
-- ❌ getInputBonusNumber 메서드 구현
+- ✅ getInputBonusNumber 메서드 구현
     - '보너스 번호를 입력해 주세요.' 출력
     - 사용자의 입력을 통해 보너스 번호를 입력
         - 1부터 45사이의 숫자를 입력

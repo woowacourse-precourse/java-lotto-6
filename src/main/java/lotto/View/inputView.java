@@ -33,5 +33,31 @@ public class inputView {
         }
     }
 
+    public static int getInputBonusNumber() {
+        System.out.println(GET_INPUT_PURCHASE_AMOUNT_MESSAGE);
+        String input = Console.readLine();
+        while(true){
+            try {
+                if (Validator.validateInputIsNull(input)) {
+                    throw new IllegalArgumentException("[ERROR] 입력 값은 널값이 될 수 없습니다.");
+                }
+
+                if (!Validator.validateInputIsNumeric(input)) {
+                    throw new IllegalArgumentException("[ERROR] 입력 값은 숫자여야 합니다.");
+                }
+
+                if (!Validator.validateNumberRange(Integer.parseInt(input))) {
+                    throw new IllegalArgumentException("[ERROR] 1부터 45사이의 숫자를 입력해주세요.");
+                }
+
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println(GET_INPUT_PURCHASE_AMOUNT_MESSAGE);
+                input = Console.readLine();
+            }
+        }
+    }
+
 
 }

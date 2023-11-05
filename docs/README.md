@@ -23,7 +23,7 @@
   - [x] (예외)1~45의 범위를 벗어날 경우 - isValidRangeNumber()
 - [x] 입력한 로또 번호와 발행한 로또 번호를 비교한다. - LottoSystem | compareLottoNumbers()
 - [x] 당첨 내역을 출력한다. - OutputView | printLottoWinningStatistics()
-- [] 수익률을 계산한다.(소수점 둘째 자리에서 반올림 한다.) - caculateRateOfReturn()
+- [x] 수익률을 계산한다.(소수점 둘째 자리에서 반올림 한다.) - caculateRateOfReturn()
 - [] 수익률을 출력한다. - OutputView | printRateOfReturn()
 
 - [x] (전체예외) 입력값이 null이가 empty일때

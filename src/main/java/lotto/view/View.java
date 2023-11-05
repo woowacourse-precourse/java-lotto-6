@@ -8,6 +8,7 @@ import lotto.exception.WinningNumberContainsBonusNumberException;
 import lotto.model.Lotto;
 import lotto.util.Converter;
 import lotto.vo.BonusNumber;
+import lotto.vo.BuyAmount;
 import lotto.vo.TicketQuantity;
 
 public class View {
@@ -20,14 +21,12 @@ public class View {
         this.outputView = outputView;
     }
 
-    public TicketQuantity getTicketQuantity() {
+    public BuyAmount getBuyAmount() {
         outputView.printRequestInputBuyAmountMessage();
         while (true) {
             try {
                 Integer amount = inputView.inputBuyAmount();
-                TicketQuantity ticketQuantity = Converter.convertToTicketCount(amount);
-                outputView.printTicketQuantityMessage(ticketQuantity.quantity());
-                return ticketQuantity;
+                return new BuyAmount(amount);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
@@ -59,6 +58,10 @@ public class View {
                 outputView.printMessage(e.getMessage());
             }
         }
+    }
+
+    public void printTicketQuantityMessage(final Integer count) {
+        outputView.printTicketQuantityMessage(count);
     }
 
     public void showPlayerNumbers(final List<LottoDto> playerLotteries) {

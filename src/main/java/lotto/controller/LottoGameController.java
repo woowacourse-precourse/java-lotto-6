@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.model.LottoInfo.ONE_LOTTO_PRICE;
+
 import java.util.List;
 import java.util.Map;
 import lotto.constant.LottoRank;
@@ -10,6 +12,7 @@ import lotto.model.Player;
 import lotto.util.RandomNumberGenerator;
 import lotto.view.View;
 import lotto.vo.BonusNumber;
+import lotto.vo.BuyAmount;
 import lotto.vo.TicketQuantity;
 
 public class LottoGameController {
@@ -21,15 +24,25 @@ public class LottoGameController {
     }
 
     public void run() {
-        TicketQuantity ticketQuantity = initTicketQuantity();
+        BuyAmount buyAmount = initBuyAmount();
+        TicketQuantity ticketQuantity = initTicketQuantity(buyAmount);
+
         Player player = initPlayer(ticketQuantity);
         showPlayerLottoNumber(player);
         LottoGame lottoGame = initLottoGame(player);
         showResult(ticketQuantity, lottoGame);
     }
 
-    private TicketQuantity initTicketQuantity() {
-        return view.getTicketQuantity();
+    private BuyAmount initBuyAmount() {
+        return view.getBuyAmount();
+    }
+
+    private TicketQuantity initTicketQuantity(BuyAmount buyAmount) {
+        Integer count = buyAmount.amount() / ONE_LOTTO_PRICE.getValue();
+        TicketQuantity ticketQuantity = new TicketQuantity(count);
+        view.printTicketQuantityMessage(count);
+        
+        return ticketQuantity;
     }
 
     private Player initPlayer(final TicketQuantity ticketQuantity) {

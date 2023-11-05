@@ -33,4 +33,24 @@ class LottoResultTest {
 
         assertEquals(sortedStatistics.size(), 5);
     }
+
+    @Test
+    @DisplayName("1등부터 5등으로 맵에 저장되어있는 데이터를 출력 형태에 맞게 5등부터 1등으로 정렬한다")
+    public void getSortedStatistics_Method_Sorting_Statistics() {
+        Map<WinningStatistics, Integer> sortedStatistics = lottoResult.getSortedStatistics();
+
+        WinningStatistics[] expectedOrder = {
+                WinningStatistics.FIFTH,
+                WinningStatistics.FOURTH,
+                WinningStatistics.THIRD,
+                WinningStatistics.SECOND,
+                WinningStatistics.FIRST
+        };
+
+        int index = 0;
+        for (WinningStatistics statistic : sortedStatistics.keySet()) {
+            assertEquals(statistic, expectedOrder[index]);
+            index++;
+        }
+    }
 }

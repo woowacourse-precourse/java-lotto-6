@@ -27,9 +27,9 @@ public class Lotto {
         }
     }
 
-    private void createLottoRandomNumber() {
+    private List<Integer> createLottoRandomNumber() {
         final List<Integer> numbers;
         numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        
+        return numbers;
     }
 }

@@ -10,6 +10,8 @@ public class OutputValue {
 
     private static final String WIN_LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
 
+    private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+
 
     public static void purchaseMessage() {
         System.out.println(PURCHASE_PRICE_MESSAGE);
@@ -23,9 +25,9 @@ public class OutputValue {
         System.out.println(numbers.toString());
     }
 
-    public static void changeLine() {
-        System.out.println();
-    }
+    public static void changeLine() { System.out.println(); }
 
     public static void winLottoNumberMessage() { System.out.println(WIN_LOTTO_NUMBER_MESSAGE); }
+
+    public static void bonusNumberMessage() { System.out.println(BONUS_NUMBER_MESSAGE); }
 }

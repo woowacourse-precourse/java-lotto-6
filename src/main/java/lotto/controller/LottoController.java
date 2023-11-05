@@ -51,6 +51,8 @@ public class LottoController {
         OutputValue.winLottoNumberMessage();
 
         lottoService.setWinLotto(InputValue.getWinLottoNumbers());
+
+        OutputValue.bonusNumberMessage();
     }
 
     private void lottoEnd() {

@@ -20,4 +20,12 @@ class ValidatorTest {
     void validateNumericInputWithValidInput() {
         assertDoesNotThrow(() -> Validator.validateNumericValue("12345"));
     }
+
+    @DisplayName("전달 받은 값이 비어있으면 예외를 발생")
+    @Test
+    void testValidateIsEmpty() {
+        assertThatThrownBy(() -> Validator.validateIsEmpty(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("입력 값이 없습니다.");
+    }
 }

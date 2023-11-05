@@ -6,6 +6,7 @@
 - 보너스 번호는 중복되도 되는가?
 
 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
+
 - 1등: 6개 번호 일치 / 2,000,000,000원
 - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
 - 3등: 5개 번호 일치 / 1,500,000원
@@ -20,6 +21,7 @@
 - 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
 
 수익률은 소수점 둘째 자리에서 반올림한다. (ex. 100.0%, 51.5%, 1,000,000.0%)
+
 - 이 부분은 출력할때,1,000,000.0% 이런식으로 해야할까?
 
 Game
@@ -78,9 +80,9 @@ GameEngineValidator
     - [x] 로또 숫자가 6개가 아니면, IllegalException을 반환한다.
     - [x] 로또 숫자가 중복이 있는경우, IllegalArgumentException을 반환한다.
     - [x] 로또 숫자가 1부터 45사이가 아니면, IllegalArgumentException을 반환한다.
--[ ] 보너스 번호를 검증한다.
-    - [ ] 숫자가 아닌경우, IllegalArgumentException을 반환한다
-    - [ ] 로또 숫자가 1부터 45사이가 아니면, IllegalArgumentException을 반환한다.
+-[x] 보너스 번호를 검증한다.
+    - [x] 숫자가 아닌경우, IllegalArgumentException을 반환한다
+    - [x] 로또 숫자가 1부터 45사이가 아니면, IllegalArgumentException을 반환한다.
 
 LottoScore
 

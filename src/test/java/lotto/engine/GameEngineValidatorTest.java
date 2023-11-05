@@ -34,6 +34,22 @@ class GameEngineValidatorTest {
         );
     }
 
+    private static Stream<Arguments> 보너스로또번호_숫자가_아닌경우() {
+        return Stream.of(
+                Arguments.of("", ""),
+                Arguments.of(" ", " "),
+                Arguments.of("1q", "1q"),
+                Arguments.of("qwe", "qwe"),
+                Arguments.of("★", "★"),
+                Arguments.of("1o", "1o"),
+                Arguments.of("!", "!"),
+                Arguments.of("Q", "Q"),
+                Arguments.of("*", "*"),
+                Arguments.of("+", "+"),
+                Arguments.of("1,23,q,2,3,5", "1,23,q,2,3,5")
+        );
+    }
+
     private static Stream<List<Integer>> 여섯개의_사이즈_아닌_배열() {
         return Stream.of(
                 List.of(1),
@@ -193,4 +209,33 @@ class GameEngineValidatorTest {
                 .doesNotThrowAnyException();
     }
 
+    @Test
+    void 보너스로또숫자가_null이면_예외가_나온다() {
+        Assertions.assertThatCode(() -> gameEngineValidator.checkBonusNumber(null))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 넘버는 null이 될수 없습니다.");
+    }
+
+    @ParameterizedTest
+    @MethodSource("보너스로또번호_숫자가_아닌경우")
+    void 보너스로또숫자가_숫자가아니면_예외가_나온다(String readLine, String exceptionValue) {
+        Assertions.assertThatCode(() -> gameEngineValidator.checkBonusNumber(readLine))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage(String.format("%s는 숫자가 아닙니다.", exceptionValue));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0", "46", "21473694"})
+    void 보너스로또숫자가__1부터_45사이가_아니면_예외가나온다(String readLine) {
+        Assertions.assertThatCode(() -> gameEngineValidator.checkBonusNumber(readLine))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1", "45", "44", "2"})
+    void 보너스로또숫자가__1부터_45사이면_예외가_나오지않는다(String readLine) {
+        Assertions.assertThatCode(() -> gameEngineValidator.checkBonusNumber(readLine))
+                .doesNotThrowAnyException();
+    }
 }

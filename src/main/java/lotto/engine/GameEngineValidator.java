@@ -59,6 +59,12 @@ public class GameEngineValidator {
         checkIsLottoNumberRange(lottoNumbers);
     }
 
+    void checkBonusNumber(String readLine) {
+        checkIsNotNull(readLine);
+        checkIsNumber(readLine);
+        checkIsLottoNumberRange(List.of(Long.parseLong(readLine)));
+    }
+
     private void checkIsNotNull(Object lottoNumbers) {
         if (lottoNumbers == null) {
             throw new IllegalArgumentException(NOT_NULL_LOTTO_NUMBERS_EXCEPTION_MESSAGE);

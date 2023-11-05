@@ -7,22 +7,17 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class AmountInputValidatorTest {
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"포비", "b ", "10e"})
     @DisplayName("입력값이 숫자가 아니면 예외가 발생하는 테스트")
-    void testValidateInputNumericFormat() {
-        // given
+    void testValidateInputNumericFormat(String input) {
         AmountInputValidator inputValidation = new AmountInputValidator();
 
-        // when
-        String input = "one";
-
-        // then
         assertThatThrownBy(() -> inputValidation.validateInputNumericFormat(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NUMERIC_FORMAT_MESSAGE.getMessage());

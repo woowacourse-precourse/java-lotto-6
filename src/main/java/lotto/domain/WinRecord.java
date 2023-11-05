@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.ApplicationContext.getPrizeAmount;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,19 +16,27 @@ public class WinRecord {
     }
 
     public void compareWinning(List<List<Integer>> tickets) {
+        PrizeAmount prizeAmount = getPrizeAmount();
+        int lottoCount = 0;
+        int bonusCount = 0;
+
         for (List<Integer> ticket : tickets) {
             List<Integer> commonNumbers = new ArrayList<>(ticket);
             commonNumbers.retainAll(this.lotto);
+            lottoCount = commonNumbers.size();
 
             if(ticket.contains(bonus)){
-                commonNumbers.add(bonus);
+                bonusCount = 1;
             }
 
-            this.winRecord.add(commonNumbers.size());
+            int matchAllCount = prizeAmount.matchAllCount(lottoCount, bonusCount);
+            winRecord.add(matchAllCount);
         }
     }
 
-    public List<Integer> getWinRecord() {
-        return this.winRecord;
+    public void print() {
+        PrizeAmount prizeAmount = getPrizeAmount();
+        prizeAmount.classifyWin(this.winRecord);
     }
+
 }

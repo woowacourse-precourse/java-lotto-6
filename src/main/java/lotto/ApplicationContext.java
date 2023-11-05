@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.domain.PrizeAmount;
 import lotto.input.LottoBuyer;
 import lotto.input.LottoDrawer;
 
@@ -8,6 +9,7 @@ public class ApplicationContext {
     private static LottoController lottoController;
     private static LottoBuyer lottoBuyer;
     private static LottoDrawer lottoDrawer;
+    private static PrizeAmount prizeAmount;
 
     public static ApplicationContext init(){
         return new ApplicationContext();
@@ -17,6 +19,7 @@ public class ApplicationContext {
         getController();
         getLottoBuyer();
         getLottoDrawer();
+        getPrizeAmount();
         lottoProcess();
     }
 
@@ -58,5 +61,12 @@ public class ApplicationContext {
         }
 
         return lottoDrawer;
+    }
+
+    public static PrizeAmount getPrizeAmount(){
+        if(prizeAmount == null){
+            prizeAmount = new PrizeAmount();
+        }
+        return prizeAmount;
     }
 }

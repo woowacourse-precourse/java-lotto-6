@@ -32,7 +32,7 @@ public class LottoController {
     }
 
     public void printWinRecord() {
-
+        this.winRecord.print();
     }
 
     public void printReturns() {

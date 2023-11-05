@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validator;
 
 /**
  * 금액을 검증하는 인터페이스

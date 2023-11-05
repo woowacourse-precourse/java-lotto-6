@@ -1,4 +1,4 @@
-package lotto;
+package lotto.exception;
 
 /**
  * 구입 금액 예외 메시지

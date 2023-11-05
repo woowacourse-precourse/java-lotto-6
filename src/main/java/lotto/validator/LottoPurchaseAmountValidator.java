@@ -1,4 +1,6 @@
-package lotto;
+package lotto.validator;
+
+import lotto.exception.PurchaseAmountExceptionMessage;
 
 /**
  * 로또 구입 금액 검증 클래스

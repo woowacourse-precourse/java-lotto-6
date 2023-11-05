@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.AmountValidator;
 
 import java.util.List;
 

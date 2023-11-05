@@ -25,11 +25,12 @@ public class LottoController {
 
     public void start() {
         payMoney();
-        generateLottos();
-        getWinnerNumbers();
-        getBonusNumber();
+        generatePurchasedLottos();
+        createWinnerNumbers();
+        createBonusNumber();
         writeResults();
         printResult();
+        printPercent();
     }
 
     private void payMoney() {
@@ -41,7 +42,7 @@ public class LottoController {
         }
     }
 
-    private void generateLottos() {
+    private void generatePurchasedLottos() {
         lottos = new ArrayList<>();
         for(int i = 0 ; i < money.getCount() ; i++) {
             Lotto lotto = LottoGenerator.generateLotto();
@@ -50,58 +51,58 @@ public class LottoController {
         }
     }
 
-    private void getWinnerNumbers() {
+    private void createWinnerNumbers() {
         try {
             winningNumbers = new Lotto(Input.inputWinningNumbers());
         } catch (IllegalArgumentException e) {
-            getWinnerNumbers();
+            createWinnerNumbers();
         }
     }
 
-    private void getBonusNumber() {
+    private void createBonusNumber() {
         try {
             bonusNumber = new BonusNumber(Input.inputBonusNumber());
             winningNumbers.validateBonusNumber(bonusNumber);
         } catch(IllegalArgumentException e) {
-            getBonusNumber();
+            createBonusNumber();
         }
     }
 
     private void writeResults() {
         results = new HashMap<>();
         for(Rank rank : Rank.values()) {
-            results.put(rank, findRanking(rank));
+            results.put(rank, findRankCount(rank));
         }
     }
 
-    private int findRanking(Rank rank) {
+    private int findRankCount(Rank rank) {
+        return (int) lottos.stream()
+                .filter(lotto -> sortRank(rank, lotto))
+                .count();
+    }
+
+    private boolean sortRank(Rank rank, Lotto lotto) {
         if(rank == SECOND) {
-            return findSecond();
+            return isSecond(lotto);
         }
         if(rank == THIRD) {
-            return findThird();
+            return isThird(lotto);
         }
-        return findElse(rank);
+        return isElse(rank, lotto);
     }
 
-    private int findSecond() {
-        return  (int) lottos.stream()
-                .filter(lotto -> lotto.matchNumbers(winningNumbers) == SECOND.getCount()
-                        && lotto.containsBonusNumber(bonusNumber))
-                .count();
+    private boolean isSecond(Lotto lotto) {
+        return lotto.matchNumbers(winningNumbers) == SECOND.getCount()
+                && lotto.containsBonusNumber(bonusNumber);
     }
 
-    public int findThird() {
-        return (int) lottos.stream()
-                .filter(lotto -> lotto.matchNumbers(winningNumbers) == THIRD.getCount()
-                        && !lotto.containsBonusNumber(bonusNumber))
-                .count();
+    private boolean isThird(Lotto lotto) {
+        return lotto.matchNumbers(winningNumbers) == THIRD.getCount()
+                && !lotto.containsBonusNumber(bonusNumber);
     }
 
-    private int findElse(Rank rank) {
-        return (int) lottos.stream()
-                .filter(lotto -> lotto.matchNumbers(winningNumbers) == rank.getCount())
-                .count();
+    private boolean isElse(Rank rank, Lotto lotto) {
+        return lotto.matchNumbers(winningNumbers) == rank.getCount();
     }
 
     private void printResult() {
@@ -109,7 +110,6 @@ public class LottoController {
         for(Rank rank : Rank.values()) {
             Output.printResults(rank.getMessage(), results.get(rank));
         }
-        printPercent();
     }
 
     private void printPercent() {

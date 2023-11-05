@@ -37,16 +37,16 @@ public class Lotto {
                 .count();
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
-
     public void validateBonusNumber(BonusNumber bonusNumber) {
         if(numbers.contains(bonusNumber.getValue())) {
             printBonusNumberDistinctError();
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 
     private void validateSize(List<Integer> numbers) {

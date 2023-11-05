@@ -26,7 +26,7 @@ public class LottoGameController {
         lotto = new Lotto(InputVIew.inputWinningNumbers());
         List<Integer> winningNumbers = lotto.getNumbers();// 당첨패
         //int bonus = InputVIew.inputBonusNumber();
-        bonusNumber = new BonusNumber(InputVIew.inputBonusNumber());
+        bonusNumber = new BonusNumber(InputVIew.inputBonusNumber(),winningNumbers);
         start(randomLottos);
     }
 

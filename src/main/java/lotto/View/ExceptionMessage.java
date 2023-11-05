@@ -8,6 +8,7 @@ public class ExceptionMessage {
     public static final String INVALID_AMOUNT = "[ERROR] 로또 금액은 1000원 단위입니다.";
     public static final String INVALID_MIN_AMOUNT = "[ERROR] 구매 가능 최소 금액은 1000원 입니다.";
     public static final String INVALID_EMPTY_INPUT = "[ERROR] 올바른 값을 입력하세요.";
+    public static final String DUPLICATE_BONUS_NUMBER = "[ERROR] 당첨번호와 중복된 번호를 입력했습니다.";
     public static final int MIN_NUM = 1;
     public static final int MAX_NUM = 45;
     public static final int LOTTO_LENGTH = 6;

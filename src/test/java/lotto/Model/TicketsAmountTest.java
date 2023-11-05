@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOf
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class TicketsAmountTest {
@@ -20,7 +21,7 @@ class TicketsAmountTest {
         assertThat(ticketsAmount.getTicketsPrice()).isEqualTo(validInput);
         assertThat(ticketsAmount.getTickets()).isEqualTo(validInput / 1000);
     }
-
+    @DisplayName("1000미만의 금액을 입력하면 예외가 발생한다.")
     @Test
     void testTicketsAmountWithInvalidMinimumInput() {
         // Arrange
@@ -31,7 +32,7 @@ class TicketsAmountTest {
                 .isThrownBy(() -> new TicketsAmount(invalidInput))
                 .withMessageContaining("[ERROR]");
     }
-
+    @DisplayName("1000원 단위가 아닌 금액을 입력하면 예외가 발생한다.")
     @Test
     void testTicketsAmountWithInvalidUnitInput() {
         // Arrange

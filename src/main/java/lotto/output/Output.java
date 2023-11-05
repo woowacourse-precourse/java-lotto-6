@@ -2,5 +2,5 @@ package lotto.output;
 
 public interface Output {
 
-    void print(String result);
+    void print(Object result);
 }

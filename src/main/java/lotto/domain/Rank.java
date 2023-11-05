@@ -21,10 +21,18 @@ public enum Rank {
         this.isMatch = isMatch;
     }
 
-    public static Rank getRank(final int matchLottoCnt, final boolean cotainBonusNum) {
+    public static Rank getRank(final int matchLottoCnt, final boolean containBonusNum) {
         return Arrays.stream(Rank.values())
-                .filter(rank -> rank.isMatch.test(matchLottoCnt, cotainBonusNum))
+                .filter(rank -> rank.isMatch.test(matchLottoCnt, containBonusNum))
                 .findAny()
                 .orElse(EMPTY);
+    }
+
+    public int getMatchLottoCnt() {
+        return matchLottoCnt;
+    }
+
+    public int getMoney() {
+        return money;
     }
 }

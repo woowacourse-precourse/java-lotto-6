@@ -7,6 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -32,17 +34,32 @@ class PrizeCalculatorTest {
         assertThat(String.format("%.1f", totalReturn * 100)).isEqualTo(expected);
     }
 
-    static Stream<Arguments> totalReturnParametersProvider() { //TODO: 테스트 코드 파라미터가 좀 지저분함 0,0,1,0,1 이런식으로 표현?
+    static Stream<Arguments> totalReturnParametersProvider() {
         return Stream.of(
-                Arguments.of(List.of(FIFTH_PLACE), PurchaseAmount.of(3000), "166.7"),
-                Arguments.of(List.of(), PurchaseAmount.of(1000), "0.0"),
-                Arguments.of(List.of(FIFTH_PLACE), PurchaseAmount.of(5000), "100.0"),
-                Arguments.of(List.of(FIFTH_PLACE), PurchaseAmount.of(8000), "62.5"),
-                Arguments.of(List.of(FIRST_PLACE), PurchaseAmount.of(5000), "40000000.0"),
-                Arguments.of(List.of(THIRD_PLACE, SECOND_PLACE), PurchaseAmount.of(11000), "286363.6"),
-                Arguments.of(List.of(FIFTH_PLACE, FOURTH_PLACE), PurchaseAmount.of(14000), "392.9"),
-                Arguments.of(List.of(FIRST_PLACE, FIRST_PLACE, FIRST_PLACE, FIRST_PLACE, FIRST_PLACE),
-                        PurchaseAmount.of(5000), "200000000.0")
+                Arguments.of(prizeCount(0, 0, 0, 0, 1), amountIs(3000), "166.7"),
+                Arguments.of(prizeCount(0, 0, 0, 0, 0), amountIs(1000), "0.0"),
+                Arguments.of(prizeCount(0, 0, 0, 0, 1), amountIs(5000), "100.0"),
+                Arguments.of(prizeCount(0, 0, 0, 0, 1), amountIs(8000), "62.5"),
+                Arguments.of(prizeCount(1, 0, 0, 0, 0), amountIs(5000), "40000000.0"),
+                Arguments.of(prizeCount(0, 1, 1, 0, 0), amountIs(11000), "286363.6"),
+                Arguments.of(prizeCount(0, 0, 0, 1, 1), amountIs(14000), "392.9"),
+                Arguments.of(prizeCount(5, 0, 0, 0, 0), amountIs(5000), "200000000.0")
         );
+    }
+
+    static PurchaseAmount amountIs(Integer value) {
+        return PurchaseAmount.of(value);
+    }
+
+    static List<LottoPrize> prizeCount(int first, int second, int third, int fourth, int fifth) {
+        return Stream.of(
+                        Collections.nCopies(first, FIRST_PLACE),
+                        Collections.nCopies(second, SECOND_PLACE),
+                        Collections.nCopies(third, THIRD_PLACE),
+                        Collections.nCopies(fourth, FOURTH_PLACE),
+                        Collections.nCopies(fifth, FIFTH_PLACE)
+                )
+                .flatMap(Collection::stream)
+                .toList();
     }
 }

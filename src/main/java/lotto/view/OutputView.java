@@ -17,15 +17,8 @@ public class OutputView {
 
     private static void printEachLotto(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
-            printSortedNumber(lotto.getNumbers());
+            printJoiningNumber(lotto.getNumbers());
         }
-    }
-
-    private static void printSortedNumber(List<Integer> numbers) {
-        List<Integer> sortedNumbers = numbers.stream()
-                .sorted()
-                .collect(Collectors.toList());
-        printJoiningNumber(sortedNumbers);
     }
 
     private static void printJoiningNumber(List<Integer> sortedNumbers) {

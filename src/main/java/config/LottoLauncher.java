@@ -27,5 +27,42 @@ public class LottoLauncher {
         return defaultLottoLauncher;
     }
 
+    public GameView gameView() {
+        if(gameView == null) {
+            gameView = new GameView();
+        }
+        return gameView;
+    }
 
+    public UserLottoVO userLottoVO() {
+        if(userLottoVO == null) {
+            userLottoVO = new UserLottoVO();
+        }
+        return userLottoVO;
+    }
+
+    public WinningLotto winningLotto() {
+        return WinningLotto.getInstance();
+    }
+
+    public LottoService lottoService() {
+        if(lottoService == null) {
+            lottoService = new LottoService(winningLotto(),userLottoVO());
+        }
+        return lottoService;
+    }
+
+    public GameController gameController() {
+        if(gameController == null) {
+            gameController = new GameController(lottoService(),gameView());
+        }
+        return gameController;
+    }
+
+    public InputView inputView() {
+        if(inputView == null) {
+            inputView = new InputView(gameController());
+        }
+        return inputView;
+    }
 }

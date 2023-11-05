@@ -47,7 +47,9 @@ public class LottoController {
         WinningNumbersData winningNumbersData = createValidWinningNumbersData();
         while (true) {
             try {
-                BonusNumber bonusNumber = createValidBonusNumber();
+                OutputView.printBonusNumberMessage();
+
+                BonusNumber bonusNumber = new BonusNumber(InputView.inputNumber());
                 return new WinningNumbers(winningNumbersData, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -61,18 +63,6 @@ public class LottoController {
                 OutputView.printWinningNumbersMessage();
                 List<Integer> winningNumbers = InputView.inputWinningNumbers();
                 return new WinningNumbersData(winningNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private BonusNumber createValidBonusNumber() {
-        while (true) {
-            try {
-                OutputView.printBonusNumberMessage();
-                int bonus = InputView.inputNumber();
-                return new BonusNumber(bonus);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

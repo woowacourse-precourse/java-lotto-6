@@ -47,4 +47,12 @@ public class WinningStatistics {
     private void addWinningResult(Rank rank) {
         winningStatistics.put(rank, winningStatistics.get(rank) + 1);
     }
+
+    public int getTotalWinningAmount() {
+        int totalWinningAmount = 0;
+        for (Rank rank : Rank.values()) {
+            totalWinningAmount += (rank.winningAmount) * (winningStatistics.get(rank));
+        }
+        return totalWinningAmount;
+    }
 }

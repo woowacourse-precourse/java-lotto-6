@@ -19,7 +19,7 @@ public class GameController {
         Lottos plyerLottos = buyLottos(purchaseAmout);
         printLottos(plyerLottos);
         List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(winningNumbers);
         PrizeManager prizeManager = new PrizeManager(winningNumbers, bonusNumber, plyerLottos);
         printPrizeResults(prizeManager);
         printPrizeProfit(prizeManager, purchaseAmout);
@@ -27,7 +27,7 @@ public class GameController {
 
     private PurchaseAmout getPurchaseAmout() {
         outputView.printGetPurchaseAmountMessage();
-        return new PurchaseAmout(inputView.getInteger());
+        return new PurchaseAmout(inputView.getPurchaseAmount());
     }
 
     private Lottos buyLottos(PurchaseAmout purchaseAmout) {
@@ -45,9 +45,9 @@ public class GameController {
         return inputView.getWinningNumbers();
     }
 
-    private int getBonusNumber() {
+    private int getBonusNumber(List<Integer> winningNumbers) {
         outputView.printGetBonusNumberMessage();
-        return inputView.getInteger();
+        return inputView.getBonusNumber(winningNumbers);
     }
 
     private void printPrizeResults(PrizeManager prizeManager) {

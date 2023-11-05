@@ -24,4 +24,8 @@ public record Money(int amount) {
             throw new IllegalArgumentException();  // TODO: custom 예외 만들기
         }
     }
+
+    public int getIssueAmount() {
+        return amount / GameConfig.LOTTO_PRICE_UNIT;
+    }
 }

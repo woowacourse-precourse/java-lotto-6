@@ -9,8 +9,8 @@ public class MoneyValid {
 
     public static int validMoney(String input) {
         int money = validOnlyNumber(input);
-        validDividing(money);
         validMinMoney(money);
+        validDividing(money);
         return money;
     }
 

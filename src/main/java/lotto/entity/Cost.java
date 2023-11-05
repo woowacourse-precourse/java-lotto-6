@@ -21,4 +21,8 @@ public class Cost {
     private void validate(String inputPurchaseCost){
         verifyFormatForInputValue(COST,inputPurchaseCost);
     }
+
+    public Long getPurchaseCost(){
+        return purchaseCost;
+    }
 }

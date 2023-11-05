@@ -17,4 +17,12 @@ public class UserValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    void validateMoneyNumeric(String money) {
+        for (int moneyIndex = 0; moneyIndex < money.length(); moneyIndex++) {
+            if (Character.isDigit(money.charAt(moneyIndex))) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 }

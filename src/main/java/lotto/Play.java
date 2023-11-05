@@ -12,6 +12,10 @@ public class Play {
     private static final String ERROR_VALIDLENGTH= "[ERROR] 로또 번호는 6자리만 입력해야 합니다.";
     private static final String ERROR_LOTTODUPLICATENUMBER= "[ERROR] 로또 번호가 중복되었습니다.";
 
+    private static final String INPUT_MONEY= "구입금액을 입력해 주세요.";
+    private static final String INPUT_BONUS= "\n보너스 번호를 입력해 주세요.";
+    private static final String INPUT_WIN="\n당첨 번호를 입력해 주세요.";
+    private static final String INPUT_TOTAL="\n당첨 통계\n---";
     public int money = 0;
     public int count = 0;
     public List<Integer> winNumber=new ArrayList<>();
@@ -51,7 +55,7 @@ public class Play {
     }
 
     public void inputMoney(){
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_MONEY);
         check=true;
         while(check){
             try{
@@ -76,7 +80,7 @@ public class Play {
     }
 
     public void inputBonusNumber(){
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS);
         check=true;
         while(check){
             try{
@@ -110,7 +114,7 @@ public class Play {
     }
 
     public void inputWinNumber(){
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_WIN);
         String carNameList;
         String[] arrayString;
         check=true;
@@ -190,8 +194,7 @@ public class Play {
         lotto.saveMatchingNumbers(papers.papers);
         lotto.saveRateOfReturn(papers.papers,money);
 
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
+        System.out.println(INPUT_TOTAL);
         lotto.printMatchingNumbers();
         lotto.printRateOfReturn();
     }

@@ -21,4 +21,12 @@ public class WinningNumbers {
         }
     }
 
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
+
 }

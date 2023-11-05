@@ -1,10 +1,12 @@
 package lotto.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
+import lotto.util.RandomGenerator;
 
 public class LottoNumber {
 
@@ -18,27 +20,25 @@ public class LottoNumber {
                 .forEach(i -> lottoNumberCacheMap.put(i, new LottoNumber(i)));
     }
 
-    private LottoNumber(Integer number) {
+    private LottoNumber(final Integer number) {
         validateNumberInRange(number);
         this.number = number;
     }
 
-    public static LottoNumber generateLottoNumber(int number) {
+    public static LottoNumber generateLottoNumber(final int number) {
         return Optional.ofNullable(lottoNumberCacheMap.get(number))
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    private void validateNumberInRange(int number) {
-        validateNumberIsLessThanMinThreshold(number);
-        validateNumberIsMoreThanMaxThreshold(number);
+    public static List<LottoNumber> generateLottoNumbers(final int lottoSize) {
+        List<Integer> randomNumbers = RandomGenerator.generateRandomValue(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, lottoSize);
+        return randomNumbers.stream()
+                .map(LottoNumber::generateLottoNumber)
+                .toList();
     }
 
-    private void validateNumberIsLessThanMinThreshold(int number){
-        if(number < MIN_LOTTO_NUMBER) throw new IllegalArgumentException();
-    }
-
-    private void validateNumberIsMoreThanMaxThreshold(int number){
-        if(number > MAX_LOTTO_NUMBER) throw new IllegalArgumentException();
+    public int getNumber() {
+        return this.number;
     }
 
     @Override
@@ -56,5 +56,18 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    private void validateNumberInRange(int number) {
+        validateNumberIsLessThanMinThreshold(number);
+        validateNumberIsMoreThanMaxThreshold(number);
+    }
+
+    private void validateNumberIsLessThanMinThreshold(int number){
+        if(number < MIN_LOTTO_NUMBER) throw new IllegalArgumentException();
+    }
+
+    private void validateNumberIsMoreThanMaxThreshold(int number){
+        if(number > MAX_LOTTO_NUMBER) throw new IllegalArgumentException();
     }
 }

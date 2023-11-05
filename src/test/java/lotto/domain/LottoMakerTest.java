@@ -28,7 +28,7 @@ class LottoMakerTest {
     ) {
         // 보너스 번호는 예외를 발생시키지 않는 값으로 설정
         int bonusNumber = 45;
-        assertThatThrownBy(() -> lottoMaker.createWinningLottoFromInput(input, 45))
+        assertThatThrownBy(() -> lottoMaker.createWinningLottoFromInput(input, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedErrorMessage);
 
@@ -54,7 +54,7 @@ class LottoMakerTest {
     @MethodSource("provideInvalidPrice")
     void createLottoByPrice_WithInvalidAmount(
             String testMessage,
-            int price,
+            Money price,
             String expectedErrorMessage
     ) {
         assertThatThrownBy(() -> lottoMaker.createLottoByPrice(price))
@@ -82,8 +82,8 @@ class LottoMakerTest {
 
     static Stream<Arguments> provideInvalidPrice() {
         return Stream.of(
-                arguments("1000원 단위가 아닌 금액", 8156, "금액은 1000원 단위로 입력해야 합니다."),
-                arguments("1000원 미만의 금액", 500, "최소 1000원의 금액을 입력해야 합니다.")
+                arguments("1000원 단위가 아닌 금액", new Money(8156), "금액은 1000원 단위로 입력해야 합니다."),
+                arguments("1000원 미만의 금액", new Money(500), "최소 1000원의 금액을 입력해야 합니다.")
         );
     }
 }

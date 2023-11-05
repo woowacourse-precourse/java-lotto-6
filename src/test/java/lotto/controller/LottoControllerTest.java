@@ -13,6 +13,7 @@ import java.io.PrintStream;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMaker;
+import lotto.domain.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -73,7 +74,7 @@ class LottoControllerTest extends NsTest {
 
         // 유저의 로또 번호 임의 설정
         LottoMaker lottoMaker = spy(new LottoMaker());
-        when(lottoMaker.createLottoByPrice(5000))
+        when(lottoMaker.createLottoByPrice(new Money(5000)))
                 .thenReturn(List.of(
                                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                                 new Lotto(List.of(1, 3, 4, 5, 6, 7)),

@@ -18,16 +18,16 @@ public class InputView {
     private static final String COMMA = ",";
     private static final String NUMBERS_FORMAT_REGEX = "([0-9]+,?)+";
     private static final String NUMBER_REGEX = "[0-9]+";
-    private static final int ONE_LOTTO_PRICE = 1000;
-    private static final int ZERO_AMOUNT = 0;
+    private static final long ONE_LOTTO_PRICE = 1000L;
+    private static final long ZERO = 0L;
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
     private static final int NUMBERS_COUNT = 6;
 
-    public int receivePurchaseAmount() {
+    public long receivePurchaseAmount() {
         String purchaseAmount = Console.readLine();
         validatePurchaseAmount(purchaseAmount);
-        return Integer.parseInt(purchaseAmount);
+        return Long.parseLong(purchaseAmount);
     }
 
     private void validatePurchaseAmount(String purchaseAmount) {
@@ -37,11 +37,11 @@ public class InputView {
         if (isNotContainsOnlyNumber(purchaseAmount)) {
             throw new IllegalArgumentException(NOT_CONTAINS_ONLY_NUMBER.getErrorMessage());
         }
-        int amount = Integer.parseInt(purchaseAmount);
+        long amount = Long.parseLong(purchaseAmount);
         if (amount < ONE_LOTTO_PRICE) {
             throw new IllegalArgumentException(UNDER_THOUSAND_AMOUNT.getErrorMessage());
         }
-        if (amount % ONE_LOTTO_PRICE != ZERO_AMOUNT) {
+        if (amount % ONE_LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException(NOT_THOUSAND_UNIT.getErrorMessage());
         }
     }

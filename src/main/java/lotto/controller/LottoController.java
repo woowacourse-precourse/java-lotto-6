@@ -6,7 +6,8 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMaker;
 import lotto.domain.LottoResult;
-import lotto.domain.UserLottos;
+import lotto.domain.Money;
+import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -25,34 +26,34 @@ public class LottoController {
     }
 
     public void play() {
-        UserLottos userLottos = receiveUserLottos();
-        int purchaseAmount = userLottos.getTotalLottos() * ONE_LOTTO_PRICE;
-        displayUserLotto(userLottos);
+        UserLotto userLotto = receiveUserLottos();
+        Money purchaseAmount = new Money(userLotto.getLottoCount() * ONE_LOTTO_PRICE);
+        displayUserLotto(userLotto);
 
         WinningLotto winningLotto = receiveWinningLottoNumber();
 
-        LottoResult lottoResult = userLottos.compareAllLotto(winningLotto);
+        LottoResult lottoResult = userLotto.compareAllLotto(winningLotto);
 
         printLottoResultStatistics(lottoResult, purchaseAmount);
     }
 
-    private void displayUserLotto(UserLottos userLottos) {
-        int totalLotto = userLottos.getTotalLottos();
-        String allLotto = userLottos.displayAllLotto();
+    private void displayUserLotto(UserLotto userLotto) {
+        long totalLotto = userLotto.getLottoCount();
+        String allLotto = userLotto.displayAllLotto();
 
         outputView.printNewLine();
         outputView.printUserLotto(totalLotto, allLotto);
     }
 
-    private UserLottos receiveUserLottos() {
-        int purchaseAmount = receivePurchaseAmount();
+    private UserLotto receiveUserLottos() {
+        Money purchaseAmount = receivePurchaseAmount();
         List<Lotto> userLottoNumbers = lottoMaker.createLottoByPrice(purchaseAmount);
 
-        return new UserLottos(userLottoNumbers);
+        return new UserLotto(userLottoNumbers);
     }
 
-    private int receivePurchaseAmount() {
-        int purchaseAmount;
+    private Money receivePurchaseAmount() {
+        long purchaseAmount;
         while (true) {
             try {
                 outputView.requestAmount();
@@ -62,7 +63,7 @@ public class LottoController {
                 outputView.printMessage(e.getMessage());
             }
         }
-        return purchaseAmount;
+        return new Money(purchaseAmount);
     }
 
     private WinningLotto receiveWinningLottoNumber() {
@@ -103,8 +104,9 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private void printLottoResultStatistics(LottoResult lottoResult, int purchaseAmount) {
+    private void printLottoResultStatistics(LottoResult lottoResult, Money purchaseAmount) {
+        Money totalRevenue = lottoResult.getTotalRevenue();
         outputView.printStatistics(lottoResult.getStatistics());
-        outputView.printEarningRate(purchaseAmount, lottoResult.getTotalRevenue());
+        outputView.printEarningRate(purchaseAmount.amount(), totalRevenue.amount());
     }
 }

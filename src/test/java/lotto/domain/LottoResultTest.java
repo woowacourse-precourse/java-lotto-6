@@ -3,7 +3,6 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import java.math.BigDecimal;
 import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -18,13 +17,13 @@ class LottoResultTest {
     @MethodSource("argumentsProvider")
     void getStatistics(
             String testName,
-            int fifthPrizeCount,
-            int fourthPrizeCount,
-            int thirdPrizeCount,
-            int secondPrizeCount,
-            int winPrizeCount
+            long fifthPrizeCount,
+            long fourthPrizeCount,
+            long thirdPrizeCount,
+            long secondPrizeCount,
+            long winPrizeCount
     ) {
-        Map<LottoPrizes, Integer> expectedPrizes = Map.of(
+        Map<LottoPrizes, Long> expectedPrizes = Map.of(
                 LottoPrizes.THREE_NUMBERS_MATCHED, fifthPrizeCount,
                 LottoPrizes.FOUR_NUMBERS_MATCHED, fourthPrizeCount,
                 LottoPrizes.FIVE_NUMBER_MATCHED, thirdPrizeCount,
@@ -50,14 +49,14 @@ class LottoResultTest {
     @MethodSource("argumentsProvider")
     void getTotalRevenue(
             String testName,
-            int fifthPrizeCount,
-            int fourthPrizeCount,
-            int thirdPrizeCount,
-            int secondPrizeCount,
-            int winPrizeCount,
-            BigDecimal expectedWinningAmount
+            long fifthPrizeCount,
+            long fourthPrizeCount,
+            long thirdPrizeCount,
+            long secondPrizeCount,
+            long winPrizeCount,
+            Money expectedWinningAmount
     ) {
-        Map<LottoPrizes, Integer> expectedPrizes = Map.of(
+        Map<LottoPrizes, Long> expectedPrizes = Map.of(
                 LottoPrizes.THREE_NUMBERS_MATCHED, fifthPrizeCount,
                 LottoPrizes.FOUR_NUMBERS_MATCHED, fourthPrizeCount,
                 LottoPrizes.FIVE_NUMBER_MATCHED, thirdPrizeCount,
@@ -71,12 +70,12 @@ class LottoResultTest {
 
     static Stream<Arguments> argumentsProvider() {
         return Stream.of(
-                arguments("전체 로또 중 하나만 5등인 경우", 1, 0, 0, 0, 0, new BigDecimal("5000")),
-                arguments("전체 로또 중 하나만 4등인 경우", 0, 1, 0, 0, 0, new BigDecimal("50000")),
-                arguments("전체 로또 중 하나만 3등인 경우", 0, 0, 1, 0, 0, new BigDecimal("1500000")),
-                arguments("전체 로또 중 하나만 2등인 경우", 0, 0, 0, 1, 0, new BigDecimal("30000000")),
-                arguments("전체 로또 중 하나만 1등인 경우", 0, 0, 0, 0, 1, new BigDecimal("2000000000")),
-                arguments("1,2,3,4,5등 결과를 모두 가지는 경우", 1, 1, 1, 1, 1, new BigDecimal("2031555000"))
+                arguments("전체 로또 중 하나만 5등인 경우", 1L, 0L, 0L, 0L, 0L, new Money(5000)),
+                arguments("전체 로또 중 하나만 4등인 경우", 0L, 1L, 0L, 0L, 0L, new Money(50000)),
+                arguments("전체 로또 중 하나만 3등인 경우", 0L, 0L, 1L, 0L, 0L, new Money(1500000)),
+                arguments("전체 로또 중 하나만 2등인 경우", 0L, 0L, 0L, 1L, 0L, new Money(30000000)),
+                arguments("전체 로또 중 하나만 1등인 경우", 0L, 0L, 0L, 0L, 1L, new Money(2000000000)),
+                arguments("1,2,3,4,5등 결과를 모두 가지는 경우", 1L, 1L, 1L, 1L, 1L, new Money(2031555000))
         );
     }
 }

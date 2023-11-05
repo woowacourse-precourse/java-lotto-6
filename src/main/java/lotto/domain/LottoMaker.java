@@ -5,8 +5,8 @@ import static lotto.constant.Constant.MAX_RANGE;
 import static lotto.constant.Constant.MIN_RANGE;
 import static lotto.constant.Constant.NUMBERS_FORMAT_REGEX;
 import static lotto.constant.Constant.ONE_LOTTO_PRICE;
-import static lotto.constant.Constant.ZERO_AMOUNT;
-import static lotto.constant.Constant.ZERO_COUNT;
+import static lotto.constant.Constant.SIX;
+import static lotto.constant.Constant.ZERO;
 import static lotto.domain.LottoMaker.LottoMakerErrorMessage.DUPLICATED_BONUS_NUMBER;
 import static lotto.domain.LottoMaker.LottoMakerErrorMessage.NEGATIVE_COUNT;
 import static lotto.domain.LottoMaker.LottoMakerErrorMessage.NOT_EXIST_INPUT_ERROR;
@@ -18,10 +18,10 @@ import static lotto.domain.LottoMaker.LottoMakerErrorMessage.WINNING_NUMBERS_INV
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class LottoMaker {
-    private static final int START_ORDER = 1;
+    private static final long START_ORDER = 1L;
     private final LottoNumberMaker lottoNumberMaker;
 
     public LottoMaker() {
@@ -55,7 +55,7 @@ public class LottoMaker {
     }
 
     private boolean hasNotSixNumbers(String numbers) {
-        return numbers.split(COMMA).length != 6;
+        return numbers.split(COMMA).length != SIX;
     }
 
     private void validateBonusNumber(String numbers, int bonusNumber) {
@@ -79,31 +79,31 @@ public class LottoMaker {
         return new Lotto(lottoNumbers);
     }
 
-    public List<Lotto> createLottoByPrice(int price) {
+    public List<Lotto> createLottoByPrice(Money price) {
         validatePrice(price);
-        int lottoCount = price / ONE_LOTTO_PRICE;
 
-        return createLottosByCount(lottoCount);
+        long lottoCount = price.amount() / ONE_LOTTO_PRICE;
+        return createLottoByCount(lottoCount);
     }
 
-    private void validatePrice(int price) {
-        if (price < ONE_LOTTO_PRICE) {
+    private void validatePrice(Money price) {
+        if (price.isLessThan(new Money(ONE_LOTTO_PRICE))) {
             throw new IllegalArgumentException(UNDER_THOUSAND_AMOUNT.getErrorMessage());
         }
-        if (price % ONE_LOTTO_PRICE != ZERO_AMOUNT) {
+        if (price.cantDivided(new Money(ONE_LOTTO_PRICE))) {
             throw new IllegalArgumentException(NOT_THOUSAND_UNIT.getErrorMessage());
         }
     }
 
-    private List<Lotto> createLottosByCount(int lottoCount) {
+    private List<Lotto> createLottoByCount(long lottoCount) {
         validateCount(lottoCount);
-        return IntStream.rangeClosed(START_ORDER, lottoCount)
+        return LongStream.rangeClosed(START_ORDER, lottoCount)
                 .mapToObj(order -> createOneLotto())
                 .toList();
     }
 
-    private void validateCount(int lottoCount) {
-        if (lottoCount < ZERO_COUNT) {
+    private void validateCount(long lottoCount) {
+        if (lottoCount < ZERO) {
             throw new IllegalArgumentException(NEGATIVE_COUNT.getErrorMessage());
         }
     }

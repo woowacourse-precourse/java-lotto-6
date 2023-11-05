@@ -2,12 +2,11 @@ package lotto.domain;
 
 import static lotto.constant.Constant.NEW_LINE;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public record LottoResult(Map<LottoPrizes, Integer> result) {
+public record LottoResult(Map<LottoPrizes, Long> result) {
     private static final String LEFT_PARENTHESIS = "(";
     private static final String RIGHT_PARENTHESIS = ")";
     private static final String SPACE = " ";
@@ -22,7 +21,7 @@ public record LottoResult(Map<LottoPrizes, Integer> result) {
     }
 
     private String displayPrizes(LottoPrizes lottoPrizes) {
-        final int winCount = result.get(lottoPrizes);
+        final long winCount = result.get(lottoPrizes);
         return lottoPrizes.getTerm()
                 + SPACE
                 + LEFT_PARENTHESIS
@@ -33,15 +32,15 @@ public record LottoResult(Map<LottoPrizes, Integer> result) {
                 + COUNT_TO_KOREAN;
     }
 
-    public BigDecimal getTotalRevenue() {
+    public Money getTotalRevenue() {
         return Arrays.stream(LottoPrizes.values())
                 .map(this::getRevenue)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+                .reduce(Money.ZERO, Money::sum);
     }
 
-    private BigDecimal getRevenue(LottoPrizes lottoPrizes) {
-        final BigDecimal winCount = new BigDecimal(result.get(lottoPrizes));
-        final BigDecimal winAmount = lottoPrizes.getWinningAmount();
-        return winAmount.multiply(winCount);
+    private Money getRevenue(LottoPrizes lottoPrizes) {
+        final long winCount = result.get(lottoPrizes);
+        final Money winAmount = lottoPrizes.getWinningAmount();
+        return winAmount.multiplyByCount(winCount);
     }
 }

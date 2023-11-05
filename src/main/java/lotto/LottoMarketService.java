@@ -27,7 +27,6 @@ public class LottoMarketService {
             int candidateNum = lottoNumSupplier.get();
             boolean isDuplicated = lottoNumbers.stream()
                     .anyMatch(num->num.equals(candidateNum));
-            System.out.println(isDuplicated);
             if(!isDuplicated){
                 lottoNumbers.add(candidateNum);
             }

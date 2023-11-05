@@ -16,6 +16,25 @@ public class Lotto {
         OutputView.printLottoNumbers(numbers);
     }
 
+    private LottoRank calculateLottoRank(WinningLotto winningLotto) {
+        int matchCount = calculateMatchCount(winningLotto.getWinningNumber());
+        boolean matchBonus = isMatchBonus(winningLotto.getBonusNumber());
+
+        return LottoRank.calculateRank(matchCount, matchBonus).orElse(LottoRank.MISS);
+    }
+
+    private boolean isMatchBonus(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getBonusNumber());
+    }
+
+    private int calculateMatchCount(WinningNumber winningNumber) {
+        List<Integer> winningNumbers = winningNumber.getWinningNumbers();
+
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
     private List<Integer> numberSortWithAscendingOrder(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()

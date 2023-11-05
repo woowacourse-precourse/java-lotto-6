@@ -24,7 +24,7 @@ public enum Rank {
     }
 
     public static List<Rank> getValidRanks(List<Rank> ranks) {
-        return Arrays.stream(Rank.values())
+        return ranks.stream()
                 .filter(rank -> rank != Rank.NO)
                 .collect(Collectors.toList());
     }

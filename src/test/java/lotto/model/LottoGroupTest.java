@@ -43,8 +43,25 @@ class LottoGroupTest {
     @ParameterizedTest
     @MethodSource("totalPrizesDataProvider")
     void 로또_그룹에서_우승번호와_보너스번호와_각각_비교하여_전체_상품결과를_계산한다(
-            WinningCombination winningCombination, List<Lotto> lottos, TotalPrize expectedTotalPrize) {
-        LottoGroup lottoGroup = new LottoGroup(lottos);
+            WinningCombination winningCombination, LottoGroup lottoGroup, TotalPrize expectedTotalPrize) {
+        TotalPrize actualTotalPrize = lottoGroup.calculateTotalPrizes(winningCombination);
+
+        assertThat(actualTotalPrize).usingRecursiveComparison()
+                .isEqualTo(expectedTotalPrize);
+    }
+
+    @Test
+    void 로또_그룹에서_우승자번호와_보너스번호를_각각_비교할여_상품을_계산할때는_로또_안의_로또번호_순서는_상관없다() {
+        WinningCombination winningCombination = WinningCombination.of(
+                Lotto.from(List.of(1, 2, 3, 4, 5, 6)),
+                LottoNumber.from(7)
+        );
+        LottoGroup lottoGroup = createLottoGroup(
+                Lotto.from(List.of(6, 5, 4, 3, 2, 1))
+        );
+        TotalPrize expectedTotalPrize = TotalPrize.from(Map.of(
+                LottoPrize.FIRST_PRIZE, 1L
+        ));
 
         TotalPrize actualTotalPrize = lottoGroup.calculateTotalPrizes(winningCombination);
 
@@ -92,14 +109,14 @@ class LottoGroupTest {
         return Stream.of(
                 Arguments.of(
                         WinningCombination.of(Lotto.from(List.of(1, 2, 3, 4, 5, 6)), LottoNumber.from(7)),
-                        List.of(
+                        new LottoGroup(List.of(
                                 Lotto.from(List.of(1, 2, 3, 4, 5, 6)),
                                 Lotto.from(List.of(1, 2, 3, 4, 5, 7)),
                                 Lotto.from(List.of(1, 2, 3, 4, 5, 8)),
                                 Lotto.from(List.of(1, 2, 3, 4, 8, 9)),
                                 Lotto.from(List.of(1, 2, 3, 7, 8, 9)),
                                 Lotto.from(List.of(8, 9, 10, 11, 12, 13))
-                        ),
+                        )),
                         TotalPrize.from(Map.of(
                                 LottoPrize.FIRST_PRIZE, 1L,
                                 LottoPrize.SECOND_PRIZE, 1L,

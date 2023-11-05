@@ -134,6 +134,18 @@ class LottoTest {
         assertThat(actualPrize).isEqualTo(expectedPrize);
     }
 
+    @Test
+    void 로또에서_우승자번호와_보너스번호를_각각_비교하여_상품을_계산할때는_로또_안의_로또번호_순서는_상관없다() {
+        Lotto lotto = Lotto.from(List.of(6, 5, 4, 3, 2, 1));
+        Lotto winningLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber bonusNumber = LottoNumber.from(7);
+        WinningCombination winningCombination = WinningCombination.of(winningLotto, bonusNumber);
+
+        LottoPrize actualPrize = lotto.determineLottoPrize(winningCombination);
+
+        assertThat(actualPrize).isEqualTo(LottoPrize.FIRST_PRIZE);
+    }
+
     @ParameterizedTest
     @CsvSource(value = {"1, true", "2, true", "3, true", "4, true", "5, true", "6, true", "7, false"})
     void 로또가_특정_번호를_가지고_있는지_확인할_수_있다(int number, boolean expected) {

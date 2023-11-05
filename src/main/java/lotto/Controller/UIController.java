@@ -34,6 +34,9 @@ public class UIController {
             throw new IllegalArgumentException("1이상의 숫자만 가능합니다.");
         }
 
-
+        if (price % 1000 == 0) {
+            return;
+        }
+        throw new IllegalArgumentException("천 단위의 숫자만 가능 합니다");
     }
 }

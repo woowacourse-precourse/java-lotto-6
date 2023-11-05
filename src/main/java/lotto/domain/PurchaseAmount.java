@@ -15,8 +15,11 @@ public class PurchaseAmount {
     }
 
     private void validate(String amount) {
-        if(isEmpty(amount)){
-            ErrorMessage.PURCHASE_AMOUNT_IS_EMPTY.throwException();
+        if(isEmpty(amount)) {
+            ErrorMessage.PURCHASE_AMOUNT_IS_EMPTY.throwIllegalArgumentException();
+        }
+        if(!isNumeric(amount)) {
+            ErrorMessage.PURCHASE_AMOUNT_IS_NOT_A_NUMBER.throwNumberFormatException();
         }
     }
 
@@ -26,5 +29,9 @@ public class PurchaseAmount {
 
     private boolean isEmpty(String amount) {
         return amount == null || amount.isBlank();
+    }
+
+    private boolean isNumeric(String amount) {
+        return amount.chars().allMatch(Character::isDigit);
     }
 }

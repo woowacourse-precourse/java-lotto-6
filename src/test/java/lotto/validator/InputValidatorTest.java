@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -54,5 +55,15 @@ class InputValidatorTest {
                 .withMessageStartingWith(error)
                 .withMessageContaining("숫자는 0으로 시작할 수 없습니다.");
     }
+
+    @ParameterizedTest(name = "입력값 : {0}")
+    @ValueSource(strings = {"8000", "10000", "1,2,3,4,5,6", "7"})
+    @DisplayName("입력 공통 예외 처리 통과")
+    void givenInput_whenValidate_thenNoException(String input) {
+        // when & then
+        assertThatNoException()
+                .isThrownBy(() -> InputValidator.validate(input));
+    }
+
 
 }

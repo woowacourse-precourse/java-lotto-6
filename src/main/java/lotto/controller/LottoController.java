@@ -29,7 +29,7 @@ public class LottoController {
             //당첨번호 입력
             Lotto lotto = new Lotto(inputView.input());
             //보너스 번호 입력
-            BonusLotto bonusLotto = new BonusLotto(Integer.parseInt(inputView.input()));
+            BonusLotto bonusLotto = new BonusLotto(Integer.parseInt(inputView.input()), lotto.getNumbers());
             //당첨 내역 출력
             LottoService lottoService = new LottoService(amount, userLotto, lotto, bonusLotto);
             //총 수익률 출력

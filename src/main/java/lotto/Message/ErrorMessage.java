@@ -16,6 +16,7 @@ public enum ErrorMessage {
     LOTTO_SIZE_ERROR_MESSAGE(String.format("[ERROR]당첨 번호는 %d자리 여야 합니다."
             , LOTTO_VALUE_SIZE.getValue())),
     LOTTO_IS_DUPLICATE("[ERROR]당첨 번호가 중복 입니다."),
+    BONUS_LOTTO_IS_DUPLICATE("[ERROR]보너스 번호가 중복 입니다."),
     VALUE_IS_NOT_CONVERT_INTEGER("[ERROR]입력 값을 정수로 바꿀 수 없습니다. 정수형으로 입력해 주세요.");
     private final String errorMessage;
 

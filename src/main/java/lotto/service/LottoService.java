@@ -5,6 +5,7 @@ import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningCombination;
 import lotto.domain.WinningNumbers;
+import lotto.domain.WinningResult;
 import lotto.repository.DomainRepository;
 import lotto.utils.LottoPublisher;
 
@@ -34,5 +35,14 @@ public class LottoService {
             final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
         domainRepository.saveWinningCombination(
                 new WinningCombination(winningNumbers, bonusNumber));
+    }
+
+    public WinningResult calculateWinningResult() {
+        final Lottos lottos = domainRepository.getLottos();
+        final WinningCombination winningCombination = domainRepository.getWinningCombination();
+
+        final WinningResult winningResult = winningCombination.calculateWinningLottos(lottos);
+        domainRepository.saveWinningResult(winningResult);
+        return winningResult;
     }
 }

@@ -4,6 +4,7 @@ import lotto.constant.ErrorMessage;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningCombination;
+import lotto.domain.WinningResult;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -13,6 +14,7 @@ public class DomainRepository {
     private PurchaseAmount purchaseAmount;
     private Lottos lottos;
     private WinningCombination winningCombination;
+    private WinningResult winningResult;
 
     public void saveLottos(final Lottos lottos) {
         this.lottos = lottos;
@@ -36,6 +38,14 @@ public class DomainRepository {
 
     public WinningCombination getWinningCombination() {
         return get(() -> this.winningCombination);
+    }
+
+    public void saveWinningResult(final WinningResult winningResult) {
+        this.winningResult = winningResult;
+    }
+
+    public WinningResult getWinningResult() {
+        return get(() -> this.winningResult);
     }
 
     private <T> T get(final Supplier<T> supplier) {

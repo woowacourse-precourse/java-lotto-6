@@ -1,4 +1,4 @@
-package game;
+package lottoTicketPurchase;
 
 import static constant.ConstantMessage.PURCHASE_QUANTITY_PRINT_MESSAGE;
 import static constant.ConstantNumber.PURCHASE_UNIT;

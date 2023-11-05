@@ -13,6 +13,7 @@ import base.Converter;
 import java.util.ArrayList;
 import java.util.List;
 import lottoTicketPurchase.LottoTicketPurchase;
+import lottoTicketPurchase.LottoTicketQuantity;
 
 public class LottoGame {
     public void run() {

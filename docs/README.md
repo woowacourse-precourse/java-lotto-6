@@ -9,10 +9,11 @@
     feat - [x] Model 저장된 금액이 정수로 변환 가능하지 않으면 IllegalArgumentException을 발생시키는 기능
     feat - [x] Controller IllegalArgumentException이 발생하면 [ERROR]로 시작하는 View의 에러 메세지 출력 기능 호출 기능
     feat - [x] View “[ERROR] 유효하지 않은 입력입니다. 재입력 부탁드립니다.” 예외 메세지 출력 기능
-    feat - [ ] Model 저장된 금액이 정수로 변환 시키는 기능
-    feat - [ ] Model 저장된 금액이 1000으로 나누어 떨어지지 않으면 IllegalArgumentException을 발생시키는 기능
-    feat - [ ] Controller IllegalArgumentException이 발생하면 [ERROR]로 시작하는 View의 에러 메세지 출력 기능 호출 기능
-    feat - [ ] View “[ERROR] 천단위로 금액 입력 부탁드립니다. 재입력 부탁드립니다.” 예외 메세지 출력 기능
+    feat - [x] Model 저장된 금액이 정수로 변환 시키는 기능
+        test - [x] 저장된 금액이 1000으로 나누어 떨어지지 않으면 IllegalArgumentException을 발생시키는 기능
+    feat - [x] Model 저장된 금액이 1000으로 나누어 떨어지지 않으면 IllegalArgumentException을 발생시키는 기능
+    feat - [x] Controller IllegalArgumentException이 발생하면 [ERROR]로 시작하는 View의 에러 메세지 출력 기능 호출 기능
+    feat - [x] View “[ERROR] 천 단위로 금액 입력 부탁드립니다.” 예외 메세지 출력 기능
     feat - [ ] Model 입력된 금액을 복권 매수로 연산하는 기능
     feat - [ ] View 빈 라인을 출력하는 기능
     feat - [ ] Controller 복권 매수를 출력하는 기능을 호출하는 기능

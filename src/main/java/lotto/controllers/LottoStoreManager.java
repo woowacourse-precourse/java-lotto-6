@@ -1,19 +1,29 @@
 package lotto.controllers;
 
+import static lotto.model.InputValidator.validateDivisibleByThousand;
 import static lotto.model.InputValidator.validateNonInteger;
-import static lotto.views.MessageManager.getPurchaseAmountPromptMessage;
+import static lotto.model.Utilities.inputIntegerParsing;
+import static lotto.views.MessageManager.*;
 
 public class LottoStoreManager {
-    public String purchaseController() {
+    private String input;
+
+    public void setInput(String input) {
+        this.input = input;
+    }
+
+    public void purchaseController() {
         getPurchaseAmountPromptMessage();
 
-        String input = InputProcessor.readLine();
-        int maxAttempts = 10;
+        setInput(InputProcessor.readLine());
+
+        int maxAttempts = 3;
         int attempts = 0;
 
         while (attempts < maxAttempts) {
             try {
                 validateNonInteger(input);
+                validateDivisibleByThousand(inputIntegerParsing(input));
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
@@ -22,9 +32,10 @@ public class LottoStoreManager {
             }
         }
 
+
         if (attempts == maxAttempts) {
-            System.err.println("입력이 유효하지 않습니다. 프로그램을 종료합니다.");
+            getProgramClosePromoptMessage();
         }
-        return input;
+        InputProcessor.close();
     }
 }

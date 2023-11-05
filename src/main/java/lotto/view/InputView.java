@@ -10,4 +10,9 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요");
         return Console.readLine();
     }
+
+    public String winNum() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
 }

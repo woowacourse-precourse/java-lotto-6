@@ -6,9 +6,15 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+
+    public List<Integer> getNumbers(){
+        return this.numbers;
     }
 
     private void validate(List<Integer> numbers) throws IllegalArgumentException{
@@ -17,6 +23,7 @@ public class Lotto {
 
         numberValid(numbers);
     }
+
     private void numberValid(List<Integer> numbers) throws IllegalArgumentException{
         List<Integer> checkValid=new ArrayList<>();
 
@@ -32,13 +39,10 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers(){
-        return this.numbers;
-    }
-
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder("[");
+
         for (int i = 0; i < numbers.size(); i++) {
             output.append(numbers.get(i));
 
@@ -50,4 +54,5 @@ public class Lotto {
 
         return output.toString();
     }
+
 }

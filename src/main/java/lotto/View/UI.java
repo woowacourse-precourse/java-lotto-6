@@ -12,8 +12,10 @@ public class UI {
     Member member=new Member();
     WinningNumber winningNumber=new WinningNumber();
 
+
     public UI() {
     }
+
 
     public void priceComment(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -73,7 +75,6 @@ public class UI {
             System.out.println(e.getMessage());
             numberComment();
         }
-
     }
 
     public void bonusComment(){

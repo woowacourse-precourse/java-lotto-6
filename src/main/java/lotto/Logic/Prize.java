@@ -4,33 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Prize {
-    first(2000000000,6,0,0),
-    second(30000000,5,1,1),
-    third(1500000,5,0,2),
-    fourth(50000,4,0,3),
-    fifth(5000,3,0,4),
-    sixth(0,0,0,5);
+    first(2000000000,6,0),
+    second(30000000,5,1),
+    third(1500000,5,0),
+    fourth(50000,4,0),
+    fifth(5000,3,0),
+    sixth(0,0,0);
 
     private int winningPrize;
     private List<Integer> judge;
-    private int count;
 
 
-    Prize(int winningPrize,int correct,int bonus,int count){
+    Prize(int winningPrize,int correct,int bonus){
         this.winningPrize=winningPrize;
 
         this.judge=new ArrayList<>();
         this.judge.add(correct);
         this.judge.add(bonus);
-
-        this.count=count;
     }
 
-    public int getCount(){
-        return this.count;
-    }
+
     public int getWinningPrize(){
         return this.winningPrize;
+    }
+
+    public List<Integer> getJudge(){
+        return this.judge;
     }
 
     public Prize prizeDetermine(List<Integer> correctBonus){

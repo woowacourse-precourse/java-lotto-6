@@ -88,6 +88,7 @@ public class WinningNumber {
             member.setPrize(Prize.sixth.prizeDetermine(correct));
         }
     }
+
     public List<Integer> correctBonus(Lotto lotto, List<Integer> winNumbers, int bonusNumber){
         List<Integer> correct=new ArrayList<>(); // <몇 개 일치, 보너스 일치 여부>
 

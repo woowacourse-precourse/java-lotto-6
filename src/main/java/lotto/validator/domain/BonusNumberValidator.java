@@ -6,6 +6,9 @@ import lotto.validator.domain.exception.DomainExceptionMessage;
 
 public class BonusNumberValidator {
 
+    private BonusNumberValidator() {
+    }
+
     public static void validateBonusNumber(final Lotto lotto, final int bonusNumber) {
         validateRange(bonusNumber);
         validateDuplicates(lotto, bonusNumber);

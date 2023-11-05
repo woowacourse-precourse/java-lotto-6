@@ -5,6 +5,9 @@ import lotto.validator.domain.exception.DomainExceptionMessage;
 
 public class LottoMoneyValidator {
 
+    private LottoMoneyValidator() {
+    }
+
     public static void validate(final int money) {
         if (LottoMoneyCondition.isInvalidValue(money)) {
             throw DomainExceptionMessage.INVALID_MONEY_VALUE.create();

@@ -146,4 +146,11 @@ public class UIController {
             throw new IllegalArgumentException("당첨번호와 중복되지 않는 번호 이어야 합니다.");
         }
     }
+    public static void makeStatistics(List<Lotto> lottos, List<Integer> winningNumbers,
+            Integer bonusNumber, Integer price) {
+        LottoMachine.countStatistics(lottos, winningNumbers, bonusNumber);
+
+        // TODO : 통계상세 출력 , 수익률
+
+    }
 }

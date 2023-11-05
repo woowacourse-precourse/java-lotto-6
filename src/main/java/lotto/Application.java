@@ -14,8 +14,7 @@ public class Application {
         UIController.makeLottoStatus(lottos);
         List<Integer> winningNumbers = UIController.makeWinningNumbers();
         Integer bonusNumber = UIController.makeBonusNumber(winningNumbers);
-        // TODO : makeStatistics
-
+        UIController.makeStatistics(lottos, winningNumbers, bonusNumber, price);
 
     }
 }

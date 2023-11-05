@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Buyer;
@@ -12,19 +13,20 @@ import lotto.domain.WiningRank;
 public class LottoService {
 
     private static final int DEFAULT_COUNT = 0;
+    private static final int BONUS_CHECK_CRITERIA = 1;
     private static final int ADD_COUNT = 1;
 
-    private HashMap<WiningRank, Integer> winingDetails = new HashMap<>();
+    private HashMap<WiningRank, Integer> winingDetails = new LinkedHashMap<>();
     private List<Integer> matchNumbers = new ArrayList<>();
     private List<Integer> notMatchNumbers = new ArrayList<>();
     private boolean bonusMatch;
 
     public LottoService() {
-        winingDetails.put(WiningRank.FIRST, DEFAULT_COUNT);
-        winingDetails.put(WiningRank.SECOND, DEFAULT_COUNT);
-        winingDetails.put(WiningRank.THIRD, DEFAULT_COUNT);
-        winingDetails.put(WiningRank.FOURTH, DEFAULT_COUNT);
         winingDetails.put(WiningRank.FIFTH, DEFAULT_COUNT);
+        winingDetails.put(WiningRank.FOURTH, DEFAULT_COUNT);
+        winingDetails.put(WiningRank.THIRD, DEFAULT_COUNT);
+        winingDetails.put(WiningRank.SECOND, DEFAULT_COUNT);
+        winingDetails.put(WiningRank.FIRST, DEFAULT_COUNT);
         bonusMatch = false;
     }
 
@@ -66,7 +68,7 @@ public class LottoService {
     }
 
     private void confrimMatchBonusNumber(LottoNumber lottoNumber) {
-        if (notMatchNumbers.size() == 1) {
+        if (notMatchNumbers.size() == BONUS_CHECK_CRITERIA) {
             bonusMatch = notMatchNumbers.contains(lottoNumber.getBonusNumber());
         }
     }
@@ -74,7 +76,7 @@ public class LottoService {
     private void applyWiningResult() {
         for (WiningRank rank : winingDetails.keySet()) {
             if (matchNumbers.size() == rank.getMatchCount() && bonusMatch == rank.isBonusMatch()) {
-                winingDetails.put(rank, winingDetails.get(rank) + ADD_COUNT);
+                winingDetails.replace(rank, winingDetails.get(rank) + ADD_COUNT);
             }
         }
     }

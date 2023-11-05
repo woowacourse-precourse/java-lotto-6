@@ -17,8 +17,8 @@ public class User {
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
-        Validation.validateNumberMultipleOf(purchaseAmount, 1_000);
         Validation.validateNumberInRange(purchaseAmount, 1_000, 100_000);
+        Validation.validateNumberMultipleOf(purchaseAmount, 1_000);
     }
 
     public void addLotto(Lotto lotto) {

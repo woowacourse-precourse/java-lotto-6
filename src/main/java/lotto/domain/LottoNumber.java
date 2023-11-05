@@ -37,5 +37,15 @@ public class LottoNumber {
         }
     }
 
-
+    public int inputBonusNumber(Lotto lotto) {
+        printUtil.printBonusNumberInput();
+        try {
+            int bonusNumber = inputValidation.validateBonusNumber(inputValue.getBonusNumberInput());
+            inputValidation.validateDuplicateBonusNumber(lotto, bonusNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return inputBonusNumber(lotto);
+        }
+    }
 }

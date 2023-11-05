@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.*;
-import lotto.constant.ErrorMessage;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,15 +19,28 @@ public class ROICalculatorTest {
 
         assertThat(roiCalculator.calculate(totalPrize, investment)).isEqualTo(expectedROI);
     }
-
     @Test
-    @DisplayName("ROI가 소수 둘째자리에서 반올림되는지 확인")
-    void testROIRounding() {
-        long totalPrize = 1_000_000;
-        long investment = 3;
+    @DisplayName("ROI가 소수 둘째자리에서 반올림 되는지 확인")
+    void testROIRoundingForSecondDecimal() {
+        ROICalculator roiCalculator = new ROICalculator();
 
-        double expectedROI = 333333.33;
+        long totalPrize = 117;
+        long investment = 100;
+        double expectedROI = 1.2;
 
         assertThat(roiCalculator.calculate(totalPrize, investment)).isEqualTo(expectedROI);
     }
+
+    @Test
+    @DisplayName("ROI 계산이 정확하게 이루어지는지 확인")
+    void testROICalculation() {
+        ROICalculator roiCalculator = new ROICalculator();
+
+        long totalPrize = 1_000_000;
+        long investment = 3;
+        double expectedROI = 333333.3;
+
+        assertThat(roiCalculator.calculate(totalPrize, investment)).isEqualTo(expectedROI);
+    }
+
 }

@@ -2,9 +2,11 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.service.Lotto;
 import lotto.service.LottoNumbers;
 import lotto.service.PlayerLottoAmount;
+import lotto.service.Ranking;
 import lotto.service.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -75,6 +77,20 @@ public class LottoController {
         System.out.println(lotto);
         return new Lotto(lotto);
     }
+
+    private void lottoResult(List<Lotto> lottoList, WinningResult winningLotto, int amount) {
+        Map<Ranking, Integer> result = setResult();
+        Ranking rank;
+
+        OutputView.printSuccessResult();
+        for (int i = 0; i < lottoList.size(); i++) {
+            rank = winningLotto.match(lottoList.get(i));
+            result.put(rank, result.get(rank) + 1);
+        }
+        printResult(result);
+        printEarningRate(result, amount);
+    }
+
 
 }
 

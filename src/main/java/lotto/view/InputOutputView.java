@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.common.ErrorMessages.BONUS_DUPLICATE_MESSAGE;
 import static lotto.common.InputOutputMessages.INPUT_BONUS_NUMBER;
 import static lotto.common.InputOutputMessages.INPUT_MONEY;
 import static lotto.common.InputOutputMessages.INPUT_WINNING_NUMBER;
@@ -18,6 +19,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.dto.LottoBuyResponse;
 import lotto.dto.LottoGameResultResponse;
+import lotto.exception.InputValidationException;
 
 public class InputOutputView {
 
@@ -34,7 +36,7 @@ public class InputOutputView {
             int bonusNumber = Integer.parseInt(input);
 
             if (winningNumbers.containsNumber(bonusNumber)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                throw new InputValidationException(BONUS_DUPLICATE_MESSAGE);
             }
 
             return bonusNumber;

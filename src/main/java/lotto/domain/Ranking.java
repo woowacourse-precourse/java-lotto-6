@@ -1,38 +1,32 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.function.BiPredicate;
 
 public enum Ranking {
 
-    FIRST(6, 2000000000),
-    SECOND(5, 30000000),
-    THIRD(5, 1500000),
-    FOURTH(4, 50000),
-    FIFTH(3, 5000),
-    FAIL(-1, 0);
+    FAIL(-1, 0, (matchCount, containBonusNumber) -> matchCount == 0),
+    FIFTH(3, 5000, (matchCount, containBonusNumber) -> matchCount == 3),
+    FOURTH(4, 50000, (matchCount, containBonusNumber) -> matchCount == 4),
+    THIRD(5, 1500000, (matchCount, containBonusNumber) -> matchCount == 5 && !containBonusNumber),
+    SECOND(5, 30000000, (matchCount, containBonusNumber) -> matchCount == 5 && containBonusNumber),
+    FIRST(6, 2000000000, (matchCount, containBonusNumber) -> matchCount == 6);
+    private final int matchCount;
+    private final int reward;
+    private final BiPredicate<Integer, Boolean> isMatch;
 
-    private static final String NOT_FOUND_RANKING_ERROR_MESSAGE = "Ranking을 찾을 수 없습니다.";
-    private int matchCount;
-    private int reward;
-
-    Ranking(int matchCount, int reward) {
+    Ranking(int matchCount, int reward, BiPredicate<Integer, Boolean> isMatch) {
         this.matchCount = matchCount;
         this.reward = reward;
+        this.isMatch = isMatch;
     }
 
-    public static Ranking getRanking(int matchCount, boolean containBonusBall) {
-        if(matchCount == THIRD.matchCount && !containBonusBall) {
-            return THIRD;
-        }
+    public static Ranking getRanking(int matchCount, boolean containBonusNumber) {
 
-        if(matchCount < FIFTH.matchCount) {
-            return FAIL;
-        }
-
-        return Arrays.stream(values())
-                .filter(ranking -> ranking.getMatchCount() == matchCount)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_RANKING_ERROR_MESSAGE));
+        return Arrays.stream(Ranking.values())
+                .filter(ranking -> ranking.isMatch.test(matchCount, containBonusNumber))
+                .findAny()
+                .orElse(FAIL);
     }
 
     public int getMatchCount() {

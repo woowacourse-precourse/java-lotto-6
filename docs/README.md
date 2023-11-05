@@ -17,14 +17,13 @@
   - [x] (예외)숫자가 아닐경우 - InputValidator | isNumber() // // 테스트 코드 (o)
   - [x] (예외)1~45의 범위를 벗어날 경우 - InputValidator | isValidRangeNumber
   - [x] (예외) 각 자리수는 서로 다른가? - InputValidator | checkDistinctNumbers()
-  - [] (예외)콤마사이에 숫자가 존재하나 쓸때 없는 공백문자가 존재할 경우
 - [x] 보너스 번호를 입력받는다. - InputView | inputBonusNumber()
   - [x] (예외) 숫자가 아닐경우 - isNumber()
   - [x] (예외)1~45의 범위를 벗어날 경우 - isValidRangeNumber()
 - [x] 입력한 로또 번호와 발행한 로또 번호를 비교한다. - LottoSystem | compareLottoNumbers()
 - [x] 당첨 내역을 출력한다. - OutputView | printLottoWinningStatistics()
 - [x] 수익률을 계산한다.(소수점 둘째 자리에서 반올림 한다.) - caculateRateOfReturn()
-- [] 수익률을 출력한다. - OutputView | printRateOfReturn()
+- [x] 수익률을 출력한다. - OutputView | printRateOfReturn()
 
 - [x] (전체예외) 입력값이 null이가 empty일때
 

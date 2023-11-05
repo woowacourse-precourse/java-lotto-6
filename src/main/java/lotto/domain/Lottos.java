@@ -34,7 +34,6 @@ public class Lottos {
                 addPlaceCount(place);
             }
         }
-        System.out.println(winningStatistics);
     }
 
     public int getLottoCountByPlace(int place) {

@@ -33,4 +33,8 @@ public class OutputView {
     public void printProfitRate(String profitRate) {
         System.out.printf(OutputViewMessage.PROFIT_RATE_MESSAGE.getMessage(), profitRate);
     }
+
+    public void printExceptionMessage(String exceptionMessage) {
+        System.out.println(exceptionMessage);
+    }
 }

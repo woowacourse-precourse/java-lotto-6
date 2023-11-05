@@ -23,7 +23,7 @@ public class Amount {
     }
 
     public String calculateEarningsRate(long totalWinningPrize) {
-        return roundOff(this.amount / (double) totalWinningPrize);
+        return roundOff((double) totalWinningPrize / this.amount);
     }
 
     private String roundOff(double earningsRate) {

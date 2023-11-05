@@ -12,6 +12,6 @@ public class ErrorText {
     public static final String RATE_OF_RETURN_CALCULATE_ERROR = "최대 수익률 계산 값이 범위를 벗어났습니다.";
     public static final String REVENUE_AMOUNT_CALCULATE_ERROR = "총 수익액 계산 값이 범위를 벗어났습니다.";
     public static final String SAVE_DATA_ERROR = "저장된 값이 올바르지 않습니다.";
-    public static final String NOT_NUMBER = "[숫자로 읽히지 않음]";
-    public static final String INCORRECTLY_NUMBER = "[구매액은 1000원 단위로만 판매함]";
+    public static final String NOT_NUMBER = "(숫자로 읽히지 않음)";
+    public static final String INCORRECTLY_NUMBER = "(구매액은 1000원 단위로만 판매함)";
 }

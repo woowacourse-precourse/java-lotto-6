@@ -1,5 +1,6 @@
 package lotto.buy;
 
+import lotto.calculate.TextNumberConvert;
 import lotto.util.io.input.Input;
 import lotto.util.io.input.Keyboard;
 import lotto.util.io.output.viewer.UserScreen;
@@ -27,15 +28,15 @@ public class Buy {
         try {
             MultipleRead();
         } catch (IllegalArgumentException e) {
-            output.ViewPrint(e.getMessage());        //EEROR화면 띄우는 곳.
+            output.ViewPrint(e.getMessage());
             RequestBuyMoney();
         }
         lottoIssuanceNumber = buymoney / 1000;
     }
 
     private long MoneyInputConversion(String input) {
-//        long data = TextNumberConvert.MoneyConvert(input);
-        return 0L;//data로 수정 예정.
+        long data = TextNumberConvert.MoneyConvert(input);
+        return data;
     }
 
     public void SetBuyMoney(long money) {

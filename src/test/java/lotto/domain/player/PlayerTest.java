@@ -50,7 +50,7 @@ public class PlayerTest {
         LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
         lottoResultsRepository.saveLottoResult(LottoResult.FIFTH);
         //when
-        Profit profit = player.getProfit(lottoResultsRepository.makeLottoResultsDto());
+        Profit profit = player.getProfit(lottoResultsRepository);
         //then
         assertThat(profit.getProfit()).isEqualTo(50.0);
     }

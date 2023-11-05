@@ -3,7 +3,6 @@ package lotto.domain.lottoresult;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.domain.dto.LottoResultsDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +13,10 @@ class LottoResultsRepositoryTest {
     void lottoResultRepositoryTest_1() {
         //given
         LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
+        //when
         lottoResultsRepository.saveLottoResult(LottoResult.THIRD);
         lottoResultsRepository.saveLottoResult(LottoResult.FOURTH);
-        //when
-        LottoResultsDto lottoResultsDto = lottoResultsRepository.makeLottoResultsDto();
         //then
-        assertThat(lottoResultsDto.getTotalLottoPrizeMoney()).isEqualTo(1550000);
+        assertThat(lottoResultsRepository.getTotalLottoPrizeMoney()).isEqualTo(1550000);
     }
 }

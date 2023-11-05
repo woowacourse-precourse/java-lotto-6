@@ -2,7 +2,6 @@ package lotto.domain.player.playermoney;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.domain.dto.LottoResultsDto;
 import lotto.domain.lottoresult.LottoResult;
 import lotto.domain.lottoresult.LottoResultsRepository;
 import lotto.domain.player.Profit;
@@ -26,9 +25,8 @@ public class UsedMoneyTest {
         UsedMoney usedMoney = new UsedMoney(8000);
         LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
         lottoResultsRepository.saveLottoResult(LottoResult.FIFTH);
-        LottoResultsDto lottoResultsDto = lottoResultsRepository.makeLottoResultsDto();
         //When
-        Profit profit = usedMoney.calculateProfit(lottoResultsDto);
+        Profit profit = usedMoney.calculateProfit(lottoResultsRepository);
         //Then
         assertThat(profit.getProfit()).isEqualTo(62.5);
     }

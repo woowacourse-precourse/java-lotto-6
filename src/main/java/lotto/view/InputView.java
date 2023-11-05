@@ -6,4 +6,8 @@ public class InputView {
     public String returnInput() {
         return Console.readLine();
     }
+
+    public void closeConsole() {
+        Console.close();
+    }
 }

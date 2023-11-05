@@ -40,6 +40,7 @@ public class LotteryGameController {
         requestBonusNumber();
 
         returnLotteryResult(purchaseAmount);
+        inputView.closeConsole();
     }
 
     private int amountOfLottos() {

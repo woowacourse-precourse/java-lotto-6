@@ -9,48 +9,52 @@ import lotto.vo.TicketQuantity;
 
 public class OutputView {
 
+    private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String TICKET_QUANTITY_MESSAGE = "%s개를 구매했습니다.";
+    private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %,.1f%%입니다.";
+    private static final String FIFTH_RANK_MESSAGE = "3개 일치 (5,000원) - %s개";
+    private static final String FOURTH_RANK_MESSAGE = "4개 일치 (50,000원) - %s개";
+    private static final String THIRD_RANK_MESSAGE = "5개 일치 (1,500,000원) - %s개";
+    private static final String SECOND_RANK_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %s개";
+    private static final String FIRST_RANK_MESSAGE = "6개 일치 (2,000,000,000원) - %s개";
+    private static final String STATISTICS_MESSAGE = "당첨 통계";
+    private static final String HYPHEN = "---";
+    private static final String LINE = "\n";
+
+
     public void printRequestInputPurchaseAmountMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        printMessage(INPUT_PURCHASE_AMOUNT_MESSAGE);
     }
 
     public void printTicketQuantityMessage(final Integer quantity) {
-        System.out.println();
-        String message = String.format("%s개를 구매했습니다.", quantity);
-        System.out.println(message);
+        printMessage(String.format(TICKET_QUANTITY_MESSAGE, quantity));
     }
 
     public void printRequestInputWinningNumberMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        printMessage(INPUT_WINNING_NUMBERS_MESSAGE);
     }
 
     public void printRequestInputBonusNumberMessage() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-    }
-
-    public void printMessage(final String message) {
-        System.out.println(message);
+        printMessage(INPUT_BONUS_NUMBER_MESSAGE);
     }
 
     public void printPlayerNumbers(final List<LottoDto> playerLotteries) {
         playerLotteries.stream().forEach(lottoDto -> {
-            System.out.println(lottoDto.getNumbers());
+            printMessage(lottoDto.getNumbers().toString());
         });
-        System.out.println();
+        printMessage(LINE);
     }
 
     public void printStatistics(final Map<LottoRank, Integer> result) {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
-        System.out.println(String.format("3개 일치 (5,000원) - %s개",
-                result.getOrDefault(LottoRank.FIFTH_RANK, 0)));
-        System.out.println(String.format("4개 일치 (50,000원) - %s개",
-                result.getOrDefault(LottoRank.FOURTH_RANK, 0)));
-        System.out.println(String.format("5개 일치 (1,500,000원) - %s개",
-                result.getOrDefault(LottoRank.THIRD_RANK, 0)));
-        System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %s개",
-                result.getOrDefault(LottoRank.SECOND_RANK, 0)));
-        System.out.println(String.format("6개 일치 (2,000,000,000원) - %s개",
-                result.getOrDefault(LottoRank.FIRST_RANK, 0)));
+        printMessage(LINE + STATISTICS_MESSAGE);
+        printMessage(HYPHEN);
+        printMessage(String.format(FIFTH_RANK_MESSAGE, result.getOrDefault(LottoRank.FIFTH_RANK, 0)));
+        printMessage(String.format(FOURTH_RANK_MESSAGE, result.getOrDefault(LottoRank.FOURTH_RANK, 0)));
+        printMessage(String.format(THIRD_RANK_MESSAGE, result.getOrDefault(LottoRank.THIRD_RANK, 0)));
+        printMessage(String.format(SECOND_RANK_MESSAGE, result.getOrDefault(LottoRank.SECOND_RANK, 0)));
+        printMessage(String.format(FIRST_RANK_MESSAGE, result.getOrDefault(LottoRank.FIRST_RANK, 0)));
     }
 
     public void printRateOfProfit(final Map<LottoRank, Integer> result, TicketQuantity ticketQuantity) {
@@ -62,6 +66,10 @@ public class OutputView {
 
         double m = (double) ticketQuantity.quantity() * LottoInfo.ONE_LOTTO_PRICE.getValue();
 
-        System.out.println(String.format("총 수익률은 %,.1f%%입니다.", (reward / m) * 100));
+        printMessage(String.format(PROFIT_RATE_MESSAGE, (reward / m) * 100));
+    }
+
+    public void printMessage(final String message) {
+        System.out.println(message);
     }
 }

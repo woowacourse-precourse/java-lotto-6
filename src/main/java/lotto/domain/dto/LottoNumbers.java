@@ -1,11 +1,12 @@
 package lotto.domain.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class LottoNumbers {
-    private final List<Integer> numbers;
+public record LottoNumbers(List<Integer> numbers) {
 
-    public LottoNumbers(List<Integer> numbers) {
-        this.numbers = numbers;
+    @Override
+    public List<Integer> numbers() {
+        return new ArrayList<>(numbers);
     }
 }

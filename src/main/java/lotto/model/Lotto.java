@@ -18,6 +18,10 @@ public class Lotto {
         result = null;
     }
 
+    public void calculateResult(WinningLotto winningLotto) {
+        result = LottoResult.compareLottoNums(numbers, winningLotto);
+    }
+
     private void validate() {
         isCorrectSize();
         isDuplicate();
@@ -47,5 +51,9 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public LottoResult getResult() {
+        return result;
     }
 }

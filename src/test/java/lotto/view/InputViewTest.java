@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.view.InputView;
 
 class InputViewTest {
 

@@ -1,8 +1,8 @@
 package lotto.validation;
 
-import static lotto.constant.ErrorMessage.CHARACTER_INPUT_ERROR_MESSAGE;
-import static lotto.constant.ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE;
-import static lotto.constant.ErrorMessage.NEGATIVE_OR_ZERO_INPUT_ERROR_MESSAGE;
+import lotto.exception.EmptyInputException;
+import lotto.exception.NegativeOrZeroInputException;
+import lotto.exception.NonNumericInputException;
 
 public class InputValidator {
 
@@ -13,28 +13,28 @@ public class InputValidator {
 
     public static void validatePurchaseAmount(final String purchaseAmount) {
         if (purchaseAmount.isEmpty()) {
-            throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE.getMessage());
+            throw new EmptyInputException();
         }
         if (!isNumeric(purchaseAmount)) {
-            throw new IllegalArgumentException(CHARACTER_INPUT_ERROR_MESSAGE.getMessage());
+            throw new NonNumericInputException();
         }
         if (!isPositive(purchaseAmount)) {
-            throw new IllegalArgumentException(NEGATIVE_OR_ZERO_INPUT_ERROR_MESSAGE.getMessage());
+            throw new NegativeOrZeroInputException();
         }
     }
 
     public static void validateWinningNumbers(final String winningNumbers) {
         if (winningNumbers.isEmpty()) {
-            throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE.getMessage());
+            throw new EmptyInputException();
         }
     }
 
     public static void validateBonusNumber(final String bonusNumber) {
         if (bonusNumber.isEmpty()) {
-            throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE.getMessage());
+            throw new EmptyInputException();
         }
         if (!isNumeric(bonusNumber)) {
-            throw new IllegalArgumentException(CHARACTER_INPUT_ERROR_MESSAGE.getMessage());
+            throw new NonNumericInputException();
         }
     }
 

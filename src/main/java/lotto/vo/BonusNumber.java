@@ -1,10 +1,10 @@
 package lotto.vo;
 
-import static lotto.constant.ErrorMessage.LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE;
-import static lotto.constant.ErrorMessage.LOWER_THAN_MIN_LOTTO_NUMBER_ERROR_MESSAGE;
 import static lotto.constant.LottoInfo.LOTTO_MAX_NUMBER;
 
 import lotto.constant.LottoInfo;
+import lotto.exception.ExceedsMaxLottoNumberException;
+import lotto.exception.LessThanMinLottoNumberException;
 
 public record BonusNumber(Integer number) {
 
@@ -14,10 +14,10 @@ public record BonusNumber(Integer number) {
 
     private void validateNumber(final Integer number) {
         if (isLargerThanMaxNumber(number)) {
-            throw new IllegalArgumentException(LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
+            throw new ExceedsMaxLottoNumberException();
         }
         if (isLessThanMinNumber(number)) {
-            throw new IllegalArgumentException(LOWER_THAN_MIN_LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
+            throw new LessThanMinLottoNumberException();
         }
     }
 

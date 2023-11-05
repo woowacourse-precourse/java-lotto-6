@@ -1,9 +1,5 @@
 package lotto.model;
 
-import static lotto.constant.ErrorMessage.DUPLICATE_LOTTO_NUMBER_ERROR_MESSAGE;
-import static lotto.constant.ErrorMessage.INVALID_LOTTO_SIZE_ERROR_MESSAGE;
-import static lotto.constant.ErrorMessage.LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE;
-import static lotto.constant.ErrorMessage.LOWER_THAN_MIN_LOTTO_NUMBER_ERROR_MESSAGE;
 import static lotto.constant.LottoInfo.LOTTO_MAX_NUMBER;
 import static lotto.constant.LottoInfo.LOTTO_MIN_NUMBER;
 import static lotto.constant.LottoInfo.LOTTO_SIZE;
@@ -13,6 +9,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.DuplicateLottoNumberException;
+import lotto.exception.ExceedsMaxLottoNumberException;
+import lotto.exception.InvalidLottoSizeException;
+import lotto.exception.LessThanMinLottoNumberException;
 import lotto.util.NumberGenerator;
 
 public class Lotto {
@@ -26,16 +26,16 @@ public class Lotto {
 
     private void validate(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE_ERROR_MESSAGE.getMessage());
+            throw new InvalidLottoSizeException();
         }
         if (hasDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
+            throw new DuplicateLottoNumberException();
         }
         if (hasLargerThanMaxNumber(numbers)) {
-            throw new IllegalArgumentException(LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
+            throw new ExceedsMaxLottoNumberException();
         }
         if (hasLessThanMinNumber(numbers)) {
-            throw new IllegalArgumentException(LOWER_THAN_MIN_LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
+            throw new LessThanMinLottoNumberException();
         }
     }
 
@@ -62,7 +62,7 @@ public class Lotto {
         List<Integer> randomNumbers = numberGenerator.pickNumbers();
         randomNumbers = new ArrayList<>(randomNumbers);
         Collections.sort(randomNumbers);
-        
+
         return Collections.unmodifiableList(randomNumbers);
     }
 

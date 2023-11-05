@@ -1,10 +1,10 @@
 package lotto.util;
 
-import static lotto.constant.ErrorMessage.CHARACTER_INPUT_ERROR_MESSAGE;
 import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.NonNumericInputException;
 import lotto.vo.BonusNumber;
 import lotto.vo.PurchaseAmount;
 import lotto.vo.TicketQuantity;
@@ -41,7 +41,7 @@ public class Converter {
         try {
             return Integer.valueOf(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(CHARACTER_INPUT_ERROR_MESSAGE.getMessage());
+            throw new NonNumericInputException();
         }
     }
 }

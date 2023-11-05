@@ -1,8 +1,9 @@
 package lotto.vo;
 
-import static lotto.constant.ErrorMessage.LOTTO_MIN_PRICE_ERROR_MESSAGE;
-import static lotto.constant.ErrorMessage.REMAINING_CHANGE_ERROR_MESSAGE;
 import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
+
+import lotto.exception.InsufficientAmountException;
+import lotto.exception.RemainingChangeException;
 
 public record PurchaseAmount(Integer amount) {
 
@@ -14,10 +15,10 @@ public record PurchaseAmount(Integer amount) {
 
     private void validateAmount(final Integer amount) {
         if (isLessThanLottoPrice(amount)) {
-            throw new IllegalArgumentException(LOTTO_MIN_PRICE_ERROR_MESSAGE.getMessage());
+            throw new InsufficientAmountException();
         }
         if (hasChange(amount)) {
-            throw new IllegalArgumentException(REMAINING_CHANGE_ERROR_MESSAGE.getMessage());
+            throw new RemainingChangeException();
         }
     }
 

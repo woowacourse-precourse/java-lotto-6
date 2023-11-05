@@ -2,11 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoService {
@@ -18,8 +14,7 @@ public class LottoService {
     public List<Lotto> purchase (int purchaseQuantity) {
         for (int i = 0; i < purchaseQuantity; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottoNumbers.sort(Comparator.naturalOrder());
-            Lotto lotto = new Lotto(lottoNumbers);
+            Lotto lotto = new Lotto(sortAscendingOrder(lottoNumbers));
             userLottos.add(lotto);
         }
         return userLottos;
@@ -34,5 +29,11 @@ public class LottoService {
 
     public void initBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
+    }
+
+    private List<Integer> sortAscendingOrder(List<Integer> numbers) {
+        List<Integer> lottoNumbers = new ArrayList<>(numbers);
+        Collections.sort(lottoNumbers);
+        return lottoNumbers;
     }
 }

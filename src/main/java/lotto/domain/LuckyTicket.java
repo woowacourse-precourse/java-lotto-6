@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.Lotto;
 import lotto.domain.collections.LotteryResultCollection;
+import lotto.domain.collections.UserTicketCollection;
 
 import java.util.ArrayList;
 import java.util.List;

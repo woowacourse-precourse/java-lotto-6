@@ -27,7 +27,6 @@ public class LotteryResultCollection {
             totalGainMoney += (long) info.getLotteryMoney() * count;
             System.out.println(info + " - " + count + "개");
         }
-        // TODO: 총 수익률 출력
 
         Long useMoney = results.size() * 1000L;
         double totalProfitRate = (double) totalGainMoney / useMoney * 100L;

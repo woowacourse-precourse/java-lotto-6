@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import lotto.domain.collections.LotteryResultCollection;
+import lotto.domain.collections.UserTicketCollection;
 import lotto.validator.TypeMismatchValidator;
 
 import java.util.List;
@@ -18,7 +19,6 @@ public class LotteryGame {
     }
 
     public void start() {
-        // TODO: 로또게임 시작
         UserTicketCollection userTicketCollection = makeUserTicket();
         LuckyTicket luckyTicket = makeLuckyTicket();
         LotteryResultCollection lotteryResult = luckyTicket.matchWith(userTicketCollection);

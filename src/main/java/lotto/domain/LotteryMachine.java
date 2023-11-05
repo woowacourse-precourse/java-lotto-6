@@ -2,11 +2,13 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
+import lotto.validator.LotteryMachineValidator;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.*;
+import static lotto.validator.LotteryMachineValidator.*;
 
 public class LotteryMachine {
 
@@ -24,21 +26,20 @@ public class LotteryMachine {
     private List<Integer> makeLuckyNumbers() {
         System.out.println("당첨 번호를 입력해주세요");
         String input = Console.readLine();
-
+        validateLuckyNumber(input);
         // TODO: validate input
         String[] split = input.split(",");
 
         return Arrays.stream(split)
             .map(Integer::parseInt)
-            .collect(Collectors.toList());
+            .toList();
     }
 
+
     private int makeBonusNumber(List<Integer> luckyNumbers) {
-        // TODO: 뽑은 보너스번호가 당첨번호와 겹치는지 확인
-        // TODO: 뽑은 보너스 번호가 정수인지 검증
-        // TODO: 뽑은 보너스 번호가 범위안에 속하는 정수인지 검증
         System.out.println("보너스 번호를 입력해주세요.");
         String number = Console.readLine();
+        validateBonusNumber(luckyNumbers, number);
         return Integer.parseInt(number);
     }
 

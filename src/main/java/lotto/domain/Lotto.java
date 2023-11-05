@@ -9,17 +9,18 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
-
-    public int matchNum(Lotto player){
+    public int matchNumbers(Lotto player){
         List<Integer> playerNumbers = player.numbers;
         playerNumbers.retainAll(numbers);
         return playerNumbers.size();
+    }
+    public boolean matchBonusNum(int bonusNum){
+        return numbers.contains(bonusNum);
     }
 
     public List<Integer> getNumbers(){

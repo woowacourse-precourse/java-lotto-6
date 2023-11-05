@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.validator.PurchaseValidator;
 import lotto.config.Config;
+import lotto.domain.User;
 
 public class UserLottoService {
 
@@ -16,7 +17,7 @@ public class UserLottoService {
         return purchaseAmount / Config.LOTTO_PRICE;
     }
 
-    public void createLottos(int createLottoNumbers) {
-
+    public User setUser(int createLottoNumbers){
+        return new User(createLottoNumbers);
     }
 }

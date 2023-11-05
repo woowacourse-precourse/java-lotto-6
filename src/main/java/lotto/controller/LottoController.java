@@ -14,7 +14,6 @@ public class LottoController {
     private final UserLottoService userLottoService = new UserLottoService();
     private User user;
     private Admin admin;
-
     public void run() {
         initLotto();
         compareLottoNumbers();
@@ -30,7 +29,8 @@ public class LottoController {
         String purchaseAmountStr = InputPurchaseAmount();
         int purchaseAmount = userLottoService.parseIntPurchaseAmount(purchaseAmountStr);
         int createLottoNumbers = userLottoService.createLottoCount(purchaseAmount);
-        userLottoService.createLottos(createLottoNumbers);
+        user = userLottoService.setUser(createLottoNumbers);
+        user.setLotto();
     }
 
     public void initInputWinningNumberAndBonusNumber() {

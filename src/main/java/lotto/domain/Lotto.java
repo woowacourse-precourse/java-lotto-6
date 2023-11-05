@@ -7,6 +7,10 @@ import java.util.Set;
 public class Lotto {
     private final List<Integer> numbers;
 
+    private static final int LOTTO_SIZE = 6;
+    private static final int MIN_RANGE = 1;
+    private static final int MAX_RANGE = 45;
+
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
@@ -14,14 +18,14 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
-        if (nonDuplicateNumbers.size() != 6) {
+        if (nonDuplicateNumbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
@@ -31,7 +35,7 @@ public class Lotto {
     }
 
     private void validateRange(Integer number) {
-        if (number < 1 && number > 45) {
+        if (number < MIN_RANGE && number > MAX_RANGE) {
             throw new IllegalArgumentException();
         }
     }

@@ -1,11 +1,13 @@
 package lotto.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import lotto.views.InputViews;
 import lotto.views.OutputViews;
 import lotto.domain.Lotto;
 import lotto.domain.MakeLottos;
+import lotto.domain.InputWinningNum;
 
 public class LottoController {
     int purchaseAmount, purchaseNum;
@@ -18,6 +20,9 @@ public class LottoController {
 
         writePurchaseLotto();
         OutputViews.endOfSection();
+
+        while (readWinningNum()){
+        }
     }
 
     public boolean readPurchaseLotto() {
@@ -41,5 +46,17 @@ public class LottoController {
         allLotto = MakeLottos.makeLotto(purchaseNum);
         OutputViews.numOfPurchaseLotto(purchaseNum);
         OutputViews.listOfPurchaseLotto(allLotto);
+    }
+
+    public boolean readWinningNum() {
+        String winningNumsNotSplit = InputViews.readWinningNum();
+        List<String> winningNums = Arrays.asList(winningNumsNotSplit.split(","));
+        for (String winningNum : winningNums) {
+            if (ReadWinningNum.isWinningNumTypeOfInput(winningNum)) {
+                return true;
+            }
+        }
+//        Lotto lotto = new Lotto();
+        return false;
     }
 }

@@ -40,10 +40,17 @@ public class Controller {
 
         view.inputWinningNumbers();
 
-        //
         String input = view.input();
-        String[] inputArray = input.split(",");
 
+        if(!isEmpty(input)){
+            throw new IllegalArgumentException();
+        }
+
+        if(!isNotNumeric(input)){
+            throw new IllegalArgumentException();
+        }
+
+        String[] inputArray = input.split(",");
         List<Integer> inputWinningNumbers = new ArrayList<>();
         for (String numStr : inputArray) {
             int num = Integer.parseInt(numStr);
@@ -51,6 +58,8 @@ public class Controller {
         }
 
         WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers);
+
+
     }
 
     public int calculateLottoTicketCount(Purchase purchase) {
@@ -87,4 +96,19 @@ public class Controller {
         }
     }
 
+    private boolean isEmpty(String input) {
+        return !input.isEmpty();
+    }
+
+    public boolean isNotNumeric(String input) {
+        String[] inputArray = input.split(",");
+        try {
+            for (String numStr : inputArray) {
+                Integer.parseInt(numStr);
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }

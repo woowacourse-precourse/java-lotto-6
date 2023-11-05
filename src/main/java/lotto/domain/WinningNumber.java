@@ -66,4 +66,8 @@ public class WinningNumber {
     public int countMatchingWinningNumber(List<Number> numbers) {
         return (int) winningNumbers.stream().filter(numbers::contains).count();
     }
+
+    public boolean isMatchingBonusNumber(List<Number> numbers) {
+        return numbers.contains(bonusNumber);
+    }
 }

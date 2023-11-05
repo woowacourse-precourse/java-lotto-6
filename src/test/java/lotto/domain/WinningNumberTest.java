@@ -80,6 +80,20 @@ class WinningNumberTest {
                 arguments(List.of(3, 4, 5, 6, 2, 1), 6));
     }
 
+    @ParameterizedTest(name = "보너스 번호 일치 : {1}")
+    @CsvSource({"7,true", "13,false"})
+    @DisplayName("보너스 번호와 맞았는지 알 수 있다")
+    void isMatchingBonusNumberTest(int bonusValue, boolean expected) {
+        List<Number> winningNumbers = toNumberList(List.of(1, 2, 3, 4, 5, 6));
+        Number bonusNumber = Number.from(bonusValue);
+        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
+        List<Number> numbers = toNumberList(List.of(7, 8, 9, 10, 11, 12));
+
+        boolean actual = winningNumber.isMatchingBonusNumber(numbers);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
     List<Number> toNumberList(List<Integer> values) {
         return values.stream().map(Number::from).toList();
     }

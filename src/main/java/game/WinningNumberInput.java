@@ -7,8 +7,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class WinningNumberInput {
-    public void getWinnerNumbers(String[] winningNumbersStringList, List<Integer> winningNumberList,
-                                 Converter converter) {
+    public void getWinningNumbers(String[] winningNumbersStringList, List<Integer> winningNumberList,
+                                  Converter converter) {
         for (String word : winningNumbersStringList) {
             int winningNumber = converter.stringToInteger(word);
             winningNumberList.add(winningNumber);

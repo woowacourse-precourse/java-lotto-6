@@ -45,7 +45,7 @@ public class LottoGame {
 
         String winningNumbers = winningNumberInput.receiveWinningNumbers();
         String[] winningNumberStringList = winningNumberInput.makeWinningNumberStringList(winningNumbers, converter);
-        winningNumberInput.getWinnerNumbers(winningNumberStringList, winningNumberList, converter);
+        winningNumberInput.getWinningNumbers(winningNumberStringList, winningNumberList, converter);
 
         //BonusNumberInput
         System.out.println();

@@ -8,8 +8,7 @@ public class WinNumber {
     private final List<Integer> lottoNums;
 
     public WinNumber(String lottoNum) {
-        List<Integer> lottoNums = WinNumberValid.validWinNumber(lottoNum);
-        this.lottoNums = lottoNums;
+        this.lottoNums = WinNumberValid.validWinNumber(lottoNum);
     }
 
     public List<Integer> getLottoNums() {

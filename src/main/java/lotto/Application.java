@@ -16,15 +16,11 @@ public class Application {
         lottoWin.setLottoWinNumbers();
         System.out.println();
 
-
         System.out.println("보너스 번호를 입력해 주세요.");
         lottoWin.setWinBonusNumber();
         System.out.println();
 
-
         lottoGame.printLottoWin(lottoWin);
         System.out.println();
-
-
     }
 }

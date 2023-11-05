@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.wrapper.Money;
 import lotto.handler.InputHandler;
 
 public class LottoController {
@@ -11,6 +12,12 @@ public class LottoController {
     }
 
     public void run() {
+        Money money = loadTicket();
+    }
 
+    private Money loadTicket() {
+        String money = inputHandler.inputValue();
+
+        return Money.create(money);
     }
 }

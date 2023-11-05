@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.dto.PurchaseAmountDto;
+import lotto.domain.dto.WinningLottoDto;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.validator.WinningLottoValidator;
@@ -22,12 +23,17 @@ public class InputView {
         return new PurchaseAmountDto(Integer.parseInt(input));
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public WinningLottoDto inputWinningLotto() {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
         String input = readLine().trim();
         WinningLottoValidator.inputValidate(input);
+        List<Integer> numbers = convertToList(input);
 
-        return Arrays.stream(input.split(", ")).map(Integer::parseInt).toList();
+        return new WinningLottoDto(numbers);
+    }
+
+    private List<Integer> convertToList(final String input) {
+        return Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
     }
 
     public int inputBonusNumber() {

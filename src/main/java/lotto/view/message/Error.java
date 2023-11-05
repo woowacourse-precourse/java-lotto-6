@@ -10,7 +10,8 @@ public enum Error {
     WINNING_NUMBER_OUT_OF_RANGE("로또 당첨 번호는 1에서 45 사이의 숫자이어야 합니다."),
     WINNING_NUMBER_DUPLICATED("로또 당첨 번호는 중복될 수 없습니다."),
     BONUS_NUMBER_NOT_INTEGER("보너스 번호는 정수이어야 합니다."),
-    BONUS_NUMBER_OUT_OF_RANGE("보너스 번호는 1에서 45 사이의 숫자이어야 합니다.");
+    BONUS_NUMBER_OUT_OF_RANGE("보너스 번호는 1에서 45 사이의 숫자이어야 합니다."),
+    BONUS_NUMBER_DUPLICATE_WITH_WINNINGNUMBER("보너스 번호는 당첨번호와 중복되면 안됩니다.");
 
     private final String CODE = "[ERROR] ";
     private String message;

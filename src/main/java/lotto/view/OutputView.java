@@ -18,6 +18,12 @@ public class OutputView {
         }
     }
 
+    public static void printWinningStatistics(List<String> winningStatistics) {
+        for (String winningStatistic : winningStatistics) {
+            System.out.println(winningStatistic);
+        }
+    }
+
     public static void numbersLotto() {
         System.out.println(OutputEnum.NUMBERS_LOTTO.get());
     }

@@ -65,6 +65,7 @@ public class LottoController {
 
     private void resultLotto() {
         OutputView.resultLotto();
+        OutputView.printWinningStatistics(lotto.getWinningStatistics());
     }
 
     private void makeLuckyNumbers() {

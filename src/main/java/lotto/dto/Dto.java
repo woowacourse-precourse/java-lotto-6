@@ -39,4 +39,8 @@ public class Dto {
     public void makeWinningStatistics() {
         winningStatistics.makeWinningStatistics(lottoTickets, luckyNumbers);
     }
+
+    public List<Integer> getWinningStatistics() {
+        return winningStatistics.getWinningStatistics();
+    }
 }

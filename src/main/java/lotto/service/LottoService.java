@@ -46,4 +46,8 @@ public class LottoService {
     public void makeWinningStatistics() {
         dto.makeWinningStatistics();
     }
+
+    public List<String> getWinningStatistics() {
+        return ResultWinning.makeResult(dto.getWinningStatistics());
+    }
 }

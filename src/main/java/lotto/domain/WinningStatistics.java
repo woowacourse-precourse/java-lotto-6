@@ -45,4 +45,8 @@ public class WinningStatistics {
             winningStatistics.add(count);
         }
     }
+
+    public List<Integer> getWinningStatistics() {
+        return winningStatistics;
+    }
 }

@@ -44,7 +44,8 @@ public class LottoController {
         validateBonusNumber(stringBonusNumber);
 
         Integer bonusNumber = Integer.valueOf(stringBonusNumber);
-        List<Integer> winningNumber = Arrays.stream(stringWinningNumber.split(",")).map(s -> Integer.valueOf(s))
+        List<Integer> winningNumber = Arrays.stream(stringWinningNumber.split(","))
+                .map(s -> Integer.valueOf(s))
                 .collect(Collectors.toList());
         LottoService lottoService = new LottoService();
         return lottoService.lottoResults(

@@ -1,10 +1,8 @@
 package lotto;
 
 import java.util.List;
-import java.util.Map;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
-import lotto.domain.Rank;
 import lotto.domain.Ranks;
 import lotto.view.InputView;
 import lotto.view.OutputView;

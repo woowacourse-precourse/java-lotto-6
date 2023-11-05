@@ -11,10 +11,10 @@ public class OutputView {
     public static void printLotteryNumber(List<Lotto> lottery) {
         String lottoNumberInfo = lottery
                 .stream()
-                .map(Lotto::getNumbers)
+                .map(Lotto::lottoNumbers)
                 .map(String::valueOf)
                 .collect(Collectors.joining("\n"));
-        System.out.println(lottoNumberInfo);
+        System.out.println(lottoNumberInfo+"\n");
     }
 
     public static void printLotteryResult(Map<Rank, Integer> resultCount) {

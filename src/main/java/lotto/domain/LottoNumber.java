@@ -5,12 +5,12 @@ public class LottoNumber {
     private static final Integer MIN_LOTTO_NUMBER = 1;
 
 
-
     private Integer lottoNumber;
 
 
-    public LottoNumber(Integer intNumber) {
-        validateRange(intNumber);
+    public LottoNumber(Integer lottoNumber) {
+        validateRange(lottoNumber);
+        this.lottoNumber = lottoNumber;
     }
 
     private void validateRange(Integer intNumber) {

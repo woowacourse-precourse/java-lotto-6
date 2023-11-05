@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -9,7 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> intNumbers) {
         validateSize(intNumbers);
         List<LottoNumber> numbers = intNumbers.stream()
-                .map(intNumber -> new LottoNumber(intNumber))
+                .map(LottoNumber::new)
                 .collect(Collectors.toList());
         this.numbers = numbers;
     }
@@ -21,5 +23,12 @@ public class Lotto {
     }
     public List<LottoNumber> getNumbers() {
         return numbers;
+    }
+
+    public String lottoNumbers() {
+        return numbers.stream()
+                .map(LottoNumber::getLottoNumber)
+                .map(String::valueOf)
+                .collect(Collectors.joining(",", "[", "]"));
     }
 }

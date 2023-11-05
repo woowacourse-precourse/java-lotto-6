@@ -27,7 +27,7 @@ class IssuableStrategyTest {
     @DisplayName("로또 수동 발행 전략: 문자열 numbers를 받아 로또 발행 성공")
     void givenManualIssuanceStrategy_whenIssue_thenSuccess() {
         // given
-        IssuableStrategy manualIssuanceStrategy = new ManualIssuanceStrategy("1,2,3,4,5,6");
+        IssuableStrategy manualIssuanceStrategy = new ManualIssuanceStrategy("6,5,4,3,2,1");
 
         // when
         Lotto result = manualIssuanceStrategy.issue();

@@ -21,6 +21,7 @@ public class ManualIssuanceStrategy implements IssuableStrategy {
     private List<Integer> converToIntegerList() {
         return Arrays.stream(this.numbers.split(","))
                 .map(Integer::parseInt)
+                .sorted()
                 .toList();
     }
 

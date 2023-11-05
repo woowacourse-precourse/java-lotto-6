@@ -1,6 +1,8 @@
 package lotto.dto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,8 +13,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        Map<Integer, Boolean> numberChecker = new HashMap<>();
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+        for (Integer number : numbers) {
+            if (Boolean.TRUE.equals(numberChecker.get(number)))
+                throw new IllegalArgumentException();
+            numberChecker.put(number, Boolean.TRUE);
         }
     }
 

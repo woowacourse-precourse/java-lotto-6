@@ -2,8 +2,9 @@ package lotto.domain.wrapper;
 
 import lotto.handler.LottoHandler;
 
-import java.util.List;
 import java.util.Map;
+
+import static lotto.handler.ConstantsHandler.UNIT_OF_AMOUNT;
 
 public class LottoResult {
 
@@ -19,5 +20,15 @@ public class LottoResult {
 
     public Map<LottoHandler, Integer> getLottoResult() {
         return lottoResult;
+    }
+
+    private int totalPurchaseAmount() {
+        int totalTickts = 0;
+
+        for (int tickets : lottoResult.values()) {
+            totalTickts += tickets;
+        }
+
+        return totalTickts * UNIT_OF_AMOUNT;
     }
 }

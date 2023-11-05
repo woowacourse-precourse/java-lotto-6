@@ -37,8 +37,13 @@ public class GameController {
     }
 
     private void createCashAndLottoMachine() {
-        cash = inputView.InputCash();
-        lottoMachine = new LottoMachine(numberGenerator, cash);
+        try {
+            cash = inputView.InputCash();
+            lottoMachine = new LottoMachine(numberGenerator, cash);
+        } catch (Exception e) {
+            outputView.printErrorMessage(e);
+            createCashAndLottoMachine();
+        }
     }
 
     private void purchaseLottos() {
@@ -47,7 +52,12 @@ public class GameController {
     }
 
     private void createWinnerLotto() {
-        winnerLotto = inputView.inputWinnerLotto();
+        try {
+            winnerLotto = inputView.inputWinnerLotto();
+        } catch (Exception e) {
+            outputView.printErrorMessage(e);
+            createWinnerLotto();
+        }
     }
 
 

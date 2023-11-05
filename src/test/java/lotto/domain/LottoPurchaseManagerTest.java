@@ -1,19 +1,19 @@
 package lotto.domain;
 
+import lotto.utils.LottoGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class LottoPurchaseManagerTest {
-    LottoPurchaseManager lottoPurchaseManager = new LottoPurchaseManager(new LottoGenerator());
     String money;
 
     @DisplayName("구입금액은 1000으로 나눠떨어지지 않으면 예외가 발생한다.")
     @Test
     void cannotPurchaseWithInvalidPurchaseAmount_number() {
         money = "10100";
-        assertThatThrownBy(() -> lottoPurchaseManager.createLottos(money))
+        assertThatThrownBy(() -> LottoPurchaseManager.create(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -21,7 +21,7 @@ public class LottoPurchaseManagerTest {
     @Test
     void cannotPurchaseWithInvalidPurchaseAmount_zero() {
         money = "0";
-        assertThatThrownBy(() -> lottoPurchaseManager.createLottos(money))
+        assertThatThrownBy(() -> LottoPurchaseManager.create(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,7 +29,7 @@ public class LottoPurchaseManagerTest {
     @Test
     void cannotPurchaseWithInvalidPurchaseAmount_negativeNumber() {
         money = "-10000";
-        assertThatThrownBy(() -> lottoPurchaseManager.createLottos(money))
+        assertThatThrownBy(() -> LottoPurchaseManager.create(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -37,7 +37,7 @@ public class LottoPurchaseManagerTest {
     @Test
     void cannotPurchaseWithInvalidPurchaseAmount_string() {
         money = "svgf";
-        assertThatThrownBy(() -> lottoPurchaseManager.createLottos(money))
+        assertThatThrownBy(() -> LottoPurchaseManager.create(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -45,7 +45,7 @@ public class LottoPurchaseManagerTest {
     @Test
     void cannotPurchaseWithInvalidPurchaseAmount_blank() {
         money = " ";
-        assertThatThrownBy(() -> lottoPurchaseManager.createLottos(money))
+        assertThatThrownBy(() -> LottoPurchaseManager.create(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

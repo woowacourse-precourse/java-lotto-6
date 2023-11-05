@@ -1,44 +1,54 @@
 package lotto.domain;
 
 import lotto.exception.ErrorMessage;
+import lotto.utils.LottoGenerator;
 import lotto.validator.LottoNumberValidator;
 
 public class LottoPurchaseManager {
     private static final int LOTTO_PRICE = 1000;
-    private final LottoGenerator lottoGenerator;
-    private long inputMoney;
+    private final long inputMoney;
+    private Lottos lottos;
 
-    public LottoPurchaseManager(LottoGenerator lottoGenerator) {
-        this.lottoGenerator = lottoGenerator;
+    public LottoPurchaseManager(long inputMoney) {
+        this.inputMoney = inputMoney;
+        lottos = createLottos();
     }
 
-    public Lottos createLottos(String input) {
-        long quantity = calculateLottoQuantity(input);
-        return lottoGenerator.generateLottos(quantity);
+    public static LottoPurchaseManager create(String inputMoneyFromUser) {
+        long money = LottoNumberValidator.validateNumeric(inputMoneyFromUser);
+        validatePurchaseAmount(money);
+        return new LottoPurchaseManager(money);
+    }
+
+    private Lottos createLottos() {
+        long quantity = calculateLottoQuantity();
+        return LottoGenerator.generateLottos(quantity);
     }
 
     public long getInputMoney() {
         return inputMoney;
     }
 
-    private long calculateLottoQuantity(String input) {
-        inputMoney = LottoNumberValidator.validateNumeric(input);
-        validatePurchaseAmount(inputMoney);
+    public Lottos getLottos() {
+        return lottos;
+    }
+
+    private long calculateLottoQuantity() {
         return inputMoney / LOTTO_PRICE;
     }
 
-    private void validatePurchaseAmount(long money) {
+    private static void validatePurchaseAmount(long money) {
         validatePositive(money);
-        validateMultipleOfLottoPrice(money);
+        validateDividedByLottoPrice(money);
     }
 
-    private void validatePositive(long money) {
+    private static void validatePositive(long money) {
         if (money <= 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE.getMessage());
         }
     }
 
-    private void validateMultipleOfLottoPrice(long money) {
+    private static void validateDividedByLottoPrice(long money) {
         if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_LOTTO_PRICE.getMessage());
         }

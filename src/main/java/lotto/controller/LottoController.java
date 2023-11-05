@@ -27,15 +27,19 @@ public class LottoController {
 
     public void run() {
         PurchaseAmount amount = inputController.getPurchaseAmount(inputView, outputView);
-        LottoIssuer lottoIssuer = LottoIssuer.of(amount);
-        List<Lotto> boughtLotto = lottoIssuer.issueLotto();
+        List<Lotto> boughtLotto = buyLotto(amount);
         outputView.printBoughtLotto(boughtLotto);
         WinningLotto winningLotto = inputController.getWinningLotto(inputView, outputView);
-        List<LottoPrize> lottoPrizes = collectWinners(boughtLotto, winningLotto);
-        Result result = Result.from(lottoPrizes);
+        List<LottoPrize> winners = collectWinners(boughtLotto, winningLotto);
+        Result result = Result.from(winners);
         outputView.printWinningStatistics(result);
-        Double totalReturn = calculate(lottoPrizes, amount);
+        Double totalReturn = calculate(winners, amount);
         outputView.printTotalReturn(totalReturn);
+    }
+
+    private List<Lotto> buyLotto(PurchaseAmount amount) {
+        LottoIssuer lottoIssuer = LottoIssuer.of(amount);
+        return lottoIssuer.issueLotto();
     }
 
     private Double calculate(List<LottoPrize> lottoPrizes, PurchaseAmount amount) {

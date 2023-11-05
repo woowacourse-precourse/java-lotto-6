@@ -26,11 +26,11 @@ public class LottoController {
     }
 
     private User buyTicket() {
-        while(true){
-            try{
+        while (true) {
+            try {
                 int purchaseAmount = inputPurchaseAmount();
                 return new User(purchaseAmount);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -43,12 +43,31 @@ public class LottoController {
     }
 
     private WinningLotto pickWinningLotto() {
-        while(true){
-            try{
-                Lotto lottoAnswer = new Lotto(inputLottoNumber());
-                int bonusNumber = inputBonusNumber();
-                return new WinningLotto(lottoAnswer, bonusNumber);
-            }catch (IllegalArgumentException e){
+        Lotto lottoAnswer = getLottoAnswer();
+        while(true) {
+            try {
+                return new WinningLotto(lottoAnswer, getBonusNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto getLottoAnswer() {
+        while (true) {
+            try {
+                return new Lotto(inputLottoNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getBonusNumber() {
+        while (true) {
+            try {
+                return inputBonusNumber();
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

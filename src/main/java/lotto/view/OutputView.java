@@ -51,7 +51,8 @@ public class OutputView {
     }
 
     private static void printRevenueRate(BigDecimal revenueRate){
-        System.out.println(String.format("총 수익률은 %s%%입니다.%n", revenueRate.toString()));
+        String rate = StringFormatter.mapRewardRateToString(revenueRate);
+        System.out.println(String.format("총 수익률은 %s%%입니다.%n", rate));
     }
 
     public static void printWinningStaticstics(String resultStatistics){

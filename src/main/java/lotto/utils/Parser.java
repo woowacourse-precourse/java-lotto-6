@@ -13,7 +13,7 @@ public class Parser {
         }
     }
 
-    public static int parseAmountToLottoNumber(PurchaseAmount purchaseAmount){
+    public static int parseAmountToCoin(PurchaseAmount purchaseAmount){
         return purchaseAmount.getAmount()/cost;
     }
 }

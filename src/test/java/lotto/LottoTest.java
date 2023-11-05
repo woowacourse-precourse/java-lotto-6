@@ -9,6 +9,8 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.Constants;
+
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
@@ -104,17 +106,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액이 1000 단위가 아니면 예외가 발생한다.")
+    @DisplayName("구입 금액이 Constants.MONEY_PER_TICKET 단위가 아니면 예외가 발생한다.")
     @Test
-    void inputMoneyByNot1000() {
+    void inputMoneyByNotMoneyperTicket() {
         assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck("1001"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액이 (Integer.MAX_VALUE - 8) * 1000 보다 크면 예외가 발생한다.")
+    @DisplayName("구입 금액이 (Integer.MAX_VALUE - 8) * Constants.MONEY_PER_TICKET 보다 크면 예외가 발생한다.")
     @Test
     void inputMoneyByOverRange() {
-        assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck("2147483639001"))
+        assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck(Long.toString(Constants.MAX_MONEY.toLong() + 1)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -188,19 +190,21 @@ class LottoTest {
     @Test
     void ticketsForMoney() {
         Control controller = new Control();
-        assertThat(controller.ticketsForMoney(1000L)).isEqualTo(1);
-        assertThat(controller.ticketsForMoney(10000L)).isEqualTo(10);
-        assertThat(controller.ticketsForMoney(100000L)).isEqualTo(100);
-        assertThat(controller.ticketsForMoney(2147483647000L)).isEqualTo(2147483647);
+        assertThat(controller.ticketsForMoney(Constants.MONEY_PER_TICKET.toLong() * 1)).isEqualTo(1);
+        assertThat(controller.ticketsForMoney(Constants.MONEY_PER_TICKET.toLong() * 10)).isEqualTo(10);
+        assertThat(controller.ticketsForMoney(Constants.MONEY_PER_TICKET.toLong() * 100)).isEqualTo(100);
+        assertThat(controller.ticketsForMoney(Constants.MONEY_PER_TICKET.toLong() * Constants.SAFE_ARRAY_SIZE.toLong()))
+                .isEqualTo(Constants.MAX_MONEY.toLong() / Constants.MONEY_PER_TICKET.toLong());
     }
 
     @DisplayName("로또 갯수로 구매 금액을 계산한다.")
     @Test
     void moneyForTickets() {
         Control controller = new Control();
-        assertThat(controller.moneyForTickets(1)).isEqualTo(1000);
-        assertThat(controller.moneyForTickets(100)).isEqualTo(100000);
-        assertThat(controller.moneyForTickets(2147483647)).isEqualTo(2147483647000L);
+        assertThat(controller.moneyForTickets(1)).isEqualTo(Constants.MONEY_PER_TICKET.toLong() * 1);
+        assertThat(controller.moneyForTickets(100)).isEqualTo(Constants.MONEY_PER_TICKET.toLong() * 100);
+        assertThat(controller.moneyForTickets(Constants.SAFE_ARRAY_SIZE.toInt()))
+                .isEqualTo(Constants.MONEY_PER_TICKET.toLong() * Constants.SAFE_ARRAY_SIZE.toLong());
     }
 
     @DisplayName("로또 번호 중 당첨 번호와 같은 숫자의 갯수를 계산한다.")

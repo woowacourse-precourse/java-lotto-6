@@ -1,5 +1,46 @@
 package lotto;
 
+enum Constants {
+    SAFE_ARRAY_SIZE(Integer.MAX_VALUE - 8),
+    MAX_MONEY((long) (Integer.MAX_VALUE - 8) * 1000),
+    LOTTO_NUMBER_MIN(1),
+    LOTTO_NUMBER_MAX(45),
+    LOTTO_NUMBER_COUNT(6),
+    MONEY_PER_TICKET(1000),
+    ERROR_MESSAGE_HEADER("[ERROR] ");
+
+    private Long number;
+    private String message;
+
+    Constants(Integer number) {
+        this.number = number.longValue();
+    }
+
+    Constants(Long number) {
+        this.number = number;
+    }
+
+    Constants(String message) {
+        this.message = message;
+    }
+
+    Long toLong() {
+        return this.number;
+    }
+
+    Integer toInt() {
+        return this.number.intValue();
+    }
+
+    public String toString() {
+        if (this.message != null) {
+            return this.message;
+
+        }
+        return this.number.toString();
+    }
+}
+
 enum SameNumber {
     SAME0(0),
     SAME3(3),

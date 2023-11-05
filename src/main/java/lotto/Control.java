@@ -14,18 +14,21 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Control {
     Lotto buyLotto() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                Constants.LOTTO_NUMBER_MIN.toInt(),
+                Constants.LOTTO_NUMBER_MAX.toInt(),
+                Constants.LOTTO_NUMBER_COUNT.toInt()));
         Collections.sort(numbers);
         Lotto lotto = new Lotto(numbers);
         return lotto;
     }
 
     int ticketsForMoney(Long money) {
-        return (int) (money / 1000);
+        return (int) (money / Constants.MONEY_PER_TICKET.toInt());
     }
 
     long moneyForTickets(Integer ticketCount) {
-        return (long) ticketCount * 1000;
+        return (long) ticketCount * Constants.MONEY_PER_TICKET.toInt();
     }
 
     SameNumber compareTicket(Lotto winner, Lotto ticket) {
@@ -71,7 +74,7 @@ public class Control {
             try {
                 ticketCount = ticketsForMoney(Input.inputMoney());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(Constants.ERROR_MESSAGE_HEADER + e.getMessage());
             }
         }
         return ticketCount;
@@ -83,7 +86,7 @@ public class Control {
             try {
                 winnerTicket = Input.inputWinnerNumber();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(Constants.ERROR_MESSAGE_HEADER + e.getMessage());
             }
         }
         return winnerTicket;
@@ -95,7 +98,7 @@ public class Control {
             try {
                 bunusNumber = Input.inputBonusNumber(winnerTicket);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(Constants.ERROR_MESSAGE_HEADER + e.getMessage());
             }
         }
         return bunusNumber;

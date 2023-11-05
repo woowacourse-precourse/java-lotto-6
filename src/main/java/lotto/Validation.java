@@ -8,17 +8,17 @@ import java.util.Set;
 public class Validation {
     static void emptyCheck(String raw) {
         if (raw == null) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 비어있지 않아야 합니다.");
+            throw new IllegalArgumentException("구입금액은 비어있지 않아야 합니다.");
         }
     }
 
     static void naturalNumberCheck(String raw) {
         try {
             if (Long.parseLong(raw) <= 0) {
-                throw new IllegalArgumentException("[ERROR] 구입금액은 자연수여야 합니다.");
+                throw new IllegalArgumentException("구입금액은 자연수여야 합니다.");
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("구입금액은 숫자여야 합니다.");
         }
     }
 
@@ -26,28 +26,28 @@ public class Validation {
         try {
             Long.parseLong(raw);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("구입금액은 숫자여야 합니다.");
         }
     }
 
     static void devide1000Check(String raw) {
         try {
-            if (Long.parseLong(raw) % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입금액은 1000 단위의 숫자여야 합니다.");
+            if (Long.parseLong(raw) % Constants.MONEY_PER_TICKET.toInt() != 0) {
+                throw new IllegalArgumentException("구입금액은 " + Constants.MONEY_PER_TICKET.toInt() + " 단위의 숫자여야 합니다.");
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("구입금액은 숫자여야 합니다.");
         }
     }
 
     static void rangeCheck(String raw) {
         try {
-            if (Long.parseLong(raw) > ((long) Integer.MAX_VALUE - 8) * 1000) {
+            if (Long.parseLong(raw) > Constants.MAX_MONEY.toLong()) {
                 throw new IllegalArgumentException(
-                        "[ERROR] 구입금액은 " + (Integer.MAX_VALUE - 8) * 1000 + "보다 작아야 합니다.");
+                        "구입금액은 " + Constants.MAX_MONEY.toLong() + "보다 작아야 합니다.");
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("구입금액은 숫자여야 합니다.");
         }
     }
 
@@ -67,32 +67,36 @@ public class Validation {
         Integer numbersSize = numbers.size();
         Integer setSize = set.size();
         if (numbersSize != setSize) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 중복되지 않아야 합니다.");
         }
     }
 
     static void commaCheck(String raw) {
         if (!raw.contains(",")) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)로 구분되야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 쉼표(,)로 구분되야 합니다.");
         }
         if (raw.contains(",,")) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 하나의 쉼표(,)로 구분되야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 하나의 쉼표(,)로 구분되야 합니다.");
         }
         if (raw.startsWith(",") || raw.endsWith(",")) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)로 구분되야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 쉼표(,)로 구분되야 합니다.");
         }
     }
 
     static void split6Check(String raw) {
-        if (raw.split(",").length != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자여야 합니다.");
+        if (raw.split(",").length != Constants.LOTTO_NUMBER_COUNT.toInt()) {
+            throw new IllegalArgumentException(
+                    "로또 번호는 " + Constants.LOTTO_NUMBER_COUNT.toInt() + "개의 숫자여야 합니다.");
         }
     }
 
     static void range1to45Check(String raw) {
         for (String number : raw.split(",")) {
-            if (Long.parseLong(number) < 1 || Long.parseLong(number) > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            if (Long.parseLong(number) < Constants.LOTTO_NUMBER_MIN.toInt()
+                    || Long.parseLong(number) > Constants.LOTTO_NUMBER_MAX.toInt()) {
+                throw new IllegalArgumentException("로또 번호는 "
+                        + Constants.LOTTO_NUMBER_MIN.toInt() + "부터 "
+                        + Constants.LOTTO_NUMBER_MAX.toInt() + " 사이의 숫자여야 합니다.");
             }
         }
     }
@@ -109,7 +113,7 @@ public class Validation {
         Integer bonusNumber = Integer.parseInt(raw);
         List<Integer> winnerTicketNumbers = winnerTicket.toList();
         if (winnerTicketNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 되지 않아야 합니다.");
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복 되지 않아야 합니다.");
         }
     }
 

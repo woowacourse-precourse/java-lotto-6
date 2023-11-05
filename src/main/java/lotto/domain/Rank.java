@@ -18,49 +18,57 @@ public enum Rank {
         this.message = message;
     }
 
-    private final int count;
-    private final int amount;
-    private final String message;
-
     public static final Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
     static {
-        for(Rank rank : Rank.values()){
+        for (Rank rank : Rank.values()) {
             rankCount.put(rank, 0);
         }
     }
-    public static void addRankCount(Rank rank){
-        rankCount.put(rank, rankCount.get(rank)+1);
-    }
 
-    public static void minusThirdRankCount(){
-        rankCount.put(Rank.THIRD, rankCount.get(Rank.THIRD)-1);
-    }
-
-    public static int getRankCount(Rank rank){
-        return rankCount.get(rank);
-    }
-
-    public static double getTotalEarning() {
-        int totalEarning = 0;
-        for(Rank rank : Rank.values()) {
-            totalEarning += rank.amount * getRankCount(rank);
-        }
-        return totalEarning;
-    }
-    private static final Map<Integer, Rank> ranking = new HashMap<>(){{
+    private static final Map<Integer, Rank> ranking = new HashMap<>() {{
         put(FIFTH.count, FIFTH);
         put(FOURTH.count, FOURTH);
         put(THIRD.count, THIRD);
         put(FIRST.count, FIRST);
     }};
-    public static Rank getRank(int count){return ranking.get(count);}
+
+    private final int count;
+    private final int amount;
+    private final String message;
+
+
+    public static void addRankCount(Rank rank) {
+        rankCount.put(rank, rankCount.get(rank) + 1);
+    }
+
+    public static void minusThirdRankCount() {
+        rankCount.put(Rank.THIRD, rankCount.get(Rank.THIRD) - 1);
+    }
+
+    public static int getRankCount(Rank rank) {
+        return rankCount.get(rank);
+    }
+
+    public static double getTotalEarning() {
+        int totalEarning = 0;
+        for (Rank rank : Rank.values()) {
+            totalEarning += rank.amount * getRankCount(rank);
+        }
+        return totalEarning;
+    }
+
+    public static Rank getRank(int count) {
+        return ranking.get(count);
+    }
 
     public int getCount() {
         return count;
     }
+
     public int getAmount() {
         return amount;
     }
+
     public String getMessage() {
         return message;
     }

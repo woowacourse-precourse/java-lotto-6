@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import lotto.constant.LottoGame;
+import lotto.util.Calculator;
 
 public class Player {
     public final List<Lotto> lottos;
@@ -23,7 +25,8 @@ public class Player {
     }
 
     private List<Integer> makeNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        return Randoms.pickUniqueNumbersInRange(LottoGame.LOTTO_MIN_NUMBER, LottoGame.LOTTO_MAX_NUMBER,
+                        LottoGame.LOTTO_NUMBER_COUNT)
                 .stream()
                 .sorted()
                 .collect(Collectors.toList());
@@ -43,13 +46,13 @@ public class Player {
     }
 
     public void checkMatchBonusNumber(int bonusNumber) {
-        for(var lotto : lottos) {
+        for (var lotto : lottos) {
             lotto.matchBonusNumber(bonusNumber);
         }
     }
 
     public String getEarningRate(double amount) {
-        double rate = (Rank.getTotalEarning() / amount ) * 100;
-        return String.format("%.1f",rate);
+        double rate = Calculator.percentage(Rank.getTotalEarning(), amount);
+        return Calculator.rounds(rate);
     }
 }

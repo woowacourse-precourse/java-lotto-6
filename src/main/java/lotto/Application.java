@@ -16,13 +16,7 @@ public class Application {
     public static void main(String[] args) {
 
         // money 입력 기능
-        Money money;
-        try {
-            money = inputMoneyAmount();
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
-            money = inputMoneyAmount();
-        }
+        Money money = inputMoneyAmount();
 
         // lotto 구매 기능
         LottoMachine lottoMachine = new LottoMachine();

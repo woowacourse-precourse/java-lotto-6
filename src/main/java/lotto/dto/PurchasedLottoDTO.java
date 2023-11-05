@@ -8,7 +8,7 @@ public final class PurchasedLottoDTO {
     private PurchasedLottoDTO() {
     }
 
-    public record Input(Long totalPayPrice) {
+    public record Input(Long buyPrice) {
     }
 
     public record Output(List<Lotto> purchasedLotto) {

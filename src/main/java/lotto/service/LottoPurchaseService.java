@@ -6,15 +6,15 @@ import lotto.dto.PurchasedLottoDTO;
 
 public final class LottoPurchaseService {
     private final LottoMachine lottoMachine;
-    private final Long totalPayPrice;
+    private final Long buyPrice;
 
-    public LottoPurchaseService(LottoMachine lottoMachine, Long totalPayPrice) {
+    public LottoPurchaseService(LottoMachine lottoMachine, Long buyPrice) {
         this.lottoMachine = lottoMachine;
-        this.totalPayPrice = totalPayPrice;
+        this.buyPrice = buyPrice;
     }
 
     public PurchasedLottoDTO.Output getPurchasedLottoDTO() {
-        PurchasedLotto purchasedLotto = lottoMachine.generateForPrice(totalPayPrice);
+        PurchasedLotto purchasedLotto = lottoMachine.generateForPrice(buyPrice);
         return new PurchasedLottoDTO.Output(purchasedLotto.lotto());
     }
 }

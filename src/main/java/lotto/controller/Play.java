@@ -56,13 +56,10 @@ public class Play {
             try {
                 messageAboutUserLottoNumber();
                 String tmpWinningNumbers = inputWinningNumbers();
-                winningNumbers = convertWinningNumber(tmpWinningNumbers);
-                checkWinningNumbersLength(winningNumbers);
-                rotateWinningNumbers(winningNumbers);
+                winningNumbers = checkExceptionWinningNumber(tmpWinningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]");
-                //e.getMessage();
             }
         }
         System.out.println();
@@ -75,14 +72,26 @@ public class Play {
             try {
                 messageAboutUserBonusNumber();
                 String tmpBonusNumber = inputBonusNumber();
-                bonus = convertBonusNumber(tmpBonusNumber);
-                checkRange(bonus);
-                checkDuplicate(numbers, bonus);
+                bonus = checkExceptionBonus(numbers,tmpBonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]");
             }
         }
+        return bonus;
+    }
+
+    public static List<Integer> checkExceptionWinningNumber(String tmpWinningNumbers) throws IllegalArgumentException {
+        List<Integer> winningNumbers = convertWinningNumber(tmpWinningNumbers);
+        checkWinningNumbersLength(winningNumbers);
+        rotateWinningNumbers(winningNumbers);
+        return winningNumbers;
+    }
+
+    public static int checkExceptionBonus(List<Integer> numbers, String tmpBonusNumber) {
+        int bonus = convertBonusNumber(tmpBonusNumber);
+        checkRange(bonus);
+        checkDuplicate(numbers, bonus);
         return bonus;
     }
 

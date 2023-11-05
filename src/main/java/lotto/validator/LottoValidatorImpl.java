@@ -1,13 +1,13 @@
 package lotto.validator;
 
-import java.util.StringTokenizer;
-
 public class LottoValidatorImpl implements LottoValidator{
 
 	@Override
 	public int validatePrice(String price) {
 		validateIsDigit(price);
-		return validateRange(price);
+		int parsePrice = validateRange(price);
+		validateRest(parsePrice);
+		return parsePrice;
 	}
 
 	private void validateIsDigit(String price) {
@@ -21,10 +21,24 @@ public class LottoValidatorImpl implements LottoValidator{
 
 	private int validateRange(String price) {
 		try {
-			return Integer.parseInt(price);
+			int parsePrice = Integer.parseInt(price);
+			return validateMinimum(parsePrice);
 		} catch (NumberFormatException e) {
 			e.getStackTrace();
 			throw new IllegalArgumentException("int 범위를 초과한 금액입니다.");
+		}
+	}
+
+	private int validateMinimum(int parsePrice) {
+		if (parsePrice < 1000) {
+			throw new IllegalArgumentException("금액의 최소 금액은 1000원입니다.");
+		}
+		return parsePrice;
+	}
+
+	private void validateRest(int parsePrice) {
+		if (parsePrice%1000 != 0) {
+			throw new IllegalArgumentException("1000원 단위로 입력해야 합니다.");
 		}
 	}
 }

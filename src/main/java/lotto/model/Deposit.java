@@ -5,6 +5,7 @@ public class Deposit {
     private static final String NOT_A_UNIT_OF_THOUSAND_MESSAGE = "[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다. ";
     private static final String OUT_OF_RANGE_MESSAGE = "[ERROR] 로또 구입 금액은 1,000원 이상, 100,000원 이하여야 합니다. ";
     private static final String NUMERAL_REGEX = "[0-9]+";
+    private static final Integer DIVISION_UNIT = 1_000;
     private static final Integer MIN_AMOUNT = 1_000;
     private static final Integer MAX_AMOUNT = 100_000;
 
@@ -12,14 +13,14 @@ public class Deposit {
 
     public Deposit(String amount) {
         validateDeposit(amount);
-        this.amount = Integer.getInteger(amount);
+        this.amount = Integer.parseInt(amount);
     }
 
     private void validateDeposit(String amount) {
         if (!amount.matches(NUMERAL_REGEX)) {
             throw new IllegalArgumentException(NOT_A_NUMBER_MESSAGE);
         }
-        if (Integer.parseInt(amount) % 10 != 0) {
+        if (Integer.parseInt(amount) % DIVISION_UNIT != 0) {
             throw new IllegalArgumentException(NOT_A_UNIT_OF_THOUSAND_MESSAGE);
         }
         if (Integer.parseInt(amount) > MAX_AMOUNT
@@ -29,6 +30,6 @@ public class Deposit {
     }
 
     public Integer calculateBuyableLottoAmount() {
-        return amount / 10;
+        return this.amount / DIVISION_UNIT;
     }
 }

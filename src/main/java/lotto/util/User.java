@@ -10,7 +10,7 @@ public class User {
     public void inputPaymentAmount() {
         String input = Console.readLine();
         checkPaymentAmount(input);
-        getManyLottoTicket();
+        howManyLottoTicket();
     }
 
     public void checkPaymentAmount(String input) {
@@ -19,7 +19,14 @@ public class User {
         Exception.checkRangePaymentAmount(paymentAmount);
     }
 
-    public void getManyLottoTicket() {
+    public void howManyLottoTicket() {
         manyLottoTicket = paymentAmount / 1000;
+    }
+
+    public int getPaymentAmount(){
+        return paymentAmount;
+    }
+    public int getManyLottoTicket(){
+        return manyLottoTicket;
     }
 }

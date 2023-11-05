@@ -2,7 +2,7 @@ package lotto.service;
 
 import lotto.view.InputView;
 
-public class lottoService {
+public class LottoService {
 
     public static int getAmountOfLottoTickets() {
         int money = InputView.inputMoney();

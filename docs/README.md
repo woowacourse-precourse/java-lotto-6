@@ -2,9 +2,9 @@
 
 # Model
 
-## ❌ 로또 번호 생성 기능
+## ✅ 로또 번호 생성 기능
 
-- ❌ getLottoRandomNumber 메서드 구현
+- ✅ getLottoRandomNumber 메서드 구현
     -  1부터 45까지의 숫자 중 서로 다른 수로 이루어 진 random 6자리의 숫자 리스트 생성
 
 ## ❌ 로또 번호 정렬 기능

@@ -33,7 +33,7 @@
     - [x]  금액 입력 (**`inputAmount`**)
     - [x]  당첨번호 입력 (**`inputPrizeNumber`**)
     - [x]  보너스 번호 입력 (**`inputBonusNumber`**)
-- [ ]  OutputView
+- [x]  OutputView
     - [x]  금액입력 안내 메세지(`**printAmountInputMessage**`)
     - [x]  로또 구매 안내 메세지(`**printBuyLottoMessage`)**
     - [x]  당첨 번호 입력 안내 메세지(`**printWinningNumberInputMessage**`)

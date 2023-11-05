@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.Arrays;
+
 public enum NumberErrorMessage {
     NUMBER_IN_EMPTY("[ERROR] 아무것도 입력하지 않았습니다."),
     NOT_A_NUMBER("숫자가 아닙니다."),
@@ -10,7 +12,7 @@ public enum NumberErrorMessage {
     NUMBER_IS_NOT_SIX("6자리 숫자가 아닙니다."),
     DUPLICATE_NUMBERS("숫자가 중복되었습니다.");
 
-    private final String message;
+    private String message;
 
     NumberErrorMessage(String message) {
         this.message = message;
@@ -18,5 +20,9 @@ public enum NumberErrorMessage {
 
     public String getMessage() {
         return message;
+    }
+
+    static {
+        Arrays.stream(values()).forEach(error -> error.message = "[ERROR] " + error.message);
     }
 }

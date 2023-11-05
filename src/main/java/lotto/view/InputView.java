@@ -30,12 +30,18 @@ public class InputView {
     
     private static int convertInputToNumber(String input) {
         validateInputNumber(input);
+        validateExceedMaximum(input);
         return Integer.parseInt(input);
     }
     
     private static void validateInputNumber(String input) {
         if (input.matches("\\d*")) return;
         throw new IllegalArgumentException("숫자를 입력해주세요.");
+    }
+
+    private static void validateExceedMaximum(String input) {
+        if (input.length() <= 10 && Long.parseLong(input) <= Integer.MAX_VALUE) return;
+        throw new IllegalArgumentException("너무 큰 금액을 입력했습니다.");
     }
 }
 

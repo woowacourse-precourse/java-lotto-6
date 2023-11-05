@@ -25,6 +25,7 @@ public class OutputView {
     private static final String TOTAL_RATE_OF_RETURN = "총 수익률은 ";
     private static final String PERCENT = "%";
     private static final String IT_IS = "입니다.";
+    private static final String ERROR_HEADER = "[ERROR] ";
 
     public void printInputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
@@ -69,6 +70,10 @@ public class OutputView {
 
         System.out.println(TOTAL_RATE_OF_RETURN +
                 formattedRateOfReturn + PERCENT + IT_IS);
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(ERROR_HEADER + errorMessage);
     }
 
 }

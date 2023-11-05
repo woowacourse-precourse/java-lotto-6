@@ -10,6 +10,8 @@ import lotto.view.OutputView;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class LottoController {
@@ -20,6 +22,10 @@ public class LottoController {
 
     private static final String DELIMITER = ",";
 
+    private static final String NOT_NUMERIC_EXCEPTION_MESSAGE = "숫자를 입력해주세요.";
+
+    private static final String NUMERIC_REGX = "^[0-9]*$";
+
     public void run() {
         Player player = inputPurchaseAmount();
         printLottoAmountAndLottoNumbers(player);
@@ -29,10 +35,16 @@ public class LottoController {
 
     private Player inputPurchaseAmount() {
         outputView.printInputPurchaseAmount();
-        String stringPurchaseAmount = inputView.inputPurchaseAmount();
-        //입력값 검증
-        int purchaseAmount = Integer.parseInt(stringPurchaseAmount);
-        return lottoService.createPlayer(purchaseAmount);
+
+        try {
+            String stringPurchaseAmount = inputView.inputPurchaseAmount();
+            validateNumeric(stringPurchaseAmount);
+            int purchaseAmount = Integer.parseInt(stringPurchaseAmount);
+            return lottoService.createPlayer(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputPurchaseAmount();
+        }
     }
 
     private void printLottoAmountAndLottoNumbers(Player player) {
@@ -48,18 +60,33 @@ public class LottoController {
 
     private int inputBonusNumber() {
         outputView.printInputBonusNumber();
-        String stringBonusNumber = inputView.inputBonusNumbers();
-        //입력값 검증
-        int bonusNumber = Integer.parseInt(stringBonusNumber);
+        int bonusNumber = 0;
+
+        try {
+            String stringBonusNumber = inputView.inputBonusNumbers();
+            validateNumeric(stringBonusNumber);
+            bonusNumber = Integer.parseInt(stringBonusNumber);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputBonusNumber();
+        }
         return bonusNumber;
     }
 
     private List<Integer> inputWinningNumbers() {
-        outputView.printInputWinningNumbers();
-        String stringWinningNumbers = inputView.inputWinningNumbers();
-        //입력값 검증
-        List<Integer> winningNumbers = convertStringToIntegerList(stringWinningNumbers);
-        return winningNumbers;
+        try {
+            outputView.printInputWinningNumbers();
+            String stringWinningNumbers = inputView.inputWinningNumbers();
+            String[] splitStringWinningNumbers = stringWinningNumbers.split(DELIMITER);
+
+            for (String splitStringWinningNumber : splitStringWinningNumbers)
+                validateNumeric(splitStringWinningNumber);
+
+            return convertStringToIntegerList(splitStringWinningNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputWinningNumbers();
+        }
     }
 
     private Map<Rank, Integer> printWinningStatistics(Player player, WinningLotto winningLotto) {
@@ -78,10 +105,16 @@ public class LottoController {
         printReturnOfRatio(player, winningStatistics);
     }
 
-    private List<Integer> convertStringToIntegerList(String stringWinningNumbers) {
-        return Arrays.stream(stringWinningNumbers.split(DELIMITER))
+    private List<Integer> convertStringToIntegerList(String[] stringWinningNumbers) {
+        return Arrays.stream(stringWinningNumbers)
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private void validateNumeric(String input) {
+        Matcher matcher = Pattern.compile(NUMERIC_REGX).matcher(input);
+        if (!matcher.matches())
+            throw new IllegalArgumentException(NOT_NUMERIC_EXCEPTION_MESSAGE);
     }
 
 }

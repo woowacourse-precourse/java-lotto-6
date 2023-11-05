@@ -49,6 +49,16 @@ public class Lotto {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
 
+    public boolean isContain(int num) {
+        return numbers.contains(num);
+    }
+
+    public int getMatchLottoNum(UserLottoNum userLottoNum) {
+        return (int) numbers.stream()
+                .filter(userLottoNum::isContain)
+                .count();
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

@@ -1,10 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.AnswerLotto;
-import lotto.domain.UserLotto;
-import lotto.domain.Ranking;
-import lotto.domain.WinningResult;
 import lotto.dto.LottoDto;
+import lotto.dto.WinningResultDto;
+import lotto.service.LottoService;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,14 +14,13 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final InputValidator inputValidator;
-    private UserLotto userLotto;
-    private AnswerLotto answerLotto;
-    private WinningResult winningResult;
+    private final LottoService lottoService;
 
     public LottoController(InputView inputView, OutputView outputView, InputValidator inputValidator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.inputValidator = inputValidator;
+        this.lottoService = new LottoService();
     }
 
     public void startLotto() {
@@ -31,18 +28,17 @@ public class LottoController {
         announceUserLotto();
         drawLotto();
         calculateWinningResult();
+        announceWinningResult();
     }
 
     private void buyLottos() {
         String input = inputView.getPurchasePrice();
         int purchasePrice = inputValidator.validateNumber(input);
-        userLotto = new UserLotto(purchasePrice);
+        lottoService.buyLottos(purchasePrice);
     }
 
     private void announceUserLotto() {
-        List<LottoDto> lottoDtos = userLotto.getLottos().stream()
-                .map(lotto -> new LottoDto(lotto.getNumbers()))
-                .toList();
+        List<LottoDto> lottoDtos = lottoService.getUserLottoDto();
         outputView.printUserLotto(lottoDtos);
     }
 
@@ -54,10 +50,15 @@ public class LottoController {
         String inputBonusNumber = inputView.getBonusNumber();
         int bonusNumber = inputValidator.validateNumber(inputBonusNumber);
 
-        answerLotto = new AnswerLotto(winningNumbers, bonusNumber);
+        lottoService.drawLotto(winningNumbers, bonusNumber);
     }
 
     private void calculateWinningResult() {
-        winningResult = userLotto.calculateWinningResult(answerLotto);
+        lottoService.calculateWinningResult();
+    }
+
+    private void announceWinningResult() {
+        WinningResultDto winningResultDto = lottoService.getWinningResultDto();
+        outputView.printWinningResult(winningResultDto);
     }
 }

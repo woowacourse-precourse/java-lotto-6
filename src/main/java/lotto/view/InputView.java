@@ -4,11 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 
 public interface InputView {
 
-    public String getPurchasePrice();
+    String getPurchasePrice();
 
-    public String getWinningNumbers();
+    String getWinningNumbers();
 
-    public String getBonusNumber();
+    String getBonusNumber();
 
     default void print(String printMessage) {
         System.out.println(printMessage);

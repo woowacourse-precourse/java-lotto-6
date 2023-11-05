@@ -7,14 +7,14 @@ import java.util.Map;
 
 public class WinningResult {
 
-    private Map<Ranking, Integer> rankingResult = new EnumMap<>(Ranking.class);
+    private Map<Ranking, Integer> rankingCount = new EnumMap<>(Ranking.class);
     private double returnRate;
 
-    public WinningResult(List<Ranking> rankingResult, int purchasePrice) {
+    public WinningResult(List<Ranking> rankingCount, int purchasePrice) {
         Arrays.stream(Ranking.values())
-                .forEach(ranking -> this.rankingResult.put(ranking, 0));
+                .forEach(ranking -> this.rankingCount.put(ranking, 0));
 
-        rankingResult.stream()
+        rankingCount.stream()
                 .forEach(ranking -> calculateRankingCount(ranking));
 
         returnRate = calculateReturnRate(purchasePrice);
@@ -22,19 +22,27 @@ public class WinningResult {
 
     private void calculateRankingCount(Ranking ranking) {
 
-        if(rankingResult.get(ranking) > 0) {
-            rankingResult.put(ranking, rankingResult.get(ranking) + 1);
+        if(rankingCount.get(ranking) > 0) {
+            rankingCount.put(ranking, rankingCount.get(ranking) + 1);
         }
 
-        if(rankingResult.get(ranking) <= 0) {
-            rankingResult.put(ranking, 1);
+        if(rankingCount.get(ranking) <= 0) {
+            rankingCount.put(ranking, 1);
         }
     }
 
     private double calculateReturnRate(int purchasePrice) {
         double totalReward = (double) Arrays.stream(Ranking.values())
-                .mapToInt(ranking -> rankingResult.get(ranking) * ranking.getReward())
+                .mapToInt(ranking -> rankingCount.get(ranking) * ranking.getReward())
                 .sum();
         return Math.round(((totalReward / purchasePrice * 100) * 10) / 10.0);
+    }
+
+    public Map<Ranking, Integer> getRankingCount() {
+        return rankingCount;
+    }
+
+    public double getReturnRate() {
+        return returnRate;
     }
 }

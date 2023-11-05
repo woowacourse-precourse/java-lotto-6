@@ -87,7 +87,7 @@ public class LottoGame {
             }
             boolean isBonusNumberMatched = lotto.containsNumber(bonusNumber);
 
-            Rank rank = Rank.calcualteBy(matchCount, isBonusNumberMatched);
+            Rank rank = Rank.judgeBy(matchCount, isBonusNumberMatched);
             result.add(rank);
         }
 

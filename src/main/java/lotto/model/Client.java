@@ -6,17 +6,17 @@ import java.util.List;
 import lotto.validator.PayAmountValidator;
 
 public class Client {
-    private int payAmount;
+    private final int payAmount;
     private List<Lotto> lottos = new ArrayList<>();
     private static final PayAmountValidator PAY_AMOUNT_VALIDATOR = new PayAmountValidator();
 
-    public void pay(String payAmount) {
-        PAY_AMOUNT_VALIDATOR.validate(payAmount);
-        setPayAmount(Integer.parseInt(payAmount));
+    private Client(int payAmount) {
+        this.payAmount = payAmount;
     }
 
-    private void setPayAmount(int payAmount) {
-        this.payAmount = payAmount;
+    public static Client of(String payAmount) {
+        PAY_AMOUNT_VALIDATOR.validate(payAmount);
+        return new Client(Integer.parseInt(payAmount));
     }
 
     public int getPayAmount() {
@@ -35,7 +35,7 @@ public class Client {
 
     private long calculateWinningPrize(List<Integer> lottoResults) {
         long winningPrize = 0;
-        for(int rank = 0; rank < lottoResults.size(); rank++) {
+        for (int rank = 0; rank < lottoResults.size(); rank++) {
             winningPrize += lottoResults.get(rank) * LottoResult.getPrizeByRank(rank);
         }
         return winningPrize;
@@ -46,7 +46,6 @@ public class Client {
         rateOfReturn = Math.round(rateOfReturn * 1000) / 10.0;
         return rateOfReturn;
     }
-
 
 
 }

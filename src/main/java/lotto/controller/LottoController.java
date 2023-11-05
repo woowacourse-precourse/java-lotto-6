@@ -12,21 +12,19 @@ public class LottoController {
     LottoStore lottoStore = new LottoStore();
 
     public void run() {
-        Client client = new Client();
-        payAmount(client);
+        Client client = newClient();
         issueLotto(client);
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
         drawWinningNumbers(lottoResultChecker);
         announceLottoResults(client, lottoResultChecker);
     }
 
-    private void payAmount(Client client) {
+    private Client newClient() {
         view.printPayAmountInputMessage();
         while (true) {
             try {
                 String payAmount = view.inputValue();
-                client.pay(payAmount);
-                break;
+                return Client.of(payAmount);
             } catch (IllegalArgumentException e) {
                 view.printExceptionMessage(e);
             }
@@ -50,7 +48,7 @@ public class LottoController {
 
     private void createWinningNumbers(LottoResultChecker lottoResultChecker) {
         view.printWinningNumbersInputMessage();
-        while(true) {
+        while (true) {
             try {
                 String winningNumbers = view.inputValue();
                 lottoResultChecker.createWinningNumbers(winningNumbers);
@@ -63,7 +61,7 @@ public class LottoController {
 
     private void createBonusNumber(LottoResultChecker lottoResultChecker) {
         view.printBonusNumberInputMessage();
-        while(true) {
+        while (true) {
             try {
                 String bonusNumber = view.inputValue();
                 lottoResultChecker.createBonusNumber(bonusNumber);

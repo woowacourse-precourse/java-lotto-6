@@ -32,18 +32,18 @@ public class LottoResultCheckerTest {
     @DisplayName("로또가 주어지면 일치한 당첨 번호 갯수에 맞춰서 정해진 등수의 결과를 나타낸다.")
     @Test
     void testShowLottoResults() {
-        Client client = new Client();
-        client.addLotto(new Lotto(List.of(1,2,3,4,5,6)));
-        client.addLotto(new Lotto(List.of(1,2,3,10,15,20)));
-        client.addLotto(new Lotto(List.of(1,2,3,4,10,35)));
-        client.addLotto(new Lotto(List.of(1,2,3,4,5,16)));
-        client.addLotto(new Lotto(List.of(11,12,13,14,15,16)));
+        Client client = Client.of("5000");
+        client.addLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        client.addLotto(new Lotto(List.of(1, 2, 3, 10, 15, 20)));
+        client.addLotto(new Lotto(List.of(1, 2, 3, 4, 10, 35)));
+        client.addLotto(new Lotto(List.of(1, 2, 3, 4, 5, 16)));
+        client.addLotto(new Lotto(List.of(11, 12, 13, 14, 15, 16)));
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
         lottoResultChecker.createWinningNumbers("1,2,3,4,5,6");
         lottoResultChecker.createBonusNumber("16");
 
         List<Integer> result = lottoResultChecker.showLottoResults(client.getLottos());
 
-        assertThat(result).isEqualTo(List.of(1,1,1,0,1,1));
+        assertThat(result).isEqualTo(List.of(1, 1, 1, 0, 1, 1));
     }
 }

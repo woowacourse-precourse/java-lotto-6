@@ -5,10 +5,10 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
 
 public class UserInput {
-    private boolean repeatPurchase = true;
-    private boolean repeatWinningNumber = true;
+    public static boolean repeatPurchase = true;
+    public static boolean repeatWinningNumber = true;
 
-    private boolean repearBonusNumber = true;
+    public static boolean repearBonusNumber = true;
 
     //구매 금액 입력
     public int getPurchaseAmount() {
@@ -35,7 +35,7 @@ public class UserInput {
 ////////////////////////////////////////////////////////////////////////////////
 
     //당첨 번호 입력
-    public static List<Integer> getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         String winningNumbersInput = Console.readLine();
         //Array보다는  Collections 사용! - 1주차 피드백
 
@@ -61,15 +61,15 @@ public class UserInput {
     }
 
 
-    public checkDuplicatesInWinningNumbers(List<Integer> winningNumbers) {
-
-    }
+//    public checkDuplicatesInWinningNumbers(List<Integer> winningNumbers) {
+//
+//    }
 
     public void hasDuplicates(List<Integer> winningNumbers) {
         Set<Integer> set = new HashSet<>();
         for (Integer number : winningNumbers) {
             if (!set.add(number)) {
-                throw new IllegalArgumentException("서로 다른 당첨 번호를 입력해주세요.");
+                throw new IllegalArgumentException("서로 다른 당첨 번호들을 입력해주세요.");
             }
         }
         repeatWinningNumber = false;

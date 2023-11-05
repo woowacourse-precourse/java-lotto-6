@@ -27,19 +27,21 @@ public class LottoHandler {
         return purchasePrice / LOTTO_PRICE;
     }
 
-    public List<List<Integer>> issueLottoNumbers(int lottoTicket) {
-        List<List<Integer>> lottoNumbers = new ArrayList<>();
+    public List<Lotto> issueLottoNumbers(int lottoTicket) {
+        List<Lotto> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < lottoTicket; i++) {
             lottoNumbers.add(pickNumbersOrderByAsc());
         }
         return lottoNumbers;
     }
 
-    private List<Integer> pickNumbersOrderByAsc() {
+    private Lotto pickNumbersOrderByAsc() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                LOTTO_START_NUMBER, LOTTO_LAST_NUMBER, LOTTO_NUMBER_COUNT
+                LOTTO_START_NUMBER,
+                LOTTO_LAST_NUMBER,
+                LOTTO_NUMBER_COUNT
         );
         numbers.sort(Comparator.naturalOrder());
-        return numbers;
+        return new Lotto(numbers);
     }
 }

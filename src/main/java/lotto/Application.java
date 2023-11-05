@@ -19,6 +19,6 @@ public class Application {
                 OutputHandler.printMessage(e.getMessage());
             }
         }
-        List<List<Integer>> lottoNumbers = lottoHandler.issueLottoNumbers(lottoTicket);
+        List<Lotto> lottoNumbers = lottoHandler.issueLottoNumbers(lottoTicket);
     }
 }

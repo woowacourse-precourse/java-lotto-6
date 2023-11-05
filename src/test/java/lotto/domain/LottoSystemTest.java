@@ -51,4 +51,19 @@ class LottoSystemTest extends MethodSourceTest {
         assertThat(winningLottoNumbers).isNotEmpty();
         assertThat(winningLottoNumbers).isEqualTo(numbers);
     }
+
+    @DisplayName("보너스 번호를 입력한다.")
+    @Test
+    void updateBonusNumber() {
+        // given
+        int number = 10;
+        lottoSystem.generateWinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        lottoSystem.inputBonusNumber(number);
+
+        // when
+        int bonusNumber = winningLotto.bonusNumber();
+
+        // then
+        assertThat(bonusNumber).isEqualTo(number);
+    }
 }

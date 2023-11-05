@@ -20,6 +20,7 @@ public class InputValidator {
         }
     }
 
+
     private static boolean isBlank(String input) {
         return input.isBlank();
     }
@@ -29,6 +30,11 @@ public class InputValidator {
     }
 
     private static boolean isDigit(String input) {
-        return !Character.isDigit(input.charAt(0));
+        for (int index = 0; index < input.length(); index++) {
+            if (!Character.isDigit(input.charAt(index))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

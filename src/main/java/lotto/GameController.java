@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.InputController.getValidInput;
+
 import java.util.List;
 
 public class GameController {
@@ -8,9 +10,10 @@ public class GameController {
     InputView inputView = new InputView(new InputValidator());
     OutputView outputView = new OutputView();
 
+
     public void runGame() {
         inputView.printInsertMoney();
-        int money = inputView.insertMoney();
+        int money = getValidInput(() -> inputView.insertMoney());
         Cpu cpu = new Cpu(money);
         int tickets = cpu.getTickets();
 
@@ -18,10 +21,10 @@ public class GameController {
         outputView.printLottoNumbers(cpu, tickets);
 
         inputView.printInsertLottoNumbers();
-        List<Integer> playerLottoNumbers = inputView.insertLottoNumbers();
+        List<Integer> playerLottoNumbers = getValidInput(() -> inputView.insertLottoNumbers());
 
         inputView.printBonusNumber();
-        int playerBonusNumber = inputView.insertBonusNumber();
+        int playerBonusNumber = getValidInput(() -> inputView.insertBonusNumber());
 
         Player playerLotto = new Player(new Lotto(playerLottoNumbers), playerBonusNumber);
 
@@ -33,5 +36,4 @@ public class GameController {
         outputView.printLottoResult(gameResult);
         outputView.printTotalProfit(totalProfit);
     }
-
 }

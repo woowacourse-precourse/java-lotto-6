@@ -14,6 +14,7 @@ public class OutputUI {
     }
 
     public void purchaseLog(int num, List<Lotto> publishedLottos) {
+        System.out.println();
         System.out.println(num + "개를 구매했습니다.");
         for (Lotto lotto : publishedLottos) {
             System.out.println(lotto.getNumbers());
@@ -24,6 +25,7 @@ public class OutputUI {
     public void winnings(HashMap<Rewards, Integer> resultAll) {
         Rewards[] rewards = Rewards.values();
         Arrays.sort(rewards, Comparator.comparingInt(Rewards::correctLottos));
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Rewards reward : rewards) {

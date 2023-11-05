@@ -21,6 +21,22 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static Lotto createWinningLotto(List<Integer> winningNumbers) {
+        return new Lotto(winningNumbers);
+    }
+
+    public static Lotto createLotto(final NumberGenerator numberGenerator) {
+        return new Lotto(getLottoNumbers(numberGenerator));
+    }
+
+    private static List<Integer> getLottoNumbers(final NumberGenerator numberGenerator) {
+        List<Integer> randomNumbers = numberGenerator.pickNumbers();
+        randomNumbers = new ArrayList<>(randomNumbers);
+        Collections.sort(randomNumbers);
+
+        return Collections.unmodifiableList(randomNumbers);
+    }
+
     private void validate(final List<Integer> numbers) {
         if (numbers.size() != LottoInfo.LOTTO_SIZE.getValue()) {
             throw new InvalidLottoSizeException();
@@ -49,18 +65,6 @@ public class Lotto {
     private boolean hasLessThanMinNumber(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> (number < LottoInfo.LOTTO_MIN_NUMBER.getValue()));
-    }
-
-    public static Lotto createLotto(final NumberGenerator numberGenerator) {
-        return new Lotto(getLottoNumbers(numberGenerator));
-    }
-
-    private static List<Integer> getLottoNumbers(final NumberGenerator numberGenerator) {
-        List<Integer> randomNumbers = numberGenerator.pickNumbers();
-        randomNumbers = new ArrayList<>(randomNumbers);
-        Collections.sort(randomNumbers);
-
-        return Collections.unmodifiableList(randomNumbers);
     }
 
     public List<Integer> getNumbers() {

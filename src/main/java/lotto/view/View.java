@@ -39,10 +39,10 @@ public class View {
         outputView.printRequestInputWinningNumberMessage();
         while (true) {
             try {
-                String winningNumbers = inputView.inputWinningNumbers();
-                InputValidator.validateWinningNumbers(winningNumbers);
-                List<Integer> numbers = Converter.convertToLottoNumbers(winningNumbers);
-                return new Lotto(numbers);
+                String numbers = inputView.inputWinningNumbers();
+                InputValidator.validateWinningNumbers(numbers);
+                List<Integer> winningNumbers = Converter.convertToLottoNumbers(numbers);
+                return Lotto.createWinningLotto(winningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }

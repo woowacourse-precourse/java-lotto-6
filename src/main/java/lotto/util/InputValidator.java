@@ -3,10 +3,10 @@ package lotto.util;
 import java.util.regex.Pattern;
 import lotto.constant.ErrorMessage;
 
-public final class InputVerifier {
+public final class InputValidator {
     private static final Pattern numberPattern = Pattern.compile("\\d+");
 
-    private InputVerifier() {
+    private InputValidator() {
     }
 
     public static void validateIsNumberInRange(String input, int minInclusive, int maxInclusive) {

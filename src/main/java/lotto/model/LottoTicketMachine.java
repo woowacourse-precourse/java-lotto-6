@@ -2,16 +2,18 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.dto.LottoPurchase;
 import lotto.util.RandomNumberGenerator;
 
 public class LottoTicketMachine {
     public static final int LOTTO_PRICE = 1000;
     public static final int MAX_PURCHASE_AMOUNT = 100000;
 
-    public LottoTicket getLottoTicket(int price) {
-        int lottoCount = getLottoCount(price);
+    public LottoTicket getLottoTicket(LottoPurchase lottoPurchase) {
+        int purchaseMoney = lottoPurchase.getMoney();
+        int lottoCount = getLottoCount(purchaseMoney);
         List<Lotto> lotto = getLotto(lottoCount);
-        return LottoTicket.of(lotto, lotto.size(), price);
+        return LottoTicket.of(lotto, lotto.size(), purchaseMoney);
     }
 
     private int getLottoCount(int price) {

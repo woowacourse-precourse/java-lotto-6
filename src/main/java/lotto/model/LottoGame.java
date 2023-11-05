@@ -1,9 +1,12 @@
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.Lotto;
 import lotto.model.Game;
+import lotto.model.Winning;
 
 public class LottoGame implements Game {
     private static final int lottoNumbers = 6;
@@ -11,7 +14,9 @@ public class LottoGame implements Game {
     private final int lottoPurchaseAmount;
     private final Lotto winningLotto;
     private final int bonusNumber;
-    private final List<Lotto> purchasedLottos;
+    private final List<Lotto> purchasedLottos = new ArrayList<>();
+    private final List<Integer> winningLottos = new ArrayList<>();
+    private double returnOnInvestment;
 
     public LottoGame(int lottoPurchasePrice, List<Integer> winningNumbers, int bonusNumber) {
         this.lottoPurchaseAmount = validateLottoPurchaseAmount(lottoPurchasePrice);
@@ -19,9 +24,27 @@ public class LottoGame implements Game {
         this.bonusNumber = validateBonusNumber(winningNumbers, bonusNumber);
     }
 
+    public void checkWinningLottos() {
+        int profit = 0;
+
+        for (Lotto lotto : purchasedLottos) {
+            Winning winning;
+            winning = lotto.checkWinning(winningLotto, bonusNumber);
+            if (winning != Winning.LOSE) {
+                winningLottos.add(winning.getValue(), 1);
+                profit += winning.getWinningAmount();
+            }
+        }
+
+        returnOnInvestment = Math.round(((double) profit / lottoPurchaseAmount) * 10) / 10.0D;
+    }
+
     public void createLottoTickets(int lottoPurchaseAmount) {
         for (int i = 0; i < lottoPurchaseAmount; i++) {
-            purchasedLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            List<Integer> purchasedLottoNumbers;
+            purchasedLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(purchasedLottoNumbers);
+            purchasedLottos.add(new Lotto(purchasedLottoNumbers));
         }
     }
 

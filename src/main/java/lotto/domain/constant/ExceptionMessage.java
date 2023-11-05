@@ -7,7 +7,8 @@ public enum ExceptionMessage {
     INVALID_RANGE_MONEY("유효하지 않은 구매 금액 범위입니다."),
     NOT_BLANK("공백이 아닌 숫자를 입력해주세요."),
     INCLUDE_CHAR("문자를 제외한 숫자를 입력해주세요"),
-    INVALID_UNIT_MONEY("구매 금액 단위에 맞게 입력해주세요.");
+    INVALID_UNIT_MONEY("구매 금액 단위에 맞게 입력해주세요."),
+    UNMODIFIABLE_LIST("리스트를 조작할 수 없습니다.");
 
 
     private static final String ERROR = "[ERROR] ";

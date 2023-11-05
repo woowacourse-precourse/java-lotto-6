@@ -8,6 +8,8 @@ import lotto.ui.OutputView;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.domain.constant.ExceptionMessage.UNMODIFIABLE_LIST;
+
 public class LottoController {
 
     private final InputView inputView;
@@ -29,6 +31,8 @@ public class LottoController {
             getLottoResults();
         } catch (IllegalArgumentException e) {
             outputView.printException(e.getMessage());
+        } catch (UnsupportedOperationException e) {
+            outputView.printException(UNMODIFIABLE_LIST.getErrorMessage());
         }
     }
 

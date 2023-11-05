@@ -1,7 +1,12 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import lotto.validator.InputValidator;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputController {
     private final InputValidator inputValidator;
@@ -22,5 +27,20 @@ public class InputController {
             inputAmountType();
         }
         return amount;
+    }
+
+    public Lotto inputLottoNumber() {
+        String input = Console.readLine();
+        List<Integer> lottoNumbers = Arrays.stream(input.split(","))
+                .map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+        try {
+            inputValidator.validateLottoNumberRange(lottoNumbers);
+            inputValidator.validateLength(lottoNumbers);
+            inputValidator.validateLottoDuplication(lottoNumbers);
+        } catch (IllegalArgumentException e) {
+            inputLottoNumber();
+        }
+
+        return new Lotto(lottoNumbers);
     }
 }

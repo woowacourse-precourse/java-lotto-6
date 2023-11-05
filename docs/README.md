@@ -100,8 +100,10 @@
 
 ### 입력 명세
 
-- [ ] InputView : 인터페이스
-    - [ ] read(Map<String,String> parameter)를 함수로 한다.
+- [ ] InputValidator : 입력 검증에 대한 로직을 가지는 클래스
+    - [x] 숫자인지에 대해 검사하는 함수를 가진다.
+- [x] InputView : 인터페이스
+    - [x] read(Map<String,String> parameter)를 함수로 한다.
 
 
 - [ ] LottoBuyInputView : 로또 구매에 대한 입력

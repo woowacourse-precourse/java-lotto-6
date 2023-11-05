@@ -11,6 +11,7 @@ public abstract class LottoNumberValidator extends NumberValidator{
 
 
     protected void checkIsAvailableLottoNumber(String numberInput) {
+        numberInput = numberInput.trim();
         checkIsNumber(numberInput);
         if (!numberInput.matches(REGEX_NUMBER_QUANTITY)){
             throw new GlobalException(GlobalError.NOT_AVAILABLE_LOTTO_NUMBER);

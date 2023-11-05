@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.constants.Value;
 
+import java.text.DecimalFormat;
+
 public enum Rank {
     NO_RANK_ZERO(0, 0),
     NO_RANK_ONE(0, 0),
@@ -20,8 +22,13 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public int getCount() {
-        return count;
+    public String getResult() {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
+        if (this == Rank.SECOND) {
+            return count + "개 일치, 보너스 볼 일치 (" + decimalFormat.format(prize) + "원)";
+        }
+        return count + "개 일치 (" + decimalFormat.format(prize) + "원)";
     }
 
     public int getPrize() {

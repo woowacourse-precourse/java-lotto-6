@@ -1,7 +1,6 @@
 package lotto.utils;
 
 import lotto.constants.ErrorMessage;
-import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +29,5 @@ public class ParseUtils {
         }
 
         return numbers;
-
     }
 }

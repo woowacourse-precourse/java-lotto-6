@@ -1,14 +1,10 @@
 package lotto.service;
 
 import lotto.constants.Value;
-import lotto.domain.Rank;
-import lotto.domain.WinningLotto;
 import lotto.domain.Lotto;
 import lotto.utils.RandomUtils;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LottoService {
 

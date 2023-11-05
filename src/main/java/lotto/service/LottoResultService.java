@@ -9,7 +9,7 @@ import java.util.*;
 public class LottoResultService {
 
     private WinningLotto winningLotto;
-    private Map<Rank, Integer> lottoResults = new LinkedHashMap<>();
+    private final Map<Rank, Integer> lottoResults = new LinkedHashMap<>();
 
     public LottoResultService() {
         lottoResults.put(Rank.FIFTH, 0);
@@ -19,36 +19,18 @@ public class LottoResultService {
         lottoResults.put(Rank.FIRST, 0);
     }
 
-    public void test() {
-        Rank[] ranks = Rank.values();
-        for (Rank rank : ranks) {
-            System.out.println("카운트 : " + rank.getCount());
-            System.out.println("금액 : " + rank.getPrize());
-            System.out.println(lottoResults.get(rank));
-        }
-    }
-
-    public void showResult() {
-        List<Rank> ranks = new ArrayList<>(lottoResults.keySet().stream().toList());
-
-        for (Rank rank : ranks) {
-            System.out.println(getResult(rank));
-        }
-    }
-
-    private String getResult(Rank rank) {
-        DecimalFormat format = new DecimalFormat("#,###");
-
-        if (rank == Rank.SECOND) {
-            return rank.getCount() + "개 일치, 보너스 볼 일치 (" + format.format(Value.LOTTO_2_RANK_PRIZE_MONEY) + "원) - " +
-                    lottoResults.get(rank) + "개";
-        }
-        return rank.getCount() + "개 일치 (" + format.format(rank.getPrize()) + "원) - " +
-                lottoResults.get(rank) + "개";
-    }
 
     public void setWinningLotto(WinningLotto winningLotto) {
         this.winningLotto = winningLotto;
+    }
+
+    public void showResult() {
+//        List<Rank> ranks = new ArrayList<>(lottoResults.keySet().stream().toList());
+        Set<Rank> ranks = lottoResults.keySet();
+
+        for (Rank rank : ranks) {
+            System.out.println(rank.getResult() + " - " + lottoResults.get(rank) + "개");
+        }
     }
 
     public void calculateLottoResult(List<Lotto> userLottos) {

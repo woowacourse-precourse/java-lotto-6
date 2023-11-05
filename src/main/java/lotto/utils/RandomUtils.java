@@ -12,7 +12,4 @@ public class RandomUtils {
         return Randoms.pickUniqueNumbersInRange(Value.LOTTO_START_NUMBER, Value.LOTTO_END_NUMBER, Value.LOTTO_NUMBER_SIZE);
     }
 
-    public int RandomNumber() {
-        return Randoms.pickNumberInRange(1, 45);
-    }
 }

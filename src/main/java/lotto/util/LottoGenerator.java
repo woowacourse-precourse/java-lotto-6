@@ -1,7 +1,9 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGenerator implements NumberGenerator{
 
@@ -21,6 +23,8 @@ public class LottoGenerator implements NumberGenerator{
 
     @Override
     public List<Integer> generateNumberList() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return numbers;
     }
 }

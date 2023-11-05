@@ -13,14 +13,14 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(final Lotto lotto, final int bonusNumber) {
-        validate(bonusNumber);
+        validate(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(int bonusNumber) {
+    private void validate(Lotto lotto, int bonusNumber) {
         validateBonusNumberRange(bonusNumber);
-        validateIsLottoContain(bonusNumber);
+        validateIsLottoContain(lotto, bonusNumber);
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
@@ -40,7 +40,7 @@ public class WinningLotto {
         }
     }
 
-    private void validateIsLottoContain(int bonusNumber) {
+    private void validateIsLottoContain(Lotto lotto, int bonusNumber) {
         if (lotto.isContain(bonusNumber)) {
             DUPLICATED_BONUS_NUMBER.throwException();
         }

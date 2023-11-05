@@ -1,10 +1,12 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.factory.LottoFactory;
 import lotto.factory.UserLotteriesFactory;
 import lotto.factory.WinningLottoFactory;
 import lotto.model.LottoNumbersGenerator;
 import lotto.model.UserLotteries;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -30,7 +32,7 @@ public class LottoDrawController {
         UserLotteries userLotteries = userLotteriesFactory.createFromPurchaseAmount(purchaseAmount);
 
         showUserLottoDetails(countOfPurchasedLotto, userLotteries);
-
+        WinningLotto winningLotto = createWinningLotto();
     }
 
     private void showUserLottoDetails(Integer countOfPurchasedLotto, UserLotteries userLotteries) {
@@ -39,4 +41,9 @@ public class LottoDrawController {
         outputView.printUserLotteries(userLotteries);
     }
 
+    private WinningLotto createWinningLotto() {
+        List<String> drawnNumbers = inputView.getDrawnNumbers();
+        Integer bonusNumber = inputView.getBonusNumber(drawnNumbers);
+        return winningLottoFactory.createWinningLotto(drawnNumbers, bonusNumber);
+    }
 }

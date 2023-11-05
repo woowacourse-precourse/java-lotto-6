@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.constant.NumberConstant;
 
-public class RandomLottoNumbers implements LottoNumbers {
+public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public List<Integer> generateLottoNumbers() {

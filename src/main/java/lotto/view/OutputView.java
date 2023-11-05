@@ -30,10 +30,16 @@ public class OutputView {
 
     public static void printWinningNumbersMessage(){
         printMessage();
-        printMessage(WINNING_NUMBERS_MESSAGE.getMessage());
-    }
+        printMessage(WINNING_NUMBERS_MESSAGE.getMessage());}
+
     public static void printBonusNumberMessage(){
-        System.out.println(BONUS_NUMBER_MESSAGE.getMessage());
+        printMessage();
+        printMessage(BONUS_NUMBER_MESSAGE.getMessage());
+    }
+    public static void printResultMessage(){
+        printMessage();
+        printMessage(RESULT_MESSAGE.getMessage());
+        printMessage(DIVISION_LINE.getMessage());
     }
     private static void printMessage(){
         System.out.println();

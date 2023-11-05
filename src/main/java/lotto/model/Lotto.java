@@ -16,11 +16,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    /*private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }*/
     private void validateCounts(List<Integer> numbers) {
         if (numbers.size() != LOTTO_COUNT_NUMBER.getValue()) {
             throw new IllegalArgumentException();

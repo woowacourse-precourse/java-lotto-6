@@ -49,7 +49,7 @@ public class OutputView {
     }
 
     public static void printRateOfReturn(int balance, long prizeAmount) {
-        double rateOfReturn = (prizeAmount - balance) / (double) balance * 100;
+        double rateOfReturn = (prizeAmount) / (double) balance * 100;
         System.out.printf("총 수익률은 %.1f%%입니다\n",rateOfReturn);
     }
 }

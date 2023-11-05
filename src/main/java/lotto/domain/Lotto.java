@@ -11,10 +11,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (checkNumbersCount(numbers)) {
-            throw new IllegalArgumentException();
-        }
-        if (hasDuplicates(numbers)) {
+        if (checkNumbersCount(numbers) || hasDuplicates(numbers)) {
             throw new IllegalArgumentException();
         }
     }

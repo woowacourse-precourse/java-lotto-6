@@ -2,11 +2,11 @@ package lotto;
 
 public enum Prize {
 
-    FIRST(6,"1등", 2_000_000_000),
-    SECOND(5,"2등", 30_000_000),
-    THIRD(5,"3등", 1_500_000),
-    FOURTH(4,"4등", 50_000),
-    FIFTH(3,"5등", 5_000);
+    FIRST(6, "1등", 2_000_000_000),
+    SECOND(5, "2등", 30_000_000),
+    THIRD(5, "3등", 1_500_000),
+    FOURTH(4, "4등", 50_000),
+    FIFTH(3, "5등", 5_000);
 
     private final Integer matchingNumber;
     private final String ranking;
@@ -28,5 +28,24 @@ public enum Prize {
 
     public int getPrizeAmount() {
         return prizeAmount;
+    }
+
+    public static Prize rank(int matchingCount, boolean hasBonus) {
+        if (matchingCount == FIRST.matchingNumber) {
+            return FIRST;
+        }
+        if (matchingCount == SECOND.matchingNumber) {
+            if (hasBonus) {
+                return Prize.SECOND;
+            }
+            return Prize.THIRD;
+        }
+        if (matchingCount == FOURTH.matchingNumber) {
+            return Prize.FOURTH;
+        }
+        if (matchingCount == FIFTH.matchingNumber) {
+            return Prize.FIFTH;
+        }
+        return null;
     }
 }

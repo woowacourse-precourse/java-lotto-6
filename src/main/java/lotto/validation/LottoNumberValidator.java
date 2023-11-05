@@ -10,7 +10,7 @@ public class LottoNumberValidator {
     public static void validateLottoNumber(List<Integer> numbers) {
         validateWinningNumbersCount(numbers);
         validateDuplicate(numbers);
-        validateRange(numbers);
+        validateNumbersRange(numbers);
     }
 
     public static void validateBonusNumber(int bonusNumber) {
@@ -24,6 +24,12 @@ public class LottoNumberValidator {
         }
     }
 
+    private static void validateNumbersRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            validateRange(number);
+        }
+    }
+
     private static void validateRange(int number) {
         GameConfig minNumber = GameConfig.MIN_LOTTO_NUMBER;
         GameConfig maxNumber = GameConfig.MAX_LOTTO_NUMBER;
@@ -32,18 +38,6 @@ public class LottoNumberValidator {
             ExceptionMessage message = ExceptionMessage.OUT_OF_RANGE_NUMBER_EXCEPTION;
             throw new IllegalArgumentException(message.getMessage());
         }
-    }
-
-    private static void validateRange(List<Integer> numbers) {
-        GameConfig minNumber = GameConfig.MIN_LOTTO_NUMBER;
-        GameConfig maxNumber = GameConfig.MAX_LOTTO_NUMBER;
-
-        numbers.forEach(number -> {
-            if (number < minNumber.getValue() || number > maxNumber.getValue()) {
-                ExceptionMessage message = ExceptionMessage.OUT_OF_RANGE_NUMBER_EXCEPTION;
-                throw new IllegalArgumentException(message.getMessage());
-            }
-        });
     }
 
     private static void validateWinningNumbersCount(List<Integer> numbers) {

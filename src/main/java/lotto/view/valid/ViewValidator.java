@@ -32,8 +32,8 @@ public class ViewValidator {
         return winningNumbers;
     }
 
-    public void validateNonZero(final int buyingPrice) {
-        if (buyingPrice == ZERO_PRICE) {
+    public void validateMinPrice(final int buyingPrice) {
+        if (buyingPrice <= ZERO_PRICE) {
             throw new IllegalArgumentException(BUYING_PRICE_ZERO_EXCEPTION);
         }
     }

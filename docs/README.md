@@ -61,7 +61,7 @@
 
 - [x] 발행한 로또 수량 및 번호(오름차순)를 출력한다. `printAmountNotice()` &rarr; `printLotto()`
 - [x] 당첨 내역을 출력한다. `printMessage(WINNING_DETAILS_NOTICE)` &rarr; `printWinningDetail()`
-- [ ] 수익률을 출력한다.
+- [x] 수익률을 출력한다. `printRateOfReturn()`
 
 - [ ] 예외 상황 시 에러 문구를 출력한다.
 

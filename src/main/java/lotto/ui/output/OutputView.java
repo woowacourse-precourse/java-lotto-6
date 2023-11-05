@@ -25,4 +25,10 @@ public class OutputView {
     public static void printWinningDetail(String description, int count) {
         System.out.println(description + " - " + count + "개");
     }
+
+    //TODO 상수화?
+    public static void printRateOfReturn(double rateOfReturn) {
+        String format = String.format("%.1f", rateOfReturn);
+        System.out.println("총 수익률은 " + format + "%입니다.");
+    }
 }

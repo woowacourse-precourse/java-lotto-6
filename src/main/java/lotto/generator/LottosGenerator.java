@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 
-public class LottosGenerator implements Generator<List<Lotto>> {
+public final class LottosGenerator implements Generator<List<Lotto>> {
 
 	private static final LottoNumberGenerator LOTTO_NUMBER_GENERATOR = new LottoNumberGenerator();
 

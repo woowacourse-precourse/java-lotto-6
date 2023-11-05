@@ -2,7 +2,7 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputViewReader implements Reader {
+public final class InputViewReader implements Reader {
 
 	@Override
 	public String readLine() {

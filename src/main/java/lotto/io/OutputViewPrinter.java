@@ -1,6 +1,6 @@
 package lotto.io;
 
-public class OutputViewPrinter implements Printer {
+public final class OutputViewPrinter implements Printer {
 
 	@Override
 	public void printLine(String message) {

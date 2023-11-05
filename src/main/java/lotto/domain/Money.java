@@ -9,7 +9,7 @@ public class Money {
     }
 
     private void validatePositive(int amount) {
-        if (amount < LottoConfig.MINIMUM_AMOUNT.getValue()) {
+        if (amount < LottoConfig.ZERO.getValue()) {
             throw new IllegalArgumentException(LottoErrorMessages.NEGATIVE_AMOUNT.getMessage());
         }
     }

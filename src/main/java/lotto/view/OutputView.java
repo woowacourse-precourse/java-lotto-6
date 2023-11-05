@@ -4,6 +4,7 @@ import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.WiningRank;
 import lotto.service.LottoService;
+import lotto.service.ProfitsService;
 
 public class OutputView {
 
@@ -22,6 +23,10 @@ public class OutputView {
     public static void printWiningWiningResult(LottoService lottoService) {
         printResultMessage();
         printWiningStatistics(lottoService);
+    }
+
+    public static void printRateOfReturn(ProfitsService profitsService) {
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profitsService.getRateOfReturn()));
     }
 
     private static void printPurchaseQuantity(int quantity) {

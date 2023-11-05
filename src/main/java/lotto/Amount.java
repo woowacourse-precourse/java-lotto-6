@@ -3,6 +3,7 @@ package lotto;
 import java.math.BigInteger;
 
 public class Amount extends BigInteger {
+    public static final Amount DEFAULT_PURCHASE_AMOUNT = new Amount("1000");
 
     public Amount(String val) {
         super(val);

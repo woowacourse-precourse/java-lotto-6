@@ -13,7 +13,7 @@ public class Calculation {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public double calculateAll() {
+    public double calculateRate() {
         double sumPrize = calculateSumPrize();
         double beforeRate = sumPrize / purchaseAmount * Constants.PERCENTAGE.getConstants();
         double rate = Math.round(beforeRate * 10.0) / 10.0;

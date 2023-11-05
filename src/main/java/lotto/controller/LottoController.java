@@ -33,7 +33,7 @@ public class LottoController {
     private void displayLottoStatistics(List<Integer> result, int purchaseAmount) {
         System.out.println();
         Calculation calculation = new Calculation(result, purchaseAmount);
-        double rate = calculation.calculateAll();
+        double rate = calculation.calculateRate();
         OutputView.printResult(result, rate);
     }
 

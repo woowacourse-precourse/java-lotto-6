@@ -43,7 +43,7 @@ public class LottoController {
         outputView.printLottoNumbers(lottos);
 
         List<Integer> winningLotteryNumbers = getValidatedWinningLotteryNumbers();
-        int bonusNumber = getValidatedBonusNumber();
+        int bonusNumber = getValidatedBonusNumber(winningLotteryNumbers);
     }
 
     private int getValidatedPurchaseAmount() {
@@ -122,12 +122,13 @@ public class LottoController {
         return winningNumbers;
     }
   
-    private int getValidatedBonusNumber() {
+    private int getValidatedBonusNumber(List<Integer> winningLotteryNumbers) {
         while (true) {
             try {
                 String input = receiveBonusNumber();
                 input = trimInput(input);
                 bonusNumberValidator.validate(input);
+                bonusNumberValidator.validateBonusNumberIsDuplicatedWithWinningLotteryNumbers(input, winningLotteryNumbers);
                 return converter.convertToInteger(input);
             } catch (IllegalArgumentException e) {
                 outputView.printInputErrorMessage(e.getMessage());

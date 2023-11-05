@@ -3,12 +3,24 @@ package lotto.validator;
 import lotto.domain.LottoConstant;
 import lotto.view.ErrorMessage;
 
+import java.util.HashSet;
+import java.util.List;
+
 public class InputBonusNumberValidator {
     public void validate(String input) {
         validatePurchaseAmountIsBlank(input);
         validatePurchaseAmountIsNumeric(input);
         validatePurchaseAmountIsPositive(input);
         validateWinningLotteryNumbersIsBetweenValidRange(input);
+    }
+
+    public void validateBonusNumberIsDuplicatedWithWinningLotteryNumbers(String input, List<Integer> winningLotteryNumbers) {
+        int number = Integer.parseInt(input);
+        HashSet<Integer> set = new HashSet<>(winningLotteryNumbers);
+        set.add(number);
+        if (set.size() < 7) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_CANNOT_BE_DUPLICATED.getMessage());
+        }
     }
 
     private void validatePurchaseAmountIsBlank(String input) {

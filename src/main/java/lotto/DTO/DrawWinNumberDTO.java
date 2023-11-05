@@ -3,8 +3,8 @@ package lotto.DTO;
 import java.util.List;
 
 public class DrawWinNumberDTO {
-    List<Integer> winNumber;
-    int bonusNumber;
+    private List<Integer> winNumber;
+    private int bonusNumber;
 
     public DrawWinNumberDTO(List<Integer> winNumber){
         this.winNumber = winNumber;

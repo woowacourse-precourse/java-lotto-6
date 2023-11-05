@@ -15,6 +15,5 @@ public class Output {
         for (int key : randomLottoNumbers.keySet()) {
             System.out.println(randomLottoNumbers.get(key));
         }
-        System.out.println();
     }
 }

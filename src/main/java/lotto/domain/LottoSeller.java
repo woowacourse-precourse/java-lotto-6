@@ -33,7 +33,7 @@ public class LottoSeller {
         if (!money.isThousandUnit()) {
             throw new LottoException(INVALID_BUY_COUNT_UNIT);
         }
-        if (money.greaterThan(LOTTO_PRICE.multiply(MAX_COUNT))) {
+        if (money.isGreaterThan(LOTTO_PRICE.multiply(MAX_COUNT))) {
             throw new LottoException(EXCEED_BUY_COUNT);
         }
     }

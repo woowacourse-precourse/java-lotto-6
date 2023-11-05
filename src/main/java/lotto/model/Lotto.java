@@ -40,4 +40,8 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }
+
+    public boolean hasNumber(int bonusNumber) {
+        return this.getNumbers().contains(bonusNumber);
+    }
 }

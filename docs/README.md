@@ -49,6 +49,7 @@
 
 - [ ] Model
   - [X] Lotto
+      - [X] Lotto 특정 번호 확인
       - [X] Lotto 번호 검증
           - [X] 길이 검증
           - [X] 숫자 중복 검증

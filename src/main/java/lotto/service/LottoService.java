@@ -7,29 +7,34 @@ import static lotto.settings.LottoRange.SIZE;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.repository.BuyLottoRepository;
 import lotto.view.View;
 
 public class LottoService {
-
-    public static void createRandomNumber(int purchaseCount){
+    private final BuyLottoRepository buyLottoRepository = new BuyLottoRepository();
+    public BuyLottoRepository quickPick(int purchaseCount){
         while(purchaseCount>0){
-            Lotto lotto = new Lotto(getRandomNumbers());
+            Lotto lotto = new Lotto(createRandomNumbers());
+            buyLottoRepository.add(lotto);
 
-            String[] array = getRandomNumbers().stream().map(String::valueOf).toArray(String[]::new);
-            String join = String.join(",", array);
-            System.out.println("["+join+"]");
+            numberExtraction(lotto.listToString());
             purchaseCount --;
         }
+        return buyLottoRepository;
     }
 
-    private static List<Integer> getRandomNumbers() {
+    private static void numberExtraction(String lottoNumber) {
+        View.buyLottos(lottoNumber);
+    }
+
+    private List<Integer> createRandomNumbers() {
         return pickUniqueNumbersInRange(
                 MIN_VALUE.getNumber(),
                 MAX_VALUE.getNumber(),
                 SIZE.getNumber());
     }
 
-    public static void createWinningNumber(){
+    public void createWinningNumber(){
         View.requestWinningNumber();
         InputService.winningNumbers();
 

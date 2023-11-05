@@ -14,6 +14,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public String listToString(){
+        String[] array = numbers.stream()
+                                .map(String::valueOf)
+                                .toArray(String[]::new);
+        return String.join(", ", array);
+    }
+
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if(number<1 || number>45){

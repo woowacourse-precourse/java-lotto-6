@@ -13,7 +13,10 @@ public class WinningLotto {
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
-    private void validate(Lotto winningLotto, LottoNumber bonusNumber) {
 
+    private void validate(Lotto winningLotto, LottoNumber bonusNumber) {
+        if (winningLotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
     }
 }

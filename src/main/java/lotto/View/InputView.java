@@ -1,6 +1,7 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Constant.LottoConstant;
 import lotto.LottoException.InvalidInputException;
 
 import java.util.Arrays;
@@ -16,7 +17,7 @@ public class InputView
         try
         {
             int cost = Integer.parseInt(Console.readLine());
-            if(cost % 1000 == 0)
+            if(cost % LottoConstant.TICKET_PRICE == 0)
             {
                 return cost;
             }
@@ -53,12 +54,13 @@ public class InputView
                     .boxed()
                     .collect(Collectors.toList());
 
-            if(winningLotteryNumber.size() != 6)
+            if(winningLotteryNumber.size() != LottoConstant.LOTTO_NUMBER_LENGTH)
             {
                 throw new InvalidInputException("[ERROR] 당첨 번호의 길이가 6이 아닙니다.");
             }
 
-            if(winningLotteryNumber.stream().anyMatch(num -> num<1 || num>45))
+            if(winningLotteryNumber.stream()
+                    .anyMatch(num -> num<LottoConstant.MINIMUM_NUMBER || num>LottoConstant.MAXIMUM_NUMBER))
             {
                 throw new InvalidInputException("[ERROR] 당첨 번호는 1~45 사이어야 합니다.");
             }

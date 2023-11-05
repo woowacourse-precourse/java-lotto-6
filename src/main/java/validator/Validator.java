@@ -16,9 +16,11 @@ public class Validator {
         }
     }
 
-
-
-
+    public void checkDividedByThousand(int amount) throws IllegalArgumentException {
+        if (Math.floorMod(amount, THOUSAND) != ZERO) {
+            throw new IllegalArgumentException("[ERROR] 1,000원의 단위로 입력해 주세요.");
+        }
+    }
 
 
 }

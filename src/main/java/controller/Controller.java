@@ -15,8 +15,14 @@ public class Controller {
         this.service = service;
     }
     public int getAmountByUserInput(){
-        InputView.printAskForInputAmount();
-        String input = Console.readLine();
-        return service.getAmountByUserInput(input);
+        while(true){
+            try {
+                InputView.printAskForInputAmount();
+                String input = Console.readLine();
+                return service.getAmountByUserInput(input);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

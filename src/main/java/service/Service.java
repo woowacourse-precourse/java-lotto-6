@@ -7,7 +7,7 @@ public class Service {
     public int getAmountByUserInput(String input){
         validator.checkIsNumber(input);
         int amount = Integer.parseInt(input);
-        //validator.checkDividedByThousand(amount);
+        validator.checkDividedByThousand(amount);
         return amount;
     }
 }

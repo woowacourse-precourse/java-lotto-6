@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Ranks {
 
@@ -31,5 +33,14 @@ public class Ranks {
             resultWinningPrice += rank.getWinningMoney();
         }
         return resultWinningPrice;
+    }
+
+    public Map<Rank, Integer> lotteryRankStatus() {
+        Map<Rank, Integer> lottoResult = new HashMap<>();
+
+        for (Rank rank : ranks) {
+            lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
+        }
+        return lottoResult;
     }
 }

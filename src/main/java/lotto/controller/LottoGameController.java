@@ -10,7 +10,7 @@ import lotto.domain.model.LottoGame;
 import lotto.domain.model.LottoPurchaseCost;
 import lotto.domain.model.LottoRanks;
 import lotto.domain.model.LottoDispenser;
-import lotto.domain.model.Lottos;
+import lotto.domain.model.PurchasedLottos;
 import lotto.domain.model.WinningLotto;
 import lotto.domain.LottoRandomGenerator;
 import lotto.util.LottoStatistics;
@@ -35,12 +35,12 @@ public class LottoGameController {
         return repeater.repeatBeforeSuccess(() -> new LottoPurchaseCost(inputView.readCostAmount()));
     }
 
-    private Lottos buyLottos(LottoPurchaseCost lottoPurchaseCost) {
+    private PurchasedLottos buyLottos(LottoPurchaseCost lottoPurchaseCost) {
         LottoDispenser lottoDispenser = new LottoDispenser(new LottoRandomGenerator(), lottoPurchaseCost);
-        Lottos lottos = lottoDispenser.dispense();
+        List<Lotto> lottos = lottoDispenser.dispense();
         outputView.printBuyingAmountMessage(lottoPurchaseCost.getLottoAmount());
 
-        return lottos;
+        return new PurchasedLottos(lottos);
     }
 
     private LottoBonusNumber readBonusNumber() {
@@ -56,20 +56,20 @@ public class LottoGameController {
         return repeater.repeatBeforeSuccess(() -> new WinningLotto(winningLotto, readBonusNumber()));
     }
 
-    private void printBoughtLottos(Lottos lottos) {
-        List<Lotto> rawLottos = lottos.getElements();
+    private void printBoughtLottos(PurchasedLottos purchasedLottos) {
+        List<Lotto> rawLottos = purchasedLottos.getElements();
         List<LottoDto> lottoDtos = LottoMapper.toDtos(rawLottos);
 
         outputView.printLottos(lottoDtos);
     }
 
     private LottoGame initGame(LottoPurchaseCost lottoPurchaseCost) {
-        Lottos lottos = buyLottos(lottoPurchaseCost);
-        printBoughtLottos(lottos);
+        PurchasedLottos purchasedLottos = buyLottos(lottoPurchaseCost);
+        printBoughtLottos(purchasedLottos);
 
         WinningLotto winningLotto = readLottoAnswer();
 
-        return new LottoGame(lottos, winningLotto);
+        return new LottoGame(purchasedLottos, winningLotto);
     }
 
     private LottoRanks createLottoRanks(LottoGame lottoGame) {

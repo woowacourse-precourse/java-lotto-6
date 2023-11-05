@@ -2,10 +2,10 @@ package lotto.domain.model;
 
 import java.util.List;
 
-public final class Lottos {
+public final class PurchasedLottos {
     private final List<Lotto> elements;
 
-    public Lottos(List<Lotto> elements) {
+    public PurchasedLottos(List<Lotto> elements) {
         this.elements = elements;
     }
 

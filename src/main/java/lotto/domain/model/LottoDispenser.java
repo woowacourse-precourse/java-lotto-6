@@ -36,13 +36,11 @@ public final class LottoDispenser {
         return elements;
     }
 
-    public Lottos dispense() {
+    public List<Lotto> dispense() {
         validateIsDispensed();
         isDispensed = true;
 
         int lottoAmount = lottoPurchaseCost.getLottoAmount();
-        List<Lotto> generatedLottos = generateLottos(lottoAmount);
-
-        return new Lottos(generatedLottos);
+        return generateLottos(lottoAmount);
     }
 }

@@ -5,7 +5,6 @@ import static lotto.view.ErrorMessage.printInputFormatError;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Input {
 
@@ -24,7 +23,7 @@ public class Input {
             String[] input = Console.readLine().split(",");
             return Arrays.stream(input)
                     .map(number -> Integer.parseInt(number.trim()))
-                    .collect(Collectors.toList());
+                    .toList();
         } catch(NumberFormatException e) {
             printInputFormatError();
             throw new IllegalArgumentException();
@@ -38,7 +37,7 @@ public class Input {
 
     private static int validate(String input) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
             printInputFormatError();
             throw new IllegalArgumentException();

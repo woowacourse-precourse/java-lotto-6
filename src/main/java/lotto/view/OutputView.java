@@ -6,7 +6,7 @@ import lotto.model.Result;
 
 
 public class OutputView {
-    private final String AMOUNT_MESSAGE = "\n%d개를 구매했습니다";
+    private final String AMOUNT_MESSAGE = "\n%d개를 구매했습니다.";
     private final String RESULT_START_MESSAGE = "당첨 통계";
     private final String LINE = "---";
     private final String PROFIT_START_MESSEGE = "총 수익률은 %.1f";

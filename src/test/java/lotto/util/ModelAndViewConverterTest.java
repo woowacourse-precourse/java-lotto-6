@@ -9,15 +9,21 @@ import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lottoresult.LottoResult;
 import lotto.domain.lottoresult.LottoResultsRepository;
 import lotto.domain.player.Profit;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ModelAndViewConverterTest {
+    private ModelAndViewConverter modelAndViewConverter;
+
+    @BeforeEach
+    void initGivenCondition() {
+        modelAndViewConverter = ModelAndViewConverter.getModelAndViewConverter();
+    }
 
     @DisplayName("[1,2,3,4,5,6] 로또 1개의 LottoBundleDto 를 변환하면 로또 개수 1개 및 로또 정보를 반환한다.")
     @Test
     void modelAndViesConverterTest_1() {
-        ModelAndViewConverter modelAndViewConverter = new ModelAndViewConverter();
         LottoBundle lottoBundle = new LottoBundle();
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoBundle.addLotto(lotto);
@@ -31,7 +37,6 @@ class ModelAndViewConverterTest {
     @DisplayName("4등 당첨 1개의 LottoResultsDto 로 부터 변환된 결과 Map 에 key로 LottoResult.FOURTH 가 있고 value 는 1이다.")
     @Test
     void modelAndViesConverterTest_2() {
-        ModelAndViewConverter modelAndViewConverter = new ModelAndViewConverter();
         LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
         lottoResultsRepository.saveLottoResult(LottoResult.FOURTH);
 
@@ -44,7 +49,6 @@ class ModelAndViewConverterTest {
     @DisplayName("50.3 의 Profit 을 변환하면 50.3을 반환한다.")
     @Test
     void modelAndViesConverterTest_3() {
-        ModelAndViewConverter modelAndViewConverter = new ModelAndViewConverter();
         Profit profit = new Profit(50.3);
         modelAndViewConverter.addComponent(profit);
 

@@ -21,7 +21,7 @@
 - [x] 보유 금액 전부를 로또 구매에 사용해 LottoTicket 을 받음 - Player
 - [x] 가지고 있는 티켓 전부로 로또를 구매함 - Player
 - [x] 로또 결과를 통해 수익률 가져오기 - Player
-- [x] 수익률을 저장함 - Profit
+- [x] 수익률을 저장함 - Profit성
 - ### Lotto
 - [x] 로또에 번호가 있는지 확인 - Lotto
 - [x] 로또끼리 비교해 서로 일치하는 숫자 개수 반환 - Lotto
@@ -64,8 +64,8 @@
 - [x] LottoResultDto 를 통해 로또 당첨 통계 데이터를 Map<LottoResult, Integer> 형으로 반환  - ModelAndViewConverter
 - [x] Profit 을 통해 수익률 데이터를 double 형으로 반환  - ModelAndViewConverter
 - [x] 에러를 저장하고 메시지를 반환 - ModelAndViewConverter
+- [x] ModelAndViewConverter 싱글톤 구현하기 - ModelAndViewConverter
 - [x] 랜덤 숫자로 로또 생성하기 - RandomLottoGenerator
-- [ ] ModelAndViewConverter 싱글톤 구현하기 - ModelAndViewConverter
 
 # View
 - [x] 로또 구입 금액 입력 - InputView

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.object.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +25,17 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호에 45초과 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByOverNumber(){
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 1미만 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderNumber(){
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 0, 5, 45)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

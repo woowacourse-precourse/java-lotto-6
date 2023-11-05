@@ -72,4 +72,19 @@ public class LottoTest {
                 Arguments.of(Arrays.asList(40,41,42,43,44,45))
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("duplicateNumber")
+    @DisplayName("중복된 번호 테스트")
+    void duplicateNumberTest(List<Integer> duplicateNumber) {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Lotto(duplicateNumber));
+    }
+
+    static Stream<Arguments> duplicateNumber() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1,1,1,1,1,1)),
+                Arguments.of(Arrays.asList(1,2,3,4,5,5))
+        );
+    }
 }

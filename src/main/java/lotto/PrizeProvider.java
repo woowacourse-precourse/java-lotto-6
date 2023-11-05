@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PrizeProvider {
 
-    public List<Integer> getWinningResult(List<Lotto> lottos, WinningNumber winningNumber) {
+    public LottoResult getLottoResult(List<Lotto> lottos, WinningNumber winningNumber) {
         int totalPrize = 0;
         List<Integer> lottoResult = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0));
 
@@ -18,7 +18,7 @@ public class PrizeProvider {
             int cnt = lottoResult.get(rank);
             lottoResult.set(rank, cnt+1);
         }
-        return lottoResult;
+        return new LottoResult(lottoResult, totalPrize);
     }
 
     private Winnings checkLotto(Lotto lotto, WinningNumber winningNumber) {

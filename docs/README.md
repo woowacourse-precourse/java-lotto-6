@@ -38,7 +38,7 @@
 
 ### 로또 (Lotto)
 
-- [ ] 로또 번호를 오름차순으로 정렬 할 수 있다.
+- [x] 로또 번호를 오름차순으로 정렬 할 수 있다.
 - [x] 1~45 사이의 숫자가 아닌 경우 `IllegalArgumentException` 발생시킨다.
 - [x] 6개가 아닌 경우 `IllegalArgumentException` 발생시킨다.
 - [x] 6개가 모두 다르지 않은 경우 `IllegalArgumentException` 발생시킨다.

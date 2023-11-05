@@ -4,8 +4,8 @@ import java.util.List;
 
 public class ResultNumber {
     private static ResultNumber resultNumber =null;
-    private WinningNumber winningNumber;
-    private BonusNumber bonusNumber;
+    private static WinningNumber winningNumber;
+    private static BonusNumber bonusNumber;
 
     private ResultNumber(WinningNumber winningNumber, BonusNumber bonusNumber) {
         this.winningNumber = winningNumber;
@@ -19,11 +19,11 @@ public class ResultNumber {
         return resultNumber;
     }
 
-    public List<Integer> getWinningNumber() {
+    public static List<Integer> getWinningNumber() {
         return winningNumber.getWinningNumbers();
     }
 
-    public int getBonusNumber() {
+    public static int getBonusNumber() {
         return bonusNumber.getNumber();
     }
 }

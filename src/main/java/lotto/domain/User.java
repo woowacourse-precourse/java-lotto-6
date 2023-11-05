@@ -7,6 +7,8 @@ public class User {
     private List<Lotto> lottoTickets;
     private int payment;
 
+    private LottoResult lottoResult = null;
+
     public User(int payment, List<Lotto> lottoTickets) {
         this.payment = payment;
         this.lottoTickets = lottoTickets;
@@ -20,4 +22,7 @@ public class User {
         return payment;
     }
 
+    public void setLottoResult(LottoResult lottoResult) {
+        this.lottoResult = lottoResult;
+    }
 }

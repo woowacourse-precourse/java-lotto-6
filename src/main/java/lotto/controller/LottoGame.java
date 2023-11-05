@@ -18,17 +18,15 @@ public class LottoGame {
     public static void run() {
         Payment payment = getPaymentAndValidate();
         User user = GameUtility.buyTickets(payment.getPayment());
-
         OutputView.printLottoTickets(new LottoTicketsDTO(
                         user.getLottoTickets().size(),
                         user.getLottoTickets())
         );
-
         OutputView.printLineBreak();
-
         WinningNumber winningNumber = getWinningNumberAndValidate();
         BonusNumber bonusNumber = getBonusNumberAndValidate();
-        ResultNumber resultNumber = ResultNumber.create(winningNumber, bonusNumber);
+        ResultNumber.create(winningNumber, bonusNumber);
+        GameUtility.checkLottoWinning(user);
     }
 
     private static Payment getPaymentAndValidate() {

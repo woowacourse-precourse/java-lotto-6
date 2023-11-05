@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
 import lotto.controller.dto.input.BonusBallDto;
 import lotto.controller.dto.input.LottoPurchaseAmountDto;
 import lotto.controller.dto.input.WinningLottoNumbersDto;
@@ -12,6 +11,7 @@ import lotto.controller.dto.output.PurchasedLottosDto;
 import lotto.controller.dto.output.WinningLottoResultDto;
 import lotto.mock.MockReader;
 import lotto.mock.MockWriter;
+import lotto.model.Lotto;
 import lotto.view.constants.Message;
 import org.junit.jupiter.api.Test;
 

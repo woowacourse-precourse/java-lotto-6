@@ -37,7 +37,7 @@ public class LottoGameController {
                 lottoGame = new LottoGame(inputView.inputInteger());
                 break;
             } catch (IllegalStateException | IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printMessage(e.getMessage());
             }
         }
         return lottoGame;
@@ -50,7 +50,7 @@ public class LottoGameController {
                 lotto = new Lotto(inputView.inputWinNumbers());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printMessage(e.getMessage());
             }
         }
         return lotto;
@@ -63,7 +63,7 @@ public class LottoGameController {
                 bonusNumber = inputView.inputInteger();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printMessage(e.getMessage());
             }
         }
         return bonusNumber;
@@ -77,7 +77,7 @@ public class LottoGameController {
                 drawResult.validateDuplication();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printMessage(e.getMessage());
             }
         }
         return drawResult;

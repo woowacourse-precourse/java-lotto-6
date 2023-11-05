@@ -50,6 +50,10 @@ public class OutputView {
         }
     }
 
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
+
     public void printResult(LottoGame lottoGame) {
         System.out.println(WINNING_STATISTICS.getMessage());
         System.out.println(THREE_MATCH.getMessage() + THREE_PRIZE.getMessage() + lottoGame.getMatchs()

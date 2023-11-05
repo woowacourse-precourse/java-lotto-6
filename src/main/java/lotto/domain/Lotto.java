@@ -44,7 +44,7 @@ public class Lotto {
         return numbers;
     }
 
-    boolean isContainBonusNumber(Integer bonusNumber) {
+    boolean isDuplicatedWithBonusNumber(Integer bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 }

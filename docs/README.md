@@ -6,7 +6,7 @@
 
 ### 구현 명세
 1. 로또 구입 금액 입력
-    - 1000원으로 나누어 떨어지지 않는 경우 IllegalArgumentException
+    - 1000원으로 나누어 떨어지지 않는 경우, 숫자를 입력받지 못한 경우, 음수인 경우 IllegalArgumentException
     - 나누어 떨어지는 값이 입력될 때 까지 다시 입력받음
     - WinLotto class 생성
 2. 당첨 번호와 보너스 번호를 입력받는다.

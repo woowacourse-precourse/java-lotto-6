@@ -1,4 +1,7 @@
 package lotto.game;
 
-public class ProfitCalculator {
+public class Calculator {
+    public static int calculateProfitRate(int profit, int money) {
+        return profit;
+    }
 }

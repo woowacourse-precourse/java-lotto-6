@@ -14,7 +14,7 @@ public class WinLotto extends Lotto{
         return bonusNumber;
     }
 
-    public Prize calculatePrize(Lotto lotto){
+    public LottoPrize calculatePrize(Lotto lotto, int bonusNumber){
         //TODO 등수 계산
         return null;
     }

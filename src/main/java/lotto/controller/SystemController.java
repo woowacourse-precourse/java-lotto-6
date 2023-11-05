@@ -9,8 +9,10 @@ import lotto.view.OutputView;
 
 public class SystemController {
     private final WinningStats winningStats;
+    private final Money purchasedAmount;
 
     private SystemController() {
+        purchasedAmount = Money.createManual();
         winningStats = getWinningStats();
     }
 
@@ -19,8 +21,12 @@ public class SystemController {
     }
 
     public WinningStats getWinningStats() {
-        PurchasedLottos purchasedLottos = PurchasedLottos.from(Money.createManual());
+        PurchasedLottos purchasedLottos = PurchasedLottos.from(purchasedAmount);
         OutputView.printPurchasedLottos(purchasedLottos);
         return WinningStats.of(purchasedLottos, Lotto.createWinningNumbers(), BonusNumber.createManual());
+    }
+
+    public void showResult() {
+        OutputView.printWinningStats(winningStats);
     }
 }

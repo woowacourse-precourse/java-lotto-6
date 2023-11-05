@@ -37,7 +37,7 @@ public enum LottoRankConstant {
         if (hasBonusNumber) {
             stringBuilder.append(", 보너스 볼 일치");
         }
-        stringBuilder.append(String.format(" (%,d)", prize));
+        stringBuilder.append(String.format(" (%,d원)", prize));
         return stringBuilder.toString();
     }
 

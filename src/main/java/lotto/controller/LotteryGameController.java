@@ -7,7 +7,9 @@ import lotto.view.OutputView;
 import lotto.view.InputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static lotto.domain.constants.LottoConstraint.LOTTO_PRICE;
 
@@ -40,7 +42,7 @@ public class LotteryGameController {
     }
 
     private void returnLotteryResult() {
-        List<Integer> winningStats = new ArrayList<>();
+        Map<Integer, Integer> winningStats = new HashMap<>();
         computer.checkWinningLotto(purchasedLotto, winningLotto, bonusNumber, winningStats);
     }
 

@@ -8,6 +8,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicated(numbers);
+        validateOutOfRange(numbers);
         this.numbers = numbers;
     }
 
@@ -23,6 +24,13 @@ public class Lotto {
                 .distinct()
                 .count() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+        }
+    }
+
+    private void validateOutOfRange(List<Integer> numbers) {
+        if (numbers.stream()
+                .anyMatch(number -> number < 1 || number > 45)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
         }
     }
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.constants.Notice.PURCHASE_RESULT;
+import static lotto.constants.Notice.WINNER_RESULT;
 import static lotto.constants.Rank.FIFTH;
 import static lotto.constants.Rank.FIRST;
 import static lotto.constants.Rank.FOURTH;
@@ -27,6 +28,7 @@ public class OutputView {
     public static void printWinnerResult(List<SameNumber> sameNumbers) {
         OutputView.sameNumbers = sameNumbers;
         System.out.println();
+        System.out.println(WINNER_RESULT.getMessage());
         System.out.println(FIFTH.getMessage() + countFifth() + UNIT);
         System.out.println(FOURTH.getMessage() + countFourth() + UNIT);
         System.out.println(THIRD.getMessage() + countThird() + UNIT);

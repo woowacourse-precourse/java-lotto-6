@@ -8,6 +8,7 @@ import lotto.domain.Convertor;
 import lotto.domain.Judge;
 import lotto.domain.Lotto;
 import lotto.domain.Number;
+import lotto.domain.SameNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,13 +16,15 @@ public class Game {
     private static final int THOUSAND_UNIT = 1000;
 
     public void start() {
-        int purchaseQuantity = InputView.askPurchaseAmount() / THOUSAND_UNIT;
+        int purchaseAmount = InputView.askPurchaseAmount();
+        int purchaseQuantity = purchaseAmount / THOUSAND_UNIT;
         List<Lotto> lottos = issueLottos(purchaseQuantity);
         OutputView.printPurchaseResult(lottos);
         Lotto winnerNumbers = createWinnerNumbers();
         int bonusNumber = createBonusNumber();
-        List<Integer> sameNumbers = createSameNumbers(lottos, winnerNumbers);
-        List<Rank> ranks = createRanks(sameNumbers, lottos, bonusNumber);
+        List<SameNumber> sameNumbers = createSameNumbers(lottos, winnerNumbers, bonusNumber);
+        Judge judge = new Judge();
+        List<Rank> ranks = judge.createRanks(sameNumbers);
     }
 
     private List<Lotto> issueLottos(int purchaseQuantity) {
@@ -39,25 +42,19 @@ public class Game {
     }
 
     private int createBonusNumber() {
-        return new Number(InputView.askBonusNumber()).getNumber();
+        Number bonusNumber = new Number(InputView.askBonusNumber());
+        return bonusNumber.getNumber();
     }
 
-    private List<Integer> createSameNumbers(List<Lotto> lottos, Lotto winnerNumbers) {
-        List<Integer> sameNumbers = new ArrayList<>();
+    private List<SameNumber> createSameNumbers(List<Lotto> lottos, Lotto winnerNumbers, int bonusNumber) {
+        Comparator comparator = new Comparator();
+        List<SameNumber> sameNumbers = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            int sameNumber = Comparator.countSameNumber(lotto, winnerNumbers);
-            sameNumbers.add(sameNumber);
+            int sameNumber = comparator.countSameNumber(lotto, winnerNumbers);
+            boolean hasBonusNumber = comparator.checkBonusNumber(lotto, bonusNumber);
+            sameNumbers.add(new SameNumber(sameNumber, hasBonusNumber));
         }
         return sameNumbers;
     }
 
-    private List<Rank> createRanks(List<Integer> sameNumbers, List<Lotto> lottos, int bonusNumber) {
-        List<Rank> ranks = new ArrayList<>();
-        Judge judge = new Judge();
-        for (int i = 0; i < sameNumbers.size(); i++) {
-            Rank rank = judge.selectRank(sameNumbers.get(i), lottos.get(i), bonusNumber);
-            ranks.add(rank);
-        }
-        return ranks;
-    }
 }

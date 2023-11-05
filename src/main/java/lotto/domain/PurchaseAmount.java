@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public class PurchaseAmount {
+public final class PurchaseAmount {
 
     private static final int NO_PURCHASE_AMOUNT = 0;
     private static final int PURCHASE_AMOUNT_UNIT = 1000;

@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-public class Lottos {
+public final class Lottos {
 
     private final List<Lotto> elements;
 

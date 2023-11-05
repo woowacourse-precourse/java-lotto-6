@@ -21,7 +21,7 @@ public class LottoMatcher {
         return lottoResult;
     }
 
-    private MatchCount matchLotto(Lotto userLotto) {
+    private MatchCount matchLotto(final Lotto userLotto) {
         int matchedCount = getMatchedCount(userLotto);
         if (hasBonusMatch(userLotto, matchedCount)) {
             return MatchCount.FIVE_AND_BONUS_MATCH;
@@ -29,18 +29,18 @@ public class LottoMatcher {
         return findMatchCountByMatchedNumber(matchedCount);
     }
 
-    private int getMatchedCount(Lotto userLotto) {
+    private int getMatchedCount(final Lotto userLotto) {
         return (int) winningLotto.lotto().getNumbers().stream()
             .filter(userLotto::contains)
             .count();
     }
 
-    private boolean hasBonusMatch(Lotto userLotto, int matchedCount) {
+    private boolean hasBonusMatch(final Lotto userLotto, final int matchedCount) {
         return matchedCount == Constants.BONUS_CHECK_NUMBER && userLotto.contains(
             winningLotto.bonus().bonusNumber());
     }
 
-    private MatchCount findMatchCountByMatchedNumber(int matchedCount) {
+    private MatchCount findMatchCountByMatchedNumber(final int matchedCount) {
         return Arrays.stream(MatchCount.values())
             .filter(matchCount -> matchCount.getMatchCount() == matchedCount)
             .findFirst()

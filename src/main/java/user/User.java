@@ -1,35 +1,25 @@
 package user;
 
-import camp.nextstep.edu.missionutils.Console;
-
 public class User {
     //?? ??? ??????, ??? ??? ??? ?? ???
 
-    private final String inputLottoCount;
+    private final int lottoTicketPrice;
+    private final int bonusNumber;
+    private final String[] winningLottoNumber;
 
-    // X?? ??????.
-    // ?? ??? ??? ???.
-
-    private final String[] inputWinningLottoNumber;
-    // ??? ??? ??? ???.
-    private final String inputBonusNumber;
-
-    public User(String inputLottoCount, String[] inputWinningLottoNumber, String inputBonusNumber) {
-        this.inputLottoCount = inputLottoCount;
-        this.inputWinningLottoNumber = inputWinningLottoNumber;
-        this.inputBonusNumber = inputBonusNumber;
+    public User(int lottoTicketPrice, int bonusNumber, String[] winningLottoNumber) {
+        this.lottoTicketPrice = lottoTicketPrice;
+        this.bonusNumber = bonusNumber;
+        this.winningLottoNumber = winningLottoNumber;
     }
-
-    public String getInputLottoCount() {
-        return inputLottoCount;
+    public int inputLottoTicketPrice() {
+        return lottoTicketPrice / 1000;
     }
-
+    public int inputBonusNumber() {
+        return bonusNumber;
+    }
     public String[] getInputWinningLottoNumber() {
-        return inputWinningLottoNumber;
-    }
-
-    public String getInputBonusNumber() {
-        return inputBonusNumber;
+        return winningLottoNumber;
     }
 
 }

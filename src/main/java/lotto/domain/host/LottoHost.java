@@ -3,7 +3,7 @@ package lotto.domain.host;
 import lotto.config.Config;
 import lotto.domain.num.LottoTargetNumResults;
 
-public class LottoryHost {
+public class LottoHost {
     private LottoTargetNumResults lottoTargetNumResults;
 
     public void pickNum(String strOfPickWinNum, String strOfPickBonusNum) {

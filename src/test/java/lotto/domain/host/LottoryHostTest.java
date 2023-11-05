@@ -5,11 +5,11 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoryHostTest {
-    private LottoryHost lottoryHost;
+    private LottoHost lottoryHost;
 
     @BeforeEach
     void setUp() {
-        lottoryHost = new LottoryHost();
+        lottoryHost = new LottoHost();
     }
 
     // TODO: 11/5/23 삭제 요망

@@ -1,6 +1,7 @@
 package lotto.control;
 
 import lotto.config.Config;
+import lotto.domain.host.LottoHost;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.seller.LottoSeller;
 import lotto.domain.user.User;
@@ -42,7 +43,7 @@ public class Process {
      *
      * @param strLine
      */
-    public void pickNum(String strLine) {
+    public void pickWinNum(String strLine) {
         // 로또진행자가 당첨 번호를 뽑는다.
         // 로또 진행자가 보너스 번호를 입력한다.
     }

@@ -1,6 +1,6 @@
 package lotto.domain.lotto_prize;
 
-public enum FixedLottoPrize {
+public enum FixedLottoPrizeStandard {
     THREE(3L, 5_000),
     FOUR(4L, 50_000),
     FIVE(5L, 1_500_000),
@@ -10,7 +10,7 @@ public enum FixedLottoPrize {
     private final Long matchCount;
     private final Integer prize;
 
-    FixedLottoPrize(Long matchCount, Integer prize) {
+    FixedLottoPrizeStandard(Long matchCount, Integer prize) {
         this.matchCount = matchCount;
         this.prize = prize;
     }

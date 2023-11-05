@@ -18,8 +18,8 @@ public class LottoController {
 
     public void start() {
         Money money = new Money(getUserAmount());
-        int lottoQuantity = money.getQuantity();
-        output.printPurchaseQuantity(lottoQuantity);
+        LottoQuantity lottoQuantity = new LottoQuantity(money.getQuantity());
+        output.printPurchaseQuantity(lottoQuantity.getQuantity());
 
         List<Lotto> myLottos = buyLottos(lottoQuantity);
         List<Integer> winningNumbers = generateWinningNumbers();
@@ -42,13 +42,7 @@ public class LottoController {
         return money;
     }
 
-    /*private int getLottoQuantity(int money) {
-        int lottoQuantity =
-
-        return lottoQuantity;
-    }*/
-
-    private List<Lotto> buyLottos(int lottoQuantity) {
+    private List<Lotto> buyLottos(LottoQuantity lottoQuantity) {
         Lottos lottos = new Lottos(lottoQuantity);
         List<Lotto> myLottos = lottos.getMyLottos();
         output.printMyLottos(myLottos);

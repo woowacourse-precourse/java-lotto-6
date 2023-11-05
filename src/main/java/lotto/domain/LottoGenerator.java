@@ -7,8 +7,10 @@ public class LottoGenerator {
 	
 	public LottoGenerator(int paid) {
 		amountValidate(paid);
+		UnitValidate(paid);
 		this.paid = paid;
 	}
+
 	
 	private void amountValidate(int paid) {
 		if ( paid < price ) {
@@ -16,5 +18,9 @@ public class LottoGenerator {
 		}
 	}
 	
-	
+	private void UnitValidate(int paid) {
+		if ( paid % price != 0) {
+			throw new IllegalArgumentException();
+		}
+	}
 }

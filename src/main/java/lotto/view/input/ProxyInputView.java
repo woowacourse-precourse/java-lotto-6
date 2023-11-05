@@ -2,7 +2,7 @@ package lotto.view.input;
 
 import lotto.domain.lotto.Lotto;
 
-public class ProxyInputView implements InputView{
+public class ProxyInputView implements InputView {
 
     private final LottoGameInputView lottoGameInputView;
 
@@ -12,16 +12,31 @@ public class ProxyInputView implements InputView{
 
     @Override
     public long requestLottoPurchaseAmount() {
-        return lottoGameInputView.requestLottoPurchaseAmount();
+        try {
+            return lottoGameInputView.requestLottoPurchaseAmount();
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
+            return lottoGameInputView.requestLottoPurchaseAmount();
+        }
     }
 
     @Override
     public Lotto requestWinningLotto() {
-        return lottoGameInputView.requestWinningLotto();
+        try {
+            return lottoGameInputView.requestWinningLotto();
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
+            return lottoGameInputView.requestWinningLotto();
+        }
     }
 
     @Override
     public int requestBonusLottoNumber(Lotto winningLotto) {
-        return lottoGameInputView.requestBonusLottoNumber(winningLotto);
+        try {
+            return lottoGameInputView.requestBonusLottoNumber(winningLotto);
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
+            return lottoGameInputView.requestBonusLottoNumber(winningLotto);
+        }
     }
 }

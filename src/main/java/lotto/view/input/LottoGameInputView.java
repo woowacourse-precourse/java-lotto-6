@@ -23,9 +23,14 @@ public class LottoGameInputView implements InputView {
     public long requestLottoPurchaseAmount() {
         printRequestLottoPurchaseAmount();
         long amount = gameInfoValidator.parseLong(readLine());
-        gameInfoValidator.validatePositiveNumber(amount);
+        validateAmount(amount);
         newLine();
         return amount;
+    }
+
+    private void validateAmount(long amount) {
+        gameInfoValidator.validatePositiveNumber(amount);
+        gameInfoValidator.validateMultipleOfDenomination(amount);
     }
 
     private void printRequestLottoPurchaseAmount() {

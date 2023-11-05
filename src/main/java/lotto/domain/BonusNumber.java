@@ -37,7 +37,7 @@ public class BonusNumber {
     }
 
     private static void validateIsUniqueNumber(String number) {
-        boolean isDuplicated = winningNumber.contains(number);
+        boolean isDuplicated = winningNumber.contains(Integer.parseInt(number));
         if(isDuplicated) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
         }

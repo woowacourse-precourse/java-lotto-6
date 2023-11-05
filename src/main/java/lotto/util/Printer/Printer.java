@@ -1,4 +1,4 @@
-package util.Printer;
+package lotto.util.Printer;
 
 public class Printer implements IPrinter {
 

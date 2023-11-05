@@ -1,6 +1,6 @@
-package view;
+package lotto.view;
 
-import util.Scanner.IScanner;
+import lotto.util.Scanner.IScanner;
 
 import java.util.List;
 import java.util.stream.Stream;

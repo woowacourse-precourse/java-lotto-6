@@ -1,10 +1,10 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import util.Printer.Printer;
-import util.Scanner.Scanner;
-import view.InputView;
-import view.OutputView;
+import lotto.util.Printer.Printer;
+import lotto.util.Scanner.Scanner;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
-package view;
+package lotto.view;
 
 import lotto.domain.LottoPack;
-import util.Printer.IPrinter;
+import lotto.util.Printer.IPrinter;
 
 import static lotto.constant.OutputMessage.*;
 

@@ -4,8 +4,8 @@ import lotto.domain.LottoPack;
 import lotto.domain.Money;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningNumbers;
-import view.InputView;
-import view.OutputView;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.function.Supplier;
 

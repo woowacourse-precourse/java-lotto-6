@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import lotto.constant.LottoRank;
-import util.NumberGenerator.INumberGenerator;
-import util.NumberGenerator.NumberGenerator;
+import lotto.util.NumberGenerator.INumberGenerator;
+import lotto.util.NumberGenerator.NumberGenerator;
 
 import java.util.EnumMap;
 import java.util.List;

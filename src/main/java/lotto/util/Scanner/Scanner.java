@@ -1,4 +1,4 @@
-package util.Scanner;
+package lotto.util.Scanner;
 
 import camp.nextstep.edu.missionutils.Console;
 

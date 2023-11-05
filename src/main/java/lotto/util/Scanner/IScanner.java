@@ -1,4 +1,4 @@
-package util.Scanner;
+package lotto.util.Scanner;
 
 public interface IScanner {
 

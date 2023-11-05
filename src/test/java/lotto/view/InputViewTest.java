@@ -13,7 +13,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.TreeSet;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,8 +39,9 @@ class InputViewTest{
             String inputValue = "test";
             systemIn(inputValue);
             inputView.requestLottoPurchaseAmount();
-            assertThat(output()).contains(String.format(INVALID_INPUT_FORMAT, "숫자"));
-        }).isInstanceOf(IllegalArgumentException.class);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(String.format(INVALID_INPUT_FORMAT, LOTTO_NUMBER_FORMAT));
     }
 
     @DisplayName("구입 금액에서 1,000 단위가 아닌 값을 입력하면 예외를 발생시킨다.")
@@ -51,9 +51,10 @@ class InputViewTest{
             InputView inputView = new InputView();
             String inputValue = "1234123141";
             systemIn(inputValue);
-            inputView.requestLottoPurchaseAmount();
-            assertThat(output()).contains(INVALID_INPUT_UNIT);
-        }).isInstanceOf(IllegalArgumentException.class);
+            inputView.requestLottoPurchaseAmount();;
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(INVALID_INPUT_UNIT);
     }
 
     @DisplayName("구입 금액에서 0 보다 작은 값을 입력하면 예외를 발생시킨다.")
@@ -64,8 +65,9 @@ class InputViewTest{
             String inputValue = "-12000";
             systemIn(inputValue);
             inputView.requestLottoPurchaseAmount();
-            assertThat(output()).contains(INVALID_INPUT_UNIT);
-        }).isInstanceOf(IllegalArgumentException.class);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(INVALID_INPUT_UNIT);
     }
 
     @DisplayName("로또 번호를 6개를 입력하지 않으면 예외를 발생시킨다.")
@@ -76,8 +78,9 @@ class InputViewTest{
             String inputValue = "1,2,3,4,5";
             systemIn(inputValue);
             inputView.requestLottoNumber();
-            assertThat(output()).contains(INVALID_INPUT_LOTTO_NUMBERS_COUNT);
-        }).isInstanceOf(IllegalArgumentException.class);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(INVALID_INPUT_LOTTO_NUMBERS_COUNT);
     }
 
     @DisplayName("로또 번호는 숫자와 , 외 문자를 입력하면 예외를 발생시킨다.")
@@ -88,8 +91,9 @@ class InputViewTest{
             String inputValue = "1,ad,dfd,4,5,6";
             systemIn(inputValue);
             inputView.requestLottoNumber();
-            assertThat(output()).contains(String.format(INVALID_INPUT_FORMAT, LOTTO_NUMBER_FORMAT));
-        }).isInstanceOf(IllegalArgumentException.class);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(INVALID_INPUT_FORMAT);
     }
 
     @DisplayName("로또 번호는 45 이하 값을 입력해야 된다.")
@@ -100,8 +104,9 @@ class InputViewTest{
             String inputValue = "1,2,3,4,5,46";
             systemIn(inputValue);
             inputView.requestLottoNumber();
-            assertThat(output()).contains(INVALID_INPUT_LOTTO_RANGE);
-        }).isInstanceOf(IllegalArgumentException.class);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(INVALID_INPUT_LOTTO_RANGE);
     }
 
     @DisplayName("로또 번호는 1이상 값을 입력해야 된다.")
@@ -112,8 +117,9 @@ class InputViewTest{
             String inputValue = "0,2,3,4,5,45";
             systemIn(inputValue);
             inputView.requestLottoNumber();
-            assertThat(output()).contains(INVALID_INPUT_LOTTO_RANGE);
-        }).isInstanceOf(IllegalArgumentException.class);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(INVALID_INPUT_LOTTO_RANGE);
     }
 
     @DisplayName("로또 번호는 6개 값을 입력한다.")

@@ -38,4 +38,8 @@ public class InputView {
         println(INPUT_BONUS_NUMBER);
     }
 
+    // 보너스번호 입력 받기
+    public String inputBounsNumber() {
+        return Console.readLine();
+    }
 }

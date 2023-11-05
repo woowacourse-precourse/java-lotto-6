@@ -16,7 +16,7 @@ public class Output {
     private static final String WINNING_STATISTICS = "당첨 통계";
     private static final String DIVIDER = "---";
     private static final String WINNING_RANK_COUNT_FORMAT = " - %d개";
-    private static final String TOTAL_RETURN_FORMAT = "총 수익률은 %f%%입니다.";
+    private static final String TOTAL_RETURN_FORMAT = "총 수익률은 %,.1f%%입니다.";
 
     public void showMoneyInputMessage() {
         System.out.println(MONEY_INPUT_MESSAGE);

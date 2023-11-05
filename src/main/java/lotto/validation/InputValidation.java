@@ -18,6 +18,10 @@ public class InputValidation {
         isMoneyUnitValidation(input);
     }
 
+    public void validationLottoWinningNumber(String lottoNumbers) {
+        isEmptyValidation(lottoNumbers);
+    }
+
     private void isEmptyValidation(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ERROR + IS_NULL_MESSAGE);

@@ -14,4 +14,20 @@ public class LotteryService {
         this.winningLottery = Input.readLottery();
     }
 
+    public List<Lotto> issueLottery() {
+        int amount = Input.readPurchaseAmount();
+
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            Lotto lotto = Lotto.generateLottery();
+            lottos.add(lotto);
+        }
+
+        Output.printLotteries(lottos);
+        return lottos;
+    }
+
+    public void getWinningStatistics() {
+
+    }
 }

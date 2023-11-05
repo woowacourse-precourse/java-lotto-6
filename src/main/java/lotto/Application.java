@@ -20,12 +20,11 @@ public class Application {
         List<List<Integer>> userLottoNumberCollection = new ArrayList<>(purchaseQuantity);
 
         for (int index = 0; index < purchaseQuantity; index++) {
-            List<Integer> originalRandomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            List<Integer> sortRandomNumbers = new ArrayList<>(originalRandomNumbers);
-            Collections.sort(sortRandomNumbers);
-            userLottoNumberCollection.add(sortRandomNumbers);
-
+            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(randomNumbers);
+            userLottoNumberCollection.add(randomNumbers);
         }
+
         for (int index = 0; index < purchaseQuantity; index++) {
             System.out.println(userLottoNumberCollection.get(index));
         }

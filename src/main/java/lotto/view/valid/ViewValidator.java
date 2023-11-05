@@ -12,7 +12,7 @@ public class ViewValidator {
         try {
             return Integer.parseInt(inputText);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BUYING_PRICE_NUMBER_FORMAT_EXCEPTION);
+            throw new IllegalArgumentException(PRICE_NUMBER_FORMAT_EXCEPTION);
         }
     }
 

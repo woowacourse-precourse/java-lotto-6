@@ -36,6 +36,10 @@ public class OutputView {
         System.out.print(stringBuilder);
     }
 
+    public static void printExceptionMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
     private static void makeWinningStatisticOutput(
             Rank rank,
             int winningCount,

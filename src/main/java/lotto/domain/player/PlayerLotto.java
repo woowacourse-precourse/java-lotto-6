@@ -99,8 +99,7 @@ class PlayerLotto {
     }
 
     public Money calculateTotalReturn(Lotto answer, LottoNumber bonus) {
-        EnumMap<LottoPrize, Integer> statistics = generateStatistics(answer, bonus);
-        long totalReturn = calculateTotalReturn(statistics);
+        long totalReturn = calculateTotalReturn(generateStatistics(answer, bonus));
 
         return Money.from(totalReturn);
     }

@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static lotto.domain.LottoValue.LOTTO_RANGE_IN_END_VALUE;
+import static lotto.domain.LottoValue.LOTTO_RANGE_IN_START_VALUE;
+import static lotto.domain.LottoValue.LOTTO_SIZE;
+
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private final int LOTTO_RANGE_IN_START_VALUE = 1;
-    private final int LOTTO_RANGE_IN_END_VALUE = 45;
-    public static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -33,12 +34,12 @@ public class Lotto {
     }
 
     public void validationInRange(List<Integer> lotto) {
-        if (!lotto.stream().allMatch(this::test)) {
+        if (!lotto.stream().allMatch(this::range)) {
             throw new IllegalArgumentException("[ERROR] 로또 입력 값은 1이상 45이하의 값만 가능합니다.");
         }
     }
 
-    private boolean test(Integer number) {
+    private boolean range(Integer number) {
         return LOTTO_RANGE_IN_START_VALUE <= number
                 && number <= LOTTO_RANGE_IN_END_VALUE;
     }

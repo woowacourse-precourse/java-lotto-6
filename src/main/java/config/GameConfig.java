@@ -7,9 +7,9 @@ import service.LottoService;
 import view.GameView;
 import view.InputView;
 
-public class LottoLauncher {
+public class GameConfig {
 
-    private static LottoLauncher defaultLottoLauncher;
+    private static GameConfig defaultGameConfig;
     private InputView inputView;
     private GameController gameController;
     private LottoService lottoService;
@@ -20,11 +20,11 @@ public class LottoLauncher {
     private LottoLauncher() {
     }
 
-    public static LottoLauncher getInstance() {
-        if(defaultLottoLauncher == null) {
-            defaultLottoLauncher = new LottoLauncher();
+    public static GameConfig getInstance() {
+        if(defaultGameConfig == null) {
+            defaultGameConfig = new GameConfig();
         }
-        return defaultLottoLauncher;
+        return defaultGameConfig;
     }
 
     public GameView gameView() {

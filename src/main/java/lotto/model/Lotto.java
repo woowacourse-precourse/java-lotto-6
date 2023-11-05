@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -54,13 +55,14 @@ public class Lotto {
         }
     }
 
-    public List<Integer> sort(){
-        Collections.sort(numbers);
-        return numbers;
+    public static LottoDTO toLottoDTO(Lotto lotto) {
+        return LottoDTO.of(lotto.sort());
     }
 
-    public static LottoDTO toLottoDTO(Lotto lotto){
-        return LottoDTO.of(lotto.sort());
+    private List<Integer> sort() {
+        final List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
 }

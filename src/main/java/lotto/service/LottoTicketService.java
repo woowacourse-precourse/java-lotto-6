@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.collections.LottoBundle;
 import lotto.model.collections.LottoPurchaseAmount;
 import lotto.model.collections.LottoTicketCount;
+import lotto.validator.PurchaseAmountValidator;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,8 +18,11 @@ public class LottoTicketService {
     private final int endInclusive = LOTTO_END_NUMBER.getValue();
     private final int count = LOTTO_COUNT_NUMBER.getValue();
 
+    private final PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
+
     public LottoPurchaseAmount parsePurchaseAmount(String userInput){
-        return new LottoPurchaseAmount(userInput);
+        int validatedAmount = purchaseAmountValidator.validateAndParse(userInput);
+        return new LottoPurchaseAmount(validatedAmount);
     }
 
     public LottoTicketCount convertMoneyToTickets(LottoPurchaseAmount purchaseAmount) {

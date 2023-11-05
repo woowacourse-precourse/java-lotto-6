@@ -35,4 +35,8 @@ public class User {
     public void increaseUserRank(int rankIdx) {
         this.lottoRanks[rankIdx]+=1;
     }
+
+    public long getMoneyOfReturn() {
+        return this.moneyOfReturn;
+    }
 }

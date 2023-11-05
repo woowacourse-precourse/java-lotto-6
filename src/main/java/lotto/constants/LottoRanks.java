@@ -12,39 +12,38 @@ public enum LottoRanks {
     FIRST(6, false, 2000000000);
 
     private final int sameNumber;
-    private final boolean sameBonus;
+    private final boolean isSecond;
     private final int winnings;
 
-    LottoRanks(int sameNumber, boolean sameBonus, int winnings) {
+    LottoRanks(int sameNumber, boolean isSecond, int winnings) {
         this.sameNumber = sameNumber;
-        this.sameBonus = sameBonus;
+        this.isSecond = isSecond;
         this.winnings = winnings;
     }
 
     public int getSameNumber() {
         return sameNumber;
     }
-    public boolean isSameBonus() {
-        return sameBonus;
+    public boolean isSecond() {
+        return isSecond;
     }
     public int getWinnings() {
         return winnings;
     }
 
-    public static LottoRanks findKey(int sameNumber, boolean isSameBonus) {
+    public static LottoRanks findRank(int sameNumber, boolean sameBonus) {
         for (LottoRanks lottoRanks : LottoRanks.values()) {
-            if (lottoRanks.getSameNumber() == sameNumber
-                    && lottoRanks.isSameBonus() == isSameBonus) {
+            if (lottoRanks.sameNumber == sameNumber && lottoRanks.isSecond == sameBonus) {
                 return lottoRanks;
             }
         }
         return NONE;
     }
     public static Map<LottoRanks, Integer> getEnumMap() {
-        Map<LottoRanks, Integer> enumMap = new EnumMap<>(LottoRanks.class);
-        for (LottoRanks lottoRanks : LottoRanks.values()) {
-            enumMap.put(lottoRanks, 0);
+        Map<LottoRanks, Integer> lottoResult = new EnumMap<>(LottoRanks.class);
+        for (LottoRanks lottoRanks : lotto.constants.LottoRanks.values()) {
+            lottoResult.put(lottoRanks, 0);
         }
-        return enumMap;
+        return lottoResult;
     }
 }

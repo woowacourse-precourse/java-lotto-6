@@ -1,12 +1,13 @@
 package lotto.controller;
 
 import static lotto.constants.MarksAndConstants.ONE_HUNDRED;
+import static lotto.constants.MarksAndConstants.SINGLE_LOTTO_PRICE;
 
 import java.util.List;
 import java.util.Map;
 import lotto.model.BonusNum;
 import lotto.model.BuyingCost;
-import lotto.model.Matching;
+import lotto.model.Comparing;
 import lotto.model.Lotto;
 import lotto.constants.LottoRanks;
 import lotto.model.WinningNumbers;
@@ -24,15 +25,17 @@ public class LottoController {
     }
     public void run() {
         int totalCost = getValidBuyingCost(inputView);
-        List<List<Integer>> purchasedLotto = Lotto.getManyLotto(totalCost/1000);
-        outputView.printQuantityAndAllNumbers(purchasedLotto.size(), purchasedLotto);
+
+        List<List<Integer>> purchased = Lotto.getManyLotto(totalCost/SINGLE_LOTTO_PRICE);
+        outputView.printQuantityAndAllNumbers(purchased.size(), purchased);
 
         Lotto winningNum = getValidWinningNum(inputView);
         int bonusNum = getValidBonusNum(inputView, winningNum);
 
-        Map<LottoRanks, Integer> lottoResult = matching(purchasedLotto, winningNum, bonusNum);
+        Map<LottoRanks, Integer> lottoResult = comparing(purchased, winningNum, bonusNum);
         outputView.printLottoResult(lottoResult, getReturnRate(lottoResult, totalCost));
     }
+
     public int getValidBuyingCost(InputView inputView) {
         BuyingCost buyingCost = new BuyingCost();
         int validCost;
@@ -73,10 +76,11 @@ public class LottoController {
         }
         return validBonusNum;
     }
-    public Map<LottoRanks, Integer> matching(List<List<Integer>> purchased, Lotto winningNum, int bonusNum) {
-        Matching nextPhase = new Matching(purchased, winningNum);
-        nextPhase.compareToWinningNumbers(bonusNum);
-        return nextPhase.countLottoWinningResult(purchased.size());
+
+    public Map<LottoRanks, Integer> comparing(List<List<Integer>> purchased, Lotto winningNum, int bonusNum) {
+        Comparing nextPhase = new Comparing(winningNum, bonusNum);
+        nextPhase.compareAllToWinningNum(purchased);
+        return nextPhase.getWinningResult(purchased.size());
     }
 
     public Double getReturnRate(Map<LottoRanks,Integer> enumMap, int cost) {

@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import org.junit.jupiter.api.Test;
@@ -50,5 +51,14 @@ public class InputTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> application.checkNull(input))
                 .withMessage(ErrorMessage.NULL);
+    }
+
+    @Test
+    void 입력_받은_구입_금액을_검증한다_성공() {
+        String purchaseAmount = "8000";
+
+        int result = application.validate(purchaseAmount);
+
+        assertThat(result).isEqualTo(8000);
     }
 }

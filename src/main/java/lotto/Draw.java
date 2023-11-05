@@ -10,6 +10,11 @@ public class Draw {
         String[] strings = input.split(",");
     }
 
+    int toInt(String str) {
+        isInt(str);
+        return Integer.parseInt(str);
+    }
+
     void isInt(String str) {
         String regex = "^[0-9]+$";
         if (!str.matches(regex)) {

@@ -21,6 +21,7 @@ public class LottoResponse {
                 lotto.getNumbers()
                         .stream()
                         .map(LottoNumber::getNumber)
+                        .sorted()
                         .collect(Collectors.toList())
         );
     }

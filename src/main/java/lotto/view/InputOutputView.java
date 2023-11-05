@@ -25,6 +25,8 @@ import lotto.dto.response.LottoResponse;
 import lotto.exception.InputValidationException;
 
 public class InputOutputView {
+    public static final int COUNT_DEFAULT_VALUE = 0;
+
     public LottoPurchaseCostRequest inputMoney() {
         return getUserInput(INPUT_MONEY, LottoPurchaseCostRequest::new);
     }
@@ -77,7 +79,7 @@ public class InputOutputView {
         Arrays.stream(LottoRank.getSortedValues())
                 .filter(rank -> rank != LottoRank.NO_RANK)
                 .forEach(rank -> System.out.printf(OUTPUT_RANK_RESULT_FORMAT.getMessage(), rank.getDescription(),
-                        gameResults.getOrDefault(rank, 0)));
+                        gameResults.getOrDefault(rank, COUNT_DEFAULT_VALUE)));
         System.out.printf(OUTPUT_TOTAL_PROFIT_RATE_FORMAT.getMessage(), response.getProfitRate());
     }
 }

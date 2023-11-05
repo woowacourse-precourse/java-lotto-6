@@ -3,7 +3,7 @@ package lotto.common;
 import java.util.Arrays;
 
 public enum LottoRank {
-    FIRST_RANK(6, false, 200000000, "6개 일치 (2,000,000,000원)"),
+    FIRST_RANK(6, false, 2000000000, "6개 일치 (2,000,000,000원)"),
 
     SECOND_RANK(5, true, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
 

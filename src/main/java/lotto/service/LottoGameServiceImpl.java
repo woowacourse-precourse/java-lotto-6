@@ -11,8 +11,8 @@ import lotto.common.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoPurchaseCost;
-import lotto.dto.request.LottoPurchaseCostRequest;
 import lotto.dto.request.LottoNumberRequest;
+import lotto.dto.request.LottoPurchaseCostRequest;
 import lotto.dto.request.LottoRequest;
 import lotto.dto.response.LottoBuyResponse;
 import lotto.dto.response.LottoGameResultResponse;
@@ -22,8 +22,16 @@ public class LottoGameServiceImpl implements LottoGameService {
 
     private List<Lotto> buyLottos;
 
+    public LottoGameServiceImpl() {
+    }
+
+    public LottoGameServiceImpl(List<Lotto> buyLottos) {
+        this.buyLottos = buyLottos;
+    }
+
     public LottoBuyResponse buyLottos(LottoPurchaseCostRequest lottoPurchaseCostRequest) {
-        LottoPurchaseCost lottoPurchaseCost = new LottoPurchaseCost(Integer.parseInt(lottoPurchaseCostRequest.getLottoPurchaseCost()));
+        LottoPurchaseCost lottoPurchaseCost = new LottoPurchaseCost(
+                Integer.parseInt(lottoPurchaseCostRequest.getLottoPurchaseCost()));
         int count = lottoPurchaseCost.getDividedThousandWonCount();
 
         buyLottos = IntStream.range(0, count)

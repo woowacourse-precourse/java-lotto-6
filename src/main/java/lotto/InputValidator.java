@@ -25,6 +25,11 @@ public class InputValidator {
         else if (!checkForNumericOnly(inputValue)) throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
     }
 
+    //보너스 번호 예외 체크
+    public void checkBonusNumber(int bonusNumber){
+        if(!verifyNumberInRange(bonusNumber)) throw new IllegalArgumentException("[ERROR] 1~45 범위 내 숫자만 입력 가능합니다.");
+    }
+
     private boolean numbersSize(List<Integer> numbers) {
         return numbers.size() != SIZE;
     }

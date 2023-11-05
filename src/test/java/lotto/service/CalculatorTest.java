@@ -37,16 +37,16 @@ public class CalculatorTest {
     @EnumSource(
             value = Rank.class,
             names = {"FIRST","SECOND","THIRD","FORTH","FIFTH"})
-    void 계산기_테스트(Rank rank) {
+    void 계산기_테스트(Rank givenRank) {
         //given
         Map<Rank, Integer> map = new HashMap<>();
-        map.put(rank, 1);
+        map.put(givenRank, 1);
         int pay = 1000;
 
         //when
         double value = calculator.calculateRateOfReturn(map, pay);
 
         //then
-        assertThat(value).isEqualTo(rank.reward*100/pay);
+        assertThat(value).isEqualTo(givenRank.reward*100/pay);
     }
 }

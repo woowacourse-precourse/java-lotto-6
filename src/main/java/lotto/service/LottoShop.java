@@ -7,17 +7,19 @@ import lotto.config.AppConfig;
 import lotto.domain.Lotto;
 
 public class LottoShop {
-    private static final int LOTTO_NUMBER_START_RANGE = 1;
-    private static final int LOTTO_NUMBER_END_RANGE = 45;
 
     public static List<Lotto> sell(int amount) {
         return IntStream.range(0, amount)
-                .mapToObj(i -> generate())
+                .mapToObj(i -> generateLottoNumber())
                 .map(Lotto::new)
                 .toList();
     }
 
-    public static List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START_RANGE, LOTTO_NUMBER_END_RANGE, AppConfig.LOTTO_SIZE);
+    public static List<Integer> generateLottoNumber() {
+        return Randoms.pickUniqueNumbersInRange(
+                AppConfig.LOTTO_NUMBER_MIN_RANGE,
+                AppConfig.LOTTO_NUMBER_MAX_RANGE,
+                AppConfig.LOTTO_SIZE
+        );
     }
 }

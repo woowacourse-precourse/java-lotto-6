@@ -2,12 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.config.AppConfig;
+import lotto.controller.input.PriceInputHandler;
+import lotto.controller.input.TargetNumberHandler;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
 import lotto.domain.Rank;
-import lotto.controller.input.PriceInputHandler;
-import lotto.controller.input.TargetNumberHandler;
 import lotto.service.Calculator;
 import lotto.service.LottoShop;
 import lotto.view.LottoView;
@@ -39,7 +38,7 @@ public class LottoMachine {
     }
 
     private void calculate(LottoBuyer buyer, Map<Rank, Integer> result) {
-        int payment = buyer.size() * AppConfig.LOTTO_PRICE;
+        int payment = buyer.payment();
         double rateOfReturn = Calculator.calculateRateOfReturn(result, payment);
         lottoView.printResult(result, rateOfReturn);
     }

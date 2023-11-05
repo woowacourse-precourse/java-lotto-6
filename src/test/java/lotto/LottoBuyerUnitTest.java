@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
 import lotto.domain.Rank;
@@ -20,18 +21,15 @@ public class LottoBuyerUnitTest {
     void 로또바이어_1등_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets);
+        lottoBuyer = new LottoBuyer(List.of(lotto));
 
         //when
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        Rank rank = map.entrySet().stream()
-                .filter(entry -> entry.getValue() == 1)
-                .map(entry -> entry.getKey())
-                .findAny()
-                .get();
+        Rank rank = map.keySet().stream()
+                .filter(key -> map.get(key) == 1)
+                .findAny().get();
         assertThat(rank).isEqualTo(Rank.FIRST);
     }
 
@@ -40,18 +38,15 @@ public class LottoBuyerUnitTest {
     void 로또바이어_2등_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets);
+        lottoBuyer = new LottoBuyer(List.of(lotto));
 
         //when
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        Rank rank = map.entrySet().stream()
-                .filter(entry -> entry.getValue() == 1)
-                .map(entry -> entry.getKey())
-                .findAny()
-                .get();
+        Rank rank = map.keySet().stream()
+                .filter(key -> map.get(key) == 1)
+                .findAny().get();
         assertThat(rank).isEqualTo(Rank.SECOND);
     }
 
@@ -60,18 +55,15 @@ public class LottoBuyerUnitTest {
     void 로또바이어_3등_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
-        List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets);
+        lottoBuyer = new LottoBuyer(List.of(lotto));
 
         //when
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        Rank rank = map.entrySet().stream()
-                .filter(entry -> entry.getValue() == 1)
-                .map(entry -> entry.getKey())
-                .findAny()
-                .get();
+        Rank rank = map.keySet().stream()
+                .filter(key -> map.get(key) == 1)
+                .findAny().get();
         assertThat(rank).isEqualTo(Rank.THIRD);
     }
 
@@ -80,18 +72,15 @@ public class LottoBuyerUnitTest {
     void 로또바이어_4등_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 7, 10));
-        List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets);
+        lottoBuyer = new LottoBuyer(List.of(lotto));
 
         //when
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        Rank rank = map.entrySet().stream()
-                .filter(entry -> entry.getValue() == 1)
-                .map(entry -> entry.getKey())
-                .findAny()
-                .get();
+        Rank rank = map.keySet().stream()
+                .filter(key -> map.get(key) == 1)
+                .findAny().get();
         assertThat(rank).isEqualTo(Rank.FORTH);
     }
 
@@ -100,18 +89,15 @@ public class LottoBuyerUnitTest {
     void 로또바이어_5등_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 11, 7, 10));
-        List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets);
+        lottoBuyer = new LottoBuyer(List.of(lotto));
 
         //when
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        Rank rank = map.entrySet().stream()
-                .filter(entry -> entry.getValue() == 1)
-                .map(entry -> entry.getKey())
-                .findAny()
-                .get();
+        Rank rank = map.keySet().stream()
+                .filter(key -> map.get(key) == 1)
+                .findAny().get();
         assertThat(rank).isEqualTo(Rank.FIFTH);
     }
 
@@ -120,18 +106,15 @@ public class LottoBuyerUnitTest {
     void 로또바이어_무효_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 11, 7, 10));
-        List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets);
+        lottoBuyer = new LottoBuyer(List.of(lotto));
 
         //when
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        Rank rank = map.entrySet().stream()
-                .filter(entry -> entry.getValue() == 1)
-                .map(entry -> entry.getKey())
-                .findAny()
-                .get();
+        Rank rank = map.keySet().stream()
+                .filter(key -> map.get(key) == 1)
+                .findAny().get();
         assertThat(rank).isEqualTo(Rank.FIFTH);
     }
 }

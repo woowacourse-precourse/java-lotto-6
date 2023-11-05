@@ -6,7 +6,6 @@ import lotto.config.AppConfig;
 public class PriceInputHandler {
 
     private static final int ZERO = 0;
-    private static final int MIN_PRICE_UNIT = 1000;
     private static final int PURCHASE_MIN = 1000;
     private static final int PURCHASE_MAX = 100000;
     private static final String PURCHASE_INFO_MESSAGE = "구입금액을 입력해 주세요.";
@@ -19,9 +18,9 @@ public class PriceInputHandler {
         return price / AppConfig.LOTTO_PRICE;
     }
 
-    public static int validatePrice(String input) {
+    public int validatePrice(String input) {
         try {
-            int price = convertInteger(input);
+            int price = Integer.parseInt(input);
             validateRange(price, PURCHASE_MIN, PURCHASE_MAX);
             validateUnit(price);
             return price;
@@ -32,18 +31,14 @@ public class PriceInputHandler {
         }
     }
 
-    private static int convertInteger(String input) {
-        return Integer.parseInt(input);
-    }
-
-    private static void validateRange(int target, int start, int end) {
+    private void validateRange(int target, int start, int end) {
         if (target < start || target > end) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void validateUnit(int price) {
-        if ((price % MIN_PRICE_UNIT) != ZERO) {
+    private void validateUnit(int price) {
+        if ((price % AppConfig.LOTTO_PRICE) != ZERO) {
             throw new IllegalArgumentException();
         }
     }

@@ -9,7 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validate(distinct(numbers));
+        validate(unique(numbers));
         validate(validRange(numbers));
         this.numbers = numbers;
     }
@@ -21,7 +21,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private List<Integer> distinct(List<Integer> numbers) {
+    private List<Integer> unique(List<Integer> numbers) {
         return numbers.stream().distinct().toList();
     }
 
@@ -31,7 +31,7 @@ public class Lotto {
                 .toList();
     }
 
-    public Rank checkResult(Lotto targetLotto, int bonus) {
+    public Rank match(Lotto targetLotto, int bonus) {
         List<Integer> target = targetLotto.numbers;
         int count = checkWithTarget(target);
         boolean canBeSecond = checkBonusIfUsable(count, bonus);

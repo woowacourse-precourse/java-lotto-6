@@ -31,7 +31,7 @@ public class LottoBuyerTest {
     }
 
     @Test
-    @DisplayName("실패는 모두 매핑되지않고, 각 등수마다 1개씩 매핑된다.")
+    @DisplayName("실패는 모두 매핑되지않고, 당첨은 각 등수마다 1개씩 매핑된다.")
     void 로또바이어_통합_테스트() {
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 

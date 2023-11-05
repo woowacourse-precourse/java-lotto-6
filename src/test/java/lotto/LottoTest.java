@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import org.assertj.core.api.Assertions;
@@ -7,6 +9,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -38,7 +43,7 @@ class LottoTest {
         int bonus = 7;
 
         //when
-        Rank rank = lotto.checkResult(target, bonus);
+        Rank rank = lotto.match(target, bonus);
 
         //then
         Assertions.assertThat(rank).isEqualTo(Rank.FIRST);
@@ -52,7 +57,7 @@ class LottoTest {
         int bonus = 7;
 
         //when
-        Rank rank = lotto.checkResult(target, bonus);
+        Rank rank = lotto.match(target, bonus);
 
         //then
         Assertions.assertThat(rank).isEqualTo(Rank.SECOND);
@@ -66,7 +71,7 @@ class LottoTest {
         int bonus = 7;
 
         //when
-        Rank rank = lotto.checkResult(target, bonus);
+        Rank rank = lotto.match(target, bonus);
 
         //then
         Assertions.assertThat(rank).isEqualTo(Rank.THIRD);
@@ -80,8 +85,8 @@ class LottoTest {
         int bonus = 7;
 
         //when
-        Rank rank1 = lotto1.checkResult(target, bonus);
-        Rank rank2 = lotto2.checkResult(target, bonus);
+        Rank rank1 = lotto1.match(target, bonus);
+        Rank rank2 = lotto2.match(target, bonus);
 
         //then
         Assertions.assertThat(rank1).isEqualTo(Rank.FORTH);
@@ -96,34 +101,34 @@ class LottoTest {
         int bonus = 7;
 
         //when
-        Rank rank1 = lotto1.checkResult(target, bonus);
-        Rank rank2 = lotto2.checkResult(target, bonus);
+        Rank rank1 = lotto1.match(target, bonus);
+        Rank rank2 = lotto2.match(target, bonus);
 
         //then
         Assertions.assertThat(rank1).isEqualTo(Rank.FIFTH);
         Assertions.assertThat(rank2).isEqualTo(Rank.FIFTH);
     }
 
-    @Test
+    @ParameterizedTest
+    @MethodSource("failSource")
     @DisplayName("0~2개는 FAIL에 매치된다. 보너스는 무시된다.")
-    void 등수확인6(){
+    void 등수확인6(List<Integer> list){
         //given
-        Lotto lotto1 = new Lotto(List.of(1,2,14,11,12,13));
-        Lotto lotto2 = new Lotto(List.of(1,2,7,14,11,12));
-        Lotto lotto3 = new Lotto(List.of(1,25,7,14,11,12));
-        Lotto lotto4 = new Lotto(List.of(33,25,7,14,11,12));
+        Lotto lotto = new Lotto(list);
         int bonus = 7;
 
         //when
-        Rank rank1 = lotto1.checkResult(target, bonus);
-        Rank rank2 = lotto2.checkResult(target, bonus);
-        Rank rank3 = lotto3.checkResult(target, bonus);
-        Rank rank4 = lotto4.checkResult(target, bonus);
+        Rank rank = lotto.match(target, bonus);
 
         //then
-        Assertions.assertThat(rank1).isEqualTo(Rank.FAIL);
-        Assertions.assertThat(rank2).isEqualTo(Rank.FAIL);
-        Assertions.assertThat(rank3).isEqualTo(Rank.FAIL);
-        Assertions.assertThat(rank4).isEqualTo(Rank.FAIL);
+        Assertions.assertThat(rank).isEqualTo(Rank.FAIL);
+    }
+
+    private static Stream<List<Integer>> failSource() {
+        return Stream.of(
+                List.of(1,2,14,11,12,13),
+                List.of(1,2,7,14,11,12),
+                List.of(1,25,7,14,11,12),
+                List.of(33,25,7,14,11,12));
     }
 }

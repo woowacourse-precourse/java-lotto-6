@@ -14,12 +14,12 @@ public class LottoShopTest {
     @DisplayName("생성기는 1부터 45까지의 랜덤한 숫자를 반환한다")
     void 로또숫자생성기_테스트() {
         //given
-        Set<Integer> createdNumbers = new HashSet<Integer>();
+        Set<Integer> createdNumbers = new HashSet<>();
         int count = 0;
 
         //when
         while (createdNumbers.size() < 45 && count < 1000) {
-            List<Integer> lottoNumbers = LottoShop.generate();
+            List<Integer> lottoNumbers = LottoShop.generateLottoNumber();
             lottoNumbers.forEach(num->createdNumbers.add(num));
             count++;
         }
@@ -33,7 +33,7 @@ public class LottoShopTest {
     @RepeatedTest(1000)
     void 로또숫자생성기_테스트2(){
         //given
-        List<Integer> lottoNumbers = LottoShop.generate();
+        List<Integer> lottoNumbers = LottoShop.generateLottoNumber();
 
         //when
         long count = lottoNumbers.stream().distinct().count();

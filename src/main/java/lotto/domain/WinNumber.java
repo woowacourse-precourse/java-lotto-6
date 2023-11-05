@@ -12,8 +12,8 @@ public class WinNumber {
     private static final String INVALID_WIN_NUMBER_DUPLICATION_ERROR_MESSAGE = "[ERROR] 중복된 번호가 존재합니다.";
     private static final String INVALID_WIN_NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 1~45 범위 내 번호를 입력해주세요.";
     private static final String INVALID_BONUS_NUMBER_DUPLICATION_ERROR_MESSAGE = "[ERROR] 당첨 번호와 중복됩니다.";
-    private List<Integer> pickNumbers;
-    private int bonusNumber;
+    private final List<Integer> pickNumbers;
+    private final int bonusNumber;
 
     private WinNumber(List<Integer> pickNumbers, int bonusNumber) {
         validateDuplicationInPickNumber(pickNumbers);

@@ -6,7 +6,7 @@ import lotto.view.InputView;
 public class Money {
     private static final String INVALID_AMOUNT_ERROR_MESSAGE = "[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.";
 
-    private int money;
+    private final int money;
 
     private Money(int money) {
         this.money = money;

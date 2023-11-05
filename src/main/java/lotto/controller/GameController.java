@@ -14,8 +14,12 @@ public class GameController {
     }
 
     public void run(){
-
+        int lottoPurchaseAmount = getLottoPurchaseAmount(view.inputLottoPurchaseAmount());
+        System.out.println(lottoPurchaseAmount);
     }
 
+    private int getLottoPurchaseAmount(String input){
+        return Integer.parseInt(input);
+    }
 
 }

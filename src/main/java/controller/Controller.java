@@ -1,27 +1,42 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 import service.Service;
 import view.InputView;
+import view.OutputView;
+
+import java.util.List;
 
 public class Controller {
     private final Service service;
 
     public void run(){
-        System.out.println(getAmountByUserInput());
+        int money = getMoneyByUserInput();
+        List<Lotto> lottos = purchaseLotto(money);
     }
     public Controller(Service service) {
         this.service = service;
     }
-    public int getAmountByUserInput(){
+    public int getMoneyByUserInput(){
         while(true){
             try {
                 InputView.printAskForInputAmount();
                 String input = Console.readLine();
-                return service.getAmountByUserInput(input);
+                return service.getMoneyByUserInput(input);
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<Lotto> purchaseLotto(int money){
+        int lottoAmount = service.exchangeMoneyForLotto(money);
+        OutputView.printPurchaseAmount(lottoAmount);
+        List<Lotto> lottos =  service.purchaseLotto(lottoAmount);
+        for(Lotto lotto : lottos){
+            OutputView.printLotto(lotto);
+        }
+        return lottos;
     }
 }

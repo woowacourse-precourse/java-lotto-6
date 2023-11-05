@@ -16,7 +16,7 @@ public class Validator {
         }
     }
 
-    public void checkMinAmount(int input) throws IllegalArgumentException {
+    public void checkMinMoney(int input) throws IllegalArgumentException {
         if (input < THOUSAND) {
             throw new IllegalArgumentException("[ERROR] 1000원 이상의 금액을 입력해 주세요.");
         }

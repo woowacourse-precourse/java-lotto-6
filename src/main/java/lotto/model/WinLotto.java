@@ -1,10 +1,12 @@
 package lotto.model;
 
+import lotto.utils.ExceptionMessage;
+
 public record WinLotto(Lotto lotto, Integer bonusNumber) {
 
     public WinLotto {
         if (bonusNumber > 45 || bonusNumber < 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NUMBER.getMessage());
         }
     }
 }

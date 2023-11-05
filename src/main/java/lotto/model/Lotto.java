@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.utils.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,7 +13,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_SIZE.getMessage());
         }
 
         for (Integer number : numbers) {
@@ -22,7 +23,7 @@ public class Lotto {
 
     public void validateRange(Integer number) {
         if (number > 45 || number < 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NUMBER.getMessage());
         }
     }
 

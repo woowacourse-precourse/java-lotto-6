@@ -8,7 +8,7 @@ public class LottoResult {
     private static final int DEFAULT_VALUE = 0;
     private static final int _2ND_OR_3RD = 5;
     private static final int PRIZE_COUNT_INCREMENT = 1;
-    private final EnumMap<LottoPrize, Integer> lottoResult;
+    private EnumMap<LottoPrize, Integer> lottoResult = new EnumMap<>(LottoPrize.class);
 
     public EnumMap<LottoPrize, Integer> getLottoResult() {
         return lottoResult;

@@ -55,5 +55,13 @@ class BonusNumberTest {
                 .hasMessageContaining(ExceptionMessage.INPUT_NUMBER.getMessage());
     }
 
+    @Test
+    @DisplayName("보너스 번호가 int의 범위를 벗어났을 때 예외 발생")
+    void validateNumberIsOutOfInt() {
+        assertThatThrownBy(() -> bonusNumber.validateNumber("3000000000"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INVALID_AMOUNT_MESSAGE.getMessage());
+    }
+
 }
 

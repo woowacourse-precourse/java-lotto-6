@@ -16,4 +16,17 @@ class RandMachineTest {
         assertThat(numbers.size()).isEqualTo(6);
     }
 
+
+    @Test
+    @DisplayName("로또 번호를 생성할 때, 1~45 범위의 숫자가 반환되어야 한다.")
+    void givenRandMachine_whenGenerateNumbers_thenShouldReturnNumbersInRange() {
+        // when
+        List<Integer> numbers = RandMachine.generateRandomNumbers();
+
+        // then
+        for (int number : numbers) {
+            assertThat(number).isBetween(1, 45);
+        }
+    }
+
 }

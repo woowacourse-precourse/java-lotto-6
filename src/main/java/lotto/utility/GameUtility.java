@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameUtility {
 
@@ -34,6 +35,7 @@ public class GameUtility {
 
     public static List<Integer> generateLottoNumber() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        lottoNumbers = lottoNumbers.stream().collect(Collectors.toList());
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }

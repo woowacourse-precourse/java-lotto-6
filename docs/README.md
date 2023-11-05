@@ -28,11 +28,11 @@
 
   - [x] 로또 번호를 **발행**하는 기능 - pickUniqueNumbersInRange() < 제공 라이브러리 >
 
-  - [x] 로또를 **구입**하는 기능 Purchase#purchaseLotto();
+  - [x] 로또를 **구입**하는 기능 - Purchase#purchaseLotto();
 
-  - [x] 로또 수량을 **출력**하는 기능 Purchase#getAmount();
+  - [x] 로또 수량을 **출력**하는 기능 - Purchase#getAmount();
 
-  - [ ] 로또 번호를 **출력**하는 기능
+  - [x] 로또 번호를 **출력**하는 기능 - Purchase#getPurchasedLotto(); , Lotto#getLottoNumber();
 
   - [ ] 로또 구입 금액이 올바른지 **판단**하는 기능
 

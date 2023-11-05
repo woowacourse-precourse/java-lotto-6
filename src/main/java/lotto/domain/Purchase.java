@@ -24,4 +24,10 @@ public class Purchase {
     public int getAmount() {
         return amount;
     }
+
+    public void getPurchasedLotto() {
+        for (int i = 0; i < purchasedLotto.size(); i++) {
+            purchasedLotto.get(i).getLottoNumber();
+        }
+    }
 }

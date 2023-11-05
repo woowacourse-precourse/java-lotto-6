@@ -77,7 +77,7 @@ public class LottoGame {
     }
 
     public void calculationResult(WinLotto winLotto) {
-        for (Lotto lotto : user.getIssuanceLotto()) {
+        for (Lotto lotto : user.issuanceLotto()) {
             switch (countMatch(lotto, winLotto)) {
                 case 3 -> updateMatch(GameMessage.THREE_MATCH.getMessage());
                 case 4 -> updateMatch(GameMessage.FOUR_MATCH.getMessage());
@@ -98,7 +98,7 @@ public class LottoGame {
         result += matchs.get(GameMessage.FIVE_MATCH.getMessage()) * 1500000;
         result += matchs.get(GameMessage.SIX_MATCH.getMessage()) * 2000000000;
         result += matchs.get(GameMessage.BONUS_MATCH.getMessage()) * 30000000;
-        result = Math.round(result / user.getIssuanceLotto().size() * 10.0);
+        result = Math.round(result / user.issuanceLotto().size() * 10.0);
         return result / 100.0;
     }
 

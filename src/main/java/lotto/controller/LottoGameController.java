@@ -20,7 +20,7 @@ public class LottoGameController {
     public void run() {
         outputView.printRequestAmount();
         LottoGame lottoGame = new LottoGame(inputView.inputInteger());
-        outputView.printIssuanceLotto(lottoGame.getUser().getIssuanceLotto());
+        outputView.printIssuanceLotto(lottoGame.getUser().issuanceLotto());
         outputView.printRequestWinNumbers();
         Lotto lotto = new Lotto(inputView.inputWinNumbers());
         outputView.printRequestBonusNumber();

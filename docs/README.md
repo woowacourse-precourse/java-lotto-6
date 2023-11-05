@@ -57,7 +57,7 @@
     </tr>
     <tr>
         <td>User</td>
-        <td>발행된 로또를 List로 가진다.</td>
+        <td>발행된 로또를 List로 가지는 record입니다.</td>
     </tr>
     <tr>
         <td>WinLotto</td>

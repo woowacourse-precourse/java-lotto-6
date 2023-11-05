@@ -57,5 +57,32 @@ class LottoTest {
         );
     }
 
+    @ParameterizedTest
+    @MethodSource
+    void 보너스_번호를_포함하는지_확인한다(List<Integer> lottoNumbers, int bonusNumber, boolean expectResult) {
+        //given
+        Lotto lotto = new Lotto(lottoNumbers);
+        //when
+        boolean result = lotto.contains(bonusNumber);
+        //then
+        assertThat(result).isEqualTo(expectResult);
+    }
+
+    private static Stream<Arguments> 보너스_번호를_포함하는지_확인한다() {
+        return Stream.of(
+                Arguments.of(new ArrayList<>(Arrays.asList(6, 5, 4, 3, 2, 1)),
+                        1, true),
+                Arguments.of(new ArrayList<>(Arrays.asList(45, 35, 25, 15, 5, 1)),
+                        40, false),
+                Arguments.of(new ArrayList<>(Arrays.asList(1, 2, 3, 6, 5, 4)),
+                        6, true),
+                Arguments.of(new ArrayList<>(Arrays.asList(11, 21, 12, 22, 13, 33)),
+                        15, false),
+                Arguments.of(new ArrayList<>(Arrays.asList(1, 2, 9, 8, 4, 3)),
+                        1, true)
+
+        );
+    }
+
 
 }

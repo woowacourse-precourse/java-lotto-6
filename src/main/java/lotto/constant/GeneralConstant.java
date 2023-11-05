@@ -1,6 +1,7 @@
 package lotto.constant;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public final class GeneralConstant {
@@ -32,11 +33,11 @@ public final class GeneralConstant {
         put("FIFTH", 5000);
     }};
 
-    public static final HashMap<String, Integer> PRIZE_RANK_WEIGHT = new HashMap<String, Integer>() {{
-        put("FIRST", 6);
-        put("SECOND", 10);
-        put("THIRD", 5);
-        put("FOURTH", 4);
+    public static final LinkedHashMap<String, Integer> PRIZE_RANK_WEIGHT = new LinkedHashMap<String, Integer>() {{
         put("FIFTH", 3);
+        put("FOURTH", 4);
+        put("THIRD", 5);
+        put("SECOND", 10);
+        put("FIRST", 6);
     }};
 }

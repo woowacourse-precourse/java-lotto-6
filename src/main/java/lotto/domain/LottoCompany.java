@@ -60,35 +60,12 @@ public enum LottoCompany {
     }
 
     private static int getRankIndex(int weight) {
-        for (Map.Entry<String, Integer> entry : PRIZE_RANK_WEIGHT.entrySet()) {
-            String rank = findRankName(weight, entry);
-            if(rank != null) {
-                return getRankIndex(rank);
-            }
-        }
-        return INT_NULL;
-    }
-
-    private static String findRankName(int weight, Map.Entry<String, Integer> entry) {
-        if (Objects.equals(entry.getValue(), weight)) {
-            return entry.getKey();
-        }
-        return null;
-    }
-
-    private static int getRankIndex(String rank) {
-        for(Map.Entry<Integer, String> entry : PRIZE_RANK_INDEXES.entrySet()){
-            int index = findRankIndex(rank, entry);
-            if(index != INT_NULL) {
+        int index = ZERO;
+        for(int value : PRIZE_RANK_WEIGHT.values()) {
+            if(weight == value) {
                 return index;
             }
-        }
-        return INT_NULL;
-    }
-
-    private static int findRankIndex(String rank, Map.Entry<Integer, String> entry) {
-        if(Objects.equals(entry.getValue(), rank)) {
-            return entry.getKey();
+            index++;
         }
         return INT_NULL;
     }

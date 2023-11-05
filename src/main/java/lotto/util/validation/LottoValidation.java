@@ -8,7 +8,7 @@ public class LottoValidation {
 
     public void validatorOnlyNumber(String input) {
 
-        if (!input.matches("[1-9][0-9]*")) {
+        if (!input.matches("[0-9]+")) {
             ErrorThrower.throwIllegalArgumentException(ONLY_NUMBER_ERROR.getMessage());
         }
 

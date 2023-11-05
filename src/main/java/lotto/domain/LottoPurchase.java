@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.util.validation.LottoPurchaseValidation;
 import lotto.util.validation.LottoValidation;
+import lotto.view.InputView;
 
 public class LottoPurchase {
 
@@ -10,18 +12,18 @@ public class LottoPurchase {
 
     public int lottoPurchaseCount(String input) {
 
-        int purchaseAmount = Integer.parseInt(input);
+        lottoPurchaseValidation(input);
 
-        try {
-            validator.validatorOnlyNumber(input);
-            purchaseValidator.validatorNotDivided(purchaseAmount);
-        } catch (IllegalArgumentException e) {
-            lottoPurchaseCount(input);
-        }
+        int purchaseAmount = Integer.parseInt(input);
 
         purchaseAmount /= 1000;
 
         return purchaseAmount;
+    }
+
+    public void lottoPurchaseValidation(String input) {
+        validator.validatorOnlyNumber(input);
+        purchaseValidator.validatorNotDivided(input);
     }
 
 }

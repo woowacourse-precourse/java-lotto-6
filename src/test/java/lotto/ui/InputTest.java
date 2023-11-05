@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -80,5 +82,85 @@ public class InputTest {
 
         //then
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    @DisplayName("자연수가 아닌 숫자가 주어질 경우, 예외가 발생한다.")
+    public void testInvalidNumberFormat() throws Exception {
+        // given
+        String invalidInput = "1, 2, 3.3, 4, 5";
+
+        // when
+        Method method = Input.class.getDeclaredMethod("parseIntegers", String.class);
+        method.setAccessible(true);
+
+        //then
+        assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidInput);
+        });
+    }
+
+    @Test
+    @DisplayName("기존 로또의 개수보다 많은 개수를 입력할 경우, 예외가 발생한다.")
+    public void testMoreThanLottoSize() throws Exception {
+        // given
+        List<Integer> invalidInput = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+
+        // when
+        Method method = Input.class.getDeclaredMethod("checkNumberSize", List.class);
+        method.setAccessible(true);
+
+        //then
+        assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidInput);
+        });
+    }
+
+    @Test
+    @DisplayName("기존 로또의 개수보다 적은 개수를 입력할 경우, 예외가 발생한다.")
+    public void testLessThanLottoSize() throws Exception {
+        // given
+        List<Integer> invalidInput = Arrays.asList(1, 2, 3, 4, 5);
+
+        // when
+        Method method = Input.class.getDeclaredMethod("checkNumberSize", List.class);
+        method.setAccessible(true);
+
+        //then
+        assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidInput);
+        });
+    }
+
+    @Test
+    @DisplayName("주어진 수가 로또 수 범위보다 클 경우, 예외가 발생한다.")
+    public void testBiggerOutOfRange() throws Exception {
+        // given
+        int invalidNumber = 46;
+
+        // when
+        Method method = Input.class.getDeclaredMethod("checkInRange", int.class);
+        method.setAccessible(true);
+
+        //then
+        assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidNumber);
+        });
+    }
+
+    @Test
+    @DisplayName("주어진 수가 로또 수 범위보다 작을 경우, 예외가 발생한다.")
+    public void testLessOutOfRange() throws Exception {
+        // given
+        int invalidNumber = 0;
+
+        // when
+        Method method = Input.class.getDeclaredMethod("checkInRange", int.class);
+        method.setAccessible(true);
+
+        //then
+        assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidNumber);
+        });
     }
 }

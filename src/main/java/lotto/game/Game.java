@@ -1,5 +1,6 @@
 package lotto.game;
 
+import java.util.List;
 import lotto.domain.LottoBundle;
 import lotto.global.Store;
 import lotto.ui.Input;
@@ -11,5 +12,6 @@ public class Game {
         Output.printPurchaseCount(count);
         LottoBundle lottoBundle = Store.generateLottoBundle(count);
         Output.printLottoBundle(lottoBundle);
+        List<Integer> userNumbers = Input.getUserNumbers();
     }
 }

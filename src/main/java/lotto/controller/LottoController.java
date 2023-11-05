@@ -1,12 +1,12 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.exception.InvalidInputException;
 import lotto.service.LottoResultService;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,15 +25,14 @@ public class LottoController {
     }
 
     public void run() {
-        Integer userMoney = inputMoney();
-        Integer lottoCount = purchaseLotto(userMoney);
+        Integer lottoCount = purchaseLotto();
 
         PurchasedLotto purchasedLotto = purchaseLottoByLottoCount(lottoCount);
         WinningLotto winningLotto = winningInput();
 
-        List<LottoResult> lottoResults = lottoResultService.countMatchingNumbers(purchasedLotto,winningLotto);
+        List<LottoResult> lottoResults = lottoResultService.countMatchingNumbers(purchasedLotto, winningLotto);
         Map<LottoReward, Integer> reward = lottoResultService.confirmRewardLottos(lottoResults);
-        Double earnRate = lottoResultService.countEarnRate(reward, userMoney);
+        Double earnRate = lottoResultService.countEarnRate(reward, lottoCount);
 
         outputView.resultLotto(reward, earnRate);
     }
@@ -60,17 +59,19 @@ public class LottoController {
         return purchasedLotto;
     }
 
-    private Integer inputMoney() {
-        outputView.purchaseLottoMessage();
-        Integer userMoney = inputView.purchaseLotto();
+    private Integer purchaseLotto() {
+        while (true) {
+            outputView.purchaseLottoMessage();
+            Integer userMoney = inputView.purchaseLotto();
 
-        return userMoney;
-    }
+            try {
+                Integer lottoCount = lottoService.purchaseLottoWithValidPrice(userMoney);
+                outputView.purchaseLottoCountMessage(lottoCount);
 
-    private Integer purchaseLotto(Integer inputMoney) {
-        Integer lottoCount = lottoService.purchaseLottoWithValidPrice(inputMoney);
-        outputView.purchaseLottoCountMessage(lottoCount);
-
-        return lottoCount;
+                return lottoCount;
+            } catch (InvalidInputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

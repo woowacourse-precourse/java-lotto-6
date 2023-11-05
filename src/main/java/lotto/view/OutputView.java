@@ -16,7 +16,7 @@ public class OutputView {
     }
 
     public void printGetMoney() {
-        printer.println(GET_MONEY_MESSAGE.getMessage());
+        printer.println(GET_MONEY_MESSAGE);
     }
 
     public void newline() {
@@ -29,24 +29,24 @@ public class OutputView {
     }
 
     private String buildLottoPackMessage(LottoPack lottoPack) {
-        return String.format(BOUGHT_LOTTO_PACK_MESSAGE.getMessage(), lottoPack.size());
+        return String.format(BOUGHT_LOTTO_PACK_MESSAGE, lottoPack.size());
     }
 
     public void printGetWinningNumbers() {
-        printer.println(GET_WINNING_NUMBERS_MESSAGE.getMessage());
+        printer.println(GET_WINNING_NUMBERS_MESSAGE);
     }
 
     public void printGetBonusNumber() {
-        printer.println(GET_BONUS_NUMBER_MESSAGE.getMessage());
+        printer.println(GET_BONUS_NUMBER_MESSAGE);
     }
 
     public void printResult(Result result) {
-        printer.println(LOTTO_RESULT_MESSAGE.getMessage());
+        printer.println(LOTTO_RESULT_MESSAGE);
         printer.println(result.toString());
     }
 
     public void printIncomeRate(IncomeRate incomeRate) {
-        printer.println(String.format(INCOME_RATE_MESSAGE.getMessage(), incomeRate.getIncomeRate()));
+        printer.println(String.format(INCOME_RATE_MESSAGE, incomeRate.getIncomeRate()));
     }
 
     public void printException(Exception exception) {

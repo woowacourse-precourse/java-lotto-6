@@ -7,7 +7,7 @@ public enum ErrorMessage {
     ERROR_OUT_OF_RANGES("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     ERROR_COUNT_OF_VALUES("[ERROR] 6개의 숫자를 입력해야합니다."),
     ERROR_CONTAIN_NOT_NUMERIC_VALUE("[ERROR] 쉼표(,) 전후에 숫자가 아닌 값이 포함되어있습니다."),
-    ERROR_CONTAIN_NON_EXISTENT_VALUE("[ERROR] 쉼표(,) 전후에 숫자 값을 입력해야 합니다."),
+    ERROR_CONTAIN_CONSECUTIVE_COMMAS("[ERROR] 쉼표(,) 전후에 숫자 값을 입력해야 합니다."),
     ERROR_HAS_DUPLICATE_NUMBERS("[ERROR] 중복되는 숫자가 존재합니다."),
     ;
 

@@ -1,5 +1,7 @@
 package lotto.controller.dto.input;
 
+import lotto.controller.exception.InvalidLottoPriceUnitException;
+import lotto.domain.lotto.LottoStore;
 import lotto.parser.StrictInputParser;
 
 /**
@@ -21,7 +23,9 @@ public final class BuyLottosDto {
     private final long amount;
 
     private BuyLottosDto(final String input) {
-        this.amount = StrictInputParser.mustParseToLong(input);
+        final long amount = StrictInputParser.mustParseToLong(input);
+        validateLottoPrice(amount);
+        this.amount = amount;
     }
 
     /**
@@ -34,11 +38,20 @@ public final class BuyLottosDto {
     }
 
     /**
+     *
+     */
+    public static void validateLottoPrice(final long amount) {
+        long isDivisibleByLottoPrice = amount % LottoStore.LOTTO_PRICE.toLong();
+        if (isDivisibleByLottoPrice != 0) {
+            throw new InvalidLottoPriceUnitException();
+        }
+    }
+
+    /**
      * Getter
      */
     public long getAmount() {
         return amount;
     }
-
 
 }

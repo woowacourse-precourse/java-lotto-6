@@ -14,5 +14,8 @@ public class WinningLotto extends Lotto {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException();
         }
+        if (super.isContain(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
     }
 }

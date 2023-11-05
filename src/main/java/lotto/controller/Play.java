@@ -9,8 +9,7 @@ import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.RandNumber.*;
 import static lotto.controller.Rank.getRank;
-import static lotto.controller.Statistic.calLottoCount;
-import static lotto.controller.Statistic.calSumPrize;
+import static lotto.controller.Statistic.*;
 import static lotto.view.Message.*;
 import static lotto.view.Print.*;
 
@@ -142,9 +141,7 @@ public class Play {
         }
         return Rank.THIRD;
     }
-    public static double calRate(int resultSum, int price) {
-        return ((double)resultSum/(price))*100;
-    }
+
 
     public static List<Integer> sortLottery(Lotto lotto) {
         List<Integer> sortNumbers = new ArrayList<>(lotto.getLotto());

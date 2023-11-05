@@ -22,6 +22,15 @@ public class IssuingMachine {
         return money/LOTTO_PRICE;
     }
 
+    public void operate(){
+        int count=calculateCount();
+        while(count>0){
+            Lotto lotto=createLotto();
+            lottos.add(lotto);
+            count--;
+        }
+    }
+
     public Lotto createLotto() {
         return null;
     }

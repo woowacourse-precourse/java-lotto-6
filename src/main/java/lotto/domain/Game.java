@@ -8,7 +8,7 @@ import lotto.ui.Input;
 import lotto.ui.Output;
 
 public class Game {
-    public void start() {
+    private List<Lotto> createLottos() {
         int amount = 0;
         while (true) {
             Output.printMessage(InputMessage.AMOUNT.getMessage());
@@ -19,6 +19,11 @@ public class Game {
                 Output.printMessage(exception.getMessage());
             }
         }
-        List<Lotto> lottos = LottoMachine.issueLotto(amount / Number.PRICE.getValue());
+        return LottoMachine.issueLotto(amount / Number.PRICE.getValue());
+    }
+
+    public void start() {
+        List<Lotto> lottos = createLottos();
+        Output.printLottos(lottos);
     }
 }

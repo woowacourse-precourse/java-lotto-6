@@ -36,9 +36,18 @@ public class Validator {
             List<Integer> collect = inputWinnerNumbers.stream().map(Integer::parseInt)
                 .collect(Collectors.toList());
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1-45 사이의 숫자 와 구분자 , 만을 허용합니다!");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자 와 구분자 , 만을 허용합니다!");
         }
     }
+
+    public void validateRangeNumber(List<Integer> winnerNumbers) {
+        for (Integer winnerNumber : winnerNumbers) {
+            if(winnerNumber <1 || winnerNumber >45){
+                throw new IllegalArgumentException("[ERROR] 당첨 번호의 숫자는 1-45 사이여야 합니다!");
+            }
+        }
+    }
+
 
 
 }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.service.InputMoneyService;
 import lotto.service.InputWinnerNumberService;
@@ -52,9 +53,11 @@ public class LottoController {
     }
 
     private List<Integer> inputWinNumbers(InputWinnerNumberService inputWinnerNumberService) {
+        inputWinnerNumberService.init();
         try {
             inputWinnerNumberService.checkRightWinnerNumbers(validator,
                 inputView.inputWinnerNumbers());
+            return inputWinnerNumberService.convertedWinnerNumbers();
         }catch (IllegalArgumentException e){
             outputView.printErrorMessage(e.getMessage());
             return inputWinNumbers(inputWinnerNumberService);

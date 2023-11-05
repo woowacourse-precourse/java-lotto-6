@@ -6,6 +6,7 @@ public class InputValidator implements Validator<String>{
     public void validate(String input) {
         validateBlank(input);
         validateNonNumber(input);
+        validateStartsWithZero(input);
         validateIntegerRange(input);
         validateCheckNegativeValue(input);
     }
@@ -20,6 +21,12 @@ public class InputValidator implements Validator<String>{
         String regExp = "^[0-9-]+$";
         if (!input.matches(regExp)){
             throw new IllegalArgumentException("[ERROR] 입력 값에 숫자 이외의 값이 들어오면 안됩니다.");
+        }
+    }
+
+    private static void validateStartsWithZero(String input) {
+        if (input.charAt(0) == '0'){
+            throw new IllegalArgumentException("[ERROR] 입력 값은 0으로 시작할 수 없습니다.");
         }
     }
 

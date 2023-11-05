@@ -12,13 +12,13 @@ public class ConsoleInputView {
     private static final String COMMA = ",";
     private static final String LOTTO_NUMBERS_REGEX = "^[\\d| ]+(,[\\d| ]+)*$";
 
-    public int readPurchaseAmount() {
+    public int readIntegerInput() {
         try {
             String amount = readLineWithoutGap();
             return convertToInt(amount);
         } catch (NumberFormatException e) {
             NOT_DIGIT_FORM.throwException();
-            return readPurchaseAmount();
+            return readIntegerInput();
         }
     }
 
@@ -26,16 +26,6 @@ public class ConsoleInputView {
         String winningNumbers = readLineWithoutGap();
         validateLottoNumbersFormat(winningNumbers);
         return convertToList(winningNumbers);
-    }
-
-    public int readBonusNumber() {
-        try {
-            String bonusNumber = readLineWithoutGap();
-            return convertToInt(bonusNumber);
-        } catch (NumberFormatException e) {
-            NOT_DIGIT_FORM.throwException();
-            return readBonusNumber();
-        }
     }
 
     private String readLineWithoutGap() {

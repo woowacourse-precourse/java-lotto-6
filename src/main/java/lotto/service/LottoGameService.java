@@ -68,7 +68,7 @@ public class LottoGameService {
     }
 
     private int readPurchaseAmount() {
-        return inputView.readPurchaseAmount();
+        return inputView.readIntegerInput();
     }
 
     private List<Integer> readWinningLotto() {
@@ -76,7 +76,7 @@ public class LottoGameService {
     }
 
     private int readBonusNumber() {
-        return inputView.readBonusNumber();
+        return inputView.readIntegerInput();
     }
 
     private void handleIllegalArgumentException(IllegalArgumentException e) {

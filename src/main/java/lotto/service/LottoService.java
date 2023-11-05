@@ -1,9 +1,9 @@
 package lotto.service;
 
+import java.util.List;
+import lotto.model.LottoTicket;
 import lotto.model.WinningStatistics;
 import lotto.util.LottoGenerator;
-
-import java.util.List;
 
 public class LottoService {
 
@@ -20,6 +20,15 @@ public class LottoService {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lotto = lottoGenerator.generateLotto();
             lottoTickets.add(lotto);
+        }
+    }
+
+    public void getResult(List<Integer> winningNumbers, int bonusNumber) {
+        for (List<Integer> lottoTicket : lottoTickets) {
+            LottoTicket currentLottoTicket = new LottoTicket(lottoTicket);
+            int winningNumbersMatchingCount = currentLottoTicket.getMatchCountWithWinningNumbers(winningNumbers);
+            boolean isBonusNumberMatch = currentLottoTicket.isMatchWithBonusNumber(bonusNumber);
+            winningStatistics.checkWinningResult(winningNumbersMatchingCount, isBonusNumberMatch);
         }
     }
 }

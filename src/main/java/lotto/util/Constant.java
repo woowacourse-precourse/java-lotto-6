@@ -10,7 +10,6 @@ public class Constant {
     public static final String WINNING_STATISTICS_BONUS = "{0}개 일치, 보너스 볼 일치 ({1}원) - {2}개";
     public static final String RATE_OF_RETURN = "총 수익률은 {0}%입니다.";
 
-    public static final String LOTTO_NUMBER_SEPARATOR = ", ";
     public static final String WINNING_NUMBER_SEPARATOR = ",";
 
     public static final String REGEXP_PATTERN_NUMBER = "^[\\d]*$";

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseManager;
+import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,6 +17,7 @@ public class LottoGame {
     private static OutputView outputView;
     private static PurchaseManager purchaseManager;
     private static Lottos lottos;
+    private static WinningNumbers winningNumbers;
 
     public LottoGame(){
         inputView = new InputView();
@@ -25,6 +27,7 @@ public class LottoGame {
     public void startGame(){
         purchase();
         makeLottos();
+        getWinningNumbers();
     }
     private void purchase(){
         boolean validateInput=false;
@@ -38,7 +41,7 @@ public class LottoGame {
             purchaseManager = new PurchaseManager(purchaseAmount);
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -54,5 +57,20 @@ public class LottoGame {
             lottos.add(new Lotto(numbers));
         }
         return lottos;
+    }
+    private void getWinningNumbers(){
+        boolean validateInput=false;
+        while(!validateInput){
+            validateInput = validateWinningNumber(inputView.inputWinningNumber());
+        }
+    }
+    private boolean validateWinningNumber(String input){
+        try {
+            winningNumbers = new WinningNumbers(input);
+            return true;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

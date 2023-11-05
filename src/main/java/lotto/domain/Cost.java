@@ -6,15 +6,15 @@ import java.util.regex.Pattern;
 public class Cost {
     private final String REGEXP_NUMBER_PATTERN = "\\d{1,}"; // 숫자만 입력 가능하다.
     private final String REGEXP_COST_PATTERN = "^.*0{3,}$"; // 1000 단위의 수만 입력 가능하다.
-    private int cost; // 사용자로부터 입력 받은 로또 구매 금액
+    private int value; // 사용자로부터 입력 받은 로또 구매 금액
 
     public Cost(String cost) {
         checkValidation(cost);
-        this.cost = Integer.parseInt(cost);
+        this.value = Integer.parseInt(cost);
     }
 
-    public int getCost() {
-        return this.cost;
+    public int getValue() {
+        return this.value;
     }
 
     // 값의 유효성 검사

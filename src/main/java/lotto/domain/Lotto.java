@@ -12,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkRange(numbers);
         checkOverlap(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
@@ -28,6 +29,15 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.OVERLAP.getMessage());
+        }
+    }
+
+    private void checkRange(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); ++i) {
+            Integer number = numbers.get(i);
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(ErrorMessage.RANGE.getMessage());
+            }
         }
     }
 

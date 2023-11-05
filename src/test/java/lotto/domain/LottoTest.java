@@ -26,4 +26,11 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    void 범위에_맞지_않은_숫자가_있는_경우() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+        assertThatThrownBy(() -> new Lotto(List.of(41, 42, 43, 44, 45, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 범위에 맞지 않은 숫자가 있습니다.");
+    }
 }

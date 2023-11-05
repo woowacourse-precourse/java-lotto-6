@@ -26,5 +26,10 @@ public class Lotto {
         }
     }
 
-
+    private void validateAllRange(List<Integer> numbers, int minNumber, int maxNumber) {
+        if (!numbers.stream()
+                .allMatch(number -> number >= minNumber && number <= maxNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

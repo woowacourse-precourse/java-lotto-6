@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.system.ExceptionMessage;
 import lotto.system.LottoNumberConstant;
+import lotto.validator.BallValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,6 +21,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateLength(numbers);
         validateDistinct(numbers);
+        numbers.forEach(BallValidator::validate);
     }
 
     private void validateLength(List<Integer> numbers) {

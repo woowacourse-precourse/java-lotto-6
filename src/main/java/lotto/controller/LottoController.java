@@ -27,15 +27,22 @@ public class LottoController {
         printBonusNumberMessage();
         String inputBonusNumber = inputBonusNumberProcess();
         setBonusNumber(inputBonusNumber);
-        winningStatisticsProcess();
+        Map<Ranking, Integer> result = winningStatisticsProcess();
+        printRevenueRate(result);
     }
 
-    private void winningStatisticsProcess() {
+    private void printRevenueRate(Map<Ranking, Integer> result) {
+        double revenueRate = lottoService.getRevenueRate(result);
+        outputView.printRevenueRate(revenueRate);
+    }
+
+    private Map<Ranking, Integer> winningStatisticsProcess() {
         outputView.printWinningStaticsMessage();
         Map<Ranking, Integer> result = lottoService.calculatePrizeMoney();
         for (int i = Ranking.values().length - 1; i >= 0; i--) {
             Ranking.values()[i].printMessage(result.get(Ranking.values()[i]));
         }
+        return result;
     }
 
     private void setBonusNumber(String inputBonusNumber) {

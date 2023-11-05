@@ -1,7 +1,11 @@
 package lotto;
 
+import lotto.GameProcess.LottoProcess;
+import lotto.GameProcess.LottoProcessImpl;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoProcess lottoProcess = new LottoProcessImpl();
+
     }
 }

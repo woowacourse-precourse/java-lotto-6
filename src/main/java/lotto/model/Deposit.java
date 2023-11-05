@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 public class Deposit {
     private static final String NOT_A_NUMBER_MESSAGE = "[ERROR] 로또 구입 금액은 숫자여야 합니다. ";

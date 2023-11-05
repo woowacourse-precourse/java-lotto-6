@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -227,5 +228,24 @@ class LottoTest {
         Integer bonus = 7;
         assertThat(controller.compareBonus(noBonusNumberTicket, bonus)).isEqualTo(0);
         assertThat(controller.compareBonus(bonusNumberTicket, bonus)).isEqualTo(1);
+    }
+
+    @DisplayName("로또들의 당첨 여부를 확인한다.")
+    @Test
+    void getcompareResult() {
+        Control controller = new Control();
+        Lotto winnerTicket = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Integer bonus = 7;
+        Lotto tickets[] = {
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(2, 3, 4, 5, 6, 7)),
+                new Lotto(List.of(3, 4, 5, 6, 7, 8)),
+                new Lotto(List.of(3, 4, 5, 6, 7, 8))
+        };
+        Map<SameNumber, Integer> expact = Map.of(
+                SameNumber.SAME6, 1,
+                SameNumber.SAME5BONUS, 1,
+                SameNumber.SAME4, 2);
+        assertThat(controller.getCompareResult(winnerTicket, bonus, tickets)).isEqualTo(expact);
     }
 }

@@ -11,11 +11,11 @@ public class Output {
         System.out.println(message);
     }
 
-    public static void printLottos(List<Lotto> lottos) {
+    public static void printLotto(List<Lotto> lottos) {
         int count = lottos.size();
         System.out.println(NEW_LINE + count + PURCHASE_MESSAGE);
-        for (int i = 0; i < count; ++i) {
-            System.out.println(lottos.get(i).getNumbers());
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
         }
     }
 }

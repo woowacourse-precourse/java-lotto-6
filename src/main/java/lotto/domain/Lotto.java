@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +13,6 @@ public class Lotto {
         validate(numbers);
         checkRange(numbers);
         checkOverlap(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -33,11 +31,8 @@ public class Lotto {
     }
 
     private void checkRange(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); ++i) {
-            Integer number = numbers.get(i);
-            if (number < LottoNumber.MINIMUM.getValue() || number > LottoNumber.MAXIMUM.getValue()) {
-                throw new IllegalArgumentException(ErrorMessage.RANGE.getMessage());
-            }
+        for (Integer number : numbers) {
+            InputValidation.checkRange(number);
         }
     }
 

@@ -18,7 +18,7 @@
 ### 예외
 
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-  - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
+    - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
 ## 기능 목록
 
@@ -28,12 +28,13 @@
 
 ### 예외처리
 
-- [x] 로또 번호가 1~45 사이의 숫자가 아닌 경우 - Lotto#checkRange()
+- [x] 번호가 1~45 사이의 숫자가 아닌 경우 - InputValidation#checkRange()
 - [x] 로또 번호가 중복되는 경우 - Lotto#checkOverlap()
-- [x] 입력받은 문자열이 숫자가 아닌 경우 - InputValidation#checkNumber()
+- [x] 입력받은 문자열이 숫자가 아닌 경우 - InputValidation#validateNumber()
 - [x] 구매금액이 1000원으로 나누어 떨어지지 않는 경우 - InputValidation#checkDivisible()
 - [x] 구매금액이 부족한 경우 - InputValidation#checkSufficient()
-- [x] 당첨번호가 쉼표(,)를 기준으로 구분되어 있지 않는 경우 -InputValidation#checkDelimiter()
+- [x] 당첨 번호가 쉼표(,)를 기준으로 구분되어 있지 않는 경우 -InputValidation#checkDelimiter()
+- [x] 보너스 번호가 당첨 번호랑 중복되는 경우 - InputValidation#checkOverlap()
 
 ## 입출력 요구 사항
 
@@ -41,7 +42,7 @@
 
 - [x] 로또 구매 금액 입력 받기 - Input#readAmount()
 - [x] 당첨 번호 입력 받기 - Input#readWinningNumber()
-- [ ] 보너스 번호를 입력 받기
+- [x] 보너스 번호를 입력 받기 - Input#readBonus()
 
 ### 출력
 

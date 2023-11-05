@@ -24,4 +24,11 @@ public class Input {
         }
         return numbers;
     }
+
+    public static int readBonus(String input, List<Integer> winningNumber) {
+        int bonus = InputValidation.validateNumber(input);
+        InputValidation.checkRange(bonus);
+        InputValidation.checkOverlap(bonus, winningNumber);
+        return bonus;
+    }
 }

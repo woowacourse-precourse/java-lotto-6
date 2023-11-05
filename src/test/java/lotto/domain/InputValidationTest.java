@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -38,5 +40,23 @@ class InputValidationTest {
         assertThatThrownBy(() -> InputValidation.checkDelimiter(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구분자를 기준으로 구분되어 있지 않습니다.");
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0", "46"})
+    void 범위에_맞지_않은_숫자가_있는_경우(int number) {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+        assertThatThrownBy(() -> InputValidation.checkRange(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 범위에 맞지 않은 숫자가 있습니다.");
+    }
+
+    @Test
+    void 입력받은_번호가_당첨번호와_중복된_경우() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> InputValidation.checkOverlap(1, numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 중복된 번호가 있습니다.");
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoNumber;
 import lotto.ui.Input;
@@ -30,6 +31,18 @@ public class InputValidation {
     public static void checkDelimiter(String input) {
         if (input.isEmpty() || input.charAt(input.length() - 1) == Input.DELIMITER) {
             throw new IllegalArgumentException(ErrorMessage.DELIMITER.getMessage());
+        }
+    }
+
+    public static void checkOverlap(int number, List<Integer> winningNumber) {
+        if (winningNumber.contains(number)) {
+            throw new IllegalArgumentException(ErrorMessage.OVERLAP.getMessage());
+        }
+    }
+
+    public static void checkRange(int number) {
+        if (number < LottoNumber.MINIMUM.getValue() || number > LottoNumber.MAXIMUM.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.RANGE.getMessage());
         }
     }
 }

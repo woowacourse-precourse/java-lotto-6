@@ -32,9 +32,21 @@ public class Game {
         }
     }
 
+    private int createBonus(List<Integer> winningNumber) {
+        while (true) {
+            Output.printMessage(InputMessage.BONUS.getMessage());
+            try {
+                return Input.readBonus(Console.readLine(), winningNumber);
+            } catch (IllegalArgumentException exception) {
+                Output.printMessage(exception.getMessage());
+            }
+        }
+    }
+
     public void start() {
         List<Lotto> lottos = createLottos();
-        Output.printLottos(lottos);
+        Output.printLotto(lottos);
         Lotto winningNumber = createWinningNumber();
+        int bonus = createBonus(winningNumber.getNumbers());
     }
 }

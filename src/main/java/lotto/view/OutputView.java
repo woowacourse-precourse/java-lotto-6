@@ -22,7 +22,8 @@ public class OutputView {
     private static final String STATISTICS_MESSAGE = "당첨 통계";
     private static final String HYPHEN = "---";
     private static final String LINE = "\n";
-    
+    private static final Integer PERCENTAGE = 100;
+
     public void printRequestInputPurchaseAmountMessage() {
         printMessage(INPUT_PURCHASE_AMOUNT_MESSAGE);
     }
@@ -57,15 +58,15 @@ public class OutputView {
     }
 
     public void printRateOfProfit(final Map<LottoRank, Integer> result, TicketQuantity ticketQuantity) {
-        double reward = 0;
+        double reward = result.keySet()
+                .stream()
+                .mapToDouble(lottoRank -> (lottoRank.getPrizeMoney() * result.get(lottoRank)))
+                .sum();
 
-        for (LottoRank lottoRank : result.keySet()) {
-            reward += lottoRank.getPrizeMoney() * result.get(lottoRank);
-        }
+        double totalCost = (double) ticketQuantity.quantity() * LottoInfo.ONE_LOTTO_PRICE.getValue();
+        double profitRate = (reward / totalCost) * PERCENTAGE;
 
-        double m = (double) ticketQuantity.quantity() * LottoInfo.ONE_LOTTO_PRICE.getValue();
-
-        printMessage(String.format(PROFIT_RATE_MESSAGE, (reward / m) * 100));
+        printMessage(String.format(PROFIT_RATE_MESSAGE, profitRate));
     }
 
     public void printMessage(final String message) {

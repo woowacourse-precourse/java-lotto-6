@@ -30,6 +30,11 @@ public class LottoNumber {
         return Objects.hash(value);
     }
 
+    @Override
+    public String toString() {
+        return Integer.toString(value);
+    }
+
     private boolean isInvalidNumber(int value) {
         return value < LOWER_BOUND_NUMBER || value > UPPER_BOUND_NUMBER;
     }

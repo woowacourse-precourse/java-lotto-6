@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -30,5 +31,8 @@ public class Lotto {
         return false;
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return Arrays.toString(numbers.toArray());
+    }
 }

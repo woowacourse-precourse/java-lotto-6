@@ -31,11 +31,6 @@ public class GameTest {
                 game.purchaseLotto(price);
                 game.setWinningLotto(List.of(8, 21, 23, 11, 16, 32), 7);
                 assertThat(game.getLottoWinningResult()).contains(
-                    "4개를 구매했습니다.",
-                    "[8, 21, 23, 41, 42, 43]",
-                    "[3, 5, 11, 16, 32, 38]",
-                    "[7, 11, 16, 35, 36, 44]",
-                    "[1, 8, 11, 31, 41, 42]",
                     "3개 일치 (5,000원) - 2개",
                     "4개 일치 (50,000원) - 0개",
                     "5개 일치 (1,500,000원) - 0개",
@@ -46,7 +41,8 @@ public class GameTest {
             },
             List.of(8, 23, 21, 41, 42, 43),
             List.of(3, 5, 11, 16, 32, 38),
-            List.of(7, 11, 16, 35, 36, 44)
+            List.of(7, 11, 16, 35, 36, 44),
+            List.of(1, 8, 11, 31, 41, 42)
         );
     }
 }

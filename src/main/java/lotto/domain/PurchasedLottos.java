@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class PurchasedLottos {
@@ -16,8 +15,8 @@ public class PurchasedLottos {
     }
 
     private List<Lotto> createLottos(Money money) {
-        return IntStream.range(0, money.countPurchase())
-                .mapToObj(i -> Lotto.createAuto())
+        return Stream.generate(Lotto::createAuto)
+                .limit(money.countPurchase())
                 .toList();
     }
 

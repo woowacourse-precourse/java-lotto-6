@@ -20,6 +20,6 @@ public class InputNumberImpl implements InputNumber {
 	@Override
 	public int inputPurchasePrice() {
 		String price = Console.readLine();
-		return validator.validate(price);
+		return validator.validatePrice(price);
 	}
 }

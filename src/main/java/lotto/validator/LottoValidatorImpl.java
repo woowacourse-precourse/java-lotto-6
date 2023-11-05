@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 public class LottoValidatorImpl implements LottoValidator{
 
 	@Override
-	public int validate(String price) {
+	public int validatePrice(String price) {
 		validateIsDigit(price);
 		return validateRange(price);
 	}
@@ -18,7 +18,7 @@ public class LottoValidatorImpl implements LottoValidator{
 			}
 		}
 	}
-	
+
 	private int validateRange(String price) {
 		try {
 			return Integer.parseInt(price);

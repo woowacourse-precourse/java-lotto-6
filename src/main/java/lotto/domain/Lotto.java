@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.dto.LottoNumbers;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +21,10 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateNumbersCount(numbers);
         validateUniqueNumbers(numbers);
+    }
+
+    public LottoNumbers getNumbers() {
+        return new LottoNumbers(numbers);
     }
 
     private void validateNumbersCount(List<Integer> numbers) {

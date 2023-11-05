@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
+import lotto.domain.RateOfReturn;
 import lotto.domain.WinningCalculator;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningRecord;
@@ -23,6 +24,7 @@ public class LottoManager {
         printLottoManager();
 
         winningCalculatorManager();
+
     }
 
     public void printLottoManager() {
@@ -56,5 +58,7 @@ public class LottoManager {
             winningRecord.recorder(winningStatus.get(0), winningStatus.get(1));
         }
         outputView.printWinningStatistics(winningRecord.getAllPrizeCount());
+
+        RateOfReturn rateOfReturn = new RateOfReturn(LottoPurchase.getLottoPurchase(), winningRecord.getAllPrizeCount());
     }
 }

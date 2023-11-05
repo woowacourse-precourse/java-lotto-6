@@ -1,9 +1,12 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WinningRecord {
+    private static Map<String, Integer> prizeCount = new HashMap<>();
     private static int firstPrizeCount = 0;
     private static int secondPrizeCount = 0;
     private static int thirdPrizeCount = 0;
@@ -49,7 +52,12 @@ public class WinningRecord {
         return fifthPrizeCount;
     }
 
-    public List<Integer> getAllPrizeCount() {
-        return Arrays.asList(firstPrizeCount, secondPrizeCount, thirdPrizeCount, fourthPrizeCount, fifthPrizeCount);
+    public Map<String, Integer> getAllPrizeCount() {
+        prizeCount.put("first", firstPrizeCount);
+        prizeCount.put("second", secondPrizeCount);
+        prizeCount.put("third", thirdPrizeCount);
+        prizeCount.put("fourth", fourthPrizeCount);
+        prizeCount.put("fifth", fifthPrizeCount);
+        return prizeCount;
     }
 }

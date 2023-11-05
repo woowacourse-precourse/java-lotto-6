@@ -3,6 +3,9 @@ package lotto.domain;
 import lotto.constant.ErrorMessage;
 
 public class PurchaseAmount {
+    private static final int AMOUNT_UNIT = 1000;
+    private static final int ZERO = 0;
+
     private final int amount;
 
     public PurchaseAmount(String amount) {
@@ -15,11 +18,14 @@ public class PurchaseAmount {
     }
 
     private void validate(String amount) {
-        if(isEmpty(amount)) {
+        if (isEmpty(amount)) {
             ErrorMessage.PURCHASE_AMOUNT_IS_EMPTY.throwIllegalArgumentException();
         }
-        if(!isNumeric(amount)) {
+        if (!isNumeric(amount)) {
             ErrorMessage.PURCHASE_AMOUNT_IS_NOT_A_NUMBER.throwNumberFormatException();
+        }
+        if (!canDivideByThousand(amount)) {
+            ErrorMessage.PURCHASE_AMOUNT_IS_NOT_THOUSAND_UNITS.throwIllegalArgumentException();
         }
     }
 
@@ -33,5 +39,9 @@ public class PurchaseAmount {
 
     private boolean isNumeric(String amount) {
         return amount.chars().allMatch(Character::isDigit);
+    }
+
+    private boolean canDivideByThousand(String amount) {
+        return toInt(amount) % AMOUNT_UNIT == ZERO;
     }
 }

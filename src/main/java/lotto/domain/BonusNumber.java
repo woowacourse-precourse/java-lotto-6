@@ -28,8 +28,8 @@ public class BonusNumber {
 
     private void validateDuplicateWithWinningNumber(int number) {
         List<Integer> winnings = WinningNumberRepository.findWinningNumbers();
-        for (int i = 0; i < winnings.size(); i++) {
-            if (isEqual(number, winnings.get(i))) {
+        for (Integer winning : winnings) {
+            if (isEqual(number, winning)) {
                 throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
             }
         }

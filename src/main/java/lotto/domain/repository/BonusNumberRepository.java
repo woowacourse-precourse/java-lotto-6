@@ -9,10 +9,6 @@ public class BonusNumberRepository {
 
     private static List<BonusNumber> bonusNumbers = new LinkedList<>();
 
-    public static List<BonusNumber> bonusNumbers() {
-        return bonusNumbers;
-    }
-
     public static void add(BonusNumber bonusNumber) {
         bonusNumbers.add(bonusNumber);
     }

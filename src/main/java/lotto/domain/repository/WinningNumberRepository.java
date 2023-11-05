@@ -9,10 +9,6 @@ public class WinningNumberRepository {
 
     private static List<WinningNumber> winningNumbers = new LinkedList<>();
 
-    public static List<WinningNumber> winningNumbers() {
-        return winningNumbers;
-    }
-
     public static void add(WinningNumber winningNumber) {
         winningNumbers.add(winningNumber);
     }

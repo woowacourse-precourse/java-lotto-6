@@ -60,8 +60,4 @@ public class WinningNumber {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-    public int findNumberByIndex(int index) {
-        return numbers.get(index);
-    }
 }

@@ -3,13 +3,9 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class LottoGenerator {
-
-    private static final int LOTTO_NUMBERS_COUNT = 6;
 
     public static List<Lotto> generateRandomLottos(int purchaseAmount){
         List<Lotto> lottos = new ArrayList<>();
@@ -21,11 +17,7 @@ public class LottoGenerator {
     }
 
     public static Lotto generateRandomLotto(){
-        Set<Integer> numbers = new HashSet<>();
-        while(numbers.size() < LOTTO_NUMBERS_COUNT){
-            numbers.add(Randoms.pickNumberInRange(1, 45));
-        }
-        List<Integer> lottoNumbers = new ArrayList<>(numbers);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lottoNumbers);
     }
 }

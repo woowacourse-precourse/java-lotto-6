@@ -3,10 +3,10 @@ package lotto.dto;
 import java.util.List;
 import lotto.model.Lotto;
 
-public class LottoNumbersDTO {
+public class LottoNumbersResult {
     private final Lotto lotto;
 
-    public LottoNumbersDTO(Lotto lotto) {
+    public LottoNumbersResult(Lotto lotto) {
         this.lotto = lotto;
     }
 

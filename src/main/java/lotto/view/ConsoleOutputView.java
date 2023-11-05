@@ -6,7 +6,7 @@ import static lotto.view.LottoGameMessage.REQUEST_PURCHASE_AMOUNT;
 import static lotto.view.LottoGameMessage.REQUEST_WINNING_LOTTO_NUMBERS;
 import static lotto.view.LottoGameMessage.WINNING_STATISTICS;
 
-import lotto.dto.LottoNumbersDTO;
+import lotto.dto.LottoNumbersResult;
 
 public class ConsoleOutputView {
     public void requestPurchaseAmount() {
@@ -19,7 +19,7 @@ public class ConsoleOutputView {
         printBlankLine();
     }
 
-    public void printLottoNumbers(LottoNumbersDTO lottoNumbers) {
+    public void printLottoNumbers(LottoNumbersResult lottoNumbers) {
         System.out.println(lottoNumbers.getFormattedLottoNumbers());
     }
 

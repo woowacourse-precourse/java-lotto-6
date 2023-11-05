@@ -1,14 +1,24 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import static lotto.domain.Statistics.*;
 
 public class WinningLotto {
 
-    private List<Integer> winningLotto = new ArrayList<>();
-    private Integer bonusNumber;
+    private final List<Integer> winningLotto = new ArrayList<>();
+    private int bonusNumber;
+    private final Map<Statistics, Integer> winningCount = new HashMap<>(){{
+           put(THREE, 0);
+           put(FOUR, 0);
+           put(FIVE, 0);
+           put(FIVE_BONUS, 0);
+           put(SIX, 0);
+        }};
+
+    public Map<Statistics, Integer> getWinningCount() {
+        return winningCount;
+    }
 
     public void setBonusNumber(int bonus) {
         this.bonusNumber = bonus;
@@ -26,6 +36,16 @@ public class WinningLotto {
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             int count = compareLotto(lottoNumbers);
+            putWinningList(count);
+        }
+    }
+
+    private void putWinningList(int count) {
+        Statistics statistics = getStatistics(count, bonusNumber, winningLotto);
+        if (!statistics.equals(NON)) {
+            Integer plusCount = winningCount.get(statistics);
+            plusCount++;
+            winningCount.put(statistics, plusCount);
         }
     }
 

@@ -30,6 +30,9 @@ public class Game {
         try {
             for (String num : winningNum) {
                 int number = Integer.parseInt(num);
+                if (number < 1 || number > 45) {
+                    throw new IllegalArgumentException("각 번호는 1~45사이 값이여야 합니다.");
+                }
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("입력값은 숫자여야합니다.");

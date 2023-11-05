@@ -8,6 +8,9 @@ import lotto.domain.LottoFactory;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoRepository;
 import lotto.domain.Money;
+import lotto.domain.Rank;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningStatistics;
 import lotto.dto.PurchasedLottosDto;
 
 public class LotteryStore {
@@ -29,6 +32,12 @@ public class LotteryStore {
                 .toList();
 
         return PurchasedLottosDto.from(purchasedLottos);
+    }
+
+    public WinningStatistics calculateStatisticsWith(WinningLotto winningLotto) {
+        List<Lotto> lottos = lottoRepository.showAllLottos();
+
+        return winningLotto.calculateStaticsFrom(lottos);
     }
 
 }

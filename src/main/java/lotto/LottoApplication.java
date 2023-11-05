@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.controller.LotteryStore;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningStatistics;
 import lotto.dto.PurchasedLottosDto;
 import lotto.view.ConsoleMessageView;
 import lotto.view.MoneyInputView;
@@ -28,10 +29,9 @@ public class LottoApplication {
 
         List<String> winningLottoNumbers = WinningLottoInputView.inputWinningLottoNumbers();
         String bonusNumber = WinningLottoInputView.inputBonusNumber();
-
         WinningLotto winningLotto = createWinningLottoFrom(winningLottoNumbers, bonusNumber);
 
-
+        WinningStatistics statistics = lottoStore.calculateStatisticsWith(winningLotto);
 
     }
 

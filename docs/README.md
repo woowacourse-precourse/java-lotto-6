@@ -58,13 +58,13 @@ Windows : `gradlew.bat clean test` 또는 `./gradlew.bat clean test`
 - 구입 금액 검사 기능
     - [x] [ERROR] 숫자가 아닌 경우
     - [x] [ERROR] 1000원 단위가 아닌 경우
-    - [x] [ERROR] 2억 이상의 숫자를 입력한 경우
+    - [x] [ERROR] 20억 이상의 숫자를 입력한 경우
 - 당첨 번호 검사 기능
-    - [ ] [ERROR] 숫자가 아닌 경우
-    - [ ] [ERROR] 1~45 사이의 값이 아닌 경우
-    - [ ] [ERROR] 6개가 아닌 경우
-    - [ ] [ERROR] 중복된 경우
-- [ ] 들어온 숫자를 쉼표를 기준으로 파싱하는 기능
+    - [x] [ERROR] 숫자가 아닌 경우
+    - [x] [ERROR] 1~45 사이의 값이 아닌 경우
+    - [x] [ERROR] 6개가 아닌 경우
+    - [x] [ERROR] 중복된 경우
+- [x] 들어온 String을 List 로 변환하는 기능
 
 ✅ 로또 발행 기능
 

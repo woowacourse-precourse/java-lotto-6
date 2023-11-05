@@ -1,12 +1,14 @@
 package lotto.service;
 
+import static lotto.constants.Bonus.BONUS_EXCLUDE;
+import static lotto.constants.Bonus.BONUS_INCLUDE;
 import static lotto.constants.LottoRule.LOTTO_NUMBER_LENGTH;
 import static lotto.constants.LottoRule.MINIMUM_MATCH_SIZE;
 
+import lotto.constants.Prize;
 import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
 import lotto.model.LottoCompany;
-import lotto.constants.Prize;
 import lotto.model.LottoNumber;
 import lotto.model.dto.PrizeResult;
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class LottoCompanyService {
         List<PrizeResult> results = new ArrayList<>();
         for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
             List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeIncludeBonus(lottos, match);
-            Prize.findByMatchWithBonus(match)
+            Prize.findByMatchAndBonus(match, BONUS_INCLUDE)
                     .ifPresent(prize -> savePrizeResult(prize, matchLottos.size(), results));
         }
         return results;
@@ -53,7 +55,7 @@ public class LottoCompanyService {
         List<PrizeResult> results = new ArrayList<>();
         for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
             List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeExceptBonus(lottos, match);
-            Prize.findByMatchExceptBonus(match)
+            Prize.findByMatchAndBonus(match, BONUS_EXCLUDE)
                     .ifPresent(prize -> savePrizeResult(prize, matchLottos.size(), results));
         }
         return results;

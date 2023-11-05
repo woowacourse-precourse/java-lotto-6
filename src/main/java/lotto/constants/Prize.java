@@ -25,21 +25,9 @@ public enum Prize {
         this.hasBonus = hasBonus;
     }
 
-    public static Optional<Prize> findByMatchExceptBonus(final int match) {
+    public static Optional<Prize> findByMatchAndBonus(final int match, final Bonus bonus) {
         for (Prize prize : values()) {
-            if (Bonus.isSame(prize.hasBonus, true)) {
-                continue;
-            }
-            if (prize.match == match) {
-                return Optional.of(prize);
-            }
-        }
-        return Optional.empty();
-    }
-
-    public static Optional<Prize> findByMatchWithBonus(final int match) {
-        for (Prize prize : values()) {
-            if (Bonus.isSame(prize.hasBonus, false)) {
+            if (prize.hasBonus != bonus) {
                 continue;
             }
             if (prize.match == match) {

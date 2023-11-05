@@ -18,7 +18,12 @@ public class PurchaseAmount {
     public int affordableCountOfLotto() {
         return purchaseAmount / LottoRule.LOTTO_PRICE.getValue();
     }
-    
+
+    public double profitRate(Long earned) {
+        double rate = (earned / (double) purchaseAmount) * 100;
+        return Math.round(rate * 10.0) / 10.0;
+    }
+
     private void validate(int purchaseAmount) {
         validateEnoughAmount(purchaseAmount);
         validateAmountInMultiplesOfPrice(purchaseAmount);

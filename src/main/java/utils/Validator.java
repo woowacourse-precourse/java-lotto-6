@@ -8,4 +8,10 @@ public class Validator {
             throw new IllegalArgumentException("입력 값이 유효한 숫자가 아닙니다.");
         }
     }
+
+    public static void validateIsEmpty(String userInput) {
+        if (userInput.isEmpty()) {
+            throw new IllegalArgumentException("입력 값이 없습니다.");
+        }
+    }
 }

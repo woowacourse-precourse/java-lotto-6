@@ -36,6 +36,9 @@ public class WinningNumbers implements Askable {
             if (!isCorrectRange.test(convertedInput)) {
                 throw new IllegalArgumentException(numberRangeError);
             }
+            if (!isNoDuplicate.test(convertedInput)) {
+                throw new IllegalArgumentException(duplicateNumbersError);
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             corretInput = false;
@@ -54,4 +57,7 @@ public class WinningNumbers implements Askable {
     private final Predicate<List<Integer>> isCorrectRange = input ->
             input.stream().mapToInt(Integer::intValue).min().getAsInt() >= MINIMUM.getNumber() &&
                     input.stream().mapToInt(Integer::intValue).max().getAsInt() <= MAXIMUM.getNumber();
+
+    private final Predicate<List<Integer>> isNoDuplicate = input ->
+            input.stream().distinct().count() == input.size();
 }

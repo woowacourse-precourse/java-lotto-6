@@ -3,10 +3,11 @@
 ## 기능목록
 
 - [] 돈을 지불한다. -Customer#pay()
-- [] 구입 금액에 해당하는 발급 횟수를 구한다. -issuingMachine#calculateCount()
-- [] 발급 횟수만큼 로또를 생성한다. -issuingMachine#createLotto()
+- [] 구입 금액에 해당하는 발급 횟수를 구한다. -IssuingMachine#calculateCount()
+- [] 발급 횟수만큼 로또를 생성한다. -IssuingMachine#createLotto()
   - [] 로또 번호의 숫자 범위는 1~45 까지이다.
   - [] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
+-[] 사용자에게 로또를 발행한다. -IssuingMachine#issueLotto()
 - [] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다.
 - [] 비교한 값에 따라 당첨 내역을 저장한다.
   - [] 당첨은 1등부터 5등까지 있다.

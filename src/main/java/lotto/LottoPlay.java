@@ -1,5 +1,11 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class LottoPlay implements Play{
     private final Controller controller = new Controller();
     private final View view = new View();
@@ -7,7 +13,7 @@ public class LottoPlay implements Play{
     @Override
     public void start() {
         int purchaseQuantity = getPurchaseQuantity();
-        printMyLottoNumber();
+        List<Lotto> myLotto = getMyLottoNumber(purchaseQuantity);
         readWinningNumber();
         readBonusNumber();
         printWinningStat();
@@ -31,8 +37,21 @@ public class LottoPlay implements Play{
         return purchaseQuantity;
     }
 
-    private void printMyLottoNumber() {
+    private List<Lotto> getMyLottoNumber(int purchaseQuantity) {
+        List<Lotto> myLotto = new ArrayList<>();
+        List<Integer> numbers;
 
+        System.out.println();
+        System.out.print(view.getPrintPurchaseAmount(purchaseQuantity));
+
+        for (int i = 0; i < purchaseQuantity; i++) {
+            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            myLotto.add(new Lotto(numbers));
+
+            System.out.print(view.getPrintPurchaseNumber(myLotto.get(i)));
+        }
+
+        return myLotto;
     }
 
     private void readWinningNumber() {

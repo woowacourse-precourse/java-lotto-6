@@ -54,16 +54,22 @@ public class LottoController {
     }
 
     private void setWinLottoNumber() {
+
         OutputValue.winLottoNumberMessage();
         lottoService.setWinLotto(InputValue.getWinLottoNumbers());
+
+        OutputValue.changeLine();
     }
 
     private void setBonusNumber() {
+
         OutputValue.bonusNumberMessage();
         lottoService.setBonusNumber(InputValue.getBonusNumber());
+
+        OutputValue.changeLine();
     }
 
     private void lottoEnd() {
-
+        OutputValue.winStatisticsMessage();
     }
 }

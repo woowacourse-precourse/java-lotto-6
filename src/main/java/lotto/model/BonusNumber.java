@@ -1,5 +1,8 @@
 package lotto.model;
 
+import lotto.utils.Constants;
+import lotto.utils.ErrorMessage;
+
 public class BonusNumber {
     private int bonusNumber;
 
@@ -13,8 +16,8 @@ public class BonusNumber {
     }
 
     private void validateBonusNumberRange(int inputBonusNumber) {
-        if (inputBonusNumber < 1 || inputBonusNumber > 45) {
-            throw new IllegalArgumentException("보너스 숫자는 1과 45 사이의 숫자를 입력해야 합니다.");
+        if (inputBonusNumber < Constants.LOTTO_MIN_NUMBER || inputBonusNumber > Constants.LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE_INVALID_ERROR.getMessage());
         }
     }
 }

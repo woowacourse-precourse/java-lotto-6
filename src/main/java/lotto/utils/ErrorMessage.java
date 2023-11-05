@@ -14,8 +14,11 @@ public enum ErrorMessage {
 
     // 당첨번호 관련 에러
     WINNING_NUMBER_COUNT_INVALID_ERROR("[ERROR] 당첨 번호는 6개여야 합니다."),
-    WINNING_NUMBER_RANGE_INVALID_ERROR("[ERROR] 당첨 번호는 1부터 45 사이어야 합니다."),
-    WINNING_NUMBER_DUPLICATION_ERROR("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+    WINNING_NUMBER_RANGE_INVALID_ERROR("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다."),
+    WINNING_NUMBER_DUPLICATION_ERROR("[ERROR] 당첨 번호는 중복될 수 없습니다."),
+
+    // 보너스 숫자 관련 에러
+    BONUS_NUMBER_RANGE_INVALID_ERROR("[ERROR] 보너스 숫자는 1부터 45 사이어야 합니다.");
 
     private final String message;
 

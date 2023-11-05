@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.function.BiPredicate;
 
-public enum Prize {
+public enum  Prize {
     EMPTY(0, 0, (matchLottoNumber, containBonusNumber) -> matchLottoNumber < 3),
     FIFTH(3, 5_000, (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 3),
     FOURTH(4, 50_000, (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 4),
@@ -11,8 +11,8 @@ public enum Prize {
     SECOND(5, 30_000_000, (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 5 && containBonusNumber),
     FIRST(6, 2_000_000_000, (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 6);
 
-    Prize(int count, int winningPrize, BiPredicate<Integer, Boolean> isMatch) {
-        this.matchLottoNumber = count;
+    Prize(int matchLottoNumber, int winningPrize, BiPredicate<Integer, Boolean> isMatch) {
+        this.matchLottoNumber = matchLottoNumber;
         this.winningPrize = winningPrize;
         this.isMatch = isMatch;
     }
@@ -23,7 +23,7 @@ public enum Prize {
 
     public static Prize getLottoResult(int matchLottoNumber, boolean containBonusNumber) {
         return Arrays.stream(Prize.values())
-                .filter(lottoResult -> lottoResult.isMatch.test(matchLottoNumber, containBonusNumber))
+                .filter(prizeResult -> prizeResult.isMatch.test(matchLottoNumber, containBonusNumber))
                 .findAny()
                 .orElse(EMPTY);
     }

@@ -1,8 +1,10 @@
 package lotto.Input;
 
+import java.util.List;
 import java.util.StringTokenizer;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 import lotto.validator.LottoValidator;
 
 public class InputNumberImpl implements InputNumber {
@@ -19,4 +21,11 @@ public class InputNumberImpl implements InputNumber {
 		String price = Console.readLine();
 		return validator.validatePrice(price);
 	}
+
+	@Override
+	public void inputWinningNumbers(Lotto lotto) {
+		numberSplitter = new StringTokenizer(Console.readLine(), ",");
+		validator.validateWinningNumber(numberSplitter);
+	}
+
 }

@@ -1,8 +1,17 @@
 package lotto.validator;
 
+import java.util.StringTokenizer;
+
 import lotto.enumContainer.ErrorOperation;
+import lotto.utils.ParserFromString;
+import lotto.utils.ParserFromStringImpl;
 
 public class LottoValidatorImpl implements LottoValidator {
+
+	private ParserFromString parser;
+	public LottoValidatorImpl() {
+		parser = new ParserFromStringImpl();
+	}
 
 	@Override
 	public int validatePrice(String price) {
@@ -11,6 +20,20 @@ public class LottoValidatorImpl implements LottoValidator {
 		int parsePrice = validateRange(price);
 		validateRest(parsePrice);
 		return parsePrice;
+	}
+
+	@Override
+	public void validateWinningNumber(StringTokenizer numberSplitter) {
+		for (int i = 0; i < numberSplitter.countTokens(); i++) {
+			String lottoNumber = numberSplitter.nextToken();
+			validateEmptyString(lottoNumber);
+			validateIsDigit(lottoNumber);
+			validatelottoRange(lottoNumber);
+		}
+	}
+
+	private void validatelottoRange(String lottoNumber) {
+
 	}
 
 	private void validateEmptyString(String price) {

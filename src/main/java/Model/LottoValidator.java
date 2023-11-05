@@ -47,4 +47,10 @@ public class LottoValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    void validateBonusNumberDuplication(List<Integer> winningNumber, int bonusNumber) {
+        if (winningNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

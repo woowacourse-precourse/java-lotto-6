@@ -16,7 +16,9 @@ public class InputView {
 
     public InputInfo inputWinningNumbers() {
         String userInput = Console.readLine();
-        return new InputInfo(null, userInput);
+        List<String> splitedList = splitUserInput(userInput);
+        return new InputInfo(Validator.VALIDATOR.getInputValidator().inputWinningNumbersValidation(splitedList),
+                userInput);
     }
 
     public List<String> splitUserInput(String userInput) {

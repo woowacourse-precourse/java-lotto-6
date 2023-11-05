@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import java.util.List;
+
 public class InputExceptionValidator {
     protected InputExceptionValidator() {
     }
@@ -9,6 +11,17 @@ public class InputExceptionValidator {
             numberFormatValidation(userInput);
             nagativeValidation(Integer.valueOf(userInput));
             dividedValidation(Integer.valueOf(userInput));
+        } catch (InputException e) {
+            System.out.println(e.getMessage());
+            return e;
+        }
+
+        return null;
+    }
+
+    public Exception inputWinningNumbersValidation(List<String> splitedList) {
+        try {
+            splitedList.forEach(this::numberFormatValidation);
         } catch (InputException e) {
             System.out.println(e.getMessage());
             return e;

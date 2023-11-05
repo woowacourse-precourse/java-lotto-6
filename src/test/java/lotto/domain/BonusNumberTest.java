@@ -38,5 +38,14 @@ class BonusNumberTest {
     }
 
 
+    @DisplayName("보너스 번호가 로또번호와 중복될 때 예외 발생")
+    @Test
+    void validateNumberIsDuplicate() {
+        assertThatThrownBy(() -> bonusNumber.validateNumber("1"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.DUPLICATE_NUMBERS_LOTTO.getMessage());
+    }
+
+
 }
 

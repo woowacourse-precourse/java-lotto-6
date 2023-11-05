@@ -7,6 +7,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class ConsoleInputView implements InputView{
     OutputView outputView = OutputView.createConsoleOutputView();
+
     protected ConsoleInputView() {}
 
     public String requestPurchaseMoney() {

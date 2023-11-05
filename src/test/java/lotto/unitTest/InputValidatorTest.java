@@ -48,4 +48,43 @@ public class InputValidatorTest {
             assertEquals(Error.DO_NOT_DIVIDED_BY_1000, e.getMessage());
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,2,3,4,5","1,1,1,1,1,1","1,23,4,5,5,5"})
+    @DisplayName("로또 당첨 번호에 중복된 숫자를 입력하면 예외가 발생한다.")
+    public void testWinningNumberDuplicateInput(String invailidInput){
+        try {
+            InputValidator.checkWinningNumbers(invailidInput);
+            fail("IllegalArgumentException이 발생해야 합니다.");
+        }catch (IllegalArgumentException e){
+            assertEquals(Error.PLEASE_ENTER_A_UNDUPLICATED_NUMBER_OF_6,e.getMessage());
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1","1,2,3","1,2,3,4,5,6,7","1,2,3,4,5,"})
+    @DisplayName("로또 당첨 번호에 6개의 수를 입력 안하면 예외가 발생한다.")
+    public void testWinningNumberCountInput(String invailidInput){
+        InputValidator validator = new InputValidator();
+
+        try {
+            InputValidator.checkWinningNumbers(invailidInput);
+            fail("IllegalArgumentException이 발생해야 합니다.");
+        }catch (IllegalArgumentException e){
+            assertEquals(Error.PLEASE_ENTER_A_UNDUPLICATED_NUMBER_OF_6,e.getMessage());
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,46","일,2,3,4,5,6","one,two,three,four,five,six","1,2,,4,5,6"})
+    @DisplayName("로또 당첨 번호에 1~45의 정수를 입력 안하면 예외가 발생한다.")
+    public void testWinningNumberInput(String invailidInput){
+
+        try {
+            InputValidator.checkWinningNumbers(invailidInput);
+            fail("IllegalArgumentException이 발생해야 합니다.");
+        }catch (IllegalArgumentException e){
+            assertEquals(Error.PLEASE_ENTER_ONLY_NUMBERS_FROM_1_TO_45,e.getMessage());
+        }
+    }
 }

@@ -3,7 +3,8 @@ package lotto.view;
 import static lotto.constant.GeneralConstant.ZERO;
 import static lotto.constant.GeneralConstant.LEFT_BRACKET;
 import static lotto.constant.GeneralConstant.RIGHT_BRACKET;
-import static lotto.constant.GeneralConstant.PRIZE_PRINT_ORDER;
+import static lotto.constant.GeneralConstant.PRIZE_RANK_MAX;
+import static lotto.constant.GeneralConstant.PRIZE_RANK_INDEXES;
 
 import java.util.List;
 import lotto.constant.Message;
@@ -30,14 +31,14 @@ public class OutputView {
 
     public static void printPrizeStatistics(List<Integer> prizeCounts) {
         System.out.println(Message.PRIZE_STATISTICS);
-        for(int i = ZERO; i < PRIZE_PRINT_ORDER.size(); i++) {
+        for(int i = ZERO; i < PRIZE_RANK_MAX; i++) {
             printPrizeCount(i, prizeCounts.get(i));
         }
     }
 
     private static void printPrizeCount(int number, int count) {
-        String order = PRIZE_PRINT_ORDER.get(number);
-        System.out.println(String.format(Message.valueOf(order).toString(), count));
+        String rank = PRIZE_RANK_INDEXES.get(number);
+        System.out.println(String.format(Message.valueOf(rank).toString(), count));
     }
 
     public static void printRateOfReturn(double rate) {

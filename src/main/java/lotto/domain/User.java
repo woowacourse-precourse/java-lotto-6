@@ -2,8 +2,9 @@ package lotto.domain;
 
 import static lotto.constant.GeneralConstant.ZERO;
 import static lotto.constant.GeneralConstant.LOTTO_PRICE;
-import static lotto.constant.GeneralConstant.PRIZE_MONEY;
 import static lotto.constant.GeneralConstant.PRIZE_RANK_MAX;
+import static lotto.constant.GeneralConstant.PRIZE_RANK_MONEY;
+import static lotto.constant.GeneralConstant.PRIZE_RANK_INDEXES;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,13 +13,13 @@ import lotto.util.MoneyValidator;
 
 public enum User {
     INSTANCE;
-    private static LottoWallet lottoWallet = new LottoWallet();
+    private static final LottoWallet lottoWallet = new LottoWallet();
     private static List<Integer> prizeCounts = new ArrayList<Integer>();
     private static int cost;
     private static long revenue;
     private static double rateOfReturn;
 
-    public static void purchaseLottos(int money) {
+    public static void purchaseLotto(int money) {
         cost = money;
         MoneyValidator.validateMoney(money);
         clearPrizeCounts();
@@ -42,7 +43,8 @@ public enum User {
 
     private static void calcRevenue() {
         for(int i = ZERO; i < PRIZE_RANK_MAX; i++) {
-            revenue += (long) prizeCounts.get(i) * PRIZE_MONEY.get(i);
+            String rank = PRIZE_RANK_INDEXES.get(i);
+            revenue += (long) prizeCounts.get(i) * PRIZE_RANK_MONEY.get(rank);
         }
     }
 
@@ -50,7 +52,7 @@ public enum User {
         return rateOfReturn;
     }
 
-    public static List<Lotto> getLottos() {
+    public static List<Lotto> getMyLotto() {
         return lottoWallet.getLottos();
     }
 

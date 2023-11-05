@@ -1,13 +1,15 @@
 package lotto.domain;
 
 import static lotto.constant.GeneralConstant.ZERO;
-import static lotto.constant.GeneralConstant.THIRD_RANK;
-import static lotto.constant.GeneralConstant.PRIZE_RANK_WEIGHTS;
-import static lotto.constant.GeneralConstant.SECOND_RANK_WEIGHT;
+import static lotto.constant.GeneralConstant.INT_NULL;
+import static lotto.constant.GeneralConstant.PRIZE_RANK_WEIGHT;
+import static lotto.constant.GeneralConstant.PRIZE_RANK_INDEXES;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import lotto.util.NumberValidator;
 
@@ -27,31 +29,67 @@ public enum LottoCompany {
     }
 
     public static int matchPrize(List<Integer> numbers) {
-        int count = calculatePrizeRank(numbers);
-        if(count == THIRD_RANK) {
-            count = calculateBonusNumber(numbers, count);
+        Set<Integer> set = new HashSet<>(numbers);
+        int weight = calculatePrizeRank(set);
+        if(weight == PRIZE_RANK_WEIGHT.get("THIRD")) {
+            weight = calculateBonusNumber(weight, set);
         }
-
-        return PRIZE_RANK_WEIGHTS.indexOf(count);
+        return getRankIndex(weight);
     }
 
-    private static int calculatePrizeRank(List<Integer> numbers) {
-        Set<Integer> set = new HashSet<>(numbers);
-        int count = ZERO;
-
+    private static int calculatePrizeRank(Set<Integer> set) {
+        int weight = ZERO;
         for(int number : prizeNumbers) {
-            if(set.contains(number)) {
-                count++;
+            weight = matchPrizeNumber(weight, set, number);
+        }
+        return weight;
+    }
+
+    private static int matchPrizeNumber(int weight, Set<Integer> set, int number) {
+        if(set.contains(number)) {
+            return ++weight;
+        }
+        return weight;
+    }
+
+    private static int calculateBonusNumber(int weight, Set<Integer> set) {
+        if(set.contains(bonusNumber)) {
+           return PRIZE_RANK_WEIGHT.get("SECOND");
+        }
+        return weight;
+    }
+
+    private static int getRankIndex(int weight) {
+        for (Map.Entry<String, Integer> entry : PRIZE_RANK_WEIGHT.entrySet()) {
+            String rank = findRankName(weight, entry);
+            if(rank != null) {
+                return getRankIndex(rank);
             }
         }
-        return count;
+        return INT_NULL;
     }
 
-    private static int calculateBonusNumber(List<Integer> numbers, int count) {
-        Set<Integer> set = new HashSet<>(numbers);
-        if(set.contains(bonusNumber)) {
-           return count += SECOND_RANK_WEIGHT;
+    private static String findRankName(int weight, Map.Entry<String, Integer> entry) {
+        if (Objects.equals(entry.getValue(), weight)) {
+            return entry.getKey();
         }
-        return count;
+        return null;
+    }
+
+    private static int getRankIndex(String rank) {
+        for(Map.Entry<Integer, String> entry : PRIZE_RANK_INDEXES.entrySet()){
+            int index = findRankIndex(rank, entry);
+            if(index != INT_NULL) {
+                return index;
+            }
+        }
+        return INT_NULL;
+    }
+
+    private static int findRankIndex(String rank, Map.Entry<Integer, String> entry) {
+        if(Objects.equals(entry.getValue(), rank)) {
+            return entry.getKey();
+        }
+        return INT_NULL;
     }
 }

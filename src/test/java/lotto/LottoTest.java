@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -29,5 +30,12 @@ class LottoTest {
     void createLottoByOutOfRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, -100, 89)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또를 문자열 알맞은 형태로 변환했는지 확인한다.")
+    @Test
+    void lottoByString() {
+        assertThat(new Lotto(List.of(3, 43, 15, 9, 13, 6)).toString())
+                .isEqualTo("[3, 43, 15, 9, 13, 6]");
     }
 }

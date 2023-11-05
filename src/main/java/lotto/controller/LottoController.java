@@ -33,18 +33,6 @@ public class LottoController {
         return money;
     }
 
-    private WinningNumbers getValidWinningNumbersInput() {
-        WinningNumbers winningNumbers = null;
-        while (winningNumbers == null) {
-            try {
-                winningNumbers = new WinningNumbers(InputView.getWinningNumbersInput());
-            } catch (IllegalArgumentException e) {
-                OutputView.printException(e);
-            }
-        }
-        return winningNumbers;
-    }
-
     private int getTicketCount(Money money) {
         int ticketCount = money.calculateTicketCount();
         return ticketCount;
@@ -58,4 +46,18 @@ public class LottoController {
         }
         return lottos;
     }
+
+    private WinningNumbers getValidWinningNumbersInput() {
+        WinningNumbers winningNumbers = null;
+        while (winningNumbers == null) {
+            try {
+                winningNumbers = new WinningNumbers(InputView.getWinningNumbersInput());
+            } catch (IllegalArgumentException e) {
+                OutputView.printException(e);
+            }
+        }
+        return winningNumbers;
+    }
+
+
 }

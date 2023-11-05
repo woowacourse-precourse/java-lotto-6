@@ -1,4 +1,4 @@
-package lotto.io.collaboration;
+package lotto.collaboration;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;

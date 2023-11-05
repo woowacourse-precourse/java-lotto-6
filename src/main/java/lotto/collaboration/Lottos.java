@@ -1,4 +1,4 @@
-package lotto.io.collaboration;
+package lotto.collaboration;
 
 import java.util.List;
 import java.util.stream.IntStream;

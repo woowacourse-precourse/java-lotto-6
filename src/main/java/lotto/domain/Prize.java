@@ -30,4 +30,16 @@ public enum Prize {
         }
         return BLANK;
     }
+
+    public int getCorrectNumber() {
+        return correctNumber;
+    }
+
+    public boolean isNeedCorrectBonus() {
+        return needCorrectBonus;
+    }
+
+    public long getReward() {
+        return reward;
+    }
 }

@@ -85,7 +85,7 @@ public class InputValidator {
     }
 
     private static void checkLottoNumberIsDuplicated(List<Integer> input) {
-        if (input.stream().distinct().findAny().isEmpty()) {
+        if (!input.stream().distinct().findAny().isEmpty()) {
             throw new IllegalArgumentException(ERROR + DUPLICATED);
         }
     }

@@ -1,5 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoWallet;
+import lotto.domain.LottoWalletGenerator;
 import lotto.domain.Money;
 import lotto.view.MoneyInputView;
 import lotto.view.OutputView;
@@ -13,6 +17,7 @@ public class LottoController {
 
     public void start() {
         Money money = getMoney();
+        LottoWallet lottoWallet = buyLotto(money.getTicket());
     }
 
     private Money getMoney() {
@@ -28,4 +33,11 @@ public class LottoController {
         }
     }
 
+    private LottoWallet buyLotto(long ticket) {
+        outputView.println();
+        outputView.printTicket(ticket);
+        List<Lotto> wallet = LottoWalletGenerator.generateLottoWallet(ticket);
+        outputView.printLottoList(wallet);
+        return new LottoWallet(wallet);
+    }
 }

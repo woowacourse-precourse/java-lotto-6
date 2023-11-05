@@ -13,9 +13,9 @@ public class OutputView {
     private static final String WINNING_RESULT_MESSAGE = "당첨 통계";
     private static final String LINE_MESSAGE = "---";
 
-    public static void printLottoAmount() {
+    public static void printLottoAmount(int purchasedAmount) {
 
-        System.out.println(countLottoQuantity() + LOTTO_AMOUNT_MESSAGE);
+        System.out.println(purchasedAmount + LOTTO_AMOUNT_MESSAGE);
     }
 
     public static void printPurchasedLottoList(List<Lotto> lottoList) {

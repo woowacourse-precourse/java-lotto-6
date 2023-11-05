@@ -26,7 +26,7 @@ public class LottoGame {
 
         bonusNumber = InputView.inputBonusNumber();
 
-        OutputView.printLottoAmount();
+        OutputView.printLottoAmount(purchaseAmount);
         //OutputView.printPurchasedLottoList(lottoList);
 
 /*
@@ -72,11 +72,7 @@ public class LottoGame {
         return lottoNumbers;
     }
 
-    public static Lotto WinningNumbers(List<Integer> lottoNumbers)
-    {
-        List<Integer> winningNumbersList = parseLottoNumbers(InputView.inputLottoNumbers());
-        Lotto winningNumbers = new Lotto(winningNumbersList);
-
+    public static Lotto WinningNumbers(List<Integer> lottoNumbers) {
         return winningNumbers;
     }
 }

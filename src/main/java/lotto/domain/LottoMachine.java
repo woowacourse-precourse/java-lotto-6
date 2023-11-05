@@ -22,4 +22,9 @@ public class LottoMachine {
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
+
+    public int calculateNumberOfTickets(int paidAmount) {
+        validatePurchaseAmount(paidAmount);
+        return paidAmount / LOTTO_PRICE;
+    }
 }

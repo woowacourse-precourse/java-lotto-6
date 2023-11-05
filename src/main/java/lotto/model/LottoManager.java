@@ -8,9 +8,14 @@ import lotto.model.winningLotto.WinningLottoDTO;
 
 public class LottoManager {
     private Lottos lottos;
+    private WinningLotto winningLotto;
 
     public void makeLottos(int numberOfLottos, LottoGenerator lottoGenerator) {
          lottos = Lottos.of(numberOfLottos, lottoGenerator);
+    }
+
+    public void makeWinningLotto(Lotto lotto, int bonusNumber) {
+        winningLotto = WinningLotto.of(lotto, bonusNumber);
     }
 
     public List<List<Integer>> getPurchaseLottos(){

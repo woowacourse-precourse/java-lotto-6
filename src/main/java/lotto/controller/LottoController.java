@@ -9,12 +9,16 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private User user;
+    private Lotto winningLotto;
+    private BonusNumber bonusNumber;
+
     public void start() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
-        User user = User.purchaseLottos(purchaseAmount);
+        user = User.purchaseLottos(purchaseAmount);
         OutputView.printLottoNumbers(user.getNumberOfLottoTickets(), user.getAllLottoTicketsNumbers());
-        Lotto winningLotto = createWinningLotto();
-        BonusNumber bonusNumber = readBonusNumber();
+        winningLotto = createWinningLotto();
+        bonusNumber = readBonusNumber();
     }
 
     private PurchaseAmount readPurchaseAmount() {
@@ -40,6 +44,10 @@ public class LottoController {
     }
 
     private BonusNumber readBonusNumber() {
-        return new BonusNumber(InputView.readBonusNumber());
+        int bonusNumber = InputView.readBonusNumber();
+        if (winningLotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호과 중복되지 않는 숫자를 입력해야 합니다.");
+        }
+        return new BonusNumber(bonusNumber);
     }
 }

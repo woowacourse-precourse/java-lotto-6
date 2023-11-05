@@ -46,4 +46,8 @@ public class Lotto {
         Collections.sort(numbers);
         return numbers.toString();
     }
+
+    public boolean contains(int input) {
+        return numbers.contains(input);
+    }
 }

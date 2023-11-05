@@ -1,13 +1,10 @@
 package lotto.domain;
 
-import static lotto.constant.ExceptionMessage.NO_DUPLICATE_ERROR_MESSAGE;
-import static lotto.constant.ExceptionMessage.OUT_OF_RANGE_ERROR_MESSAGE;
 import static lotto.constant.LottoConstant.LOTTO_LENGTH;
-import static lotto.constant.LottoConstant.MAX_NUMBER;
-import static lotto.constant.LottoConstant.MIN_NUMBER;
+import static lotto.utils.validator.LottoNumberValidator.validateDuplicateNumbers;
+import static lotto.utils.validator.LottoNumberValidator.validateOutOfRange;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -17,6 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateOutOfRange(numbers);
+        validateDuplicateNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -32,25 +30,5 @@ public class Lotto {
         if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException();
         }
-
-        if (hasDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException(NO_DUPLICATE_ERROR_MESSAGE);
-        }
-    }
-
-    private void validateOutOfRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            if (isOutOfRange(number)) {
-                throw new IllegalArgumentException(OUT_OF_RANGE_ERROR_MESSAGE);
-            }
-        }
-    }
-
-    private boolean hasDuplicateNumber(List<Integer> numbers) {
-        return new HashSet<>(numbers).size() != LOTTO_LENGTH;
-    }
-
-    private boolean isOutOfRange(int number) {
-        return MAX_NUMBER < number || number < MIN_NUMBER;
     }
 }

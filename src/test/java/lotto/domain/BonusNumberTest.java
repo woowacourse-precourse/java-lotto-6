@@ -18,7 +18,7 @@ public class BonusNumberTest {
         //when, then
         Assertions.assertThatThrownBy(() -> new BonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1 ~ 45사이의");
+                .hasMessageContaining("1 ~ 45 사이의");
     }
 
     @ParameterizedTest(name = "로또번호 : {0}, 보너스번호 : {1}, 기대 값 : {2}")

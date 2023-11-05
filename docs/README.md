@@ -1,5 +1,6 @@
 ### 로또 게임
 ## docs - [x] 기능 목록
+    feat - [x] View 메세지 관리 기능
     feat - [ ] View “구입금액을 입력해 주세요.” 일반 메세지 출력 기능
     feat - [ ] Controller 사용자 입력 기능을 호출하는 기능
     feat - [ ] View 사용자 입력 기능(Console)

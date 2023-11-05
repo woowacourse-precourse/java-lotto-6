@@ -1,3 +1,4 @@
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,19 +11,26 @@ public class LottoGame implements Game {
     private final int lottoPurchaseAmount;
     private final Lotto winningLotto;
     private final int bonusNumber;
+    private final List<Lotto> purchasedLottos;
 
-    public LottoGame(int lottoPurchaseAmount, List<Integer> winningNumbers, int bonusNumber) {
-        this.lottoPurchaseAmount = validateLottoPurchaseAmount(lottoPurchaseAmount);
+    public LottoGame(int lottoPurchasePrice, List<Integer> winningNumbers, int bonusNumber) {
+        this.lottoPurchaseAmount = validateLottoPurchaseAmount(lottoPurchasePrice);
         winningLotto = new Lotto(validateDuplicates(winningNumbers));
         this.bonusNumber = validateBonusNumber(winningNumbers, bonusNumber);
     }
 
-    private int validateLottoPurchaseAmount(int lottoPurchaseAmount) {
-        if (lottoPurchaseAmount % lottoPirce != 0) {
+    public void createLottoTickets(int lottoPurchaseAmount) {
+        for (int i = 0; i < lottoPurchaseAmount; i++) {
+            purchasedLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+    }
+
+    private int validateLottoPurchaseAmount(int lottoPurchasePrice) {
+        if (lottoPurchasePrice % lottoPirce != 0) {
             throw new IllegalArgumentException("로또 구입 금액은 " + lottoPirce + "원 단위입니다.");
         }
 
-        return lottoPurchaseAmount;
+        return lottoPurchasePrice / lottoPirce;
     }
 
     private List<Integer> validateDuplicates(List<Integer> winningNumbers) {

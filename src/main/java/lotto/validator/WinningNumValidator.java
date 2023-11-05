@@ -5,12 +5,14 @@ import java.util.List;
 public class WinningNumValidator {
 
     private static final String ERROR = "[ERROR]";
+    private static final String NOT_BLANK_ERROR_MESSAGE = "당첨 번호를 입력해주세요.";
     private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해주세요.";
     private static final String DUPLICATE_ERROR_MESSAGE = "중복된 숫자를 적으면 안 됩니다.";
     private static final String SIZE_OVER_MESSAGE = "6개의 번호를 입력해주세요.";
     private static final String RANGE_OVER_MESSAGE = "1~45사이의 번호를 입력해주세요.";
 
     public WinningNumValidator(String input){
+        isNull(input);
         for(String number : input.split(",")) {
             isNumError(number);
         }
@@ -20,6 +22,12 @@ public class WinningNumValidator {
         isDuplicate(numbers);
         isSizeOver(numbers);
         isRangeOver(numbers);
+    }
+
+    public void isNull(String number){
+        if (number.equals("")) {
+            throw new IllegalArgumentException(ERROR + NOT_BLANK_ERROR_MESSAGE);
+        }
     }
 
     public void isNumError(String number){

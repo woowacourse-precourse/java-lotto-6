@@ -9,40 +9,50 @@ import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningLottoFactory;
 import lotto.dto.IssuedLottoResponse;
+import lotto.dto.WinningResultResponse;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
     public static void run() {
+        int lottoQuantity = getLottoQuantity();
 
-        Lottos lottos = issueLotto();
-        printIssuedLottoInAscending(lottos);
+        Lottos playerLottos = generateLottos(lottoQuantity);
+        printSortedLottos(playerLottos);
 
-        WinningLotto winningLotto = receiveWinningNumbers();
-        BonusNumber bonusNumber = receiveBonusNumber();
+        WinningLotto winningLotto = generateWinningLotto();
+        getWinningResult(playerLottos, winningLotto);
 
-        // TODO: 결과 비교
         // TODO: 당첨 내역 출력
         // TODO: 수익률 출력
     }
 
-    private static Lottos issueLotto() {
-        int lottoQuantity = LottoQuantity.of(InputView.inputBuyingPrice());
+    private static int getLottoQuantity( ) {
+        return LottoQuantity.of(InputView.inputBuyingPrice());
+    }
+
+    private static Lottos generateLottos(int lottoQuantity) {
         List<Lotto> lottos = LottoFactory.createLottos(lottoQuantity);
         return new Lottos(lottos);
     }
 
-    private static void printIssuedLottoInAscending(Lottos lottos) {
+    private static void printSortedLottos(Lottos lottos) {
         List<IssuedLottoResponse> lottoResponses = IssuedLottoResponse.of(lottos.getLottos());
         OutputView.printIssuedLottoCountAndNumbers(lottoResponses);
     }
 
-    private static WinningLotto receiveWinningNumbers() {
-        return WinningLottoFactory.of(InputView.inputWinningNumbers());
+    private static WinningLotto generateWinningLotto() {
+        WinningLotto winningLotto = WinningLottoFactory.of(InputView.inputWinningNumbers());
+        winningLotto.setBonusNumber(generateBonusNumber());
+        return winningLotto;
     }
 
-    private static BonusNumber receiveBonusNumber() {
+    private static BonusNumber generateBonusNumber() {
         return new BonusNumber(InputView.inputBonusNumber());
+    }
+
+    private static WinningResultResponse getWinningResult(Lottos playerLottos, WinningLotto winningLotto) {
+        return playerLottos.generateWinningResult(winningLotto);
     }
 }

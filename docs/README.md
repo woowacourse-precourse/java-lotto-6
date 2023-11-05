@@ -56,7 +56,7 @@
 
 사용자에게 원하는 결과를 출력하는 역할을 하는 클래스입니다.
 
-출력되는 화면의 내용 중, 업데이트될 수 있는 영역과 업데이트 되지 않는 영역을 따로 관리합니다.
+출력되는 화면의 내용 중, 업데이트 되는 영역과 업데이트 되지 않는 영역을 따로 관리합니다.
 
 예를 들어 아래가 사용자에게 보여질 화면 예시라고 하면
 
@@ -97,13 +97,13 @@ OutputController로부터 사용자에게 적절한 화면을 출력할 것을 �
 
 ### 🎮 Controller
 
-#### **LottoGameController**
+#### **LottoGameService**
 
 로또 게임을 수행하는 기능을 합니다.
 
-사용자 입력은 InputController를 통해 받습니다.
+사용자 입력이 필요한 경우 InputController를 통해 받습니다.
 
-OutputController를 통해 사용자에게 원하는 화면을 출력합니다.
+OutputController를 통해 사용자에게 원하는 화면을 출력하도록 합니다.
 
 #### InputController
 

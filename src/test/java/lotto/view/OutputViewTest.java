@@ -18,29 +18,6 @@ class OutputViewTest {
         System.setOut(new PrintStream(output));
     }
 
-
-//    @DisplayName("구매한 로또를 출력한다.")
-//    @Test
-//    void printLotto() {
-//        //given
-//        OutputView outputView = new OutputView();
-//
-//        int quantity = 2;
-//        List<List<Integer>> lottos = List.of(
-//                List.of(8, 21, 23, 41, 42, 43),
-//                List.of(3, 5, 11, 16, 32, 38)
-//        );
-//
-//        //when
-//        outputView.printLotto(quantity, lottos);
-//
-//        //then
-//        Assertions.assertThat(output.toString())
-//                .contains("2개를 구매했습니다.")
-//                .contains("[8, 21, 23, 41, 42, 43]"
-//                        , "[3, 5, 11, 16, 32, 38]");
-//    }
-
     @DisplayName("당첨통계를 출력한다.")
     @Test
     void printStatistics(){

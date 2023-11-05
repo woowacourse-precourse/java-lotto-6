@@ -20,12 +20,19 @@ public class Lotto {
         invalidInput.duplicateNumberException(numbers, bonusNumber);
     }
 
-    public int getSameNumberCount(List<Integer> myLottoNumbers) {
-        long sameNumberCount = myLottoNumbers.stream()
+    public int getSameNumberCount(Lotto myLottoNumbers) {
+        long sameNumberCount = myLottoNumbers.numbers.stream()
                 .filter(numbers::contains)
                 .count();
 
         return (int)sameNumberCount;
+    }
+
+    public boolean checkContains(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
     }
 
     private void validate(List<Integer> numbers) {

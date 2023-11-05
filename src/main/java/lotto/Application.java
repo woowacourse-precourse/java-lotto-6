@@ -1,9 +1,8 @@
 package lotto;
 
 import java.util.List;
-import lotto.domain.Cost;
 import lotto.domain.Lotto;
-import lotto.domain.LottoShop;
+import lotto.domain.MyLotto;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 
@@ -12,15 +11,14 @@ public class Application {
         // TODO: 프로그램 구현
         InputView inputView = new InputView();
         StringConverter stringConverter = new StringConverter();
-        Cost cost = new Cost(inputView.inputBuyingCost());
 
-        LottoShop lottoShop = new LottoShop(cost);
-        lottoShop.receiveMyLottos();
+        MyLotto myLotto = new MyLotto(inputView.inputBuyingCost());
+        myLotto.printGenerateLottoResult();
 
         List<Integer> winningNumbers = stringConverter.convertToIntegerList(inputView.inputWinningNumbers());
         int bonusNumber = inputView.inputBonusNumber();
 
         WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
-        lottoShop.checkResult(winningLotto);
+        myLotto.checkResult(winningLotto);
     }
 }

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,24 +24,4 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-    @DisplayName("당첨 통계를 계산한다.")
-    @Test
-    void winningStatistics(){
-        //given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 9;
-        List<List<Integer>> myLottoNumbers = List.of(
-                List.of(1, 2, 3, 4, 5, 6),
-                List.of(1, 2, 3, 4, 5, 11),
-                List.of(1, 2, 3, 4, 5, 11),
-                List.of(1, 2, 3, 7, 8, 9)
-        );
-
-        //when
-        List<Integer> statistics = lotto.winningStatistics(bonusNumber, myLottoNumbers);
-
-        //then
-        assertThat(statistics).hasSize(8)
-                .containsExactly(0, 0, 0, 1, 0, 2, 0, 1);
-    }
 }

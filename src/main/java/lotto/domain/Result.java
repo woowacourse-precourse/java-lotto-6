@@ -7,8 +7,8 @@ public class Result {
     private final static int PERCENT = 10;
     private final List<Integer> statistics;
 
-    public Result(WinningLotto winningLotto, MyLotto myLotto) {
-        this.statistics = myLotto.getStatistics(winningLotto);
+    public Result(List<Integer> statistics) {
+        this.statistics = statistics;
     }
 
     public List<Integer> getStatistics() {

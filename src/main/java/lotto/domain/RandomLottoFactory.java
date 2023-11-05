@@ -7,15 +7,23 @@ import java.util.List;
 
 public class RandomLottoFactory {
 
+    private static final int LOTTO_NUMBER_CNT = 6;
+    private static final int START_INCLUSIVE = 1;
+    private static final int END_INCLUSIVE = 45;
+
     public static List<Lotto> generateLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
 
         for(int i = 0; i < count; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            List<LottoNumber> lottoNumbers = numbers.stream().map(LottoNumber::new).toList();
-            lottos.add(new Lotto(lottoNumbers));
+            lottos.add(generateOneLotto());
         }
 
         return lottos;
+    }
+
+    private static Lotto generateOneLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_NUMBER_CNT);
+        List<LottoNumber> lottoNumbers = numbers.stream().map(LottoNumber::new).toList();
+        return new Lotto(lottoNumbers);
     }
 }

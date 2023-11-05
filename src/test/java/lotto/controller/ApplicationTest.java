@@ -131,6 +131,31 @@ class ApplicationTest extends NsTest {
         );
     }
 
+
+    @Test
+    void 예외_구간_반복_로또_금액_입력() {
+        assertSimpleTest(() -> {
+            runException("1000j" , "abcabc" , "a2d2d" , "2000" , "1,2,3,4,5,6" , "7");
+            assertThat(output()).contains("총 수익률은");
+        });
+    }
+
+    @Test
+    void 예외_구간_반복_로또_번호_입력() {
+        assertSimpleTest(() -> {
+            runException("1000" , "1,2,3,4,5,6,7" , "45,44,56,41,1,3" , "a,1,2,3,4,5" , "1,2,3,1,2,3" , "1,2,3,4,5,6" , "7");
+            assertThat(output()).contains("총 수익률은");
+        });
+    }
+
+    @Test
+    void 예외_구간_반복_보너스_번호_입력() {
+        assertSimpleTest(() -> {
+            runException("1000" , "1,2,3,4,5,6" , "1" , "abc" , "88" , "7");
+            assertThat(output()).contains("총 수익률은");
+        });
+    }
+
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {

@@ -1,6 +1,10 @@
 package lotto;
 
+import lotto.utils.ErrorMessage;
+
 import java.util.Objects;
+
+import static lotto.utils.ErrorMessage.INVALID_LOTTO_PAYMENT;
 
 public class Payment {
 
@@ -17,7 +21,7 @@ public class Payment {
 
     private static void validate(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 1000원 이상이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_PAYMENT.getMessage());
         }
     }
 

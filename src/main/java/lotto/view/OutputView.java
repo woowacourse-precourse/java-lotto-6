@@ -1,8 +1,6 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.LottoDTO;
 import lotto.model.WinningInfo;
 
 public class OutputView {
@@ -26,7 +24,7 @@ public class OutputView {
     }
 
     public void printWinnerStatus(WinningInfo winningInfo, int count){
-        System.out.printf(WINNING_STATS_FORMAT, winningInfo.matchedCount, winningInfo.price, count);
+        System.out.printf(WINNING_STATS_FORMAT, winningInfo.matchedInfo, winningInfo.price, count);
     }
 
     public void printTotalRateOfReturn(double rateOfReturn) {

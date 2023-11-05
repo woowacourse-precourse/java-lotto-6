@@ -2,7 +2,8 @@ package lotto.model;
 
 import java.util.Arrays;
 import java.util.Collections;
-import lotto.model.Lotto;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +54,7 @@ class LottoTest {
         Lotto lotto = new Lotto(validNumbers);
         Collections.sort(validNumbers);
 
-        LottoDTO lottoDTO = Lotto.toLottoDTO(lotto);
+        LottoDTO lottoDTO = lotto.toSortedLottoDTO();
 
         assertThat(lottoDTO).isNotNull();
         assertThat(lottoDTO.numbers()).containsExactlyElementsOf(validNumbers);

@@ -1,7 +1,7 @@
 package lotto.mock;
 
 import java.util.List;
-import lotto.model.Lotto;
+import lotto.model.lotto.Lotto;
 import lotto.model.LottoGenerator;
 
 public class TestLottoGenerator implements LottoGenerator {

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.model.Lotto;
+import lotto.model.lotto.Lotto;
 
 public class InputValidator {
     public static void divisibleByThousand(int purchaseAmount){

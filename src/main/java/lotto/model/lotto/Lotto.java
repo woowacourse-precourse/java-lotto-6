@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +16,7 @@ public class Lotto {
             "로또 번호는 " + LOTTO_MIN + "부터 " + LOTTO_MAX + " 사이의 숫자여야 합니다.";
     public static final String DUPLICATE_NUMBER_ERROR = "로또 번호는 중복되지 않아야 합니다.";
 
-    private final List<Integer> numbers;
+    protected final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -55,14 +55,16 @@ public class Lotto {
         }
     }
 
-    public static LottoDTO toLottoDTO(Lotto lotto) {
-        return LottoDTO.of(lotto.sort());
-    }
-
-    private List<Integer> sort() {
+    public LottoDTO toSortedLottoDTO() {
         final List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
-        return sortedNumbers;
+        return LottoDTO.of(new Lotto(sortedNumbers));
     }
+
+    public LottoDTO toLottoDTO(){
+        return LottoDTO.of(new Lotto(numbers));
+    }
+
+
 
 }

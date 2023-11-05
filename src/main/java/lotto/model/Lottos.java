@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoDTO;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -20,9 +22,9 @@ public class Lottos {
         return new Lottos(purchasedLottos);
     }
 
-    public List<LottoDTO> toLottoDtos(){
+    public List<LottoDTO> toSortedLottoDTOs(){
         return lottos.stream()
-                .map(Lotto::toLottoDTO)
+                .map(Lotto::toSortedLottoDTO)
                 .toList();
     }
 

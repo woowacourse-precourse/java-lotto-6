@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.BonusNumber;
+import lotto.domain.EarningRate;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningCombination;
@@ -44,5 +45,12 @@ public class LottoService {
         final WinningResult winningResult = winningCombination.calculateWinningLottos(lottos);
         domainRepository.saveWinningResult(winningResult);
         return winningResult;
+    }
+
+    public EarningRate checkEarningRate() {
+        final PurchaseAmount purchaseAmount = domainRepository.getPurchaseAmount();
+        final WinningResult winningResult = domainRepository.getWinningResult();
+
+        return winningResult.calculateProfit(purchaseAmount);
     }
 }

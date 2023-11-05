@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.BonusNumber;
+import lotto.domain.EarningRate;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
@@ -29,6 +30,7 @@ public class LottoController {
         purchase();
         createWinningCombination();
         calculateWinningResult();
+        checkEarningRate();
     }
 
     private void createPurchaseAmount() {
@@ -56,5 +58,10 @@ public class LottoController {
         outputView.printResult();
         final WinningResult winningResult = lottoService.calculateWinningResult();
         outputView.printWinningResult(winningResult);
+    }
+
+    private void checkEarningRate() {
+        final EarningRate earningRate = lottoService.checkEarningRate();
+        outputView.printEarningRate(earningRate);
     }
 }

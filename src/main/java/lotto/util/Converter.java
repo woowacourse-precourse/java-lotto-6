@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.exception.NonNumericInputException;
 import lotto.vo.BonusNumber;
-import lotto.vo.PurchaseAmount;
+import lotto.vo.BuyAmount;
 import lotto.vo.TicketQuantity;
 
 public class Converter {
@@ -17,8 +17,8 @@ public class Converter {
     }
 
     public static TicketQuantity convertToTicketCount(final Integer amount) {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
-        Integer quantity = getTicketCount(purchaseAmount);
+        BuyAmount buyAmount = new BuyAmount(amount);
+        Integer quantity = getTicketCount(buyAmount);
 
         return new TicketQuantity(quantity);
     }
@@ -33,8 +33,8 @@ public class Converter {
         return new BonusNumber(number);
     }
 
-    private static Integer getTicketCount(final PurchaseAmount purchaseAmount) {
-        return Integer.valueOf(purchaseAmount.amount()) / ONE_LOTTO_PRICE.getValue();
+    private static Integer getTicketCount(final BuyAmount buyAmount) {
+        return Integer.valueOf(buyAmount.amount()) / ONE_LOTTO_PRICE.getValue();
     }
 
     private static Integer getLottoNumber(final String number) {

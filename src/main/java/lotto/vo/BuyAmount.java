@@ -5,11 +5,11 @@ import static lotto.model.LottoInfo.ONE_LOTTO_PRICE;
 import lotto.exception.InsufficientAmountException;
 import lotto.exception.RemainingChangeException;
 
-public record PurchaseAmount(Integer amount) {
+public record BuyAmount(Integer amount) {
 
     private static final Integer ZERO = 0;
 
-    public PurchaseAmount {
+    public BuyAmount {
         validateAmount(amount);
     }
 

@@ -13,11 +13,11 @@ public class LottoComparator {
     public LottosResult compareLottoAndWinningLotto() {
         LottosResult lottosResult = new LottosResult();
         for (int i = 0; i < lottos.size(); i++) {
-            LottoResult lottoResult = winningLotto.compareToLotto(lottos.get(i));
-            if (lottoResult.getWinners() == null) {
+            LottoScore lottoScore = winningLotto.compareToLotto(lottos.get(i));
+            if (lottoScore.getWinners() == null) {
                 continue;
             }
-            lottosResult.put(lottoResult.getWinners(), lottosResult.get(lottoResult.getWinners()) + 1);
+            lottosResult.put(lottoScore.getWinners(), lottosResult.get(lottoScore.getWinners()) + 1);
         }
         return lottosResult;
     }

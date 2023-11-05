@@ -13,11 +13,11 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public LottoResult compareToLotto(Lotto other) {
+    public LottoScore compareToLotto(Lotto other) {
         int sameCount = lotto.compareTo(other);
         boolean bonusContains = other.contains(bonusNumber);
-        LottoResult lottoResult = new LottoResult(sameCount, bonusContains);
-        return lottoResult;
+        LottoScore lottoScore = new LottoScore(sameCount, bonusContains);
+        return lottoScore;
     }
 
     private void validate(Lotto lotto, int bonusNumber) {

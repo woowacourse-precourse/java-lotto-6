@@ -103,4 +103,115 @@ class StatisticTest {
                         "6개 일치 (2,000,000,000원) - 1개\n"
         );
     }
+
+
+    @DisplayName("총 당첨 금액을 알려준다._1")
+    @Test
+    void getTotalWinMoney_1() {
+        // given
+        lotto_1 = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 1등
+
+        lottoEnvelop.add(lotto_1);
+
+        // when
+        statistic.show();
+        Integer result = statistic.getTotalWinMoney();
+
+        // than
+        assertThat(result).isEqualTo(
+                2000000000
+        );
+    }
+
+    @DisplayName("총 당첨 금액을 알려준다._2")
+    @Test
+    void getTotalWinMoney_2() {
+        // given
+        lotto_1 = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 6개
+        lotto_2 = new Lotto(List.of(1, 2, 3, 4, 5, 7)); // 5개 1개보너스
+
+        lottoEnvelop.add(lotto_1);
+        lottoEnvelop.add(lotto_2);
+
+        // when
+        statistic.show();
+        Integer result = statistic.getTotalWinMoney();
+
+        // than
+        assertThat(result).isEqualTo(
+                2000000000 + 30000000
+        );
+    }
+
+    @DisplayName("총 당첨 금액을 알려준다._3")
+    @Test
+    void getTotalWinMoney_3() {
+        // given
+        lotto_1 = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 6개
+        lotto_2 = new Lotto(List.of(1, 2, 3, 4, 5, 7)); // 5개 1개보너스
+        lotto_3 = new Lotto(List.of(1, 2, 3, 4, 5, 20)); // 5개
+
+        lottoEnvelop.add(lotto_1);
+        lottoEnvelop.add(lotto_2);
+        lottoEnvelop.add(lotto_3);
+
+        // when
+        statistic.show();
+        Integer result = statistic.getTotalWinMoney();
+
+        // than
+        assertThat(result).isEqualTo(
+                2000000000 + 30000000 + 1500000
+        );
+    }
+
+    @DisplayName("총 당첨 금액을 알려준다._4")
+    @Test
+    void getTotalWinMoney_4() {
+        // given
+        lotto_1 = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 6개
+        lotto_2 = new Lotto(List.of(1, 2, 3, 4, 5, 7)); // 5개 1개보너스
+        lotto_3 = new Lotto(List.of(1, 2, 3, 4, 5, 20)); // 5개
+        lotto_4 = new Lotto(List.of(1, 2, 3, 4, 32, 38)); // 4개
+
+        lottoEnvelop.add(lotto_1);
+        lottoEnvelop.add(lotto_2);
+        lottoEnvelop.add(lotto_3);
+        lottoEnvelop.add(lotto_4);
+
+        // when
+        statistic.show();
+        Integer result = statistic.getTotalWinMoney();
+
+        // than
+        assertThat(result).isEqualTo(
+                2000000000 + 30000000 + 1500000 + 50000
+        );
+    }
+
+    @DisplayName("총 당첨 금액을 알려준다._5")
+    @Test
+    void getTotalWinMoney_5() {
+        // given
+        lotto_1 = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 6개
+        lotto_2 = new Lotto(List.of(1, 2, 3, 4, 5, 7)); // 5개 1개보너스
+        lotto_3 = new Lotto(List.of(1, 2, 3, 4, 5, 20)); // 5개
+        lotto_4 = new Lotto(List.of(1, 2, 3, 4, 32, 38)); // 4개
+        lotto_5 = new Lotto(List.of(1, 2, 3, 29, 40, 35)); // 3개
+
+        lottoEnvelop.add(lotto_1);
+        lottoEnvelop.add(lotto_2);
+        lottoEnvelop.add(lotto_3);
+        lottoEnvelop.add(lotto_4);
+        lottoEnvelop.add(lotto_5);
+
+        // when
+        statistic.show();
+        Integer result = statistic.getTotalWinMoney();
+
+        // than
+        assertThat(result).isEqualTo(
+                5000 + 50000 + 1500000 + 30000000 + 2000000000
+        );
+    }
 }

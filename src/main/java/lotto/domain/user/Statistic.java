@@ -105,6 +105,7 @@ public class Statistic {
 
     public Integer getTotalWinMoney() {
         calculateTotalWinMoney();
+        
         return totalWinMoney;
     }
 }

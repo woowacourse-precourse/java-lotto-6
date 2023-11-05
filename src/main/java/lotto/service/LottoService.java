@@ -5,6 +5,13 @@ public class LottoService {
     private int money;
 
     public static void userInputMoney(String userInput) {
+        MoneyValidator.validate(userInput);
+    }
 
+    public static void userInputNumbers(String userInput) {
+        UserNumbersValidator.preValidate(userInput);
+        // String -> List<Integer>
+//        UserNumbersValidator.postValidate();
+        // List sort (오름차순)
     }
 }

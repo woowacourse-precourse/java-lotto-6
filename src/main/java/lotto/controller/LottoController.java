@@ -31,7 +31,7 @@ public class LottoController {
 
     private void userInputLottoNumbers() {
         OutputView.numbersLotto();
-        System.out.println(InputView.userInput());
+        lotto.userInputNumbers(InputView.userInput());
     }
 
     private void userInputBonusNumber() {

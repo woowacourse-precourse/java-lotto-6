@@ -35,6 +35,9 @@ public class BonusNumber implements Askable {
             if (!isCorrectRange.test(convertedInput)) {
                 throw new IllegalArgumentException(numberRangeError);
             }
+            if (!isCorrectAmount.test(convertedInput)) {
+                throw new IllegalArgumentException(BonusNumberAmountError);
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             corretInput = false;
@@ -53,4 +56,5 @@ public class BonusNumber implements Askable {
     private final Predicate<List<Integer>> isCorrectRange = input ->
             input.stream().mapToInt(Integer::intValue).min().getAsInt() >= MINIMUM.getNumber() &&
                     input.stream().mapToInt(Integer::intValue).max().getAsInt() <= MAXIMUM.getNumber();
+    private final Predicate<List<Integer>> isCorrectAmount = input -> input.size() == 1;
 }

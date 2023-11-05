@@ -1,8 +1,15 @@
 ## 기능목록
-- [] 로또 구입 금액 입력 -> 1000으로 나눠지지 않음, 숫자가 아닌 경우
+- [] 로또 구입 금액 입력  
+  -> 1000으로 나눠지지 않음, 숫자가 아닌 경우
 - [] 당첨 번호를 입력 받는다. 번호는 쉼표(,) 기준으로 구분
   -> 6개의 입력이 아닌 경우, 숫자가 아닌 경우, 1~45의 수가 아닌 경우
 - [] 보너스 번호를 입력 받는다 -> 숫자가 아닌 경우, 1~45의 수가 아닌 경우
+- [] 모든 입력에 대한 오류를 검사한다.
+  - [] 숫자가 아닐 경우
+  - [] 돈이 1000으로 나누어 떨어지지 않을 경우
+  - [] 6개의 입력이 아닌 경우
+  - [] 1~45의 수가 아닌 경우
+  - [] 중복된 숫자를 가지는지 검증
 - [o] 로또 한개를 발행한다. Lotto#new Lotto()
   - [o] 로또 번호 반환 Lotto#getLotto()List\<Integer>
   - [o] 로또 번호 검증 Lotto#validate(List<Integer> nums)
@@ -14,11 +21,12 @@
   - [o]입력 받은 돈으로 로또 발행 개수를 구한다. LottoMarketService#int calculateLottoCount(int money)
     - [o]1000원으로 나누어 떨어지지 않으면 예외. LottoMarketService#void valiadateMoney(int money)
   - [o]무작위의 숫자를 반환한다. LottoNumGenerator#integer get()
-- [] 구매한 로또의 번호와 당첨 번호를 비교
+- [o] 구매한 로또의 번호와 당첨 번호를 비교, 수익률 계산
   - [o] 등수와 관련된 데이터를 묶어 놓은 enum 구현. Rank
-  - [] 하나의 로또와 당첨 번호, 보너스 번호 비교하고 등수 구하기. Domain#ranking()
-  - [] 로또 전체에 대해 등수 구하기 Domain#allRanking()
-  - [] 로또 전체에 대해 수익 구하기 Domain#calcultateProfit()
-  - [] 구입한 금액과 수익률 비교하기 Domain#calcualteProfitRate()
+  - [o] 하나의 로또와 당첨 번호, 보너스 번호 비교하고 등수 구하기. Domain#ranking()
+  - [o] 로또 전체에 대해 등수 구하기 Domain#allRanking()
+  - [o] 로또 전체에 대해 수익 구하기 Domain#calcultateProfit()
+  - [o] 수익에 대한 구입 비율 백분율로 반환 Domain#calcualtePercent()
 - [] 당첨 내역 출력
 - [] 수익률 출력
+

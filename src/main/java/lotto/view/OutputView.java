@@ -19,4 +19,8 @@ public class OutputView {
     public static void printLottoNumber(List<Integer> lottoNumber) {
         System.out.println(lottoNumber);
     }
+
+    public static void printWinNumberMessage() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

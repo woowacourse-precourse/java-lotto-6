@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -9,9 +10,6 @@ import java.util.List;
 import static java.util.Collections.sort;
 
 public class LottoController {
-
-//    OutputView outputView = new OutputView();
-//    InputView inputView = new InputView();
 
     public void startLotto() {
         OutputView.printGetPurchasePriceMessage();
@@ -23,6 +21,12 @@ public class LottoController {
         for(int i = 0; i < lottoNum ; i++) {
             OutputView.printLottoNumber(getLottoNumber());
         }
+
+        System.out.println();
+
+        OutputView.printWinNumberMessage();
+        getWinLottoNumber();
+
     }
 
     public int getLottoNum(int purchasePrice) {
@@ -34,5 +38,11 @@ public class LottoController {
         List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         sort(lottoNumber);
         return lottoNumber;
+    }
+
+    public List<Integer> getWinLottoNumber() {
+        List<Integer> winNumber = InputView.inputWinNumber();
+
+        return winNumber;
     }
 }

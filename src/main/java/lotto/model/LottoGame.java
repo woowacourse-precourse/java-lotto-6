@@ -31,37 +31,21 @@ public class LottoGame {
 
     public List<Lotto> issuanceLotto(Integer amount) {
         List<Lotto> lottos = new ArrayList<>();
-
         for (int i = 0; i < amount / 1000; i++) {
             List<Integer> numbers = new ArrayList<>();
-
-            for (int j = 0; j < 6; j++) {
+            while (numbers.size() < 6) {
                 generateNumbers(numbers);
             }
-
             lottos.add(new Lotto(numbers));
         }
-
         return lottos;
     }
 
     public void generateNumbers(List<Integer> numbers) {
-
-        do {
-            numbers.add(Randoms.pickNumberInRange(1, 45));
-        } while (validateDuplication(numbers));
-
-    }
-
-    public boolean validateDuplication(List<Integer> nums) {
-
-        for (Integer number : nums) {
-            if (nums.contains(number)) {
-                return false;
-            }
+        int number = Randoms.pickNumberInRange(1, 45);
+        if (!numbers.contains(number)) {
+            numbers.add(number);
         }
-
-        return true;
     }
 
     public User getUser() {

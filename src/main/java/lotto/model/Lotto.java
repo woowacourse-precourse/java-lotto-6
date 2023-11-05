@@ -15,15 +15,23 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_SIZE.getMessage());
         }
-
         for (Integer number : numbers) {
             validateRange(number);
         }
+        validateDuplication(numbers);
     }
 
     public void validateRange(Integer number) {
         if (number > 45 || number < 1) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NUMBER.getMessage());
+        }
+    }
+
+    public void validateDuplication(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (numbers.contains(number)) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 

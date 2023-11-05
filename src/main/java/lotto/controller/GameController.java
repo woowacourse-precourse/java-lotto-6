@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Game;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.domain.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,7 +30,7 @@ public class GameController {
         int lotto_count = getLottoCount(price);
 
         //2) 구매 가능한 로또 개수만큼 로또 자동 발급 기능
-        List<Lotto> lotto_list = game.generateLottoList(lotto_count);
+        List<Lotto> lotto_list = LottoGenerator.generateLottoList(lotto_count);
 
         //3) 발급한 로또 번호 출력 기능
         OutputView.printLottoCount(lotto_count);

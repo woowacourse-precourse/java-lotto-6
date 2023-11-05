@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.config.AppConfig;
 
 public class LottoBuyer {
@@ -22,6 +23,7 @@ public class LottoBuyer {
             if (rank.equals(Rank.FAIL)) {
                 return;
             }
+
             Integer savedNum = result.get(rank);
             result.put(rank, ++savedNum);
         });

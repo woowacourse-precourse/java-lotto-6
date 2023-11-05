@@ -33,13 +33,13 @@ public class Lotto {
 
     public Rank match(Lotto targetLotto, int bonus) {
         List<Integer> target = targetLotto.numbers;
-        int count = checkWithTarget(target);
-        boolean canBeSecond = checkBonusIfUsable(count, bonus);
+        int count = countMatchedNumber(target);
+        boolean bonusMatched = checkBonusIfUsable(count, bonus);
 
-        return mappingWithRank(count, canBeSecond);
+        return mappingWithRank(count, bonusMatched);
     }
 
-    private int checkWithTarget(List<Integer> target) {
+    private int countMatchedNumber(List<Integer> target) {
         return (int) numbers.stream()
                 .filter(num -> target.contains(num))
                 .count();

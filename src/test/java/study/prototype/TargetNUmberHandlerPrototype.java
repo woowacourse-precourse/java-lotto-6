@@ -1,4 +1,4 @@
-package lotto.controller.input;
+package study.prototype;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -6,7 +6,8 @@ import java.util.List;
 import lotto.config.AppConfig;
 import lotto.domain.Lotto;
 
-public class TargetNumberHandler {
+public class TargetNUmberHandlerPrototype {
+
     private static final String INPUT_DELIMITER = ",";
     private static final String TARGET_INFO_MESSAGE = "정답인 6개의 로또번호를 입력해주세요.";
     private static final String TARGET_ERROR_MESSAGE = "[ERROR] 유효한 로또 정답 입력이 아닙니다.";

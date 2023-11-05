@@ -2,8 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.controller.input.PriceInputHandler;
-import lotto.controller.input.TargetNumberHandler;
+import lotto.input.PriceInputHandler;
+import lotto.input.TargetNumberHandler;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
 import lotto.domain.Rank;
@@ -31,8 +31,8 @@ public class LottoMachine {
     }
 
     private Map<Rank, Integer> matchLotto(LottoBuyer buyer) {
-        Lotto target = targetInputHandler.inputToTargetLotto();
-        int bonus = targetInputHandler.inputToBonusNumber(target);
+        Lotto target = targetInputHandler.setTargetLottoByInput();
+        int bonus = targetInputHandler.setBonusByInput(target);
 
         return buyer.checkAllLotto(target, bonus);
     }

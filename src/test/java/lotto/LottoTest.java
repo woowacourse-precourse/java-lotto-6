@@ -37,7 +37,7 @@ class LottoTest {
 
     @Test
     @DisplayName("1등은 모든 숫자가 맞아야 한다.")
-    void 등수확인1(){
+    void 등수확인_1등(){
         //given
         Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         int bonus = 7;
@@ -51,7 +51,7 @@ class LottoTest {
 
     @Test
     @DisplayName("2등은 5개의 숫자와 보너스 숫자가 맞아야한다.")
-    void 등수확인2(){
+    void 등수확인_2등(){
         //given
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
         int bonus = 7;
@@ -65,7 +65,7 @@ class LottoTest {
 
     @Test
     @DisplayName("3등은 5개의 숫자가 맞아야한다. 보너스는 틀려야한다.")
-    void 등수확인3(){
+    void 등수확인_3등(){
         //given
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,10));
         int bonus = 7;
@@ -78,7 +78,7 @@ class LottoTest {
     }
     @Test
     @DisplayName("4등은 4개의 숫자가 맞아야한다. 보너스는 무시한다.")
-    void 등수확인4(){
+    void 등수확인_4등(){
         //given
         Lotto lotto1 = new Lotto(List.of(1,2,3,4,12,13));
         Lotto lotto2 = new Lotto(List.of(1,2,3,4,7,11));
@@ -94,7 +94,7 @@ class LottoTest {
     }
     @Test
     @DisplayName("5등은 3개의 숫자가 맞아야한다. 보너스는 무시한다.")
-    void 등수확인5(){
+    void 등수확인_5등(){
         //given
         Lotto lotto1 = new Lotto(List.of(1,2,3,11,12,13));
         Lotto lotto2 = new Lotto(List.of(1,2,3,7,11,12));
@@ -112,7 +112,7 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("failSource")
     @DisplayName("0~2개는 FAIL에 매치된다. 보너스는 무시된다.")
-    void 등수확인6(List<Integer> list){
+    void 등수확인_무효(List<Integer> list){
         //given
         Lotto lotto = new Lotto(list);
         int bonus = 7;

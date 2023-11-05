@@ -1,4 +1,4 @@
-package lotto.controller.input;
+package lotto.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.AppConfig;
@@ -13,22 +13,31 @@ public class PriceInputHandler {
 
     public int dividePaymentIntoLottoPrice() {
         System.out.println(PURCHASE_INFO_MESSAGE);
-        String input = Console.readLine();
-        int price = validatePrice(input);
-        return price / AppConfig.LOTTO_PRICE;
+        int payment = getValidPayment();
+        return payment / AppConfig.LOTTO_PRICE;
     }
 
-    public int validatePrice(String input) {
-        try {
-            int price = Integer.parseInt(input);
-            validateRange(price, PURCHASE_MIN, PURCHASE_MAX);
-            validateUnit(price);
-            return price;
-        } catch (IllegalArgumentException e) {
-            System.out.println(PURCHASE_ERROR_MESSAGE);
-            String newInput = Console.readLine();
-            return validatePrice(newInput);
+    private int getValidPayment() {
+        boolean isInputInvalid = true;
+        int result = 0;
+
+        while (isInputInvalid){
+            try {
+                String input = Console.readLine();
+                result = parseInteger(input);
+                isInputInvalid = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(PURCHASE_ERROR_MESSAGE);
+            }
         }
+        return result;
+    }
+
+    private int parseInteger(String input) {
+        int price = Integer.parseInt(input);
+        validateRange(price, PURCHASE_MIN, PURCHASE_MAX);
+        validateUnit(price);
+        return price;
     }
 
     private void validateRange(int target, int start, int end) {

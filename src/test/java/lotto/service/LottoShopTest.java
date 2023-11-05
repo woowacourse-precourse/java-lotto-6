@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -29,8 +30,8 @@ public class LottoShopTest {
         Assertions.assertThat(createdNumbers.size()).isEqualTo(45);
     }
 
-    @DisplayName("생성기는 중복 숫자를 생성하지 않는다")
     @RepeatedTest(1000)
+    @DisplayName("생성기는 중복 숫자를 생성하지 않는다")
     void 로또숫자생성기_테스트2(){
         //given
         List<Integer> lottoNumbers = LottoShop.generateLottoNumber();
@@ -40,5 +41,11 @@ public class LottoShopTest {
 
         //then
         Assertions.assertThat(count).isEqualTo(lottoNumbers.size());
+    }
+
+    @Test
+    void 로또구매_테스트() {
+        List<Lotto> sell = LottoShop.sell(10);
+        Assertions.assertThat(sell.size()).isEqualTo(10);
     }
 }

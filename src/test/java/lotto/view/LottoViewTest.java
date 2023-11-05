@@ -23,9 +23,11 @@ public class LottoViewTest {
         map.put(Rank.FIFTH, 1);
         int pay = 1000;
 
+        //when
         double value = calculator.calculateRateOfReturn(map, pay);
         String string = lottoView.printRate(value);
 
+        //then
         assertThat(string).isEqualTo("총 수익률은 500.0%입니다.");
     }
 
@@ -34,8 +36,10 @@ public class LottoViewTest {
     @DisplayName("소숫점 둘째자리에서 5이상면 올린다.")
     void 수익률_출력형식_테스트2(double value) {
         //given
+        //when
         String string = lottoView.printRate(value);
 
+        //then
         assertThat(string).isEqualTo("총 수익률은 100.1%입니다.");
     }
 
@@ -44,8 +48,10 @@ public class LottoViewTest {
     @DisplayName("소숫점 둘째자리에서 4이하면 버린다.")
     void 수익률_출력형식_테스트3(double value) {
         //given
+        //when
         String string = lottoView.printRate(value);
 
+        //then
         assertThat(string).isEqualTo("총 수익률은 100.0%입니다.");
     }
 }

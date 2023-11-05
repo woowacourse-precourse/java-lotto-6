@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
 import lotto.domain.Rank;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -105,16 +106,29 @@ public class LottoBuyerUnitTest {
     @DisplayName("0~2개는 FAIL에 매치된다. 보너스는 무시된다.")
     void 로또바이어_무효_테스트() {
         //given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 11, 7, 10));
+        Lotto lotto = new Lotto(List.of(1, 2, 15, 11, 7, 10));
         lottoBuyer = new LottoBuyer(List.of(lotto));
 
         //when
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        Rank rank = map.keySet().stream()
+        long count = map.keySet().stream()
                 .filter(key -> map.get(key) == 1)
-                .findAny().get();
-        assertThat(rank).isEqualTo(Rank.FIFTH);
+                .count();
+        assertThat(count).isEqualTo(0);
+    }
+
+    @Test
+    void 로또바이어_지불액() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 15, 11, 7, 10));
+        lottoBuyer = new LottoBuyer(List.of(lotto));
+
+        //when
+        int payment = lottoBuyer.payment();
+
+        //then
+        Assertions.assertThat(payment).isEqualTo(1000);
     }
 }

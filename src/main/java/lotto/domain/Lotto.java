@@ -50,8 +50,9 @@ public class Lotto {
         }
     }
 
-    public LottoPrize checkPrize(Lotto winningLotto, int bonusNumber) {
+    public LottoPrize checkPrize(WinningLotto winningLotto) {
         int matchCount = getMatchCount(winningLotto);
+        int bonusNumber = winningLotto.getBonusNumber();
 
         if (matchCount == FIRST_PLACE.getMatchCount()) {
             return FIRST_PLACE;
@@ -67,7 +68,7 @@ public class Lotto {
         return NO_PLACE;
     }
 
-    private int getMatchCount(Lotto winningLotto) {
+    private int getMatchCount(WinningLotto winningLotto) {
         int matchCount = 0;
         for (Integer number : numbers) {
             if (winningLotto.contains(number)) {

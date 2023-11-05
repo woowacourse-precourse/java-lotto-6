@@ -15,25 +15,26 @@ public class WinResult {
     }
 
     private void initWinResult() {
-        winResult.put(WinnerRank.THREE.ordinal(), Number.WIN_RESULT_INIT.getValue());
-        winResult.put(WinnerRank.FOUR.ordinal(), Number.WIN_RESULT_INIT.getValue());
-        winResult.put(WinnerRank.FIVE_WITHOUT_BOUNUS.ordinal(), Number.WIN_RESULT_INIT.getValue());
-        winResult.put(WinnerRank.FIVE_WITH_BONUS.ordinal(), Number.WIN_RESULT_INIT.getValue());
-        winResult.put(WinnerRank.SIX.ordinal(), Number.WIN_RESULT_INIT.getValue());
+        winResult.put(WinnerRank.THREE.getValue(), 0);
+        winResult.put(WinnerRank.FOUR.getValue(), 0);
+        winResult.put(WinnerRank.FIVE_WITHOUT_BOUNUS.getValue(), 0);
+        winResult.put(WinnerRank.FIVE_WITH_BONUS.getValue(), 0);
+        winResult.put(WinnerRank.SIX.getValue(), 0);
     }
 
-    public void changeWinResult(int value) {
-
-    }
-    private void increaseWinResultValue(int value) {
-        winResult.put(value, winResult.get(value) + Number.PLUS_ONE.getValue());
+    public Integer getWinResultValue(int rankValue) {
+        return winResult.get(rankValue);
     }
 
-    private boolean isOverTwo(int sameNumberCount) {
-        return true;
+    public void increaseWinResultValue(int rankValue) {
+        winResult.put(rankValue, winResult.get(rankValue) + Number.PLUS_ONE.getValue());
     }
 
-    private boolean isFiveSame(int sameNumberCount) {
-        return true;
+    public boolean isOverTwo(int rankValue) {
+        return rankValue > 2;
+    }
+
+    public boolean isFiveSame(int rankValue) {
+        return rankValue == 5;
     }
 }

@@ -1,9 +1,8 @@
 package lotto.domain;
 
-public class BonusNumber {
-    private final int MIN_LOTTO_NUMBER = 1;
-    private final int MAX_LOTTO_NUMBER = 1;
+import lotto.util.LottoConstants;
 
+public class BonusNumber {
     Integer number;
 
     public BonusNumber(Integer number) {
@@ -18,6 +17,6 @@ public class BonusNumber {
     }
 
     private boolean isOutOfRangeNumber(Integer number) {
-        return number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER;
+        return number < LottoConstants.MIN_LOTTO_NUMBER.getValue() || number > LottoConstants.MAX_LOTTO_NUMBER.getValue();
     }
 }

@@ -1,10 +1,10 @@
 package lotto.domain;
 
+import lotto.util.LottoConstants;
+
 import java.util.List;
 
 public class WinningNumber {
-    private final int MIN_LOTTO_NUMBER = 1;
-    private final int MAX_LOTTO_NUMBER = 45;
     List<Integer> numbers;
 
     public WinningNumber(List<Integer> numbers) {
@@ -27,6 +27,6 @@ public class WinningNumber {
     }
 
     private boolean hasOutOfRangeNumbers(List<Integer> numbers) {
-        return numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER);
+        return numbers.stream().anyMatch(number -> number < LottoConstants.MIN_LOTTO_NUMBER.getValue() || number > LottoConstants.MAX_LOTTO_NUMBER.getValue());
     }
 }

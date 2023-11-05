@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.util.LottoConstants;
+
 import java.util.List;
 
 public class Lotto {
@@ -17,7 +19,7 @@ public class Lotto {
     }
 
     private boolean checkNumbersCount(List<Integer> numbers) {
-        return numbers.size() != 6;
+        return numbers.size() != LottoConstants.NUMBER_OF_LOTTO_NUMBERS.getValue();
     }
 
     private boolean hasDuplicates(List<Integer> numbers) {

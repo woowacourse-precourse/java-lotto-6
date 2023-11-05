@@ -3,9 +3,15 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 
+import lotto.common.ErrorType;
+
 public class Lotto {
-	private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
+
+	public static final int MIN_LOTTO_NUMBER = 1;
+	public static final int MAX_LOTTO_NUMBER = 45;
+	public static final int MAX_LOTTO_SIZE = 6;
+
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,7 +21,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6 || !areUnique(numbers) || !areInRange(numbers)) {
+        if (numbers.size() != MAX_LOTTO_SIZE
+			|| !areUnique(numbers) || !areInRange(numbers)) {
             throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER.getErrorMessage());
         }
     }

@@ -19,5 +19,9 @@ public class LottoService {
 		}
 	}
 
+	private Lotto generateRandomLotto() {
+		return new Lotto(Randoms.pickUniqueNumbersInRange(
+			Lotto.MIN_LOTTO_NUMBER, Lotto.MAX_LOTTO_NUMBER, Lotto.MAX_LOTTO_SIZE));
+	}
 
 }

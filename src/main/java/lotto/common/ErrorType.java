@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.common;
 
 public enum ErrorType {
 	INVALID_LOTTO_NUMBER("[ERROR] 로또 번호가 올바르지 않습니다."),

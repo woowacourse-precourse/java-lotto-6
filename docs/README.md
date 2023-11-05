@@ -41,3 +41,7 @@
 <br>
 
 ### 2. 테스트 코드
+
++ [x] ApplicationTest 진행
++ [x] LottoTest 코드 참고하여 테스트 코드 추가 작성
++ [x] MoneyTest 코드 작성

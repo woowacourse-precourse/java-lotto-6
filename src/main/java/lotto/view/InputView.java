@@ -103,11 +103,14 @@ public class InputView {
         if (inputBonus.contains(" ")) {
             throw new IllegalArgumentException(VALIDATE_CONTAIN_WHITE_SPACE_MESSAGE);
         }
-        int bonusNumber;
         try {
-            bonusNumber = Integer.parseInt(inputBonus);
+            int bonusNumber = Integer.parseInt(inputBonus);
             if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            Set<Integer> uniqueNumbers = new HashSet<>(answerNumber);
+            if (!uniqueNumbers.add(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복된 숫자입니다.");
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(VALIDATE_STRING_TO_INT_MESSAGE);

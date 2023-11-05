@@ -1,7 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.LotteryResult;
+import lotto.domain.LotteryNumbers;
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.Player;
 import lotto.domain.PurchasePrice;
 import lotto.service.LottoService;
@@ -38,7 +39,8 @@ public class LottoController {
         output.requestPurchasePrice();
         PurchasePrice purchasePrice = createPurchasePrice();
         output.purchaseCount(purchasePrice);
-        return lottoService.createPlayer(purchasePrice);
+        Lottos lottos = lottoService.purchaseLottos(purchasePrice);
+        return Player.of(purchasePrice, lottos);
     }
 
     private PurchasePrice createPurchasePrice() {
@@ -50,19 +52,30 @@ public class LottoController {
     }
 
     private void play(Player player) {
-
-        LotteryResult lotteryResult = createLotteryResult();
+        LotteryNumbers lotteryNumbers = createLotteryResult();
+        lottoService.compareLotteryResult(player, lotteryNumbers);
     }
 
-    private LotteryResult createLotteryResult() {
+    /*
+     *   이 부분으로 밑에까지 다시 한번 확인해보기
+     * */
+    private LotteryNumbers createLotteryResult() {
         output.requestWinningNumbers();
         Lotto winningLotto = createWinningLotto();
         output.requestBonusNumber();
+        int bonusNumber = tryCreateBonusNumber(winningLotto);
+        return LotteryNumbers.of(winningLotto, bonusNumber);
+    }
+
+    private int tryCreateBonusNumber(Lotto winningLotto) {
+        int bonusNumber = createBonusNumber();
+        System.out.println(bonusNumber);
         try {
-            return LotteryResult.of(winningLotto, createBonusNumber());
+            LotteryNumbers.of(winningLotto, bonusNumber);
         } catch (IllegalArgumentException e) {
-            return LotteryResult.of(winningLotto, createBonusNumber());
+            return tryCreateBonusNumber(winningLotto);
         }
+        return bonusNumber;
     }
 
     private Lotto createWinningLotto() {

@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-import Config.ErrorMessage;
+import config.ErrorMessage;
 
 public class Money {
 
@@ -8,38 +8,39 @@ public class Money {
     public final static int ROUND_DIGIT = 1;
     public final static int MONEY_UNIT = 1_000;
 
-    public Money(String inputMoney){
+    public Money(String inputMoney) {
         int money = validateNumeric(inputMoney);
         validateMultiple(money);
         validatePositive(money);
         this.money = money;
     }
 
-    public int getLottoNumber(){
+    public int getLottoNumber() {
         return money/MONEY_UNIT;
     }
 
-    public String getYield(int winning){
+    public String getYield(int winning) {
         String roundFormat = "%.".concat(Integer.toString(ROUND_DIGIT).concat("f"));
         return String.format(roundFormat, (double)winning * 100 / money).concat("%");
     }
 
-    private int validateNumeric(String money){
+    private int validateNumeric(String money) {
         try {
             return Integer.parseInt(money);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC.getErrorMessage());
         }
     }
 
-    private void validateMultiple(int money){
-        if (money % MONEY_UNIT != 0){
-            throw new IllegalArgumentException(String.format(ErrorMessage.NON_MULTIPLE.getErrorMessage(), MONEY_UNIT));
+    private void validateMultiple(int money) {
+        if (money % MONEY_UNIT != 0) {
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.NON_MULTIPLE.getErrorMessage(), MONEY_UNIT));
         }
     }
 
-    private void validatePositive(int money){
-        if (money <= 0){
+    private void validatePositive(int money) {
+        if (money <= 0) {
             throw new IllegalArgumentException(ErrorMessage.POSITIVE.getErrorMessage());
         }
     }

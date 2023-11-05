@@ -1,8 +1,7 @@
-package Model;
+package model;
 
-import Config.ErrorMessage;
-import Config.GameConfig;
-
+import config.ErrorMessage;
+import config.GameConfig;
 import java.util.List;
 
 public class Bonus {
@@ -35,7 +34,7 @@ public class Bonus {
     }
 
     private void validateDuplicateWinning(Winning winning, int bonus){
-        if (winning.isContain(bonus)){
+        if (winning.containBonus(bonus)){
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS.getErrorMessage());
         }
     }

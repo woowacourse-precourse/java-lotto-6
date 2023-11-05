@@ -1,15 +1,18 @@
-package Model;
+package model;
 
-import Config.ErrorMessage;
-import Config.GameConfig;
-
-import java.util.*;
+import config.ErrorMessage;
+import config.GameConfig;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Winning {
 
     private final List<Integer> winnings;
 
-    public Winning(String inputWinning){
+    public Winning(String inputWinning) {
         List<Integer> winnings = validateNumeric(inputWinning);
         validateSize(winnings);
         validateRange(winnings);
@@ -18,28 +21,28 @@ public class Winning {
         this.winnings = winnings;
     }
 
-    public int countMatch(List<Integer> numbers){
+    public int countMatch(List<Integer> numbers) {
         int count = 0;
-        for (int number : numbers){
-            if (winnings.contains(number)){
+        for (int number : numbers) {
+            if (winnings.contains(number)) {
                 count += 1;
             }
         }
         return count;
     }
 
-    public boolean isContain(int bonus){
+    public boolean containBonus(int bonus) {
         return winnings.contains(bonus);
     }
 
-    private List<Integer> validateNumeric(String inputWinning){
+    private List<Integer> validateNumeric(String inputWinning) {
         List<String> tempWinnings = List.of(inputWinning.split(GameConfig.SEPARATOR));
         List<Integer> winnings = new ArrayList<>();
-        for (String tempWinning : tempWinnings){
+        for (String tempWinning : tempWinnings) {
             tempWinning = tempWinning.strip();
-            try{
+            try {
                 winnings.add(Integer.parseInt(tempWinning));
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC.getErrorMessage());
             }
         }
@@ -48,23 +51,24 @@ public class Winning {
 
     private void validateSize(List<Integer> winnings) {
         if (winnings.size() != GameConfig.LOTTO_NUMBER) {
-            throw new IllegalArgumentException(String.format(ErrorMessage.INVALID_NUMBER.getErrorMessage(), GameConfig.SEPARATOR, GameConfig.LOTTO_NUMBER));
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.INVALID_NUMBER.getErrorMessage(), GameConfig.SEPARATOR, GameConfig.LOTTO_NUMBER));
         }
     }
 
     private void validateRange(List<Integer> winnings){
-        for (int winning : winnings){
-            if (winning < GameConfig.MIN_LOTTO || winning > GameConfig.MAX_LOTTO){
-                throw new IllegalArgumentException(String.format(ErrorMessage.NOT_IN_RANGE.getErrorMessage(), GameConfig.MIN_LOTTO, GameConfig.MAX_LOTTO));
+        for (int winning : winnings) {
+            if (winning < GameConfig.MIN_LOTTO || winning > GameConfig.MAX_LOTTO) {
+                throw new IllegalArgumentException(
+                        String.format(ErrorMessage.NOT_IN_RANGE.getErrorMessage(), GameConfig.MIN_LOTTO, GameConfig.MAX_LOTTO));
             }
         }
     }
 
-    private void validateDuplicate(List<Integer> winnings){
+    private void validateDuplicate(List<Integer> winnings) {
         Set<Integer> duplicationTester = new HashSet<>(winnings);
-        if (duplicationTester.size() != winnings.size()){
+        if (duplicationTester.size() != winnings.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getErrorMessage());
         }
     }
-
 }

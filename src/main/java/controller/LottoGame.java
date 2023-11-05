@@ -1,11 +1,11 @@
-package Controller;
+package controller;
 
-import Model.Bonus;
-import Model.Money;
-import Model.Player;
-import Model.Winning;
-import View.InputView;
-import View.OutputView;
+import model.Bonus;
+import model.Money;
+import model.Player;
+import model.Winning;
+import view.InputView;
+import view.OutputView;
 
 public class LottoGame {
 
@@ -14,19 +14,19 @@ public class LottoGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
-    public void startGame(){
+    public void startGame() {
         initLotto();
         progressLotto();
         finishLotto();
     }
 
-    private void initLotto(){
+    private void initLotto() {
         Money money = null;
-        do{
-            try{
+        do {
+            try {
                 outputView.printMoney();
                 money = inputView.getMoney();
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
         } while(money == null);
@@ -35,42 +35,39 @@ public class LottoGame {
         outputView.printBuying(player.checkLotto());
     }
 
-    private void progressLotto(){
+    private void progressLotto() {
         Winning winning = initWinning();
         Bonus bonus = initBonus(winning);
         player.announceWinning(winning, bonus);
     }
 
-    private Winning initWinning(){
+    private Winning initWinning() {
         Winning winning = null;
-        do{
-            try{
+        do {
+            try {
                 outputView.printWinning();
                 winning = inputView.getWinning();
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
         } while(winning == null);
         return winning;
     }
 
-    private Bonus initBonus(Winning winning){
+    private Bonus initBonus(Winning winning) {
         Bonus bonus = null;
-        do{
-            try{
+        do {
+            try {
                 outputView.printBonus();
                 bonus = inputView.getBonus(winning);
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
         } while(bonus == null);
         return bonus;
     }
 
-
-
-    private void finishLotto(){
+    private void finishLotto() {
         outputView.printStatistics(player.checkWinning(), player.calculateYield());
     }
-
 }

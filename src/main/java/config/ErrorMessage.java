@@ -1,6 +1,7 @@
-package Config;
+package config;
 
 public enum ErrorMessage {
+
     NON_NUMERIC("숫자를 입력하여야 합니다."),
     NON_MULTIPLE("%d 원 단위로 입력하여야 합니다."),
     POSITIVE("0보다 큰 숫자를 입력하여야 합니다."),
@@ -12,11 +13,11 @@ public enum ErrorMessage {
     private final String errorMessage;
     private final static String errorPrefix = "[ERROR] ";
 
-    ErrorMessage(String errorMessage){
+    ErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
-    public String getErrorMessage(){
+    public String getErrorMessage() {
         return errorPrefix.concat(errorMessage);
     }
 }

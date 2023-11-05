@@ -1,21 +1,21 @@
-package View;
+package view;
 
-import Model.Bonus;
-import Model.Money;
-import Model.Winning;
+import model.Bonus;
+import model.Money;
+import model.Winning;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public Money getMoney(){
+    public Money getMoney() {
         return new Money(Console.readLine());
     }
 
-    public Winning getWinning(){
+    public Winning getWinning() {
         return new Winning(Console.readLine());
     }
 
-    public Bonus getBonus(Winning winning){
+    public Bonus getBonus(Winning winning) {
         return new Bonus(Console.readLine(), winning);
     }
 }

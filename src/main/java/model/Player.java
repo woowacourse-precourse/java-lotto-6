@@ -1,8 +1,7 @@
-package Model;
+package model;
 
-import Config.GameConfig;
+import config.GameConfig;
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,34 +14,35 @@ public class Player {
     private Bonus bonus;
     private int winningMoney;
 
-    public Player(Money money){
+    public Player(Money money) {
         this.money = money;
     }
 
-    public void buyLotto(){
+    public void buyLotto() {
         int lottoNumber = money.getLottoNumber();
-        for (int trial = 0; trial < lottoNumber; trial++){
-            lottoBundle.add(new Lotto(Randoms.pickUniqueNumbersInRange(GameConfig.MIN_LOTTO, GameConfig.MAX_LOTTO, GameConfig.LOTTO_NUMBER)));
+        for (int trial = 0; trial < lottoNumber; trial++) {
+            lottoBundle.add(new Lotto(
+                    Randoms.pickUniqueNumbersInRange(GameConfig.MIN_LOTTO, GameConfig.MAX_LOTTO, GameConfig.LOTTO_NUMBER)));
         }
     }
 
-    public List<String> checkLotto(){
+    public List<String> checkLotto() {
         List<String> LottoNumbers = new ArrayList<>();
-        for (Lotto lotto : lottoBundle){
+        for (Lotto lotto : lottoBundle) {
             LottoNumbers.add(lotto.getLotto());
         }
         return LottoNumbers;
     }
 
-    public void announceWinning(Winning winning, Bonus bonus){
+    public void announceWinning(Winning winning, Bonus bonus) {
         this.winning = winning;
         this.bonus = bonus;
         this.winningMoney = 0;
     }
 
-    public List<Integer> checkWinning(){
+    public List<Integer> checkWinning() {
         List<Integer> winningRank = new ArrayList<>(Collections.nCopies(GameConfig.WINNING.values().length, 0));
-        for (Lotto lotto : lottoBundle){
+        for (Lotto lotto : lottoBundle) {
             int rank = lotto.getResult(winning, bonus);
             if (rank >= GameConfig.WINNING.valueOfMaxMatch().getRank() && rank <= GameConfig.WINNING.valueOfMinMatch().getRank()) {
                 winningMoney += GameConfig.WINNING.valueOfRank(rank).getPrice();
@@ -52,8 +52,7 @@ public class Player {
         return winningRank;
     }
 
-    public String calculateYield(){
+    public String calculateYield() {
         return money.getYield(winningMoney);
     }
-
 }

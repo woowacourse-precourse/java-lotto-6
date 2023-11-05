@@ -1,31 +1,33 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.Templates;
 
 public class InputView {
-    private final String buyMessage = "구입금액을 입력해 주세요.";
-    private final String getPrizingNumbersMessage = "\n당첨 번호를 입력해 주세요.";
-    private final String getBonusNumberMessage = "\n보너스 번호를 입력해 주세요.";
-
     public String getUserBuyAmount() {
-        System.out.println(buyMessage);
+        print(Templates.BUY_MESSAGE);
         String amount = Console.readLine();
 
         return amount;
     }
 
     public String getPrizingNumbers() {
-        System.out.println(getPrizingNumbersMessage);
+        print(Templates.GET_PRIZING_NUMBERS_MESSAGE);
         String numbers = Console.readLine();
 
         return numbers;
     }
 
     public String getBonusNumbers() {
-        System.out.println(getBonusNumberMessage);
+        print(Templates.GET_BONUS_NUMBER_MESSAGE);
         String bonus = Console.readLine();
 
         return bonus;
+    }
+
+
+    private void print(Templates string) {
+        System.out.println(string);
     }
 
 }

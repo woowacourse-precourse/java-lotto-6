@@ -56,38 +56,27 @@ public class Controller {
     private void play() {
 
         int[] correct = new int[8];
-        int check = 0;
+        int check_each = 0;
 
         for (int i = 0; i < moneyRepository.getTrial(); i++) {
-            for (int j = 0; j < 6; j++) {
-                int current = userlottoList.get(j);
-                for (int k = 0; k < 6; k++) {
-                    if (current == lottosList.get(i).get(k)) {
-                        check++;
-                    }
+            check_each = lottoService.compareLottoList(i, userlottoList, lottosList, check_each);
+            correct = compareCorrectLotto(check_each);
 
-                    if (check == 5) {
-                        for (int m = 0; m < 6; m++) {
-                            if (bonus == lottosList.get(i).get(m)) {
-                                check = 7;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-            if(check == 3) {
-                correct[3]++;
-            }
-            if(check == 4) {
-                correct[4]++;
-            }
-            if(check == 5) correct[5]++;
-            if(check == 6) correct[6]++;
-            if(check == 7) correct[7]++; // 보너스
-            check = 0;
+            check_each = 0;
         }
         OutputView.printRevenue(correct, moneyRepository.getMoney());
+    }
+
+    public int[] compareCorrectLotto(int check) {
+        int[] correct = new int[8];
+
+        if(check == 3) correct[3]++;
+        if(check == 4) correct[4]++;
+        if(check == 5) correct[5]++;
+        if(check == 6) correct[6]++;
+        if(check == 7) correct[7]++; // 보너스
+
+        return correct;
     }
 
 

@@ -10,17 +10,17 @@ public class LottoMatcher {
     private List<Long> correctWinningsCount = new ArrayList<>();
     private List<Boolean> correctBonuses = new ArrayList<>();
 
-    public LottoMatcher(Lotto userNumbers, Lotto winningNumber) {
+    public LottoMatcher(List<Integer> userNumbers, List<Integer> winningNumber) {
         this.correctWinningCount = calculateCorrectWinning(userNumbers, winningNumber);
     }
 
-    public LottoMatcher(Lotto userNumbers, Lotto winningNumber, int bonusNumber) {
+    public LottoMatcher(List<Integer> userNumbers, List<Integer> winningNumber, int bonusNumber) {
         this.correctWinningCount = calculateCorrectWinning(userNumbers, winningNumber);
         this.correctBonus = calculateCorrectBonus(userNumbers, bonusNumber);
     }
 
-    public LottoMatcher(List<Lotto> userNumbers, Lotto winningNumber, int bonusNumber) {
-        for (Lotto userNumber : userNumbers) {
+    public LottoMatcher(List<List<Integer>> userNumbers, List<Integer> winningNumber, int bonusNumber) {
+        for(List<Integer> userNumber: userNumbers) {
             long winning = calculateCorrectWinning(userNumber, winningNumber);
             boolean bonus = calculateCorrectBonus(userNumber, bonusNumber);
 
@@ -29,20 +29,21 @@ public class LottoMatcher {
                 correctWinningsCount.add(winning + 1);
                 continue;
             }
+
             correctWinningsCount.add(winning);
         }
     }
 
-    public long calculateCorrectWinning(Lotto userNumbers, Lotto winningNumbers) {
-        long correctCount = userNumbers.getLottoNumbers().stream()
-                .filter(userNumber -> winningNumbers.getLottoNumbers().contains(userNumber))
+    public long calculateCorrectWinning(List<Integer> userNumbers, List<Integer> winningNumbers) {
+        long correctCount = userNumbers.stream()
+                .filter(userNumber -> winningNumbers.contains(userNumber))
                 .count();
 
         return correctCount;
     }
 
-    public boolean calculateCorrectBonus(Lotto userNumbers, int bonusNumber) {
-        return userNumbers.getLottoNumbers().contains(bonusNumber);
+    public boolean calculateCorrectBonus(List<Integer> userNumbers, int bonusNumber) {
+        return userNumbers.contains(bonusNumber);
     }
 
     public long getCorrectWinningCount() {

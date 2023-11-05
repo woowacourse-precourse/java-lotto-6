@@ -13,8 +13,8 @@ public class LottoMatcherTest {
     @Test
     void calculateOneCorrectWinning() {
         //given
-        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningNumbers = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(7, 8, 9, 10, 11, 12);
 
         //when
         LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
@@ -28,8 +28,8 @@ public class LottoMatcherTest {
     @Test
     void calculateTwoCorrectWinning() {
         //given
-        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningNumbers = new Lotto(List.of(1, 7, 8, 9, 10, 11));
+        List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 7, 8, 9, 10, 11);
 
         //when
         LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
@@ -43,8 +43,8 @@ public class LottoMatcherTest {
     @Test
     void calculateThreeCorrectWinning() {
         //given
-        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningNumbers = new Lotto(List.of(1, 2, 7, 8, 9, 10));
+        List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 7, 8, 9, 10);
 
         //when
         LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
@@ -58,8 +58,8 @@ public class LottoMatcherTest {
     @Test
     void calculateFourCorrectWinning() {
         //given
-        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9);
 
         //when
         LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
@@ -73,8 +73,8 @@ public class LottoMatcherTest {
     @Test
     void calculateFiveCorrectWinning() {
         //given
-        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+        List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 7, 8);
 
         //when
         LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
@@ -88,8 +88,8 @@ public class LottoMatcherTest {
     @Test
     void calculateSixCorrectWinning() {
         //given
-        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
 
         //when
         LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
@@ -103,8 +103,8 @@ public class LottoMatcherTest {
     @Test
     void calculateNotAllCorrectWinning() {
         //given
-        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningNumbers = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(7, 8, 9, 10, 11, 12);
         int bonusNumber = 6;
 
         //when
@@ -119,8 +119,8 @@ public class LottoMatcherTest {
     @Test
     void calculateAllCorrectWinning() {
         //given
-        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningNumbers = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(7, 8, 9, 10, 11, 12);
         int bonusNumber = 13;
 
         //when
@@ -135,8 +135,8 @@ public class LottoMatcherTest {
     @Test
     void calculateAllCorrectWinningWithBonusNumber() {
         //given
-        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 7, 13));
-        Lotto winningNumbers = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        List<Integer> userNumbers = List.of(1, 2, 3, 4, 7, 13);
+        List<Integer> winningNumbers = List.of(7, 8, 9, 10, 11, 12);
         int bonusNumber = 13;
 
         //when
@@ -153,13 +153,13 @@ public class LottoMatcherTest {
     @Test
     void calculateAllCorrectWinningByUser() {
         //given
-        List<Lotto> userNumbers = new ArrayList<>();
-        Lotto firstUserNumber = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        Lotto secondUserNumber = new Lotto(List.of(1, 2, 3, 4, 7, 13));
+        List<List<Integer>> userNumbers = new ArrayList<>();
+        List<Integer> firstUserNumber = List.of(1, 2, 3, 4, 5, 7);
+        List<Integer> secondUserNumber = List.of(1, 2, 3, 4, 7, 13);
         userNumbers.add(firstUserNumber);
         userNumbers.add(secondUserNumber);
 
-        Lotto winningNumbers = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        List<Integer> winningNumbers = List.of(7, 8, 9, 10, 11, 12);
         int bonusNumber = 13;
 
         //when

@@ -11,8 +11,9 @@ public class Application {
     final static int lottolength = 6;
     final static int coinStandard = 1000; 
     static int inputCoin;
-    static List<List<Integer>> lottoTotal = new ArrayList<>();
+    static int bonusNumber;
     static List<Integer> winningLotto = new ArrayList<>();
+    static List<List<Integer>> lottoTotal = new ArrayList<>();
 
     public static void CoinValidate(int inputCoin){
         if (inputCoin % coinStandard != 0)
@@ -48,11 +49,26 @@ public class Application {
         }
     }
 
+    public static void BonusNumberInput(){
+        System.out.println("보너스 번호를 입력해주세요");
+        bonusNumber = Integer.parseInt(Console.readLine());
+    }
+
+    public static void WinningLottoInput(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        for(String lottoNumber : Console.readLine().split(",")){
+            winningLotto.add(Integer.parseInt(lottoNumber));
+        }
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         GetCoin();
         System.out.println();
         GetLottos();
         System.out.println();
+        WinningLottoInput();
+        System.out.println();
+        BonusNumberInput();
     }
 }

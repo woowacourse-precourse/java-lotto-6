@@ -5,10 +5,16 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class Application {
+    private static final LottoHandler lottoHandler = new LottoHandler();
+
     public static void main(String[] args) {
-        boolean validPrice = false;
+        int numberOfLotto = lottoCountForPurchasePrice();
+        List<Lotto> lottos = lottoHandler.issueLottoNumbers(numberOfLotto);
+    }
+
+    private static int lottoCountForPurchasePrice() {
         int lottoTicket = 0;
-        LottoHandler lottoHandler = new LottoHandler();
+        boolean validPrice = false;
 
         while (!validPrice) {
             try {
@@ -19,6 +25,6 @@ public class Application {
                 OutputHandler.printMessage(e.getMessage());
             }
         }
-        List<Lotto> lottoNumbers = lottoHandler.issueLottoNumbers(lottoTicket);
+        return lottoTicket;
     }
 }

@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
-    public void run() {
-        Output output = new Output();
+    final String SPLIT_SYMBOL = ",";
+    final Input input = new Input();
+    final Output output = new Output();
 
+    public void run() {
         LottoCost lottoCost = createLottoCost();
         int lottoTicket = lottoCost.getTicket();
         output.printNumberOfPurchase(lottoTicket);
@@ -16,17 +18,15 @@ public class LottoController {
         HashMap<Integer, List<Integer>> randomLottoNumbers = lottoGenerate.getRandomLottoNumbers();
         output.printRandomLottoNumbers(randomLottoNumbers);
 
-        List<Integer> winningNumbers = getWinningNumbers();
+        Lotto lotto = createWinningNumber();
     }
 
     private LottoCost createLottoCost() {
-        Input input = new Input();
-        String cost;
         LottoCost lottoCost = null;
         boolean loop = true;
 
         while (loop) {
-            cost = input.buyLotto();
+            String cost = input.buyLotto();
             try {
                 lottoCost = new LottoCost(cost);
                 loop = false;
@@ -34,16 +34,37 @@ public class LottoController {
                 System.err.println(e.getMessage());
             }
         }
+
         return lottoCost;
     }
 
-    private List<Integer> getWinningNumbers() {
-        Input input = new Input();
-        List<String> inputWinningNumbers = Arrays.asList(input.winningNumbers().split(","));
+    private Lotto createWinningNumber() {
+        Lotto lotto = null;
+        boolean loop = true;
 
-        List<Integer> winningNumbers = inputWinningNumbers.stream().map(Integer::valueOf).toList();
-        Lotto lotto = new Lotto(winningNumbers);
+        while (loop) {
+            List<String> inputWinningNumbers = Arrays.asList(input.winningNumbers().split(SPLIT_SYMBOL));
+            System.out.println(inputWinningNumbers);
+            try {
+                isNumber(inputWinningNumbers);
+                lotto = new Lotto(inputWinningNumbers.stream().map(Integer::valueOf).toList());
+                loop = false;
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
 
-        return List.of(1);
+        return lotto;
+    }
+
+    public void isNumber(List<String> inputWinningNumbers) {
+        boolean hasOnlyNum;
+
+        for (String number : inputWinningNumbers) {
+            hasOnlyNum = !number.isEmpty() && number.chars().allMatch(Character::isDigit);
+            if (!hasOnlyNum) {
+                throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_NUMBER.getMessage());
+            }
+        }
     }
 }

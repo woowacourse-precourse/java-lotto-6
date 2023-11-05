@@ -1,4 +1,4 @@
-package lotto.validation.enumType;
+package lotto.validation.constant;
 
 public enum BonusNumber {
 

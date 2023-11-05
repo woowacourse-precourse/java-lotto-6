@@ -1,8 +1,8 @@
 package lotto.validation;
 
-import static lotto.validation.enumType.AmountInput.NUMERIC_FORMAT_MESSAGE;
-import static lotto.validation.enumType.AmountInput.POSITIVE_MESSAGE;
-import static lotto.validation.enumType.AmountInput.VALUE_DIVIDE_MESSAGE;
+import static lotto.validation.constant.AmountInput.NUMERIC_FORMAT_MESSAGE;
+import static lotto.validation.constant.AmountInput.POSITIVE_MESSAGE;
+import static lotto.validation.constant.AmountInput.VALUE_DIVIDE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

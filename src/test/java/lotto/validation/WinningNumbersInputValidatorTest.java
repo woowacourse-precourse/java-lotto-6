@@ -1,9 +1,9 @@
 package lotto.validation;
 
-import static lotto.validation.enumType.WinningNumbers.CHECK_COMMA_MESSAGE;
-import static lotto.validation.enumType.WinningNumbers.DUPLICATE_MESSAGE;
-import static lotto.validation.enumType.WinningNumbers.NUMBERS_COUNT_MESSAGE;
-import static lotto.validation.enumType.WinningNumbers.NUMBER_RANGE_MESSAGE;
+import static lotto.validation.constant.WinningNumbers.CHECK_COMMA_MESSAGE;
+import static lotto.validation.constant.WinningNumbers.DUPLICATE_MESSAGE;
+import static lotto.validation.constant.WinningNumbers.NUMBERS_COUNT_MESSAGE;
+import static lotto.validation.constant.WinningNumbers.NUMBER_RANGE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

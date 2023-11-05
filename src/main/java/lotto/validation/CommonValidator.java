@@ -1,8 +1,8 @@
 package lotto.validation;
 
-import static lotto.validation.enumType.Common.EMPTY_MESSAGE;
-import static lotto.validation.enumType.Common.NULL_MESSAGE;
-import static lotto.validation.enumType.Common.SPACE_MESSAGE;
+import static lotto.validation.constant.Common.EMPTY_MESSAGE;
+import static lotto.validation.constant.Common.NULL_MESSAGE;
+import static lotto.validation.constant.Common.SPACE_MESSAGE;
 
 public class CommonValidator {
 

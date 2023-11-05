@@ -1,6 +1,6 @@
 package lotto.validation;
 
-import static lotto.validation.enumType.BonusNumber.DUPLICATION_BONUS_NUMBER;
+import static lotto.validation.constant.BonusNumber.DUPLICATION_BONUS_NUMBER;
 
 import java.util.Arrays;
 import java.util.List;

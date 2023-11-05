@@ -1,4 +1,4 @@
-package lotto.validation.enumType;
+package lotto.validation.constant;
 
 public enum AmountInput {
     NUMERIC_FORMAT_MESSAGE("[ERROR] 숫자만 입력할 수 있습니다."),

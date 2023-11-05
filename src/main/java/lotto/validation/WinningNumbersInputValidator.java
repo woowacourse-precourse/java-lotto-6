@@ -1,14 +1,14 @@
 package lotto.validation;
 
-import static lotto.validation.enumType.WinningNumbers.CHECK_COMMA_MESSAGE;
-import static lotto.validation.enumType.WinningNumbers.CHECK_SPLIT_COUNT;
-import static lotto.validation.enumType.WinningNumbers.COUNT_NUMBERS;
-import static lotto.validation.enumType.WinningNumbers.DUPLICATE_MESSAGE;
-import static lotto.validation.enumType.WinningNumbers.LOTTO_MAX_NUMBER;
-import static lotto.validation.enumType.WinningNumbers.LOTTO_MIN_NUMBER;
-import static lotto.validation.enumType.WinningNumbers.NUMBERS_COUNT_MESSAGE;
-import static lotto.validation.enumType.WinningNumbers.NUMBER_RANGE_MESSAGE;
-import static lotto.validation.enumType.WinningNumbers.SPLIT_MESSAGE;
+import static lotto.validation.constant.WinningNumbers.CHECK_COMMA_MESSAGE;
+import static lotto.validation.constant.WinningNumbers.CHECK_SPLIT_COUNT;
+import static lotto.validation.constant.WinningNumbers.COUNT_NUMBERS;
+import static lotto.validation.constant.WinningNumbers.DUPLICATE_MESSAGE;
+import static lotto.validation.constant.WinningNumbers.LOTTO_MAX_NUMBER;
+import static lotto.validation.constant.WinningNumbers.LOTTO_MIN_NUMBER;
+import static lotto.validation.constant.WinningNumbers.NUMBERS_COUNT_MESSAGE;
+import static lotto.validation.constant.WinningNumbers.NUMBER_RANGE_MESSAGE;
+import static lotto.validation.constant.WinningNumbers.SPLIT_MESSAGE;
 
 import java.util.Arrays;
 import java.util.HashSet;

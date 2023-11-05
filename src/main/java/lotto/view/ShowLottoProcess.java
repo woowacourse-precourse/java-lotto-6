@@ -36,4 +36,10 @@ public class ShowLottoProcess {
         process.pickBonusNumber();
         System.out.println();
     }
+
+    public void printStatisticResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(process.showStatisticResult());
+    }
 }

@@ -72,6 +72,14 @@ class LottoTest {
         Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.UNDER_THREE);
     }
+    @DisplayName("로또 번호랑 보너스 번호를 비교를 한다. : 5개 일치인 경우")
+    @Test
+    void compareLottoWithGivenLottoFiveBonus() {
+        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 10));
+        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Integer bonusNumber = 10;
+        assertThat(userLotto.matchUp(answerLotto,bonusNumber)).isEqualTo(LottoResult.FIVE_PLUS_BONUS);
+    }
 
 
 }

@@ -6,32 +6,69 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-    public static int getLottoPurchaseAmount(){
-        String input = Console.readLine();
+    public static int getValidLottoPurchaseAmount() {
+        boolean hasException = true;
+        int validAmount = 0;
 
-        int lottoPurchaseAmount = checkIntegerFormat(input);
-        checkDivisibilityBy1000(lottoPurchaseAmount);
+        while(hasException){ //exception 발생시 계속 반복
+            try{
+                validAmount = getLottoPurchaseAmount();
+                hasException=false;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
-        return lottoPurchaseAmount/1000;
+        return validAmount;
     }
 
+    public static List<Integer> getValidLottoWinningNumbers(){
+        boolean hasException = true;
+        List<Integer> validNumbers = null;
+
+        while(hasException){ //exception 발생시 계속 반복
+            try{
+                validNumbers = getLottoWinningNumbers();
+                hasException=false;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return validNumbers;
+    }
+
+    public static int getLottoPurchaseAmount(){
+        String input = Console.readLine();
+        int lottoPurchaseAmount = checkIntegerFormat(input);
+        checkDivisibilityBy1000(lottoPurchaseAmount);
+        return lottoPurchaseAmount/1000;
+    }
     public static List<Integer> getLottoWinningNumbers(){
         String[] inputs = Console.readLine().split(",");
         List<Integer> lottoWinningNumbers = new ArrayList<>();
 
         for(String input : inputs) {
             int checkedInput = checkIntegerFormat(input);
-            isValidRange(checkedInput);
+            checkRange(checkedInput);
+            checkDuplicateNumber(lottoWinningNumbers, checkedInput);
             lottoWinningNumbers.add(checkedInput);
         }
         return lottoWinningNumbers;
     }
 
-    public static int getBonusNumber(){
+    public static int getBonusNumber(List<Integer> lottoWinningNumbers){
         String input = Console.readLine();
         int bonusNumber = checkIntegerFormat(input);
-        isValidRange(bonusNumber);
+        checkRange(bonusNumber);
+        checkDuplicateNumber(lottoWinningNumbers, bonusNumber);
         return bonusNumber;
+    }
+
+    private static void checkDuplicateNumber(List<Integer> lottoWinningNumbers, int bonusNumber) {
+        if (lottoWinningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
     }
 
     private static void checkDivisibilityBy1000(int number) {
@@ -46,7 +83,7 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
         }
     }
-    public static void isValidRange(int number){
+    public static void checkRange(int number){
         if(number < 1 || number > 45){
             throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력학세요.");
         }

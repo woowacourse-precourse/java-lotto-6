@@ -22,7 +22,6 @@ public class Validate {
         try {
             Long.parseLong(replaceNumber);
         } catch (NumberFormatException e) {
-            System.out.println("원데 >>> "+replaceNumber);
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
         }
         if (sixNumber.split(",").length != 6) {

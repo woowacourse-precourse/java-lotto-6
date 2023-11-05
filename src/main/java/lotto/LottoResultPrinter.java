@@ -35,7 +35,8 @@ public class LottoResultPrinter {
                 winningAmount += 2000000000;
             }
         }
-
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
         System.out.println("3개 일치 (5,000원) - "+threeMatchCount+"개");
         System.out.println("4개 일치 (50,000원) - "+fourMatchedCount+"개");
         System.out.println("5개 일치 (1,500,000원) - "+fiveMatchedCount+"개");

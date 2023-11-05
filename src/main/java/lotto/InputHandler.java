@@ -49,7 +49,7 @@ public class InputHandler {
             System.out.println(e.getMessage());
             return inputSixNumber();
         }
-        System.out.println("6개 번호 : " + numbers);
+
         return numbers;
     }
 
@@ -69,7 +69,7 @@ public class InputHandler {
             System.out.println(e.getMessage());
             return inputBonusNumber(numbers);
         }
-        System.out.println("보너스 번호 : " + bonusNumber);
+
         return Integer.parseInt(bonusNumber);
     }
 

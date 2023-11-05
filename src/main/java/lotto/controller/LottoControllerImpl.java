@@ -17,7 +17,7 @@ public class LottoControllerImpl implements LottoController {
     private final LottoService lottoService;
 
     @Override
-    public void run() {
+    public void play() {
         int payment = 0;
         int lotteryCount;
         List<Lotto> purchasedLotteries = new ArrayList<>();

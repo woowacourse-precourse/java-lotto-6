@@ -1,8 +1,8 @@
 package lotto.service;
 
-import lotto.ErrorMessage;
+import lotto.enums.ErrorMessage;
 import lotto.Lotto;
-import lotto.Rank;
+import lotto.enums.Rank;
 import lotto.util.lottoFactory.LottoFactory;
 import lotto.util.matcher.NumbersMatcher;
 import lotto.util.parser.NumberParser;

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.Rank;
+import lotto.enums.Rank;
 
 import java.text.DecimalFormat;
 import java.util.List;

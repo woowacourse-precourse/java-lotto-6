@@ -2,7 +2,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-import lotto.domain.LottoPlayer;
+import lotto.domain.LottoResult;
 
 
 
@@ -17,9 +17,7 @@ public class Application {
 //    	LottoPlayer.buyLotto();
 //      LottoComputer.makingLottoIndex();
         
-    	LottoPlayer.inputNumber();
-    	System.out.println(playerNumber);
-    	System.out.println(playerBonusNumber);
-        
+    	LottoResult.resultPrint();
+    	        
     }
 }

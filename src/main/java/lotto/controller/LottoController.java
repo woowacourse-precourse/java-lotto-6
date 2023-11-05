@@ -18,6 +18,11 @@ public class LottoController {
     }
 
     private void purchaseLotto() {
+        int numOfLottos = input.readPurchaseAmount() / Lotto.PRICE;
+        output.printPurchaseAmount(numOfLottos);
+
+        manager = LottoManager.of(numOfLottos, new RandomLottoGenerator());
+        output.printLottos(manager.getPurchaseLottos());
     }
 
 

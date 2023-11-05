@@ -21,6 +21,20 @@ public class LottoController {
         lottoWinnerSystem = new LottoWinnerSystem();
     }
 
+    public void start() {
+        lottoSaleSystem.isValidMoney(InputView.inputPurchaseMoney());
+
+        OutputView.printPurchaseCount(lottoSaleSystem.getPurchaseCount());
+        generateLotto(lottoSaleSystem.getPurchaseCount());
+        OutputView.printPurchasedLotto(purchasedLotto);
+
+        List<Integer> winNumber = lottoWinnerSystem.isValidWinNumber(InputView.inputWinningNumber());
+        List<Integer> bonusNumber = lottoWinnerSystem.isValidBonusNumber(InputView.inputBonusNumber(), winNumber);
+
+        lottoWinnerSystem.isWinnerLotto(purchasedLotto, winNumber, bonusNumber);
+        lottoWinnerSystem.printLottoResult();
+        OutputView.printProfit(LottoSaleSystem.calculateProfit());
+    }
 
     private void generateLotto(int purchaseCount) {
         for (int i = 0; i < purchaseCount; i++) {

@@ -6,7 +6,7 @@
 - [x] 매개변수로 들어온 장수만큼 로또를 생성한다. - Lottos#createLottos()
 - [x] 1 ~ 45까지의 중복하지 않는 난수 6개를 `List<Integer>`로 생성한다. - NumberGenerator#generateRandomNumbers()
 
-- [ ] 몇개의 번호가 담청되었는지 알 수 있다. - WinnigLotto#countMatchingNumbers()
+- [x] 몇개의 번호가 담청되었는지 알 수 있다. - WinnigLotto#countMatchingNumbers()
 - [ ] 보너스 번호와 일치하는 번호가 있는지 검사한다. - BonusNumber#isContains()
 - [ ] 당첨 기준에 맞게 금액을 배당한다. Prizes#distributePrize()
 - [ ] 각 등수별 상금 합계를 계산한다. Prizes#calculateTotalPrizeForRank()

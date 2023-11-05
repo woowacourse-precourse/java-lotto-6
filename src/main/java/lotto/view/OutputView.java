@@ -14,6 +14,6 @@ public class OutputView {
     }
 
     public void showProfitRate() {
-        
+
     }
 }

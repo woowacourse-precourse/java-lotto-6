@@ -12,6 +12,7 @@ public class Utii {
         String inputStringLine = Console.readLine().trim();
 
         ValidateException.includeString(inputStringLine);
+        ValidateException.blankCheck(inputStringLine);
 
         return inputStringLine;
     }

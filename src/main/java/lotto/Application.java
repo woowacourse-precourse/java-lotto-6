@@ -1,7 +1,11 @@
 package lotto;
 
+import lotto.view.InputView;
+import lotto.vo.Purchase;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        String amount = InputView.readPurchaseAmount();
+        Purchase.createFromInput(amount);
     }
 }

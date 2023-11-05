@@ -80,6 +80,13 @@ public class UserInput {
 
     //보너스 번호 입력
 
+    public int getBonusNumber() {
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        return bonusNumber;
+    }
+
+
 
 
     //나중에 main() 아래에서 각 입력값별로 메소드들 묶어서 하나의 메소드화 할꺼임 & while문으로 제대로된 값 입력될때까지 다시 물어보기

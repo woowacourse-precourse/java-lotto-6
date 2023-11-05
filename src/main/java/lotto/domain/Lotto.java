@@ -34,7 +34,7 @@ public class Lotto {
     }
 
     private boolean isLottoSize(List<LottoNumber> lottoNumbers) {
-        return lottoNumbers.size() != 6;
+        return lottoNumbers.size() == 6;
     }
 
     private boolean hasDuplicateNumbers(List<LottoNumber> lottoNumbers) {
@@ -46,13 +46,9 @@ public class Lotto {
     }
 
     public int getCountingMatchingNumbers(Lotto lotto) {
-        int count = 0;
-        for (int i = 0; i < lottoNumbers.size(); i++) {
-            if (containsNumber(lotto.getNumbers().get(i))) {
-                count++;
-            }
-        }
-        return count;
+        return (int) lotto.getNumbers().stream()
+                .filter(lottoNumber -> containsNumber(lottoNumber))
+                .count();
     }
 
     public boolean containsNumber(LottoNumber lottoNumber) {

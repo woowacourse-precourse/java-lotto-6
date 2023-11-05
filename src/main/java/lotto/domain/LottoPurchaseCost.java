@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.common.ErrorMessages.NEGATIVE_VALUE_MESSAGE;
 import static lotto.common.ErrorMessages.NOT_IN_1000_UNIT;
 
 import lotto.exception.InputValidationException;
@@ -15,13 +16,17 @@ public class LottoPurchaseCost {
     }
 
     private void validateMoney(int lottoPurchaseCost) {
+        if(lottoPurchaseCost < 0) {
+            throw new InputValidationException(NEGATIVE_VALUE_MESSAGE);
+        }
+
         if (!isDivisibleByThousand(lottoPurchaseCost)) {
             throw new InputValidationException(NOT_IN_1000_UNIT);
         }
     }
 
     private boolean isDivisibleByThousand(int lottoPurchaseCost) {
-        return lottoPurchaseCost % COST_PER_LOTTO != 0;
+        return lottoPurchaseCost % COST_PER_LOTTO == 0;
     }
 
     public int getDividedThousandWonCount() {

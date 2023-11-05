@@ -2,6 +2,7 @@ package lotto.common;
 
 public enum ErrorMessages {
     NOT_A_NUMBER("입력된 값은 숫자가 아닙니다."),
+    NEGATIVE_VALUE_MESSAGE("양수만 입력 가능합니다."),
     NULL_OR_EMPTY("입력된 값이 공백이거나 null입니다."),
     NOT_IN_1000_UNIT("1,000원 단위로 입력되어야 합니다."),
     DUPLICATE_NUMBERS_MESSAGE("숫자는 중복되면 안 됩니다."),

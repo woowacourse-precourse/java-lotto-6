@@ -11,6 +11,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
+    @DisplayName("로또 번호를 생성한다.")
+    @Test
+    void createLottoNumbers() {
+        Lotto lotto = Lotto.createLotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.getNumbers()).extracting("number")
+                .containsExactly(1,2,3,4,5,6);
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -35,7 +44,7 @@ class LottoTest {
         assertThat(lotto.containsNumber(new LottoNumber(3))).isTrue();
     }
 
-    @DisplayName("로또 번호 주어지면 일치하는 숫자의 개수를 반환한다.")
+    @DisplayName("로또 번호가 주어지면 일치하는 숫자의 개수를 반환한다.")
     @Test
     void getCountingMatchingNumbers() {
         Lotto lotto = Lotto.createLotto(List.of(1, 2, 3, 4, 5, 6));

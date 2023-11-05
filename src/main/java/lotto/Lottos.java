@@ -20,6 +20,7 @@ public class Lottos {
         for (Lotto lotto : lottos) {
             int countOfMatchingNumber = lotto.countMatchingNumber(winningNumber);
             boolean isBonusIncluded = lotto.contains(bonusNumber);
+            Rank rank = Rank.of(countOfMatchingNumber, isBonusIncluded);
         }
     }
 }

@@ -57,8 +57,8 @@ public class LottoResultManager {
         this.winningLotto = new Lotto(convertWinningNumbersToList(winningLottoNumbers));
     }
 
-    public void setBonusNumber(Integer bonusNumber) {
-
-        this.bonusNumber = bonusNumber;
+    public void setBonusNumber(String bonusNumber) {
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = Integer.valueOf(bonusNumber);
     }
 }

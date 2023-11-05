@@ -8,7 +8,7 @@ import lotto.dto.LottoDto;
 import lotto.model.Lotteries;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
-import lotto.model.LottoResult;
+import lotto.model.LottoResultCalculator;
 import lotto.util.RandomNumberGenerator;
 import lotto.view.View;
 import lotto.vo.BonusNumber;
@@ -33,8 +33,8 @@ public class LottoGameController {
         Lotto winningLotto = initWinningLotto();
         BonusNumber bonusNumber = initBonusNumber(winningLotto.getNumbers());
 
-        LottoResult lottoResult = initLottoResult(lotteries, winningLotto, bonusNumber);
-        showResult(buyAmount, lottoResult);
+        LottoResultCalculator lottoResultCalculator = initLottoResultCalculator(lotteries, winningLotto, bonusNumber);
+        showResult(buyAmount, lottoResultCalculator);
     }
 
     private BuyAmount initBuyAmount() {
@@ -53,9 +53,9 @@ public class LottoGameController {
         return Lotteries.createLotteries(ticketCount, new RandomNumberGenerator());
     }
 
-    private LottoResult initLottoResult(final Lotteries lotteries, final Lotto winningLotto,
-                                        final BonusNumber bonusNumber) {
-        return LottoResult.from(lotteries, winningLotto, bonusNumber);
+    private LottoResultCalculator initLottoResultCalculator(final Lotteries lotteries, final Lotto winningLotto,
+                                                            final BonusNumber bonusNumber) {
+        return LottoResultCalculator.from(lotteries, winningLotto, bonusNumber);
     }
 
     private Lotto initWinningLotto() {
@@ -70,8 +70,8 @@ public class LottoGameController {
         view.showLotteriesNumber(LottoDto.toDto(lotteries.getLotteries()));
     }
 
-    private void showResult(final BuyAmount buyAmount, final LottoResult lottoResult) {
-        Map<LottoRank, Integer> result = lottoResult.getResult();
+    private void showResult(final BuyAmount buyAmount, final LottoResultCalculator lottoResultCalculator) {
+        Map<LottoRank, Integer> result = lottoResultCalculator.getResult();
         view.showStatistics(result);
         view.showRateOfProfit(result, buyAmount);
     }

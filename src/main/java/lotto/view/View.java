@@ -7,6 +7,7 @@ import lotto.exception.WinningNumberContainsBonusNumberException;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.util.Converter;
+import lotto.validation.InputValidator;
 import lotto.vo.BonusNumber;
 import lotto.vo.BuyAmount;
 
@@ -24,8 +25,10 @@ public class View {
         outputView.printRequestInputBuyAmountMessage();
         while (true) {
             try {
-                Integer amount = inputView.inputBuyAmount();
-                return new BuyAmount(amount);
+                String amount = inputView.inputBuyAmount();
+                InputValidator.validateBuyAmount(amount);
+                Integer buyAmount = Integer.valueOf(amount);
+                return new BuyAmount(buyAmount);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
@@ -37,6 +40,7 @@ public class View {
         while (true) {
             try {
                 String winningNumbers = inputView.inputWinningNumbers();
+                InputValidator.validateWinningNumbers(winningNumbers);
                 List<Integer> numbers = Converter.convertToLottoNumbers(winningNumbers);
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
@@ -49,7 +53,9 @@ public class View {
         outputView.printRequestInputBonusNumberMessage();
         while (true) {
             try {
-                Integer number = inputView.inputBonusNumbers();
+                String bonusNumber = inputView.inputBonusNumbers();
+                InputValidator.validateBonusNumber(bonusNumber);
+                Integer number = Integer.valueOf(bonusNumber);
                 validateBonusNumberContainsWinningNumber(winningNumbers, number);
                 return new BonusNumber(number);
             } catch (IllegalArgumentException e) {

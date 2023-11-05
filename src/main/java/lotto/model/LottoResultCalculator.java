@@ -6,20 +6,21 @@ import java.util.List;
 import java.util.Map;
 import lotto.vo.BonusNumber;
 
-public class LottoResult {
+public class LottoResultCalculator {
 
     private final Lotteries lotteries;
     private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    private LottoResult(final Lotteries lotteries, final Lotto winningLotto, final BonusNumber bonusNumber) {
+    private LottoResultCalculator(final Lotteries lotteries, final Lotto winningLotto, final BonusNumber bonusNumber) {
         this.lotteries = lotteries;
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public static LottoResult from(final Lotteries lotteries, final Lotto lotto, final BonusNumber bonusNumber) {
-        return new LottoResult(lotteries, lotto, bonusNumber);
+    public static LottoResultCalculator from(final Lotteries lotteries, final Lotto lotto,
+                                             final BonusNumber bonusNumber) {
+        return new LottoResultCalculator(lotteries, lotto, bonusNumber);
     }
 
     public Map<LottoRank, Integer> getResult() {

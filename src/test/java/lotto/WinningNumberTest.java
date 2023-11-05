@@ -1,11 +1,10 @@
 package lotto;
 
-import java.util.List;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import lotto.model.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 class WinningNumberTest {

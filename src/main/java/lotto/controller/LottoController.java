@@ -1,24 +1,24 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRamdomNumbers;
 import lotto.domain.ReadPurchaseAmount;
-import lotto.view.InputMessage;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
-    InputMessage inputMessage = new InputMessage();
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
+    LottoRamdomNumbers lottoRamdomNumbers = new LottoRamdomNumbers();
 
     public void LottoGameStart() {
-        enterLottoPurchaseAmount();
+        String readAmount = inputView.enterLottoPurchaseAmount();
+        List<Lotto> lottoNumbers = lottoRamdomNumbers.generateRandomLottoNumbers(readAmount);
+        outputView.printIssuedLottoNumbersInAscendingOrder(lottoNumbers);
+
     }
 
-    private void enterLottoPurchaseAmount() {
-        while (true) {
-            try {
-                String readAmount = inputMessage.readLottoPurchaseAmount();
-                ReadPurchaseAmount readPurchaseAmount = new ReadPurchaseAmount(readAmount);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
 }

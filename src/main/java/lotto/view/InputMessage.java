@@ -1,13 +1,16 @@
 package lotto.view;
 
+public enum InputMessage {
+    ENTER_PURCHASE_AMOUNT_PRINT("구입금액을 입력해 주세요."),
+    ENTER_WINNING_NUMBER_PRINT("당첨 번호를 입력해 주세요.");
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
+    private final String message;
 
-public class InputMessage {
-    private static final String ENTER_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    InputMessage(String message) {
+        this.message = message;
+    }
 
-    public String readLottoPurchaseAmount() {
-        System.out.println(ENTER_PURCHASE_AMOUNT);
-        return readLine();
+    public String getMessage() {
+        return message;
     }
 }

@@ -27,4 +27,8 @@ public class ReadPurchaseAmount {
             throw new IllegalArgumentException(ExceptionMessage.DIVISIBLE_EXCEPTION.getMessage());
         }
     }
+
+    public String getReadPurchaseAmount() {
+        return readPurchaseAmount;
+    }
 }

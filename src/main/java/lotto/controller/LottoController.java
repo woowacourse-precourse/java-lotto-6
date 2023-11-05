@@ -1,36 +1,39 @@
 package lotto.controller;
 
-import lotto.domain.PurchaseAmount;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;
+    private final OutputView outputView;
+    private final LottoService lottoService;
 
-    public LottoController(InputView inputView) {
+    public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
+        this.lottoService = lottoService;
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
 
     public void play() {
         buyLotto();
-        getUserLotto();
+        getWinningLotto();
         getLottoResult();
         printLottoResult();
     }
 
     private void buyLotto() {
         String amount = inputView.printAskPurchase();
-        PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
-
-        //TODO: 구입 금액을 입력받고, 구입 금액/1000 개수만큼 로또를 랜덤하게 생성
-
-        //TODO: view를 통해 로또 정보 출력
+        List<Lotto> lottoTickets = lottoService.buyLottoTickets(amount);
+        outputView.printLottoTickets(lottoTickets);
     }
 
-    private void getUserLotto() {
-        //TODO: 당첨 번호 입력
-
-        //TODO: 보너스 번호 입력
+    private void getWinningLotto() {
+        String winningNumber = inputView.askWinningNumbers();
+        String bonusNumber = inputView.askBonusNumber();
 
     }
 

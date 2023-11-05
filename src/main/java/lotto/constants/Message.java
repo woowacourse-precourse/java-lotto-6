@@ -8,7 +8,10 @@ public enum Message {
     ASK_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     WINNING_HEADER("당첨 통계"),
     CONTOUR("---"),
-    WINNING_RESULT("%d개 일치 (%s원) - %d개");
+    WINNING_RESULT("%d개 일치 (%s원) - %d개"),
+    TICKET_PREFIX("["),
+    TICKET_SEPARATOR(", "),
+    TICKET_SUFFIX("]");
 
     private final String message;
 

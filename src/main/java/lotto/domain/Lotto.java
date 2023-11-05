@@ -3,6 +3,9 @@ package lotto.domain;
 import static lotto.constants.ErrorCode.DUPLICATED_LOTTO_NUMBER;
 import static lotto.constants.ErrorCode.INVALID_LOTTO_SIZE;
 import static lotto.constants.LottoRule.LOTTO_MAX_SIZE;
+import static lotto.constants.Message.TICKET_PREFIX;
+import static lotto.constants.Message.TICKET_SEPARATOR;
+import static lotto.constants.Message.TICKET_SUFFIX;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,16 +68,16 @@ public class Lotto {
     }
 
 
-    //TODO: 매직 넘버 상수로 빼고, builder 관련 로직 개선하기
+    //TODO: builder 관련 로직 개선하기
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("[");
+        StringBuilder builder = new StringBuilder(TICKET_PREFIX.getMessage());
         for (int i = 0; i < numbers.size() - 1; ++i) {
             builder.append(numbers.get(i).getNumber());
-            builder.append(", ");
+            builder.append(TICKET_SEPARATOR.getMessage());
         }
         builder.append(numbers.get(numbers.size() - 1).getNumber());
-        builder.append("]");
+        builder.append(TICKET_SUFFIX.getMessage());
 
         return builder.toString();
     }

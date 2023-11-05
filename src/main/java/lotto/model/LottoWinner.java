@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -79,5 +80,9 @@ public class LottoWinner {
             this.scoreResult = new HashMap<>();
             scoreResult.put(result, scoreResult.getOrDefault(result, 0) + 1);
         }
+    }
+
+    public void showResultBoard() {
+        ScoreBoard.showResultBoard(scoreResult, 0);
     }
 }

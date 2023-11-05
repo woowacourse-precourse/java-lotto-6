@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.vo.Lotto;
 
 public class Wallet {
 

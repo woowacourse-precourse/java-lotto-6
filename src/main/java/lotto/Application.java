@@ -8,11 +8,37 @@ import camp.nextstep.edu.missionutils.Console;
 
 
 public class Application {
-    public static void main(String[] args) {
-        String lottoPurchaseAmount = "";
-        System.out.println("구입금액을 입력해 주세요.");
 
-        boolean inputAgain = true;
+    static String lottoPurchaseAmount = "";
+    static int lottoPurchaseCount;
+    static List<Integer> lottoNumbersDrawn = new ArrayList<>();
+    static boolean inputAgain;
+    static List<List<Integer>> lottoNumbersDrawnContainer = new ArrayList<>();
+    static List<Integer> lottoWinnerNum = new ArrayList<>();
+    static int lottoWinnerBonusNum = 0;
+    static int matchCount = 0;
+    static int bonusMatchCount = 0;
+    static int Match_3_Count = 0;
+    static int Match_4_Count = 0;
+    static int Match_5_Count = 0;
+    static int Match_5_AndBonusCount = 0;
+    static int Match_6_Count = 0;
+    static long totalPrizeMoney;
+
+    public static void main(String[] args) {
+        getLottoPurchaseAmount();
+        generateLottoNumbers();
+        // printLottoNumbers();
+        inputWinningNumbers();
+        inputBonusNumber();
+        compareNumbers();
+        displayWinningStatistics();
+        printProfitability();
+    }
+
+    static void getLottoPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+        inputAgain = true;
         againLoop:
         while (inputAgain) {
             lottoPurchaseAmount = Console.readLine();
@@ -34,12 +60,14 @@ public class Application {
             }
             inputAgain = false;
         }
+    }
 
-        int lottoPurchaseCount = Integer.parseInt(lottoPurchaseAmount) / 1000;
+    static void generateLottoNumbers() {
+        lottoPurchaseCount = Integer.parseInt(lottoPurchaseAmount) / 1000;
         System.out.printf("%n%d개를 구매했습니다.%n", lottoPurchaseCount);
-        List<List<Integer>> lottoNumbersDrawnContainer = new ArrayList<>();
+
         for (int i = 0; i < lottoPurchaseCount; i++) {
-            List<Integer> lottoNumbersDrawn = new ArrayList<>();
+            lottoNumbersDrawn = new ArrayList<>();
             while (lottoNumbersDrawn.size() < 6) {
                 int randomAddNum = Randoms.pickNumberInRange(1, 45);
                 if (!lottoNumbersDrawn.contains(randomAddNum)) {
@@ -48,10 +76,17 @@ public class Application {
             }
             Collections.sort(lottoNumbersDrawn);
             lottoNumbersDrawnContainer.add(lottoNumbersDrawn);
-            System.out.printf(lottoNumbersDrawn + "%n");
+            printLottoNumbers();
         }
+    }
 
-        List<Integer> lottoWinnerNum = new ArrayList<>();
+    static void printLottoNumbers() {
+        System.out.printf(lottoNumbersDrawn + "%n");
+    }
+
+
+    static void inputWinningNumbers() {
+
         System.out.printf("%n당첨 번호를 입력해 주세요.%n");
         inputAgain = true;
 
@@ -88,10 +123,12 @@ public class Application {
 
             inputAgain = false;
         }
+    }
 
+    static void inputBonusNumber() {
         System.out.printf("%n보너스 번호를 입력해 주세요.%n");
         inputAgain = true;
-        int lottoWinnerBonusNum = 0;
+
         while (inputAgain) {
             try {
                 lottoWinnerBonusNum = Integer.parseInt(Console.readLine());
@@ -115,17 +152,11 @@ public class Application {
 
             inputAgain = false;
         }
+    }
+
+    static void compareNumbers() {
         System.out.printf("%n당첨 통계%n");
         System.out.printf("---%n");
-
-        int matchCount = 0;
-        int bonusMatchCount = 0;
-
-        int Match_3_Count = 0;
-        int Match_4_Count = 0;
-        int Match_5_Count = 0;
-        int Match_5_AndBonusCount = 0;
-        int Match_6_Count = 0;
 
         for (int i = 0; i < lottoPurchaseCount; i++) {
             matchCount = 0;
@@ -154,15 +185,20 @@ public class Application {
                 Match_6_Count = Match_6_Count + 1;
             }
         }
+    }
+
+    static void displayWinningStatistics() {
         System.out.printf("3개 일치 (5,000원) - %d개%n", Match_3_Count);
         System.out.printf("4개 일치 (50,000원) - %d개%n", Match_4_Count);
         System.out.printf("5개 일치 (1,500,000원) - %d개%n", Match_5_Count);
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", Match_5_AndBonusCount);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", Match_6_Count);
 
-        long totalPrizeMoney = Match_3_Count * 5000L + Match_4_Count * 50000L + Match_5_Count * 1500000L
+        totalPrizeMoney = Match_3_Count * 5000L + Match_4_Count * 50000L + Match_5_Count * 1500000L
                 + Match_5_AndBonusCount * 30000000L + Match_6_Count * 2000000000L;
+    }
 
+    static void printProfitability() {
         System.out.printf("총 수익률은 %.1f%%입니다.",
                 (float) totalPrizeMoney * 100 / (Integer.parseInt(lottoPurchaseAmount)));
     }

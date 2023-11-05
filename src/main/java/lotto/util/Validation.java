@@ -11,6 +11,9 @@ public class Validation {
     private static final int lottoNumberCount = 6;
 
     public static boolean isNumericValue(String input) {
+        if (input == null || input.isEmpty()) {
+            return false;
+        }
         if (input.charAt(0) == '-') {
             input = input.substring(1);
         }

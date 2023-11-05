@@ -28,14 +28,18 @@ public class Lotto {
         }
     }
 
-    public void checkAndThrowIfBonusNumberExists(BonusNumber number) throws LottoException {
-        if (lottoNumbers.contains(number.value())) {
+    public void validateAndThrowIfBonusNumberExists(BonusNumber bonusNumber) throws LottoException {
+        if (containsBonusNumber(bonusNumber)) {
             throw new LottoException(LottoException.ErrorMessage.ALREADY_CONTAINS_BONUS_NUMBER.getMessage());
         }
     }
 
     public List<LottoNumber> getNumbers() {
         return lottoNumbers;
+    }
+
+    public boolean containsBonusNumber(BonusNumber bonusNumber) {
+        return lottoNumbers.contains(bonusNumber.value());
     }
 
     @Override

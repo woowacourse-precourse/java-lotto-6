@@ -41,7 +41,7 @@ public class LottoWinningRankingService {
     }
 
     private boolean hasBonusNumber(Lotto lotto, LottoWinningSet lottoWinningSet) {
-        return lotto.getNumbers().contains(lottoWinningSet.bonusNumber());
+        return lotto.containsBonusNumber(lottoWinningSet.bonusNumber());
     }
 
     private LottoWinningRanking calculateRanking(int matchedNumberCount, boolean needsBonusNumber) {

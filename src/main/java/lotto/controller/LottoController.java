@@ -106,7 +106,7 @@ public class LottoController {
             try {
                 outputView.requestBonusNumber();
                 BonusNumber bonusNumber = getBonusNumber();
-                lotto.checkAndThrowIfBonusNumberExists(bonusNumber);
+                lotto.validateAndThrowIfBonusNumberExists(bonusNumber);
                 return bonusNumber;
             } catch (LottoException exception) {
                 outputView.displayErrorMessage(exception.getMessage());

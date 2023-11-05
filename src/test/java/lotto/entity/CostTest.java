@@ -1,6 +1,8 @@
 package lotto.entity;
 
 import static org.assertj.core.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -17,5 +19,18 @@ public class CostTest {
             }
                 ).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(errorPrefix);
+    }
+
+    @Test
+    void Cost_생성_유효한_값인_경우_테스트(){
+        //given
+        String purchaseCost = "8000";
+        Long targetCost = Long.parseLong(purchaseCost);
+
+        //when
+        Cost cost = new Cost(purchaseCost);
+
+        //then
+        assertThat(cost.getPurchaseCost()).isEqualTo(targetCost);
     }
 }

@@ -7,36 +7,15 @@ public class Money {
 
     private final int money;
 
-    public Money(String inputMoney) {
-        int amount = validateNumber(inputMoney);
-        validateMoney(amount);
-        this.money = amount;
+    public Money(int inputMoney) {
+        validateMoney(inputMoney);
+        this.money = inputMoney;
     }
 
     public int getTicketCount() {
         return money / LOTTO_MIN_MONEY;
     }
 
-    private int validateNumber(String inputMoney) {
-        inputBlank(inputMoney);
-        return inputNumeric(inputMoney);
-    }
-
-    private void inputBlank(String inputMoney) {
-        if (inputMoney.isBlank()) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private int inputNumeric(String inputMoney) {
-        int amount;
-        try {
-            amount = Integer.parseInt(inputMoney);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException();
-        }
-        return amount;
-    }
 
     private void validateMoney(int amount) {
         validatePositive(amount);

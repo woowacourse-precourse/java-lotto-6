@@ -37,12 +37,4 @@ public class InputPurchaseAmountValidator {
             throw new IllegalArgumentException(ErrorMessage.INPUT_MUST_BE_MULTIPLE_OF_LOTTO_PRICE_UNIT.getMessage());
         }
     }
-
-    private void validateWinningLotteryNumbersIsBetweenValidRange(String input) {
-        int number = Integer.parseInt(input);
-        if (number < LottoConstant.MIN_LOTTO_NUMBER.getValue() || number > LottoConstant.MAX_LOTTO_NUMBER.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
-        }
-    }
-
 }

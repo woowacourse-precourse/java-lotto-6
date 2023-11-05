@@ -1,6 +1,7 @@
 package lotto.entity;
 
-import lotto.property.LottoProperty;
+import lotto.entity.mapper.FiledMapper;
+import lotto.property.MethodProperty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import static lotto.property.LottoProperty.*;
 import static lotto.property.ValidationProperty.*;
 import static lotto.validation.ValidationForm.*;
 
-public class Winning {
+public class Winning extends FiledMapper {
     private final List<Integer> winningNumbers;
 
     public Winning (String inputWinningNumbers,String winningBonusNumber){
@@ -32,6 +33,8 @@ public class Winning {
     }
 
     public List<Integer> getWinningNumbers() {
-        return Collections.unmodifiableList(winningNumbers);
+        return Collections.unmodifiableList((List<Integer>)FiledMapper.getFieldValue(
+                        this, MethodProperty.WINNING_NUMBERS)
+        );
     }
 }

@@ -1,5 +1,7 @@
 package lotto.entity;
 
+import lotto.entity.mapper.FiledMapper;
+import lotto.property.MethodProperty;
 import lotto.property.ValidationProperty;
 import lotto.validation.ValidationForm;
 
@@ -8,7 +10,7 @@ import java.lang.reflect.Field;
 import static lotto.property.ValidationProperty.*;
 import static lotto.validation.ValidationForm.*;
 
-public class Cost {
+public class Cost{
     private final Long purchaseCost;
 
     public Cost(String inputPurchaseCost) {
@@ -24,9 +26,7 @@ public class Cost {
         verifyFormatForInputValue(COST,inputPurchaseCost);
     }
 
-    public Long getFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
-        Field field = this.getClass().getDeclaredField(fieldName);
-        field.setAccessible(true);
-        return (Long) field.get(this);
+    public Long getPurchaseCost() {
+        return (Long) FiledMapper.getFieldValue(this, MethodProperty.PURCHASE_COST);
     }
 }

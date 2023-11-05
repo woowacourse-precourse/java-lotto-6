@@ -14,7 +14,7 @@ public class OutputView {
     }
 
     public void printLottoCount(int lottoCount) {
-        System.out.println(lottoCount + LOTTO_PURCHASE_MESSAGE);
+        System.out.println("\n" + lottoCount + LOTTO_PURCHASE_MESSAGE);
     }
 
     public void printLottoTickets(List<List<Integer>> lottoTickets) {
@@ -24,10 +24,10 @@ public class OutputView {
     }
 
     public void printWinningNumbersInputMessage() {
-        System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
+        System.out.println("\n" + WINNING_NUMBERS_INPUT_MESSAGE);
     }
 
     public void printBonusNumberInputMessage() {
-        System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+        System.out.println("\n" + BONUS_NUMBER_INPUT_MESSAGE);
     }
 }

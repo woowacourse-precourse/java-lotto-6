@@ -32,5 +32,6 @@ public class OutputViewImpl implements OutputView {
     @Override
     public void printErrorMessage(Exception exception) {
         System.out.println(exception.getMessage());
+        System.out.println();
     }
 }

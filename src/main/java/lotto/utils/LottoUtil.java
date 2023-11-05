@@ -32,4 +32,14 @@ public class LottoUtil {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
+    public static BigDecimal getNumberOfLottoPurchased(BigDecimal purchaseAmount, BigDecimal lottoPrice) {
+        validateMultiplesOf(purchaseAmount, lottoPrice);
+        return purchaseAmount.divide(lottoPrice, BigDecimal.ROUND_DOWN);
+    }
+
+    public static void validateMultiplesOf(BigDecimal num, BigDecimal factor) {
+        if (num.remainder(factor).compareTo(BigDecimal.ZERO) != 0) {
+            throw new IllegalArgumentException(AMOUNT_IS_NOT_IN_THOUSAND_WON_UNITS.getMessage());
+        }
+    }
 }

@@ -9,9 +9,9 @@ public class LottoView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public void printPurchasedLottoNumbers(int number, Lotto[] lottos) {
-        System.out.println(number + "개를 구매했습니다");
-        for (int i = 0; i < number; i++) {
+    public void printPurchasedLottoNumbers(Lotto[] lottos) {
+        System.out.println(lottos.length + "개를 구매했습니다");
+        for (int i = 0; i < lottos.length; i++) {
             lottos[i].getNumbers();
         }
     }

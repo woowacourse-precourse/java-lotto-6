@@ -4,7 +4,7 @@ import java.util.List;
 
 public class WinningNumber {
     private final int MIN_LOTTO_NUMBER = 1;
-    private final int MAX_LOTTO_NUMBER = 1;
+    private final int MAX_LOTTO_NUMBER = 45;
     List<Integer> numbers;
 
     public WinningNumber(List<Integer> numbers) {

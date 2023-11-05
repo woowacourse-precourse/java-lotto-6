@@ -65,14 +65,10 @@ public class LottoService {
         int lottoCount = lottoGame.getLottoCount();
         for (int i = 0; i < lottoCount; i ++) {
             List<Integer> lottoNumber = generateLottoNumber();
-            sortLottoNumber(lottoNumber);
+
             purchaseLottoNumbers.add(lottoNumber);
         }
         return purchaseLottoNumbers;
-    }
-
-    private static void sortLottoNumber(List<Integer> lottoNumber) {
-        Collections.sort(lottoNumber);
     }
 
     private Map<Ranking, Integer> setResult() {
@@ -82,5 +78,17 @@ public class LottoService {
             result.put(rank, 0);
         }
         return result;
+    }
+
+    public double getRevenueRate(Map<Ranking, Integer> result) {
+        int totalMoney = lottoGame.getLottoCount() * 1000;
+
+        double earningRate = 0;
+        for (Ranking rank : result.keySet()) {
+            earningRate =
+                    earningRate + ((double) (rank.getWinningAmount()) / totalMoney * (result.get(
+                            rank)) * (100));
+        }
+        return earningRate;
     }
 }

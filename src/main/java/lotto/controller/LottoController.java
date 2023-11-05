@@ -52,5 +52,10 @@ public class LottoController {
 
         HashMap<WinningCriteria, Integer> result = lottoResult.getResult();
         OutputView.printStatics(result);
+        OutputView.printRateOfReturn(getRateOfReturn(lottoResult));
+    }
+
+    private double getRateOfReturn(LottoResult lottoResult) {
+        return lottoResult.calculateRateOfReturn(amount);
     }
 }

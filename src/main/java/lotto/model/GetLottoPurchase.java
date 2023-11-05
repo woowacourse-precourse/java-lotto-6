@@ -4,17 +4,17 @@ package lotto.model;
 import lotto.view.ExceptionMessage;
 
 public class GetLottoPurchase {
-    private final int getCost;
+    private final int cost;
 
-    public int getGetCost() {
-        return getCost;
+    public int getCost() {
+        return cost;
     }
 
     public GetLottoPurchase(String inputCost){
         int cost;
         cost = validateNumber(inputCost);
         cost = validateCanPurchase(cost);
-        this.getCost = cost;
+        this.cost = cost;
     }
 
     public int validateNumber(String cost){
@@ -32,6 +32,10 @@ public class GetLottoPurchase {
             return 0;
         }
         return cost;
+    }
+
+    public int computeLottoCount(){
+        return cost / 1000;
     }
 }
 

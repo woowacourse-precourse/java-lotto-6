@@ -43,6 +43,6 @@ class LottoTest {
     @ValueSource(strings = {"15000","100000","5000"})
     void purchaseCostByCorrectNumber(String inputCost) {
         GetLottoPurchase getLottoPurchase = new GetLottoPurchase(inputCost);
-        Assertions.assertThat(getLottoPurchase.getGetCost()).isEqualTo(Integer.parseInt(inputCost));
+        Assertions.assertThat(getLottoPurchase.getCost()).isEqualTo(Integer.parseInt(inputCost));
     }
 }

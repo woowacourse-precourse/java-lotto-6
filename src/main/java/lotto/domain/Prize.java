@@ -25,7 +25,7 @@ public enum Prize {
     }
 
     public int getMatchingNumberCount() {
-        return getMatchingNumberCount();
+        return matchingNumberCount;
     }
 
     public static Prize determineRank(int matchedCount, boolean isBonusNumberMatched) {

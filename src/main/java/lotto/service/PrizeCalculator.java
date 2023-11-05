@@ -1,19 +1,8 @@
 package lotto.service;
 
-import lotto.model.LottoPrize;
-import lotto.model.PurchaseAmount;
-
-import java.util.List;
-
-public class PrizeCalculator {
-
-    public Double calculatePrize(List<LottoPrize> lottoPrizes, PurchaseAmount purchaseAmount) {
-        return (double) sumPrize(lottoPrizes) / purchaseAmount.getAmount();
-    }
-
-    private long sumPrize(List<LottoPrize> lottoPrizes) {
-        return lottoPrizes.stream()
-                .mapToLong(LottoPrize::getPrize)
-                .sum();
+public class PrizeCalculator implements Calculator {
+    @Override
+    public Double calculate(Long revenue, Long investmentCost) {
+        return (double) revenue / investmentCost;
     }
 }

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.List;
+
 public enum LottoPrize {
 
     FIFTH_PLACE(3, false, 5_000, "3개 일치 (5,000원) - %s개%s"),
@@ -32,8 +34,10 @@ public enum LottoPrize {
         return null;
     }
 
-    public Integer getPrize() {
-        return prize;
+    public static Long sum(List<LottoPrize> lottoPrizes) {
+        return lottoPrizes.stream()
+                .mapToLong(lotto -> lotto.prize)
+                .sum();
     }
 
     public String getMessage() {

@@ -10,23 +10,25 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static lotto.model.LottoPrize.THIRD_PLACE;
-import static lotto.model.LottoPrize.SECOND_PLACE;
-import static lotto.model.LottoPrize.FOURTH_PLACE;
-import static lotto.model.LottoPrize.FIRST_PLACE;
 import static lotto.model.LottoPrize.FIFTH_PLACE;
+import static lotto.model.LottoPrize.FIRST_PLACE;
+import static lotto.model.LottoPrize.FOURTH_PLACE;
+import static lotto.model.LottoPrize.SECOND_PLACE;
+import static lotto.model.LottoPrize.THIRD_PLACE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PrizeCalculatorTest {
 
     //TODO: 테스트를 위해서 이렇게 생성해도 될까?
-    private final PrizeCalculator prizeCalculator = new PrizeCalculator();
+    private final Calculator prizeCalculator = new PrizeCalculator();
 
     @DisplayName("로또 수익률 계산")
     @ParameterizedTest(name = "{displayName} prizes: {0}, expected: {1}")
     @MethodSource("totalReturnParametersProvider")
     void checkTotalReturn(List<LottoPrize> prizes, PurchaseAmount amount, String expected) {
-        Double totalReturn = prizeCalculator.calculatePrize(prizes, amount);
+        Long revenue = LottoPrize.sum(prizes);
+        Long investmentCost = Long.valueOf(amount.getAmount());
+        Double totalReturn = prizeCalculator.calculate(revenue, investmentCost);
         assertThat(String.format("%.1f", totalReturn * 100)).isEqualTo(expected);
     }
 
@@ -39,8 +41,8 @@ class PrizeCalculatorTest {
                 Arguments.of(List.of(FIRST_PLACE), PurchaseAmount.of(5000), "40000000.0"),
                 Arguments.of(List.of(THIRD_PLACE, SECOND_PLACE), PurchaseAmount.of(11000), "286363.6"),
                 Arguments.of(List.of(FIFTH_PLACE, FOURTH_PLACE), PurchaseAmount.of(14000), "392.9"),
-                Arguments.of(List.of(FIRST_PLACE, FIRST_PLACE, FIRST_PLACE, FIRST_PLACE, FIRST_PLACE), PurchaseAmount.of(5000),
-                        "200000000.0")
+                Arguments.of(List.of(FIRST_PLACE, FIRST_PLACE, FIRST_PLACE, FIRST_PLACE, FIRST_PLACE),
+                        PurchaseAmount.of(5000), "200000000.0")
         );
     }
 }

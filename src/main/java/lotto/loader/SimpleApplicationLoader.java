@@ -1,4 +1,4 @@
-package lotto;
+package lotto.loader;
 
 import lotto.config.ApplicationConfig;
 import lotto.container.beanFactory.BeanFactory;
@@ -7,7 +7,7 @@ import lotto.container.container.ApplicationContainer;
 import lotto.container.container.DefaultApplicationContainer;
 import lotto.controller.LottoController;
 
-public class LottoApplicationLoader {
+public class SimpleApplicationLoader {
     private static final BeanFactory beanFactory = new SimpleBeanFactory();
     private static final ApplicationConfig config = new ApplicationConfig();
     private static final ApplicationContainer container = new DefaultApplicationContainer(beanFactory, config);

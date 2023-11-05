@@ -2,16 +2,13 @@ package lotto.view;
 
 import lotto.domain.LottoReward;
 import lotto.domain.PurchasedLotto;
+import lotto.utils.constants.OutputConstants;
 
 import java.util.Map;
 
+import static lotto.utils.constants.OutputConstants.*;
+
 public class OutputView {
-    private static final String PURCHASE_LOTTO_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String PURCHASE_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
-    private static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-
-
     public void purchaseLottoMessage() {
         System.out.println(PURCHASE_LOTTO_MESSAGE);
     }
@@ -33,13 +30,13 @@ public class OutputView {
     }
 
     public void resultLotto(Map<LottoReward, Integer> reward, Double earnRate) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + reward.getOrDefault(LottoReward.FIFTH, 0) + "개");
-        System.out.println("4개 일치 (50,000원) - " + reward.getOrDefault(LottoReward.FOURTH, 0) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + reward.getOrDefault(LottoReward.THIRD, 0) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + reward.getOrDefault(LottoReward.SECOND, 0) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + reward.getOrDefault(LottoReward.FIRST, 0) + "개");
-        System.out.println("총 수익률은 " + earnRate + "%입니다.");
+        System.out.println(STATISTICS_HEADER);
+        System.out.println(STATISTICS_DIVIDER);
+        System.out.println(THIRD_PRIZE + reward.getOrDefault(LottoReward.FIFTH, DEFAULT_VALUE) + COUNT_UNIT);
+        System.out.println(FOURTH_PRIZE + reward.getOrDefault(LottoReward.FOURTH, DEFAULT_VALUE) + COUNT_UNIT);
+        System.out.println(SECOND_PRIZE + reward.getOrDefault(LottoReward.THIRD, DEFAULT_VALUE) + COUNT_UNIT);
+        System.out.println(SECOND_PRIZE_BONUS_NOT_CORRECT + reward.getOrDefault(LottoReward.SECOND, DEFAULT_VALUE) + COUNT_UNIT);
+        System.out.println(FIRST_PRIZE_MONEY + reward.getOrDefault(LottoReward.FIRST, DEFAULT_VALUE) + COUNT_UNIT);
+        System.out.println(EARN_RATE_MESSAGE + earnRate + PERCENTAGE_FORMAT);
     }
 }

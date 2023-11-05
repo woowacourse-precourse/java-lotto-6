@@ -1,12 +1,9 @@
 package lotto.domain;
 
-import static lotto.ErrorMassage.*;
+import static lotto.enums.ErrorMassage.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.ErrorMassage;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +13,7 @@ class LottoTest {
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(createLottoNumbers(List.of(1, 2, 3, 4, 5, 6, 7))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(IS_NOT_LOTTO_COUNT.getMassage());
+                .hasMessage(INCORRECT_LOTTO_COUNT.getMassage());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -25,7 +22,7 @@ class LottoTest {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(createLottoNumbers(List.of(1, 1, 2, 3, 4, 5))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(IS_DUPLICATED_LOTTO_NUMBER.getMassage());
+                .hasMessage(DUPLICATE_LOTTO_NUMBER.getMassage());
     }
 
     private List<LottoNumber> createLottoNumbers(List<Integer> numbers) {

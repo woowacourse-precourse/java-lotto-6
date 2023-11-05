@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.ErrorMassage.IS_OUT_OF_RANGE_LOTTO_NUMBER;
+import static lotto.enums.ErrorMassage.OUT_OF_RANGE_LOTTO_NUMBER;
 import static lotto.domain.LottoConfig.LOTTO_MAX_NUMBER;
 import static lotto.domain.LottoConfig.LOTTO_MIN_NUMBER;
 
@@ -29,7 +29,7 @@ public class LottoNumber {
 
     private static void validateNumberRange(final int number) {
         if (number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException(IS_OUT_OF_RANGE_LOTTO_NUMBER.getMassage());
+            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMassage());
         }
     }
 

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.ErrorMassage.*;
+import static lotto.enums.ErrorMassage.*;
 import static lotto.domain.LottoConfig.LOTTO_COUNT;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class Lotto {
 
     private void validateSize(final List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_COUNT.getValue()) {
-            throw new IllegalArgumentException(IS_NOT_LOTTO_COUNT.getMassage());
+            throw new IllegalArgumentException(INCORRECT_LOTTO_COUNT.getMassage());
         }
     }
 
@@ -25,7 +25,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (distinctCount != LOTTO_COUNT.getValue()) {
-            throw new IllegalArgumentException(IS_DUPLICATED_LOTTO_NUMBER.getMassage());
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMassage());
         }
     }
 }

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.ErrorMassage.IS_OUT_OF_RANGE_LOTTO_NUMBER;
+import static lotto.enums.ErrorMassage.OUT_OF_RANGE_LOTTO_NUMBER;
 import static lotto.domain.LottoConfig.LOTTO_MAX_NUMBER;
 import static lotto.domain.LottoConfig.LOTTO_MIN_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -30,7 +30,7 @@ class LottoNumberTest {
         int number = LOTTO_MIN_NUMBER.getValue() - 1;
         assertThatThrownBy(() -> LottoNumber.from(number))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
-                .hasMessage(IS_OUT_OF_RANGE_LOTTO_NUMBER.getMassage());
+                .hasMessage(OUT_OF_RANGE_LOTTO_NUMBER.getMassage());
     }
 
     @Test
@@ -38,6 +38,6 @@ class LottoNumberTest {
         int number = LOTTO_MAX_NUMBER.getValue() + 1;
         assertThatThrownBy(() -> LottoNumber.from(number))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
-                .hasMessage(IS_OUT_OF_RANGE_LOTTO_NUMBER.getMassage());
+                .hasMessage(OUT_OF_RANGE_LOTTO_NUMBER.getMassage());
     }
 }

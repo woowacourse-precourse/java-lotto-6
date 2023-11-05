@@ -1,4 +1,4 @@
-가package lotto.service;
+package lotto.service;
 
 import lotto.domain.Game;
 import lotto.domain.Player;

@@ -1,7 +1,9 @@
 package lotto.view;
 
 import lotto.domain.*;
+import lotto.enums.Rank;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /* *
@@ -25,7 +27,16 @@ public class OutputView {
 
     public static void printWinningResults(WinningResult winningResult) {
         // TODO : 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-        //System.out.printf("%s개 일치%d(%s원) - %s개&n");
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        for(Rank rank : Rank.values()) {
+            System.out.printf("%s개 일치", rank.getMatchedCount());
+            if(rank.containsBonus()) {
+                System.out.print(", 보너스 볼 일치");
+            }
+            System.out.printf(" (%s원)", formatter.format(rank.getWinningAmount()));
+            System.out.printf(" - %s개", winningResult.getCount(rank));
+            System.out.println();
+        }
     }
 
     public static void printTotalReturn(double totalWinning) {

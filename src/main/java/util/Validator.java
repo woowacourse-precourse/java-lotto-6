@@ -27,13 +27,19 @@ public class Validator {
 
     private void checkAllLottoInput(String input) {
         checkEmpty(input);
-        checkDuplicate(input);
+        checkLength(parser.parseLottoNumber(input));
         checkEachSpace(parser.parseLottoNumber(input));
+        checkDuplicate(input);
         checkChar(parser.parseLottoNumber(input));
     }
 
+    private void checkLength(List<String> strings) {
+        if(strings.size() != 6)
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리를 입력해야합니다.");
+    }
+
     private void checkChar(List<String> userlottoList) {
-        for (int i = 0; i < userlottoList.size()-1; i++)
+        for (int i = 0; i < userlottoList.size(); i++)
             checkEachChar(userlottoList.get(i));
     }
 
@@ -50,6 +56,9 @@ public class Validator {
 
     private void checkEmpty(String input) {
         if (input.isEmpty()) {
+            throwSpaceException();
+        }
+        if (input.isBlank()) {
             throwSpaceException();
         }
     }
@@ -107,7 +116,8 @@ public class Validator {
     }
 
     private void checkEqual(String lotto1, String lotto2) {
-        if(lotto1.contains(lotto2)) {
+        if(lotto1.equals(lotto2)) {
+            System.out.println(lotto1 + lotto2);
             having_lotto = null;
             throwDuplicateException();
         }

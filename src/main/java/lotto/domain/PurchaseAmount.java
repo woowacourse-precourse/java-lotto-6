@@ -6,10 +6,12 @@ import static lotto.constants.LottoRule.MAX_PRICE;
 import static lotto.constants.LottoRule.UNIT_PRICE;
 
 public class PurchaseAmount {
+    private int paidMoney;
     private int purchaseAmount;
 
     public PurchaseAmount(String input) {
         validatePurchaseAmount(input);
+        this.paidMoney = convertToInt(input);
         this.purchaseAmount = getUnitAmount(input);
     }
 
@@ -39,6 +41,10 @@ public class PurchaseAmount {
         if (purchase > MAX_PRICE.getValue() || purchase <= 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
+    }
+
+    public int getPaidMoney() {
+        return paidMoney;
     }
 
     public int getAmount() {

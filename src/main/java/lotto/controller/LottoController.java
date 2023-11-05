@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.dto.WinningResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -19,15 +20,18 @@ public class LottoController {
 
 
     public void play() {
-        buyLotto();
-        getWinningLotto();
-        getLottoResult();
-        printLottoResult();
+        try {
+            buyLotto();
+            getWinningLotto();
+            getLottoResult();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorCode(e.getMessage());
+        }
     }
 
     private void buyLotto() {
         String money = inputView.printAskPurchase();
-        List<Lotto> lottoTickets = lottoService.buyLottoTickets(money);
+        List<Lotto> lottoTickets = lottoService.buyMultipleLotto(money);
         outputView.printLottoTickets(lottoTickets);
     }
 
@@ -39,13 +43,10 @@ public class LottoController {
     }
 
     private void getLottoResult() {
-        //TODO: 당첨 통계 계산 및 정보 전달
-        lottoService.getLottoResult();
+        WinningResult lottoResult = lottoService.getLottoResult();
+        outputView.printWinningResult(lottoResult);
 
-    }
-
-    private void printLottoResult() {
-        //TODO: view를 통해 당첨 개수 & 총 수익률 출력
-
+        double profitRate = lottoService.calculateProfit();
+        outputView.printProfitRate(profitRate);
     }
 }

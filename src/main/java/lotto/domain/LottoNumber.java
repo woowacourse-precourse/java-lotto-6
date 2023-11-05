@@ -5,6 +5,8 @@ import static lotto.constants.ErrorCode.NOT_INTEGER;
 import static lotto.constants.LottoRule.MAX_LOTTO_NUM;
 import static lotto.constants.LottoRule.MIN_LOTTO_NUM;
 
+import java.util.Objects;
+
 public class LottoNumber {
     private int number;
 
@@ -41,5 +43,19 @@ public class LottoNumber {
         return number;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof LottoNumber that)) {
+            return false;
+        }
+        return number == that.number;
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
+    }
 }

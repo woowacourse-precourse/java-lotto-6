@@ -52,7 +52,7 @@ public class Result {
             totalAmount += prizeAmount * numberOfWinners;
         }
         double profitRate = (double) totalAmount / purchaseAmount;
-        double roundedProfitRate = Math.round(profitRate * 100.0) / 100.0;
+        double roundedProfitRate = Math.round(profitRate * 10000.0) / 100.0;
 
         return roundedProfitRate;
     }

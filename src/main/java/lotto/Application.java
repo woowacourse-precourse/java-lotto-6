@@ -15,6 +15,8 @@ public class Application {
     private static int fourMatchPrize;
     private static int threeMatchPrize;
 
+    private static double statistics;
+
     public static void main(String[] args) {
 
         System.out.println("구입금액을 입력해 주세요.");
@@ -33,11 +35,10 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = readLine();
         Integer bonusNum = inputBounsNumber(pickWinnerNumber, bonusNumber);
-        System.out.println("bonusNum = " + bonusNum);
 
         Map<Integer, Integer> matches = numberMatches(userCountRandomLotto, pickWinnerNumber);
-        System.out.println("matches : "+matches);
         determinePrizeRank(userCountRandomLotto, matches, bonusNum);
+        calculateProfitRate(inputMoney);
         printWinningStatistics();
 
 
@@ -191,7 +192,7 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - "+fiveMatchPrize+" 개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+fiveMatchWithBonusPrize+" 개");
         System.out.println("6개 일치 (2,000,000,000원) - "+sixMatchPrize+" 개");
-        System.out.println("총 수익률은 "+statistics()+"입니다.");
+        System.out.println("총 수익률은 "+statistics+"입니다.");
     } // printWinningStatistics
 
     public static Map<Integer, Integer> numberMatches(Map<Integer, List<Integer>> userCountRandomLotto, List<Integer> pickWinnerNumber){ // 각 랜덤 복권들과 당첨번호가 서로 몇개 맞는지 검증하는 메소드
@@ -235,10 +236,22 @@ public class Application {
         }
     } // determinePrizeRank
 
-    public static double statistics(){
-        double prizeSum = sixMatchPrize + fiveMatchWithBonusPrize + fiveMatchPrize + fourMatchPrize + threeMatchPrize;
-        double prizeAvg = (prizeSum / 5.0) * 100;
-        return Math.round(prizeAvg * 100) / 100;
-    }
+    public static double calculateTotalProfitRate(){
+        return (sixMatchPrize * PrizeCategory.MATCHES_SIX.getPrizeAmount())
+                + (fiveMatchWithBonusPrize * PrizeCategory.MATCHES_FIVE_BONUS.getPrizeAmount())
+                + (fiveMatchPrize * PrizeCategory.MATCHES_FIVE.getPrizeAmount())
+                + (fourMatchPrize * PrizeCategory.MATCHES_FOUR.getPrizeAmount())
+                + (threeMatchPrize * PrizeCategory.MATCHES_THREE.getPrizeAmount());
+    } // calculateTotalProfitRate
+
+    public static void calculateProfitRate(int inputMoney){
+        double prizeAvg = (calculateTotalProfitRate() / inputMoney) * 100.0;
+
+        statistics = roundToTwoDecimalPlaces(prizeAvg);
+    } // calculateProfitRate
+
+    public static double roundToTwoDecimalPlaces(double value) {
+        return Math.round(value * 100) / 100.0;
+    } // roundToTwoDecimalPlaces
 
 }

@@ -20,6 +20,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public List<Integer> getLottoNumbers() {
+        return numbers;
+    }
+
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> lottoNumbers = new HashSet<>();
 

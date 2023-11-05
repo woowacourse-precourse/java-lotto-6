@@ -6,6 +6,7 @@ import static lotto.constant.LottoOutputMessage.*;
 import java.util.List;
 import lotto.Lotto;
 import lotto.domain.LottoGame;
+import lotto.domain.WinningNumber;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -25,7 +26,12 @@ public class LottoGameController {
     public void run() {
         Integer purchaseCount = initPurchaseAmount();
         LottoGame lottoGame = initLottoGame(purchaseCount);
-        requestWinningNumber();
+        initWinningNumber();
+    }
+
+    private WinningNumber initWinningNumber() {
+        List<String> winningNumberInput = requestWinningNumber();
+        return new WinningNumber(winningNumberInput);
     }
 
     private List<String> requestWinningNumber() {

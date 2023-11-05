@@ -7,7 +7,7 @@ import lotto.validator.PayAmountValidator;
 
 public class Client {
     private final int payAmount;
-    private List<Lotto> lottos;
+    private List<Lotto> lottos = new ArrayList<>();
     private static final PayAmountValidator PAY_AMOUNT_VALIDATOR = new PayAmountValidator();
 
     private Client(int payAmount) {

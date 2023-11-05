@@ -50,6 +50,8 @@ public class WinningNumbersTest {
         return Stream.of(
                 Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 12), 12,
                         LottoResults.SECOND),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 12), 21,
+                        LottoResults.THIRD),
                 Arguments.of(List.of(1, 12, 13, 14, 15, 16), List.of(1, 13, 15, 16, 41, 45), 41,
                         LottoResults.FOURTH),
                 Arguments.of(List.of(1, 31, 32, 33, 41, 45), List.of(1, 11, 12, 13, 21, 25), 42,

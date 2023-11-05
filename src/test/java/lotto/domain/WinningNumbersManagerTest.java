@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,10 +26,10 @@ class WinningNumbersManagerTest {
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
         //when
-        Map<WinningStatus, Integer> winningStatus = winningNumbersManager.getWinningStatus(lottos);
+        WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
 
         //then
-        assertThat(winningStatus.get(WinningStatus.MATCH6)).isEqualTo(1);
+        assertThat(winningStatus.getSum(PrizeType.MATCH6)).isEqualTo(PrizeType.MATCH6.getPrize());
     }
 
     @Test
@@ -41,10 +40,10 @@ class WinningNumbersManagerTest {
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
 
         //when
-        Map<WinningStatus, Integer> winningStatus = winningNumbersManager.getWinningStatus(lottos);
+        WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
 
         //then
-        assertThat(winningStatus.get(WinningStatus.MATCH5_WITH_BONUS)).isEqualTo(1);
+        assertThat(winningStatus.getSum(PrizeType.MATCH5_WITH_BONUS)).isEqualTo(PrizeType.MATCH5_WITH_BONUS.getPrize());
     }
 
     @Test
@@ -55,10 +54,10 @@ class WinningNumbersManagerTest {
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 8)));
 
         //when
-        Map<WinningStatus, Integer> winningStatus = winningNumbersManager.getWinningStatus(lottos);
+        WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
 
         //then
-        assertThat(winningStatus.get(WinningStatus.MATCH5)).isEqualTo(1);
+        assertThat(winningStatus.getSum(PrizeType.MATCH5)).isEqualTo(PrizeType.MATCH5.getPrize());
     }
 
     @Test
@@ -69,10 +68,10 @@ class WinningNumbersManagerTest {
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 8, 9)));
 
         //when
-        Map<WinningStatus, Integer> winningStatus = winningNumbersManager.getWinningStatus(lottos);
+        WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
 
         //then
-        assertThat(winningStatus.get(WinningStatus.MATCH4)).isEqualTo(1);
+        assertThat(winningStatus.getSum(PrizeType.MATCH4)).isEqualTo(PrizeType.MATCH4.getPrize());
     }
 
     @Test
@@ -83,9 +82,9 @@ class WinningNumbersManagerTest {
         lottos.add(new Lotto(List.of(1, 2, 3, 8, 9, 7)));
 
         //when
-        Map<WinningStatus, Integer> winningStatus = winningNumbersManager.getWinningStatus(lottos);
+        WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
 
         //then
-        assertThat(winningStatus.get(WinningStatus.MATCH3)).isEqualTo(1);
+        assertThat(winningStatus.getSum(PrizeType.MATCH3)).isEqualTo(PrizeType.MATCH3.getPrize());
     }
 }

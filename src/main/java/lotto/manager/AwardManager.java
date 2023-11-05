@@ -4,6 +4,7 @@ import lotto.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class AwardManager {
 
@@ -14,18 +15,15 @@ public class AwardManager {
             int score = winningLotto.grade(eachLotto);
             awards.add(Award.getByOrdinal(score));
         }
+
         applyBonusNumber(userLotto,bonusNumber,awards);
         return awards;
     }
 
     private static void applyBonusNumber(UserLotto userLotto, BonusNumber bonusNumber, List<Award> awards){
-        for(int i=0;i<userLotto.size();i++){
-            if(awards.get(i).equals(Award.FIVE)) {
-                Lotto eachLotto = userLotto.getIndexAt(i);
-                if(eachLotto.contains(bonusNumber.getBonusNumber())){
-                    awards.set(i,Award.FIVE_BONUS);
-                }
-            }
-        }
+        IntStream.range(0, userLotto.size())
+                .filter(i -> awards.get(i).equals(Award.FIVE))
+                .filter(i -> userLotto.getIndexAt(i).contains(bonusNumber.getBonusNumber()))
+                .forEach(i -> awards.set(i,Award.FIVE_BONUS));
     }
 }

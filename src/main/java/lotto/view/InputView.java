@@ -29,6 +29,12 @@ public class InputView {
 
         return winningNumbers;
     }
-    public void inputBonusNumber() {
+    public static int inputBonusNumber() {
+        OutputView.printInputBonusNumberMsg();
+
+        String userInputBonusNumbers = readLine();
+        int bonusNumber = Integer.parseInt(userInputBonusNumbers);
+
+        return bonusNumber;
     }
 }

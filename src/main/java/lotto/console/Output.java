@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Output {
-    public static void printTickets(List<Lotto> tickets, int ticketNum){
+    public static void printTickets(List<Lotto> tickets, long ticketNum){
         System.out.printf("%d개를 구매했습니다. \n", ticketNum);
         Stream<Lotto> ticketBuffer = tickets.stream();
         ticketBuffer.forEach( it -> System.out.println(it.getNumbers()));

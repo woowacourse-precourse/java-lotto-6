@@ -37,4 +37,7 @@ public class Asset {
     public Float getRate(){
         return income / money;
     }
+    public Float getMoney(){
+        return money;
+    }
 }

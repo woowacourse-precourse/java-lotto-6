@@ -1,6 +1,8 @@
 package lotto.service;
 
 import lotto.model.Lotto;
+import lotto.model.LottoMachine;
+
 import java.util.List;
 
 /**
@@ -8,10 +10,16 @@ import java.util.List;
  */
 public class LottoService {
 
+    private static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_STAT_NUMBER = 1;
+    private static final int LOTTO_END_NUMBER = 45;
+    private static final int LOTTO_COUNT = 6;
+
+
     public void start() {
         int amount = getAmount();
 
-        List<Lotto> purchasedLottoList = buyLottos(amount);
+        List<Lotto> purchasedLottoList = issueLottoTicket(amount);
 
         Lotto winnigLotto = getWinnigNumbers();
 
@@ -23,28 +31,19 @@ public class LottoService {
     private int getAmount() {
         LottoViewService.outputAmount();
         try {
-            return LottoViewService.inputAmount();
+            return LottoViewService.inputAmount(LOTTO_PRICE);
         } catch (IllegalArgumentException e) {
             LottoViewService.outPutErrorMessage(e);
             return getAmount();
         }
     }
 
-    private List<Lotto> buyLottos(int amount) {
-        int lottoEa = getLottoEa(amount);
-        List<Lotto> lottoList = createLotttos(lottoEa);
+    private List<Lotto> issueLottoTicket(int amount) {
+        LottoMachine lottoMachine = new LottoMachine(LOTTO_STAT_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT);
+        List<Lotto> lottoList = lottoMachine.getLottoList(LOTTO_PRICE, amount);
+        LottoViewService.outputEa(lottoList.size());
         LottoViewService.outputLottoList(lottoList);
         return lottoList;
-    }
-
-    private List<Lotto> createLotttos(int ea) {
-        return null;
-    }
-
-    private int getLottoEa(int amount) {
-        int ea = 0;
-        LottoViewService.outputEa(ea);
-        return ea;
     }
 
     private Lotto getWinnigNumbers() {

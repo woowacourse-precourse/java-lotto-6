@@ -15,24 +15,25 @@ import static lotto.common.MessageType.*;
  */
 public class LottoViewService {
 
-    private static final int MIN_LOTTO_AMOUNT_UNIT = 1000;
-
     public static void outputAmount() {
         System.out.println(ASK_PURCHASE_AMOUNT.getMessage());
     }
 
-    public static int inputAmount() {
-        int amount = ConvertStringToInt(Console.readLine());
-        if (!Validator.isMultipleOfNumber(amount, MIN_LOTTO_AMOUNT_UNIT)) {
+    public static int inputAmount(int lottoPrice) {
+        int amount = ConvertStringToInt(getInputData());
+        if (!Validator.isMultipleOfNumber(amount, lottoPrice)) {
             throw new IllegalArgumentException(ERROR_MIN_LOTTO_AMOUNT_UNIT.getLottoMessage());
         }
         return amount;
     }
 
     public static void outputEa(int ea) {
+        System.out.println(PURCHASED_LOTTO_FORMAT.getEaMessage(ea));
     }
 
     public static void outputLottoList(List<Lotto> lottoList) {
+        lottoList.forEach(l -> System.out.println(l.toString()));
+        System.out.println();
     }
 
     public static Lotto inputWinnigNumbers() {
@@ -51,6 +52,12 @@ public class LottoViewService {
 
     public static void outPutErrorMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
+    }
+
+    private static String getInputData() {
+        String input = Console.readLine();
+        System.out.println();
+        return input;
     }
 
     private static int ConvertStringToInt(String s) {

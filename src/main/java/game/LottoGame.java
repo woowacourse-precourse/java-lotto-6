@@ -1,7 +1,6 @@
 package game;
 
 import static constant.ConstantMessage.BONUS_NUMBER_REQUEST_MESSAGE;
-import static constant.ConstantMessage.WINNING_NUMBER_REQUEST_MESSAGE;
 import static constant.ConstantMessage.WINNING_STATISTICS_NOTICE_MESSAGE;
 import static constant.ConstantNumber.BONUS_CRITERIA;
 import static constant.ConstantNumber.NUMBER_INITIALIZATION;
@@ -22,6 +21,7 @@ public class LottoGame {
         LottoTicketPurchase lottoTicketPurchase = new LottoTicketPurchase();
         LottoTicketQuantity lottoTicketQuantity = new LottoTicketQuantity();
         UserLottoNumbers lottoTicketDisplay = new UserLottoNumbers();
+        WinningNumberInput winningNumberInput = new WinningNumberInput();
         int purchaseAmount = lottoTicketPurchase.getPurchaseAmount(converter);
 
         // LottoTicketPurchase
@@ -34,24 +34,21 @@ public class LottoGame {
 
         lottoTicketQuantity.printPurchaseQuantity(purchaseQuantity);
 
-        //LottiTicketDisplay
+        //UserLottoNumbers
         List<List<Integer>> userLottoNumbers = lottoTicketDisplay.getUserLottoNumbers(purchaseQuantity);
         lottoTicketDisplay.printUserLottoNumbers(purchaseQuantity, userLottoNumbers);
 
         System.out.println();
 
         //WinningNumberInput
-        System.out.println(WINNING_NUMBER_REQUEST_MESSAGE);
-        String luckyNumberString = Console.readLine();
 
-        List<Integer> luckyNumbers = new ArrayList<>();
+        List<Integer> winningNumberList = new ArrayList<>();
 
-        String[] tokenString = luckyNumberString.split(",");
-        for (String part : tokenString) {
-            int luckyNumber = converter.stringToInteger(part);
-            luckyNumbers.add(luckyNumber);
-        }
+        String winningNumbers = winningNumberInput.receiveWinningNumbers();
+        String[] winningNumberStringList = winningNumberInput.makeWinningNumberStringList(winningNumbers, converter);
+        winningNumberInput.getWinnerNumbers(winningNumberStringList, winningNumberList, converter);
 
+        //BonusNumberInput
         System.out.println();
 
         System.out.println(BONUS_NUMBER_REQUEST_MESSAGE);
@@ -73,7 +70,7 @@ public class LottoGame {
             int score = 0;
             int bonusScore = 0;
             for (int userNumber : userLottoNumbers.get(index)) {
-                for (int luckyNumber : luckyNumbers) {
+                for (int luckyNumber : winningNumberList) {
                     if (luckyNumber == userNumber) {
                         score++;
                     }

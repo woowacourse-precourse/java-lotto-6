@@ -3,6 +3,8 @@ package lotto.verifier;
 import lotto.system.Constant;
 import lotto.system.ExceptionMessage;
 
+import java.math.BigInteger;
+
 public class BonusNumberVerifier implements Verifier{
     @Override
     public void check(String input) {
@@ -13,8 +15,8 @@ public class BonusNumberVerifier implements Verifier{
 
     private void checkNumeric(String input) {
         try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+            new BigInteger(input);
+        } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_NUMERIC);
         }
     }

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
@@ -11,6 +10,9 @@ public class LottoMachine {
     private static final int LOTTO_SIZE = 6;
     private static final int defaultSalePrice = 1_000;
     private int lottoCount;
+
+    public LottoMachine() {
+    }
 
     public LottoMachine(int price) {
         validateUnitOfMoney(price);

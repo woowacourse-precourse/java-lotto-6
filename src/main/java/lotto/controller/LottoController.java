@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.model.exception.InputViewException;
 import lotto.model.Lotto;
 import lotto.model.LottoProcess;
 import lotto.model.WinningLotto;
@@ -13,6 +12,7 @@ public class LottoController {
     private final OutputView outputView;
     private final InputView inputView;
     private final LottoProcess lottoProcess;
+
 
     public LottoController(OutputView outputView, InputView inputView, LottoProcess lottoProcess) {
         this.outputView = outputView;
@@ -29,24 +29,21 @@ public class LottoController {
     }
 
     private int getValidPurchaseAmount() {
-//        boolean status = true;
         while (true) {
             try {
                 String userPurchaseAmount = inputView.getPurchaseAmount();
-                return LottoProcess.purchaseAmount(userPurchaseAmount);
-//                status = false;
+                return lottoProcess.purchaseAmount(userPurchaseAmount);
             } catch (LottoProcessException e) {
                 System.out.println(e.getMessage());
             }
         }
-//        return 0;
     }
 
     private List<Lotto> getValidPurchaseLotto(String userPurchaseAmount) {
         while (true) {
             try {
                 int purchaseAmount = Integer.parseInt(userPurchaseAmount);
-                List<Lotto> purchaseLotto = LottoProcess.purchaseLotto(String.valueOf(purchaseAmount));
+                List<Lotto> purchaseLotto = lottoProcess.purchaseLotto(String.valueOf(purchaseAmount));
                 outputView.showPurchasedLottos(purchaseLotto);
                 return purchaseLotto;
             } catch (IllegalArgumentException e) {
@@ -59,7 +56,7 @@ public class LottoController {
         while (true) {
             try {
                 Lotto winningNumbers = inputView.getWinningNumbers();
-                int bonusNumber = getValidBonusNumber(winningNumbers.getNumbers());
+                String bonusNumber = getValidBonusNumber(winningNumbers.getNumbers());
                 return new WinningLotto(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -67,12 +64,12 @@ public class LottoController {
         }
     }
 
-    private int getValidBonusNumber(List<Integer> winningNumbers) {
+    private String getValidBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                int bonusNumber = inputView.getBonusNumber(winningNumbers);
-                InputViewException.checkBonusNumberDuplicationException(winningNumbers, bonusNumber);
-                return bonusNumber;
+                String userBonusNumber = String.valueOf(inputView.getBonusNumber(winningNumbers));
+                new WinningLotto(new Lotto(winningNumbers), userBonusNumber);
+                return userBonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

@@ -33,7 +33,7 @@ public class LottoException extends IllegalArgumentException {
 
     private static void checkNumbersRangeException(List<Integer> numbers) {
         if (numbers.stream().anyMatch(n -> n < NUMBERS_MIN_RANGE.getNumber() || n > NUMBERS_MAX_RANGE.getNumber())) {
-            String NUMBERS_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복되지 않는 " + NUMBERS_MIN_RANGE.getNumber() + "과 " + NUMBERS_MAX_RANGE.getNumber() + "사이의 숫자여야 합니다.";
+            String NUMBERS_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 " + NUMBERS_MIN_RANGE.getNumber() + "과 " + NUMBERS_MAX_RANGE.getNumber() + "사이의 숫자여야 합니다.";
             throw new LottoException(NUMBERS_RANGE_ERROR_MESSAGE);
         }
     }

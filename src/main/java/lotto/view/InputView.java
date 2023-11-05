@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.exception.InputViewException;
 import lotto.model.Lotto;
 
 public class InputView {
@@ -27,13 +26,8 @@ public class InputView {
         return new Lotto(winningNumbers);
     }
 
-    public int getBonusNumber(List<Integer> winningLotto) {
+    public String getBonusNumber(List<Integer> winningLotto) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        String userBonusNumber = Console.readLine();
-        InputViewException.checkBonusTypeException(userBonusNumber);
-        int bonusNumber = Integer.parseInt(userBonusNumber.trim());
-        InputViewException.checkBonusNumberRangeException(userBonusNumber);
-        InputViewException.checkBonusNumberDuplicationException(winningLotto, bonusNumber);
-        return bonusNumber;
+        return Console.readLine();
     }
 }

@@ -15,7 +15,7 @@ public class LottoProcess {
     public LottoProcess() {
     }
 
-    public static List<Lotto> purchaseLotto(String userMoney) {
+    public List<Lotto> purchaseLotto(String userMoney) {
         int money = purchaseAmount(userMoney);
         int numberOfLotto = money / LOTTO_PRICE.getNumber();
         List<Lotto> lotto = new ArrayList<>();
@@ -25,7 +25,7 @@ public class LottoProcess {
         return lotto;
     }
 
-    public static int purchaseAmount(String userMoney) {
+    public int purchaseAmount(String userMoney) {
         LottoProcessException.checkLottoPriceNegativeException(userMoney);
         LottoProcessException.checkLottoPriceTypeException(userMoney);
         int money = Integer.parseInt(userMoney);
@@ -33,7 +33,7 @@ public class LottoProcess {
         return money;
     }
 
-    private static Lotto generateRandomLotto() {
+    private Lotto generateRandomLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(NUMBERS_MIN_RANGE.getNumber(),
         NUMBERS_MAX_RANGE.getNumber(), NUMBERS_SIZE.getNumber());
         return new Lotto(randomNumbers);

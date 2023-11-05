@@ -21,7 +21,8 @@ public class Lotto {
         return numbers.stream().sorted().map(String::valueOf).reduce((a,b) -> a + ", " + b).orElse("");
     }
 
-    public boolean hasBonusNumber(int bonusNumber) {
+    public boolean hasBonusNumber(String userBonusNumber) {
+        int bonusNumber = Integer.valueOf(userBonusNumber);
         return numbers.contains(bonusNumber);
     }
 

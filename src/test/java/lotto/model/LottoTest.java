@@ -44,7 +44,7 @@ class LottoTest {
     @Test
     void 보너스_번호_포함_확인() {
         Lotto lottoNumbers = new Lotto(List.of(2, 6, 5, 3, 8, 7));
-        int bonusNumbers = 7;
+        String bonusNumbers = "7";
         assertThat(lottoNumbers.hasBonusNumber(bonusNumbers)).isEqualTo(true);
     }
 }

@@ -23,4 +23,9 @@ public class OutputView {
         System.out.println();
         System.out.println(Comment.INPUT_WINNING_NUMBER.getComment());
     }
+
+    public static void printLottoBonusNumber() {
+        System.out.println();
+        System.out.println(Comment.INPUT_BONUS_NUMBER.getComment());
+    }
 }

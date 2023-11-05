@@ -1,20 +1,49 @@
 package lotto.constant;
 
+import java.util.stream.Stream;
+
 public enum LottoRank {
-    OUT_RANK(0),
-    THREE_MATCH(5000),
-    FOUR_MATCH(50000),
-    FIVE_MATCH(1500000),
-    FIVE_AND_BONUS_MATCH(30000000),
-    SIX_MATCH(2000000000);
+    OUT_RANK(6,0, 2),
+    THREE_MATCH(5,5000, 3),
+    FOUR_MATCH(4,50000, 4),
+    FIVE_MATCH(3,1500000, 5),
+    FIVE_AND_BONUS_MATCH(2,30000000, 5),
+    SIX_MATCH(1,2000000000, 6);
 
+    private final int rank;
     private final int prizeMoney;
+    private final int matchedNumberCount;
 
-    LottoRank(int prizeMoney) {
+    LottoRank(int rank, int prizeMoney, int matchedCount) {
+        this.rank = rank;
         this.prizeMoney = prizeMoney;
+        this.matchedNumberCount = matchedCount;
+    }
+
+    public static LottoRank findByMatchedNumberCountAndBonusNumberMatched(
+            int matchedNumberCount, boolean bonusNumberMatched
+    ) {
+        if (matchedNumberCount == 5) {
+            return decideRankSecondOrThird(bonusNumberMatched);
+        }
+        return Stream.of(values())
+                .filter(lottoRank -> lottoRank.matchedNumberCount == matchedNumberCount)
+                .findAny()
+                .orElse(OUT_RANK);
+    }
+
+    private static LottoRank decideRankSecondOrThird(boolean matchedBonusNumber) {
+        if(matchedBonusNumber) {
+            return FIVE_AND_BONUS_MATCH;
+        }
+        return FIVE_MATCH;
     }
 
     public int getPrizeMoney() {
         return prizeMoney;
+    }
+
+    public int getRank() {
+        return rank;
     }
 }

@@ -37,7 +37,10 @@ public class WinningLotto {
         }
     }
 
-    public LottoRank calculateRank(Lotto lotto) {
-        return LottoRank.OUT_RANK;
+    public LottoRank calculateRank(Lotto comparedLotto) {
+        int matchedNumberCount = lotto.countMatchedNumber(comparedLotto);
+        boolean bonusNumberMatched = comparedLotto.containNumber(bonusNumber);
+
+        return LottoRank.findByMatchedNumberCountAndBonusNumberMatched(matchedNumberCount, bonusNumberMatched);
     }
 }

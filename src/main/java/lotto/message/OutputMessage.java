@@ -17,6 +17,10 @@ public enum OutputMessage {
         this.message = message;
     }
 
+    public void print() {
+        System.out.println(message);
+    }
+
     public void print(int value) {
         System.out.printf(message, value);
         System.out.println();

@@ -33,7 +33,7 @@ public class LottoController {
 
 
         // 구매한 로또 정렬해서 출력
-        OutputView.printPurchaseLotto(userLottos.toDtos());
+        OutputView.printPurchaseLottos(userLottos.toDtos());
 
 
         // 당첨번호 입력받기

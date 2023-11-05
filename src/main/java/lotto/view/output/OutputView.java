@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public static void printPurchaseLotto(List<LottoDto> lottoDto) {
+    public static void printPurchaseLottos(List<LottoDto> lottoDto) {
         System.out.println(lottoDto.size() + "개를 구매했습니다.");
         lottoDto.stream()
                 .forEach(OutputView::printLottoDto);

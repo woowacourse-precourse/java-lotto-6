@@ -2,7 +2,7 @@
 
 ## 🎫 Lotto - 로또 티켓역할을 한다. ## 
     - 6개의 숫자를 가짐
-        - 로또 멤버 변수를 접근하는 getter/ setter
+        - 로또 멤버 변수를 접근하는 getter
         - validation (6글자, 중복 체크)
 
 ## 💻 RandMachine - 숫자 랜덤 생성기 ##

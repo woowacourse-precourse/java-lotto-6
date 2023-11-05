@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import Model.Domain;
@@ -12,8 +13,7 @@ public class DomainTest {
     void priceUnit() {
         Domain domain = Domain.getInstance();
         int wrongPrice = 1050;
-
-        assertThrows(IllegalArgumentException.class, () -> domain.checkPriceUnit(wrongPrice),
-                "구입 금액이 1,000 단위가 아닐 때 예외가 발생해야 합니다.");
+        assertThatThrownBy(() -> domain.checkPriceUnit(wrongPrice))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

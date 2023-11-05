@@ -22,7 +22,7 @@ public class TerminalUI implements LottoGameUI {
     public void printPurchasedLottos(List<Lotto> lottosDTO) {
         Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_SIZE, lottosDTO.size());
         for(Lotto lotto : lottosDTO){
-            Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_NUMBERS, lotto.getNumbers());
+            Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_NUMBERS, lotto.getNumbers().toArray());
         }
     }
 

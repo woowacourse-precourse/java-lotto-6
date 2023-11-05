@@ -47,27 +47,6 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @MethodSource("toStringTestArgs")
-    public void 정해진_포맷으로_숫자가_정렬되어_출력(List<Integer> lottoNumbers, String lottoString) throws Exception{
-        //given
-        Lotto lotto = new Lotto(lottoNumbers);
-
-        //when
-        //then
-        Assertions.assertThat(lotto.toString())
-                .isEqualTo(lottoString);
-    }
-
-    private static Stream<Arguments> toStringTestArgs(){
-        return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), "[1, 2, 3, 4, 5, 6]"),
-                Arguments.of(List.of(1, 5, 12, 15, 21, 25), "[1, 5, 12, 15, 21, 25]"),
-                Arguments.of(List.of(12, 15, 20, 25, 31, 42), "[12, 15, 20, 25, 31, 42]"),
-                Arguments.of(List.of(12, 4, 7, 3, 1, 5), "[1, 3, 4, 5, 7, 12]")
-        );
-    }
-
-    @ParameterizedTest
     @MethodSource("equalsArgs")
     void 로또_동등성_테스트(Lotto l1, Lotto l2, CompareResult result){
         Assertions.assertThat(l1.compareLotto(l2))

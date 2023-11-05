@@ -51,4 +51,17 @@ class LottoTest {
         // then
         Assertions.assertThat(hasNumber).isFalse();
     }
+
+    @Test
+    @DisplayName("같은 숫자가 4개 일시 4를 반환해야한다.")
+    void sameNumberCounterTest() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 40, 41));
+        // when
+        int count = lotto.sameNumberCounter(lotto1);
+        // then
+        Assertions.assertThat(count).isEqualTo(4);
+
+    }
 }

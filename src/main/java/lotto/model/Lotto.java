@@ -13,9 +13,19 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int sameNumberCounter(Lotto lotto) {
+        return lotto.calculateSameNumberCount(numbers);
+    }
+
     public boolean hasNumber(Integer number) {
         return numbers.stream()
                 .anyMatch(num -> num.equals(number));
+    }
+
+    private int calculateSameNumberCount(List<Integer> numbers) {
+        return (int) numbers.stream()
+                .filter(this.numbers::contains)
+                .count();
     }
 
     @Override

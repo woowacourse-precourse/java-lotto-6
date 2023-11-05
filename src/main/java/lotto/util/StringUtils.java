@@ -1,10 +1,14 @@
 package lotto.util;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringUtils {
+
+    private static final String MONEY_FORMAT = "###,###";
+
     private StringUtils() {
     }
 
@@ -18,5 +22,10 @@ public class StringUtils {
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();
+    }
+
+    public static String convertToMoneyFormat(int money) {
+        DecimalFormat decimalFormat = new DecimalFormat(MONEY_FORMAT);
+        return decimalFormat.format(money);
     }
 }

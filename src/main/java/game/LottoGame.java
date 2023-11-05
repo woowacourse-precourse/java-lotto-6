@@ -1,12 +1,10 @@
 package game;
 
 import static constant.ConstantMessage.BONUS_NUMBER_REQUEST_MESSAGE;
-import static constant.ConstantMessage.PURCHASE_QUANTITY_PRINT_MESSAGE;
 import static constant.ConstantMessage.WINNING_NUMBER_REQUEST_MESSAGE;
 import static constant.ConstantMessage.WINNING_STATISTICS_NOTICE_MESSAGE;
 import static constant.ConstantNumber.BONUS_CRITERIA;
 import static constant.ConstantNumber.NUMBER_INITIALIZATION;
-import static constant.ConstantNumber.PURCHASE_UNIT;
 import static game.LottoRank.FIFTH_RANK;
 import static game.LottoRank.FIRST_RANK;
 import static game.LottoRank.FOURTH_RANK;
@@ -15,34 +13,29 @@ import static game.LottoRank.THIRD_RANK;
 
 import base.Converter;
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
     public void run() {
+//        List<List<Integer>> userLottoNumbers = new ArrayList<>();
+
         Converter converter = new Converter();
         // LottoTicketPurchase
         LottoTicketPurchase lottoTicketPurchase = new LottoTicketPurchase();
+        LottoTicketDisplay lottoTicketDisplay = new LottoTicketDisplay();
         int purchaseAmount = lottoTicketPurchase.getPurchaseAmount();
 
         System.out.println();
 
         //LottoTicketDisplay
-        int purchaseQuantity = purchaseAmount / PURCHASE_UNIT; // 8
-        System.out.println(purchaseQuantity + PURCHASE_QUANTITY_PRINT_MESSAGE);
-        List<List<Integer>> userLottoNumberCollection = new ArrayList<>(purchaseQuantity);
 
-        for (int index = 0; index < purchaseQuantity; index++) {
-            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            Collections.sort(randomNumbers);
-            userLottoNumberCollection.add(randomNumbers);
-        }
+        int purchaseQuantity = lottoTicketDisplay.getPurchaseQuantity(purchaseAmount);
 
-        for (int index = 0; index < purchaseQuantity; index++) {
-            System.out.println(userLottoNumberCollection.get(index));
-        }
+        lottoTicketDisplay.printPurchaseQuantity(purchaseQuantity);
+        List<List<Integer>> userLottoNumbers = lottoTicketDisplay.getUserLottoNumbers(purchaseQuantity);
+
+        lottoTicketDisplay.printUserLottoNumbers(purchaseQuantity, userLottoNumbers);
 
         System.out.println();
 
@@ -75,10 +68,10 @@ public class LottoGame {
         int fourSuccess = NUMBER_INITIALIZATION;
         int threeSuccess = NUMBER_INITIALIZATION;
 
-        for (int index = 0; index < userLottoNumberCollection.size(); index++) {
+        for (int index = 0; index < userLottoNumbers.size(); index++) {
             int score = 0;
             int bonusScore = 0;
-            for (int userNumber : userLottoNumberCollection.get(index)) {
+            for (int userNumber : userLottoNumbers.get(index)) {
                 for (int luckyNumber : luckyNumbers) {
                     if (luckyNumber == userNumber) {
                         score++;

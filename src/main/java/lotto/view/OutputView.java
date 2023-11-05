@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.domain.Result;
 
 public class OutputView {
 
@@ -36,4 +37,18 @@ public class OutputView {
     public void printBeforeInputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
+
+    public void printResult() {
+        Result[] values = Result.values();
+        for (Result value : values) {
+            System.out.printf("%d개 일치(%s), ");
+        }
+    }
+//    3개 일치 (5,000원) - 1개
+//4개 일치 (50,000원) - 0개
+//5개 일치 (1,500,000원) - 0개
+//5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+//6개 일치 (2,000,000,000원) - 0개
+//    총 수익률은 62.5%입니다.
 }
+

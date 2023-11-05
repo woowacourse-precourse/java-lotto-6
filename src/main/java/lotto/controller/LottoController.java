@@ -8,6 +8,7 @@ import lotto.domain.LottoTicket;
 import lotto.service.InputBonusNumberService;
 import lotto.service.InputMoneyService;
 import lotto.service.InputWinnerNumberService;
+import lotto.service.LottoService;
 import lotto.util.LottoGenerator;
 import lotto.util.Validator;
 import lotto.view.InputView;
@@ -19,6 +20,7 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final Validator validator;
+    private final LottoService lottoService;
 
 
 
@@ -27,6 +29,7 @@ public class LottoController {
         this.inputView = inputView;
         this.outputView = outputView;
         this.validator = new Validator();
+        this.lottoService = new LottoService();
     }
 
     public void start() {
@@ -36,8 +39,12 @@ public class LottoController {
 
         List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinnerNumberService());
 
-        lottoWinNumbers.add(inputBonusNumber());
+        Integer bonusNumber = inputBonusNumber();
 
+        Long result = lottoService.calculateMoney(lottoTickets, lottoWinNumbers, bonusNumber);
+
+
+        outputView.printResult();
 
         /*
             금액에 따른 로또 번호 뽑기!

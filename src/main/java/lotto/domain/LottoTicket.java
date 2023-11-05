@@ -24,6 +24,14 @@ public class LottoTicket {
         this.sameCount++;
     }
 
+    public int getSameCount() {
+        return sameCount;
+    }
+
+    public boolean isBonus() {
+        return bonus;
+    }
+
     public void hasBonus(){
         this.bonus = true;
     }

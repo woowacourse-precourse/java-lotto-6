@@ -6,7 +6,7 @@ import static lotto.constant.LottoSetting.*;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 
 public class LottoGameService {

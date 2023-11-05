@@ -4,7 +4,7 @@ import static java.lang.String.format;
 import static lotto.constant.LottoOutputMessage.*;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.WinningNumber;
 import lotto.service.LottoGameService;

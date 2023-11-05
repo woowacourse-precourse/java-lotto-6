@@ -11,7 +11,8 @@ public enum ErrorMessage {
     WRONG_LENGTH("[ERROR] 숫자를 6개 입력하지 않았습니다"),
     CONTAIN_BLANK("[ERROR] 입력에 공백이 섞여있습니다"),
     ANOTHER_COMMA("[ERROR] 입력은 ',' 으로 구분해야합니다"),
-    SEQUENCE_COMMA("[ERROR] ','를 연속해서 적었습니다");
+    SEQUENCE_COMMA("[ERROR] ','를 연속해서 적었습니다"),
+    BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 기존 번호와 중복될 수 없습니다");
 
 
 

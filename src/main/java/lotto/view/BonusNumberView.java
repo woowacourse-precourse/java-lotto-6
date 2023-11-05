@@ -1,21 +1,25 @@
 package lotto.view;
 
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_DUPLICATE;
 import static lotto.constant.ErrorMessage.EMPTY;
 import static lotto.constant.ErrorMessage.INPUT_STRING;
 import static lotto.constant.ErrorMessage.OUT_OF_NUMBER_RANGE;
 import static lotto.constant.LottoNumberMessage.ASK_BONUS_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.constant.LottoNumberMessage;
 
 
 public class BonusNumberView {
 
-    public int bonusNumber() {
+    public int bonusNumber(List<Integer> exisingNumbers) {
         BonusNumberMessage(ASK_BONUS_NUMBER);
         String input = Console.readLine();
         validateBonusNumber(input);
-        return conversion(input);
+        int bonusNum = conversion(input);
+        validateDuplicateLotto(bonusNum, exisingNumbers);
+        return bonusNum;
     }
 
 
@@ -52,6 +56,13 @@ public class BonusNumberView {
     private int conversion(String input){
         int num = Integer.parseInt(input);
         return num;
+    }
+
+    private void validateDuplicateLotto(int bonusNumber, List<Integer> existingNumber){
+        if (existingNumber.contains(bonusNumber)){
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
+        }
+
     }
 
 }

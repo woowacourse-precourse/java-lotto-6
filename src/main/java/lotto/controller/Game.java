@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.RandomNumber;
 import lotto.domain.Ticket;
@@ -22,8 +23,9 @@ public class Game {
         int money = purchaseView.requestMoney();
         ticket = new Ticket(money);
         times();
-        lottoView.numbers();
-        bonusNumberView.bonusNumber();
+
+        List<Integer> lottoNumbers = lottoView.numbers();
+        int bonusNumber = bonusNumberView.bonusNumber(lottoNumbers);
     }
 
     private void times() {

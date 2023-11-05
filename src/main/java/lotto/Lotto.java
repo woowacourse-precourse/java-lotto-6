@@ -35,6 +35,10 @@ public class Lotto {
         return matchCount;
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LOTTO_IS_NOT_SIX_DIGITS.getMessage());

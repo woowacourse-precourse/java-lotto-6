@@ -1,7 +1,6 @@
 package lotto;
 
 public class LottoCost {
-    final static int UNIT = 1000;
     final int cost;
     final int ticket;
 
@@ -10,7 +9,7 @@ public class LottoCost {
         isMultipleOfUnit(cost);
 
         this.cost = Integer.parseInt(cost);
-        ticket = this.cost / UNIT;
+        ticket = this.cost / Config.UNIT;
     }
 
     public int getCost() {
@@ -32,7 +31,7 @@ public class LottoCost {
     private void isMultipleOfUnit(String cost) {
         int costValue = Integer.parseInt(cost);
         boolean isRemainderZero
-                = (costValue >= LottoCost.UNIT && costValue < Integer.MAX_VALUE && costValue % LottoCost.UNIT == 0);
+                = (costValue >= Config.UNIT && costValue < Integer.MAX_VALUE && costValue % Config.UNIT == 0);
 
         if (!isRemainderZero) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_MULTIPLE_OF_UNIT.getMessage());

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
-    final String SPLIT_SYMBOL = ",";
     final Input input = new Input();
     final Output output = new Output();
 
@@ -43,7 +42,7 @@ public class LottoController {
         boolean loop = true;
 
         while (loop) {
-            List<String> inputWinningNumbers = Arrays.asList(input.winningNumbers().split(SPLIT_SYMBOL));
+            List<String> inputWinningNumbers = Arrays.asList(input.winningNumbers().split(Config.SPLIT_SYMBOL));
             System.out.println(inputWinningNumbers);
             try {
                 isNumber(inputWinningNumbers);

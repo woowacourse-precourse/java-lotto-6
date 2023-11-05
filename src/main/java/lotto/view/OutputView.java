@@ -22,20 +22,20 @@ public class OutputView {
         System.out.println(INPUT_MONEY_MESSAGE);
     }
 
-    public static void notifyLottoPurchase(List<List<Integer>> lottoList) {
-        int amount = lottoList.size();
-
-        System.out.println(BUY_LOTTO_MESSAGE.formatted(amount));
-
-        lottoList.forEach(System.out::println);
-    }
-
     public static void notifyInputWinningLottoNumber() {
         System.out.println(INPUT_WINNING_LOTTO_NUMBER);
     }
 
     public static void notifyInputBonusLottoNumber() {
         System.out.println(INPUT_BONUS_LOTTO_NUMBER);
+    }
+
+    public static void notifyLottoPurchase(List<List<Integer>> lottoList) {
+        int amount = lottoList.size();
+
+        System.out.println(BUY_LOTTO_MESSAGE.formatted(amount));
+
+        lottoList.forEach(System.out::println);
     }
 
 

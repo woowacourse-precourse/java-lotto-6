@@ -1,8 +1,8 @@
 package lotto;
 
 public class LottoCost {
-    final int cost;
-    final int ticket;
+    private final int cost;
+    private final int ticket;
 
     public LottoCost(String cost) {
         isNumber(cost);

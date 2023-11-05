@@ -14,4 +14,11 @@ class PurchasePriceTest {
             PurchasePrice purchasePrice = new PurchasePrice(1500);
         });
     }
+
+    @Test
+    void getReturnRate() {
+        PurchasePrice purchasePrice = new PurchasePrice(8000);
+        assertEquals(62.5, purchasePrice.getReturnRate(5000));
+
+    }
 }

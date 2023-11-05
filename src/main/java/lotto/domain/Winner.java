@@ -22,21 +22,16 @@ public enum Winner {
     }
 
     public static Winner of(int sameCount, boolean isSameBonusNumber) {
-        Winner findWinner;
         for (Winner winner : Winner.values()) {
-            findWinner = getWinner(sameCount, isSameBonusNumber, winner);
-            if (findWinner != null) {
-                return findWinner;
+            if (isSameWinner(sameCount, isSameBonusNumber, winner)) {
+                return winner;
             }
         }
         return null;
     }
 
-    private static Winner getWinner(int sameCount, boolean isSameBonusNumber, Winner winner) {
-        if (winner.sameCount == sameCount && (!winner.isSameBonusNumber || isSameBonusNumber)) {
-            return winner;
-        }
-        return null;
+    private static boolean isSameWinner(int sameCount, boolean isSameBonusNumber, Winner winner) {
+        return winner.sameCount == sameCount && (winner.isSameBonusNumber == isSameBonusNumber);
     }
 
     public int getWinningMoney() {

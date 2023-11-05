@@ -13,6 +13,14 @@ public class Money {
         this.value = value;
     }
 
+    public int quantityAvailableForPurchase(int lottoUnitPrice) {
+        if(isDivisible(lottoUnitPrice)) {
+            return (int) (this.value / lottoUnitPrice);
+        }
+
+        throw new IllegalArgumentException("나누어 떨어지지 않는 숫자입니다.");
+    }
+
     public boolean isDivisible(long divisor) {
         if(isZero()) return false;
         return this.value % divisor == ZERO_VALUE;

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -47,6 +48,34 @@ class MoneyTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @DisplayName("구매 가능한 Lotto 수를 확인한다.")
+    @ParameterizedTest
+    @MethodSource("quantityInputProvider")
+    public void quantityAvailableForPurchase(long source, int expected) {
+        // given
+        Money money = new Money(source);
+
+        // when
+        int cnt = money.quantityAvailableForPurchase(1000);
+
+        // then
+        assertThat(cnt).isEqualTo(expected);
+    }
+
+    @DisplayName("나누어 떨어지지 않는 숫자를 입력할 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(longs = {10003, 0, 12001, 999, 1})
+    public void notAvailableForPurchase(long source) {
+        // given
+        Money money = new Money(source);
+
+        // when
+        ThrowingCallable actual = () -> money.quantityAvailableForPurchase(1000);
+
+        // then
+        assertThatThrownBy(actual).isInstanceOf(IllegalArgumentException.class);
+    }
+
     private static Stream<Arguments> divisibleMoneyInputProvider() { // argument source method
         return Stream.of(
                 Arguments.of("10000", 1000, true),
@@ -56,6 +85,14 @@ class MoneyTest {
                 Arguments.of("12001", 1000, false),
                 Arguments.of("999", 1000, false),
                 Arguments.of("1", 1000, false)
+        );
+    }
+
+    private static Stream<Arguments> quantityInputProvider() { // argument source method
+        return Stream.of(
+                Arguments.of("5000", 5),
+                Arguments.of("10000", 10),
+                Arguments.of("12000", 12)
         );
     }
 }

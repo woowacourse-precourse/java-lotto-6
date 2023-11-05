@@ -10,12 +10,35 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        LottoPick lottoPick = new LottoPick(getMoney());
+        LottoPick lottoPick;
+        Lotto lotto;
+        while (true) {
+            try {
+                lottoPick = new LottoPick(getMoney());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        while (true) {
+            try {
+                lotto = new Lotto(winningNumber());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        while (true) {
+            try {
+                lotto.bonusNumber(bonusNumber());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         lottoPick.makeLottoPick();
-
-        Lotto lotto = new Lotto(winningNumber());
-        lotto.bonusNumber(bonusNumber());
     }
+
 
     // 금액 받기.
     private static int getMoney() {

@@ -10,7 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateWinningNumber(numbers);
-        validateduplicateNumber(numbers);
+        validateDuplicateNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -23,27 +23,28 @@ public class Lotto {
     // TODO: 추가 기능 구현
 
     //당첨 번호 넘기기.
-    public List<Integer> lottoNumber(){
+    public List<Integer> lottoNumber() {
         return numbers;
     }
 
     // 보너스 숫자 넣기.
-    public void bonusNumber(int number){
+    public void bonusNumber(int number) {
         validateBonusNumber(number);
+        validateWinningNumber(number);
         numbers.add(number);
     }
 
     //숫자 출력.
-    public void outputLottoNumber(){
+    public void outputLottoNumber() {
         for (Integer number : numbers) {
             System.out.print(number + ", ");
         }
     }
 
     // 보너스 숫자 입증 확인.
-    private void validateBonusNumber(int number){
+    private void validateBonusNumber(int number) {
         for (Integer num : numbers) {
-            if(num == number){
+            if (num == number) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 기존 로또 번호와 중복 되면 안됩니다.");
             }
         }
@@ -53,16 +54,23 @@ public class Lotto {
     // 1~45 숫자 입증 확인.
     private static void validateWinningNumber(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if(number < 1 || 45 < number){
+            if (number < 1 || 45 < number) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }
 
+    // 1~45 숫자 입증 확인.
+    private static void validateWinningNumber(int numbers) {
+        if (numbers < 1 || 45 < numbers) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
     //중복된 숫자 확인.
-    private static void validateduplicateNumber(List<Integer> numbers){
+    private static void validateDuplicateNumber(List<Integer> numbers) {
         Set<Integer> numSet = new HashSet<>(numbers);
-        if(numSet.size()!= numbers.size()){
+        if (numSet.size() != numbers.size()) {
             throw new IllegalArgumentException("중복된 숫자가 존재 합니다.");
         }
     }

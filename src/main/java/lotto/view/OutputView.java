@@ -9,7 +9,7 @@ public class OutputView {
   private final static String INPUT_WINNINGNUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
   private final static String INPUT_BOUNSNUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
   private final static String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
-  private lotto.controller.InputProcessor InputProcessor;
+  private static InputProcessor inputProcessor = new InputProcessor();
 
   public static void printInputMoneyMessage() {
     System.out.println(INPUT_MONEY_MESSAGE);
@@ -23,13 +23,12 @@ public class OutputView {
     System.out.println(INPUT_BOUNSNUMBER_MESSAGE);
   }
 
-  public void printLottoCountMessage() {
-    int LottoCount = InputProcessor.calculateLottoCount(Integer.parseInt(InputProcessor.getInput));
-    System.out.print(LottoCount);
+  public static void printLottoCountMessage(int calculateLottoCount) {
+    System.out.print(calculateLottoCount);
     System.out.println(LOTTO_COUNT_MESSAGE);
   }
 
-  public String printLottoNumbers(List<Integer> lotto) {
+  public static String printLottoNumbers(List<Integer> lotto) {
     StringBuilder formattedLotto = new StringBuilder("[");
 
     for (int i = 0; i < lotto.size(); i++) {
@@ -43,7 +42,7 @@ public class OutputView {
     return formattedLotto.toString();
   }
 
-  public void printLottos(List<List<Integer>> lottos) {
+  public static void printLottos(List<List<Integer>> lottos) {
     for (List<Integer> lotto : lottos) {
       String formattedLotto = printLottoNumbers(lotto);
       System.out.println(formattedLotto);
@@ -56,15 +55,14 @@ public class OutputView {
   }
 
   public static void printRanking(List<Integer> rank) {
-    int currentCount = 0;
-    for (Ranking ranking : Ranking.values()) {
-      int countOfMatch = ranking.getCountOfMatch();
-      int count = rank.get(currentCount);
-      currentCount++;
-      String message = ranking.getMessage();
-      System.out.println(message + " - " + count + "개");
+    Ranking[] rankings = Ranking.values();
+    for (int i = rankings.length-2; i >= 0; i--) {
+      int count = rank.get(i);
+      String message = rankings[i].getMessage();
+      System.out.println(message + count + "개");
     }
   }
+
 
   public static void printProfitability(double Profitability){
     System.out.println("총 수익률은 " + String.format("%.1f", Profitability) + "%입니다.");

@@ -1,29 +1,47 @@
 package lotto.view;
 
+import lotto.domain.*;
+
+import java.util.Arrays;
+
+import static lotto.domain.Prize.NOTHING;
+import static lotto.domain.Prize.SECOND;
+
 public class ResultView {
     private static final String BUY_AMOUNT_MESSAGE = "개를 구매했습니다.";
-    private static final String WIN_RESULT_MESSAGE = "당첨 통계";
+    private static final String WIN_RESULT_MESSAGE = "\n당첨 통계";
     private static final String WIN_RESULT_MESSAGE_SPLITTER = "---";
-    private static final String[] RESULTS = {"3개 일치 (5,000원)", "4개 일치 (50,000원)", "5개 일치 (1,500,000원)", "5개 일치, 보너스 볼 일치 (30,000,000원)", "6개 일치 (2,000,000,000원)"};
-    private static final String RETURN_RATE_MESSAGE = "총 수익률은 ";
+    private static final String CORRECT_COUNT = "%d개 일치";
+    private static final String BONUS_COUNT = ", 보너스 볼 일치";
+    private static final String WIN_PRICE_AND_WIN_COUNT = " (%s원) - %d개";
+    private static final String RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    public static void printBuyAmount(int amount) {
-        System.out.println(amount + BUY_AMOUNT_MESSAGE);
+    public static void printTicket(int ticket) {
+        System.out.println();
+        System.out.println(ticket + BUY_AMOUNT_MESSAGE);
     }
 
-    public static void printWinResult() {
+    public static void showLottoNumbers(Lottos lottos) {
+        lottos.getLottos().forEach(System.out::println);
+    }
+
+    public static void showResult(PrizeResult prizeResult) {
         System.out.println(WIN_RESULT_MESSAGE);
         System.out.println(WIN_RESULT_MESSAGE_SPLITTER);
+        Arrays.stream(Prize.values())
+                .filter(prize -> !prize.equals(NOTHING))
+                .forEach(prize -> {
+                    int count = prizeResult.getPrizeResult().getOrDefault(prize, 0);
+                    System.out.printf(CORRECT_COUNT, prize.getMatchedCount());
+                    if (prize.equals(SECOND)) {
+                        System.out.print(BONUS_COUNT);
+                    }
+                    System.out.printf(WIN_PRICE_AND_WIN_COUNT, String.format("%,d", prize.getPrizeAmount()), count);
+                    System.out.println();
+                });
     }
 
-    public static void showResult(int[] matchCounts) {
-        String[] results = RESULTS;
-        for (int i = 0; i < matchCounts.length; i++) {
-            System.out.println(results[i] + " - " + matchCounts[1] + "개");
-        }
-    }
-
-    public static void showRateOfReturn(double returnRate) {
-        System.out.println(RETURN_RATE_MESSAGE + returnRate + "%입니다.");
+    public static void showReturnRate(PrizeResult prizeResult, Money money) {
+        System.out.printf(RETURN_RATE_MESSAGE, prizeResult.calculateReturnRate(PrizeResult.getPrizeResult(), money));
     }
 }

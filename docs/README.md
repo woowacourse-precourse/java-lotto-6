@@ -29,6 +29,25 @@
 * validateBonusNumber: 보너스 번호의 유효성을 검증한다.
 * validateRange: 인자로 들어온 수의 범위 유효성을 검증한다.
 
+### LottoResult
+* announceLottoResult: 당첨된 로또의 전체 내용을 출력한다.
+* compareToPrize: 로또당 당첨된 결과와 Prize를 대조하여 출력한다.
+* repeatCheckingLotto: 로또 목록을 순회하며 로또당 당첨된 결과를 반환한다.
+* initiatePrizeCounts: Prize 항목별로 당첨된 횟수가 담긴 List를 0으로 초기화한다.
+* countMatchedNumbersTest: 생성된 로또와 유저가 입력한 당첨 번호간 겹치는 횟수를 구한다.
+
+### Prize
+* getMatchedNumbers: 당첨 항목의 일치 개수를 반환한다.
+* getFormattedPrizeMoney: 당첨 항목의 상금을 지정한 양식에 맞춰 문자열로 반환한다.
+* checkBonus: 보너스 번호가 포함된 항목인지 확인한다.
+* getPrizeMoney: 상금을 반환한다.
+
+### Profit
+* announceProfitResult: 메서드를 종합하여 수익률을 출력한다.
+* formatProfitRate: 수익률을 소수점 둘째 자리에서 반올림한다.
+* calculateProfitRate: 수익률을 계산한다.
+* calculateTotalPrize: 당첨된 내용을 받아 총 상금을 계산한다.
+
 ## 요구 사항 체크리스트
 ### 기능 요구 사항
 <ul>

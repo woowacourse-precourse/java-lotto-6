@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,27 +13,50 @@ public class Play {
     public int bonusNumber=0;
 
     public int inputInt(){
-        return Integer.parseInt(readLine());
+        String input = readLine();
+        for(int i =0;i<input.length();i++){
+            if(input.charAt(i)<'0' || input.charAt(i)>'9' ){
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+            }
+        }
+        return Integer.parseInt(input);
     }
     public String inputStr(){
         return readLine();
     }
+
     public void inputMoney(){
         money=inputInt();
+        if(money%1000!=0){
+            throw new IllegalArgumentException("[ERROR] 천원단위로 입력해주세요.");
+        }
     }
     public void inputCount(){
         count=money/1000;
     }
+
     public void inputBonusNumber(){
         bonusNumber=inputInt();
+        if(winNumber.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 로또번호중 하나와 중복됩니다.");
+        }
     }
+
     public void inputWinNumber(){
         String carNameList = inputStr();
         String[] arrayString = carNameList.split(",");
         int[] num = Arrays.stream(arrayString).mapToInt(Integer::parseInt).toArray();
+        if(num.length!=6){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리만 입력해야 합니다.");
+        }
+
         for(int i : num){
+            if(i<1 || i>45){
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
             winNumber.add(i);
         }
+
     }
 
     public void playLotto(){

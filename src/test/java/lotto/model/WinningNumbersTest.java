@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.utils.enums.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ public class WinningNumbersTest {
 
         Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("숫자는 6개여야 합니다.");
+                .hasMessageContaining(ErrorMessage.LACK_NUMBER_COUNT.getMessage());
     }
 
     @Test
@@ -21,7 +22,7 @@ public class WinningNumbersTest {
 
         Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining(ErrorMessage.NUMBER_NOT_INRANGE.getMessage());
     }
 
     @Test
@@ -30,6 +31,6 @@ public class WinningNumbersTest {
 
         Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("모든 숫자는 중복되지 않아야 합니다.");
+                .hasMessageContaining(ErrorMessage.NOT_DUPLICATED.getMessage());
     }
 }

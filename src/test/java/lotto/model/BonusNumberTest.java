@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.utils.enums.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ public class BonusNumberTest {
 
         Assertions.assertThatThrownBy(() -> new BonusNumber(winning.getNumbers(), bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("모든 숫자는 중복되지 않아야 합니다.");
+                .hasMessageContaining(ErrorMessage.NOT_DUPLICATED.getMessage());
     }
 
     @Test

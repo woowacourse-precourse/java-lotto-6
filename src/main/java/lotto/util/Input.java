@@ -21,7 +21,8 @@ public class InputView {
 
     public HashSet<Integer> getWinningNumbers() {
 
-        System.out.println(WINNING_AMOUNT_INPUT);
+        System.out.println();
+        System.out.println(WINNING_AMOUNT_INPUT.getMessage());
         HashSet<Integer> winningNumbers = new HashSet<>();
 
         String input = Console.readLine();
@@ -37,7 +38,8 @@ public class InputView {
 
     public Integer getBonusNumber() {
 
-        System.out.println(BONUS_NUMBER_INPUT);
+        System.out.println();
+        System.out.println(BONUS_NUMBER_INPUT.getMessage());
         String input = Console.readLine();
         return InputValidator.validateToInteger(input);
     }

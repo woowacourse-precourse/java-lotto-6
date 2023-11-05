@@ -1,6 +1,9 @@
 package lotto.validator;
 
+import lotto.ExceptionMessages;
+
 import java.util.HashSet;
+import java.util.function.BiPredicate;
 
 import static lotto.ExceptionMessages.*;
 
@@ -35,5 +38,12 @@ public class InputValidator {
         }
 
         throw new IllegalArgumentException(NOT_VALIDATED_PURCHASE_AMOUNT.getMessage());
+    }
+
+    public static void validateBonusNumberRange(Integer bonusNumber) {
+
+        if (bonusNumber > 45 || bonusNumber < 0) {
+            throw new IllegalArgumentException(NOT_VALIDATED_RANGE.getMessage());
+        }
     }
 }

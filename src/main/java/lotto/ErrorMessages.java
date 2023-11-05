@@ -1,7 +1,7 @@
 package lotto;
 
 public enum ErrorMessages {
-    IS_NUMBER(" 번호는 숫자여야 합니다.") {
+    IS_NUMBER(" 입력값은 숫자여야 합니다.") {
         @Override
         public String writeErrorMessageByCase() {
             return DEFAULT_ERROR_MESSAGE + getErrorMessage();

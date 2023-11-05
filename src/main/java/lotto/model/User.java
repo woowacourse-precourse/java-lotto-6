@@ -1,6 +1,6 @@
 package lotto.model;
 
-import utils.RandomUtils;
+import lotto.utils.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;

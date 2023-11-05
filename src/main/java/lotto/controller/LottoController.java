@@ -2,7 +2,6 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.service.LottoService;
-import utils.RandomUtils;
 
 import java.util.List;
 

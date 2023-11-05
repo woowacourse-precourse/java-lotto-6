@@ -39,4 +39,8 @@ public class Money {
         }
         return true;
     }
+
+    public int calculateLottoPurchaseSize() {
+        return money / UNIT_OF_MONEY;
+    }
 }

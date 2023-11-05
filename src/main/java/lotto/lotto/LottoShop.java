@@ -37,4 +37,42 @@ public class LottoShop {
             }
         }
     }
+    private Lotto inputLottoNum(){
+        System.out.println();
+        System.out.println(INPUTWINNUM);
+        String inputWinnerLottoNum = readLine();
+        String[] lottoNums = inputWinnerLottoNum.split(",");
+        List<Integer> winnerLottoNums = new ArrayList<>();
+        for (String lottoNum : lottoNums) {
+            winnerLottoNums.add(Integer.parseInt(lottoNum));
+        }
+        Lotto lotto = new Lotto(winnerLottoNums);
+        return lotto;
+    }
+    private int inputBonusNum(){
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println(INPUTBONUS);
+                int bonusNum = Integer.parseInt(readLine());
+                if (bonusNum < 1 || bonusNum > 45)
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                return bonusNum;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public WinnerLotto pickWinnerLotto() {
+        while(true){
+            try{
+                Lotto lotto = inputLottoNum();
+                int bonusNum = inputBonusNum();
+                return new WinnerLotto(lotto,bonusNum);
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

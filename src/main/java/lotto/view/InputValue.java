@@ -2,6 +2,12 @@ package lotto.view;
 
 import lotto.exception.ErrorCode;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputValue {
@@ -29,7 +35,6 @@ public class InputValue {
         }
     }
 
-
     private static int numberCheck(String input) {
 
         if (!input.matches("\\d*")) {
@@ -43,6 +48,17 @@ public class InputValue {
         if (price % 1000 != 0) {
             throw new IllegalArgumentException(ErrorCode.INCORRECT_UNIT.getMessage());
         }
+    }
+
+    public static List<Integer> getWinLottoNumbers() {
+
+        String input = removeInputSpaces();
+
+        List<Integer> numbers = new ArrayList<>();
+        for(String number : input.split(","))
+            numbers.add(Integer.parseInt(number));
+
+        return numbers;
     }
 
 }

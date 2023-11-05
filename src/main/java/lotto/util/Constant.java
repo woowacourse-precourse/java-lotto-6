@@ -12,4 +12,6 @@ public class Constant {
 
     public static final String LOTTO_NUMBER_SEPARATOR = ", ";
     public static final String WINNING_NUMBER_SEPARATOR = ",";
+
+    public static final String REGEXP_PATTERN_NUMBER = "^[\\d]*$";
 }

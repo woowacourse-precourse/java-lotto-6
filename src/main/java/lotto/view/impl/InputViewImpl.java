@@ -20,7 +20,8 @@ public class InputViewImpl implements InputView {
 
     @Override
     public String inputBonusNumber() {
-        return null;
+        System.out.println(GameMessages.INPUT_BONUS_NUMBER.getMessage());
+        return input();
     }
 
     String input() {

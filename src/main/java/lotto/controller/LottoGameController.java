@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.BitSet;
 import lotto.domain.BonusNumber;
 import lotto.domain.GameResult;
 import lotto.domain.Lotto;
@@ -20,6 +21,7 @@ public class LottoGameController {
     private final LottoGenerator lottoGenerator;
     private Lottos lottos;
     private Lotto winningNumbers;
+    private BitSet winningNumbersBitSet;
     private BonusNumber bonusNumber;
     private GameResult gameResult;
     private Money money;
@@ -35,6 +37,7 @@ public class LottoGameController {
         initMoney();
         generateLotto();
         inputWinningNumbers();
+        initBonusNumber();
     }
 
     void initMoney() {
@@ -59,10 +62,21 @@ public class LottoGameController {
     void inputWinningNumbers() {
         try {
             winningNumbers = new Lotto(inputView.inputWinningNumbers());
+            winningNumbersBitSet = winningNumbers.toBitSet();
         }
         catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             inputWinningNumbers();
+        }
+    }
+
+    private void initBonusNumber() {
+        try {
+            bonusNumber = new BonusNumber(inputView.inputBonusNumber(), winningNumbersBitSet);
+        }
+        catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            initBonusNumber();
         }
     }
 }

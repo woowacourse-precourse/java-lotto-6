@@ -29,6 +29,6 @@ public class OutputViewImpl implements OutputView {
 
     @Override
     public void printErrorMessage(String message) {
-        System.out.println(message);
+        System.out.println(CommonLetter.ERROR_PREFIX.getLetter() + message);
     }
 }

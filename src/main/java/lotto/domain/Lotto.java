@@ -1,28 +1,23 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constants.CommonLetter;
+import lotto.constants.ErrorMessages;
 import lotto.validator.impl.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
     }
 
     public Lotto(String numbers) {
         validate(numbers);
         this.numbers = toNumbers(numbers);
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
     }
 
     private void validate(String numbers) {
@@ -37,5 +32,13 @@ public class Lotto {
         return Arrays.stream(winningNumbers.split(CommonLetter.SEPARATOR.getLetter()))
             .map(Integer::parseInt)
             .collect(Collectors.toList());
+    }
+
+    public BitSet toBitSet() {
+        BitSet bitSet = new BitSet();
+        for (int number : numbers) {
+            bitSet.set(number);
+        }
+        return bitSet;
     }
 }

@@ -36,7 +36,7 @@ public class LottoValidator implements Validator<String> {
                 throwException(ErrorMessages.INPUT_LOTTO_SIZE);
             }
             if (!isInRange(number)) {
-                throwException(ErrorMessages.INPUT_LOTTO_SIZE);
+                throwException(ErrorMessages.INPUT_LOTTO_RANGE);
             }
         }
     }

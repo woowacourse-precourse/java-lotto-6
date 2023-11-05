@@ -30,11 +30,4 @@ public class Lotto {
                 .filter(compareLotto::contains)
                 .count();
     }
-
-    @Override
-    public String toString() {
-        return "Lotto{" +
-                "numbers=" + numbers +
-                '}';
-    }
 }

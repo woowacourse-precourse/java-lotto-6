@@ -2,7 +2,7 @@ package lotto.domain.prize_calculator;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import lotto.domain.lotto_prize.FixedLottoPrize;
+import lotto.domain.lotto_prize.FixedLottoPrizeStandard;
 
 public class FixedPrizeCalculator implements PrizeCalculator {
     private HashMap<Long, Integer> matchCountPrizeMap;
@@ -10,9 +10,9 @@ public class FixedPrizeCalculator implements PrizeCalculator {
     public FixedPrizeCalculator(){
         matchCountPrizeMap=new HashMap<>();
 
-        Arrays.stream(FixedLottoPrize.values())
-                .forEach(fixedLottoPrize ->
-                        matchCountPrizeMap.put(fixedLottoPrize.getMatchCount(), fixedLottoPrize.getPrize()));
+        Arrays.stream(FixedLottoPrizeStandard.values())
+                .forEach(fixedLottoPrizeStandard ->
+                        matchCountPrizeMap.put(fixedLottoPrizeStandard.getMatchCount(), fixedLottoPrizeStandard.getPrize()));
     }
 
     @Override

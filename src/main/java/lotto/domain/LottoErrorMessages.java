@@ -6,7 +6,8 @@ public enum LottoErrorMessages {
                     LottoConfig.MIN_NUMBER.getValue(),
                     LottoConfig.MAX_NUMBER.getValue())),
     INVALID_SIZE(String.format("로또 숫자는 %d개여야 합니다.", LottoConfig.NUMBER_COUNT.getValue())),
-    DUPLICATE_NUMBERS("로또 숫자는 중복될 수 없습니다.");
+    DUPLICATE_NUMBERS("로또 숫자는 중복될 수 없습니다."),
+    NEGATIVE_AMOUNT("금액은 양수여야 합니다.");
     private final String message;
 
     LottoErrorMessages(String message) {

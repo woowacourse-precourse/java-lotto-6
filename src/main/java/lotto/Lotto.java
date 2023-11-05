@@ -23,7 +23,13 @@ public class Lotto {
         if (duplicateValidate(numbers)) {
             throw new IllegalArgumentException();
         }
+        numRangeValidate(numbers);
+    }
 
+    private static void numRangeValidate(List<Integer> numbers) {
+        boolean outOfRange = numbers.stream().anyMatch(num -> num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER);
+        if (outOfRange)
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
     private boolean duplicateValidate(List<Integer> numbers) {

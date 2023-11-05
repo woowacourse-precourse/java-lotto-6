@@ -93,12 +93,11 @@ public class Lotto {
 
     public static void saveLottoResult(Map<Rank, Integer> lottoResult, int matchCount, boolean matchBonus) {
         Rank[] ranks = Rank.values();
-
         for (Rank rank : ranks) {
             if (rank.getMatchCount() == matchCount && rank.isMatchBonus() == matchBonus) {
                 int oldValue = lottoResult.get(rank);
                 int newValue = ++oldValue;
-                lottoResult.replace(rank, oldValue, newValue);
+                lottoResult.replace(rank, newValue);
             }
         }
     }
@@ -107,13 +106,11 @@ public class Lotto {
         double returnRate = 0;
 
         Rank[] ranks = Rank.values();
-
         for (Rank rank : ranks) {
             int totalCount = lottoResult.get(rank);
             int prizeMoney = rank.getPrizeMoney();
             returnRate += totalCount * prizeMoney;
         }
-
         returnRate = 100 * (returnRate / purchaseAmount);
 
         return returnRate;

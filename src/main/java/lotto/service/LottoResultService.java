@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constants.Message;
 import lotto.constants.Value;
 import lotto.domain.*;
 
@@ -24,7 +25,10 @@ public class LottoResultService {
         this.winningLotto = winningLotto;
     }
 
-    public void showResult() {
+    public void showRank(List<Lotto> userLottos) {
+        calculateLottoResult(userLottos);
+
+        System.out.println(Message.AMOUNT_REQUEST_MESSAGE);
         Set<Rank> ranks = lottoResults.keySet();
 
         for (Rank rank : ranks) {
@@ -71,7 +75,7 @@ public class LottoResultService {
         return userLottoNumbers.contains(winningLottoBonusNumber);
     }
 
-    public String getProfitRate(int amount) {
+    public void showProfitRate(int amount) {
         int profit = 0;
         List<Rank> ranks = new ArrayList<>(lottoResults.keySet().stream().toList());
 
@@ -80,6 +84,8 @@ public class LottoResultService {
         }
 
         double profitRate = profit / (double) amount * 100;
-        return new DecimalFormat("#.#").format(profitRate);
+
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        System.out.println("총 수익률은 " + decimalFormat.format(profitRate) + "%입니다.");
     }
 }

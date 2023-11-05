@@ -8,8 +8,4 @@ public class Message {
     public static final String BONUS_NUMBER_REQUEST_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     public static final String LOTTO_RESULT_MESSAGE = "\n당첨 통계\n---";
 
-    public static String getLottoProfitRate(String profit) {
-        return "총 수익률은 " + profit + "%입니다.";
-    }
-
 }

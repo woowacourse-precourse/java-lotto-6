@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constants.Message;
 import lotto.constants.Value;
 import lotto.domain.Lotto;
 import lotto.utils.RandomUtils;
@@ -34,6 +35,15 @@ public class LottoService {
 
     public List<Lotto> getUserLottos() {
         return userLottos;
+    }
+
+    public void showUserLottos() {
+        System.out.println("\n" + userLottos.size() + Message.USER_LOTTOS_COUNT_MESSAGE);
+
+        for (Lotto lotto : userLottos) {
+            System.out.println(lotto.toString());
+        }
+        System.out.println();
     }
 
 }

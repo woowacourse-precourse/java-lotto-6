@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +28,7 @@ class LottoUtilTest {
     @DisplayName("입력한 금액만큼 로또 구매")
     @Test
     void purchaseLottoList() {
-        List<Lotto> lottoList = LottoUtil.createLottoList(8000);
+        List<Lotto> lottoList = LottoUtil.createLottoList(8);
         assertThat(lottoList.size()).isEqualTo(8);
     }
 }

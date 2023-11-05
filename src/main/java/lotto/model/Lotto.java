@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.view.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;

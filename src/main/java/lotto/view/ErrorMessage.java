@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 public class ErrorMessage {
     private static final int MIN_NUMBER = 1;
@@ -8,6 +8,7 @@ public class ErrorMessage {
     private static final String NOT_NUMBER_SIZE = "[ERROR] 당첨 번호는 6개 입력 가능합니다.";
     private static final String NOT_NUMBER_OVERLAP = "[ERROR] 중복된 숫자를 입력하셨습니다.";
     private static final String INPUT_TYPE_ERROR = "[ERROR] 숫자만 입력해 주세요.";
+    private static final String NOT_NATURAL_NUMBER_ERROR = "[ERROR] 금액은 0 초과이어야 합니다.";
     private static final String NOT_DIVISIBLE_NUMBER_ERROR = "[ERROR] 금액은 " + LOTTO_MIN_AMOUNT + "단위여야 합니다.";
 
     public static void rangeException() {
@@ -24,6 +25,10 @@ public class ErrorMessage {
 
     public static void typeException() {
         System.out.println(INPUT_TYPE_ERROR);
+    }
+
+    public static void naturalException() {
+        System.out.println(NOT_NATURAL_NUMBER_ERROR);
     }
 
     public static void divisibleException() {

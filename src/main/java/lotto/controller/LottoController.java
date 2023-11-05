@@ -24,15 +24,12 @@ public class LottoController {
     private Map<Rank, Integer> results;
 
     public void start() {
-        buyLottos();
-        getWinnerNumbers();
-        getBonusNumber();
-        getResults();
-    }
-
-    private void buyLottos() {
         payMoney();
         generateLottos();
+        getWinnerNumbers();
+        getBonusNumber();
+        writeResults();
+        printResult();
     }
 
     private void payMoney() {
@@ -70,11 +67,6 @@ public class LottoController {
         }
     }
 
-    private void getResults() {
-        writeResults();
-        printResult();
-    }
-
     private void writeResults() {
         results = new HashMap<>();
         for(Rank rank : Rank.values()) {
@@ -93,6 +85,13 @@ public class LottoController {
     }
 
     private int findSecond() {
+        return  (int) lottos.stream()
+                .filter(lotto -> lotto.matchNumbers(winningNumbers) == SECOND.getCount()
+                        && lotto.containsBonusNumber(bonusNumber))
+                .count();
+    }
+
+    private int findSecond2() {
         return  (int) lottos.stream()
                 .filter(lotto -> lotto.matchNumbers(winningNumbers) == SECOND.getCount()
                         && lotto.containsBonusNumber(bonusNumber))

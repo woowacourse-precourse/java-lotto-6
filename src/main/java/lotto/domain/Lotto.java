@@ -16,7 +16,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateSize(numbers);
+        validateDistinctNumbers(numbers);
+        validateNumbersRange(numbers);
         this.numbers = new ArrayList<>(numbers);
         sortNumbers();
     }
@@ -38,12 +40,6 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
-    }
-
-    private void validate(List<Integer> numbers) {
-        validateSize(numbers);
-        validateDistinctNumbers(numbers);
-        validateNumbersRange(numbers);
     }
 
     public void validateBonusNumber(BonusNumber bonusNumber) {

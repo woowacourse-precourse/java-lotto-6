@@ -12,12 +12,12 @@ public enum Rank {
     private final int ranking;
     private final int correctNum;
     private final int prize;
-    private final String prizePrint;
-    Rank(int ranking, int correctNum, int prize, String prizePrint) {
+    private final String resultPrint;
+    Rank(int ranking, int correctNum, int prize, String resultPrint) {
         this.ranking = ranking;
         this.correctNum = correctNum;
         this.prize = prize;
-        this.prizePrint = prizePrint;
+        this.resultPrint = resultPrint;
     }
 
     public int getRanking() {
@@ -32,8 +32,8 @@ public enum Rank {
         return prize;
     }
 
-    public String getPrizePrint() {
-        return prizePrint;
+    public String getResultPrint() {
+        return resultPrint;
     }
 
     public static Rank getRank(int num) {

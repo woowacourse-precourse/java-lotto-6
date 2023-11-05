@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.util;
 
-public class PriceManager {
+public class PriceValidator {
     private static final String MIN_PRICE_1000_MESSAGE = "금액은 1000원 이상이어야 합니다";
     private static final String UNIT_OF_1000_REQUIRED_MESSAGE = "금액은 1000원 단위로 입력되어야 합니다";
 

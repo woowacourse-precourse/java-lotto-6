@@ -6,6 +6,8 @@ import lotto.ui.ConsoleInput;
 import lotto.ui.ConsoleOutput;
 import lotto.ui.Input;
 import lotto.ui.Output;
+import lotto.util.PriceValidator;
+import lotto.util.ReturnCalculator;
 
 public class LottoManager {
     private Input input;
@@ -49,7 +51,7 @@ public class LottoManager {
         while (true) {
             try {
                 Integer inputPrice = input.getPrice();
-                PriceManager.validatePrice(inputPrice);
+                PriceValidator.validatePrice(inputPrice);
                 return inputPrice;
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());

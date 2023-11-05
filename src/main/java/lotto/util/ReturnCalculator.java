@@ -1,6 +1,7 @@
-package lotto.domain;
+package lotto.util;
 
 import java.util.Map;
+import lotto.domain.WinningStatus;
 
 public class ReturnCalculator {
     public static double calculate(Map<WinningStatus, Integer> statusAndCount, int lottoCount) {

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,8 +15,8 @@ public class WinningLotto {
     private static final int MAX = 45;
     private static final int WINNING_LOTTO_SIZE = 7;
 
-    private Lotto winningLotto;
-    private int bonusNumber;
+    private final Lotto winningLotto;
+    private final int bonusNumber;
 
     private WinningLotto(Lotto winningLotto, int bonusNumber) {
         this.winningLotto = winningLotto;
@@ -65,7 +66,7 @@ public class WinningLotto {
     }
 
     private static void validateDup(List<Integer> lottoNumbers, int bonusNumber) {
-        Set<Integer> numbers = lottoNumbers.stream().collect(Collectors.toSet());
+        Set<Integer> numbers = new HashSet<>(lottoNumbers);
         numbers.add(bonusNumber);
 
         if (numbers.size() != WINNING_LOTTO_SIZE) {

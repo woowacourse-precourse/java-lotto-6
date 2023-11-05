@@ -1,6 +1,5 @@
 package game;
 
-import static constant.ConstantMessage.BONUS_NUMBER_REQUEST_MESSAGE;
 import static constant.ConstantMessage.WINNING_STATISTICS_NOTICE_MESSAGE;
 import static constant.ConstantNumber.BONUS_CRITERIA;
 import static constant.ConstantNumber.NUMBER_INITIALIZATION;
@@ -11,7 +10,6 @@ import static game.LottoRank.SECOND_RANK;
 import static game.LottoRank.THIRD_RANK;
 
 import base.Converter;
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +20,7 @@ public class LottoGame {
         LottoTicketQuantity lottoTicketQuantity = new LottoTicketQuantity();
         UserLottoNumbers lottoTicketDisplay = new UserLottoNumbers();
         WinningNumberInput winningNumberInput = new WinningNumberInput();
+        BonusNumberInput bonusNumberInput = new BonusNumberInput();
         int purchaseAmount = lottoTicketPurchase.getPurchaseAmount(converter);
 
         // LottoTicketPurchase
@@ -51,9 +50,7 @@ public class LottoGame {
         //BonusNumberInput
         System.out.println();
 
-        System.out.println(BONUS_NUMBER_REQUEST_MESSAGE);
-        String bonusNumberWord = Console.readLine();
-        int bonusNumber = converter.stringToInteger(bonusNumberWord);
+        int bonusNumber = bonusNumberInput.getBonusNumber(converter);
 
         System.out.println();
 

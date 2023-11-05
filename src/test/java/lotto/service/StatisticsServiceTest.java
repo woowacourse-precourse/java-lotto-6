@@ -5,6 +5,7 @@ import lotto.domain.LottoRanking;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
 import lotto.repository.PrizeMoneyRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,21 +14,35 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class StatisticsServiceTest {
-    
+    private StatisticsService statisticsService;
+    private WinningLotto winningLotto;
+    private List<Lotto> userLottos;
+
+    @BeforeEach
+    void setUp() {
+        statisticsService = new StatisticsService(new PrizeMoneyRepository());
+        winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        userLottos = getLottos();
+    }
+
     @Test
     @DisplayName("사용자가 구매한 총 로또와 당첨 번호를 비교하여 전체 당첨 내역을 알 수 있다.")
     void checkLottoResult() {
-        StatisticsService statisticsService = new StatisticsService(new PrizeMoneyRepository());
-
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
-        List<Lotto> userLottos = getLottos();
-
         LottoResult lottoResult = statisticsService.checkLottoResult(winningLotto, userLottos);
 
         assertThat(lottoResult.getResult()).contains(
                 entry(LottoRanking.FIFTH, 1),
                 entry(LottoRanking.NOTHING, 7)
         );
+    }
+    
+    @Test
+    @DisplayName("사용자가 구매한 로또 번호의 결과를 통해 수익률을 계산할 수 있다.")
+    void calculateRateOfReturn() {
+        LottoResult lottoResult = statisticsService.checkLottoResult(winningLotto, userLottos);
+        double result = statisticsService.calculateRateOfReturn(lottoResult);
+
+        assertThat(result).isEqualTo(62.5);
     }
 
     private List<Lotto> getLottos() {

@@ -13,6 +13,8 @@ public class User {
         this.userLottos = userLottos;
         this.lottoQuantity = lottoQuantity;
     }
+
+    //각 등수의 갯수를 구하는 메소드
     public List<Integer> countTotalResult(List<Integer> lottoWinningNumbers, int bonusNumber) {
         Integer[] arr = {0,0,0,0,0,0};
         List<Integer> resultCount = new ArrayList<>(Arrays.asList(arr));

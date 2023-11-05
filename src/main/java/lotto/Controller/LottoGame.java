@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Domain.ResultNumbers;
 import lotto.Parser;
 import lotto.Domain.Lotto;
 import lotto.Domain.Rank;
@@ -21,9 +22,8 @@ public class LottoGame {
     public void run() {
         int lottoQuantity = findLottoQuantity();
         User user = makeUser(lottoQuantity);
-        List<Integer> lottoWinningNumbers = findWinningNumbers();
-        int bonusNumber = findBonusNumber(lottoWinningNumbers);
-        List<Integer> resultCount = user.countTotalResult(lottoWinningNumbers, bonusNumber);
+        ResultNumbers resultNumbers = makeResultNumbers();
+        List<Integer> resultCount = user.countTotalResult(resultNumbers.getWinningNumbers(), resultNumbers.getBonusNumber());
         OutputView.printResultHead();
         transmitOutput(resultCount);
         double profitRate = user.calculateProfitRate(resultCount);
@@ -103,15 +103,25 @@ public class LottoGame {
         return lotto;
     }
 
+    private ResultNumbers makeResultNumbers() {
+        while (true) {
+            try {
+                List<Integer> lottoWinningNumbers = findWinningNumbers();
+                int bonusNumber = findBonusNumber();
+                ResultNumbers resultNumbers = new ResultNumbers(lottoWinningNumbers, bonusNumber);
+                return resultNumbers;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
     private List<Integer> findWinningNumbers() {
         while (true) {
             try {
                 String input = InputView.requestWinningNumbers();
                 Validator.validateLastComma(input);
                 List<Integer> lottoWinningNumbers = Parser.parseWinningNumbers(input);
-                Validator.valiateDuplicateNums(lottoWinningNumbers);
-                Validator.validateSize(lottoWinningNumbers);
-                Validator.validateNumbersRange(lottoWinningNumbers);
                 return lottoWinningNumbers;
             } catch (IllegalArgumentException e) {
             	OutputView.printErrorMessage(e.getMessage());
@@ -119,13 +129,11 @@ public class LottoGame {
         }
     }
 
-    private int findBonusNumber(List<Integer> lottoWinningNumbers) {
+    private int findBonusNumber() {
         while (true) {
             try {
                 String bonusInput = InputView.requestBonusNumber();
                 int bonusNumber = Validator.validateParseInt(bonusInput);
-                Validator.validateNumberRange(bonusNumber);
-                Validator.validateContainWinningNumbers(lottoWinningNumbers, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
             	OutputView.printErrorMessage(e.getMessage());

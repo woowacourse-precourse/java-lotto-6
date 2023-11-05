@@ -21,6 +21,7 @@ public class OutputView {
         display(OutputMessage.REQUEST_BONUS_NUMBER);
     }
 
+
     public void responsePurchaseCount(final int count) {
         display(OutputMessage.RESPONSE_PURCHASE_COUNT, count);
     }
@@ -51,9 +52,11 @@ public class OutputView {
         display(OutputMessage.RESPONSE_TOTAL_RETURN, profit);
     }
 
+
     public void displayErrorMessage(final String message) {
         System.out.println(message);
     }
+
 
     private void display(final OutputMessage message, Object... args) {
         System.out.printf(message.getMessage(), args);

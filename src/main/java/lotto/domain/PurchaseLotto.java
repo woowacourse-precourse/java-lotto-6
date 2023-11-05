@@ -10,6 +10,7 @@ public class PurchaseLotto {
 
     public PurchaseLotto(int purchaseAmount) {
         isAvailableNumber(purchaseAmount);
+        isLegalValue(purchaseAmount);
         isDivisible(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
@@ -18,6 +19,14 @@ public class PurchaseLotto {
         if (purchaseAmount < 0) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
                     ErrorMessages.NEGATIVE_AMOUNT.getMessage() +
+                    ErrorMessages.SUFFIX.getMessage());
+        }
+    }
+
+    private void isLegalValue(int purchaseAmount) {
+        if (purchaseAmount > LEGAL_AMOUNT) {
+            throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
+                    ErrorMessages.ILLEGAL_AMOUNT.getMessage() +
                     ErrorMessages.SUFFIX.getMessage());
         }
     }

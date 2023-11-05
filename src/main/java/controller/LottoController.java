@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-    public int start(String inputValue) {
+    public int start() {
         LottoTicket lottoTicket = new LottoTicket();
 
-        return lottoTicket.lottoTicketService(inputValue);
+        return lottoTicket.lottoTicketService();
 
 
     }
@@ -17,9 +17,9 @@ public class LottoController {
         LottoMachine lottoMachine = new LottoMachine();
         return lottoMachine.lottoMachineService(lottoTicketCount);
     }
-    public List<Integer> winningNumber(List<List<Integer>> totalLottoTickets){
+    public List<Integer> winningNumber(){
         WinningNumbers winningNumbers = new WinningNumbers();
-        return winningNumbers.winningNumbersService(totalLottoTickets);
+        return winningNumbers.winningNumbersService();
     }
 
     public int bonusNumber(List<Integer> winningNumber) {

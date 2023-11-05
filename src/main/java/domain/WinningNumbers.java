@@ -1,20 +1,28 @@
 package domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import exception.LottoException;
+import exception.LottoExceptionMessages;
 import lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbers {
-    public List<Integer> winningNumbersService(List<List<Integer>> totalLottoTickets) {
+    public List<Integer> winningNumbersService() {
 
-        String inputValue = Console.readLine();
-        String[] splitInputValues = inputValue.split(",");
+        List<Integer> winningNumbers = null;
+        boolean isValidInput = false;
 
-        List<Integer> winningNumbers = validateAndParseNumbers(splitInputValues);
-
+        while (!isValidInput) {
+            try {
+                String inputValue = Console.readLine();
+                String[] splitInputValues = inputValue.split(",");
+                winningNumbers = validateAndParseNumbers(splitInputValues);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         Lotto lotto = new Lotto(winningNumbers);
         return lotto.getNumbers();
 
@@ -27,8 +35,8 @@ public class WinningNumbers {
                 int number = Integer.parseInt(value.trim());
                 parsedNumbers.add(number);
             } catch (NumberFormatException e) {
-                // 입력 값이 정수가 아닌 경우 예외를 발생시킴
-                throw new LottoException(LottoException.ERROR_NOT_A_NATURAL_NUMBER);
+                throw new IllegalArgumentException(LottoExceptionMessages.NOT_A_NATURAL_NUMBER.getMessage());
+
             }
         }
         return parsedNumbers;

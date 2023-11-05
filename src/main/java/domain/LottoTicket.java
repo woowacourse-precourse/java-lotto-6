@@ -1,35 +1,39 @@
 package domain;
 
-import exception.LottoException;
+import camp.nextstep.edu.missionutils.Console;
+import exception.LottoExceptionMessages;
 
 public class LottoTicket {
 
-    public int lottoTicketService(String inputValue) {
-
-        // 입력 값을 검증하고 구매한 티켓의 수를 계산
-
-        return validateNumber(inputValue);
-
+    public int lottoTicketService() {
+        while (true) {
+            String inputValue = Console.readLine();
+            try {
+                int parseIntValue = validateNumber(inputValue);
+                validateAmount(parseIntValue);
+                return parseIntValue / 1000;
+            } catch (IllegalArgumentException e) {
+                // 예외 발생 시 에러 메시지 출력
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private int validateNumber(String inputValue) {
         try {
             int parseIntValue = Integer.parseInt(inputValue);
-            if(parseIntValue<=0){
-                // 입력 값이 정수가 아닌 경우 예외를 발생시킴
-                throw new LottoException(LottoException.ERROR_NOT_A_NATURAL_NUMBER);
+            if (parseIntValue <= 0) {
+                throw new IllegalArgumentException(LottoExceptionMessages.NOT_A_NATURAL_NUMBER.getMessage());
             }
-            validateAmount(parseIntValue);
-            return parseIntValue / 1000;
+            return parseIntValue;
         } catch (NumberFormatException e) {
-            throw new LottoException(LottoException.ERROR_INVALID_NUMBER_FORMAT);
+            throw new IllegalArgumentException(LottoExceptionMessages.INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 
     private static void validateAmount(int amount) {
         if (amount % 1000 != 0) {
-            // 금액이 1000원 단위가 아니라면 예외를 발생시킴
-            throw new LottoException(LottoException.ERROR_INVALID_AMOUNT);
+            throw new IllegalArgumentException(LottoExceptionMessages.INVALID_AMOUNT.getMessage());
         }
     }
 }

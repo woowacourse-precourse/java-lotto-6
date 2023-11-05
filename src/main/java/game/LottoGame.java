@@ -21,7 +21,7 @@ public class LottoGame {
         Converter converter = new Converter();
         LottoTicketPurchase lottoTicketPurchase = new LottoTicketPurchase();
         LottoTicketQuantity lottoTicketQuantity = new LottoTicketQuantity();
-        LottoTicketDisplay lottoTicketDisplay = new LottoTicketDisplay();
+        UserLottoNumbers lottoTicketDisplay = new UserLottoNumbers();
         int purchaseAmount = lottoTicketPurchase.getPurchaseAmount(converter);
 
         // LottoTicketPurchase
@@ -33,9 +33,9 @@ public class LottoGame {
         int purchaseQuantity = lottoTicketQuantity.getPurchaseQuantity(purchaseAmount);
 
         lottoTicketQuantity.printPurchaseQuantity(purchaseQuantity);
-        List<List<Integer>> userLottoNumbers = lottoTicketDisplay.getUserLottoNumbers(purchaseQuantity);
 
         //LottiTicketDisplay
+        List<List<Integer>> userLottoNumbers = lottoTicketDisplay.getUserLottoNumbers(purchaseQuantity);
         lottoTicketDisplay.printUserLottoNumbers(purchaseQuantity, userLottoNumbers);
 
         System.out.println();

@@ -15,6 +15,10 @@ public class Money {
         return money / LOTTO_PRICE;
     }
 
+    public int getMoney() {
+        return this.money;
+    }
+
     private void validateMoney(int money) {
         if (money == 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000 원 이상이여야 합니다.");

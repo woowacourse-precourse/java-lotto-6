@@ -8,6 +8,7 @@ public class Lottos {
 
     public static final int MIN_SCORE = 3;
     public static final int NONE_SCORE = 0;
+    public static final int PERCENT = 100;
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
@@ -28,12 +29,12 @@ public class Lottos {
         return scores;
     }
 
-    public Float calculateProfit(Map<Price, Integer> scores, int lottoCount) {
+    public Float calculateProfit(Map<Price, Integer> scores, int money) {
         long profit = scores.entrySet().stream()
                 .mapToLong(score ->
-                        (long) score.getKey().getScore() * score.getValue())
+                        (long) score.getKey().getReward() * score.getValue())
                 .sum();
-        return (float) profit / lottoCount;
+        return (float) profit / money * PERCENT;
     }
 
     private Price checkPrice(int score, Lotto lotto, Bonus bonus) {

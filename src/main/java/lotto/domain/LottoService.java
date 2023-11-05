@@ -37,7 +37,7 @@ public class LottoService {
                 .toList();
         return result;
     }
-    public List<Rank> SendAnalyzedResult (Lottos lottos, WinningLotto winningLotto) {
+    public List<Rank> sendAnalyzedResult (Lottos lottos, WinningLotto winningLotto) {
         List<Rank> withBonusNumber = checkMatchedStandardNumberWithBonusNumber(lottos, winningLotto).stream()
                 .map(x -> Rank.matchedNumberToRank(x, 1))
                 .flatMap(Optional::stream)

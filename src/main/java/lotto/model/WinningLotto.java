@@ -4,8 +4,6 @@ import static lotto.utils.LottoException.DUPLICATED_BONUS_NUMBER;
 import static lotto.utils.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;
 import static lotto.utils.LottoException.MORE_THAN_MAXIMUM_LOTTO_NUMBER;
 
-import lotto.utils.LottoException;
-
 public class WinningLotto {
     private static final int MINIMUM_LOTTO_NUMBER = 1;
     private static final int MAXIMUM_LOTTO_NUMBER = 45;
@@ -16,6 +14,12 @@ public class WinningLotto {
         validate(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
+    }
+
+    public LottoRank calculateLottoRank(Lotto compareLotto) {
+        int matchCount = compareLotto.calculateSameNumberCount(lotto);
+        boolean bonusNumberExists = compareLotto.contains(bonusNumber);
+        return LottoRank.findRankByMatchCount(matchCount, bonusNumberExists);
     }
 
     private void validate(Lotto lotto, int bonusNumber) {
@@ -41,7 +45,7 @@ public class WinningLotto {
     }
 
     private void validateIsLottoContain(Lotto lotto, int bonusNumber) {
-        if (lotto.isContain(bonusNumber)) {
+        if (lotto.contains(bonusNumber)) {
             DUPLICATED_BONUS_NUMBER.throwException();
         }
     }

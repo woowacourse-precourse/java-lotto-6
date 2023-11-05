@@ -27,8 +27,15 @@ public class Lotto {
         return Collections.unmodifiableList(new ArrayList<>(numbers));
     }
 
-    public boolean isContain(int number) {
+    public boolean contains(int number) {
         return numbers.contains(number);
+    }
+
+    public int calculateSameNumberCount(final Lotto compareLotto) {
+        List<Integer> lottoNumbers = compareLotto.getLotto();
+        return (int) lottoNumbers.stream()
+                .filter(this::contains)
+                .count();
     }
 
     private void validate(List<Integer> numbers) {

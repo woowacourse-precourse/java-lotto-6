@@ -28,8 +28,11 @@ public class WinningLotto {
     }
 
     private Lotto convertToLotto(String winningNumbers) {
-        ArrayList<Integer> winningArray = (ArrayList<Integer>) Arrays.stream(winningNumbers.split(COMMA))
-                .map(Integer::parseInt).toList();
+        ArrayList<Integer> winningArray = new ArrayList<>();
+        String[] splitArray = winningNumbers.split(COMMA);
+        for (String split : splitArray) {
+            winningArray.add(Integer.parseInt(split));
+        }
         return new Lotto(winningArray);
     }
 

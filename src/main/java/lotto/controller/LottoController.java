@@ -1,9 +1,13 @@
 package lotto.controller;
 
+import lotto.domain.wrapper.BuyLottos;
+import lotto.domain.wrapper.Lotto;
 import lotto.domain.wrapper.Money;
 import lotto.handler.InputHandler;
 import lotto.handler.OutputHandler;
 import lotto.service.LottoService;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -19,6 +23,8 @@ public class LottoController {
 
     public void run() {
         Money money = loadTicket();
+
+        BuyLottos buyLottos = buyLotto(money);
     }
 
     private Money loadTicket() {
@@ -26,5 +32,12 @@ public class LottoController {
         String money = inputHandler.inputValue();
 
         return Money.create(money);
+    }
+
+    private BuyLottos buyLotto(Money money) {
+        List<Lotto> buyLottos = lottoService.generateBuyLottos(money);
+        outputHandler.printBuyLottoList(buyLottos);
+
+        return BuyLottos.create(buyLottos);
     }
 }

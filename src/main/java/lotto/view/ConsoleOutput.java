@@ -1,6 +1,9 @@
 package lotto.view;
 
+import lotto.domain.wrapper.Lotto;
 import lotto.handler.OutputHandler;
+
+import java.util.List;
 
 public class ConsoleOutput implements OutputHandler {
 
@@ -10,8 +13,11 @@ public class ConsoleOutput implements OutputHandler {
     }
 
     @Override
-    public void printBuyLottoList() {
-
+    public void printBuyLottoList(List<Lotto> buyLottos) {
+        System.out.println(buyLottos.size() + "개를 구매했습니다.");
+        for (Lotto buyLotto : buyLottos) {
+            System.out.println(buyLotto.sortLottoNumbers());
+        }
     }
 
     @Override

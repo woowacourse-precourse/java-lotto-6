@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-class LottoMachine {
+public class LottoMachine {
 
     private static final Money LOTTO_PRICE = Money.from(1000);
     private static final String UNKNOWN_FACTORY_MESSAGE = "알 수 없는 로또 생성기로 로또 기계를 생성할 수 없습니다.";

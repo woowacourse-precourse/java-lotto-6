@@ -1,6 +1,6 @@
 package lotto.domain.lotto;
 
-interface LottoFactory {
+public interface LottoFactory {
 
     Lotto create();
 }

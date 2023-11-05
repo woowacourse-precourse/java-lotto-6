@@ -99,4 +99,8 @@ public class LottoGame {
         }
         return count;
     }
+
+    public void validate(int amount) {
+
+    }
 }

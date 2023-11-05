@@ -19,13 +19,27 @@ public class LottoGameController {
 
     public void run() {
         outputView.printRequestAmount();
-        LottoGame lottoGame = new LottoGame(inputView.inputInteger());
+        LottoGame lottoGame = getNewLottoGame();
         outputView.printIssuanceLotto(lottoGame.getUser().issuanceLotto());
         outputView.printRequestWinNumbers();
         Lotto lotto = new Lotto(inputView.inputWinNumbers());
         outputView.printRequestBonusNumber();
         WinLotto winLotto = new WinLotto(lotto, inputView.inputInteger());
+        winLotto.validateDuplication();
         lottoGame.calculationResult(winLotto);
         outputView.printResult(lottoGame);
+    }
+
+    public LottoGame getNewLottoGame() {
+        LottoGame lottoGame;
+        while (true) {
+            try {
+                lottoGame = new LottoGame(inputView.inputInteger());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lottoGame;
     }
 }

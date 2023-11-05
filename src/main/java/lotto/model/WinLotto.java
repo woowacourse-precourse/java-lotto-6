@@ -8,12 +8,11 @@ public record WinLotto(Lotto lotto, int bonusNumber) {
         if (bonusNumber > 45 || bonusNumber < 1) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NUMBER.getMessage());
         }
-        validateDuplication();
     }
 
     public void validateDuplication() {
-        lotto.getNumbers().add(bonusNumber);
-        lotto.validateDuplication(lotto.getNumbers());
-        lotto.getNumbers().remove(bonusNumber);
+        this.lotto.getNumbers().add(bonusNumber);
+        this.lotto.validateDuplication(this.lotto.getNumbers());
+        this.lotto.getNumbers().remove(bonusNumber);
     }
 }

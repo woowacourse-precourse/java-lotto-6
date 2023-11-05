@@ -27,16 +27,19 @@ public class OutputView {
     }
 
     public static void notifyInputWinningLottoNumber() {
+        printNewLine();
         System.out.println(INPUT_WINNING_LOTTO_NUMBER);
     }
 
     public static void notifyInputBonusLottoNumber() {
+        printNewLine();
         System.out.println(INPUT_BONUS_LOTTO_NUMBER);
     }
 
     public static void notifyLottoPurchase(List<List<Integer>> lottoList) {
         int amount = lottoList.size();
 
+        printNewLine();
         System.out.println(BUY_LOTTO_MESSAGE.formatted(amount));
 
         lottoList.forEach(System.out::println);
@@ -49,6 +52,7 @@ public class OutputView {
     }
 
     public static void notifyWinningResult(WinningResult winningResult) {
+        printNewLine();
         System.out.println(WINNING_STATISTICS);
         System.out.println(DASHED_LINE);
 

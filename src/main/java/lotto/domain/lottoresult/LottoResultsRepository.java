@@ -41,7 +41,7 @@ public class LottoResultsRepository {
         return new LottoResultsDto(lottoResultsRepository);
     }
 
-    public long getTotalLottoPrizeMoney() {
-        return lottoPrizeMoney.getLottoPrizeMoney();
+    public Profit calculateProfit(Player player) {
+        return player.getProfit(lottoPrizeMoney);
     }
 }

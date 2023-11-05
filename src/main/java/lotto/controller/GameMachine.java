@@ -1,10 +1,12 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumbers;
 import lotto.domain.RandomLottoNumbers;
+import lotto.domain.WinningRank;
 
 public class GameMachine {
 
@@ -22,10 +24,12 @@ public class GameMachine {
 
         System.out.println();
         System.out.println(count + "개를 구매했습니다.");
+        List<Lotto> lottos = new ArrayList<>();
         // 구입 금액 / 1000 만큼 발행 한다.
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(lottoNumbers.generateNumbers());
 
+            lottos.add(lotto);
             System.out.println(lotto.getNumbers());
         }
 
@@ -43,6 +47,27 @@ public class GameMachine {
         System.out.println("보너스 번호를 입력해 주세요.");
         int inputBonusNumber = Integer.parseInt(Console.readLine());
 
+        // 사용자와 번호 비교
+        for (Lotto lotto : lottos) {
+            long matchCount = winningNumbers.stream()
+                    .filter(lotto.getNumbers()::contains)
+                    .count();
+
+            boolean bonusMatch = lotto.getNumbers().contains(inputBonusNumber);
+
+            for (WinningRank rank : WinningRank.values()) {
+                if (matchCount == rank.getMatchCount() && bonusMatch) {
+                    rank.increaseWinCount();
+                }
+            }
+        }
+
+        // 당첨 통계 출력
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (WinningRank rank : WinningRank.values()) {
+            System.out.println(rank.getMessage());
+        }
         
     }
 

@@ -98,18 +98,36 @@ public class LottoMatcherTest {
         Assertions.assertThat(allCorrectCount).isEqualTo(5);
     }
 
-    @DisplayName("로또 번호 하나와 당첨 번호 간 일치하는 번호의 갯수가 6개인지 검증한다.")
+    @DisplayName("로또 번호 하나와 보너스 번호를 포함한 당첨 번호 간 일치하는 번호의 갯수가 0개인지 검증한다.")
+    @Test
+    void calculateNotAllCorrectWinning() {
+        //given
+        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        int bonusNumber = 6;
+
+        //when
+        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers, bonusNumber);
+        long allCorrectCount = lottoMatcher.getAllCorrectCount();
+
+        //then
+        Assertions.assertThat(allCorrectCount).isEqualTo(1);
+    }
+
+    @DisplayName("로또 번호 하나와 보너스 번호를 포함한 당첨 번호 간 일치하는 번호의 갯수가 1개인지 검증한다.")
     @Test
     void calculateAllCorrectWinning() {
         //given
         Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        int bonusNumber = 13;
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
-        long allCorrectCount = lottoMatcher.getCorrectWinningCount();
+        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers, bonusNumber);
+        long allCorrectCount = lottoMatcher.getAllCorrectCount();
 
         //then
-        Assertions.assertThat(allCorrectCount).isEqualTo(6);
+        Assertions.assertThat(allCorrectCount).isEqualTo(0);
     }
+
 }

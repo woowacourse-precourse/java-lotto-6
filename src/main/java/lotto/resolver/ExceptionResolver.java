@@ -1,5 +1,6 @@
 package lotto.resolver;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ExceptionResolver {
@@ -16,12 +17,12 @@ public class ExceptionResolver {
         }
     }
 
-    public static void resolveProcess(final Runnable runnable) {
+    public static <T> void resolveProcess(final Consumer<T> consumer, T t) {
         try {
-            runnable.run();
+            consumer.accept(t);
         } catch (IllegalArgumentException | IllegalStateException e) {
             printExceptionMessage(e.getMessage());
-            resolveProcess(runnable);
+            resolveProcess(consumer, t);
         }
     }
 

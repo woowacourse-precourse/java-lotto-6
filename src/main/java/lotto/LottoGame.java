@@ -24,8 +24,8 @@ public class LottoGame {
     }
 
     public void startGame() {
-        ExceptionResolver.resolveProcess(this::buyLottos);
-        ExceptionResolver.resolveProcess(this::inputWinningLotto);
+        ExceptionResolver.resolveProcess(LottoGame::buyLottos, this);
+        ExceptionResolver.resolveProcess(LottoGame::inputWinningLotto, this);
         printWinningResult();
     }
 
@@ -44,7 +44,7 @@ public class LottoGame {
     private void inputWinningLotto() {
         List<Integer> winningNumbers = ExceptionResolver.resolveInput(this::inputLottoNumbers);
         int bonusNumber = ExceptionResolver.resolveInput(this::inputBonusNumber);
-        ExceptionResolver.resolveProcess(() -> lottoMachine.addWinningLotto(winningNumbers, bonusNumber));
+        ExceptionResolver.resolveProcess(machine -> machine.addWinningLotto(winningNumbers, bonusNumber), lottoMachine);
     }
 
     private List<Integer> inputLottoNumbers() {

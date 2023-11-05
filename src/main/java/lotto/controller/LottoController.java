@@ -17,4 +17,6 @@ public class LottoController {
         // TODO : lottoView 구현 반영.
         Lotto lotto = lottoMachine.generateLotto();
     }
+
+
 }

@@ -1,29 +1,17 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.Rank;
+import lotto.domain.Price;
 import lotto.domain.Ranks;
 import lotto.service.LottoService;
 
 public class LottoController {
 
-    public List<Lotto> buyLottery(String stringPurchasePrice) {
-        Integer purchasePrice = validatePurchasePrice(stringPurchasePrice);
-
+    public List<Lotto> buyLottery(Price purchasePrice) {
         LottoService lottoService = new LottoService();
         return lottoService.buyLottery(purchasePrice);
-    }
-
-    private Integer validatePurchasePrice(String stringPurchasePrice) {
-        validatePurchasePriceType(stringPurchasePrice);
-        Integer purchasePrice = Integer.valueOf(stringPurchasePrice);
-        validatePurchasePriceRange(purchasePrice);
-        return purchasePrice;
     }
 
     private void validatePurchasePriceRange(Integer purchasePrice) {

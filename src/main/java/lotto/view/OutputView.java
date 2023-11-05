@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.Price;
 import lotto.domain.Rank;
-import lotto.domain.Ranks;
 
 public class OutputView {
     public static void printLotteryNumber(List<Lotto> lottery) {
@@ -25,8 +25,8 @@ public class OutputView {
         System.out.println(String.format("%s개 일치 (2,000,000,000원) - %s개", 6, resultCount.getOrDefault(Rank.FIRST, 0)));
     }
 
-    public static void printRateOfReturn(Long totalPrice, String purchasePrice) {
-        double result = (totalPrice * 100) / (Integer.valueOf(purchasePrice) * 1.0);
+    public static void printRateOfReturn(Long totalPrice, Price purchasePrice) {
+        double result = (totalPrice * 100) / (purchasePrice.getPurchasePrice() * 1.0);
         System.out.println(String.format("%,.1f%%", result));
     }
 }

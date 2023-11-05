@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
+import lotto.domain.Price;
 import lotto.domain.Ranks;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,7 +14,8 @@ import lotto.view.OutputView;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        String purchasePrice = InputView.purchasePrice();
+        Price purchasePrice = new Price(InputView.purchasePrice());
+//        String purchasePrice = InputView.purchasePrice();
         LottoController lottoController = new LottoController();
         List<Lotto> lottery = lottoController.buyLottery(purchasePrice);
         OutputView.printLotteryNumber(lottery);

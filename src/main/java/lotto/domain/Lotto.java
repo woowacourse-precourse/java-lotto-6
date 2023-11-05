@@ -1,20 +1,21 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.common.validate.Validate;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        this.numbers = validate(numbers);;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private List<Integer> validate(List<Integer> numbers) {
+        try {
+            Validate.sixHitLottoNumberValidate(numbers);
+            return numbers;
+        } catch (IllegalArgumentException e){
             throw new IllegalArgumentException();
         }
     }
-
-    // TODO: 추가 기능 구현
 }

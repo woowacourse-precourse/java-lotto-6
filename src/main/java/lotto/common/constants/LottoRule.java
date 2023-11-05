@@ -16,6 +16,4 @@ public enum LottoRule {
     public int getRule() {
         return rule;
     }
-
-    // 숫자 몇개 뽑냐, 몇부터 몇까지냐, 가격이 얼마냐, 보너스 번호는 몇개 뽑냐
 }

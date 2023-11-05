@@ -9,16 +9,21 @@ import lotto.common.validate.Validate;
 
 public class View {
     private final Validate validate;
-    private final Utils util;
+    private final Utils utils;
 
     public View() {
         validate = new Validate();
-        util = new Utils();
+        utils = new Utils();
     }
 
-    public int buyPriceMessage() {
+    public String inputConsole() {
+        String input = Console.readLine();
+        Validate.consoleBlank(input);
+        return input;
+    }
+
+    public void buyPriceMessage() {
         System.out.println(GuideMessage.INPUT_BUY_PRICE.getMessage());
-        return inputBuyPrice();
     }
 
     public void buyTicketCountMessage(int ticketCount) {
@@ -31,32 +36,7 @@ public class View {
         }
     }
 
-    public List<Integer> sixHitLottoNumberMessage() {
+    public void sixHitLottoNumberMessage() {
         System.out.println(GuideMessage.INPUT_HIT_NUMBER.getMessage());
-        return inputSixHitLottoNumber();
-    }
-
-    private String systemInput() {
-        return Console.readLine();
-    }
-
-    private int inputBuyPrice() {
-        String inputPrice = systemInput();
-        try {
-            validate.buyPriceValidate(inputPrice);
-            return Integer.parseInt(inputPrice);
-        } catch (IllegalArgumentException e) {
-            return inputBuyPrice();
-        }
-    }
-
-    private List<Integer> inputSixHitLottoNumber() {
-        List<String> inputSixNumber = util.stringToStringList(systemInput());
-        try {
-            validate.sixHitLottoNumberValidate(inputSixNumber);
-            return util.stringListToIntegerList(inputSixNumber);
-        } catch (IllegalArgumentException e) {
-            return inputSixHitLottoNumber();
-        }
     }
 }

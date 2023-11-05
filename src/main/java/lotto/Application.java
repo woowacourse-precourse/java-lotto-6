@@ -14,7 +14,7 @@ public class Application {
 
         List<Lotto> lottoTicketList = Lotto.gatherLottoTickets(quantity);
 
-        userPick.pickNumbers();
+        List<Object> pickedNumbers = userPick.pickNumbers();
 
         System.out.println("당첨 통계");
         System.out.println("---");

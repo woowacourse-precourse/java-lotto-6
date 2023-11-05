@@ -15,6 +15,13 @@ public class LottoHost {
         return winNumbers;
     }
 
+    public String pickBonusNumber() {
+        // TODO: 11/5/23 입력 체크.
+        bonusNumbers = Console.readLine();
+        return bonusNumbers;
+    }
+
+
     public void generateLottoTargetNumResults() {
         this.lottoTargetNumResults = Config.lottoNumResults(winNumbers, bonusNumbers);
     }

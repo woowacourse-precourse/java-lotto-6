@@ -8,7 +8,7 @@ import java.util.Objects;
 import static lotto.domain.constants.LottoConstraint.LOTTO_PICK_COUNT;
 import static lotto.exception.ErrorMessage.NUMBER_DUPLICATED;
 
-public class Lotto {
+public sealed class Lotto permits Jackpot {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

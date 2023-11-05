@@ -7,7 +7,7 @@ import static java.lang.String.format;
 
 public enum ErrorMessage {
     /**
-     * Client issue
+     * Client Input Error
      */
     REQUEST_NOT_INTEGER("정수가 입력되어야 합니다."),
 
@@ -32,14 +32,14 @@ public enum ErrorMessage {
                     "구분자(%s)로 끝나도록 입력할 수 없습니다.",
                     InputConstraint.DELIMITER.getValue())
     ),
+    EMPTY_REQUEST("값을 정상적으로 입력해주세요"),
 
 
     /**
-     * System Issue
+     * Internal Server Error
      */
-    NUMBER_COUNT_INVALID("뽑은 로또의 갯수가 시스템 설정과 다릅니다."),
-    NUMBER_DUPLICATED("뽑은 로또 중 중복된 숫자가 있습니다."),
-    EMPTY_REQUEST("함수의 인자가 비어있습니다.");
+    NUMBER_COUNT_INVALID("시스템이 뽑은 로또의 갯수는 전역 설정과 다릅니다."),
+    NUMBER_DUPLICATED("자동으로 뽑은 로또 중 중복된 숫자가 있습니다.");
 
 
     private static final String ERROR_PREFIX = "[ERROR] ";

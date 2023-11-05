@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.domain.parser.constants.InputConstraint.DELIMITER;
-import static lotto.domain.validator.InputValidator.validateEmpty;
 import static lotto.exception.ErrorMessage.REQUEST_NOT_INTEGER;
 
 public class Parser {
@@ -23,8 +22,6 @@ public class Parser {
 
     public static List<Integer> splitByDelimiter(final String input) {
         try {
-            validateEmpty(input);
-            
             return Arrays.stream(input.split(DELIMITER.getValue()))
                     .map(Integer::parseInt)
                     .toList();

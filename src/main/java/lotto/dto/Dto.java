@@ -3,10 +3,12 @@ package lotto.dto;
 import java.util.List;
 import lotto.domain.LottoTickets;
 import lotto.domain.LuckyNumbers;
+import lotto.domain.WinningStatistics;
 
 public class Dto {
     private LuckyNumbers luckyNumbers;
     private LottoTickets lottoTickets;
+    private WinningStatistics winningStatistics = new WinningStatistics();
     private List<Integer> numbers;
     private int bonus;
 
@@ -32,5 +34,9 @@ public class Dto {
 
     public void setLuckyNumbers() {
         luckyNumbers = new LuckyNumbers(bonus, numbers);
+    }
+
+    public void makeWinningStatistics() {
+        winningStatistics.makeWinningStatistics(lottoTickets, luckyNumbers);
     }
 }

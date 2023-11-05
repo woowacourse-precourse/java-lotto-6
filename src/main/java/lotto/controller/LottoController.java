@@ -10,8 +10,7 @@ public class LottoController {
     public void run() {
         lottoMaking();
         userInputMaking();
-        resultLotto();
-        // 로또 티켓의 개수만큼 반복 및 당첨번호 및 보너스번호와 비교하여 결과 출력
+        printResult();
     }
 
     private void lottoMaking() {
@@ -52,6 +51,16 @@ public class LottoController {
     private void userInputBonusNumber() {
         OutputView.bonusLotto();
         lotto.userInputBonus(InputView.userInput());
+    }
+
+    private void printResult() {
+        makeResult();
+        resultLotto();
+        // 로또 티켓의 개수만큼 반복 및 당첨번호 및 보너스번호와 비교하여 결과 출력
+    }
+
+    private void makeResult() {
+        lotto.makeWinningStatistics();
     }
 
     private void resultLotto() {

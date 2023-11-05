@@ -2,7 +2,6 @@ package lotto.service;
 
 public class lottoService {
     public void getAmountOfLotto() {
-
     }
     public void makeLottoTickets() {
 

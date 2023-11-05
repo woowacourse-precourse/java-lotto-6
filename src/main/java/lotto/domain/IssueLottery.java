@@ -16,7 +16,7 @@ public class IssueLottery {
 
     public List<List<Integer>> issueTickets(int ticketCount) {
         List<List<Integer>> lotteryTickets = new ArrayList<>();
-        for(int i =0; i<ticketCount; i++) {
+        for (int i = 0; i < ticketCount; i++) {
             lotteryTickets.add(issueTicket());
         }
         return lotteryTickets;

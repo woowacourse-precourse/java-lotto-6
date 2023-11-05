@@ -1,5 +1,8 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,28 +11,67 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
 
     public int askPayment() {
+        System.out.print("구입금액을 입력해 주세요. ");
         String input = readLine();
+        validatePayment(input);
         int payment = Integer.parseInt(input);
         return payment;
     }
 
     public List<Integer> askWinningTicketNumbers() {
         List<Integer> winningTicketNumbers = new ArrayList<Integer>();
-        String input = readLine();
+        System.out.print("당첨 번호를 입력해 주세요. ");
+        String input = readLine().replaceAll("\\p{Z}", "");
         String[] temp = input.split(",");
-        //입력 유효성 검사
-        for(String x : temp) {
-            int tmp = Integer.parseInt(x);
-            winningTicketNumbers.add(tmp);
+        validateWinningTicketNumbers(temp);
+        List<Integer> tmp = new ArrayList<Integer>();
+        for (String x : temp) {
+            int i = Integer.parseInt(x);
+            tmp.add(i);
         }
-
+        Lotto lotto = new Lotto(tmp);
+        winningTicketNumbers = lotto.getNumbers();
         return winningTicketNumbers;
     }
 
     public int askBonusNumber() {
+        int bonusNumber = 0;
+        System.out.print("보너스 번호를 입력해 주세요. ");
         String input = readLine();
-        //입력 유효성 검사
-        int bonusNumber = Integer.parseInt(input);
+        validateBonusNumber(input);
+        bonusNumber = Integer.parseInt(input);
         return bonusNumber;
+    }
+
+    private void validatePayment(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+        }
+        int number = Integer.parseInt(input);
+        if (!((number % 1000) == 0))
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000 단위로 입력해야 합니다.");
+    }
+
+    private void validateBonusNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+        }
+        int number = Integer.parseInt(input);
+        if (number > 45 || number < 1)
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    private void validateWinningTicketNumbers(String[] temp) {
+        for (String x : temp) {
+            try {
+                Integer.parseInt(x);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+            }
+        }
     }
 }

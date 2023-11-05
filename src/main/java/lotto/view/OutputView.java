@@ -9,6 +9,7 @@ public class OutputView {
     public void printLotteryTickets(int ticketCount, List<Integer> LotteryNumbers) {
         System.out.println(ticketCount + "개를 구매했습니다. ");
     }
+
     public void printWinningLotteryTickets(Map<Integer, Integer> winningLotteryTickets) {
         System.out.println(winningLotteryTickets);
     }

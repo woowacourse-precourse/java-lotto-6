@@ -9,9 +9,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class ResultFactoryTest {
+class LottoResultFactoryTest {
 
-    ResultFactory factory = new ResultFactory();
+    LottoResultFactory factory = new LottoResultFactory();
 
     @ParameterizedTest
     @MethodSource("resultArgs")

@@ -3,7 +3,7 @@ package lotto.model.domain.lotto;
 import java.util.Collections;
 import java.util.List;
 import lotto.constance.GameConst;
-import lotto.model.domain.result.CompareResult;
+import lotto.model.domain.result.LottoCompareResult;
 import lotto.exception.LottoGameException;
 
 public class Lotto {
@@ -55,13 +55,13 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    public CompareResult compareLotto(Lotto lotto) {
+    public LottoCompareResult compareLotto(Lotto lotto) {
         int collectNumber = collectNumber(lotto);
         if (isCompareFinish(lotto, collectNumber)) {
-            return new CompareResult(collectNumber, false);
+            return new LottoCompareResult(collectNumber, false);
         }
         boolean collectBonus = isCollectBonus((LottoAnswer) lotto);
-        return new CompareResult(collectNumber, collectBonus);
+        return new LottoCompareResult(collectNumber, collectBonus);
     }
 
     private boolean isCompareFinish(Lotto lotto, int collectNumber) {

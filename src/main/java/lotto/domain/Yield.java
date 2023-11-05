@@ -20,7 +20,7 @@ public class Yield {
             double count = rankingInfo.get(ranking);
             sumPrize += ranking.multiplePrize(count);
         }
-        double value = sumPrize / (amount * MONEY_UNIT) * HUNDRED;
+        double value = (sumPrize / (amount * MONEY_UNIT)) * HUNDRED;
         return new Yield(value);
     }
 

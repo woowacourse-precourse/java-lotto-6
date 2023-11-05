@@ -17,5 +17,16 @@ public class Lotto {
         lottoNumberException.validateLottoNumbers(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getLottoNumbers() {
+        return numbers;
+    }
+
+    public void setBonusNumber(int inputBonusNumber) {
+        bonusNumberException.validateBonusNumber(numbers, inputBonusNumber);
+        numbers.add(inputBonusNumber);
+    }
+
+    public int getBonusNumber() {
+        return numbers.get(BONUS_NUMBER_POSITION);
+    }
 }

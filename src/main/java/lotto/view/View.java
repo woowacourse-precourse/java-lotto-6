@@ -2,10 +2,10 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constant.LottoRank;
 import lotto.dto.LottoDto;
 import lotto.exception.WinningNumberContainsBonusNumberException;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
 import lotto.util.Converter;
 import lotto.vo.BonusNumber;
 import lotto.vo.BuyAmount;

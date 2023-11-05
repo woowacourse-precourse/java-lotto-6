@@ -1,13 +1,13 @@
 package lotto.controller;
 
-import static lotto.model.LottoInfo.ONE_LOTTO_PRICE;
+import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constant.LottoRank;
 import lotto.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
+import lotto.model.LottoRank;
 import lotto.model.Player;
 import lotto.util.RandomNumberGenerator;
 import lotto.view.View;

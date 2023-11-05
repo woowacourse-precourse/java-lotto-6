@@ -1,14 +1,11 @@
 package lotto.model;
 
-import static lotto.model.LottoInfo.LOTTO_MAX_NUMBER;
-import static lotto.model.LottoInfo.LOTTO_MIN_NUMBER;
-import static lotto.model.LottoInfo.LOTTO_SIZE;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constant.LottoInfo;
 import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.ExceedsMaxLottoNumberException;
 import lotto.exception.InvalidLottoSizeException;
@@ -25,7 +22,7 @@ public class Lotto {
     }
 
     private void validate(final List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE.getValue()) {
+        if (numbers.size() != LottoInfo.LOTTO_SIZE.getValue()) {
             throw new InvalidLottoSizeException();
         }
         if (hasDuplicateNumber(numbers)) {
@@ -46,12 +43,12 @@ public class Lotto {
 
     private boolean hasLargerThanMaxNumber(final List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> (number > LOTTO_MAX_NUMBER.getValue()));
+                .anyMatch(number -> (number > LottoInfo.LOTTO_MAX_NUMBER.getValue()));
     }
 
     private boolean hasLessThanMinNumber(final List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> (number < LOTTO_MIN_NUMBER.getValue()));
+                .anyMatch(number -> (number < LottoInfo.LOTTO_MIN_NUMBER.getValue()));
     }
 
     public static Lotto createPlayerLotto(final NumberGenerator numberGenerator) {

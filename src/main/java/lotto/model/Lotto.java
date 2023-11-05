@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.util.RandomNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,5 +18,12 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public static List<Lotto> generator(int count) {
+        List<Lotto> result = new ArrayList<>();
+
+        for (int i = 0; i < count; i++) {
+            result.add(new Lotto(RandomNumber.generate()));
+        }
+        return result;
+    }
 }

@@ -3,8 +3,13 @@ package lotto.view;
 import static lotto.common.InputOutputMessages.INPUT_BONUS_NUMBER;
 import static lotto.common.InputOutputMessages.INPUT_MONEY;
 import static lotto.common.InputOutputMessages.INPUT_WINNING_NUMBER;
+import static lotto.common.InputOutputMessages.OUTPUT_DASHES;
+import static lotto.common.InputOutputMessages.OUTPUT_PURCHASED_LOTTO_COUNT_FORMAT;
+import static lotto.common.InputOutputMessages.OUTPUT_STATISTICS_HEADER;
+import static lotto.common.InputOutputMessages.OUTPUT_TOTAL_PROFIT_RATE_FORMAT;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Function;
 import lotto.common.InputOutputMessages;
@@ -49,22 +54,21 @@ public class InputOutputView {
     }
 
     public void printBuyLottos(LottoBuyResponse lottoBuyResponse) {
-        System.out.printf("%s개를 구매했습니다.\n", lottoBuyResponse.getCount());
-        for (int i = 0; i < lottoBuyResponse.getCount(); i++) {
-            System.out.println(lottoBuyResponse.getBuyLottoNumbers().get(i));
-        }
+        System.out.printf(OUTPUT_PURCHASED_LOTTO_COUNT_FORMAT.getMessage(), lottoBuyResponse.getCount());
+        lottoBuyResponse.getBuyLottoNumbers().stream()
+                .forEach(System.out::println);
     }
 
     public void printResult(LottoGameResultResponse response) {
-        Map<LottoRank, Integer> gameResults = response.getGameResults();
+        Map<LottoRank, Integer> gameResults = response.getGameResultCounts();
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.printf("3개 일치 (5,000원) - %s개\n", gameResults.getOrDefault(LottoRank.FIFTH_RANK, 0));
-        System.out.printf("4개 일치 (50,000원) - %s개\n", gameResults.getOrDefault(LottoRank.FOURTH_RANK, 0));
-        System.out.printf("5개 일치 (1,500,000원) - %s개\n", gameResults.getOrDefault(LottoRank.THIRD_RANK, 0));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %s개\n", gameResults.getOrDefault(LottoRank.SECOND_RANK, 0));
-        System.out.printf("6개 일치 (2,000,000,000원) - %s개\n", gameResults.getOrDefault(LottoRank.FIRST_RANK, 0));
-        System.out.println("총 수익률은 62.5%입니다.");
+        System.out.println(OUTPUT_STATISTICS_HEADER);
+        System.out.println(OUTPUT_DASHES);
+        Arrays.stream(LottoRank.getSortedValues())
+                .filter(rank -> rank != LottoRank.NO_RANK)
+                .forEach(rank -> {
+                    System.out.printf("%s - %s개\n", rank.getDescription(), gameResults.getOrDefault(rank, 0));
+                });
+        System.out.printf(OUTPUT_TOTAL_PROFIT_RATE_FORMAT.getMessage(), response.getProfitRate());
     }
 }

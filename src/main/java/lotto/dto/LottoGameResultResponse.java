@@ -5,17 +5,23 @@ import java.util.Map;
 import lotto.common.LottoRank;
 
 public class LottoGameResultResponse {
-    private Map<LottoRank, Integer> gameResults;
+    private Map<LottoRank, Integer> gameResultCounts;
+    private Double profitRate;
 
-    public LottoGameResultResponse(Map<LottoRank, Integer> gameResults) {
-        this.gameResults = gameResults;
+    public LottoGameResultResponse(Map<LottoRank, Integer> gameResultCounts, Double profitRate) {
+        this.gameResultCounts = gameResultCounts;
+        this.profitRate = profitRate;
     }
 
-    public static LottoGameResultResponse from(Map<LottoRank, Integer> gameResultCounts) {
-        return new LottoGameResultResponse(gameResultCounts);
+    public static LottoGameResultResponse from(Map<LottoRank, Integer> gameResultCounts, Double profitRate) {
+        return new LottoGameResultResponse(gameResultCounts, profitRate);
     }
 
-    public Map<LottoRank, Integer> getGameResults() {
-        return Collections.unmodifiableMap(gameResults);
+    public Map<LottoRank, Integer> getGameResultCounts() {
+        return Collections.unmodifiableMap(gameResultCounts);
+    }
+
+    public Double getProfitRate() {
+        return profitRate;
     }
 }

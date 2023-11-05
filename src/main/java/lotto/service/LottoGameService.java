@@ -31,17 +31,20 @@ public class LottoGameService {
     }
 
     public LottoGameResultResponse calculateResult(Lotto winningLotto, int bonusNumber) {
+        Map<LottoRank, Integer> gameResultCounts = getGameResultCounts(winningLotto, bonusNumber);
+        return LottoGameResultResponse.from(gameResultCounts, 62.5);
+    }
+
+    private Map<LottoRank, Integer> getGameResultCounts(Lotto winningLotto, int bonusNumber) {
         Map<LottoRank, Integer> gameResultCounts = new HashMap<>();
 
         for (int i = 0; i < buyLottos.size(); i++) {
             int countingMatchingNumbers = buyLottos.get(i).getCountingMatchingNumbers(winningLotto);
-            ;
             boolean bonus = winningLotto.containsNumber(bonusNumber);
 
             LottoRank rank = LottoRank.getRankByMatchedNumbers(countingMatchingNumbers, bonus);
             gameResultCounts.put(rank, gameResultCounts.getOrDefault(rank, 0) + 1);
         }
-
-        return LottoGameResultResponse.from(gameResultCounts);
+        return gameResultCounts;
     }
 }

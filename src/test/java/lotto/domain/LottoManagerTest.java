@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -16,6 +17,16 @@ class LottoManagerTest {
         lottoManager = new LottoManager();
     }
 
+    @DisplayName("로또 구입 개수를 계산하는 기능 테스트")
+    @Test
+    void calculateNumberOfLottosTest() {
+        int money = 2_000;
+        int expectedAmount = 2;
+
+        int lottoAmount = lottoManager.calculateNumberOfLottos(money);
+
+        assertThat(lottoAmount).isEqualTo(expectedAmount);
+    }
 
     @DisplayName("1,000원 단위가 아닌 금액을 입력 시 예외 테스트")
     @Test

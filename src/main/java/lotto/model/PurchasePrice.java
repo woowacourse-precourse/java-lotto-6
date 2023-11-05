@@ -6,6 +6,7 @@ public class PurchasePrice {
     private static final int LOTTO_PRICE_EACH = 1000;
 
     public PurchasePrice(String priceFromUser){
+        isNotDigits(priceFromUser);
         isUnder1000(priceFromUser);
         isNotDivisibleBy1000(priceFromUser);
         this.PIECE_OF_LOTTO = Integer.parseInt(priceFromUser) / 1000;

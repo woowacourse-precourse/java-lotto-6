@@ -22,7 +22,7 @@ public class WinningLottoTest {
     @ParameterizedTest
     @MethodSource("lottoAndSameNumberNumProvider")
     void checkMatchingSameNumberNum(Lotto userLotto, int answer) {
-        int sameNumberNum = winLotto.matchSameNumberNum(userLotto);
+        int sameNumberNum = winningLotto.matchSameNumberNum(userLotto);
 
         assertThat(answer).isEqualTo(sameNumberNum);
     }

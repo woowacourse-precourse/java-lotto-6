@@ -5,25 +5,25 @@ import lotto.validator.WinningLottoValidator;
 public class WinningLotto {
     private static WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
 
-    private Lotto lotto;
+    private Lotto winLotto;
     private int bonusLottoNum;
 
-    public WinningLotto(Lotto lotto) {
-        this.lotto = lotto;
+    public WinningLotto(Lotto winLotto) {
+        this.winLotto = winLotto;
     }
 
     public void setBonusLottoNum(int bonusLottoNum) {
-        validateBonusLottoNum(lotto, bonusLottoNum);
+        validateBonusLottoNum(winLotto, bonusLottoNum);
         this.bonusLottoNum = bonusLottoNum;
     }
 
-    private void validateBonusLottoNum(Lotto lotto, int bonusLottoNum) {
+    private void validateBonusLottoNum(Lotto winLotto, int bonusLottoNum) {
         winningLottoValidator.checkRange(bonusLottoNum);
-        winningLottoValidator.checkDuplicateWinningNumbers(lotto, bonusLottoNum);
+        winningLottoValidator.checkDuplicateWinningNumbers(winLotto, bonusLottoNum);
     }
 
     public int matchSameNumberNum(Lotto userLotto) {
-        return userLotto.matchSameNumberNum(lotto);
+        return winLotto.matchSameNumberNum(userLotto);
     }
 
     public boolean isBonusNumContain(Lotto userLotto) {

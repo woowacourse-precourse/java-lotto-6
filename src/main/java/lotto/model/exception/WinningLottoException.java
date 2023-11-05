@@ -20,19 +20,25 @@ public class WinningLottoException extends IllegalArgumentException{
         }
     }
 
-    public static void checkBonusNumberNegativeException(int userBonusNumber) {
+    public static void checkBonusNumberIntegerExceptions(List<Integer> winningLotto, int bonusNumber) {
+        checkBonusNumberNegativeException(bonusNumber);
+        checkBonusNumberRangeException(bonusNumber);
+        checkBonusNumberDuplicationException(winningLotto, bonusNumber);
+    }
+
+    private static void checkBonusNumberNegativeException(int userBonusNumber) {
         if (userBonusNumber <= NUMBERS_MIN_RANGE.getNumber()) {
             throw new WinningLottoException(BONUS_NUMBER_NEGATIVE_ERROR_MESSAGE.getErrorMessage());
         }
     }
 
-    public static void checkBonusNumberRangeException(int bonusNumber) {
+    private static void checkBonusNumberRangeException(int bonusNumber) {
         if (bonusNumber < NUMBERS_MIN_RANGE.getNumber() || bonusNumber > NUMBERS_MAX_RANGE.getNumber()) {
             throw new WinningLottoException(BONUS_NUMBER_RANGE_ERROR_MESSAGE.getErrorMessage());
         }
     }
 
-    public static void checkBonusNumberDuplicationException(List<Integer> winningLotto, int bonusNumber) {
+    private static void checkBonusNumberDuplicationException(List<Integer> winningLotto, int bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
             throw new WinningLottoException(BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage());
         }

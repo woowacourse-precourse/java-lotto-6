@@ -23,9 +23,7 @@ public class WinningLotto {
 
     int isValidBonusNumber(String userBonusNumber, List<Integer> winningNumbers) {
         int bonusNumber = getBonusIntegerNumber(userBonusNumber);
-        WinningLottoException.checkBonusNumberNegativeException(bonusNumber);
-        WinningLottoException.checkBonusNumberRangeException(bonusNumber);
-        WinningLottoException.checkBonusNumberDuplicationException(winningNumbers, bonusNumber);
+        WinningLottoException.checkBonusNumberIntegerExceptions(winningNumbers, bonusNumber);
         return bonusNumber;
     }
 

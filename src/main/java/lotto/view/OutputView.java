@@ -49,5 +49,9 @@ public class OutputView {
         System.out.println(prefix + "%입니다.");
     }
 
+    public void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
 
 }

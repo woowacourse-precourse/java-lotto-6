@@ -7,9 +7,12 @@ import java.util.LinkedHashMap;
 public class ProfitMeter {
 
     private static final int TICKET_PRICE = 1000;
-    private static final BigDecimal HUNDRED = new BigDecimal(100);
     private static final int SCALE = 4;
     private static final int FINAL_SCALE = 1;
+    private static final int ZERO_TICKET = 0;
+
+    private static final BigDecimal HUNDRED = new BigDecimal(100);
+
     private final LinkedHashMap<LottoRank, Integer> winnerCount;
     private final long totalTickets;
 
@@ -19,7 +22,7 @@ public class ProfitMeter {
     }
 
     public BigDecimal calculateYield() {
-        if (totalTickets == 0) {
+        if (totalTickets == ZERO_TICKET) {
             return BigDecimal.ZERO;
         }
 

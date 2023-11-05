@@ -5,12 +5,12 @@ import static constant.ConstantNumber.NUMBER_INITIALIZATION;
 import constant.ConstantNumber;
 import java.util.List;
 
-class LottoResultCalculator {
-    int sixSuccess = NUMBER_INITIALIZATION;
-    int fiveSuccess = NUMBER_INITIALIZATION;
-    int fiveAndBonusSuccess = NUMBER_INITIALIZATION;
-    int fourSuccess = NUMBER_INITIALIZATION;
-    int threeSuccess = NUMBER_INITIALIZATION;
+public class LottoResultCalculator {
+    public int sixSuccess = NUMBER_INITIALIZATION;
+    public int fiveSuccess = NUMBER_INITIALIZATION;
+    public int fiveAndBonusSuccess = NUMBER_INITIALIZATION;
+    public int fourSuccess = NUMBER_INITIALIZATION;
+    public int threeSuccess = NUMBER_INITIALIZATION;
 
     public void Calculator(List<List<Integer>> userLottoNumbers, List<Integer> winningNumberList,
                            int bonusNumber) {

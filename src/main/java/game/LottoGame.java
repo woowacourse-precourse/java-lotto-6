@@ -10,6 +10,8 @@ import static game.LottoRank.THIRD_RANK;
 import base.Converter;
 import java.util.ArrayList;
 import java.util.List;
+import lottoResult.LottoResultDisplay;
+import lottoResult.UserLottoNumbers;
 import lottoTicketPurchase.LottoTicketPurchase;
 import lottoTicketPurchase.LottoTicketQuantity;
 import lottoWinningNumber.BonusNumberInput;

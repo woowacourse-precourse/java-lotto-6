@@ -1,16 +1,17 @@
-package game;
+package lottoResult;
 
 import static constant.ConstantMessage.WINNING_STATISTICS_NOTICE_MESSAGE;
 
+import game.LottoResultCalculator;
 import java.util.List;
 
 public class LottoResultDisplay {
     LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
-    int sixSuccess;
-    int fiveSuccess;
-    int fiveAndBonusSuccess;
-    int fourSuccess;
-    int threeSuccess;
+    public int sixSuccess;
+    public int fiveSuccess;
+    public int fiveAndBonusSuccess;
+    public int fourSuccess;
+    public int threeSuccess;
 
     public LottoResultDisplay() {
         System.out.println(WINNING_STATISTICS_NOTICE_MESSAGE);

@@ -5,14 +5,23 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class LottoController {
+
     // instance
-    LottoDB lottoDB = new LottoDB();
-    LottoView lottoView = new LottoView();
+    private final LottoDB lottoDB;
+    private final LottoView lottoView;
+
+    private Lotto lotto;
+
+    public LottoController() {
+        this.lottoDB = new LottoDB();
+        this.lottoView = new LottoView();
+    }
 
     // Method
     public void start() {
         getLottoCountFromUser();
         setUserLottoNumbers();
+        setLottoWinningNumbers();
     }
 
     public void getLottoCountFromUser() throws IllegalArgumentException {
@@ -56,4 +65,20 @@ public class LottoController {
         }
     }
 
+    public void setLottoWinningNumbers() {
+        boolean pass = true;
+        do {
+            try {
+                lottoView.userInputLottoWinningNumberAnnouncement();
+                lottoDB.clearWinningNumbers();
+                lottoDB.getWinningNumbers();
+                lottoDB.convertStringListToIntegerList();
+                this.lotto = lottoDB.getLottoInstance();
+                lotto.test();
+                pass = false;
+            } catch (IllegalArgumentException e) {
+                lottoView.printError(e.getMessage());
+            }
+        } while (pass);
+    }
 }

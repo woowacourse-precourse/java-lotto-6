@@ -25,4 +25,9 @@ public class LottoView {
     public void printError(String errorMessage) {
         System.out.println(errorMessage + " 다시 입력해주세요.");
     }
+
+    public void userInputLottoWinningNumberAnnouncement() {
+        printGap();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

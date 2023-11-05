@@ -1,10 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.constant.ErrorMessage;
-import lotto.domain.Lotto;
-import lotto.domain.LottoPurchase;
-import lotto.service.InputService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,5 +22,4 @@ public class LottoPurchaseTest {
 
         assertThat(purchaseAmount).isEqualTo(purchaseLottos.size());
     }
-
 }

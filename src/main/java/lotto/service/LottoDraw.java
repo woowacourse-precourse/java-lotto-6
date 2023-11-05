@@ -1,9 +1,11 @@
-package lotto.domain;
+package lotto.service;
 
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.util.RandomNumber;
 import lotto.util.io.InputUtils;
 import lotto.util.io.OutputUtils;

@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.LottoDraw;
+import lotto.service.LottoDraw;
 
 public class Application {
     public static void main(String[] args) {

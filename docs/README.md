@@ -12,31 +12,37 @@
   - [x] 로또 번호는 오름차순으로 정렬한다.
 - [x] 당첨번호를 입력받는다. - InputView | inputWinningNumber()
   - [x] 번호는 쉼표(,)를 기준으로 구분하는가? - InpuValidator | checkCommaDelimiter() // 테스트 코드 (o)
-  - [x] (예외)쉼표가 5개가 아닐경우 - InputValidator | checkSixDigits()
-  - [x] (예외)숫자 6개를 입력받지 못했을 경우 - InputValidator | checkSixDigits()
+  - [x] (예외)쉼표가 5개가 아닐경우 - InputValidator | checkSixNumber()
+  - [x] (예외)숫자 6개를 입력받지 못했을 경우 - InputValidator | checkSixNumber()
   - [x] (예외)숫자가 아닐경우 - InputValidator | isNumber() // // 테스트 코드 (o)
   - [x] (예외)1~45의 범위를 벗어날 경우 - InputValidator | isValidRangeNumber
-  - [] (예외) 각 자리수는 서로 다른가? - InputValidator | 
+  - [x] (예외) 각 자리수는 서로 다른가? - InputValidator | checkDistinctNumbers()
+  - [] (예외)콤마사이에 숫자가 존재하나 쓸때 없는 공백문자가 존재할 경우
 - [x] 보너스 번호를 입력받는다. - InputView | inputBonusNumber()
-  - [x] (예외) 숫자가 아닐경우
-  - [x] (예외)1~45의 범위를 벗어날 경우
-- [] 입력한 로또 번호와 발행한 로또 번호를 비교한다. - LottoSystem | compareLottoNumbers()
+  - [x] (예외) 숫자가 아닐경우 - isNumber()
+  - [x] (예외)1~45의 범위를 벗어날 경우 - isValidRangeNumber()
+- [x] 입력한 로또 번호와 발행한 로또 번호를 비교한다. - LottoSystem | compareLottoNumbers()
 - [] 당첨 내역을 출력한다. - OutputView | printLottoWinningResult()
 - [] 수익률을 계산한다.(소수점 둘째 자리에서 반올림 한다.) - caculateRateOfReturn()
 - [] 수익률을 출력한다. - OutputView | printRateOfReturn()
 
+- [x] (전체예외) 입력값이 null이가 empty일때
+
 ## 객체지향적으로 기능들을 바라보기
 
+- main
+
+
 - 로또 (Lotto)
-  - 로또
+  - 로또 타입 로또 객체
 
 - 로또 가게 (LottoStore)
   - [x] 로또를 발행한다.
 
 - 로또 시스템 (LottoSystem)
-  - 로또 당첨 번호를 입력받는다. (컨트롤러에서 받아서 생성자로 넘긴다.)
-  - 로또 보너스 번호를 입력받는다. (컨트롤러에서 받아서 생성자로 넘긴다.)
-  - 당첨 번호와 발행된 번호를 비교한다. compareWinningNumber()
+  - [x] 로또 당첨 번호를 입력받는다. (컨트롤러에서 받아서 생성자로 넘긴다.)
+  - [x] 로또 보너스 번호를 입력받는다. (컨트롤러에서 받아서 생성자로 넘긴다.)
+  - [] 당첨 번호와 발행된 번호를 비교한다. compareWinningNumber()
 
 - 손님 (Customer)
   - [x] 로또를 구매한다.

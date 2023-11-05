@@ -28,6 +28,10 @@ public class LottoNumber {
 		return number < MIN_NUMBER || number > MAX_NUMBER;
 	}
 
+	public int getNumber() {
+		return number;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -41,5 +45,10 @@ public class LottoNumber {
 	@Override
 	public int hashCode() {
 		return Objects.hash(number);
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(number);
 	}
 }

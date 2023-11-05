@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
 	public static final String DUPLICATE_LOTTO_NUMBER_MESSAGE = "[Error] 중복된 로또 값이 존재합니다.";
@@ -22,4 +24,13 @@ public class Lotto {
 		return lotto.contains(lottoNumber);
 	}
 
+	@Override
+	public String toString() {
+		return "[" +
+			lotto.stream()
+				.sorted(Comparator.comparingInt(LottoNumber::getNumber))
+				.map(LottoNumber::toString)
+				.collect(Collectors.joining(", "))
+			+ "]";
+	}
 }

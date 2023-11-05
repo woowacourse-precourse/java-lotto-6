@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class RandomNumberGenerator implements NumberGenerator {
-    private final List<Integer> generatedNumbers;
+    private List<Integer> generatedNumbers;
 
     public RandomNumberGenerator() {
         this.generatedNumbers = new ArrayList<>();
@@ -18,12 +18,8 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public List<Integer> generateNumbers() {
-        while (generatedNumbers.size() < LOTTO_SIZE.getValue()) {
-            int randomNumber = Randoms.pickNumberInRange(MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue());
-            if (!generatedNumbers.contains(randomNumber)) {
-                generatedNumbers.add(randomNumber);
-            }
-        }
+        generatedNumbers = Randoms.pickUniqueNumbersInRange(
+                MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue(), LOTTO_SIZE.getValue());
         return Collections.unmodifiableList(generatedNumbers);
     }
 }

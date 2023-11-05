@@ -16,4 +16,13 @@ class PurchaseAmoutTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NO_MONEY.getWithPrefix());
     }
+
+    @DisplayName("구입 금액이 로또 가격으로 나누어 떨어지지 않을 때 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(ints = {800, 1500, 8010})
+    void createPurchaseAmountByChangeRemaining(int purchaseAmount) {
+        assertThatThrownBy(() -> new PurchaseAmout(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.CHANGE_REMAINED.getWithPrefix());
+    }
 }

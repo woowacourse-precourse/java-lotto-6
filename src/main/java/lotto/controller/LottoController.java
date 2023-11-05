@@ -8,19 +8,49 @@ import lotto.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.constant.NumberConstants.NUMBER_RANGE_MAX;
+import static lotto.constant.NumberConstants.NUMBER_RANGE_MIN;
+
 
 public class LottoController {
     public void run() {
-        PurchaseLotto purchaseLottoAmount = purchaseLottoAmount();
+        PurchaseLotto purchaseLottoAmount = null;
+        WinningNumber winningNumber = null;
+        BonusNumber bonusNumber = null;
+
+        while (purchaseLottoAmount == null) {
+            try {
+                purchaseLottoAmount = purchaseLottoAmount();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         LottoMachine lottoPapers = buyLotto(purchaseLottoAmount);
-        OutputView.displayPurchaseNumbers(lottoPapers.getLottoPapers());
+        OutputView.displayLottoPapers(lottoPapers);
 
-        WinningNumber winningNumber = createWinningNumber();
-        BonusNumber bonusNumber = createBonusNumber(winningNumber);
+        while (winningNumber == null) {
+            try {
+                winningNumber = createWinningNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (bonusNumber == null) {
+            try {
+                bonusNumber = createBonusNumber(winningNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+
 
         LottoResult lottoResult = createLottoResult(lottoPapers, winningNumber, bonusNumber);
         double profitMargin = totalProfitMargin(lottoResult, purchaseLottoAmount);
+        OutputView.displayResults(lottoResult);
+        OutputView.displayProfitMargin(profitMargin);
     }
 
     private double totalProfitMargin(LottoResult lottoResult, PurchaseLotto purchaseLottoAmount) {
@@ -39,7 +69,7 @@ public class LottoController {
     }
 
     private BonusNumber createBonusNumber(WinningNumber winningNumber) {
-        return new BonusNumber(winningNumber.getWinningNumber(), Integer.parseInt(InputView.BonusNumber()));
+        return new BonusNumber(winningNumber.getWinningNumber(), InputView.BonusNumber());
     }
 
     private WinningNumber createWinningNumber() {
@@ -57,7 +87,7 @@ public class LottoController {
                 winningNumbers.add(num);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
-                        ErrorMessages.INVALID_TYPE +
+                        ErrorMessages.INVALID_TYPE.getMessage() +
                         ErrorMessages.SUFFIX.getMessage());
             }
         }

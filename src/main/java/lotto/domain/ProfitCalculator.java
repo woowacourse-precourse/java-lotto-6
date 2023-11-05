@@ -17,6 +17,6 @@ public class ProfitCalculator {
 
     public double calculateProfitMargin(int profit, int amount) {
         double result = (double) profit / amount;
-        return Math.round(result * 100.0) / 100.0;
+        return result * 100;
     }
 }

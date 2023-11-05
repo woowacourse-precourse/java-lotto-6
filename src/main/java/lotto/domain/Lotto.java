@@ -2,10 +2,7 @@ package lotto.domain;
 
 import lotto.constant.ErrorMessages;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static lotto.constant.NumberConstants.*;
 
@@ -54,6 +51,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return numbers;
     }
 }

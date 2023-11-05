@@ -30,6 +30,6 @@ public class LottoMachine {
     }
 
     public List<Lotto> getLottoPapers() {
-        return lottoPapers;
+        return Collections.unmodifiableList(lottoPapers);
     }
 }

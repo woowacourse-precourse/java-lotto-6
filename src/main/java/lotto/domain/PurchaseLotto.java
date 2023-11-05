@@ -18,7 +18,7 @@ public class PurchaseLotto {
     private void isAvailableNumber(int purchaseAmount) {
         if (purchaseAmount < 0) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
-                    ErrorMessages.NEGATIVE_AMOUNT +
+                    ErrorMessages.NEGATIVE_AMOUNT.getMessage() +
                     ErrorMessages.SUFFIX.getMessage());
         }
     }
@@ -26,7 +26,7 @@ public class PurchaseLotto {
     private void isDivisible(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
-                    ErrorMessages.INVALID_AMOUNT +
+                    ErrorMessages.INVALID_AMOUNT.getMessage() +
                     ErrorMessages.SUFFIX.getMessage());
         }
     }

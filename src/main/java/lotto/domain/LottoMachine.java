@@ -3,6 +3,8 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoMachine {
     private static final int LOTTO_MIN_NUMBER = 1;
@@ -39,5 +41,11 @@ public class LottoMachine {
 
     public int getPurchasePrice() {
         return lottoCount * defaultSalePrice;
+    }
+
+    public Player generatePlayerLotto() {
+        return new Player(IntStream.range(0, lottoCount)
+                .mapToObj(i -> new Lotto(this.generateLotto()))
+                .collect(Collectors.toList()));
     }
 }

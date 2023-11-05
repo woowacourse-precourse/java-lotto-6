@@ -32,7 +32,11 @@ public enum Rank {
         return message;
     }
 
-    public static Rank valueOf(int matchCount) {
+    public static Rank valueOf(int matchCount, boolean isBonus) {
+        if (isBonus && matchCount == Rank.THIRD.matchCount) {
+            return Rank.SECOND;
+        }
+
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchCount == matchCount)
                 .findFirst()

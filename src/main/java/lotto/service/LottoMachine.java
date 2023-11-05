@@ -44,8 +44,4 @@ public class LottoMachine {
             Output.printResult(5);
         }
     }
-
-    public static void increaseIncome(int grade){
-        
-    }
 }

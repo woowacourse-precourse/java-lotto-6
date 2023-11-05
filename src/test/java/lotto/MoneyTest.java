@@ -3,7 +3,6 @@ package lotto;
 import static lotto.ErrorMessage.INDIVISIBLE_NUMBER;
 import static lotto.ErrorMessage.NOT_NUMBER_FORMAT;
 import static lotto.ErrorMessage.ZERO_NUMBER;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -22,27 +21,26 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class MoneyTest {
 
     @AfterEach
-    void setDown(){
+    void setDown() {
         Console.close();
     }
 
-    @ParameterizedTest
     @DisplayName("돈을 성공 적으로 입력 받았습니다.")
+    @ParameterizedTest
     @ValueSource(strings = {"1000"})
-    void receiveMoney(String validMoney){
+    void receiveMoney(String validMoney) {
         // given
         LottoManager lottoManager = new LottoManager();
+        // when
         InputStream readLine = setReadLine(validMoney);
         System.setIn(readLine);
-        // when
-
         // then
         assertDoesNotThrow(lottoManager::receiveMoney);
     }
 
 
-    @Test
     @DisplayName("[Error] 나누어 떨이지지 않는 돈이 입력 되면 예외가 발생한다.")
+    @Test
     void receiveMoneyByIndivisibleNumber() {
         // given
         String invalidMoney = "1050";
@@ -55,8 +53,8 @@ public class MoneyTest {
         assertThat(exception.getMessage()).isEqualTo(INDIVISIBLE_NUMBER.getMessage());
     }
 
-    @Test
     @DisplayName("[Error] 돈 0원이 입력 되면 예외가 발생 한다.")
+    @Test
     void receiveMoneyByZero() {
         // given
         String invalidMoney = "0";
@@ -69,8 +67,8 @@ public class MoneyTest {
         assertThat(exception.getMessage()).isEqualTo(ZERO_NUMBER.getMessage());
     }
 
-    @Test
     @DisplayName("돈이 숫자 형태가 아니면 예외가 발생한다.")
+    @Test
     void receiveMoneyByNotNumber() {
         // given
         String invalidMoney = "1000b";

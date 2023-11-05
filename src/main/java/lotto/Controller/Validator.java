@@ -39,13 +39,15 @@ public class Validator {
     }
     public static boolean validateInputWinningNumber(String input){
         String[] nums = input.split(",");
-        int nonEmptyNumCount = 0;
+        int NumCount = 0;
         for (String num : nums) {
-            if (!num.isEmpty()) {
-                nonEmptyNumCount++;
+            if(validateInputIsNumeric(num)){
+                if (!num.isEmpty()&&validateNumberRange(Integer.parseInt(num))) {
+                    NumCount++;
+                }
             }
         }
-        return nonEmptyNumCount == 6;
+        return NumCount == 6;
     }
 
     public static int validateBonusNumber(String input){

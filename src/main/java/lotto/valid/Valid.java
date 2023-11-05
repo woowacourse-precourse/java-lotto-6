@@ -56,7 +56,7 @@ public class Valid {
     }
 
     private static int isNumber(String text) {
-        Pattern p = Pattern.compile("[^0-9 ]");
+        Pattern p = Pattern.compile("[^0-9]");
         Matcher m = p.matcher(text);
         if (m.find()) {
             throw new IllegalArgumentException("숫자만 입력 가능합니다.");

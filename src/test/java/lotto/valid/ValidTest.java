@@ -29,7 +29,7 @@ class ValidTest {
 
     @DisplayName("당청번호 정상흐름")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,6", "45,44,43,42,41,40", "11   ,10,20,30, 40,45"})
+    @ValueSource(strings = {"1,2,3,4,5,6", "45,44,43,42,41,40", "11,10,20,30,40,45", "11,10,20,30,40,1"})
     void validWinNum(String numbers) {
         Valid.validWinNum(numbers);
     }

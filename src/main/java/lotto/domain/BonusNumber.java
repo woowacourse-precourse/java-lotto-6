@@ -12,7 +12,7 @@ record BonusNumber(Integer bonus, Lotto lotto) {
     }
 
     void validateDuplication() {
-        if(lotto.isDuplicatedWithBonusNumber(bonus))
+        if(lotto.contains(bonus))
             throw new IllegalArgumentException(DomainException.BONUS_DUPLICATION.getMessage());
     }
 }

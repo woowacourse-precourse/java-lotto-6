@@ -21,6 +21,10 @@ public class Wallet {
         return buyMoney;
     }
 
+    public void setLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
+
     public void printMyLotto() {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getLottoInfo());

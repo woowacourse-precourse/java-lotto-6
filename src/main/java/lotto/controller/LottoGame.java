@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.utils.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,12 +20,7 @@ public class LottoGame implements Game {
     }
 
     private void collectPurchaseAmount() {
-        try {
-            lottoPurchase = new LottoPurchase(InputView.lottoPurchaseAmountInput());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            collectPurchaseAmount();
-        }
+        RetryUtil.retry(() -> lottoPurchase = new LottoPurchase(InputView.lottoPurchaseAmountInput()));
     }
 
     private void generateLottoTickets() {
@@ -37,7 +33,7 @@ public class LottoGame implements Game {
     }
 
     private void collectWinningNumbers() {
-        winningLotto = new WinningLotto(getWinningNumbers(), getBonusWinningNumber());
+        RetryUtil.retry(() -> winningLotto = new WinningLotto(getWinningNumbers(), getBonusWinningNumber()));
     }
 
     private Lotto getWinningNumbers() {

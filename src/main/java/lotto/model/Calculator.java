@@ -4,9 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
+import lotto.util.Constants;
 
 public class Calculator {
-    private static final int LOTTO_PRICE = 1000;
+    private static final int PERCENTAGE = 100;
+    private static final int NO_COUNT = 0;
+    private static final int COUNT_ONE = 1;
+
     private final Lotto winnerLotto;
     private final List<Lotto> userLottos;
     private final int bonusNumber;
@@ -21,7 +25,7 @@ public class Calculator {
         Map<Rank, Integer> calculateResult = new HashMap<>();
         for (Lotto userLotto : userLottos) {
             Rank rank = Rank.decideRank(winnerLotto.countMatchingNumber(userLotto), userLotto.contains(bonusNumber));
-            calculateResult.put(rank, calculateResult.getOrDefault(rank, 0) + 1);
+            calculateResult.put(rank, calculateResult.getOrDefault(rank, NO_COUNT) + COUNT_ONE);
         }
         return calculateResult;
     }
@@ -31,7 +35,7 @@ public class Calculator {
         for (Rank rank : Rank.values()) {
             sumOfPrize += result.getOrDefault(rank, 0) * rank.getPrize();
         }
-        return (float) sumOfPrize / userLottos.size() / LOTTO_PRICE * 100;
+        return (float) sumOfPrize / userLottos.size() / Constants.LOTTO_PRICE * PERCENTAGE;
     }
 
 }

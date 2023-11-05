@@ -1,13 +1,13 @@
 package lotto.validator;
 
+import static lotto.util.Constants.LOTTO_SIZE;
+import static lotto.util.Constants.MAX_LOTTO_NUM;
+import static lotto.util.Constants.MIN_LOTTO_NUM;
+
 import java.util.List;
 import lotto.message.ExceptionMessage;
 
 public class LottoValidator {
-
-    private static final int MIN_LOTTO_NUM = 1;
-    private static final int MAX_LOTTO_NUM = 45;
-    private static final int LOTTO_SIZE = 6;
 
     public static void validate(List<Integer> numbers) {
         validateNumberLength(numbers);

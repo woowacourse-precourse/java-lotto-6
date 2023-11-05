@@ -1,9 +1,10 @@
 package lotto.validator;
 
+import static lotto.util.Constants.LOTTO_PRICE;
+
 import lotto.message.ExceptionMessage;
 
 public class PurchaseAmountValidator {
-    private static final int LOTTO_PRICE = 1000;
 
     public static void validate(int inputAmount) {
         validateNaturalNumber(inputAmount);

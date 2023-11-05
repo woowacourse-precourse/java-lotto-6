@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.util.Constants.LOTTO_SIZE;
+import static lotto.util.Constants.MAX_LOTTO_NUM;
+import static lotto.util.Constants.MIN_LOTTO_NUM;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +11,6 @@ import lotto.util.LottoUtil;
 import lotto.validator.LottoValidator;
 
 public class Lotto {
-    private static final int MIN_LOTTO_NUM = 1;
-    private static final int MAX_LOTTO_NUM = 45;
-    private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

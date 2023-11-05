@@ -13,7 +13,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private static final int LOTTO_PRICE = 1000;
     private Lotto winnerLotto;
     private List<Lotto> userLottos;
     private Map<Rank, Integer> result;

@@ -1,11 +1,12 @@
 package lotto.validator;
 
+import static lotto.util.Constants.MAX_LOTTO_NUM;
+import static lotto.util.Constants.MIN_LOTTO_NUM;
+
 import lotto.Lotto;
 import lotto.message.ExceptionMessage;
 
 public class BonusNumberValidator {
-    private static final int MIN_LOTTO_NUM = 1;
-    private static final int MAX_LOTTO_NUM = 45;
 
     public static void validate(Lotto winnerLotto, int bonusNumber) {
         validateNumberInRange(bonusNumber);

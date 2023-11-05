@@ -24,20 +24,19 @@ public class Controller {
         int count = getLottoCount(input.getUserMoney());
         output.notifyLottoCount(count);
         purchaseLotto(count);
-        for (int i = 0; i < count; i++) {
-            output.notifyLottoNumbers(lottoTickets.get(i).getNumbers());
-        }
+
         output.notifyWinningNumbers();
         List<Integer> inputNumber = input.getWinningLottoNumber();
         checkLotto(inputNumber);
         Lotto winningNumber = new Lotto(inputNumber);
-        System.out.println();
+
         int bonusNumber = input.getBonusNumber();
         checkBonusNumber(inputNumber, bonusNumber);
-        System.out.println();
-        List<Integer> counts = lottoChecker.compareLottoTickets(lottoTickets, winningNumber, bonusNumber);
-        List<Integer> result = lottoChecker.lottoResult(counts);
+
+        List<Integer> result = lottoChecker.lottoResult(
+                lottoChecker.compareLottoTickets(lottoTickets, winningNumber, bonusNumber));
         output.notifyWinningDetails(result);
+
         float profitRate = calculator.rateOFProfit(result, count);
         output.notifyProfitRate(profitRate);
     }
@@ -58,6 +57,10 @@ public class Controller {
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(getRandomNumbers());
             lottoTickets.add(lotto);
+        }
+
+        for (int i = 0; i < count; i++) {
+            output.notifyLottoNumbers(lottoTickets.get(i).getNumbers());
         }
     }
 

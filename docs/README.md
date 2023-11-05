@@ -98,8 +98,15 @@
 - 인자로 받을 때를 LottoNumber 와 같은 객체 만들어서 받고 객체 내부에서 유효성 체크하는 것으로 바꿀까 생각중
 
 ## 그 외 공부할 것
-- [ ] `IllegalArgumentException`, `IllegalStateException`의 차이점
-- 
+- [x] `IllegalArgumentException`, `IllegalStateException`의 차이점
+- IllegalArgumentException
+  - null이 아닌 인자의 값이 잘못되었을 때
+- IllegalStateException
+  - 객체 상태가 메서드 호출을 처리하기에 적절치 않을 때
+
+- [IllegalArgumentException vs IllegalStateException](https://velog.io/@injoon2019/IllegalArgumentException-vs-IllegalStateException) 참고
+- [표준예외를 사용하라](https://blog.voidmainvoid.net/7)
+객체 상태가 메서드 호출을 처리하기에 적절치 않을 때
 ---
 ## 추가된 주의 사항
 

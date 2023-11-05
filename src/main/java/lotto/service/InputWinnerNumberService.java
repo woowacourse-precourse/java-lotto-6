@@ -11,7 +11,7 @@ public class InputWinnerNumberService {
     private List<Integer> winnerNumbers;
 
     public void checkRightWinnerNumbers(Validator validator, String inputWinnerNumbers) {
-        try {
+
             List<String> splitedInputWinnerNumbers = List.of(inputWinnerNumbers.split(","));
             validator.validateRightCommaCount(inputWinnerNumbers, splitedInputWinnerNumbers);
             validator.validateOnlyNumber(splitedInputWinnerNumbers);
@@ -19,9 +19,6 @@ public class InputWinnerNumberService {
                 .collect(Collectors.toList());
             validator.validateRangeNumber(winnerNumbers);
             validator.validateNumberLength(winnerNumbers);
-        }catch (IllegalArgumentException e){
-            throw new IllegalArgumentException(e.getMessage());
-        }
     }
 
     public List<Integer> convertedWinnerNumbers() {

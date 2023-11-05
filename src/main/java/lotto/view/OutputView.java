@@ -19,5 +19,13 @@ public class OutputView {
         System.out.print(RunMessage.INPUT_BONUS_MESSAGE.getMessage());
     }
 
-    
+    public void printWinningStatisticsMessage(int first, int second, int third, int fourth, int fifth, double yield){
+        System.out.print(RunMessage.PRINT_WINNING_STATISTIC.getMessage());
+        System.out.printf(RunMessage.PRINT_WINNING_FIFTH.getMessage(),fifth);
+        System.out.printf(RunMessage.PRINT_WINNING_FOURTH.getMessage(),fourth);
+        System.out.printf(RunMessage.PRINT_WINNING_THIRD.getMessage(),third);
+        System.out.printf(RunMessage.PRINT_WINNING_SECOND.getMessage(),second);
+        System.out.printf(RunMessage.PRINT_WINNING_FIRST.getMessage(),first);
+        System.out.printf(RunMessage.PRINT_WINNING_STATISTIC.getMessage(),yield);
+    }
 }

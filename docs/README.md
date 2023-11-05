@@ -38,7 +38,7 @@
     - [x]  로또 구매 안내 메세지(`**printBuyLottoMessage`)**
     - [x]  당첨 번호 입력 안내 메세지(`**printWinningNumberInputMessage**`)
     - [x]  보너스 번호 입력 안내 메세지(`**printBonusNumberInputMessage**`)
-    - [ ]  당첨 출력 메세지(`**printWinningStatisticsMessage**`)
+    - [x]  당첨 통계 출력 메세지(`**printWinningStatisticsMessage**`)
 
 ## **도메인 (Domain)**
 

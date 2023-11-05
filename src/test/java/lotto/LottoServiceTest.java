@@ -24,18 +24,8 @@ public class LottoServiceTest {
     @Test
     void calculateRankList() {
         //given
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonus = 7;
-        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonus);
-        List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 8)),
-                new Lotto(List.of(1, 2, 3, 4, 7, 8)),
-                new Lotto(List.of(1, 2, 3, 7, 8, 9)),
-                new Lotto(List.of(1, 2, 8, 9, 10, 11)),
-                new Lotto(List.of(8, 9, 10, 11, 12, 13))
-        );
+        WinningNumbers winningNumbers = LottoFixture.standard();
+        List<Lotto> lottos = LottoFixture.all();
         LottoMachine mockMachine = mock(LottoMachine.class);
         LottoService lottoService = new LottoService(winningNumbers, mockMachine);
 
@@ -43,6 +33,6 @@ public class LottoServiceTest {
         EnumMap<Rank, Integer> result = lottoService.rank(lottos);
 
         //then
-        assertThat(result.values()).containsExactly(1, 1, 1, 1, 1, 2);
+        assertThat(result.values()).containsExactly(1, 1, 1, 1, 1, 3);
     }
 }

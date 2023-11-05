@@ -2,18 +2,17 @@ package lotto.domain;
 
 import lotto.util.ErrorMessage;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers = new ArrayList<>();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         uniqueValidate(numbers);
         rangeValidate(numbers);
         this.numbers = numbers;
+        sort();
     }
 
     public List<Integer> getNumbers() {
@@ -43,5 +42,9 @@ public class Lotto {
                     ErrorMessage.ERROR_INFO +
                             ErrorMessage.LOTTO_RANGE_ERROR);
         }
+    }
+
+    public void sort(){
+        Collections.sort(this.numbers);
     }
 }

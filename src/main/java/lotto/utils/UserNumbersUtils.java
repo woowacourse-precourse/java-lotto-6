@@ -1,20 +1,22 @@
-package lotto.service;
+package lotto.utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class UserNumbersConvertor {
+public class UserNumbersUtils {
     private static final String DELIMITER = ",";
     private static final String EMPTY = "";
     private static final String SPACE = " ";
-    private static List<Integer> result = new ArrayList<>();
+    private static List<Integer> result;
 
     public static List<Integer> convert(String userInput) {
+        result = new ArrayList<>();
         userInput = removeSpace(userInput);
         String[] numbers = split(userInput);
         add(numbers);
 
-        return copyList();
+        return result;
     }
 
     private static String removeSpace(String userInput) {
@@ -31,9 +33,9 @@ public class UserNumbersConvertor {
         }
     }
 
-    private static List<Integer> copyList() {
-        List<Integer> copy = result;
-        result = new ArrayList<>();
-        return copy;
+    public static List<Integer> sort(List<Integer> numbers) {
+        result = new ArrayList<Integer>(numbers);
+        Collections.sort(result);
+        return result;
     }
 }

@@ -27,6 +27,11 @@ public class WinningStat {
                 , lottoRankConstant.getMessage(), count);
     }
 
+    public boolean isThis(int matchingNumbers, boolean hasBonusNumber) {
+        return lottoRankConstant.getMatchingNumbers() == matchingNumbers
+                && lottoRankConstant.getHasBonusNumber() == hasBonusNumber;
+    }
+
     public long getProfit() {
         return lottoRankConstant.getPrize() * count;
     }

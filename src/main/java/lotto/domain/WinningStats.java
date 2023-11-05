@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import lotto.system.LottoRankConstant;
 import lotto.system.SystemConstant;
 
 public class WinningStats {
@@ -13,6 +12,7 @@ public class WinningStats {
                     SystemConstant.WINNING_STATS_SIZE.getValue())
             .mapToObj(WinningStat::create)
             .toList();
+    // TODO 2023-11-06 7:33 하나로 줄이던가 final 떼기
 
     private WinningStats(PurchasedLottos purchasedLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
         countWinningCountByRank(purchasedLottos, winningNumbers, bonusNumber);
@@ -32,18 +32,10 @@ public class WinningStats {
     }
 
     private void checkRank(int matchingNumbers, boolean hasBonusNumber) {
-        for (int i = SystemConstant.WINNING_STATS_START.getValue();
-             i < SystemConstant.WINNING_STATS_SIZE.getValue(); i++) {
-            if (isRank(LottoRankConstant.findByRank(i), matchingNumbers, hasBonusNumber)) {
-                temporalWinngCount.get(SystemConstant.ACTUAL_RANK.getValue(i)).adder();
-            }
-        }
-        // TODO 2023-11-06 03:56 코드 단순화 필요
-    }
-
-    private boolean isRank(LottoRankConstant lottoRankConstant, int matchingNumbers, boolean hasBonusNumber) {
-        return lottoRankConstant.getMatchingNumbers() == matchingNumbers
-                && lottoRankConstant.getHasBonusNumber() == hasBonusNumber;
+        temporalWinngCount.stream()
+                .filter(i -> i.isThis(matchingNumbers, hasBonusNumber))
+                .findFirst()
+                .ifPresent(WinningStat::adder);
     }
 
     public Stream<WinningStat> stream() {

@@ -18,6 +18,18 @@ public class Amount {
         validateUnit(amount);
     }
 
+    public int calculateTotalLottoNumber() {
+        return this.amount / PRICE;
+    }
+
+    public String getTotalEarningsRate(long totalWinningPrize) {
+        return roundOff(this.amount / (double) totalWinningPrize);
+    }
+
+    private String roundOff(double earningRate) {
+        return String.format("%.2f", earningRate);
+    }
+
     private void validateMinAmount(int amount) {
         if (amount < PRICE) {
             throw new IllegalArgumentException(

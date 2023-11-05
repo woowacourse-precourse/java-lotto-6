@@ -40,4 +40,9 @@ public class Controller {
     public void listPurchaseLotto(User user) {
         outputView.printPurchaseLotto(user);
     }
+
+    public Lotto getWinLottoNumber() {
+        List<Integer> winNumbers = inputView.inputWinNumber();
+        return new Lotto(winNumbers);
+    }
 }

@@ -2,7 +2,7 @@ package lotto.domain.model;
 
 public class LottoSaleSystem {
 
-    private int purchaseMoney;
+    private static int purchaseMoney;
     private int purchaseCount;
 
     public void isValidMoney(String input) {
@@ -27,7 +27,8 @@ public class LottoSaleSystem {
         return purchaseCount;
     }
 
-    public static double calculateProfit(int purchaseMoney, int profitMoney) {
-        return (profitMoney / purchaseMoney * 100);
+    public static double calculateProfit() {
+        int profitMoney = LottoWinnerSystem.calculateProfitMoney();
+        return (double) profitMoney / purchaseMoney * 100;
     }
 }

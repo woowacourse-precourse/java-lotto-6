@@ -29,7 +29,7 @@ public class MessageUtil {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         String priceComma = decimalFormat.format(price);
         if(matchNum == FIVE_WITH_BONUS.getMatchNumber()){
-            System.out.printf(WINNING_BONUS_RESULT.getMessage(), matchNum, priceComma, num);
+            System.out.printf(WINNING_BONUS_RESULT.getMessage(), priceComma, num);
             return;
         }
         System.out.printf(WINNING_RESULT.getMessage(), matchNum, priceComma, num);

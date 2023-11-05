@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static constant.ErrorMessage.*;
+
 public class ValidationUtil {
     public int validPurchaseLottoAmount(String lottoPurchaseAmount) {
         validPurchaseIntegerLottoAmount(lottoPurchaseAmount);
@@ -12,14 +14,14 @@ public class ValidationUtil {
 
     public void validPurchaseIntegerLottoAmount(String lottoPurchaseAmount) {
         if (!lottoPurchaseAmount.matches("[0-9]+")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PURCHASE_TYPE);
         }
     }
 
     public int validPurchaseRemainLottoAmount(String lottoPurchaseAmount) {
         int validPurchaseAmount = Integer.parseInt(lottoPurchaseAmount);
         if (validPurchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PURCHASE_REMAINDER);
         }
         return validPurchaseAmount;
     }
@@ -35,7 +37,7 @@ public class ValidationUtil {
 
     private void validCountWinningNumber(String[] array) {
         if (array == null || array.length != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_SIX);
         }
     }
 
@@ -44,13 +46,13 @@ public class ValidationUtil {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE);
         }
     }
 
     private void validRangeWinningNumber(String[] array) {
         if (!Arrays.stream(array).mapToInt(Integer::parseInt).noneMatch(this::isValidRangeWinningNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE);
         }
     }
 
@@ -65,13 +67,13 @@ public class ValidationUtil {
     }
     private int validIntegerBonusNumber(String input){
         if (!input.matches("[0-9]+")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(BONUS_TYPE);
         }
         return Integer.parseInt(input);
     }
     private void validRangeBonusNumber(int input){
         if(input < 1 || input > 45){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE);
         }
     }
 }

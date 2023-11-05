@@ -58,7 +58,7 @@ public class LottoResultCompute {
         messageUtil.printWinningResult(THREE.getMatchNumber(), THREE.getPrice(), lottoMatchCount.getThreeCount());
         messageUtil.printWinningResult(FOUR.getMatchNumber(), FOUR.getPrice(), lottoMatchCount.getFourCount());
         messageUtil.printWinningResult(FIVE.getMatchNumber(), FIVE.getPrice(), lottoMatchCount.getFiveCount());
-        messageUtil.printWinningResult(FIVE.getMatchNumber(), FIVE_WITH_BONUS.getPrice(), lottoMatchCount.getFiveWithBonusCount());
+        messageUtil.printWinningResult(FIVE_WITH_BONUS.getMatchNumber(), FIVE_WITH_BONUS.getPrice(), lottoMatchCount.getFiveWithBonusCount());
         messageUtil.printWinningResult(SIX.getMatchNumber(), SIX.getPrice(), lottoMatchCount.getSixCount());
     }
     private int checkBonusNumber(int matchCount, List<Integer> userLottoNumbers){

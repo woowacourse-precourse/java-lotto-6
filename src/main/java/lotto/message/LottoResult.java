@@ -17,7 +17,7 @@ public enum LottoResult {
         System.out.printf(message, count);
     }
 
-    public String getMessageByResult(int matchedNumberCount, boolean isBonusMatched) {
+    public static String getMessageByResult(int matchedNumberCount, boolean isBonusMatched) {
         if (matchedNumberCount == 6) {
             return SIX_NUMBERS_MATCHES.message;
         }

@@ -1,29 +1,80 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import lotto.dto.WinningNumberDto;
 
 public class InputView {
 
     private static final String REQUEST_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.\n";
+    private static final String REQUEST_WINNING_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.\n";
+    private static final String REQUEST_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.\n";
+    private static final String NUMBER_DELIMITER = ",";
+    private static final int NUMBER_SPLIT_LIMIT = -1;
 
     public int readPurchaseAmount() {
         print(REQUEST_PURCHASE_AMOUNT_MESSAGE);
         return readInt();
     }
 
-    private int readInt() {
+    public WinningNumberDto readWinningNumber() {
+        List<Integer> winningNumber = readWinningNumbers();
+        int bonusNumber = readBonusNumber();
+
+        return new WinningNumberDto(winningNumber, bonusNumber);
+    }
+
+    private List<Integer> readWinningNumbers() {
+        print(REQUEST_WINNING_NUMBER_MESSAGE);
+        return readIntegerList();
+    }
+
+    private int readBonusNumber() {
+        print(REQUEST_BONUS_NUMBER_MESSAGE);
+        return readInt();
+    }
+
+    private List<Integer> readIntegerList() {
+        return toIntegerList(read());
+    }
+
+    private List<Integer> toIntegerList(String string) {
         try {
-            return Integer.parseInt(read());
-        } catch (NumberFormatException exception) {
+            return tryToIntegerList(string);
+        } catch (IllegalArgumentException exception) {
+            String exceptionMessage = "각 숫자는 int 형식이고, 각 숫자는 \'%s\'로 구분해야 합니다".formatted(NUMBER_DELIMITER);
+            throw new IllegalArgumentException(exceptionMessage);
+        }
+    }
+
+    private List<Integer> tryToIntegerList(String string) throws IllegalArgumentException {
+        return Arrays.stream(string.split(NUMBER_DELIMITER, NUMBER_SPLIT_LIMIT))
+                .map(this::tryToInteger)
+                .toList();
+    }
+
+    private int readInt() {
+        return toInteger(read());
+    }
+
+    private int toInteger(String string) {
+        try {
+            return tryToInteger(string);
+        } catch (IllegalArgumentException exception) {
             throw new IllegalArgumentException("int 형식의 숫자를 입력해야 합니다");
         }
     }
 
-    private String read() {
-        return Console.readLine();
+    private int tryToInteger(String string) throws IllegalArgumentException {
+        return Integer.parseInt(string);
     }
 
     private void print(String message) {
         System.out.print(message);
+    }
+
+    private String read() {
+        return Console.readLine();
     }
 }

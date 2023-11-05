@@ -15,7 +15,10 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
+    @Override
+    public String toString(){
+        return String.format(numbers.toString());
+    }
     void sortLotto(){
 
     }

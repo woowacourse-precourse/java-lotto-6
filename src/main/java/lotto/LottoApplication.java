@@ -7,27 +7,27 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoApplication {
     private static int LOTTO_PRICE = 1000;
-    private int[] rankCounters = new int[6]; // 1등 ~ 5등, index 0은 사용 안 함 
+    private int matchingNumbersCounter;
+    private boolean bonusMatch;
 
     void execute() {
         int receivedAmount = getReceivedAmount();
 
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> createdLottos = new ArrayList<>();
         for (int i = 0; i < getNumberOfLotto(receivedAmount); i++) {
-            lottos.add(drawLotto());
+            createdLottos.add(drawLotto());
         }
-        Output.printCreatedLottos(lottos);
+        Output.printCreatedLottos(createdLottos);
 
         Lotto pickedNumbers = getPickedNumbers();
         Bonus bonus = getBonusNumber();
 
         Ticket ticket = new Ticket(pickedNumbers, bonus); // 구매자의 티켓
 
-        compareTicketAndLottos(ticket, lottos);
+        compareTicketAndLottos(ticket, createdLottos);
     }
 
     private int getReceivedAmount() {
@@ -79,5 +79,24 @@ public class LottoApplication {
     }
 
     private void compareTicketAndLottos(Ticket ticket, List<Lotto> lottos) {
+        for (Lotto lotto: lottos) {
+            compareTicketAndLotto(ticket, lotto);
+        }
+    }
+
+    private void compareTicketAndLotto(Ticket ticket, Lotto lotto) {
+        List<Integer> ticketNumbers = ticket.getLotto().getNumbers();
+        int bonusNumber = ticket.getBonus().getNumber();
+
+        List<Integer> lottoNumbers = lotto.getNumbers();
+
+        for (Integer ticketNumber : ticketNumbers) {
+            if (lottoNumbers.contains(ticketNumber)) {
+                matchingNumbersCounter++;
+
+            }
+        }
+        
+        bonusMatch = matchingNumbersCounter == 5 && lottoNumbers.contains(bonusNumber);
     }
 }

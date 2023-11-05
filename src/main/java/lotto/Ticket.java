@@ -17,4 +17,11 @@ public class Ticket {
         }
     }
 
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public Bonus getBonus() {
+        return bonus;
+    }
 }

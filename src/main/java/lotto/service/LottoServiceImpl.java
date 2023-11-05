@@ -80,7 +80,19 @@ public class LottoServiceImpl implements LottoService {
      */
     @Override
     public int inputBonusNumber() {
-        return 0;
+
+        while (true) {
+            try {
+                String inputText = Console.readLine();
+                int bonusNumber = stringToInt(inputText);
+
+                validateBonusNumber(bonusNumber);
+
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -184,5 +196,11 @@ public class LottoServiceImpl implements LottoService {
 
     private boolean isInRange(int number) {
         return (number >= LottoVO.getLottoMinValue()) && (number <= LottoVO.getLottoMaxValue());
+    }
+
+    private void validateBonusNumber(int number) {
+        if (!isInRange(number)) {
+            throw new IllegalArgumentException(UiVO.getLottoNumberException());
+        }
     }
 }

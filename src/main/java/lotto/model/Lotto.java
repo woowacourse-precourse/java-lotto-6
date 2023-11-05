@@ -8,6 +8,7 @@ import static lotto.constant.LottoInfo.LOTTO_MAX_NUMBER;
 import static lotto.constant.LottoInfo.LOTTO_MIN_NUMBER;
 import static lotto.constant.LottoInfo.LOTTO_SIZE;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -59,8 +60,9 @@ public class Lotto {
 
     private static List<Integer> getPlayerLottoNumbers(final NumberGenerator numberGenerator) {
         List<Integer> randomNumbers = numberGenerator.pickNumbers();
+        randomNumbers = new ArrayList<>(randomNumbers);
         Collections.sort(randomNumbers);
-
+        Collections.unmodifiableList(randomNumbers);
         return randomNumbers;
     }
 

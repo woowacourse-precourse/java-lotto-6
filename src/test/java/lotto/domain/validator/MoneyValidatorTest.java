@@ -3,18 +3,15 @@ package lotto.domain.validator;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class MoneyValidatorTest {
 
     @DisplayName("구입 금액이 1000원 단위가 아닌 경우 예외 발생")
-    @Test
-    void should_Throw_Exception_When_Money_Is_Not_Divisible_By_LottoPrice() {
-        // given
-        int money = 1500;
-
+    @ParameterizedTest
+    @ValueSource(ints = {1_500, 3_200, 50_500, 4650, 1450})
+    void should_Throw_Exception_When_Money_Is_Not_Divisible_By_LottoPrice(int money) {
         // when
         // then
         assertThatThrownBy(() -> MoneyValidator.verifyDivisibleBy(money))

@@ -1,20 +1,16 @@
 package lotto.domain;
 
 public class Rate {
+    private static final double ONE_HUNDRED = 100.0;
     private final double rate;
 
-    public Rate(int money, PrizeResult lottoResult) {
-        this.rate = calculateRate(money, lottoResult);
+    public Rate(int money, PrizeResult prizeResult) {
+        this.rate = calculateRate(money, prizeResult);
     }
 
-    private double calculateRate(int money, PrizeResult lottoResult) {
-        double totalWinningPrize = 0.0;
-
-        for (Prize rank : Prize.values()) {
-            totalWinningPrize += lottoResult.getPrizeCount(rank) * rank.getWinningPrize();
-        }
-
-        return (totalWinningPrize / money) * 100.0;
+    private double calculateRate(int money, PrizeResult prizeResult) {
+        double totalWinningPrize = prizeResult.sumWinningPrize();
+        return (totalWinningPrize / money) * ONE_HUNDRED;
     }
 
     public double getRate() {

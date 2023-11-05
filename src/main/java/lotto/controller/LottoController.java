@@ -23,7 +23,7 @@ public class LottoController {
 
     private Player getPlayer() {
         try {
-            return Player.from(InputView.getLottoMoney());
+            return Player.from(Generator.generateIntegerToPlayerAmount(InputView.getLottoMoney()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPlayer();

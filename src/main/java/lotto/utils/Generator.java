@@ -8,10 +8,15 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.LottoNumber;
+import lotto.model.PlayerAmount;
 
 public class Generator {
     public static List<LottoNumber> generateIntegerToLottoNumber(List<Integer> lottoNumbers) {
         return lottoNumbers.stream().map(LottoNumber::getInstance).sorted().collect(Collectors.toList());
+    }
+
+    public static PlayerAmount generateIntegerToPlayerAmount(int money) {
+        return PlayerAmount.getInstance(money);
     }
 
     public static List<LottoNumber> generateLottoNumbers() {

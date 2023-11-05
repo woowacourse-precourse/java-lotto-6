@@ -19,6 +19,10 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     private void validate(int number) {
+        validateRange(number);
+    }
+
+    private void validateRange(int number) {
         if (!isValidRange(number)) {
             throw new IllegalArgumentException(RANGE_INVALID.getMessage());
         }

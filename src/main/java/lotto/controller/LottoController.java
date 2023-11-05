@@ -68,6 +68,7 @@ public class LottoController {
     private Lotto handleWinningNumbers() {
         while (true) {
             Lotto winnerNumbers = tryHandleWinningNumbers();
+            outputView.enterLine();
             if (winnerNumbers != null) {
                 return winnerNumbers;
             }
@@ -77,9 +78,7 @@ public class LottoController {
     private Lotto tryHandleWinningNumbers() {
         try {
             String lottoNumber = inputView.requestWinningNumbers();
-            Lotto winnerNumbers = new Lotto(new WinningNumbers(numberConverter).process(lottoNumber));
-            outputView.enterLine();
-            return winnerNumbers;
+            return new Lotto(new WinningNumbers(numberConverter).process(lottoNumber));
         } catch (IllegalArgumentException e) {
             outputView.displayErrorMessage(e);
             return null;
@@ -89,6 +88,7 @@ public class LottoController {
     private BonusNumber handleBonusNumber(Lotto winnerNumbers) {
         while (true) {
             BonusNumber bonusNumber = tryHandleBonusNumber(winnerNumbers);
+            outputView.enterLine();
             if (bonusNumber != null) {
                 return bonusNumber;
             }
@@ -97,10 +97,8 @@ public class LottoController {
 
     private BonusNumber tryHandleBonusNumber(Lotto winnerNumbers) {
         try {
-            String bonusNumberInput = inputView.requestBonusNumbers();
             BonusNumber bonusNumber = new BonusNumber(winnerNumbers, numberConverter);
-            bonusNumber.validateNumber(bonusNumberInput);
-            outputView.enterLine();
+            bonusNumber.validateNumber(inputView.requestBonusNumbers());
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             outputView.displayErrorMessage(e);

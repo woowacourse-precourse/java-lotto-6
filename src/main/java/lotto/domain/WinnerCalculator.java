@@ -32,7 +32,6 @@ public class WinnerCalculator {
         for (Lotto ticket : tickets) {
             int matchCount = getMatchCount(ticket.getNumbers(), winningLotto.getNumbers());
             boolean matchBonus = isMatchBonus(ticket);
-
             updateWinnerCount(matchCount, matchBonus);
         }
         return winnerCount;

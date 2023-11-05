@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.utils.ExceptionMessage.DUPLICATED_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +34,7 @@ public class Lotto {
     public void validateDuplication(List<Integer> numbers) {
         Set<Integer> validateNumbers = new HashSet<>(numbers);
         if (validateNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
         }
     }
 

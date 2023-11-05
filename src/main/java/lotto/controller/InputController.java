@@ -4,21 +4,30 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.view.ErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class InputController {
-    void setAmount() {
+    static int setAmount() {
         int amount = validateAmount(Console.readLine());
+        return amount;
     }
 
-    void setWinningNum() {
+    static List<Integer> setWinningNum() {
         List<Integer> winningNum = validateWinningNum(Console.readLine());
+        Set<Integer> numSet = new HashSet<>(winningNum);
+        if (winningNum.size() != numSet.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
+        }
+        return winningNum;
     }
     
-    void setBonusNum() {
+    static int setBonusNum() {
         int bonusNum = validateBonusNum(Console.readLine());
+        return bonusNum;
     }
 
-    private int validateAmount(String input) {
+    private static int validateAmount(String input) {
         int amount = validateType(input);
         
         if ((amount % 1000) != 0 || amount < 1000) {
@@ -27,7 +36,7 @@ public class InputController {
         return amount;
     }
 
-    private List<Integer> validateWinningNum(String input) {
+    private static List<Integer> validateWinningNum(String input) {
         String[] numbers = input.split(",");
         List<Integer> winningNum = validateType(numbers);
         if (numbers.length != 6) {
@@ -41,19 +50,19 @@ public class InputController {
         return winningNum;
     }
 
-    private int validateBonusNum(String input) {
+    private static int validateBonusNum(String input) {
         int bonusNum = validateType(input);
         validateRange(bonusNum);
         return bonusNum;
     }
 
-    private void validateRange(int number) {
+    private static void validateRange(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE.getMessage());
         }
     }
 
-    private int validateType(String input) {
+    private static int validateType(String input) {
         int result;
         try {
             result = Integer.parseInt(input);
@@ -63,7 +72,7 @@ public class InputController {
         return result;
     }
 
-    private List<Integer> validateType(String[] numbers) {  //오버로드
+    private static List<Integer> validateType(String[] numbers) {  //오버로드
         List<Integer> result = new ArrayList<Integer>();
         try {
             for (String number : numbers) {

@@ -42,7 +42,19 @@ public class WinningLotto {
         validateIsNumber(winningNumbers);
         validateNullOrBlank(bonusNumber);
         checkAndThrowIfNotNumeric(bonusNumber);
+        checkAndThrowIfOutOfRange(bonusNumber);
         validateAlreadyDrawn(winningNumbers, bonusNumber);
+    }
+
+    private void checkAndThrowIfOutOfRange(String bonusNumber) {
+        int convertedBonusNumber = Integer.parseInt(bonusNumber);
+        if (isOutOfRange(convertedBonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
+        }
+    }
+
+    private static boolean isOutOfRange(int convertedBonusNumber) {
+        return convertedBonusNumber < LottoConstants.NUMBER_MIN.getValue() || convertedBonusNumber > LottoConstants.NUMBER_MAX.getValue();
     }
 
     private void validateAlreadyDrawn(String winningNumbers, String bonusNumber) {

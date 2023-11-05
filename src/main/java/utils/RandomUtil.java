@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomUtil {
-    public static List<Integer> createUniqueRandomListOf(int startInclusive, int endInclusive, int expectedSize) {
+    public static List<Integer> createSortedUniqueRandomListOf(int startInclusive, int endInclusive, int expectedSize) {
         List<Integer> ret = new ArrayList<>();
         while (ret.size() < expectedSize) {
             var random = Randoms.pickNumberInRange(startInclusive, endInclusive);
@@ -14,6 +14,7 @@ public class RandomUtil {
             }
             ret.add(random);
         }
+        ret.sort(Integer::compareTo);
         return ret;
     }
 }

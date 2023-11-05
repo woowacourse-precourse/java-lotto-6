@@ -6,17 +6,19 @@ import lotto.model.Lotto;
 import lotto.model.LottoTickets;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningLotto;
+import lotto.service.ComparingLottoService;
 import lotto.service.DrawingLottoService;
 import lotto.service.IssuingLottoService;
 
 public class LottoController {
     private final IssuingLottoService issuingLottoService;
     private final DrawingLottoService drawingLottoService;
+    private final ComparingLottoService comparingLottoService;
 
     public LottoController() {
         issuingLottoService = new IssuingLottoService();
         drawingLottoService = new DrawingLottoService();
-
+        comparingLottoService = new ComparingLottoService();
     }
 
     public void run() {
@@ -27,6 +29,8 @@ public class LottoController {
         ConsoleOutput.printLottoTickets(issuingLottoService.getLottoTicketsDto(lottoTickets));
 
         WinningLotto winningLotto = readWinningNumberAndBonusNumber();
+
+        ConsoleOutput.printLottoResult(comparingLottoService.getLottoResult(lottoTickets, winningLotto));
     }
 
     private LottoTickets issueLotto(PurchaseAmount purchaseAmount) {

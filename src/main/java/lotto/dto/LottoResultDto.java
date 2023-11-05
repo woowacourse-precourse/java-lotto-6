@@ -21,4 +21,12 @@ public class LottoResultDto {
 
         return totalPrizeMoney / purchaseAmount * 100;
     }
+
+    public Map<Ranking, Integer> getLottoResult() {
+        return lottoResult;
+    }
+
+    public float getReturnRate() {
+        return returnRate;
+    }
 }

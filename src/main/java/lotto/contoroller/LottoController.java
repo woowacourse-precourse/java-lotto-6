@@ -59,27 +59,25 @@ public class LottoController {
 
     // 보너스 번호 입력
     private int getInputBonus() {
-        int inputNumber;
+//        int inputNumber;
         while (true) {
             try {
                 String input = InputValue.inputBonusNumber();
-                inputNumber = NumberTypeChanger.changeNumberType(input);
-                if (isValidBonusNumber(inputNumber)) {
-                    break;
-                }
+                int inputNumber = NumberTypeChanger.changeNumberType(input);
+                isValidBonusNumber(inputNumber);
+                Bonus bonus = new Bonus(inputNumber);
+                System.out.println();
+                return bonus.getNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return inputNumber;
     }
 
-    private boolean isValidBonusNumber(int inputNumber) {
+    private void isValidBonusNumber(int inputNumber) {
         if (LottoBonusComparer.compare(lotto, inputNumber)) {
-            System.out.println(LottoErrorMessage.DUPLICATE_LIST_ERROR.getMessage());
-            return false;
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_LIST_ERROR.getMessage());
         }
-        return true;
     }
 
 

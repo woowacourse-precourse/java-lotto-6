@@ -23,6 +23,6 @@ public class Application {
         LottoResult lottoResult = totalLottoController.issueLottoResult(winningLotto);
         // 4. 모든 티켓과 당첨번호를 비교하여 통계 결과를 출력한다.
         ResultStatics resultStatics = consumer.calculateResult(lottoResult);
-
+        totalLottoController.showStatistics(resultStatics);
     }
 }

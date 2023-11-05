@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.ResultStatics;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
@@ -60,5 +61,9 @@ public class TotalLottoController {
             }
         }
         return lottoResult;
+    }
+
+    public void showStatistics(ResultStatics resultStatics) {
+        outputView.showResultStatistics(resultStatics);
     }
 }

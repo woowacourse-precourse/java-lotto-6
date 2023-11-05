@@ -3,18 +3,21 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum LottoPrizeStatus {
-    THREE_SAME(5000, 3),
-    FOUR_SAME(50000, 4),
-    FIVE_SAME(1500000, 5),
-    FIVE_SAME_AND_CONTAIN_BONUS(30000000, 5),
-    SIX_SAME(2000000000, 6);
+    THREE_SAME(5000, 3, "3개 일치"),
+    FOUR_SAME(50000, 4, "4개 일치"),
+    FIVE_SAME(1500000, 5, "5개 일치"),
+    FIVE_SAME_AND_CONTAIN_BONUS(30000000, 5, "5개 일치, 보너스 볼 일치"),
+    SIX_SAME(2000000000, 6, "6개 일치");
 
     private final int prizeMoney;
     private final int sameCount;
 
-    LottoPrizeStatus(int prizeMoney, int sameCount) {
+    private final String matchInformation;
+
+    LottoPrizeStatus(int prizeMoney, int sameCount, String matchInformation) {
         this.prizeMoney = prizeMoney;
         this.sameCount = sameCount;
+        this.matchInformation = matchInformation;
     }
 
     public int getPrizeMoney() {
@@ -23,6 +26,10 @@ public enum LottoPrizeStatus {
 
     public int getSameCount() {
         return sameCount;
+    }
+
+    public String getMatchInformation() {
+        return matchInformation;
     }
 
     public static LottoPrizeStatus getSatisfiedContainsStatus(int sameCount, boolean isContainBonusNum) {

@@ -21,10 +21,14 @@ public class ResultStatics {
         for (LottoPrizeStatus status : resultMap.keySet()) {
             totalEarning += status.getPrizeMoney() * resultMap.get(status);
         }
-        return (double)totalEarning / issueMoney;
+        return ((double)totalEarning / issueMoney) * 100;
     }
 
     public Map<LottoPrizeStatus, Integer> getResultMap() {
         return resultMap;
+    }
+
+    public double getEarningRate() {
+        return earningRate;
     }
 }

@@ -9,10 +9,12 @@ public class LottoDB {
     private final ArrayList<Integer> userLottoNumbers;
 
     private int userLottoCount;
+    private int lottoBonusNumber;
 
     public LottoDB() {
         userLottoNumbers = new ArrayList<>();
         userLottoCount = 0;
+        lottoBonusNumber = 0;
     }
 
     public int getUserLottoCount() {
@@ -23,8 +25,11 @@ public class LottoDB {
         userLottoNumbers.addAll(lottoNumbers);
     }
 
-    public void saveUserLottoCount(int userLottoCountIn) {
-        this.userLottoCount = userLottoCountIn;
+    public void setUserLottoCount(int userLottoCount) {
+        this.userLottoCount = userLottoCount;
     }
 
+    public void setLottoBonusNumber(int lottoBonusNumber) {
+        this.lottoBonusNumber = lottoBonusNumber;
+    }
 }

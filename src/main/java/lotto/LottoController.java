@@ -18,6 +18,7 @@ public class LottoController {
     public LottoController() {
         this.lottoDB = new LottoDB();
         this.lottoView = new LottoView();
+        this.lotto = new Lotto();
     }
 
     // Method
@@ -25,6 +26,7 @@ public class LottoController {
         setLottoCountFromUser();
         setUserLottoNumbers();
         setLottoWinningNumbers();
+        setLottoBonusNumber();
     }
 
     public void setLottoCountFromUser() throws IllegalArgumentException {
@@ -35,7 +37,7 @@ public class LottoController {
                 String userInputString = readLineFromUser();
                 int userInputInteger = convertStringToInteger(userInputString);
                 checkUserInputIsThousandUnit(userInputInteger);
-                lottoDB.saveUserLottoCount(userInputInteger / UNIT);
+                lottoDB.setUserLottoCount(userInputInteger / UNIT);
                 pass = false;
             } catch (IllegalArgumentException e) {
                 lottoView.printError(e.getMessage());
@@ -69,6 +71,23 @@ public class LottoController {
         } while (pass);
     }
 
+    public void setLottoBonusNumber() {
+        boolean pass = true;
+        do {
+            try {
+                lottoView.userLottoBonusNumberAnnouncement();
+                String bonusNumberString = readLineFromUser();
+                int bonusNumber = convertStringToInteger(bonusNumberString);
+                checkWinningNumbersInRange(bonusNumber);
+                lotto.checkDuplicateforBonusNumber(bonusNumber);
+                lottoDB.setLottoBonusNumber(bonusNumber);
+                pass = false;
+            } catch (IllegalArgumentException e) {
+                lottoView.printError(e.getMessage());
+            }
+        } while (pass);
+    }
+
     public void setLotto(List<Integer> input) {
         this.lotto = new Lotto(input);
     }
@@ -87,9 +106,16 @@ public class LottoController {
         for (String stringNumbers : ArrayString) {
             int integerNumber = convertStringToInteger(stringNumbers);
             checkWinningNumbersInRange(integerNumber);
+            checkDuplicate(integerNumber, ArrayInteger);
             ArrayInteger.add(integerNumber);
         }
         return ArrayInteger;
+    }
+
+    public void checkDuplicate(int input, ArrayList<Integer> list) {
+        if (list.contains(input)) {
+            throw new IllegalArgumentException("[ERROR] : 입력된 값의 내부에 중복 값이 존재합니다.");
+        }
     }
 
     public Integer convertStringToInteger(String stringInput) throws IllegalArgumentException {

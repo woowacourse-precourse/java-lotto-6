@@ -18,6 +18,11 @@ public class LottoView {
         System.out.println(numberOfLotto + "개를 구매했습니다.");
     }
 
+    public void userLottoBonusNumberAnnouncement() {
+        printGap();
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
     public void printLottoNumber(List<Integer> lotto) {
         System.out.println(lotto);
     }

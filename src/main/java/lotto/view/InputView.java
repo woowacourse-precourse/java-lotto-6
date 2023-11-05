@@ -6,7 +6,7 @@ import lotto.utils.GameMessage;
 
 public class InputView {
     public static int getMoneyInput() {
-        System.out.println(GameMessage.ENTER_PURCHASE_AMOUNT);
+        System.out.println(GameMessage.ENTER_PURCHASE_AMOUNT.getMessage());
         String inputMoney = Console.readLine();
         validateInteger(inputMoney);
         return Integer.parseInt(inputMoney);

@@ -17,6 +17,7 @@ public class LottoController {
         int ticketCount = getTicketCount(money);
         OutputView.printTicketCount(ticketCount);
         List<Lotto> userLottos = createLotto(ticketCount);
+        OutputView.printUserLottos(userLottos);
     }
 
     private Money getValidMoneyInput() {

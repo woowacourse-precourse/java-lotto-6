@@ -13,6 +13,7 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> winningNumber, int bonusNumber) {
         validateOutOfRange(winningNumber);
+        validateOutOfRange(bonusNumber);
         validateDuplicateWinningNumber(winningNumber);
         validateDuplicateBonusNumber(winningNumber, bonusNumber);
         this.winningNumber = new WinningNumber(winningNumber);
@@ -42,6 +43,12 @@ public class WinningNumbers {
             if (isOutOfRange(number)) {
                 throw new IllegalArgumentException(OUT_OF_RANGE_ERROR_MESSAGE);
             }
+        }
+    }
+
+    private void validateOutOfRange(int bonusNumber) {
+        if (isOutOfRange(bonusNumber)) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_ERROR_MESSAGE);
         }
     }
 

@@ -21,4 +21,13 @@ public class LottoMachine {
             prize.setCount(prize.getCount() + 1);
         }
     }
+
+    public static double calculaateProfit(Integer price) {
+        double profit =
+                ((Prize.SIX.getPrice() * Prize.SIX.getCount()) + (Prize.FIVE_BONUS.getPrice()
+                        * Prize.FIVE_BONUS.getCount()) + (Prize.FIVE.getPrice()
+                        * Prize.FIVE.getCount()) + (Prize.FOUR.getPrice() * Prize.FOUR.getCount())
+                        + (Prize.THREE.getPrice() * Prize.THREE.getCount())) * 100 / price;
+        return Math.round(profit * 10) / 10.0;
+    }
 }

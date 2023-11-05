@@ -150,7 +150,13 @@ public class UIController {
             Integer bonusNumber, Integer price) {
         LottoMachine.countStatistics(lottos, winningNumbers, bonusNumber);
         UIView.printStatisticsDetail();
-        // TODO : 통계상세 출력 , 수익률
+        getProfit(price);
+
+    }
+
+    public static void getProfit(Integer price) {
+        double roundedProfit = LottoMachine.calculaateProfit(price);
+        // TODO : 수익률 출력
 
     }
 }

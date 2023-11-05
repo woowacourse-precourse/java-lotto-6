@@ -15,8 +15,13 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Application application = new Application();
-        application.getPurchasePrice();
+        long lottoCount = application.calculateLottoPurchaseCount();
+        application.printLottoPurchaseCount(lottoCount);
+    }
 
+    private long calculateLottoPurchaseCount() {
+        long purchasePrice = getPurchasePrice();
+        return purchasePrice / PURCHASE_PRICE_UNIT;
     }
 
     private long getPurchasePrice() {
@@ -49,5 +54,9 @@ public class Application {
 
     private void printError(IllegalArgumentException exception) {
         System.out.println(Message.ERROR_PREFIX + exception.getMessage());
+    }
+
+    private void printLottoPurchaseCount(long lottoCount) {
+        System.out.printf("%d개를 구매했습니다.%n", lottoCount);
     }
 }

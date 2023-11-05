@@ -3,25 +3,44 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MoneyTest {
-	/*
-	 * @DisplayName("금액 미입력 혹은 공백 입력 시 예외가 발생한다.")
-	 * 
-	 * @Test void createLottoByOverSize() { assertThatThrownBy(() -> new Money("")
-	 * .isInstanceOf(IllegalArgumentException.class)); }
-	 */
+	
+	private final Money money=new Money();
+	
+	private static final String VALID_INPUT="50, 00 0.0 W ";
+	private static final String EMPTY_INPUT="";
+	private static final String NAN_INPUT="not a number";
+	private static final String WITH_CHANGES="500120";
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("구입금액의 입력 실수는 예상하여 수용 가능하다.")
     @Test
-    void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+    void predictableMistake() {    	
+    	assertDoesNotThrow(() -> money.forTest(VALID_INPUT));
+    	assertEquals(500000, money.forTest(VALID_INPUT));
     }
-
-    // 아래에 추가 테스트 작성 가능
+    
+    @DisplayName("구입금액 공백 입력 시 예외를 발생한다.")
+    @Test
+    void inputEmptyAmount() {
+    	IllegalArgumentException exception=assertThrows(IllegalArgumentException.class, () -> money.forTest(EMPTY_INPUT));
+    	assertEquals("[ERROR] 구입금액을 반드시 입력해주세요", exception.getMessage());
+    }
+    
+    @DisplayName("구입금액 double입력 시 예외를 발생한다.")
+    @Test
+    void inputDoubleValue() {
+    	IllegalArgumentException exception=assertThrows(IllegalArgumentException.class, () -> money.forTest(NAN_INPUT));
+    	assertEquals("[ERROR] 구입금액은 반드시 숫자여야합니다", exception.getMessage());
+    }
+    
+    @DisplayName("거스름돈 발생 시 예외를 발생한다.")
+    @Test
+    void occurChanges() {
+    	IllegalArgumentException exception=assertThrows(IllegalArgumentException.class, () -> money.forTest(WITH_CHANGES));
+    	assertEquals("[ERROR] 거스름돈은 받을 수 없습니다", exception.getMessage());
+    }
 }

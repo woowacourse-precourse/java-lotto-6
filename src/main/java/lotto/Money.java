@@ -9,7 +9,7 @@ public class Money {
 	
 	//private static final controller.InputValues RE_INPUT=new InputValues();
 	
-	public Money() {
+	/*public Money() {
 		while(true) {
 			try {
 				String purchase_amount=Console.readLine();
@@ -19,9 +19,27 @@ public class Money {
 				e.printStackTrace();
 			}
 		}
+	}*/
+	
+	public int purchase_lotto() {
+		while(true) {
+			try {
+				String purchase_amount=Console.readLine();
+				validate(purchase_amount);
+				break;
+			} catch(IllegalArgumentException e) {
+				e.printStackTrace();
+			}
+		}
+		return purchase_amount_refined;
 	}
 	
-	public int getRefinedAmount() {
+	/*public int getRefinedAmount() {
+		return purchase_amount_refined;
+	}*/
+	
+	public int forTest(String test_input) {
+		validate(test_input);
 		return purchase_amount_refined;
 	}
 	

@@ -5,7 +5,7 @@ public class Amount {
     private static final int LOTTO_PRICE = 1000;
     private static final String NOT_NUMBER_AMOUNT_ERROR = "[ERROR] 구입 금액은 숫자여야 합니다.";
     private static final String AMOUNT_LESS_THAN_MINIMUM_ERROR = "[ERROR] 구입 금액은 %d보다 작을 수 없습니다.";
-    private static final String LOTTO_PRICE_UNIT_ERROR = "[ERROR] 로또는 %d원 단위로만 구매할 수 있습니다.";
+    private static final String LOTTO_PRICE_UNIT_ERROR = "[ERROR] 로또는 %,d원 단위로만 구매할 수 있습니다.";
     private final int amount;
 
     private Amount(int amount) {

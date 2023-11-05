@@ -11,7 +11,7 @@ public class Lotto {
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final String EMPTY_LOTTO_NUMBER_ERROR = "[ERROR] 로또 번호가 비었습니다.";
     private static final String INCORRECT_LOTTO_NUMBER_COUNT_ERROR = "[ERROR] 로또 번호는 %d개여야 합니다.";
-    private static final String INVALID_LOTTO_NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 %d~%d 사이의 수여야 합니다.";
+    private static final String INVALID_LOTTO_NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 %d부터 %d 사이의 수여야 합니다.";
     private static final String DUPLICATE_LOTTO_NUMBER_ERROR = "[ERROR] 로또의 각 번호는 중복될 수 없습니다.";
     private final List<Integer> numbers;
 

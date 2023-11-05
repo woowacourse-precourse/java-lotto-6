@@ -71,4 +71,28 @@ class LottoMachineTest {
 
         }
     }
+
+    @Nested
+    @DisplayName("-")
+    class CalculateProfitRate {
+        @DisplayName("추첨 결과에 따른 수익률을 반환한다.")
+        @Test
+        void Calculate_profit() {
+            LottoDto lottoDto1 = new LottoDto(List.of(1, 2, 3, 4, 5, 6)); // 1등
+            LottoDto lottoDto2 = new LottoDto(List.of(1, 2, 3, 4, 5, 6)); // 1등
+            LottoDto lottoDto3 = new LottoDto(List.of(1, 2, 3, 4, 5, 10)); // 3등
+            LottoDto lottoDto4 = new LottoDto(List.of(1, 2, 3, 4, 10, 20)); // 4등
+
+            LottosDto lottosDto = new LottosDto(List.of(lottoDto1, lottoDto2, lottoDto3, lottoDto4));
+            WinningLottoDto winningLottoDto = new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6));
+            BonusNumberDto bonusNumberDto = new BonusNumberDto(45);
+
+            // when
+            DrawingResultDto drawingResultDto = lottoMachine.draw(lottosDto, winningLottoDto, bonusNumberDto);
+            double result = lottoMachine.calculateProfitRate(lottosDto, drawingResultDto);
+
+            // then
+            System.out.println(result);
+        }
+    }
 }

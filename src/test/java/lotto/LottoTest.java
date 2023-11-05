@@ -7,10 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatCode;
+
 
 class LottoTest {
+
+    LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -31,11 +35,24 @@ class LottoTest {
     @Test
     void 유효_로또_번호_생성() {
         //given
-        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         List<Integer> lottoNumber = lottoNumberGenerator.generate();
 
         //when,then
         assertThatCode(() -> new Lotto(lottoNumber))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    void 로또_번호는_오름차순() {
+        //given
+        List<Integer> lottoNumber = lottoNumberGenerator.generate();
+
+        //when
+        List<Integer> clone = lottoNumber.stream()
+                .sorted()
+                .toList();
+
+        //then
+        assertThat(lottoNumber).isEqualTo(clone);
     }
 }

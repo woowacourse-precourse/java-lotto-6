@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -44,5 +45,13 @@ class LottoTest {
     void getLottoToString() {
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).toHash()).contains("lotto.domain.Lotto@");
+    }
+
+    @DisplayName("로또 객체 가져오기")
+    @Test
+    void getLotto() {
+        assertThat(new Lotto(List.of(1,2,3,4,5,6)).getLottoNumbers().stream()
+                .mapToInt(LottoNumber::getNumber)
+        ).isEqualTo(List.of(1,2,3,4,5,6));
     }
 }

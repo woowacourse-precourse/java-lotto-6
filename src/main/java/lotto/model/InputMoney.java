@@ -12,7 +12,7 @@ public class InputMoney extends InputNumber {
     }
 
     @Override
-    public Long sendInputData() {
+    public Integer sendInputData() {
         return this.number % 1000;
     }
 

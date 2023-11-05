@@ -1,11 +1,11 @@
 package lotto.util;
 
 public abstract class InputNumber implements InputValidator {
-    protected final Long number;
+    protected final Integer number;
 
     protected InputNumber(String input) {
         checkBlank(input);
-        number = isLong(input);
+        number = isInteger(input);
         validate();
     }
 
@@ -16,10 +16,10 @@ public abstract class InputNumber implements InputValidator {
         }
     }
 
-    private Long isLong(String input) {
-        Long number;
+    private Integer isInteger(String input) {
+        Integer number;
         try {
-            number = Long.parseLong(input);
+            number = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }

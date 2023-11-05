@@ -4,7 +4,8 @@ public enum ExceptionMessage {
 
     TYPE_ERROR("[ERROR] 숫자만 입력 가능합니다."),
     RANGE_ERROR("[ERROR] 1부터 45 사이의 수를 입력해주세요."),
-    DUPLICATION_LOTTO_NUMBER("[ERROR] 로또 번호가 중복되었습니다.");
+    DUPLICATION_LOTTO_NUMBER("[ERROR] 로또 번호가 중복되었습니다."),
+    INVALID_BONUS_NUMBER("[ERROR] 보너스 번호는 당첨번호와 같을 수 없습니다.");
 
 
     private final String exceptionMessage;

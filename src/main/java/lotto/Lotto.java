@@ -20,5 +20,7 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 수를 입력해주세요.");
             }
         }
+
+        System.out.println(numbers);
     }
 }

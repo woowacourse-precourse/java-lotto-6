@@ -31,4 +31,8 @@ public final class PurchaseAmount {
     public int numOfLotto() {
         return this.value / PURCHASE_AMOUNT_UNIT;
     }
+
+    public int toValue() {
+        return this.value;
+    }
 }

@@ -8,20 +8,20 @@ import java.util.Map;
 
 public class LottoResult {
 
-    private final Map<WinningStatistics, Integer> ranks;
+    private final Map<WinningStatistics, Integer> statistics;
 
-    public LottoResult(Map<WinningStatistics, Integer> ranks) {
-        this.ranks = ranks;
+    public LottoResult(Map<WinningStatistics, Integer> statistics) {
+        this.statistics = statistics;
     }
 
-    public Map<WinningStatistics, Integer> getSortedRanks() {
-        List<WinningStatistics> rankList = new ArrayList<>(ranks.keySet());
-        rankList.remove(WinningStatistics.MISS);
-        rankList.sort(Collections.reverseOrder());
-        Map<WinningStatistics, Integer> sortedStatistics = new LinkedHashMap<>();
-        for (WinningStatistics statistics : rankList) {
-            sortedStatistics.put(statistics, ranks.get(statistics));
+    public Map<WinningStatistics, Integer> getSortedStatistics() {
+        List<WinningStatistics> winningStatistics = new ArrayList<>(statistics.keySet());
+        winningStatistics.remove(WinningStatistics.MISS);
+        winningStatistics.sort(Collections.reverseOrder());
+        Map<WinningStatistics, Integer> sortedRanks = new LinkedHashMap<>();
+        for (WinningStatistics statistic : winningStatistics) {
+            sortedRanks.put(statistic, statistics.get(statistic));
         }
-        return sortedStatistics;
+        return sortedRanks;
     }
 }

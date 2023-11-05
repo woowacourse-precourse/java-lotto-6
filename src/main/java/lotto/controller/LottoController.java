@@ -22,7 +22,7 @@ public class LottoController {
         BuyerLotto buyerLotto = createBuyerLotto();
         WinningLotto winningLotto = createWinningLotto();
         LottoResult lottoResult = winningLotto.calculateStatistics(buyerLotto);
-        OutputView.printResult(lottoResult.getSortedRanks());
+        OutputView.printResult(lottoResult.getSortedStatistics());
     }
 
     private BuyerLotto createBuyerLotto() {

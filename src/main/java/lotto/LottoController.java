@@ -8,6 +8,7 @@ public class LottoController {
 
 
     private Integer getPurchasePrice() {
+        System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         try {
             int price = Integer.parseInt(input);
@@ -25,6 +26,7 @@ public class LottoController {
     }
 
     private Integer getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         try {
             return Integer.parseInt(input);
@@ -34,6 +36,7 @@ public class LottoController {
     }
 
     private List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         return convertInputNumbers(input);
     }

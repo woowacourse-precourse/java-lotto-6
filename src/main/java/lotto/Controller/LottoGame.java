@@ -19,13 +19,15 @@ public class LottoGame {
     public static void LottoGameRun()
     {
         int purchaseAmount = CountLottoAmount.countLottoQuantity();
-        List<Lotto> lottoList = makeLottoList(purchaseAmount);
+        lottoList = makeLottoList(purchaseAmount);
 
-     //   winningNumbers = new Lotto(parseLottoNumbers(InputView.inputLottoNumbers()));
+        String lottoNumberInput = InputView.inputLottoNumbers();
+        winningNumbers = new Lotto(parseLottoNumbers(lottoNumberInput));
+
         bonusNumber = InputView.inputBonusNumber();
 
         OutputView.printLottoAmount();
-     //   OutputView.printPurchasedLottoList(lottoList);
+        //OutputView.printPurchasedLottoList(lottoList);
 
 /*
        int[] matchingCounts = CompareResults.compareLottoResults(lotto, winningNumbers, bonusNumber);
@@ -68,5 +70,13 @@ public class LottoGame {
         }
 
         return lottoNumbers;
+    }
+
+    public static Lotto WinningNumbers(List<Integer> lottoNumbers)
+    {
+        List<Integer> winningNumbersList = parseLottoNumbers(InputView.inputLottoNumbers());
+        Lotto winningNumbers = new Lotto(winningNumbersList);
+
+        return winningNumbers;
     }
 }

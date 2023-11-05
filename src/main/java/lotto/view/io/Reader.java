@@ -13,10 +13,7 @@ public class Reader {
 
     public static int getMoney() {
         String inputMoney = Console.readLine();
-        int money = parseInt(inputMoney);
-        validateMoneyUnit(money);
-        validateMoneyRange(money);
-        return money;
+        return parseInt(inputMoney);
     }
 
     public static List<Integer> getAnswerNumbers() {
@@ -25,12 +22,6 @@ public class Reader {
         return Arrays.stream(input.split(GameConst.DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
-    }
-
-    private static void validateMoneyRange(int money) {
-        if (money > GameConst.LOTTO_PURCHASE_LIMIT) {
-            throw LottoGameException.OVER_PURCHASE_LIMIT.makeException();
-        }
     }
 
     public static Integer getBonusNumber() {
@@ -53,9 +44,4 @@ public class Reader {
         }
     }
 
-    private static void validateMoneyUnit(int money) {
-        if (money % 1000 != 0) {
-            throw LottoGameException.WRONG_MONEY_UNIT.makeException();
-        }
-    }
 }

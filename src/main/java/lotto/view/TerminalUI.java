@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.constance.PrintConst;
+import lotto.model.domain.Money;
 import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.Revenue;
 import lotto.model.domain.result.LottoResult;
@@ -13,9 +14,9 @@ import lotto.view.io.Writer;
 public class TerminalUI implements LottoGameUI {
 
     @Override
-    public int getMoney() {
+    public Money getMoney() {
         Writer.printMessage(PrintConst.GUIDE_PURCHASE);
-        return Reader.getMoney();
+        return new Money(Reader.getMoney());
     }
 
     @Override

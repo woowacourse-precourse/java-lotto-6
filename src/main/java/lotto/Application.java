@@ -41,5 +41,31 @@ public class Application {
         for(Lotto lotto: purchasedLotto) {
             lotto.printLotto();
         }
+
+        // 3. 당첨 번호 입력
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winNumInput = Console.readLine();
+        List<Integer> winNumbers;
+        try {
+            String[] seps = winNumInput.split(",");
+            List<Integer> intList = new ArrayList<>();
+            for(String sep: seps){
+                int num = Integer.parseInt(sep);
+                if(num > 45 || num < 0) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                if(intList.contains(num)) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+                }
+                intList.add(num);
+            }
+            winNumbers = intList;
+
+            if(winNumbers.size() != 6) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자로 구성되어야 합니다.");
+            }
+        }catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 로또 번호 형식입니다.");
+        }
     }
 }

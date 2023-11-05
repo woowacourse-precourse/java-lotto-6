@@ -1,16 +1,19 @@
 package lotto.Domain;
 
-import static lotto.Validator.InputValidator.checkCommaDelimiter;
-import static lotto.Validator.InputValidator.checkDistinctBetweenWinningAndBonusNumber;
-import static lotto.Validator.InputValidator.checkDistinctNumbers;
-import static lotto.Validator.InputValidator.checkSixNumber;
-import static lotto.Validator.InputValidator.isEmpty;
-import static lotto.Validator.InputValidator.isNumber;
-import static lotto.Validator.InputValidator.isValidRangeNumber;
-import static lotto.Validator.TypeCaster.convertStringToIntegerList;
+import static lotto.Util.InputValidator.checkCommaDelimiter;
+import static lotto.Util.InputValidator.checkDistinctBetweenWinningAndBonusNumber;
+import static lotto.Util.InputValidator.checkDistinctNumbers;
+import static lotto.Util.InputValidator.checkSixNumber;
+import static lotto.Util.InputValidator.isEmpty;
+import static lotto.Util.InputValidator.isNumber;
+import static lotto.Util.InputValidator.isValidRangeNumber;
+import static lotto.Util.TypeCaster.convertStringToIntegerList;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.naming.CompositeName;
 
 public class LottoSystem {
     private List<Integer> lottoWinningNumbers;
@@ -29,7 +32,7 @@ public class LottoSystem {
         }
 
         if (isEmpty(lottoBonusNumber)) {
-            lottoBonusNumber = lottoBonusNumber.replaceAll("\\s*,\\s*", ",");
+            lottoBonusNumber = lottoBonusNumber.replaceAll(" ", "");
             if (isNumber(lottoBonusNumber) && isValidRangeNumber(lottoBonusNumber)) {
                 checkDistinctBetweenWinningAndBonusNumber(lottoWinningNumber, lottoBonusNumber);
                 this.lottoBonusNumber = Integer.parseInt(lottoBonusNumber);
@@ -37,14 +40,7 @@ public class LottoSystem {
         }
     }
 
-    public void print() {
-        for (int num : this.lottoWinningNumbers) {
-            System.out.print(num + " ");
-        }
-        System.out.println(this.lottoBonusNumber);
-    }
-
-    public List<Integer> compareLottoNumbers(List<String> purchasedLottos) {
+    public Map<String, Integer> compareLottoNumbers(List<String> purchasedLottos) {
         List<Integer> matchingNumbersCounts = new ArrayList<>();
 
         for (String purchasedTicket : purchasedLottos) {
@@ -59,7 +55,21 @@ public class LottoSystem {
             countMatchingNumber = checkBonusNumber(countMatchingNumber, bonusNumberflag);
             matchingNumbersCounts.add(countMatchingNumber);
         }
-        return matchingNumbersCounts;
+        return makeStatistics(matchingNumbersCounts);
+    }
+
+    private Map<String, Integer> makeStatistics(List<Integer> matchingNumbersCounts) {
+        Map<String, Integer> statistics = new HashMap<>();
+        for (int count : matchingNumbersCounts) {
+            if (!statistics.containsKey(Integer.toString(count))) {
+                statistics.put(Integer.toString(count), 1);
+                continue;
+            }
+            int value = statistics.get(Integer.toString(count));
+            value += 1;
+            statistics.put(Integer.toString(count), value);
+        }
+        return statistics;
     }
 
     private int checkBonusNumber(int countMatchingNumber, boolean bonusNumberflag) {

@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.Domain.Customer;
 import lotto.Domain.LottoStore;
 import lotto.Domain.LottoSystem;
@@ -18,6 +20,8 @@ public class Application {
         String lottoWinningNumber = InputView.inputLottoWinningNumber();
         String lottoBonusNumber = InputView.inputLottoBonusNumber();
         LottoSystem lottoSystem = new LottoSystem(lottoWinningNumber, lottoBonusNumber);
-        List<Integer> lottoWinningStatistics = lottoSystem.compareLottoNumbers(customer.getPurchasedLottoNumbers());
+        Map<String, Integer> lottoWinningStatistics = lottoSystem.compareLottoNumbers(customer.getPurchasedLottoNumbers());
+
+        OutView.printLottoWinningStatistics(lottoWinningStatistics);
     }
 }

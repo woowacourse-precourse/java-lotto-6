@@ -1,8 +1,8 @@
 package lotto.Domain;
 
-import static lotto.Validator.InputValidator.checkDivisibleBy1000;
-import static lotto.Validator.InputValidator.isEmpty;
-import static lotto.Validator.InputValidator.isNumber;
+import static lotto.Util.InputValidator.checkDivisibleBy1000;
+import static lotto.Util.InputValidator.isEmpty;
+import static lotto.Util.InputValidator.isNumber;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

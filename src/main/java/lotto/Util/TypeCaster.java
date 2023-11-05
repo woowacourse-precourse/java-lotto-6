@@ -1,4 +1,4 @@
-package lotto.Validator;
+package lotto.Util;
 
 import java.util.ArrayList;
 import java.util.List;

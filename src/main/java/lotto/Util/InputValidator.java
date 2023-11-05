@@ -1,4 +1,4 @@
-package lotto.Validator;
+package lotto.Util;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -33,7 +33,6 @@ public class InputValidator {
     public static boolean isNumber(String input) {
         if (input.contains(",")) {
             input = input.replace(",", "");
-            System.out.println(input);
         }
         for (char c : input.toCharArray()) {
             if (!Character.isDigit(c)) {

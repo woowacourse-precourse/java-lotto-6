@@ -7,4 +7,9 @@ public class OutputView {
         System.out.println(count + TICKET_COUNT);
     }
 
+    public static void printSuccessResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
 }

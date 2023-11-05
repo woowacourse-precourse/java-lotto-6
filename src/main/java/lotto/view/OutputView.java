@@ -23,6 +23,7 @@ public class OutputView {
     private static final String HYPHEN = "---";
     private static final String LINE = "\n";
     private static final Integer PERCENTAGE = 100;
+    private static final Integer DEFAULT_COUNT = 0;
 
     public void printRequestInputPurchaseAmountMessage() {
         printMessage(INPUT_PURCHASE_AMOUNT_MESSAGE);
@@ -50,11 +51,11 @@ public class OutputView {
     public void printStatistics(final Map<LottoRank, Integer> result) {
         printMessage(LINE + STATISTICS_MESSAGE);
         printMessage(HYPHEN);
-        printMessage(String.format(FIFTH_RANK_MESSAGE, result.getOrDefault(LottoRank.FIFTH_RANK, 0)));
-        printMessage(String.format(FOURTH_RANK_MESSAGE, result.getOrDefault(LottoRank.FOURTH_RANK, 0)));
-        printMessage(String.format(THIRD_RANK_MESSAGE, result.getOrDefault(LottoRank.THIRD_RANK, 0)));
-        printMessage(String.format(SECOND_RANK_MESSAGE, result.getOrDefault(LottoRank.SECOND_RANK, 0)));
-        printMessage(String.format(FIRST_RANK_MESSAGE, result.getOrDefault(LottoRank.FIRST_RANK, 0)));
+        printMessage(String.format(FIFTH_RANK_MESSAGE, result.getOrDefault(LottoRank.FIFTH_RANK, DEFAULT_COUNT)));
+        printMessage(String.format(FOURTH_RANK_MESSAGE, result.getOrDefault(LottoRank.FOURTH_RANK, DEFAULT_COUNT)));
+        printMessage(String.format(THIRD_RANK_MESSAGE, result.getOrDefault(LottoRank.THIRD_RANK, DEFAULT_COUNT)));
+        printMessage(String.format(SECOND_RANK_MESSAGE, result.getOrDefault(LottoRank.SECOND_RANK, DEFAULT_COUNT)));
+        printMessage(String.format(FIRST_RANK_MESSAGE, result.getOrDefault(LottoRank.FIRST_RANK, DEFAULT_COUNT)));
     }
 
     public void printRateOfProfit(final Map<LottoRank, Integer> result, TicketQuantity ticketQuantity) {

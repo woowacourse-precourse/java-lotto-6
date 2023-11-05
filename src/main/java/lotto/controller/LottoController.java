@@ -43,14 +43,18 @@ public class LottoController {
     }
 
     private void handlePurchaseAmount() {
-        while (true) {
-            try {
-                this.purchaseProcessor = new PurchaseProcessor(inputView.requestPurchaseAmount());
-                outputView.enterLine();
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.displayErrorMessage(e);
-            }
+        while (!tryPurchaseAmount()) {
+        }
+    }
+
+    private boolean tryPurchaseAmount() {
+        try {
+            this.purchaseProcessor = new PurchaseProcessor(inputView.requestPurchaseAmount());
+            outputView.enterLine();
+            return true;
+        } catch (IllegalArgumentException e) {
+            outputView.displayErrorMessage(e);
+            return false;
         }
     }
 
@@ -63,27 +67,44 @@ public class LottoController {
 
     private Lotto handleWinningNumbers() {
         while (true) {
-            try {
-                String lottoNumber = inputView.requestWinningNumbers();
-                Lotto winnerNumbers = new Lotto(new WinningNumbers(numberConverter).process(lottoNumber));
-                outputView.enterLine();
+            Lotto winnerNumbers = tryHandleWinningNumbers();
+            if (winnerNumbers != null) {
                 return winnerNumbers;
-            } catch (IllegalArgumentException e) {
-                outputView.displayErrorMessage(e);
             }
+        }
+    }
+
+    private Lotto tryHandleWinningNumbers() {
+        try {
+            String lottoNumber = inputView.requestWinningNumbers();
+            Lotto winnerNumbers = new Lotto(new WinningNumbers(numberConverter).process(lottoNumber));
+            outputView.enterLine();
+            return winnerNumbers;
+        } catch (IllegalArgumentException e) {
+            outputView.displayErrorMessage(e);
+            return null;
         }
     }
 
     private BonusNumber handleBonusNumber(Lotto winnerNumbers) {
         while (true) {
-            try {
-                BonusNumber bonusNumber = new BonusNumber(winnerNumbers, numberConverter);
-                bonusNumber.validateNumber(inputView.requestBonusNumbers());
-                outputView.enterLine();
+            BonusNumber bonusNumber = tryHandleBonusNumber(winnerNumbers);
+            if (bonusNumber != null) {
                 return bonusNumber;
-            } catch (IllegalArgumentException e) {
-                outputView.displayErrorMessage(e);
             }
+        }
+    }
+
+    private BonusNumber tryHandleBonusNumber(Lotto winnerNumbers) {
+        try {
+            String bonusNumberInput = inputView.requestBonusNumbers();
+            BonusNumber bonusNumber = new BonusNumber(winnerNumbers, numberConverter);
+            bonusNumber.validateNumber(bonusNumberInput);
+            outputView.enterLine();
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            outputView.displayErrorMessage(e);
+            return null;
         }
     }
 
@@ -97,6 +118,7 @@ public class LottoController {
         outputView.displayRateOfReturn(profitMeter.calculateYield());
     }
 }
+
 
 
 

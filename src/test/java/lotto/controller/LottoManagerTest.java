@@ -8,6 +8,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoAnswer;
 import lotto.model.Rank;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,11 @@ public class LottoManagerTest {
         LottoAnswer lottoAnswer = new LottoAnswer(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
         lottoManager = new LottoManager(lottoAnswer);
         randoms = mockStatic(Randoms.class);
+    }
+
+    @AfterAll
+    private static void afterAll() {
+        randoms.close();
     }
 
     @Test

@@ -22,7 +22,12 @@ public class LottoService {
 
     private int getAmount() {
         LottoViewService.outputAmount();
-        return LottoViewService.inputAmount();
+        try {
+            return LottoViewService.inputAmount();
+        } catch (IllegalArgumentException e) {
+            LottoViewService.outPutErrorMessage(e);
+            return getAmount();
+        }
     }
 
     private List<Lotto> buyLottos(int amount) {

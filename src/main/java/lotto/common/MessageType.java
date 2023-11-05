@@ -1,7 +1,7 @@
 package lotto.common;
 
 /**
- * @Enum : 로또 서비스의 출력 메시지 타입
+ * @Enum : 출력 메시지 타입
  */
 public enum MessageType {
 

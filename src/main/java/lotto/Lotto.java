@@ -48,6 +48,7 @@ public class Lotto {
         final int fiveMatch = 5;
         Map<Rank, Integer> lottoResult = new HashMap<>();
 
+        setInitialValue(lottoResult);
         for (Lotto lotto : lottos) {
             List<Integer> issueNumbers = lotto.getNumbers();
             int matchCount = compareMatch(issueNumbers, winNumbers);
@@ -56,7 +57,6 @@ public class Lotto {
             if (matchCount == fiveMatch) {
                 matchBonus = compareBonus(issueNumbers, bonusNumber);
             }
-            setInitialValue(lottoResult);
             saveLottoResult(lottoResult, matchCount, matchBonus);
         }
 

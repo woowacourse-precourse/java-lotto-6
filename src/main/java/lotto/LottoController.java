@@ -16,7 +16,7 @@ public class LottoController {
     bonus       :  보너스 번호
     winResult   :  당첨 결과를 담은 객체
      */
-    static List<Integer> winNumbers;
+    static Lotto winNumber;
     static int bonus;
     static Map<Prize, Integer> winResult;
 
@@ -39,27 +39,43 @@ public class LottoController {
         int winAmount = 0;
         ResultInit();
         for (Lotto lotto : lottos) {
-            winAmount += lottoService.insertResult(lotto, winNumbers);
+            winAmount += lottoService.insertResult(lotto, winNumber);
         }
-
         outputView.LottoGameResult(winResult);
         outputView.totalRating(lottoService.rateOfReturn(Integer.parseInt(lottoAmount),winAmount));
-
     }
 
     private void createBonus() {
-        bonus = Integer.parseInt(inputView.bonusNumber());
+        boolean validateInput = false;
+        while (!validateInput){
+            try {
+                bonus = Integer.parseInt(inputView.bonusNumber());
+                validateInput = true;
+            } catch (IllegalArgumentException e){
+                System.err.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
         System.out.println();
     }
 
     private void createWinNumber() {
-        List<String> inputSplit = Arrays.stream(inputView.winLottoNumber().split(",")).toList();
-        winNumbers = new ArrayList<>();
-        for (String number : inputSplit) {
+        boolean validateInput = false;
+        while (!validateInput){
+            List<String> inputSplit = Arrays.stream(inputView.winLottoNumber().split(",")).toList();
+            List<Integer> numbers = new ArrayList<>();
+            for(String number : inputSplit){
+                try {
+                    int value = Integer.parseInt(number);
+                    numbers.add(value);
+                } catch (NumberFormatException e) {
+                    System.err.println("[ERROR] 올바른 정수로 변환할 수 없는 값: " + number);
+                }
+            }
             try {
-                winNumbers.add(Integer.parseInt(number));
+                winNumber = new Lotto(numbers);
+                validateInput = true;
             } catch (IllegalArgumentException e) {
-                System.out.println("정수로 변환할 수 없는 값입니다 : " + number);
+                System.err.println(e.getMessage());
             }
         }
         System.out.println();
@@ -72,11 +88,19 @@ public class LottoController {
         }
     }
 
-
     private int lottoPurchase() {
-        lottoAmount = inputView.purchaseLotto();
+        boolean validInput =  false;
+        int count =0;
+        while(!validInput){
+            try {
+                lottoAmount = inputView.purchaseLotto();
+                count = lottoService.countingLottoByAmount(Integer.parseInt(lottoAmount));
+                validInput = true;
+            } catch (IllegalArgumentException e){
+                System.err.println(INPUT_ERROR_MESSAGE);
+            }
+        }
         System.out.println();
-        int count = lottoService.countingLottoByAmount(Integer.parseInt(lottoAmount));
         outputView.purchaseLottoCount(count);
         return count;
     }

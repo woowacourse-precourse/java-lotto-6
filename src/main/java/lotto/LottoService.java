@@ -9,6 +9,8 @@ import static lotto.LottoController.winResult;
 
 public class LottoService {
 
+    public static final String INPUT_ERROR_MESSAGE = "[ERROR] 잘못된 값을 입력하셨습니다.";
+
     public int countingLottoByAmount(int amount){
         if(amount % 1000 != 0){
             throw new IllegalArgumentException();
@@ -23,9 +25,9 @@ public class LottoService {
     }
 
     // 생성된 로또 번호 리스트와 당첨번호를 비교하는 기는
-    public int sameNumberCount(Lotto lotto, List<Integer> correct){
+    public int sameNumberCount(Lotto lotto, Lotto correct){
         int count =0;
-        for(int number : correct){
+        for(int number : correct.getNumbers()){
             if(lotto.getNumbers().contains(number)){
                 count++;
             }
@@ -44,7 +46,7 @@ public class LottoService {
     }
 
 
-    public int insertResult(Lotto lotto, List<Integer> winNumbers) {
+    public int insertResult(Lotto lotto, Lotto winNumbers) {
         int count = sameNumberCount(lotto, winNumbers);
         int winAmount = 0;
         if (count == 3) {

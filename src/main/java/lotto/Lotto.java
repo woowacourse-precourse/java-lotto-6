@@ -23,13 +23,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호 개수는 6입니다.");
         }
         if(!validateDuplicatedNumber(numbers)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
         if(!validateOverRangeNumber(numbers)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 

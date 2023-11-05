@@ -11,14 +11,13 @@ public class Validator {
         if (purchaseAmount.lessThan(Amount.DEFAULT_PURCHASE_AMOUNT)) {
             Exception.PURCHASE_AMOUNT_OUT_OF_RANGE.throwing();
         }
-
         if (!purchaseAmount.isMultipleOf(Amount.DEFAULT_PURCHASE_AMOUNT)) {
             Exception.PURCHASE_AMOUNT_WRONG_UNIT.throwing();
         }
     }
 
     public static void validateLottoNumber(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoNumberGenerator.NUMBER_COUNT) {
             Exception.LOTTO_NUMBERS_COUNT_OUT_OF_RANGE.throwing();
         }
         if (!Util.isWithinRange(numbers, LottoNumberGenerator.MIN_NUMBER, LottoNumberGenerator.MAX_NUMBER)) {

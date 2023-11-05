@@ -1,10 +1,10 @@
 package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class MatchNumberTest {
@@ -64,10 +64,13 @@ class MatchNumberTest {
         assertThat(matchNumber).isEqualTo(MatchNumber.FIRST);
     }
 
-    @Test
-    void findByMatchCountAndBonus_일치하는_등수_못찾으면_예외반환() {
-        assertThatThrownBy(() -> MatchNumber.findByMatchCountAndBonus(7, false))
-                .isInstanceOf(IllegalStateException.class);
+    @ParameterizedTest
+    @CsvSource(value = {"1, true", "0, false", "2, false"})
+    void findByMatchCountAndBonus_일치하는_등수_못찾으면_NOTHING반환(int count, boolean isBonusMatch) {
+        // when
+        MatchNumber matchNumber = MatchNumber.findByMatchCountAndBonus(count, isBonusMatch);
+        // then
+        assertThat(matchNumber).isEqualTo(MatchNumber.NOTHING);
     }
 
 }

@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.PlayerAmount;
 import lotto.util.RandomNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,13 +22,13 @@ public class LottoController {
     }
 
     private List<Lotto> createLottos() {
-        int count = inputView.getLottoCount();
+        int count = new PlayerAmount(inputView.getPlayerAmount()).getLottoCount();
         List<Lotto> lottos = new ArrayList<>();
 
         for (int lotto = 0; lotto < count; lotto++) {
             lottos.add(new Lotto(RandomNumberGenerator.generate()));
         }
-        
+
         return lottos;
     }
 }

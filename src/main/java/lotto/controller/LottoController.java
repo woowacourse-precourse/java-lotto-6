@@ -33,6 +33,8 @@ public class LottoController {
         Map<Lotto, Rank> rankByLotto = winningCondition.findRankByLotto(lottoTickets);
         Map<Rank, Integer> winningResult = makeWinningResult(rankByLotto);
         output.showWinningStats(winningResult);
+
+        winningCondition.calculateTotalReturn(money, winningResult);
     }
 
     private Map<Rank, Integer> makeWinningResult(Map<Lotto, Rank> rankByLotto) {

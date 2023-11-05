@@ -36,6 +36,10 @@ public enum Rank {
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_COUNT_EXCEPTION));
     }
 
+    public int calculateReward(int number) {
+        return this.reward * number;
+    }
+
     @Override
     public String toString() {
         if (this.equals(TWO)) {

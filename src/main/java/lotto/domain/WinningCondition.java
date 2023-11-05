@@ -15,4 +15,16 @@ public class WinningCondition {
     public Map<Lotto, Rank> findRankByLotto(LottoTickets lottoTickets) {
         return lottoTickets.findRankByLotto(winningLotto, bonusNumber);
     }
+
+    public double calculateTotalReturn(int money, Map<Rank, Integer> winningResult) {
+        double totalReward = calculateTotalReward(winningResult);
+        return 0;
+    }
+
+    private double calculateTotalReward(Map<Rank, Integer> winningResult) {
+        return winningResult.entrySet()
+                .stream()
+                .mapToInt(entry -> entry.getKey().calculateReward(entry.getValue()))
+                .sum();
+    }
 }

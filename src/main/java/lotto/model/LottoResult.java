@@ -56,7 +56,7 @@ public class LottoResult {
     }
 
     private double calculateYield() {
-        double investmentAmount = user.getAmount();
+        double investmentAmount = user.getPurchaseAmount();
         double totalPrize = (double) calculateTotalPrize();
         return totalPrize / investmentAmount * 100;
     }

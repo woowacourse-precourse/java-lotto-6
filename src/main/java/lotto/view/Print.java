@@ -17,6 +17,7 @@ public class Print {
             printLottoNumber(sortLottery(lotto));
         }
     }
+    
     public static void printBoughtLottoCount(int lottoCount) {
         System.out.println();
         System.out.println(lottoCount + "개를 구매했습니다.");

@@ -18,19 +18,15 @@ public class Play {
 
     private static final int lottoPrice = 1000;
     private static final int size = 6;
-    public static HashMap<Rank, Integer> result;
+    //public static HashMap<Rank, Integer> result;
     public static List<Lotto> lottery;
     public Play() {
-        result = new HashMap<>();
+        HashMap<Rank, Integer> result = new HashMap<>();
         int price = createPrice();
         int count = calLottoCount(price, lottoPrice);
         printBoughtLottoCount(count);
         lottery = rotateLotteryCount(count);
-
-        for (Lotto lotto : lottery) {
-            printLottoNumber(sortLottery(lotto));
-        }
-
+        printLottoRotate(lottery);
         System.out.println();
         List<Integer> winningNumbers = createWinningNumber();
 
@@ -41,17 +37,7 @@ public class Play {
         System.out.println();
         messageAboutWinningStatistic();
 
-        for (Lotto lotto : lottery) {
-            int resultCount = compareLottoAndWinningNumber(lotto.getLotto(), winningNumbers);
-            Rank resultRank = findRank(resultCount);
-            if (resultRank == null) {
-                continue;
-            }
-            if (resultRank.getCorrectNum() == 5) {
-                resultRank = checkIfSecondOrThird(lotto, bonus);
-            }
-            result.put(resultRank, result.getOrDefault(resultRank, 0)+1);
-        }
+        result = createResult(lottery, winningNumbers, bonus);
         printResultRank(result);
 
         int sumPrize = calSumPrize(result);

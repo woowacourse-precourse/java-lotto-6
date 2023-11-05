@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,5 +28,11 @@ public class LottoResult {
         }
 
         return builder.toString();
+    }
+
+    public long getProfits() {
+        return Arrays.stream(Rank.values())
+                .mapToLong(rank -> RankReward.getRewardOf(rank) * (long) rankCounts.get(rank))
+                .reduce(0L, Long::sum);
     }
 }

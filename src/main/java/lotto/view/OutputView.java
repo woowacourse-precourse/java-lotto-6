@@ -34,4 +34,8 @@ public class OutputView {
     public void displayErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
+
+    public void enterLine() {
+        System.out.println();
+    }
 }

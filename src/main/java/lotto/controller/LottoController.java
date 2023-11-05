@@ -56,7 +56,7 @@ public class LottoController {
     private int inputBuyCash() {
         try {
             return inputView.inputBuyCash();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             outputView.printError(e);
             return inputBuyCash();
         }
@@ -65,7 +65,7 @@ public class LottoController {
     public Lotto inputWinningNumbers() {
         try {
             return LottoFactory.createLotto(inputView.inputWinningNumbers());
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             outputView.printError(e);
             return inputWinningNumbers();
         }

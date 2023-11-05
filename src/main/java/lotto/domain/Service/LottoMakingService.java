@@ -1,14 +1,14 @@
-package lotto.domain.Model;
+package lotto.domain.Service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Model.Lotto;
+import lotto.domain.Model.LottoContainer;
 import lotto.domain.Utility.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoMaker {
-    public LottoMaker() {
-    }
+public class LottoMakingService {
 
     public LottoContainer issue(int cash) {
         int papers = cash / Constant.LOTTO_PRICE;

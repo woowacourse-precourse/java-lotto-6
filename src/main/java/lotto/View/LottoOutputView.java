@@ -1,4 +1,4 @@
-package lotto.domain.View;
+package lotto.View;
 
 import lotto.domain.Model.Lotto;
 import lotto.domain.Model.LottoContainer;

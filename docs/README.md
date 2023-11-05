@@ -3,11 +3,11 @@
 ## Controller
 - [x] LottoController : 어플리케이션의 시작점
   - lottoInputView : 사용자에게 보여지는 부분
-  - lottoMaker : 사용자가 입력한 금액에 따라 로또 만들기
+  - lottoMakingService : 사용자가 입력한 금액에 따라 로또 만들기
   - lottoContainer : 사용자가 가진 로또 묶음
   - winningNumbers : 당첨 번호
   - bonusNumber : 보너스 번호
-  - LottoController(LottoView lottoInputView, LottoMaker lottoMaker) : 의존성 주입
+  - LottoController(LottoView lottoInputView, LottoMaker lottoMakingService) : 의존성 주입
   - run() : 프로그램 진행 흐름 관리
   - result() : 결과 계산
   - countMatch(List<Integer> numbers, List<Integer> winningNumbers) : 당첨 숫자 개수 카운트

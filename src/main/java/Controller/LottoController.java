@@ -1,7 +1,6 @@
 package Controller;
 
 
-import Model.InputModel;
 import Model.LottoModel;
 import Utils.LottoRank;
 import Utils.Messages;
@@ -16,19 +15,18 @@ import java.util.stream.Collectors;
 public class LottoController {
     List<Integer> winningLottoNumber;
     Map<LottoRank, Integer> correctLottoNumber = new EnumMap<>(LottoRank.class);
+    Map<LottoRank, Integer> statistics;
     List<Lotto> lottoNumbers = new ArrayList<>();
     int payment, countOfLotto, bonusNumber;
     double total;
 
     private final InputManager inputManager;
-    private final InputModel  inputModel;
     private final LottoModel lottoModel;
     private LottoView lottoView;
 
-    public LottoController(InputManager inputManger, InputModel inputModel, LottoView lottoView) {
+    public LottoController(InputManager inputManger, LottoView lottoView) {
         initializeCorrectLottoNumberMap();
         this.inputManager = inputManger;
-        this.inputModel = inputModel;
         this.lottoModel = new LottoModel();
         this.lottoView = lottoView;
     }
@@ -38,7 +36,7 @@ public class LottoController {
         generateLottoTickets();
         promptForWinningNumbers();
         promptForBonusNumber();
-        Map<LottoRank, Integer> statistics = checkWinningStatistics(lottoNumbers, winningLottoNumber, bonusNumber);
+        statistics = checkWinningStatistics(lottoNumbers, winningLottoNumber, bonusNumber);
         printWinningStatistics(statistics);
         printTotalEarnings();
     }

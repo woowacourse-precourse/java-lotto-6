@@ -3,7 +3,6 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import Controller.InputManager;
 import Controller.LottoController;
-import Model.InputModel;
 import VIew.InputView;
 import VIew.LottoView;
 import org.junit.jupiter.api.DisplayName;
@@ -19,12 +18,11 @@ public class LottoControllerTest {
 
         //given
         String input = "1,2,3,4,5,6";
-        InputModel inputModel = new InputModel();
         InputView inputView = new InputView();
         InputManager inputManger = new InputManager(inputView);
 
         LottoView lottoView = new LottoView();
-        LottoController lottoController = new LottoController(inputManger, inputModel, lottoView);
+        LottoController lottoController = new LottoController(inputManger, lottoView);
         Lotto expectedLotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
 
         // when

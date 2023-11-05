@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputTest {
@@ -41,5 +42,13 @@ public class InputTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> application.checkZero(purchaseAmount))
                 .withMessage(ErrorMessage.PURCHASE_AMOUNT_ZERO);
+    }
+
+    @ParameterizedTest
+    @NullSource
+    void 입력_값이_null일_때_예외_발생(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> application.checkNull(input))
+                .withMessage(ErrorMessage.NULL);
     }
 }

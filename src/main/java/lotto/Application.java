@@ -33,4 +33,10 @@ public class Application {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_ZERO);
         }
     }
+
+    public void checkNull(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException(ErrorMessage.NULL);
+        }
+    }
 }

@@ -18,5 +18,11 @@ class LottoRankTest {
         assertThat(LottoRank.valueOf(6, false)).isEqualTo(LottoRank.FIRST);
     }
 
+    @Test
+    @DisplayName("일치하는 숫자가 5개지만 보너스 번호가 일치하지 않는 경우 3등을 반환하는지 확인")
+    void testThirdRankCondition() {
+        assertThat(LottoRank.valueOf(5, false)).isEqualTo(LottoRank.THIRD);
+    }
+
 }
 

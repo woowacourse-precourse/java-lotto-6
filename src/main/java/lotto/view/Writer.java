@@ -1,6 +1,6 @@
 package lotto.view;
 
-public interface Input {
+public interface Writer {
 
     String getInput();
 

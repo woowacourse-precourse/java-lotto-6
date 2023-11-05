@@ -4,7 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class ConsoleInput implements Input {
+public class ConsoleWriter implements Writer {
 
     @Override
     public String getInput() {

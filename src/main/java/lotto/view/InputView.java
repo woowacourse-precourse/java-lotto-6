@@ -16,16 +16,16 @@ public class InputView {
     private static final String ENTER_BONUS_LOTTO = "\n보너스 번호를 입력해 주세요.";
     private static final String LOTTO_SPLIT_SIGNAL = ",";
 
-    private final Input input;
+    private final Writer writer;
 
-    public InputView(final Input input) {
-        this.input = input;
+    public InputView(final Writer writer) {
+        this.writer = writer;
     }
 
     public int enterMoney() {
         System.out.println(ENTER_MONEY);
 
-        return convertToInt(input.getInput());
+        return convertToInt(writer.getInput());
     }
 
     private int convertToInt(final String money) {
@@ -51,7 +51,7 @@ public class InputView {
     public List<Integer> enterLotto() {
         System.out.println(ENTER_MAIN_LOTTO);
 
-        return convertToIntegerList(input.getInput());
+        return convertToIntegerList(writer.getInput());
     }
 
     private List<Integer> convertToIntegerList(final String inputLotto) {
@@ -70,10 +70,10 @@ public class InputView {
     public int enterBonusNumber() {
         System.out.println(ENTER_BONUS_LOTTO);
 
-        return convertToInt(input.getInput());
+        return convertToInt(writer.getInput());
     }
 
     public void close() {
-        input.close();
+        writer.close();
     }
 }

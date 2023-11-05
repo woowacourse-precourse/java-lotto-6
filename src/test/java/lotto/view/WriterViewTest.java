@@ -13,14 +13,14 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class InputViewTest {
+class WriterViewTest {
 
     @DisplayName("입력받은 문자가 양의 정수 또는 0이 아닐 경우 예외를 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"A", "111a", "-1", "-99"})
     void convertToInt(String input) {
         // given
-        InputView inputView = new InputView(new TestInput(input));
+        InputView inputView = new InputView(new TestWriter(input));
 
         // when then
         Assertions.assertThatThrownBy(inputView::enterMoney)
@@ -33,7 +33,7 @@ class InputViewTest {
     @MethodSource("lottoNumberProvider")
     void convertToIntegerList(String input, int count, List<Integer> answer) {
         // given
-        InputView inputView = new InputView(new TestInput(input));
+        InputView inputView = new InputView(new TestWriter(input));
 
         // when
         List<Integer> lottos = inputView.enterLotto();
@@ -52,11 +52,11 @@ class InputViewTest {
         );
     }
 
-    static class TestInput implements Input {
+    static class TestWriter implements Writer {
 
         String input;
 
-        public TestInput(String input) {
+        public TestWriter(String input) {
             this.input = input;
         }
 

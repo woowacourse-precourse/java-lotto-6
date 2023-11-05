@@ -18,9 +18,9 @@ public class LottoStoreTest {
         LottoStore lottoStore = new LottoStore(() -> Randoms.pickUniqueNumbersInRange(1, 45, 6));
         int ticketCount = Integer.parseInt(purchaseAmount) / 1000;
 
-        SoldLotto lottos = lottoStore.sell(amount);
+        SoldLotto soldLotto = lottoStore.sell(amount);
 
-        Assertions.assertThat(lottos.getSoldLottoCount())
+        Assertions.assertThat(soldLotto.getSoldLottoTicketsCount())
                 .isEqualTo(ticketCount);
     }
 
@@ -31,11 +31,11 @@ public class LottoStoreTest {
         LottoStore lottoStore = new LottoStore(() -> List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        SoldLotto lottos = lottoStore.sell(amount);
+        SoldLotto soldLotto = lottoStore.sell(amount);
 
-        Assertions.assertThat(lottos.getSoldLottoCount())
+        Assertions.assertThat(soldLotto.getSoldLottoTicketsCount())
                 .isEqualTo(1);
-        Assertions.assertThat(lottos.toString().trim())
-                .isEqualTo("[1, 2, 3, 4, 5, 6]");
+        Assertions.assertThat(soldLotto.toString().trim())
+                .isEqualTo(lotto.toString());
     }
 }

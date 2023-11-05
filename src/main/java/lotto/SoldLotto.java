@@ -3,21 +3,21 @@ package lotto;
 import java.util.List;
 
 public class SoldLotto {
-    private final List<Lotto> lottos;
+    private final List<Lotto> lottoTickets;
 
-    public SoldLotto(List<Lotto> lottos) {
-        this.lottos = lottos;
+    public SoldLotto(List<Lotto> lottoTickets) {
+        this.lottoTickets = lottoTickets;
     }
 
     @Override
     public String toString() {
-        return lottos.stream()
+        return lottoTickets.stream()
                 .map(Lotto::toString)
-                .reduce((lottosInformation, lotto) -> lottosInformation + System.lineSeparator() + lotto)
+                .reduce((beforeLotto, lotto) -> beforeLotto + System.lineSeparator() + lotto)
                 .get();
     }
 
-    public int getSoldLottoCount() {
-        return lottos.size();
+    public int getSoldLottoTicketsCount() {
+        return lottoTickets.size();
     }
 }

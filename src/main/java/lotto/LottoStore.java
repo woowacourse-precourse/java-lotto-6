@@ -14,10 +14,10 @@ public class LottoStore {
 
     public SoldLotto sell(Amount purchaseAmount) {
         int lottoTicketCount = getLottoTicketCount(purchaseAmount);
-        List<Lotto> lottos = IntStream.range(0, lottoTicketCount)
+        List<Lotto> lottoTickets = IntStream.range(0, lottoTicketCount)
                 .mapToObj(count -> generateLotto())
                 .toList();
-        return new SoldLotto(lottos);
+        return new SoldLotto(lottoTickets);
     }
 
     private int getLottoTicketCount(Amount purchaseAmount) {

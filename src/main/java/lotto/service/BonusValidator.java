@@ -1,7 +1,7 @@
 package lotto.service;
 
 public class BonusValidator {
-    private static final String ONLY_NUMBER = "^[0-9]*$";
+    private static final String ONLY_NUMBER = "^[0-9 ]*$";
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 

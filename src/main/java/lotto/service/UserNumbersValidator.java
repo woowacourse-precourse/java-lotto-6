@@ -5,7 +5,7 @@ import java.util.List;
 
 public class UserNumbersValidator {
     private static final String DELIMITER = ",";
-    private static final String ONLY_NUMBER_DELIMITER = "^[0-9,]*$";
+    private static final String ONLY_NUMBER_DELIMITER = "^[0-9, ]*$";
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_NUMBERS_SIZE = 6;

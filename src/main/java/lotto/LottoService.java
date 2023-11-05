@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -23,5 +24,15 @@ public class LottoService {
 
     private double getRateOfReturn(long totalPrize, int quantity) {
         return ((double) totalPrize / ((long) PurchaseQuantity.unit * quantity)) * 100;
+    }
+
+    public List<Lotto> purchase(int purchaseAmount) {
+        PurchaseQuantity purchaseQuantity = new PurchaseQuantity(purchaseAmount);
+
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < purchaseQuantity.getQuantity(); i++) {
+            lottos.add(new Lotto(RandomNumberGenerator.generateUniqueNumbersInRange(1, 45, 6)));
+        }
+        return lottos;
     }
 }

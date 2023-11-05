@@ -1,16 +1,26 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoServiceTest {
+
+    @DisplayName("로또를 구매할 수 있다.")
+    @Test
+    void purchaseByAmount() {
+        List<Lotto> lottos = new LottoService().purchase(10000);
+
+        assertThat(lottos).size().isEqualTo(10);
+    }
 
     @DisplayName("수익률을 구할 수 있다.")
     @ParameterizedTest

@@ -1,9 +1,13 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
+import lotto.domain.WinningCalculator;
 import lotto.domain.WinningNumber;
+import lotto.domain.WinningRecord;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,6 +17,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.within;
 
 class LottoTest {
     @Disabled
@@ -100,12 +106,53 @@ class LottoTest {
     @Test
     void createBonusNumberByMatchingWinningNumber() {
         WinningNumber winningNumber = new WinningNumber();
-        BonusNumber bonusNumber = new BonusNumber();
-
         winningNumber.setWinningNumber("1,2,3,4,5,6");
+        BonusNumber bonusNumber = new BonusNumber(winningNumber.getWinningNumber());
 
         assertThatThrownBy(() -> bonusNumber.setBonusNumber("3"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    }
+
+    @DisplayName("당첨 번호와 발행 번호가 6개 모두 일치하면 1등 count가 올라간다.")
+    @Test
+    void createFirstPrize() {
+        List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        WinningCalculator winningCalculator = new WinningCalculator(winningNumber, bonusNumber);
+        WinningRecord winningRecord = new WinningRecord();
+
+        winningCalculator.calculator(purchaseNumber);
+
+        assertThat(winningRecord.getFirstPrizeCount()).isEqualTo(1);
+    }
+
+    @DisplayName("당첨 번호와 발행 번호가 5개 일치하고 보너스 번호가 일치하면 2등 count가 올라간다.")
+    @Test
+    void createSecondPrize() {
+        List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 7);
+        List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        WinningCalculator winningCalculator = new WinningCalculator(winningNumber, bonusNumber);
+        WinningRecord winningRecord = new WinningRecord();
+
+        winningCalculator.calculator(purchaseNumber);
+
+        assertThat(winningRecord.getSecondPrizeCount()).isEqualTo(1);
+    }
+
+    @DisplayName("당첨 번호와 발행 번호가 5개 일치하고 보너스 번호가 불일치하면 3등 count가 올라간다.")
+    @Test
+    void createThirdPrize() {
+        List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 8);
+        List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        WinningCalculator winningCalculator = new WinningCalculator(winningNumber, bonusNumber);
+        WinningRecord winningRecord = new WinningRecord();
+
+        winningCalculator.calculator(purchaseNumber);
+
+        assertThat(winningRecord.getThirdPrizeCount()).isEqualTo(1);
     }
 }

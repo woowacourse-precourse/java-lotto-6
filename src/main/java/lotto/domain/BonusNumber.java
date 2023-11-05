@@ -1,7 +1,14 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class BonusNumber {
     private static Integer bonusNumber;
+    private static List<Integer> winningNumber;
+
+    public BonusNumber(List<Integer> number) {
+        this.winningNumber = number;
+    }
 
     public void setBonusNumber(String number) {
         validate(number);
@@ -30,10 +37,13 @@ public class BonusNumber {
     }
 
     private static void validateIsUniqueNumber(String number) {
-        WinningNumber winningNumber = new WinningNumber();
-        boolean isUnique = winningNumber.getWinningNumber().contains(number);
-        if(!isUnique) {
+        boolean isDuplicated = winningNumber.contains(number);
+        if(isDuplicated) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
         }
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
     }
 }

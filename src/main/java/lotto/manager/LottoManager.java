@@ -1,9 +1,12 @@
 package lotto.manager;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
+import lotto.domain.WinningCalculator;
 import lotto.domain.WinningNumber;
 import lotto.io.LottoInputView;
 import lotto.io.LottoOutputView;
@@ -11,33 +14,43 @@ import lotto.io.LottoOutputView;
 public class LottoManager {
     private final LottoInputView inputView = new LottoInputView();
     private final LottoOutputView outputView = new LottoOutputView();
+    private List<Lotto> lottoPurchaseNumbers = new ArrayList<>();;
 
     public void excute() {
         LottoPurchase lottoPurchase = new LottoPurchase();
         lottoPurchase.setLottoPurchase(inputView.readPurchaseAmount());
         printLottoManager();
 
-        winningNumberManager();
-        bonusNumberManager();
+        winningCalculatorManager();
     }
 
     public void printLottoManager() {
         int lottoPurchaseCount = LottoPurchase.getLottoPurchase() / 1000;
         outputView.printLottoPurchaseCount(lottoPurchaseCount);
-        while(lottoPurchaseCount != 0) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            outputView.printLottoNumbers(lotto.getNumbers());
-            lottoPurchaseCount--;
+        for(int i = 0; i<lottoPurchaseCount; i++) {
+            lottoPurchaseNumbers.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            outputView.printLottoNumbers(lottoPurchaseNumbers.get(i).getNumbers());
         }
     }
 
-    public void winningNumberManager() {
+    public List<Integer> winningNumberManager() {
         WinningNumber winningNumber = new WinningNumber();
         winningNumber.setWinningNumber(inputView.readWinningNumber());
+        return winningNumber.getWinningNumber();
     }
 
-    public void bonusNumberManager() {
-        BonusNumber bonusNumber = new BonusNumber();
+    public Integer bonusNumberManager(List<Integer> winningNumber) {
+        BonusNumber bonusNumber = new BonusNumber(winningNumber);
         bonusNumber.setBonusNumber(inputView.readBonusNumber());
+        return bonusNumber.getBonusNumber();
+    }
+
+    public void winningCalculatorManager() {
+        List<Integer> winningNumber = winningNumberManager();
+        WinningCalculator winningCalculator
+                = new WinningCalculator(winningNumber, bonusNumberManager(winningNumber));
+        for(Lotto lotto : lottoPurchaseNumbers) {
+            winningCalculator.calculator(lotto.getNumbers());
+        }
     }
 }

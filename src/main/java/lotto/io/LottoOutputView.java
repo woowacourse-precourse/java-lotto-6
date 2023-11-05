@@ -15,4 +15,5 @@ public class LottoOutputView {
         Collections.sort(numbers);
         System.out.println(numbers);
     }
+
 }

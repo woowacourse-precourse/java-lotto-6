@@ -24,4 +24,8 @@ public class Lotto {
         Exception.checkDuplicationNumber(numbers);
         Exception.checkRangeLottoNumber(numbers);
     }
+
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
 }

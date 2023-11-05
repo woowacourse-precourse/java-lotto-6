@@ -33,10 +33,17 @@ public class Exception {
     }
 
     public static void checkRangeLottoNumber(List<Integer> numbers) {
-        for (int number : numbers){
-            if(number < 1 && number > 45){
+        for (int number : numbers) {
+            if (number < 1 && number > 45) {
                 throw new IllegalArgumentException(Message.OUT_OF_RANGE_LOTTO.getMessage());
             }
+        }
+    }
+
+    public static void checkLastComma(String input) {
+        boolean endsWithComma = input.endsWith(",");
+        if (endsWithComma) {
+            throw new IllegalArgumentException(Message.INVALID_NUMBER.getMessage());
         }
     }
 }

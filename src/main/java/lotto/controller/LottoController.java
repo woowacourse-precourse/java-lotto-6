@@ -5,6 +5,8 @@ import lotto.service.ValidateService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoController {
 
     private final InputView inputView = new InputView();
@@ -17,6 +19,12 @@ public class LottoController {
         String inputPurchaseMoney = inputPurchaseMoneyProcess();
         printBlankLine();
         printLottoCount(inputPurchaseMoney);
+        printPurchaseLottoNumbers();
+    }
+
+    private void printPurchaseLottoNumbers() {
+        List<List<Integer>> purchaseLottoNumbers = lottoService.purchaseLottoNumberProcess();
+        outputView.printPurchaseLottoNumbers(purchaseLottoNumbers);
     }
 
     private void printPurchaseMoneyMessage() {

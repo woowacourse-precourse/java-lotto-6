@@ -1,11 +1,9 @@
-package lotto;
+package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.model.InputValidation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -57,8 +55,8 @@ public class InputValidationTest {
     @ParameterizedTest
     @ValueSource(strings = {"abc", "def", "xyz"})
     public void validateBonusNumber_InvalidInput(String input) {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> InputValidation.validateBonusNumber(input));
+        assertThatThrownBy(() -> InputValidation.validateBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
 

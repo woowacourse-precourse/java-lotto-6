@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constants.ResultMessage;
 
 public class LottoModel {
     private List<List<Integer>> lottoTickets;
@@ -23,6 +22,9 @@ public class LottoModel {
             int sameNumberCount = countSameNumbers(winningNumbers, lottoTicket);
             generateResult(sameNumberCount, lottoTicket);
         }
+        for (int i : result) {
+            System.out.print(i + " ");
+        }
     }
 
     private int countSameNumbers(List<Integer> winningNumbers, List<Integer> ticketNumbers) {
@@ -36,14 +38,14 @@ public class LottoModel {
     }
 
     private void generateResult(int sameNumberCount, List<Integer> lottoTicket) {
-        for (ResultMessage resultMessage : ResultMessage.values()) {
-            if (sameNumberCount == 5 && lottoTicket.contains(bonusNumber)) {
-                result.set(3, result.get(3) + 1);
-            } else if (resultMessage.getCountMatch() == sameNumberCount) {
-                int index = resultMessage.ordinal();
-                result.set(index, result.get(index) + 1);
-            }
+        if (sameNumberCount == 5 && lottoTicket.contains(bonusNumber)) {
+            result.set(3, result.get(3) + 1);
+        } else if (sameNumberCount != 6) {
+            result.set(sameNumberCount - 3, result.get(sameNumberCount - 3) + 1);
+        } else if (sameNumberCount == 6) {
+            result.set(4, result.get(4) + 1);
         }
+
     }
 
     public List<Integer> getResult() {

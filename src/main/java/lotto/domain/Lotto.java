@@ -47,4 +47,9 @@ public class Lotto {
     private int countDistinctNumber(List<Number> numbers) {
         return (int) numbers.stream().distinct().count();
     }
+
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+                .map(Number::getValue).toList();
+    }
 }

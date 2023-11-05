@@ -44,4 +44,9 @@ public class Lotteries {
     private static boolean isNotDividedByLottoPrice(int purchaseAmount) {
         return purchaseAmount % LOTTO_PRICE != 0;
     }
+
+    public List<List<Integer>> getLottos() {
+        return lottos.stream()
+                .map(Lotto::getNumbers).toList();
+    }
 }

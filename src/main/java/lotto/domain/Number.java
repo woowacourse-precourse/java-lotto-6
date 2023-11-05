@@ -27,6 +27,10 @@ public class Number implements Comparable<Number> {
         return new Number(value);
     }
 
+    public int getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -1,6 +1,9 @@
 package lotto.exception;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 public class InputExceptionValidator {
     protected InputExceptionValidator() {
@@ -21,6 +24,7 @@ public class InputExceptionValidator {
 
     public Exception inputWinningNumbersValidation(List<String> splitedList) {
         try {
+            duplicatedValidation(splitedList);
             splitedList.forEach(this::numberFormatValidation);
             splitedList.stream()
                     .map(Integer::valueOf)
@@ -50,6 +54,17 @@ public class InputExceptionValidator {
     private void dividedValidation(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new InputException(ExceptionCode.INVALID_INPUT_DIVIDED);
+        }
+    }
+
+    private void duplicatedValidation(List<String> splitedList) {
+        Set<String> uniqueElements = new HashSet<>();
+        Optional<String> duplicatedElement = splitedList.stream()
+                .filter(e -> !uniqueElements.add(e))
+                .findFirst();
+
+        if (duplicatedElement.isPresent()) {
+            throw new InputException(ExceptionCode.INVALID_INPUT_DUPLICATED);
         }
     }
 

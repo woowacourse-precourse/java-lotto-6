@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
@@ -56,6 +58,20 @@ class LottoTest {
         // when & then
         assertThatNoException()
                 .isThrownBy(() -> new Lotto(numbers));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1:true", "7:false"}, delimiter = ':')
+    @DisplayName("로또가 해당 번호를 갖고 있는지 알려준다")
+    void givenLottoAndNumber_whenHasNumber_thenReturnTrueOrFalse(int number, boolean expected) {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        boolean result = lotto.hasNumber(number);
+
+        // then
+        assertEquals(expected, result);
     }
 
 }

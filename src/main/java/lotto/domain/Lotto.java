@@ -54,6 +54,10 @@ public class Lotto {
         return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 
+    public boolean hasNumber(final int number) {
+        return numbers.contains(number);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

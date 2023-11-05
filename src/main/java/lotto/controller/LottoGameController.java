@@ -40,8 +40,7 @@ public class LottoGameController {
         List<Integer> targetNumbers = uiHandler.getAndTargetNumbers();
         int bonusNumber = uiHandler.getAndValidateBonusNumber(targetNumbers);
 
-        Target target = Target.createTarget(targetNumbers, bonusNumber);
-        return target;
+        return Target.createTarget(targetNumbers, bonusNumber);
     }
 
     private static WinningChecker createWinningCheckerAndCheckWinning(Customer customer) {

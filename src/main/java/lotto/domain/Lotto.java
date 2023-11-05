@@ -26,37 +26,40 @@ public class Lotto {
     }
 
     private void validateUnique(List<Integer> numbers) {
-        if (numbers.size() != getNumberOfDistinct(numbers)) {
+        if (numbers.size() != getCountOfDistinct(numbers)) {
             throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE.toString());
         }
     }
 
-    private int getNumberOfDistinct(List<Integer> numbers) {
+    private int getCountOfDistinct(List<Integer> numbers) {
         return numbers.stream()
                 .distinct()
                 .collect(Collectors.toList())
                 .size();
     }
 
-    public String getNumbersInfo() {
+    public String getInfoOfNumbers() {
         return this.numbers.toString();
     }
 
-    public Result compareWith(Target target) {
-        int numberOfMatch = calculateNumberOfMatch(target);
-        boolean isBonusPrize = isBonusPrize(target, numberOfMatch);
-        return Result.createResult(numberOfMatch, isBonusPrize);
+    public Result compareWithTargetAndCreateResult(Target target) {
+        int countOfMatch = calculateCountOfMatch(target);
+        boolean isBonusPrize = isBonusWinning(target, countOfMatch);
+        return Result.createResult(countOfMatch, isBonusPrize);
     }
 
-    private int calculateNumberOfMatch(Target target) {
+    private int calculateCountOfMatch(Target target) {
         return (int) target.getNumbers().stream()
                 .filter(targetNumber -> this.numbers.contains(targetNumber))
                 .count();
     }
 
-    private boolean isBonusPrize(Target target, int numberOfMatch) {
-        return numberOfMatch == TARGET_NUMBERS_SIZE_VALUE.getValue() - 1
-                && this.numbers.contains(target.getBonusNumber());
+    private boolean isBonusWinning(Target target, int numberOfMatch) {
+        return checkSecondWinning(numberOfMatch) && this.numbers.contains(target.getBonusNumber());
+    }
+
+    private boolean checkSecondWinning(int numberOfMatch) {
+        return numberOfMatch == TARGET_NUMBERS_SIZE_VALUE.getValue() - 1;
     }
 
 }

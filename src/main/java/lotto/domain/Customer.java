@@ -12,13 +12,13 @@ import static lotto.constants.SystemOption.PAYMENT_UNIT_VALUE;
 public class Customer {
     private List<Lotto> lottos;
     private int payment;
-    private int numberOfLottos;
+    private int countOfLottos;
     private List<Result> results;
 
     public Customer(int payment) {
         this.lottos = new ArrayList<>();
         this.payment = payment;
-        this.numberOfLottos = payment / PAYMENT_UNIT_VALUE.getValue();
+        this.countOfLottos = payment / PAYMENT_UNIT_VALUE.getValue();
         this.results = new ArrayList<>();
     }
 
@@ -26,8 +26,8 @@ public class Customer {
         return new Customer(payment);
     }
 
-    public int getNumberOfLottos() {
-        return this.numberOfLottos;
+    public int getCountOfLottos() {
+        return this.countOfLottos;
     }
 
     public List<Result> getResults() {
@@ -39,10 +39,9 @@ public class Customer {
     }
 
     public void buyLottos() {
-        for (int i = 0; i < this.numberOfLottos; i++) {
+        for (int i = 0; i < this.countOfLottos; i++) {
             List<Integer> lottoNumbers = pickLottoNumbers();
-            Lotto lotto = Lotto.createLotto(lottoNumbers);
-            this.lottos.add(lotto);
+            this.lottos.add(Lotto.createLotto(lottoNumbers));
         }
     }
 
@@ -54,13 +53,13 @@ public class Customer {
 
     public List<String> getInfoOfLottos() {
         return this.lottos.stream()
-                .map(lotto -> lotto.getNumbersInfo())
+                .map(lotto -> lotto.getInfoOfNumbers())
                 .collect(Collectors.toList());
     }
 
     public void calculateResult(Target target) {
         for (Lotto lotto : lottos) {
-            Result result = lotto.compareWith(target);
+            Result result = lotto.compareWithTargetAndCreateResult(target);
             results.add(result);
         }
     }

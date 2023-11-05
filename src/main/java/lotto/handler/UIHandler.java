@@ -63,7 +63,7 @@ public class UIHandler {
 
     public void printInfoOfLottos(Customer customer) {
         System.out.println(String.format(SHOW_LOTTOS_INFO_MESSAGE.toString(),
-                customer.getNumberOfLottos()));
+                customer.getCountOfLottos()));
 
         customer.getInfoOfLottos().stream()
                 .forEach(infoOfLotto -> System.out.println(infoOfLotto));

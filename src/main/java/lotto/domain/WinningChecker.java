@@ -46,6 +46,6 @@ public class WinningChecker {
     }
 
     public double getTotalWinningAmount() {
-        return totalWinningAmount;
+        return this.totalWinningAmount;
     }
 }

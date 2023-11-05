@@ -11,20 +11,20 @@ public enum WinningInfo {
     FIFTH_RANK(5, 3, false, 5000);
 
     private int rank;
-    private int numberOfMatch;
+    private int countOfMatch;
     private boolean isBonusWinning;
     private int amount;
 
-    WinningInfo(int rank, int numberOfMatch, boolean isBonusWinning, int amount) {
+    WinningInfo(int rank, int countOfMatch, boolean isBonusWinning, int amount) {
         this.rank = rank;
-        this.numberOfMatch = numberOfMatch;
+        this.countOfMatch = countOfMatch;
         this.isBonusWinning = isBonusWinning;
         this.amount = amount;
     }
 
-    public static Optional<WinningInfo> of(int numberOfMatch, boolean isBonusWinning) {
+    public static Optional<WinningInfo> of(int countOfMatch, boolean isBonusWinning) {
         return Arrays.stream(WinningInfo.values())
-                .filter(winningInfo -> winningInfo.getNumberOfMatch() == numberOfMatch)
+                .filter(winningInfo -> winningInfo.getCountOfMatch() == countOfMatch)
                 .filter(winningInfo -> winningInfo.checkBonusWinning(isBonusWinning))
                 .findFirst();
     }
@@ -37,8 +37,8 @@ public enum WinningInfo {
         return this.isBonusWinning == isBonusWinning;
     }
 
-    public int getNumberOfMatch() {
-        return this.numberOfMatch;
+    public int getCountOfMatch() {
+        return this.countOfMatch;
     }
 
     public int getAmount() {

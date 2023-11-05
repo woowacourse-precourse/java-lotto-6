@@ -21,10 +21,10 @@ public enum WinningMessage {
     }
 
     public int getRank() {
-        return rank;
+        return this.rank;
     }
 
     public String getContent() {
-        return content;
+        return this.content;
     }
 }

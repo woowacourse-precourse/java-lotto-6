@@ -16,10 +16,10 @@ public class Target {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return this.numbers;
     }
 
     public int getBonusNumber() {
-        return bonusNumber;
+        return this.bonusNumber;
     }
 }

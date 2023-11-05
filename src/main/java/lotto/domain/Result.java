@@ -11,8 +11,8 @@ public class Result {
         this.winningInfo = winningInfo;
     }
 
-    public static Result createResult(int numberOfMatch, boolean isBonusPrize) {
-        return new Result(WinningInfo.of(numberOfMatch, isBonusPrize));
+    public static Result createResult(int countOfMatch, boolean isBonusWinning) {
+        return new Result(WinningInfo.of(countOfMatch, isBonusWinning));
     }
 
     public Optional<WinningInfo> getWinningInfo() {

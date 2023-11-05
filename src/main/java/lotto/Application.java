@@ -13,5 +13,6 @@ public class Application {
         purchase.getPurchasedLotto();
 
         System.out.println(Constant.winningNumber);
+        WinningLotto winningLotto = new WinningLotto();
     }
 }

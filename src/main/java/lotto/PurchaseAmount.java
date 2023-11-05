@@ -15,16 +15,11 @@ public class PurchaseAmount {
 
     private void validateIsDividableWithLottoPrice(int purchaseAmount) {
         if (!isDividableWithLottoPrice(purchaseAmount)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해주세요.");
         }
     }
 
     private boolean isDividableWithLottoPrice(int purchaseAmount) {
-        try {
-            int result = purchaseAmount / LOTTO_PRICE;
-            return true;
-        } catch (NumberFormatException exception) {
-            return false;
-        }
+        return purchaseAmount % LOTTO_PRICE == 0;
     }
 }

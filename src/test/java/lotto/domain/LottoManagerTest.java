@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoManagerTest {
 
-    LottoManager lm = new LottoManager();
+    LottoManager lm = LottoManager.getInstance();
 
     @ParameterizedTest
     @ValueSource(strings = {"k", "1.2"})

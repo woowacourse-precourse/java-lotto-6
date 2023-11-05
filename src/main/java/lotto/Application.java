@@ -16,7 +16,7 @@ public class Application {
 
         System.out.println("\n" + lottoManager.getNumberOfLottos() + OutputView.NUMBER_OF_LOTTOS.getMessage());
         List<Lotto> allLottos = lottoGame.addLottos();
-        //TODO 출력형식, 정력 맞추기
+        // TODO 출력형식, 정력 맞추기
         System.out.println(allLottos);
     }
 }

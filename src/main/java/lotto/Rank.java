@@ -11,9 +11,9 @@ public enum Rank {
     SIX(6, 2_000_000_000, " "),
     NOPE(0, 0, " ");
 
-    private int rank;
-    private int reward;
-    private String message;
+    private final int rank;
+    private final int reward;
+    private final String message;
 
     Rank(int rank, int reward, String message) {
         this.rank = rank;

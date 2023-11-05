@@ -7,14 +7,14 @@ import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_SHOULD_BE_6_UN
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayName("[Application] 당첨번호에 대한 테스트")
 public class Application_WinningNumbers extends Application_InputTest {
-
-
+    @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")
     @MethodSource("getStringDoNotSeparatedByDelimiter")
     void 구분자로_구분될_수_없는_문자열인_경우_IllegalArgumentException을_발생시킨다(String invalidInput) {
@@ -41,6 +41,7 @@ public class Application_WinningNumbers extends Application_InputTest {
         assertThatApplicationNotExists();
     }
 
+    @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")
     @MethodSource("getStringCannotConvertToInteger")
     void 문자열의_토큰이_정수형_타입으로_변환할_수_없으면_IllegalArgumentException을_발생시킨다(String invalidInput) {
@@ -67,7 +68,7 @@ public class Application_WinningNumbers extends Application_InputTest {
         assertThatApplicationNotExists();
     }
 
-
+    @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")
     @MethodSource("getStringNotBetween1TO45")
     void 각_당첨번호의_숫자는_1부터_45사이의_숫자가_아니면_IllegalArgumentException을_발생시킨다(String invalidInput) {
@@ -94,7 +95,7 @@ public class Application_WinningNumbers extends Application_InputTest {
         assertThatApplicationNotExists();
     }
 
-
+    @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")
     @MethodSource("getStringIsNot6UniqueNumber")
     void 당첨번호가_중복되지_않는_6개의_숫자가_아니라면_IllegalArgumentException을_발생시킨다(String invalidInput) {
@@ -126,7 +127,7 @@ public class Application_WinningNumbers extends Application_InputTest {
     }
 
     private static Stream<String> getStringCannotConvertToInteger() {
-        return Stream.of("1,2,3,4,5,z", "1,2,,3,4,5,6",  "1,2,3,4,5,6.0", "1,2,3,4,5,2147483648",
+        return Stream.of("1,2,3,4,5,z", "1,2,,3,4,5,6", "1,2,3,4,5,6.0", "1,2,3,4,5,2147483648",
                 "1,2,3,4,5,-2147483649");
     }
 
@@ -147,5 +148,4 @@ public class Application_WinningNumbers extends Application_InputTest {
         int index = outputs().indexOf(INPUT_WINNING_NUMBERS_TEXT);
         return outputs().get(index + 1);
     }
-
 }

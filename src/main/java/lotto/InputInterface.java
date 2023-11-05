@@ -62,7 +62,8 @@ public class InputInterface {
             String input = Console.readLine();
             return convertToWinningNumbers(input);
         } catch (Exception e) {
-            throw new UserInvalidInputException(e);
+            System.out.println(e.getMessage());
+            return getValidWinningNumbers();
         }
     }
 
@@ -74,7 +75,7 @@ public class InputInterface {
                     .collect(toList());
             if (tokens.size() != 6) {
                 throw new InvalidWinningNumbersException(
-                        WINNING_NUMBERS_MUST_BE_SEPARATED_BY_SIX_INTEGER_WITH_DELIMITER_TEXT, tokens);
+                        WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS, tokens);
             }
             checkIfNumbersBetween(1, 45, tokens);
             checkIfNumbersIs6UniqueNumbers(tokens);

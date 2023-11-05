@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.List;
 import lotto.utils.ExceptionMessage;
 
 public class WinningLotto {
@@ -25,7 +26,16 @@ public class WinningLotto {
         }
     }
 
-    public MatchCount match(Lotto userLotto) {
+    public LottoResult matchLottos(final List<Lotto> userLottos) {
+        LottoResult lottoResult = new LottoResult();
+        for (Lotto userLotto : userLottos) {
+            MatchCount matchCount = matchLotto(userLotto);
+            lottoResult.addResult(matchCount);
+        }
+        return lottoResult;
+    }
+
+    private MatchCount matchLotto(Lotto userLotto) {
         int matchedCount = getMatchedCount(userLotto);
         if (hasBonusMatch(userLotto, matchedCount)) {
             return MatchCount.FIVE_AND_BONUS_MATCH;

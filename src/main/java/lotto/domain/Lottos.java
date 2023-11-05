@@ -10,15 +10,18 @@ public class Lottos {
 
     private final List<Lotto> lottos;
 
-    public Lottos(int amount) {
-        this.lottos = createLottos(amount);
+    public Lottos(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
-    private List<Lotto> createLottos(int amount){
-        List<Lotto> list = new ArrayList<>(amount);
-        return list.stream()
-                .map(lotto->new Lotto(Generator.generateRandomNumber()))
+    public List<String> getLottosNumber(){
+        return lottos.stream()
+                .map(lotto -> lotto.getSortedNumbers())
                 .toList();
+    }
+
+    public int getLottosAmount(){
+        return lottos.size();
     }
 
 }

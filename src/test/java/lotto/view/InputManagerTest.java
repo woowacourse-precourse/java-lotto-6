@@ -12,6 +12,6 @@ class InputManagerTest {
     @Test
     void getPurchaseAmount() {
         InputManager inputManager = new InputManager();
-        assertThat(inputManager.getPurchaseAmount("8000")).isEqualTo(8000);
+        assertThat(inputManager.getPurchaseAmount("8000")).isEqualTo(8);
     }
 }

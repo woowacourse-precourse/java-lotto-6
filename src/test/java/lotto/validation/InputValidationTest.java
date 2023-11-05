@@ -34,7 +34,15 @@ class InputValidationTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "-123"})
-    public void 범위_검사(String input) {
+    public void 숫자_0이하_검사(String input) {
+        //then (기능 작동 후 결과)
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                inputValidation.validationMoney(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"10", "100", "123", "999", "1002", "10004"})
+    public void 구매단위_검사(String input) {
         //then (기능 작동 후 결과)
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 inputValidation.validationMoney(input));

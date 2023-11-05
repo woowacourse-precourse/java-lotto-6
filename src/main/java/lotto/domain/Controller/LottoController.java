@@ -42,18 +42,25 @@ public class LottoController {
         Map<String, Integer> winnings = new HashMap<>();
 
         for (Lotto lotto : lottos) {
-            List<Integer> numbers = lotto.getNumbers();
-            int matchCount = countMatch(numbers, this.winningNumbers);
-            boolean isBonusMatch = numbers.contains(bonusNumber);
-
-            Prize prize = Prize.prizeCount(matchCount, isBonusMatch);
-            if (prize != null) {
-                String rank = prize.getRank();
+            String rank = judgeWinnings(lotto);
+            if (rank != null) {
                 winnings.put(rank, winnings.getOrDefault(rank, 0) + 1);
             }
         }
 
         lottoOutputView.printWinnings(winnings, this.cash);
+    }
+
+    private String judgeWinnings(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        int matchCount = countMatch(numbers, this.winningNumbers);
+        boolean isBonusMatch = numbers.contains(bonusNumber);
+
+        Prize prize = Prize.prizeCount(matchCount, isBonusMatch);
+        if (prize != null) {
+            return prize.getRank();
+        }
+        return null;
     }
 
     private int countMatch(List<Integer> numbers, List<Integer> winningNumbers) {

@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.controller.LottoGame;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +27,10 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 잘 생성되는 지 확인한다.")
+    @Test
+    void generateLottoNumbers() {
+        LottoNumbers lottoNumbers = new LottoNumbers();
+        System.out.println(lottoNumbers.numbers);
+    }
 }

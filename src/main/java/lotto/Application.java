@@ -16,8 +16,10 @@ public class Application {
         System.out.println(Constant.winningNumber);
         WinningLotto winningLotto = new WinningLotto();
 
-        Statistics statistics = new Statistics(purchase,winningLotto);
+        Statistics statistics = new Statistics(purchase, winningLotto);
         statistics.matchLotto();
+
+        System.out.println(Constant.result);
         statistics.getRank();
     }
 }

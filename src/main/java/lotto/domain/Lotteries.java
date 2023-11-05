@@ -2,8 +2,6 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.constant.ExceptionConstant;
-import lotto.constant.NumberConstant;
 
 public class Lotteries {
 

@@ -5,6 +5,7 @@ import lotto.constant.ExceptionConstant;
 import lotto.constant.NumberConstant;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

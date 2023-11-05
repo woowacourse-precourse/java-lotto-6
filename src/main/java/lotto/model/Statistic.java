@@ -45,5 +45,9 @@ public enum Statistic {
                 .orElseThrow();
     }
 
+    public int getPrize(){
+        return prize;
+    }
+
     public abstract String printCount(int count);
 }

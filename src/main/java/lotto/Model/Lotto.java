@@ -39,4 +39,13 @@ public class Lotto {
         return count;
     }
 
+    public static boolean isMatchBonusNumber(List<Integer> winningNumbers,int bonusNumber){
+        for(int w_n : winningNumbers){
+            if(w_n == bonusNumber){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

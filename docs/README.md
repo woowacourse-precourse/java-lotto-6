@@ -17,9 +17,9 @@
 - ✅ getWinningNumberCount 메서드 구현
     -  당첨 번호 리스트와 구매 번호 리스트를 비교해 당첨 개수 반환
 
-## ❌ 보너스 번호 일치 여부 기능
+## ✅ 보너스 번호 일치 여부 기능
 
-- ❌ isMatchBonusNumber 메서드 구현
+- ✅ isMatchBonusNumber 메서드 구현
     -  구매 번호 리스트 중 보너스번호가 하나라도 일치할 경우 true 반환
 
 # View

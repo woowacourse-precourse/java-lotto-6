@@ -14,7 +14,7 @@ public class OutputView {
         lottos.forEach(Lotto::printNumbers);
     }
 
-    public static void printGameResult(Map<LottoResult, Integer> result) {
+    public static void printGameResult(Map<LottoResult, Integer> result, double yieldRate) {
         Set<LottoResult> keys = result.keySet();
 
         Output.RESULT.print();
@@ -23,5 +23,6 @@ public class OutputView {
                     key.print(result.get(key));
                 }
         );
+        Output.TOTAL_RETURN.print(yieldRate);
     }
 }

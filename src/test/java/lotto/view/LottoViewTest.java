@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.controller.dto.input.BonusBallDto;
 import lotto.controller.dto.input.LottoPurchaseAmountDto;
 import lotto.controller.dto.input.WinningLottoNumbersDto;
 import lotto.controller.dto.output.PurchasedLottosDto;
@@ -63,5 +64,18 @@ class LottoViewTest {
         assertThat(writer.getOutput()).isEqualTo(
                 LottoMessage.INPUT_WINNING_LOTTO_NUMBERS.getMessage() + LINE_SEPARATOR);
         assertThat(winningLottoNumbersDto.winningLottoNumbers()).isEqualTo(winningLottoNumbers);
+    }
+
+    @Test
+    void 보너스볼번호_입력_테스트() {
+        //given
+        String bonusBallNumber = "6";
+        reader.setInput(bonusBallNumber);
+        //when
+        BonusBallDto bonusBallDto = lottoView.inputBonusBallNumber();
+        //then
+        assertThat(writer.getOutput()).isEqualTo(
+                LottoMessage.INPUT_BONUS_BALL_NUMBER.getMessage() + LINE_SEPARATOR);
+        assertThat(bonusBallDto.bonusBall()).isEqualTo(bonusBallNumber);
     }
 }

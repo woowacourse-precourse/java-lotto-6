@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
+import lotto.controller.dto.input.BonusBallDto;
 import lotto.controller.dto.input.LottoPurchaseAmountDto;
 import lotto.controller.dto.input.WinningLottoNumbersDto;
 import lotto.controller.dto.output.PurchasedLottosDto;
@@ -41,5 +42,10 @@ public class LottoView {
     public WinningLottoNumbersDto inputWinningLottoNumbers() {
         writer.writeLine(LottoMessage.INPUT_WINNING_LOTTO_NUMBERS.getMessage());
         return new WinningLottoNumbersDto(reader.readLine());
+    }
+
+    public BonusBallDto inputBonusBallNumber() {
+        writer.writeLine(LottoMessage.INPUT_BONUS_BALL_NUMBER.getMessage());
+        return new BonusBallDto(reader.readLine());
     }
 }

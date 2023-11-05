@@ -12,9 +12,9 @@
 - ✅ sortLottoNumber 메서드 구현
     -  로또 번호 리스트를 오름차순으로 정렬
 
-## ❌ 당첨 번호 일치 개수 반환 기능
+## ✅ 당첨 번호 일치 개수 반환 기능
 
-- ❌ getWinningNumberCount 메서드 구현
+- ✅ getWinningNumberCount 메서드 구현
     -  당첨 번호 리스트와 구매 번호 리스트를 비교해 당첨 개수 반환
 
 ## ❌ 보너스 번호 일치 여부 기능

@@ -26,4 +26,17 @@ public class Lotto {
         Collections.sort(numbers);
         return numbers;
     }
+
+    public static int getWinningNumberCount(List<Integer>winningNumbers, List<Integer>numbers){
+        int count = 0;
+        for(int w_n: winningNumbers){
+            for(int n: numbers){
+                if(w_n == n){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
 }

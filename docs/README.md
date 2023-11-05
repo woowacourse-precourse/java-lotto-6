@@ -87,7 +87,7 @@ GameEngineValidator
 LottoScore
 
 - [x] 로또 번호 맞추는 갯수,보너스 번호,금액이라는 값을 갖는다.
-- [ ]  로또 번호 맞추는 갯수,보너스 번호에 맞는 LottoScore를 반환한다.
+- [x]  로또 번호 맞추는 갯수,보너스 번호에 맞는 LottoScore를 반환한다.
 
 NumberGenerator
 

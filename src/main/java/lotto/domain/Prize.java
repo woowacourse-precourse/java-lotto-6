@@ -4,8 +4,18 @@ import java.util.Arrays;
 
 public enum Prize {
     FIRST(6, 2_000_000_000),
-    SECOND(5, 30_000_000),
-    THIRD(5, 1_500_000),
+    SECOND(5, 30_000_000) {
+        @Override
+        protected boolean check(final int match, final boolean hasBonusNumber) {
+            return super.check(match, hasBonusNumber) && hasBonusNumber;
+        }
+    },
+    THIRD(5, 1_500_000) {
+        @Override
+        protected boolean check(final int match, final boolean hasBonusNumber) {
+            return super.check(match, hasBonusNumber) && !hasBonusNumber;
+        }
+    },
     FOURTH(4, 50_000),
     FIFTH(3, 5_000),
     NO_LUCK(0, 0);
@@ -25,7 +35,7 @@ public enum Prize {
                 .orElse(NO_LUCK);
     }
 
-    boolean check(int matches, boolean hasBonusNumber) {
+    protected boolean check(int matches, boolean hasBonusNumber) {
         return this.matches == matches;
     }
 

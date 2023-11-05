@@ -13,4 +13,8 @@ public class ValidateService {
     public void validateInputWinnerNumber(String inputWinningNumber) {
         inputValidator.validateWinnerNumber(inputWinningNumber);
     }
+
+    public void validateInputBonusNumber(String inputBonusNumber) {
+        inputValidator.validateBonusNumber(inputBonusNumber);
+    }
 }

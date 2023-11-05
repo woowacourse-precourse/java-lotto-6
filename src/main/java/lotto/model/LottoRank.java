@@ -1,5 +1,8 @@
 package lotto.model;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum LottoRank {
 
     FIRST(6, false, 2000000000),
@@ -9,12 +12,22 @@ public enum LottoRank {
     FIFTH(3, false, 5000);
 
     private final int matchCount;
-    private final boolean matchBonusNumber;
+    private final boolean matchBonus;
     private final int winningMoney;
 
-    LottoRank(int matchCount, boolean matchBonusNumber, int winningMoney) {
+    LottoRank(int matchCount, boolean matchBonus, int winningMoney) {
         this.matchCount = matchCount;
-        this.matchBonusNumber = matchBonusNumber;
+        this.matchBonus = matchBonus;
         this.winningMoney = winningMoney;
+    }
+
+    public static Optional<LottoRank> calculateRank(int matchCount, boolean matchBonus) {
+        return Arrays.stream(values())
+                .filter(rank -> rank.isMatch(rank, matchCount, matchBonus))
+                .findFirst();
+    }
+
+    private boolean isMatch(LottoRank lottoRank, int matchCount, boolean matchBonus) {
+        return (lottoRank.matchCount == matchCount) && (lottoRank.matchBonus == matchBonus);
     }
 }

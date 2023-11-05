@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Collections;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -11,7 +12,7 @@ public class LottoMachineTest {
     void 로또_구매_금액이_1000원_단위가_아니라면_예외를_발생시킨다(int money) {
         // given
         Money purchaseMoney = new Money(money);
-        LottoMachine lottoMachine = new LottoMachine();
+        LottoMachine lottoMachine = new LottoMachine((min, max, length) -> Collections.emptyList());
 
         // when & then
         assertThatThrownBy(() -> lottoMachine.purchaseLotto(purchaseMoney))

@@ -2,9 +2,11 @@ package lotto.domain;
 
 import static lotto.ErrorMessage.LOTTO_NUMBER_RANGE_ERROR;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.domain.creator.NumbersCreator;
 
 public final class LottoNumber {
     private static final int MIN_NUMBER = 1;
@@ -31,5 +33,11 @@ public final class LottoNumber {
 
         throw new IllegalArgumentException(
                 String.format(LOTTO_NUMBER_RANGE_ERROR.getMessage(), MIN_NUMBER, MAX_NUMBER));
+    }
+
+    public static List<LottoNumber> createLottoNumbers(NumbersCreator numbersCreator, int length) {
+        return numbersCreator.createNumbers(MIN_NUMBER, MAX_NUMBER, length).stream()
+                .map(LottoNumber::valueOf)
+                .toList();
     }
 }

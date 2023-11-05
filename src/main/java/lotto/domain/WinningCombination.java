@@ -54,14 +54,14 @@ public final class WinningCombination {
         return winningGrade;
     }
 
-    private WinningResult mapToWinningResult(final List<WinningGrade> fixedWinningGrades) {
-        return fixedWinningGrades.stream()
+    private WinningResult mapToWinningResult(final List<WinningGrade> winningGrades) {
+        return winningGrades.stream()
+                .distinct()
                 .collect(
                         Collectors.collectingAndThen(
                                 Collectors.toMap(
                                         Function.identity(),
-                                        winningGrade ->
-                                                numOfValues(winningGrade, fixedWinningGrades)),
+                                        winningGrade -> numOfValues(winningGrade, winningGrades)),
                                 WinningResult::new));
     }
 

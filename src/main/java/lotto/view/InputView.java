@@ -106,6 +106,9 @@ public class InputView {
         int bonusNumber;
         try {
             bonusNumber = Integer.parseInt(inputBonus);
+            if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(VALIDATE_STRING_TO_INT_MESSAGE);
         }

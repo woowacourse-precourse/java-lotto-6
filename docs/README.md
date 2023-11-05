@@ -26,11 +26,7 @@ Bonus
 NumberGenerator(인터페이스) -> LottoNumberGenerator(구현체)
 - [x] 번호 6개를 랜덤으로 생성한다. -> NumberGenerator를 사용하는 클래스에서 테스트하자.
 
-LottoController(추후 분리 예정인 기능들을 일단 넣어 놓는다.)
-- [ ] 금액에 따라 구매할 수 있는 로또 개수를 구한다.
-- [ ] 일치하는 개수에 따라 수익금을 구한다.
-- [ ] 수익금과 구매금액을 비교하여 수익률을 구한다.
-
+LottoController
 
 InputView
 - [x] 구입 금액을 입력받는다.

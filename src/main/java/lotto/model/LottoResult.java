@@ -28,6 +28,11 @@ public enum LottoResult {
                 .findFirst();
     }
 
+    public Long parsePrizeAmount() {
+        String stringWithoutCommas = prizeAmount.replace(",", "");
+        return Long.parseLong(stringWithoutCommas);
+    }
+
     public int getMatchingNumbers() {
         return matchingNumbers;
     }

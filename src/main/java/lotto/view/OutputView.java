@@ -26,6 +26,8 @@ public class OutputView {
     }
 
     public void printIssuanceLotto(List<Lotto> issuanceLotto) {
+        System.out.println(issuanceLotto.size() + "개를 구매했습니다.");
+        
         for (Lotto lotto : issuanceLotto) {
             printLotto(lotto);
         }

@@ -8,10 +8,8 @@ public class LottoGame {
 
     private final User user;
 
-    private final WinLotto winLotto;
-
     public LottoGame(Integer amount) {
-
+        this.user = new User(issuanceLotto(amount));
     }
 
     public List<Lotto> issuanceLotto(Integer amount) {
@@ -44,5 +42,9 @@ public class LottoGame {
         }
 
         return true;
+    }
+
+    public User getUser() {
+        return this.user;
     }
 }

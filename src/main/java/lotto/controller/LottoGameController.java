@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoGame;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,8 +17,8 @@ public class LottoGameController {
 
     public void run() {
         outputView.printRequestAmount();
-        Integer amount = inputView.inputInteger();
+        LottoGame lottoGame = new LottoGame(inputView.inputInteger());
+        outputView.printIssuanceLotto(lottoGame.getUser().getIssuanceLotto());
 
-        
     }
 }

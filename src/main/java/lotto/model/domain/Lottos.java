@@ -10,4 +10,8 @@ public class Lottos {
         lottos.add(new Lotto(lottoNumbers));
     }
 
+    public List<Lotto> getAllLotto() {
+        return lottos;
+    }
+
 }

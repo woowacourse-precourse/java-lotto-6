@@ -1,12 +1,13 @@
 package lotto.dto;
 
-
-import lotto.model.domain.Lottos;
+import java.util.Arrays;
+import java.util.List;
 
 public class InputDto {
 
     private int lottoPurchaseAmount;
-    private Lottos lottos;
+    private List<Integer> winningNumbers;
+    private int BonusNumber;
 
     public int getLottoPurchaseAmount() {
         return lottoPurchaseAmount;
@@ -16,11 +17,22 @@ public class InputDto {
         this.lottoPurchaseAmount = Integer.parseInt(lottoPurchaseAmount);
     }
 
-    public Lottos getLottos() {
-        return lottos;
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 
-    public void setLottos(Lottos lottos) {
-        this.lottos = lottos;
+    public void setWinningNumbers(String winningNumbers) {
+        this.winningNumbers = Arrays.stream(winningNumbers.split(","))
+                .map(Integer::parseInt)
+                .toList();
+
+    }
+
+    public int getBonusNumber() {
+        return BonusNumber;
+    }
+
+    public void setBonusNumber(String inputBonusNumber) {
+        this.BonusNumber = Integer.parseInt(inputBonusNumber);
     }
 }

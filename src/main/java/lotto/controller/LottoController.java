@@ -17,5 +17,7 @@ public class LottoController {
         InputController.inputLottoPurchaseAmount(inputDto);
         service.createLottos(inputDto);
         OutputView.outputAllLottoNumbers(service.getLottos());
+        InputController.inputWinningNumbers(inputDto);
+        InputController.inputBonusNumber(inputDto);
     }
 }

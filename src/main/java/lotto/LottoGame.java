@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoGame {
@@ -19,18 +20,22 @@ public class LottoGame {
         this.gameCount = number;
     }
 
-    public void validatePurchaseAmount(String input){
-        try {
-            int price = Integer.parseInt(input);
-            if (price % LOTTO_PRICE == 0) {
+    public void validatePurchaseAmount() {
+        while (true) {
+            try {
+                int price = Integer.parseInt(Console.readLine());
+                if (price <= 0 || price % LOTTO_PRICE != 0) {
+                    System.out.println("[ERROR] 1,000원 단위로 입력해 주세요.");
+                    continue; 
+                }
                 setLottoGame(price / LOTTO_PRICE);
-            } else {
-                throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해 주세요.");
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
             }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
+    
 
     public void generateLottoNumbers() {
         this.lottogame = new ArrayList<>();

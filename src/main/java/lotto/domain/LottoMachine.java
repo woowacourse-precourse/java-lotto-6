@@ -11,7 +11,7 @@ public class LottoMachine {
     }
 
     private static void validate(Money purchaseMoney) {
-        if (!purchaseMoney.canPurchase(LOTTO_PRICE)) {
+        if (!purchaseMoney.isUnitOf(LOTTO_PRICE)) {
             throw new IllegalArgumentException(String.format(LOTTO_PURCHASE_ERROR.getMessage(), LOTTO_PRICE));
         }
     }

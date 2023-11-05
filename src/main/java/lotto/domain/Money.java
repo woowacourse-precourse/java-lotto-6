@@ -18,8 +18,8 @@ public final class Money {
         }
     }
 
-    public boolean canPurchase(int price) {
-        return money % price == 0 && money >= price;
+    public boolean isUnitOf(int unitPrice) {
+        return money % unitPrice == 0 && money >= unitPrice;
     }
 
     @Override

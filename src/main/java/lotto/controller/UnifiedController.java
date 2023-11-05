@@ -3,6 +3,7 @@ package lotto.controller;
 import static lotto.view.OutputView.printLottoNumbers;
 import static lotto.view.OutputView.printNumOfTickets;
 import static lotto.view.SystemMessage.ASK_MONEY;
+import static lotto.view.SystemMessage.ASK_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Comparator;
@@ -38,6 +39,19 @@ public class UnifiedController {
             List<Integer> lottoNumbers = lotto.getNumbers();
             lottoNumbers.sort(Comparator.naturalOrder());
             printLottoNumbers(lottoNumbers);
+        }
+    }
+
+    public void inputAndStoreWinningNumbers() {
+        OutputView.printSystemMessage(ASK_WINNING_NUMBERS);
+        boolean valid = false;
+        while (!valid) {
+            try {
+//                Register.winningNumbers.add(InputView.);
+                valid = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e);
+            }
         }
     }
 }

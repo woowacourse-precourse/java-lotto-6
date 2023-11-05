@@ -8,7 +8,8 @@ import java.text.DecimalFormat;
 public enum ErrorMessage {
     NOT_NUMBER("숫자를 입력해주세요."),
     LESS_MONEY("구입금액은 " + new DecimalFormat("###,###").format(MIN_PURCHASE_PRICE) + "원 이상 필요합니다."),
-    NOT_DIVISIBLE_MONEY("구입금액은 " + new DecimalFormat("###,###").format(LOTTO_PRICE) + "원 단위로 나눠져야 합니다.");
+    NOT_DIVISIBLE_MONEY("구입금액은 " + new DecimalFormat("###,###").format(LOTTO_PRICE) + "원 단위로 나눠져야 합니다."),
+    NOT_INTEGER_LIST("숫자를 공백없이 쉼표로 구분해서 작성해주십시오.");
 
 
     private final String message;

@@ -1,10 +1,11 @@
 package lotto.view;
 
+import static lotto.util.ModelAndViewConverter.MODEL_AND_VIEW_CONVERTER;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import lotto.util.ModelAndViewConverter;
 import lotto.domain.lottoresult.LottoResult;
 
 public class OutputView {
@@ -16,36 +17,34 @@ public class OutputView {
     private static final String PROFIT_MESSAGE = "총 수익률은 %,.1f%%입니다.";
     private static final String ERROR_START_MESSAGE = "[ERROR]";
 
-    public void printTotalNumberOfLotto(ModelAndViewConverter modelAndViewConverter) {
-        System.out.printf(NUMBER_OF_LOTTO_MESSAGE, modelAndViewConverter.getNumberOfLottoBundle());
+    public void printTotalNumberOfLotto() {
+        System.out.printf(NUMBER_OF_LOTTO_MESSAGE, MODEL_AND_VIEW_CONVERTER.getNumberOfLottoBundle());
     }
 
-    public void printTotalLotto(ModelAndViewConverter modelAndViewConverter) {
-        for (String lottoMessage : modelAndViewConverter.getLottoMessages()) {
+    public void printTotalLotto() {
+        for (String lottoMessage : MODEL_AND_VIEW_CONVERTER.getLottoMessages()) {
             System.out.println(lottoMessage);
         }
     }
 
-    public void printLottoResultsData(ModelAndViewConverter modelAndViewConverter) {
+    public void printLottoResultsData() {
         System.out.println(WINNING_STATISTICS_MESSAGE);
-        Map<LottoResult, Integer> lottoResultsData = modelAndViewConverter.getLottoResultsData();
-        List<LottoResult> sortedLottoResultsByKey = getSortedLottoResults(lottoResultsData);
+        Map<LottoResult, Integer> lottoResultsData = MODEL_AND_VIEW_CONVERTER.getLottoResultsData();
+        List<LottoResult> sortedLottoResultsByKey = getSortedLottoResultsWithoutNone(lottoResultsData);
         for (LottoResult lottoResult : sortedLottoResultsByKey) {
-            if (lottoResult.isNone()) {
-                continue;
-            }
             int numberOfSame = lottoResult.getNumberOfSame();
             long prizeMoney = lottoResult.getPrizeMoney();
             int count = lottoResultsData.get(lottoResult);
 
-            String message = makeWinningStatisticsMessage(lottoResult);
-            System.out.printf(message, numberOfSame, prizeMoney, count);
+            String winningStatisticMessage = makeWinningStatisticsMessage(lottoResult);
+            System.out.printf(winningStatisticMessage, numberOfSame, prizeMoney, count);
         }
     }
 
-    private List<LottoResult> getSortedLottoResults(Map<LottoResult, Integer> lottoResultsData) {
+    private List<LottoResult> getSortedLottoResultsWithoutNone(Map<LottoResult, Integer> lottoResultsData) {
         List<LottoResult> lottoResultsByKey = new ArrayList<>(lottoResultsData.keySet());
         Collections.sort(lottoResultsByKey);
+        lottoResultsByKey.remove(LottoResult.NONE);
         return lottoResultsByKey;
     }
 
@@ -61,13 +60,13 @@ public class OutputView {
         return "";
     }
 
-    public void printProfit(ModelAndViewConverter modelAndViewConverter) {
-        double profitMessage = modelAndViewConverter.getProfitMessage();
+    public void printProfit() {
+        double profitMessage = MODEL_AND_VIEW_CONVERTER.getProfitMessage();
         System.out.printf(PROFIT_MESSAGE,profitMessage);
     }
 
-    public void printError(ModelAndViewConverter modelAndViewConverter) {
-        String errorMessage = modelAndViewConverter.getErrorMessage();
+    public void printError() {
+        String errorMessage = MODEL_AND_VIEW_CONVERTER.getErrorMessage();
         System.out.println(ERROR_START_MESSAGE + errorMessage);
     }
 }

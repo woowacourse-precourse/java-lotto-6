@@ -12,6 +12,10 @@ public class Money {
         this.money = money;
     }
 
+    public int getLottoCount() {
+        return money / THOUSAND;
+    }
+
     private void validateMoney(int inputBuyAccount) {
         validateMoreThanZero(inputBuyAccount);
         validateDivideByThousand(inputBuyAccount);

@@ -4,7 +4,6 @@ import static lotto.constants.Value.FIRST_CHARACTER;
 import static lotto.constants.Value.MAX_LOTTO_NUMBER;
 import static lotto.constants.Value.MIN_LOTTO_NUMBER;
 import static lotto.constants.Value.THOUSAND;
-import static lotto.constants.Value.ZERO;
 import static lotto.constants.Error.NOT_NUMBER_ERROR;
 import static lotto.constants.Error.NOT_POSITIVE_NUMBER_ERROR;
 import static lotto.constants.Error.RANGE_ERROR;
@@ -22,7 +21,7 @@ public class Validator {
     }
 
     public static void checkThousands(Integer userInput) {
-        if ((userInput % THOUSAND.get()) != ZERO.get()) {
+        if ((userInput % THOUSAND.get()) != 0) {
             throw new IllegalArgumentException(REMAINDER_ERROR.getMessage());
         }
     }
@@ -34,7 +33,7 @@ public class Validator {
     }
 
     public static void checkPositiveNumber(Integer number) {
-        if (number <= ZERO.get()) {
+        if (number <= 0) {
             throw new IllegalArgumentException(NOT_POSITIVE_NUMBER_ERROR.getMessage());
         }
     }

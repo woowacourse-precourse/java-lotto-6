@@ -37,6 +37,7 @@ public class WinningStats {
                 temporalWinngCount.get(SystemConstant.ACTUAL_RANK.getValue(i)).adder();
             }
         }
+        // TODO 2023-11-06 03:56 코드 단순화 필요
     }
 
     private boolean isRank(LottoRankConstant lottoRankConstant, int matchingNumbers, boolean hasBonusNumber) {

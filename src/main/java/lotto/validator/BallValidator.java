@@ -9,8 +9,16 @@ public class BallValidator {
     }
 
     private static void validateRange(int number) {
-        if (number < LottoNumberConstant.MIN.getValue() || LottoNumberConstant.MAX.getValue() < number) {
+        if (isUnderRange(number) || isOverRange(number)) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_RANGE.getMessage());
         }
+    }
+
+    private static boolean isUnderRange(int number) {
+        return number < LottoNumberConstant.MIN.getValue();
+    }
+
+    private static boolean isOverRange(int number) {
+        return number > LottoNumberConstant.MAX.getValue();
     }
 }

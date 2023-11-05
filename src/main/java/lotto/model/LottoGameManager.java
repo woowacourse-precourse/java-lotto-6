@@ -36,8 +36,8 @@ public class LottoGameManager {
         return calculatePrize(winningResults) / Double.valueOf(amount.getAmount()) * PERCENTAGE;
     }
 
-    private static int calculatePrize(List<LottoMatch> lottoResultCount) {
-        return lottoResultCount.stream()
+    private static int calculatePrize(List<LottoMatch> lottoMatchList) {
+        return lottoMatchList.stream()
                 .mapToInt(LottoMatch::getAmount)
                 .sum();
     }

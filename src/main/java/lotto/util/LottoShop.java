@@ -14,14 +14,13 @@ public class LottoShop {
     private LottoShop() {
     }
 
-
     public static Lottos buyLottos(long amount) {
         validateMultipleOfDenomination(amount);
         return new Lottos(createLottos(amount));
     }
 
     private static List<Lotto> createLottos(long amount) {
-        return Stream.generate(LottoFactory::getLotto)
+        return Stream.generate(LottoFactory::createLotto)
                 .limit(amount / DENOMINATION)
                 .toList();
     }

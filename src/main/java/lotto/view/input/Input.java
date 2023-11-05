@@ -8,4 +8,9 @@ public abstract class Input {
         return Console.readLine();
     }
 
+    public void printErrorMessage(RuntimeException e) {
+        System.out.println(e.getMessage());
+        System.out.println();
+    }
+
 }

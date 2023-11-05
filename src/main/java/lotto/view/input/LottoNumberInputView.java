@@ -23,7 +23,7 @@ public class LottoNumberInputView extends Input{
         validateWiningLottoNumbers(numbers);
         newLine();
 
-        return LottoFactory.getLotto(numbers);
+        return LottoFactory.createLotto(numbers);
     }
 
     private void newLine() {

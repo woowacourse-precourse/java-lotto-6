@@ -19,29 +19,46 @@ public class LottoInputController {
     }
 
     public LottoGameInfo createLottoGame() {
-        long amount = lottoGameStartInput.requestLottoPurchaseAmount();
-        Lottos lottos = LottoShop.buyLottos(amount);
+        long amount;
+        Lottos lottos;
+
+        try {
+            amount = lottoGameStartInput.requestLottoPurchaseAmount();
+            lottos = LottoShop.buyLottos(amount);
+        } catch (IllegalArgumentException e) {
+            lottoGameStartInput.printErrorMessage(e);
+            amount = lottoGameStartInput.requestLottoPurchaseAmount();
+            lottos = LottoShop.buyLottos(amount);
+        }
         return new LottoGameInfo(amount, lottos);
     }
 
     public LottoResult requestLottoResult() {
         Lotto winningLotto = requestWinningLotto();
-        int bonusLottoNumber;
-        try {
-            bonusLottoNumber = requestBonusLottoNumber(winningLotto);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            bonusLottoNumber = requestBonusLottoNumber(winningLotto);
-        }
+        int bonusLottoNumber = requestBonusLottoNumber(winningLotto);
         return new LottoResult(winningLotto, bonusLottoNumber);
     }
 
-    public Lotto requestWinningLotto() {
-        return lottoNumberInputView.requestWinningLotto();
+    private Lotto requestWinningLotto() {
+        Lotto lotto;
+        try {
+            lotto = lottoNumberInputView.requestWinningLotto();
+        } catch (IllegalArgumentException e) {
+            lottoNumberInputView.printErrorMessage(e);
+            lotto = lottoNumberInputView.requestWinningLotto();
+        }
+        return lotto;
     }
 
-    public int requestBonusLottoNumber(Lotto winningLotto) {
-        return lottoNumberInputView.requestBonusLottoNumber(winningLotto);
+    private int requestBonusLottoNumber(Lotto winningLotto) {
+        int bonusNumber;
+        try {
+            bonusNumber = lottoNumberInputView.requestBonusLottoNumber(winningLotto);
+        } catch (IllegalArgumentException e) {
+            lottoNumberInputView.printErrorMessage(e);
+            bonusNumber = lottoNumberInputView.requestBonusLottoNumber(winningLotto);
+        }
+        return bonusNumber;
     }
 
 }

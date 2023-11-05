@@ -17,7 +17,7 @@ public class LottoFactory {
     private LottoFactory() {
     }
 
-    public static Lotto getLotto(){
+    public static Lotto createLotto(){
         List<Integer> lottoNumbers = getLottoNumbers();
         return new Lotto(sortedAscending(lottoNumbers));
     }
@@ -45,7 +45,7 @@ public class LottoFactory {
         return sortedLotto;
     }
 
-    public static Lotto getLotto(List<Integer> numbers){
+    public static Lotto createLotto(List<Integer> numbers){
         validateSortedAscending(numbers);
         return new Lotto(numbers);
     }

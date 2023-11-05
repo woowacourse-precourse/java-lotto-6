@@ -8,12 +8,22 @@ public class WinningLotto extends Lotto {
 
     public WinningLotto(String WinningNumbers, String bonusNumber) {
         super(WinningNumbers);
-        this.bonusNumber = bonusNumber;
+        this.bonusNumber = validateBonusNumber(bonusNumber);
     }
 
-    int validate(String bonusNumberInput) {
-
+    int validateBonusNumber(String bonusNumberInput) {
+        validateBonusNumberLength(bonusNumberInput);
+        validateBonusNumberNumeric(bonusNumberInput);
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+        validateBonusNumberRange(bonusNumber);
+        validateBonusNumberDuplication(super.getNumbers(),bonusNumber);
         return bonusNumber;
+    }
+
+    void validateBonusNumberLength(String bonusNumber) {
+        if (bonusNumber.length() != 1) {
+            throw new IllegalArgumentException();
+        }
     }
 
     void validateBonusNumberDuplication(List<Integer> winningNumber, int bonusNumber) {

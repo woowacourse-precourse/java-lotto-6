@@ -12,6 +12,19 @@ public class Numbers {
                 .toList();
     }
 
+    public Long getMatchCount(List<Integer> winningLottos) {
+        return values.stream()
+                .map(Number::getCurValue)
+                .filter(winningLottos::contains)
+                .count();
+    }
+
+    public Boolean isMatchBonusNumber(BonusNumber bonusNumber) {
+        return values.stream()
+                .map(Number::getCurValue)
+                .anyMatch(bonusNumber::isMatchBonusNumber);
+    }
+
     public List<Number> getValues() {
         return List.copyOf(values);
     }

@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public enum LottoPrize {
 
-    FIRST_PRIZE(6, 2000000000, false),
-    SECOND_PRIZE(5, 30000000, true),
-    THIRD_PRIZE(5, 1500000, false),
+    FIFTH_PRIZE(3, 5000, false),
     FOURTH_PRIZE(4, 50000, false),
-    FIFTH_PRIZE(3, 5000, false);
+    THIRD_PRIZE(5, 1500000, false),
+    SECOND_PRIZE(5, 30000000, true),
+    FIRST_PRIZE(6, 2000000000, false);
 
     private final Integer matchedNumberCount;
     private final Integer prizeMoney;
@@ -41,5 +41,16 @@ public enum LottoPrize {
 
     public Integer getPrizeMoney() {
         return prizeMoney;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(matchedNumberCount).append("개 일치");
+        if (isBonusNumberMatch && matchedNumberCount == 5) {
+            stringBuilder.append(", 보너스 볼 일치");
+        }
+        stringBuilder.append(" (").append(prizeMoney).append(")");
+        return stringBuilder.toString();
     }
 }

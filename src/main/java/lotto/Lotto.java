@@ -18,7 +18,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LottoOption.LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_SIZE);
         }
     }
 
@@ -27,7 +27,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (distinctSize != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_LOTTO_NUMBER);
         }
     }
 
@@ -36,7 +36,7 @@ public class Lotto {
                 .filter(this::isOutRangeLottoNumber)
                 .findAny()
                 .ifPresent((i) -> {
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER);
                 });
     }
 

@@ -13,13 +13,13 @@ public record AnswerLotto(Lotto lotto, int bonus) {
     private void validateBonusInRange(int bonus) {
         if (bonus < LottoOption.LOTTO_MIN_NUMBER ||
                 bonus > LottoOption.LOTTO_MAX_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER);
         }
     }
 
     private void validateDuplicate(Lotto lotto, int bonus) {
         if (lotto.hasNumber(bonus)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_LOTTO_NUMBER);
         }
     }
 }

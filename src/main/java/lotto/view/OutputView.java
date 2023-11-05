@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.utils.calculator.Calculator.calculateLottoCount;
+import static lotto.utils.calculator.Calculator.calculateWinningAmount;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -40,9 +43,9 @@ public class OutputView {
     }
 
     public static void displayRateOfReturn(LottoResultsDTO lottoResultsDTO) {
-        Map<LottoResults, Integer> result = lottoResultsDTO.getResult();
-        long buyLottoAmount = calculateLottoCount(result) * 1000L;
-        double rateOfReturn = (double) calculateWinningAmount(result) / buyLottoAmount;
+        long buyLottoAmount = calculateLottoCount(lottoResultsDTO.getResult()) * 1000L;
+        double rateOfReturn =
+                (double) calculateWinningAmount(lottoResultsDTO.getResult()) / buyLottoAmount;
         System.out.printf(TOTAL_RATE_OF_RETURN_MESSAGE, rateOfReturn * 100);
     }
 
@@ -52,21 +55,5 @@ public class OutputView {
         System.out.printf(THIRD_RANK_MESSAGE, result.getOrDefault(LottoResults.THIRD, 0));
         System.out.printf(SECOND_RANK_MESSAGE, result.getOrDefault(LottoResults.SECOND, 0));
         System.out.printf(FIRST_RANK_MESSAGE, result.getOrDefault(LottoResults.FIRST, 0));
-    }
-
-    private static long calculateWinningAmount(Map<LottoResults, Integer> result) {
-        long totalAmount = 0;
-        for (LottoResults lottoResults : LottoResults.values()) {
-            long winningAmount = lottoResults.getWinningAmount();
-            int rankCount = result.getOrDefault(lottoResults, 0);
-            totalAmount += winningAmount * rankCount;
-        }
-        return totalAmount;
-    }
-
-    private static int calculateLottoCount(Map<LottoResults, Integer> result) {
-        return result.values()
-                .stream()
-                .reduce(0, Integer::sum);
     }
 }

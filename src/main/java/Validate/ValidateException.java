@@ -8,6 +8,7 @@ public class ValidateException {
     private static final String KOREAN_ENGLISH_REGEX = ".*[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣].*";
     private static final String NOTING_STRING = "";
     private static final String BLANK = " ";
+    private static final String SPECIAL_CHARACTER_REGEX = ".*[!@#$%^&*().?\":{}|<>].*";
 
     public static void includeString(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_REGEX);
@@ -28,6 +29,15 @@ public class ValidateException {
     public static void includeBlank(String strLine) {
         if (strLine.contains(BLANK)) {
             throw new IllegalArgumentException("[ERROR] 입력에 공백이 포함되어 있습니다.");
+        }
+    }
+
+    public static void includeSpecialString(String strLine) {
+        Pattern pattern = Pattern.compile(SPECIAL_CHARACTER_REGEX);
+        Matcher matcher = pattern.matcher(strLine);
+
+        if (matcher.matches()) {
+            throw new IllegalArgumentException("문자열에 특수 문자가 포함되어 있습니다.");
         }
     }
 }

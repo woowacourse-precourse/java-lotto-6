@@ -14,6 +14,7 @@ public class Utii {
         ValidateException.includeString(inputStringLine);
         ValidateException.blankCheck(inputStringLine);
         ValidateException.includeBlank(inputStringLine);
+        ValidateException.includeSpecialString(inputStringLine);
 
         return inputStringLine;
     }

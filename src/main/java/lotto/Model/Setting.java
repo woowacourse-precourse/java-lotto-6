@@ -3,10 +3,7 @@ package lotto.Model;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class Setting {
     public int inputToInt(String input){
@@ -22,17 +19,6 @@ public class Setting {
             System.out.println("\n[ERROR] 1부터 45까지의 숫자를 입력해주세요.");
             throw new IllegalArgumentException();
         }
-    }
-    public List<List<Integer>> createLottoNumber(int amount) {
-        List<List<Integer>> lottoNumbers = new ArrayList<>();
-
-        while (lottoNumbers.size() < amount) {
-            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            Collections.sort(randomNumbers);
-            lottoNumbers = addLottoNumbers(lottoNumbers, randomNumbers);
-        }
-
-        return lottoNumbers;
     }
 
     public int purchase_amount() {
@@ -66,12 +52,6 @@ public class Setting {
         }
     }
 
-    public List<List<Integer>> addLottoNumbers(List<List<Integer>> lottoNumbers, List<Integer> randomNumber) {
-        if (!lottoNumbers.contains(randomNumber)) {
-            lottoNumbers.add(randomNumber);
-        }
-        return lottoNumbers;
-    }
 
     public List<Integer> stringToList(String s) {
         List<Integer> player = new ArrayList<>();

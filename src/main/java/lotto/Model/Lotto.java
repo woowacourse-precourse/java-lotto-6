@@ -1,8 +1,6 @@
 package lotto.Model;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
 
@@ -49,4 +47,23 @@ public class Lotto {
         }
     }
 
+    public int[] matchNumber(Lotto lottoNumbers, int bonusBall){
+        int[] matchResult = new int[]{0,0};
+        for (int number : lottoNumbers.numbers){
+            if (numbers.contains(number)){
+                matchResult[0] += 1;
+            }
+        }
+        if (lottoNumbers.numbers.contains(bonusBall)){
+            matchResult[1] = 1;
+        }
+        System.out.println(numbers);
+        System.out.println(lottoNumbers.numbers);
+        return matchResult;
+    }
+
+    @Override
+    public String toString(){
+        return numbers.toString();
+    }
 }

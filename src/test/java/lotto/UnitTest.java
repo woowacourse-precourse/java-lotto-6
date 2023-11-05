@@ -22,21 +22,6 @@ class UnitTest extends NsTest {
         });
     }
 
-    @DisplayName("로또 번호가 잘 생성되는지 테스트")
-    @Test
-    void create_lotto_Test() {
-        assertRandomUniqueNumbersInRangeTest(() -> {
-                    run("2000","1,2,3,4,5,6","7");
-                    assertThat(output()).contains(
-                            "[8, 21, 23, 41, 42, 43]",
-                            "[7, 21, 23, 41, 42, 43]");
-                },
-                List.of(8, 21, 23, 41, 42, 43),
-                List.of(8, 21, 23, 41, 42, 43),
-                List.of(7, 21, 23, 41, 42, 43)
-        );
-    }
-
     @DisplayName("로또 번호 입력 테스트")
     @Test
     void inputLottoNumbers_Test() {
@@ -60,6 +45,26 @@ class UnitTest extends NsTest {
                             "[ERROR] 1부터 45까지의 숫자를 입력해주세요.",
                             "[ERROR] 당첨 번호인 [1, 2, 3, 4, 5, 6]를 제외한 번호를 입력해주세요.");
                 }
+        );
+    }
+
+    @DisplayName("번호 일치 테스트")
+    @Test
+    void checkResult_Test() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "8,10,21,23,41,43", "42");
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[8, 21, 23, 41, 42, 43]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 0개"
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43)
         );
     }
 

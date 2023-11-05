@@ -9,4 +9,10 @@ public class Lottos {
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
+    public List<LottoDTO> getLottoDTOs() {
+        return lottos.stream()
+                .map(LottoDTO::from)
+                .toList();
+    }
 }

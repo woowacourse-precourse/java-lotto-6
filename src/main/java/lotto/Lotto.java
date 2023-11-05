@@ -14,4 +14,8 @@ public class Lotto {
         Validator.validateNumbersSize(numbers);
         Validator.validateIsDuplicationExists(numbers);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

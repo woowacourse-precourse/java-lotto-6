@@ -15,6 +15,7 @@ public class Game {
     public void start() {
         boolean isValidPurchaseAmount = false;
         boolean isValidWinningNumber = false;
+        boolean isValidBonusNumber = false;
 
         while (!isValidPurchaseAmount) {
             String purchaseAmountInput = InputView.inputPurchaseAmount();
@@ -36,6 +37,10 @@ public class Game {
             } catch (IllegalArgumentException e) {
                 OutputView.printMessage(e.getMessage());
             }
+        }
+
+        while (!isValidBonusNumber) {
+            String bonusNumber = InputView.inputBonusNumber();
         }
 
     }

@@ -38,6 +38,14 @@ public class LottoServiceTest {
 		assertEquals(lottoPriceSum, expect);
 	}
 
+	static Stream<Arguments> createCheckLottoPriceSumMethodParameter() {
+		AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
+				new Lotto(List.of(1, 2, 3, 4, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
+		
+		return Stream.of(Arguments.of(answerLotto, lottos, 55000));
+	}
+
 	@DisplayName("총 수익률을 확인한다.")
 	@MethodSource("createCheckTotalReturnMethodParameter")
 	@ParameterizedTest()
@@ -47,6 +55,14 @@ public class LottoServiceTest {
 
 		assertEquals(totalReturn, expect);
 	}
+	
+	static Stream<Arguments> createCheckTotalReturnMethodParameter() {
+		AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
+				new Lotto(List.of(1, 2, 10, 11, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
+		
+		return Stream.of(Arguments.of(answerLotto, lottos, 125));
+	}
 
 	@DisplayName("당첨 통계 메시지를 확인한다.")
 	@MethodSource("createCheckWinningStatisticsMessageMethodParameter")
@@ -55,22 +71,6 @@ public class LottoServiceTest {
 		String winningStatisticsMessage = lottoService.getWinningStatisticsMessage(lottos, answerLotto);
 
 		assertThat(winningStatisticsMessage).contains(winningStatisticsMessage);
-	}
-
-	static Stream<Arguments> createCheckLottoPriceSumMethodParameter() {
-		AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
-		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
-				new Lotto(List.of(1, 2, 3, 4, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
-		
-		return Stream.of(Arguments.of(answerLotto, lottos, 55000));
-	}
-
-	static Stream<Arguments> createCheckTotalReturnMethodParameter() {
-		AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
-		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
-				new Lotto(List.of(1, 2, 10, 11, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
-		
-		return Stream.of(Arguments.of(answerLotto, lottos, 125));
 	}
 
 	static Stream<Arguments> createCheckWinningStatisticsMessageMethodParameter() {

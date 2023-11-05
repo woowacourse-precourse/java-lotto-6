@@ -13,6 +13,10 @@ public class User {
         buyLottos();
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     private void buyLottos() {
         RandomLottoGenerator lottoGenerator = new RandomLottoGenerator();
         int purchaseLottoCount = spendMoney.getPurchaseLottoCount();

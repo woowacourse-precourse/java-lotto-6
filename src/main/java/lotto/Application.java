@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     public static void main(String[] args) {
@@ -7,6 +8,7 @@ public class Application {
         Start_game start_game = new Start_game();
 
         start_game.run();
+        
 
     	
     }

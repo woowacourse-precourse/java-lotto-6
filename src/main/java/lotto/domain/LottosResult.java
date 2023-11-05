@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LottosResult {
+    private static final String WINNING_STATISTICS_INFO_MESSAGE = "당첨 통계\n---\n";
     private final HashMap<Winner, Integer> result = new LinkedHashMap<>();
     private double rateOfReturn = 0.0;
 
@@ -45,6 +46,7 @@ public class LottosResult {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append(WINNING_STATISTICS_INFO_MESSAGE);
         for (Map.Entry<Winner, Integer> entry : result.entrySet()) {
             sb.append(entry.getKey().toString()).append(" - ").append(entry.getValue()).append("\n");
         }

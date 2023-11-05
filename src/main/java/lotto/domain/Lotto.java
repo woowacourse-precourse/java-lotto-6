@@ -20,7 +20,7 @@ public class Lotto {
     public int compareTo(Lotto other) {
         int sameCount = 0;
         for (int i = 0; i < NUMBERS_SIZE; i++) {
-            sameCount += getSameCount(other, sameCount, i);
+            sameCount += getSameCount(other, i);
         }
         return sameCount;
     }
@@ -29,7 +29,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    private int getSameCount(Lotto other, int i, int sameCount) {
+    private int getSameCount(Lotto other, int i) {
         if (isSameNumber(other, i)) {
             return 1;
         }

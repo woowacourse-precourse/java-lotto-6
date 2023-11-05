@@ -7,6 +7,7 @@ import lotto.domain.LottoComparator;
 import lotto.domain.LottoCreator;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.Lottos;
+import lotto.domain.LottosResult;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
@@ -31,7 +32,8 @@ public class LottoGameController {
         int bonusNumber = InputView.nextInt();
         WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
         LottoComparator lottoComparator = new LottoComparator(lottos, winningLotto);
-        lottoComparator.compare();
-
+        LottosResult lottosResult = lottoComparator.compareLottoAndWinningLotto();
+        lottosResult.calculateRateOfReturn(lottos.size() * 1000);
+        OutputView.print(lottosResult.toString());
     }
 }

@@ -15,7 +15,7 @@ public class InputView {
                 String purchaseAmount = lottoInputView.inputPurchaseAmount();
 
                 validate(purchaseAmount);
-현
+
                 return Integer.parseInt(purchaseAmount);
             }catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자형식으로 입력해주세요.");

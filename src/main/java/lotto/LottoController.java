@@ -1,7 +1,7 @@
 package lotto;
 
 public class LottoController {
-    public void buyLotto() {
+    public void buyLotto(int money) {
 
     }
 

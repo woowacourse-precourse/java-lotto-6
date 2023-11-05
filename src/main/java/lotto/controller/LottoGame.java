@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.enums.ErrorMessages;
 import lotto.utils.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -11,11 +12,12 @@ public class LottoGame implements Game {
     private LottoTickets lottoTickets;
     private WinningLotto winningLotto;
 
-
     @Override
     public void run() {
         collectPurchaseAmount();
+        printLottoTickets();
         generateLottoTickets();
+
         collectWinningNumbers();
     }
 
@@ -25,10 +27,12 @@ public class LottoGame implements Game {
 
     private void generateLottoTickets() {
         lottoTickets = lottoPurchase.generateLottoTickets();
-        printLottoTickets();
     }
 
     private void printLottoTickets() {
+        if(lottoTickets == null) {
+            throw new IllegalStateException(ErrorMessages.TICKETS_WAS_NOT_CREATED.getMessage());
+        }
         OutputView.printPurchasedLottoNumbers(lottoTickets.getLottoTickets());
     }
 

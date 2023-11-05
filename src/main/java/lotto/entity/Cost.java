@@ -3,6 +3,8 @@ package lotto.entity;
 import lotto.property.ValidationProperty;
 import lotto.validation.ValidationForm;
 
+import java.lang.reflect.Field;
+
 import static lotto.property.ValidationProperty.*;
 import static lotto.validation.ValidationForm.*;
 
@@ -22,7 +24,9 @@ public class Cost {
         verifyFormatForInputValue(COST,inputPurchaseCost);
     }
 
-    public Long getPurchaseCost(){
-        return purchaseCost;
+    public Long getFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        Field field = this.getClass().getDeclaredField(fieldName);
+        field.setAccessible(true);
+        return (Long) field.get(this);
     }
 }

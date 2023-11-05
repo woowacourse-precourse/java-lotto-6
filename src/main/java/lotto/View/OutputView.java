@@ -1,8 +1,5 @@
 package lotto.View;
 
-import java.util.Arrays;
-import java.util.List;
-import lotto.Model.Lotto;
 import lotto.Model.RandomLotto;
 
 public class OutputView {
@@ -12,8 +9,8 @@ public class OutputView {
         System.out.println(randomLotto.getCount() + "개를 구매했습니다.");
     }
 
-    public static void printRandomLottoNumbers(Lotto lotto) {
-        System.out.println(lotto.toString());
+    public static void printRandomLottoNumbers(RandomLotto randomLotto) {
+        randomLotto.getRandomLottos().forEach(System.out::println);
     }
 }
 

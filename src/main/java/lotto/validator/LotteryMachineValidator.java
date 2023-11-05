@@ -43,7 +43,7 @@ public class LotteryMachineValidator {
     private static void validateLuckyNumberFormat(final String input) {
         String[] split = input.split(",");
         if (split.length != LOTTERY_LENGTH) {
-            throw new IllegalArgumentException(LUCKY_NUMBER_FORMAT_MESSAGE);
+            throw new IllegalArgumentException(makeErrorMessageWith(LUCKY_NUMBER_FORMAT_MESSAGE));
         }
     }
 
@@ -53,7 +53,7 @@ public class LotteryMachineValidator {
             try {
                 Integer.parseInt(str);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(makeErrorMessageWith(LUCKY_NUMBER_NOT_INTEGER_MESSAGE))
+                throw new IllegalArgumentException(makeErrorMessageWith(LUCKY_NUMBER_NOT_INTEGER_MESSAGE));
             }
         }
     }
@@ -82,21 +82,21 @@ public class LotteryMachineValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BONUS_NUMBER_NOT_INTEGER_MESSAGE);
+            throw new IllegalArgumentException(makeErrorMessageWith(BONUS_NUMBER_NOT_INTEGER_MESSAGE));
         }
     }
 
     private static void validateBonusNumberDuplicated(List<Integer> luckyNumbers, String input) {
         int number = Integer.parseInt(input);
         if (luckyNumbers.contains(number)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATED_MESSAGE);
+            throw new IllegalArgumentException(makeErrorMessageWith(BONUS_NUMBER_DUPLICATED_MESSAGE));
         }
     }
 
     private static void validateBonusNumberRange(String input, int min, int max) {
         int number = Integer.parseInt(input);
         if (number < min || number > max) {
-            throw new IllegalArgumentException(BONUS_NUMBER_OUT_OF_RANGE_MESSAGE);
+            throw new IllegalArgumentException(makeErrorMessageWith(BONUS_NUMBER_OUT_OF_RANGE_MESSAGE));
         }
     }
 

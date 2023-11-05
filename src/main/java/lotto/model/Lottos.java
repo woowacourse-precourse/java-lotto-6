@@ -21,7 +21,7 @@ public class Lottos {
         return new Lottos(randomLottos);
     }
 
-    public LottosInfo getLottosInfo() {
+    public LottosInfo convertLottosIntoLottosInfo() {
         List<String> lottosText = lottos.stream()
                 .map(Lotto::toString)
                 .toList();

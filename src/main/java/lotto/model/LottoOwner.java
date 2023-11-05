@@ -15,7 +15,7 @@ public class LottoOwner {
         return new LottoOwner(purchasePrice, lottos);
     }
 
-    public LottosInfo getLottoInfos() {
-        return lottos.getLottosInfo();
+    public LottosInfo getLottoInfo() {
+        return lottos.convertLottosIntoLottosInfo();
     }
 }

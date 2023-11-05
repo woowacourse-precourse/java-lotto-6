@@ -12,6 +12,24 @@ public class InputValidatorTest {
 
     private final InputValidator inputValidator = new InputValidator();
 
+    @DisplayName("구입 금액에 숫자가 아닌 값 포함되어 있으면 예외가 발생한다.")
+    @Test
+    void invalidInputWithNonNumericPurchaseAmount() {
+        String input = "2000won";
+        assertThatThrownBy(() -> inputValidator.validateNonNumeric(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.");
+    }
+
+    @DisplayName("구입 금액이 1000원으로 떨어지지 않으면 예외가 발생한다.")
+    @Test
+    void invalidPurchaseAmountNotDivisible() {
+        String input = "3500";
+        assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1,000원 단위로 입력해주세요.");
+    }
+
     @DisplayName("로또 번호에 숫자가 아닌 값 포함되어 있으면 예외가 발생한다.")
     @Test
     void invalidInputNonNumeric() {

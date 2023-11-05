@@ -7,23 +7,19 @@ public class LottoResult {
 
     private User user;
     private WinningNumber winningNumber;
-    private HashMap<Rank, Integer> lottoResult = new HashMap<>();
+    private RankCounter lottoResult;
 
     public LottoResult(User user, WinningNumber winningNumber) {
         this.user = user;
         this.winningNumber = winningNumber;
-
-        for(Rank rank : Rank.values()) {
-            lottoResult.put(rank, 0);
-        }
+        this.lottoResult = RankCounter.create();
     }
 
-    public HashMap<Rank, Integer> getLottoResult(List<Lotto> purchasedLottos, WinningNumber winningNumber) {
-        countRank(purchasedLottos, winningNumber);
-        return lottoResult;
+    public RankCounter getLottoResult(List<Lotto> purchasedLottos, WinningNumber winningNumber) {
+        return countRank(purchasedLottos, winningNumber);
     }
 
-    private void countRank(List<Lotto> purchasedLottos, WinningNumber winningNumber) {
+    private RankCounter countRank(List<Lotto> purchasedLottos, WinningNumber winningNumber) {
         Rank rank;
         for (int i=0; i<purchasedLottos.size(); i++) {
             int matchCount = countMatchedNumber(purchasedLottos.get(i), winningNumber.getWinningNumber());
@@ -32,8 +28,9 @@ public class LottoResult {
             if (!isBonus && rank == Rank.SECOND) {
                 rank = Rank.THIRD;
             }
-            addRank(rank);
+            lottoResult.addRank(rank);
         }
+        return lottoResult;
     }
 
     private int countMatchedNumber(Lotto lotto, Lotto winningNumber) {
@@ -44,11 +41,6 @@ public class LottoResult {
             }
         }
         return count;
-    }
-
-    private void addRank(Rank rank) {
-        int count = lottoResult.getOrDefault(rank, 0) + 1;
-        lottoResult.put(rank, count);
     }
 
     public double getYield() {
@@ -64,7 +56,7 @@ public class LottoResult {
     private long calculateTotalPrize() {
         long totalPrize = 0;
         for (Rank rank : Rank.values()) {
-            totalPrize += lottoResult.get(rank) * rank.getPrizeMoney();
+            totalPrize += lottoResult.getRankCount(rank) * rank.getPrizeMoney();
         }
         return totalPrize;
     }

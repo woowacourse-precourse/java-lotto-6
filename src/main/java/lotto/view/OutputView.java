@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.Rank;
+import lotto.model.RankCounter;
 import lotto.utils.Constants;
 import lotto.utils.message.OutputMessage;
 import java.util.HashMap;
@@ -17,11 +18,11 @@ public class OutputView {
         }
     }
 
-    public static void printLottoResult(HashMap<Rank, Integer> lottoResult) {
+    public static void printLottoResult(RankCounter lottoResult) {
         System.out.println(OutputMessage.OUTPUT_LOTTO_RESULT.getMessage());
         for (Rank rank : Rank.values()) {
             if (rank.getMatchCount() >= Constants.MATCH_COUNT_THRESHOLD) {
-                System.out.println(rank.getMessage() + lottoResult.get(rank) +
+                System.out.println(rank.getMessage() + lottoResult.getRankCount(rank) +
                         OutputMessage.OUTPUT_COUNT_UNIT.getMessage());
             }
         }

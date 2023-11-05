@@ -40,32 +40,32 @@
       [2, 13, 22, 32, 38, 45]
       [1, 3, 5, 14, 22, 45]
       ```
-- [ ] 당첨 번호를 입력 받는다.
-    - [ ] 당첨 번호 입력 안내 문구를 출력한다.
+- [x] 당첨 번호를 입력 받는다.
+    - [x] 당첨 번호 입력 안내 문구를 출력한다.
       ```
       당첨 번호를 입력해 주세요.
       ```
-    - [ ] 사용자에게 당첨 번호를 입력 받는다.
+    - [x] 사용자에게 당첨 번호를 입력 받는다.
       ```
       1,2,3,4,5,6
       ```
-        - [ ] `[Validation]` 아무 값도 입력하지 않은 경우, `IllegalStateException`를 발생시킨 후 다시 입력 받는다.
+        - [x] `[Validation]` 아무 값도 입력하지 않은 경우, `IllegalStateException`를 발생시킨 후 다시 입력 받는다.
           ```
           [ERROR] 아무 값도 입력하지 않았습니다.
           ```
-        - [ ] `[Validation]` 숫자를 입력하지 않은 경우, `IllegalArgumentException`을 발생시킨 후 다시 입력 받는다.
+        - [x] `[Validation]` 숫자를 입력하지 않은 경우, `IllegalArgumentException`을 발생시킨 후 다시 입력 받는다.
           ```
           [ERROR] 숫자를 입력해야 합니다.
           ```
-        - [ ] `[Validation]` 로또 번호가 1에서 45 사이의 숫자가 아닌 경우, `IllegalArgumentException`을 발생시킨 후 다시 입력 받는다.
+        - [x] `[Validation]` 로또 번호가 1에서 45 사이의 숫자가 아닌 경우, `IllegalArgumentException`을 발생시킨 후 다시 입력 받는다.
           ```
           [ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.
           ```
-        - [ ] `[Validation]` 6개의 숫자를 입력하지 않은 경우, `IllegalStateException`을 발생시킨 후 다시 입력 받는다.
+        - [x] `[Validation]` 6개의 숫자를 입력하지 않은 경우, `IllegalStateException`을 발생시킨 후 다시 입력 받는다.
           ```
           [ERROR] 6개의 숫자를 입력해야 합니다.
           ```
-        - [ ] `[Validation]` 중복된 숫자를 입력한 경우, `IllegalStateException`을 발생시킨다.
+        - [x] `[Validation]` 중복된 숫자를 입력한 경우, `IllegalStateException`을 발생시킨다.
           ```
           [ERROR] 중복되지 않은 숫자를 입력해야 합니다.
           ```

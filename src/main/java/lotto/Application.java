@@ -43,6 +43,16 @@ public class Application {
                 lottoResult.addWin(criteria);
             }
         }
+
+        int totalPrice = lottoResult.getCount(WinningCriteria.FIFTH_PLACE) * 5_000 +
+                lottoResult.getCount(WinningCriteria.FOURTH_PLACE) * 50_000 +
+                lottoResult.getCount(WinningCriteria.THIRD_PLACE) * 1_500_000 +
+                lottoResult.getCount(WinningCriteria.SECOND_PLACE) * 30_000_000 +
+                lottoResult.getCount(WinningCriteria.FIRST_PLACE) * 2_000_000_000;
+        double totalReturn = ((double) totalPrice / (double) userPurchaseAmount) * 100.0;
+
+        double roundedReturn = Math.round(totalReturn * 10.0) / 10.0;
+
     }
 
     private static WinningCriteria getWinningCriteria(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {

@@ -15,4 +15,8 @@ public class LottoResult {
     public void addWin(WinningCriteria criteria) {
         result.merge(criteria, 1, Integer::sum);
     }
+
+    public int getCount(WinningCriteria criteria) {
+        return result.get(criteria);
+    }
 }

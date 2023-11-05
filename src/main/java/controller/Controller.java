@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Lottos;
-import lotto.Lotto;
 import repository.LottoRepository;
 import repository.MoneyRepository;
 import service.LottoService;
@@ -11,9 +10,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -25,9 +22,9 @@ public class Controller {
     private LottoRepository lottoRepository = new LottoRepository();
     private MoneyRepository moneyRepository = new MoneyRepository();
 
-    List<List<Integer>> lottosList = new ArrayList<>();
-    List<Integer> userlottoList;
-    List<Integer> lottoList = new ArrayList<>();
+    private List<List<Integer>> lottosList = new ArrayList<>();
+    private List<Integer> userlottoList;
+    private List<Integer> lottoList = new ArrayList<>();
 
     private static int bonus = 0;
 
@@ -42,7 +39,6 @@ public class Controller {
     }
 
     private void playLotto() {
-
         lottosList.clear();
 
         for (int i = 0; i < moneyRepository.getTrial(); i++) {
@@ -62,29 +58,35 @@ public class Controller {
         int[] correct = new int[8];
         int check = 0;
 
-        for(int k = 0; k < 6; k++) {
-            int current_lotto = userlottoList.get(k);
-            for (int i = 0; i < moneyRepository.getTrial(); i++) {
-                for (int j = 0; j < 6; j++) {
-                    if(current_lotto == lottosList.get(i).get(j)) {
+        for (int i = 0; i < moneyRepository.getTrial(); i++) {
+            for (int j = 0; j < 6; j++) {
+                int current = userlottoList.get(j);
+                for (int k = 0; k < 6; k++) {
+                    if (current == lottosList.get(i).get(k)) {
                         check++;
                     }
 
                     if (check == 5) {
-                        if (bonus == lottosList.get(i).get(j)) {
-                            check = 7;
+                        for (int m = 0; m < 6; m++) {
+                            if (bonus == lottosList.get(i).get(m)) {
+                                check = 7;
+                                break;
+                            }
                         }
                     }
                 }
-                if(check == 3) correct[3]++;
-                if(check == 4) correct[4]++;
-                if(check == 5) correct[5]++;
-                if(check == 6) correct[6]++;
-                if(check == 7) correct[7]++; // 보너스
-                check = 0;
             }
+            if(check == 3) {
+                correct[3]++;
+            }
+            if(check == 4) {
+                correct[4]++;
+            }
+            if(check == 5) correct[5]++;
+            if(check == 6) correct[6]++;
+            if(check == 7) correct[7]++; // 보너스
+            check = 0;
         }
-
         OutputView.printRevenue(correct, moneyRepository.getMoney());
     }
 
@@ -154,9 +156,8 @@ public class Controller {
     }
 
     private List<Integer> saveLotto() {
-        for (int j = 0; j < 6; j++) {
-            lottoList = lottoService.getProgramRandomNumber();
-        }
+        lottoList = lottoService.getProgramRandomNumber();
+
         OutputView.printRandomLotto(lottoList);
         return lottoList;
     }

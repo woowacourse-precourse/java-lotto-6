@@ -32,4 +32,4 @@
 - [ ] 사용자가 잘못된 값을 입력한 경우 IllegalArgumentException를 발생
 - [ ] 예외 메시지 "[ERROR]"로 시작하는 에러 메시지 출력
 - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리
-- [ ] 구입 금액이 1000원으로 나누어 떨어지지 않는 경우
+- [x] 구입 금액이 1000원으로 나누어 떨어지지 않는 경우

@@ -6,6 +6,9 @@ import java.util.List;
 
 public class DisplayFormatter {
 
+    private DisplayFormatter() {
+    }
+
     public static String formatLottoNumbers(LottoNumbers lottoNumbers) {
         List<Integer> numbers = lottoNumbers.numbers();
         List<String> sortedNumbers = numbers.stream()

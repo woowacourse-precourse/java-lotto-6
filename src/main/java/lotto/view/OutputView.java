@@ -7,6 +7,9 @@ import java.util.List;
 
 public class OutputView {
 
+    private OutputView() {
+    }
+
     public static void printPurchasedLotto(PurchasedLotto purchasedLotto) {
         int purchasesNumber = purchasedLotto.purchasesNumber();
         printLineSeparator();

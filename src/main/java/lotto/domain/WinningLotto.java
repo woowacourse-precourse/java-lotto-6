@@ -51,9 +51,8 @@ public class WinningLotto {
 
     private int compareLotto(List<Integer> lottoNumbers) {
         int count = 0;
-        for (Integer winningNumber : winningLotto) {
-            checkLotto(lottoNumbers, winningNumber, count);
-        }
+        winningLotto.stream().forEach(
+                winningNumber -> checkLotto(lottoNumbers, winningNumber, count));
         return count;
     }
 

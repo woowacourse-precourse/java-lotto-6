@@ -14,15 +14,17 @@ import static lotto.constants.MarksAndConstants.SPACE;
 import static lotto.constants.MarksAndConstants.START_INDEX;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.constants.LottoRanks;
 
 public class OutputView {
     public void printQuantityAndAllNumbers(int quantity, List<List<Integer>> manyLotto) {
-        System.out.printf(BUYING_QUANTITY_FORMAT, quantity);
+        System.out.println(convertQuantityToString(quantity));
         printAllLottoNumber(manyLotto);
+    }
+    public String convertQuantityToString(int quantity) {
+        return String.format(BUYING_QUANTITY_FORMAT, quantity);
     }
     private void printAllLottoNumber(List<List<Integer>> manyLotto) {
         for (List<Integer> oneLotto : manyLotto) {
@@ -52,20 +54,25 @@ public class OutputView {
         for (LottoRanks key : result.keySet()) {
             if (key == LottoRanks.NONE)
                 continue;
-            System.out.printf(appendFormat(key), key.getSameNumber(), key.getWinnings(), result.get(key));
+            System.out.print(convertCountsToString(appendFormat(key), key, result.get(key)));
         }
+    }
+    public String convertCountsToString(String stringForm, LottoRanks key, int count) {
+        return String.format(stringForm, key.getSameNumber(), key.getWinnings(), count);
     }
     public String appendFormat(LottoRanks key) {
         StringBuilder result = new StringBuilder(SAME_NUMBER_COUNT_FORMAT);
-        if (key.isSameBonus()) {
+        if (key.isSecond()) {
             result.append(SAME_BONUS_NUM);
         }
         result.append(WINNING_MONEY_FORMAT);
         result.append(GET_REWARDED_LOTTO_COUNT);
         return result.toString();
     }
-
     public void printTotalReturnRate(double returnRate) {
-        System.out.printf(TOTAL_RETURN_FORMAT, returnRate);
+        System.out.print(convertReturnRateToString(returnRate));
+    }
+    public String convertReturnRateToString(double returnRate) {
+        return String.format(TOTAL_RETURN_FORMAT, returnRate);
     }
 }

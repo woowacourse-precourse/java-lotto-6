@@ -1,8 +1,8 @@
 package lotto.view;
 
-import static lotto.constants.ExceptionMessage.BLANK_INPUT;
-import static lotto.constants.ExceptionMessage.ERROR_FORMAT;
-import static lotto.constants.ExceptionMessage.SPACE_INCLUDED;
+import static lotto.constants.ErrorMessage.BLANK_INPUT;
+import static lotto.constants.ErrorMessage.ERROR_FORMAT;
+import static lotto.constants.ErrorMessage.SPACE_INCLUDED;
 import static lotto.constants.LottoIOMessage.BONUS_NUM_INPUT;
 import static lotto.constants.LottoIOMessage.BUYING_COST_INPUT;
 import static lotto.constants.LottoIOMessage.WINNING_NUM_INPUT;
@@ -38,13 +38,13 @@ public class InputView {
         validateBlankInput(input);
         validateSpaceChar(input);
     }
-    public void validateBlankInput(String input) {
+    private void validateBlankInput(String input) {
 
         if (input.isBlank()) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, BLANK_INPUT+input));
         }
     }
-    public void validateSpaceChar(String input) {
+    private void validateSpaceChar(String input) {
         if (input.contains(" ")) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, SPACE_INCLUDED+input));
         }

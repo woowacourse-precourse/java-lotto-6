@@ -22,12 +22,18 @@ public class LottoGame {
 
     public void start() {
         Money money = repeatUntilValidMoneyCreated();
-
-        LottoTicketMaker lottoTicketMaker = new LottoTicketMaker();
-        List<Lotto> lottoTickets = lottoTicketMaker.issueLottoTickets(money);
+        List<Lotto> lottoTickets = issueLottoTickets(money);
 
         WinningNumbers winningNumbers = repeatUntilValidWinningNumbersCreated();
         repeatUntilValidBonusNumberAssigned(winningNumbers);
+    }
+
+    private List<Lotto> issueLottoTickets(Money money) {
+        LottoTicketMaker lottoTicketMaker = new LottoTicketMaker();
+        List<Lotto> lottoTickets = lottoTicketMaker.issueLottoTickets(money);
+        outputView.showIssueLottoTickets(lottoTickets);
+
+        return lottoTickets;
     }
 
     private void repeatUntilValidBonusNumberAssigned(WinningNumbers winningNumbers) {

@@ -10,7 +10,7 @@ class LottoTicketMakerTest {
 
     @DisplayName("구입 금액에 해당하는 만큼 로또를 생성한다.")
     @Test
-    void createLottoByPurchaseAmount() {
+    void createLottoTicketsByPurchaseAmount() {
         //given
         Money money = new Money("8000");
         LottoTicketMaker lottoTicketMaker = new LottoTicketMaker();

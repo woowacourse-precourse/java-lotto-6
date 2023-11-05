@@ -2,7 +2,7 @@ package lotto.model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import lotto.exception.ErrorMessage;
+import lotto.common.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ class NumberTest {
         assertThatThrownBy(() -> {
             Number.of(-1);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.ERROR_NUMBER_RANGE.get());
+                .hasMessageContaining(ErrorMessage.LOTTO_NUMBER_RANGE.get());
 
     }
 
@@ -24,7 +24,7 @@ class NumberTest {
         assertThatThrownBy(() -> {
             Number.of(46);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.ERROR_NUMBER_RANGE.get());
+                .hasMessageContaining(ErrorMessage.LOTTO_NUMBER_RANGE.get());
 
     }
 }

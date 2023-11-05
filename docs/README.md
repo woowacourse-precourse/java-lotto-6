@@ -18,7 +18,7 @@
 - [x] 구입 금액과 당첨 금액에 따른 수익률을 계산한다. `double calculate(int purchaseAmount, long reward)`
 
 ### LottoGameManager
-- [ ] 로또 번호와 당첨 번호를 비교해서 나온 결과를 당첨 내역에 추가한다. `void addRankToWinningHistory(List<Lotto> lottos, WinningNumbers winningNumbers)`
+- [x] 로또 번호와 당첨 번호를 비교해서 나온 결과를 당첨 내역에 추가한다. `void addRankToWinningDetails(List<Lotto> lottos, WinningNumbers winningNumbers)`
 
 ### InputView
 - [x] 구입 금액을 입력 받는다. `int readPurchaseAmount()`

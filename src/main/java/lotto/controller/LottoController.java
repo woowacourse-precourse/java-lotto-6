@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.service.Lotto;
+import lotto.service.LottoNumbers;
 import lotto.service.PlayerLottoAmount;
 import lotto.service.WinningResult;
 import lotto.view.InputView;
@@ -65,6 +66,15 @@ public class LottoController {
         return lottoList;
     }
 
+
+    private static Lotto makeLotto() {
+        LottoNumbers lottoNumbers = new LottoNumbers();
+        lotto = new ArrayList<>();
+
+        lotto = lottoNumbers.setRandomNumbers();
+        System.out.println(lotto);
+        return new Lotto(lotto);
+    }
 
 }
 

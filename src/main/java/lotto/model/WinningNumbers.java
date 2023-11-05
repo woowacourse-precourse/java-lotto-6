@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbers {
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+    private static final int LOTTO_SIZE = 6;
     private static final String WINNING_NUMBER_REGEX = "^[0-9,]*$";
     private static final String NUMBER_REGEX = "^[0-9]*$";
     private static final String EMPTY_MESSAGE = "[ERROR] 번호가 입력되지 않았습니다.";
@@ -46,11 +49,11 @@ public class WinningNumbers {
             throw new IllegalArgumentException(INVALID_SIZE_MESSAGE);
         }
 
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+        if (numbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE_MESSAGE);
         }
 
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != LOTTO_SIZE) {
             throw new IllegalArgumentException(DUPLICATED_NUMBER_MESSAGE);
         }
 
@@ -71,7 +74,7 @@ public class WinningNumbers {
         }
 
         int bonusNumber = Integer.parseInt(inputBonusNumber);
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER_RANGE_MESSAGE);
         }
 
@@ -79,6 +82,14 @@ public class WinningNumbers {
             throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER_MESSAGE);
         }
 
+        return bonusNumber;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getBonusNumber() {
         return bonusNumber;
     }
 }

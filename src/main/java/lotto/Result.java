@@ -4,8 +4,10 @@ import java.util.HashMap;
 
 public class Result {
     private final HashMap<Ranking, Integer> count = new HashMap<>();
+    private final int purchasingAmount;
 
-    public Result() {
+    public Result(final int time) {
+        this.purchasingAmount = time * 1000;
         init();
     }
 
@@ -22,12 +24,25 @@ public class Result {
           count.put(ranking, count.get(ranking) + 1);
     }
 
-    public String getResult() {
+    public String getWinningResult() {
         StringBuilder result = new StringBuilder();
 
         for (Ranking ranking : Ranking.values()) {
             result.append(ranking.getResult(count.get(ranking)));
         }
         return result.toString();
+    }
+
+    public double getEarningRate() {
+        return (double) getPrice() / purchasingAmount * 100;
+    }
+
+    private int getPrice() {
+        int price = 0;
+
+        for (Ranking ranking : Ranking.values()) {
+            price += ranking.getPriceByTime(count.get(ranking));
+        }
+        return price;
     }
 }

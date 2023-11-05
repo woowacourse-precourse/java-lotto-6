@@ -18,13 +18,22 @@ public class ResultTest {
     @DisplayName("5등 2번, 3등 1번인 당첨 결과 메시지 확인")
     @Test
     void checkWinningResultMessage() {
-        Result result = new Result();
+        Result result = new Result(3);
         result.putIt(Ranking.FIFTH);
         result.putIt(Ranking.FIFTH);
         result.putIt(Ranking.THIRD);
-        String message = result.getResult();
+        String message = result.getWinningResult();
 
         assertThat(message).isEqualTo(getExpectedMessage(new Integer[]{2, 0, 1, 0, 0}));
+    }
 
+    @DisplayName("로또를 8장 산 경우 5등 1번한 경우 수익률 계산")
+    @Test
+    void calculateEarningRate() {
+        Result result = new Result(8);
+        result.putIt(Ranking.FIFTH);
+        double rate = result.getEarningRate();
+
+        assertThat(rate).isEqualTo(62.5);
     }
 }

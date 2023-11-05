@@ -40,4 +40,8 @@ public enum Ranking {
             bonusMessage = ", 보너스 볼 일치";
         return String.format("%d개 일치%s (%s원) - %d개\n", matchingNumber, bonusMessage, formatter.format(price), time);
     }
+
+    public int getPriceByTime(int time) {
+        return price * time;
+    }
 }

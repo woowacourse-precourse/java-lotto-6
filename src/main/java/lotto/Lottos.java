@@ -36,7 +36,7 @@ public class Lottos {
     }
 
     public Result makeResult(Lotto winningNumber, int bonusNumber) {
-        Result result = new Result();
+        Result result = new Result(lottos.size());
 
         for (Lotto lotto : lottos) {
             result.putIt(lotto.getRanking(winningNumber, bonusNumber));

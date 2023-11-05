@@ -30,4 +30,8 @@ public class WinningStat {
     public long getProfit() {
         return lottoRankConstant.getPrize() * count;
     }
+
+    public int getRank() {
+        return lottoRankConstant.getRank();
+    }
 }

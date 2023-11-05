@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static java.util.Comparator.comparingInt;
+
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.WinningStat;
@@ -26,6 +28,7 @@ public class OutputView {
     public static void printWinningStats(WinningStats winningStats) {
         printFrom(SystemMessage.OUTPUT_WINNING_STATS);
         winningStats.stream()
+                .sorted(comparingInt(WinningStat::getRank).reversed())
                 .map(WinningStat::createMessage)
                 .forEach(System.out::println);
     }

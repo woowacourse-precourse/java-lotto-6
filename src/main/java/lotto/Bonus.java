@@ -18,4 +18,10 @@ public class Bonus {
         validateAllRange(number, MIN_NUMBER, MAX_NUMBER);
         validateNoDuplicates(number, numbers);
     }
+
+    private void validateAllRange(int number, int minNumber, int maxNumber) {
+        if (!(number >= minNumber && number <= maxNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

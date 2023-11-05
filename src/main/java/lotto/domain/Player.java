@@ -9,13 +9,13 @@ import java.util.*;
 public class Player {
     private int money;
     private long totalPrize;
-    private List<Lotto> lottos;
+    private List<Lotto> lottos = new ArrayList<>();
     private Map<Ranking, Integer> results = new EnumMap<>(Ranking.class);
 
     public Player(int money) {
         validate(money);
         this.money = money;
-        initResults();
+        Arrays.stream(Ranking.values()).forEach(key -> results.put(key, 0));
     }
 
     private void validate(int money) {
@@ -24,14 +24,7 @@ public class Player {
         }
     }
 
-    private void initResults() {
-        for(Ranking ranking : Ranking.values()) {
-            results.put(ranking, 0);
-        }
-    }
-
     public void issueLotto() {
-        lottos = new ArrayList<>();
         int lottoSize = money / 1_000;
         // TODO : lottos 사이즈와 lottoSize 비교
         for (int i = 0; i < lottoSize; i++) {
@@ -47,7 +40,7 @@ public class Player {
             int count = lotto.findCount(winningNumbers);
             boolean bonus = lotto.contains(bonusNumber);
             Ranking ranking = rank(count, bonus);
-            updateResults(ranking);
+            results.put(ranking, results.get(ranking) + 1);
         }
     }
 
@@ -68,13 +61,6 @@ public class Player {
             return Ranking.FIFTH;
         }
         return Ranking.BLANK;
-    }
-
-    private void updateResults(Ranking ranking) {
-        if (ranking.equals(Ranking.BLANK)) {
-            return;
-        }
-        results.put(ranking, results.get(ranking) + 1);
     }
 
     public void findTotalPrize() {

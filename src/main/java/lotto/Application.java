@@ -2,9 +2,14 @@ package lotto;
 import lotto.Lotto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import org.assertj.core.util.Arrays;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
+import java.util.HashSet;
 
 
 public class Application {
@@ -75,6 +80,18 @@ public class Application {
         }
     }
 
+    public static void DuplicateCheck(){
+        Set<Integer> lottoNumbers = new HashSet<>(winningLotto);
+        if(lottoNumbers.size() != winningLotto.size()){
+            System.out.println("[ERROR] 당첨 번호에 중복된 숫자는 허용하지 않습니다.");
+            throw new IllegalArgumentException();
+        }
+        if (winningLotto.contains(bonusNumber)){
+            System.out.println("[ERROR] 당첨 번호에 중복된 숫자는 허용하지 않습니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         GetCoin();
@@ -84,5 +101,6 @@ public class Application {
         WinningLottoInput();
         System.out.println();
         BonusNumberInput();
+        DuplicateCheck();
     }
 }

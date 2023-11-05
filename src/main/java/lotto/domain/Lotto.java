@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.LottoConfig;
 import lotto.constant.LottoRank;
 
 import java.util.*;
@@ -14,7 +15,7 @@ public class Lotto {
     }
 
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConfig.LOTTO_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

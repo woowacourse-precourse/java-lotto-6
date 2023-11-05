@@ -28,4 +28,8 @@ public class Lotto {
         thisNumberSet.removeAll(otherNumberSet);
         return thisNumberSet.size();
     }
+
+    public boolean isContainBonusNumber(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.number());
+    }
 }

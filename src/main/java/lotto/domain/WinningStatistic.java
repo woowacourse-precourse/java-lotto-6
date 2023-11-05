@@ -9,6 +9,9 @@ public class WinningStatistic {
     private final Map<Rank, Integer> result = new EnumMap<Rank, Integer>(Rank.class);
 
     public WinningStatistic(List<Rank> ranks) {
+        for (Rank rank : Rank.values()) {
+            result.put(rank, 0);
+        }
         ranks.forEach(rank -> result.put(rank, result.getOrDefault(rank, 0) + 1));
     }
 

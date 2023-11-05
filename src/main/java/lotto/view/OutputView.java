@@ -10,4 +10,8 @@ public class OutputView {
     public void printBuyingMessage(int lottoCount) {
         System.out.println(PrintingMessage.BUYING_MESSAGE.getWithFormat(lottoCount));
     }
+
+    public void printLottos(String lottos) {
+        System.out.println(lottos);
+    }
 }

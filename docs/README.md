@@ -6,13 +6,13 @@
   - [ ] 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리 - Price#validate()
 - [ ] 로또 발행 
   - [ ] 입력받은 금액만큼 로또 발행 - Lotto#issueLotto()
-    - [ ] "0개를 구매했습니다." - OutputView#outputIssuedLotto()
-    - [ ] "[0, 0, 0, 0, 0, 0]" - OutputView#outputIssuedLotto()
+    - [ ] "0개를 구매했습니다." - OutputView#printIssuedLotto()
+    - [ ] "[0, 0, 0, 0, 0, 0]" - OutputView#printIssuedLotto()
     - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
     - 중복되지 않는 랜덤 6개 숫자
     - 오름차순 정렬
 - [ ] 당첨 번호 입력 
-  - [ ] "당첨 번호를 입력해 주세요." - InputView#inputWinningNumber()
+  - [ ] "당첨 번호를 입력해 주세요." - InputView#inputWinningNumbers()
     - [ ] 1~45 사이의 중복되지 않는 로또 당첨 번호 6개 (쉼표로 구분) - Lotto#validate()
 - [ ] 보너스 번호 입력 
   - [ ] "보너스 번호를 입력해 주세요." - InputView#inputBonusNumber()
@@ -25,7 +25,7 @@
     - 4등: 4개 번호 일치 / 50,000원
     - 5등: 3개 번호 일치 / 5,000원
   - 당첨 번호와 같은 숫자가 있는지 판별 - Lotto#countSameNumber()
-- [ ] 당첨 내역 출력 - OutputView#outputWinningResult
+- [ ] 당첨 내역 출력 - OutputView#printWinningResult
   - [ ] "3개 일치 (5,000원) - 1개\
     4개 일치 (50,000원) - 0개\
     5개 일치 (1,500,000원) - 0개\
@@ -33,7 +33,7 @@
     6개 일치 (2,000,000,000원) - 0개"
 - [ ] 수익률 계산 - Price#calculateEarningRate()
   - 소수점 둘째 자리에서 반올림
-- [ ] 수익률 출력 - OutputView#outputEarningRate()
+- [ ] 수익률 출력 - OutputView#printEarningRate()
   - [ ] "총 수익률은 00.0%입니다." 
 
 

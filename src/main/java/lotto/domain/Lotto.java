@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -16,5 +16,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public Lotto issueLotto(){
+        return null;
+    }
+
+    public void determineWinnings(Lotto winningNumbers){
+
+    }
+
+    public int countSameNumber(Lotto winningNumbers){
+        return -1;
+    }
 }

@@ -2,16 +2,13 @@ package lotto.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constants.OutputConstants;
 import lotto.domain.Lotto;
 import lotto.domain.MatchNumber;
 
 public class OutputView {
     private final static String AUTO_BUY_MESSAGE = "%d개를 구매했습니다.";
-    private final static String LOTTO_PRINT_PREFIX = "[";
-    private final static String LOTTO_PRINT_SUFFIX = "]";
     private final static String WINNING_COUNT_MESSAGE = "당첨 통계\n---";
-    private final static String SPACE = " ";
-    private final static String DASH = " - ";
     private final static String RATEOFRESULT_MESSAGE = "총 수익률은 %.2f%입니다.";
 
 
@@ -26,9 +23,9 @@ public class OutputView {
         StringBuilder result;
         for (Lotto lotto : autoLottos) {
             result = new StringBuilder();
-            result.append(LOTTO_PRINT_PREFIX);
+            result.append(OutputConstants.LOTTO_PRINT_PREFIX.getConstants());
             lotto.getLotto().stream().map(String::valueOf).collect(Collectors.joining(","));
-            result.append(LOTTO_PRINT_SUFFIX);
+            result.append(OutputConstants.LOTTO_PRINT_SUFFIX.getConstants());
             System.out.print(result);
             printEmpty();
         }
@@ -42,9 +39,9 @@ public class OutputView {
         for (int i = 0; i < MatchNumber.getMembers().size(); i++) {
             MatchNumber match = MatchNumber.getMembers().get(i);
             result = new StringBuilder();
-            result.append(match.getResultMessage()).append(SPACE);
+            result.append(match.getResultMessage()).append(OutputConstants.SPACE.getConstants());
             result.append(match.getMoneyMessage());
-            result.append(DASH);
+            result.append(OutputConstants.DASH.getConstants());
             result.append(String.format("%d개", matchCount.get(i)));
             System.out.print(result);
             printEmpty();

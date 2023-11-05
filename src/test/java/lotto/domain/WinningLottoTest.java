@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class WinningLottoTest {
 
     WinningLotto winningLotto = new WinningLotto();
+
+    @BeforeEach
+    void init() {
+        LottoStore.getInstance().getLotto().clear();
+    }
 
     @DisplayName("쉼표로 구분된 숫자를 입력받아 숫자 배열로 반환한다.")
     @Test

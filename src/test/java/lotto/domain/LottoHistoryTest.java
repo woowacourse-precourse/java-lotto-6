@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class LottoHistoryTest {
 
     LottoHistory history = new LottoHistory();
+
+    @BeforeEach
+    void init() {
+        LottoStore.getInstance().getLotto().clear();
+    }
 
     @DisplayName("로또를 로또저장소에 저장한 후 발행 내역을 출력한다.")
     @Test

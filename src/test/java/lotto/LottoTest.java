@@ -2,7 +2,7 @@ package lotto;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +12,12 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
+
+    @BeforeEach
+    void init() {
+        LottoStore.getInstance().getLotto().clear();
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {

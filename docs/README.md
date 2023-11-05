@@ -64,3 +64,5 @@
 ## ✅ 구현 테스트 목록
 
 - [X] 콘솔 메세지들을 주어진 인자에 맞게 올바르게 출력하는가? - `ConsoleMessageTest`
+- [X] 예외 메세지들의 앞에 [ERROR] 라는 머릿말이 정상적으로 출력되는가? - `ExceptionMessageTest`
+- [X] 정상/비정상적인 입력에 대해 정규식이 올바르게 예외를 발생시키는가? - `RegexValidatorTest`

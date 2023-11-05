@@ -4,21 +4,16 @@ public enum LottoSetting {
     DIVISOR(1000),
     MIN_RANDOM_NUMBER(1),
     MAX_RANDOM_NUMBER(45),
-    LOTTO_NUMBERS(6),
-    REGEX(",");
+    LOTTO_NUMBERS(6);
 
-    private final String value;
-
-    LottoSetting(String value) {
-        this.value = value;
-    }
+    private final int value;
 
     LottoSetting(int value) {
-        this.value = String.valueOf(value);
+        this.value = value;
     }
 
 
     public int getValue() {
-        return Integer.parseInt(value);
+        return value;
     }
 }

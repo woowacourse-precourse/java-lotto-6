@@ -26,19 +26,17 @@ public enum LottoRankInfo {
     }
 
     private boolean findRankInfo(LottoRankInfo rankInfo, int matchingCount, boolean matchingBonus) {
-        if (isSecondRank(rankInfo) && matchingBonus) {
-            return isMatchCountEqual(matchingCount, rankInfo.matchingCount);
+        boolean matchCountEqual = isMatchCountEqual(matchingCount, rankInfo.matchingCount);
+
+        if (isSecondRank(rankInfo)) {
+            return matchCountEqual && matchingBonus;
         }
 
-        if (isThirdRank(rankInfo) && !matchingBonus) {
-            return isMatchCountEqual(matchingCount, rankInfo.matchingCount);
+        if (isThirdRank(rankInfo)) {
+            return matchCountEqual && !matchingBonus;
         }
 
-        if (!isSecondRank(rankInfo) && !isThirdRank(rankInfo)) {
-            return isMatchCountEqual(matchingCount, rankInfo.matchingCount);
-        }
-
-        return false;
+        return matchCountEqual;
     }
 
     private boolean isSecondRank(LottoRankInfo rankInfo) {

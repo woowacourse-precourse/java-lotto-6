@@ -9,6 +9,8 @@ public class Application {
 
     public static void main(String[] args) {
         int numberOfLotto = lottoCountForPurchasePrice();
+        OutputHandler.printLineBreak();
+        OutputHandler.printMessage(numberOfLotto + "개를 구매했습니다.");
         List<Lotto> lottos = lottoHandler.issueLottoNumbers(numberOfLotto);
     }
 

@@ -1,15 +1,36 @@
 package Model;
 
+import lotto.Utils;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LottoValidator {
+public class Lotto {
 
     private static final int LOTTO_NUMBER_SIZE = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private  static final int MAX_LOTTO_NUMBER = 45;
+    protected static final int MIN_LOTTO_NUMBER = 1;
+    protected static final int MAX_LOTTO_NUMBER = 45;
+    private final List<Integer> numbers;
 
+    public Lotto (String numbers) {
+        this.numbers = validate(numbers);
+    }
+
+    public Lotto(List<Integer> numbers) {
+        this.numbers = numbers;
+    }
+
+    List<Integer> validate(String numbersInput) {
+        numbersInput = deleteWhiteSpace(numbersInput);
+        numbersInput = correctCommas(numbersInput);
+        validateWinningNumberNumeric(numbersInput);
+        List<Integer> numbers = Utils.convertStringToIntegerList(numbersInput);
+        validateWinningNumberLength(numbers);
+        validateWinningNumberRange(numbers);
+        validateWinningNumberDuplication(numbers);
+        return numbers;
+    }
     void validateWinningNumberLength(List<Integer> winningNumber) {
         if (winningNumber.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException();
@@ -27,10 +48,14 @@ public class LottoValidator {
     }
 
     void validateWinningNumberNumeric(String winningNumber) {
-        for (int winningNumberIndex  = 0; winningNumberIndex < winningNumber.length(); winningNumberIndex++) {
-            if (!(Character.isDigit(winningNumber.charAt(winningNumberIndex)) || winningNumber.charAt(winningNumberIndex) == ',')) {
-                throw new IllegalArgumentException();
+        try {
+            for (int winningNumberIndex = 0; winningNumberIndex < winningNumber.length(); winningNumberIndex++) {
+                if (!(Character.isDigit(winningNumber.charAt(winningNumberIndex)) || winningNumber.charAt(winningNumberIndex) == ',')) {
+                    throw new IllegalArgumentException();
+                }
             }
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException();
         }
     }
     void validateWinningNumberRange(List<Integer> winningNumber) {
@@ -48,15 +73,4 @@ public class LottoValidator {
         }
     }
 
-    void validateBonusNumberDuplication(List<Integer> winningNumber, int bonusNumber) {
-        if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException();
-        }
-    }
 }

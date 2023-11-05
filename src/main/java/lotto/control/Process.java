@@ -1,16 +1,33 @@
 package lotto.control;
 
+import lotto.config.Config;
+import lotto.domain.lotto.LottoEnvelop;
+import lotto.domain.seller.LottoSeller;
+import lotto.domain.user.User;
+
 public class Process {
+    private User user;
+    private LottoSeller lottoSeller;
+
+    public Process() {
+        this.user = Config.user();
+        this.lottoSeller = Config.lottoSeller();
+    }
 
     /**
      * 로또를 산다.
-     *
-     * @param strLine
      */
-    public void buyLotto(String strLine) {
+    public void buyLotto() {
+        LottoEnvelop lottoEnvelop = null;
+
         // 유저가 로또를 산다.
+        Integer moneyOfUser = user.payMoney();
 
         // 로또 판매자가 로또를 판다.
+        lottoEnvelop = lottoSeller.sell(moneyOfUser);
+
+        // 유저가 봉투를 받는다.
+        user.takeLottoEnvelop(lottoEnvelop);
     }
 
     /**

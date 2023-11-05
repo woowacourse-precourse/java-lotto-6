@@ -1,13 +1,15 @@
-package lotto.service;
+package lotto.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.service.LottoNumberGenerator;
 
-public class LottoNumberPrinter {
-    private static List<List<Integer>> prizeList = new ArrayList<>();
+// 이거 출력하는 건 view로 옮겨야 되겠는데?
+public class PurchaseListPrinter {
+    private static List<List<Integer>> purchaseList = new ArrayList<>();
 
-    public static List<List<Integer>> getPrizeList() {
-        return prizeList;
+    public static List<List<Integer>> getPurchaseList() {
+        return purchaseList;
     }
 
     public static void generateAndPrintLottoNumbers(int purchaseAmount) {
@@ -16,7 +18,7 @@ public class LottoNumberPrinter {
 
         for (int i = 0; i < numberOfTickets; i++) {
             List<Integer> prize = numberGenerator.generateNumbers();
-            prizeList.add(prize);
+            purchaseList.add(prize);
             System.out.println(prize);
         }
         System.out.println();

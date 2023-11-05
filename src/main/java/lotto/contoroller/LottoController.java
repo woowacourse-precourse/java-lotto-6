@@ -5,15 +5,15 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Purchase;
 import lotto.service.LottoBonusComparer;
-import lotto.service.LottoNumberPrinter;
+import lotto.service.LottoPurchaseListComparer;
+import lotto.view.PurchaseListPrinter;
 import lotto.utility.ListTypeChanger;
-import lotto.utility.LottoErrorMessage;
 import lotto.utility.NumberTypeChanger;
 import lotto.view.InputValue;
 import lotto.view.OutputMessage;
 
 public class LottoController {
-    private List<List<Integer>> prize;
+    private List<List<Integer>> purchaseList;
     private List<Integer> lotto;
     private int bonus;
 
@@ -21,11 +21,14 @@ public class LottoController {
         int purchaseAmount = getInputPurchase();
         // 여기는 purchaseAmount를 인자로 하는 메소드 만들어버리기
         System.out.printf("%n%d%s%n", purchaseAmount / 1000, OutputMessage.PURCHASE.getMessage());
-        LottoNumberPrinter.generateAndPrintLottoNumbers(purchaseAmount); // 비교를 위해서 어딘가에 담아두는 식으로 리팩토링 필요할듯
+        PurchaseListPrinter.generateAndPrintLottoNumbers(purchaseAmount); // 비교를 위해서 어딘가에 담아두는 식으로 리팩토링 필요할듯
         // 요기까지
-        prize = LottoNumberPrinter.getPrizeList();
+        purchaseList = PurchaseListPrinter.getPurchaseList();
         lotto = getInputLotto();
         bonus = getInputBonus();
+        LottoPurchaseListComparer test = new LottoPurchaseListComparer();
+        test.compareBundle(purchaseList, lotto, bonus);
+        System.out.println(test.getResultList());
     }
 
     // 구입 금액 입력

@@ -3,10 +3,15 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+
+    static int lottoRangeFirstNum = 1;
+    static int lottoRangeLastNum = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        isWithinRange(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +21,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void isWithinRange(List<Integer> numbers) {
+        for (Integer num : numbers) {
+            if (!(num >= lottoRangeFirstNum && num <= lottoRangeLastNum)) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 }

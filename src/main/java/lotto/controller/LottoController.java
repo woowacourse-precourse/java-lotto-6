@@ -14,23 +14,33 @@ public class LottoController {
     LottoService lottoService = new LottoService();
 
     public void run() {
-        PurchasePrice purchasePrice = getPurchasePrice();
-        int lottoCount = purchasePrice.getLottoCount();
-        OutputView.printPurchaseLotto(lottoCount);
-        Lottos lottos = new Lottos(lottoService.generateLotto(lottoCount));
-        OutputView.printLottosValue(lottos.toResponseDto());
-        // 당첨 번호를 입력해 주세요.
-        Lotto userLotto = getUserLottoNumber();
-        // 보너스 번호를 입력해 주세요.
-        int userBonusNumber = getUserBonusNumber();
-        // 당첨 통계
-        List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos,
-                userBonusNumber);
-        // 출력
-        OutputView.printLottoResult(lottoService.convertToDto(results));
-        // 수익률
+        try {
+            PurchasePrice purchasePrice = getPurchasePrice();
+            int lottoCount = purchasePrice.getLottoCount();
+            OutputView.printPurchaseLotto(lottoCount);
+            Lottos lottos = new Lottos(lottoService.generateLotto(lottoCount));
+            // 로또들 출력
+            LottoResponseDtos responseDtos = lottos.toResponseDtos();
+            OutputView.printLottosValue(responseDtos);
+            // 당첨 번호를 입력해 주세요.
+            Lotto userLotto = getUserLottoNumber();
+
+            // 보너스 번호를 입력해 주세요.
+            int userBonusNumber = getUserBonusNumber();
+
+            // 당첨 통계
+            List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos,
+                    userBonusNumber);
+            // 출력
+            List<ResultResponseDto> dtos = lottoService.convertToDto(results);
+            OutputView.printLottoResult(dtos);
+            // 수익률
             double earningRate = calculatePriceRate(purchasePrice, dtos);
             OutputView.printEarningRate(earningRate);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     }
 

@@ -6,9 +6,7 @@ import java.util.StringTokenizer;
 
 public class InputConverter {
     public static int convertPrice(String inputPrice) {
-        checkDigit(inputPrice);
-        int price = Integer.parseInt(inputPrice);
-        return price;
+        return checkDigit(inputPrice);
     }
 
     public static List<Integer> convertWinningNumber(String inputWinningNumber) {

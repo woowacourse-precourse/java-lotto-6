@@ -1,10 +1,7 @@
-package lotto.application;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-
 import java.util.List;
-import java.util.stream.Stream;
 
 public class LottoGenerator {
     public static Lotto generate() {

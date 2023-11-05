@@ -2,8 +2,8 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.domain.Lotto;
 import lotto.domain.Rank;
+import lotto.vo.Lotto;
 
 public class OutputView {
     private static final String LOTTO_COUNT_PRINT_MESSAGE = "개를 구매했습니다.";
@@ -47,7 +47,7 @@ public class OutputView {
             if (rank == Rank.UNRANK) {
                 continue;
             }
-            
+
             int count = rankIntegerMap.get(rank);
             System.out.println(rank.getOutputMessage() + count + "개");
         }

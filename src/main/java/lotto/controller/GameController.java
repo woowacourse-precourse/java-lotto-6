@@ -2,22 +2,17 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.domain.Game;
-import lotto.domain.Lotto;
+import lotto.domain.GameResultJudge;
+import lotto.domain.GameReturnRateCalculator;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.vo.Lotto;
 import lotto.vo.WinLotto;
 
 public class GameController {
     private static final int LOTTO_PRICE = 1000;
-
-    private final Game game;
-
-    public GameController(Game game) {
-        this.game = game;
-    }
 
     private int getLottoCount(int price) {
         return price / LOTTO_PRICE;
@@ -47,13 +42,11 @@ public class GameController {
         WinLotto winLotto = new WinLotto(winNumbers, bonusNumber);
 
         //6) 당첨에 대한 통계 기능
-        Map<Rank, Integer> rankCountMap = game.judgePrizeLotto(winLotto, lotto_list);
+        Map<Rank, Integer> rankCountMap = GameResultJudge.judge(winLotto, lotto_list);
         OutputView.printResultLottoPrize(rankCountMap);
 
         //7) 수익률 계산 기능
-        int result = game.getLottoTotalPrizePrice(rankCountMap);
-        double out = game.getPercentPrize(price, result);
-
+        double out = GameReturnRateCalculator.getReturnRate(rankCountMap, price);
         OutputView.printPrizePercentResult(out);
 
     }

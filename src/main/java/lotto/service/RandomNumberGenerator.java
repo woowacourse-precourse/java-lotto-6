@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RandomNumberGenerator implements NumberGenerator {
     @Override
-    public List<Integer> generate() {
+    public List<Integer> generateLotto() {
         return Randoms.pickUniqueNumbersInRange
                 (MIN_LOTTO_NUM.getValue(), MAX_LOTTO_NUM.getValue(), LOTTO_MAX_SIZE.getValue());
     }

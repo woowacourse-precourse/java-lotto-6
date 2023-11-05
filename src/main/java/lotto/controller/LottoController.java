@@ -26,8 +26,8 @@ public class LottoController {
     }
 
     private void buyLotto() {
-        String amount = inputView.printAskPurchase();
-        List<Lotto> lottoTickets = lottoService.buyLottoTickets(amount);
+        String money = inputView.printAskPurchase();
+        List<Lotto> lottoTickets = lottoService.buyLottoTickets(money);
         outputView.printLottoTickets(lottoTickets);
     }
 
@@ -35,10 +35,12 @@ public class LottoController {
         String winningNumber = inputView.askWinningNumbers();
         String bonusNumber = inputView.askBonusNumber();
 
+        lottoService.getWinningLotto(winningNumber, bonusNumber);
     }
 
     private void getLottoResult() {
         //TODO: 당첨 통계 계산 및 정보 전달
+        lottoService.getLottoResult();
 
     }
 

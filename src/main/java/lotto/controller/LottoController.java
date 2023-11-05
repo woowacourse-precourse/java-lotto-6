@@ -5,6 +5,8 @@ import lotto.exceptionhandler.RetryExceptionHandler;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.domain.LottoAnswer;
+import lotto.model.domain.Results;
+import lotto.model.domain.result.ResultFactory;
 import lotto.model.lottogenerator.AnswerGenerator;
 import lotto.view.LottoGameUI;
 import lotto.view.TerminalUI;
@@ -18,7 +20,10 @@ public class LottoController {
     final private LottoGameUI ui;
 
     private Lottos lottos;
-    private AnswerGenerator answerGenerator;
+    //private AnswerGenerator answerGenerator;
+    private LottoAnswer answer;
+    ResultFactory factory = new ResultFactory();
+    Results results = new Results();
 
     public LottoController(ExceptionHandler handler, LottoStore store, LottoGameUI ui){
         this.retryHandler = handler;
@@ -41,9 +46,17 @@ public class LottoController {
     }
 
     private void createAnswer(){
-        answerGenerator = retryHandler.getResult(
+        AnswerGenerator answerGenerator = retryHandler.getResult(
                 ()-> new AnswerGenerator(ui.getAnswerNumber(), ui.getBonusNumber()));
+        answer = (LottoAnswer) answerGenerator.generate();
     }
 
-    //TODO 5. 결과 생성 및 처리
+    private void computeResult(){
+        lottos.getLottosDTO()
+                .stream()
+                .map((lotto) -> factory.getResult(lotto, answer))
+                .forEach(results::addResult);
+    }
+
+
 }

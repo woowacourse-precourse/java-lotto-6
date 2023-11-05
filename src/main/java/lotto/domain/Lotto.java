@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.enums.LottoNumbers;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,12 @@ public class Lotto {
         if (numbers.size() != NUMBERS_SIZE
                 || numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException();
+        }
+
+        for (Integer number: numbers) {
+            if (!LottoNumbers.contains(number)) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 

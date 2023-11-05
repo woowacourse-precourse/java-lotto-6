@@ -15,7 +15,7 @@ public class WinningLotto extends Lotto {
 
     private void validate(int bonusNumber) {
         if (!LottoNumbers.contains(bonusNumber)
-                || contains(bonusNumber)) {
+                || super.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }

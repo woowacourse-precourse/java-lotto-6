@@ -74,4 +74,26 @@ class WinningLottoTest {
         );
     }
 
+    @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
+    @MethodSource("provideDataForHasBonusNumber")
+    @DisplayName("사용자가 구매한 로또와 당첨 번호를 비교: 보너스 번호를 맞췄는지 알려준다")
+    void givenWinningLottoAndUserLotto_whenHasBonusNumber_thenReturnResult(List<Integer> numbers, boolean expected) {
+        // given
+        WinningLotto winningLotto = new WinningLotto(lotto, 1);
+        Lotto userLotto = new Lotto(numbers);
+
+        // when
+        boolean result = winningLotto.hasBonusNumber(userLotto);
+
+        // then
+        assertEquals(expected, result);
+    }
+
+    static Stream<Arguments> provideDataForHasBonusNumber() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), true),
+                Arguments.of(List.of(2, 3, 4, 5, 6, 7), false)
+        );
+    }
+
 }

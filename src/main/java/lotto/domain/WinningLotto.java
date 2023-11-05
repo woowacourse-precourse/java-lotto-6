@@ -41,4 +41,8 @@ public class WinningLotto {
         return winningLotto.compare(userLotto);
     }
 
+    public boolean hasBonusNumber(final Lotto userLotto) {
+        return userLotto.hasNumber(bonusNumber);
+    }
+
 }

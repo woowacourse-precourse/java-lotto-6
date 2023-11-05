@@ -30,13 +30,21 @@ public class LottoGame {
     }
 
     private List<Integer> inputWinningLotto() {
-        InputView.inputNumbers();
-        return LottoUtils.stringToList(InputUtil.inputStringWithTrim());
+        try {
+            InputView.inputNumbers();
+            return LottoUtils.stringToList(InputUtil.inputStringWithTrim());
+        } catch (IllegalArgumentException e) {
+            return inputWinningLotto();
+        }
     }
 
     private String inputBonusNumber() {
-        InputView.inputBonusNumber();
-        return InputUtil.inputStringWithTrim();
+        try {
+            InputView.inputBonusNumber();
+            return InputUtil.inputStringWithTrim();
+        } catch (IllegalArgumentException e) {
+            return inputBonusNumber();
+        }
     }
 
     private void initWinningLotto(List<Integer> lotto, String bonus) {

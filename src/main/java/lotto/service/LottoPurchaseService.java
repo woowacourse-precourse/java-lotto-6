@@ -2,7 +2,7 @@ package lotto.service;
 
 import lotto.domain.LottoMachine;
 import lotto.domain.PurchasedLotto;
-import lotto.dto.PurchasedLottoDTO;
+import lotto.dto.BuyLottoDTO;
 
 public final class LottoPurchaseService {
     private final LottoMachine lottoMachine;
@@ -13,8 +13,8 @@ public final class LottoPurchaseService {
         this.buyPrice = buyPrice;
     }
 
-    public PurchasedLottoDTO.Output getPurchasedLottoDTO() {
+    public BuyLottoDTO.Output getPurchasedLottoDTO() {
         PurchasedLotto purchasedLotto = lottoMachine.generateForPrice(buyPrice);
-        return new PurchasedLottoDTO.Output(purchasedLotto.lotto());
+        return new BuyLottoDTO.Output(purchasedLotto);
     }
 }

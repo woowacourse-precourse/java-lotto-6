@@ -5,11 +5,12 @@ import lotto.view.InputView;
 import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.view.ParameterConfig.BUY_LOTTO_DTO;
 
 public final class LottoBuyInputView implements InputView {
     @Override
     public void read(Map<String, String> parameter) {
-        parameter.put("buyPrice", readBuyPrice());
+        parameter.put(BUY_LOTTO_DTO, readBuyPrice());
     }
 
     private String readBuyPrice() {

@@ -22,9 +22,10 @@ class MessageTypeTest {
         int matchCount = 3;
         int money = 5000;
         int ea = 1;
-        String expectedMessage = "3개 일치 (5,000원) - 1개";
+        boolean isLottoThirdRank = false;
 
-        String actualMessage = WINNING_STATISTICS_FORMAT.getStatisticsMessage(matchCount, money, ea);
+        String expectedMessage = "3개 일치 (5,000원) - 1개";
+        String actualMessage = WINNING_STATISTICS_FORMAT.getStatisticsMessage(matchCount, money, ea, isLottoThirdRank);
 
         assertThat(expectedMessage).isEqualTo(actualMessage);
     }

@@ -10,9 +10,10 @@ public enum MessageType {
     ASK_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
     ASK_BONUS_NUMBERS("보너스 번호를 입력해 주세요."),
     WINNING_STATISTICS("당첨 통계"),
+    ADVANCE("-"),
     WINNING_STATISTICS_FORMAT("%d개 일치 (%s원) - %d개"),
+    WINNING_STATISTICS_BONUS_FORMAT("%d개 보너스 볼 일치 (%s원) - %d개"),
     ;
-
     private final String message;
 
     MessageType(String message) {
@@ -23,15 +24,19 @@ public enum MessageType {
         return message;
     }
 
-    public String getEaMessage(int ea) {
+    public static String getEaMessage(int ea) {
         return String.format(PURCHASED_LOTTO_FORMAT.getMessage(), ea);
     }
 
-    public String getStatisticsMessage(int matchCount, int money, int ea) {
+    public static String getStatisticsMessage(int matchCount, int reward, int ea, boolean isLottoThirdRank) {
+        String messageFormat = WINNING_STATISTICS_FORMAT.getMessage();
+        if (isLottoThirdRank) {
+            messageFormat = WINNING_STATISTICS_BONUS_FORMAT.getMessage();
+        }
         return String.format(
-                WINNING_STATISTICS_FORMAT.message,
+                messageFormat,
                 matchCount,
-                String.format("%,d", money),
+                String.format("%,d", reward),
                 ea
         );
     }

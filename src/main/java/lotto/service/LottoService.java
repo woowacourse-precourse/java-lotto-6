@@ -1,8 +1,6 @@
 package lotto.service;
 
-import lotto.model.Lotto;
-import lotto.model.LottoMachine;
-import lotto.model.WinLotto;
+import lotto.model.*;
 import lotto.service.view.InputViewService;
 import lotto.service.view.OutputViewService;
 
@@ -27,9 +25,9 @@ public class LottoService {
         Lotto winnigNumbers = getWinnigNumbers();
         int bonusNumber = getBonusNumber(winnigNumbers.getNumbers());
 
-        WinLotto winLotto = new WinLotto(winnigNumbers, bonusNumber);
+        LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(winnigNumbers, bonusNumber);
 
-        printResult(purchasedLottoList, winLotto);
+        printResult(purchasedLottoList, lottoResultCalculator);
     }
 
     private int getAmount() {
@@ -70,9 +68,11 @@ public class LottoService {
         }
     }
 
-    private void printResult(List<Lotto> purchasedLottoList, WinLotto winnigLotto) {
-        OutputViewService.outputStatistics();
-        OutputViewService.outputRateOfReturn();
+    private void printResult(List<Lotto> purchasedLottoList, LottoResultCalculator lottoCalculator) {
+        OutputViewService.outputStatisticIntro();
+        List<LottoResult> lottoResultList = lottoCalculator.getLottoResults(purchasedLottoList);
+        OutputViewService.outputStatistics(lottoResultList);
+//        OutputViewService.outputRateOfReturn(lottoResultList);
     }
 
 }

@@ -1,15 +1,12 @@
 package lotto.input;
 
-import static lotto.exception.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER_INPUT;
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER_SIZE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.validator.LottoNumberValidator;
@@ -75,9 +72,6 @@ class LottoNumberInputManager {
     }
 
     private static void validateDuplicateLottoNumber(List<Integer> lottoNumbers) {
-        Set<Integer> uniqueLottoNumbers = new HashSet<>(lottoNumbers);
-        if (lottoNumbers.size() != uniqueLottoNumbers.size()) {
-            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER);
-        }
+        LottoNumberValidator.validateDuplicateLottoNumber(lottoNumbers);
     }
 }

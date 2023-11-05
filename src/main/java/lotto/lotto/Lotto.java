@@ -1,11 +1,8 @@
 package lotto.lotto;
 
-import static lotto.exception.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER_SIZE;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.validator.LottoNumberValidator;
 
 class Lotto {
@@ -35,9 +32,6 @@ class Lotto {
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (numbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER);
-        }
+        LottoNumberValidator.validateDuplicateLottoNumber(numbers);
     }
 }

@@ -19,12 +19,13 @@ public class Application {
         int amount = money / 1000;
         System.out.println("\n"+amount+"개를 구매했습니다.");
 
-        List<List<Integer>> lottos = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<Lotto>();
 
         for (int i=0; i<amount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            System.out.println(numbers);
-            lottos.add(numbers);
+            Lotto lotto = new Lotto(numbers);
+            System.out.println(lotto.getNumbers());
+            lottos.add(lotto);
         }
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -35,15 +36,15 @@ public class Application {
         System.out.println("\n당첨 통계\n---");
 
         List<Integer> correctLotto = new ArrayList<Integer>();
-        for (int i=0; i<lottos.size(); i++) {       // separate
+        for (Lotto l : lottos) {       // separate
             int count = 0;
-            for (int p : prizeNum){
-                if (lottos.get(i).contains(p)) {
-                    count ++;
+            for (int p : prizeNum) {
+                if (l.getNumbers().contains(p)) {
+                    count++;
                 }
             }
             if (count == 5) {           // separate
-                if (lottos.get(i).contains(bonusNum)) {
+                if (l.getNumbers().contains(bonusNum)) {
                     count += 100;
                 }
             }

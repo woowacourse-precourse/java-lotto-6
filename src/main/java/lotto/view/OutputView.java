@@ -1,5 +1,9 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
+
+import java.util.List;
+
 public class OutputView {
     private final static String INPUT_PURCHASE_AMOUNT_MSG = "구입금액을 입력해 주세요.\n";
     private final static String PURCHASE_MSG = "%d개를 구매했습니다.\n";
@@ -17,15 +21,13 @@ public class OutputView {
         System.out.printf(PURCHASE_MSG, lottoCount);
     }
 
-    private static void printLotto(int[] lotto) {
-        System.out.println("[" + String.join(", ",
-                java.util.Arrays.stream(lotto)
-                        .mapToObj(String::valueOf)
-                        .toArray(String[]::new)) + "]");
+    private static void printLotto(Lotto lotto) {
+        // Lotto 객체의 toString() 메서드를 사용하여 출력
+        System.out.println(lotto);
     }
 
-    public static void printLottos(int[][] lottos) {
-        for (int[] lotto : lottos) {
+    public static void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
             printLotto(lotto);
         }
     }

@@ -38,4 +38,6 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
+
+
 }

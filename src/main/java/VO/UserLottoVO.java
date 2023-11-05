@@ -5,6 +5,8 @@ import domain.Lotto;
 import java.util.List;
 
 public class UserLottoVO {
+
+    private static final char NEW_LINE = '\n';
     private List<Lotto> lottoList;
     private Integer pay;
 
@@ -24,7 +26,7 @@ public class UserLottoVO {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         for(Lotto lotto : lottoList) {
-            builder.append(lotto.toString()).append('\n'); // TODO: 상수 처리 필요
+            builder.append(lotto.toString()).append(NEW_LINE);
         }
         return builder.toString();
     }

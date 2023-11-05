@@ -1,11 +1,15 @@
 package domain;
 
+import static config.ErrorMessage.*;
+import static config.LottoConst.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -19,8 +23,8 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) { // 상수 처리 필요
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복 없는 6개 입니다.");
+        if (numbers.size() != LOTTO_SIZE.getNumber()) {
+            throw new IllegalArgumentException(LOTTO.getMessage());
         }
     }
 
@@ -35,7 +39,7 @@ public class Lotto {
 
     public int compareLotto(Lotto lotto) {
         Set<Integer> orignLotto = new HashSet<>(numbers);
-        int count = 0;
+        int count = COUNT_INIT.getNumber();
         for(Integer number : lotto.numbers) {
             if(orignLotto.contains(number)) {
                 count++;

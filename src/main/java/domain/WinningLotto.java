@@ -1,7 +1,11 @@
 package domain;
 
+import config.ErrorMessage;
+
 public class WinningLotto { // 싱글톤 패턴으로 관리
 
+    private static final int FIVE_CORRECT = 5;
+    private static final int BONUS_COUNT = 2;
     private static WinningLotto defaultWinningLotto;
     private Lotto numbers;
     private Integer bonusNumber;
@@ -27,14 +31,14 @@ public class WinningLotto { // 싱글톤 패턴으로 관리
 
     private void validateBonusNumber(Integer bonusNumber) {
         if(numbers.containsNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS.getMessage());
         }
     }
 
-    public int countWinNumber(Lotto lotto) { // TODO: 상수 처리 필요
+    public int countWinNumber(Lotto lotto) {
         int count = this.numbers.compareLotto(lotto);
-        if(count == 5 && lotto.containsNumber(bonusNumber)) {
-            count += 2;
+        if(count == FIVE_CORRECT && lotto.containsNumber(bonusNumber)) {
+            count += BONUS_COUNT;
         }
         return count;
     }

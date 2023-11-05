@@ -4,7 +4,7 @@ import static exception.InputException.*;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import config.OutputMessage;
+import static config.OutputMessage.*;
 
 import controller.GameController;
 import domain.Lotto;
@@ -14,6 +14,7 @@ import java.util.List;
 
 public class InputView {
 
+    private static final String SPRIT_REGEX = ",";
     private final GameController gameController;
 
     public InputView(GameController gameController) {
@@ -21,7 +22,7 @@ public class InputView {
     }
 
     public void inputPayment() {
-        System.out.println(OutputMessage.DEPOSIT.getMessage());
+        System.out.println(DEPOSIT.getMessage());
         try {
             gameController.lottoAdd(validatePayUnit(validateInteger(Console.readLine())));
         } catch (IllegalArgumentException e) {
@@ -31,9 +32,9 @@ public class InputView {
     }
 
     public void inputWinNumber() {
-        System.out.println(OutputMessage.WIN_NUMBER.getMessage());
+        System.out.println(WIN_NUMBER.getMessage());
         try {
-            String[] winNumbers = Console.readLine().split(",");
+            String[] winNumbers = Console.readLine().split(SPRIT_REGEX);
             gameController.winningLottoAdd(new Lotto(makeWinNumber(winNumbers)));
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
@@ -50,7 +51,7 @@ public class InputView {
     }
 
     public void inputBonusNumber() {
-        System.out.println(OutputMessage.BONUS_NUMBER.getMessage());
+        System.out.println(BONUS_NUMBER.getMessage());
         try {
             gameController.bonusLottoAdd(validateRange(validateInteger(Console.readLine())));
         } catch (IllegalArgumentException e) {

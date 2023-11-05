@@ -3,8 +3,9 @@ package service;
 import static util.LottoUtil.*;
 
 import domain.Lotto;
-import VO.UserLottoVO;
 import domain.WinningLotto;
+
+import VO.UserLottoVO;
 
 public class LottoService {
 

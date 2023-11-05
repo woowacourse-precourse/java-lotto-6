@@ -20,7 +20,7 @@ public enum Rank {
 
     public static Rank findRank(int matchCount, boolean hasBonusMatch) {
         for (Rank rank : values()) {
-            if (rank.matchCount == matchCount && (rank.hasBonus == hasBonusMatch || rank.hasBonus == false)) {
+            if (rank.matchCount == matchCount && (rank.hasBonus == hasBonusMatch || !rank.hasBonus)) {
                 return rank;
             }
         }

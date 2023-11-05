@@ -1,10 +1,13 @@
 package lotto.application;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
 
-import java.util.Collections;
+import lotto.domain.Lotto;
+import lotto.global.constant.enums.MatchResultType;
+
 import java.util.List;
+import java.util.Objects;
+import java.util.ArrayList;
 
 public abstract class LottoMachine {
     private static final int LOWER_LIMIT_NUMBER = 1;
@@ -15,13 +18,58 @@ public abstract class LottoMachine {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
                 LOWER_LIMIT_NUMBER, UPPER_LIMIT_NUMBER, NUMBER_QUANTITY
         );
-        Collections.sort(randomNumbers);
-        return new Lotto(randomNumbers);
+        List<Integer> lottoNumbers = new ArrayList<>(randomNumbers);
+        lottoNumbers.sort(Integer::compareTo);
+        return new Lotto(lottoNumbers);
     }
 
     public static Lotto issueManualLotto(List<Integer> manualNumbers) {
-        Collections.sort(manualNumbers);
-        return new Lotto(manualNumbers);
+        List<Integer> lottoNumbers = new ArrayList<>(manualNumbers);
+        lottoNumbers.sort(Integer::compareTo);
+        return new Lotto(lottoNumbers);
+    }
+
+    public static MatchResultType match(Lotto lotto, Lotto winningLotto, int bonusNumber) {
+        if (isAllMatch(lotto, winningLotto)) {
+            return MatchResultType.MATCH_SIX;
+        }
+        int matchedNumberQuantity = countMatchedNumber(lotto, winningLotto);
+        boolean bonusIn = isBonusIn(lotto, bonusNumber);
+        MatchResultType matchResultType = decideMatchType(matchedNumberQuantity);
+
+        if (Objects.equals(matchResultType, MatchResultType.MATCH_FIVE) && bonusIn) {
+            return MatchResultType.MATCH_FIVE_WITH_BONUS;
+        }
+        return matchResultType;
+    }
+
+    private static boolean isAllMatch(Lotto lotto, Lotto winningLotto) {
+        return lotto.isSameWith(winningLotto);
+    }
+
+    private static boolean isBonusIn(Lotto lotto, int bonusNumber) {
+        return lotto.isExist(bonusNumber);
+    }
+
+    private static int countMatchedNumber(Lotto lotto, Lotto winningLotto) {
+        return (int) lotto.getLottoNumbers().stream()
+                .filter(number -> winningLotto.getLottoNumbers().contains(number))
+                .count();
+    }
+
+    private static MatchResultType decideMatchType(int matchCount) {
+        switch (matchCount) {
+            case 3 -> {
+                return MatchResultType.MATCH_THREE;
+            }
+            case 4 -> {
+                return MatchResultType.MATCH_FOUR;
+            }
+            case 5 -> {
+                return MatchResultType.MATCH_FIVE;
+            }
+        }
+        return MatchResultType.BOOM;
     }
 
 }

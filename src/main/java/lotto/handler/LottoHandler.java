@@ -19,6 +19,16 @@ public enum LottoHandler {
         this.prize = prize;
     }
 
+    public static LottoHandler getLottoHandler(int matchingCount) {
+        for (LottoHandler lottoHandler : LottoHandler.values()) {
+            if (lottoHandler.getCount() == matchingCount) {
+                return lottoHandler;
+            }
+        }
+
+        return OTHER;
+    }
+
     public int getCount() {
         return count;
     }

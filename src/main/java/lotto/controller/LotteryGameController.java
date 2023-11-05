@@ -65,7 +65,6 @@ public class LotteryGameController {
     }
 
     private List<Integer> inputWinningNumber() {
-        OutputView.requestWinningNumberMessage();
         String input = inputView.returnInput();
         String[] numberStrings = input.split(SPLIT_SYMBOL);
 

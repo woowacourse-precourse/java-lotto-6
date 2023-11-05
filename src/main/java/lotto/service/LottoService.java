@@ -2,12 +2,12 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
+import lotto.model.Statistics;
 import lotto.view.InputView;
 
 import java.util.*;
 
-import static lotto.view.InputView.money;
-import static lotto.view.InputView.winningNumbers;
+import static lotto.view.InputView.*;
 
 public class LottoService {
 
@@ -40,19 +40,43 @@ public class LottoService {
                 countingCorrectNumbers++;
             }
         }
+        if (countingCorrectNumbers == 5) {
+            countingCorrectNumbers = compareWithBonusNumber(lottoNumbers);
+        }
         return countingCorrectNumbers;
     }
-    public static void countCorrectNumbers(List<Lotto> lottoTickets) {
+    public static List<Integer> countCorrectNumbers(List<Lotto> lottoTickets) {
         List<Integer> amountOfCorrectNumbers = new ArrayList<>();
         for (Lotto lottoTicket : lottoTickets) {
             amountOfCorrectNumbers.add(compareWithWinningNumbers(lottoTicket));
         }
+        return amountOfCorrectNumbers;
     }
-    public static void compareWithBonusNumber(int bonusNumber) {
-
+    public static int compareWithBonusNumber(List<Integer> lottoNumbers) {
+        for (Integer number : lottoNumbers) {
+            if (number == bonusNumber) {
+                return 7;
+            }
+        }
+        return 5;
+    }
+    public static int countCorrespondingTickets(int number,List<Integer> amountOfCorrectNumbers) {
+        int counter = 0;
+        for (Integer correctNumbers : amountOfCorrectNumbers) {
+            if (correctNumbers == number) {
+                counter ++;
+            }
+        }
+        return counter;
     }
     public void makeStatistics(List<Integer> amountOfCorrectNumbers) {
-
+        List<Statistics> lottoStatistics = new ArrayList<>();
+        countCorrespondingTickets(3, amountOfCorrectNumbers);
+        lottoStatistics.add(new Statistics("3개 일치 (5,000원)", countCorrespondingTickets(3, amountOfCorrectNumbers)));
+        lottoStatistics.add(new Statistics("4개 일치 (50,000원)", countCorrespondingTickets(4, amountOfCorrectNumbers)));
+        lottoStatistics.add(new Statistics("5개 일치 (1,500,000원)",countCorrespondingTickets(5, amountOfCorrectNumbers)));
+        lottoStatistics.add(new Statistics("5개 일치, 보너스 볼 일치 (30,000,000원)", countCorrespondingTickets(7, amountOfCorrectNumbers)));
+        lottoStatistics.add(new Statistics("6개 일치 (2,000,000,000원)", countCorrespondingTickets(6, amountOfCorrectNumbers)));
     }
     public void getEarningRate() {
 

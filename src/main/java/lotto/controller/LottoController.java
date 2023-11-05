@@ -15,6 +15,7 @@ public class LottoController {
     public void playGame(){
         askUserToInsertMoneyToBuyLotto();
         askUserToInsertLottoWinningNumbers();
+        askUserToInsertBonusNumber();
         lottoService.playGame();
     }
 
@@ -26,4 +27,7 @@ public class LottoController {
         outputView.askUserToInsertLottoWinningNumbers();
     }
 
+    private void askUserToInsertBonusNumber(){
+        outputView.askUserToInsertBonusNumber();
+    }
 }

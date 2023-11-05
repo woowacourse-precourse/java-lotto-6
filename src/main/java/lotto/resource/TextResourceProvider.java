@@ -8,7 +8,7 @@ public class TextResourceProvider {
     public static final String PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_LONG_TEXT = "구입금액은 양수야 합니다.";
     public static final String PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_LOTTERY_PRICE_TEXT = "구입금액은 1000으로 나눌 수 있어야 합니다.";
 
-    public static final String WINNING_NUMBERS_MUST_BE_SEPARATED_BY_SIX_INTEGER_WITH_DELIMITER_TEXT = "당첨번호는 ','로 구분된 6개의  Integer 타입의 숫자여야 합니다";
+    public static final String WINNING_NUMBERS_MUST_BE_SEPARATED_BY_SIX_INTEGER_WITH_DELIMITER_TEXT = "당첨번호는 ','로 구분된 6개의 Integer 타입의 숫자여야 합니다";
     public static final String WINNING_NUMBERS_MUST_BE_BETWEEN_1_AND_45 = "당첨번호는 1과 45 사이의 숫자로 이루어져야 합니다";
     public static final String WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS = "당첨번호는 6개의 중복되지 않는 숫자여야 합니다";
 

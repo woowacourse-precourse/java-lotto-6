@@ -13,7 +13,7 @@ public class InvalidPurchasedAmountException extends UserInvalidInputException {
         super(message, Long.toString(invalidAmount));
     }
 
-    InvalidPurchasedAmountException(String message, long invalidAmount, Throwable cause) {
+    public InvalidPurchasedAmountException(String message, long invalidAmount, Throwable cause) {
         super(message, Long.toString(invalidAmount), cause);
     }
 }

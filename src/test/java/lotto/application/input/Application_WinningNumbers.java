@@ -126,7 +126,7 @@ public class Application_WinningNumbers extends Application_InputTest {
     }
 
     private static Stream<String> getStringCannotConvertToInteger() {
-        return Stream.of("1,2,3,4,5,z", "1,2,,3,4,5,6", "-1,2,3,4,5,6", "1,2,3,4,5,6.0", "1,2,3,4,5,2147483648",
+        return Stream.of("1,2,3,4,5,z", "1,2,,3,4,5,6",  "1,2,3,4,5,6.0", "1,2,3,4,5,2147483648",
                 "1,2,3,4,5,-2147483649");
     }
 

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import lotto.domain.LotteryReceipt;
 import lotto.domain.LotteryRetailer;
 import lotto.domain.LottoRandom;
@@ -18,5 +19,9 @@ public class Controller {
         LotteryRetailer retailer = new LotteryRetailer(new LottoRandom());
         LotteryReceipt receipt = retailer.purchase(purchasedAmount);
         out.printReceipt(receipt);
+    }
+
+    void drawWinningLottery(){
+        List<Integer> winningNumbers = in.getWinningNumbers();
     }
 }

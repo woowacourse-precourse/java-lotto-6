@@ -6,12 +6,17 @@ public class UserInvalidInputException extends IllegalArgumentException {
 
     private String invalidInput;
 
-    UserInvalidInputException(String message, String invalidInput) {
+    public UserInvalidInputException(Throwable cause) {
+        super(cause);
+        this.invalidInput = "";
+    }
+
+    public UserInvalidInputException(String message, String invalidInput) {
         super(message);
         this.invalidInput = invalidInput;
     }
 
-    UserInvalidInputException(String message, String invalidInput, Throwable cause) {
+    public UserInvalidInputException(String message, String invalidInput, Throwable cause) {
         super(message, cause);
         this.invalidInput = invalidInput;
     }

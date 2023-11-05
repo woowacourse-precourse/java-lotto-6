@@ -3,7 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class LottoIssuer {
 
@@ -11,8 +11,9 @@ public class LottoIssuer {
     }
 
     public static List<Lotto> issue(int issuesNumber) {
-        return IntStream.rangeClosed(1, issuesNumber)
-                .mapToObj(count -> issue())
+        return Stream.generate(LottoIssuer::issue)
+                .distinct()
+                .limit(issuesNumber)
                 .toList();
     }
 

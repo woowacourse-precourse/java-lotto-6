@@ -11,8 +11,4 @@ public class Buyer {
         this.purchaseAmount = purchaseAmount;
         this.lottos = lottos;
     }
-
-    public void addLotto(Lotto lotto) {
-        lottos.add(lotto);
-    }
 }

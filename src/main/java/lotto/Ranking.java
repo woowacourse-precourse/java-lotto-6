@@ -1,5 +1,7 @@
 package lotto;
 
+import java.text.DecimalFormat;
+
 public enum Ranking {
     FIRST(6, false, 2000000000),
     SECOND(5, true, 30000000),
@@ -18,10 +20,6 @@ public enum Ranking {
         this.prizeMoney = prizeMoney;
     }
 
-    public int getPrizeMoney() {
-        return this.prizeMoney;
-    }
-
     public static Ranking find(int count, boolean hasBonusNumber) {
         for (Ranking ranking : Ranking.values()) {
             if (ranking.isEqual(count, hasBonusNumber))
@@ -34,5 +32,13 @@ public enum Ranking {
         if (count == 5)
             return this.matchingCount == count && this.shouldMatchingBonusNumber == hasBonusNumber;
         return this.matchingCount == count;
+    }
+
+    public String getResult(int time) {
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        String bonusMessage = "";
+        if (shouldMatchingBonusNumber)
+            bonusMessage = ", 보너스 볼 일치";
+        return String.format("%d개 일치%s (%s원) - %d개", matchingCount, bonusMessage, formatter.format(prizeMoney), time);
     }
 }

@@ -46,4 +46,20 @@ public class RankingTest {
 
         assertThat(ranking).isEqualTo(Ranking.NONE);
     }
+
+    @DisplayName("2등을 2번 한 경우의 결과 메시지 확인")
+    @Test
+    void checkSecondMessage() {
+        String result = Ranking.SECOND.getResult(2);
+
+        assertThat(result).isEqualTo("5개 일치, 보너스 볼 일치 (30,000,000원) - 2개");
+    }
+
+    @DisplayName("3등을 1번 한 경우의 결과 메시지 확인")
+    @Test
+    void checkThirdMessage() {
+        String result = Ranking.THIRD.getResult(1);
+
+        assertThat(result).isEqualTo("5개 일치 (1,500,000원) - 1개");
+    }
 }

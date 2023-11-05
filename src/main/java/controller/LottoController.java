@@ -2,10 +2,12 @@ package controller;
 
 import static View.InputView.inputLottoPurchaseAmount;
 
+import domain.Amount;
+
 
 public class LottoController {
     public void start() {
-        inputLottoPurchaseAmount();
+        Amount amount = inputLottoPurchaseAmount();
     }
 
 }

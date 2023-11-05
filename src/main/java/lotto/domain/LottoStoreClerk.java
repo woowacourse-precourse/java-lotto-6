@@ -17,12 +17,8 @@ public class LottoStoreClerk {
 
 
     public static List<Lotto> createLottoTickets(String orderInputAmount) {
-        int lottoTicketsNumber = handlingOrderAmount(orderInputAmount);
+        int lottoTicketsNumber = calculateNumberOfTickets(toNumeric(orderInputAmount));
         return lottoGenerater(lottoTicketsNumber);
-    }
-
-    public static int handlingOrderAmount(String orderInputAmount) {
-        return calculateNumberOfTickets(toNumeric(orderInputAmount));
     }
 
     public static int calculateNumberOfTickets(int lottoOrderAmount) {

@@ -34,6 +34,7 @@ public class LottoController {
         winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
         LottoResultsDTO resultDTO = createLottoResultDTO();
         OutputView.displayAllLottosStatistics(resultDTO);
+        OutputView.displayRateOfReturn(resultDTO);
     }
 
     private LottoResultsDTO createLottoResultDTO() {

@@ -25,6 +25,14 @@ public class OutputView {
         printLottosStatistics(lottoResultsDTO.getResult());
     }
 
+    public static void displayRateOfReturn(LottoResultsDTO lottoResultsDTO) {
+        Map<LottoResults, Integer> result = lottoResultsDTO.getResult();
+        int lottoCount = result.values().stream()
+                .reduce(0, Integer::sum);
+        double rateOfReturn = (double) calculateWinningAmount(result) / (lottoCount * 1000L);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn * 100);
+    }
+
     private static void printLottosStatistics(Map<LottoResults, Integer> result) {
         System.out.printf("3개 일치 (5,000원) - %d개\n", result.getOrDefault(LottoResults.FIFTH, 0));
         System.out.printf("4개 일치 (50,000원) - %d개\n", result.getOrDefault(LottoResults.FOURTH, 0));
@@ -33,5 +41,15 @@ public class OutputView {
                 result.getOrDefault(LottoResults.SECOND, 0));
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n",
                 result.getOrDefault(LottoResults.FIRST, 0));
+    }
+
+    private static long calculateWinningAmount(Map<LottoResults, Integer> result) {
+        long totalAmount = 0;
+        for (LottoResults lottoResults : LottoResults.values()) {
+            long winningAmount = lottoResults.getWinningAmount();
+            int rankCount = result.getOrDefault(lottoResults, 0);
+            totalAmount += winningAmount * rankCount;
+        }
+        return totalAmount;
     }
 }

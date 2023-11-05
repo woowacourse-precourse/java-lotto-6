@@ -22,11 +22,18 @@ public class WinningLotto {
         validateInitialized();
 
         lotto.validateNumberRange(bonusNumber);
+        validateUniqueNumber(bonusNumber);
     }
 
     private void validateInitialized() {
         if (bonusNumber != 0) {
             throw new IllegalStateException(ErrorMessage.BONUS_NUMBER_ALREADY_INITIALIZED.getMessage());
+        }
+    }
+
+    private void validateUniqueNumber(int bonusNumber) {
+        if (lotto.containNumber(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 

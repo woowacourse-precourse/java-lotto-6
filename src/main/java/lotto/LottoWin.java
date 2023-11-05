@@ -34,11 +34,10 @@ public class LottoWin {
             if (num < 1 || num > 45) {
                 throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자를 입력해야 합니다.");
             }
+            if (tempNumbers.contains(num)) {
+                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
+            }
             tempNumbers.add(num);
-        }
-
-        if (tempNumbers.size() != new ArrayList<>(tempNumbers).stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
         }
 
         this.winnumbers.clear();

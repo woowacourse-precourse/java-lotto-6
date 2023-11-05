@@ -1,11 +1,10 @@
 package lotto.validator;
 
-import lotto.message.ErrorMessageFormatter;
-
 import java.util.Arrays;
 import java.util.List;
 
 import static lotto.message.ErrorMessageFormatter.*;
+import static lotto.message.RangeMessageFormatter.*;
 
 public class LotteryMachineValidator {
     /**
@@ -23,27 +22,27 @@ public class LotteryMachineValidator {
     public static final int MAX_RANGE = 45;
     public static final int LOTTERY_LENGTH = 6;
 
-    public static final String LUCKY_NUMBER_FORMAT_MESSAGE = "당첨 번호는 ','로 구분되어 입력해야 합니다.";
+    public static final String LUCKY_NUMBER_COUNT_MESSAGE = "당첨 번호는 " + LOTTERY_LENGTH + "개를 입력해야합니다.";
     public static final String LUCKY_NUMBER_NOT_INTEGER_MESSAGE = "당첨 번호는 정수만 입력할 수 있습니다.";
-    public static final String LUCKY_NUMBER_OUT_OF_RANGE_MESSAGE = "당첨 번호는 " + MIN_RANGE + "이상, " + MAX_RANGE + "이하의 숫자가 입력되어야 합니다.";
+    public static final String LUCKY_OUT_OF_RANGE = "당첨 번호 범위 오류";
 
     public static final String BONUS_NUMBER_DUPLICATED_MESSAGE = "당첨번호와 보너스번호는 중복 불가";
     public static final String BONUS_NUMBER_NOT_INTEGER_MESSAGE = "보너스 번호는 정수가 입력되어야 합니다.";
-    public static final String BONUS_NUMBER_OUT_OF_RANGE_MESSAGE = "보너스 번호는 " + MIN_RANGE + "이상, " + MAX_RANGE + "이하의 숫자가 입력되어야 합니다.";
+    public static final String BONUS_OUT_OF_RANGE = "보너스 번호 범위 오류";
 
     private LotteryMachineValidator() {
     }
 
     public static void validateLuckyNumber(final String input) {
-        validateLuckyNumberFormat(input);
+        validateNumberOfLuckyNumber(input);
         validateLuckyNumberInteger(input);
         validateLuckyNumberRange(input);
     }
 
-    private static void validateLuckyNumberFormat(final String input) {
+    private static void validateNumberOfLuckyNumber(final String input) {
         String[] split = input.split(",");
         if (split.length != LOTTERY_LENGTH) {
-            throw new IllegalArgumentException(makeErrorMessageWith(LUCKY_NUMBER_FORMAT_MESSAGE));
+            throw new IllegalArgumentException(errorMessage(LUCKY_NUMBER_COUNT_MESSAGE));
         }
     }
 
@@ -53,7 +52,7 @@ public class LotteryMachineValidator {
             try {
                 Integer.parseInt(str);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(makeErrorMessageWith(LUCKY_NUMBER_NOT_INTEGER_MESSAGE));
+                throw new IllegalArgumentException(errorMessage(LUCKY_NUMBER_NOT_INTEGER_MESSAGE));
             }
         }
     }
@@ -66,7 +65,7 @@ public class LotteryMachineValidator {
 
         for (Integer number : numbers) {
             if (number < MIN_RANGE || number > MAX_RANGE) {
-                throw new IllegalArgumentException(makeErrorMessageWith(LUCKY_NUMBER_OUT_OF_RANGE_MESSAGE));
+                throw new IllegalArgumentException(errorMessage(LUCKY_OUT_OF_RANGE));
             }
         }
     }
@@ -82,21 +81,21 @@ public class LotteryMachineValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(makeErrorMessageWith(BONUS_NUMBER_NOT_INTEGER_MESSAGE));
+            throw new IllegalArgumentException(errorMessage(BONUS_NUMBER_NOT_INTEGER_MESSAGE));
         }
     }
 
     private static void validateBonusNumberDuplicated(List<Integer> luckyNumbers, String input) {
         int number = Integer.parseInt(input);
         if (luckyNumbers.contains(number)) {
-            throw new IllegalArgumentException(makeErrorMessageWith(BONUS_NUMBER_DUPLICATED_MESSAGE));
+            throw new IllegalArgumentException(errorMessage(BONUS_NUMBER_DUPLICATED_MESSAGE));
         }
     }
 
     private static void validateBonusNumberRange(String input, int min, int max) {
         int number = Integer.parseInt(input);
         if (number < min || number > max) {
-            throw new IllegalArgumentException(makeErrorMessageWith(BONUS_NUMBER_OUT_OF_RANGE_MESSAGE));
+            throw new IllegalArgumentException(errorMessage(BONUS_OUT_OF_RANGE));
         }
     }
 

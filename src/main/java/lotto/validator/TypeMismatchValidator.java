@@ -1,9 +1,6 @@
 package lotto.validator;
 
-import lotto.app.AppConstant;
 import lotto.message.ErrorMessageFormatter;
-
-import static lotto.app.AppConstant.*;
 
 public class TypeMismatchValidator {
 
@@ -16,7 +13,7 @@ public class TypeMismatchValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessageFormatter.makeErrorMessageWith(message));
+            throw new IllegalArgumentException(ErrorMessageFormatter.errorMessage(message));
         }
     }
 }

@@ -37,7 +37,7 @@ public class LotteryGame {
     private int getUserPrice() {
         System.out.println("구입 금액을 입력해주세요");
         String input = Console.readLine();
-        TypeMismatchValidator.validateInputInteger(input);
+//        TypeMismatchValidator.validateInputInteger(input);
         int price = Integer.parseInt(input);
         return price;
     }

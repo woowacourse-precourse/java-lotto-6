@@ -14,10 +14,17 @@ import java.util.List;
 public class User {
     private LottoEnvelop lottoEnvelop;
     private Statistic statistic;
+    private Integer useMoney;
+    private Integer totalWinMoney;
+    private RateResult rateResult;
 
     public User(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
         this.lottoEnvelop = lottoEnvelop;
         this.statistic = Config.statistic(lottoEnvelop, lottoTargetNumResults);
+        this.useMoney = 0;
+        this.totalWinMoney = 0;
+        this.rateResult = Config.rateResult();
+
     }
 
     /**
@@ -28,6 +35,8 @@ public class User {
     public String payMoney() {
         // TODO: 11/5/23 Utill로 빼기
         String money = Console.readLine();
+        useMoney = Integer.valueOf(money);
+
         return money;
     }
 
@@ -62,10 +71,11 @@ public class User {
     /**
      * 로또결과의 당첨에 대한 총 수익률을 계산한다.
      *
-     * @param successLottos 당첨된 로또들의 모임
      * @return
      */
-    public Double calculateTotalRate(List<Lotto> successLottos) {
-        return null;
+    public Double calculateTotalRate() {
+        totalWinMoney = statistic.getTotalWinMoney();
+
+        return rateResult.calculate(useMoney, totalWinMoney);
     }
 }

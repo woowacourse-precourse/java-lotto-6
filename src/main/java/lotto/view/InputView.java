@@ -1,7 +1,7 @@
 package lotto.view;
 
-import static lotto.view.constans.constantMessage.ASK_LOTTERYNUMBER;
-import static lotto.view.constans.constantMessage.ASK_PURCHASEAMOUNT;
+import static lotto.view.constans.constantMessage.ASK_LOTTERY_NUMBER;
+import static lotto.view.constans.constantMessage.ASK_PURCHASE_AMOUNT;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.constans.constantMessage;
@@ -12,12 +12,12 @@ public class InputView {
         System.out.println(constantMessage.getMessage());
     }
     public static String requestPurchaseAmount() {
-        printConstantMessage(ASK_PURCHASEAMOUNT);
+        printConstantMessage(ASK_PURCHASE_AMOUNT);
         return Console.readLine();
     }
 
     public static String requestLotteryNumber(){
-        printConstantMessage(ASK_LOTTERYNUMBER);
+        printConstantMessage(ASK_LOTTERY_NUMBER);
         return Console.readLine();
     }
 }

@@ -10,7 +10,7 @@
   - 문자가 들어간 경우(ex. 쉼표와 같은 문자)
 <br>
 
-**[ ] 구입한 로또 출력**
+**[✔️] 구입한 로또 출력**
   - 구입 금액에 따른 로또 개수를 출력한다.
   - 1장당 6개의 중복되지 않는 수를 갖는다.
   - Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.

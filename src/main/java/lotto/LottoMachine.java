@@ -1,5 +1,8 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
+
 public class LottoMachine {
 
     private int lottoCount;
@@ -32,6 +35,12 @@ public class LottoMachine {
         if (remainder > 0) {
             throw new IllegalArgumentException("[ERROR] 1000으로 나눠 떨어지지 않습니다.");
         }
+    }
+
+    List<Integer> generateLottoNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+        return numbers;
     }
 
 

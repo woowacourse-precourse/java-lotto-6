@@ -1,16 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-
-    public Lotto() {
-        this.numbers = createRandomNumbers();
-    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -26,12 +20,13 @@ public class Lotto {
         }
     }
 
-    public List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
     public void printNumbers() {
-        System.out.println(this.numbers);
+        try {
+            Collections.sort(this.numbers);
+            System.out.println(this.numbers);
+        } catch (UnsupportedOperationException e){
+            System.out.println(this.numbers);
+        }
     }
 
     public int countMatchingNumbers(Lotto winningLotto, int bonus) {

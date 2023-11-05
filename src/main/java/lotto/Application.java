@@ -1,19 +1,43 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     static int price = 1000;
+    static int amountOfMoney, bonusNumber;
+    static List<String> winningNums = new ArrayList<>();
 
-    public static int inputLottoAmount() {
+    public static void inputLottoAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
-        validateAmount(amount);
-        return amount;
+        try {
+            int amount = Integer.parseInt(Console.readLine());
+            validateAmount(amount);
+            amountOfMoney = amount;
+        } catch (NumberFormatException e1) {
+            System.out.println("[ERROR] 숫자를 입력하세요.");
+            inputLottoAmount();
+        } catch (IllegalArgumentException e2) {
+            System.out.println("[ERROR] 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
+            inputLottoAmount();
+        }
+    }
+
+    public static void inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        try{
+            int bonus = Integer.parseInt(Console.readLine());
+            validateNumber(bonus);
+            bonusNumber = bonus;
+        } catch (NumberFormatException e1) {
+            System.out.println("[ERROR] 숫자를 입력하세요.");
+            inputBonusNumber();
+        } catch (IllegalArgumentException e2) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            inputBonusNumber();
+        }
     }
 
     public static void validateAmount(int amount) {
@@ -24,20 +48,30 @@ public class Application {
 
     public static Lotto inputWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        List<String> originalNums = new ArrayList<>(Arrays.asList(Console.readLine().split(",")));
-        return new Lotto(convertStringToInt(originalNums));
+        winningNums = (Arrays.asList(Console.readLine().split(",")));
+        try {
+            isAllValidNumbers(winningNums);
+        } catch (NumberFormatException e1) {
+            System.out.println("[ERROR] 숫자를 입력하세요.");
+            inputWinningNumbers();
+        } catch (IllegalArgumentException e2) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            inputWinningNumbers();
+        }
+        return new Lotto(convertStringToInt(winningNums));
     }
 
-    public static int inputBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+    public static void isAllValidNumbers (List<String> original) {
+        for (String previous: original){
+            int num = Integer.parseInt(previous);
+            validateNumber(num);
+        }
     }
 
     public static List<Integer> convertStringToInt (List<String> original) {
         List<Integer> convert = new ArrayList<>();
         for (String previous: original){
             int num = Integer.parseInt(previous);
-            validateNumber(num);
             convert.add(num);
         }
         return convert;
@@ -52,11 +86,15 @@ public class Application {
     public static List<Lotto> generateLottos(int quantity){
         List<Lotto> allLotto = new ArrayList<>();
         for (int i = 0; i < quantity; i++){
-            Lotto lotto = new Lotto();
-            allLotto.add(lotto);
+            allLotto.add(new Lotto(createRandomNumbers()));
         }
         return allLotto;
     }
+
+    public static List<Integer> createRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
 
     public static void printLottos(List<Lotto> allLotto, int quantity) {
         System.out.printf("\n%d개를 구매했습니다.\n", quantity);
@@ -108,16 +146,15 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        int amount = inputLottoAmount();
+        inputLottoAmount();
 
-        List<Lotto> allLotto = generateLottos(amount/price);
-        printLottos(allLotto, amount/price);
+        List<Lotto> allLotto = generateLottos(amountOfMoney/price);
+        printLottos(allLotto, amountOfMoney/price);
 
         Lotto winningLotto = inputWinningNumbers();
+        inputBonusNumber();
 
-        int bonus = inputBonusNumber();
-
-        List<Integer> result = getResult(allLotto, winningLotto, bonus);
-        printStatistic(result, amount);
+        List<Integer> result = getResult(allLotto, winningLotto, bonusNumber);
+        printStatistic(result, amountOfMoney);
     }
 }

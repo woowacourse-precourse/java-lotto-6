@@ -18,7 +18,7 @@ public interface LottoService {
      * 랜덤 로또 값 생성해서 반환
      * @return : 새로운 Lotto 클래스
      */
-    Lotto generateLottoNumbers();
+    List<Lotto> generateLottos(int lottoCount);
 
     /**
      * 사용자로부터 당첨 번호 입력 받고 반환

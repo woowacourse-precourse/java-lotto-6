@@ -1,0 +1,29 @@
+package lotto.domain;
+
+public class LottoNumber {
+
+	public static final int MAX_NUMBER = 45;
+	public static final int MIN_NUMBER = 1;
+	public static final String WRONG_RANGE_NUMBER_MESSAGE = "[ERROR] 잘못된 로또 번호입니다.";
+	private final int number;
+
+	private LottoNumber(int number) {
+		validate(number);
+		this.number = number;
+	}
+
+	public static LottoNumber from(int number) {
+		return new LottoNumber(number);
+	}
+
+	private void validate(int number) {
+		if (isLottoNumberRange(number)) {
+			throw new IllegalArgumentException(WRONG_RANGE_NUMBER_MESSAGE);
+		}
+	}
+
+	private boolean isLottoNumberRange(int number) {
+		return number < MIN_NUMBER || number > MAX_NUMBER;
+	}
+
+}

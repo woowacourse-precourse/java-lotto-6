@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import lotto.model.LottoTicket;
 import lotto.model.WinningStatistics;
+import lotto.util.Convert;
 import lotto.util.LottoGenerator;
 
 public class LottoService {
@@ -32,8 +33,9 @@ public class LottoService {
         }
     }
 
-    public double calculateTotalYield(int purchaseAmount) {
+    public String calculateTotalYield(int purchaseAmount) {
         int totalWinningAmount = winningStatistics.getTotalWinningAmount();
-        return ((double) totalWinningAmount / (double) purchaseAmount) * 100;
+        double totalYield = ((double) totalWinningAmount / (double) purchaseAmount) * 100;
+        return Convert.formatDoubleWithCommaAndRound(totalYield);
     }
 }

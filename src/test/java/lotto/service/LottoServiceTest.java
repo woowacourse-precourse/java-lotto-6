@@ -19,6 +19,9 @@ public class LottoServiceTest {
                         convertToNumbers(1, 2, 3, 4, 5, 6), 6),
 
                 Arguments.of(convertToNumbers(1, 2, 3, 4, 5, 6), 10,
+                        convertToNumbers(1, 2, 3, 4, 5, 10), 7),
+
+                Arguments.of(convertToNumbers(1, 2, 3, 4, 5, 6), 10,
                         convertToNumbers(1, 2, 3, 4, 5, 45), 5),
 
                 Arguments.of(convertToNumbers(1, 2, 3, 4, 5, 6), 10,

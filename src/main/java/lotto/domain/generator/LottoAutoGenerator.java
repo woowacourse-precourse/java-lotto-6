@@ -5,12 +5,17 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.exception.LottoException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static lotto.constant.LottoConstants.*;
 
 public class LottoAutoGenerator {
     public Lottos generate(int count) throws LottoException {
+        // Lotto 는 List<LottoNumber> 가지고 있고, LottoNumber 는 Integer 를 가지고 있다.
+        // 따라서 Set<Lotto> 는  LottoNumber 6개 모두가 중복되지 않는 로또들을 의미한다.
         Set<Lotto> uniqueLottos = new HashSet<>();
         while (uniqueLottos.size() < count) {
             List<Integer> randomNumbers = generateRandomNumbers();

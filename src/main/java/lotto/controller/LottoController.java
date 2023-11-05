@@ -24,12 +24,12 @@ public class LottoController {
     }
 
     public void run() {
-        boolean validInput = false;
+        boolean validInput = true;
 
-        while (!validInput) {
+        while (validInput) {
             try {
                 beforeStart();
-                validInput = true;
+                validInput = false;
             } catch (NumberFormatException e) {
                 System.out.println(ExceptionMessages.STRING_TO_INTEGER.getMessage());
             } catch (IllegalArgumentException e) {

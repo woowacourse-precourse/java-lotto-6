@@ -3,9 +3,9 @@ package lotto.domain.machine;
 import static lotto.exception.ErrorMessage.INVALID_INPUT_MONEY_UNIT;
 import static lotto.exception.ErrorMessage.LESSER_THAN_MINIMUM_MONEY;
 
+import java.util.List;
 import java.util.stream.IntStream;
 import lotto.Lotto;
-import lotto.domain.lottery.Lottos;
 import lotto.exception.LottoGameException;
 
 public class LottoMachine {
@@ -17,17 +17,17 @@ public class LottoMachine {
         this.generator = generator;
     }
 
-    public Lottos issueLottosForInputMoney(int inputMoney) {
+    public List<Lotto> issueLottoListForInputMoney(int inputMoney) {
 
         validateInputMoneyNotNegative(inputMoney);
         validateInputMoneyUnit(inputMoney);
 
         int amount = inputMoney / PRICE_PER_LOTTO;
 
-        return Lottos.create(IntStream.range(0, amount)
+        return IntStream.range(0, amount)
                 .mapToObj(ignore -> generator.generateLottoNumbers())
                 .map(Lotto::new)
-                .toList());
+                .toList();
     }
 
     private void validateInputMoneyNotNegative(int inputMoney) {

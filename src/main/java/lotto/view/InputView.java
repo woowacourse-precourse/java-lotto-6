@@ -13,15 +13,9 @@ public class InputView {
         return Integer.parseInt(purchaseAmount);
     }
 
-    private static void validateIsNumeric(String input) {
-        if (!input.chars().allMatch(Character::isDigit) || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
-        }
-    }
-
     public static List<Integer> readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
+        String input = Console.readLine().trim();
 
         List<String> winningNumbers = Arrays.stream(input.split(","))
                 .map(String::trim)
@@ -34,5 +28,17 @@ public class InputView {
         return winningNumbers.stream()
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    public static int readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine().trim();
+        return Integer.parseInt(bonusNumber);
+    }
+
+    private static void validateIsNumeric(String input) {
+        if (!input.chars().allMatch(Character::isDigit) || input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+        }
     }
 }

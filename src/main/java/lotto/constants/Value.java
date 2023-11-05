@@ -11,6 +11,7 @@ public enum Value {
     REMAINDER_ZERO(0),
     FIRST_CHARACTER(0),
     ZERO(0),
+    ASCII_ZERO(48),
     COUNT_ONE(1);
 
     private final Integer value;

@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.constants.Value.ASCII_ZERO;
 import static lotto.constants.Value.FIRST_CHARACTER;
 import static lotto.constants.Value.MAX_LOTTO_NUMBER;
 import static lotto.constants.Value.MIN_LOTTO_NUMBER;
@@ -29,7 +30,7 @@ public class Validator {
     }
 
     public static void checkZero(String userInput) {
-        if (userInput.charAt(FIRST_CHARACTER.get()) == '0') {
+        if (userInput.charAt(FIRST_CHARACTER.get()) == ASCII_ZERO.get()) {
             throw new IllegalArgumentException(ZERO_INCLUSION_ERROR.getMessage());
         }
     }

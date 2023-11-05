@@ -38,7 +38,7 @@ class StatisticsTest {
         }};
         makeOutputStatistics(SIX, sb, testMap);
 
-        Assertions.assertThat(sb.toString()).isEqualTo("6개 일치 (2,000,000,000원) - 3개");
+        Assertions.assertThat(sb.toString()).isEqualTo("6개 일치 (2,000,000,000원) - 3개\n");
     }
 
     @DisplayName("당첨 통계 상세 내역을 반환한다. - 보너스 추가")
@@ -50,7 +50,7 @@ class StatisticsTest {
         }};
         makeOutputStatistics(FIVE_BONUS, sb, testMap);
 
-        Assertions.assertThat(sb.toString()).isEqualTo("5개 일치, 보너스 볼 일치 (30,000,000원) - 3개");
+        Assertions.assertThat(sb.toString()).isEqualTo("5개 일치, 보너스 볼 일치 (30,000,000원) - 3개\n");
     }
     
     @DisplayName("당첨 통계 상세 내역을 반환한다. - 여러개")

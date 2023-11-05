@@ -26,11 +26,10 @@ public enum WinningCriteria {
 
     public static WinningCriteria getWinningType(int matchCount, boolean matchBonus) {
         for (WinningCriteria type : WinningCriteria.values()) {
-            if (matchCount == 5 && matchBonus) {
-                return SECOND;
-            } else if (matchCount == 5 && !matchBonus) {
+            if (matchCount == 5 && !matchBonus) {
                 return THIRD;
-            } else if (type.getMatchCount() == matchCount) {
+            }
+            if (type.getMatchCount() == matchCount) {
                 return type;
             }
         }

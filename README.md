@@ -57,6 +57,27 @@ BUILD SUCCESSFUL in 0s
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
+## 기능 목록
+구현할 목록 작성 (1차)
+
+Input class
+[ ] 금액을 입력 InputAmount(Integer Amount){}
+[ ] 예외처리 AmountValidate()
+[ ] 금액에 따른 로또발행개수 출력 CheckNumberofLotto()
+
+lotto class
+[ ] 로또 발행 (6개) IssueLotto()
+
+Winner class
+[ ] 추첨 번호 생성 (6+1개) MakeWinnerLotto()
+[ ] 당첨내역 확인 ConfirmLotto()
+[ ] 당첨내역 출력 PrintResult()
+
+Profit class
+[ ] 수익률 계산 CalProfit(Integer Amount, List<Integer> result)
+[ ] 수익률 출력 PrintProfit(float profit)
+
+
 ### 입출력 요구 사항
 
 #### 입력

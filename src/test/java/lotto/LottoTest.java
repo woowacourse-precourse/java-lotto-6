@@ -52,9 +52,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 5, 4, 6));
         lotto.showNumbers();
 
-
         assertThat(outContent.toString().trim()).isEqualTo("[1, 2, 3, 4, 5, 6]");
-
 
         System.setOut(originalOut);
     }

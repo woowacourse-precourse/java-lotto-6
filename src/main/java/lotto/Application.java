@@ -68,7 +68,6 @@ public class Application {
         List<Lotto> res = new ArrayList<>();
         for (int index = 0; index < ticketNum; index++) {
             res.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-            System.out.println(res.get(index).getNumbers());
         }
         return res;
     }
@@ -121,8 +120,8 @@ public class Application {
     public static int[] lottery(Lotto winLotto, List<Lotto> user, int bonus){
         int[] res = {0,0,0,0,0};
         for (Lotto L : user) {
-            //int grade = judge(winLotto,L,bonus);
-            //if(grade >= 0) res[grade]++;
+            int grade = judge(winLotto,L,bonus);
+            if(grade >= 0) res[grade]++;
         }
         return res;
     }

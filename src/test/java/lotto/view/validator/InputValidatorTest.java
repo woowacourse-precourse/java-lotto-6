@@ -21,9 +21,18 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"a", "!", "12A"})
     @DisplayName("구입 금액에 대한 입력이 숫자가 아니면 예외가 발생한다.")
-    void validateNumber(String input) {
+    void validatePurchaseAmount(String input) {
         assertThatThrownBy(() -> InputValidator.validatePurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("구입 금액에 대한 입력은 숫자만 가능합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,a", "1,!", "12A"})
+    @DisplayName("당첨 번호에 대한 입력 형식이 올바르지 않으면 예외가 발생한다.")
+    void validateWinningNumbers(String input) {
+        assertThatThrownBy(() -> InputValidator.validateWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("당첨 번호에 대한 입력 형식이 올바르지 않습니다.");
     }
 }

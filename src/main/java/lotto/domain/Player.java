@@ -32,7 +32,7 @@ public class Player {
                 .collect(Collectors.toList());
     }
 
-    public void checkMatchWinningNumber(List<Integer> winningNumbers) {
+    public List<Lotto> checkMatchWinningNumber(List<Integer> winningNumbers) {
         List<Integer> matchList;
         for (var lotto : lottos) {
             matchList = lotto.getNumbers().stream()
@@ -43,6 +43,7 @@ public class Player {
             lotto.setRank(matchList.size());
             matchList.clear();
         }
+        return lottos;
     }
 
     public void checkMatchBonusNumber(int bonusNumber) {

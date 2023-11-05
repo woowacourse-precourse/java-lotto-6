@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.BuyLotto;
+import lotto.domain.WinLotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ public class Application {
         List<Integer> lottoNumbersPurchased = new ArrayList<>();
         lottoNumbersPurchased = buyLotto.numberLotto();
 
-
+        WinLotto winLotto = new WinLotto();
+        winLotto.inputWinningNumber();
+        winLotto.inputBonusNumber();
     }
 }

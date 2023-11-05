@@ -1,12 +1,17 @@
 package lotto.unitTest;
 
 import lotto.constant.Error;
+import lotto.data.WinningNumbers;
 import lotto.input.InputValidator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -87,4 +92,37 @@ public class InputValidatorTest {
             assertEquals(Error.PLEASE_ENTER_ONLY_NUMBERS_FROM_1_TO_45,e.getMessage());
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A","0","46","1000","하나",""," "})
+    @DisplayName("보너스 번호에 1~45의 정수를 입력 안하면 예외가 발생한다.")
+    public void testBonusNumberinput(String invailidInput){
+
+
+        WinningNumbers winningNumbers = new WinningNumbers(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+
+        try {
+            InputValidator.checkBonusNumber(invailidInput,winningNumbers);
+
+            fail("IllegalArgumentException이 발생해야 합니다.");
+        }catch (IllegalArgumentException e){
+            assertEquals(Error.PLEASE_ENTER_ONLY_NUMBERS_FROM_1_TO_45,e.getMessage());
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1","2","3","4","5","6"})
+    @DisplayName("보너스 번호에 1~45의 정수를 입력 안하면 예외가 발생한다.")
+    public void testBonusNumberinputWithWinningNumber(String invailidInput){
+        WinningNumbers winningNumbers = new WinningNumbers(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+
+        try {
+            InputValidator.checkBonusNumber(invailidInput,winningNumbers);
+            fail("IllegalArgumentException이 발생해야 합니다.");
+        }catch (IllegalArgumentException e){
+            assertEquals(Error.ALREADY_EXISTING_WINNING_NUMBER,e.getMessage());
+        }
+    }
+
+
 }

@@ -51,4 +51,12 @@ public class LottoService {
         }
         return winningRankCount;
     }
+
+    private double calculateTotalPrizeAmount() {
+        double totalPrizeAmount = 0;
+        for (LottoRank lottoRank: winningRankCount.keySet()) {
+            totalPrizeAmount += lottoRank.getPrizeMoney() * winningRankCount.get(lottoRank);
+        }
+        return totalPrizeAmount;
+    }
 }

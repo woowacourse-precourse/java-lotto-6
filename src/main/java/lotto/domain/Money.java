@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.system.ExceptionMessage;
 import lotto.system.SystemConstant;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Money {
     private final long value;
@@ -13,6 +15,11 @@ public class Money {
 
     public static Money from(long value) {
         return new Money(value);
+    }
+
+    public static Money createManual() {
+        OutputView.inputMoney();
+        return new Money(InputView.readLong());
     }
 
     private void validate(long value) {

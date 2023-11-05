@@ -14,9 +14,8 @@ public class SystemController {
     }
 
     public void doLotto() {
-        OutputView.inputMoney();
         try {
-            Money.from(InputView.creatLong());
+            Money.createManual();
         } catch (Exception e) {
             OutputView.exceptionMessage(e);
             doLotto();

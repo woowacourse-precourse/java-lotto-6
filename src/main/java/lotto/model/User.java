@@ -87,4 +87,15 @@ public class User {
 
         return output;
     }
+
+
+    private long calculatePrize() {
+        long prize = 0;
+
+        for (Result rank : result.keySet()) {
+            prize += result.get(rank) * rank.getPrize();
+        }
+
+        return prize;
+    }
 }

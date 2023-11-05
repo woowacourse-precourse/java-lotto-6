@@ -1,4 +1,4 @@
-package view;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -24,11 +24,10 @@ public class InputView {
     }
 
     void validateNullValue(String value) {
-        if (value == "") throw new IllegalArgumentException("[ERROR] 금액을 정확히 입력해 주세요.");
+        if (value.isBlank()) throw new IllegalArgumentException("[ERROR] 금액을 정확히 입력해 주세요.");
     }
 
     void validateNoRemainderValue(int value) {
         if (value % 1000 != 0) throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
     }
-
 }

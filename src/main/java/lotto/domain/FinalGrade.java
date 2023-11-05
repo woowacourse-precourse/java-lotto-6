@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.util.EnumMap;
 import java.util.List;
 
 public class FinalGrade {
@@ -21,6 +22,22 @@ public class FinalGrade {
 
     public BigDecimal getPlayerTotalPurchaseAmount() {
         return new BigDecimal(playerLottoResults.size() * PURCHASE_AMOUNT);
+    }
+
+    public EnumMap<Rank, Integer> getEachRankCounts() {
+        EnumMap<Rank, Integer> eachRankCounts = initializeEachRankCounts();
+        for (Rank playerLottoResult : playerLottoResults) {
+            eachRankCounts.put(playerLottoResult, eachRankCounts.getOrDefault(playerLottoResult, 0) + 1);
+        }
+        return eachRankCounts;
+    }
+
+    private EnumMap<Rank, Integer> initializeEachRankCounts() {
+        EnumMap<Rank, Integer> eachRankCounts = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            eachRankCounts.put(rank, 0);
+        }
+        return eachRankCounts;
     }
 }
 

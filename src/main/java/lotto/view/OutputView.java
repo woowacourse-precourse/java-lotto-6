@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -55,16 +54,16 @@ public class OutputView {
     }
 
     private static String makeLottoOutput(Lotto lotto) {
-        List<String> lottoNumbers = convertIntegersToStrings(sortAscending(lotto.getNumbers()));
+        List<Integer> sortedLottoNumbers = getSortedIntegerList(lotto.getNumbers());
+        List<String> lottoNumbers = convertIntegersToStrings(sortedLottoNumbers);
         return OPEN_BRACKET + String.join(", ", lottoNumbers) + CLOSE_BRACKET;
-    }
-
-    private static List<Integer> sortAscending(List<Integer> integers) {
-        integers.sort(Comparator.naturalOrder());
-        return integers;
     }
 
     private static List<String> convertIntegersToStrings(List<Integer> integers) {
         return integers.stream().map(integer -> Integer.toString(integer)).toList();
+    }
+
+    private static List<Integer> getSortedIntegerList(List<Integer> integers) {
+        return integers.stream().sorted().toList();
     }
 }

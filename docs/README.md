@@ -1,8 +1,9 @@
 # 🚀 기능 명세서
 
 - [ ] 로또 구입 금액 입력 
-  - [ ] "구입 금액을 입력해주세요." - InputView#inputPurchasePrice()
+  - [x] "구입 금액을 입력해주세요." - InputView#inputPurchasePrice()
     - 로또 1장의 가격 = 1000원
+    - [x] 입력 값이 숫자 형식이 아닌 경우 예외 처리
   - [ ] 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리 - Price#validate()
 - [ ] 로또 발행 
   - [ ] 입력받은 금액만큼 로또 발행 - Lotto#issueLotto()

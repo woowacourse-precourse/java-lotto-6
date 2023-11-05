@@ -1,11 +1,11 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.util.ExceptionEnum.NOT_NUMBER_FORMAT;
 
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Price;
-import lotto.util.ExceptionEnum;
 
 public class InputView{
 
@@ -14,8 +14,8 @@ public class InputView{
         int price = 0;
         try{
             price = Integer.parseInt(readLine());
-        }catch (NumberFormatException NFE){
-            throw new IllegalArgumentException(ExceptionEnum.NOT_NUMBER_FORMAT.getMessage());
+        } catch (NumberFormatException NFE){
+            throw new IllegalArgumentException(NOT_NUMBER_FORMAT.getMessage());
         }
         return new Price(price);
     }

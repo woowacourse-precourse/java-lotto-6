@@ -2,7 +2,6 @@ package lotto.controller;
 
 import lotto.domain.Buyer;
 import lotto.domain.LottoIntermediary;
-import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -10,16 +9,15 @@ public class LottoController {
     private final LottoIntermediary intermediary = new LottoIntermediary(new Buyer());
 
     public void start() {
-        int purchaseAmount = inputLottoPurchaseAmount();
-        intermediary.buyLottos(purchaseAmount);
+        buyLotto();
     }
 
-    private int inputLottoPurchaseAmount() {
+    private void buyLotto() {
         do {
             try {
                 int purchaseAmount = InputView.enterLottoPurchaseAmount();
-                LottoValidator.validatePurchaseAmount(purchaseAmount);
-                return purchaseAmount;
+                intermediary.buyLotto(purchaseAmount);
+                break;
             } catch (IllegalArgumentException exception) {
                 exception.printStackTrace(System.out);
             }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.validator.LottoValidator;
+
 import java.util.List;
 
 public class LottoIntermediary {
@@ -10,7 +12,8 @@ public class LottoIntermediary {
         this.buyer = buyer;
     }
 
-    public void buyLottos(int purchaseAmount) {
+    public void buyLotto(int purchaseAmount) {
+        LottoValidator.validatePurchaseAmount(purchaseAmount);
         int purchasesNumber = calculatePurchasesNumber(purchaseAmount);
         List<Lotto> lottos = LottoIssuer.issue(purchasesNumber);
         buyer.buyLottos(purchaseAmount, lottos);

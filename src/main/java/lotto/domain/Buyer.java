@@ -12,4 +12,8 @@ public class Buyer {
         this.purchaseAmount = purchaseAmount;
         this.lottos.addAll(lottos);
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

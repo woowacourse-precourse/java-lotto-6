@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.ExceptionConstant;
 import lotto.constant.NumberConstant;
 
 public class Lotteries {
@@ -15,7 +16,21 @@ public class Lotteries {
     }
 
     private int generateLotteries(String userInput) {
-        int priceAmount = Integer.parseInt(userInput);
-        return priceAmount / NumberConstant.LOTTO_PRICE.getNumber();
+        int totalPrice = Integer.parseInt(userInput);
+        validateMinimumPrice(totalPrice);
+        validateMultiplesOfThousand(totalPrice);
+        return totalPrice / NumberConstant.LOTTO_PRICE.getNumber();
+    }
+
+    private void validateMultiplesOfThousand(int totalPrice) {
+        if (totalPrice / NumberConstant.LOTTO_PRICE.getNumber() != 0) {
+            throw new IllegalArgumentException(ExceptionConstant.PURCHASE_REMAINDER.getMessage());
+        }
+    }
+
+    private void validateMinimumPrice(int totalPrice) {
+        if (totalPrice < NumberConstant.LOTTO_PRICE.getNumber()) {
+            throw new IllegalArgumentException(ExceptionConstant.PURCHASE_MIN_NUMBER.getMessage());
+        }
     }
 }

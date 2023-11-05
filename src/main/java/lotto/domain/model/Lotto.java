@@ -1,7 +1,6 @@
 package lotto.domain.model;
 
 import java.util.List;
-import java.util.Set;
 import lotto.constant.IllegalArgumentExceptionType;
 
 public class Lotto {

@@ -21,7 +21,7 @@ public class Setting {
                         .PAYMENT_ERROR_MESSAGE
                         .getMessage());
             }
-        } while(true);
+        } while (true);
     }
 
     public static Lotto getLotto() {

@@ -16,7 +16,7 @@ public class LottoProcedure {
     BonusNumber bonusNumber;
 
     public LottoProcedure() {
-        List<Double> reward = List.of(0.0, 0.0, 0.0, 5000.0, 50000.0, 1500000.0, 200000000.0, 30000000.0);
+        List<Double> reward = List.of(0.0, 200000000.0, 30000000.0, 1500000.0, 50000.0, 5000.0);
         this.reward.addAll(reward);
     }
 
@@ -25,26 +25,14 @@ public class LottoProcedure {
         Output.printAboutPurchase(user);
         lotto = Setting.getLotto();
         bonusNumber = Setting.getBonusNumber(lotto);
-        Output.printWinningStatisticsMessage();
-        checkRank();
-        Output.printStatistics(user.winningNumberCount());
-        System.out.println("총 수익률은 " + String.format("%.1f",calculateYield()/user.payment() * 100) +"%입니다.");
+        produceStatistics();
+        Output.printStatistics(user.rankCount(), calculateWinnings(), user.payment());
     }
 
-    public double calculateYield() {
-        double sum = 0;
-        for (int i=MINIMUM_NUMBER_OF_SAME;i<user.winningNumberCount().size();i++) {
-            if (user.winningNumberCount().get(i) != 0) {
-                sum += this.reward.get(i);
-            }
-        }
-        return sum;
-    }
-
-    public void checkRank() {
-        for (int i=0;i<user.purchasedLottoNumbersSize();i++) {
-            int count = 0;
-            for (int j=0;j<LOTTO_SIZE;j++) {
+    public void produceStatistics() {
+        for (int i = 0; i < user.purchasedLottoNumbersSize(); i++) {
+            double count = 0;
+            for (int j = 0; j < LOTTO_SIZE; j++) {
                 if (user.PurchasedLottoNumbers().get(i).contains(lotto.numbers().get(j))) {
                     count += 1;
                 }
@@ -52,14 +40,39 @@ public class LottoProcedure {
             if (count == 5) {
                 count = checkBonusNumber(user.PurchasedLottoNumbers().get(i), bonusNumber.bonusNumber());
             }
-            user.increaseWinningNumberCount(count);
+            user.increaseRankCount(rank(count));
         }
     }
 
-    public int checkBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+    public int rank(double count) {
+        if (count == 3) {
+            return 5;
+        } else if (count == 4) {
+            return 4;
+        } else if (count == 5) {
+            return 3;
+        } else if (count == 5.5) {
+            return 2;
+        } else if (count == 6) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public double checkBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            return 7;
+            return 5.5;
         }
         return 5;
+    }
+
+    public double calculateWinnings() {
+        double winnings = 0;
+        for (int i = MINIMUM_NUMBER_OF_SAME; i < user.rankCount().size(); i++) {
+            if (user.rankCount().get(i) != 0) {
+                winnings += this.reward.get(i);
+            }
+        }
+        return winnings;
     }
 }

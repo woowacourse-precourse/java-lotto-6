@@ -10,8 +10,13 @@ public class Amount {
         this.amountCash = new Cash(amountCash);
     }
 
+    public Cash getAmountCash() {
+        return amountCash;
+    }
+
     public AmountRecord toRecord() {
         return new AmountRecord(amountCash.cash());
     }
+
 
 }

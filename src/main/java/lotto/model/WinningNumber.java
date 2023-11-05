@@ -18,26 +18,17 @@ import lotto.record.LottoNumberRecord;
 
 public class WinningNumber {
 
-    private final List<Integer> numbers; // TODO : NumbersList 일급 컬렉션 구현
-    private final int bonusNumber; // TODO : BonusNumber로 포장한 객체 구현
+    private final LottoNumbers numbers;
+    private final BonusNumber bonusNumber;
 
     public WinningNumber(String numbers, String bonusNumber) {
         List<Integer> convertedNumbers = convert(numbers);
-        int convertedBonusNumber = convertBonus(bonusNumber);
 
-        validateBonusNumber(convertedNumbers, convertedBonusNumber);
-        this.numbers = convertedNumbers;
-        this.bonusNumber = convertedBonusNumber;
+        this.numbers = new LottoNumbers(convertedNumbers);
+        this.bonusNumber = new BonusNumber(this.numbers, bonusNumber);
     }
 
-    private static int convertBonus(String bonusNumber) {
-        try {
-            return Integer.parseInt(bonusNumber);
-        } catch (NumberFormatException e) {
-            exceptionCodeThrow(BONUS_NUMBER_IS_NOT_INTEGER);
-        }
-        return 0;
-    }
+
 
     private static String[] getSplit(String numbers) {
         return numbers.replace(REPLACE_TARGET.getString(), REPLACE_REPLACEMENT.getString()).split(SPLIT_REGEX.getString());
@@ -73,30 +64,14 @@ public class WinningNumber {
     }
 
     private int getMatches(int number, int matches) {
-        if (numbers.contains(number)) {
+        if (numbers.getLottoNumbers().contains(number)) {
             matches++;
         }
         return matches;
     }
 
     public boolean hasMatchingBonusNumber(LottoNumberRecord lottoNumberRecord) {
-        return lottoNumberRecord.numbers().contains(bonusNumber);
+        return lottoNumberRecord.numbers().contains(bonusNumber.getBonusNumber());
     }
 
-    private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
-        bonusNumberWinningNumberDuplicateValidate(numbers, bonusNumber);
-        bonusNumberUnderOverValidate(bonusNumber);
-    }
-
-    private void bonusNumberUnderOverValidate(int bonusNumber) {
-        if (bonusNumber < LOTTO_START_NUMBER.getInt() || bonusNumber > LOTTO_END_NUMBER.getInt()) {
-            exceptionCodeThrow(LOTTO_NUMBER_UNDER_OR_OVER);
-        }
-    }
-
-    private void bonusNumberWinningNumberDuplicateValidate(List<Integer> numbers, int bonusNumber) {
-        if (numbers.stream().anyMatch(number -> number == bonusNumber)) {
-            exceptionCodeThrow(LOTTO_NUMBER_BONUS_DUPLICATE);
-        }
-    }
 }

@@ -27,4 +27,9 @@ public class ConsolePrinter {
         }
 
     }
+
+    public static void printRequestWinningNumbers() {
+        System.out.println();
+        System.out.println(Message.INPUT_WINNING_NUMBERS);
+    }
 }

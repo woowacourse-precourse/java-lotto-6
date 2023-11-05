@@ -24,4 +24,12 @@ public class InputTest {
                 .isThrownBy(() -> application.checkNumber(input))
                 .withMessage(ErrorMessage.IS_NOT_NUMBER);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {8001})
+    void 구입_금액이_천원_단위가_아닐_때_예외_발생(int purchaseAmount) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> application.checkUnit(purchaseAmount))
+                .withMessage(ErrorMessage.PURCHASE_AMOUNT_UNIT);
+    }
 }

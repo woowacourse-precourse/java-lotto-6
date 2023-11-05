@@ -21,4 +21,10 @@ public class Application {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER);
         }
     }
+
+    public void checkUnit(int purchaseAmount) {
+        if (purchaseAmount % LottoNumbers.PURCHASE_AMOUNT_UNIT != 0) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_UNIT);
+        }
+    }
 }

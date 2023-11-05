@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import lotto.ErrorMessages;
 
 public class LottoSalesManager {
@@ -21,6 +26,24 @@ public class LottoSalesManager {
 
         if(parsedAmount % 1000 != 0){
             throw new IllegalArgumentException(ErrorMessages.NOT_A_MULTIPLE_OF_1000.getMessage());
+        }
+    }
+
+    public List<Lotto> makeLottos(){
+      List<Lotto> lottos = new ArrayList<>();
+      for(int i = 0; i < amount/1000; i++){
+          lottos.add(new Lotto(makeRandomNumbers()));
+      }
+      return lottos;
+    }
+
+    private List<Integer> makeRandomNumbers() {
+        while(true){
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Set<Integer> NumbersWithDuplicatesRemove = new HashSet<>(numbers);
+            if(NumbersWithDuplicatesRemove.size() == 6){
+                return numbers;
+            }
         }
     }
 

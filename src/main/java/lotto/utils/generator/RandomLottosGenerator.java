@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 import lotto.constants.Values;
 import lotto.domain.Lotto;
 
-public class RandomNumbersGenerator implements NumbersGenerator {
+public class RandomLottosGenerator implements LottsGenerator {
 
     @Override
     public List<Lotto> generateLottos(int purchaseAmount) {

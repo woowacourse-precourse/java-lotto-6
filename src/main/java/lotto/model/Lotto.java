@@ -14,5 +14,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
         }
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("당첨 번호는 1~45 사이여야 합니다.");
+            }
+        }
     }
 }

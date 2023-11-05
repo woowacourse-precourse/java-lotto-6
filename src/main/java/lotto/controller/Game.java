@@ -18,7 +18,8 @@ public class Game {
         OutputView.printPurchaseResult(lottos);
         Lotto winnerNumbers = createWinnerNumbers();
         int bonusNumber = createBonusNumber();
-        Comparator comparator = new Comparator();
+        List<Integer> sameNumbers = createSameNumbers(lottos, winnerNumbers);
+        System.out.println(sameNumbers.toString());
     }
 
     private List<Lotto> issueLottos(int purchaseQuantity) {
@@ -37,5 +38,14 @@ public class Game {
 
     private int createBonusNumber() {
         return new Number(InputView.askBonusNumber()).getNumber();
+    }
+
+    private List<Integer> createSameNumbers(List<Lotto> lottos, Lotto winnerNumbers) {
+        List<Integer> sameNumbers = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            int sameNumber = Comparator.countSameNumber(lotto, winnerNumbers);
+            sameNumbers.add(sameNumber);
+        }
+        return sameNumbers;
     }
 }

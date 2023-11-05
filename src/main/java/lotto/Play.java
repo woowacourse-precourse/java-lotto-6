@@ -37,7 +37,7 @@ public class Play {
     }
 
     public void inputBonusNumber(){
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         bonusNumber=inputInt();
         if(winNumber.contains(bonusNumber)){
             throw new IllegalArgumentException("[ERROR] 로또번호중 하나와 중복됩니다.");
@@ -45,7 +45,7 @@ public class Play {
     }
 
     public void inputWinNumber(){
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String carNameList = inputStr();
         String[] arrayString = carNameList.split(",");
         int[] num = Arrays.stream(arrayString).mapToInt(Integer::parseInt).toArray();
@@ -70,7 +70,6 @@ public class Play {
 
         Papers papers=new Papers();
         papers.createPapers(count);
-
         papers.printPapers();
 
         inputWinNumber();
@@ -83,7 +82,7 @@ public class Play {
         lotto.saveMatchingNumbers(papers.papers);
         lotto.saveRateOfReturn(papers.papers,money);
 
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         lotto.printMatchingNumbers();
         lotto.printRateOfReturn();

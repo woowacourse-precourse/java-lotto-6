@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain.buyer.model;
+
+import lotto.domain.Lotto;
 
 import java.util.List;
 
@@ -10,17 +12,17 @@ public class Buyer {
         this.lottos = lottos;
     }
 
-    public void buy() {
+    public void tryBuy() {
 
         //TODO 판매처에서 로또를 구매
     }
 
-    public void check() {
+    public void tryCheck() {
 
         //TODO 로또 위원회로부터 당첨 여부 조회
     }
 
-    public void calculate() {
+    public void tryCalculate() {
 
         //TODO 수익률 계산
     }

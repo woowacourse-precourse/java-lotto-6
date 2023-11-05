@@ -15,4 +15,18 @@ public class LottoPlayer {
 		Application.ticketNumber = Integer.parseInt(money)/lottoPrice;
 		System.out.println(Application.ticketNumber + "개를 구매했습니다.");
 	}
+	
+	public static void inputNumber() {
+		System.out.println("당첨 번호를 입력해 주세요.(쉼표(,)로 구분하여 입력)");
+		String inputNumber = Console.readLine();
+		String[] splitInputNumber = inputNumber.split(","); 
+		for (int i = 0; i < splitInputNumber.length; i++) {
+			int tmp = Integer.parseInt(splitInputNumber[i]);
+			Application.playerNumber.add(tmp);
+		}
+		
+		System.out.println("보너스 번호를 입력해 주세요.");
+		Application.playerBonusNumber = Integer.parseInt(Console.readLine());
+	}
+	
 }

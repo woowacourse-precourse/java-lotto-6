@@ -8,8 +8,7 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Fail.fail;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MyTest {
 
@@ -94,36 +93,143 @@ public class MyTest {
     @Test
     @DisplayName("보너스 번호 입력에서 숫자로 변환이 안되면 예외 발생")
     void testInputBounsNumberByNumberFormatException(){
+        List<Integer> inputWinningNumber = new ArrayList<>();
+        inputWinningNumber.add(1); // 유효한 1을 추가한 상태
+        String inputBonus = "2a";
+
+        assertThatThrownBy(() -> {
+            Application.inputBounsNumber(inputWinningNumber, inputBonus);
+        }).isInstanceOf(NoSuchElementException.class);
 
     }
 
     @Test
+    @DisplayName("보너스 번호 입력에서 Null 값 입력시 예외 발생")
+    void testInputBounsNumberByNullPointerException(){
+        List<Integer> inputWinningNumber = new ArrayList<>();
+        inputWinningNumber.add(1); // 유효한 1을 추가한 상태
+        String inputBonus = null;
+
+        assertThatThrownBy(() -> {
+            Application.inputBounsNumber(inputWinningNumber, inputBonus);
+        }).isInstanceOf(NoSuchElementException.class);
+
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력에서 중복되는 값을 입력하면 예외 발생")
+    void testInputBounsNumberByIllegalArgumentException(){
+        List<Integer> inputWinningNumber = new ArrayList<>();
+        inputWinningNumber.add(1); // 유효한 1을 추가한 상태
+        String inputBonus = "1";
+
+        assertThatThrownBy(() -> {
+            Application.inputBounsNumber(inputWinningNumber, inputBonus);
+        }).isInstanceOf(NoSuchElementException.class);
+    }
+
+    @Test
+    @DisplayName("입력한 값이 만약 1~45를 벗어난 숫자일 경우 false")
     void testUserInputNumber(){
-//        boolean b = Application.userInputNumber(1);
-//        assertThat(b).isTrue();
+        boolean result = Application.userInputNumber(0);
+        assertThat(result).isFalse();
+        
+    }
 
+    @Test
+    @DisplayName("입력한 보너스 번호가 1~45를 벗어난 숫자일 경우 예외 발생")
+    void testAddBonusNumberByRange(){
+        List<Integer> inputWinningNumber = new ArrayList<>();
+        inputWinningNumber.add(1); // 유효한 1을 추가한 상태
+        int inputBonus = 0;
 
+        assertThatThrownBy(() -> {
+            Application.addBonusNumber(inputWinningNumber, inputBonus);
+        }).isInstanceOf(IllegalArgumentException.class).
+        hasMessage("[ERROR] 1~45까지 중 에서 입력해주세요");
+    }
+
+    @Test
+    @DisplayName("입력한 보너스 번호가 당첨번호와 중복되면 예외 발생")
+    void testAddBonusNumberByContains(){
+        List<Integer> inputWinningNumber = new ArrayList<>();
+        inputWinningNumber.add(1); // 유효한 1을 추가한 상태
+        int inputBonus = 1;
+
+        assertThatThrownBy(() -> {
+            Application.addBonusNumber(inputWinningNumber, inputBonus);
+        }).isInstanceOf(IllegalArgumentException.class).
+                hasMessage("[ERROR] 이미 추가된 번호입니다. 다시 시도하세요.");
+    }
+
+    @Test
+    @DisplayName("이미 입력된 번호에 새로운 번호와 몇개가 일치하는지 출력하는 메소드")
+    void testNumberMatches(){
+        Map<Integer, List<Integer>> inputMap = new HashMap<>(); // 기존에 입력된 번호들
+        List<Integer> inputList = new ArrayList<>(); // 기존에 입력한 번호와 매치할 번호
+
+        inputMap.put(1, List.of(1,2,3));
+
+        inputList.add(1);
+        inputList.add(2);
+
+        Map<Integer, Integer> result = Application.numberMatches(inputMap, inputList);
+
+        assertTrue(result.values().stream().allMatch(value -> value.equals(2)));
+
+    }
+
+    @Test
+    @DisplayName("번호가 있다면 true, 없다면 false")
+    void testContainsBonusNumber(){
+        Map<Integer, List<Integer>> inputMap = new HashMap<>(); // 기존에 입력된 번호들
+        Integer inputBonus = 3;
+
+        inputMap.put(1, List.of(1,2,3));
+
+        boolean result = Application.containsBonusNumber(inputMap, inputBonus);
+        assertThat(result).isTrue();
+
+    }
+
+    @Test
+    @DisplayName("합한 값을 반환하는 메소드")
+    void testCalculateTotalProfitRate(){
+        Application.setSixMatchPrize(1); // 2000000000
+        Application.setFiveMatchWithBonusPrize(1); // 30000000
+        Application.setFiveMatchPrize(1); // 1500000
+        Application.setFourMatchPrize(1); // 50000
+        Application.setThreeMatchPrize(1); // 5000
+
+        int sixMatchPrize = 2000000000 * Application.getSixMatchPrize();
+        int fiveMatchWithBonusPrize = 30000000 * Application.getFiveMatchWithBonusPrize();
+        int fiveMatchPrize = 1500000 * Application.getFiveMatchPrize();
+        int fourMatchPrize = 50000 * Application.getFourMatchPrize();
+        int threeMatchPrize = 5000 * Application.getThreeMatchPrize();
+
+        double expectedTotalProfitRate = (sixMatchPrize + fiveMatchWithBonusPrize + fiveMatchPrize + fourMatchPrize + threeMatchPrize);
+
+        double result = Application.calculateTotalProfitRate();
+        assertThat(result).isEqualTo(expectedTotalProfitRate);
     }
 
     @Test
     @DisplayName("소수점 둘째자리까지 출력")
-    void testCalculateTotalProfitRate(){
+    void testCalculateProfitRate(){
+        int input = 15000;
 
-        int sixMatchPrize = 2000000;
-        int fiveMatchWithBonusPrize = 3000000;
-        int fiveMatchPrize = 100000;
-        int fourMatchPrize = 5000;
-        int threeMatchPrize = 200;
+        Application.setFourMatchPrize(1); // 50000
+        Application.setThreeMatchPrize(1); // 5000
 
-        PrizeCategory.MATCHES_SIX.setPrizeAmount(sixMatchPrize);
-        PrizeCategory.MATCHES_FIVE_BONUS.setPrizeAmount(fiveMatchWithBonusPrize);
-        PrizeCategory.MATCHES_FIVE.setPrizeAmount(fiveMatchPrize);
-        PrizeCategory.MATCHES_FOUR.setPrizeAmount(fourMatchPrize);
-        PrizeCategory.MATCHES_THREE.setPrizeAmount(threeMatchPrize);
+        int fourMatchPrize = 50000 * Application.getFourMatchPrize();
+        int threeMatchPrize = 5000 * Application.getThreeMatchPrize();
 
-        double expectedTotalProfitRate = (sixMatchPrize + fiveMatchWithBonusPrize + fiveMatchPrize + fourMatchPrize + threeMatchPrize);
+        Application.calculateProfitRate(input);
 
-        assertEquals(expectedTotalProfitRate, Application.calculateTotalProfitRate(), 0.01);
+        double expectation = 366.67;
+
+        assertEquals(expectation, Application.getStatistics(), 0.01);
+
     }
 
 }

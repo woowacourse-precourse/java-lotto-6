@@ -4,6 +4,7 @@ import lotto.constant.LottoRank;
 import lotto.util.NumberGenerator.INumberGenerator;
 import lotto.util.NumberGenerator.NumberGenerator;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -29,6 +30,8 @@ public class LottoPack {
     public Result calculate(WinningNumbers winningNumbers, WinningNumber bonusNumber) {
 
         EnumMap<LottoRank, Integer> map = new EnumMap<>(LottoRank.class);
+
+        Arrays.stream(LottoRank.values()).forEach(lottoRank -> map.put(lottoRank, 0));
 
         lottoPack.stream()
                 .map(lotto -> lotto.calculate(winningNumbers, bonusNumber))

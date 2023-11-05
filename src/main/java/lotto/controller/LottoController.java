@@ -29,6 +29,8 @@ public class LottoController {
         outputView.newline();
         WinningNumber bonusNumber = loop(this::getBonusNumber);
 
+        outputView.printResult(lottoPack.calculate(winningNumbers, bonusNumber));
+
     }
 
     private LottoPack buyLottoPack() {

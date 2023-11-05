@@ -1,15 +1,36 @@
 package lotto.domain;
 
+import lotto.constant.LottoConfig;
 import lotto.constant.LottoRank;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
 
 public class Result {
 
-    private final EnumMap<LottoRank, Integer> map;
+    private final EnumMap<LottoRank, Integer> result;
 
-    public Result(EnumMap<LottoRank, Integer> map) {
-        this.map = map;
+    public Result(EnumMap<LottoRank, Integer> result) {
+        result.remove(LottoRank.NOTHING);
+        this.result = result;
+    }
+
+    @Override
+    public String toString() {
+
+        List<String> response = new ArrayList<>();
+
+        result.forEach((rank, count) -> {
+            response.add(buildLine(rank, count));
+        });
+
+        return String.join("\n", response);
+
+    }
+
+    private String buildLine(LottoRank rank, Integer count) {
+        return rank.toString() + String.format(" - %d개", count);
     }
 
 }

@@ -16,7 +16,7 @@ public class Player {
         return this.lotto;
     }
 
-    public Cost getCost() {
-        return this.cost;
+    public int getLottoCount() {
+        return cost.getValue() / 1000;
     }
 }

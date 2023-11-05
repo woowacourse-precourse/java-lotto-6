@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Player;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -15,6 +16,9 @@ public class GameController {
 
     public void startGame() {
         outputView.printCostMessage();
-        int cost = inputView.getCost();
+        String cost = inputView.getCost();
+
+        Player player = new Player(cost);
+        outputView.printPurchaseResult(player.getLottoCount());
     }
 }

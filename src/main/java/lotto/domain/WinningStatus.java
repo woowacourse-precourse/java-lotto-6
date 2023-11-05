@@ -1,10 +1,5 @@
 package lotto.domain;
 
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public enum WinningStatus {
     MATCH3(5000, 3),
     MATCH4(50000, 4),
@@ -20,10 +15,6 @@ public enum WinningStatus {
         this.matchCount = matchCount;
     }
 
-    private int matchCount() {
-        return this.matchCount;
-    }
-
     public int getPrize() {
         return this.prize;
     }
@@ -31,9 +22,6 @@ public enum WinningStatus {
     public int getMatchCount() {
         return this.matchCount;
     }
-
-    private static final Map<Integer, WinningStatus> BY_MATCHCOUNT =
-            Stream.of(values()).collect(Collectors.toMap(WinningStatus::matchCount, Function.identity()));
 
     public static WinningStatus valueOfMatchCount(int matchCount, boolean isBonusMatch) {
         if (matchCount == 5 && isBonusMatch == true) {

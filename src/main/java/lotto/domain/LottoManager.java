@@ -40,4 +40,11 @@ public class LottoManager {
     public int getBonus() {
         return bonus.getBonus();
     }
+
+    private MatchNumber matchNumber(Lotto given, Lotto winnings) {
+        int matchCount = Lotto.matchCount(given, winnings);
+        boolean bonusMatch = Bonus.isSameNumber(given, bonus);
+        return MatchNumber.findByMatchCountAndBonus(matchCount, bonusMatch);
+    }
+
 }

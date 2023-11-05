@@ -71,4 +71,12 @@ public class InputValidation {
             throw new IllegalArgumentException(ExceptionMessage.WINNIG_LOTTO_SIX_VALUE_NUMBER.getMessage());
         }
     }
+
+    public static int validateBonusNumberRange(String number) {
+        int bonusNum = Integer.parseInt(number);
+        if (bonusNum < 1 || bonusNum > 45) {
+            throw new IllegalArgumentException(ExceptionMessage.WINNIG_LOTTO_INCLUDED_VALUE_NUMBER.getMessage());
+        }
+        return bonusNum;
+    }
 }

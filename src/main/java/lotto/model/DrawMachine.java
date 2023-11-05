@@ -5,13 +5,19 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class DrawMachine {
-    private List<Integer> winningNumbers;
 
-    public List<Integer> getWinningNumbers() {
-        return this.winningNumbers;
+    public List<Integer> pickLottoNumbers() {
+        List<Integer> lottoNumbers = mainNumbers();
+        lottoNumbers.add(bonusNumber());
+
+        return lottoNumbers;
     }
 
-    private void winningNumbers() {
-        this.winningNumbers = Randoms.pickUniqueNumbersInRange(Rule.MIN_NUMBER.value(), Rule.MAX_NUMBER.value(), Rule.DIGITS.value());
+    private List<Integer> mainNumbers() {
+        return Randoms.pickUniqueNumbersInRange(Rule.MIN_NUMBER.value(), Rule.MAX_NUMBER.value(), Rule.LOTTO_NUMBERS_DIGITS.value());
+    }
+
+    private Integer bonusNumber() {
+        return Randoms.pickUniqueNumbersInRange(Rule.MIN_NUMBER.value(), Rule.MAX_NUMBER.value(), Rule.BONUS_NUMBER_DIGITS.value()).get(0);
     }
 }

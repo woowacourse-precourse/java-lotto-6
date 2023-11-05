@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.Prize;
+import lotto.constants.Prize;
 
 public class LottoManager {
 
@@ -46,6 +46,4 @@ public class LottoManager {
 
         return lottoResult;
     }
-
-
 }

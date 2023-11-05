@@ -1,7 +1,7 @@
 package lotto.ui;
 
 import java.util.List;
-import lotto.Prize;
+import lotto.constants.Prize;
 import lotto.domain.LottoManager;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;

@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.Map;
-import lotto.Prize;
+import lotto.constants.Prize;
 
 public class LottoResult {
 

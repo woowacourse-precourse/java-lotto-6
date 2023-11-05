@@ -30,6 +30,6 @@ public class CostValidator {
         }
     }
     public void setLottoNum(){
-        this.lottoCount = cost%1000;
+        this.lottoCount = cost % 1000;
     }
 }

@@ -24,7 +24,5 @@ public class LottoGenerator {
     }
     public void sortLottoGroup(){
         lottoGroup.forEach(lotto -> lotto.sort());
-
-
     }
 }

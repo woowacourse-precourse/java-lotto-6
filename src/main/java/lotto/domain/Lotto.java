@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -14,14 +15,13 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
-
     // TODO: 추가 기능 구현
     public void sort() {
+        numbers.sort(Comparator.naturalOrder());
     }
 }

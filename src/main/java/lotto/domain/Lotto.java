@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.io.OutputHandler;
 import lotto.system.Constant;
+import lotto.util.Util;
 import lotto.verifier.LottoVerifier;
 
 import java.util.Collections;
@@ -18,7 +19,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        String forCheck = String.join(",", numbers.stream().map(Object::toString).collect(Collectors.toList()));
+        String forCheck = Util.makeIntegerListToStringFormat(numbers);
         new LottoVerifier().check(forCheck);
     }
 

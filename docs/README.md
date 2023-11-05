@@ -22,3 +22,5 @@
    - 불만족 시 예외(IllegalArgumentException) 리턴
 10. 로또 구입 금액 유효성 검사
     - 1,000원 단위로 나누어 떨어지지 않을 시 예외(IllegalArgumentException) 리턴
+11. 당첨 번호 6개끼리 중복 여부 검사
+    - 중복 발견 시 예외(IllegalArgumentException) 리턴

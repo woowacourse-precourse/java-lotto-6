@@ -5,7 +5,6 @@ import static lotto.constant.ResultMessage.BONUS;
 import static lotto.constant.ResultMessage.NULL;
 
 import java.util.Arrays;
-import java.text.DecimalFormat;
 import lotto.constant.ResultMessage;
 
 public enum LottoRank {
@@ -45,11 +44,6 @@ public enum LottoRank {
     }
 
     private String makeRankNoticeBase(ResultMessage message) {
-        return String.format(message.getMessage(), count, formatPrize(prize));
-    }
-
-    private static String formatPrize(long prize) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        return decimalFormat.format(prize);
+        return String.format(message.getMessage(), count, prize);
     }
 }

@@ -132,6 +132,66 @@ class LottoModelTest {
                 .isEqualTo(expect);
     }
 
+    @Test
+    void makeWinningTable_당첨여부_판단_1등() {
+        HashMap<Rewards,Integer> expect = new HashMap<>();
+        expect.put(Rewards.FIRST, 1);
+        expect.put(Rewards.SECOND, 0);
+        expect.put(Rewards.THIRD, 0);
+        expect.put(Rewards.FOURTH, 0);
+        expect.put(Rewards.FIFTH, 0);
+        assertThat(lottoModel.makeWinningTable(6,false))
+                .isEqualTo(expect);
+    }
+
+    @Test
+    void makeWinningTable_당첨여부_판단_2등() {
+        HashMap<Rewards,Integer> expect = new HashMap<>();
+        expect.put(Rewards.FIRST, 0);
+        expect.put(Rewards.SECOND, 1);
+        expect.put(Rewards.THIRD, 0);
+        expect.put(Rewards.FOURTH, 0);
+        expect.put(Rewards.FIFTH, 0);
+        assertThat(lottoModel.makeWinningTable(5,true))
+                .isEqualTo(expect);
+    }
+
+    @Test
+    void makeWinningTable_당첨여부_판단_3등() {
+        HashMap<Rewards,Integer> expect = new HashMap<>();
+        expect.put(Rewards.FIRST, 0);
+        expect.put(Rewards.SECOND, 0);
+        expect.put(Rewards.THIRD, 1);
+        expect.put(Rewards.FOURTH, 0);
+        expect.put(Rewards.FIFTH, 0);
+        assertThat(lottoModel.makeWinningTable(5,false))
+                .isEqualTo(expect);
+    }
+
+    @Test
+    void makeWinningTable_당첨여부_판단_4등() {
+        HashMap<Rewards,Integer> expect = new HashMap<>();
+        expect.put(Rewards.FIRST, 0);
+        expect.put(Rewards.SECOND, 0);
+        expect.put(Rewards.THIRD, 0);
+        expect.put(Rewards.FOURTH, 1);
+        expect.put(Rewards.FIFTH, 0);
+        assertThat(lottoModel.makeWinningTable(4,false))
+                .isEqualTo(expect);
+    }
+
+    @Test
+    void makeWinningTable_당첨여부_판단_5등() {
+        HashMap<Rewards,Integer> expect = new HashMap<>();
+        expect.put(Rewards.FIRST, 0);
+        expect.put(Rewards.SECOND, 0);
+        expect.put(Rewards.THIRD, 0);
+        expect.put(Rewards.FOURTH, 0);
+        expect.put(Rewards.FIFTH, 1);
+        assertThat(lottoModel.makeWinningTable(3,false))
+                .isEqualTo(expect);
+    }
+
 
     static Stream<Arguments> parameterProviderPublishTicket() {
         return Stream.of(

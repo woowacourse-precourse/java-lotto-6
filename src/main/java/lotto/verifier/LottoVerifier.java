@@ -13,10 +13,17 @@ public class LottoVerifier implements Verifier {
     public void check(String input) {
         checkNumberCount(input);
         checkEachNumeric(input);
+        checkEachTypeRange(input);
         checkEachRange(input);
         checkDistinct(input);
     }
 
+    private void checkNumberCount(String input) {
+        String[] numbers = input.split(",");
+        if (numbers.length != Constant.LOTTO_SIZE) {
+            throw new IllegalArgumentException(ExceptionMessage.COUNT_NOT_EQUAL);
+        }
+    }
     private void checkEachNumeric(String input) {
         String[] numbers = input.split(",");
         try {
@@ -26,13 +33,14 @@ public class LottoVerifier implements Verifier {
         }
     }
 
-    private void checkNumberCount(String input) {
+    private void checkEachTypeRange(String input){
         String[] numbers = input.split(",");
-        if (numbers.length != Constant.LOTTO_SIZE) {
-            throw new IllegalArgumentException(ExceptionMessage.COUNT_NOT_EQUAL);
+        try{
+            Arrays.stream(numbers).forEach(Long::parseLong);
+        }catch(Exception e){
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_OUT_OF_TYPE_RANGE);
         }
     }
-
     private void checkEachRange(String input) {
         String[] inputs = input.split(",");
         for (String num : inputs) {

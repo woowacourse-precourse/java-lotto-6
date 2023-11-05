@@ -29,7 +29,11 @@ public class LottoController {
     }
 
     private void buyLottos() {
-        List<Lotto> lotto = Lotto.generator(purchase.getCount());
+        int count = purchase.getCount();
+
+        List<Lotto> lotto = Lotto.generator(count);
         lottos = new Lottos(lotto);
+
+        OutputView.lottoInfo(lotto, count);
     }
 }

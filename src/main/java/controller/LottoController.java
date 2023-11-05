@@ -32,20 +32,27 @@ public class LottoController {
         inputView.close();
     }
 
-    private void informLottoResult() {
-        LottoTotalResult totalResult = lottoService.calculateResult();
-        informWinningResult(totalResult);
-        informRateOfReturn(totalResult);
+    private void initService() {
+        int purchase = askValidPurchaseAmount();
+        lottoService = LottoService.from(purchase);
     }
 
-    private void informRateOfReturn(final LottoTotalResult totalResult) {
-        double rateOfReturn = lottoService.calculateRateOfReturn(totalResult);
-        outputView.informRateOfReturn(rateOfReturn);
+    private int askValidPurchaseAmount() {
+        outputView.askPurchaseAmount();
+        String inputPurchase = inputView.read();
+        try {
+            validator.validatePurchase(inputPurchase);
+            return Integer.parseInt(inputPurchase);
+        } catch (IllegalArgumentException exception) {
+            outputView.showErrorMessage(exception.getMessage());
+            return askValidPurchaseAmount();
+        }
     }
 
-    private void informWinningResult(final LottoTotalResult totalResult) {
-        List<LottoResult> results = totalResult.toDto();
-        outputView.informWinningStatistics(results);
+    private void informLottos() {
+        outputView.informLottoCount(lottoService.getLottoCount());
+        List<LottoResponse> lottoResponses = lottoService.getGeneratedLottos();
+        outputView.noticeGeneratedLottos(lottoResponses);
     }
 
     private void generateAnswerNumber() {
@@ -53,18 +60,6 @@ public class LottoController {
         int answerBonusNumber = getValidBonusNumber(answerLottoNumbers);
 
         lottoService.generateAnswerLotto(answerLottoNumbers, answerBonusNumber);
-    }
-
-    private int getValidBonusNumber(final List<Integer> numbers) {
-        outputView.askBonusNumber();
-        String inputBonusNumber = inputView.read();
-        try {
-            validator.validateBonusNumber(numbers, inputBonusNumber);
-            return Integer.parseInt(inputBonusNumber);
-        } catch (IllegalArgumentException exception) {
-            outputView.showErrorMessage(exception.getMessage());
-            return getValidBonusNumber(numbers);
-        }
     }
 
     private List<Integer> getValidAnswerNumbers() {
@@ -82,26 +77,30 @@ public class LottoController {
         }
     }
 
-    private void informLottos() {
-        outputView.informLottoCount(lottoService.getLottoCount());
-        List<LottoResponse> lottoResponses = lottoService.getGeneratedLottos();
-        outputView.noticeGeneratedLottos(lottoResponses);
-    }
-
-    private void initService() {
-        int purchase = askValidPurchaseAmount();
-        lottoService = LottoService.from(purchase);
-    }
-
-    private int askValidPurchaseAmount() {
-        outputView.askPurchaseAmount();
-        String inputPurchase = inputView.read();
+    private int getValidBonusNumber(final List<Integer> numbers) {
+        outputView.askBonusNumber();
+        String inputBonusNumber = inputView.read();
         try {
-            validator.validatePurchase(inputPurchase);
-            return Integer.parseInt(inputPurchase);
+            validator.validateBonusNumber(numbers, inputBonusNumber);
+            return Integer.parseInt(inputBonusNumber);
         } catch (IllegalArgumentException exception) {
             outputView.showErrorMessage(exception.getMessage());
-            return askValidPurchaseAmount();
+            return getValidBonusNumber(numbers);
         }
+    }
+    private void informLottoResult() {
+        LottoTotalResult totalResult = lottoService.calculateResult();
+        informWinningResult(totalResult);
+        informRateOfReturn(totalResult);
+    }
+
+    private void informRateOfReturn(final LottoTotalResult totalResult) {
+        double rateOfReturn = lottoService.calculateRateOfReturn(totalResult);
+        outputView.informRateOfReturn(rateOfReturn);
+    }
+
+    private void informWinningResult(final LottoTotalResult totalResult) {
+        List<LottoResult> results = totalResult.toDto();
+        outputView.informWinningStatistics(results);
     }
 }

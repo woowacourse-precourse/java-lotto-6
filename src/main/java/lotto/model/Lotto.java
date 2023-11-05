@@ -14,6 +14,9 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateHasSixSize(numbers);
         validateIsDuplicate(numbers);
+        for (int number : numbers) {
+            validateInRange(number);
+        }
     }
 
     private void validateHasSixSize(List<Integer> input) {
@@ -30,6 +33,12 @@ public class Lotto {
 
         if (inputSize != uniqueInputSize) {
             throw new IllegalArgumentException("[ERROR] 중복되지 않게 입력해야 합니다.");
+        }
+    }
+
+    private static void validateInRange(int input) {
+        if (input < 1 || input > 45) {
+            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해야 합니다.");
         }
     }
 

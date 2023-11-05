@@ -5,7 +5,6 @@ public class Money {
     public static int countMoney(Integer money){
         int count;
         count = money / LOTTOPRICE;
-        System.out.println(count);
         return count;
     }
 }

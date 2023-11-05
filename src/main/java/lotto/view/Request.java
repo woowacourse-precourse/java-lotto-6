@@ -6,7 +6,11 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Request {
     public static String requestNubmer(){
-        System.out.println(ASK_INPUT_MONEY);
+        printMessage(ASK_INPUT_MONEY);
         return Console.readLine();
+    }
+
+    public static void printMessage(OutputView outputView){
+        System.out.println(outputView.getMessage());
     }
 }

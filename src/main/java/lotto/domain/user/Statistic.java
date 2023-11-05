@@ -3,7 +3,7 @@ package lotto.domain.user;
 import lotto.config.Config;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
-import lotto.domain.num.LottoNumResults;
+import lotto.domain.num.LottoTargetNumResults;
 import lotto.utill.Utii;
 
 /**
@@ -21,9 +21,9 @@ public class Statistic {
     private Integer totalWinMoney;
 
 
-    public Statistic(LottoEnvelop lottoEnvelop, LottoNumResults lottoNumResults) {
+    public Statistic(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
         this.lottoEnvelop = lottoEnvelop;
-        this.judgment = Config.judgment(lottoNumResults);
+        this.judgment = Config.judgment(lottoTargetNumResults);
         this.countOfFirstPlace = 0;
         this.countOfSecondPlace = 0;
         this.countOfThirdPlace = 0;
@@ -105,7 +105,7 @@ public class Statistic {
 
     public Integer getTotalWinMoney() {
         calculateTotalWinMoney();
-        
+
         return totalWinMoney;
     }
 }

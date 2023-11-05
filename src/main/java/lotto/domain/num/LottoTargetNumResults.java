@@ -1,20 +1,19 @@
 package lotto.domain.num;
 
 import lotto.config.Config;
-import lotto.domain.lotto.Lotto;
 import lotto.utill.Utii;
 
 /**
  * 당첨 번호와 보너스 번호들의 모임 클래스
  */
-public class LottoNumResults {
+public class LottoTargetNumResults {
     private static final Integer BONUS_INDEX_NUM = 6;
     private static final Integer START_PICK_NUM_INDEX = 0;
     private static final Integer END_PICK_NUM_INDEX = 5;
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
-    public LottoNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
+    public LottoTargetNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
         this.winLottoNums = Config.winLottoNums(strOfPickWinNum);
         this.bonusLottoNum = Config.bonusLottoNum(strOfPickBonusNum);
     }

@@ -5,13 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class LottoNumResultsTest {
-    private LottoNumResults lottoNumResults;
+class LottoTargetNumResultsTest {
+    private LottoTargetNumResults lottoTargetNumResults;
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
@@ -19,7 +17,7 @@ class LottoNumResultsTest {
     void setUp() {
         winLottoNums = new WinLottoNums("1,2,3,4,5,6");
         bonusLottoNum = new BonusLottoNum("7");
-        lottoNumResults = new LottoNumResults("1,2,3,4,5,6", "7");
+        lottoTargetNumResults = new LottoTargetNumResults("1,2,3,4,5,6", "7");
     }
 
     // TODO: 11/5/23 삭제 요망
@@ -39,7 +37,7 @@ class LottoNumResultsTest {
     @CsvSource({"1,0", "2,1", "3,2", "4,3", "5,4", "6,5"})
     void isSameWinNums(Integer targetNum, Integer indexOfSpecial) {
         // when
-        Boolean result = lottoNumResults.isSameWinNums(targetNum);
+        Boolean result = lottoTargetNumResults.isSameWinNums(targetNum);
 
         // than
         assertThat(result).isTrue();
@@ -52,7 +50,7 @@ class LottoNumResultsTest {
         Integer indexOfSpecial = 6;
 
         // when
-        Boolean result = lottoNumResults.isSameBonusNum(targetNum, indexOfSpecial);
+        Boolean result = lottoTargetNumResults.isSameBonusNum(targetNum, indexOfSpecial);
 
         // than
         assertThat(result).isTrue();

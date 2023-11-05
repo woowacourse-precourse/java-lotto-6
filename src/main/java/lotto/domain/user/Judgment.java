@@ -1,8 +1,7 @@
 package lotto.domain.user;
 
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoEnvelop;
-import lotto.domain.num.LottoNumResults;
+import lotto.domain.num.LottoTargetNumResults;
 
 /**
  * 사용자의 당첨 판단 클래스.
@@ -10,10 +9,10 @@ import lotto.domain.num.LottoNumResults;
 public class Judgment {
     private static final Integer SIZE_LOTTO = 6;
     private static final Integer BONUS_NUM_INDEX = 6;
-    private LottoNumResults lottoNumResults;
+    private LottoTargetNumResults lottoTargetNumResults;
 
-    public Judgment(LottoNumResults lottoNumResults) {
-        this.lottoNumResults = lottoNumResults;
+    public Judgment(LottoTargetNumResults lottoTargetNumResults) {
+        this.lottoTargetNumResults = lottoTargetNumResults;
     }
 
     /**
@@ -28,7 +27,7 @@ public class Judgment {
         for (int i = 0; i < SIZE_LOTTO; i++) {
             numOfLotto = lotto.getNumber(i);
 
-            if (lottoNumResults.isSameWinNums(numOfLotto)) {
+            if (lottoTargetNumResults.isSameWinNums(numOfLotto)) {
                 countSameWinNum = countSameWinNum + 1;
             }
         }
@@ -41,7 +40,7 @@ public class Judgment {
         for (int i = 0; i < SIZE_LOTTO; i++) {
             numOfLotto = lotto.getNumber(i);
 
-            if (lottoNumResults.isSameBonusNum(numOfLotto, BONUS_NUM_INDEX)) {
+            if (lottoTargetNumResults.isSameBonusNum(numOfLotto, BONUS_NUM_INDEX)) {
                 return true;
             }
         }

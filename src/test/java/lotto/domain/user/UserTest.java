@@ -1,8 +1,8 @@
 package lotto.domain.user;
 
-import lotto.config.Config;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
+import lotto.domain.num.LottoTargetNumResults;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
     private User user;
@@ -18,10 +17,11 @@ class UserTest {
     private Lotto lotto_1;
     private Lotto lotto_2;
     private Lotto lotto_3;
+    private LottoTargetNumResults lottoTargetNumResults;
 
     @BeforeEach
     void setUp() {
-        user = new User();
+        user = new User(lottoEnvelop, lottoTargetNumResults);
         lottoEnvelop = new LottoEnvelop();
         lotto_1 = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         lotto_2 = new Lotto(List.of(7, 6, 5, 4, 3, 2));

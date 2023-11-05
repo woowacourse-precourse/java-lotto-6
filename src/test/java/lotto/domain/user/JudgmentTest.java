@@ -2,22 +2,20 @@ package lotto.domain.user;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
-import lotto.domain.num.LottoNumResults;
+import lotto.domain.num.LottoTargetNumResults;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class JudgmentTest {
     private Judgment judgment;
     private LottoEnvelop lottoEnvelop;
-    private LottoNumResults lottoNumResults;
+    private LottoTargetNumResults lottoTargetNumResults;
     private Lotto lotto_1;
     private Lotto lotto_2;
     private Lotto lotto_3;
@@ -33,9 +31,9 @@ class JudgmentTest {
         lottoEnvelop.add(lotto_2);
         lottoEnvelop.add(lotto_3);
 
-        lottoNumResults = new LottoNumResults("1,2,3,4,5,6", "7");
+        lottoTargetNumResults = new LottoTargetNumResults("1,2,3,4,5,6", "7");
 
-        judgment = new Judgment(lottoNumResults);
+        judgment = new Judgment(lottoTargetNumResults);
     }
 
     @DisplayName("로또와 추첨의 번호가 같은 수를 알려준다.")
@@ -44,7 +42,7 @@ class JudgmentTest {
     void countSameWinNum(int num1, int num2, int num3, int num4, int num5, int num6, int num7) {
         // given
         lotto_1 = new Lotto(List.of(num1, num2, num3, num4, num5, num6));
-        lottoNumResults = new LottoNumResults("1,2,3,4,5,6", "7");
+        lottoTargetNumResults = new LottoTargetNumResults("1,2,3,4,5,6", "7");
 
         // when
         Integer result = judgment.countSameWinNum(lotto_1);
@@ -59,7 +57,7 @@ class JudgmentTest {
     void isSameBonusNum(int num1, int num2, int num3, int num4, int num5, int num6) {
         // given
         lotto_1 = new Lotto(List.of(num1, num2, num3, num4, num5, num6));
-        lottoNumResults = new LottoNumResults("1,2,3,4,5,6", "7");
+        lottoTargetNumResults = new LottoTargetNumResults("1,2,3,4,5,6", "7");
 
         // when
         Boolean result = judgment.isSameBonusNum(lotto_1);

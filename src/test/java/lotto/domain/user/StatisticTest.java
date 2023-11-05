@@ -3,7 +3,7 @@ package lotto.domain.user;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.num.BonusLottoNum;
-import lotto.domain.num.LottoNumResults;
+import lotto.domain.num.LottoTargetNumResults;
 import lotto.domain.num.WinLottoNums;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class StatisticTest {
     private Statistic statistic;
@@ -25,7 +24,7 @@ class StatisticTest {
     private Lotto lotto_6;
     private Lotto lotto_7;
     private Lotto lotto_8;
-    private LottoNumResults lottoNumResults;
+    private LottoTargetNumResults lottoTargetNumResults;
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
@@ -35,9 +34,9 @@ class StatisticTest {
 
         winLottoNums = new WinLottoNums("1,2,3,4,5,6");
         bonusLottoNum = new BonusLottoNum("7");
-        lottoNumResults = new LottoNumResults("1,2,3,4,5,6", "7");
+        lottoTargetNumResults = new LottoTargetNumResults("1,2,3,4,5,6", "7");
 
-        statistic = new Statistic(lottoEnvelop, lottoNumResults);
+        statistic = new Statistic(lottoEnvelop, lottoTargetNumResults);
     }
 
     @DisplayName("통계의 결과를 보여준다._1")

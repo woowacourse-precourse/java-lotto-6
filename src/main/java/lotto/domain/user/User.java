@@ -1,8 +1,10 @@
 package lotto.domain.user;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.config.Config;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
+import lotto.domain.num.LottoTargetNumResults;
 
 import java.util.List;
 
@@ -10,7 +12,11 @@ import java.util.List;
  * 사용자 클래스
  */
 public class User {
-    LottoEnvelop lottoEnvelop;
+    private LottoEnvelop lottoEnvelop;
+
+    public User(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
+        this.lottoEnvelop = lottoEnvelop;
+    }
 
     /**
      * 돈을 지불한다.
@@ -45,11 +51,10 @@ public class User {
     /**
      * 로또결과의 당첨에 대한 통계를 한다.
      *
-     * @param successLottos 당첨된 로또들의 모임
+     * @param lottoTargetNumResults 당첨된, 보너스 번호 들의 모임
      * @return
      */
-    public List<Integer> doStatisticLottoResult(List<Lotto> successLottos) {
-
+    public List<Integer> doStatisticLottoResult(LottoTargetNumResults lottoTargetNumResults) {
         return null;
     }
 

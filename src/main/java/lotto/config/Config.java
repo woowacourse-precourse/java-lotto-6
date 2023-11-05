@@ -3,7 +3,7 @@ package lotto.config;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.num.BonusLottoNum;
-import lotto.domain.num.LottoNumResults;
+import lotto.domain.num.LottoTargetNumResults;
 import lotto.domain.num.RanNumbers;
 import lotto.domain.num.WinLottoNums;
 import lotto.domain.user.Judgment;
@@ -23,23 +23,23 @@ public class Config {
         return new BonusLottoNum(strOfPickBonusNum);
     }
 
-    public static LottoNumResults lottoNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
-        return new LottoNumResults(strOfPickWinNum, strOfPickBonusNum);
+    public static LottoTargetNumResults lottoNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
+        return new LottoTargetNumResults(strOfPickWinNum, strOfPickBonusNum);
     }
 
     public static WinLottoNums winLottoNums(String strOfPickWinNum) {
         return new WinLottoNums(strOfPickWinNum);
     }
 
-    public static Judgment judgment(LottoNumResults lottoNumResults) {
-        return new Judgment(lottoNumResults);
+    public static Judgment judgment(LottoTargetNumResults lottoTargetNumResults) {
+        return new Judgment(lottoTargetNumResults);
     }
 
-    public static Statistic statistic(LottoEnvelop lottoEnvelop, LottoNumResults lottoNumResults) {
-        return new Statistic(lottoEnvelop, lottoNumResults);
+    public static Statistic statistic(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
+        return new Statistic(lottoEnvelop, lottoTargetNumResults);
     }
 
-    public static User user() {
-        return new User();
+    public static User user(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
+        return new User(lottoEnvelop, lottoTargetNumResults);
     }
 }

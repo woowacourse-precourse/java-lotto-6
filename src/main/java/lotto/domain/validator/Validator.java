@@ -58,7 +58,7 @@ public final class Validator {
     public static String[] hasCommasWithoutSurroundingValues(String valuesSeparatedByCommas) {
         Matcher matcher = PatternConstant.HAS_COMMAS_WITHOUT_SURROUNDING_VALUES_PATTERNS.matcher(valuesSeparatedByCommas);
 
-        if (matcher.find()) throw new IllegalArgumentException("쉼표(,) 전후에 아무런 값이 없는 경우가 있습니다.");
+        if (matcher.find()) throw new IllegalArgumentException(ErrorMessage.ERROR_CONTAIN_CONSECUTIVE_COMMAS.getMessage());
 
         return valuesSeparatedByCommas.split(RegularConstant.DELIMITER);
     }

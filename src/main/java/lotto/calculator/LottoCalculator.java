@@ -5,7 +5,7 @@ import java.util.Map;
 
 import lotto.domain.LottoRank;
 
-public class LottoCalculator implements Calculator<Integer, EnumMap<LottoRank, Integer>> {
+public final class LottoCalculator implements Calculator<Integer, EnumMap<LottoRank, Integer>> {
 
 	@Override
 	public Integer calculateSum(EnumMap<LottoRank, Integer> lottoRanks) {

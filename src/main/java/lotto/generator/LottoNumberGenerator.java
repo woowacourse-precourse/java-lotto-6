@@ -7,7 +7,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
-public class LottoNumberGenerator implements Generator<List<Integer>> {
+public final class LottoNumberGenerator implements Generator<List<Integer>> {
 
 	@Override
 	public List<Integer> generate() {

@@ -20,6 +20,8 @@ public class LottoGame implements Game {
         printLottoTickets();
 
         collectWinningNumbers();
+        calculateWinningResult();
+        printWinningResult();
     }
 
     private void collectPurchaseAmount() {
@@ -51,6 +53,13 @@ public class LottoGame implements Game {
 
     private void calculateWinningResult() {
         winningResult = new WinningResult(lottoTickets, winningLotto);
+    }
+
+    private void printWinningResult() {
+        if(winningResult == null) {
+            throw new IllegalStateException(ErrorMessages.RESULT_WAS_NOT_CREATED.getMessage());
+        }
+        OutputView.printWinningResults(winningResult);
     }
 }
 

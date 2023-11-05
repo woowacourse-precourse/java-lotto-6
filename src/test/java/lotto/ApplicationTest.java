@@ -110,6 +110,9 @@ class ApplicationTest extends NsTest {
     void lottoQuantity_정상케이스() {
         assertThatCode(() -> lottoQuantity(12000))
                 .doesNotThrowAnyException();
+
+        int lottoQuantity = lottoQuantity(10000);
+        assertThat(lottoQuantity).isEqualTo(10);
     }
 
     @Test
@@ -122,11 +125,11 @@ class ApplicationTest extends NsTest {
 
     @DisplayName("입력 받은 값이 1,000원 단위인지 검증하는 메서드")
     private int lottoQuantity(int lottoPurchaseAmount){
-        int lottoQuantity = lottoPurchaseAmount % 1000;
-        System.out.println("lottoQuantity = " + lottoQuantity);
-        if(lottoQuantity != 0){
+        int lottoPurchaseAmountRemain = lottoPurchaseAmount % 1000;
+        if(lottoPurchaseAmountRemain != 0){
             throw new IllegalArgumentException("[ERROR] 구입금액을 1,000원 단위로 입력하세요.");
         }
+        int lottoQuantity = lottoPurchaseAmount / 1000;
         return lottoQuantity;
     }
 

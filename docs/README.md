@@ -15,5 +15,10 @@
     - [o]1000원으로 나누어 떨어지지 않으면 예외. LottoMarketService#void valiadateMoney(int money)
   - [o]무작위의 숫자를 반환한다. LottoNumGenerator#integer get()
 - [] 구매한 로또의 번호와 당첨 번호를 비교
+  - [o] 등수와 관련된 데이터를 묶어 놓은 enum 구현. Rank
+  - [] 하나의 로또와 당첨 번호, 보너스 번호 비교하고 등수 구하기. Domain#ranking()
+  - [] 로또 전체에 대해 등수 구하기 Domain#allRanking()
+  - [] 로또 전체에 대해 수익 구하기 Domain#calcultateProfit()
+  - [] 구입한 금액과 수익률 비교하기 Domain#calcualteProfitRate()
 - [] 당첨 내역 출력
 - [] 수익률 출력

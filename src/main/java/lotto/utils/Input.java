@@ -11,7 +11,7 @@ public class Input {
     public static int readPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String userInput = readLine();
-        return Validate.purchaseAmount(userInput);
+        return Validate.purchaseAmount(userInput) / 1000;
     }
 
     public static Lotto readLottery() {

@@ -25,4 +25,6 @@ public class LottoManager {
 
         return lottos;
     }
+
+
 }

@@ -36,6 +36,10 @@ public class Process {
         user.takeLottoEnvelop(lottoEnvelop);
     }
 
+    public String tellNumberLotto() {
+        return lottoSeller.tellNumberLotto();
+    }
+
     /**
      * 로또를 보여준다.
      */

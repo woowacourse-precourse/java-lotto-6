@@ -39,4 +39,8 @@ public class LottoSeller {
             lottoEnvelop.add(lotto);
         }
     }
+
+    public String tellNumberLotto() {
+        return lottoEnvelop.size() + "개를 구매했습니다.";
+    }
 }

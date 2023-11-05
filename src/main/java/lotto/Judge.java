@@ -31,7 +31,7 @@ public class Judge {
     public String calculateEarningRate(Result result, int number){
         long reward = calculateTotalResult(result);
         int buyPrice = number * 1000;
-        float earningRate = (float) reward /buyPrice;
+        float earningRate = ((float) reward /buyPrice) * 100;
 
         return String.format("%.1f", earningRate);
     }

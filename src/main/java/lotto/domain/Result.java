@@ -26,23 +26,26 @@ public class Result {
     }
 
     public int getThree() {
-        return three;
+        return this.three;
     }
 
     public int getFour() {
-        return four;
+        return this.four;
     }
 
     public int getFive() {
-        return five;
+        return this.five;
     }
 
     public int getFiveNBonus() {
-        return fiveNBonus;
+        return this.fiveNBonus;
     }
 
     public int getSix() {
-        return six;
+        return this.six;
+    }
+    public String getEarningRate(){
+        return this.earningRate;
     }
 
     public void setEarningRate(String earningRate){

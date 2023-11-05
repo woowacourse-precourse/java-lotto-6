@@ -6,23 +6,27 @@ import lotto.domain.Lottos;
 import lotto.domain.Player;
 import lotto.domain.Result;
 import lotto.view.Input;
+import lotto.view.Output;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
     private final Input input = new Input();
+    private final Output output = new Output();
     private final Judge judge = new Judge();
 
     public void start(){
         int quantity = getLottoQuantity();
+        output.showNumberOfLotto(quantity);
+
         Lottos lottos = new Lottos(quantity);
-        Player player = new Player(getWinningNumbers(),getBonusNumber(),getBonusNumber());
+        output.showLottoNumbers(lottos);
+        Player player = new Player(getWinningNumbers(),getBonusNumber(),quantity);
         Result result = judge.calculateWinning(player,lottos);
+        output.showStatistic(result);
         result.setEarningRate(judge.calculateEarningRate(result,quantity));
-
-
-
+        output.showEarningLate(result.getEarningRate());
     }
 
     private int getLottoQuantity(){

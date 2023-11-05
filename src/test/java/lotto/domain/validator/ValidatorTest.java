@@ -18,11 +18,26 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ValidatorTest {
 
-    private static List<List<Integer>> provideListsForTesting() {
+    private static List<List<Integer>> provideListsForTestingHaveDuplicateNumber() {
         return Arrays.asList(
                 Arrays.asList(1, 2, 3, 4, 5, 5),
                 Arrays.asList(4, 5, 6, 6, 7, 7),
                 Arrays.asList(7, 8, 8, 9, 9, 6)
+        );
+    }
+
+    private static List<List<Integer>> provideListsForTestingHaveSixNumbers() {
+        return Arrays.asList(
+                Arrays.asList(1, 2, 3, 4, 5, 5),
+                Arrays.asList(4, 5, 6, 6, 7, 7),
+                Arrays.asList(7, 8, 8, 9, 9, 6)
+        );
+    }
+
+    private static List<List<Integer>> provideListsForTestingNotHaveSixNumbers() {
+        return Arrays.asList(
+                Arrays.asList(1, 2, 3, 4, 5, 5, 2),
+                Arrays.asList(4, 5, 6, 6, 7)
         );
     }
 
@@ -64,7 +79,7 @@ class ValidatorTest {
 
     @DisplayName("중복 숫자가 존재하면 예외가 발생한다.")
     @ParameterizedTest
-    @MethodSource("provideListsForTesting")
+    @MethodSource("provideListsForTestingHaveDuplicateNumber")
     void validateDuplicateNumbers(List<Integer> testList) {
         assertThatThrownBy(() -> Validator.validateDuplicateNumbers(testList))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -80,7 +95,7 @@ class ValidatorTest {
                 .hasMessage(ErrorMessage.ERROR_CONTAIN_CONSECUTIVE_COMMAS.getMessage());
     }
 
-    @DisplayName("올바른 값이 들어왔을 때 예외가 발생하는지 확인.")
+    @DisplayName("올바른 값이 들어왔을 때 예외가 발생하지 않는다.")
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,6"})
     void hasCommasWithoutSurroundingValues2(String valuesSeparatedByCommas) {
@@ -106,4 +121,20 @@ class ValidatorTest {
                 .hasMessage(ErrorMessage.ERROR_OUT_OF_RANGES.getMessage());
     }
 
+    @DisplayName("6개로 이루어진 숫자 리스트가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @MethodSource("provideListsForTestingNotHaveSixNumbers")
+    void validateCountOfNumbers1(List<Integer> testList) {
+        assertThatThrownBy(() -> Validator.validateCountOfNumbers(testList))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
+    }
+
+    @DisplayName("6개로 이루어진 숫자 리스트면 아니면 예외가 발생하지 않는다.")
+    @ParameterizedTest
+    @MethodSource("provideListsForTestingHaveSixNumbers")
+    void validateCountOfNumbers2(List<Integer> testList) {
+        assertThatCode(() -> Validator.validateCountOfNumbers(testList))
+                .doesNotThrowAnyException();
+    }
 }

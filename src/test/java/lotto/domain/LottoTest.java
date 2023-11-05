@@ -84,5 +84,32 @@ class LottoTest {
         );
     }
 
+    @ParameterizedTest
+    @MethodSource
+    void 몇개의_로또_번호가_서로_일치하는지_확인한다(List<Integer> lottoNumbers, List<Integer> winningNumbers, int expectResult) {
+        //given
+        Lotto lotto = new Lotto(lottoNumbers);
+        Lotto winningLotto = new Lotto(winningNumbers);
+        //when
+        int result = lotto.findSameCount(winningLotto);
+        //then
+        assertThat(result).isEqualTo(expectResult);
+    }
+
+    private static Stream<Arguments> 몇개의_로또_번호가_서로_일치하는지_확인한다() {
+        return Stream.of(
+                Arguments.of(new ArrayList<>(Arrays.asList(6, 5, 4, 3, 2, 1)),
+                        new ArrayList<>(Arrays.asList(6, 5, 4, 3, 2, 1)), 6),
+                Arguments.of(new ArrayList<>(Arrays.asList(45, 35, 25, 15, 5, 1)),
+                        new ArrayList<>(Arrays.asList(3, 4, 25, 15, 5, 1)), 4),
+                Arguments.of(new ArrayList<>(Arrays.asList(1, 2, 3, 6, 5, 4)),
+                        new ArrayList<>(Arrays.asList(1, 2, 11, 12, 13, 14)), 2),
+                Arguments.of(new ArrayList<>(Arrays.asList(11, 21, 12, 22, 13, 33)),
+                        new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)), 0),
+                Arguments.of(new ArrayList<>(Arrays.asList(1, 2, 9, 8, 4, 3)),
+                        new ArrayList<>(Arrays.asList(1, 11, 12, 13, 14, 15)), 1)
+
+        );
+    }
 
 }

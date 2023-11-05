@@ -30,8 +30,7 @@ public final class Lottos {
                 .toList();
     }
 
-    public List<Integer> getByIndex(final int index) {
-        final Lotto lotto = elements.get(index);
-        return lotto.toValue();
+    public Lotto getByIndex(final int index) {
+        return elements.get(index);
     }
 }

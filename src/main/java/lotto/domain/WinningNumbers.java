@@ -27,4 +27,8 @@ public final class WinningNumbers {
     public List<WinningGrade> compare(final Lottos lottos) {
         return lottos.compare(lotto);
     }
+
+    public boolean contains(final BonusNumber bonusNumber) {
+        return lotto.contains(bonusNumber.toValue());
+    }
 }

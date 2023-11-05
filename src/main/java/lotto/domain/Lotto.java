@@ -28,4 +28,8 @@ public final class Lotto {
         values.retainAll(lotto.numbers);
         return values.size();
     }
+
+    public boolean contains(final Integer numbner) {
+        return numbers.contains(numbner);
+    }
 }

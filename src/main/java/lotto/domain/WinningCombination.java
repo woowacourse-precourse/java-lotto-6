@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.ProgressMessage;
 import lotto.constant.WinningGrade;
 
 import java.util.List;
@@ -14,40 +15,59 @@ public final class WinningCombination {
     private final BonusNumber bonusNumber;
 
     public WinningCombination(final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
+        validate(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validate(final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(
+                    ProgressMessage.BONUS_NUMBER_ALREADY_EXISTS.toValue());
+        }
     }
 
     public WinningResult calculateWinningLottos(final Lottos lottos) {
         final List<WinningGrade> winningGrades = winningNumbers.compare(lottos);
 
+        final List<WinningGrade> fixedWinningGrades =
+                mapToFixedWinningGrades(lottos, winningGrades);
+
+        return mapToWinningResult(fixedWinningGrades);
+    }
+
+    private List<WinningGrade> mapToFixedWinningGrades(
+            final Lottos lottos, final List<WinningGrade> winningGrades) {
         return IntStream.range(START_INDEX, winningGrades.size())
-                .mapToObj(index -> mapToProperWinningGrade(lottos, index, winningGrades))
-                .collect(
-                        Collectors.collectingAndThen(
-                                Collectors.toMap(
-                                        Function.identity(),
-                                        winningGrade -> numOfValues(winningGrade, winningGrades)),
-                                WinningResult::new));
+                .mapToObj(
+                        index ->
+                                mapToProperWinningGrade(
+                                        lottos.getByIndex(index), winningGrades.get(index)))
+                .toList();
     }
 
     private WinningGrade mapToProperWinningGrade(
-            final Lottos lottos, final int index, final List<WinningGrade> winningGrades) {
-        final WinningGrade winningGrade = winningGrades.get(index);
-        return getProperWinningGrade(lottos, index, winningGrade);
-    }
-
-    private WinningGrade getProperWinningGrade(
-            final Lottos lottos, final int index, final WinningGrade winningGrade) {
+            final Lotto lotto, final WinningGrade winningGrade) {
         if (winningGrade.isPossibleSecondWinner()) {
-            return bonusNumber.checkSecondWinning(lottos.getByIndex(index));
+            return bonusNumber.checkSecondWinning(lotto);
         }
         return winningGrade;
     }
 
+    private WinningResult mapToWinningResult(final List<WinningGrade> fixedWinningGrades) {
+        return fixedWinningGrades.stream()
+                .collect(
+                        Collectors.collectingAndThen(
+                                Collectors.toMap(
+                                        Function.identity(),
+                                        winningGrade ->
+                                                numOfValues(winningGrade, fixedWinningGrades)),
+                                WinningResult::new));
+    }
+
     private Integer numOfValues(
             final WinningGrade winningGrade, final List<WinningGrade> winningGrades) {
-        final long count = winningGrades.stream().filter(winningGrade::equals).count();
+        final long count = winningGrades.stream().filter(winningGrade::equalValue).count();
         return Long.valueOf(count).intValue();
     }
 }

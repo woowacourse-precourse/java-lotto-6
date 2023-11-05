@@ -3,8 +3,6 @@ package lotto.domain;
 import lotto.constant.ErrorMessage;
 import lotto.constant.WinningGrade;
 
-import java.util.List;
-
 public final class BonusNumber {
 
     private static final int MIN_BONUS_NUMBER = 1;
@@ -22,14 +20,18 @@ public final class BonusNumber {
         }
     }
 
-    public WinningGrade checkSecondWinning(final List<Integer> numbers) {
-        if (hasBonusNumber(numbers)) {
+    public WinningGrade checkSecondWinning(final Lotto lotto) {
+        if (hasBonusNumber(lotto)) {
             return WinningGrade.SECOND_GRADE;
         }
         return WinningGrade.THIRD_GRADE;
     }
 
-    private boolean hasBonusNumber(final List<Integer> numbers) {
-        return numbers.contains(value);
+    private boolean hasBonusNumber(final Lotto lotto) {
+        return lotto.contains(value);
+    }
+
+    public Integer toValue() {
+        return this.value;
     }
 }

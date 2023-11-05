@@ -34,7 +34,7 @@ class LottoTicketServiceTest {
     @Test
     @DisplayName("구입 금액에 따라 구매한 로또 계수를 계산 한다.")
     void convertMoneyToTickets() {
-        LottoPurchaseAmount lottoPurchaseAmount = new LottoPurchaseAmount("9000");
+        LottoPurchaseAmount lottoPurchaseAmount = new LottoPurchaseAmount(9000);
         LottoTicketCount lottoTicketCount = lottoTicketService.convertMoneyToTickets(lottoPurchaseAmount);
         assertThat(lottoTicketCount.getCount()).isEqualTo(9);
     }

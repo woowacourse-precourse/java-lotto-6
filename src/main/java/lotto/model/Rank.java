@@ -23,6 +23,10 @@ public enum Rank {
     }
 
     public boolean calculateRank(int count, boolean bonus) {
-        return calculateRank.apply(count,bonus);
+        return calculateRank.apply(count, bonus);
+    }
+
+    public long getPrize(){
+        return this.prize;
     }
 }

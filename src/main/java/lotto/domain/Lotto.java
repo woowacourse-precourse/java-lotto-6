@@ -42,6 +42,10 @@ public class Lotto {
         }
     }
 
+    public boolean doesHaveLottoNumber(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
+
     public Prize getPrize(Lotto winningLotto, LottoNumber bonusNumber) {
         int sameCount = getSameCount(winningLotto);
         boolean hasBonusNumber = doesHaveBonusNumber(bonusNumber);

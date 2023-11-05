@@ -14,9 +14,7 @@ public class InputConverter {
         StringTokenizer st = new StringTokenizer(inputWinningNumber, ",");
         while(st.hasMoreTokens()) {
             String nextNumber = st.nextToken();
-            checkDigit(nextNumber);
-            int winningNumber = Integer.parseInt(nextNumber);
-            winningNumbers.add(winningNumber);
+            winningNumbers.add(checkDigit(nextNumber));
         }
         return winningNumbers;
     }

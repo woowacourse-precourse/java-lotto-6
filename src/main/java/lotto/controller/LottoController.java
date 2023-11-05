@@ -2,10 +2,10 @@ package lotto.controller;
 
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Player;
+import lotto.model.lotto.PlayerAmount;
 import lotto.model.lotto.Winning;
 import lotto.model.result.Prize;
 import lotto.model.result.Result;
-import lotto.utils.Generator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,7 +22,8 @@ public class LottoController {
 
     private Player getPlayer() {
         try {
-            return Player.from(Generator.generateIntegerToPlayerAmount(InputView.getLottoMoney()));
+            PlayerAmount playerAmount = PlayerAmount.getInstance(InputView.getLottoMoney());
+            return Player.from(playerAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPlayer();

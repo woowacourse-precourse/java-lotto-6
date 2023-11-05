@@ -5,12 +5,12 @@ import java.util.function.BiPredicate;
 
 public enum Prize {
 
-    FIRST_PLACE(6, 2_000_000_000, (matchCount, matchBonus) -> matchCount == 6),
-    SECOND_PLACE(5, 30_000_000, (matchCount, matchBonus) -> matchCount == 5 && matchBonus),
-    THIRD_PLACE(5, 1_500_000, (matchCount, matchBonus) -> matchCount == 5),
-    FOURTH_PLACE(4, 50_000, (matchCount, matchBonus) -> matchCount == 4),
+    NO_PRIZE(0, 0, (matchCount, matchBonus) -> matchCount == 0),
     FIFTH_PLACE(3, 5_000, (matchCount, matchBonus) -> matchCount == 3),
-    NO_PRIZE(0, 0, (matchCount, matchBonus) -> matchCount == 0);
+    FOURTH_PLACE(4, 50_000, (matchCount, matchBonus) -> matchCount == 4),
+    THIRD_PLACE(5, 1_500_000, (matchCount, matchBonus) -> matchCount == 5 && !matchBonus),
+    SECOND_PLACE(5, 30_000_000, (matchCount, matchBonus) -> matchCount == 5 && matchBonus),
+    FIRST_PLACE(6, 2_000_000_000, (matchCount, matchBonus) -> matchCount == 6);
 
     private final int matchCount;
     private final BiPredicate<Integer, Boolean> matchNumbersAndBonus;

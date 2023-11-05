@@ -30,7 +30,6 @@ public class LottoService {
         Map<Integer, Integer> resultCount = new HashMap<>();
         for (Lotto lotto : lottery) {
             int rank = matchLottoWinningNumber(lotto, winningNumber, bonusNumber);
-            System.out.println(rank);
             resultCount.put(rank, resultCount.getOrDefault(rank, 0) + 1);
         }
         return resultCount;

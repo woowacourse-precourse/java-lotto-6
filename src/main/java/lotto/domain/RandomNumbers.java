@@ -12,8 +12,7 @@ public class RandomNumbers {
     public List<Integer> generateRandomNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(RANDOM_MIN_VALUE,
                 RANDOM_MAX_VALUE, RANDOM_NUMBERS_SIZE);
-        List<Integer> lottoNumbers = sortRandomNumbers(numbers);
-        return lottoNumbers;
+        return sortRandomNumbers(numbers);
     }
 
     private List<Integer> sortRandomNumbers(List<Integer> numbers) {

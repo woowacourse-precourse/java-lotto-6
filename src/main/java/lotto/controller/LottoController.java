@@ -4,7 +4,6 @@ import lotto.view.InputView;
 
 public class LottoController {
     private InputController input;
-    private int lottoCount;
     private int bonusNum;
     public LottoController() {
         input = new InputController(new InputView());

@@ -35,6 +35,6 @@ public class Constants {
     public static final String END_RESULT_MESSAGE_5 = "5개 일치 (1,500,000원) - ";
     public static final String END_RESULT_MESSAGE_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     public static final String END_RESULT_MESSAGE_6 = "6개 일치 (2,000,000,000원) - ";
-    public static final String END_RESULT = "총 수익률은 ";
+    public static final String END_RESULT = "총 수익률은 %.1f%%입니다.";
 
 }

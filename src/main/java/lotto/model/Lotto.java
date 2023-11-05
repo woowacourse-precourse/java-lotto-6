@@ -27,14 +27,27 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_MATCHED_NUMBER_COUNT.getMessage());
-        }
+        checkNumbersSize(numbers);
+        checkAllNumbersInRange(numbers);
+        checkDuplicatedNumber(numbers);
+    }
 
-        boolean isOutOfRange = numbers.stream()
-                .anyMatch(number -> number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX);
-        if (isOutOfRange)
+    private void checkDuplicatedNumber(List<Integer> numbers) {
+        List<Integer> distinctNumbers = numbers.stream().distinct().toList();
+
+        if (distinctNumbers.size() < numbers.size())
+            throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATED_LOTTO_NUMBER.getMessage());
+    }
+
+    private void checkAllNumbersInRange(List<Integer> numbers) {
+        if (numbers.stream()
+                .anyMatch(number -> number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX))
             throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_OF_RANGE_NUMBER.getMessage());
+    }
+
+    private void checkNumbersSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE)
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_MATCHED_NUMBER_COUNT.getMessage());
     }
 
     @Override

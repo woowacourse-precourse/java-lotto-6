@@ -19,6 +19,24 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public Rank calculateRank(Lotto winningLotto, int bonusNumber) {
+        int matchingNumberCount = getMatchingNumberCount(winningLotto);
+        boolean isBonusNumberMatch = isMatchBonusNumber(bonusNumber);
+
+        return Rank.findRankBy(matchingNumberCount, isBonusNumberMatch);
+    }
+
+    private int getMatchingNumberCount(Lotto winningLotto) {
+        return this.numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .toList()
+                .size();
+    }
+
+    private boolean isMatchBonusNumber(int bonusNumber) {
+        return this.numbers.contains(bonusNumber);
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != SIZE_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_SIZE_LOTTO_NUMBER.getDesc());

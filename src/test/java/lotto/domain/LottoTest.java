@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -47,6 +48,29 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_RANGE_LOTTO_NUMBER.getDesc());
+    }
+
+    @DisplayName("당첨 로또 및 보너스 번호와 비교해 당첨 등수를 계산한다.")
+    @Test
+    void calculateRankByWinningLottoAndBonusNumber() {
+        //given
+        final List<Integer> purchaseLottoNumber = List.of(1,2,3,4,5,6);
+        final List<Integer> winningLotto = List.of(2,3,4,5,6,7);
+        final int bonusNumber = 1;
+        final Rank predicateRank = Rank.SECOND;
+
+        Lotto purchaseLotto = createLottoBy(purchaseLottoNumber);
+        Lotto winnigLotto = createLottoBy(winningLotto);
+
+        //when
+        Rank rank = purchaseLotto.calculateRank(winnigLotto, bonusNumber);
+
+        //then
+        assertThat(rank).isEqualByComparingTo(predicateRank);
+    }
+
+    private Lotto createLottoBy(List<Integer> numbers){
+        return new Lotto(numbers);
     }
 
 }

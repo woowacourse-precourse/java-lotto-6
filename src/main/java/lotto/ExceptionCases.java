@@ -83,6 +83,11 @@ public class ExceptionCases {
             }
         }
     }
+    public void CheckNum(int temp){
+            if(temp<=0||temp>=46){
+                throw new IllegalArgumentException(ERROR_MESSAGE + "로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
     public void CheckSize(List<Integer> numbers){
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "당첨 번호는 6개의 숫자로 구성되어야 합니다.");
@@ -91,6 +96,11 @@ public class ExceptionCases {
     public void CheckLastComma(String s){
         if(s.charAt(s.length()-1)==',') {
             throw new IllegalArgumentException(ERROR_MESSAGE + "당첨 번호 입력 형식이 잘못되었습니다");
+        }
+    }
+    public void CheckSameWinAndBonus(List<Integer> Win, int Bonus ){
+        if(Win.contains(Bonus)){
+            throw new IllegalArgumentException(ERROR_MESSAGE + "보너스 번호와 당첨 번호가 중복됩니다.");
         }
     }
 }

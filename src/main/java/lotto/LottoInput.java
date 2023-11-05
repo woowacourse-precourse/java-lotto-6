@@ -34,7 +34,14 @@ public class LottoInput {
     }
     public int getBonusNum(){
         String s = Console.readLine();
-        return Integer.parseInt(s);
+        int i;
+        try {
+            i = Integer.parseInt(s);
+        }catch (NumberFormatException e){
+            exceptionCases.CheckFormat2();
+            return getBonusNum();
+        }
+        return CheckBonusError(i);
     }
     public List<Integer> CheckError(List<Integer> WinningNumbers, String s){
         try{
@@ -45,5 +52,14 @@ public class LottoInput {
             WinningNumbers = getWinningNum();
         }
         return WinningNumbers;
+    }
+    public int CheckBonusError(int Bonus){
+        try{
+            exceptionCases.CheckNum(Bonus);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            Bonus = getBonusNum();
+        }
+        return Bonus;
     }
 }

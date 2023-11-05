@@ -12,6 +12,7 @@ public class PlayLotto {
         Lottos = makeLottoNum(Chance);
         getWinningNumber();
         int BonusNum = getBonusNumber();
+        BonusNum = CheckWinningAndBonus(BonusNum);
         WinningStatics(BonusNum);
         getRateOfReturn(Chance);
         //System.out.println(Lottos.get(7).getNumbers());
@@ -51,5 +52,16 @@ public class PlayLotto {
         double ROR = winningStatics.getRateOfReturn(Chance);
         PrintOutput printOutput = new PrintOutput();
         printOutput.printRateOfReturn(ROR);
+    }
+    public int CheckWinningAndBonus(int Bonus ){
+        ExceptionCases exceptionCases = new ExceptionCases();
+        try{
+            exceptionCases.CheckSameWinAndBonus(winninglotto, Bonus);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            Bonus = getBonusNumber();
+            CheckWinningAndBonus(Bonus);
+        }
+        return Bonus;
     }
 }

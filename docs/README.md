@@ -13,7 +13,8 @@
     - [ ] LottoController
         - view Package와 domain Package의 데이터를 전달하며 값을 출력하는 클래스
         - 프로그램을 실행하는 `run` 메서드
-
+        - 티켓 개수를 불러오는 `loadTicket` 메서드
+            
 
 - [ ] domain Package
     - [ ] LottoJudge

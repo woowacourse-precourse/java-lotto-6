@@ -8,6 +8,9 @@
 - [x] 구입 금액만큼 로또를 발행한다. `List<Lotto> issue(PurchaseAmount purchaseAmount)`
     - 로또 번호는 1~45 사이의 서로 다른 랜덤한 숫자 6개로 구성되어 있다.
 
+### Lotto
+- [ ] 생성 시 로또 번호를 오름차순 정렬한다.
+
 ### WinningNumbers
 - [x] 로또 번호와 자신의 숫자를 비교해서 나온 당첨 등수를 반환한다. `Rank determineRank(Lotto)`
 
@@ -26,8 +29,7 @@
     - 정수만 입력 가능하다.
 
 ### OutputView
-- [ ] 발행한 로또 수량 및 번호를 출력한다. `void printIssuedLottoHistory(int lottoQuantity, List<Lotto> lottos)`
-    - 로또 번호는 오름차순으로 정렬하여 보여준다.
+- [x] 발행한 로또 수량 및 번호를 출력한다. `void printIssuedLottoDetails(int lottoQuantity, List<String> lottos)`
 - [ ] 당첨 내역을 출력한다. `void printWinningDetails(WinningResult winningResult)`
 - [ ] 수익률을 출력한다. `void printProfitRate(double profitRate)`
     - 수익률은 소수점 둘째 자리에서 반올림한다. (ex. 100.0%, 51.5%)

@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.Lotto;
 import lotto.config.Rank;
+import lotto.exception.LottoGameException;
+import lotto.exception.WinningLottoException;
 
 public record WinningLotto(Lotto lotto, LottoNumber bonusNumber) {
 
@@ -11,7 +13,7 @@ public record WinningLotto(Lotto lotto, LottoNumber bonusNumber) {
 
     private void validateDuplicateBonusNumber(Lotto lotto, LottoNumber bonusNumber) {
         if (lotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new LottoGameException(WinningLottoException.DUPLICATE_BONUS_NUMBER);
         }
     }
 

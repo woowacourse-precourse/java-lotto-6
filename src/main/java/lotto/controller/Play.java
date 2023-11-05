@@ -5,11 +5,9 @@ import lotto.model.Winning;
 
 import java.util.*;
 
-import static java.time.chrono.JapaneseEra.values;
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
-import static lotto.controller.RandNumber.checkDuplicate;
-import static lotto.controller.RandNumber.makeRandNumber;
+import static lotto.controller.RandNumber.*;
 import static lotto.controller.Rank.getRank;
 import static lotto.view.Message.*;
 import static lotto.view.Print.*;
@@ -35,16 +33,22 @@ public class Play {
             lottery.add(makeLottery());
         }
 
-        printLottery(lottery);
+        for (Lotto lotto : lottery) {
+            printLottoNumber(sortLottery(lotto));
+        }
+
+        System.out.println();
         messageAboutUserLottoNumber();
         String tmpWinningNumbers = inputWinningNumbers();
         List<Integer> winningNumbers = convertWinningNumber(tmpWinningNumbers);
 
+        System.out.println();
         messageAboutUserBonusNumber();
         String tmpBonusNumber = inputBonusNumber();
         int bonus = convertBonusNumber(tmpBonusNumber);
 
         Winning winning = new Winning(winningNumbers, bonus);
+        System.out.println();
         messageAboutWinningStatistic();
 
         for (Lotto lotto : lottery) {
@@ -68,8 +72,7 @@ public class Play {
 
     public static Lotto makeLottery() {
         Lotto lotto = null;
-        List<Integer> number = makeRandNumber();
-        number = checkDuplicate(number);
+        List<Integer> number = makeUniqueNumber();;
         lotto = new Lotto(number);
 
         return lotto;
@@ -112,16 +115,18 @@ public class Play {
     public static int calSumPrize() {
         int sum = 0;
         for (Rank rank : result.keySet()) {
-            sum += rank.getPrize();
+            sum += (rank.getPrize()*result.get(rank));
         }
         return sum;
     }
     public static double calRate(int resultSum, int price) {
-        System.out.println(resultSum);
-        System.out.println(price);
-
         return ((double)resultSum/(price))*100;
     }
 
+    public static List<Integer> sortLottery(Lotto lotto) {
+        List<Integer> sortNumbers = new ArrayList<>(lotto.getLotto());
+        Collections.sort(sortNumbers);
+        return sortNumbers;
+    }
 
 }

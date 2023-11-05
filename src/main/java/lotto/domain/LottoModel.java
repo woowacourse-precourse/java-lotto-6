@@ -58,7 +58,8 @@ public class LottoModel {
     }
 
 
-    public String computeRate(double winningRate) {
+    public String computeRate(int totalEarned, int purchased) {
+        double winningRate = totalEarned / purchased;
         return String.format("%.1f", winningRate);
     }
 
@@ -123,5 +124,16 @@ public class LottoModel {
         return winningNumsTable;
     }
 
+
+    public void run() {
+        inputUI.purchase();
+        publishLotto(inputUI.getNumofLotto());
+        outputUI.purchaseLog(inputUI.getNumofLotto(), this.publishedLottos);
+        inputUI.winnings();
+        inputUI.bonusBall();
+        computeLotto(publishedLottos, inputUI.getWinningNums(), inputUI.getBonusNum());
+        outputUI.winnings(winningTable);
+        outputUI.rate(computeRate(totalEarnedMoney,inputUI.getCost()));
+    }
 
 }

@@ -3,10 +3,7 @@ package lotto.view;
 import lotto.exception.ErrorCode;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -56,7 +53,7 @@ public class InputValue {
 
         List<Integer> numbers = new ArrayList<>();
         for(String number : input.split(","))
-            numbers.add(Integer.parseInt(number));
+            numbers.add(numberCheck(number));
 
         return numbers;
     }

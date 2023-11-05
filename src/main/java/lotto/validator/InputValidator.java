@@ -2,6 +2,8 @@ package lotto.validator;
 
 public class InputValidator implements Validator<String>{
 
+    private static final Character ZERO_LETTER = '0';
+    private static final int LEAST_LENGTH = 1;
     @Override
     public void validate(String input) {
         validateBlank(input);
@@ -13,7 +15,7 @@ public class InputValidator implements Validator<String>{
 
     private static void validateBlank(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력 값이 공백일 수 없습니다");
+            throw new IllegalArgumentException("[ERROR] 입력 값이 공백일 수 없습니다.");
         }
     }
 
@@ -25,8 +27,8 @@ public class InputValidator implements Validator<String>{
     }
 
     private static void validateStartsWithZero(String input) {
-        if (input.charAt(0) == '0'){
-            throw new IllegalArgumentException("[ERROR] 입력 값은 0으로 시작할 수 없습니다.");
+        if (input.length() != LEAST_LENGTH && input.charAt(0) == ZERO_LETTER){
+            throw new IllegalArgumentException("[ERROR] 입력 값이 두자리 수 이상일 때 첫 글자가 0이면 안됩니다.");
         }
     }
 
@@ -39,9 +41,13 @@ public class InputValidator implements Validator<String>{
     }
 
     private static void validateCheckNegativeValue(String input) {
-        int parsedInput = Integer.parseInt(input);
-        if (parsedInput < 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 작을 수 없습니다.");
+        try {
+            int parsedInput = Integer.parseInt(input);
+            if (parsedInput < 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 작을 수 없습니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 정수 값을 입력하세요.");
         }
     }
 }

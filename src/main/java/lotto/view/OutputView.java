@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println(lottoCount + LOTTO_PURCHASE_MESSAGE);
     }
 
-    public void displayLottoReturns(List<Lotto> tickets) {
+    public void displayLottoTickets(List<Lotto> tickets) {
         for (Lotto lotto : tickets) {
             System.out.println(lotto.getNumbers());
         }
@@ -35,7 +35,7 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public void enterLine() {
+    public void printEmptyLine() {
         System.out.println();
     }
 }

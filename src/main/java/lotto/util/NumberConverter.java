@@ -5,11 +5,11 @@ import lotto.constant.ExceptionMessage;
 
 public class NumberConverter {
     public int convert(String number) {
-        BigInteger convertedNumber = ToBigInteger(number);
-        return ToInt(convertedNumber);
+        BigInteger convertedNumber = toBigNumber(number);
+        return toNumber(convertedNumber);
     }
 
-    private BigInteger ToBigInteger(String number) {
+    private BigInteger toBigNumber(String number) {
         try {
             return new BigInteger(number);
         } catch (NumberFormatException e) {
@@ -17,7 +17,7 @@ public class NumberConverter {
         }
     }
 
-    private int ToInt(BigInteger number) {
+    private int toNumber(BigInteger number) {
         if (number.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0 ||
                 number.compareTo(BigInteger.valueOf(Integer.MIN_VALUE)) < 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_AMOUNT_MESSAGE.getMessage());

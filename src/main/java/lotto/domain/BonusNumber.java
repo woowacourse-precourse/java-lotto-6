@@ -18,17 +18,17 @@ public class BonusNumber {
 
     public void validateNumber(String bonusNumber) {
         int number = numberConverter.convert(bonusNumber);
-        this.bonusNumber = isNotDuplicate(isCorrectRange(number));
+        this.bonusNumber = checkForDuplicates(checkRangeValidity(number));
     }
 
-    private int isCorrectRange(int bonusNumber) {
+    private int checkRangeValidity(int bonusNumber) {
         if (bonusNumber > LOTTERY_MAX_NUM || bonusNumber < LOTTERY_MIN_NUM) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_CORRECT_RANGE.getMessage());
         }
         return bonusNumber;
     }
 
-    private int isNotDuplicate(int bonusNumber) {
+    private int checkForDuplicates(int bonusNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBERS_LOTTO.getMessage());

@@ -31,18 +31,18 @@ public class PurchaseProcessor {
     }
 
     private void validateRange(BigInteger bigPrice) {
-        LongRange(bigPrice);
-        isPlus(bigPrice);
+        checkRange(bigPrice);
+        ensurePositiveValue(bigPrice);
     }
 
-    private void LongRange(BigInteger bigPrice) {
+    private void checkRange(BigInteger bigPrice) {
         if (bigPrice.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0 ||
                 bigPrice.compareTo(BigInteger.valueOf(Long.MIN_VALUE)) < 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_AMOUNT_PRICE_MESSAGE.getMessage());
         }
     }
 
-    private void isPlus(BigInteger bigPrice) {
+    private void ensurePositiveValue(BigInteger bigPrice) {
         if (bigPrice.compareTo(BigInteger.ONE) < 0) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_INPUT_AMOUNT_INCREMENT.getMessage());
         }

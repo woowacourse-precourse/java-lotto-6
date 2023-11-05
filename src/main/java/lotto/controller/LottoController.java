@@ -23,7 +23,7 @@ public class LottoController {
 
     public void startLotto() {
         purchaseLottos();
-        Lotto winnerNumbers = lottoDraw();
+        Lotto winnerNumbers = draw();
         BonusNumber bonusNumber = handleBonusNumber(winnerNumbers);
         profitCalculation(winnerNumbers, bonusNumber);
     }
@@ -33,7 +33,7 @@ public class LottoController {
         generateLottoNumbers();
     }
 
-    private Lotto lottoDraw() {
+    private Lotto draw() {
         return handleWinningNumbers();
     }
 
@@ -50,7 +50,7 @@ public class LottoController {
     private boolean tryPurchaseAmount() {
         try {
             this.purchaseProcessor = new PurchaseProcessor(inputView.requestPurchaseAmount());
-            outputView.enterLine();
+            outputView.printEmptyLine();
             return true;
         } catch (IllegalArgumentException e) {
             outputView.displayErrorMessage(e);
@@ -61,14 +61,14 @@ public class LottoController {
     private void generateLottoNumbers() {
         this.lottoFactory = new LottoFactory(purchaseProcessor.getLottoCount());
         outputView.displayLottoCount(purchaseProcessor.getLottoCount());
-        outputView.displayLottoReturns(lottoFactory.getTickets());
-        outputView.enterLine();
+        outputView.displayLottoTickets(lottoFactory.getTickets());
+        outputView.printEmptyLine();
     }
 
     private Lotto handleWinningNumbers() {
         while (true) {
             Lotto winnerNumbers = tryHandleWinningNumbers();
-            outputView.enterLine();
+            outputView.printEmptyLine();
             if (winnerNumbers != null) {
                 return winnerNumbers;
             }
@@ -88,7 +88,7 @@ public class LottoController {
     private BonusNumber handleBonusNumber(Lotto winnerNumbers) {
         while (true) {
             BonusNumber bonusNumber = tryHandleBonusNumber(winnerNumbers);
-            outputView.enterLine();
+            outputView.printEmptyLine();
             if (bonusNumber != null) {
                 return bonusNumber;
             }

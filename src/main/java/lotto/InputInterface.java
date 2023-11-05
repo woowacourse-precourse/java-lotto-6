@@ -1,6 +1,10 @@
 package lotto;
 
 import static java.util.stream.Collectors.toList;
+import static lotto.resource.TextResourceProvider.BONUS_NUMBER_CANNOT_CONVERT_TO_INTEGER_TEXT;
+import static lotto.resource.TextResourceProvider.BONUS_NUMBER_MUST_BE_BETWEEN_1_AND_45_TEXT;
+import static lotto.resource.TextResourceProvider.BONUS_NUMBER_SHOULD_NOT_IN_WINNING_NUMBERS_TEXT;
+import static lotto.resource.TextResourceProvider.INPUT_BONUS_NUMBER_TEXT;
 import static lotto.resource.TextResourceProvider.INPUT_DELIMITER;
 import static lotto.resource.TextResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
 import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
@@ -16,6 +20,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.InvalidBonusNumberException;
 import lotto.exception.InvalidPurchasedAmountException;
 import lotto.exception.InvalidWinningNumbersException;
 
@@ -31,6 +36,11 @@ public class InputInterface {
         System.out.println(INPUT_WINNING_NUMBERS_TEXT);
 
         return getValidWinningNumbers();
+    }
+
+    public int getBonusNumber(List<Integer> numbers) {
+        System.out.println(INPUT_BONUS_NUMBER_TEXT);
+        return getValidBonusNumber(numbers);
     }
 
     private long getValidPurchasedAmount() {
@@ -86,6 +96,27 @@ public class InputInterface {
         }
     }
 
+    private static int getValidBonusNumber(List<Integer> numbers) {
+        try {
+            String input = Console.readLine();
+            return convertToBonusNumber(input, numbers);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return getValidBonusNumber(numbers);
+        }
+    }
+
+    private static int convertToBonusNumber(String input, List<Integer> numbers) {
+        try {
+            int bonusNumber = Integer.parseInt(input);
+            checkIfNumberBetween(1, 45, bonusNumber);
+            checkIfNumberIsInWinningNumber(bonusNumber, numbers);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new InvalidBonusNumberException(BONUS_NUMBER_CANNOT_CONVERT_TO_INTEGER_TEXT, input, e);
+        }
+    }
+
     private static void checkIfNegativeLong(long purchasedAmount) {
         if (purchasedAmount < 0) {
             throw new InvalidPurchasedAmountException(PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_LONG_TEXT,
@@ -115,6 +146,18 @@ public class InputInterface {
         }
         if (uniqueNumbers.size() != 6 || numbers.size() != 6) {
             throw new InvalidWinningNumbersException(WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS_TEXT, numbers);
+        }
+    }
+
+    private static void checkIfNumberBetween(int startInclusive, int endInclusive, int number) {
+        if (number < startInclusive || number > endInclusive) {
+            throw new InvalidBonusNumberException(BONUS_NUMBER_MUST_BE_BETWEEN_1_AND_45_TEXT, number);
+        }
+    }
+
+    private static void checkIfNumberIsInWinningNumber(int number, List<Integer> numbers) {
+        if (numbers.contains(number)) {
+            throw new InvalidBonusNumberException(BONUS_NUMBER_SHOULD_NOT_IN_WINNING_NUMBERS_TEXT, number);
         }
     }
 }

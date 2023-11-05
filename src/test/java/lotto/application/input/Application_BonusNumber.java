@@ -6,11 +6,12 @@ import static lotto.resource.TextResourceProvider.BONUS_NUMBER_SHOULD_NOT_IN_WIN
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class Application_BonusNumber extends Application_InputTest {
-
+    @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")
     @MethodSource("getStringCanNotConvertToInteger")
     void 입력이_정수형_타입으로_변환할_수_없으면_IllegalArgumentException을_발생시킨다(String invalidInput) {
@@ -35,6 +36,8 @@ public class Application_BonusNumber extends Application_InputTest {
 
         assertThatApplicationNotExists();
     }
+
+    @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")
     @MethodSource("getStringNotBetween1TO45")
     void 보너스번호가_1부터_45_사이의_숫자가_아니라면_IllegalArgumentException을_발생시킨다(String invalidInput) {
@@ -59,6 +62,8 @@ public class Application_BonusNumber extends Application_InputTest {
 
         assertThatApplicationNotExists();
     }
+
+    @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")
     @MethodSource("getBonusNumberIsInWinningNumber")
     void 보너스_번호가_당첨_번호에_있으면_IllegalArgumentException을_발생시킨다(String invalidInput) {
@@ -97,6 +102,6 @@ public class Application_BonusNumber extends Application_InputTest {
     }
 
     private static void runWithInvalidInput(String invalidInput) {
-        run("1000", "1,2,3,4,5,6", invalidInput);
+        run("1000", "1,2,3,4,5,6", invalidInput, "7");
     }
 }

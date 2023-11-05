@@ -23,5 +23,6 @@ public class Controller {
 
     void drawWinningLottery(){
         List<Integer> winningNumbers = in.getWinningNumbers();
+        int bonusNumber = in.getBonusNumber(winningNumbers);
     }
 }

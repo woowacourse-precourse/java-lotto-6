@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.service;
 
 public interface ExceptionHandler<T> {
     T run();

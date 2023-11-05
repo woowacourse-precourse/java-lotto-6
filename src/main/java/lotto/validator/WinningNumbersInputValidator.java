@@ -1,12 +1,9 @@
 package lotto.validator;
 
 import java.util.Arrays;
+import lotto.model.LottoNumber;
 
 public class WinningNumbersInputValidator implements BasicValidator<String> {
-
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int LOTTO_NUMBERS_COUNT = 6;
     private static final String COMMA = ",";
     private static final String INPUT_NOT_NUMERIC = "[ERROR] 입력값이 숫자가 아닙니다.";
     private static final String INPUT_NOT_SIX_NUMBERS = "[ERROR] 입력값이 6자리가 아닙니다.";
@@ -17,7 +14,7 @@ public class WinningNumbersInputValidator implements BasicValidator<String> {
     public void validate(String input) {
         validateAllNumbersIfNumeric(input);
         validateInputNumbersCount(input);
-        validateInputNumbersBetweenOneAndFortyFive(input);
+        validateNumbersRange(input);
         validateDuplicatedNumber(input);
     }
 
@@ -38,30 +35,29 @@ public class WinningNumbersInputValidator implements BasicValidator<String> {
 
     private void validateInputNumbersCount(String input) {
         String[] numbers = input.split(COMMA);
-        if (numbers.length != LOTTO_NUMBERS_COUNT) {
+        if (numbers.length != LottoNumber.COUNT.getNumber()) {
             throw new IllegalArgumentException(INPUT_NOT_SIX_NUMBERS);
         }
     }
 
-    private void validateInputNumbersBetweenOneAndFortyFive(String input) {
+    private void validateNumbersRange(String input) {
         String[] numbers = input.split(COMMA);
         for (String number : numbers) {
-            validateNumberBetweenOneAndFortyFive(number);
+            validateNumberRange(number);
         }
     }
 
-    private void validateNumberBetweenOneAndFortyFive(String input) {
+    private void validateNumberRange(String input) {
         int number = Integer.parseInt(input);
-        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+        if (LottoNumber.isInRange(number)) {
             throw new IllegalArgumentException(INPUT_NOT_BETWEEN_ONE_AND_FORTY_FIVE);
         }
     }
 
     private void validateDuplicatedNumber(String input) {
         String[] numbers = input.split(COMMA);
-        if (Arrays.stream(numbers).distinct().count() != LOTTO_NUMBERS_COUNT) {
+        if (Arrays.stream(numbers).distinct().count() != LottoNumber.COUNT.getNumber()) {
             throw new IllegalArgumentException(INPUT_DUPLICATED);
         }
-
     }
 }

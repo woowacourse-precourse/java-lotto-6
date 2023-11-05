@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,9 +10,7 @@ public class LottoGenerator {
         List<Integer> lotto = new ArrayList<>();
         while (!hasStandardSize(lotto, Lotto.STANDARD_SIZE)) {
             // 수정,, strategy 움직인 이유가 없음.. 인자 제외해야 한다
-            addAlternativeNumber(lotto, randomGenerator.generate(
-                    () -> Randoms.pickNumberInRange(Lotto.MIN_VALUE, Lotto.MAX_VALUE))
-            );
+            addAlternativeNumber(lotto, randomGenerator.generate());
         }
         Collections.sort(lotto);
         return Lotto.from(lotto);

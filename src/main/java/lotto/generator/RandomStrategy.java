@@ -4,5 +4,5 @@ import java.util.function.IntSupplier;
 
 @FunctionalInterface
 public interface RandomStrategy {
-    int generate(IntSupplier intSupplier);
+    int generate();
 }

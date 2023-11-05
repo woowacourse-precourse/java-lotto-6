@@ -5,6 +5,7 @@ import domain.LottoNumberGenerator;
 import domain.Price;
 import domain.repository.LottoRepository;
 import view.InputView;
+import view.OutputView;
 
 public class LottoController {
 
@@ -18,6 +19,11 @@ public class LottoController {
         for(int i=0;i<price.numOfLotto();i++) {
             lottoRepository.save(new Lotto(lottoNumberGenerator.createLottoNumber()));
         }
+    }
+
+    private void printNumOfLotto(int number) {
+        OutputView.printEmptyLine();
+        OutputView.printNumOfLotto(number);
     }
 
     private void getPriceByUserInput() {

@@ -11,8 +11,8 @@ public class InputView {
 
     private enum ConsoleMessage {
         INPUT_BUDGET("구입금액을 입력해 주세요."),
-        INPUT_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
-        INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
+        INPUT_WINNING_NUMBER("\n당첨 번호를 입력해 주세요.\n"),
+        INPUT_BONUS_NUMBER("\n보너스 번호를 입력해 주세요.\n");
 
         private final String message;
 
@@ -34,13 +34,13 @@ public class InputView {
     }
 
     private Lotto inputWinningNumbers() {
-        System.out.println(ConsoleMessage.INPUT_WINNING_NUMBER.message);
+        System.out.printf(ConsoleMessage.INPUT_WINNING_NUMBER.message);
         String input = Console.readLine();
         return Parser.parseToLotto(input);
     }
 
     private Bonus inputBonusNumbers() {
-        System.out.println(ConsoleMessage.INPUT_BONUS_NUMBER.message);
+        System.out.printf(ConsoleMessage.INPUT_BONUS_NUMBER.message);
         String input = Console.readLine();
         return Parser.parseToBonus(input);
     }

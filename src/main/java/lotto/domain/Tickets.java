@@ -15,7 +15,7 @@ public class Tickets {
     private int ticketCount;
     private List<List<Integer>> tickets = new ArrayList<>();
 
-    public Tickets(int wallet) {
+    public Tickets (int wallet) {
         validate(wallet);
         this.wallet = wallet;
         this.ticketCount = wallet / LottoConstant.PRICE_PER_TICKET;

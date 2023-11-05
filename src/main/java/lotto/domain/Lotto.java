@@ -41,4 +41,7 @@ public class Lotto {
                         number -> LottoConstant.LOTTO_START_NUMBER > number || LottoConstant.LOTTO_END_NUMBER < number);
     }
 
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
 }

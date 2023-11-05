@@ -5,21 +5,24 @@ import lotto.exception.ExceptionType;
 import lotto.exception.InputException;
 
 public class Bonus {
-    private final int bouns;
+    private final int number;
 
-    public Bonus(int bouns) {
-        validate(bouns);
-        this.bouns = bouns;
+    public Bonus(int number) {
+        validate(number);
+        this.number = number;
     }
 
-    private void validate(int bouns) {
-        if(islottoRange(bouns)){
+    private void validate(int number) {
+        if(islottoRange(number)){
             throw new InputException(ExceptionType.ERROR_LOTTO_RANGE);
         }
     }
 
-    private boolean islottoRange(int bouns) {
-        return LottoConstant.LOTTO_START_NUMBER > bouns || LottoConstant.LOTTO_END_NUMBER < bouns;
+    private boolean islottoRange(int number) {
+        return LottoConstant.LOTTO_START_NUMBER > number || LottoConstant.LOTTO_END_NUMBER < number;
     }
 
+    public int getNumber() {
+        return this.number;
+    }
 }

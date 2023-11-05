@@ -18,11 +18,7 @@ public class LottoTicket {
         return new LottoTicket(0);
     }
 
-    LottoTicket issueLottoTicket(PlayerWallet playerWallet) {
-        return new LottoTicket(playerWallet.getUsedMoney() / LOTTO_PRICE);
-    }
-
-    LottoTicket changeAllTicketToLotto(Supplier<Lotto> randomLotto, LottoBundle lottoBundle) {
+    LottoTicket changeAllTicketToLotto(Supplier<Lotto> randomLottoSupplier, LottoBundle lottoBundle) {
         if (lottoTicket == 0) {
             return makeZeroLottoTicket();
         }

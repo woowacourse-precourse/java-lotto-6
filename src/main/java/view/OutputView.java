@@ -41,6 +41,8 @@ public class OutputView {
 
     public void informWinningStatistics(final List<LottoResult> results) {
         StringBuilder sb = new StringBuilder();
+
+        sb.append("\n당첨 통계\n---\n");
         results.forEach(result -> {
             sb.append(result.equalCount()).append("개 일치");
             if (result.hasBonusBall()) {

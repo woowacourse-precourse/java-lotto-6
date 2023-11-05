@@ -15,6 +15,8 @@ import static lotto.OutputMessage.SAME_5_NUMBER_MESSAGE;
 import static lotto.OutputMessage.SAME_6_NUMBER_MESSAGE;
 import static lotto.OutputMessage.WINNING_STATISTIC_MESSAGE;
 
+import java.util.List;
+
 public class OutputView {
 
     public void printPriceMessage() {
@@ -23,6 +25,12 @@ public class OutputView {
 
     public void printBuyLottoMessage(int count) {
         System.out.println(count + BUY_LOTTO_MESSAGE.get());
+    }
+
+    public void printLottoMessage(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public void printInsertNumberMessage() {

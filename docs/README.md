@@ -37,9 +37,9 @@
 ---
 ### 출력 요구사항
   - 발행한 로또 수량 및 번호를 출력한다. 발행된 로또 번호는 오름차순으로 정렬하여 보여준다.
-    - [ ] 발행한 로또는 1~45사이의 랜덤한 수로 발행되며 중복되지 않아야 한다.
-    - [ ] 랜덤 값 생성 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange(1, 45, 6)`를 활용
-    - [ ] 오름차순으로 정렬
+    - [x] 발행한 로또는 1~45사이의 랜덤한 수로 발행되며 중복되지 않아야 한다.
+    - [x] 랜덤 값 생성 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange(1, 45, 6)`를 활용
+    - [x] 오름차순으로 정렬
     - 출력 형식
       ```
       1개를 구매했습니다.

@@ -54,4 +54,17 @@ public class Application {
         }
         return new LottoGameResult(matchCounts);
     }
+
+    private static int countMatchingNumbers(Lotto userLotto, Lotto winningLotto) {
+        List<Integer> userNumbers = userLotto.getNumbers();
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+        int matchCount = 0;
+
+        for (int number : userNumbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
 }

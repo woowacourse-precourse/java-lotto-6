@@ -11,4 +11,11 @@ public class LottoMessage {
     public static final String LOTTO_WINNING_NUMBERS_DELIMITER = ",";
 
     public static final String REQUEST_INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+
+    public static final String FIFTH_PLACE_MESSAGE = "3개 일치";
+    public static final String FOURTH_PLACE_MESSAGE = "4개 일치";
+    public static final String THIRD_PLACE_MESSAGE = "5개 일치";
+    public static final String SECOND_PLACE_MESSAGE = "5개 일치, 보너스 볼 일치";
+    public static final String FIRST_PLACE_MESSAGE = "6개 일치";
+    public static final String LOSE_MESSAGE = "";
 }

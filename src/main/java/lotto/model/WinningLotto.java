@@ -3,6 +3,8 @@ package lotto.model;
 import static lotto.constant.LottoRuleConstant.LOTTO_MAX_NUM;
 import static lotto.constant.LottoRuleConstant.LOTTO_MIN_NUM;
 
+import java.util.List;
+
 public class WinningLotto {
     private Lotto winningNumbers;
     private int bonusNumber;
@@ -38,5 +40,13 @@ public class WinningLotto {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 다른 1이상 45이하의 숫자만 입력이 가능합니다.");
         }
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

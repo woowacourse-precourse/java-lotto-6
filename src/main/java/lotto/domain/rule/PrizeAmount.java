@@ -39,16 +39,6 @@ public class PrizeAmount {
         return Collections.unmodifiableMap(prizeAmounts);
     }
 
-    public int matchAllCount(int lottoCount, int bonusCount){
-        int sumCount = lottoCount + bonusCount;
-
-        if(sumCount == MATCH_ALL_SIX_COUNT && lottoCount == 6){
-            sumCount = MATCH_ALL_SEVEN_COUNT;
-        }
-
-        return sumCount;
-    }
-
     public void classifyWin(List<Integer> winRecord) {
         int threeMatch = 0;
         int fourMatch = 0;

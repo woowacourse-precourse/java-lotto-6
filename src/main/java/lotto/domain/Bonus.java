@@ -17,7 +17,7 @@ public class Bonus {
     }
 
     private void validate(int number) {
-        if(islottoRange(number)){
+        if (islottoRange(number)) {
             throw new InputException(ExceptionType.ERROR_LOTTO_RANGE);
         }
     }

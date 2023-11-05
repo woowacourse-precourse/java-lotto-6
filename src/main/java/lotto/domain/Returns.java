@@ -29,11 +29,11 @@ public class Returns {
         for (Integer integer : this.winRecord) {
             PrizeAmount prizeAmount = prizeAmounts.get(integer);
 
-            if(prizeAmount != null){
+            if (prizeAmount != null) {
                 value += prizeAmount.getAmount();
             }
         }
-        double result = Math.round((value/this.wallet) * 1000) / 10.0;
+        double result = Math.round((value / this.wallet) * 1000) / 10.0;
 
         this.returns = result + "%";
     }

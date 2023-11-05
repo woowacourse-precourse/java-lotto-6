@@ -9,7 +9,7 @@ import java.util.*;
 public class Player {
     private int money;
     private long totalPrize;
-    private List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> lottos;
     private Map<Ranking, Integer> results = new EnumMap<>(Ranking.class);
 
     public Player(int money) {
@@ -31,6 +31,7 @@ public class Player {
     }
 
     public void issueLotto() {
+        lottos = new ArrayList<>();
         int lottoSize = money / 1_000;
         // TODO : lottos 사이즈와 lottoSize 비교
         for (int i = 0; i < lottoSize; i++) {

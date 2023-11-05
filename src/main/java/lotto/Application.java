@@ -9,6 +9,7 @@ public class Application {
         try {
             Game game = new Game();
             game.joinPlayer();
+            game.issueLotto();
             game.drawWinningLotto();
             game.findResult();
         } finally {

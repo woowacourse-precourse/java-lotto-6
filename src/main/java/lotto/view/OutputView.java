@@ -7,8 +7,8 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printIssuedLottoDetails(int lottoQuantity, List<String> lottos) {
-        System.out.printf("%d개를 구매했습니다.%n", lottoQuantity);
+    public static void printIssuedLottoDetails(List<String> lottos) {
+        System.out.printf("%d개를 구매했습니다.%n", lottos.size());
         lottos.forEach(System.out::println);
     }
 

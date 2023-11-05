@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.AutoLottoGenerator;
 import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
@@ -25,13 +26,21 @@ public class LottoGameController {
     }
 
     public void run() {
-        LottoSeller seller = lottoGameService.generateSeller();
-        LottoBuyer buyer = lottoGameService.generateBuyer();
+        LottoSeller seller = generateSeller();
+        LottoBuyer buyer = generateBuyer();
         int countOfLotto = lottoGameService.calculateLottoCountOnBuy(buyer);
 
         Lottos lottos = lottoGameService.generateLottosOnSell(seller, countOfLotto);
         lottoGameService.printLottoNumbersByCount(lottos);
 
-        WinningLotto winningLotto = lottoGameService.getWinningLotto();
+        WinningLotto winningLotto = lottoGameService.generateWinningLotto();
+    }
+
+    private LottoSeller generateSeller() {
+        return new LottoSeller(AutoLottoGenerator.getInstance());
+    }
+
+    private LottoBuyer generateBuyer() {
+        return new LottoBuyer();
     }
 }

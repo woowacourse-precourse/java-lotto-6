@@ -2,7 +2,6 @@ package lotto.service;
 
 import java.util.List;
 import lotto.dto.LottoNumbersDTO;
-import lotto.model.AutoLottoGenerator;
 import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
@@ -18,14 +17,6 @@ public class LottoGameService {
     public LottoGameService(ConsoleInputView inputView, ConsoleOutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-    }
-
-    public LottoSeller generateSeller() {
-        return new LottoSeller(AutoLottoGenerator.getInstance());
-    }
-
-    public LottoBuyer generateBuyer() {
-        return new LottoBuyer();
     }
 
     public int calculateLottoCountOnBuy(final LottoBuyer buyer) {
@@ -51,9 +42,9 @@ public class LottoGameService {
         }
     }
 
-    public WinningLotto getWinningLotto() {
+    public WinningLotto generateWinningLotto() {
         Lotto winningLottoNumbers = getWinningLottoNumbers();
-        return generateWinningLottoByBonusNumber(winningLottoNumbers);
+        return getWinningLottoByBonusNumber(winningLottoNumbers);
     }
 
     private Lotto getWinningLottoNumbers() {
@@ -66,13 +57,13 @@ public class LottoGameService {
         }
     }
 
-    private WinningLotto generateWinningLottoByBonusNumber(Lotto lotto) {
+    private WinningLotto getWinningLottoByBonusNumber(Lotto lotto) {
         outputView.requestBonusLottoNumber();
         try {
             return new WinningLotto(lotto, readBonusNumber());
         } catch (IllegalArgumentException e) {
             handleIllegalArgumentException(e);
-            return generateWinningLottoByBonusNumber(lotto);
+            return getWinningLottoByBonusNumber(lotto);
         }
     }
 

@@ -8,7 +8,8 @@ public enum StringUtil {
     ENTER_BONUS_NUMBER("보너스 번호를 입력해 주세요.\n"),
     PRINT_WINNING_STATISTICS("당첨 통계\n"),
     PRINT_WINNING_DETAILS("%s (%s원) - %s개\n"),
-    PRINT_ROI("총 수익률은 %s%입니다.\n");
+    PRINT_ROI("총 수익률은 %s%입니다.\n"),
+    PRINT_ERR_PAY_AMONUT("[ERROR] 1000원 단위로 떨어지는 금액을 입력해주세요.\n");
 
     private String message;
 

@@ -4,22 +4,8 @@ import lotto.domain.ErrorMessage;
 
 public class Validator {
 
-    public String validWinningNumber(String number) {
-        checkType(number);
-
-        return number;
-    }
-
-    public int validBonusNumber(String number) {
-        int resultNumber = checkType(number);
-
-        return resultNumber;
-    }
-
-    public int validPurchaseAmount(String number) {
-        int resultNumber = checkType(number);
-
-        return resultNumber;
+    public int validNumber(String number) {
+        return checkType(number);
     }
 
     private int checkType(String number) {

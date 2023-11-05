@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.*;
 import lotto.utility.RandomNumber;
+import lotto.validation.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,6 +17,7 @@ public class GameController {
     OutputView outputView = new OutputView();
     RandomNumber randomNumber = new RandomNumber();
     WinningLotto winningLotto = new WinningLotto();
+    Validator validator = new Validator();
 
     public void proceed() {
         init();
@@ -25,7 +27,7 @@ public class GameController {
 
     private void winningLotto() {
         winningLotto.setWinningLotto(inputView.printWinningNumber());
-        winningLotto.setBonusNumber(inputView.printBonusNumber());
+        winningLotto.setBonusNumber(validator.validNumber(inputView.printBonusNumber()));
 
         winningStatistics();
     }
@@ -48,9 +50,13 @@ public class GameController {
 
     private void init() {
         LottoStore.getInstance().getLotto().clear();
-        amount = inputView.printPurchaseAmount();
+        amount = validator.validNumber(inputView.printPurchaseAmount());
         count = amount / 1000;
         outputView.printPurchase(count);
+    }
+
+    private void inputRetry() {
+
     }
 
 }

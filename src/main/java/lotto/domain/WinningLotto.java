@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.validation.Validator;
+
 import java.util.*;
 
 import static lotto.domain.Statistics.*;
@@ -27,8 +29,9 @@ public class WinningLotto {
     }
 
     public List<Integer> setWinningLotto(String number) {
+        Validator validator = new Validator();
         List<String> tempLotto = Arrays.asList(number.split(","));
-        tempLotto.stream().forEach(tempNumber -> winningLotto.add(Integer.parseInt(tempNumber)));
+        tempLotto.stream().forEach(tempNumber -> winningLotto.add(validator.validNumber(tempNumber)));
 
         return winningLotto;
     }

@@ -11,6 +11,7 @@ import lotto.ui.Writer;
 import lotto.view.LottoGameUI;
 
 public class TerminalUI implements LottoGameUI {
+
     @Override
     public int getMoney() {
         Writer.printGuide(PrintConst.GUIDE_PURCHASE);
@@ -20,7 +21,9 @@ public class TerminalUI implements LottoGameUI {
     @Override
     public void printPurchasedLottos(List<Lotto> lottosDTO) {
         Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_SIZE, lottosDTO.size());
-        Writer.printModelsInList(lottosDTO);
+        for(Lotto lotto : lottosDTO){
+            Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_NUMBERS, lotto.getNumbers());
+        }
     }
 
     @Override

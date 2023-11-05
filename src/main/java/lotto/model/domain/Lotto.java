@@ -26,16 +26,6 @@ public class Lotto {
         validateNumbersRange(numbers);
     }
 
-    private void validateNumbersRange(List<Integer> numbers) {
-        long wrongNumberCount = numbers.stream()
-                .filter(number -> number > GameConst.LOTTO_RANGE_END ||
-                        number < GameConst.LOTTO_RANGE_START)
-                .count();
-        if(wrongNumberCount != 0){
-            throw LottoGameException.WRONG_LOTTO_RANGE.makeException();
-        }
-    }
-
     private void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw LottoGameException.WRONG_LOTTO_SIZE.makeException();
@@ -51,9 +41,19 @@ public class Lotto {
         }
     }
 
-    @Override
-    public String toString() {
-        return String.format(PrintConst.FORMAT_LOTTO_NUMBERS, this.numbers.toArray());
+    private void validateNumbersRange(List<Integer> numbers) {
+        long wrongNumberCount = numbers.stream()
+                .filter(number -> number > GameConst.LOTTO_RANGE_END ||
+                        number < GameConst.LOTTO_RANGE_START)
+                .count();
+        if(wrongNumberCount != 0){
+            throw LottoGameException.WRONG_LOTTO_RANGE.makeException();
+        }
+    }
+
+    //출력을 위한 사용
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     public CompareResult compareLotto(Lotto lotto){
@@ -67,7 +67,7 @@ public class Lotto {
 
     private boolean isCompareFinish(Lotto lotto, int collectNumber) {
         return lotto.getClass() != LottoAnswer.class ||
-                collectNumber != GameConst.BONUS_CHECH_NECESSARY;
+                collectNumber != GameConst.BONUS_CHECK_NECESSARY;
     }
 
     private int collectNumber(Lotto lotto){

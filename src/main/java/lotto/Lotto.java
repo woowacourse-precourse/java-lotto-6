@@ -1,17 +1,23 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
     private final int lottoTrials;
     private final int bonusNumber;
+    private final List<List<Integer>> randomNumbers;
 
     public Lotto(int lottoTrials, List<Integer> numbers, int bonusNumber) {
         validatePurchaseAmount(lottoTrials);
         this.lottoTrials = lottoTrials;
+        
+        this.randomNumbers = generateRandomLottoNumber(lottoTrials);
         
         validate(numbers);
         validateNumberRange(numbers);
@@ -62,5 +68,14 @@ public class Lotto {
 				throw new IllegalArgumentException("[ERROR] : You must not input duplicated numbers.");
 			}
 		}
+	}
+	
+	private List<List<Integer>> generateRandomLottoNumber(int lottoTrials) {
+		List<List<Integer>> randomNumbers = new ArrayList<List<Integer>>();
+		for (int i = 0; i < lottoTrials; i++) {
+			randomNumbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+		}
+		
+		return randomNumbers;
 	}
 }

@@ -1,5 +1,9 @@
 package lotto.validation;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class InputValidation {
 
     private static final String ERROR = "[ERROR] ";
@@ -11,6 +15,7 @@ public class InputValidation {
     private static final String IS_NOT_MONEY_UNIT_MESSAGE = MONEY_UNIT + "원 단위가 아닙니다";
     private static final String IS_NOT_LOTTO_SIZE_MESSAGE = "번호가 6개가 아닙니다";
     private static final String IS_NOT_LOTTO_RANGE_MESSAGE = "1~45의 번호가 아닙니다";
+    private static final String IS_DUPLICATION_LOTTO_NUMBER_MESSAGE = "중복된 숫자가 있습니다";
 
     public void validationMoney(String input) {
         isEmptyValidation(input);
@@ -25,7 +30,7 @@ public class InputValidation {
         checkSplitNumbers(lottoNumbers);
     }
 
-    private int[] checkSplitNumbers(String lottoNumbers) {
+    private void checkSplitNumbers(String lottoNumbers) {
         String[] lottoNumber = lottoNumbers.replace(" ", "").split(",");
         isLottoSize(lottoNumber);
 
@@ -33,6 +38,7 @@ public class InputValidation {
             changeInteger(lottoNumber[i]);
             checkNumberRange(lottoNumber[i]);
         }
+        isDuplicateNumber(lottoNumber);
     }
 
     private void isEmptyValidation(String input) {
@@ -78,6 +84,13 @@ public class InputValidation {
     private void checkNumberRange(String s) {
         if (Integer.parseInt(s) <= 0 || Integer.parseInt(s) > 45) {
             throw new IllegalArgumentException(ERROR + IS_NOT_LOTTO_RANGE_MESSAGE);
+        }
+    }
+
+    private void isDuplicateNumber(String[] lottoNumber) {
+        Set<String> checkDuplicationNumber = new HashSet<>(List.of(lottoNumber));
+        if (checkDuplicationNumber.size() != 6) {
+            throw new IllegalArgumentException(ERROR + IS_DUPLICATION_LOTTO_NUMBER_MESSAGE);
         }
     }
 }

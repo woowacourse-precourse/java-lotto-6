@@ -16,7 +16,8 @@ public class Lotto {
         OutputView.printLottoNumbers(numbers);
     }
 
-    private LottoRank calculateLottoRank(WinningLotto winningLotto) {
+
+    public LottoRank calculateLottoRank(WinningLotto winningLotto) {
         int matchCount = calculateMatchCount(winningLotto.getWinningNumber());
         boolean matchBonus = isMatchBonus(winningLotto.getBonusNumber());
 

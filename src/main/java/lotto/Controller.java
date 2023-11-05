@@ -1,10 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Calculator;
-import lotto.domain.Lotto;
-import lotto.domain.LottoChecker;
-import lotto.domain.LottoValidation;
+import lotto.domain.*;
 import lotto.ui.Input;
 import lotto.ui.Output;
 
@@ -18,10 +15,11 @@ public class Controller {
     LottoValidation lottoValidation = new LottoValidation();
     LottoChecker lottoChecker = new LottoChecker();
     Calculator calculator = new Calculator();
+    LottoMachine lottoMachine = new LottoMachine();
 
     public void lottoStart() {
         output.notifyPayment();
-        int count = getLottoCount(input.getUserMoney());
+        int count = lottoMachine.getLottoCount(input.getUserMoney());
         output.notifyLottoCount(count);
         purchaseLotto(count);
 
@@ -39,14 +37,6 @@ public class Controller {
 
         float profitRate = calculator.rateOFProfit(result, count);
         output.notifyProfitRate(profitRate);
-    }
-
-    public int getLottoCount(int userMoney) {
-        if (userMoney % Lotto.PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
-
-        return userMoney / Lotto.PRICE;
     }
 
     public List<Integer> getRandomNumbers() {

@@ -5,6 +5,8 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
@@ -33,5 +35,14 @@ public class LottoMachineTest {
         List<Lotto> lottos = machine.purchaseLottos(5000);
 
         assertThat(lottos).hasSize(5);
+    }
+
+    @DisplayName("0원 이하 금액으로 구매시 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -1000})
+    void purchaseWithMoneyUnderZero(int money) {
+        assertThatThrownBy(() -> machine.purchaseLottos(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoMachine.ERROR_MESSAGE_MONEY_UNDER_ZERO);
     }
 }

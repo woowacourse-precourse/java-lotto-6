@@ -9,7 +9,7 @@ public interface InputView {
 
     Money readUserPurchaseMoney();
 
-    List<LottoNumber> readUserLottoNumbers();
+    List<LottoNumber> readWinnerLottoNumbers();
 
-    LottoNumber readUserBonusNumber();
+    LottoNumber readBonusNumber();
 }

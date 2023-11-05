@@ -18,7 +18,7 @@ public class InputViewImpl implements InputView {
     }
 
     @Override
-    public List<LottoNumber> readUserLottoNumbers() {
+    public List<LottoNumber> readWinnerLottoNumbers() {
         return Arrays.stream(readLine().trim().split(","))
                 .map(Integer::parseInt)
                 .map(LottoNumber::new)
@@ -26,7 +26,7 @@ public class InputViewImpl implements InputView {
     }
 
     @Override
-    public LottoNumber readUserBonusNumber() {
+    public LottoNumber readBonusNumber() {
         int bonusNumber = Integer.parseInt(readLine().trim());
         return new LottoNumber(bonusNumber);
     }

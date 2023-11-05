@@ -1,9 +1,8 @@
-package lotto.domain;
+package lotto.domain.result;
 
 import java.math.BigDecimal;
 import java.util.Map;
 import lotto.domain.prize.LottoPrizeType;
-import lotto.domain.prize.TotalPrizeAmount;
 
 public class LottoGameResult {
 

@@ -11,9 +11,20 @@ public class OutputViewTest {
         // given
 
         // when
-        String inputMoney = outputView.inputMoney();
+        String inputMoney = outputView.MoneyInputMessage();
 
         // then
         Assertions.assertThat("구매금액을 입력해주세요.").isEqualTo(inputMoney);
+    }
+
+    @Test
+    void 몇개_구매_했는지_출력() {
+        // given
+
+        // when
+        String totalLottoMessage = outputView.totalLottoMessage();
+
+        // then
+        Assertions.assertThat("8개를 구매했습니다.").isEqualTo(totalLottoMessage);
     }
 }

@@ -19,6 +19,10 @@ public class Customer {
         }
     }
 
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
+    }
+
     public void setMoney(int money) {
         this.money = money;
     }

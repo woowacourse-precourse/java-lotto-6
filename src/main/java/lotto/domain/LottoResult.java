@@ -14,6 +14,8 @@ public class LottoResult {
     }
 
     public String getReport() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
         List<Prize> prizes = List.of(Prize.FIFTH, Prize.FOURTH, Prize.THIRD, Prize.SECOND, Prize.FIRST);
         StringBuilder sb = new StringBuilder();
         for (Prize prize : prizes) {

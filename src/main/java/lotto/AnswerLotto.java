@@ -43,7 +43,7 @@ public class AnswerLotto {
     }
 
     private void validateAllNumberInRange(List<Integer> numbers) {
-        if (checkAllNumberInRange(numbers)) {
+        if (!checkAllNumberInRange(numbers)) {
             throw new IllegalArgumentException(String.format(ErrorMessage.ANSWER_LOTTO_NOT_IN_RANGE_ERROR.getMessage(),
                     NumberType.MIN_LOTTO_NUMBER.getValue(), NumberType.MAX_LOTTO_NUMBER.getValue()));
         }

@@ -1,0 +1,13 @@
+package lotto;
+
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+public class YieldRateTest {
+    @Test
+    void 수익률_계산_테스트() {
+        YieldRate yieldRate = new YieldRate(3000, 6000);
+        assertThat(yieldRate.getYieldRate).isEqualTo(100);
+    }
+}

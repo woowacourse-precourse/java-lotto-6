@@ -3,6 +3,7 @@ package lotto.control;
 import lotto.config.Config;
 import lotto.domain.host.LottoHost;
 import lotto.domain.lotto.LottoEnvelop;
+import lotto.domain.num.LottoTargetNumResults;
 import lotto.domain.seller.LottoSeller;
 import lotto.domain.user.User;
 
@@ -10,11 +11,13 @@ public class Process {
     private User user;
     private LottoSeller lottoSeller;
     private LottoHost lottoHost;
+    private LottoTargetNumResults lottoTargetNumResults;
 
     public Process() {
         this.user = Config.user();
         this.lottoSeller = Config.lottoSeller();
         this.lottoHost = Config.lottoHost();
+        lottoTargetNumResults = null;
     }
 
     /**
@@ -58,9 +61,8 @@ public class Process {
      *
      * @return
      */
-    public StringBuilder showResult() {
-        // 유저가 결과를 통계한다.
-        // 유저가 수익률을 계산한다.
-        return null;
+    public StringBuilder showStatisticResult() {
+        lottoTargetNumResults = lottoHost.giveLottoTargetNumResults();
+        return user.showStatisticLottoResult(lottoTargetNumResults);
     }
 }

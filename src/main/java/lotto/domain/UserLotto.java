@@ -15,12 +15,12 @@ public class UserLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getMainLottoNumber() {
-        return mainLottoNumber.getNumbers();
+    public Lotto getMainLottoNumber() {
+        return mainLottoNumber;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber.getBonusNumber();
+    public BonusLotto getBonusNumber() {
+        return bonusNumber;
     }
 
     private void validate(Lotto mainLottoNumber, BonusLotto bonusNumber) {

@@ -16,6 +16,7 @@ public class MainLottoController {
 
         UserLotto userLotto = makeUserLotto();
 
+        getLottoRanking(randomLotto,userLotto);
 
 
         //결과 출력
@@ -39,7 +40,7 @@ public class MainLottoController {
         try {
             return new RandomLotto(randomLottoMachine.getRandomLottoList());
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[Error]");
+            throw new IllegalArgumentException("[Error] 잘못된 랜덤 생성입니다.");
         }
     }
 
@@ -80,6 +81,13 @@ public class MainLottoController {
         }
     }
     //endregion
+
+    private List<Rank> getLottoRanking(RandomLotto randomLotto, UserLotto userLotto){
+        LottoNumberMatcher lottoNumberMatcher =
+                new LottoNumberMatcher(randomLotto,userLotto);
+        return lottoNumberMatcher.getMatchedLottoRank();
+    }
+
 
 
 }

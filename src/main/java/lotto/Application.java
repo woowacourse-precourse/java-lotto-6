@@ -31,10 +31,11 @@ public class Application {
     }
 
     public static int lottoQuantity(int lottoPurchaseAmount){
-        int lottoQuantity = lottoPurchaseAmount % 1000;
-        if(lottoQuantity != 0){
+        int lottoPurchaseAmountRemain = lottoPurchaseAmount % 1000;
+        if(lottoPurchaseAmountRemain != 0){
             throw new IllegalArgumentException("[ERROR] 구입금액을 1,000원 단위로 입력하세요.");
         }
+        int lottoQuantity = lottoPurchaseAmount / 1000;
         return lottoQuantity;
     }
 

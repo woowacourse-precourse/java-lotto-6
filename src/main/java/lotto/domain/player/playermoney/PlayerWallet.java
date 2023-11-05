@@ -2,7 +2,8 @@ package lotto.domain.player.playermoney;
 
 import static lotto.domain.player.playermoney.UsedMoney.makeZeroUsedMoney;
 
-import lotto.domain.lottoresult.LottoResultsRepository;
+import lotto.domain.lottoresult.LottoPrizeMoney;
+import lotto.domain.player.LottoTicket;
 import lotto.domain.player.Profit;
 
 public class PlayerWallet {
@@ -23,8 +24,8 @@ public class PlayerWallet {
         return holdingMoney.getHoldingMoney();
     }
 
-    public int getUsedMoney() {
-        return usedMoney.getUsedMoney();
+    public Profit calculateProfit(LottoPrizeMoney lottoPrizeMoney) {
+        return usedMoney.calculateProfit(lottoPrizeMoney);
     }
 
     public Profit calculateProfit(LottoResultsRepository lottoResultsRepository) {

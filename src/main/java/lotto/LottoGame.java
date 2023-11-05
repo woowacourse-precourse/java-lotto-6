@@ -14,7 +14,11 @@ public class LottoGame {
     private static final int LOTTO_NUMBERS_COUNT = 6;
 
     private int gameCount;
-    private List<Lotto> lottogame;
+    public List<Lotto> lottogame;
+
+    public LottoGame() {
+        this.lottogame = new ArrayList<>();
+    }
 
     public void setLottoGame(int number){
         this.gameCount = number;
@@ -35,7 +39,6 @@ public class LottoGame {
             }
         }
     }
-    
 
     public void generateLottoNumbers() {
         this.lottogame = new ArrayList<>();

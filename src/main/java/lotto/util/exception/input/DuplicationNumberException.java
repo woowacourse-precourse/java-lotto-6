@@ -1,10 +1,11 @@
-package lotto.util.exception;
+package lotto.util.exception.input;
 
 import lotto.util.enums.ErrorMessage;
+import lotto.util.exception.parental.InputValidationException;
 
 public class DuplicationNumberException extends InputValidationException {
 
     public DuplicationNumberException() {
-        super(ErrorMessage.DUPLICATE_NUMBERS);
+        super(ErrorMessage.NUMBERS_DUPLICATE);
     }
 }

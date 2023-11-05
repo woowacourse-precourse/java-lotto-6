@@ -1,4 +1,4 @@
-package lotto.util.exception;
+package lotto.util.exception.parental;
 
 import lotto.util.enums.ErrorMessage;
 

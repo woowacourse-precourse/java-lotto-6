@@ -1,25 +1,24 @@
 package lotto.Model;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RandomLotto {
     private int count;
+    private List<Lotto> randomLottos;
 
-    public RandomLotto(Price price) {
+
+    public RandomLotto(Price price, Lottos lottos) {
         count = price.divideWithOneThousands();
+        this.randomLottos = lottos.createLottos(count);
     }
 
     public int getCount() {
         return count;
     }
 
-    public int minusCount() {
-        return count--;
+    public List<Lotto> getRandomLottos() {
+        return randomLottos;
     }
 
-    public Lotto createRandomLottos() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-    }
+
 }

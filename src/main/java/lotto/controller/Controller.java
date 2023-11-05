@@ -20,6 +20,13 @@ public class Controller {
         showUserLottos();
         createWinningLotto();
         showRank();
+        showProfitRate();
+    }
+
+    private void showProfitRate() {
+        int userLottoCount = lottoService.getUserLottoCount();
+        String profitRate = lottoResultService.getProfitRate(userLottoCount);
+        System.out.println(Message.getLottoProfitRate(profitRate));
     }
 
     private void showRank() {

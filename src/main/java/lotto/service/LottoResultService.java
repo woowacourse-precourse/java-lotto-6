@@ -89,4 +89,20 @@ public class LottoResultService {
 
         return userLottoNumbers.contains(winningLottoBonusNumber);
     }
+
+    public String getProfitRate(int userLottoCount) {
+        int profit = 0;
+        List<Rank> ranks = new ArrayList<>(lottoResults.keySet().stream().toList());
+
+        for (Rank rank : ranks) {
+            profit += (lottoResults.get(rank) * rank.getPrize());
+        }
+
+        int amount = userLottoCount * Value.LOTTO_TICKET_PRICE;
+        double profitRate = profit / (double) amount * 100;
+
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+
+        return decimalFormat.format(profitRate);
+    }
 }

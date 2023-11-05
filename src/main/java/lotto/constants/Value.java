@@ -7,9 +7,9 @@ public class Value {
     public static final int LOTTO_NUMBER_SIZE = 6;
     public static final int LOTTO_BONUS_NUMBER_SIZE = 1;
 
-    public static final int LOTTO_1_RANK_PRIZE_MONEY = 2000000000;
-    public static final int LOTTO_2_RANK_PRIZE_MONEY = 30000000;
-    public static final int LOTTO_3_RANK_PRIZE_MONEY = 1500000;
-    public static final int LOTTO_4_RANK_PRIZE_MONEY = 50000;
-    public static final int LOTTO_5_RANK_PRIZE_MONEY = 5000;
+    public static final int LOTTO_1_RANK_PRIZE_MONEY = 2_000_000_000;
+    public static final int LOTTO_2_RANK_PRIZE_MONEY = 30_000_000;
+    public static final int LOTTO_3_RANK_PRIZE_MONEY = 1_500_000;
+    public static final int LOTTO_4_RANK_PRIZE_MONEY = 50_000;
+    public static final int LOTTO_5_RANK_PRIZE_MONEY = 5_000;
 }

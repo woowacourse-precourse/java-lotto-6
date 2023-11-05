@@ -21,14 +21,17 @@ public class LottoService {
     }
 
     public void createUserLottos(int lottoCount) {
-        this.userLottos = IntStream.range(0, lottoCount / Value.LOTTO_TICKET_PRICE)
-                .mapToObj(i -> createSingleLotto())
-                .collect(Collectors.toList());
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < lottoCount/Value.LOTTO_TICKET_PRICE; i++) {
+            lottos.add(createSingleLotto());
+        }
+
+        this.userLottos =  lottos;
     }
 
     private Lotto createSingleLotto() {
-        List<Integer> numbers = randomUtils.sixUniqueRandomNumber();
-        Collections.sort(numbers);
+        List<Integer> numbers = new ArrayList<>(randomUtils.sixUniqueRandomNumber());
         return new Lotto(numbers);
     }
 

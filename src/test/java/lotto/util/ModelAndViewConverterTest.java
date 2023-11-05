@@ -33,7 +33,7 @@ class ModelAndViewConverterTest {
     void modelAndViesConverterTest_2() {
         ModelAndViewConverter modelAndViewConverter = new ModelAndViewConverter();
         LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
-        lottoResultsRepository.saveLottoResults(List.of(LottoResult.FOURTH));
+        lottoResultsRepository.saveLottoResult(LottoResult.FOURTH);
 
         modelAndViewConverter.addComponent(lottoResultsRepository.makeLottoResultsDto());
         Map<LottoResult, Integer> lottoResultsData = modelAndViewConverter.getLottoResultsData();

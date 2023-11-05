@@ -48,7 +48,7 @@ public class PlayerTest {
         //given
         player.consumeAllMoneyToLottoTicket();
         LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
-        lottoResultsRepository.saveLottoResults(List.of(LottoResult.FIFTH));
+        lottoResultsRepository.saveLottoResult(LottoResult.FIFTH);
         //when
         Profit profit = player.getProfit(lottoResultsRepository.makeLottoResultsDto());
         //then

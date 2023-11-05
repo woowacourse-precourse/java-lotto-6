@@ -50,8 +50,7 @@
 - ### Service
 - [x] Player 가 로또를 구매해 저장함 - LottoPurchaseService
 - [x] 로또 구매 내역을 LottoBundleDto 를 통해 반환 - LottoPurchaseService
-- [x] 로또 당첨 결과를 리스트 형태로 반환 - LottoPurchaseService
-- [x] 로또 결과 리스트를 받아 당첨 결과를 업데이트 - LottoResultsService
+- [x] 로또 데이터와 WinLotto 받아 당첨 결과를 업데이트 - LottoResultsService
 - [x] 로또 당첨 결과를 LottoResultsDto 를 통해 반환 - LottoResultsService
 - ### DTO
 - [x] 로또 번호를 전달하기 위한 DTO - LottoDto

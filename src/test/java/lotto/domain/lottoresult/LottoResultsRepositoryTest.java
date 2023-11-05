@@ -3,7 +3,6 @@ package lotto.domain.lottoresult;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
 import lotto.domain.dto.LottoResultsDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,8 +14,8 @@ class LottoResultsRepositoryTest {
     void lottoResultRepositoryTest_1() {
         //given
         LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
-        lottoResultsRepository.saveLottoResults(List.of(LottoResult.THIRD));
-        lottoResultsRepository.saveLottoResults(List.of(LottoResult.FOURTH));
+        lottoResultsRepository.saveLottoResult(LottoResult.THIRD);
+        lottoResultsRepository.saveLottoResult(LottoResult.FOURTH);
         //when
         LottoResultsDto lottoResultsDto = lottoResultsRepository.makeLottoResultsDto();
         //then

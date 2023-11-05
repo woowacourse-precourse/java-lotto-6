@@ -25,10 +25,9 @@ public class Lotto {
     }
 
     private void validateRangeNumbers(List<Integer> numbers) {
-        numbers.stream()
-                .filter(number -> number < 1 || number > 45)
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 숫자 범위는 입력될 수 없습니다."));
+        if (isValidRange(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 숫자 범위는 입력될 수 없습니다.");
+        }
     }
 
     private static boolean IsSizeSix(List<Integer> numbers) {
@@ -37,5 +36,9 @@ public class Lotto {
 
     private static boolean hasDuplicated(List<Integer> numbers) {
         return numbers.size() != numbers.stream().distinct().count();
+    }
+
+    private static boolean isValidRange(List<Integer> numbers) {
+        return numbers.stream().anyMatch(number -> number < 1 || number > 45);
     }
 }

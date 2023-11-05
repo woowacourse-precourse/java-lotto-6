@@ -3,8 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -27,13 +25,12 @@ public class LottoSalesmanTest {
         }
     }
 
-    @DisplayName("1개의 로또를 발행한다.")
+    @DisplayName("1개의 로또번호 발행한다.")
     @Test
     void oneLottoCreate() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
-        Lotto createLottoRandomNumbers = new Lotto(numbers);
-        System.out.println("생성된 로또 번호 : " + createLottoRandomNumbers.getNumbers());
+        System.out.println("생성된 로또 번호 : " + numbers);
     }
 
 }

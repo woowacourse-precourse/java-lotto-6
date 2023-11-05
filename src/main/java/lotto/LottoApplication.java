@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,13 +40,7 @@ public class LottoApplication {
         Output.printWinningStatistic(rankingCounter);
 
         BigDecimal totalWinningAmount = calculateTotalWinningAmount(rankingCounter);
-        BigDecimal totalProfit = BigDecimal.valueOf(receivedAmount)
-                .divide(totalWinningAmount)
-                .multiply(new BigDecimal("1000"));
-
-        totalProfit.round(new MathContext(3));
-        totalProfit.multiply(new BigDecimal("100"));
-
+        BigDecimal totalProfit = calculateWinningProfit(BigDecimal.valueOf(receivedAmount), totalWinningAmount);
         Output.printTotalProfit(String.valueOf(totalProfit));
 
     }
@@ -122,9 +117,16 @@ public class LottoApplication {
         BigDecimal totalWinningAmount = BigDecimal.ZERO;
 
         for (int i=1; i<rankingCounter.length; i++) {
-            totalWinningAmount.add(BigDecimal.valueOf(rankingCounter[i]).multiply(WINNING_AMOUNT_BY_RANKING[i]));
+            totalWinningAmount = totalWinningAmount.add(BigDecimal.valueOf(rankingCounter[i]).multiply(WINNING_AMOUNT_BY_RANKING[i]));
         }
 
         return totalWinningAmount;
+    }
+
+    private BigDecimal calculateWinningProfit(BigDecimal receivedAmount, BigDecimal totalWinningAmount) {
+        BigDecimal percent = BigDecimal.valueOf(0);
+        percent = totalWinningAmount.divide(receivedAmount, 3, RoundingMode.HALF_UP);
+        percent = percent.multiply(BigDecimal.valueOf(100), new MathContext(3, RoundingMode.HALF_UP));
+        return percent;
     }
 }

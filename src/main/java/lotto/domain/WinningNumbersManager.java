@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class WinningNumbersManager {
     private static final String WINNING_NUMBERS_SIZE_6_REQUIRED = "당첨 번호는 6개여야합니다";
@@ -39,20 +37,18 @@ public class WinningNumbersManager {
         this.bonusNumber = bonusNumber;
     }
 
-    public Map<WinningStatus, Integer> getWinningStatus(List<Lotto> lottos) {
-        Map<WinningStatus, Integer> winningStatus = getInitStatus();
+    public WinningStatus getWinningStatus(List<Lotto> lottos) {
+        WinningStatus winningStatus = new WinningStatus();
 
         for (Lotto lotto : lottos) {
-            WinningStatus status = getWinningStatus(lotto);
-            if (status != null) {
-                winningStatus.put(status, winningStatus.get(status) + 1);
-            }
+            PrizeType status = getWinningStatus(lotto);
+            winningStatus.add(status);
         }
 
         return winningStatus;
     }
 
-    private WinningStatus getWinningStatus(Lotto lotto) {
+    private PrizeType getWinningStatus(Lotto lotto) {
         int matchCount = lotto.getMatchCount(winningNumbers);
         boolean isBonusMatch = false;
 
@@ -60,16 +56,7 @@ public class WinningNumbersManager {
             isBonusMatch = true;
         }
 
-        return WinningStatus.valueOfMatchCount(matchCount, isBonusMatch);
-    }
-
-    private Map<WinningStatus, Integer> getInitStatus() {
-        Map<WinningStatus, Integer> winningStatus = new HashMap<>();
-        for (WinningStatus status : WinningStatus.values()) {
-            winningStatus.put(status, 0);
-        }
-
-        return winningStatus;
+        return PrizeType.valueOfMatchCount(matchCount, isBonusMatch);
     }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {

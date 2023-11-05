@@ -1,39 +1,35 @@
 package lotto.domain;
 
-public enum WinningStatus {
-    MATCH3(5000, 3),
-    MATCH4(50000, 4),
-    MATCH5(1500000, 5),
-    MATCH5_WITH_BONUS(30000000, 8), //임의의 숫자 초기화
-    MATCH6(2000000000, 6);
+import java.util.HashMap;
+import java.util.Map;
 
-    private final int prize;
-    private final int matchCount;
+public class WinningStatus {
+    private Map<PrizeType, Integer> prizeTypeWithCount;
 
-    WinningStatus(int prize, int matchCount) {
-        this.prize = prize;
-        this.matchCount = matchCount;
+    public WinningStatus() {
+        this.prizeTypeWithCount = new HashMap<>();
+
+        for (PrizeType prizeType : PrizeType.values()) {
+            prizeTypeWithCount.put(prizeType, 0);
+        }
     }
 
-    public int getPrize() {
-        return this.prize;
+    public void add(PrizeType prizeType) {
+        if (prizeType != PrizeType.NOT_APPLICABLE) {
+            prizeTypeWithCount.put(prizeType, prizeTypeWithCount.get(prizeType) + 1);
+        }
     }
 
-    public int getMatchCount() {
-        return this.matchCount;
-    }
-
-    public static WinningStatus valueOfMatchCount(int matchCount, boolean isBonusMatch) {
-        if (matchCount == 5 && isBonusMatch == true) {
-            return MATCH5_WITH_BONUS;
+    public int getSum() {
+        int returnMoney = 0;
+        for (PrizeType prizeType : prizeTypeWithCount.keySet()) {
+            returnMoney += getSum(prizeType);
         }
 
-        for (WinningStatus status : values()) {
-            if (status.getMatchCount() == matchCount) {
-                return status;
-            }
-        }
+        return returnMoney;
+    }
 
-        return null;
+    public int getSum(PrizeType prizeType) {
+        return prizeTypeWithCount.get(prizeType) * prizeType.getPrize();
     }
 }

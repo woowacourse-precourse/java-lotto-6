@@ -1,7 +1,6 @@
 package lotto.ui;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.WinningStatus;
 
@@ -16,7 +15,7 @@ public interface Output {
 
     void printBonusNumberRequest();
 
-    void printWinningStatus(Map<WinningStatus, Integer> winningStatus);
+    void printWinningStatus(WinningStatus winningStatus);
 
     void printRateOfReturn(double rateOfReturn);
 }

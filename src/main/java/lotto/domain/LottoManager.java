@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.Map;
 import lotto.ui.ConsoleInput;
 import lotto.ui.ConsoleOutput;
 import lotto.ui.Input;
@@ -99,7 +98,7 @@ public class LottoManager {
     }
 
     public void getWinningStatus(List<Lotto> lottos) {
-        Map<WinningStatus, Integer> winningStatus = winningNumbersManager.getWinningStatus(lottos);
+        WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
         double rateOfReturn = ReturnCalculator.calculate(winningStatus, lottos.size());
 
         output.printWinningStatus(winningStatus);

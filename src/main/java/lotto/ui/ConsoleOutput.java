@@ -1,8 +1,8 @@
 package lotto.ui;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.PrizeType;
 import lotto.domain.WinningStatus;
 
 public class ConsoleOutput implements Output {
@@ -54,13 +54,13 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void printWinningStatus(Map<WinningStatus, Integer> winningStatus) {
+    public void printWinningStatus(WinningStatus winningStatus) {
         StringBuilder buffer = new StringBuilder();
-        buffer.append(MATCH3_MESSAGE.formatted(winningStatus.get(WinningStatus.MATCH3)));
-        buffer.append(MATCH4_MESSAGE.formatted(winningStatus.get(WinningStatus.MATCH4)));
-        buffer.append(MATCH5_MESSAGE.formatted(winningStatus.get(WinningStatus.MATCH5)));
-        buffer.append(MATCH5_WITH_BONUS_MESSAGE.formatted(winningStatus.get(WinningStatus.MATCH5_WITH_BONUS)));
-        buffer.append(MATCH6_MESSAGE.formatted(winningStatus.get(WinningStatus.MATCH6)));
+        buffer.append(MATCH3_MESSAGE.formatted(winningStatus.getSum(PrizeType.MATCH3)));
+        buffer.append(MATCH4_MESSAGE.formatted(winningStatus.getSum(PrizeType.MATCH4)));
+        buffer.append(MATCH5_MESSAGE.formatted(winningStatus.getSum(PrizeType.MATCH5)));
+        buffer.append(MATCH5_WITH_BONUS_MESSAGE.formatted(winningStatus.getSum(PrizeType.MATCH5_WITH_BONUS)));
+        buffer.append(MATCH6_MESSAGE.formatted(winningStatus.getSum(PrizeType.MATCH6)));
 
         System.out.println(buffer);
     }

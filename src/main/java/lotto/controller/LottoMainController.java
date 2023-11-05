@@ -12,6 +12,6 @@ public class LottoMainController {
         Buyer buyer = BuyerController.requestPayment();
         Lottos lottos = PurchaseController.purchase(buyer);
 
-        Lotto jackpot = JackpotController.requestJackpotNumbers();
+        Lotto jackpotNumber = JackpotController.requestJackpotNumbers();
     }
 }

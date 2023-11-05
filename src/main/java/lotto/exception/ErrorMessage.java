@@ -20,7 +20,7 @@ public enum ErrorMessage {
     ),
     EXCEED_PAYMENT(
             format(
-                    "국민체육진흥법 개정안에 따라, 1인당 발행회차별 %d원을 초과해 구입할 수 없습니다.",
+                    "국민체육진흥법 개정안에 따라, 1인당 발행 회차별 %d원을 초과해 구입할 수 없습니다.",
                     LottoConstraint.MAXIMUM_PURCHASE_PAYMENT.getValue())
     ),
     NUMBER_OUT_OF_RANGE(

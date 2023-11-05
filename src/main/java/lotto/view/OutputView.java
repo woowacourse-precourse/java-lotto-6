@@ -15,7 +15,7 @@ public class OutputView {
     public static void printError(final ErrorMessage message) {
         println(message.getMessage());
     }
-    
+
     public static void println(final Object data) {
         System.out.println(data);
     }
@@ -29,12 +29,11 @@ public class OutputView {
                 .stream()
                 .map(LottoNumberResponse::numbers)
                 .forEach(OutputView::println);
+        printNewLine();
     }
 
     public static void printPurchaseCount(LottoNumberResponses responses) {
         String formattedMessage = String.format(RESPONSE_PURCHASE_COUNT.getMessage(), responses.purchaseCount());
-
-        printNewLine();
         println(formattedMessage);
     }
 }

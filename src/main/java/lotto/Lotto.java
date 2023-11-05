@@ -29,10 +29,4 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() < numbers.size();
     }
-
-    public void checkPurchaseAmount(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR]구입 금액은 1,000원 단위로 입력해야 합니다.");
-        }
-    }
 }

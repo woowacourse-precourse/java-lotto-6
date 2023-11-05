@@ -5,6 +5,7 @@ import lotto.constant.ErrorMessage;
 public class EarningRate {
 
     private static final int MIN_EARNING_VALUE = 0;
+    private static final int PERCENT_MULTIPLY_UNIT = 100;
     private final Double value;
 
     public EarningRate(final Integer profit, final PurchaseAmount purchaseAmount) {
@@ -19,7 +20,7 @@ public class EarningRate {
     }
 
     private double calculateEarningRate(final Integer profit, final PurchaseAmount purchaseAmount) {
-        return profit.doubleValue() / purchaseAmount.toValue();
+        return profit.doubleValue() / purchaseAmount.toValue() * PERCENT_MULTIPLY_UNIT;
     }
 
     public Double toValue() {

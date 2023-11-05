@@ -40,18 +40,21 @@ public class LottoManager {
 
     private int getPrice() {
         output.printLottoPriceRequest();
-        Integer price = null;
-        while (price == null) {
+        Integer price = getPriceRepeatedly();
+
+        return price;
+    }
+
+    private Integer getPriceRepeatedly() {
+        while (true) {
             try {
                 Integer inputPrice = input.getPrice();
                 PriceManager.validatePrice(inputPrice);
-                price = inputPrice;
+                return inputPrice;
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }
         }
-
-        return price;
     }
 
     public void inputWinningNumbers() {
@@ -64,36 +67,40 @@ public class LottoManager {
 
     private List<Integer> getWinningNumbers() {
         output.printWinningNumbersRequest();
-        List<Integer> winningNumbers = null;
-
-        while (winningNumbers == null) {
-            try {
-                List<Integer> inputWinningNumbers = input.getWinningNumbers();
-                winningNumbersManager.validateWinningNumbers(inputWinningNumbers);
-                winningNumbers = inputWinningNumbers;
-            } catch (IllegalArgumentException e) {
-                output.printError(e.getMessage());
-            }
-        }
+        List<Integer> winningNumbers = getWinningNumbersRepeatedly();
 
         return winningNumbers;
     }
 
-    private Integer getBonusNumber() {
-        output.printBonusNumberRequest();
-        Integer bonusNumber = null;
-
-        while (bonusNumber == null) {
+    private List<Integer> getWinningNumbersRepeatedly() {
+        while (true) {
             try {
-                Integer inputBonusNumber = input.getBonusNumbers();
-                winningNumbersManager.validateBonusNumber(inputBonusNumber);
-                bonusNumber = inputBonusNumber;
+                List<Integer> inputWinningNumbers = input.getWinningNumbers();
+                winningNumbersManager.validateWinningNumbers(inputWinningNumbers);
+                return inputWinningNumbers;
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }
         }
+    }
 
-        return 0;
+    private Integer getBonusNumber() {
+        output.printBonusNumberRequest();
+        Integer bonusNumber = getBonusNumberRepeatedly();
+
+        return bonusNumber;
+    }
+
+    private Integer getBonusNumberRepeatedly() {
+        while (true) {
+            try {
+                Integer inputBonusNumber = input.getBonusNumbers();
+                winningNumbersManager.validateBonusNumber(inputBonusNumber);
+                return inputBonusNumber;
+            } catch (IllegalArgumentException e) {
+                output.printError(e.getMessage());
+            }
+        }
     }
 
     public void getWinningStatus(List<Lotto> lottos) {

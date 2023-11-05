@@ -17,8 +17,10 @@ public class LottoController {
         HashMap<Integer, List<Integer>> randomLottoNumbers = lottoGenerate.getRandomLottoNumbers();
         output.printRandomLottoNumbers(randomLottoNumbers);
 
-        Lotto winningNumber = createWinningNumber();
-        LottoBonus bonusNumber = createBonusNumber(winningNumber);
+        Lotto lotto = createWinningNumber();
+        LottoBonus lottoBonus = createBonusNumber(lotto);
+
+        System.out.println(compareLottoNumber(lottoGenerate, lotto, lottoBonus));
     }
 
     private LottoCost createLottoCost() {
@@ -87,7 +89,7 @@ public class LottoController {
         while (loop) {
             String inputBonusNumber = input.bonusNumber();
             try {
-                hasSameNumberBetweenWinningAndBonusNumber(lotto, inputBonusNumber);
+                hasSameNumberBetweenWinningAndBonusNumber(lotto.getLotto(), inputBonusNumber);
                 bonusNumber = new LottoBonus(Integer.parseInt(inputBonusNumber));
                 loop = false;
             } catch (IllegalArgumentException e) {
@@ -98,9 +100,55 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private void hasSameNumberBetweenWinningAndBonusNumber(Lotto lotto, String bonusNumber) {
-        if (lotto.getLotto().contains(toNumber(bonusNumber))) {
+    private void hasSameNumberBetweenWinningAndBonusNumber(List<Integer> winingNumber, String bonusNumber) {
+        if (winingNumber.contains(toNumber(bonusNumber))) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_BOUS_NUMBER_DUPLICATE.getMessage());
         }
+    }
+
+/*    private List<Integer> countMatchWinningNumber(HashMap<Integer, List<Integer>>) {
+        List<Integer>
+    }*/
+
+    private HashMap<Integer, List<Integer>> compareLottoNumber(LottoGenerate lottoGenerate,
+                                                               Lotto lotto, LottoBonus lottoBonus) {
+        HashMap<Integer, List<Integer>> countSameNumbers = new HashMap<>();
+        HashMap<Integer, List<Integer>> randomLottoNumbers = lottoGenerate.getRandomLottoNumbers();
+        int winningNumberMatchCount;
+        int bonusNumberMatchCount;
+
+        for (int key : lottoGenerate.getRandomLottoNumbers().keySet()) {
+            List<Integer> randomLottoNumber = randomLottoNumbers.get(key);
+            winningNumberMatchCount = compareWinningAndLottoNumber(randomLottoNumber, lotto.getLotto());
+            bonusNumberMatchCount = compareBonusAndLottoNumber(randomLottoNumber, lottoBonus.getBonusNumber());
+
+            countSameNumbers.put(key, List.of(winningNumberMatchCount, bonusNumberMatchCount));
+        }
+
+        return countSameNumbers;
+    }
+
+    private int compareWinningAndLottoNumber(List<Integer> randomLottoNumber, List<Integer> winningNumber) {
+        int matchCount = 0;
+
+        for (int number : randomLottoNumber) {
+            if (winningNumber.contains(number)) {
+                matchCount++;
+            }
+        }
+
+        return matchCount;
+    }
+
+    private int compareBonusAndLottoNumber(List<Integer> randomLottoNumber, int bonusNumber) {
+        int matchCount = 0;
+
+        for (int number : randomLottoNumber) {
+            if (number == bonusNumber) {
+                matchCount++;
+            }
+        }
+
+        return matchCount;
     }
 }

@@ -9,9 +9,11 @@ import lotto.view.OutputView;
 
 import java.util.EnumMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Controller {
     LottoService lottoService;
+    List<Lotto> purchasedLottos;
 
     private static final String ERROR = "[ERROR] ";
 
@@ -46,8 +48,8 @@ public class Controller {
     }
 
     private void lottoGameSetting() {
-        List<Lotto> lottoNumber = lottoService.purchaseLottoTickets();
-        OutputView.displayLottoNumber(lottoNumber);
+        this.purchasedLottos = lottoService.purchaseLottoTickets();
+        OutputView.displayLottoNumber(this.purchasedLottos);
     }
 
     private WinningNumbers winningNumberSetting() {
@@ -78,12 +80,20 @@ public class Controller {
 
     private void showWinningResults(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         NumberMatchingService numberMatchingService = new NumberMatchingService();
-        EnumMap<LottoPrize, Integer> winCount = numberMatchingService.calculateResults(lottoService.getAllLottoNumbers(), winningNumbers.getWinningNumbers(), bonusNumber.getBonusNumber());
+
+        EnumMap<LottoPrize, Integer> winCount = numberMatchingService.calculateResults(
+                this.purchasedLottos.stream().map(Lotto::getNumbers).collect(Collectors.toList()),
+                winningNumbers.getWinningNumbers(),
+                bonusNumber.getBonusNumber()
+        );
 
         OutputView.displayLottoResult(winCount);
 
         EarningRateService earningRateService = new EarningRateService();
-        double earningsRate = earningRateService.calculateEarningsRate(winCount, lottoService.getTicketCount());
+        double earningsRate = earningRateService.calculateEarningsRate(
+                winCount,
+                lottoService.getTicketCount()
+        );
         OutputView.displayEarningsRate(earningsRate);
     }
 }

@@ -7,37 +7,30 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
-
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoService {
 
     private LottoTicket lottoTicket;
+    private List<Lotto> lottos;
 
     public void createLottoTicket(String moneyInput) {
         this.lottoTicket = new LottoTicket(moneyInput);
+        this.lottos = generateLottoTickets();
     }
 
     public int getTicketCount() {
         return this.lottoTicket.getTicketCount();
     }
 
-    public List<Lotto> purchaseLottoTickets() {
-        List<Lotto> lottos = new ArrayList<>();
-        int lottoCount = getTicketCount(); // 티켓의 수량 가져오기
+    private List<Lotto> generateLottoTickets() {
+        List<Lotto> generatedLottos = new ArrayList<>();
+        int lottoCount = getTicketCount();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers();
-            lottos.add(new Lotto(lottoNumbers));
+            generatedLottos.add(new Lotto(lottoNumbers));
         }
-        return lottos;
-    }
-
-    public List<List<Integer>> getAllLottoNumbers() {
-        List<List<Integer>> allLottoNumbers = new ArrayList<>();
-        for (Lotto lotto : purchaseLottoTickets()) {
-            allLottoNumbers.add(lotto.getNumbers());
-        }
-        return allLottoNumbers;
+        return generatedLottos;
     }
 
     private static List<Integer> generateLottoNumbers() {
@@ -49,5 +42,8 @@ public class LottoService {
         List<Integer> lottoNumbers = new ArrayList<>(uniqueNumbers);
         Collections.sort(lottoNumbers);
         return lottoNumbers;
+    }
+    public List<Lotto> purchaseLottoTickets() {
+        return this.lottos;
     }
 }

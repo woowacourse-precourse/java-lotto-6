@@ -2,14 +2,12 @@ package lotto.domain;
 
 public class Player {
 
-    private Lotto winningNumber;
-    private int bonusNumber;
-    private final int price;
+    private final Lotto winningNumber;
+    private final int bonusNumber;
     private final int quantity;
 
-    public Player(Lotto lotto, int bonus, int price, int quantity){
+    public Player(Lotto lotto, int bonus, int quantity){
         this.winningNumber = lotto;
-        this.price  = price;
         this.bonusNumber = bonus;
         this.quantity = quantity;
     }

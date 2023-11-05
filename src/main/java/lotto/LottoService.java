@@ -13,7 +13,7 @@ public class LottoService {
      * 로또 번호 생성
      */
     public List<Integer> generateLottoNumbers() {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(lotto);
         return lotto;
     }

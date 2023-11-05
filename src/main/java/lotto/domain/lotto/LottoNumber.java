@@ -1,6 +1,8 @@
 package lotto.domain.lotto;
 
 
+import lotto.global.constant.message.ErrorMessage;
+
 public class LottoNumber {
     private final int number;
 
@@ -20,7 +22,7 @@ public class LottoNumber {
 
     private void validateNumbersRange(int number) {
         if (number > 45 || number < 1) {
-            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR);
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.global.constant.message.ErrorMessage;
+
 public class Money {
     private final int amount;
 
@@ -20,13 +22,13 @@ public class Money {
 
     private void validateIsAmountZero(int amount) {
         if (amount == 0) {
-            throw new IllegalArgumentException("[ERROR] 0원은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_AMOUNT_ERROR);
         }
     }
 
     private void validateAmountUnit(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력이 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_ERROR);
         }
     }
 }

@@ -6,7 +6,7 @@ public class OutputView {
         System.out.println(text);
     }
 
-    public void printError(Exception error) {
+    public void printErrorMessage(Exception error) {
         println(error.getMessage());
     }
 }

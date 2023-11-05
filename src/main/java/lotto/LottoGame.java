@@ -1,6 +1,6 @@
 package lotto;
 
-public class howManyLotto {
+public class LottoGame {
     public static int issuanceLotto(int money){
         int lottoCnt = money/1000;
         return lottoCnt;

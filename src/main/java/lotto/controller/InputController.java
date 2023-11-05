@@ -5,15 +5,15 @@ import static lotto.constant.message.InputMessage.DELIMITER;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.BonusNumber;
-import lotto.domain.LottoAmount;
+import lotto.domain.LottoPublisher;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class InputController {
-    public static LottoAmount getPurchasePrice() {
+    public static LottoPublisher getPurchasePrice() {
         try {
-            return new LottoAmount(InputView.requestPurchasePrice());
+            return new LottoPublisher(InputView.requestPurchasePrice());
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception.getMessage());
             return getPurchasePrice();

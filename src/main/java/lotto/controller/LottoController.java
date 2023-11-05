@@ -1,10 +1,15 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumberGenerator;
 import lotto.validator.InputPurchaseAmountValidator;
 import lotto.view.InputConverter;
 import lotto.view.InputPreprocessor;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoController {
     private final InputView inputView;
@@ -12,6 +17,7 @@ public class LottoController {
     private final InputPurchaseAmountValidator purchaseAmountValidator;
     private final InputPreprocessor preprocessor;
     private final InputConverter converter;
+    private final LottoNumberGenerator lottoNumberGenerator;
     private static final int LOTTO_PRICE = 1000;
 
     public LottoController() {
@@ -20,11 +26,17 @@ public class LottoController {
         this.purchaseAmountValidator = new InputPurchaseAmountValidator();
         this.preprocessor = new InputPreprocessor();
         this.converter = new InputConverter();
+        this.lottoNumberGenerator = new LottoNumberGenerator();
     }
 
     public void play() {
         int purchaseAmount = getValidatedPurchaseAmount();
-        purchaseLottos(purchaseAmount);
+        int lottosCount = purchaseLottos(purchaseAmount);
+
+        List<Lotto> lottos = generateLottos(lottosCount);
+        outputView.printLottoNumbers(lottos);
+
+
     }
 
     private int getValidatedPurchaseAmount() {
@@ -48,13 +60,23 @@ public class LottoController {
         return preprocessor.trimInput(input);
     }
 
-    private void purchaseLottos(int purchaseAmount) {
+    private int purchaseLottos(int purchaseAmount) {
         int lottosCount = calculatePurchaseOfLottos(purchaseAmount);
         outputView.printCountPurchaseLottoMessage(lottosCount);
+        return lottosCount;
     }
 
     private int calculatePurchaseOfLottos(int purchaseAmount) {
         return purchaseAmount / LOTTO_PRICE;
+    }
+
+    private List<Lotto> generateLottos(int lottosCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottosCount; i++) {
+            List<Integer> numbers = lottoNumberGenerator.generateLottoNumbers();
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
     }
 
 }

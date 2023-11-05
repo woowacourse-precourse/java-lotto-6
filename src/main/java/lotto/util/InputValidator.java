@@ -1,10 +1,11 @@
-package lotto;
+package lotto.util;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.enums.ErrorMessages;
 
 public class InputValidator {
     private static final int DIVIDE_NUMBER = 1000;

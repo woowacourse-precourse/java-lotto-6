@@ -1,7 +1,9 @@
-package lotto;
+package lotto.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.enums.Messages;
 
 public class View {
     List<String> hitResultMessages = new ArrayList<>(){{

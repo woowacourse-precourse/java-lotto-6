@@ -1,8 +1,6 @@
 package lotto.domain.lotto;
 
 
-import java.util.Objects;
-
 public class LottoNumber {
     private final int number;
 
@@ -10,6 +8,7 @@ public class LottoNumber {
         validate(number);
         this.number = number;
     }
+
 
     public Integer getValue() {
         return number;

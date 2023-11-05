@@ -20,6 +20,7 @@ public class LottoGame {
         this.lottoMachine = lottoMachine;
     }
 
+
     public void run() {
         Money money = inputMoneyAmount();
         List<Lotto> lottos = purchaseLottos(money);
@@ -47,7 +48,7 @@ public class LottoGame {
 
         for (Lotto lotto : lottos) {
             int matchCount = checkMatchCount(lotto, winningNumbers);
-            if(matchCount < 3) {
+            if (matchCount < 3) {
                 continue;
             }
             boolean isBonusNumberMatched = lotto.containsNumber(bonusNumber);
@@ -71,7 +72,7 @@ public class LottoGame {
     private int checkMatchCount(Lotto lotto, List<LottoNumber> winningNumbers) {
         int matchCount = 0;
         for (LottoNumber winningNumber : winningNumbers) {
-            if(lotto.containsNumber(winningNumber)){
+            if (lotto.containsNumber(winningNumber)) {
                 matchCount++;
             }
         }
@@ -83,7 +84,7 @@ public class LottoGame {
         for (Rank rank : Rank.values()) {
             result.put(rank, 0);
         }
-        
+
         return result;
     }
 
@@ -119,7 +120,7 @@ public class LottoGame {
             int number = inputView.readBonusNumber();
             LottoNumber bonusNumber = new LottoNumber(number);
 
-            if(winningLotto.containsNumber(bonusNumber)){
+            if (winningLotto.containsNumber(bonusNumber)) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
             }
             return bonusNumber;

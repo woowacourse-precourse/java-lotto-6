@@ -8,6 +8,7 @@ public class Money {
         this.amount = amount;
     }
 
+
     public int getAmount() {
         return amount;
     }
@@ -24,7 +25,7 @@ public class Money {
     }
 
     private void validateAmountUnit(int amount) {
-        if(amount % 1000 != 0) {
+        if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력이 가능합니다.");
         }
     }

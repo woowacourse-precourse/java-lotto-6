@@ -12,6 +12,7 @@ public class InputView {
         this.outputView = outputView;
     }
 
+
     public int readLottoPurchaseMoney() {
         outputView.println("구입금액을 입력해 주세요.");
         String amount = Console.readLine();

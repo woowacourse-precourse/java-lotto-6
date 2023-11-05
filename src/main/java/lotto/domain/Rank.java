@@ -16,6 +16,7 @@ public enum Rank {
     private final int prizeMoney;
     private final String winningMessage;
 
+
     public int getPrizeMoney() {
         return prizeMoney;
     }
@@ -25,13 +26,13 @@ public enum Rank {
     }
 
     public static Rank calcualteBy(int matchCount, boolean isBonusNumberMatched) {
-        if(matchCount == 6) {
+        if (matchCount == 6) {
             return Rank.FIRST;
-        } else if(matchCount == 5 && isBonusNumberMatched) {
+        } else if (matchCount == 5 && isBonusNumberMatched) {
             return Rank.SECOND;
-        } else if(matchCount == 5) {
+        } else if (matchCount == 5) {
             return Rank.THIRD;
-        } else if(matchCount == 4) {
+        } else if (matchCount == 4) {
             return Rank.FOURTH;
         }
         return Rank.FIFTH;

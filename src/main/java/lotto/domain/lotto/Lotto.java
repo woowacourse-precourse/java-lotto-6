@@ -1,6 +1,5 @@
 package lotto.domain.lotto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -13,6 +12,7 @@ public class Lotto {
                 .map(LottoNumber::new)
                 .toList();
     }
+
 
     public List<LottoNumber> getNumbers() {
         return numbers;
@@ -37,7 +37,7 @@ public class Lotto {
         long numberCount = numbers.stream()
                 .distinct()
                 .count();
-        if(numberCount != 6) {
+        if (numberCount != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }

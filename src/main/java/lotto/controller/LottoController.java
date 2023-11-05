@@ -21,14 +21,11 @@ public class LottoController {
     public void run() throws IllegalArgumentException{
 
         try {
-            int money = InputView.inputMoney();
-            int times = lottoService.convertToTimes(money);
+            int times = runInputView();
 
             List<Lotto> lottoes = lottoService.createLottoes(times);
 
-            OutputView.printPurchaseLotto(lottoes);
-
-
+            runPrintPurchaseLottoes(lottoes);
 
 
         } catch (IllegalArgumentException e){
@@ -37,4 +34,38 @@ public class LottoController {
         }
 
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    //inputView 실행
+    public int runInputMoney(){
+        String inputMoney = InputView.inputMoney();
+        int times = lottoService.convertToTimes(inputMoney);
+        return times;
+    }
+
+    public int runInputWinningNum(){
+        String inputWinningNum = InputView.inputWinningNum();
+
+    }
+
+    public int runInputBonusNum(){
+        String inputBonusNum = InputView.inputBonusNum();
+
+    }
+
+
+
+    //서비스 코드 실행
+
+
+    //outputView 실행
+    public void runPrintPurchaseLottoes(List<Lotto> lottoes){
+        OutputView.printPurchaseLottoes(lottoes);
+    }
+    public void runOutputView(){
+
+    }
+
+
 }

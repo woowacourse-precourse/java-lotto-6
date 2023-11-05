@@ -2,8 +2,10 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.Rank;
 import lotto.domain.Comparator;
 import lotto.domain.Convertor;
+import lotto.domain.Judge;
 import lotto.domain.Lotto;
 import lotto.domain.Number;
 import lotto.view.InputView;
@@ -19,7 +21,7 @@ public class Game {
         Lotto winnerNumbers = createWinnerNumbers();
         int bonusNumber = createBonusNumber();
         List<Integer> sameNumbers = createSameNumbers(lottos, winnerNumbers);
-        System.out.println(sameNumbers.toString());
+        List<Rank> ranks = createRanks(sameNumbers, lottos, bonusNumber);
     }
 
     private List<Lotto> issueLottos(int purchaseQuantity) {
@@ -47,5 +49,15 @@ public class Game {
             sameNumbers.add(sameNumber);
         }
         return sameNumbers;
+    }
+
+    private List<Rank> createRanks(List<Integer> sameNumbers, List<Lotto> lottos, int bonusNumber) {
+        List<Rank> ranks = new ArrayList<>();
+        Judge judge = new Judge();
+        for (int i = 0; i < sameNumbers.size(); i++) {
+            Rank rank = judge.selectRank(sameNumbers.get(i), lottos.get(i), bonusNumber);
+            ranks.add(rank);
+        }
+        return ranks;
     }
 }

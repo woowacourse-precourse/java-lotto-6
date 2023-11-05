@@ -15,4 +15,10 @@ public class Lottos {
                 .map(LottoDTO::from)
                 .toList();
     }
+
+    public void getWinningResult(WinningNumber winningNumber, BonusNumber bonusNumber) {
+        for (Lotto lotto : lottos) {
+            int countOfMatchingNumber = lotto.countMatchingNumber(winningNumber);
+        }
+    }
 }

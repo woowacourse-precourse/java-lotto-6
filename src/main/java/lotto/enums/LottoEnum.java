@@ -14,9 +14,9 @@ public enum LottoEnum {
     W5(LOTTO_COUNT-3, 0,5000, 0);
 
 
-    private int winCount;
-    private int bonusCount;
-    private int reward;
+    private final int winCount;
+    private final int bonusCount;
+    private final int reward;
     private int result;
 
 
@@ -25,6 +25,10 @@ public enum LottoEnum {
         this.bonusCount = bonusCount;
         this.reward = reward;
         this.result = result;
+    }
+
+    public int getResult() {
+        return result;
     }
 
     public static void printResult(int amount) {
@@ -64,6 +68,7 @@ public enum LottoEnum {
             }
         }
     }
+
 
 
 }

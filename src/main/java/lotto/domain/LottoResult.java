@@ -9,5 +9,9 @@ public class LottoResult {
         this.isBonusContains = isBonusContains;
     }
 
+    public Winner getWinners() {
+        return Winner.of(sameCount, isBonusContains);
+    }
+
 
 }

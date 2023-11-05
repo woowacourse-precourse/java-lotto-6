@@ -17,6 +17,14 @@ public class Lottos {
         lottos.add(lotto);
     }
 
+    public Lotto get(int index) {
+        return lottos.get(index);
+    }
+
+    public int size() {
+        return lottos.size();
+    }
+
     private void validate(List<Lotto> lottos) {
         if (lottos == null) {
             OutputView.printError(ErrorMessage.NULL_ERROR_MESSAGE);

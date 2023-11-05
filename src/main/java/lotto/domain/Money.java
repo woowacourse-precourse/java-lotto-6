@@ -12,6 +12,14 @@ public class Money {
         this.money = money;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
+    public int getDivideValue() {
+        return money / ONE_THOUSAND_WON;
+    }
+
     private void validate(int money) {
         if (!isPositive(money)) {
             OutputView.printError(ErrorMessage.NOT_POSITIVE_ERROR_MESSAGE);
@@ -29,10 +37,6 @@ public class Money {
 
     private boolean isDivideUp(int money) {
         return money % ONE_THOUSAND_WON == ZERO;
-    }
-
-    public int getDivideValue() {
-        return money / ONE_THOUSAND_WON;
     }
 
 

@@ -11,7 +11,7 @@ public enum ConfigInteger {
     LONG_ROUND_NUMBER(1000),
     LONG_ROUND_DIVIDE_NUMBER(100);
 
-    private int i;
+    private final int i;
 
     ConfigInteger(int i) {
         this.i = i;

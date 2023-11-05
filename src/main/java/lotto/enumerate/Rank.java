@@ -20,11 +20,8 @@ public enum Rank {
     }
 
     public static Rank match(int match, boolean isBonusNumberMatch) {
-        for (Rank rank : Rank.values()) {
-            if (rank.getMatch() == 5 && isBonusNumberMatch) {
-                return Rank.SECOND_PLACE;
-            }
-            if (rank.getMatch() == match) {
+        for (Rank rank : values()) {
+            if ((rank.match == match && !isBonusNumberMatch) || (rank.match == match && rank == SECOND_PLACE)) {
                 return rank;
             }
         }
@@ -37,9 +34,5 @@ public enum Rank {
 
     public String getRankString(int value) {
         return String.format(rankString, value);
-    }
-
-    public int getMatch() {
-        return match;
     }
 }

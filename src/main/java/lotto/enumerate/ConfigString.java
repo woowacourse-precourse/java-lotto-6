@@ -8,13 +8,13 @@ public enum ConfigString {
     STRING_FORMAT("%%.%df"),
     STRING_INDEX(".");
 
-    public String getString() {
-        return string;
-    }
-
-    private String string;
+    private final String string;
 
     ConfigString(String string) {
         this.string = string;
+    }
+
+    public String getString() {
+        return string;
     }
 }

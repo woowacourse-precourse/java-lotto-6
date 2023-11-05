@@ -1,11 +1,11 @@
-package lotto.domain;
+package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
 import lotto.constant.NumberConstant;
 
-public class RandomLottoNumbers implements LottoNumbers{
+public class RandomLottoNumbers implements LottoNumbers {
 
     @Override
     public List<Integer> generateLottoNumbers() {

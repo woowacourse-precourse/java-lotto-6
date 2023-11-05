@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 import lotto.constant.ExceptionConstant;
 import lotto.constant.NumberConstant;
 

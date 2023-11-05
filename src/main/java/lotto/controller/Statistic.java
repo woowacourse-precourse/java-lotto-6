@@ -15,4 +15,8 @@ public class Statistic {
         return sum;
     }
 
+    public static double calRate(int resultSum, int price) {
+        return ((double)resultSum/(price))*100;
+    }
+
 }

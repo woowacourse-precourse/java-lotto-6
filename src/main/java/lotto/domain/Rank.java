@@ -5,12 +5,13 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum Rank {
-    FIRST(6, 2000000000, (matchLottoNum, containBonusNum) -> matchLottoNum == 6),
-    SECOND(5, 30000000, (matchLottoNum, containBonusNum) -> matchLottoNum == 5 && containBonusNum),
-    THIRD(5, 1500000, (matchLottoNum, containBonusNum) -> matchLottoNum == 5 && !containBonusNum),
-    FOURTH(4,50000 , (matchLottoNum, containBonusNum) -> matchLottoNum == 4),
+    EMPTY(0, 0, (matchLottoNum, containBonusNum) -> matchLottoNum < 3),
     FIFTH(3, 5000, (matchLottoNum, containBonusNum) -> matchLottoNum == 3),
-    EMPTY(0, 0, (matchLottoNum, containBonusNum) -> matchLottoNum < 3);
+    FOURTH(4,50000 , (matchLottoNum, containBonusNum) -> matchLottoNum == 4),
+    THIRD(5, 1500000, (matchLottoNum, containBonusNum) -> matchLottoNum == 5 && !containBonusNum),
+    SECOND(5, 30000000, (matchLottoNum, containBonusNum) -> matchLottoNum == 5 && containBonusNum),
+    FIRST(6, 2000000000, (matchLottoNum, containBonusNum) -> matchLottoNum == 6);
+
     private final int matchLottoCnt;
     private final int money;
     private final BiPredicate<Integer, Boolean> isMatch;

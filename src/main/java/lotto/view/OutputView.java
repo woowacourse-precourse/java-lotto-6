@@ -18,8 +18,6 @@ public final class OutputView {
     }
 
     public static void showLotteries(Lotteries lotteries) {
-        for (Lotto lotto : lotteries.getLotteries()) {
-            lotto.showNumbers();
-        }
+        lotteries.showLotteries();
     }
 }

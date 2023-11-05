@@ -15,8 +15,10 @@ public class PurchaseLottoTest {
     @DisplayName("로또 원하는 개수 만큼 구입")
     @Test
     void purchaseLottoN() {
+        String cost = "8000";
         int numberOfLotto = 8;
-        List<Lotto> lottos = PurchaseLotto.getLottos(numberOfLotto);
+
+        List<Lotto> lottos = new PurchaseLotto().purchase(cost);
         lottos.stream().forEach(lotto -> System.out.println(lotto));
         assertThat(lottos.size()).isEqualTo(numberOfLotto);
     }
@@ -29,7 +31,7 @@ public class PurchaseLottoTest {
 
         for (int i = 0; i < 3; i++) {
             String input = inputs[i];
-            assertThatThrownBy(() -> new PurchaseLotto().validateNumberOfLotto(input))
+            assertThatThrownBy(() -> new PurchaseLotto().purchase(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(outputs[i]);
         }

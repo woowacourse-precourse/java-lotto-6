@@ -10,7 +10,12 @@ public class PurchaseLotto {
     public static final String PURCHASE_COST_RANGE_MSG = "[ERROR] 로또는 최소 한 개 최대 천 개까지 구입 가능합니다.";
     public static final String PURCHASE_COST_UNIT_MSG = "[ERROR] 구입 금액은 1000단위 숫자이어야 합니다.";
 
-    public int validateNumberOfLotto(String cost) {
+    public List<Lotto> purchase(String cost) {
+        int numberOfLotto = validateNumberOfLotto(cost);
+        return getLottos(numberOfLotto);
+    }
+
+    private int validateNumberOfLotto(String cost) {
         int numberCost = toNumber(cost);
         if (!checkRange(numberCost)) {
             throw new IllegalArgumentException(PURCHASE_COST_RANGE_MSG);
@@ -39,7 +44,7 @@ public class PurchaseLotto {
         return result;
     }
 
-    public static List<Lotto> getLottos(int numberOfLottos) {
+    private List<Lotto> getLottos(int numberOfLottos) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
             lottos.add(getLotto());
@@ -47,11 +52,11 @@ public class PurchaseLotto {
         return lottos;
     }
 
-    private static Lotto getLotto() {
+    private Lotto getLotto() {
         return new Lotto(getRandomNumbers());
     }
 
-    private static List<Integer> getRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    private List<Integer> getRandomNumbers() {
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 }

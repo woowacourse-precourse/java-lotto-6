@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class WinningStatistics {
 
@@ -21,9 +23,11 @@ public class WinningStatistics {
         return rankCount.getOrDefault(rank, 0);
     }
 
-
     public long showRevenue() {
-
+        Long revenue = Arrays.stream(Rank.values())
+                            .map(rank -> rank.showPrize() * rankCount.getOrDefault(rank, 0))
+                            .reduce(0L, Long::sum);
+        return revenue;
     }
 
 }

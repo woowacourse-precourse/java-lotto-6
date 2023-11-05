@@ -37,7 +37,7 @@ public class WinningStaticsTest {
         //when
         WinningStatistics winningStatistics = WinningStatistics.from(winningRanks);
         //then
-        long expectedValue = 23000050000L;
+        long expectedValue = 2030050000L;
         assertThat(winningStatistics.showRevenue()).isEqualTo(expectedValue);
 
     }

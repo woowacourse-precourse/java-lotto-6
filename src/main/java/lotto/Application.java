@@ -20,7 +20,7 @@ public class Application {
 
     enum ErrorType { 
         NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."), 
-        MONEY("[ERROR] 금액은 1000으로 나누어 떨어지는 정수 입니다.");
+        MONEY("[ERROR] 금액은 1000으로 나누어 떨어지는 정수 입니다."),;
 
         final private String name; 
         public String getName() { 
@@ -56,7 +56,9 @@ public class Application {
             res = myParseInt(Console.readLine());
             res = vaildMoney(res);
             System.out.println();
-            if(res == -1) System.out.println(ErrorType.MONEY.getName());
+            if(res != -1) break;
+
+            System.out.println(ErrorType.MONEY.getName());
         }
         return res;
     }
@@ -91,18 +93,52 @@ public class Application {
         List<Integer> res = new ArrayList<Integer>();
         while(res.isEmpty()) {
             res = strToIntegerList(Console.readLine());
-            if(res.isEmpty()) System.out.println(ErrorType.NUMBER.getName());
+            if(!res.isEmpty()) break;
+
+            System.out.println(ErrorType.NUMBER.getName());
+        }
+        return res;
+    }
+
+    public static int setBonus(Lotto winLotto){
+        int res = -1;
+        while (res == -1) {
+            res = myParseInt(Console.readLine());
+            if (res != -1 && !winLotto.lottoContains(res)) break;
+
+            System.out.println(ErrorType.NUMBER.getName());
+        }
+        return res;
+    }
+
+    public static int judge(Lotto winLotto, Lotto L, int bonus){
+        int count = winLotto.countMatch(L) - 3;
+        if (count == 2 && winLotto.lottoContains(bonus)) return count+1;
+        if (count == 3) return count+1;
+        return count;
+    }
+
+    public static int[] lottery(Lotto winLotto, List<Lotto> user, int bonus){
+        int[] res = {0,0,0,0,0};
+        for (Lotto L : user) {
+            //int grade = judge(winLotto,L,bonus);
+            //if(grade >= 0) res[grade]++;
         }
         return res;
     }
 
     public static void main(String[] args) {
-        int money = -1;
+        int money = -1, bonus;
         List<Lotto> user;
         Lotto winLotto;
+        int[] Lottery_result;
+
         money = setMoney();
         user = setUser(money/1000);
         showUser(user);
         winLotto = new Lotto(setWinNumbers());
+        bonus = setBonus(winLotto);
+        Lottery_result = lottery(winLotto, user, bonus);
+
     }
 }

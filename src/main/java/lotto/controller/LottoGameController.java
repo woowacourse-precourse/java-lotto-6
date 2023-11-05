@@ -27,7 +27,12 @@ public class LottoGameController {
     public void run() {
         PurchaseCount purchaseCount = initPurchaseAmount();
         LottoStore lottoStore = initLottoStore(purchaseCount);
-        initWinningNumber();
+        WinningNumber winningNumber = initWinningNumber();
+        initBonusNumber();
+    }
+
+    private void initBonusNumber() {
+        outputView.output(BONUS_NUMBER.getMessage());
     }
 
     private WinningNumber initWinningNumber() {

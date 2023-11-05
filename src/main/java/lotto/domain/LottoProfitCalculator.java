@@ -13,7 +13,7 @@ public class LottoProfitCalculator {
         setTotalProfitPercentile(totalProfit(lottoResult), chance);
     }
 
-    public int totalProfit(Map<Integer, Integer> lottoResult) {
+    private int totalProfit(Map<Integer, Integer> lottoResult) {
         int totalProfit = 0;
 
         for (Prize prize : Prize.values()) {
@@ -23,8 +23,8 @@ public class LottoProfitCalculator {
         return totalProfit;
     }
 
-    public void setTotalProfitPercentile(int totalProfit, int chance) {
-        totalProfitPercentile = (double) totalProfit / (chance * Constants.MONEY_UNIT);
+    private void setTotalProfitPercentile(int totalProfit, int chance) {
+        totalProfitPercentile = (double) totalProfit / (chance * Constants.MONEY_UNIT) * 100;
     }
 
     public String getTotalProfitPercentile() {

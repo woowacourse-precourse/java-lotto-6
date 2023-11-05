@@ -2,10 +2,11 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static model.Constants.*;
+
 public class InputMoney {
 
 	private static int purchase_amount_refined;
-	private static final int UNIT_AMOUNT=1000;
 	
 	public int purchase_lotto() {
 		while(true) {

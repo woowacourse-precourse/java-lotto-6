@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -8,6 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputNumbers {
 
 	private List<Integer> numbers_refined=new ArrayList<Integer>();
+	private int bonus;
 	
     public List<Integer> select_numbers() {
     	while(true) {
@@ -19,7 +21,22 @@ public class InputNumbers {
     			e.printStackTrace();
     		}
     	}
+    	Collections.sort(numbers_refined);
     	return numbers_refined;
+    }
+    
+    public int select_bonus() {
+    	while(true) {
+    		try {
+	    		String bonusStr=Console.readLine();
+	    		this.bonus=naN(bonusStr);
+	    		valueOutOfBoundary(bonus);
+	    		break;
+    		} catch(IllegalArgumentException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	return bonus;
     }
     
     public void forTest(List<Integer> test_input) {

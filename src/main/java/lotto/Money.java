@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 public class Money {
 
 	//private int purchase_amount;

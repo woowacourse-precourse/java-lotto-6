@@ -4,8 +4,8 @@
 
 ### 로또 구입 금액 입력
 
-- [ ] 로또 구입 금액은 자연수
-- [ ] 1,000원 단위 입력
+- [x] 로또 구입 금액은 자연수
+- [x] 1,000원 단위 입력
 
 ### 당첨 번호 입력
 
@@ -16,15 +16,15 @@
 
 ### 보너스 번호 입력
 
-- [ ] 1에서 45 사이 자연수만 입력 가능
-- [ ] 한 자리만 입력 가능
+- [x] 1에서 45 사이 자연수만 입력 가능
+- [x] 한 자리만 입력 가능
 - [ ] 당첨번호와 중복되면 안 됨
 
 ### 발행한 로또 수량 및 번호 출력
 
-- [ ] 발행한 로또 수량 출력
-- [ ] 로또 번호는 오름차순으로 정렬
-- [ ] [8, 21, 23, 41, 42, 43] 형식으로 출력
+- [x] 발행한 로또 수량 출력
+- [x] 로또 번호는 오름차순으로 정렬
+- [x] [8, 21, 23, 41, 42, 43] 형식으로 출력
 
 ### 당첨 내역 출력
 
@@ -45,7 +45,7 @@
 - [ ] Junit5와 AssertJ를 이용한 테스트 코드 작성
 - [ ] 함수의 길이가 15라인 넘어가지 않도록
 - [ ] else, switch/case 예약어 쓰지 않도록
-- [ ] Java ENUM 적용
+- [x] Java ENUM 적용
 - [ ] 도메인 로직에 대한 단위 테스트 구현
-- [ ] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
-- [ ] 사용자 입력값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용
+- [x] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
+- [x] 사용자 입력값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용

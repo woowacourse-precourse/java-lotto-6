@@ -28,4 +28,19 @@ public class LottoValidatorTest {
         //then
         assertThat(lotto.getLotto().size()).isEqualTo(LOTTO_NUMBERS_COUNT);
     }
+
+    @Test
+    @DisplayName("로또_번호_범위_초과_테스트")
+    public void lottoNumberRangeExceptionTest() {
+        //given
+
+        //when
+
+        //then
+        for (int number : lotto.getLotto()) {
+            assertThat(number)
+                    .isGreaterThan(0)
+                    .isLessThan(46);
+        }
+    }
 }

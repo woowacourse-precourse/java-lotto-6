@@ -39,4 +39,14 @@ public class Lotto {
             throw new IllegalArgumentException(LottoExceptionMessage.DUPLICATE_EXISTS.getError());
         }
     }
+
+    public int countMatchingNumbers(Lotto target) {
+        int matchCounts = 0;
+        for (LottoNumber targetLottoNumber : target.lottoNumbers) {
+            if (this.lottoNumbers.contains(targetLottoNumber)) {
+                matchCounts++;
+            }
+        }
+        return matchCounts;
+    }
 }

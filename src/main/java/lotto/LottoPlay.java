@@ -1,8 +1,6 @@
 package lotto;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -17,7 +15,8 @@ public class LottoPlay implements Play{
         List<Lotto> myLotto = getMyLottoNumber(purchaseQuantity);
         Lotto winningLotto = readWinningNumber();
         int bonusNumber = readBonusNumber(winningLotto);
-        printWinningStat();
+        List<Rank> ranks = getWinningStat(myLotto, winningLotto, bonusNumber);
+        printWinningStat(ranks);
         printYieldRate();
     }
 
@@ -88,7 +87,23 @@ public class LottoPlay implements Play{
         return bonusNumber;
     }
 
-    private void printWinningStat() {
+    private List<Rank> getWinningStat(List<Lotto> myLottos, Lotto winningLotto, int bonusNumber) {
+        int hits;
+        boolean isMatchBonusNumber = false;
+        List<Rank> ranks = new ArrayList<>();
+
+        for (Lotto myLotto : myLottos) {
+            hits = getRank(myLotto, winningLotto);
+            if (hits == 5) {
+                isMatchBonusNumber = getMatchBonusNumber(winningLotto, bonusNumber);
+            }
+            ranks.add(Rank.findRank(hits, isMatchBonusNumber));
+        }
+
+        return ranks;
+    }
+
+    private void printWinningStat(List<Rank> ranks) {
 
     }
 
@@ -102,4 +117,19 @@ public class LottoPlay implements Play{
         }
     }
 
+    private int getRank(Lotto myLotto, Lotto winningLotto) {
+        int hits = 0;
+
+        for (int myLottoNumber : myLotto.getLottoNumber()) {
+            if (winningLotto.getLottoNumber().contains(myLottoNumber)) {
+                hits++;
+            }
+        }
+
+        return hits;
+    }
+
+    private boolean getMatchBonusNumber(Lotto winningLotto, int bonusNumber) {
+        return winningLotto.getLottoNumber().contains(bonusNumber);
+    }
 }

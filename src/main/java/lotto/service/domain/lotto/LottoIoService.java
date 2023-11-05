@@ -2,31 +2,32 @@ package lotto.service.domain.lotto;
 
 import lotto.io.LottoInputReader;
 import lotto.model.dto.BuyInfo;
+import lotto.model.dto.Lotto;
 import lotto.service.convert.ConvertService;
 import lotto.service.exceptionhandler.LottoErrorMessage;
 import lotto.view.LottoOutputPrint;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoIoService {
-    private LottoInputReader input = new LottoInputReader();
-    private LottoOutputPrint result = new LottoOutputPrint();
-    private ConvertService convert = new ConvertService();
+    private final LottoInputReader input = new LottoInputReader();
+    private final LottoOutputPrint result = new LottoOutputPrint();
+    private final ConvertService convert = new ConvertService();
 
-    public BuyInfo inputAndOutputPrice(BuyInfo info) {
+    public BuyInfo inputPriceGetBuyInfo(BuyInfo info) {
         String priceString;
         int buyWon;
         Loop:
         do {
             priceString = input.readerLottoPrice();
             buyWon = convert.ConvertStringToNumber(priceString);
-            System.out.println("buyWon의 값 : " + buyWon);
             try {
                 if (buyWon == 0) {
                     throw new IllegalArgumentException(
                       LottoErrorMessage.ERROR_LOTTO_NOT_TEN_WON_MESSAGE);
                 }
-                if (buyWon == -1){
+                if (buyWon == -1) {
                     throw new IllegalArgumentException(
                       LottoErrorMessage.ERROR_LOTTO_NOT_POSITIVE_NUMBER_MESSAGE);
                 }
@@ -36,16 +37,44 @@ public class LottoIoService {
             }
             info.setBuyWon(buyWon);
             info.setBuyNumber(convert.priceChangeBuyNumber(info.getBuyWon()));
-            System.out.println(info.getBuyNumber());
         } while (info.getBuyNumber() == 0);
         result.printLottoPrice(info.getBuyNumber());
         return info;
     }
 
-    public void inputAndOutputChoiceResultNumbers() {
-        String choiceString = input.readerLottoNumbers();
-        List<Integer> choiceList = convert.ConvertStringToNumbers(choiceString);
-
+    public Lotto userPickMasterLottoNumbers() {
+        String masterNumberString;
+        List<Integer> masterNumbers;
+        int LottoValueSize = 6;
+        Lotto userLottoNumber;
+        Loop:
+        while(true) {
+            try {
+                masterNumberString
+                  = input.readerLottoMasterNumbers();
+                if (masterNumberString == null) {
+                    throw new IllegalArgumentException
+                      (LottoErrorMessage.ERROR_LOTTO_NULL_POINT_MESSAGE);
+                }
+                masterNumbers
+                  = convert.ConvertStringToNumbers(masterNumberString, LottoValueSize);
+                if (masterNumbers.equals(Arrays.asList(-2))) {
+                    throw new IllegalArgumentException
+                      (LottoErrorMessage.ERROR_LOTTO_NOT_CHOICE_SIX_NUMBER_MESSAGE);
+                }
+                if (masterNumbers.equals(Arrays.asList(-1))) {
+                    throw new IllegalArgumentException
+                      (LottoErrorMessage.ERROR_LOTTO_NOT_POSITIVE_NUMBER_MESSAGE);
+                }
+                // 로또에 심어둔 Exception도 활용
+                userLottoNumber = new Lotto(masterNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue Loop;
+            }
+        }
+        return userLottoNumber;
     }
 
 

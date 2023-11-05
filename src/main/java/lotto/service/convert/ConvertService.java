@@ -25,11 +25,9 @@ public class ConvertService {
             return ERROR_MINUS_RETURN_PARSING_FALSE;
         }
     }
-    public List<Integer> ConvertStringToNumbers(String hasNumbers) {
+    public List<Integer> ConvertStringToNumbers(String hasNumbers,int pickSize) {
         List<String> stringNumberList = Arrays.asList(hasNumbers.split(","));
-        if(stringNumberList.size() > 6){
-            return ERROR_INPUT_OVER_LIST;
-        }
+
         List<Integer> intnumberList = new ArrayList<>();
         for (String num : stringNumberList) {
             try {
@@ -38,10 +36,13 @@ public class ConvertService {
                 return ERROR_MINUS_LIST_RETURN_PARSING_FALSE;
             }
         }
+        if(stringNumberList.size() != pickSize){
+            return ERROR_INPUT_OVER_LIST;
+        }
         return intnumberList;
     }
     public int priceChangeBuyNumber (int num){
-        return num/1000;
+        return num/MIN_PRICE_TEN_WON;
     }
     // 나중에 이 ERROR 부분은 익셉션 핸들러에 메시지 추가해야함 -> 받아서 처리할 곳에서
     private static final int ERROR_ZERO_RETURN_DIVISION_FALSE_REST = 0;

@@ -6,7 +6,7 @@
 - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 # Class Diagram
-![img_1.png](ClassDiagram.png)
+![img.png](ClassDiagram.png)
 # Model
 - ###  Player
 - [x] 로또 구입 금액을 보유 금액에 저장 - HoldingMoney
@@ -21,6 +21,8 @@
 - [x] 보유 금액 전부를 로또 구매에 사용해 LottoTicket 을 받음 - Player
 - [x] 가지고 있는 티켓 전부로 로또를 구매함 - Player
 - [x] 로또 결과를 통해 수익률 가져오기 - Player
+- [ ] Player 가 로또를 구매해 저장함 - Player
+- [ ] 로또 구매 내역을 LottoBundleDto 를 통해 반환 - Player
 - [x] 수익률을 저장함 - Profit
 - ### Lotto
 - [x] 로또에 번호가 있는지 확인 - Lotto
@@ -47,12 +49,9 @@
 - [x] LottoPrizeMoney 에 당첨내역 업데이트해 총 상금 업데이트하기 - LottoResultRepository
 - [x] 로또 결과 리스트를 받아 결과 업데이트 하기 - LottoResultsRepository
 - [x] 총 상금 반환하기 - LottoResultsRepository
-- ### Service
-- [x] Player 가 로또를 구매해 저장함 - LottoPurchaseService
-- [x] 로또 구매 내역을 LottoBundleDto 를 통해 반환 - LottoPurchaseService
-- [x] 로또 데이터와 WinLotto 받아 당첨 결과를 업데이트 - LottoResultsService
-- [x] 로또 당첨 결과를 LottoResultsDto 를 통해 반환 - LottoResultsService
-- [x] LottoResultsRepository 와 Player 를 통해 Profit 계산 및 반환 - LottoResultsService
+- [ ] 로또 데이터와 WinLotto 받아 당첨 결과를 업데이트 - LottoResultsRepository
+- [ ] 로또 당첨 결과를 LottoResultsDto 를 통해 반환 - LottoResultsRepository
+- [ ] Player 를 통해 Profit 계산 및 반환 - LottoResultsRepository
 - ### DTO
 - [x] 로또 번호를 전달하기 위한 DTO - LottoBundleDto
 - [x] 로또의 총 개수를 반환하기 - LottoBundleDto

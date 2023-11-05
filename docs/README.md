@@ -7,9 +7,9 @@
 - ✅ getLottoRandomNumber 메서드 구현
     -  1부터 45까지의 숫자 중 서로 다른 수로 이루어 진 random 6자리의 숫자 리스트 생성
 
-## ❌ 로또 번호 정렬 기능
+## ✅ 로또 번호 정렬 기능
 
-- ❌ sortLottoNumber 메서드 구현
+- ✅ sortLottoNumber 메서드 구현
     -  로또 번호 리스트를 오름차순으로 정렬
 
 ## ❌ 당첨 번호 일치 개수 반환 기능

@@ -29,7 +29,11 @@ public class LottoUtils {
                 .toList();
     }
 
-    public static long getLottoAmout(String prise) {
-        return Long.parseLong(prise) / LOTTO_PRISE;
+    public static long getLottoAmout(Long prise) {
+        return prise / LOTTO_PRISE;
+    }
+
+    public static int matchLotto(List<Integer> buyerLotto, List<Integer> winningLotto) {
+        return (int) buyerLotto.stream().filter(winningLotto::contains).count();
     }
 }

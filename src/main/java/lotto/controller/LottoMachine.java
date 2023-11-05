@@ -13,17 +13,17 @@ public class LottoMachine {
     List<Lotto> lottoNumbers = new ArrayList<>();
     User user = new User();
     Computer computer = new Computer();
+    Result result = new Result();
 
     public void startLottoGame() {
-        System.out.println(Message.AMOUNT_INPUT.getMessage());
         buyLotto();
         drawLottoNumber();
-        System.out.println("\n" + user.getManyLottoTicket() + Message.PURCHASE_LOTTO.getMessage());
-        Result.printLottoNumber(lottoNumbers);
+        result.printLottoNumber(lottoNumbers);
         drawWinningNumber();
     }
 
     public void buyLotto() {
+        System.out.println(Message.AMOUNT_INPUT.getMessage());
         while (true) {
             try {
                 user.inputPaymentAmount();

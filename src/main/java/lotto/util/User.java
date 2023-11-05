@@ -50,6 +50,10 @@ public class User {
         return winningNumber;
     }
 
+    public void inputBonusNumber() {
+
+    }
+
     public int getPaymentAmount() {
         return paymentAmount;
     }

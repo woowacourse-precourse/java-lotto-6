@@ -3,9 +3,13 @@ package lotto.print;
 import java.util.List;
 import java.util.StringJoiner;
 import lotto.Lotto;
+import lotto.enums.Message;
+import lotto.util.User;
 
 public class Result {
-    public static void printLottoNumber(List<Lotto> lottoNumbers) {
+    User user = new User();
+    public void printLottoNumber(List<Lotto> lottoNumbers) {
+        System.out.println("\n" + user.getManyLottoTicket() + Message.PURCHASE_LOTTO.getMessage());
         for (Lotto numbers : lottoNumbers) {
             System.out.print("[");
             System.out.print(joinNumber(numbers.getNumbers()));
@@ -13,7 +17,7 @@ public class Result {
         }
     }
 
-    public static String joinNumber(List<Integer> numbers){
+    public String joinNumber(List<Integer> numbers){
         StringJoiner joiner = new StringJoiner(", ");
         for(int number : numbers){
             joiner.add(String.valueOf(number));

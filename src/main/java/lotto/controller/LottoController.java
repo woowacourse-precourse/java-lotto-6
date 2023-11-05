@@ -20,53 +20,44 @@ public class LottoController {
         this.outputView = outputView;
     }
 
+    public void run() {
+        Amount amount = inputAmount();
+        List<Lotto> lottos = buyLotto(amount);
+        printLotto(lottos);
+        WinningList winningList = calculateWinning(lottos);
+        printWinningList(winningList);
+        calculateAndPrintProfitRate(winningList, amount);
+    }
 
-    public List<Lotto> buyLotto(Amount amount) {
+    private Amount inputAmount() {
         System.out.println();
+        return new Amount(inputView.inputAmount());
+    }
+
+    private List<Lotto> buyLotto(Amount amount) {
         return amount.buyLotto();
     }
 
-    public List<Lotto> printLotto(List<Lotto> lottos) {
+    private void printLotto(List<Lotto> lottos) {
         List<String> lottoList = lottos.stream()
                 .map(Lotto::makeLottoNumberString)
                 .toList();
         outputView.printLottoList(lottos.size(), lottoList);
-        return lottos;
     }
 
-    public WinningList calculateWinning(List<Lotto> lottos) {
+    private WinningList calculateWinning(List<Lotto> lottos) {
         WinningNumber winningNumber = new WinningNumber(inputView.inputWinningNumber(), inputView.inputBonusNumber());
         List<LottoNumberRecord> numberRecordList = lottos.stream().map(Lotto::toRecord).toList();
         return new WinningList(numberRecordList, winningNumber);
     }
 
-    public WinningList printWinningList(WinningList winningList) {
+    private void printWinningList(WinningList winningList) {
         outputView.printWinningList(winningList.printWinningListString());
-        return winningList;
     }
 
-    public ProfitRate calculateProfitRate(WinningList winningList, AmountRecord amountRecord) {
-        return winningList.calculateProfitRate(amountRecord);
-    }
-
-    public void run() {
-        boolean validInput = false;
-        while (!validInput) {
-            try {
-                sequence();
-                validInput = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private void sequence() {
-        Amount amount = new Amount(inputView.inputAmount());
+    private void calculateAndPrintProfitRate(WinningList winningList, Amount amount) {
         AmountRecord amountRecord = amount.toRecord();
-        List<Lotto> lottos = printLotto(buyLotto(amount));
-        WinningList winningList = printWinningList(calculateWinning(lottos));
-        ProfitRate profitRate = calculateProfitRate(winningList, amountRecord);
+        ProfitRate profitRate = winningList.calculateProfitRate(amountRecord);
         String printProfitRate = profitRate.printProfitRate();
         outputView.printProfitRate(printProfitRate);
     }

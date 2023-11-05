@@ -15,6 +15,6 @@ public enum ConfigString {
     private String string;
 
     ConfigString(String string) {
-
+        this.string = string;
     }
 }

@@ -8,6 +8,7 @@ import static lotto.enumerate.ConfigString.WINNING_STRING_FIRST;
 
 import java.util.EnumMap;
 import java.util.List;
+
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.enumerate.Rank;

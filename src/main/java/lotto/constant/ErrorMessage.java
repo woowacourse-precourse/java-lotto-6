@@ -17,15 +17,15 @@ public enum ErrorMessage {
             ERROR_SIGNATURE,
             ONE_LOTTO_PRICE)),
 
-    LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE(String.format("%s 로또 번호는 %s보다 같거나 작아야 합니다.",
+    LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE(String.format("%s 번호는 %s보다 같거나 작아야 합니다.",
             ERROR_SIGNATURE,
             LOTTO_MAX_NUMBER)),
 
-    LOWER_THAN_MIN_LOTTO_NUMBER_ERROR_MESSAGE(String.format("%s 로또 번호는 %s 보다 같거나 커야 합니다.",
+    LOWER_THAN_MIN_LOTTO_NUMBER_ERROR_MESSAGE(String.format("%s 번호는 %s 보다 같거나 커야 합니다.",
             ERROR_SIGNATURE,
             LOTTO_MIN_NUMBER)),
 
-    INVALID_LOTTO_SIZE_ERROR_MESSAGE(String.format("%s 로또 번호는 %s개 입력 하셔야 합니다.",
+    INVALID_LOTTO_SIZE_ERROR_MESSAGE(String.format("%s 번호는 %s개 입력 하셔야 합니다.",
             ERROR_SIGNATURE,
             LOTTO_SIZE)),
 

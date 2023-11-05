@@ -11,6 +11,7 @@ public class Application {
         lottoController.buyLotto(input.buyMoney());
 
         Log.println("당첨 번호를 입력해 주세요.");
+        input.answerNumber();
         lottoController.saveAnswerNumber();
 
         Log.println("보너스 번호를 입력해주세요.");

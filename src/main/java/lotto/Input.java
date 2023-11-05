@@ -1,11 +1,13 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import lotto.util.Log;
 
 public class Input {
     private static final int LOTTO_PRICE = 1000;
     private static final int MINIMUM_PRICE = 0;
+    private static final String NUMBER_DIVISION = ",";
 
 
     public int buyMoney() {
@@ -17,6 +19,30 @@ public class Input {
             Log.println(errorMessage.getMessage());
         }
         return buyMoney();
+    }
+
+    public AnswerNumberRequestDto answerNumber() {
+        try {
+            String lottoNumbers = Console.readLine();
+            return makeRequestDto(lottoNumbers);
+        } catch (IllegalArgumentException errorMessage) {
+            Log.println(errorMessage.getMessage());
+        }
+        return answerNumber();
+    }
+
+    private AnswerNumberRequestDto makeRequestDto(String lottoNumbers) {
+        try {
+            return AnswerNumberRequestDto.createDto(
+                    Arrays.stream(lottoNumbers.split(NUMBER_DIVISION))
+                            .map(Integer::parseInt)
+                            .toList());
+        } catch (IllegalArgumentException errorMessage) {
+            if (errorMessage.getMessage().contains("[ERROR]")) {
+                throw new IllegalArgumentException(errorMessage.getMessage());
+            }
+            throw new NumberFormatException("[ERROR] 숫자로 입력해야 합니다.");
+        }
     }
 
     private void checkPriceByThousandWonUnitAndMinimum(int money) {

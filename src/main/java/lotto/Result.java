@@ -19,7 +19,11 @@ public class Result {
 
     public long getTotalProfit() {
         return Arrays.stream(Rank.values())
-                .map(rank -> rank.getRankReward(result.get(rank)))
+                .map(this::getProfit)
                 .reduce(0L, Long::sum);
+    }
+
+    public long getProfit(Rank rank) {
+        return rank.getRankReward(result.get(rank));
     }
 }

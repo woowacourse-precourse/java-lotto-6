@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Objects;
 import lotto.util.Validator;
 
 public class LottoGameController {
@@ -27,5 +28,16 @@ public class LottoGameController {
         if (winningLotto.isContains((int) inputBonusNumber)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public Result getResult(Lottos lottos, WinningLotto winningLotto) {
+        Result result = new Result();
+
+        lottos.getLottoTickets().stream()
+                .map(winningLotto::getRank)
+                .filter(Objects::nonNull)
+                .forEach(result::addRank);
+
+        return result;
     }
 }

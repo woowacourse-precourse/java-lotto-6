@@ -8,6 +8,8 @@ import java.util.Collections;
 
 
 public class Application {
+    final static int lottoMin = 1;
+    final static int lottoMax = 45;
     final static int lottolength = 6;
     final static int coinStandard = 1000; 
     static int inputCoin;
@@ -51,16 +53,25 @@ public class Application {
             System.out.println(lotto);
         }
     }
+    
+    public static int LottoNumberValidate(String lottoNumber){
+        int lottoNum = Integer.parseInt(lottoNumber);
 
+        if (lottoNum < lottoMin || lottoNum > lottoMax){
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+        return lottoNum;
+    }
     public static void BonusNumberInput(){
         System.out.println("보너스 번호를 입력해주세요");
-        bonusNumber = Integer.parseInt(Console.readLine());
+        bonusNumber = LottoNumberValidate(Console.readLine());
     }
 
     public static void WinningLottoInput(){
         System.out.println("당첨 번호를 입력해 주세요.");
         for(String lottoNumber : Console.readLine().split(",")){
-            winningLotto.add(Integer.parseInt(lottoNumber));
+            winningLotto.add(LottoNumberValidate(lottoNumber));
         }
     }
 

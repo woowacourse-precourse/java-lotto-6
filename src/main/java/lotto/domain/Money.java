@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.system.ExceptionMessage;
 import lotto.system.SystemConstant;
+import lotto.system.SystemMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,8 +19,8 @@ public class Money {
     }
 
     public static Money createManual() {
-        OutputView.inputMoney();
-        return new Money(InputView.readMoney());
+        OutputView.print(SystemMessage.INPUT_MONEY.getMessage());
+        return new Money(InputView.readLong());
     }
 
     private void validate(long value) {

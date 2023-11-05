@@ -7,11 +7,7 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public static void inputMoney() {
-        System.out.println(SystemMessage.INPUT_MONEY.getMessage());
-    }
-
-    public static void inputWinningNumbers() {
-        System.out.println(SystemMessage.INPUT_WINNING_NUMBER.getMessage());
+    public static void print(String message) {
+        System.out.println(message);
     }
 }

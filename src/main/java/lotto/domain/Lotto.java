@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.system.ExceptionMessage;
 import lotto.system.LottoNumberConstant;
+import lotto.system.SystemMessage;
 import lotto.validator.BallValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,8 +22,8 @@ public class Lotto {
     }
 
     public static Lotto createWinningNumbers() {
-        OutputView.inputWinningNumbers();
-        return new Lotto(InputView.readWinningNumber());
+        OutputView.print(SystemMessage.INPUT_WINNING_NUMBER.getMessage());
+        return new Lotto(InputView.readIntegerList());
     }
 
     public static Lotto createAuto() {

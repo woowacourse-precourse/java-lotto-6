@@ -88,7 +88,6 @@ public class LottoController {
     private double getLottoProfit(List<Integer> winningLottoCounts, int money) {
         ProfitCalculator profitCalculator = new ProfitCalculator(winningLottoCounts);
         double profit = profitCalculator.calculateProfit(money);
-        System.out.println(profit);
         return profit;
     }
 }

@@ -24,12 +24,25 @@ public class Application {
         inputCoin = inputCoin / coinStandard;
     }
 
+    public static List<Integer> RandomLottoNumber() {
+        List<Integer> computer = new ArrayList<>();
+        while (computer.size() < 6) {
+            int randomNumber = Randoms.pickNumberInRange(1, 45);
+            if (!computer.contains(randomNumber)) {
+                computer.add(randomNumber);
+            }
+        }
+        return computer;
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         GetCoin();        
         for(int i=0; i<inputCoin; i++){
-
+            lottoTotal.add(RandomLottoNumber());
         }
-        
+        for(List<Integer> lotto: lottoTotal){
+            System.out.println(lotto);
+        }
     }
 }

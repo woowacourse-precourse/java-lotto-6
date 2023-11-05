@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.enums.Message;
+import lotto.print.Result;
 import lotto.util.Computer;
 import lotto.util.User;
 
@@ -14,13 +15,15 @@ public class LottoMachine {
     Computer computer = new Computer();
 
     public void startLottoGame() {
+        System.out.println(Message.AMOUNT_INPUT.getMessage());
         buyLotto();
         drawLottoNumber();
+        System.out.println("\n" + user.getManyLottoTicket() + Message.PURCHASE_LOTTO.getMessage());
+        Result.printLottoNumber(lottoNumbers);
         drawWinningNumber();
     }
 
     public void buyLotto() {
-        System.out.println(Message.AMOUNT_INPUT.getMessage());
         while (true) {
             try {
                 user.inputPaymentAmount();
@@ -51,7 +54,7 @@ public class LottoMachine {
     }
 
     public void drawWinningNumber() {
-        System.out.println(Message.WINNING_NUMBERS_INPUT.getMessage());
+        System.out.println("\n" + Message.WINNING_NUMBERS_INPUT.getMessage());
         while (true) {
             try {
                 user.inputWinningNumber();

@@ -10,16 +10,22 @@ import lotto.Lotto;
 public class User {
     private static int paymentAmount;
     private static Lotto winningNumber;
+    private static int manyLottoTicket;
 
     public void inputPaymentAmount() {
         String input = Console.readLine();
         checkPaymentAmount(input);
+        manyLottoTicket = howManyLottoTicket();
     }
 
     public void checkPaymentAmount(String input) {
         paymentAmount = Exception.checkInvalidNumber(input);
         Exception.checkUnitPaymentAmount(paymentAmount);
         Exception.checkRangePaymentAmount(paymentAmount);
+    }
+
+    public int howManyLottoTicket() {
+        return paymentAmount / 1000;
     }
 
     public void inputWinningNumber() {
@@ -49,7 +55,7 @@ public class User {
     }
 
     public int getManyLottoTicket() {
-        return paymentAmount / 1000;
+        return manyLottoTicket;
     }
 
     public Lotto getWinningNumber() {

@@ -15,14 +15,19 @@ public class InputHandler {
     public static int setLottoPurchasePrice() {
         while (true) {
             try {
-                String lottoPurchasePrice = inputLottoPurchasePrice();
-                InputValidator.validateIsNumber(lottoPurchasePrice);
-                return InputUtil.preprocessLottoPurchasePrice(lottoPurchasePrice);
+                String input = inputLottoPurchasePrice();
+
+                InputValidator.validateIsNumber(input);
+                int lottoPurchasePrice = InputUtil.parseInt(input);
+
+                InputValidator.validateIsMultiplesOf1000(lottoPurchasePrice);
+                return lottoPurchasePrice;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
     private static String inputLottoPurchasePrice() {
         OutputView.printMessage(INPUT_PURCHASE_PRICE);
         return read();

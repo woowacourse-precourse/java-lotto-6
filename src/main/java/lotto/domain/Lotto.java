@@ -19,7 +19,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constraint.SIZE.getValue()) {
             throw new IllegalArgumentException(DomainException.LOTTO_SIZE.getMessage());
         }
     }
@@ -44,7 +44,20 @@ public class Lotto {
         return numbers;
     }
 
-    boolean isDuplicatedWithBonusNumber(Integer bonusNumber) {
+    boolean contains(Integer bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    Result countMatch(Lotto target, BonusNumber bonus) {
+        Integer count = 0;
+        boolean isBonusMatched = false;
+        for (Integer number : numbers) {
+            if (target.contains(number)) count++;
+            if (number.equals(bonus.bonus())) {
+                count++;
+                isBonusMatched = true;
+            }
+        }
+        return Result.of(count, isBonusMatched);
     }
 }

@@ -2,6 +2,8 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 import lotto.domain.DrawingResults;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -51,5 +53,17 @@ public class LottoMachine {
 
     private DrawingResultDto toDrawingResultDto(final DrawingResults drawingResults) {
         return new DrawingResultDto(drawingResults.getResults());
+    }
+
+    public double calculateProfitRate(final LottosDto lottosDto, final DrawingResultDto drawingResultDto) {
+        Set<Entry<Rank, Integer>> results = drawingResultDto.drawingResults().entrySet();
+        long totalRevenue = 0;
+
+        for (Entry<Rank, Integer> result : results) {
+            totalRevenue += (long) result.getKey().getWinningAmount() * result.getValue();
+        }
+
+        long totalCost = (long) PurchaseAmountDto.PURCHASE_AMOUNT_UNIT * lottosDto.lottos().size();
+        return (double) totalRevenue / totalCost * 100;
     }
 }

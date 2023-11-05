@@ -25,4 +25,12 @@ public enum LottoNumbers {
     public int getNumber() {
         return number;
     }
+
+    public static int getStart() {
+        return ONE.getNumber();
+    }
+
+    public static int getEnd() {
+        return FORTY_FIVE.getNumber();
+    }
 }

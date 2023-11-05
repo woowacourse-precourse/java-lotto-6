@@ -13,6 +13,15 @@ public class WinningManager {
         "6개 일치 (2,000,000,000원) - "
     )
   );
+  private final List<Integer> WINNING_AMOUNT = new ArrayList<>(
+      List.of(
+          5000,
+          50000,
+          1500000,
+          30000000,
+          2000000000
+      )
+  );
 
   private final List<Integer> winningNumbers;
   private final int bonusNumber;
@@ -59,5 +68,17 @@ public class WinningManager {
     for (int i = 0; i < countOfMatches.size(); i++) {
       System.out.println(WINNING_STATISTICS_COMMENT.get(i) + countOfMatches.get(i) + "개");
     }
+  }
+
+  public void printProfit() {
+    System.out.println("총 수익률은 " + Math.round(calculateProfit() * 10000) / 100.0 + "%입니다.");
+  }
+
+  private double calculateProfit() {
+    long totalAmount = 0L;
+    for (int i = 0; i < countOfMatches.size(); i++) {
+      totalAmount += (long) countOfMatches.get(i) * WINNING_AMOUNT.get(i);
+    }
+    return totalAmount / (double) purchaseAmount;
   }
 }

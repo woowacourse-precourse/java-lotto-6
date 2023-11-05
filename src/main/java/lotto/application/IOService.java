@@ -4,14 +4,20 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class IOService {
     private final String BEFORE_PURCHASE_LOTTO_MESSAGE = "구입금액을 입력해 주세요.";
+
+    private final String LOTTO_CNT_MESSAGE = "개를 구매했습니다.";
     private final String ERROR_INTEGER = "[ERROR] 구입 금액은 정수여야 합니다.";
     private final String ERROR_UNIT = "[ERROR] 구입 금액은 1,000원 단위여야합니다.";
+
 
     private final String ERROR_MINIMUM = "[ERROR] 구입 금액이 1000원보다 작을 수는 없습니다.";
     public void printBeforePurchaseLottoMessage() {
         System.out.println(BEFORE_PURCHASE_LOTTO_MESSAGE);
     }
 
+    public void printLottoCount(int cnt) {
+        System.out.println(cnt + LOTTO_CNT_MESSAGE);
+    }
     public long scanPurchaseAmount() {
         boolean success = true;
         String purchaseAmount;

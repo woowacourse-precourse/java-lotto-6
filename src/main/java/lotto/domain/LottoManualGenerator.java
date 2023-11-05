@@ -5,7 +5,6 @@ import lotto.constant.IllegalStateExceptionType;
 import lotto.domain.model.Lotto;
 
 public class LottoManualGenerator implements LottoGenerator {
-
     private final List<Lotto> lottos;
     private int index = 0;
 

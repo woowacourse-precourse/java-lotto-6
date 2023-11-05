@@ -19,5 +19,4 @@ public final class PurchasedLottos {
     public int size() {
         return elements.size();
     }
-
 }

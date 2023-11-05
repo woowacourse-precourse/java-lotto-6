@@ -6,7 +6,6 @@ import java.util.List;
 import lotto.constant.IllegalArgumentExceptionType;
 
 public class InputView {
-
     private static final String SPLITTING_REGEX = ",";
 
     private int parseInt(String input) {
@@ -39,6 +38,7 @@ public class InputView {
     public List<Integer> readWinningNumbers() {
         return convertWinningNumbers(Console.readLine());
     }
+
     public int readBonusNumber() {
         return parseInt(Console.readLine());
     }

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.config.GameConfig;
 import lotto.domain.LottoNumber;
 import lotto.util.validator.LottoNumberValidator;
@@ -46,5 +47,14 @@ public class Lotto {
         return (int) compare.numbers.stream()
                 .filter(this.numbers::contains)
                 .count();
+    }
+
+    @Override
+    public String toString() {
+        return "["
+                + numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "))
+                + "]";
     }
 }

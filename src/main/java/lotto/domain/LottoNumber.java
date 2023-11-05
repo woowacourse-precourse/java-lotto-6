@@ -7,4 +7,9 @@ public record LottoNumber(int value) {
     public LottoNumber {
         LottoNumberValidator.validate(value);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
 }

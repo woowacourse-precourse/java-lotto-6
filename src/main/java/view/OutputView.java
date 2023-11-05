@@ -15,7 +15,12 @@ public class OutputView {
         printer.println("구입금액을 입력해 주세요.");
     }
 
+    public void newline() {
+        printer.println();
+    }
+
     public void printLottoPack(LottoPack lottoPack) {
+        printer.println(String.format("%d개를 구매했습니다.", lottoPack.size()));
         printer.println(lottoPack.toString());
     }
 

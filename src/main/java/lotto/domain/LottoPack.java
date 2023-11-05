@@ -16,9 +16,16 @@ public class LottoPack {
         }
     }
 
+    public int size() {
+        return lottoPack.size();
+    }
+
     @Override
     public String toString() {
-        return String.join("\n", lottoPack.toString());
+        List<String> lottoStrings = lottoPack.stream()
+                .map(Lotto::toString)
+                .toList();
+        return String.join("\n", lottoStrings);
     }
 
 }

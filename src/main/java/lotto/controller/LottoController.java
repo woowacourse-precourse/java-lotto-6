@@ -21,7 +21,10 @@ public class LottoController {
 
         Money money = getMoney();
 
+        outputView.newline();
+
         LottoPack lottoPack = getLottoPack(money);
+        outputView.printLottoPack(lottoPack);
 
     }
 

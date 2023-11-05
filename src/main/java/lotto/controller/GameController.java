@@ -11,7 +11,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-    private Money inputMoney;
     private final WinningNumbers winningNumbers = new WinningNumbers();
     private final BonusNumber bonusNumber = new BonusNumber();
     private final LottoIssueController lottoIssueController = new LottoIssueController();
@@ -26,22 +25,31 @@ public class GameController {
         return inputView.getMoneyInput();
     }
 
-    public void getMoney() {
+    public Money createMoney(String playerInput) {
+        Money inputMoney;
+
         try {
-            inputMoney = new Money(getMoneyInput());
+            inputMoney = new Money(playerInput);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            getMoney();
+            inputMoney = getMoney();
         }
+
+        return inputMoney;
     }
 
-    public Lottos purchaseLottos() {
+    public Money getMoney() {
+        String playerInput = getMoneyInput();
+        return createMoney(playerInput);
+    }
+
+    public Lottos purchaseLottos(Money inputMoney) {
         Lottos lottos = lottoIssueController.createLottos(inputMoney.getMoney());
-        getPurchaseDetails(lottos);
+        getPurchaseDetails(lottos, inputMoney);
         return lottos;
     }
 
-    private void getPurchaseDetails(Lottos lottos) {
+    private void getPurchaseDetails(Lottos lottos, Money inputMoney) {
         outputView.printPurchaseDetailsMessage(lottoIssueController.getLottoCount(inputMoney.getMoney()));
         outputView.printPurchasedLottos(lottos.getPurchaseDetails());
     }
@@ -81,21 +89,21 @@ public class GameController {
         outputView.printWinningStatistics(winningStatisticsDetails);
     }
 
-    private void calculateProfitRate(Lottos lottos) {
+    private void calculateProfitRate(Lottos lottos, Money inputMoney) {
         int totalProfit = lottos.getTotalProfit();
         double profitRate = calculator.getProfitRate(totalProfit, inputMoney.getMoney());
         outputView.printProfitRate(parser.doubleToSecondDecimalString(profitRate));
     }
 
     public void play() {
-        getMoney();
-        Lottos lottos = purchaseLottos();
+        Money inputMoney = getMoney();
+        Lottos lottos = purchaseLottos(inputMoney);
 
         setWinningNumbers();
         setBonusNumber();
 
         lottos.calculateWinningStatistics(winningNumbers, bonusNumber);
         getWinningStatistics(lottos);
-        calculateProfitRate(lottos);
+        calculateProfitRate(lottos, inputMoney);
     }
 }

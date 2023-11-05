@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.*;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -314,7 +316,7 @@ class ApplicationTest extends NsTest {
 
         int result = lottoWinningAmount(lotto, winningNumber, bonusNumber);
 
-        assertThat(result).isEqualTo(5000);
+        assertThat(result).isEqualTo(30000000);
     }
 
     @DisplayName("로또 번호와 당첨번호를 매칭하여 당첨금액을 구하는 메서드")
@@ -344,5 +346,73 @@ class ApplicationTest extends NsTest {
         return 0;
     }
 
+    @Test
+    @DisplayName("총 수익률을 계산하고 당첨 내역을 보여준다.")
+    void lottoWinningResult() {
+        List<Lotto> lottos = new ArrayList<>();
+        List<Integer> winningNumber = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        int bonusNumber = 7;
+
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(1,2,3,7,19,15));
+        Lotto lotto = new Lotto(numbers);
+
+        lottos.add(lotto);
+
+        lottoWinningResult(lottos,winningNumber,bonusNumber);
+
+    }
+
+    @DisplayName("총 수익률을 계산하고 당첨 내역을 보여주는 메서드")
+    public void lottoWinningResult (List<Lotto> lottos ,List<Integer> winningNumber, int bonusNumber){
+        int totalWinningAmount = 0;
+        double totalReturnRate = 0.0;
+        int lottoQuantity = lottos.size();
+        double totalLottoPurchase = 1000 * lottoQuantity;
+
+        int threeMatches = 0;
+        int fourMatches = 0;
+        int fiveMatches = 0;
+        int fiveBonusMatches = 0;
+        int sixMatches = 0;
+
+        for (int quantity = 0 ; quantity < lottoQuantity ; quantity ++){
+
+            int winningAmount = lottoWinningAmount(lottos.get(quantity).getNumbers(), winningNumber, bonusNumber);
+            totalWinningAmount += winningAmount;
+
+            if(winningAmount == 5000){
+                threeMatches++;
+            }
+
+            if(winningAmount == 50000){
+                fourMatches++;
+            }
+
+            if(winningAmount == 1500000){
+                fiveMatches++;
+            }
+
+            if(winningAmount == 30000000){
+                fiveBonusMatches++;
+            }
+
+            if(winningAmount == 200000000){
+                sixMatches++;
+            }
+
+        }
+
+        totalReturnRate = (totalWinningAmount/totalLottoPurchase)*100;
+        String totalRate = String.format("%.1f",totalReturnRate);
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + threeMatches+"개");
+        System.out.println("4개 일치 (50,000원) - " + fourMatches+"개");
+        System.out.println("5개 일치 (1,500,000원) - " + fiveMatches+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveBonusMatches+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + sixMatches+"개");
+        System.out.println("총 수익률은 "+ totalRate +"%입니다.");
+    }
 
 }

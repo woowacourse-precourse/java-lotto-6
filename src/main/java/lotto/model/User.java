@@ -1,7 +1,6 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.utils.Constants;
+import lotto.utils.Util;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,18 +17,17 @@ public class User {
         return new User(Amount.from(purchaseAmount));
     }
 
-    public List<Lotto> purchaseLottos() {
+    public void purchaseLottos() {
         purchasedLottos = new ArrayList<>();
         int lottoCount = purchaseAmount.getLottoCount();
         for (int i=0; i<lottoCount; i++) {
             Lotto lotto = generateLottoNumber();
             purchasedLottos.add(lotto);
         }
-        return purchasedLottos;
     }
 
     private Lotto generateLottoNumber() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER, 6);
+        List<Integer> numbers = Util.generateRandomNumber();
         return new Lotto(numbers);
     }
 

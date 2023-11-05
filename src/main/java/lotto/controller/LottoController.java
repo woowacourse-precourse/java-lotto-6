@@ -29,7 +29,8 @@ public class LottoController {
     }
 
     private void purchaseLotto() {
-        OutputView.printPurchasedLottos(user.purchaseLottos());
+        user.purchaseLottos();
+        OutputView.printPurchasedLottos(user.getPurchasedLottos());
     }
 
     private void inputWinningNumberAndBonusNumber() {

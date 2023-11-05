@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import static java.lang.String.format;
 import static lotto.constant.ErrorMessage.*;
+import static lotto.constant.LottoSetting.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,8 +18,21 @@ public class WinningNumber {
     private List<Integer> validateWinningNumber(List<String> numbersInput) {
         validateSize(numbersInput);
         validateDuplicate(numbersInput);
-        List<Integer> numbers = convertInteger(numbersInput);
-        return numbers;
+        List<Integer> winningNumbers = convertInteger(numbersInput);
+        validateRange(winningNumbers);
+        return winningNumbers;
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        boolean isInvalidRange = numbers
+                .stream()
+                .anyMatch(number -> number < MIN_RANDOM_NUMBER.getValue() || number > MAX_RANDOM_NUMBER.getValue());
+
+        if (isInvalidRange) {
+            throw new IllegalArgumentException(
+                    format(NOT_RANGE.getMessage(), MIN_RANDOM_NUMBER.getValue(), MAX_RANDOM_NUMBER.getValue())
+            );
+        }
     }
 
     private List<Integer> convertInteger(List<String> numbersInput) {

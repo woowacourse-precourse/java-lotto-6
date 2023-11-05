@@ -35,9 +35,13 @@ public class Money {
     }
 
     private void validateDivisible(long value) {
-        if (value % SystemConstant.LOTTO_TICKET_PRICE.getValue() != 0) {
+        if (isDivisible(value)) {
             throw new IllegalArgumentException(ExceptionMessage.MONEY_NOT_DIVISIBLE.getMessage());
         }
+    }
+
+    private boolean isDivisible(long value) {
+        return value % SystemConstant.LOTTO_TICKET_PRICE.getValue() != 0;
     }
 
     private void validateEnought(long value) {
@@ -51,10 +55,16 @@ public class Money {
     }
 
     public double getProfitMargin(WinningStats winningStats) {
-        long profit = winningStats.stream()
+        return getProfitMarginNumerator(getProfit(winningStats)) / SystemConstant.DIV_FACTOR.getValue();
+    }
+
+    private double getProfitMarginNumerator(long profit) {
+        return (((double) profit / value) * SystemConstant.MULT_FACTOR.getValue());
+    }
+
+    private long getProfit(WinningStats winningStats) {
+        return winningStats.stream()
                 .map(WinningStat::getProfit)
                 .reduce(0L, Long::sum);
-        return (((double) profit / value) * SystemConstant.MULT_FACTOR.getValue())
-                / SystemConstant.DIV_FACTOR.getValue();
     }
 }

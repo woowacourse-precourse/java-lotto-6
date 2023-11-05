@@ -13,20 +13,15 @@ public class AmountValidator {
      * 5. 1,000원 단위로 나누어 떨어지지 않는 경우 예외 처리한다.
      */
     public static boolean isVerifyAmount(String purchasedAmount){
-        boolean isVerifyAmount = true;
-        try{
-            isBlankAmount(purchasedAmount);
-            isOnlyNumber(purchasedAmount);
+        isBlankAmount(purchasedAmount);
+        isOnlyNumber(purchasedAmount);
 
-            int amount = Integer.parseInt(purchasedAmount);
-            isMinNumber(amount);
-            isNotMaxNumber(amount);
-            isThousandAmount(amount);
-        }catch (IllegalArgumentException iae){
-            System.out.println(ErrorCodeConstant.DEFAULT_ERROR + iae.getMessage());
-            isVerifyAmount = false;
-        }
-        return isVerifyAmount;
+        int amount = Integer.parseInt(purchasedAmount);
+        isMinNumber(amount);
+        isNotMaxNumber(amount);
+        isThousandAmount(amount);
+
+        return true;
     }
 
     private static void isBlankAmount(String purchasedAmount){

@@ -31,4 +31,18 @@ public class LottoResult {
 
         return totalTickts * UNIT_OF_AMOUNT;
     }
+
+    private int totalPrize() {
+        int totalPrize = 0;
+
+        for (LottoHandler lottoHandler : LottoHandler.values()) {
+            if (lottoHandler == LottoHandler.OTHER) {
+                continue;
+            }
+
+            totalPrize += lottoHandler.getPrize() * lottoResult.getOrDefault(lottoHandler, 0);
+        }
+
+        return totalPrize;
+    }
 }

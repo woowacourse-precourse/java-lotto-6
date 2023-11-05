@@ -1,8 +1,10 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.StringJoiner;
+import lotto.exception.InvalidLottoNumberException;
+
+import java.util.*;
+
+import static lotto.constants.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,11 +17,21 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         sizeCheck(numbers);
+        duplicateCheck(numbers);
     }
 
     private void sizeCheck(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void duplicateCheck(List<Integer> numbers) {
+        Set<Object> duplicateCheck = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!duplicateCheck.add(number)) {
+                throw new InvalidLottoNumberException(DUPLICATE_LOTTO_NUMBER.toString());
+            }
         }
     }
 

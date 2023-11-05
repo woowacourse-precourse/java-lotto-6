@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import lotto.utils.Casher;
+import lotto.utils.enums.ErrorMessage;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -275,6 +276,16 @@ class ApplicationTest extends NsTest {
             assertThat(output())
                     .contains(ERROR_MESSAGE)
                     .contains(Casher.NOT_LOTTO_UNIT);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_미입력() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5");
+            assertThat(output())
+                    .contains(ERROR_MESSAGE)
+                    .contains(ErrorMessage.LACK_NUMBER_COUNT.getMessage());
         });
     }
 

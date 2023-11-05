@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lotto.constant.ErrorMessage;
 
-public class EarningRate {
+public final class EarningRate {
 
     private static final int MIN_EARNING_VALUE = 0;
     private static final int PERCENT_MULTIPLY_UNIT = 100;

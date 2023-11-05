@@ -93,8 +93,9 @@ public class Application {
     public static void printGenerateAndDisplayNumbers(Map<Integer, List<Integer>> pickNumbers){ // 횟수만큼 저장한 복권을 출력
 
         pickNumbers.forEach((key, value) -> {
-            Collections.sort(value);
-            System.out.println(value);
+            List<Integer> valueList = new ArrayList<>(value);
+            Collections.sort(valueList);
+            System.out.println(valueList);
         });
 
     } // printGenerateAndDisplayNumbers
@@ -187,12 +188,12 @@ public class Application {
     public static void printWinningStatistics(){ // 당첨 통계 UI
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - "+threeMatchPrize+" 개");
-        System.out.println("4개 일치 (50,000원) - "+fourMatchPrize+" 개");
-        System.out.println("5개 일치 (1,500,000원) - "+fiveMatchPrize+" 개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+fiveMatchWithBonusPrize+" 개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+sixMatchPrize+" 개");
-        System.out.println("총 수익률은 "+statistics+"입니다.");
+        System.out.println("3개 일치 (5,000원) - "+threeMatchPrize+"개");
+        System.out.println("4개 일치 (50,000원) - "+fourMatchPrize+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+fiveMatchPrize+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+fiveMatchWithBonusPrize+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+sixMatchPrize+"개");
+        System.out.println("총 수익률은 "+statistics+"%입니다.");
     } // printWinningStatistics
 
     public static Map<Integer, Integer> numberMatches(Map<Integer, List<Integer>> userCountRandomLotto, List<Integer> pickWinnerNumber){ // 각 랜덤 복권들과 당첨번호가 서로 몇개 맞는지 검증하는 메소드
@@ -206,7 +207,7 @@ public class Application {
         return countPerList;
     } // numberMatches
 
-    public static boolean containsBonusNumber(Map<Integer, List<Integer>> userCountRandomLotto, Integer bonusNumber){
+    public static boolean containsBonusNumber(Map<Integer, List<Integer>> userCountRandomLotto, Integer bonusNumber){ // 보너스 번호가 랜덤으로 뽑힌 각 복권에 들어가 있는지 없는지 판별
 
         for(List<Integer> list : userCountRandomLotto.values()){
             if(list.contains(bonusNumber)){
@@ -236,7 +237,7 @@ public class Application {
         }
     } // determinePrizeRank
 
-    public static double calculateTotalProfitRate(){
+    public static double calculateTotalProfitRate(){ // 매치되는 복권의 개수를 해당하는 항목과 계속하여 합하는 메소드
         return (sixMatchPrize * PrizeCategory.MATCHES_SIX.getPrizeAmount())
                 + (fiveMatchWithBonusPrize * PrizeCategory.MATCHES_FIVE_BONUS.getPrizeAmount())
                 + (fiveMatchPrize * PrizeCategory.MATCHES_FIVE.getPrizeAmount())
@@ -247,11 +248,55 @@ public class Application {
     public static void calculateProfitRate(int inputMoney){
         double prizeAvg = (calculateTotalProfitRate() / inputMoney) * 100.0;
 
-        statistics = roundToTwoDecimalPlaces(prizeAvg);
+        statistics = Math.round(prizeAvg * 100) / 100.0;
     } // calculateProfitRate
 
-    public static double roundToTwoDecimalPlaces(double value) {
-        return Math.round(value * 100) / 100.0;
-    } // roundToTwoDecimalPlaces
 
+    // -- 테스트를 위한 Setter --
+
+    public static void setSixMatchPrize(int sixMatchPrize) {
+        Application.sixMatchPrize = sixMatchPrize;
+    }
+
+    public static void setFiveMatchWithBonusPrize(int fiveMatchWithBonusPrize) {
+        Application.fiveMatchWithBonusPrize = fiveMatchWithBonusPrize;
+    }
+
+    public static void setFiveMatchPrize(int fiveMatchPrize) {
+        Application.fiveMatchPrize = fiveMatchPrize;
+    }
+
+    public static void setFourMatchPrize(int fourMatchPrize) {
+        Application.fourMatchPrize = fourMatchPrize;
+    }
+
+    public static void setThreeMatchPrize(int threeMatchPrize) {
+        Application.threeMatchPrize = threeMatchPrize;
+    }
+
+    // -- 테스트를 위한 Getter --
+
+    public static int getSixMatchPrize() {
+        return sixMatchPrize;
+    }
+
+    public static int getFiveMatchWithBonusPrize() {
+        return fiveMatchWithBonusPrize;
+    }
+
+    public static int getFiveMatchPrize() {
+        return fiveMatchPrize;
+    }
+
+    public static int getFourMatchPrize() {
+        return fourMatchPrize;
+    }
+
+    public static int getThreeMatchPrize() {
+        return threeMatchPrize;
+    }
+
+    public static double getStatistics() {
+        return statistics;
+    }
 }

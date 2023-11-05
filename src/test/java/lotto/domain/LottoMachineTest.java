@@ -50,4 +50,14 @@ class LottoMachineTest {
 
         assertThrows(IllegalArgumentException.class, () -> lottoMachine.setBonusNum(bonusNum));
     }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 때 유효성 검사 실패 테스트")
+    @Test
+    public void given_DuplicateBonusNum_when_SetBonusNum_then_ThrowsIllegalArgumentException() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        lottoMachine.setWinningNumbers(winningNumbers);
+
+        int duplicateBonusNum = 6;
+        assertThrows(IllegalArgumentException.class, () -> lottoMachine.setBonusNum(duplicateBonusNum));
+    }
 }

@@ -21,6 +21,16 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public int findSameNumberCountInLotto(Lotto generatedRandomLotto) {
+        return (int) numbers.stream()
+                .filter(number -> generatedRandomLotto.hasSameNumber(number))
+                .count();
+    }
+
+    public boolean hasSameNumber(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         hasStandardSize(numbers);
         hasDuplicatedNumber(numbers);
@@ -68,4 +78,6 @@ public class Lotto {
     public int hashCode() {
         return Objects.hash(numbers);
     }
+
+
 }

@@ -14,6 +14,10 @@ public class Bonus {
         return new Bonus(inputToNumber);
     }
 
+    public boolean hasSameNumberInLotto(Lotto generatedRandomLotto) {
+        return generatedRandomLotto.hasSameNumber(bonusNumber);
+    }
+
     private void validateRange(int bonusNumber) {
         if (bonusNumber > 45 || bonusNumber < 1) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NUMBER.getErrorDescription());
@@ -23,4 +27,6 @@ public class Bonus {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
+
 }

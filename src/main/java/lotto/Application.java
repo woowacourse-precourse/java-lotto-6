@@ -64,13 +64,13 @@ public class Application {
             purchasedLotto.add(lotto);
         }
 
-        System.out.printf("%d개를 구매했습니다.\n", count);
+        System.out.printf("\n%d개를 구매했습니다.\n", count);
         for(Lotto lotto: purchasedLotto) {
             lotto.printLotto();
         }
 
         // 3. 당첨 번호 입력
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String winNumInput = Console.readLine();
         List<Integer> winNumbers;
         try {
@@ -96,7 +96,7 @@ public class Application {
         }
 
         // 4. 보너스 번호 입력
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusInput = Console.readLine();
         int bonus;
         try {
@@ -128,7 +128,24 @@ public class Application {
             lottoPrizes.add(info);
             prizeLog[info.getRank()] += 1;
         }
-        System.out.println(Arrays.toString(prizeLog));
+//        System.out.println(Arrays.toString(prizeLog));
+
+        // 5-2. 당첨 통계 출력
+        System.out.println("\n당첨 통계\n---");
+        System.out.printf("3개 일치 (5,000원) - %d개\n", prizeLog[5]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n", prizeLog[4]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", prizeLog[3]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", prizeLog[2]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", prizeLog[1]);
+
+        // 6.총 수익률 출력
+        long totalPrize = 0;
+        for(LOTTO_PRIZE info : lottoPrizes) {
+            totalPrize += info.getPrize();
+        }
+        double rateOfReturn = (double) totalPrize / price * 100;
+//        rateOfReturn = Math.round(rateOfReturn * 100.0) / 100.0;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn);
     }
 
     private static LOTTO_PRIZE getPrizeRank(int matchCount, boolean bonusMatch) {

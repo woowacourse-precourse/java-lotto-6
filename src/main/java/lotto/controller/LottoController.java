@@ -20,6 +20,7 @@ public class LottoController {
         winningLotto = createWinningLotto();
         bonusNumber = readBonusNumber();
         user.compareLottos(winningLotto, bonusNumber);
+        OutputView.printResult(user.getResult());
     }
 
     private PurchaseAmount readPurchaseAmount() {

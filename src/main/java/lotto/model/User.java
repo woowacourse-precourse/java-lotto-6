@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public class User {
     }
 
     private void setResult() {
+        result = new LinkedHashMap<>();
         for (Result rank : Result.values()) {
             result.put(rank, 0);
         }
@@ -72,5 +74,17 @@ public class User {
     private void updateResult(Result rank) {
         int currentValue = result.get(rank);
         result.put(rank, currentValue + 1);
+    }
+
+    public String getResult() {
+        String output = "";
+        for (Result rank : result.keySet()) {
+            output += rank.getMessage();
+            output += " - ";
+            output += result.get(rank);
+            output += "개\n";
+        }
+
+        return output;
     }
 }

@@ -29,7 +29,7 @@ public record Money(long amount) {
         return amount < other.amount();
     }
 
-    public boolean cantDivided(Money other) {
+    public boolean cantDividedBy(Money other) {
         return amount % other.amount() != Constant.ZERO;
     }
 }

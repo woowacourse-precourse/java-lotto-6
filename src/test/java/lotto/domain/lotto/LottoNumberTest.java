@@ -2,6 +2,7 @@ package lotto.domain.lotto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import lotto.global.constant.message.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,7 +20,7 @@ class LottoNumberTest {
     void 로또_번호의_범위가_1부터_45사이가_아니면_예외_발생(int number) {
         Assertions.assertThatThrownBy(() -> new LottoNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] ");
+                .hasMessageContaining(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getText());
     }
 
 }

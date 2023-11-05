@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.global.constant.LottoConstant.LOTTO_PURCHASE_UNIT;
 
 import lotto.global.constant.message.ErrorMessage;
+import lotto.global.exception.LottoIllegalArgumentException;
 
 public class Money {
     private final int amount;
@@ -24,13 +25,13 @@ public class Money {
 
     private void validateIsAmountZero(int amount) {
         if (amount == 0) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_AMOUNT_ERROR);
+            throw new LottoIllegalArgumentException(ErrorMessage.MONEY_AMOUNT_ERROR);
         }
     }
 
     private void validateAmountUnit(int amount) {
         if (amount % LOTTO_PURCHASE_UNIT != 0) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_ERROR);
+            throw new LottoIllegalArgumentException(ErrorMessage.MONEY_UNIT_ERROR);
         }
     }
 }

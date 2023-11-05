@@ -5,6 +5,7 @@ import static lotto.global.constant.LottoConstant.MAX_LOTTO_NUMBER;
 import static lotto.global.constant.LottoConstant.MIN_LOTTO_NUMBER;
 
 import lotto.global.constant.message.ErrorMessage;
+import lotto.global.exception.LottoIllegalArgumentException;
 
 public class LottoNumber {
     private final int number;
@@ -25,7 +26,7 @@ public class LottoNumber {
 
     private void validateNumbersRange(int number) {
         if (number > MAX_LOTTO_NUMBER || number < MIN_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR);
+            throw new LottoIllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR);
         }
     }
 

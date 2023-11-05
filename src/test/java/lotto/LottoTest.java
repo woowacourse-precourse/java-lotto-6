@@ -34,7 +34,7 @@ class LottoTest {
     void 로또_번호가_6개가_아니면_예외_발생(List<Integer> numbers) {
         Assertions.assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBER_AMOUNT_ERROR);
+                .hasMessage(ErrorMessage.LOTTO_NUMBER_AMOUNT_ERROR.getText());
     }
 
     static Stream<Arguments> validNumberAmountParameters() {
@@ -53,7 +53,7 @@ class LottoTest {
     void 로또_번호의_범위가_1부터_45사이가_아니면_예외_발생(List<Integer> numbers) {
         Assertions.assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR);
+                .hasMessage(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getText());
     }
 
     static Stream<Arguments> validNumberRangeParameters() {
@@ -69,7 +69,7 @@ class LottoTest {
     void 로또_번호가_중복되면_예외_발생(List<Integer> numbers) {
         Assertions.assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR);
+                .hasMessage(ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR.getText());
     }
 
     static Stream<Arguments> validNumberDuplicationParameters() {

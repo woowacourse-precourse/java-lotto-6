@@ -13,7 +13,7 @@ class ValidatorTest {
     void 입력_값이_정수_형태가_아니면_예외를_발생한다(String value) {
         assertThatThrownBy(() -> Validator.validateIntFormat(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INT_FORMAT_ERROR);
+                .hasMessage(ErrorMessage.INT_FORMAT_ERROR.getText());
     }
 
     @ParameterizedTest
@@ -21,7 +21,7 @@ class ValidatorTest {
     void 입력_값이_공백이면_예외를_발생한다(String value) {
         assertThatThrownBy(() -> Validator.validateIntFormat(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INT_FORMAT_ERROR);
+                .hasMessage(ErrorMessage.INT_FORMAT_ERROR.getText());
     }
 
     @ParameterizedTest

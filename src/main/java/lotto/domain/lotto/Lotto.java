@@ -2,6 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.List;
 import lotto.global.constant.message.ErrorMessage;
+import lotto.global.exception.LottoIllegalArgumentException;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -30,7 +31,7 @@ public class Lotto {
 
     private static void validateNumbersAmount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_AMOUNT_ERROR);
+            throw new LottoIllegalArgumentException(ErrorMessage.LOTTO_NUMBER_AMOUNT_ERROR);
         }
     }
 
@@ -39,7 +40,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (numberCount != 6) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR);
+            throw new LottoIllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR);
         }
     }
 }

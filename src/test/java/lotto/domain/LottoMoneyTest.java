@@ -1,8 +1,10 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -15,5 +17,13 @@ class LottoMoneyTest {
         assertThatThrownBy(() -> new LottoMoney(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("구입 금액을 1000으로 나눈 숫자를 반환한다.")
+    @Test
+    void getLottoCount() {
+        LottoMoney lottoMoney = new LottoMoney("5000");
+
+        assertThat(lottoMoney.getLottoCount()).isEqualTo(5);
     }
 }

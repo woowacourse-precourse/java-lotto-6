@@ -21,6 +21,11 @@ public class LottoController {
         printPurchaseLottoNumbers();
         printWinnerNumberMessage();
         String inputWinnerNumber = inputWinnerNumberProcess();
+        setWinnerNumber(inputWinnerNumber);
+    }
+
+    private void setWinnerNumber(String inputWinnerNumber) {
+        lottoService.setWinnerLottoNumbers(inputWinnerNumber);
     }
 
     private void printPurchaseLottoNumbers() {

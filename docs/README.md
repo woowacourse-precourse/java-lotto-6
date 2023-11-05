@@ -90,4 +90,4 @@ LottoScore
 
 NumberGenerator
 
--[ ] 랜덤 숫자 리스트를 반환해준다.
+-[x] 랜덤 숫자 리스트를 반환해준다.

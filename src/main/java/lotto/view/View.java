@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.model.Lotto;
+
 import java.util.List;
 
 public interface View {
@@ -9,9 +11,9 @@ public interface View {
 
     String getBonusNumber();
 
-    void printAllLotto(List lottos);
+    void printAllLottery(List<Lotto> lotteries);
 
-    void printWinningDetails(List scores);
+    void printScoreDetails(List<Integer> scores);
 
     void printTotalReturn(float totalReturn);
 

@@ -36,16 +36,15 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public void printAllLotto(List lottos) {
-        out(lottos.size() + "개를 구매했습니다.");
-        for (Object temp : lottos) {
-            Lotto lotto = (Lotto) temp;
-            printLotto(lotto);
+    public void printAllLottery(List<Lotto> lotteries) {
+        out(lotteries.size() + "개를 구매했습니다.");
+        for (Lotto lottery : lotteries) {
+            printLotto(lottery);
         }
     }
 
     @Override
-    public void printWinningDetails(List scores) {
+    public void printScoreDetails(List scores) {
         out("3개 일치 (5,000원) - " + scores.get(0) + "개");
         out("4개 일치 (50,000원) - " + scores.get(1) + "개");
         out("5개 일치 (1,500,000원) - " + scores.get(2) + "개");

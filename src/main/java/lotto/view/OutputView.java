@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.domain.LottoReward;
 import lotto.domain.PurchasedLotto;
-import lotto.utils.constants.OutputConstants;
 
 import java.util.Map;
 

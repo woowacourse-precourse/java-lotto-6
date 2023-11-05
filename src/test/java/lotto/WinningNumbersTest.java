@@ -39,6 +39,9 @@ public class WinningNumbersTest {
     void inputBonusOutOfRange() {
         String invalidBonusInput = "46";
         invalidBonusNumberTest(invalidBonusInput);
+
+        invalidBonusInput = "0";
+        invalidBonusNumberTest(invalidBonusInput);
     }
 
     private void invalidBonusNumberTest(String invalidBonusInput) {

@@ -30,7 +30,7 @@ public class SellerTest {
         );
     }
 
-    @DisplayName("입력한 구매 금액이 0원이면 예외가 발생한다.")
+    @DisplayName("입력한 구매 금액이 1000원 미만이면 예외가 발생한다,")
     @Test
     void lessThanLottoPrice() {
         String userInput = "0";
@@ -54,8 +54,7 @@ public class SellerTest {
     @Test
     void giveValidCountOfLotteryToUser() {
         String validUserInput = "1000";
-        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-
+        Lotto validLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         try (final MockedStatic<Randoms> mock = mockStatic(Randoms.class)) {
             mock.when(() -> Randoms.pickUniqueNumbersInRange(anyInt(), anyInt(), anyInt()))
                     .thenReturn(List.of(1, 2, 3, 4, 5, 6));
@@ -65,7 +64,7 @@ public class SellerTest {
             List<Lotto> lotteries = seller.giveLotto();
 
             assertThat(lotteries.size()).isEqualTo(validAmount / LOTTO_PRICE);
-            assertThat(lotteries.get(0).getNumbers()).isEqualTo(lotto.getNumbers());
+            assertThat(lotteries.get(0).getNumbers()).isEqualTo(validLotto.getNumbers());
         }
     }
 

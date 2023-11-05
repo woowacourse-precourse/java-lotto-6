@@ -13,6 +13,7 @@ public class TotalProfitCalculator {
         double allProfitMoney = calculateAllMoney(lottoStatistics);
 
         double decimal =  allProfitMoney / (double) payment;
+        return roundToTwoDecimal(decimal);
     }
 
     private double calculateAllMoney(LottoStatistics lottoStatistics) {
@@ -26,5 +27,9 @@ public class TotalProfitCalculator {
                 + fiveAndBonusMatchTotalMoney + sixMatchTotalMoney;
 
         return allMoney;
+    }
+
+    private double roundToTwoDecimal(double value) {
+        return Math.round(value * 100.0) / 100.0;
     }
 }

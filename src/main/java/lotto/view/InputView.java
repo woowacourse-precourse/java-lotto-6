@@ -17,11 +17,21 @@ public class InputView {
         return StringToIntConversion(input);
     }
 
-    public static void validateAmount(String input) {
-        validateStringToLongConversion(input);
+    public int inputBonusNumber() {
+        String input = Console.readLine();
+        validateBonusNumber(input);
+        return Integer.parseInt(input);
     }
 
-    private static void validateStringToLongConversion(String input) {
+    public static void validateAmount(String input) {
+        validateStringToNumericConversion(input);
+    }
+
+    public static void validateBonusNumber(String input) {
+        validateStringToNumericConversion(input);
+    }
+
+    private static void validateStringToNumericConversion(String input) {
         try {
             Long.parseLong(input);
         } catch (NumberFormatException e) {
@@ -34,7 +44,7 @@ public class InputView {
         List<Integer> intWinningNumber = new ArrayList<>();
 
         for (String number : stringWinningNumber) {
-            validateStringToLongConversion(number);
+            validateStringToNumericConversion(number);
             intWinningNumber.add(Integer.parseInt(number));
         }
         return intWinningNumber;

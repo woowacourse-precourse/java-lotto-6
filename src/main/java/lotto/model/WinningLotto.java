@@ -10,9 +10,9 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningLotto(List<String> numbers, String bonusNumber) {
-        validateNoDuplicateNumber(numbers, bonusNumber);
-        this.winningLotto = new Lotto(convertToIntegerList(numbers));
+    public WinningLotto(Lotto winningLotto, String bonusNumber) {
+        validateNoDuplicateNumber(winningLotto.getNumbers(), bonusNumber);
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumberValidator(bonusNumber);
     }
 
@@ -24,19 +24,10 @@ public class WinningLotto {
         return this.bonusNumber;
     }
 
-    private void validateNoDuplicateNumber(List<String> numbersStr, String bonusNumberStr) {
+    private void validateNoDuplicateNumber(List<Integer> numbers, String bonusNumberStr) {
+        List<String> numbersStr = numbers.stream().map(number -> String.valueOf(number)).collect(Collectors.toList());
         if (numbersStr.contains(bonusNumberStr)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
-        }
-    }
-
-    private List<Integer> convertToIntegerList(List<String> numbersStr) {
-        try {
-            return numbersStr.stream()
-                    .map(numberStr -> Integer.parseInt(numberStr))
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
         }
     }
 

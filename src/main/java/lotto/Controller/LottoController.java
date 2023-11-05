@@ -43,12 +43,11 @@ public class LottoController {
 
     private void decideWinningNumbers() {
         OutputView.displayWinningNumberGuide();
-        List<String> winningNumbers = getValidWinningNumbers();
+        Lotto winningLotto = getValidWinningNumbers();
         OutputView.displayBonusNumberGuide();
         while (true) {
             try {
-                String bonusNumber = InputView.inputBonusNumber();
-                LottoGameManager.generateWinningNumbers(winningNumbers, bonusNumber);
+                LottoGameManager.generateWinningNumbers(winningLotto, InputView.inputBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -56,10 +55,10 @@ public class LottoController {
         }
     }
 
-    private List<String> getValidWinningNumbers() {
+    private Lotto getValidWinningNumbers() {
         while (true) {
             try {
-                return InputView.inputWinningNumbers();
+                return new Lotto(InputView.inputWinningNumbers());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

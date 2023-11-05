@@ -23,8 +23,8 @@ public class LottoGameManager {
                 .collect(Collectors.toList());
     }
 
-    public static void generateWinningNumbers(List<String> numbersStr, String bonusNumberStr) {
-        lottoNumberComparator = LottoNumberComparator.init(new WinningLotto(numbersStr, bonusNumberStr));
+    public static void generateWinningNumbers(Lotto winningLotto, String bonusNumberStr) {
+        lottoNumberComparator = LottoNumberComparator.init(new WinningLotto(winningLotto, bonusNumberStr));
     }
 
     public static List<LottoMatch> getWinningResults(List<Lotto> lottoList) {

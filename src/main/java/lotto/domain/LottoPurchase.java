@@ -6,12 +6,12 @@ import lotto.dto.LottoNumbersInfo;
 import lotto.dto.LottoPurchaseInfo;
 import lotto.message.LottoResult;
 
-public class LottoLogic {
+public class LottoPurchase {
     private LottoPurchaseInfo purchaseInfo;
     private LottoNumbersInfo lottoNumbersInfo;
 
 
-    public LottoLogic(LottoPurchaseInfo purchaseInfo, LottoNumbersInfo lottoNumbersInfo) {
+    public LottoPurchase(LottoPurchaseInfo purchaseInfo, LottoNumbersInfo lottoNumbersInfo) {
         this.purchaseInfo = purchaseInfo;
         this.lottoNumbersInfo = lottoNumbersInfo;
     }

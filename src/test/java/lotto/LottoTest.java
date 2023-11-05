@@ -51,12 +51,54 @@ class LottoTest {
     @Test
     void createLottoByAscendingSort() {
         //given
-        Lotto lotto = new Lotto(List.of(5,2,3,6,1,4));
+        Lotto lotto = new Lotto(List.of(5, 2, 3, 6, 1, 4));
         List<Integer> unmodifiableLotto = lotto.getLotto();
 
         //then
         assertThat(unmodifiableLotto)
                 .isSorted()
                 .isSortedAccordingTo(Integer::compareTo);
+    }
+
+    @DisplayName("로또 번호에 존재하는 숫자면 참을 반환해야 한다.")
+    @Test
+    void testLottoByExistsNumber() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int target = 5;
+
+        //when
+        boolean isExists = lotto.contains(target);
+
+        //then
+        assertThat(isExists).isTrue();
+    }
+
+    @DisplayName("로또 번호에 존재하지 않는 숫자면 거짓을 반환해야 한다.")
+    @Test
+    void testLottoByNotExistsNumber() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int target = 10;
+
+        //when
+        boolean isExists = lotto.contains(target);
+
+        //then
+        assertThat(isExists).isFalse();
+    }
+
+    @DisplayName("로또 번호와 같은 숫자의 개수를 반환해야 한다.")
+    @Test
+    void testCalculateSameNumberCount() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto compareLotto = new Lotto(List.of(5, 9, 4, 1, 2, 10));
+
+        //when
+        int matchCount = lotto.calculateSameNumberCount(compareLotto);
+
+        //then
+        assertThat(matchCount).isEqualTo(4);
     }
 }

@@ -3,6 +3,8 @@ package lotto.util;
 public class Constant {
     public static final int MIN_LOTTO_VALUE = 1;
     public static final int MAX_LOTTO_VALUE = 45;
+    public static final int LOTTO_NUMBER = 6;
+    public static final int AMOUNT_ONE_LOTTO = 1000;
 
     public static final String SPLIT_UNIT = ",";
     public static final String PURCHASE_NOTICE = "%s개를 구매했습니다.";

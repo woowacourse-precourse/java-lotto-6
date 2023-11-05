@@ -53,7 +53,7 @@
 - [x] 로또 구매 내역을 LottoBundleDto 를 통해 반환 - LottoPurchaseService
 - [x] 로또 데이터와 WinLotto 받아 당첨 결과를 업데이트 - LottoResultsService
 - [x] 로또 당첨 결과를 LottoResultsDto 를 통해 반환 - LottoResultsService
-- [ ] LottoResultsRepository 와 Player 를 통해 Profit 계산 및 반환 - LottoResultsService
+- [x] LottoResultsRepository 와 Player 를 통해 Profit 계산 및 반환 - LottoResultsService
 - ### DTO
 - [x] 로또 번호를 전달하기 위한 DTO - LottoBundleDto
 - [x] 로또의 총 개수를 반환하기 - LottoBundleDto

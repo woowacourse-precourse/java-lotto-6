@@ -7,6 +7,8 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.WinLotto;
 import lotto.domain.lottoresult.LottoResult;
 import lotto.domain.lottoresult.LottoResultsRepository;
+import lotto.domain.player.Player;
+import lotto.domain.player.Profit;
 
 public class LottoResultsService {
 
@@ -26,5 +28,9 @@ public class LottoResultsService {
 
     public LottoResultsDto makeLottoResultsDto() {
         return lottoResultsRepository.makeLottoResultsDto();
+    }
+
+    public Profit calculateProfit(Player player) {
+        return player.getProfit(lottoResultsRepository);
     }
 }

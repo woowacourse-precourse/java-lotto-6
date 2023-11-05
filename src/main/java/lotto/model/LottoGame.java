@@ -34,7 +34,8 @@ public class LottoGame implements Game {
     }
 
     private List<Integer> validateDuplicates(List<Integer> winningNumbers) {
-        Set<Integer> numberSet = new HashSet<>(winningNumbers);
+        Set<Integer> numberSet;
+        numberSet = new HashSet<>(winningNumbers);
         if (numberSet.size() != lottoNumbers) {
             throw new IllegalArgumentException("당첨 번호는 중복되지 않는 " + lottoNumbers + "개의 숫자입니다.");
         }

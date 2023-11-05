@@ -18,8 +18,7 @@ public class GameController {
         LottoCount lottoCount = LottoCount.from(purchaseAmount);
         List<Lotto> autoLottoTickets = Lotto.getAutoLottoTickets(lottoCount);
         outputView.displayLottoTickets(lottoCount, autoLottoTickets);
-        WinningNumbers winningNumbers = getWinningNumbers();
-        System.out.println(winningNumbers.getWinningNumbers());
+        Lotto winningNumbers = getWinningNumbers();
     }
 
     public PurchaseAmount getPurchaseAmount() {
@@ -33,10 +32,10 @@ public class GameController {
         }
     }
 
-    public WinningNumbers getWinningNumbers() {
+    public Lotto getWinningNumbers() {
         while (true) {
             try {
-                return WinningNumbers.from(inputView.readWinningNumber());
+                return Lotto.makeWinningNumbers(inputView.readWinningNumber());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println();

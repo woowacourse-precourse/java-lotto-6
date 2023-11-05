@@ -9,7 +9,6 @@ public class WinningNumbers {
     private final List<Integer> winningNumbers;
 
     private WinningNumbers(List<Integer> winningNumbers) {
-        validateSize(winningNumbers);
         validateRange(winningNumbers);
         validateDuplicated(winningNumbers);
         this.winningNumbers = winningNumbers;
@@ -34,12 +33,6 @@ public class WinningNumbers {
 
     private static void validateNumeric(String splitNumber) {
         if (!splitNumber.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
-    }
-
-    private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR]");
         }
     }

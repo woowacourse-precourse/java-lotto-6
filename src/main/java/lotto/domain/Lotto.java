@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -11,10 +11,22 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumberCount(numbers);
+        validateDuplicate(numbers);
+        validateRange(numbers);
+    }
+
+    private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplicate(List<Integer> numbers) {
+
+    }
+
+    private void validateRange(List<Integer> numbers) {
+
+    }
 }

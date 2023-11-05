@@ -13,4 +13,8 @@ public class Parser {
     public List<Integer> parseLottoNumberToInt(String input) {
         return new ArrayList<>(Arrays.asList(Integer.parseInt(Arrays.toString(input.split(",")))));
     }
+
+    public List<String> parseLottoNumber(String input) {
+        return new ArrayList<>(Arrays.asList(input.split(",")));
+    }
 }

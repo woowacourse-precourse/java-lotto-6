@@ -42,4 +42,8 @@ public class ShowLottoProcess {
         System.out.println("---");
         System.out.println(process.showStatisticResult());
     }
+
+    public void printRateResult() {
+        System.out.println(process.showRateResult());
+    }
 }

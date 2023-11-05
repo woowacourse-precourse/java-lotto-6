@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constants.Value.LOTTO_SIZE;
+import static lotto.constants.Value.MAX_LOTTO_NUMBER;
+import static lotto.constants.Value.MIN_LOTTO_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +21,8 @@ public class LottoGenerator {
     }
 
     private static Lotto generateLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.get(), MAX_LOTTO_NUMBER.get(),
+                LOTTO_SIZE.get()));
     }
 
     public static Lotto createWinningLotto(String userInput) {

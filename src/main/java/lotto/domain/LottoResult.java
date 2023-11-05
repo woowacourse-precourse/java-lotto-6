@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constants.Value.LOTTO_PRICE;
+import static lotto.constants.Value.PERCENT;
+
 import java.util.Map;
 import lotto.constants.Prize;
 
@@ -24,7 +27,7 @@ public class LottoResult {
             sum += key.getPrizeAmount() * state.get(key);
         }
 
-        return ((double) sum / (lottoCount * 1000)) * 100;
+        return ((double) sum / (lottoCount * LOTTO_PRICE.get())) * PERCENT.get();
     }
 
 

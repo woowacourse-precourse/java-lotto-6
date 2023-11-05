@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public enum BoundaryValue {
+public enum Value {
     LOTTO_SIZE(6),
     MIN_LOTTO_NUMBER(1),
     MAX_LOTTO_NUMBER(45),
@@ -12,11 +12,11 @@ public enum BoundaryValue {
 
     private final Integer value;
 
-    BoundaryValue(Integer value) {
+    Value(Integer value) {
         this.value = value;
     }
 
-    public Integer getValue() {
+    public Integer get() {
         return value;
     }
 }

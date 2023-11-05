@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.Value.LOTTO_SIZE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +24,7 @@ public class LottoManager {
     public static Integer countMatching(Lotto userLotto, Lotto winningLotto) {
         Integer countMatching = 0;
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < LOTTO_SIZE.get(); i++) {
             if (userLotto.getNumbers().contains(winningLotto.getNumbers().get(i))) {
                 countMatching++;
             }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constants.Value.LOTTO_SIZE;
 import static lotto.constants.Error.DUPLICATION_ERROR;
 import static lotto.constants.Error.SIZE_ERROR;
 
@@ -33,7 +34,7 @@ public class Lotto {
     }
 
     private void checkSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.get()) {
             throw new IllegalArgumentException(SIZE_ERROR.getMessage());
         }
     }

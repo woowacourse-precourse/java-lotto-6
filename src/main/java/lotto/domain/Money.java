@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.Value.THOUSAND;
+
 import lotto.Validator;
 
 public class Money {
@@ -20,6 +22,6 @@ public class Money {
     }
 
     public Integer countThousand() {
-        return money / 1000;
+        return money / THOUSAND.get();
     }
 }

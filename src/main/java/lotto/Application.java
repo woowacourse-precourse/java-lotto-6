@@ -11,8 +11,22 @@ import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        // 최초 커밋 테스트
+        String inputPurchaseAmount = inputPurchaseAmount();
+        int purchaseAmount = inputPurchaseAmountValidation(inputPurchaseAmount);
+        int lottoQuantity = lottoQuantity(purchaseAmount);
+
+        List<Lotto> lottos = createLottos(lottoQuantity);
+        purchaseLottoNumbersDisplay(lottos);
+
+        String inputWinningNumber = inputWinningNumber();
+        String[] inputWinningNumberSplit = inputWinningNumberSplit(inputWinningNumber);
+        List<Integer> winningNumber = inputWinningNumberValidation(inputWinningNumberSplit);
+
+        String inputBonusNumber = inputBonusNumber();
+        int inputBonusNumberValidation = inputBonusNumberValidation(inputBonusNumber);
+        int bonusNumber = inputBonusNumberRangeValidation(inputBonusNumberValidation);
+
+        lottoWinningResult(lottos,winningNumber,bonusNumber);
     }
 
     public static String inputPurchaseAmount(){
@@ -56,6 +70,7 @@ public class Application {
         for (int quantity = 1 ; quantity <= lottoQuantity ; quantity++){
             lottos.get(quantity-1).lottoNumberDisplay();
         }
+        System.out.println("");
     }
 
     public static String inputWinningNumber(){

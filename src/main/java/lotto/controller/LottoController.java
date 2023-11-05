@@ -4,6 +4,7 @@ import lotto.views.InputViews;
 
 public class LottoController {
     int purchaseAmount;
+
     public void run() {
         while (readPurchaseLotto()) {
         }

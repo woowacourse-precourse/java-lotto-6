@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.GameResult;
+import lotto.domain.Money;
 import lotto.domain.Rank;
 import lotto.domain.lotto.converter.LottoMessageConverter;
-import lotto.domain.money.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

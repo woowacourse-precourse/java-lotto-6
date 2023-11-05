@@ -3,7 +3,7 @@ package lotto.view.input;
 import lotto.message.LottoBuyMessage;
 import lotto.validator.LottoGameInputValidator;
 
-public class LottoGameStartInput extends Input{
+public class LottoGameStartInput implements Input{
 
     private final LottoGameInputValidator validator;
 
@@ -13,7 +13,7 @@ public class LottoGameStartInput extends Input{
 
     public long requestLottoPurchaseAmount() {
         printRequestLottoPurchaseAmount();
-        long amount = validator.parseLong(readLine());
+        long amount = validator.parseLong(Input.readLine());
         validator.validatePositiveNumber(amount);
         newLine();
         return amount;

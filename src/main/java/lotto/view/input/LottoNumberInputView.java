@@ -8,7 +8,7 @@ import lotto.validator.LottoNumberInputValidator;
 import java.util.Arrays;
 import java.util.List;
 
-public class LottoNumberInputView extends Input{
+public class LottoNumberInputView implements Input{
 
     private final LottoNumberInputValidator validator;
 
@@ -35,7 +35,7 @@ public class LottoNumberInputView extends Input{
     }
 
     private List<Integer> getNumbers() {
-        return Arrays.stream(readLine().split(","))
+        return Arrays.stream(Input.readLine().split(","))
                 .map(validator::parseInt)
                 .toList();
     }
@@ -48,7 +48,7 @@ public class LottoNumberInputView extends Input{
     public int requestBonusLottoNumber(Lotto winningLotto) {
         printRequestBonusLottoNumber();
 
-        int bonusNumber = validator.parseInt(readLine());
+        int bonusNumber = validator.parseInt(Input.readLine());
         validateBonusLottoNumber(bonusNumber, winningLotto);
         newLine();
 

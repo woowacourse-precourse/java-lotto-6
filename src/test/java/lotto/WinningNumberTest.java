@@ -20,4 +20,13 @@ public class WinningNumberTest {
         assertThat(lotto.contains(bonusNumber)).isTrue();
         assertThatThrownBy(() -> new WinningNumber(lotto, bonusNumber)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 일치하는_당첨번호갯수_계산_테스트() {
+        Lotto purcharsedLotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(7);
+        WinningNumber winningNumber = new WinningNumber(winningLotto, bonusNumber);
+        assertThat(winningNumber.getMatchedNumberCount(purcharsedLotto)).isEqualTo(3);
+    }
 }

@@ -14,4 +14,13 @@ public class ValidatorPurchaseAmount {
         return returnAmount >= 1000;
     }
 
+    private boolean isNotNumeric(Purchase purchase) {
+        try {
+            Integer.parseInt(purchase.getPurchaseAmount());
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 }

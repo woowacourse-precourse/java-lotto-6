@@ -23,7 +23,7 @@ public class Lotto {
 
     public void lottoNumberDisplay(){
         List<Integer> lottoNumbers = getNumbers();
-        StringJoiner displayLottoNumber = new StringJoiner(",","[","]");
+        StringJoiner displayLottoNumber = new StringJoiner(", ","[","]");
         for(int i = 0 ; i < lottoNumbers.size() ; i ++){
             String number = String.valueOf(lottoNumbers.get(i));
             displayLottoNumber.add(number);

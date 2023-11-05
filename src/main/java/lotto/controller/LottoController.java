@@ -16,21 +16,19 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private final NumberConverter numberConverter = new NumberConverter();
-    private final WinningNumbers winningNumbers = new WinningNumbers(numberConverter);
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final ResultFormatter resultFormatter = new ResultFormatter();
     private final LottoMaker lottoMaker = new RandomNumbers();
     private LottoFactory lottoFactory;
-    private Lotto winnerNumbers;
-    private BonusNumber bonusNumber;
     private WinnerCalculator winnerCalculator;
     private PurchaseProcessor purchaseProcessor;
 
     public void startLotto() {
         purchaseLottos();
-        lottoDraw();
-        profitCalculation();
+        Lotto winnerNumbers = lottoDraw();
+        BonusNumber bonusNumber = handleBonusNumber(winnerNumbers);
+        profitCalculation(winnerNumbers, bonusNumber);
     }
 
     private void purchaseLottos() {
@@ -38,31 +36,24 @@ public class LottoController {
         generateLottoNumbers();
     }
 
-    private void lottoDraw() {
-        handleWinningNumbers();
-        handleBonusNumber();
+    private Lotto lottoDraw() {
+        return handleWinningNumbers();
     }
 
-    private void profitCalculation() {
-        checkLottoResults();
+    private void profitCalculation(Lotto winnerNumbers, BonusNumber bonusNumber) {
+        checkLottoResults(winnerNumbers, bonusNumber);
         computeLottoProfitability();
     }
 
     private void handlePurchaseAmount() {
-        boolean isValidInput = false;
-        while (!isValidInput) {
-            isValidInput = attemptPurchaseAmount();
-        }
-    }
-
-    private boolean attemptPurchaseAmount() {
-        try {
-            this.purchaseProcessor = new PurchaseProcessor(inputView.requestPurchaseAmount());
-            outputView.enterLine();
-            return true;
-        } catch (IllegalArgumentException e) {
-            outputView.displayErrorMessage(e);
-            return false;
+        while (true) {
+            try {
+                this.purchaseProcessor = new PurchaseProcessor(inputView.requestPurchaseAmount());
+                outputView.enterLine();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.displayErrorMessage(e);
+            }
         }
     }
 
@@ -73,45 +64,33 @@ public class LottoController {
         outputView.enterLine();
     }
 
-    private void handleWinningNumbers() {
-        boolean isValidInput = false;
-        while (!isValidInput) {
-            isValidInput = attemptWinningNumbers();
+    private Lotto handleWinningNumbers() {
+        while (true) {
+            try {
+                String lottoNumber = inputView.requestWinningNumbers();
+                Lotto winnerNumbers = new Lotto(new WinningNumbers(numberConverter).process(lottoNumber));
+                outputView.enterLine();
+                return winnerNumbers;
+            } catch (IllegalArgumentException e) {
+                outputView.displayErrorMessage(e);
+            }
         }
     }
 
-    private boolean attemptWinningNumbers() {
-        try {
-            String lottoNumber = inputView.requestWinningNumbers();
-            this.winnerNumbers = new Lotto(winningNumbers.process(lottoNumber));
-            outputView.enterLine();
-            return true;
-        } catch (IllegalArgumentException e) {
-            outputView.displayErrorMessage(e);
-            return false;
+    private BonusNumber handleBonusNumber(Lotto winnerNumbers) {
+        while (true) {
+            try {
+                BonusNumber bonusNumber = new BonusNumber(winnerNumbers, numberConverter);
+                bonusNumber.validateNumber(inputView.requestBonusNumbers());
+                outputView.enterLine();
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                outputView.displayErrorMessage(e);
+            }
         }
     }
 
-    private void handleBonusNumber() {
-        boolean isValidInput = false;
-        while (!isValidInput) {
-            isValidInput = attemptBonusNumber();
-        }
-    }
-
-    private boolean attemptBonusNumber() {
-        try {
-            this.bonusNumber = new BonusNumber(winnerNumbers, numberConverter);
-            bonusNumber.validateNumber(inputView.requestBonusNumbers());
-            outputView.enterLine();
-            return true;
-        } catch (IllegalArgumentException e) {
-            outputView.displayErrorMessage(e);
-            return false;
-        }
-    }
-
-    private void checkLottoResults() {
+    private void checkLottoResults(Lotto winnerNumbers, BonusNumber bonusNumber) {
         this.winnerCalculator = new WinnerCalculator(lottoFactory, winnerNumbers, bonusNumber);
         outputView.displayWinningLotto(resultFormatter.createWinningStatistics(winnerCalculator.calculate()));
     }
@@ -121,3 +100,7 @@ public class LottoController {
         outputView.displayRateOfReturn(profitMeter.calculateYield());
     }
 }
+
+
+
+

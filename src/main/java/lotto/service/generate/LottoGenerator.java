@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.dto.input.GetLottoCountDto;
-import lotto.dto.lottogenerator.GetLottosDto;
+import lotto.dto.lottogenerator.GetGeneratedLottosDto;
 
 public class LottoGenerator implements Generator{
     private static final int ZERO = 0;
 
     @Override
-    public GetLottosDto generateLottos(GetLottoCountDto getLottoCountDto) {
-        return new GetLottosDto(
+    public GetGeneratedLottosDto generateLottos(GetLottoCountDto getLottoCountDto) {
+        return new GetGeneratedLottosDto(
                 generateLottosIteration(getLottoCountDto, new ArrayList<>())
         );
     }

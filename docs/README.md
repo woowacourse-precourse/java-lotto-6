@@ -25,11 +25,11 @@
 
 - 로또 구입 금액이 1,000원으로 나누어 떨어지지 않을 시
 
-—> IllegalArgumentException 발생 “[ERROR] 1,000원 단위로 입력해주세요.”
+—> IllegalArgumentException 발생 “[ERROR] 1,000원 단위로 입력해 주세요.”
 
 - 숫자가 아닌 문자 입력 시
 
-—> IllegalArgumentException 발생 “[ERROR] 숫자를 입력해주세요.”
+—> IllegalArgumentException 발생 “[ERROR] 숫자를 입력해 주세요.”
 
 - 당첨 번호 입력 시 쉼표가 없을 때, 6가지 숫자가 아닐 때, 중복된 수 일때, 1~45 사이의 수가 아닐 때
 
@@ -40,6 +40,9 @@
 - “[ERROR] 숫자는 중복되지 않은 수여야 합니다.”
 - “[ERROR] 로또 번호는 1 ~ 45 사이의 수여야 합니다.”
 
+- 보너스 번호가 1 - 45 사이의 수가 아닐 시
+--> IllegalArgumentException 발생 
+- "[ERROR] 로또 번호는 1 ~ 45 사이의 수여야 합니다."
 ## 로또 게임 진행 기능
 
 ### Game Setting

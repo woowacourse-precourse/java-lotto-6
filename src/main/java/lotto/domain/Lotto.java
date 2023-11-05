@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.domain.exception.LottoError;
 import lotto.domain.exception.LottoException;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -44,5 +45,33 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getLottoNumbers() {
+        return Collections.unmodifiableList(lottoNumbers);
+    }
 
+    /**
+     * 1등 당첨 여부를 확인할 때 사용한다.
+     *
+     * @param otherLotto 비교 대상 로또 객체
+     * @return 비교 대상 로또의 번호와 모두 일치하는지
+     */
+    public boolean isSameWith(Lotto otherLotto) {
+        for (Integer number : otherLotto.getLottoNumbers()) {
+            if (!isExist(number)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 번호 포함 여부를 확인할 때 사용한다.
+     *
+     * @param number 번호
+     * @return 번호가 본 로또의 번호속에 존재하는지
+     * @see Lotto#isSameWith(Lotto)
+     */
+    public boolean isExist(Integer number) {
+        return lottoNumbers.contains(number);
+    }
 }

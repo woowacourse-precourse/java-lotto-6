@@ -6,10 +6,10 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 class Input {
-    static Integer inputMoney() {
+    static Long inputMoney() {
         String raw = Console.readLine();
         Validation.inputMoneyExceptionCheck(raw);
-        return Integer.parseInt(raw);
+        return Long.parseLong(raw);
     }
 
     static Lotto inputWinnerNumber() {

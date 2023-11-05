@@ -20,8 +20,12 @@ public class Control {
         return lotto;
     }
 
-    Integer ticketsForMoney(Integer money) {
-        return money / 1000;
+    int ticketsForMoney(Long money) {
+        return (int) (money / 1000);
+    }
+
+    int moneyForTickets(Integer ticketCount) {
+        return ticketCount * 1000;
     }
 
     SameNumber compareTicket(Lotto winner, Lotto ticket) {

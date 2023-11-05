@@ -86,7 +86,7 @@ public class Output {
         Map<SameNumber, Integer> sameNumberCount = control.countSameNumber(winnerTicket, bonusNumber, tickets);
         printAllSameNumberResult(sameNumberCount);
         Integer earned = calculateReward(sameNumberCount);
-        Integer spent = tickets.length * 1000;
+        Integer spent = control.moneyForTickets(tickets.length);
         System.out.println(calculateEarningRatio(spent, earned));
     }
 }

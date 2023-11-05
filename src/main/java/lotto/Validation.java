@@ -14,7 +14,7 @@ public class Validation {
 
     static void naturalNumberCheck(String raw) {
         try {
-            if (Integer.parseInt(raw) <= 0) {
+            if (Long.parseLong(raw) <= 0) {
                 throw new IllegalArgumentException("[ERROR] 구입금액은 자연수여야 합니다.");
             }
         } catch (NumberFormatException e) {
@@ -24,7 +24,7 @@ public class Validation {
 
     static void nanCheck(String raw) {
         try {
-            Integer.parseInt(raw);
+            Long.parseLong(raw);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
         }
@@ -32,8 +32,19 @@ public class Validation {
 
     static void devide1000Check(String raw) {
         try {
-            if (Integer.parseInt(raw) % 1000 != 0) {
+            if (Long.parseLong(raw) % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 구입금액은 1000 단위의 숫자여야 합니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
+        }
+    }
+
+    static void rangeCheck(String raw) {
+        try {
+            if (Long.parseLong(raw) > ((long) Integer.MAX_VALUE) * 1000) {
+                throw new IllegalArgumentException(
+                        "[ERROR] 구입금액은 " + Integer.MAX_VALUE * 1000 + "보다 작아야 합니다.");
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
@@ -45,6 +56,7 @@ public class Validation {
         nanCheck(raw);
         naturalNumberCheck(raw);
         devide1000Check(raw);
+        rangeCheck(raw);
     }
 
     static void ticketNumberDuplecationCheck(String raw) {
@@ -79,7 +91,7 @@ public class Validation {
 
     static void range1to45Check(String raw) {
         for (String number : raw.split(",")) {
-            if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
+            if (Long.parseLong(number) < 1 || Long.parseLong(number) > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }

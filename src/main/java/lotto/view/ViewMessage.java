@@ -13,7 +13,7 @@ public enum ViewMessage {
     WINNING_MATCHES_FIVE_NO_BONUS_FORMAT("5개 일치 (1,500,000원) - %d개\n"),
     WINNING_MATCHES_FIVE_WITH_BONUS_FORMAT("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
     WINNING_MATCHES_SIX_FORMAT("6개 일치 (2,000,000,000원) - %d개\n"),
-    TOTAL_RETURN_FORMAT("총 수익률은 %.1f/%입니다.\n");
+    TOTAL_RETURN_FORMAT("총 수익률은 %.1f%%입니다.\n");
 
     private final String message;
 

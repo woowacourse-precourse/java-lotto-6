@@ -41,7 +41,7 @@ public class View {
         System.out.println(ViewMessage.WINNING_STATISTICS_MESSAGE.getMessage());
         System.out.println(ViewMessage.DIVIDER_MESSAGE.getMessage());
         printWinningCount(winDto);
-        System.out.printf(ViewMessage.WINNING_MATCHES_SIX_FORMAT.getMessage(), winDto.earningRate());
+        System.out.printf(ViewMessage.TOTAL_RETURN_FORMAT.getMessage(), winDto.earningRate());
     }
 
     private void printWinningCount(WinningStatisticsDto winDto) {

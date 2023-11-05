@@ -66,11 +66,11 @@ public class GameManager {
     }
 
     private void printResult(Map<Integer, List<Lotto>> lottoByWinningCount, int winningWithBonusCount) {
-        System.out.println("3개 일치 (5,000원)" + " - " + Optional.ofNullable(lottoByWinningCount.get(3)).stream().count()+ "개");
-        System.out.println("4개 일치 (50,000원)" + " - " + Optional.ofNullable(lottoByWinningCount.get(4)).stream().count()  + "개");
-        System.out.println("5개 일치 (1,500,000원)" + " - " + Optional.ofNullable(lottoByWinningCount.get(5)).stream().count()  + "개");
+        System.out.println("3개 일치 (5,000원)" + " - " + Optional.ofNullable(lottoByWinningCount.get(3)).stream().count() + "개");
+        System.out.println("4개 일치 (50,000원)" + " - " + Optional.ofNullable(lottoByWinningCount.get(4)).stream().count() + "개");
+        System.out.println("5개 일치 (1,500,000원)" + " - " + Optional.ofNullable(lottoByWinningCount.get(5)).stream().count() + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원)" + " - " + winningWithBonusCount + "개");
-        System.out.println("6개 일치 (2,000,000,000원)" + " - " + Optional.ofNullable(lottoByWinningCount.get(6)).stream().count()  + "개");
+        System.out.println("6개 일치 (2,000,000,000원)" + " - " + Optional.ofNullable(lottoByWinningCount.get(6)).stream().count() + "개");
     }
 
     public String getProfitRate(List<Lotto> lottos, int payment) {
@@ -123,8 +123,8 @@ public class GameManager {
 
     public int getWinningCount(Lotto lotto) {
         int winningCount = 0;
-        for( int number : lotto.getNumbers()) {
-            if (winningNumbers.containsKey(number) || number ==bonusNumber) {
+        for (int number : lotto.getNumbers()) {
+            if (winningNumbers.containsKey(number) || number == bonusNumber) {
                 winningCount += 1;
             }
         }

@@ -38,4 +38,11 @@ class WinningLottoTest {
         List<Number> numbers = Numbers.createNumbersList(List.of(1, 2, 3, 7, 8, 9));
         assertThat(winningLotto.getMatchCount(numbers)).isEqualTo(3);
     }
+
+    @DisplayName("보너스 번호가 일치하면 참을 반환한다.")
+    @Test
+    void evaluateBonusNumberIsMatched() {
+        List<Number> numbers = Numbers.createNumbersList(List.of(1, 2, 3, 7, 8, 9));
+        assertTrue(winningLotto.isBonusMatched(numbers));
+    }
 }

@@ -30,19 +30,28 @@ public class LottoController {
     public int getMaxRound(){
         return maxRound;
     }
-    public void setLotto(List<Integer> number, int bonus){
+    public void setLotto(List<Integer> number){
         this.lotto = new Lotto(number);
+    }
+    public void setLotto(int bonus){
+        validate(bonus);
         setBonus(bonus);
     }
-
+    private void validate(int bonus){
+        if(lotto.getNumbers().contains(bonus))
+            throw new IllegalArgumentException("보너스번호는 당첨번호와 다른 숫자여야 합니다.");
+        if(bonus<=0||bonus>45)
+            throw new IllegalArgumentException("보너스번호는 1이상 45이하의 숫자여야 합니다.");
+    }
     public void startLotto(){
         for(int i=0;i<maxRound;i++){
             List<Integer>item = makeNumber(); // 생성
-            Collections.sort(item); // 정렬
             lottos.add(new Lotto(item)); // 추가
         }
     }
-
+    private List<Integer> makeNumber(){
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
+    }
     public void showLottos(){
         for(int i=0;i<maxRound;i++){
             lottos.get(i).printNumbers(); // 출력
@@ -56,16 +65,6 @@ public class LottoController {
         }
         money.printReward();
         return money.getRRate();
-    }
-    private List<Integer> makeNumber(){
-        List<Integer> item = new ArrayList<Integer>();
-        while(item.size()<6){
-            int select = Randoms.pickNumberInRange(1,45);
-            if(!item.contains(select)){
-                item.add(select);
-            }
-        }
-        return item;
     }
 
     public void checkNumber(int index){

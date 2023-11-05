@@ -1,5 +1,12 @@
 package lotto;
 
+//enum reward{
+//    오등(3,5000,"3개 일치 (5,000원)"),
+//    사등(4,50000,"4개 일치 (50,000원)"),
+//    삼등(5,1500000,"5개 일치 (1,500,000원)"),
+//    이등(5.5,30000000,"5개 일치, 보너스 볼 일치 (30,000,000원)"),
+//    일등(6,2000000000,"6개 일치 (2,000,000,000원)")
+//}
 public class Money {
     private int pMoney;
     private int rMoney;
@@ -39,10 +46,9 @@ public class Money {
     }
 
     public double getRRate(){
-        int reward = getrMoney()*100/getPMoney();
-        if(reward%10>=5) reward+=10;
-        reward/=10;
-        return (double)(reward)/10;
+        System.out.println(getrMoney()+" , "+getPMoney());
+        double reward = (double)getrMoney()/getPMoney();
+        return reward*100;
     }
     public void addReward(double count){
         if(count<3) return;

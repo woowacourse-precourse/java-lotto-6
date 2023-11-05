@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.enums.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,10 +29,10 @@ class WinningLottoTest {
     @DisplayName("로또 번호와 당첨 번호 비교하는 기능")
     @Test
     void match() {
-        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,5,6)))).isEqualTo("1");
-        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,5,7)))).isEqualTo("2");
-        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,5,8)))).isEqualTo("3");
-        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,7,8)))).isEqualTo("4");
-        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,7,8,9)))).isEqualTo("5");
+        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,5,6)))).isEqualTo(Rank.FIRST);
+        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,5,7)))).isEqualTo(Rank.SECOND);
+        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,5,8)))).isEqualTo(Rank.THIRD);
+        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,7,8)))).isEqualTo(Rank.FOURTH);
+        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,7,8,9)))).isEqualTo(Rank.FIFTH);
     }
 }

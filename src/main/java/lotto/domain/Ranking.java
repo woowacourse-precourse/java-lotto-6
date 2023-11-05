@@ -11,6 +11,7 @@ public enum Ranking {
     FIFTH(3, 5000),
     FAIL(-1, 0);
 
+    private static final String NOT_FOUND_RANKING_ERROR_MESSAGE = "Ranking을 찾을 수 없습니다.";
     private int matchCount;
     private int reward;
 
@@ -31,7 +32,7 @@ public enum Ranking {
         return Arrays.stream(values())
                 .filter(ranking -> ranking.getMatchCount() == matchCount)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_RANKING_ERROR_MESSAGE));
     }
 
     public int getMatchCount() {

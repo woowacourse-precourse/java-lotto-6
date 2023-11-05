@@ -4,6 +4,8 @@ import java.util.List;
 
 public class InputValidator {
 
+    private static final String CHARACTER_ERROR_MESSAGE = "[ERROR] 문자를 입력할 수 없습니다.";
+
     private InputValidator() {
     }
 
@@ -19,7 +21,7 @@ public class InputValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CHARACTER_ERROR_MESSAGE);
         }
     }
 
@@ -29,7 +31,7 @@ public class InputValidator {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CHARACTER_ERROR_MESSAGE);
         }
     }
 }

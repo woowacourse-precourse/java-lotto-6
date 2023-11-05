@@ -17,9 +17,10 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또번호 6자리 아님.");
         }
     }
-    private void checkDuplicateNumber(){
+
+    private void checkDuplicateNumber() {
         Set<Integer> number = toSet();
-        if(number.size() < 6){
+        if (number.size() < 6) {
             throw new IllegalArgumentException("[ERROR] 중복되는 번호가 있음.");
         }
     }

@@ -1,7 +1,16 @@
 package lotto;
 
+
+import lotto.Controller.UIController;
+
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Integer price = UIController.makePurchasePrice();
+
+        // TODO : makeLotto , makeLottoStatus , makeWinningNumbers , makeBonusNumber , makeStatistics
+
+
     }
 }

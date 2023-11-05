@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public static String purchase() {
-        System.out.println(PURCHASE_AMOUNT);
+        System.out.println(PURCHASE_AMOUNT.getMessage());
         return Console.readLine();
     }
 }

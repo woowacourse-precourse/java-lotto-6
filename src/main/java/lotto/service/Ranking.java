@@ -24,4 +24,41 @@ public enum Ranking {
     private int winningAmount;
     private String message;
 
+
+    public static Ranking valueOf(int countOfMatch, boolean matchBonus) {
+        if (countOfMatch < WINNING_MIN_COUNT) {
+            return MISS;
+        }
+
+        if (SECOND.matchCount(countOfMatch) && matchBonus) {
+            return SECOND;
+        }
+
+        for (Ranking rank : values()) {
+            if (rank.matchCount(countOfMatch) && rank != SECOND) {
+                return rank;
+            }
+        }
+        throw new IllegalArgumentException(ERROR_MESSAGE);
+    }
+
+
+
+    public int getCountOfMatch() {
+        return countOfMatch;
+    }
+
+    public int getWinningAmount() {
+        return winningAmount;
+    }
+
+    private boolean matchCount(int countOfMatch) {
+        return this.countOfMatch == countOfMatch;
+    }
+
+    public void printMessage(int count) {
+        if (this != MISS) {
+            OutputView.printSuccessMessage(message, count);
+        }
+    }
 }

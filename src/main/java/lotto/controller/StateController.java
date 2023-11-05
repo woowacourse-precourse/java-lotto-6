@@ -30,7 +30,7 @@ public class StateController {
 
     private void enterMoney() {
         try {
-            money = new Money(Integer.parseInt(readMoney().trim()));
+            money = new Money(readMoney().trim());
         } catch (IllegalArgumentException exception) {
             printException(exception.getMessage());
             enterMoney();
@@ -65,7 +65,7 @@ public class StateController {
 
     private void enterBonus() {
         try {
-            this.bonus = new Bonus(Integer.parseInt(readBonus().trim()), answerLotto.getNumbers());
+            this.bonus = new Bonus(readBonus().trim(), answerLotto.getNumbers());
         } catch (IllegalArgumentException exception) {
             printException(exception.getMessage());
             enterBonus();

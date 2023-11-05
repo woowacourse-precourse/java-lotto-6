@@ -11,6 +11,7 @@ public class OutputView {
     private static final String BONUS_REQUEST_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String RESULT_MESSAGE = "\n당첨 통계\n---";
     private static final String PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String ERROR_MESSAGE ="[ERROR] ";
 
     public static void printPurchase() {
         System.out.println(MONEY_REQUEST_MESSAGE);
@@ -49,6 +50,7 @@ public class OutputView {
     }
 
     public static void printException(String exceptionMessage) {
+        System.out.print(ERROR_MESSAGE);
         System.out.println(exceptionMessage);
     }
 }

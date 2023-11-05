@@ -6,21 +6,24 @@ public class Bonus {
 
     private final int number;
 
-    public Bonus(int number, List<Integer> answerLotto) {
+    public Bonus(String number, List<Integer> answerLotto) {
         validate(number, answerLotto);
-        this.number = number;
+        this.number = Integer.parseInt(number);
     }
 
     public int getNumber() {
         return this.number;
     }
 
-    private void validate(int number, List<Integer> answerLotto) {
-        if (number > 45 || number < 1) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    private void validate(String number, List<Integer> answerLotto) {
+        if(Integer.TYPE.equals(number.getClass())) {
+            throw new IllegalArgumentException("보너스 번호는 숫자만 입력해주세요.\n");
+        }
+        if (Integer.parseInt(number) > 45 || Integer.parseInt(number) < 1) {
+            throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.\n");
         }
         if (answerLotto.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 로또 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException("보너스 숫자는 로또 번호와 중복될 수 없습니다.\n");
         }
     }
 }

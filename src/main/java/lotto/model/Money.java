@@ -6,9 +6,9 @@ public class Money {
 
     private final int money;
 
-    public Money(int money) {
+    public Money(String money) {
         validateMoney(money);
-        this.money = money;
+        this.money = Integer.parseInt(money);
     }
 
     public int lottoCount() {
@@ -19,12 +19,15 @@ public class Money {
         return this.money;
     }
 
-    private void validateMoney(int money) {
-        if (money == 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000 원 이상이여야 합니다.");
+    private void validateMoney(String money) {
+        if (Integer.TYPE.equals(Integer.TYPE)) {
+            throw new IllegalArgumentException("구입 금액은 숫자만 입력해주세요.\n");
         }
-        if ((money % LOTTO_PRICE) != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000 원 단위로 입력해주셔야 합니다.");
+        if (Integer.parseInt(money) == 0) {
+            throw new IllegalArgumentException("구입 금액은 1,000 원 이상이여야 합니다.\n");
+        }
+        if ((Integer.parseInt(money) % LOTTO_PRICE) != 0) {
+            throw new IllegalArgumentException("구입 금액은 1,000 원 단위로 입력해주셔야 합니다.\n");
         }
     }
 }

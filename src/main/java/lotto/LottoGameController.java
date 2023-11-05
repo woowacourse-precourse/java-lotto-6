@@ -3,8 +3,6 @@ package lotto;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class LottoGameController {
@@ -21,16 +19,18 @@ public class LottoGameController {
     }
 
     private void setUser() throws IOException {
-        int lottoPurchaseMoney = getMoneyInput();
-        user = new User(lottoPurchaseMoney);
+
+        StringTokenizer tk = new StringTokenizer(br.readLine());
+        int inputMoney = validateMoneyInput(tk.nextToken());
+
+        user = new User(inputMoney);
     }
 
-    private int getMoneyInput() throws IOException {
+    int validateMoneyInput(String inputMoney) {
 
         String moneyInputErrorWarning = "[ERROR]로또 구입 금액으로 1000원 단위 이하는 입력 불가.";
 
-        StringTokenizer tk = new StringTokenizer(br.readLine());
-        int lottoPurchaseMoney = Integer.parseInt(tk.nextToken());
+        int lottoPurchaseMoney = Integer.parseInt(inputMoney);
 
         if(lottoPurchaseMoney%1000!=0) {
             throw new IllegalArgumentException(moneyInputErrorWarning);

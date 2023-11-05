@@ -8,7 +8,7 @@ import lotto.domain.Wallet;
 import lotto.message.LottoMessage;
 import lotto.service.LottoProduceService;
 import lotto.service.SortService;
-import lotto.vo.Lotto;
+import lotto.domain.Lotto;
 import lotto.vo.Money;
 
 public class LottoProduceServiceImpl implements LottoProduceService {

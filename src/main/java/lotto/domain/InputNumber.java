@@ -1,14 +1,19 @@
 package lotto.domain;
 
+import static lotto.view.ErrorMessage.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.view.ErrorMessage;
 
 public class InputNumber {
 
+
     public int InputMoney() {
         String money = Console.readLine();
+        moneyValidate(money);
         return Integer.parseInt(money);
     }
 
@@ -27,8 +32,8 @@ public class InputNumber {
         return Integer.parseInt(BonusNumber);
     }
 
-    private void moneyValidate(String money){
-        if(money != "^[0-9]*$"){
+    private void moneyValidate(String money) {
+        if (money != "^[0-9]*$") {
             throw new IllegalArgumentException();
         }
     }

@@ -1,12 +1,19 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-final class Lottos {
+public final class Lottos {
 
     private List<Lotto> lottos;
 
     void addLotto(List<Integer> lotto) {
         lottos.add(new Lotto(lotto));
+    }
+
+    List<List<Integer>> getLottosNum() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .collect(Collectors.toList());
     }
 }

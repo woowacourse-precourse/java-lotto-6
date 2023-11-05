@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
@@ -39,10 +38,11 @@ public class LottoService {
     }
 
     public static int enterBonusNumber() {
-        InputView.noticeToGetBonusNumber();
+        noticeToGetBonusNumber();
         //보너스 번호가 당첨 번호랑 중복되는지 여부 확인
 
-        return Integer.parseInt(Console.readLine());
+        String bonusNumber = Console.readLine();
+        return Integer.parseInt(bonusNumber);
     }
 
     public static void matchLottoNumbers(WinningNumbers winningNumbers, List<Lotto> lottos){
@@ -65,6 +65,22 @@ public class LottoService {
             }
         }
         Rank.increaseRankResult(matchCount, hasBonusNumber);
+    }
+
+    public static int totalEarningMoney() {
+        int totalMoney = 0;
+        for (Rank rank : Rank.values()) {
+            if (rank.getWinningAmount() > 0) {
+                totalMoney += rank.getMoney();
+            }
+        }
+        return totalMoney;
+    }
+
+    public static double calculateEarningRatio(int purchaseAmount) {
+        int totalEarningMoney = totalEarningMoney();
+
+        return Math.round(totalEarningMoney / purchaseAmount) / 10.0;
     }
 
 }

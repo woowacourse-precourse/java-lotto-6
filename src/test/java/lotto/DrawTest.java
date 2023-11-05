@@ -65,4 +65,17 @@ public class DrawTest {
         assertThat(result).isInstanceOf(List.class);
         assertThat(result).contains(1, 3, 15, 11, 33, 42);
     }
+
+    @Test
+    void 로또_자동_발행_테스트() {
+
+        //given
+        int lottoNum = 14;
+
+        //when
+        List<Lotto> lottos = draw.issueLottos(lottoNum);
+
+        //then
+        assertThat(lottos.size()).isEqualTo(14);
+    }
 }

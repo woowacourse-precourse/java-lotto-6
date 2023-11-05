@@ -3,12 +3,13 @@ package lotto.validator;
 import java.util.StringTokenizer;
 
 import lotto.enumContainer.ErrorOperation;
+import lotto.enumContainer.LottoRange;
 import lotto.utils.ParserFromString;
 import lotto.utils.ParserFromStringImpl;
 
 public class LottoValidatorImpl implements LottoValidator {
 
-	private ParserFromString parser;
+	private final ParserFromString parser;
 	public LottoValidatorImpl() {
 		parser = new ParserFromStringImpl();
 	}
@@ -28,12 +29,19 @@ public class LottoValidatorImpl implements LottoValidator {
 			String lottoNumber = numberSplitter.nextToken();
 			validateEmptyString(lottoNumber);
 			validateIsDigit(lottoNumber);
-			validatelottoRange(lottoNumber);
+			int parseNumber = validatelottoRange(lottoNumber);
 		}
 	}
 
-	private void validatelottoRange(String lottoNumber) {
-
+	private int validatelottoRange(String lottoNumber) {
+		int parseNumber = parser.toIntPaser(lottoNumber);
+		if (parseNumber < LottoRange.START.getNumber()) {
+			ErrorOperation.UNDER_ERROR.apply();
+		}
+		if (parseNumber > LottoRange.END.getNumber()) {
+			ErrorOperation.OVER_ERROR.apply();
+		}
+		return parseNumber;
 	}
 
 	private void validateEmptyString(String lottoPrice) {

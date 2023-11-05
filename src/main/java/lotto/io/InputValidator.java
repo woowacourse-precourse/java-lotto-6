@@ -8,7 +8,7 @@ public class InputValidator {
 
     private static final Pattern WINNING_NUMBERS_PATTERN = Pattern.compile("^([0-9]+(,[0-9]+)+)$");
 
-    public void validatePurchaseAmount(final String input) {
+    public void validateNumeric(final String input) {
         if (isNotNumeric(input)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.toValue());
         }

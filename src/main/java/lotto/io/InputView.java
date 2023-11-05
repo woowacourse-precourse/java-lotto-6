@@ -12,13 +12,19 @@ public class InputView {
 
     public String readPurchaseAmount() {
         final String input = Console.readLine();
-        inputValidator.validatePurchaseAmount(input);
+        inputValidator.validateNumeric(input);
         return input;
     }
 
     public String readWinningNumbers() {
         final String input = Console.readLine();
         inputValidator.validateWinningNumbers(input);
+        return input;
+    }
+
+    public String readBonusNumber() {
+        final String input = Console.readLine();
+        inputValidator.validateNumeric(input);
         return input;
     }
 }

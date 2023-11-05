@@ -1,28 +1,18 @@
 package lotto.application.input;
 
-import static lotto.resource.TextResourceProvider.ERROR_MESSAGE_TAG;
-import static lotto.resource.TextResourceProvider.INPUT_BONUS_NUMBER_TEXT;
-import static lotto.resource.TextResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
-import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
-import static lotto.resource.TextResourceProvider.OUTPUT_LOTTERY_RESULT;
 import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_LONG_TEXT;
 import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT;
 import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_LOTTERY_PRICE_TEXT;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
-import lotto.MyApplicationTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayName("[Application] 구입금액에 대한 테스트")
-public class Application_PurchaseAmountTest extends MyApplicationTest {
-    private static final Pattern ErrorMessagePattern = Pattern.compile(
-            String.format("^\\%s", ERROR_MESSAGE_TAG));
+public class Application_PurchaseAmountTest extends Application_InputTest {
 
 
     @Disabled
@@ -118,23 +108,6 @@ public class Application_PurchaseAmountTest extends MyApplicationTest {
     }
 
     private static void runWithInvalidPurchaseAmount(String invalidInput) {
-        run(invalidInput, "1000", "123456", "7");
-    }
-
-    private static void assertThatPrintErrorMessageWith(String message) {
-        assertThat(outputs())
-                .filteredOn(output -> ErrorMessagePattern.matcher(output).find())
-                .hasSize(1)
-                .first()
-                .asString()
-                .contains(message);
-    }
-
-    private static void assertThatApplicationNotExists() {
-        assertThat(outputs())
-                .containsSubsequence(INPUT_PURCHASE_AMOUNT_TEXT,
-                        INPUT_WINNING_NUMBERS_TEXT,
-                        INPUT_BONUS_NUMBER_TEXT,
-                        OUTPUT_LOTTERY_RESULT);
+        run(invalidInput, "1000", "1,2,3,4,5,6", "7");
     }
 }

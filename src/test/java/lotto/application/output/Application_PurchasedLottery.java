@@ -9,8 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.MyApplicationTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("[Application] 구입로또에 대한 출력에 관한 테스트")
 public class Application_PurchasedLottery extends MyApplicationTest {
     @Test
     void 각_로또_번호가_LottoNumbersFormat으로_출력된다() {
@@ -97,7 +99,7 @@ public class Application_PurchasedLottery extends MyApplicationTest {
     }
 
     private static void runWithValidArguments() {
-        run("1000", "123456", "7");
+        run("1000", "1,2,3,4,5,6", "7");
     }
 
 }

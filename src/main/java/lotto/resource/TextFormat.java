@@ -59,7 +59,6 @@ public class TextFormat {
         List<String> result = new ArrayList<>();
 
         int cur = target.indexOf(tokens.get(0));
-        System.out.printf("%s(%d)\n",tokens.get(0), cur);
         for (int i = 0; i < tokens.size() - 1; i++) {
             int from = cur + tokens.get(i).length();
             int to = target.indexOf(tokens.get(i + 1), from+1);

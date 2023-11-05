@@ -1,12 +1,15 @@
 package lotto.application.output;
 
 import static lotto.resource.TextResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
+import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
 import static lotto.resource.TextResourceProvider.QUANTITY_OUTPUT_TEXT_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.MyApplicationTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("[Application] 어플리케이션의 출력문구에 관한 테스트")
 public class Application_OutputTest extends MyApplicationTest {
     @Test
     void 구입금액_입력_문구를_출력한다() {
@@ -33,8 +36,15 @@ public class Application_OutputTest extends MyApplicationTest {
                 .hasSize(1);
     }
 
+    @Test
+    void 당첨번호_입력_문구를_출력한다(){
+        runWithValidArguments();
+        assertThat(outputs())
+                .contains(INPUT_WINNING_NUMBERS_TEXT);
+    }
+
     private static void runWithValidArguments() {
-        run("1000", "123456", "7");
+        run("1000", "1,2,3,4,5,6", "7");
     }
 
 }

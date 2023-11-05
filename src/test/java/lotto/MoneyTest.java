@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import constants.ErrorMessage;
 import constants.NumberType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,9 @@ class MoneyTest {
         int money = NumberType.LOTTO_PRICE.getValue() * 10 + (int) Math.floor(NumberType.LOTTO_PRICE.getValue() * 0.5);
 
         //When & Then
-        assertThatThrownBy(() -> new Money(money)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Money(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(String.format(ErrorMessage.INVALID_MONEY_ERROR.getMessage(), NumberType.LOTTO_PRICE.getValue()));
     }
 
     @Test

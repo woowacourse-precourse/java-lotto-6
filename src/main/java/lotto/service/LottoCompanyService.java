@@ -5,7 +5,6 @@ import static lotto.constants.Bonus.BONUS_INCLUDE;
 import static lotto.constants.LottoRule.LOTTO_NUMBER_LENGTH;
 import static lotto.constants.LottoRule.MINIMUM_MATCH_SIZE;
 
-import lotto.constants.Bonus;
 import lotto.constants.Prize;
 import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
@@ -34,15 +33,15 @@ public class LottoCompanyService {
 
     public List<PrizeResult> evaluateLottos() {
         List<PrizeResult> results = new ArrayList<>();
-        results.addAll(evaluateLottosWithBonusOption(BONUS_INCLUDE));
-        results.addAll(evaluateLottosWithBonusOption(BONUS_EXCLUDE));
+        results.addAll(evaluateLottosWithBonusOption(BONUS_INCLUDE.getValue()));
+        results.addAll(evaluateLottosWithBonusOption(BONUS_EXCLUDE.getValue()));
 
         Collections.sort(results);
 
         return results;
     }
 
-    private List<PrizeResult> evaluateLottosWithBonusOption(final Bonus hasBonus) {
+    private List<PrizeResult> evaluateLottosWithBonusOption(final boolean hasBonus) {
         List<PrizeResult> results = new ArrayList<>();
         for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
             List<Lotto> matchLottos = lottoCompany.collectLottosWithOption(lottos, match, hasBonus);

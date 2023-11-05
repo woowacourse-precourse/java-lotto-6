@@ -2,7 +2,6 @@ package lotto.model;
 
 import static lotto.exception.ExceptionMessage.BONUS_NUMBER_ALREADY_USE;
 
-import lotto.constants.Bonus;
 import java.util.List;
 
 public class LottoCompany {
@@ -28,10 +27,10 @@ public class LottoCompany {
         }
     }
 
-    public List<Lotto> collectLottosWithOption(final List<Lotto> lottos, final int matchSize, final Bonus hasBonus) {
+    public List<Lotto> collectLottosWithOption(final List<Lotto> lottos, final int matchSize, final boolean hasBonus) {
         return lottos.stream()
                 .filter(lotto -> lotto.isContainsNumbersWithSize(goalNumbers.getNumbers(), matchSize))
-                .filter(lotto -> lotto.isContainsNumber(bonusNumber) == hasBonus.getValue())
+                .filter(lotto -> lotto.isContainsNumber(bonusNumber) == hasBonus)
                 .toList();
     }
 }

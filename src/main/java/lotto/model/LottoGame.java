@@ -1,12 +1,17 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
 
   public List<Integer> createRandomLottoNumber() {
     return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  public static void sortLottoNumbers(List<Integer> lottoNumbers) {
+    Collections.sort(lottoNumbers);
   }
 
   public int countMatchingNumbers(List<Integer> lotto, List<Integer> winningNumberSet) {

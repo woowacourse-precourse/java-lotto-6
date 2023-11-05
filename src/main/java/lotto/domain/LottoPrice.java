@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.config.ErrorMessage;
 import lotto.config.LottoConfig;
-import lotto.util.Parser;
 
 public class LottoPrice {
     private static final int CORRECT_DIVISION = 0;
@@ -10,11 +9,10 @@ public class LottoPrice {
 
     private final int price;
 
-    public LottoPrice(String numericString) {
-        int price = Parser.parseIntOrThrow(numericString);
-        validateRange(price);
-        validateDivision(price);
-        this.price = price;
+    public LottoPrice(int buyingPrice) {
+        validateRange(buyingPrice);
+        validateDivision(buyingPrice);
+        this.price = buyingPrice;
     }
 
     public int getTryCount() {

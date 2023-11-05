@@ -3,25 +3,26 @@ package lotto;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers = new ArrayList<>();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
         Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers == null || numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개이여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
         if(duplicationCheck(numbers)){
-            throw new IllegalArgumentException("중복된 번호가 있습니다.");
+            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
         if(!rangeCheck(numbers)){
-            throw new IllegalArgumentException("1~45 범위를 넘어간 값이 있습니다.");
+            throw new IllegalArgumentException("각 숫자는 1부터 45 사이여야 합니다.");
         }
     }
 
@@ -41,11 +42,11 @@ public class Lotto {
         return true;
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public int compareNumbers(List<Integer> winNumbers, int bonusNumber){
+    public int compareNumbers(List<Integer> winNumbers){
         int matchCount = 0;
         for(int number : numbers){
             if(winNumbers.contains(number)){
@@ -55,34 +56,41 @@ public class Lotto {
         return matchCount;
     }
 
-    public boolean bonusMatch(List<Integer> numbers, int bonusNumber) {
+    public boolean containMatch(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 
-    public LottoRank determineRank(int matchCount, boolean bonusMatch){
-        switch (matchCount){
-            case 6 : return LottoRank.FIRST;
-            case 5 : return bonusMatch ? LottoRank.SECOND : LottoRank.THIRD;
-            case 4 : return LottoRank.FOURTH;
-            case 3 : return LottoRank.FIFTH;
-            default : return LottoRank.NONE;
-        }
+    public LottoRank determineRank(Lotto winNumber, int bonusMatch){
+        int matchCount = compareNumbers(winNumber.getNumbers());
+        boolean matchbonus = containMatch(bonusMatch);
+        return LottoRank.rankCheck(matchCount, matchbonus);
     }
 
-    enum LottoRank{
-        FIRST(6,2_000_000_000),
-        SECOND(5, 30_000_000),
-        THIRD(5, 1_500_000),
-        FOURTH(4, 50_000),
-        FIFTH(3, 5_000),
-        NONE(0,0);
+    public enum LottoRank{
+        FIRST(6,2_000_000_000, false),
+        SECOND(5, 30_000_000, false),
+        THIRD(5, 1_500_000, false),
+        FOURTH(4, 50_000, false),
+        FIFTH(3, 5_000, false),
+        NONE(0,0, false);
 
         private final int matchCount;
         private final int prize;
+        private final boolean matchBonus;
 
-        LottoRank(int matchCount, int prize){
+        LottoRank(int matchCount, int prize, boolean matchBonus){
             this.matchCount = matchCount;
             this.prize = prize;
+            this.matchBonus = matchBonus;
+        }
+
+        public static LottoRank rankCheck(int matchCount, boolean matchBonus){
+            for(LottoRank rank : values()){
+                if(rank.matchCount == matchCount && (!rank.matchBonus || matchBonus)){
+                    return rank;
+                }
+            }
+            return NONE;
         }
 
         public int getMatchCount(){

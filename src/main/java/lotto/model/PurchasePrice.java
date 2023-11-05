@@ -19,7 +19,11 @@ public class PurchasePrice {
         if(Integer.parseInt(purchasePrice) < LOTTO_PRICE_EACH){
             throw new IllegalArgumentException("[ERROR] 로또 한장은 1000원입니다.");
         }
-
+    }
+    private void isNotDigits(String purchasePrice) throws IllegalArgumentException{
+        if(!purchasePrice.matches("^[0-9]+$")){
+            throw new IllegalArgumentException("[ERROR] 올바른 금액을 입력해주세요.");
+        }
     }
     private void isNotDivisibleBy1000(String purchasePrice) throws IllegalArgumentException{
         if(Integer.parseInt(purchasePrice) % 1000 != 0){

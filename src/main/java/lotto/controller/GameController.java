@@ -21,5 +21,10 @@ public class GameController {
 
     public static void lottoPrintNum(List<List<Integer>> lottoAllNumbers) {
         OutputView.printLottoNumber(lottoAllNumbers);
+        lottoInputWinningNum();
+    }
+
+    public static void lottoInputWinningNum() {
+        InputView.inputWinningNum();
     }
 }

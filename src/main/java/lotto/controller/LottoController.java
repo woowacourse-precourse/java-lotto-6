@@ -26,9 +26,9 @@ public class LottoController {
     public void start() {
         payMoney();
         generatePurchasedLottos();
-        createWinnerNumbers();
+        createWinningNumbers();
         createBonusNumber();
-        writeResults();
+        createResults();
         printResult();
         printPercent();
     }
@@ -36,7 +36,7 @@ public class LottoController {
     private void payMoney() {
         try {
             money = new Money(Input.inputMoney());
-            Output.printLottosCount(money.getCount());
+            Output.printLottosCount(money.calculateCount());
         } catch (IllegalArgumentException e) {
             payMoney();
         }
@@ -44,18 +44,18 @@ public class LottoController {
 
     private void generatePurchasedLottos() {
         lottos = new ArrayList<>();
-        for(int i = 0 ; i < money.getCount() ; i++) {
+        for(int i = 0 ; i < money.calculateCount() ; i++) {
             Lotto lotto = LottoGenerator.generateLotto();
             lottos.add(lotto);
             Output.printLottos(lotto.toString());
         }
     }
 
-    private void createWinnerNumbers() {
+    private void createWinningNumbers() {
         try {
             winningNumbers = new Lotto(Input.inputWinningNumbers());
         } catch (IllegalArgumentException e) {
-            createWinnerNumbers();
+            createWinningNumbers();
         }
     }
 
@@ -68,7 +68,7 @@ public class LottoController {
         }
     }
 
-    private void writeResults() {
+    private void createResults() {
         results = new HashMap<>();
         for(Rank rank : Rank.values()) {
             results.put(rank, findRankCount(rank));

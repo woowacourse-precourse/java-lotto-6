@@ -12,7 +12,7 @@ public class Money {
         this.value = value;
     }
 
-    public int getCount() {
+    public int calculateCount() {
         return value / LOTTO_PRICE;
     }
 

@@ -31,9 +31,9 @@ public class Lotto {
         return numbers.contains(bonusNumber.getValue());
     }
 
-    public int matchNumbers(Lotto winnningNumbers) {
+    public int matchNumbers(Lotto winningNumbers) {
         return (int) numbers.stream()
-                .filter(winnningNumbers::containsNumber)
+                .filter(winningNumbers::containsNumber)
                 .count();
     }
 

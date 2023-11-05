@@ -30,8 +30,6 @@ public class LottoService {
 
         Lotto lotto = new Lotto(pickUniqueNumbersInRange(startNumber, endNumber, lottoNumberCount));
 
-        lotto.sortLotto();
-
         purchaseLotto.add(lotto);
     }
 
@@ -39,6 +37,5 @@ public class LottoService {
 
         winLotto = new Lotto(winLottoNumbers);
 
-        winLotto.sortLotto();
     }
 }

@@ -27,6 +27,7 @@ public class LottoGameService {
 
         // player가 lottoShop에서 로또 구매
         player.buyLottoTickets(lottoShop);
+        outputController.printLottoTicketsCount(player.getLottoTickets());
         outputController.printLottoTickets(player.getLottoTickets());
 
         // 외부로부터 당첨 번호, 보너스 번호 입력 받기
@@ -35,5 +36,6 @@ public class LottoGameService {
         // player 스스로 당첨 결과 계산
         player.calculateWinningLottoWithMine(winningLotto);
         outputController.printWinningStatistics(player.getWinningStatistics());
+        outputController.printRateOfReturn(player.getWinningStatistics());
     }
 }

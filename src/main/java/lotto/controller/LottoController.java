@@ -13,5 +13,6 @@ public class LottoController {
     private void getLottoMoney() {
         OutputView.printPurchaseAmount();
         int amount = inputView.readPurchaseAmount();
+        OutputView.printPurchaseCount(amount);
     }
 }

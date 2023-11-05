@@ -6,7 +6,6 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
     public List<Integer> matchingNumbers;
-
     public List<String> matchingComment;
     public float rateOfReturn=0;
 
@@ -29,7 +28,7 @@ public class Lotto {
         matchingComment.add("4개 일치 (50,000원) - ");
         matchingComment.add("5개 일치 (1,500,000원) - ");
         matchingComment.add("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
-        matchingComment.add("6개 일치 (2,000,000,000) - ");
+        matchingComment.add("6개 일치 (2,000,000,000원) - ");
     }
 
     private void validate(List<Integer> numbers) {

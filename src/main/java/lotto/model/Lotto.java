@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -49,5 +50,16 @@ public class Lotto {
 
     public boolean contains(int input) {
         return numbers.contains(input);
+    }
+
+    public int compareLotto(Lotto winningLotto) {
+        List<Integer> correctNumbers = new ArrayList<>(winningLotto.numbers);
+        correctNumbers.retainAll(this.numbers);
+
+        return correctNumbers.size();
+    }
+
+    public boolean containBonusNumber(BonusNumber bonusNumber) {
+        return contains(bonusNumber.getBonusNumber());
     }
 }

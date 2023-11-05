@@ -17,4 +17,8 @@ public class BonusNumber {
             throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해야 합니다.");
         }
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

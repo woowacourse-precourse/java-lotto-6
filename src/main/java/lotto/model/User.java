@@ -49,7 +49,7 @@ public class User {
     public void compareLottos(Lotto winningLotto, BonusNumber bonusNumber) {
         for (Lotto lotto : lottos) {
             int matchingCount = lotto.compareLotto(winningLotto);
-            boolean isContainBonusNumber = lotto.compareBonusNumber(bonusNumber);
+            boolean isContainBonusNumber = lotto.containBonusNumber(bonusNumber);
 
             if (matchingCount == 3) {
                 updateResult(Result.FIFTH);

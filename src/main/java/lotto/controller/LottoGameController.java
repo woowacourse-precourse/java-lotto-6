@@ -2,8 +2,6 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.constant.LottoRank;
-import lotto.domain.dto.LottoDto;
-import lotto.domain.mapper.LottoMapper;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.LottoBonusNumber;
 import lotto.domain.model.LottoGame;
@@ -13,7 +11,6 @@ import lotto.domain.model.LottoDispenser;
 import lotto.domain.model.PurchasedLottos;
 import lotto.domain.model.WinningLotto;
 import lotto.domain.LottoRandomGenerator;
-import lotto.util.LottoStatistics;
 import lotto.domain.Repeater;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -57,10 +54,8 @@ public class LottoGameController {
     }
 
     private void printBoughtLottos(PurchasedLottos purchasedLottos) {
-        List<Lotto> rawLottos = purchasedLottos.getElements();
-        List<LottoDto> lottoDtos = LottoMapper.toDtos(rawLottos);
-
-        outputView.printLottos(lottoDtos);
+        List<Lotto> purchasedLottoElements = purchasedLottos.getElements();
+        purchasedLottoElements.stream().map(Lotto::getNumbers).forEach(outputView::printLottoNumbers);
     }
 
     private LottoGame initGame(LottoPurchaseCost lottoPurchaseCost) {
@@ -78,18 +73,13 @@ public class LottoGameController {
         return new LottoResults(lottoRanks, lottoPurchaseCost);
     }
 
-    private String createStatisticsExpression(LottoRanks lottoRanks, LottoPurchaseCost lottoPurchaseCost) {
-        long rawPurchaseCost = lottoPurchaseCost.getCost();
-
-        return LottoStatistics.createStatisticsExpression(lottoRanks, rawPurchaseCost);
-    }
-
     public void play() {
         LottoPurchaseCost lottoPurchaseCost = readPurchaseCost();
         LottoGame lottoGame = initGame(lottoPurchaseCost);
-        LottoRanks lottoRanks = createLottoRanks(lottoGame);
-        String statisticsExpression = createStatisticsExpression(lottoRanks, lottoPurchaseCost);
+        LottoResults lottoResults = createLottoResults(lottoGame, lottoPurchaseCost);
 
-        outputView.printStatisticsMessage(statisticsExpression);
+        outputView.printStatisticsPreMessage();
+        outputView.printStatisticsExpression(lottoResults.getRankCounts());
+        outputView.printRateOfReturnExpression(lottoResults.getRateOfReturn());
     }
 }

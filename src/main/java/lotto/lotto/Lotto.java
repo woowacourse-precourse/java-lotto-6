@@ -5,6 +5,7 @@ import static lotto.lotto.LottoResult.SECOND_PRIZE;
 import static lotto.lotto.LottoResult.THIRD_PRIZE;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.validator.LottoNumberValidator;
 
 class Lotto {
@@ -47,5 +48,14 @@ class Lotto {
             return THIRD_PRIZE;
         }
         return lottoResult;
+    }
+
+    @Override
+    public String toString() {
+        String collect = numbers.stream()
+                .sorted()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "));
+        return "[%s]".formatted(collect);
     }
 }

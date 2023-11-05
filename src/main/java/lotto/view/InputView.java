@@ -4,14 +4,19 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.validate.AmountValidator;
 
 public class InputView {
-    public static int inputBuyAmount() {
+    private AmountValidator amountValidator = new AmountValidator();
+
+    public int inputBuyAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String amount = Console.readLine();
+        amountValidator.validate(amount);
+        return Integer.parseInt(amount);
     }
 
-    public static List<Integer> inputWinningNumber() {
+    public List<Integer> inputWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] number = Console.readLine().split(",");
         return Arrays.stream(number)
@@ -19,7 +24,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public static int inputBonusNumber() {
+    public int inputBonusNumber() {
         return Integer.parseInt(Console.readLine());
     }
 }

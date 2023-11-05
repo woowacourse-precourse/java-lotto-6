@@ -55,9 +55,9 @@
 - [x] 등수를 바탕으로 수익률을 계산한다. `calculateReturn()`
 
 ### 2) UI 로직
-- [x] 로또 구입 금액을 입력받는다. `printPurchaseRequest()` -> `input()`
-- [x] 당첨 번호를 입력받는다. 
-- [ ] 보너스 번호를 입력받는다.
+- [x] 로또 구입 금액을 입력받는다. `printMessage(PURCHASE_REQUEST)` -> `input()`
+- [x] 당첨 번호를 입력받는다. `printMessage(WINNING_MAIN_REQUEST)` -> `input()`
+- [ ] 보너스 번호를 입력받는다. 
 
 - [ ] 발행한 로또 수량 및 번호(오름차순)를 출력한다.
 - [ ] 당첨 내역을 출력한다.

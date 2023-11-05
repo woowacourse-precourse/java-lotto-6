@@ -27,6 +27,10 @@ public class Lotto {
         return Collections.unmodifiableList(new ArrayList<>(numbers));
     }
 
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

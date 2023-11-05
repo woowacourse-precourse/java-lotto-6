@@ -8,7 +8,7 @@ import lotto.model.domain.result.CompareResult;
 import lotto.util.LottoGameException;
 
 public class Lotto {
-    public static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_SIZE = GameConst.LOTTO_SIZE;
 
     //수정 금지
     private final List<Integer> numbers;
@@ -56,27 +56,28 @@ public class Lotto {
         return String.format(PrintConst.FORMAT_LOTTO_NUMBERS, this.numbers.toArray());
     }
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
-    }
-
     public CompareResult compareLotto(Lotto lotto){
         int collectNumber = collectNumber(lotto);
-        if(lotto.getClass() != LottoAnswer.class){
+        if(isCompareFinish(lotto, collectNumber)){
             return new CompareResult(collectNumber, false);
         }
         boolean collectBonus = isCollectBonus((LottoAnswer) lotto);
         return new CompareResult(collectNumber, collectBonus);
     }
 
+    private boolean isCompareFinish(Lotto lotto, int collectNumber) {
+        return lotto.getClass() != LottoAnswer.class ||
+                collectNumber != GameConst.BONUS_CHECH_NECESSARY;
+    }
+
     private int collectNumber(Lotto lotto){
-        return (int) lotto.getNumbers()
+        return (int) lotto.numbers
                 .stream()
                 .filter(this.numbers::contains)
                 .count();
     }
 
-    public boolean isCollectBonus(LottoAnswer answer){
+    private boolean isCollectBonus(LottoAnswer answer){
         int bonusNumber = answer.getBonusNumber();
         return this.numbers.contains(bonusNumber);
     }

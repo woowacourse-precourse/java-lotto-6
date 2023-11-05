@@ -6,9 +6,7 @@ import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoAnswer;
 
 public class ResultFactory {
-
-    private static final int NECESSARY_CHECK_BONUS = 5;
-    private Map<CompareResult, LottoResult> results;
+    private final Map<CompareResult, LottoResult> results;
 
     public ResultFactory(){
         results = new HashMap<>();

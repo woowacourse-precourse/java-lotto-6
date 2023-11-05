@@ -74,4 +74,46 @@ class LottoTest {
         assertThatThrownBy(() -> Validation.inputWinnerNumberExceptionCheck("1,2,,,3,4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액이 빈 입력이면 예외가 발생한다.")
+    @Test
+    void inputMoneyByEmpty() {
+        assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 음수면 예외가 발생한다.")
+    @Test
+    void inputMoneyByNotNaturalNumber() {
+        assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck("-1000"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 소수면 예외가 발생한다.")
+    @Test
+    void inputMoneyByFloatNumber() {
+        assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck("1000.0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void inputMoneyByNotANumber() {
+        assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck("1000j"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 1000 단위가 아니면 예외가 발생한다.")
+    @Test
+    void inputMoneyByNot1000() {
+        assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck("1001"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 Integer.MAX_VALUE*1000 보다 크면 예외가 발생한다.")
+    @Test
+    void inputMoneyByOverRange() {
+        assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck("2147483647001"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

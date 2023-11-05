@@ -2,9 +2,14 @@ package lotto.View;
 
 public class InputValidator {
     public static void exceptInsertInteger(String inputValue){
+        if(validateBlank(inputValue)){
+            throw new IllegalArgumentException("입력이 없습니다");
+        }
+
         if(validateNumber(inputValue)){
             throw new IllegalArgumentException("입력은 숫자여야 합니다.");
         };
+
     }
     private static boolean validateNumber(String inputData){
         char charAt;
@@ -15,5 +20,9 @@ public class InputValidator {
             }
         }
         return false;
+    }
+
+    private static boolean validateBlank(String inputData){
+        return inputData.isBlank();
     }
 }

@@ -2,6 +2,8 @@ package lotto.service;
 
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
+import lotto.service.view.InputViewService;
+import lotto.service.view.OutputViewService;
 
 import java.util.List;
 
@@ -29,11 +31,11 @@ public class LottoService {
     }
 
     private int getAmount() {
-        LottoViewService.outputAmount();
+        OutputViewService.outputAmount();
         try {
-            return LottoViewService.inputAmount(LOTTO_PRICE);
+            return InputViewService.inputAmount(LOTTO_PRICE);
         } catch (IllegalArgumentException e) {
-            LottoViewService.outPutErrorMessage(e);
+            OutputViewService.outPutErrorMessage(e);
             return getAmount();
         }
     }
@@ -41,22 +43,23 @@ public class LottoService {
     private List<Lotto> issueLottoTicket(int amount) {
         LottoMachine lottoMachine = new LottoMachine(LOTTO_STAT_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT);
         List<Lotto> lottoList = lottoMachine.getLottoList(LOTTO_PRICE, amount);
-        LottoViewService.outputEa(lottoList.size());
-        LottoViewService.outputLottoList(lottoList);
+        OutputViewService.outputEa(lottoList.size());
+        OutputViewService.outputLottoList(lottoList);
         return lottoList;
     }
 
     private Lotto getWinnigNumbers() {
-        return LottoViewService.inputWinnigNumbers();
+        OutputViewService.outputWinnigNumbers();
+        return InputViewService.inputWinnigNumbers();
     }
 
     private int getBonusNumber() {
-        return LottoViewService.inputBonusNumber();
+        return InputViewService.inputBonusNumber();
     }
 
     private void printResult(List<Lotto> purchasedLottoList, Lotto winnigLotto, int bonusNumber) {
-        LottoViewService.outputStatistics();
-        LottoViewService.outputRateOfReturn();
+        OutputViewService.outputStatistics();
+        OutputViewService.outputRateOfReturn();
     }
 
 }

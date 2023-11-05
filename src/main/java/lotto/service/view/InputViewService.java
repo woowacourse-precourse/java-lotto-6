@@ -1,23 +1,16 @@
-package lotto.service;
+package lotto.service.view;
 
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.common.Validator;
 import lotto.model.Lotto;
 
-import java.util.List;
-
 import static lotto.common.ErrorMessageType.*;
-import static lotto.common.MessageType.*;
 
 /**
  * @Class : 로또 관리 UI 서비스 클래스
  */
-public class LottoViewService {
-
-    public static void outputAmount() {
-        System.out.println(ASK_PURCHASE_AMOUNT.getMessage());
-    }
+public class InputViewService {
 
     public static int inputAmount(int lottoPrice) {
         int amount = ConvertStringToInt(getInputData());
@@ -27,31 +20,12 @@ public class LottoViewService {
         return amount;
     }
 
-    public static void outputEa(int ea) {
-        System.out.println(PURCHASED_LOTTO_FORMAT.getEaMessage(ea));
-    }
-
-    public static void outputLottoList(List<Lotto> lottoList) {
-        lottoList.forEach(l -> System.out.println(l.toString()));
-        System.out.println();
-    }
-
     public static Lotto inputWinnigNumbers() {
         return null;
     }
 
     public static int inputBonusNumber() {
         return 0;
-    }
-
-    public static void outputStatistics() {
-    }
-
-    public static void outputRateOfReturn() {
-    }
-
-    public static void outPutErrorMessage(IllegalArgumentException e) {
-        System.out.println(e.getMessage());
     }
 
     private static String getInputData() {
@@ -67,6 +41,4 @@ public class LottoViewService {
             throw new IllegalArgumentException(ERROR_NON_NUMERIC_INPUT.getLottoMessage());
         }
     }
-
-
 }

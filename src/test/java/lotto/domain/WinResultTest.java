@@ -36,4 +36,18 @@ public class WinResultTest {
         assertEquals(winResult.isOverTwo(rankValue), false);
     }
 
+    @DisplayName("당첨 번호와 일치하는 값 개수가 5인지 확인")
+    @Test
+    void isFiveSame() {
+        int rankValue = 5;
+        assertEquals(winResult.isFiveSame(rankValue), true);
+    }
+
+    @DisplayName("당첨 번호와 일치하는 값 개수가 5가 아닌지 확인")
+    @Test
+    void isNotFiveSame() {
+        int rankValue = 2;
+        assertEquals(winResult.isFiveSame(rankValue), false);
+    }
+
 }

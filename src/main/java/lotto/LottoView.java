@@ -16,6 +16,16 @@ public class LottoView {
         }
     }
 
+    public String inputWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    public Integer inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요");
+        return Integer.parseInt(Console.readLine());
+    }
+
 
 
 

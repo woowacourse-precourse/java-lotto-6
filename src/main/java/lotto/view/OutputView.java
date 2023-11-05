@@ -19,13 +19,19 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    public void printLottoResult (int[] result, double percentage) {
+    public static void printLottoResult (String result, double percentage) {
         System.out.println("당첨 통계\n---");
-        for(int i = 0; i < this.strs.length; i++) {
-            System.out.println(this.strs[i]+result[i]+"개");
-        }
+        System.out.println(result);
         System.out.println("총 수익률은 "+percentage+"%입니다.");
     }
+
+//    public static void printWinningText () {
+//        System.out.println("당첨 통계\n---");
+//    }
+//
+//    public static void printWinningRate (double percentage) {
+//        System.out.println("총 수익률은 "+percentage+"%입니다.");
+//    }
 
     public static void printIsInteger () {
         System.out.println("[ERROR] 숫자 형태의 값이여야 합니다.");

@@ -17,12 +17,20 @@ public class LottoController {
 
     private int[] results = new int[5];
 
-    private int[] standard = {
+    private int[] standardList = {
             5000,
             50000,
             1500000,
             30000000,
             2000000000,
+    };
+
+    private String[] strs = {
+            "3개 일치 (5,000원) - ",
+            "4개 일치 (50,000원) - ",
+            "5개 일치 (1,500,000원) - ",
+            "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+            "6개 일치 (2,000,000,000원) - ",
     };
 
     private int sum;
@@ -50,8 +58,9 @@ public class LottoController {
         sumOfNumbers();
 
         //결과 프린트
-        OutputView lottoResult = new OutputView();
-        lottoResult.printLottoResult(results, percentage);
+//        OutputView lottoResult = new OutputView();
+//        lottoResult.printLottoResult(results, percentage);
+        OutputView.printLottoResult(makeResultToString(),percentage);
     }
 
     private void inputMoney () {
@@ -138,31 +147,38 @@ public class LottoController {
     }
 
     private void comparing (int count) {
-//        if(count == 3) {
-//            this.results[0]++;
-//        } else if (count == 4) {
-//            this.results[1]++;
-//        } else if (count == 5) {
-//            this.results[2]++;
-//        } else if (count == 6) {
-//            this.results[4]++;
-//        } else if (count == -1) {
-//            this.results[3]++;
-//        }
         switch(count) {
-            case 3 : this.results[0]++;
-            case 4 : this.results[1]++;
-            case 5 : this.results[2]++;
-            case -1 : this.results[3]++;
-            case 6 : this.results[4]++;
+            case 3 :
+                this.results[0]++;
+                break;
+            case 4 :
+                this.results[1]++;
+                break;
+            case 5 :
+                this.results[2]++;
+                break;
+            case -1 :
+                this.results[3]++;
+                break;
+            case 6 :
+                this.results[4]++;
+                break;
             default : break;
         }
     }
 
     private void sumOfNumbers () {
-        for(int i = 0; i < this.standard.length; i++) {
-            this.sum+=standard[i]*results[i];
+        for(int i = 0; i < this.standardList.length; i++) {
+            this.sum+=standardList[i]*results[i];
         }
         this.percentage = Logics.benefit(this.money, this.sum);
+    }
+
+    private String makeResultToString () {
+        String result = "";
+        for(int i = 0; i < strs.length; i++) {
+            result+=strs[i]+results[i]+"개\n";
+        }
+        return result;
     }
 }

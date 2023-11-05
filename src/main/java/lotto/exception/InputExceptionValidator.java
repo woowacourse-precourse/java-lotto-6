@@ -22,6 +22,9 @@ public class InputExceptionValidator {
     public Exception inputWinningNumbersValidation(List<String> splitedList) {
         try {
             splitedList.forEach(this::numberFormatValidation);
+            splitedList.stream()
+                    .map(Integer::valueOf)
+                    .forEach(this::rangeValidation);
         } catch (InputException e) {
             System.out.println(e.getMessage());
             return e;
@@ -47,6 +50,12 @@ public class InputExceptionValidator {
     private void dividedValidation(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new InputException(ExceptionCode.INVALID_INPUT_DIVIDED);
+        }
+    }
+
+    private void rangeValidation(int number) {
+        if (!(1 <= number && number <= 45)) {
+            throw new InputException(ExceptionCode.INVALID_INPUT_RANGE);
         }
     }
 }

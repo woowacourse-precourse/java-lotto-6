@@ -6,6 +6,7 @@ import lotto.validation.InputValidation;
 public class InputView {
 
     private static final String PURCHASE_AMOUNT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String INPUT_LOTTO_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     InputValidation inputValidation = new InputValidation();
 
@@ -20,6 +21,19 @@ public class InputView {
             System.out.println(e.getMessage());
             System.out.println();
             return purchaseAmountMoney();
+        }
+    }
+
+    public String lottoWinningNumber(){
+        try{
+            System.out.println(INPUT_LOTTO_WINNING_NUMBER_MESSAGE);
+            String lottoNumber = Console.readLine();
+            inputValidation.validationLottoWinningNumber(lottoNumber);
+            return lottoNumber;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            System.out.println();
+            return lottoWinningNumber();
         }
     }
 }

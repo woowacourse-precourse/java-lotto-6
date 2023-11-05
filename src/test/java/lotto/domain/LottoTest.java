@@ -54,6 +54,13 @@ class LottoTest {
     }
 
     @Test
+    void 번호_6개_일치할_때_가격_2000000000원() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Ranking ranking = lotto.getRanking(List.of(1, 2, 3, 4, 5, 6), 7);
+        assertEquals("2,000,000,000", ranking.getPrize());
+    }
+
+    @Test
     void 문자열_생성_테스트() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertEquals("[1, 2, 3, 4, 5, 6]", lotto.toString());

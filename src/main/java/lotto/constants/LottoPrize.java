@@ -54,7 +54,7 @@ public enum LottoPrize {
         if (isBonusNumberMatch && matchedNumberCount == 5) {
             stringBuilder.append(", 보너스 볼 일치");
         }
-        stringBuilder.append(" (").append(prizeMoney).append(")");
+        stringBuilder.append(" (").append(String.format("%,d", prizeMoney)).append("원)");
         return stringBuilder.toString();
     }
 }

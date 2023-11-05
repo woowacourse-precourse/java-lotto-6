@@ -37,8 +37,10 @@ public enum Ranking {
     public String getCondition() {
         return condition;
     }
+
+    private interface RankingFunction {
+        boolean apply(int correct, boolean isBonus);
+    }
 }
 
-interface RankingFunction {
-    boolean apply(int correct, boolean isBonus);
-}
+

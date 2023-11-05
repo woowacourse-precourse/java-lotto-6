@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.util.validator.Constant.LOTTO_PRICE;
+
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.StringJoiner;
@@ -15,7 +17,7 @@ public class Result {
         double totalProfit = result.entrySet().stream()
                 .mapToDouble(r -> r.getKey().getPrize()*r.getValue())
                 .sum();
-        return (totalProfit / (amount * 1000)) * 100;
+        return (totalProfit / (amount * LOTTO_PRICE)) * 100;
     }
     @Override
     public String toString(){

@@ -21,17 +21,26 @@ public class LottoController {
     private Lottos lottos;
     private WinningNumbers winningNumbers;
 
-    public void buyLotto() {
+    public void run() {
+        buyLotto();
+        drawLotto();
+        winningStatistics();
+    }
+
+    private void buyLotto() {
         buyAmount = InputView.getBuyAmountFromInput();
         lottos = createLottosFromAmount(buyAmount);
         LottosDTO lottosDTO = lottos.toLottosDTO();
         OutputView.displayAllLottos(lottosDTO);
     }
 
-    public void drawLotto() {
+    private void drawLotto() {
         List<Integer> winningNumber = InputView.getWinningNumberFromInput();
         int bonusNumber = InputView.getBonusNumberFromInput();
         winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
+    }
+
+    private void winningStatistics() {
         LottoResultsDTO resultDTO = createLottoResultDTO();
         OutputView.displayAllLottosStatistics(resultDTO);
         OutputView.displayRateOfReturn(resultDTO);

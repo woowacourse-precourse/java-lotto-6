@@ -10,9 +10,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        validate(sortedNumbers);
+        this.numbers = sortedNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -21,12 +22,16 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    // 로또 내용 출력
     public void printLotto() {
         System.out.println(this.numbers);
     }
 
     public List<Integer> getLotto() {
         return this.numbers;
+    }
+
+    public void getSortedList() {
+        Collections.sort(this.numbers);
     }
 }

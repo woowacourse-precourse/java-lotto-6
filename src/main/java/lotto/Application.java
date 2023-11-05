@@ -4,10 +4,37 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
+    enum LOTTO_PRIZE{
+        FIRST(1, 2000000000),
+        SECOND(2, 30000000),
+        THIRD(3, 1500000),
+        FOURTH(4, 50000),
+        FIFTH(5, 5000),
+        NONE(0,0);
+
+        private final long prize;
+        private final int rank;
+
+        LOTTO_PRIZE(int rank, long prize) {
+            this. rank = rank;
+            this.prize = prize;
+        }
+
+        long getPrize() {
+            return this.prize;
+        }
+
+        int getRank() {
+            return this. rank;
+        }
+    }
     private static final int LOTTO_PRICE = 1000;
+
     public static void main(String[] args) {
         // 1. 구입 금액 입력
         System.out.println("구입금액을 입력해 주세요.");
@@ -80,5 +107,46 @@ public class Application {
         }catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 로또 번호 형식입니다.");
         }
+
+        // 5. 당첨 통계
+        List<LOTTO_PRIZE> lottoPrizes = new ArrayList<>();
+        int[] prizeLog = new int[6];
+        Arrays.fill(prizeLog, 0);
+        for(Lotto lotto:purchasedLotto) {
+            int matchCount = 0;
+            boolean bonusMatch = false;
+            for(int lottoNum: lotto.getLotto()) {
+                if(winNumbers.contains(lottoNum)) {
+                    matchCount += 1;
+                }
+                if(winNumbers.contains(bonus)) {
+                    bonusMatch = true;
+                }
+            }
+            // 등수 판별
+            LOTTO_PRIZE info = getPrizeRank(matchCount, bonusMatch);
+            lottoPrizes.add(info);
+            prizeLog[info.getRank()] += 1;
+        }
+        System.out.println(Arrays.toString(prizeLog));
+    }
+
+    private static LOTTO_PRIZE getPrizeRank(int matchCount, boolean bonusMatch) {
+        if(matchCount == 6) {
+            return LOTTO_PRIZE.FIRST;
+        }
+        if(matchCount == 5 && bonusMatch) {
+            return LOTTO_PRIZE.SECOND;
+        }
+        if(matchCount == 5) {
+            return LOTTO_PRIZE.THIRD;
+        }
+        if(matchCount == 4) {
+            return LOTTO_PRIZE.FOURTH;
+        }
+        if(matchCount == 3) {
+            return LOTTO_PRIZE.FIFTH;
+        }
+        return LOTTO_PRIZE.NONE;
     }
 }

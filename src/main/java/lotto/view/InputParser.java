@@ -16,4 +16,9 @@ public class InputParser {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    // 보너스번호 String > int
+    public int convertBonusNumber(String bonus) {
+        return Integer.parseInt(bonus);
+    }
 }

@@ -4,11 +4,23 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.dto.LottoDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class LottoTest {
+
+    @DisplayName("로또 Dto로 변환하는 테스트 : List<Integer>를 필드로 가지는 Lotto Dto로 변환한다.")
+    @Test
+    void toDto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        LottoDto lottoDto = lotto.toDto();
+
+        assertThat(lottoDto.getNumbers())
+                .containsExactly(1, 2, 3, 4, 5, 6);
+    }
 
     @DisplayName("보너스 번호 가지고 있는지 테스트 : 보너스 번호를 가지고있지 않다면 false를 반환한다.")
     @Test

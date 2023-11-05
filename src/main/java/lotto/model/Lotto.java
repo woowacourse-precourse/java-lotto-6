@@ -1,5 +1,8 @@
 package lotto.model;
 
+import lotto.dto.LottoDto;
+
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -39,5 +42,9 @@ public class Lotto {
 
     public boolean hasBonusNumber(BonusNumber bonusNumber) {
         return bonusNumber.existIn(numbers);
+    }
+
+    public LottoDto toDto() {
+        return new LottoDto(Collections.unmodifiableList(numbers));
     }
 }

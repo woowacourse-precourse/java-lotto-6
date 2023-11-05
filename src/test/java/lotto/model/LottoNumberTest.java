@@ -23,6 +23,14 @@ class LottoNumberTest {
     }
 
     @Test
+    void 번호가_같은_로또_번호는_캐싱된_객체이다() {
+        LottoNumber firstInstance = LottoNumber.from(1);
+        LottoNumber secondInstance = LottoNumber.from(1);
+
+        assertThat(firstInstance).isSameAs(secondInstance);
+    }
+
+    @Test
     void 번호가_같은_로또_번호는_같은_객체이다() {
         LottoNumber actualLottoNumber = LottoNumber.from(1);
         LottoNumber expectedLottoNumber = LottoNumber.from(1);

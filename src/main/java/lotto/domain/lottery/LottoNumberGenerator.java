@@ -2,6 +2,7 @@ package lotto.domain.lottery;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import static lotto.domain.constants.LottoConstraint.*;
 public class LottoNumberGenerator {
 
     public List<Integer> generateSortedLottoNumber() {
-        List<Integer> numbers = generateSingleLottoNumber();
+        List<Integer> numbers = new ArrayList<>(generateSingleLottoNumber());
         Collections.sort(numbers);
         return numbers;
     }

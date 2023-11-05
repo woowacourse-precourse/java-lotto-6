@@ -9,8 +9,7 @@ import lotto.constance.GameConst;
 import lotto.util.LottoGameException;
 
 public class Reader {
-    private static Pattern answerPattern =
-            Pattern.compile(String.format("^([\\d]*+%s){5}+[\\d]*$", GameConst.DELIMITER));
+    private static Pattern answerPattern = Pattern.compile(GameConst.FORMAT_INPUT_ANSWERS);
 
     public static int getMoney() {
         String inputMoney = Console.readLine();

@@ -30,7 +30,7 @@ public class Results {
         return Collections.unmodifiableList(
                 map.entrySet()
                         .stream()
-                        .sorted(Comparator.comparingInt(a -> a.getKey().ordinal()))
+                        .sorted((a, b) -> b.getKey().ordinal() - a.getKey().ordinal())
                         .toList()
         );
     }

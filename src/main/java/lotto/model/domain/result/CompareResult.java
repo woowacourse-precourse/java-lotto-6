@@ -3,11 +3,11 @@ package lotto.model.domain.result;
 import java.util.Objects;
 
 public class CompareResult{
-    private int collectNumber;
+    private int collectCount;
     private boolean isCollectBonus;
 
-    public CompareResult(int collectNumber, boolean isCollectBonus) {
-        this.collectNumber = collectNumber;
+    public CompareResult(int collectCount, boolean isCollectBonus) {
+        this.collectCount = collectCount;
         this.isCollectBonus = isCollectBonus;
     }
 
@@ -20,11 +20,11 @@ public class CompareResult{
             return false;
         }
         CompareResult that = (CompareResult) o;
-        return collectNumber == that.collectNumber && isCollectBonus == that.isCollectBonus;
+        return collectCount == that.collectCount && isCollectBonus == that.isCollectBonus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(collectNumber, isCollectBonus);
+        return Objects.hash(collectCount, isCollectBonus);
     }
 }

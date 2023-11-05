@@ -2,13 +2,14 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constance.GameConst;
 import lotto.model.domain.Lotto;
 import lotto.model.lottogenerator.LottoGenerator;
 import lotto.util.LottoGameException;
 
 public class LottoStore {
-    private static final int LOTTO_PRICE = 1000;
-    private static final int PURCHASE_MAX = 100_000;
+    private static final int LOTTO_PRICE = GameConst.LOTTO_PRICE;
+    private static final int PURCHASE_MAX = GameConst.LOTTO_PURCHASE_LIMIT;
 
     private final LottoGenerator lottoGenerator;
 

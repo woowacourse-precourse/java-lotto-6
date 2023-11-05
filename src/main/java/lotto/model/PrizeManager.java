@@ -6,6 +6,7 @@ import lotto.domain.Rank;
 
 public class PrizeManager {
     private List<Integer> prizes = new ArrayList<>();
+    private final int TICKET_PRICE = 1000;
 
     public void checkTicketAndAddPrizes(List<Integer> points) {
         for (int point : points) {
@@ -21,6 +22,23 @@ public class PrizeManager {
         return counts;
     }
 
+    public double getProfitRatio() {
+        double totalPrize = calculateTotalPrize();
+        double totalCost = TICKET_PRICE * prizes.size();
+        double ratio = totalPrize / totalCost * 100.0;
+        double value = Math.round(ratio * 100.0) / 100.0;
+
+        return value;
+    }
+
+    private int calculateTotalPrize() {
+        int total = 0;
+        for (int prize : prizes) {
+            total += prize;
+        }
+
+        return total;
+    }
 
     private void calculatePrizeCounts(List<Integer> counts) {
         List<Integer> indexes = getIndexOfAllPrizes();

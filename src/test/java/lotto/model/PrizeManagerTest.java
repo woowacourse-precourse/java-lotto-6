@@ -46,8 +46,28 @@ class PrizeManagerTest {
         // 기능 실행 및 실제 출력값 저장
         List<Integer> prizeCounts = prize.getPrizeCounts();
 
-        //일치 여부 확인
+        // 일치 여부 확인
         assertEquals(expectedPrizeCounts, prizeCounts);
+    }
+
+    @DisplayName("소수점 둘째 자리에서 반올림한 수익률을 구한다.")
+    @Test
+    void getProfitRatio() {
+        // 변수 생성
+        PrizeManager prize = new PrizeManager();
+
+        // 상금 생성
+        List<Integer> points = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0, 0, 3));
+        prize.checkTicketAndAddPrizes(points);
+
+        // 예상 출력값 저장
+        double expectedRatio = 62.5;
+
+        // 실제 출력값 저장
+        double ratio = prize.getProfitRatio();
+
+        // 일치 여부 확인
+        assertEquals(expectedRatio, ratio);
     }
 
 }

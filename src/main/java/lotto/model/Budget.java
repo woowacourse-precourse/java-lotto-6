@@ -26,4 +26,8 @@ public record Budget(int inputMoney) {
                 ExceptionMessage.INVALID_BUDGET_NOT_POSITIVE.getMessage());
         }
     }
+
+    public int calculateLottoCount(){
+        return inputMoney / Constants.LOTTO_PRICE;
+    }
 }

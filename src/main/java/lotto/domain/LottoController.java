@@ -1,15 +1,33 @@
 package lotto.domain;
-import lotto.domain.UserInput;
+
+import lotto.Lotto;
 import lotto.ui.OutputView;
+
+import java.util.List;
 
 public class LottoController {
     private int lottoAmount;
+    private List<Lotto> myLotto;
+
     public void startGame() {
-        UserInput userInput = new UserInput();
-        lottoAmount = userInput.setAmount();
-        // 로또들 생성
-        OutputView.printLotto(lottoAmount);
-        // 당첨 번호 및 보너스 번호 입력
+        setMyLotto();
+        printMyLotto();
         // 당첨 통계 출력
+    }
+
+    private void setMyLotto() {
+        UserInput userInput = new UserInput();
+        userInput.setAmount();
+        lottoAmount = userInput.getAmount();
+        LottoGenerator lottogenerator = new LottoGenerator(lottoAmount);
+        myLotto = lottogenerator.getMyLotto();
+    }
+
+    private void printMyLotto() {
+        OutputView.printLotto(myLotto);
+    }
+
+    private void setPrizeLotto() {
+
     }
 }

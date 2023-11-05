@@ -18,22 +18,24 @@ public class Play {
         check=true;
         while(check){
             input=readLine();
-            check=isNumeric(input);
+            try{
+                check=isNumeric(input);
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
         return Integer.parseInt(input);
     }
 
     public boolean isNumeric(String str) {
         if (str == null || str.isEmpty()) {
-            System.out.println("[ERROR] 숫자만 입력해 주세요.");
-            return true;
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
         }
 
         for (int i = 0; i < str.length(); i++) {
-
             if (!Character.isDigit(str.charAt(i))) {
-                System.out.println("[ERROR] 숫자만 입력해 주세요.");
-                return true;
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
             }
         }
 
@@ -47,16 +49,22 @@ public class Play {
         System.out.println("구입금액을 입력해 주세요.");
         check=true;
         while(check){
-            money=inputInt();
-            check=isThousand();
+            try{
+                money=inputInt();
+                check=true;
+                isThousand();
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 
-    public boolean isThousand(){
-        if(money%1000==0)
-            return false;
-        System.out.println("[ERROR] 천원단위로 입력해 주세요.");
-        return true;
+    public void isThousand(){
+        if(money%1000==0) {
+            check = false;
+        }
+        throw new IllegalArgumentException("[ERROR] 천원단위로 입력해 주세요.");
     }
     public void inputCount(){
         count=money/1000;
@@ -66,65 +74,81 @@ public class Play {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         check=true;
         while(check){
-            while(check) {
+            try{
                 bonusNumber = inputInt();
-                check = isValidBonus();
+                check=true;
+                isDuplicate();
+                isValidBonus();
             }
-            check=isDuplicate();
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 
-    public boolean isDuplicate(){
+    public void isDuplicate(){
         if(winNumber.contains(bonusNumber)){
-            System.out.println("[ERROR] 로또번호와 다른 번호를 입력해야 합니다.");
-            return true;
+            check=true;
+            throw new IllegalArgumentException("[ERROR] 로또번호와 다른 번호를 입력해야 합니다.");
         }
-        return false;
+        check=false;
     }
-
-    public boolean isValidBonus(){
-        if(bonusNumber<1 || bonusNumber>45){
-            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            return true;
+    public void isValidBonus(){
+        if(check){
+            return;
         }
-        return false;
+        if(bonusNumber<1 || bonusNumber>45){
+            check=true;
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        check=false;
     }
 
     public void inputWinNumber(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String carNameList;
-        String[] arrayString = new String[0];
+        String[] arrayString;
         check=true;
         while(check){
-            while(check){
+            try{
                 carNameList = inputStr();
                 arrayString = carNameList.split(",");
-                check=isCount(arrayString);
-            }
+                int[] num = Arrays.stream(arrayString).mapToInt(Integer::parseInt).toArray();
 
-            int[] num = Arrays.stream(arrayString).mapToInt(Integer::parseInt).toArray();
-            check=isValidLotto(num);
-            winNumber.clear();
-            for(int i : num){
-                winNumber.add(i);
+                isCount(arrayString);
+                isValidLotto(num);
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
         }
+
     }
-    public boolean isCount(String[] strings){
+
+    public void isCount(String[] strings){
         if(strings.length==6){
-            return false;
+            check=false;
+            return;
         }
-        System.out.println("[ERROR] 로또 번호는 6자리만 입력해야 합니다.");
-        return true;
+        throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리만 입력해야 합니다.");
     }
-    public boolean isValidLotto(int[] num){
+    public void isValidLotto(int[] num){
+        if(check){
+            return;
+        }
+
         for(int i : num){
             if(i<1 || i>45){
-                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                return true;
+                check=true;
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
-        return false;
+
+        winNumber.clear();
+        for(int i : num){
+            winNumber.add(i);
+        }
+        check=false;
     }
 
     public void playLotto(){

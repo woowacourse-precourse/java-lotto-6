@@ -1,10 +1,16 @@
 package view;
 
+import java.util.List;
+
 public class OutputView {
 
     public static void printMoneyResult(int money) {
-        System.out.println("\n" + money + "개를 구매했습니다.");
+        System.out.println("\n" + money/1000 + "개를 구매했습니다.");
         //랜덤함수 콜
+    }
+
+    public static void printRandomLotto(List<Integer> random_numbers) {
+        System.out.println(random_numbers);
     }
 
     public static void printLottoResult() {

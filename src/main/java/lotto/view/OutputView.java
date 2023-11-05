@@ -15,5 +15,9 @@ public class OutputView {
         System.out.print(RunMessage.INPUT_WINNING_MESSAGE.getMessage());
     }
 
+    public void printBonusNumberInputMessage(){
+        System.out.print(RunMessage.INPUT_BONUS_MESSAGE.getMessage());
+    }
+
     
 }

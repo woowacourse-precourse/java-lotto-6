@@ -5,12 +5,10 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.Collections;
 import java.lang.Math;
 import java.text.DecimalFormat;
 
 import lotto.Lotto;
-import net.bytebuddy.description.field.FieldDescription.InGenericShape;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 

@@ -23,11 +23,13 @@ public class LottoController {
     public void run() {
         purchaseLottos();
         inputWinningLotto();
+        resultLottoStatistics();
     }
 
     private void purchaseLottos() {
         outputView.printLottoPurchasePriceMessage();
         LottoPurchasePrice lottoPurchasePrice = inputManager.inputLottoPurchasePrice();
+
         lottoService.saveLottos(lottoPurchasePrice);
         outputView.printLottoResult(lottoService.getLottos());
     }
@@ -38,10 +40,14 @@ public class LottoController {
 
         outputView.printBonusNumber();
         BonusNumber bonusNumber = inputManager.inputBonusNumber(lotto);
-        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
 
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
         lottoService.saveWinningLotto(winningLotto);
     }
 
-
+    private void resultLottoStatistics() {
+        outputView.printWinningStatistics();
+        lottoService.calculateWinningStatistics();
+        outputView.printLottoStaticsResult(lottoService.getStatistics());
+    }
 }

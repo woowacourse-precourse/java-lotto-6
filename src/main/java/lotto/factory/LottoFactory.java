@@ -1,6 +1,7 @@
 package lotto.factory;
 
 import lotto.controller.LottoController;
+import lotto.domain.LottoStatistics;
 import lotto.domain.Lottos;
 import lotto.io.InputManager;
 import lotto.io.InputMapper;
@@ -37,10 +38,14 @@ public class LottoFactory {
 
 
     private LottoService lottoService() {
-        return new LottoService(lottos());
+        return new LottoService(lottos(), lottoStatistics());
     }
 
     private Lottos lottos() {
         return new Lottos();
+    }
+
+    private LottoStatistics lottoStatistics() {
+        return new LottoStatistics();
     }
 }

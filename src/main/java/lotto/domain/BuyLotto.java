@@ -2,12 +2,15 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class BuyLotto {
     private static boolean correctInputMoney;
+    private static int buyingQuantityLotto;
     public static void inputMoney(){
         correctInputMoney = false;
         //로또 구입 금액 입력
@@ -36,13 +39,20 @@ public class BuyLotto {
 
     public static void quantityLotto(int inputPurchaseMoney) {
         //발행한 로또 수량 출력
-        int buyingQuantityLotto = inputPurchaseMoney / 1000;
+        buyingQuantityLotto = inputPurchaseMoney / 1000;
         System.out.println();
         System.out.println(buyingQuantityLotto + "개를 구매했습니다.");
     }
 
-    public static void numberLotto(){
+    public static List<Integer> numberLotto(){
         //로또 번호(오름차순, 중복 X) 출력
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbersPurchased = new ArrayList<>();
+        for(int i = 0; i < buyingQuantityLotto; i++){
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            System.out.println(numbers);
+        }
+
+        return lottoNumbersPurchased;
     }
 }

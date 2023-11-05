@@ -24,8 +24,6 @@ class JudgmentTest {
 
     @BeforeEach
     void setUp() {
-        judgment = new Judgment();
-
         lotto_1 = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         lotto_2 = new Lotto(List.of(7, 6, 5, 4, 3, 2));
         lotto_3 = new Lotto(List.of(8, 7, 6, 5, 4, 3));
@@ -36,6 +34,8 @@ class JudgmentTest {
         lottoEnvelop.add(lotto_3);
 
         lottoNumResults = new LottoNumResults("1,2,3,4,5,6", "7");
+
+        judgment = new Judgment(lottoNumResults);
     }
 
     @DisplayName("로또와 추첨의 번호가 같은 수를 알려준다.")
@@ -47,13 +47,24 @@ class JudgmentTest {
         lottoNumResults = new LottoNumResults("1,2,3,4,5,6", "7");
 
         // when
-        Integer result = judgment.countSameWinNum(lotto_1, lottoNumResults);
+        Integer result = judgment.countSameWinNum(lotto_1);
 
         // than
         assertThat(result).isEqualTo(num7);
     }
 
-    @Test
-    void isSameBonusNum() {
+    @DisplayName("로또와 추첨의 번호가 같은 수를 알려준다.")
+    @ParameterizedTest
+    @CsvSource({"6,5,4,3,2,7", "7,6,5,4,3,2", "8,7,6,5,4,3"})
+    void isSameBonusNum(int num1, int num2, int num3, int num4, int num5, int num6) {
+        // given
+        lotto_1 = new Lotto(List.of(num1, num2, num3, num4, num5, num6));
+        lottoNumResults = new LottoNumResults("1,2,3,4,5,6", "7");
+
+        // when
+        Boolean result = judgment.isSameBonusNum(lotto_1);
+
+        // than
+        assertThat(result).isTrue();
     }
 }

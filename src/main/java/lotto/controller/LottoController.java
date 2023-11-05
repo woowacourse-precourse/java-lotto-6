@@ -25,6 +25,9 @@ public class LottoController {
         while (readWinningNum()){
         }
         OutputViews.endOfSection();
+
+        while (readBonusNum()) {
+        }
     }
 
     public boolean readPurchaseLotto() {
@@ -62,6 +65,19 @@ public class LottoController {
         }
         Lotto lotto = ReadWinningNum.makeWinningNumsInput(winningNumsInput);
         if (lotto == null) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean readBonusNum() {
+        String bonusNum = InputViews.readBonusNum();
+        if (ReadWinningNum.isBonusNumInt(bonusNum)) {
+            return true;
+        }
+
+        int bonusNumInput = Integer.parseInt(bonusNum);
+        if (ReadWinningNum.isBonusNumRange(bonusNumInput)) {
             return true;
         }
         return false;

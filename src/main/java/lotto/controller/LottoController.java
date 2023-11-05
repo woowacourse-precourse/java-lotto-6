@@ -1,8 +1,5 @@
 package lotto.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.NumberGenerator;
 import lotto.view.InputView;
@@ -13,7 +10,8 @@ public class LottoController {
 
     public void start() {
         Money money = getValidMoneyInput();
-        printTicketCountAndOutput(money);
+        int ticketCount = getTicketCount(money);
+        OutputView.printTicketCount(ticketCount);
     }
 
     private Money getValidMoneyInput() {
@@ -28,19 +26,8 @@ public class LottoController {
         return money;
     }
 
-    private void printTicketCountAndOutput(Money money) {
-        int ticketCount = money.calculateLottoCount();
-        OutputView.printTicketCount(ticketCount);
+    private int getTicketCount(Money money) {
+        int ticketCount = money.calculateTicketCount();
+        return ticketCount;
     }
-
-    private List<Lotto> createLotto(int money) {
-        int lottoCount = money / 1000;
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            Lotto lotto = new Lotto(numberGenerator.createRandomLottoNumbers());
-            lottos.add(lotto);
-        }
-        return lottos;
-    }
-
 }

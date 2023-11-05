@@ -21,7 +21,7 @@ public class LottoStart {
             System.out.println(lottoTickets.get(i));
         }
         Winner win = new Winner();
-        win.winNumber();
+        win.winNumber(lottoTickets);
     }
 
     private List<List<Integer>> generateLottoTickets(int numberOfTickets) {

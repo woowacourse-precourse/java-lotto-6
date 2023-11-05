@@ -4,10 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.Lotto;
 
 public class Winner {
-    public void winNumber() {
+    public void winNumber(List<List<Integer>> lottoTickets) {
+        System.out.println("");
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<String> inputNumbers = Arrays.asList(input.split(","));
@@ -17,8 +17,10 @@ public class Winner {
             int winningNum = Integer.parseInt(numberStr.trim());
             winningNumbers.add(winningNum);
         }
-        Lotto lotto = new Lotto(winningNumbers);
-        bonusNumber();
+        //Lotto lotto = new Lotto(winningNumbers);
+        int bonus = bonusNumber();
+        Rank rank = new Rank();
+        rank.myRanking(winningNumbers,bonus,lottoTickets);
     }
 
     private int bonusNumber() {

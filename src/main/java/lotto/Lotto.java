@@ -35,24 +35,9 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if((number < Constant.MIN.value) || (number > Constant.MAX.value))
+            if ((number < Constraint.MIN.getValue()) || (number > Constraint.MAX.getValue()))
                 throw new IllegalArgumentException(ExceptionMessage.LOTTO_RANGE.getMessage());
         }
     }
 
-    enum Constant{
-        MIN(1),
-        MAX(45),
-        ;
-
-        private final int value;
-
-        Constant(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
 }

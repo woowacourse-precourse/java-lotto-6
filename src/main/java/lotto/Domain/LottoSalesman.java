@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -9,7 +9,7 @@ public class LottoSalesman {
 
     public static int lottoCount(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 오백원, 백원, 십원은 받지 않습니다. ");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
         int lottonumber = money / 1000;
         return lottonumber;

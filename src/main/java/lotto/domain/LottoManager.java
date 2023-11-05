@@ -8,7 +8,7 @@ public class LottoManager {
 
     public void setNumberOfLottos(String cost) {
         int integerCost = parseIntCost(cost);
-        isZero(integerCost);
+        isSmallerthanZero(integerCost);
         calculateNumberOfLottos(integerCost);
         this.numberOfLottos = integerCost/1000;
     }
@@ -21,9 +21,9 @@ public class LottoManager {
         }
     }
 
-    private void isZero(int cost){
-        if (cost==0) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_ZERO.getMessage());
+    private void isSmallerthanZero(int cost){
+        if (cost<=0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_SMALLER_THAN_ZERO.getMessage());
         }
     }
 

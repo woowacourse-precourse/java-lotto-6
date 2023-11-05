@@ -2,8 +2,8 @@ package lotto.domain;
 
 import lotto.util.LottoNumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LottoSeller {
 
@@ -15,13 +15,16 @@ public class LottoSeller {
 
     public List<Lotto> sellLottos(Cash cash) {
         Integer lottoCounts = cash.calculateNumberOfLottos();
+        return createLottos(lottoCounts);
+    }
 
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoCounts; i++) {
-            List<Integer> lottoNumbers = lottoNumberGenerator.generateLottoNumbers();
-            Lotto lotto = new Lotto(lottoNumbers);
-            lottos.add(lotto);
-        }
-        return lottos;
+    private List<Lotto> createLottos(Integer lottoCounts) {
+        return Stream.generate(this::generateLotto)
+                .limit(lottoCounts)
+                .toList();
+    }
+
+    private Lotto generateLotto() {
+        return new Lotto(lottoNumberGenerator.generateLottoNumbers());
     }
 }

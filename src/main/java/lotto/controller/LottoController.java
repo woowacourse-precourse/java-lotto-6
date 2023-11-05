@@ -9,8 +9,8 @@ public class LottoController {
         getLottoMoney();
     }
 
-    public void getLottoMoney() {
+    private void getLottoMoney() {
         OutputView.printPurchaseAmount();
-        InputView.readPurchaseAmount();
+        int amount = InputView.readPurchaseAmount();
     }
 }

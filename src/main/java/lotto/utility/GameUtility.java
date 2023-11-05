@@ -82,7 +82,7 @@ public class GameUtility {
     }
 
     public static double calculateRateOfReturn(int winningPrize, int payment) {
-        return (double) winningPrize / (double) payment;
+        return 100 * (double) winningPrize / (double) payment;
     }
 
     public static int calculateWinningPrize(User user) {

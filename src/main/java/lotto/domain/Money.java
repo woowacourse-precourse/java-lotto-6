@@ -38,7 +38,7 @@ public class Money {
         return amount / divider.amount;
     }
 
-    public boolean greaterThan(final Money money) {
+    public boolean isGreaterThan(final Money money) {
         return amount > money.amount;
     }
 

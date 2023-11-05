@@ -4,10 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class MoneyInputView {
 
+    private static final int ZERO = 0;
+    private static final int ONE_ISSUE_LOTTO = 1000;
     private String input;
     private int money;
-    private static final int ONE_ISSUE_LOTTO = 1000;
-    private static final int ZERO = 0;
+    private int issueCount;
 
     public MoneyInputView() {
         validate();
@@ -19,6 +20,7 @@ public class MoneyInputView {
             nonZero();
             leastOneIssue();
             nonRemainder();
+            makeIssueLotto();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             validate();
@@ -44,5 +46,14 @@ public class MoneyInputView {
         if (ZERO < remainder) {
             throw new IllegalArgumentException("[ERROR] 나누어 떨어져야 합니다.");
         }
+    }
+
+
+    private void makeIssueLotto() {
+        issueCount = money / ONE_ISSUE_LOTTO;
+    }
+
+    public int getIssueCount() {
+        return issueCount;
     }
 }

@@ -4,12 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.domain.Money;
 
 public class InputView {
-    public int inputMoney() {
+    public Money inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
 
-        return Integer.parseInt(Console.readLine());
+        return new Money(Integer.parseInt(Console.readLine()));
     }
 
     public List<Integer> inputLottoWinningNumbers() {

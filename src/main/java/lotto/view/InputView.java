@@ -8,8 +8,8 @@ public class InputView {
     public static final String ENTER_BONUS_NUMBER_TEXT = "보너스 번호를 입력해 주세요.";
     private final InputValidator inputValidator;
 
-    public InputView() {
-        inputValidator = new InputValidator();
+    public InputView(InputValidator inputValidator) {
+        this.inputValidator = inputValidator;
     }
 
     public String scanBudget() {

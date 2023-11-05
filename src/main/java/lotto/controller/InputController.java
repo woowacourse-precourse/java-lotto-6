@@ -10,8 +10,8 @@ import lotto.view.InputView;
 public class InputController {
     private final InputView inputView;
 
-    public InputController() {
-        inputView = new InputView();
+    public InputController(InputView inputView) {
+        this.inputView = inputView;
     }
 
     public int askBudget() {

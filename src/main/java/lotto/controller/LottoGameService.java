@@ -6,14 +6,14 @@ import lotto.model.LottoShop;
 import lotto.model.Player;
 import lotto.model.WinningLotto;
 
-public class LottoGameController {
+public class LottoGameService {
     private final InputController inputController;
     private final OutputController outputController;
 
     private final LottoShop lottoShop;
     private final Player player;
 
-    public LottoGameController(InputController inputController, OutputController outputController) {
+    public LottoGameService(InputController inputController, OutputController outputController) {
         LottoMachine lottoMachine = new LottoMachine(new LottoRandomGenerator());
         lottoShop = new LottoShop(lottoMachine);
         player = new Player();

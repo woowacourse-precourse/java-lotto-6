@@ -10,8 +10,8 @@ import lotto.view.OutputView;
 public class OutputController {
     private final OutputView outputView;
 
-    public OutputController() {
-        outputView = new OutputView();
+    public OutputController(OutputView outputView) {
+        this.outputView = outputView;
     }
 
     public void printLottoTickets(List<Lotto> lottoTickets) {
@@ -33,7 +33,7 @@ public class OutputController {
         outputView.renderWinningStatisticsText();
         outputView.renderRateOfReturnText();
     }
-    
+
     public String creatLottoTicketsCountText(List<Lotto> lottoTickets) {
         return String.valueOf(lottoTickets.size());
     }

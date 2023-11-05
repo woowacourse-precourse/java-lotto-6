@@ -1,39 +1,75 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Pattern;
+import lotto.service.NumberValidator;
+import lotto.view.InputView;
 
 public class InputController {
 
     private static final String COMMA_DELIMITER = ",";
 
-    private static final String NUMBER = "^[0-9]*$";
+    private static final String NUMBER = "^[0-9]+$";
 
+    private final NumberValidator numberValidator;
+
+    private final InputView inputView;
+
+    public InputController() {
+        numberValidator = new NumberValidator();
+        inputView = new InputView();
+    }
 
     public int inputPurchasePrice() {
-        return Integer.parseInt(Console.readLine());
+        boolean isValidInput = false;
+        int price = 0;
+        while (!isValidInput) {
+            inputView.showPurchasePriceMessage();
+            try {
+                price = convertInputData(Console.readLine());
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return price;
+    }
+
+    private int convertInputData(String purchasePrice) {
+        numberValidator.validatePurchasePriceIsNumber(purchasePrice);
+        int price = Integer.parseInt(purchasePrice);
+        numberValidator.validatePurchasePriceUnit(price);
+        return price;
     }
 
     public List<Integer> inputLottoNumbers() {
-        String[] inputValue = Console.readLine().split(COMMA_DELIMITER);
-        List<Integer> winningNumber = new ArrayList<>();
-        for (String value : inputValue) {
-            winningNumber.add(Integer.parseInt(value));
-        }
-        return winningNumber;
+        List<String> winningNumber = Arrays.asList(Console.readLine().split(COMMA_DELIMITER));
+        return winningNumber.stream()
+                .map(Integer::parseInt)
+                .toList();
     }
 
-    public int inputBonusNumber() {
-        String bonusNumber = Console.readLine();
-        validateInputDataIsNumber(bonusNumber);
-        return Integer.parseInt(bonusNumber);
+    public int checkBonusNumber(List<Integer> winningNumbers) {
+        boolean isValidInput = false;
+        int bonusNumber = 0;
+        while (!isValidInput) {
+            inputView.showInputBonusNumberMessage();
+            try {
+                inputBonusNumber(winningNumbers);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
     }
 
-    public void validateInputDataIsNumber(String inputData) {
-        if (!Pattern.matches(NUMBER, inputData)) {
-            throw new IllegalArgumentException("로또 번호는 숫자만 입력 가능합니다.");
-        }
+    private int inputBonusNumber(List<Integer> winningNumbers) {
+        String inputData = Console.readLine();
+        numberValidator.validateInputDataIsNumber(inputData);
+        int bonusNumber = Integer.parseInt(inputData);
+        numberValidator.validateDuplicateNumber(bonusNumber, winningNumbers);
+        return bonusNumber;
     }
 }

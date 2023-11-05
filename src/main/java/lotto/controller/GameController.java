@@ -57,6 +57,6 @@ public class GameController {
                 System.out.println(e.getMessage());
             }
         }
-        return new WinningLotto(lotto, inputController.inputBonusNumber(lotto.getNumbers()));
+        return new WinningLotto(lotto, inputController.checkBonusNumber(lotto.getNumbers()));
     }
 }

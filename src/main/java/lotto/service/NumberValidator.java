@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.List;
 import java.util.regex.Pattern;
 import lotto.domain.LottoNumbers;
 
@@ -23,6 +24,17 @@ public class NumberValidator {
     public void validatePurchasePriceUnit(int price){
         if (price % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 입력해야 합니다.");
+        }
+    }
+    public void validateInputDataIsNumber(String inputData) {
+        if (!Pattern.matches(NUMBER, inputData)) {
+            throw new IllegalArgumentException("로또 번호는 숫자만 입력 가능합니다.");
+        }
+    }
+
+    public void validateDuplicateNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스번호가 당첨번호에 속해있습니다.");
         }
     }
 }

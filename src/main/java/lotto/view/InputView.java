@@ -1,10 +1,10 @@
 package lotto.view;
 
-import static lotto.exception.InputErrorCode.BLANK_INPUT;
-import static lotto.exception.InputErrorCode.NOT_INTEGER_INPUT;
+import static lotto.exception.LottoErrorCode.BLANK_INPUT;
+import static lotto.exception.LottoErrorCode.NOT_INTEGER_INPUT;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.InputException;
+import lotto.exception.LottoException;
 
 public class InputView {
 
@@ -20,7 +20,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (Exception e) {
-            throw new InputException(NOT_INTEGER_INPUT);
+            throw new LottoException(NOT_INTEGER_INPUT);
         }
     }
 
@@ -32,7 +32,7 @@ public class InputView {
 
     private static void validateNotBlank(final String input) {
         if (input == null || input.isEmpty()) {
-            throw new InputException(BLANK_INPUT);
+            throw new LottoException(BLANK_INPUT);
         }
     }
 

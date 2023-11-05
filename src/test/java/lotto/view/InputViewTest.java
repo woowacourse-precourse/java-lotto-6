@@ -1,13 +1,13 @@
 package lotto.view;
 
-import static lotto.exception.InputErrorCode.BLANK_INPUT;
-import static lotto.exception.InputErrorCode.NOT_INTEGER_INPUT;
+import static lotto.exception.LottoErrorCode.BLANK_INPUT;
+import static lotto.exception.LottoErrorCode.NOT_INTEGER_INPUT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
-import lotto.exception.InputException;
+import lotto.exception.LottoException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +34,7 @@ class InputViewTest {
         command(input);
 
         assertThatThrownBy(InputView::inputLottoPurchaseAmount)
-            .isInstanceOf(InputException.class)
+            .isInstanceOf(LottoException.class)
             .hasMessageContaining(NOT_INTEGER_INPUT.getMessage());
     }
 
@@ -44,7 +44,7 @@ class InputViewTest {
         command(input);
 
         assertThatThrownBy(InputView::inputLottoPurchaseAmount)
-            .isInstanceOf(InputException.class)
+            .isInstanceOf(LottoException.class)
             .hasMessageContaining(BLANK_INPUT.getMessage());
     }
 

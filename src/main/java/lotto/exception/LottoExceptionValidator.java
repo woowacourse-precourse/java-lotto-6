@@ -24,4 +24,14 @@ public class LottoExceptionValidator {
             throw exception;
         }
     }
+
+    public void rangeValidation(List<Integer> numbers) {
+        boolean isValid = numbers.stream()
+                .allMatch(number -> (1 <= number && number <= 45));
+
+        if (!isValid) {
+            IllegalArgumentException exception = new LottoException(ExceptionCode.INVALID_LOTTO_RANGE);
+            throw exception;
+        }
+    }
 }

@@ -32,6 +32,10 @@ public enum Rank {
         return this.matchingCount;
     }
 
+    public int getPrizeMoney() {
+        return this.prizeMoney;
+    }
+
     public boolean isHasBonusNumber() {
         return this.hasBonusNumber;
     }

@@ -132,5 +132,54 @@ public class Application {
         return 0;
     }
 
+    public void lottoWinningResult (List<Lotto> lottos ,List<Integer> winningNumber, int bonusNumber){
+        int totalWinningAmount = 0;
+        float totalReturnRate = 0;
+        int lottoQuantity = lottos.size();
+
+        int threeMatches = 0;
+        int fourMatches = 0;
+        int fiveMatches = 0;
+        int fiveBonusMatches = 0;
+        int sixMatches = 0;
+
+        for (int quantity = 0 ; quantity < lottoQuantity ; quantity ++){
+            int winningAmount = lottoWinningAmount(lottos.get(quantity).getNumbers(), winningNumber, bonusNumber);
+            totalWinningAmount += winningAmount;
+
+            if(winningAmount == 5000){
+                threeMatches++;
+            }
+
+            if(winningAmount == 50000){
+                fourMatches++;
+            }
+
+            if(winningAmount == 1500000){
+                fiveMatches++;
+            }
+
+            if(winningAmount == 30000000){
+                fiveBonusMatches++;
+            }
+
+            if(winningAmount == 200000000){
+                sixMatches++;
+            }
+
+        }
+
+        totalReturnRate = (totalWinningAmount - (lottoQuantity*1000))/totalWinningAmount*100;
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + threeMatches+"개");
+        System.out.println("4개 일치 (50,000원) - " + fourMatches+"개");
+        System.out.println("5개 일치 (1,500,000원) - " + fiveMatches+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveBonusMatches+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + sixMatches+"개");
+        System.out.println("총 수익률은 "+ totalReturnRate +"%입니다.");
+    }
+
 
 }

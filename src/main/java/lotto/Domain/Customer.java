@@ -32,7 +32,7 @@ public class Customer {
                 totalReward += (double)lottoWinningStatistics.get(Integer.toString(num.getMatchNumber())) * num.getReward();
             }
         }
-        double rateOfReturn = (totalReward - investMoney)/investMoney;
+        double rateOfReturn = totalReward/investMoney * 100;
         return Math.round(rateOfReturn * 10.0) / 10.0;
     }
 }

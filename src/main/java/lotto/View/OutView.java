@@ -29,4 +29,7 @@ public class OutView {
         }
     }
 
+    public static void printRateOfReturn(double result){
+        System.out.println("총 수익률은 "+ result + "%입니다.");
+    }
 }

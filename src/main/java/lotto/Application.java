@@ -25,5 +25,6 @@ public class Application {
 
         OutView.printLottoWinningStatistics(lottoWinningStatistics);
         double result = customer.calculateRateOfReturn(lottoWinningStatistics);
+        OutView.printRateOfReturn(result);
     }
 }

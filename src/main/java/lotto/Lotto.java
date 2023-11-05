@@ -1,6 +1,10 @@
 package lotto;
 
+import static lotto.Util.InputValidator.checkDistinctNumbers;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -17,6 +21,9 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ERROR + NOT_A_SIX_NUMBER_ERROR);
         }
+        checkDistinctNumbers(numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ")));
     }
 
     public String getNumbers() {

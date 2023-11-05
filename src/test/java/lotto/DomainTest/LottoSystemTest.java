@@ -22,4 +22,5 @@ public class LottoSystemTest {
 //        LottoSystem lottoSystem = new LottoSystem("1 ,2,  3,  4,5  ,6", "7");
 //        lottoSystem.print();
 //    }
+
 }

@@ -22,7 +22,7 @@ public class Lotto {
         }
         for (int i = 0; i < numbers.size(); i++) {
             if (numbers.get(i) < 1 || numbers.get(i) > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.")
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
             }
         }
     }

@@ -1,13 +1,18 @@
 package lotto.Controller;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.View.UIView;
+
 public class UIController {
 
     public static Integer makePurchasePrice() {
         int price = 0;
         while (true) {
             try {
+                UIView.printPurchasePriceInstruction();
+                price = getPurchasePrice();
 
-                // TODO : printPurchasePriceInstruction , getPurchasePrice , validatePurchasePrice
+                // TODO : validatePurchasePrice
 
                 break;
             } catch (NumberFormatException e) {
@@ -19,4 +24,8 @@ public class UIController {
         return price;
     }
 
+
+    private static int getPurchasePrice() {
+        return Integer.parseInt(Console.readLine());
+    }
 }

@@ -23,11 +23,11 @@ public class LottoController {
         LottoBuy lottoBuy = new LottoBuy(buyMoney);
         OutputView.outputLottoNum(lottoBuy.getQuantity());
 
-        generateLotto(lottoNum);
+        playLotto(lottoBuy.getQuantity());
     }
 
-    public void generateLotto(int lottoNum){
-        LottoSet lottoSet = new LottoSet(lottoService.generateLottoSet(lottoNum));
+    public void playLotto(int lottoQuantity){
+        LottoSet lottoSet = new LottoSet(lottoQuantity);
         OutputView.outputLottoSet(lottoSet);
 
         inputNumber(lottoSet);

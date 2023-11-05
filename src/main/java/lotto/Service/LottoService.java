@@ -8,30 +8,6 @@ import java.util.stream.Collectors;
 
 public class LottoService {
 
-    private static int MONEY_UNIT = 1000;
-    private static int LOTTO_MIN_NUMBER = 1;
-    private static int LOTTO_MAX_NUMBER = 45;
-    private static int LOTTO_ENTITY_SIZE = 6;
-
-    public static List<Integer> generateLotto(){
-        List<Integer> lotto = new ArrayList<>();
-        lotto = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_ENTITY_SIZE);
-        return sortLotto(lotto);
-    }
-
-    public static List<Integer> sortLotto(List<Integer> lotto){
-        return lotto.stream().sorted().collect(Collectors.toList());
-    }
-
-    public static List<Lotto> generateLottoSet(int lottoNum) {
-        List<Lotto> lottoSet = new ArrayList<>();
-        for(int i = 0; i < lottoNum; i++){
-            lottoSet.add(new Lotto(generateLotto()));
-        }
-
-        return lottoSet;
-    }
-
     public static List<Integer> generateNumber(String winningString){
         List<String> winningNumber = List.of(winningString.split(","));
         return winningNumber.stream()

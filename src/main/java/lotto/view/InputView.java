@@ -19,7 +19,6 @@ public class InputView {
         List<String> userInput = Arrays.stream(Console.readLine()
                 .split(SystemMessage.WINNING_NUMBER_SEPARATOR.getMessage())).toList();
         userInput.forEach(InputView::validate);
-        System.out.println();
         return userInput.stream()
                 .map(Integer::valueOf)
                 .toList();
@@ -28,7 +27,6 @@ public class InputView {
     public static int readInt() {
         String userInput = Console.readLine();
         validate(userInput);
-        System.out.println();
         return Integer.parseInt(userInput);
     }
 

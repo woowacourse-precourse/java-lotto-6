@@ -4,10 +4,10 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
-public class GetLottosDto {
+public class GetGeneratedLottosDto {
     private final Lottos lottos;
 
-    public GetLottosDto(final List<Lotto> lottos) {
+    public GetGeneratedLottosDto(final List<Lotto> lottos) {
         this.lottos = new Lottos(lottos);
     }
 

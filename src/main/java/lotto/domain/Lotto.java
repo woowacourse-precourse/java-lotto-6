@@ -21,5 +21,10 @@ public class Lotto {
         return numbers.size() != SIX;
     }
 
-    // TODO: 추가 기능 구현
+    private List<Integer> getLotto(){
+        return this.numbers;
+    }
+    public List<Integer> lotto(){
+        return getLotto();
+    }
 }

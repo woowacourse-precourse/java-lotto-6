@@ -19,20 +19,23 @@ import java.util.List;
 public class LottoGame {
     public void run() {
         Converter converter = new Converter();
-        // LottoTicketPurchase
         LottoTicketPurchase lottoTicketPurchase = new LottoTicketPurchase();
+        LottoTicketQuantity lottoTicketQuantity = new LottoTicketQuantity();
         LottoTicketDisplay lottoTicketDisplay = new LottoTicketDisplay();
         int purchaseAmount = lottoTicketPurchase.getPurchaseAmount(converter);
 
+        // LottoTicketPurchase
+
         System.out.println();
 
-        //LottoTicketDisplay
+        //LottoTicketQuantity
 
-        int purchaseQuantity = lottoTicketDisplay.getPurchaseQuantity(purchaseAmount);
+        int purchaseQuantity = lottoTicketQuantity.getPurchaseQuantity(purchaseAmount);
 
-        lottoTicketDisplay.printPurchaseQuantity(purchaseQuantity);
+        lottoTicketQuantity.printPurchaseQuantity(purchaseQuantity);
         List<List<Integer>> userLottoNumbers = lottoTicketDisplay.getUserLottoNumbers(purchaseQuantity);
 
+        //LottiTicketDisplay
         lottoTicketDisplay.printUserLottoNumbers(purchaseQuantity, userLottoNumbers);
 
         System.out.println();

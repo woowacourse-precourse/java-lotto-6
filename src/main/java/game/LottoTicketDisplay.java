@@ -9,13 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoTicketDisplay {
-    public int getPurchaseQuantity(int purchaseAmount) {
-        return purchaseAmount / PURCHASE_UNIT;
-    }
-
-    public void printPurchaseQuantity(int purchaseQuantity) {
-        System.out.println(purchaseQuantity + PURCHASE_QUANTITY_PRINT_MESSAGE);
-    }
 
     public void printUserLottoNumbers(int purchaseQuantity, List<List<Integer>> userLottoNumbers) {
         for (int index = 0; index < purchaseQuantity; index++) {

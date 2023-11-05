@@ -31,4 +31,14 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER_INPUT.getMessage());
         }
     }
+
+    public static int readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER_INPUT.getMessage());
+        }
+    }
 }

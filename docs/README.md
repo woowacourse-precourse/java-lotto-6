@@ -22,7 +22,7 @@
     - 정수만 입력 가능하다.
 - [x] 당첨 번호를 입력 받는다. `List<Integer> readWinningNumbers()`
     - 쉼표(,)를 기준으로 구분한다.
-- [ ] 보너스 번호를 입력 받는다. `int readBonusNumber()`
+- [x] 보너스 번호를 입력 받는다. `int readBonusNumber()`
     - 정수만 입력 가능하다.
 
 ### OutputView

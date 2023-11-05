@@ -40,4 +40,14 @@ class LottoTest {
         Lotto lotto = new Lotto(input);
         assertThat(lotto.getNumbers().size()).isEqualTo(6);
     }
+
+    @DisplayName("로또 비교 테스트")
+    @ParameterizedTest
+    @MethodSource("lotto.lotto.LottoCompareArgumentProvider#provideInput")
+    void compareTest(List<Integer> input1, List<Integer> input2, int result) {
+        Lotto lotto1 = new Lotto(input1);
+        Lotto lotto2 = new Lotto(input2);
+
+        assertThat(lotto1.compare(lotto2)).isEqualTo(result);
+    }
 }

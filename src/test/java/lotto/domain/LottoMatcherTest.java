@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMatcherTest {
@@ -129,5 +130,24 @@ public class LottoMatcherTest {
         //then
         Assertions.assertThat(allCorrectCount).isEqualTo(0);
     }
+
+    @DisplayName("로또 번호 하나와 보너스 번호를 포함한 당첨 번호 간 일치하는 번호의 갯수가 2개인지 검증한다.")
+    @Test
+    void calculateAllCorrectWinningWithBonusNumber() {
+        //given
+        Lotto userNumbers = new Lotto(List.of(1, 2, 3, 4, 7, 13));
+        Lotto winningNumbers = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        int bonusNumber = 13;
+
+        //when
+        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers, bonusNumber);
+        long allCorrectCount = lottoMatcher.getAllCorrectCount();
+        boolean correctBonus = lottoMatcher.isCorrectBonus();
+
+        //then
+        Assertions.assertThat(allCorrectCount).isEqualTo(2);
+        Assertions.assertThat(correctBonus).isEqualTo(true);
+    }
+
 
 }

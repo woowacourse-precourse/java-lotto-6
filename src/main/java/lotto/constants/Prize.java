@@ -27,7 +27,7 @@ public enum Prize {
 
     public static Optional<Prize> findByMatchAndBonus(final int match, final boolean hasBonus) {
         for (Prize prize : values()) {
-            if (prize.hasBonus.isSame(hasBonus)) {
+            if (!prize.hasBonus.isSame(hasBonus)) {
                 continue;
             }
             if (prize.match == match) {

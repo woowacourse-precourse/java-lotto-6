@@ -1,17 +1,15 @@
-package lotto.iomanangers;
+package lotto.core.iomanangers;
 
-import static lotto.enums.WinningChartEnum.FIVE_AND_BONUS_MATCH;
-import static lotto.enums.WinningChartEnum.FIVE_MATCH;
-import static lotto.enums.WinningChartEnum.FOUR_MATCH;
-import static lotto.enums.WinningChartEnum.SIX_MATCH;
-import static lotto.enums.WinningChartEnum.THREE_MATCH;
+import static lotto.core.enums.WinningChartEnum.FIVE_AND_BONUS_MATCH;
+import static lotto.core.enums.WinningChartEnum.FIVE_MATCH;
+import static lotto.core.enums.WinningChartEnum.FOUR_MATCH;
+import static lotto.core.enums.WinningChartEnum.SIX_MATCH;
+import static lotto.core.enums.WinningChartEnum.THREE_MATCH;
 
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.enums.WinningChartEnum;
-import lotto.lotto.LottoTicket;
-import lotto.lotto.ScratchedLottoTicket;
-import lotto.lotto.ScratchedLottoTicketList;
+import lotto.core.lotto.LottoTicket;
+import lotto.core.lotto.ScratchedLottoTicketList;
 
 public class OutputManager {
     public void printPurchaseAmountAsk(){

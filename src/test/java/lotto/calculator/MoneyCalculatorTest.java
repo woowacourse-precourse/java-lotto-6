@@ -1,15 +1,14 @@
 package lotto.calculator;
 
-import static lotto.enums.AmountEnum.MIN_VALUE;
-
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-import lotto.lotto.BonusNumber;
-import lotto.lotto.LottoTicket;
-import lotto.lotto.ScratchedLottoTicketList;
-import lotto.lotto.TicketScratcher;
-import lotto.lotto.WinningNumbers;
+import lotto.core.calculator.MoneyCalculator;
+import lotto.core.lotto.BonusNumber;
+import lotto.core.lotto.LottoTicket;
+import lotto.core.lotto.ScratchedLottoTicketList;
+import lotto.core.lotto.TicketScratcher;
+import lotto.core.lotto.WinningNumbers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

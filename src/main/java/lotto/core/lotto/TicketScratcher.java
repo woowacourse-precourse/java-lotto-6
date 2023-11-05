@@ -1,14 +1,13 @@
-package lotto.lotto;
-
-import static lotto.enums.AmountEnum.MIN_VALUE;
+package lotto.core.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.core.enums.AmountEnum;
 
 public class TicketScratcher {
     private static final Integer FIVE_MATCH = 5;
     public Integer convertAmountToQuantity(Integer amount){
-        return amount / MIN_VALUE.getAmount();
+        return amount / AmountEnum.MIN_VALUE.getAmount();
     }
 
     public ScratchedLottoTicket scratchTicket(WinningNumbers winningNumbers, BonusNumber bonusNumber, LottoTicket lottoTicket){

@@ -1,6 +1,6 @@
-package lotto.enums;
+package lotto.core.enums;
 
-import lotto.exception.IllegalNullTypeException;
+import lotto.core.exception.IllegalNullTypeException;
 
 public enum WinningChartEnum {
     SIX_MATCH(2_000_000_000, 6, false, "6개 일치 (2,000,000,000원)"),

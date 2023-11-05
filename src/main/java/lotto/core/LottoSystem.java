@@ -1,19 +1,19 @@
-package lotto;
+package lotto.core;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.calculator.MoneyCalculator;
-import lotto.exception.LottoApplicationException;
-import lotto.iomanangers.ExceptionOutputManager;
-import lotto.iomanangers.OutputManager;
-import lotto.lotto.BonusNumber;
-import lotto.lotto.LottoTicket;
-import lotto.lotto.ScratchedLottoTicketList;
-import lotto.lotto.TicketScratcher;
-import lotto.lotto.WinningNumbers;
-import lotto.numbergenerator.NumberGenerator;
+import lotto.core.calculator.MoneyCalculator;
+import lotto.core.exception.LottoApplicationException;
+import lotto.core.iomanangers.ExceptionOutputManager;
+import lotto.core.iomanangers.OutputManager;
+import lotto.core.lotto.BonusNumber;
+import lotto.core.lotto.LottoTicket;
+import lotto.core.lotto.ScratchedLottoTicketList;
+import lotto.core.lotto.TicketScratcher;
+import lotto.core.lotto.WinningNumbers;
+import lotto.core.numbergenerator.NumberGenerator;
 
 public class LottoSystem {
     private final MoneyCalculator moneyCalculator;

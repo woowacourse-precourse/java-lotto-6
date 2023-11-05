@@ -1,6 +1,6 @@
-package lotto.lotto;
+package lotto.core.lotto;
 
-import lotto.enums.WinningChartEnum;
+import lotto.core.enums.WinningChartEnum;
 
 public class ScratchedLottoTicket {
     private final LottoTicket lottoTicket;

@@ -1,8 +1,9 @@
 package lotto.iomanangers;
 
 import java.util.List;
-import lotto.lotto.LottoTicket;
-import lotto.numbergenerator.NumberGenerator;
+import lotto.core.iomanangers.OutputManager;
+import lotto.core.lotto.LottoTicket;
+import lotto.core.numbergenerator.NumberGenerator;
 import org.junit.jupiter.api.Test;
 
 class OutputManagerTest {

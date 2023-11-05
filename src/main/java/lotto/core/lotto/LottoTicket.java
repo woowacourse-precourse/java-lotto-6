@@ -1,15 +1,15 @@
-package lotto.lotto;
+package lotto.core.lotto;
 
-import static lotto.enums.LottoNumberEnum.END_VALUE;
-import static lotto.enums.LottoNumberEnum.START_VALUE;
+import static lotto.core.enums.LottoNumberEnum.END_VALUE;
+import static lotto.core.enums.LottoNumberEnum.START_VALUE;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exception.IllegalDuplicateException;
-import lotto.exception.IllegalLottoRangeException;
-import lotto.exception.IllegalLottoSizeException;
+import lotto.core.exception.IllegalDuplicateException;
+import lotto.core.exception.IllegalLottoRangeException;
+import lotto.core.exception.IllegalLottoSizeException;
 
 public record LottoTicket(List<Integer> numbers) {
     public LottoTicket {

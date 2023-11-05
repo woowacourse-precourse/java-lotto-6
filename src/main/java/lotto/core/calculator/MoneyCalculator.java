@@ -1,14 +1,13 @@
-package lotto.calculator;
+package lotto.core.calculator;
 
-import static lotto.enums.AmountEnum.MIN_VALUE;
+import static lotto.core.enums.AmountEnum.MIN_VALUE;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
-import lotto.enums.AmountEnum;
-import lotto.enums.WinningChartEnum;
-import lotto.lotto.ScratchedLottoTicket;
-import lotto.lotto.ScratchedLottoTicketList;
+import lotto.core.enums.WinningChartEnum;
+import lotto.core.lotto.ScratchedLottoTicket;
+import lotto.core.lotto.ScratchedLottoTicketList;
 
 public class MoneyCalculator{
     private Integer totalMoney;

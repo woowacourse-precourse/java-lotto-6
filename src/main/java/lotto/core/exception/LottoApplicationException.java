@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.core.exception;
 
 import java.util.NoSuchElementException;
 

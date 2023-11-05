@@ -1,4 +1,4 @@
-package lotto.enums;
+package lotto.core.enums;
 
 public enum LottoNumberEnum {
     START_VALUE(1),

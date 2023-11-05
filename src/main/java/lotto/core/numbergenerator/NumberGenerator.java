@@ -1,18 +1,17 @@
-package lotto.numbergenerator;
+package lotto.core.numbergenerator;
 
-import static lotto.enums.AmountEnum.MIN_VALUE;
-import static lotto.enums.AmountEnum.ZERO_VALUE;
-import static lotto.enums.LottoNumberEnum.END_VALUE;
-import static lotto.enums.LottoNumberEnum.SIZE;
-import static lotto.enums.LottoNumberEnum.START_VALUE;
+import static lotto.core.enums.LottoNumberEnum.END_VALUE;
+import static lotto.core.enums.LottoNumberEnum.SIZE;
+import static lotto.core.enums.LottoNumberEnum.START_VALUE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.exception.IllegalAmountException;
-import lotto.exception.IllegalNullTypeException;
-import lotto.exception.IllegalNumberTypeException;
-import lotto.exception.IllegalOverValueException;
+import lotto.core.enums.AmountEnum;
+import lotto.core.exception.IllegalAmountException;
+import lotto.core.exception.IllegalOverValueException;
+import lotto.core.exception.IllegalNullTypeException;
+import lotto.core.exception.IllegalNumberTypeException;
 
 public class NumberGenerator {
     private final static String DELIMITER = ",";
@@ -53,7 +52,7 @@ public class NumberGenerator {
         return amount;
     }
     private Integer createAmountToQuantity(Integer amount){
-        return amount/MIN_VALUE.getAmount();
+        return amount/ AmountEnum.MIN_VALUE.getAmount();
     }
 
     private void commonValidate(String unprocessedNumbers) {
@@ -69,7 +68,7 @@ public class NumberGenerator {
 
     private void validateMinimumAmount(Integer amount) {
 
-        if (amount % MIN_VALUE.getAmount() != ZERO_VALUE.getAmount()) {
+        if (amount % AmountEnum.MIN_VALUE.getAmount() != AmountEnum.ZERO_VALUE.getAmount()) {
             throw new IllegalAmountException();
         }
     }

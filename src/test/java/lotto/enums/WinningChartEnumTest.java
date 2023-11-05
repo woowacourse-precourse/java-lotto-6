@@ -1,9 +1,10 @@
 package lotto.enums;
 
-import static lotto.enums.WinningChartEnum.FIVE_MATCH;
-import static lotto.enums.WinningChartEnum.FIVE_AND_BONUS_MATCH;
-import static lotto.enums.WinningChartEnum.THREE_MATCH;
+import static lotto.core.enums.WinningChartEnum.FIVE_MATCH;
+import static lotto.core.enums.WinningChartEnum.FIVE_AND_BONUS_MATCH;
+import static lotto.core.enums.WinningChartEnum.THREE_MATCH;
 
+import lotto.core.enums.WinningChartEnum;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

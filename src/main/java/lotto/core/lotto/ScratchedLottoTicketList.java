@@ -1,10 +1,9 @@
-package lotto.lotto;
+package lotto.core.lotto;
 
-import static lotto.enums.WinningChartEnum.*;
+import static lotto.core.enums.WinningChartEnum.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.enums.WinningChartEnum;
 
 public class ScratchedLottoTicketList {
     private final List<ScratchedLottoTicket> scratchedLottoTickets;

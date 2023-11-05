@@ -1,17 +1,18 @@
 package lotto.numbergenerator;
 
-import static lotto.enums.AmountEnum.MIN_VALUE;
-import static lotto.enums.LottoNumberEnum.*;
-import static lotto.enums.LottoNumberEnum.END_VALUE;
-import static lotto.enums.LottoNumberEnum.START_VALUE;
+import static lotto.core.enums.AmountEnum.MIN_VALUE;
+import static lotto.core.enums.LottoNumberEnum.*;
+import static lotto.core.enums.LottoNumberEnum.END_VALUE;
+import static lotto.core.enums.LottoNumberEnum.START_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.exception.IllegalAmountException;
-import lotto.exception.IllegalOverValueException;
-import lotto.exception.IllegalNullTypeException;
-import lotto.exception.IllegalNumberTypeException;
+import lotto.core.exception.IllegalAmountException;
+import lotto.core.exception.IllegalOverValueException;
+import lotto.core.exception.IllegalNullTypeException;
+import lotto.core.exception.IllegalNumberTypeException;
+import lotto.core.numbergenerator.NumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

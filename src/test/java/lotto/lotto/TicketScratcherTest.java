@@ -1,15 +1,20 @@
 package lotto.lotto;
 
-import static lotto.enums.AmountEnum.MIN_VALUE;
-import static lotto.enums.AmountEnum.ZERO_VALUE;
-import static lotto.enums.WinningChartEnum.FIVE_AND_BONUS_MATCH;
-import static lotto.enums.WinningChartEnum.FIVE_MATCH;
-import static lotto.enums.WinningChartEnum.FOUR_MATCH;
+import static lotto.core.enums.AmountEnum.MIN_VALUE;
+import static lotto.core.enums.AmountEnum.ZERO_VALUE;
+import static lotto.core.enums.WinningChartEnum.FIVE_AND_BONUS_MATCH;
+import static lotto.core.enums.WinningChartEnum.FIVE_MATCH;
+import static lotto.core.enums.WinningChartEnum.FOUR_MATCH;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
-import org.assertj.core.api.Assertions;
+import lotto.core.lotto.BonusNumber;
+import lotto.core.lotto.LottoTicket;
+import lotto.core.lotto.ScratchedLottoTicket;
+import lotto.core.lotto.ScratchedLottoTicketList;
+import lotto.core.lotto.TicketScratcher;
+import lotto.core.lotto.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

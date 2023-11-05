@@ -1,4 +1,4 @@
-package lotto.enums;
+package lotto.core.enums;
 
 public enum AmountEnum {
     MIN_VALUE(1000,"1,000"),

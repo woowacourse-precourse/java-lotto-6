@@ -2,7 +2,7 @@ package lotto.lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
-import lotto.lotto.LottoTicket;
+import lotto.core.lotto.LottoTicket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

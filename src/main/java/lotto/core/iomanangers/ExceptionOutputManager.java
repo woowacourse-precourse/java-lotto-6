@@ -1,6 +1,6 @@
-package lotto.iomanangers;
+package lotto.core.iomanangers;
 
-import lotto.exception.LottoApplicationException;
+import lotto.core.exception.LottoApplicationException;
 
 public class ExceptionOutputManager {
     public void printException(LottoApplicationException e) {

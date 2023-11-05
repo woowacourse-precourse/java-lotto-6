@@ -3,15 +3,14 @@ package lotto.model;
 import static lotto.constant.ErrorMessage.DUPLICATED_LOTTO_NUMBERS;
 import static lotto.constant.ErrorMessage.INVALID_LOTTO_NUMBERS_AMOUNT;
 import static lotto.constant.ErrorMessage.NOT_IN_RANGE_LOTTO_NUMBER;
+import static lotto.constant.LottoGameConfig.AMOUNT_OF_NUMBERS;
+import static lotto.constant.LottoGameConfig.MAX_LOTTO_NUMBER;
+import static lotto.constant.LottoGameConfig.MIN_LOTTO_NUMBER;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int AMOUNT_OF_NUMBERS = 6;
 
     private final List<Integer> numbers;
 
@@ -19,18 +18,12 @@ public class Lotto {
         validateNumbersDuplicated(numbers);
         validateNumbersAmount(numbers);
         validateIsNumberInCorrectRange(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
     public static Lotto from(List<Integer> numbers) {
         return new Lotto(numbers);
-    }
-
-    public static Lotto generateRandomLottoNumbers() {
-        List<Integer> randomNumbers =
-                Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, AMOUNT_OF_NUMBERS);
-        Collections.sort(randomNumbers);
-        return new Lotto(randomNumbers);
     }
 
     private void validateNumbersDuplicated(List<Integer> numbers) {
@@ -43,7 +36,7 @@ public class Lotto {
     }
 
     private void validateNumbersAmount(List<Integer> numbers) {
-        if (numbers.size() != AMOUNT_OF_NUMBERS) {
+        if (numbers.size() != AMOUNT_OF_NUMBERS.getValue()) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_AMOUNT.toString());
         }
     }
@@ -57,7 +50,8 @@ public class Lotto {
     }
 
     private boolean isNumberInCorrectRange(int lottoNumber) {
-        return lottoNumber < MIN_LOTTO_NUMBER || lottoNumber > MAX_LOTTO_NUMBER;
+        return lottoNumber < MIN_LOTTO_NUMBER.getValue()
+                || lottoNumber > MAX_LOTTO_NUMBER.getValue();
     }
 
     @Override

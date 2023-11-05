@@ -74,4 +74,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
     }
+
+    @DisplayName("로또 번호에 1에서 45 사이의 숫자보다 작은 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByNumberRange2() {
+        // given
+        List<Integer> givenNumbers = List.of(1, 2, 3, 4, 5, 0);
+        // when
+
+        // then
+        assertThatThrownBy(() -> new Lotto(List.copyOf(givenNumbers)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
+    }
 }

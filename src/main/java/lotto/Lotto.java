@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.domain.LotteryResult;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,9 +20,28 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+    public int matchCount(Lotto other) {
+        Long count = numbers.stream()
+            .filter(other::contains)
+            .count();
+
+        return count.intValue();
+    }
+
+    public int matchCount(int number) {
+        Long count = numbers.stream()
+            .filter(num -> num == number)
+            .count();
+
+        return count.intValue();
+    }
+
+
+    private LotteryResult makeLotteryResult(int matchCount, int bonusCount) {
+        return LotteryResult.getWinnerMoneyOf(matchCount, bonusCount);
     }
 }

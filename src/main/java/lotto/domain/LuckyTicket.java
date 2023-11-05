@@ -30,13 +30,11 @@ public class LuckyTicket {
 
     public LotteryResultCollection matchWith(final User user) {
         List<Lotto> userTickets = user.getTickets();
-        List<Integer> luckyNumbers = lotto.getNumbers();
         List<LotteryResult> results = new ArrayList<>();
 
         for (Lotto userTicket : userTickets) {
-            List<Integer> numbers = userTicket.getNumbers();
-            int numberCount = matchCountWithStream(luckyNumbers, numbers);
-            int bonusCount = Collections.frequency(luckyNumbers, bonusNumber);
+            int numberCount = lotto.matchCount(userTicket);
+            int bonusCount = lotto.matchCount(bonusNumber);
             results.add(makeLotteryResult(numberCount, bonusCount));
         }
 

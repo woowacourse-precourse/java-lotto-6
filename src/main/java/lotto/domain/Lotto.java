@@ -52,4 +52,8 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
         }
     }
+
+    public void sort() {
+        Collections.sort(numbers);
+    }
 }

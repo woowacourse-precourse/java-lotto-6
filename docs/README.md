@@ -85,3 +85,6 @@
 - https://velog.io/@backfox/setter-%EC%93%B0%EC%A7%80-%EB%A7%90%EB%9D%BC%EA%B3%A0%EB%A7%8C-%ED%95%98%EA%B3%A0-%EA%B0%80%EB%B2%84%EB%A6%AC%EB%A9%B4-%EC%96%B4%EB%96%A1%ED%95%B4%EC%9A%94
 - https://velog.io/@gudnr1451/%ED%85%8C%EC%BD%94%ED%86%A1-%EC%A0%95%EB%A6%AC-MVC-%ED%8C%A8%ED%84%B4
 - https://tecoble.techcourse.co.kr/post/2020-04-26-Method-Naming/
+- https://velog.io/@alsgus92/%EC%9D%BC%EA%B8%89-%EC%BB%AC%EB%A0%89%EC%85%98%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%B4%EC%95%BC-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0
+- https://velog.io/@kanamycine/Java-%EC%9B%90%EC%8B%9C%EA%B0%92-%ED%8F%AC%EC%9E%A5
+- https://kimmayer.tistory.com/entry/1%EC%A3%BC%EC%B0%A8-%EB%AF%B8%EC%85%98-%EB%A1%9C%EB%98%90-%EC%9B%90%EC%8B%9C-%EA%B0%92-%ED%8F%AC%EC%9E%A5

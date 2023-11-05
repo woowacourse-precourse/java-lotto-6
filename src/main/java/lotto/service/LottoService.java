@@ -1,9 +1,9 @@
 package lotto.service;
 
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Payment;
 import lotto.model.User;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,11 +14,11 @@ public class LottoService {
     private Payment payment;
     private List<List<Integer>> userLottoTickets;
 
-    public void initLottoAmount(String inputAmount) {
+    public void purchaseLottoTickets(String inputAmount) {
         payment = new Payment(inputAmount);
     }
 
-    public void initLottoNumber(String inputLotto) {
+    public void createWinningLottoNumber(String inputLotto) {
 
         List<Integer> lottoNumbers = stringToList(inputLotto);
         lotto = new Lotto(lottoNumbers);
@@ -36,5 +36,9 @@ public class LottoService {
         User user = new User(ticketCount);
         userLottoTickets = new ArrayList<>(user.getLottoCount());
         return userLottoTickets;
+    }
+
+    public void createBonusNumber(String inputBonus) {
+        new Bonus(lotto, inputBonus);
     }
 }

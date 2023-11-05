@@ -14,6 +14,7 @@ public class LottoController {
         inputLottoTickets();
         createLottoTickets();
         inputWinnerLottoTicket();
+        inputBonusNumber();
     }
 
     public void inputLottoTickets() {
@@ -23,7 +24,7 @@ public class LottoController {
                 System.out.println("구매 금액을 입력하세요.");
                 String inputAmount = Console.readLine();
 
-                this.lottoService.initLottoAmount(inputAmount);
+                this.lottoService.purchaseLottoTickets(inputAmount);
 
                 exceptionCheck = false;
 
@@ -40,7 +41,7 @@ public class LottoController {
                 System.out.println("당첨 번호를 입력하세요.");
                 String inputLotto = Console.readLine();
 
-                this.lottoService.initLottoNumber(inputLotto);
+                this.lottoService.createWinningLottoNumber(inputLotto);
                 exceptionCheck = false;
 
             }catch (IllegalArgumentException e) {
@@ -60,5 +61,21 @@ public class LottoController {
 
     public void printTicketsCount(int ticketsCount) {
         System.out.println(ticketsCount + "개를 구매했습니다.");
+    }
+
+    public void inputBonusNumber() {
+        boolean exceptionCheck = true;
+        while (exceptionCheck) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String inputBonus = Console.readLine();
+
+                this.lottoService.createBonusNumber(inputBonus);
+                exceptionCheck = false;
+
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

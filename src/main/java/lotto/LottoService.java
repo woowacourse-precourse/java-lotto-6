@@ -14,6 +14,7 @@ public class LottoService {
      */
     public List<Integer> generateLottoNumbers() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lotto);
         return lotto;
     }
 

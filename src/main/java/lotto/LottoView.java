@@ -7,7 +7,14 @@ import java.util.Locale;
 public class LottoView {
     public int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요");
-        return Integer.parseInt(Console.readLine());
+        String str = Console.readLine();
+        int amount = 0;
+        try {
+            amount =  Integer.parseInt(str);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + str + "는 숫자가 아닙니다.");
+        }
+        return amount;
     }
 
     public void printPurchasedLottoNumbers(Lotto[] lottos) {

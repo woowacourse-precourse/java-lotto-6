@@ -33,7 +33,7 @@ public class Domain {
 
     public void checkPriceUnit(int price) {
         if(price % 1000 != 0) {
-            new IllegalArgumentException();
+            throw new IllegalArgumentException("구입 금액이 1,000 단위가 아닐 때 예외가 발생해야 합니다.");
         }
     }
 }

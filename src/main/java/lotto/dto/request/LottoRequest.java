@@ -2,15 +2,17 @@ package lotto.dto.request;
 
 import static lotto.common.ErrorMessages.INVALID_WINNING_NUMBER_MESSAGE;
 import static lotto.common.ErrorMessages.NULL_OR_EMPTY;
+import static org.junit.platform.commons.util.StringUtils.isBlank;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.exception.InputValidationException;
-import org.junit.platform.commons.util.StringUtils;
 
 public class LottoRequest {
     public static final String DELIMITER = ",";
+    public static final String LOTTO_NUMBER_PATTERN = "^[0-9,]+$";
+
     private List<Integer> lotto;
 
     public LottoRequest(String lottoNumbersString) {
@@ -19,11 +21,11 @@ public class LottoRequest {
     }
 
     private void validateLottoNumberString(String lottoNumbersString) {
-        if (StringUtils.isBlank(lottoNumbersString)) {
+        if (isBlank(lottoNumbersString)) {
             throw new InputValidationException(NULL_OR_EMPTY);
         }
 
-        if (!lottoNumbersString.matches("^[0-9,]+$")) {
+        if (!lottoNumbersString.matches(LOTTO_NUMBER_PATTERN)) {
             throw new InputValidationException(INVALID_WINNING_NUMBER_MESSAGE);
         }
     }
@@ -36,5 +38,9 @@ public class LottoRequest {
         return Arrays.stream(lottoNumbersString.split(DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public boolean contains(int lottoNumber) {
+        return lotto.contains(lottoNumber);
     }
 }

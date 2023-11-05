@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.function.Function;
 import lotto.common.InputOutputMessages;
 import lotto.common.LottoRank;
-import lotto.dto.request.LottoMoneyRequest;
 import lotto.dto.request.LottoNumberRequest;
+import lotto.dto.request.LottoPurchaseCostRequest;
 import lotto.dto.request.LottoRequest;
 import lotto.dto.response.LottoBuyResponse;
 import lotto.dto.response.LottoGameResultResponse;
@@ -25,8 +25,8 @@ import lotto.dto.response.LottoResponse;
 import lotto.exception.InputValidationException;
 
 public class InputOutputView {
-    public LottoMoneyRequest inputMoney() {
-        return getUserInput(INPUT_MONEY, LottoMoneyRequest::new);
+    public LottoPurchaseCostRequest inputMoney() {
+        return getUserInput(INPUT_MONEY, LottoPurchaseCostRequest::new);
     }
 
     public LottoRequest inputWinningNumbers() {
@@ -37,12 +37,16 @@ public class InputOutputView {
         return getUserInput(INPUT_BONUS_NUMBER, input -> {
             LottoNumberRequest request = new LottoNumberRequest(input);
 
-            if (winningNumbers.getLotto().contains(request.getLottoNumber())) {
+            if (isBonusNumberIncluded(winningNumbers, request)) {
                 throw new InputValidationException(BONUS_DUPLICATE_MESSAGE);
             }
 
             return request;
         });
+    }
+
+    private boolean isBonusNumberIncluded(LottoRequest winningNumbers, LottoNumberRequest request) {
+        return winningNumbers.contains(request.getLottoNumber());
     }
 
     public <T> T getUserInput(InputOutputMessages inputMessage, Function<String, T> parser) {
@@ -72,10 +76,8 @@ public class InputOutputView {
         System.out.println(OUTPUT_DASHES.getMessage());
         Arrays.stream(LottoRank.getSortedValues())
                 .filter(rank -> rank != LottoRank.NO_RANK)
-                .forEach(rank -> {
-                    System.out.printf(OUTPUT_RANK_RESULT_FORMAT.getMessage(), rank.getDescription(),
-                            gameResults.getOrDefault(rank, 0));
-                });
+                .forEach(rank -> System.out.printf(OUTPUT_RANK_RESULT_FORMAT.getMessage(), rank.getDescription(),
+                        gameResults.getOrDefault(rank, 0)));
         System.out.printf(OUTPUT_TOTAL_PROFIT_RATE_FORMAT.getMessage(), response.getProfitRate());
     }
 }

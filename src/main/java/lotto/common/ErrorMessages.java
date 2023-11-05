@@ -7,7 +7,8 @@ public enum ErrorMessages {
     DUPLICATE_NUMBERS_MESSAGE("숫자는 중복되면 안 됩니다."),
     INVALID_NUMBERS_COUNT_MESSAGE("숫자는 6개여야 합니다."),
     BONUS_DUPLICATE_MESSAGE("보너스 번호는 당첨 번호와 중복될 수 없습니다."),
-    INVALID_WINNING_NUMBER_MESSAGE("당첨 번호에는 숫자와 쉼표(,)만 입력해야 합니다.");
+    INVALID_WINNING_NUMBER_MESSAGE("당첨 번호에는 숫자와 쉼표(,)만 입력해야 합니다."),
+    LOTTO_NUMBER_OUT_OF_RANGE("로또 숫자 범위를 벗어났습니다");
 
     private final String message;
 

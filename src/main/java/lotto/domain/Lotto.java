@@ -12,7 +12,10 @@ public class Lotto {
     private final List<LottoNumber> lottoNumbers;
 
     public static Lotto createLotto(List<Integer> numbers) {
-        return new Lotto(numbers.stream().map(LottoNumber::new).collect(Collectors.toList()));
+        return new Lotto(numbers.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList())
+        );
     }
 
     public Lotto(List<LottoNumber> lottoNumbers) {
@@ -21,13 +24,21 @@ public class Lotto {
     }
 
     private void validateNumbers(List<LottoNumber> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
+        if (!isLottoSize(lottoNumbers)) {
             throw new InputValidationException(INVALID_NUMBERS_COUNT_MESSAGE);
         }
 
-        if (lottoNumbers.stream().distinct().count() != lottoNumbers.size()) {
+        if (hasDuplicateNumbers(lottoNumbers)) {
             throw new InputValidationException(DUPLICATE_NUMBERS_MESSAGE);
         }
+    }
+
+    private boolean isLottoSize(List<LottoNumber> lottoNumbers) {
+        return lottoNumbers.size() != 6;
+    }
+
+    private boolean hasDuplicateNumbers(List<LottoNumber> lottoNumbers) {
+        return lottoNumbers.stream().distinct().count() != lottoNumbers.size();
     }
 
     public List<LottoNumber> getNumbers() {

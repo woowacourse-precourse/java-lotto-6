@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.dto.request.LottoMoneyRequest;
+import lotto.dto.request.LottoPurchaseCostRequest;
 import lotto.dto.request.LottoNumberRequest;
 import lotto.dto.request.LottoRequest;
 import lotto.dto.response.LottoBuyResponse;
@@ -18,8 +18,8 @@ public class LottoGame {
     }
 
     public void start() {
-        LottoMoneyRequest lottoMoneyRequest = inputOutputView.inputMoney();
-        LottoBuyResponse lottoBuyResponse = lottoGameService.buyLottos(lottoMoneyRequest);
+        LottoPurchaseCostRequest lottoPurchaseCostRequest = inputOutputView.inputMoney();
+        LottoBuyResponse lottoBuyResponse = lottoGameService.buyLottos(lottoPurchaseCostRequest);
         inputOutputView.printBuyLottos(lottoBuyResponse);
 
         LottoRequest lottoRequest = inputOutputView.inputWinningNumbers();

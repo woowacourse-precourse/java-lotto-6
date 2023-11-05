@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.utils.NumberGenerator.createInRangeNumber;
+import static lotto.utils.LottoNumberGenerator.createInRangeNumber;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,27 +10,24 @@ import java.util.stream.IntStream;
 import lotto.common.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.Money;
-import lotto.dto.request.LottoMoneyRequest;
+import lotto.domain.LottoPurchaseCost;
+import lotto.dto.request.LottoPurchaseCostRequest;
 import lotto.dto.request.LottoNumberRequest;
 import lotto.dto.request.LottoRequest;
 import lotto.dto.response.LottoBuyResponse;
 import lotto.dto.response.LottoGameResultResponse;
 
 public class LottoGameServiceImpl implements LottoGameService {
-    public static final int MIN_NUMBER = 1;
-    public static final int MAX_NUMBER = 45;
-    public static final int LOTTO_SIZE = 6;
     public static final int COST_PER_LOTTO = 1000;
 
     private List<Lotto> buyLottos;
 
-    public LottoBuyResponse buyLottos(LottoMoneyRequest lottoMoneyRequest) {
-        Money money = new Money(Integer.parseInt(lottoMoneyRequest.getMoney()));
-        int count = money.getDividedThousandWonCount();
+    public LottoBuyResponse buyLottos(LottoPurchaseCostRequest lottoPurchaseCostRequest) {
+        LottoPurchaseCost lottoPurchaseCost = new LottoPurchaseCost(Integer.parseInt(lottoPurchaseCostRequest.getLottoPurchaseCost()));
+        int count = lottoPurchaseCost.getDividedThousandWonCount();
 
         buyLottos = IntStream.range(0, count)
-                .mapToObj(i -> Lotto.createLotto(createInRangeNumber(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE)))
+                .mapToObj(i -> Lotto.createLotto(createInRangeNumber()))
                 .collect(Collectors.toList());
 
         return LottoBuyResponse.fromLottoNumbers(buyLottos);

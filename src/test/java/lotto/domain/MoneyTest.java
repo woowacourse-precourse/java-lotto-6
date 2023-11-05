@@ -9,7 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class MoneyTest {
-    @DisplayName("구입 금액의 범위가 맞고 1,000 단위일 경우 성공적으로 생성한다.")
+    @DisplayName("구입 금액의 범위가 맞고 1,000 단위일 경우 예외가 발생하지 않는다.")
     @Test
     void createMoney() {
         Long value = 1_000L;

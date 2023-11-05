@@ -12,8 +12,10 @@ public class Issue {
     public static List<List<Integer>> lottoGroup = new ArrayList<>();
 
     static void inputCash() {
+        System.out.println("구입금액을 입력해 주세요.");
         initialCash = Integer.parseInt(Console.readLine());
         lottoQuantity = initialCash / 1000;
+        System.out.println();
     }
 
     private static List<Integer> getNumbers() {
@@ -31,9 +33,13 @@ public class Issue {
     }
 
     static void printLotto() {
+        System.out.println(lottoQuantity + "개를 구매했습니다.");
+
         for (int i = 0; i < lottoGroup.size(); i++) {
             System.out.println(lottoGroup.get(i));
         }
+
+        System.out.println();
     }
 
     public static void playIssue() {

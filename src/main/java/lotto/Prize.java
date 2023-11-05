@@ -17,7 +17,9 @@ public class Prize {
     public static int bonusNumber;
 
     static void inputNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         groupNumbers = Console.readLine();
+        System.out.println();
     }
 
     static void cutNumbers() {
@@ -29,8 +31,10 @@ public class Prize {
     }
 
     static void inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
         String number = Console.readLine();
         bonusNumber = Integer.parseInt(number);
+        System.out.println();
     }
 
     static void separateNumbers() {

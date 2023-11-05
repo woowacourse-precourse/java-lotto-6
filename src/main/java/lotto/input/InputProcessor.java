@@ -32,6 +32,17 @@ public class InputProcessor {
         return parseWinningNumberInputToList(input);
     }
 
+    public Integer getBonusNumber() {
+        String input = inputProvider.read();
+        validateBonusNumberInput(input);
+        return Integer.valueOf(input);
+    }
+
+    private void validateBonusNumberInput(String input) {
+        validateIsInteger(input);
+        validateRangeOfNumber(Integer.parseInt(input));
+    }
+
     private void validatePurchaseMoneyInput(String input) {
         validateIsInteger(input);
         validatePurchaseMoneyUnit(input);
@@ -110,20 +121,3 @@ public class InputProcessor {
     }
 }
 
-//    public Integer getBonusNumber() {
-//        String input = inputProvider.read();
-//        validateBonusNumberInput(input);
-//        return Integer.valueOf(input);
-//    }
-//
-//    private void validateBonusNumberInput(String input) {
-//        validateIsInteger(input);
-//        validateHasValidRange(input);
-//        if (isNotInteger(input)) {
-//            throw new IllegalArgumentException("1에서 45 사이의 정수를 입력해주십시오.");
-//        }
-//        if (hasInvalidRange(input)) {
-//            throw new IllegalArgumentException("")
-//        }
-
-//    }

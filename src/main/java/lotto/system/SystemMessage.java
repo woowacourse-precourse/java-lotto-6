@@ -8,6 +8,7 @@ public enum SystemMessage {
     WINNING_NUMBER_SEPARATOR(","),
     OUTPUT_PURCHASED_LOTTOS("%d개를 구매했습니다.\n"),
     OUTPUT_WINNING_STATS("당첨 통계\n---"),
+    OUTPUT_PROFIT_MARGIN("총 수익률은 %,.2f%%입니다."),
     WINNING_STAT_MASSAGE_FORMAT("%s - %d개");
 
     private final String message;

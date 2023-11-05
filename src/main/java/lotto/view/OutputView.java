@@ -28,4 +28,8 @@ public class OutputView {
                 .map(WinningStat::createMessage)
                 .forEach(System.out::println);
     }
+
+    public static void printProfitMargin(double profitMargin) {
+        System.out.printf(SystemMessage.OUTPUT_PROFIT_MARGIN.getMessage(), profitMargin * 100);
+    }
 }

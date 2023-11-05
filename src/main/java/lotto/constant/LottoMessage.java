@@ -6,14 +6,9 @@ public enum LottoMessage {
     LOTTO_NUMBERS_OUTPUT_MESSAGE("[%d, %d, %d, %d, %d, %d]"),
     WINNING_NUMBERS_INPUT_MESSAGE("당첨 번호를 입력해 주세요."),
     BONUS_NUMBER_INPUT_MESSAGE("보너스 번호를 입력해 주세요."),
-    WINNING_STATISTICS_MESSAGE("당첨 통계" + "\n" +
-            "---" + "\n" +
-            "3개 일치 (5,000원) - %d개" + "\n" +
-            "4개 일치 (50,000원) - %d개" + "\n" +
-            "5개 일치 (1,500,000원) - %d개" + "\n" +
-            "5개 일치, 보너스 번호 일치 (30,000,000원) - %d개" + "\n" +
-            "6개 일치 (2,000,000,000원) - %d개"),
-    // 소수 둘째 자리에서 반올림한다.
+    WINNING_STATISTICS_START_MESSAGE("당첨 통계" + "\n" + "---------"),
+    WINNING_STATISTICS_MESSAGE("%d개 일치 (%d원) - %d개"),
+    WINNING_STATISTICS_BONUS_MESSAGE("%d개 일치, 보너스 볼 일치 (%d원) - %d개"),
     TOTAL_PROFIT_RATE_MESSAGE("총 수익률은 %.2f입니다.");
 
     private final String message;

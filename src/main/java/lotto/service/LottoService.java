@@ -46,8 +46,8 @@ public class LottoService {
     }
 
     public double getProfitRate() {
-        return this.lottoResult
-                .calculateProfitOnInvestment(this.money);
+        return lottoResult
+                .calculateProfitOnInvestment(money);
     }
 
     public int getPurchaseLottoCount() {

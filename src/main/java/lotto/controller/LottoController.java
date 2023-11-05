@@ -12,13 +12,22 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private final Money money;
+    private final Set<Lotto> lottos;
+    private final LottoWinner lottoWinner;
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    Money money = new Money();
-    LottoWinner lottoWinner = new LottoWinner();
 
-    private final Set<Lotto> lottos = new HashSet<>();
+    private LottoController() {
+        this.money = new Money();
+        this.lottos = new HashSet<>();
+        this.lottoWinner = new LottoWinner();
+    }
+
+    public static LottoController lottoPlayController() {
+        return new LottoController();
+    }
 
     public void buyLotto() {
         String input = inputView.showInputMoneyMessage();

@@ -20,8 +20,31 @@ public class WinningLotto {
      * 4등 : 4개 0
      * 5등 : 3개 0
      * */
-    public String match(Lotto lotto) {
-        return "1";
+    public Rank match(Lotto lotto) {
+        int count = 0;
+        for(LottoNumber lottoNumber : winningLotto.getLottoNumbers()) {
+            if(lotto.contains(lottoNumber)) {
+                count++;
+            }
+        }
+
+        if(count == 6) {
+            return Rank.FIRST;
+        }
+        if(count == 5) {
+            if(lotto.contains(bonusNumber)) {
+                return Rank.SECOND;
+            }
+            return Rank.THIRD;
+        }
+        if(count == 4) {
+            return Rank.FOURTH;
+        }
+        if(count == 3) {
+            return Rank.FIFTH;
+        }
+
+        return null;
     }
 
     private void validate(Lotto winningLotto, LottoNumber bonusNumber) {

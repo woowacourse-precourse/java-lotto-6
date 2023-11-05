@@ -1,6 +1,8 @@
-package lotto.domain;
+package lotto.service;
 
 import lotto.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.WinningNumber;
 
 import java.util.Arrays;
 import java.util.List;

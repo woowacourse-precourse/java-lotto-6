@@ -20,7 +20,7 @@ public class UnitValidator {
         List<Integer> collected = integers.stream()
                 .filter(integer -> integer >= LOTTO_MIN_UNIT)
                 .filter(integer -> integer <= LOTTO_MAX_UNIT)
-                .collect(Collectors.toList());
+                .toList();
 
         if (collected.size() != integers.size()) {
             throw new IllegalArgumentException("로또 범위에 맞게 입력해주세요. 1 이상 45 이하입니다.");

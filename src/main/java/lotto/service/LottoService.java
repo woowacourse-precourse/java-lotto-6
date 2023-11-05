@@ -1,7 +1,6 @@
 package lotto.service;
 
 import lotto.Lotto;
-import lotto.domain.LottoAwards;
 import lotto.domain.Member;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumber;

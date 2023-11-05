@@ -22,6 +22,10 @@ public class LottoResultsRepository {
     }
 
     public LottoResultsDto makeLottoResultsDto() {
-        return new LottoResultsDto(lottoResultsRepository, lottoPrizeMoney);
+        return new LottoResultsDto(lottoResultsRepository);
+    }
+
+    public long getTotalLottoPrizeMoney() {
+        return lottoPrizeMoney.getLottoPrizeMoney();
     }
 }

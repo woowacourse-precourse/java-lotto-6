@@ -6,14 +6,14 @@ public class User {
     private static int paymentAmount;
 
     public void inputPaymentAmount(String input) {
-        checkInvalidPaymentAmount(input);
+        paymentAmount = checkInvalidPaymentAmount(input);
         checkUnitPaymentAmount();
         checkRangePaymentAmount();
     }
 
-    public void checkInvalidPaymentAmount(String input) {
+    public int checkInvalidPaymentAmount(String input) {
         try {
-            paymentAmount = Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 잘못된 금액을 입력하셨습니다.");
         }

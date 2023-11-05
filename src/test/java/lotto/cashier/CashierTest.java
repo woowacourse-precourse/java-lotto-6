@@ -48,4 +48,22 @@ class CashierTest {
                 .isEqualTo(first.getPrizeMoney() + second.getPrizeMoney() + third.getPrizeMoney());
     }
 
+    @DisplayName("수익률을 계산한다(소숫점 둘째 자리에서 반올림).")
+    @Test
+    void calculateProfitRate() {
+        //given
+        int purchaseAmount = 8000;
+        cashier.calculateLottoCount(purchaseAmount);
+
+        Reward first = Reward.FIFTH;
+        RewardHistory rewardHistory = RewardHistory.create(List.of(first));
+        cashier.calculateTotalRewardAmount(rewardHistory);
+
+        //when
+        double profitRate = cashier.calculateProfitRate();
+        //then
+        assertThat(profitRate)
+                .isEqualTo((((double) first.getPrizeMoney() / purchaseAmount * 100) * 100) / 100);
+    }
+
 }

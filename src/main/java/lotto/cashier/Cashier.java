@@ -20,4 +20,8 @@ public class Cashier {
         return totalRewardAmount;
     }
 
+    public double calculateProfitRate() {
+        return (double) (totalRewardAmount / receivedAmount.getAmount() * 100) * 100 / 100;
+    }
+
 }

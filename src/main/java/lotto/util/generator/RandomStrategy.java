@@ -1,4 +1,4 @@
-package lotto.generator;
+package lotto.util.generator;
 
 import java.util.function.IntSupplier;
 

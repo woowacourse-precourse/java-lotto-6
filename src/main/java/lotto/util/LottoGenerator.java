@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.generator.RandomStrategy;
+import lotto.util.generator.RandomStrategy;
 
 public class LottoGenerator {
     public static Lotto generateLotto(RandomStrategy randomGenerator) {

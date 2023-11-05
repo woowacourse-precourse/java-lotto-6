@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
-import lotto.generator.MockedRandomGenerator;
+import lotto.util.generator.MockedRandomGenerator;
 import lotto.util.LottoGenerator;
 import org.junit.jupiter.api.Test;
 

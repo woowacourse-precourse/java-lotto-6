@@ -1,28 +1,28 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-import lotto.util.wrapper.PurchaseAmount;
+import java.util.Map;
 
 /**
  * 로또 번호를 생성하는 클래스
  */
-public class NumberGenerator {
+public class BundleGenerator {
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;
     private static final int COUNT = 6;
 
     private final PurchaseAmount purchaseAmount;
 
-    public NumberGenerator(PurchaseAmount purchaseAmount) {
+    public BundleGenerator(PurchaseAmount purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public HashMap<Integer, Lotto> generateNumbers() {
-        HashMap<Integer, Lotto> result = new HashMap<>();
+    public Map<Lotto, Integer> generateLotto() {
+        Map<Lotto, Integer> result = new LinkedHashMap<>();
         for (int round = 0; round < this.purchaseAmount.exchangeAmount(); round++) {
-            result.put(round, new Lotto(this.generator()));
+            result.put(new Lotto(this.generator()), 0);
         }
         return result;
     }

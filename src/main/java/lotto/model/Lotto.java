@@ -2,30 +2,28 @@ package lotto.model;
 
 import static lotto.util.validators.LottoValidator.validateLotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.util.wrapper.BonusNumber;
-import lotto.util.wrapper.WinningNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        validateLotto(numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        this.numbers = sortedNumbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        try {
-            validateLotto(numbers);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
+    public Integer countMatchingNumbers(WinningNumbers winNumbers) {
+        return Math.toIntExact(numbers.stream()
+                .filter(winNumbers::contains)
+                .count());
     }
 
-    public void resultCompare(final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
-
+    public boolean hasMatchedBonus(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getValue());
     }
 
     @Override

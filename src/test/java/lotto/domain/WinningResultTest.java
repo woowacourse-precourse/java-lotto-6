@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WinningResultTest {
@@ -15,12 +16,14 @@ class WinningResultTest {
     @BeforeEach
     @Test
     void initWinningResult() {
-        winningResult = new WinningResult(List.of("1등","2등","3등"));
+        assertRandomUniqueNumbersInRangeTest(() -> {
+            winningResult = new WinningResult(new LottoTickets(1), new WinningLotto(new Lotto("1,2,3,4,5,6"), new LottoNumber("10")));
+        }, List.of(1,2,3,4,5,6));
     }
 
     @Test
-    void getCount() {
-        assertThat(winningResult.getCount("1등")).isEqualTo(1);
+    void match() {
+        assertThat(winningResult.getCount("1")).isEqualTo(1);
     }
 
     @Test

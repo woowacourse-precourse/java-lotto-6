@@ -11,8 +11,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-    private final WinningNumbers winningNumbers = new WinningNumbers();
-    private final BonusNumber bonusNumber = new BonusNumber();
     private final LottoIssueController lottoIssueController = new LottoIssueController();
     private final WinningNumberController winningNumberController = new WinningNumberController();
     private final OutputView outputView = new OutputView();
@@ -64,23 +62,23 @@ public class GameController {
         return inputView.getBonusNumberInput();
     }
 
-    public void setWinningNumbers() {
+    public void setWinningNumbers(WinningNumbers winningNumbers) {
         try {
             String inputNumbers = getWinningNumbersInput();
             winningNumberController.setInputToWinningNumbers(winningNumbers, inputNumbers);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            setWinningNumbers();
+            setWinningNumbers(winningNumbers);
         }
     }
 
-    public void setBonusNumber() {
+    public void setBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         try {
             String inputNumber = getBonusNumberInput();
             winningNumberController.setInputToBonusNumber(winningNumbers, bonusNumber, inputNumber);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            setBonusNumber();
+            setBonusNumber(winningNumbers, bonusNumber);
         }
     }
 
@@ -99,8 +97,10 @@ public class GameController {
         Money inputMoney = getMoney();
         Lottos lottos = purchaseLottos(inputMoney);
 
-        setWinningNumbers();
-        setBonusNumber();
+        WinningNumbers winningNumbers = new WinningNumbers();
+        BonusNumber bonusNumber = new BonusNumber();
+        setWinningNumbers(winningNumbers);
+        setBonusNumber(winningNumbers, bonusNumber);
 
         lottos.calculateWinningStatistics(winningNumbers, bonusNumber);
         getWinningStatistics(lottos);

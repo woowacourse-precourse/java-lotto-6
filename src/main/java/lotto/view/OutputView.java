@@ -1,8 +1,8 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoBundle;
-import lotto.domain.LottoResult;
+import lotto.dto.LottoBundle;
+import lotto.dto.LottoResult;
 import lotto.util.StringFormatter;
 
 import java.util.List;

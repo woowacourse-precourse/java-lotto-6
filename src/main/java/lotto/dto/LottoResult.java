@@ -1,4 +1,7 @@
-package lotto.domain;
+package lotto.dto;
+
+import lotto.domain.Ranking;
+import lotto.domain.Yield;
 
 import java.util.Map;
 

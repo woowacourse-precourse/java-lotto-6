@@ -1,6 +1,8 @@
 package lotto.service;
 
 import lotto.domain.*;
+import lotto.dto.LottoBundle;
+import lotto.dto.LottoResult;
 
 import java.util.ArrayList;
 import java.util.EnumMap;

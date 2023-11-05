@@ -18,7 +18,7 @@
 ### 입력
 - [x] 로또 구입 금액을 입력 받을 수 있다. - InputView#askPurchaseAmount()
 - [x] 당첨 번호를 입력 받을 수 있다. - InputView#askWinnigNumbers()
-- [ ] 보너스 번호를 입력 받을 수 있다. - InputView#askBonusNumber()
+- [x] 보너스 번호를 입력 받을 수 있다. - InputView#askBonusNumber()
     - [x] 입력 값이 양수인 숫자인지 검사한다. - InputValidator#validatePositiveNumber()
     - [x] 입력 값이 비어있는지 검사한다. - InputValidator#validateEmptyInput()
       

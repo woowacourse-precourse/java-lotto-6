@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.function.BiPredicate;
 
-public enum WinningCriteria {
+public enum Prize {
 
     FIRST_PLACE(6, 2_000_000_000, (matchCount, matchBonus) -> matchCount == 6),
     SECOND_PLACE(5, 30_000_000, (matchCount, matchBonus) -> matchCount == 5 && matchBonus),
@@ -14,17 +14,17 @@ public enum WinningCriteria {
 
     private final int matchCount;
     private final BiPredicate<Integer, Boolean> matchNumbersAndBonus;
-    private final int prize;
+    private final int prizeMoney;
 
-    WinningCriteria(int matchCount, int prize, BiPredicate<Integer, Boolean> matchNumbersAndBonus) {
+    Prize(int matchCount, int prizeMoney, BiPredicate<Integer, Boolean> matchNumbersAndBonus) {
         this.matchCount = matchCount;
-        this.prize = prize;
+        this.prizeMoney = prizeMoney;
         this.matchNumbersAndBonus = matchNumbersAndBonus;
     }
 
-    public static WinningCriteria findRanking(int matchCount, boolean matchBonus) {
+    public static Prize findPrize(int matchCount, boolean matchBonus) {
         return Arrays.stream(values())
-                .filter(winningCriteria -> winningCriteria.matchNumbersAndBonus.test(matchCount, matchBonus))
+                .filter(prize -> prize.matchNumbersAndBonus.test(matchCount, matchBonus))
                 .findFirst()
                 .orElse(NO_PRIZE);
     }

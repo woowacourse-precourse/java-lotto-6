@@ -5,7 +5,6 @@ public class OutputConstants {
     public static final String PURCHASE_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
     public static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-
     public static final String STATISTICS_HEADER = "당첨 통계";
     public static final String STATISTICS_DIVIDER = "---";
     public static final String THIRD_PRIZE = "3개 일치 (5,000원) - ";
@@ -17,4 +16,5 @@ public class OutputConstants {
     public static final String COUNT_UNIT = "개";
     public static final Integer DEFAULT_VALUE = 0;
     public static final String PERCENTAGE_FORMAT = "%입니다.";
+    public static final Integer LOTTO_PRICE = 1000;
 }

@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLotto;
+import lotto.exception.InvalidInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,7 +12,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoServiceTest {
 
@@ -47,5 +50,15 @@ class LottoServiceTest {
 
         // then
         assertEquals(purchasedLotto.getLottos().size(), lottoCount);
+    }
+
+    @DisplayName("나머지가 발생하는 가격이 입력되었을 때, 예외처리를 하는지")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 888, 1950, 2350})
+    void invalidInputMoneyTest(Integer inputMoney) {
+        // given & when & then
+        assertThatThrownBy(
+                () -> lottoService.purchaseLottoWithValidPrice(inputMoney))
+                .isInstanceOf(InvalidInputException.class);
     }
 }

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.utils.constants.OutputConstants.LOTTO_PRICE;
+
 public class LottoResultService {
 
     private static final int INITIAL_COUNT = 0;
@@ -37,14 +39,14 @@ public class LottoResultService {
         return rewardCount;
     }
 
-    public Double countEarnRate(Map<LottoReward, Integer> reward, Integer userMoney) {
+    public Double countEarnRate(Map<LottoReward, Integer> reward, Integer lottoCount) {
         Integer totalProfit = INITIAL_COUNT;
 
         for (Map.Entry<LottoReward, Integer> entry : reward.entrySet()) {
             totalProfit += entry.getKey().getReward() * entry.getValue();
         }
 
-        Double earnRate = (double) totalProfit / userMoney * PERCENTAGE;
+        Double earnRate = (double) totalProfit / (lottoCount * LOTTO_PRICE) * PERCENTAGE;
         return Math.round(earnRate * PERCENTAGE) / PERCENTAGE;
     }
 }

@@ -1,12 +1,14 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.InvalidInputException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
+    private static final String INVALID_NON_THOUSAND_UNIT = "1000원 단위로 입력해주세요.";
     private static final Integer MIN_NUMBER = 1;
     private static final Integer MAX_NUMBER = 45;
     private static final Integer NUMBER_STANDARD = 6;
@@ -18,9 +20,13 @@ public class LottoService {
     }
 
     private void validateInputMoney(Integer inputMoney) {
-        if (!(inputMoney % DIVIDE_STANDARD == 0)) {
-            throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
+        if (!IsThousandUnit(inputMoney)) {
+            throw new InvalidInputException(INVALID_NON_THOUSAND_UNIT);
         }
+    }
+
+    private Boolean IsThousandUnit(Integer inputMoney) {
+        return inputMoney % DIVIDE_STANDARD == 0;
     }
 
     public List<Integer> createRandomNumbers() {

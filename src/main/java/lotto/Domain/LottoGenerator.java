@@ -11,15 +11,10 @@ public class LottoGenerator {
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
 
-    private static List<Integer> lottoNumberList;
+    public List<Integer> generateLottoNumbers() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT_LOTTO_NUMBER);
+        Collections.sort(lottoNumbers);
 
-    public static List<Integer> generateLottoNumbers() {
-
-        lottoNumberList = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT_LOTTO_NUMBER);
-        List<Integer> generatedLottoNumbersList = new ArrayList<>(lottoNumberList);
-        Collections.sort(generatedLottoNumbersList); // 필요한가?
-
-        return generatedLottoNumbersList;
-
+        return lottoNumbers;
     }
 }

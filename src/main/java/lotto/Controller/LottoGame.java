@@ -21,11 +21,11 @@ public class LottoGame {
         int purchaseAmount = CountLottoAmount.countLottoQuantity();
         List<Lotto> lottoList = makeLottoList(purchaseAmount);
 
-        OutputView.printLottoAmount();
-        OutputView.printPurchasedLottoList(lottoList);
-
-        winningNumbers = new Lotto(parseLottoNumbers(InputView.inputLottoNumbers()));
+     //   winningNumbers = new Lotto(parseLottoNumbers(InputView.inputLottoNumbers()));
         bonusNumber = InputView.inputBonusNumber();
+
+        OutputView.printLottoAmount();
+     //   OutputView.printPurchasedLottoList(lottoList);
 
 /*
        int[] matchingCounts = CompareResults.compareLottoResults(lotto, winningNumbers, bonusNumber);

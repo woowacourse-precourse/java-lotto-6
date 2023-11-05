@@ -22,10 +22,11 @@ public class LottoProfitService {
         return Math.round(profit * 10.0) / 10.0;
     }
 
-    private static int calculatePurchaseAmount(int lottoCount) {
+    private int calculatePurchaseAmount(int lottoCount) {
         return lottoCount * LottoConstants.LOTTO_PRICE.getValue();
     }
-    private static int calculateWinningAmount(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
+
+    private int calculateWinningAmount(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         int totalWinningAmount = 0;
 
         // (1등, 2등, 3등)은 한번만 더한다. (원래 n명이 1, 2, 3등에 당첨 되면 그 금액을 n으로 나눠 가진다.

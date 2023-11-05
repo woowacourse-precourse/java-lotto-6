@@ -8,9 +8,6 @@ import lotto.vo.BonusNumber;
 import java.util.List;
 
 public class LottoWinningSetService {
-    private static final String delimiter = ",";
-
-
     private static final LottoWinningSetService instance = new LottoWinningSetService();
     private final LottoManualGenerateService lottoManualGenerator;
 
@@ -31,8 +28,8 @@ public class LottoWinningSetService {
         return new BonusNumber(Integer.parseInt(input));
     }
 
-    private static List<String> splitLottoNumbers(String input) {
+    private List<String> splitLottoNumbers(String input) {
+        String delimiter = ",";
         return List.of(input.split(delimiter));
     }
-
 }

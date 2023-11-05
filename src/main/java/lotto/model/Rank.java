@@ -18,7 +18,7 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public Rank getPrize(int number) {
+    public static Rank getPrize(int number) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchingNumber == number)
                 .findAny()

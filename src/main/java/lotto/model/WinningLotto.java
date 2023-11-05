@@ -10,10 +10,14 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, String bonusNumber) {
-        validateNoDuplicateNumber(winningLotto.getNumbers(), bonusNumber);
+    private WinningLotto(Lotto winningLotto, String bonusNumber) {
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumberValidator(bonusNumber);
+    }
+
+    public static WinningLotto create(Lotto winningLotto, String bonusNumber) {
+        validateNoDuplicateNumber(winningLotto.getNumbers(), bonusNumber);
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 
     public Lotto getWinningLotto() {
@@ -24,7 +28,7 @@ public class WinningLotto {
         return this.bonusNumber;
     }
 
-    private void validateNoDuplicateNumber(List<Integer> numbers, String bonusNumberStr) {
+    private static void validateNoDuplicateNumber(List<Integer> numbers, String bonusNumberStr) {
         List<String> numbersStr = numbers.stream().map(number -> String.valueOf(number)).collect(Collectors.toList());
         if (numbersStr.contains(bonusNumberStr)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");

@@ -24,7 +24,7 @@ public class LottoGameManager {
     }
 
     public static void generateWinningNumbers(Lotto winningLotto, String bonusNumberStr) {
-        lottoNumberComparator = LottoNumberComparator.init(new WinningLotto(winningLotto, bonusNumberStr));
+        lottoNumberComparator = LottoNumberComparator.init(WinningLotto.create(winningLotto, bonusNumberStr));
     }
 
     public static List<LottoMatch> getWinningResults(List<Lotto> lottoList) {

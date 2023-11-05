@@ -21,11 +21,22 @@ public enum Rank {
 
     public static Rank findRank(int count, boolean hasBonus){
         for(Rank rank : Rank.values()){
-            if(rank.matchCount == count && rank.matchBonus == hasBonus){
-                return rank;
+            if(rank.matchCount == count){
+                return determineSecondOrThirdRank(rank,hasBonus);
             }
         }
         return Rank.NOTHING;
+    }
+
+    private static Rank determineSecondOrThirdRank(Rank rank,boolean hasBonus){
+        if(rank.matchCount == Rank.SECOND.matchCount){
+            if(hasBonus == Rank.SECOND.matchBonus){
+                return Rank.SECOND;
+            }else if (hasBonus == Rank.THIRD.matchBonus){
+                return Rank.THIRD;
+            }
+        }
+        return rank;
     }
 
     public int getMatchCount(){

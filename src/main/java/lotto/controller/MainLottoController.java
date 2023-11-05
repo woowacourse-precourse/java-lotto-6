@@ -8,19 +8,33 @@ import java.util.List;
 
 public class MainLottoController {
     Input input = new Input();
-    Money money;
 
     public void startLotto() {
-        RandomLotto randomLotto = makeRandomLotto(inPutMoney()); //분리해야될듯 money가 갹체가 되어야하
+        Money money = inPutMoney();
+        RandomLotto randomLotto = makeRandomLotto(money); //분리해야될듯 money가 갹체가 되어야하
         sendRandomLottoDataToView(randomLotto.getRandomLottoNumbers());
 
         UserLotto userLotto = makeUserLotto();
 
-        getLottoRanking(randomLotto,userLotto);
+        List<Rank> resultRanking = getLottoRanking(randomLotto,userLotto);
 
+        sendResultLotto(resultRanking);
+
+        /*
+        for(Rank rank : resultRanking){
+            System.out.println(rank);
+        }
+        System.out.println(money.getPurchaseAmount());
+
+         */
 
         //결과 출력
 
+    }
+
+    private void sendResultLotto(List<Rank> resultRanks){
+        LottoResultManager lottoResultManager =
+                new LottoResultManager(resultRanks);
     }
 
     //region 램덤로또

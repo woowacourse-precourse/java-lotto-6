@@ -12,7 +12,7 @@ class MoneyTest {
     void 최소값보다_작은_값을_받았을_때_예외_처리(){
         int money = 100;
 
-        assertThatThrownBy(() -> Money.validate(money))
+        assertThatThrownBy(() -> new Money(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -20,7 +20,7 @@ class MoneyTest {
     void 배수가_1000단위가_아닐시_예외_처리(){
         int money = 1001;
 
-        assertThatThrownBy(() -> Money.validate(money))
+        assertThatThrownBy(() -> new Money(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

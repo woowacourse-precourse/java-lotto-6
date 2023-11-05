@@ -7,11 +7,18 @@ public class MoneyValidator implements Validator<String>{
     public void validate(String input) {
         int amount = Integer.parseInt(input);
         validateNotDivisibleWithUnit(amount);
+        validateLessThanUnit(amount);
     }
 
     private void validateNotDivisibleWithUnit(int amount) {
         if (amount % UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        }
+    }
+
+    private void validateLessThanUnit(int amount) {
+        if (amount < UNIT) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000보다 작을 수 없습니다.");
         }
     }
 }

@@ -19,7 +19,7 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public Lotto createAuto() {
+    public static Lotto createAuto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(LottoNumberConstant.MIN.getValue(),
                 LottoNumberConstant.MAX.getValue(), LottoNumberConstant.LENGTH.getValue()));
     }

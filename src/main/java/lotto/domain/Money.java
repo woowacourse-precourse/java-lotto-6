@@ -20,4 +20,8 @@ public class Money {
             throw new IllegalArgumentException(ExceptionMessage.MONEY_NOT_DIVISIBLE.getMessage());
         }
     }
+
+    public int countPurchase() {
+        return (int) (value / SystemConstant.LOTTO_TICKET_PRICE.getValue());
+    }
 }

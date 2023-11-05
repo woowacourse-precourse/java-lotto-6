@@ -35,14 +35,14 @@ class LottoTicketServiceTest {
     @DisplayName("구입 금액에 따라 구매한 로또 계수를 계산 한다.")
     void convertMoneyToTickets() {
         LottoPurchaseAmount lottoPurchaseAmount = new LottoPurchaseAmount(9000);
-        LottoTicketCount lottoTicketCount = lottoTicketService.convertMoneyToTickets(lottoPurchaseAmount);
+        LottoTicketCount lottoTicketCount = lottoTicketService.calculateTicketCount(lottoPurchaseAmount);
         assertThat(lottoTicketCount.getCount()).isEqualTo(9);
     }
 
     @RepeatedTest(1000)
     @DisplayName("각 로또 번호는 1부터 45 사이의 숫자 중 중복되지 않는 6개로 구성 한다.")
     void generateNoDuplicationLottoNumbers() {
-        Lotto lotto = lottoTicketService.generateLottoNumbers();
+        Lotto lotto = lottoTicketService.createLotto();
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         // 로또 번호는 정확히 6개여야 한다.
@@ -62,7 +62,7 @@ class LottoTicketServiceTest {
     @Test
     @DisplayName("발행된 번호는 오름차순으로 정렬하여 저장한다.")
     void generateAscendingLottoNumbers(){
-        Lotto lotto = lottoTicketService.generateLottoNumbers();
+        Lotto lotto = lottoTicketService.createLotto();
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         assertTrue(IntStream.range(0,lottoNumbers.size()-1)

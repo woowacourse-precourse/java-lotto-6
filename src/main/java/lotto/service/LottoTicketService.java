@@ -25,12 +25,12 @@ public class LottoTicketService {
         return new LottoPurchaseAmount(validatedAmount);
     }
 
-    public LottoTicketCount convertMoneyToTickets(LottoPurchaseAmount purchaseAmount) {
+    public LottoTicketCount calculateTicketCount(LottoPurchaseAmount purchaseAmount) {
         int ticketCount = purchaseAmount.getAmount() / TICKET_PRICE.getValue();
         return new LottoTicketCount(ticketCount);
     }
 
-    public Lotto generateLottoNumbers() {
+    public Lotto createLotto() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
         Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
@@ -38,7 +38,7 @@ public class LottoTicketService {
 
     public LottoBundle generateLottoBundle(int ticketCount){
         List<Lotto> lottoBundle = IntStream.range(0, ticketCount)
-                .mapToObj(countIndex->generateLottoNumbers())
+                .mapToObj(countIndex-> createLotto())
                 .toList();
         return new LottoBundle(lottoBundle);
     }

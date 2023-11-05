@@ -22,14 +22,15 @@ public class LottoController {
     public void run(){
         OutputView.printPurchaseAmountMessage();
         LottoPurchaseAmount purchaseAmount = lottoTicketService.parsePurchaseAmount(InputView.read());
-        LottoTicketCount ticketCount = lottoTicketService.convertMoneyToTickets(purchaseAmount);
+        LottoTicketCount ticketCount = lottoTicketService.calculateTicketCount(purchaseAmount);
         OutputView.printTicketCountMessage(ticketCount.getCount());
+
         LottoBundle lottoBundle = lottoTicketService.generateLottoBundle(ticketCount.getCount());
         OutputView.printLottoBundle(lottoBundle);
+
         OutputView.printWinningNumbersMessage();
         WinningNumbers winningNumbers = winningNumberService.createWinningNumbers(InputView.read());
         OutputView.printBonusNumberMessage();
         BonusNumber bonusNumber = winningNumberService.createBonusNumber(InputView.read(),winningNumbers.getNumbers());
-        System.out.println(bonusNumber.getNumber());
     }
 }

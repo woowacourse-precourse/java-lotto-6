@@ -29,6 +29,10 @@ public class BonusNumber {
     }
 
     private static boolean isInRange(Integer num) {
-        return num >= LottoRule.START_NUMBER && num <= LottoRule.END_NUMBER;
+        return num < LottoRule.START_NUMBER || num > LottoRule.END_NUMBER;
+    }
+
+    public boolean isMatchBonusNumber(Integer number) {
+        return value.equals(number);
     }
 }

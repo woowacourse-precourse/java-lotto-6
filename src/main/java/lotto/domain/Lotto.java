@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constant.ErrorMessage;
+import lotto.constant.Number;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,11 +13,12 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkOverlap(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Number.SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.COUNT.getMessage());
         }
     }

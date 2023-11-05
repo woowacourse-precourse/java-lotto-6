@@ -15,7 +15,7 @@ class InputValidationTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"999", "1001"})
+    @CsvSource(value = {"1999", "1001"})
     void 숫자가_나누어_떨어지지_않으면_예외_처리(int number) {
         assertThatThrownBy(() -> InputValidation.checkDivisible(number))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -23,7 +23,7 @@ class InputValidationTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"-1", "0"})
+    @CsvSource(value = {"-1", "999"})
     void 금액이_부족한_경우_예외_처리(int number) {
         assertThatThrownBy(() -> InputValidation.checkSufficient(number))
                 .isInstanceOf(IllegalArgumentException.class)

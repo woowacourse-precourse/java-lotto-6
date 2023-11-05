@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.Number;
 
 public class InputValidation {
     public static int validateNumber(String input) {
@@ -14,13 +15,13 @@ public class InputValidation {
     }
 
     public static void checkDivisible(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % Number.PRICE.getValue() != Number.ZERO.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INDIVISIBLE.getMessage());
         }
     }
 
     public static void checkSufficient(int amount) {
-        if (amount / 1000 <= 0) {
+        if (amount < Number.PRICE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT.getMessage());
         }
     }

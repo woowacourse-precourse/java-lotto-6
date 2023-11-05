@@ -52,8 +52,7 @@ public class View {
             try {
                 Integer number = inputView.inputBonusNumbers();
                 validateBonusNumberContainsWinningNumber(numbers, number);
-                BonusNumber bonusNumber = Converter.convertToBonusNumber(number);
-                return bonusNumber;
+                return new BonusNumber(number);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }

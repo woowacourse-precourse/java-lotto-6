@@ -20,5 +20,11 @@ public class Lottos {
         return new Lottos(purchasedLottos);
     }
 
+    public List<LottoDTO> toLottoDtos(){
+        return lottos.stream()
+                .map(Lotto::toLottoDTO)
+                .toList();
+    }
+
 
 }

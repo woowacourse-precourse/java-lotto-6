@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.ErrorMessage;
+
 public final class PurchaseAmount {
 
     private static final int NO_PURCHASE_AMOUNT = 0;
@@ -14,7 +16,7 @@ public final class PurchaseAmount {
 
     private void validate(final Integer value) {
         if (hasNoAmount(value) || isNotDivisibleByUnit(value)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.toValue());
         }
     }
 

@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class ValidateException {
     private static final String KOREAN_ENGLISH_REGEX = ".*[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣].*";
     private static final String NOTING_STRING = "";
+    private static final String BLANK = " ";
 
     public static void includeString(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_REGEX);
@@ -22,5 +23,11 @@ public class ValidateException {
             return true;
         }
         throw new NumberFormatException("[ERROR] 빈칸은 입력할 수 없습니다.");
+    }
+
+    public static void includeBlank(String strLine) {
+        if (strLine.contains(BLANK)) {
+            throw new IllegalArgumentException("[ERROR] 입력에 공백이 포함되어 있습니다.");
+        }
     }
 }

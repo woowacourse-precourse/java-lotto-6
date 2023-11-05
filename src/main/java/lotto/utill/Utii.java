@@ -13,6 +13,7 @@ public class Utii {
 
         ValidateException.includeString(inputStringLine);
         ValidateException.blankCheck(inputStringLine);
+        ValidateException.includeBlank(inputStringLine);
 
         return inputStringLine;
     }

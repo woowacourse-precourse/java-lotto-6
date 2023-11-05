@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class WinningLottoTest {
 
-    private final Lotto winningLotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
+    private final Lotto lotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
 
     @ParameterizedTest(name = "입력값 : {0}")
     @ValueSource(ints = {0, 46})
@@ -19,7 +19,7 @@ class WinningLottoTest {
     void givenLottoAndBonusNumber_whenCreateWinningLotto_thenThrowException(int bonusNumber) {
         // when & then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLotto(winningLotto, bonusNumber))
+                .isThrownBy(() -> new WinningLotto(lotto, bonusNumber))
                 .withMessageStartingWith("[ERROR]")
                 .withMessageContaining("로또 번호는 1 ~ 45 숫자만 가능합니다.");
     }
@@ -30,7 +30,7 @@ class WinningLottoTest {
     void givenLottoAndBonusNumber_whenCreateWinningLotto_thenThrowDuplicationException(int bonusNumber) {
         // when & then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLotto(winningLotto, bonusNumber))
+                .isThrownBy(() -> new WinningLotto(lotto, bonusNumber))
                 .withMessageStartingWith("[ERROR]")
                 .withMessageContaining("당첨 번호에 이미 존재하는 숫자입니다.");
     }
@@ -41,7 +41,7 @@ class WinningLottoTest {
     void givenLottoAndBonusNumber_whenCreateWinningLotto_thenNoException(int bonusNumber) {
         // when & then
         assertThatNoException()
-                .isThrownBy(() -> new WinningLotto(winningLotto, bonusNumber));
+                .isThrownBy(() -> new WinningLotto(lotto, bonusNumber));
     }
 
 }

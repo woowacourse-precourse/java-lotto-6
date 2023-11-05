@@ -20,8 +20,7 @@ public class OutputView {
     }
 
     public static void returnLottery(int lottoAmount, String lottoList) {
-        System.out.println("\n"
-                +lottoAmount
+        System.out.println(lottoAmount
                 +PrintMessage.RETURN_LOTTO_AMOUNT.getMessage()
                 +"\n"
                 +lottoList);

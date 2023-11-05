@@ -32,6 +32,7 @@ public class LotteryGameController {
         int purchaseAmount = amountOfLottos();
 
         purchaseLotto(purchaseAmount);
+        OutputView.printNewLine();
         OutputView.returnLottery(lottoAmount,
                 lotteryMessageBuilder.returnLottoList(purchasedLotto.getLottos()));
 
@@ -49,10 +50,12 @@ public class LotteryGameController {
         Map<Integer, Integer> winningStats = new HashMap<>();
         computer.checkWinningLotto(purchasedLotto, winningLotto, bonusNumber, winningStats);
         computer.calcRateOfProfit(winningStats, purchaseAmount);
+        OutputView.printNewLine();
         OutputView.returnWinningStats(lotteryMessageBuilder.returnWinningLottoList(winningStats));
     }
 
     private void requestBonusNumber() {
+        OutputView.printNewLine();
         OutputView.requestBonusNumberMessage();
         String input = inputView.returnInput();
         bonusNumber = new BonusNumber(Integer.parseInt(input));

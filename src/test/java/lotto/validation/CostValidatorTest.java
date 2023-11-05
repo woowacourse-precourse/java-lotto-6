@@ -14,7 +14,7 @@ public class CostValidatorTest {
 
         //when
         assertThatThrownBy(()->{
-                CostValidator.CostFormatIsCorrect(inputPurchaseCost);
+                CostValidator.costFormatIsCorrect(inputPurchaseCost);
             }
                 ).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorProperty.COST_FORMAT_IS_NOT_CORRECT.toString());
@@ -27,7 +27,7 @@ public class CostValidatorTest {
 
         //when
         assertThatThrownBy(()->{
-                CostValidator.CostIsStandardUnder(inputPurchaseCost);
+                CostValidator.costIsStandardUnder(inputPurchaseCost);
             }
                 ).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorProperty.COST_IS_STATNDARD_UNDER.toString());

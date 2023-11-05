@@ -6,12 +6,12 @@
 
 ## 구현 기능 목록
 - [ ] Input
-    - [ ] 로또 구입 금액을 입력받는다. 1,000원 단위로 입력받으며 1,000원으로 나누어 떨어지지 않는 경우 IllegalArgumentException을 던진다
-    - [ ] 당첨 번호와 보너스 번호를 입력받는다.
-      - [ ] 1부터 45사이의 숫자가 아닌 경우, IllegalArgumentException을 던진다
-      - [ ] 중복된 숫자를 입력한 경우, IllegalArgumentException을 던진다
-      - [ ] 당첨번호는 6자리를 입력 받는다, 아닐시 IllegalArgumentException을 던진다
-      - [ ] 보너스번호는 1자리를 입력 받는다, 아닐시 IllegalArgumentException을 던진다
+    - [x] 로또 구입 금액을 입력받는다. 1,000원 단위로 입력받으며 1,000원으로 나누어 떨어지지 않는 경우 IllegalArgumentException을 던진다
+    - [x] 당첨 번호와 보너스 번호를 입력받는다.
+      - [x] 1부터 45사이의 숫자가 아닌 경우, IllegalArgumentException을 던진다
+      - [x] 중복된 숫자를 입력한 경우, IllegalArgumentException을 던진다
+      - [x] 당첨번호는 6자리를 입력 받는다, 아닐시 IllegalArgumentException을 던진다
+      - [x] 보너스번호는 1자리를 입력 받는다, 아닐시 IllegalArgumentException을 던진다
     - [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
       - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 - [ ] Core
@@ -30,8 +30,8 @@
 - [ ] 추가사항
     - [ ] 테스트 코드를 작성한다
     - [x] Value Object 를 활용한다.
-    - [ ] 1급 컬렉션 활용
-    - [ ] 제공된 Lotto 클래스를 활용해 구현해야 한다.
+    - [x] 1급 컬렉션 활용
+    - [x] 제공된 Lotto 클래스를 활용해 구현해야 한다.
     - [x] 객체간의 메시지 다이어그램을 그려본다 (중요)
     - [ ] 3항 연산자를 쓰지 않는다.
     - [ ] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
@@ -41,7 +41,7 @@
     - [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
       - [ ] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
     - [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-    - [ ] Random 값 추출은 pickUniqueNumbersInRange()를 활용한다.
-    - [ ] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
+    - [x] Random 값 추출은 pickUniqueNumbersInRange()를 활용한다.
+    - [x] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
         
 

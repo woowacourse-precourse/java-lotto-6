@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,11 @@ public class Lotto {
         return correctNumberCount;
     }
 
+    public List<Integer> sortingAscendingNumbers() {
+        numbers.sort(Comparator.naturalOrder());
+        return numbers;
+    }
+
     private void validateSixNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -39,6 +45,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer number : numbers) {
             if (!uniqueNumbers.add(number)) {
+                // contain 바꾸기
                 throw new IllegalArgumentException("중복된 번호를 입력 하였습니다.");
             }
         }

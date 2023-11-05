@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.IntStream;
+import lotto.exception.LottoNumberRangeException;
 
 public class LottoNumber implements Comparable {
     private static final int MIN_LIMIT = 1;
@@ -19,11 +20,19 @@ public class LottoNumber implements Comparable {
     }
 
     private LottoNumber(int number) {
+
         this.number = number;
     }
 
     public static LottoNumber of(int number) {
+        checkRange(number);
         return lottoNumberStore.get(number);
+    }
+
+    private static void checkRange(int number) {
+        if (number < MIN_LIMIT || number > MAX_LIMIT) {
+            throw new LottoNumberRangeException();
+        }
     }
 
     @Override

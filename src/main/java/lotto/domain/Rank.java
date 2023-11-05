@@ -17,13 +17,14 @@ public enum Rank {
         this.prize = prize;
     }
 
+
     public static int getPrizeByPoint(int point) {
         for (Rank rank : Rank.values()) {
             if (rank.getPoint() == point) {
                 return rank.prize;
             }
         }
-        return -1;
+        return 0;
     }
 
     public static int getIndexByPrize(int prize) {
@@ -34,7 +35,6 @@ public enum Rank {
         }
         return -1;
     }
-
 
     public int getIndex() {
         return index;

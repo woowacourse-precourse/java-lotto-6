@@ -32,4 +32,14 @@ public class InputView {
         }
     }
 
+    public static int inputBonusNumber(){
+        try {
+            System.out.println(INPUT_WINNING_NUMBERS);
+            return Integer.parseInt(Console.readLine());
+        }catch (IllegalArgumentException e){
+            System.out.println("\n" + TYPE_ERROR.getExceptionMessage());
+            return inputBonusNumber();
+        }
+    }
+
 }

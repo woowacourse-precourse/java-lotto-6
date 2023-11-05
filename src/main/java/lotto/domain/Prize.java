@@ -24,6 +24,10 @@ public enum Prize {
         return money;
     }
 
+    public int getMatchingNumberCount() {
+        return getMatchingNumberCount();
+    }
+
     public static Prize determineRank(int matchedCount, boolean isBonusNumberMatched) {
         return Arrays.stream(Prize.values())
                 .filter(prize -> prize.isSame(matchedCount, isBonusNumberMatched))

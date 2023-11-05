@@ -33,4 +33,14 @@ public class LottoGameController {
         OutputView.printIssuedLottosNumbers(lottos.getLottoNumbersDto());
     }
 
+    private String getWinningLottoNumbers() {
+        OutputView.printWinningLottoNumbersGuide();
+        try {
+            return InputView.readInput();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return getWinningLottoNumbers();
+        }
+    }
+
 }

@@ -12,31 +12,22 @@ import static lotto.settings.WinningSettings.SECOND_PLACE;
 import static lotto.settings.WinningSettings.THIRD_PLACE;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.settings.WinningAmount;
 
 public class RankingRepository {
-    static List<List<String>> ranks = new ArrayList<>();
-
+    static Map<Integer, String> ranksMap = new HashMap<>();
     public static void create(){
-        int prizeSize = WinningAmount.size(); // 몇등까지 주는지
-        for(int i=0; i<=prizeSize;i++){
-            ranks.add(new ArrayList<>());
-        }
-
-        ranks.get(5).add(FIFTH_PLACE.getResult());
-        ranks.get(5).add(FIFTH.getPrize());
-        ranks.get(4).add(FOURTH_PLACE.getResult());
-        ranks.get(4).add(FOURTH.getPrize());
-        ranks.get(3).add(THIRD_PLACE.getResult());
-        ranks.get(3).add(THIRD.getPrize());
-        ranks.get(2).add(SECOND_PLACE.getResult());
-        ranks.get(2).add(SECOND.getPrize());
-        ranks.get(1).add(FIRST_PLACE.getResult());
-        ranks.get(1).add(FIRST.getPrize());
+        ranksMap.put(5,FIFTH_PLACE.getResult());
+        ranksMap.put(4,FOURTH_PLACE.getResult());
+        ranksMap.put(3,THIRD_PLACE.getResult());
+        ranksMap.put(2,SECOND_PLACE.getResult());
+        ranksMap.put(1,FIRST_PLACE.getResult());
+    }
+    public static String getPrizeBy(int rank){
+        return ranksMap.get(rank);
     }
 
-    public static List<String> getPrizeBy(int rank){
-        return ranks.get(rank);
-    }
 }

@@ -34,8 +34,8 @@ public class View {
         print(WINNING_STATISTICS);
     }
 
-    public static void result(List<String> prize, int num){
-        System.out.printf(prize.get(0),prize.get(1),num);
+    public static void result(String prize, int num){
+        System.out.printf(prize+"%s개\n",num);
     }
     public static void buyLottos(String lottoNumber){
         System.out.printf(BUY_LOTTO.getPrint(),lottoNumber);}

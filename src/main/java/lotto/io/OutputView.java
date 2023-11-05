@@ -26,4 +26,8 @@ public class OutputView {
     public void printWinningNumbersRequest() {
         System.out.println(ProgressMessage.WINNING_NUMBERS_REQUEST.toValue());
     }
+
+    public void printBonusNumberRequest() {
+        System.out.println(ProgressMessage.BONUS_NUMBER_REQUEST.toValue());
+    }
 }

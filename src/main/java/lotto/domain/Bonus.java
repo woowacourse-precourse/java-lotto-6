@@ -36,4 +36,8 @@ public class Bonus {
     private boolean isDuplicated(Lotto winnerLotto, int bonusNumber) {
         return winnerLotto.isOverlapping(bonusNumber);
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

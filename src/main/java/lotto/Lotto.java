@@ -4,6 +4,7 @@ import static lotto.exception.Message.LOTTO_OUT_OF_SIZE_EXCEPTION;
 import static lotto.exception.Message.NUMBER_DUPLICATION_EXCEPTION;
 import static lotto.exception.Message.NUMBER_OUT_OF_RANGE_EXCEPTION;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +35,7 @@ public class Lotto {
     }
 
     private void validateDuplication(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        Set<Integer> uniqueNumbers = uniqueLottoNumbers(numbers);
         if (isDuplicated(uniqueNumbers)) {
             throw new IllegalArgumentException(NUMBER_DUPLICATION_EXCEPTION);
         }
@@ -66,6 +67,31 @@ public class Lotto {
 
     private boolean isSame(int bonusNumber, Integer number) {
         return bonusNumber == number;
+    }
+
+    public int compare(Lotto winnerLotto) {
+        List<Integer> totalLottoNumbers = mergeLottos(winnerLotto);
+        Set<Integer> uniqueLottoNumbers = uniqueLottoNumbers(totalLottoNumbers);
+        return countOfMatch(totalLottoNumbers, uniqueLottoNumbers);
+    }
+
+    private List<Integer> mergeLottos(Lotto winnerLotto) {
+        List<Integer> totalNumbers = new ArrayList<>();
+        totalNumbers.addAll(winnerLotto.numbers);
+        totalNumbers.addAll(this.numbers);
+        return totalNumbers;
+    }
+
+    private Set<Integer> uniqueLottoNumbers(List<Integer> totalLottoNumbers) {
+        return new HashSet<>(totalLottoNumbers);
+    }
+
+    private int countOfMatch(List<Integer> totalLottoNumbers, Set<Integer> uniqueLottoNumbers) {
+        return totalLottoNumbers.size() - uniqueLottoNumbers.size();
+    }
+
+    public boolean hasBonus(int bonusNumber) {
+        return this.numbers.contains(bonusNumber);
     }
 
     @Override

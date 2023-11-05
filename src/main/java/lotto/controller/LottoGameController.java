@@ -43,4 +43,14 @@ public class LottoGameController {
         }
     }
 
+    private int getBonusNumber() {
+        OutputView.printBonusNumberGuide();
+        try {
+            return Integer.parseInt(InputView.readInput());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return getBonusNumber();
+        }
+    }
+
 }

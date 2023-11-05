@@ -7,6 +7,7 @@ public enum Constant {
     LOTTO_NUMBERS_MAX_LENGTH(6),
     COMMA(","),
     BLANK(" "),
+    LINE("\n"),
     LOTTO_TICKET_PRICE(1000);
 
     private final Object value;

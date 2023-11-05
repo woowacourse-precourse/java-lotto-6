@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -28,11 +29,14 @@ public class LottoHandler {
     }
 
     public List<Lotto> issueLottoNumbers(int lottoTicket) {
-        List<Lotto> lottoNumbers = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
+
         for (int i = 0; i < lottoTicket; i++) {
-            lottoNumbers.add(pickNumbersOrderByAsc());
+            lottos.add(pickNumbersOrderByAsc());
         }
-        return lottoNumbers;
+
+        OutputHandler.printLottos(lottos);
+        return lottos;
     }
 
     private Lotto pickNumbersOrderByAsc() {
@@ -43,5 +47,22 @@ public class LottoHandler {
         );
         numbers.sort(Comparator.naturalOrder());
         return new Lotto(numbers);
+    }
+
+    public int lottoCountForPurchasePrice() {
+        int lottoTicket = 0;
+        boolean validPrice = false;
+
+        while (!validPrice) {
+            try {
+                OutputHandler.printMessage("구입금액을 입력해 주세요.");
+                lottoTicket = calculateLottoTicketCount(Console.readLine());
+                validPrice = true;
+            } catch (IllegalArgumentException e) {
+                OutputHandler.printMessage(e.getMessage());
+            }
+        }
+        OutputHandler.printLineBreakMessage(lottoTicket + "개를 구매했습니다.");
+        return lottoTicket;
     }
 }

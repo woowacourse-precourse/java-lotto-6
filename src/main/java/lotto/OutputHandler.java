@@ -7,8 +7,9 @@ public class OutputHandler {
         System.out.println(message);
     }
 
-    public static void printLineBreak() {
+    public static void printLineBreakMessage(String message) {
         System.out.println();
+        printMessage(message);
     }
 
     public static void printLottos(List<Lotto> lottos) {

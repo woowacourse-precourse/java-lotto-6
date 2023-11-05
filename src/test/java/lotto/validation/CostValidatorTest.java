@@ -19,4 +19,17 @@ public class CostValidatorTest {
                 ).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorProperty.COST_FORMAT_IS_NOT_CORRECT.toString());
     }
+
+    @Test
+    void 구입_금액_최소_금액보다_작은_금액_입력한_경우_검증_로직_테스트(){
+        //given
+        String inputPurchaseCost = "999";
+
+        //when
+        assertThatThrownBy(()->{
+                CostValidator.CostIsStandardUnder(inputPurchaseCost);
+            }
+                ).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorProperty.COST_IS_STATNDARD_UNDER.toString());
+    }
 }

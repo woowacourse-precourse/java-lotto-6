@@ -17,6 +17,16 @@ public class InputView {
         return lottoNumbers;
     }
 
+    public int inputWinningLottoBonusNumber() {
+        System.out.println("보너스 번호를 입력해주세요");
+        try {
+            return Integer.parseInt(Console.readLine().trim());
+        } catch(IllegalArgumentException e) {
+            System.out.println("[ERROR]: 한 개의 숫자를 입력하셔야 됩니다.");
+            return inputWinningLottoBonusNumber();
+        }
+    }
+
     private List<Integer> stringListToIntList(List<String> stringInput) throws IllegalArgumentException{
         try {
             return stringInput.stream()

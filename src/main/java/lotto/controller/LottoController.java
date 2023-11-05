@@ -12,14 +12,23 @@ public class LottoController {
 
     LottoService lottoService = new LottoService();
     public void run(){
-        View.requestPurchaseAmount();
-        PurchaseAmount purchaseAmount = PurchaseAmount.from(InputService.number());
+        PurchaseAmount purchaseAmount = createPurchaseAmount();
+        int purchaseCount = calculatePurchaseCount(purchaseAmount);
 
-        int purchaseCount = purchaseAmount.calculateCount();
-        View.purchaseCount(purchaseCount);
         BuyLottoRepository buyLottoRepo = lottoService.quickPick(purchaseCount);
         WinningLottoRepository winningLottoRepo = lottoService.createWinningNumber();
 
         ResultService.play(buyLottoRepo, winningLottoRepo);
+    }
+
+    private PurchaseAmount createPurchaseAmount() {
+        View.requestPurchaseAmount();
+        return PurchaseAmount.from(InputService.number());
+    }
+
+    private int calculatePurchaseCount(PurchaseAmount purchaseAmount) {
+        int purchaseCount = purchaseAmount.calculateCount();
+        View.purchaseCount(purchaseCount);
+        return purchaseCount;
     }
 }

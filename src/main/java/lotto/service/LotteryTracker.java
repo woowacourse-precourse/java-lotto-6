@@ -30,7 +30,6 @@ public class LotteryTracker {
     }
 
     public void printResult() {
-
         //등수별 결과 출력
         for(int rank=5; rank>0;rank--){
             String prize = RankingRepository.getPrizeBy(rank);

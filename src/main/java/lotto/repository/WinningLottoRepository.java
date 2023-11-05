@@ -16,8 +16,8 @@ public class WinningLottoRepository {
         return new WinningLottoRepository(lotto,bonusNumber);
     }
 
-    public BonusNumber getBonusNumber() {
-        return bonusNumber;
+    public int getBonusNumber() {
+        return bonusNumber.getNumber();
     }
 
     public int countMatchingNumber(Lotto buyLotto) {

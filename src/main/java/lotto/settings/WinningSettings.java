@@ -14,7 +14,6 @@ public enum WinningSettings {
     THIRD_PLACE(String.format("5개 일치 (%s원) - ",THIRD.getPrize())),
     SECOND_PLACE(String.format("5개 일치, 보너스 볼 일치 (%s원) - ",FOURTH.getPrize())),
     FIRST_PLACE(String.format("6개 일치 (%s원) - ",FIFTH.getPrize())),
-    NOTHING("등수안에 들지 못했습니다."),
     RATE_OF_RETURN("총 수익률은 %.2f입니다.\n");
 
     private final String result;

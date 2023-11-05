@@ -27,6 +27,14 @@ public class Lotto {
         System.out.println(numbers);
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         validateSizeOfLottoNumbers(numbers);
         validateLottoNumberBoundary(numbers);

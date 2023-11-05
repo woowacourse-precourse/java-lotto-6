@@ -7,6 +7,7 @@ public class InputView {
     public static int readPurchaseAmount() {
         String input = Console.readLine();
         validateBlank(input);
+        validateNonNumber(input);
         int parsedInput = Integer.parseInt(input);
         return parsedInput;
     }
@@ -14,6 +15,13 @@ public class InputView {
     private static void validateBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력 값이 공백일 수 없습니다");
+        }
+    }
+
+    private static void validateNonNumber(String input) {
+        boolean isNumeric = input.chars().allMatch(Character::isDigit);
+        if (!isNumeric) {
+            throw new IllegalArgumentException("[ERROR] 입력 값에 숫자 이외의 값이 들어오면 안됩니다.");
         }
     }
 

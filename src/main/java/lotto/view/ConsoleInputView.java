@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class ConsoleInputView {
     private static final String COMMA = ",";
-    private static final String LOTTO_NUMBERS_REGEX = "^\\d+(,\\d+)*$";
+    private static final String LOTTO_NUMBERS_REGEX = "^[\\d| ]+(,[\\d| ]+)*$";
 
     public int readPurchaseAmount() {
         try {

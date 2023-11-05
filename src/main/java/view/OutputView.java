@@ -14,7 +14,7 @@ public class OutputView {
     }
 
     public static void printLottoResult() {
-        System.out.println("\n당첨 통계\n---\n");
+        System.out.println("\n당첨 통계\n---");
         //숫자 몇개가 일치하는지 콜
     }
 
@@ -46,7 +46,7 @@ public class OutputView {
         printSixCorrect(lotto[6]);
 
         float revenue = (lotto[3]*5000 + lotto[4]*50000 + lotto[5]*1500000 + lotto[6]*30000000 + lotto[7]*2000000000)/money;
-        System.out.printf("총 수익률은 %.1f", revenue);
+        System.out.printf("총 수익률은 %.1f%%입니다.", revenue);
     }
 
     public static void printException(String message) {

@@ -29,4 +29,7 @@ public class OutputView {
     public static void printInputWinningNumberMsg() {
         System.out.print(INPUT_LOTTO_NUMBER_MSG);
     }
+    public static void printInputBonusNumberMsg() {
+        System.out.print(INPUT_BONUS_NUMBER_MSG);
+    }
 }

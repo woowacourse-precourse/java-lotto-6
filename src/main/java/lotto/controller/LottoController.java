@@ -40,7 +40,7 @@ public class LottoController {
         List<Integer> oneLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
                 Constants.MIN_NUMBER.getConstants(),
                 Constants.MAX_NUMBER.getConstants(),
-                Constants.Lotto_Size.getConstants()));
+                Constants.LOTTO_SIZE.getConstants()));
         Collections.sort(oneLotto);
         OutputView.printLottoTickets(oneLotto);
         return oneLotto;

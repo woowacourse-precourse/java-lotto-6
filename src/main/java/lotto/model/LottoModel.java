@@ -22,9 +22,6 @@ public class LottoModel {
             int sameNumberCount = countSameNumbers(winningNumbers, lottoTicket);
             generateResult(sameNumberCount, lottoTicket);
         }
-        for (int i : result) {
-            System.out.print(i + " ");
-        }
     }
 
     private int countSameNumbers(List<Integer> winningNumbers, List<Integer> ticketNumbers) {
@@ -40,7 +37,7 @@ public class LottoModel {
     private void generateResult(int sameNumberCount, List<Integer> lottoTicket) {
         if (sameNumberCount == 5 && lottoTicket.contains(bonusNumber)) {
             result.set(3, result.get(3) + 1);
-        } else if (sameNumberCount != 6) {
+        } else if (sameNumberCount >= 3 && sameNumberCount != 6) {
             result.set(sameNumberCount - 3, result.get(sameNumberCount - 3) + 1);
         } else if (sameNumberCount == 6) {
             result.set(4, result.get(4) + 1);

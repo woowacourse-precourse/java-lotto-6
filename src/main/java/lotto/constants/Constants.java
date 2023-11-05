@@ -4,7 +4,7 @@ public enum Constants {
     LOTTO_PRICE(1000),
     MIN_NUMBER(1),
     MAX_NUMBER(45),
-    Lotto_Size(6),
+    LOTTO_SIZE(6),
     PERCENTAGE(100);
 
     private final int constants;

@@ -6,7 +6,6 @@ import lotto.constants.ResultMessage;
 import lotto.view.OutputView;
 
 public class Calculation {
-    private double round = 10.0;
     private List<Integer> result;
     private int purchaseAmount;
 
@@ -18,7 +17,7 @@ public class Calculation {
     public void displayStatistics() {
         double sumPrize = calculateSumPrize();
         double beforeRate = sumPrize / purchaseAmount * Constants.PERCENTAGE.getConstants();
-        double rate = Math.round(beforeRate * round) / round;
+        double rate = Math.round(beforeRate * 10.0) / 10.0;
         OutputView.printResult(result, rate);
     }
 

@@ -17,7 +17,7 @@ public class Lotto {
     }
 
     private void validateCount(List<Integer> numbers) {
-        if (numbers.size() != Constants.Lotto_Size.getConstants()) {
+        if (numbers.size() != Constants.LOTTO_SIZE.getConstants()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT.getMessage());
         }
     }
@@ -32,7 +32,7 @@ public class Lotto {
 
     private void validateDuplication(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != Constants.Lotto_Size.getConstants()) {
+        if (uniqueNumbers.size() != Constants.LOTTO_SIZE.getConstants()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DUPLICATE_NUMBER.getMessage());
         }
     }

@@ -44,4 +44,17 @@ public enum ScoreBoard {
             OutputView.showResultOfBoard(scoreBoard.situation, count);
         }
     }
+
+    public static int calculatePrize(Map<ScoreBoard, Integer> scoreResult) {
+        int totalPrize = 0;
+        for (Map.Entry<ScoreBoard, Integer> entry : scoreResult.entrySet()) {
+            if (entry.getKey() != null) {
+                ScoreBoard scoreBoard = entry.getKey();
+                int count = entry.getValue();
+                int prize = count * scoreBoard.winningMoney;
+                totalPrize += prize;
+            }
+        }
+        return totalPrize;
+    }
 }

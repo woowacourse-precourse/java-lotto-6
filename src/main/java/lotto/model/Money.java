@@ -26,4 +26,8 @@ public class Money {
     public int countQuantity() {
         return (givenMoney / UNIT);
     }
+
+    public double calculateIncomeRate(int prize) {
+        return (double) prize / givenMoney;
+    }
 }

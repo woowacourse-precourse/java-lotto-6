@@ -14,7 +14,11 @@ public class LottoWinner {
     private Lotto winningNumber;
     private Integer bonusNumber;
 
-    private Map<ScoreBoard, Integer> scoreResult;
+    private final Map<ScoreBoard, Integer> scoreResult;
+
+    public LottoWinner() {
+        this.scoreResult = new HashMap<>();
+    }
 
     public void createWinnerLotto() {
         this.winningNumber = inputWinningNumber();
@@ -77,12 +81,16 @@ public class LottoWinner {
     public void matchWinnerLotto(Set<Lotto> lottos) {
         for (Lotto userLotto : lottos) {
             ScoreBoard result = userLotto.matchNumbers(this.winningNumber, this.bonusNumber);
-            this.scoreResult = new HashMap<>();
+
             scoreResult.put(result, scoreResult.getOrDefault(result, 0) + 1);
         }
     }
 
     public void showResultBoard() {
         ScoreBoard.showResultBoard(scoreResult, 0);
+    }
+
+    public int calculatePrize() {
+        return ScoreBoard.calculatePrize(scoreResult);
     }
 }

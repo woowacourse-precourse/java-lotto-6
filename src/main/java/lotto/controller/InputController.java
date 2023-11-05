@@ -4,6 +4,7 @@ import static lotto.constant.message.InputMessage.DELIMITER;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.LottoAmount;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
@@ -26,6 +27,15 @@ public class InputController {
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception.getMessage());
             return getWinningNumber();
+        }
+    }
+
+    public static BonusNumber getBonusNumber(List<Integer> winningNumbers) {
+        try {
+            return new BonusNumber(InputView.requestBonusNumber(), winningNumbers);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printError(exception.getMessage());
+            return getBonusNumber(winningNumbers);
         }
     }
 }

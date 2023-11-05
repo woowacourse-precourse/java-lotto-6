@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.util.Validation.validateDivisibleByLottoPrice;
+import static lotto.util.Validation.validatePositiveNumber;
+
 import lotto.util.Validation;
 
 public class BuyingCost {
@@ -15,7 +18,8 @@ public class BuyingCost {
     }
     private int validate(String input) {
         int validNum = Validation.validateInteger(input);
-        Validation.validateCost(validNum);
+        Validation.validatePositiveNumber(validNum);
+        Validation.validateDivisibleByLottoPrice(validNum);
         return validNum;
     }
 }

@@ -29,17 +29,14 @@ public class Validation {
         }
         return temp;
     }
-    public static void validateCost(int input) {
-        validatePositiveNumber(input);
-        validateDivisibleByLottoPrice(input);
-    }
+
     public static void validatePositiveNumber(int input) {
         if (input <= 0) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, NOT_POSITIVE+input));
         }
     }
 
-    private static void validateDivisibleByLottoPrice(int input) {
+    public static void validateDivisibleByLottoPrice(int input) {
         if (input % SINGLE_LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INDIVISIBLE_TO_THOUSAND+input));
         }

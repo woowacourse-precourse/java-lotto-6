@@ -25,8 +25,6 @@ public class LottoController {
         lottoGame = new LottoGame(lottos, winningNumber, bonusNumber);
         Map<LottoResult, Integer> result = lottoGame.getResult();
         OutputView.printGameResult(result, getYieldRate(result, lottos.size()));
-
-        // TODO - 이후 기능 구현
     }
 
     private double getYieldRate(Map<LottoResult, Integer> result, int purchaseQuantity) {
@@ -52,6 +50,7 @@ public class LottoController {
             if (hasDuplicate(bonusNumber, winningNumber.getNumbers())) {
                 throw new IllegalArgumentException(Error.DUPLICATE_NUMBER_EXIST.getMessage());
             }
+            System.out.println();
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -65,7 +64,9 @@ public class LottoController {
 
     private WinningNumber getWinningNumber() {
         try {
-            return InputView.getWinningNumbers();
+            WinningNumber winningNumber = InputView.getWinningNumbers();
+            System.out.println();
+            return winningNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningNumber();
@@ -73,13 +74,14 @@ public class LottoController {
     }
 
     private List<Lotto> getLottos() {
+        System.out.println();
         try {
-            return lottoIssuer.buy(InputView.getPrice());
+            List<Lotto> lottos = lottoIssuer.buy(InputView.getPrice());
+            System.out.println();
+            return lottos;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getLottos();
         }
     }
-
-
 }

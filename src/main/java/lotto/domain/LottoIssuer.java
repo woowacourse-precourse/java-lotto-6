@@ -22,6 +22,7 @@ public class LottoIssuer {
         if (!Validation.isPositive(price)) {
             throw new IllegalArgumentException(Error.NEGATIVE_PRICE_VALUE.getMessage());
         }
+        System.out.println();
         int quantity = calculateQuantity(price);
         List<Lotto> lottos = issueLottos(quantity);
         printLottos(lottos);

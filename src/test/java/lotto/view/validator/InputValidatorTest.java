@@ -35,4 +35,13 @@ class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("당첨 번호에 대한 입력 형식이 올바르지 않습니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "!", "12A"})
+    @DisplayName("보너스 번호에 대한 입력이 숫자가 아니면 예외가 발생한다.")
+    void validateBonusNumber(String input) {
+        assertThatThrownBy(() -> InputValidator.validateBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("보너스 번호에 대한 입력은 숫자만 가능합니다.");
+    }
 }

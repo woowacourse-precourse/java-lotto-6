@@ -6,8 +6,11 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
     private static final String INVALID_INPUT_EXCEPTION_MESSAGE = "입력은 공백일 수 없습니다.";
-    private static final String NOT_DIGIT_EXCEPTION_MESSAGE = "구입 금액에 대한 입력은 숫자만 가능합니다.";
+    private static final String NOT_DIGIT_EXCEPTION_MESSAGE = "입력은 숫자만 가능합니다.";
     private static final String INVALID_FORMAT_EXCEPTION_MESSAGE = "당첨 번호에 대한 입력 형식이 올바르지 않습니다.";
+
+    private static final String ABOUT_PURCHASE_AMOUNT_MESSAGE = "구입 금액에 대한 ";
+    private static final String ABOUT_BONUS_NUMBER_MESSAGE = "보너스 번호에 대한 ";
 
     private static final Pattern ONLY_DIGIT_PATTERN = Pattern.compile("-?[0-9]+");
     private static final Pattern VALID_FORMAT_PATTERN = Pattern.compile("-?[0-9]+(,-?[0-9]+)*");
@@ -22,7 +25,7 @@ public class InputValidator {
         validateInput(input);
 
         if (isNotDigit(input)) {
-            throw new IllegalArgumentException(NOT_DIGIT_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(ABOUT_PURCHASE_AMOUNT_MESSAGE + NOT_DIGIT_EXCEPTION_MESSAGE);
         }
     }
 
@@ -42,5 +45,13 @@ public class InputValidator {
     private static boolean isInvalidFormat(String input) {
         return !VALID_FORMAT_PATTERN.matcher(input)
                 .matches();
+    }
+
+    public static void validateBonusNumber(String input) {
+        validateInput(input);
+
+        if (isNotDigit(input)) {
+            throw new IllegalArgumentException(ABOUT_BONUS_NUMBER_MESSAGE + NOT_DIGIT_EXCEPTION_MESSAGE);
+        }
     }
 }

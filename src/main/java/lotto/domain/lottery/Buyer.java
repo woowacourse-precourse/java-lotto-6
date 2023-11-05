@@ -1,12 +1,12 @@
-package lotto.domain;
+package lotto.domain.lottery;
 
 import lotto.domain.parser.Parser;
 import lotto.exception.LottoException;
 
 import java.util.Objects;
 
-import static lotto.domain.constants.LottoConstraint.MAXIMUM_PURCHASE_PAYMENT;
-import static lotto.domain.constants.LottoConstraint.UNIT_PRICE;
+import static lotto.domain.lottery.constants.LottoConstraint.MAXIMUM_PURCHASE_PAYMENT;
+import static lotto.domain.lottery.constants.LottoConstraint.UNIT_PRICE;
 import static lotto.exception.ErrorMessage.*;
 
 public class Buyer {

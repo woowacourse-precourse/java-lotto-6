@@ -1,4 +1,4 @@
-package lotto.domain.constants;
+package lotto.domain.lottery.constants;
 
 public enum LottoConstraint {
     UNIT_PRICE(1_000),

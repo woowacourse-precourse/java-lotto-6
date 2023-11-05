@@ -20,6 +20,7 @@ public class PrizeController {
         OutputView.printMessage(REQUEST_JACKPOT_NUMBER);
         Lotto prizeNumbers = readJackpotNumbers();
 
+        OutputView.printNewLine();
         OutputView.printMessage(REQUEST_JACKPOT_BONUS_NUMBER);
         return requestBonusNumber(prizeNumbers);
     }

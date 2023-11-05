@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.domain.constants.LottoConstraint.*;
+import static lotto.domain.lottery.constants.LottoConstraint.*;
 
 public class LottoService {
     private LottoService() {

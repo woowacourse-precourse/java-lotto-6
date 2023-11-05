@@ -35,4 +35,12 @@ public final class Prize extends NumberChecker {
             throw LottoException.from(BONUS_NUMBER_DUPLICATED);
         }
     }
+
+    public Integer countMatchingNumberCount(Lotto comparableNumbers) {
+        return comparableNumbers.countSameNumberCount(prizeNumbers);
+    }
+
+    public Lotto getPrizeNumbers() {
+        return prizeNumbers;
+    }
 }

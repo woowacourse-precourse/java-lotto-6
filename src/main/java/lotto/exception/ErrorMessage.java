@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import lotto.domain.constants.LottoConstraint;
+import lotto.domain.lottery.constants.LottoConstraint;
 import lotto.domain.parser.constants.InputConstraint;
 
 import static java.lang.String.format;

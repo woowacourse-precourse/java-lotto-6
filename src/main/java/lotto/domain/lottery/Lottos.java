@@ -1,7 +1,5 @@
 package lotto.domain.lottery;
 
-import lotto.domain.Buyer;
-
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -24,6 +22,12 @@ public class Lottos {
 
                 .stream()
                 .map(Lotto::new)
+                .toList();
+    }
+
+    public List<Integer> generatePrizeResult(Lotto comparableNumbers) {
+        return lottoTickets.stream()
+                .map(lotto -> lotto.countSameNumberCount(comparableNumbers))
                 .toList();
     }
 

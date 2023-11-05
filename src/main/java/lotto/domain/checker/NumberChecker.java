@@ -5,8 +5,8 @@ import lotto.exception.LottoException;
 import java.util.List;
 import java.util.Objects;
 
-import static lotto.domain.constants.LottoConstraint.NUMBER_LOWER_BOUND;
-import static lotto.domain.constants.LottoConstraint.NUMBER_UPPER_BOUND;
+import static lotto.domain.lottery.constants.LottoConstraint.NUMBER_LOWER_BOUND;
+import static lotto.domain.lottery.constants.LottoConstraint.NUMBER_UPPER_BOUND;
 import static lotto.exception.ErrorMessage.NUMBER_DUPLICATED;
 import static lotto.exception.ErrorMessage.NUMBER_OUT_OF_RANGE;
 

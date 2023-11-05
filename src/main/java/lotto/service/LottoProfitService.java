@@ -6,6 +6,14 @@ import lotto.domain.winning.LottoWinningRanking;
 import java.util.EnumMap;
 
 public class LottoProfitService {
+    private static final LottoProfitService instance = new LottoProfitService();
+
+    private LottoProfitService() {}
+
+    public static LottoProfitService getInstance() {
+        return instance;
+    }
+
     public double calculateProfit(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap, int lottoCount) {
         int purchaseAmount = calculatePurchaseAmount(lottoCount);
         int winningAmount = calculateWinningAmount(winningRankingCountMap);

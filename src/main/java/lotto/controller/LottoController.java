@@ -10,7 +10,7 @@ import lotto.service.LottoProfitService;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoWinningRankingService;
 import lotto.service.LottoWinningSetService;
-import lotto.validator.Validator;
+import lotto.validation.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.vo.BonusNumber;

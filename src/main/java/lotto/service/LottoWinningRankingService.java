@@ -8,6 +8,14 @@ import lotto.vo.LottoNumber;
 
 import java.util.EnumMap;
 public class LottoWinningRankingService {
+    private static final LottoWinningRankingService instance = new LottoWinningRankingService();
+
+    private LottoWinningRankingService() {}
+
+    public static LottoWinningRankingService getInstance() {
+        return instance;
+    }
+
     public EnumMap<LottoWinningRanking, Integer> countWinningRankings(Lottos userLottos, LottoWinningSet winningLotto) {
         EnumMap<LottoWinningRanking, Integer> rankingCountMap = new EnumMap<>(LottoWinningRanking.class);
 

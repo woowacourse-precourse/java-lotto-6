@@ -1,8 +1,6 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.domain.generator.LottoAutoGenerator;
-import lotto.domain.generator.LottoManualGenerator;
 import lotto.service.LottoProfitService;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoWinningRankingService;
@@ -14,12 +12,10 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        LottoAutoGenerator lottoAutoGenerator = new LottoAutoGenerator();
-        LottoManualGenerator lottoManualGenerator = new LottoManualGenerator();
-        LottoWinningSetService lottoWinningSetPicker = new LottoWinningSetService();
-        LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(lottoAutoGenerator, lottoManualGenerator);
-        LottoWinningRankingService lottoWinningRankingService = new LottoWinningRankingService();
-        LottoProfitService lottoProfitService = new LottoProfitService();
+        LottoWinningSetService lottoWinningSetPicker = LottoWinningSetService.getInstance();
+        LottoPurchaseService lottoPurchaseService = LottoPurchaseService.getInstance();
+        LottoWinningRankingService lottoWinningRankingService = LottoWinningRankingService.getInstance();
+        LottoProfitService lottoProfitService = LottoProfitService.getInstance();
 
         LottoController lottoController = new LottoController(inputView, outputView, lottoPurchaseService, lottoWinningSetPicker, lottoWinningRankingService, lottoProfitService);
         lottoController.run();

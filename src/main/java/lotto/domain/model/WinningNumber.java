@@ -1,16 +1,14 @@
 package lotto.domain.model;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class WinningNumber {
-    private  HashMap<Integer, String> winningNumbers;
+    private  List<Integer> regularWinningNumbers;
+    private int bonusNumber;
 
-    public WinningNumber(HashMap<Integer, String> winningNumbers) {
-        this.winningNumbers = winningNumbers;
+    public WinningNumber(List<Integer> regularWinningNumbers, int bonusNumber) {
+        this.regularWinningNumbers = regularWinningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
-    public HashMap<Integer, String> getWinningNumbers() {
-        return winningNumbers;
-    }
 }

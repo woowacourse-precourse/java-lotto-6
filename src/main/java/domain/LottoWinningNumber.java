@@ -25,10 +25,6 @@ public class LottoWinningNumber {
         messageUtil.printWinningNum();
         String winningNumber = inputUtil.userInput();
         String[] validWinningNumber = validationUtil.validWinningNumber(winningNumber);
-//        for (String number : winningNumbers) {
-//            System.out.print(number + " "); // 각 숫자와 공백을 함께 출력
-//        }
-//        System.out.println();
         return Arrays.stream(validWinningNumber).map(Integer::parseInt).collect(Collectors.toList());
     }
 }

@@ -1,10 +1,7 @@
 package lotto;
 
 import domain.*;
-import util.InputUtil;
 import util.MessageUtil;
-import util.ValidationUtil;
-import java.util.List;
 
 public class LottoRun {
     private final MessageUtil messageUtil = new MessageUtil();

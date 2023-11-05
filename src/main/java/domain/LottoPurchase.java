@@ -35,18 +35,15 @@ public class LottoPurchase {
     }
 
     public int getPurchaseLottoAmount(){
-        // 금액 입력받기, 8000원 리턴, 1000으로 나누기 전은 purchase
         String lottoAmount = inputUtil.userInput();
         return validationUtil.validPurchaseLottoAmount(lottoAmount);
     }
     private int getLottoAmount(int lottoPurchaseAmount) {
-        // 8개 이런식으로 리턴.
         int lottoAmount = lottoPurchaseAmount / 1000;
         messageUtil.printPurchase(lottoAmount);
         return lottoAmount;
     }
     private Lotto getRandomLottoNum(){
-        // 로또 넘버 하나! 랜덤 생성 하고 lotto 객체 반환
         List<Integer> randomLottoNums = CreateRandomNumberUtil.getNumbers();
         Lotto lotto = new Lotto(randomLottoNums);
         messageUtil.printPurchaseInfo(lotto.getLottoNumbers());

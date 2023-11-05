@@ -1,15 +1,12 @@
 package domain;
 
 import util.MessageUtil;
-import util.ValidationUtil;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static constant.ResultMessage.*;
 
 public class LottoResultCompute {
-//    private final ValidationUtil validationUtil = new ValidationUtil();
     private final MessageUtil messageUtil = new MessageUtil();
     private final LottoWinningNumber lottoWinningNumberInfo;
     private final LottoBonusNumber lottoBonusNumberInfo;

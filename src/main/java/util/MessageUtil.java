@@ -1,7 +1,9 @@
 package util;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static constant.InputMessage.*;
@@ -20,10 +22,10 @@ public class MessageUtil {
     }
 
     public void printPurchase(int purchaseAmount){
-        System.out.printf(PURCHASE.getMessage(), purchaseAmount);
+        System.out.println(purchaseAmount + PURCHASE.getMessage());
     }
     public void printWinningStatistic(){
-        System.out.printf(WINNING_STATISTIC.getMessage());
+        System.out.println(WINNING_STATISTIC.getMessage());
     }
     public void printWinningResult(int matchNum, int price, int num){
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
@@ -38,11 +40,19 @@ public class MessageUtil {
         System.out.printf(WINNING_RATE.getMessage(), rate);
     }
 
-    public void printPurchaseInfo(List<Integer> lottoNum){
-//        System.out.print("[");
-        Collections.sort(lottoNum);
-        System.out.println(lottoNum.toString());
-//        for(List)
+    public void printPurchaseInfo(List<Integer> lottoNums){
+//        Collections.sort(lottoNum);
+//        System.out.println(lottoNum.toString());
+        List<Integer> sortLottoNums = new ArrayList<>(lottoNums);
+        sortLottoNums.sort(Comparator.naturalOrder());
+        StringBuilder lottoNum = new StringBuilder("");
+
+        lottoNum.append("[");
+        for (Integer number : sortLottoNums) {
+            lottoNum.append(number).append(", ");
+        }
+        lottoNum.delete(lottoNum.length()-2, lottoNum.length()).append("]");
+        System.out.println(lottoNum);
     }
 
 }

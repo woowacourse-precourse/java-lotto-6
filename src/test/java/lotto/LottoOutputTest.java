@@ -64,4 +64,11 @@ public class LottoOutputTest {
         String expectedMessage = "에러가 발생했습니다.";
         assertEquals(expectedMessage, output.getErrorMessage(expectedMessage));
     }
+
+    @Test
+    void 당첨번호_입력_메시지_반환_테스트() {
+        String expected = "당첨 번호를 입력해 주세요.";
+        String actualMessage = lottoOutput.requestWinningNumber();
+        assertEquals(expected, actualMessage);
+    }
 }

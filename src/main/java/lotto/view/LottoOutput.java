@@ -19,4 +19,9 @@ public class LottoOutput {
     public String getErrorMessage(String message) {
         return message;
     }
+
+    public String requestWinningNumber() {
+        return "당첨 번호를 입력해 주세요.";
+    }
+
 }

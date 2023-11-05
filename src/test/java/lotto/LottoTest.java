@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import lotto.model.AnswerLotto;
 import lotto.model.Lotto;
+import lotto.model.Score;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -49,26 +50,31 @@ class LottoTest {
             assertEquals(answerLotto.contains(lotto), Score.First);
         }
 
+        @Test
         void 로또_2등() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
             assertEquals(answerLotto.contains(lotto), Score.Second);
         }
 
+        @Test
         void 로또_3등() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
             assertEquals(answerLotto.contains(lotto), Score.Third);
         }
 
+        @Test
         void 로또_4등() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 10, 7));
             assertEquals(answerLotto.contains(lotto), Score.Fourth);
         }
 
+        @Test
         void 로또_5등() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 10, 20, 7));
             assertEquals(answerLotto.contains(lotto), Score.Fifth);
         }
 
+        @Test
         void 로또_낙첨() {
             Lotto lotto_1 = new Lotto(List.of(1, 10, 20, 30, 40, 7));
             Lotto lotto_2 = new Lotto(List.of(1, 2, 20, 30, 40, 7));

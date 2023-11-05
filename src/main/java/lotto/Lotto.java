@@ -1,13 +1,11 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private Rank rank;
+    private Rank rank = Rank.FAIL;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

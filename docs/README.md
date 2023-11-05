@@ -11,7 +11,7 @@
   - [x] 당첨 내역 출력하기 - printWinningInformation()
 - [x] 수익률 계산하기 - calculateProfitRate()
   - [x] 수익률 출력하기 - printProfitRate()
-- [ ] 전 과정을 진행하는 컨트롤러 생성
+- [x] 전 과정을 진행하는 컨트롤러 생성 - processLottoWinning()
 - [ ] 예외 상황시 에러 문구를 출력
 
 ## 기능 요구 사항

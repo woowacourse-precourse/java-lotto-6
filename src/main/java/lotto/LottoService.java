@@ -15,7 +15,7 @@ public class LottoService {
      */
     public List<Integer> generateLottoNumbers() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lotto);
+
         return lotto;
     }
 
@@ -53,16 +53,17 @@ public class LottoService {
         }
     }
 
-    public double calculateProfitRate(Rank[] ranks) {
-        double profitRate= 0.0;
-        double sum = 0;
+    /**
+     * 수익률 계산
+     */
+    public double calculateProfitRate(Rank[] ranks, int amount) {
+        double profitRate = 0.0;
+        double sum = 0.0;
         for (Rank rank : ranks) {
-            profitRate += rank.getMoney() * rank.getAmount();
-            sum += rank.getAmount();
+            sum += rank.getMoney() * rank.getAmount();
         }
-        profitRate = profitRate / sum;
-        profitRate = Math.round(profitRate * 100.0) / 100.0;
-        return profitRate;
+        profitRate =  sum/amount;
+        return profitRate * 100;
     }
 
 }

@@ -13,7 +13,7 @@ public class LottoView {
     }
 
     public void printPurchasedLottoNumbers(Lotto[] lottos) {
-        System.out.println(lottos.length + "개를 구매했습니다");
+        System.out.println(lottos.length + "개를 구매했습니다.");
         for (int i = 0; i < lottos.length; i++) {
             System.out.println(lottos[i].getNumbers());
         }
@@ -39,12 +39,13 @@ public class LottoView {
             if(rank.getRank().equals("5B")) {
                 countIndex = "5개 일치, 보너스 볼 일치 ";
             }
-            System.out.println(countIndex + "(" + numberFormat.format(rank.getMoney()) + "원) - " + rank.getAmount() + "개");
+            System.out.println(countIndex + "(" + numberFormat.format(rank.getMoney()).replace("₩", "") + "원) - " + rank.getAmount() + "개");
         }
     }
 
     public void printProfitRate(double profitRate) {
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+        String formatted = String.format("%.1f", profitRate);
+        System.out.println("총 수익률은 " + formatted + "%입니다.");
     }
 
 }

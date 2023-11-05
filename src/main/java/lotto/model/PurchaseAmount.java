@@ -16,6 +16,17 @@ public class PurchaseAmount {
         return amount / lottoPrice.getValue();
     }
 
+    public boolean buyLotto(int lottoCount) {
+        GameConfig lottoPrice = GameConfig.LOTTO_PRICE;
+        int totalPrice = lottoPrice.getValue() * lottoCount;
+
+        if (amount < totalPrice) {
+            return false;
+        }
+
+        amount -= totalPrice;
+        return true;
+    }
 
     private void validate(int amount) {
         PurchaseAmountValidator.validate(amount);

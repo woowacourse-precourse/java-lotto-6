@@ -1,25 +1,30 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputProcessor {
     private static final int LOTTO_PRICE = 1000;
-  public String getInput;
+  public static String getInput;
 
-  public int calculateLottoCount(int money) {
+  public static int calculateLottoCount(int money) {
       return money / LOTTO_PRICE;
     }
 
-    public static String[] lottoNumberSplit(String lottoWinningNumber) {
-      return lottoWinningNumber.split(" ,");
-    }
+  public static List<String> splitWinningNumbers(String input) {
+    String[] numberStrings = input.split(",");
+    return Arrays.asList(numberStrings);
+  }
 
-    public static List<String> winningNumberSplit(String[] lottoNumberSplit) {
-      List<String> winningNumber = Arrays.asList(lottoNumberSplit);
-      return winningNumber;
-    }
+  public static List<Integer> convertToIntegerList(List<String> numberStrings) {
+    return numberStrings.stream()
+        .map(String::trim)
+        .map(Integer::parseInt)
+        .collect(Collectors.toList());
+  }
 
 }
 

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import java.util.Objects;
 import lotto.util.ValidationUtils;
 
@@ -8,11 +9,15 @@ public class BonusNumber {
     private final int MIN_NUMBER_RANGE = 1;
     private final int MAX_NUMBER_RANGE = 45;
 
-    private final int number;
+    private final int bonusNumber;
 
-    public BonusNumber(int number) {
-        validate(number);
-        this.number = number;
+    public BonusNumber(int bonusNumber) {
+        validate(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    public boolean isIn(List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
     }
 
     private void validate(int number) {
@@ -35,11 +40,11 @@ public class BonusNumber {
             return false;
         }
         BonusNumber bonusNumber1 = (BonusNumber) o;
-        return number == bonusNumber1.number;
+        return bonusNumber == bonusNumber1.bonusNumber;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(number);
+        return Objects.hash(bonusNumber);
     }
 }

@@ -20,12 +20,12 @@ public class WinningLotto {
     }
 
     public boolean isBonusMatched(List<Integer> numbers) {
-        return numbers.contains(bonusNumber);
+        return bonusNumber.isIn(numbers);
     }
 
     private void validateNoDuplicatedWinningNumbers(List<Integer> winningNumbers,
         BonusNumber bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
+        if (bonusNumber.isIn(winningNumbers)) {
             throw new IllegalArgumentException();
         }
     }

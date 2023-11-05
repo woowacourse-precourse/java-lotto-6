@@ -10,7 +10,6 @@ public class WinningLotto {
 
     public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
         this.winningLotto = winningLotto;
-        validateDuplicateWinningLottoNumberAndBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -29,15 +28,5 @@ public class WinningLotto {
             statistics.put(value, 0);
         }
         return statistics;
-    }
-
-    private void validateDuplicateWinningLottoNumberAndBonusNumber(BonusNumber bonusNumber) {
-        if (isDuplicateWinningLottoNumberAndBonusNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복되었습니다.");
-        }
-    }
-
-    private boolean isDuplicateWinningLottoNumberAndBonusNumber(BonusNumber bonusNumber) {
-        return winningLotto.isContainsLottoNumber(bonusNumber.getBonusNumber());
     }
 }

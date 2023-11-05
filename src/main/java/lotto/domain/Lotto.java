@@ -73,6 +73,16 @@ public class Lotto {
         return distinctCount != numbers.size();
     }
 
+    public void validateDuplicateWinningLottoNumberAndBonusNumber(BonusNumber bonusNumber) {
+        if (isDuplicateWinningLottoNumberAndBonusNumber(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복되었습니다. 보너스 번호를 다시 입력하세요.");
+        }
+    }
+
+    private boolean isDuplicateWinningLottoNumberAndBonusNumber(BonusNumber bonusNumber) {
+        return isContainsLottoNumber(bonusNumber.getBonusNumber());
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

@@ -2,7 +2,6 @@ package lotto.view;
 
 import static lotto.utils.GameMessage.BONUS_MATCH;
 import static lotto.utils.GameMessage.BONUS_PRIZE;
-import static lotto.utils.GameMessage.CLOSE_SQUARE_BRACKET;
 import static lotto.utils.GameMessage.COUNT;
 import static lotto.utils.GameMessage.DELIMITER;
 import static lotto.utils.GameMessage.FIVE_MATCH;
@@ -10,7 +9,6 @@ import static lotto.utils.GameMessage.FIVE_PRIZE;
 import static lotto.utils.GameMessage.FOUR_MATCH;
 import static lotto.utils.GameMessage.FOUR_PRIZE;
 import static lotto.utils.GameMessage.IS;
-import static lotto.utils.GameMessage.OPENING_SQUARE_BRACKET;
 import static lotto.utils.GameMessage.PURCHASED;
 import static lotto.utils.GameMessage.RATE_OF_RETURN;
 import static lotto.utils.GameMessage.REQUEST_AMOUNT;
@@ -41,8 +39,7 @@ public class OutputView {
     }
 
     public void printLotto(Lotto lotto) {
-        System.out.println(OPENING_SQUARE_BRACKET.getMessage() + String.join(DELIMITER.getMessage(),
-                String.valueOf(lotto.getNumbers())) + CLOSE_SQUARE_BRACKET.getMessage());
+        System.out.println(String.join(DELIMITER.getMessage(), String.valueOf(lotto.getNumbers())));
     }
 
     public void printIssuanceLotto(List<Lotto> issuanceLotto) {

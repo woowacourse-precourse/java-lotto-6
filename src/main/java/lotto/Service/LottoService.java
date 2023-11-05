@@ -32,12 +32,19 @@ public class LottoService {
         return lotto.stream().sorted().collect(Collectors.toList());
     }
 
-    public List<Lotto> generateLottoSet(int lottoNum) {
+    public static List<Lotto> generateLottoSet(int lottoNum) {
         List<Lotto> lottoSet = new ArrayList<>();
         for(int i = 0; i < lottoNum; i++){
             lottoSet.add(new Lotto(generateLotto()));
         }
 
         return lottoSet;
+    }
+
+    public static List<Integer> generateNumber(String winningString){
+        List<String> winningNumber = List.of(winningString.split(","));
+        return winningNumber.stream()
+                .map(s -> Integer.parseInt(s))
+                .collect(Collectors.toList());
     }
 }

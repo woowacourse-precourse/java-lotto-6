@@ -12,16 +12,16 @@ public class LottoDto {
         this.numbers = numbers;
     }
 
-    public static List<LottoDto> toDto(final List<Lotto> playerLotteries) {
-        return playerLotteries.stream()
+    public static List<LottoDto> toDto(final List<Lotto> lotteries) {
+        return lotteries.stream()
                 .map(LottoDto::from)
                 .toList();
     }
 
-    private static LottoDto from(final Lotto playerLotto) {
-        List<Integer> playerNumbers = playerLotto.getNumbers();
-        Collections.unmodifiableList(playerNumbers);
-        return new LottoDto(playerNumbers);
+    private static LottoDto from(final Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        Collections.unmodifiableList(numbers);
+        return new LottoDto(numbers);
     }
 
     public List<Integer> getNumbers() {

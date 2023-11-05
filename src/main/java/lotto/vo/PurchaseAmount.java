@@ -16,7 +16,6 @@ public record PurchaseAmount(Integer amount) {
         if (isLessThanLottoPrice(amount)) {
             throw new IllegalArgumentException(LOTTO_MIN_PRICE_ERROR_MESSAGE.getMessage());
         }
-
         if (hasChange(amount)) {
             throw new IllegalArgumentException(REMAINING_CHANGE_ERROR_MESSAGE.getMessage());
         }

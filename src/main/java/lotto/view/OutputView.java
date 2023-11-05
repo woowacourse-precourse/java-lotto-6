@@ -22,8 +22,7 @@ public class OutputView {
     private static final String STATISTICS_MESSAGE = "당첨 통계";
     private static final String HYPHEN = "---";
     private static final String LINE = "\n";
-
-
+    
     public void printRequestInputPurchaseAmountMessage() {
         printMessage(INPUT_PURCHASE_AMOUNT_MESSAGE);
     }

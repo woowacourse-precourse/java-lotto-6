@@ -2,6 +2,7 @@ package lotto.vo;
 
 import static lotto.constant.ErrorMessage.LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE;
 import static lotto.constant.ErrorMessage.LOWER_THAN_MIN_LOTTO_NUMBER_ERROR_MESSAGE;
+import static lotto.constant.LottoInfo.LOTTO_MAX_NUMBER;
 
 import lotto.constant.LottoInfo;
 
@@ -25,6 +26,6 @@ public record BonusNumber(Integer number) {
     }
 
     private boolean isLargerThanMaxNumber(final Integer number) {
-        return number > LottoInfo.LOTTO_MAX_NUMBER.getValue();
+        return number > LOTTO_MAX_NUMBER.getValue();
     }
 }

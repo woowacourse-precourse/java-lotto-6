@@ -39,4 +39,14 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    public int getMatchCount(Lotto userLottoNumbers) {
+        return (int) numbers.stream()
+            .filter(userLottoNumbers.numbers::contains)
+            .count();
+    }
+
+    public boolean getMatchBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

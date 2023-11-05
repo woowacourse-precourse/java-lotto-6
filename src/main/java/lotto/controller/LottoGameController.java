@@ -1,9 +1,13 @@
 package lotto.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.Result;
+import lotto.domain.Results;
 import lotto.domain.Tickets;
-import lotto.domain.UserNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,24 +25,38 @@ public class LottoGameController {
 
         OutputView.printPurchaseNumber(tickets.getNumberTickets());
 
-        //
-        Lottos lottos = Lottos.of(tickets.getNumberTickets());
+        List<Lotto> asdf = IntStream.range(0, tickets.getNumberTickets())
+            .mapToObj(i -> Lotto.generateRandomLottoNumbers())
+            .toList();
+
+        Lottos lottos = Lottos.of(asdf);
 
         lottos.getLottos().stream()
             .map(Lotto::toString)
             .forEach(System.out::println);
 
         String winningNumber = inputView.inputWinningNumber();
-        UserNumbers userNumbers = UserNumbers.of(winningNumber);
+
+        List<Integer> winningNumbers = Arrays.stream(winningNumber.split(","))
+            .map(Integer::parseInt)
+            .toList();
+
+        Lotto userLottoNumbers = Lotto.of(winningNumbers);
 
         String bonusNumber = inputView.inputBonusNumber();
-        UserNumbers bonus = UserNumbers.of(bonusNumber);
 
-//        Result result = Result.getLottoResult(lottos, userNumbers, bonus);
-//
-//        outputView.printWinningStatistics();
-//
-//        result.
+        int bonusNumberInt = parseStringToUnsignedInt(bonusNumber);
+
+        boolean isBonusNumber = userLottoNumbers.getMatchBonus(bonusNumberInt);
+
+        Result[] results = Result.getAllLottoResult(lottos, userLottoNumbers, isBonusNumber);
+
+        OutputView.printWinningStatistics(results);
+
+        double profitRate = Result.getProfitRate(results, userMoney);
+
+        OutputView.printProfitRate(profitRate);
+
 
     }
 

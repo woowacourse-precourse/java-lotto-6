@@ -45,5 +45,14 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("WinningLotto와 Lotto중 일치하는 계수를 찾는다")
+    @Test
+    public void testCalculateMatchingNumbers() {
+        Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = new WinningLotto(Arrays.asList(4, 5, 6, 7, 8, 9), 10);
 
+        int matchingNumbers = winningLotto.calculateMatchingNumbers(userLotto);
+
+        assertEquals(3, matchingNumbers);
+    }
 }

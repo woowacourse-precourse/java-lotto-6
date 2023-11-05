@@ -27,6 +27,13 @@ public class WinningLotto extends Lotto {
         }
     }
 
+    public int calculateMatchingNumbers(Lotto lotto) {
+        return (int) lotto.getNumbers()
+                .stream()
+                .filter(this.getNumbers()::contains)
+                .count();
+    }
+
     public int getBonusNumber() {
         return bonusNumber;
     }

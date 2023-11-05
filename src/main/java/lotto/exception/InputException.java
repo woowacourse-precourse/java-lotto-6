@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class InputException {
     public void checkThousandUnit(int money) {
-        if (money % 1000 != 0 || money == 0) {
+        if (money % 1000 != 0 || money < 1000) {
             throw new IllegalArgumentException("[ERROR] 1000단위로 입력해주세요.");
         }
     }
@@ -24,11 +24,11 @@ public class InputException {
         }
     }
 
-    public int toInt(String amount) {
-        if (!amount.matches("^[0-9]*$")) {
+    public int toInt(String number) {
+        if (!number.matches("^[0-9]*$")) {
             throw new NumberFormatException("[ERROR] 숫자를 입력해 주세요.");
         }
-        return Integer.parseInt(amount);
+        return Integer.parseInt(number);
     }
 
     public String[] checkExceptionWinningNumber(String[] numbers) {

@@ -12,6 +12,7 @@ public class BonusNumberInputView {
         while (true) {
             System.out.println(BONUS_NUMBER_MESSAGE);
             String bonusNumber = Console.readLine();
+            System.out.println();
 
             try {
                 numberValidator.validateBonusNumber(bonusNumber);

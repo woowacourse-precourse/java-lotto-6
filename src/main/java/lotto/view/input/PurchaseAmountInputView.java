@@ -11,6 +11,7 @@ public class PurchaseAmountInputView {
         while (true) {
             System.out.println(PURCHASE_AMOUNT_MESSAGE);
             String amount = Console.readLine();
+            System.out.println();
 
             try {
                 numberValidator.validatePurchaseAmount(amount);

@@ -12,6 +12,7 @@ public class WinningNumbersInputView {
         while (true) {
             System.out.println(WINNING_NUMBERS_MESSAGE);
             String userInput = Console.readLine();
+            System.out.println();
 
             try {
                 List<Integer> winningNumbers = WinningNumbersConverter.convertStringToList(userInput);

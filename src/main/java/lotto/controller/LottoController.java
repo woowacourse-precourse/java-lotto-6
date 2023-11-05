@@ -7,9 +7,7 @@ import lotto.domain.ProfitMeter;
 import lotto.domain.PurchaseProcessor;
 import lotto.domain.WinnerCalculator;
 import lotto.domain.WinningNumbers;
-import lotto.util.LottoMaker;
 import lotto.util.NumberConverter;
-import lotto.util.RandomNumbers;
 import lotto.util.ResultFormatter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -19,7 +17,6 @@ public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final ResultFormatter resultFormatter = new ResultFormatter();
-    private final LottoMaker lottoMaker = new RandomNumbers();
     private LottoFactory lottoFactory;
     private WinnerCalculator winnerCalculator;
     private PurchaseProcessor purchaseProcessor;
@@ -58,7 +55,7 @@ public class LottoController {
     }
 
     private void generateLottoNumbers() {
-        this.lottoFactory = new LottoFactory(lottoMaker, purchaseProcessor.getLottoCount());
+        this.lottoFactory = new LottoFactory(purchaseProcessor.getLottoCount());
         outputView.displayLottoCount(purchaseProcessor.getLottoCount());
         outputView.displayLottoReturns(lottoFactory.getTickets());
         outputView.enterLine();

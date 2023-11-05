@@ -19,6 +19,18 @@ public class WinningNumbers {
         return new WinningNumbers(winningNumbersInput);
     }
 
+    private static void validateBlank(String input) {
+        if (StringUtils.isBlank(input)) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_BLANK.getMessage());
+        }
+    }
+
+    private static void validateStartsOrEndsWithDelimiter(String input) {
+        if (input.startsWith(NUMBERS_DELIMITER) || input.endsWith(NUMBERS_DELIMITER)) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_STARTS_OR_ENDS_WITH_DELIMITER.getMessage());
+        }
+    }
+
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }
@@ -30,18 +42,6 @@ public class WinningNumbers {
         LottoNumberValidator.validateDuplicate(numbers);
         LottoNumberValidator.validateSize(numbers);
         return numbers;
-    }
-
-    private static void validateBlank(String input) {
-        if (StringUtils.isBlank(input)) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_BLANK.getMessage());
-        }
-    }
-
-    private static void validateStartsOrEndsWithDelimiter(String input) {
-        if (input.startsWith(NUMBERS_DELIMITER) || input.endsWith(NUMBERS_DELIMITER)) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_STARTS_OR_ENDS_WITH_DELIMITER.getMessage());
-        }
     }
 
     private List<Integer> parseWinningNumbersInput(String input) {

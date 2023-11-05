@@ -5,7 +5,7 @@ import lotto.validator.LottoNumberValidator;
 
 import java.util.List;
 
-import static lotto.constants.LottoNumberConstants.*;
+import static lotto.constants.LottoNumberConstants.NUMBERS_SIZE;
 
 public class Lotto {
     private final List<Integer> numbers;

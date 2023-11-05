@@ -10,9 +10,9 @@ public enum PrizeCondition {
     FIFTH(3, false, 5_000),
     NONE(0, false, 0);
 
-    private int matchingNumberCount;
-    private boolean requiresBonusMatch;
-    private long prize;
+    private final int matchingNumberCount;
+    private final boolean requiresBonusMatch;
+    private final long prize;
 
     PrizeCondition(int matchingNumberCount, boolean requiresBonusMatch, long prize) {
         this.matchingNumberCount = matchingNumberCount;

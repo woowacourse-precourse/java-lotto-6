@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constants.LottoNumberConstants;
 
 import java.util.ArrayList;
 import java.util.Comparator;

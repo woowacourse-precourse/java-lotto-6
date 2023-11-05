@@ -11,38 +11,40 @@ public enum Rank {
     SECOND(5, true, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     FIRST(6, false, 2000000000, "6개 일치 (2,000,000,000원)");
 
+    private static final int FIVE_COUNT = 5;
+
     private final int matchingCount;
     private final boolean hasBonusNumber;
     private final long price;
-    private final String priceMessage;
+    private final String description;
 
-    Rank(final int matchingCount, final boolean hasBonusNumber, final long price, final String priceMessage) {
+    Rank(final int matchingCount, final boolean hasBonusNumber, final long price, final String description) {
         this.matchingCount = matchingCount;
         this.hasBonusNumber = hasBonusNumber;
         this.price = price;
-        this.priceMessage = priceMessage;
+        this.description = description;
     }
 
-    public static Rank of(final int sameCount, final boolean sameBonus) {
+    public static Rank of(final int count, final boolean hasBonus) {
         return Arrays.stream(values())
-                .filter(rank -> rank.isMatchingRank(sameCount, sameBonus))
+                .filter(rank -> rank.matchesRank(count, hasBonus))
                 .findAny()
                 .orElse(BOOM);
     }
 
-    private boolean isMatchingRank(final int sameCount, final boolean sameBonus) {
-        return hasFiveCountAndBonus(sameCount, sameBonus) || hasMatchingCount(sameCount);
+    private boolean matchesRank(final int count, final boolean hasBonus) {
+        return matchesFiveCount(count, hasBonus) || matchesCount(count);
     }
 
-    private boolean hasFiveCountAndBonus(final int sameCount, final boolean sameBonus) {
-        return sameCount == SECOND.matchingCount && this.hasBonusNumber == sameBonus;
+    private boolean matchesFiveCount(final int count, final boolean hasBonus) {
+        return count == FIVE_COUNT && hasBonusNumber == hasBonus;
     }
 
-    private boolean hasMatchingCount(final int sameCount) {
-        return this.matchingCount == sameCount;
+    private boolean matchesCount(final int count) {
+        return this.matchingCount == count;
     }
 
-    public boolean isNotBoom() {
+    public boolean isWinningRank() {
         return this != BOOM;
     }
 
@@ -50,7 +52,7 @@ public enum Rank {
         return price;
     }
 
-    public String getPriceMessage() {
-        return priceMessage;
+    public String getDescription() {
+        return description;
     }
 }

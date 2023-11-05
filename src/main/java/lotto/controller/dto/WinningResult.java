@@ -20,8 +20,8 @@ public class WinningResult {
         Map<String, Integer> result = new LinkedHashMap<>();
 
         Arrays.stream(Rank.values())
-                .filter(Rank::isNotBoom)
-                .forEach(rank -> result.put(rank.getPriceMessage(),
+                .filter(Rank::isWinningRank)
+                .forEach(rank -> result.put(rank.getDescription(),
                         rankCounts.getOrDefault(rank, DEFAULT_VALUE)));
 
         return new WinningResult(result);

@@ -6,12 +6,12 @@ public class Wallet {
 
     public Wallet(int money) {
         validateMoney(money);
-        validateUnit(money);
         this.money = money;
     }
 
     private void validateMoney(int money) {
         validateOverThanLottoPrice(money);
+        validateUnit(money);
     }
 
     private void validateOverThanLottoPrice(int money) {

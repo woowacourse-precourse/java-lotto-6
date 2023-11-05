@@ -35,11 +35,10 @@ public class UserLotteries {
     }
 
     private List<LottoPrize> filterDrawnLotto(WinningLotto winningLotto) {
-        List<LottoPrize> lottoPrizes = lotteries.stream()
+        return lotteries.stream()
                 .filter(winningLotto::isDrawnLotto)
                 .map(winningLotto::findLottoPrizeType)
                 .toList();
-        return lottoPrizes;
     }
 
     private void putAllLottoPrizeCount(Map<LottoPrize, Long> winningCount) {

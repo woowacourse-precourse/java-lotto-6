@@ -38,6 +38,6 @@ public class LottoController {
     }
 
     private WinningStatistics makeStatistics(Lottos userLottos, WinningLotto winningLotto){
-        return WinningStatistics.from(userLottos, winningLotto, budget);
+        return WinningStatistics.of(userLottos, winningLotto, budget);
     }
 }

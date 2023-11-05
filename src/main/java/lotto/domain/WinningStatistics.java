@@ -15,7 +15,7 @@ public class WinningStatistics {
         setRevenueRate(userLottos, winningLotto, budget);
     }
 
-    public static WinningStatistics from(Lottos userLottos, WinningLotto winningLotto, Budget budget){
+    public static WinningStatistics of(Lottos userLottos, WinningLotto winningLotto, Budget budget){
         return new WinningStatistics(userLottos, winningLotto, budget);
     }
 

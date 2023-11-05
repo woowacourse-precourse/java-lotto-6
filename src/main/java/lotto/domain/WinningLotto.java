@@ -8,7 +8,6 @@ public class WinningLotto {
     List<LottoNumber> winningLotto;
     LottoNumber bonusNumber;
 
-
     public WinningLotto(List<String> winningLottoNumbers, String bonusNumber) {
         winningLotto = winningLottoNumbers.stream()
                                           .map(Integer::parseInt)

@@ -35,12 +35,9 @@ public class WinningNumber {
     }
 
     private static boolean hasCorrectFormat(String input) {
-        for (char c : input.toCharArray()) {
-            if (!Character.isDigit(c) && c != ',') {
-                return false;
-            }
-        }
-        return true;
+        String[] tokens = input.split(winningNumberDelimiter);
+
+        return Arrays.stream(tokens).allMatch(Validation::isNumericValue);
     }
 
     private static List<Integer> parseString(String input) {

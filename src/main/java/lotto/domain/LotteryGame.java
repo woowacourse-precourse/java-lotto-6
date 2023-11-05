@@ -18,16 +18,12 @@ public class LotteryGame {
 
     public void start() {
         // TODO: 로또게임 시작
-        User user = makeUserInfo();
+        User user = makeUserTicket();
+        LuckyTicket luckyTicket = makeLuckyTicket();
 
     }
 
-    private void pickNumbers() {
-        makeUserInfo();
-        makeWinningInfo();
-    }
-
-    private User makeUserInfo() {
+    private User makeUserTicket() {
         int price = getUserPrice();
         return User.of(getUserLottoNumbers(price));
     }
@@ -44,8 +40,8 @@ public class LotteryGame {
         return price;
     }
 
-    private void makeWinningInfo() {
-
+    private LuckyTicket makeLuckyTicket() {
+        return machine.makeLuckyTicket();
     }
 
 

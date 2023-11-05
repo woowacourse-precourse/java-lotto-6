@@ -1,10 +1,10 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.*;
 
@@ -16,18 +16,30 @@ public class LotteryMachine {
         return new LotteryMachine();
     }
 
-    public WinnerTicket getWinningTicket() {
-        List<Integer> availableNumbers = new ArrayList<>();
-        for (int num = 1; num <= 45; num++) {
-            availableNumbers.add(num);
-        }
+    public LuckyTicket makeLuckyTicket() {
+        List<Integer> numbers = makeLuckyNumbers();
+        int bonusNumber = makeBonusNumber(numbers);
+        return LuckyTicket.of(new Lotto(numbers), bonusNumber);
+    }
+    private List<Integer> makeLuckyNumbers() {
+        System.out.println("당첨 번호를 입력해주세요");
+        String input = Console.readLine();
 
-        shuffle(availableNumbers);
-        List<Integer> lotto = availableNumbers.subList(0, 6);
-        sort(lotto);
-        int bonusNumber = availableNumbers.get(7);
+        // TODO: validate input
+        String[] split = input.split(",");
 
-        return WinnerTicket.of(new Lotto(lotto), bonusNumber);
+        return Arrays.stream(split)
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
+    }
+
+    private int makeBonusNumber(List<Integer> luckyNumbers) {
+        // TODO: 뽑은 보너스번호가 당첨번호와 겹치는지 확인
+        // TODO: 뽑은 보너스 번호가 정수인지 검증
+        // TODO: 뽑은 보너스 번호가 범위안에 속하는 정수인지 검증
+        System.out.println("보너스 번호를 입력해주세요.");
+        String number = Console.readLine();
+        return Integer.parseInt(number);
     }
 
 }

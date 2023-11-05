@@ -50,29 +50,6 @@ public class Lotto {
         }
     }
 
-    @Override
-    public boolean equals(final Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof final Lotto lotto)) {
-            return false;
-        }
-
-        for (int i = 0; i < LOTTO_NUMBER_SIZE; i++) {
-            if (matched(lotto, i)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return numbers.hashCode();  // 원소의 해시테그를 일일히 비교하는데, Integer의 경우 해시값이 저장된 값이므로 상관없음
-    }
-
     private boolean matched(final Lotto lotto, final int index) {
         return numbers.get(index).equals(lotto.numbers.get(index));
     }

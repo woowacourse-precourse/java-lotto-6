@@ -30,14 +30,29 @@ public class Lotto {
     }
 
     private List<Integer> orderNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        Integer[] arr = numbers.toArray(new Integer[6]);
+
+        for (int i = 0; i < 5; i++) {
+            int minIndex = i;
+
+            for (int j = i + 1; j < 6; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+        List<Integer> orderNumbers = new ArrayList<>();
+        for(int tmp : arr) {
+            orderNumbers.add(tmp);
+        }
+        return orderNumbers;
     }
 
     public List<Integer> getNumbers() {
         return orderNumbers(this.numbers);
     }
 
-
-    // TODO: 추가 기능 구현
 }

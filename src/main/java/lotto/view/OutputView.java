@@ -10,7 +10,7 @@ public class OutputView {
     private List<Integer> ticketNumbers;
 
     public void printLotteryTickets(int ticketCount, List<List<Integer>> lotteryTickets) {
-        System.out.println(ticketCount + "개를 구매했습니다. \n");
+        System.out.println(ticketCount + "개를 구매했습니다.");
         for (int i = 0; i < ticketCount; i++) {
             ticketNumbers = lotteryTickets.get(i);
             System.out.print(ticketNumbers + "\n");
@@ -28,7 +28,7 @@ public class OutputView {
 
     }
     public void printRevenueRate(String revenueRate) {
-        System.out.println("총 수익률은 " + revenueRate + "입니다.");
+        System.out.println("총 수익률은 " + revenueRate + "%입니다.");
     }
 
 }

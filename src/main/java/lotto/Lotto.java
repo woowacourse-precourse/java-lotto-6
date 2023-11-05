@@ -35,4 +35,8 @@ public class Lotto {
                     throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
                 });
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

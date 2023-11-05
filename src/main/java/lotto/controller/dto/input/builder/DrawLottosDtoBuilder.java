@@ -67,6 +67,7 @@ public final class DrawLottosDtoBuilder {
         LottoValidator.validateLottoLength(lottoNumbers);
         LottoValidator.validateDuplication(lottoNumbers);
         this.lottoNumbers = lottoNumbers;
+        this.isLottoNumbersNotSet = false;
         return this;
     }
 
@@ -77,6 +78,7 @@ public final class DrawLottosDtoBuilder {
      */
     public DrawLottosDtoBuilder bonusNumber(final String input) {
         this.bonusNumber = StrictInputParser.mustParseToInt(input);
+        this.isBonusNumberNotSet = false;
         return this;
     }
 

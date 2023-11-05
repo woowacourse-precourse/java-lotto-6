@@ -48,4 +48,19 @@ public class InputView {
             }
         }
     }
+
+    // 보너스 번호 입력관련
+    public static String inputIntegerData() {
+        String input = readLine();
+        validateParseInteger(input);
+        return input;
+    }
+
+    private static void validateParseInteger(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
+        }
+    }
 }

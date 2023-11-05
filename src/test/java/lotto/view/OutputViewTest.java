@@ -47,7 +47,7 @@ public class OutputViewTest {
     @Test
     void 출력테스트_printErrorMessage() {
         //given
-        String expect = "[ERROR] 숫자를 입력해야 합니다.\n";
+        String expect = "[ERROR] 유효한 숫자를 입력해야 합니다.\n";
         //when
         printErrorMessage(new IllegalArgumentException(NOT_NUMBER.getMessage()));
         //then

@@ -5,13 +5,17 @@ import static lotto.model.SystemConstant.MIN_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.NUM_OF_NUMBERS;
 import static lotto.view.OutputView.printLottoNumbers;
 import static lotto.view.OutputView.printNumOfTickets;
+import static lotto.view.SystemMessage.ASK_BONUS;
 import static lotto.view.SystemMessage.ASK_MONEY;
 import static lotto.view.SystemMessage.ASK_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.Register;
@@ -52,7 +56,7 @@ public class UnifiedController {
         boolean valid = false;
         while (!valid) {
             try {
-                Register.winningNumbers = new Lotto(covertElementStringToInteger(InputView.inputIntegerListData()));
+                Register.winningLotto = new Lotto(covertElementStringToInteger(InputView.inputIntegerListData()));
                 valid = true;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);
@@ -66,5 +70,19 @@ public class UnifiedController {
             numbers.add(Integer.parseInt(element));
         }
         return numbers;
+    }
+
+    public void inputAndStoreBonus() {
+        OutputView.printSystemMessage(ASK_BONUS);
+        boolean valid = false;
+        while (!valid) {
+            try {
+                Set<Integer> winningNumbers = new HashSet<>(Register.winningLotto.getNumbers());
+                Register.bonus = new Bonus(Integer.parseInt(InputView.inputIntegerData()), winningNumbers);
+                valid = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e);
+            }
+        }
     }
 }

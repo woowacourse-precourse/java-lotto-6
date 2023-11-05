@@ -9,5 +9,6 @@ public class Application {
         unifiedController.inputAndStoreMoney();
         unifiedController.printLottoTicketsInfo();
         unifiedController.inputAndStoreWinningNumbers();
+        unifiedController.inputAndStoreBonus();
     }
 }

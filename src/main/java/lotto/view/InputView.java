@@ -109,6 +109,7 @@ public class InputView {
         }
     }
 
+
     private List<Integer> convertStrToInt(List<String> inputWinnerNumbers) {
         return inputWinnerNumbers.stream()
                 .map(Integer::parseInt)
@@ -116,8 +117,21 @@ public class InputView {
     }
 
 
+    //
 
-    private String getInput() {
-        return Console.readLine();
+    private String getInput() throws IllegalStateException {
+       String input = Console.readLine();
+        validateInputBlank(input);
+       return input;
+    }
+
+    private void validateInputBlank(String input) throws IllegalStateException {
+        if (input.isBlank() || input == null) {
+            throw new IllegalStateException("[ERROR] 입력값을 입력하지 않았습니다.");
+        }
+    }
+
+    public void close() {
+        Console.close();
     }
 }

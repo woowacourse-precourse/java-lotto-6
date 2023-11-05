@@ -29,18 +29,23 @@ public class GameController {
     }
 
     public void play() {
-        createCashAndLottoMachine();
-        purchaseLottos();
-        createWinnerLotto();
-        comparePurchasedLottosWithWinnerLotto();
-        showStaticResult();
+        try {
+            createCashAndLottoMachine();
+            purchaseLottos();
+            createWinnerLotto();
+            comparePurchasedLottosWithWinnerLotto();
+            showStaticResult();
+        } catch (IllegalStateException e) {
+            outputView.printErrorMessage(e);
+        }
+
     }
 
     private void createCashAndLottoMachine() {
         try {
             cash = inputView.InputCash();
             lottoMachine = new LottoMachine(numberGenerator, cash);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             createCashAndLottoMachine();
         }
@@ -61,7 +66,7 @@ public class GameController {
         try {
             List<Integer> winnerNumbers = inputView.inputWinnerNumbers();
             return winnerNumbers;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return createWinnerNumbers();
         }
@@ -70,6 +75,7 @@ public class GameController {
     private Integer createBonusNumber() {
         try {
             Integer bonusNumber = inputView.inputBonusNumber();
+            inputView.close();
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
@@ -79,9 +85,10 @@ public class GameController {
 
 
     private void comparePurchasedLottosWithWinnerLotto() {
-        List<Prize> result = lottos.compareAllLottoWithWinnerLotto(winnerLotto.getWinnerNumbers(),
+        List<Prize> result = lottos.compareAllLottoWithWinnerLotto(
+                winnerLotto.getWinnerNumbers(),
                 winnerLotto.getBonusNumber());
-        prizes = new Prizes(result);
+         prizes = lottos.createPrizes(result);
     }
 
 

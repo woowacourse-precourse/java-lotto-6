@@ -10,4 +10,10 @@ public class InputView {
         return Console.readLine();
     }
 
+
+    public static String readNumbers() {
+        System.out.println(INPUT_COST.getMessage());
+        return Console.readLine();
+    }
+
 }

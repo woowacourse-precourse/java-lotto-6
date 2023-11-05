@@ -5,6 +5,8 @@ import java.util.List;
 import lotto.domain.WinningNumber;
 
 public class WinningNumberRepository {
+    private static final int DEFAULT = 0;
+
     private static List<WinningNumber> winningNumbers = new LinkedList<>();
 
     public static List<WinningNumber> winningNumbers() {
@@ -15,7 +17,11 @@ public class WinningNumberRepository {
         winningNumbers.add(winningNumber);
     }
 
-    public static WinningNumber findByIndex(int index) {
+    public static List<Integer> findWinningNumbers() {
+        return findByIndex(DEFAULT).getNumbers();
+    }
+
+    private static WinningNumber findByIndex(int index) {
         return winningNumbers.get(index);
     }
 }

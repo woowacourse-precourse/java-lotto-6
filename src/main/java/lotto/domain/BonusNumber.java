@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.domain.repository.WinningNumberRepository;
 import lotto.util.ExceptionMessage;
 
@@ -26,15 +27,19 @@ public class BonusNumber {
     }
 
     private void validateDuplicateWithWinningNumber(int number) {
-        WinningNumber winningNumber = WinningNumberRepository.findByIndex(0);
-        for (int i = 0; i < winningNumber.getNumbers().size(); i++) {
-            if (isEqual(number, winningNumber.findNumberByIndex(i))) {
-                throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_WINNING_NUMBER.getMessage());
+        List<Integer> winnings = WinningNumberRepository.findWinningNumbers();
+        for (int i = 0; i < winnings.size(); i++) {
+            if (isEqual(number, winnings.get(i))) {
+                throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
             }
         }
     }
 
     private boolean isEqual(int bonus, int winning) {
         return bonus == winning;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

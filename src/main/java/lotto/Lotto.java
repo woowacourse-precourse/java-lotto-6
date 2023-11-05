@@ -16,8 +16,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(sort(numbers));
-        this.numbers = numbers;
+        List<Integer> sortedNumbers = sort(numbers);
+        validate(sortedNumbers);
+        this.numbers = sortedNumbers;
     }
 
     public List<Integer> getNumbers() {

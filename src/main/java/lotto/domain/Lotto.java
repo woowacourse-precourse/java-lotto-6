@@ -4,6 +4,7 @@ import lotto.exception.InputException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 import static lotto.configuration.GameConfiguration.LOTTO_NUMBER_SIZE;
 import static lotto.exception.errorcode.InputErrorCode.DUPLICATED_LOTTO_NUMBER;
@@ -29,5 +30,21 @@ public class Lotto {
         if (distinctNumbers.size() != numbers.size()) {
             throw new InputException(DUPLICATED_LOTTO_NUMBER);
         }
+    }
+
+    public int getMatchedNumbersCount(final Lotto other) {
+        long matchedNumbersCount = IntStream.range(0, LOTTO_NUMBER_SIZE)
+                .filter(i -> matched(other, i))
+                .count();
+
+        if (matchedNumbersCount != (int) matchedNumbersCount) {
+            throw new IllegalStateException();
+        }
+
+        return (int) matchedNumbersCount;
+    }
+
+    private boolean matched(final Lotto lotto, final int index) {
+        return numbers.get(index).equals(lotto.numbers.get(index));
     }
 }

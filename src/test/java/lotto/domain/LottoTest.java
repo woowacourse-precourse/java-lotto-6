@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,5 +25,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("랜덤 번호로 로또가 생성된다.")
+    @Test
+    void 랜덤_로또_생성(){
+        assertThatNoException().isThrownBy(() -> Lotto.issueRandomLotto());
+    }
+
 }

@@ -1,10 +1,10 @@
 package lotto;
 
-import lotto.domain.constant.ErrorConst;
 import lotto.domain.model.Bonus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static lotto.domain.constant.ErrorConst.BONUS_OUT_OF_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -15,7 +15,7 @@ public class BonusTest {
     void createBonusBiggerThanMaximumNumber() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Bonus(46);
-        }).withMessage(ErrorConst.LOTTO_OUT_OF_RANGE);
+        }).withMessage(BONUS_OUT_OF_RANGE);
     }
 
     @Test
@@ -23,7 +23,7 @@ public class BonusTest {
     void createBonusLowerThanMinimumNumber() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Bonus(0);
-        }).withMessage(ErrorConst.LOTTO_OUT_OF_RANGE);
+        }).withMessage(BONUS_OUT_OF_RANGE);
     }
 
     @Test

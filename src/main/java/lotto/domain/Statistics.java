@@ -48,8 +48,8 @@ public enum Statistics {
 
     public static String statisticsResult(Map<Statistics, Integer> winningCount) {
         StringBuilder sb = new StringBuilder();
-
         Arrays.stream(Statistics.values())
+                .filter(statistics -> !statistics.equals(NON))
                 .forEach(statistics -> makeOutputStatistics(statistics, sb, winningCount));
 
         return sb.toString();

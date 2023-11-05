@@ -2,7 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -41,5 +43,21 @@ public class Lotto {
         }
 
         return lottos;
+    }
+
+    public static Map<Rank, Integer> isWin(List<Lotto> lottos, List<Integer> winNumbers, int bonusNumber) {
+        final int fiveMatch = 5;
+        Map<Rank, Integer> map = new HashMap<>();
+
+        for (Lotto lotto : lottos) {
+            List<Integer> issueNumbers = lotto.getNumbers();
+            int matchCount = compareMatch(issueNumbers, winNumbers);
+
+            boolean matchBonus;
+            if (matchCount == fiveMatch) {
+                matchBonus = compareBonus(issueNumbers, bonusNumber);
+            }
+
+        }
     }
 }

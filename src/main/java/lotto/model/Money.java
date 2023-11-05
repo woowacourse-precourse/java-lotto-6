@@ -2,10 +2,10 @@ package lotto.model;
 
 import lotto.utils.InputValidator;
 
-public class Price {
+public class Money {
     private String money;
 
-    public Price(String money) {
+    public Money(String money) {
         validate(money);
         this.money = money;
     }

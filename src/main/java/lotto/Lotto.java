@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.util.Constants.MAX_RANGE;
+import static lotto.util.Constants.MIN_RANGE;
 import static lotto.util.ErrorConstants.DUPLICATE_NUMBER;
 import static lotto.util.ErrorConstants.OVER_RANGE;
 import static lotto.util.ErrorConstants.OVER_SIZE;
@@ -23,7 +25,7 @@ public class Lotto {
             throw new IllegalArgumentException(DUPLICATE_NUMBER);
         }
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if ((number < MIN_RANGE) || (number > MAX_RANGE)) {
                 throw new IllegalArgumentException(OVER_RANGE);
             }
         }

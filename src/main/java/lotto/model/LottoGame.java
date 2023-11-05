@@ -1,12 +1,17 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class LottoGame {
 
-  public int countMatchingNumbers(List<Integer> lotto, List<String> winningNumbers) {
+  public List<Integer> createRandomLottoNumber() {
+    return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  public int countMatchingNumbers(List<Integer> lotto, List<Integer> winningNumberSet) {
     int matchedNumbers = 0;
-    for (String userNumber : winningNumbers) {
+    for (Integer userNumber : winningNumberSet) {
       if (lotto.contains(userNumber)) {
         matchedNumbers++;
       }
@@ -38,10 +43,10 @@ public class LottoGame {
   }
 
 
-  public List<Integer> checkWinningStatus(List<List<Integer>> lottos, List<Integer> winningNumbers, int bonusNumber) {
+  public List<Integer> checkWinningStatus(List<List<Integer>> lottos, List<Integer> winningNumberSet, int bonusNumber) {
     List<Integer> rank = Lotto.createRank();
     for (List<Integer> lotto : lottos) {
-      int matchedNumbers = countMatchingNumbers(lotto, winningNumbers);
+      int matchedNumbers = countMatchingNumbers(lotto, winningNumberSet);
       int rankIndex = setRank(lotto, bonusNumber, matchedNumbers);
       int currentCount = rank.get(rankIndex);
       rank.set(rankIndex, currentCount + 1);

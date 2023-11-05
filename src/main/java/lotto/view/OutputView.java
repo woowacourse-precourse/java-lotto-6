@@ -8,6 +8,6 @@ public class OutputView {
     public void printPurchaseLotto(User user) {
         int lottoCount = user.getLottoCount();
         System.out.println(lottoCount + PrintMessage.LOTTO_COUNT_OUTPUT_MESSAGE.getMessage());
-        System.out.println(user + "\n");
+        System.out.println(user);
     }
 }

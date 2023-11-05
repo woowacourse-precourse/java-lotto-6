@@ -1,7 +1,5 @@
 package lotto.exception;
 
-import lotto.util.NumberConstant;
-
 import java.util.List;
 
 import static lotto.exception.ErrorMessage.*;

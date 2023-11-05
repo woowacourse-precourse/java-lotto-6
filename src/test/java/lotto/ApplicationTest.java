@@ -1,8 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -58,4 +61,16 @@ class ApplicationTest extends NsTest {
     public void runMain() {
         Application.main(new String[]{});
     }
+
+
+    @DisplayName("구매 금액만큼 로또 생성하는지 테스트")
+    @Test
+    void createLottosTest(){
+        List<Lotto> lottoList = new ArrayList<>();
+
+        Application.createLottos(8000, lottoList);
+
+        Assertions.assertThat(lottoList.size()).isEqualTo(8000 / 1000);
+    }
+
 }

@@ -41,7 +41,7 @@ public class Application {
         return money;
     }
 
-    private static int validateBuyMoney(String input) {
+    public static int validateBuyMoney(String input) {
         int money;
 
         money = Integer.parseInt(input);
@@ -70,7 +70,7 @@ public class Application {
         return numbers;
     }
 
-    private static void validateCorrectNumbers(List<Integer> numbers) {
+    public static void validateCorrectNumbers(List<Integer> numbers) {
         if(numbers.size() != 6){
             throw new IllegalArgumentException("[ERROR] 당첨번호는 6개 입력해야 합니다.");
         }
@@ -88,7 +88,7 @@ public class Application {
     }
 
 
-    private static void createLottos(int buyMoney, List<Lotto> lottoList) {
+    public static void createLottos(int buyMoney, List<Lotto> lottoList) {
         for(int i = 0; i < buyMoney / 1000; i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
@@ -98,7 +98,7 @@ public class Application {
     }
 
 
-    private static void printLottos(List<Lotto> lottoList) {
+    public static void printLottos(List<Lotto> lottoList) {
         System.out.println(lottoList.size() + "개를 구매했습니다.");
 
         for (Lotto lotto : lottoList) {
@@ -119,7 +119,7 @@ public class Application {
         return bonusNumber;
     }
 
-    private static void validateBonusNumber(List<Integer> correctNumbers, Integer bonusNumber) {
+    public static void validateBonusNumber(List<Integer> correctNumbers, Integer bonusNumber) {
         if(bonusNumber < 1 || bonusNumber > 45){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 숫자를 입력해야 합니다.");
         }
@@ -130,14 +130,14 @@ public class Application {
     }
 
 
-    private static void initWinCheckMap(Map<Position, Integer> winCheckMap) {
+    public static void initWinCheckMap(Map<Position, Integer> winCheckMap) {
         for (Position position : Position.values()) {
             winCheckMap.put(position, 0);
         }
     }
 
 
-    private static void winCheck(List<Lotto> lottoList, List<Integer> correctNumbers, Integer bonusNumber, Map<Position, Integer> winCheckMap) {
+    public static void winCheck(List<Lotto> lottoList, List<Integer> correctNumbers, Integer bonusNumber, Map<Position, Integer> winCheckMap) {
         for (Lotto lotto : lottoList) {
             Position position = lotto.checkLotto(correctNumbers, bonusNumber);
 
@@ -148,7 +148,7 @@ public class Application {
     }
 
 
-    private static void printLottoResult(int buyMoney, Map<Position, Integer> winCheckMap) {
+    public static void printLottoResult(int buyMoney, Map<Position, Integer> winCheckMap) {
         System.out.println("당첨 통계\n---------");
 
         int totalPrice = 0;

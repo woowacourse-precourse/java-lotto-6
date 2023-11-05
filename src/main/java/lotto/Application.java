@@ -6,6 +6,7 @@ public class Application {
         WinningInfo winningInfo = new WinningInfo();
         LottoGenerator lottoGenerator = new LottoGenerator();
         Game lottoGame = new Game(user, winningInfo, lottoGenerator);
+
         lottoGame.run();
     }
 }

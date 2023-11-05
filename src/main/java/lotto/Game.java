@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 
+import lotto.View.InputView;
 import lotto.View.OutputView;
 
 public class Game {
@@ -14,30 +15,38 @@ public class Game {
 		this.lottoGenerator = lottoGenerator;
 	}
 	public void run(){
-		int pay = getPay();
-		int lottoCount = calculateLottoCount(pay);
-		List<Lotto> lottos = lottoGenerator.makeLotto(lottoCount);
-		user.setLottos(lottos);
+		Money pay = getPay();
+		//int lottoCount = calculateLottoCount(pay);
+		//List<Lotto> lottos = lottoGenerator.makeLotto(lottoCount);
+		//user.setLottos(lottos);
 
-		OutputView.printPurchasedMessage(lottoCount, lottos);
+		//OutputView.printPurchasedMessage(lottoCount, lottos);
 
 		winningInfo.setWinningNumbers();
 		winningInfo.setBonusNumber();
 
-		List<Integer> prices = calculatePrices(user, winningInfo){}
+		//List<Integer> prices = calculatePrices(user, winningInfo){};
 
-		OutputView.printResult(prices);
+		//OutputView.printResult(prices);
 	}
 
-	private int getPay(){
-		return 0;
-	};
+	private Money getPay() {
+		while(true){
+			try{
+				String input = InputView.getPayInput();
+				return new Money(input);
+			}catch(IllegalArgumentException e){
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
 
 	private int calculateLottoCount(int pay){
 		return 0;
 	}
 
-	private List<Integer> calculatePrices(User user, WinningInfo winningInfo){}
+	//private List<Integer> calculatePrices(User user, WinningInfo winningInfo){}
 
 
 }

@@ -15,12 +15,13 @@ public class OutputView {
     }
 
     public static void printGameResult(Map<LottoResult, Integer> result, double yieldRate) {
-        Set<LottoResult> keys = result.keySet();
+        Set<LottoResult> lottoResults = result.keySet();
 
         Output.RESULT.print();
-        keys.forEach(
-                key -> {
-                    key.print(result.get(key));
+        lottoResults.forEach(
+                lottoResult -> {
+                    Integer count = result.get(lottoResult);
+                    lottoResult.print(count);
                 }
         );
         Output.TOTAL_RETURN.print(yieldRate);

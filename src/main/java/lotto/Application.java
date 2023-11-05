@@ -20,6 +20,8 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+        lottoPick.makeLottoPick();
+        lottoPick.outputLottoPick();
         while (true) {
             try {
                 lotto = new Lotto(winningNumber());
@@ -36,7 +38,9 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
-        lottoPick.makeLottoPick();
+        LottoCheck lottoCheck = new LottoCheck(lottoPick.lottoPickNumber(),lotto.lottoNumber());
+        lottoCheck.lottoCompare();
+        lottoCheck.lottoOutput();
     }
 
 

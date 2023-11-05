@@ -48,7 +48,6 @@ public class LottoPick {
 
     // 랜덤 숫자 생성 (1~45 6개).
     private List<Integer> randomCreate() {
-
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.util.Validation;
-import lotto.view.InputView;
 
 public class BuyingCost {
 

@@ -19,6 +19,9 @@ public class Lotto {
         if(isOutOfRangeNum(numbers)){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+        if(isOverlapNum(numbers)){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
+        }
     }
     private boolean isOutOfRangeNum(List<Integer> numbers){
         for(Integer num:numbers){
@@ -27,6 +30,10 @@ public class Lotto {
             }
         }
         return false;
+    }
+    private boolean isOverlapNum(List<Integer> numbers){
+        Set<Integer> numSet = new HashSet<>(numbers);
+        return numbers.size() != numSet.size();
     }
 
     // TODO: 추가 기능 구현

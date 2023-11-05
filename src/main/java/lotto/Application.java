@@ -6,8 +6,7 @@ import lotto.controller.GameController;
 public class Application {
     public static void main(String[] args) {
 
-        GameConfig gameConfig = new GameConfig();
-        GameController gameController = gameConfig.getGameController();
+        GameController gameController = GameConfig.getGameController();
 
         gameController.start();
     }

@@ -5,9 +5,9 @@ import lotto.exception.LottoException;
 
 import java.util.Objects;
 
+import static lotto.domain.constants.LottoConstraint.MAXIMUM_PURCHASE_PAYMENT;
 import static lotto.domain.constants.LottoConstraint.UNIT_PRICE;
-import static lotto.exception.ErrorMessage.NOT_ENOUGH_PAYMENT;
-import static lotto.exception.ErrorMessage.PAYMENT_NOT_DIVISIBLE_BY_UNIT_PRICE;
+import static lotto.exception.ErrorMessage.*;
 
 public class Buyer {
     private static final int ZERO = 0;
@@ -19,6 +19,7 @@ public class Buyer {
         int convertedPayment = Parser.parseStringToInt(paymentInput);
 
         validateMinimumPayment(convertedPayment);
+        validateMaximumPayment(convertedPayment);
         validateUnitPrice(convertedPayment);
 
         this.payment = convertedPayment;
@@ -41,13 +42,23 @@ public class Buyer {
     }
 
     private void validateMinimumPayment(final int payment) {
-        if (isSmallerThanMinimumPayment(payment)) {
+        if (isSmallerThanUnitPrice(payment)) {
             throw LottoException.from(NOT_ENOUGH_PAYMENT);
         }
     }
 
-    private boolean isSmallerThanMinimumPayment(final int payment) {
-        return payment <= ZERO;
+    private void validateMaximumPayment(final int payment) {
+        if (isBiggerThanMaximumPayment(payment)) {
+            throw LottoException.from(EXCEED_PAYMENT);
+        }
+    }
+
+    private boolean isSmallerThanUnitPrice(final int payment) {
+        return payment < UNIT_PRICE.getValue();
+    }
+
+    private boolean isBiggerThanMaximumPayment(final int payment) {
+        return payment > MAXIMUM_PURCHASE_PAYMENT.getValue();
     }
 
     private boolean isNotDivisibleByUnitPrice(final int payment) {

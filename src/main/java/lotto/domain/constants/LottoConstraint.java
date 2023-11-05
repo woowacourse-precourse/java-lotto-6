@@ -5,6 +5,7 @@ import java.util.Objects;
 public enum LottoConstraint {
     LOTTO_PICK_COUNT(6),
     UNIT_PRICE(1_000),
+    MAXIMUM_PURCHASE_PAYMENT(1_000_000),
 
     NUMBER_LOWER_BOUND(1),
     NUMBER_UPPER_BOUND(45);

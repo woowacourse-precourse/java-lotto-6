@@ -44,11 +44,12 @@ public class OutputViewService {
     public static void outputStatistics(List<LottoResult> lottoResultList) {
         lottoResultList.sort(Comparator.comparingInt(lr -> lr.getReward()));
         lottoResultList.forEach(lr -> {
-            System.out.println(getStatisticsMessage(lr.getMatchCount(), lr.getReward(), lr.getSameEa(), lr.isLottoThirdRank()));
+            System.out.println(getStatisticsMessage(lr.getMatchCount(), lr.getReward(), lr.getSameEa(), lr.isLottoSecondRank()));
         });
     }
 
-    public static void outputRateOfReturn() {
+    public static void outputRateOfReturn(double rateOfReturn) {
+        System.out.println(getRateOfReturnMessage(rateOfReturn));
     }
 
     public static void outPutErrorMessage(IllegalArgumentException e) {

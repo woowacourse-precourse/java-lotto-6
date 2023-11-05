@@ -11,7 +11,7 @@ class LottoResultTest {
     @Test
     void THIRD_LANK_당첨_내역_확인_테스트() {
         LottoResult lottoResult = new LottoResult(LottoRank.FIRST_RANK, 3);
-        assertThat(lottoResult.isLottoThirdRank()).isFalse();
+        assertThat(lottoResult.isLottoSecondRank()).isFalse();
     }
 
 }

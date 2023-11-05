@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -27,7 +28,7 @@ public class LottoMachine {
     public List<Lotto> getLottoList(int price, int amount) {
         return IntStream.range(0, amount / price)
                 .mapToObj(i -> {
-                    List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(startNumber, endNumber, count);
+                    List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(startNumber, endNumber, count));
                     randomNumbers.sort(Integer::compareTo);
                     return new Lotto(randomNumbers);
                 })

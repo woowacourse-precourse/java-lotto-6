@@ -4,6 +4,8 @@ import lotto.model.*;
 import lotto.service.view.InputViewService;
 import lotto.service.view.OutputViewService;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 /**
@@ -27,7 +29,7 @@ public class LottoService {
 
         LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(winnigNumbers, bonusNumber);
 
-        printResult(purchasedLottoList, lottoResultCalculator);
+        printResult(purchasedLottoList, lottoResultCalculator, amount);
     }
 
     private int getAmount() {
@@ -68,11 +70,21 @@ public class LottoService {
         }
     }
 
-    private void printResult(List<Lotto> purchasedLottoList, LottoResultCalculator lottoCalculator) {
+    private void printResult(List<Lotto> purchasedLottoList, LottoResultCalculator lottoCalculator, int amount) {
         OutputViewService.outputStatisticIntro();
         List<LottoResult> lottoResultList = lottoCalculator.getLottoResults(purchasedLottoList);
         OutputViewService.outputStatistics(lottoResultList);
-//        OutputViewService.outputRateOfReturn(lottoResultList);
+        OutputViewService.outputRateOfReturn(getRateOfReturn(amount, lottoResultList));
     }
 
+    private static double getRateOfReturn(int amount, List<LottoResult> lottoResultList) {
+        if (amount == 0) {
+            throw new IllegalArgumentException("Amount cannot be zero.");
+        }
+        int totalReward = lottoResultList.stream().mapToInt(LottoResult::getTotalReward).sum();
+        BigDecimal rate = BigDecimal.valueOf(((double) totalReward / amount)).multiply(BigDecimal.valueOf(100));
+
+        BigDecimal rounded = rate.setScale(2, RoundingMode.HALF_UP);
+        return rounded.doubleValue();
+    }
 }

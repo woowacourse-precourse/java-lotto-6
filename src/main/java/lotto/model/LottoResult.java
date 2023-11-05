@@ -10,7 +10,7 @@ public class LottoResult {
         this.count = count;
     }
 
-    public int getSameEa(){
+    public int getSameEa() {
         return this.count;
     }
 
@@ -22,9 +22,12 @@ public class LottoResult {
         return this.lottoRank.getCount();
     }
 
-    public Boolean isLottoThirdRank() {
-        return this.lottoRank == LottoRank.THIRD_RANK;
+    public Boolean isLottoSecondRank() {
+        return this.lottoRank == LottoRank.SECOND_RANK;
     }
 
+    public int getTotalReward() {
+        return getReward() * count;
+    }
 
 }

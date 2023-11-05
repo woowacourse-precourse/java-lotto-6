@@ -9,7 +9,8 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Buyer buyer = new Buyer();
-        System.out.println(buyer.getLottoPurchaseAmount());
+        int money = buyer.getLottoPurchaseAmount();
+        System.out.println(money);
 
     }
 }

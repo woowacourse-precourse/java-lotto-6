@@ -21,7 +21,7 @@ public class UserInputValidator {
 		try {
 			String[] inputNumbers = input.split(",");
 			for (String num : inputNumbers) {
-				validNumbers.add(Integer.parseInt(num));
+				validNumbers.add(Integer.parseInt(num.strip()));
 			}
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException(LottoError.INVALID_INPUT_NUMBER.getErrorDescription());

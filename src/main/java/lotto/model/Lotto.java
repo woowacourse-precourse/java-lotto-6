@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
@@ -15,12 +16,16 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sorted(numbers);
     }
 
     private void validate(List<Integer> numbers) {
         validateDuplicated(numbers);
         validateNumbersRange(numbers);
+    }
+
+    private List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 
     private void validateDuplicated(List<Integer> numbers) {
@@ -40,5 +45,10 @@ public class Lotto {
         if (!(MIN_NUMBER <= number && number <= MAX_NUMBER)) {
             throw new IllegalArgumentException(NOT_LOTTO_NUMBER_RANGE);
         }
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

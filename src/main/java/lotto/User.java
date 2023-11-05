@@ -15,6 +15,7 @@ public class User {
     private Lotto winningNumber;
     private int bonusNumber;
     private EnumMap<Winner, Integer> winnersResult = new EnumMap<>(Winner.class);
+    private int winnerMoney = 0;
 
     private InputManager inputManager;
     private NumberManager numberManager;
@@ -78,6 +79,13 @@ public class User {
         }
 
         messageManager.showResult(winnersResult);
+    }
+
+    public void calculateMoney(){
+        for(Winner winner: Winner.values()){
+            winnerMoney += winner.getPrize() * winnersResult.get(winner);
+        }
+        messageManager.showRateMoney(winnerMoney / money * 100);
     }
 
     private void setCount(){

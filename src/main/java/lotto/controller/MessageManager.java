@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.Winner;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.EnumMap;
 
@@ -36,5 +37,12 @@ public class MessageManager {
     public String decimalFormat(int amount){
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         return decimalFormat.format(amount);
+    }
+
+    public void showRateMoney(double number){
+        BigDecimal bd = new BigDecimal(number);
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+
+        System.out.println("총 수익률은 " + bd + "%입니다.");
     }
 }

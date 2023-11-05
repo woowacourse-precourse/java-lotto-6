@@ -22,6 +22,7 @@ public class GameManager {
         user.predictWinningNumber();
         user.predictBonusNumber();
         user.compareLotto();
+        user.calculateMoney();
     }
 
 

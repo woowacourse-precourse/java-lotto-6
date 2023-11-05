@@ -35,10 +35,10 @@ public class LottoGameController {
         return repeater.repeatBeforeSuccess(() -> new LottoPurchaseCost(inputView.readCostAmount()));
     }
 
-    private Lottos buyLottos(int amount) {
-        LottoDispenser lottoDispenser = new LottoDispenser(new LottoRandomGenerator());
-        Lottos lottos = lottoDispenser.dispense(amount);
-        outputView.printBuyingAmountMessage(amount);
+    private Lottos buyLottos(LottoPurchaseCost lottoPurchaseCost) {
+        LottoDispenser lottoDispenser = new LottoDispenser(new LottoRandomGenerator(), lottoPurchaseCost);
+        Lottos lottos = lottoDispenser.dispense();
+        outputView.printBuyingAmountMessage(lottoPurchaseCost.getLottoAmount());
 
         return lottos;
     }
@@ -64,8 +64,7 @@ public class LottoGameController {
     }
 
     private LottoGame initGame(LottoPurchaseCost lottoPurchaseCost) {
-        int lottoAmount = lottoPurchaseCost.getLottoAmount();
-        Lottos lottos = buyLottos(lottoAmount);
+        Lottos lottos = buyLottos(lottoPurchaseCost);
         printBoughtLottos(lottos);
 
         WinningLotto winningLotto = readLottoAnswer();

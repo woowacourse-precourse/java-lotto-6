@@ -23,11 +23,22 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-//    public int draw(Lotto winning, Integer bonus) {
-//        long count = winning.numbers.stream()
-//                .filter(number -> numbers.contains(number))
-//                .count();
-//        boolean contains = numbers.contains(bonus);
-//
-//    }
+
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
+    public Grade draw(Lotto winning, Integer bonus) {
+        int count = (int) winning.numbers.stream()
+                .filter(number -> contains(number))
+                .count();
+        boolean contains = contains(bonus);
+
+        return Grade.draw(count, contains);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

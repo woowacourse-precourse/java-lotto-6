@@ -20,4 +20,9 @@ public class OutputView {
         Collections.sort(numbers);
         System.out.println(Arrays.toString(numbers.toArray()));
     }
+
+    //TODO 상수화?
+    public static void printWinningDetail(String description, int count) {
+        System.out.println(description + " - " + count + "개");
+    }
 }

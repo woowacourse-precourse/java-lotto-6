@@ -7,5 +7,6 @@ public class MessageConst {
     public static final String WINNING_BONUS_REQUEST = "보너스 번호를 입력해 주세요.";
 
     public static final String AMOUNT_NOTICE = "개를 구매했습니다.";
+    public static final String WINNING_DETAILS_NOTICE = "당첨 통계\n---";
 
 }

@@ -13,46 +13,46 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateSize(numbers);
-        validateNumberRange(numbers);
+        validateLength(numbers);
+        validateEachNumberRange(numbers);
         validateDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 로또는 6개의 숫자로 구성되야합니다");
         }
     }
 
-    private void validateDuplicatedNumber(List<Integer> numbers) {
+    private void validateEachNumberRange(List<Integer> numbers) {
         if (numbers.stream()
-                   .collect(
-                        Collectors.toSet()
-                    )
-                   .size()
-                != LOTTO_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자로 이루어진 로또를 생성할 수 없습니다.");
-        }
-    }
-
-    private void validateNumberRange(List<Integer> numbers) {
-        if (numbers.stream()
-                .anyMatch( number -> !(RANGE_START_NUMBER <= number && number <= RANGE_END_NUMBER))) {
+                .anyMatch(number -> !(RANGE_START_NUMBER <= number && number <= RANGE_END_NUMBER))) {
             throw new IllegalArgumentException("[ERROR] 로또 숫자의 허용 범위는 1~45까지입니다.");
         }
     }
 
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        if (numbers.stream()
+                   .collect(Collectors.toSet())
+                   .size() != LOTTO_LENGTH) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자로 이루어진 로또를 생성할 수 없습니다.");
+        }
+    }
+
+
     public Prize compareWithWinnerLotto(List<Integer> winnerNumbers, Integer bonusNumber) {
-        Integer countOfSameNumbers = compareWithWinnerNumbers(winnerNumbers);
-        Boolean checkBonusNumber = compareWithBonusNumber(bonusNumber);
-        return Prize.of(countOfSameNumbers, checkBonusNumber);
+        Integer countOfMatchedNumber = compareWithWinnerNumbers(winnerNumbers);
+        Boolean isBonusNumber = compareWithBonusNumber(bonusNumber);
+        return Prize.of(countOfMatchedNumber, isBonusNumber);
     }
 
 
     private Integer compareWithWinnerNumbers(List<Integer> winnerNumbers) {
         return Math.toIntExact(numbers.stream()
-                .filter(number -> winnerNumbers.contains(number))
+                .filter(
+                        number -> winnerNumbers.contains(number)
+                )
                 .count());
     }
 

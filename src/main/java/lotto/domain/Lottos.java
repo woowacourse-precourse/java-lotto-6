@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 
 public class Lottos {
 
+    private static final Integer MONEY_UNIT = 1000;
+
     private final List<Numbers> lottoValues = new ArrayList<>();
 
     public void saveLottos(LottoPurchasePrice purchasePrice) {
@@ -19,6 +21,10 @@ public class Lottos {
 
     private Numbers getLotto() {
         return new Numbers(LottoRandomNumbers.getRandomNumbers());
+    }
+
+    public Integer getLottosPrice() {
+        return lottoValues.size() * MONEY_UNIT;
     }
 
     public List<Numbers> getLottoValues() {

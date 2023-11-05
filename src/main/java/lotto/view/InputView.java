@@ -38,7 +38,15 @@ public class InputView {
 
     public List<Integer> inputAnswerNumber() {
         String inputAnswer = Console.readLine();
+        validateInputAnswer(inputAnswer);
+
         List<Integer> answerNumber = new ArrayList<>();
         return answerNumber;
+    }
+
+    public void validateInputAnswer(String inputAnswer) {
+        if(inputAnswer.contains(" ")){
+            throw new IllegalArgumentException(VALIDATE_CONTAIN_WHITE_SPACE_MESSAGE);
+        }
     }
 }

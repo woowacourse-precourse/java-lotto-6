@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import lotto.constant.Rank;
 
 public class Result {
+
     private static float HUNDRED = 100.0F;
 
     private final Map<Rank, Long> rankCount;

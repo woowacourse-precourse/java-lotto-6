@@ -22,6 +22,6 @@ public class LottoConfig {
     }
 
     public static LottoFactory getLottoFactory(final int money) {
-        return LottoFactory.create(new RandomNumberGenerator(), money);
+        return LottoFactory.of(new RandomNumberGenerator(), money);
     }
 }

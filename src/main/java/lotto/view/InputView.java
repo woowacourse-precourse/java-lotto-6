@@ -34,12 +34,10 @@ public class InputView {
         return Integer.parseInt(money);
     }
 
-
     private void validateNumber(final String number) {
         if (isNotNumber(number)) {
             throw LottoException.of(NOT_POSITIVE_INTEGER);
         }
-
     }
 
     private boolean isNotNumber(final String money) {

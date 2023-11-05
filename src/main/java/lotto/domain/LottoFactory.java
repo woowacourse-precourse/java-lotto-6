@@ -22,23 +22,20 @@ public class LottoFactory {
         this.lottos = lottos;
     }
 
-    public static LottoFactory create(final NumberGenerator numberGenerator, final int money) {
+    public static LottoFactory of(final NumberGenerator numberGenerator, final int money) {
         return new LottoFactory(createLottos(numberGenerator, money));
     }
 
-    private static List<Lotto> createLottos(final NumberGenerator numberGenerator, final int money) {
+    private static List<Lotto> createLottos(final NumberGenerator numberGenerator,
+            final int money) {
         validateMoney(money);
 
-        final int lottoCount = getLottoCount(money);
+        final int lottoCount = calculateLottoCount(money);
 
         return Stream.generate(numberGenerator::generate)
                 .limit(lottoCount)
                 .map(Lotto::new)
                 .toList();
-    }
-
-    private static int getLottoCount(int money) {
-        return money / MONEY_UNIT.getValue();
     }
 
     private static void validateMoney(final int money) {
@@ -57,6 +54,10 @@ public class LottoFactory {
 
     private static boolean isNotCorrectUnit(final int money) {
         return money % MONEY_UNIT.getValue() != 0;
+    }
+
+    private static int calculateLottoCount(int money) {
+        return money / MONEY_UNIT.getValue();
     }
 
     public Result calculateResult(final AnswerLotto answerLotto) {

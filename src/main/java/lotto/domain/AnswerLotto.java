@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.constant.Rank;
 
 public class AnswerLotto {
+
     private final Lotto mainLotto;
     private final int bonusNumber;
 
@@ -11,7 +12,7 @@ public class AnswerLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public static AnswerLotto create(final Lotto mainLotto, final int bonusNumber) {
+    public static AnswerLotto of(final Lotto mainLotto, final int bonusNumber) {
         mainLotto.validateBonusNumber(bonusNumber);
 
         return new AnswerLotto(mainLotto, bonusNumber);

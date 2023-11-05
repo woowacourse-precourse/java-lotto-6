@@ -26,9 +26,13 @@ public class Lotto {
     }
 
     private void validateSize(final List<Integer> numbers) {
-        if (numbers.size() != COUNT.getValue()) {
+        if (isWrongSize(numbers)) {
             throw LottoException.of(WRONG_SIZE);
         }
+    }
+
+    private static boolean isWrongSize(List<Integer> numbers) {
+        return numbers.size() != COUNT.getValue();
     }
 
     private void validateDuplicate(final List<Integer> numbers) {

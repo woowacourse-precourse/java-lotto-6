@@ -16,21 +16,21 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
 
-    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+    @DisplayName("로또 번호의 개수는 6개이다.")
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 안된다.")
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 1 ~ 45 범위 밖의 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("로또 번호는 1 ~ 45 범위의 숫자이다.")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46, 47})
     void createLottoByWrongRange(int value) {
@@ -39,7 +39,7 @@ class LottoTest {
                 .hasMessage(ErrorMessage.WRONG_RANGE.getMessage());
     }
 
-    @DisplayName("보너스 번호도 기존 번호와 중복되면 예외를 발생한다.")
+    @DisplayName("보너스 번호도 기존 번호와 중복되면 안된다.")
     @Test
     void validateBonusNumberByDuplicatedNumber() {
         // given
@@ -52,7 +52,7 @@ class LottoTest {
                 .hasMessage(ErrorMessage.DUPLICATE_NUMBER.getMessage());
     }
 
-    @DisplayName("보너스 번호도 범위 밖에 있으면 예외를 발생한다.")
+    @DisplayName("보너스 번호도 범위 밖에 있으면 안된다.")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46, 47})
     void validateBonusNumberByRange(int value) {

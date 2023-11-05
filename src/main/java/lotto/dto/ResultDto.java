@@ -3,10 +3,10 @@ package lotto.dto;
 import lotto.constant.Rank;
 
 public record ResultDto(
-    int sameNumberCount,
-    boolean hasBonus,
-    int reward,
-    Long count
+        int sameNumberCount,
+        boolean hasBonus,
+        int reward,
+        Long count
 ) implements Comparable<ResultDto> {
 
     public static ResultDto of(final Rank rank, final Long count) {

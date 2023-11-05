@@ -8,8 +8,8 @@ public enum ErrorMessage {
     DUPLICATE_NUMBER("중복된 숫자가 있습니다."),
     WRONG_RANGE("숫자 범위가 잘못되었습니다.");
 
-    private final String message;
     private static final String header = "[ERROR] ";
+    private final String message;
 
     ErrorMessage(final String message) {
         this.message = message;

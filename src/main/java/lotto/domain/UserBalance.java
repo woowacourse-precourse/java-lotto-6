@@ -15,8 +15,8 @@ public class UserBalance {
     }
 
     private void validateCorrectRange(int balance) {
-        if(balance < 1000 && balance > 100000000){
-            throw new IllegalArgumentException("[ERROR] : 구입 금액은 1000원 이상, 1억원 이하입니다");
+        if(balance < 1000 && balance > 1000000000){
+            throw new IllegalArgumentException("[ERROR] : 구입 금액은 1000원 이상, 10억원 이하입니다");
         }
     }
 

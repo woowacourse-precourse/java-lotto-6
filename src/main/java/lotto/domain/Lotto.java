@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,8 +19,9 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> copiedNumbers = new ArrayList<>(numbers);
+        Collections.sort(copiedNumbers);
+        return copiedNumbers;
     }
 
     public int getMatchedNumbersCount(WinningNumbers winningNumbers) {

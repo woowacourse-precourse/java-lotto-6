@@ -31,7 +31,7 @@ public class WinningLotto {
 
     public int countMatchingNumbers(Lotto lotto) {
         int result = countMatchingWinningNumbers(lotto);
-        if (lotto.contains(bonusNumber)) {
+        if (containsBonusNumber(lotto)) {
             result += INCREASE_NUMBER;
         }
         return result;

@@ -40,7 +40,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private static Stream<List<Integer>> wrongRangeList(){
+    private static Stream<List<Integer>> wrongRangeList() {
         return Stream.of(
                 List.of(0, 1, 2, 3, 4, 5),
                 List.of(1, 2, 3, 4, 5, 46)
@@ -49,12 +49,12 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource("equalsArgs")
-    void 로또_동등성_테스트(Lotto l1, Lotto l2, CompareResult result){
+    void 로또_동등성_테스트(Lotto l1, Lotto l2, CompareResult result) {
         Assertions.assertThat(l1.compareLotto(l2))
                 .isEqualTo(result);
     }
 
-    static Stream<Arguments> equalsArgs(){
+    static Stream<Arguments> equalsArgs() {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
@@ -76,12 +76,12 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource("equalsWithAnswerArgs")
-    void 정답과_동등성_테스트(Lotto l1, Lotto l2, CompareResult result){
+    void 정답과_동등성_테스트(Lotto l1, Lotto l2, CompareResult result) {
         Assertions.assertThat(l1.compareLotto(l2))
                 .isEqualTo(result);
     }
 
-    static Stream<Arguments> equalsWithAnswerArgs(){
+    static Stream<Arguments> equalsWithAnswerArgs() {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new LottoAnswer(List.of(1, 2, 3, 4, 5, 6), 9),

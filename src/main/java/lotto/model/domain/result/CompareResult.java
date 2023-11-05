@@ -2,7 +2,7 @@ package lotto.model.domain.result;
 
 import java.util.Objects;
 
-public class CompareResult{
+public class CompareResult {
     private int collectCount;
     private boolean isCollectBonus;
 

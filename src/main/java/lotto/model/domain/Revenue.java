@@ -6,8 +6,8 @@ import lotto.constance.PrintConst;
 public class Revenue {
     double revenue;
 
-    public Revenue(long prize, int money){
-        this.revenue = (100.0 *  prize) / money;
+    public Revenue(long prize, int money) {
+        this.revenue = (100.0 * prize) / money;
     }
 
     @Override

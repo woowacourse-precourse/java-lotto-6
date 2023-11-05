@@ -14,7 +14,7 @@ class RetryExceptionHandlerTest {
 
     @Test
     @DisplayName("예외가 발생하면 해당 예외를 출력하고 다시 실행한다.")
-    public void retry_Test() throws Exception{
+    public void retry_Test() {
         //given
         List<String> numberString = new LinkedList<>(List.of("abc", "1"));
 

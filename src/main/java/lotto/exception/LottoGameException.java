@@ -21,7 +21,7 @@ public enum LottoGameException {
 
     private String exceptionMessage;
 
-    LottoGameException(String message){
+    LottoGameException(String message) {
         this.exceptionMessage = message;
     }
 
@@ -29,7 +29,7 @@ public enum LottoGameException {
         return exceptionMessage;
     }
 
-    public IllegalArgumentException makeException(){
+    public IllegalArgumentException makeException() {
         return new IllegalArgumentException(this.exceptionMessage);
     }
 }

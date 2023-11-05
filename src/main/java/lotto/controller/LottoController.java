@@ -21,13 +21,13 @@ public class LottoController {
     ResultFactory factory = new ResultFactory();
     Results results = new Results();
 
-    public LottoController(ExceptionHandler handler, LottoStore store, LottoGameUI ui){
+    public LottoController(ExceptionHandler handler, LottoStore store, LottoGameUI ui) {
         this.handler = handler;
         this.store = store;
         this.ui = ui;
     }
 
-    public void run(){
+    public void run() {
         int money = getMoney();
         Lottos lottos = purchaseLotto(money);
         LottoAnswer answer = createAnswer();
@@ -46,13 +46,13 @@ public class LottoController {
         return lottos;
     }
 
-    private LottoAnswer createAnswer(){
+    private LottoAnswer createAnswer() {
         AnswerGenerator answerGenerator = handler.getResult(
-                ()-> new AnswerGenerator(ui.getAnswerNumber(), ui.getBonusNumber()));
+                () -> new AnswerGenerator(ui.getAnswerNumber(), ui.getBonusNumber()));
         return (LottoAnswer) answerGenerator.generate();
     }
 
-    private Results computeResult(Lottos lottos, LottoAnswer answer){
+    private Results computeResult(Lottos lottos, LottoAnswer answer) {
         lottos.getLottosDTO()
                 .stream()
                 .map((lotto) -> factory.getResult(lotto, answer))
@@ -61,7 +61,7 @@ public class LottoController {
         return results;
     }
 
-    private void computeRevenue(int money, Results results){
+    private void computeRevenue(int money, Results results) {
         long prize = results.getResults()
                 .stream()
                 .mapToLong(result -> (long) result.getKey().getPrize() * result.getValue())

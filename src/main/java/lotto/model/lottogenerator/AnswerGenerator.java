@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.lotto.LottoAnswer;
 
-public class AnswerGenerator extends LottoGenerator{
+public class AnswerGenerator extends LottoGenerator {
     private static LottoAnswer lottoAnswer;
     private final List<Integer> list;
     private final Integer bonusNumber;
@@ -17,7 +17,7 @@ public class AnswerGenerator extends LottoGenerator{
 
     @Override
     public Lotto generate() {
-        if(lottoAnswer == null){
+        if (lottoAnswer == null) {
             lottoAnswer = new LottoAnswer(this.list, this.bonusNumber);
         }
         return lottoAnswer;

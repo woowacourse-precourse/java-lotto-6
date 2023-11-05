@@ -17,5 +17,6 @@ public class ApplicationConfig {
     public final static LottoGameUI ui = new TerminalUI();
     public final static LottoController controller = new LottoController(handler, lottoStore, ui);
 
-    private ApplicationConfig(){ }
+    private ApplicationConfig() {
+    }
 }

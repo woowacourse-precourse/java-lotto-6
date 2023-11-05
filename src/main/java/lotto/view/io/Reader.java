@@ -28,7 +28,7 @@ public class Reader {
     }
 
     private static void validateMoneyRange(int money) {
-        if(money > GameConst.LOTTO_PURCHASE_LIMIT){
+        if (money > GameConst.LOTTO_PURCHASE_LIMIT) {
             throw LottoGameException.OVER_PURCHASE_LIMIT.makeException();
         }
     }
@@ -40,9 +40,9 @@ public class Reader {
 
     public static void validateAnswersFormat(String answerNumbers) {
         Matcher matcher = answerPattern.matcher(answerNumbers);
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             throw LottoGameException.WRONG_ANSWERS_FORMAT.makeException();
-       }
+        }
     }
 
     private static int parseInt(String input) {

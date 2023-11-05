@@ -15,13 +15,13 @@ class ResultFactoryTest {
 
     @ParameterizedTest
     @MethodSource("resultArgs")
-    void 올바른_Result_생성_테스트(Lotto lotto, LottoAnswer answer, LottoResult result){
+    void 올바른_Result_생성_테스트(Lotto lotto, LottoAnswer answer, LottoResult result) {
         LottoResult factoryResult = factory.getResult(lotto, answer);
         Assertions.assertThat(factoryResult)
                 .isEqualTo(result);
     }
 
-    static Stream<Arguments> resultArgs(){
+    static Stream<Arguments> resultArgs() {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new LottoAnswer(List.of(1, 2, 3, 4, 5, 6), 7),

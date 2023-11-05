@@ -12,7 +12,7 @@ class RandomLottoGeneratorTest {
 
     @Test
     @DisplayName("로또가 정상적으로 생성됨")
-    public void 정상_동작() throws Exception{
+    public void 정상_동작() {
         Assertions.assertThatNoException()
                 .isThrownBy(() -> generator.generate());
     }

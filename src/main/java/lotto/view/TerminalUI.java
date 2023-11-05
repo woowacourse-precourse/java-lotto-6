@@ -21,7 +21,7 @@ public class TerminalUI implements LottoGameUI {
     @Override
     public void printPurchasedLottos(List<Lotto> lottosDTO) {
         Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_SIZE, lottosDTO.size());
-        for(Lotto lotto : lottosDTO){
+        for (Lotto lotto : lottosDTO) {
             Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_NUMBERS, lotto.getNumbers().toArray());
         }
     }
@@ -43,7 +43,7 @@ public class TerminalUI implements LottoGameUI {
     @Override
     public void printResult(List<Entry<LottoResult, Integer>> results) {
         Writer.printMessage("당첨 통계\n---");
-        for(Map.Entry<LottoResult, Integer> result : results){
+        for (Map.Entry<LottoResult, Integer> result : results) {
             LottoResult lottoResult = result.getKey();
             int count = result.getValue();
             Writer.printUsingFormat(PrintConst.FORMAT_RESULT, lottoResult, count);

@@ -35,7 +35,7 @@ public class Lotto {
         int distinctNum = (int) numbers.stream()
                 .distinct()
                 .count();
-        if (distinctNum != LOTTO_SIZE){
+        if (distinctNum != LOTTO_SIZE) {
             throw LottoGameException.DUPLICATED_LOTTO_NUMBER.makeException();
         }
     }
@@ -45,7 +45,7 @@ public class Lotto {
                 .filter(number -> number > GameConst.LOTTO_RANGE_END ||
                         number < GameConst.LOTTO_RANGE_START)
                 .count();
-        if(wrongNumberCount != 0){
+        if (wrongNumberCount != 0) {
             throw LottoGameException.WRONG_LOTTO_RANGE.makeException();
         }
     }
@@ -55,9 +55,9 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    public CompareResult compareLotto(Lotto lotto){
+    public CompareResult compareLotto(Lotto lotto) {
         int collectNumber = collectNumber(lotto);
-        if(isCompareFinish(lotto, collectNumber)){
+        if (isCompareFinish(lotto, collectNumber)) {
             return new CompareResult(collectNumber, false);
         }
         boolean collectBonus = isCollectBonus((LottoAnswer) lotto);
@@ -69,14 +69,14 @@ public class Lotto {
                 collectNumber != GameConst.BONUS_CHECK_NECESSARY;
     }
 
-    private int collectNumber(Lotto lotto){
+    private int collectNumber(Lotto lotto) {
         return (int) lotto.numbers
                 .stream()
                 .filter(this.numbers::contains)
                 .count();
     }
 
-    private boolean isCollectBonus(LottoAnswer answer){
+    private boolean isCollectBonus(LottoAnswer answer) {
         int bonusNumber = answer.getBonusNumber();
         return this.numbers.contains(bonusNumber);
     }

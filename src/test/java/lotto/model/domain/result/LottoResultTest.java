@@ -10,12 +10,12 @@ class LottoResultTest {
 
     @ParameterizedTest
     @MethodSource("toStringArgs")
-    void toStringTest(LottoResult result, String toStringResult){
+    void toStringTest(LottoResult result, String toStringResult) {
         Assertions.assertThat(result.toString())
                 .isEqualTo(toStringResult);
     }
 
-    static Stream<Arguments> toStringArgs(){
+    static Stream<Arguments> toStringArgs() {
         return Stream.of(
                 Arguments.of(LottoResult.FIRST, "6개 일치 (2,000,000,000원)"),
                 Arguments.of(LottoResult.SECOND, "5개 일치, 보너스 볼 일치 (30,000,000원)"),

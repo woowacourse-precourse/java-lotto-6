@@ -32,7 +32,7 @@ public class RetryExceptionHandler implements ExceptionHandler {
         }
     }
 
-    private void printException(IllegalArgumentException e){
+    private void printException(IllegalArgumentException e) {
         Writer.printException(e);
     }
 }

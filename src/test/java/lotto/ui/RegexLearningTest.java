@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class RegexLearningTest {
     private static Pattern answerPattern = Pattern.compile(
-        String.format("^([\\d]+%s){5}+[\\d]$", GameConst.DELIMITER));
+            String.format("^([\\d]+%s){5}+[\\d]$", GameConst.DELIMITER));
 
     @ParameterizedTest
     @ValueSource(strings = {"1, 2, 3, 4, 5,", ",1,2,3,4,5", "1,2,3,4,5", "1.1, 2, 3, 4, 5, 6"})
@@ -25,7 +25,7 @@ class RegexLearningTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1, 2, 3, 4, 5, 6", "1,24,13,4,5,6"})
-    public void normal(String input){
+    public void normal(String input) {
         //given
         //when
         Matcher matcher = answerPattern.matcher(input.replaceAll(" ", ""));

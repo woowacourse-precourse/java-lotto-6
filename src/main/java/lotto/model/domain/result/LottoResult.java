@@ -33,7 +33,7 @@ public enum LottoResult {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(COLLECTION_FORMAT, this.collectCount));
-        if(this.equals(SECOND)){
+        if (this.equals(SECOND)) {
             sb.append(BONUS_FORMAT);
         }
         sb.append(String.format(PRICE_FORMAT, getMoneyString()));

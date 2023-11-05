@@ -32,6 +32,10 @@ public class Lottery {
                 .toList();
     }
 
+    public static int matchingCount(Paper paper, Lotto lotto, boolean isBonus) {
+        return paper.matchingLotto(lotto, isBonus);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

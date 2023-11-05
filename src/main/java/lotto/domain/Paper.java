@@ -21,6 +21,22 @@ public class Paper {
         return new Paper(newLotto, Bonus.ofAndCheckDuplicatedNumber(newLotto, newBonus));
     }
 
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+
+    public int matchingLotto(Lotto lotto, boolean isBonus) {
+        if (isBonus) {
+            return this.lotto.matchingLotto(lotto) + matchingBonus(lotto);
+        }
+        return this.lotto.matchingLotto(lotto);
+    }
+
+    private int matchingBonus(Lotto lotto) {
+        return bonus.matchingNumber(lotto);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,5 +49,4 @@ public class Paper {
     public int hashCode() {
         return Objects.hash(lotto, bonus);
     }
-
 }

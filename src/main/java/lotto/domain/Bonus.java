@@ -24,6 +24,13 @@ public class Bonus {
         }
     }
 
+    public int matchingNumber(Lotto lotto) {
+        if (lotto.isMatchedNumber(number)) {
+            return 1;
+        }
+        return 0;
+    }
+
     public static Bonus ofAndCheckDuplicatedNumber(Lotto lotto, int number) {
         lotto.checkDuplicatedNumber(number);
         return of(number);
@@ -41,4 +48,5 @@ public class Bonus {
     public int hashCode() {
         return Objects.hash(number);
     }
+
 }

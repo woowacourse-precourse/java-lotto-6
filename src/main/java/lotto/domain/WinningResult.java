@@ -1,15 +1,16 @@
 package lotto.domain;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class WinningResult {
-    Map<String, Integer> winningResult = new HashMap<>();
+    private final Map<String, Integer> winningResult;
 
-    public WinningResult(List<String> Rankings) {
-        for(String Rank : Rankings) {
-            winningResult.put(Rank, winningResult.getOrDefault(Rank, 0) + 1);
+    public WinningResult(LottoTickets lottoTickets, WinningLotto winningLotto) {
+        winningResult = new HashMap<>();
+
+        for(Lotto lotto : lottoTickets.getLottoTickets()) {
+            winningResult.put(winningLotto.match(lotto), winningResult.getOrDefault(winningLotto.match(lotto),0) + 1);
         }
     }
 

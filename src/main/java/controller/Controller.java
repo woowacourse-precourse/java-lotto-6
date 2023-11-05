@@ -11,7 +11,9 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -34,20 +36,25 @@ public class Controller {
 
     private void saveMoney(int input) {
         moneyRepository.save(input);
+        OutputView.printMoneyResult(moneyRepository.getMoney());
         playLotto();
     }
 
     private void playLotto() {
-        OutputView.printMoneyResult(moneyRepository.getMoney());
         List<Integer> lottoList = new ArrayList<>();
+        userlottoList = new ArrayList<>();
+
+        lottosList.clear();
+
         for (int i = 0; i < moneyRepository.getTrial(); i++) {
             for (int j = 0; j < 6; j++) {
                 lottoList = lottoService.getProgramRandomNumber();
             }
+            OutputView.printRandomLotto(lottoList);
         }
         lottosList.add(lottoList);
-        lottoService.lottoSave(lottosList);
 
+        lottoService.lottoSave(lottosList);
         saveLottoNumbers(parser.parseLottoNumberToInt(getUserLottoNumberbyInput()));
         saveBonusNumber(parser.parseNumber(getUserBonusNumberbyInput()));
 
@@ -55,8 +62,9 @@ public class Controller {
     }
 
     private void play() {
-        //lottoService.play(moneyRepository.getTrial());
+
         OutputView.printLottoResult();
+
         int[] correct = new int[8];
         int check = 0;
 
@@ -77,7 +85,7 @@ public class Controller {
                 if(check == 4) correct[4]++;
                 if(check == 5) correct[5]++;
                 if(check == 6) correct[6]++;
-                if(check == 7) correct[7]++; // 보너스 볼
+                if(check == 7) correct[7]++; // 보너스
                 check = 0;
             }
         }
@@ -87,9 +95,6 @@ public class Controller {
 
 
     private void saveLottoNumbers(List<Integer> lottoNumbers) {
-        new Lotto(lottoNumbers);
-        userlottoList = lottoNumbers;
-        OutputView.printRandomLotto(lottoNumbers);
         for (Integer lottoNumber : lottoNumbers) {
             lottoService.save(new Lottos(lottoNumber));
         }

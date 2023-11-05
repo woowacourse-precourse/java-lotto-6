@@ -27,19 +27,22 @@ public class Validator {
 
     private void checkAllLottoInput(String input) {
         checkEmpty(input);
-        checkDuplicate(input, parser.parseLottoNumberToInt(input));
+        checkDuplicate(input);
         checkEachSpace(parser.parseLottoNumber(input));
-        checkChar(parser.parseLottoNumberToInt(input));
+        checkChar(parser.parseLottoNumber(input));
     }
 
-    private void checkChar(List<Integer> userlottoList) {
-        for (int i = 0; i < 6; i++)
+    private void checkChar(List<String> userlottoList) {
+        for (int i = 0; i < userlottoList.size()-1; i++)
             checkEachChar(userlottoList.get(i));
     }
 
-    private void checkEachChar(int each_num) {
-        if(each_num > 45 || each_num < 0)
+    private void checkEachChar(String each_num) {
+        int check_num = parser.parseNumber(each_num);
+        if(check_num > 45 || check_num < 0)
             throw new IllegalArgumentException("[ERROR] 값의 범위는 1부터 45까지 입니다.");
+        else
+            System.out.println("잘 진행");
     }
 
     private void checkEachSpace(List<String> userlottoList) {
@@ -81,9 +84,10 @@ public class Validator {
         }
     }
 
-    private void checkDuplicate(String input, List<Integer> userlottoList) {
+    private void checkDuplicate(String input) {
+        List<String> userlottoList = parser.parseLottoNumber(input);
         for (int i = 0; i < 6; i++) {
-            having_lotto[userlottoList.get(i)]++;
+            having_lotto[Integer.parseInt(userlottoList.get(i))]++;
             compareDuplicate(i, userlottoList);
         }
     }
@@ -99,13 +103,13 @@ public class Validator {
             throwDuplicateException();
     }
 
-    private void compareDuplicate(int i, List<Integer> userlottoList) {
+    private void compareDuplicate(int i, List<String> userlottoList) {
         for (int j = i + 1; j < userlottoList.size(); j++)
             checkEqual(userlottoList.get(i), userlottoList.get(j));
     }
 
-    private void checkEqual(Integer lotto1, Integer lotto2) {
-        if(lotto1.equals(lotto2)) {
+    private void checkEqual(String lotto1, String lotto2) {
+        if(lotto1.contains(lotto2)) {
             having_lotto = null;
             throwDuplicateException();
         }

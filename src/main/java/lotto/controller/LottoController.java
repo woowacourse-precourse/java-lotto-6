@@ -14,17 +14,13 @@ import lotto.view.Output;
 
 public class LottoController {
     public void start() {
-        Money money = getMoney();
+        Money money = InputController.getMoney();
 
         LottoTickets lottoTickets = getLottoTickets(money);
         LottoTicketsDto lottoTicketsDto = LottoTicketsDtoMapper.from(lottoTickets);
         Output.printLottoTickets(lottoTicketsDto);
 
         WinningLotto winningLotto = getWinningLotto();
-    }
-
-    private Money getMoney() {
-        return new Money(Input.inputMoney());
     }
 
     private LottoTickets getLottoTickets(Money money) {

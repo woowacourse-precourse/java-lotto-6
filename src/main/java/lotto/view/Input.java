@@ -12,7 +12,7 @@ public class Input {
 
     private Input() {}
 
-    public static int inputMoney() {
+    public static int inputMoneyGuide() {
         System.out.println(INPUT_MONEY_GUIDE);
         String money = Console.readLine();
         validateBlank(money);

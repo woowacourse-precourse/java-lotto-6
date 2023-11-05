@@ -25,4 +25,8 @@ public class PrintService {
             System.out.printf("[ %s ]\n", lottoNumber);
         }
     }
+
+    public static void requestInputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
 }

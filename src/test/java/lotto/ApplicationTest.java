@@ -6,10 +6,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -306,6 +303,45 @@ class ApplicationTest extends NsTest {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해 주세요.");
         }
         return inputBonusNumberValidation;
+    }
+
+    @Test
+    @DisplayName("로또의 당첨 금액을 계산한다.")
+    void lottoWinningAmount() {
+        List<Integer> lotto = new ArrayList<>(Arrays.asList(4,5,6,7,8,10));
+        List<Integer> winningNumber = new ArrayList<>(Arrays.asList(4,5,6,7,8,9));
+        int bonusNumber = 10;
+
+        int result = lottoWinningAmount(lotto, winningNumber, bonusNumber);
+
+        assertThat(result).isEqualTo(5000);
+    }
+
+    @DisplayName("로또 번호와 당첨번호를 매칭하여 당첨금액을 구하는 메서드")
+    public int lottoWinningAmount(List<Integer> lotto ,List<Integer> winningNumber, int bonusNumber){
+        int matchCount = 0;
+        for(int i = 0 ; i < winningNumber.size() ; i++){
+            if(lotto.contains(winningNumber.get(i))){
+                matchCount++;
+            }
+        }
+
+        if(matchCount == 3){
+            return 5000;
+        }
+        if(matchCount == 4){
+            return 50000;
+        }
+        if(matchCount == 5){
+            if(lotto.contains(bonusNumber)){
+                return 30000000;
+            }
+            return 1500000;
+        }
+        if(matchCount == 6){
+            return 200000000;
+        }
+        return 0;
     }
 
 

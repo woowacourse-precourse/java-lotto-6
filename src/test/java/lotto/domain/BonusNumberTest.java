@@ -1,11 +1,13 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.ExceptionMessage;
 import lotto.util.NumberConverter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class BonusNumberTest {
     private Lotto lotto;
@@ -19,12 +21,22 @@ class BonusNumberTest {
         bonusNumber = new BonusNumber(lotto, numberConverter);
     }
 
-    @Test
     @DisplayName("보너스 번호가 올바른 범위 내에 있는지 검증")
+    @Test
     void validateNumberWithinRange() {
         bonusNumber.validateNumber("7");
         assertThat(bonusNumber.getBonusNumber()).isEqualTo(7);
     }
+
+
+    @DisplayName("보너스 번호가 범위를 벗어났을 때 예외 발생")
+    @Test
+    void validateNumberOutOfRange() {
+        assertThatThrownBy(() -> bonusNumber.validateNumber("46"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INPUT_CORRECT_RANGE.getMessage());
+    }
+
 
 }
 

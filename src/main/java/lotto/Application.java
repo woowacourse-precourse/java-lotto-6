@@ -1,17 +1,24 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("구입 금액을 입력해주세요.");
+        System.out.println("구입금액을 입력해 주세요.");
         // 구입 금액을 입력
         int userMoney = getValidMoney();
 
         // 사용자 게임 수 출력
+        int lottoGame = userMoney / 1000;
         System.out.println();
-        System.out.println(userMoney / 1000 + "개를 구매했습니다.");
+        System.out.println(lottoGame + "개를 구매했습니다.");
+
+        // 게임 수 만큼 로또 생성후 출력
+        for (int i = 0; i < lottoGame; i++) {
+            Lotto lotto = Lotto.generateLotto();
+            System.out.println(lotto.getNumbers());
+        }
+
     }
 
     // 사용자 입력 금액이 유효한지 확인하는 메서드

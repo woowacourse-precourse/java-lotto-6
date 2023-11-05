@@ -4,10 +4,10 @@ import java.util.List;
 import lotto.constants.Rank;
 
 public class ScoreDeterminer {
-    private final WinningNumbers winningNumbers = new WinningNumbers();
+    private WinningNumbers winningNumbers;
 
     public void setFirstRankNumbers(List<String> inputNumbers) {
-        winningNumbers.setFirstRankLotto(inputNumbers);
+        winningNumbers = new WinningNumbers(inputNumbers);
     }
 
     public void setBonusNumber(String userInput) {

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constants.Error;
 import lotto.constants.Number;
 import lotto.utils.StringChanger;
 import lotto.utils.Validator;
@@ -11,11 +10,10 @@ public class WinningNumbers {
     private static final int LOTTO_NUMBER_START = Number.MIN_LOTTO_NUMBER.getNumber();
     private static final int LOTTO_NUMBER_END = Number.MAX_LOTTO_NUMBER.getNumber();
     private static final int NOTHING = 0;
-    private static final Error NO_LOTTO = Error.NO_LOTTO;
-    private Lotto firstRankLotto;
+    private final Lotto firstRankLotto;
     private int bonusNumber = NOTHING;
 
-    public void setFirstRankLotto(List<String> inputNumbers) {
+    public WinningNumbers(List<String> inputNumbers) {
         firstRankLotto = new Lotto(toNumbers(inputNumbers));
     }
 
@@ -24,12 +22,7 @@ public class WinningNumbers {
     }
 
     public Lotto getFirstRankLotto() {
-        try {
-            return new Lotto(new ArrayList<>(firstRankLotto.getNumbers()));
-        } catch (NullPointerException e) {
-            System.out.println(NO_LOTTO.getMessage());
-        }
-        return new Lotto(new ArrayList<>());
+        return new Lotto(new ArrayList<>(firstRankLotto.getNumbers()));
     }
 
     public int getBonusNumber() {

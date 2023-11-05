@@ -13,10 +13,9 @@ public class WinningNumbersTest {
     @DisplayName("당첨 번호 입력이 숫자가 아니면 예외를 발생시킨다.") // 이외 검증은 Lotto클래스에서
     @Test
     void inputNotNumbers() {
-        WinningNumbers winningNumbers = new WinningNumbers();
         String invalidUserInput = "1,2,3,4,a,b";
         List<String> invalidInput = makeInputList(invalidUserInput);
-        assertThatThrownBy(() -> winningNumbers.setFirstRankLotto(invalidInput))
+        assertThatThrownBy(() -> new WinningNumbers(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -45,17 +44,13 @@ public class WinningNumbersTest {
     }
 
     private void invalidBonusNumberTest(String invalidBonusInput) {
-        WinningNumbers winningNumbers = new WinningNumbers();
         String userInput = "1,2,3,4,5,6";
-        makeWinningLotto(winningNumbers, userInput);
+        List<String> validInput = makeInputList(userInput);
+        WinningNumbers winningNumbers = new WinningNumbers(validInput);
         assertThatThrownBy(() -> winningNumbers.setBonusNumber(invalidBonusInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private void makeWinningLotto(WinningNumbers winningNumbers, String userInput) {
-        List<String> validInput = makeInputList(userInput);
-        winningNumbers.setFirstRankLotto(validInput);
-    }
 
     private List<String> makeInputList(String userInput) {
         return new ArrayList<>(StringChanger.toTrimmedStringList(userInput));

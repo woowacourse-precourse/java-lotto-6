@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.constants.Error;
 import lotto.constants.Number;
 import lotto.utils.Validator;
 
@@ -11,7 +10,6 @@ public class Lotto {
     private static final int LOTTO_NUMBER_START = Number.MIN_LOTTO_NUMBER.getNumber();
     private static final int LOTTO_NUMBER_END = Number.MAX_LOTTO_NUMBER.getNumber();
     private static final int LOTTO_NUMBER_COUNT = Number.COUNT_OF_LOTTO_NUMBERS.getNumber();
-    private static final Error NO_NUMBERS = Error.NO_NUMBERS;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -21,12 +19,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        try {
-            return new ArrayList<>(numbers);
-        } catch (NullPointerException e) {
-            System.out.println(NO_NUMBERS.getMessage());
-        }
-        return new ArrayList<>();
+        return new ArrayList<>(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -35,10 +28,6 @@ public class Lotto {
     }
 
     private void sortNumbersToNaturalOrder() {
-        try {
-            this.numbers.sort(Comparator.naturalOrder());
-        } catch (NullPointerException e) {
-            System.out.println(NO_NUMBERS.getMessage());
-        }
+        this.numbers.sort(Comparator.naturalOrder());
     }
 }

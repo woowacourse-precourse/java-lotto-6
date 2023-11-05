@@ -41,4 +41,12 @@ class PurchaseAmountTest {
 
         assertThat(outputStream.toString()).contains("[ERROR]");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "8,000", "8000" })
+    void accurateInputs(String mockInput) {
+        System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
+
+        assertDoesNotThrow(purchaseAmount::ask);
+    }
 }

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstraint;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,7 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = convertSortedAndUnmodifiable(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -47,22 +48,41 @@ public class Lotto {
     }
 
     private void validateUniqueNumbers(List<Integer> numbers) {
-        if(containDuplicateNumber(numbers)) {
+        if (containDuplicateNumber(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
     private boolean containDuplicateNumber(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
+
         for (Integer number : numbers) {
-            if(!uniqueNumbers.add(number))
+            if (!uniqueNumbers.add(number))
                 return true;
         }
         return false;
     }
 
+    private List<Integer> convertSortedAndUnmodifiable(List<Integer> numbers) {
+        Collections.sort(numbers);
+        return Collections.unmodifiableList(numbers);
+    }
+
     public int countMatchedNumber(Lotto lotto) {
-        return 0;
+        int matchedNumberCount = 0;
+
+        for (Integer comparedNumber : lotto.numbers) {
+            if (containNumber(comparedNumber)) {
+                matchedNumberCount++;
+            }
+        }
+
+        return matchedNumberCount;
+    }
+
+    public boolean containNumber(int comparedNumber) {
+        int foundIndex = Collections.binarySearch(numbers, comparedNumber);
+        return foundIndex >= 0;
     }
 
     public List<Integer> getNumbers() {

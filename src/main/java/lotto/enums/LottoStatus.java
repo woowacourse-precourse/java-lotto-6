@@ -7,12 +7,20 @@ public enum LottoStatus {
     FOURTH(4,50000L),
     FIFTH(3,5000L),
     SIXTH(0,0L);
-    private final int collectCount;
+    private final int correctCount;
     private final Long prize;
 
-    LottoStatus(int collectCount, long prize) {
-        this.collectCount = collectCount;
+    LottoStatus(int correctCount, long prize) {
+        this.correctCount = correctCount;
         this.prize = prize;
+    }
+
+    public int getCorrectCount() {
+        return correctCount;
+    }
+
+    public Long getPrize() {
+        return prize;
     }
 
 }

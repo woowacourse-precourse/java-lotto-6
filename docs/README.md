@@ -86,6 +86,7 @@
   - [X] : 🚨 공백, null 또는 숫자가 아닐 경우 예외발생
   - [X] : 🚨 1~45 사이의 숫자가 아닐 경우 예외발생
 
+- [ ] : 예외 발생시 메시지 출력후 재입력 받기
 ### 🖨 출력
 
 - [X] : 로또 티켓 출력 `[ LottoPlayer ]`
@@ -109,19 +110,21 @@ com.lotto
 │  ├─ GameGuideMessage.java
 │  ├─ LottoConfig.java
 │  └─ LottoRank.java
+├─ controller
+│  └─ Controller.java
 ├─ domain
-│  ├─ PurchaseAmount.java
+│  ├─ BonusNumber.java
 │  ├─ Lotto.java
-│  ├─ LottoPlayer.java
 │  ├─ LottoMachine.java
-│  ├─ LottoRank.java
+│  ├─ LottoPlayer.java
+│  ├─ LottoResult.java
+│  ├─ PurchaseAmount.java
 │  └─ WinningLotto.java
-├─ service
-│  └─ LottoGameService.java
+├─ util
+│  ├─ InputUtil.java
+│  └─ NumberUtil.java
 ├─ view
 │  ├─ InputView.java
-│  └─ ResultView.java
-├─ util
-│  └─ NumberUtil.java
+│  └─ OutputView.java
 └─ Application.java
 ```

@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.exception.EmptyInputException;
-import lotto.validator.InputValidator;
+import lotto.LottoNumberGenerator.NormalLottoGenerator;
+import lotto.model.Game.Game;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,10 +15,16 @@ public class LottoGameController {
     }
 
     public void game() {
-        inputUserMoneyAmount();
+        Money money = inputUserMoneyAmount();
+        Game game = new Game(money.amountOfLotto());
+        printLottoAmount(game);
     }
 
-    private void inputUserMoneyAmount() {
-        String money = inputView.inputMoneyAmount();
+    private Money inputUserMoneyAmount() {
+        return Money.create(inputView.inputMoneyAmount());
+    }
+
+    private void printLottoAmount(Game game) {
+        outputView.printLottoAmount(game.getAmountOfLotto());
     }
 }

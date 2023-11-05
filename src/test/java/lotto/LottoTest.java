@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,5 +32,12 @@ class LottoTest {
                 .getNumbers();
 
         assertThat(lottoNumbers).isEqualTo(List.of(1,2,3,4,5,6));
+    }
+
+    @DisplayName("로또 클래스의 범위를 초과하면 예외를 발생한다.")
+    @Test
+    void createLottoByOutOfRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 52, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

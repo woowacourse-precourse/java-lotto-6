@@ -96,10 +96,10 @@
 
 ### 사용자의 입력을 통해 로또 당첨 번호(정답) 생성
 
-| 필드명      | 자료형        | 구현 현황 |
-| ----------- | ------------- | --------- |
-| answer      | List<Integer> |           |
-| bonusNumber | int           |           |
+| 필드명      | 자료형          | 구현 현황          |
+| ----------- | --------------- | ------------------ |
+| answer      | `List<Integer>` | :white_check_mark: |
+| bonusNumber | `int`           | :white_check_mark: |
 
 ### Radoms API를 이용한 로또 번호 생성
 

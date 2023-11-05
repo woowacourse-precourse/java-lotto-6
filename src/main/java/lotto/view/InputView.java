@@ -33,6 +33,10 @@ public class InputView {
     }
 
     private String userInput() {
-        return Console.readLine();
+        String input = Console.readLine();
+        if (input == null) {
+            throw new IllegalArgumentException("null");
+        }
+        return input;
     }
 }

@@ -12,8 +12,8 @@ public class User {
 
     List<Lotto> myLottoNumbers = new ArrayList<>();
     public User(){
-        this.userWallet = new UserWallet();
-        this.lottoMarket = new LottoMarket();
+        userWallet = new UserWallet();
+        lottoMarket = new LottoMarket();
     }
 
     public int useMoney(){
@@ -22,6 +22,9 @@ public class User {
 
     public void buyLotto(){
         useMoney();
+        myLottoNumbers = lottoMarket.buyLotto(useMoney());
     }
+
+
 
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SortedRandomNumberGenerator {
-    private static final int START_RANGE = 1;
-    private static final int END_RANGE = 45;
+    public static final int START_RANGE = 1;
+    public static final int END_RANGE = 45;
     private static final int COUNT = 6;
 
     public List<Integer> generate() {

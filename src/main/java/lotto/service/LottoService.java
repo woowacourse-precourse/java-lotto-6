@@ -2,6 +2,8 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.WinningNumbers;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -42,4 +44,27 @@ public class LottoService {
 
         return Integer.parseInt(Console.readLine());
     }
+
+    public static void matchLottoNumbers(WinningNumbers winningNumbers, List<Lotto> lottos){
+        for (Lotto lotto : lottos) {
+            matchLottoTicket(winningNumbers, lotto);
+        }
+    }
+
+    private static void matchLottoTicket(WinningNumbers winningNumbers, Lotto userLottoNumbers) {
+        boolean hasBonusNumber = false;
+        int matchCount = 0;
+        int bonusNumber = winningNumbers.getBonusNumber();
+        List<Integer> winningNumber = winningNumbers.getWinningNumbers().getLotto();
+        for (int number : userLottoNumbers.getLotto()) {
+            if(winningNumber.contains(number)){
+                ++matchCount;
+            }
+            if(number == bonusNumber){
+                hasBonusNumber = true;
+            }
+        }
+        Rank.increaseRankResult(matchCount, hasBonusNumber);
+    }
+
 }

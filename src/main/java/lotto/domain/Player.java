@@ -7,7 +7,7 @@ public class Player {
     private List<Lotto> lotto;
     private Cost cost;
 
-    public Player(String cost) {
+    public Player(int cost) {
         this.cost = new Cost(cost);
         this.lotto = new ArrayList<>(getLottoCount());
     }

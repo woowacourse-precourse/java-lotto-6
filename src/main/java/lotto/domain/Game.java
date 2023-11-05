@@ -10,7 +10,7 @@ public class Game {
     private Prize prize;
     private List<Result> results;
 
-    public Game(String cost) {
+    public Game(int cost) {
         this.player = new Player(cost);
         this.prize = new Prize();
         this.results = new ArrayList<>(5);

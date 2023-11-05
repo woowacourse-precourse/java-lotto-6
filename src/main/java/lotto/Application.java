@@ -1,21 +1,12 @@
 package lotto;
 
-import lotto.domain.LottoAmount;
-import lotto.io.InputHandler;
+import lotto.domain.LottoAmountGenerator;
 
 public class Application {
+    static int amount;
+
     public static void main(String[] args) {
-        generateLottoAmount();
-    }
-
-    public static void generateLottoAmount() {
-        boolean validated = false;
-        while (!validated) {
-            InputHandler inputHandler = new InputHandler();
-            String input = inputHandler.askAmount();
-
-            LottoAmount lottoAmount = new LottoAmount();
-            validated = lottoAmount.validate(input);
-        }
+        amount = LottoAmountGenerator.generateLottoAmount();
+        System.out.println(amount);
     }
 }

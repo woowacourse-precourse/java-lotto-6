@@ -1,7 +1,8 @@
 package lotto.validation;
 
-public class LottoCountValidator implements InputValidator {
+public class LottoAmountValidator implements InputValidator {
     private final static int MIN_VALUE = 0;
+    private final static int UNIT = 1000;
 
     public void validate(String input) {
         if (!isInteger(input)) {
@@ -22,6 +23,6 @@ public class LottoCountValidator implements InputValidator {
 
     @Override
     public boolean isDivisibleBy1000(int input) {
-        return input % 1000 == 0;
+        return input % UNIT == 0;
     }
 }

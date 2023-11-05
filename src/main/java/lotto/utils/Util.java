@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,5 +13,9 @@ public class Util {
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    public static String readLine() {
+        return Console.readLine();
     }
 }

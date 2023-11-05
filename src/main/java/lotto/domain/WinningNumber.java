@@ -1,12 +1,10 @@
-package lotto.domiain;
-
-import lotto.View.ExceptionMessage;
+package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.View.ExceptionMessage.*;
+import static lotto.view.ExceptionMessage.*;
 
 public class WinningNumber {
     private static final Integer DUPLICATE_CHECK_SIZE = 7;
@@ -18,7 +16,7 @@ public class WinningNumber {
     public WinningNumber(List<Integer> winningLotto, int bonusBall) {
         this.winningLotto = new Lotto(winningLotto);
         this.bonusBall = bonusBall;
-        validate(winningLotto,bonusBall);
+        validate(winningLotto, bonusBall);
     }
 
     private void validate(List<Integer> winningLotto, int bonusBall) {
@@ -29,16 +27,14 @@ public class WinningNumber {
     private void duplicateCheck(List<Integer> winningLotto, int bonusBall) {
         Set<Integer> checkSet = new HashSet<>(winningLotto);
         checkSet.add(bonusBall);
-        if(checkSet.size()!=DUPLICATE_CHECK_SIZE) {
-            System.out.println(lottoNumberAndBonusDuplicatedException());
-            throw new IllegalArgumentException();
+        if (checkSet.size() != DUPLICATE_CHECK_SIZE) {
+            throw new IllegalArgumentException(lottoNumberAndBonusDuplicatedException());
         }
     }
 
-    private void bonusBallValidate(int bonusBall){
-        if(bonusBall<MIN_RANGE||bonusBall>MAX_RANGE){
-            System.out.println(rangeException());
-            throw new IllegalArgumentException();
+    private void bonusBallValidate(int bonusBall) {
+        if (bonusBall < MIN_RANGE || bonusBall > MAX_RANGE) {
+            throw new IllegalArgumentException(rangeException());
         }
     }
 

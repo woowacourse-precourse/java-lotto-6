@@ -1,4 +1,4 @@
-package lotto.domiain;
+package lotto.domain;
 
 public class RateOnReturn {
     private final double rate;

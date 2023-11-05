@@ -1,4 +1,4 @@
-package lotto.View;
+package lotto.view;
 
 public class ExceptionMessage {
     private static final String ERROR_LOTTO_NUMBER_SIZE = "[ERROR] 로또 번호는 정확히 6개여야 합니다. 현재 입력된 번호 개수: ";

@@ -1,8 +1,8 @@
-package lotto.View;
+package lotto.view;
 
-import lotto.domiain.LottoResult;
-import lotto.domiain.RateOnReturn;
-import lotto.domiain.WinningStatistics;
+import lotto.domain.LottoResult;
+import lotto.domain.RateOnReturn;
+import lotto.domain.WinningStatistics;
 
 import java.util.Arrays;
 
@@ -28,13 +28,13 @@ public class OutputLottoResult {
 
     public static void printStatistics(LottoResult lottoResult, RateOnReturn rate) {
         Arrays.stream(WinningStatistics.values())
-                .filter(winningStatistics -> !winningStatistics.equals(WinningStatistics.FAIL_MATCH))
+                .filter(winningStatistics -> !winningStatistics.equals(WinningStatistics.MISS_MATCH))
                 .forEach(winningStatistics -> System.out.println(printMatchResultMessage(winningStatistics, lottoResult)));
         System.out.printf((OUTPUT_RATE_OF_RETURN) + NEWLINE, rate.getRate());
     }
 
     public static String printMatchResultMessage(WinningStatistics winningStatistics, LottoResult lottoResult) {
-        if (WinningStatistics.FIVE_MATCH_WITH_BONUS == winningStatistics) {
+        if (WinningStatistics.FIVE_MATCH_AND_BONUS == winningStatistics) {
             return String.format(BONUS_MATCH_MESSAGE,
                     winningStatistics.getMatchCount(),
                     String.format("%,d", winningStatistics.getAmount()),

@@ -1,14 +1,9 @@
-package lotto.View;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domiain.Lotto;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import static lotto.View.ExceptionMessage.*;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";

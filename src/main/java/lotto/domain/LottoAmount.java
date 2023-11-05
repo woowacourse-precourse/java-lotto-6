@@ -1,11 +1,6 @@
-package lotto.domiain;
+package lotto.domain;
 
-import lotto.View.ExceptionMessage;
-import lotto.View.InputView;
-
-import java.text.NumberFormat;
-
-import static lotto.View.ExceptionMessage.*;
+import static lotto.view.ExceptionMessage.*;
 
 public class LottoAmount {
     private static final int LOTTO_AMOUNT = 1000;
@@ -25,8 +20,7 @@ public class LottoAmount {
 
     private void validateDivide(int lottoAmount) {
         if (lottoAmount % LOTTO_AMOUNT != ZERO) {
-            System.out.println(amountDivideException());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(amountDivideException());
         }
     }
 

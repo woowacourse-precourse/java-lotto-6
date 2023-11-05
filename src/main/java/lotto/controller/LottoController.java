@@ -1,16 +1,15 @@
 package lotto.controller;
 
-import lotto.View.InputView;
-import lotto.domiain.*;
+import lotto.view.InputView;
+import lotto.domain.*;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.View.ExceptionMessage.*;
-import static lotto.View.OutputLottoList.*;
-import static lotto.View.OutputLottoResult.*;
-import static lotto.domiain.LottoGenerator.*;
+import static lotto.view.ExceptionMessage.*;
+import static lotto.view.OutputLottoList.*;
+import static lotto.view.OutputLottoResult.*;
 
 public class LottoController {
     private static LottoAmount lottoAmount;
@@ -23,12 +22,10 @@ public class LottoController {
     public void Start() {
         getLottoAmount();
 
-        generateLottoNumbers(lotto, ticketCount);
+        generateLottoNumbers(ticketCount);
 
         getInputLottoNumbers();
         getInputBonusNumbers();
-
-
 
         resultLotto(lottoAmount, winningNumber);
     }
@@ -42,13 +39,14 @@ public class LottoController {
                 printTicketCount(ticketCount);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println(notNumberException());
+                System.err.println(notNumberException());
             } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
             }
         }
     }
 
-    private void generateLottoNumbers(List<Lotto> lotto, int ticketCount) {
+    private void generateLottoNumbers(int ticketCount) {
         LottoGenerator lottoGenerator = new LottoGenerator();
         lotto = lottoGenerator.randomNumber(ticketCount);
         printLottoList(lotto);
@@ -62,9 +60,11 @@ public class LottoController {
                 winnerLottoList = winnerLotto.getNumbers();
                 break;
             } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
             }
         }
     }
+
     private void getInputBonusNumbers() {
         int bonusNumber;
         while (true) {
@@ -73,8 +73,9 @@ public class LottoController {
                 winningNumber = new WinningNumber(winnerLottoList, bonusNumber);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println(notNumberException());
+                System.err.println(notNumberException());
             } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
             }
         }
     }

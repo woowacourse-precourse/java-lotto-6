@@ -1,6 +1,5 @@
-package lotto.domiain;
+package lotto.domain;
 
-import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 import static java.util.Arrays.*;
@@ -9,9 +8,9 @@ public enum WinningStatistics {
     THREE_MATCH(5_000, 3, (countMatch, bonusCheck) -> countMatch == 3),
     FOUR_MATCH(50_000, 4, (countMatch, bonusCheck) -> countMatch == 4),
     FIVE_MATCH(1_500_000, 5, (countMatch, bonusCheck) -> countMatch == 5 && !bonusCheck),
-    FIVE_MATCH_WITH_BONUS(30_000_000, 5, (countMatch, bonusCheck) -> countMatch == 5 && bonusCheck),
+    FIVE_MATCH_AND_BONUS(30_000_000, 5, (countMatch, bonusCheck) -> countMatch == 5 && bonusCheck),
     SIX_MATCH(2_000_000_000, 6, (countMatch, bonusCheck) -> countMatch == 6),
-    FAIL_MATCH(0, 0, (countMatch, bonusCheck) -> countMatch < 3);
+    MISS_MATCH(0, 0, (countMatch, bonusCheck) -> countMatch < 3);
 
     private final int amount;
     private final int matchCount;
@@ -27,7 +26,7 @@ public enum WinningStatistics {
         return stream(WinningStatistics.values())
                 .filter(winningStatistics -> winningStatistics.bonusCheck.test(matchCount,bonusNumberCheck))
                 .findAny()
-                .orElse(FAIL_MATCH);
+                .orElse(MISS_MATCH);
     }
 
     public int getAmount() {
@@ -38,7 +37,4 @@ public enum WinningStatistics {
         return matchCount;
     }
 
-    public BiPredicate<Integer, Boolean> getBonusCheck() {
-        return bonusCheck;
-    }
 }

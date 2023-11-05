@@ -3,14 +3,14 @@ package lotto.controller;
 import java.util.List;
 import lotto.exception.exceptionhandler.ExceptionHandler;
 import lotto.model.LottoStore;
-import lotto.model.domain.Lottos;
+import lotto.model.domain.lotto.Lottos;
 import lotto.model.domain.Money;
 import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.lotto.LottoAnswer;
-import lotto.model.domain.Results;
+import lotto.model.domain.result.LottoResults;
 import lotto.model.domain.Revenue;
-import lotto.model.domain.result.ResultFactory;
-import lotto.model.lottogenerator.AnswerGenerator;
+import lotto.model.domain.result.LottoResultFactory;
+import lotto.model.domain.lotto.lottogenerator.AnswerGenerator;
 import lotto.view.LottoGameUI;
 
 public class LottoController {
@@ -19,8 +19,8 @@ public class LottoController {
     final private LottoStore store;
     final private LottoGameUI ui;
 
-    ResultFactory factory = new ResultFactory();
-    Results results = new Results();
+    LottoResultFactory factory = new LottoResultFactory();
+    LottoResults lottoResults = new LottoResults();
 
     public LottoController(ExceptionHandler handler, LottoStore store, LottoGameUI ui) {
         this.handler = handler;
@@ -33,8 +33,8 @@ public class LottoController {
         Money initialMoney = money.snapShot();
         Lottos lottos = purchaseLotto(money);
         LottoAnswer answer = createAnswer();
-        Results results = computeResult(lottos, answer);
-        computeRevenue(initialMoney, results);
+        LottoResults lottoResults = computeResult(lottos, answer);
+        computeRevenue(initialMoney, lottoResults);
     }
 
     private Money getMoney() {
@@ -54,17 +54,17 @@ public class LottoController {
         return (LottoAnswer) answerGenerator.generate();
     }
 
-    private Results computeResult(Lottos lottos, LottoAnswer answer) {
+    private LottoResults computeResult(Lottos lottos, LottoAnswer answer) {
         lottos.getLottosDTO()
                 .stream()
                 .map((lotto) -> factory.getResult(lotto, answer))
-                .forEach(results::addResult);
-        ui.printResult(results.getResults());
-        return results;
+                .forEach(lottoResults::addResult);
+        ui.printResult(lottoResults.getResults());
+        return lottoResults;
     }
 
-    private void computeRevenue(Money money, Results results) {
-        long prize = results.getResults()
+    private void computeRevenue(Money money, LottoResults lottoResults) {
+        long prize = lottoResults.getResults()
                 .stream()
                 .mapToLong(result -> (long) result.getKey().getPrize() * result.getValue())
                 .sum();

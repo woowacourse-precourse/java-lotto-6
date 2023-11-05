@@ -1,4 +1,4 @@
-package lotto.model.domain;
+package lotto.model.domain.result;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -6,12 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import lotto.model.domain.result.LottoResult;
 
-public class Results {
+public class LottoResults {
     Map<LottoResult, Integer> map;
 
-    public Results() {
+    public LottoResults() {
         map = new HashMap<>();
         Arrays.stream(LottoResult.values())
                 .filter(result -> result != LottoResult.LOSE)

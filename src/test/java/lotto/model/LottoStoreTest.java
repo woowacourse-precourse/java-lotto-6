@@ -1,8 +1,8 @@
 package lotto.model;
 
-import lotto.model.domain.Lottos;
+import lotto.model.domain.lotto.Lottos;
 import lotto.model.domain.Money;
-import lotto.model.lottogenerator.RandomLottoGenerator;
+import lotto.model.domain.lotto.lottogenerator.RandomLottoGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

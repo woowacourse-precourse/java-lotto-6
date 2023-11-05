@@ -3,7 +3,7 @@ package lotto.model.domain;
 import java.util.stream.Stream;
 import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.lotto.LottoAnswer;
-import lotto.model.domain.result.CompareResult;
+import lotto.model.domain.result.LottoCompareResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,7 +49,7 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource("equalsArgs")
-    void 로또_동등성_테스트(Lotto l1, Lotto l2, CompareResult result) {
+    void 로또_동등성_테스트(Lotto l1, Lotto l2, LottoCompareResult result) {
         Assertions.assertThat(l1.compareLotto(l2))
                 .isEqualTo(result);
     }
@@ -58,25 +58,25 @@ class LottoTest {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                        new CompareResult(6, false)),
+                        new LottoCompareResult(6, false)),
 
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new Lotto(List.of(2, 3, 4, 5, 6, 7)),
-                        new CompareResult(5, false)),
+                        new LottoCompareResult(5, false)),
 
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new Lotto(List.of(7, 8, 9, 10, 11, 12)),
-                        new CompareResult(0, false)),
+                        new LottoCompareResult(0, false)),
 
                 Arguments.of(new Lotto(List.of(1, 3, 6, 15, 19, 31)),
                         new Lotto(List.of(6, 11, 19, 23, 31, 42)),
-                        new CompareResult(3, false))
+                        new LottoCompareResult(3, false))
         );
     }
 
     @ParameterizedTest
     @MethodSource("equalsWithAnswerArgs")
-    void 정답과_동등성_테스트(Lotto l1, Lotto l2, CompareResult result) {
+    void 정답과_동등성_테스트(Lotto l1, Lotto l2, LottoCompareResult result) {
         Assertions.assertThat(l1.compareLotto(l2))
                 .isEqualTo(result);
     }
@@ -85,23 +85,23 @@ class LottoTest {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new LottoAnswer(List.of(1, 2, 3, 4, 5, 6), 9),
-                        new CompareResult(6, false)),
+                        new LottoCompareResult(6, false)),
 
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new LottoAnswer(List.of(2, 3, 4, 5, 6, 7), 10),
-                        new CompareResult(5, false)),
+                        new LottoCompareResult(5, false)),
 
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new LottoAnswer(List.of(2, 3, 4, 5, 6, 7), 1),
-                        new CompareResult(5, true)),
+                        new LottoCompareResult(5, true)),
 
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new LottoAnswer(List.of(7, 8, 9, 10, 11, 12), 6),
-                        new CompareResult(0, false)),
+                        new LottoCompareResult(0, false)),
 
                 Arguments.of(new Lotto(List.of(1, 3, 6, 15, 19, 31)),
                         new LottoAnswer(List.of(6, 11, 19, 23, 31, 42), 1),
-                        new CompareResult(3, false))
+                        new LottoCompareResult(3, false))
         );
     }
 }

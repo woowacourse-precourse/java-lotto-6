@@ -4,8 +4,8 @@ import lotto.controller.LottoController;
 import lotto.exception.exceptionhandler.ExceptionHandler;
 import lotto.exception.exceptionhandler.RetryExceptionHandler;
 import lotto.model.LottoStore;
-import lotto.model.lottogenerator.LottoGenerator;
-import lotto.model.lottogenerator.RandomLottoGenerator;
+import lotto.model.domain.lotto.lottogenerator.LottoGenerator;
+import lotto.model.domain.lotto.lottogenerator.RandomLottoGenerator;
 import lotto.view.LottoGameUI;
 import lotto.view.TerminalUI;
 

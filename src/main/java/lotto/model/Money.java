@@ -20,10 +20,6 @@ public class Money {
         validateDivisible(inputMoney);
     }
 
-    public int calculateLottoCount() {
-        return money / DIVISION_UNIT_FOR_INPUT_MONEY;
-    }
-
     private void validateMinAmount(int inputMoney) {
         if (inputMoney < MINIMUM_INPUT_MONEY) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_MONEY_BELOW_MIN_AMOUNT_ERROR.getMessage());
@@ -40,5 +36,9 @@ public class Money {
         if (inputMoney % DIVISION_UNIT_FOR_INPUT_MONEY != 0) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_MONEY_NOT_DIVISIBLE_ERROR.getMessage());
         }
+    }
+
+    public int calculateTicketCount() {
+        return money / DIVISION_UNIT_FOR_INPUT_MONEY;
     }
 }

@@ -24,6 +24,6 @@ public class MoneyTest {
     @Test
     public void 로또_구매개수_테스트() {
         Money money = new Money(10000);
-        Assertions.assertEquals(10, money.calculateLottoCount());
+        Assertions.assertEquals(10, money.calculateTicketCount());
     }
 }

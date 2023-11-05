@@ -7,6 +7,7 @@ public class Draw {
     private void getWinningLottoNumsList() {
         printWinningLottoNumsEnterGuideStatement();
         String input = Console.readLine();
+        String[] strings = input.split(",");
     }
 
     private void printWinningLottoNumsEnterGuideStatement() {

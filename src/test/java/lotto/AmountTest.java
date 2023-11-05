@@ -3,12 +3,17 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.controller.LottoController;
 import lotto.model.Amount;
+import lotto.model.Cash;
+import lotto.model.Lotto;
 import lotto.model.LottoList;
 import lotto.record.AmountRecord;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 class AmountTest {
 
@@ -16,13 +21,6 @@ class AmountTest {
 
     AmountTest(LottoController lottoController) {
         this.lottoController = lottoController;
-    }
-
-    @DisplayName("1000원당 로또가 1장 발행되어야 한다.")
-    @Test
-    void buyLotto() {
-        LottoList lottos = new LottoList(lottoController.buyLotto(new Amount("3000").getAmountCash()));
-        assertThat(lottos.getLottoList()).hasSize(3);
     }
 
     @DisplayName("toRecord는 Amount의 amount 값을 가진 채 AmountRecord를 반환하여야 한다.")

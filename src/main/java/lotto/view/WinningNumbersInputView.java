@@ -7,9 +7,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lotto.exception.InvalidWinningNumbersException;
 
-public class InputView {
+public class WinningNumbersInputView {
     private static final Pattern WINNING_NUMBERS_PATTERN = Pattern.compile("^(\\d{1,2},){5}\\d{1,2}$");
     private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+
     public static List<Integer> getWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
         String inputWinningNumbers = Console.readLine().trim();

@@ -53,4 +53,9 @@ public class Lotto {
             throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이로 발급되어야 합니다.");
         }
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.lotto;
 
 import java.util.List;
+import lotto.bonus.BonusNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -46,6 +47,10 @@ public class Lotto {
 
     public Integer findMatchCount(Lotto lotto) {
         return lotto.numbers.stream().filter(numbers::contains).toList().size();
+    }
+
+    public boolean hasBonusNumber(BonusNumber bonusNumber) {
+        return numbers.stream().anyMatch(bonusNumber::isSameNumber);
     }
 
     @Override

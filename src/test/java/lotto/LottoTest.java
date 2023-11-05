@@ -4,11 +4,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.stream.Stream;
+import lotto.bonus.BonusNumber;
 import lotto.lotto.Lotto;
 import lotto.lotto.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
@@ -51,5 +55,23 @@ class LottoTest {
         Integer result = winningLotto.getMatchNumberCount(lotto);
 
         assertThat(result).isEqualTo(5);
+    }
+
+    @DisplayName("로또에 일치하는 보너스 번호가 있는지 확인")
+    @MethodSource("getBonusNumberTestArguments")
+    @ParameterizedTest
+    void hasBonusNumber(List<Integer> number, BonusNumber bonus, boolean answer) {
+        Lotto lotto = new Lotto(number);
+
+        boolean result = lotto.hasBonusNumber(bonus);
+
+        assertThat(result).isEqualTo(answer);
+    }
+
+    private static Stream<Arguments> getBonusNumberTestArguments() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), new BonusNumber("6"), true),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), new BonusNumber("7"), false)
+        );
     }
 }

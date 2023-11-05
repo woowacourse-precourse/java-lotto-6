@@ -26,6 +26,10 @@ public class BonusNumber {
         }
     }
 
+    public boolean isSameNumber(Integer number) {
+        return bonus.equals(number);
+    }
+
     private void validateNumberRange(Integer bonus) {
         if (bonus < LottoConstants.MIN_LOTTO_NUMBER || bonus > LottoConstants.MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(WRONG_RANGER_NUMBER_MESSAGE);

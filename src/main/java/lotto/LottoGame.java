@@ -19,6 +19,8 @@ public class LottoGame {
         requestWinningLotto();
         generateLottos();
         printBoughtLottos();
+        printLottoGrades();
+        //System.out.println("총 수익률은 62.5%입니다.");
     }
 
     private void requestMoneyToBuy() {
@@ -55,5 +57,30 @@ public class LottoGame {
     private void printBoughtLottos() {
         System.out.printf(OutputMessage.BUY_LOTTO_RESULT.getMessage() + "\n", moneyToBuy.getLottosSize());
         lottos.forEach(lotto -> System.out.println(lotto));
+    }
+
+    private void printLottoGrades() {
+        int threeMatch = 0;
+        int fourMatch = 0;
+        int fiveMatch = 0;
+        int fiveAndBonusMatch = 0;
+        int sixMatch = 0;
+
+        for (int i = 0; i < lottos.size(); i++) {
+            LottoGrade lottoGrade = winningLotto.determineLottoGrade(lottos.get(i));
+            if (lottoGrade == LottoGrade.SIX_MATCH) {
+                sixMatch += 1;
+            } else if (lottoGrade == LottoGrade.FIVE_AND_BONUS_MATCH) {
+                fiveAndBonusMatch += 1;
+            } else if (lottoGrade == LottoGrade.FIVE_MATCH) {
+                fiveMatch += 1;
+            } else if (lottoGrade == LottoGrade.FOUR_MATCH) {
+                fourMatch += 1;
+            } else if (lottoGrade == LottoGrade.THREE_MATCH) {
+                threeMatch += 1;
+            }
+        }
+        System.out.printf(OutputMessage.LOTTO_GRADE_RESULT.getMessage(), threeMatch, fourMatch, fiveMatch,
+                fiveAndBonusMatch, sixMatch);
     }
 }

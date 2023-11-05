@@ -1,0 +1,12 @@
+package lotto.service;
+
+import lotto.validator.InputValidator;
+
+public class ValidateService {
+
+    private final InputValidator inputValidator = new InputValidator();
+
+    public void validateInputPurchaseMoney(String inputPurchaseMoney) {
+        inputValidator.validatePurchaseMoney(inputPurchaseMoney);
+    }
+}

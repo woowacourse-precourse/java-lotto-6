@@ -21,4 +21,9 @@ public class OutputView {
                         .mapToObj(String::valueOf)
                         .toArray(String[]::new)) + "]");
     }
+    public static void printLottos(int[][] lottos) {
+        for (int[] lotto : lottos) {
+            printLotto(lotto);
+        }
+    }
 }

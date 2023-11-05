@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import lotto.Application;
 import lotto.domain.Lottos;
+import lotto.domain.wrapper.PurchaseAmout;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +17,11 @@ class LottoVendingMachineTest extends NsTest {
     @Test
     void buyLottos() {
         // given
-        LottoVendingMachine lottoVendingMachine = new LottoVendingMachine(8000);
+        PurchaseAmout purchaseAmout = new PurchaseAmout(8000);
+        LottoVendingMachine lottoVendingMachine = new LottoVendingMachine(purchaseAmout);
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    Lottos lottos = lottoVendingMachine.buyLottos();
+                    Lottos lottos = lottoVendingMachine.getLottos();
                     System.out.println(lottos.toString());
                     assertThat(output()).contains(
                             "[8, 21, 23, 41, 42, 43]",

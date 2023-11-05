@@ -19,6 +19,10 @@ public class PrizeManager {
         this.playerLottos = playerLottos;
     }
 
+    public Map<Prize, Integer> getPrizeCounts() {
+        return playerLottos.getPrizeCounts(winningLotto, bonusNumber);
+    }
+
     public double getProfitRate(PurchaseAmout purchaseAmout) {
         return purchaseAmout.calculateProfitRate(getAllPrizeProfit());
     }

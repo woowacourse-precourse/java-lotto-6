@@ -30,6 +30,10 @@ public class Lottos {
         return prizeCounts;
     }
 
+    public int getLottoCount() {
+        return lottos.size();
+    }
+
     @Override
     public String toString() {
         return lottos.stream()

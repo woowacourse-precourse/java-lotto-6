@@ -29,7 +29,7 @@ public class PurchaseAmout {
         }
     }
 
-    public int getLottoCount() {
+    public int getAvailableLottoCount() {
         return purchaseAmout / LottoConstantValue.LOTTO_PRICE.get();
     }
 

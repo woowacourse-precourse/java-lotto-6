@@ -12,11 +12,11 @@ public class LottoVendingMachine {
     private static final int START_COUNT = 0;
     private PurchaseAmout purchaseAmout;
 
-    public LottoVendingMachine(int purchaseAmout) {
-        this.purchaseAmout = new PurchaseAmout(purchaseAmout);
+    public LottoVendingMachine(PurchaseAmout purchaseAmount) {
+        this.purchaseAmout = purchaseAmount;
     }
-    public Lottos buyLottos() {
-        int lottoCount = purchaseAmout.getLottoCount();
+    public Lottos getLottos() {
+        int lottoCount = purchaseAmout.getAvailableLottoCount();
         List<Lotto> lottos = new ArrayList<>();
         for (int count = START_COUNT; count < lottoCount; count++) {
             Lotto lotto = createLotto();

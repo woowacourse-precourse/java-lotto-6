@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.domain.LottoRank.NO_PRIZE;
 import static lotto.constant.ResultMessage.STAT_SUFFIX;
+import static lotto.constant.NumberConstant.LOTTO_PRICE;
 
 import java.util.List;
 import java.util.Arrays;
@@ -24,9 +25,8 @@ public class LottoResults {
         return String.join("\n", result);
     }
 
-    // TODO: 하드 코딩 값 상수화하기
     public double getTotalProfit() {
-        int investment = lottoResults.size() * 1_000;
+        int investment = lottoResults.size() * LOTTO_PRICE.getValue();
         return (double) getSumOfPrize() / investment * 100;
     }
 

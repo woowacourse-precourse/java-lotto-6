@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constant.NumberConstant.LOTTO_PRICE;
 import static lotto.exception.ExceptionMessage.INDIVISIBLE;
 import static lotto.exception.ExceptionMessage.OUT_OF_MEMORY;
 
@@ -51,11 +52,10 @@ public class Lottos {
     }
 
     private long moneyToQuantity(long money) throws LottoException {
-        // TODO: 매직넘버 상수화하기
-        if (money % 1_000 > 0) {
+        if (money % LOTTO_PRICE.getValue() > 0) {
             throw new LottoException(INDIVISIBLE);
         }
-        return money / 1_000;
+        return money / LOTTO_PRICE.getValue();
     }
 
     private List<Lotto> generateLotto(long ticketQuantity) throws LottoException {

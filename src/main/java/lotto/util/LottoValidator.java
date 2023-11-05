@@ -1,5 +1,7 @@
 package lotto.util;
 
+import static lotto.constant.NumberConstant.END_NUMBER;
+import static lotto.constant.NumberConstant.START_NUMBER;
 import static lotto.exception.ExceptionMessage.EMPTY;
 import static lotto.exception.ExceptionMessage.DUPLICATED;
 import static lotto.exception.ExceptionMessage.OUT_OF_RANGE;
@@ -25,7 +27,7 @@ public class LottoValidator {
     }
 
     public static void validateInRange(Integer number) throws LottoException {
-        if (number < 1 || number > 45) {
+        if (number < START_NUMBER.getValue() || number > END_NUMBER.getValue()) {
             throw new LottoException(OUT_OF_RANGE);
         }
     }

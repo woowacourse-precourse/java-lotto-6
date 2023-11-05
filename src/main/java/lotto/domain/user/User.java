@@ -36,11 +36,10 @@ public class User {
     /**
      * 로또를 보여준다.
      *
-     * @param lottoEnvelop 현제 로또들의 모임
      * @return
      */
-    public List<Integer> showLottos(List<Lotto> lottoEnvelop) {
-        return null;
+    public StringBuilder showLottoEnvelop() {
+        return lottoEnvelop.giveInformation();
     }
 
     /**

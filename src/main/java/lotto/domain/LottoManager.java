@@ -31,21 +31,23 @@ public class LottoManager {
         return result;
     }
 
-    public static Map<Prize, Integer> checkWinning(List<Lotto> lottos, Lotto winningLotto, Integer bonusNumber) {
-        int count;
-        // 초기화 메서드
-        Map<Prize, Integer> lottoResult = initializePrize();
-        for (Lotto lotto : lottos) {
-            // 일치 개수 return 메서드
-            count = 0;
-            for (int i = 0; i < 6; i++) {
-                if (lotto.getNumbers().contains(winningLotto.getNumbers().get(i))) {
-                    count++;
-                }
+    public static Integer countMatching(Lotto userLotto, Lotto winningLotto) {
+        Integer countMatching = 0;
+        for (int i = 0; i < 6; i++) {
+            if (userLotto.getNumbers().contains(winningLotto.getNumbers().get(i))) {
+                countMatching++;
             }
+        }
+        return countMatching;
+    }
 
-            if (count >= Prize.FIFTH.getMatchingNumber()) {
-                Prize prize = Prize.rank(count, lotto.getNumbers().contains(bonusNumber));
+    public static Map<Prize, Integer> checkWinning(List<Lotto> lottos, Lotto winningLotto, Integer bonusNumber) {
+        Map<Prize, Integer> lottoResult = initializePrize();
+        for (Lotto userLotto : lottos) {
+            Integer countMatching = countMatching(userLotto, winningLotto);
+
+            if (countMatching >= Prize.FIFTH.getMatchingNumber()) {
+                Prize prize = Prize.rank(countMatching, userLotto.getNumbers().contains(bonusNumber));
                 lottoResult.replace(prize, lottoResult.get(prize) + 1);
             }
 

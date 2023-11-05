@@ -12,16 +12,16 @@ public class LottoService {
 
     private Lotto lotto;
     private Payment payment;
-    private List<List<Integer>> userLottoTickets;
+    private List<List<Integer>> userLottoNumbers;
 
-    public void purchaseLottoTickets(String inputAmount) {
+    public void buyLottoTickets(String inputAmount) {
         payment = new Payment(inputAmount);
     }
 
-    public void createWinningLottoNumber(String inputLotto) {
+    public void createLottoWinningNumber(String inputLotto) {
 
-        List<Integer> lottoNumbers = stringToList(inputLotto);
-        lotto = new Lotto(lottoNumbers);
+        List<Integer> lottoWinningNumber = stringToList(inputLotto);
+        lotto = new Lotto(lottoWinningNumber);
 
     }
 
@@ -34,8 +34,8 @@ public class LottoService {
     public List<List<Integer>> setLottoNumbers() {
         int ticketCount = payment.getTicket();
         User user = new User(ticketCount);
-        userLottoTickets = new ArrayList<>(user.getLottoCount());
-        return userLottoTickets;
+        userLottoNumbers = new ArrayList<>(user.getLottoCount());
+        return userLottoNumbers;
     }
 
     public void createBonusNumber(String inputBonus) {

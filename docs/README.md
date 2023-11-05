@@ -1,4 +1,4 @@
-# 로또 (ver 1.1.0)
+# 로또 (ver 1.1.1)
 
 ## 문서 Versioning 규칙
 
@@ -32,6 +32,7 @@
   - [x] 구매한 로또의 갯수와 로또 번호를 출력하도록 명령한다.
   - [x] 당첨 번호를 입력하도록 명령한다.
   - [ ] 보너스 번호를 입력하도록 명령한다.
+    - [ ] 당첨 번호와 보너스 번호가 중복되는지 검증한다.
   - [ ] 로또 일치 여부를 계산하도록 명령한다.
   - [ ] 수익률을 계산하도록 명령한다.
   - [ ] 당첨 통계를 출력하도록 명령한다.
@@ -54,13 +55,10 @@
     - [x] 당첨 번호의 원소가 6개가 아니라면 IllegalArgumentException을 발생시킨다.
     - [x] 당첨 번호의 원소가 1부터 45까지의 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
     - [x] 당첨 번호의 원소가 중복된다면 IllegalArgumentException을 발생시킨다.
-    - [ ] 당첨 번호가 공백이라면 IllegalArgumentException을 발생시킨다.
 - BonusNumber: 보너스 번호를 추상화한 클래스
   - [x] 보너스 번호를 반환한다.
   - 유효성 검증
     - [ ] 보너스 번호가 1부터 45까지의 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
-    - [ ] 보너스 번호가 당첨 번호와 중복된다면 IllegalArgumentException을 발생시킨다.
-    - [ ] 보너스 번호가 공백이라면 IllegalArgumentException을 발생시킨다.
 - EarningRate: 수익률을 추상화한 클래스
 
 ### View

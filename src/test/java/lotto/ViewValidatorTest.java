@@ -85,6 +85,29 @@ class ViewValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구입 금액이 최소 금액이 넘는지 확인한다.")
+    @Test
+    void validateMinPrice() {
+        // given
+        ViewValidator viewValidator = new ViewValidator();
+        int buyingPrice = 1;
+
+        // expected
+        viewValidator.validateMinPrice(buyingPrice);
+    }
+
+    @DisplayName("구입 금액이 구입 최소 단위로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @Test
+    void validateMinPriceFail() {
+        // given
+        ViewValidator viewValidator = new ViewValidator();
+        int buyingPrice = 0;
+
+        // expected
+        assertThatThrownBy(() ->  viewValidator.validateMinPrice(buyingPrice))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("구입 금액이 구입 최소 단위로 나누어 떨어지는지 확인한다.")
     @Test
     void validateMod() {

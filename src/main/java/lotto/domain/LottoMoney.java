@@ -8,6 +8,7 @@ public class LottoMoney {
     private static int lottoMoney;
 
     private LottoMoney(int lottoMoney) {
+        validate(lottoMoney);
         this.lottoMoney = lottoMoney;
     }
 

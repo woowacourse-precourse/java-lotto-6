@@ -5,7 +5,6 @@ import lotto.config.Config;
 import lotto.domain.num.LottoTargetNumResults;
 
 public class LottoHost {
-    private LottoTargetNumResults lottoTargetNumResults;
     private String winNumbers;
     private String bonusNumbers;
 
@@ -22,8 +21,8 @@ public class LottoHost {
     }
 
 
-    public void generateLottoTargetNumResults() {
-        this.lottoTargetNumResults = Config.lottoNumResults(winNumbers, bonusNumbers);
+    public LottoTargetNumResults giveLottoTargetNumResults() {
+        return Config.lottoTargetNumResults(winNumbers, bonusNumbers);
     }
 
     /**

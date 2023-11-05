@@ -30,7 +30,7 @@ public class Config {
         return new BonusLottoNum(strOfPickBonusNum);
     }
 
-    public static LottoTargetNumResults lottoNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
+    public static LottoTargetNumResults lottoTargetNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
         return new LottoTargetNumResults(strOfPickWinNum, strOfPickBonusNum);
     }
 

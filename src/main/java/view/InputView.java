@@ -1,6 +1,5 @@
 package view;
 
-import lotto.domain.Money;
 import util.Scanner.IScanner;
 
 public class InputView {
@@ -11,10 +10,10 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public Money getMoney() {
-        String line = scanner.readLine();
-        validateNumber(line);
-        return new Money(Integer.parseInt(line));
+    public int getNumber() {
+        String string = scanner.readLine();
+        validateNumber(string);
+        return Integer.parseInt(string);
     }
 
     private void validateNumber(String line) {

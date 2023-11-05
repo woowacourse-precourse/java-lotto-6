@@ -61,4 +61,10 @@ public class WinningNumber {
             throw new IllegalArgumentException(NOT_LENGTH.getMessage());
         }
     }
+
+    public void checkDuplicateBonus(Integer bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(NOT_UNIQUE.getMessage());
+        }
+    }
 }

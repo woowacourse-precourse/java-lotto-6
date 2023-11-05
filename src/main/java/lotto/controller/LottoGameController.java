@@ -30,15 +30,15 @@ public class LottoGameController {
         PurchaseCount purchaseCount = initPurchaseAmount();
         LottoStore lottoStore = initLottoStore(purchaseCount);
         WinningNumber winningNumber = initWinningNumber();
-        BonusNumber bonusNumber = initBonusNumber();
+        BonusNumber bonusNumber = initBonusNumber(winningNumber);
         new LottoGame(lottoStore, winningNumber, bonusNumber);
     }
 
-    private BonusNumber initBonusNumber() {
+    private BonusNumber initBonusNumber(WinningNumber winningNumber) {
         while (true) {
             try {
                 String bonusNumberInput = requestBonusNumber();
-                return new BonusNumber(bonusNumberInput);
+                return new BonusNumber(winningNumber, bonusNumberInput);
             } catch (IllegalArgumentException exception) {
                 outputView.output(exception.getMessage());
             }

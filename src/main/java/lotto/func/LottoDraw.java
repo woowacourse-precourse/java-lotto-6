@@ -3,7 +3,6 @@ package lotto.func;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
 
 public class LottoDraw {
     public static List<Integer> generateRandomLotto() {

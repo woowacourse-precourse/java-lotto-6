@@ -17,7 +17,7 @@ public class Winner {
             int winningNum = Integer.parseInt(numberStr.trim());
             winningNumbers.add(winningNum);
         }
-        //Lotto lotto = new Lotto(winningNumbers);
+        Lotto lotto = new Lotto(winningNumbers);
         int bonus = bonusNumber();
         Rank rank = new Rank();
         rank.myRanking(winningNumbers,bonus,lottoTickets);

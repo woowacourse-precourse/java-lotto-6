@@ -18,17 +18,15 @@ public class LottoGame {
     private static final int HIGH_NUMBER = 45;
     private static final int NUMBER_COUNT = 6;
 
-    public void start() {
+    public void run() {
         int lottoQuantity = findLottoQuantity();
-        User user = findUser(lottoQuantity);
+        User user = makeUser(lottoQuantity);
         List<Integer> lottoWinningNumbers = findWinningNumbers();
         int bonusNumber = findBonusNumber();
-        List<Rank> resultRanks = user.findAllResult(lottoWinningNumbers, bonusNumber);
-        List<Integer> resultCount = user.countTotalResult(resultRanks);
-        int resultPrize = user.TotalPrize(resultCount);
+        List<Integer> resultCount = user.countTotalResult(lottoWinningNumbers, bonusNumber);
         OutputView.printResultHead();
         transmitOutput(resultCount);
-        double profitRate = calculateProfitRate(lottoQuantity, resultPrize);
+        double profitRate = user.calculateProfitRate(resultCount);
         OutputView.printProfitRate(profitRate);
     }
 
@@ -50,12 +48,12 @@ public class LottoGame {
         return purchaseAmount / LOTTO_PRICE;
     }
 
-    private User findUser(int lottoQuantity) {
+    private User makeUser(int lottoQuantity) {
         User user;
         while (true) {		
             try {
                 List<Lotto> lottos = makeLottos(lottoQuantity);
-                user = new User(lottos);
+                user = new User(lottos, lottoQuantity);
                 break;
             } catch (IllegalArgumentException e) {
             	OutputView.printErrorMessage(e.getMessage());
@@ -92,17 +90,17 @@ public class LottoGame {
         }
     }
 
-    private Lotto makeLotto(List<Integer> numbers) {
-        Lotto lotto = new Lotto(numbers);
-        return lotto;
-    }
-
     private void minSwap(List<Integer> numbers, int i, int j) {
         if (numbers.get(i) > numbers.get(j)) {
             int tmp = numbers.get(i);
             numbers.set(i, numbers.get(j));
             numbers.set(j, tmp);
         }
+    }
+
+    private Lotto makeLotto(List<Integer> numbers) {
+        Lotto lotto = new Lotto(numbers);
+        return lotto;
     }
 
     private List<Integer> findWinningNumbers() {
@@ -139,9 +137,5 @@ public class LottoGame {
         for (int i = 1; i < resultCount.size(); i++) {
             OutputView.printResult(ranks[i].getPrintString(), resultCount.get(i));
         }
-    }
-
-    private double calculateProfitRate(int lottoQuantity, int resultPrize) {
-        return resultPrize / (lottoQuantity * 10);
     }
 }

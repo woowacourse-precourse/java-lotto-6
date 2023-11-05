@@ -37,11 +37,11 @@ public class Lotto {
         return 0;
     }
 
-    private boolean isContain(int number) {
-        return numbers.contains(number);
-    }
-
     public boolean bonusNumberCheck(int bonusNumber) {
         return isContain(bonusNumber);
+    }
+
+    private boolean isContain(int number) {
+        return numbers.contains(number);
     }
 }

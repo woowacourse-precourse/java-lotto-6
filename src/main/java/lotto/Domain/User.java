@@ -6,12 +6,22 @@ import java.util.List;
 
 public class User {
     private List<Lotto> userLottos;
+    private int lottoQuantity;
 
-    public User(List<Lotto> userLottos) {
+    public User(List<Lotto> userLottos, int lottoQuantity) {
         this.userLottos = userLottos;
+        this.lottoQuantity = lottoQuantity;
+    }
+    public List<Integer> countTotalResult(List<Integer> lottoWinningNumbers, int bonusNumber) {
+        Integer[] arr = {0,0,0,0,0,0};
+        List<Integer> resultCount = new ArrayList<>(Arrays.asList(arr));
+        for (Rank rank : findAllResult(lottoWinningNumbers, bonusNumber)) {
+            resultCount.set(rank.ordinal(), resultCount.get(rank.ordinal()) + 1);
+        }
+        return resultCount;
     }
 
-    public List<Rank> findAllResult(List<Integer> lottoWinningNumbers, int bonusNumber) {
+    private List<Rank> findAllResult(List<Integer> lottoWinningNumbers, int bonusNumber) {
         List<Integer> resultByWinningNumbers = findAllResultByWinnungNumbers(lottoWinningNumbers);
         List<Boolean> resultByBonusNumber = findAllResultByBonusNumber(bonusNumber);
         List<Rank> resultRanks = findAllRank(resultByWinningNumbers, resultByBonusNumber);
@@ -45,17 +55,12 @@ public class User {
     private Rank findRank(int matchNumberCount, boolean matchBonusNumber) {
         return Rank.valueOf(matchNumberCount, matchBonusNumber);
     }
-    
-    public List<Integer> countTotalResult(List<Rank> resultRanks) {
-        Integer[] arr = {0,0,0,0,0,0};
-        List<Integer> resultCount = new ArrayList<>(Arrays.asList(arr));
-        for (Rank rank : resultRanks) {
-            resultCount.set(rank.ordinal(), resultCount.get(rank.ordinal()) + 1);
-        }
-        return resultCount;
+
+    public double calculateProfitRate(List<Integer> resultCount) {
+        return TotalPrize(resultCount) / (this.lottoQuantity * 10.0);
     }
 
-    public int TotalPrize(List<Integer> resultCount) {
+    private int TotalPrize(List<Integer> resultCount) {
         int resultPrizes = 0;
         for (Rank rank : Rank.values()) {
             resultPrizes += resultCount.get(rank.ordinal()) * rank.getPrize();

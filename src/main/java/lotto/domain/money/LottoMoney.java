@@ -9,7 +9,7 @@ public record LottoMoney(int value) {
         return new LottoMoney(value);
     }
 
-    public int createBuyingCount() {
+    public int calculateBuyingCount() {
         return value / LottoMoneyCondition.MONEY_UNIT.value();
     }
 }

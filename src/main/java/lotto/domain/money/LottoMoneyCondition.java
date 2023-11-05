@@ -4,7 +4,7 @@ public enum LottoMoneyCondition {
 
     MONEY_UNIT(1_000),
     MIN_MONEY(1_000),
-    MAX_MONEY(10_000);
+    MAX_MONEY(1_000_000);
 
     private final int value;
 

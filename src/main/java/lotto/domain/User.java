@@ -17,7 +17,7 @@ public class User {
         }
     }
     
-    public static int getPurchaseAmount(){
+    public int getPurchaseAmount(){
         return purchaseAmount;
     }
 

@@ -16,8 +16,8 @@ public class LottoController {
     private Admin admin;
     public void run() {
         initLotto();
-        compareLottoNumbers();
-        printStats();
+        //compareLottoNumbers();
+        //printStats();
     }
 
     public void initLotto() {
@@ -34,11 +34,12 @@ public class LottoController {
     }
 
     public void initInputWinningNumberAndBonusNumber() {
-        String winningNumber = InputWinningNumber();
+        String winningNumberStr = InputWinningNumber();
+        String[] winningNumbersStr = adminLottoService.splitWinningNumbers(winningNumberStr);
         String bonusNumberStr = InputBonusNumber();
-        ArrayList<Integer> winningNumbers = adminLottoService.parseIntWinningNumber(winningNumber);
+        ArrayList<Integer> winningNumber = adminLottoService.initWinningNumber(winningNumbersStr);
         int bonusNumber = adminLottoService.parseIntBonusNumber(bonusNumberStr);
-        adminLottoService.setAdmin(winningNumbers, bonusNumber);
+        admin = adminLottoService.setAdmin(winningNumber, bonusNumber);
     }
 
     public String InputPurchaseAmount() {

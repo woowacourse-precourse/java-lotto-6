@@ -11,6 +11,11 @@ public class Money {
         validateMoney(money);
         this.money = money;
     }
+
+    public int getNumberOfLottos() {
+        return money / UNIT;
+    }
+
     private void validateMoney(int money) {
         validateNotZero(money);
         validateDivisibleByUnit(money);

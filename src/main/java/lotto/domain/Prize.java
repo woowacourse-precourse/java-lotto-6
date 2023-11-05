@@ -26,6 +26,10 @@ public enum Prize {
         return prizeMoney;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public static Prize findPrize(int matchCount, boolean matchBonus) {
         return Arrays.stream(values())
                 .filter(prize -> prize.matchNumbersAndBonus.test(matchCount, matchBonus))

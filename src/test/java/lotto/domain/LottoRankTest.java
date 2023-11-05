@@ -24,5 +24,12 @@ class LottoRankTest {
         assertThat(LottoRank.valueOf(5, false)).isEqualTo(LottoRank.THIRD);
     }
 
+    @Test
+    @DisplayName("매치된 숫자가 없는 경우 NONE을 반환하는지 확인")
+    void testNoneRankCondition() {
+        assertThat(LottoRank.valueOf(1, false)).isEqualTo(LottoRank.NONE);
+        assertThat(LottoRank.valueOf(2, false)).isEqualTo(LottoRank.NONE);
+    }
+
 }
 

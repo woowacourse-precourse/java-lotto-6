@@ -6,6 +6,9 @@ import lotto.validator.ValidatorPurchaseAmount;
 import lotto.view.View;
 
 public class Controller {
+    public Controller() {
+    }
+
     public void lotto_Logic() {
         View view = new View();
         view.inputPurchaseAmount();
@@ -21,6 +24,7 @@ public class Controller {
         }
 
         LottoTicket lottoTicket = new LottoTicket(calculateLottoTicketCount(purchase));
+        view.displayPurchaseQuantityMessage(lottoTicket);
     }
 
     public int calculateLottoTicketCount(Purchase purchase) {

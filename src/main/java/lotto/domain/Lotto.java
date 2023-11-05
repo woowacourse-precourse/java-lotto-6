@@ -7,6 +7,7 @@ import static lotto.domain.LottoPrize.FORTH_PLACE;
 import static lotto.domain.LottoPrize.FIFTH_PLACE;
 import static lotto.domain.LottoPrize.NO_PLACE;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +21,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers = new ArrayList<>(numbers);
+        numbers.sort(null);
         this.numbers = numbers;
     }
 

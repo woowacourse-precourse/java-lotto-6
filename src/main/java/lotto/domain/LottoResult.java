@@ -22,7 +22,7 @@ public class LottoResult {
 	}
 
 	private void calculateRanks() {
-		for (Lotto lotto : lottoPlayer.getPurchasedLottos()) {
+		for (Lotto lotto : lottoPlayer.getLottos()) {
 			int matchCount = winningLotto.calculateMatchCount(lotto);
 			boolean matchBonusNumber = winningLotto.isBonusMatch(lotto);
 

@@ -20,7 +20,7 @@ public class LottoMachine {
 			.mapToObj(i -> generateRandomLotto())
 			.collect(Collectors.toList());
 
-		return new LottoPlayer(lottoList);
+		return new LottoPlayer(lottoList, purchaseAmount);
 	}
 
 	private Lotto generateRandomLotto() {

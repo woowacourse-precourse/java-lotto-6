@@ -23,9 +23,9 @@ public class OutputView {
 		System.out.println();
 
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(NUMBER_OF_TICKETS_PURCHASED.getMessage().formatted(lottoPlayer.getPurchasedLottos().size())).append("\n");
+		stringBuilder.append(NUMBER_OF_TICKETS_PURCHASED.getMessage().formatted(lottoPlayer.getLottos().size())).append("\n");
 
-		for (Lotto lotto : lottoPlayer.getPurchasedLottos()) {
+		for (Lotto lotto : lottoPlayer.getLottos()) {
 			stringBuilder.append(lotto.getNumbers()).append("\n");
 		}
 

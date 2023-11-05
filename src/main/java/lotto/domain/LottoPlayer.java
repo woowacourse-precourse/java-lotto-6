@@ -4,15 +4,19 @@ import java.util.List;
 
 public class LottoPlayer {
 
-	private final List<Lotto> purchasedLottos;
-	private long totalPrize;
-	private double returnRate;
+	private final List<Lotto> lottos;
+	private final PurchaseAmount purchaseAmount;
 
-	public LottoPlayer(List<Lotto> purchasedLottos) {
-		this.purchasedLottos = purchasedLottos;
+	public LottoPlayer(List<Lotto> lottos, PurchaseAmount purchaseAmount) {
+		this.lottos = lottos;
+		this.purchaseAmount = purchaseAmount;
 	}
 
-	public List<Lotto> getPurchasedLottos() {
-		return purchasedLottos;
+	public List<Lotto> getLottos() {
+		return lottos;
+	}
+
+	public PurchaseAmount getPurchaseAmount() {
+		return purchaseAmount;
 	}
 }

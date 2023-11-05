@@ -16,7 +16,7 @@ class LottoMachineTest {
 		purchaseAmount = new PurchaseAmount("5000");
 
 		assertThat(lottoMachine.purchaseLotto(purchaseAmount)).isInstanceOf(LottoPlayer.class);
-		assertThat(lottoMachine.purchaseLotto(purchaseAmount).getPurchasedLottos().get(0)).isInstanceOf(Lotto.class);
-		assertThat(lottoMachine.purchaseLotto(purchaseAmount).getPurchasedLottos().size()).isEqualTo(5);
+		assertThat(lottoMachine.purchaseLotto(purchaseAmount).getLottos().get(0)).isInstanceOf(Lotto.class);
+		assertThat(lottoMachine.purchaseLotto(purchaseAmount).getLottos().size()).isEqualTo(5);
 	}
 }

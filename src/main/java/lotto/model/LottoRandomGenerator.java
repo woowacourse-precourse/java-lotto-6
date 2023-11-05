@@ -10,7 +10,7 @@ public class LottoRandomGenerator implements LottoGenerator {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                 LottoConstants.LOTTO_NUMBER_MIN,
                 LottoConstants.LOTTO_NUMBER_MAX,
-                LottoConstants.THE_SIZE_OF_ONE_LOTTO);
+                LottoConstants.SIZE_OF_LOTTO_TICKET);
         return new Lotto(numbers);
     }
 }

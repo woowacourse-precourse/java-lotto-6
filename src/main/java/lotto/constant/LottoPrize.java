@@ -19,9 +19,6 @@ public enum LottoPrize {
     }
 
     public static LottoPrize valueOf(int matchedCount, boolean bonusMatched) {
-        if (matchedCount < LottoConstants.THE_MINIMUM_NUMBER_OF_MATCHES_TO_WIN_A_PRIZE) {
-            return NOTHING;
-        }
         if (SECOND.matchedCount == matchedCount && bonusMatched) {
             return SECOND;
         }

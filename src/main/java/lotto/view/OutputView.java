@@ -6,7 +6,7 @@ public class OutputView {
     }
 
     public void printCountPurchaseLottoMessage(int count) {
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println("\n" + count + "개를 구매했습니다.");
     }
 
     public void printInputErrorMessage(String errorMessage) {

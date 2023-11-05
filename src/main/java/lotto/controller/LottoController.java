@@ -24,6 +24,7 @@ public class LottoController {
 
     public void play() {
         int purchaseAmount = getValidatedPurchaseAmount();
+        purchaseLottos(purchaseAmount);
     }
 
     private int getValidatedPurchaseAmount() {
@@ -45,6 +46,15 @@ public class LottoController {
 
     private String trimInput(String input) {
         return preprocessor.trimInput(input);
+    }
+
+    private void purchaseLottos(int purchaseAmount) {
+        int lottosCount = calculatePurchaseOfLottos(purchaseAmount);
+        outputView.printCountPurchaseLottoMessage(lottosCount);
+    }
+
+    private int calculatePurchaseOfLottos(int purchaseAmount) {
+        return purchaseAmount / LOTTO_PRICE;
     }
 
 }

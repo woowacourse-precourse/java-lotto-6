@@ -16,7 +16,8 @@ public class LottoServiceTest {
         WinningNumbers winningNumbers = mock(WinningNumbers.class);
         Money fiveThousand = new Money(5_000);
         LottoMachine lottoMachine = new LottoMachine();
-        LottoService lottoService = new LottoService(winningNumbers, lottoMachine);
+        RankCounter rankCounter = new RankCounter();
+        LottoService lottoService = new LottoService(winningNumbers, lottoMachine, rankCounter);
 
         //when
         List<Lotto> lottos = lottoService.getLottosWith(fiveThousand);
@@ -32,7 +33,8 @@ public class LottoServiceTest {
         WinningNumbers winningNumbers = LottoFixture.standard();
         List<Lotto> lottos = LottoFixture.all();
         LottoMachine mockMachine = mock(LottoMachine.class);
-        LottoService lottoService = new LottoService(winningNumbers, mockMachine);
+        RankCounter rankCounter = new RankCounter();
+        LottoService lottoService = new LottoService(winningNumbers, mockMachine, rankCounter);
 
         //when
         EnumMap<Rank, Integer> result = lottoService.rank(lottos);

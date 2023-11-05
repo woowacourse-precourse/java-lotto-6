@@ -9,10 +9,10 @@ public class LottoService {
     private final LottoMachine lottoMachine;
     private final RankCounter rankCounter;
 
-    public LottoService(WinningNumbers winningNumbers, LottoMachine lottoMachine) {
+    public LottoService(WinningNumbers winningNumbers, LottoMachine lottoMachine, RankCounter rankCounter) {
         this.winningNumbers = winningNumbers;
         this.lottoMachine = lottoMachine;
-        this.rankCounter = new RankCounter();
+        this.rankCounter = rankCounter;
     }
 
     public List<Lotto> getLottosWith(Money money) {

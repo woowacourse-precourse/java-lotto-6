@@ -8,20 +8,20 @@ public class Amount {
     }
 
     public int enterAmount() {
-        int amount;
+        int lottoNum;
 
         while (true) {
             try {
                 printAmountEnterGuideStatement();
                 String input = Console.readLine();
-                amount = validateAmount(input);
+                lottoNum = validateAmount(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        return amount;
+        return lottoNum;
     }
 
     private void printAmountEnterGuideStatement() {
@@ -31,14 +31,14 @@ public class Amount {
     int validateAmount(String input) {
         isNum(input);
         int amount = stringToInt(input);
-        isDividedUp(amount);
-        return amount;
+        return isDividedUp(amount);
     }
 
-    void isDividedUp(int amount) {
+    int isDividedUp(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 1장의 가격은 1,000원입니다. 금액 값은 1,000원 단위로 입력해주세요.");
         }
+        return amount / 1000;
     }
 
     void isNum(String input) {

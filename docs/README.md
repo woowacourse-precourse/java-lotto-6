@@ -3,7 +3,7 @@
 ---
 
 ### 사용자 입력 검증 기능 (예외처리)
-- [ ] 로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다. - invalidLottoPurchaseAmount()
+- [x] 로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다. - invalidLottoPurchaseAmount()
 - [ ] 로또 번호의 숫자 범위는 1~45까지이다. - validateLottoNumberRange()
 - [ ] 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다. - uniqueLottoNumbers()
 - [ ] 당첨 번호는 중복되지 않는 숫자 6개와 보너스 번호 1개를 뽑는다. - winningNumbersAndBonusNumber()
@@ -13,7 +13,7 @@
 --- 
 
 ### 입력 기능
-- [ ] 로또 구입금액을 입력한다. - enterLottoPurchaseAmount()
+- [x] 로또 구입금액을 입력한다. - readLottoPurchaseAmount()
 - [ ] 당첨 번호를 입력 받는다. - enterWinningNumbers()
 - [ ] 보너스 번호를 입력받는다. - enterBonusNumber()
 
@@ -39,4 +39,4 @@
 - User - 사용자 입력 한 값을 관리는 역할
 - lotto machine - 로또 기계 역할
 - lotto - 로또 번호를 관리하는 역할
-- lottoNumbers - 자동으로 로또 번호를 생성
+- ReadPurchaseAmount - 구매 금액을 관리하는 역할

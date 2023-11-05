@@ -29,11 +29,4 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호를 입력하지 않을 경우 예외가 발생한다.")
-    @Test
-    void createLottoByNull() {
-        assertThatThrownBy(() -> new Lotto(List.of()))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
 }

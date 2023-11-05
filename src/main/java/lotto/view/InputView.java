@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,13 +31,11 @@ public class InputView {
 
     int requestLottoPurchaseAmount() {
         System.out.println(PURCHASE_MESSAGE);
-        try {
-            int lottoPurchaseAmount = Integer.parseInt(Console.readLine().trim());
-            validateLottoPurchaseAmount(lottoPurchaseAmount);
-            return lottoPurchaseAmount;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format(INVALID_INPUT_FORMAT, "숫자"));
-        }
+        String inputValue = Console.readLine().trim();
+        validateNumber(inputValue);
+        int lottoPurchaseAmount = Integer.parseInt(inputValue);
+        validateLottoPurchaseAmount(lottoPurchaseAmount);
+        return lottoPurchaseAmount;
     }
 
     public TreeSet<Integer> requestLottoNumber() {
@@ -44,6 +43,14 @@ public class InputView {
         String inputLottoNumbers = Console.readLine().trim();
         validateLottoNumbers(inputLottoNumbers);
         return convertLottoNumbersToTreeSet(inputLottoNumbers);
+    }
+
+    private static void validateNumber(String inputValue) {
+        String regex = "^\\d+$";
+
+        if (!Pattern.matches(regex, inputValue)) {
+            throw new NumberFormatException(String.format(INVALID_INPUT_FORMAT, LOTTO_NUMBER_FORMAT));
+        }
     }
 
     private static void validateLottoPurchaseAmount(int lottoPurchaseAmount) {
@@ -63,19 +70,16 @@ public class InputView {
 
     private void validateLottoNumbers(String inputLottoNumbers) {
         String[] lottoNumbers = inputLottoNumbers.split(INPUT_LOTTO_NUMBER_SPLITTER);
+        Set<Integer> numbers = new HashSet<>();
+        for (String lottoNumber : lottoNumbers) {
+            validateNumber(lottoNumber);
 
-        try {
-            Set<Integer> numbers = new HashSet<>();
-            for (String lottoNumber : lottoNumbers) {
-                int number = Integer.parseInt(lottoNumber);
-                validateLottoNumberRange(number);
-                numbers.add(number);
-            }
-            if (numbers.size() != LOTTO_NUMBERS_SIZE) {
-                throw new IllegalArgumentException(INVALID_INPUT_LOTTO_NUMBERS_COUNT);
-            }
-        } catch(NumberFormatException e) {
-            throw new IllegalArgumentException(String.format(INVALID_INPUT_FORMAT, LOTTO_NUMBER_FORMAT));
+            int number = Integer.parseInt(lottoNumber);
+            validateLottoNumberRange(number);
+            numbers.add(number);
+        }
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(INVALID_INPUT_LOTTO_NUMBERS_COUNT);
         }
     }
 

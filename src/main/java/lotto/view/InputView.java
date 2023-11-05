@@ -1,7 +1,6 @@
 package lotto.view;
 
 import lotto.utils.Constants;
-import lotto.utils.InputValidator;
 import lotto.utils.Util;
 import lotto.utils.message.InputMessage;
 

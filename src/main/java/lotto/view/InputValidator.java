@@ -1,5 +1,6 @@
-package lotto.utils;
+package lotto.view;
 
+import lotto.utils.Constants;
 import lotto.utils.message.ErrorMessage;
 import java.util.regex.Pattern;
 

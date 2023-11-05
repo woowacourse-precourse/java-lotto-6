@@ -12,7 +12,7 @@ import lotto.presentation.message.Ask;
 
 public class ReaderForPurchase extends NumberValidator implements DefaultReader {
 
-    private static final int AMOUNT_LOWER_LIMIT = 1_000;
+    private static final int SINGLE_LOTTO_PRICE = 1_000;
 
     @Override
     public String read() {
@@ -28,7 +28,9 @@ public class ReaderForPurchase extends NumberValidator implements DefaultReader 
     protected boolean validate(String input) {
         try {
             checkIsBlank(input);
+            checkIsNumber(input);
             checkIsEnoughMoney(input);
+            checkIsDivided(input);
             return true;
         } catch (GlobalException exception) {
             Printer.print(exception.getMessage());
@@ -38,10 +40,18 @@ public class ReaderForPurchase extends NumberValidator implements DefaultReader 
 
     /** 1,000원 이하인지 확인한다. */
     private void checkIsEnoughMoney(String input) {
-        checkIsNumber(input);
         long amount = Long.parseLong(input);
-        if (amount < AMOUNT_LOWER_LIMIT) {
-            throw new GlobalException(GlobalError.NOT_ENOUGH_MONEY);
+        if (amount < SINGLE_LOTTO_PRICE) {
+            throw new GlobalException(GlobalError.NOT_AVAILABLE_AMOUNT);
+        }
+    }
+
+
+    /** 1,000원으로 나누어 떨어지는지 확인한다. */
+    private void checkIsDivided(String input) {
+        long amount = Long.parseLong(input);
+        if (!(amount % SINGLE_LOTTO_PRICE == 0)) {
+            throw new GlobalException(GlobalError.NOT_AVAILABLE_AMOUNT);
         }
     }
 }

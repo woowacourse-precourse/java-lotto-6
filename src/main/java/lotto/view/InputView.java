@@ -13,32 +13,34 @@ public class InputView {
     private static final String EMPTY_BONUS_NUMBER_ERROR = "[ERROR] 보너스 번호를 입력해 주세요.";
 
     public static String inputPurchaseAmount() {
-        String input = Console.readLine();
-        if (input.isBlank()) {
-            throw new IllegalArgumentException(EMPTY_AMOUNT_ERROR);
-        }
-        return input;
+        return getInput(EMPTY_AMOUNT_ERROR);
     }
 
     public static List<Integer> inputWinningNumbers() {
-        String input = Console.readLine();
-        if (input.isBlank()) {
-            throw new IllegalArgumentException(EMPTY_LOTTO_NUMBER_ERROR);
-        }
+        String input = getInput(EMPTY_LOTTO_NUMBER_ERROR);
         try {
-            return List.of(input.split(COMMA_SEPARATOR)).stream()
-                    .map(numberStr -> Integer.parseInt(numberStr))
-                    .collect(Collectors.toList());
+            return parseNumbers(input);
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException(NOT_INTEGER_LOTTO_NUMBER_ERROR);
         }
     }
 
     public static String inputBonusNumber() {
+        return getInput(EMPTY_BONUS_NUMBER_ERROR);
+    }
+
+    private static String getInput(String errorMessage) {
         String input = Console.readLine();
         if (input.isBlank()) {
-            throw new IllegalArgumentException(EMPTY_BONUS_NUMBER_ERROR);
+            throw new IllegalArgumentException(errorMessage);
         }
         return input;
+    }
+
+    private static List<Integer> parseNumbers(String input) {
+        return List.of(input.split(COMMA_SEPARATOR))
+                .stream()
+                .map(numberStr -> Integer.parseInt(numberStr))
+                .collect(Collectors.toList());
     }
 }

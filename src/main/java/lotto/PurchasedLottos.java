@@ -24,4 +24,10 @@ public class PurchasedLottos {
     public int purchasedLottosCount() {
         return purchasedLottos.size();
     }
+
+    public List<List<String>> getCurrentPurchasedLottosSnapshot() {
+        return purchasedLottos.stream()
+                .map(lotto -> lotto.getLottoNumberStrings())
+                .collect(Collectors.toList());
+    }
 }

@@ -45,4 +45,10 @@ public class Lotto {
         Set<Integer> set = new HashSet<>(numbers);
         return set.size() != numbers.size();
     }
+
+    public List<String> getLottoNumberStrings(){
+        return numbers.stream()
+                .map(n->n.toString())
+                .collect(Collectors.toList());
+    }
 }

@@ -26,7 +26,7 @@ public class Calculation {
         double sumPrize = 0;
         for (ResultMessage resultMessage : ResultMessage.values()) {
             int winningAmount = resultMessage.getWinningAmount();
-            int index = resultMessage.getIndex();
+            int index = resultMessage.ordinal();
             sumPrize += winningAmount * result.get(index);
         }
         return sumPrize;

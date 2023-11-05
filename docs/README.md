@@ -67,6 +67,7 @@
     - [X] 예외를 발생시킬 때 보여줄 메세지를 관리할 클래스 - `ExceptionMessage`
     - [X] 로또 당첨 숫자 개수에 따라 등수를 관리할 클래스 - `WinnerType`
 - [X] 1~45 사이의 무작위 수 6개를 생성하는 유틸 클래스 생성 - `LottoNumberGenerator`
+- [X] 쉼표로 구분된 문자열을 리스트로 치환해줄 유틸 클래스 생성 - `ListConverter`
 - [X] 중복되지 않는 6개 숫자를 가지는 로또 클래스 생성 - `Lotto`
     - [X] 발행된 로또 번호를 출력할 수 있다. - `Lotto#toString()`
     - [X] 주어진 번호를 포함하는지의 여부 알 수 있다. - `Lotto#contains()`

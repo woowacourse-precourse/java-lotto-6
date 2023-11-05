@@ -22,4 +22,13 @@ public class PlayerLottoAmount {
         validateDivisible(amount);
     }
 
+    private static int validateNumber(String amount) throws IllegalArgumentException {
+        try {
+            return Integer.parseInt(amount);
+        } catch (NumberFormatException e) {
+            ExceptionMessage.numberException();
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

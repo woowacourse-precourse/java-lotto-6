@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Result {
-    //TODO: 당첨된 로또 개수 계산
     private HashMap<Prize,Integer> result;
     private int purchaseAmount;
 

@@ -36,19 +36,22 @@ public class InputInterface {
             checkIfDivisibleByLotteryPrice(purchasedAmount);
             return purchasedAmount;
         } catch (NumberFormatException e) {
-            throw new InvalidPurchasedAmountException(PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT, input, e);
+            throw new InvalidPurchasedAmountException(PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT,
+                    input, e);
         }
     }
 
     private static void checkIfNegativeLong(long purchasedAmount) {
         if (purchasedAmount < 0) {
-            throw new InvalidPurchasedAmountException(PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_LONG_TEXT, purchasedAmount);
+            throw new InvalidPurchasedAmountException(PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_LONG_TEXT,
+                    purchasedAmount);
         }
     }
 
     private static void checkIfDivisibleByLotteryPrice(long purchasedAmount) {
         if (purchasedAmount % 1000 != 0 || purchasedAmount == 0) {
-            throw new InvalidPurchasedAmountException(PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_LOTTERY_PRICE_TEXT, purchasedAmount);
+            throw new InvalidPurchasedAmountException(PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_LOTTERY_PRICE_TEXT,
+                    purchasedAmount);
         }
     }
 

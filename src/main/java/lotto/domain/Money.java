@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.constants.LottoConstants;
 
 public class Money {
-    private int money;
+    private static int money;
 
     private Money(int money) {
         this.money = money;
@@ -31,7 +31,7 @@ public class Money {
         return money < LottoConstants.PRICE.getConstants();
     }
 
-    public int requestLottoCount(int money) {
+    public int requestLottoCount() {
         return (int) (money / LottoConstants.PRICE.getConstants());
     }
 

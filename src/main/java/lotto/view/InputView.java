@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Bonus;
+import lotto.domain.Money;
 import lotto.utils.InputConvertor;
 import lotto.utils.InputValidator;
 
@@ -19,21 +21,25 @@ public class InputView {
         }
     }
 
-    public static int getMoneyInput() {
+    public static Money getMoneyInput() {
+        String money = getInput(MONEY_INPUT_MESSAGE);
         try {
-            return InputConvertor.convertMoney(getInput(MONEY_INPUT_MESSAGE));
+            money = InputValidator.validateMoney(money);
+            return InputConvertor.convertMoney(money);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getMoneyInput();
         }
     }
 
-    public static int getBonusInput() {
+    public static Bonus getBonusInput() {
+        String bonus = getInput(BONUS_INPUT_MESSAGE);
         try {
-            return InputConvertor.convertBonus(getInput(BONUS_INPUT_MESSAGE));
+            InputValidator.validateBonus(bonus);
+            return InputConvertor.convertBonus(bonus);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getMoneyInput();
+            return getBonusInput();
         }
     }
 

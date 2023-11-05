@@ -11,9 +11,9 @@ public enum LottoRank {
     NONE(0, false, 0L),
     ;
 
-    private int matchingCount;
-    private boolean bonusNumberMatch;
-    private long prize;
+    private final int matchingCount;
+    private final boolean bonusNumberMatch;
+    private final long prize;
 
     LottoRank(int matchingCount, boolean bonusNumberMatch, long prize) {
         this.matchingCount = matchingCount;

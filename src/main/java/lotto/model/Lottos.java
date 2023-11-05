@@ -28,6 +28,14 @@ public class Lottos {
         return scores;
     }
 
+    public Float calculateProfit(Map<Price, Integer> scores, int lottoCount) {
+        long profit = scores.entrySet().stream()
+                .mapToLong(score ->
+                        (long) score.getKey().getScore() * score.getValue())
+                .sum();
+        return (float) profit / lottoCount;
+    }
+
     private Price checkPrice(int score, Lotto lotto, Bonus bonus) {
         if (score == 5) {
             return checkBonus(lotto, bonus);

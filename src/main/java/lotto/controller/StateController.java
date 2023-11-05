@@ -75,12 +75,12 @@ public class StateController {
 
     private void calculateResult() {
         Map<Price, Integer> scores = lottos.calculateScore(answerLotto, bonus);
-
         printResult();
         for (Map.Entry<Price, Integer> score : scores.entrySet()) {
             printPrice(score.getKey().getGuideline()
                     , NumberFormat.getInstance().format(score.getKey().getReward())
                     , score.getValue());
         }
+        lottos.calculateProfit(scores, money.lottoCount());
     }
 }

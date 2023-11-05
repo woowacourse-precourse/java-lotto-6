@@ -3,18 +3,30 @@ package lotto.controller;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import lotto.dto.requset.Price;
+import lotto.view.Exception;
+import lotto.view.ExceptionText;
+import lotto.view.LottoView;
+import lotto.view.Output;
 
 public class LottoController implements Input {
 
+	private Output lottoView;
+	private Exception exceptionView;
+
+	public LottoController(Output lottoView, Exception exceptionView) {
+		this.lottoView = lottoView;
+		this.exceptionView = exceptionView;
+	}
+
 	@Override
 	public void purchasePrice() {
-		System.out.println("테스트 가격 입력");
+		lottoView.Intro();
 		try {
 			Price price = new Price(readLine());
 			validatePriceInput(price.getPrice());
 			System.out.println("성공" + price.getPrice());
 		} catch (IllegalArgumentException e) {
-			System.out.println("[ERROR] " + e.getMessage());
+			exceptionView.PriceException(e);
 			purchasePrice();
 		}
 	}
@@ -39,19 +51,19 @@ public class LottoController implements Input {
 			int priceValue = Integer.parseInt(input);
 			checkInputIsMultiple(priceValue);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("유효한 숫자 형식이 아닙니다.");
+			throw new IllegalArgumentException(ExceptionText.NUMBER.getText());
 		}
 	}
 
 	private static void checkInputIsMultiple(int priceValue) {
 		if (priceValue % 1000 != 0) {
-			throw new IllegalArgumentException("가격은 1000으로 나누어 떨어져야 합니다.");
+			throw new IllegalArgumentException(ExceptionText.MULTIPLE.getText());
 		}
 	}
 
 	private static void checkInputIsEmpty(String input) {
 		if (input == null || input.isEmpty()) {
-			throw new IllegalArgumentException("구입 가격을 입력해주세요.");
+			throw new IllegalArgumentException(ExceptionText.EMPTY.getText());
 		}
 	}
 }

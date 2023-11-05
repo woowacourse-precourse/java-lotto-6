@@ -2,9 +2,9 @@
 
 ## 기능 목록
 ### BuyLotto.class
-- [ ] 로또 구입 금액 입력 (1장 1000원) - #inputMoney()
-    - [ ] 1000원으로 나누어떨어지지 않는 경우 에러 처리
-- [ ] 발행한 로또 수량 출력 - #quantityLotto()
+- [x] 로또 구입 금액 입력 (1장 1000원) - #inputMoney()
+    - [x] 1000원으로 나누어떨어지지 않는 경우 에러 처리 #validateInputMoney
+- [x] 발행한 로또 수량 출력 - #quantityLotto()
 - [ ] 로또 번호(오름차순, 중복 X) 출력 - #numberLotto()
 
 ### WinLotto.class

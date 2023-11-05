@@ -32,10 +32,9 @@ class ResultHelperController {
     }
 
     void processLottoGame(ProcessLottoGameParameters parameters) {
-        EnumMap<Rank,Integer> result = processResult(parameters.judgeMan(),
+        EnumMap<Rank, Integer> result = processResult(parameters.judgeMan(),
                 parameters.userLotto(), parameters.bonusNumber());
         processRateofProfit(parameters.rateCalculateMan(), parameters.money(),
                 getProfit(parameters.rateCalculateMan(), result));
-
     }
 }

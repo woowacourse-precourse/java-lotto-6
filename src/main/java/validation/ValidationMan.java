@@ -16,30 +16,23 @@ public class ValidationMan {
         return true;
     }
 
-    public boolean validateNumbers(String[] userNumbers)
-    {
-        try
-        {
+    public boolean validateNumbers(String[] userNumbers) {
+        try {
             Integer[] forException = new Integer[userNumbers.length];
-            for(int i = 0; i < userNumbers.length; i++)
-            {
+            for (int i = 0; i < userNumbers.length; i++) {
                 forException[i] = Integer.parseInt(userNumbers[i]);
             }
-        }
-        catch(NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             return false;
         }
         return true;
     }
 
-    public boolean valudateBonusNumber(Lotto userLotto, String userBonusNumber)
-    {
+    public boolean valudateBonusNumber(Lotto userLotto, String userBonusNumber) {
         if (!userBonusNumber.matches("\\d+")) {
             return false;
         }
-        if(userLotto.getNumbers().contains(Integer.parseInt(userBonusNumber)))
-        {
+        if (userLotto.getNumbers().contains(Integer.parseInt(userBonusNumber))) {
             return false;
         }
         return true;

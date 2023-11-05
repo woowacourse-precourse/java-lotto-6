@@ -5,7 +5,7 @@ import java.util.EnumMap;
 import java.util.List;
 import model.Rank;
 
-public class Mainview implements LotoInputRequester,LottoResultPrinter{
+public class Mainview implements LotoInputRequester, LottoResultPrinter {
 
     private final static String[] MONEY_OF_WINNING = {"5,000원", "50,000원", "1,500,000원",
             "30,000,000원", "2,000,000,000원"};
@@ -31,23 +31,19 @@ public class Mainview implements LotoInputRequester,LottoResultPrinter{
 
     public void printresult(EnumMap<Rank, Integer> result) {
         System.out.println(PRINT_RESULT);
-        for(Rank rank : Rank.values())
-        {
-            System.out.println(rank.getCountOfMatch() + rank.getMessage() +rank.getWinningMoney()
-            +result.getOrDefault(rank,0)+"개");
+        for (Rank rank : Rank.values()) {
+            System.out.println(rank.getCountOfMatch() + rank.getMessage() + rank.getWinningMoney()
+                    + result.getOrDefault(rank, 0) + "개");
         }
     }
 
-    public void printRateOfProfit(String rate)
-    {
-        System.out.println(PRINT_RATE_OF_PROFIT_PREFIX+rate+PRINT_RATE_OF_PROFIT_SUFFIX);
+    public void printRateOfProfit(String rate) {
+        System.out.println(PRINT_RATE_OF_PROFIT_PREFIX + rate + PRINT_RATE_OF_PROFIT_SUFFIX);
     }
 
-    public void printHowManyAndLottos(List<Integer[]> computerLottos)
-    {
-        System.out.println(computerLottos.size()+PRINT_HOW_MANY_AND_LOTTOS_PREFIX);
-        for (Integer[] lotto : computerLottos)
-        {
+    public void printHowManyAndLottos(List<Integer[]> computerLottos) {
+        System.out.println(computerLottos.size() + PRINT_HOW_MANY_AND_LOTTOS_PREFIX);
+        for (Integer[] lotto : computerLottos) {
             System.out.println(Arrays.toString(lotto));
         }
     }

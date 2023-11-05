@@ -34,9 +34,8 @@ public class MainModel implements LottoJudge {
         for (Lotto computerLotto : computerLottos) {
             Rank rank = compareNumbers(result, computerLotto.getNumbers(), userLotto.getNumbers(),
                     bonusNumber);
-            if(rank != null)
-            {
-                result.put(rank, result.getOrDefault(rank, 0) +1);
+            if (rank != null) {
+                result.put(rank, result.getOrDefault(rank, 0) + 1);
             }
         }
         return result;

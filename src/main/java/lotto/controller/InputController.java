@@ -8,21 +8,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class InputController {
-    static int setAmount() {
+    public static int setAmount() {
         int amount = validateAmount(Console.readLine());
         return amount;
     }
 
-    static List<Integer> setWinningNum() {
+    public static List<Integer> setWinningNum() {
         List<Integer> winningNum = validateWinningNum(Console.readLine());
-        Set<Integer> numSet = new HashSet<>(winningNum);
+        Set<Integer> numSet = new HashSet<Integer>(winningNum);
         if (winningNum.size() != numSet.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
         }
         return winningNum;
     }
     
-    static int setBonusNum() {
+    public static int setBonusNum() {
         int bonusNum = validateBonusNum(Console.readLine());
         return bonusNum;
     }

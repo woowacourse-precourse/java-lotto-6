@@ -21,16 +21,8 @@ public enum LottoPrize {
         this.prizeMoney = prizeMoney;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
-    }
-
-    public boolean isHasBonus() {
-        return hasBonus;
     }
 
     public static LottoPrize getLottoPrize(int matchCount, boolean isBonus) {

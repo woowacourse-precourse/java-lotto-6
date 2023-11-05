@@ -11,12 +11,12 @@ public class Input {
         System.out.println(ENTER_PURCHASE_AMOUNT);
         do {
             userInput = Console.readLine();
-        } while (!validateUserInput(userInput));
+        } while (!validatePurchaseAmount(userInput));
 
         return Integer.parseInt(userInput);
     }
 
-    private static boolean validateUserInput(String userInput) {
+    private static boolean validatePurchaseAmount(String userInput) {
         try {
             InputException.canBeConvertedToInteger(userInput);
             InputException.isValidAmount(userInput);

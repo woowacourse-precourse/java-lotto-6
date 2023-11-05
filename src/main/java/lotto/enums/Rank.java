@@ -7,8 +7,8 @@ public enum Rank {
     FOURTH(4,false),
     FIFTH(3,false);
 
-    private int matchCount;
-    private boolean containBonus;
+    private final int matchCount;
+    private final boolean containBonus;
 
     Rank(int matchCount, boolean containBonus) {
         this.matchCount = matchCount;

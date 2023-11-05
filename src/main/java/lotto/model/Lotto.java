@@ -1,10 +1,13 @@
 package lotto.model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.model.Lottos.MIN_SCORE;
+import static lotto.model.Lottos.NONE_SCORE;
+
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,12 +21,26 @@ public class Lotto {
         return numbers;
     }
 
+    public int calculateScore(Lotto answer) {
+        int count = (int) answer.getNumbers().stream()
+                .filter(numbers::contains)
+                .count();
+        if (count >= MIN_SCORE) {
+            return count;
+        }
+        return NONE_SCORE;
+    }
+
+    public boolean hasBonus(int bonus) {
+        return this.numbers.contains(bonus);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6 개여야 합니다.");
         }
         if (numbers.stream().anyMatch(number -> number > 45 || number < 1)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호의 숫자 범위는 1~45까지입니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호의 숫자 범위는 1~45까지입니다.");
         }
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 중복된 로또 번호는 입력할 수 없습니다.");

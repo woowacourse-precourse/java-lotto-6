@@ -16,6 +16,9 @@ public class CorrectResult {
     }
 
     public boolean compare(Rank rank) {
+        if (rank.getExistBonus() == null) {
+            return sameCount== rank.getSameCount();
+        }
         return (sameCount == rank.getSameCount()
                 && existBonus == rank.getExistBonus());
     }

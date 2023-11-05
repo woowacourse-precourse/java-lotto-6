@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.LotteryBallMachine;
 import lotto.model.Lotto;
 import lotto.model.Purchase;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,6 +23,12 @@ public class LottoGameConsole {
         outputView.printLottoCount(purchaseCount);
         purchase.purchaseItems(generateLotto(purchaseCount));
         outputView.printLotto(purchase.toString());
+
+        String inputWinningNumbers = inputView.inputWinningNumbers();
+        WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers);
+
+        String inputBonusNumber = inputView.inputBonusNumber();
+        winningNumbers.addBonusNumber(inputBonusNumber);
     }
 
     private List<Lotto> generateLotto(int purchaseCount) {

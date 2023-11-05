@@ -109,7 +109,7 @@ public class LottoGame {
         outputView.println(lottoResultMessage);
     }
 
-    private double calculateProfitPercentage(int profit, Money money) {
+    private double calculateProfitPercentage(long profit, Money money) {
         return (double) profit / money.getAmount() * 100;
     }
 }

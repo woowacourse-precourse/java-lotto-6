@@ -23,10 +23,10 @@ public class GameResult {
         gameResult.put(rank, gameResult.get(rank) + 1);
     }
 
-    public int calculateProfit() {
-        int profit = 0;
+    public long calculateProfit() {
+        long profit = 0;
         for (Rank rank : Rank.values()) {
-            profit += rank.getPrizeMoney() * gameResult.get(rank);
+            profit += (long) rank.getPrizeMoney() * gameResult.get(rank);
         }
         return profit;
     }

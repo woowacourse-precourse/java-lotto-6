@@ -72,7 +72,7 @@ public class LotteryService {
         if(winningCount == 5 && checkBonusNumberMatch(toCheckLotto)){
             return;
         }
-        prize.addPrize(6 - winningCount);
+        prize.addPrize(7 - winningCount);
     }
 
     public int checkPrizeNumberMatch(Lotto toCheckLotto){
@@ -80,7 +80,7 @@ public class LotteryService {
         List<Integer> toCheckLottoNumbers = toCheckLotto.getNumbers();
 
         for(int i = 0; i < 6; i++){
-            if(toCheckLottoNumbers.get(i) == winningNumber.get(i)){
+            if(toCheckLottoNumbers.contains(winningNumber.get(i))){
                 winningCount++;
             }
         }

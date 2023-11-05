@@ -63,7 +63,7 @@
 - [x] parseIntOrThrow
   - [x] 정수 형태로 변환할 수 있는지 확인
   - [x] Integer 범위 내에서 변환할 수 있는지 확인
-- [ ] parseStringToIntList
+- [x] parseIntListOrThrow
 - [ ] formatAsCurrency
 
 ## 예외 사항

@@ -2,8 +2,13 @@ package lotto.util;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -30,5 +35,37 @@ public class ParserTest {
     void checkParseIntOrThrowWithWrongRange(String numericString) {
         assertThatThrownBy(() -> Parser.parseIntOrThrow(numericString))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("정수 리스트 형태의 문자열이 제대로 변환되는지 확인")
+    @ParameterizedTest
+    @MethodSource("parseIntListResult")
+    void checkParseIntListOrThrow(String numericString, List<Integer> answer) {
+        assertThat(Parser.parseIntListOrThrow(numericString))
+                .isEqualTo(answer);
+    }
+
+    @DisplayName("각 숫자가 정수 형태가 아니면 예외가 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"a,b,c", "12.5,15.2,-21.6", "12L,10F,5A"})
+    void checkParseIntListOrThrowWithNoNumeric(String numericString) {
+        assertThatThrownBy(() -> Parser.parseIntListOrThrow(numericString))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("각 숫자가 Integer 범위를 벗어나면 예외가 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"2147483648,-2147483649","99999999999999,999999999999999"})
+    void checkParseIntListOrThrowWithWrongRange(String numericString) {
+        assertThatThrownBy(() -> Parser.parseIntListOrThrow(numericString))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    static Stream<Arguments> parseIntListResult() {
+        return Stream.of(
+                Arguments.of("1,2,3,4", List.of(1, 2, 3, 4)),
+                Arguments.of("1", List.of(1)),
+                Arguments.of("2147483647,-2147483648", List.of(2147483647, -2147483648))
+        );
     }
 }

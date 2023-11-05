@@ -1,9 +1,18 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Parser {
     private static final String NUMERIC_STRING_ERROR = "[ERROR] 정수형태의 입력이 아닙니다.";
     private static final String OUT_RANGE_ERROR = "[ERROR] Integer 범위를 벗어난 입력입니다.";
     private static final int MAX_STRING_LENGTH = 11;
+    private static final String DEFAULT_SEPARATOR = ",";
+
+    public static List<Integer> parseIntListOrThrow(String intListString) {
+        List<String> split = Arrays.stream(intListString.split(DEFAULT_SEPARATOR)).toList();
+        return split.stream().map(Parser::parseIntOrThrow).toList();
+    }
 
     public static int parseIntOrThrow(String numericString) {
         validateNumericStringLength(numericString);

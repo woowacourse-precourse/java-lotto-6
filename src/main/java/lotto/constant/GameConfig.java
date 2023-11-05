@@ -2,8 +2,8 @@ package lotto.constant;
 
 public enum GameConfig {
 
-    MAX_PURCHASE_AMOUNT(100000),
-    LOTTO_PRICE(1000),
+    MAX_PURCHASE_AMOUNT(100_000),
+    LOTTO_PRICE(1_000),
     WINNING_NUMBERS_COUNT(6),
     BONUS_NUMBER_COUNT(1),
     MIN_LOTTO_NUMBER(1),

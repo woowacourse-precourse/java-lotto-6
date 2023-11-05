@@ -6,9 +6,9 @@ import java.util.List;
 import lotto.domain.Lotto;
 
 public class PurchaseLotto {
-    public static List<Lotto> getLottos(int n) {
+    public static List<Lotto> getLottos(int numberOfLottos) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < numberOfLottos; i++) {
             lottos.add(getLotto());
         }
         return lottos;

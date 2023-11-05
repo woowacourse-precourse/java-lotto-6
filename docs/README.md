@@ -3,6 +3,7 @@
 - [ ] : 로또 구입 금액을 나타내는 기능
   - [ ] : 예외) 0보다 작은 값이면 IllegalArgumentException 발생
   - [ ] : 예외) 1000으로 나누어떨어지지 않으면 IllegalArgumentException 발생
+  - [ ] : 예외) 숫자가 아닌 값이면 IllegalArgumentException 발생
 - [ ] : 로또 구입액 만큼 발행할 로또의 수를 계산하는 기능
 
 - [ ] : 로또 번호는 1~45 사이의 숫자를 가지고 있어야 한다.

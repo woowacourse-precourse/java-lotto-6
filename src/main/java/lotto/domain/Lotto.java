@@ -14,7 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
 
-        if (numbers.size() != 6) {
+        if (isValidNumbersSize(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
@@ -35,5 +35,9 @@ public class Lotto {
     private boolean isValidRange(List<Integer> numbers) {
         return numbers.stream()
             .allMatch(i -> i >= 1 && i <= 45);
+    }
+
+    private boolean isValidNumbersSize(List<Integer> numbers) {
+        return numbers.size() != 6;
     }
 }

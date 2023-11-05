@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.util.RandomLottoNumberGenerator.LOTTO_LOWER_BOUND;
+import static lotto.util.RandomLottoNumberGenerator.LOTTO_UPPER_BOUND;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -48,7 +51,7 @@ public class LottoInputView {
     }
 
     private void validateBonusInput(int input) {
-        if (input < Lotto.LOTTO_LOWER_BOUND || Lotto.LOTTO_UPPER_BOUND < input) {
+        if (input < LOTTO_LOWER_BOUND || LOTTO_UPPER_BOUND < input) {
             throw new IllegalArgumentException(Lotto.LOTTO_NUMBER_BOUNDARY_ERROR);
         }
     }

@@ -30,4 +30,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("랜덤 로또 생성 테스트.")
+    @Test
+    void createRandomLotto() {
+        Lotto randomLotto = Lotto.generateRandom();
+        randomLotto.printItself();
+    }
+
 }

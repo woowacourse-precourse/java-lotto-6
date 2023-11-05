@@ -1,12 +1,14 @@
 package lotto.domain;
 
+import static lotto.util.RandomLottoNumberGenerator.LOTTO_LOWER_BOUND;
+import static lotto.util.RandomLottoNumberGenerator.LOTTO_UPPER_BOUND;
+
 import java.util.Collections;
 import java.util.List;
+import lotto.util.RandomLottoNumberGenerator;
 
 public class Lotto {
     public static final String LOTTO_NUMBER_BOUNDARY_ERROR = "로또번호는 1에서 45 사이여야 합니다";
-    public static final int LOTTO_LOWER_BOUND = 1;
-    public static final int LOTTO_UPPER_BOUND = 45;
     private static final int LOTTO_NUMBERS_SIZE = 6;
 
     private final List<Integer> numbers;
@@ -15,6 +17,10 @@ public class Lotto {
         validate(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto generateRandom() {
+        return new Lotto(RandomLottoNumberGenerator.generate());
     }
 
     public void printItself() {

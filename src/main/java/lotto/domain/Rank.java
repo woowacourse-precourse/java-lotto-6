@@ -18,6 +18,9 @@ public enum Rank {
         this.message = message;
     }
 
+    /**
+     * 당첨 순위에 대해 카운팅을 위한 맵 생성
+     */
     public static final Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
     static {
         for (Rank rank : Rank.values()) {
@@ -25,6 +28,9 @@ public enum Rank {
         }
     }
 
+    /**
+     * 키값 중복으로 2등의 경우, 후처리하며 카운트 키값으로 조회성 ranking 맵을 생성한다.
+     */
     private static final Map<Integer, Rank> ranking = new HashMap<>() {{
         put(FIFTH.count, FIFTH);
         put(FOURTH.count, FOURTH);

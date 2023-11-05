@@ -3,7 +3,6 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import static lotto.constant.ConstantValue.*;
@@ -25,7 +24,6 @@ public class LottoMachine {
 
     private static List<Integer> generateLottoNumbers(){
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_NUMBERS_SIZE);
-        lottoNumbers.sort(Comparator.naturalOrder());
-        return lottoNumbers;
+        return lottoNumbers.stream().sorted().toList();
     }
 }

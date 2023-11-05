@@ -12,6 +12,14 @@ public class AnswerLotto {
         this.numbers = numbers;
     }
 
+    public boolean hasNumber(int number) {
+        return numbers.stream()
+                .mapToInt(Integer::intValue)
+                .filter(member -> member == number)
+                .findAny()
+                .isPresent();
+    }
+
     private void validateAnswerLotto(List<Integer> numbers) {
         validateLength(numbers);
         validateDuplicateMember(numbers);

@@ -5,11 +5,15 @@ public class BonusNumber {
 
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
-    private int number;
+    private final int number;
 
     public BonusNumber(int number) {
         validateRange(number);
         this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     private void validateRange(int number) {

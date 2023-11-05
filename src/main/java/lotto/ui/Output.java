@@ -8,4 +8,8 @@ public class Output {
     public void notifyLottoCount(List<Lotto> lottoTickets) {
         System.out.printf("%d개를 구매했습니다.", lottoTickets.size());
     }
+
+    public void notifyLottoNumbers(List<Integer> lottoTickets) {
+        System.out.println(lottoTickets);
+    }
 }

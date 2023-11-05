@@ -25,5 +25,9 @@ public class Application {
 
         List<Integer> winnerNumbers = InputUtils.getWinnerNumbers();
         int bonusNumber = InputUtils.getBonusNumber();
+
+        for (Lotto lotto : lottos) {
+            lotto.checkWinning(winnerNumbers, bonusNumber);
+        }
     }
 }

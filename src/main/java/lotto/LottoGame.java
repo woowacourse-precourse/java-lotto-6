@@ -16,6 +16,14 @@ public class LottoGame {
     private final static int MAX = 45;
     private final static int NUMBER = 6;
     private List<Lotto> lottos = new ArrayList<>();
+    private int bonusNumber = 0;
+
+    public void start() {
+        int count = purchase();
+        generateLottoNumbers(count);
+        luckyNumber();
+        bonusNumber();
+    }
 
     public int purchase() {
         while (true) {
@@ -44,16 +52,43 @@ public class LottoGame {
         System.out.println("\n" + num + COUNT);
         return num;
     }
-    public List<Lotto> generateLottoNumbers() {
-        int count = purchase();
+    public List<Lotto> generateLottoNumbers(int count) {
+
         for (int i = 0; i < count; i++) {
-            List<Integer> generateNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);// 로또 번호 생성 코드
+            List<Integer> generateNumbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, NUMBER);// 로또 번호 생성 코드
             Lotto lotto = new Lotto(generateNumbers);
             lottos.add(lotto);
         }
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getRandomNumber());
         }
+        System.out.println("\n");
         return lottos;
+    }
+
+    public List<Lotto> luckyNumber(){
+        while(true){
+            try {
+                System.out.println(LUCKY_NUMBER);
+                String inputLuckyNumbers = Console.readLine();
+                String[] LuckyNumbers = inputLuckyNumbers.split(",");
+                List<Integer> luckyNumbers= new ArrayList<>();
+                for (String luckynumbers:LuckyNumbers){
+                    int numbers = Integer.parseInt(luckynumbers);
+                    luckyNumbers.add(numbers);
+                }
+                Lotto lotto = new Lotto(luckyNumbers);
+                lottos.add(lotto);
+                return lottos;
+            } catch (IllegalArgumentException e) {
+            }
+        }
+    }
+
+    public int bonusNumber(){
+        System.out.println(BONUS_NUMBER);
+        String bonusNumberStr = Console.readLine();
+        bonusNumber = Integer.parseInt(bonusNumberStr);
+        return bonusNumber;
     }
 }

@@ -9,19 +9,31 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicate(numbers);
+        isValueInRange(numbers);
         this.numbers = numbers;
         Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            System.out.println("[ERROR] 숫자 6개를 입력해 주세요.");
             throw new IllegalArgumentException();
         }
     }
 
     public void duplicate(List<Integer> numbers){
         if(numbers.size() != numbers.stream().distinct().count()){
+            System.out.println("[ERROR] 중복 숫자를 제거해주세요.");
             throw new IllegalArgumentException();
+        }
+    }
+
+    public void isValueInRange(List<Integer> numbers){
+        for (int number : numbers) {
+            if (number > 45 || number < 1) {
+                System.out.println("[ERROR] 1~45 사이의 숫자 6자리를 입력해주세요.");
+                throw new IllegalArgumentException();
+            }
         }
     }
 

@@ -14,8 +14,6 @@ public class OutputView {
     private static final String LOTTO_WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 ";
 
-
-
     public static void printLottoPurchaseAmountMessage(){
         System.out.println(LOTTO_PURCHASE_AMOUNT_MESSAGE);
     }

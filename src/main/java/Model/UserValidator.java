@@ -34,4 +34,14 @@ public class UserValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    String deleteWhiteSpace(String predictedLottoNumber) {
+        return predictedLottoNumber.replace("\\s", "");
+    }
+
+    String correctCommas(String predictedLottoNumber) {
+        predictedLottoNumber = predictedLottoNumber.replaceAll("^,|,$", "");
+        predictedLottoNumber = predictedLottoNumber.replaceAll(",+", ",");
+        return predictedLottoNumber;
+    }
 }

@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.PrizeResult;
 import lotto.domain.WinningLotto;
 import lotto.domain.generator.LottoGenerator;
 import lotto.view.InputView;
@@ -19,6 +20,7 @@ public class LottoGameController {
         printLottos();
         winningLotto = WinningLotto.of(InputView.inputWinningNumber(),
                 InputView.inputBonusNumber());
+        PrizeResult result = new PrizeResult(lottos, winningLotto);
     }
 
     private void printLottos() {

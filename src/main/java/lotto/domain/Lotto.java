@@ -10,13 +10,27 @@ public class Lotto {
     private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 중복되지 않은 6개의 숫자를 입력해 주세요.";
     private static final int LOTTO_SIZE = 6;
 
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicatedNumber(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
+    }
+
+    public boolean isContain(int number) {
+        if (this.numbers.contains(number)) {
+            return true;
+        }
+        return false;
+    }
+
+    public int calculateMatchCount(Lotto otherLotto) {
+        int matchCount = (int) numbers.stream()
+                .filter(otherLotto::isContain)
+                .count();
+        return matchCount;
     }
 
     public List<Integer> getNumber() {

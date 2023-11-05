@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class WinningLotto {
     private static final String TYPE_ERROR_MESSAGE = "숫자를 입력해 주세요.";
@@ -23,6 +22,14 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     public static WinningLotto of(String inputLottoNumbers, String inputBonusNumber) {
         List<Integer> lottoNumbers = parse(inputLottoNumbers);
 
@@ -39,7 +46,7 @@ public class WinningLotto {
                 .peek(WinningLotto::validateType)
                 .map(Integer::parseInt)
                 .peek(WinningLotto::validateRange)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     private static void validateType(String inputData) {
@@ -57,8 +64,8 @@ public class WinningLotto {
     }
 
     private static void validateDup(List<Integer> lottoNumbers, int bonusNumber) {
-        Set<Integer> numbers = Stream.concat(lottoNumbers.stream(), Stream.of(bonusNumber))
-                .collect(Collectors.toSet());
+        Set<Integer> numbers = lottoNumbers.stream().collect(Collectors.toSet());
+        numbers.add(bonusNumber);
 
         if (numbers.size() != WINNING_LOTTO_SIZE) {
             throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);

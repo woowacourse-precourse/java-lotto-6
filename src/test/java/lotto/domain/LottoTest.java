@@ -24,6 +24,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 로또_번호_개수가_6개_미만이라면_예외를_발생시킨다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     static List<List<Integer>> provideValidLottoNumbers() {
         return List.of(
                 List.of(1, 2, 3, 4, 5, 6),

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoResult {
@@ -40,15 +41,13 @@ public class LottoResult {
 
     private double calculateYield() {
         double investmentAmount = user.getPurchaseAmount();
-        double totalPrize = (double) calculateTotalPrize();
+        double totalPrize = calculateTotalPrize();
         return totalPrize / investmentAmount * 100;
     }
 
     private long calculateTotalPrize() {
-        long totalPrize = 0;
-        for (Rank rank : Rank.values()) {
-            totalPrize += lottoResult.getRankCount(rank) * rank.getPrizeMoney();
-        }
-        return totalPrize;
+        return Arrays.stream(Rank.values())
+                .mapToLong(rank -> lottoResult.getRankCount(rank) * rank.getPrizeMoney())
+                .sum();
     }
 }

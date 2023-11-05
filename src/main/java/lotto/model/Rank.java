@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum Rank {
     NO_RANK(0, 0L, ""),
     FIFTH(3, 5_000L, "3개 일치 (5,000원) - "),
@@ -31,11 +33,9 @@ public enum Rank {
     }
 
     public static Rank valueOf(int matchCount) {
-        for (Rank rank : Rank.values()) {
-            if (matchCount == rank.matchCount) {
-                return rank;
-            }
-        }
-        return null;
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.matchCount == matchCount)
+                .findFirst()
+                .orElse(null);
     }
 }

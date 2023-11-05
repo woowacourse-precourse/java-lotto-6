@@ -32,6 +32,10 @@ public class LottoStore {
         return money;
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     public void printLottos() {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);

@@ -75,6 +75,9 @@
     - 공통 예외 사항
         - 숫자가 아닌 값이 입력될 경우 `NonNumberException` 예외를 발생한다. 오류 출력은 다음과 같이 한다.
         - `[ERROR] 입력한 값이 숫자가 아닙니다.`
+    - 정보를 입력하지 않고 계산을 시도하면 `NonVariableException` 예외를 발생한다.
+        - 예외 발생 시 입력되지 않은 변수명을 반환한다.
+        - 다음의 포맷을 따른다. `[ERROR] 필요한 정보가 비어있습니다.\n빈 변수:%s`
     - 당첨 번호와 발행한 로또 번호를 비교하여 다음의 결과를 출력한다.
         - 당첨 내역
         - 수익률
@@ -101,6 +104,8 @@
     - InvalidAmountFormatException
     - NonNumberException
     - NonPositiveAmountException
+- 다음의 예외는 `IllegalStateException`를 상속받는다.
+    - NonVariableException
 
 ## 프로그래밍 요구사항
 

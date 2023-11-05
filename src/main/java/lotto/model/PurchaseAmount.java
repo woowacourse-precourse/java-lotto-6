@@ -5,13 +5,8 @@ public class PurchaseAmount {
     private static final int LOTTO_PRICE = 1000;
     private final int purchaseAmount;
 
-    public PurchaseAmount(String inputMoney) {
-        try {
-            int money = Integer.parseInt(inputMoney);
-            this.purchaseAmount = money;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NON_NUMERIC_INPUT_MESSAGE);
-        }
+    public PurchaseAmount(int inputMoney) {
+        this.purchaseAmount = inputMoney;
     }
 
     public int getMaxLottoCountForBudget() {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.LottoTicket;
 import lotto.model.PurchaseAmount;
+import lotto.util.Converter;
 import lotto.util.RandomNumberGenerator;
 
 public class LottoService {
@@ -11,7 +12,7 @@ public class LottoService {
     private LottoTicket lottoTicket = new LottoTicket();
 
     public void initPurchaseAmount(String inputMoney) {
-        this.purchaseAmount = new PurchaseAmount(inputMoney);
+        this.purchaseAmount = new PurchaseAmount(Converter.stringToInt(inputMoney));
     }
 
     public void purchaseLotto() {

@@ -52,6 +52,14 @@ class WinnerCalculatorTest {
         assertThat(result.get(LottoRank.NONE)).isEqualTo(1);
     }
 
+    @DisplayName("초기 당첨자 수가 모두 0으로 설정되어 있는지 테스트")
+    @Test
+    void testInitialWinnerCount() {
+        LinkedHashMap<LottoRank, Integer> initNumber = winnerCalculator.getWinnerCount();
+
+        assertThat(initNumber.values()).allMatch(number -> number == 0);
+    }
+
 }
 
 

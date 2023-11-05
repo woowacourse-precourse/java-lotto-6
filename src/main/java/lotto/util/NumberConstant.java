@@ -13,6 +13,7 @@ public class NumberConstant {
     public static final Double THIRD_WINNINGS = 1_500_000.0;
     public static final Double SECOND_WINNINGS = 30_000_000.0;
     public static final Double FIRST_WINNINGS = 2_000_000_000.0;
+    public static final Double LOSE_LOTTO = 0.0;
 
     private NumberConstant() {
     }

@@ -14,17 +14,17 @@ public class BonusNumber {
 
     private void validateRange(int bonusNumber) {
         if (bonusNumber < 1 || 45 < bonusNumber) {
-            throw new IllegalArgumentException(ErrorMessages
-                    .OUT_OF_RANGE
-                    .getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
     private void validateDuplication(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessages
-                    .DUPLICATE_NUMBER
-                    .getMessage());
+            throw new IllegalArgumentException();
         }
+    }
+
+    public int bonusNumber() {
+        return this.bonusNumber;
     }
 }

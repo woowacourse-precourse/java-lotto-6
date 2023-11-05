@@ -20,9 +20,7 @@ public class Input {
         try {
             return Integer.parseInt(payment);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessages
-                    .NON_NUMERIC_INPUT
-                    .getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
@@ -43,9 +41,7 @@ public class Input {
             try {
                 integerWinningNumbers.add(Integer.parseInt(number));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ErrorMessages
-                       .NON_NUMERIC_INPUT
-                       .getMessage());
+                throw new IllegalArgumentException();
             }
         }
         return integerWinningNumbers;

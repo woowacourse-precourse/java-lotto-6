@@ -30,9 +30,7 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 1 || 45 < number) {
-                throw new IllegalArgumentException(ErrorMessages
-                        .OUT_OF_RANGE
-                        .getMessage());
+                throw new IllegalArgumentException();
             }
         }
     }
@@ -41,9 +39,7 @@ public class Lotto {
         Set<Integer> checkDuplication = new HashSet<>(numbers);
 
         if (checkDuplication.size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessages
-                    .DUPLICATE_NUMBER
-                    .getMessage());
+            throw new IllegalArgumentException();
         }
     }
 

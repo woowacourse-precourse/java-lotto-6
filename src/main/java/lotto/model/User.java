@@ -9,7 +9,7 @@ public class User {
     private final int payment;
     private final int purchaseNumber;
     private final List<List<Integer>> purchasedLottoNumbers;
-    private List<Integer> numberOfMatches;
+    private List<Integer> numberOfWin;
     private final int NUMBER_OF_SAME = 8;
     private final int MINIMUM_NUMBER_OF_SAME = 3;
     private final int BONUS_NUMBER_SAME = 2;
@@ -19,24 +19,22 @@ public class User {
         this.payment = payment;
         this.purchaseNumber = payment / 1000;
         this.purchasedLottoNumbers = generateLottoNumbers(purchaseNumber);
-        this.numberOfMatches = initNumberOfMatches();
+        this.numberOfWin = initNumberOfWin();
     }
 
     private void validatePayment(int payment) {
         if (payment % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessages
-                    .NOT_DIVISIBLE_BY_THOUSAND
-                    .getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
-    private List<Integer> initNumberOfMatches() {
-        this.numberOfMatches = new ArrayList<>();
+    private List<Integer> initNumberOfWin() {
+        this.numberOfWin = new ArrayList<>();
 
         for (int i=0;i<NUMBER_OF_SAME;i++) {
-            this.numberOfMatches.add(0);
+            this.numberOfWin.add(0);
         }
-        return this.numberOfMatches;
+        return this.numberOfWin;
     }
 
     private List<List<Integer>> generateLottoNumbers(int purchaseNumber) {
@@ -49,7 +47,7 @@ public class User {
         return lottoNumbers;
     }
 
-    public int PurchaseNumber() {
+    public int purchaseNumber() {
         return this.purchaseNumber;
     }
 
@@ -57,19 +55,23 @@ public class User {
         return this.purchasedLottoNumbers;
     }
 
-    public void increaseNumberOfMatches(int count) {
-        if (count >= MINIMUM_NUMBER_OF_SAME){
-            if (count == 5) {
-                int currentNumber = this.numberOfMatches.get(count + BONUS_NUMBER_SAME);
-                numberOfMatches.set(count + BONUS_NUMBER_SAME, currentNumber + 1);
-                return;
-            }
-            int currentNumber = this.numberOfMatches.get(count);
-            numberOfMatches.set(count, currentNumber + 1);
+    public void increaseNumberOfWin(int count) {
+        if (count >= MINIMUM_NUMBER_OF_SAME) {
+            int currentNumber = this.numberOfWin.get(count);
+            numberOfWin.set(count, currentNumber + 1);
         }
     }
 
-    public List<Integer> numberOfMatches() {
-        return this.numberOfMatches;
+    public double payment() {
+        return this.payment;
+    }
+
+
+    public List<Integer> numberOfWin() {
+        return this.numberOfWin;
+    }
+
+    public int purchasedLottoNumbersSize() {
+        return this.PurchasedLottoNumbers().size();
     }
 }

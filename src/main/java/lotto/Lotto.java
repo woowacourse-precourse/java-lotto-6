@@ -13,8 +13,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplicatedNumber(numbers);
-        validateOverRangeNumber(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
@@ -27,22 +25,26 @@ public class Lotto {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private void validateDuplicatedNumber(List<Integer> numbers){
-        Set<Integer> numberSet = new HashSet<>();
-        numberSet.addAll(numbers);
-        if(numbers.size() != numberSet.size()){
+        if(!validateDuplicatedNumber(numbers)){
+            throw new IllegalArgumentException();
+        }
+        if(!validateOverRangeNumber(numbers)){
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateOverRangeNumber(List<Integer> numbers){
+    private boolean validateDuplicatedNumber(List<Integer> numbers){
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        return numbers.size() == numberSet.size();
+    }
+
+    private boolean validateOverRangeNumber(List<Integer> numbers){
         for(int number : numbers){
             if(number > MAX_LOTTO_NUMBER || number < MIN_LOTTO_NUMBER){
-                throw new IllegalArgumentException();
+                return false;
             }
         }
+        return true;
     }
 
 }

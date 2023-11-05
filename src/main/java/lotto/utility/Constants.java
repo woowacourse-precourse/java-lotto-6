@@ -2,6 +2,9 @@ package lotto.utility;
 
 public class Constants {
     public static final Integer LOTTO_LENGTH = 6;
+    public static final Integer MIN_LOTTO_NUMBER = 1;
+    public static final Integer MAX_LOTTO_NUMBER = 45;
+    public static final Integer LOTTO_PRICE = 1000;
     public static final String COMMA = ",";
     public static final String LINE = "-";
     public static final String OPEN_SQUARE_BRACKET = "[";

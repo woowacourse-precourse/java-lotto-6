@@ -81,6 +81,6 @@ public class StateController {
                     , NumberFormat.getInstance().format(score.getKey().getReward())
                     , score.getValue());
         }
-        lottos.calculateProfit(scores, money.lottoCount());
+        printProfit(lottos.calculateProfit(scores, money.getMoney()));
     }
 }

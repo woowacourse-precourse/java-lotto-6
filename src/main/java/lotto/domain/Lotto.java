@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.LottoConstant;
 import lotto.exception.ExceptionType;
 import lotto.exception.InputException;
 
@@ -20,6 +21,10 @@ public class Lotto {
         if (isDuplicates(numbers)) {
             throw new InputException(ExceptionType.ERROR_LOTTO_DUPLICATE);
         }
+
+        if (islottoRange(numbers)) {
+            throw new InputException(ExceptionType.ERROR_LOTTO_RANGE);
+        }
     }
 
     private boolean isSixLength(List<Integer> numbers) {
@@ -28,6 +33,12 @@ public class Lotto {
 
     private boolean isDuplicates(List<Integer> numbers) {
         return numbers.size() > numbers.stream().distinct().count();
+    }
+
+    private boolean islottoRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(
+                        number -> LottoConstant.LOTTO_START_NUMBER > number || LottoConstant.LOTTO_END_NUMBER < number);
     }
 
 }

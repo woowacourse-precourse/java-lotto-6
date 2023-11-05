@@ -11,33 +11,28 @@ import lotto.exception.ExceptionType;
 import lotto.exception.InputException;
 
 public class Tickets {
-    private int wallet;
+    private final int wallet;
     private int ticketCount;
     private List<List<Integer>> tickets = new ArrayList<>();
 
-    public static Tickets from(final String wallet) {
-        return new Tickets(wallet);
-    }
-
-    private Tickets(String wallet) {
-        int money = Integer.parseInt(wallet);
-        this.wallet = money;
-        validate();
-        this.ticketCount = money / LottoConstant.PRICE_PER_TICKET;
+    public Tickets(int wallet) {
+        validate(wallet);
+        this.wallet = wallet;
+        this.ticketCount = wallet / LottoConstant.PRICE_PER_TICKET;
     }
 
     public List<List<Integer>> getTickets() {
         return Collections.unmodifiableList(tickets);
     }
 
-    private void validate() {
-        if (isGenerate()) {
-            throw new InputException(ExceptionType.ERROR_LOTTO_TICKET_GENERATE);
+    private void validate(int wallet) {
+        if (isGenerate(wallet)) {
+            throw new InputException(ExceptionType.ERROR_TICKETS_GENERATE);
         }
     }
 
-    private boolean isGenerate() {
-        return this.wallet % LottoConstant.PRICE_PER_TICKET > 0;
+    private boolean isGenerate(int wallet) {
+        return wallet % LottoConstant.PRICE_PER_TICKET > 0;
     }
 
     public void generate() {

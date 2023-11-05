@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.result;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,14 +36,14 @@ public enum Prize {
                 .orElse(NONE);
     }
 
+    private boolean isMatch(int count) {
+        return this.count == count;
+    }
+
     public static List<Prize> getPrize() {
         return Arrays.stream(Prize.values())
                 .filter(prize -> !prize.equals(NONE))
                 .collect(Collectors.toList());
-    }
-
-    private boolean isMatch(int count) {
-        return this.count == count;
     }
 
     public int getPrizeMoney() {

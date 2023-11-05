@@ -1,10 +1,10 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.Player;
-import lotto.model.Prize;
-import lotto.model.Result;
-import lotto.model.Winning;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Player;
+import lotto.model.lotto.Winning;
+import lotto.model.result.Prize;
+import lotto.model.result.Result;
 import lotto.utils.Generator;
 import lotto.view.InputView;
 import lotto.view.OutputView;

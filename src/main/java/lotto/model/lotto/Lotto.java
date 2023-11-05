@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static lotto.constants.Error.DUPLICATE_INVALID;
 import static lotto.constants.Error.RANGE_INVALID;

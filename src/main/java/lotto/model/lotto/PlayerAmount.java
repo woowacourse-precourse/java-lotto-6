@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static lotto.constants.Error.DIVIDE_INVALID;
 import static lotto.constants.Error.MINIMUM_INVALID;

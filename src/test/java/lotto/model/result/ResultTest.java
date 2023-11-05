@@ -1,8 +1,10 @@
-package lotto.model;
+package lotto.model.result;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Winning;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

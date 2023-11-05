@@ -1,10 +1,12 @@
-package lotto.model;
+package lotto.model.result;
 
 import static lotto.constants.Rule.MIN_MONEY;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Winning;
 
 public class Result {
     private final Map<Prize, Integer> prizeResult = new HashMap<>();

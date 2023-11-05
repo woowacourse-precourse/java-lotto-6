@@ -7,7 +7,7 @@ import static lotto.constants.Rule.MIN_LOTTO;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.model.PlayerAmount;
+import lotto.model.lotto.PlayerAmount;
 
 public class Generator {
     public static PlayerAmount generateIntegerToPlayerAmount(int money) {

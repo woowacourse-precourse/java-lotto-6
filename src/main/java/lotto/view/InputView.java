@@ -9,11 +9,11 @@ public class InputView {
         return Long.parseLong(input);
     }
 
-    private void validateAmount(String input) {
+    public static void validateAmount(String input) {
         validateStringToLongConversion(input);
     }
 
-    private void validateStringToLongConversion(String input) {
+    private static void validateStringToLongConversion(String input) {
         try {
             Long.parseLong(input);
         } catch (NumberFormatException e) {

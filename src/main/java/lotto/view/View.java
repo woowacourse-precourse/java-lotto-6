@@ -45,12 +45,12 @@ public class View {
         }
     }
 
-    public BonusNumber getBonusNumber(final List<Integer> numbers) {
+    public BonusNumber getBonusNumber(final List<Integer> winningNumbers) {
         outputView.printRequestInputBonusNumberMessage();
         while (true) {
             try {
                 Integer number = inputView.inputBonusNumbers();
-                validateBonusNumberContainsWinningNumber(numbers, number);
+                validateBonusNumberContainsWinningNumber(winningNumbers, number);
                 return new BonusNumber(number);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());

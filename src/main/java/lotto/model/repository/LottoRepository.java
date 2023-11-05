@@ -19,4 +19,8 @@ public class LottoRepository {
     public void saveGame(List<Integer> winningNumbers, int bonusNumber) {
         lottoGame = new Game(winningNumbers, bonusNumber);
     }
+
+    public Game findGame() {
+        return lottoGame;
+    }
 }

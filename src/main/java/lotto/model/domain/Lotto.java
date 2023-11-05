@@ -26,4 +26,12 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public StateType getStateType() {
+        return stateType;
+    }
+
+    public void setStateType(StateType stateType) {
+        this.stateType = stateType;
+    }
 }

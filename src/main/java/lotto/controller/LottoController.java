@@ -22,5 +22,8 @@ public class LottoController {
         InputController.inputBonusNumber(lottoDto);
 
         service.createGame(lottoDto);
+
+        service.compareLottosWithWinningNumbers();
+        
     }
 }

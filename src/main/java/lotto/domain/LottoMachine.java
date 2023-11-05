@@ -21,6 +21,18 @@ public class LottoMachine {
     private static final int MATCHED_LOTTO_DEFAULT_VALUE = 0;
     private static final int MATCHED_LOTTO_INCREASE_VALUE = 1;
 
+    private EnumMap<LottoRank, Integer> lottoRanks = new EnumMap<>(LottoRank.class);
+
+    public LottoMachine() {
+        initLottoRanks();
+    }
+
+    private void initLottoRanks() {
+        for(LottoRank lottoRank : LottoRank.values()) {
+            lottoRanks.put(lottoRank, MATCHED_LOTTO_DEFAULT_VALUE);
+        }
+    }
+
     public List<Lotto> generateLottos(int purchaseLottoCount) {
         validationLottoCount(purchaseLottoCount);
         final List<Lotto> lottos = new ArrayList<>();
@@ -79,7 +91,6 @@ public class LottoMachine {
     }
 
     private Map<LottoRank, Integer> getLottoRanks(List<Lotto> lottos, List<Integer> winningNumbers, boolean containBonusNumber) {
-        Map<LottoRank, Integer> lottoRanks = new EnumMap<>(LottoRank.class);
         for(Lotto lotto : lottos) {
             int matchLottoNumber = getMatchLottoNumber(winningNumbers, lotto);
             LottoRank lottoRank = LottoRank.getLottoRank(matchLottoNumber, containBonusNumber);

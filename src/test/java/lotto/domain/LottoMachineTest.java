@@ -105,7 +105,11 @@ class LottoMachineTest {
         Map<LottoRank, Integer> ranking = lottoMachine.computedLottoRanking(lottos, winningNumbers, bonusNumber);
 
         // then
-        assertThat(ranking).hasSize(2)
+        assertThat(ranking).hasSize(6)
+                .containsEntry(LottoRank.FIRST_PRIZE, 0)
+                .containsEntry(LottoRank.SECOND_PRIZE, 0)
+                .containsEntry(LottoRank.THIRD_PRIZE, 0)
+                .containsEntry(LottoRank.FOURTH_PRIZE, 0)
                 .containsEntry(LottoRank.FIFTH_PRIZE, 1)
                 .containsEntry(LottoRank.NONE_PRIZE, 7);
     }

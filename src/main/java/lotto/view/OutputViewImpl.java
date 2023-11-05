@@ -20,7 +20,8 @@ public class OutputViewImpl implements OutputView {
     public void printWinningStatistics(Result result) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        result.print();
+        result.forEachOrdered(lottoPrize ->
+                System.out.printf(lottoPrize.getMessage(), result.getResult(lottoPrize), System.lineSeparator()));
     }
 
     @Override

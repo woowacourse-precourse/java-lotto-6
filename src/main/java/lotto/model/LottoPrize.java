@@ -2,11 +2,11 @@ package lotto.model;
 
 public enum LottoPrize {
 
-    FIFTH_PLACE(3, false, 5_000, "3개 일치 (5,000원) - %s개"),
-    FOURTH_PLACE(4, false, 50_000, "4개 일치 (50,000원) - %s개"),
-    THIRD_PLACE(5, false, 1_500_000, "5개 일치 (1,500,000원) - %s개"),
-    SECOND_PLACE(5, true, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - %s개"),
-    FIRST_PLACE(6, false, 2_000_000_000, "6개 일치 (2,000,000,000원) - %s개");
+    FIFTH_PLACE(3, false, 5_000, "3개 일치 (5,000원) - %s개%s"),
+    FOURTH_PLACE(4, false, 50_000, "4개 일치 (50,000원) - %s개%s"),
+    THIRD_PLACE(5, false, 1_500_000, "5개 일치 (1,500,000원) - %s개%s"),
+    SECOND_PLACE(5, true, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - %s개%s"),
+    FIRST_PLACE(6, false, 2_000_000_000, "6개 일치 (2,000,000,000원) - %s개%s");
 
     private final Integer match;
     private final Boolean isSameBonus;

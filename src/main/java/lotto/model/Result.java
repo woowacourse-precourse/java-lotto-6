@@ -1,8 +1,10 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class Result {
 
@@ -20,10 +22,12 @@ public class Result {
         return new Result(result);
     }
 
-    public void print() {
-        for (LottoPrize lottoPrize : LottoPrize.values()) {
-            System.out.printf(lottoPrize.getMessage(), result.getOrDefault(lottoPrize, 0));
-            System.out.println();
-        }
+    public void forEachOrdered(Consumer<? super LottoPrize> action) {
+        Arrays.stream(LottoPrize.values())
+                .forEachOrdered(action);
+    }
+
+    public int getResult(LottoPrize lottoPrize) {
+        return result.getOrDefault(lottoPrize, 0);
     }
 }

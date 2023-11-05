@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public enum ExceptionMessage {
+public enum ErrorMessage {
 
     LABEL("[ERROR]"),
     NOT_DIVISIBLE_1000("1,000원 단위로만 입력 가능합니다."),
@@ -11,7 +11,7 @@ public enum ExceptionMessage {
 
     private final String message;
 
-    ExceptionMessage(String message) {
+    ErrorMessage(String message) {
         this.message = message;
     }
 

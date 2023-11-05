@@ -1,5 +1,6 @@
 package lotto.gameUtil;
 
+import lotto.domain.ConstantValue;
 import lotto.domain.Lotto;
 import lotto.domain.Enum.Rank;
 import lotto.view.InputView;
@@ -24,7 +25,7 @@ public class GamePlay {
         int bonusNumber = inputView.bonusNumber(winningLotto); // 보너스 번호 입력
 
 
-        for (int i = 0; i < lottoList.size(); i++) {  // 구매한 만큼 로또 당첨 확인
+        for (int i = ConstantValue.zero; i < lottoList.size(); i++) {  // 구매한 만큼 로또 당첨 확인
             int count = gameLogic.matchCount(lottoList.get(i), winningLotto, bonusNumber);
             boolean isSecond = gameLogic.matchBonus(lottoList.get(i), bonusNumber);
             gameLogic.matchLotto(count, isSecond);

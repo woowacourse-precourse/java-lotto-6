@@ -1,12 +1,13 @@
 package lotto.view;
 
+import lotto.domain.Enum.Message;
 import lotto.domain.Enum.Rank;
 
 import java.util.Map;
 
 public class OutputView {
     public void amountMessage() {
-        System.out.println("구입 금액을 입력해 주세요.");
+        System.out.println(Message.INPUT_AMOUNT_MESSAGE);
     }
 
     public void countMessage(int count) {
@@ -18,20 +19,20 @@ public class OutputView {
     }
 
     public void winningNumberMessage() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        System.out.println(Message.INPUT_WINNINGLOTTO);
     }
 
     public void bonusNumberMessage() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println(Message.INPUT_BONUSNUMBER);
     }
 
     public void matchingMessage(Map<Rank, Integer> ranks, double rateOfReturn) {
-        System.out.println("\n당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + ranks.get(Rank.FIFTH) + "개");
-        System.out.println("4개 일치 (50,000원) - " + ranks.get(Rank.FORTH) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + ranks.get(Rank.THIRD) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + ranks.get(Rank.SECOND) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + ranks.get(Rank.FIRST) + "개");
+        System.out.println(Message.RESULT);
+        System.out.println(Message.RANKING_FIFTH+ "" + ranks.get(Rank.FIFTH) + "개");
+        System.out.println(Message.RANKING_FORTH+ "" + ranks.get(Rank.FORTH) + "개");
+        System.out.println(Message.RANKING_THIRD + "" + ranks.get(Rank.THIRD) + "개");
+        System.out.println(Message.RANKING_SECOND + "" + ranks.get(Rank.SECOND) + "개");
+        System.out.println(Message.RANKING_FIRST + "" + ranks.get(Rank.FIRST) + "개");
 
         System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
     }

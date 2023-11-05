@@ -1,6 +1,7 @@
 package lotto.gameUtil;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.ConstantValue;
 import lotto.domain.Lotto;
 import lotto.domain.Enum.Rank;
 import lotto.view.OutputView;
@@ -17,19 +18,19 @@ public class GameLogic {
     }
 
     private void initRank() {
-        ranks.put(Rank.FIRST, 0);
-        ranks.put(Rank.SECOND, 0);
-        ranks.put(Rank.THIRD, 0);
-        ranks.put(Rank.FORTH, 0);
-        ranks.put(Rank.FIFTH, 0);
+        ranks.put(Rank.FIRST, ConstantValue.zero);
+        ranks.put(Rank.SECOND, ConstantValue.zero);
+        ranks.put(Rank.THIRD, ConstantValue.zero);
+        ranks.put(Rank.FORTH, ConstantValue.zero);
+        ranks.put(Rank.FIFTH, ConstantValue.zero);
     }
 
     public List<Lotto> lottoNumber(int amount) {
-        int count = amount / 1000;
+        int count = amount / ConstantValue.thousand;
         outputView.countMessage(count);
         List<Lotto> lottoes = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = ConstantValue.zero; i < count; i++) {
             List<Integer> lottoNumbers = makingLottoNumbers();
             Lotto lotto = new Lotto(lottoNumbers);
             lottoes.add(lotto);
@@ -39,7 +40,7 @@ public class GameLogic {
     }
 
     public List<Integer> makingLottoNumbers() {
-        List<Integer> tmpLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> tmpLottoNumbers = Randoms.pickUniqueNumbersInRange(ConstantValue.one, ConstantValue.maxNumber, ConstantValue.six);
         List<Integer> lottoNumbers = new ArrayList<>(tmpLottoNumbers);
         return lottoNumbers;
     }
@@ -62,8 +63,8 @@ public class GameLogic {
         int[] buyingLottoNumber = buyingLotto.toIntegerArr();
         Set<Integer> winningLottoNumber = winningLotto.toSet();
 
-        int count = 0;
-        for (int i = 0; i < 6; i++) {
+        int count = ConstantValue.zero;
+        for (int i = ConstantValue.zero; i < ConstantValue.six; i++) {
             if (winningLottoNumber.contains(buyingLottoNumber[i]) || buyingLottoNumber[i] == bonus) {
                 count++;
             }
@@ -80,41 +81,41 @@ public class GameLogic {
     }
 
     public void matchLotto(int count, boolean isSecond) {
-        if (count == 6 && !isSecond) {
+        if (count == ConstantValue.six && !isSecond) {
             firstRank();
         }
-        if (count == 6 && isSecond) {
+        if (count == ConstantValue.six && isSecond) {
             secondRank();
         }
-        if (count == 5) {
+        if (count == ConstantValue.five) {
             thirdRank();
         }
-        if (count == 4) {
+        if (count == ConstantValue.four) {
             forthRank();
         }
-        if (count == 3) {
+        if (count == ConstantValue.three) {
             fifthRank();
         }
     }
 
     public void firstRank() {
-        ranks.put(Rank.FIRST, ranks.get(Rank.FIRST) + 1);
+        ranks.put(Rank.FIRST, ranks.get(Rank.FIRST) + ConstantValue.one);
     }
 
     public void secondRank() {
-        ranks.put(Rank.SECOND, ranks.get(Rank.SECOND) + 1);
+        ranks.put(Rank.SECOND, ranks.get(Rank.SECOND) + ConstantValue.one);
     }
 
     public void thirdRank() {
-        ranks.put(Rank.THIRD, ranks.get(Rank.THIRD) + 1);
+        ranks.put(Rank.THIRD, ranks.get(Rank.THIRD) + ConstantValue.one);
     }
 
     public void forthRank() {
-        ranks.put(Rank.FORTH, ranks.get(Rank.FORTH) + 1);
+        ranks.put(Rank.FORTH, ranks.get(Rank.FORTH) + ConstantValue.one);
     }
 
     public void fifthRank() {
-        ranks.put(Rank.FIFTH, ranks.get(Rank.FIFTH) + 1);
+        ranks.put(Rank.FIFTH, ranks.get(Rank.FIFTH) + ConstantValue.one);
     }
 
     public Map<Rank, Integer> getRanks() {
@@ -129,6 +130,6 @@ public class GameLogic {
         prize += ranks.get(Rank.FORTH) * Rank.FORTH.getAmount();
         prize += ranks.get(Rank.FIFTH) * Rank.FIFTH.getAmount();
 
-        outputView.matchingMessage(ranks, (prize / amount * 100));
+        outputView.matchingMessage(ranks, (prize / amount * ConstantValue.hundred));
     }
 }

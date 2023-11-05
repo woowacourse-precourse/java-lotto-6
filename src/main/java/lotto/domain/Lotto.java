@@ -13,14 +13,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != ConstantValue.thousand) {
             throw new IllegalArgumentException("[ERROR] 로또번호 6자리 아님.");
         }
     }
 
     private void checkDuplicateNumber() {
         Set<Integer> number = toSet();
-        if (number.size() < 6) {
+        if (number.size() < ConstantValue.six) {
             throw new IllegalArgumentException("[ERROR] 중복되는 번호가 있음.");
         }
     }
@@ -31,7 +31,7 @@ public class Lotto {
     }
 
     public int[] toIntegerArr() {
-        int[] lottoNumber = new int[6];
+        int[] lottoNumber = new int[ConstantValue.six];
         for (int i = 0; i < numbers.size(); i++) {
             lottoNumber[i] = numbers.get(i);
         }

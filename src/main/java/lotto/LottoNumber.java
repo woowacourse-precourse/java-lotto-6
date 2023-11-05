@@ -13,11 +13,11 @@ public class LottoNumber {
         this.lottoNumber = Integer.parseInt(lottoNumber);
     }
 
-    private void validate(String bonusNumber) {
-        if (isInvalidType(bonusNumber)) {
+    private void validate(String lottoNumber) {
+        if (isInvalidType(lottoNumber)) {
             throw new IllegalArgumentException(INVALID_TYPE_ERROR_MESSAGE);
         }
-        if (isInvalidRange(bonusNumber)) {
+        if (isInvalidRange(lottoNumber)) {
             throw new IllegalArgumentException(INVALID_RANGE_ERROR_MESSAGE);
         }
     }

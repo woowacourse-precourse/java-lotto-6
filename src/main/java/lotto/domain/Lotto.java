@@ -24,4 +24,8 @@ public class Lotto {
             checkDuplication[number] = true;
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

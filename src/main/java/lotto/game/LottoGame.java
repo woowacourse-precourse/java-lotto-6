@@ -39,7 +39,22 @@ public class LottoGame {
     }
 
     private void pickLottoNumbers() {
-        //TODO 금액 만큼의 번호 뽑고 로또 생성
+        for(int i = 0; i < money ; i+= 1000){
+            Lotto lotto = makeLotto();
+            lottos.add(lotto);
+            PrintManager.printPickedLottoNumbers(lotto);
+        }
+    }
+
+    private Lotto makeLotto() {
+        Lotto lotto;
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        try{
+            lotto = new Lotto(numbers);
+        }catch (IllegalArgumentException e){
+            return makeLotto();
+        }
+        return lotto;
     }
 
 }

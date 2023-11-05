@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
@@ -46,5 +46,9 @@ public class Lotto {
         Set<Integer> sNumbers = new HashSet<>(numbers);
         sNumbers.addAll(lottoNumbers);
         return sNumbers;
+    }
+
+    public boolean isRightBonus(int bonusNumber){
+        return numbers.contains(bonusNumber);
     }
 }

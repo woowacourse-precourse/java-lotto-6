@@ -16,4 +16,10 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateDuplication(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException(ExceptionConstant.LOTTO_NUMBER_DUPliCATE.getMessage());
+        }
+    }
 }

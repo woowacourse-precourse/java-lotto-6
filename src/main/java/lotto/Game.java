@@ -16,7 +16,8 @@ public class Game {
 	}
 	public void run(){
 		Money pay = getPay();
-		//int lottoCount = calculateLottoCount(pay);
+		int lottoCount = pay.calculateLottoCount();
+		System.out.println(lottoCount);
 		//List<Lotto> lottos = lottoGenerator.makeLotto(lottoCount);
 		//user.setLottos(lottos);
 
@@ -41,10 +42,6 @@ public class Game {
 		}
 	}
 
-
-	private int calculateLottoCount(int pay){
-		return 0;
-	}
 
 	//private List<Integer> calculatePrices(User user, WinningInfo winningInfo){}
 

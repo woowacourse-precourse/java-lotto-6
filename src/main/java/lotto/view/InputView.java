@@ -27,12 +27,14 @@ public class InputView {
     }
 
     public List<String> getDrawnNumbers() {
+        System.out.println();
         System.out.println(INPUT_DRAWN_NUMBERS_MESSAGE);
         String drawnNumbers = Console.readLine();
         return lottoNumberValidator.validateLottNumbers(drawnNumbers);
     }
 
     public Integer getBonusNumber(List<String> lottoNumbers) {
+        System.out.println();
         System.out.println(INPUT_BONUS_NUMBERS_MESSAGE);
         String bonusNumber = Console.readLine();
         return lottoNumberValidator.validateBonusNumber(bonusNumber, lottoNumbers);

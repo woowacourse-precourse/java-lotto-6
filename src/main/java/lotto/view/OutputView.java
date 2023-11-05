@@ -16,6 +16,7 @@ public class OutputView {
     private static final String LOTTO_RESULT_LINE_MESSAGE = "---";
 
     public void printPurchasedCountMessage(Integer purchasedLottoCount) {
+        System.out.println();
         System.out.println(format(PURCHASED_LOTTO_COUNT_MESSAGE_TEMPLATE, purchasedLottoCount));
     }
 

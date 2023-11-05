@@ -20,11 +20,7 @@ public class Game {
 
     public void drawWinningLotto() {
         List<Integer> winningNumbers = inputWinningNumbers();
-
-        Logs.inputBonusNumber();
-        int bonusNumber = inputBonusNumber();
-        Logs.newLine();
-
+        int bonusNumber = inputBonusNumber(winningNumbers);
         winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
 
@@ -93,8 +89,25 @@ public class Game {
         return winningNumber;
     }
 
-    private int inputBonusNumber() {
-        String input = Reader.readLine().strip();
-        return Integer.parseInt(input);
+    private int inputBonusNumber(List<Integer> winningNumbers) {
+        try {
+            Logs.inputBonusNumber();
+            String input = Reader.readLine().strip();
+            validateBonusNumber(input, winningNumbers);
+            Logs.newLine();
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            Logs.inputBonusNumberERROR();
+            Logs.newLine();
+            return inputBonusNumber(winningNumbers);
+        }
+    }
+
+    private void validateBonusNumber(String input, List<Integer> winningNumbers) {
+        int bonusNumber = Integer.parseInt(input);
+        if (!LottoNumbers.contains(bonusNumber)
+                || winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
     }
 }

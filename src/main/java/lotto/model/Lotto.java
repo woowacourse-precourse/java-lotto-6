@@ -19,4 +19,8 @@ public class Lotto {
         // 2. 숫자 중복 여부 검증
         validationCheck.checkDuplicatedNum(numbers);
     }
+
+    public boolean existNumber(int givenNumber) {
+        return this.numbers.contains(givenNumber);
+    }
 }

@@ -8,4 +8,5 @@ public class Message {
     public static final String EXCPTION_DIVIDE_INTO_THOUSNAD = prefixMessage + "입력 값은 1,000으로 나누어 떨어져야합니다.";
     public static final String EXCPTION_NOT_A_SIX = prefixMessage + "로또 번호는 6개여야 합니다.";
     public static final String EXCPTION_DUPLICATED = prefixMessage + "로또 번호는 중복기입될 수 없습니다.";
+    public static final String EXCPTION_ALREADY_EXIST = prefixMessage + "보너스 번호가 이미 당첨 번호에 존재합니다.";
 }

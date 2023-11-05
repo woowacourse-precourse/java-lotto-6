@@ -64,12 +64,11 @@ public class WinningNumValidator {
         }
     }
 
-    public static int validateBonus(String bonus, String winningNums) {
+    public static void validateBonus(String bonus, String winningNums) {
         checkNull(bonus);
         int bonusNum = toInteger(bonus);
         checkRange(bonusNum);
         checkOverlappingWithWinningNums(split(winningNums), bonusNum);
-        return bonusNum;
     }
 
     private static void checkOverlappingWithWinningNums(List<Integer> winningNums, int bonusNum) {

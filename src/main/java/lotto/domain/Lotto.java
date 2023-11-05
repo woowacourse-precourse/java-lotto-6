@@ -38,6 +38,10 @@ public class Lotto {
         return this.numbers.stream().anyMatch(number -> number.getNumber() == lottoNumber.getNumber());
     }
 
+    public List<LottoNumber> getLottoNumbers() {
+        return numbers;
+    }
+
     @Override
     public String toString() {
         return numbers.stream().map(LottoNumber::getNumber).toList().toString();

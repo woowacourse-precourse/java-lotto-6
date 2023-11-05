@@ -26,8 +26,8 @@ public class LottoResult {
             boolean isBonus = lotto.hasNumber(winningNumber.getBonusNumber());
 
             rank = Rank.valueOf(matchCount);
-            if (!isBonus && rank == Rank.SECOND) {
-                rank = Rank.THIRD;
+            if (isBonus && rank == Rank.THIRD) {
+                rank = Rank.SECOND;
             }
 
             lottoResult.addRank(rank);

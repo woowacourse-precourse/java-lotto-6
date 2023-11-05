@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.enums.LottoNumbers;
 import lotto.utils.Logs;
 import lotto.utils.Reader;
 
@@ -18,9 +19,7 @@ public class Game {
     }
 
     public void drawWinningLotto() {
-        Logs.inputWinningNumbers();
         List<Integer> winningNumbers = inputWinningNumbers();
-        Logs.newLine();
 
         Logs.inputBonusNumber();
         int bonusNumber = inputBonusNumber();
@@ -43,32 +42,55 @@ public class Game {
             Logs.newLine();
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            Logs.inputMoneyNumberFormatERROR();
+            Logs.inputMoneyERROR();
             Logs.newLine();
             return inputMoney();
         }
     }
 
     private void validateMoney(String input) {
-        try {
-            int money = Integer.parseInt(input);
-            if (money % 1_000 != 0 || money < 0) {
-                throw new NumberFormatException();
-            }
-        } catch (NumberFormatException e) {
+        int money = Integer.parseInt(input);
+
+        if (money % 1_000 != 0 || money < 0) {
             throw new IllegalArgumentException();
         }
     }
 
     private List<Integer> inputWinningNumbers() {
-        String input = Reader.readLine();
+        try {
+            Logs.inputWinningNumbers();
+            String input = Reader.readLine();
+            List<Integer> winningNumbers = validateWinningNumbers(input);
+            Logs.newLine();
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            Logs.inputWinningNumbersERROR();
+            Logs.newLine();
+            return inputWinningNumbers();
+        }
+    }
 
+    private List<Integer> validateWinningNumbers(String input) {
         List<Integer> winningNumbers = Arrays.stream(input.split(",", -1))
-                .map(String::strip)
-                .map(Integer::parseInt)
+                .map(this::validateWinningNumber)
                 .toList();
 
+        if (winningNumbers.size() != Lotto.getNumbersSize()
+                || winningNumbers.size() != winningNumbers.stream().distinct().count()) {
+            throw new IllegalArgumentException();
+        }
+
         return winningNumbers;
+    }
+
+    private int validateWinningNumber(String input) {
+        int winningNumber = Integer.parseInt(input.strip());
+
+        if (!LottoNumbers.contains(winningNumber)) {
+            throw new IllegalArgumentException();
+        }
+
+        return winningNumber;
     }
 
     private int inputBonusNumber() {

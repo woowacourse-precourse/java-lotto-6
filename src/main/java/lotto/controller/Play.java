@@ -1,8 +1,6 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.model.Winning;
-
 import java.util.*;
 
 import static lotto.controller.InputConverter.*;
@@ -14,7 +12,9 @@ import static lotto.view.Message.*;
 import static lotto.view.Print.*;
 
 public class Play {
-
+    private static final int start = 1;
+    private static final int end = 45;
+    private static final int size = 6;
     public Play() {
         HashMap<Rank, Integer> result = new HashMap<>();
         int price = createPrice();
@@ -23,10 +23,8 @@ public class Play {
         List<Lotto> lottery = rotateLotteryCount(count);
         printLottoRotate(lottery);
         List<Integer> winningNumbers = createWinningNumber();
+        int bonus = createBonusNumber(winningNumbers);
 
-        int bonus = createBonusNumber();
-
-        Winning winning = new Winning(winningNumbers, bonus);
         messageAboutWinningStatistic();
 
         result = createResult(lottery, winningNumbers, bonus);
@@ -59,6 +57,8 @@ public class Play {
                 messageAboutUserLottoNumber();
                 String tmpWinningNumbers = inputWinningNumbers();
                 winningNumbers = convertWinningNumber(tmpWinningNumbers);
+                checkWinningNumbersLength(winningNumbers);
+                rotateWinningNumbers(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]");
@@ -69,19 +69,45 @@ public class Play {
         return winningNumbers;
     }
 
-    public static int createBonusNumber() {
+    public static int createBonusNumber(List<Integer> numbers) {
         int bonus = 0;
         while(true) {
             try {
                 messageAboutUserBonusNumber();
                 String tmpBonusNumber = inputBonusNumber();
                 bonus = convertBonusNumber(tmpBonusNumber);
+                checkRange(bonus);
+                checkDuplicate(numbers, bonus);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]");
             }
         }
         return bonus;
+    }
+
+    public static void checkWinningNumbersLength(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != size) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void rotateWinningNumbers(List<Integer> winningNumbers) throws IllegalArgumentException {
+        for (int number : winningNumbers) {
+            checkRange(number);
+        }
+    }
+    public static void checkRange(int num) throws IllegalArgumentException{
+        if ((num < start) || (num > end)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkDuplicate(List<Integer> numbers, int bonus) throws IllegalArgumentException {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.contains(bonus)) {
+            throw new IllegalArgumentException();
+        }
     }
 
 }

@@ -10,6 +10,7 @@ public class Winning {
 
     private static final int start = 1;
     private static final int end = 45;
+    private static final int size = 6;
 
     public Winning(List<Integer> numbers, int bonus) {
         checkNumberLength(numbers);
@@ -20,8 +21,8 @@ public class Winning {
         this.bonus = bonus;
     }
 
-    private void checkNumberLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private void checkNumberLength(List<Integer> numbers) throws IllegalArgumentException {
+        if (numbers.size() != size) {
             throw new IllegalArgumentException();
         }
     }
@@ -36,13 +37,13 @@ public class Winning {
         checkRange(bonus);
     }
 
-    private void checkRange(int num) {
+    private void checkRange(int num) throws IllegalArgumentException {
         if ((num < start) || (num > end)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void checkDuplicate(List<Integer> numbers, int bonus) {
+    private void checkDuplicate(List<Integer> numbers, int bonus) throws IllegalArgumentException{
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.contains(bonus)) {
             throw new IllegalArgumentException();

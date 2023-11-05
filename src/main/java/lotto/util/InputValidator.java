@@ -8,4 +8,10 @@ public class InputValidator {
     public static void validatePositiveNumber() {
 
     }
+
+    public static void validateEmptyInput(String input) {
+        if (input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 비어있습니다.");
+        }
+    }
 }

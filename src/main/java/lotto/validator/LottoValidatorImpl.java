@@ -1,6 +1,8 @@
 package lotto.validator;
 
-public class LottoValidatorImpl implements LottoValidator{
+import lotto.enumContainer.ErrorOperation;
+
+public class LottoValidatorImpl implements LottoValidator {
 
 	@Override
 	public int validatePrice(String price) {
@@ -14,31 +16,31 @@ public class LottoValidatorImpl implements LottoValidator{
 		for (int i = 0; i < price.length(); i++) {
 			char digit = price.charAt(i);
 			if (!Character.isDigit(digit)) {
-				throw new IllegalArgumentException("구입 금액에는 숫자만 입력할 수 있습니다.");
+				ErrorOperation.DIGIT_ERROR.apply();
 			}
 		}
 	}
 
 	private int validateRange(String price) {
+		int parsePrice = 0;
 		try {
-			int parsePrice = Integer.parseInt(price);
-			return validateMinimum(parsePrice);
+			parsePrice = Integer.parseInt(price);
 		} catch (NumberFormatException e) {
-			e.getStackTrace();
-			throw new IllegalArgumentException("int 범위를 초과한 금액입니다.");
+			ErrorOperation.RANGE_ERROR.apply();
 		}
+		return validateMinimum(parsePrice);
 	}
 
 	private int validateMinimum(int parsePrice) {
 		if (parsePrice < 1000) {
-			throw new IllegalArgumentException("금액의 최소 금액은 1000원입니다.");
+			ErrorOperation.MINIMUM_ERROR.apply();
 		}
 		return parsePrice;
 	}
 
 	private void validateRest(int parsePrice) {
-		if (parsePrice%1000 != 0) {
-			throw new IllegalArgumentException("1000원 단위로 입력해야 합니다.");
+		if (parsePrice % 1000 != 0) {
+			ErrorOperation.UNIT_ERROR.apply();
 		}
 	}
 }

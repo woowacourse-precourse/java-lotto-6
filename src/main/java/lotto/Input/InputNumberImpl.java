@@ -2,10 +2,7 @@ package lotto.Input;
 
 import java.util.StringTokenizer;
 
-import javax.xml.validation.Validator;
-
 import camp.nextstep.edu.missionutils.Console;
-import lotto.enumContainer.CommonString;
 import lotto.validator.LottoValidator;
 
 public class InputNumberImpl implements InputNumber {

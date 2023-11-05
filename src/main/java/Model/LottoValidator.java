@@ -53,4 +53,10 @@ public class LottoValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    void validateBonusNumberRange(int bonusNumber) {
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

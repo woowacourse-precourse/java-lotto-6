@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.lottery.Lotto;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,4 @@
-package lotto.domain.lottery;
-
-import lotto.domain.lottery.generator.RandomNumberGenerator;
+package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,7 +16,7 @@ public class Lottos {
     }
 
     private List<Lotto> generateLottos(final int ticketCount) {
-        return Stream.generate(RandomNumberGenerator::generateOrderedLottoNumbers)
+        return Stream.generate(LottoService::generateOrderedLottoNumbers)
                 .limit(ticketCount)
                 .toList()
 

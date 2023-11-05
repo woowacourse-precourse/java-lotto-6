@@ -1,4 +1,4 @@
-package lotto.domain.lottery.generator;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -7,8 +7,8 @@ import java.util.List;
 
 import static lotto.domain.constants.LottoConstraint.*;
 
-public class RandomNumberGenerator {
-    private RandomNumberGenerator() {
+public class LottoService {
+    private LottoService() {
     }
 
     public static List<Integer> generateOrderedLottoNumbers() {

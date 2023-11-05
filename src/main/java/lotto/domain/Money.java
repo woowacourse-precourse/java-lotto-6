@@ -2,6 +2,7 @@ package lotto.domain;
 
 public class Money {
 
+    public static final int UNIT = 1000;
     private final int money;
 
     public Money(int money) {
@@ -17,9 +18,13 @@ public class Money {
     }
 
     private void validateUnit(int money) {
-        if (money % 1000 != 0) {
+        if (money % UNIT != 0) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public int count() {
+        return money / UNIT;
     }
 
 }

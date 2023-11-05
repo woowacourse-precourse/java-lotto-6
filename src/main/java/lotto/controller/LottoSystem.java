@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.BonusNumber;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
+import lotto.io.OutputHandler;
 import lotto.verifier.RuntimeVerifier;
 
 public class LottoSystem {
@@ -30,7 +31,7 @@ public class LottoSystem {
                 runtimeVerifier.checkBonusNumberExistsInWinningLotto(winningLotto, bonusNumber);
                 return;
             } catch (IllegalStateException e) {
-                System.out.println(e.getMessage());
+                OutputHandler.printMessage(e.getMessage());
             }
         }
 

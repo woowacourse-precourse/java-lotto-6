@@ -24,12 +24,12 @@ public final class InputHandler {
     public static int readMoney() {
         while(true) {
             try {
-                System.out.println(IOMessage.READ_MONEY_MESSAGE);
+                OutputHandler.printMessage(IOMessage.READ_MONEY_MESSAGE);
                 String input = Console.readLine();
                 moneyVerifier.check(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputHandler.printMessage(e.getMessage());
             }
         }
 
@@ -38,8 +38,8 @@ public final class InputHandler {
     public static List<Integer> readWinnerNumber() {
         while(true) {
             try {
-                System.out.println();
-                System.out.println(IOMessage.READ_WINNING_NUM_MESSAGE);
+                OutputHandler.printEmptyLine();
+                OutputHandler.printMessage(IOMessage.READ_WINNING_NUM_MESSAGE);
                 String input = Console.readLine();
                 winnerNumberVerifier.check(input);
 
@@ -47,7 +47,7 @@ public final class InputHandler {
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
             }catch(IllegalArgumentException e){
-                System.out.println(e.getMessage());
+                OutputHandler.printMessage(e.getMessage());
             }
         }
     }
@@ -55,14 +55,14 @@ public final class InputHandler {
     public static Integer readBonusNumber() {
         while(true) {
             try {
-                System.out.println();
-                System.out.println(IOMessage.READ_BONUS_NUM_MESSAGE);
+                OutputHandler.printEmptyLine();
+                OutputHandler.printMessage(IOMessage.READ_BONUS_NUM_MESSAGE);
                 String input = Console.readLine();
                 bonusNumVerifier.check(input);
 
                 return Integer.parseInt(input);
             }catch(IllegalArgumentException e){
-                System.out.println(e.getMessage());
+                OutputHandler.printMessage(e.getMessage());
             }
         }
     }

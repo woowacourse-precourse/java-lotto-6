@@ -20,7 +20,7 @@ public class Input {
         return Integer.parseInt(money);
     }
 
-    public static List<Integer> inputWinningLotto() {
+    public static List<Integer> inputWinningNumbersGuide() {
         System.out.println(INPUT_WINNING_LOTTO_GUIDE);
         String winningLotto = Console.readLine();
         validateBlank(winningLotto);

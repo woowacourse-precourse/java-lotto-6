@@ -29,7 +29,7 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        Lotto winningLotto = new Lotto(Input.inputWinningLotto());
+        Lotto winningLotto = InputController.getWinningNumbers();
         BonusNumber bonusNumber = new BonusNumber(Input.inputBonusNumber());
         return new WinningLotto(winningLotto, bonusNumber);
     }

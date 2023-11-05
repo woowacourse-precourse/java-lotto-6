@@ -22,8 +22,6 @@ public class Application {
         inputCoin = Integer.parseInt(Console.readLine());
         CoinValidate(inputCoin);
         inputCoin = inputCoin / coinStandard;
-        System.out.println();
-        System.out.println(inputCoin+"개를 구매했습니다.");
     }
 
     public static List<Integer> RandomLottoNumber() {
@@ -38,6 +36,7 @@ public class Application {
     }
 
     public static void GetLottos(){
+        System.out.println(inputCoin+"개를 구매했습니다.");
         for(int i=0; i<inputCoin; i++){
             lottoTotal.add(RandomLottoNumber());
         }
@@ -49,6 +48,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         GetCoin();
+        System.out.println();
         GetLottos();
     }
 }

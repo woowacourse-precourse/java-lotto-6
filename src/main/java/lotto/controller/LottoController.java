@@ -3,13 +3,13 @@ package lotto.controller;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.profit.LottoProfitCalculator;
-import lotto.domain.store.LottoStore;
 import lotto.domain.winning.LottoWinningSetPicker;
 import lotto.domain.winning.LottoWinningRanking;
 import lotto.domain.winning.LottoWinningRankingCalculator;
 import lotto.domain.winning.LottoWinningSet;
 import lotto.exception.LottoException;
 import lotto.exception.LottoStoreException;
+import lotto.service.LottoStoreService;
 import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,15 +20,15 @@ import java.util.EnumMap;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoStore lottoStore;
+    private final LottoStoreService lottoStoreService;
     private final LottoWinningSetPicker lottoWinningSetPicker;
     private final LottoWinningRankingCalculator lottoWinningRankingCalculator;
     private final LottoProfitCalculator lottoProfitCalculator;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoStore lottoStore, LottoWinningSetPicker lottoWinningSetPicker, LottoWinningRankingCalculator lottoWinningRankingCalculator, LottoProfitCalculator lottoProfitCalculator) {
+    public LottoController(InputView inputView, OutputView outputView, LottoStoreService lottoStoreService, LottoWinningSetPicker lottoWinningSetPicker, LottoWinningRankingCalculator lottoWinningRankingCalculator, LottoProfitCalculator lottoProfitCalculator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoStore = lottoStore;
+        this.lottoStoreService = lottoStoreService;
         this.lottoWinningSetPicker = lottoWinningSetPicker;
         this.lottoWinningRankingCalculator = lottoWinningRankingCalculator;
         this.lottoProfitCalculator = lottoProfitCalculator;
@@ -63,7 +63,7 @@ public class LottoController {
             try {
                 outputView.requestPurchaseAmount();
                 int userPurchaseAmount = getUserPurchaseAmount();
-                return lottoStore.purchaseAutoLottos(userPurchaseAmount);
+                return lottoStoreService.purchaseAutoLottos(userPurchaseAmount);
             } catch (LottoException | LottoStoreException exception) {
                 outputView.displayErrorMessage(exception.getMessage());
             }

@@ -1,4 +1,4 @@
-package lotto.domain.store;
+package lotto.service;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
@@ -12,11 +12,11 @@ import java.util.List;
 import static lotto.constant.LottoConstants.LOTTO_PRICE;
 import static lotto.constant.LottoConstants.MAX_LOTTO_PRICE_PER_USER;
 
-public class LottoStore {
+public class LottoStoreService {
     private final LottoAutoGenerator lottoAutoGenerator;
     private final LottoManualGenerator lottoManualGenerator;
 
-    public LottoStore(LottoAutoGenerator lottoAutoGenerator, LottoManualGenerator lottoManualGenerator) {
+    public LottoStoreService(LottoAutoGenerator lottoAutoGenerator, LottoManualGenerator lottoManualGenerator) {
         this.lottoAutoGenerator = lottoAutoGenerator;
         this.lottoManualGenerator = lottoManualGenerator;
     }

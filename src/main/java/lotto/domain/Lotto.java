@@ -5,14 +5,13 @@ import lotto.util.ErrorMessage;
 import java.util.*;
 
 public class Lotto {
-    private List<Integer> numbers = new ArrayList<>();
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         uniqueValidate(numbers);
         rangeValidate(numbers);
         this.numbers = numbers;
-        sort();
     }
 
     public List<Integer> getNumbers() {
@@ -42,9 +41,5 @@ public class Lotto {
                     ErrorMessage.ERROR_INFO +
                             ErrorMessage.LOTTO_RANGE_ERROR);
         }
-    }
-
-    private void sort() {
-        Collections.sort(this.numbers);
     }
 }

@@ -21,7 +21,7 @@ public class LottoWinNumbers {
         uniqueCheck();
     }
 
-    public void rangeCheck() {
+    private void rangeCheck() {
         if (lottoWinNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO
@@ -29,7 +29,7 @@ public class LottoWinNumbers {
         }
     }
 
-    public List<Integer> sliceLottoNumbers(String input) {
+    private List<Integer> sliceLottoNumbers(String input) {
         try {
             return Arrays.stream(input.split(Constants.COMMA))
                     .map(Integer::parseInt)
@@ -41,7 +41,7 @@ public class LottoWinNumbers {
         }
     }
 
-    public void sizeCheck() {
+    private void sizeCheck() {
         if (lottoWinNumbers.size() != 6) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO

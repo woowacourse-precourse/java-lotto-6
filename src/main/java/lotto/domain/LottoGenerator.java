@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.util.Constants;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -16,7 +17,7 @@ public class LottoGenerator {
 
     private void setMyLotto(int chance) {
         IntStream.range(0, chance)
-                .mapToObj(i -> new Lotto(generateRandomLottoNumbers()))
+                .mapToObj(i -> new Lotto(sortedList()))
                 .forEach(myLotto::add);
     }
 
@@ -26,6 +27,12 @@ public class LottoGenerator {
                 Constants.LOTTO_MAX_NUM,
                 Constants.LOTTO_NUM_LENGTH
         );
+    }
+
+    private List<Integer> sortedList() {
+        List<Integer> mutableList = new ArrayList<>(generateRandomLottoNumbers());
+        Collections.sort(mutableList);
+        return mutableList;
     }
 
     public List<Lotto> getMyLotto() {

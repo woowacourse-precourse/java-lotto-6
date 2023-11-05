@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public void printResult(Map<Integer, Integer> count, String Profit) {
-        System.out.println(OutputMessage.OUTPUT_RESULT_INFO +
+        System.out.print(OutputMessage.OUTPUT_RESULT_INFO +
                         OutputMessage.OUTPUT_RESULT_3 + count.get(3) + OutputMessage.OUTPUT_RESULT_UNIT +
                         OutputMessage.OUTPUT_RESULT_4 + count.get(4) + OutputMessage.OUTPUT_RESULT_UNIT +
                         OutputMessage.OUTPUT_RESULT_5 + count.get(5) + OutputMessage.OUTPUT_RESULT_UNIT +

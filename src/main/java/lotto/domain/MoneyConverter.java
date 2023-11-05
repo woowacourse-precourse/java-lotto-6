@@ -13,14 +13,14 @@ public class MoneyConverter {
         this.chance = convertMoneyToChances(input);
     }
 
-    public void patternCheck(String input, Pattern pattern) {
+    private void patternCheck(String input, Pattern pattern) {
         if (!pattern.matcher(input).matches()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_INFO
                             + ErrorMessage.MONEY_ERROR);
         }
     }
 
-    public int convertMoneyToChances(String input) {
+    private int convertMoneyToChances(String input) {
         return Integer.parseInt(input) / Constants.MONEY_UNIT;
     }
 

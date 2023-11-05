@@ -2,12 +2,12 @@ package lotto.model;
 
 import static lotto.util.message.Error.MUST_MONEY_UNIT;
 
-public class Amount {
+public class Purchase {
 
     private final static int MONEY_UNIT = 1000;
     private final int money;
 
-    public Amount(int money) {
+    public Purchase(int money) {
         validate(money);
         this.money = money;
     }

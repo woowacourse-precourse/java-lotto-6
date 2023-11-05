@@ -1,25 +1,25 @@
 package lotto.controller;
 
-import lotto.model.Amount;
+import lotto.model.Purchase;
 import lotto.util.Conversion;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    private Amount amount;
+    private Purchase purchase;
 
     public void run() {
-        purchase();
+        payMoney();
     }
 
-    private void purchase() {
+    private void payMoney() {
         try {
             int money = Conversion.stringToInt(InputView.purchase());
-            amount = new Amount(money);
+            purchase = new Purchase(money);
         } catch (IllegalArgumentException exception) {
             OutputView.error(exception.getMessage());
-            purchase();
+            payMoney();
         }
     }
 }

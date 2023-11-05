@@ -6,7 +6,7 @@ import static lotto.lotto.LottoSimulator.LOTTO_PRICE;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.ExceptionMessage;
 
-class LottoMoneyInputManager {
+final class LottoMoneyInputManager {
     private LottoMoneyInputManager() {
     }
 

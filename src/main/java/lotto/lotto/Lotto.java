@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.validator.LottoNumberValidator;
 
-class Lotto {
+final class Lotto {
     private final List<Integer> numbers;
 
     Lotto(List<Integer> numbers) {

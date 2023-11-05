@@ -2,7 +2,7 @@ package lotto.input;
 
 import java.util.List;
 
-public class InputManager {
+public final class InputManager {
 
     public static List<Integer> getLottoNumbers() {
         InputRetryHelper<List<Integer>> inputRetryHelper = new InputRetryHelper<>();

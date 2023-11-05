@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.validator.LottoNumberValidator;
 
-class LottoNumberInputManager {
+final class LottoNumberInputManager {
     private static final Pattern numberOnly = Pattern.compile("\\d+");
 
     private LottoNumberInputManager() {

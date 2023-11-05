@@ -3,7 +3,7 @@ package lotto.lotto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class LottoPrinter {
+final class LottoPrinter {
     static String printAll(List<Lotto> lottos) {
         int count = lottos.size();
         String prefix = String.format("%d개를 구매했습니다.\n", count);

@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.validator.LottoNumberValidator;
 
-class LottoBonusNumberInputManager {
+final class LottoBonusNumberInputManager {
     private LottoBonusNumberInputManager() {
     }
 

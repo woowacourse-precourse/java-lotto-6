@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-class LottoStatus {
+final class LottoStatus {
     private final Map<LottoResult, Integer> resultToCount;
     private final long buyMoney;
 

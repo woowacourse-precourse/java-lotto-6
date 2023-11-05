@@ -2,6 +2,7 @@ package lotto.global.util.channel.read;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import lotto.global.exception.GlobalError;
 import lotto.global.exception.GlobalException;
 import lotto.global.util.channel.print.Printer;
 import lotto.global.util.channel.base.DefaultReader;
@@ -12,7 +13,7 @@ import lotto.presentation.message.Ask;
 public class ReaderForWinningLotto extends LottoNumberValidator implements DefaultReader {
 
     private static final String AVAILABLE_SEPARATOR = ",";
-    private static final String UNAVAILABLE_SEPARATORS = "<>\"'[]{}~!@#$%^&*()\\-_+=:;.";
+    private static final String AVAILABLE_PATTERN = "^(\\d{0,2}[\\s]*,)([\\s]*\\d{0,2}[\\s]*,)+([\\s]*\\d{0,2}[\\s]*)";
 
 
     @Override
@@ -29,7 +30,7 @@ public class ReaderForWinningLotto extends LottoNumberValidator implements Defau
     protected boolean validate(String input) {
         try {
             checkIsBlank(input);
-            checkIsSeparatorAvailable(input);
+            checkIsPatternAvailable(input);
             checkIsEachNumberAvailable(input);
             return true;
         } catch (GlobalException exception) {
@@ -38,11 +39,9 @@ public class ReaderForWinningLotto extends LottoNumberValidator implements Defau
         }
     }
 
-    protected void checkIsSeparatorAvailable(String input) {
-        for (String str : input.split(AVAILABLE_SEPARATOR)) {
-            if (UNAVAILABLE_SEPARATORS.contains(str)) {
-                throw new IllegalArgumentException();
-            }
+    protected void checkIsPatternAvailable(String input) {
+        if (!input.matches(AVAILABLE_PATTERN)) {
+            throw new GlobalException(GlobalError.NOT_AVAILABLE_LOTTO_NUMBERS_PATTERN);
         }
     }
 

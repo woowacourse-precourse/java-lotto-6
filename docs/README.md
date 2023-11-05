@@ -2,10 +2,10 @@
 
 ## 🛠️ 기능 목록
 ### PurchaseAmount
-- [ ] 구입 금액을 로또 가격만큼 감소시킨다. `int decrease(int lottoPrice)`
+- [x] 구입 금액을 로또 가격만큼 감소시킨다. `int decrease(int lottoPrice)`
 
 ### LottoIssuer
-- [ ] 구입 금액만큼 로또를 발행한다. `List<Lotto> issue(PurchaseAmount purchaseAmount)`
+- [x] 구입 금액만큼 로또를 발행한다. `List<Lotto> issue(PurchaseAmount purchaseAmount)`
     - 로또 번호는 1~45 사이의 서로 다른 랜덤한 숫자 6개로 구성되어 있다.
 
 ### LottoNumbersComparator

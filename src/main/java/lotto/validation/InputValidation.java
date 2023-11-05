@@ -9,6 +9,7 @@ public class InputValidation {
     private static final String IS_NOT_NUMBER_Range_MESSAGE = "0이하 입니다";
     private static final int MONEY_UNIT = 1000;
     private static final String IS_NOT_MONEY_UNIT_MESSAGE = MONEY_UNIT + "원 단위가 아닙니다";
+    private static final String IS_NOT_LOTTO_SIZE_MESSAGE = "번호가 6개가 아닙니다";
 
     public void validationMoney(String input) {
         isEmptyValidation(input);
@@ -20,6 +21,12 @@ public class InputValidation {
 
     public void validationLottoWinningNumber(String lottoNumbers) {
         isEmptyValidation(lottoNumbers);
+        int[] lottoNumber = checkSplitNumbers(lottoNumbers);
+    }
+
+    private int[] checkSplitNumbers(String lottoNumbers) {
+        String[] lottoNumber = lottoNumbers.replace(" ", "").split(",");
+        isLottoSize(lottoNumber);
     }
 
     private void isEmptyValidation(String input) {
@@ -53,6 +60,12 @@ public class InputValidation {
     private void isMoneyUnitValidation(String input) {
         if (Integer.parseInt(input) % MONEY_UNIT != 0) {
             throw new IllegalArgumentException(ERROR + IS_NOT_MONEY_UNIT_MESSAGE);
+        }
+    }
+
+    private void isLottoSize(String[] lottoNumber) {
+        if (lottoNumber.length != 6) {
+            throw new IllegalArgumentException(ERROR + IS_NOT_LOTTO_SIZE_MESSAGE);
         }
     }
 }

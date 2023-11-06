@@ -7,7 +7,7 @@ public class PriceValidator {
     }
 
     public static void validatePrice(int price) throws IllegalArgumentException {
-        if (price == 0 || price % 1000 != 0) {
+        if (price == 0 || price % ValidNumber.LOTTO_PRICE_UNIT.getNumber() != 0) {
             throw new NotValidGivenPriceException();
         }
     }

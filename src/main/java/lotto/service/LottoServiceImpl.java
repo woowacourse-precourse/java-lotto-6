@@ -44,6 +44,10 @@ public class LottoServiceImpl implements LottoService {
         return mapToWinningStatisticsDto(countMap, winningRate);
     }
 
+    @Override
+    public int getNumberOfLottoToBeIssued(int price) {
+        return price / 1000;
+    }
 
     private WinningStatisticsDto mapToWinningStatisticsDto(Map<Integer, Integer> countMap, double winningRate) {
         return new WinningStatisticsDto(countMap.getOrDefault(3, 0), countMap.getOrDefault(4, 0),

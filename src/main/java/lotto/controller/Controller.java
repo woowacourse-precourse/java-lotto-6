@@ -54,7 +54,7 @@ public class Controller {
 
     private List<Lotto> issueLotto(int userPrice) {
         List<Lotto> lottos = lottoService.issueNewLotto(userPrice);
-        view.printNumberOfPurchasedLotto(getNumberOfLottoToBeIssued(userPrice));
+        view.printNumberOfPurchasedLotto(lottoService.getNumberOfLottoToBeIssued(userPrice));
         view.printIssuedLottoNumbers(parseLottoToDto(lottos));
         return lottos;
     }
@@ -121,10 +121,6 @@ public class Controller {
         }
 
         return parseLottoNumber(inputWinningLotto);
-    }
-
-    private int getNumberOfLottoToBeIssued(int price) {
-        return price / 1000;
     }
 
     private String readInput() {

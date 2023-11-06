@@ -49,7 +49,7 @@ public class InputValidator {
     private static void checkIntegerInputAndThrowException(String input) throws IllegalArgumentException {
         try {
             Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException error) {
             throw new NotIntegerInputException();
         }
     }

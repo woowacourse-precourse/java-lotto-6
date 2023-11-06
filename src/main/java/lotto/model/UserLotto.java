@@ -9,7 +9,7 @@ public class UserLotto {
     private int lottoCount;
     private List<Lotto> lottos;
 
-    private void moneyToLotto(int money) {
+    private void moneyToCount(int money) {
         this.lottoCount = money / 1000;
     }
 

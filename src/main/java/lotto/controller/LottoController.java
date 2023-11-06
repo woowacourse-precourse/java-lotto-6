@@ -16,12 +16,12 @@ public class LottoController {
     private final OutputView outputView;
     private final Referee referee;
 
-    public LottoController() {
+    public LottoController(final Referee referee) {
         this.validator = new Validator();
         this.inputView = InputView.getInstance();
         this.outputView = OutputView.getInstance();
         this.lottoManager = inputPurchaseMoney();
-        this.referee = new Referee();
+        this.referee = referee;
     }
 
     public LottoManager inputPurchaseMoney() {

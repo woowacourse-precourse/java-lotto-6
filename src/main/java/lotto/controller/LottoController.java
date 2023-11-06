@@ -2,20 +2,20 @@ package lotto.controller;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPurchasePrice;
+import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
-import lotto.io.InputManager;
+import lotto.io.IoManager;
 import lotto.io.OutputView;
 import lotto.service.LottoService;
 
 public class LottoController {
 
-    private final InputManager inputManager;
+    private final IoManager ioManager;
     private final OutputView outputView;
     private final LottoService lottoService;
 
-    public LottoController(InputManager inputManager, OutputView outputView, LottoService lottoService) {
-        this.inputManager = inputManager;
+    public LottoController(IoManager ioManager, OutputView outputView, LottoService lottoService) {
+        this.ioManager = ioManager;
         this.outputView = outputView;
         this.lottoService = lottoService;
     }
@@ -27,19 +27,17 @@ public class LottoController {
     }
 
     private void purchaseLottos() {
-        outputView.printLottoPurchasePriceMessage();
-        LottoPurchasePrice lottoPurchasePrice = inputManager.inputLottoPurchasePrice();
-
-        lottoService.saveLottos(lottoPurchasePrice);
+        PurchasePrice purchasePrice = ioManager.inputPurchasePrice();
+        lottoService.saveLottos(purchasePrice);
         outputView.printLottoResult(lottoService.getLottos());
     }
 
     private void inputWinningLotto() {
         outputView.printWinningNumbers();
-        Lotto lotto = inputManager.inputWinningNumbers();
+        Lotto lotto = ioManager.inputWinningNumbers();
 
         outputView.printBonusNumber();
-        BonusNumber bonusNumber = inputManager.inputBonusNumber(lotto);
+        BonusNumber bonusNumber = ioManager.inputBonusNumber(lotto);
 
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
         lottoService.saveWinningLotto(winningLotto);

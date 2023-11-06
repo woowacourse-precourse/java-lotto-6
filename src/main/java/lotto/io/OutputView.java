@@ -6,15 +6,26 @@ import lotto.dto.LottoStatisticsResultFormatter;
 
 public class OutputView {
 
+    private OutputView() {}
+
+    private static class OutputViewHelper {
+        private static final OutputView INSTANCE = new OutputView();
+    }
+
+    public static OutputView getInstance() {
+        return OutputViewHelper.INSTANCE;
+    }
+
     public void printErrorMessage(String error) {
         System.out.println(error);
     }
 
-    public void printLottoPurchasePriceMessage() {
+    public void printPurchasePriceMessage() {
         System.out.println(ProgressMessage.INPUT_LOTTO_PURCHASE_PRICE_MESSAGE);
     }
 
     public void printLottoResult(LottoResultFormatter lottoResultFormatter) {
+        printNextLine();
         System.out.println(lottoResultFormatter.toResultLottoMessage());
     }
 
@@ -33,5 +44,9 @@ public class OutputView {
 
     public void printWinningStatistics() {
         System.out.println(ProgressMessage.WINNING_STATISTICS);
+    }
+
+    public void printNextLine() {
+        System.out.println();
     }
 }

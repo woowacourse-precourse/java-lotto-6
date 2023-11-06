@@ -2,25 +2,27 @@ package lotto.io;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPurchasePrice;
+import lotto.domain.PurchasePrice;
 
 import java.util.function.Supplier;
 
-public class InputManager {
+public class IoManager {
 
     private final InputView inputView;
     private final InputMapper inputMapper;
-    private final OutputView outputView = new OutputView();
+    private final OutputView outputView;
 
-    public InputManager(InputView inputView, InputMapper inputMapper) {
+    public IoManager(InputView inputView, InputMapper inputMapper, OutputView outputView) {
         this.inputView = inputView;
         this.inputMapper = inputMapper;
+        this.outputView =  outputView;
     }
 
-    public LottoPurchasePrice inputLottoPurchasePrice() {
+    public PurchasePrice inputPurchasePrice() {
         return read(() -> {
-            String lottoPurchasePrice = inputView.inputLottoPurchasePrice();
-            return inputMapper.toLottoPurchasePrice(lottoPurchasePrice);
+            outputView.printPurchasePriceMessage();
+            String purchasePrice = inputView.inputPurchasePrice();
+            return inputMapper.toPurchasePrice(purchasePrice);
         });
     }
 

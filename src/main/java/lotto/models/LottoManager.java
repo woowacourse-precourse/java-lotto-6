@@ -23,10 +23,10 @@ public class LottoManager {
         return lottos;
     }
 
-    public LottoResult calcLottoResult(WinningNumber winningNumber) {
+    public LottoResult calcLottoResult(WinNumber winNumber) {
         LottoResult lottoResult = new LottoResult(lottoAmount);
         for (Lotto lotto : lottos) {
-            lottoResult.addLottoResult(lotto.calcRank(winningNumber));
+            lottoResult.addLottoResult(lotto.calcRank(winNumber));
         }
         return lottoResult;
     }

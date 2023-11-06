@@ -2,7 +2,7 @@ package lotto;
 
 import lotto.models.LottoManager;
 import lotto.models.LottoResult;
-import lotto.models.WinningNumber;
+import lotto.models.WinNumber;
 import lotto.views.InputView;
 import lotto.views.OutputView;
 
@@ -17,9 +17,9 @@ public class LottoGame {
 
         OutputView.printPurchaseLottos(lottoAmount, lottoManager.getLottos());
 
-        WinningNumber winningNumber = InputView.inputWinningNumber();
+        WinNumber winNumber = InputView.inputWinNumber();
 
-        LottoResult lottoResult = lottoManager.calcLottoResult(winningNumber);
+        LottoResult lottoResult = lottoManager.calcLottoResult(winNumber);
         OutputView.printLottoResult(lottoResult);
     }
 

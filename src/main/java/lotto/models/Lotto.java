@@ -19,9 +19,9 @@ public class Lotto {
         LottoValidator.validate(numbers);
     }
 
-    public LottoGrade calcRank(WinningNumber winningNumber) {
-        int matchCount = countMatchNumbers(winningNumber);
-        boolean matchBonus = isMatchBonus(winningNumber);
+    public LottoGrade calcRank(WinNumber winNumber) {
+        int matchCount = countMatchNumbers(winNumber);
+        boolean matchBonus = isMatchBonus(winNumber);
 
         if (matchCount == 6) {
             return LottoGrade.FIRST;
@@ -42,14 +42,14 @@ public class Lotto {
         return LottoGrade.NONE;
     }
 
-    private boolean isMatchBonus(WinningNumber winningNumber) {
-        return numbers.contains(winningNumber.getBonusNumber());
+    private boolean isMatchBonus(WinNumber winNumber) {
+        return numbers.contains(winNumber.getBonusNumber());
     }
 
-    private int countMatchNumbers(WinningNumber winningNumber) {
+    private int countMatchNumbers(WinNumber winNumber) {
         int matchCount = 0;
         for (Integer number : numbers) {
-            if (winningNumber.getLotto().getNumbers().contains(number)) {
+            if (winNumber.getLotto().getNumbers().contains(number)) {
                 matchCount++;
             }
         }

@@ -2,10 +2,7 @@ package lotto.valid;
 
 import lotto.models.Lotto;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class WinningNumberValidator extends Validator {
+public class WinNumberValidator extends Validator {
 
     public static void validate(Lotto lotto, int bonusNumber) throws IllegalArgumentException {
         validateRange(bonusNumber);

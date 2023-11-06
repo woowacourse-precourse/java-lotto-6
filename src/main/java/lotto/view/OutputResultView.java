@@ -24,12 +24,12 @@ public class OutputResultView {
     private static String getPrintResultPrize(Prize prize, PrizeResult prizeResult) {
         if (prize == Prize.SECOND) {
             return String.format(OUTPUT_RESULT_MESSAGE_2
-                    , prize.getMatchLottoNumber()
+                    , prize.getMatchLottoCount()
                     , String.format("%,d", prize.getMoney())
                     , prizeResult.getPrizeCount(prize));
         }
         return  String.format(OUTPUT_RESULT_MESSAGE_1
-                , prize.getMatchLottoNumber()
+                , prize.getMatchLottoCount()
                 , String.format("%,d", prize.getMoney())
                 , prizeResult.getPrizeCount(prize));
     }

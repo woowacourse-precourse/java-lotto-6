@@ -64,7 +64,7 @@ public class LottoGameController {
 
     private Statistic createStatistic(final Lotteries lotteries, final Lotto winningLotto,
                                       final BonusNumber bonusNumber) {
-        return lotteries.getResult(bonusNumber, winningLotto);
+        return lotteries.compare(bonusNumber, winningLotto);
     }
 
     private ProfitRate calculateProfitRate(final Statistic statistic, final BuyAmount buyAmount) {

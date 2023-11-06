@@ -22,16 +22,16 @@ public class Lotteries {
         return new Lotteries(lotteries);
     }
 
-    public Statistic getResult(final BonusNumber bonusNumber, final Lotto winningLotto) {
-        List<Integer> matchedNumberResults = lotteries.stream()
+    public Statistic compare(final BonusNumber bonusNumber, final Lotto winningLotto) {
+        List<Integer> matchedNumberCount = lotteries.stream()
                 .map(lotto -> lotto.countMatchedNumber(winningLotto))
                 .toList();
 
-        List<Boolean> bonusNumberResults = lotteries.stream()
-                .map(lotto -> lotto.containBonusNumber(bonusNumber))
+        List<Boolean> containBonusNumber = lotteries.stream()
+                .map(lotto -> lotto.isContainBonusNumber(bonusNumber))
                 .toList();
 
-        return Statistic.from(matchedNumberResults, bonusNumberResults);
+        return Statistic.from(matchedNumberCount, containBonusNumber);
     }
 
     public List<Lotto> getLotteries() {

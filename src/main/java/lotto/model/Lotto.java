@@ -73,7 +73,7 @@ public class Lotto {
                 .count();
     }
 
-    public boolean containBonusNumber(final BonusNumber bonusNumber) {
+    public boolean isContainBonusNumber(final BonusNumber bonusNumber) {
         return this.contain(bonusNumber.number());
     }
 

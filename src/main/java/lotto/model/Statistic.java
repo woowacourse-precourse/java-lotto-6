@@ -21,16 +21,17 @@ public class Statistic {
                                                      final List<Boolean> includeBonusNumber) {
         Map<LottoRank, Integer> playerRank = new HashMap<>();
 
-        LottoRank rank = determineRank(matchedNumberCount, includeBonusNumber);
-        playerRank.put(rank, playerRank.getOrDefault(rank, 0) + 1);
+        for (int index = 0; index < matchedNumberCount.size(); index++) {
+            LottoRank rank = determineRank(matchedNumberCount.get(index), includeBonusNumber.get(index));
+            playerRank.put(rank, playerRank.getOrDefault(rank, 0) + 1);
+        }
 
         return playerRank;
     }
 
-    private static LottoRank determineRank(final List<Integer> matchedCount, final List<Boolean> includeBonus) {
+    private static LottoRank determineRank(Integer matchedCount, Boolean includeBonus) {
         return Arrays.stream(LottoRank.values())
-                .filter(rank -> matchedCount.get(rank.ordinal()) == rank.getMatchedCount() &&
-                        includeBonus.get(rank.ordinal()) == rank.isIncludeBonus())
+                .filter(rank -> rank.getMatchedCount() == matchedCount && rank.isIncludeBonus() == includeBonus)
                 .findFirst()
                 .orElse(LottoRank.NON_RANK);
     }

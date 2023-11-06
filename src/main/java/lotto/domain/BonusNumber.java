@@ -33,10 +33,7 @@ public class BonusNumber {
     }
 
     private boolean isInLottoRange(final int number) {
-        if (number < LOTTO_RANGE_BEGIN_NUMBER || number > LOTTO_RANGE_END_NUMBER) {
-            return false;
-        }
-        return true;
+        return (number >= LOTTO_RANGE_BEGIN_NUMBER) && (number <= LOTTO_RANGE_END_NUMBER);
     }
 
     private boolean isContainedInNumbers(final List<Integer> numbers, final int number) {

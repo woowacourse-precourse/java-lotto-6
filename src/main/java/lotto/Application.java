@@ -16,8 +16,8 @@ public class Application {
 
         User user = new User();
 
-        Output.printPurchase();
-        user.purchaseLotto();
+
+        GameManager.handlePurchase();
         Output.printCount(user.lottoCount);
 
         // 4. 로또 번호 출력

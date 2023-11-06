@@ -3,18 +3,19 @@ package lotto.domain;
 import java.util.List;
 
 public class User {
-    private int purchaseNumber;
-    private List<Lotto> lottos;
+    private final int numberOfLottoPapers;
+    private final List<Lotto> lottos;
 
-    public User(int purchaseNumber, List<Lotto> lottos) {
-        this.purchaseNumber = purchaseNumber;
+    public User(int numberOfLottoPapers, List<Lotto> lottos) {
+        this.numberOfLottoPapers = numberOfLottoPapers;
         this.lottos = lottos;
     }
 
-    public int getPurchaseNumber() {
-        return purchaseNumber;
+    public int getNumberOfLottoPapers() {
+        return numberOfLottoPapers;
     }
-    public List<Lotto> getLottos(){
+
+    public List<Lotto> getLottos() {
         return lottos;
     }
 }

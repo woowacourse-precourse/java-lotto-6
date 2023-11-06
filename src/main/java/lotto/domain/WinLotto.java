@@ -1,11 +1,11 @@
 package lotto.domain;
 
 public class WinLotto {
-    private Lotto lottoNumber;
+    private Lotto numbers;
     private int bonusNumber;
 
-    public WinLotto(Lotto lottoNumber, int bonusNumber) {
-        this.lottoNumber = lottoNumber;
+    public WinLotto(Lotto numbers, int bonusNumber) {
+        this.numbers = numbers;
         this.bonusNumber = bonusNumber;
     }
 }

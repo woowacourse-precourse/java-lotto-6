@@ -21,19 +21,19 @@ public class LottoService {
         return new Lotto(numbers);
     }
 
-    public List<Lotto> getLottoList(int purchaseNumber) {
-        return IntStream.range(0, purchaseNumber)
+    public List<Lotto> createLottos(int numberOfLottoPapers) {
+        return IntStream.range(0, numberOfLottoPapers)
                 .mapToObj(i -> getLotto(RandomValues.getRandomValues()))
                 .toList();
     }
 
-    public int getPurchaseNumber(int input) {
+    public int getNumberOfLottoPapers(int input) {
         return input / Constant.AMOUNT_ONE_LOTTO;
     }
 
-    public List<Integer> toList(String input) {
-        String[] numbers_str = input.split(Constant.SPLIT_UNIT);
-        return Arrays.stream(numbers_str)
+    public List<Integer> numbersToList(String input) {
+        String[] numbers = input.split(Constant.SPLIT_UNIT);
+        return Arrays.stream(numbers)
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());
     }

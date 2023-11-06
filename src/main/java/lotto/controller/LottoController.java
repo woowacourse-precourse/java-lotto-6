@@ -14,7 +14,7 @@ public class LottoController {
     private final InputView inputView = InputView.getInstance();
     private final LottoService lottoService = LottoService.getInstance();
     private User user;
-    private WinLotto result;
+    private WinLotto winLotto;
 
     public static LottoController getInstance() {
         return LottoController.LazyHolder.INSTANCE;
@@ -25,36 +25,36 @@ public class LottoController {
     }
 
     public void run() {
-        createUser(getPurchase());
+        createUser(getPurchaseAmount());
         printUserLottoInfo();
-        getResultLotto();
+        getWinLotto();
     }
 
-    private void createUser(int purchaseNumber) {
-        List<Lotto> lottos = lottoService.getLottoList(purchaseNumber);
-        user = new User(purchaseNumber, lottos);
+    private void createUser(int numberOfLottoPapers) {
+        List<Lotto> lottos = lottoService.createLottos(numberOfLottoPapers);
+        user = new User(numberOfLottoPapers, lottos);
     }
 
-    private int getPurchase() {
+    private int getPurchaseAmount() {
         outputView.printMessage(Message.GET_PURCHASE_AMOUNT);
         int purchaseAmount = inputView.getPurchaseAmount();
 
-        return lottoService.getPurchaseNumber(purchaseAmount);
+        return lottoService.getNumberOfLottoPapers(purchaseAmount);
     }
 
     private void printUserLottoInfo() {
-        outputView.printPurchaseNotice(user.getPurchaseNumber());
+        outputView.printPurchaseNotice(user.getNumberOfLottoPapers());
         outputView.printUserLottos(user.getLottos());
     }
 
-    private void getResultLotto() {
+    private void getWinLotto() {
         outputView.printMessage(Message.GET_LOTTO_NUMBER);
         String inputNumber = inputView.getLottoResult();
-        List<Integer> lottoNumber = lottoService.toList(inputNumber);
-        Lotto resultLotto = lottoService.getLotto(lottoNumber);
+        List<Integer> lottoNumber = lottoService.numbersToList(inputNumber);
+        Lotto winLotto = lottoService.getLotto(lottoNumber);
 
         outputView.printMessage(Message.GET_LOTTO_BONUS_NUMBER);
         int bonusNumber = inputView.getBonusNumber();
-        result = new WinLotto(resultLotto, bonusNumber);
+        this.winLotto = new WinLotto(winLotto, bonusNumber);
     }
 }

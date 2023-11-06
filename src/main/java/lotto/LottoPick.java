@@ -27,7 +27,7 @@ public class LottoPick {
     public void makeLottoPick() {
         for (int i = 0; i < attempt; i++) {
             numbers[i] = randomCreate();
-            numbers[i].sort(Comparator.naturalOrder());
+//            numbers[i].sort(Comparator.naturalOrder());
         }
     }
 

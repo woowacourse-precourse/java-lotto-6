@@ -7,11 +7,13 @@ import java.util.List;
 public class LottoCheck {
     private final List<Integer>[] lottoPickNumbers; // 로또 구매 값
     private final List<Integer> lottoNumber; // 로또 뽑기 값
+    private final Integer lottoBonus;
     private final Integer[] lottoResult = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
-    private final Integer[] lottoPrice = new Integer[]{0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000};
+    private final Integer[] lottoPrice = new Integer[]{0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000};
 
     public LottoCheck(List<Integer>[] lottoPickNumbers, List<Integer> lottoNumber) {
         this.lottoPickNumbers = lottoPickNumbers;
+        this.lottoBonus = lottoNumber.remove(lottoNumber.size()-1);
         this.lottoNumber = lottoNumber;
     }
 
@@ -28,8 +30,8 @@ public class LottoCheck {
         System.out.println(place5th(lottoResult[3]));
         System.out.println(place4th(lottoResult[4]));
         System.out.println(place3th(lottoResult[5]));
-        System.out.println(place2th(lottoResult[6]));
-        System.out.println(place1th(lottoResult[7]));
+        System.out.println(place2th(lottoResult[7]));
+        System.out.println(place1th(lottoResult[6]));
         System.out.println(profit());
     }
 
@@ -37,20 +39,15 @@ public class LottoCheck {
     private int lottoCount(List<Integer> lottoPickNumbers, List<Integer> lottoNumber) {
         int i = 0;
         for (Integer number : lottoNumber) {
-            if (lottoPickNumbers.contains(number)) i++;
+            if (lottoCheck(lottoPickNumbers,number)) i++;
         }
-        if (!(lottoBonus(lottoPickNumbers, lottoNumber))) i++;
+        if(i == 5 && (lottoCheck(lottoPickNumbers,lottoBonus))) i+= 2;
         return i;
     }
 
-    // 보너스 값 유무 확인.
-    private boolean lottoBonus(List<Integer> lottoPickNumbers, List<Integer> lottoNumber) {
-        return lottoPickNumbers.contains(pop(lottoNumber));
-    }
-
-    //리스트 pop 구현
-    private int pop(List<Integer> number) {
-        return number.get(number.size() - 1);
+    // 로또 값 유무 확인.
+    private boolean lottoCheck(List<Integer> lottoPickNumbers, Integer lottoNumber) {
+        return lottoPickNumbers.contains(lottoNumber);
     }
 
     //3개 일치

@@ -72,7 +72,9 @@ public class Application {
     //보너스 번호 받기.
     private static int bonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String line = Console.readLine();
+        isInteger(line);
+        return Integer.parseInt(line);
     }
 
     // 숫자 인지 확인

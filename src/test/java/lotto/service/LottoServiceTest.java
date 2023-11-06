@@ -68,5 +68,4 @@ public class LottoServiceTest {
         // then
         assertThat(lottos.size()).isEqualTo(EXPECTED_LOTTO_TICKETS_SIZE);
     }
-
 }

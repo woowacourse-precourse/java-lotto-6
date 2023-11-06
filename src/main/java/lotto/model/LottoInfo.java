@@ -22,4 +22,7 @@ public class LottoInfo {
     public boolean contain(Integer number) {
         return this.lotto.getNumbers().contains(number);
     }
+    public void countMatch(Lotto winningLotto) {
+        winningLotto.getNumbers().stream().filter(this::contain).forEach(number -> this.matchCount++);
+    }
 }

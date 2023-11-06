@@ -6,8 +6,9 @@ import java.util.Set;
 
 import static lotto.controller.InputConverter.convertBonusNumber;
 import static lotto.controller.InputConverter.convertWinningNumber;
+import static lotto.view.ErrorMessage.*;
 
-public class exceptionController {
+public class ExceptionController {
     private static final int start = 1;
     private static final int end = 45;
 
@@ -29,6 +30,7 @@ public class exceptionController {
 
     public static void checkWinningNumbersLength(List<Integer> winningNumbers) {
         if (winningNumbers.size() != size) {
+            notEnoughLengthOfWinningNumbersExceptionMessage();
             throw new IllegalArgumentException();
         }
     }
@@ -40,6 +42,7 @@ public class exceptionController {
     }
     public static void checkRange(int num) throws IllegalArgumentException{
         if ((num < start) || (num > end)) {
+            outOfBoundExceptionMessage();
             throw new IllegalArgumentException();
         }
     }
@@ -47,6 +50,7 @@ public class exceptionController {
     public static void checkDuplicate(List<Integer> numbers, int bonus) throws IllegalArgumentException {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.contains(bonus)) {
+            duplicatedBonusNumber();
             throw new IllegalArgumentException();
         }
     }

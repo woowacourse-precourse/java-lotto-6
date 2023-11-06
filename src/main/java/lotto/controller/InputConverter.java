@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static lotto.view.ErrorMessage.notDigitExceptionMessage;
+
 public class InputConverter {
     public static int convertPrice(String inputPrice) {
         return checkDigit(inputPrice);
@@ -27,6 +29,7 @@ public class InputConverter {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
+            notDigitExceptionMessage();
             throw e;
         }
     }

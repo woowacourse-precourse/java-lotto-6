@@ -6,10 +6,11 @@ import java.util.*;
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.Statistic.*;
-import static lotto.controller.exceptionController.checkExceptionBonus;
-import static lotto.controller.exceptionController.checkExceptionWinningNumber;
+import static lotto.controller.ExceptionController.checkExceptionBonus;
+import static lotto.controller.ExceptionController.checkExceptionWinningNumber;
 import static lotto.controller.lotteryController.*;
 import static lotto.controller.winningController.*;
+import static lotto.view.ErrorMessage.notDigitExceptionMessage;
 import static lotto.view.Message.*;
 import static lotto.view.Print.*;
 
@@ -31,6 +32,18 @@ public class Play {
         calResultPlay();
     }
 
+    public static void boughtLotto() {
+
+    }
+
+    public static void inputWinning() {
+
+    }
+
+    public static void winningResult() {
+
+    }
+
     public static int createPrice() {
         while(true) {
             messageAboutPrice();
@@ -38,7 +51,7 @@ public class Play {
             try {
                 return convertPrice(tmpPrice);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
+                //notDigitExceptionMessage();
             }
         }
     }
@@ -50,7 +63,7 @@ public class Play {
                 String tmpWinningNumbers = inputWinningNumbers();
                 return checkExceptionWinningNumber(tmpWinningNumbers);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
+                //notDigitExceptionMessage();
             }
         }
     }
@@ -63,7 +76,7 @@ public class Play {
                 String tmpBonusNumber = inputBonusNumber();
                 return checkExceptionBonus(numbers,tmpBonusNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
+                //System.out.println("[ERROR]");
             }
         }
     }

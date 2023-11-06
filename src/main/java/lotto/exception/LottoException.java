@@ -62,4 +62,9 @@ public class LottoException {
             throw new IllegalArgumentException(Constants.ERROR + "보너스 번호의 범위는 1~45이여야 합니다");
         }
     }
+    public void validateDuplicatedBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(Constants.ERROR + "보너스 번호가 중복 되었습니다");
+        }
+    }
 }

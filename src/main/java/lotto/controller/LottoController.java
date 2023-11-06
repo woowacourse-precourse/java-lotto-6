@@ -23,7 +23,7 @@ public class LottoController {
     public void run() {
         Integer price = inputView.getPrice();
         ArrayList<Lotto> lottos = lottoService.getLottos(price);
-        outputView.printLottos(lottos);
+        outputView.printLottos(lottoService.getLottoList(lottos), lottos.size());
 
         Lotto winningNumber = inputView.getWinningNumber();
         Integer bonusNumber = inputView.getBonusNumber(winningNumber);

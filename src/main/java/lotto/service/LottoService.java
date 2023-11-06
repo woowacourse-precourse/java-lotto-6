@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Ranking;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoService {
     public ArrayList<Lotto> getLottos(Integer price) {
@@ -27,6 +28,12 @@ public class LottoService {
         }
 
         return new Lotto(List.copyOf(numbers));
+    }
+
+    public String getLottoList(ArrayList<Lotto> lottos) {
+        return lottos.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
     }
 
     public HashMap<Ranking, Integer> getWinningStatic(ArrayList<Lotto> lottos, Lotto winningNumber, Integer bonusNumber) {

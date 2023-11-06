@@ -1,20 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Constants;
-import lotto.domain.Lotto;
-import lotto.domain.Ranking;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.stream.Collectors;
 
 public class OutputView {
-    public void printLottos(ArrayList<Lotto> lottos) {
-        String lottoList = lottos.stream()
-                .map(Lotto::toString)
-                .collect(Collectors.joining("\n"));
-
-        System.out.printf((Constants.PRINT_LOTTO_LIST) + "\n", lottos.size());
+    public void printLottos(String lottoList, Integer lottoSize) {
+        System.out.printf((Constants.PRINT_LOTTO_LIST) + "\n", lottoSize);
         System.out.println(lottoList);
     }
 

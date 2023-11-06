@@ -54,4 +54,13 @@ class ValidatorTest {
             assertThatThrownBy(() -> Validator.isDividedBy(1000, testCase));
         }
     }
+
+    @Test
+    @DisplayName(",,가 포함되어 있거나 ,로 시작하거나 끝날 경우 예외 발생")
+    void containInvalidComma() {
+        stringTestCases = Arrays.asList(new String[]{"1,,2", ",1,2", "1,2,", ",1", "1,"});
+        for (String testCase : stringTestCases) {
+            assertThatThrownBy(() -> Validator.containInvalidComma(testCase));
+        }
+    }
 }

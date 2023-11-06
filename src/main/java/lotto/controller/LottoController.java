@@ -76,7 +76,8 @@ public class LottoController {
         rankService = new RankService(user, winningNumbers, bonusNum);
 
         int[] winningCount = rankService.calculateLottoRanks();
-        PrintView.printWinningResult(winningCount);
+        double result = rankService.rateOfReturn();
+        PrintView.printWinningResult(winningCount, result);
     }
 
 

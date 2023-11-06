@@ -72,9 +72,13 @@ public final class LottoDrawingData {
      * <p>
      * Math.round는 소수점 첫째 자리에서 반올림 하기 때문에, 10을 곱하여 둘째 자리를 첫째 자리로 이동시키고 둘째 자리에서 반올림 한 뒤, 다시 10을 나눠서 1의 자리를 첫째 자리로 돌려줌
      */
-    private double calculateReturnOfRate() {
+    public double calculateReturnOfRate() {
         final double avg = totalEarning.toDouble() / totalCost.toDouble() * 100;
         return Math.round(avg * 10.0) / 10.0;
+    }
+
+    public int get(final LottoPrize lottoPrize) {
+        return data.get(lottoPrize);
     }
 
 

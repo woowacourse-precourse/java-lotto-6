@@ -1,19 +1,17 @@
 package lotto.domain.lotto.opened;
 
 import java.util.List;
-import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.boxed.LottoNumber;
 
-public final class LottoOpened extends Lotto {
+public final class LottoOpened {
 
-    public LottoOpened(final List<Integer> numbers) {
-        super(numbers);
+    private final List<LottoNumber> numbers;
+
+    public LottoOpened(final List<LottoNumber> numbers) {
+        this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return super.numbers
-                .stream()
-                .map(LottoNumber::getValue)
-                .toList();
+    public List<LottoNumber> getNumbers() {
+        return numbers;
     }
 }

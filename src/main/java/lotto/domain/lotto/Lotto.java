@@ -93,7 +93,7 @@ public class Lotto implements LottoTicket {
      * @apiNote <h3 color="#bf0f4d">도메인 객체를 Dto로 변환할 때만 호출하며, 도메인 객체의 모든 필드를 가지고 getter만 open 하는 중간 클래스를 만들어줍니다.</h3>
      */
     public LottoOpened toOpened() {
-        return new LottoOpened(Lotto.toNumbers(numbers));
+        return new LottoOpened(numbers);
     }
 
 }

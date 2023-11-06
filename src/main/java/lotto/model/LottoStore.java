@@ -10,10 +10,12 @@ import static lotto.constant.LottoConfig.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoConfig.MIN_LOTTO_NUMBER;
 import static lotto.constant.LottoConfig.PURCHASE_PRICE;
 import static lotto.constant.LottoConfig.TOTAL_CHOICE_NUMBER;
+import static lotto.constant.PrintMessages.PURCHASES_NUMBER;
 
 public class LottoStore {
     public static Lottos publishLotto(int money) {
         int ticketNumber = money / PURCHASE_PRICE.getValue();
+        System.out.printf(PURCHASES_NUMBER, ticketNumber);
         Lottos lottos = pickLottosNumbers(ticketNumber);
 
         return lottos;

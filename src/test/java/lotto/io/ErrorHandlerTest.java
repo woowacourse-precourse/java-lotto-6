@@ -6,36 +6,35 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ErrorHandlerTest {
-    ErrorHandler errorHandler = new ErrorHandler();
-
     @Test
     void checkInt() {
-        assertThrows(IllegalArgumentException.class, () -> errorHandler.checkInt("string"));
+        assertThrows(IllegalArgumentException.class, () -> ErrorHandler.checkInt("string"));
     }
 
     @Test
     void checkPositive() {
-        assertThrows(IllegalArgumentException.class, () -> errorHandler.checkPositive("-100"));
+        assertThrows(IllegalArgumentException.class, () -> ErrorHandler.checkPositive("-100"));
     }
 
     @Test
     void checkThousands() {
-        assertThrows(IllegalArgumentException.class, () -> errorHandler.checkThousands("1001"));
+        assertThrows(IllegalArgumentException.class, () -> ErrorHandler.checkThousands("1001"));
     }
 
     @Test
     void validateRepeat() {
-        assertThrows(IllegalArgumentException.class, () -> errorHandler.validateRepeat(List.of(1, 2, 3, 4, 5, 6, 6)));
+        assertThrows(IllegalArgumentException.class, () -> ErrorHandler.validateRepeat(List.of(1, 2, 3, 4, 5, 6, 6)));
     }
 
     @Test
     void validateRange() {
-        assertThrows(IllegalArgumentException.class, () -> errorHandler.validateRange(List.of(1, 2, 3, 4, 5, 6, 56)));
+        assertThrows(IllegalArgumentException.class, () -> ErrorHandler.validateRange(List.of(1, 2, 3, 4, 5, 6, 56)));
     }
 
     @Test
     void checkSize() {
-        assertThrows(IllegalArgumentException.class, () -> errorHandler.checkSize(List.of("1","2","3","4","5","6")));
+        assertThrows(IllegalArgumentException.class,
+                () -> ErrorHandler.checkSize(List.of("1", "2", "3", "4", "5", "6")));
     }
 
 

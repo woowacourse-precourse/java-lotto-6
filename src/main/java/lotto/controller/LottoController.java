@@ -47,6 +47,17 @@ public class LottoController {
                 outputView.printErrorMessage(ErrorMessage.INVALID_WINNING_NUMBERS);
             }
         }
+    }
 
+    private int getBonusNumber() {
+        while (true) {
+            try {
+                outputView.printBonusNumberInputMessage();
+                int number = inputView.getNumber();
+
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(ErrorMessage.INVALID_BONUS_NUMBER);
+            }
+        }
     }
 }

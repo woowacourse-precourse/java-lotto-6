@@ -35,8 +35,8 @@
   - ex) 1,2,3,4,5,6
 - [X] 보너스 번호를 입력 받는다.
   - [ ] 보너스 번호는 당첨 번호와 중복되지 않는다.
-  - [ ] 잘못된 입력이 들어오면 `IllegalArgumentException` 또는 `IllegalStateException`을 발생시키고 재입력 받는다.
-  - [ ] 에러가 발생하면 [ERROR]로 시작되는 에러 메시지를 출력하고 해당 부분부터 재입력 받는다.
+  - [X] 잘못된 입력이 들어오면 `IllegalArgumentException` 또는 `IllegalStateException`을 발생시키고 재입력 받는다.
+  - [X] 에러가 발생하면 [ERROR]로 시작되는 에러 메시지를 출력하고 해당 부분부터 재입력 받는다.
 ### domain
 - [ ] 로또 번호를 발행한다.
   - [ ] 로또 번호는 6개로 구성된다.

@@ -15,4 +15,14 @@ public class InputView {
         }
         return money;
     }
+
+    String getWinningNumber() {
+        String winningNumber;
+        try {
+            winningNumber = Console.readLine();
+        } catch (NoSuchElementException noSuchElementException) {
+            throw new IllegalArgumentException();
+        }
+        return winningNumber;
+    }
 }

@@ -7,12 +7,13 @@ public enum ErrorMessages {
     FALL_OUTSIDE_THE_RIGHT_RANGE("1 ~ 45 사이의 숫자를 입력해야합니다."),
     THERE_ARE_DUPLICATE_VALUES("중복된 값을 입력하면 안됩니다.");
 
-    private String message;
+    private final String message;
 
-    ErrorMessages(String s) {
+    ErrorMessages(String message) {
+        this.message = message;
     }
 
     public String getMessage() {
-        return "[ERROR] "+message;
+        return "[ERROR] "+ message;
     }
 }

@@ -40,18 +40,6 @@ class OutputViewTest {
     }
 
     @Test
-    void printGameResult() {
-        Map<Integer, Integer> ex = new HashMap<>();
-        ex.put(PriceConstant.FIFTH_PLACE.getCount(), 0);
-        ex.put(PriceConstant.FOURTH_PLACE.getCount(), 0);
-        ex.put(PriceConstant.THIRD_PLACE.getCount(), 0);
-        ex.put(PriceConstant.SECOND_PLACE.getCount(), 0);
-        ex.put(PriceConstant.FIRST_PLACE.getCount(), 0);
-
-        outputView.printGameResult(ex);
-    }
-
-    @Test
     void testGameResult() {
         Lotteries ex2 = Lotteries.from(5);
         System.out.println(lotteries.getNumbersOfLotteries());

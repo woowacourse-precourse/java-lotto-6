@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -42,12 +43,13 @@ class LottoTest {
                 .hasMessageContaining(ExceptionConstant.LOTTO_NUMBER_SIZE.getMessage());
     }
 
-    @DisplayName("로또 번호가 1 미만일 경우 예외가 발생한다.")
+    @DisplayName("동일한 번호의 숫자를 계산하여 출력하는지 확인한다.")
     @Test
     void test() {
         Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
         Lotto lotto2 = new Lotto(List.of(1,2,3,8,9,10));
 
-        System.out.println(lotto1.compareTo(lotto2));
+        int sameNumber = lotto1.compareTo(lotto2);
+        assertThat(sameNumber).isEqualTo(3);
     }
 }

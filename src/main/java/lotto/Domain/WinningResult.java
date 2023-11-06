@@ -59,7 +59,7 @@ public enum WinningResult {
         return (double) totalPrizeAmount / totalPurchaseAmount;
     }
 
-    public void printMessage(int count) {
+    public void printMessage(int matchCount) {
         if (this != FAILED) {
             OutputView.printSuccessMessage(winningDescription, matchCount);
         }

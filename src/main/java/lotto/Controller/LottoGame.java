@@ -105,7 +105,7 @@ public class LottoGame {
     }
 
     private void printResult(Map<WinningResult, Integer> result) {
-        for (int i = WinningResult.values().length - 1; i >= 0; i--) {
+        for (int i = 0; i <= WinningResult.values().length - 1; i++) {
             WinningResult.values()[i].printMessage(result.get(WinningResult.values()[i]));
         }
     }

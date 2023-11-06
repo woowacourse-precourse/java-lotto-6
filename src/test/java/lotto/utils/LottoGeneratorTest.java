@@ -1,6 +1,5 @@
-package lotto;
+package lotto.utils;
 
-import lotto.utils.LottoGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,10 +16,9 @@ public class LottoGeneratorTest {
     @Test
     void generateLottoNumTest() {
         // given
-        LottoGenerator lottoGenerator = new LottoGenerator();
+        List<Integer> numbers = LottoGenerator.generateLottoNumbers();
 
         // when
-        List<Integer> numbers = lottoGenerator.generateLottoNumbers();
         int result = numbers.size();
 
         // then
@@ -31,8 +29,7 @@ public class LottoGeneratorTest {
     @Test
     void validateRedundancy() {
         // given
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        List<Integer> numbers = lottoGenerator.generateLottoNumbers();
+        List<Integer> numbers = LottoGenerator.generateLottoNumbers();
 
         // when
         Set<Integer> redundancyFilter = new HashSet<>(numbers);
@@ -46,11 +43,10 @@ public class LottoGeneratorTest {
     @Test
     void validateBonusRedundancy() {
         // given
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        List<Integer> numbers = lottoGenerator.generateLottoNumbers();
+        List<Integer> numbers = LottoGenerator.generateLottoNumbers();
 
         // when
-        int result = lottoGenerator.generateBonusNumber(numbers);
+        int result = LottoGenerator.generateBonusNumber(numbers);
 
         // then
         assertFalse(numbers.contains(result));

@@ -33,7 +33,7 @@ class BonusNumTest {
     @ParameterizedTest
     @DisplayName("입력한 보너스 번호가 1~45 사이 정수가 아니면 에러메시지 출력 ")
     @ValueSource(strings = {"0", "46"})
-    void validate_positiveTest(String input) {
+    void validate_rangeTest(String input) {
         Lotto lottoSample = numberSample.getLotto("8,21,23,41,42,43");
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> sample.validate(input, lottoSample));
         assertThat(exception.getMessage()).contains(ERROR_FORMAT);

@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.constants.MarksAndConstants.COMMA;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.util.Validation;
 import lotto.view.InputView;
@@ -20,12 +21,12 @@ public class WinningNumbers {
             int oneNum = validate(token);
             numbers.add(oneNum);
         }
+        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 
     public int validate(String input) {
         int oneNum = Validation.validateInteger(input);
-        Validation.validatePositiveNumber(oneNum);
         Validation.validateNumberRange(oneNum);
         return oneNum;
     }

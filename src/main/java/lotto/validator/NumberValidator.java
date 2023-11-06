@@ -11,7 +11,7 @@ public class NumberValidator {
     private NumberValidator() {
     }
 
-    ;
+
 
     public static void validate(String input) {
         validateBlankException(input);

@@ -10,7 +10,7 @@ public class MoneyValidator {
     private static final String ERROR_MIN_MAX = ERROR + "최소 " + MIN_MONEY + "원, " + "최대 " + MAX_MONEY + "원 입니다.";
     private static final String ERROR_MONEY_UNIT = ERROR + MONEY_UNIT + "원 단위 입니다.";
 
-    private MoneyValidator() {};
+    private MoneyValidator() {}
 
     public static void validate(final String input) {
         validateMoneyBlankException(input);

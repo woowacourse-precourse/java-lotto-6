@@ -13,7 +13,7 @@ public class LottoNumberValidator {
     private static final String ERROR_MAX_SIZE = ERROR + "6개, 보너스 번호는 1개 입니다.";
     private static final String ERROR_DUPLICATION = ERROR + "겹치도록 숫자를 입력할 수 없습니다.";
 
-    private LottoNumberValidator() {};
+    private LottoNumberValidator() {}
 
     public static void validate_MIN_SIZE(List<Integer> input) {
         validateBlankException(input);

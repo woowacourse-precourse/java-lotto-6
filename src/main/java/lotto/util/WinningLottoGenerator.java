@@ -8,7 +8,7 @@ import lotto.validator.LottoNumberValidator;
 import static lotto.constant.Constant.COMMA_DELIMITER;
 
 public class WinningLottoGenerator {
-    private WinningLottoGenerator() {};
+    private WinningLottoGenerator() {}
 
     public static List<Integer> generateLottoNumber(final String input){
         List<Integer> numbers = new ArrayList<>();

@@ -5,6 +5,7 @@ import static lotto.utils.validator.Validator.validBlank;
 import static lotto.utils.validator.Validator.validFormat;
 import static lotto.utils.validator.Validator.validIsNumber;
 import static lotto.utils.validator.Validator.validLength;
+import static lotto.utils.validator.Validator.validPrice;
 import static lotto.utils.validator.Validator.validRange;
 import static lotto.utils.validator.Validator.validUniqueValue;
 
@@ -20,15 +21,25 @@ public class LottoNumberParser {
         List<String> inputs = new ArrayList<>(Arrays.asList(input.split(NUMBER_SPLIT_FORMAT)));
         List<Integer> inputNumbers = inputs.stream().map(String::trim).map(Integer::parseInt).toList();
 
-        validUniqueValue(inputNumbers);
         validLength(inputNumbers);
         validRange(inputNumbers);
+        validUniqueValue(inputNumbers);
         return inputNumbers;
     }
 
-    public static int parseStringToInt(String input) {
+    public static int parseStringToIntNumber(String input) {
         validBlank(input);
         validIsNumber(input);
-        return Integer.parseInt(input);
+        int parsInt = Integer.parseInt(input);
+        validRange(parsInt);
+        return parsInt;
+    }
+
+    public static int parseStringToIntPrice(String input) {
+        validBlank(input);
+        validIsNumber(input);
+        int parsInt = Integer.parseInt(input);
+        validPrice(parsInt);
+        return parsInt;
     }
 }

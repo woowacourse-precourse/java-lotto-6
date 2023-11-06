@@ -1,7 +1,8 @@
 package lotto.controller;
 
 import static lotto.utils.LottoNumberParser.parseListStringToListInteger;
-import static lotto.utils.LottoNumberParser.parseStringToInt;
+import static lotto.utils.LottoNumberParser.parseStringToIntNumber;
+import static lotto.utils.LottoNumberParser.parseStringToIntPrice;
 import static lotto.view.message.OutputMessage.ASK_FOR_BONUS_NUMBER;
 import static lotto.view.message.OutputMessage.ASK_FOR_LOTTO_WINNING_NUMBERS;
 import static lotto.view.message.OutputMessage.ASK_FOR_PURCHASE_PRICE;
@@ -27,20 +28,15 @@ public class LottoController {
     }
 
     public void run() {
-        try {
-            LottoPurchaseResult purchaseResult = generatePurchaseResult();
-            view.displayPurchaseResult(purchaseResult);
+        LottoPurchaseResult purchaseResult = generatePurchaseResult();
+        view.displayPurchaseResult(purchaseResult);
 
-            LottoWinningResult winningResult = generateWinningResult();
-            LottoMatchResult matchResult = matchResult(purchaseResult, winningResult);
-            LottoCalculateResult calculateResult = calculateResult(matchResult, purchaseResult);
+        LottoWinningResult winningResult = generateWinningResult();
+        LottoMatchResult matchResult = matchResult(purchaseResult, winningResult);
+        LottoCalculateResult calculateResult = calculateResult(matchResult, purchaseResult);
 
-            LottoResultDto resultDto = LottoResultDto.fromMatchAndCalculateResults(matchResult, calculateResult);
-            view.displayResult(resultDto);
-
-        } catch (IllegalArgumentException e) {
-            view.displayErrorMessage(e);
-        }
+        LottoResultDto resultDto = LottoResultDto.fromMatchAndCalculateResults(matchResult, calculateResult);
+        view.displayResult(resultDto);
     }
 
     private LottoPurchaseResult generatePurchaseResult() {
@@ -62,19 +58,34 @@ public class LottoController {
     }
 
     private Purchase promptPurchase() {
-        view.displayMessage(ASK_FOR_PURCHASE_PRICE);
-        int purchasePrice = parseStringToInt(view.readInput());
-        return new Purchase(purchasePrice);
+        try {
+            view.displayMessage(ASK_FOR_PURCHASE_PRICE);
+            int purchasePrice = parseStringToIntPrice(view.readInput());
+            return new Purchase(purchasePrice);
+        } catch (IllegalArgumentException e) {
+            view.displayErrorMessage(e);
+            return promptPurchase();
+        }
     }
 
     private List<Integer> promptWinningNumbers() {
-        view.displayMessage(ASK_FOR_LOTTO_WINNING_NUMBERS);
-        return parseListStringToListInteger(view.readInput());
+        try {
+            view.displayMessage(ASK_FOR_LOTTO_WINNING_NUMBERS);
+            return parseListStringToListInteger(view.readInput());
+        } catch (IllegalArgumentException e) {
+            view.displayErrorMessage(e);
+            return promptWinningNumbers();
+        }
     }
 
     private int promptBonusNumber() {
-        view.displayMessage(ASK_FOR_BONUS_NUMBER);
-        return parseStringToInt(view.readInput());
+        try {
+            view.displayMessage(ASK_FOR_BONUS_NUMBER);
+            return parseStringToIntNumber(view.readInput());
+        } catch (IllegalArgumentException e) {
+            view.displayErrorMessage(e);
+            return promptBonusNumber();
+        }
     }
 
     private LottoMatchResult matchResult(LottoPurchaseResult lottoPurchaseResult, LottoWinningResult lottoWinningResult) {

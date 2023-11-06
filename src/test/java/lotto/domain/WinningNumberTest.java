@@ -62,4 +62,18 @@ public class WinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.");
     }
+
+    @DisplayName("보너스 번호가 1에서 45 사이의 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createWinningNumberByBonusNumberOverRange() {
+        // given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 46;
+        // when
+
+        // then
+        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1에서 45 사이의 숫자만 가능합니다.");
+    }
 }

@@ -119,6 +119,9 @@ public final class Money {
     }
 
 
+    /**
+     * Money -> Long 타입 변환합니다.
+     */
     public long toLong() {
         return amount;
     }

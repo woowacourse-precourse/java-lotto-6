@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import static lotto.constant.LottoConstant.LOTTO_LENGTH;
 import static lotto.constant.LottoConstant.RANGE_START_NUMBER;
 import static lotto.constant.LottoConstant.RANGE_END_NUMBER;
-import static lotto.constant.LottoConstant.TWO;
-import static lotto.constant.LottoConstant.ZERO;
+import static lotto.constant.LottoConstant.REPLACE_SIZE;
+import static lotto.constant.LottoConstant.INIT_BUILDER_SIZE;
 import static lotto.exception.LottoExceptionMessage.WRONG_LOTTO_LENGTH;
 import static lotto.exception.LottoExceptionMessage.DUPLICATED_NUMBER;
 import static lotto.exception.LottoExceptionMessage.WRONG_LOTTO_NUMBER_RANGE;
@@ -99,7 +99,7 @@ public class Lotto {
             lottoBuilder.append(SPACE.getUnit());
         }
 
-        lottoBuilder.replace(lottoBuilder.length()-TWO.getSetting(),
+        lottoBuilder.replace(lottoBuilder.length()-REPLACE_SIZE.getSetting(),
                                    lottoBuilder.length(),
                                    RIGHT_BRACKET.getUnit()
         );
@@ -108,6 +108,6 @@ public class Lotto {
     }
 
     private void initLottoBuilder() {
-        lottoBuilder.setLength(ZERO.getSetting());
+        lottoBuilder.setLength(INIT_BUILDER_SIZE.getSetting());
     }
 }

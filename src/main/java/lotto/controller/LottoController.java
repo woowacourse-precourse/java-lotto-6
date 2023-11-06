@@ -22,21 +22,22 @@ public class LottoController {
     private void purchaseLotto() {
         try {
             String inputAmount = InputView.receivePurchaseAmount();
-
             lottoService.setPurchasedLottos(inputAmount);
-
-            OutputView.printPurchaseLottoCounts(lottoService.getPurchaseAmount());
-            OutputView.printRandomLottoNumbers(lottoService.getPurchasedLottos());
+            printPurchaseResult();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             purchaseLotto();
         }
     }
 
+    private void printPurchaseResult() {
+        OutputView.printPurchaseLottoCounts(lottoService.getPurchaseAmount());
+        OutputView.printRandomLottoNumbers(lottoService.getPurchasedLottos());
+    }
+
     private void receiveWinningLotto() {
         try {
             String inputWinningNumbers = InputView.receiveWinningNumber();
-
             lottoService.setWinningLotto(inputWinningNumbers);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());

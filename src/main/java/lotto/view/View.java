@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.view.constants.MessageType.BONUS_NUMBER_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
 import static lotto.view.constants.MessageType.WINNING_NUMBERS_REQUEST_MESSAGE;
@@ -27,9 +28,13 @@ public final class View {
         printLottosInfo(lottos.getLottos());
     }
 
-    public static void requestDrawnNumbers() {
+    public static String requestWinningNumbers() {
         printlnMessage(WINNING_NUMBERS_REQUEST_MESSAGE);
-        Validator.validateDrawnNumbers(enterMessage());
+        return Validator.validateWinningNumbers(enterMessage());
+    }
+
+    public static String requestBonusNumber() {
+        printlnMessage(BONUS_NUMBER_REQUEST_MESSAGE);
     }
 
     private static void printLottosCount(int count) {
@@ -72,6 +77,7 @@ public final class View {
         return Validator.validate(Console.readLine());
     }
 
+
     private static class Validator {
         private static String validate(String message) {
             if (isBlank(message)) {
@@ -90,8 +96,8 @@ public final class View {
             return cost;
         }
 
-        private static void validateNumber(String cost) {
-            if (isNotNumber(cost)) {
+        private static void validateNumber(String message) {
+            if (isNotNumber(message)) {
                 throw LottoException.from(ErrorMessage.NOT_NUMBER_ERROR);
             }
         }
@@ -110,8 +116,9 @@ public final class View {
             return Integer.parseInt(cost) % 1000 != 0;
         }
 
-        private static void validateDrawnNumbers(String message) {
+        private static String validateWinningNumbers(String message) {
             validateInvalidSeparators(message);
+            return message;
         }
 
         private static void validateInvalidSeparators(String message) {

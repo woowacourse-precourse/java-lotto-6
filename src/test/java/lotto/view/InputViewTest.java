@@ -3,8 +3,8 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import javax.xml.validation.Validator;
 import lotto.model.BuyPriceValidator;
+import lotto.model.WinningNumberValidator;
 import org.junit.jupiter.api.Test;
 
 public class InputViewTest {

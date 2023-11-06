@@ -1,8 +1,8 @@
-package lotto.model.util;
+package lotto.util;
 
-import static lotto.model.util.AmountOfLotto.LOTTO_PRICE;
-import static lotto.model.util.AmountOfLotto.MAXIMUM_PRICE;
-import static lotto.model.util.AmountOfLotto.MINIMUM_PRICE;
+import static lotto.util.AmountOfLotto.LOTTO_PRICE;
+import static lotto.util.AmountOfLotto.MAXIMUM_PRICE;
+import static lotto.util.AmountOfLotto.MINIMUM_PRICE;
 
 public enum ExceptionMessage {
     INVALID_INPUT_TYPE("숫자 형식으로 입력해주세요."),

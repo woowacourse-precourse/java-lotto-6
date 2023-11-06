@@ -1,4 +1,4 @@
-package lotto.model.util;
+package lotto.util;
 
 public enum AmountOfLotto {
     MINIMUM_PRICE(1),

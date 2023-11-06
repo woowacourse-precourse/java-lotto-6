@@ -36,7 +36,6 @@ public class LottoInputView {
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
         String userInput = Console.readLine();
         String[] splittedUserInput = userInput.split(COMMA);
-
         try {
             validateWinningNumbersInput(splittedUserInput);
             return Arrays.stream(splittedUserInput)

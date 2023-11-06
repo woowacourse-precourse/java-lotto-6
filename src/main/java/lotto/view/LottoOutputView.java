@@ -8,6 +8,8 @@ import lotto.domain.dto.LottoPrizeDto;
 public class LottoOutputView {
     private static final String LOTTO_COUNT_PHRASE = "개를 구매했습니다.";
     private static final String COUNT = "개";
+    private static final String TOTAL_RATE_OF_RETURN = "총 수익률은 ";
+    private static final String SOME_PERCENT = "%입니다.";
 
     public void printPublishedLottos(int lottoCount, List<Lotto> lottos) {
         System.out.println(lottoCount + LOTTO_COUNT_PHRASE);
@@ -32,7 +34,7 @@ public class LottoOutputView {
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.println(TOTAL_RATE_OF_RETURN + rateOfReturn + SOME_PERCENT);
     }
 
     private String countText(int count) {

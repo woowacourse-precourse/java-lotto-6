@@ -60,17 +60,14 @@ public class LottoService {
     private PrizeCondition compareOneLotto(Lotto randomLotto) {
         int matchCount = 0;
         boolean bonusMatch = false;
-
         for (Integer number : winningNumbers) {
             if (randomLotto.contains(number)) {
                 matchCount++;
             }
         }
-
         if (randomLotto.contains(bonusNumber)) {
             bonusMatch = true;
         }
-
         return PrizeCondition.findPrize(matchCount, bonusMatch);
     }
 

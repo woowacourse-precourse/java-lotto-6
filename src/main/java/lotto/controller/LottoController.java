@@ -11,7 +11,7 @@ public class LottoController {
     private static final String BONUS_NUMBER_DUPLICATED_ERROR = "보너스 숫자는 당첨 번호와 중복될 수 없습니다";
 
     private final LottoService lottoService;
-    private LottoView lottoView = new LottoView();
+    private final LottoView lottoView = new LottoView();
 
     public LottoController() {
         Money money = lottoView.getLottoPurchase();

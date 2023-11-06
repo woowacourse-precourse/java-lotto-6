@@ -65,7 +65,7 @@ public class LottoController {
         String bonus = input(BONUS_NUMBER.getMessage());
 
         try {
-            bonusNumber = new BonusNumber(stringToInt(bonus));
+            bonusNumber = new BonusNumber(stringToInt(bonus), winningLotto.getWinning());
         } catch (IllegalArgumentException exception) {
             OutputView.error(exception.getMessage());
             bonusLotto();

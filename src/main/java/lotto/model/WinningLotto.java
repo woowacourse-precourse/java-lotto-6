@@ -15,6 +15,10 @@ public class WinningLotto {
         this.winning = winning;
     }
 
+    public List<Integer> getWinning() {
+        return winning;
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplication(numbers);

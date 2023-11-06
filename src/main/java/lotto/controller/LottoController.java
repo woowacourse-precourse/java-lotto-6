@@ -2,7 +2,10 @@ package lotto.controller;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import lotto.dto.BonusNumberDto;
+import lotto.dto.LottosDto;
 import lotto.dto.RankResultDto;
+import lotto.dto.WinningNumbersDto;
 import lotto.service.LottoGameService;
 import lotto.view.InputParser;
 import lotto.view.InputView;
@@ -23,47 +26,44 @@ public class LottoController {
     }
 
     public void run() {
-        purchaseLottos();
-        determineWinningNumbers();
-        determineBonusNumber();
+        getUserInputForLottoGame();
+        proceedLottery();
+    }
+
+    private void proceedLottery() {
         RankResultDto rankResultDto = lottoGameService.calculateRank();
+        printResult(rankResultDto);
+    }
+
+    private void printResult(RankResultDto rankResultDto) {
         outputView.printRankStatistics();
         outputView.printRankResult(rankResultDto);
         outputView.printTotalReturn(rankResultDto.totalReturn());
     }
 
-    private void purchaseLottos() {
-        handleInputProcess(
-                () -> {
-                    outputView.printPurchaseAmount();
-                    String inputPurchaseAmount = inputView.getUserInput();
-                    return lottoGameService.purchaseLottos(inputParser.parsePurchaseAmount(inputPurchaseAmount));
-                },
-                outputView::printPurchasedLottos
-        );
+    private void getUserInputForLottoGame() {
+        repeatGetUserInput(this::purchaseUserLotto, outputView::printPurchasedLottos);
+        repeatGetUserInput(this::determineWinningNumbers, lottoGameService::determineWinningNumbers);
+        repeatGetUserInput(this::determineBonusNumber, lottoGameService::determineBonusNumber);
     }
 
-    private void determineWinningNumbers() {
-        handleInputProcess(
-                () -> {
-                    outputView.printInputWinningNumbers();
-                    return inputParser.parseLottoNumbers(inputView.getUserInput());
-                },
-                lottoGameService::determineWinningNumbers
-        );
+    private LottosDto purchaseUserLotto() {
+        outputView.printPurchaseAmount();
+        String inputPurchaseAmount = inputView.getUserInput();
+        return lottoGameService.purchaseLottos(inputParser.parsePurchaseAmount(inputPurchaseAmount));
     }
 
-    private void determineBonusNumber() {
-        handleInputProcess(
-                () -> {
-                    outputView.printInputBonusNumber();
-                    return inputParser.parseBonusNumber(inputView.getUserInput());
-                },
-                lottoGameService::determineBonusNumber
-        );
+    private WinningNumbersDto determineWinningNumbers() {
+        outputView.printInputWinningNumbers();
+        return inputParser.parseLottoNumbers(inputView.getUserInput());
     }
 
-    private <T> void handleInputProcess(Supplier<T> supplier, Consumer<T> consumer) {
+    private BonusNumberDto determineBonusNumber() {
+        outputView.printInputBonusNumber();
+        return inputParser.parseBonusNumber(inputView.getUserInput());
+    }
+
+    private <T> void repeatGetUserInput(Supplier<T> supplier, Consumer<T> consumer) {
         while (true) {
             try {
                 T result = supplier.get();

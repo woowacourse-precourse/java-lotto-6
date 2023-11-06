@@ -12,6 +12,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
+        validateNumberRange(numbers);
         sortAscend(numbers);
         this.numbers = numbers;
     }
@@ -28,6 +29,12 @@ public class Lotto {
         if (duplicatedNumbers.size() < numbers.size()) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_DUPLICATE_LOTTO_NUMBER);
         }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        if (numbers.stream().allMatch(number -> 1 <= number && number <= 45)) {
+            throw new IllegalArgumentException(ExceptionMessage.ERROR_NUMBER_RANGE);
+        };
     }
 
     private void sortAscend(List<Integer> numbers) {

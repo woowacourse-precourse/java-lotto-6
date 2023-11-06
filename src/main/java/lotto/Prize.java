@@ -17,4 +17,11 @@ public enum Prize {
         this.price = price;
         this.money = money;
     }
+
+    public static String prizeInfo(Prize prize) {
+        if (prize == SECOND) {
+            return prize.matches + "개 일치, 보너스 볼 일치 " + "(" + prize.price+ ")";
+        }
+        return prize.matches + "개 일치 " + "(" + prize.price + ")";
+    }
 }

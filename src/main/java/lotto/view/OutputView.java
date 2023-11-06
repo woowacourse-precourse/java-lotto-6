@@ -30,7 +30,7 @@ public class OutputView {
 
     public static void printIssueAbleCount(int issueAbleCount) {
         printEnter();
-        System.out.printf("%d개를 구매했습니다.", issueAbleCount);
+        System.out.printf("%d개를 구매했습니다.\n", issueAbleCount);
     }
 
     public static void printWinningStatics(HashMap<Integer, Integer> result) {

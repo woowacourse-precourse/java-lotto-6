@@ -36,7 +36,7 @@ public class Lotteries {
                 NumberConstant.LOTTO_MAX_NUMBER.getNumber(),
                 NumberConstant.LOTTO_COUNT.getNumber()
         );
-        Collections.sort(randomNumbers);
+        //Collections.sort(randomNumbers);
         return randomNumbers;
     }
 

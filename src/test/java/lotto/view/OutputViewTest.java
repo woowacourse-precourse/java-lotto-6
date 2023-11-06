@@ -43,6 +43,7 @@ class OutputViewTest {
         WinningLotto lotto = WinningLotto.of("1,2,3,4,5,6", "7");
         LottoResult lottoResult = LottoResult.from();
         lottoResult.countWinningCase(ex2.getLotteries(), lotto);
+        outputView.printGameResult(lottoResult.getResultMap());
         System.out.println(lottoResult.getResultMap());
     }
 }

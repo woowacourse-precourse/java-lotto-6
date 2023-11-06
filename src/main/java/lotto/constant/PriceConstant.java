@@ -26,13 +26,24 @@ public enum PriceConstant {
     }
 
     public static int getPriceByLabel(String label) {
-        int priceByCount = 0;
+        int priceByLabel = 0;
 
         for (PriceConstant priceConstant : PriceConstant.values()) {
             if (priceConstant.label.equals(label)) {
-                priceByCount = priceConstant.price;
+                priceByLabel = priceConstant.price;
             }
         }
-        return priceByCount;
+        return priceByLabel;
+    }
+
+    public static int getCountByLabel(String label) {
+        int countByLabel = 0;
+
+        for (PriceConstant priceConstant : PriceConstant.values()) {
+            if (priceConstant.label.equals(label)) {
+                countByLabel = priceConstant.count;
+            }
+        }
+        return countByLabel;
     }
 }

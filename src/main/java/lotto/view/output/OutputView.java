@@ -75,4 +75,8 @@ public class OutputView {
 
         System.out.printf(LOTTO_EARNING_RATE_FORMAT, numberFormatter.format(totalCount / purchaseMoney * 100));
     }
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }

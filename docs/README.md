@@ -41,7 +41,7 @@
     /* (1)구매 금액을 입력받아 (2)로또를 구매하고 (3)구매자에 대한 정보를 설정한다. */ 
     private void initBuyer() { 
         int purchaseAmount = getPurchaseAmount(); // (1) 구매금액 입력
-        ArrayList<Lotto> lottoTickets = buyLottoTickets(purchaseAmount); // (2) 로또 구매
+        ArrayList<Lotto> lottoTickets = purchaseLottoTickets(purchaseAmount); // (2) 로또 구매
         buyer = new Buyer(purchaseAmount, lottoTickets); // (3) 구매자 객체 생성
     }
     ```

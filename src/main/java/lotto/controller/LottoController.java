@@ -24,7 +24,7 @@ public class LottoController {
 
     private void initBuyer() {
         int purchaseAmount = getPurchaseAmount();
-        ArrayList<Lotto> lottoTickets = buyLottoTickets(purchaseAmount);
+        ArrayList<Lotto> lottoTickets = purchaseLottoTickets(purchaseAmount);
         buyer = new Buyer(purchaseAmount, lottoTickets);
     }
 
@@ -43,7 +43,7 @@ public class LottoController {
     }
 
     /* 금액에 맞추어 로또 여러 개 발행 */
-    private ArrayList<Lotto> buyLottoTickets(int purchaseAmount) {
+    private ArrayList<Lotto> purchaseLottoTickets(int purchaseAmount) {
         ArrayList<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < purchaseAmount / 1000; i++) {

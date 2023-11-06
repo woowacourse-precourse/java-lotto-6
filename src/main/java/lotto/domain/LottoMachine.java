@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import static lotto.config.LottoConfig.LOTTO_UNIT_PRICE;
+import static lotto.config.LottoConfig.LOTTO_NUMBER_COUNT;
+import static lotto.config.LottoConfig.LOTTO_NUMBER_MIN;
+import static lotto.config.LottoConfig.LOTTO_NUMBER_MAX;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -11,11 +16,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoMachine {
-
-    private final int LOTTO_UNIT_PRICE = 1000;
-    private final int LOTTO_NUMBER_COUNT = 6;
-    private final int LOTTO_MIN_NUMBER = 1;
-    private final int LOTTO_MAX_NUMBER = 45;
     private final String NUMBER_DELIMITER = ",";
     private final List<Lotto> lottos;
     private int lottosCount;
@@ -53,7 +53,7 @@ public class LottoMachine {
             totalPrize += (long) winningDetails[i] * PRIZE_MONEY[i];
         }
 
-        return (double) Math.round(totalPrize / (lottosCount * LOTTO_UNIT_PRICE) * 1000) / 10;
+        return (double) Math.round(totalPrize / (lottosCount * LOTTO_UNIT_PRICE.getNumber()) * 1000) / 10;
     }
 
     private void setBonusNumber() {
@@ -109,14 +109,20 @@ public class LottoMachine {
     }
 
     private void setLottosCount(int purchasePrice) {
-        this.lottosCount = purchasePrice / LOTTO_UNIT_PRICE;
+        this.lottosCount = purchasePrice / LOTTO_UNIT_PRICE.getNumber();
     }
 
     private void setLottos() {
         for(int i = 1; i <= lottosCount; i++) {
             pass = true;
             do {
-                List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT));
+                List<Integer> lottoNumbers = new ArrayList<>(
+                        Randoms.pickUniqueNumbersInRange(
+                                LOTTO_NUMBER_MIN.getNumber()
+                                , LOTTO_NUMBER_MAX.getNumber()
+                                , LOTTO_NUMBER_COUNT.getNumber()
+                        )
+                );
                 try {
                     pass = false;
                     Collections.sort(lottoNumbers);
@@ -134,20 +140,20 @@ public class LottoMachine {
         if (InputValidator.isNotNumeric(inputPrice)) {
             throw new IllegalArgumentException("[ERROR] 잘못된 금액을 입력했습니다.");
         }
-        if (InputValidator.isNotRemainderZero(inputPrice, LOTTO_UNIT_PRICE)) {
+        if (InputValidator.isNotRemainderZero(inputPrice, LOTTO_UNIT_PRICE.getNumber())) {
             throw new IllegalArgumentException("[ERROR] 금액이 맞아떨어지지 않습니다.");
         }
     }
 
 
     private void winningNumbersValidate(String inputNumbers) {
-        if(InputValidator.isNotMatchNumbersCount(inputNumbers, NUMBER_DELIMITER, LOTTO_NUMBER_COUNT)) {
+        if(InputValidator.isNotMatchNumbersCount(inputNumbers, NUMBER_DELIMITER, LOTTO_NUMBER_COUNT.getNumber())) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개가 아닙니다.");
         }
         if(Arrays.stream(inputNumbers.split(NUMBER_DELIMITER)).anyMatch(InputValidator::isNotNumeric)) {
             throw new IllegalArgumentException("[ERROR] 잘못된 번호를 입력했습니다1.");
         }
-        if(Arrays.stream(inputNumbers.split(NUMBER_DELIMITER)).anyMatch(n -> InputValidator.isNumberNotInRange(n, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER))) {
+        if(Arrays.stream(inputNumbers.split(NUMBER_DELIMITER)).anyMatch(n -> InputValidator.isNumberNotInRange(n, LOTTO_NUMBER_MIN.getNumber(), LOTTO_NUMBER_MAX.getNumber()))) {
             throw new IllegalArgumentException("[ERROR] 잘못된 번호를 입력했습니다2.");
         }
         if(InputValidator.isDuplicateNumber(List.of(inputNumbers.split(NUMBER_DELIMITER)))) {

@@ -14,7 +14,7 @@ public class OutputView {
     private final String FIVE = "5개 일치 (1,500,000원) - ";
     private final String FIVE_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     private final String SIX = "6개 일치 (2,000,000,000원) - ";
-    private final String SOME = "";
+    private final String SOME = "개";
 
 
 
@@ -51,5 +51,9 @@ public class OutputView {
         System.out.print(SIX);
         //개수 입력
         System.out.println(SOME);
+    }
+
+    public void yieldRateOfReturn(double YIELD){
+        System.out.println("총 수익률은 " + YIELD + "%입니다.");
     }
 }

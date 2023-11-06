@@ -8,7 +8,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.WinningNumber;
 import lotto.dto.WinningStatisticsDto;
-import lotto.exception.NotValidGivenPriceException;
 
 public class LottoServiceImpl implements LottoService {
 
@@ -45,13 +44,6 @@ public class LottoServiceImpl implements LottoService {
         return mapToWinningStatisticsDto(countMap, winningRate);
     }
 
-    @Override
-    public int getNumberOfLottoToBeIssued(int price) throws IllegalArgumentException {
-        if (price == 0 || price % 1000 != 0) {
-            throw new NotValidGivenPriceException();
-        }
-        return price / 1000;
-    }
 
     private WinningStatisticsDto mapToWinningStatisticsDto(Map<Integer, Integer> countMap, double winningRate) {
         return new WinningStatisticsDto(countMap.getOrDefault(3, 0), countMap.getOrDefault(4, 0),

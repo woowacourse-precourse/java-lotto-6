@@ -17,7 +17,7 @@ public class BonusNumberValidator {
         }
     }
 
-    public static void checkWinningLottoAndBonusDuplicated(Lotto winningLotto, int bonusNumber)
+    public static void checkWinningLottoWinningBonusDuplicatedAndThrowException(Lotto winningLotto, int bonusNumber)
             throws IllegalArgumentException {
         List<Integer> numbers = winningLotto.getNumbers();
         if (numbers.contains(bonusNumber)) {

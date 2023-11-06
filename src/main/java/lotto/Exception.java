@@ -5,7 +5,7 @@ public enum Exception {
     ONLY_NUMERIC_INPUT_FOR_MONEY("구입금액은 숫자만 입력 가능합니다.");
 
     private static final String PREFIX = "[ERROR] ";
-    private String message;
+    private final String message;
 
     Exception(String message) {
         this.message = message;

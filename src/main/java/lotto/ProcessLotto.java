@@ -17,22 +17,13 @@ public class ProcessLotto {
     public void drawLotto(ValidateTools validateTools){
         InputValidate inputValidate = new InputValidate(validateTools);
         AmountProcessing amountProcessing = new AmountProcessing();
-        Generator generator = new Generator();
         CalculateLotto calculateLotto = new CalculateLotto();
 
-        int cost = askCost(inputValidate);
+        int cost = askCost(inputValidate, 0);
         int count = amountProcessing.getLottoCount(cost);
         outputView.printNumberPurchase(count);
 
-        List<Lotto> lottos = new ArrayList<>();
-        while (count > 0){
-            count--;
-            List<Integer> generateNums = generator.generate6Nums();
-            Lotto lotto = new Lotto(generateNums);
-            outputView.printGeneratedNums(generateNums);
-            lottos.add(lotto);
-        }
-
+        List<Lotto> lottos = generateLottos(count, new Generator());
         List<Integer> winningNums = askWinningNums(inputValidate, new ArrayList<>());
         int bonus = askBonus(inputValidate, winningNums, 0);
 
@@ -69,8 +60,7 @@ public class ProcessLotto {
 
     }
 
-    private int askCost(InputValidate inputValidate){
-        int cost = 0;
+    private int askCost(InputValidate inputValidate, int cost){
         boolean success = false;
         while (!success){
             try{
@@ -113,6 +103,18 @@ public class ProcessLotto {
             }
         }
         return bonus;
+    }
+
+    private List<Lotto> generateLottos(int count, Generator generator){
+        List<Lotto> lottos = new ArrayList<>();
+        while (count > 0){
+            count--;
+            List<Integer> generateNums = generator.generate6Nums();
+            Lotto lotto = new Lotto(generateNums);
+            outputView.printGeneratedNums(generateNums);
+            lottos.add(lotto);
+        }
+        return lottos;
     }
 
 

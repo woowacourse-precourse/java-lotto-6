@@ -27,7 +27,7 @@ public class PrizeResultTest {
     void fifthTest() {
         WinningLotto winningLotto = WinningLotto.of("1,2,3,30,31,32", "33");
 
-        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+        PrizeResult prizeResult = PrizeResult.of(lottos, winningLotto);
 
         assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(0);
         assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(0);
@@ -43,7 +43,7 @@ public class PrizeResultTest {
     void fourthTest() {
         WinningLotto winningLotto = WinningLotto.of("1,2,3,4,30,31", "32");
 
-        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+        PrizeResult prizeResult = PrizeResult.of(lottos, winningLotto);
 
         assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(0);
         assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(0);
@@ -59,7 +59,7 @@ public class PrizeResultTest {
     void thirdTest() {
         WinningLotto winningLotto = WinningLotto.of("1,2,3,4,5,30", "31");
 
-        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+        PrizeResult prizeResult = PrizeResult.of(lottos, winningLotto);
 
         assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(0);
         assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(0);
@@ -75,7 +75,7 @@ public class PrizeResultTest {
     void secondTest() {
         WinningLotto winningLotto = WinningLotto.of("1,2,3,4,5,30", "6");
 
-        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+        PrizeResult prizeResult = PrizeResult.of(lottos, winningLotto);
 
         assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(0);
         assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(1);
@@ -91,7 +91,7 @@ public class PrizeResultTest {
     void firstTest() {
         WinningLotto winningLotto = WinningLotto.of("1,2,3,4,5,6", "30");
 
-        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+        PrizeResult prizeResult = PrizeResult.of(lottos, winningLotto);
 
         assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(1);
         assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(0);
@@ -107,7 +107,7 @@ public class PrizeResultTest {
     void prizeMoneyTest() {
         WinningLotto winningLotto = WinningLotto.of("1,2,3,7,8,9", "30");
 
-        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+        PrizeResult prizeResult = PrizeResult.of(lottos, winningLotto);
 
         assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(0);
         assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(0);

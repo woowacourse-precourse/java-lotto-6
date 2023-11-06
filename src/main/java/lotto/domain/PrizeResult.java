@@ -8,14 +8,21 @@ import java.util.stream.Collectors;
 public class PrizeResult {
     private static final String RESULT_FORMAT = "%s - %d개";
 
-    EnumMap<Prize, Integer> prizeCounts = new EnumMap<>(Prize.class);
+    EnumMap<Prize, Integer> prizeCounts;
 
-    public PrizeResult(Lottos lottos, WinningLotto winningLotto) {
-        Arrays.stream(Prize.values()).forEach(prize -> prizeCounts.put(prize, 0));
+    private PrizeResult() {
+        this.prizeCounts = new EnumMap<>(Prize.class);
+    }
 
-        lottos.getLottos().forEach(lotto ->
-                updatePrizeCount(calculatePrize(lotto, winningLotto))
-        );
+    public static PrizeResult of(Lottos lottos, WinningLotto winningLotto) {
+        PrizeResult prizeResult = new PrizeResult();
+
+        lottos.getLottos().forEach(lotto -> {
+            Prize prize = prizeResult.calculatePrize(lotto, winningLotto);
+            prizeResult.updatePrizeCount(prize);
+        });
+
+        return prizeResult;
     }
     
     public EnumMap<Prize, Integer> getPrizeCounts() {
@@ -30,11 +37,9 @@ public class PrizeResult {
     }
 
     public int getPrizeMoney() {
-        int prizeMoney = 0;
-        for (EnumMap.Entry<Prize, Integer> entry : prizeCounts.entrySet()) {
-            prizeMoney += (entry.getKey().getMoney() * entry.getValue());
-        }
-        return prizeMoney;
+        return prizeCounts.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getMoney() * entry.getValue())
+                .sum();
     }
 
     private Prize calculatePrize(Lotto lotto, WinningLotto winningLotto) {

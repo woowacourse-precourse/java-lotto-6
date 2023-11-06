@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasePrice;
-import lotto.domain.WinningLotto;
 import lotto.validator.InputValidator;
 
 import java.util.Arrays;
@@ -12,30 +11,54 @@ import java.util.stream.Collectors;
 
 public class InputView {
     private InputValidator inputValidator = new InputValidator();
+    private String price;
+    private String winnigLotto;
+    private Lotto winLotto;
+    private String bonusNumber;
 
     public PurchasePrice inputPrice() {
-        String price = Console.readLine();
-        inputValidator.checkInteger(price);
+        price = Console.readLine();
+
+        try {
+            inputValidator.checkInteger(price);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            inputPrice();
+        }
+
         return new PurchasePrice(Integer.parseInt(price));
     }
 
     public Lotto inputWinLotto() {
-        String winnigLotto = Console.readLine();
+        winnigLotto = Console.readLine();
 
-        inputValidator.checkBlank(winnigLotto);
-        inputValidator.checkOnlyNumberAndDelimiterCommaContain(winnigLotto);
+        try {
+            inputValidator.checkBlank(winnigLotto);
+            inputValidator.checkOnlyNumberAndDelimiterCommaContain(winnigLotto);
 
-        String[] numbers = winnigLotto.split(",");
-        List<Integer> winningNumbers = Arrays.stream(numbers)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+            String[] numbers = winnigLotto.split(",");
+            List<Integer> winningNumbers = Arrays.stream(numbers)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
 
-        return new Lotto(winningNumbers);
+            winLotto = new Lotto(winningNumbers);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            inputWinLotto();
+        }
+
+        return winLotto;
     }
 
     public int inputBonusNumber() {
-        String bonusNumber = Console.readLine();
-        inputValidator.checkInteger(bonusNumber);
+        bonusNumber = Console.readLine();
+        try {
+            inputValidator.checkInteger(bonusNumber);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            inputBonusNumber();
+        }
         return Integer.parseInt(bonusNumber);
     }
 }

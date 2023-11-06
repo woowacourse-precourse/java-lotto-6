@@ -59,9 +59,17 @@ public class LottoGame {
 
     private void inputBonusNumber(WinningLotto winningLotto) {
         outputView.printBonusNumbersInputGuide();
-        winningLotto.setBonusLottoNum(inputView.inputBonusNumber());
+        validateBonusLottoNumber(winningLotto);
     }
- 
+
+    private void validateBonusLottoNumber(WinningLotto winningLotto) {
+        try {
+            winningLotto.setBonusLottoNum(inputView.inputBonusNumber());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            validateBonusLottoNumber(winningLotto);
+        }
+    }
 
     private void countWinRank(List<Lotto> lottos, WinningLotto winningLotto) {
         for (Lotto userLotto : lottos) {

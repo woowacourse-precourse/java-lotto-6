@@ -6,6 +6,6 @@ public record DrawingResultDto(
         int thirdMatchCount,
         int fourthMatchCount,
         int fifthMatchCount,
-        double earningOfRate
+        double prizeOfRate
 ) {
 }

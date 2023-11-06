@@ -18,7 +18,7 @@ public class LottoView {
     }
 
     public void printLottoNumber(LottoList lottoList) {
-        System.out.println("8개를 구매했습니다.");
+        System.out.println("\n8개를 구매했습니다.");
         Stream.of(lottoList.getLottoList())
                 .forEach(lotto -> lotto.forEach(this::printLotto));
         System.out.println();
@@ -29,11 +29,11 @@ public class LottoView {
     }
 
     public void printInputWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
     public void printInputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     public void printResult(Result result, PurchaseAmount purchaseAmount) {

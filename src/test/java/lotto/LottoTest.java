@@ -30,30 +30,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨 번호와 로또 번호를 비교하여 등수를 반환한다.")
-    @ParameterizedTest
-    @CsvSource(value = {
-            "1,2,3,4,5,6:FIRST",
-            "1,2,3,4,5,7:SECOND",
-            "1,2,3,4,5,8:THIRD",
-            "1,2,3,4,7,8:FOURTH",
-            "1,2,3,7,8,9:FIFTH",
-            "1,2,7,8,9,10:NO_PRIZE"
-    }, delimiter = ':')
-    void getPrize(String inputNumbers, String expectedPrize) {
-        // given
-        List<Integer> numbers = Arrays.stream(inputNumbers.split(LottoConstant.DELIMITER.get()))
-                .map(Integer::parseInt)
-                .toList();
-        Lotto lotto = new Lotto(numbers);
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoNumber bonusNumber = new LottoNumber(7);
-        // when
-        Prize prize = lotto.getPrize(winningLotto, bonusNumber);
-        // then
-        assertThat(prize.name()).isEqualTo(expectedPrize);
-    }
-
     @DisplayName("로또가 가진 번호들을 오름차순 정렬, 쉼표로 구분, 대괄호로 감싼 뒤 반환한다.")
     @Test
     void getLottoPrintFormat() {

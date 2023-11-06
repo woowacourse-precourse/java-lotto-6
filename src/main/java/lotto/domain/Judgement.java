@@ -3,26 +3,22 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.constants.OutputMessage;
 
 public class Judgement {
     private final int CORRECT_THREE = 3;
     private final int CORRECT_FOUR = 4;
     private final int CORRECT_FIVE = 5;
     private final int CORRECT_SIX = 6;
-    private final int CORRECT_FIVE_WITH_BONUS = 999;
+    public static final int CORRECT_FIVE_WITH_BONUS = 999;
     private final int REWARD_CORRECT_THREE = 5000;
     private final int REWARD_CORRECT_FOUR = 50000;
     private final int REWARD_CORRECT_FIVE = 1500000;
     private final int REWARD_CORRECT_FIVE_WITH_BONUS = 30000000;
     private final int REWARD_CORRECT_SIX = 2000000000;
-    private final int MIN_CORRECT_AMOUNT = 3;
-    private final int MAX_CORRECT_AMOUNT = 6;
     private int amountOfCorrect;
 
-
-    private final Map<Integer, Integer> reward;
-    private static Map<Integer, Integer> amountReward;
+    public static Map<Integer, Integer> reward;
+    public static Map<Integer, Integer> amountReward;
 
     public Judgement() {
         this.reward = resetReward();
@@ -66,31 +62,4 @@ public class Judgement {
         plusAmount(payBack);
         return payBack;
     }
-
-    public void outputResult() {
-        Numbers numbers = new Numbers();
-        System.out.println(OutputMessage.OUTPUT_MESSAGE);
-        System.out.println("---");
-        for (int i = MIN_CORRECT_AMOUNT; i <= MAX_CORRECT_AMOUNT; i++) {
-            if (i == MAX_CORRECT_AMOUNT) {
-                outputBonusResult(numbers);
-            }
-
-            System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_RESULT), i);
-            System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_MONEY),
-                    numbers.putCommaInNumber(reward.get(i)),
-                    amountReward.get(reward.get(i)));
-            System.out.println("");
-        }
-    }
-
-    private void outputBonusResult(Numbers numbers) {
-        System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_RESULT), CORRECT_FIVE);
-        System.out.print(OutputMessage.OUTPUT_MESSAGE_BONUS);
-        System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_MONEY),
-                numbers.putCommaInNumber(reward.get(CORRECT_FIVE_WITH_BONUS)),
-                amountReward.get(reward.get(CORRECT_FIVE_WITH_BONUS)));
-        System.out.println("");
-    }
-
 }

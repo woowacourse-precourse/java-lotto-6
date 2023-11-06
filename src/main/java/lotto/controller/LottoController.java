@@ -13,6 +13,8 @@ public class LottoController {
     public static final int CURRENCY_UNIT = 1000;
     private final int ERROR_NUMBER = -1;
     private final int MIN_PRICE = 1000;
+    private final int MIN_CORRECT_AMOUNT = 3;
+    private final int MAX_CORRECT_AMOUNT = 6;
     private final long INPUT_PRICE;
     private final List<Lotto> MY_LOTTOS;
     private final List<Integer> WINNER_NUMBERS;
@@ -98,7 +100,7 @@ public class LottoController {
             }
         }
 
-        outputView.outputTotalResult(judgement);
+        outputView.outputResult(MIN_CORRECT_AMOUNT, MAX_CORRECT_AMOUNT);
     }
 
     public void outputTotalReward() {

@@ -26,10 +26,10 @@ class Controller {
         Lotto answerLotto = createAnswerLotto();
         LottoNumber bonus = createBonus();
 
-        handlePrintRaffleResultError(player, answerLotto, bonus);
+        handlePrintLottoResultError(player, answerLotto, bonus);
     }
 
-    private void handlePrintRaffleResultError(Player player, Lotto answerLotto, LottoNumber bonus) {
+    private void handlePrintLottoResultError(Player player, Lotto answerLotto, LottoNumber bonus) {
         try {
             printLottoResult(player, answerLotto, bonus);
         } catch (IllegalArgumentException e) {

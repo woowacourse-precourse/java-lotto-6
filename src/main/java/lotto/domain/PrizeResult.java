@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class PrizeResult {
     private static final String RESULT_FORMAT = "%s - %d개";
 
-    EnumMap<Prize, Integer> prizeCounts;
+    private EnumMap<Prize, Integer> prizeCounts;
 
     private PrizeResult() {
         this.prizeCounts = new EnumMap<>(Prize.class);

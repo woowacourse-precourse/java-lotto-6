@@ -21,4 +21,7 @@ public class LottoUI {
         }
     }
 
+    public static void printRandomLottos(List<Lotto> lottos){
+
+    }
 }

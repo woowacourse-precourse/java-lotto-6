@@ -20,7 +20,14 @@ public class LottoGameConsoleView implements LottoGameView {
 
     @Override
     public void printPurchasedTickets(List<Lotto> purchasedLottoTickets) {
+        long numLottoTickets = purchasedLottoTickets.size();
 
+        System.out.println();
+        System.out.println(numLottoTickets + "개를 구매했습니다.");
+
+        for (Lotto lottoTicket : purchasedLottoTickets) {
+            System.out.println(lottoTicket.getNumbers());
+        }
     }
 
     @Override
@@ -44,5 +51,4 @@ public class LottoGameConsoleView implements LottoGameView {
         System.out.println(message);
         System.out.println();
     }
-
 }

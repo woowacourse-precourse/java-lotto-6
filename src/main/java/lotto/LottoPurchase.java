@@ -25,8 +25,9 @@ public class LottoPurchase {
     }
 
     public List<Lotto> purchase(LottoGenerator lottoGenerator) {
+        long numTickets = purchaseAmount / LottoConstant.LOTTO_TICKET_PRICE;
         List<Lotto> lottoTickets = new ArrayList<>();
-        for (int i = 0; i < purchaseAmount; ++i) {
+        for (long i = 0; i < numTickets; ++i) {
             lottoTickets.add(lottoGenerator.generate());
         }
 

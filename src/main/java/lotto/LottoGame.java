@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import lotto.dto.LottoPurchaseRequest;
 
 public class LottoGame {
@@ -24,5 +25,8 @@ public class LottoGame {
                 lottoGameView.printException(e);
             }
         }
+
+        List<Lotto> lottoTickets = lottoPurchase.purchase(lottoGenerator);
+        lottoGameView.printPurchasedTickets(lottoTickets);
     }
 }

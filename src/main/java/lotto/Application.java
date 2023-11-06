@@ -132,25 +132,25 @@ public class Application {
 
         //당첨 통계 산출
         List<Integer> winningNumbers = gameData.getWinningNumbers();
-        gameStatistics.generateMatchingNumberCountList();
-        List<Integer> matchingNumberCountList = gameStatistics.getMatchingNumberCountList();
+        gameStatistics.generateMatchingCountList();
+        List<Integer> matchingCountList = gameStatistics.getMatchingCountList();
         gameStatistics.generateLotteryRankList();
-        List<Rank> rankList = gameStatistics.getLotteryRankList();
+        List<Rank> lotteryRankList = gameStatistics.getLotteryRankList();
 
-        Controller.fillMatchingNumberCountList(lottoList, winningNumbers, matchingNumberCountList);
-        Controller.fillRankList(rankList, matchingNumberCountList);
+        Controller.fillMatchingCountList(lottoList, winningNumbers, matchingCountList);
+        Controller.fillLotteryRankList(lotteryRankList, matchingCountList);
 
         Integer bonusNumber = gameData.getBonusNumber();
-        for (int i = 0; i < rankList.size(); i++) {
+        for (int i = 0; i < lotteryRankList.size(); i++) {
             boolean bonusFlag;
-            Rank rank = rankList.get(i);
+            Rank rank = lotteryRankList.get(i);
 
             //3등(번호 5개 일치)인 경우, 보너스 번호 일치 여부 확인 / 2등으로 전환
             if (rank.equals(Rank.THIRD)) {
                 Lotto secondRankCandidateLotto = lottoList.get(i);
                 List<Integer> secondRankCandidateLottoNumbers = secondRankCandidateLotto.getNumbers();
                 bonusFlag = Controller.bonusNumberFlag(secondRankCandidateLottoNumbers, bonusNumber);
-                Controller.changeRankByBonusNumber(rankList, bonusFlag, i);
+                Controller.changeRankByBonusNumber(lotteryRankList, bonusFlag, i);
             }
         }
 
@@ -161,7 +161,7 @@ public class Application {
 
         for (Rank rank : Rank.values()) {
             DecimalFormat df = new DecimalFormat("###,###");
-            Integer matchingCount = Collections.frequency(rankList, rank);
+            Integer matchingCount = Collections.frequency(lotteryRankList, rank);
             if (rank.equals(Rank.FAIL)) {
                 continue;
             }
@@ -173,7 +173,7 @@ public class Application {
             }
         }
 
-        Integer totalPrize = Calculator.calculateTotalPrize(rankList);
+        Integer totalPrize = Calculator.calculateTotalPrize(lotteryRankList);
         Double pricePrizeRatio = Calculator.calculatePricePrizeRatio(totalPrize, budget);
         View.printPricePrizeRatio(pricePrizeRatio);
     }

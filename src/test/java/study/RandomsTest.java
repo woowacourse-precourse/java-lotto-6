@@ -5,7 +5,6 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-
 public class RandomsTest {
 
     @Test

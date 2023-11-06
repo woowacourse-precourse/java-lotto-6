@@ -27,7 +27,7 @@ public class BonusNumberGenerator {
 
         try {
             Validator.validateExistValue(inputBonusValue);
-            int convertedBonusNum = Validator.validateNumericInput(inputBonusValue);
+            int convertedBonusNum = Validator.validateNumericInput(inputBonusValue.trim());
             int bonusNumberInRange = Validator.validateNumberInRange(convertedBonusNum);
 
             return bonusNumberInRange;

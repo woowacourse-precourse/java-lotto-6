@@ -1,19 +1,14 @@
-package lotto.dto;
+package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.model.Lotto;
-import lotto.model.LottoRank;
-import lotto.model.Lottos;
-import lotto.model.WinningLotto;
-import lotto.model.LottoRankResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinningLottoResultTest {
+public class LottoRankResultTest {
     LottoRankResult result;
     Lotto winningLottoNumbers;
     int bonusNumber;
@@ -29,7 +24,7 @@ public class WinningLottoResultTest {
 
     @DisplayName("당첨되지 않은 로또가 주어지면 당첨되지 않은 로또의 개수만 증가해야 한다.")
     @Test
-    void testWinningLottoResultByBuyerLotto() {
+    void testLottoRankResultByBuyerLotto() {
         //given
         Lottos lottos = new Lottos(List.of(
                 new Lotto(List.of(10, 11, 12, 13, 14, 15)),
@@ -47,7 +42,7 @@ public class WinningLottoResultTest {
 
     @DisplayName("당첨된 로또가 한 개 주어지면 해당 등수 로또의 개수가 1증가해야 한다.")
     @Test
-    void testWinningLottoResultByOnlyOneBuyerLotto() {
+    void testLottoRankResultByOnlyOneBuyerLotto() {
         //given
         Lotto buyerLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));    // 1등
 
@@ -61,7 +56,7 @@ public class WinningLottoResultTest {
 
     @DisplayName("당첨된 로또가 여러 개 주어지면 해당 등수 로또들의 개수가 1증가해야 한다.")
     @Test
-    void testWinningLottoResultByOneMoreBuyerLotto() {
+    void testLottoRankResultByOneMoreBuyerLotto() {
         //given
         Lottos lottos = new Lottos(List.of(
                 new Lotto(List.of(1, 2, 3, 13, 14, 15)),    // 5등
@@ -77,6 +72,29 @@ public class WinningLottoResultTest {
         //then
         List<Integer> target = List.of(0, 2, 0, 1, 1, 0);
         assertThat(counts).isEqualTo(target);
+    }
+
+    @DisplayName("당첨된 로또의 등수별 상금을 계산하여 총 수익률을 반환해야 한다.")
+    @Test
+    void testTotalReturnByLottoPrize() {
+        //given
+        Lottos lottos = new Lottos(List.of(
+                new Lotto(List.of(1, 2, 3, 13, 14, 15)),    // 5등
+                new Lotto(List.of(1, 2, 10, 15, 16, 17)),
+                new Lotto(List.of(1, 2, 13, 20, 25, 28)),
+                new Lotto(List.of(4, 5, 16, 28, 29, 30)),
+                new Lotto(List.of(4, 5, 16, 18, 19, 30)),
+                new Lotto(List.of(4, 5, 16, 38, 39, 40)),
+                new Lotto(List.of(4, 5, 16, 28, 29, 40)),
+                new Lotto(List.of(4, 5, 16, 28, 29, 45))
+        ));
+
+        //when
+        countWinningResult(lottos);
+        double totalReturn = (double) result.getTotalReturn(lottos.size());
+
+        //then
+        assertThat(totalReturn).isEqualTo(62.5);
     }
 
     private void countWinningResult(Lottos lottos) {

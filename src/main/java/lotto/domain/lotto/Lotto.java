@@ -6,8 +6,7 @@ public class Lotto {
     private static final String START_APPEND_STING = "[";
     private static final String MIDDLE_APPEND_COMMA_BLANK = ", ";
     private static final String END_APPEND_COMMA_BLANK = "]";
-
-    // TODO: 추가 기능 구현
+    private static final Integer SIZE_NUMBERS = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,11 +17,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIZE_NUMBERS) {
             throw new IllegalArgumentException();
         }
     }
+    // TODO: 추가 기능 구현
 
+    // TODO: 11/6/23 상수 정리
     private void validateDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {

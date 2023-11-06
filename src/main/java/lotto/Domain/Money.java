@@ -6,29 +6,27 @@ import static lotto.CommonValidation.CommonValidation.isInteger;
 import static lotto.Dictionary.LottoDictionary.*;
 import static lotto.Dictionary.MoneyDictionary.*;
 import static lotto.Message.ExceptionMessage.MoneyErrorMessage.*;
-import static lotto.Util.Util.ConvertStringToInteger;
+import static lotto.Util.Util.convertStringToInteger;
 
-import lotto.Dictionary.LottoDictionary;
-import lotto.Dictionary.MoneyDictionary;
 import lotto.Exception.MoneyException;
 
 public class Money {
 
-    Integer money;
+    private int money;
 
-    public Money(String inputMoney) {
+    private Money(String inputMoney) {
         hasBlank(inputMoney);
         isInteger(inputMoney);
-        this.money = ConvertStringToInteger(inputMoney);
+        this.money = convertStringToInteger(inputMoney);
         isValidRange(money);
         isDivisible(money);
     }
 
-    public static Money of(String inputMoney) {
+    public static Money from(String inputMoney) {
         return new Money(inputMoney);
     }
 
-    public Integer getMoney() {
+    public int getMoney() {
         return money;
     }
 

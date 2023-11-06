@@ -1,11 +1,10 @@
 package lotto.Domain;
 
-import static lotto.CommonValidation.CommonValidation.isValueBetween1And45;
+import static lotto.CommonValidation.CommonValidation.isValidLottoNumber;
 import static lotto.Dictionary.LottoDictionary.*;
 import static lotto.Message.ExceptionMessage.LottoExceptionMessage.*;
 
 import java.util.List;
-import lotto.Dictionary.LottoDictionary;
 import lotto.Exception.LottoException;
 
 public class Lotto {
@@ -15,7 +14,7 @@ public class Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         for (Integer number : numbers) {
-            isValueBetween1And45(number);
+            isValidLottoNumber(number);
         }
         this.numbers = numbers;
     }

@@ -14,7 +14,7 @@ class UtilTest {
         String str = "1";
 
         //when
-        Integer result = Util.ConvertStringToInteger(str);
+        Integer result = Util.convertStringToInteger(str);
 
         //then
         assertEquals(1, result);

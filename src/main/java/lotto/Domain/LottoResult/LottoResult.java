@@ -4,16 +4,15 @@ import static lotto.Domain.LottoResult.Prize.*;
 import static lotto.Domain.LottoResult.Rank.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
 
-    Map<Integer, Prize> lottoResult;
+    private Map<Integer, Prize> lottoResult;
 
-    public LottoResult() {
+    private LottoResult() {
         this.lottoResult = new LinkedHashMap<>();
         this.lottoResult.put(FIRST.getRank(), FIRST_PRIZE);
         this.lottoResult.put(SECOND.getRank(), SECOND_PRIZE);
@@ -22,12 +21,11 @@ public class LottoResult {
         this.lottoResult.put(FIFTH.getRank(), FIFTH_PRIZE);
     }
 
-    public void addPrizeCount(Integer rank) {
-        lottoResult.get(rank).addCount();
+    public static LottoResult from() {
+        return new LottoResult();
     }
-
-    public Prize findPrizeByRank(Integer rank) {
-        return lottoResult.get(rank);
+    public void IncreaseWinningCount(Integer rank) {
+        lottoResult.get(rank).IncreaseWinningCount();
     }
 
     public List<Prize> findAllPrize() {
@@ -36,7 +34,7 @@ public class LottoResult {
 
     public int findTotalAward() {
         return lottoResult.values().stream()
-                .mapToInt(prize -> prize.getAward() * prize.getCount())
+                .mapToInt(prize -> prize.getAward() * prize.getWinningCount())
                 .sum();
     }
 }

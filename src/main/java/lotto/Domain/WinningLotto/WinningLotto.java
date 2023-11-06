@@ -2,9 +2,9 @@ package lotto.Domain.WinningLotto;
 
 import static lotto.CommonValidation.CommonValidation.hasBlank;
 import static lotto.CommonValidation.CommonValidation.isInteger;
-import static lotto.CommonValidation.CommonValidation.isValueBetween1And45;
+import static lotto.CommonValidation.CommonValidation.isValidLottoNumber;
 import static lotto.Message.ExceptionMessage.LottoExceptionMessage.LOTTO_DUPLICATE_WITH_BONUS_NUMBER_ERROR_MESSAGE;
-import static lotto.Util.Util.ConvertStringToInteger;
+import static lotto.Util.Util.convertStringToInteger;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,17 +14,21 @@ import lotto.Exception.LottoException;
 public class WinningLotto {
     private static final String DELIMITER = ",";
 
-    Lotto lotto;
-    BonusNumber bonusNumber;
+    private Lotto lotto;
+    private BonusNumber bonusNumber;
 
-    public WinningLotto(String inputWinningNumbers, String inputBonusNumber) {
+    private WinningLotto(String inputWinningNumbers, String inputBonusNumber) {
         List<String> dividedByDelimiter = divideByDelimiter(inputWinningNumbers);
         List<Integer> winningNumbers = generateWinningNumbers(dividedByDelimiter);
-        BonusNumber number = BonusNumber.of(inputBonusNumber);
+        BonusNumber number = BonusNumber.from(inputBonusNumber);
         isBonusNumberInWinningNumbers(winningNumbers, number);
 
         this.lotto = Lotto.from(winningNumbers);
         this.bonusNumber = number;
+    }
+
+    public static WinningLotto of(String inputWinningNumbers, String inputBonusNumber) {
+        return new WinningLotto(inputWinningNumbers, inputBonusNumber);
     }
 
     public Lotto getLotto() {
@@ -45,8 +49,8 @@ public class WinningLotto {
         for (String string : dividedByDelimiter) {
             hasBlank(string);
             isInteger(string);
-            Integer integer = ConvertStringToInteger(string);
-            isValueBetween1And45(integer);
+            Integer integer = convertStringToInteger(string);
+            isValidLottoNumber(integer);
             winningNumbers.add(integer);
         }
 

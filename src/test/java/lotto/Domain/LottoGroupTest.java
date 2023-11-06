@@ -12,8 +12,8 @@ class LottoGroupTest {
     @Test
     void findLottoCountTest1() {
         // given
-        Money money1 = Money.of("14000");
-        Money money2 = Money.of("1000");
+        Money money1 = Money.from("14000");
+        Money money2 = Money.from("1000");
 
         // when
         LottoGroup lottoGroup1 = LottoGroup.from(money1);
@@ -29,8 +29,8 @@ class LottoGroupTest {
     @Test
     void findLottoCountTest2() {
         // given
-        Money money1 = Money.of("14000");
-        Money money2 = Money.of("1000");
+        Money money1 = Money.from("14000");
+        Money money2 = Money.from("1000");
 
         // when
         LottoGroup lottoGroup1 = LottoGroup.from(money1);
@@ -46,7 +46,7 @@ class LottoGroupTest {
     @Test
     void findLottoTest() {
         // given
-        Money money = Money.of("5000");
+        Money money = Money.from("5000");
         LottoGroup lottoGroup = LottoGroup.from(money);
 
         // when

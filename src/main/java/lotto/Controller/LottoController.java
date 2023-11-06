@@ -11,15 +11,25 @@ import lotto.VIew.OutputViewImpl;
 
 public class LottoController {
 
-    private final InputView inputView = new InputViewImpl();
-    private final OutputView outputView = new OutputViewImpl();
+    private final InputView inputView;
+    private final OutputView outputView;
     private LottoResultHandlerModel lottoResultHandlerModel;
+
+    private LottoController() {
+        inputView = InputViewImpl.of();
+        outputView = OutputViewImpl.of();
+    }
+
+    public static LottoController of(){
+        return new LottoController();
+    }
 
     public void startProcess(){
         Money money = getMoney();
         LottoGroup lottoGroup = getLottoGroup(money);
         WinningLotto winningLotto = getWinningLotto();
-        lottoResultHandlerModel = new LottoResultHandlerModel(winningLotto, lottoGroup);
+        lottoResultHandlerModel = LottoResultHandlerModel.of(winningLotto, lottoGroup);
+
         outputView.printLottoResult(lottoResultHandlerModel.getLottoResult());
         outputView.printProfitRate(lottoResultHandlerModel.findProfitRate());
     }
@@ -27,7 +37,7 @@ public class LottoController {
     private WinningLotto getWinningLotto() {
         String inputWinningNumber = inputView.inputWinningNumber();
         String inputBonusNumber = inputView.inputBonusNumber();
-        return new WinningLotto(inputWinningNumber, inputBonusNumber);
+        return WinningLotto.of(inputWinningNumber, inputBonusNumber);
     }
 
     private LottoGroup getLottoGroup(Money money) {
@@ -39,7 +49,6 @@ public class LottoController {
 
     private Money getMoney() {
         String inputMoney = inputView.inputMoney();
-        Money money = new Money(inputMoney);
-        return money;
+        return Money.from(inputMoney);
     }
 }

@@ -14,6 +14,12 @@ import lotto.Domain.LottoResult.Prize;
 
 public class OutputViewImpl implements OutputView {
 
+    private OutputViewImpl() {
+    }
+
+    public static OutputViewImpl of() {
+        return new OutputViewImpl();
+    }
 
     @Override
     public void printLottoCount(int lottoCount) {
@@ -43,17 +49,17 @@ public class OutputViewImpl implements OutputView {
         }
     }
 
+    @Override
+    public void printProfitRate(float profitRate) {
+        System.out.println(EARNING_RATE.getMessage(profitRate));
+    }
+
     private static void resultWithOutBonus(Prize prize) {
-        System.out.println(RESULT_WITHOUT_BONUS.getMessage(prize.getNumberCount(), prize.getAward(), prize.getCount()));
+        System.out.println(RESULT_WITHOUT_BONUS.getMessage(prize.getNumberCount(), prize.getAward(), prize.getWinningCount()));
     }
 
     private static void resultWithBonus(Prize prize) {
         System.out.println(
-                RESULT_WITH_BONUS.getMessage(prize.getNumberCount(), prize.getAward(), prize.getCount()));
-    }
-
-    @Override
-    public void printProfitRate(float profitRate) {
-        System.out.println(EARNING_RATE.getMessage(profitRate));
+                RESULT_WITH_BONUS.getMessage(prize.getNumberCount(), prize.getAward(), prize.getWinningCount()));
     }
 }

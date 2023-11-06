@@ -18,7 +18,7 @@ class WinningLottoTest {
         String inputBonusNumber = "7";
 
         // when
-        WinningLotto winningLotto = new WinningLotto(inputWinningNumbers, inputBonusNumber);
+        WinningLotto winningLotto = WinningLotto.of(inputWinningNumbers, inputBonusNumber);
 
         // then
         assertEquals(List.of(1,2,3,4,5,6), winningLotto.getLotto().getNumbers());
@@ -34,6 +34,6 @@ class WinningLottoTest {
 
         // when
         // then
-        assertThrows(LottoException.class, () -> new WinningLotto(inputWinningNumbers, inputBonusNumber));
+        assertThrows(LottoException.class, () -> WinningLotto.of(inputWinningNumbers, inputBonusNumber));
     }
 }

@@ -6,6 +6,13 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputViewImpl implements InputView {
 
+    private InputViewImpl() {
+    }
+
+    public static InputViewImpl of() {
+        return new InputViewImpl();
+    }
+
     @Override
     public String inputMoney() {
         System.out.println(INPUT_PURCHASE_PROMPT.getMessage());

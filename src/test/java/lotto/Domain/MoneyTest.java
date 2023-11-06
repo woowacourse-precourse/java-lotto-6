@@ -16,8 +16,8 @@ class MoneyTest {
         String inputMoney1 = "999";
         String inputMoney2 = "100001";
 
-        assertThrows(MoneyException.class, () -> Money.of(inputMoney1));
-        assertThrows(MoneyException.class, () -> Money.of(inputMoney2));
+        assertThrows(MoneyException.class, () -> Money.from(inputMoney1));
+        assertThrows(MoneyException.class, () -> Money.from(inputMoney2));
     }
 
     @DisplayName("1000원 단위가 아닌 금액을 입력했을때 예외발생하는지 확인")
@@ -25,7 +25,7 @@ class MoneyTest {
     void createMoneyByNotDivisible() {
         String inputMoney = "1001";
 
-        assertThrows(MoneyException.class, () -> Money.of(inputMoney));
+        assertThrows(MoneyException.class, () -> Money.from(inputMoney));
     }
 
 
@@ -34,7 +34,7 @@ class MoneyTest {
     void createMoneyByHasBlank() {
         String inputMoney = "1 000";
 
-        assertThrows(CommonValidationException.class, () -> Money.of(inputMoney));
+        assertThrows(CommonValidationException.class, () -> Money.from(inputMoney));
     }
 
     @DisplayName("정수 이외의 값이 들어 왔을때 예외발생하는지 확인")
@@ -42,7 +42,7 @@ class MoneyTest {
     void createMoneyByNotInteger() {
         String inputMoney = "1.000";
 
-        assertThrows(CommonValidationException.class, () -> Money.of(inputMoney));
+        assertThrows(CommonValidationException.class, () -> Money.from(inputMoney));
     }
 
     @DisplayName("정상수행시나리오")
@@ -52,7 +52,7 @@ class MoneyTest {
         String inputMoney = "1000";
 
         //when
-        Money money = Money.of(inputMoney);
+        Money money = Money.from(inputMoney);
 
         //then
         assertThat(money).isNotNull();

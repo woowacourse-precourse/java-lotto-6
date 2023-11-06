@@ -5,7 +5,6 @@ import static lotto.Domain.LottoResult.Rank.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Dictionary.LottoDictionary;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoGroup;
 import lotto.Domain.LottoResult.LottoResult;
@@ -17,11 +16,15 @@ public class LottoResultHandlerModel {
     private WinningLotto winningLotto;
     private LottoGroup lottoGroup;
 
-    public LottoResultHandlerModel(WinningLotto winningLotto, LottoGroup lottoGroup) {
-        lottoResult = new LottoResult();
+    private LottoResultHandlerModel(WinningLotto winningLotto, LottoGroup lottoGroup) {
+        lottoResult = LottoResult.from();
         this.winningLotto = winningLotto;
         this.lottoGroup = lottoGroup;
         checkAllWinning();
+    }
+
+    public static LottoResultHandlerModel of(WinningLotto winningLotto, LottoGroup lottoGroup) {
+        return new LottoResultHandlerModel(winningLotto, lottoGroup);
     }
 
     public LottoResult getLottoResult() {
@@ -41,7 +44,7 @@ public class LottoResultHandlerModel {
             Integer matchCount = checkWinning(winningLotto.getLotto(), lottoByIndex);
             Integer rank = convertRank(matchCount, checkBonusNumber(lottoByIndex));
             if (rank != MISS.getRank()) {
-                lottoResult.addPrizeCount(rank);
+                lottoResult.IncreaseWinningCount(rank);
             }
         }
     }
@@ -57,21 +60,16 @@ public class LottoResultHandlerModel {
     }
 
     private Integer convertRank(Integer matchCount, boolean isBonusNumberMatched) {
-        if (matchCount == 6) {
+        if (matchCount == 6)
             return FIRST.getRank();
-        }
-        if (matchCount == 5 && isBonusNumberMatched) {
+        if (matchCount == 5 && isBonusNumberMatched)
             return SECOND.getRank();
-        }
-        if (matchCount == 5) {
+        if (matchCount == 5)
             return THIRD.getRank();
-        }
-        if (matchCount == 4) {
+        if (matchCount == 4)
             return FOURTH.getRank();
-        }
-        if (matchCount == 3) {
+        if (matchCount == 3)
             return FIFTH.getRank();
-        }
 
         return MISS.getRank();
     }

@@ -1,5 +1,5 @@
 ## 기능 목록
-- User(로또 구입 금액 입력), NumberPicker(당첨 번호 뽑기(winingNumber)), Seller(횟수별 발행), Output(결과 출력)
+- User(로또 구입 금액 입력), NumberPicker(당첨 번호 뽑기(winingNumber)), Seller(로또 발행), Lotto,  Output(결과 출력)
 - [x] 로또 구입 금액을 입력하는 기능
 - [x] 구입 금액에 해당하는 만큼 로또를 발행해야 한다.(로또 1장의 가격은 1,000원이다.)
   - [x] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.

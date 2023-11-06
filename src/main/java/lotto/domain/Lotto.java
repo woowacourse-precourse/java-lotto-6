@@ -16,6 +16,9 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public void issueTicket(List<List<Integer>> purchasedLottoTickets) {
+        purchasedLottoTickets.add(numbers);
+        System.out.println(numbers);
+    }
 
 }

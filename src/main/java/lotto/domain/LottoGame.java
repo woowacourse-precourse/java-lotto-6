@@ -13,9 +13,16 @@ public class LottoGame {
 
     public static void play() {
         int purchaseMoney = Input.askHowManyLottoPurchase();
+
         List<Lotto> lottos = buyLotto(purchaseMoney/LOTTO_PRICE);
-        Output.printLottos(lottos);
         User user = new User(lottos);
+        Output.printLottos(lottos);
+
+        Lotto winningLotteryNumbers = new Lotto(Input.askTheWinningLotteryNumbers());
+        int bonusNumber = Input.askBonusNumber();
+        WinningLotto winningLotto = new WinningLotto(winningLotteryNumbers, bonusNumber);
+
+
     }
 
     private static List<Lotto> buyLotto(int count) {
@@ -26,6 +33,7 @@ public class LottoGame {
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
+
         return lottos;
     }
 }

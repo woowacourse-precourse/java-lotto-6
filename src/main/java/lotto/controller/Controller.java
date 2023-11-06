@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotties;
@@ -15,10 +16,16 @@ public class Controller {
     private int lottoCnt;
 
     public void run() {
+        Map<Result,Integer> score = new HashMap<>();
         part1();
         Lotties lotties = part2();
         WinningNumber winningNumber = part3();
 
+        for(Lotto lotto : lotties.getLotties()){
+            Result result = getResult(lotto,winningNumber);
+            int resultCnt = score.getOrDefault(result,0);
+            score.put(result,resultCnt + 1);
+        }
 
     }
 

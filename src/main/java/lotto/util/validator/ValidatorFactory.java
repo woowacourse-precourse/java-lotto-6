@@ -2,6 +2,7 @@ package lotto.util.validator;
 
 import java.util.HashSet;
 import java.util.Set;
+import lotto.dto.WinningNumbersDto;
 
 public class ValidatorFactory {
     private static ValidatorFactory validatorFactory;
@@ -10,6 +11,7 @@ public class ValidatorFactory {
     private ValidatorFactory() {
         addValidator(new NumberValidator());
         addValidator(new PurchaseValidator());
+        addValidator(new WinningNumbersDtoValidator());
     }
 
     public static ValidatorFactory getInstance() {

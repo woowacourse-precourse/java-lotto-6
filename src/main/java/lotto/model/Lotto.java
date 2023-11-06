@@ -22,7 +22,7 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
 
     public void validateLottoTicketSize(List<Integer> numbers) {
         if (numbers.size() != LottoConstants.SIZE_OF_LOTTO_TICKET) {
-            throw new IllegalArgumentException(ErrorMessage.THE_SIZE_OF_LOTTO_IS_NOT_PROPER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.SIZE_OF_LOTTO_IS_NOT_PROPER.getMessage());
         }
     }
 

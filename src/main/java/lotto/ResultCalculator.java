@@ -14,7 +14,7 @@ public class ResultCalculator {
     }
     private PrizeGrade compare(Lotto lotto, Lotto winningLotto, Bonus bonus) {
         int matches = countMatchingNumbers(lotto, winningLotto);
-        boolean bonusMatch = matchWithBonus(lotto, bonus.getNumber();
+        boolean bonusMatch = matchWithBonus(lotto, bonus);
 
         if (matches == PrizeGrade.FIRST.getMatchCount()) {
             return PrizeGrade.FIRST;

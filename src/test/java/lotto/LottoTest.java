@@ -54,4 +54,13 @@ class LottoTest {
         assertThatThrownBy(() -> Input.inputBonusNumber("3", winningNumbers))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또가 발행될 때 중복되지 않은 숫자 6개가 선택되었는지 확인한다.")
+    @Test
+    void createLotto() {
+        assertThatThrownBy(() ->
+            assertThatThrownBy(() -> new Lotto())
+            .isInstanceOf(IllegalArgumentException.class))
+            .isInstanceOf(AssertionError.class);
+    }
 }

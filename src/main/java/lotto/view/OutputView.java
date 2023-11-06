@@ -36,10 +36,16 @@ public class OutputView {
         System.out.println();
         System.out.println(STATISTICS);
         System.out.println(DASH.repeat(3));
-        System.out.println(WinningLevel.FIFTH_PLACE.getResult() + " - " + scoreBoard.get("5th")/WinningLevel.FIFTH_PLACE.getReward() + "개");
-        System.out.println(WinningLevel.FOURTH_PLACE.getResult() + " - " + scoreBoard.get("4th")/WinningLevel.FOURTH_PLACE.getReward() + "개");
-        System.out.println(WinningLevel.THIRD_PLACE.getResult() + " - " + scoreBoard.get("3rd")/WinningLevel.THIRD_PLACE.getReward() + "개");
-        System.out.println(WinningLevel.SECOND_PLACE.getResult() + " - " + scoreBoard.get("2nd")/WinningLevel.SECOND_PLACE.getReward() + "개");
-        System.out.println(WinningLevel.FIRST_PLACE.getResult() + " - " + scoreBoard.get("1st")/WinningLevel.FIRST_PLACE.getReward() + "개");
+        System.out.println(WinningLevel.FIFTH_PLACE.getResult() + " - " + scoreBoard.get("5th") / WinningLevel.FIFTH_PLACE.getReward() + "개");
+        System.out.println(WinningLevel.FOURTH_PLACE.getResult() + " - " + scoreBoard.get("4th") / WinningLevel.FOURTH_PLACE.getReward() + "개");
+        System.out.println(WinningLevel.THIRD_PLACE.getResult() + " - " + scoreBoard.get("3rd") / WinningLevel.THIRD_PLACE.getReward() + "개");
+        System.out.println(WinningLevel.SECOND_PLACE.getResult() + " - " + scoreBoard.get("2nd") / WinningLevel.SECOND_PLACE.getReward() + "개");
+        System.out.println(WinningLevel.FIRST_PLACE.getResult() + " - " + scoreBoard.get("1st") / WinningLevel.FIRST_PLACE.getReward() + "개");
+    }
+
+    public static void outputViewTotalReturn(Long totalReturn, Long money) {
+        double total = totalReturn / money;
+        String result = String.format("총 수익률은 %d%입니다.",total);
+        System.out.println(total);
     }
 }

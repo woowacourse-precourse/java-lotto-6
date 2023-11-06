@@ -12,21 +12,21 @@ import java.util.stream.LongStream;
 public class Lottos {
     private final List<Lotto> lottoList;
 
-    public Lottos(List<Lotto> lottoList) {
-        this.lottoList = lottoList;
+    public Lottos(long ticketCount) {
+        this.lottoList = makeLottos(ticketCount);
     }
 
     public List<Lotto> getLottoList() {
         return lottoList;
     }
 
-    public static Lottos makeLottos(long ticketCount) {
+    private List<Lotto> makeLottos(long ticketCount) {
         List<Lotto> list = LongStream.range(0, ticketCount)
                 .mapToObj(lotto -> new Lotto(chooseRandomLottoNumbers()))
                 .peek(Lotto::printNumbers)
                 .collect(Collectors.toList());
 
-        return new Lottos(list);
+        return list;
     }
 
     private static List<Integer> chooseRandomLottoNumbers() {

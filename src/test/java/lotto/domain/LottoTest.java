@@ -1,11 +1,12 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.Lotto;
 import domain.Lottos;
-import java.util.ArrayList;
+import domain.Money;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -64,14 +65,22 @@ class LottoTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("유효한 로또일 시 정상적으로 로또가 생성된다.")
+    @DisplayName("정상적으로 로또 목록들이 생성된다.")
     @Test
     void createValidLottos() {
-        List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        lottos.add(new Lotto(List.of(7, 8, 9, 10, 11, 12)));
-        
-        assertThatCode(() -> new Lottos(lottos))
+        Money money = new Money("5000");
+
+        assertThatCode(() -> new Lottos(money.getLottoCount()))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("로또 입력 금액에 맞게 로또가 생성된다.")
+    @Test
+    void createLottosMatchingInputMoney() {
+        Money money = new Money("5000");
+        Lottos lottos = new Lottos(money.getLottoCount());
+        List<Lotto> lottoCount = lottos.getLottoList();
+
+        assertThat(lottoCount.size()).isEqualTo(money.getLottoCount());
     }
 }

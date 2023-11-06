@@ -34,7 +34,7 @@ public class LottoController {
         OutputView.LottoTicketCount(money.getLottoCount());
 
         // 3. 로또 생성
-        lottos = Lottos.makeLottos(money.getLottoCount());
+        lottos = new Lottos(money.getLottoCount());
 
         // 4. 로또 당첨 번호 및 보너스 번호 입력, 수익률 계산
         runLottoGame();

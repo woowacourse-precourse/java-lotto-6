@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class RandomNumberGenerator {
-
-
     private static final int STARTING_RANGE = 1;
     private static final int END_RANGE = 9;
     private static final int COUNT = 6;

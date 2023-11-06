@@ -16,7 +16,7 @@ public class Money {
     }
 
     public double getEarningRate(long profit){
-        return (profit-purchaseAmount)/purchaseAmount *100;
+        return ((double) profit / purchaseAmount) * 100;
     }
 
     private static void validate(int money) {

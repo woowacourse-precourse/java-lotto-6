@@ -1,28 +1,40 @@
 package lotto.domain;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoResultManager {
-    private final Map<Rank,Integer> lottoResult = new EnumMap<Rank, Integer>(Rank.class);
+    private final Map<Rank,Integer> lottoResult = new EnumMap<>(Rank.class);
+
+    private int totalPrize = 0;
 
     public LottoResultManager(List<Rank> ranks) {
         //일단 모든 값 넣고
         //그다음 업데이트
         initEntry();
         updateRanksEntry(ranks);
-        //lottoResult.remove(Rank.NOTHING);
+        lottoResult.remove(Rank.NOTHING);
+        sumTotalPrize(ranks);
+    }
 
-        for (Map.Entry<Rank, Integer> entry : lottoResult.entrySet()) {
-            //여기서 Output해야될득 요소값 하나씩 주고
-            System.out.println(entry.getKey() + " => " + entry.getValue());
+    public Map<Rank,Integer> getLottoResult(){ //최종 출력을 위함
+
+        return lottoResult;
+    }
+
+    public void sumTotalPrize(List<Rank> ranks){
+        for(Rank rank : ranks){
+            totalPrize += Rank.findPrizeMoney(rank);
         }
+    }
 
+    public int getTotalPrize(){
+        return totalPrize;
     }
 
     private void initEntry(){ //초기화
         for (Rank rank : Rank.values()) {
+            System.out.println(rank);
             lottoResult.put(rank, 0);
         }
     }

@@ -4,7 +4,9 @@ import lotto.domain.*;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MainLottoController {
     Input input = new Input();
@@ -16,25 +18,45 @@ public class MainLottoController {
 
         UserLotto userLotto = makeUserLotto();
 
-        List<Rank> resultRanking = getLottoRanking(randomLotto,userLotto);
+        List<Rank> matchedRankings = getLottoRanking(randomLotto,userLotto);
 
-        sendResultLotto(resultRanking);
 
-        /*
-        for(Rank rank : resultRanking){
-            System.out.println(rank);
-        }
-        System.out.println(money.getPurchaseAmount());
-
-         */
-
-        //결과 출력
+        LottoResultManager lottoResultManager = updateLottoResult(matchedRankings);
+        sendResultLottoDataToView(lottoResultManager,money);
 
     }
 
-    private void sendResultLotto(List<Rank> resultRanks){
-        LottoResultManager lottoResultManager =
-                new LottoResultManager(resultRanks);
+    private void sendResultLottoDataToView(LottoResultManager lottoResultManager,Money money){
+        int totalPrize = lottoResultManager.getTotalPrize();
+        double earningRate = money.getEarningRate(totalPrize);
+
+        Map<Rank,Integer> resultRanking = lottoResultManager.getLottoResult();
+        List<Map.Entry<Rank, Integer>> entries = new ArrayList<>(resultRanking.entrySet());
+        entries.sort((e1, e2)
+                -> e2.getKey().ordinal() - e1.getKey().ordinal());
+
+        System.out.println(money.getEarningRate(totalPrize));
+
+        for (Map.Entry<Rank, Integer> entry : entries) {
+
+            System.out.println(entry.getKey()+ " ==> " + entry.getValue());
+        }
+
+
+    }
+
+    private void sendEarningRateToView(double earningRate){
+
+
+    }
+    private void sendResultRankingToView(){
+
+
+    }
+
+
+    private LottoResultManager updateLottoResult(List<Rank> resultRanks){
+        return  new LottoResultManager(resultRanks);
     }
 
     //region 램덤로또

@@ -50,4 +50,13 @@ class LottoGameTest {
         assertEquals(expectedRank, result);
     }
 
+    @Test
+    @DisplayName("수익률 계산이 올바르게 이루어지는지 테스트")
+    void calculateEarningRateCorrectly() {
+        int purchaseAmount = 1000;
+        Rank prizeResult = Rank.THREE;
+        LottoGame lottoGame = new LottoGame();
+        double earningRate = lottoGame.calculateEarningRate(purchaseAmount, prizeResult);
+        assertThat(earningRate).isEqualTo(20.0);
+    }
 }

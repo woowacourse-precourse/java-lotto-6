@@ -2,6 +2,8 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.utils.Validator;
+
+import java.util.Collections;
 import java.util.List;
 
 public class User {
@@ -19,6 +21,7 @@ public class User {
         Integer usedAmount = 0;
         while(usedAmount != purchaseAmount){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
             usedAmount += 1000;
         }

@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 public class Inputter {
 
     private static final int MONEY_UNIT = 1000;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
     private static Inputter inputter;
 
     private Inputter() {}
@@ -30,7 +32,8 @@ public class Inputter {
 
     public List<Integer> lottoNumbers() {
         return Arrays.stream(Console.readLine().split(","))
-                .mapToInt(this::parseInt).boxed().collect(Collectors.toList());
+                .mapToInt(this::parseInt).map(this::validateLottoNumber)
+                .boxed().collect(Collectors.toList());
     }
 
     private void validatePurchase(int won) {
@@ -45,5 +48,13 @@ public class Inputter {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해주세요.");
         }
+    }
+
+    private int validateLottoNumber(int number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + MIN_LOTTO_NUMBER +
+                    "부터 " + MAX_LOTTO_NUMBER + " 사이의 숫자여야 합니다.");
+        }
+        return number;
     }
 }

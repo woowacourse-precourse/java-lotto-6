@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
+import lotto.constant.GradeConstant;
 import lotto.model.Bonus;
 import lotto.model.GameResult;
 import lotto.model.Lotto;
@@ -24,6 +26,7 @@ public class GameController {
         Referee referee = new Referee(playerLottos.getLottos(), winningLotto, bonus.number());
         GameResult gameResult = new GameResult(referee.getGrades(), purchase.getPurchaseMoney());
 
+        printLottoGradeResult(gameResult.getGrades());
         printProfitRate(gameResult.getProfitRate());
     }
 
@@ -82,6 +85,10 @@ public class GameController {
 
     private int getBonusNumber() {
         return InputView.getBonusNumber();
+    }
+
+    private void printLottoGradeResult(Map<GradeConstant, Integer> gradeResult) {
+        OutputView.printLottoGradeResult(gradeResult);
     }
 
     private void printProfitRate(double profitRate) {

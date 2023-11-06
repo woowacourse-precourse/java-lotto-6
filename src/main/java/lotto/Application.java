@@ -16,11 +16,13 @@ public class Application {
     final static int lottoMin = 1;
     final static int lottoMax = 45;
     final static int lottolength = 6;
+    final static int lotteryWinningRank = 6;
     final static int coinStandard = 1000; 
     static int inputCoin;
     static int bonusNumber;
-    static List<Integer> winningLotto = new ArrayList<>();
+    static List<Integer> inputWinningLotto = new ArrayList<>();
     static List<List<Integer>> lottoTotal = new ArrayList<>();
+    
 
     public static void CoinValidate(int inputCoin){
         if (inputCoin % coinStandard != 0){
@@ -76,17 +78,17 @@ public class Application {
     public static void WinningLottoInput(){
         System.out.println("당첨 번호를 입력해 주세요.");
         for(String lottoNumber : Console.readLine().split(",")){
-            winningLotto.add(LottoNumberValidate(lottoNumber));
+            inputWinningLotto.add(LottoNumberValidate(lottoNumber));
         }
     }
 
     public static void DuplicateCheck(){
-        Set<Integer> lottoNumbers = new HashSet<>(winningLotto);
-        if(lottoNumbers.size() != winningLotto.size()){
+        Set<Integer> lottoNumbers = new HashSet<>(inputWinningLotto);
+        if(lottoNumbers.size() != inputWinningLotto.size()){
             System.out.println("[ERROR] 당첨 번호에 중복된 숫자는 허용하지 않습니다.");
             throw new IllegalArgumentException();
         }
-        if (winningLotto.contains(bonusNumber)){
+        if (inputWinningLotto.contains(bonusNumber)){
             System.out.println("[ERROR] 당첨 번호에 중복된 숫자는 허용하지 않습니다.");
             throw new IllegalArgumentException();
         }
@@ -102,5 +104,6 @@ public class Application {
         System.out.println();
         BonusNumberInput();
         DuplicateCheck();
+
     }
 }

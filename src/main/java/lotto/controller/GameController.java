@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.enums.Rank;
 import lotto.model.Lotto;
@@ -31,6 +32,9 @@ public class GameController {
 
         List<Rank> rankList = gameService.checkWinNumbers(winNumber, lottoList, bonusNumber);
         UserView.winStatisticsMessage(rankList);
+
+        String returnRate = gameService.calculateReturnRate(rankList, money);
+        UserView.totalYieldMessage(returnRate);
     }
 
 
@@ -39,4 +43,6 @@ public class GameController {
         int lottoCount = Integer.parseInt(money);
         return lottoCount/1000;
     }
+
+
 }

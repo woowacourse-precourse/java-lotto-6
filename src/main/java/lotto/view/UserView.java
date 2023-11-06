@@ -2,7 +2,10 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import lotto.enums.Rank;
 import lotto.model.Lotto;
 import lotto.utils.Validator;
@@ -57,14 +60,19 @@ public class UserView {
         System.out.println("---");
 
         for (Rank rank : Rank.values()) {
+            if (rank.getCountMatch() < 3) continue;
+
             long count = rankList.stream()
                     .filter(r -> r == rank)
                     .count();
-            System.out.println(rank.getCountMatch() + "개 일치 (" + rank.getPrize() + "원) - " + count + "개");
+
+            System.out.println(
+                    rank.getMatchMessage() + " ("
+                            + rank.getFormattedPrize()
+                            + "원) - " + count + "개");
         }
     }
-
-    public static void totalYieldMessage(int yield) {
-        System.out.println("총 수익률은 " + yield + "%입니다.");
+    public static void totalYieldMessage(String returnRate) {
+        System.out.println("총 수익률은 " + returnRate);
     }
 }

@@ -38,20 +38,20 @@ public class AmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest(name = "구입금액에 따른 로또 갯수 : {0}, 결과 : {1}")
+    @ParameterizedTest(name = "구매금액 : {0}, 결과 : {1}")
     @DisplayName("구입금액에 따른 발행 로또 갯수 테스트")
     @MethodSource("lottoCount")
-    void calculateLottoCount(int lottoCount, int result) {
-        assertThat(lottoCount).isEqualTo(result);
+    void calculateLottoCount(int amount, int result) {
+        assertThat(new Amount(amount).buyCount()).isEqualTo(result);
     }
 
 
     static Stream<Arguments> lottoCount() {
         return Stream.of(
-                Arguments.arguments(new Amount(2000).buyCount(), 2),
-                Arguments.arguments(new Amount(3000).buyCount(), 3),
-                Arguments.arguments(new Amount(4000).buyCount(), 4),
-                Arguments.arguments(new Amount(5000).buyCount(), 5)
+                Arguments.arguments(2000, 2),
+                Arguments.arguments(3000, 3),
+                Arguments.arguments(4000, 4),
+                Arguments.arguments(5000, 5)
         );
     }
 }

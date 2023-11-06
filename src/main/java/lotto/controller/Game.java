@@ -20,11 +20,11 @@ public class Game {
             List<Lotto> lottos = issueLottos(purchaseQuantity);
             OutputView.printPurchaseResult(lottos);
             Lotto winnerNumbers = createWinnerNumbers();
-            int bonusNumber = createBonusNumber();
+            int bonusNumber = createBonusNumber(winnerNumbers);
             List<SameNumber> sameNumbers = createSameNumbers(lottos, winnerNumbers, bonusNumber);
             OutputView.printWinnerResult(sameNumbers, purchaseAmount);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printError(e);
             start();
         }
     }
@@ -43,9 +43,17 @@ public class Game {
         return new Lotto(convertor.convertToNumbers(InputView.askWinnerNumbers()));
     }
 
-    private int createBonusNumber() {
-        Number bonusNumber = new Number(InputView.askBonusNumber());
-        return bonusNumber.getNumber();
+    private int createBonusNumber(Lotto winnerNumbers) {
+        int bonusNumber = new Number(InputView.askBonusNumber()).getNumber();
+        validateDuplicated(bonusNumber, winnerNumbers);
+        return bonusNumber;
+    }
+
+    private void validateDuplicated(int bonusNumber, Lotto winnerNumbers) {
+        if (winnerNumbers.getNumbers()
+                .contains(bonusNumber)) {
+            new IllegalArgumentException("보너스 번호는 당첨번호와 중복될 수 없습니다.");
+        }
     }
 
     private List<SameNumber> createSameNumbers(List<Lotto> lottos, Lotto winnerNumbers, int bonusNumber) {

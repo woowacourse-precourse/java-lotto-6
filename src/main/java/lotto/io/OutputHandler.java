@@ -16,5 +16,6 @@ public class OutputHandler {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.convertNumbersToString());
         }
+        System.out.println("");
     }
 }

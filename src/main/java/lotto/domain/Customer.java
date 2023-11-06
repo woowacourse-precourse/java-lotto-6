@@ -15,6 +15,15 @@ public class Customer {
         this.hasTicket = 0;
     }
 
+    public void addCustomerLotto(Lotto newLotto) {
+        this.customerLotto.add(newLotto);
+        this.hasTicket++;
+    }
+
+    public void pay(int price) {
+        this.wallet -= price;
+    }
+
     private void validateCoin(int coin) {
         if (coin % 1000 != 0) {
             throw new IllegalArgumentException("구입금액은 1000단위만 허용합니다.");
@@ -29,12 +38,7 @@ public class Customer {
         return this.customerLotto.get(i);
     }
 
-    public void addCustomerLotto(Lotto newLotto) {
-        this.customerLotto.add(newLotto);
-        this.hasTicket++;
-    }
-
-    public void pay(int price) {
-        this.wallet -= price;
+    public int getHasTicket() {
+        return this.hasTicket;
     }
 }

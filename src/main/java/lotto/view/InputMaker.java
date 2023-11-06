@@ -9,7 +9,7 @@ public class InputMaker {
         try {
             int coin = Integer.parseInt(userInput);
             return coin;
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
     }
@@ -17,7 +17,7 @@ public class InputMaker {
     public List<Integer> inputWinningNumber(String userInput) {
         List<Integer> result = new ArrayList<>();
         String[] inputNumber = userInput.split(",");
-        for (int i = 0; i<inputNumber.length; i++) {
+        for (int i = 0; i < inputNumber.length; i++) {
             result.add(inputNum(inputNumber[i]));
         }
         return result;

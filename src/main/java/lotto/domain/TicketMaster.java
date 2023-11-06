@@ -1,12 +1,20 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.List;
+
+import static lotto.domain.Lotto.LOTTO_MIN_NUMBER;
+import static lotto.domain.Lotto.LOTTO_MAX_NUMBER;
+import static lotto.domain.Lotto.LOTTO_SIZE;
 
 public class TicketMaster {
     Lotto winningNum;
     int bonusNum;
+
+    public Lotto makeTicket() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
+        return new Lotto(numbers);
+    }
 
     public int checkLotto(Lotto lotto) {
         List<Integer> thisLotto = lotto.getNumbers();

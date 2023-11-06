@@ -3,12 +3,14 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Customer;
 import lotto.domain.Lotto;
-import lotto.service.TicketMaster;
+import lotto.domain.TicketMaster;
 import lotto.view.InputMaker;
 import lotto.view.OutputMaker;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.domain.Lotto.LOTTO_PRICE;
 
 public class LottoController {
     static TicketMaster ticketMaster;
@@ -28,12 +30,11 @@ public class LottoController {
         this.cs = new Customer(coin);
     }
 
-    public void buyLotto(){
-        int buget = this.cs.getWallet();
-        int ticketSize = buget/1000;
-        for (int i = 0; i<ticketSize; i++) {
+    public void buyLotto() {
+        while(cs.getWallet()!=0) {
             Lotto newLotto = ticketMaster.makeTicket();
             System.out.println(outputMaker.printLotto(newLotto));
+            cs.pay(LOTTO_PRICE);
             cs.addCustomerLotto(newLotto);
         }
     }
@@ -43,6 +44,7 @@ public class LottoController {
         Lotto winner = new Lotto(inputMaker.inputWinningNumber(Console.readLine()));
         ticketMaster.setWinningNum(winner);
     }
+
     public void setBonus() {
         System.out.println("보너스 번호를 입력해 주세요.");
         ticketMaster.setBonusNum(inputMaker.inputNum(Console.readLine()));
@@ -52,12 +54,12 @@ public class LottoController {
         System.out.println("당첨 통계");
         System.out.println("---");
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i<cs.getWallet()/1000; i++) {
+        int ticketSize = cs.getHasTicket();
+        for (int i = 0; i < ticketSize; i++) {
             result.add(ticketMaster.checkLotto(cs.getCustomerLotto(i)));
         }
-        for (int i = 0; i<cs.getWallet()/1000; i++) {
+        for (int i = 0; i < ticketSize; i++) {
             System.out.println(result.get(i));
         }
-
     }
 }

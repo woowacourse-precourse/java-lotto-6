@@ -9,7 +9,7 @@ public class OutputMaker {
         StringBuilder sb = new StringBuilder();
         List<Integer> thisLotto = lotto.getNumbers();
         sb.append("[");
-        for (int i = 0; i<5;i++) {
+        for (int i = 0; i < 5; i++) {
             sb.append(thisLotto.get(i));
             sb.append(", ");
         }

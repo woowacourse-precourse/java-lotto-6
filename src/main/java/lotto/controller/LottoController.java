@@ -13,6 +13,7 @@ import lotto.model.WinnerLotto;
 import lotto.util.converter.NumericConverter;
 import lotto.util.converter.NumericListConverter;
 import lotto.util.validator.AmountValidator;
+import lotto.util.validator.BonusValidator;
 import lotto.util.validator.WinnerLottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,19 +27,24 @@ public class LottoController {
     private final OutputView outputView = new OutputView();
     private final AmountValidator amountValidator = new AmountValidator();
     private final WinnerLottoValidator winnerLottoValidator = new WinnerLottoValidator();
+    private final BonusValidator bonusValidator = new BonusValidator();
 
     public void run() {
         int amount = getAmount();
         outputView.printAmount(amount);
         Lottos lottos = new Lottos(buyLotto(amount));
-        WinnerLotto winnerLotto = new WinnerLotto(getWinnerLotto(), getBonusNumber());
+        Lotto winnerLottoOnlyNumbers = getWinnerLotto();
+        WinnerLotto winnerLotto = new WinnerLotto(winnerLottoOnlyNumbers, getBonusNumber(winnerLottoOnlyNumbers));
         Result result = new Result(lottos.calculateResult(winnerLotto));
         outputView.printResult(result);
         outputView.printProfitRate(result.calculateProfitRate(amount));
     }
 
-    private int getBonusNumber() {
-        String input = inputView.readBonusNumber();
+    private int getBonusNumber(Lotto winnerLottoOnlyNumbers) {
+        String input;
+        do{
+            input = inputView.readBonusNumber();
+        }while(!bonusValidator.validation(input,winnerLottoOnlyNumbers));
         return numericConverter.convert(input);
     }
 

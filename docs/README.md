@@ -154,7 +154,27 @@ OutputController로부터 사용자에게 적절한 화면을 출력할 것을 �
 * WinningLotto(당첨 번호와 보너스 번호)와 당첨을 맞춰볼 로또 번호 리스트를 갖고 있습니다.
 * WinningLotto를 토대로 계산된 당첨 통계(당첨 개수), 수익률 정보를 갖고 있습니다.
 
-### 🎮 Controller
+### 🌉 controller
+
+#### InputController
+
+LottoGameService는 사용자 입력이 필요할 때마다 InputController를 통해 사용자 입력을 받아옵니다.
+
+InputController는 InputView로부터 사용자 입력(String)을 받아옵니다.
+
+String 타입의 사용자 입력을 InputController에서 적절한 model 타입(LottoGameService에서 요청한 model 타입)으로 변환합니다.
+
+LottoGameService에게 변환한 객체를 넘겨줍니다.
+
+#### OutputController
+
+OutputController는 LottoGameService로부터 사용자에게 화면을 출력할 것을 요청받습니다.
+
+OutputView에서 업데이트가 될 화면(String)을 생성합니다.
+
+OutputView에게 전달하여 사용자에게 보여질 화면을 업데이트하고 렌더링할 것을 요청합니다.
+
+### 🎮 service
 
 #### **LottoGameService**
 
@@ -175,24 +195,6 @@ OutputController를 통해 사용자에게 원하는 화면을 출력하도록 �
 3. 사용자로부터 당첨 번호, 보너스 번호를 입력 받습니다.
 4. `Player` 객체는 사용자로부터 입력받은 당첨 번호, 보너스 번호를 본인이 구매한 로또 번호와 비교하여 당첨 통계와 수익률을 계산합니다.
     * 계산한 당첨 통계와 수익률을 사용자 화면에 출력하도록 합니다.
-
-#### InputController
-
-LottoGameService는 사용자 입력이 필요할 때마다 InputController를 통해 사용자 입력을 받아옵니다.
-
-InputController는 InputView로부터 사용자 입력(String)을 받아옵니다.
-
-String 타입의 사용자 입력을 InputController에서 적절한 model 타입(LottoGameService에서 요청한 model 타입)으로 변환합니다.
-
-LottoGameService에게 변환한 객체를 넘겨줍니다.
-
-#### OutputController
-
-OutputController는 LottoGameService로부터 사용자에게 화면을 출력할 것을 요청받습니다.
-
-OutputView에서 업데이트가 될 화면(String)을 생성합니다.
-
-OutputView에게 전달하여 사용자에게 보여질 화면을 업데이트하고 렌더링할 것을 요청합니다.
 
 ### 입출력 흐름
 

@@ -1,8 +1,13 @@
 package lotto.controller;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
+import lotto.model.Buyer;
 import lotto.model.LottoSeller;
+import lotto.model.Lottos;
+import lotto.model.Money;
+import lotto.model.dto.LottoPaper;
 import lotto.utils.NumberParser;
 import lotto.view.InputView;
 import lotto.view.OuputView;
@@ -18,22 +23,31 @@ public class LottoController {
     }
 
     public void run() {
-        BigDecimal inputMoney = getInputMoney();
+        final Buyer lottoBuyer = buyLotto();
+        final List<LottoPaper> lottoPapers = lottoBuyer.getLottoPapers();
+        ouputView.printPublishedLottos(lottoPapers);
 
     }
 
-    private BigDecimal getInputMoney() {
-        Optional<BigDecimal> generatedInputMoney = generateInputMoney();
-        while (generatedInputMoney.isEmpty()) {
-            generatedInputMoney = generateInputMoney();
+    public Buyer buyLotto() {
+        final Money purchasingMoney = inputMoney();
+        final Lottos publishedLottos = lottoSeller.sell(purchasingMoney);
+        return new Buyer(purchasingMoney, publishedLottos);
+    }
+
+    private Money inputMoney() {
+        Optional<Money> purchasingMoney = generateMoney();
+        while (purchasingMoney.isEmpty()) {
+            purchasingMoney = generateMoney();
         }
-        return generatedInputMoney.get();
+        return purchasingMoney.get();
     }
 
-    private Optional<BigDecimal> generateInputMoney() {
+    private Optional<Money> generateMoney() {
         try {
             String inputMoney = inputView.insertMoney();
-            return NumberParser.parseMoney(inputMoney);
+            BigDecimal parsedMoney = NumberParser.parseMoney(inputMoney);
+            return Optional.of(new Money(parsedMoney));
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
             ouputView.printErrorMessage(errorMessage);

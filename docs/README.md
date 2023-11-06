@@ -18,27 +18,28 @@
             - [x] 금액이 양수인지 검증한다.
             - [x] 1,000원으로 나누어떨어지는지 검증한다.
         - [x] 검증에 실패하면 "[ERROR] ~" 메시지와 함께 `IllegalArgumentException`을 던진다.
--  [ ] 로또 발행 수량을 계산해야 한다.(로또 한 장의 가격은 1,000원이다.)
-    - [ ] 몇 개를 구입했는지 안내 문구를 출력한다.
-      ```text
-      $[개수]개를 구매했습니다.
-      ```
-- [ ] 로또 번호를 로또 발행 수량만큼 생성한다.
-    - [ ] 로또 번호의 숫자 범위는 1~45다.
-    - [ ] 중복되지 않는 6개의 숫자를 무작위로 뽑는다.
-        - [ ] 6개의 숫자는 오름차순으로 정렬한다.
-    - [ ] 발행된 로또 번호 간에도 중복되지 않게 뽑는다.
-    - [ ] 각 로또 번호를 출력해서 보여준다.
-      ```text
-      [8, 21, 23, 41, 42, 43]
-      [3, 5, 11, 16, 32, 38]
-      [7, 11, 16, 35, 36, 44]
-      [1, 8, 11, 31, 41, 42]
-      [13, 14, 16, 38, 42, 45]
-      [7, 11, 30, 40, 42, 43]
-      [2, 13, 22, 32, 38, 45]
-      [1, 3, 5, 14, 22, 45]
-      ```
+- [x] 로또 구입 결과를 반환한다. - OutputView$printPurchasedLottoes(lottoesDto)
+  - [x] 로또 발행 수량을 계산해야 한다.(로또 한 장의 가격은 1,000원이다.) - LottoService$calculateLottoCount(int money)
+      - [x] 몇 개를 구입했는지 안내 문구를 출력한다. - OutputView$printLottoCount(lottoesDto)
+        ```text
+        $[개수]개를 구매했습니다.
+        ```
+  - [x] 로또 번호를 로또 발행 수량만큼 생성한다. - LottoService$generateLottoes(int lottoesCount)
+      - [x] 로또 번호의 숫자 범위는 1~45다. - Lotto$generateNumbers()
+      - [x] 중복되지 않는 6개의 숫자를 무작위로 뽑는다. - Lotto$generateNumbers()
+          - [x] 6개의 숫자는 오름차순으로 정렬한다. - Lotto$generateNumbers()
+      - [x] 발행된 로또 번호 간에도 중복되지 않게 뽑는다. - Lotto$generateNumbers()
+      - [x] 각 로또 번호를 출력해서 보여준다. OutputView$printGeneratedLottoes(lottoesDto)
+        ```text
+        [8, 21, 23, 41, 42, 43]
+        [3, 5, 11, 16, 32, 38]
+        [7, 11, 16, 35, 36, 44]
+        [1, 8, 11, 31, 41, 42]
+        [13, 14, 16, 38, 42, 45]
+        [7, 11, 30, 40, 42, 43]
+        [2, 13, 22, 32, 38, 45]
+        [1, 3, 5, 14, 22, 45]
+        ```
 - [ ] 당첨 번호를 입력받는다.
     - [ ] 입력받기 전 안내 문구를 출력한다.
       ```text
@@ -94,7 +95,7 @@
 2. 상태 : InputView, OutputView, LottoService
 3. 행위
     - void run()
-    - MoneyDto createMoneyDto()
+    - MoneyDto getMoneyFromClient()
     - LottoesDto createLottoes(MoneyDto)
     - WinNumbersDto createWinNumbers()
     - ResultDto getResult()
@@ -103,18 +104,19 @@
 1. 역할 : 리포지토리에 필요한 데이터를 입력하거나 꺼내서 핵심 비즈니스 로직을 담당
 2. 상태 : LottoRepository
 3. 행위
-    - LottoesDto generateLottoes(MoneyDto moneyDto)
+    - LottoesDto purchaseLottoes(MoneyDto moneyDto)
     - int calculateLottoCount(int money)
-    - LottoDto generateLotto()
+    - List<LottoDto> generateLottoes()
     - ResultDto generateResult(WinNumbersDto)
         - LottoDto calculateWinResult()
         - double calculateBenefitRate()
 
 ## LottoRepository
 1. 역할 : Lotto 도메인을 관리한다. 도메인을 LottoRepository 외부로 노출시키지 않고, 필요한 데이터만 DTO로 감싸서 전달한다.
-2. 상태 : Lottoes
+2. 상태 : lottoes
 3. 행위
     - LottoDto createLotto()
+    - void save(Lotto)
     - List<LottoDto> findLottoDtoes()
 
 ## Lotto
@@ -126,7 +128,7 @@
 
 ## LottoDto
 1. 역할 : LottoRepository에서 LottoService로 Lotto 관련 필요 데이터를 전달하는 모델
-2. 상태 : numbers, correctNumbers, isBonusCorrect
+2. 상태 : numbers, ~~correctNumbers, isBonusCorrect~~
 3. 행위 : 레코드
 
 ## MoneyDto

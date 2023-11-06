@@ -6,7 +6,6 @@ import lotto.Domain.BonusNumber;
 import lotto.Domain.LottoPurchaseAmount;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoGenerator;
-import lotto.Domain.CompareResults;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
@@ -30,6 +29,8 @@ public class LottoGame {
 
         winningLottoNumbers = inputLottoNumbers();
         winningBonusNumber = inputBonusNumber();
+
+
     }
 
     public int inputPurchaseAmount() {

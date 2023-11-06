@@ -46,6 +46,12 @@ public class Lotto {
         return numbers;
     }
 
+    public int countMatchNumber(Lotto winningLotto) {
+        return (int) numbers.stream().
+                filter(winningLotto::contains).
+                count();
+    }
+
     public static void validateIsNumberInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {

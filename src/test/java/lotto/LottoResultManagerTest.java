@@ -33,7 +33,7 @@ public class LottoResultManagerTest {
         LottoResult result = checker.check(lotto);
         lottoResultManager.add(result);
 
-        lotto = new Lotto(List.of(23,32,45,4,5,6));
+        lotto = new Lotto(List.of(1,2,3,10,11,12));
         result = checker.check(lotto);
         lottoResultManager.add(result);
 
@@ -65,6 +65,6 @@ public class LottoResultManagerTest {
         result = checker.check(lotto);
         lottoResultManager.add(result);
 
-        assertThat(lottoResultManager.calculateRateOfReturn(2)).isEqualTo(55.6);
+        assertThat(lottoResultManager.calculateRateOfReturn(1)).isEqualTo("22222277.8");
     }
 }

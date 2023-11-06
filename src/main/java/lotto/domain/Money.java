@@ -1,13 +1,12 @@
-package lotto;
+package lotto.domain;
 
-public class CashRegister {
+public class Money {
     private static final int LOTTO_PRICE = 1000;
-    private int amount;
+    private final int amount;
 
-    public int calculateLottoCount(int amount) {
+    public Money(int amount) {
         validate(amount);
         this.amount = amount;
-        return amount / LOTTO_PRICE;
     }
 
     public int getAmount() {

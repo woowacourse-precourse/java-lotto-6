@@ -21,27 +21,31 @@ public class LottoController {
     int bonusNumber;
 
     public void start() throws IllegalArgumentException {
-        // 구입금액 받기
-        paymentPrice = getPaymentPrice();
-        // 구입 개수 계산 & 로또 발행하여 출력하기
-        ticketCount = getTicketCount(paymentPrice);
-        OutputHandler.sayTicketCount(ticketCount);
-        lottos = issueLottos(ticketCount);
-        // 당첨 번호 받기
-        winningNumbers = getWinningNumbers();
-        // 보너스 번호 받기
-        bonusNumber = getBonusNumber();
-        // 당첨 통계 계산 & 당첨 통계, 수익률 출력
+        callPaymentPriceLoop();
+        winningNumbers = getWinningNumbersLoop();
+        bonusNumber = getBonusNumberLoop();
         Rank rank = getStatic(lottos);
         OutputHandler.showWinningDetails(rank.getRank(1), rank.getRank(2), rank.getRank(3), rank.getRank(4),
                 rank.getRank(5));
         showRateOfReturn(rank, paymentPrice);
     }
 
-    long getPaymentPrice() {
+    // 구입 금액 받기 -> 구입 개수 계산 -> 로또 발행, 출력
+    void callPaymentPriceLoop() {
+        try {
+            paymentPrice = getPaymentPrice();
+            ticketCount = getTicketCount(paymentPrice);
+            OutputHandler.sayTicketCount(ticketCount);
+            lottos = issueLottos(ticketCount);
+        } catch (IllegalArgumentException e) {
+            callPaymentPriceLoop();
+        }
+    }
+
+    long getPaymentPrice() throws IllegalArgumentException {
         OutputHandler.requirePaymentPrice();
         String paymentPriceInput = InputHandler.getInput();
-        Long paymentPrice = Converter.pay(paymentPriceInput);
+        long paymentPrice = Converter.pay(paymentPriceInput);
         OutputHandler.printEmptyLine();
         return paymentPrice;
     }
@@ -67,7 +71,17 @@ public class LottoController {
         return lottos;
     }
 
-    List<Integer> getWinningNumbers() {
+    // 당첨 번호 받기
+    List<Integer> getWinningNumbersLoop() {
+        try {
+            return getWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            return getWinningNumbersLoop();
+        }
+    }
+
+    // TODO : 오름차순으로 받기 or 받은 것 오름차순으로 바꿔주기
+    List<Integer> getWinningNumbers() throws IllegalArgumentException {
         OutputHandler.requireWinningNumbers();
         String winningNumbersInput = InputHandler.getInput();
         if (winningNumbersInput.isEmpty()) {
@@ -81,10 +95,19 @@ public class LottoController {
         return winningNumbers;
     }
 
-    int getBonusNumber() {
+    int getBonusNumberLoop() {
+        try {
+            return getBonusNumber();
+        } catch (IllegalArgumentException e) {
+            return getBonusNumberLoop();
+        }
+    }
+
+    int getBonusNumber() throws IllegalArgumentException {
         OutputHandler.requireBonusNumber();
         String bonusNumberInput = InputHandler.getInput();
         if (bonusNumberInput.isEmpty()) {
+            OutputHandler.requireNonemptyInput();
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT);
         }
         int bonusNumber = Converter.bonusNumbers(bonusNumberInput);
@@ -92,6 +115,8 @@ public class LottoController {
         return bonusNumber;
     }
 
+    // TODO : 15글자 넘어가지 않게 하기
+    // 당첨 통계 계산 & 당첨 통계, 수익률 출력
     Rank getStatic(List<Lotto> lottos) {
         Rank rank = new Rank();
         for (Lotto lotto : lottos) {
@@ -142,3 +167,4 @@ public class LottoController {
         return new LottoMatch(matchCount, bonusMatch);
     }
 }
+

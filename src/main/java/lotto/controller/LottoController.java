@@ -1,13 +1,13 @@
 package lotto.controller;
 
-import lotto.Lotto;
-import lotto.RandomLottoGenerator;
 import lotto.config.LottoConfig;
 import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.Quantity;
+import lotto.domain.RandomLottoGenerator;
 import lotto.domain.WinningLotto;
 import lotto.exception.LottoException;
 import lotto.view.InputView;

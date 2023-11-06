@@ -1,10 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.config.LottoConfig;
-import lotto.domain.BonusNumber;
 import lotto.exception.Errors;
 
 public class Lotto {

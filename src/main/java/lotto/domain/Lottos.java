@@ -3,8 +3,6 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoGenerator;
 
 public class Lottos {
     private final List<Lotto> lottos;

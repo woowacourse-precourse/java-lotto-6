@@ -9,7 +9,7 @@ public enum Errors {
     IS_NOT_NUMBER("[ERROR] 숫자를 입력하세요."),
     INVALID_QUANTITY("[ERROR] 유효하지 않은 구매 수입니다."),
     INVALID_RANGE("[ERROR] 유효하지 않은 로또 번호입니다."),
-    DUPLICATED_LOTTO_NUMBER("[ERROR] 중복되는 로또 번호가 생성되었습니다."),
+    DUPLICATED_LOTTO_NUMBER("[ERROR] 당첨번호는 중복될수 없습니다."),
     IS_NOT_SORTED("[ERROR] 정렬되지 않은 로또번호가 생성되었습니다.");
 
 

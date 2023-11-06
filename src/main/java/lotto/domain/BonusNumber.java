@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.Lotto;
 import lotto.exception.Errors;
 
 public class BonusNumber {

@@ -13,6 +13,7 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
+
     public Rank getRank(Lotto playerLotto) {
         int matchNumber = playerLotto.compareWinningLottoNumbers(winningNumbers);
         boolean isCorrectBonusNumber = playerLotto.isCorrectBonusNumber(bonusNumber);

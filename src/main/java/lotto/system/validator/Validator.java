@@ -59,4 +59,9 @@ public class Validator {
         validateNotEmpty(input);
         validateArabicNumber(input);
     }
+
+    public void validatePurchaseAmount(String input) {
+        validateNotEmptyAndArabicNumber(input);
+        validateDivisibleBy1000(input);
+    }
 }

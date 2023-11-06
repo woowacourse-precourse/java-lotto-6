@@ -29,10 +29,10 @@ public class Input {
         return new Lotto(numbers);
     }
 
-    public static int readBonusNumber() {
+    public static int readBonusNumber(Lotto winningLottery) {
         System.out.println("보너스 번호를 입력해 주세요.");
         String userInput = readLine();
-        return Validate.lotteryNumber(userInput);
+        return Validate.bonusNumber(winningLottery, userInput);
     }
 
 }

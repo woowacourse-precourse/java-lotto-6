@@ -4,7 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -40,5 +43,31 @@ class LottoTest {
         long count2 = lotto2.countMatchingNumber(winningNumber);
 
         assertThat(count2).isEqualTo(0);
+    }
+
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있는지 판단한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void verifyIsBonusNumberIncludedShouldPass(int bonusNumberValue) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumber winningNumber = WinningNumber.from(List.of(11, 12, 13, 14, 15, 16));
+        BonusNumber bonusNumber = new BonusNumber(bonusNumberValue, winningNumber);
+
+        boolean result = lotto.contains(bonusNumber);
+
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있는지 판단한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {40, 41, 42, 43, 44, 45})
+    void verifyIsBonusNumberIncludedShouldFail(int bonusNumberValue) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumber winningNumber = WinningNumber.from(List.of(11, 12, 13, 14, 15, 16));
+        BonusNumber bonusNumber = new BonusNumber(bonusNumberValue, winningNumber);
+
+        boolean result = lotto.contains(bonusNumber);
+
+        assertThat(result).isFalse();
     }
 }

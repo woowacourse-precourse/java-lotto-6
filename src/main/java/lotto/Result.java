@@ -3,6 +3,7 @@ package lotto;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.StringJoiner;
 
 public class Result {
     private final Map<Rank, Long> result;
@@ -25,5 +26,14 @@ public class Result {
 
     public long getProfit(Rank rank) {
         return rank.getRankReward(result.get(rank));
+    }
+
+    public String getRankStatistics(Rank rank) {
+        StringJoiner stringJoiner = new StringJoiner(" ");
+        stringJoiner.add(rank.getRankMessage());
+        stringJoiner.add("-");
+        stringJoiner.add(String.format("%s개", result.get(rank)));
+
+        return stringJoiner.toString();
     }
 }

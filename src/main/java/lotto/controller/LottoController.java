@@ -1,11 +1,11 @@
 package lotto.controller;
 
-import lotto.config.LottoConfig;
 import lotto.convertor.Convertor;
 import lotto.domain.AnswerLotto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
 import lotto.domain.Money;
+import lotto.domain.RandomNumberGenerator;
 import lotto.domain.Result;
 import lotto.dto.ResultsDto;
 import lotto.view.InputView;
@@ -21,7 +21,7 @@ public class LottoController {
     }
 
     public void run() {
-        final LottoFactory lottoFactory = LottoConfig.getLottoFactory(createMoney());
+        final LottoFactory lottoFactory = LottoFactory.of(new RandomNumberGenerator(), createMoney());
 
         outputView.printLottoNumbers(lottoFactory.getLottoNumbers());
 

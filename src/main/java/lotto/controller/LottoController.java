@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.dto.WinningLotto;
 import lotto.dto.WinningResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -22,8 +23,9 @@ public class LottoController {
     public void play() {
         try {
             buyLotto();
-            getWinningLotto();
-            getLottoResult();
+            WinningLotto winningLotto = getWinningLotto();
+            getLottoResult(winningLotto);
+            getProfitRate();
         } catch (IllegalArgumentException e) {
             outputView.printErrorCode(e.getMessage());
         }
@@ -35,17 +37,19 @@ public class LottoController {
         outputView.printLottoTickets(lottoTickets);
     }
 
-    private void getWinningLotto() {
+    private WinningLotto getWinningLotto() {
         String winningNumber = inputView.askWinningNumbers();
         String bonusNumber = inputView.askBonusNumber();
 
-        lottoService.getWinningLotto(winningNumber, bonusNumber);
+        return lottoService.getWinningLotto(winningNumber, bonusNumber);
     }
 
-    private void getLottoResult() {
-        WinningResult lottoResult = lottoService.getLottoResult();
+    private void getLottoResult(WinningLotto winningLotto) {
+        WinningResult lottoResult = lottoService.getLottoResult(winningLotto);
         outputView.printWinningResult(lottoResult);
+    }
 
+    private void getProfitRate() {
         double profitRate = lottoService.calculateProfit();
         outputView.printProfitRate(profitRate);
     }

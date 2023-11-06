@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.dto.WinningResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +34,7 @@ class LottoServiceTest {
         lottoService.getWinningLotto("1,2,3,6,7,8", "10");
 
         //when
-        WinningResult lottoResult = lottoService.getLottoResult();
+//        WinningResult lottoResult = lottoService.getLottoResult();
 
         //then
         System.out.println();

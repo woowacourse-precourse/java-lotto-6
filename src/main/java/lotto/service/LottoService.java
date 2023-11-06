@@ -6,14 +6,13 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
+import lotto.dto.WinningLotto;
 import lotto.dto.WinningResult;
 
 public class LottoService {
     private final NumberGenerator generator;
     private PurchaseAmount purchaseAmount;
     private List<Lotto> purchasedTickets;
-    private Lotto winningLotto;
-    private LottoNumber bonusNumber;
     private WinningResult winningResult;
 
     public LottoService(NumberGenerator generator) {
@@ -36,16 +35,16 @@ public class LottoService {
         return new Lotto(generator.generateLotto());
     }
 
-    public void getWinningLotto(String winningNumber, String bonus) {
-        winningLotto = new Lotto(winningNumber);
-        bonusNumber = LottoNumber.from(bonus);
+    public WinningLotto getWinningLotto(String winningNumber, String bonus) {
+        return WinningLotto.of(winningNumber, bonus);
     }
 
-    public WinningResult getLottoResult() {
+    public WinningResult getLottoResult(WinningLotto winningLotto) {
         WinningResult winningResult = new WinningResult();
+
         for (Lotto purchasedTicket : purchasedTickets) {
-            int matchedCount = getMatchedResult(purchasedTicket);
-            boolean isBonus = isBonus(purchasedTicket);
+            int matchedCount = calculateMatched(purchasedTicket, winningLotto);
+            boolean isBonus = isBonus(purchasedTicket, winningLotto);
             winningResult.updateResult(matchedCount, isBonus);
         }
 
@@ -53,14 +52,15 @@ public class LottoService {
         return winningResult;
     }
 
-    private int getMatchedResult(Lotto purchasedTicket) {
+    private int calculateMatched(Lotto purchasedTicket, WinningLotto winningLotto) {
         return Math.toIntExact(purchasedTicket.getNumbers()
                 .stream()
-                .filter(num -> winningLotto.getNumbers().contains(num))
+                .filter(winningLotto::hasTargetLottoNumber)
                 .count());
     }
 
-    private boolean isBonus(Lotto purchasedTicket) {
+    private boolean isBonus(Lotto purchasedTicket, WinningLotto winningLotto) {
+        LottoNumber bonusNumber = winningLotto.getBonusNumber();
         return purchasedTicket.getNumbers().contains(bonusNumber);
     }
 

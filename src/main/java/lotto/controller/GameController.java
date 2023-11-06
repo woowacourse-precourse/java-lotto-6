@@ -6,16 +6,22 @@ import lotto.model.Lotto;
 import lotto.model.PlayerLottos;
 import lotto.model.Purchase;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class GameController {
 
     public void start() {
         Purchase purchase = createPurchase();
-
+        printLottoAmount(purchase);
         PlayerLottos playerLottos = new PlayerLottos(purchase.getLottoAmount());
 
         Lotto winningLotto = createWinningLotto();
         Bonus bonus = createBonus(winningLotto);
+    }
+
+    private void printLottoAmount(Purchase purchase) {
+        int lottoAmount = purchase.getLottoAmount();
+        OutputView.printLottoAmount(lottoAmount);
     }
 
     private Purchase createPurchase() {

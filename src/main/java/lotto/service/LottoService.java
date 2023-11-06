@@ -20,8 +20,8 @@ public class LottoService {
         return lottoResult;
     }
 
-    public int getRevenue(LottoResult lottoResult) {
-        int revenue = 0;
+    public float getRevenue(LottoResult lottoResult) {
+        float revenue = 0;
         for (int rank = 1; rank <= LottoConstant.LAST_RANK; rank++) {
             if (lottoResult.contains(rank)) {
                 int rankCount = lottoResult.get(rank);

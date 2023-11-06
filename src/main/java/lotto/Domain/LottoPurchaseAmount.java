@@ -16,7 +16,7 @@ public class LottoPurchaseAmount {
         return purchaseAmount / 1000;
     }
 
-    private static int validateIsNumeric(String purchaseAmount) throws IllegalArgumentException {
+    public static int validateIsNumeric(String purchaseAmount) throws IllegalArgumentException {
         try {
             return Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
@@ -25,7 +25,7 @@ public class LottoPurchaseAmount {
         }
     }
 
-    private static void validateFitPurchaseAmountCondition(int purchaseAmount) {
+    public static void validateFitPurchaseAmountCondition(int purchaseAmount) {
         if (purchaseAmount <= 0 || purchaseAmount % 1000 != 0) {
             System.out.println(INVALID_NUMBER_MESSAGE);
             throw new IllegalArgumentException(INVALID_NUMBER_MESSAGE);

@@ -60,4 +60,24 @@ public class LottoResult {
         return String.format("%,d", prizeMoney);
     }
 
+    public double calculateYield(int pricePerLotto) {
+        long totalPrize = calculateTotalPrize();
+        long totalSpent = (long) pricePerLotto * matchCounts.values().stream().mapToInt(Integer::intValue).sum();
+        return calculateYieldPercentage(totalPrize, totalSpent);
+    }
+
+    private long calculateTotalPrize() {
+        return matchCounts.entrySet().stream()
+                .filter(entry -> prizeMap.containsKey(entry.getKey()))
+                .mapToLong(entry -> entry.getValue() * prizeMap.get(entry.getKey()))
+                .sum();
+    }
+
+    private double calculateYieldPercentage(long totalPrize, long totalSpent) {
+        if (totalSpent > 0) {
+            return (double) totalPrize / totalSpent * 100;
+        }
+        return 0;
+    }
+
 }

@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -52,5 +51,22 @@ class LottoTest {
         // checkMatchingNumbers 메서드로 당첨 번호와 일치하는 개수를 구해 검증
         int matchingCount = lotto.checkMatchingNumbers(winningNumbers);
         assertThat(matchingCount).isEqualTo(expectedMatchingCount);
+    }
+
+    @DisplayName("보너스 번호 포함 여부 검증.")
+    @ParameterizedTest
+    @CsvSource(value = {
+            "1:true",
+            "4:true",
+            "7:false",
+            "2:true",
+            "20:false",
+    },delimiter = ':')
+    void hasBonusNumberTest(int inputBonusNumber,String expectedBoolean) {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+
+        boolean expected = Boolean.parseBoolean(expectedBoolean);
+
+        assertThat(lotto.hasBonusNumber(inputBonusNumber)).isEqualTo(expected);
     }
 }

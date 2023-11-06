@@ -15,7 +15,7 @@
             - 입력받은 값의 중복을 검사할 수 있다. checkDuplicationFromNumbers()
         - `1`개의 보너스 번호를 뽑을 수 있다. inputBonusNumber()
             - 앞에서 입력한 `6`개의 숫자와 중복되면 안된다. checkDuplicationWithPrev()
-- 로또 구입 금액을 입력받을 수 있다.
+- 로또 구입 금액을 입력받을 수 있다. inputPurchasePrice()
     - 구입 금액에 해당하는 만큼 로또를 발행할 수 있다.
     - 로도 `1`장의 가격은 `1,000`원이다.
         - `1,000`으로 나누어 떨어지지 않으면 예외 처리한다.

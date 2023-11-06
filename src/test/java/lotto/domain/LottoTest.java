@@ -35,11 +35,14 @@ public class LottoTest {
         // When
         testLotto = new Lotto(lottoNumbers);
         String expectedNumbers = lottoNumbers.stream()
-                .map(number -> Integer.toString(number))
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
+        String testLottoNumbers = testLotto.getNumberList().stream()
+                .map(String::valueOf)
                 .collect(Collectors.joining(","));
 
         // Then
-        assertThat(testLotto.getNumberString()).isEqualTo(expectedNumbers);
+        assertThat(testLottoNumbers).isEqualTo(expectedNumbers);
 
     }
 
@@ -64,7 +67,7 @@ public class LottoTest {
         void 중복_숫자_예외() {
             // Given
             List<Integer> lottoNumbers = List.of(1, 1, 2, 3, 4, 5);
-            
+
             // When
             assertThatThrownBy(() -> testLotto = new Lotto(lottoNumbers))
                     // Then

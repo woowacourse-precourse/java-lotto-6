@@ -4,6 +4,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoView {
 
+    private static final String ERROR_NOT_NUMBER = Message.ERROR_NOT_NUMBER.getValue();
+
     int inputNumber(String message) {
 
         printMessage(message);
@@ -24,7 +26,7 @@ public class LottoView {
             number = Integer.parseInt(input);
 
         } catch (NumberFormatException numberFormatException) {
-            throw new NumberFormatException("[ERROR] 숫자가 아닙니다.");
+            throw new NumberFormatException(ERROR_NOT_NUMBER);
         }
 
         return number;

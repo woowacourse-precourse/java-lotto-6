@@ -9,6 +9,8 @@ public class Wallet {
 
     private static final int MIN_AMOUNT_OF_LOTTO = LottoConstant.MIN_AMOUNT_OF_LOTTO.getValue();
     private static final int MAX_AMOUNT_OF_LOTTO = LottoConstant.MAX_AMOUNT_OF_LOTTO.getValue();
+    private static final String ERROR_NOT_MULTIPLES_NUMBER = Message.ERROR_NOT_MULTIPLES_NUMBER.getValue();
+    private static final String ERROR_NOT_NUMBER_RANGE = Message.ERROR_NOT_NUMBER_RANGE.getValue();
 
     private int balance = 0;
     private final List<Lotto> lottos = new ArrayList<>();
@@ -45,13 +47,13 @@ public class Wallet {
 
     private void validateNumberByMultiplesOfThousand(int number) {
         if (number % MIN_AMOUNT_OF_LOTTO != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000 원 단위어야 합니다.");
+            throw new IllegalArgumentException(ERROR_NOT_MULTIPLES_NUMBER);
         }
     }
 
     private void validateNumberRange(int number) {
         if (number < MIN_AMOUNT_OF_LOTTO || number > MAX_AMOUNT_OF_LOTTO) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000 ~ 100,000 원 이어야 합니다.");
+            throw new IllegalArgumentException(ERROR_NOT_NUMBER_RANGE);
         }
     }
 }

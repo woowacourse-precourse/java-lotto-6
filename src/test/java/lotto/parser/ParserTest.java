@@ -9,8 +9,9 @@ public class ParserTest {
     @DisplayName("정수를 입력하지 않으면 예외가 발생한다.")
     @Test
     void inputPurchaseAmount() {
-        assertThatThrownBy(() -> Parser.parsePurchaseAmount("3.14"))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Parser.parsePurchaseAmount("-1"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1,000원 단위로 입력해주세요.");
     }
 
     @DisplayName("1~45 사이 정수 6개를 입력하지 않으면 예외가 발생한다.")

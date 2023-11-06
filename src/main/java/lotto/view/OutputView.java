@@ -23,12 +23,12 @@ public class OutputView {
     public static void responseWinningStatics() {
         ConstantMessage.printNotice(RESPONSE_WINNING_STATISTICS);
         ConstantMessage.printNotice(RESPONSE_HYPHEN_SEPARATOR);
-        ConstantMessage.printNotice(RESPONSE_FIFTH);
-        ConstantMessage.printNotice(RESPONSE_FOURTH);
-        ConstantMessage.printNotice(RESPONSE_THIRD);
-        ConstantMessage.printNotice(RESPONSE_SECOND);
-        ConstantMessage.printNotice(RESPONSE_FIRST);
-        ConstantMessage.printNotice(RESPONSE_PROFIT_RATE);
+        ConstantMessage.printNotice(RESPONSE_FIFTH, 0);
+        ConstantMessage.printNotice(RESPONSE_FOURTH, 0);
+        ConstantMessage.printNotice(RESPONSE_THIRD, 0);
+        ConstantMessage.printNotice(RESPONSE_SECOND, 0);
+        ConstantMessage.printNotice(RESPONSE_FIRST, 0);
+        ConstantMessage.printNotice(RESPONSE_PROFIT_RATE, 0);
     }
 
     private static void printTickets(List<Lotto> tickets) {

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
-class InputViewTest {
+class InputTest {
     @DisplayName("입력 금액이 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void createPaymentWithNonNumericInput() {

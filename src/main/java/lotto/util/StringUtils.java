@@ -13,7 +13,7 @@ public class StringUtils {
         return splitNumbers;
     }
 
-    public static int StringToInt(String number) {
+    public static int stringToInt(String number) {
         return Integer.parseInt(number.replaceAll(",", ""));
     }
 }

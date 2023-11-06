@@ -58,7 +58,7 @@ public class Lottos {
 
     public int calculateTotalPrize(Map<Ranking, Integer> statics) {
         return statics.entrySet().stream()
-                .map(r -> StringUtils.StringToInt(r.getKey().getPrize()) * r.getValue())
+                .map(r -> StringUtils.stringToInt(r.getKey().getPrize()) * r.getValue())
                 .reduce(0, Integer::sum);
     }
 

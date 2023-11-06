@@ -34,7 +34,14 @@ public class ShowLottoProcess {
 
     public void printPickWinNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        process.pickWinNumber();
+        while (true) {
+            try {
+                process.pickWinNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.println();
     }
 

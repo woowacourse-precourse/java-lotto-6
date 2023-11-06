@@ -17,7 +17,8 @@ public class Controller {
     private LotteryResultsCalculator calculator;
     private User user;
 
-    Controller(InputInterface in, OutputInterface out, LotteryOperator operator, User user, LotteryResultsCalculator calculator) {
+    Controller(InputInterface in, OutputInterface out, LotteryOperator operator, User user,
+               LotteryResultsCalculator calculator) {
         this.in = in;
         this.out = out;
         this.operator = operator;
@@ -25,7 +26,7 @@ public class Controller {
         this.calculator = calculator;
     }
 
-    void purchaseLotteries() {
+    public void purchaseLotteries() {
         long purchasedAmount = in.getPurchasedAmount();
         LotteryRetailer retailer = new LotteryRetailer(new LottoRandom());
         LotteryReceipt receipt = retailer.purchase(operator, purchasedAmount);
@@ -33,18 +34,30 @@ public class Controller {
         out.printReceipt(receipt);
     }
 
-    void drawWinningLottery() {
+    public void drawWinningLottery() {
         List<Integer> winningNumbers = in.getWinningNumbers();
         int bonusNumber = in.getBonusNumber(winningNumbers);
         operator.draw(winningNumbers, bonusNumber);
     }
 
-    void calculateEarningRate() {
+    public void calculateEarningRate() {
         List<LotteryReceipt> receipts = user.getReceipts();
-        long result = 0;
-        for (LotteryReceipt receipt : receipts){
-            result += calculator.calculate(receipt);
-        }
+        long purchaseAmount = calculatePurchaseAmount(receipts);
+        long resultAmount = calculateResultAmount(receipts);
+        double earningRate = resultAmount / purchaseAmount * 100;
         System.out.println(OUTPUT_LOTTERY_RESULT);
     }
+
+    private long calculatePurchaseAmount(List<LotteryReceipt> receipts) {
+        return receipts.stream()
+                .mapToLong(LotteryReceipt::getPurchasedAmount)
+                .sum();
+    }
+
+    private long calculateResultAmount(List<LotteryReceipt> receipts) {
+        return receipts.stream()
+                .mapToLong(calculator::calculate)
+                .sum();
+    }
+
 }

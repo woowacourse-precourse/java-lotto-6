@@ -3,11 +3,11 @@ package domain;
 public class BonusNumber {
 	private final int bonusNumber;
 
-	public BonusNumber(String bonusNumber) {
+	public BonusNumber(String bonusNumber, Lotto lotto) {
 		validateIsDigit(bonusNumber);
 		int convertedBonusNumber = convertStringToInt(bonusNumber);
 		validateIsBetweenLottoRange(convertedBonusNumber);
-
+		validateWinningLottoNumberDuplicate(convertedBonusNumber, lotto);
 		this.bonusNumber = convertedBonusNumber;
 	}
 
@@ -34,6 +34,18 @@ public class BonusNumber {
 	private boolean isDigit(String bonusNumber) {
 		return bonusNumber.chars()
 				.allMatch(Character::isDigit);
+	}
+
+	public void validateWinningLottoNumberDuplicate(int bonusNumber, Lotto lotto) {
+		if (isWinningLottoNumberDuplicate(bonusNumber, lotto)) {
+			throw new IllegalArgumentException("[ERROR] 당첨 번호에 없는 번호를 입력해주세요");
+		}
+	}
+
+	private boolean isWinningLottoNumberDuplicate(int bonusNumber, Lotto lotto) {
+		return lotto.getNumbers()
+				.stream()
+				.noneMatch(number -> number == bonusNumber);
 	}
 
 }

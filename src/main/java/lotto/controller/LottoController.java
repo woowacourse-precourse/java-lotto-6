@@ -5,6 +5,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
 import lotto.domain.Ticket;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningStatistic;
 import lotto.io.InputManager;
 import lotto.io.OutputView;
 import lotto.service.LottoService;
@@ -50,6 +51,7 @@ public class LottoController {
             }
         }
         winningLotto.updateBonusNumber(bonusNumber.toValue());
+        WinningStatistic winningStatistic = lottoService.compareLotto(lottos, winningLotto);
     }
 
 }

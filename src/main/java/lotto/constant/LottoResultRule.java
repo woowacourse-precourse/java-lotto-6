@@ -21,7 +21,7 @@ public enum LottoResultRule {
         this.prize = prize;
     }
 
-    public static LottoResultRule matchCount(final Integer matchCount, final Boolean hasBonus, final Integer price) {
+    public static LottoResultRule matchCount(final Integer matchCount, final Boolean hasBonus) {
         return Arrays.stream(LottoResultRule.values())
                 .filter(v -> Objects.equals(matchCount, v.matchCount) && Objects.equals(hasBonus, v.hasBonus))
                 .findFirst()

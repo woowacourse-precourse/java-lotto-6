@@ -13,5 +13,12 @@ public class WinningLotto {
         this.bonusNumber = new BonusNumber(value);
     }
 
+    public Lotto toLotto() {
+        return lotto;
+    }
+
+    public BonusNumber toBonusNumber() {
+        return bonusNumber;
+    }
     // lotto와 bonusNumber에 중복된 값이  있는지 확인
 }

@@ -9,15 +9,26 @@ import java.util.List;
 
 public class InputController {
     private LottoGame LottoGame;
-    private Viewer viewer = new Viewer();
+    private static Viewer viewer = new Viewer();
     private Integer money;
 
     public void startGame() {
         viewer.printArgs("구입금액을 입력해 주세요.");
-        money = Integer.parseInt(Console.readLine());
+        String moneyArg = Console.readLine();
+
+        while (true) {
+            try {
+                money = Integer.parseInt(moneyArg);
+                break;
+            } catch (NumberFormatException e) {
+                viewer.printArgs("[ERROR] 구입금액을 입력해 주세요.");
+                moneyArg = Console.readLine(); // 다시 입력 요청
+            }
+        }
+
+
         System.out.println();
     }
-
 
     public List<Integer> playerInput() {
         viewer.printArgs("");
@@ -41,7 +52,7 @@ public class InputController {
         return integerList;
     }
 
-    public Integer bonusInput() {
+    public static Integer bonusInput() {
         viewer.printArgs("");
         viewer.printArgs("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());

@@ -44,7 +44,8 @@ public class LottoGame {
         inputController.startGame();
         lottoBoard = new LottoBoard(inputController.getMoney());
 
-        player = new Player(inputController.playerInput(), inputController.bonusInput());
+
+        player = new Player(inputController.playerInput());
 
         for (int i = 0; i < lottoBoard.getTickets(); i++) {
             compareLottoAndPlayer(lottoBoard.getOneLotto(i), player.getNumbers(), player.getBonus());

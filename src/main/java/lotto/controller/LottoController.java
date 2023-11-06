@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import lotto.Service.LottoService;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.dto.BonusRequestDTO;
 import lotto.dto.LottoRequestDTO;
 import lotto.dto.LottoResponseDTO;
 
@@ -24,6 +26,17 @@ public class LottoController {
         return LottoService
                 .getInstance()
                 .lottoSell(money);
+    }
+
+    public Lotto createUserLottoNumber(String numbers){
+        return LottoService
+                .getInstance()
+                .createLotto(numbers);
+    }
+    public int checkBonusNumber(BonusRequestDTO bonusRequestDTO){
+        return LottoService
+                .getInstance()
+                .checkBonus(bonusRequestDTO);
     }
 
     public LottoResponseDTO CountScore(LottoRequestDTO lottoRequestDTO){

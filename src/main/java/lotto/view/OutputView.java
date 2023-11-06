@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
+    private static final String PRIZE_UNIT = "원";
+    private static final String BRACKET_LEFT = "[";
+    private static final String BRACKET_RIGHT = "]";
+    private static final String DELIMITER = ", ";
+
     public static void printBuyingCount(int count) {
         String format = ViewMessage.OUTPUT_BUYING_FORMAT.message();
         System.out.printf(format, count);
@@ -14,9 +19,9 @@ public class OutputView {
     }
 
     public static void printEachLotto(List<Integer> numbers) {
-        StringJoiner sj = new StringJoiner(", ");
+        StringJoiner sj = new StringJoiner(DELIMITER);
         numbers.stream().map(Object::toString).forEach(sj::add);
-        System.out.println("[" + sj + "]");
+        System.out.println(BRACKET_LEFT + sj + BRACKET_RIGHT);
     }
 
     public static void printResultTitle() {
@@ -28,7 +33,7 @@ public class OutputView {
         String message = result.message();
 
         NumberFormat formatter = NumberFormat.getInstance();
-        String currency = formatter.format(result.prize()) + "원";
+        String currency = formatter.format(result.prize()) + PRIZE_UNIT;
 
         System.out.printf(format, message, currency, count);
         newLine();

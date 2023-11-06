@@ -6,13 +6,13 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private int bonusNumber;
+   // private int bonusNumber;
 
-    public Lotto(List<Integer> numbers, int bonusNumber) {
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicateCheck(numbers);
         this.numbers = numbers;
-        this.bonusNumber = bonusNumber;
+       // this.bonusNumber = bonusNumber;
     
     }
 

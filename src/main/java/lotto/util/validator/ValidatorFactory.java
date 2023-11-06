@@ -12,6 +12,7 @@ public class ValidatorFactory {
         addValidator(new NumberValidator());
         addValidator(new PurchaseValidator());
         addValidator(new WinningNumbersDtoValidator());
+        addValidator(new LottoValidator());
     }
 
     public static ValidatorFactory getInstance() {

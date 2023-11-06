@@ -28,7 +28,7 @@ public class Customer {
             return money;
         } catch (NumberFormatException e) {
 
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
         }
     }
 
@@ -36,7 +36,7 @@ public class Customer {
 
         if (wallet % 1000 != 0) {
 
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 

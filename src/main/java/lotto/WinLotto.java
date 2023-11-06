@@ -44,7 +44,7 @@ public class WinLotto {
 
         if (checkNums.length != NUMBERSIZE) {
 
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
@@ -58,7 +58,7 @@ public class WinLotto {
             }
         } catch (NumberFormatException e) {
 
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
         }
     }
 
@@ -70,7 +70,7 @@ public class WinLotto {
 
             if (num < MINRANGE || num > MAXRANGE) {
 
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }
@@ -83,7 +83,7 @@ public class WinLotto {
             int num = Integer.parseInt(str);
             if (!set.add(num)) {
 
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
             }
         }
     }
@@ -93,19 +93,29 @@ public class WinLotto {
         try {
 
             int num = Integer.parseInt(bonusNumber);
-            validateBonusNumDuplicate(num);
+            validateBonusNumRange(num);
             return num;
         } catch (NumberFormatException e) {
 
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
+    }
+
+    private void validateBonusNumRange(int bonusNumber) {
+
+        if (bonusNumber < MINRANGE || bonusNumber > MAXRANGE) {
+
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+
+        validateBonusNumDuplicate(bonusNumber);
     }
 
     private void validateBonusNumDuplicate(int bonusNumber) {
 
         if (numbers.contains(bonusNumber)) {
 
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 중복될 수 없습니다.");
         }
     }
 

@@ -44,13 +44,12 @@ class LottoManagerTest {
     }
 
 
-    @DisplayName("로또 당첨 결과 반환")
+    @DisplayName("로또 1등 당첨")
     @Test
     void checkWinning() {
         // given
         List<Lotto> userLottos = new ArrayList<>();
         userLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6))); // 6개 일치, 1등
-        userLottos.add(new Lotto(List.of(1, 2, 3, 7, 8, 9))); // 3개 일치, 5등
 
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Integer bonusNumber = 10;
@@ -60,8 +59,14 @@ class LottoManagerTest {
 
         // then
         assertThat(lottoResult.state.get(Prize.FIRST)).isEqualTo(1);
-        assertThat(lottoResult.state.get(Prize.FIFTH)).isEqualTo(1);
 
+        for (Prize prize : lottoResult.state.keySet()) {
+            if (prize == Prize.FIRST){
+                continue;
+            }
+
+            assertThat(lottoResult.state.get(prize)).isEqualTo(0);
+        }
     }
 
     @DisplayName("로또 2등 당첨")
@@ -79,8 +84,91 @@ class LottoManagerTest {
 
         // then
         assertThat(lottoResult.state.get(Prize.SECOND)).isEqualTo(1);
-        assertThat(lottoResult.state.get(Prize.THIRD)).isEqualTo(0);
 
+        for (Prize prize : lottoResult.state.keySet()) {
+            if (prize == Prize.SECOND){
+                continue;
+            }
+
+            assertThat(lottoResult.state.get(prize)).isEqualTo(0);
+        }
+    }
+
+    @DisplayName("로또 3등 당첨")
+    @Test
+    void checkThirdWinning() {
+        // given
+        List<Lotto> userLottos = new ArrayList<>();
+        userLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));   // 5개 일치, 3등
+
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 12));
+        Integer bonusNumber = 20;
+
+        // when
+        LottoResult lottoResult = LottoManager.checkWinning(userLottos, winningLotto, bonusNumber);
+
+        // then
+        assertThat(lottoResult.state.get(Prize.THIRD)).isEqualTo(1);
+
+        for (Prize prize : lottoResult.state.keySet()) {
+            if (prize == Prize.THIRD){
+                continue;
+            }
+
+            assertThat(lottoResult.state.get(prize)).isEqualTo(0);
+        }
+    }
+
+    @DisplayName("로또 4등 당첨")
+    @Test
+    void checkFourthWinning() {
+        // given
+        List<Lotto> userLottos = new ArrayList<>();
+        userLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 20)));   // 4개 일치 + 보너스 번호 일치, 4등
+        userLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));   // 4개 일치, 4등
+
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 11, 12));
+        Integer bonusNumber = 20;
+
+        // when
+        LottoResult lottoResult = LottoManager.checkWinning(userLottos, winningLotto, bonusNumber);
+
+        // then
+        assertThat(lottoResult.state.get(Prize.FOURTH)).isEqualTo(2);
+
+        for (Prize prize : lottoResult.state.keySet()) {
+            if (prize == Prize.FOURTH){
+                continue;
+            }
+
+            assertThat(lottoResult.state.get(prize)).isEqualTo(0);
+        }
+    }
+
+    @DisplayName("로또 5등 당첨")
+    @Test
+    void checkFifthWinning() {
+        // given
+        List<Lotto> userLottos = new ArrayList<>();
+        userLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 20)));   // 3개 일치 + 보너스 번호 일치, 5등
+        userLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));   // 3개 일치, 5등
+
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 10, 11, 12));
+        Integer bonusNumber = 20;
+
+        // when
+        LottoResult lottoResult = LottoManager.checkWinning(userLottos, winningLotto, bonusNumber);
+
+        // then
+        assertThat(lottoResult.state.get(Prize.FIFTH)).isEqualTo(2);
+
+        for (Prize prize : lottoResult.state.keySet()) {
+            if (prize == Prize.FIFTH){
+                continue;
+            }
+
+            assertThat(lottoResult.state.get(prize)).isEqualTo(0);
+        }
     }
 
 

@@ -24,5 +24,13 @@ public class Lotto {
         InputValidator.checkBonusNumber(numbers, bonus);
     }
 
+    public int countMatchingNumber(Lotto userLotto) {
+        return (int) numbers.stream().filter(userLotto::isContain).count();
+    }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
 }
 

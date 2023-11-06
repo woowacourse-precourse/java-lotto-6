@@ -22,7 +22,7 @@ public class Lotto implements LottoConstant {
     }
     private static void validateNumbers(List<Integer>numbers){
         validateNumbersSizeIsPickCount(numbers);
-        validateNumberInRange(numbers);
+        validateNumbersInRange(numbers);
         validateDuplicated(numbers);
     }
 
@@ -32,7 +32,7 @@ public class Lotto implements LottoConstant {
         }
     }
 
-    private static void validateNumberInRange(List<Integer>numbers){
+    private static void validateNumbersInRange(List<Integer>numbers){
         for (Integer number : numbers){
             if (number<MIN_NUMBER || number>MAX_NUMBER){
                 throw new LottoException(LottoExceptionMessage.INVALID_NUMBER);
@@ -40,7 +40,7 @@ public class Lotto implements LottoConstant {
         }
     }
     private static void validateDuplicated(List<Integer>numbers){
-        Set<Integer> uniqueNumbers = new HashSet(numbers);
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size()!=PICK_COUNT){
             throw new LottoException(LottoExceptionMessage.DUPLICATE_NUMBER);
         }

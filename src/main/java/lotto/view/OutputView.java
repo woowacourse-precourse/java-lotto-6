@@ -15,6 +15,12 @@ public class OutputView {
     public static void printErrorMessage(String errorMessage){
         System.out.println(errorMessage);
     }
+    public static void printWinningDrawMessage(){
+        printMessage(OutputViewMessage.WINNING_DRAW.getFormattedMessage());
+    }
+    public static void printBonusDrawMessage(){
+        printMessage(OutputViewMessage.BONUS_DRAW.getFormattedMessage());
+    }
     public static void printLottoPaperMessage(LottoPaper lottoPaper){
         int ticketCount = lottoPaper.lottoTickets().size();
         List<Lotto> lottoTickets = lottoPaper.lottoTickets();

@@ -11,6 +11,10 @@ public class BonusNumber {
         this.number = number;
     }
 
+    public int get() {
+        return number;
+    }
+
     private void rangeValidate(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException();

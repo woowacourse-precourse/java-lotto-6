@@ -7,18 +7,22 @@ import java.util.List;
 import lotto.constant.LottoConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.WinningNumber;
 import lotto.error.ErrorMessage;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoService lottoService;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoService = lottoService;
     }
 
     public void run() {
@@ -33,7 +37,7 @@ public class LottoController {
         outputView.println();
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
-
+        LottoResult lottoResult = lottoService.getLottoResult(lottos, winningNumber, bonusNumber);
 
     }
 

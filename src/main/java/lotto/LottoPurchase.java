@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoPurchase {
 
     private long purchaseAmount;
@@ -19,5 +22,14 @@ public class LottoPurchase {
                     LottoConstant.LOTTO_TICKET_PRICE +
                     "원 단위여야 합니다.");
         }
+    }
+
+    public List<Lotto> purchase(LottoGenerator lottoGenerator) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+        for (int i = 0; i < purchaseAmount; ++i) {
+            lottoTickets.add(lottoGenerator.generate());
+        }
+
+        return lottoTickets;
     }
 }

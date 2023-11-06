@@ -14,6 +14,16 @@ public class Application {
     	return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
     
+    public static List<Lotto> makeLotto(int count) {
+    	List<Lotto> lottoRandomList = new ArrayList<Lotto>();
+    	
+    	for (int i = 0;i < count;i++) {
+    		lottoRandomList.add(new Lotto(getLotto()));
+    	}
+    	
+    	return lottoRandomList;
+    }
+    
     public static void printResult(List<Integer> lottoNum) {
     	System.out.println("당첨 통계");
     	System.out.println("---");

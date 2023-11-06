@@ -12,7 +12,7 @@ public class LottoStore {
         this.lottoMachine = lottoMachine;
     }
 
-    public List<Lotto> issueLotto(LottoAmount lottoAmount) {
+    public List<Lotto> issueLottoByAuto(LottoAmount lottoAmount) {
         int quantity = lottoAmount.getLottoQuantity();
         return IntStream.range(0, quantity)
                 .mapToObj(i -> lottoMachine.createLottoByAuto())

@@ -16,14 +16,14 @@ class LottoStoreTest {
     private final LottoStore lottoStore = new LottoStore(lottoMachine);
 
     @Test
-    void 금액에_맞게_로또를_발행한다() {
+    void 금액에_맞는_개수만큼_로또를_자동으로_발행한다() {
         // given
         int amount = 8000;
         LottoAmount lottoAmount = new LottoAmount(amount);
         doReturn(lottoFixture()).when(lottoMachine).createLottoByAuto();
 
         // when
-        List<Lotto> lottos = lottoStore.issueLotto(lottoAmount);
+        List<Lotto> lottos = lottoStore.issueLottoByAuto(lottoAmount);
 
         // then
         assertThat(lottos).hasSize(amount / LOTTO_PRICE.getValue());

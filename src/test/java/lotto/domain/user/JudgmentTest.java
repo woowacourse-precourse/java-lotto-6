@@ -45,7 +45,7 @@ class JudgmentTest {
         lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), 7);
 
         // when
-        Integer result = judgment.countSameWinNum(lotto_1);
+        Integer result = judgment.countSameWinNumbers(lotto_1);
 
         // than
         assertThat(result).isEqualTo(num7);

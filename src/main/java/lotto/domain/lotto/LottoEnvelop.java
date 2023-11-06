@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoEnvelop {
+    // TODO: 11/6/23 상수 관리 
+    private static final String NEW_LINE = "\n";
     private List<Lotto> lottoEnvelop;
 
     public LottoEnvelop() {
@@ -26,6 +28,10 @@ public class LottoEnvelop {
         return information;
     }
 
+    public Lotto takeLotto(Integer index) {
+        return this.lottoEnvelop.get(index);
+    }
+
     private StringBuilder getInformationEnvelop(int sizeLottoEnvelop) {
         Lotto lotto;
         StringBuilder lottoInformation;
@@ -36,7 +42,7 @@ public class LottoEnvelop {
             lottoInformation = getLottoInformation(lotto);
             appendLottoInformation(lottoInformation, information);
         }
-        
+
         return information;
     }
 
@@ -45,14 +51,10 @@ public class LottoEnvelop {
     }
 
     private void appendLottoInformation(StringBuilder lottoInformation, StringBuilder information) {
-        information.append(lottoInformation + "\n");
+        information.append(lottoInformation + NEW_LINE);
     }
 
-    private Lotto getLotto(int i) {
-        return lottoEnvelop.get(i);
-    }
-
-    public Lotto takeLotto(Integer index) {
-        return this.lottoEnvelop.get(index);
+    private Lotto getLotto(Integer index) {
+        return lottoEnvelop.get(index);
     }
 }

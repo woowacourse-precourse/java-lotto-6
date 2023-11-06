@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import java.util.*;
 
 public class Lotto {
+    // TODO: 11/6/23 상수 관리
     private static final String START_APPEND_STING = "[";
     private static final String MIDDLE_APPEND_COMMA_BLANK = ", ";
     private static final String END_APPEND_COMMA_BLANK = "]";
@@ -50,8 +51,12 @@ public class Lotto {
         return informationOfNumbers;
     }
 
-    private StringBuilder getInformation(int sizeNumbers, List<Integer> organizeNumbers) {
-        int num = 0;
+    public Integer getNumber(Integer index) {
+        return numbers.get(index);
+    }
+
+    private StringBuilder getInformation(Integer sizeNumbers, List<Integer> organizeNumbers) {
+        Integer num = 0;
         StringBuilder informationOfNumbers = new StringBuilder();
 
         appendStringBuild(informationOfNumbers, START_APPEND_STING);
@@ -69,7 +74,7 @@ public class Lotto {
         return informationOfNumbers;
     }
 
-    private boolean isAppendCondition(int sizeNumbers, int i) {
+    private boolean isAppendCondition(Integer sizeNumbers, Integer i) {
         return i != (sizeNumbers - 1);
     }
 
@@ -77,11 +82,7 @@ public class Lotto {
         informationOfNumbers.append(string);
     }
 
-    public Integer getNumber(Integer index) {
-        return numbers.get(index);
-    }
-
-    private Integer getNum(List<Integer> organizeLotto, int i) {
+    private Integer getNum(List<Integer> organizeLotto, Integer i) {
         return organizeLotto.get(i);
     }
 }

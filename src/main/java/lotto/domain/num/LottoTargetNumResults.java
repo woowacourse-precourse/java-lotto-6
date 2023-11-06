@@ -5,13 +5,10 @@ import lotto.utill.Utii;
 
 import java.util.List;
 
-/**
- * 당첨 번호와 보너스 번호들의 모임 클래스
- */
 public class LottoTargetNumResults {
+    // TODO: 11/6/23 상수 관리 
     private static final Integer BONUS_INDEX_NUM = 6;
-    private static final Integer START_PICK_NUM_INDEX = 0;
-    private static final Integer END_PICK_NUM_INDEX = 5;
+    private static final Integer SIZE_WIN_NUMBERS = 6;
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
@@ -20,23 +17,9 @@ public class LottoTargetNumResults {
         this.bonusLottoNum = Config.bonusLottoNum(bonusNumber);
     }
 
-    // TODO: 11/5/23 삭제 해도 될꺼 같다. 확인 
-//    public Boolean isSame(Integer targetNum, Integer indexOfSpecial) {
-//        if (isContainScopeOfWinNums(indexOfSpecial)) {
-//            return isSameWinNums(targetNum, indexOfSpecial);
-//        }
-//        return isSameBonusNum(targetNum, indexOfSpecial);
-//    }
-
-    /**
-     * 당첨 번호 추첨 번호가 같은지 확인한다.
-     *
-     * @param targetNum 확인하기 위한 번호
-     * @return
-     */
     public Boolean isSameWinNums(Integer targetNum) {
-        for (int index = 0; index < 6; index++) {
-            if (winLottoNums.isSame(targetNum, index)) {
+        for (int index = 0; index < SIZE_WIN_NUMBERS; index++) {
+            if (isContainWinLottoNums(targetNum, index)) {
                 return true;
             }
         }
@@ -44,23 +27,20 @@ public class LottoTargetNumResults {
         return false;
     }
 
-    /**
-     * 보너스 번호가 같은지 확인
-     *
-     * @param targetNum
-     * @return
-     */
     public Boolean isSameBonusNum(Integer targetNum, Integer indexOfSpecial) {
-        if (Utii.isSameInt(indexOfSpecial, BONUS_INDEX_NUM)) {
+        if (isSameBonusNumber(indexOfSpecial)) {
             return bonusLottoNum.isSame(targetNum);
         }
 
         return false;
     }
 
-    private boolean isContainScopeOfWinNums(Integer indexOfSpecial) {
-        return indexOfSpecial >= START_PICK_NUM_INDEX
-                && indexOfSpecial <= END_PICK_NUM_INDEX;
+    private Boolean isContainWinLottoNums(Integer targetNum, int index) {
+        return winLottoNums.isSameNumOfIndex(targetNum, index);
+    }
+
+    private boolean isSameBonusNumber(Integer indexOfSpecial) {
+        return Utii.isSameInt(indexOfSpecial, BONUS_INDEX_NUM);
     }
 
 }

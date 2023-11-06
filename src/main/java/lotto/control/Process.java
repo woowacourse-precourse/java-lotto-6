@@ -62,10 +62,10 @@ public class Process {
      */
     public StringBuilder showStatisticResult() {
         lottoTargetNumResults = lottoHost.giveLottoTargetNumResults();
-        return user.showStatisticLottoResult(lottoTargetNumResults);
+        return user.showLottoStatisticResult(lottoTargetNumResults);
     }
 
     public StringBuilder showRateResult() {
-        return user.calculateTotalRate();
+        return user.showRateResult();
     }
 }

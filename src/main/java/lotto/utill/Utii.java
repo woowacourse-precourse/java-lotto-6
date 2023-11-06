@@ -1,13 +1,11 @@
 package lotto.utill;
 
-import Validate.ValidateException;
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Utii {
+    // TODO: 11/6/23 상수 관리
     private static final String COMMA_REGEX = ",";
 
     public static boolean isSameInt(Integer num_1, Integer num_2) {
@@ -15,16 +13,15 @@ public class Utii {
     }
 
 
-
     public static Integer parseInteger(String inputStringLine) {
         return Integer.valueOf(inputStringLine);
     }
 
-   public static String[] makeArrSplitComma(String inputStringLine) {
+    public static String[] makeArrSplitComma(String inputStringLine) {
         return inputStringLine.split(COMMA_REGEX);
     }
 
-   public static List<Integer> makeListFromArr(String[] arr) {
+    public static List<Integer> makeListFromArr(String[] arr) {
         return Arrays.stream(arr)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

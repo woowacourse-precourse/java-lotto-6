@@ -6,8 +6,8 @@ import static lotto.util.ThousandSeparator.addThousandsSeparator;
 import camp.nextstep.edu.missionutils.Console;
 
 public class LottoController {
-    private static final int LOTTO_PRICE = 1000;
-    private final String SEPARATED_LOTTO_PRICE = addThousandsSeparator(LOTTO_PRICE);
+    public static final int LOTTO_PRICE = 1000;
+    public final String SEPARATED_LOTTO_PRICE = addThousandsSeparator(LOTTO_PRICE);
 
 
     public LottoController() {
@@ -20,6 +20,7 @@ public class LottoController {
     public int requestLottoPurchaseAmount() {
         System.out.printf(REQUEST_LOTTO_PURCHASE_AMOUNT, SEPARATED_LOTTO_PRICE);
         String userInputAmount = Console.readLine();
-        
+        int purchaseAmount = Integer.parseInt(userInputAmount);
+
     }
 }

@@ -32,7 +32,7 @@ public class Lotto {
         }
     }
 
-    public static Lotto makeRandomNumbersForLotto() {
+    public static Lotto createRandomNumbersForLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);
     }

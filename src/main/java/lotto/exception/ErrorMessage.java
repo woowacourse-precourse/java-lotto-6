@@ -10,7 +10,8 @@ public enum ErrorMessage {
             PriceValidator.MAX_PURCHASE_COST)),
     DUPLICATE_NUMBER_MESSAGE("중복 숫자는 허용되지 않습니다."),
     INVALID_NUMBER_COUNT(String.format("숫자 %d개를 입력해 주세요.", LottoNumberValidator.LOTTO_NUMBER_COUNT)),
-    LOTTO_NUMBER_OUT_OF_RANGE_MESSAGE(String.format("%d~%d 사이의 숫자만 입력 가능합니다.", LottoNumberValidator.MIN_LOTTO_NUMBER, LottoNumberValidator.MAX_LOTTO_NUMBER));
+    LOTTO_NUMBER_OUT_OF_RANGE_MESSAGE(String.format("%d~%d 사이의 숫자만 입력 가능합니다.", LottoNumberValidator.MIN_LOTTO_NUMBER,
+            LottoNumberValidator.MAX_LOTTO_NUMBER));
     final String message;
 
     ErrorMessage(String message) {

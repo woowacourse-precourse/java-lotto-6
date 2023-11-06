@@ -10,11 +10,12 @@ public class LottoNumberValidator extends Validator {
     public final static int MIN_LOTTO_NUMBER = 1;
     public final static int MAX_LOTTO_NUMBER = 45;
 
-    public static void validateNumbersCount(List<Integer> numbers){
-        if(numbers.size()!=6){
+    public static void validateNumbersCount(List<Integer> numbers) {
+        if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getMessage());
         }
     }
+
     public static void hasDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 

@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.Statistics;
 import lotto.service.LottoService;
+import lotto.util.CheckValidation;
 import lotto.view.OutputView;
 
 import java.util.List;

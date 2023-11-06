@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.util.CheckValidation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class InputController {
     public static int money;
     public static List<Integer> winningNumbers;
     public static int bonusNumber;
+    public static CheckValidation validator = new CheckValidation();
 
     public InputController() {
         money = 0;
@@ -19,19 +22,26 @@ public class InputController {
     public static void inputMoney() {
         String stringMoney = readLine();
         money = Integer.parseInt(stringMoney);
+        validator.checkInputMoney();
     }
     public static void inputWinningNumbers() {
         winningNumbers = new ArrayList<>();
         String[] numberStrings = readLine().split(",", -1);
-        // [예외처리] 입력한 당첨 번호 중에 공백이 있는 경우
-        // [예외처리] 중복된 숫자를 입력한 경우
-        // [예외처리] 범위에서 벗어나는 숫자를 입력한 경우
+        validator.checkWinningNumBlank(numberStrings);
+
         for (String numberString : numberStrings) {
             winningNumbers.add(Integer.parseInt(numberString));
         }
+
+        validator.checkWinningNumRangeOver();
+        validator.checkWinningNumDuplication();
+        validator.checkWinningNumAmount();
     }
     public static void inputBonusNumber() {
         String userInputBonusNumbers = readLine();
         bonusNumber = Integer.parseInt(userInputBonusNumbers);
+
+        validator.checkBonusNumDuplication();
+        validator.checkBonusNumRangeOver();
     }
 }

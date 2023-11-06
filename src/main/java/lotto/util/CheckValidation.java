@@ -51,6 +51,4 @@ public class CheckValidation {
             throw new IllegalArgumentException("범위를 초과한 숫자를 입력하셨습니다. 보너스 번호의 숫자 범위는 1 ~ 45 입니다.");
         }
     }
-
-    // 랜덤 생성 수가 범위 맞는지 확인
 }

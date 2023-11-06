@@ -30,4 +30,8 @@ public class LottoPapers implements RandomNumberGenerator{
     public List<Integer> generateRandomNumbers(){
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_NUMBERS);
     }
+
+    public List<Lotto> getLottoPapers(){
+        return this.lottoPapers;
+    }
 }

@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 import lotto.util.ExceptionHandler;
 
 public class InputValidator {
+    private static final int THOUSAND = 1000;
     public static void validateForNonNumericCharacters(String input) {
         String regex = "^[0-9]+$";
 
@@ -19,8 +20,17 @@ public class InputValidator {
     public static void validateNumberLessThan1000(String input) {
         int number = Integer.parseInt(input);
 
-        if (number < 1000) {
+        if (number < THOUSAND) {
             ExceptionHandler.throwNumberBelow1000Exception();
+        }
+    }
+
+    public static void validateChangeAvailableFor1000(String input) {
+        int number = Integer.parseInt(input);
+
+        int remainder = number % THOUSAND;
+        if (remainder > 0) {
+            ExceptionHandler.throwChangeAvailableException();
         }
     }
 }

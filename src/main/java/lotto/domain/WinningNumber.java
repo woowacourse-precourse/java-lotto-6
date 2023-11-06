@@ -20,4 +20,8 @@ public class WinningNumber {
             throw new IllegalArgumentException();
         }
     }
+
+    public Lotto getValues() {
+        return values;
+    }
 }

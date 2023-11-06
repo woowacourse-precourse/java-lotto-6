@@ -41,4 +41,11 @@ public class Output {
         }
         return result;
     }
+
+    public void lottoAllPaperPrint(List<Lotto> lotto) {
+        for (int i = 0; i < lotto.size(); i++) {
+            String paper = lottoBuyPaperPrint(lotto.get(i).getLotto());
+            System.out.println(paper);
+        }
+    }
 }

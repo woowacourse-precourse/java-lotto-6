@@ -11,6 +11,10 @@ public class Budget {
         this.budget = budget;
     }
 
+    public boolean canBuyALotto(int sumPayment){
+        return this.budget>sumPayment;
+    }
+
     private void budgetValidation(int budget) {
         if (budget < 0) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_ZERO_OR_MORE.getErrorMessage());

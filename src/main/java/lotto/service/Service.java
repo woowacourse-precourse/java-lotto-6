@@ -1,11 +1,11 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
 import lotto.utils.Utils;
 import lotto.validation.Validation;
 import lotto.view.InputView;
@@ -20,6 +20,14 @@ public class Service {
 	private static final int BUYABLE_MAX_AMOUNT = 100_000;
 	
 	Buyer buyer;
+	LottoGame lottoGame;
+	
+	public void readyLottoGame() {
+		lottoGame = new LottoGame(getWinningNumbers());
+		int bonusNumber = getBonusNumber();
+		Validation.validateNumberNotInList(lottoGame.getWinningNumbers(), bonusNumber);
+		lottoGame.setBonusNumber(bonusNumber);
+	}
 	
 	public void initBuyer() {
 		buyer = new Buyer(getInputAmount());
@@ -60,22 +68,21 @@ public class Service {
 		return paid;
 	}
 	
-	public Lotto getWinningNumbers() {
+	public List<Integer> getWinningNumbers() {
 		InputView.inputWinningNumbers();
 		String input = Console.readLine().trim();
 		Validation.validateInputFormat(input);
 		List<Integer> numbers = Utils.stringToIntegerList(input);
 		Validation.validateListNumbersInRange(numbers, LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE);
-		return new Lotto(numbers);
+		return numbers;
 	}
 	
-	public int getBonusNumber(List<Integer> winningNumbers) {
+	public int getBonusNumber() {
 		InputView.inputBonusNumber();
 		String input = Console.readLine().trim();
 		Validation.validateNaturalNumber(input);
 		int bonusNumber = Integer.valueOf(input);
 		Validation.validateNumberInRange(bonusNumber, LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE);
-		Validation.validateNumberNotInList(winningNumbers, bonusNumber);
 		return bonusNumber;
 	}
 	

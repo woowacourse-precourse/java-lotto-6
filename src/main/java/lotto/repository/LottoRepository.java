@@ -1,6 +1,7 @@
 package lotto.repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 
@@ -11,12 +12,11 @@ public class LottoRepository {
         lottoRepository.add(lotto);
     }
 
-    public List<Integer> findLottoNumbersByIndex(int index) {
-        Lotto foundLotto = lottoRepository.get(index);
-        return new ArrayList<>(foundLotto.getLotto());
-    }
-
     public int checkRepositorySize() {
         return lottoRepository.size();
+    }
+
+    public List<Lotto> getAllLottos() {
+        return Collections.unmodifiableList(lottoRepository);
     }
 }

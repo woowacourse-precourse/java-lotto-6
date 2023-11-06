@@ -33,19 +33,8 @@ public class OutputView {
             System.out.println(lotto);
         }
     }
-    public static void printTotalReturn(ArrayList<String> matchedNumberCountList,String purchasedPrice){
-        ArrayList<String> winLottoCountList = new ArrayList<>();
-        for(String number : lottCountSet){
-            if(Collections.frequency(matchedNumberCountList,number) >= 0){
-                winLottoCountList.add(String.valueOf(Collections.frequency(matchedNumberCountList,number)));
-            }
-        }
-        int sum = 0;
-        for(int i = 0; i < winLottoCountList.size(); i++){
-            sum += Integer.parseInt(winLottoCountList.get(i)) * money[i];
-        }
-        float total = Float.parseFloat(String.valueOf(sum)) / Float.parseFloat(purchasedPrice);
-        System.out.printf("총 수익률은 %.1f%%입니다.\n",total * 100 );
+    public static void printTotalReturn(float totalPercentage){
+        System.out.printf("총 수익률은 %.1f%%입니다.\n",totalPercentage);
     }
 
     public static void printLottoStates(ArrayList<String> matchedNumberCountList){//모델이나 컨트롤러로 옮김

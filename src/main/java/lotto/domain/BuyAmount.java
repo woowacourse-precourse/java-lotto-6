@@ -40,7 +40,7 @@ public class BuyAmount {
     }
 
     private boolean isZero(int payment) {
-        if (payment % 1 != 0) {
+        if (payment != 0) {
             return false;
         }
         return true;

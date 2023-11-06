@@ -32,4 +32,8 @@ public enum LottoRank {
     public static LottoRank of(final MatchingType matchingType) {
         return ranks.getOrDefault(matchingType, LottoRank.NONE);
     }
+
+    public boolean isNone() {
+        return this == NONE;
+    }
 }

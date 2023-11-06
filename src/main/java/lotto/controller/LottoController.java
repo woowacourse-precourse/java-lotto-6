@@ -16,6 +16,7 @@ public class LottoController {
     public void run() {
         payMoney();
         buyLottos();
+        winningLotto();
     }
 
     private void payMoney() {
@@ -35,5 +36,9 @@ public class LottoController {
         lottos = new Lottos(lotto);
 
         OutputView.lottoInfo(lotto, count);
+    }
+
+    private void winningLotto() {
+        String winningNumber = InputView.winningLotto();
     }
 }

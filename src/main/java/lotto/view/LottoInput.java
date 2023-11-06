@@ -14,7 +14,7 @@ public class LottoInput {
 
     private List<String> parseByComma(String input){
         List<String> parsedInput = Arrays.stream(input.split(",")).map(String::trim).toList();
-        InputValidator.isListEmpty(parsedInput);
+        InputValidator.lottoNumbersEmptyCheck(parsedInput);
         parsedInput.forEach(InputValidator::isInputValid);
 
         return parsedInput;

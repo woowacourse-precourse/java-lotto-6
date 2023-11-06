@@ -7,6 +7,7 @@ import java.util.*;
 public class Application {
     public static void main(String[] args) {
         int moneyValue = inputMoney();
+        List<List<Integer>> lottoNum = createLottoNum(moneyValue);
     }
 
     public static int inputMoney() {
@@ -23,6 +24,19 @@ public class Application {
             }
         }
         return moneyValue;
+    }
+
+    public static List<List<Integer>> createLottoNum(int moneyValue) {
+        List<List<Integer>> lottoNum = new ArrayList<>();
+
+        for (int i = 0; i < moneyValue / 1000; i++) {
+            List<Integer> innerList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> list = new ArrayList<>(innerList);
+            Collections.sort(list);
+            lottoNum.add(i, list);
+        }
+        UI.printLottoNum(lottoNum, moneyValue);
+        return lottoNum;
     }
 
     public static boolean isValidMoney(String money) {

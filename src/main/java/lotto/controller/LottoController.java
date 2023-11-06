@@ -28,8 +28,13 @@ public class LottoController {
     }
 
     private Integer inputPurchaseAmount() {
-        Integer purchaseAmount = inputView.requestPurchaseAmountInput();
-        return purchaseAmount;
+        try {
+            Integer purchaseAmount = inputView.requestPurchaseAmountInput();
+            return purchaseAmount;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputPurchaseAmount();
+        }
     }
 
     private void buyLotto(Integer purchaseAmount) {
@@ -38,10 +43,15 @@ public class LottoController {
     }
 
     private List<Prize> checkResult() {
-        List<Integer> winningNumbers = inputView.requestWinningNumbersInput();
-        Integer bonusNumber = inputView.requestBonusNumberInput();
-        List<Prize> winPrizes = lottoService.calculateTotalPrizes(winningNumbers, bonusNumber);
-        return winPrizes;
+        try {
+            List<Integer> winningNumbers = inputView.requestWinningNumbersInput();
+            Integer bonusNumber = inputView.requestBonusNumberInput();
+            List<Prize> winPrizes = lottoService.calculateTotalPrizes(winningNumbers, bonusNumber);
+            return winPrizes;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return checkResult();
+        }
     }
 
     private void viewStatistics(List<Prize> winPrizes, Integer purchaseAmount) {

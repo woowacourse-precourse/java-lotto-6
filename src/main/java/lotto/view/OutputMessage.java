@@ -42,7 +42,7 @@ public class OutputMessage {
     }
 
     public static String getRateOfReturnMessage(WinningResultDto winningResultDto) {
-        String returnRate = String.format("%,.2f", winningResultDto.getReturnRate());
+        String returnRate = String.format("%,.1f", winningResultDto.getReturnRate());
         return String.format(RATE_OF_RETURN_MESSAGE, returnRate);
     }
 }

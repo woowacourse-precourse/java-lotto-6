@@ -1,11 +1,20 @@
 package lotto.util.message;
 
 public class Printer {
+    public static void askBuyMoney(){
+        System.out.println(Message.BUY_MONEY_QUESTION);
+    }
+    public static void askWinningNumber(){
+        System.out.println(Message.WINNING_NUMBER_QUESTION);
+    }
+    public static void askBonusNumber(){
+        System.out.println(Message.BONUS_NUMBER_QUESTION);
+    }
     public static void printThreeHit(int threeHit){
         System.out.printf(Message.THREE_HIT + "%d"+ Message.COUNT,threeHit);
     }
     public static void printFourHit(int fourHit){
-        System.out.printf(Message.FIVE_HIT + "%d"+ Message.COUNT,fourHit);
+        System.out.printf(Message.FOUR_HIT + "%d"+ Message.COUNT,fourHit);
     }
     public static void printFiveHit(int fiveHit){
         System.out.printf(Message.FIVE_HIT + "%d"+ Message.COUNT,fiveHit);
@@ -30,6 +39,15 @@ public class Printer {
     }
     public static void printLottoNumber(int num){
         System.out.printf("%d", num);
+    }
+    public static void printRate(double rate){
+        System.out.printf(Message.RATE + "%.1f"+Message.PERCENTAGE+ Message.PRINT_RATE, rate);
+    }
+    public static void printStatistics(){
+        System.out.println(Message.STATISTICS);
+    }
+    public static void printLine(){
+        System.out.println(Message.LINE);
     }
     public static void changeLine(){
         System.out.println();

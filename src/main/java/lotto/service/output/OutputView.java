@@ -1,8 +1,9 @@
 package lotto.service.output;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.dto.calculate.GetReturnRateDto;
 import lotto.dto.result.GetLottoResultDto;
 import lotto.dto.domain.lottos.GetLottosDto;
 import lotto.dto.generate.GetGeneratedLottosDto;
@@ -18,11 +19,26 @@ public class OutputView implements Output{
 
     @Override
     public void printLottoResult(GetLottoResultDto getLottoResultDto) {
+        printTitle();
+        printHitStatus(getLottoResultDto);
+    }
+
+    private static void printTitle() {
+        Printer.printStatistics();
+        Printer.printLine();
+    }
+
+    private static void printHitStatus(GetLottoResultDto getLottoResultDto) {
         Printer.printThreeHit(getLottoResultDto.threeHit());
         Printer.printFourHit(getLottoResultDto.fourHit());
         Printer.printFiveHit(getLottoResultDto.fiveHit());
         Printer.printFiveWithBonusHit(getLottoResultDto.fiveHitWithBonus());
         Printer.printSixHit(getLottoResultDto.sixHit());
+    }
+
+    @Override
+    public void printRate(GetReturnRateDto getReturnRateDto) {
+        Printer.printRate(getReturnRateDto.lottoReturnRate());
     }
 
     private static void printLottoNumbers(List<Lotto> lottos) {
@@ -44,32 +60,34 @@ public class OutputView implements Output{
     }
 
     private static void printNumbersIteration(Lotto lotto) {
-        sortBeforeIteration(lotto);
-        printNumbersIterationAfterSort(lotto);
+        printNumbersIterationAfterSort(sortBeforeIteration(lotto));
     }
 
-    private static void printNumbersIterationAfterSort(Lotto lotto) {
-        for(int count = ZERO; count < lotto.lotto().size(); count++){
-            Printer.printLottoNumber(lotto.lotto().get(count));
-            checkLastNumber(lotto, count);
+    private static void printNumbersIterationAfterSort(Integer[] sortedLotto) {
+        for(int count = ZERO; count < sortedLotto.length; count++){
+            Printer.printLottoNumber(sortedLotto[count]);
+            checkLastNumber(sortedLotto, count);
         }
     }
 
-    private static void sortBeforeIteration(Lotto lotto) {
-        Collections.sort(lotto.lotto());
+    private static Integer[] sortBeforeIteration(Lotto lotto) {
+        Integer[] array = lotto.lotto().toArray(new Integer[0]);
+        Arrays.sort(array);
+        return array;
     }
 
-    private static void checkLastNumber(Lotto lotto, int count) {
-        if(isNotLastNumber(lotto, count)){
+    private static void checkLastNumber(Integer[] sortedLotto, int count) {
+        if(isNotLastNumber(sortedLotto, count)){
             Printer.printComma();
         }
     }
 
-    private static boolean isNotLastNumber(Lotto lotto, int count) {
-        return count != lastIndex(lotto);
+    private static boolean isNotLastNumber(Integer[] sortedLotto, int count) {
+        return count != lastIndex(sortedLotto);
     }
 
-    private static int lastIndex(Lotto lotto) {
-        return lotto.lotto().size() - ONE;
+    private static int lastIndex(Integer[] sortedLotto) {
+        return
+                sortedLotto.length- ONE;
     }
 }

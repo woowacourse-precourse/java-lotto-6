@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_MAX_NUM = 45;
+    private static final String DELIMITER_AND_SPACE = ", ";
+    private static final String LIST_PREFIX = "[";
+    private static final String LIST_SUFFIX = "]";
     private final List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,7 +22,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
@@ -42,7 +47,7 @@ public class Lotto {
     public String toString() {
         return numbers.stream()
                 .map(Number::toString)
-                .collect(Collectors.joining(", ", "[", "]"));
+                .collect(Collectors.joining(DELIMITER_AND_SPACE, LIST_PREFIX, LIST_SUFFIX));
     }
 
     public boolean contains(final Number bonusNumber) {
@@ -56,7 +61,7 @@ public class Lotto {
 
 
     private static void validRange(List<Integer> list) {
-        boolean overRange = list.stream().anyMatch(num -> num > 45);
+        boolean overRange = list.stream().anyMatch(num -> num > LOTTO_MAX_NUM);
         if (overRange) {
             throw new IllegalArgumentException("로또 번호의 범위는 45입니다!");
         }

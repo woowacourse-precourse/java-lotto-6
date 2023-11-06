@@ -5,8 +5,11 @@ import java.util.List;
 
 public class InputValidator {
 
+    private static final String DELIMITER = ",";
+    private static final String NUMERIC_PATTERN = "\\d+";
+
     public List<String> toStringList(String userInput) {
-        return Arrays.stream(userInput.split(","))
+        return Arrays.stream(userInput.split(DELIMITER))
                 .map(String::trim)
                 .toList();
     }
@@ -18,7 +21,7 @@ public class InputValidator {
     }
 
     public void validateDigit(List<String> list) {
-        boolean isDigit = list.stream().allMatch(s -> s.matches("\\d+"));
+        boolean isDigit = list.stream().allMatch(s -> s.matches(NUMERIC_PATTERN));
         if (!isDigit) {
             throw new IllegalArgumentException("로또 번호는 1~45 숫자만 입력 가능합니다.");
         }

@@ -7,13 +7,13 @@ public enum LottoRule {
     private final int startNumber;
     private final int lastNumber;
     private final int lottoSize;
-    private final int ticketPrice;
+    private final int lottoPrice;
 
-    LottoRule(int startNumber, int lastNumber, int lottoSize, int ticketPrice) {
+    LottoRule(int startNumber, int lastNumber, int lottoSize, int lottoPrice) {
         this.startNumber = startNumber;
         this.lastNumber = lastNumber;
         this.lottoSize = lottoSize;
-        this.ticketPrice = ticketPrice;
+        this.lottoPrice = lottoPrice;
     }
 
     public int getStartNumber() {
@@ -28,7 +28,7 @@ public enum LottoRule {
         return lottoSize;
     }
 
-    public int getTicketPrice() {
-        return ticketPrice;
+    public int getLottoPrice() {
+        return lottoPrice;
     }
 }

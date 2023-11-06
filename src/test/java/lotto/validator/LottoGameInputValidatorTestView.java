@@ -39,7 +39,7 @@ class LottoGameInputValidatorTestView {
     @ValueSource(longs = {1200, 3800200, 948300, 300})
     public void requestLottoPurchaseAmountException(long number) {
         // when // then
-        assertThatThrownBy(() -> validator.validateTicketPurchase(number))
+        assertThatThrownBy(() -> validator.validateLottoPurchase(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
     }

@@ -34,12 +34,16 @@ public class LottoResultOutputView {
 
     public void printTotalProfitRate(long amount, Map<LottoRank, Long> lottoRankCountMap) {
         Set<LottoRank> lottoRanks = lottoRankCountMap.keySet();
-        long totalAmount = lottoRanks.stream()
-                .mapToLong(lottoRank -> lottoRank.calculatePrize(getRankCount(lottoRankCountMap, lottoRank)))
-                .sum();
+        long totalAmount = getTotalAmount(lottoRankCountMap, lottoRanks);
 
         System.out.printf(LottoOutputMessage.TOTAL_PROFIT_FORMAT.getMessage(),
                 calculatePercentage(amount, totalAmount));
+    }
+
+    private long getTotalAmount(Map<LottoRank, Long> lottoRankCountMap, Set<LottoRank> lottoRanks) {
+        return lottoRanks.stream()
+                .mapToLong(lottoRank -> lottoRank.calculatePrize(getRankCount(lottoRankCountMap, lottoRank)))
+                .sum();
     }
 
     private double calculatePercentage(long amount, long totalAmount) {

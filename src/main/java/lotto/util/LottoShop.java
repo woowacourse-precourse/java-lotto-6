@@ -14,24 +14,24 @@ public class LottoShop {
     }
 
     public static Lottos buyLottos(long amount) {
-        validateTicketPurchase(amount);
+        validateLottoPurchase(amount);
         return new Lottos(createLottos(amount));
     }
 
     private static List<Lotto> createLottos(long amount) {
         return Stream.generate(LottoFactory::createLotto)
-                .limit(amount / LottoRule.STANDARD.getTicketPrice())
+                .limit(amount / LottoRule.STANDARD.getLottoPrice())
                 .toList();
     }
 
-    private static void validateTicketPurchase(long amount) {
-        if (isPurchaseTicketPossible(amount)) {
+    private static void validateLottoPurchase(long amount) {
+        if (isPurchaseLottoPossible(amount)) {
             throw new IllegalStateException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
         }
     }
 
-    private static boolean isPurchaseTicketPossible(long amount) {
-        return amount % LottoRule.STANDARD.getTicketPrice() != 0;
+    private static boolean isPurchaseLottoPossible(long amount) {
+        return amount % LottoRule.STANDARD.getLottoPrice() != 0;
     }
 
 }

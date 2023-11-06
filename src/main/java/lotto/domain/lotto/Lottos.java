@@ -16,14 +16,14 @@ public class Lottos {
     }
 
     public Map<LottoRank, Long> getLottoRankCountMap(LottoResult lottoResult) {
-        EnumMap<LottoRank, Long> lottoRankCountMap = initializeLottoRankCountMap();
+        Map<LottoRank, Long> lottoRankCountMap = initializeLottoRankCountMap();
         setLottoRankCountMap(lottoResult, lottoRankCountMap);
 
         return lottoRankCountMap;
     }
 
-    private EnumMap<LottoRank, Long> initializeLottoRankCountMap() {
-        EnumMap<LottoRank, Long> lottoRankCountMap = new EnumMap<>(LottoRank.class);
+    private Map<LottoRank, Long> initializeLottoRankCountMap() {
+        Map<LottoRank, Long> lottoRankCountMap = new EnumMap<>(LottoRank.class);
 
         Arrays.stream(LottoRank.values())
                 .forEach(rank -> lottoRankCountMap.put(rank, 0L));

@@ -21,13 +21,13 @@ public class LottoGameInputValidator {
         }
     }
 
-    public void validateTicketPurchase(long amount) {
-        if (isPurchaseTicketPossible(amount)) {
+    public void validateLottoPurchase(long amount) {
+        if (isPurchaseLottoPossible(amount)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
         }
     }
 
-    private static boolean isPurchaseTicketPossible(long amount) {
-        return amount % LottoRule.STANDARD.getTicketPrice() != 0;
+    private boolean isPurchaseLottoPossible(long amount) {
+        return amount % LottoRule.STANDARD.getLottoPrice() != 0;
     }
 }

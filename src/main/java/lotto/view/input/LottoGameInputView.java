@@ -22,15 +22,17 @@ public class LottoGameInputView implements ConsoleInput {
     @Override
     public long requestLottoPurchaseAmount() {
         printRequestLottoPurchaseAmount();
+
         long amount = gameInfoValidator.parseLong(readLine());
         validateAmount(amount);
+
         newLine();
         return amount;
     }
 
     private void validateAmount(long amount) {
         gameInfoValidator.validatePositiveNumber(amount);
-        gameInfoValidator.validateTicketPurchase(amount);
+        gameInfoValidator.validateLottoPurchase(amount);
     }
 
     private void printRequestLottoPurchaseAmount() {

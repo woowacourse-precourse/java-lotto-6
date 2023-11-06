@@ -81,7 +81,7 @@
 2. InputView
 - [x] 로또 구매 금액 입력
 - [x] 당첨 번호 입력
-- [ ] 보너스 번호 입력
+- [x] 보너스 번호 입력
 
 ### Controller
 1. LottoController

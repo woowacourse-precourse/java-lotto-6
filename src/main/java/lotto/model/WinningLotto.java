@@ -1,22 +1,16 @@
 package lotto.model;
 
-import lotto.constant.ErrorMessage;
 import lotto.constant.LottoPrize;
+import lotto.model.validator.WinningLottoValidator;
 
 public class WinningLotto {
     private final Lotto lotto;
     private final int bonusNumber;
 
     public WinningLotto(Lotto lotto, int bonusNumber) {
-        validateDuplication(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
-    }
-
-    public void validateDuplication(Lotto winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATED_NUMBER.getMessage());
-        }
+        WinningLottoValidator.getInstance().validate(this);
     }
 
     public LottoPrize match(Lotto lotto) {
@@ -24,5 +18,13 @@ public class WinningLotto {
                 lotto.matchedCount(this.lotto),
                 lotto.contains(this.bonusNumber)
         );
+    }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

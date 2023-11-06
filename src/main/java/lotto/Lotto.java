@@ -1,7 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
@@ -13,18 +14,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        removeDuplication(numbers);
         checkSizeOfLotto(numbers);
         numbers.stream().forEach(number -> checkRangeOfLottoNumber(number));
     }
 
-    private static void removeDuplication(List<Integer> numbers) {
-        numbers.stream().distinct().collect(Collectors.toList());
-    }
-
-    private static void checkSizeOfLotto(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.OVER_SIZE_OF_LOTTO);
+    private void checkSizeOfLotto(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_SIZE_OF_LOTTO);
         }
     }
 

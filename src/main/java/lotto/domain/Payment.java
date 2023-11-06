@@ -2,12 +2,12 @@ package lotto.domain;
 
 import lotto.utils.Parser;
 
-public class PurchaseAmount {
+public class Payment {
     private int amount;
 
-    public PurchaseAmount(String amountStringValue){
-        validateNullValue(amountStringValue);
-        this.amount = Parser.parseStringToInt(amountStringValue);
+    public Payment(String inputValue){
+        validateNullValue(inputValue);
+        this.amount = Parser.parseStringToInt(inputValue);
         validateNoRemainderValue(this.amount);
     }
 

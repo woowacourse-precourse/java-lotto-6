@@ -7,7 +7,7 @@ public class InputView {
     static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static String inputPurchaseAmount() {
+    public static String inputPayment() {
         System.out.println(INPUT_PURCHASE_MESSAGE);
         return Console.readLine();
     }

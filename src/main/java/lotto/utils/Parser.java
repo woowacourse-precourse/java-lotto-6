@@ -1,6 +1,6 @@
 package lotto.utils;
 
-import lotto.domain.PurchaseAmount;
+import lotto.domain.Payment;
 
 public class Parser {
     static final int cost = 1000;
@@ -14,7 +14,7 @@ public class Parser {
         }
     }
 
-    public static int parseAmountToCoin(PurchaseAmount purchaseAmount){
+    public static int parseAmountToCoin(Payment purchaseAmount){
         return purchaseAmount.getAmount()/cost;
     }
 }

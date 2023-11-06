@@ -6,9 +6,9 @@ public class Calculator {
     private static final int LOTTO_LENGTH = 6;
 
     private final Result result;
-    private final PurchaseAmount purchaseAmount;
+    private final Payment purchaseAmount;
 
-    public Calculator(PurchaseAmount purchaseAmount){
+    public Calculator(Payment purchaseAmount){
         this.result = new Result();
         this.purchaseAmount = purchaseAmount;
     }

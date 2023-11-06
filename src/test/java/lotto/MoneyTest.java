@@ -18,7 +18,7 @@ class MoneyTest {
     @DisplayName("돈 에외 테스트.")
     @Test
     void createMoneyByNoMoney() {
-        Assertions.assertThatThrownBy(() -> new Money(1005))
+        Assertions.assertThatThrownBy(() -> new Money(-1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

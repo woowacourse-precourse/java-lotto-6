@@ -3,12 +3,14 @@ package lotto.controller;
 import lotto.domain.InputWinningNum;
 import lotto.domain.Lotto;
 import lotto.views.Exceptions;
+import lotto.views.InputViews;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class ReadWinningNum {
-    public static List<String> splitWinningNums(String winningNumsNotSplit) {
+    public static List<String> splitWinningNums() {
+        String winningNumsNotSplit = InputViews.readWinningNum();
         return Arrays.asList(winningNumsNotSplit.replace(" ", "").split(","));
     }
 

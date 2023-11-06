@@ -74,8 +74,7 @@ public class LottoController {
     }
 
     public boolean readWinningNum() {
-        String winningNumsNotSplit = InputViews.readWinningNum();
-        List<String> winningNums = ReadWinningNum.splitWinningNums(winningNumsNotSplit);
+        List<String> winningNums = ReadWinningNum.splitWinningNums();
         List<Integer> winningNumsInput = new ArrayList<>();
         for (String winningNum : winningNums) {
             if (ReadWinningNum.isWinningNumTypeOfInput(winningNum)) {

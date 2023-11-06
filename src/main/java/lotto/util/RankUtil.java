@@ -1,7 +1,10 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import lotto.domain.Rank;
 
@@ -32,8 +35,17 @@ public class RankUtil {
 
     private static Map<Rank, Long> getRankCountMap(List<Rank> ranks) {
         validateNotEmpty(ranks);
-        return ranks.stream()
+        final Map<Rank, Long> rankMap = ranks.stream()
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
+
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.MISS)
+                .collect(Collectors.toMap(
+                        Function.identity(),
+                        rank -> rankMap.getOrDefault(rank, 0L),
+                        (existing, replacement) -> existing,
+                        LinkedHashMap::new
+                ));
     }
 
     private static void validateNotEmpty(List<Rank> ranks) {

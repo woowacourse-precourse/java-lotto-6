@@ -81,7 +81,8 @@ public class User {
         final String message = "총 수익률은 %.1f%%입니다.";
         validateLottoListNotEmpty();
         final long profits = RankUtil.getProfits(ranks);
-        System.out.println(String.format(message, (double) profits / money));
+        final double profitRate = (double) profits / money * 100;
+        System.out.println(String.format(message, profitRate));
     }
 
     private void validateLottoListNotEmpty() {

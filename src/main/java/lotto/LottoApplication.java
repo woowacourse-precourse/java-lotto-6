@@ -1,7 +1,9 @@
 package lotto;
 
+import lotto.controller.RegisterBonusController;
 import lotto.controller.RegisterLottoController;
 import lotto.controller.RegisterUserMoneyController;
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.UserMoney;
 import lotto.repository.LottoRepository;
@@ -17,9 +19,7 @@ public class LottoApplication {
     }
 
     void run() {
-        // COntroller를 호출한다
-        // 각각의 Controller 내에서 할일을 진행한다 (데이터의 교환을목적으로 진행한다
-        // 단 핵심 로직은 Service 단에서 실행하는 방향으로
+        // Controller 에서 원하는 객체를 반환하는 구간이다
         UserMoney userMoney = registerUserMoney();
         Lotto lotto = registerUserLotto();
 
@@ -32,6 +32,10 @@ public class LottoApplication {
 
     private Lotto registerUserLotto() {
         return new RegisterLottoController(lottoScreen).process();
+    }
+
+    private Bonus registerUserBonus() {
+        return new RegisterBonusController(lottoScreen).process();
     }
 
 

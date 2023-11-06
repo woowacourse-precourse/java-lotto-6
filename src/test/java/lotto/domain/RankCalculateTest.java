@@ -1,17 +1,16 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.service.RankCalculateService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinningLottoTest {
+public class RankCalculateTest {
 
     RankCalculateService rankCalculateService = new RankCalculateService();
 
-    @DisplayName("구매한 로또와 비교해서 당첨 등수를 산출한다.")
+    @DisplayName("구매한 로또와 당첨 로또를 비교해서 당첨 등수를 산출한다.")
     @Test
     void rankCalculateTest() {
         //given

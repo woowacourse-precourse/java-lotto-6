@@ -1,45 +1,30 @@
 package lotto.domain;
 
-import static lotto.constant.LottoNumber.MAXIMUM_LOTTO_NUMBER;
-import static lotto.constant.LottoNumber.MINIMUM_LOTTO_NUMBER;
 import static lotto.constant.LottoNumber.PURCHASE_UNIT;
-import static lotto.constant.LottoNumber.WINNING_NUMBER_LENGTH;
 import static lotto.constant.LottoNumber.ZERO;
 import static lotto.constant.message.ErrorMessage.NON_INTEGER_MONEY;
 import static lotto.constant.message.ErrorMessage.NOT_PURCHASE_UNIT;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.util.Util;
 
 public class LottoPublisher {
     private List<Lotto> userLottos;
+    private int lottoAmount;
+    private int money;
 
     public LottoPublisher(String money) {
-        getLottosInformation(validatePurchasePrice(money));
+        validatePurchasePrice(money);
+        createLottos();
     }
 
-    public LottoPublisher getLottosInformation(int money) {
-        this.userLottos = createLottos(money);
-        return this;
-    }
-
-    private List<Lotto> createLottos(int money) {
-        return IntStream.range(ZERO.getNumber(), countLottoAmount(money))
-                .mapToObj(index -> new Lotto(generateRandomLottoNumber()))
-                .collect(Collectors.toList());
-    }
-
-    private int countLottoAmount(int money) {
-        return money / PURCHASE_UNIT.getNumber();
-    }
-
-    private int validatePurchasePrice(String money) {
+    private void validatePurchasePrice(String money) {
         checkValidInteger(money);
         checkDivideByThousand(money);
 
-        return Integer.parseInt(money);
+        this.money = Integer.parseInt(money);
     }
 
     private void checkValidInteger(String money) {
@@ -56,7 +41,28 @@ public class LottoPublisher {
         }
     }
 
-    private List<Integer> generateRandomLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER.getNumber(), MAXIMUM_LOTTO_NUMBER.getNumber(), WINNING_NUMBER_LENGTH.getNumber());
+    private void createLottos() {
+        this.userLottos = IntStream.range(ZERO.getNumber(), countLottoAmount(money))
+                .mapToObj(index -> new Lotto(Util.generateRandomLottoNumber()))
+                .collect(Collectors.toList());
+    }
+
+    private int countLottoAmount(int money) {
+        int amount = money / PURCHASE_UNIT.getNumber();
+        this.lottoAmount = amount;
+
+        return amount;
+    }
+
+    public List<Lotto> getUserLottos() {
+        return userLottos;
+    }
+
+    public int getLottoAmount() {
+        return lottoAmount;
+    }
+
+    public int getMoney() {
+        return money;
     }
 }

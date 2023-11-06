@@ -11,7 +11,7 @@ public class LottoMachine { //구매 횟수만큼 로또 번호 조합 발행, �
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
 
-    public LottoMachine(){
+    public LottoMachine() {
         winningNumbers = new ArrayList<>();
         bonusNumber = null;
     }
@@ -33,7 +33,6 @@ public class LottoMachine { //구매 횟수만큼 로또 번호 조합 발행, �
         checkWinningNumbers(numbers);
         this.winningNumbers = numbers;
     }
-
     private void checkWinningNumbers(List<Integer> numbers) {
         validate(numbers);
         checkDuplicate(numbers);
@@ -43,5 +42,24 @@ public class LottoMachine { //구매 횟수만큼 로또 번호 조합 발행, �
         return winningNumbers;
     }
 
+
+    public void setBonusNumber(Integer number) {
+        checkIntegerInRange(number);
+        checkIntegerInList(winningNumbers, number);
+        this.bonusNumber = number;
+    }
+    private void checkIntegerInRange(Integer number) {
+        if (number < RANDOM_NUMBER_MIN_VALUE || number > RANDOM_NUMBER_MAX_VALUE) {
+            throw new IllegalArgumentException();
+        }
+    }
+    private void checkIntegerInList(List<Integer> numbers, Integer bonusNumber) {
+        if (numbers.stream().anyMatch(number -> number.equals(bonusNumber))) {
+            throw new IllegalArgumentException();
+        }
+    }
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 
 }

@@ -1,7 +1,6 @@
 package lotto.controller;
 
-import lotto.model.LottoStore;
-import lotto.model.LottoTicket;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,6 +15,7 @@ public class LottoController {
 
     public void run() {
         buyLottoTicket();
+        registerWinLotto();
     }
 
     private LottoTicket buyLottoTicket() {
@@ -24,5 +24,11 @@ public class LottoController {
         LottoTicket lottoTicket = new LottoTicket(lottoStore.sellLottos(purchaseAmount));
         outputView.printBuyLottos(lottoTicket.getLottosNumber(), lottoTicket.getLottos().size());
         return lottoTicket;
+    }
+
+    private WinLotto registerWinLotto() {
+        Lotto lotto = new Lotto(inputView.inputWinNumbers());
+        LottoNumber bonusNumber = new LottoNumber(inputView.inputBonusNumber());
+        return new WinLotto(lotto, bonusNumber);
     }
 }

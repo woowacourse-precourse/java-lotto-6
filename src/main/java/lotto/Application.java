@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -11,6 +12,7 @@ public class Application {
 
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     private static final String ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_INPUT = "구앱금액은 1000원 단위로 숫자를 입력해 주세요.";
+    private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
 
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmountWithInput();
@@ -44,7 +46,18 @@ public class Application {
 
     private static List<Integer> getWinningNumbersWithInput() {
         System.out.println(MESSAGE_FOR_WINNING_NUMBERS_INPUT);
-        return new ArrayList<>();
+        while (true) {
+            String winningNumbersInput = Console.readLine();
+            try {
+                validateWinningNumbersInput(winningNumbersInput);
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+            return Arrays.stream(winningNumbersInput.split(",")).map(Integer::parseInt).toList();
+        }
+    }
+
+    private static void validateWinningNumbersInput(String winningNumbersInput) {
     }
 
     private static void printErrorMessage(String errorMessage) {

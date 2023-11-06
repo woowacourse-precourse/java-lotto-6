@@ -7,6 +7,7 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static camp.nextstep.edu.missionutils.Randoms.*;
+import static lotto.constants.ErrorConstants.NOTINARRANGEERROR;
 import static lotto.constants.MessageConstant.*;
 import static lotto.constants.NumConstant.*;
 
@@ -56,7 +57,7 @@ public class LottoShop {
                 System.out.println(INPUTBONUS);
                 int bonusNum = Integer.parseInt(readLine());
                 if (bonusNum < 1 || bonusNum > 45)
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    throw new IllegalArgumentException(NOTINARRANGEERROR.toString());
                 return bonusNum;
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

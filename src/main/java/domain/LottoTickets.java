@@ -44,4 +44,8 @@ public class LottoTickets {
         }
         return list;
     }
+
+    public List<Lotto> getTickets() {
+        return new ArrayList<>(lottoes);
+    }
 }

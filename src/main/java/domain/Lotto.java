@@ -57,7 +57,7 @@ public class Lotto {
         return 8 - matchingNumbersCount;
     }
 
-    List<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }
 }

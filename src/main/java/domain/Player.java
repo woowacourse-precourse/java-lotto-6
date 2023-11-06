@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 public class Player {
     private final LottoTickets lottoTickets;
     private Money money;
@@ -18,11 +20,15 @@ public class Player {
         lottoTickets.add(money.getTicketCount());
     }
 
-    int getTicketCount() {
+    public int getTicketCount() {
         return lottoTickets.size();
     }
 
     public GameResult getRank(WinningLotto winningLotto) {
         return new GameResult(money, lottoTickets.getRanks(winningLotto));
+    }
+
+    public List<Lotto> getTickets() {
+        return lottoTickets.getTickets();
     }
 }

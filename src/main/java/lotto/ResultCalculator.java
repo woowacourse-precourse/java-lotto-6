@@ -39,4 +39,8 @@ public class ResultCalculator {
                 .filter(number -> winningLotto.getNumbers().contains(number))
                 .count();
     }
+
+    private boolean matchWithBonus(Lotto lotto, Bonus bonus) {
+        return lotto.getNumbers().contains(bonus.getNumber());
+    }
 }

@@ -3,9 +3,12 @@ package lotto.model;
 import java.util.List;
 
 public class WinningLotto extends Lotto{
+    private final Integer bonusNumber;
+
     public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
         super(numbers);
         validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     private void validateBonusNumber(Integer bonusNumber) {

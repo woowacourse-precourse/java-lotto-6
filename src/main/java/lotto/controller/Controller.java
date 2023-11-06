@@ -27,6 +27,8 @@ public class Controller {
         }
 
         view.output(INPUT_MATCH);
+        Lotto matchLotto = getMatchLotto();
+
     }
 
     private Buyer getCost() {
@@ -48,4 +50,13 @@ public class Controller {
         return lottos;
     }
 
+    private Lotto getMatchLotto() {
+        try {
+            List<Integer> matches = view.inputMatch();
+            return new Lotto(matches);
+        } catch (IllegalArgumentException e) {
+            view.output(e.getMessage());
+            return getMatchLotto();
+        }
+    }
 }

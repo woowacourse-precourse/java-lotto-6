@@ -3,10 +3,12 @@ package view;
 import camp.nextstep.edu.missionutils.Console;
 import util.InputMessage;
 import view.validator.PriceFormatValidator;
+import view.validator.WinningNumberFormatValidator;
 
 public class InputView {
 
     private static final PriceFormatValidator priceFormatValidator = new PriceFormatValidator();
+    private static final WinningNumberFormatValidator winningNumberValidation = new WinningNumberFormatValidator();
 
     public static String enterPrice() {
         System.out.println(InputMessage.ENTER_PRICE.getInputMessage());
@@ -18,6 +20,7 @@ public class InputView {
     public static String enterWinningNumbers() {
         System.out.println(InputMessage.ENTER_WINNING_NUMBERS.getInputMessage());
         String input = Console.readLine();
+        winningNumberValidation.checkWinningNumberValidation(input);
         return input;
     }
 

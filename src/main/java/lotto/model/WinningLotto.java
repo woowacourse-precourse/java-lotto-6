@@ -15,7 +15,7 @@ public class WinningLotto {
         return this.lottoNumbers.value();
     }
 
-    public void addBonusNumber(int bonus_number){
+    public void addBonusNumber(String bonus_number){
         this.lottoNumbers.add(bonus_number);
     }
     public void removeBonusNumber(){

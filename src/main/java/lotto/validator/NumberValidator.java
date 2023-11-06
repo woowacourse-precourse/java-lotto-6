@@ -13,11 +13,10 @@ public class NumberValidator {
 
     ;
 
-    public static int validate(String input) {
+    public static void validate(String input) {
         validateBlankException(input);
-        int change_integer_input = validateIntegerNumber(input);
-        validateMinMaxNumber(change_integer_input);
-        return change_integer_input;
+        validateIntegerNumber(input);
+        validateMinMaxNumber(input);
     }
 
     private static void validateBlankException(String input) {
@@ -26,16 +25,17 @@ public class NumberValidator {
         }
     }
 
-    private static int validateIntegerNumber(String input) {
+    private static void validateIntegerNumber(String input) {
         try {
-            return Integer.parseInt(input);
+            Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_STRING);
         }
     }
 
-    private static void validateMinMaxNumber(int input) {
-        if (input > MAX_NUMBER || input < MIN_NUMBER) {
+    private static void validateMinMaxNumber(String input) {
+        int change_input = Integer.parseInt(input);
+        if (change_input > MAX_NUMBER || change_input < MIN_NUMBER) {
             throw new IllegalArgumentException(ERROR_MIN_MAX);
         }
     }

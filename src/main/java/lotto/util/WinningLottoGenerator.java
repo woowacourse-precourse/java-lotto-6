@@ -13,8 +13,8 @@ public class WinningLottoGenerator {
     public static List<Integer> generateLottoNumber(final String input){
         List<Integer> numbers = new ArrayList<>();
         for(String number:input.split(COMMA_DELIMITER)){
-            int change_integer_number = NumberValidator.validate(number);
-            numbers.add(change_integer_number);
+            NumberValidator.validate(number);
+            numbers.add(Integer.parseInt(number));
         }
         LottoNumberValidator.validate_MIN_SIZE(numbers);
         return numbers;

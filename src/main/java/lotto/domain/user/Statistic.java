@@ -110,7 +110,7 @@ public class Statistic {
         }
     }
 
-    private boolean isSameCount(Integer countSame, Integer targetCont) {
-        return Utii.isSameInt(countSame, targetCont);
+    private boolean isSameCount(Integer countSame, Integer targetCount) {
+        return Utii.isSameInt(countSame, targetCount);
     }
 }

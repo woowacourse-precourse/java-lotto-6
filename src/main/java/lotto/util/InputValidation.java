@@ -32,4 +32,10 @@ public class InputValidation {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 구입 금액은 1000으로 나누어 떨어져야 합니다.");
         }
     }
+
+    public static void validateNumberLength(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
 }

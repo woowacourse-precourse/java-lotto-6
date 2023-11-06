@@ -33,7 +33,10 @@ public class Payment {
     }
 
     private boolean isOutRangeAmount(long amount) {
-        return amount < LottoConstraint.MIN_AMOUNT.getValue() || amount > LottoConstraint.MAX_AMOUNT.getValue();
+        long pricePerLotto = LottoConstraint.PRICE_PER_LOTTO.getValue();
+        long minAmount = pricePerLotto * LottoConstraint.MIN_PURCHASE_QUANTITY.getValue();
+        long maxAmount = pricePerLotto * LottoConstraint.MAX_PURCHASE_QUANTITY.getValue();
+        return amount < minAmount || amount > maxAmount;
     }
 
     public int calculatePurchaseLottoCount() {

@@ -1,7 +1,12 @@
 package lotto.domain;
 
 public enum LottoResult {
-    MISS(0, false, 0, "");
+    MISS(0, false, 0, ""),
+    FIFTH(0, false, 0, ""),
+    FOURTH(0, false, 0, ""),
+    THIRD(0, false, 0, ""),
+    SECOND(0, false, 0, ""),
+    FIRST(0, false, 0, "");
 
 
     private final int count;

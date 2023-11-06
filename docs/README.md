@@ -30,4 +30,10 @@
     * 로또 결과 출력 : OutputView.viewResult()
       * Enum 타입 Prize를 이용하여 갯수 출력
       * 수익률 출력 : String.format() 이용
+### 2. test 코드 작성
+* 잘못된 금액을 입력한 경우
+  * validateCorrectPrice() : 
+    * 숫자가 아닌 것을 입력한 경우 -> 1000j
+  * inputThousandPrice() : 
+    * 1000원으로 나누어떨어지지 않는 금액을 입력한 경우
 

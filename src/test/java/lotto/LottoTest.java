@@ -1,11 +1,15 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.LottoMoney;
+import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,4 +29,17 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("잘못된 금액을 입력하면 예외가 발생한다.")
+    @Test
+    void validateCorrectPrice() {
+        assertThatThrownBy(() -> Integer.parseInt("1000j"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1000원으로 나누어 떨어지는 금액을 입력하지 않으면 예외가 발생한다.")
+    @Test
+    void inputThousandPrice() {
+        assertThatThrownBy(() -> InputView.validateNum(8500))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public class LottoMoney {
     private static int inputMoney;
     private static int count;
-    private List<List<Integer>> numbers;
+    private final List<List<Integer>> numbers;
 
     public LottoMoney(int inputMoney, int count) {
         this.inputMoney = inputMoney;

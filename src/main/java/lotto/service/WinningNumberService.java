@@ -30,11 +30,12 @@ public class WinningNumberService {
         return winningNumber;
     }
 
-    public int validateBonusNumber(String inputNumber){
+    public int validateBonusNumber(String inputNumber,List<Integer> winningNumber){
         int bonusNumber;
         try{
             bonusNumber = buyingLottoService.convertStringtoInt(inputNumber);
             verifyRange(bonusNumber);
+            verifyDuplication(bonusNumber,winningNumber);
         }catch (NumberFormattingExceptionHandler | IllegalArgumentExceptionHandler e){
             System.out.println(e.getMessage());
             return -1;
@@ -81,13 +82,19 @@ public class WinningNumberService {
             throw new IllegalArgumentExceptionHandler(InputErrorMessage.WRONG_NUMBER_RANGE);
         }
     }
-    private void verifyDuplication(List<Integer> winningNumber){
+    public boolean verifyDuplication(List<Integer> winningNumber){
         Set<Integer> checkDuplication = new HashSet<>();
         for(int number : winningNumber){
             if(checkDuplication.contains(number)){
                 throw new IllegalArgumentExceptionHandler(InputErrorMessage.DUPLICATE_NUMBER);
             }
             checkDuplication.add(number);
+        }
+        return true;
+    }
+    private void verifyDuplication(int bonus,List<Integer> winningNumber){
+        if(winningNumber.contains(bonus)){
+            throw new IllegalArgumentExceptionHandler(InputErrorMessage.DUPLICATE_NUMBER);
         }
     }
 }

@@ -36,10 +36,6 @@ public class DrawingMachine {
     }
 
     private void updateDrawingResult(EnumMap<LottoRank, Integer> drawingResult, LottoRank lottoRank) {
-        if (drawingResult.containsKey(lottoRank)) {
-            drawingResult.replace(lottoRank, drawingResult.get(lottoRank) + 1);
-            return;
-        }
-        drawingResult.put(lottoRank, 1);
+        drawingResult.put(lottoRank, drawingResult.getOrDefault(lottoRank, 0) + 1);
     }
 }

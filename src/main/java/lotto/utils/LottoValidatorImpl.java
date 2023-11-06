@@ -8,7 +8,7 @@ import lotto.enumContainer.LottoRange;
 
 public class LottoValidatorImpl implements LottoValidator {
 
-	private final ParserFrom parser;
+	private final ParserFromString parser;
 	public LottoValidatorImpl() {
 		parser = new ParserFromStringImpl();
 	}
@@ -17,13 +17,7 @@ public class LottoValidatorImpl implements LottoValidator {
 	public int validatePrice(String lottoPrice) {
 		validateEmptyString(lottoPrice);
 		validateIsDigit(lottoPrice);
-		int parsePrice = validateRange(lottoPrice);
-
-		//해당 객체로 이동
-		validateMinimum(parsePrice);
-		validateRest(parsePrice);
-		return parsePrice;
-
+		return validateRange(lottoPrice);
 	}
 
 	@Override
@@ -76,17 +70,5 @@ public class LottoValidatorImpl implements LottoValidator {
 			ErrorOperation.RANGE_ERROR.apply();
 		}
 		return parsePrice;
-	}
-
-	private void validateMinimum(int parsePrice) {
-		if (parsePrice < 1000) {
-			ErrorOperation.MINIMUM_ERROR.apply();
-		}
-	}
-
-	private void validateRest(int parsePrice) {
-		if (parsePrice % 1000 != 0) {
-			ErrorOperation.UNIT_ERROR.apply();
-		}
 	}
 }

@@ -1,6 +1,6 @@
 package lotto.utils;
 
-public interface ParserFrom {
+public interface ParserFromString {
 
 	int toIntPaser(String lottoString);
 

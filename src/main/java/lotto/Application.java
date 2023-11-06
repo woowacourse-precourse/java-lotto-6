@@ -13,11 +13,19 @@ public class Application {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         randomNumberGenerator.generateRandomNumbers(insertedMoney);
         randomNumberGenerator.printMyLottoNumber();
+        List<List<Integer>> userLotto=randomNumberGenerator.getRandomNumbers();
 
         List<Integer> inputList = userInput.inputWinnerNumbers("당첨 번호를 입력해 주세요.");
         System.out.println(inputList);
 
         int bonusNumber = userInput.inputBonusNumber("보너스 번호를 입력해 주세요.");
         System.out.println(bonusNumber);
+
+        Winner winner = new Winner();
+        for(int i=0;i<insertedMoney;i++){
+            winner.checkLottoNumbers(userLotto.get(i),inputList);
+        }
+        List<Integer> result = winner.getResult();
+        System.out.println(result);
     }
 }

@@ -45,6 +45,10 @@ public enum LottoRanking {
         return List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
     }
 
+    public boolean isSecond() {
+        return this == SECOND;
+    }
+
     public int getNumberOfMatches() {
         return numberOfMatches;
     }

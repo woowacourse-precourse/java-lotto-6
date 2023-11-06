@@ -35,19 +35,18 @@ public class Lotto {
         }
     }
 
-    public Result checkRank(List<Integer> winnerNumber, int bonus){
-        int count = 0;
-        for (int lottoNumber : numbers){
-            if (winnerNumber.contains(lottoNumber)) count ++;
+    public RankEnum checkRank(List<Integer> winnerNumber, int bonus){
+        long count = numbers.stream().filter(winnerNumber::contains).count();
+        if (count == RankEnum.FIRST.getMatchCount()) return RankEnum.FIRST;
+        if (count == RankEnum.SECOND.getMatchCount()) {
+            if (numbers.contains(bonus)) return RankEnum.SECOND;
+            return RankEnum.THIRD;
         }
-        if (count == 6) return new Result(RankEnum.FIRST, 2000000000);
-        if (count == 5){
-            if (numbers.contains(bonus)) return new Result(RankEnum.SECOND, 30000000);
-            return new Result(RankEnum.THIRD, 1500000);
-        }
-        if (count == 4)  return new Result(RankEnum.FORTH, 50000);
-        if (count == 3) return new Result(RankEnum.FIFTH, 5000);
-        return new Result(RankEnum.NONE, 0);
+        if (count == RankEnum.FORTH.getMatchCount()) return RankEnum.FORTH;
+        if (count == RankEnum.FIFTH.getMatchCount()) return RankEnum.FIFTH;
+        return RankEnum.NONE;
     }
+
+
 
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -32,11 +33,12 @@ public class NumberGenerator {
                 lotto.add(randomNumber);
             }
         }
-        return lotto;
+        return sortAscendingNumbers(lotto);
     }
 
     public List<Integer> sortAscendingNumbers(List<Integer> sortLottoNumbers){
-        return null;
+        Collections.sort(sortLottoNumbers);
+        return sortLottoNumbers;
     }
 
     public boolean inputBuyCostVaildation(String buycost){

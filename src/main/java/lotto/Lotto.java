@@ -16,5 +16,9 @@ public class Lotto {
         }
     }
 
+    public List<Integer> get_lotto_numbers() {
+        return numbers;
+    }
+
     // TODO: 추가 기능 구현
 }

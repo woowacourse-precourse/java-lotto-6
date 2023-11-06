@@ -6,20 +6,23 @@ public class Start_game {
     //private static final int ArrayList = 0;
     public static int money = 0;
     public static int game_count = 0;
-
+    public static int bonus_number = 0;
+    private Input_function input_function = new Input_function();
+    private Calculation calculation = new Calculation();
+    private List<Integer> user_lottos = new ArrayList<>();
+    
     public void run() {
-        Input_function input_function = new Input_function();
-        Calculation calculation = new Calculation();
-        List<Integer> lotto_number = new ArrayList<>();
         money = input_function.get_money();
         game_count = calculation.get_game_count(money);
-
-        System.out.println(money);
-        System.out.println(game_count);
+        Lotto lotto_number = new Lotto(input_function.get_lotto_number());
+        bonus_number = input_function.get_bonus_number(lotto_number.get_lotto_numbers());
 
         for(int i=0;i<10;i++) {
-            lotto_number = calculation.generate_lotto();
-            System.out.println(lotto_number);
+            user_lottos = calculation.generate_lotto();
+            System.out.println(user_lottos);
         }
+
+        System.out.println(lotto_number.get_lotto_numbers().toString());
+        System.out.println(bonus_number);
     }
 }

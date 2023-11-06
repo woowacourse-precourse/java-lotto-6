@@ -11,9 +11,10 @@ public enum ExceptionMessage {
     INVALID_WINNING_TYPE("[ERROR] 당첨 번호는 숫자만 입력 가능합니다."),
     INVALID_WINNING_RANGE("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다."),
     INVALID_WINNING_LENGTH("[ERROR] 당첨 번호는 6개의 숫자여야 합니다."),
+    INVALID_WINNING_OVERLAP("[ERROR] 당첨 번호는 당첨번호에 있는 숫자와 중복될수 없습니다."),
     INVALID_BONUS_TYPE("[ERROR] 보너스 번호는 숫자만 입력 가능합니다."),
     INVALID_BONUS_RANGE("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다."),
-    INVALID_BONUS_OVERLAP("[ERROR] 보너스 번호는 당첨번호에 있는 숫자와 중복될수 없습니다.");;
+    INVALID_BONUS_OVERLAP("[ERROR] 보너스 번호는 당첨번호에 있는 숫자와 중복될수 없습니다.");
 
     private final String message;
 

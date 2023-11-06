@@ -2,10 +2,14 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class InputView {
 
     private static final String NOTICE_INPUT_PURCHASE_PRICE = "구입금액을 입력해 주세요.";
+    private static final String NOTICE_INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final int ONE_LOTTO_PRICE = 1000;
+    private static final String DELIMITER = ",";
     private static final String ERROR_NOT_DIVIDED_BY_LOTTO_PRICE = "[ERROR] 로또 구입 가격은 로또 하나의 가격인 1000원으로 나누어 떨어져야 합니다.";
 
     public void inputPurchasePrice() {
@@ -18,6 +22,12 @@ public class InputView {
             System.out.println(error.getMessage());
             inputPurchasePrice();
         }
+    }
+
+    public void inputWinNumber() {
+        System.out.println(NOTICE_INPUT_WINNING_NUMBER);
+        String input = Console.readLine();
+        List<String> winningNumbers = List.of(input.split(DELIMITER));
     }
 
     private void validateDividedByLottoPrice(int price) {

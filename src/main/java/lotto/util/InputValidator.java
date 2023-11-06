@@ -3,12 +3,10 @@ package lotto.util;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.Lotto;
 import lotto.exception.ErrorMessage;
 
 public class InputValidator {
-    private static final int LOTTO_NUMBER_MIN = 1;
-
-    private static final int LOTTO_NUMBER_MAX = 45;
 
     public static void validateNumberType(String number) {
         try {
@@ -42,7 +40,7 @@ public class InputValidator {
     }
 
     public static void validateLottoNumberRange(int number) {
-        if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
+        if (number < Lotto.LOTTO_NUMBER_MIN || number > Lotto.LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage());
         }
     }

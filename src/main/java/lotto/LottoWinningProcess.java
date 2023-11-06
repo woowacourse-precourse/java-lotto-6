@@ -17,17 +17,21 @@ public class LottoWinningProcess {
             checked.add(lotto.isContainBonusNumber(winningLotto.getBonusNumber()));
         }
 
-        return new LottoResult(counted,checked);
+        return new LottoResult(counted, checked);
     }
 
     private List<Lotto> buyLotto() {
         PurchaseMoney purchaseMoney = setUpPurchaseMoney();
+        int lottoQuantity = purchaseMoney.getLottoQuantity();
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < purchaseMoney.getLottoQuantity(); i++) {
+        OutputView.printLottoQuantity(lottoQuantity);
+
+        for (int i = 0; i < lottoQuantity; i++) {
             Lotto lotto = new Lotto(NumberGenerator.generate());
-            OutputView.printLottoNumbers(lotto.getNumbers());
             lottos.add(lotto);
+
+            OutputView.printLottoNumbers(lotto.getNumbers());
         }
 
         return lottos;

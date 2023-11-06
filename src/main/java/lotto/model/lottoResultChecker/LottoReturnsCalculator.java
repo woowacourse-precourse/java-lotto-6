@@ -10,7 +10,8 @@ public class LottoReturnsCalculator {
     public double calculateReturnRate(Map<LottoRank, Integer> rankResults) {
         long totalEarnings = calculateTotalEarnings(rankResults);
         long totalCost = calculateTotalCost(rankResults);
-        return ((double) totalEarnings / totalCost) * 100;
+        double returnRate = ((double) totalEarnings / totalCost) * 100;
+        return Math.round(returnRate * 10.0) / 10.0;
     }
 
     private long calculateTotalEarnings(Map<LottoRank, Integer> rankResults) {

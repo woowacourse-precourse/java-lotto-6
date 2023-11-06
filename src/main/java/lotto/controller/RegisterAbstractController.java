@@ -3,18 +3,18 @@ package lotto.controller;
 import lotto.io.ConsoleWriter;
 import lotto.view.ErrorView;
 
-public abstract class AbstractController implements Controller{
+public abstract class RegisterAbstractController<E> implements RegisterController<E> {
     private final ErrorView errorView = new ErrorView(new ConsoleWriter());
 
     @Override
-    public void process() {
+    public E process() {
         try {
-            doProcess();
+            return doProcess();
         } catch (Exception e) {
             errorView.showErrorMessage(e.getMessage());// Writer 주입해야 한다
-            process();
+            return process();
         }
     }
 
-    abstract void doProcess();
+    abstract E doProcess();
 }

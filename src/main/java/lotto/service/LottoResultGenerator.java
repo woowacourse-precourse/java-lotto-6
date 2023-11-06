@@ -1,4 +1,9 @@
-package lotto.domain;
+package lotto.service;
+
+import lotto.domain.LottoPurchaseAmount;
+import lotto.domain.Lottos;
+import lotto.domain.PrizeCondition;
+import lotto.domain.WinningLotto;
 
 import java.util.List;
 import java.util.Map;

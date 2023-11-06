@@ -1,5 +1,7 @@
-package lotto.domain;
+package lotto.service;
 
+import lotto.domain.LottoPurchaseAmount;
+import lotto.domain.Lottos;
 import lotto.utils.LottoGenerator;
 
 import static lotto.constants.LottoConstants.LOTTO_PRICE;

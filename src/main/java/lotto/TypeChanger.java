@@ -3,8 +3,31 @@ package lotto;
 import java.util.List;
 
 public class TypeChanger {
-    public static List<String> stringToListWithComma(String numbers) {
-        List<String> userNumber = List.of(numbers.split(","));
-        return userNumber;
+    private static TypeChanger typeChanger;
+
+    private TypeChanger(){
+    }
+
+    public static TypeChanger getTypeChanger() {
+        if (typeChanger == null) {
+            typeChanger = new TypeChanger();
+        }
+        return typeChanger;
+    }
+
+
+    public List<String> stringToListWithComma(String numbers) {
+        return List.of(numbers.split(","));
+    }
+
+    public int stringToInteger(String number) {
+        return Integer.parseInt(number);
+    }
+
+    public List<Integer> genericToInteger(List<String> numbers) {
+        return numbers.stream()
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .toList();
     }
 }

@@ -11,7 +11,7 @@ public class InputHandler {
         return validator.validateMoney(input);
     }
 
-    public List<String> inputAnswerNumbers() {
+    public List<Integer> inputHitNumbers() {
         String input = Console.readLine();
         return validator.validateAnswerNumbers(input);
     }

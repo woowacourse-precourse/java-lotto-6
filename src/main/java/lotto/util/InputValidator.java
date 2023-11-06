@@ -22,7 +22,7 @@ public class InputValidator {
         return Integer.parseInt(price);
     }
 
-    public List<String> validateAnswerNumbers(String answer) {
+    public List<Integer> validateAnswerNumbers(String answer) {
         validateInputEmpty(answer);
         validateInputBlank(answer);
         validateInputForm(answer);
@@ -33,7 +33,7 @@ public class InputValidator {
         Set<String> duplicateRemovedAnswer = convertListToSet(splitAnswer);
         validateDuplicatedNumber(duplicateRemovedAnswer);
 
-        return splitAnswer;
+        return convertStringListToIntegerList(splitAnswer);
     }
 
     public int validateBonusNumber(String input, boolean duplicatedFlag) {
@@ -122,6 +122,12 @@ public class InputValidator {
 
     private List<String> convertStringToList(String answer) {
         return Arrays.stream(answer.split(SEPARATOR))
+                .collect(Collectors.toList());
+    }
+
+    private List<Integer> convertStringListToIntegerList(List<String> preConvert) {
+        return preConvert.stream()
+                .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 

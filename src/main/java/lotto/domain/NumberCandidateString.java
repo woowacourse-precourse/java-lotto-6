@@ -1,15 +1,15 @@
 package lotto.domain;
 
-public class NumericString {
+public class NumberCandidateString {
 
     private final String numericString;
 
-    public NumericString(String numericString) {
+    public NumberCandidateString(String numericString) {
         validateBlink(numericString);
         validateNumeric(numericString);
         this.numericString = numericString.trim();
     }
-    
+
     public Integer getNumber(){
         return Integer.parseInt(numericString);
     }

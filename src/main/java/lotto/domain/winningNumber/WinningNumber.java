@@ -13,12 +13,12 @@ public class WinningNumber {
 
     public WinningNumber(String input) {
         validate(input);
+        winningNumber = initWinningNumber(input);
     }
 
     private void validate(String input) {
         validateFormat(input);
         validateEachContent(input);
-        winningNumber = initWinningNumber(input);
     }
 
     private void validateFormat(String input) {

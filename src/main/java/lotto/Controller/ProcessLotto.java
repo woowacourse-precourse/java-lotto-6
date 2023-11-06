@@ -38,7 +38,7 @@ public class ProcessLotto {
         boolean success = false;
         while (!success){
             try{
-                outputView.askPurchaseAmount();
+                inputView.askPurchaseAmount();
                 cost = inputValidate.validateCost(inputView.getLine());
                 success = true;
             }
@@ -54,7 +54,7 @@ public class ProcessLotto {
         boolean success = false;
         while (!success){
             try{
-                outputView.askWinningNums();
+                inputView.askWinningNums();
                 winningNums = inputValidate.validateWinningNums(inputView.getLine());
                 new Lotto(winningNums);
                 success = true;
@@ -71,7 +71,7 @@ public class ProcessLotto {
         boolean success = false;
         while (!success){
             try{
-                outputView.askBonusNum();
+                inputView.askBonusNum();
                 bonus = inputValidate.validateBonus(inputView.getLine(), winningNums);
                 success = true;
             }catch (IllegalArgumentException e){

@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    public void askPurchaseAmount(){
-        System.out.println("구입금액을 입력해 주세요.");
-    }
 
     public void printNumberPurchase(int cnt){
         System.out.println("\n"+cnt+"개를 구매했습니다.");
@@ -15,14 +12,6 @@ public class OutputView {
 
     public void printGeneratedNums(List<Integer> nums){
         System.out.println(nums.stream().map(i -> i.toString()).collect(Collectors.joining(", ", "[", "]")));
-    }
-
-    public void askWinningNums(){
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-    }
-
-    public void askBonusNum(){
-        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     public void printWinningStatistics(){

@@ -62,7 +62,7 @@
 
 - [ ] MVC 도입하자. 클래스가 많으니 빠르게 찾기 힘들다.
     - [x] 일단 집어넣기
-    - [ ] view 수정
+    - [x] view 수정
     - [ ] controller 수정
     - [ ] model 수정
     - [ ] Model은 Controller와 View에 의존하지 않아야 한다.

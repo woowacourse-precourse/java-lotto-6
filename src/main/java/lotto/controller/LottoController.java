@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Price;
+import lotto.domain.UserLottos;
 import lotto.model.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,7 +14,7 @@ public class LottoController {
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.user = user;
+        this.user = new User();
     }
 
     public void run() {
@@ -23,9 +24,12 @@ public class LottoController {
     }
 
     private void issueLotto() {
+        // 구매 가격 받아오기
         inputView.requestPurchasePrice();
         Price price = user.requestPurchasePrice();
 
+        // 로또 발행
+        UserLottos userLottos = user.generateAllLottos(price);
 
     }
 

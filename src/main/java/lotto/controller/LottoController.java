@@ -41,7 +41,7 @@ public class LottoController {
             final int inputMoney = inputView.getInputMoney();
             return lottoPayment.calculateNumberOfLottos(inputMoney);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            resultView.println("[ERROR] " + e.getMessage());
             return -1;
         }
     }

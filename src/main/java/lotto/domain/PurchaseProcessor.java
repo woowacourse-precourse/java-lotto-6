@@ -11,10 +11,13 @@ public class PurchaseProcessor {
     private final long lottoCount;
 
     public PurchaseProcessor(String price) {
-        long convertedCount = convertNumber(price);
+        long convertedCount = convertNumber(trim(price));
         this.lottoCount = convertCount(convertedCount);
     }
 
+    private String trim(String price){
+        return price.trim();
+    }
     private long convertNumber(String price) {
         BigInteger bigPrice = parseToBigInteger(price);
         return convertToLong(bigPrice);

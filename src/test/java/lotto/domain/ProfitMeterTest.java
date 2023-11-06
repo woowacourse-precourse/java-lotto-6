@@ -60,11 +60,11 @@ class ProfitMeterTest {
     @Test
     void calculateYieldWithAllRanks() {
         // Given
-        winnerCount.put(LottoRank.FIFTH, 100); // 5,000 * 100 = 500,000
-        winnerCount.put(LottoRank.FOURTH, 50); // 50,000 * 50 = 2,500,000
-        winnerCount.put(LottoRank.THIRD, 10);  // 1,500,000 * 10 = 15,000,000
-        winnerCount.put(LottoRank.SECOND, 5);  // 30,000,000 * 5 = 150,000,000
-        winnerCount.put(LottoRank.FIRST, 1);   // 2,000,000,000 * 1 = 2,000,000,000
+        winnerCount.put(LottoRank.FIFTH, 100);
+        winnerCount.put(LottoRank.FOURTH, 50);
+        winnerCount.put(LottoRank.THIRD, 10);
+        winnerCount.put(LottoRank.SECOND, 5);
+        winnerCount.put(LottoRank.FIRST, 1);
         ProfitMeter profitMeter = new ProfitMeter(winnerCount, TOTAL_TICKETS_FOR_TEST_THREE);
 
         // When

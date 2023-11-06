@@ -11,4 +11,8 @@ public class OutputView {
     public void purchaseNum(List<Integer> lottoNum) {
         System.out.println(lottoNum);
     }
+
+    public void errorMessage(String e) {
+        System.out.println(e);
+    }
 }

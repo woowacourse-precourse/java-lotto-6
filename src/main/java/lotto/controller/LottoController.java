@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constant.RegularConstant;
 import lotto.domain.model.BonusNumber;
 import lotto.domain.model.Lotteries;
 import lotto.domain.model.WinningNumber;
@@ -18,7 +19,8 @@ public class LottoController {
     static final BonusNumberGenerator BONUS_NUMBER_GENERATOR = new BonusNumberGenerator();
 
     public void run() {
-        int countOfLotto = buyLotto();
+        int inputMoney = buyLotto();
+        int countOfLotto = inputMoney / RegularConstant.UNIT_AMOUNT;
         OutputView.showCountOfLotto(countOfLotto);
 
         Lotteries lotteries = LOTTO_GENERATOR.run(countOfLotto);
@@ -29,6 +31,9 @@ public class LottoController {
 
         Map<String, Integer> statistics = lotteries.produceStatistics(winningNumber, bonusNumber);
         OutputView.showStatics(statistics);
+
+        double totalReturnAsPercent = lotteries.calculateTotalReturnAsPercent(inputMoney, statistics);
+        OutputView.showTotalReturnAsPercent(totalReturnAsPercent);
     }
 
     private int buyLotto() {
@@ -37,9 +42,9 @@ public class LottoController {
         try {
             Validator.validateExistValue(inputValue);
             int inputMoney = Validator.validateNumericInput(inputValue);
-            int countOfLotto = Validator.validateDivisibleBy1000(inputMoney);
+            Validator.validateDivisibleBy1000(inputMoney);
 
-            return countOfLotto;
+            return inputMoney;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 

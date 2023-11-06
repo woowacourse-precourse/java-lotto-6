@@ -28,7 +28,6 @@ public class Lotto {
 	}
 
 	private void validate(List<Integer> numbers) {
-
 		if (!isSixDigit(numbers))
 			throw new IllegalArgumentException(ERROR_MESSAGE_TAG+IS_SIX_DIGIT_MESSAGE);
 		if (!isNumbersRange1to45(numbers))

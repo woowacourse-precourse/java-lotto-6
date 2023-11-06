@@ -1,35 +1,64 @@
 package lotto.model;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 public class WinningStatistics {
-	
-	private int []numberWinnings = new int[5];
+
+	private final int NO_MATCH_NUMBERS = 12;
+	private final int PERCENT = 100;
+
+	private Map<Rank, Integer> winnings;
+	private int totalWinningAmount;
 	private double totalProfitRate;
+
+	public WinningStatistics() {
+		winnings = new HashMap<>();
+
+		winnings.put(Rank.FIRST, 0);
+		winnings.put(Rank.SECOND, 0);
+		winnings.put(Rank.THIRD, 0);
+		winnings.put(Rank.FOURTH, 0);
+		winnings.put(Rank.FIFTH, 0);
+
+		totalWinningAmount = 0;
+		totalProfitRate = 0.0;
+	}
 	
-	public double getRate() {
+	public Map<Rank,Integer> getWinnings() {
+		return winnings;
+	}
+
+	public void addWinning(Lotto purchasedLotto, Lotto winningLotto, BonusNumber bonusNumber) {
+		Rank rank = Rank.getRank(matchNumberSize(purchasedLotto.getNumbers(), winningLotto.getNumbers()),
+				winBonusNumber(purchasedLotto.getNumbers(),bonusNumber));
+		
+		winnings.put(rank, winnings.get(rank)+1);
+		totalWinningAmount += rank.getMoney();
+	}
+
+	private int matchNumberSize(List<Integer> purchaseLottoNumbers, List<Integer> winningLottoNumbers) {
+		Set<Integer> purchaseLottoSet = new HashSet<>(purchaseLottoNumbers);
+		purchaseLottoSet.addAll(winningLottoNumbers);
+
+		return NO_MATCH_NUMBERS - purchaseLottoSet.size();
+	}
+
+	private boolean winBonusNumber(List<Integer> purchaseLottoNumbers, BonusNumber bonusNumber) {
+		return purchaseLottoNumbers.contains(bonusNumber);
+	}
+	
+	public double getTotalProfitRate(int money) {
+		totalProfitRate = calculateTotalProfitRate(money);
 		return this.totalProfitRate;
 	}
 	
-	public void setRate(double rate) {
-		this.totalProfitRate = rate;
+	private double calculateTotalProfitRate(int money) {
+		return PERCENT * totalWinningAmount/money;
 	}
 	
-	public int[] getWinningCount() {
-		return this.numberWinnings;
-	}
 	
-	public void firstWinning() {
-		numberWinnings[0]++;
-	}
-	public void secondWinning() {
-		numberWinnings[1]++;
-	}
-	public void thirdWinning() {
-		numberWinnings[2]++;
-	}
-	public void fourthWinning() {
-		numberWinnings[3]++;
-	}
-	public void fifthWinning() {
-		numberWinnings[4]++;
-	}
 }

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    private final List<LottoNumber> numbers;
+    private final List<LottoNumber> lottoNumbers;
 
     private Lotto(List<Integer> numbers) {
         validateLottoNumber(numbers);
-        this.numbers = new ArrayList<>(generateLottoNumbers(numbers));
+        this.lottoNumbers = new ArrayList<>(convertToLottoNumbers(numbers));
     }
 
     public static Lotto create(List<Integer> numbers) {
@@ -25,13 +25,13 @@ public class Lotto {
         }
     }
 
-    private static List<LottoNumber> generateLottoNumbers(List<Integer> numbers) {
+    private static List<LottoNumber> convertToLottoNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .map(LottoNumber::create)
                 .toList();
     }
 
-    public List<LottoNumber> getNumbers() {
-        return new ArrayList<>(numbers);
+    public List<LottoNumber> getLottoNumbers() {
+        return new ArrayList<>(lottoNumbers);
     }
 }

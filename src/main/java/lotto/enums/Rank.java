@@ -1,6 +1,8 @@
 package lotto.enums;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public enum Rank {
     FIRST(6, false, 2_000_000_000),
@@ -37,5 +39,9 @@ public enum Rank {
                 .filter(rank -> rank.containBonus == containBonus || !rank.containBonus)
                 .findAny()
                 .orElse(null);
+    }
+
+    public static Rank[] valuesByReverseOrder() {
+        return Arrays.stream(Rank.values()).sorted(Comparator.reverseOrder()).toArray(Rank[]::new);
     }
 }

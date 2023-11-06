@@ -53,7 +53,7 @@ public class Validator {
     }
 
     public static void isThousandUnit(String input) {
-        if (Integer.parseInt(input) % 1000 != 0) {
+        if (Integer.parseInt(input) % Constants.UNIT != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_THOUSAND_UNIT);
         }
     }
@@ -76,13 +76,13 @@ public class Validator {
 
     public static void isNumberInRange(String input) {
         int number = Integer.parseInt(input);
-        if (!(number >= 1 && number <= 45)) {
+        if (!(number >= Constants.MIN && number <= Constants.MAX)) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_NUMBER_IN_RANGE);
         }
     }
 
     public static void isSixItems(String[] input) {
-        if (input.length != 6) {
+        if (input.length != Constants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_SIX_ITEMS);
         }
     }

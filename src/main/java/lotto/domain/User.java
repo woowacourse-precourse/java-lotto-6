@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.validation.PurchaseAmountCheckValidator.*;
-import static lotto.validation.NumberCheckValidator.*;
+import static lotto.messages.Constant.AMOUNT_UNIT;
+import static lotto.validation.NumberCheckValidator.validateBonusNumber;
+import static lotto.validation.PurchaseAmountCheckValidator.validatePurchaseAmount;
 
 public class User {
     private static User user;
 
-    List<Integer> winningNumbers = new ArrayList<>();
+    List<Integer> lottoNumbers = new ArrayList<>();
 
     private User() {
     }
@@ -30,20 +31,20 @@ public class User {
     }
 
     public int injectCount(int purchaseAmount) {
-        return purchaseAmount / 1_000;
+        return purchaseAmount / AMOUNT_UNIT;
     }
 
-    public Lotto inputWinningNumbers() {
-        winningNumbers.clear();
+    public Lotto inputLottoNumbers() {
+        lottoNumbers.clear();
         Arrays.stream(Console.readLine().split(",")).toList()
-                .forEach(s -> winningNumbers.add(Integer.valueOf(s)));
+                .forEach(s -> lottoNumbers.add(Integer.valueOf(s)));
 
-        return new Lotto(winningNumbers);
+        return new Lotto(lottoNumbers);
     }
 
     public int inputBonusNumber() {
         int bonusNumber = Integer.parseInt(Console.readLine());
-        validateBonusNumber(winningNumbers, bonusNumber);
+        validateBonusNumber(lottoNumbers, bonusNumber);
         return bonusNumber;
     }
 }

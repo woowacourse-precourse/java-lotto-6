@@ -3,8 +3,8 @@ package lotto.domain;
 import java.text.DecimalFormat;
 
 import static lotto.domain.Rank.*;
-import static lotto.domain.Rank.FIRST;
 import static lotto.domain.Statistics.*;
+import static lotto.messages.PrinterMessages.*;
 
 public class Printer {
     private static Printer printer;
@@ -16,20 +16,24 @@ public class Printer {
         return printer;
     }
 
+    public void printErrorMessage(String ErrorMessage) {
+        System.out.println(ErrorMessage);
+    }
+
     public void printCount(int count) {
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println(count + NUMBER_OF_COUNT);
     }
 
     public void printPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(ENTER_PURCHASE_AMOUNT);
     }
 
-    public void printWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+    public void printLottoNumber() {
+        System.out.println(ENTER_LOTTO_NUMBER);
     }
 
     public void printBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(ENTER_BONUS_NUMBER);
     }
 
     public void printStatistics(float rateOfReturn) {
@@ -40,7 +44,7 @@ public class Printer {
         System.out.println(THIRD.getTitle() + " (" + makePlace(THIRD.getWinnings()) + "원) - " + thirdCount + "개");
         System.out.println(SECOND.getTitle() + " (" + makePlace(SECOND.getWinnings()) + "원) - " + secondCount + "개");
         System.out.println(FIRST.getTitle() + " (" + makePlace(FIRST.getWinnings()) + "원) - " + firstCount + "개");
-        System.out.println("총 수익률은 " + rateOfReturn +"%입니다.");
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
     private static String makePlace(int num) {

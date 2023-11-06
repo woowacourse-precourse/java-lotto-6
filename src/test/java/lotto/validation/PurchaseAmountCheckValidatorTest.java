@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import lotto.messages.ErrorMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,6 @@ class PurchaseAmountCheckValidatorTest {
     void 금액_비정상_예외() {
         assertThatThrownBy(() -> validatePurchaseAmount("14400"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1,000원 단위로 입력해 주세요");
+                .hasMessage(ErrorMessages.INCORRECT_PURCHASE_AMOUNT);
     }
 }

@@ -1,7 +1,10 @@
 package lotto.validation;
 
+import static lotto.messages.Constant.AMOUNT_UNIT;
+import static lotto.messages.ErrorMessages.INCORRECT_PURCHASE_AMOUNT;
+import static lotto.messages.ErrorMessages.TYPE_MISS_MATCHING;
+
 public class PurchaseAmountCheckValidator {
-    private static final String ERROR = "[ERROR] ";
 
     public static int validatePurchaseAmount(String stringPurchaseAmount) {
         int purchaseAmount = 0;
@@ -9,11 +12,11 @@ public class PurchaseAmountCheckValidator {
         try {
             purchaseAmount = Integer.parseInt(stringPurchaseAmount);
         } catch (Exception e) {
-            throw new IllegalArgumentException(ERROR + "숫자를 입력해 주세요");
+            throw new IllegalArgumentException(TYPE_MISS_MATCHING);
         }
 
-        if (purchaseAmount % 1_000 != 0) {
-            throw new IllegalArgumentException(ERROR + "구입금액은 1,000원 단위로 입력해주세요");
+        if (purchaseAmount % AMOUNT_UNIT != 0) {
+            throw new IllegalArgumentException(INCORRECT_PURCHASE_AMOUNT);
         }
         return purchaseAmount;
     }

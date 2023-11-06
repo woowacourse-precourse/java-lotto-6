@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static lotto.domain.Rank.*;
+import static lotto.messages.Constant.COUNT;
 
 public class Statistics {
-    public static Statistics statistics;
+    private static Statistics statistics;
     public static int firstCount, secondCount, thirdCount, fourthCount, fifthCount;
 
     private Statistics() {
@@ -22,7 +23,7 @@ public class Statistics {
     public void getResult(List<RandomNumber> multiRandomNumbers, Lotto lotto, int bonusNumber) {
         for (RandomNumber rn : multiRandomNumbers) {
             int sameWinningNum = 0;
-            sameWinningNum = (int) IntStream.range(0, lotto.getNumbers().size())
+            sameWinningNum = (int) IntStream.range(0, COUNT)
                     .filter(i -> rn.getRandomNumbers().contains(lotto.getNumbers().get(i))).count();
 
             boolean sameBonusNum = rn.getRandomNumbers().contains(bonusNumber);

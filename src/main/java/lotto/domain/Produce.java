@@ -4,27 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static lotto.domain.RandomNumber.*;
+import static lotto.domain.RandomNumber.getUniqueNumbers;
 
 public class Produce {
-    private static final User user = User.getInstance();
-    private static final Statistics statistics = Statistics.getInstance();
-    private static final Printer printer = Printer.getInstance();
+    private static final User USER = User.getInstance();
+    private static final Statistics STATISTICS = Statistics.getInstance();
+    private static final Printer PRINTER = Printer.getInstance();
 
     public void start() {
-        //TODO 메세지 메소드 입력
         proceed();
     }
 
     private void proceed() {
         // 구입금액, count 가져오기
         int purchaseAmount = getPurchaseAmount();
-        int count = user.injectCount(purchaseAmount);
+        int count = USER.injectCount(purchaseAmount);
 
-        //회차별 로또번호 lottos에 담기
+        //회차별 로또번호 randomNumbers 담기
         List<RandomNumber> randomNumbers = new ArrayList<>();
         IntStream.range(0, count).forEach(i -> randomNumbers.add(new RandomNumber(getUniqueNumbers())));
-        printer.printCount(count);
+        PRINTER.printCount(count);
         randomNumbers.forEach(i -> System.out.println(i.toString()));
 
         // 당첨 번호 입력
@@ -34,22 +33,21 @@ public class Produce {
         int bonusNumber = getBonusNumber();
 
         //통계 로직
-        statistics.getResult(randomNumbers, lotto, bonusNumber);
-        int totalReward = statistics.getTotalReward();
-        float rateOfReturn = statistics.getRateOfReturn(totalReward, purchaseAmount);
+        STATISTICS.getResult(randomNumbers, lotto, bonusNumber);
+        int totalReward = STATISTICS.getTotalReward();
+        float rateOfReturn = STATISTICS.getRateOfReturn(totalReward, purchaseAmount);
 
         //통계출력로직
-        printer.printStatistics(rateOfReturn);
+        PRINTER.printStatistics(rateOfReturn);
     }
 
     private static int getPurchaseAmount() {
         int purchaseAmount = 0;
-        printer.printPurchaseAmount();
+        PRINTER.printPurchaseAmount();
         try {
-            purchaseAmount = user.inputPurchaseAmount();
+            purchaseAmount = USER.inputPurchaseAmount();
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            System.out.println("[ERROR]");
+            PRINTER.printErrorMessage(e.getMessage());
             purchaseAmount = getPurchaseAmount();
         }
         return purchaseAmount;
@@ -58,10 +56,10 @@ public class Produce {
     private static Lotto getLotto() {
         Lotto lotto = null;
         try {
-            printer.printWinningNumber();
-            lotto = user.inputWinningNumbers();
+            PRINTER.printLottoNumber();
+            lotto = USER.inputLottoNumbers();
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            PRINTER.printErrorMessage(e.getMessage());
             lotto = getLotto();
         }
         return lotto;
@@ -69,10 +67,11 @@ public class Produce {
 
     private static int getBonusNumber() {
         int bonusNumber = 0;
+        PRINTER.printBonusNumber();
         try {
-            printer.printBonusNumber();
-            bonusNumber = user.inputBonusNumber();
+            bonusNumber = USER.inputBonusNumber();
         } catch (IllegalArgumentException e) {
+            PRINTER.printErrorMessage(e.getMessage());
             bonusNumber = getBonusNumber();
         }
         return bonusNumber;

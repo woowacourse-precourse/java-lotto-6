@@ -50,7 +50,7 @@ class UserTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         User user = User.getInstance();
-        Lotto lotto = user.inputWinningNumbers();
+        Lotto lotto = user.inputLottoNumbers();
 
         List<Integer> expectedNumbers = new ArrayList<>();
         IntStream.rangeClosed(1, 6).forEach(expectedNumbers::add);

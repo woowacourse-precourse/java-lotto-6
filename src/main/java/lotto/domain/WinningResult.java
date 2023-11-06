@@ -27,6 +27,7 @@ public final class WinningResult {
     }
 
     private int sumOfEarning(final Entry<WinningGrade, Integer> entry) {
-        return entry.getKey().toPrize() * entry.getValue();
+        final WinningGrade winningGrade = entry.getKey();
+        return winningGrade.toPrize() * entry.getValue();
     }
 }

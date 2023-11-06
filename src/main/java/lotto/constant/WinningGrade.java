@@ -34,7 +34,7 @@ public enum WinningGrade {
         return this.matchNum;
     }
 
-    public boolean equalValue(final WinningGrade winningGrade) {
+    public boolean hasEqualValue(final WinningGrade winningGrade) {
         return this == winningGrade;
     }
 

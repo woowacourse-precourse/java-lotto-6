@@ -29,25 +29,22 @@ public final class WinningCombination {
 
     public WinningResult calculateWinningLottos(final Lottos lottos) {
         final List<WinningGrade> winningGrades = winningNumbers.compare(lottos);
+        final List<WinningGrade> result = checkSecondWinning(lottos, winningGrades);
 
-        final List<WinningGrade> fixedWinningGrades =
-                mapToFixedWinningGrades(lottos, winningGrades);
-
-        return mapToWinningResult(fixedWinningGrades);
+        return mapToWinningResult(result);
     }
 
-    private List<WinningGrade> mapToFixedWinningGrades(
+    private List<WinningGrade> checkSecondWinning(
             final Lottos lottos, final List<WinningGrade> winningGrades) {
         return IntStream.range(START_INDEX, winningGrades.size())
                 .mapToObj(
                         index ->
-                                mapToProperWinningGrade(
+                                checkBonusNumber(
                                         lottos.getByIndex(index), winningGrades.get(index)))
                 .toList();
     }
 
-    private WinningGrade mapToProperWinningGrade(
-            final Lotto lotto, final WinningGrade winningGrade) {
+    private WinningGrade checkBonusNumber(final Lotto lotto, final WinningGrade winningGrade) {
         if (winningGrade.isPossibleSecondWinner()) {
             return bonusNumber.checkSecondWinning(lotto);
         }
@@ -67,7 +64,7 @@ public final class WinningCombination {
 
     private Integer numOfValues(
             final WinningGrade winningGrade, final List<WinningGrade> winningGrades) {
-        final long count = winningGrades.stream().filter(winningGrade::equalValue).count();
+        final long count = winningGrades.stream().filter(winningGrade::hasEqualValue).count();
         return Long.valueOf(count).intValue();
     }
 }

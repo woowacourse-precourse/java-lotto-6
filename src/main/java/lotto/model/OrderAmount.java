@@ -8,6 +8,6 @@ public class OrderAmount {
     }
 
     public int amountOfLotto() {
-        return -1;
+        return money/1000;
     }
 }

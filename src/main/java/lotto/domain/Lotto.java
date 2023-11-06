@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,6 +18,14 @@ public class Lotto {
 
     public boolean hasNumber(int number) {
         return numbers.contains(number);
+    }
+
+    public int getDuplicatedNumberCount(Lotto lotto) {
+        long count = numbers.stream()
+                .filter(l -> lotto.getNumbers().stream()
+                        .anyMatch(Predicate.isEqual(l))).count();
+
+        return (int) count;
     }
 
     private void validate(List<Integer> numbers) {

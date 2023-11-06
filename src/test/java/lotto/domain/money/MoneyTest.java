@@ -13,7 +13,7 @@ class MoneyTest {
         @Test
         void call_addition_will_return_Money() {
                 //given
-               BigDecimal thousandWon = BigDecimal.valueOf(1000);
+                BigDecimal thousandWon = BigDecimal.valueOf(1000);
                 Money money = new Money(thousandWon);
                 Money money2 = new Money(thousandWon);
 

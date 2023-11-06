@@ -15,8 +15,8 @@ import lotto.domain.generator.AutoTicketGenerator;
 import lotto.domain.generator.TicketGenerator;
 import lotto.domain.seller.Seller;
 import lotto.domain.seller.TicketSeller;
-import lotto.util.reader.InputReader;
 import lotto.util.RandomNumber;
+import lotto.util.reader.InputReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

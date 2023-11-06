@@ -15,6 +15,7 @@ import lotto.domain.result.LottoRank;
 import lotto.domain.result.WinResult;
 import lotto.domain.seller.Seller;
 import lotto.domain.ticket.Ticket;
+import lotto.util.Logger;
 import lotto.util.reader.InputReader;
 
 public class LottoCustomer implements Customer {
@@ -40,20 +41,15 @@ public class LottoCustomer implements Customer {
         private void readResult(WinResult result) {
                 Map<LottoRank, Integer> ranks = result.getRanks();
                 BigDecimal rateOfReturn = result.getRateOfReturn();
-                System.out.println("\n당첨 통계");
-                System.out.println("---");
+                Logger.info("\n당첨 통계");
+                Logger.info("---");
 
                 for (LottoRank rank : List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST)) {
                         Integer value = ranks.get(rank);
                         String priceFormat = String.format("%,d", rank.getPrizes().longValue());
-                        System.out.println(rank + " (" + priceFormat + "원) - " + value + "개");
+                        Logger.info(rank + " (" + priceFormat + "원) - " + value + "개");
                 }
 
-                System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
-        }
-
-        // todo 필요할까? 테스트 확인을 위해서?
-        public Ticket getTicket() {
-                return ticket;
+                Logger.info("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
         }
 }

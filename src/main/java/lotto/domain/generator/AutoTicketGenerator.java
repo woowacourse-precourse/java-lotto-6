@@ -17,7 +17,7 @@ public class AutoTicketGenerator implements TicketGenerator {
 
         @Override
         public Ticket generateTicket(long quantity) {
-                Logger.info("\n"+quantity+"개를 구매했습니다.");
+                Logger.info("\n" + quantity + "개를 구매했습니다.");
                 List<Lotto> lottoEntry = new ArrayList<>();
                 for (int i = 0; i < quantity; i++) {
                         lottoEntry.add(generateLotto());

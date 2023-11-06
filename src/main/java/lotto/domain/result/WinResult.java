@@ -5,5 +5,6 @@ import java.util.Map;
 
 public interface WinResult {
         Map<LottoRank, Integer> getRanks();
+
         BigDecimal getRateOfReturn();
 }

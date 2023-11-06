@@ -5,5 +5,6 @@ import lotto.domain.result.WinResult;
 
 public interface Ticket {
         WinResult checkResult(Lotto answer, int magicNumber);
+
         long getNumOfLottoEntry();
 }

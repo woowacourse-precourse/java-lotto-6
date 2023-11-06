@@ -15,6 +15,6 @@ public class RandomNumberUtil implements RandomNumber {
 
         @Override
         public List<Integer> pickUniqueNumberRange(int start, int end, int count) {
-                return Randoms.pickUniqueNumbersInRange(start,end,count);
+                return Randoms.pickUniqueNumbersInRange(start, end, count);
         }
 }

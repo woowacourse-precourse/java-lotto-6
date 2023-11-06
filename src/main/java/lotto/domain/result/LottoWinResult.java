@@ -57,7 +57,6 @@ public class LottoWinResult implements WinResult {
 
         private void calculateRateOfReturn(long numOfLottoEntry) {
                 BigDecimal payment = TicketPrice.COMMON.getPrice().multiply(BigDecimal.valueOf(numOfLottoEntry));
-
                 BigDecimal gain = ranks.keySet().stream()
                         .map(key -> key.getPrizes().multiply(BigDecimal.valueOf(ranks.get(key))))
                         .reduce(BigDecimal::add).orElseThrow();

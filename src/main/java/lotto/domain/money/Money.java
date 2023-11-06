@@ -3,7 +3,6 @@ package lotto.domain.money;
 import java.math.BigDecimal;
 
 public class Money {
-        public static final Money ZERO = new Money(BigDecimal.ZERO);
         private final BigDecimal amount;
 
         public Money(BigDecimal amount) {
@@ -24,5 +23,5 @@ public class Money {
 
         public BigDecimal getAmount() {
                 return amount;
-        } // todo 필요할까? 테스트 코드를 위해서?
+        }
 }

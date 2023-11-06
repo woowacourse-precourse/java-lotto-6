@@ -27,4 +27,11 @@ public class PrizeReception {
         }
         return allPrizeProfit;
     }
+
+    @Override
+    public String toString() {
+        return "PrizeReception{" +
+                "prizeCounts=" + prizeCounts +
+                '}';
+    }
 }

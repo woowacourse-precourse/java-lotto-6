@@ -20,7 +20,7 @@ public class LottosManager {
         return lottos.size();
     }
 
-    public Map<Prize, Integer> getPrizeCounts(PrizeChecker prizeChecker) {
+    public PrizeReception getPrizeReception(PrizeChecker prizeChecker) {
         Map<Prize, Integer> prizeCounts = getInitializedPrizeCounts();
         for (Lotto lotto : lottos) {
             Prize prize = prizeChecker.calculatePrize(lotto);
@@ -31,7 +31,7 @@ public class LottosManager {
             prizeCount++;
             prizeCounts.put(prize, prizeCount);
         }
-        return prizeCounts;
+        return new PrizeReception(prizeCounts);
     }
 
     private Map<Prize, Integer> getInitializedPrizeCounts() {

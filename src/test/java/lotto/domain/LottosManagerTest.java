@@ -6,13 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.wrapper.LottoNumber;
+import lotto.service.PrizeChecker;
 import lotto.utils.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottosManagerTest {
 
-    @DisplayName("발행된 로또가 여러 개일 때 등수별 당첨 개수를 정리한다.")
+    @DisplayName("당첨 결과를 바탕으로 접수처를 만들어낸다.")
     @Test
     void getPrizeCounts() {
         // given
@@ -22,6 +23,7 @@ class LottosManagerTest {
         expectedPrizeCounts.put(Prize.THIRD, 1);
         expectedPrizeCounts.put(Prize.FOURTH, 1);
         expectedPrizeCounts.put(Prize.FIFTH, 2);
+        PrizeReception expectedPrizeReception = new PrizeReception(expectedPrizeCounts);
         LottosManager lottosManager = new LottosManager(List.of(
                 new Lotto(List.of(1,2,3,4,5,6)),
                 new Lotto(List.of(1,2,3,4,5,7)),
@@ -35,9 +37,10 @@ class LottosManagerTest {
         ));
         Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
         LottoNumber bonusNumber = new LottoNumber(7);
+        PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
         // when
-        Map<Prize, Integer> prizeCounts = lottosManager.getPrizeCounts(winningLotto, bonusNumber);
+        PrizeReception prizeReception = lottosManager.getPrizeReception(prizeChecker);
         // then
-        assertThat(prizeCounts).isEqualTo(expectedPrizeCounts);
+        assertThat(prizeReception.toString()).isEqualTo(expectedPrizeReception.toString());
     }
 }

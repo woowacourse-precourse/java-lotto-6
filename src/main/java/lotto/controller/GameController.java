@@ -23,7 +23,7 @@ public class GameController {
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
         PrizeChecker prizeChecker = new PrizeChecker(new Lotto(winningNumbers), new LottoNumber(bonusNumber));
-        PrizeReception prizeReception = new PrizeReception(plyerLottosManager.getPrizeCounts(prizeChecker));
+        PrizeReception prizeReception = plyerLottosManager.getPrizeReception(prizeChecker);
         printPrizeResults(prizeReception);
         printPrizeProfit(prizeReception, purchaseAmount);
     }

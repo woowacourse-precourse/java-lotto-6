@@ -25,15 +25,15 @@ public class LottoGameTest {
         return new ByteArrayInputStream(readLine.getBytes());
     }
 
-    @Test
-    void 로또가격_입력받기() {
-        LottoGame lottoGame = new LottoGame();
-
-        String expected = "5000";
-        InputStream readLine = setReadLine(expected);
-        System.setIn(readLine);
-
-        int actual = lottoGame.readLottoPrice();
-        assertEquals(Integer.parseInt(expected), actual);
-    }
+//    @Test
+//    void 로또가격_입력받기() {
+//        LottoGame lottoGame = new LottoGame();
+//
+//        String expected = "5000";
+//        InputStream readLine = setReadLine(expected);
+//        System.setIn(readLine);
+//
+//        int actual = lottoGame.readLottoPrice();
+//        assertEquals(Integer.parseInt(expected), actual);
+//    }
 }

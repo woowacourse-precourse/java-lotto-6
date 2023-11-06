@@ -1,19 +1,24 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class LottoGame {
+    LottoResult lottoResult;
 
     public LottoGame() {
         start();
+        lottoResult = new LottoResult();
     }
 
     private void start() {
-        //int userLottoPrice = readLottoPrice();
-        
+        long userLottoPrice = readLottoPrice();
+        long lottoPrice = lottoResult.lottoNumbersPurchased(userLottoPrice);
+        System.out.println(lottoPrice + "개를 구매했습니다.");
+
     }
 
-    public int readLottoPrice() {
+    private static int readLottoPrice() {
         System.out.println("구입금액을 입력해 주세요.");
         int price = Integer.parseInt(Console.readLine());
 
@@ -22,4 +27,5 @@ public class LottoGame {
         }
         return price;
     }
+
 }

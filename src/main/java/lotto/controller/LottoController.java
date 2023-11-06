@@ -5,6 +5,8 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
@@ -21,7 +23,6 @@ public class LottoController {
     public void run() throws IllegalArgumentException{
 
         try {
-
             //횟수 체크
             int times = runInputMoney();
 
@@ -29,18 +30,19 @@ public class LottoController {
             List<Lotto> lottoes = lottoService.createLottoes(times);
             runPrintPurchaseLottoes(lottoes);
 
-            //유저의 당첨 번호, 보너스 번호 -> validation
+            //유저의 당첨 번호, 보너스 번호
             Lotto userWinningNum = runInputWinningNum();
             Integer bonusNum = runInputBonusNum(userWinningNum);
 
-            System.out.println(userWinningNum.getNumbers());
-            System.out.println(bonusNum);
+//            System.out.println(userWinningNum.getNumbers());
+//            System.out.println(bonusNum);
 
-            //TODO 구매 로또랑 유저 번호랑 매칭 작업
+            //구매 로또랑 유저 번호랑 매칭 작업
+            HashMap<Integer, Integer> matchCount = runMatchNums(lottoes, userWinningNum, bonusNum);
+            double rateOfReturn = lottoService.calculateRateOfReturn(times*1000, matchCount);
 
-
-            //TODO 당첨 통계 출력 -> 파라미터 채우기
-            runPrintFinalResult();
+            //당첨 통계 출력 -> 파라미터 채우기
+            runPrintFinalResult(matchCount, rateOfReturn);
 
         } catch (IllegalArgumentException e){
             e.printStackTrace();
@@ -70,7 +72,9 @@ public class LottoController {
     }
 
     //TODO 서비스 코드 실행
-
+    public HashMap<Integer, Integer> runMatchNums(List<Lotto> lottoes, Lotto userWinningNum, Integer bonusNum){
+        return lottoService.matchNums(lottoes, userWinningNum, bonusNum);
+    }
 
 
 
@@ -80,8 +84,8 @@ public class LottoController {
         OutputView.printPurchaseLottoes(lottoes);
     }
 
-    public void runPrintFinalResult(){
-        OutputView.printFinalResult();
+    public void runPrintFinalResult(HashMap<Integer, Integer> matchCount, double rateOfReturn){
+        OutputView.printFinalResult(matchCount, rateOfReturn);
     }
 
 

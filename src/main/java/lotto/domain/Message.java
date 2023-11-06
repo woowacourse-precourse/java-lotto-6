@@ -17,7 +17,7 @@ public class Message {
     public static final String COUNT = "개";
 
     public static final String RATE_OF_RETURN = "총 수익률은 ";
-    public static final String END = "입니다.";
+    public static final String END = "%입니다.";
 
 
 }

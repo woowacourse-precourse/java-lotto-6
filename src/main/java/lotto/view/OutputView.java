@@ -4,6 +4,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static lotto.domain.Constant.MAX_LOTTOES_SIZE;
@@ -20,42 +21,16 @@ public class OutputView {
     }
 
 
-    public static void printFinalResult(){
+    public static void printFinalResult(HashMap<Integer, Integer> matchCount, double rateOfReturn){
         System.out.println("\n"+OUTPUT_RESULT_START);
-        System.out.println(THREE_MATCH+" "+COUNT);
-        System.out.println(FOUR_MATCH+" "+COUNT);
-        System.out.println(FIVE_MATCH+" "+COUNT);
-        System.out.println(FIVE_BONUS_MATCH+" "+COUNT);
-        System.out.println(SIX_MATCH+" "+COUNT);
-        System.out.println(RATE_OF_RETURN+" "+END);
+        System.out.println(THREE_MATCH+matchCount.get(3)+COUNT);
+        System.out.println(FOUR_MATCH+matchCount.get(4)+COUNT);
+        System.out.println(FIVE_MATCH+matchCount.get(5)+COUNT);
+        System.out.println(FIVE_BONUS_MATCH+matchCount.get(6)+COUNT);
+        System.out.println(SIX_MATCH+matchCount.get(7)+COUNT);
+        System.out.println(RATE_OF_RETURN+rateOfReturn+END);
     }
 
-
-
-//    public static void printRoundResult(List<Car> cars){
-//        for(Car car : cars){
-//            System.out.print(car.getName() + " : ");
-//            printDashMark(car.getMove());
-//        }
-//        System.out.print("\n");
-//    }
-//
-//    public static void printDashMark(int move){
-//        for(int i = 0; i<move; i++){
-//            System.out.print("-");
-//        }
-//        System.out.print("\n");
-//    }
-//
-//    public static void printFinalWinner(List<String> finalWinner){
-//        System.out.print(FINAL_WINNER);
-//
-//        for(int i = 0; i<finalWinner.size(); i++){
-//            System.out.print(" " + finalWinner.get(i));
-//            if(i != finalWinner.size()-1)
-//                System.out.print (",");
-//        }
-//    }
 
 
 

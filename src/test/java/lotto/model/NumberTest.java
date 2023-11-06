@@ -26,7 +26,7 @@ class NumberTest {
     assertThatThrownBy(() -> new Number(exceptionNumber))
         .isInstanceOf(IllegalArgumentException.class);
 
-    assertThatThrownBy(() -> new Number(exceptionNumber))
+    assertThatThrownBy(() -> new Number(exceptionNumber2))
         .isInstanceOf(IllegalArgumentException.class);
   }
 }

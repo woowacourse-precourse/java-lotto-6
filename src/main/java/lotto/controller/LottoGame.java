@@ -21,14 +21,16 @@ public class LottoGame {
 
     public void gameStart() {
         Money money = generatedMoney();
-        UserLotto userLotto = generatedUserLotto(money.getTicket());
-        outputView.printCount(money.getTicket());
+        int numberOfLottoTickets = money.getNumberOfLottoTickets();
+
+        UserLotto userLotto = generatedUserLotto(numberOfLottoTickets);
+        outputView.printCount(numberOfLottoTickets);
 
         repeatPrintUserLottoNumber(userLotto);
 
-        List<Integer> winNumbers = inputView.getLottoNumbers();
+        List<Integer> winningLottoNumbers = inputView.getWinningLottoNumbers();
         int bonusNumber = inputView.getBonusNumber();
-        WinningLotto winningLotto = generatedWinningLotto(winNumbers, bonusNumber);
+        WinningLotto winningLotto = generatedWinningLotto(winningLottoNumbers, bonusNumber);
 
         PrizeResult prizeResult = calculateResult(winningLotto, userLotto);
         outputView.printPrizeResult(prizeResult.toString());
@@ -58,7 +60,7 @@ public class LottoGame {
 
     private PrizeResult calculateResult(WinningLotto winningLotto, UserLotto userLotto) {
         PrizeResult prizeResult = new PrizeResult();
-        prizeResult.getPrizeResult(winningLotto, userLotto);
+        prizeResult.calculatePrizeResult(winningLotto, userLotto);
         return prizeResult;
     }
 

@@ -34,7 +34,7 @@ public class InputView {
         return purchaseAmount;
     }
 
-    public List<Integer> getLottoNumbers() {
+    public List<Integer> getWinningLottoNumbers() {
         System.out.println(INPUT_WINNING_NUMBER);
         String lottoNumbers = Console.readLine();
         System.out.println();

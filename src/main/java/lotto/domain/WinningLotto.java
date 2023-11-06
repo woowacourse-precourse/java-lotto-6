@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.validator.LottoValidator.*;
 
 import java.util.List;
-import lotto.validator.LottoValidator;
 
 public class WinningLotto {
     private final Lotto lotto;

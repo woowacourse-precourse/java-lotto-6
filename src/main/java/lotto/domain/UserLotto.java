@@ -11,14 +11,14 @@ public class UserLotto {
 
     private final List<Lotto> userLottoNumber;
 
-    public UserLotto(int ticket) {
+    public UserLotto(int numberOfTickets) {
         this.userLottoNumber = new ArrayList<>();
 
-        setUserLottoNumber(ticket);
+        setUserLottoNumber(numberOfTickets);
     }
 
-    private void setUserLottoNumber(int ticket) {
-        for (int i = 0; i < ticket; i++) {
+    private void setUserLottoNumber(int numberOfTickets) {
+        for (int i = 0; i < numberOfTickets; i++) {
             userLottoNumber.add(new Lotto(generatedNumbers()));
         }
     }

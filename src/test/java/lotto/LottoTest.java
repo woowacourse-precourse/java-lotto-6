@@ -49,7 +49,7 @@ class LottoTest {
         assertTrue(lotto.isContain(6));
     }
 
-    @DisplayName("getNumber 정상 작동 확이")
+    @DisplayName("getNumber 정상 작동 확인")
     @Test
     void test_getNumber() {
         List<Integer> inputNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);

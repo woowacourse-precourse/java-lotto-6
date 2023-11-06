@@ -16,10 +16,14 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    public void printPrizeResult(String string) {
+    public void printPrizeResult(String prizeResult) {
+        printResultHead();
+        System.out.println(prizeResult);
+    }
+
+    public void printResultHead() {
         System.out.println(OUTPUT_PRIZE_RESULT);
         System.out.println(OUTPUT_DIVIDE);
-        System.out.println(string);
     }
 
     public void printRate(double rate) {

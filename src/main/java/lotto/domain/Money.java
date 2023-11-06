@@ -3,7 +3,7 @@ package lotto.domain;
 import static lotto.validator.MoneyValidator.validateMoney;
 
 public class Money {
-    private static final int THOUSAND = 1000;
+    private static final int LOTTO_PRICE = 1000;
 
     private final int money;
 
@@ -16,7 +16,7 @@ public class Money {
         return money;
     }
 
-    public int getTicket() {
-        return money / THOUSAND;
+    public int getNumberOfLottoTickets() {
+        return money / LOTTO_PRICE;
     }
 }

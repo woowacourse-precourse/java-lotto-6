@@ -8,9 +8,9 @@ import lotto.domain.Profit;
 import lotto.enums.Rank;
 
 public class OutputView {
-    private static final String INPUT_PURCHASE_PRICE = "구입금액을 입력해 주세요.";
-    private static final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final String PURCHASE_PRICE_INPUT = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTICS = "당첨 통계\n---";
     private static final String RATE_FORMAT = "#,##0.0";
 
@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     public static void printPurchaseMessage() {
-        System.out.println(INPUT_PURCHASE_PRICE);
+        System.out.println(PURCHASE_PRICE_INPUT);
     }
 
     public static void printPurchaseCount(LottoTicket lottoTicket) {
@@ -31,11 +31,11 @@ public class OutputView {
     }
 
     public static void printWinningNumberMessage() {
-        System.out.println(INPUT_WINNING_NUMBER);
+        System.out.println(WINNING_NUMBER_INPUT);
     }
 
     public static void printBonusNumberMessage() {
-        System.out.println(INPUT_BONUS_NUMBER);
+        System.out.println(BONUS_NUMBER_INPUT);
     }
 
     public static void printWinningResult(LottoResult lottoResult) {

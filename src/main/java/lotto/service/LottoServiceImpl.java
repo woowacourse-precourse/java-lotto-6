@@ -36,7 +36,7 @@ public class LottoServiceImpl implements LottoService {
     public int parsePayment(String input) {
         int parsedNumber = numberParser.parse(input);
 
-        if (!validator.isMultipleOf(parsedNumber)) {
+        if (!validator.isMultiple(parsedNumber)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PAYMENT.getMessage());
         }
 

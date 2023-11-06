@@ -22,11 +22,9 @@ public class ApplicationConfig {
         return new LottoControllerImpl(console, lottoService);
     }
 
-
     public Console console() {
         return new ConsoleImpl();
     }
-
 
     public LottoService lottoService(
             LottoFactory lottoFactory,

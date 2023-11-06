@@ -4,7 +4,7 @@ public class PaymentValidatorImpl implements PaymentValidator {
     private static final int MONEY_UNIT = 1000;
 
     @Override
-    public boolean isMultipleOf(int payment) {
+    public boolean isMultiple(int payment) {
         if (payment == 0) {
             return false;
         }

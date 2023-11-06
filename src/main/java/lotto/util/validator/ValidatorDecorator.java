@@ -10,8 +10,8 @@ public class ValidatorDecorator implements Validator {
     private final NumberValidator numberValidator;
 
     @Override
-    public boolean isMultipleOf(int payment) {
-        return paymentValidator.isMultipleOf(payment);
+    public boolean isMultiple(int payment) {
+        return paymentValidator.isMultiple(payment);
     }
 
     @Override

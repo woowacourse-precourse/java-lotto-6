@@ -214,6 +214,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_양수_입력_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "-1,2,3,4,5,6", "1,2,-3,-4,5,6", "1,2,3,4,5,-6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

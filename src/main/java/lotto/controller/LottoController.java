@@ -18,6 +18,7 @@ public class LottoController {
     public void play() {
         buyLotto();
         setWinningLotto();
+        resultLotto();
     }
 
     private void buyLotto() {
@@ -51,9 +52,12 @@ public class LottoController {
                 return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-            } finally {
                 System.out.println();
             }
         }
+    }
+
+    private void resultLotto() {
+        OutputView.winningResult(this.buyer, this.winningLotto);
     }
 }

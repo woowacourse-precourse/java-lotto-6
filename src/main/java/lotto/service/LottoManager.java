@@ -25,9 +25,9 @@ public class LottoManager {
     }
 
     public void addRankToWinningDetails(List<Lotto> lottos, WinningLotto winningLotto) {
-        for (Lotto lotto : lottos) {
-            winningDetails.addRank(winningLotto.determineRank(lotto));
-        }
+        lottos.stream()
+                .map(winningLotto::determineRank)
+                .forEach(winningDetails::addRank);
     }
 
     public String getWinningDetailsToString() {

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,5 +19,12 @@ class MoneyTest {
     void negativeMoney() {
         assertThatThrownBy(() -> new Money(-1000))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액이 0 이상이고 1000으로 나뉘어진다면 예외가 발생하지 않는다.")
+    void successMoney() {
+        // when & then
+        Assertions.assertDoesNotThrow(()-> new Money(1000));
     }
 }

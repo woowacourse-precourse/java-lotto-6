@@ -24,4 +24,21 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호와 당첨 번호간 일치 하는 숫자를 계산한다.")
+    @Test
+    void countMatchingNumberWithWinningNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumber winningNumber = WinningNumber.from(List.of(1, 2, 3, 4, 5, 6));
+
+        long count = lotto.countMatchingNumber(winningNumber);
+
+        assertThat(count).isEqualTo(6);
+
+
+        Lotto lotto2 = new Lotto(List.of(11, 12, 13, 14, 15, 16));
+
+        long count2 = lotto2.countMatchingNumber(winningNumber);
+
+        assertThat(count2).isEqualTo(0);
+    }
 }

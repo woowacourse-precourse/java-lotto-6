@@ -1,10 +1,10 @@
-package lotto;
+package lotto.validate;
 
 import static lotto.constants.ConstantValues.*;
 import static lotto.constants.ErrorMessages.*;
 
 
-public class InputValidate {
+public class BuyMoneyValidate {
 
     public static void validateBuyMoney(String buyMoney) {
         validateBuyMoneyIsEmpty(buyMoney);

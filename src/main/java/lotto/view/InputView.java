@@ -2,13 +2,13 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import lotto.InputValidate;
+import lotto.validate.BuyMoneyValidate;
 
 public class InputView {
 
     public static String getBuyMoney() {
         String buyMoney = Console.readLine();
-        InputValidate.validateBuyMoney(buyMoney);
+        BuyMoneyValidate.validateBuyMoney(buyMoney);
         return buyMoney;
     }
 

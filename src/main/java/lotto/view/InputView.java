@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Service.InputService;
 import lotto.exception.LottoException;
 
+import java.util.List;
+
 public class InputView {
 
     private final LottoException lottoException = new LottoException();
@@ -19,5 +21,15 @@ public class InputView {
             if (!lottoException.checkLottoAmount(line)) break;
         }
         return inputService.getStringPriceToInt(line);
+    }
+
+    public List<Integer> chooseWinningNum() {
+        String line;
+        while (true) {
+            line = Console.readLine();
+
+            if (!lottoException.checkWinningNum(line)) break;
+        }
+        return inputService.getStringToList(line);
     }
 }

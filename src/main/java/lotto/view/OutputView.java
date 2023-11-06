@@ -4,8 +4,7 @@ import lotto.domain.Lotto;
 
 import java.util.List;
 
-import static lotto.domain.OutputEnum.LOTTO_AMOUNT;
-import static lotto.domain.OutputEnum.LOTTO_COUNT;
+import static lotto.domain.OutputEnum.*;
 
 public class OutputView {
 
@@ -22,4 +21,9 @@ public class OutputView {
             System.out.println(lotto.toString());
         }
     }
+
+    public void printWinningNum() {
+        System.out.println(WINNING_NUM.getOutput());
+    }
+
 }

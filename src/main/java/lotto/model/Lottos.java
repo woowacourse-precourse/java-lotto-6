@@ -7,7 +7,7 @@ public class Lottos {
 
     public Lottos(){
         PurchaseAmount purchaseAmount = new PurchaseAmount();
-        purchaseAmount.calculateLootoCount();
-        this.lottoCount = purchaseAmount.PurchaseCount;
+        purchaseAmount.generateLottoCount();
+        this.lottoCount = purchaseAmount.purchaseCount;
     }
 }

@@ -4,38 +4,31 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.util.LottoConstants;
 
 public class PurchaseAmount {
-    int PURCHASEPRICE = LottoConstants.PURCHASE_PRICE.getValue();
-    int PurchaseCount;
+    int pricePerLotto = LottoConstants.PRICE_PER_LOTTO.getValue();
+    int purchaseCount;
 
     public PurchaseAmount() {
     }
 
-    public void calculateLootoCount(){
+    public void generateLottoCount(){
         int inputPrice = parseInputAmount();
         PurchaseAmountValidate(inputPrice);
-        PurchaseCount = calculatePurchaseLottoCount(inputPrice);
+        purchaseCount = calculateLottoCount(inputPrice);
     }
 
     private int parseInputAmount() {
         String purchaseAmount = Console.readLine();
-        return tryToParseInputAmount(purchaseAmount);
+        return tryToParse(purchaseAmount);
     }
 
-    private int tryToParseInputAmount(String purchseAmount) {
-        while (!isNumeric(purchseAmount)) {
-            System.out.println("[Error] 구매 금액은 숫자형으로 입력해주세요");
-            purchseAmount = Console.readLine();
-        }
-        return Integer.parseInt(purchseAmount);
-    }
-
-    private boolean isNumeric(String purchaseAmount) {
-        try {
+    private int tryToParse(String purchaseAmount) {
+        try{
             Integer.parseInt(purchaseAmount);
-        } catch (IllegalArgumentException e) {
-            return false;
+        }catch (IllegalArgumentException e){
+            System.out.println("[Error] 구매 금액은 숫자형으로 입력해주세요");
+            generateLottoCount();
         }
-        return true;
+        return Integer.parseInt(purchaseAmount);
     }
 
     private void PurchaseAmountValidate(int inputPrice) {
@@ -48,7 +41,7 @@ public class PurchaseAmount {
             IsInputPriceDividedPurchasePrice(inputPrice);
         } catch (IllegalArgumentException e) {
             System.out.println("[Error] 1000단위로 구매 금액을 입력해주세요 ");
-            calculateLootoCount();
+            generateLottoCount();
         }
     }
 
@@ -57,12 +50,12 @@ public class PurchaseAmount {
             IsNotZero(inputPrice);
         } catch (IllegalArgumentException e) {
             System.out.println("[Error] 구매 금액은 0이 아닌 금액을 입력해주세요.");
-            calculateLootoCount();
+            generateLottoCount();
         }
     }
 
     public boolean IsInputPriceDividedPurchasePrice(int inputPrice) throws IllegalArgumentException {
-        if (inputPrice % PURCHASEPRICE != 0) {
+        if (inputPrice % pricePerLotto != 0) {
             throw new IllegalArgumentException();
         }
 
@@ -76,7 +69,7 @@ public class PurchaseAmount {
         return true;
     }
 
-    public int calculatePurchaseLottoCount(int inputPrice) {
-        return (inputPrice % PURCHASEPRICE);
+    public int calculateLottoCount(int inputPrice) {
+        return (inputPrice % pricePerLotto);
     }
 }

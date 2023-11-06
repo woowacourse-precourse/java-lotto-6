@@ -1,7 +1,7 @@
 package lotto.util;
 
 public enum LottoConstants {
-    PURCHASE_PRICE(1000),
+    PRICE_PER_LOTTO(1000),
     START_NUMBER(1),
     END_NUMBER(45),
     NUMBERS_COUNT(6),

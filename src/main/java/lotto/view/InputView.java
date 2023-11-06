@@ -1,10 +1,11 @@
 package lotto.view;
 
-import lotto.dto.input.BonusNumberDto;
 import lotto.dto.input.MoneyDto;
-import lotto.dto.input.WinningNumbersDto;
+import lotto.dto.input.WinningCombinationDto;
+import lotto.dto.input.builder.WinningCombinationBuilder;
 import lotto.io.input.StdReader;
 import lotto.io.output.StdWriter;
+import lotto.io.output.Writer;
 
 public class InputView {
     private final StdReader reader;
@@ -17,25 +18,54 @@ public class InputView {
 
     public MoneyDto inputMoney() {
         writer.writeLine("구입금액을 입력해 주세요.");
-        String input = reader.readLine();
-        InputValidator.verifyNonEmptyInput(input);
-        InputValidator.verifyNumericString(input);
-        return MoneyDto.from(input);
+        try {
+            String input = reader.readLine();
+            InputValidator.verifyNonEmptyInput(input);
+            InputValidator.verifyValidaNumberFormat(input);
+            return MoneyDto.from(input);
+        } catch (IllegalArgumentException e) {
+            writer.writeLine(Writer.ERROR_PREFIX + e.getMessage());
+            return inputMoney();
+        }
     }
 
-    public WinningNumbersDto inputWinningNumbers() {
+    public WinningCombinationDto inputWinningNumbers() {
+        try {
+            WinningCombinationBuilder builder = WinningCombinationBuilder.builder();
+            inputWinningNumbers(builder);
+            inputBonusNumber(builder);
+            return builder.build();
+        } catch (IllegalArgumentException e) {
+            writer.writeLine(Writer.ERROR_PREFIX + e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
+
+    public WinningCombinationBuilder inputWinningNumbers(WinningCombinationBuilder builder) {
         writer.writeLine("당첨 번호를 입력해 주세요.");
-        String input = reader.readLine();
-        InputValidator.verifyNonEmptyInput(input);
-        InputValidator.verifyValidaNumberFormat(input);
-        return WinningNumbersDto.from(input);
+        try {
+            String input = reader.readLine();
+            InputValidator.verifyNonEmptyInput(input);
+            InputValidator.verifyValidaNumberFormat(input);
+            builder.winningNumbers(input);
+        } catch (IllegalArgumentException e) {
+            writer.writeLine(Writer.ERROR_PREFIX + e.getMessage());
+            return inputWinningNumbers(builder);
+        }
+        return builder;
     }
 
-    public BonusNumberDto inputBonusNumber() {
+    public WinningCombinationBuilder inputBonusNumber(WinningCombinationBuilder builder) {
         writer.writeLine("보너스 번호를 입력해 주세요.");
-        String input = reader.readLine();
-        InputValidator.verifyNonEmptyInput(input);
-        InputValidator.verifyNumericString(input);
-        return BonusNumberDto.from(input);
+        try {
+            String input = reader.readLine();
+            InputValidator.verifyNonEmptyInput(input);
+            InputValidator.verifyNumericString(input);
+            builder.bonusNumber(input);
+        } catch (IllegalArgumentException e) {
+            writer.writeLine("[ERROR] " + e.getMessage());
+            return inputBonusNumber(builder);
+        }
+        return builder;
     }
 }

@@ -1,6 +1,10 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.User;
 import lotto.model.WinningLotto;
@@ -12,8 +16,8 @@ public class LottoController {
 
     public void startGame() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
-        user = User.purchaseLottos(purchaseAmount);
-        OutputView.printLottoNumbers(user.getNumberOfLottoTickets(), user.getAllLottoTicketsNumbers());
+        Lottos lottos = purchaseLottos(purchaseAmount);
+        OutputView.printLottoNumbers(lottos);
         WinningLotto winningLotto = createWinningLotto();
         user.compareLottos(winningLotto);
         OutputView.printResult(user.getResult());
@@ -29,6 +33,18 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private Lottos purchaseLottos(PurchaseAmount purchaseAmount) {
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < purchaseAmount.divideByThousand(); i++) {
+            List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(new ArrayList<>(lottoNumber));
+            lottos.add(lotto);
+        }
+
+        return new Lottos(lottos);
     }
 
     private WinningLotto createWinningLotto() {

@@ -1,9 +1,11 @@
 package lotto.view;
 
+import lotto.model.Lottos;
+
 public class OutputView {
-    public static void printLottoNumbers(int number, String lottoNumbers) {
-        System.out.println(number + "개를 구매했습니다.");
-        System.out.println(lottoNumbers);
+    public static void printLottoNumbers(Lottos lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        System.out.println(lottos.getLottosNumbers());
     }
 
     public static void printResult(String result) {

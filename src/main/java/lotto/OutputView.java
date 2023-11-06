@@ -8,6 +8,7 @@ public class OutputView {
     private static final String PURCHASE_QUANTITY_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String DIVIDING_LINE = "---";
+    private static final String PROFIT_RATIO_MESSAGE = "총 수익률은 %.2f%%입니다.";
 
     public void printPurchaseQuantity(int purchaseQuantity) {
         System.out.println();
@@ -29,5 +30,9 @@ public class OutputView {
                 .forEach(rank ->
                         System.out.println(rank.getOutputMessage()
                                 + lottoRakingMap.get(rank)));
+    }
+
+    public void printProfitRatio(double profit) {
+        System.out.printf(PROFIT_RATIO_MESSAGE, profit);
     }
 }

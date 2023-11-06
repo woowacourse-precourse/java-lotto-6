@@ -83,12 +83,16 @@ public class Lotto {
     private String appendLottoNumbers() {
         final StringBuilder sb = new StringBuilder();
         for (int index = ZERO; index < VALIDATE_LOTTO_SIZE; index++) {
-            sb.append(numbers.get(index));
-            if (index < LAST_INDEX_FOR_INSERT_SEPARATOR) {
-                sb.append(LOTTO_NUMBERS_SEPARATOR);
-            }
+            appendLottoNumber(sb, index);
         }
         return sb.toString();
+    }
+
+    private void appendLottoNumber(StringBuilder sb, int index) {
+        sb.append(numbers.get(index));
+        if (index < LAST_INDEX_FOR_INSERT_SEPARATOR) {
+            sb.append(LOTTO_NUMBERS_SEPARATOR);
+        }
     }
 
     @Override

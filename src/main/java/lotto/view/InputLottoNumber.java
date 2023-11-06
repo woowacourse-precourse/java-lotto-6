@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.RangeException;
 import lotto.exception.SizeException;
 
 import java.util.ArrayList;
@@ -21,8 +22,10 @@ public class InputLottoNumber {
         String lottoNumbs = Console.readLine();
         System.out.println();
         validate(lottoNumbs);
-        validateSize(split(lottoNumbs));
-        return split(lottoNumbs);
+        List<Integer> lottoNumb = split(lottoNumbs);
+        validateSize(lottoNumb);
+        validateLottoNumber(lottoNumb);
+        return lottoNumb;
     }
 
     private void validate(String lottoNumbs) {
@@ -39,13 +42,24 @@ public class InputLottoNumber {
         return inputLottoNumber;
     }
 
-
+    private void validateLottoNumber(List<Integer> lottoNumbs) {
+        for (int number:lottoNumbs) {
+            if (!checkNumberRange(number)) {
+                throw new RangeException();
+            }
+        }
+    }
     private void validateSize(List<Integer> lottoNumbs) {
         if (lottoNumbs.size() != SIZE) {
             throw new SizeException();
         }
     }
 
-
+    private boolean checkNumberRange(int number) {
+        if (number >= MIN_NUMBER && number <= MAX_NUMBER) {
+            return true;
+        }
+        return false;
+    }
 
 }

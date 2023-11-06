@@ -29,6 +29,14 @@ class InputNumberTest {
     }
 
     @Test
+    void 당첨번호는_1부터_45까지만_구성되어야_합니다() {
+        String inputNumber = "1,2,3,46,47,48";
+        assertThrows(IllegalArgumentException.class,
+            () -> new InputNumber(inputNumber)
+        );
+    }
+
+    @Test
     void 당첨번호는_유니크한_숫자로만_구성되어야_합니다() {
         String inputNumber = "1,2,3,1,2,3";
         assertThrows(IllegalArgumentException.class,

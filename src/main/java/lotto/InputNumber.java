@@ -15,6 +15,10 @@ public class InputNumber {
         this.inputNumber = parseInputNumberToList(inputNumber);
     }
 
+    public List<Integer> getInputNumber() {
+        return inputNumber;
+    }
+
     private void validate(String inputNumber) {
         if (inputNumber == null || inputNumber.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 아무것도 입력하지 않았습니다.");
@@ -32,6 +36,11 @@ public class InputNumber {
                 number = Integer.parseInt(numberStr.trim());
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 숫자 외 문자를 입력하였습니다.");
+            }
+
+            // 1부터 45 사이의 숫자인지 확인합니다.
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 숫자는 1에서 45 사이여야 합니다.");
             }
 
             if (!numbersSet.add(number)) {

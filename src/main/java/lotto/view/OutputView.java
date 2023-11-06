@@ -16,7 +16,7 @@ import java.util.List;
 
 public class OutputView {
 
-    public OutputView() {
+    private OutputView() {
     }
 
     /**

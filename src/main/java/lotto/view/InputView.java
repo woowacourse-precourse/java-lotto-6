@@ -10,7 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public InputView() {
+    private InputView() {
     }
 
     private static String input() {
@@ -24,7 +24,7 @@ public class InputView {
      */
     public static String amountInput() {
         String amount = input();
-        
+
         validateNullAndBlankCheck(amount);
         numberTypeCheck(amount);
 

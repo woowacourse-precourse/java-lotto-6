@@ -13,6 +13,9 @@ public class InputValidator {
     private static final String LOTTO_NUMBER_FORMAT_REGEX = "^(?:[1-9]|[1-3][0-9]|4[0-5])(,(?:[1-9]|[1-3][0-9]|4[0-5])){5}$";
     private static final String LOTTO_RANGE_REGEX = "^(?:[1-9]|[1-3][0-9]|4[0-5])$";
 
+    private InputValidator() {
+    }
+
     /**
      * 입력 NULL 검증
      *

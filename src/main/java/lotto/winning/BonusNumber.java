@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.List;
 import java.util.function.Predicate;
 import lotto.Askable;
+import lotto.Settings;
 
 public class BonusNumber extends Numbers implements Askable<Integer> {
     @Override
@@ -43,5 +44,6 @@ public class BonusNumber extends Numbers implements Askable<Integer> {
         return isIncorret;
     }
 
-    private final Predicate<List<Integer>> isCorrectAmount = input -> input.size() == 1;
+    private final Predicate<List<Integer>> isCorrectAmount =
+            input -> input.size() == Settings.BONUS_NUMBER_SIZE.getNumber();
 }

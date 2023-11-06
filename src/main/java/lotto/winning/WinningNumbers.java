@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.List;
 import java.util.function.Predicate;
 import lotto.Askable;
+import lotto.Settings;
 
 public class WinningNumbers extends Numbers implements Askable<List<Integer>> {
     @Override
@@ -49,5 +50,5 @@ public class WinningNumbers extends Numbers implements Askable<List<Integer>> {
     private final Predicate<List<Integer>> isNoDuplicate = input ->
             input.stream().distinct().count() == input.size();
 
-    private final Predicate<List<Integer>> isCorrectAmount = input -> input.size() == 6;
+    private final Predicate<List<Integer>> isCorrectAmount = input -> input.size() == Settings.SIZE.getNumber();
 }

@@ -1,23 +1,28 @@
 package lotto;
 
+import domain.BonusNumber;
+import domain.PurchaseAmount;
+
 public class LogicController {
-    InputValueValidateController inputValueValidateController = new InputValueValidateController();
+    InputValueController inputValueController = new InputValueController();
     BuyLottoController buyLottoController = new BuyLottoController();
     PrizeDescribeController prizeDescribeController = new PrizeDescribeController();
     EarningRateController earningRateController = new EarningRateController();
+    PurchaseAmount purchaseAmount = PurchaseAmount.getInstance();
+    BonusNumber bonusNumber = BonusNumber.getInstance();
 
     public void startGame() {
         // 구입 금액 입력
-        int money = inputValueValidateController.validatePurchaseAmount();
+        inputValueController.inputPurchaseAmount();
         // 구입 금액으로 로또 구입 및 출력
-        buyLottoController.buyLottoLogic(money);
+        buyLottoController.buyLottoLogic(purchaseAmount.getPurchaseAmount());
         // 당첨 번호 입력
-        inputValueValidateController.validatePrizeNumber();
+        inputValueController.inputPrizeNumber();
         // 보너스 번호 입력
-        int bonusNumber = inputValueValidateController.validateBonusNumber();
+        inputValueController.inputBonusNumber();
         // 당첨 결과 계산
-        prizeDescribeController.calculatePrizeDescribeLogic(bonusNumber);
+        prizeDescribeController.calculatePrizeDescribeLogic(bonusNumber.getBonusNumber());
         // 총수익률 계산
-        earningRateController.calculateEarningRateLogic(money);
+        earningRateController.calculateEarningRateLogic(purchaseAmount.getPurchaseAmount());
     }
 }

@@ -1,8 +1,10 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -26,6 +28,19 @@ public class OutputView {
 
     public static void printBonusNumberRequest() {
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public static void printLottoResult() {
+        System.out.println("당첨 통계\n---");
+    }
+
+    public static void printResults(Map<LottoResult, Integer> results) {
+        for (LottoResult result : LottoResult.values()) {
+            if (result != LottoResult.NON_WINNING) {
+                int count = results.getOrDefault(result, 0);
+                System.out.println(result.getResultDescription() + " - " + count + "개");
+            }
+        }
     }
 
     public static void printNextLine() {

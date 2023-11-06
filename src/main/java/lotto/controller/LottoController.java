@@ -1,13 +1,17 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.PlayLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
+    private Map<LottoResult, Integer> matchCounts = new EnumMap<>(LottoResult.class);
     InputView inputView = new InputView();
 
     public int purchaseAmount;
@@ -19,11 +23,17 @@ public class LottoController {
     public void startLotto() {
         requestPurchaseAmount();
         OutputView.printNextLine();
+
         showLottoCount();
         OutputView.printNextLine();
+
         requestAnswerNumber();
         OutputView.printNextLine();
+
         requestBonusNumber();
+        OutputView.printNextLine();
+
+        gradeLotto();
     }
 
     public void requestPurchaseAmount() {
@@ -61,5 +71,11 @@ public class LottoController {
             System.out.println(e.getMessage());
             requestBonusNumber();
         }
+    }
+
+    public void gradeLotto() {
+        OutputView.printLottoResult();
+        matchCounts = PlayLotto.calculateLotto(lottos, answerNumber, bonusNumber);
+        OutputView.printResults(matchCounts);
     }
 }

@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,6 +47,8 @@ public class InputView {
 
         List<Integer> answerNumber = validateAnswerNumber(inputAnswer);
         validateAnswerNumberRange(answerNumber);
+
+        Collections.sort(answerNumber);
 
         return answerNumber;
     }

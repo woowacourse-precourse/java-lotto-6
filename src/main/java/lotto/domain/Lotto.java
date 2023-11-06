@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.utils.RandomNumbersGenerator;
 
 public class Lotto {
     private final List<Integer> numbers;

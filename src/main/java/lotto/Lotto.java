@@ -8,13 +8,11 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-    }
+    } // Lotto 번호 저장
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
-        }
+        } // 사이즈 확인
     }
-
-    // TODO: 추가 기능 구현
 }

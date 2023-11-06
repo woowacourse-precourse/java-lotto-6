@@ -8,7 +8,7 @@ import lotto.domain.LottoNumber;
 import org.junit.jupiter.api.Test;
 
 class LottoMachineTest {
-    private final LottoMachine lottoMachine = new LottoMachine();
+    private final LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator());
 
     @Test
     void 로또를_생성한다() {

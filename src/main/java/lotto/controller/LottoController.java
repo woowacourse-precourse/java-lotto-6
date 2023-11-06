@@ -1,8 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.application.LottoStore;
+import java.util.function.Supplier;
+import lotto.application.LottoMachine;
+import lotto.domain.Lotto;
 import lotto.domain.LottoAmount;
+import lotto.domain.LottoNumber;
 import lotto.domain.LottoTicket;
 import lotto.dto.WinningLotto;
 import lotto.dto.WinningResult;
@@ -13,19 +16,19 @@ import lotto.util.StringUtil;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoStore lottoStore;
+    private final LottoMachine lottoMachine;
 
-    public LottoController(final InputView inputView, final OutputView outputView, final LottoStore lottoStore) {
+    public LottoController(final InputView inputView, final OutputView outputView, final LottoMachine lottoMachine) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoStore = lottoStore;
+        this.lottoMachine = lottoMachine;
     }
 
     public void run() {
         LottoAmount lottoAmount = this.getLottoAmount();
         LottoTicket lottoTicket = this.buyLottoTicket(lottoAmount);
         outputView.printLottoTicket(lottoTicket);
-        WinningLotto winningLotto = this.issueWinningLotto();
+        WinningLotto winningLotto = new WinningLotto(this.getLotto(), this.getBonus());
         WinningResult winningResult = lottoTicket.match(winningLotto);
         outputView.printWinningResult(winningResult);
         outputView.printYield(winningResult.calculateYield(lottoAmount));
@@ -46,41 +49,31 @@ public class LottoController {
     private LottoTicket buyLottoTicket(LottoAmount lottoAmount) {
         while (true) {
             try {
-                return lottoStore.issueLottoTicketByAuto(lottoAmount);
+                return lottoMachine.createLottoTicketByAuto(lottoAmount.getLottoQuantity());
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
     }
 
-    private WinningLotto issueWinningLotto() {
-        List<Integer> numbers = this.getWinningLottoNumbers();
-        while (true) {
-            try {
-                int bonus = this.getBonusNumber();
-                return lottoStore.issueWinningLotto(numbers, bonus);
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
-        }
-    }
-
-    private List<Integer> getWinningLottoNumbers() {
+    private Lotto getLotto() {
         while (true) {
             try {
                 String input = inputView.scanWinningLottoNumber();
-                return StringUtil.convertToIntListByDelimiter(input);
+                List<Integer> numbers = StringUtil.convertToIntListByDelimiter(input);
+                return lottoMachine.createLotto(numbers);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
     }
 
-    private int getBonusNumber() {
+    private LottoNumber getBonus() {
         while (true) {
             try {
                 String input = inputView.scanBonusNumber();
-                return StringUtil.convertToInt(input);
+                int bonus = StringUtil.convertToInt(input);
+                return lottoMachine.createLottoNumber(bonus);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }

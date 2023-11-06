@@ -1,27 +1,26 @@
 package lotto.domain;
 
-import java.util.List;
 
 public class BonusNumber {
 
     private final int bonusNumber;
 
-    private BonusNumber(List<Integer> answerNumber, int bonusNumber) {
-        validateBonusNumber(answerNumber, bonusNumber);
+    private BonusNumber(Lotto answerLotto, int bonusNumber) {
+        validateBonusNumber(answerLotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public static BonusNumber of(List<Integer> answerNumber, int bonusNumber) {
-        return new BonusNumber(answerNumber, bonusNumber);
+    public static BonusNumber of(Lotto answerLotto, int bonusNumber) {
+        return new BonusNumber(answerLotto, bonusNumber);
     }
 
-    private void validateBonusNumber(List<Integer> answerNumber, int bonusNumber) {
+    private void validateBonusNumber(Lotto answerLotto, int bonusNumber) {
         validateBonusNumberSize(bonusNumber);
-        validateDuplicateBonusNumber(answerNumber, bonusNumber);
+        validateDuplicateBonusNumber(answerLotto, bonusNumber);
     }
 
-    private void validateDuplicateBonusNumber(List<Integer> answerNumber, int bonusNumber) {
-        if(answerNumber.contains(bonusNumber)) {
+    private void validateDuplicateBonusNumber(Lotto answerLotto, int bonusNumber) {
+        if(answerLotto.containsBonusNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] : 정답 번호와 동일한 보너스 번호가 있으면 안됩니다.");
         }
     }

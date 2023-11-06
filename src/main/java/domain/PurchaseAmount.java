@@ -21,9 +21,16 @@ public class PurchaseAmount {
     private static final int ONE_THOUSAND = 1000;
     private static final String COMMA = ",";
     private static final String NULL = "";
+    private final int amount;
+
+    public int getAmount(){
+        return amount;
+    }
     public PurchaseAmount(String amount){
         amount = removeSeparatorChar(amount);
         validate(amount);
+        this.amount = convertStringToInt(amount);
+
     }
 
     private String removeSeparatorChar(String amount){
@@ -56,7 +63,6 @@ public class PurchaseAmount {
     }
 
     private int convertStringToInt(String amount) {
-
         return Integer.parseInt(amount);
     }
 

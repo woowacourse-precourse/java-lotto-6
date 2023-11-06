@@ -13,8 +13,10 @@ public class Revenue {
             Buyer buyer,
             FinalResults finalResults
     ) {
+        final int payment = buyer.getPayment();
+
         this.income = finalResults.calculateFinalRevenueAmount();
-        this.yield = LottoService.calculateFinalYield(buyer.getPayment(), income);
+        this.yield = LottoService.calculateFinalYield(payment, income);
     }
 
     public static Revenue of(

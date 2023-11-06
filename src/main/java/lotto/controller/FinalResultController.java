@@ -9,7 +9,6 @@ import lotto.domain.prize.Revenue;
 import lotto.domain.prize.constants.PrizeGrade;
 import lotto.dto.FinalResultResponse;
 
-import java.util.EnumMap;
 import java.util.List;
 
 public class FinalResultController {
@@ -30,8 +29,6 @@ public class FinalResultController {
             final FinalResults finalResults
     ) {
         Revenue revenue = Revenue.of(buyer, finalResults);
-        EnumMap<PrizeGrade, Integer> prizeGradeCount = finalResults.getPrizeGradeCount();
-
-        return new FinalResultResponse(revenue.getYield(), prizeGradeCount);
+        return new FinalResultResponse(revenue.getYield(), finalResults);
     }
 }

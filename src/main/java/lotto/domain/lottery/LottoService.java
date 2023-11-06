@@ -35,10 +35,6 @@ public class LottoService {
             int payment,
             long income
     ) {
-        if (income == INT_ZERO) {
-            return BIG_DECIMAL_ZERO;
-        }
-
         BigDecimal castedIncome = new BigDecimal(income);
         BigDecimal castedPayment = new BigDecimal(payment);
 

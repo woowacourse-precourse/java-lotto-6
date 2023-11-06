@@ -27,7 +27,7 @@ public final class FinalResultWriter extends OutputWriter {
         printMessage(RESPONSE_PRIZE_STATISTICS);
         printMessage(RESPONSE_SEPARATOR);
 
-        EnumMap<PrizeGrade, Integer> prizeGradeIntegerEnumMap = response.prizeResultCount();
+        EnumMap<PrizeGrade, Integer> prizeGradeIntegerEnumMap = response.finalResults().getFinalResults();
         PrintablePrizeType[] printablePrizeTypes = PrintablePrizeType.values();
 
         Arrays.stream(printablePrizeTypes)

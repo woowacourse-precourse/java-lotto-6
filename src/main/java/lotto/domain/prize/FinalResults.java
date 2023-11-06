@@ -1,19 +1,18 @@
 package lotto.domain.prize;
 
 import lotto.domain.prize.constants.PrizeGrade;
-import lotto.view.constants.PrintablePrizeType;
 
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.List;
+import java.util.*;
 
 public class FinalResults {
     private final EnumMap<PrizeGrade, Integer> finalResults;
 
     public FinalResults(List<PrizeGrade> prizeRanks) {
         EnumMap<PrizeGrade, Integer> results = new EnumMap<>(PrizeGrade.class);
-        prizeRanks.forEach(rank -> results.put(rank, rank.getPrizeAmount()));
+        PrizeGrade[] entirePrizeGradeArray = PrizeGrade.values();
 
+        Arrays.stream(entirePrizeGradeArray)
+                .forEach(grade -> results.put(grade, countPrizeGrade(prizeRanks, grade)));
         this.finalResults = results;
     }
 
@@ -21,32 +20,25 @@ public class FinalResults {
         return new FinalResults(prizeRanks);
     }
 
+    public Integer countPrizeGrade(List<PrizeGrade> prizeRanks, PrizeGrade prizeGrade) {
+        return (int) prizeRanks.stream()
+                .filter(rank -> Objects.equals(rank, prizeGrade))
+                .count();
+    }
+
+
     public long calculateFinalRevenueAmount() {
-        return finalResults.values()
-                .stream()
+        return finalResults.entrySet().stream()
+                .map(FinalResults::calculateRevenueAmount)
                 .mapToLong(Integer::longValue)
                 .sum();
     }
 
-    public EnumMap<PrizeGrade, Integer> getPrizeGradeCount() {
-        EnumMap<PrizeGrade, Integer> gradeCount = new EnumMap<>(PrizeGrade.class);
-        PrintablePrizeType[] printablePrizeType = PrintablePrizeType.values();
-
-        Arrays.stream(printablePrizeType)
-                .filter(type -> type.getGrade().hasPositivePrizeAmount())
-                .filter(type.getGrade().isSame)
-
-        initializeGradeCount(gradeCount);
-
-        return gradeCount;
+    private static int calculateRevenueAmount(Map.Entry<PrizeGrade, Integer> entry) {
+        return entry.getKey().getPrizeAmount() * entry.getValue();
     }
 
-    private static void initializeGradeCount(EnumMap<PrizeGrade, Integer> gradeCount) {
-        Arrays.stream(PrizeGrade.values())
-                .forEach(grade -> gradeCount.put(grade, 0));
-    }
-
-    public boolean isSame(Prize prize1, Prize prize2) {
-
+    public EnumMap<PrizeGrade, Integer> getFinalResults() {
+        return finalResults;
     }
 }

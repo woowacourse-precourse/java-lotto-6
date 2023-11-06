@@ -1,16 +1,15 @@
 package lotto.dto;
 
-import lotto.domain.prize.constants.PrizeGrade;
+import lotto.domain.prize.FinalResults;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.EnumMap;
 
 import static lotto.view.constants.PrintFormat.SEPARATOR_WITH_POINT_FORMAT;
 
 public record FinalResultResponse(
         BigDecimal yield,
-        EnumMap<PrizeGrade, Integer> prizeResultCount
+        FinalResults finalResults
 ) {
     private static final DecimalFormat YIELD_FORMAT = SEPARATOR_WITH_POINT_FORMAT.getFormat();
 

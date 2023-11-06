@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class LottoAmountofMoney {
-    private Integer lottoAmountofMoney;
+    private final Integer lottoAmountofMoney;
 
     public LottoAmountofMoney(Integer lottoAmountofMoney){
         this.lottoAmountofMoney = lottoAmountofMoney;

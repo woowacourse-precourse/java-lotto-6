@@ -1,8 +1,17 @@
 package domain;
 
+import exception.InvalidLottoNumberRangeException;
+import exception.InvalidLottoSizeException;
+import exception.NumberDuplicateException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
+    private static final int MAX_RANGE = 45;
+    private static final int MIN_RANGE = 1;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,10 +20,31 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        validateSize(numbers);
+        validateNumberRange(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new InvalidLottoSizeException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateNumberRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (!(MIN_RANGE <= number && number <= MAX_RANGE)) {
+                throw new InvalidLottoNumberRangeException();
+            }
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != LOTTO_SIZE) {
+            throw new NumberDuplicateException();
+        }
+    }
+
+
 }

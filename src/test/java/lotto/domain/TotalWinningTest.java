@@ -41,6 +41,6 @@ class TotalWinningTest {
 
     @Test
     void getTotalReturn() {
-        assertThat(totalWinning.getTotalReturn()).isEqualTo(62.5);
+        assertThat(totalWinning.getTotalReturn()).isEqualTo(0.625);
     }
 }

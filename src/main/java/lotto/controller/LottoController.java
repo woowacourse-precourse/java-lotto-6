@@ -30,6 +30,32 @@ public class LottoController {
     }
 
     public User buyLottoTicket() {
+        int buyAmount = validateBuyAmount();
+        User user = lottoService.buyLottoTicket(buyAmount);
+        outputView.printLottoTicket(user.getLottoTicket());
+        return user;
+    }
+
+    public Lotto getWinningNumbers() {
+        return validateWinningNumbers();
+    }
+
+    public WinningLottoNumbers getBonusNumber(Lotto winningNumbers) {
+        return validateBonusNumber(winningNumbers);
+    }
+
+    public LottoResult calculateLottoResult(User user, WinningLottoNumbers winningLottoNumbers) {
+        LottoResult lottoResult = lottoService.calculateLottoResult(user, winningLottoNumbers);
+        outputView.printLottoResult(lottoResult.getLottoResult());
+        return lottoResult;
+    }
+
+    public void calculateReturnRate(User user, LottoResult lottoResult) {
+        double returnRate = lottoService.calculateReturnRate(user, lottoResult);
+        outputView.printReturnRate(returnRate);
+    }
+
+    private int validateBuyAmount() {
         int buyAmount;
         while (true) {
             try {
@@ -39,12 +65,10 @@ public class LottoController {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
-        User user = lottoService.buyLottoTicket(buyAmount);
-        outputView.printLottoTicket(user.getLottoTicket());
-        return user;
+        return buyAmount;
     }
 
-    public Lotto getWinningNumbers() {
+    private Lotto validateWinningNumbers() {
         List<Integer> winningNumbers;
         Lotto validatedWinningNumbers;
         while (true) {
@@ -59,7 +83,7 @@ public class LottoController {
         return validatedWinningNumbers;
     }
 
-    public WinningLottoNumbers getBonusNumber(Lotto winningNumbers) {
+    private WinningLottoNumbers validateBonusNumber(Lotto winningNumbers) {
         int bonusNumber;
         WinningLottoNumbers winningLottoNumbers;
         while (true) {
@@ -72,16 +96,5 @@ public class LottoController {
             }
         }
         return winningLottoNumbers;
-    }
-
-    public LottoResult calculateLottoResult(User user, WinningLottoNumbers winningLottoNumbers) {
-        LottoResult lottoResult = lottoService.calculateLottoResult(user, winningLottoNumbers);
-        outputView.printLottoResult(lottoResult.getLottoResult());
-        return lottoResult;
-    }
-
-    public void calculateReturnRate(User user, LottoResult lottoResult) {
-        double returnRate = lottoService.calculateReturnRate(user, lottoResult);
-        outputView.printReturnRate(returnRate);
     }
 }

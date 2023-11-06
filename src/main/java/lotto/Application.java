@@ -12,29 +12,24 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        String inputPurchaseAmount = inputPurchaseAmount();
-        int purchaseAmount = inputPurchaseAmountValidation(inputPurchaseAmount);
-        int lottoQuantity = lottoQuantity(purchaseAmount);
-
-        List<Lotto> lottos = createLottos(lottoQuantity);
-        purchaseLottoNumbersDisplay(lottos);
-
-        String inputWinningNumber = inputWinningNumber();
-        String[] inputWinningNumberSplit = inputWinningNumberSplit(inputWinningNumber);
-        List<Integer> winningNumber = inputWinningNumberValidation(inputWinningNumberSplit);
-
-        String inputBonusNumber = inputBonusNumber();
-        int inputBonusNumberValidation = inputBonusNumberValidation(inputBonusNumber);
-        int bonusNumber = inputBonusNumberRangeValidation(inputBonusNumberValidation);
-
-        lottoWinningResult(lottos,winningNumber,bonusNumber);
+//        String inputPurchaseAmount = inputPurchaseAmount();
+//        int purchaseAmount = inputPurchaseAmountValidation(inputPurchaseAmount);
+//        int lottoQuantity = lottoQuantity(purchaseAmount);
+//
+//        List<Lotto> lottos = createLottos(lottoQuantity);
+//        purchaseLottoNumbersDisplay(lottos);
+//
+//        String inputWinningNumber = inputWinningNumber();
+//        String[] inputWinningNumberSplit = inputWinningNumberSplit(inputWinningNumber);
+//        List<Integer> winningNumber = inputWinningNumberValidation(inputWinningNumberSplit);
+//
+//        String inputBonusNumber = inputBonusNumber();
+//        int inputBonusNumberValidation = inputBonusNumberValidation(inputBonusNumber);
+//        int bonusNumber = inputBonusNumberRangeValidation(inputBonusNumberValidation);
+//
+//        lottoWinningResult(lottos,winningNumber,bonusNumber);
     }
 
-    public static String inputPurchaseAmount(){
-        System.out.println("구입금액을 입력해 주세요.");
-        String inputPurchaseAmount = Console.readLine();
-        return inputPurchaseAmount;
-    }
 
     public static int inputPurchaseAmountValidation(String inputPurchaseAmount){
         try {
@@ -75,11 +70,7 @@ public class Application {
         System.out.println("");
     }
 
-    public static String inputWinningNumber(){
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String inputWinningNumber = Console.readLine();
-        return inputWinningNumber;
-    }
+
 
     public static String[] inputWinningNumberSplit(String inputWinningNumber){
         String[] inputWinningNumberSplit = inputWinningNumber.split(",");
@@ -103,11 +94,7 @@ public class Application {
         }
     }
 
-    public static String inputBonusNumber(){
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String inputBonusNumber = Console.readLine();
-        return inputBonusNumber;
-    }
+
 
     public static int inputBonusNumberValidation(String inputBonusNumber){
         try {

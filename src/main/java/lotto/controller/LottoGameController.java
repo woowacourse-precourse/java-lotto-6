@@ -6,6 +6,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoGameController {
 
@@ -13,6 +14,7 @@ public class LottoGameController {
     private String inputLottoPurchaseAmount;
     private int lottoPurchaseAmount;
     private int lottoQuantity;
+    private List<Lotto> lotto;
     private String inputLottoWinningNumber;
     private List<Integer> winningNumber;
     private String inputBonusNumber;
@@ -23,9 +25,14 @@ public class LottoGameController {
     LottoGameService lottoGameService = new LottoGameService();
 
     public void gameStart(){
+        inputPurchaseAmount();
+        inputWinningNumber();
+        inputBonusNumber();
+        lottoWinningResult();
+    }
+
+    private void inputPurchaseAmount(){
         boolean isPurchaseAmountValidation = false;
-        boolean isWinningNumberValidation = false;
-        boolean isBonusNumberValidation = false;
 
         while (!isPurchaseAmountValidation){
             inputLottoPurchaseAmount = inputView.inputPurchaseAmount();
@@ -34,22 +41,33 @@ public class LottoGameController {
         lottoPurchaseAmount = Integer.parseInt(inputLottoPurchaseAmount);
 
         lottoQuantity = lottoGameService.lottoQuantity(lottoPurchaseAmount);
-        List<Lotto> lotto = lottoGameService.createLotto(lottoQuantity);
+        lotto = lottoGameService.createLotto(lottoQuantity);
         outputView.purchaseLottoNumbersDisplay(lotto);
+    }
+
+    private void inputWinningNumber(){
+        boolean isWinningNumberValidation = false;
 
         while (!isWinningNumberValidation){
             inputLottoWinningNumber = inputView.inputWinningNumber();
             isWinningNumberValidation = lottoGameService.inputWinningNumberValidation(inputLottoWinningNumber);
         }
         winningNumber = lottoGameService.createWinningNumber(inputLottoWinningNumber);
+    }
+
+    private void inputBonusNumber(){
+        boolean isBonusNumberValidation = false;
 
         while (!isBonusNumberValidation){
             inputBonusNumber = inputView.inputBonusNumber();
             isBonusNumberValidation = lottoGameService.inputBonusNumberValidation(inputBonusNumber);
         }
         bonusNumber = Integer.parseInt(inputBonusNumber);
+    }
 
-        outputView.lottoWinningResultDisplay(lotto,winningNumber,bonusNumber);
+    private void lottoWinningResult(){
+        Map<String, String> lottoWinningResult = lottoGameService.lottoWinningResultCalculation(lotto, winningNumber, bonusNumber);
+        outputView.lottoResultDisplay(lottoWinningResult);
     }
 
 }

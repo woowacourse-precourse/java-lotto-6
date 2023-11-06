@@ -2,14 +2,20 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
+        InputView.print(Message.PAYMENT_REQUEST);
 
     }
 
-    public void print(String message) {
-        System.out.print(message);
-    }
+
 
 }
+
+class InputView {
+    public static void print(String message) {
+        System.out.print(message);
+    }
+}
+
 
 class Message {
     public static String PAYMENT_REQUEST = "구입금액을 입력해 주세요.";

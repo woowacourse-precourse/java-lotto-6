@@ -15,10 +15,6 @@ public class Paper {
         return new Paper(lotto, bonus);
     }
 
-    public Lotto getLotto() {
-        return lotto;
-    }
-
 
     public int matchingLotto(Lotto lotto, boolean isBonus) {
         if (isBonus) {

@@ -9,10 +9,6 @@ public final class StringUtils {
     private StringUtils() {
     }
 
-    public static String[] split(String input) {
-        return input.split(DELIMITER);
-    }
-
     public static List<Integer> toIntegerList(String input) {
         try {
             return Arrays.stream(split(input))
@@ -21,6 +17,10 @@ public final class StringUtils {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS.getMessage());
         }
+    }
+
+    private static String[] split(String input) {
+        return input.split(DELIMITER);
     }
 
     public static int toInt(String input) {

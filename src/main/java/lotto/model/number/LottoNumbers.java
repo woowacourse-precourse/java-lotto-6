@@ -20,4 +20,8 @@ public record LottoNumbers(List<LottoNumber> numbers) {
     public List<LottoNumber> getSortedNumbers() {
         return numbers.stream().sorted().toList();
     }
+
+    public boolean hasDuplicate() {
+        return numbers.stream().distinct().count() != numbers.size();
+    }
 }

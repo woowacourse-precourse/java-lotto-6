@@ -1,6 +1,8 @@
 package lotto;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
+import java.util.Locale;
 
 public enum PrizeTier {
     NONE(0, false, 0, "꽝"),
@@ -14,6 +16,7 @@ public enum PrizeTier {
     private final boolean bonusMatch;
     private final int prizeMoney;
     private final String tierName;
+    private static final NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
 
     PrizeTier(int matchCount, boolean bonusMatch, int prizeMoney, String tierName) {
         this.matchCount = matchCount;
@@ -40,6 +43,7 @@ public enum PrizeTier {
 
     @Override
     public String toString() {
-        return tierName + " (" + prizeMoney + "원)";
+        String prizeMoneyFormatted = numberFormat.format(this.prizeMoney);
+        return tierName + " (" + prizeMoneyFormatted + "원)";
     }
 }

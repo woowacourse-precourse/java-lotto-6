@@ -27,7 +27,6 @@ public class OutputView {
     }
 
     public static void printWinningResults(WinningResult winningResult) {
-        // TODO : 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
         DecimalFormat formatter = new DecimalFormat("###,###");
 
         for (Rank rank : Rank.valuesByReverseOrder()) {
@@ -41,7 +40,7 @@ public class OutputView {
         }
     }
 
-    public static void printTotalReturn(double totalWinning) {
-        System.out.printf("총 수익률은 %s%입니다.%n", totalWinning);
+    public static void printTotalReturn(TotalWinning totalWinning) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", totalWinning.getTotalReturn() * 100);
     }
 }

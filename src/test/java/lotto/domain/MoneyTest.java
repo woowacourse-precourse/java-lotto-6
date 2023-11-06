@@ -67,4 +67,16 @@ public class MoneyTest {
                 .hasMessageContaining("1 이상 2,147,483,647 이하의 정수 값이 필요합니다.");
     }
 
+    @Test
+    public void 금액_1000의배수_아닐시_예외발생() {
+        // Given
+        String input = "1234";
+
+        // When && Then
+        assertThatThrownBy(() -> Money.create(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1000의 배수인 숫자가 필요합니다.");
+    }
+
+
 }

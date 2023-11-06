@@ -44,14 +44,62 @@ public class View {
         checklottoPurchaseAmount(lottoPurchaseAmount);
         lottoPurchaseNum = Integer.parseInt(lottoPurchaseAmount);
     }
+
+    public void checkWinningNumber(String winningNumber){
+        if (winningNumber.split(",").length != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+        for(String winningnum : winningNumber.split(",")){
+            try{
+                Integer.parseInt(winningnum);
+            } catch (NumberFormatException e){
+                throw new IllegalArgumentException("[ERROR] int로 정의 될 수 없습니다.");
+            }
+            if(Integer.parseInt(winningnum)<1 && Integer.parseInt(winningnum)>45){
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    public List<Integer> winningNumberInput(){
+        System.out.println(LOTTO_WINNING_NUMBER_INPUTMESSAGE);
+        String winningNumber = readLine();
+        checkWinningNumber(winningNumber);
+        List<Integer> winNumberInt = new ArrayList<Integer>();
+        for(String winningnum : winningNumber.split(",")){
+            winNumberInt.add(Integer.parseInt(winningnum));
+        }
+        return winNumberInt;
+    }
+
+    public void checkbounsNumber(String bonusNumber){
+        try{
+            Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] int로 정의 될 수 없습니다.");
+        }
+        if(Integer.parseInt(bonusNumber)<1 && Integer.parseInt(bonusNumber)>45){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
     
-    
+    public int bonusNumberInput(){
+        System.out.println(LOTTO_BONUS_NUMBER_INPUTMESSAGE);
+        String bounsNumber = readLine();
+        checkbounsNumber(bounsNumber);
+        return Integer.parseInt(bounsNumber);
+    }
+
     public void setUserWinningRanks(List<Integer> userWinningRanks){
         this.userWinningRanks = userWinningRanks;
     }
 
     public void setProfitSummary(float profitSummary){
         this.profitSummary = profitSummary;
+    }
+
+    public int getLottoPurchaseNum(){
+        return lottoPurchaseNum;
     }
 
 

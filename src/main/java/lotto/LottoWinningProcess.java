@@ -10,9 +10,11 @@ public class LottoWinningProcess {
         List<Lotto> lottos = buyLotto();
         WinningLotto winningLotto = setUpWinningLotto();
         List<Integer> counted = new ArrayList<>();
+        List<Boolean> checked = new ArrayList<>();
         
         for (Lotto lotto : lottos) {
             counted.add(winningLotto.getLotto().countOverlappingNumbers(lotto));
+            checked.add(lotto.isContainBonusNumber(winningLotto.getBonusNumber()));
         }
     }
 

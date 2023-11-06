@@ -27,8 +27,8 @@ public class Lotto {
         return removedOverlappingNumbers.size();
     }
 
-    public boolean isContainBonusNumber() {
-        return true;
+    public boolean isContainBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     public List<Integer> getNumbers() {

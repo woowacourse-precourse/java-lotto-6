@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.model.domain.result.LottoResult.SECOND;
+
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,8 @@ import lotto.view.io.Reader;
 import lotto.view.io.Writer;
 
 public class TerminalUI implements LottoGameUI {
+    private static final DecimalFormat moneyFormat =
+            new DecimalFormat(PrintConst.DECIMAL_FORMAT_MONEY);
 
     @Override
     public int getMoney() {
@@ -47,8 +51,26 @@ public class TerminalUI implements LottoGameUI {
         for (Map.Entry<LottoResult, Integer> result : results) {
             LottoResult lottoResult = result.getKey();
             int count = result.getValue();
-            Writer.printUsingFormat(PrintConst.FORMAT_RESULT, lottoResult, count);
+
+            //
+            Writer.printUsingFormat(PrintConst.FORMAT_RESULT, printLottoResult(lottoResult), count);
         }
+    }
+
+    private String printLottoResult(LottoResult result) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(PrintConst.FORMAT_COLLECTION_COUNT, result.getCollectCount()));
+        if (result.equals(SECOND)) {
+            sb.append(PrintConst.FORMAT_BONUS);
+        }
+        sb.append(String.format(PrintConst.FORMAT_PRICE, getMoneyString(result.getPrize())));
+        return sb.toString();
+    }
+
+
+    private String getMoneyString(int prize) {
+
+        return moneyFormat.format(prize);
     }
 
     @Override

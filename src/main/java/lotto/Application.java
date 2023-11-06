@@ -10,6 +10,7 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         int volume = user.inputPurchasingVolume();
         List<Lotto> allLotto = user.getLottoAsMuchAsVolume(volume);
+        System.out.println(volume+"개를 구매했습니다.");
         for(Lotto lotto : allLotto){
             System.out.println(lotto.getNumbers().toString());
         }
@@ -21,11 +22,11 @@ public class Application {
         List<MatchingCount> matchingCounts = machine.countAllLottoMatchingNumbers(allLotto,winningNumber,bonusNum);
         System.out.println("\n당첨 통계 \n ---");
         Map<MatchingCount, Integer> map = machine.getLottoResultAsMap(matchingCounts);
-        System.out.println( "3개 일치 (" + MatchingCount.THREE.getPrizeMoney() + ") - " + map.get(MatchingCount.THREE) +"개");
-        System.out.println( "4개 일치 (" + MatchingCount.FOUR.getPrizeMoney() + ") - " + map.get(MatchingCount.FOUR) +"개");
-        System.out.println( "5개 일치 (" + MatchingCount.FIVE.getPrizeMoney() + ") - " + map.get(MatchingCount.FIVE) +"개");
-        System.out.println( "5개 일치, 보너스볼 일치 (" + MatchingCount.FIVE_BONUS.getPrizeMoney() + ") - " + map.get(MatchingCount.FIVE_BONUS) +"개");
-        System.out.println( "6개 일치 (" + MatchingCount.SIX.getPrizeMoney() + ") - " + map.get(MatchingCount.SIX) +"개");
+        System.out.println("3개 일치 (5,000원) - " +map.get(MatchingCount.THREE) +"개");
+        System.out.println("4개 일치 (50,000원) - " +map.get(MatchingCount.FOUR) +"개");
+        System.out.println("5개 일치 (1,500,000원) - " +map.get(MatchingCount.FIVE) +"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " +map.get(MatchingCount.FIVE_BONUS) +"개");
+        System.out.println("6개 일치 (2,000,000,000원) - " +map.get(MatchingCount.SIX) +"개");
         Calculator calculator = new Calculator();
         int sumPrize = calculator.getProfitMoney(matchingCounts);
         double profitPercentage = calculator.getProfitPercentage(sumPrize, volume);

@@ -21,4 +21,12 @@ public class LottoParserTest {
         Assertions.assertThatThrownBy(() -> LottoParser.parseWinningInputs(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력으로 주어진 로또 번호중에 45를 초과하는 값이 주어지면 예외가 발생한다.")
+    @Test
+    void parseLottoWithOverRangeNumber(){
+        String input = "1,2,3,4,5,46";
+        Assertions.assertThatThrownBy(() -> LottoParser.parseWinningInputs(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

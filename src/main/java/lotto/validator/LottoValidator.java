@@ -1,5 +1,9 @@
 package lotto.validator;
 
+import static lotto.utils.LottoConstant.LOTTO_SIZE;
+import static lotto.utils.LottoConstant.MAX_NUMBER;
+import static lotto.utils.LottoConstant.MIN_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,13 +12,9 @@ import lotto.exception.lotto.LottoOutOfRangeException;
 import lotto.exception.lotto.LottoSizeException;
 
 public class LottoValidator {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-
-    private static final int LOTTO_SIZE = 6;
 
     public static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new LottoSizeException();
         }
     }
@@ -39,7 +39,7 @@ public class LottoValidator {
 
     private static boolean outOfRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
+                .anyMatch(number -> number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue());
     }
 
 

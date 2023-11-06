@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.money.MoneyDivisionException;
@@ -21,5 +22,12 @@ public class PurchasePriceTest {
     void createMoneyNotDividedBy1000(){
         assertThatThrownBy(() -> new PurchasePrice(1100))
                 .isInstanceOf(MoneyDivisionException.class);
+    }
+
+    @DisplayName("로또 수량 개수 확인 테스트")
+    @Test
+    void getLottoQuantity(){
+        PurchasePrice purchasePrice = new PurchasePrice(2000);
+        assertThat(purchasePrice.getLottoQuantity()).isEqualTo(2);
     }
 }

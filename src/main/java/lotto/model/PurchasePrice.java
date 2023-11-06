@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.utils.LottoConstant.LOTTO_PRICE;
+
 import lotto.validator.PurchasePriceValidator;
 
 public class PurchasePrice {
@@ -20,6 +22,6 @@ public class PurchasePrice {
     }
 
     public int getLottoQuantity() {
-        return purchasePrice / PurchasePriceValidator.LOTTO_PRICE;
+        return purchasePrice / LOTTO_PRICE.getValue();
     }
 }

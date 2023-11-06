@@ -8,7 +8,7 @@ public class AmountView implements Input {
 
     @Override
     public String getInput() {
-        System.out.println(InputConstants.INPUT_AMOUNT.getInputMessage());
+        System.out.println(InputConstants.INPUT_AMOUNT.getConstants());
         return readLine();
     }
 }

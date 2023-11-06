@@ -2,8 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.util.validator.AmountValidator;
-import lotto.util.validator.Validator;
+import lotto.domain.validator.AmountValidator;
+import lotto.domain.validator.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

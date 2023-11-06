@@ -18,7 +18,7 @@ public class LottoView implements Output {
     }
 
     public void readLottoTicket(List<Lotto> lottoTicket) {
-        System.out.println(lottoTicket.size() + OutputConstants.LOTTO_COUNT_MESSAGE.getOutputMessage());
+        System.out.println(lottoTicket.size() + OutputConstants.LOTTO_COUNT_MESSAGE.getConstants());
         for (Lotto lotto : lottoTicket){
             readLotto(lotto);
         }

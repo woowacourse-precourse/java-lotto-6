@@ -28,9 +28,9 @@ public class LottoTicket {
     }
 
     private List<Integer> generateRandomNumbers() {
-        int startNumber = DomainConstants.RANDOM_START_NUMBER.getInt();
-        int endNumber = DomainConstants.RANDOM_END_NUMBER.getInt();
-        int countNumber = DomainConstants.RANDOM_COUNT_NUMBER.getInt();
+        int startNumber = DomainConstants.RANDOM_START_NUMBER.getConstants();
+        int endNumber = DomainConstants.RANDOM_END_NUMBER.getConstants();
+        int countNumber = DomainConstants.RANDOM_COUNT_NUMBER.getConstants();
         return Randoms.pickUniqueNumbersInRange(startNumber, endNumber, countNumber);
     }
 

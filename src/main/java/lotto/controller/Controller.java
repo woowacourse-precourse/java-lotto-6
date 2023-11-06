@@ -39,17 +39,31 @@ public class Controller {
 
 	private void createWinningLotto() {
 		WinningNumbers winningNumbers = createWinningNumbers();
-		BonusNumber bonusNumber = createBonusNumber();
+		BonusNumber bonusNumber = createBonusNumber(winningNumbers);
 
 		winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 	}
 
-	private BonusNumber createBonusNumber() {
-		OutputView.askBonusNumber();
+	private BonusNumber createBonusNumber(WinningNumbers winningNumbers) {
+		BonusNumber bonusNumber;
 
-		String number = getValidInput(BonusNumber::new);
+		do {
+			OutputView.askBonusNumber();
+			String number = getValidInput(BonusNumber::new);
+			bonusNumber = new BonusNumber(number);
+		} while (!isValidBonusNumber(winningNumbers, bonusNumber));
 
-		return new BonusNumber(number);
+		return bonusNumber;
+	}
+
+	private boolean isValidBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+		try {
+			winningNumbers.checkDuplicationBonusNumber(bonusNumber);
+			return true;
+		} catch (IllegalArgumentException e) {
+			OutputView.printExceptionMessage(e.getMessage());
+			return false;
+		}
 	}
 
 	private WinningNumbers createWinningNumbers() {

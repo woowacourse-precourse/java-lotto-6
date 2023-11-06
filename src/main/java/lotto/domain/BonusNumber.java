@@ -6,7 +6,7 @@ import lotto.constant.LottoConstant;
 public class BonusNumber {
     private int number;
 
-    public BonusNumber(int number, WinningNumbers winningNumber) {
+    public BonusNumber(int number, final WinningNumbers winningNumber) {
         rangeValidate(number);
         duplicationValidate(number, winningNumber);
         this.number = number;
@@ -22,7 +22,7 @@ public class BonusNumber {
         }
     }
 
-    private void duplicationValidate(int number, WinningNumbers winningNumbers) {
+    private void duplicationValidate(int number, final WinningNumbers winningNumbers) {
         List<Integer> lottoWinningNumbers = winningNumbers.getNumbers();
         for (int i = 0; i < LottoConstant.LOTTO_LENGTH; i++) {
             if (number == lottoWinningNumbers.get(i)) {

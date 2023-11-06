@@ -9,7 +9,8 @@ import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 
 public class LottoService {
-    public LottoResult getLottoResult(List<Lotto> lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public LottoResult getLottoResult(final List<Lotto> lottos,
+                                    final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
         LottoResult lottoResult = new LottoResult();
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);
@@ -21,7 +22,7 @@ public class LottoService {
         return lottoResult;
     }
 
-    public float getRevenue(LottoResult lottoResult) {
+    public float getRevenue(final LottoResult lottoResult) {
         float revenue = 0;
         for (int rank = LottoConstant.FIRST_RANK; rank <= LottoConstant.FIFTH_RANK; rank++) {
             if (lottoResult.contains(rank)) {
@@ -32,18 +33,18 @@ public class LottoService {
         return revenue;
     }
 
-    public float getEarningRate(PurchaseAmount purchaseAmount, float revenue) {
+    public float getEarningRate(final PurchaseAmount purchaseAmount, float revenue) {
         if (revenue == 0) {
             return 0;
         }
         return (revenue * 100) / purchaseAmount.getAmount();
     }
 
-    public int getLottoCount(PurchaseAmount purchaseAmount) {
+    public int getLottoCount(final PurchaseAmount purchaseAmount) {
         return purchaseAmount.getAmount() / LottoConstant.LOTTO_PRICE;
     }
 
-    private int calculateMatch(Lotto lotto, WinningNumbers winningNumbers) {
+    private int calculateMatch(final Lotto lotto, final WinningNumbers winningNumbers) {
         List<Integer> lottoWinningNumbers = winningNumbers.getNumbers();
         List<Integer> lottoNumbers = lotto.getNumbers();
         int matchCount = 0;
@@ -56,7 +57,7 @@ public class LottoService {
         return matchCount;
     }
 
-    private boolean isBonusMatch(Lotto lotto, BonusNumber bonusNumber) {
+    private boolean isBonusMatch(final Lotto lotto, final BonusNumber bonusNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         if (lottoNumbers.contains(bonusNumber.get())) {
             return true;

@@ -53,7 +53,7 @@ public class LottoController {
         }
     }
 
-    private int getLottoCount(PurchaseAmount purchaseAmount) {
+    private int getLottoCount(final PurchaseAmount purchaseAmount) {
         int lottoCount = lottoService.getLottoCount(purchaseAmount);
         outputView.printPurchaseCountMessage(lottoCount);
         return lottoCount;
@@ -96,7 +96,7 @@ public class LottoController {
         }
     }
 
-    private BonusNumber getBonusNumber(WinningNumbers winningNumber) {
+    private BonusNumber getBonusNumber(final WinningNumbers winningNumber) {
         while (true) {
             try {
                 outputView.printBonusNumberInputMessage();
@@ -110,7 +110,7 @@ public class LottoController {
         }
     }
 
-    private void announceLottoResult(LottoResult lottoResult) {
+    private void announceLottoResult(final LottoResult lottoResult) {
         outputView.printResultStringMessage();
         for (int rank = LottoConstant.FIFTH_RANK; rank >= LottoConstant.FIRST_RANK; rank--) {
             int rankCount = 0;
@@ -121,7 +121,7 @@ public class LottoController {
         }
     }
 
-    private void announceRevenue(PurchaseAmount purchaseAmount, float revenue) {
+    private void announceRevenue(final PurchaseAmount purchaseAmount, float revenue) {
         float earningRate = lottoService.getEarningRate(purchaseAmount, revenue);
         outputView.printRevenue(earningRate);
     }

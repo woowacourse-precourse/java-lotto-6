@@ -12,6 +12,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int countSameNumber(List<Integer> winningNumbers) {
+        return (int) numbers.stream().filter(num -> winningNumbers.contains(num)).count();
+    }
+
+    public boolean containsBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
@@ -23,6 +31,7 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 번호는 6개여야 합니다.");
         }
     }
+
     // TODO: 추가 기능 구현
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {

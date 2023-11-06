@@ -4,14 +4,19 @@ import lotto.LottoTicketsDto;
 import lotto.ProfitRateDto;
 import lotto.WinningCountsDto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
-    private static final String TOTAL_TICKETS_MESSAGE = "를 구매했습니다.";
     private static final String NEW_LINE = "\n";
-    private static final String WINNING_COUNTS_FORMAT = "%d개 일치 (%,d원) - %d개" + NEW_LINE;
+    private static final String TOTAL_TICKETS_MESSAGE = "개를 구매했습니다." + NEW_LINE;
+    private static final String START_WINNING_COUNT_MESSAGE = "당첨통계" + NEW_LINE + "--" + NEW_LINE;
+    private static final String WINNING_COUNTS_FORMAT = "%d개 일치%s (%,d원) - %d개" + NEW_LINE;
+    private static final String BONUS_NUMBER_REQUIRED = ", 보너스 볼 일치";
+    private static final String EMPTY = "";
     private static final String PROFIT_FORMAT_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public void print(String message) {
@@ -26,14 +31,24 @@ public class OutputView {
     }
 
     public void printWinningCounts(final List<WinningCountsDto> winningCountsDtos) {
-        StringBuilder line = new StringBuilder();
-        winningCountsDtos.forEach(winningCountsDto -> {
-            line.append(String.format(WINNING_COUNTS_FORMAT,
-                    winningCountsDto.getCountOfMatchingNumbers(),
-                    winningCountsDto.getPrize(),
-                    winningCountsDto.getWinningCount()));
-        });
+        StringBuilder line = new StringBuilder(START_WINNING_COUNT_MESSAGE);
+        line.append(winningCountsDtos.stream()
+                .map(winningCountsDto ->
+                    String.format(WINNING_COUNTS_FORMAT,
+                            winningCountsDto.getCountOfMatchingNumbers(),
+                            getBonusMessage(winningCountsDto),
+                            winningCountsDto.getPrize(),
+                            winningCountsDto.getWinningCount()))
+                .collect(Collectors.joining()));
         print(line.toString());
+    }
+
+    private String getBonusMessage(WinningCountsDto winningCountsDto) {
+        String bonusMessage = EMPTY;
+        if (winningCountsDto.isRequiresBonus()) {
+            bonusMessage = BONUS_NUMBER_REQUIRED;
+        }
+        return bonusMessage;
     }
 
     public void printProfitRate(final ProfitRateDto profitRateDto) {
@@ -46,7 +61,9 @@ public class OutputView {
     }
 
     private void appendLottoTickets(StringBuilder issued, List<List<Integer>> lottoTickets) {
-        lottoTickets.forEach(ticket -> {
+        lottoTickets.stream()
+                .map(ArrayList::new)
+                .forEach(ticket -> {
             Collections.sort(ticket);
             issued.append(ticket);
             issued.append(NEW_LINE);

@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.validate.Validate;
 
 public class InputData {
-	public static int playerFinace() {
+	public static int playerFinance() {
 		int inputData =0;
 		boolean isValidInput = false;
 		while(!isValidInput) {

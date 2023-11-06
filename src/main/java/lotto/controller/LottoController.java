@@ -23,10 +23,24 @@ public class LottoController {
     }
 
     public void start() {
+        Money money = getMoneyInputAndPrintTicketCount();
+        List<Lotto> userLottos = createLottosAndPrintThem(money);
+        WinningNumbers winningNumbers = getValidWinningNumbersInput();
+        BonusNumber bonusNumber = getValidBonusNumberInput(winningNumbers);
+        Map<Rank, Integer> rankCount = calculateRankCount(userLottos, winningNumbers, bonusNumber);
+        printRankCountAndEarningRate(rankCount, money);
+    }
+
+    private Money getMoneyInputAndPrintTicketCount() {
         Money money = getValidMoneyInput();
-        int ticketCount = getTicketCount(money);
+        int ticketCount = money.calculateTicketCount();
         OutputView.printTicketCount(ticketCount);
-        List<Lotto> userLottos = createLotto(ticketCount);
+        return money;
+    }
+
+    private List<Lotto> createLottosAndPrintThem(Money money) {
+        int ticketCount = money.calculateTicketCount();
+        List<Lotto> userLottos = createLottos(ticketCount);
         OutputView.printUserLottos(userLottos);
         return userLottos;
     }

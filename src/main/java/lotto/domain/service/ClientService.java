@@ -28,11 +28,7 @@ public class ClientService {
     public List<Integer> getWinningNumbers() {
         String input = InputView.input();
         try {
-            List<Integer> numbers = new ArrayList<>(Arrays.stream(input.split(SPLITTER))
-                    .mapToInt(Integer::parseInt)
-                    .boxed()
-                    .peek(this::validateNumberRange)
-                    .toList());
+            List<Integer> numbers = parseByInput(input);
             validateSize(numbers);
             validateUnique(numbers);
             numbers.sort(Comparator.naturalOrder());
@@ -41,6 +37,14 @@ public class ClientService {
             OutputView.commonOutputLine(ConsoleType.EXCEPTION.getComment());
             return getWinningNumbers();
         }
+    }
+
+    private ArrayList<Integer> parseByInput(String input) {
+        return new ArrayList<>(Arrays.stream(input.split(SPLITTER))
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .peek(this::validateNumberRange)
+                .toList());
     }
 
     public int getBonusNumber(List<Integer> winningNumbers) {
@@ -62,7 +66,7 @@ public class ClientService {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LENGTH_OF_LOTTO.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ConsoleType.EXCEPTION.getComment());
         }
     }
 

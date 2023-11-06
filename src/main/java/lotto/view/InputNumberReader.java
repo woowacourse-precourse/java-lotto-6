@@ -11,26 +11,31 @@ public class InputNumberReader {
     }
 
     public static int readNumber() {
-        String inputNumber = readLine().trim();
+        String inputNumber = readLine();
         InputCommonValidator.validateNumber(inputNumber);
         return Integer.parseInt(inputNumber);
     }
 
     public static List<Integer> readNumbers(final String delimiter) {
-        List<String> inputNumbers = Arrays.stream(readLine().split(delimiter))
-                .map(String::trim)
-                .toList();
+        List<String> inputNumbers = readLineAndSplitWith(delimiter);
         InputCommonValidator.validateNumbers(inputNumbers);
         return convertToNumbers(inputNumbers);
-    }
-
-    private static String readLine() {
-        return Console.readLine();
     }
 
     private static List<Integer> convertToNumbers(final List<String> inputNumbers) {
         return inputNumbers.stream()
                 .map(Integer::parseInt)
+                .toList();
+    }
+
+    private static String readLine() {
+        return Console.readLine()
+                .trim();
+    }
+
+    private static List<String> readLineAndSplitWith(final String delimiter) {
+        return Arrays.stream(readLine().split(delimiter))
+                .map(String::trim)
                 .toList();
     }
 }

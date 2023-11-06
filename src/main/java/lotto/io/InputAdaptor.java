@@ -31,7 +31,7 @@ public class InputAdaptor {
 
     private static void validateParsedPurchasePrice(int num) {
         Validator.checkIfNonNegative(num);
-        Validator.checkIfMultipleOfThousand(num);
+        Validator.checkIfMultipleOfPriceOfLotto(num);
     }
 
     /**

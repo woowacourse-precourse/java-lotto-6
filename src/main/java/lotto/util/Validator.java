@@ -40,19 +40,19 @@ public class Validator {
     }
 
     /**
-     * 주어진 숫자가 1000의 배수인지 검증한다.
-     * 다시 말해, numToValidate % 1000 == 0인지 검증한다.
+     * 주어진 숫자가 DomainConfiguration에 정의된 PRICE_OF_LOTTO의 배수인지 검증한다.
+     * 다시 말해, numToValidate % DomainConfiguration.PRICE_OF_LOTTO == 0인지 검증한다.
      * @param numToValidate 검증할 정수.
-     * @throws IllegalArgumentException numToValidate가 1000의 배수가 아닐 경우 발생한다.
+     * @throws IllegalArgumentException numToValidate가 PRICE_OF_LOTTO의 배수가 아닐 경우 발생한다.
      */
-    public static void checkIfMultipleOfThousand(int numToValidate) throws IllegalArgumentException {
-        if (!isMultipleOfThousand(numToValidate)) {
+    public static void checkIfMultipleOfPriceOfLotto(int numToValidate) throws IllegalArgumentException {
+        if (!isMultipleOfPriceOfLotto(numToValidate)) {
             throw new IllegalArgumentException(ErrorMessages.PURCHASE_NUMBER_IS_NOT_MULTIPLE_OF_1000.get());
         }
     }
 
-    private static boolean isMultipleOfThousand(int num) {
-        return num % 1000 == 0;
+    private static boolean isMultipleOfPriceOfLotto(int num) {
+        return num % DomainConfiguration.PRICE_OF_LOTTO == 0;
     }
 
     /**

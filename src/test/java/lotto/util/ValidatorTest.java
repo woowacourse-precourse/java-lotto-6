@@ -100,7 +100,7 @@ class ValidatorTest {
 
         for (int testCase : testCases) {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfMultipleOfThousand(testCase))
+                    .isThrownBy(() -> Validator.checkIfMultipleOfPriceOfLotto(testCase))
                     .withMessageContaining(ErrorMessages.PURCHASE_NUMBER_IS_NOT_MULTIPLE_OF_1000.get());
         }
     }
@@ -112,7 +112,7 @@ class ValidatorTest {
         };
 
         for (int testCase : testCases) {
-            assertThatNoException().isThrownBy(() -> Validator.checkIfMultipleOfThousand(testCase));
+            assertThatNoException().isThrownBy(() -> Validator.checkIfMultipleOfPriceOfLotto(testCase));
         }
     }
 

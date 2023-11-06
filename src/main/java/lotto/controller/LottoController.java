@@ -16,11 +16,6 @@ import lotto.model.WinningStandard;
 import lotto.view.InputView;
 
 public class LottoController {
-
-    private static WinningLotto getWinningLotto(Lotto lotto, int bonusNumber) {
-        return new WinningLotto(lotto, bonusNumber);
-    }
-
     public void start() {
         Money money = getValidMoney();
         printByLottoCount(money);
@@ -34,7 +29,6 @@ public class LottoController {
 
         double rateOfReturn = getRateOfReturn(money, winningResult);
         printWinningResultAndRateOfReturn(winningResult, rateOfReturn);
-
     }
 
     private Money getValidMoney() {
@@ -52,6 +46,11 @@ public class LottoController {
 
     private Money getMoney(int money) {
         return new Money(money);
+    }
+
+    private Lottos generateLottos(Money money) {
+        LottosGeneratorMachine lottosGeneratorMachine = new LottosGeneratorMachine();
+        return new Lottos(lottosGeneratorMachine.generateLottos(money.getLottoCount()));
     }
 
     private Lotto getValidLotto() {
@@ -84,9 +83,8 @@ public class LottoController {
         return winningLotto;
     }
 
-    private double getRateOfReturn(Money money, WinningResult winningResult) {
-        RateOfReturn rateOfReturn = new RateOfReturn(money, winningResult);
-        return rateOfReturn.getRateOfReturn();
+    private WinningLotto getWinningLotto(Lotto lotto, int bonusNumber) {
+        return new WinningLotto(lotto, bonusNumber);
     }
 
     private WinningResult calculateWinningResult(Lottos lottos, WinningLotto winningLotto) {
@@ -100,8 +98,7 @@ public class LottoController {
         return winningResult;
     }
 
-    private Lottos generateLottos(Money money) {
-        LottosGeneratorMachine lottosGeneratorMachine = new LottosGeneratorMachine();
-        return new Lottos(lottosGeneratorMachine.generateLottos(money.getLottoCount()));
+    private double getRateOfReturn(Money money, WinningResult winningResult) {
+        return new RateOfReturn(money, winningResult).getRateOfReturn();
     }
 }

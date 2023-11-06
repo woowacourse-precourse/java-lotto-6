@@ -4,6 +4,10 @@ import lotto.exception.LottoException;
 import lotto.exception.constant.ErrorMessage;
 
 public class InputPriceValidator {
+    private static final Integer DIVIDE_BY = 1000;
+    private static final Integer LOWEST_PRICE = 0;
+    private static final Integer REST = 0;
+
     private static final String DELIMITER = ",";
     private InputPriceValidator() {
     }
@@ -18,12 +22,12 @@ public class InputPriceValidator {
         }
     }
     private static void validatePriceRange(final int price) {
-        if (price < 0) {
+        if (price < LOWEST_PRICE) {
             throw LottoException.of(ErrorMessage.INVALID_PRICE_RANGE);
         }
     }
     private static void validatePriceFormat(final int number) {
-        if(number % 1000 != 0) {
+        if(number % DIVIDE_BY != REST) {
             throw LottoException.of(ErrorMessage.INVALID_INPUT_PRICE);
         }
     }

@@ -12,6 +12,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class WinningNumbersTest {
 
+    @DisplayName("당첨 번호 생성시 잘못된 값을 입력받으면 예외가 발생한다")
+    @ParameterizedTest
+    @ValueSource(strings = {"일,이,삼,사,오,육", "1,2,3,4,5,a", "1,2,7,,3,4"})
+    void throwsExceptionOnInvalidWinningNumbersInput(String inputNumbers) {
+        assertThatThrownBy(() -> new WinningNumbers(inputNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("당첨 번호 생성시 예외 발생 메시지는 `로또 번호` 대신 `당첨 번호`가 포함되어야 한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,46", "1,2,2,3,3,4"})

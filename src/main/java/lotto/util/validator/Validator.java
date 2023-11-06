@@ -1,4 +1,4 @@
-package lotto;
+package lotto.util.validator;
 
 public interface Validator {
     void validate(Object value);

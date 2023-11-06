@@ -1,6 +1,8 @@
-package lotto;
+package lotto.util.validator;
 
 import java.util.regex.Pattern;
+import lotto.util.validator.Validator;
+import lotto.view.InputView;
 
 public class NumberValidator implements Validator {
     private static final Pattern NUMBER_PATTERN = Pattern.compile("-?\\d+");

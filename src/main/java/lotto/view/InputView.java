@@ -1,6 +1,8 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.validator.Validator;
+import lotto.util.validator.ValidatorFactory;
 
 public class InputView {
     public static int inputPurchase() {

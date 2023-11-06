@@ -10,6 +10,10 @@ public class LottoResult {
         ranks = new HashMap<>();
     }
 
+    public int get(int value) {
+        return ranks.get(value);
+    }
+
     public void add(int rank) {
         if (rank != 0) {
             ranks.put(rank, ranks.get(rank) + 1);

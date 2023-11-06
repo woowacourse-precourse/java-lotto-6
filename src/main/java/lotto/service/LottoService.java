@@ -17,8 +17,32 @@ public class LottoService {
             int rank = getRank(matchCount, isBonus);
             lottoResult.add(rank);
         }
-
         return lottoResult;
+    }
+
+    public int getRevenue(LottoResult lottoResult) {
+        int revenue = 0;
+        for (int i = 1; i <= LottoConstant.LAST_RANK; i++) {
+            int rank = lottoResult.get(i);
+            revenue += calculateRevenue(rank);
+        }
+        return revenue;
+    }
+
+    private int calculateRevenue(int rank) {
+        int revenue = 0;
+        if (rank == 1) {
+            revenue += LottoConstant.FIRST_PRIZE;
+        } else if (rank == 2) {
+            revenue += LottoConstant.SECOND_PRIZE;
+        } else if (rank == 3) {
+            revenue += LottoConstant.THIRD_PRIZE;
+        } else if (rank == 4) {
+            revenue += LottoConstant.FOURTH_PRIZE;
+        } else if (rank == 5) {
+            revenue += LottoConstant.FIFTH_PRIZE;
+        }
+        return revenue;
     }
 
     private int getRank(int matchCount, boolean isBonus) {
@@ -53,4 +77,6 @@ public class LottoService {
         }
         return matchCount;
     }
+
+
 }

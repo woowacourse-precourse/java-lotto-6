@@ -38,11 +38,11 @@ public class LottoController {
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
         LottoResult lottoResult = lottoService.getLottoResult(lottos, winningNumber, bonusNumber);
-
+        int revenue = lottoService.getRevenue(lottoResult);
     }
 
     private int getLottoCount(int purchaseAmount) {
-        int lottoCount = purchaseAmount / 1000;
+        int lottoCount = purchaseAmount / LottoConstant.LOTTO_PRICE;
         outputView.printPurchaseCountMessage(lottoCount);
         return lottoCount;
     }

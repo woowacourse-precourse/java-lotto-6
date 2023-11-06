@@ -5,16 +5,13 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class LottoView {
+
+    ErrorHandler errorHandler = new ErrorHandler();
     public int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요");
-        String str = Console.readLine();
-        int amount = 0;
-        try {
-            amount =  Integer.parseInt(str);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + str + "는 숫자가 아닙니다.");
-        }
-        return amount;
+        String amount = Console.readLine();
+        errorHandler.checkIfNumber(amount);
+        return Integer.parseInt(amount);
     }
 
     public void printPurchasedLottoNumbers(Lotto[] lottos) {
@@ -31,7 +28,9 @@ public class LottoView {
 
     public Integer inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요");
-        return Integer.parseInt(Console.readLine());
+        String nums = Console.readLine();
+        errorHandler.checkIfNumber(nums);
+        return Integer.parseInt(nums);
     }
 
     public void printWinningInformation(Rank[] ranks) {

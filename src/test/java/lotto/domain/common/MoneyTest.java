@@ -19,7 +19,7 @@ class MoneyTest {
 
     @DisplayName("돈은 음수가 될수 없다.")
     @Test
-    void checkPositiveMoney() {
+    void checkNegativeMoney() {
         assertThatThrownBy(() -> Money.from(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("돈은 음수가 될 수 없습니다.");

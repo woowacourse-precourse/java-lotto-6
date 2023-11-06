@@ -18,20 +18,18 @@ public class LottoTargetNumResults {
         this.bonusLottoNum = Config.bonusLottoNum(bonusNumber);
     }
 
-    /**
-     * 당첨 번호 추첨 번호가 같은지 확인한다.
-     *
-     * @param targetNum 확인하기 위한 번호
-     * @return
-     */
     public Boolean isSameWinNums(Integer targetNum) {
         for (int index = 0; index < 6; index++) {
-            if (winLottoNums.isSame(targetNum, index)) {
+            if (isContainWinLottoNums(targetNum, index)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    private Boolean isContainWinLottoNums(Integer targetNum, int index) {
+        return winLottoNums.isSame(targetNum, index);
     }
 
     /**

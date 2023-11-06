@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import lotto.core.Lotto;
+
 import static lotto.constValue.ConstMessage.*;
 
 public class PrintUtil {
@@ -15,9 +17,14 @@ public class PrintUtil {
         System.out.println(BONUS_NUMBER_PROMPT_MESSAGE);
     }
 
-    public static void printLottoCount(String lottoCount){
+    public static void printLottoCount(int lottoCount){
         System.out.println(lottoCount + LOTTO_COUNT_MESSAGE);
     }
+
+    public static void printLottoNumbers(Lotto lotto){
+        System.out.println(lotto.getNumbers());
+    }
+
     public static void printTotalWinningResult(){
         System.out.println(TOTAL_WINNING_RESULT_MESSAGE);
         System.out.println("---");

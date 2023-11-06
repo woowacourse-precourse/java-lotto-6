@@ -38,11 +38,10 @@ public class LottoGameView {
 
     public WinningNumbers inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS);
-        String input = Console.readLine();
-        return new WinningNumbers(input);
-    }
-
-    private void validateWinningNumbers(String input) {
-
+        String numbers = Console.readLine();
+        System.out.println();
+        System.out.println(INPUT_BONUS_NUMBERS);
+        String bonus = Console.readLine();
+        return new WinningNumbers(numbers, bonus);
     }
 }

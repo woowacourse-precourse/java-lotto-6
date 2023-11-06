@@ -10,6 +10,10 @@ public class Lotto {
         this.numbers = validate(numbers);;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private List<Integer> validate(List<Integer> numbers) {
         try {
             Validate.sixHitLottoNumberValidate(numbers);

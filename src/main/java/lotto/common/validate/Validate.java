@@ -6,26 +6,40 @@ import lotto.common.constants.LottoRule;
 import lotto.common.constants.Symbol;
 
 public class Validate {
+    // lotto에서 직접 사용하는 메서드
     public static void consoleBlank(String input) {
         inBlank(input);
     }
 
-    public static void buyPriceValidate(String inputPrice) {
-        notNumber(inputPrice);
-        underThousand(inputPrice);
-        notThousandUnit(inputPrice);
+    public static void buyPriceValidate(String price) {
+        notNumber(price);
+        underThousand(price);
+        notThousandUnit(price);
     }
 
-    public static void inputSixHitLottoNumberValidate(List<String> inputLottoNumbers) {
-        notNumbers(inputLottoNumbers);
+    public static void inputSixHitLottoNumberValidate(List<String> lottoNumbers) {
+        notNumbers(lottoNumbers);
     }
 
-    public static void sixHitLottoNumberValidate(List<Integer> inputLottoNumbers) {
-        overInput(inputLottoNumbers);
-        outOfNumberRange(inputLottoNumbers);
-        overlapInput(inputLottoNumbers);
+    public static void sixHitLottoNumberValidate(List<Integer> lottoNumbers) {
+        overInput(lottoNumbers);
+        outOfNumberRange(lottoNumbers);
+        overlapInput(lottoNumbers);
     }
 
+    public static void inputBonusHitLottoNumberValidate(String bonusNumber) {
+        notNumber(bonusNumber);
+    }
+
+    public static void bonusHitLottoNumberValidate(int bonusNumber) {
+        outOfNumber(bonusNumber);
+    }
+
+    public static void compareLottoAndBonusNumberValidate(List<Integer> lottoNumbers, int bonusNumber) {
+        beforeOverlapInput(lottoNumbers, bonusNumber);
+    }
+
+    // 기능별 예외처리 메서드
     private static void inBlank(String inputString) {
         if (inputString.isBlank()) {
             System.out.println(ErrorMessage.ERROR_BLANK.getMessage());
@@ -60,13 +74,6 @@ public class Validate {
         }
     }
 
-    private static void emptySpaces(List<String> input) {
-        if (input.isEmpty()) {
-            System.out.println(ErrorMessage.ERROR_BLANK.getMessage());
-            throw new IllegalArgumentException();
-        }
-    }
-
     private static void overInput(List<Integer> input) {
         if (input.size() != LottoRule.PICK_HIT_NUMBER_TOTAL.getRule()) {
             System.out.println(ErrorMessage.ERROR_NOT_SIX_LOTTO_NUMBER.getMessage());
@@ -88,13 +95,16 @@ public class Validate {
     }
 
     private static void overlapInput(List<Integer> numbers) {
-        if(numbers.size() != numbers.stream().distinct().count()){
-            System.out.println(ErrorMessage.ERROR_OVERLAP_LOTTO_NUMBER);
+        if (numbers.size() != numbers.stream().distinct().count()){
+            System.out.println(ErrorMessage.ERROR_OVERLAP_LOTTO_NUMBER.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
-    private static void beforeOverlapInput(List<String> numbers) {
-
+    private static void beforeOverlapInput(List<Integer> numbers, int number) {
+        if (numbers.contains(number)) {
+            System.out.println(ErrorMessage.ERROR_OVERLAP_BONUS_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException();
+        }
     }
 }

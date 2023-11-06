@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.common.utils.Utils;
 import lotto.common.validate.Validate;
+import lotto.domain.Bonus;
 import lotto.domain.Buy;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
@@ -15,6 +15,7 @@ public class LottoController {
 
     private Buy buy;
     private Lotto lotto;
+    private Bonus bonus;
 
     public void startLotto() {
         buyLotto();
@@ -32,7 +33,8 @@ public class LottoController {
     private void chooseHitLottoNumber() {
         view.sixHitLottoNumberMessage();
         sixHitNumberValidate();
-        // sixHitNumber, bonusHitNumber
+        view.bonusHitNumberMessage();
+        bonusHitNumberValidate();
     }
 
     private void buyPriceValidate() {
@@ -64,9 +66,28 @@ public class LottoController {
         }
     }
 
-    public List<Integer> inputSixHitLottoNumber() {
+    private List<Integer> inputSixHitLottoNumber() {
         List<String> inputSixNumber = utils.stringToStringList(view.inputConsole());
         Validate.inputSixHitLottoNumberValidate(inputSixNumber);
         return utils.stringListToIntegerList(inputSixNumber);
+    }
+
+    private void bonusHitNumberValidate() {
+        try {
+            bonus = new Bonus(inputBonusHitNumber());
+            compareLottoAndBonusNumber();
+        } catch (IllegalArgumentException e) {
+            bonusHitNumberValidate();
+        }
+    }
+
+    private int inputBonusHitNumber() {
+        String inputBonusNumber = view.inputConsole();
+        Validate.inputBonusHitLottoNumberValidate(inputBonusNumber);
+        return Integer.parseInt(inputBonusNumber);
+    }
+
+    private void compareLottoAndBonusNumber() {
+        Validate.compareLottoAndBonusNumberValidate(lotto.getNumbers(), bonus.getNumber());
     }
 }

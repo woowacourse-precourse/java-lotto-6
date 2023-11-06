@@ -39,4 +39,8 @@ public class View {
     public void sixHitLottoNumberMessage() {
         System.out.println(GuideMessage.INPUT_HIT_NUMBER.getMessage());
     }
+
+    public void bonusHitNumberMessage() {
+        System.out.println(GuideMessage.INPUT_BONUS_HIT_NUMBER.getMessage());
+    }
 }

@@ -11,29 +11,31 @@ import lotto.View.OutputView;
 
 public class LottoGame {
 
-    private static List<Lotto> lottoList;
+    public LottoGame() {}
+
+/*    private static List<Lotto> lottoList;
     private static List<Integer> winningNumbers;
-    private static int bonusNumber;
+    private static int bonusNumber;*/
 
-    public static void LottoGameRun() {
-        int purchaseAmount = LottoPurchaseAmount.countLottoQuantity();
-        lottoList = makeLottoList(purchaseAmount);
+    private static LottoPurchaseAmount lottoPurchaseAmount;
 
-        OutputView.printLottoAmount(purchaseAmount);
-        OutputView.printPurchasedLottoList(lottoList);
+    public void LottoGameRun() {
 
-        winningNumbers = parseLottoNumbers(InputView.inputLottoNumbers());
-        bonusNumber = InputView.inputBonusNumber();
-
-        int[] matchingCounts = CompareResults.compareLottoResults(lottoList, winningNumbers, bonusNumber);
-
-        long totalPrizeAmount = CompareResults.calculatePrizeAmount(matchingCounts);
-/*        double profitRate = CompareResults.calculateProfitRate(totalPrizeAmount, purchaseAmount);*/
-
-        OutputView.printMatchingCounts(matchingCounts, purchaseAmount *1000);
-/*        OutputView.printProfitRate(profitRate);*/
+        int lottoPurchaseCount = inputPurchaseAmount();
 
     }
+
+    public int inputPurchaseAmount() {
+        try {
+            lottoPurchaseAmount = new LottoPurchaseAmount(InputView.inputLottoPurchaseAmount());
+            return lottoPurchaseAmount.calculatePurchaseLottoCount();
+        } catch (IllegalArgumentException e) {
+            return inputPurchaseAmount();
+        }
+    }
+
+/*
+
 
     private static List<Lotto> makeLottoList(int purchaseAmount) {
         // 발행할 개수만큼 로또 리스트 만들어줌
@@ -67,5 +69,6 @@ public class LottoGame {
 
         return lottoNumbers;
     }
+*/
 
 }

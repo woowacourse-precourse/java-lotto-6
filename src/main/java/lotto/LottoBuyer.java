@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.stream.IntStream;
 import lotto.io.ConsoleManager;
 
 public class LottoBuyer {
@@ -12,12 +13,12 @@ public class LottoBuyer {
         this.consoleManager = consoleManager;
     }
 
-    protected long payLotto() {
+    protected int payLotto() {
         return consoleManager.inputPurchasePrice()
                 .getValue();
     }
 
-    protected long getLottoCount(final long price) {
+    protected int getLottoCount(final int price) {
         return price / PRICE_UNIT;
     }
 

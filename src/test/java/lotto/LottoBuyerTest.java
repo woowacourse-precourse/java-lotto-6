@@ -21,10 +21,10 @@ class LottoBuyerTest {
     @DisplayName("구입 금액으로 로또 구입 개수를 구한다.")
     void getLottoCount_LottoPrice() {
         // Given
-        long price = 8_000;
+        int price = 8_000;
 
         // When
-        long lottoCount = lottoBuyer.getLottoCount(price);
+        int lottoCount = lottoBuyer.getLottoCount(price);
 
         // Then
         assertThat(lottoCount).isEqualTo(price / 1000);

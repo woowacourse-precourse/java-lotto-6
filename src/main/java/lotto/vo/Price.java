@@ -8,10 +8,10 @@ public class Price {
 
     private static final int THOUSAND_UNIT = 1_000;
 
-    private final long value;
+    private final int value;
 
     public Price(final String value) {
-        long parsedValue = parseLong(value);
+        int parsedValue = parseInt(value);
 
         validatePositive(parsedValue);
         validateThousandUnit(parsedValue);
@@ -19,25 +19,25 @@ public class Price {
         this.value = parsedValue;
     }
 
-    public long getValue() {
+    public int getValue() {
         return value;
     }
 
-    private long parseLong(final String value) {
+    private int parseInt(final String value) {
         try {
-            return Long.parseLong(value);
+            return Integer.parseInt(value);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_DIGIT_PRICE.getMessage());
         }
     }
 
-    private void validatePositive(final long value) {
+    private void validatePositive(final int value) {
         if (value < 0) {
             throw new IllegalArgumentException(NEGATIVE_PRICE.getMessage());
         }
     }
 
-    private void validateThousandUnit(final long value) {
+    private void validateThousandUnit(final int value) {
         if (value % THOUSAND_UNIT != 0) {
             throw new IllegalArgumentException(NOT_THOUSAND_UNIT_PRICE.getMessage());
         }

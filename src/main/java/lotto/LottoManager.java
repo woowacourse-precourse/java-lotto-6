@@ -13,9 +13,9 @@ public class LottoManager {
     }
 
     protected void buyLotto() {
-        long lottoPrice = lottoBuyer.payLotto();
+        int lottoPrice = lottoBuyer.payLotto();
 
-        long lottoCount = lottoBuyer.getLottoCount(lottoPrice);
+        int lottoCount = lottoBuyer.getLottoCount(lottoPrice);
         consoleManager.printLottoCount(lottoCount);
     }
 

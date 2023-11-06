@@ -86,6 +86,13 @@ class ApplicationTest extends NsTest {
                 () -> {money_for_lotto.moneyIsOver0(test2);});
     }
 
+    @Test
+    void 천의_배수_입력확인(){
+        int test = 123;
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> {money_for_lotto.multipleOfThousand(test);});
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

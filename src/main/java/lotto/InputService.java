@@ -32,7 +32,7 @@ public class InputService {
         return bonusNumber;
     }
 
-    public static void validateBonusNumber(Lotto lotto, int bonusNumber) {
+    private static void validateBonusNumber(Lotto lotto, int bonusNumber) {
         Lotto.checkRangeOfLottoNumber(bonusNumber);
         checkDuplication(lotto, bonusNumber);
     }

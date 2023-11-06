@@ -23,4 +23,8 @@ public class Cash {
     public Integer calculateNumberOfLottos() {
         return amount / LOTTO_PRICE;
     }
+
+    public Integer getAmount() {
+        return amount;
+    }
 }

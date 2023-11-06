@@ -16,6 +16,10 @@ public class WinningNumbers {
         this.winningNumbers = winningNumbers;   
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
     public static WinningNumbers from(){
         while(true){
             try {

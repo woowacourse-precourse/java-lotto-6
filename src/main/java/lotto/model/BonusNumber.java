@@ -3,6 +3,8 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class BonusNumber {
     private final OutputView outputView = new OutputView();
     public int add(WinningNumbers winningNumbers){
@@ -20,10 +22,10 @@ public class BonusNumber {
     }
 
     private boolean checkDuplicate(WinningNumbers winningNumbers, String bonusBall) {
-        String[] parts = winningNumbers.toString().replaceAll("[^0-9,]", "").split(",");
+        List<Integer> parts = winningNumbers.getWinningNumbers();
 
-        for (String part : parts) {
-            if (stoi(part) == stoi(bonusBall)) {
+        for(int index = 0; index < parts.size(); index++) {
+            if (parts.get(index) == stoi(bonusBall)) {
                 throw new IllegalArgumentException();
             }
         }

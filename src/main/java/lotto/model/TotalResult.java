@@ -1,40 +1,85 @@
 package lotto.model;
 
+import lotto.view.LottoWin;
 import lotto.view.OutputView;
 
 import java.util.List;
 
 public class TotalResult {
     private final int SIX = 6;
+    private int third = 0;
+    private int fourth = 0;
+    private int fifth = 0;
+    private int sixthBonus = 0;
+    private int sixth = 0;
     private final OutputView outputView = new OutputView();
 
     public void print(int initMoney, List<Lotto> totalLotto, WinningNumbers winningNumbers, int bonusNumber) {
-        outputView.printResult();
-        int sum = compare(totalLotto, winningNumbers, bonusNumber);
+        outputView.startResult();
+        compare(totalLotto, winningNumbers, bonusNumber);
+        int sum = result();
         totalRate(initMoney, sum);
     }
 
-    private void totalRate(int initMoney, int sum) {
+    private int result() {
+        outputView.printResult(LottoWin.THREE.getPrize(), LottoWin.THREE.getMatchingNumbers(), third);
+        outputView.printResult(LottoWin.FOUR.getPrize(), LottoWin.FOUR.getMatchingNumbers(), fourth);
+        outputView.printResult(LottoWin.FIVE.getPrize(), LottoWin.FIVE.getMatchingNumbers(), fifth);
+        outputView.printBonus(LottoWin.BONUS.getPrize(), LottoWin.BONUS.getMatchingNumbers(), sixthBonus);
+        outputView.printResult(LottoWin.SIX.getPrize(), LottoWin.SIX.getMatchingNumbers(), sixth);
+
+        return totalMoney();
     }
 
-    private int compare(List<Lotto> totalLotto, WinningNumbers winningNumbers, int bonusNumber) {
-        int totalMoney = 0;
+    private int totalMoney() {
+        int sum = 0;
+
+        sum += LottoWin.THREE.getMatchingNumbers() * third;
+        sum += LottoWin.FOUR.getMatchingNumbers() * fourth;
+        sum += LottoWin.FIVE.getMatchingNumbers() * fifth;
+        sum += LottoWin.BONUS.getMatchingNumbers() * sixthBonus;
+        sum += LottoWin.SIX.getMatchingNumbers() * sixth;
+
+        return sum;
+    }
+
+
+    private void totalRate(int initMoney, int sum) {
+        double result = (double)initMoney / sum;
+        result = Math.round(result * 100.0) / 100.0;
+
+        outputView.printRate(result);
+    }
+
+    private void compare(List<Lotto> totalLotto, WinningNumbers winningNumbers, int bonusNumber) {
         for (Lotto lotto : totalLotto) {
             int correct = 0;
             int bonus = 0;
-            for (int number = 0; number < SIX; number++) {
-                correct = countWinning(lotto, winningNumbers);
-            }
+
+            correct = countWinning(lotto, winningNumbers);
             bonus = countBonus(lotto, bonusNumber);
-            totalMoney += cal(correct, bonus);
+            count(correct, bonus);
         }
-        return totalMoney;
+    }
+
+    private void count(int correct, int bonus) {
+        if (correct == LottoWin.THREE.getPrize()) {
+            third++;
+        } else if (correct == LottoWin.FOUR.getPrize()) {
+            fourth++;
+        } else if (correct == LottoWin.FIVE.getPrize() && bonus == 1) {
+            sixthBonus++;
+        } else if (correct == LottoWin.FIVE.getPrize()) {
+            fifth++;
+        } else if (correct == LottoWin.SIX.getPrize()) {
+            sixth++;
+        }
     }
 
     private int countBonus(Lotto lotto, int bonusNumber) {
-        String[] lottoNumbers = lotto.toString().replaceAll("[^0-9,]", "").split(",");
-        for (int index = 0; index < lottoNumbers.length; index++) {
-            if (stoi(lottoNumbers[index]) == bonusNumber) {
+        List<Integer> parts = lotto.getNumbers();
+        for (int lottoNumber : parts) {
+            if (lottoNumber == bonusNumber) {
                 return 1;
             }
         }
@@ -44,11 +89,11 @@ public class TotalResult {
     private int countWinning(Lotto lotto, WinningNumbers winningNumbers) {
         int result = 0;
 
-        String[] compareWinningNumber = winningNumbers.toString().replaceAll("[^0-9,]", "").split(",");
-        String[] lottoNumbers = lotto.toString().replaceAll("[^0-9,]", "").split(",");
-        for (String lottoNumber : lottoNumbers) {
-            for (String winning : compareWinningNumber) {
-                if (stoi(winning) == stoi(lottoNumber)) {
+        List<Integer> lottoParts = lotto.getNumbers();
+        List<Integer> winningParts = winningNumbers.getWinningNumbers();
+        for (int lottoNumber : lottoParts) {
+            for (int winning : winningParts) {
+                if (winning == lottoNumber) {
                     result++;
                     break;
                 }
@@ -56,14 +101,5 @@ public class TotalResult {
         }
 
         return result;
-    }
-
-
-    private int cal(int correct, int bonus) {
-        return 0;
-    }
-
-    private int stoi(String input) {
-        return Integer.parseInt(input);
     }
 }

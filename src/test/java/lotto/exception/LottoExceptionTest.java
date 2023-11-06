@@ -57,4 +57,18 @@ public class LottoExceptionTest {
                 lottoException.validateBonusNumberPermittedRange(bonusNumber));
         assertEquals("[ERROR] 보너스 번호의 범위는 1~45이여야 합니다", exception.getMessage());
     }
+
+    @Test
+    void 보너스_번호_중복_입력() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 5;
+        // 에러메시지 노상관
+        assertThrows(IllegalArgumentException.class, () ->
+                lottoException.validateDuplicatedBonusNumber(numbers, bonusNumber), "[ERROR] 보너스 번호가 중복 되었습니다");
+
+        // 에러메시지까지 일치
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
+                lottoException.validateDuplicatedBonusNumber(numbers, bonusNumber));
+        assertEquals("[ERROR] 보너스 번호가 중복 되었습니다", exception.getMessage());
+    }
 }

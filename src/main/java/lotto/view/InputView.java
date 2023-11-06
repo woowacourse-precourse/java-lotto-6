@@ -42,6 +42,7 @@ public class InputView {
         String input = Console.readLine();
         validateNumberType(input);
         int bonusNumber = stringToInt(input);
+        Bonus bonus = new Bonus(bonusNumber);
     }
 
     private List<Integer> stringListToIntList(List<String> before) {

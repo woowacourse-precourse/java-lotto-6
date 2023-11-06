@@ -14,7 +14,7 @@ public class InputView {
         }
     }
 
-    public String inputPurchaseMoney() {
+    public static String inputPurchaseMoney() {
         System.out.println(InputMessage.INPUT_PURCHASE_MONEY.message);
         return Console.readLine();
     }

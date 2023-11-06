@@ -1,13 +1,30 @@
 package lotto;
 
+import java.util.List;
 import lotto.enums.ExceptionMessage;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
+
+    @Test
+    @DisplayName("로또 번호를 올바르게 입력한다.")
+    void 로또번호_맞게_입력() {
+        //given
+        final String numbers = "1,2,3,4,5,6";
+
+        //when
+        Lotto lotto = new Lotto(numbers);
+
+        //then
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
+        assertThat(lotto.getNumbers().size()).isEqualTo(6);
+    }
+
     @Test
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     void 로또번호갯수_7개_입력() {

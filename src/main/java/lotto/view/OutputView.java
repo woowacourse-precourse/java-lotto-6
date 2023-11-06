@@ -45,10 +45,14 @@ public class OutputView {
     }
 
     private void generateStaticResultOutputBuilder(Prizes prizes) {
-        outputBuilder.append("당첨 통계")
-                .append(LINE.getUnit());
+        outputBuilder.append(ENTER.getUnit())
+                     .append("당첨 통계")
+                     .append(ENTER.getUnit())
+                     .append(LINE.getUnit());
+
         for (Prize prize : Prize.values()) {
-            generateRankingResultOutputBuilder(prize, prizes.countPrize(prize));
+            generateRankingResultOutputBuilder(prize,
+                    prizes.countPrize(prize));
             outputBuilder.append(ENTER.getUnit());
         }
     }

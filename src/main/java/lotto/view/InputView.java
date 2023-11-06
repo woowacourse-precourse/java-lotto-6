@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.util.CharacterUnits.COMMA;
+import static lotto.util.CharacterUnits.ENTER;
 import static lotto.view.InputViewMessage.*;
 
 public class InputView {
@@ -24,6 +25,7 @@ public class InputView {
 
 
     public List<Integer> inputWinnerNumbers() {
+        System.out.println();
         System.out.println(INPUT_WINNER_NUMBER_MESSAGE.getMessage());
         final String input = getInput();
         final List<String> numberDummy = Parser.parseNumberDummy(input);
@@ -32,6 +34,7 @@ public class InputView {
     }
 
     public Integer inputBonusNumber() {
+        System.out.println();
         System.out.println(INPUT_BONUS_NUMBER.getMessage());
         final String input = getInput();
         return Parser.parseInt(input);

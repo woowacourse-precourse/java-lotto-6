@@ -1,11 +1,8 @@
 package lotto.view;
 
 import lotto.config.LottoMessage;
-import lotto.dto.request.PurchaseAmountDto;
 import lotto.dto.response.LottoResultsDto;
 import lotto.dto.response.LottoTicketsDto;
-import lotto.model.Money;
-import lotto.util.ProfitCalculator;
 
 import java.util.List;
 

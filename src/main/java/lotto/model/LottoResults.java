@@ -2,8 +2,6 @@ package lotto.model;
 
 import lotto.config.Rank;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResults {

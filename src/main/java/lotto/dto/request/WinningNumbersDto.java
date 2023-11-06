@@ -1,6 +1,5 @@
 package lotto.dto.request;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbersDto {

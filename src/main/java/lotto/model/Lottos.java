@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.config.Rank;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -74,7 +74,7 @@ class AmountOfLottoValidatorTest {
 
     @ParameterizedTest
     @ValueSource(longs = {1000, 10000, 2147483000})
-    @DisplayName("로또 금액 (현재 기준 " + "원) 으로 나누어 떨어질 시 어떠한 에러도 반환하지 않는다.")
+    @DisplayName("로또 금액 (현재 기준 1000원) 으로 나누어 떨어질 시 어떠한 에러도 반환하지 않는다.")
     void divideByLottoPrice(Long amountOfLotto) {
         // given
         // when & then
@@ -83,7 +83,7 @@ class AmountOfLottoValidatorTest {
 
     @ParameterizedTest
     @ValueSource(longs = {1, 2, 3, 4, 5, 6, 7, 8, 9})
-    @DisplayName("로또 금액 (현재 기준 " + "원) 으로 나누어 떨어지지 않을 시 IllegalArgumentException이 반환된다.")
+    @DisplayName("로또 금액 (현재 기준 1000원) 으로 나누어 떨어지지 않을 시 IllegalArgumentException이 반환된다.")
     void notDivideByLottoPrice(Long amountOfLotto) {
         // given
         // when & then

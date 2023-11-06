@@ -7,10 +7,12 @@ import lotto.utils.generator.LottsGenerator;
 
 public class PurchasedLottos {
 
+    private final int purchaseAmount;
     private final List<Lotto> lottos;
 
     public PurchasedLottos(int purchaseAmount, LottsGenerator lottsGenerator) {
         validate(purchaseAmount);
+        this.purchaseAmount = purchaseAmount;
         this.lottos = lottsGenerator.generateLottos();
     }
 
@@ -38,8 +40,8 @@ public class PurchasedLottos {
         return Values.LOTTO_PURCHASE_UNIT != 0 && purchaseAmount % Values.LOTTO_PURCHASE_UNIT != 0;
     }
 
-    public double calculateTotalInvestment() {
-        return (double) lottos.size() * Values.LOTTO_PURCHASE_UNIT;
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     public List<Lotto> getLottos() {

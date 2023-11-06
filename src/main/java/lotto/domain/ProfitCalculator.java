@@ -8,7 +8,7 @@ public class ProfitCalculator {
 
     public ProfitCalculator(WinningStatistics winningStatistics, PurchasedLottos purchasedLottos) {
         this.winningStatistics = winningStatistics;
-        this.totalInvestment = purchasedLottos.calculateTotalInvestment();
+        this.totalInvestment = purchasedLottos.getPurchaseAmount();
     }
 
     public double calculateProfitRate() {

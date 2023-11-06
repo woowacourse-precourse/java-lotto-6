@@ -19,8 +19,7 @@ public class UiVO {
     private static final String WINNING_NUMBER_INPUT_TEXT = "\n당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_TEXT = "\n보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTICS = "\n당첨 통계\n---\n";
-    private static final String MATCHES_FORMAT = "%s개 일치 (%,d원) - %d개\n";
-    private static final String TOTAL_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final String RETURN_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public static String getBonusNumberExistsInWinningNumbersException() {
         return BONUS_NUMBER_EXISTS_IN_WINNING_NUMBERS_EXCEPTION;
@@ -48,10 +47,6 @@ public class UiVO {
 
     public static String getLottoNumberException() {
         return LOTTO_NUMBER_EXCEPTION;
-    }
-
-    public static String getMatchesFormat() {
-        return MATCHES_FORMAT;
     }
 
     public static String getWinningStatistics() {
@@ -85,7 +80,7 @@ public class UiVO {
     public static void printWinningStatistics(Map<MatchType, Integer> winningStatistics) {
         StringBuilder sb = new StringBuilder(UiVO.getWinningStatistics());
         for (MatchType matchType : MatchType.values()) {
-            sb.append(String.format(UiVO.getMatchesFormat(),
+            sb.append(String.format(matchType.getPrintFormat(),
                     matchType.getSameNumbersCount(),
                     matchType.getPrizeMoney(),
                     winningStatistics.getOrDefault(matchType, 0)));
@@ -93,7 +88,7 @@ public class UiVO {
         System.out.print(sb);
     }
 
-    public static void printTotalReturn(double totalReturn) {
-        System.out.println(String.format(TOTAL_RETURN_FORMAT, totalReturn));
+    public static void printReturnRate(double totalReturn) {
+        System.out.println(String.format(RETURN_RATE_FORMAT, totalReturn));
     }
 }

@@ -1,5 +1,8 @@
 package lotto.view.parser;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.UserMoney;
 import lotto.domain.WinningLottoNumbers;
 import lotto.view.constant.InputConstant;
@@ -23,7 +26,8 @@ public class InputParser {
 
     public WinningLottoNumbers parseWinningLottoNumbers(String winningLottoNumbers){
         winningLottoNumbersInputValidator.validate(winningLottoNumbers);
-        return WinningLottoNumbers.of(winningLottoNumbers);
+        List<String> numbers = removeBlankInWinningLottoNumbers(winningLottoNumbers);
+        return WinningLottoNumbers.of(numbers);
     }
 
     private String removeBlank(String userInput){
@@ -31,5 +35,12 @@ public class InputParser {
             userInput = userInput.replace(InputConstant.BLANK_SYMBOL, InputConstant.VOID_SYMBOL);
         }
         return userInput;
+    }
+
+    private List<String> removeBlankInWinningLottoNumbers(String winningLottoNumbers){
+        String[] numbers = winningLottoNumbers.split(InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER);
+        return Arrays.stream(numbers)
+                .map(this::removeBlank)
+                .toList();
     }
 }

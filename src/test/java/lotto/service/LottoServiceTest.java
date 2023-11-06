@@ -29,7 +29,7 @@ class LottoServiceTest {
     }
 
     @Test
-    void getWinninNumbers_정상_케이스() {
+    void getWinningNumbers_정상_케이스() {
         //given
         String inputNumbers = "1,2,3,4,5,6";
         String inputBonusNumber = "7";
@@ -118,6 +118,24 @@ class LottoServiceTest {
         //then
         Assertions.assertThat(rewardRatio).isEqualTo(55.6);
     }
+
+    @Test
+    void getRewardRatio_정수_값_떨어질_경우도_소수_첫째_자리_까지() {
+        //given
+        int purchaseAmount = 10000;
+        Map<Prize, Integer> prizeMap = Map.of(
+                Prize.FIRST_REWARD, 0
+                , Prize.SECOND_REWARD, 0
+                , Prize.THIRD_REWARD, 0
+                , Prize.FOURTH_REWARD, 2
+                , Prize.FIFTH_REWARD, 0);
+
+        //when
+        double rewardRatio = lottoService.getRewardRatio(purchaseAmount, prizeMap);
+        //then
+        Assertions.assertThat(rewardRatio).isEqualTo(1000.0);
+    }
+
 
     @Test
     void countLottoByWinningNumbers_정상_케이스() {

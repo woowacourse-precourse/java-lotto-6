@@ -37,7 +37,7 @@ class LottoTest {
     @Test
     void countMatch_test() {
         Lotto L = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(L.countMatch(List.of(1, 2, 3, 4, 5, 6))).isEqualTo(6);
-        assertThat(L.countMatch(List.of(1, 11, 10, 9, 8, 7))).isEqualTo(1);
+        assertThat(L.countMatch(new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isEqualTo(6);
+        assertThat(L.countMatch(new Lotto(List.of(1, 11, 10, 9, 8, 7)))).isEqualTo(1);
     }
 }

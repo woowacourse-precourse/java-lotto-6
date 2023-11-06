@@ -37,6 +37,13 @@ public enum LottosConstants {
         return this.matchNumber == matchNumber;
     }
 
+    public String getWinningMessage(int count){
+        if (isBonusPrize(matchNumber, prizeMoney)){
+            return String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", matchNumber, prizeMoney, count);
+        }
+        return String.format("%d개 일치 (%,d원) - %,d개", matchNumber, prizeMoney, count);
+    }
+
     private boolean isBonusPrize(int matchNumber, int prizeMoney){
         return matchNumber == FIVE_MATCH_BONUS.getMatchNumber()&& prizeMoney == FIVE_MATCH_BONUS.getPrizeMoney();
     }

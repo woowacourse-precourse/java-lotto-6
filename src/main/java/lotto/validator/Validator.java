@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validator;
 
 import static lotto.constant.ViewConstant.NUMBER_PATTERN;
 
@@ -8,6 +8,6 @@ public class Validator {
         if (input.matches(NUMBER_PATTERN.value())) {
             return;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(Error.NOT_NUMERIC_INPUT.message());
     }
 }

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.Validator.validateNumeric;
+import static lotto.validator.Validator.validateNumeric;
 import static lotto.constant.ViewConstant.ASK_PAYMENT_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;

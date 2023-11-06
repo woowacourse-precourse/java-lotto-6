@@ -5,7 +5,6 @@ import java.util.List;
 import lotto.constant.LottoConstants;
 import lotto.utils.Parser;
 
-// InputView에서 model의 도움 없이 스스로 할 수 있는 수준의 검증 실행
 public class InputValidator {
     public static final String ERROR_MESSAGE_HEADER = "[ERROR]";
     public static final String WHITE_SPACE = " ";

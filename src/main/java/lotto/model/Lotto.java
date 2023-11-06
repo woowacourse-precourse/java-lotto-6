@@ -3,8 +3,8 @@ package lotto.model;
 import java.util.List;
 import lotto.model.validator.LottoValidator;
 
-public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경은 가능
-    private final List<Integer> numbers;    // 접근 제어자 변경 ㄴㄴ
+public class Lotto {
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         this.numbers = numbers;

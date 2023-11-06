@@ -11,6 +11,13 @@ import java.util.List;
 public class LottoController {
 
     // instance
+    private static final int FIRSTGRADE = 0;
+    private static final int FIFTHGRADE = 5;
+    private static final int ZERO = 0;
+    private static final int LOTTOSTARTNUMBER = 1;
+    private static final int LOTTOENDNUMBER = 45;
+    private static final int LOTTONUMBERSINEACHGAME = 6;
+    private static final int PERCENT = 100;
     private static final int UNIT = 1000;
     private final LottoDB lottoDB;
     private final LottoView lottoView;
@@ -54,8 +61,9 @@ public class LottoController {
     public void setUserLottoNumbers() {
         int numberOfLotto = lottoDB.getLottoGameCount();
         lottoView.printLottoNumberAnnouncement(numberOfLotto);
-        for (int i = 0; i < numberOfLotto; i++) {
-            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        for (int i = ZERO; i < numberOfLotto; i++) {
+            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(LOTTOSTARTNUMBER, LOTTOENDNUMBER,
+                    LOTTONUMBERSINEACHGAME);
             lottoView.printLottoNumber(lotto);
             lottoDB.storeLottoNumbers(lotto);
         }
@@ -97,7 +105,7 @@ public class LottoController {
     public void calculateWinning() {
         int numberOfGame = lottoDB.getLottoGameCount();
         int bonusNumber = lottoDB.getLottoBonusNumber();
-        for (int game = 0; game < numberOfGame * 6; game += 6) {
+        for (int game = ZERO; game < numberOfGame * LOTTONUMBERSINEACHGAME; game += LOTTONUMBERSINEACHGAME) {
             ArrayList<Integer> lottoNumbers = lottoDB.getOneLottoNumbers(game);
             int winning = lotto.checkWinning(lottoNumbers, bonusNumber);
             lottoDB.saveWinningCount(winning);
@@ -105,8 +113,8 @@ public class LottoController {
     }
 
     public void calculateWinningPrice() {
-        long totalPrice = 0;
-        for (int index = 0; index < 5; index++) {
+        long totalPrice = ZERO;
+        for (int index = FIRSTGRADE; index < FIFTHGRADE; index++) {
             long price = Prize.getPrizeAmountByNumber(index);
             int winning = lottoDB.getNumberOfWinning(index);
             totalPrice += price * winning;
@@ -117,7 +125,7 @@ public class LottoController {
     public void calculateWinningRate() {
         long totalPrice = lottoDB.getLottoTotalPrice();
         float InputMoney = lottoDB.getLottoGameCount() * UNIT;
-        BigDecimal winningRate = new BigDecimal(totalPrice / InputMoney * 100);
+        BigDecimal winningRate = new BigDecimal(totalPrice / InputMoney * PERCENT);
         BigDecimal totalWinningRate = winningRate.setScale(1, RoundingMode.HALF_UP);
         lottoDB.setLottoTotalWinningRate(totalWinningRate);
     }
@@ -146,16 +154,9 @@ public class LottoController {
         for (String stringNumbers : ArrayString) {
             int integerNumber = convertStringToInteger(stringNumbers);
             checkWinningNumbersInRange(integerNumber);
-            checkDuplicate(integerNumber, ArrayInteger);
             ArrayInteger.add(integerNumber);
         }
         return ArrayInteger;
-    }
-
-    public void checkDuplicate(int input, ArrayList<Integer> list) {
-        if (list.contains(input)) {
-            throw new IllegalArgumentException("[ERROR] : 입력된 값의 내부에 중복 값이 존재합니다.");
-        }
     }
 
     public Integer convertStringToInteger(String stringInput) throws IllegalArgumentException {
@@ -167,14 +168,14 @@ public class LottoController {
     }
 
     public void checkWinningNumbersInRange(int checkNumber) throws IllegalArgumentException {
-        if (checkNumber < 1 || checkNumber > 45) {
+        if (checkNumber < LOTTOSTARTNUMBER || checkNumber > LOTTOENDNUMBER) {
             throw new IllegalArgumentException("[ERROR] : 입력된 값이 1-45사이의 값이 아닙니다.");
         }
     }
 
     public void checkUserInputIsThousandUnit(int userInput) throws IllegalArgumentException {
         int countMod = userInput % UNIT;
-        if (countMod != 0) {
+        if (countMod != ZERO) {
             throw new IllegalArgumentException("[ERROR] : 입력된 값이 1,000단위가 아닙니다.");
         }
     }

@@ -131,9 +131,8 @@ public class MyTest extends NsTest {
     @Test
     public void checkLottoWinningNumberError5() {
         assertThatThrownBy(() -> {
-            String[] input = {"1", "1", "3", "4", "5", "6"};
-            lottoController = new LottoController();
-            lottoController.convertStringListToIntegerList(input);
+            List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 5));
+            Lotto lotto = new Lotto(input);
         })
                 .isInstanceOf(IllegalArgumentException.class); // 예외 유형을 확인
     }

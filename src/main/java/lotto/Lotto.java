@@ -1,13 +1,16 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         validate(numbers);
+        checkDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -21,8 +24,11 @@ public class Lotto {
         }
     }
 
-    public void test() {
-        System.out.println(numbers);
+    private void checkDuplicate(List<Integer> numbers) throws IllegalArgumentException {
+        Set<Integer> numberList = new HashSet<>(numbers);
+        if (numberList.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] : 입력된 숫자 내부에 중복된 값이 존재합니다.");
+        }
     }
 
     public void checkDuplicateForBonusNumber(int bonusNumber) {

@@ -4,15 +4,14 @@ import lotto.domain.wrapper.BuyLottos;
 import lotto.domain.wrapper.Lotto;
 import lotto.domain.wrapper.LottoResult;
 import lotto.domain.wrapper.WinLottoWithBonus;
-import lotto.handler.LottoHandler;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static lotto.handler.ConstantsHandler.*;
-import static lotto.handler.LottoHandler.FIVE;
-import static lotto.handler.LottoHandler.FIVE_WITH_BONUS;
+import static lotto.domain.LottoHandler.FIVE;
+import static lotto.domain.LottoHandler.FIVE_WITH_BONUS;
 
 public class LottoJudge {
 

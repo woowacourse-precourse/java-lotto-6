@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.domain.wrapper.Lotto;
 import lotto.domain.wrapper.LottoResult;
-import lotto.handler.LottoHandler;
+import lotto.domain.LottoHandler;
 import lotto.handler.OutputHandler;
 
 import java.text.DecimalFormat;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.handler.ConstantsHandler.DEFAULT_VALUE;
-import static lotto.handler.LottoHandler.OTHER;
+import static lotto.domain.LottoHandler.OTHER;
 
 public class ConsoleOutput implements OutputHandler {
 

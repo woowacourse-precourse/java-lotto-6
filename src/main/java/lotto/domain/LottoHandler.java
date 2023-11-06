@@ -1,4 +1,4 @@
-package lotto.handler;
+package lotto.domain;
 
 public enum LottoHandler {
 

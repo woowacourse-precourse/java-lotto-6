@@ -1,6 +1,6 @@
 package lotto.domain.wrapper;
 
-import lotto.handler.LottoHandler;
+import lotto.domain.LottoHandler;
 
 import java.util.Map;
 

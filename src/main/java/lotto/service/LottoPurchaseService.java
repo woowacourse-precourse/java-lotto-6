@@ -39,13 +39,13 @@ public class LottoPurchaseService {
 
     private void validate(int money) throws LottoStoreException {
         if (!isValidMoney(money)) {
-            throw new LottoStoreException(LottoStoreException.ErrorMessage.LOTTO_MIN_MONEY.getMessage());
+            throw new LottoStoreException(LottoStoreException.ErrorMessage.LOTTO_MIN_AMOUNT.getMessage());
         }
         if (isExceedMaxLottoAmountPerUser(money)) {
-            throw new LottoStoreException(LottoStoreException.ErrorMessage.EXCEED_MAX_LOTTO_AMOUNT.getMessage());
+            throw new LottoStoreException(LottoStoreException.ErrorMessage.EXCEED_LOTTO_MAX_AMOUNT.getMessage());
         }
         if (!isDivisibleByLottoPrice(money)) {
-            throw new LottoStoreException(LottoStoreException.ErrorMessage.NOT_DIVISIBLE.getMessage());
+            throw new LottoStoreException(LottoStoreException.ErrorMessage.AMOUNT_NOT_DIVISIBLE.getMessage());
         }
     }
 

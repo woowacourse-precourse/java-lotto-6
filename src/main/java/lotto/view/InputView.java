@@ -34,14 +34,14 @@ public class InputView {
         }
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         try {
             String input = Console.readLine();
-            BonusNumberInputValidator.validate(input);
+            BonusNumberInputValidator.validate(input, winningNumbers);
             return Integer.parseInt(input);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-            return inputBonusNumber();
+            return inputBonusNumber(winningNumbers);
         }
     }
 }

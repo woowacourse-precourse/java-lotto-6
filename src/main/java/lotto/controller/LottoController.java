@@ -29,7 +29,7 @@ public class LottoController {
         outputView.askForWinningNumbers();
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
         outputView.askForBonusNumber();
-        int bonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         outputView.printWinningStatistics(lottoResult.checkResult(winningLotto));
         outputView.printTotalProfit(lottoResult.calculateReturnRate(lottoResult.checkResult(winningLotto), money));

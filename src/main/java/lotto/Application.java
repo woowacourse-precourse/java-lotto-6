@@ -2,12 +2,44 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
+
+    public enum Prize {
+        NO_PRIZE(0, 0, false),
+        THIRD_PRIZE(3, 5000, false),
+        FOURTH_PRIZE(4, 50000, false),
+        FIFTH_PRIZE(5, 1500000, false),
+        FIFTH_PRIZE_WITH_BONUS(5, 30000000, true),
+        SIXTH_PRIZE(6, 2000000000, false);
+
+        private final int matNums;
+        private final int amountMoney;
+        private final boolean isBonus;
+
+        Prize(int matNums, int amountMoney, boolean isBonus) {
+            this.matNums = matNums;
+            this.amountMoney = amountMoney;
+            this.isBonus = isBonus;
+        }
+
+        public int getMatNums() {
+            return matNums;
+        }
+
+        public int getAmountMoney() {
+            return amountMoney;
+        }
+
+        public boolean isBonus() {
+            return isBonus;
+        }
+    }
+
 
     public static int[] winLottoNum(int num) {
 
@@ -40,6 +72,47 @@ public class Application {
         return bonus;
     }
 
+    //로또 번호 당첨 개수 확인 메서드
+    public static int cntLottoNums(List<Integer> lottoNums, int[] winNums) {
+        int cnt = 0;
+        for (int num1 : lottoNums) {
+            for (int num2 : winNums) {
+                if (num1 == num2) {
+                    cnt++;
+                }
+            }
+        }
+        return cnt;
+    }
+
+    // 보너스 번호 당첨 확인 메서드
+    public static boolean matchingBonus(List<Integer> lottoNums, int bonus) {
+        for (int i : lottoNums) {
+            if (i == bonus) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 결과 통계 확인 메서드
+    public static String checkResults(int[] results, boolean hasBonus){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        String totals = null;
+
+        for (Prize prize : Prize.values()) {
+            int matNums = prize.getMatNums();
+            int prizeAmount = prize.getAmountMoney();
+            int count = results[matNums];
+
+            if (count > 0) {
+                totals = matNums + "개 일치 (" + prizeAmount + "원) - " + count + "개";
+            }
+        }
+        return totals;
+    }
+
     public static int inputMoney() {
         // 1. lotto input
         System.out.println("구입금액을 입력해 주세요.");
@@ -53,35 +126,29 @@ public class Application {
         return num;
     }
 
-    // 배열을 문자열로 변환
-    public static String arrToStr(List<Integer> lottos) {
-        StringBuilder builder = new StringBuilder("[");
-        for (int i = 0; i < lottos.size(); i++) {
-            builder.append(lottos.get(i));
-            if (i < lottos.size() - 1) {
-                builder.append(", ");
-            }
-        }
-        builder.append("]");
-        return builder.toString();
-    }
 
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int num = inputMoney();
-        //lotto 번호 출력
-        for (int ticket = 1; ticket <= num; ticket++) {
+        int[] winNums = winLottoNum(num);
+        int bonus = bonusNum();
+        List<Integer> results = new ArrayList<>();
+        List<Boolean> bonusResults = new ArrayList<>();
+        for (int ticket = 0; ticket < num; ticket++) {
             List lottoNumbers = lottoNums();
-            System.out.println(arrToStr(lottoNumbers));
+            int matchedNums = cntLottoNums(lottoNumbers, winNums);
+            boolean hasBonusNum = matchingBonus(lottoNumbers, bonus);
+            results.add(matchedNums);
+            bonusResults.add(hasBonusNum);
+            System.out.println(matchedNums + "개 일치");
+            System.out.println(hasBonusNum + "보너스?");
+            System.out.println(lottoNumbers.toString());
+            System.out.println("결과:" + checkResults(winNums, hasBonusNum));
         }
-        winLottoNum(num);
-        bonusNum();
-
-
-
-
-
+        System.out.println("결과");
+        System.out.println(results.toString());
+        System.out.println(bonusResults.toString());
 
 
 

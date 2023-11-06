@@ -10,7 +10,7 @@ public class Result {
         for (LottoPrize prize : LottoPrize.values()) {
             if (prize != LottoPrize.FAIL) {
                 int prizeCount = countWinnings.get(prize.ordinal());
-                System.out.println(prize.getDescription() + " - " + prizeCount + "개");
+                OuputView.printResultOfGame(prize.getDescription(),prizeCount);
             }
         }
     }

@@ -4,6 +4,7 @@ public class OuputView {
 
     public static final String printTickets = "%d개를 구매했습니다.";
     public static final String printProfit = "총 수익률은 %.1f%%입니다.";
+    public static final String printResult = "%s - %d개%n";
 
     public static void printNumOfTicket(int num) {
         System.out.printf((printTickets) + "%n", num);
@@ -22,8 +23,8 @@ public class OuputView {
         System.out.printf(printProfit, profit);
     }
 
-    public static void printDescription(String description) {
-        System.out.println(description);
+    public static void printResultOfGame(String description, int prizeCount){
+        System.out.printf(printResult,description,prizeCount);
     }
 }
 

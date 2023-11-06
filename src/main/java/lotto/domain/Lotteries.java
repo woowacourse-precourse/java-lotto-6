@@ -30,4 +30,12 @@ public class Lotteries {
                 .map(Lotto::toString)
                 .toList();
     }
+
+    public LottoMatchingResults generateGameResult(WinningLotto winningLotto) {
+        List<LottoMatchingResult> results = lotteries.stream()
+                .map(lotto -> LottoMatchingResult.of(lotto, winningLotto))
+                .toList();
+
+        return LottoMatchingResults.from(results);
+    }
 }

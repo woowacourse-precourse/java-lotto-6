@@ -17,7 +17,10 @@ public class LottoNumber implements Comparable<LottoNumber> {
                 || lottoNumber > LottoConstantValue.MAX_LOTTO_NUMBER.get()) {
             throw new IllegalArgumentException(
                     ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getWithFormatAndPrefix(
-                            LottoConstantValue.MIN_LOTTO_NUMBER.get(), LottoConstantValue.MAX_LOTTO_NUMBER.get()));
+                            LottoConstantValue.MIN_LOTTO_NUMBER.get(),
+                            LottoConstantValue.MAX_LOTTO_NUMBER.get()
+                    )
+            );
         }
     }
 
@@ -29,8 +32,8 @@ public class LottoNumber implements Comparable<LottoNumber> {
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        LottoNumber that = (LottoNumber) object;
-        return lottoNumber == that.lottoNumber;
+        LottoNumber otherLottoNumber = (LottoNumber) object;
+        return lottoNumber == otherLottoNumber.lottoNumber;
     }
 
     @Override

@@ -12,7 +12,12 @@ public class Application {
         
         lotto_purchase_amount = inputLottoPurchase();
         lottos = lottoIssuance(lotto_purchase_amount / 1000);
-        System.out.println(lottos);
+        
+        System.out.println(Integer.toString(lotto_purchase_amount/1000) + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
+        
     }
 
     static int inputLottoPurchase(){
@@ -34,9 +39,15 @@ public class Application {
     static ArrayList<Lotto> lottoIssuance(int purchase_amount){
         ArrayList<Lotto> lottos = new ArrayList<Lotto>();
         for (int i =0; i < purchase_amount; i++){
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            lottos.add(new Lotto(pickLottoNumbers()));
         }
         return lottos;
+    }
+
+    static List<Integer> pickLottoNumbers(){
+        List<Integer> lotto_numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lotto_numbers);
+        return lotto_numbers;
     }
 
     static int stringToInt(String value) throws IllegalArgumentException{

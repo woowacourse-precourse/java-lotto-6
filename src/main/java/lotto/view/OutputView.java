@@ -19,7 +19,7 @@ public class OutputView {
     private static final String FIRST_GRADE_MESSAGE = "6개 일치 (2,000,000,000원) - %d개\n";
     private static final String SECOND_GRADE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String THIRD_GRADE_MESSAGE = "5개 일치 (1,500,000원) - %d개\n";
-    private static final String FOURTH_GRADE_MESSAGE = "4개 일치 (50,000)원 - %d개\n";
+    private static final String FOURTH_GRADE_MESSAGE = "4개 일치 (50,000원) - %d개\n";
     private static final String FIFTH_GRADE_MESSAGE = "3개 일치 (5,000원) - %d개\n";
 
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";

@@ -12,7 +12,7 @@ public class InputView {
     private static final String NOTICE_INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final int ONE_LOTTO_PRICE = 1000;
     private static final String DELIMITER = ",";
-    private static final String FORMAT_OF_DIGIT = "[0-9]+";
+    private static final String FORMAT_OF_NUMERIC = "[0-9]+";
 
     public void inputPurchasePrice() {
         System.out.println(NOTICE_INPUT_PURCHASE_PRICE);
@@ -43,14 +43,14 @@ public class InputView {
 
     private void validateInputNumbersType(List<String> numbers) {
         for (String number : numbers) {
-            if (isNotDigits(number)) {
+            if (isNotNumeric(number)) {
                 Error.NOT_NUMERIC_WINNING_NUMBER.throwError();
             }
         }
     }
 
-    private boolean isNotDigits(String number) {
-        return !number.matches(FORMAT_OF_DIGIT);
+    private boolean isNotNumeric(String number) {
+        return !number.matches(FORMAT_OF_NUMERIC);
     }
 
     private void validateDividedByLottoPrice(int price) {

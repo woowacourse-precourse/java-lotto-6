@@ -1,11 +1,14 @@
 package lotto.application;
 
+import static lotto.enums.ErrorMassage.DUPLICATE_BONUS_NUMBER;
 import static lotto.enums.LottoConfig.LOTTO_COUNT;
 
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAmount;
+import lotto.domain.LottoNumber;
+import lotto.dto.WinningLotto;
 
 public class LottoStore {
     private final LottoMachine lottoMachine;
@@ -24,7 +27,12 @@ public class LottoStore {
                 .toList();
     }
 
-    public Lotto issueWinningLotto(final List<Integer> numbers) {
-        return lottoMachine.createLotto(numbers);
+    public WinningLotto issueWinningLotto(final List<Integer> numbers, final int bonusNumber) {
+        Lotto lotto = lottoMachine.createLotto(numbers);
+        LottoNumber bonus = lottoMachine.createLottoNumber(bonusNumber);
+        if (lotto.contains(bonus)) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMassage());
+        }
+        return new WinningLotto(lotto, bonus);
     }
 }

@@ -17,13 +17,22 @@ public class LottoGameController {
     }
 
     public void run() {
-        // 구입 금액 입력
-        PurchaseDto purchaseAmount = PurchaseDto.from(Console.readLine());
-        Player player = Player.of(purchaseAmount.getMoney(), LottoStore.of(new RandomNumberGenerator()));
-        // 로또 구매
-        player.buyLotto();
-        // 로또 번호 반환 및 출력
-        PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(player.getEA(), player.getHistory());
-        outputView.printPurchaseHistory(dto);
+        buyLotto();
+    }
+
+    private void buyLotto() {
+        try {
+            // 구입 금액 입력
+            PurchaseDto purchaseAmount = PurchaseDto.from(Console.readLine());
+            Player player = Player.of(purchaseAmount.getMoney(), LottoStore.of(new RandomNumberGenerator()));
+            // 로또 구매
+            player.buyLotto();
+            // 로또 번호 반환 및 출력
+            PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(player.getEA(), player.getHistory());
+            outputView.printPurchaseHistory(dto);
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            buyLotto();
+        }
     }
 }

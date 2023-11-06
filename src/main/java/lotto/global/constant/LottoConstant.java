@@ -13,4 +13,10 @@ public class LottoConstant {
     public static final int thirdPrizeAmount = 1500000;
     public static final int fourthPrizeAmount = 50000;
     public static final int fifthPrizeAmount = 5000;
+
+    public static final int firstRank = 1;
+    public static final int secondRank = 2;
+    public static final int thirdRank = 3;
+    public static final int fourthRank = 4;
+    public static final int fifthRank = 5;
 }

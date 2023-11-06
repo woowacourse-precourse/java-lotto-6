@@ -20,7 +20,7 @@ public class Lotto {
         return numbers;
     }
 
-    public void getLottoNumber() {
+    public void printLottoNumber() {
         System.out.println(numbers);
     }
 }

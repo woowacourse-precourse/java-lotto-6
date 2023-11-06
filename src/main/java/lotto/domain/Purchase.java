@@ -31,7 +31,7 @@ public class Purchase {
 
     public void printPurchasedLotto() {
         for (int i = 0; i < purchasedLotto.size(); i++) {
-            purchasedLotto.get(i).getLottoNumber();
+            purchasedLotto.get(i).printLottoNumber();
         }
     }
 }

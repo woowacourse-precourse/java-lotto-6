@@ -10,8 +10,12 @@ public class LottoSystem {
     private List<LottoNumber> winningLottoNumbers;
     private Player player;
 
-    public LottoSystem(List<LottoNumber> winningLottoNumbers, Player player) {
+    private LottoSystem(List<LottoNumber> winningLottoNumbers, Player player) {
         this.winningLottoNumbers = winningLottoNumbers;
         this.player = player;
+    }
+
+    public static LottoSystem create(List<LottoNumber> winningLottoNumbers, Player player) {
+        return new LottoSystem(winningLottoNumbers, player);
     }
 }

@@ -31,13 +31,41 @@ public class InputView {
             Utils.checkNumber(number);
             originalWinningNumbers.add(Integer.parseInt(number));
         }
+
+        validateWinningNumbers(originalWinningNumbers);
         return originalWinningNumbers;
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(Set<Integer> originalWinningNumbers) {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
         String input = Console.readLine();
+
         Utils.checkNumber(input);
-        return Integer.parseInt(input);
+        int bonusNumber = Integer.parseInt(input);
+
+        validateBonusNumber(originalWinningNumbers, bonusNumber);
+        return bonusNumber;
+    }
+
+    private void validateWinningNumbers(Set<Integer> originalWinningNumbers){
+        if(originalWinningNumbers.size() != 6){
+            throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
+        }
+        for (Integer originalWinningNumber : originalWinningNumbers) {
+            validateLottoRange(originalWinningNumber);
+        }
+    }
+
+    private void validateBonusNumber(Set<Integer> originalWinningNumbers, int bonusNumber) {
+        validateLottoRange(bonusNumber);
+        if (originalWinningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_CONTAINS_BONUS_NUMBER_IN_WINNING_NUMBERS.getMessage());
+        }
+    }
+
+    private void validateLottoRange(int number) {
+        if (!(1 <= number && number <= 45)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_RANGE.getMessage());
+        }
     }
 }

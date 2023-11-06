@@ -61,7 +61,7 @@ class InputViewTest {
         }
         //when
         Set<Integer> originalWinningNumbers = inputView.getOriginalWinningNumbers();
-        int bonusNumber = inputView.getBonusNumber();
+        int bonusNumber = inputView.getBonusNumber(originalWinningNumbers);
         //then
         assertThat(originalWinningNumbers).isEqualTo(numbers);
         assertThat(bonusNumber).isEqualTo(Integer.parseInt(inputBonusNumber));

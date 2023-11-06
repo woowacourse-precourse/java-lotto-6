@@ -6,6 +6,7 @@ import lotto.controller.dto.CreateUserDto;
 import lotto.domain.Prize;
 import lotto.domain.User;
 import lotto.domain.WinningNumbers;
+import lotto.global.ExceptionHandler;
 import lotto.service.LottoService;
 import lotto.views.InputView;
 import lotto.views.OutputView;
@@ -22,10 +23,8 @@ public class LottoController {
     }
 
     public void run() {
-        CreateUserDto createUserDto = checkUser();
-        createUserDto.setPublishedLotto(lottoService.publish(createUserDto.getQuantity()));
-        outputView.lottoQuantityAndNumber(createUserDto.getPublishedLotto());
-        User user = User.create(createUserDto);
+        User user = ExceptionHandler.input(this::createUser);
+        outputView.lottoQuantityAndNumber(user.getLotto());
 
         WinningNumbers winningNumbers = getWinningNumbers();
         Map<Prize, Integer> rewardCount = lottoService.getRewardCount(user.getLotto(), winningNumbers);
@@ -35,15 +34,21 @@ public class LottoController {
         outputView.rewardRatioRecord(rewardRatio);
     }
 
+    private User createUser(){
+        CreateUserDto createUserDto = checkUser();
+        createUserDto.setPublishedLotto(lottoService.publish(createUserDto.getQuantity()));
+        return User.create(createUserDto);
+    }
+
     private CreateUserDto checkUser() {
-        long purchaseAmount = inputView.getPurchaseAmount();
+        long purchaseAmount = ExceptionHandler.input(inputView::getPurchaseAmount);
         CreateUserDto createUserDto = new CreateUserDto(purchaseAmount);
         return createUserDto;
     }
 
     private WinningNumbers getWinningNumbers() {
-        Set<Integer> originalWinningNumbers = inputView.getOriginalWinningNumbers();
-        int bonusNumber = inputView.getBonusNumber();
+        Set<Integer> originalWinningNumbers = ExceptionHandler.input(inputView::getOriginalWinningNumbers);
+        int bonusNumber = ExceptionHandler.process(inputView::getBonusNumber, originalWinningNumbers);
         return lottoService.getWinningNumbers(originalWinningNumbers, bonusNumber);
     }
 }

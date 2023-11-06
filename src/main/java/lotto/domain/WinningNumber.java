@@ -13,7 +13,7 @@ public class WinningNumber {
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
 
-    public WinningNumber(String userInput) {
+    private WinningNumber(String userInput) {
         validateNullValue(userInput);
         try {
             this.winningNumber = Arrays
@@ -25,6 +25,10 @@ public class WinningNumber {
             throw new IllegalArgumentException(NOT_INTEGER_ERROR_MESSAGE);
         }
         validInRangeNumber();
+    }
+
+    public static WinningNumber create(String userInput){
+        return new WinningNumber(userInput);
     }
 
     void validInRangeNumber(){

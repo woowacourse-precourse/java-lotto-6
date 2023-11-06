@@ -9,17 +9,9 @@ public class GameController {
     private final Calculator calculator;
     private final Lottos lottos;
 
-    private WinningNumber winningNumber;
-    private BonusNumber bonusNumber;
-
-    private int coin;
-
     public GameController() {
         this.lottos = new Lottos();
         this.calculator = new Calculator(payment);
-
-        OutputView.printNumberOfLottoPurchase(coin);
-
     }
 
     public void run() {
@@ -33,8 +25,11 @@ public class GameController {
             System.out.println(lotto.toString());
         }
 
-        this.winningNumber = new WinningNumber(InputView.inputWinningNumber());
-        this.bonusNumber = new BonusNumber(InputView.inputBonusNumber());
+        String inputWinningNumber = InputView.inputWinningNumber();
+        WinningNumber winningNumber = WinningNumber.create(inputWinningNumber);
+
+        String inputBonusNumber = InputView.inputBonusNumber();
+        BonusNumber bonusNumber = BonusNumber.create(inputBonusNumber);
 
         Result result = calculator.calculateResult(lottos.getLottos(),
                 winningNumber.getWinningNumber(),

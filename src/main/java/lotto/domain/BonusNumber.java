@@ -10,10 +10,14 @@ public class BonusNumber {
 
     private int bonusNumber;
 
-    public BonusNumber(String userInput) {
+    private BonusNumber(String userInput) {
         validateNullValue(userInput);
         this.bonusNumber = Parser.parseStringToInt(userInput);
         validInRangeNumber();
+    }
+
+    public static BonusNumber create(String userInput){
+        return new BonusNumber(userInput);
     }
 
     private void validInRangeNumber() {

@@ -12,6 +12,15 @@ import lotto.validator.InputValidator;
 
 public class LottoFactory {
 
+    private static final LottoFactory lottoFactory = new LottoFactory();
+
+    private LottoFactory() {
+    }
+
+    public static LottoFactory getInstance() {
+        return lottoFactory;
+    }
+
     public LottoController lottoController() {
         return new LottoController(inputManager(), outputView(), lottoService());
     }

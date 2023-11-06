@@ -85,5 +85,6 @@ public class LottoGameController {
 
     private void calculateYieldRate(LottoOwner lottoOwner) {
         YieldRate yieldRate = lottoOwner.calculateYieldRate();
+        OutputView.printYieldRate(yieldRate);
     }
 }

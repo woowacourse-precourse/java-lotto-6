@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Rank;
+import lotto.domain.YieldRate;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class OutputView {
     private static final String LOTTO_NUMBERS_INPUT_TEXT = "당첨 번호를 입력해 주세요.\n";
     private static final String BONUS_NUMBER_INPUT_TEXT = "보너스 번호를 입력해 주세요.\n";
     private static final String LOTTO_RESULT_START_TEXT = "당첨 통계\n";
+    private static final String YIELD_RATE_TEXT = "총 수익률은 %.1f%%입니다.\n";
     private static final String BOUNDARY = "---\n";
 
     private OutputView() {
@@ -50,5 +52,9 @@ public class OutputView {
 
     public static void printLottoResult(Rank rank) {
         System.out.printf(rank.getPrizeText(), rank.getCount());
+    }
+
+    public static void printYieldRate(YieldRate yieldRate) {
+        System.out.printf(YIELD_RATE_TEXT, yieldRate.getYieldRate());
     }
 }

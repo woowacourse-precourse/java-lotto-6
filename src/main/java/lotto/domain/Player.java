@@ -8,7 +8,18 @@ public class Player {
     private int attempt;
     private List<Lotto> lottos;
 
+    public Player() {
+
+    }
+
     public Player(int cash) {
+        validate(cash);
+        this.cash = cash;
+        this.attempt = cash / 1000;
+        this.lottos = new ArrayList<>();
+    }
+
+    public void setCash(int cash) {
         validate(cash);
         this.cash = cash;
         this.attempt = cash / 1000;

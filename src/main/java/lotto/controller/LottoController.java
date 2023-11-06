@@ -9,8 +9,18 @@ import java.util.random.RandomGenerator;
 
 public class LottoController {
     public void start() {
-        Player player = new Player(InputView.inputCash());
+        Player player = new Player();
+        boolean isRightInput = false;
+        while (!isRightInput) {
+            try {
+                player.setCash(InputView.inputCash());
+                isRightInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         OutputView.printAttempt(player.getCash());
+
         player.lottoDraw();
         OutputView.printLotto(player.getLottos());
 

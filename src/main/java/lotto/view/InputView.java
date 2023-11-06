@@ -9,10 +9,13 @@ import java.util.Arrays;
 
 public class InputView {
     public static final String SPLIT_DELIMETER = ",";
+    public static final String REGEX = "[0-9]+";
 
     public static int inputCash() {
         System.out.println("구입금액을 입력해 주세요.");
-        int cash = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        validateCash(input);
+        int cash = Integer.parseInt(input);
         return cash;
     }
 
@@ -32,5 +35,11 @@ public class InputView {
         Bonus bonus = new Bonus(Integer.parseInt(input), winningLotto);
 
         return bonus;
+    }
+
+    private static void validateCash(String input) {
+        if (!input.matches(REGEX)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 }

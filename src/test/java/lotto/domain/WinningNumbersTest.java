@@ -1,25 +1,36 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
+import camp.nextstep.edu.missionutils.Console;
+import lotto.io.Input;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinningNumbersTest {
 
-    WinningNumbers winningNumbers;
+    private WinningNumbers winningNumbers;
+    private Input input;
 
     @BeforeEach
     void setUp() {
         winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        input = new Input();
+    }
+
+    @AfterEach
+    void consoleClose() {
+        Console.close();
     }
 
     @Test
@@ -39,6 +50,80 @@ class WinningNumbersTest {
 
         //then
         assertThat(winningNumbers.countMatchedNumber(lotto)).isEqualTo(expect);
+    }
 
+    @ParameterizedTest
+    @DisplayName("빈칸 입력시 예외가 발생한다.")
+    @ValueSource(strings = {" ,2,3,4,5,6", " 1,2,3,4,5,6", "1 ,2,3,4,5,6"})
+    void noBlankTest(String userInput) {
+        //given
+        System.setIn(makeUserInput(userInput));
+
+        //when
+
+        //then
+        assertThatThrownBy(() -> new WinningNumbers(input.getWinningNumbers()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("숫자 외 문자를 입력시 예외가 발생한다.")
+    @ValueSource(strings = {"-1,2,3,4,5,6", "1a,2,3,4,5,6", "a1,2,3,4,5,6"})
+    void onlyNumbersTest(String userInput) {
+        //given
+        System.setIn(makeUserInput(userInput));
+
+        //when
+
+        //then
+        assertThatThrownBy(() -> new WinningNumbers(input.getWinningNumbers()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("6자리 숫자가 아닐시 예외가 발생한다.")
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3,4,5", "1,2,3"})
+    void numbersSizeSixTest(String userInput) {
+        //given
+        System.setIn(makeUserInput(userInput));
+
+        //when
+
+        //then
+        assertThatThrownBy(() -> new WinningNumbers(input.getWinningNumbers()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("1 ~ 45 범위를 벗어날시 예외가 발생한다.")
+    @ValueSource(strings = {"0,1,2,3,4,5", "1,2,3,4,5,46"})
+    void numberRangeTest(String userInput) {
+        //given
+        System.setIn(makeUserInput(userInput));
+
+        //when
+
+        //then
+        assertThatThrownBy(() -> new WinningNumbers(input.getWinningNumbers()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("중복된 숫자를 포함시 예외가 발생한다.")
+    @ValueSource(strings = {"1,2,3,4,5,5", "1,1,2,3,4,5"})
+    void duplicatedNumberTest(String userInput) {
+        //given
+        System.setIn(makeUserInput(userInput));
+
+        //when
+
+        //then
+        assertThatThrownBy(() -> new WinningNumbers(input.getWinningNumbers()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("테스트코드용 유저입력 메소드")
+    InputStream makeUserInput(String userInput) {
+        return new ByteArrayInputStream(userInput.getBytes());
     }
 }

@@ -9,8 +9,8 @@ import lotto.Lotto;
 public class BuyLottos {
     private final List<Lotto> buyLottos;
 
-    public BuyLottos(List<Lotto> buyLottos, List<Integer> randomNumbers) {
-        this.buyLottos = buyLottos;
+    public BuyLottos(int numberOfLottos) {
+        this.buyLottos = generateLottoNumbersOfBuy(numberOfLottos);
     }
 
     public List<Lotto> getBuyLottos() {

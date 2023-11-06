@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoService;
 import lotto.domain.Money;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class LottoGame {
         money = InputView.LoopInputMoney();
         playerLotto = LottoService.generatePlayerLotto(money);
         // 사용자 로또 출력
+        OutputView.printPlayerLotto(playerLotto);
         lotto = InputView.LoopInputSixNumbers();
         bonus = InputView.LoopInputBonusNumber(lotto);
         // 게임 종료
@@ -32,6 +34,4 @@ public class LottoGame {
     private void end(){
 
     }
-
-
 }

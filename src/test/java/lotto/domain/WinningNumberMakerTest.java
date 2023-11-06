@@ -8,6 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import lotto.controller.WinningNumberMaker;
+
 public class WinningNumberMakerTest {
 
 	@DisplayName("당첨 번호가 정상적으로 만들어지는지 확인")

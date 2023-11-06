@@ -27,10 +27,8 @@ public class InputView {
     }
 
     private String requestPurchasePrice() {
-        String purchasePrice = "";
-
         System.out.println(InputMessage.REQUEST_PURCHASE_PRICE.getMessage());
-        purchasePrice = Console.readLine();
+        String purchasePrice = Console.readLine();
         purcharPriceValidator.validate(purchasePrice);
         System.out.println();
 
@@ -60,13 +58,13 @@ public class InputView {
         lottoValidator.validate(inputNumbers);
         System.out.println();
 
-        inputNumbers = inputNumbers.replace(" ","");
+        inputNumbers = inputNumbers.replace(" ", "");
         return Stream.of(inputNumbers.split(Constants.NUMBER_SEPARATOR))
                 .map(Integer::parseInt)
                 .toList();
     }
 
-    private BonusNumber getBonusNumber(){
+    private BonusNumber getBonusNumber() {
         while (true) {
             try {
                 return new BonusNumber(requestBonusNumber());
@@ -76,7 +74,7 @@ public class InputView {
         }
     }
 
-    private int requestBonusNumber(){
+    private int requestBonusNumber() {
         System.out.println(InputMessage.REQUEST_BONUS_NUMBER.getMessage());
         String inputNumber = Console.readLine();
         bonusNumberValidator.validate(inputNumber);

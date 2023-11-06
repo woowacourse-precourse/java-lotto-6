@@ -62,6 +62,14 @@ public class Application {
         System.out.println();
     }
 
+    private static void printResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        WinLotto matchLotto = new WinLotto(lottos, winningNumbers, bonusNumber);
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(matchLotto);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", matchLotto.calculateTotalWinningRate());
+    }
+
     public static void main(String[] args) {
         int buyLottoAmount = getPurchaceAmount();
         List<Lotto> lottos = generateLottos(buyLottoAmount);
@@ -69,7 +77,6 @@ public class Application {
         int bonusNumber = getBonusNumber();
 
         printLottos(lottos);
-
-
+        printResult(lottos, winNumbers, bonusNumber);
     }
 }

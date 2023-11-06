@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -25,5 +28,16 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 들어오면 정렬된다.")
+    @Test
+    void sortByNumber() {
+        // given
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(32, 45, 6, 7, 1, 2));
 
+        // when
+        Lotto lotto = new Lotto(numbers);
+
+        //then
+        assertEquals(List.of(1, 2, 6, 7, 32, 45), lotto.getNumbers());
+    }
 }

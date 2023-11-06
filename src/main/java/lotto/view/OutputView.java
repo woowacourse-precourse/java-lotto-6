@@ -6,6 +6,8 @@ import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.util.CharacterUnits.ENTER;
+import static lotto.util.CharacterUnits.LINE;
 import static lotto.util.PatternUnits.PATTERN_FOR_DECIMAL_FORMAT;
 
 public class OutputView {
@@ -16,9 +18,9 @@ public class OutputView {
     }
 
     public void printPurchasedLottos(Lottos lottos) {
-        System.out.println();
+        System.out.print(ENTER.getUnit());
         System.out.printf("%d개를 구매했습니다.", lottos.getCount());
-        System.out.println();
+        System.out.print(ENTER.getUnit());
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.toString());
         }
@@ -26,9 +28,8 @@ public class OutputView {
     }
 
     public void printStaticResult(Prizes prizes, Cash cash) {
-        //
         System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.print(LINE.getUnit());
         for (Prize prize : Prize.values()) {
             if (prize == Prize.LAST_PLACE) continue;
             if (!prize.isBonusNumber()) {

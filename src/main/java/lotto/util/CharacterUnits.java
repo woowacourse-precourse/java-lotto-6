@@ -5,7 +5,9 @@ public enum CharacterUnits {
     SPACE(" "),
     LEFT_BRACKET("["),
     RIGHT_BRACKET("]"),
-    SEPARATOR(",");
+    SEPARATOR(","),
+    ENTER("\n"),
+    LINE("---");
 
 
     private final String unit;

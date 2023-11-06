@@ -22,7 +22,7 @@ public class Application {
         Map<WinningRank,Integer> winningRankResult = new HashMap<>();
         for (List<Integer> value : lotteryNumbers.values()) {
             Lotto lotto = new Lotto(value);
-            lotto.matchUserNumberWithWinningNumbers(winningNumbers, bonusNumber);
+            lotto.getWinningRank(winningNumbers, bonusNumber);
         }
     }
 }

@@ -23,7 +23,7 @@ public class Lotto {
         }
     }
 
-    public Map<String, Integer> matchUserNumberWithWinningNumbers(List<Integer> winningNumbers, int bonusNumbers) {
+    private Map<String, Integer> matchUserNumberWithWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         Map<String, Integer> matchingResult = new HashMap<>();
         matchingResult.put("matchingWinningNumbers", 0);
         matchingResult.put("matchingBonusNumbers", 0);
@@ -33,10 +33,23 @@ public class Lotto {
                 matchingResult.put("matchingWinningNumbers", i + 1);
             }
         }
-        if (this.numbers.contains(bonusNumbers)) {
+        if (this.numbers.contains(bonusNumber)) {
             matchingResult.put("matchingBonusNumbers", 1);
         }
         return matchingResult;
     }
 
+    public int getWinningRank(List<Integer> winningNumbers, int bonusNumber) {
+        Map<String, Integer> matchingResult = matchUserNumberWithWinningNumbers(winningNumbers, bonusNumber);
+        if (matchingResult.get("matchingWinningNumbers")==6){
+            return 1;
+        }
+        if (matchingResult.get("matchingWinningNumbers")==5){
+            if (matchingResult.get("matchingBonusNumbers")==1){
+                return 2;
+            }
+            return 3;
+        }
+       return 8-matchingResult.get("matchingWinningNumbers");
+    }
 }

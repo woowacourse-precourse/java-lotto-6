@@ -28,6 +28,6 @@ public class LottoService {
                 numbers.add(number);
             }
         }
-        return Lotto.of(numbers);
+        return new Lotto(numbers);
     }
 }

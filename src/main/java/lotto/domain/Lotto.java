@@ -15,6 +15,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -44,11 +45,6 @@ public class Lotto {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public static Lotto of(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return new Lotto(numbers);
     }
 
     public List<Integer> getNumbers() {

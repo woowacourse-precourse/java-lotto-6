@@ -18,6 +18,13 @@ public class InputView {
         return winningNumbers;
     }
 
+    public static String inputBonusNumber() {
+        String message = InputMessages.BONUS_NUMBER_MESSAGE.getMessage();
+        System.out.println(message);
+        String bonusNumber = input();
+        return bonusNumber;
+    }
+
     public static String input() {
         return Console.readLine();
     }

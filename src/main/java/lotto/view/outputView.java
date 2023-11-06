@@ -27,4 +27,8 @@ public class outputView {
         System.out.println("총 수익률은 " + rateReturn + "입니다.");
     }
 
+    public void printError(String message){
+        System.out.println("[ERROR]"+message);
+    }
+
 }

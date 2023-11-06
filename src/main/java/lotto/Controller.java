@@ -1,11 +1,12 @@
 package lotto;
 
 import java.util.List;
-import java.util.SimpleTimeZone;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.Result;
+import lotto.model.User;
+import lotto.model.wonTheLotto;
 import lotto.utils.Converter;
 import lotto.utils.randomNumbersLotto;
 import lotto.view.InputView;
@@ -23,7 +24,19 @@ public class Controller {
     }
 
     public void tempInputOutputController() {
+        outputView outputview = new outputView();
+        try{
+            int purchase = purchaseLotto();
+            User user = new User(buyLottos(purchase/1000));
+            Lotto inputWinningNumber = outputWinningStatistics();
+            int bonusNumber = getBonus();
+            wonTheLotto wonTheLotto = new wonTheLotto(inputWinningNumber,bonusNumber);
+            Result result = new Result(user.confirmResult(wonTheLotto));
+            outputResult(result);
 
+        }catch (IllegalArgumentException e){
+            outputview.printError(e.getMessage());
+        }
     }
 
     private int purchaseLotto() {

@@ -11,6 +11,7 @@ public class MoneyManagement {
     private void validate(final String userInput) {
         validNumber(userInput);
         int userAmount = toInt(userInput);
+        validRange(userAmount);
     }
 
     private void validNumber(final String userInput) {
@@ -23,4 +24,9 @@ public class MoneyManagement {
         return Integer.parseInt(userInput);
     }
 
+    private void validRange(final int userAmount) {
+        if (userAmount < 1000) {
+            throw new IllegalArgumentException("로또 최소 구입 가능 금액은 1000원입니다.");
+        }
+    }
 }

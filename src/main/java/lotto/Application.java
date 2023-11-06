@@ -7,7 +7,6 @@ import lotto.readUserInput.BonusNumbers;
 import lotto.readUserInput.PurchaseAmount;
 import lotto.readUserInput.WinningNumbers;
 import lotto.service.PurchasedLottoTickets;
-import lotto.service.RandomNumbers;
 import lotto.service.RateOfReturn;
 
 public class Application {

@@ -10,10 +10,9 @@ public class Application {
         // TODO: 프로그램 구현
         Buyer buyer = new Buyer();
 //        int money = buyer.getLottoPurchaseAmount();
-        List<Integer> lottoNumbers = buyer.getLottoNumber();
-        int bonusNumber = buyer.getBonusNumber(lottoNumbers);
-        System.out.println(lottoNumbers);
-        System.out.println(bonusNumber);
-
+//        int bonusNumber = buyer.getBonusNumber(lottoNumbers);
+        for (List<Integer> lottoNumber : buyer.generateLottoNumbers()) {
+            System.out.println(lottoNumber);
+        }
     }
 }

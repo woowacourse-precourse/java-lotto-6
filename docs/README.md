@@ -1,9 +1,9 @@
 ## 기능 구현 목록
 - [x] 로또 구입 금액 입력 받기 Lotto#getLottoPurchaseAmount()
   - [x] 예외) 1000원 단위가 아니면 예외처리해준다. - Buyer#validatePurchaseAmount()
-- [ ] 로또 구입 금액에 맞게 로또 번호를 출력해주는 기능 - Buyer#generateLottoNumbers()
+- [x] 로또 구입 금액에 맞게 로또 번호를 출력해주는 기능 - Buyer#generateLottoNumbers()
   - [x] 로또 번호를 랜덤하게, 중복되지 않게 숫자 6개와 보너스 번호 1개를 뽑는다. - getLottoNumber(), getBonusNumber()
-- [ ] 당첨 번호와 보너스 번호를 입력받는다. - Lotto#inputWinningNumbers()
+- [ ] 당첨 번 호와 보너스 번호를 입력받는다. - Lotto#inputWinningNumbers()
   - [ ] 예외) 당첨 번호의 수가 6개가 아니면 예외 처리 - validate()
   - [ ] 예외) 보너스 번호의 수가 1개가 아니면 예외 처리 - validateBonnusNumber()
 - [ ] 구매 번호와 담첨 번호 비교해 

@@ -10,8 +10,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LottoNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 24, 45})
-    @DisplayName("성공 - 올바른 범위 내의 번호 생성")
-    void right_Range(int number) {
+    @DisplayName("번호가 1-45 사이에 존재하면 번호가 생성된다.")
+    void createNumberInRightRange(int number) {
         //given
         //when
         LottoNumber lottoNumber = new LottoNumber(number);
@@ -21,8 +21,8 @@ class LottoNumberTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, 46})
-    @DisplayName("실패 - 범위 외의 번호 생성")
-    void out_Of_Range(int number) {
+    @DisplayName("번호가 범위 밖에 있으면 예외가 발생한다.")
+    void createNumberOverRange(int number) {
         //given
         //when
         //then

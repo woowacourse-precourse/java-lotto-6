@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -20,5 +19,10 @@ public class InputView {
 
         return Arrays.stream(stringWinningLottoNumbers)
                 .map(Integer::parseInt).toList();
+    }
+
+    public static String requestBonusLottoNumbers() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine();
     }
 }

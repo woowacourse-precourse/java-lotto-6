@@ -37,7 +37,7 @@ public class GameController {
         List<Integer> winningLottoNumbers = requestWinningLottoNumbers();
         LottoManager lottoManager = new LottoManager(winningLottoNumbers);
 
-
+        
     }
 
     private int purchaseLottoQuantity() {
@@ -64,7 +64,7 @@ public class GameController {
 
                 return winningLottoNumbers;
             } catch (IllegalArgumentException e) {
-                System.err.println("[ERROR] 번호의 개수는 6개이며, 중복된 숫자가 없어야 합니다. 당첨 번호를 다시 입력해주세요.");
+                System.err.println("[ERROR] 번호의 개수는 6개, 범위는 1~45 사이이며 중복된 숫자가 없어야 합니다. 당첨 번호를 다시 입력해주세요.");
             }
         }
     }

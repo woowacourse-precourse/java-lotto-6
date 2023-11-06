@@ -13,6 +13,12 @@ public class LottoValidator {
     }
 
     public static void isValidWinningLottoNumbers(List<Integer> winningLottoNumbers) {
+        for (Integer number : winningLottoNumbers) {
+            if(number < 1 || number > 45) {
+                throw new IllegalArgumentException("로또 당첨 번호의 범위는 1~45 입니다.");
+            }
+        }
+
         if(winningLottoNumbers.size() != 6) {
             throw new IllegalArgumentException("로또 당첨 번호는 숫자 6개를 입력해야 합니다.");
         }

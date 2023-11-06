@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.message.ErrorMessage;
 
 public class LottoUtil {

@@ -1,4 +1,5 @@
 package lotto.Factory;
 
-public class LottoRank {
+public enum LottoRank
+{
 }

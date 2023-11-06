@@ -3,14 +3,14 @@ package lotto.lotto;
 import java.util.List;
 
 public class LottoEvaluator {
-    public LottoResult evaluateLotto(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
+    public Integer evaluateLottoRank(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         int winningCount = calculateWinningCount(winningNumbers, lottoNumbers);
         boolean isBonusNumberCorrect = lottoNumbers.contains(bonusNumber);
 
         int rank = determineRank(winningCount, isBonusNumberCorrect);
-        return new LottoResult(rank);
+        return rank;
     }
 
     private int calculateWinningCount(List<Integer> winningNumbers, List<Integer> lottoNumbers) {

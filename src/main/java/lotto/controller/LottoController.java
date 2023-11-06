@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import java.util.Arrays;
-import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoService;
 import lotto.domain.Lottos;
@@ -14,13 +12,10 @@ public class LottoController {
 
     public void run() {
         LottoService lottoService = initLottoService();
+
         String winningNumber = InputView.receiveWinningNumber();
-        String[] split = winningNumber.split(",");
-        List<NumberCandidateString> numberCandidateStrings = Arrays.stream(split)
-                .map(NumberCandidateString::new).toList();
-        List<Integer> numbers = numberCandidateStrings.stream()
-                .map(NumberCandidateString::getNumber).toList();
-        Lotto lotto = new Lotto(numbers);
+        NumberCandidateStrings numberCandidateStrings = NumberCandidateStrings.valueOf(winningNumber.split(","));
+        Lotto lotto = new Lotto(numberCandidateStrings.toNumberList());
     }
 
     private LottoService initLottoService() {

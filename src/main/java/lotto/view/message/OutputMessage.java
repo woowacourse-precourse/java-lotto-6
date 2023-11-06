@@ -1,18 +1,18 @@
 package lotto.view.message;
 
-import static lotto.domain.constants.LottoConstants.MATCH_BONUS_MESSAGE_FORMAT;
-import static lotto.domain.constants.LottoConstants.MATCH_FIVE_AND_BONUS_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_FIVE_AND_BONUS_PRICE;
-import static lotto.domain.constants.LottoConstants.MATCH_FIVE_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_FIVE_PRICE;
-import static lotto.domain.constants.LottoConstants.MATCH_FOUR_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_FOUR_PRICE;
-import static lotto.domain.constants.LottoConstants.MATCH_MESSAGE_FORMAT;
-import static lotto.domain.constants.LottoConstants.MATCH_SIX_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_SIX_PRICE;
-import static lotto.domain.constants.LottoConstants.MATCH_THREE_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_THREE_PRICE;
-import static lotto.domain.constants.LottoConstants.TOTAL_PROFIT_PERCENTAGE_FORMAT;
+import static lotto.utils.constants.LottoConstants.MATCH_BONUS_MESSAGE_FORMAT;
+import static lotto.utils.constants.LottoConstants.MATCH_FIVE_AND_BONUS_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_FIVE_AND_BONUS_PRICE;
+import static lotto.utils.constants.LottoConstants.MATCH_FIVE_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_FIVE_PRICE;
+import static lotto.utils.constants.LottoConstants.MATCH_FOUR_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_FOUR_PRICE;
+import static lotto.utils.constants.LottoConstants.MATCH_MESSAGE_FORMAT;
+import static lotto.utils.constants.LottoConstants.MATCH_SIX_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_SIX_PRICE;
+import static lotto.utils.constants.LottoConstants.MATCH_THREE_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_THREE_PRICE;
+import static lotto.utils.constants.LottoConstants.TOTAL_PROFIT_PERCENTAGE_FORMAT;
 
 public enum OutputMessage {
 

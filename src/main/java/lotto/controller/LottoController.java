@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import static lotto.domain.constants.LottoConstants.NUMBER_SPLIT_FORMAT;
+import static lotto.utils.constants.LottoConstants.NUMBER_SPLIT_FORMAT;
 import static lotto.view.message.OutputMessage.ASK_FOR_BONUS_NUMBER;
 import static lotto.view.message.OutputMessage.ASK_FOR_LOTTO_WINNING_NUMBERS;
 import static lotto.view.message.OutputMessage.ASK_FOR_PURCHASE_PRICE;

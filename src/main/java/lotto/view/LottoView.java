@@ -1,9 +1,9 @@
 package lotto.view;
 
-import static lotto.domain.constants.LottoConstants.MATCH_FIVE_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_FOUR_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_SIX_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_THREE_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_FIVE_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_FOUR_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_SIX_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_THREE_COUNT;
 import static lotto.view.message.OutputMessage.ANNOUNCE_FOR_PURCHASE_COUNT;
 import static lotto.view.message.OutputMessage.ANNOUNCE_FOR_TOTAL_PROFIT_PERCENTAGE_FORMAT;
 import static lotto.view.message.OutputMessage.WINNING_STATISTICS;

@@ -1,4 +1,4 @@
-package lotto.domain.constants;
+package lotto.utils.constants;
 
 public final class LottoConstants {
     public static final int MATCH_THREE_COUNT = 3;

@@ -1,15 +1,15 @@
 package lotto.domain.result;
 
-import static lotto.domain.constants.LottoConstants.MATCH_FIVE_AND_BONUS_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_FIVE_AND_BONUS_PRICE;
-import static lotto.domain.constants.LottoConstants.MATCH_FIVE_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_FIVE_PRICE;
-import static lotto.domain.constants.LottoConstants.MATCH_FOUR_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_FOUR_PRICE;
-import static lotto.domain.constants.LottoConstants.MATCH_SIX_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_SIX_PRICE;
-import static lotto.domain.constants.LottoConstants.MATCH_THREE_COUNT;
-import static lotto.domain.constants.LottoConstants.MATCH_THREE_PRICE;
+import static lotto.utils.constants.LottoConstants.MATCH_FIVE_AND_BONUS_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_FIVE_AND_BONUS_PRICE;
+import static lotto.utils.constants.LottoConstants.MATCH_FIVE_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_FIVE_PRICE;
+import static lotto.utils.constants.LottoConstants.MATCH_FOUR_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_FOUR_PRICE;
+import static lotto.utils.constants.LottoConstants.MATCH_SIX_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_SIX_PRICE;
+import static lotto.utils.constants.LottoConstants.MATCH_THREE_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_THREE_PRICE;
 
 public class LottoCalculateResult {
     private int profitPrice;

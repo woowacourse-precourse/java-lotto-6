@@ -1,6 +1,6 @@
 package lotto.domain.result;
 
-import static lotto.domain.constants.LottoConstants.MATCH_FIVE_AND_BONUS_COUNT;
+import static lotto.utils.constants.LottoConstants.MATCH_FIVE_AND_BONUS_COUNT;
 
 import java.util.HashMap;
 import java.util.Map;

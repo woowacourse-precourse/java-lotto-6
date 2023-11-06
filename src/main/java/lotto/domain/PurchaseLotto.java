@@ -4,6 +4,8 @@ import static lotto.constant.ErrorMessage.*;
 import lotto.constant.LottoConfig;
 
 public class PurchaseLotto {
+    private static final int NUMBER_ZERO = 0;
+
     private final int lottoCount;
 
     public PurchaseLotto(String amount) {
@@ -41,19 +43,19 @@ public class PurchaseLotto {
     }
 
     private boolean isNumeric(String str) {
-        return str.matches("\\d+");
+        return str.matches(LottoConfig.IS_NUMBER);
     }
 
     private void validateFirstNumber(String amount) {
         int firstNumber = amount.charAt(0) - '0';
-        if (firstNumber == LottoConfig.NUMBER_ZERO) {
+        if (firstNumber == NUMBER_ZERO) {
             throw new IllegalArgumentException(ERROR_NOT_FIRST_ZERO.toString());
         }
     }
 
     private void validateMultipleOf1000(String amount) {
         int amountNum = Integer.parseInt(amount);
-        if (amountNum % LottoConfig.PURCHASE_AMOUNT_UNIT != LottoConfig.NUMBER_ZERO) {
+        if (amountNum % LottoConfig.PURCHASE_AMOUNT_UNIT != NUMBER_ZERO) {
             throw new IllegalArgumentException(ERROR_NOT_UNIT.toString());
         }
     }

@@ -6,8 +6,6 @@ public class LottoConfig {
     public static final int LOTTO_SIZE = 6;
     public static final int PURCHASE_AMOUNT_UNIT = 1000;
     public static final int PURCHASE_AMOUNT_MAX = 100000;
-    public static final int NUMBER_ZERO = 0;
-    public static final int NUMBER_ONE = 1;
 
-    public static final String NUMBER_COUNT = "개";
+    public static final String IS_NUMBER = "\\d+";
 }

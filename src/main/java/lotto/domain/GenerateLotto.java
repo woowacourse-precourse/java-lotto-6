@@ -25,8 +25,6 @@ public class GenerateLotto {
         return lottos;
     }
 
-
-
     private List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(LottoConfig.MIN_RANGE, LottoConfig.MAX_RANGE, LottoConfig.LOTTO_SIZE);
     }

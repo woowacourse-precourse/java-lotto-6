@@ -1,6 +1,6 @@
 package lotto.service;
 
-public class lottoService {
+public class LottoService {
     public static Integer inputPrice(String price) {
         return validatePrice(price) / 1000;
     }
@@ -12,4 +12,6 @@ public class lottoService {
         }
         throw new IllegalArgumentException("잘못된 숫자");
     }
+
+
 }

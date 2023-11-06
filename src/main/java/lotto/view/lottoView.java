@@ -2,9 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static lotto.service.lottoService.inputPrice;
+import static lotto.service.LottoService.inputPrice;
 
-public class lottoView {
+public class LottoView {
 
     public static Integer getNumberOfLottoForPrice() {
         Integer numberOfLotto;

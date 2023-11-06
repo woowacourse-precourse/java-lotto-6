@@ -1,26 +1,34 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lotto.Application;
+import lotto.object.LottoNumber;
 
 public class LottoResult {
-	public static void numberCompare() {
-		List<Integer> resultStorage = new ArrayList<Integer>();
+	public static void lottoCompare(List<LottoNumber> lottoList) {
+		List<LottoNumber> lottoCompare = lottoList;
+		
+		for (LottoNumber tmpObj : lottoCompare) {
+			List<Integer> computerNumber = tmpObj.getComputerNumber();
+			int cnt = playerNumberCompare(computerNumber);
+			System.out.println("일치하는 숫자는 " + cnt + "개입니다.");	
+		}
+		
+	}
+		
+	public static int playerNumberCompare(List<Integer> computerNumber) {
 		int cnt = 0;
-		int index = 0;
-		for(int i = 0; i < Application.computerNumber.size(); i++) {
-			boolean t = Application.computerNumber.contains(Application.playerNumber.get(i));
+		for (int i = 0; i < Application.playerNumber.size(); i ++) {
 			
+			boolean t = computerNumber.contains(Application.playerNumber.get(i));
+		
 			if(t) {
 				cnt++;
-			}	
+			}
 		}
-		resultStorage.add(index, cnt);
-		index++;
-		System.out.println("일치하는 숫자는 " + cnt + "개입니다.");
-	}
+		return cnt;
+	} 
 	
 	public static void earningRateCaculator() {
 		

@@ -19,8 +19,8 @@ public class Util {
 
     public static List<Integer> numberList(String winningNumber) {
         return Arrays.stream(winningNumber.split(DELIMETER))
-                .map(String::trim) // to remove any leading or trailing spaces
-                .map(Util::convertToInt) // assuming convertToInt is a static method in Util
+                .map(String::trim)
+                .map(Util::convertToInt)
                 .collect(Collectors.toList());
     }
 }

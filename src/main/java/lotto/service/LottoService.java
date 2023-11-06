@@ -1,6 +1,5 @@
 package lotto.service;
 
-import static lotto.constant.NumberConstant.PERCENT;
 import static lotto.constant.NumberConstant.SAME_COUNT_FIVE;
 import static lotto.constant.NumberConstant.ZERO;
 
@@ -15,23 +14,27 @@ public class LottoService {
     private final RecordService recordService = new RecordService();
     private final YieldService yieldService = new YieldService();
 
-    public Long calculateMoney(List<LottoTicket> lottoTickets, List<Integer> lottoWinNumbers,
+    public void lottoGameProcess(List<LottoTicket> lottoTickets, List<Integer> lottoWinNumbers,
         Integer bonusNumber) {
-        for (int ticektNumber = ZERO.getNumber(); ticektNumber < lottoTickets.size(); ticektNumber++) {
-            for (Integer lottoWinNumber : lottoWinNumbers) {
-                nowLottoTicketContainWinNumber(lottoTickets, lottoWinNumber, ticektNumber);
-            }
-            nowLottoTicketHasBonusNumber(lottoTickets, bonusNumber, ticektNumber);
+        for (int ticketNumber = ZERO.getNumber(); ticketNumber < lottoTickets.size(); ticketNumber++) {
+            nowLottoTicketHasWinNumber(lottoTickets, lottoWinNumbers, ticketNumber);
+            nowLottoTicketHasBonusNumber(lottoTickets, bonusNumber, ticketNumber);
         }
         recordService.recordResult(lottoTickets);
-        return calculateFinalMoney();
+    }
+
+    private void nowLottoTicketHasWinNumber(List<LottoTicket> lottoTickets, List<Integer> lottoWinNumbers,
+        int ticektNumber) {
+        for (Integer lottoWinNumber : lottoWinNumbers) {
+            nowLottoTicketContainWinNumber(lottoTickets, lottoWinNumber, ticektNumber);
+        }
     }
 
     public double calculateYield(Long result, Long money) {
         return yieldService.calculateYield(result,money);
     }
 
-    private long calculateFinalMoney() {
+    public long calculateFinalMoney() {
         long totalMoney = NumberConstant.ZERO.getNumber();
         for (Result value : Result.values()) {
             totalMoney += (long) value.getMoney() * value.getResultCount();

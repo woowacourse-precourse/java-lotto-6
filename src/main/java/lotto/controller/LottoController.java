@@ -36,7 +36,8 @@ public class LottoController {
         List<LottoTicket> lottoTickets = buyLottoTicket(money / MONEY_UNIT.getNumber());
         List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinNumberService());
         Integer bonusNumber = inputBonusNumber(lottoWinNumbers);
-        Long result = lottoService.calculateMoney(lottoTickets, lottoWinNumbers, bonusNumber);
+        lottoService.lottoGameProcess(lottoTickets, lottoWinNumbers, bonusNumber);
+        Long result = lottoService.calculateFinalMoney();
         outputView.printResult();
         outputView.printYield(lottoService.calculateYield(result, money));
     }

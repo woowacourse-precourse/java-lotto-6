@@ -9,24 +9,8 @@ public class LottoMachine {
     private final List<Lotto> lottos;
 
     public LottoMachine(int money){
-        validMoney(money);
         int count = getLottoCount(money);
         lottos = createLottos(count);
-    }
-
-    private void validMoney(int money){
-        if (money % NumberConstant.LOTTO_PRICE != NumberConstant.DEFAULT_VALUE){
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private int getLottoCount(int money){
-        validMoney(money);
-        return money / NumberConstant.LOTTO_PRICE;
-    }
-
-    private List<Integer> makeRandomLotto(){
-        return Randoms.pickUniqueNumbersInRange(NumberConstant.MIN_NUMBER, NumberConstant.MAX_NUMBER, NumberConstant.LOTTO_RANGE);
     }
 
     private List<Lotto> createLottos(int count){
@@ -37,4 +21,14 @@ public class LottoMachine {
         }
         return lottos;
     }
+
+    private int getLottoCount(int money){
+        return money / NumberConstant.LOTTO_PRICE;
+    }
+
+    private List<Integer> makeRandomLotto(){
+        return Randoms.pickUniqueNumbersInRange(NumberConstant.MIN_NUMBER, NumberConstant.MAX_NUMBER, NumberConstant.LOTTO_RANGE);
+    }
+
+
 }

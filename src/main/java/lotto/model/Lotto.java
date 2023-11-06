@@ -36,19 +36,4 @@ public class Lotto {
             }
         }
     }
-
-    public int getRightCount(List<Integer> lottoNumbers){
-        int combineSize = getNumbersAddLotto(lottoNumbers).size();
-        return NumberConstant.DOUBLE_LOTTO_RANGE - combineSize;
-    }
-
-    private Set<Integer> getNumbersAddLotto(List<Integer> lottoNumbers){
-        Set<Integer> sNumbers = new HashSet<>(numbers);
-        sNumbers.addAll(lottoNumbers);
-        return sNumbers;
-    }
-
-    public boolean isRightBonus(int bonusNumber){
-        return numbers.contains(bonusNumber);
-    }
 }

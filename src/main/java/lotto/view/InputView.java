@@ -59,6 +59,7 @@ public class InputView {
 
     public static List<Integer> numToList(String readLine) {
         List<Integer> list = new ArrayList<>();
+        Set<Integer> set = new HashSet<>();
         String[] split = readLine.split(",");
         for (String s : split) {
             list.add(Integer.parseInt(s));
@@ -67,21 +68,10 @@ public class InputView {
     }
 
     public static void validateLottoNum(String readLine) {
-        Set<String> set = new HashSet<>();
         String[] split = readLine.split(",");
         oneToFourFive(split);
-        isExisted(set, split);
     }
 
-    public static void isExisted(Set<String> set, String[] split) {
-        for (String s : split) {
-            if (set.contains(s)) {
-                System.out.println("[ERROR] 로또 번호는 중복 되면 안됩니다.");
-                throw new InputLottoException();
-            }
-            set.add(s);
-        }
-    }
 
 
     public static void oneToFourFive(String[] split) {

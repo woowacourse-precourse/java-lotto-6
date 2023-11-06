@@ -1,13 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
-import lotto.domain.LottoNumber;
 import lotto.domain.LottoRepository;
-import lotto.domain.Money;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningStatistics;
@@ -30,8 +26,8 @@ public class LotteryStore {
     public PurchasedLottosDto showPurchasedLottos() {
         List<Lotto> purchasedLottos = lottoRepository.showAllLottos();
         List<List<Integer>> Lottos = purchasedLottos.stream()
-                                                  .map(Lotto::showNumbersByIntegers)
-                                                  .toList();
+                                                    .map(Lotto::showNumbersByIntegers)
+                                                    .toList();
 
         return PurchasedLottosDto.from(Lottos);
     }

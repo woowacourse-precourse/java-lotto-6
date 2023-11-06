@@ -6,8 +6,8 @@ import java.util.List;
 
 public class LottoRepository {
 
-    private static LottoRepository instance = new LottoRepository();
-    private static List<Lotto> lottoRepository = new ArrayList<>();
+    private static final LottoRepository instance = new LottoRepository();
+    private static final List<Lotto> lottoRepository = new ArrayList<>();
 
     private LottoRepository() {
 

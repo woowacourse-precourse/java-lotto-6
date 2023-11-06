@@ -25,7 +25,7 @@ public class LottoApplication {
         String money = getMoneyFromUserInput();
         storeMoneyOf(money);
 
-        lottoStore.getLottoOrderUpTo((int)this.money.showCountConvertTo(CURRENCY));
+        lottoStore.getLottoOrderUpTo((int) this.money.showCountConvertTo(CURRENCY));
 
         PurchasedLottosDto purchasedLottos = fetchPurchasedLottos();
         printFrom(purchasedLottos);
@@ -56,14 +56,14 @@ public class LottoApplication {
 
     private void printFrom(PurchasedLottosDto purchasedLottosDto) {
         int count = purchasedLottosDto.show()
-                                     .size();
+                                      .size();
         PurchasedLottoOutputView.outputPurchasedCount(count);
         PurchasedLottoOutputView.outputPurchasedLottos(purchasedLottosDto.show());
     }
-    
+
     public WinningLotto createWinningLottoFrom(List<String> winningLottoNumbers, String BonusNumber) {
         return new WinningLotto(winningLottoNumbers, BonusNumber);
-        
+
     }
 
     private void printFrom(WinningStatistics winningStatistics) {
@@ -73,5 +73,5 @@ public class LottoApplication {
     private void printFrom(RateOfReturn rateOfReturn) {
         RateOfReturnOutputView.outputRateOfReturn(rateOfReturn);
     }
-    
+
 }

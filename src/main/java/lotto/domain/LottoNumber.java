@@ -1,24 +1,24 @@
 package lotto.domain;
 
-import static lotto.constants.LottoConstants.*;
+import static lotto.constants.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.constants.LottoConstants.MIN_LOTTO_NUMBER;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.IntStream;
-import lotto.constants.LottoConstants;
 import lotto.exception.LottoNumberRangeException;
 
 public class LottoNumber implements Comparable {
 
 
-    private int number;
+    private final int number;
 
-    private static Map<Integer, LottoNumber> lottoNumberStore = new HashMap<>();
+    private static final Map<Integer, LottoNumber> lottoNumberStore = new HashMap<>();
 
     static {
         IntStream.rangeClosed(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)
-                .forEach(number -> lottoNumberStore.put(number, new LottoNumber(number)));
+                 .forEach(number -> lottoNumberStore.put(number, new LottoNumber(number)));
     }
 
     private LottoNumber(int number) {
@@ -45,7 +45,7 @@ public class LottoNumber implements Comparable {
     public int compareTo(Object object) {
         LottoNumber other = (LottoNumber) object;
         return this.number - other.number;
-     }
+    }
 
     @Override
     public boolean equals(Object object) {
@@ -57,7 +57,7 @@ public class LottoNumber implements Comparable {
             return false;
         }
 
-        LottoNumber other = (LottoNumber)object;
+        LottoNumber other = (LottoNumber) object;
 
         return this.number == other.number;
     }

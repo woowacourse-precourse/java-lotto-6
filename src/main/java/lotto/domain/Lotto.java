@@ -1,14 +1,12 @@
 package lotto.domain;
 
-import static lotto.constants.LottoConstants.*;
+import static lotto.constants.LottoConstants.LENGTH;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.constants.LottoConstants;
 
-public class Lotto  {
-
+public class Lotto {
 
 
     private final List<LottoNumber> numbers;
@@ -37,8 +35,8 @@ public class Lotto  {
 
     public List<Integer> showNumbersByIntegers() {
         return numbers.stream()
-                .map(LottoNumber::showNumber)
-                .toList();
+                      .map(LottoNumber::showNumber)
+                      .toList();
     }
 
     // TODO: 추가 기능 구현

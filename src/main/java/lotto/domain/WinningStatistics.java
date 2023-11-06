@@ -11,7 +11,7 @@ public class WinningStatistics {
 
 
     private WinningStatistics(List<Rank> winningRanks) {
-        winningRanks.forEach(rank -> rankCount.put(rank, rankCount.getOrDefault(rank, 0)+1));
+        winningRanks.forEach(rank -> rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1));
     }
 
     public static WinningStatistics from(List<Rank> ranks) {
@@ -24,12 +24,10 @@ public class WinningStatistics {
 
     public long showRevenue() {
         Long revenue = Arrays.stream(Rank.values())
-                            .map(rank  -> rank.showPrizeCountOf(showCountOf(rank)))
-                            .reduce(0L, Long::sum);
+                             .map(rank -> rank.showPrizeCountOf(showCountOf(rank)))
+                             .reduce(0L, Long::sum);
         return revenue;
     }
-
-
 
 
 }

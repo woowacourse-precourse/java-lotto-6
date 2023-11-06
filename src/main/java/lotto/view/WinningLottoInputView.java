@@ -12,8 +12,10 @@ public class WinningLottoInputView {
 
         String winningLottos = Console.readLine();
 
-        return Arrays.stream(winningLottos.split(",")).toList();
+        return Arrays.stream(winningLottos.split(","))
+                     .toList();
     }
+
     public static String inputBonusNumber() {
         ConsoleMessageView.printBonusNumberInputMessage();
 

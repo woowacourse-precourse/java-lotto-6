@@ -1,6 +1,6 @@
 package lotto.exception;
 
-public class WrongMoneyUnitException extends IllegalArgumentException{
+public class WrongMoneyUnitException extends IllegalArgumentException {
 
     private static final long CURRENCY_UNIT = 1000;
 

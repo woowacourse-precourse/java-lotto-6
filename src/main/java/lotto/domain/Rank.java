@@ -7,13 +7,13 @@ public enum Rank implements Comparable<Rank> {
     SECOND(5, (count, bonus) -> count == 5 && bonus, 30000000L),
     THIRD(5, (count, bonus) -> count == 5, 1500000L),
     FOURTH(4, (count, bonus) -> count == 4, 50000L),
-    FIFTH(3,  (count, bonus) -> count == 3, 5000L),
+    FIFTH(3, (count, bonus) -> count == 3, 5000L),
     NONE(0, (count, bonus) -> count == 0, 0L);
 
-    private int count;
-    private BiFunction<Integer, Boolean, Boolean> rankMatch;
+    private final int count;
+    private final BiFunction<Integer, Boolean, Boolean> rankMatch;
 
-    private long prize;
+    private final long prize;
 
     Rank(int count, BiFunction<Integer, Boolean, Boolean> rankMatch, long prize) {
 
@@ -22,13 +22,13 @@ public enum Rank implements Comparable<Rank> {
         this.prize = prize;
     }
 
-    public boolean matchRank (int count, boolean bonus) {
+    public boolean matchRank(int count, boolean bonus) {
 
         return rankMatch.apply(count, bonus);
     }
 
     public long showPrizeCountOf(int count) {
-        return (long) prize*count;
+        return prize * count;
     }
 
     public long showPrize() {

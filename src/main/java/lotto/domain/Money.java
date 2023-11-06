@@ -6,7 +6,7 @@ import lotto.exception.WrongMoneyUnitException;
 public class Money {
     private static final long CURRENCY = 1000;
 
-    private long money;
+    private final long money;
 
     private Money(Long money) {
         checkDividedByCurrency(money);
@@ -20,7 +20,7 @@ public class Money {
     }
 
     public long showCountConvertTo(long currency) {
-        return money/currency;
+        return money / currency;
     }
 
     public long showMoney() {
@@ -28,8 +28,8 @@ public class Money {
     }
 
     private static void checkDividedByCurrency(long money) {
-        if (money%CURRENCY != 0) {
-            throw  new WrongMoneyUnitException();
+        if (money % CURRENCY != 0) {
+            throw new WrongMoneyUnitException();
         }
     }
 

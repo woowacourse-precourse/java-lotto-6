@@ -11,11 +11,11 @@ public class PurchasedLottosDto {
         purchasedLottos = new ArrayList<>(lottos);
     }
 
-    public static PurchasedLottosDto from(List< List<Integer>> lottos) {
+    public static PurchasedLottosDto from(List<List<Integer>> lottos) {
         return new PurchasedLottosDto(lottos);
     }
 
-    public List<List<Integer>>  show() {
+    public List<List<Integer>> show() {
         return purchasedLottos;
     }
 

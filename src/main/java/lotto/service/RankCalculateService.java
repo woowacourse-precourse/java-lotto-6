@@ -24,7 +24,7 @@ public class RankCalculateService {
 
     public List<Rank> calculateRanksFrom(List<Lotto> lottos, WinningLotto winningLotto) {
         List<Rank> ranks = lottos.stream()
-                                 .map(lotto ->  calculateRankWith(lotto, winningLotto))
+                                 .map(lotto -> calculateRankWith(lotto, winningLotto))
                                  .toList();
         return ranks;
     }

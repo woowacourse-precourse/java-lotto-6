@@ -11,7 +11,7 @@ public class RateOfReturn {
 
     public static RateOfReturn from(long expense, long revenue) {
 
-        return new RateOfReturn((float)revenue*100/expense);
+        return new RateOfReturn((float) revenue * 100 / expense);
     }
 
     public float show() {

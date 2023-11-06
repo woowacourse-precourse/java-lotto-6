@@ -14,7 +14,7 @@ public class LottoStaticsOutputView {
     public static void outputFrom(WinningStatistics statistics) {
         System.out.println("당첨통계\n---");
         List<Rank> ranks = Arrays.stream(Rank.values())
-                .filter(rank -> !rank.equals(Rank.NONE))
+                                 .filter(rank -> !rank.equals(Rank.NONE))
                                  .sorted(Comparator.reverseOrder())
                                  .toList();
         for (Rank rank : ranks) {

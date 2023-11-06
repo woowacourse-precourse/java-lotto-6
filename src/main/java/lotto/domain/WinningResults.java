@@ -1,0 +1,24 @@
+package lotto.domain;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class WinningResults {
+    private final Map<Rank, Integer> winningResult = new HashMap<>();
+
+    public WinningResults(final LottoTicket ticket, final LuckyNumbers luckyNumbers){
+        for (Lotto lotto : ticket.getTicket()){
+            Rank rank = Rank.find(lotto.compareNumbers(luckyNumbers.getWinningNumbers())
+                    ,lotto.contains(luckyNumbers.getBonusNumber()));
+            addWinningResult(rank);
+        }
+    }
+
+    public Map<Rank, Integer> getWinningResult(){
+        return winningResult;
+    }
+
+    public void addWinningResult(Rank rank){
+        winningResult.put(rank, winningResult.getOrDefault(rank,0)+1);
+    }
+}

@@ -26,6 +26,10 @@ public class Lotto {
                 .anyMatch(lottoNumber -> lottoNumber.getNumber() == number.getNumber());
     }
 
+    public int compareNumbers(Lotto winningNumbers){
+        return (int) numbers.stream().filter(winningNumbers::contains).count();
+    }
+
     public List<LottoNumber> getNumbers(){
         return numbers;
     }

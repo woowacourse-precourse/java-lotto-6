@@ -3,15 +3,15 @@ package domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import dto.Lotto;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import view.InputView;
 
 public class PublishLottoUtil {
 
     private final InputView inputView;
 
-    public PublishLottoUtil(){
+    public PublishLottoUtil() {
         inputView = new InputView();
     }
 
@@ -23,16 +23,9 @@ public class PublishLottoUtil {
     }
 
     private List<Integer> pickLottoNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>();
-        while (lottoNumbers.size() < Constants.LOTTO_NUMBER_CNT) {
-            int lottoNumber = Randoms.pickNumberInRange(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER);
-            if (lottoNumbers.contains(lottoNumber)) {
-                continue;
-            }
-            lottoNumbers.add(lottoNumber);
-        }
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
+        List<Integer> uniqueNumbersInRange = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER,
+                Constants.MAX_LOTTO_NUMBER, Constants.LOTTO_NUMBER_CNT);
+        return uniqueNumbersInRange.stream().sorted().collect(Collectors.toList());
     }
 
     public List<Lotto> publishLotto(int lottoCnt) {

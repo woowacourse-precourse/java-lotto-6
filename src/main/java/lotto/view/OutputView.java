@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -38,6 +39,9 @@ public class OutputView {
     }
 
     public static void printEarningRate(double earningRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
+        NumberFormat nf = NumberFormat.getNumberInstance();
+        nf.setMaximumFractionDigits(1);
+        nf.setMinimumFractionDigits(1);
+        System.out.println("총 수익률은 " + nf.format(earningRate) + "%입니다.");
     }
 }

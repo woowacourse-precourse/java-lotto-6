@@ -9,7 +9,9 @@ import lotto.model.Constants;
 public class LottoValidator extends Validator {
     @Override
     public void validate(String input) {
+        input = removeSpace(input);
         List<String> inputNumbers = splitNumbers(input);
+
         inputNumbers.forEach(this::validateOnlyNumber);
 
         List<Integer> lottoNumbers = inputNumbers.stream()
@@ -23,7 +25,6 @@ public class LottoValidator extends Validator {
     private List<String> splitNumbers(String input) {
         List<String> inputNumbers = List.of(input.split(Constants.NUMBER_SEPARATOR));
         return inputNumbers.stream()
-                .map(this::removeSpace)
                 .toList();
     }
 

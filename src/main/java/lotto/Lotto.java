@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -20,27 +21,41 @@ public class Lotto {
 		}
 	}
 
-	public static void Create(int lottocount) {
+	public static List<List<Integer>> Create(int lottocount) {
 
 		List<List<Integer>> lottos = new ArrayList<>();
 
 		for (int i = 0; i < lottocount; i++) {
 
-			List<Integer> lottonumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+			List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
-			lottos.add(lottonumbers);
+			Collections.sort(numbers);
+
+			lottos.add(numbers);
 		}
 
-		for (int i = 0; i < lottocount; i++) {
-
-			System.out.println(lottos.get(i));
-
-		}
+		return lottos;
 	}
 
-	public static void printLotto(int lottocount) {
-
+	public static void printLottocount(int lottocount) {
+		System.out.println();
 		System.out.println(lottocount + "개를 구매했습니다.");
 
 	}
+
+	public static void checkNum(List<List<Integer>> lottos, String inputnumber) {
+
+		String[] usernums = inputnumber.split(",");
+		int matching = 0;
+
+	}
+
+	public static void printLottoNum(List<List<Integer>> lottos) {
+
+		for (int i = 0; i < lottos.size(); i++) {
+
+			System.out.println(lottos.get(i));
+		}
+	}
+
 }

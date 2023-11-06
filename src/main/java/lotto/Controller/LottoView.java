@@ -31,19 +31,6 @@ public class LottoView {
         }
     }
 
-    /*
-     * public static void printWinningStatistics(WinningStatistics stats) {
-     * System.out.println("당첨 통계\n---");
-     * // 등수별 당첨 결과 출력
-     * }
-     */
-
-    /*
-     * public static void printProfitRate(double profitRate) {
-     * System.out.println("총 수익률은 " + profitRate + "%입니다.");
-     * }
-     */
-
     public static void printErrorMessage(String message) {
         System.out.println("[ERROR] " + message);
     }
@@ -54,6 +41,22 @@ public class LottoView {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public static void printResult() {
+        System.out.println("당첨통계\n---");
+    }
+
+    public static void printRank(int[] rankCounts) {
+        System.out.println("3개 일치 (5,000원)- " + rankCounts[4] + "개");
+        System.out.println("4개 일치 (50,000원)- " + rankCounts[3] + "개");
+        System.out.println("5개 일치 (1,500,000원)- " + rankCounts[2] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원)- " + rankCounts[1] + "개");
+        System.out.println("6개 일치 (2,000,000,000원)- " + rankCounts[0] + "개");
+    }
+
+    public static void printProfit(double profit) {
+        System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 
 }

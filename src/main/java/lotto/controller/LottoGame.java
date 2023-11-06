@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoPlayer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,5 +16,8 @@ public class LottoGame {
     public void start() {
         outputView.askForPurchaseAmount();
         int amount = inputView.getPurchaseAmount();
+
+        LottoPlayer lottoPlayer = new LottoPlayer(amount);
+        lottoPlayer.buyLottos();
     }
 }

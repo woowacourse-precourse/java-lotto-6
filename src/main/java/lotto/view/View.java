@@ -20,6 +20,10 @@ import lotto.dto.InputNumbersDTO;
 
 public class View {
 
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public static void printStartMessage() {
         System.out.println(BUYING_PRICE_MESSAGE.getMessage());
     }

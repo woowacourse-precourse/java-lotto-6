@@ -13,6 +13,6 @@ public class OutputLottoKinds {
     }
 
     public void printLotto(Lotto lotto) {
-        System.out.println(lotto.)
+        System.out.println(lotto.toString());
     }
 }

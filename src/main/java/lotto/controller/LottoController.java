@@ -4,9 +4,14 @@ import lotto.view.ConsoleInputView;
 
 public class LottoController {
 
-    ConsoleInputView consoleInputView = new ConsoleInputView();
+    private final ConsoleInputView consoleInputView;
 
-    public void inputBuyLottoAmount() {
+    public LottoController(ConsoleInputView consoleInputView) {
+        this.consoleInputView = consoleInputView;
+    }
+
+    public void lottoGamePlay() {
         consoleInputView.inputBuyLottoAmount();
     }
+
 }

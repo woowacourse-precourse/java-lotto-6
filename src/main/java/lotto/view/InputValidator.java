@@ -1,6 +1,18 @@
 package lotto.view;
 
+import java.util.ArrayList;
+
 public class InputValidator {
+    static ArrayList<Integer> validateAndParseNumbersInput(String input) {
+        ArrayList<Integer> inputNumbers = new ArrayList<>();
+        String[] winningNumbers = input.split(",");
+
+        for (String winningNumber : winningNumbers) {
+            inputNumbers.add(validateAndParseInput(winningNumber));
+        }
+        return inputNumbers;
+    }
+
     static int validateAndParseInput(String input) {
         validateIsNumeric(input);
         return Integer.parseInt(input);

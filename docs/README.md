@@ -1,15 +1,20 @@
 # 로또
 
 ## 기능 목록
-- [ ] 로또 구입 금액을 입력 받는 기능
+- [x] 로또 구입 금액을 입력 받는 기능 - InputView#inputPurchaseAmount()
   - [ ] 1,000원으로 나누어 떨어지지 않는 경우 예외 처리
-- [ ] 당첨 번호를 입력 받는 기능
-  - [ ] 쉼표를 기준을 구분
-- [ ] 보너스 번호를 입력 받는 기능
-- [ ] 발행한 로또 수량 및 번호를 출력하는 기능
-  - [ ] 로또 번호는 오름차순으로 정렬
-- [ ] 당첨 내역을 출력하는 기능
-- [ ] 수익률을 소수점 둘째 자리에서 반올림하여 출력
+- [x] 당첨 번호를 입력 받는 기능 - InputView#inputWinningNumbers()
+  - [x] 쉼표를 기준을 구분 - LottoGameService#convertWinningNumbersToCollection()
+- [x] 보너스 번호를 입력 받는 기능 - InputView#inputBonusNumber()
+- [x] 발행한 로또 수량 및 번호를 출력하는 기능 - OutputView#printPurchasedLottoNumbers()
+  - [x] 로또 번호 생성 - LottoGameService#generateLottoNumbers()
+  - [x] 1~45의 중복되지 않는 수 6개를 사용 - LottoNumbersGenerator#generateLottoNumbers() 
+  - [x] 로또 번호는 오름차순으로 정렬 - Lotto#sortAscending()
+- [x] 당첨 내역을 출력하는 기능 - OutputView#printWinningStatistics()
+  - [x] 생성한 로또 번호와 당첨 번호를 비교 - LottoGameService#determineWinningRank()
+  - [x] 당첨 횟수를 누적하여 갱신 - LottoGameService#updateWinningCount()
+- [x] 수익률을 소수점 둘째 자리에서 반올림하여 출력 - OutputView#printProfitRatio()
+  - [x] 수익률을 계산 - LottoGameService#calculateProfitRate()
 - [ ] 예외 상황시 에러 문구 출력
 
 ## 기능 요구 사항

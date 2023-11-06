@@ -35,6 +35,10 @@ public enum Ranking {
         return this.count == count;
     }
 
+    public int multiply(int count) {
+        return this.price * count;
+    }
+
     public int getCount() {
         return count;
     }

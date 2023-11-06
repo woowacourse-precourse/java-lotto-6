@@ -26,4 +26,22 @@ class ResultTest {
         // then
         assertThat(ranking).isEqualTo(Ranking.SECOND);
     }
+
+    @Test
+    @DisplayName("총 당첨 금액을 계산한다.")
+    public void calculateTotalPrize() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lottos lottos = new Lottos(List.of(lotto));
+        List<LottoResponseDto> lottoResponseDtos = lottos.toResponseDto().getLottoResponseDtos();
+
+        WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,45", "6");
+
+        // when
+        Result result = new Result(lottoResponseDtos, winningNumber);
+        int totalPrize = result.calculateTotalPrize();
+
+        // then
+        assertThat(totalPrize).isEqualTo(Ranking.SECOND.getPrice() * 1);
+    }
 }

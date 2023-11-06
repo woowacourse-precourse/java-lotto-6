@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.dto.LottoResponseDtos.LottoResponseDto;
+import lotto.utils.constant.LottoConstant;
 
 public class Result {
     private final Map<Ranking, Integer> result = new EnumMap<>(Ranking.class);
@@ -30,5 +31,11 @@ public class Result {
         int count = winningNumber.countWinningNumber(lotto);
         boolean checkBonus = winningNumber.checkBonusNumber(lotto);
         return Ranking.findRanking(count, checkBonus);
+    }
+
+    public int calculateTotalPrize() {
+        return result.entrySet().stream()
+            .mapToInt(e -> e.getKey().multiply(e.getValue()))
+            .sum();
     }
 }

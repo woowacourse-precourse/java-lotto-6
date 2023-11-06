@@ -1,25 +1,25 @@
 package lotto;
 
-import lotto.model.Bonus;
-import lotto.model.Lotto;
-import lotto.model.Purchase;
-import lotto.model.RandomLotto;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.io.ObjectOutput;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Application {
 
     private static int purchasePieces;
-    private static List<Integer> lottoNum;
     private static List<Integer> winNum;
+    private static final List<Set> lottoNum = new ArrayList<>();
     private static int bonusNum;
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final RandomLotto random = new RandomLotto();
+    private static final Intersection intersection = new Intersection();
 
     public static void purchaseCount(String purchasingAmount) {
         try {
@@ -32,15 +32,17 @@ public class Application {
 
     public static void randomRepeat() {
         for (int i = 0; i < purchasePieces; i++) {
-            lottoNum = random.listSort(random.generateNum());
-            outputView.purchaseNum(lottoNum);
+            List<Integer> numbers = random.listSort(random.generateNum());
+            HashSet<Integer> numberAll = new HashSet<>(numbers);
+            lottoNum.add(numberAll);
+            outputView.purchaseNum(numbers);
         }
     }
 
     public static List<Integer> convertNum(String numbers) {
         String[] wordNum = numbers.split(",");
         List<Integer> convertedNum = new ArrayList<>();
-        for (String beforeNum : wordNum){
+        for (String beforeNum : wordNum) {
             convertedNum.add(Integer.parseInt(beforeNum));
         }
         return convertedNum;
@@ -75,5 +77,6 @@ public class Application {
         randomRepeat();
         winLottoNum(convertNum(inputView.winNum()));
         bonusNum(winNum, Integer.parseInt(inputView.bonusNum()));
+        System.out.println(intersection.winNum(winNum, lottoNum));
     }
 }

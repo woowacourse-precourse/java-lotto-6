@@ -1,2 +1,7 @@
-package lotto.model.generator;public interface LottoNumberGenerator {
+package lotto.model.generator;
+
+import java.util.List;
+
+public interface LottoNumberGenerator {
+    List<Integer> drawLots();
 }

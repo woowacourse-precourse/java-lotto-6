@@ -61,3 +61,8 @@
   6개 일치 (2,000,000,000원) - 0개
   총 수익률은 62.5%입니다.
   ```
+
+## Exception
+- [ ] 잘못된 입력이 들어오면 `IllegalArgumentException`을 발생시키다.
+  - [ ] `IllegalArgumentException`이 발생하면 "[ERROR]"로 시작하는 에러 메시지를 출력한다.
+  - [ ] `IllegalArgumentException`이 발생하면 사용자에게 해당 입력을 다시 받는다.

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.config.AppConfig;
+import lotto.domain.MatchedLottoCount;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,8 +36,8 @@ class PlayerServiceTest {
         List<Integer> inputNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
-        int[] lottoResult = playerService.compareLottoNumbers(inputNumbers, bonusNumber);
-        assertThat(lottoResult[1]).isEqualTo(1);
+        MatchedLottoCount matchedLottoCount = playerService.compareLottoNumbers(inputNumbers, bonusNumber);
+        assertThat(matchedLottoCount.getPlaceCount(1)).isEqualTo(1);
     }
 
 }

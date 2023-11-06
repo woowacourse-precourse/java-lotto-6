@@ -10,10 +10,12 @@ import static lotto.constant.Message.BUYING_PRICE_MESSAGE;
 import static lotto.constant.Message.INPUT_BONUS_NUMBER_MESSAGE;
 import static lotto.constant.Message.INPUT_NUMBER_MESSAGE;
 import static lotto.constant.Message.LOTTO_RESULT_MESSAGE;
+import static lotto.constant.Message.getRateOfReturnMessage;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.MatchedLottoCount;
 import lotto.dto.InputNumbersDTO;
 
 public class View {
@@ -48,17 +50,17 @@ public class View {
         return new InputNumbersDTO(inputNumbers, inputBonusNumber);
     }
 
-    public static void printLottoResult(int[] lottoResult) {
+    public static void printLottoResult(MatchedLottoCount matchedLottoCount) {
         System.out.println(LOTTO_RESULT_MESSAGE.getMessage());
-        System.out.println(FIFTH_PLACE.printMessage(lottoResult[4]));
-        System.out.println(FOURTH_PLACE.printMessage(lottoResult[3]));
-        System.out.println(THIRD_PLACE.printMessage(lottoResult[2]));
-        System.out.println(SECOND_PLACE.printMessage(lottoResult[0]));
-        System.out.println(FIRST_PLACE.printMessage(lottoResult[1]));
+        System.out.println(FIFTH_PLACE.printMessage(matchedLottoCount.getPlaceCount(4)));
+        System.out.println(FOURTH_PLACE.printMessage(matchedLottoCount.getPlaceCount(3)));
+        System.out.println(THIRD_PLACE.printMessage(matchedLottoCount.getPlaceCount(2)));
+        System.out.println(SECOND_PLACE.printMessage(matchedLottoCount.getPlaceCount(0)));
+        System.out.println(FIRST_PLACE.printMessage(matchedLottoCount.getPlaceCount(1)));
     }
 
     public static void printRateOfReturn(String rateOfReturn) {
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.println(getRateOfReturnMessage(rateOfReturn));
     }
 
 }

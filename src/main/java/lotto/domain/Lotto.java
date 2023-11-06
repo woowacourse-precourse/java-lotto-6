@@ -1,7 +1,11 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
-import lotto.validator.LottoValidator;
+import java.util.Set;
+import lotto.exception.DuplicatedLottoNumberException;
+import lotto.exception.OutOfNumberRangeException;
+import lotto.validator.ValidNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -9,14 +13,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-        LottoValidator.checkLottoNumberDuplicatedAndThrowException(numbers);
-        LottoValidator.checkLottoNumberRangeAndThrowException(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -27,4 +23,29 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+        checkLottoNumberDuplicatedAndThrowException(numbers);
+        checkLottoNumberRangeAndThrowException(numbers);
+    }
+
+    private void checkLottoNumberDuplicatedAndThrowException(List<Integer> numbers)
+            throws IllegalArgumentException {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != numbers.size()) {
+            throw new DuplicatedLottoNumberException();
+        }
+    }
+
+    private void checkLottoNumberRangeAndThrowException(List<Integer> numbers) throws IllegalArgumentException {
+
+        for (int number : numbers) {
+            if (number > ValidNumber.LOTTO_NUMBER_MAX_RANGE.getNumber()
+                    || number < ValidNumber.LOTTO_NUMBER_MIN_RANGE.getNumber()) {
+                throw new OutOfNumberRangeException();
+            }
+        }
+    }
 }

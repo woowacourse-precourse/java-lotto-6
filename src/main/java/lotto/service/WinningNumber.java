@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.service;
 
 public enum WinningNumber {
     FIRST(6, 2_000_000_000), // 1등
@@ -17,7 +17,7 @@ public enum WinningNumber {
         this.winningAmount = winningAmount;
     }
 
-    public static WinningNumber valueOf(int countOfMatch) {
+    public static WinningNumber valueOf(int countOfMatch) throws IllegalArgumentException {
         if (countOfMatch < WINNING_MIN_COUNT) {
             return MISS;
         }

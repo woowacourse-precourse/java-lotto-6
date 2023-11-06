@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
-import lotto.domain.WinningNumber;
 import lotto.dto.WinningStatisticsDto;
 
 public class LottoServiceImpl implements LottoService {
@@ -49,12 +48,6 @@ public class LottoServiceImpl implements LottoService {
         return price / 1000;
     }
 
-    private WinningStatisticsDto mapToWinningStatisticsDto(Map<Integer, Integer> countMap, double winningRate) {
-        return new WinningStatisticsDto(countMap.getOrDefault(3, 0), countMap.getOrDefault(4, 0),
-                countMap.getOrDefault(5, 0), countMap.getOrDefault(7, 0),
-                countMap.getOrDefault(6, 0), winningRate);
-    }
-
     private double getWinningRate(Map<Integer, Integer> countMap, int totalPurchasedLottoCount) {
         double winningPrice = getWinningPrice(countMap);
         return (winningPrice * 100) / (totalPurchasedLottoCount * LOTTO_DEFAULT_PRICE);
@@ -95,6 +88,12 @@ public class LottoServiceImpl implements LottoService {
         return (int) winningLotto.getNumbers().stream().
                 filter(lotto::containNumber).
                 count();
+    }
+
+    private WinningStatisticsDto mapToWinningStatisticsDto(Map<Integer, Integer> countMap, double winningRate) {
+        return new WinningStatisticsDto(countMap.getOrDefault(3, 0), countMap.getOrDefault(4, 0),
+                countMap.getOrDefault(5, 0), countMap.getOrDefault(7, 0),
+                countMap.getOrDefault(6, 0), winningRate);
     }
 
 }

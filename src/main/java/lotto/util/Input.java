@@ -5,6 +5,7 @@ import lotto.validator.InputValidator;
 
 import java.util.HashSet;
 import static lotto.CommonMessages.*;
+import static lotto.validator.InputValidator.*;
 import static lotto.validator.InputValidator.validateBonusNumberRange;
 import static lotto.validator.InputValidator.validateToInteger;
 
@@ -16,9 +17,9 @@ public class Input {
         try {
 
             String input = Console.readLine();
-            Integer money = InputValidator.validateToInteger(input);
+            Integer money = validateToInteger(input);
 
-            return InputValidator.validateCorrectMoney(money);
+            return validateCorrectMoney(money);
         } catch (IllegalArgumentException e) {
 
             System.out.println(e.getMessage());
@@ -35,13 +36,11 @@ public class Input {
             HashSet<Integer> winningNumbers = new HashSet<>();
 
             String input = Console.readLine();
-            String[] splitInput = input.split(",");
+            String[] inputNumbers = input.split(",");
 
-            for (String number : splitInput) {
-                winningNumbers.add(validateToInteger(number));
-            }
+            addWinningNumber(winningNumbers, inputNumbers);
 
-            InputValidator.validateWinningNumberSize(winningNumbers);
+            validateWinningNumberSize(winningNumbers);
             return winningNumbers;
         } catch (IllegalArgumentException e) {
 
@@ -49,6 +48,12 @@ public class Input {
             getWinningNumbers();
         }
         return null;
+    }
+
+    private static void addWinningNumber(HashSet<Integer> winningNumbers, String[] inputNumbers) {
+        for (String number : inputNumbers) {
+            winningNumbers.add(validateToInteger(number));
+        }
     }
 
     public Integer getBonusNumber() {
@@ -59,7 +64,7 @@ public class Input {
         try {
 
             String input = Console.readLine();
-            Integer bonusNumber = InputValidator.validateToInteger(input);
+            Integer bonusNumber = validateToInteger(input);
             validateBonusNumberRange(bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {

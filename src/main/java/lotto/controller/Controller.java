@@ -51,7 +51,6 @@ public class Controller {
     public void outputRateOfReturn() {
 
         double rateOfReturn = Service.calculateRateOfReturn(lottoResult, purchaseAmount);
-        if (rateOfReturn <= 0) rateOfReturn += 100;
         ConsolePrinter.printRateOfReturn(rateOfReturn);
 
     }

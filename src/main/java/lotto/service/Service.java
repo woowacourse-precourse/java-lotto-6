@@ -65,7 +65,8 @@ public class Service {
 
         int returnAmount = calculateReturnAmount(lottoResult);
 
-        double rateOfReturn = ((double) returnAmount - purchaseAmount.getAmount()) / purchaseAmount.getAmount() * 100;
+        double rateOfReturn = (double) returnAmount / purchaseAmount.getAmount() * 100;
+
 
         return rateOfReturn;
     }

@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Collections;
 import java.util.List;
 
 public class UserLotteries {
@@ -17,10 +16,6 @@ public class UserLotteries {
 
     public List<Lotto> getLotteries() {
         return lotteries;
-    }
-
-    public int getPurchasedLottoCount() {
-        return lotteries.size();
     }
 
 }

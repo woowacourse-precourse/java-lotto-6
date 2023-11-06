@@ -21,39 +21,21 @@ public class InputView {
 
     public Integer getPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
-        while (true) {
-            try {
-                String purchaseAmount = Console.readLine();
-                return  purchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String purchaseAmount = Console.readLine();
+        return  purchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
     }
 
     public List<Integer> getDrawnNumbers() {
         System.out.println();
         System.out.println(INPUT_DRAWN_NUMBERS_MESSAGE);
-        while (true) {
-            try {
-                String drawnNumbers = Console.readLine();
-                return lottoNumberValidator.validateLottNumbers(drawnNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String drawnNumbers = Console.readLine();
+        return lottoNumberValidator.validateLottNumbers(drawnNumbers);
     }
 
     public Integer getBonusNumber() {
         System.out.println();
         System.out.println(INPUT_BONUS_NUMBERS_MESSAGE);
-        while (true) {
-            try {
-                String bonusNumber = Console.readLine();
-                return lottoNumberValidator.validateBonusNumber(bonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String bonusNumber = Console.readLine();
+        return lottoNumberValidator.validateBonusNumber(bonusNumber);
     }
 }

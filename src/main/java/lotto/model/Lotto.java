@@ -1,5 +1,9 @@
 package lotto.model;
 
+import static lotto.constants.ErrorMessage.ALREADY_USED_NUMBER_NOT_ALLOWED;
+import static lotto.constants.ErrorMessage.LOTTO_NUMBER_SIZE_SIX_ALLOWED;
+import static lotto.constants.ErrorMessage.LOTTO_RANGE_NUMBER_ALLOWED;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +24,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_NUMBER_SIZE_SIX_ALLOWED.toString());
         }
     }
 
@@ -28,7 +32,7 @@ public class Lotto {
     private void validateNotDuplicated(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() < numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ALREADY_USED_NUMBER_NOT_ALLOWED.toString());
         }
     }
 
@@ -38,7 +42,7 @@ public class Lotto {
 
     private void validateNumberInRange(Integer number) {
         if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_RANGE_NUMBER_ALLOWED.toString());
         }
     }
 

@@ -11,7 +11,8 @@ public enum ErrorMessage {
 
     ONLY_NUMBER_ALLOWED("숫자만 입력할 수 있습니다."),
     LOTTO_RANGE_NUMBER_ALLOWED("1에서 45 사이의 숫자만 입력할 수 있습니다."),
-    ALREADY_USED_NUMBER_NOT_ALLOWED("로또에 이미 있는 번호는 입력할 수 없습니다."),
+    LOTTO_NUMBER_SIZE_SIX_ALLOWED("로또 번호는 6개 입력할 수 있습니다."),
+    ALREADY_USED_NUMBER_NOT_ALLOWED("로또 번호에 중복한 값이 들어갈 수 없습니다."),
 
     DIVISIBLE_BY_THOUSAND_ALLOWED("1000원 단위만 입력할 수 있습니다."),
     ZERO_OR_LESS_NOT_ALLOWED("0 이하의 수는 입력할 수 없습니다.");

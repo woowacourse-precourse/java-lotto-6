@@ -1,6 +1,7 @@
 package lotto.dto;
 
 import static lotto.model.LottoRank.FIFTH_RANK;
+import static lotto.model.LottoRank.FIRST_RANK;
 import static lotto.model.LottoRank.FOURTH_RANK;
 import static lotto.model.LottoRank.SECOND_RANK;
 import static lotto.model.LottoRank.THIRD_RANK;
@@ -40,7 +41,7 @@ public class StatisticDto {
     }
 
     public Integer getFirstRankCount() {
-        return getRank().getOrDefault(FIFTH_RANK, 0);
+        return getRank().getOrDefault(FIRST_RANK, 0);
     }
 
     public Map<LottoRank, Integer> getRank() {

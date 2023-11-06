@@ -9,6 +9,7 @@ import lotto.exception.LottoNumberDuplicatedException;
 import lotto.exception.LottoNumberOutOfRangeException;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -41,7 +42,13 @@ public class Lotto {
         }
     }
 
-    public boolean containsNumber(Integer number) {
+    protected boolean containsNumber(Integer number) {
         return numbers.contains(number);
+    }
+
+    public int countMatchingNumbersWith(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::containsNumber)
+                .count();
     }
 }

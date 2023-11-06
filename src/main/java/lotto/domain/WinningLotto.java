@@ -33,4 +33,8 @@ public class WinningLotto extends Lotto {
             throw new BonusNumberDuplicatedException(bonusNumber);
         }
     }
+
+    public boolean isBonusNumberIn(Lotto lotto) {
+        return lotto.containsNumber(bonusNumber);
+    }
 }

@@ -249,6 +249,12 @@
     - [x] 중복된 숫자가 입력되지 않았을 때
     - [x] 중복된 숫자가 입력되었을 때
 
+### BonusNumber 클래스
+
+- 1부터 45 사이의 숫자인지 확인한다.
+    - [x] 1부터 45 사이의 숫자일 때
+    - [x] 1부터 45 사이의 숫자가 아닐 때
+
 # 사용 라이브러리
 
 - camp.nextstep.edu.missionutils.Console의 readLine()

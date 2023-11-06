@@ -11,7 +11,7 @@ public class Game {
     public Lottos createLottos(int buyAmount) {
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < buyAmount/1000; i++) {
+        for (int i = 0; i < buyAmount / 1000; i++) {
             lottos.add(new Lotto(Generator.createNumbers()));
         }
 
@@ -19,22 +19,11 @@ public class Game {
     }
 
 
-    public long compareLottoNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-        return lottoNumbers.stream().filter(winningNumbers::contains).count();
-    }
-
-    public Boolean compareBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {
-        if (lottoNumbers.contains(bonusNumber)) {
-            return true;
-        }
-        return false;
-    }
-
     public int[] createResult(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {
         int[] result = new int[6];
         for (Lotto lotto : lottos.getLottos()) {
-            int index = checkAnswer(compareLottoNumbers(lotto.getNumbers(), winningNumbers),
-                    compareBonusNumber(lotto.getNumbers(), bonusNumber));
+            int index = checkAnswer(lotto.compareLottoNumbers(winningNumbers),
+                    lotto.compareBonusNumber(bonusNumber));
             result[index]++;
         }
         return result;

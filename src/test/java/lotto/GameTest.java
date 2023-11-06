@@ -1,25 +1,17 @@
 package lotto;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.model.Game;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
-import lotto.model.Winners;
-import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class GameTest {
     @DisplayName("로또 여러개 생성 시 카운트 일치 테스트")
@@ -51,21 +43,7 @@ public class GameTest {
         }
     }
 
-    @DisplayName("LottoNumbers WinningNumbers 비교 테스트")
-    @Test
-    void compareLottoAndBonusNumber_EqualResult_Success() {
-        Game game = new Game();
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
 
-        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 6;
-
-        long winner = game.compareLottoNumbers(lottoNumbers, winningNumbers);
-        Boolean bonus = game.compareBonusNumber(lottoNumbers, bonusNumber);
-
-        assertThat(winner).isEqualTo(5);
-        assertThat(bonus).isTrue();
-    }
 
     @DisplayName("당첨 통계 테스트")
     @Test

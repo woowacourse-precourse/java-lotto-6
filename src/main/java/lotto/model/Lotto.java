@@ -27,7 +27,18 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return this.numbers;
+        return numbers;
+    }
+
+    public long compareLottoNumbers(List<Integer> winningNumbers) {
+        return numbers.stream().filter(winningNumbers::contains).count();
+    }
+
+    public Boolean compareBonusNumber(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
     }
 
 

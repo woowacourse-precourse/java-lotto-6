@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottosTest {
 
@@ -22,7 +21,7 @@ class LottosTest {
         Lottos lottos = new Lottos(lotto);
 
         // when
-        List<String> lottosNumber = lottos.getLottosNumber();
+        List<String> lottosNumber = lottos.getLottosAllSortedNumber();
 
         // then
         assertThat(lottosNumber)

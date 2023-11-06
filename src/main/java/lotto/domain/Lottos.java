@@ -1,9 +1,6 @@
 package lotto.domain;
 
 
-import lotto.utils.Generator;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
@@ -14,7 +11,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<String> getLottosNumber(){
+    public List<String> getLottosAllSortedNumber(){
         return lottos.stream()
                 .map(lotto -> lotto.getSortedNumbers())
                 .toList();

@@ -33,4 +33,8 @@ public enum Ranking {
         }
         return this.matchCount == matchCount;
     }
+
+    public Integer calculatePrize(int rankCount) {
+        return rankCount * price;
+    }
 }

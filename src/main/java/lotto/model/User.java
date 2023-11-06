@@ -19,10 +19,10 @@ public class User {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         for (Lotto lotto : lottos) {
-            sb.append(lotto.toString() + "\n");
+            stringBuilder.append(lotto.toString() + "\n");
         }
-        return sb.toString();
+        return stringBuilder.toString();
     }
 }

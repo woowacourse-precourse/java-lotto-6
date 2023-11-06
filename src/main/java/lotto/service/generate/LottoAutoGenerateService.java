@@ -21,7 +21,7 @@ public class LottoAutoGenerateService {
         return instance;
     }
 
-    public Lottos generate(int count) throws LottoException {
+    public Lottos generate(int count) {
         // Lotto 는 List<LottoNumber> 가지고 있고, LottoNumber 는 Integer 를 가지고 있다.
         // 따라서 Set<Lotto> 는  LottoNumber 6개 모두가 중복되지 않는 로또들을 의미한다.
         Set<Lotto> uniqueLottos = new HashSet<>();
@@ -33,7 +33,7 @@ public class LottoAutoGenerateService {
         return new Lottos(new ArrayList<>(uniqueLottos)); // 명시적 형변환
     }
 
-    private static List<Integer> generateRandomNumbers() {
+    private List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER.getValue(), LOTTO_MAX_NUMBER.getValue(), LOTTO_SIZE.getValue());
     }
 

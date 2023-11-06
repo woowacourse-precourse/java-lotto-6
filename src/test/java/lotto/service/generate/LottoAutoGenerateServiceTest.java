@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LottoAutoGenerateServiceTest {
 
     @Test
-    @DisplayName("로또 1개를 정상적으로 생성하는 테스트")
+    @DisplayName("로또 1개를 자동으로 생성하는 정상 테스트")
     void generateLotto() throws LottoException {
         LottoAutoGenerateService autoGenerateService = LottoAutoGenerateService.getInstance();
         Lottos lottos = autoGenerateService.generate(1);
@@ -35,7 +35,7 @@ public class LottoAutoGenerateServiceTest {
     }
 
     @Test
-    @DisplayName("로또 여러 개를 생성하는 정상 테스트")
+    @DisplayName("로또 여러 개를 자동으로 생성하는 정상 테스트")
     void generateLottos() throws LottoException {
         LottoAutoGenerateService autoGenerateService = LottoAutoGenerateService.getInstance();
         Lottos lottos = autoGenerateService.generate(5);

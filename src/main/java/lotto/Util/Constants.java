@@ -6,5 +6,6 @@ public class Constants {
     public static final int MAX_LOTTO_NUM = 45;
     public static final int LOTTO_PRICE_UNIT = 1000;
 
+    public static final double PERCENT = 100d;
     public static final String DELIMITER = ",";
 }

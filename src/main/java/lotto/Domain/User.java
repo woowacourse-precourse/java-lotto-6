@@ -20,4 +20,11 @@ public class User {
         UserValidator.doValidate(money, lottos);
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public int getMoney() {
+        return money;
+    }
 }

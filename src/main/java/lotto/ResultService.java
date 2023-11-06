@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ResultService {
     public static int calculateNumberOfLottoTickets(int purchaseAmount) {
@@ -18,6 +20,13 @@ public class ResultService {
             resultsOfLottoIssuance.add(Lotto.createRandomNumbersForLotto());
         }
         return resultsOfLottoIssuance;
+    }
+
+    public static void printResultsOfLottoIssuance(List<Lotto> resultOfLottoIssuance) {
+        for (Lotto result : resultOfLottoIssuance) {
+            List<Integer> sortResult = result.sortNumbers(result);
+            System.out.println(sortResult);
+        }
     }
 
 

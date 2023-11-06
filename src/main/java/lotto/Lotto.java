@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
@@ -37,6 +38,12 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    private List<Integer> getNumbers(Lotto numbers) {
+        return this.numbers;
+    }
 
+    public List<Integer> sortNumbers(Lotto numbers) {
+        return getNumbers(numbers).stream().sorted().collect(Collectors.toList());
+    }
 
 }

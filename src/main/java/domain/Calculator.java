@@ -6,25 +6,35 @@ import java.util.Set;
 import util.PrizeMoney;
 
 public class Calculator {
-    PrizeDescribe prizeDescribe = PrizeDescribe.getInstance();
+    PrizeStatistics prizeDescribe = PrizeStatistics.getInstance();
+    private static final int DIVIDING_UNIT = 1000;
+
     public int calculateMoneyToLottoCount(int money) {
-        return money / 1000;
+        return money / DIVIDING_UNIT;
     }
 
     public void calculatePrizeDescribe(Lotto lottoNumber, List<Integer> prizeNumber, int bonusNumber) {
         int matchedNumberCount = getMatchedNumberCount(lottoNumber, prizeNumber);
 
-        if (matchedNumberCount == 3) { prizeDescribe.winFifthPrize();}
+        if (matchedNumberCount == 3) {
+            prizeDescribe.winFifthPrize();
+        }
 
-        if (matchedNumberCount == 4) {prizeDescribe.winFourthPrize();}
+        if (matchedNumberCount == 4) {
+            prizeDescribe.winFourthPrize();
+        }
 
-        if (matchedNumberCount == 5) {prizeDescribe.winThirdPrize();}
+        if (matchedNumberCount == 5) {
+            prizeDescribe.winThirdPrize();
+        }
 
         if (matchedNumberCount == 5 && isLottoNumberContainBonusNumber(lottoNumber, bonusNumber)) {
             prizeDescribe.winSecondPrize();
         }
 
-        if (matchedNumberCount == 6) {prizeDescribe.winFirstPrize();}
+        if (matchedNumberCount == 6) {
+            prizeDescribe.winFirstPrize();
+        }
     }
 
     private int getMatchedNumberCount(Lotto lottoNumber, List<Integer> prizeNumber) {

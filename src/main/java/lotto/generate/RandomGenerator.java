@@ -18,7 +18,9 @@ public class RandomGenerator {
     }
 	
 	public void print() {
-		for(int i = 0; i < myLotto.size(); i++) {
+		int size = myLotto.size();
+		System.out.println("\n"+ size + "개를 구입했습니다.");
+		for(int i = 0; i < size; i++) {
 			System.out.println(myLotto.get(i));
 		}
 	}

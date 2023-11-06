@@ -33,11 +33,11 @@ public final class GeneralConstant {
         put("FIFTH", 5000);
     }};
 
-    public static final LinkedHashMap<String, Integer> PRIZE_RANK_WEIGHT = new LinkedHashMap<String, Integer>() {{
-        put("FIFTH", 3);
-        put("FOURTH", 4);
+    public static final HashMap<String, Integer> PRIZE_RANK_WEIGHT = new LinkedHashMap<String, Integer>() {{
+        put("FIRST", 7);
+        put("SECOND", 6);
         put("THIRD", 5);
-        put("SECOND", 10);
-        put("FIRST", 6);
+        put("FOURTH", 4);
+        put("FIFTH", 3);
     }};
 }

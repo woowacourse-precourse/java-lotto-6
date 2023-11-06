@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constant.GeneralConstant.NUMBERS_SIZE;
 import static lotto.constant.GeneralConstant.ZERO;
 import static lotto.constant.GeneralConstant.INT_NULL;
 import static lotto.constant.GeneralConstant.PRIZE_RANK_WEIGHT;
@@ -27,17 +28,18 @@ public enum LottoCompany {
 
     public int matchPrize(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
-        int weight = calculatePrizeRank(set);
-        if(weight == PRIZE_RANK_WEIGHT.get("THIRD")) {
-            weight = calculateBonusNumber(weight, set);
-        }
+        int weight = calcWeight(set);
+        weight = calcBonusNumber(weight, set);
         return getRankIndex(weight);
     }
 
-    private int calculatePrizeRank(Set<Integer> set) {
+    private int calcWeight(Set<Integer> set) {
         int weight = ZERO;
         for(int number : prizeNumbers) {
             weight = matchPrizeNumber(weight, set, number);
+        }
+        if(weight == prizeNumbers.size()) {
+            weight = PRIZE_RANK_WEIGHT.get("FIRST");
         }
         return weight;
     }
@@ -49,21 +51,28 @@ public enum LottoCompany {
         return weight;
     }
 
-    private int calculateBonusNumber(int weight, Set<Integer> set) {
-        if(set.contains(bonusNumber)) {
-           return PRIZE_RANK_WEIGHT.get("SECOND");
+    private int calcBonusNumber(int weight, Set<Integer> set) {
+        if(weight == PRIZE_RANK_WEIGHT.get("THIRD")) {
+            return matchBonusNumber(set);
         }
         return weight;
     }
 
+    private int matchBonusNumber(Set<Integer> set) {
+        if(set.contains(bonusNumber)) {
+           return PRIZE_RANK_WEIGHT.get("SECOND");
+        }
+        return PRIZE_RANK_WEIGHT.get("THIRD");
+    }
+
     private int getRankIndex(int weight) {
-        int index = ZERO;
-        for(int value : PRIZE_RANK_WEIGHT.values()) {
-            if(weight == value) {
-                return index;
-            }
-            index++;
+        if(weight >= PRIZE_RANK_WEIGHT.get("FIFTH")) {
+            return calcRankIndex(weight);
         }
         return INT_NULL;
+    }
+
+    private int calcRankIndex(int weight) {
+        return weight - PRIZE_RANK_WEIGHT.get("FIFTH");
     }
 }

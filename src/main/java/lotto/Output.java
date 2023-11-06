@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,10 @@ public class Output {
     }
 
     public static void returnRate(double returnRate) {
-        String message = "총 수익률은 " + returnRate + "%입니다.";
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        String formattedReturnRate = decimalFormat.format(returnRate);
+
+        String message = "총 수익률은 " + formattedReturnRate + "%입니다.";
         System.out.println(message);
     }
 }

@@ -31,7 +31,8 @@ public class LottoNumber {
     }
 
     public static List<LottoNumber> generateLottoNumbers(final int lottoSize) {
-        List<Integer> randomNumbers = RandomGenerator.generateRandomValue(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, lottoSize);
+        List<Integer> randomNumbers = RandomGenerator
+                .generateUniqueRandomNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, lottoSize);
         return randomNumbers.stream()
                 .map(LottoNumber::generateLottoNumber)
                 .toList();

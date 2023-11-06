@@ -8,6 +8,6 @@ public class OutputWriter implements Writer {
 
     @Override
     public void writeln(String message) {
-        System.out.println();
+        System.out.println(message);
     }
 }

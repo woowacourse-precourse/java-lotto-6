@@ -31,13 +31,22 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("해당 숫자를 가지고 있는지 확인한다")
+    @DisplayName("해당 숫자를 가지고 있는지 확인한다.")
     @Test
     void checkNumberContained() {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         int containNumber = 5;
 
         Assertions.assertThat(lotto.isContain(containNumber)).isTrue();
+    }
+
+    @DisplayName("숫자가 몇 개 일치하는지 확인한다.")
+    @Test
+    void countSameLottoNumbers() {
+        Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto2 = new Lotto(List.of(1,2,3,10,11,12));
+
+        Assertions.assertThat(lotto1.sameNumberCount(lotto2)).isEqualTo(3);
     }
     // 아래에 추가 테스트 작성 가능
 }

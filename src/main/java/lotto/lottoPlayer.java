@@ -5,6 +5,7 @@ import java.util.List;
 
 public class lottoPlayer {
     private final List<Lotto> lottos = new ArrayList<>();
+    private int money = 0;
 
     public void generateLottos(int number) {
         for (int i = 0; i < number; i++) {
@@ -15,5 +16,9 @@ public class lottoPlayer {
 
     public void removeLottos() {
         lottos.clear();
+    }
+
+    public void addMoney(int additionalMoney) {
+        money += additionalMoney;
     }
 }

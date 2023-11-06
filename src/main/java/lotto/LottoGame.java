@@ -12,6 +12,8 @@ public class LottoGame {
             money = GameInput.insertMoney();
         }
         Lottos lottos = Lottos.issueLottos(money);
+        int issueNumber = lottos.getSize();
+        GuideMessage.ofIssuedLottos(lottos,issueNumber);
     }
 
 }

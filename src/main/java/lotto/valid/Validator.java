@@ -18,14 +18,14 @@ public class Validator {
                 .toList();
     }
 
-    protected static void validateRange(int number) throws IllegalArgumentException {
+    protected static void validateLottoRange(int number) throws IllegalArgumentException {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
         }
     }
 
-    protected static void validateRange(List<Integer> numbers) throws IllegalArgumentException {
-        numbers.forEach(Validator::validateRange);
+    protected static void validateLottoRange(List<Integer> numbers) throws IllegalArgumentException {
+        numbers.forEach(Validator::validateLottoRange);
     }
 
     protected static void validatePositive(int number) throws IllegalArgumentException {

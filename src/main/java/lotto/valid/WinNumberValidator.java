@@ -5,7 +5,7 @@ import lotto.models.Lotto;
 public class WinNumberValidator extends Validator {
 
     public static void validate(Lotto lotto, int bonusNumber) throws IllegalArgumentException {
-        validateRange(bonusNumber);
+        validateLottoRange(bonusNumber);
         validateDuplicateBonusNumber(lotto, bonusNumber);
     }
 

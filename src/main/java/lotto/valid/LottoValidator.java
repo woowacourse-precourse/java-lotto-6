@@ -6,7 +6,7 @@ public class LottoValidator extends Validator {
 
     public static void validate(List<Integer> numbers) throws IllegalArgumentException {
         validateLength(numbers);
-        validateRange(numbers);
+        validateLottoRange(numbers);
         validateDuplicate(numbers);
     }
 

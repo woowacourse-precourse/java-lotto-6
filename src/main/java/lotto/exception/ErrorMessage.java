@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import lotto.validator.PriceValidator;
+
 public enum ErrorMessage {
     NOT_INTEGER_MESSAGE("숫자만 입력 가능합니다."),
     NOT_THOUSAND_MESSAGE("1000의 배수만 입력 가능합니다."),
@@ -11,6 +13,7 @@ public enum ErrorMessage {
     ErrorMessage(String message){
         this.message = message;
     }
+
     public String getMessage() {
         return message;
     }

@@ -10,13 +10,13 @@ public class LottoMachine {
     private final Cash cash;
 
 
-    public LottoMachine(NumberGenerator numberGenerator, Cash cash) {
+    public LottoMachine(final NumberGenerator numberGenerator, final Cash cash) {
         this.numberGenerator = numberGenerator;
         this.cash = cash;
     }
 
     public Lottos purchaseLottos() {
-        List<Lotto> generatedLottos = generateLottosByCash();
+        final List<Lotto> generatedLottos = generateLottosByCash();
         return new Lottos(generatedLottos);
     }
 
@@ -32,7 +32,7 @@ public class LottoMachine {
     }
 
     private Lotto generateLotto() {
-        List<Integer> numbers = numberGenerator.generateNumbers();
+        final List<Integer> numbers = numberGenerator.generateNumbers();
         return new Lotto(numbers);
     }
 

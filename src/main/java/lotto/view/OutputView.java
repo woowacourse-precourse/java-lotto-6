@@ -4,6 +4,6 @@ public interface OutputView {
 
     void print(String value);
 
-    void printErrorMessage(String value);
+    void print(Exception error);
 
 }

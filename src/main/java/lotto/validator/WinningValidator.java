@@ -14,7 +14,6 @@ public class WinningValidator {
         validateDuplicate(winningList);
 
     }
-
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != WINNING_SIZE) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호를 6개 골라야 합니다. ");
@@ -38,6 +37,12 @@ public class WinningValidator {
                 .count();
         if (duplicateCount != WINNING_SIZE) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복 숫자가 존재합니다.");
+        }
+    }
+    public static void validateNonNumber(String input) {
+        String regExp = "^[0-9]+$";
+        if (!input.matches(regExp)){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 숫자 이외의 값이 들어오면 안됩니다.");
         }
     }
 

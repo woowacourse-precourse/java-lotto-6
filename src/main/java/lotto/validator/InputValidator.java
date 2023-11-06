@@ -1,11 +1,10 @@
 package lotto.validator;
 
-public class InputValidator implements Validator<String>{
+public class InputValidator{
 
     private static final Character ZERO_LETTER = '0';
     private static final int LEAST_LENGTH = 1;
-    @Override
-    public void validate(String input) {
+    public static void validate(String input) {
         validateBlank(input);
         validateNonNumber(input);
         validateStartsWithZero(input);

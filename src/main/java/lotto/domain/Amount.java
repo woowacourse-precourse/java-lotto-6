@@ -6,9 +6,8 @@ public class Amount {
 
     private static final int UNIT = 1000;
     private final int money;
-    private final MoneyValidator moneyValidator = new MoneyValidator();
     public Amount(int money) {
-        moneyValidator.validate(money);
+        MoneyValidator.validate(money);
         this.money = money;
     }
     public int getMoney() {

@@ -2,36 +2,41 @@ package lotto.model.domain;
 
 public enum Rank {
 
-    FIRST(6,2000000000L,"2,000,000,000", false),
-    SECOND_BONUS(5,30000000L,"30,000,000", true),
-    THIRD(5,1500000L,"1,500,000", false),
-    FOURTH(4,50000L,"50,000", false),
-    FIFTH(3,5000L,"5,000", false);
+    FIRST(6,2000000000L,"2,000,000,000"),
+    SECOND_BONUS(10,30000000L,"30,000,000"),
+    THIRD(5,1500000L,"1,500,000"),
+    FOURTH(4,50000L,"50,000"),
+    FIFTH(3,5000L,"5,000"),
+    NONE_TWO(2,0L,"0"),
+    NONE_ONE(1,0L,"0"),
+    NONE_ZERO(0,0L,"0");
 
-    private final int count;
+    private final int identifyNum;
     private final long prize;
     private final String prizeForPrint;
-    private final boolean isBonus;
 
-    Rank(int count, long prize, String prizeForPrint, boolean isBonus) {
-        this.count = count;
+    Rank(int identifyNum, long prize, String prizeForPrint) {
+        this.identifyNum = identifyNum;
         this.prize = prize;
         this.prizeForPrint = prizeForPrint;
-        this.isBonus = isBonus;
     }
 
-    public static Rank lottoRank(int correctCount) {
+    public static Rank lottoRank(int identifyNum) {
         Rank[] ranks = Rank.values();
         for (Rank rank : ranks) {
-            if(rank.count == correctCount){
+            if(rank.identifyNum == identifyNum){
                 return rank;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 맞는 숫자가 형식에 맞지 않습니다.");
+        throw new IllegalArgumentException("[ERROR] correctCount가 올바르지 않습니다.");
     }
 
     public long getPrize() {
         return prize;
+    }
+
+    public String getPrizeForPrint() {
+        return prizeForPrint;
     }
 
 }

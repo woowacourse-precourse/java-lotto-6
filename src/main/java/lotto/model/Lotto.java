@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -12,8 +14,8 @@ public class Lotto {
         validateNumbersSize(numbers);
         validateDuplicateNumber(numbers);
         validateNumbersBoundary(numbers);
-        //numbers.sort(Comparator.comparingInt(s -> s));
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     @Override

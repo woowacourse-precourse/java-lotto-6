@@ -1,6 +1,6 @@
 package lotto.io;
 
-import lotto.domain.LottoPurchasePrice;
+import lotto.domain.PurchasePrice;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +12,13 @@ class InputMapperTest {
     private final InputMapper inputMapper = new InputMapper();
 
     @Test
-    @DisplayName("LottoPurchasePrice 객체로 변환하여 로또 개수를 가진다.")
-    void Given_LottoPurchasePrice_When_getLottosAmount_Then_EqualAmount() {
+    @DisplayName("PurchasePrice 객체로 변환하여 로또 개수를 가진다.")
+    void Given_PurchasePrice_When_getLottosAmount_Then_EqualAmount() {
         //given
-        LottoPurchasePrice lottoPurchasePrice = inputMapper.toLottoPurchasePrice("2000");
+        PurchasePrice PurchasePrice = inputMapper.toPurchasePrice("2000");
 
         //when
-        Integer lottosAmount = lottoPurchasePrice.getLottosAmount();
+        Integer lottosAmount = PurchasePrice.getLottosAmount();
 
         //then
         assertThat(lottosAmount).isEqualTo(2);

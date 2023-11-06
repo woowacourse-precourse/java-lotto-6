@@ -11,10 +11,10 @@ public class InputView {
         this.inputValidator = inputValidator;
     }
 
-    public String inputLottoPurchasePrice() {
-        String lottoPurchasePrice = Console.readLine();
-        inputValidator.validateNumeric(lottoPurchasePrice);
-        return lottoPurchasePrice;
+    public String inputPurchasePrice() {
+        String purchasePrice = Console.readLine();
+        inputValidator.validateNumeric(purchasePrice);
+        return purchasePrice;
     }
 
     public String inputWinningNumbers() {

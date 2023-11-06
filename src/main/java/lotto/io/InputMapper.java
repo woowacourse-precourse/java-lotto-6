@@ -2,16 +2,16 @@ package lotto.io;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPurchasePrice;
+import lotto.domain.PurchasePrice;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class InputMapper {
 
-    public LottoPurchasePrice toLottoPurchasePrice(String lottoPurchasePrice) {
+    public PurchasePrice toPurchasePrice(String lottoPurchasePrice) {
         Integer purchasePrice = Integer.parseInt(lottoPurchasePrice);
-        return new LottoPurchasePrice(purchasePrice);
+        return new PurchasePrice(purchasePrice);
     }
 
     public Lotto toLotto(String winningNumbers) {

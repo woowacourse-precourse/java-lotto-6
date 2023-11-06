@@ -12,7 +12,7 @@ public class Lottos {
 
     private final List<Numbers> lottoValues = new ArrayList<>();
 
-    public void saveLottos(LottoPurchasePrice purchasePrice) {
+    public void saveLottos(PurchasePrice purchasePrice) {
         Integer lottosAmount = purchasePrice.getLottosAmount();
 
         IntStream.range(0, lottosAmount)

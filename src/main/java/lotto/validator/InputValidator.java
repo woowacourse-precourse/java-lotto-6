@@ -5,8 +5,8 @@ import lotto.exception.NotDivisionCommaException;
 import lotto.exception.NotNumericException;
 
 public class InputValidator {
-    public void validateNumeric(String lottoPurchasePrice) {
-        if (InputPattern.isNotNumeric(lottoPurchasePrice)) {
+    public void validateNumeric(String purchasePrice) {
+        if (InputPattern.isNotNumeric(purchasePrice)) {
             throw new NotNumericException();
         }
     }

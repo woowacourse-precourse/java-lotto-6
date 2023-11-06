@@ -2,16 +2,16 @@ package lotto.domain;
 
 import lotto.exception.NotThousandUnitException;
 
-public class LottoPurchasePrice {
+public class PurchasePrice {
 
     private static final Integer UNIT = 1000;
     private static final Integer NOT_REMAIN = 0;
 
-    private final Integer purchasePrice;
+    private final Integer lottoPurchasePrice;
 
-    public LottoPurchasePrice(Integer purchasePrice) {
+    public PurchasePrice(Integer purchasePrice) {
         validateThousandUnit(purchasePrice);
-        this.purchasePrice = purchasePrice;
+        this.lottoPurchasePrice = purchasePrice;
     }
 
     private void validateThousandUnit(Integer purchasePrice) {
@@ -25,6 +25,6 @@ public class LottoPurchasePrice {
     }
 
     public Integer getLottosAmount() {
-        return purchasePrice / UNIT;
+        return lottoPurchasePrice / UNIT;
     }
 }

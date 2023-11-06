@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.domain.LottoPurchasePrice;
+import lotto.domain.PurchasePrice;
 import lotto.domain.LottoStatistics;
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
@@ -19,7 +19,7 @@ public class LottoService {
         this.lottoStatistics = lottoStatistics;
     }
 
-    public void saveLottos(LottoPurchasePrice lottoPurchasePrice) {
+    public void saveLottos(PurchasePrice lottoPurchasePrice) {
         lottos.saveLottos(lottoPurchasePrice);
     }
 

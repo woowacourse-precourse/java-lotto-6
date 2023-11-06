@@ -12,7 +12,7 @@ import static org.mockito.BDDMockito.mock;
 @DisplayName("로또들 객체에 대해")
 class LottosTest {
 
-    private final LottoPurchasePrice purchasePrice = mock(LottoPurchasePrice.class);
+    private final PurchasePrice purchasePrice = mock(PurchasePrice.class);
 
     @Test
     @DisplayName("로또 구입 금액에 따라 로또들을 저장한다.")

@@ -20,10 +20,6 @@ public class LottoTicket {
         return new LottoTicket(lottos);
     }
 
-    public int getLottoSize() {
-        return lottos.size();
-    }
-
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }

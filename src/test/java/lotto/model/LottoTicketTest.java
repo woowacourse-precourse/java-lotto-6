@@ -14,6 +14,6 @@ class LottoTicketTest {
         final LottoTicket lottoTicket = LottoTicket.create(purchaseLottoNumber);
 
         // then
-        Assertions.assertEquals(lottoTicket.getLottoSize(), 3);
+        Assertions.assertEquals(lottoTicket.getLottos().size(), 3);
     }
 }

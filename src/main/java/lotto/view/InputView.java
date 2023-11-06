@@ -15,7 +15,7 @@ public class InputView {
     public int inputAmount() {
         System.out.println(INPUT_AMOUNT);
         String amount = Console.readLine();
-        inputException.validateInputAmount(amount);
+        inputException.validateInputNumber(amount);
         inputException.validateUnit(amount);
         return Integer.parseInt(amount);
     }
@@ -23,13 +23,16 @@ public class InputView {
     public String inputWinningNumber() {
         System.out.println("\n"+INPUT_WINNING_NUMBER);
         String winningNumber = Console.readLine();
+        inputException.validateInputWinningNumber(winningNumber);
         return winningNumber;
     }
 
     public int inputBonusNumber() {
         System.out.println("\n"+INPUT_BONUS_NUMBER);
-        int bonus = Integer.parseInt(Console.readLine());
-        return bonus;
+        String bonus = Console.readLine();
+        inputException.validateInputNumber(bonus);
+        inputException.validateBounsRange(bonus);
+        return Integer.parseInt(bonus);
     }
 
 }

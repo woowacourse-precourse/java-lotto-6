@@ -32,4 +32,6 @@ class LottoTest {
         assertThatThrownBy(() -> Application.stringToInt("2000j"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    
 }

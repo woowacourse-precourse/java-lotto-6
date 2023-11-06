@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import static lotto.view.constant.InputMessage.GET_PURCHASE_AMOUNT_MESSAGE;
+import static lotto.view.constant.InputMessage.GET_WINNING_NUMBERS_MESSAGE;
 
 import lotto.domain.LottoPurchase;
 import lotto.domain.Lottos;
@@ -27,13 +28,19 @@ public class LottoController {
         String purchaseAmount = getPurchaseAmount();
         LottoPurchase lottoPurchase = lottoPurchaseService.createLottoPurchase(purchaseAmount);
         Lottos lottos = lottosService.createLottos(lottoPurchase);
-
         printLottoNumbers(lottos);
+
+        String winningNumbers = getWinningNumbers();
     }
 
     public String getPurchaseAmount() {
         OutputView.printMessage(GET_PURCHASE_AMOUNT_MESSAGE.getMessage());
         return inputView.readAmountInput();
+    }
+
+    public String getWinningNumbers() {
+        OutputView.printMessage(GET_WINNING_NUMBERS_MESSAGE.getMessage());
+        return inputView.readWinningNumbers();
     }
 
     public void printLottoNumbers(Lottos lottos) {

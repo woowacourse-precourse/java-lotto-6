@@ -53,4 +53,13 @@ class LottoTest {
 
         assertThat(lotto.countMatchingNumbers(winningNumbers)).isEqualTo(5);
     }
+
+    @DisplayName("로또 번호에 보너스 번호가 있는지 확인한다..")
+    @Test
+    void hasBonusNumber() {
+        Lotto lotto = new Lotto(List.of(7, 6, 5, 4, 3, 2));
+        int bonusNumber = 7;
+
+        assertThat(lotto.hasBonusNumber(bonusNumber)).isTrue();
+    }
 }

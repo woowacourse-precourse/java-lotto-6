@@ -18,4 +18,8 @@ public class BonusBall {
             throw new RangeLottoException();
         }
     }
+
+    public int getBall() {
+        return ball;
+    }
 }

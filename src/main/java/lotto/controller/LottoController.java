@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.Money;
@@ -55,9 +56,8 @@ public class LottoController {
 
     void printGeneratedLotto(List<Lotto> lotto) {
         outputView.printMessage(Message.RESULT_MONEY, lotto.size());
-        // TODO: outputView에서 Lotto, List<Integer> 객체를 수정할 수 있다. DTO로 변경하기.
         for (Lotto obj : lotto) {
-            outputView.printObject(obj);
+            outputView.printObject(LottoDto.from(obj));
         }
     }
 }

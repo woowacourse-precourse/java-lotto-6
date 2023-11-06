@@ -1,12 +1,8 @@
 package lotto.validator;
 
 public class Validator {
-    public static boolean isInteger(String inputMessage){
-        try{
-            Integer.parseInt(inputMessage);
-        }catch (NumberFormatException e){
-            return false;
-        }
+    public static boolean isInteger(String inputMessage) throws IllegalArgumentException{
+        Integer.parseInt(inputMessage);
         return true;
     }
     public static boolean validateNumberRange(int value, int min, int max){

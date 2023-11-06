@@ -25,11 +25,6 @@ class LottoFactoryTest {
         assertEquals(lottoCount, userLotto.size());
     }
 
-    // 입력 받은 번호가 숫자인지 확인한다.
-    //  - 입력 받은 번호가 1 ~ 45인지 확인한다.
-    //  - 입력 받은 번호가 중복되지 않는지 확인한다.
-    //  - 입력 받은 번호가 6개인지 확인한다.
-
     @Test
     void 입력_받은_번호가_숫자가_아닌_경우_예외_발생() {
         //given

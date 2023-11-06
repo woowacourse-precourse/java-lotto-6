@@ -8,4 +8,9 @@ public class GameConstant {
     public static final int TOTAL_NUMBER_SIZE = 7;
     public static final String LUCKY_NUMBERS = "luckyNumbers";
     public static final String BONUS_NUMBER = "bonusNumber";
+    public static final int FIRST_REWARD = 2000000000;
+    public static final int SECOND_REWARD = 30000000;
+    public static final int THIRD_REWARD = 1500000;
+    public static final int FOURTH_REWARD = 50000;
+    public static final int FIFTH_REWARD = 5000;
 }

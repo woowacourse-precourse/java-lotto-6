@@ -22,7 +22,6 @@ public class GameController {
         List<Integer> numbers = getLuckyNumbers();
         int bonusNumber = getBonusNumber(numbers);
         lottos.match(numbers, bonusNumber);
-
     }
 
     private Lottos buy(int payment) {

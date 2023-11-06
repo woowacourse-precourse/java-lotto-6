@@ -31,7 +31,7 @@ public enum Ranking {
     }
 
     public static int getTotalPrizeMoney() {
-        int sum = 0;
+        int sum = Unit.ZERO.getValue();
         for (Ranking ranking : Ranking.values()) {
             sum += ranking.money * ranking.count;
         }

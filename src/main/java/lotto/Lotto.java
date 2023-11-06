@@ -17,15 +17,21 @@ public class Lotto {
                 .count();
     }
 
+    public boolean checkBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     private boolean[] makeCheckBox() {
         boolean[] checkBox = new boolean[46];
         numbers.forEach(number -> checkBox[number] = true);
         return checkBox;
     }
-    
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if (numbers.size() > numbers.stream().distinct().count())
+            throw new IllegalArgumentException();
     }
 }

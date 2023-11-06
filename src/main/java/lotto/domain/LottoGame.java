@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.util.NumberUtil;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGame {
     private LottoMachine lottoMachine;
@@ -14,6 +15,8 @@ public class LottoGame {
         int inputMoney = NumberUtil.toInt(InputView.inputBuyMoney());
 
         player = purchaseLotto(inputMoney);
+
+        OutputView.showPlayerLotto(player, lottoMachine.calculatePurchaseCount());
     }
 
     private Player purchaseLotto(int inputMoney) {

@@ -102,7 +102,7 @@ public class Application {
         System.out.println('\n' + "당첨 통계");
         System.out.println('\n' + "---");
         LottoProfitCalculator lottoProfitCalculator = new LottoProfitCalculator(purchaseAmount, lottos);
-        lottoProfitCalculator.rankPrinter();
+        System.out.println(lottoProfitCalculator.rankPrinter());
         System.out.println("총 수익률은 " + lottoProfitCalculator.getProfitRate() + "%입니다.");
     }
 }

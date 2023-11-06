@@ -32,7 +32,7 @@ public class LottoProfitCalculator {
         }
     }
 
-    public void rankPrinter() {
+    public String rankPrinter() {
         setRankCount();
 
         StringBuilder sb = new StringBuilder();
@@ -43,7 +43,7 @@ public class LottoProfitCalculator {
         sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount[3] + "개").append('\n');
         sb.append("6개 일치 (2,000,000,000원) - " + rankCount[4] + "개").append('\n');
 
-        System.out.println(sb);
+        return sb.toString();
     }
 
     public void profitCalculator() {
@@ -56,9 +56,9 @@ public class LottoProfitCalculator {
         }
 
         setProfitRate(prizeAmounts
-                .divide(BigDecimal.valueOf(purchaseAmount))
                 .multiply(BigDecimal.valueOf(100))
-                .setScale(1, RoundingMode.HALF_UP));
+                .divide(BigDecimal.valueOf(purchaseAmount), 1, RoundingMode.HALF_UP)
+                );
     }
 
     public String getProfitRate() {

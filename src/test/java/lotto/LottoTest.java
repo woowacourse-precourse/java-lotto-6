@@ -47,7 +47,7 @@ class LottoTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @DisplayName("로또 랭크의 value값이 ")
+    @DisplayName("로또 랭크의 prize 값의 입출력을 확인한다.")
     @Test
     void lottoRankGetPrizeTest() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));

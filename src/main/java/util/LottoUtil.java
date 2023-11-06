@@ -20,6 +20,9 @@ public class LottoUtil {
     private static final double DEFAULT_SUM = 0d;
     private static final int PERCENT = 100;
 
+    private LottoUtil(){
+    }
+
     public static int countLotto(int pay) {
         return pay / PRICE_MIN_UNIT.getNumber();
     }

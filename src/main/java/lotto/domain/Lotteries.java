@@ -67,4 +67,9 @@ public class Lotteries {
     public int getLottoPrice() {
         return LOTTO_PRICE;
     }
+
+    @Override
+    public String toString() {
+        return "Lotteries{lottos=%s}".formatted(lottos);
+    }
 }

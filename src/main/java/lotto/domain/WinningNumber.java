@@ -80,4 +80,9 @@ public class WinningNumber {
     public boolean isMatchingBonusNumber(List<Number> numbers) {
         return numbers.contains(bonusNumber);
     }
+
+    @Override
+    public String toString() {
+        return "WinningNumber{winningNumbers=%s, bonusNumber=%s}".formatted(winningNumbers, bonusNumber);
+    }
 }

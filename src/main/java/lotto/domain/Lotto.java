@@ -52,4 +52,9 @@ public class Lotto {
         return numbers.stream()
                 .map(Number::getValue).toList();
     }
+
+    @Override
+    public String toString() {
+        return "Lotto{numbers=%s}".formatted(numbers);
+    }
 }

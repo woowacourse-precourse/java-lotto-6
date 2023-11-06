@@ -47,8 +47,9 @@ public class OutputView {
     }
 
     public static void outputViewTotalReturn(Long totalReturn, Long money) {
-        double total = totalReturn / money;
-        String result = String.format("총 수익률은 %d%입니다.",total);
-        System.out.println(total);
+        double total = (double) totalReturn / (double) money;
+        double roundedTotal = Math.round(total * 100.0) / 100.0; // 반올림
+        String result = String.format("총 수익률은 %.2f%%입니다.", roundedTotal);
+        System.out.println(result);
     }
 }

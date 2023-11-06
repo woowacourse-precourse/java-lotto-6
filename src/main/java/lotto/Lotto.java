@@ -1,10 +1,11 @@
 package lotto;
 
 import java.util.List;
+import lotto.EnumList.ConstantErrorMessage;
+import lotto.EnumList.ConstantLotto;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private static final int LottoSize = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -13,8 +14,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoSize) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_NUMBER_SIZE);
+        if (numbers.size() != ConstantLotto.LOTTO_SIZE.value()) {
+            throw new IllegalArgumentException(ConstantErrorMessage.ERROR_LOTTO_NUMBER_SIZE.errorMessage());
         }
     }
 
@@ -23,8 +24,8 @@ public class Lotto {
                 .distinct()
                 .count() == numbers.size();
 
-        if(!isPresent) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_NUMBER_DUPLICATE);
+        if (!isPresent) {
+            throw new IllegalArgumentException(ConstantErrorMessage.ERROR_LOTTO_NUMBER_DUPLICATE.errorMessage());
         }
     }
 

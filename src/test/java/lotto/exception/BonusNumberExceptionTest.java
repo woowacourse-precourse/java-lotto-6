@@ -30,7 +30,7 @@ class BonusNumberExceptionTest {
     @Test
     @DisplayName("보너스 숫자로 들어온 것이 1 미만 45 초과일 경우")
     void isRightRangeTest(){
-        String input = "48";
+        int input = 48;
         assertThatThrownBy(() -> new BonusNumberException().isRightRange(input)).isInstanceOf(
                 IllegalArgumentException.class
         );

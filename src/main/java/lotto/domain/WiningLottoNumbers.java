@@ -14,11 +14,15 @@ public class WiningLottoNumbers {
 
     public int countWining(Lotto lotto) {
         int result = 0;
-        if (hasBonusNumberInLotto(lotto, this.bonus)) {
+        if (isWiningBonus(lotto)) {
             result += 1;
         }
         result += winingLotto.countMatching(lotto);
         return result;
+    }
+
+    public boolean isWiningBonus(Lotto lotto) {
+        return lotto.hasNumber(bonus.get());
     }
 
     private void validate(Lotto lotto, Bonus bonus) {

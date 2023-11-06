@@ -34,4 +34,17 @@ public class WiningLottoNumbersTest {
 
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("보너스볼 당첨인지 알아낸다")
+    void testIsWiningBonus() {
+        Lotto winingLotto = new Lotto(List.of(5, 10, 15, 20, 25, 30));
+        Bonus winingBonus = new Bonus(22);
+        WiningLottoNumbers winingLottoNumbers = new WiningLottoNumbers(winingLotto, winingBonus);
+        Lotto lotto = new Lotto(List.of(5, 25, 11, 22, 33, 44));
+
+        boolean result = winingLottoNumbers.isWiningBonus(lotto);
+
+        assertThat(result).isTrue();
+    }
 }

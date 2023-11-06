@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.config.GameConfig;
 import lotto.domain.LottoNumber;
-import lotto.util.validator.LottoNumberValidator;
 
 public class Lotto {
 
@@ -19,7 +18,6 @@ public class Lotto {
 
     private void validateLotto(List<Integer> numbers) {
         validateSize(numbers);
-        validateRange(numbers);
         validateDuplicateNumber(numbers);
     }
 
@@ -33,10 +31,6 @@ public class Lotto {
         if (numbers.stream().distinct().count() != GameConfig.LOTTO_SIZE) {
             throw new IllegalArgumentException(); // TODO: custom 예외 만들기
         }
-    }
-
-    private void validateRange(List<Integer> numbers) {
-        numbers.forEach(LottoNumberValidator::validate);
     }
 
     public boolean contains(LottoNumber number) {

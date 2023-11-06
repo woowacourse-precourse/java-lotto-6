@@ -143,12 +143,22 @@ public class Application {
     }
 
     public static int GetMoney(int rank, int lottoWinCount){
-        System.out.println(lottoRankMoney[rank] +" "+ lottoWinCount);
+        if (rank == 1)
+            System.out.println("6개 일치 (2,000,000,000원) - " + lottoWinCount + "개");
+        if (rank == 2)
+            System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoWinCount + "개");
+        if (rank == 3)
+            System.out.println("5개 일치 (1,500,000원) - " + lottoWinCount + "개");
+        if (rank == 4)
+            System.out.println("4개 일치 (5,0000원) - " + lottoWinCount + "개");
+        if (rank == 5)
+            System.out.println("3개 일치 (5,000원) - " + lottoWinCount + "개");
+
         return lottoRankMoney[rank] * lottoWinCount;
     }
 
     public static void SumLottoResult(){
-        for(int i=0; i<lotteryWinningRank; i++){
+        for(int i=lotteryWinningRank-1; i>0; i--){
             totalLottoMoney += GetMoney(i, myWinningLotto.get(i));
         }
         System.out.println(totalLottoMoney);

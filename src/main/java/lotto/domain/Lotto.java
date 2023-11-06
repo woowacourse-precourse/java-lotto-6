@@ -26,7 +26,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         checkDuplication(numbers);
-
+        checkLength(numbers);
     }
 
     private void checkDuplication(List<Integer> lotto) {

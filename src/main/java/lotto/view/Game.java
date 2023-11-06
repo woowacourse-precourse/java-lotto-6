@@ -5,8 +5,6 @@ import lotto.constant.Message;
 import lotto.controller.GameController;
 
 public class Game {
-
-    private final String ERROR_MESSAGE = "[ERROR]";
     private final GameController gameController = new GameController();
 
     public void run(){
@@ -14,20 +12,27 @@ public class Game {
         try{
 
             purchaseLotto();
+            saveWinningNumbers();
 
         }catch (Exception e){
 
-            System.out.println(ERROR_MESSAGE);
             String errorType = e.getMessage();
-            reRunMethod(errorType);
+            System.out.println(Message.valueOf(errorType).getMessage());
+
+            reRun(errorType);
         }
     }
 
-    private void reRunMethod(String errorType){
+    private void reRun(String errorType){
 
         if(errorType.contains("MONEY")) {
 
             purchaseLotto();
+        }
+
+        if(errorType.contains("WINNING")) {
+
+            saveWinningNumbers();
         }
     }
 
@@ -37,5 +42,13 @@ public class Game {
         String input = Console.readLine();
 
         gameController.purchaseLotto(input);
+    }
+
+    private void saveWinningNumbers() {
+
+        System.out.println(Message.WINNING_NUMBER_MESSAGE.getMessage());
+        String input = Console.readLine();
+
+        gameController.saveWinningNumbers(input);
     }
 }

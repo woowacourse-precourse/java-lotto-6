@@ -11,5 +11,8 @@ public class GameController {
         gameService.purchaseLotto(input);
     }
 
+    public void saveWinningNumbers(String input) {
 
+        gameService.saveWinningNumbers(input);
+    }
 }

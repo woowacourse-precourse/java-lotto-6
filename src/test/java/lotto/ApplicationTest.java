@@ -78,6 +78,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 당첨_번호_숫자_아닌_문자_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

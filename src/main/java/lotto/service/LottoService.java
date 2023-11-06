@@ -32,7 +32,11 @@ public class LottoService {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < createCount; i++) {
-            List<Integer> numbers = RandomNumberUtil.generateAndSortUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_COUNT);
+            List<Integer> numbers = RandomNumberUtil.generateAndSortUniqueNumbersInRange(
+                    LOTTO_START_NUMBER,
+                    LOTTO_END_NUMBER,
+                    LOTTO_NUMBER_COUNT
+            );
             lottos.add(new Lotto(numbers));
         }
 

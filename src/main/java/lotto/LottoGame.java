@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.Constants.*;
+
 public class LottoGame {
 
     private LottoGameView lottoGameView;
@@ -14,21 +16,22 @@ public class LottoGame {
     }
 
     public void start() {
-        int amount = lottoGameView.inputPurchaseAmount();
-        List<Lotto> lotteries = issueLottery(amount / 1000);
+        int purchaseAmount = lottoGameView.inputPurchaseAmount();
+        int tickets = purchaseAmount / LOTTERY_PRICE;
+        List<Lotto> lotteries = issueLottery(tickets);
         WinningNumbers winningNumbers = lottoGameView.inputWinningNumbers();
         List<Prize> result = lotteries.stream().map(lotto -> lotto.check(winningNumbers)).toList();
         int resultSum = result.stream().mapToInt(Prize::getMoney).sum();
         lottoGameView.printResult(result);
-        lottoGameView.printRateReturn(calculateReturn(resultSum, amount));
+        lottoGameView.printRateReturn(calculateReturn(resultSum, purchaseAmount));
     }
 
-    public List<Lotto> issueLottery(int amount) {
+    public List<Lotto> issueLottery(int tickets) {
         List<Lotto> lotteries = new ArrayList<>();
 
-        lottoGameView.printLotteryAmount(amount);
-        for (int i = 0; i < amount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        lottoGameView.printLotteryAmount(tickets);
+        for (int i = 0; i < tickets; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER, LOTTERY_DIGIT_LENGTH);
             Lotto lotto = new Lotto(numbers);
             lotteries.add(lotto);
         }

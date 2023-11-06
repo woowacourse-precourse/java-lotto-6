@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.*;
 
+import static lotto.Constants.LOTTERY_DIGIT_LENGTH;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -13,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTERY_DIGIT_LENGTH) {
             throw new IllegalArgumentException();
         }
 
@@ -25,12 +27,12 @@ public class Lotto {
 
     public Prize check(WinningNumbers winningNumbers) {
         int count = 0;
+
         for (int number : winningNumbers.getNumbers()) {
             if (numbers.contains(number)) {
                 count++;
             }
         }
-
         if (count == 6) {
             return Prize.First;
         }

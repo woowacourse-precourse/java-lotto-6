@@ -29,9 +29,13 @@ public class LottoGame {
     }
 
     private Money getMoney() {
-        outputView.print(OutputMessage.GET_PURCHASE_MONEY);
-        Integer amount = inputView.getMoney();
-        return new Money(amount); // todo:예외처리
+        while (true) {
+            try {
+                return new Money(inputView.readMoney());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     private void printIssuedLotto(List<Lotto> lottoBundle) {
@@ -40,13 +44,17 @@ public class LottoGame {
     }
 
     private WinLotto getWinLotto() {
-        outputView.print(OutputMessage.GET_WIN_NUMBERS);
-        List<Integer> winLottoNumbers = inputView.getWinLottoNumbers();
+        while (true) {
+            try {
+                List<Integer> winLottoNumbers = inputView.readWinLottoNumbers();
+                Integer winLottoBonus = inputView.readWinLottoBonusNumber();
 
-        outputView.print(OutputMessage.GET_BONUS_NUMBER);
-        Integer winLottoBonus = inputView.getWinLottoBonus();
+                return new WinLotto(winLottoNumbers, winLottoBonus);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
 
-        return new WinLotto(winLottoNumbers, winLottoBonus); // todo:예외처리
     }
 
     private void printLottoResult(LottoResult lottoResult, Double earningRatio) {

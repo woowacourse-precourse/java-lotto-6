@@ -85,6 +85,7 @@ public class Application {
         System.out.println(lottoCount  + Message.PrintPurchaseCount.getValue());
         for(Lotto l:lottos) {
             List<Integer> lottoElement = new ArrayList<Integer>(l.getter());
+            lottoElement.sort(Comparator.naturalOrder());
             System.out.println(lottoElement);
         }
         System.out.println();

@@ -13,11 +13,14 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonus;
+import lotto.domain.Judge;
+import lotto.domain.LottoResult;
 
 public class LottoController {
     public static final int LOTTO_PRICE = 1000;
 
     int purchaseAmount;
+    int totalEarnings;
     Lotto lottoWinningNumbers;
     LottoBonus lottoBonusNumber;
     List<Lotto> lottoRandomNumbers = new ArrayList<>();
@@ -28,10 +31,12 @@ public class LottoController {
 
     public void start() {
         requestLottoPurchaseAmount();
-        printOutNumbers();
+        printOutRandomNumbers();
 
         requestWinningNumbers();
         requestBonusNumber();
+
+        calculateEarnings();
     }
 
     public void requestLottoPurchaseAmount() {
@@ -47,7 +52,7 @@ public class LottoController {
         }
     }
 
-    public void printOutNumbers() {
+    public void printOutRandomNumbers() {
         int lottoTicket = purchaseAmount / LOTTO_PRICE;
         System.out.printf(LOTTO_TICKETS_PURCHASED_MESSAGE, lottoTicket);
         System.out.println();
@@ -93,4 +98,11 @@ public class LottoController {
         }
     }
 
+    public void calculateEarnings() {
+        for (Lotto randomNumbers : lottoRandomNumbers) {
+            int matchCount = Judge.compareWinningNumbers(lottoWinningNumbers, randomNumbers);
+            boolean isMatchBonusNumber = Judge.compareBonusNumber(lottoWinningNumbers, lottoBonusNumber);
+            totalEarnings += LottoResult.getWinningAmount(matchCount, isMatchBonusNumber);
+        }
+    }
 }

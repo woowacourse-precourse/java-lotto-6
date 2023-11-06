@@ -8,6 +8,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
         this.numbers = numbers;
     }
 
@@ -20,6 +21,12 @@ public class Lotto {
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LottoConfig.TOTAL_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(n -> n < LottoConfig.MIN_LOTTO_NUMBER.getValue() || n > LottoConfig.MAX_LOTTO_NUMBER.getValue())) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE_NUMBER.getMessage());
         }
     }
 }

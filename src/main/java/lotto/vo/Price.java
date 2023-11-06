@@ -7,6 +7,7 @@ import static lotto.error.ErrorMessage.NOT_THOUSAND_UNIT_PRICE;
 public class Price {
 
     private static final int THOUSAND_UNIT = 1_000;
+    private static final int ZERO = 0;
 
     private final int value;
 
@@ -32,13 +33,13 @@ public class Price {
     }
 
     private void validatePositive(final int value) {
-        if (value < 0) {
+        if (value < ZERO) {
             throw new IllegalArgumentException(NEGATIVE_PRICE.getMessage());
         }
     }
 
     private void validateThousandUnit(final int value) {
-        if (value % THOUSAND_UNIT != 0) {
+        if (value % THOUSAND_UNIT != ZERO) {
             throw new IllegalArgumentException(NOT_THOUSAND_UNIT_PRICE.getMessage());
         }
     }

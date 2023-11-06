@@ -10,9 +10,9 @@ public class Application {
         List<Lotto> lottoBundle = lottoMachine.lottoBundleView();
 
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
-        lottoResultChecker.enterWinAndBonusNumbersView();
+        lottoResultChecker.startLottoResultCheckerView(lottoBundle);
+        lottoResultChecker.showLottoResultView();
 
     }
-
 
 }

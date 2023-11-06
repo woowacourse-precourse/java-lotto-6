@@ -34,7 +34,7 @@ public class LottoGameController {
             // 로또 번호 반환 및 출력
             PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(player.getEA(), player.getHistory());
             outputView.printPurchaseHistory(dto);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
             buyLotto();
         }

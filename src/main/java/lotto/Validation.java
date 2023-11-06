@@ -29,7 +29,9 @@ public class Validation {
     public static List<Integer> validateWinningNumber(String input) throws IllegalArgumentException{
         List<String> splittedInput = validateDivision(input);
         validateNumberCount(splittedInput);
-        return validateIntegers(splittedInput);
+        List<Integer> numberInputs = validateIntegers(splittedInput);
+        validateNumbersRange(numberInputs);
+        return numberInputs;
     }
 
     private static List<String> validateDivision(String input){
@@ -49,16 +51,28 @@ public class Validation {
 
     private static List<Integer> validateIntegers(List<String> input){
         try {
-            List<Integer> winningNumber = input.stream()
+            return input.stream()
                     .map(s -> Integer.parseInt(s))
                     .collect(Collectors.toList());
         }catch (NumberFormatException e){
             throw new IllegalArgumentException(INPUT_NUMBER_EXCEPTION_MSG);
         }
-        return null;
+    }
+
+    private static void validateNumbersRange(List<Integer> inputs){
+        for (int input : inputs){
+            validateNumberRange(input);
+        }
+    }
+
+    private static void validateNumberRange(int input){
+        if (input < 1 || input > 45){
+            throw new IllegalArgumentException(INPUT_NUMBER_RANGE_EXCEPTION_MSG);
+        }
     }
 
     public static void validateBonusNumber(String input) throws IllegalArgumentException{
-        validateInteger(input);
+        int number = validateInteger(input);
+        validateNumberRange(number);
     }
 }

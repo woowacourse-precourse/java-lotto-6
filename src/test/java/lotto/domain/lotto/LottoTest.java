@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import java.util.stream.Stream;
 import lotto.domain.lotto.Lotto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -7,9 +8,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -63,5 +67,24 @@ class LottoTest {
         boolean hasSameNumber = lotto.hasSameNumber(bonusNumber);
 
         // then
+    }
+
+    @ParameterizedTest
+    @DisplayName("두개의 로또를 비교하여 몇개가 일치하는지 확인")
+    @MethodSource("argumentsLottoMatchCount")
+    void 로또_개수_확인(Lotto lotto, Lotto otherLotto, int expected) {
+        assertThat(lotto.calculateMatchCount(otherLotto)).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> argumentsLottoMatchCount() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 5),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 8, 7)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 4),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 7, 8, 9)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 3),
+                Arguments.of(new Lotto(List.of(1, 2, 7, 8, 9, 10)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 2),
+                Arguments.of(new Lotto(List.of(1, 7, 8, 9, 10, 11)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 1),
+                Arguments.of(new Lotto(List.of(7, 8, 9, 10, 11, 12)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 0)
+                );
     }
 }

@@ -12,10 +12,10 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int money = inputMoney();
-
-        List<List<Integer>> lottoNumbers = generateLottoNumber(money % 1000);
-
+        List<List<Integer>> lottoNumbers = generateLottoNumber(money / 1000);
         List<Integer> answerNum = inputAnswer();
+        int Bonus = inputBonusNumber();
+
         Lotto lotto = new Lotto(answerNum);
 
 
@@ -24,16 +24,11 @@ public class Application {
     public static int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String moneyStr = Console.readLine();
-        int money = moneyToInt(moneyStr);
-
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원을 단위로 입력해주세요");
-        }
-
-        return money;
+        System.out.println();
+        return verifyMoney(moneyStr);
     }
 
-    public static int moneyToInt(String moneyStr) {
+    public static int verifyMoney(String moneyStr) {
         int money;
 
         try {
@@ -42,6 +37,23 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
 
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원을 단위로 입력해주세요");
+        }
+
+        return money;
+    }
+
+    public static int verifyIntValue(String moneyStr) {
+        int money;
+
+        try {
+            money = Integer.parseInt(moneyStr);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+
+        if (money < 1 || money > 45) throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         return money;
     }
 
@@ -53,18 +65,36 @@ public class Application {
             lottoNumber.sort(naturalOrder());
             lottoNumberTotal.add(lottoNumber);
         }
+        printLottoNumbers(lottoNumberTotal);
+        System.out.println();
         return lottoNumberTotal;
     }
 
+    public static void printLottoNumbers(List<List<Integer>> lottoNumberTotal) {
+        for (List<Integer> lottoNumber : lottoNumberTotal) {
+            System.out.println(lottoNumber.toString());
+        }
+    }
+
     public static List<Integer> inputAnswer() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> answerNum = new ArrayList<>();
         String answerStr = Console.readLine();
         String[] answer = answerStr.split(",");
+        System.out.println();
 
         for (String numStr : answer) {
-            answerNum.add(moneyToInt(numStr));
+            answerNum.add(verifyIntValue(numStr));
         }
 
         return answerNum;
+    }
+
+    public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusStr = Console.readLine();
+        System.out.println();
+
+        return verifyIntValue(bonusStr);
     }
 }

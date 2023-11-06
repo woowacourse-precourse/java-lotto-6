@@ -11,7 +11,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class InputController {
-    public static LottoPublisher getPurchasePrice() {
+    public LottoPublisher getPurchasePrice() {
         try {
             return new LottoPublisher(InputView.requestPurchasePrice());
         } catch (IllegalArgumentException exception) {
@@ -20,7 +20,7 @@ public class InputController {
         }
     }
 
-    public static WinningNumber getWinningNumber() {
+    public WinningNumber getWinningNumber() {
         List<String> inputNumbers = Arrays.asList(InputView.requestWinningNumber().split(DELIMITER.getMessage(), -1));
         try {
             return new WinningNumber(inputNumbers);
@@ -30,7 +30,7 @@ public class InputController {
         }
     }
 
-    public static BonusNumber getBonusNumber(List<Integer> winningNumbers) {
+    public BonusNumber getBonusNumber(List<Integer> winningNumbers) {
         try {
             return new BonusNumber(InputView.requestBonusNumber(), winningNumbers);
         } catch (IllegalArgumentException exception) {

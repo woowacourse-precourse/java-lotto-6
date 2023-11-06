@@ -21,6 +21,18 @@ public enum LottoResult {
         this.numOfMatches = numOfMatches;
     }
 
+    public String getMatchesMess() {
+        return matchesMess;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getNumOfMatches() {
+        return numOfMatches;
+    }
+
     public static void countResult(List<List<Integer>> allLotto, List<Integer> numbers, int bonusNum) {
         LottoResult[] lottoResultValues = LottoResult.values();
         for (List<Integer> eachLotto:allLotto) {

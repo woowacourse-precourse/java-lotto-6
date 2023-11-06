@@ -33,4 +33,12 @@ public class LottoWinningNumberCreate {
                             + LottoConstant.LOTTO_END_NUMBER + " 이하여야 합니다.");
         }
     }
+
+    public boolean containsNumber(int number) {
+        if (numbers.contains(number)) {
+            return true;
+        }
+
+        return false;
+    }
 }

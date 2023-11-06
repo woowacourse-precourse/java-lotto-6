@@ -19,7 +19,8 @@ public class WinnerNumberValidator {
         if (winnerNumber.contains(",,")) {
             WINNER_NUMBER_VALIDATE_ERROR_INPUT.throwException();
         }
-        if (!Character.isDigit(winnerNumber.charAt(winnerNumber.length() - 1))) {
+        if (!Character.isDigit(winnerNumber.charAt(winnerNumber.length() - 1)) ||
+                !Character.isDigit(winnerNumber.charAt(0))) {
             WINNER_NUMBER_VALIDATE_ERROR_INPUT.throwException();
         }
     }

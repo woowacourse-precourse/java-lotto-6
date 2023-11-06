@@ -21,6 +21,7 @@ public class LottoController {
     public void run() {
         runUntilNoException(createPurchaseLottoRunnable());
         runUntilNoException(createDrawLottoWithoutBonusNumberRunnable());
+        runUntilNoException(createDrawBonusNumberRunnable());
     }
 
     private void runUntilNoException(Runnable runnable) {
@@ -50,6 +51,15 @@ public class LottoController {
             outputView.print(InformationMessage.GUIDE_INPUT_WINNING_LOTTO_NUMBER.getMessage());
             List<Integer> numbers = inputView.readMultipleIntLine();
             lottoService.drawLottoWithoutBonusNumber(numbers);
+            outputView.printNewLine();
+        };
+    }
+
+    private Runnable createDrawBonusNumberRunnable() {
+        return () -> {
+            outputView.print(InformationMessage.GUIDE_INPUT_BONUS_NUMBER.getMessage());
+            int bonusNumber = inputView.readIntLine();
+            lottoService.generateWinningLotto(bonusNumber);
             outputView.printNewLine();
         };
     }

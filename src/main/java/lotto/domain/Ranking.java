@@ -13,7 +13,7 @@ public enum Ranking {
     private final boolean matchBonus;
     private final String prize;
 
-    private Ranking(String description, int matchNumber, boolean matchBonus, String prize) {
+    Ranking(String description, int matchNumber, boolean matchBonus, String prize) {
         this.description = description;
         this.matchNumber = matchNumber;
         this.matchBonus = matchBonus;

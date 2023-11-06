@@ -1,4 +1,4 @@
-package lotto.repository;
+package lotto.repository.rank;
 
 import static lotto.settings.WinningSettings.FIFTH_PLACE;
 import static lotto.settings.WinningSettings.FIRST_PLACE;
@@ -9,8 +9,8 @@ import static lotto.settings.WinningSettings.THIRD_PLACE;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RankingRepository {
-    static Map<Integer, String> prizePerRank = new HashMap<>();
+public class PrizesPerRank {
+    private static final Map<Integer, String> prizePerRank = new HashMap<>();
     public static void create(){
         prizePerRank.put(5,FIFTH_PLACE.getResult());
         prizePerRank.put(4,FOURTH_PLACE.getResult());

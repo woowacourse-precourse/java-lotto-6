@@ -16,8 +16,16 @@ public class Winning {
         this.prize = prize;
     }
 
-    public void setTicketCount(int ticketCount) {
-        this.ticketCount = ticketCount;
+    public int getMatch() {
+        return match;
+    }
+
+    public boolean getBonus() {
+        return bonus;
+    }
+
+    public void addTicketCount() {
+        this.ticketCount ++;
     }
     public int calculatePrize() {
         return ticketCount * prize;

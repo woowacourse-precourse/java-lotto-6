@@ -27,9 +27,8 @@ public class InputView {
             return validateNegativeIntegerAndZero(validateInteger(input));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            askPrice();
+            return askPrice();
         }
-        return null;
     }
 
     public Lotto askWinningNumber() {
@@ -42,9 +41,8 @@ public class InputView {
             return new Lotto(new ArrayList<>(parseNumbers(input)));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            askWinningNumber();
+            return askWinningNumber();
         }
-        return null;
     }
 
     public void validateLastCharacter(String input) {
@@ -104,5 +102,4 @@ public class InputView {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
-
 }

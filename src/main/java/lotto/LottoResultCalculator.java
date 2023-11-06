@@ -21,6 +21,18 @@ public class LottoResultCalculator {
         prizeMap.put(6, 2_000_000_000);
     }
 
+    public Map<Integer, Integer> calculateResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Map<Integer, Integer> results = new HashMap<>();
+        lottos.forEach(lotto -> {
+            int matchCount = countMatches(lotto.getNumbers(), winningNumbers);
+            if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
+                matchCount++; // Increment to signify bonus number match
+            }
+            results.put(matchCount, results.getOrDefault(matchCount, 0) + 1);
+        });
+        return results;
+    }
+
     public static String getPrizeAmount(int matchCount) {
         Integer prizeAmount = prizeMap.getOrDefault(matchCount, 0);
         return formatNumber(prizeAmount);

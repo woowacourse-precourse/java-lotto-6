@@ -1,6 +1,8 @@
 package mapper;
 
+import domain.GameResult;
 import domain.Lotto;
+import mapper.dto.GameResultDto;
 import mapper.dto.LottoDto;
 import service.LottoService;
 
@@ -37,5 +39,13 @@ public class LottoMapper {
 
     public void setBonusNumber(int bonusNumber) {
         lottoService.setBonusNumber(bonusNumber);
+    }
+
+    public GameResultDto getResult() {
+        return generateGameResultDto(lottoService.getResult());
+    }
+
+    private GameResultDto generateGameResultDto(GameResult gameResult) {
+        return new GameResultDto(gameResult.getRateOfReturn(), gameResult.getWinningRankCount());
     }
 }

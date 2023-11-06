@@ -24,7 +24,7 @@ public class Player {
         return lottoTickets.size();
     }
 
-    public GameResult getRank(WinningLotto winningLotto) {
+    public GameResult getResult(WinningLotto winningLotto) {
         return new GameResult(money, lottoTickets.getRanks(winningLotto));
     }
 

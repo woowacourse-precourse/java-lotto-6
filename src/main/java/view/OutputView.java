@@ -1,5 +1,7 @@
 package view;
 
+import constant.ConstantNumber;
+import mapper.dto.GameResultDto;
 import mapper.dto.LottoDto;
 
 import java.util.List;
@@ -11,6 +13,7 @@ public class OutputView {
     private static final String PREFIX = "[";
     private static final String POSTFIX = "]\n";
     private static final String DELIMITER = ", ";
+    private static final int RANK_2_INDEX = 2;
     public void inputPurchaseAmount() {
         System.out.print(INPUT_PURCHASE_AMOUNT.get());
     }
@@ -38,19 +41,23 @@ public class OutputView {
         System.out.print(INPUT_BONUS_NUMBER.get());
     }
 
-    public void winningStatistics() {
+    public void winningStatistics(GameResultDto gameResultDto) {
         System.out.print(WINNING_STATISTICS.get());
+        printMatchCount(gameResultDto);
+        printTotalRateOfReturn(gameResultDto);
     }
 
-    public void matchCount() {
-        System.out.print(MATCH_COUNT.get());
+    private void printMatchCount(GameResultDto gameResultDto) {
+        for (int i = ConstantNumber.COUNT_OF_WINNING_PRIZE.get(); i >= 1 ; i--) {
+            if (i == RANK_2_INDEX) {
+                System.out.print(MATCH_COUNT_RANK_2.get(i, gameResultDto.getRankCount(i)));
+                continue;
+            }
+            System.out.print(MATCH_COUNT.get(i, gameResultDto.getRankCount(i)));
+        }
     }
 
-    public void matchCountRank2() {
-        System.out.print(MATCH_COUNT_RANK_2.get());
-    }
-
-    public void totalRateOfReturn() {
-        System.out.print(TOTAL_RATE_OF_RETURN.get());
+    private void printTotalRateOfReturn(GameResultDto gameResultDto) {
+        System.out.print(TOTAL_RATE_OF_RETURN.get(gameResultDto.getRateOfReturn()));
     }
 }

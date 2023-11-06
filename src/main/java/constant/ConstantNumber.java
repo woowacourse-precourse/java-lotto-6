@@ -5,6 +5,7 @@ public enum ConstantNumber {
     MAXIMUM_WINNING_NUMBER(45),
     WINNING_NUMBER_COUNT(6),
     COUNT_OF_WINNING_PRIZE(5),
+    MATCHING_COUNT_RANK_2(5),
     ;
 
     private final int number;

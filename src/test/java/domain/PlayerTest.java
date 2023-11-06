@@ -53,7 +53,7 @@ class PlayerTest {
         WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
         //when
-        GameResult gameResult = player.getRank(winningLotto);
+        GameResult gameResult = player.getResult(winningLotto);
 
         //then
         assertThat(gameResult.getRateOfReturn()).isEqualTo(631100);

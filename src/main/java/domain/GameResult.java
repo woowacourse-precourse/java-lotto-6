@@ -27,4 +27,8 @@ public class GameResult {
     private int getWinningPrize(int rank) {
         return WinningPrize.values()[rank].get();
     }
+
+    public List<Integer> getWinningRankCount() {
+        return winningRankCount;
+    }
 }

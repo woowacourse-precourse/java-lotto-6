@@ -1,8 +1,10 @@
 package service;
 
+import domain.GameResult;
 import domain.Lotto;
 import domain.Player;
 import domain.WinningLotto;
+import mapper.dto.GameResultDto;
 
 import java.util.List;
 
@@ -25,5 +27,9 @@ public class LottoService {
 
     public void setBonusNumber(int bonusNumber) {
         winningLotto.setBonusNumber(bonusNumber);
+    }
+
+    public GameResult getResult() {
+        return player.getResult(winningLotto);
     }
 }

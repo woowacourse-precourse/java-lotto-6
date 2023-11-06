@@ -30,6 +30,6 @@ public class LottoController {
     }
 
     public void printWinningStatistics() {
-
+        outputView.winningStatistics(lottoMapper.getResult());
     }
 }

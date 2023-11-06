@@ -51,8 +51,6 @@ public class LottoGameController {
         try {
             outputView.printWinNumberInput();
             winNumber = WinNumber.of(input());
-            winNumber.getWinNumber().stream()
-                    .forEach((num) -> System.out.print(num + " "));
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
             setWinNumber();

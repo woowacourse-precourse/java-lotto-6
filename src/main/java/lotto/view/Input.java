@@ -19,4 +19,8 @@ public class Input {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public int getBonusNumber(){
+        return Integer.parseInt(Console.readLine());
+    }
 }

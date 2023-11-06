@@ -35,4 +35,17 @@ public class BuyLotto {
         }
         return result;
     }
+    public int calculateRank(int correct_number,int bonus){
+        int result = correct_number;
+        if(correct_number==6){
+            result = 7;
+        }
+        if(correct_number==5 &&bonus==1){
+            result =6;
+        }
+        if(correct_number<3){
+            result = 0;
+        }
+        return result;
+    }
 }

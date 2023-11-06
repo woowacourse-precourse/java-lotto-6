@@ -27,4 +27,28 @@ public class Lotto {
             throw new DuplicateNumberException();
         }
     }
+
+    public int countMatchingNumbers(Lotto lotto) {
+        int matchedNumberCount = 0;
+        for (Integer number : numbers) {
+            matchedNumberCount += getMatchedNumberCount(lotto, number);
+        }
+
+        return matchedNumberCount;
+    }
+
+    private int getMatchedNumberCount(Lotto lotto, Integer number) {
+        if (lotto.contain(number)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private boolean contain(int number) {
+        return numbers.contains(number);
+    }
+
+    public boolean hasBonusNumber(LottoNumber bonusNumber) {
+        return bonusNumber.isMatched(numbers);
+    }
 }

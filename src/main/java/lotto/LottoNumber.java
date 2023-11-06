@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import lotto.exception.LottoNumberOutOfRangeException;
 
 public class LottoNumber {
@@ -14,5 +15,9 @@ public class LottoNumber {
 
     public int getNum() {
         return num;
+    }
+
+    public boolean isMatched(List<Integer> numbers) {
+        return numbers.contains(num);
     }
 }

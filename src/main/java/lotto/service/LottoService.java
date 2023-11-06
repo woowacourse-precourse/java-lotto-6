@@ -2,53 +2,43 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.draw.DrawingMachine;
-import lotto.domain.lotto.BonusNumber;
+import lotto.domain.draw.DrawingResult;
+import lotto.domain.draw.LottoStore;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
-import lotto.domain.lotto.Money;
-import lotto.domain.lotto.WinningLotto;
-import lotto.dto.LottoNumberDto;
-import lotto.dto.input.BonusNumberDto;
+import lotto.domain.lotto.WinningCombination;
+import lotto.domain.money.Money;
 import lotto.dto.input.MoneyDto;
-import lotto.dto.input.WinningNumbersDto;
+import lotto.dto.input.WinningCombinationDto;
+import lotto.dto.output.DrawingResultDto;
 import lotto.dto.output.LottosDto;
+import lotto.mapper.LottoMapper;
+import lotto.repository.LottoRepository;
 
-// todo : Mapper 만들기 -> 변환용
 public class LottoService {
+    private final LottoStore lottoStore;
+    private final LottoRepository lottoRepository;
     private final DrawingMachine drawingMachine;
 
-    public LottoService(DrawingMachine drawingMachine) {
+    public LottoService(LottoStore lottoStore, LottoRepository lottoRepository, DrawingMachine drawingMachine) {
+        this.lottoStore = lottoStore;
+        this.lottoRepository = lottoRepository;
         this.drawingMachine = drawingMachine;
     }
 
-    // ref. 메소드 분리
-    private WinningLotto of(WinningNumbersDto winningNumbersDto, BonusNumberDto bonusNumberDto) {
-        // 당첨번호
-        List<LottoNumberDto> lottoWinningNumberDtos = winningNumbersDto.winningNumbers();
-        List<Integer> numbers = lottoWinningNumberDtos.stream()
-                .map(LottoNumberDto::number)
-                .toList();
-        Lotto winningNumber = Lotto.from(numbers);
-
-        // 보너스 번호
-        LottoNumberDto lottoBonusNumberDto = bonusNumberDto.bonusNumber();
-        int number = lottoBonusNumberDto.number();
-        BonusNumber bonusNumber = BonusNumber.from(number);
-        return WinningLotto.from(winningNumber, bonusNumber);
+    public LottosDto purchaseLottoTickets(MoneyDto moneyDto) {
+        Money money = LottoMapper.mapFrom(moneyDto);
+        Lottos lottoTickets = lottoStore.sellLottoTickets(money);
+        lottoRepository.save(lottoTickets);
+        return LottoMapper.mapFrom(lottoTickets);
     }
 
-    public LottosDto drawLottoTicketsWithGivenMoney(MoneyDto moneyDto) {
-        Money money = from(moneyDto);
-        Lottos lottos = drawingMachine.drawLottoTicketsWithGivenMoney(money);
-        return from(lottos);
+    public DrawingResultDto calculateDrawingResult(WinningCombinationDto winningNumbers) {
+        WinningCombination winningLotto = LottoMapper.mapFrom(winningNumbers);
+        List<Lotto> purchasedLottos = lottoRepository.findAll();
+        Lottos totalLottoTickets = Lottos.from(purchasedLottos);
+        DrawingResult drawingResult = drawingMachine.draw(winningLotto, totalLottoTickets);
+        return LottoMapper.mapFrom(drawingResult);
     }
 
-    private LottosDto from(Lottos lottos) {
-        return LottosDto.from(lottos);
-    }
-
-    private Money from(MoneyDto moneyDto) {
-        int money = moneyDto.money();
-        return Money.fromInitialMoney(money);
-    }
 }

@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoNumber;
 import lotto.domain.player.Player;
 
 import java.util.List;
@@ -18,5 +17,9 @@ public class LottoSystem {
 
     public static LottoSystem create(List<Lotto> winningLottos, Player player) {
         return new LottoSystem(winningLottos, player);
+    }
+
+    public int getPurchasedLottoCount() {
+        return player.getPurchasedLottoCount();
     }
 }

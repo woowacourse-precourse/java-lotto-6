@@ -10,4 +10,9 @@ public class InputController {
         return readLine();
     }
 
+    public static String inputLottoNumber() {
+        printInputLottoNumberPhrase();
+        return readLine();
+    }
+
 }

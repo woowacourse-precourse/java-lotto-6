@@ -30,4 +30,8 @@ public class Money {
         }
         return parsedMoney;
     }
+
+    public int getMoney(){
+        return this.money;
+    }
 }

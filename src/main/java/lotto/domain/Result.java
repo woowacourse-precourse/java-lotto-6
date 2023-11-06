@@ -59,4 +59,9 @@ public class Result {
         return new HashMap<>(result);
     }
 
+    public double calculateRate(Money money) {
+        long totalWinnings = calculateTotalWinnings();
+        double rate = (double) totalWinnings / (double) money.getMoney();
+        return Math.round(rate * 10000) / 100.0;
+    }
 }

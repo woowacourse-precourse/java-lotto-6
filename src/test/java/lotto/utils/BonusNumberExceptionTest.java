@@ -11,9 +11,9 @@ public class BonusNumberExceptionTest {
     BonusNumberException bonusNumberException = new BonusNumberException();
 
     @Test
-    void 보너스_번호_초과_입력 () {
+    void 보너스_번호_범위_벗어난_입력 () {
         assertThrows(IllegalArgumentException.class, () ->
-                bonusNumberException.exceedsLength("46"), "[ERROR]입력을 초과했습니다.");
+                bonusNumberException.outsideRange("46"), "[ERROR]입력을 초과했습니다.");
     }
 
     @Test

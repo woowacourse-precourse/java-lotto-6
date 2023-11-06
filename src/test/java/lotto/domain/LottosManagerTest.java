@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.wrapper.BonusNumber;
 import lotto.domain.wrapper.LottoNumber;
 import lotto.service.PrizeChecker;
 import lotto.utils.Prize;
@@ -36,7 +37,7 @@ class LottosManagerTest {
                 new Lotto(List.of(7,8,9,10,11,12))
         ));
         Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
-        LottoNumber bonusNumber = new LottoNumber(7);
+        BonusNumber bonusNumber = new BonusNumber(7, winningLotto);
         PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
         // when
         PrizeReception prizeReception = lottosManager.getPrizeReception(prizeChecker);

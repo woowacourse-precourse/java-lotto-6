@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottosManager;
 import lotto.domain.PrizeReception;
+import lotto.domain.wrapper.BonusNumber;
 import lotto.domain.wrapper.LottoNumber;
 import lotto.domain.wrapper.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +19,7 @@ class PrizeReceptionTest {
     void getProfitRate() {
         // given
         Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
-        LottoNumber bonusNumber = new LottoNumber(7);
+        BonusNumber bonusNumber = new BonusNumber(7, winningLotto);
         PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
         LottosManager lottosManager = new LottosManager(List.of(
                 new Lotto(List.of(1,2,3,4,7,8)),

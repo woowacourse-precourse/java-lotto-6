@@ -13,7 +13,6 @@ class LottoServiceTest {
 
     @Test
     @DisplayName("로또구매금액을 통해 로또를 구매했을 때, 원하는 만큼 로또의 개수가 나온다. ")
-    @DisplayName("When purchasing lotto tickets with a specific price")
     void testIssueLottoTickets() {
         // given
         int purchasePrice = 4000;

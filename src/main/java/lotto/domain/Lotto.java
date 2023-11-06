@@ -15,6 +15,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicate(numbers);
+        limit(numbers);
         this.numbers = numbers;
     }
 
@@ -34,6 +35,16 @@ public class Lotto {
                 .toList();
 
         if (!duplicates.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void limit(List<Integer> numbers) {
+        List<Integer> outOfRangeNumbers = numbers.stream()
+                .filter(number -> number < LottoUtil.MIN.getNumber() || number > LottoUtil.MAX.getNumber())
+                .toList();
+
+        if (!outOfRangeNumbers.isEmpty()) {
             throw new IllegalArgumentException();
         }
     }

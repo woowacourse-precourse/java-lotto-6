@@ -3,7 +3,9 @@ package lotto.common.util;
 public enum LottoUtil {
     SIZE(6),
 
-    DUPLICATE(1);
+    DUPLICATE(1),
+    MIN(1),
+    MAX(45);
 
 
 

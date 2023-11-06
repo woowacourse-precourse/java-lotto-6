@@ -25,4 +25,8 @@ public class Lotto {
         Collections.sort(num);
         return num;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

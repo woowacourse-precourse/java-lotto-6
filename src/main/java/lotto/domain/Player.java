@@ -11,4 +11,8 @@ public class Player {
     public static void addLotto() {
         lottoNumbrtl.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
     }
+
+    public static List<Lotto> getLotto() {
+        return lottoNumbrtl;
+    }
 }

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Printer {
     //상수(static final) 또는 클래스 변수
 
@@ -12,8 +15,8 @@ public class Printer {
         System.out.println(numberOfLottery+"개를 구매했습니다.");
     }
 
-    public void showLotteryNumbers() {
-        // 발행한 로또를 출력
+    void showLotteryNumbers(List<Integer> Lotto) {
+        System.out.println(Arrays.toString(Lotto.toArray()));
     }
 
     public void showResult() {

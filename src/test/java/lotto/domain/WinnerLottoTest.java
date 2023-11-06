@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PlayerLottoTest {
+public class WinnerLottoTest {
 
     List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
 

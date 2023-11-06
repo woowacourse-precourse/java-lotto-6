@@ -79,6 +79,7 @@ public class Service {
         throw new IllegalArgumentException("잘못된 값이 들어감");
     }
 
-    public double calculateRevenueRate() {
+    public void setRevenueRate(int winningNumber) {
+        DOMAIN.revenueRate = getMyWinning(winningNumber) / DOMAIN.price;
     }
 }

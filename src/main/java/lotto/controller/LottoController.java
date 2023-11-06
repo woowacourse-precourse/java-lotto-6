@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoPurchase;
+import lotto.domain.LottoWinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,10 +16,12 @@ public class LottoController {
 
     LottoPurchase lottoPurchase = new LottoPurchase();
     LottoNumber lottoNumber = new LottoNumber();
+    LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
 
     public void run() {
         int lottoAmount = purchaseLotto();
-        publishLotto(lottoAmount);
+        List<Lotto> lottoTickets = publishLotto(lottoAmount);
+        winningNumberLotto();
     }
 
     public int purchaseLotto() {
@@ -26,7 +29,9 @@ public class LottoController {
             OutputView.lottoPurchaseInputMessage();
             try {
                 int lottoCount = lottoPurchase.lottoPurchaseCount(InputView.input());
+
                 OutputView.newLine();
+
                 return lottoCount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
@@ -34,10 +39,19 @@ public class LottoController {
         }
     }
 
-    public void publishLotto(int lottoCount) {
+    public List<Lotto> publishLotto(int lottoCount) {
         OutputView.lottoPurchaseCheckOutputMessage(lottoCount);
 
-        lottoNumber.lottoTickets(lottoCount);
+        List<Lotto> lottoTickets = lottoNumber.lottoTickets(lottoCount);
+
+        OutputView.newLine();
+
+        return lottoTickets;
+    }
+
+    public void winningNumberLotto() {
+        OutputView.lottoWinningNumberInputMessage();
+        lottoWinningNumber.lottoWinningNumber(InputView.input());
     }
 
 }

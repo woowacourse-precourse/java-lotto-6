@@ -20,6 +20,8 @@ public class ValidateException {
     private static final Integer SIZE_WIN_NUMBERS_HOST = 6;
     private static final Integer MIN_WIN_NUMBERS = 1;
     private static final Integer MAX_WIN_NUMBERS = 45;
+    private static final Integer START_BONUS_NUMBER = 1;
+    private static final Integer END_BONUS_NUMBER = 45;
 
     public static void includeString(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_REGEX);
@@ -30,27 +32,13 @@ public class ValidateException {
         }
     }
 
-    // TODO: 11/6/23 당첨금액 , 제외 
+    // TODO: 11/6/23 당첨금액 , 제외
     public static void includeStringExceptionComma(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_EXCEPTION_COMMA_REGEX);
         Matcher matcher = pattern.matcher(strLine);
 
         if (matcher.matches()) {
             throw new NumberFormatException("[ERROR] 입력에 문자가 포함되어 있습니다.");
-        }
-    }
-
-
-    public static Boolean blankCheck(String strLine) {
-        if (!strLine.equals(NOTING_STRING)) {
-            return true;
-        }
-        throw new NumberFormatException("[ERROR] 빈칸은 입력할 수 없습니다.");
-    }
-
-    public static void includeBlank(String strLine) {
-        if (strLine.contains(BLANK)) {
-            throw new NumberFormatException("[ERROR] 입력 중간에 공백이 포함되어 있습니다.");
         }
     }
 //
@@ -84,6 +72,19 @@ public class ValidateException {
 //        }
 //    }
 
+    public static Boolean blankCheck(String strLine) {
+        if (!strLine.equals(NOTING_STRING)) {
+            return true;
+        }
+        throw new NumberFormatException("[ERROR] 빈칸은 입력할 수 없습니다.");
+    }
+
+    public static void includeBlank(String strLine) {
+        if (strLine.contains(BLANK)) {
+            throw new NumberFormatException("[ERROR] 입력 중간에 공백이 포함되어 있습니다.");
+        }
+    }
+
     public static void negative(String strLine) {
         Integer inputNum = Integer.valueOf(strLine);
         if (inputNum < POSITIVE_CONDITION_ZERO) {
@@ -115,6 +116,13 @@ public class ValidateException {
             return true;
         }
         throw new IllegalArgumentException("[ERROR] 돈은 1000원 단위 입니다.");
+    }
+
+    public static boolean isInRangeBonusNumber(int number) {
+        if (number <= START_BONUS_NUMBER || number >= END_BONUS_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1~45입니다.");
+        }
+        return false;
     }
 
 //    // 로또 진행자.

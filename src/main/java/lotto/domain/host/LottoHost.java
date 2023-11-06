@@ -13,7 +13,7 @@ public class LottoHost {
 
     public List<Integer> pickWinNumbers() {
         List<Integer> tempWinNumbers = inputWinNumbers();
-        // TODO: 11/6/23  
+        // TODO: 11/6/23
 //        ValidateException.hasDuplicateEachNumbers(tempWinNumbers);
 //        ValidateException.isWinNumbersCountSix(tempWinNumbers);
 //        ValidateException.checkRangeWinNumbers(tempWinNumbers);
@@ -26,6 +26,7 @@ public class LottoHost {
         Integer tempBonusNumber = inputBonusNumber();
 
 //        ValidateException.hasDuplicateNumAndNumbers(tempBonusNumber, winNumbers);
+        ValidateException.isInRangeBonusNumber(tempBonusNumber);
 
         bonusNumber = tempBonusNumber;
         return bonusNumber;

@@ -27,12 +27,13 @@ public class Lotto {
     public static List<List<Integer>> getManyLotto(int count) {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = START_INDEX; i < count; i++) {
-            result.add(getSingleLotto());
+            List<Integer> randomNum = Randoms.pickUniqueNumbersInRange(1,45,6);
+            result.add(getSingleLotto(randomNum));
         }
         return result;
     }
-    public static List<Integer> getSingleLotto() {
-        List<Integer> oneLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+    public static List<Integer> getSingleLotto(List<Integer> randomNum) {
+        List<Integer> oneLotto = new ArrayList<>(randomNum);
         Collections.sort(oneLotto);
         return oneLotto;
     }

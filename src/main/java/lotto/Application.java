@@ -19,6 +19,8 @@ public class Application {
 
         BonusLotto bonus_lotto = inputBonusLotto(input_lotto);
         List<Boolean> compare_bonus_lotto = lottoList.compareBonusLotto(bonus_lotto);
+
+        Result result = new Result(compare_lotto, compare_bonus_lotto);
     }
 
     public static Money inputMoney() {

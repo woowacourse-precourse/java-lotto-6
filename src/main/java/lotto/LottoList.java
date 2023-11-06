@@ -43,6 +43,7 @@ public class LottoList {
             List<Integer> lotto_list = lottoList.get(i).getNumbers();
             if (lotto_list.contains(bonus)) {
                 compare_count.add(true);
+                continue;
             }
             compare_count.add(false);
         }

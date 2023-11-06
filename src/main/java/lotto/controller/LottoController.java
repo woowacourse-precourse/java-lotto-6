@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.domain.Lotto.createLotto;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
@@ -11,12 +12,12 @@ public class LottoController {
         String lottoPurchaseRequest = lottoOrderRequest();
         LottoStore lottoStore = buyLottoTicketRequest(lottoPurchaseRequest);
         respondLottoTicketsHistory(lottoStore.getUserLottoTickets());
+        String InputWinningNumbers = requestInputWinningNumbers();
+        Lotto winningLotto = createLotto(InputWinningNumbers);
     }
 
     public String lottoOrderRequest() {
-
-        String lottoPurchaseRequest = UI.sendLottoPurchaseRequest();
-        return lottoPurchaseRequest;
+        return UI.sendLottoPurchaseRequest();
     }
 
     public LottoStore buyLottoTicketRequest(String lottoPurchaseRequest) {
@@ -28,5 +29,9 @@ public class LottoController {
 
     public void respondLottoTicketsHistory(List<Lotto> LottoTickets) {
         UI.displayLottoTicketsHistory(LottoTickets);
+    }
+
+    public String requestInputWinningNumbers() {
+        return UI.InputWinningNumbers();
     }
 }

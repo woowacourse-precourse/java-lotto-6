@@ -26,7 +26,7 @@ public class LottoResultPrint {
         long totalPrize = 0;
         for (Map.Entry<LottoPrizeResult, Integer> entry : resultMap.entrySet()){
             totalPrize += (long) entry.getKey().getPrizeMoney() *entry.getValue();
-        }
+        }int 커밋용도로_임시생성 = 1;
         return totalPrize;
     }
 

@@ -31,8 +31,12 @@ public enum WinningStandard {
             }
         }
 
-        if (matchCount == 5 && hasBonusNumber) {
-            return WinningStandard.SECOND;
+        if (matchCount == 5) {
+            if (hasBonusNumber) {
+                return WinningStandard.SECOND;
+            } else {
+                return WinningStandard.THIRD;
+            }
         }
 
         return getWinnigStatndard(matchCount);

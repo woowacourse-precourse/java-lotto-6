@@ -1,10 +1,8 @@
 package lotto.controller;
 
-import lotto.model.BonusNumber;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningLotto;
-import lotto.model.WinningNumber;
 import lotto.model.WinningResult;
 import lotto.util.Parser;
 import lotto.view.InputView;
@@ -18,7 +16,7 @@ public class LottoController {
         Lottos lottos = createLottos(purchaseAmount);
         lottos.displayLottos();
 
-        WinningLotto winningLotto = readWinningLotto();
+        WinningLotto winningLotto = new WinningLotto();
 
         WinningResult winningResult = lottos.calculateWinningResult(winningLotto);
         winningResult.displayWinningResult();
@@ -35,33 +33,6 @@ public class LottoController {
                 return new PurchaseAmount(readPurchaseAmount());
             } catch (IllegalArgumentException e) {
                 OutputView.printNewLine();
-                OutputView.printExceptionMessage(e.getMessage());
-            }
-        } while (true);
-    }
-
-    private WinningLotto readWinningLotto() {
-        return new WinningLotto(readWinningNumber(), readBonusNumber());
-    }
-
-    private BonusNumber readBonusNumber() {
-        do {
-            try {
-                OutputView.printNewLine();
-                int bonusNumber = Parser.parseToInt(InputView.readBonusNumber());
-                return new BonusNumber(bonusNumber);
-            } catch (IllegalArgumentException e) {
-                OutputView.printExceptionMessage(e.getMessage());
-            }
-        } while (true);
-    }
-
-    private WinningNumber readWinningNumber() {
-        do {
-            try {
-                String winningNumber = InputView.readWinningNumbers();
-                return new WinningNumber(Parser.parseToIntListWithComma(winningNumber));
-            } catch (IllegalArgumentException e) {
                 OutputView.printExceptionMessage(e.getMessage());
             }
         } while (true);

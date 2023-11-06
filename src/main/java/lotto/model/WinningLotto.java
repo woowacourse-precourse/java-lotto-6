@@ -1,17 +1,16 @@
 package lotto.model;
 
 import lotto.validation.LottoNumberValidator;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class WinningLotto {
 
-    private final WinningNumber winningNumber;
-    private final BonusNumber bonusNumber;
+    private WinningNumber winningNumber;
+    private BonusNumber bonusNumber;
 
-    public WinningLotto(WinningNumber winningNumber, BonusNumber bonusNumber) {
-        validate(winningNumber, bonusNumber);
-
-        this.winningNumber = winningNumber;
-        this.bonusNumber = bonusNumber;
+    public WinningLotto() {
+        settingWinningLotto();
     }
 
     public WinningNumber getWinningNumber() {
@@ -22,9 +21,36 @@ public class WinningLotto {
         return bonusNumber;
     }
 
-    private void validate(WinningNumber winningNumber, BonusNumber bonusNumber) {
+    private void settingWinningLotto() {
+        this.winningNumber = readWinningNumber();
+        this.bonusNumber = readBonusNumber();
+    }
+
+    private BonusNumber readBonusNumber() {
+        do {
+            try {
+                int bonusNumber = InputView.readBonusNumber();
+                validateBonusNumber(bonusNumber);
+                return new BonusNumber(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                OutputView.printExceptionMessage(e.getMessage());
+            }
+        } while (true);
+    }
+
+    private WinningNumber readWinningNumber() {
+        do {
+            try {
+                return new WinningNumber(InputView.readWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                OutputView.printExceptionMessage(e.getMessage());
+            }
+        } while (true);
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
         LottoNumberValidator.validateDuplicateBonusNumber(
                 winningNumber.getWinningNumbers(),
-                bonusNumber.getBonusNumber());
+                bonusNumber);
     }
 }

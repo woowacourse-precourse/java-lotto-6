@@ -3,8 +3,8 @@ package lotto.model;
 import lotto.view.OutputView;
 
 public class Player {
-    private long total = 0;
     private final int[] matchCount = new int[5];
+    private long total = 0;
     private int price;
     private int bonusNumber;
     private int count;

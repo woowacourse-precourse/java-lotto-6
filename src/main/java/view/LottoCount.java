@@ -41,6 +41,7 @@ public class LottoCount {
             List<Integer> numbers = lotto.getNumbers();
             System.out.println(numbers);
         });
+        System.out.println();
     }
 
 }

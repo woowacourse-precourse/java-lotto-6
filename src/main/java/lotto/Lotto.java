@@ -3,11 +3,12 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+
+    private final List<Integer> numbers;
+
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

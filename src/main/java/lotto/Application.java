@@ -3,6 +3,7 @@ package lotto;
 
 import view.Display;
 import view.LottoCount;
+import view.LottoResult;
 
 public class Application {
     public static void main(String[] args) {
@@ -12,5 +13,6 @@ public class Application {
         LottoCount lottoCount = new LottoCount(cnt);
         lottoCount.printLottoCount();
         lottoCount.printLotties();
+        LottoResult lottoResult = new LottoResult();
     }
 }

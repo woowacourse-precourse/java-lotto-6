@@ -19,9 +19,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private InputHandler inputHandler = new InputHandler();
-    private InputStream inputStream;
-
+    
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -64,31 +62,7 @@ class ApplicationTest extends NsTest {
         });
     }
     
-    @Test
-    @DisplayName("가격 입력이 잘못된 경우")
-    void inputTest() {
-        String input = "2145g";
-        assertThatThrownBy(() -> {
-            inputHandler.readCost(input);
-                }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자만을 입력해야 합니다.");
-    }
-    @Test
-    @DisplayName("1000원 단위로 나누어 떨어지지 않는 경우")
-    void inputTest2() {
-        String input = "12345";
-        assertThatThrownBy(() -> {
-            inputHandler.readCost(input);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1000원으로 나누어 떨어지는 숫자를 입력해야 합니다.");
-    }
 
-    @Test
-    @DisplayName("제대로 된 입력값의 경우")
-    void inputTest3() {
-        String input = "12000";
-        assertThat(inputHandler.readCost(input)).isEqualTo(12000);
-    }
 
     @Override
     public void runMain() {

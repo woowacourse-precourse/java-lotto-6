@@ -9,7 +9,7 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-
+    
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -17,7 +17,17 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-//    public void calculateScore(List<Integer> lottoNumbers) {
-//        
-//    }
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+    
+    public Integer checkScore(Lotto numbers, Integer bonusNumber) {
+        long count = this.numbers.stream()
+                .filter(numbers.numbers::contains)
+                .count();
+        if (this.numbers.contains(bonusNumber)){
+            count += 1;
+        }
+        return Long.valueOf(count).intValue();
+    }
 }

@@ -3,8 +3,10 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,4 +26,13 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    @DisplayName("로또 점수 확인")
+    void checkScoreTest(){
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto winningNumber = new Lotto(List.of(1,2,3,4,7,8));
+        Integer bonusNumber = 9;
+        
+        assertThat(lotto.checkScore(winningNumber, bonusNumber)).isEqualTo(4);
+    }
 }

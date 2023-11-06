@@ -1,6 +1,7 @@
 package view;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -19,9 +20,9 @@ public class Output {
     public static final String SECOND_PRIZE_DESCRIPTION = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
 
-    public static void getLottoNumbers(List<Lotto> lottoList) {
-        System.out.printf(LINE_BREAK + PURCHASE_AMOUNT_MESSAGE + LINE_BREAK, lottoList.size());
-        lottoList.forEach(lotto -> {
+    public static void getLottoNumbers(List<Lotto> lottoTickets) {
+        System.out.printf(LINE_BREAK + PURCHASE_AMOUNT_MESSAGE + LINE_BREAK, lottoTickets.size());
+        lottoTickets.forEach(lotto -> {
             List<Integer> numbers = lotto.getNumbers();
             String lottoNumbers = formatLottoNumbers(numbers);
             System.out.printf(LOTTO_NUMBERS_SEPARATOR + LINE_BREAK, lottoNumbers);
@@ -29,8 +30,9 @@ public class Output {
     }
 
     private static String formatLottoNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers.stream()
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+        Collections.sort(mutableNumbers);
+        return mutableNumbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(LOTTO_NUMBERS_JOIN_SEPARATOR));
     }

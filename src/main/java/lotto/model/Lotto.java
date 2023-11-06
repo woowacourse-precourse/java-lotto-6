@@ -13,11 +13,12 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-
-
     private List<Integer> sortLottoNumbers(List<Integer> numbers){
         return numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
+    }
+    public List<Integer> getLotto(){
+        return numbers;
     }
 }

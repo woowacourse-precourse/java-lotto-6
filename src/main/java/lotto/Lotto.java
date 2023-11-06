@@ -12,19 +12,26 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private final void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
         validateUnique(numbers);
     }
 
-    private final void validateUnique(List<Integer> numbers) {
+    private void validateUnique(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
-        for (int element: numbers) {
+        for (int element : numbers) {
             if (!uniqueNumbers.add(element)) {
                 throw new IllegalArgumentException("중복된 원소가 존재합니다.");
             }
         }
+    }
+
+    public boolean isMatch(List<Integer> targetNumbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if (targetNumbers.get(i) != numbers.get(i)) return false;
+        }
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Purchase;
 import lotto.model.RandomLotto;
@@ -15,6 +16,7 @@ public class Application {
     private static int purchasePieces;
     private static List<Integer> lottoNum;
     private static List<Integer> winNum;
+    private static List<Integer> bonusNum;
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final RandomLotto random = new RandomLotto();
@@ -55,11 +57,23 @@ public class Application {
         }
     }
 
+    public static void bonusNum(List<Integer> numbers) {
+        try {
+            Bonus bonus = new Bonus(numbers);
+        } catch (IllegalArgumentException e) {
+            outputView.errorMessage(e.getMessage());
+            bonusNum = convertNum(inputView.bonusNum());
+            bonusNum(bonusNum);
+        }
+    }
+
     public static void main(String[] args) {
         purchaseCount(inputView.purchaseAmount());
         outputView.purchasePieces(purchasePieces);
         randomRepeat();
         winNum = convertNum(inputView.winNum());
         winLottoNum(winNum);
+        bonusNum = convertNum(inputView.bonusNum());
+        bonusNum(bonusNum);
     }
 }

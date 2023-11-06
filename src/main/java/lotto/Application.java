@@ -21,6 +21,10 @@ public class Application {
         Purchase purchase = lottoController.purcahseLottos(amount);
         int purchaseCount = purchase.getPurchaseCount();
         outputView.printPurchaseCount(purchaseCount);
+
+        // 로또 발급
+        List<Lotto> lottos = lottoController.generateLottoTicket(purchaseCount);
+        outputView.printLottos(lottos);
         
     }
 }

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.util.LottoGameUtil;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicatedNumber(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -21,8 +25,11 @@ public class Lotto {
         if (numbers.stream()
                 .distinct()
                 .count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(LottoGameMessage.DUPLICATED_NUMBER_ERROR);
         }
     }
-    // TODO: 추가 기능 구현
+
+    public void viewNumberStatus() {
+        LottoGameUtil.viewNumberStatus(numbers);
+    }
 }

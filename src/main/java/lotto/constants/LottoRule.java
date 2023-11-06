@@ -1,6 +1,7 @@
 package lotto.constants;
 
 import static lotto.exception.ExceptionMessage.GOAL_NUMBER_SIZE_EXCEPTION;
+import static lotto.exception.ExceptionMessage.INVEST_MONEY_VALUE_EXCEPTION;
 import static lotto.exception.ExceptionMessage.MONEY_REMAIN_EXCEPTION;
 import static lotto.exception.ExceptionMessage.UNVALID_GOAL_NUMBER;
 
@@ -33,7 +34,7 @@ public enum LottoRule {
 
     public static void validateInvestMoneyMinValue(final int money) {
         if (money < LottoRule.LOTTO_COST.getValue()) {
-            throw new IllegalArgumentException(MONEY_REMAIN_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(INVEST_MONEY_VALUE_EXCEPTION.getMessage());
         }
     }
 

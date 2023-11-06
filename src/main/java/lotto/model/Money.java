@@ -3,8 +3,6 @@ package lotto.model;
 import static lotto.exception.ExceptionMessage.NEGATIVE_NUMBER_EXCEPTION;
 import static lotto.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 
-import lotto.constants.LottoRule;
-
 public class Money {
 
     private static final int DEFAULT_VALUE = 0;
@@ -22,7 +20,6 @@ public class Money {
     public static Money from(final String moneyInput) {
         int money = convertToNumber(moneyInput);
         validateIsNotNegativeNumber(money);
-        LottoRule.validateInvestMoneyMinValue(money);
 
         return new Money(money);
     }

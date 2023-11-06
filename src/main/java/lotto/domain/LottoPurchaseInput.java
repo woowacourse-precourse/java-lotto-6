@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import lotto.message.ErrorMessage;
 import lotto.message.OutputMessage;
+import lotto.utils.Util;
 
 public class LottoPurchaseInput {
     public static BigDecimal inputPurchaseAmount() {
@@ -11,6 +12,7 @@ public class LottoPurchaseInput {
             OutputMessage.ASK_PURCHASE_AMOUNT.printMessage();
             String input = Console.readLine();
             validate(input);
+            Util.validateNumber(input);
             return new BigDecimal(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

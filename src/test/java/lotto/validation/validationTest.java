@@ -56,5 +56,12 @@ public class validationTest {
                 .hasMessageContaining(ErrorMessage.INPUT_DUPLICATE_NUMBER_ERROR.getMessage());
     }
 
-
+    @Test
+    @DisplayName("당첨번호가 6개가 아닐경우 예외를 발생시킨다.")
+    void 당첨번호_갯수_테스트() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 6, 4, 5, 8);
+        assertThatThrownBy(() -> validateService.validateInputWinningNumbersAll(winningNumbers)).isInstanceOf(
+                        IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INPUT_INCORRECT_NUMBER_COUNT_ERROR.getMessage());
+    }
 }

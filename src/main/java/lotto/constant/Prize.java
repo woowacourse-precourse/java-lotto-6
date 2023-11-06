@@ -1,34 +1,46 @@
 package lotto.constant;
 
-public enum Prize {
-    FIRST(6, 2000000000),
-    SECOND(5, 1, 30000000, ", 보너스 볼 일치"),
-    THIRD(5, 0, 1500000, ""),
-    FOURTH(4, 50000),
-    FIFTH(3, 5000);
+import java.util.List;
 
+public enum Prize {
+    FIRST(1, 6, 2000000000),
+    SECOND(2, 5, List.of(1), 30000000, ", 보너스 볼 일치"),
+    THIRD(3, 5, List.of(0), 1500000, ""),
+    FOURTH(4, 4, 50000),
+    FIFTH(5, 3, 5000);
+
+    private final int grade;
     private final int winningHit;
-    private final int bonusHit;
+    private final List<Integer> bonusHit;
     private final int reward;
     private final String message;
 
 
-    Prize(int winningHit, int bonusHit, int reward, String message) {
+    Prize(int grade,
+          int winningHit,
+          List<Integer> bonusHit,
+          int reward,
+          String message) {
+        this.grade = grade;
         this.winningHit = winningHit;
         this.bonusHit = bonusHit;
         this.reward = reward;
         this.message = message;
     }
 
-    Prize(int winningHit, int reward) {
-        this(winningHit, 0, reward, "");
+    Prize(int grade, int winningHit, int reward) {
+        this(grade, winningHit, List.of(0, 1), reward, "");
+    }
+
+    public int getGrade() {
+        return grade;
     }
 
     public int getWinningHit() {
         return winningHit;
     }
 
-    public int getBonusHit() {
+    public List<Integer> getBonusHit() {
         return bonusHit;
     }
 

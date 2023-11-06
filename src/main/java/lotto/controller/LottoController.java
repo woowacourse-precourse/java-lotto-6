@@ -39,8 +39,10 @@ public class LottoController {
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
         LottoResult lottoResult = lottoService.getLottoResult(lottos, winningNumber, bonusNumber);
 
-        int revenue = lottoService.getRevenue(lottoResult);
+         float revenue = lottoService.getRevenue(lottoResult);
 
+
+        outputView.printResultStringMessage();
         for (int rank = 5; rank > 0; rank--) {
             int rankCount = 0;
             if (lottoResult.contains(rank)) {
@@ -52,7 +54,7 @@ public class LottoController {
         if (revenue == 0) {
             outputView.printRevenue(0);
         } else {
-            outputView.printRevenue(revenue / lottoCount);
+            outputView.printRevenue((revenue*100) / purchaseAmount);
         }
     }
 
@@ -63,13 +65,19 @@ public class LottoController {
     }
 
     private Lotto getLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_MIN_NUMBER,
-                LottoConstant.LOTTO_MAX_NUMBER,
-                LottoConstant.LOTTO_LENGTH);
-        Collections.sort(numbers);
-        outputView.printLottoNumber(numbers);
-        Lotto lotto = new Lotto(numbers);
-        return lotto;
+        while (true) {
+            try {
+                List<Integer> numbers = new ArrayList(Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_MIN_NUMBER,
+                        LottoConstant.LOTTO_MAX_NUMBER,
+                        LottoConstant.LOTTO_LENGTH));
+                Collections.sort(numbers);
+                Lotto lotto = new Lotto(numbers);
+                outputView.printLottoNumber(numbers);
+                return lotto;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(ErrorMessage.DUPLICATE_LOTTO_NUMBER);
+            }
+        }
     }
 
     private int getPurchaseAmount() {

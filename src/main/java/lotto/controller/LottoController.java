@@ -84,8 +84,7 @@ public class LottoController {
     }
     public Map<LottoRanks, Integer> compareLotto(List<List<Integer>> purchased, Lotto winningNum, int bonusNum) {
         Comparing nextPhase = new Comparing(winningNum, bonusNum);
-        nextPhase.compareWinningNumToAll(purchased);
-        return nextPhase.getComparingResult(purchased);
+        return nextPhase.getResult(purchased);
     }
 
     public Double getReturnRate(Map<LottoRanks,Integer> enumMap, int cost) {

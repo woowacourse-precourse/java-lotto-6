@@ -21,17 +21,22 @@ public class Comparing {
         this.bonusNum = bonusNum;
     }
 
-    public void compareWinningNumToAll(List<List<Integer>> purchased) {
+    public Map<LottoRanks, Integer> getResult(List<List<Integer>> purchased) {
+        compareWinningNumToAll(purchased);
+        return makeResultTable(purchased);
+    }
+    private void compareWinningNumToAll(List<List<Integer>> purchased) {
         for (List<Integer> eachLotto : purchased) {
             compareWinningNumToEach(eachLotto);
         }
     }
     private void compareWinningNumToEach(List<Integer> eachLotto) {
-        int sameCount = countSameNumber(eachLotto, winningLotto.getWinningNumbers());
+        int sameCount = countSameNumber(eachLotto);
         sameNumCount.add(sameCount);
-        secondOrNot.add(isLottoRankSecond(sameCount, eachLotto, bonusNum));
+        secondOrNot.add(isLottoRankSecond(sameCount, eachLotto));
     }
-    public int countSameNumber(List<Integer> eachLotto, List<Integer> winningNum) {
+    public int countSameNumber(List<Integer> eachLotto) {
+        List<Integer> winningNum = winningLotto.getWinningNumbers();
         int sameCount = 0;
         for (Integer num : eachLotto) {
             if (winningNum.contains(num)) {
@@ -40,11 +45,11 @@ public class Comparing {
         }
         return sameCount;
     }
-    public boolean isLottoRankSecond(int sameCount, List<Integer> eachLotto, int bonusNum) {
+    public boolean isLottoRankSecond(int sameCount, List<Integer> eachLotto) {
         return sameCount == FIVE_SAME_NUM && eachLotto.contains(bonusNum);
     }
 
-    public Map<LottoRanks, Integer> getComparingResult(List<List<Integer>> purchased) {
+    public Map<LottoRanks, Integer> makeResultTable(List<List<Integer>> purchased) {
         Map<LottoRanks, Integer> result = LottoRanks.getEnumMap();
         for (int i = START_INDEX; i < purchased.size(); i++) {
             LottoRanks rank = LottoRanks.findRank(sameNumCount.get(i), secondOrNot.get(i));

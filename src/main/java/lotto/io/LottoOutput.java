@@ -14,38 +14,21 @@ public final class LottoOutput implements OutputPort{
         this.statisticsConverter = statisticsConverter;
     }
 
-    @Override
-    public void printErrorMessage(String message) {
 
-    }
+    enum Message{
+        NEW_LINE("\n"),
+        INPUT_MONEY("구입금액을 입력해 주세요."),
+        PURCHASE_NUM(NEW_LINE.value + "%d개를 구매했습니다." + NEW_LINE.value),
+        INPUT_WINNING_NUMBER(NEW_LINE.value + "당첨 번호를 입력해 주세요."),
+        INPUT_BONUS_NUMBER(NEW_LINE.value + "보너스 번호를 입력해 주세요."),
+        STATISTICS_PREFIX(NEW_LINE.value + "당첨 통계" + NEW_LINE.value + "---" + NEW_LINE.value),
+        REWARD_RATE("총 수익률은 %,.1f%%입니다."),
+        ;
 
-    @Override
-    public void printInputPurchaseAmount() {
+        private final String value;
 
-    }
-
-    @Override
-    public void printNumberOfLottos(Integer numberOfLottos) {
-
-    }
-
-    @Override
-    public void printCreatedLottos(List<List<Integer>> lottos) {
-
-    }
-
-    @Override
-    public void printInputWinningNumbers() {
-
-    }
-
-    @Override
-    public void printInputBonusNumber() {
-
-    }
-
-    @Override
-    public void printStatistics(Statistics statistics) {
-
+        Message(String value) {
+            this.value = value;
+        }
     }
 }

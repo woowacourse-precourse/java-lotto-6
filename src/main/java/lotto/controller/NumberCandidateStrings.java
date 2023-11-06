@@ -13,14 +13,14 @@ public class NumberCandidateStrings {
         this.numberCandidateStrings = numberCandidateStrings;
     }
 
+    public List<LottoNumber> toLottoNumberList(){
+        return numberCandidateStrings.stream().map(NumberCandidateString::getNumber).map(LottoNumber::new).toList();
+    }
+
     public static NumberCandidateStrings valueOf(String[] splitStrings){
         List<NumberCandidateString> numberCandidateStrings = Arrays.stream(splitStrings)
                 .map(NumberCandidateString::new)
                 .toList();
         return new NumberCandidateStrings(numberCandidateStrings);
-    }
-
-    public List<LottoNumber> toLottoNumberList(){
-        return numberCandidateStrings.stream().map(NumberCandidateString::getNumber).map(LottoNumber::new).toList();
     }
 }

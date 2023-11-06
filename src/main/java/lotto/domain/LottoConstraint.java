@@ -11,12 +11,12 @@ public enum LottoConstraint {
         this.constraint = constraint;
     }
 
-    public static boolean checkSize(int size) {
-        return size == SIZE.constraint;
-    }
-
     public int getConstraint() {
         return constraint;
+    }
+
+    public static boolean checkSize(int size) {
+        return size == SIZE.constraint;
     }
 
     public static boolean inRange(int number) {

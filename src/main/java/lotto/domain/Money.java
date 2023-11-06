@@ -11,12 +11,12 @@ public class Money {
         this.money = money;
     }
 
-    public static Money of(Integer money) {
-        return new Money(money);
-    }
-
     public Integer calcBillCount() {
         return money / MINIMUM_AMOUNT;
+    }
+
+    public static Money of(Integer money) {
+        return new Money(money);
     }
 
     private void validateMinimumAmount(Integer money) {

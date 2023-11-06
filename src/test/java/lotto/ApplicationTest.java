@@ -93,6 +93,12 @@ class ApplicationTest extends NsTest {
                 () -> {money_for_lotto.multipleOfThousand(test);});
     }
 
+    @Test
+    void 복권_개수_계산_테스트(){
+        int test = 14000;
+        Assertions.assertEquals(14, money_for_lotto.repeatTime(test));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

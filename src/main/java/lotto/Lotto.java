@@ -20,7 +20,7 @@ public class Lotto {
     }
 
     private void validateNumbers(List<Integer> numbers){
-        if(numbers.stream().allMatch(n->n>=1&&n<=45)){
+        if(!numbers.stream().allMatch(n->n>=1&&n<=45)){
             throw new IllegalArgumentException();
         }
     }

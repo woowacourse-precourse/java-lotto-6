@@ -39,6 +39,7 @@ public class Utii {
         ValidateException.includeBlank(inputStringLine);
         ValidateException.negative(inputStringLine);
         ValidateException.includeString(inputStringLine);
+        ValidateException.includeSpecialString(inputStringLine);
 
         return Integer.valueOf(inputStringLine);
     }

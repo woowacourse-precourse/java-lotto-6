@@ -9,6 +9,11 @@ public class UserLotto {
     private int lottoCount;
     private List<Lotto> lottos;
 
+    public UserLotto(int money) {
+        moneyToCount(money);
+        publishLottoBundle();
+    }
+
     private void moneyToCount(int money) {
         this.lottoCount = money / 1000;
     }

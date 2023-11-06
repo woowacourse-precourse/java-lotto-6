@@ -1,5 +1,6 @@
 package lotto.controller;
 
+
 import lotto.domain.Payment;
 import lotto.service.LottoBuyer;
 import lotto.view.InputView;
@@ -17,6 +18,8 @@ public class LottoController {
     public void run() {
         Payment payment = inputView.inputPayment();
         LottoBuyer lottoBuyer = new LottoBuyer(payment);
+        lottoBuyer.generateLotto();
     }
+
 
 }

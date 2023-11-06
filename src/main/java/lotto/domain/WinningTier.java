@@ -7,6 +7,7 @@ public class WinningTier {
 
     private static final int DEFAULT_VALUE = 0;
     private static final int PLUS_UNIT = 1;
+    private static final int TWO_DOT_ROUND_VALUE = 100;
 
     private HashMap<Integer, Integer> winningTier;
 
@@ -32,5 +33,9 @@ public class WinningTier {
 
     public HashMap<Integer, Integer> getWinningTier() {
         return this.winningTier;
+    }
+
+    public double calculateRounds(double price) {
+        return (double) Math.round(price * TWO_DOT_ROUND_VALUE) / TWO_DOT_ROUND_VALUE;
     }
 }

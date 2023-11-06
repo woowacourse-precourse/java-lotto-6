@@ -18,7 +18,7 @@ public class WinningLottoValidator extends AbstractValidator<Lotto> {
     }
 
     private void validateDuplicateLottoNumber(final Lotto winningLottoTicket) {
-        if (winningLottoTicket.isDuplicateNumber(bonusNumber)) {
+        if (winningLottoTicket.isContainsNumber(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.format());
         }
     }

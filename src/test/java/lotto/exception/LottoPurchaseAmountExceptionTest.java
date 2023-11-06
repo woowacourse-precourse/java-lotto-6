@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class LottoPurchaseAmountExceptionTest {
 
@@ -12,10 +12,9 @@ class LottoPurchaseAmountExceptionTest {
     @DisplayName("구입 금액이 1,000으로 나누어 떨어지지 않으면 예외 처리")
     void checkLottoPurchaseAmountDivideThousand(){
         // given
-        int input = 2500;
-
+        String input = "2500";
         //then
-        assertThatThrownBy(() -> new LottoPurchaseAmountException().isDivideThousand(input)).isInstanceOf(
+        assertThatThrownBy(() -> new LottoPurchaseAmountException(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
@@ -24,9 +23,8 @@ class LottoPurchaseAmountExceptionTest {
     void checkIsNumber(){
         //given
         String input = "abc";
-
         //then
-        assertThatThrownBy(() -> new LottoPurchaseAmountException().isNumber(input)).isInstanceOf(
+        assertThatThrownBy(() -> new LottoPurchaseAmountException(input)).isInstanceOf(
                 IllegalArgumentException.class);
 
     }
@@ -36,9 +34,8 @@ class LottoPurchaseAmountExceptionTest {
     void checkIsBlack(){
         //given
         String input = " ";
-
         //then
-        assertThatThrownBy(() -> new LottoPurchaseAmountException().isBlank(input)).isInstanceOf(
+        assertThatThrownBy(() -> new LottoPurchaseAmountException(input)).isInstanceOf(
                 IllegalArgumentException.class);
 
     }

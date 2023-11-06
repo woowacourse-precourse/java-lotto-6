@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class ValidateException {
     private static final String KOREAN_ENGLISH_REGEX = ".*[^0-9\\s].*";
-    private static final String KOREAN_ENGLISH_EXCEPTION_COMMA_REGEX = ".*[^0-9,\\s].*";
+    private static final String KOREAN_ENGLISH_EXCEPTION_COMMA_REGEX = ".*[^0-9,\\s-].*";
     private static final String NOTING_STRING = "";
     private static final String BLANK = " ";
     private static final String SPECIAL_CHARACTER_REGEX = "[!@#$%^&*().?\":{}|<>]";

@@ -111,5 +111,38 @@ public class Application {
         System.out.println(Message.GetBonusNumber.getValue());
         int bonusNumber = Integer.parseInt(readLine());
 
+
+        //게임 3. 당첨번호, 보너스번호와 구매한 로또번호 비교
+        int correctCount = 0; // 일치하는 숫자 개수
+        List<Integer> correctCounts = new ArrayList<>();
+
+        // 당첨번호와 비교
+        for(Lotto l:lottos){
+            List<Integer> lottosTemp = new ArrayList<Integer>(l.getter());
+            for(int i = 0; i < 6; i++){
+                if (lottosTemp.contains(winningNumber.get(i))){
+                    correctCount += 1;
+                }
+            }
+            correctCounts.add(correctCount);
+            correctCount = 0;
+        }
+
+        //보너스 번호와 비교
+        List<Boolean> correctBonus = new ArrayList<>();
+
+        for(Lotto l:lottos){
+            List<Integer> lottosTemp = new ArrayList<Integer>(l.getter());
+
+            if (lottosTemp.contains(bonusNumber)) {
+                correctBonus.add(true);
+            }
+            else{
+                correctBonus.add(false);
+            }
+        }
+
+
+
     }
 }

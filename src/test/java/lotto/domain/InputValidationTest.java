@@ -3,7 +3,6 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -52,7 +51,7 @@ class InputValidationTest {
 
     @Test
     void 입력받은_번호가_당첨번호와_중복된_경우() {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto numbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
 
         assertThatThrownBy(() -> InputValidation.checkOverlap(1, numbers))
                 .isInstanceOf(IllegalArgumentException.class)

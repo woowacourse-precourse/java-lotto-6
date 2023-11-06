@@ -14,7 +14,7 @@ public class Output {
         System.out.println(message);
     }
 
-    public static void printLotto(List<Lotto> lotteries) {
+    public static void printLotteries(List<Lotto> lotteries) {
         int count = lotteries.size();
         System.out.printf(PURCHASE_MESSAGE, count);
         for (Lotto lotto : lotteries) {

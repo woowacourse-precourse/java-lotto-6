@@ -49,6 +49,6 @@
 ### 출력
 
 - [x] 메시지 출력 - Output#printMessage()
-- [x] 발행한 로또 수량및 번호 출력(번호는 오름차순으로 정렬) - Output#printLottos()
+- [x] 발행한 로또 수량및 번호 출력(번호는 오름차순으로 정렬) - Output#printLotteries()
 - [x] 당첨 결과를 출력 - Output#printResult()
 - [x] 수익률 출력 - Output#printEarnings()

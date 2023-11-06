@@ -8,6 +8,7 @@ import lotto.constant.LottoNumber;
 import lotto.constant.Rank;
 
 public class LottoMachine {
+
     private List<Integer> createNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                 LottoNumber.MINIMUM.getValue(), LottoNumber.MAXIMUM.getValue(), LottoNumber.SIZE.getValue());
@@ -24,11 +25,11 @@ public class LottoMachine {
         return lotteries;
     }
 
-    public List<Rank> draw(Lotto winningNumber, int bonus, List<Lotto> lotteries) {
+    public List<Rank> draw(List<Lotto> lotteries, WinningNumber winningNumber) {
         List<Rank> result = new ArrayList<>();
         for (Lotto lotto : lotteries) {
-            int count = lotto.equalsNumberCount(winningNumber);
-            result.add(Rank.getRank(count, lotto.contains(bonus)));
+            int count = lotto.equalsNumberCount(winningNumber.getNumbers());
+            result.add(Rank.getRank(count, lotto.contains(winningNumber.getBonus())));
         }
         return result;
     }

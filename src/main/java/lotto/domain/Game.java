@@ -9,6 +9,7 @@ import lotto.ui.Output;
 
 public class Game {
     private final LottoMachine lottoMachine = new LottoMachine();
+    private final WinningNumber winningNumber = new WinningNumber();
     private int amount;
 
     private List<Lotto> createLotteries() {
@@ -35,11 +36,11 @@ public class Game {
         }
     }
 
-    private int createBonus(List<Integer> winningNumber) {
+    private int createBonus() {
         while (true) {
             Output.printMessage(Input.BONUS);
             try {
-                return Input.readBonus(Console.readLine(), winningNumber);
+                return Input.readBonus(Console.readLine(), winningNumber.getNumbers());
             } catch (IllegalArgumentException exception) {
                 Output.printMessage(exception.getMessage());
             }
@@ -48,13 +49,13 @@ public class Game {
 
     public void start() {
         List<Lotto> lotteries = createLotteries();
-        Output.printLotto(lotteries);
-        Lotto winningNumber = createWinningNumber();
-        int bonus = createBonus(winningNumber.getNumbers());
+        Output.printLotteries(lotteries);
+        winningNumber.setNumbers(createWinningNumber());
+        winningNumber.setBonus(createBonus());
 
-        List<Rank> result = lottoMachine.draw(winningNumber, bonus, lotteries);
+        List<Rank> result = lottoMachine.draw(lotteries, winningNumber);
         Output.printResult(result);
         double winnings = lottoMachine.combineWinnings(result);
-        Output.printEarnings(winnings / amount * 100);
+        Output.printEarnings(winnings / amount * LottoNumber.PERCENT.getValue());
     }
 }

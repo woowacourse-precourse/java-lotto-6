@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.InputValidation;
+import lotto.domain.Lotto;
 
 public class Input {
     public static char DELIMITER = ',';
@@ -28,7 +29,7 @@ public class Input {
         return numbers;
     }
 
-    public static int readBonus(String input, List<Integer> winningNumber) {
+    public static int readBonus(String input, Lotto winningNumber) {
         int bonus = InputValidation.validateNumber(input);
         InputValidation.checkRange(bonus);
         InputValidation.checkOverlap(bonus, winningNumber);

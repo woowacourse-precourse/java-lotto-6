@@ -34,7 +34,7 @@ public class InputValidation {
         }
     }
 
-    public static void checkOverlap(int number, List<Integer> winningNumber) {
+    public static void checkOverlap(int number, Lotto winningNumber) {
         if (winningNumber.contains(number)) {
             throw new IllegalArgumentException(ErrorMessage.OVERLAP.getMessage());
         }

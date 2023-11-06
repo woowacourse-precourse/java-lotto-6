@@ -1,17 +1,15 @@
-package lotto.View;
+package lotto.Controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-//TODO : 각 메서드에 대한 예외 처리 및 재입력 구현
-public class InputVIew {
-    private static final String INPUT_TICKETS_AMOUNT = "구입금액을 입력해 주세요.";
-    private static final String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    //TODO : 중복잡기 , 6개가 넘어가면 예외가 발생
+import lotto.View.ExceptionMessage;
+import lotto.View.InputView;
+
+public class InputController {
     public static int inputTicketsAmount(){
-        System.out.println(INPUT_TICKETS_AMOUNT);
+        InputView.printTicketsAmount();
         try {
             return validateNum(Console.readLine());
         } catch (IllegalArgumentException e){
@@ -20,7 +18,7 @@ public class InputVIew {
         }
     }
     public static List<Integer> inputWinningNumbers(){
-        System.out.println(INPUT_WINNING_NUMBERS);
+        InputView.printWinningNumbers();
         try {
             return toWinningNumbers(Console.readLine());
         } catch (IllegalArgumentException e){
@@ -32,7 +30,7 @@ public class InputVIew {
 
     }
     public static int inputBonusNumber(){
-        System.out.println(INPUT_BONUS_NUMBER);
+        InputView.printBonusNumber();
         try {
             return validateNum(Console.readLine());
         } catch (IllegalArgumentException e){

@@ -2,10 +2,9 @@ package lotto.Model;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import lotto.View.ExceptionMessage;
-import lotto.View.InputVIew;
+import lotto.Controller.InputController;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -24,7 +23,7 @@ public class Lotto {
             validateDuplicates(numbers);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            validate(InputVIew.inputWinningNumbers());
+            validate(InputController.inputWinningNumbers());
         }
     }
     private void validateLength(List<Integer> numbers){

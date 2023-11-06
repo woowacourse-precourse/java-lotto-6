@@ -1,7 +1,7 @@
 package lotto.Model;
 
 import lotto.View.ExceptionMessage;
-import lotto.View.InputVIew;
+import lotto.Controller.InputController;
 
 public class TicketsAmount {
 //TODO : 1000원 이상, 1000원 단위인지 검증
@@ -25,7 +25,7 @@ public class TicketsAmount {
             return tickets;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            int newTickets= InputVIew.inputTicketsAmount();
+            int newTickets= InputController.inputTicketsAmount();
             return validate(newTickets);
         }
     }

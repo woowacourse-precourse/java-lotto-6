@@ -2,7 +2,7 @@ package lotto.Model;
 
 import java.util.List;
 import lotto.View.ExceptionMessage;
-import lotto.View.InputVIew;
+import lotto.Controller.InputController;
 
 public class BonusNumber {
     private final int bonus;
@@ -19,7 +19,7 @@ public class BonusNumber {
             return bonus;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            int newBonus = InputVIew.inputBonusNumber();
+            int newBonus = InputController.inputBonusNumber();
             return validate(newBonus,winningNumbers);
         }
     }

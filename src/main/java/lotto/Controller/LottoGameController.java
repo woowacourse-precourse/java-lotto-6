@@ -8,7 +8,6 @@ import lotto.Model.LottoMatch;
 import lotto.Model.RandomLottos;
 import lotto.Model.Result;
 import lotto.Model.TicketsAmount;
-import lotto.View.InputVIew;
 import lotto.View.OuputView;
 
 public class LottoGameController {
@@ -17,13 +16,13 @@ public class LottoGameController {
     private  BonusNumber bonusNumber;
 
     public void initializeGame() {
-        ticketsAmount = new TicketsAmount(InputVIew.inputTicketsAmount());
+        ticketsAmount = new TicketsAmount(InputController.inputTicketsAmount());
         OuputView.printNumOfTicket(ticketsAmount.getTickets());
         List<List<Integer>> randomLottos = RandomLottos.SetRandomLottos(ticketsAmount.getTickets()); // 랜덤패
         RandomLottos.printLottoNumbers(randomLottos);
-        lotto = new Lotto(InputVIew.inputWinningNumbers());
+        lotto = new Lotto(InputController.inputWinningNumbers());
         List<Integer> winningNumbers = lotto.getNumbers();// 당첨패
-        bonusNumber = new BonusNumber(InputVIew.inputBonusNumber(),winningNumbers);
+        bonusNumber = new BonusNumber(InputController.inputBonusNumber(),winningNumbers);
         start(randomLottos);
     }
 

@@ -8,7 +8,7 @@ import lotto.generator.LottoGenerator;
 
 public class LottoPurchase {
 
-    private long purchaseAmount;
+    private final long purchaseAmount;
 
     public LottoPurchase(long purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);

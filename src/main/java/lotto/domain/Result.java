@@ -13,7 +13,7 @@ public class Result {
     }
 
     public double calculateLottoRateOfReturn() {
-        return 0;
+        return (proceeds() / totalBuyLottoAmount()) * 100;
     }
 
     public double proceeds() {

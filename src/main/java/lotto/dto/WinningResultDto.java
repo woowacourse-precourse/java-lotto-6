@@ -13,7 +13,7 @@ public class WinningResultDto {
     private double returnRate;
 
     public WinningResultDto(WinningResult winningResult) {
-        Map<Ranking, Integer> rankingCount = winningResult.getWinningResult();
+        Map<Ranking, Integer> rankingCount = winningResult.getRankingCount();
         this.rankingDtos = Arrays.stream(Ranking.values())
                 .map(ranking -> new RankingDto(ranking, rankingCount.get(ranking)))
                 .toList();

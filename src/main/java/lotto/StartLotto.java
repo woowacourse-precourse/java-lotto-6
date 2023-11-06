@@ -342,7 +342,7 @@ public class StartLotto {
     private double roundSecondDigit(double value) {
         return Math.round(value * 100.0) / 100.0;
     }
-    
+
     private void printErrorMessage(Exception e) {
         System.out.println("[ERROR] " + e.getMessage());
     }

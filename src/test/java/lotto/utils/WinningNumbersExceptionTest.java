@@ -11,7 +11,7 @@ public class WinningNumbersExceptionTest {
     @Test
     void 당첨_번호_6개_초과_입력 () {
         assertThrows(IllegalArgumentException.class, () ->
-                winningNumbersException.exceedsLength("1,2,3,4,5,6"), "[ERROR]입력을 초과했습니다.");
+                winningNumbersException.exceedsLength("1,2,3,4,5,6,7"), "[ERROR]입력을 초과했습니다.");
     }
 
     @Test

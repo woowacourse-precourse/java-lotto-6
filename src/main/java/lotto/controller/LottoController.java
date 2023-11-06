@@ -15,6 +15,7 @@ public class LottoController {
 
     private Purchase purchase;
     private Lottos lottos;
+    private WinningLotto winningLotto;
 
     public void run() {
         payMoney();
@@ -46,7 +47,7 @@ public class LottoController {
 
         try {
 
-            new WinningLotto(stringToList(winningNumber));
+            winningLotto = new WinningLotto(stringToList(winningNumber));
 
         } catch (IllegalArgumentException exception) {
             OutputView.error(exception.getMessage());

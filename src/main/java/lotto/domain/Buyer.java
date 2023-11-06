@@ -14,7 +14,7 @@ public class Buyer {
         LOTTO_COUNT.setValue(this.purchaseAmount / LOTTO_UNIT_PRICE.getValue());
     }
 
-    public static Buyer createBuyer(String purchaseAmount) {
+    public static Buyer of(String purchaseAmount) {
         return new Buyer(purchaseAmount);
     }
 

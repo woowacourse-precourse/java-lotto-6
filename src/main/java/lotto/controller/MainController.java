@@ -11,7 +11,7 @@ public class MainController {
     }
 
     public static void run() {
-        Buyer buyer = buyerController.getBuyerInfo();
+        Buyer buyer = buyerController.createBuyer();
         Lottos lottoTicket = lottoController.createLottoTicket();
         lottoController.showLottoPurchase(lottoTicket);
     }

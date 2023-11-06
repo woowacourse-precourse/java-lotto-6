@@ -22,7 +22,7 @@
     - [x]  `Randoms.pickUniqueNumbersInRange`를 사용하여 6개의 로또 번호 숫자 범위 (현재 기준 1 ~ 45) 내의 숫자를 로또 수량만큼 생성한다.
     - [x]  오름차순으로 정렬하여 로또들을 저장한다.
 4. 당첨 번호를 입력받는다.
-    - [ ]  delimiter (현재 기준 ',') 기준으로 입력 받은 당첨 번호를 구분한다.
+    - [x]  delimiter (현재 기준 ',') 기준으로 입력 받은 당첨 번호를 구분한다.
     - [x]  6개로 구분되지 않는다면 IllegalArgumentException을 반환한다.
     - [ ]  숫자가 아니라면 IllegalArgumentException을 반환한다.
     - [x]  입력 받은 당첨 번호가 로또 번호 숫자 범위 (현재 기준 1 ~ 45) 내인지 확인한다. 범위 밖이라면 IllegalArgumentException을 반환한다.
@@ -77,4 +77,4 @@
     - [x]  입력 문자가 1 ~ 45내가 아니라면 IllegalArgumentException을 반환한다.
     - [x]  입력 문자가 중복되지 않을 경우 어떠한 Exception도 감지되지 않는다.
     - [x]  입력 문자가 중복될 경우 IllegalArgumentException을 반환한다.
-    - [ ]  입력 문자가 delimiter (현재 `,`)로 구분된다.
+    - [x]  입력 문자가 delimiter (현재 `,`)로 구분된다.

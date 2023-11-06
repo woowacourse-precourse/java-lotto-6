@@ -1,4 +1,4 @@
-package lotto.model.converter;
+package lotto.model.converter.StringToType;
 
 import static lotto.util.ExceptionMessage.INVALID_LONG_TYPE;
 

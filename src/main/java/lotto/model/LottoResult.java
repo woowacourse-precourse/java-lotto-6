@@ -20,7 +20,9 @@ public class LottoResult {
     return ((double)(prize) / (double) money) * 100.0;
   }
 
-  public static double calculateRoundedProfitability(double value) {
-    return Math.round(value * 100.0) / 100.0;
+  public static String calculateRoundedProfitabilityWithCommas(double value) {
+    double roundedValue = Math.round(value * 100.0) / 100.0;
+    return String.format("%,.2f", roundedValue);
   }
+
 }

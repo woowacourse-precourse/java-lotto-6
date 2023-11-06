@@ -47,7 +47,7 @@ public class LottoController {
 
 
     int bonusNumber = inputView.inputBonusNumber();
-    BonusNumberValidator.isDuplicate(winningNumberSet, bonusNumber);
+    BonusNumberValidator.isDuplicate(winningNumbers, bonusNumber);
 
     List<Integer> rank = LottoGame.checkWinningStatus(lottos, winningNumberSet, bonusNumber);
     OutputView.printSuccessResult();
@@ -55,7 +55,7 @@ public class LottoController {
 
     int prize = LottoResult.lottoPrizeCalculator(rank);
     double profitability = LottoResult.profitabilityCalculator(money, prize);
-    profitability = LottoResult.calculateRoundedProfitability(profitability);
-    OutputView.printProfitability(profitability);
+    String formattedValue = LottoResult.calculateRoundedProfitabilityWithCommas(profitability);
+    OutputView.printProfitability(formattedValue);
   }
 }

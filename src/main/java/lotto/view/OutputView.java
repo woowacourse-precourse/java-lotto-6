@@ -64,8 +64,9 @@ public class OutputView {
   }
 
 
-  public static void printProfitability(double Profitability){
-    System.out.println("총 수익률은 " + String.format("%.1f", Profitability) + "%입니다.");
+  public static void printProfitability(String formattedValue){
+
+    System.out.println("총 수익률은 " + String.format("%s", formattedValue) + "%입니다.");
   }
 
 }

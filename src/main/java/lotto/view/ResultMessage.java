@@ -19,14 +19,6 @@ public class ResultMessage {
         printPurchaseLottoNum(amount.getCount(),lotto);
     }
 
-    private static void printPurchaseLottoNum(int purchaseAmount, List<Lotto> lotto) {
-        for (int count = 0; count < purchaseAmount; count++) {
-            System.out.println(lotto.get(count).getNumbers());
-        }
-
-        System.out.println();
-    }
-
     public static void printResult(Map<Rank,Integer> result, Amount amount){
         System.out.println();
         System.out.println(RESULT_TOP_MESSAGE);
@@ -34,6 +26,19 @@ public class ResultMessage {
 
         printDrawResult(result);
         printReturnRate(result, amount);
+    }
+
+    public static void printExceptionMessage(String errorMesaage){
+        System.out.println(errorMesaage);
+        System.out.println();
+    }
+
+    private static void printPurchaseLottoNum(int purchaseAmount, List<Lotto> lotto) {
+        for (int count = 0; count < purchaseAmount; count++) {
+            System.out.println(lotto.get(count).getNumbers());
+        }
+
+        System.out.println();
     }
 
     private static void printDrawResult(Map<Rank,Integer> result){
@@ -50,7 +55,6 @@ public class ResultMessage {
         }
 
         ReturnRate=(ReturnRate/amount.getTotal())*RATE_PERCENT;
-
-        System.out.println("총 수익률은 "+ReturnRate+"%입니다.");
+        System.out.println("총 수익률은 "+String.format("%.1f", ReturnRate)+"%입니다.");
     }
 }

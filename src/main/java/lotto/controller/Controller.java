@@ -30,7 +30,7 @@ public class Controller {
         ResultMessage.setPurchaseMessage(amount,randomLottery);
 
         Lotto winningNum = requestPlayerWinningInput();
-        int bonusNum = requestPlayerBonusInput();
+        int bonusNum = requestPlayerBonusInput(winningNum);
 
         Map<Rank, Integer> result = calculateResult(randomLottery, winningNum, bonusNum);
         ResultMessage.printResult(result, amount);
@@ -60,18 +60,47 @@ public class Controller {
 
     private Amount requestPlayerAmountInput(){
         RequestMessage.requestTotalPrice();
-        int playerAmountInput = parser.stringToInteger(Console.readLine());
-        return new Amount(playerAmountInput, TICKET_PRICE);
+        return validateRequestPlayerAmountInput();
     }
 
     private Lotto requestPlayerWinningInput(){
         RequestMessage.requestWinningNum();
-        List<Integer> playerWinningInput = parser.translatePlayerInputStringToInt(Console.readLine());
-        return new Lotto(playerWinningInput);
+        return validaterequestPlayerWinningInput();
     }
 
-    private int requestPlayerBonusInput(){
+    private int requestPlayerBonusInput(Lotto winningNum){
         RequestMessage.requestBonusNum();
-        return parser.stringToInteger(Console.readLine());
+        return validaterequestPlayerBonusInput(winningNum);
+    }
+
+    private Amount validateRequestPlayerAmountInput(){
+        try{
+            int playerAmountInput = parser.stringToInteger(Console.readLine());
+            return new Amount(playerAmountInput,TICKET_PRICE);
+        } catch(IllegalArgumentException e){
+            ResultMessage.printExceptionMessage(e.getMessage());
+            return requestPlayerAmountInput();
+        }
+    }
+
+    private Lotto validaterequestPlayerWinningInput(){
+        try{
+            List<Integer> playerWinningInput = parser.translatePlayerInputStringToInt(Console.readLine());
+            return new Lotto(playerWinningInput);
+        } catch(IllegalArgumentException e){
+            ResultMessage.printExceptionMessage(e.getMessage());
+            return requestPlayerWinningInput();
+        }
+    }
+
+    private int validaterequestPlayerBonusInput(Lotto winningNum){
+        try{
+            int result=parser.stringToInteger(Console.readLine());
+            winningNum.validateWinningAndBonus(winningNum,result);
+            return result;
+        } catch(IllegalArgumentException e){
+            ResultMessage.printExceptionMessage(e.getMessage());
+            return requestPlayerBonusInput(winningNum);
+        }
     }
 }

@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Customer {
-    private int tryingnumber;
+    private int count;
+    private int price;
     private  final String wantprice="값을 입력하세요: ";
     private final String numstrerr="[ERROR] 숫자를 입력해 주세요.";
     private final String pricerror = "[ERROR] 천원 이상이나 천원단위로 구매해 주세요";
@@ -38,24 +39,22 @@ public class Customer {
         }
     }
     public int inputpprice() {
-        int price;
         while (true) {
             try {
                 System.out.print(wantprice);
-                price = Integer.parseInt(Console.readLine());
+                String num=Console.readLine();
+                price = Integer.parseInt(num);
                 validateprice(price);
                 break; // 유효한 값을 입력 받으면 while 루프를 빠져나옵니다.
-            } catch (NumberFormatException e) {
-                System.out.println(numstrerr);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage()); // 에러 메시지를 출력합니다.
-            }
+            } catch (NumberFormatException e) {System.out.println(numstrerr);}
+            catch (IllegalArgumentException e) {System.out.println(e.getMessage()); /* 에러 메시지를 출력합니다.*/}
         }
         return price;
     }
-    private void caltrying(int price){
-        tryingnumber=price/1000;
-        System.out.println(getTryingnumber() + pricesuccess);
+    public int caltrying(int price){
+        count=price/1000;
+        System.out.println(getcount() + pricesuccess);
+        return count;
     }
 
     private void inputlotto() {
@@ -77,8 +76,8 @@ public class Customer {
             System.out.println(numstrerr);
         }
     }
-    public int getTryingnumber() {
-        return tryingnumber;
+    public int getcount() {
+        return count;
     }
     public List<Integer> getmynums(){
         return mynums;
@@ -86,6 +85,8 @@ public class Customer {
     public int getbonus(){
         return bonus;
     }
+    public Lotto getLotto(){return mylotto;}
+    public int getPrice(){return price;}
     private List<Integer> changint(String[] strnums, List<Integer> nums){
         for (String num : strnums) {
             nums.add(Integer.parseInt(num.trim()));

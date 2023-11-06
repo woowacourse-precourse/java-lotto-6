@@ -68,7 +68,7 @@ caltrying 메소드를 통해 반복횟수를 구한다.
 inputlotto 메소드를 통해 입력값을 받고 Lotto로 만든다.
 forraffle메소드로 inputlotto에서 받은 값이 1~45사이 숫자인지 확인한다.
 
-Raffle클래서
+Raffle클래스
 Java Enum을 통해 1~6등을 정의한다
 result 메소드를 통해 결과를 계산한다.
 printresult 메소드를 통해 결과를 출력한다.

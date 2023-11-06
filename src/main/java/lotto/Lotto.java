@@ -1,18 +1,14 @@
 package lotto;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.*;
 
 public class Lotto {
-
     private final List<Integer> numbers;
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
-
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리여야 합니다.");
@@ -23,7 +19,9 @@ public class Lotto {
         }
     }
     public List<Integer> getlotto(){
-        return numbers;
+        List<Integer> lottonums = new ArrayList<>(numbers);
+        Collections.sort(lottonums);
+        return lottonums;
     }
 
     // TODO: 추가 기능 구현

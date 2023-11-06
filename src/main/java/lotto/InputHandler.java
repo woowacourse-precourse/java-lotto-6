@@ -23,4 +23,30 @@ public class InputHandler {
             }
         }
     }
+
+    public static List<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String[] parts = Console.readLine().trim().split(",");
+                if (parts.length != 6) {
+                    throw new IllegalArgumentException("정확히 쉼표(,)를 기준으로 6개의 번호를 입력해 주세요.");
+                }
+                List<Integer> numbers = new ArrayList<>();
+                for (String part : parts) {
+                    int number = Integer.parseInt(part.trim());
+                    if (number < 1 || number > 45) {
+                        throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    }
+                    numbers.add(number);
+                }
+                return numbers;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 로또 번호는 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
 }

@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 class InputProcessorTest {
     private final InputProcessor inputProcessor = new InputProcessor();
 
-    @DisplayName("구입금액이 숫자가 아니다.")
+    @DisplayName("구입금액이 숫자가 아니면 예외가 발생한다.")
     @Test
     void processPurchaseAmountNotInteger() {
         String input = "숫자가 아닙니다.";
@@ -27,7 +27,7 @@ class InputProcessorTest {
                 .isEqualTo(NOT_A_NUMBER.getMessage());
     }
 
-    @DisplayName("구입금액이 1000원 미만이다.")
+    @DisplayName("구입금액이 1000원 미만이면 예외가 발생한다.")
     @Test
     void processPurchaseAmountUnderThousand() {
         String input = "500";
@@ -37,7 +37,7 @@ class InputProcessorTest {
                 .isEqualTo(PURCHASE_AMOUNT_UNDER_THOUSAND.getMessage());
     }
 
-    @DisplayName("구입금액이 1000의 배수가 아니다.")
+    @DisplayName("구입금액이 1000의 배수가 아니면 예외가 발생한다.")
     @Test
     void processPurchaseAmountNotMultipleOfThousand() {
         String input = "3333";
@@ -47,7 +47,7 @@ class InputProcessorTest {
                 .isEqualTo(PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND.getMessage());
     }
 
-    @DisplayName("숫자가 아닌 당첨번호가 존재한다.")
+    @DisplayName("숫자가 아닌 당첨번호가 하면 예외가 발생한다.")
     @Test
     void processWinningNumberNotInteger() {
         String input = "1,2,문자,4,5,6";
@@ -57,7 +57,7 @@ class InputProcessorTest {
                 .isEqualTo(NOT_A_NUMBER.getMessage());
     }
 
-    @DisplayName("범위에서 벗어난 당첨번호가 존재한다.")
+    @DisplayName("범위에서 벗어난 당첨번호가 존재하면 예외가 발생한다.")
     @Test
     void processWinningNumberOutOfRange() {
         String input = "1,2,46,4,5,6";
@@ -67,7 +67,7 @@ class InputProcessorTest {
                 .isEqualTo(OUT_OF_RANGE.getMessage());
     }
 
-    @DisplayName("입력한 당첨번호의 개수가 6개가 아니다.")
+    @DisplayName("입력한 당첨번호의 개수가 6개가 아니면 예외가 발생한다.")
     @Test
     void processWinningNumbersCountNotSix() {
         String input = "1,2,3,4,5";
@@ -77,7 +77,7 @@ class InputProcessorTest {
                 .isEqualTo(WINNING_NUMBERS_COUNT_NOT_SIX.getMessage());
     }
 
-    @DisplayName("입력한 당첨번호에 중복이 존재한다.")
+    @DisplayName("입력한 당첨번호에 중복이 존재하면 예외가 발생한다.")
     @Test
     void processWinningNumbersDuplicate() {
         String input = "1,2,3,4,5,5";
@@ -87,7 +87,7 @@ class InputProcessorTest {
                 .isEqualTo(WINNING_NUMBERS_DUPLICATE.getMessage());
     }
 
-    @DisplayName("보너스번호가 숫자가 아니다.")
+    @DisplayName("보너스번호가 숫자가 아니면 예외가 발생한다.")
     @Test
     void processBonusNumberNotInteger() {
         String input = "숫자가 아닙니다.";
@@ -98,7 +98,7 @@ class InputProcessorTest {
                 .isEqualTo(NOT_A_NUMBER.getMessage());
     }
 
-    @DisplayName("보너스번호가 범위를 벗어난다.")
+    @DisplayName("보너스번호가 범위를 벗어나면 예외가 발생한다.")
     @Test
     void processBonusNumberOutOfRange() {
         String input = "0";
@@ -109,7 +109,7 @@ class InputProcessorTest {
                 .isEqualTo(OUT_OF_RANGE.getMessage());
     }
 
-    @DisplayName("보너스번호가 당첨번호와 중복된다.")
+    @DisplayName("보너스번호가 당첨번호와 중복되면 예외가 발생한다.")
     @Test
     void processBonusNumberInWinningNumbers() {
         String input = "3";

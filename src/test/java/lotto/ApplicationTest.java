@@ -48,11 +48,21 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 로또_구입금액_예외_처리() {
         assertSimpleTest(() -> {
             assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1000j"))
                     .isInstanceOf(IllegalArgumentException.class));
+        assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또_단위_예외_처리() {
+        assertSimpleTest(() -> {
+            assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1100"))
+                    .isInstanceOf(IllegalStateException.class));
         assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

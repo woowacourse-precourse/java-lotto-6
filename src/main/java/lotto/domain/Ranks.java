@@ -21,4 +21,10 @@ public class Ranks {
 
         return countResult;
     }
+
+    public Double calculateWinningSum() {
+        return ranks.stream()
+                .mapToDouble(Rank::getPrizeMoney)
+                .sum();
+    }
 }

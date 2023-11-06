@@ -32,6 +32,12 @@ public class LottoManager {
         Map<WinningType, Integer> statics = lottoCalculator.getMatchStatics(lottos, winningLotto, bonusNumber);
 
         consoleManager.printStatics(statics);
+
+        int profit = lottoCalculator.getLottosProfit(statics);
+
+        float profitRate = lottoCalculator.getProfitRate(profit, lottoPrice);
+
+        consoleManager.printProfitRate(profitRate);
     }
 
 }

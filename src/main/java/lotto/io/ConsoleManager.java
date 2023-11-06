@@ -1,6 +1,7 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -78,4 +79,11 @@ public class ConsoleManager {
                 });
     }
 
+    public void printProfitRate(float profitRate) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.0");
+
+        String message = "총 수익률은 " + decimalFormat.format(profitRate) + "%입니다.";
+
+        System.out.println(message);
+    }
 }

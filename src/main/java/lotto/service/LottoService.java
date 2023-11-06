@@ -10,6 +10,14 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 
 public class LottoService {
+    private final Lotto winningNumbers;
+    private final int bonusNumber;
+
+    public LottoService(Lotto winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+    }
+
     public List<Lotto> createLottos(int lottoPurchaseAmount) {
         int lottoCount = calculateLottoCount(lottoPurchaseAmount);
         return Stream.generate(LottoGenerator::generatorLotto)

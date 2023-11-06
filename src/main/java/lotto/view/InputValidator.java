@@ -24,6 +24,10 @@ public class InputValidator {
         validateNumbersIntegerType(input);
     }
 
+    public static void validateBonusNumber(String input) {
+        validateIntegerType(input);
+    }
+
     private static void validateDivideComma(String numbers) {
         if (numbers.endsWith(COMMA)) {
             throw new ErrorMessage(LAST_COMMA_ERROR);

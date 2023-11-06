@@ -9,12 +9,6 @@ public class User {
     private final int purchaseNumber;
     private final List<List<Integer>> purchasedLottoNumbers;
     private List<Integer> rankCount;
-    private final int RANK_NUMBER = 6;
-    private final int FIRST_PLACE = 1;
-    private final int SECOND_PLACE = 2;
-    private final int THIRD_PLACE = 3;
-    private final int FOURTH_PLACE = 4;
-    private final int FIFTH_PLACE = 5;
 
     public User(int payment) {
         validatePayment(payment);
@@ -33,7 +27,7 @@ public class User {
     private List<Integer> initCount() {
         this.rankCount = new ArrayList<>();
 
-        for (int i = 0; i < RANK_NUMBER; i++) {
+        for (int i = 0; i < ModelValue.RANK_NUMBER.getModelValue(); i++) {
             this.rankCount.add(0);
         }
         return this.rankCount;
@@ -50,16 +44,16 @@ public class User {
     }
 
     public void increaseRankCount(int rank) {
-        if (rank == FIFTH_PLACE) {
-            this.rankCount.set(FIFTH_PLACE, this.rankCount.get(FIFTH_PLACE) + 1);
-        } else if (rank == FOURTH_PLACE) {
-            this.rankCount.set(FOURTH_PLACE, this.rankCount.get(FOURTH_PLACE) + 1);
-        } else if (rank == THIRD_PLACE) {
-            this.rankCount.set(THIRD_PLACE, this.rankCount.get(THIRD_PLACE) + 1);
-        } else if (rank == SECOND_PLACE) {
-            this.rankCount.set(SECOND_PLACE, this.rankCount.get(SECOND_PLACE) + 1);
-        } else if (rank == FIRST_PLACE) {
-            this.rankCount.set(FIRST_PLACE, this.rankCount.get(FIRST_PLACE) + 1);
+        if (rank == ModelValue.FIFTH_PLACE.getModelValue()) {
+            this.rankCount.set(ModelValue.FIFTH_PLACE.getModelValue(), this.rankCount.get(ModelValue.FIFTH_PLACE.getModelValue()) + 1);
+        } else if (rank == ModelValue.FOURTH_PLACE.getModelValue()) {
+            this.rankCount.set(ModelValue.FOURTH_PLACE.getModelValue(), this.rankCount.get(ModelValue.FOURTH_PLACE.getModelValue()) + 1);
+        } else if (rank == ModelValue.THIRD_PLACE.getModelValue()) {
+            this.rankCount.set(ModelValue.THIRD_PLACE.getModelValue(), this.rankCount.get(ModelValue.THIRD_PLACE.getModelValue()) + 1);
+        } else if (rank == ModelValue.SECOND_PLACE.getModelValue()) {
+            this.rankCount.set(ModelValue.SECOND_PLACE.getModelValue(), this.rankCount.get(ModelValue.SECOND_PLACE.getModelValue()) + 1);
+        } else if (rank == ModelValue.FIRST_PLACE.getModelValue()) {
+            this.rankCount.set(ModelValue.FIRST_PLACE.getModelValue(), this.rankCount.get(ModelValue.FIRST_PLACE.getModelValue()) + 1);
         }
     }
 

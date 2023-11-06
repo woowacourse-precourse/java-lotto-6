@@ -11,7 +11,7 @@ import lotto.domain.MakeLottos;
 import lotto.domain.InputWinningNum;
 
 public class LottoController {
-    int purchaseAmount, purchaseNum;
+    int purchaseAmount, purchaseNum, bonusNumInput;
     private static List<List<Integer>> allLotto;
     private static Lotto lotto;
 
@@ -80,7 +80,7 @@ public class LottoController {
             return true;
         }
 
-        int bonusNumInput = Integer.parseInt(bonusNum);
+        bonusNumInput = Integer.parseInt(bonusNum);
         if (ReadWinningNum.isBonusNumRange(bonusNumInput)) {
             return true;
         }

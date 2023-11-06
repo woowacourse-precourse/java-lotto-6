@@ -18,6 +18,9 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if(checkDuplicate(numbers)){
+            throw new IllegalArgumentException();
+        }
     }
 
     // TODO: 추가 기능 구현
@@ -40,5 +43,16 @@ public class Lotto {
             return LottoRanking.SECOND;
         }
         return LottoRanking.THIRD;
+    }
+
+    private boolean checkDuplicate(List<Integer> numbers) {
+        Set<Integer> checkDup = new HashSet<>();
+        for (Integer num : numbers) {
+            if (checkDup.contains(num)) {
+                return true; // 중복 발견
+            }
+            checkDup.add(num);
+        }
+        return false;
     }
 }

@@ -7,7 +7,6 @@ import java.util.List;
 
 public class LottoBoard {
     final static int PRICE = 1000;
-    static int count = 0;
     private int tickets;
     private HashMap<Integer, Lotto> lottoBoard = new HashMap<>();
 
@@ -42,8 +41,11 @@ public class LottoBoard {
         return money / PRICE;
     }
 
-    private void putLotto(Lotto lotto) {
-        lottoBoard.put(count++, lotto);
+    public Lotto getOneLotto(int i) {
+        return lottoBoard.get(i);
     }
 
+    public int getTickets() {
+        return tickets;
+    }
 }

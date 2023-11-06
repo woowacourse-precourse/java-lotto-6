@@ -34,5 +34,16 @@ class LottoPurchaseTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    public void 구입_금액이_양수가_아니면_LottoPurchase_생성시_예외가_발생한다() throws Exception {
+        // given
+        long purchaseAmount = 0;
+
+        // when
+        // then
+        assertThatThrownBy(() -> {
+            new LottoPurchase(purchaseAmount);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 
 }

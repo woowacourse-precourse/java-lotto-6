@@ -29,20 +29,20 @@ public class Lotto {
     private void validateNumbersDuplication(List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (distinctNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
+            Error.NOT_UNIQUE_WINNING_NUMBER.throwError();
         }
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 총 6개입니다.");
+            Error.NOT_VALID_WINNING_NUMBER_COUNT.throwError();
         }
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (isOutOfLottoNumbersRange(number)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이의 숫자입니다.");
+                Error.NOT_VALID_WINNING_NUMBER_RANGE.throwError();
             }
         }
     }

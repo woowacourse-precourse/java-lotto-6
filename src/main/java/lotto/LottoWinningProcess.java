@@ -6,6 +6,11 @@ import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
 public class LottoWinningProcess {
+    public void run() {
+        buyLotto();
+        setUpWinningLotto();
+    }
+
     public PurchaseMoney setUpPurchaseMoney() {
         String purchaseMoney = InputView.inputPurchaseMoney();
         return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
@@ -22,5 +27,19 @@ public class LottoWinningProcess {
         }
 
         return lottos;
+    }
+
+    public WinningLotto setUpWinningLotto() {
+        return new WinningLotto(setUpWinningNumber(), setUpBonusNumber());
+    }
+
+    public Lotto setUpWinningNumber() {
+        String winningNumber = InputView.inputWinningNumber();
+        return new Lotto(Converter.convertWinningNumber(winningNumber));
+    }
+
+    public int setUpBonusNumber() {
+        String bonusNumber = InputView.inputBonusNumber();
+        return Converter.convertToNumeric(bonusNumber);
     }
 }

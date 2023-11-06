@@ -16,4 +16,17 @@ public enum PrizeRank {
         this.bonusMatch = bonusMatch;
         this.price = price;
     }
+
+    public static PrizeRank findPrizeRankByMatches(int matchCount, boolean hasBonus) {
+        for (PrizeRank rank : PrizeRank.values()) {
+            if (rank.isWinningRank(matchCount, hasBonus)) {
+                return rank;
+            }
+        }
+        return null;
+    }
+
+    public boolean isWinningRank(int count, boolean hasBonus) {
+        return this.matchCount == count && (!this.bonusMatch || hasBonus);
+    }
 }

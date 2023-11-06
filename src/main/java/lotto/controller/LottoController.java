@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.validation.InputValidation;
@@ -21,6 +23,7 @@ public class LottoController {
         int numberOfLottoTickets = purchaseLottoTickets();
         generateLottoTickets(numberOfLottoTickets);
         showPurchasedLottoTickets();
+        Lotto winningNumbers = makeWinningNumbers();
     }
 
     public String getPurchaseAmount() {
@@ -40,6 +43,30 @@ public class LottoController {
         for (Lotto lotto : generatedLottos) {
             showGeneratedLottos(lotto.getNumbers());
         }
+    }
+
+    public Lotto makeWinningNumbers(){
+        List<String> inputWinningNumbers = splitWinningNumbers(getWinningNumbers());
+        validateWinningNumbers(inputWinningNumbers);
+        return makeWinningNumbersToLotto(inputWinningNumbers);
+    }
+    public String getWinningNumbers(){
+        return inputView.winningNumbersInput();
+    }
+
+    public List<String> splitWinningNumbers(String winningNumbers){
+        return List.of(winningNumbers.split(","));
+    }
+
+    public void validateWinningNumbers(List<String> numbers){
+        inputValidation.validateWinningNumbersInput(numbers);
+    }
+
+    public Lotto makeWinningNumbersToLotto(List<String> winningNumbers){
+        List<Integer> winningLottoNumbers = winningNumbers.stream()
+            .map(Integer::parseInt)
+            .toList();
+        return new Lotto(winningLottoNumbers);
     }
 
     public void generateLottoTickets(int numberOfLottoTickets) {

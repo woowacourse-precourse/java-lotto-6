@@ -2,6 +2,7 @@ package lotto.model;
 
 import static java.util.Collections.synchronizedMap;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
@@ -25,7 +26,7 @@ public class LottoRankResult {
 
     public float getTotalReturn(int countOfLotto) {
         int purchaseAmount = calculatePurchaseAmount(countOfLotto);
-        int totalPrize = calculateTotalPrize();
+        BigInteger totalPrize = calculateTotalPrize();
         return calculateTotalReturn(purchaseAmount, totalPrize);
     }
 
@@ -42,13 +43,17 @@ public class LottoRankResult {
         return countOfLotto * PURCHASE_AMOUNT_UNIT;
     }
 
-    private int calculateTotalPrize() {
+    private BigInteger calculateTotalPrize() {
         return result.entrySet().stream()
-                .map(entry -> LottoRank.calculatePrizeByCount(entry.getKey(), entry.getValue()))
-                .reduce(0, Integer::sum);
+                .map(entry -> {
+                    BigInteger prize = LottoRank.calculatePrizeByCount(entry.getKey(), entry.getValue());
+                    return new BigInteger(prize.toString()); // Convert to BigInteger
+                })
+                .reduce(BigInteger.ZERO, BigInteger::add);
     }
 
-    private float calculateTotalReturn(int purchaseAmount, int totalPrize) {
-        return ((float) totalPrize / purchaseAmount) * PERCENT_RATIO_UNIT;
+    private float calculateTotalReturn(int purchaseAmount, BigInteger totalPrize) {
+        float totalPrizeFloat = totalPrize.floatValue();
+        return (totalPrizeFloat / purchaseAmount) * PERCENT_RATIO_UNIT;
     }
 }

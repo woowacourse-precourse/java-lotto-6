@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.math.BigInteger;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -35,15 +36,15 @@ public class LottoRankTest {
     @ParameterizedTest
     @CsvSource({
             "NONE, 3, 0",
-            "FIFTH, 2, 10_000",
-            "FOURTH, 5, 250_000",
-            "THIRD, 2, 3_000_000",
-            "SECOND, 1, 30_000_000",
-            "FIRST, 1, 2_000_000_000"
+            "FIFTH, 2, 10000",
+            "FOURTH, 5, 250000",
+            "THIRD, 2, 3000000",
+            "SECOND, 1, 30000000",
+            "FIRST, 3, 6000000000"
     })
-    void testReturnPrizeByWinningRankCount(LottoRank rank, int count, int expected) {
+    void testReturnPrizeByWinningRankCount(LottoRank rank, int count, BigInteger expected) {
         //when, then
-        int result = LottoRank.calculatePrizeByCount(rank, count);
+        BigInteger result = LottoRank.calculatePrizeByCount(rank, count);
         assertEquals(expected, result);
     }
 }

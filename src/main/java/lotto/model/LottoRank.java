@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 
 public enum LottoRank {
@@ -32,8 +33,9 @@ public enum LottoRank {
                 .orElse(NONE);
     }
 
-    public static int calculatePrizeByCount(LottoRank rank, int count) {
-        return rank.prize * count;
+    public static BigInteger calculatePrizeByCount(LottoRank rank, int count) {
+        BigInteger prize = BigInteger.valueOf(rank.prize);
+        return prize.multiply(BigInteger.valueOf(count));
     }
 
     public String getMessage() {

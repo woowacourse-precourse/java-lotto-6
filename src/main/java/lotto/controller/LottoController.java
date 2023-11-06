@@ -28,59 +28,16 @@ public class LottoController {
         OutputView.printTicketCount(ticketCount);
         List<Lotto> userLottos = createLotto(ticketCount);
         OutputView.printUserLottos(userLottos);
-        WinningNumbers winningNumbers = getValidWinningNumbersInput();
-        BonusNumber bonusNumber = getValidBonusNumberInput(winningNumbers);
-        calculateRankCount(userLottos, winningNumbers, bonusNumber);
-        OutputView.printRankCount(rankCount);
-        int totalPrize = Calculator.calculateTotalPrize(rankCount); // 당첨금액 총합
-        double earningRate = Calculator.calculateEarningRate(totalPrize, money);
-        OutputView.printEarningRate(earningRate);
-    }
-
-    private Money getValidMoneyInput() {
-        Money money = null;
-        while (money == null) {
-            try {
-                money = new Money(InputView.getMoneyInput());
-            } catch (IllegalArgumentException e) {
-                OutputView.printException(e);
-            }
-        }
-        return money;
-    }
-
-    private int getTicketCount(Money money) {
-        int ticketCount = money.calculateTicketCount();
-        return ticketCount;
-    }
-
-    private Lotto createValidLotto() {
-        Lotto lotto = null;
-        while (lotto == null) {
-            try {
-                List<Integer> lottoNumbers = numberGenerator.createRandomLottoNumbers();
-                lotto = new Lotto(lottoNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return lotto;
-    }
-
-    private List<Lotto> createLotto(int ticketCount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < ticketCount; i++) {
-            Lotto lotto = createValidLotto();
-            lottos.add(lotto);
-        }
-        return lottos;
+        return userLottos;
     }
 
     private WinningNumbers getValidWinningNumbersInput() {
-        WinningNumbers winningNumbers = null;
-        while (winningNumbers == null) {
+        WinningNumbers winningNumbers;
+        while (true) {
             try {
-                winningNumbers = new WinningNumbers(InputView.getWinningNumbersInput());
+                List<Integer> numbers = InputView.getWinningNumbersInput();
+                winningNumbers = new WinningNumbers(numbers);
+                break;
             } catch (IllegalArgumentException e) {
                 OutputView.printException(e);
             }
@@ -89,11 +46,12 @@ public class LottoController {
     }
 
     private BonusNumber getValidBonusNumberInput(WinningNumbers winningNumbers) {
-        BonusNumber bonusNumber = null;
-        while (bonusNumber == null) {
+        BonusNumber bonusNumber;
+        while (true) {
             try {
-                int bonusNumberInput = InputView.getBonusNumberInput();
-                bonusNumber = new BonusNumber(bonusNumberInput, winningNumbers.getWinningNumbers());
+                int number = InputView.getBonusNumberInput();
+                bonusNumber = new BonusNumber(number, winningNumbers.getWinningNumbers());
+                break;
             } catch (IllegalArgumentException e) {
                 OutputView.printException(e);
             }
@@ -101,17 +59,52 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private void calculateRankCount(List<Lotto> userLottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        for (Lotto lotto : userLottos) {
-            int countOfMatch = 0;
-            for (Integer number : lotto.getNumbers()) {
-                if (winningNumbers.contains(number)) {
-                    countOfMatch++;
-                }
+    private Map<Rank, Integer> calculateRankCount(List<Lotto> userLottos, WinningNumbers winningNumbers,
+                                                  BonusNumber bonusNumber) {
+        return calculator.calculateRankCount(userLottos, winningNumbers, bonusNumber);
+    }
+
+    private void printRankCountAndEarningRate(Map<Rank, Integer> rankCount, Money money) {
+        OutputView.printRankCount(rankCount);
+        int totalPrize = calculator.calculateTotalPrize(rankCount);
+        double earningRate = calculator.calculateEarningRate(totalPrize, money);
+        OutputView.printEarningRate(earningRate);
+    }
+
+    private Money getValidMoneyInput() {
+        Money money;
+        while (true) {
+            try {
+                int amount = InputView.getMoneyInput();
+                money = new Money(amount);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printException(e);
             }
-            boolean matchBonus = lotto.getNumbers().contains(bonusNumber.getBonusNumber());
-            Rank rank = Rank.calculateRank(countOfMatch, matchBonus);
-            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
         }
+        return money;
+    }
+
+    private List<Lotto> createLottos(int ticketCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < ticketCount; i++) {
+            Lotto lotto = createValidLotto();
+            lottos.add(lotto);
+        }
+        return lottos;
+    }
+
+    private Lotto createValidLotto() {
+        Lotto lotto;
+        while (true) {
+            try {
+                List<Integer> lottoNumbers = numberGenerator.createRandomLottoNumbers();
+                lotto = new Lotto(lottoNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printException(e);
+            }
+        }
+        return lotto;
     }
 }

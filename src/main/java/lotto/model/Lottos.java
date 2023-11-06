@@ -8,10 +8,10 @@ public class Lottos {
 
     private static final int ZERO = 0;
 
-    private final List<Lotto> lottos;
+    private final List<Lotto> purchasedLottos;
 
-    private Lottos(final List<Lotto> lottos) {
-        this.lottos = lottos;
+    private Lottos(final List<Lotto> purchasedLottos) {
+        this.purchasedLottos = purchasedLottos;
     }
 
     public static Lottos createWith(final long ticketCount, final NumbersGenerator<LottoNumber> numbersGenerator) {
@@ -26,7 +26,7 @@ public class Lottos {
                 .toList();
     }
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
+    public List<Lotto> getPurchasedLottos() {
+        return Collections.unmodifiableList(purchasedLottos);
     }
 }

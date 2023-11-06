@@ -50,7 +50,7 @@ public class LottoPrizeCalculator {
 
     private Map<LottoPrize, Long> groupByLottoPrize() {
 
-        return lottos.getLottos().stream()
+        return lottos.getPurchasedLottos().stream()
                 .collect(Collectors.groupingBy(this::getLottoPrize, Collectors.counting()));
     }
 

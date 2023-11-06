@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class InputValidation {
     private final String NUMBER_REG_EXP = "^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$";
+    private final String COMMA_REG_EXP = "^,+$";
     private final String ONLY_1_45_NUMBER = "1-45 사이의 숫자만 입력하세요.";
     private final String ONLY_DIVIDED_THOUSAND = "금액은 1000단위로 입력하세요.";
 
@@ -36,6 +37,11 @@ public class InputValidation {
 
     /* 로또 번호 validation*/
     // 1-45 숫자 외 값, 공백은 공통으로 사용
+
+    // , 이외의 값
+    public boolean isNumberAndCommaOnly(String numbers) {
+        return numbers.matches(COMMA_REG_EXP);
+    }
 
     // 중복된 숫자 검사
     public void isDuplicate(List<Integer> numbers) {

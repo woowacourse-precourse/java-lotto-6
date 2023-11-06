@@ -60,7 +60,7 @@ public class LottoGameController {
 
         while (!isBonusNumberValidation){
             inputBonusNumber = inputView.inputBonusNumber();
-            isBonusNumberValidation = lottoGameService.inputBonusNumberValidation(inputBonusNumber);
+            isBonusNumberValidation = lottoGameService.inputBonusNumberValidation(winningNumber,inputBonusNumber);
         }
         bonusNumber = Integer.parseInt(inputBonusNumber);
     }

@@ -17,7 +17,7 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public static void printAutoLottos(final List<Lotto> autoLottos, int lottoCount) {
+    public static void printAutoLottos(final List<Lotto> autoLottos, final int lottoCount) {
         System.out.printf(String.format(AUTO_BUY_MESSAGE, lottoCount));
         printEmpty();
 
@@ -32,7 +32,7 @@ public class OutputView {
         }
     }
 
-    public static void printResultCount(List<Integer> matchCount) {
+    public static void printResultCount(final List<Integer> matchCount) {
         System.out.printf(String.format(WINNING_COUNT_MESSAGE));
         printEmpty();
 
@@ -49,7 +49,7 @@ public class OutputView {
         }
     }
 
-    public static void printRateOfResult(double rateOfResult) {
+    public static void printRateOfResult(final double rateOfResult) {
         StringBuilder result = new StringBuilder();
         result.append(String.format(RATEOFRESULT_START_MESSAGE, rateOfResult * 100));
         result.append(RATEOFRESULT_END_MESSAGE);

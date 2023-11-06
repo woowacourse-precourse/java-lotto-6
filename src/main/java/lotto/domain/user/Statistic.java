@@ -51,7 +51,7 @@ public class Statistic {
         for (int i = 0; i < lottoEnvelop.size(); i++) {
             // 로또 0~5 까지의 번호와, 보너스 번호중 몇개가 같은지 확인
             Lotto lotto = lottoEnvelop.takeLotto(i);
-            Integer countSame = judgment.countSameWinNum(lotto);
+            Integer countSame = judgment.countSameWinNumbers(lotto);
             Boolean isSameBonus = judgment.isSameBonusNum(lotto);
 
             if (Utii.isSameInt(countSame, 6)) {

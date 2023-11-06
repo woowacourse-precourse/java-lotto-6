@@ -13,7 +13,7 @@ public class Judgment {
         this.lottoTargetNumResults = lottoTargetNumResults;
     }
 
-    public Integer countSameWinNum(Lotto lotto) {
+    public Integer countSameWinNumbers(Lotto lotto) {
         Integer countSameWinNum = 0;
         Integer numOfLotto = 0;
 

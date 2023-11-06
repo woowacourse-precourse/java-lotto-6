@@ -1,12 +1,12 @@
 package lotto;
 
 import java.util.Arrays;
-import lotto.domain.BonusNumber;
+import lotto.domain.user.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.Purchase;
-import lotto.domain.WinCalculator;
-import lotto.domain.WinningNumber;
-import lotto.domain.WonRecord;
+import lotto.domain.user.Purchase;
+import lotto.domain.calculator.WinCalculator;
+import lotto.domain.user.WinningNumber;
+import lotto.domain.result.WonRecord;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -114,7 +114,7 @@ class LottoTest {
         WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
         WonRecord wonRecord = new WonRecord();
 
-        winCalculator.calculator(purchaseNumber);
+        winCalculator.calculate(purchaseNumber);
 
         assertThat(wonRecord.getFirstPrizeCount()).isEqualTo(1);
     }
@@ -128,7 +128,7 @@ class LottoTest {
         WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
         WonRecord wonRecord = new WonRecord();
 
-        winCalculator.calculator(purchaseNumber);
+        winCalculator.calculate(purchaseNumber);
 
         assertThat(wonRecord.getSecondPrizeCount()).isEqualTo(1);
     }
@@ -142,7 +142,7 @@ class LottoTest {
         WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
         WonRecord wonRecord = new WonRecord();
 
-        winCalculator.calculator(purchaseNumber);
+        winCalculator.calculate(purchaseNumber);
 
         assertThat(wonRecord.getThirdPrizeCount()).isEqualTo(1);
     }

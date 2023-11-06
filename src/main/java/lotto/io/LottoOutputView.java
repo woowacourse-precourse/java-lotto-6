@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class LottoOutputView {
 
     public void printLottoPurchaseCount(int count) {
-        System.out.println("\n" + count + "개를 구매했습니다.");
+        System.out.println(count + "개를 구매했습니다.");
     }
 
     public void printLottoNumbers(List<Integer> numbers) {
@@ -19,7 +19,8 @@ public class LottoOutputView {
     }
 
     public void printWinningStatistics(Map<String, Integer> prize) {
-        System.out.println("\n당첨 통계");
+        LottoOutputView.lineBreak();
+        System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + prize.get("fifth") + "개");
         System.out.println("4개 일치 (50,000원) - " + prize.get("fourth") + "개");
@@ -31,5 +32,9 @@ public class LottoOutputView {
     public void printRateOfReturn(double rate) {
         rate = (double) Math.round(rate * 100) / 100;
         System.out.println("총 수익률은 " + rate + "%입니다.");
+    }
+
+    public static void lineBreak() {
+        System.out.print("\n");
     }
 }

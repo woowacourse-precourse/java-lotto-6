@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.user;
 
 public class Purchase {
     private static int purchaseAmount;

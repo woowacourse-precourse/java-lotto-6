@@ -3,13 +3,14 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.BonusNumber;
+import java.util.Map;
+import lotto.domain.user.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.Purchase;
-import lotto.domain.RateOfReturn;
-import lotto.domain.WinCalculator;
-import lotto.domain.WinningNumber;
-import lotto.domain.WonRecord;
+import lotto.domain.user.Purchase;
+import lotto.domain.calculator.RateOfReturn;
+import lotto.domain.calculator.WinCalculator;
+import lotto.domain.user.WinningNumber;
+import lotto.domain.result.WonRecord;
 import lotto.io.LottoInputView;
 import lotto.io.LottoOutputView;
 
@@ -19,12 +20,18 @@ public class Controller {
     private List<Lotto> lottoPurchaseNumbers = new ArrayList<>();
 
     public void excute() {
-        int purchase = purchaseManager();
-        printLottoManager(purchase);
-        winningCalculatorManager(purchase);
+        int purchase = purchaseManager(); // 로또 구입
+        printLottoManager(purchase); // 로또 발행
+        List<Integer> winningNumber = winningNumberManager(); // 당첨 번호 입력
+        int bonusNumber =  bonusNumberManager(winningNumber); // 보너스 번호 입력
+
+        Map<String, Integer> allPrizeCount = wonCalculatorManager(winningNumber, bonusNumber); // 당첨 계산
+        outputView.printWinningStatistics(allPrizeCount);
+
+        rateOfReturnManager(purchase, allPrizeCount); // 수익률 계산
     }
 
-    public Integer purchaseManager() {
+    private Integer purchaseManager() {
         Purchase purchase = null;
         boolean ispurchased = false;
         while(!ispurchased) {
@@ -38,7 +45,7 @@ public class Controller {
         return purchase.getLottoPurchase();
     }
 
-    public void printLottoManager(int purchase) {
+    private void printLottoManager(int purchase) {
         int lottoPurchaseCount = purchase / 1000;
         outputView.printLottoPurchaseCount(lottoPurchaseCount);
         for(int i = 0; i<lottoPurchaseCount; i++) {
@@ -47,7 +54,7 @@ public class Controller {
         }
     }
 
-    public List<Integer> winningNumberManager() {
+    private List<Integer> winningNumberManager() {
         WinningNumber winningNumber = null;
         boolean ispurchased = false;
         while(!ispurchased) {
@@ -61,7 +68,7 @@ public class Controller {
         return winningNumber.getWinningNumber();
     }
 
-    public Integer bonusNumberManager(List<Integer> winningNumber) {
+    private Integer bonusNumberManager(List<Integer> winningNumber) {
         BonusNumber bonusNumber = null;
         boolean ispurchased = false;
         while(!ispurchased) {
@@ -75,18 +82,22 @@ public class Controller {
         return bonusNumber.getBonusNumber();
     }
 
-    public void winningCalculatorManager(int purchase) {
-        List<Integer> winningNumber = winningNumberManager();
+    private Map<String, Integer> wonCalculatorManager(List<Integer> winningNumber, int bonusNumber) {
         WinCalculator winCalculator
-                = new WinCalculator(winningNumber, bonusNumberManager(winningNumber));
+                = new WinCalculator(winningNumber, bonusNumber);
         WonRecord wonRecord = new WonRecord();
         for(Lotto lotto : lottoPurchaseNumbers) {
-            List<Integer> winningStatus = winCalculator.calculator(lotto.getNumbers());
-            wonRecord.recorder(winningStatus.get(0), winningStatus.get(1));
+            wonRecordManager(wonRecord, winCalculator.calculate(lotto.getNumbers()));
         }
-        outputView.printWinningStatistics(wonRecord.getAllPrizeCount());
+        return wonRecord.getAllPrizeCount();
+    }
 
-        RateOfReturn rateOfReturn = new RateOfReturn(purchase, wonRecord.getAllPrizeCount());
+    private void wonRecordManager(WonRecord wonRecord, List<Integer> winningStatus) {
+        wonRecord.recorder(winningStatus.get(0), winningStatus.get(1)); // status를 map으로 바꾸면 가독성 높아질 듯.
+    }
+
+    private void rateOfReturnManager(int purchase, Map<String, Integer> allPrizeCount) {
+        RateOfReturn rateOfReturn = new RateOfReturn(purchase, allPrizeCount);
         outputView.printRateOfReturn(rateOfReturn.getRateOfReturn());
     }
 }

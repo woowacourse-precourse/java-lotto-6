@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.calculator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +12,7 @@ public class WinCalculator {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> calculator(List<Integer> purchaseNumber) {
+    public List<Integer> calculate(List<Integer> purchaseNumber) {
         int count = winningNumberCounter(purchaseNumber);
         int IsMatchedBonusNumber = 0; // false
         if(count == 5) {

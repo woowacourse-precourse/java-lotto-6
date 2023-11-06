@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 public enum LottoRank {
@@ -38,6 +40,13 @@ public enum LottoRank {
 
     public boolean isMatchBonus() {
         return matchBonus;
+    }
+
+    public static List<LottoRank> getLottoRanksDescendingOrder() {
+        return Arrays.stream(values())
+                .filter(rank -> rank != MISS)
+                .sorted(Collections.reverseOrder())
+                .toList();
     }
 
     private boolean isMatch(LottoRank lottoRank, int matchCount, boolean matchBonus) {

@@ -21,7 +21,7 @@ public class WinningResult {
     public void displayWinningResult() {
         OutputView.printWinningResultTitle();
 
-        for (LottoRank lottoRank : winningResult.keySet()) {
+        for (LottoRank lottoRank : LottoRank.getLottoRanksDescendingOrder()) {
             OutputView.printLottoRank(lottoRank, getWinningResultValue(lottoRank));
         }
     }

@@ -24,6 +24,10 @@ public class Lotto {
         return "[" + String.join(", ", numbers) + "]";
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validateNumbersSize(final List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호의 개수는 6개이어야 합니다.");

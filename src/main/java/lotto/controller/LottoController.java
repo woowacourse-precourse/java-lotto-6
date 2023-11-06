@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.Referee;
 import lotto.model.Lotto;
 import lotto.model.WinningLotto;
 import lotto.view.OutputView;
@@ -15,10 +16,12 @@ public class LottoController {
     private final List<Lotto> lottos;
     private WinningLotto winningLotto;
     private final OutputView outputView;
+    private final Referee referee;
 
     public LottoController() {
         this.lottos = new ArrayList<>();
         this.outputView = new OutputView();
+        this.referee = new Referee();
     }
 
     public void inputPurchaseMoney() {
@@ -40,7 +43,13 @@ public class LottoController {
         final List<Integer> winningNumbers = inputWinningLottoNumbers();
         final int bonusNumber = inputWinningLottoBonusNumber(winningNumbers);
         this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    }
 
+    public void getPrizeList() {
+        referee.judge(lottos, winningLotto);
+        System.out.println(referee);
+        double rateOfReturn = referee.getRateOfReturn(lottos.size() * 1000);
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 
     private List<Integer> inputWinningLottoNumbers() {
@@ -64,7 +73,6 @@ public class LottoController {
             input = Console.readLine();
         } while (validateWinningBonusNumber(winningNumbers, input));
         bonusNumber = Integer.parseInt(input);
-
         return bonusNumber;
     }
 

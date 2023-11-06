@@ -25,4 +25,14 @@ class LottoResultTest {
         assertThrows(IllegalArgumentException.class, () -> LottoResult.valueOf(-1, false));
     }
 
+    @DisplayName("당첨 금액 확인")
+    @Test
+    public void testGetPrice() {
+        assertEquals(5000, LottoResult.THREE.getPrice());
+        assertEquals(50000, LottoResult.FOUR.getPrice());
+        assertEquals(1500000, LottoResult.FIVE.getPrice());
+        assertEquals(30000000, LottoResult.FIVE_WITH_BONUS.getPrice());
+        assertEquals(2000000000, LottoResult.SIX.getPrice());
+    }
+
 }

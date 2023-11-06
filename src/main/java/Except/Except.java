@@ -9,6 +9,7 @@ import java.util.List;
 public class Except {
     private static Message numberIncorrectFormat = Message.numberIncorrectFormat;
     private static Message numberOutOfRange = Message.numberOutOfRange;
+    private static Message numberIncorrectLength = Message.numberIncorrectLength;
     private static Message numberIncorrect = Message.numberIncorrect;
     private static Message outOfRange = Message.moneyOutOfRange;
     private static Message invalidFormat = Message.moneyInvalidFormat;
@@ -101,6 +102,13 @@ public class Except {
         String length_check = numberLengthCheck(number);
         if (!length_check.equals("")) {
             result = numberAllCheckNumber(length_check);
+        }
+        try{
+            if(result.size()<6){
+                throw new IllegalArgumentException();
+            }
+        }catch(IllegalArgumentException iae){
+            System.out.println(numberIncorrectLength.getMessage());
         }
         return result;
     }

@@ -6,7 +6,9 @@ import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
 import lotto.validator.InputValidator;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputView {
     private InputValidator inputValidator = new InputValidator();
@@ -15,6 +17,20 @@ public class InputView {
         String price = Console.readLine();
         inputValidator.checkInteger(price);
         return new PurchasePrice(Integer.parseInt(price));
+    }
+
+    public Lotto inputWinLotto() {
+        String winnigLotto = Console.readLine();
+
+        inputValidator.checkBlank(winnigLotto);
+        inputValidator.checkOnlyNumberAndDelimiterCommaContain(winnigLotto);
+
+        String[] numbers = winnigLotto.split(",");
+        List<Integer> winningNumbers = Arrays.stream(numbers)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        return new Lotto(winningNumbers);
     }
 
     public void inputBonusNumber(WinningLotto winningLotto) {

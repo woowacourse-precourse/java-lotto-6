@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
+    public static final int MIN_NUMBER_FOR_LOTTO = 1;
+    public static final int MAX_NUMBER_FOR_LOTTO = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -29,7 +31,7 @@ public class Lotto {
     }
 
     public static void checkRangeOfLottoNumber(int number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_NUMBER_FOR_LOTTO || number > MAX_NUMBER_FOR_LOTTO) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_ERROR);
         }
     }

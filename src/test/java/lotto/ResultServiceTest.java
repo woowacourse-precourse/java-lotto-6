@@ -7,6 +7,7 @@ import static lotto.Constants.SIX_CASE_NUMBER;
 import static lotto.Constants.THREE_CASE_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -186,17 +187,17 @@ class ResultServiceTest {
         Lotto lotto = new Lotto(List.of(15, 8, 6, 7, 3, 9));
         Lotto resultOfLottoIssuance1 = new Lotto(List.of(15, 8, 6, 7, 3, 9));
         Lotto resultOfLottoIssuance2 = new Lotto(List.of(15, 8, 6, 7, 3, 1));
-        HashMap<Integer, Integer> winningResults = new HashMap<>();
+        HashMap<Integer, Integer> winningResults;
         List<Lotto> resultsOfLottoIssuance = new ArrayList<>();
         resultsOfLottoIssuance.add(resultOfLottoIssuance1);
         resultsOfLottoIssuance.add(resultOfLottoIssuance2);
         winningResults = ResultService.saveWinningResults(resultsOfLottoIssuance, lotto, bonusNumber);
 
         // when
-        double rateOfReturn = ResultService.calculateRateOfReturn(purchaseAmount, winningResults);
+        BigDecimal rateOfReturn = ResultService.calculateRateOfReturn(purchaseAmount, winningResults);
 
         // then
-        assertThat(rateOfReturn).isEqualTo(100075000.0);
+        assertThat(rateOfReturn).isEqualTo(BigDecimal.valueOf(100075000));
     }
 
     @DisplayName("당첨된 경우가 없을 때 수익률이 제대로 계산되는지 테스트한다.")
@@ -208,16 +209,16 @@ class ResultServiceTest {
         Lotto lotto = new Lotto(List.of(15, 8, 6, 7, 3, 9));
         Lotto resultOfLottoIssuance1 = new Lotto(List.of(1, 2, 43, 4, 16, 19));
         Lotto resultOfLottoIssuance2 = new Lotto(List.of(15, 18, 16, 17, 13, 11));
-        HashMap<Integer, Integer> winningResults = new HashMap<>();
+        HashMap<Integer, Integer> winningResults;
         List<Lotto> resultsOfLottoIssuance = new ArrayList<>();
         resultsOfLottoIssuance.add(resultOfLottoIssuance1);
         resultsOfLottoIssuance.add(resultOfLottoIssuance2);
         winningResults = ResultService.saveWinningResults(resultsOfLottoIssuance, lotto, bonusNumber);
 
         // when
-        double rateOfReturn = ResultService.calculateRateOfReturn(purchaseAmount, winningResults);
+        BigDecimal rateOfReturn = ResultService.calculateRateOfReturn(purchaseAmount, winningResults);
 
         // then
-        assertThat(rateOfReturn).isEqualTo(0.0);
+        assertThat(rateOfReturn).isEqualTo(BigDecimal.valueOf(0));
     }
 }

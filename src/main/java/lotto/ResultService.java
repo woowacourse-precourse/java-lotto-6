@@ -6,6 +6,8 @@ import static lotto.Constants.FOUR_CASE_NUMBER;
 import static lotto.Constants.SIX_CASE_NUMBER;
 import static lotto.Constants.THREE_CASE_NUMBER;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +18,11 @@ public class ResultService {
         return purchaseAmount / InputService.AMOUNT_UNIT;
     }
 
-    public static double calculateRateOfReturn(int purchaseAmount, HashMap<Integer, Integer> results) {
+    public static BigDecimal calculateRateOfReturn(int purchaseAmount, HashMap<Integer, Integer> results) {
         double sum = getSum(results);
-        return Math.round((sum / purchaseAmount) * 10000) / 100.0;
+        BigDecimal rateOfReturn = new BigDecimal((sum / (double) purchaseAmount) * 100.0);
+        rateOfReturn.setScale(1, RoundingMode.HALF_UP);
+        return rateOfReturn;
     }
 
     private static double getSum(HashMap<Integer, Integer> results) {
@@ -29,23 +33,12 @@ public class ResultService {
         return sum;
     }
 
-    public static List<Lotto> getResultsOfLottoIssuance(int purchaseNumber) {
+    public static List<Lotto> getResultsOfLottoIssuance(int numberOfLottoTickets) {
         List<Lotto> resultsOfLottoIssuance = new ArrayList<>();
-        for (int i = 1; i <= purchaseNumber; i++) {
+        for (int i = 1; i <= numberOfLottoTickets; i++) {
             resultsOfLottoIssuance.add(Lotto.createRandomNumbersForLotto());
         }
         return resultsOfLottoIssuance;
-    }
-
-    public static void printResultsOfLottoIssuance(List<Lotto> resultsOfLottoIssuance) {
-        for (Lotto result : resultsOfLottoIssuance) {
-            printSortResult(result);
-        }
-    }
-
-    private static void printSortResult(Lotto result) {
-        List<Integer> sortedResult = result.sortNumbers(result);
-        System.out.println(sortedResult);
     }
 
     public static HashMap<Integer, Integer> saveWinningResults(

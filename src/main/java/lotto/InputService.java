@@ -2,11 +2,11 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class InputService {
 
@@ -46,11 +46,16 @@ public class InputService {
     }
 
     private static Lotto validateLottoNumbersFormat(String numbers) {
+        List<Integer> lotto = validateIntegerType(numbers);
+        return new Lotto(lotto);
+    }
+
+    private static List<Integer> validateIntegerType(String numbers) {
         try {
-            List<Integer> lotto = Stream.of(numbers.trim().split("\\s*, \\s*"))
+            List<Integer> lotto = Arrays.stream(numbers.trim().split("\\s*,\\s*"))
                     .mapToInt(Integer::parseInt).boxed()
                     .collect(Collectors.toList());
-            return new Lotto(lotto);
+            return lotto;
         } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.CONVERT_ERROR);
         }
@@ -80,6 +85,4 @@ public class InputService {
             throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_AMOUNT_ERROR);
         }
     }
-
-
 }

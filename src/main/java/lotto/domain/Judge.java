@@ -19,5 +19,7 @@ public class Judge {
         return count;
     }
 
-    public static boolean compareBonusNumber()
+    public static boolean compareBonusNumber(Lotto lottoWinningNumbers, LottoBonus lottoBonus) {
+        
+    }
 }

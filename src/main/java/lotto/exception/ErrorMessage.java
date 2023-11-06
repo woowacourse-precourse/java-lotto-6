@@ -9,6 +9,7 @@ public class ErrorMessage {
     public static final String DUPLICATE_NUMBERS_ERROR = "[ERROR] 당첨 번호 내에 중복된 숫자가 존재합니다.";
     public static final String DUPLICATE_NUMBER_IN_BONUS_ERROR = "[ERROR] 당첨 번호와 보너스 번호가 중복됩니다.";
 
+
     private ErrorMessage() {
     }
 

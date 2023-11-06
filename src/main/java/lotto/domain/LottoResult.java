@@ -20,6 +20,15 @@ public enum LottoResult {
         this.isMatchBonusNumber = isMatchBonusNumber;
     }
 
+    public int getWinningAmount(int lottoMatchCount, Boolean isMatchBonusNumber) {
+        for (LottoResult result : values()) {
+            if (result.lottoMatchCount == lottoMatchCount && result.isMatchBonusNumber.contains(isMatchBonusNumber)) {
+                return result.lottoWinningAmount;
+            }
+        }
+        return 0;
+    }
+
     public int getLottoMatchCount() {
         return lottoMatchCount;
     }

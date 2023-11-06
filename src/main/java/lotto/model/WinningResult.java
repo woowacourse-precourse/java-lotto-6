@@ -8,12 +8,21 @@ public class WinningResult {
     Lotto lotto;
     Bonus bonus;
     PlayerLottos playerLottos;
+    int totalRevenue;
 
     public WinningResult(Lotto lotto, Bonus bonus, PlayerLottos playerLottos) {
         this.lotto = lotto;
         this.bonus = bonus;
         this.playerLottos = playerLottos;
         calculateWinningResult();
+        calculateTotalRevenue();
+    }
+
+    private void calculateTotalRevenue() {
+        totalRevenue = 0;
+        for (WinningRank winningRank : winningResult.keySet()) {
+            totalRevenue += (winningResult.get(winningRank) * winningRank.getReward());
+        }
     }
 
     private void calculateWinningResult() {
@@ -32,5 +41,9 @@ public class WinningResult {
         int matchCount = playerLotto.countIntersection(lotto, bonus);
         boolean hasBonus = playerLotto.hasBonus(bonus);
         return WinningRank.getWinningRank(matchCount, hasBonus);
+    }
+
+    public int getTotalRevenue() {
+        return totalRevenue;
     }
 }

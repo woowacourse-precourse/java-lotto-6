@@ -31,5 +31,8 @@ public enum WinningRank {
                 .orElse(ETC);
     }
 
+    public int getReward() {
+        return reward;
+    }
 
 }

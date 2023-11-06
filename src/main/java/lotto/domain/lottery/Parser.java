@@ -1,14 +1,15 @@
-package lotto.domain.parser;
+package lotto.domain.lottery;
 
 import lotto.exception.LottoException;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.domain.parser.constants.InputConstraint.DELIMITER;
 import static lotto.exception.ErrorMessage.*;
 
 public class Parser {
+    private static final String DELIMITER = ",";
+
     private Parser() {
     }
 
@@ -25,7 +26,7 @@ public class Parser {
         try {
             validateContainWhiteSpace(input);
             validateEndsWithDelimiter(input);
-            return Arrays.stream(input.split(DELIMITER.getValue()))
+            return Arrays.stream(input.split(DELIMITER))
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException exception) {
@@ -50,6 +51,6 @@ public class Parser {
     }
 
     private static boolean isEndsWithDelimiter(final String input) {
-        return input.endsWith(DELIMITER.getValue());
+        return input.endsWith(DELIMITER);
     }
 }

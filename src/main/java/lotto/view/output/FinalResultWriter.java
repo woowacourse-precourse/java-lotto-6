@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.output;
 
 import lotto.domain.prize.constants.PrizeGrade;
 import lotto.dto.FinalResultResponse;
@@ -23,11 +23,11 @@ public final class FinalResultWriter extends OutputWriter {
 
         String formattedYieldMessage = String.format(
                 RESPONSE_YIELD.getMessage(), response.getFormattedYield());
-        printMatcingResult(response);
+        printMatchingResult(response);
         println(formattedYieldMessage);
     }
 
-    private static void printMatcingResult(FinalResultResponse response) {
+    private static void printMatchingResult(FinalResultResponse response) {
         EnumMap<PrizeGrade, Integer> prizeGradeIntegerEnumMap = response.prizeResultCount();
         PrintablePrizeType[] printablePrizeTypes = PrintablePrizeType.values();
 

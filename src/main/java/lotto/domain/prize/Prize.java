@@ -2,7 +2,7 @@ package lotto.domain.prize;
 
 import lotto.domain.lottery.Lotto;
 import lotto.domain.lottery.NumberChecker;
-import lotto.domain.parser.Parser;
+import lotto.domain.lottery.Parser;
 import lotto.exception.LottoException;
 
 import static lotto.exception.ErrorMessage.BONUS_NUMBER_DUPLICATED;

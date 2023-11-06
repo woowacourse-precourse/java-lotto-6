@@ -8,13 +8,13 @@ import lotto.domain.prize.PrizeRank;
 import lotto.domain.prize.Revenue;
 import lotto.domain.prize.constants.PrizeGrade;
 import lotto.dto.FinalResultResponse;
-import lotto.view.FinalResultWriter;
+import lotto.view.output.FinalResultWriter;
 
 import java.util.EnumMap;
 import java.util.List;
 
-public class StatisticsController {
-    private StatisticsController() {
+public class FinalResultController {
+    private FinalResultController() {
     }
 
     public static FinalResults getFinalResult(

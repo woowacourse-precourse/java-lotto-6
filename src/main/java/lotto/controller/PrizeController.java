@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import lotto.domain.lottery.Lotto;
-import lotto.domain.parser.Parser;
+import lotto.domain.lottery.Parser;
 import lotto.domain.prize.Prize;
 import lotto.exception.LottoException;
-import lotto.view.InputReader;
-import lotto.view.OutputWriter;
+import lotto.view.input.InputReader;
+import lotto.view.output.OutputWriter;
 
 import java.util.List;
 
@@ -28,6 +28,7 @@ public class PrizeController {
     public static Prize requestBonusNumber(final Lotto prizeNumbers) {
         try {
             final String bonusNumberInput = InputReader.readLine();
+
             return Prize.of(prizeNumbers, bonusNumberInput);
         } catch (LottoException exception) {
             OutputWriter.println(exception.getMessage());

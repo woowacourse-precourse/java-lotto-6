@@ -13,8 +13,8 @@ public class LottoMainController {
         Buyer buyer = BuyerController.requestPayment();
         Lottos lottos = PurchaseController.purchase(buyer);
         Prize prize = PrizeController.requestJackpotNumbers();
-        FinalResults finalResults = StatisticsController.getFinalResult(lottos, prize);
-        
-        StatisticsController.publish(buyer, finalResults);
+        FinalResults finalResults = FinalResultController.getFinalResult(lottos, prize);
+
+        FinalResultController.publish(buyer, finalResults);
     }
 }

@@ -1,6 +1,5 @@
 package lotto.domain.lottery;
 
-import lotto.domain.parser.Parser;
 import lotto.exception.LottoException;
 
 import java.util.Objects;
@@ -11,7 +10,7 @@ import static lotto.exception.ErrorMessage.*;
 
 public class Buyer {
     private static final int INT_ZERO = 0;
-    
+
     private final int payment;
     private final int ticketCount;
 

@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.lottery.Buyer;
 import lotto.domain.lottery.Lottos;
 import lotto.dto.LottoNumberResponses;
-import lotto.view.PurchaseWriter;
+import lotto.view.output.PurchaseWriter;
 
 public class PurchaseController {
     private PurchaseController() {

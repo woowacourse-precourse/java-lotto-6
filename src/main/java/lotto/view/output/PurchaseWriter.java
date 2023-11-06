@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.output;
 
 import lotto.dto.LottoNumberResponse;
 import lotto.dto.LottoNumberResponses;

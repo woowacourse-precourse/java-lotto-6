@@ -2,8 +2,8 @@ package lotto.controller;
 
 import lotto.domain.lottery.Buyer;
 import lotto.exception.LottoException;
-import lotto.view.InputReader;
-import lotto.view.OutputWriter;
+import lotto.view.input.InputReader;
+import lotto.view.output.OutputWriter;
 
 import static lotto.view.constants.PrintMessage.REQUEST_PURCHASE_PAYMENT;
 

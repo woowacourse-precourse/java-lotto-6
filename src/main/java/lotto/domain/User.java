@@ -3,9 +3,10 @@ package lotto.domain;
 public class User {
 
     private final int budget;
-    private LottoTickets lottoTickets;
+    private final LottoTickets lottoTickets;
 
-    public User(final int budget) throws IllegalArgumentException {
+    public User(final int budget, final LottoTickets lottoTickets) throws IllegalArgumentException {
+        this.lottoTickets = lottoTickets;
         this.budget = budget;
     }
 

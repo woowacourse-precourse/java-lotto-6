@@ -21,13 +21,19 @@ class RecordServiceTest {
 
 
 
+    @BeforeEach
+    void init(){
+        for (Result value : Result.values()) {
+            value.init();
+        }
+    }
+
 
     @Test
     @DisplayName("일반적인 저장의 경우 보너스 경우를 제거한 경우!")
     void recordResultTest(){
         //given
-        List<LottoTicket> lottoTickets;
-        lottoTickets = new ArrayList<>();
+        List<LottoTicket> lottoTickets = new ArrayList<>();
         lottoTickets.add(new LottoTicket(List.of(1,2,3,4,5,6), 3, false));
         lottoTickets.add(new LottoTicket(List.of(3,4,5,6,7,8), 4, false));
         lottoTickets.add(new LottoTicket(List.of(1,2,3,4,5,6), 5, false));
@@ -107,11 +113,6 @@ class RecordServiceTest {
 
     private boolean isNoBonus(LottoTicket lottoTicket, Result value) {
         return !lottoTicket.isBonus() && !value.isBonus();
-    }
-
-
-    private boolean isSameCountFive(Result value) {
-        return value.getSameCount() == SAME_COUNT_FIVE.getNumber();
     }
 
     private boolean checkIsSecond(LottoTicket lottoTicket, Result value) {

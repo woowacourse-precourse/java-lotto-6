@@ -2,8 +2,6 @@ package lotto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -16,22 +14,24 @@ public class LottoService {
         this.lottoStorage = lottoStorage;
     }
 
-    public void generateLotteries(BigDecimal payment) {
+    public List<Lotto> generateLotteries(BigDecimal payment) {
         int numberOfLotteries = payment.divide(new BigDecimal(1000), RoundingMode.UNNECESSARY)
                 .intValueExact();
-        IntStream.range(0, numberOfLotteries)
-                .forEach(index -> saveLottoToStorage());
+        return IntStream.range(0, numberOfLotteries)
+                .mapToObj(index -> saveLottoToStorage())
+                .toList();
     }
 
     private List<Integer> generateNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        numbers.sort(Comparator.naturalOrder());
-        return Collections.unmodifiableList(numbers);
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
-    private void saveLottoToStorage() {
+    private Lotto saveLottoToStorage() {
         List<Integer> numbers = generateNumbers();
         Lotto lotto = new Lotto(numbers);
-        lottoStorage.saveLotto(lotto);
+        return lottoStorage.saveLotto(lotto);
     }
 }

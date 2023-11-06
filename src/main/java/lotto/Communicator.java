@@ -1,6 +1,7 @@
 package lotto;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Communicator {
@@ -30,6 +31,12 @@ public class Communicator {
         printer.print(exception.getMessage());
     }
 
+    public void printLotteriesBought(List<Lotto> lotteries) {
+        int numberOfLotteries = lotteries.size();
+        printer.print("%s개를 구매했습니다.".formatted(numberOfLotteries));
+        lotteries.forEach(this::printLotto);
+    }
+
     private BigDecimal getMoneyWithPrompt(String prompt) {
         printer.print(prompt);
         return getNonNullMoney();
@@ -54,5 +61,9 @@ public class Communicator {
         if (payment.compareTo(BigDecimal.ZERO) < 1) {
             throw new IllegalArgumentException("0보다 큰 금액을 입력해주세요.");
         }
+    }
+
+    private void printLotto(Lotto lotto) {
+        printer.print(lotto.toTextFormat());
     }
 }

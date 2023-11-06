@@ -28,4 +28,15 @@ public class InputView {
             return insertWinningNumber();
         }
     }
+
+    public int insertBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        try {
+            return StringUtil.stringToInt(Console.readLine().trim());
+        } catch (IllegalArgumentException bonusNumberError) {
+            System.out.println(bonusNumberError.getMessage());
+            return insertBonusNumber();
+        }
+    }
 }

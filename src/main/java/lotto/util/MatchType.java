@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum MatchType {
-    THREE(3, false, 5000, "%s개 일치 (%,d원) - %d개\n"),
-    FOUR(4, false, 50000, "%s개 일치 (%,d원) - %d개\n"),
-    FIVE(5, false, 1500000, "%s개 일치 (%,d원) - %d개\n"),
-    FIVE_BONUS(5, true, 30000000, "%s개 일치, 보너스 볼 일치 (%,d원) - %d개\n"),
-    SIX(6, false, 2000000000, "%s개 일치 (%,d원) - %d개\n");
+    THREE(3, false, 5_000, "%s개 일치 (%,d원) - %d개\n"),
+    FOUR(4, false, 50_000, "%s개 일치 (%,d원) - %d개\n"),
+    FIVE(5, false, 1_500_000, "%s개 일치 (%,d원) - %d개\n"),
+    FIVE_BONUS(5, true, 30_000_000, "%s개 일치, 보너스 볼 일치 (%,d원) - %d개\n"),
+    SIX(6, false, 2_000_000_000, "%s개 일치 (%,d원) - %d개\n");
 
     private final int sameNumbersCount;
     private final boolean bonusNumberIncluded;

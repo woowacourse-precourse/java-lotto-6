@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
@@ -36,7 +37,7 @@ class LottoTest {
 
     @DisplayName("당첨 통계 계산하는 테스트")
     @Test
-    void test() {
+    void calculateWinningStatistics_테스트() {
 
         // given
         List<Lotto> lottos = new ArrayList<>();
@@ -62,5 +63,24 @@ class LottoTest {
         assertThat(winningStatistics.get(MatchType.FIVE)).isEqualTo(1);
         assertThat(winningStatistics.get(MatchType.FIVE_BONUS)).isEqualTo(1);
         assertThat(winningStatistics.get(MatchType.SIX)).isEqualTo(1);
+    }
+
+    @DisplayName("수익 계산하는 함수 테스트")
+    @Test
+    void calculateEarnings_테스트() {
+
+        // given
+        Map<MatchType, Integer> winningStatistics = new HashMap<>();
+        winningStatistics.put(MatchType.THREE, 5);
+        winningStatistics.put(MatchType.FOUR, 1);
+        winningStatistics.put(MatchType.FIVE, 2);
+        winningStatistics.put(MatchType.FIVE_BONUS, 3);
+        winningStatistics.put(MatchType.SIX, 1);
+
+        // when
+        int result = lottoService.calculateEarnings(winningStatistics);
+
+        // then
+        assertThat(result).isEqualTo(2_093_075_000);
     }
 }

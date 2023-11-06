@@ -20,4 +20,6 @@ public interface View {
     void printLottoNumbers(LottosDto lottosDto);
 
     String askWinningNumber();
+
+    String askBonusNumber();
 }

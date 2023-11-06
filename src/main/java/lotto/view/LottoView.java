@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.constant.Message.BONUS_NUMBER_PROMPT;
 import static lotto.constant.Message.PURCHASE_AMOUNT_MESSAGE;
 import static lotto.constant.Message.PURCHASE_AMOUNT_PROMPT;
 import static lotto.constant.Message.WINNING_NUMBER_PROMPT;
@@ -60,6 +61,12 @@ public class LottoView implements View {
     @Override
     public String askWinningNumber() {
         printMessage(WINNING_NUMBER_PROMPT);
+        return Console.readLine();
+    }
+
+    @Override
+    public String askBonusNumber() {
+        printMessage(BONUS_NUMBER_PROMPT);
         return Console.readLine();
     }
 }

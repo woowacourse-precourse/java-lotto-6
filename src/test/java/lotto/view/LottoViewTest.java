@@ -59,8 +59,17 @@ class LottoViewTest extends UiTest {
     public void askWinningNumber() {
         input("1,2,3,4,5");
 
-        String inputAmount = lottoView.askWinningNumber();
+        String inputWinningNumber = lottoView.askWinningNumber();
 
-        assertThat(inputAmount).isEqualTo("1,2,3,4,5");
+        assertThat(inputWinningNumber).isEqualTo("1,2,3,4,5");
+    }
+
+    @Test
+    public void askBonusNumber() {
+        input("9");
+
+        String inputBonusNumber = lottoView.askBonusNumber();
+
+        assertThat(inputBonusNumber).isEqualTo("9");
     }
 }

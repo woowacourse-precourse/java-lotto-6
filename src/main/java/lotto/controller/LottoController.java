@@ -26,6 +26,8 @@ public class LottoController {
         LottosDto lottosDto = service.generateLotto(lottoPurchaseDto.quantity());
         view.printLottoNumbers(lottosDto);
         String inputWinningNumber = view.askWinningNumber();
+        String inputBonusNumber = view.askBonusNumber();
+
         view.close();
     }
 }

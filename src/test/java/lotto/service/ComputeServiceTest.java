@@ -16,7 +16,6 @@ import static lotto.domain.constant.NumberConstant.*;
 import static lotto.domain.constant.StringConstant.*;
 import static lotto.service.ComputeService.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 
 class ComputeServiceTest {
     @DisplayName("사용자 입력 받아서 금액을 로또 티켓 수로 변환")
@@ -51,33 +50,22 @@ class ComputeServiceTest {
         assertThat(result.get(MatchResult.SIX)).isEqualTo(1);
     }
 
-    @DisplayName("전체 매칭 결과를 가지고 전체 당첨 금액을 반환")
+    @DisplayName("발행 로또 티켓 수와 전체 당첨 금액을 가지고 수익률을 반환")
     @Test
-    void computeTotalPrizeFromResult() {
+    void computeMarginFromLottoTicketNumAndTotalPrize() {
         // GIVEN
         Map<MatchResult, Integer> result = new HashMap<>();
         result.put(MatchResult.THREE, 1);
         result.put(MatchResult.BONUS, 1);
         result.put(MatchResult.SIX, 1);
 
-        // WHEN
-        long totalPrize = computeTotalPrize(result);
-
-        // THEN
-        assertThat(totalPrize).isEqualTo(THREE_PRIZE_MONEY + BONUS_PRIZE_MONEY + SIX_PRIZE_MONEY);
-    }
-
-    @DisplayName("발행 로또 티켓 수와 전체 당첨 금액을 가지고 수익률을 반환")
-    @Test
-    void computeMarginFromLottoTicketNumAndTotalPrize() {
-        // GIVEN
+        long totalPrize = THREE_PRIZE_MONEY + BONUS_PRIZE_MONEY + SIX_PRIZE_MONEY;
         int lottoTicketNum = 100;
-        long totalPrize = 10000;
 
         // WHEN
-        double margin = computeMargin(lottoTicketNum, totalPrize);
+        double margin = computeMargin(result, lottoTicketNum);
 
         // THEN
-        assertThat(margin).isEqualTo((double) totalPrize /  (lottoTicketNum * LOTTO_PRICE));
+        assertThat(margin).isEqualTo((double) totalPrize /  (lottoTicketNum * LOTTO_PRICE) * PERCENT_MULTIPLIER);
     }
 }

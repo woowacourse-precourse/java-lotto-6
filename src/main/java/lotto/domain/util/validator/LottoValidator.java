@@ -19,14 +19,13 @@ public class LottoValidator {
     }
 
     public static void validate(List<Integer> numbers) {
-        checkNumberOfLotto(numbers);
+        checkSizeOfLotto(numbers);
         checkDuplication(numbers);
-        checkNumberInRange(numbers);
+        checkNumbersInRange(numbers);
     }
 
-    private static void checkNumberOfLotto(List<Integer> numbers) {
+    private static void checkSizeOfLotto(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-
             throw new IllegalArgumentException(ERROR_MESSAGE + String.format(NOT_LOTTO_SIZE_ERROR_MESSAGE, LOTTO_SIZE));
         }
     }
@@ -39,7 +38,7 @@ public class LottoValidator {
         }
     }
 
-    private static void checkNumberInRange(List<Integer> numbers) {
+    private static void checkNumbersInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < LOTTO_MINIMUM_NUMBER || number > LOTTO_MAXIMUM_NUMBER) {
                 throw new IllegalArgumentException(

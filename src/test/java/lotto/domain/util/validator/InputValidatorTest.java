@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class InputValidatorTest {
-    private static final String ERRER_MESSAGE = "[ERROR] ";
+    private static final String ERROR_MESSAGE = "[ERROR] ";
 
     @DisplayName("정상적인 경우")
     @Nested
@@ -44,7 +44,7 @@ class InputValidatorTest {
         void validateNumber_예외(String input) {
             assertThatThrownBy(() -> InputValidator.validateNumber(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ERRER_MESSAGE + "수를 입력해야 합니다.");
+                    .hasMessage(ERROR_MESSAGE + "수를 입력해야 합니다.");
         }
 
         @ParameterizedTest
@@ -58,7 +58,7 @@ class InputValidatorTest {
         void validateNumberOrComma_예외(String input) {
             assertThatThrownBy(() -> InputValidator.validateNumberOrComma(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ERRER_MESSAGE + "당첨 번호를 쉼표로 구분하여 입력해야 합니다.");
+                    .hasMessage(ERROR_MESSAGE + "당첨 번호를 쉼표로 구분하여 입력해야 합니다.");
         }
     }
 }

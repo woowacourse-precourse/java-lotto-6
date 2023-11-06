@@ -16,4 +16,8 @@ public class OutputView {
         }
     }
 
+    public static void displayErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
+
 }

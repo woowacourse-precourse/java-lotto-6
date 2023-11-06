@@ -1,6 +1,8 @@
 package lotto.util;
 
 import static lotto.util.constant.GameRule.LOTTO_SIZE;
+import static lotto.util.constant.GameRule.TICKET_PRICE;
+import static lotto.util.content.ErrorMessage.INPUT_UNIT_ERROR;
 import static lotto.util.content.ErrorMessage.LOTTO_SIZE_ERROR;
 
 import java.util.List;
@@ -13,6 +15,10 @@ public class Censor {
         }
     }
 
-    // TODO: 추가 검증 기능 구현
+    public static void validatePurchaseUnit(Integer money) {
+        if (money % TICKET_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(INPUT_UNIT_ERROR.getContent());
+        }
+    }
 
 }

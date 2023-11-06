@@ -1,20 +1,20 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.io.ByteArrayInputStream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
 
     InputView inputView = new InputView();
+
+    @AfterEach
+    void after() {
+        Console.close();
+    }
 
     @Test
     @DisplayName("구매 금액에 공백 입력 시 에러를 발생시킨다.")
@@ -23,9 +23,7 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(" ".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy( () ->inputView.inputMoney())
-                .isInstanceOf(IllegalArgumentException.class);
-        Console.close();
+        Assertions.assertThatThrownBy(() -> inputView.inputMoney()).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -35,9 +33,7 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("AB".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy( () ->inputView.inputMoney())
-                .isInstanceOf(IllegalArgumentException.class);
-        Console.close();
+        Assertions.assertThatThrownBy(() -> inputView.inputMoney()).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -47,9 +43,7 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(" ".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy( () ->inputView.inputBonusNumber())
-                .isInstanceOf(IllegalArgumentException.class);
-        Console.close();
+        Assertions.assertThatThrownBy(() -> inputView.inputBonusNumber()).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -59,9 +53,7 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("AB".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy( () ->inputView.inputMoney())
-                .isInstanceOf(IllegalArgumentException.class);
-        Console.close();
+        Assertions.assertThatThrownBy(() -> inputView.inputMoney()).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -71,9 +63,7 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("1,2,3,4,5,6,7".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy( () ->inputView.inputMoney())
-                .isInstanceOf(IllegalArgumentException.class);
-        Console.close();
+        Assertions.assertThatThrownBy(() -> inputView.inputMoney()).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -83,9 +73,7 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("1,2,3,4".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy( () ->inputView.inputMoney())
-                .isInstanceOf(IllegalArgumentException.class);
-        Console.close();
+        Assertions.assertThatThrownBy(() -> inputView.inputMoney()).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -95,9 +83,6 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("1,2,3,4,,".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy( () ->inputView.inputMoney())
-                .isInstanceOf(IllegalArgumentException.class);
-        Console.close();
+        Assertions.assertThatThrownBy(() -> inputView.inputMoney()).isInstanceOf(IllegalArgumentException.class);
     }
-
 }

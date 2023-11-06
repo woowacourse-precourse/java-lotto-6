@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import lotto.domain.Amount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class AmountTest {
 
@@ -21,6 +23,13 @@ public class AmountTest {
     void createAmountByInvalidUnit() {
         assertThatThrownBy(() -> new Amount(1004))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1000원 이상 , 1000원 단위의 구입금액 일 경우 정상작동.")
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 2000, 12000, 123000})
+    void createAmountByValidValue(int input) {
+        assertThat(new Amount(input)).isNotNull();
     }
 
     @DisplayName("총 당첨금액으로 수익률을 계산한다. 이 때 수익률은 소숫점 둘째자리에서 반올림한다.")

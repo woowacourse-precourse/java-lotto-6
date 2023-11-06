@@ -20,7 +20,7 @@ class AnswerTest {
 
     @Test
     void 입력받은_당첨번호를_정렬하여_리스트로_반환하라 () {
-        String input = "1,32,45,12,7,22";
+        List<Integer> input = List.of(1,32,45,12,7,22);
         Answer answer = Answer.create(input);
         AnswerResponse answerResponse = answer.generateAnswerResponse();
         List<Integer> answerNumbers = answerResponse.getResponse();

@@ -2,16 +2,15 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.dto.AnswerResponse;
-import lotto.parser.Parser;
 
 public class Answer {
     private final List<Integer> answerNumbers;
 
-    private Answer(final String input) {
-        this.answerNumbers = Parser.parseLotto(input);
+    private Answer(final List<Integer> input) {
+        this.answerNumbers = input;
     }
 
-    public static Answer create(final String input) {
+    public static Answer create(final List<Integer> input) {
         return new Answer(input);
     }
 

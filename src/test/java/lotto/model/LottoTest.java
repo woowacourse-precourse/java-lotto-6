@@ -18,9 +18,13 @@ class LottoTest {
 
     static Stream<Arguments> provideAnswerLotto() {
         return Stream.of(
-            Arguments.of(new Lotto(List.of(1, 7, 8, 9, 10, 11)), 1),
-            Arguments.of(new Lotto(List.of(1, 2, 8, 9, 10, 11)), 2),
-            Arguments.of(new Lotto(List.of(40, 7, 8, 9, 10, 11)), 3)
+            Arguments.of(new Lotto(List.of(40, 7, 8, 9, 10, 11)), 0, 0),
+            Arguments.of(new Lotto(List.of(1, 7, 8, 9, 10, 11)), 1, 0),
+            Arguments.of(new Lotto(List.of(1, 2, 8, 9, 10, 11)), 2, 0),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 9, 10, 11)), 3, 3),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 10, 11)), 4, 4),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 11)), 5, 5),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6, 6)
         );
     }
 
@@ -52,13 +56,13 @@ class LottoTest {
             .containsExactly(1, 2, 3, 4, 5, 6);
     }
 
-    @DisplayName("당첨 숫자가 {1} 라면 0 을 반환한다.")
+    @DisplayName("당첨 숫자가 {1} 라면 {2} 을 반환한다.")
     @ParameterizedTest
     @MethodSource("provideAnswerLotto")
-    void checkScore(Lotto inputAnswer) {
+    void checkScore(Lotto inputAnswer, int answerCount, int score) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.calculateScore(inputAnswer))
-            .isEqualTo(0);
+            .isEqualTo(score);
     }
 
     @DisplayName("로또 번호에 보너스 번호가 포함되어 있으면 true 를 반환한다.")

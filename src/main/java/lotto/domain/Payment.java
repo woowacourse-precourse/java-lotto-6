@@ -64,6 +64,10 @@ public class Payment {
         final BigDecimal totalPriceDecimal = new BigDecimal(totalPrice);
         final BigDecimal amountDecimal = new BigDecimal(amount);
 
+        return receiveProfitability(totalPriceDecimal, amountDecimal);
+    }
+
+    private BigDecimal receiveProfitability(BigDecimal totalPriceDecimal, BigDecimal amountDecimal) {
         return totalPriceDecimal
                 .multiply(new BigDecimal(PERCENTAGE_100))
                 .divide(amountDecimal, SCALE_SIZE, HALF_UP);

@@ -18,7 +18,7 @@ public enum LottoRankInfo {
         this.prizeMoney = prizeMoney;
     }
 
-    public LottoRankInfo geLottoRankInfo(int matchingCount, boolean matchingBonus) {
+    public static LottoRankInfo geLottoRankInfo(int matchingCount, boolean matchingBonus) {
         return Arrays.stream(LottoRankInfo.values())
                 .filter(rankInfo -> rankInfo.findRankInfo(rankInfo, matchingCount, matchingBonus))
                 .findAny()

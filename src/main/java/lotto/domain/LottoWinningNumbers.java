@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,7 +11,8 @@ public class LottoWinningNumbers {
     public LottoWinningNumbers(List<Integer> numbers) {
         validateNumbersCount(numbers);
         validateDuplicateNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>();
+        addNumbers(numbers);
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
@@ -27,6 +29,10 @@ public class LottoWinningNumbers {
         if (distinctCount != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
+    }
+
+    private void addNumbers(List<Integer> numbers) {
+        this.numbers.addAll(numbers);
     }
 
     public List<Integer> getNumbers() {

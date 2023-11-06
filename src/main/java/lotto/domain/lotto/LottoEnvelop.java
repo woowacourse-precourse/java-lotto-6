@@ -28,6 +28,10 @@ public class LottoEnvelop {
         return information;
     }
 
+    public Lotto takeLotto(Integer index) {
+        return this.lottoEnvelop.get(index);
+    }
+
     private StringBuilder getInformationEnvelop(int sizeLottoEnvelop) {
         Lotto lotto;
         StringBuilder lottoInformation;
@@ -52,9 +56,5 @@ public class LottoEnvelop {
 
     private Lotto getLotto(Integer index) {
         return lottoEnvelop.get(index);
-    }
-
-    public Lotto takeLotto(Integer index) {
-        return this.lottoEnvelop.get(index);
     }
 }

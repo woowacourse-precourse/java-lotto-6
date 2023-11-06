@@ -28,6 +28,7 @@ public class LottoStatistics {
         List<String> response = new ArrayList<>();
 
         statistics.forEach((rank, count) -> {
+            if (rank.equals(LottoRank.NOTHING)) return;
             response.add(buildLine(rank, count));
         });
 

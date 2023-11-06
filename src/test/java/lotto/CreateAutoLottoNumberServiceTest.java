@@ -1,13 +1,13 @@
 package lotto;
 
-import lotto.service.domain.lotto.CreateAutoLottoNumberService;
+import lotto.service.domain.lotto.CreateAutoLottoNumber;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class CreateAutoLottoNumberServiceTest {
 
-    private CreateAutoLottoNumberService cal = new CreateAutoLottoNumberService();
+    private CreateAutoLottoNumber cal = new CreateAutoLottoNumber();
     @Test
     public void LottoOneSeason(){
         List<Integer> lottoNumbers = cal.getLottoSixNumbers();

@@ -43,6 +43,10 @@ public class Application {
         // 번호들 출력되는 구문
         lottoController.showAutoLottoTicks(buyNumber,autoLottoTicket);
 
+        // 당첨 통계 나오는 구간
+        System.out.println("---");
+
+        // 통계 이넘부터 구현하면 됨
 
 
 

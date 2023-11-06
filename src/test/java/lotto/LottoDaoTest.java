@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.model.dao.LottoDAO;
 import lotto.model.vo.SeasonLottoResultVO;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +14,7 @@ public class LottoDaoTest {
         SeasonLottoResultVO row = dao.insertLotto();
         System.out.println(row.getAutoLottoNumber());
         System.out.println(row.getAutoBonusNumber());
+        Assertions.assertNotNull(row);
     }
 
 

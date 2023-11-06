@@ -6,8 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import java.util.Collections;
 import java.util.List;
 @DisplayName("랜덤을 입맛대로 가공하는 서비스 로직")
-public class CreateRandomNumberService {
+public class CreateRandomNumber {
     private static List<Integer> autoUniqueNumbers;
+    private static int missNumber;
     public static List<Integer> getAutoUniqueNumbers(int pickNumber) {
         autoUniqueNumbers
           = Randoms.pickUniqueNumbersInRange(1,45,pickNumber);
@@ -15,7 +16,6 @@ public class CreateRandomNumberService {
         return autoUniqueNumbers;
     }
     public static int getBonusNumber(){
-        int missNumber;
         do{
            missNumber = Randoms.pickNumberInRange(1,45);
         }while (autoUniqueNumbers.contains(missNumber));

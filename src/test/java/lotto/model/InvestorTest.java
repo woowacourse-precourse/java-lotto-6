@@ -1,12 +1,13 @@
 package lotto.model;
 
+import static lotto.exception.ExceptionMessage.INVEST_MONEY_VALUE_EXCEPTION;
+import static lotto.exception.ExceptionMessage.MONEY_REMAIN_EXCEPTION;
 import static lotto.exception.ExceptionMessage.NEGATIVE_NUMBER_EXCEPTION;
 import static lotto.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import lotto.exception.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -82,6 +83,17 @@ public class InvestorTest {
         }
 
         @Test
+        @DisplayName("구입 금액이 1000원 미만일 시 예외가 발생한다.")
+        void moneyLowerThanMinimum() {
+            // given
+            String moneyInput = "500";
+
+            // when & then
+            assertThatThrownBy(() -> Investor.createDefault(moneyInput)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(INVEST_MONEY_VALUE_EXCEPTION.getMessage());
+        }
+
+        @Test
         @DisplayName("추가 금액이 0 미만일 시 예외가 발생한다.")
         void addProfitNegativeExceptionTest() {
             // given
@@ -101,7 +113,7 @@ public class InvestorTest {
 
             // when & then
             assertThatThrownBy(() -> Investor.createDefault(investorInput)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ExceptionMessage.MONEY_REMAIN_EXCEPTION.getMessage());
+                    .hasMessage(MONEY_REMAIN_EXCEPTION.getMessage());
         }
     }
 }

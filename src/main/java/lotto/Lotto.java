@@ -89,11 +89,11 @@ public class Lotto {
         }
     }
 
-    private boolean isGreaterThanUpperBound(Integer number) {
+    private boolean isGreaterThanUpperBound(int number) {
         return number > LOTTO_UPPER_BOUND;
     }
 
-    private boolean isLessThanLowerBound(Integer number) {
+    private boolean isLessThanLowerBound(int number) {
         return number < LOTTO_LOWER_BOUND;
     }
 

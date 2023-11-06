@@ -2,6 +2,7 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.vo.Price;
 
@@ -48,4 +49,19 @@ public class ConsoleManager {
             }
         }
     }
+
+    public BonusNumber inputBonusNumber(final Lotto numbers) {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+
+                String inputBonusNumber = Console.readLine();
+
+                return new BonusNumber(inputBonusNumber, numbers);
+            } catch (IllegalArgumentException e) {
+                this.printError(e);
+            }
+        }
+    }
+
 }

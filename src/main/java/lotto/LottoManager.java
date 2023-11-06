@@ -24,6 +24,7 @@ public class LottoManager {
 
         Lotto winningLotto = consoleManager.inputWinningLottoNumbers();
 
+        BonusNumber bonusNumber = consoleManager.inputBonusNumber(winningLotto);
     }
 
 }

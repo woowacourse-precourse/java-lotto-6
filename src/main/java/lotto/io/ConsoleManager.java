@@ -73,8 +73,10 @@ public class ConsoleManager {
         System.out.println("당첨 통계");
         System.out.println("---");
         Arrays.stream(WinningType.values())
+                .filter(type -> type != WinningType.NONE)
                 .forEach(type -> {
-                    String message = MessageFormat.format("{0}{1}개", type.getMessage(), statics.get(type));
+                    Integer count = statics.get(type);
+                    String message = MessageFormat.format("{0}{1}개", type.getMessage(), count);
                     System.out.println(message);
                 });
     }

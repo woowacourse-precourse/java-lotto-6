@@ -38,4 +38,12 @@ public enum Rank {
         }
         return true;
     }
+
+    public int getMatchLottoNumber() {
+        return matchWinning;
+    }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
 }

@@ -18,6 +18,8 @@ public class LottoController {
         WinningNumber winningNumber = getWinningNumber();
         RankResult rankResult = new RankResult();
         calcLottoResult(rankResult, winningNumber, lottos);
+
+        OutputView.printResult(rankResult);
     }
 
     private String inputMoney() {

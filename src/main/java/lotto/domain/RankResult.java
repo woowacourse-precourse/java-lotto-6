@@ -24,4 +24,8 @@ public class RankResult {
     private void updateRankCount(Rank rank) {
         rankResult.put(rank, rankResult.get(rank) + 1);
     }
+
+    public int getRankCount(Rank rank) {
+        return rankResult.get(rank);
+    }
 }

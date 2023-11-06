@@ -19,31 +19,43 @@ public class LottoService {
 
     public static int enterPurchaseAmount() {
         noticeToGetPurchaseAmount();
-        String inputMoney = Console.readLine();
-        int money = Integer.parseInt(inputMoney);
         //천 원 단위로 입력받았는지 검증
-        validateMoney(inputMoney, DIVIDER_MONEY_TO_EXCHANGE_AMOUNT);
-
-        OutputView.printPurchaseAmount(money);
-        return money / DIVIDER_MONEY_TO_EXCHANGE_AMOUNT;
+        try {
+            String inputMoney = Console.readLine();
+            validateMoney(inputMoney, DIVIDER_MONEY_TO_EXCHANGE_AMOUNT);
+            int money = Integer.parseInt(inputMoney);
+            OutputView.printPurchaseAmount(money);
+            return money / DIVIDER_MONEY_TO_EXCHANGE_AMOUNT;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return enterPurchaseAmount();
+        }
     }
 
     public static Lotto enterWinningNumbers() {
         noticeToGetWinningNumbers();
         String[] numbers = Console.readLine().split(DELIMITER);
         //중복 값 입력받았는지 여부 확인
-        List<Integer> inputNumbers = validateLottoNumbers(numbers);
-
-        return new Lotto(inputNumbers);
+        try{
+            List<Integer> inputNumbers = validateLottoNumbers(numbers);
+            return new Lotto(inputNumbers);
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return enterWinningNumbers();
+        }
     }
 
     public static int enterBonusNumber(Lotto lotto) {
         noticeToGetBonusNumber();
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        String bonusNumber = Console.readLine();
         //보너스 번호가 당첨 번호랑 중복되는지 여부 확인
-        validateBonusNumberInWinningNumbers(lotto, bonusNumber);
-
-        return bonusNumber;
+        try{
+            validateBonusNumber(lotto, bonusNumber);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return enterBonusNumber(lotto);
+        }
+        return Integer.parseInt(bonusNumber);
     }
 
     public static void matchLottoNumbers(WinningNumbers winningNumbers, List<Lotto> lottos){
@@ -55,8 +67,8 @@ public class LottoService {
     private static void matchLottoTicket(WinningNumbers winningNumbers, Lotto userLottoNumbers) {
         boolean hasBonusNumber = false;
         int matchCount = 0;
-        int bonusNumber = winningNumbers.getBonusNumber();
-        List<Integer> winningNumber = winningNumbers.getWinningNumbers().getLotto();
+        int bonusNumber = winningNumbers.bonusNumber();
+        List<Integer> winningNumber = winningNumbers.winningNumbers().getLotto();
         for (int number : userLottoNumbers.getLotto()) {
             if(winningNumber.contains(number)){
                 ++matchCount;

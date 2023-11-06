@@ -7,4 +7,7 @@ public class util {
     public static void print(Object o) {
         System.out.print(o);
     }
+    public static void lineBlank() {
+        System.out.println();
+    }
 }

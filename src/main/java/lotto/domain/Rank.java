@@ -5,16 +5,27 @@ import java.util.Optional;
 import java.util.function.BiPredicate;
 
 public enum Rank {
-    SIX(6),
-    FIVE_BONUS(5),
-    FIVE(5),
-    FOUR(4),
-    THREE(3);
+    SIX(6, Money.of(2000000000)),
+    FIVE_BONUS(5, Money.of(30000000)),
+    FIVE(5, Money.of(1500000)),
+    FOUR(4, Money.of(50000)),
+    THREE(3, Money.of(5000));
 
     private final int count;
 
-    Rank(int count) {
+    private final Money money;
+
+    Rank(int count, Money price) {
         this.count = count;
+        this.money = price;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public Money getMoney(){
+        return money;
     }
 
     public static Optional<Rank> findRank(Integer similarity, Boolean hasBonus) {
@@ -23,7 +34,6 @@ public enum Rank {
                 .map(rankCondition -> rankCondition.rank)
                 .findFirst();
     }
-
 
     private enum RankCondition {
         SIX_CONDITION((similarity, hasBonus) -> similarity.equals(SIX.count), SIX),

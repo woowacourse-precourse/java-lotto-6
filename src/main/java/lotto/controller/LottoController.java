@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import lotto.domain.LottoNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -14,7 +15,10 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void run() {
-        Lottos lottos = issueLottos();
+        NumberCandidateString numberCandidateString = new NumberCandidateString(InputView.collectionOfMoney());
+        Integer amount = numberCandidateString.getNumber();
+        Money money = Money.of(amount);
+        Lottos lottos = Lottos.from(money.calcBillCount());
         OutputView.printPurchaseHistory(lottos.getList());
 
         String winningNumber = InputView.receiveWinningNumber();
@@ -25,15 +29,16 @@ public class LottoController {
         LottoNumber bounus = new LottoNumber(bonusNumber.getNumber());
 
         WinnerLotto winnerLotto = new WinnerLotto(lotto, bounus);
-        HashMap<Rank,Integer> result=lottos.chargeResult(winnerLotto);
-    }
+        List<Rank> result = lottos.chargeResult(winnerLotto);
+        Money profit = result.stream().map(Rank::getMoney).reduce(Money.ZERO, Money::sum);
+        Double profitRate = profit.calcProfitRate(money);
 
-    private Lottos issueLottos() {
-        NumberCandidateString numberCandidateString = new NumberCandidateString(InputView.collectionOfMoney());
-        Integer amount = numberCandidateString.getNumber();
-        Money money = Money.of(amount);
+        HashMap<Rank, Integer> map = new HashMap<>();
+        for(Rank rank:result){
+            map.put(rank,map.getOrDefault(rank,0)+1);
+        }
 
-        return Lottos.from(money.calcBillCount());
+        OutputView.renderingResult(new ResultDto(map,profitRate));
     }
 
 }

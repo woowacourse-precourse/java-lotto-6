@@ -1,10 +1,9 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.utils.RandomNumberGenerator;
 
@@ -16,14 +15,14 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public HashMap<Rank,Integer> chargeResult(WinnerLotto winnerLotto) {
-        HashMap<Rank, Integer> result = new HashMap<>();
+    public List<Rank> chargeResult(WinnerLotto winnerLotto) {
+        List<Rank> ranks = new ArrayList<>();
         for (Lotto lotto : lottos) {
             Optional<Rank> optionalRank = winnerLotto.calcRank(lotto);
-            optionalRank.ifPresent((rank)-> result.put(rank,result.getOrDefault(rank,0)+1));
+            optionalRank.ifPresent(ranks::add);
         }
 
-        return result;
+        return ranks;
     }
 
     public List<Lotto> getList() {

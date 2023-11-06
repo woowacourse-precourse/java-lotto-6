@@ -10,7 +10,7 @@ public class ApplyWinningLotteryService {
         this.operator = operator;
     }
 
-    public void drawWinningLottery(List<Integer> winningNumbers, int bonusNumber) {
+    public void apply(List<Integer> winningNumbers, int bonusNumber) {
         operator.draw(winningNumbers, bonusNumber);
     }
 

@@ -8,6 +8,7 @@ import lotto.domain.LotteryRetailer;
 import lotto.domain.LottoRandom;
 import lotto.domain.User;
 import lotto.service.ApplyWinningLotteryService;
+import lotto.service.CalculateResultService;
 import lotto.service.PurchaseLotteryService;
 
 public class Application {
@@ -17,11 +18,13 @@ public class Application {
         LotteryOperator operator = new LotteryOperator();
         LotteryRetailer retailer = new LotteryRetailer(random);
         NumberFormat numberFormat = NumberFormat.getIntegerInstance();
-        PurchaseLotteryService purchaseLotteryService = new PurchaseLotteryService(retailer,operator);
+        PurchaseLotteryService purchaseLotteryService = new PurchaseLotteryService(retailer, operator);
         ApplyWinningLotteryService applyWinningLotteryService = new ApplyWinningLotteryService(operator);
+        CalculateResultService calculateResultService = new CalculateResultService(
+                new LotteryResultsCalculator(operator));
         Controller controller = new Controller(new InputInterface(), new OutputInterface(numberFormat),
-                new User(), new LotteryResultsCalculator(operator), purchaseLotteryService,
-                applyWinningLotteryService);
+                new User(), purchaseLotteryService,
+                applyWinningLotteryService, calculateResultService);
         controller.purchaseLotteries();
         controller.drawWinningLottery();
         controller.calculateEarningRate();

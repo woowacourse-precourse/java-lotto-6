@@ -1,60 +1,46 @@
 package lotto;
 
 import java.util.List;
-import lotto.domain.LotteryOperator;
 import lotto.domain.LotteryReceipt;
-import lotto.domain.LotteryResults;
-import lotto.domain.LotteryResultsCalculator;
 import lotto.domain.User;
 import lotto.service.ApplyWinningLotteryService;
+import lotto.service.CalculateResultService;
 import lotto.service.PurchaseLotteryService;
+import lotto.service.dto.CalculationOutcome;
 
 public class Controller {
     private InputInterface in;
     private OutputInterface out;
-    private LotteryResultsCalculator calculator;
     private User user;
     private PurchaseLotteryService purchaseLotteryService;
     private ApplyWinningLotteryService applyWinningLotteryService;
+    private CalculateResultService calculateResultService;
 
     Controller(InputInterface in, OutputInterface out, User user,
-               LotteryResultsCalculator calculator, PurchaseLotteryService purchaseLotteryService,
-               ApplyWinningLotteryService applyWinningLotteryService) {
+               PurchaseLotteryService purchaseLotteryService,
+               ApplyWinningLotteryService applyWinningLotteryService, CalculateResultService calculateResultService) {
         this.in = in;
         this.out = out;
         this.user = user;
-        this.calculator = calculator;
         this.purchaseLotteryService = purchaseLotteryService;
         this.applyWinningLotteryService = applyWinningLotteryService;
+        this.calculateResultService = calculateResultService;
     }
 
     public void purchaseLotteries() {
         long purchasedAmount = in.getPurchasedAmount();
-        LotteryReceipt receipt = purchaseLotteryService.purchaseLotteries(user, purchasedAmount);
+        LotteryReceipt receipt = purchaseLotteryService.purchase(user, purchasedAmount);
         out.printReceipt(receipt);
     }
 
     public void drawWinningLottery() {
         List<Integer> winningNumbers = in.getWinningNumbers();
         int bonusNumber = in.getBonusNumber(winningNumbers);
-        applyWinningLotteryService.drawWinningLottery(winningNumbers, bonusNumber);
+        applyWinningLotteryService.apply(winningNumbers, bonusNumber);
     }
 
     public void calculateEarningRate() {
-        List<LotteryReceipt> receipts = user.getReceipts();
-        LotteryResults results = calculator.getTotalResults(receipts);
-        long resultAmount = results.getTotalAmount();
-        long purchaseAmount = calculatePurchaseAmount(receipts);
-
-        double earningRate = ((double) resultAmount / (double) purchaseAmount) * 100;
-        out.printResults(results.toList(), earningRate);
+        CalculationOutcome outcome = calculateResultService.calculate(user);
+        out.printResults(outcome.results(), outcome.earningRate());
     }
-
-    private long calculatePurchaseAmount(List<LotteryReceipt> receipts) {
-        return receipts.stream()
-                .mapToLong(LotteryReceipt::getPurchasedAmount)
-                .sum();
-    }
-
-
 }

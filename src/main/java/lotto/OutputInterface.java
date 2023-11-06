@@ -37,7 +37,7 @@ public class OutputInterface {
 
     }
 
-    private String renderReceipt(LotteryReceipt receipt) {
+        private String renderReceipt(LotteryReceipt receipt) {
         StringBuilder builder = new StringBuilder();
         for (PurchasedLottery lottery : receipt.getLotteries()) {
             builder.append(renderPurchasedLottery(lottery));

@@ -13,7 +13,7 @@ class CreateLottoTest {
 
     @DisplayName("랜덤한 숫자로 로또 클래스를 생성한다.")
     @Test
-    void createLottoByOverSize() {
+    void createRandomSingleLotto() {
         createLotto = new CreateLotto();
         assertThat(createLotto.create()).isInstanceOf(Lotto.class);
     }

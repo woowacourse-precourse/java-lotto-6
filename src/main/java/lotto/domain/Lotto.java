@@ -20,13 +20,7 @@ public class Lotto extends LottoNumber {
     }
 
     private void validate(List<Integer> numbers) {
-        isLottoSizeValid(numbers);
-    }
-
-    protected void isLottoSizeValid(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(IS_INVALID_LOTTO_SIZE.getMessage());
-        }
+        isLottoSizeValid(numbers,LOTTO_SIZE);
     }
 
     @Override

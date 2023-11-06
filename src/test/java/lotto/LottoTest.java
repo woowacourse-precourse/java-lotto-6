@@ -27,11 +27,12 @@ class LottoTest {
     @Test
     void isMatch_test() {
         // given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when
 
         // then
-        assertThat(lotto.isMatch(List.of(1, 2, 3, 4, 5, 6))).isTrue();
+        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6))
+                .isMatch(List.of(1, 2, 3, 4, 5, 6))
+        ).isTrue();
     }
 }

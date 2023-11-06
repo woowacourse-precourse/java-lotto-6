@@ -8,27 +8,28 @@ import lotto.view.OutputView;
 
 public class LottoController {
 	//플레이어 로또 구매
-	private static void playerBuyLotto() {
+	private static List<Lotto> playerBuyLotto() {
 		OutputView.printBuyInstruction();
 		int playerFinance = InputData.playerFinance();
 		List<Lotto> playerLottos = LottoService.createObjectPerThousandUnits(playerFinance);
 		OutputView.printNumberOfLottosPurchased(playerLottos);
 		OutputView.printPlayerLottos(playerLottos);
+		return playerLottos;
 	}
 	
-	private static void matchLottosToPrizes() {
+	private static void matchLottosToPrizes(List<Lotto> playerLotto) {
 		OutputView.printWinningNumberInstruction();
 		List<Integer> winningNumbers = InputData.winningNumber();
 		OutputView.printBonusNumberInstruction();
 		int bonusNumber = InputData.bonusNumber(winningNumbers);
-		winningNumbers.add(bonusNumber);
+		
 	}
 	
 	
 	//실행
 	public static void run() {
-		playerBuyLotto();
-		matchLottosToPrizes();
+		List<Lotto> playerLotto =  playerBuyLotto();
+		matchLottosToPrizes(playerLotto);
 	}
 	
 }

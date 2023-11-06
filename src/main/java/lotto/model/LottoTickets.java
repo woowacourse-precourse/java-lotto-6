@@ -25,7 +25,7 @@ public class LottoTickets {
     }
 
     private List<Integer> generateLottoNumbers() {
-        List<Integer> randomNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNum = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(randomNum);
         return randomNum;
     }

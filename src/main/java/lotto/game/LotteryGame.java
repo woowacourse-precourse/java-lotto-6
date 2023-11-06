@@ -24,6 +24,7 @@ public class LotteryGame {
         init();
         outputHandler.print(Messasge.RESULT);
         result = getResult();
+        outputHandler.print(Messasge.getResultMessage(result, getProfitRate(cost)));
         inputHandler.close();
     }
 
@@ -32,7 +33,6 @@ public class LotteryGame {
         lottoList = getLottoList(getPrice());
         outputHandler.print(Messasge.REQUEST_NUMBERS);
         winNumber = getWinNumber();
-        outputHandler.print(Messasge.getResultMessage(result, getProfitRate(cost)));
     }
 
     private int getPrice() {
@@ -108,6 +108,9 @@ public class LotteryGame {
 
     private Map<Rank, Integer> getResult(){
         Map<Rank, Integer> result = new HashMap<>();
+        for ( Rank rank : Rank.values()){
+            result.put(rank, 0);
+        }
         for (Lotto lotto : lottoList){
             Rank rank = lotto.getRank(winNumber);
             result.put(rank, result.getOrDefault(rank, 0)+1);

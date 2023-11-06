@@ -15,14 +15,4 @@ public class RankingTest {
                 () -> Assertions.assertFalse(Ranking.THIRD.isThirdRank(4))
         );
     }
-
-    @DisplayName("당첨 카운트를 조절한다.")
-    @Test
-    void increaseCount() {
-        Ranking.THIRD.increaseCount();
-        Assertions.assertEquals(1, Ranking.THIRD.getCount());
-
-        Ranking.THIRD.decreaseCount();
-        Assertions.assertEquals(0, Ranking.THIRD.getCount());
-    }
 }

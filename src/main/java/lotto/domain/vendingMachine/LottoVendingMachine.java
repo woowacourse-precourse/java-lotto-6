@@ -17,12 +17,18 @@ public class LottoVendingMachine {
     }
 
     public List<Lotto> buyLotto(Integer money) {
-        lottoCashManager.insertMoney(money);
-        int ticketCount = calculateNumberOfLottoTicket(money);
-
         lottoGenerator = new AutoLottoGenerator();
+        lottoCashManager.insertMoney(money);
+        Integer ticketCount = calculateNumberOfLottoTicket(money);
 
-        return new ArrayList<>(Collections.nCopies(ticketCount, lottoGenerator.generate()));
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0 ; i < ticketCount ; i ++){
+
+            Lotto autoLotto = lottoGenerator.generate();
+            lottos.add(autoLotto);
+        }
+
+        return lottos;
     }
 
     private Integer calculateNumberOfLottoTicket(Integer money) {

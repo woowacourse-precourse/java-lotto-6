@@ -1,4 +1,4 @@
-package lotto.domain.lottoDraw;
+package lotto.domain.lottoDrawMachine.lottoDraw;
 
 import lotto.constants.LottoConstants;
 

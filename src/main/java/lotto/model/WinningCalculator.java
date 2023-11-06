@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.calculators.ProfitRateCalculators;
 
 public class WinningCalculator {
 
@@ -33,8 +34,8 @@ public class WinningCalculator {
     public String getProfitRate() {
         Money money = new Money(lottos.getLottos().size() * 1000);
 
-        ProfitRate profitRate = new ProfitRate(money, getReward());
-        return profitRate.getProfitRate();
+        ProfitRateCalculators profitRateCalculators = new ProfitRateCalculators(money, getReward());
+        return profitRateCalculators.getProfitRate();
     }
 
     private BigDecimal getReward() {

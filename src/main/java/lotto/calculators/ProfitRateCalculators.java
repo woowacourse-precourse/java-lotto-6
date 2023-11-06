@@ -1,13 +1,14 @@
-package lotto.model;
+package lotto.calculators;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import lotto.model.Money;
 
-public class ProfitRate {
+public class ProfitRateCalculators {
     private final Money money;
     private final BigDecimal reward;
 
-    public ProfitRate(Money money, BigDecimal reward) {
+    public ProfitRateCalculators(Money money, BigDecimal reward) {
         this.money = money;
         this.reward = reward;
     }

@@ -20,8 +20,8 @@ public enum ErrorMessage {
 
     // 보너스 숫자 관련 에러
     BONUS_NUMBER_RANGE_INVALID_ERROR("[ERROR] 보너스 숫자는 1부터 45 사이어야 합니다."),
-    BONUS_NUMBER_NOT_INTEGER_ERROR("[ERROR] 보너스 번호는 오로지 정수여야 합니다.");
-
+    BONUS_NUMBER_NOT_INTEGER_ERROR("[ERROR] 보너스 번호는 오로지 정수여야 합니다."),
+    BONUS_NUMBER_DUPLICATE_WITH_WINNING_NUMBER_ERROR("[ERROR] 보너스 번호는 오로지 정수여야 합니다.");
 
     private final String message;
 

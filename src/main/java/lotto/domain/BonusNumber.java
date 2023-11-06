@@ -25,7 +25,8 @@ public class BonusNumber {
 
     private void validateBonusNumberDuplicationWithWinningNumbers(int inputBonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(inputBonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(
+                    ErrorMessage.BONUS_NUMBER_DUPLICATE_WITH_WINNING_NUMBER_ERROR.getMessage());
         }
     }
 

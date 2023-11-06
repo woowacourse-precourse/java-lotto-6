@@ -15,9 +15,8 @@ public class InputView {
 
     public static List<Integer> readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine().trim();
 
-        List<String> winningNumbers = Arrays.stream(input.split(","))
+        List<String> winningNumbers = Arrays.stream(Console.readLine().trim().split(","))
                 .map(String::trim)
                 .toList();
 

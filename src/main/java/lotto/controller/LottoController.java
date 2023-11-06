@@ -27,7 +27,7 @@ public class LottoController {
 
         // 금액만큼 로또 생성
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < purchaseAmount/1000; i++) {
+        for (int i = 0; i < purchaseAmount/lottoPrice; i++) {
             lottos.add(new Lotto(lottoGenerator.generateNumbers()));
         }
         Lottos userLottos = new Lottos(lottos);

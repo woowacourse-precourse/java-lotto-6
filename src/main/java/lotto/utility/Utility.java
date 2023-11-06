@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utility {
+    static final String ERROR_MESSAGE_PARSE_INT = "[ERROR] 입력값이 정수가 아닙니다.";
+
     public int parseInt(String input) {
         try {
             int number = Integer.parseInt(input);
             return number;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 입력값이 정수가 아닙니다\n");
-            throw new IllegalArgumentException("[ERROR] 입력값이 정수가 아닙니다");
+            System.out.println(ERROR_MESSAGE_PARSE_INT);
+            throw new IllegalArgumentException(ERROR_MESSAGE_PARSE_INT);
         }
     }
 

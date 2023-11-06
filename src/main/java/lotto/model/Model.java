@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
-    public static final int LOTTO_PRICE = 1000;
-    public static final long MATCH_PRIZE_3 = 5000;
-    public static final long MATCH_PRIZE_4 = 50000;
-    public static final long MATCH_PRIZE_5 = 1500000;
-    public static final long MATCH_PRIZE_5_AND_BONUS = 30000000;
-    public static final long MATCH_PRIZE_6 = 2000000000;
+    static final int LOTTO_PRICE = 1000;
+    static final int LOTTO_SIZE = 6;
+    static final long MATCH_PRIZE_3 = 5000;
+    static final long MATCH_PRIZE_4 = 50000;
+    static final long MATCH_PRIZE_5 = 1500000;
+    static final long MATCH_PRIZE_5_AND_BONUS = 30000000;
+    static final long MATCH_PRIZE_6 = 2000000000;
 
     public List<Lotto> buyLotto(int payment) {
         Utility utility = new Utility();
@@ -20,7 +21,7 @@ public class Model {
         int numberOfLotto = payment / LOTTO_PRICE;
 
         for(int i = 0 ; i < numberOfLotto ; i++) {
-            List<Integer> lottoNumbers = utility.getRandomNumbers(6);
+            List<Integer> lottoNumbers = utility.getRandomNumbers(LOTTO_SIZE);
             Lotto newLotto = new Lotto(lottoNumbers);
             lottos.add(newLotto);
         }
@@ -58,7 +59,7 @@ public class Model {
             return;
         }
 
-        if(match >=3) {
+        if(match >= 3) {
             totalResult[match][0]++;
         }
    }

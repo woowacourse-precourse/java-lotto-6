@@ -6,7 +6,6 @@ import java.util.Set;
 
 public class Validation {
     static final int PAYMENT_UNIT = 1000;
-    static final int ZERO = 0;
     static final int LOTTO_MIN = 1;
     static final int LOTTO_MAX = 45;
     static final int LOTTO_SIZE = 6;
@@ -16,7 +15,7 @@ public class Validation {
     static final String ERROR_MESSAGE_DUPLICATION = "[ERROR] 중복된 숫자가 있습니다.";
 
     public void validateUnit(int payment) {
-        if(payment % PAYMENT_UNIT != ZERO) {
+        if(payment % PAYMENT_UNIT != 0) {
             System.out.println(ERROR_MESSAGE_UNIT);
             throw new IllegalArgumentException(ERROR_MESSAGE_UNIT);
         }

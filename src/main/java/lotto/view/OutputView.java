@@ -30,7 +30,7 @@ public final class OutputView {
     }
 
     public static void printPurchasedLottoCount(final int purchasedCount) {
-        System.out.printf(addLineSeparator(PURCHASED_LOTTO_COUNT_GUIDE), purchasedCount);
+        System.out.printf(addLineSeparatorInPrefix(PURCHASED_LOTTO_COUNT_GUIDE), purchasedCount);
     }
 
     public static void printIssuedLottosNumbers(final LottoNumbersDto lottoNumbersDto) {
@@ -40,15 +40,15 @@ public final class OutputView {
     }
 
     public static void printWinningLottoNumbersGuide() {
-        System.out.println(addLineSeparator(WINNING_LOTTO_NUMBERS_GUIDE));
+        System.out.println(addLineSeparatorInPrefix(WINNING_LOTTO_NUMBERS_GUIDE));
     }
 
     public static void printBonusNumberGuide() {
-        System.out.println(addLineSeparator(BONUS_NUMBER_GUIDE));
+        System.out.println(addLineSeparatorInPrefix(BONUS_NUMBER_GUIDE));
     }
 
     public static void printWinningStatistics(final EnumMap<Rank, Integer> rankResult) {
-        System.out.println(addLineSeparator(WINNING_STATISTICS_GUIDE));
+        System.out.println(addLineSeparatorInPrefix(WINNING_STATISTICS_GUIDE));
         System.out.println(LINE_SEPARATOR);
         printEachRankResult(rankResult);
     }
@@ -83,7 +83,7 @@ public final class OutputView {
         System.out.printf(TOTAL_YIELD_GUIDE, formattedYield);
     }
 
-    private static String addLineSeparator(final String guide) {
+    private static String addLineSeparatorInPrefix(final String guide) {
         return String.join("", System.lineSeparator(), guide);
     }
 

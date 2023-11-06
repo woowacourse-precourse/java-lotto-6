@@ -24,12 +24,15 @@ public class WinningLottoTest {
 
         // When
         WinningLotto winningLotto = WinningLotto.create(winningLottoNumbers, bonusNumber);
-        String expectedWinningNumberString = winningLottoNumbers.stream()
-                .map(number -> Integer.toString(number))
+        String expectedWinningNumbers = winningLottoNumbers.stream()
+                .map(String::valueOf)
                 .collect(Collectors.joining(","));
-
+        String winningNumbers = winningLotto.getNumberList()
+                .stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
         // Then
-        assertThat(winningLotto.getNumberString()).isEqualTo(expectedWinningNumberString);
+        assertThat(winningNumbers).isEqualTo(expectedWinningNumbers);
         assertThat(winningLotto.getBonusNumber()).isEqualTo(bonusNumber);
 
     }

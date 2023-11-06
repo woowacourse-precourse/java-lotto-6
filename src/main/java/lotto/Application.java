@@ -23,11 +23,14 @@ public class Application {
         return purchaseAmount;
     }
 
+    private static void printPurchaseNumber(int purchaseAmount) {
+        System.out.println(purchaseAmount / 1000 + "개를 구매했습니다.");
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
         int purchaseAmount = inputPurchaseAmount();
-
-        System.out.print("구입금액" + purchaseAmount);
+        printPurchaseNumber(purchaseAmount);
     }
 }

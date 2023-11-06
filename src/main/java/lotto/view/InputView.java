@@ -28,7 +28,7 @@ public class InputView {
 
     private static void isDigit(String money) {
         if (!money.matches("-?\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 정수를 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 문자가 입력되었습니다.");
         }
     }
 

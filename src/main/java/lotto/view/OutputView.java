@@ -36,12 +36,11 @@ public class OutputView {
 
     private static String printLottoRank(Rank rank, int amount) {
         if (rank.hasBonus()) {
-            return String.format(rank.getCorrectNumberAmount() + "개 일치, 보너스 볼 일치 (" + amount + ") - ",
-                    rank.prize() + "개");
+            return String.format(rank.getCorrectNumberAmount() + "개 일치, 보너스 볼 일치 (" + rank.prize() + "원) - " +
+                    amount + "개");
         }
 
-        return String.format(rank.getCorrectNumberAmount() + "개 일치 (" + amount + ") - ",
-                rank.prize() + "개");
-
+        return String.format(rank.getCorrectNumberAmount() + "개 일치 (" + rank.prize() + "원) - " +
+                amount + "개");
     }
 }

@@ -1,19 +1,17 @@
 package lotto.model;
 
-import lotto.util.LottoPrize;
-
 public class Prize {
     private long money;
 
-    public Prize() {
+    protected Prize() {
         this.money = 0;
     }
 
-    public void addPrize(int grade) {
-        this.money += LottoPrize.getPrize(grade);
+    protected void addPrize(long money) {
+        this.money += money;
     }
 
-    public Long getMoney() {
+    protected double getMoney() {
         return this.money;
     }
 }

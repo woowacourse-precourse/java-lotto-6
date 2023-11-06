@@ -1,26 +1,45 @@
 package lotto.model;
 
+import lotto.dto.LottoDto;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.util.GameConstant.*;
+
 public class Player {
-    private List<Lotto> lotto;
-    private Cost cost;
+    private final int INITIAL_VALUE = 0;
+    private List<Lotto> lottos;
+    private List<Result> results;
 
-    public Player(int cost) {
-        this.cost = new Cost(cost);
-        this.lotto = new ArrayList<>(getLottoCount());
+    protected Player(int length) {
+        this.lottos = new ArrayList<>(length);
+        this.results = initResults();
     }
 
-    public List<Lotto> getLotto() {
-        return this.lotto;
+    protected void addLotto(List<Integer> lotto) {
+        this.lottos.add(new Lotto(lotto));
     }
 
-    public int getLottoCount() {
-        return this.cost.getValue() / 1000;
+    protected List<LottoDto> getLottoNumbers() {
+        return lottos.stream().map(value -> LottoDto.toDto(value.getNumbers())).toList();
     }
 
-    public void buyLotto(List<Integer> numbers) {
-        this.lotto.add(new Lotto(numbers));
+    protected void updateResult(int grade) {
+        this.results.get(grade - 1).addCount();
+    }
+
+    protected List<Integer> getResults() {
+        return this.results.stream().map(Result::getCount).toList();
+    }
+
+    private List<Result> initResults() {
+        List<Result> result = new ArrayList<>();
+
+        for(int index = INITIAL_VALUE; index < CONSTANT_GRADE_LENGTH.getConstant(); index++) {
+            result.add(new Result());
+        }
+
+        return result;
     }
 }

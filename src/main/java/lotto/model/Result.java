@@ -3,15 +3,15 @@ package lotto.model;
 public class Result {
     private int count;
 
-    public Result() {
+    protected Result() {
         this.count = 0;
     }
 
-    public void addCount() {
+    protected void addCount() {
         this.count++;
     }
 
-    public int getCount() {
+    protected int getCount() {
         return this.count;
     }
 }

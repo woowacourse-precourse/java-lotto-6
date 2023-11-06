@@ -4,11 +4,11 @@ package lotto.model;
 public class Cost {
     private int value; // 사용자로부터 입력 받은 로또 구매 금액
 
-    public Cost(int value) {
+    protected Cost(int value) {
         this.value = value;
     }
 
-    public int getValue() {
+    protected int getValue() {
         return this.value;
     }
 }

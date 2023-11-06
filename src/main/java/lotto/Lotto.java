@@ -29,6 +29,7 @@ public class Lotto {
 
     private List<LottoNumber> convertToLottoNumber(List<Integer> numbers) {
         return numbers.stream()
+                .sorted()
                 .map(LottoNumber::new)
                 .toList();
     }
@@ -44,16 +45,11 @@ public class Lotto {
     }
 
     public String getNumbersMessage() {
-        List<LottoNumber> sortNumbers = getSortingNumbers();
         StringJoiner numberMessage = new StringJoiner(", ", "[", "]");
-        sortNumbers.stream()
+        numbers.stream()
                 .map(LottoNumber::getNumberMessage)
                 .forEach(numberMessage::add);
 
         return numberMessage.toString();
-    }
-
-    private List<LottoNumber> getSortingNumbers() {
-        return numbers.stream().sorted().toList();
     }
 }

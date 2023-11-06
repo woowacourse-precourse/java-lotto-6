@@ -9,13 +9,16 @@ public class UserInput {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
                 int amount = Integer.parseInt(input);
-                if (amount <= 0 || amount % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
-                }
+                validatePurchaseAmount(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+    private static void validatePurchaseAmount(int amount) {
+        if (amount <= 0 || amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
         }
     }
 }

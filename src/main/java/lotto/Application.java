@@ -2,10 +2,13 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Application {
     public static void main(String[] args) {
         int money = inputMoney();
-        System.out.println(money);
+        List<Integer> lotto = inputLotto();
     }
 
     public static Integer inputMoney() {
@@ -15,7 +18,7 @@ public class Application {
             try {
                 int money = Integer.parseInt(input);
                 try {
-                    checkMoney(money);
+                    checkMoneyUnit(money);
                     return money;
                 } catch (IllegalArgumentException e) {
                     System.out.println("[ERROR] 구입 금액은 1000원 단위로 이루어져야 합니다.");
@@ -26,10 +29,57 @@ public class Application {
         }
     }
 
-    public static void checkMoney(int money) {
+    public static void checkMoneyUnit(int money) {
         if (money % 1000 == 0) {
             return;
         }
         throw new IllegalArgumentException();
+    }
+
+    public static List<Integer> inputLotto() {
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            try {
+                List<String> lotto = List.of(input.split(","));
+                List<Integer> winning_lotto = lotto.stream().map(x -> Integer.parseInt(x))
+                        .collect(Collectors.toList());
+                try {
+                    checkLottoSize(winning_lotto);
+                    try {
+                        checkWinningLottoRange(winning_lotto);
+                        return winning_lotto;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("[ERROR] 당첨 로또는 1에서 45 사이 정수여야 합니다.");
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("[ERROR] 당첨 로또는 6개의 정수여야 합니다.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 당첨 로또는 정수여야 합니다.");
+            }
+        }
+    }
+
+    public static void checkLottoSize(List<Integer> lotto) {
+        if (lotto.size() > 0 && lotto.size() < 7) {
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static Boolean checkLottoRange(int lotto_number) {
+        if (lotto_number > 0 && lotto_number < 46) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void checkWinningLottoRange(List<Integer> lotto) {
+        for (int i : lotto) {
+            if (!checkLottoRange(i)) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 }

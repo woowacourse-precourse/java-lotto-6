@@ -1,18 +1,23 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.EmptyInputException;
 
 public class InputView {
 
-    private final InputValidator inputValidator;
-
-    public InputView() {
-        inputValidator = new InputValidator();
-    }
-
     public String readInput() {
         String input = Console.readLine();
-        inputValidator.validateInput(input);
+        validateInput(input);
         return input;
+    }
+
+    private void validateInput(final String input) {
+        if (isInvalidInput(input)) {
+            throw new EmptyInputException();
+        }
+    }
+
+    private boolean isInvalidInput(final String input) {
+        return input == null || input.isBlank();
     }
 }

@@ -9,6 +9,7 @@ import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.WinningNumber;
 import lotto.view.InputHandler;
+import lotto.view.OutputHandler;
 
 public class LottoController {
     private static final String SEPARATOR = ",";
@@ -28,25 +29,27 @@ public class LottoController {
     }
 
     private void purchaseLotto() {
-        System.out.println(PrintMessages.INPUT_PRICE);
+        OutputHandler.printPurchaseInput();
         purchasePrice = InputHandler.purchasePrice();
         lottos = LottoStore.publishLotto(Integer.parseInt(purchasePrice));
+        OutputHandler.printPurchaseHistory(lottos);
     }
 
     private void inputWinningNumber() {
-        System.out.println(PrintMessages.INPUT_WINNING_NUMBER);
+        OutputHandler.printWinningNumberInput();
         String winningNumberInput = InputHandler.winningNumber();
         beforeWinningNumbers = Arrays.asList(winningNumberInput.split(SEPARATOR));
     }
 
     private void inputBonusNumber() {
-        System.out.println(PrintMessages.INPUT_BONUS_NUMBER);
+        OutputHandler.printBonusNumberInput();
         String bonusNum = InputHandler.bonusNumber(beforeWinningNumbers);
         winningNumber = new WinningNumber(toIntegers(beforeWinningNumbers), Integer.parseInt(bonusNum));
     }
 
     private void checkLottoRank() {
         lottoRanks = lottos.checkRank(winningNumber);
+        OutputHandler.printWinningStats(lottoRanks);
     }
 
     private double getRateOfReturn(List<LottoRank> lottoRanks, String purchasePrice) {

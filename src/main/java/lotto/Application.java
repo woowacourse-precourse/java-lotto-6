@@ -37,3 +37,17 @@ class User {
         }
     }
 }
+
+class Game {
+    public List<Integer> numbers;
+    public String inputPrice;
+
+    public void inputLottoNumbers(){
+        String[] inputNumbers;
+        inputNumbers = Console.readLine().split(",");
+        for(String number : inputNumbers){
+            this.numbers.add(Integer.parseInt(number));
+        }
+    }
+
+}

@@ -25,7 +25,7 @@ public class LottoStatistics {
 
     private void calculateProfit(int ticketCount) {
         int ticketPrice = LottoMachine.PRICE * ticketCount;
-        profit = (getTotalPrize() / ticketPrice) * 100;
+        profit = ((float)getTotalPrize() / ticketPrice) * 100;
         profit = Math.round(profit * 10) / 10f;
     }
 

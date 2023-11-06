@@ -16,6 +16,7 @@ public class MainController {
 
     public void play() {
         String inputMoney = inputView.readLottoMoney();
-        int lottoMoney = LottoMoneyValidator.validateMoneyIsValid(inputMoney);
+        int lottoAmount = LottoMoneyValidator.validateMoneyIsValid(inputMoney);
+        outputView.printLottoMoney(lottoAmount);
     }
 }

@@ -12,14 +12,13 @@ public class Utils {
         return Integer.parseInt(input);
     }
 
-    public static int validateStringIsNumber(String input) {
+    public static void validateStringIsNumber(String input) {
         validateHasInput(input);
         for (int i = 0; i < input.length(); i++) {
             if (!Character.isDigit(input.charAt(i))) {
                 throw new IllegalArgumentException(NUMBER_ERROR_MESSAGE);
             }
         }
-        return Utils.parseInt(input);
     }
 
     public static void validateHasInput(String input) {

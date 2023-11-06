@@ -11,7 +11,7 @@ public class LottoMoneyValidator {
         int number = Utils.parseInt(input);
         validateMoneyIsPositive(number);
         validateMoneyDivideBy1000(number);
-        return number;
+        return number/1000;
     }
 
     public static void validateMoneyIsPositive(int number) {

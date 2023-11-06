@@ -1,37 +1,55 @@
 package lotto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import org.assertj.core.util.Arrays;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.generate.RandomGenerator;
 
 public class Application {
     public static void main(String[] args) {
-    	System.out.println("구입금액을 입력해 주세요.");
+ 
     	int number = purchase();
     	
-    	System.out.println("\n"+ number + "개를 구입했습니다.");
     	RandomGenerator generator = new RandomGenerator(number);
     	generator.print();
+    	
+    	inputNumbers();
+    	inputBonus();
+    	
+    	
     	
     }
     
     public static int purchase() throws IllegalArgumentException {
-    	int input;
-    	while(true) {
-    		try {
-    			input = Integer.parseInt(Console.readLine());
-    			if(input % 1000 != 0) {
-    			throw new IllegalArgumentException();
-    			}
-    			break;
-    		}catch(IllegalArgumentException e) {
-    			System.out.println("[ERROR] 구입 금액은 1,000원의 배수여야 합니다.");
-    		}
-    	}
+    	System.out.println("구입금액을 입력해 주세요.");
+    	int input = Integer.parseInt(Console.readLine());
+    	try {
+			if(input % 1000 != 0) {
+				throw new IllegalArgumentException();
+			}
+		}catch(IllegalArgumentException e) {
+			System.out.println("[ERROR] 구입 금액은 1,000원의 배수여야 합니다.");
+			purchase();
+		}
     	return input/1000; //발행할 로또 개수 반환
     }
     
-    public static int inputNumbers() {
-    	// 당첨 번호와 보너스 번호 입력받기
-    	return 0;
+    public static List<Integer> inputNumbers() {
+    	System.out.println("\n당첨 번호를 입력해 주세요.");
+    	String input = Console.readLine();
+    	int[] newArr = Stream.of(input.split(",")).mapToInt(Integer::parseInt).toArray();
+    	List<Integer> list = IntStream.of(newArr).boxed().collect(Collectors.toList());
+    	return list;
+    }
+    
+    public static int inputBonus() {
+    	System.out.println("\n보너스 번호를 입력해 주세요.");
+    	int bonus = Integer.parseInt(Console.readLine());
+    	return bonus;
     }
 }

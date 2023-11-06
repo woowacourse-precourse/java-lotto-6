@@ -9,10 +9,14 @@ public class WinningLottoRepository {
     private final Lotto lotto;
     private final BonusNumber bonusNumber;
 
-    public WinningLottoRepository(Lotto lotto, BonusNumber bonusNumber) {
+    private WinningLottoRepository(Lotto lotto, BonusNumber bonusNumber) {
         this.lotto = lotto;
         validateBonusNumInLotto(lotto,bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public static WinningLottoRepository of(Lotto lotto , BonusNumber bonusNumber){
+        return new WinningLottoRepository(lotto,bonusNumber);
     }
 
     private void validateBonusNumInLotto(Lotto lotto, BonusNumber bonusNumber) {
@@ -20,10 +24,6 @@ public class WinningLottoRepository {
         if(lotto.has(bonusNum)){
             throw new IllegalArgumentException(DUPLICATE_NUM.getMessage());
         }
-    }
-
-    public static WinningLottoRepository of(Lotto lotto , BonusNumber bonusNumber){
-        return new WinningLottoRepository(lotto,bonusNumber);
     }
 
     public int getBonusNumber() {

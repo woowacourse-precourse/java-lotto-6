@@ -14,7 +14,7 @@ import lotto.view.View;
 public class LotteryTracker {
     List<List<Integer>> result = new ArrayList<>();
 
-    public LotteryTracker() {
+    private LotteryTracker() {
         int size = LOTTO_NUMBER_SIZE.getNumber(); // 복권숫자 크기:6
         for(int i = 0; i<= size; i++){
             result.add(new ArrayList<>());

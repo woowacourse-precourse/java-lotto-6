@@ -6,7 +6,7 @@ import static lotto.settings.LottoSettings.*;
 public class PurchaseAmount {
     private final int amount;
 
-    public PurchaseAmount(int amount) {
+    private PurchaseAmount(int amount) {
         this.amount = amount;
     }
 

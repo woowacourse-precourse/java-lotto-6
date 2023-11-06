@@ -15,14 +15,19 @@ public class InputView {
     private static final String GET_BONUS_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
     public int getMoneyInput() {
-        System.out.println(GET_MONEY_MESSAGE);
-        String input = Console.readLine();
-        validate(input);
-        return Integer.parseInt(input);
+        try {
+            System.out.println(GET_MONEY_MESSAGE);
+            String input = Console.readLine();
+            validate(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getMoneyInput();
+        }
     }
 
     private void validate(String input) {
-        if(!input.matches(NUMBER_REGEX)) {
+        if (!input.matches(NUMBER_REGEX)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }
@@ -32,8 +37,8 @@ public class InputView {
         String input = Console.readLine();
         validateWinLotto(input);
         return Stream.of(input.split(SPLIT_REGEX))
-            .map(Integer::parseInt)
-            .toList();
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private static void validateWinLotto(String input) {

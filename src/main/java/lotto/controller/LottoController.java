@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.LottoResult;
+import lotto.domain.Profit;
 import lotto.domain.WinLotto;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
@@ -25,6 +27,11 @@ public class LottoController {
         outputView.print(lottos);
 
         WinLotto winLotto = getWinLotto();
+        LottoResult lottoResult = LottoResult.of(lottos, winLotto);
+        Profit profit = Profit.of(money.getAmount(), lottoResult.getTotalPrize());
+
+        outputView.printResult(lottoResult);
+        outputView.printProfit(profit);
     }
 
     private Money getMoney() {

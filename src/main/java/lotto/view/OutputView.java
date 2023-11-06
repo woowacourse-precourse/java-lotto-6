@@ -2,10 +2,13 @@ package lotto.view;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.domain.Profit;
 
 public class OutputView {
 
     private static final String PURCHASE_MESSAGE = "\n%d개를 구매했습니다.\n";
+    private static final String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
 
     public void print(List<Lotto> lottoTickets) {
         printCountOf(lottoTickets);
@@ -14,5 +17,13 @@ public class OutputView {
 
     private void printCountOf(List<Lotto> lottoTickets) {
         System.out.printf(PURCHASE_MESSAGE, lottoTickets.size());
+    }
+
+    public void printResult(LottoResult lottoResult) {
+        System.out.println(lottoResult.toString());
+    }
+
+    public void printProfit(Profit profit) {
+        System.out.printf(PROFIT_MESSAGE, profit);
     }
 }

@@ -34,4 +34,18 @@ public class LottoResult {
                 .mapToLong(rank -> rank.getPrize() * result.get(rank))
                 .sum();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Rank rank : Rank.values()) {
+            if(rank == Rank.NOTHING){
+                continue;
+            }
+            sb.append(
+                    String.format("%s - %d개%n", rank.toString(), result.getOrDefault(rank, 0))
+            );
+        }
+        return sb.toString();
+    }
 }

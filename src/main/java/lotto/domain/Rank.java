@@ -35,4 +35,13 @@ public enum Rank {
     public long getPrize() {
         return prize;
     }
+
+    @Override
+    public String toString() {
+        String prizeFormat = String.format("%,d원", prize);
+        if(this.equals(SECOND)){
+            return String.format("%d개 일치, 보너스 볼 일치 (%s)",matchCount, prizeFormat);
+        }
+        return String.format("%d개 일치 (%s)", matchCount, prizeFormat);
+    }
 }

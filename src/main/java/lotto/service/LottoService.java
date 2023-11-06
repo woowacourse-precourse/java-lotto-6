@@ -11,7 +11,11 @@ public class LottoService {
         return new User(money, lottoTicket);
     }
 
-    public WinningLottoNumbers getWinningLottoNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    public Lotto getWinningNumbers(List<Integer> winningNumbers) {
+        return new Lotto(winningNumbers);
+    }
+
+    public WinningLottoNumbers getBonusNumber(Lotto winningNumbers, int bonusNumber) {
         return new WinningLottoNumbers(winningNumbers, bonusNumber);
     }
 

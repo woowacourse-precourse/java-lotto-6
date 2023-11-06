@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.User;
 import lotto.domain.WinningLottoNumbers;
@@ -22,22 +23,55 @@ public class LottoController {
 
     public void run() {
         User user = buyLottoTicket();
-        WinningLottoNumbers winningLottoNumbers = getWinningLottoNumbers();
+        Lotto winningNumbers = getWinningNumbers();
+        WinningLottoNumbers winningLottoNumbers = getBonusNumber(winningNumbers);
         LottoResult lottoResult = calculateLottoResult(user, winningLottoNumbers);
         calculateReturnRate(user, lottoResult);
     }
 
     public User buyLottoTicket() {
-        int buyAmount = inputView.inputBuyAmount();
+        int buyAmount;
+        while (true) {
+            try {
+                buyAmount = inputView.inputBuyAmount();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
         User user = lottoService.buyLottoTicket(buyAmount);
         outputView.printLottoTicket(user.getLottoTicket());
         return user;
     }
 
-    public WinningLottoNumbers getWinningLottoNumbers() {
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        int bonusNumber = inputView.inputBonusNumber();
-        return lottoService.getWinningLottoNumbers(winningNumbers, bonusNumber);
+    public Lotto getWinningNumbers() {
+        List<Integer> winningNumbers;
+        Lotto validatedWinningNumbers;
+        while (true) {
+            try {
+                winningNumbers = inputView.inputWinningNumbers();
+                validatedWinningNumbers = lottoService.getWinningNumbers(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return validatedWinningNumbers;
+    }
+
+    public WinningLottoNumbers getBonusNumber(Lotto winningNumbers) {
+        int bonusNumber;
+        WinningLottoNumbers winningLottoNumbers;
+        while (true) {
+            try {
+                bonusNumber = inputView.inputBonusNumber();
+                winningLottoNumbers = lottoService.getBonusNumber(winningNumbers, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return winningLottoNumbers;
     }
 
     public LottoResult calculateLottoResult(User user, WinningLottoNumbers winningLottoNumbers) {

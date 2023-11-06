@@ -7,4 +7,8 @@ public class Amount {
         this.amount = amount;
     }
 
+    public void printAmount(){
+        System.out.print(amount);
+    }
+
 }

@@ -1,5 +1,6 @@
 package lotto.dto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LottoAndBonusNumberDTO {
@@ -12,7 +13,7 @@ public class LottoAndBonusNumberDTO {
     }
 
     public List<Integer> getLottoNumbers() {
-        return lottoNumbers;
+        return Collections.unmodifiableList(lottoNumbers);
     }
 
     public Integer getBonusNumber() {

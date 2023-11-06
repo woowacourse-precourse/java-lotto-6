@@ -1,9 +1,17 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.Lotto;
 import lotto.domain.LottoRank;
 
 public class LottoResultPrinter {
+    public static void printLottos(int count, List<Lotto> lottos) {
+        System.out.println(count + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
+    }
+
     public void presentResults(List<Integer> winsPerCategory, double rateOfReturn) {
         System.out.println("당첨 통계\n---");
         System.out.printf("3개 일치 (5,000원) - %d개\n", winsPerCategory.get(LottoRank.FIFTH.ordinal()));

@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.LottoService;
 import lotto.domain.LottoStatistics;
 import lotto.util.Constants;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,8 +11,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoStatisticsTest {
-
-    private LottoService lottoService;
     private LottoStatistics lottoStatistics;
     private List<Integer> winningNumbers;
     private int bonusNumber;
@@ -21,7 +18,6 @@ class LottoStatisticsTest {
 
     @BeforeEach
     void setUp() {
-        lottoService = new LottoService();
         winningNumbers = Arrays.asList(3, 12, 21, 25, 38, 42);
         bonusNumber = 45;
         userLottos = Arrays.asList(
@@ -31,7 +27,7 @@ class LottoStatisticsTest {
                 new Lotto(Arrays.asList(3, 12, 21, 25, 1, 2)),   // 4위
                 new Lotto(Arrays.asList(3, 12, 21, 1, 2, 4))     // 5위
         );
-        lottoStatistics = new LottoStatistics(lottoService, userLottos, winningNumbers, bonusNumber);
+        lottoStatistics = new LottoStatistics(userLottos, winningNumbers, bonusNumber);
     }
 
     @Test

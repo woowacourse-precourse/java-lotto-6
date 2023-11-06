@@ -14,9 +14,9 @@ public class LottoStatistics {
     private final List<Integer> winsPerCategory;
     private final double totalRate;
 
-    public LottoStatistics(LottoService lottoService, List<Lotto> userLottos, List<Integer> winningNumbers,
+    public LottoStatistics(List<Lotto> userLottos, List<Integer> winningNumbers,
                            int bonusNumber) {
-        this.lottoService = lottoService;
+        this.lottoService = LottoService.getInstance();
         this.userLottos = userLottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;

@@ -17,7 +17,7 @@ public class LottoServiceTest {
 
     @BeforeEach
     void setUp() {
-        lottoService = new LottoService();
+        lottoService = LottoService.getInstance();
         winningNumbers = Arrays.asList(3, 12, 21, 25, 38, 42);
         bonusNumber = 45;
     }

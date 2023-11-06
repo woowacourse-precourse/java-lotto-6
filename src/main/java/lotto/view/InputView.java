@@ -11,6 +11,11 @@ public class InputView {
         return purchaseAmount;
     }
 
+    public String readWinningNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
     private void validateDigit(String input) {
         try {
             Integer.parseInt(input);

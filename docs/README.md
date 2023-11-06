@@ -49,14 +49,14 @@
 ### 🛠️ &nbsp;핵심 기능
 - ✅ 무작위 수 6개를 생성한다.
   - ✅ Random 값은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()` 를 활용한다.
-- [ ] 로또를 구성하는 6개의 숫자는 서로 다른 수이다.
+- ✅ 로또를 구성하는 6개의 숫자는 서로 다른 수이다.
   - ✅ <span style ="color:yellow">⚠️</span> &nbsp;수가 6개가 아니면 예외를 발생시킨다.
   - ✅ <span style ="color:yellow">⚠️</span> &nbsp;로또 번호(당첨 번호, 보너스 번호)가 1~45 사이에 해당하지 않으면 예외를 발생시킨다.
   - ✅ <span style ="color:yellow">⚠️</span> &nbsp;6개의 수 중에서 중복이 있으면 예외를 발생시킨다.
   - ✅ 로또 번호는 오름차순으로 정렬한다.
 - ✅ 컴퓨터는 로또를 생성한다.
 - [ ] 사용자가 입력한 금액/1000 만큼 로또를 생성한다.
-  - [ ] <span style ="color:yellow">⚠️</span> &nbsp; 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외를 발생시킨다.
+  - ✅ <span style ="color:yellow">⚠️</span> &nbsp; 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외를 발생시킨다.
 - [ ] 사용자는 보너스 볼을 생성한다.
   - [ ] <span style ="color:yellow">⚠️</span> &nbsp; 보너스 숫자가 이미 로또에 포함된 수 이거나 1~45 사이에 해당하지 않으면 예외를 발생시킨다.
 - [ ] 컴퓨터가 생성한 로또와 사용자의 로또와 비교한다.

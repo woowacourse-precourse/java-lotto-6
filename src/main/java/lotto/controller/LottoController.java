@@ -11,7 +11,8 @@ public class LottoController {
     }
 
     public void lottoGamePlay() {
-        consoleInputView.inputBuyLottoAmount();
+        String buyLottoAmount = consoleInputView.inputBuyLottoAmount();
+
     }
 
 }

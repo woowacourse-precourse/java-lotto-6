@@ -29,7 +29,7 @@ public class LottoWinningNumberCreate {
     private void validNumber(int number) {
         if (number < LottoConstant.LOTTO_START_NUMBER || number > LottoConstant.LOTTO_END_NUMBER) {
             throw new IllegalArgumentException(
-                    "당첨 번호는 " + LottoConstant.LOTTO_START_NUMBER + " 이상,"
+                    "당첨 번호는 " + LottoConstant.LOTTO_START_NUMBER + " 이상, "
                             + LottoConstant.LOTTO_END_NUMBER + " 이하여야 합니다.");
         }
     }

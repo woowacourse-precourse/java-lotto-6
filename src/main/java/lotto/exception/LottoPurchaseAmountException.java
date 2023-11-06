@@ -4,6 +4,9 @@ import lotto.util.Converter;
 
 public class LottoPurchaseAmountException {
     private static final String CAN_DIVIDE_THOUSAND_MESSAGE = "구매 금액은 1,000으로 나누어 떨어져야 합니다.";
+    private static final String IS_NUMBER_MESSAGE = "구매 금액은 숫자를 입력해주셔야 합니다.";
+    private static final String IS_BLANK_MESSAGE = "구매 금액을 공백으로 입력하셨습니다.";
+
     private Converter converter = new Converter();
 
     public void isDivideThousand(String input) {
@@ -14,8 +17,17 @@ public class LottoPurchaseAmountException {
     }
 
     public void isNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(IS_NUMBER_MESSAGE);
+        }
+
     }
 
     public void isBlank(String input) {
+        if(input.trim().isEmpty()){
+            throw new IllegalArgumentException(IS_BLANK_MESSAGE);
+        }
     }
 }

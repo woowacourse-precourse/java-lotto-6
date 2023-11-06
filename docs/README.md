@@ -1,3 +1,21 @@
+### 로또 게임 의존 방향
+
+```mermaid
+graph TD
+    LottoController --> LottoGameService
+    LottoGameService --> LottoGame
+    LottoGame --> LottoGenerator
+    LottoGame --> PurchaseAmount
+    LottoGame --> WinningLotto
+    LottoGame --> Lottos
+    Lottos --> Lotto --> LottoNumber
+    WinningLotto --> Lotto
+    WinningLotto --> LottoNumber
+    LottoController --> InputParser
+    LottoController --> InputView
+    LottoController --> OutputView
+```
+
 ### 로또 게임 기능 목록
 
 > 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`을 발생시키고,<br>

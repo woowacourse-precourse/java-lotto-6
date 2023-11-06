@@ -113,7 +113,7 @@ public final class View {
         }
 
         private static void validateInvalidSeparators(String message) {
-            if (hasEdgeSeparator(message)) {
+            if (hasEdgeSeparator(message) || hasDuplicatedSeparator(message)) {
                 throw new IllegalArgumentException("올바르지 않은 구분자 입력입니다.");
             }
         }
@@ -130,5 +130,8 @@ public final class View {
             return message.endsWith(INPUT_SEPARATOR.getSymbol());
         }
 
+        private static boolean hasDuplicatedSeparator(String message) {
+            return message.contains(INPUT_SEPARATOR.getSymbol().repeat(2));
+        }
     }
 }

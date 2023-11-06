@@ -37,7 +37,7 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-        return Integer.parseInt(inputMoney)/1000;
+        return Integer.parseInt(inputMoney);
     }
 
     private void validateInputMoney(String inputMoney) {

@@ -16,11 +16,21 @@ public class LottoController {
     }
 
     public void start() {
-        int quantity = inputMoney();
-        butLotto(quantity);
+        int money = inputMoney();
+        int quantity = money/1000;
+        buyLotto(quantity);
         String[] winningNumber = getWinningNumber();
         getBonusNumber(winningNumber);
         setLottoReult();
+        getLottoResult();
+        getEarningRate(money);
+    }
+
+    private void getEarningRate(int inputMoney) {
+        outputView.readEarningRate(inputMoney,lottoGame.getTotalEarnings());
+    }
+
+    private void getLottoResult() {
         outputView.readWinningLottoMessage();
         outputView.readWinningLottoResult(lottoGame.getResult());
     }
@@ -43,7 +53,7 @@ public class LottoController {
         return winningNumber;
     }
 
-    private void butLotto(int quantity) {
+    private void buyLotto(int quantity) {
         outputView.readBuyLottoMessage(quantity);
         lottoGame.buy(quantity);
         outputView.readLottoNumbers(lottoGame.getLottos());
@@ -51,7 +61,7 @@ public class LottoController {
 
     private int inputMoney() {
         inputView.readInputMoneyMessage();
-        int quantity = inputView.inputMoney();
-        return quantity;
+        int money = inputView.inputMoney();
+        return money;
     }
 }

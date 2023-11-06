@@ -89,4 +89,12 @@ public class LottoGame {
     public int[] getResult() {
         return result.getResult();
     }
+
+    public long getTotalEarnings() {
+        long total = 0;
+        for (Prize prize : prizeRanks) {
+            total = prize.calculate(total);
+        }
+        return total;
+    }
 }

@@ -37,7 +37,11 @@
         * 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용
 
 #### Lotto class 구현
-- 
+- List<Integer>의 데이터를 받음
+- validate(): List<Integer>로 받은 데이터에 대하여 유효성 검사
+- 구현 내용
+  - validateRange() : 랜덤해서 나온 숫자의 범위가 1~45 내에 있는지 확인, 없으면 error 출력
+  - getNumbers():  lotto 번호 list 반환
 
 #### LottoTest 구현
 

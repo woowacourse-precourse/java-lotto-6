@@ -3,6 +3,7 @@ package lotto.domain.model;
 import lotto.constant.RankConstant;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,13 +25,13 @@ public class Lotteries {
     }
 
     public Map<String, Integer> produceStatistics(WinningNumber winningNumber, BonusNumber bonusNumber) {
-        Map<String, Integer> statics = Map.of(
-                RankConstant.FIRST, 0,
-                RankConstant.SECOND, 0,
-                RankConstant.THIRD, 0,
-                RankConstant.FOURTH, 0,
-                RankConstant.FIFTH, 0
-        );
+        Map<String, Integer> statics = new HashMap<>();
+        statics.put(RankConstant.FIRST, 0);
+        statics.put(RankConstant.SECOND, 0);
+        statics.put(RankConstant.THIRD, 0);
+        statics.put(RankConstant.FOURTH, 0);
+        statics.put(RankConstant.FIFTH, 0);
+
 
         for (Lotto lotto : lotteries) {
             String result = lotto.calculateRank(winningNumber, bonusNumber);

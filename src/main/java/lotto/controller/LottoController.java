@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.HashMap;
 
 import lotto.domain.LottoResult;
 import lotto.views.InputViews;
@@ -13,6 +14,7 @@ import lotto.domain.InputWinningNum;
 
 public class LottoController {
     int purchaseAmount, purchaseNum, bonusNumInput;
+    int reciveAmount = 0;
     private static List<List<Integer>> allLotto;
     private static Lotto lotto;
 
@@ -33,10 +35,15 @@ public class LottoController {
         OutputViews.endOfSection();
 
         lotto.lottoResultSearch(allLotto, bonusNumInput);
+        OutputViews.startWriteStat();
         for (LottoResult lottoResultName: LottoResult.values()) {
-            lottoResultName.getMatchesMessAndNum();
-            lottoResultName.getAmount();
+            String stsMess = lottoResultName.getMatchesMess();
+            int matchNum = lottoResultName.getNumOfMatches();
+            OutputViews.wrtieResultStatistic(stsMess, matchNum);
+
+            reciveAmount += lottoResultName.getAmount() * matchNum;
         }
+        System.out.println(reciveAmount);
     }
 
     public boolean readPurchaseLotto() {

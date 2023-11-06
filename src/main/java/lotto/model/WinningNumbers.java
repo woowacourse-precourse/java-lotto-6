@@ -1,20 +1,28 @@
 package lotto.model;
 
+import java.util.List;
+
 public class WinningNumbers {
 
     private Lotto winningNumbers;
     private Integer bonusNumber;
 
-    public WinningNumbers(Lotto lotto, Integer bonusNumber) {
+    private WinningNumbers(Lotto lotto, Integer bonusNumber) {
         validateDuplicateNumber(lotto, bonusNumber);
         this.winningNumbers = lotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public PriceMoney calculate(Lotto lotto) {
-        int count = winningNumbers.sameNumberCounter(lotto);
-        boolean hasbonusNumber = lotto.hasNumber(bonusNumber);
-        return PriceMoney.getRank(count, hasbonusNumber);
+    public static WinningNumbers from(List<Integer> lotto, Integer bonusNumber) {
+        return new WinningNumbers(new Lotto(lotto), bonusNumber);
+    }
+
+    public boolean hasNumber(Integer number) {
+        return winningNumbers.hasNumber(number);
+    }
+
+    public Integer getBonusNumber() {
+        return this.bonusNumber;
     }
 
     private void validateDuplicateNumber(Lotto lotto, Integer bonusNumber) {

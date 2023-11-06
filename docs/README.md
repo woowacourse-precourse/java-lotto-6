@@ -41,7 +41,7 @@
 - 테스트 코드 작성
 
 ## 기능 추출
-- [] 랜덤 숫자 생성하기 RandomNumberGenerator#generateRandomNumber()
+- [x] 랜덤 숫자 생성하기 RandomNumberGenerator#generateRandomNumber()
 - [] 구입 금액 입력받기(UI) insertMoney()
 - [] 당첨 번호 입력받기, 보너스 번호 입력받기(UI) inputWinnerNumber(), inputBonusNumner()
 - [] 발행한 로또 출력하기(UI) printMyLottoNumbers()

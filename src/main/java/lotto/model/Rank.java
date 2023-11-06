@@ -20,14 +20,11 @@ public enum Rank {
         this.hasBonusNumber = hasBonusNumber;
     }
 
-    public static Rank findRankByMatchCount(int countOfMatch) {
+    public static Rank findRankByMatchCount(int countOfMatch, boolean hasBonus) {
         return Arrays.stream(values())
-                .filter(rank -> rank.matchCount == countOfMatch)
+                .filter(rank -> rank.matchCount == countOfMatch
+                && rank.hasBonusNumber == hasBonus)
                 .findFirst()
                 .orElse(NO_MATCH);
-    }
-
-    public boolean hasBonusNumber() {
-        return hasBonusNumber;
     }
 }

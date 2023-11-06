@@ -19,17 +19,22 @@ public class WinningLotto {
         }
     }
 
-    public List<Integer> getMatchCount(LottoTickets lottoTickets) {
-        List<Integer> matchCount = new ArrayList<>();
-        for (Lotto lottoTicket : lottoTickets.getLottoTickets()) {
-            matchCount.add(calculateMatchCount(lottoTicket));
-        }
-        return matchCount;
-    }
+//    public List<Integer> getMatchCount(LottoTickets lottoTickets) {
+//        List<Integer> matchCount = new ArrayList<>();
+//        for (Lotto lottoTicket : lottoTickets.getLottoTickets()) {
+//            matchCount.add(calculateMatchCount(lottoTicket));
+//        }
+//        return matchCount;
+//    }
 
-    private int calculateMatchCount(Lotto lottoTicket) {
+    public int calculateMatchCount(Lotto lottoTicket) {
         return (int) winningLotto.getNumbers().stream()
                 .filter(lottoTicket.getNumbers()::contains)
                 .count();
+    }
+
+    public boolean hasBonusNumber(Lotto lottoTicket) {
+        return lottoTicket.getNumbers()
+                .contains(bonusNumber.getBonusNumber());
     }
 }

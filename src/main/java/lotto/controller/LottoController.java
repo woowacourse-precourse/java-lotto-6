@@ -24,6 +24,7 @@ public class LottoController {
 
         WinningLotto winningLotto = getWinningLotto();
         EnumMap<Rank, Integer> rank = getRank(winningLotto, lottoTickets);
+        System.out.println(rank);
     }
 
     private LottoTickets getLottoTickets(Money money) {
@@ -38,11 +39,11 @@ public class LottoController {
     }
 
     private EnumMap<Rank, Integer> getRank(WinningLotto winningLotto, LottoTickets lottoTickets) {
-        List<Integer> matchCount = winningLotto.getMatchCount(lottoTickets);
         EnumMap<Rank, Integer> rank = new EnumMap<>(Rank.class);
         EnumSet.allOf(Rank.class).forEach(grade -> rank.put(grade, 0));
-        for (int count : matchCount) {
-            Rank currentRank = Rank.findRankByMatchCount(count);
+        for (Lotto lottoTicket : lottoTickets.getLottoTickets()) {
+            int matchCount = winningLotto.calculateMatchCount(lottoTicket);
+            Rank currentRank = Rank.findRankByMatchCount(matchCount, winningLotto.hasBonusNumber(lottoTicket));
             rank.put(currentRank, rank.get(currentRank) + 1);
         }
         return rank;

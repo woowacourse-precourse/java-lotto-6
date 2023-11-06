@@ -13,6 +13,7 @@ public class Output {
     }
 
     public void buyNumberPaperAns(int number) {
+        System.out.println();
         System.out.println(number + "개를 구매했습니다.");
     }
 

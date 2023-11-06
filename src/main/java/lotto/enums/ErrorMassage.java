@@ -11,6 +11,7 @@ public enum ErrorMassage {
             MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue())),
     INVALID_LOTTO_COUNT(String.format("로또 번호는 %d개여야 합니다.", LOTTO_COUNT.getValue())),
     DUPLICATE_LOTTO_NUMBER("중복된 로또 번호가 있습니다."),
+    DUPLICATE_BONUS_NUMBER("보너스 번호가 로또 번호와 중복되었습니다."),
     NOT_ENOUGH_AMOUNT(String.format("로또 한 장의 가격(%d원)보다 적습니다.", LOTTO_PRICE.getValue())),
     INVALID_AMOUNT_UNIT(String.format("구매 금액은 %d원 단위여야 합니다.", LOTTO_PRICE.getValue())),
     NOT_SEPARATE_BY_DELIMITER(String.format("%s(%s)로 구분되어야 합니다.", COMMA.getKorName(), COMMA.getValue())),

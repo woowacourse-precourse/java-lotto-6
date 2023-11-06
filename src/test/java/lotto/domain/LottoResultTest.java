@@ -2,9 +2,13 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.stream.Stream;
 import lotto.Option.GameStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class LottoResultTest {
 
@@ -19,22 +23,20 @@ public class LottoResultTest {
         assertThat(lottoResult).isEqualTo(lottoResult2);
     }
 
-    @DisplayName("총 합이 3일 때 LottoResult의 GameStatus를 THREE_EQUAL로 설정한다.")
-    @Test
-    void setGameStatusThreeEqual() {
-        LottoResult lottoResult = new LottoResult(2, 1);
+    @DisplayName("LottoResult의 GameStatus를 주어진 수에 맞게 설정하는지 확인한다.")
+    @ParameterizedTest
+    @MethodSource("validParameters")
+    void setGameStatusByEqual(int equalCount, int bonusCount, GameStatus gameStatus) {
+        LottoResult lottoResult = new LottoResult(equalCount, bonusCount);
         lottoResult.setGameStatus();
 
-        assertThat(lottoResult).isEqualTo(new LottoResult(GameStatus.THREE_EQUAL));
+        assertThat(lottoResult).isEqualTo(new LottoResult(gameStatus));
     }
 
-    @DisplayName("총 합이 6이고, 보너스가 존재할 때"
-            + "LottoResult의 GameStatus를 FIVE_AND_BONUS_EQUAL로 설정한다.")
-    @Test
-    void setGameStatusFiveEqualAndBonus() {
-        LottoResult lottoResult = new LottoResult(5, 1);
-        lottoResult.setGameStatus();
-
-        assertThat(lottoResult).isEqualTo(new LottoResult(GameStatus.FIVE_AND_BONUS_EQUAL));
+    static Stream<Arguments> validParameters() {
+        return Stream.of(
+                Arguments.of(2, 1, GameStatus.THREE_EQUAL),
+                Arguments.of(5, 1, GameStatus.FIVE_AND_BONUS_EQUAL)
+        );
     }
 }

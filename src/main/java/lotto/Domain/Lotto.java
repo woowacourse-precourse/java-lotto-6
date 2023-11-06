@@ -10,7 +10,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
-        validateSize(numbers);
+        validate(numbers);
         validateDuplicate(numbers);
         for (Integer number : numbers) {
             isValueBetween1And45(number);
@@ -24,6 +24,11 @@ public class Lotto {
 
     public static Lotto from(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicate(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {

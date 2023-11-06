@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class ValidateWinningNumber {
     static final int START_INCLUSIVE=1;
     static final int END_INCLUSIVE=45;
-    public static void validateLotto(String buyerInput){
+    public static void validateWinningNumber(String buyerInput){
         validateEmpty(buyerInput);
         validateNumerical(tokenizer(buyerInput));
         validateNumberRange(tokenizer(buyerInput));

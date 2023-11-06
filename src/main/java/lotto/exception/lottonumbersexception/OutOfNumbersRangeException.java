@@ -1,4 +1,4 @@
-package lotto.exception.lottonumbers;
+package lotto.exception.lottonumbersexception;
 
 public class OutOfNumbersRangeException extends LottoNumbersInputException {
     public OutOfNumbersRangeException() {

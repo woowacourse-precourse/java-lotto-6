@@ -1,4 +1,4 @@
-package lotto.exception.lottonumbers;
+package lotto.exception.lottonumbersexception;
 
 public class LottoNumbersInputException extends IllegalArgumentException{
     public LottoNumbersInputException(String s) {

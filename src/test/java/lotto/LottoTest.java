@@ -36,8 +36,8 @@ class LottoTest {
 
     @DisplayName("당첨번호와 로또번호 사이에 일치하는 개수를 구한다.")
     @ParameterizedTest
-    @CsvSource({"18, 7, 20, 1, 2, 5, 2",
-            "45, 33, 26, 19, 18, 7, 6"})
+    @CsvSource({"7, 13, 20, 27, 30, 34, 1",
+            "7, 18, 19, 26, 33, 45, 6"})
     void countMatchingNumbersWithWinningNumbers(int myLotto1, int myLotto2, int myLotto3,
                                                 int myLotto4, int myLotto5, int myLotto6, int expectedCount) {
         //given
@@ -50,6 +50,22 @@ class LottoTest {
         //then
         assertThat(countOfMatching)
                 .isEqualTo(expectedCount);
+    }
+
+    @DisplayName("당첨번호와 로또번호 사이에 일치하는 개수를 구한다.")
+    @ParameterizedTest
+    @CsvSource({"13, true", "45, false"})
+    void LottoContainsBonusNumber(int bonus, boolean expected) {
+        //given
+        BonusNumber bonusNumber = new BonusNumber(bonus);
+        Lotto myLotto = new Lotto(List.of(7, 13, 20, 27, 30, 34));
+
+        //when
+        boolean isContaining = myLotto.contains(bonusNumber.getNumber());
+
+        //then
+        assertThat(isContaining)
+                .isEqualTo(expected);
     }
 
 }

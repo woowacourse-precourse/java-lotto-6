@@ -26,20 +26,38 @@ public class Controller {
     }
 
     private void purchaseLotto() {
-        String amount = InputView.enterPurchaseAmount();
-        buyer = purchasingService.purchaseLotto(amount);
+        try {
+            buyer = purchasingService.purchaseLotto(InputView.enterPurchaseAmount());
+            OutputView.printSpace();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            purchaseLotto();
+        }
     }
 
     private void showPurchaseLotto() {
         OutputView.printPurchaseLotto(buyer);
+        OutputView.printSpace();
     }
 
     private void setWinningNumbers() {
-        lottoNumber.drawWiningNumbers(InputView.enterWinningNumbers());
+        try {
+            lottoNumber.drawWiningNumbers(InputView.enterWinningNumbers());
+            OutputView.printSpace();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            setWinningNumbers();
+        }
     }
 
     private void setBonusNumber() {
-        lottoNumber.drawBonusNumber(InputView.enterBonusNumbers());
+        try {
+            lottoNumber.drawBonusNumber(InputView.enterBonusNumbers());
+            OutputView.printSpace();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            setBonusNumber();
+        }
     }
 
     private void showWiningResult() {

@@ -14,6 +14,13 @@ public class OutputView {
     private static final String WINING_STATISTICS_BONUS = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
     private static final String WINING_STATISTICS = "%d개 일치 (%,d원) - %d개";
 
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
+    public static void printSpace() {
+        System.out.println();
+    }
 
     public static void printPurchaseLotto(Buyer buyer) {
         printPurchaseQuantity(buyer.getPurchaselottoQuantity());
@@ -30,7 +37,6 @@ public class OutputView {
     }
 
     private static void printPurchaseQuantity(int quantity) {
-        System.out.println();
         System.out.println(quantity + PURCHASE_QUANTITY_INFORMATION);
     }
 
@@ -38,11 +44,9 @@ public class OutputView {
         for (Lotto lotto : buyer.getLottoTickets()) {
             System.out.println(lotto.getNumbers());
         }
-        System.out.println();
     }
 
     private static void printResultMessage() {
-        System.out.println();
         System.out.println(WINING_RESULT_INFORMATION);
         System.out.println(SEPARATION_INDICATION);
     }

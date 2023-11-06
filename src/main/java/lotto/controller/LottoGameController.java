@@ -47,7 +47,7 @@ public class LottoGameController {
         OutputView.printStartResult();
         OutputView.printWinningResult(result);
 
-        OutputView.printProfitRate(game.calculateProfitRate(buyAmount, result));
+        OutputView.printProfitRate(game.createProfit(buyAmount, result));
     }
 
 

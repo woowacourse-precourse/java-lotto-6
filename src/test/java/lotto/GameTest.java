@@ -62,7 +62,7 @@ public class GameTest {
 
         float buyAmount = 8000;
 
-        int profitRate = Math.round(game.calculateProfitRate(buyAmount, result));
+        int profitRate = Math.round(game.createProfit(buyAmount, result));
 
         assertThat(profitRate).isEqualTo(25000062);
 

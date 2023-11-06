@@ -99,7 +99,7 @@ public class OutputViewTest {
         float buyAmount = 8000;
         int[] result = new int[]{0, 1, 0, 0, 0, 0};
 
-        float profitRate = game.calculateProfitRate(8000, result);
+        float profitRate = game.createProfit(8000, result);
 
         OutputView.printProfitRate(profitRate);
         assertThat(output.toString()).isEqualTo("총 수익률은 62.5%입니다.");

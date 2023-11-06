@@ -17,7 +17,7 @@ public class LottoController {
     private Budget budget;
     private LottoGenerator lottoGenerator = new LottoGenerator();
 
-    public void runMachine(){
+    public void runMachine() {
         Lottos userLottos = buyLotto();
         WinningLotto winningLotto = drawLotto();
         WinningStatistics winningStatistics = makeStatistics(userLottos, winningLotto);

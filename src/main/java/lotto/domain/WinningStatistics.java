@@ -9,61 +9,61 @@ public class WinningStatistics {
     private Map<WinningRank, Integer> winningStatistics = new HashMap<>();
     private BigDecimal revenueRate = BigDecimal.ZERO;
 
-    private WinningStatistics(Lottos userLottos, WinningLotto winningLotto, Budget budget){
+    private WinningStatistics(Lottos userLottos, WinningLotto winningLotto, Budget budget) {
         setWinningStatistics(userLottos, winningLotto);
         setRevenueRate(budget);
     }
 
-    public static WinningStatistics of(Lottos userLottos, WinningLotto winningLotto, Budget budget){
+    public static WinningStatistics of(Lottos userLottos, WinningLotto winningLotto, Budget budget) {
         return new WinningStatistics(userLottos, winningLotto, budget);
     }
 
-    private void setWinningStatistics(Lottos userLottos, WinningLotto winningLotto){
-        for(Lotto userLotto : userLottos.getLottos()){
+    private void setWinningStatistics(Lottos userLottos, WinningLotto winningLotto) {
+        for (Lotto userLotto : userLottos.getLottos()) {
             WinningRank winningResult = createWinningRank(userLotto.getNumbers(), winningLotto);
             updateWinningStatistics(winningResult);
         }
     }
 
-    private WinningRank createWinningRank(List<Integer> userLottoNumbers, WinningLotto winningLotto){
+    private WinningRank createWinningRank(List<Integer> userLottoNumbers, WinningLotto winningLotto) {
         int matchesCount = getEachMatchesCount(userLottoNumbers, winningLotto.getLotto().getNumbers());
         boolean isBonus = getHasBonus(userLottoNumbers, winningLotto.getBonus());
         return WinningRank.from(matchesCount, isBonus);
     }
 
-    private int getEachMatchesCount(List<Integer> userLottoNumbers, List<Integer> winNumbers){
+    private int getEachMatchesCount(List<Integer> userLottoNumbers, List<Integer> winNumbers) {
         return (int) userLottoNumbers.stream()
                 .filter(winNumbers::contains).count();
     }
 
-    private void updateWinningStatistics(WinningRank winningRank){
+    private void updateWinningStatistics(WinningRank winningRank) {
         winningStatistics.put(winningRank, winningStatistics.getOrDefault(winningRank, 0) + 1);
     }
 
-    private boolean getHasBonus(List<Integer> userLottoNumbers, Bonus bonus){
+    private boolean getHasBonus(List<Integer> userLottoNumbers, Bonus bonus) {
         return userLottoNumbers.contains(bonus.getBonus());
     }
 
-    private void setRevenueRate(Budget budget){
+    private void setRevenueRate(Budget budget) {
         BigDecimal totalAmounts = getTotalAmounts();
         BigDecimal count = getBudget(budget);
         this.revenueRate = calculateRevenueRate(totalAmounts, count);
     }
 
-    private BigDecimal getTotalAmounts(){
+    private BigDecimal getTotalAmounts() {
         BigDecimal totalAmounts = BigDecimal.ZERO;
-        for(Map.Entry<WinningRank, Integer> winningInfo : winningStatistics.entrySet()){
+        for (Map.Entry<WinningRank, Integer> winningInfo : winningStatistics.entrySet()) {
             BigDecimal amount = BigDecimal.valueOf(winningInfo.getKey().getPrize() * winningInfo.getValue());
             totalAmounts = totalAmounts.add(amount);
         }
         return totalAmounts;
     }
 
-    private BigDecimal getBudget(Budget budget){
+    private BigDecimal getBudget(Budget budget) {
         return new BigDecimal(budget.getBudget());
     }
 
-    private BigDecimal calculateRevenueRate(BigDecimal totalAmounts, BigDecimal counts){
+    private BigDecimal calculateRevenueRate(BigDecimal totalAmounts, BigDecimal counts) {
         BigDecimal rate = totalAmounts.divide(counts, 3, BigDecimal.ROUND_HALF_EVEN);
         return rate.multiply(new BigDecimal("100"));
     }

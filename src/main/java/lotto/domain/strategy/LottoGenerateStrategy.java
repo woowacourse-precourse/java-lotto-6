@@ -7,5 +7,5 @@ public interface LottoGenerateStrategy {
     int MAX_NUMBER = 45;
     int SIZE = 6;
 
-    public Lotto generate();
+    Lotto generate();
 }

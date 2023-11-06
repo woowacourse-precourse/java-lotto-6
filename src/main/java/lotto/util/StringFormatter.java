@@ -10,29 +10,30 @@ import java.util.stream.Collectors;
 import lotto.domain.WinningRank;
 
 public class StringFormatter {
-    public enum Format{
+    public enum Format {
         REWARD_RATE_FORMAT("#,##0.0"),
         STATISTICS_RESULT_FORMAT("%s (%,d원) - %d개\n");
 
         private final String format;
-        Format(String format){
+
+        Format(String format) {
             this.format = format;
         }
 
-        public String toString(){
+        public String toString() {
             return this.format;
         }
     }
 
-    public static String mapToWinningStatisticsToString(Map<WinningRank, Integer> winningStatistics){
+    public static String mapToWinningStatisticsToString(Map<WinningRank, Integer> winningStatistics) {
         StringBuilder result = new StringBuilder();
         addStatistics(winningStatistics, result);
         return result.toString();
     }
 
-    private static void addStatistics(Map<WinningRank, Integer> winningStatistics, StringBuilder result){
+    private static void addStatistics(Map<WinningRank, Integer> winningStatistics, StringBuilder result) {
         List<WinningRank> winningResults = getBasicWinningResults();
-        for(WinningRank winningResult : winningResults){
+        for (WinningRank winningResult : winningResults) {
             result.append(
                     String.format(Format.STATISTICS_RESULT_FORMAT.toString(),
                             winningResult.getMessage(),
@@ -41,14 +42,14 @@ public class StringFormatter {
         }
     }
 
-    private static List<WinningRank> getBasicWinningResults(){
+    private static List<WinningRank> getBasicWinningResults() {
         return Arrays.stream(WinningRank.values())
                 .filter(rank -> rank != WinningRank.NOTHING)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
     }
 
-    public static String mapRewardRateToString(BigDecimal rewardDate){
+    public static String mapRewardRateToString(BigDecimal rewardDate) {
         return new DecimalFormat(Format.REWARD_RATE_FORMAT.format).format(rewardDate);
     }
 }

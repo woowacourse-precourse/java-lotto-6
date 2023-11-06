@@ -7,26 +7,26 @@ public class Bonus {
     private static final int MAX_NUMBER = 45;
     private static final int MIN_NUMBER = 1;
 
-    private Bonus(int bonus){
+    private Bonus(int bonus) {
         validateOutOfRange(bonus);
         this.bonus = bonus;
     }
 
-    public static Bonus from(String bonus){
+    public static Bonus from(String bonus) {
         return new Bonus(convertBonusNumber(bonus));
     }
 
-    private static int convertBonusNumber(String bonusNumber){
-        try{
+    private static int convertBonusNumber(String bonusNumber) {
+        try {
             Integer.parseInt(bonusNumber);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION_MESSAGE);
         }
         return Integer.parseInt(bonusNumber);
     }
 
-    public void validateOutOfRange(int bonus){
-        if(bonus < MIN_NUMBER || bonus > MAX_NUMBER){
+    public void validateOutOfRange(int bonus) {
+        if (bonus < MIN_NUMBER || bonus > MAX_NUMBER) {
             throw new IllegalArgumentException(NUMBER_PARSE_EXCEPTION_MESSAGE);
         }
     }

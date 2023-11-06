@@ -33,20 +33,20 @@ public class Lotto {
         }
     }
 
-    private void validateDuplication(List<Integer> numbers){
-        if(numbers.stream().distinct().count() != numbers.size()){
+    private void validateDuplication(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATION_EXCEPTION_MESSAGE);
         }
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return numbers.stream()
                 .sorted().map(Objects::toString)
                 .collect(Collectors.joining(SPLIT_CHAR));
     }
 
-    public boolean isContain(int bonusNumber){
+    public boolean isContain(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 

@@ -8,11 +8,11 @@ public class Budget {
     private static final int LOTTO_UNIT_PRICE = 1000;
     private static final int ZERO = 0;
 
-    private Budget(int budget){
+    private Budget(int budget) {
         this.budget = budget;
     }
 
-    public static Budget from(String inputBudget){
+    public static Budget from(String inputBudget) {
         validateNumeric(inputBudget);
         int budget = Integer.parseInt(inputBudget);
         validateLowerPrice(budget);
@@ -20,27 +20,27 @@ public class Budget {
         return new Budget(budget);
     }
 
-    private static void validateNumeric(String inputBudget){
-        try{
+    private static void validateNumeric(String inputBudget) {
+        try {
             Integer.parseInt(inputBudget);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION_MESSAGE);
         }
     }
 
-    private static void validateDivideResultIsZero(int budget){
-        if(budget % LOTTO_UNIT_PRICE != ZERO){
+    private static void validateDivideResultIsZero(int budget) {
+        if (budget % LOTTO_UNIT_PRICE != ZERO) {
             throw new IllegalArgumentException(String.format(DIVIDE_EXCEPTION_MESSAGE, LOTTO_UNIT_PRICE));
         }
     }
 
-    private static void validateLowerPrice(int budget){
-        if(budget < LOTTO_UNIT_PRICE){
+    private static void validateLowerPrice(int budget) {
+        if (budget < LOTTO_UNIT_PRICE) {
             throw new IllegalArgumentException(String.format(MINIMUM_PRICE_EXCEPTION_MESSAGE, LOTTO_UNIT_PRICE));
         }
     }
 
-    public int getCountOfLottoLines(){
+    public int getCountOfLottoLines() {
         return budget / LOTTO_UNIT_PRICE;
     }
 

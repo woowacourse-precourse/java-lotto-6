@@ -15,14 +15,14 @@ public enum WinningRank {
     private final int prize;
     private final String message;
 
-    WinningRank(int match, boolean isBonus, int prize, String message){
+    WinningRank(int match, boolean isBonus, int prize, String message) {
         this.match = match;
         this.isBonus = isBonus;
         this.prize = prize;
         this.message = message;
     }
 
-    public static WinningRank from(int match, boolean isBonus){
+    public static WinningRank from(int match, boolean isBonus) {
         return Arrays.stream(WinningRank.values())
                 .filter(rank -> rank.match == match)
                 .filter(rank -> rank.isBonus == isBonus)

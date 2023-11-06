@@ -19,5 +19,7 @@ public class LottoGame {
 
         LottoPlayer lottoPlayer = new LottoPlayer(amount);
         lottoPlayer.buyLottos();
+
+        outputView.answerForPurchase(lottoPlayer.getLottoTicketCount(), lottoPlayer.getLottoNumbers());
     }
 }

@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class LottoPlayer {
     private static final int LOTTO_PRICE = 1000;
@@ -28,5 +29,17 @@ public class LottoPlayer {
         return randomNumbers.stream()
                 .sorted()
                 .toList();
+    }
+
+    public int getLottoTicketCount() {
+        return lottos.size();
+    }
+
+    public String getLottoNumbers() {
+        StringJoiner lottoNumbers = new StringJoiner("\n");
+        for (Lotto lotto : lottos) {
+            lottoNumbers.add(lotto.getLottoNumbers());
+        }
+        return lottoNumbers.toString();
     }
 }

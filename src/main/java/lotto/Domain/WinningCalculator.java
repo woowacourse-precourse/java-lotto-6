@@ -23,6 +23,10 @@ public class WinningCalculator {
         totalPrizeMoney = 0;
     }
 
+    private boolean calculateBonus(List<Integer> winningNumber, int bonusNumber){
+        return winningNumber.contains(bonusNumber);
+    }
+
     private int getMatchNumbers(List<Integer> lotto, List<Integer> winningNumbers){
         return (int) lotto.stream()
                 .filter(number -> winningNumbers.stream().anyMatch(Predicate.isEqual(number)))

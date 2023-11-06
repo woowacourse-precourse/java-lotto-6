@@ -47,7 +47,7 @@ public class InputView {
             String input = reader.readLine();
             InputValidator.verifyNonEmptyInput(input);
             InputValidator.verifyValidaNumberFormat(input);
-            builder.winningNumbers(input);
+            builder.withWinningNumbers(input);
         } catch (IllegalArgumentException e) {
             writer.writeLine(Writer.ERROR_PREFIX + e.getMessage());
             return inputWinningNumbers(builder);
@@ -61,7 +61,7 @@ public class InputView {
             String input = reader.readLine();
             InputValidator.verifyNonEmptyInput(input);
             InputValidator.verifyNumericString(input);
-            builder.bonusNumber(input);
+            builder.withBonusNumber(input);
         } catch (IllegalArgumentException e) {
             writer.writeLine("[ERROR] " + e.getMessage());
             return inputBonusNumber(builder);

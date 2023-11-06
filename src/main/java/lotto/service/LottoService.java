@@ -27,5 +27,6 @@ public class LottoService {
                 .mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
         return new Lotto(winningNumber);
     }
+
 }
 

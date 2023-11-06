@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.ResultType;
-import lotto.domain.WinningNumber;
 
 import java.util.HashMap;
 import java.util.Iterator;

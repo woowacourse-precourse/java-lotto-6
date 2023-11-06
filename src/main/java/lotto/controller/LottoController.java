@@ -2,7 +2,6 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.ResultType;
-import lotto.domain.WinningNumber;
 import lotto.service.LottoService;
 import lotto.service.ResultService;
 import lotto.view.InputView;
@@ -21,11 +20,15 @@ public class LottoController {
     public static List<Lotto> lottos = new ArrayList<>();
     public static int amount = 0;
     public void start() {
-        int amount = inputView.inputAmount();
-        lottos = lottoService.makeLottoList(amount);
-        outputView.printAmount(amount);
-        outputView.printLottos(lottos);
-        run(amount);
+        try {
+            int amount = inputView.inputAmount();
+            lottos = lottoService.makeLottoList(amount);
+            outputView.printAmount(amount);
+            outputView.printLottos(lottos);
+            run(amount);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     public void run(int amount) {
         Lotto winningNumber = lottoService.splitString(inputView.inputWinningNumber());

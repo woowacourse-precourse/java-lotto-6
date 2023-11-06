@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.InputException;
 
 import java.util.List;
 
@@ -9,10 +10,13 @@ public class InputView {
     public static final String INPUT_AMOUNT = "구입금액을 입력해 주세요.";
     public static final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     public static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static InputException inputException = new InputException();
 
     public int inputAmount() {
         System.out.println(INPUT_AMOUNT);
         String amount = Console.readLine();
+        inputException.validateInputAmount(amount);
+        inputException.validateUnit(amount);
         return Integer.parseInt(amount);
     }
 

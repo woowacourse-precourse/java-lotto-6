@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 

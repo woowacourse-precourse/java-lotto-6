@@ -11,27 +11,31 @@ import lotto.Model.TicketsAmount;
 import lotto.View.OuputView;
 
 public class LottoGameController {
-    private  TicketsAmount ticketsAmount ;
-    private  Lotto lotto ;
-    private  BonusNumber bonusNumber;
+
+    private TicketsAmount ticketsAmount;
+    private Lotto lotto;
+    private BonusNumber bonusNumber;
     private List<List<Integer>> randomLottos;
 
     public void initializeGame() {
         initialize();
         start(randomLottos);
     }
-    private void initialize(){
+
+    private void initialize() {
         ticketsAmount = new TicketsAmount(InputController.inputTicketsAmount());
         OuputView.printNumOfTicket(ticketsAmount.getTickets());
         randomLottos = RandomLottos.SetRandomLottos(ticketsAmount.getTickets()); // 랜덤패
         RandomLottos.printLottoNumbers(randomLottos);
         lotto = new Lotto(InputController.inputWinningNumbers());
         List<Integer> winningNumbers = lotto.getNumbers();// 당첨패
-        bonusNumber = new BonusNumber(InputController.inputBonusNumber(),winningNumbers);
+        bonusNumber = new BonusNumber(InputController.inputBonusNumber(), winningNumbers);
 
     }
+
     private void start(List<List<Integer>> randomLottos) {
-        List<Integer> countWinnings = LottoMatch.countMatchingNumbers(randomLottos, lotto.getNumbers(), bonusNumber.getBonus());
+        List<Integer> countWinnings = LottoMatch.countMatchingNumbers(randomLottos,
+                lotto.getNumbers(), bonusNumber.getBonus());
         Result.resultOfGame(countWinnings);
         CalculateProfits.calculate(countWinnings, ticketsAmount.getTicketsPrice());
     }

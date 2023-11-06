@@ -8,37 +8,44 @@ import lotto.Controller.InputController;
 import lotto.View.OuputView;
 
 public class Lotto {
+
     private final List<Integer> numbers;
+
     //TODO : InputView에서 가져옴
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
-    public List<Integer> getNumbers(){
+
+    public List<Integer> getNumbers() {
         return numbers;
     }
+
     private void validate(List<Integer> numbers) {
-        try{
+        try {
             validateLength(numbers);
             validateScope(numbers);
             validateDuplicates(numbers);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OuputView.printErrorMessage(e.getMessage());
             validate(InputController.inputWinningNumbers());
         }
     }
-    private void validateLength(List<Integer> numbers){
+
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != LottoRangeStorage.LOTTO_LENGTH) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_LENGTH);
         }
     }
-    private  void validateScope(List<Integer> numbers) {
+
+    private void validateScope(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < LottoRangeStorage.MIN_NUM|| number > LottoRangeStorage.MAX_NUM) {
+            if (number < LottoRangeStorage.MIN_NUM || number > LottoRangeStorage.MAX_NUM) {
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_SCOPE);
             }
         }
     }
+
     private void validateDuplicates(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer number : numbers) {

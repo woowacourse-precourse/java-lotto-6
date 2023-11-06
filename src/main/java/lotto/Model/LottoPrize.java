@@ -8,7 +8,7 @@ enum LottoPrize {
     THIRD(5, 1_500_000, "5개 일치 (1,500,000원)"),
     FOURTH(4, 50_000, "4개 일치 (50,000원)"),
     FIFTH(3, 5_000, "3개 일치 (5,000원)"),
-    FAIL(0,0,"");
+    FAIL(0, 0, "");
 
     private final int matchingNumbers;
     private final int prize;
@@ -23,12 +23,15 @@ enum LottoPrize {
     public int getMatchingNumbers() {
         return matchingNumbers;
     }
+
     public int getPrize() {
         return prize;
     }
+
     public String getDescription() {
         return description;
     }
+
     public static LottoPrize checkLottoResult(int count, boolean hasBonus) {
         if (count == 3) {
             return LottoPrize.FIFTH; // 3개 일치
@@ -44,8 +47,9 @@ enum LottoPrize {
         }
         return LottoPrize.FAIL; // 미당첨
     }
-    public  void printMessage(int count){
-        if (this != FAIL){
+
+    public void printMessage(int count) {
+        if (this != FAIL) {
             OuputView.printDescription(description);
         }
     }

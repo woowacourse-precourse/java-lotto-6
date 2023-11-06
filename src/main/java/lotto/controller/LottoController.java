@@ -24,7 +24,23 @@ public class LottoController {
         generateLottoTickets(numberOfLottoTickets);
         showPurchasedLottoTickets();
         Lotto winningNumbers = makeWinningNumbers();
+        int bonsNumber = makeBonusNumber(winningNumbers);
     }
+
+    public int makeBonusNumber(Lotto winningNumbers) {
+        String inputBonusNumber = getBonusNumber();
+        validateBonusNumber(winningNumbers.getNumbers(), inputBonusNumber);
+        return Integer.parseInt(inputBonusNumber);
+    }
+
+    public String getBonusNumber() {
+        return inputView.bonusNumberInput();
+    }
+
+    public void validateBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
+        inputValidation.validateBonusNumberInput(winningNumbers, inputBonusNumber);
+    }
+
 
     public String getPurchaseAmount() {
         String purchaseAmount = inputView.purchaseAmountInput();
@@ -45,24 +61,25 @@ public class LottoController {
         }
     }
 
-    public Lotto makeWinningNumbers(){
+    public Lotto makeWinningNumbers() {
         List<String> inputWinningNumbers = splitWinningNumbers(getWinningNumbers());
         validateWinningNumbers(inputWinningNumbers);
         return makeWinningNumbersToLotto(inputWinningNumbers);
     }
-    public String getWinningNumbers(){
+
+    public String getWinningNumbers() {
         return inputView.winningNumbersInput();
     }
 
-    public List<String> splitWinningNumbers(String winningNumbers){
+    public List<String> splitWinningNumbers(String winningNumbers) {
         return List.of(winningNumbers.split(","));
     }
 
-    public void validateWinningNumbers(List<String> numbers){
+    public void validateWinningNumbers(List<String> numbers) {
         inputValidation.validateWinningNumbersInput(numbers);
     }
 
-    public Lotto makeWinningNumbersToLotto(List<String> winningNumbers){
+    public Lotto makeWinningNumbersToLotto(List<String> winningNumbers) {
         List<Integer> winningLottoNumbers = winningNumbers.stream()
             .map(Integer::parseInt)
             .toList();

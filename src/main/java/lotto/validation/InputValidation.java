@@ -28,7 +28,7 @@ public class InputValidation {
 
     }
 
-    public void validateBonusNumberInput(List<String> lotto, String input) {
+    public void validateBonusNumberInput(List<Integer> lotto, String input) {
         isExist(input);
         isDigit(input);
         isWithinLottoRange(input);
@@ -82,8 +82,9 @@ public class InputValidation {
         }
     }
 
-    public void isBonusNumberInWinningNumbers(List<String> inputLottoNumbers, String inputBonusNumber) {
-        if (inputLottoNumbers.contains(inputBonusNumber)) {
+    public void isBonusNumberInWinningNumbers(List<Integer> inputLottoNumbers,
+        String inputBonusNumber) {
+        if (inputLottoNumbers.contains(Integer.parseInt(inputBonusNumber))) {
             throw new IllegalArgumentException(
                 ExceptionMessages.DUPLICATE_LOTTO_BONUS.getMessage());
         }

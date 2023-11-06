@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import lotto.controller.dto.LottoResponse;
 
 public class ConsoleOutputView implements OutputView {
 
@@ -15,13 +16,13 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printPurchasedLottos(final List<List<Integer>> lottos) {
+    public void printPurchasedLottos(final List<LottoResponse> lottos) {
         printNewLine();
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        for (final List<Integer> lotto : lottos) {
-            List<Integer> purchasedLotto = new ArrayList<>(lotto);
-            Collections.sort(purchasedLotto);
-            System.out.println(purchasedLotto);
+        for (final LottoResponse lottoResponse : lottos) {
+            List<Integer> lotto = new ArrayList<>(lottoResponse.getLotto());
+            Collections.sort(lotto);
+            System.out.println(lotto);
         }
     }
 

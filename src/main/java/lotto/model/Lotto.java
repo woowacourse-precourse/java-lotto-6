@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.exception.ExistDuplicatedNumberException;
 import lotto.exception.InvalidLottoNumberException;
@@ -71,9 +72,7 @@ public class Lotto {
                 .count();
     }
 
-    public List<Integer> getNumbers() {
-        return numbers.stream()
-                .map(LottoNumber::getNumber)
-                .toList();
+    public List<Number> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

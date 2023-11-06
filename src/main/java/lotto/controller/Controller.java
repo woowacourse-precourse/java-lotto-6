@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.Map;
-import lotto.controller.dto.PurchasedLottoResponse;
+import lotto.controller.dto.LottosResponse;
 import lotto.model.LottoNumber;
 import lotto.model.LottoPrizeCalculator;
 import lotto.model.Lottos;
@@ -34,8 +34,8 @@ public class Controller {
     }
 
     private void showPurchasedLottos(final Lottos lottos) {
-        PurchasedLottoResponse purchasedLottoResponse = PurchasedLottoResponse.from(lottos.getLottos());
-        outputView.printPurchasedLottos(purchasedLottoResponse.getLottos());
+        LottosResponse lottosResponse = LottosResponse.from(lottos.getLottos());
+        outputView.printPurchasedLottos(lottosResponse.getLottos());
     }
 
     private Money getMoney() {

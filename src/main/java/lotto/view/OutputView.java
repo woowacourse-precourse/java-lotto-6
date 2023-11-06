@@ -2,12 +2,13 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
+import lotto.controller.dto.LottoResponse;
 
 public interface OutputView {
 
     void printMoneyRequestMessage();
 
-    void printPurchasedLottos(List<List<Integer>> lottos);
+    void printPurchasedLottos(List<LottoResponse> lottos);
 
     void printWinningNumberRequestMessage();
 

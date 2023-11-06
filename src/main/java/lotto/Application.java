@@ -41,9 +41,9 @@ class User {
     }
 }
 
-class Game {
+class SingleGame {
     public List<Integer> numbers;
-    public String inputPrice;
+    public boolean bonus;
     public int rank;
 
     public void inputLottoNumbers() {
@@ -59,21 +59,44 @@ class Game {
     }
 
     public void compareNumbers(List<Integer> user, List<Integer> lotto) {
-
+        this.rank = compareLotto(user, lotto);
+        this.bonus = compareBonus(user, lotto);
     }
 
     public int compareLotto(List<Integer> user, List<Integer> lotto) {
-        this.rank = 0;
+        int match = 0;
         List<Integer> subLotto = lotto.subList(0, 6);
         for (Integer userNumber : user) {
             if (subLotto.contains(userNumber)) {
-                this.rank++;
+                match++;
             }
         }
-        return rank;
+        return match;
     }
 
     public boolean compareBonus(List<Integer> user, List<Integer> lotto) {
         return user.contains(lotto.get(6));
     }
+    public int computeResult(){
+        if(this.rank==6){
+            return 1;
+        }
+        if(this.rank==5 && this.bonus){
+            return 2;
+        }
+        if(this.rank==5){
+            return 3;
+        }
+        if(this.rank==4){
+            return 4;
+        }
+        if(this.rank==3){
+            return 5;
+        }
+        return 0;
+    }
+}
+
+class Game{
+    public String inputPrice;
 }

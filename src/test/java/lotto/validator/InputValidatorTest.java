@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import static lotto.enums.ErrorMassage.CONTAIN_SPACE;
 import static lotto.enums.ErrorMassage.IS_BLANK;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -16,5 +17,14 @@ class InputValidatorTest {
         assertThatThrownBy(() -> validator.validateBlank(input))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage(IS_BLANK.getMassage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1 ", "2,3,4 ", " 5", "30, 35, 40", " 15, 16,17"})
+    void 값에_공백이_포함되어_있을_경우_예외가_발생한다(String input) {
+        // when & then
+        assertThatThrownBy(() -> validator.validateContainSpace(input))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage(CONTAIN_SPACE.getMassage());
     }
 }

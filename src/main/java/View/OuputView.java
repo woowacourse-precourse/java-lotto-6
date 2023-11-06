@@ -6,7 +6,7 @@ import domain.Amount;
 
 public class OuputView {
 
-    public static void buyMessage(Amount amount){
+    public static void buyMessage(Amount amount) {
         amount.printAmount();
         System.out.println(OUTPUT_BUY_NUMBER.get());
     }

@@ -9,7 +9,7 @@ public enum LottoValidationValue {
         this.value = value;
     }
 
-    public int get(){
+    public int get() {
         return value;
     }
 }

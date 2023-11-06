@@ -3,6 +3,7 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,14 +41,13 @@ class LottoTest {
     @DisplayName("발행된 로또의 숫자를 조회한다.")
     public void getLottoNumberTest() throws Exception {
         // given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 9, 5));
+        ArrayList arrayList = new ArrayList(List.of(1, 2, 3, 4, 9, 5));
+        Lotto lotto = new Lotto(arrayList);
 
         // when
 
 
         // then
-        assertThat(lotto.getLotto()).isEqualTo(List.of(1, 2, 3, 4, 9, 5).toString());
-
-
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 9));
     }
 }

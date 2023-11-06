@@ -14,12 +14,16 @@ public class Lotto {
         sortNumbers();
     }
 
-    public void sortNumbers() {
-        Collections.sort(this.numbers);
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
-    public String getLotto() {
+    public String toStringLotto() {
         return numbers.toString();
+    }
+
+    public void sortNumbers() {
+        Collections.sort(numbers);
     }
 
     private void validateLottoSize(List<Integer> numbers) {

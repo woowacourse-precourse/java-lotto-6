@@ -12,7 +12,7 @@ public class OutputView {
 
     public void outputLottosNumber(List<Lotto> lottos) {
         lottos.stream()
-                .map(Lotto::getLotto)
+                .map(Lotto::toStringLotto)
                 .forEach(System.out::println);
     }
     public void outputWinningResult() {

@@ -26,5 +26,6 @@ public class LottoController {
 
     private void setWinning() {
         outputView.printInputWinningNumbersMessage();
+        WinningNumbers winningNumbers = inputView.readWinningNumbers();
     }
 }

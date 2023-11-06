@@ -3,7 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.BonusNumber;
 import lotto.domain.Money;
-import lotto.domain.WinningNumber;
+import lotto.domain.WinningNumbers;
 import lotto.validator.InputValidator;
 
 import java.util.Arrays;
@@ -17,10 +17,10 @@ public class InputView {
         return new Money(Integer.parseInt(input));
     }
 
-    public WinningNumber readWinningNumber() {
+    public WinningNumbers readWinningNumbers() {
         String input = Console.readLine();
         validator.validateIsSplitByComma(input);
-        return new WinningNumber(
+        return new WinningNumbers(
                 Arrays.stream(input.split(","))
                         .map(Integer::parseInt).toList()
         );

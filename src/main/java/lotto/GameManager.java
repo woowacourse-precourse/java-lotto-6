@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.LottoBonusNumber;
 import lotto.domain.LottoTickets;
 import lotto.domain.LottoWinningNumbers;
 import lotto.view.InputView;
@@ -15,6 +16,7 @@ public class GameManager {
     private final OutputView outputView;
     private LottoTickets lottoTickets;
     private LottoWinningNumbers lottoWinningNumbers;
+    private LottoBonusNumber bonusNumber;
 
     public GameManager(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -24,6 +26,7 @@ public class GameManager {
     public void gameStart() {
         publishLottoTickets();
         generateLottoWinningNumbers();
+        generateLottoBonusNumber();
     }
 
     private void publishLottoTickets() {
@@ -47,6 +50,11 @@ public class GameManager {
             System.out.println(e.getMessage());
             generateLottoWinningNumbers();
         }
+    }
+
+    private void generateLottoBonusNumber() {
+        String inputString = inputView.readBonusNumber();
+        bonusNumber = new LottoBonusNumber(Integer.parseInt(inputString));
     }
 
     private List<Integer> parseToIntegerList(List<String> strings) {

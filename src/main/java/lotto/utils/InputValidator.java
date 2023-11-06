@@ -2,9 +2,7 @@ package lotto.utils;
 
 import lotto.constants.ExceptionMessages;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputValidator {
@@ -31,6 +29,10 @@ public class InputValidator {
         return castingStringToIntegerList(preprocessedInput);
     }
 
+    private int castStringToInt(String preprocessedInput) {
+        return Integer.parseInt(preprocessedInput);
+    }
+
     private List<Integer> castingStringToIntegerList(String preprocessedInput) {
         if (isNotEnoughSeparators(preprocessedInput)) {
             ExceptionMessages.WRONG_SEPARATOR_NUMBERS.throwException();
@@ -43,14 +45,10 @@ public class InputValidator {
     }
 
     private boolean isNotEnoughSeparators(String preprocessedInput) {
-        int seperatorCount = (int) preprocessedInput.chars()
+        int separatorCount = (int) preprocessedInput.chars()
                 .filter(inputString -> inputString == LOTTO_NUMBER_SEPARATOR)
                 .count();
-        return seperatorCount != NUMBER_OF_SEPARATOR;
-    }
-
-    private int castStringToInt(String preprocessedInput) {
-        return Integer.parseInt(preprocessedInput);
+        return separatorCount != NUMBER_OF_SEPARATOR;
     }
 
     private boolean isNull(String userInput) {

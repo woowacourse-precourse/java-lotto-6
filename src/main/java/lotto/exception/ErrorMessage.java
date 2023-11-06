@@ -8,6 +8,7 @@ public enum ErrorMessage {
     PRICE_OUT_OF_RANGE_MESSAGE(String.format("최소 주문 금액 : %,d / 최대 주문 금액 : %,d", PriceValidator.PURCHASE_COST,
             PriceValidator.MAX_PURCHASE_COST)),
     DUPLICATE_NUMBER_MESSAGE("중복 숫자는 허용되지 않습니다."),
+    UNCORRECT_NUMBER_COUNT("숫자 6개를 입력해 주세요."),
     LOTTONUMBER_OUT_OF_RANGE_MESSAGE("1~45 사이의 숫자만 입력 가능합니다.");
     final String message;
 

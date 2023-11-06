@@ -14,4 +14,9 @@
 
 ### ResultLotto.class
 - [ ] 당첨 내역 출력 - #showDetail()
+- [ ] 일치하는 로또 번호 개수 - #countMatchingNumber()
+  - [ ] 당첨번호와 일치하는지 확인 - #matching()
+
+### Revenue.class
 - [ ] 수익률 출력(소수점 둘째 자리에서 반올림) - #rateOfRevenue()
+  - Prize.enum 이용

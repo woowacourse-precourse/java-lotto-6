@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.view.InputValidator;
 import lotto.view.InputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,8 +17,8 @@ public class InputControllerTest {
     @BeforeEach
     void init() {
         InputValidator inputValidator = new InputValidator();
-        InputView inputView = new InputView(inputValidator);
-        inputController = new InputController(inputView);
+        InputView inputView = new InputView();
+        inputController = new InputController(inputView, inputValidator);
     }
 
     @DisplayName("사용자 입력(String 타입)을 구입 금액 값(int)으로 변환하는 기능 테스트.")

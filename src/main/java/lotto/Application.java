@@ -18,16 +18,12 @@ public class Application {
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_COUNT = "로또 번호는 6개 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_DUPLICATE = "로또 번호는 중복되지 않은 숫자여야 합니다.";
+    private static final String ERROR_MESSAGE_FOR_BONUS_NUMBER_TYPE = "보너스 번호는 숫자여야 합니다.";
 
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmountWithInput();
         List<Integer> winningNumbers = getWinningNumbersWithInput();
         int bonusNumber = getBonusNumberWithInput();
-    }
-
-    private static int getBonusNumberWithInput() {
-        System.out.println(MESSAGE_FOR_BONUS_NUMBERS_INPUT);
-        return 0;
     }
 
     private static int getPurchaseAmountWithInput() {
@@ -98,6 +94,22 @@ public class Application {
             printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_DUPLICATE);
             throw new IllegalArgumentException();
         }
+    }
+
+    private static int getBonusNumberWithInput() {
+        System.out.println(MESSAGE_FOR_BONUS_NUMBERS_INPUT);
+        while (true) {
+            String bonusNumberInput = Console.readLine();
+            try {
+                validateBonusNumberInput(bonusNumberInput);
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+            return Integer.parseInt(bonusNumberInput);
+        }
+    }
+
+    private static void validateBonusNumberInput(String bonusNumberInput) {
     }
 
     private static void printErrorMessage(String errorMessage) {

@@ -9,9 +9,13 @@ public class PurchasePrice {
 
     private final Integer lottoPurchasePrice;
 
-    public PurchasePrice(Integer purchasePrice) {
+    private PurchasePrice(Integer purchasePrice) {
         validateThousandUnit(purchasePrice);
         this.lottoPurchasePrice = purchasePrice;
+    }
+
+    public static PurchasePrice from(Integer purchasePrice) {
+        return new PurchasePrice(purchasePrice);
     }
 
     private void validateThousandUnit(Integer purchasePrice) {

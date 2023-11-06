@@ -28,7 +28,7 @@ class ValidationTest {
     @ValueSource(strings = {"5000a", "5_000", " 5000 ", "5000.0", "5,000"})
     void validateInteger_test(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> validateInteger(input));
-        assertEquals(String.format(ERROR_FORMAT+input, NOT_INTEGER), exception.getMessage());
+        assertEquals(String.format(ERROR_FORMAT+NOT_INTEGER+input), exception.getMessage());
         assertThatCode(() -> validateInteger("5000")).doesNotThrowAnyException();
     }
 
@@ -37,7 +37,7 @@ class ValidationTest {
     @ValueSource(ints = {-1000, 0})
     void validatePositiveNumber_test(int input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> validatePositiveNumber(input));
-        assertEquals(String.format(ERROR_FORMAT+input, NOT_POSITIVE), exception.getMessage());
+        assertEquals(String.format(ERROR_FORMAT+NOT_POSITIVE+input), exception.getMessage());
         assertThatCode(() -> validatePositiveNumber(1000)).doesNotThrowAnyException();
     }
 
@@ -46,7 +46,7 @@ class ValidationTest {
     @ValueSource(ints = {7777, 7770, 7700})
     void validateDivisibleByLottoPrice_test(int input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> validateDivisibleByLottoPrice(input));
-        assertEquals(String.format(ERROR_FORMAT+input, INDIVISIBLE_TO_THOUSAND), exception.getMessage());
+        assertEquals(String.format(ERROR_FORMAT+INDIVISIBLE_TO_THOUSAND+input), exception.getMessage());
         assertThatCode(() -> validateDivisibleByLottoPrice(7000)).doesNotThrowAnyException();
     }
 
@@ -55,7 +55,7 @@ class ValidationTest {
     @ValueSource(strings = {",1,2,3,4,5,6", "1,2,3,4,5,6,", "1,,2,3,4,5,6", "1,2,,3,4,,5,6"})
     void validateComma_test(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> validateComma(input));
-        assertEquals(String.format(ERROR_FORMAT+input, INVALID_COMMA), exception.getMessage());
+        assertEquals(String.format(ERROR_FORMAT+INVALID_COMMA+input), exception.getMessage());
         assertThatCode(() -> validateComma("1,2,3,4,5,6")).doesNotThrowAnyException();
     }
 
@@ -64,7 +64,7 @@ class ValidationTest {
     @ValueSource(ints = {0, 46})
     void validateNumberRange_exceptionTest(int input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> validateNumberRange(input));
-        assertEquals(String.format(ERROR_FORMAT+input, INVALID_NUMBER), exception.getMessage());
+        assertEquals(String.format(ERROR_FORMAT+INVALID_NUMBER+input), exception.getMessage());
         assertThatCode(() -> validateNumberRange(1)).doesNotThrowAnyException();
         assertThatCode(() -> validateNumberRange(45)).doesNotThrowAnyException();
     }
@@ -74,7 +74,7 @@ class ValidationTest {
     @MethodSource("sampleLottoNumbers")
     void validateSixLottoNumbers_test(List<Integer> input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> validateSixLottoNumbers(input));
-        assertEquals(String.format(ERROR_FORMAT, NOT_SIX_NUMBERS), exception.getMessage());
+        assertEquals(String.format(ERROR_FORMAT+NOT_SIX_NUMBERS), exception.getMessage());
         assertThatCode(() -> validateSixLottoNumbers(List.of(1,2,3,4,5,6))).doesNotThrowAnyException();
     }
 
@@ -83,7 +83,7 @@ class ValidationTest {
     void validateDuplicatedSixNumber_test() {
         List<Integer> input = List.of(1,5,2,3,5,4);
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> validateDuplicatedSixNumber(input));
-        assertEquals(String.format(ERROR_FORMAT, DUPLICATED_NUMBER), exception.getMessage());
+        assertEquals(String.format(ERROR_FORMAT+DUPLICATED_NUMBER), exception.getMessage());
         assertThatCode(() -> validateDuplicatedSixNumber(List.of(1,2,3,4,5,6))).doesNotThrowAnyException();
     }
 
@@ -94,7 +94,7 @@ class ValidationTest {
         Throwable exception = assertThrows(
                 IllegalArgumentException.class, () -> validateBonusNumDuplicated(bonusInput, lottoInput)
         );
-        assertEquals(String.format(ERROR_FORMAT, DUPLICATED_NUMBER), exception.getMessage());
+        assertEquals(String.format(ERROR_FORMAT+DUPLICATED_NUMBER), exception.getMessage());
         assertThatCode(() -> validateBonusNumDuplicated(23, List.of(1,3,5,7,9,11))).doesNotThrowAnyException();
     }
 

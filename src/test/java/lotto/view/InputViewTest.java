@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.constants.ErrorMessage.ERROR_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +17,7 @@ class InputViewTest {
     @ValueSource(strings = {"", "  ", "1 000"})
     void validateInput_test(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> sample.validateInput(input));
-        assertThat(exception.getMessage()).contains("[ERROR]");
+        assertThat(exception.getMessage()).contains(ERROR_FORMAT);
         assertThatCode(() -> sample.validateInput("1000")).doesNotThrowAnyException();
         assertThatCode(() -> sample.validateInput("1")).doesNotThrowAnyException();
         assertThatCode(() -> sample.validateInput("45")).doesNotThrowAnyException();
@@ -30,7 +31,7 @@ class InputViewTest {
     })
     void validateInputWInnerNum_test(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> sample.validateInputWinnerNum(input));
-        assertThat(exception.getMessage()).contains("[ERROR]");
+        assertThat(exception.getMessage()).contains(ERROR_FORMAT);
         assertThatCode(() -> sample.validateInputWinnerNum("1,2,3,4,5,6")).doesNotThrowAnyException();
     }
 }

@@ -1,10 +1,10 @@
 package lotto.view;
 
-import static lotto.message.OutputMessage.*;
+import static lotto.message.Message.*;
 
 public class Output {
     public static void printWinningStatisticsMessage(){
-        System.out.println(WINNING_STATISTICS.outputMessage());
-        System.out.println(SEPARATOR.outputMessage());
+        System.out.println(WINNING_STATISTICS.message());
+        System.out.println(SEPARATOR.message());
     }
 }

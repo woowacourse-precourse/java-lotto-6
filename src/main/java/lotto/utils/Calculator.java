@@ -5,6 +5,7 @@ import lotto.model.WinningLotto;
 import java.util.List;
 
 public class Calculator {
+
     public int calculatingRank(WinningLotto winningLotto, List<Integer> purchaseLotto){
         List<Integer> numbers = winningLotto.getNumbers();
         Integer bonusNumber = winningLotto.getBonusNumber();

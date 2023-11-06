@@ -5,10 +5,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.User;
+import lotto.utils.Calculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
+
+    Calculator calculator = new Calculator();
 
     private static final int LOTTO_PRICE = 1000;
 
@@ -34,5 +37,19 @@ public class LottoGame {
         }
         return lottos;
     }
+
+    public List<Integer> createRankList(User user, WinningLotto winningLotto){
+        List<Lotto> lottos = user.getUserLottos();
+        List<Integer> winngLotto = winningLotto.getNumbers();
+        List<Integer> ranks = new ArrayList<>();
+        for(Lotto lotto : lottos ){
+            List<Integer> purchaselotto = lotto.getNumbers();
+            Integer rank = calculator.calculatingRank(winningLotto,purchaselotto);
+            ranks.add(rank);
+        }
+        return ranks;
+    }
+
+
 
 }

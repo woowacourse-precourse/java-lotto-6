@@ -5,13 +5,15 @@ import lotto.config.Config;
 import lotto.domain.num.LottoTargetNumResults;
 import lotto.utill.Utii;
 
+import java.util.List;
+
 public class LottoHost {
-    private String winNumbers;
+    private List<Integer> winNumbers;
     private String bonusNumbers;
 
-    public String pickWinNumbers() {
+    public List<Integer> pickWinNumbers() {
         // TODO: 11/5/23 입력 체크.
-        winNumbers = Utii.InputStringLine();
+        winNumbers = Utii.InputNumbers();
 
 
         return winNumbers;

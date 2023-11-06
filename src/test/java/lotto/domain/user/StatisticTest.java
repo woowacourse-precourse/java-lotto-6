@@ -32,9 +32,9 @@ class StatisticTest {
     void setUp() {
         lottoEnvelop = new LottoEnvelop();
 
-        winLottoNums = new WinLottoNums("1,2,3,4,5,6");
+        winLottoNums = new WinLottoNums(List.of(1, 2, 3, 4, 5, 6));
         bonusLottoNum = new BonusLottoNum("7");
-        lottoTargetNumResults = new LottoTargetNumResults("1,2,3,4,5,6", "7");
+        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), "7");
 
         statistic = new Statistic(lottoEnvelop, lottoTargetNumResults);
     }

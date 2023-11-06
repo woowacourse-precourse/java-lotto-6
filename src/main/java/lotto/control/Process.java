@@ -50,9 +50,9 @@ public class Process {
     /**
      * 게임 진행자가 당첨 번호를 뽑는다.
      */
-    public String pickWinNumber() {
+    public void pickWinNumber() {
         // 로또진행자가 당첨 번호를 뽑는다.
-        return lottoHost.pickWinNumbers();
+        lottoHost.pickWinNumbers();
     }
 
     public String pickBonusNumber() {

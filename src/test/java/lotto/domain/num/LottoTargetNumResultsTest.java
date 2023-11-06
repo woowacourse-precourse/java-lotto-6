@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTargetNumResultsTest {
@@ -15,9 +17,9 @@ class LottoTargetNumResultsTest {
 
     @BeforeEach
     void setUp() {
-        winLottoNums = new WinLottoNums("1,2,3,4,5,6");
+        winLottoNums = new WinLottoNums(List.of(1, 2, 3, 4, 5, 6));
         bonusLottoNum = new BonusLottoNum("7");
-        lottoTargetNumResults = new LottoTargetNumResults("1,2,3,4,5,6", "7");
+        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), "7");
     }
 
     // TODO: 11/5/23 삭제 요망

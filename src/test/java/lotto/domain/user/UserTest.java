@@ -22,7 +22,7 @@ class UserTest {
 
     @BeforeEach
     void setUp() {
-        lottoTargetNumResults = new LottoTargetNumResults("1,2,3,4,5,6", "7");
+        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), "7");
 
         lottoEnvelop = new LottoEnvelop();
         lotto_1 = new Lotto(List.of(6, 5, 4, 3, 2, 1));

@@ -15,6 +15,8 @@ import lotto.domain.user.Statistic;
 import lotto.domain.user.User;
 import lotto.view.ShowLottoProcess;
 
+import java.util.List;
+
 public class Config {
     public static Process process() {
         return new Process();
@@ -36,11 +38,11 @@ public class Config {
         return new BonusLottoNum(strOfPickBonusNum);
     }
 
-    public static LottoTargetNumResults lottoTargetNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
-        return new LottoTargetNumResults(strOfPickWinNum, strOfPickBonusNum);
+    public static LottoTargetNumResults lottoTargetNumResults(List<Integer> winNumbers, String strOfPickBonusNum) {
+        return new LottoTargetNumResults(winNumbers, strOfPickBonusNum);
     }
 
-    public static WinLottoNums winLottoNums(String strOfPickWinNum) {
+    public static WinLottoNums winLottoNums(List<Integer> strOfPickWinNum) {
         return new WinLottoNums(strOfPickWinNum);
     }
 

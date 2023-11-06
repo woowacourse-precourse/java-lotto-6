@@ -3,6 +3,8 @@ package lotto.domain.num;
 import lotto.config.Config;
 import lotto.utill.Utii;
 
+import java.util.List;
+
 /**
  * 당첨 번호와 보너스 번호들의 모임 클래스
  */
@@ -13,8 +15,8 @@ public class LottoTargetNumResults {
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
-    public LottoTargetNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
-        this.winLottoNums = Config.winLottoNums(strOfPickWinNum);
+    public LottoTargetNumResults(List<Integer> winNumbers, String strOfPickBonusNum) {
+        this.winLottoNums = Config.winLottoNums(winNumbers);
         this.bonusLottoNum = Config.bonusLottoNum(strOfPickBonusNum);
     }
 

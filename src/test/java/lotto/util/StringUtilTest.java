@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringUtilTest {
 
@@ -21,19 +23,10 @@ public class StringUtilTest {
     }
 
     @DisplayName("입력받은 문자열이 정수가 아니거나 , 빈값인 경우 에러를 발생시킨다")
-    @Test
-    void parseIntNoIntegerTest() {
-        //given
-        String blank1 = "";
-        String blank2 = " ";
-        String floatValue = "0.1";
-
-        //when,then
-        assertThatThrownBy(() -> StringUtil.parseInt(blank1))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> StringUtil.parseInt(blank2))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> StringUtil.parseInt(floatValue))
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "0.1"})
+    void parseIntNoIntegerTest(String errorValue) {
+        assertThatThrownBy(() -> StringUtil.parseInt(errorValue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -48,23 +41,11 @@ public class StringUtilTest {
         Assertions.assertEquals(parseString.toString(), List.of(1, 2, 3, 4, 5, 6).toString());
     }
 
-    @DisplayName("입력받은 문자열의 값이 정수가 아니거니 , 빈값인경우 에러를 발생시킨다")
-    @Test
-    void parseCommaBlankTest() {
-        //given
-        String blank1 = "";
-        String blank2 = "1, ";
-        String blank3 = "1,";
-        String noInteger = "a";
-
-        //when,then
-        assertThatThrownBy(() -> StringUtil.parseInt(blank1))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> StringUtil.parseInt(blank2))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> StringUtil.parseInt(blank3))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> StringUtil.parseInt(noInteger))
+    @DisplayName("입력받은 문자열의 값이 정수가 아니거나 , 빈값인경우 에러를 발생시킨다")
+    @ParameterizedTest
+    @ValueSource(strings = {"", "1, ", "1,", "a"})
+    void parseCommaBlankTest(String errorValue) {
+        assertThatThrownBy(() -> StringUtil.parseInt(errorValue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

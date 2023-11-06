@@ -26,14 +26,10 @@ public class LottoController {
 
 
         // 금액만큼 로또 생성
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < purchaseAmount/lottoPrice; i++) {
-            lottos.add(new Lotto(lottoGenerator.generateNumbers()));
-        }
-        Lottos userLottos = new Lottos(lottos);
+        Lottos userLottos = purchaseLottos(purchaseAmount);
 
 
-        // 구매한 로또 정렬해서 출력
+                // 구매한 로또 정렬해서 출력
         OutputView.printPurchaseLottos(userLottos.toDtos());
 
 
@@ -52,16 +48,27 @@ public class LottoController {
         // 당첨 통계 출력하기
         OutputView.printLottoResult(results);
 
+        // 총 수익률 계산
+        double totalEarningsRate = calculateTotalEarningsRate(results, purchaseAmount);
 
-        // 총 수익률 출력하기
+        // 총 수익률 계산
+        OutputView.printTotalEarningsRate(totalEarningsRate);
+    }
+
+    private Lottos purchaseLottos(int purchaseAmount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < purchaseAmount/lottoPrice; i++) {
+            lottos.add(new Lotto(lottoGenerator.generateNumbers()));
+        }
+        return new Lottos(lottos);
+    }
+
+    private double calculateTotalEarningsRate(List<LottoResult> results, int purchaseAmount) {
         Long totalPrize = results.stream()
                 .map(LottoResult::parsePrizeAmount)
                 .reduce((a, b) -> a + b)
                 .orElse(0L);
-
-        double totalEarningsRate = ((double) totalPrize * 100) / (double) purchaseAmount;
-
-        OutputView.printTotalEarningsRate(totalEarningsRate);
+        return ((double) totalPrize * 100) / (double) purchaseAmount;
     }
 
 }

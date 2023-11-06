@@ -54,4 +54,9 @@ public class Validator {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBER.message);
         }
     }
+
+    public void validateNotEmptyAndArabicNumber(String input) {
+        validateNotEmpty(input);
+        validateArabicNumber(input);
+    }
 }

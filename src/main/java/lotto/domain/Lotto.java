@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class Lotto {
 
     private final List<Integer> numbers;
+    private final int LOTTO_SIZE = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -13,7 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             ErrorMessage.getDescription(ErrorMessage.SIZE);
             throw new IllegalArgumentException();
         }

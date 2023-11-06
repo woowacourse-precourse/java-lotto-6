@@ -24,8 +24,7 @@ public class Lotto {
         return sortedNumbers;
     }
 
-    @Override
-    public String toString() {
-        return "로또 번호: " + numbers.toString();
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

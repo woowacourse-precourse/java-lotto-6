@@ -19,19 +19,12 @@ public enum LottoPrize {
         this.bonusBallRequired = bonusBallRequired;
     }
 
-    public int getMatchingNumberCount() {
-        return matchingNumberCount;
-    }
-
-    public String getPrizeRank() {
-        return prizeRank;
-    }
-
-    public int getPrizeAmount() {
-        return prizeAmount;
-    }
-
-    public boolean isBonusBallRequired() {
-        return bonusBallRequired;
+    public static LottoPrize getPrizeByMatchCount(int matchCount) {
+        for (LottoPrize prize : LottoPrize.values()) {
+            if (prize.matchingNumberCount == matchCount) {
+                return prize;
+            }
+        }
+        return null;
     }
 }

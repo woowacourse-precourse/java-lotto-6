@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.validate.Validate;
+import java.util.*;
 
 public class InputData {
 	public static int playerFinance() {
@@ -20,5 +21,20 @@ public class InputData {
 		return inputData;
 	}
 	
+	public static List<Integer> winningNumber(){
+		List<Integer> winningNumber = new ArrayList<>();
+		String inputData = "";
+		boolean isValidInput = false;
+		while(!isValidInput) {
+			try {
+				inputData = Console.readLine();
+				Validate.isValidSixNumberInput(inputData);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		
+		return winningNumber;
+	}
 	
 }

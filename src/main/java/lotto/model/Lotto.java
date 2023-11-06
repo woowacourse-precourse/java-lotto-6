@@ -25,7 +25,6 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 	
-	//numbers 중복검사
     private void validateUniqueNumbers(List<Integer> numbers) {
     	Set<Integer> uniqueNumbers = new HashSet<>();
     	for(int number : numbers) uniqueNumbers.add(number);

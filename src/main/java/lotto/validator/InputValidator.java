@@ -2,7 +2,7 @@ package lotto.validator;
 
 import static lotto.exception.ExceptionMessage.EMPTY_INPUT_ERROR;
 import static lotto.exception.ExceptionMessage.HAS_BOTH_ENDS_SEPARATOR;
-import static lotto.view.SeparatorConstant.WINNING_NUMBERS_SEPARATOR;
+import static lotto.domain.constants.SeparatorConstant.WINNING_NUMBERS_SEPARATOR;
 
 import lotto.exception.LottoGameException;
 

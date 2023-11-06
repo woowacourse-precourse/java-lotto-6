@@ -4,11 +4,11 @@ import static java.math.RoundingMode.HALF_UP;
 import static lotto.exception.ExceptionMessage.MINIMUM_PAYMENT_ERROR;
 import static lotto.exception.ExceptionMessage.PURCHASE_AMOUNT_ERROR;
 import static lotto.utils.Converter.convertToInt;
-import static lotto.view.NumberConstant.BIG_DECIMAL_ZERO;
-import static lotto.view.NumberConstant.LOTTO_PRICE_UNIT;
-import static lotto.view.NumberConstant.PERCENTAGE_100;
-import static lotto.view.NumberConstant.SCALE_SIZE;
-import static lotto.view.NumberConstant.ZERO;
+import static lotto.domain.constants.NumberConstant.BIG_DECIMAL_ZERO;
+import static lotto.domain.constants.NumberConstant.LOTTO_PRICE_UNIT;
+import static lotto.domain.constants.NumberConstant.PERCENTAGE_100;
+import static lotto.domain.constants.NumberConstant.SCALE_SIZE;
+import static lotto.domain.constants.NumberConstant.ZERO;
 
 import java.math.BigDecimal;
 import lotto.exception.LottoGameException;

@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.utils.Randoms.pickUniqueNumbersInRange;
-import static lotto.view.NumberConstant.ZERO;
+import static lotto.domain.constants.NumberConstant.ZERO;
 
 import java.util.List;
 import java.util.stream.IntStream;

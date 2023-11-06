@@ -16,9 +16,7 @@ import static lotto.domain.constants.WinningPrize.CORRECT_THREE_NUMBERS_PRICE;
 import static lotto.domain.constants.WinningPrize.CORRECT_TWO_NUMBERS_PRICE;
 import static lotto.domain.constants.WinningPrize.CORRECT_ZERO_NUMBER_PRICE;
 import static lotto.exception.ExceptionMessage.SYSTEM_ERROR;
-import static lotto.view.SeparatorConstant.DECIMAL_FORMAT;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.function.UnaryOperator;
 import lotto.domain.MatchingResult;

@@ -4,7 +4,7 @@ import static java.lang.Integer.parseInt;
 import static lotto.exception.ExceptionMessage.INVALID_NUMBER_ERROR;
 import static lotto.validator.InputValidator.validateContainWhiteSpace;
 import static lotto.validator.InputValidator.validateStringWithSeparator;
-import static lotto.view.SeparatorConstant.WINNING_NUMBERS_SEPARATOR;
+import static lotto.domain.constants.SeparatorConstant.WINNING_NUMBERS_SEPARATOR;
 
 import java.util.Arrays;
 import java.util.List;

@@ -3,7 +3,7 @@ package lotto.domain;
 import static java.lang.String.format;
 import static lotto.view.ConsoleMessage.LOTTO_NUMBER_MATCH;
 import static lotto.view.ConsoleMessage.LOTTO_NUMBER_MATCH_WITH_BONUS_NUMBER;
-import static lotto.view.SeparatorConstant.DECIMAL_FORMAT;
+import static lotto.domain.constants.SeparatorConstant.DECIMAL_FORMAT;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

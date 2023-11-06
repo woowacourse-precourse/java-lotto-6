@@ -5,12 +5,12 @@ import static java.util.stream.Collectors.toList;
 import static lotto.exception.ExceptionMessage.DUPLICATE_NUMBER_ERROR;
 import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.exception.ExceptionMessage.WINNING_NUMBERS_SIZE_ERROR;
-import static lotto.view.NumberConstant.LAST_INDEX_FOR_INSERT_SEPARATOR;
-import static lotto.view.NumberConstant.MAXIMUM_LOTTO_NUMBER;
-import static lotto.view.NumberConstant.MINIMUM_LOTTO_NUMBER;
-import static lotto.view.NumberConstant.VALIDATE_LOTTO_SIZE;
-import static lotto.view.NumberConstant.ZERO;
-import static lotto.view.SeparatorConstant.LOTTO_NUMBERS_SEPARATOR;
+import static lotto.domain.constants.NumberConstant.LAST_INDEX_FOR_INSERT_SEPARATOR;
+import static lotto.domain.constants.NumberConstant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.domain.constants.NumberConstant.MINIMUM_LOTTO_NUMBER;
+import static lotto.domain.constants.NumberConstant.VALIDATE_LOTTO_SIZE;
+import static lotto.domain.constants.NumberConstant.ZERO;
+import static lotto.domain.constants.SeparatorConstant.LOTTO_NUMBERS_SEPARATOR;
 
 import java.util.List;
 import lotto.exception.LottoGameException;

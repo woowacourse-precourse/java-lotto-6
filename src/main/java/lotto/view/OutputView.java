@@ -7,7 +7,7 @@ import static lotto.view.ConsoleMessage.ENTER_WINNING_NUMBERS;
 import static lotto.view.ConsoleMessage.RESULTS_SUMMARY;
 import static lotto.view.ConsoleMessage.SUCCESS_PURCHASE_LOTTO;
 import static lotto.view.ConsoleMessage.TOTAL_RETURN;
-import static lotto.view.SeparatorConstant.RESULT_SUMMARY_SEPARATOR;
+import static lotto.domain.constants.SeparatorConstant.RESULT_SUMMARY_SEPARATOR;
 
 import java.math.BigDecimal;
 import java.util.List;

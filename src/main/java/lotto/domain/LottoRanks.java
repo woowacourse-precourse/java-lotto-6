@@ -2,9 +2,9 @@ package lotto.domain;
 
 import static java.util.Collections.unmodifiableMap;
 import static java.util.stream.Collectors.toMap;
-import static lotto.view.NumberConstant.INCREASE_NUMBER;
-import static lotto.view.NumberConstant.LONG_TYPE_ZERO;
-import static lotto.view.NumberConstant.START_LOTTO_COUNT;
+import static lotto.domain.constants.NumberConstant.INCREASE_NUMBER;
+import static lotto.domain.constants.NumberConstant.LONG_TYPE_ZERO;
+import static lotto.domain.constants.NumberConstant.START_LOTTO_COUNT;
 
 import java.util.Arrays;
 import java.util.EnumMap;

@@ -2,15 +2,14 @@ package lotto.domain;
 
 import lotto.constant.Errors;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-
-        Collections.sort(numbers);
 
         validateLength(numbers);
         validateRange(numbers);
@@ -38,10 +37,12 @@ public class Lotto {
     }
 
     private void validateDuplication(List<Integer> numbers){
-        for(int i = 1; i < numbers.size(); i++){
-            if(numbers.get(i) == numbers.get(i-1)){
-                throw new IllegalArgumentException(Errors.WINNIG_NUMBER_DUPLICATE_MESSAGE.getErrorMessage());
-            }
+        Set<Integer> set = new HashSet<>();
+        for(Integer number : numbers){
+            set.add(number);
+        }
+        if(set.size() != numbers.size()){
+            throw new IllegalArgumentException(Errors.WINNIG_NUMBER_DUPLICATE_MESSAGE.getErrorMessage());
         }
     }
 

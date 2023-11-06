@@ -11,23 +11,30 @@ public class LottoResult {
 
     private int bonusNumber;
 
-    public LottoResult() {
+    public LottoResult() { // 실제 사용하는  생성자
         setLottoResultNumber(inputLotteryResultNumber());
+        setBonusNumber(inputBonusResultNumber());
     }
 
-    public LottoResult(String[] userInputNumber) {
+    public LottoResult(String[] userInputNumber) { // 테스트코드용 생성자
         setLottoResultNumber(userInputNumber);
     }
 
-    public List<Integer> getLottoResultNumber() {
-        return lottoResultNumber;
+    public LottoResult(String userInputNumber) { // 테스트코드용 생성자
+        setBonusNumber(userInputNumber);
     }
+
 
     private String[] inputLotteryResultNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputLottoResultNumber = readLine();
         String[] lottoResult = inputLottoResultNumber.split(",");
+        System.out.println();
         return lottoResult;
+    }
+
+    public List<Integer> getLottoResultNumber() {
+        return lottoResultNumber;
     }
 
     private void setLottoResultNumber(String[] lottoResult) {
@@ -36,6 +43,22 @@ public class LottoResult {
             int number = Integer.parseInt(lottoResults.trim());
             lottoResultNumber.add(number);
         }
+    }
+
+    private String inputBonusResultNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String inputBonusNumber = readLine();
+        System.out.println();
+        return inputBonusNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    private void setBonusNumber(String inputBonusNumber) {
+        int number = Integer.parseInt(inputBonusNumber);
+        this.bonusNumber = number;
     }
 
 

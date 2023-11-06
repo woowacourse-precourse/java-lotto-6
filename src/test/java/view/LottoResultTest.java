@@ -18,4 +18,16 @@ public class LottoResultTest {
 
         assertThat(inputNumberCnt).isEqualTo(lottoResultCnt);
     }
+
+    @DisplayName("입력된 보너스 번호가 제대로 저장되었는지 확인한다.")
+    @Test
+    void setBonusResultNumberTest() {
+        String inputNumber = "7";
+        LottoResult lottoResult = new LottoResult(inputNumber);
+        int number = Integer.parseInt(inputNumber);
+        int bonusNumber = lottoResult.getBonusNumber();
+
+        assertThat(number).isEqualTo(bonusNumber);
+    }
+
 }

@@ -12,4 +12,8 @@ public class lottoPlayer {
             lottos.add(lotto);
         }
     }
+
+    public void removeLottos() {
+        lottos.clear();
+    }
 }

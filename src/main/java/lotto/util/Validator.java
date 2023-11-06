@@ -26,38 +26,30 @@ public class Validator {
         return Integer.parseInt(bonusNumberInput);
     }
 
-    private static void checkNotInWinningNumber(GetWinningNumberDto getWinningNumberDto, String bonusNumberInput) {
-        if(hasBonusNumber(getWinningNumberDto, bonusNumberInput)){
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호들과 달라야 합니다.");
-        }
-    }
-
     private static boolean hasBonusNumber(GetWinningNumberDto getWinningNumberDto, String bonusNumberInput) {
         return getWinningNumberDto.getWinningNumbers().contains(Integer.parseInt(bonusNumberInput));
     }
 
     private static List<Integer> checkIsWinningNumber(String[] split) {
-        return checkIsRealNumber(split, getWinningNumbersList(), ZERO);
+        return checkIsRealNumber(split, getWinningNumbersList());
     }
 
     private static ArrayList<Integer> getWinningNumbersList() {
         return new ArrayList<>();
     }
 
-    private static List<Integer> checkIsRealNumber(String[] split, List<Integer> winningNumbersList, int numberCount) {
-        for(String number: split){
-            checkIsRealNumber(winningNumbersList, number);
-            numberCount++;
-        }
-        checkNumberCounts(numberCount);
+    private static List<Integer> checkIsRealNumber(String[] split, List<Integer> winningNumbersList) {
+        checkNumberCounts(getNumberCount(split, winningNumbersList, ZERO));
         checkDistinct(winningNumbersList);
         return winningNumbersList;
     }
 
-    private static void checkDistinct(List<Integer> winningNumbersList) {
-        if(isNotDistinct(winningNumbersList, getSet(winningNumbersList))){
-            throw new IllegalArgumentException("중복된 숫자들은 입력하지 마세요.");
+    private static int getNumberCount(String[] split, List<Integer> winningNumbersList, int numberCount) {
+        for(String number: split){
+            checkIsRealNumber(winningNumbersList, number);
+            numberCount++;
         }
+        return numberCount;
     }
 
     private static Set<Integer> getSet(List<Integer> winningNumbersList) {
@@ -67,12 +59,6 @@ public class Validator {
 
     private static boolean isNotDistinct(List<Integer> winningNumbersList, Set<Integer> numberSet) {
         return numberSet.size() != winningNumbersList.size();
-    }
-
-    private static void checkNumberCounts(int numberCount) {
-        if(isNotRightCounts(numberCount)){
-            throw new IllegalArgumentException("6개의 숫자를 입력해주세요.");
-        }
     }
 
     private static boolean isNotRightCounts(int numberCount) {
@@ -85,20 +71,6 @@ public class Validator {
 
     private static boolean isLowerThanSix(int numberCount) {
         return numberCount < NEED_NUMBER_COUNT;
-    }
-
-    private static void checkIsRealNumber(List<Integer> winningNumbersList, String number) {
-        try{
-            winningNumbersList.add(checkNumberInBoundary(Integer.parseInt(number)));
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException("올바른 숫자를 입력해주세요.");
-        }
-    }
-
-    private static void checkNumberInBoundary(int realNumber) {
-        if (isNotRightBoundaryNumber(realNumber)){
-            throw  new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
     }
 
     private static boolean isNotRightBoundaryNumber(int realNumber) {
@@ -121,22 +93,56 @@ public class Validator {
         return money / THOUSAND;
     }
 
-    private static int checkThousand(Integer money) {
-        if(isThousand(money)){
-            throw new IllegalArgumentException("구입 금액 단위는 최소 천원이면서 천원 단위여야 합니다.");
-        }
-        return money;
-    }
-
     private static boolean isThousand(Integer money) {
         return money % THOUSAND != ZERO;
+    }
+
+    private static void checkDistinct(List<Integer> winningNumbersList) {
+        if(isNotDistinct(winningNumbersList, getSet(winningNumbersList))){
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자들은 입력하지 마세요.");
+        }
+    }
+
+    private static void checkNotInWinningNumber(GetWinningNumberDto getWinningNumberDto, String bonusNumberInput) {
+        if(hasBonusNumber(getWinningNumberDto, bonusNumberInput)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호들과 달라야 합니다.");
+        }
+    }
+
+    private static void checkNumberCounts(int numberCount) {
+        if(isNotRightCounts(numberCount)){
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
+        }
+    }
+
+    private static void checkNumberInBoundary(int realNumber) {
+        if (isNotRightBoundaryNumber(realNumber)){
+            throw  new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static int checkThousand(Integer money) {
+        if(isThousand(money)){
+            throw new IllegalArgumentException("[ERROR] 구입 금액 단위는 최소 천원이면서 천원 단위여야 합니다.");
+        }
+        return money;
     }
 
     private static Integer checkIsNumber(String buyMoney) {
         try{
             return Integer.valueOf(buyMoney);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("숫자만 입력해주세요");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요");
+        }
+    }
+
+    private static void checkIsRealNumber(List<Integer> winningNumbersList, String number) {
+        try{
+            int num = Integer.parseInt(number);
+            checkNumberInBoundary(num);
+            winningNumbersList.add(num);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해주세요.");
         }
     }
 }

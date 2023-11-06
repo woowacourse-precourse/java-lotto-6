@@ -18,6 +18,12 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static void validateSingleNumberRange(Integer number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이로 발급되어야 합니다.");
+        }
+    }
+
     public int countCorrectLottoNumber(Set<Integer> prizeNumbers) {
         int correctNumberCount = 0;
 
@@ -30,15 +36,13 @@ public class Lotto {
         return correctNumberCount;
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     public List<Integer> sortingAscendingNumbers() {
         numbers.sort(Comparator.naturalOrder());
         return numbers;
-    }
-
-    public static void validateSingleNumberRange(Integer number) {
-        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이로 발급되어야 합니다.");
-        }
     }
 
     private void validateSixNumberCount(List<Integer> numbers) {
@@ -58,7 +62,7 @@ public class Lotto {
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        numbers.forEach(this::validateSingleNumberRange);
+        numbers.forEach(Lotto::validateSingleNumberRange);
     }
 
     @Override

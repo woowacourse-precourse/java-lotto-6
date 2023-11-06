@@ -9,6 +9,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplication(numbers);
+        validateFittingInRange(numbers);
         this.numbers = numbers;
     }
 
@@ -33,6 +34,14 @@ public class Lotto {
 
         if (duplicationChecker.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다");
+        }
+    }
+
+    private void validateFittingInRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 1에서 45사이 숫자만 허용됩니다.");
+            }
         }
     }
 }

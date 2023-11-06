@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
+import lotto.view.InputView;
 
 public class LottoGame {
     private Money money;
@@ -15,7 +16,12 @@ public class LottoGame {
     }
 
     private void start(){
-
+        money = InputView.LoopInputMoney();
+        // 사용자 로또 출력
+        lotto = InputView.LoopInputSixNumbers();
+        bonus = InputView.LoopInputBonusNumber(lotto);
+        // 게임 종료
+        end();
     }
 
     private void end(){

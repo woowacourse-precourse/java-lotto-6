@@ -23,30 +23,13 @@ class LottoStoreTest {
 
 
     @Test
-    @DisplayName("구입금액에 해당하는 만큼 로또를 발행한다. 1,000원 단위로 입력안했을 경우 예외발생")
-    void testGenerateLottoTicketsWithInvalidInputAmount() {
-        String input = "1500";
-        assertThatThrownBy(() -> lottoStore.calculateLottoTicketCount(input)).isInstanceOf(
-                IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("구입금액에 해당하는 만큼 로또를 발행한다. 문자열이 입력되면 예외 발생")
-    void testCalculateLottoTicketCountWithInvalidInput() {
-        String input = "a";
-        assertThatThrownBy(() -> lottoStore.calculateLottoTicketCount(input)).isInstanceOf(
-                IllegalArgumentException.class);
-    }
-
-    @Test
     @DisplayName("구입금액에 해당하는 만큼 로또를 발행한다.")
     void testCalculateLottoTicketCount() {
-        String input = "2000";
+        int input = 2000;
         int LottoCounts = lottoStore.calculateLottoTicketCount(input);
 
         Assertions.assertEquals(2, LottoCounts);
 
     }
-
 
 }

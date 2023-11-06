@@ -33,9 +33,9 @@ class LottoResultTest {
     void testCalculateUserProfit() {
         LottoResult lottoResult = new LottoResult();
         Player player = new Player(UserLottoList, 8000);
-        double userProfit = lottoResult.calculateProfit(player.checkLottoTickets(winLotto),
+        String userProfit = lottoResult.calculateProfit(player.checkLottoTickets(winLotto),
                 player.getMoney());
-        Assertions.assertEquals(62.5, userProfit);
+        Assertions.assertEquals("62.5%", userProfit);
     }
 
 }

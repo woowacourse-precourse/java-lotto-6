@@ -10,16 +10,12 @@ import java.util.List;
 
 public class LottoStore {
 
-    public int calculateLottoTicketCount(String input) {
-        if (!input.matches("^[0-9]*$")) {
-            throw new IllegalArgumentException(TYPE_ERROR.getExceptionMessage());
-        }
-
-        if (Integer.parseInt(input) % 1000 != 0) {
+    public int calculateLottoTicketCount(int input) {
+        if (input % 1000 != 0) {
             throw new IllegalArgumentException(LOTTO_TICKET_PRICE.getExceptionMessage());
         }
 
-        return Integer.parseInt(input) / 1000;
+        return input / 1000;
     }
 
     public List<Lotto> buyLottoTickets(int count) {

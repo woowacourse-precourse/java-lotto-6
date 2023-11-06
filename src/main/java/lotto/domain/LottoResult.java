@@ -14,19 +14,19 @@ public class LottoResult {
         return map.getOrDefault(Rank, 0);
     }
 
-    public Map<LottoRank, Integer> calculateRankCounts(List<LottoRank> lottoRankList) {
+    public void calculateRankCounts(List<LottoRank> lottoRankList) {
         map = new HashMap<>();
         for (LottoRank lottoRank : lottoRankList) {
             map.put(lottoRank, map.getOrDefault(lottoRank, 0) + 1);
         }
-        return map;
     }
 
-    public double calculateProfit(List<LottoRank> lottoRankList, int money) {
-        int sum = lottoRankList.stream()
-                .mapToInt(LottoRank::getPrize)
+    public String calculateProfit(List<LottoRank> lottoRankList, int money) {
+        long sum = lottoRankList.stream()
+                .mapToLong(LottoRank::getPrize)
                 .sum();
-        return (double) (sum * 100) / money;
+        double profit = (double) (sum * 100) / money;
+        return String.format("%,.1f%%", profit);
     }
 
 

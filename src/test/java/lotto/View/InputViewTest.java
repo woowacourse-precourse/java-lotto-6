@@ -1,7 +1,7 @@
 package lotto.View;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
-
+import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -14,6 +14,8 @@ class InputViewTest {
         String input = "1000";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
+        Console.close();
+
         assertThatCode(() -> InputView.inputAmount()).doesNotThrowAnyException();
     }
 
@@ -22,6 +24,8 @@ class InputViewTest {
         String input = "1,2,3,4,5,6";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
+        Console.close();
+
         assertThatCode(() -> InputView.inputWinningNumbers()).doesNotThrowAnyException();
     }
 
@@ -30,6 +34,8 @@ class InputViewTest {
         String input = "7";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
+        Console.close();
+
         assertThatCode(() -> InputView.inputBonusNumber()).doesNotThrowAnyException();
     }
 

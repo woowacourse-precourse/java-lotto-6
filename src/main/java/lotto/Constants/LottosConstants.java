@@ -21,4 +21,12 @@ public enum LottosConstants {
         this.matchNumber = matchNumber;
         this.prizeMoney = prizeMoney;
     }
+
+    public int getMatchNumber() {
+        return this.matchNumber;
+    }
+
+    public int getPrizeMoney(){
+        return this.prizeMoney;
+    }
 }

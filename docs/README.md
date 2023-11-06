@@ -10,25 +10,29 @@
 ### LottoController
 
 1. 사용자로부터 로또 구입 금액, 당첨 번호, 보너스 번호를 입력 받습니다.
-2. InputView로 입력을 받아 InputParser로 파싱한 뒤 InputValidator로 입력을 검증합니다.
-3. 잘못된 입력을 받을 시 오류 메시지를 출력하고 다시 입력을 받습니다.
-4. 사용자 입력을 토대로 로또를 생성하고 결과를 출력합니다.
+2. `InputHandler`를 통해 검증된 사용자 입력을 전달받습니다.
+3. 사용자 입력을 토대로 로또를 생성하고 결과를 출력합니다.
 
 ### InputParser
 
 - 사용자의 입력을 파싱하는 클래스입니다.
-- 숫자로 변환하는 과정에서 오류가 발생할 시 **IllegalArgumentException**이 발생합니다.
-    - 오류 메시지는 **ErrorMessage**에 지정된 static 문자열 사용합니다.
+- 숫자로 변환하는 과정에서 오류가 발생할 시 `IllegalArgumentException`이 발생합니다.
+    - 오류 메시지는 `ErrorMessage`에 지정된 static 문자열을 사용합니다.
 
 ### InputValidator
 
 - 파싱된 입력을 검증하는 검증 클래스입니다.
-- 검증 오류가 발생할 시 **IllegalArgumentException**이 발생합니다.
-    - 오류 메시지는 ErrorMessage에 지정된 static 문자열 사용
+- 검증 오류가 발생할 시 `IllegalArgumentException`이 발생합니다.
+    - 오류 메시지는 ErrorMessage에 지정된 static 문자열을 사용합니다.
+
+### InputHandler
+
+1. `InputView`로 입력을 받아 `InputParser`로 파싱한 뒤 `InputValidator`로 입력을 검증합니다.
+2. 제네릭 함수를 통해 잘못된 입력을 받을 시 오류 메시지를 출력하고 다시 입력받습니다/
 
 #### 검증 목록
 
-오류 메시지는 **ErrorMessage**에 지정된 static 문자열 사용합니다.
+오류 메시지는 `ErrorMessage`에 지정된 static 문자열 사용합니다.
 
 1. 구매금액 검증(`validateMoney` 메소드)
 
@@ -44,11 +48,12 @@
 3. 보너스 번호 검증(`validateBonusNumber` 메소드)
 
 - 보너스 번호가 범위 내에 있는지 확인합니다. 만약 범위를 벗어난다면 `IllegalArgumentException`을 발생시킵니다.
+- 보너스 번호가 당첨 번호 6자리와 중복되는지 확인합니다. 만약 중복된다면 `IllegalArgumentException`을 발생시킵니다.
 
 ## 모델
 
 - 로또의 생성 및 당첨 확인을 담당합니다.
-- 로또의 생성은 중복되지 않는 번호를 반환하는 **Randoms.pickUniqueNumbersInRange**를 사용합니다.
+- 로또의 생성은 중복되지 않는 번호를 반환하는 `Randoms.pickUniqueNumbersInRange`를 사용합니다.
 
 ### Lotto
 
@@ -66,6 +71,22 @@
 ### LottoResult
 
 - 이번 회차 로또의 총 결과를 저장하는 클래스입니다.
+
+### LottoService
+
+이 클래스는 로또 생성과 검증을 담당하는 클래스입니다.
+이 클래스는 `LottoGenerator`와 `LottoChecker` 두 개의 클래스를 호출해 반환합니다.
+
+- 로또 생성은 `LottoGenerator` 클래스를 사용하여 수행됩니다.
+- 로또 검사는 `LottoChecker` 클래스를 사용하여 수행됩니다.
+
+### LottoGenerator
+
+이 클래스는 전달받은 돈에 따라 로또를 발급해주는 함수입니다.
+
+### LottoChecker
+
+이 클래스는 로또 리스트와 당첨 번호 및 보너스 번호를 전달받아 로또 당첨 결과를 `LottoResult`를 통해 반환해 줍니다.
 
 ## 뷰
 

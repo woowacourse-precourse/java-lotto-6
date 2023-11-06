@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.dto.LottoResponseDtos.LottoResponseDto;
+import lotto.dto.ResultResponseDto;
 import lotto.utils.constant.LottoConstant;
 
 public class Result {
@@ -33,9 +34,13 @@ public class Result {
         return Ranking.findRanking(count, checkBonus);
     }
 
-    public int calculateTotalPrize() {
+    public int calculateTotalPrice() {
         return result.entrySet().stream()
             .mapToInt(e -> e.getKey().multiply(e.getValue()))
             .sum();
+    }
+
+    public ResultResponseDto toResponseDto() {
+        return new ResultResponseDto(result);
     }
 }

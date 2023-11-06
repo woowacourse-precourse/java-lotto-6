@@ -10,7 +10,7 @@ public class StringUtils {
     public static int convertToInt(String s) {
         try {
             return Integer.parseInt(s);
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER);
         }
     }

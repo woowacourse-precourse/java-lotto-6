@@ -8,6 +8,7 @@ import lotto.domain.Result;
 import lotto.domain.WinningNumber;
 import lotto.dto.LottoResponseDtos;
 import lotto.dto.LottoResponseDtos.LottoResponseDto;
+import lotto.dto.ResultResponseDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,16 +22,21 @@ public class LottoController {
     }
 
     public void run() {
-        int count = getAmount();
-        List<LottoResponseDto> lottoDtos = createLottos(count);
-        WinningNumber winningNumber = getWinningNumber();
-        createResult(lottoDtos, winningNumber);
+        try {
+            Amount amount = getAmount();
+            List<LottoResponseDto> lottoDtos = createLottos(amount.getLottoCount());
+            WinningNumber winningNumber = getWinningNumber();
+            Result result = createResult(lottoDtos, winningNumber);
+            getYield(amount, result);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    private int getAmount() {
+    private Amount getAmount() {
         String money = inputView.getPurchaseAmount();
         Amount amount = new Amount(money);
-        return amount.getLottoCount();
+        return amount;
     }
 
     private List<LottoResponseDto> createLottos(int count) {
@@ -48,7 +54,16 @@ public class LottoController {
         return winningNumber;
     }
 
-    private void createResult(List<LottoResponseDto> lottoDtos, WinningNumber winningNumber) {
+    private Result createResult(List<LottoResponseDto> lottoDtos, WinningNumber winningNumber) {
         Result result = new Result(lottoDtos, winningNumber);
+        ResultResponseDto responseDto = result.toResponseDto();
+        outputView.printWinningStatistics(responseDto);
+        return result;
+    }
+    
+    private void getYield(Amount amount, Result result) {
+        int totalPrice = result.calculateTotalPrice();
+        double yield = amount.calculateYield(totalPrice);
+        outputView.printYield(yield);
     }
 }

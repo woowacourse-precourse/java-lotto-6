@@ -19,7 +19,7 @@ public class Amount {
         return money / LottoConstant.LOTTO_AMOUNT;
     }
 
-    public double calculateYield(int prize) {
-        return Constant.PERCENT * prize / money;
+    public double calculateYield(int price) {
+        return Constant.PERCENT * price / money;
     }
 }

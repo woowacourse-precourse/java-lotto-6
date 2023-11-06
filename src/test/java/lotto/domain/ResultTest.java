@@ -39,7 +39,7 @@ class ResultTest {
 
         // when
         Result result = new Result(lottoResponseDtos, winningNumber);
-        int totalPrize = result.calculateTotalPrize();
+        int totalPrize = result.calculateTotalPrice();
 
         // then
         assertThat(totalPrize).isEqualTo(Ranking.SECOND.getPrice() * 1);

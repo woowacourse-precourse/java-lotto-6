@@ -9,7 +9,7 @@ public class Validator {
         try {
             Integer.valueOf(input);
         } catch (NumberFormatException e) {
-            throw new LottoException(LottoException.ErrorMessage.LOTTO_MIN_AMOUNT.getMessage());
+            throw new LottoException(LottoException.ErrorMessage.MIN_LOTTO_AMOUNT.getMessage());
         }
     }
 

@@ -27,7 +27,7 @@ public class Lotto {
 
     public void validateAndThrowIfBonusNumberExists(LottoWinningBonusNumber lottoWinningBonusNumber) throws LottoException {
         if (containsBonusNumber(lottoWinningBonusNumber)) {
-            throw new LottoException(LottoException.ErrorMessage.ALREADY_CONTAINS_BONUS_NUMBER.getMessage());
+            throw new LottoException(LottoException.ErrorMessage.CONTAINS_ALREADY_BONUS_NUMBER.getMessage());
         }
     }
 

@@ -8,7 +8,7 @@ import lotto.model.PurchaseMoney;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class purchaseMoneyTest {
+public class PurchaseMoneyTest {
 
     @Test
     @DisplayName("올바른 금액을 입력한 경우")

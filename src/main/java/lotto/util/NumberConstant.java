@@ -3,6 +3,8 @@ package lotto.util;
 public class NumberConstant {
     public static final Integer MONEY_STANDARD = 1000;
     public static final Integer MONEY_MAX = 100_000;
+    public static final Integer MULTIPLY_STANDARD = 1000;
+    public static final Double DIVIDE_STANDARD = 10.0;
 
     public static final Integer LOTTO_MIN = 1;
     public static final Integer LOTTO_MAX = 45;

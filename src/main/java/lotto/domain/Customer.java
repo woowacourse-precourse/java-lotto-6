@@ -31,6 +31,11 @@ public class Customer {
         return this.MONEY / MONEY_STANDARD;
     }
 
+    public Double calculateRevenueRatio(double winningSum) {
+        double result = winningSum / MONEY * MULTIPLY_STANDARD;
+        return Math.round(result) / DIVIDE_STANDARD;
+    }
+
     public List<String> getLottoTexts() {
         return buyLotto.stream()
                 .map(Lotto::getLottoNumbersText)
@@ -40,4 +45,6 @@ public class Customer {
     public List<Lotto> getAllLotto() {
         return Collections.unmodifiableList(buyLotto);
     }
+
+
 }

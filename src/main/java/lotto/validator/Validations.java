@@ -42,9 +42,11 @@ public class Validations {
                     if (!Pattern.matches(REGEX_FOR_LOTTO_NUMBER_RANGE.getRegex(), number.trim()) ||
                     numberChecker.contains(number.trim()))
                         throw new IllegalArgumentException();
+
                     numberChecker.add(number.trim());
                     numbers.add(Integer.parseInt(number.trim()));
                 });
+
         return numbers;
     }
 

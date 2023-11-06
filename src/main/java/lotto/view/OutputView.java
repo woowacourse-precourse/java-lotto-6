@@ -6,12 +6,12 @@ import lotto.dto.output.DrawingResultDto;
 import lotto.dto.output.LottoDto;
 import lotto.dto.output.LottosDto;
 import lotto.io.output.StdWriter;
+import lotto.io.output.Writer;
 
 public class OutputView {
-    private static final String NEM_LINE = "\n";
     private static final String DELIMITER = ", ";
-    private static final String prefix = "[";
-    private static final String suffix = "]";
+    private static final String PREFIX = "[";
+    private static final String SUFFIX = "]";
     private static final String TEMPLATE = """
              
                     당첨 통계
@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     private void printLottoTicketsCount(List<LottoDto> lottoTickets) {
-        String message = String.format("%s%d개를 구매했습니다.", NEM_LINE, lottoTickets.size());
+        String message = String.format("%s%d개를 구매했습니다.", Writer.NEW_LINE, lottoTickets.size());
         writer.writeLine(message);
     }
 
@@ -46,13 +46,13 @@ public class OutputView {
             String lottoTicketFormat = formatLottoNumbers(lottoNumbers);
             writer.writeLine(lottoTicketFormat);
         }
-        writer.write(NEM_LINE);
+        writer.write(Writer.NEW_LINE);
     }
 
     private String formatLottoNumbers(List<Integer> lottoNumbers) {
         return lottoNumbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(DELIMITER, prefix, suffix));
+                .collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX));
     }
 
     public void printResult(DrawingResultDto result) {
@@ -63,7 +63,7 @@ public class OutputView {
                 result.thirdMatchCount(),
                 result.secondMatchCount(),
                 result.firstMatchCount(),
-                result.earningOfRate()
+                result.prizeOfRate()
         );
         writer.writeLine(message);
     }

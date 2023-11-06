@@ -44,5 +44,9 @@ public class Output {
     public static final void printTotalProfitRating(Double rating) {
         System.out.printf(Statement.TOTAL_PROFIT_RATING.statement, rating);
     }
+
+    public static final void printLottoNumber(String lotto) {
+        printStatement(lotto);
+    }
 }
 

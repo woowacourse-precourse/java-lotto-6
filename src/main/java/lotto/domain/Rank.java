@@ -20,6 +20,15 @@ public enum Rank {
         this.message = message;
     }
 
+    public static Rank valueOf(Integer count, boolean checkBonusNumber) {
+        for(Rank rank : Rank.values()){
+            if(rank.count == count || rank.checkBonusNumber == checkBonusNumber){
+                return rank;
+            }
+        }
+        return NONE;
+    }
+
     public int getProfit() {
         return profit;
     }

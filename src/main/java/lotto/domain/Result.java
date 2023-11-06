@@ -28,5 +28,7 @@ public class Result {
                 count++;
             }
         }
+        Rank keyRank = Rank.valueOf(count, checkBonusNumber);
+        this.result.put(keyRank,this.result.get(keyRank)+1);
     }
 }

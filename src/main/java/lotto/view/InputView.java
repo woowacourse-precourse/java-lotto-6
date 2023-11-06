@@ -4,7 +4,6 @@ import static lotto.constant.ExceptionMessage.ONLY_NUMBER_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.domain.BuyAmount;
 import lotto.utils.converter.Converter;
 import lotto.utils.validator.InputValidator;
 
@@ -17,12 +16,12 @@ public class InputView {
     private InputView() {
     }
 
-    public static BuyAmount getBuyAmountFromInput() {
+    public static long getBuyAmountFromInput() {
         try {
             System.out.println(INPUT_BUY_AMOUNT_MESSAGE);
             String buyAmount = read();
             InputValidator.validateEmpty(buyAmount);
-            return new BuyAmount(Long.parseLong(buyAmount));
+            return Long.parseLong(buyAmount);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ONLY_NUMBER_MESSAGE);
         }

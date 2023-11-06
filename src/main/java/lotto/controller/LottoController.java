@@ -15,7 +15,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    
+
     private final NumberGenerator lottoNumberGenerator;
     private Lottos lottos;
     private WinningNumbers winningNumbers;
@@ -32,7 +32,8 @@ public class LottoController {
     }
 
     private void buyLotto() {
-        buyAmount = InputView.getBuyAmountFromInput();
+        long inputBuyAmount = InputView.getBuyAmountFromInput();
+        buyAmount = new BuyAmount(inputBuyAmount);
         lottos = createLottosFromAmount();
         OutputView.displayAllLottos(lottos.toLottosDTO());
     }

@@ -13,5 +13,12 @@ public class LottoService {
         return numbers;
     }
 
-
+    public List<Integer> splitWinningNumber(String input){
+        String [] splitString = input.split(",");
+        List<Integer> winningNumber = new ArrayList<>();
+        for(int i = 0 ; i <splitString.length; i++){
+            winningNumber.add(Integer.parseInt(splitString[i]));
+        }
+        return winningNumber;
+    }
 }

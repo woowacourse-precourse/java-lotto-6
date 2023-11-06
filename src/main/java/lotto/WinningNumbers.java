@@ -28,11 +28,4 @@ public class WinningNumbers {
         return lotto.contains(bonusNumber);
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
 }

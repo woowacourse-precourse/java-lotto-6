@@ -13,6 +13,10 @@ public class PurchaseAmount {
         this.amount = inputAmount;
     }
 
+    public int calculateLottoCount(){
+        return amount / DIVIDE_UNIT;
+    }
+
     private void validate(int inputAmount) {
         validateNaturalNumber(inputAmount);
         validateDivideUnit(inputAmount);

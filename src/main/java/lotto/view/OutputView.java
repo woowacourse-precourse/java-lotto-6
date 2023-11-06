@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
+import java.util.*;
 
 public class OutputView {
     public static void printBuyInstruction() {
@@ -33,8 +34,14 @@ public class OutputView {
     	System.out.println();
     }
     
-    public static void printWinningStatistics() {
-    	
+    public static void printWinningStatistics(Map<String,Integer> rankCount) {
+    	System.out.println("당첨 통계");
+    	System.out.println("---");
+    	System.out.println("3개 일치 (5,000원) - "+rankCount.getOrDefault("FIFTH", 0)+"개");
+    	System.out.println("4개 일치 (50,000원) - "+rankCount.getOrDefault("FOURTH", 0)+"개");
+    	System.out.println("5개 일치 (1,500,000원) - "+rankCount.getOrDefault("THIRD", 0)+"개");
+    	System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+rankCount.getOrDefault("SECOND", 0)+"개");
+    	System.out.println("6개 일치 (2,000,000,000원) - "+rankCount.getOrDefault("FIRST", 0)+"개");
     }
     
 }

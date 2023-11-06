@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.domain.util.ErrorMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -53,6 +54,32 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+
+    @Test
+    void 구매금액_문자_입력할경우() {
+        assertSimpleTest(() -> {
+            runException("8000a");
+            assertThat(output()).contains(ErrorMessage.INVALID_TYPE_INPUT.getErrorMessage());
+        });
+    }
+
+    @Test
+    void 구매금액_음수_입력할경우() {
+        assertSimpleTest(() -> {
+            runException("-1");
+            assertThat(output()).contains(ErrorMessage.INVALID_MONEY_UNIT.getErrorMessage());
+        });
+    }
+
+    @Test
+    void 구매금액_1000원단위_아닐경우() {
+        assertSimpleTest(() -> {
+            runException("3500");
+            assertThat(output()).contains(ErrorMessage.INVALID_MONEY_UNIT.getErrorMessage());
+        });
+    }
+
 
     @Override
     public void runMain() {

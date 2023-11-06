@@ -50,24 +50,17 @@ public class Lotto {
     }
 
     public static Lotto from(String userInput) {
-        // TODO 검증 후 바꿔야함
         List<String> userInputList = toStringList(userInput);
         validate(userInputList);
-
-        // TODO 숫자로 바꿔야함.
-        return new Lotto(null);
+        List<Integer> lottoList = toIntegerList(userInputList);
+        return new Lotto(lottoList);
     }
 
     private static void validate(List<String> list) {
         validDigit(list);
         List<Integer> integerList = toIntegerList(list);
         validRange(integerList);
-    }
-
-    private static List<String> toStringList(String userInput) {
-        return Arrays.stream(userInput.split(","))
-                .map(String::trim)
-                .toList();
+        validDuplicated(integerList);
     }
 
     private static void validDigit(List<String> list) {
@@ -77,12 +70,6 @@ public class Lotto {
         }
     }
 
-    private static List<Integer> toIntegerList(List<String> stringList) {
-        return stringList.stream()
-                .map(Integer::parseInt)
-                .toList();
-    }
-
     private static void validRange(List<Integer> list) {
         boolean overRange = list.stream().anyMatch(num -> num > 45);
         if (overRange) {
@@ -90,4 +77,26 @@ public class Lotto {
         }
     }
 
+    private static void validDuplicated(List<Integer> list) {
+        long uniqueCount = list.stream().distinct().count();
+        if (uniqueCount < list.size()) {
+            throw new IllegalArgumentException("중복된 숫자가 있습니다!");
+        }
+    }
+
+    private static List<String> toStringList(String userInput) {
+        return Arrays.stream(userInput.split(","))
+                .map(String::trim)
+                .toList();
+    }
+
+    private static List<Integer> toIntegerList(List<String> stringList) {
+        return stringList.stream()
+                .map(Integer::parseInt)
+                .toList();
+    }
+
+    public List<Number> getNumbers() {
+        return numbers;
+    }
 }

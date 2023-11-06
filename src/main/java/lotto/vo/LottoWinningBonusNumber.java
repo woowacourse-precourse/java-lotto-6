@@ -28,6 +28,10 @@ public final class LottoWinningBonusNumber {
         return value;
     }
 
+    public Integer getValue() {
+        return value.value();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
@@ -37,7 +41,7 @@ public final class LottoWinningBonusNumber {
             return false;
         }
         LottoWinningBonusNumber other = (LottoWinningBonusNumber) obj;
-        return value == other.value;
+        return value.value().equals(other.getValue());
     }
 
     @Override

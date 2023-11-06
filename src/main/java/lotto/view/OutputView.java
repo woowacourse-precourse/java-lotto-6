@@ -24,10 +24,10 @@ public class OutputView {
 
     public static void printResult(String winningResult, double profitPercentage) {
         System.out.println(winningResult);
-        System.out.println(String.format(Messages.TOTAL_PROFIT_MESSAGE, getProfitPercentage(profitPercentage)));
+        System.out.println(String.format(Messages.TOTAL_PROFIT_MESSAGE, formatProfitRate(profitPercentage)));
     }
 
-    public static String getProfitPercentage(double profitRate) {
+    private static String formatProfitRate(double profitRate) {
         DecimalFormat decimalFormat = new DecimalFormat(Values.PROFIT_DECIMAL_FORMAT);
         String formattedPercentage = decimalFormat.format(profitRate);
         formattedPercentage += Values.PROFIT_SYMBOL;

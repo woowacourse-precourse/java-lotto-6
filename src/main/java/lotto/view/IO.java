@@ -8,4 +8,7 @@ public class IO {
         System.out.println(message.getMessage());
     }
 
+    public static void checkLottoTickets(final int lottoTicketCount, Front message){
+        System.out.println(lottoTicketCount+message.getMessage());
+    }
 }

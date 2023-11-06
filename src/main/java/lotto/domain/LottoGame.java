@@ -17,4 +17,8 @@ public class LottoGame {
     public List<Integer> play() {
         return lottoStore.play(winningNumber);
     }
+
+    public List<Boolean> checkBonus() {
+        return lottoStore.checkBonus(bonusNumber);
+    }
 }

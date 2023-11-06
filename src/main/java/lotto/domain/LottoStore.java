@@ -14,4 +14,10 @@ public class LottoStore {
                 .map(winningNumber::countWin)
                 .toList();
     }
+
+    public List<Boolean> checkBonus(BonusNumber bonusNumber) {
+        return lottos.stream()
+                .map(bonusNumber::checkBonus)
+                .toList();
+    }
 }

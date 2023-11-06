@@ -34,4 +34,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(NOT_NUMERIC.getMessage());
         }
     }
+
+    public boolean checkBonus(Lotto lotto) {
+        return lotto.checkBonus(value);
+    }
 }

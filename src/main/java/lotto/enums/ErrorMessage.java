@@ -12,7 +12,8 @@ public enum ErrorMessage {
     BONUS_NUMBER_SIZE("보너스 번호는 1개의 번호로 이뤄줘야 합니다."),
     NUMBER_DUPLICATION("중복된 번호를 입력할 수 없습니다."),
     EXIST_IN_WINNING_NUMBER("이미 당첨번호에 존재하는 번호 입니다."),
-    NOT_CONTAINS_BLANK("숫자를 공백으로 입력할 수 없습니다.");
+    NOT_CONTAINS_BLANK("숫자를 공백으로 입력할 수 없습니다."),
+    PURCHASE_LIMIT("로또 구입 금액은 10만원을 초과할 수 없습니다.");
 
     private final String message;
 

@@ -12,6 +12,7 @@ public class PriceValidator {
     public static void validate(int price) {
         validateZero(price);
         validateDivisibleByThousand(price);
+        validateLimit(price);
     }
 
 
@@ -32,5 +33,11 @@ public class PriceValidator {
             return true;
         }
         return false;
+    }
+
+    private static void validateLimit(int price) {
+        if (price > 100_000) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_LIMIT.getMessage());
+        }
     }
 }

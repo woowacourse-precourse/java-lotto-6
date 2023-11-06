@@ -74,9 +74,43 @@ public class InputView {
 		}
 	}
 
-	int getBonusNumber() {
-		System.out.println("보너스 번호를 입력해 주세요.");
-		int bonusNumber = Integer.parseInt(Console.readLine());
+	int getBonusNumber(Lotto winningLotto) {
+		int bonusNumber;
+		while(true) {
+			try {
+				System.out.println("보너스 번호를 입력해 주세요.");
+				String input = Console.readLine();
+				bonusNumber = validateBonusIsNumber(input);
+				validateBonusInRange(bonusNumber);
+				validateBonusWithWinningNumber(bonusNumber, winningLotto);
+				break;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		return bonusNumber;
+	}
+
+	int validateBonusIsNumber(String input) {
+		int bonusNumber;
+		try {
+			bonusNumber = Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+		}
+		return bonusNumber;
+	}
+
+	void validateBonusInRange(int bonusNumber) {
+		if(bonusNumber <= 0 || bonusNumber > 45) {
+			throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.");
+		}
+	}
+
+	void validateBonusWithWinningNumber(int bonusNumber, Lotto winningLotto) {
+		List<Integer> winningNumbers = winningLotto.getNumbers();
+		if(winningNumbers.contains(bonusNumber)) {
+			throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+		}
 	}
 }

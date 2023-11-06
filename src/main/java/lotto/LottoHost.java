@@ -6,14 +6,22 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoHost {
+	private static LottoHost instance;
 	Lotto winningNumberLotto;
 	int bonusNumber;
 
-	LottoHost() {
+	private LottoHost() {
 
 	}
 
-	LottoHost(Lotto winningNumberLotto, int bonusNumber) {
+	public static LottoHost getInstance() {
+		if(instance == null) {
+			instance = new LottoHost();
+		}
+		return instance;
+	}
+
+	private LottoHost(Lotto winningNumberLotto, int bonusNumber) {
 		this.winningNumberLotto = winningNumberLotto;
 		this.bonusNumber = bonusNumber;
 	}
@@ -62,5 +70,17 @@ public class LottoHost {
 			return 0;
 		}
 		return 5;
+	}
+
+	Lotto getWinningNumberLotto() {
+		return this.winningNumberLotto;
+	}
+
+	void setWinningNumberLotto(Lotto winningNumberLotto) {
+		this.winningNumberLotto = winningNumberLotto;
+	}
+
+	void setBonusNumber(int bonusNumber) {
+		this.bonusNumber = bonusNumber;
 	}
 }

@@ -22,9 +22,10 @@ public class ProgramManager {
 
 		// 당첨 번호 입력
 		Lotto winningNumberLotto = getLottoNumber();
-		int bonusNumber = getBonusNumber();
-		LottoHost lottoHost = new LottoHost(winningNumberLotto, bonusNumber);
-		showResult(lottoHost, customer);
+		int bonusNumber = getBonusNumber(winningNumberLotto);
+		LottoHost.getInstance().setWinningNumberLotto(winningNumberLotto);
+		LottoHost.getInstance().setBonusNumber(bonusNumber);
+		showResult(LottoHost.getInstance(), customer);
 	}
 
 	int getPrice() {
@@ -37,7 +38,7 @@ public class ProgramManager {
 
 	List<Lotto> showBuyLotto(int price) {
 		List<Lotto> lottoList = new ArrayList<>();
-		LottoHost lottoHost = new LottoHost();
+		LottoHost lottoHost = LottoHost.getInstance();
 		int numberOfBuyingLotto = price/1000;
 
 		while (numberOfBuyingLotto > 0) {
@@ -65,8 +66,8 @@ public class ProgramManager {
 		return lotto;
 	}
 
-	int getBonusNumber() {
-		int bonusNumber = inputView.getBonusNumber();
+	int getBonusNumber(Lotto winningLotto) {
+		int bonusNumber = inputView.getBonusNumber(winningLotto);
 		return bonusNumber;
 	}
 

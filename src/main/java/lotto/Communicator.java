@@ -27,6 +27,10 @@ public class Communicator {
         return payment;
     }
 
+    public String instructJackpotNumbers() {
+        return getStringWithPrompt("당첨 번호를 입력해주세요.");
+    }
+
     public void printException(RuntimeException exception) {
         printer.print(exception.getMessage());
     }
@@ -40,6 +44,11 @@ public class Communicator {
     private BigDecimal getMoneyWithPrompt(String prompt) {
         printer.print(prompt);
         return getNonNullMoney();
+    }
+
+    private String getStringWithPrompt(String prompt) {
+        printer.print(prompt);
+        return reader.readLine();
     }
 
     private BigDecimal getNonNullMoney() {

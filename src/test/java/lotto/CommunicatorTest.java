@@ -27,8 +27,7 @@ class CommunicatorTest {
 
     @BeforeEach
     void setUp() {
-        outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        setOut();
     }
 
     @AfterEach
@@ -43,10 +42,9 @@ class CommunicatorTest {
     void test_InstructorBuy_PrintPrompt() {
         //when
         assertThatThrownBy(communicator::instructBuy);
-        String output = outputStream.toString();
 
         //then
-        assertThat(output).contains("구입금액을 입력해주세요.");
+        assertThat(output()).contains("구입금액을 입력해주세요.");
     }
 
     @ParameterizedTest(name = "{0}원을 입력 시 출력 문구 : {1}")
@@ -54,7 +52,7 @@ class CommunicatorTest {
     @DisplayName("입력 받는 금액이 잘못되면 IllegalArgumentException을 발생시킨다.")
     void test_InstructBuyFailed(String input, String expectedMessage) {
         //given
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        setIn(input);
 
         //when
         Exception exception = assertThrows(IllegalArgumentException.class, communicator::instructBuy);
@@ -68,13 +66,26 @@ class CommunicatorTest {
     void test_InstructBuySuccessful() {
         //given
         String input = "5000";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        setIn(input);
 
         //when
         BigDecimal payment = communicator.instructBuy();
 
         //then
         assertThat(payment).isEqualTo(new BigDecimal(input));
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력 문구를 출력한다.")
+    void test_InstructJackpotNumber() {
+        //given
+        setIn(" ");
+
+        //when
+        communicator.instructJackpotNumbers();
+
+        //then
+        assertThat(output()).contains("당첨 번호를 입력해주세요.");
     }
 
     static Stream<Arguments> stringAndStringProvider() {
@@ -86,5 +97,19 @@ class CommunicatorTest {
                 Arguments.of("-10000", "0보다 큰 금액을 입력해주세요."),
                 Arguments.of("5500", "구매 금액은 1000원 단위여야 합니다.")
         );
+    }
+
+    void setIn(String input) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+    }
+
+    void setOut() {
+        outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+    }
+
+    String output() {
+        System.setOut(new PrintStream(outputStream));
+        return outputStream.toString();
     }
 }

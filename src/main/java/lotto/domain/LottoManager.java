@@ -37,6 +37,14 @@ public class LottoManager {
         return bonusNum;
     }
 
+    public LottoResult compare(List<Integer> userNumbers) {
+        int matchCount = (int) userNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+        boolean bonusMatch = userNumbers.contains(bonusNum);
+        return LottoResult.valueOf(matchCount, bonusMatch);
+    }
+
     private void validateLottoNumbers(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");

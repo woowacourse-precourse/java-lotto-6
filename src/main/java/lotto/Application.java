@@ -13,6 +13,7 @@ public class Application {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     private static final String ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_INPUT = "구앱금액은 1000원 단위로 숫자를 입력해 주세요.";
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_COUNT = "로또 번호는 6개 숫자여야 합니다.";
 
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmountWithInput();
@@ -68,6 +69,10 @@ public class Application {
                 printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE);
                 throw new IllegalArgumentException();
             }
+        }
+        if (winningNumbers.size() != 6) {
+            printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_COUNT);
+            throw new IllegalArgumentException();
         }
     }
 

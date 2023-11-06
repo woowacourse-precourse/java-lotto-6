@@ -3,11 +3,11 @@ package lotto.validator;
 public class MoneyValidator {
 
     private static final String ERROR = "[ERROR]";
-    private static final String NULL_ERROR_MESSAGE = "금액을 입력해주세요.";
-    private static final String BLANK_ERROR_MESSAGE = "공백 없이 입력해주세요.";
-    private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해주세요.";
-    private static final String UNDER_1000_MESSAGE = "1,000 이상으로 입력해주세요.";
-    private static final String DIVISION_ERROR_MESSAGE = "1,000 단위로 입력해주세요.";
+    private static final String NULL_ERROR_MESSAGE = "금액을 입력해 주세요.";
+    private static final String BLANK_ERROR_MESSAGE = "공백 없이 입력해 주세요.";
+    private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해 주세요.";
+    private static final String UNDER_1000_MESSAGE = "1,000 이상으로 입력해 주세요.";
+    private static final String DIVISION_ERROR_MESSAGE = "1,000 단위로 입력해 주세요.";
 
     public MoneyValidator(String input){
         isNull(input);

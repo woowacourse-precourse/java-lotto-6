@@ -48,4 +48,9 @@ public record Lotto(List<LottoNumber> numbers) {
                 .filter(lotto::contains)
                 .count();
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

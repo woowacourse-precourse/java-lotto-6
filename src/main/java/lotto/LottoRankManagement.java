@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.Application.getPurchasedPrice;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,5 +31,20 @@ public class LottoRankManagement {
                         rank.getPrize(), count);
             }
         }
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", getRate());
+    }
+
+    private double getRate() {
+        int totalPrize = getTotalPrize();
+        double rate = ((double) totalPrize / (double) getPurchasedPrice()) * 100;
+        return rate;
+    }
+
+    private int getTotalPrize() {
+        int totalPrize = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            totalPrize += rank.getPrize() * rankCounts.get(rank);
+        }
+        return totalPrize;
     }
 }

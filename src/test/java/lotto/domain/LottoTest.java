@@ -1,15 +1,40 @@
 package lotto.domain;
 
-import static lotto.enums.ErrorMassage.*;
+import static lotto.enums.ErrorMassage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.enums.ErrorMassage.INVALID_LOTTO_COUNT;
+import static lotto.fixture.LottoFixture.lottoFixture;
+import static lotto.fixture.LottoFixture.lottoNumberFixture;
 import static lotto.fixture.LottoFixture.lottoNumberFixtures;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.stream.Stream;
+import lotto.enums.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
+    private static Stream<Arguments> provideLottoAndPrize() {
+        return Stream.of(
+                Arguments.of(lottoFixture(List.of(1, 2, 3, 4, 5, 6)), lottoFixture(List.of(1, 2, 3, 4, 5, 6)),
+                        lottoNumberFixture(7), Prize.FIRST),
+                Arguments.of(lottoFixture(List.of(1, 2, 3, 4, 5, 6)), lottoFixture(List.of(1, 2, 3, 4, 5, 7)),
+                        lottoNumberFixture(6), Prize.SECOND),
+                Arguments.of(lottoFixture(List.of(1, 2, 3, 4, 5, 6)), lottoFixture(List.of(1, 2, 3, 4, 5, 7)),
+                        lottoNumberFixture(8), Prize.THIRD),
+                Arguments.of(lottoFixture(List.of(1, 2, 3, 4, 5, 6)), lottoFixture(List.of(1, 2, 3, 4, 7, 8)),
+                        lottoNumberFixture(6), Prize.FOURTH),
+                Arguments.of(lottoFixture(List.of(1, 2, 3, 4, 5, 6)), lottoFixture(List.of(1, 2, 3, 7, 8, 9)),
+                        lottoNumberFixture(29), Prize.FIFTH),
+                Arguments.of(lottoFixture(List.of(1, 2, 3, 4, 5, 6)), lottoFixture(List.of(1, 2, 7, 8, 9, 10)),
+                        lottoNumberFixture(15), Prize.NONE)
+                );
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -53,16 +78,13 @@ class LottoTest {
         assertThat(result).isFalse();
     }
 
-    @Test
-    void 당첨된_로또와_다른_로또를_비교하여_일치하는_숫자의_개수를_반환한다() {
-        // given
-        Lotto winningLotto = new Lotto(lottoNumberFixtures(List.of(1, 2, 3, 4, 5, 6)));
-        Lotto target = new Lotto(lottoNumberFixtures(List.of(1, 2, 3, 4, 5, 7)));
-
+    @ParameterizedTest
+    @MethodSource("provideLottoAndPrize")
+    void 로또_번호와_보너스_번호의_일치된_개수에_따라_보상을_반환한다(Lotto lotto, Lotto winningLotto, LottoNumber bonus, Prize expected) {
         // when
-        int result = winningLotto.getMatchCount(target);
+        Prize prize = lotto.match(winningLotto, bonus);
 
         // then
-        assertThat(result).isEqualTo(5);
+        assertThat(prize).isEqualTo(expected);
     }
 }

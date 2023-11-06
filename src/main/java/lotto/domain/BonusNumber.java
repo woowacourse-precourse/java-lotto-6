@@ -17,7 +17,7 @@ public class BonusNumber {
 	}
 
 	private void validateDuplicateBonusNumber(Lotto answerLottoNumbers, int bonusNumber) {
-		if (answerLottoNumbers.getLottoNumbers().contains(bonusNumber)) {
+		if (answerLottoNumbers.isContain(bonusNumber)) {
 			throw new IllegalArgumentException(ErrorMessage.LOTTO_BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
 		}
 	}

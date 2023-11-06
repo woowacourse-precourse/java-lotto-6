@@ -71,8 +71,4 @@ public class Lotto {
 	public int getSize() {
 		return numbers.size();
 	}
-	
-	public List<Integer> getLottoNumbers(){
-		return numbers;
-	}
 }

@@ -2,6 +2,7 @@ package lotto.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
 import lotto.enums.Message;
@@ -10,6 +11,7 @@ import lotto.util.Computer;
 import lotto.util.User;
 
 public class LottoMachine {
+    HashMap<Integer, Integer> winningCount = new HashMap<>();
     List<Lotto> lottoNumbers = new ArrayList<>();
     User user = new User();
     Computer computer = new Computer();
@@ -85,18 +87,23 @@ public class LottoMachine {
         compareLottoTicket();
     }
 
-    public void compareLottoTicket(){
-        for(Lotto lotto : lottoNumbers){
+    public void compareLottoTicket() {
+        for (Lotto lotto : lottoNumbers) {
             compareNumber(lotto.getNumbers(), user.getWinningNumber().getNumbers());
         }
     }
 
-    public void compareNumber(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers){
+    public void compareNumber(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers) {
         int count = 0;
-        for(int number : lottoNumbers){
-            if(winningLottoNumbers.contains(number)){
+        for (int number : lottoNumbers) {
+            if (winningLottoNumbers.contains(number)) {
                 count++;
             }
         }
+        addLottoWinning(count);
+    }
+
+    public void addLottoWinning(int count) {
+        winningCount.merge(count, 1, Integer::sum);
     }
 }

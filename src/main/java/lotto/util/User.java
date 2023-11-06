@@ -34,7 +34,7 @@ public class User {
         String input = Console.readLine();
         List<String> numbers = Arrays.asList(input.split(","));
         checkWinningNumber(input, numbers);
-        winningNumber = new Lotto(parsNumber(numbers));
+        winningNumber = new Lotto(parseNumber(numbers));
     }
 
     public void checkWinningNumber(String input, List<String> numbers) {
@@ -44,7 +44,7 @@ public class User {
         }
     }
 
-    public List<Integer> parsNumber(List<String> numbers) {
+    public List<Integer> parseNumber(List<String> numbers) {
         List<Integer> winningNumber = new ArrayList<>();
         for (String number : numbers) {
             winningNumber.add(Integer.parseInt(number));

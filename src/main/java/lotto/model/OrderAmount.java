@@ -6,4 +6,8 @@ public class OrderAmount {
     public OrderAmount(int order) {
         this.money = order;
     }
+
+    public int amountOfLotto() {
+        return -1;
+    }
 }

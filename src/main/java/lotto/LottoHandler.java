@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class LottoHandler {
     private static final int LOTTO_START_NUMBER = 1;
@@ -91,6 +88,7 @@ public class LottoHandler {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
         }
+        winningNumbers.sort(Comparator.naturalOrder());
         return new Lotto(winningNumbers);
     }
 
@@ -125,5 +123,21 @@ public class LottoHandler {
         if (bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_LAST_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
         }
+    }
+
+    public void winningResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        OutputHandler.printLineBreakMessage("당첨 통계");
+        OutputHandler.printMessage("---");
+        Map<WinningKind, Integer> winningResult = calculateWinningResult(lottos, winningLotto, bonusNumber);
+    }
+
+    public Map<WinningKind, Integer> calculateWinningResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        Map<WinningKind, Integer> winningResult = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            if (lotto.equals(winningLotto)) {
+                winningResult.put(WinningKind.FIRST, 1);
+            }
+        }
+        return winningResult;
     }
 }

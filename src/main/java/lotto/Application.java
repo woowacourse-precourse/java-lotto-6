@@ -12,5 +12,6 @@ public class Application {
         List<Lotto> lottos = lottoHandler.issueLottoNumbers(numberOfLotto);
         Lotto winningLotto = lottoHandler.winningLotto();
         int bonusNumber = lottoHandler.bonusNumber();
+        lottoHandler.winningResult(lottos, winningLotto, bonusNumber);
     }
 }

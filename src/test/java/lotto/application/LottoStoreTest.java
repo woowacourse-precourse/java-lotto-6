@@ -1,9 +1,11 @@
 package lotto.application;
 
+import static lotto.enums.ErrorMassage.*;
 import static lotto.enums.LottoConfig.LOTTO_PRICE;
 import static lotto.fixture.LottoFixture.lottoFixture;
 import static lotto.fixture.LottoFixture.lottoNumberFixture;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doReturn;
@@ -14,6 +16,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoAmount;
 import lotto.domain.LottoNumber;
 import lotto.dto.WinningLotto;
+import lotto.enums.ErrorMassage;
 import org.junit.jupiter.api.Test;
 
 class LottoStoreTest {
@@ -51,5 +54,21 @@ class LottoStoreTest {
         // then
         assertThat(winningLotto.lotto()).isEqualTo(lottoFixture);
         assertThat(winningLotto.bonus()).isEqualTo(bonusFixture);
+    }
+
+    @Test
+    void 당첨_로또_번호와_보너스_번호가_중복될_경우_예외가_발생한다() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lottoFixture = lottoFixture(numbers);
+        doReturn(lottoFixture).when(lottoMachine).createLotto(any());
+        int bonusNumber = 6;
+        LottoNumber bonusFixture = lottoNumberFixture(bonusNumber);
+        doReturn(bonusFixture).when(lottoMachine).createLottoNumber(anyInt());
+
+        // when & then
+        assertThatThrownBy(() -> lottoStore.issueWinningLotto(numbers, bonusNumber))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATE_BONUS_NUMBER.getMassage());
     }
 }

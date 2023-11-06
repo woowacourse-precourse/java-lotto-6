@@ -20,9 +20,16 @@ public class LottoController {
     }
 
     public int requestLottoPurchaseAmount() {
-        System.out.printf(REQUEST_LOTTO_PURCHASE_AMOUNT, SEPARATED_LOTTO_PRICE);
-        String userInput = Console.readLine();
+        try {
+            System.out.printf(REQUEST_LOTTO_PURCHASE_AMOUNT, SEPARATED_LOTTO_PRICE);
+            System.out.println();
 
-
+            String userInput = Console.readLine();
+            isPurchaseAmountValid(userInput);
+            return Integer.parseInt(userInput);
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+            return requestLottoPurchaseAmount();
+        }
     }
 }

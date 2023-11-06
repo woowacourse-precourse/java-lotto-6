@@ -15,7 +15,7 @@ public class Validator {
     }
 
     public static void isDividedByLottoPrice(int money) {
-        if (money / LottoController.LOTTO_PRICE != 0) {
+        if (money % LottoController.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_AMOUNT_FORMAT_ERROR);
         }
     }

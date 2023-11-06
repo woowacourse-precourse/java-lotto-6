@@ -1,8 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.dto.request.BonusNumberInputDto;
 import lotto.dto.request.PurchaseAmountDto;
-import lotto.dto.request.WinningNumbersDto;
+import lotto.dto.request.WinningNumbersInputDto;
 import lotto.util.Validator;
 
 import java.util.Arrays;
@@ -23,11 +24,14 @@ public class InputView {
         return PurchaseAmountDto.from(amount);
     }
 
-    public WinningNumbersDto readWinningNumbers() {
+    public WinningNumbersInputDto readWinningNumbers() {
         List<Integer> numbers = parseNumbers(Console.readLine());
-        int bonus = Validator.validateAndParseInteger(Console.readLine());
+        return WinningNumbersInputDto.from(numbers);
+    }
 
-        return WinningNumbersDto.of(numbers, bonus);
+    public BonusNumberInputDto readBonusNumber() {
+        int bonus = Validator.validateAndParseInteger(Console.readLine());
+        return BonusNumberInputDto.from(bonus);
     }
 
     private static List<Integer> parseNumbers(String numbers) {
@@ -35,7 +39,6 @@ public class InputView {
                 .map(Validator::validateAndParseInteger)
                 .collect(Collectors.toList());
     }
-
 
     private static class LazyHolder {
         private static final InputView INSTANCE = new InputView();

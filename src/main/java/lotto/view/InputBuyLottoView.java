@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.regex.Pattern;
+import lotto.exception.BuyLottoMoneyFormatException;
 
 public class InputBuyLottoView extends InputView {
     private static final Pattern PATTERN = Pattern.compile("\\d+");
@@ -16,7 +17,7 @@ public class InputBuyLottoView extends InputView {
 
     private void validateFormat(String inputValue) {
         if (!PATTERN.matcher(inputValue).matches()) {
-            throw new IllegalArgumentException();
+            throw new BuyLottoMoneyFormatException();
         }
     }
 }

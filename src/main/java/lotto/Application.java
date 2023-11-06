@@ -60,11 +60,16 @@ class Game {
     }
     public int compareLotto(List<Integer> user, List<Integer> lotto){
         this.rank = 0;
+        List<Integer> subLotto = lotto.subList(0,6);
         for(Integer userNumber : user) {
-            if(lotto.contains(userNumber)){
+            if(subLotto.contains(userNumber)){
                 this.rank++;
             }
         }
         return rank;
+    }
+
+    public boolean compareBonus(List<Integer> user, List<Integer>lotto){
+        return user.contains(lotto.get(6));
     }
 }

@@ -11,35 +11,50 @@ public class InputNumbers {
 
 	private Lotto lotto;
 	
-    public List<Integer> select_numbers() {
-    	List<Integer> numbers;
+    public Lotto select_numbers() {
+    	//List<Integer> numbers;
     	while(true) {
     		try {
-	    		String selected=Console.readLine();
-	    		numbers=convertToList(selected);
-	    		lotto=new Lotto(numbers);
+    			convert_lotto_numbers();
 	    		break;
     		} catch(IllegalArgumentException e) {
-    			e.printStackTrace();
+    			warning(e);
     		}
     	}
     	//Collections.sort(numbers_refined);
-    	return numbers;
+    	return lotto;
+    }
+    
+    private void convert_lotto_numbers() {
+    	String selected=Console.readLine();
+		List<Integer> numbers=convertToList(selected);
+		lotto=new Lotto(numbers);
+    }
+    
+    private void warning(IllegalArgumentException e) {
+    	System.out.println(e.getMessage());
+		e.printStackTrace();
     }
     
     public int select_bonus() {
     	int bonus;
     	while(true) {
     		try {
-	    		String bonusStr=Console.readLine();
-	    		bonus=naN(bonusStr);
-	    		lotto.valueOutOfBoundary(bonus);
+	    		bonus=convert_bonus_number();
 	    		break;
     		} catch(IllegalArgumentException e) {
-    			e.printStackTrace();
+    			warning(e);
     		}
     	}
     	return bonus;
+    }
+    
+    private int convert_bonus_number() {
+    	String bonusStr=Console.readLine();
+		int bonus=naN(bonusStr);
+		lotto.valueOutOfBoundary(bonus);
+		
+		return bonus;
     }
     
     /*public void forTest(List<Integer> test_input) {

@@ -16,6 +16,10 @@ public class Lotto {
     	validateEachElement(numbers);
     }
 
+    public List<Integer> getLottoNumbers() {
+    	return this.numbers;
+    }
+    
     private void correctlySixElements(List<Integer> numbers) {
     	if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 6개의 번호만 유효합니다");

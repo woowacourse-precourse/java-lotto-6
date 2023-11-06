@@ -23,4 +23,17 @@ public class Data {
 	public static final String DUPLICATE=NumberError.DUPLICATE.getErrorMsg();
 	public static final String NAN=NumberError.NAN.getErrorMsg();
 	public static final String BOUNDARY=NumberError.BOUNDARY.getErrorMsg();
+	
+	public static final String PURCHASE_GUIDE=Announcement.PURCHASE_GUIDE.getAnnouncement();
+	public static final String FEEDBACK_PURCHASE=Announcement.FEEDBACK_PURCHASE.getAnnouncement();
+	
+	public static final String WINNGIN_NUM_GUIDE=Announcement.WINNGIN_NUM_GUIDE.getAnnouncement();
+	public static final String BONUS_GUIDE=Announcement.BONUS_GUIDE.getAnnouncement();
+	
+	public static final String STATISTICS_START=Announcement.STATISTICS_START.getAnnouncement();
+	public static final String CORRES_THREE=Announcement.CORRES_THREE.getAnnouncement();
+	public static final String CORRES_FOUR=Announcement.CORRES_FOUR.getAnnouncement();
+	public static final String CORRES_FIVE=Announcement.CORRES_FIVE.getAnnouncement();
+	public static final String CORRES_BONUS=Announcement.CORRES_BONUS.getAnnouncement();
+	public static final String CORRES_ALL=Announcement.CORRES_ALL.getAnnouncement();
 }

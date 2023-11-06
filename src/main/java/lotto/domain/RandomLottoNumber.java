@@ -17,4 +17,8 @@ public class RandomLottoNumber {
     private void getRandomNumber() {
         this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
+
+    public void showRandomNumber() {
+        System.out.println(numbers.toString());
+    }
 }

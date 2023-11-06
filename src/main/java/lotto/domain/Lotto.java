@@ -21,8 +21,4 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-    public void showLotto() {
-        System.out.println(numbers.toString());
-    }
 }

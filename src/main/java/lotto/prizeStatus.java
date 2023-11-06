@@ -1,11 +1,12 @@
 package lotto;
 
 public enum prizeStatus {
-    THREE(3, "5,000원"), FOUR(4, "50,000원"), FIVE(5, "1,500,000원"), FIVEBONUS(5, "30,000,000원"), SIX(6, "2,000,000,000원");
+    THREE(3, 5000), FOUR(4, 50000), FIVE(5, 1500000), FIVEBONUS(5, 30000000), SIX(6, 2000000000);
 
     private int num;
-    private String price;
-    prizeStatus(int num, String price) {
+    private int price;
+
+    prizeStatus(int num, int price) {
         this.num = num;
         this.price = price;
     }
@@ -14,7 +15,7 @@ public enum prizeStatus {
         return this.num;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return this.price;
     }
 }

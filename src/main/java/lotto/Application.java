@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,20 +35,27 @@ public class Application {
             System.out.println(e.getMessage());
             return inputPurchaseMoney();
         }
-        return getLottoAmount(money);
+        return money;
     }
 
-    private static int getLottoAmount(int m) {
+    private static int getLottoCount(int m) {
         System.out.println("\n" + m / 1000 + "개를 구매했습니다.");
         return m / 1000;
     }
 
-    public static void main(String[] args) {
-        int lottoAmount = inputPurchaseMoney();
+    private static int getPrizeCount(List<Integer> lottoMatch, int num) {
+        return Collections.frequency(lottoMatch, num);
+    }
 
+    public static void main(String[] args) {
+        int money = inputPurchaseMoney();
+        int lottoCount = getLottoCount(money);
+
+
+        // TODO: 여기부터 모듈화
         List<Lotto> lottos = new ArrayList<Lotto>();
 
-        for (int i = 0; i < lottoAmount; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             System.out.println(lotto.getNumbers());
@@ -61,7 +69,7 @@ public class Application {
 
         System.out.println("\n당첨 통계\n---");
 
-        List<Integer> correctLotto = new ArrayList<Integer>();
+        List<Integer> lottoMatchCount = new ArrayList<Integer>();
         for (Lotto l : lottos) {       // separate
             int count = 0;
             for (int p : prizeNum) {
@@ -74,14 +82,36 @@ public class Application {
                     count += 100;
                 }
             }
-            correctLotto.add(count);
+            lottoMatchCount.add(count);
         }
 
-        System.out.println(prizeStatus.THREE.getNum() + "개 일치 (" + prizeStatus.THREE.getPrice() + ") - " + Collections.frequency(correctLotto, 3) + "개");
-        System.out.println(prizeStatus.FOUR.getNum() + "개 일치 (" + prizeStatus.FOUR.getPrice() + ") - " + Collections.frequency(correctLotto, 4) + "개");
-        System.out.println(prizeStatus.FIVE.getNum() + "개 일치 (" + prizeStatus.FIVE.getPrice() + ") - " + Collections.frequency(correctLotto, 5) + "개");
-        System.out.println(prizeStatus.FIVEBONUS.getNum() + "개 일치 (" + prizeStatus.FIVEBONUS.getPrice() + ") - " + Collections.frequency(correctLotto, 105) + "개");
-        System.out.println(prizeStatus.SIX.getNum() + "개 일치 (" + prizeStatus.SIX.getPrice() + ") - " + Collections.frequency(correctLotto, 6) + "개");
+        DecimalFormat df = new DecimalFormat("###,###");
+
+        int earn = 0;
+        System.out.println(prizeStatus.THREE.getNum() + "개 일치 ("
+                + df.format(prizeStatus.THREE.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, 3) + "개");
+        earn += prizeStatus.THREE.getPrice() * getPrizeCount(lottoMatchCount, 3);
+
+        System.out.println(prizeStatus.FOUR.getNum() + "개 일치 ("
+                + df.format(prizeStatus.FOUR.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, 4) + "개");
+        earn += prizeStatus.FOUR.getPrice() * getPrizeCount(lottoMatchCount, 4);
+
+        System.out.println(prizeStatus.FIVE.getNum() + "개 일치 ("
+                + df.format(prizeStatus.FIVE.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, 5) + "개");
+        earn += prizeStatus.FIVE.getPrice() * getPrizeCount(lottoMatchCount, 5);
+
+        System.out.println(prizeStatus.FIVEBONUS.getNum() + "개 일치, 보너스 볼 일치 ("
+                + df.format(prizeStatus.FIVEBONUS.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, 105) + "개");
+        earn += prizeStatus.FIVEBONUS.getPrice() * getPrizeCount(lottoMatchCount, 105);
+
+        System.out.println(prizeStatus.SIX.getNum() + "개 일치 ("
+                + df.format(prizeStatus.SIX.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, 6) + "개");
+        earn += prizeStatus.SIX.getPrice() * getPrizeCount(lottoMatchCount, 6);
+
+
+        // 수익률 = 당첨금 / 구입금 * 100) -> 5000/8000 = 0.625 * 100 = 62.5%
+        float earningRate = ((float) earn / money) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
 
     }
 }

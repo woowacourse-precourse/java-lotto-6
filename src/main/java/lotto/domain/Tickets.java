@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.ApplicationContext.getDataModel;
+import static lotto.config.AppConfig.getDataModel;
 import static lotto.domain.constant.LottoConstant.MATCH_ALL_SEVEN_COUNT;
 import static lotto.domain.constant.LottoConstant.MATCH_ALL_SIX_COUNT;
 
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.config.output.MessageType;
+import lotto.config.output.OutputMessage;
 import lotto.domain.constant.LottoConstant;
-import lotto.output.MessageType;
-import lotto.output.OutputMessage;
 
 public class Tickets {
     private List<List<Integer>> tickets = new ArrayList<>();

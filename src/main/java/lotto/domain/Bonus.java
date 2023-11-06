@@ -1,13 +1,13 @@
 package lotto.domain;
 
-import static lotto.ApplicationContext.getDataModel;
+import static lotto.config.AppConfig.getDataModel;
 
 import java.util.List;
 import lotto.domain.constant.LottoConstant;
-import lotto.exception.ExceptionType;
-import lotto.exception.InputException;
-import lotto.output.MessageType;
-import lotto.output.OutputMessage;
+import lotto.config.exception.ExceptionType;
+import lotto.config.exception.InputException;
+import lotto.config.output.MessageType;
+import lotto.config.output.OutputMessage;
 
 public class Bonus {
     private final int number;

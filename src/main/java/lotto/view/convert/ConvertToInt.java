@@ -1,16 +1,16 @@
-package lotto.input.convert;
+package lotto.view.convert;
 
-import lotto.exception.ExceptionType;
-import lotto.exception.InputException;
+import lotto.config.exception.ExceptionType;
+import lotto.config.exception.InputException;
 
-public class ConverToInt {
+public class ConvertToInt {
     private final int value;
 
-    public static ConverToInt from(String value){
-        return new ConverToInt(value);
+    public static ConvertToInt from(String value){
+        return new ConvertToInt(value);
     }
 
-    private ConverToInt(String value){
+    private ConvertToInt(String value){
         validateInput(value);
         this.value = Integer.parseInt(value);
     }

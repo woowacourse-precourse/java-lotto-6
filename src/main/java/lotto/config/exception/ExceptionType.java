@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.config.exception;
 
 public enum ExceptionType {
 

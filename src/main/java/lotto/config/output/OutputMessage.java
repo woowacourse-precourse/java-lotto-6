@@ -1,4 +1,4 @@
-package lotto.output;
+package lotto.config.output;
 
 import static java.lang.String.format;
 

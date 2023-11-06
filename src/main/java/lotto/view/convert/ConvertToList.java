@@ -1,11 +1,11 @@
-package lotto.input.convert;
+package lotto.view.convert;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.exception.ExceptionType;
-import lotto.exception.InputException;
+import lotto.config.exception.ExceptionType;
+import lotto.config.exception.InputException;
 
 public class ConvertToList {
     private final List<Integer> value;

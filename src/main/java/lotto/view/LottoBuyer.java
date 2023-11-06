@@ -1,22 +1,22 @@
-package lotto.input;
+package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.output.MessageType.INPUT_ERROR;
+import static lotto.config.output.MessageType.INPUT_ERROR;
 
-import lotto.ApplicationContext;
+import lotto.config.AppConfig;
+import lotto.config.exception.InputException;
+import lotto.config.output.MessageType;
+import lotto.config.output.OutputMessage;
 import lotto.controller.LottoController;
-import lotto.exception.InputException;
-import lotto.input.convert.ConverToInt;
-import lotto.output.MessageType;
-import lotto.output.OutputMessage;
+import lotto.view.convert.ConvertToInt;
 
 public class LottoBuyer {
-    private LottoController lottoController = ApplicationContext.getController();
+    private LottoController lottoController = AppConfig.getController();
 
     public void gernerateTicket(){
         OutputMessage.print(MessageType.INPUT_BUY_START);
         try{
-            ConverToInt converToInt = ConverToInt.from(readLine());
+            ConvertToInt converToInt = ConvertToInt.from(readLine());
             int wallet = converToInt.getValue();
 
             lottoController.gernerateTicket(wallet);
@@ -28,6 +28,7 @@ public class LottoBuyer {
     }
 
     public void printWinRecord(){
+        OutputMessage.print(MessageType.OUTPUT_MATCH_STATICS);
         lottoController.printWinRecord();
     }
 

@@ -1,14 +1,14 @@
 package lotto.domain;
 
-import static lotto.ApplicationContext.getDataModel;
+import static lotto.config.AppConfig.getDataModel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
+import lotto.config.output.MessageType;
+import lotto.config.output.OutputMessage;
 import lotto.domain.rule.PrizeAmount;
-import lotto.output.MessageType;
-import lotto.output.OutputMessage;
 
 public class WinRecord {
     private List<Integer> winRecord = new ArrayList<>();

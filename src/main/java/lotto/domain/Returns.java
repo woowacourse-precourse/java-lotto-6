@@ -3,8 +3,8 @@ package lotto.domain;
 
 import java.util.Map;
 import lotto.domain.rule.PrizeAmount;
-import lotto.output.MessageType;
-import lotto.output.OutputMessage;
+import lotto.config.output.MessageType;
+import lotto.config.output.OutputMessage;
 
 public class Returns {
     private String returns;

@@ -1,4 +1,4 @@
-package lotto.output;
+package lotto.config.output;
 
 public enum MessageType {
     INPUT_BUY_START("구입금액을 입력해 주세요. \n"),

@@ -1,18 +1,18 @@
-package lotto.input;
+package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.List;
-import lotto.ApplicationContext;
+import lotto.config.AppConfig;
+import lotto.config.exception.InputException;
+import lotto.config.output.MessageType;
+import lotto.config.output.OutputMessage;
 import lotto.controller.LottoController;
-import lotto.exception.InputException;
-import lotto.input.convert.ConverToInt;
-import lotto.input.convert.ConvertToList;
-import lotto.output.MessageType;
-import lotto.output.OutputMessage;
+import lotto.view.convert.ConvertToInt;
+import lotto.view.convert.ConvertToList;
 
 public class LottoDrawer {
-    private LottoController lottoController = ApplicationContext.getController();
+    private LottoController lottoController = AppConfig.getController();
 
     public void inputLotto() {
         OutputMessage.print(MessageType.INPUT_START_WIN_NUMBER);
@@ -30,7 +30,7 @@ public class LottoDrawer {
     public void inputBonus() {
         OutputMessage.print(MessageType.INPUT_START_BONUS);
         try {
-            ConverToInt bonusConvertor = ConverToInt.from(readLine());
+            ConvertToInt bonusConvertor = ConvertToInt.from(readLine());
             int number = bonusConvertor.getValue();
 
             lottoController.inputBonus(number);

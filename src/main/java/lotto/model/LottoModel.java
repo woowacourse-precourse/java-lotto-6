@@ -6,7 +6,7 @@ import lotto.domain.Tickets;
 import lotto.domain.Wallet;
 import lotto.domain.WinRecord;
 
-public class DataModel {
+public class LottoModel {
     private Tickets tickets;
     private Wallet wallet;
     private Lotto lotto;

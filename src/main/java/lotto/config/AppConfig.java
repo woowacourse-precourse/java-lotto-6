@@ -1,25 +1,23 @@
-package lotto;
+package lotto.config;
 
 import lotto.controller.LottoController;
 import lotto.domain.rule.PrizeAmount;
-import lotto.input.LottoBuyer;
-import lotto.input.LottoDrawer;
-import lotto.model.DataModel;
-import lotto.output.MessageType;
-import lotto.output.OutputMessage;
+import lotto.model.LottoModel;
+import lotto.view.LottoBuyer;
+import lotto.view.LottoDrawer;
 
-public class ApplicationContext {
+public class AppConfig {
     private static LottoController lottoController;
     private static LottoBuyer lottoBuyer;
     private static LottoDrawer lottoDrawer;
     private static PrizeAmount prizeAmount;
-    private static DataModel dataModel;
+    private static LottoModel lottoModel;
 
-    public static ApplicationContext init(){
-        return new ApplicationContext();
+    public static AppConfig init(){
+        return new AppConfig();
     }
 
-    private ApplicationContext(){
+    private AppConfig(){
         getController();
         getLottoBuyer();
         getLottoDrawer();
@@ -40,7 +38,6 @@ public class ApplicationContext {
     }
 
     private static void outputProcess() {
-        OutputMessage.print(MessageType.OUTPUT_MATCH_STATICS);
         lottoBuyer.printWinRecord();
         lottoBuyer.printReturns();
     }
@@ -76,10 +73,10 @@ public class ApplicationContext {
         return prizeAmount;
     }
 
-    public static DataModel getDataModel(){
-        if(dataModel == null){
-            dataModel = new DataModel();
+    public static LottoModel getDataModel(){
+        if(lottoModel == null){
+            lottoModel = new LottoModel();
         }
-        return dataModel;
+        return lottoModel;
     }
 }

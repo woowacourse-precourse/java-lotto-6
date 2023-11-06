@@ -1,12 +1,12 @@
 package lotto.validator;
 
-import lotto.domain.ErrorMessage;
+import lotto.util.ErrorMessage;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.domain.ErrorMessage.*;
+import static lotto.util.ErrorMessage.*;
 
 public class LottoValidator {
 
@@ -33,6 +33,13 @@ public class LottoValidator {
         }
 
         return lottoNumbers;
+    }
+
+    public static void validateBonusNumber(Lotto lotto, String bonusNumber) {
+        validateNumbersType(bonusNumber);
+        int number = Integer.parseInt(bonusNumber);
+        validateBonusNumberInWinningNumbers(lotto, number);
+        validateNumberOutOfRange(number);
     }
 
     public static void validateNumberSeparate(String[] numbers) {

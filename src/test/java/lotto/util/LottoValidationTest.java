@@ -2,6 +2,7 @@ package lotto.util;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
+import lotto.domain.LottoWinningNumber;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,17 @@ class LottoValidationTest {
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             lottoPurchase.lottoPurchaseCount(input);
+        });
+    }
+
+    @DisplayName("로또 당첨 번호에 숫자가 아닌 다른 문자가 들어갈 경우 예외 발생")
+    @Test
+    void createLottoWinningNumberOnlyNumber() {
+        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
+        String notNumber = "2,5,8,16,25,o";
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            lottoWinningNumber.lottoWinningNumber(notNumber);
         });
     }
 

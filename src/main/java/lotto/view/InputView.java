@@ -4,14 +4,17 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public String inputPurchaseAmount() {
-        return Console.readLine();
+        String userLottoPurchaseAmount = Console.readLine();
+        return userLottoPurchaseAmount;
     }
 
     public String inputWinningNumbers() {
-        return Console.readLine();
+        String lottoWinningNumbers = Console.readLine();
+        return lottoWinningNumbers;
     }
 
     public String inputBonusNumber() {
-        return Console.readLine();
+        String lottoWinningBonusNumber = Console.readLine();
+        return lottoWinningBonusNumber;
     }
 }

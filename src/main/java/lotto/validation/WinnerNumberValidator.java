@@ -19,6 +19,9 @@ public class WinnerNumberValidator {
         if (winnerNumber.contains(",,")) {
             WINNER_NUMBER_VALIDATE_ERROR_INPUT.throwException();
         }
+        if (!Character.isDigit(winnerNumber.charAt(winnerNumber.length() - 1))) {
+            WINNER_NUMBER_VALIDATE_ERROR_INPUT.throwException();
+        }
     }
 
     public List<Integer> isInteger(String winnerNumber) {

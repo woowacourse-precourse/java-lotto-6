@@ -29,18 +29,38 @@ public class LottoGame {
 
     // 당첨 번호
     public Lotto inputWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        List<Integer> numbers = Arrays.stream((input.split(","))).map(Integer::valueOf).toList();
-
-        return new Lotto(numbers);
+        while(true){
+            try {
+                System.out.println("\n당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                List<Integer> numbers = Arrays.stream((input.split(",")))
+                        .map(this::parseInteger)
+                        .toList();
+                return new Lotto(numbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 
     // 보너스 번호 입력
     public int inputBonusNumber(){
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                return parseInteger(Console.readLine().strip());
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
 
-        return Integer.parseInt(Console.readLine().strip());
+    private Integer parseInteger(String s) {
+        try {
+            return Integer.valueOf(s);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자를 입력해주세요.");
+        }
     }
 
     // 당첨 번호 비교

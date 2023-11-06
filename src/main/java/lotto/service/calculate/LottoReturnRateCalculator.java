@@ -1,7 +1,6 @@
 package lotto.service.calculate;
 
-import java.text.DecimalFormat;
-import lotto.dto.calculate.GetReturnCalculator;
+import lotto.dto.calculate.GetReturnRateDto;
 import lotto.dto.input.GetLottoCountDto;
 import lotto.dto.result.GetLottoResultDto;
 
@@ -14,10 +13,10 @@ public class LottoReturnRateCalculator implements Calculator{
     private static final int SIX_HIT = 2000000000;
     private static final double HUNDRED_POINT = 100.0;
     @Override
-    public GetReturnCalculator calculateLottoReturnRate(GetLottoResultDto getLottoResultDto,
-                                                        GetLottoCountDto getLottoCountDto) {
+    public GetReturnRateDto calculateLottoReturnRate(GetLottoResultDto getLottoResultDto,
+                                                     GetLottoCountDto getLottoCountDto) {
 
-        return new GetReturnCalculator(calculateRate(getLottoResultDto, getLottoCountDto));
+        return new GetReturnRateDto(calculateRate(getLottoResultDto, getLottoCountDto));
     }
 
     private static double calculateRate(GetLottoResultDto getLottoResultDto, GetLottoCountDto getLottoCountDto) {

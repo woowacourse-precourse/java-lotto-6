@@ -3,6 +3,7 @@ package lotto.service.output;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.dto.calculate.GetReturnRateDto;
 import lotto.dto.result.GetLottoResultDto;
 import lotto.dto.domain.lottos.GetLottosDto;
 import lotto.dto.generate.GetGeneratedLottosDto;
@@ -18,11 +19,18 @@ public class OutputView implements Output{
 
     @Override
     public void printLottoResult(GetLottoResultDto getLottoResultDto) {
+        Printer.printStatistics();
+        Printer.printLine();
         Printer.printThreeHit(getLottoResultDto.threeHit());
         Printer.printFourHit(getLottoResultDto.fourHit());
         Printer.printFiveHit(getLottoResultDto.fiveHit());
         Printer.printFiveWithBonusHit(getLottoResultDto.fiveHitWithBonus());
         Printer.printSixHit(getLottoResultDto.sixHit());
+    }
+
+    @Override
+    public void printRate(GetReturnRateDto getReturnRateDto) {
+        Printer.printRate(getReturnRateDto.lottoReturnRate());
     }
 
     private static void printLottoNumbers(List<Lotto> lottos) {

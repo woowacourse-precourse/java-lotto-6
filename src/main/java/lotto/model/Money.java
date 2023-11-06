@@ -20,14 +20,14 @@ public class Money {
     }
 
     private void validateMoney(String money) {
-        if (Integer.TYPE.equals(Integer.TYPE)) {
-            throw new IllegalArgumentException("구입 금액은 숫자만 입력해주세요.\n");
+        if (!money.matches("\\d+")) {
+            throw new IllegalArgumentException("구입 금액은 숫자만 입력해주세요.");
         }
         if (Integer.parseInt(money) == 0) {
-            throw new IllegalArgumentException("구입 금액은 1,000 원 이상이여야 합니다.\n");
+            throw new IllegalArgumentException("구입 금액은 1,000 원 이상이여야 합니다.");
         }
         if ((Integer.parseInt(money) % LOTTO_PRICE) != 0) {
-            throw new IllegalArgumentException("구입 금액은 1,000 원 단위로 입력해주셔야 합니다.\n");
+            throw new IllegalArgumentException("구입 금액은 1,000 원 단위로 입력해주셔야 합니다.");
         }
     }
 }

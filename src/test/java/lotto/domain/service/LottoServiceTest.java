@@ -12,20 +12,11 @@ import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumber;
 import lotto.domain.dto.Result;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoServiceTest {
-
-    @DisplayName("로또를 구매할 수 있다.")
-    @Test
-    void purchaseByAmount() {
-        List<Lotto> lottos = new LottoService().purchase(new PurchaseAmount(10000L));
-
-        assertThat(lottos).size().isEqualTo(10);
-    }
 
     @DisplayName("수익률을 구할 수 있다.")
     @ParameterizedTest

@@ -2,7 +2,6 @@ package lotto.domain.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -10,7 +9,6 @@ import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumber;
 import lotto.domain.dto.Result;
-import lotto.utils.RandomNumberGenerator;
 
 public class LottoService {
 
@@ -38,14 +36,5 @@ public class LottoService {
         return new BigDecimal(totalPrize)
                 .multiply(new BigDecimal("100"))
                 .divide(new BigDecimal(purchaseAmount.getAmount()), 1, RoundingMode.HALF_UP);
-    }
-
-    public List<Lotto> purchase(PurchaseAmount purchaseAmount) {
-        List<Lotto> lottos = new ArrayList<>();
-        long quantity = purchaseAmount.getQuantity();
-        for (int i = 0; i < quantity; i++) {
-            lottos.add(new Lotto(RandomNumberGenerator.generateUniqueNumbersInRange(1, 45, 6)));
-        }
-        return lottos;
     }
 }

@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class PurchaseAmount {
     public static final int unit = 1000;
-    private final long amount;
+    private long amount;
 
     public PurchaseAmount(long amount) {
         validate(amount);
@@ -26,8 +26,8 @@ public class PurchaseAmount {
         }
     }
 
-    public long getQuantity() {
-        return amount / unit;
+    public long getQuantity(int lottoPrice) {
+        return amount / lottoPrice;
     }
 
     public long getAmount() {

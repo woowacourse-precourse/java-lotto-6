@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import java.util.List;
+import lotto.domain.Customer;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.PurchaseAmount;
+import lotto.domain.LottoShop;
 import lotto.domain.WinningNumber;
 import lotto.domain.dto.Result;
 import lotto.domain.service.LottoService;
@@ -22,15 +22,15 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(inputView.inputPurchaseAmount());
-        List<Lotto> purchasedLottos = lottoService.purchase(purchaseAmount);
-        outputView.printPurchasedLottos(purchasedLottos);
+        long purchaseAmount = inputView.inputPurchaseAmount();
+        Customer customer = new Customer(new LottoShop(), purchaseAmount);
+        outputView.printPurchasedLottos(customer.getLottos());
 
         Lotto winningLotto = new Lotto(inputView.inputWinningNumbers());
         LottoNumber bonusNumber = new LottoNumber(inputView.inputBonusNumber());
         WinningNumber winningNumber = new WinningNumber(winningLotto, bonusNumber);
 
-        Result winningResult = lottoService.getWinningResult(purchasedLottos, winningNumber, purchaseAmount);
+        Result winningResult = lottoService.getWinningResult(customer.getLottos(), winningNumber, customer.getPurchaseAmount());
         outputView.printWinningResult(winningResult);
     }
 }

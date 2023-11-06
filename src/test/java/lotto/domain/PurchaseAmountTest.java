@@ -25,18 +25,18 @@ class PurchaseAmountTest {
                 .isThrownBy(() -> new PurchaseAmount(purchaseAmount));
     }
 
-    @DisplayName("구매 수량을 생성할 수 있다")
+    @DisplayName("로또 가격으로 구매 수량을 계산할 수 있다")
     @ParameterizedTest
     @CsvSource("""
             1000, 1
             2000, 2
             100000, 10
             """)
-    void createPurchaseAmount(long purchaseAmount, long expected) {
+    void getQuantityByLottoPrice(long purchaseAmount, long expected) {
 
         PurchaseAmount createdPurchaseAmount = new PurchaseAmount(purchaseAmount);
 
-        long actual = createdPurchaseAmount.getQuantity();
+        long actual = createdPurchaseAmount.getQuantity(1000);
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 }

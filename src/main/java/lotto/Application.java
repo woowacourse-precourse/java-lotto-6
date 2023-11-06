@@ -13,6 +13,7 @@ public class Application {
     public static void startLotto(){
         User user = new User();
 
+        user.getRandomLotto();
 
 
         Lotto lotto = new Lotto(getLottoNumbers());
@@ -25,7 +26,7 @@ public class Application {
                 String[] StringLottoNumber = Console.readLine().split(",");
                 return convertValidatedLottoNumber(StringLottoNumber);
             }  catch (IllegalArgumentException e){
-                System.out.println(Message.ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                System.out.println(Message.ERROR_MESSAGE + " " + Message.INPUT_VALUE_OVERHEAD);
             }
         }
     }

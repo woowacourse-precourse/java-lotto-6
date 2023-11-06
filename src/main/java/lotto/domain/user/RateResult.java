@@ -18,13 +18,13 @@ public class RateResult {
     }
 
     public StringBuilder giveRateResult(Integer useMoney, Integer totalWinMoney) {
-        StringBuilder result = new StringBuilder();
+        StringBuilder rateResult = new StringBuilder();
         Double rate = calculateRate(useMoney, totalWinMoney);
 
         // TODO: 11/6/23 상수 정리
-        result.append("총 수익률은 " + rate + "%입니다.");
+        rateResult.append("총 수익률은 " + rate + "%입니다.");
 
-        return result;
+        return rateResult;
     }
 
     private double roundTwoDecimalPlaces(Double rate) {

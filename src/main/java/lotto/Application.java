@@ -75,7 +75,8 @@ public class Application {
                                                             String.format("%,d", status.getPrizeMoney()), count);
                                 }
 
-                                if (status == WinningStatus.THREE_MATCHES || status == WinningStatus.FOUR_MATCHES || status == WinningStatus.FIVE_MATCHES) {
+                                if (status == WinningStatus.THREE_MATCHES || status == WinningStatus.FOUR_MATCHES ||
+                                    status == WinningStatus.FIVE_MATCHES || status == WinningStatus.SIX_MATCHES) {
                                     System.out.printf("%d개 일치 (%s원) - %d개\n", status.getMatchCount(),
                                                         String.format("%,d", status.getPrizeMoney()), count);
                                 }

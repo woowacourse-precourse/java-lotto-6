@@ -1,9 +1,10 @@
-package lotto;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Validator;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -11,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -20,16 +22,22 @@ public class Lotto {
         }
     }
 
+    private void validateDuplication(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            int frequency = Collections.frequency(numbers, number);
+            if (frequency >= Validator.NUMBERS_MIN_DUPLICATE_COUNT) {
+                throw new IllegalArgumentException();
+            }
+        }
+
+    }
+
     public static List<Integer> generateLotteryNumbers() {
         List<Integer> lotteryNumbers = new ArrayList<>();
         List<Integer> numbersInRange = Randoms.
                 pickUniqueNumbersInRange(1, 45, 6);
         lotteryNumbers.addAll(numbersInRange);
         return lotteryNumbers;
-    }
-
-    public static void sortNumbers(List<Integer> numbers) {
-        numbers.sort(Comparator.naturalOrder());
     }
 
     public List<Integer> getNumbers() {

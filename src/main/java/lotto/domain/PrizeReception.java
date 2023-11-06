@@ -1,13 +1,13 @@
-package lotto.service;
+package lotto.domain;
 
 import java.util.Map;
 import lotto.domain.wrapper.PurchaseAmount;
 import lotto.utils.Prize;
 
-public class PrizeManager {
+public class PrizeReception {
     private final Map<Prize, Integer> prizeCounts;
 
-    public PrizeManager(Map<Prize, Integer> prizeCounts) {
+    public PrizeReception(Map<Prize, Integer> prizeCounts) {
         this.prizeCounts = prizeCounts;
     }
 

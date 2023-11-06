@@ -14,7 +14,7 @@ public class InputView {
         }
     }
 
-    public List<Integer> readWinningNumbers() {
+    public List<Integer> readWinningLottoNumbers() {
         String input = Console.readLine();
         String[] split = input.split(",");
         try {

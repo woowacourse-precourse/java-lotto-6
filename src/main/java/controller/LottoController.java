@@ -1,33 +1,26 @@
 package controller;
 
+import View.InputView;
+import View.OuputView;
+import domain.Lottos;
+import service.MakeObjectService;
+import service.UserInputService;
+import service.ValidationService;
+
 public class LottoController {
 
-    public void run(){
-        buyLotto();
-        createLotto();
-        createWinningNumbers();
-        compareLottoNumbers();
-        printResult();
-    }
+    Lottos lottos;
 
-    private void buyLotto() {
+    public void run() {
+        //buyLotto
+        InputView.buyMessage();
+        lottos = MakeObjectService.lottos(ValidationService.amount(UserInputService.run()));
+        OuputView.buyMessage(lottos);
 
-    }
-
-    private void createLotto() {
-
-    }
-
-    private void createWinningNumbers() {
-
-    }
-
-    private void compareLottoNumbers() {
-    }
-
-
-    private void printResult() {
-        
+        //createLotto
+        //createWinningNumbers
+        //compareLottoNumbers
+        //printResult
     }
 
 }

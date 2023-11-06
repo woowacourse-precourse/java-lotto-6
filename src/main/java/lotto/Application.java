@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -17,6 +19,8 @@ public class Application {
 
         List<List<Integer>> lotto = new ArrayList<>();
         getLotto(lotto, lottoNum);
+        printLotto(lotto,lottoNum);
+
     }
     public static List<List<Integer>> getLotto(List<List<Integer>> lotto, int lottoNum){
         for(int i=0; i<lottoNum; i++){
@@ -24,5 +28,13 @@ public class Application {
             lotto.add(numbers);
         }
         return lotto;
+    }
+    public static void printLotto(List<List<Integer>> lotto, int lottoNum){
+        System.out.println();
+        System.out.println(lottoNum+"개를 구매했습니다.");
+        for(int i=0; i<lottoNum; i++){
+            Collections.sort(lotto.get(i));
+            System.out.println(lotto.get(i));
+        }
     }
 }

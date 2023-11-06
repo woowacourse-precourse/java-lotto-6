@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.errorMessage.ExceptionErrorMessage.INPUT_ONLY_NUMBER;
 import static lotto.errorMessage.ExceptionErrorMessage.PURCHASE_LOTTO_PRICE;
 
 public class PlayerPurchase {
@@ -19,9 +20,13 @@ public class PlayerPurchase {
     }
 
     private static int convertToInt(String amount) {
-        return Integer.parseInt(amount);
-    }
+        try {
+            return Integer.parseInt(amount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INPUT_ONLY_NUMBER);
+        }
 
+    }
 
     private void validateLottoPrice(int amount) {
         if (amount % Lotto_Price != 0 || amount <= 0) {

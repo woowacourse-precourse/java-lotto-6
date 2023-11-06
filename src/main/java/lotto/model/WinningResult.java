@@ -1,6 +1,6 @@
 package lotto.model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -12,6 +12,7 @@ public class WinningResult {
 
     public WinningResult(List<Integer> drawResult) {
         winningResult = drawResult.stream()
+                .filter(number -> number >= Rule.MINIMUM_NUMBER_TO_WIN.value())
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 

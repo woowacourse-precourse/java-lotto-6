@@ -1,10 +1,14 @@
 package lotto.domain;
 
+import lotto.exception.WrongMoneyUnitException;
+
 public class Money {
+    private static final long CURRENCY = 1000;
 
     private long money;
 
     private Money(Long money) {
+        checkDividedByCurrency(money);
         this.money = money;
     }
 
@@ -19,6 +23,12 @@ public class Money {
 
     public long showMoney() {
         return money;
+    }
+
+    private static void checkDividedByCurrency(long money) {
+        if (money%CURRENCY != 0) {
+            throw  new WrongMoneyUnitException();
+        }
     }
 
 

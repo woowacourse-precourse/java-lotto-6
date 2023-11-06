@@ -8,13 +8,13 @@ import lotto.domain.LottoSet;
 import java.util.Map;
 
 public class OutputView {
-    private static final String LOTTO_NUM_MESSAGE = "\n%d개를 구매했습니다.\n";
+    private static final String LOTTO_QUANTITY_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String LOTTO_RESULT_ANNOUNCE_MESSAGE = "\n당첨 통계";
     private static final String LOTTO_RESULT_UNDERBAR_MESSAGE = "---";
     private static final String LOTTO_RESULT_HIT_MESSAGE = "개";
     private static final String LOTTO_RESULT_PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
-    public static void outputLottoNum(int lottoNum){
-        System.out.printf(LOTTO_NUM_MESSAGE, lottoNum);
+    public static void outputLottoNum(int lottoQuantity){
+        System.out.printf(LOTTO_QUANTITY_MESSAGE, lottoQuantity);
     }
 
     public static void outputLottoSet(LottoSet lottoSet){

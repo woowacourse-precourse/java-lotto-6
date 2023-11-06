@@ -30,17 +30,13 @@ public class InputView {
     }
 
     public static List<Integer> generateNumberList(String winningString){
-        try {
-            String[] result = winningString.split(",");
-            List<Integer> winning = new ArrayList<>();
+        String[] result = winningString.split(",");
+        List<Integer> winning = new ArrayList<>();
 
-            for (int i = 0; i < result.length; i++) {
-                winning.add(converToInt(result[i]));
-            }
-            return winning;
-        } catch (Exception e){
-            throw new IllegalArgumentException("[ERROR] 값을 올바르게 입력하지 않았습니다.");
+        for (int i = 0; i < result.length; i++) {
+            winning.add(converToInt(result[i]));
         }
+        return winning;
     }
 
     private static int converToInt(String numString){

@@ -39,7 +39,7 @@ public class Lotto {
     }
 
     public static List<Integer> generateLotto(){
-        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_ENTITY_SIZE);
+        return sortLotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_ENTITY_SIZE));
     }
 
     public static List<Integer> sortLotto(List<Integer> lotto){

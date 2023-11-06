@@ -1,10 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
         int lotto_purchase_amount = inputLottoPurchase();
+        List<Lotto> a = new ArrayList<Lotto>();
         
     }
 
@@ -22,6 +24,10 @@ public class Application {
             }
         }
         return lotto_purchase_amount;
+    }
+
+    static ArrayList<Lotto> lottoIssuance(int purchase_amount){
+        return new ArrayList<Lotto>();
     }
 
     static int stringToInt(String value) throws IllegalArgumentException{

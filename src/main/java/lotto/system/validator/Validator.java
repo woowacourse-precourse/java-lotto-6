@@ -74,8 +74,9 @@ public class Validator {
         );
     }
 
-    public void validateBonusNumber(String input) {
+    public void validateBonusNumber(List<Integer> winningNumbers, String input) {
         validateNotEmptyAndArabicNumber(input);
         validateNumberInRange(input);
+        validateBonusNumberInWinningNumber(winningNumbers, input);
     }
 }

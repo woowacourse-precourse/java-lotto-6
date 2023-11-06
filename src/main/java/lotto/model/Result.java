@@ -41,4 +41,8 @@ public class Result {
         }
         return matchCount;
     }
+
+    public int getCountByRank(PrizeRank rank) {
+        return prizeCounts.getOrDefault(rank, 0);
+    }
 }

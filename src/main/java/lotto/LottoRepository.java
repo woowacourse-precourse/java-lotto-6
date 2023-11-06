@@ -7,14 +7,16 @@ public class LottoRepository {
     private List<Lotto> lottos;
     private LottoRank lottoRank;
     private int[] ranks=new int[6];
-    private final Lotto winningLotto;
-    private final int bonusNum;
+    private Lotto winningLotto;
+    private int bonusNum;
     private final int[] PRIZE={20000000,3000000,1500000,50000,5000};
     private static final String RANK_ERROR_MESSAGE="[ERROR] 로또의 번호 개수는 6개여야 합니다.";
-    public LottoRepository(Lotto winningLotto,int bonusNum){
-        this.winningLotto=winningLotto;
+
+    public void setWinningLotto(Lotto lotto){
+        this.winningLotto=lotto;
+    }
+    public void setBonusNum(int bonusNum){
         this.bonusNum=bonusNum;
-        Arrays.fill(ranks,0);
     }
     public void addLotto(Lotto lotto){
         if(calculateRank(lotto))

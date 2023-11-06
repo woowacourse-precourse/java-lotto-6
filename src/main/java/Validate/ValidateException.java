@@ -87,7 +87,7 @@ public class ValidateException {
     public static void negative(String strLine) {
         Integer inputNum = Integer.valueOf(strLine);
         if (inputNum < POSITIVE_CONDITION_ZERO) {
-            throw new NumberFormatException("[ERROR] 입력된 값은 양수가 아닙니다.");
+            throw new NumberFormatException("[ERROR] 양수만 입력해 주세요");
         }
     }
 
@@ -102,7 +102,7 @@ public class ValidateException {
     // TODO: 11/6/23 추가.
     public static boolean containsNonNumericCharacter(String input) {
         for (char c : input.toCharArray()) {
-            if (!Character.isDigit(c) && !Character.isWhitespace(c)) {
+            if (!Character.isDigit(c) && c != '-' && !Character.isWhitespace(c)) {
                 throw new NumberFormatException("[ERROR] 숫자를 입력해주세요.");
             }
         }

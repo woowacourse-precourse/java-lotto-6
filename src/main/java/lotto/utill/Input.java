@@ -31,7 +31,7 @@ public class Input {
         ValidateException.containsNonNumericCharacter(inputStringLine);
         ValidateException.includeBlank(inputStringLine);
         ValidateException.blankCheck(inputStringLine);
-//        ValidateException.negative(inputStringLine);
+        ValidateException.negative(inputStringLine);
 //        ValidateException.zeroNum(inputStringLine);
 
         return Utii.parseInteger(inputStringLine);

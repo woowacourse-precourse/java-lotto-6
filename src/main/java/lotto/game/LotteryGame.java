@@ -15,18 +15,16 @@ public class LotteryGame {
     private InputHandler inputHandler = new InputHandler();
     private OutputHandler outputHandler = new OutputHandler();
     private final String ERROR = "[ERROR]";
+    private final String REUQEST_PRICE = "구입금액을 입력해 주세요.";
 
     public void run() {
 
     }
 
     private void init() {
-
-    }
-
-    private void setLottoList(){
+        outputHandler.print(REUQEST_PRICE);
         int price = getPrice();
-
+        lottoList = getLottoList(price);
     }
 
     private int getPrice() {

@@ -8,15 +8,11 @@ public class Lotto {
 
     private final List<Number> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        List<Number> formattedNumbers = toNumberList(numbers);
+    public Lotto(List<Integer> values) {
+        List<Number> newNumbers = Number.getList(values);
 
-        validate(formattedNumbers);
-        this.numbers = formattedNumbers;
-    }
-
-    private List<Number> toNumberList(List<Integer> numbers) {
-        return numbers.stream().map(Number::from).toList();
+        validate(newNumbers);
+        this.numbers = newNumbers;
     }
 
     private void validate(List<Number> numbers) {

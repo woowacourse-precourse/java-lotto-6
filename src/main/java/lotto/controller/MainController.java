@@ -24,6 +24,8 @@ public class MainController {
         // 당첨번호 입력
 
         // 보너스번호 입력
+        String inputBonus = inputView.readBonusNumber();
+        int bonusNumber = Validator.validateBonusNumber(inputBonus);
 
         // 당첨내역 출력
 

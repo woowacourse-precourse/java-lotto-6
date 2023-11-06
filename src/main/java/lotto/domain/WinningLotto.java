@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
-import lotto.constant.LottoRank;
+
 import java.util.List;
 
 public class WinningLotto {
@@ -37,10 +37,10 @@ public class WinningLotto {
         }
     }
 
-    public LottoRank calculateRank(Lotto comparedLotto) {
+    public rank calculateRank(Lotto comparedLotto) {
         int matchedNumberCount = lotto.countMatchedNumber(comparedLotto);
         boolean bonusNumberMatched = comparedLotto.containNumber(bonusNumber);
 
-        return LottoRank.findByMatchedNumberCountAndBonusNumberMatched(matchedNumberCount, bonusNumberMatched);
+        return rank.findByMatchedNumberCountAndBonusNumberMatched(matchedNumberCount, bonusNumberMatched);
     }
 }

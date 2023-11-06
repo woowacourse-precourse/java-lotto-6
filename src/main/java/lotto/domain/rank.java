@@ -1,8 +1,8 @@
-package lotto.constant;
+package lotto.domain;
 
 import java.util.stream.Stream;
 
-public enum LottoRank {
+public enum rank {
     OUT_RANK(0, -1),
     THREE_MATCH(5000, 3),
     FOUR_MATCH(50000, 4),
@@ -13,24 +13,24 @@ public enum LottoRank {
     private final int prizeMoney;
     private final int matchedNumberCount;
 
-    LottoRank(int prizeMoney, int matchedNumberCount) {
+    rank(int prizeMoney, int matchedNumberCount) {
         this.prizeMoney = prizeMoney;
         this.matchedNumberCount = matchedNumberCount;
     }
 
-    public static LottoRank findByMatchedNumberCountAndBonusNumberMatched(
+    public static rank findByMatchedNumberCountAndBonusNumberMatched(
             int matchedNumberCount, boolean bonusNumberMatched
     ) {
         if (matchedNumberCount == 5) {
             return decideRankSecondOrThird(bonusNumberMatched);
         }
         return Stream.of(values())
-                .filter(lottoRank -> lottoRank.matchedNumberCount == matchedNumberCount)
+                .filter(rank -> rank.matchedNumberCount == matchedNumberCount)
                 .findAny()
                 .orElse(OUT_RANK);
     }
 
-    private static LottoRank decideRankSecondOrThird(boolean matchedBonusNumber) {
+    private static rank decideRankSecondOrThird(boolean matchedBonusNumber) {
         if (matchedBonusNumber) {
             return FIVE_AND_BONUS_MATCH;
         }

@@ -1,23 +1,22 @@
 package lotto.domain;
 
-import lotto.constant.LottoRank;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
 public class LottoResult {
-    private final Map<LottoRank, Integer> result = new LinkedHashMap<>();
+    private final Map<rank, Integer> result = new LinkedHashMap<>();
 
     public LottoResult() {
-        Stream.of(LottoRank.values()).forEach(lottoRank -> result.put(lottoRank, 0));
+        Stream.of(rank.values()).forEach(rank -> result.put(rank, 0));
     }
 
-    public void increaseLottoRankCount(LottoRank lottoRank) {
-        int currentCount = result.get(lottoRank);
-        result.replace(lottoRank, currentCount + 1);
+    public void increaseLottoRankCount(rank rank) {
+        int currentCount = result.get(rank);
+        result.replace(rank, currentCount + 1);
     }
 
-    public Map<LottoRank, Integer> getResult() {
+    public Map<rank, Integer> getResult() {
         return new LinkedHashMap<>(result);
     }
 
@@ -29,9 +28,9 @@ public class LottoResult {
     private long calculateTotalPrizeMoney() {
         long totalPrizeMoney = 0;
 
-        for (LottoRank lottoRank : result.keySet()) {
-            int count = result.get(lottoRank);
-            totalPrizeMoney += (long) lottoRank.getPrizeMoney() * count;
+        for (rank rank : result.keySet()) {
+            int count = result.get(rank);
+            totalPrizeMoney += (long) rank.getPrizeMoney() * count;
         }
         return totalPrizeMoney;
     }

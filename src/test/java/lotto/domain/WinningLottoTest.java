@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.TestConstant;
-import lotto.constant.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -56,9 +55,9 @@ class WinningLottoTest {
         init(TestConstant.normalNumbers);
         winningLotto.setBonusNumber(45);
 
-        LottoRank lottoRank = winningLotto.calculateRank(lotto);
+        rank rank = winningLotto.calculateRank(lotto);
 
-        assertThat(lottoRank).isEqualTo(LottoRank.SIX_MATCH);
+        assertThat(rank).isEqualTo(rank.SIX_MATCH);
     }
 
     @DisplayName("당첨 등수를 계산한다. - 5개 일치, 보너스 번호 일치")
@@ -67,9 +66,9 @@ class WinningLottoTest {
         init(List.of(1, 2, 3, 4, 5, 44));
         winningLotto.setBonusNumber(6);
 
-        LottoRank lottoRank = winningLotto.calculateRank(lotto);
+        rank rank = winningLotto.calculateRank(lotto);
 
-        assertThat(lottoRank).isEqualTo(LottoRank.FIVE_AND_BONUS_MATCH);
+        assertThat(rank).isEqualTo(rank.FIVE_AND_BONUS_MATCH);
     }
 
     @DisplayName("당첨 등수를 계산한다. - 5개 일치")
@@ -78,9 +77,9 @@ class WinningLottoTest {
         init(List.of(1, 2, 3, 4, 5, 45));
         winningLotto.setBonusNumber(40);
 
-        LottoRank lottoRank = winningLotto.calculateRank(lotto);
+        rank rank = winningLotto.calculateRank(lotto);
 
-        assertThat(lottoRank).isEqualTo(LottoRank.FIVE_MATCH);
+        assertThat(rank).isEqualTo(rank.FIVE_MATCH);
     }
 
     @DisplayName("당첨 등수를 계산한다. - 4개 일치")
@@ -89,9 +88,9 @@ class WinningLottoTest {
         init(List.of(1, 2, 3, 4, 43, 44));
         winningLotto.setBonusNumber(45);
 
-        LottoRank lottoRank = winningLotto.calculateRank(lotto);
+        rank rank = winningLotto.calculateRank(lotto);
 
-        assertThat(lottoRank).isEqualTo(LottoRank.FOUR_MATCH);
+        assertThat(rank).isEqualTo(rank.FOUR_MATCH);
     }
 
     @DisplayName("당첨 등수를 계산한다. - 3개 일치")
@@ -100,9 +99,9 @@ class WinningLottoTest {
         init(List.of(1, 2, 3, 42, 43, 44));
         winningLotto.setBonusNumber(45);
 
-        LottoRank lottoRank = winningLotto.calculateRank(lotto);
+        rank rank = winningLotto.calculateRank(lotto);
 
-        assertThat(lottoRank).isEqualTo(LottoRank.THREE_MATCH);
+        assertThat(rank).isEqualTo(rank.THREE_MATCH);
     }
 
     @DisplayName("당첨 등수를 계산한다. - 2개 이하 일치")
@@ -114,13 +113,13 @@ class WinningLottoTest {
         Lotto oneMatchedLotto = new Lotto(List.of(1, 41, 42, 43, 44, 45));
         Lotto twoMatchedLotto = new Lotto(List.of(1, 2, 42, 43, 44, 45));
 
-        LottoRank lottoRank1 = winningLotto.calculateRank(noMatchedLotto);
-        LottoRank lottoRank2 = winningLotto.calculateRank(oneMatchedLotto);
-        LottoRank lottoRank3 = winningLotto.calculateRank(twoMatchedLotto);
+        rank rank1 = winningLotto.calculateRank(noMatchedLotto);
+        rank rank2 = winningLotto.calculateRank(oneMatchedLotto);
+        rank rank3 = winningLotto.calculateRank(twoMatchedLotto);
 
-        assertThat(lottoRank1).isEqualTo(LottoRank.OUT_RANK);
-        assertThat(lottoRank2).isEqualTo(LottoRank.OUT_RANK);
-        assertThat(lottoRank3).isEqualTo(LottoRank.OUT_RANK);
+        assertThat(rank1).isEqualTo(rank.OUT_RANK);
+        assertThat(rank2).isEqualTo(rank.OUT_RANK);
+        assertThat(rank3).isEqualTo(rank.OUT_RANK);
     }
 
     private void init(List<Integer> numbers) {

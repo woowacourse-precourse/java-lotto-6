@@ -3,7 +3,6 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.constant.LottoConstraint;
-import lotto.constant.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Map;
@@ -15,10 +14,10 @@ class LottoResultTest {
     @DisplayName("당첨 등수의 개수를 증가시킨다.")
     @Test
     void increaseLottoRankCount() {
-        lottoResult.increaseLottoRankCount(LottoRank.THREE_MATCH);
-        Map<LottoRank, Integer> result = lottoResult.getResult();
+        lottoResult.increaseLottoRankCount(rank.THREE_MATCH);
+        Map<rank, Integer> result = lottoResult.getResult();
 
-        int rankCount = result.get(LottoRank.THREE_MATCH);
+        int rankCount = result.get(rank.THREE_MATCH);
 
         assertThat(rankCount).isEqualTo(1);
     }
@@ -27,11 +26,11 @@ class LottoResultTest {
     @Test
     void calculateProfitRate() {
         Payment payment = new Payment(LottoConstraint.PRICE_PER_LOTTO.getValue());
-        lottoResult.increaseLottoRankCount(LottoRank.THREE_MATCH);
+        lottoResult.increaseLottoRankCount(rank.THREE_MATCH);
         double profitRate = lottoResult.calculateProfitRate(payment);
 
         assertThat(profitRate).isEqualTo(
-        (double) LottoRank.THREE_MATCH.getPrizeMoney()
+        (double) rank.THREE_MATCH.getPrizeMoney()
                 / LottoConstraint.PRICE_PER_LOTTO.getValue()
                 * 100
         );
@@ -42,13 +41,13 @@ class LottoResultTest {
     void calculateProfitRateWhenBigNumber() {
         Payment payment = new Payment(LottoConstraint.PRICE_PER_LOTTO.getValue());
         for (int i = 0; i < LottoConstraint.MAX_PURCHASE_QUANTITY.getValue(); i++) {
-            lottoResult.increaseLottoRankCount(LottoRank.SIX_MATCH);
+            lottoResult.increaseLottoRankCount(rank.SIX_MATCH);
         }
 
         double profitRate = lottoResult.calculateProfitRate(payment);
 
         assertThat(profitRate).isEqualTo(
-        (double) LottoRank.SIX_MATCH.getPrizeMoney()
+        (double) rank.SIX_MATCH.getPrizeMoney()
                 * LottoConstraint.MAX_PURCHASE_QUANTITY.getValue()
                 / LottoConstraint.PRICE_PER_LOTTO.getValue()
                 * 100

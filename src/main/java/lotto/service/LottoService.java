@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.constant.LottoConstraint;
-import lotto.constant.LottoRank;
+import lotto.domain.rank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Payment;
@@ -66,8 +66,8 @@ public class LottoService {
         LottoResult lottoResult = new LottoResult();
 
         purchasedLottos.forEach(lotto -> {
-                    LottoRank lottoRank = winningLotto.calculateRank(lotto);
-                    lottoResult.increaseLottoRankCount(lottoRank);
+                    rank rank = winningLotto.calculateRank(lotto);
+                    lottoResult.increaseLottoRankCount(rank);
                 }
         );
 

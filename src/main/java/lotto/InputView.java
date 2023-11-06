@@ -2,27 +2,43 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static lotto.OutputView.printRequestMoney;
+import static lotto.OutputView.printWinningNumber;
+import static lotto.OutputView.printBlankLine;
 
 public class InputView {
+    private static List<Integer> winningLotto;
+
     public static int inputRequestMoney() {
         printRequestMoney();
         String inputMoney = Console.readLine();
-        return validateNumber(inputMoney);
+        validateBlank(inputMoney);
+        return validateMoney(inputMoney);
     }
 
-    private static int validateNumber(String inputMoney) {
-        inputBlank(inputMoney);
-        return inputNumeric(inputMoney);
+    public static List<Integer> getWinningNumber() {
+        printWinningNumber();
+        String inputResult = Console.readLine();
+        printBlankLine();
+
+        validateBlank(inputResult);
+        return validateResult(inputResult);
     }
 
-    private static void inputBlank(String inputMoney) {
+    private static int validateMoney(String inputMoney) {
+        return validateMoneyNumeric(inputMoney);
+    }
+
+    private static void validateBlank(String inputMoney) {
         if (inputMoney.isBlank()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static int inputNumeric(String inputMoney) {
+    private static int validateMoneyNumeric(String inputMoney) {
         int amount;
         try {
             amount = Integer.parseInt(inputMoney);
@@ -30,5 +46,19 @@ public class InputView {
             throw new NumberFormatException();
         }
         return amount;
+    }
+
+    private static List<Integer> validateResult(String inputWinningNumber) {
+        List<String> winningNumbers = Arrays.asList(inputWinningNumber.split(","));
+        for (String number : winningNumbers) {
+            try {
+                Integer winningNumber = Integer.parseInt(number);
+                winningLotto.add(winningNumber);
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException();
+            }
+        }
+
+        return winningLotto;
     }
 }

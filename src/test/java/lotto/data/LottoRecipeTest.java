@@ -19,8 +19,10 @@ class LottoRecipeTest {
     })
     void calculateCountOfLottoTest(int money, int expectedCountOfLotto) {
         // given
+        lottoRecipe = LottoRecipe.of(new Money(money));
+
         // when & then
-        assertThat(lottoRecipe.purchaseLotto(new Money(money))).isEqualTo(expectedCountOfLotto);
+        assertThat(lottoRecipe.purchaseLotto()).isEqualTo(expectedCountOfLotto);
     }
 
 }

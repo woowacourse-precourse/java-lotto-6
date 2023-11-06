@@ -13,6 +13,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    private void checkDuplicated(List<Integer> numbers) {
+        Map<Integer, Integer> checkTable = new HashMap<>();
+        for (Integer element : numbers) {
+            if (checkTable.containsKey(element)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.");
+            }
+            checkTable.put(element, 1);
+        }
+    }
+
     public List<Integer> getNumbers() {
         return this.numbers;
     }
@@ -24,14 +34,5 @@ public class Lotto {
         }
     }
 
-    private void checkDuplicated(List<Integer> numbers) {
-        Map<Integer, Integer> checkTable = new HashMap<>();
-        for (Integer element : numbers) {
-            if (checkTable.containsKey(element)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.");
-            }
-            checkTable.put(element, 1);
-        }
-    }
 
 }

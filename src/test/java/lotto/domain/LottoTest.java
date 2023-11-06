@@ -62,4 +62,16 @@ class LottoTest {
         assertThat(lotto.hasNumber(12)).isFalse();
     }
 
+    @Test
+    @DisplayName("로또 클래스와 비교하여, 일치하는 갯수를 리턴한다")
+    void testCountMatching() {
+        Lotto lotto1 = new Lotto(List.of(5, 10, 15, 20, 25, 30));
+        Lotto lotto2 = new Lotto(List.of(20, 25, 30, 35, 40, 45));
+
+        int result = lotto1.countMatching(lotto2);
+        int expected = 3;
+
+        assertThat(result).isEqualTo(expected);
+    }
+
 }

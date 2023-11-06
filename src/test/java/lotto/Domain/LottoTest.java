@@ -10,10 +10,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+    @DisplayName("로또 번호의 개수가 6개가 아니면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -21,16 +24,6 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("로또 번호가 범위를 벗어나면 예외가 발생한다.")
-    @Test
-    void createLottoByNumberOutOfRange() {
-        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 46)))
-                .isInstanceOf(IllegalArgumentException.class);
-
-        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 0)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -30,19 +30,8 @@ public class LottoGenerator {
     }
 
     public static Lotto createWinningLotto(String userInput) {
-        boolean isRunning = TRUE.get();
-        Lotto winningLotto = NULL.get();
+        return new Lotto(Handling.parseNumbers(Handling.split(userInput)));
 
-        while (isRunning) {
-            try {
-                winningLotto = new Lotto(Handling.parseNumbers(Handling.split(userInput)));
-                isRunning = FALSE.get();
-            } catch (IllegalArgumentException ex) {
-                Output.printError(ex);
-            }
-        }
-
-        return winningLotto;
     }
 
     public static Integer createBonusNumber(Lotto winningLotto, String userInput) {

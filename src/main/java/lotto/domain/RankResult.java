@@ -14,8 +14,8 @@ public class RankResult {
                 .forEach(prize -> rankResult.put(prize, 0));
     }
 
-    public void calculateRankResult(WonLotto wonLotto, List<Lotto> numbers) {
-        for (Lotto lotto : numbers) {
+    public void calculateRankResult(WonLotto wonLotto, Lottos numbers) {
+        for (Lotto lotto : numbers.getLottos()) {
             Rank rank = Rank.getRank(lotto.numbersMatchWonLottoNumber(wonLotto),
                     lotto.isContain(wonLotto.getBonusNumber()));
             updateRankCount(rank);

@@ -21,21 +21,19 @@ public class InputLottoNumber {
         printNotice();
         String buyLotto = inputThings.inputThings().trim();
         validate(buyLotto);
-        getValue(buyLotto);
         return Integer.parseInt(buyLotto);
     }
 
-    public List<Integer> numberConvert(String checkedInput) {
-        List<String> getNumbers = getValue(checkedInput);
+    public List<Integer> getValue() {
+        String checkedInput = inputThings.inputThings().trim();
+        String getValues = String.join(",", checkedInput);
         List<Integer> lottoNumbers = new ArrayList<>();
-        for (String lottoNumber : getNumbers) {
-            lottoNumbers.add(Integer.valueOf(lottoNumber));
+
+        for (String lottoNumber : getValues.split(",")) {
+            int number = Integer.parseInt(lottoNumber.trim());
+            lottoNumbers.add(number);
         }
         return lottoNumbers;
-    }
-
-    private List<String> getValue(String checkedInput) {
-        return Arrays.asList(checkedInput.split(","));
     }
 
     public void validate(String buyLotto) {

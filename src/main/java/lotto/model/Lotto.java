@@ -8,6 +8,7 @@ numbers의 접근 제어자인 private을 변경할 수 없다.
 Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
 Lotto의 패키지 변경은 가능하다.
 * */
+
 public class Lotto {
     private final List<Integer> numbers;
 

@@ -13,6 +13,7 @@ public class MainController {
     }
 
     public void play() {
+        String lotttoMoney = inputView.readLottoMoney();
 
     }
 }

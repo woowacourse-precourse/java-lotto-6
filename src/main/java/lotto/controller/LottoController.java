@@ -20,7 +20,7 @@ public class LottoController {
 
     public void run() {
         LottoMoney lottoMoney = inputLottoMoney();
-        List<Lotto> lottos = purchaseLottos(lottoMoney);
+        List<Lotto> lottos = purchaseLottoByMoney(lottoMoney);
         LottoStorage lottoStore = LottoStorage.from(lottos);
         outputView.outputPurchaseResult(lottoStore, lottoMoney.availableLottoCount());
 
@@ -60,16 +60,16 @@ public class LottoController {
         }
     }
 
-    private static List<Lotto> purchaseLottos(LottoMoney lottoMoney) {
+    private static List<Lotto> purchaseLottoByMoney(LottoMoney lottoMoney) {
         try {
-            return addLottoByMoney(lottoMoney);
+            return addLottoAsCanBuy(lottoMoney);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return purchaseLottos(lottoMoney);
+            return purchaseLottoByMoney(lottoMoney);
         }
     }
 
-    private static List<Lotto> addLottoByMoney(LottoMoney lottoMoney) {
+    private static List<Lotto> addLottoAsCanBuy(LottoMoney lottoMoney) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoMoney.availableLottoCount(); i++) {
             lottos.add(Lotto.from(NumbersGenerator.lottoNumbersGenerator()));

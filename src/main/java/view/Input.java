@@ -7,13 +7,13 @@ public class Input {
     public Input(){};
 
     public static int getInputForLottoCost(){
-        String inputData = reanLineValidateNull();
+        String inputData;
         LottoCostValidator lottoCostValidator = new LottoCostValidator();
 
         while(true){
             System.out.println("구입 금액을 입력해 주세요");
-            String input = reanLineValidateNull();
-            if(lottoCostValidator.validate(input))
+            inputData = reanLineValidateNull();
+            if(lottoCostValidator.validate(inputData))
                 break;
         }
         return Integer.parseInt(inputData);
@@ -28,6 +28,7 @@ public class Input {
         }
         return input;
     }
+
 
     private static boolean validateNull(String input){
         try{

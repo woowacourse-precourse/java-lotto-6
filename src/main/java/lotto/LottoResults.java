@@ -1,6 +1,7 @@
 package lotto;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -32,14 +33,9 @@ public class LottoResults {
         return sb.toString();
     }
 
-    public BigDecimal sum() {
-        return Arrays.stream(LottoResult.values())
-                .map(result -> {
-                    int count = sumRepetitiveLotteries(result);
-                    return result.getTotalPrice(count);
-                })
-                .reduce(BigDecimal::add)
-                .orElse(BigDecimal.ZERO);
+    public BigDecimal calculateProfitRate(BigDecimal payment) {
+        return sum().divide(payment, 1, RoundingMode.HALF_UP)
+                .multiply(new BigDecimal(100));
     }
 
     private void appendResultToText(StringBuilder sb, LottoResult result) {
@@ -51,5 +47,17 @@ public class LottoResults {
 
     private int sumRepetitiveLotteries(LottoResult result) {
         return Collections.frequency(results, result);
+    }
+
+    private BigDecimal sum() {
+        return Arrays.stream(LottoResult.values())
+                .map(this::getResultPrice)
+                .reduce(BigDecimal::add)
+                .orElse(BigDecimal.ZERO);
+    }
+
+    private BigDecimal getResultPrice(LottoResult result) {
+        int count = sumRepetitiveLotteries(result);
+        return result.getTotalPrice(count);
     }
 }

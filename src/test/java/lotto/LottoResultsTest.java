@@ -13,28 +13,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoResultsTest {
 
-    @ParameterizedTest(name = "{0}이 당첨되면 당첨 금액은 {1}이다.")
-    @MethodSource("listAndBigDecimalProvider")
-    @DisplayName("최종 금액을 구하는데 성공한다.")
-    void test_Sum(List<LottoResult> results, BigDecimal expectedSum) {
-        //given
-        LottoResults lottoResults = LottoResults.of(results);
-
-        //when
-        BigDecimal sum = lottoResults.sum();
-
-        //then
-        assertThat(sum).isEqualTo(expectedSum);
-    }
-
     static Stream<Arguments> listAndBigDecimalProvider() {
         return Stream.of(
-                Arguments.of(List.of(LottoResult.SIX_MATCHING, LottoResult.FOUR_MATCHING), new BigDecimal(30050000)),
-                Arguments.of(List.of(LottoResult.THREE_MATCHING, LottoResult.THREE_MATCHING), new BigDecimal(10000)),
-                Arguments.of(List.of(LottoResult.NO_MATCHING, LottoResult.NO_MATCHING), BigDecimal.ZERO),
+                Arguments.of(List.of(LottoResult.SIX_MATCHING, LottoResult.FOUR_MATCHING), new BigDecimal("300500.0")),
+                Arguments.of(List.of(LottoResult.THREE_MATCHING, LottoResult.THREE_MATCHING), new BigDecimal("100.0")),
+                Arguments.of(List.of(LottoResult.NO_MATCHING, LottoResult.NO_MATCHING), new BigDecimal("0.0")),
                 Arguments.of(
                         List.of(LottoResult.NO_MATCHING, LottoResult.NO_MATCHING, LottoResult.THREE_MATCHING),
-                        new BigDecimal(5000)
+                        new BigDecimal("50.0")
                 ),
                 Arguments.of(
                         List.of(
@@ -43,9 +29,23 @@ class LottoResultsTest {
                                 LottoResult.FOUR_MATCHING,
                                 LottoResult.THREE_MATCHING
                         ),
-                        new BigDecimal(1605000)
+                        new BigDecimal("16050.0")
                 )
         );
     }
 
+    @ParameterizedTest(name = "{0}이 당첨되면 수익률은 {1}이다.")
+    @MethodSource("listAndBigDecimalProvider")
+    @DisplayName("최종 수익률을 구하는데 성공한다.")
+    void test_Sum(List<LottoResult> results, BigDecimal expectedSum) {
+        //given
+        BigDecimal payment = new BigDecimal(10000);
+        LottoResults lottoResults = LottoResults.of(results);
+
+        //when
+        BigDecimal sum = lottoResults.calculateProfitRate(payment);
+
+        //then
+        assertThat(sum).isEqualTo(expectedSum);
+    }
 }

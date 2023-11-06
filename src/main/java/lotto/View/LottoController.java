@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
 import lotto.Config.LottoConfig;
 import lotto.Controller.LottoView;
-import lotto.Model.Lotto;
 
 public class LottoController {
     private int purchaseAmount;

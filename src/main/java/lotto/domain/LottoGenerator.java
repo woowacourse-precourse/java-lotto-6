@@ -16,8 +16,8 @@ public class LottoGenerator {
     }
 
     private void setMyLotto(int chance) {
-        IntStream.range(0, chance)
-                .mapToObj(i -> new Lotto(sortedList()))
+        IntStream.range(Constants.INIT_VALUE_ZERO, chance)
+                .mapToObj(i -> new Lotto(sortedRandomLottoNumbers()))
                 .forEach(myLotto::add);
     }
 
@@ -29,7 +29,7 @@ public class LottoGenerator {
         );
     }
 
-    private List<Integer> sortedList() {
+    private List<Integer> sortedRandomLottoNumbers() {
         List<Integer> mutableList = new ArrayList<>(generateRandomLottoNumbers());
         Collections.sort(mutableList);
         return mutableList;

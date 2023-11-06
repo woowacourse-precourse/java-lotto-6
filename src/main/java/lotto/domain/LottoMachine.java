@@ -12,26 +12,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoMachine {
-    private static LottoMachine instance;
-
-    private WinLotto winLotto;
-
-    private LottoMachine() {
-    }
-
-    public static LottoMachine getInstance() {
-        if (instance == null) {
-            synchronized (LottoMachine.class) {
-                instance = new LottoMachine();
-            }
-        }
-        return instance;
-    }
-
-    public void setWinLotto(WinLotto winLotto) {
-        this.winLotto = winLotto;
-    }
-
     /**
      * 입력 갯수 만큼 로또 번호 생성
      *

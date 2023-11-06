@@ -20,14 +20,24 @@ import lotto.view.OutputView;
 
 public class LottoStoreController {
 
+    private static LottoStoreController lottoStore;
     private final LottoMachine lottoMachine;
     private Consumer consumer;
     private WinLotto winLotto;
     private LottoResult lottoResult;
 
-    public LottoStoreController() {
-        this.lottoMachine = LottoMachine.getInstance();
+    private LottoStoreController() {
+        this.lottoMachine = new LottoMachine();
         this.consumer = null;
+    }
+
+    public static LottoStoreController getLottoStore() {
+        if (lottoStore == null) {
+            synchronized (LottoStoreController.class) {
+                lottoStore = new LottoStoreController();
+            }
+        }
+        return lottoStore;
     }
 
     public void open() {
@@ -154,7 +164,7 @@ public class LottoStoreController {
 
             // 당첨 로또 등록
             winLotto = new WinLotto(lotto, bonusNumber);
-            
+
             // 줄 바꿈
             OutputView.newLineOutput();
 

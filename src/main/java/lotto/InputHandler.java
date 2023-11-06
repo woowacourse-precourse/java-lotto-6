@@ -16,6 +16,12 @@ public class InputHandler {
     }
 
     public int getInputNumber() {
-        return Integer.parseInt(Console.readLine());
+        int number = 0;
+        try {
+            number = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        }
+        return number;
     }
 }

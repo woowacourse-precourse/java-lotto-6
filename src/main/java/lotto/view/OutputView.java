@@ -3,7 +3,6 @@ package lotto.view;
 import java.util.List;
 import java.util.Map;
 
-import lotto.domain.Lotto;
 import lotto.enums.LottoPrize;
 
 public class OutputView {
@@ -26,8 +25,8 @@ public class OutputView {
         System.out.printf("%d개를 구매했습니다.\n", ticket);
     }
 
-    public void printLottoList(List<Lotto> wallet) {
-        wallet.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    public void printNumbers(List<Integer> numbers) {
+        System.out.println(numbers);
     }
 
     public void printWinningLottoInputMessage() {

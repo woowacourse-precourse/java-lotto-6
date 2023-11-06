@@ -38,6 +38,7 @@ public class LottoController {
 
     private Money getMoney() {
         MoneyInputView moneyInputView = new MoneyInputView();
+
         while (true) {
             try {
                 outputView.printMoneyInputMessage();
@@ -52,15 +53,19 @@ public class LottoController {
     private LottoWallet buyLotto(long ticket) {
         outputView.println();
         outputView.printTicket(ticket);
+
         List<Lotto> wallet = LottoWalletGenerator.generateLottoWallet(ticket);
-        outputView.printLottoList(wallet);
+        wallet.forEach(lotto -> outputView.printNumbers(lotto.getNumbers()));
+
         return new LottoWallet(wallet);
     }
 
     private WinningLotto getWinningLotto() {
-        BonusNumberInputView bonusNumberInputView = new BonusNumberInputView();
         outputView.println();
+        BonusNumberInputView bonusNumberInputView = new BonusNumberInputView();
+
         Lotto lotto = getLotto();
+
         while (true) {
             try {
                 outputView.printBonusNumberInputMessage();
@@ -73,8 +78,9 @@ public class LottoController {
     }
 
     private Lotto getLotto() {
-        LottoInputView LottoInputView = new LottoInputView();
         outputView.println();
+        LottoInputView LottoInputView = new LottoInputView();
+
         while (true) {
             try {
                 outputView.printWinningLottoInputMessage();

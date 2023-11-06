@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.LottoRank;
 import lotto.util.NumberGenerator.INumberGenerator;
 import lotto.util.NumberGenerator.NumberGenerator;
 
@@ -24,8 +25,8 @@ public class LottoPack {
         return lottoPack.size();
     }
 
-    public LottoStatistics calculate(Result result) {
-        return new LottoStatistics(lottoPack, result);
+    public List<LottoRank> calculate(Result result) {
+        return lottoPack.stream().map(lotto -> lotto.calculate(result)).toList();
     }
 
     @Override

@@ -11,20 +11,14 @@ public class LottoStatistics {
 
     private final EnumMap<LottoRank, Integer> statistics;
 
-    public LottoStatistics(List<Lotto> lottoPack, Result result) {
-        this.statistics = buildStatistics(lottoPack, result);
-    }
+    public LottoStatistics(LottoPack lottoPack, Result result) {
 
-    private EnumMap<LottoRank, Integer> buildStatistics(List<Lotto> lottoPack, Result result) {
+        statistics = new EnumMap<>(LottoRank.class);
+        Arrays.stream(LottoRank.values())
+                .forEach(lottoRank -> statistics.put(lottoRank, 0));
 
-        EnumMap<LottoRank, Integer> statistics = new EnumMap<>(LottoRank.class);
-        Arrays.stream(LottoRank.values()).forEach(lottoRank -> statistics.put(lottoRank, 0));
-
-        lottoPack.stream()
-                .map(lotto -> lotto.calculate(result))
+        lottoPack.calculate(result)
                 .forEach(rank -> statistics.put(rank, statistics.get(rank) + 1));
-
-        return statistics;
 
     }
 

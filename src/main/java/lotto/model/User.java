@@ -13,6 +13,8 @@ public class User {
 
     private List<Integer> correctCounts;
 
+    private List<Lotto> lottoTickets;
+
     public int getMoney() {
         return money;
     }
@@ -51,6 +53,14 @@ public class User {
 
     public void calculationLoopCount(){
         loopCount = money / 1000;
+    }
+
+    public void setLottoTicket(Lotto lotto){
+        lottoTickets.add(lotto);
+    }
+
+    public List<Lotto> getLottoTickets(){
+        return lottoTickets;
     }
 
 }

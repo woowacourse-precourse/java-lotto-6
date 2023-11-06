@@ -1,17 +1,18 @@
 package lotto.controller;
 
-import static lotto.view.InputView.readLine;
-
 import lotto.domain.Buyer;
-import lotto.view.InputView;
+import lotto.domain.Lottos;
 
 public class MainController {
     private static final BuyerController buyerController = new BuyerController();
+    private static final LottoController lottoController = new LottoController();
 
     public MainController() {
     }
 
     public static void run() {
         Buyer buyer = buyerController.getBuyerInfo();
+        Lottos lottoTicket = lottoController.createLottoTicket();
+        lottoController.showLottoPurchase(lottoTicket);
     }
 }

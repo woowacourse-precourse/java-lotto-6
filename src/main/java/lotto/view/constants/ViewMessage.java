@@ -1,8 +1,12 @@
 package lotto.view.constants;
 
-public enum ViewMessage {
-    GET_PURCHASE_AMOUNT_MESSAGE("구입금액을 입력해 주세요.");
+import static lotto.domain.constants.LottoConfig.LOTTO_COUNT;
 
+public enum ViewMessage {
+    GET_PURCHASE_AMOUNT_MESSAGE("구입금액을 입력해 주세요."),
+    LOTTO_PURCHASE_NOTICE_MESSAGE(
+            String.format("%d개를 구매했습니다.", LOTTO_COUNT.getValue())
+    );
     private final String message;
 
     ViewMessage(String message) {

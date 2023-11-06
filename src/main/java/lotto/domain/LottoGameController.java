@@ -1,11 +1,17 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.global.view.InputView;
+import lotto.global.view.OutputView;
 
 public class LottoGameController {
 
     public void run() {
         Money money = generateMoney();
+        OutputView.printPurchaseCount(money.getPurchaseLottoCount());
+        LottoStore lottoStore = new LottoStore();
+        List<Lotto> lottos = lottoStore.buyLotto(money);
+        OutputView.printPurchaseLottos(lottos);
         WinningLotto winningLotto = generateWinningLotto();
     }
 

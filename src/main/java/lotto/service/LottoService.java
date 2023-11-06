@@ -29,7 +29,7 @@ public class LottoService {
         return new Lotto(List.copyOf(numbers));
     }
 
-    public String getWinningStatic(ArrayList<Lotto> lottos, Lotto winningNumber, Integer bonusNumber) {
+    public HashMap<Ranking, Integer> getWinningStatic(ArrayList<Lotto> lottos, Lotto winningNumber, Integer bonusNumber) {
         HashMap<Ranking, Integer> winningStatic = new HashMap<>();
 
         for (Lotto lotto: lottos) {
@@ -37,7 +37,7 @@ public class LottoService {
             winningStatic.put(rank, winningStatic.getOrDefault(rank, 0) + 1);
         }
 
-        return makeWinningStaticResult(winningStatic);
+        return winningStatic;
     }
 
     private Ranking getLottoResult(Lotto lotto, Lotto winningNumber, Integer bonusNumber) {
@@ -57,7 +57,7 @@ public class LottoService {
         return Ranking.getRanking(matchCount, matchBonus);
     }
 
-    private String makeWinningStaticResult(HashMap<Ranking, Integer> winningStatic) {
+    public String makeWinningStaticResult(HashMap<Ranking, Integer> winningStatic) {
         StringBuilder result = new StringBuilder();
 
         for (Ranking ranking : Ranking.values()) {
@@ -69,5 +69,19 @@ public class LottoService {
         }
 
         return result.toString();
+    }
+
+    public Double getRateOfReturn(Integer price, HashMap<Ranking, Integer> winningStatic) {
+        int profit = 0;
+
+        for (Ranking ranking : Ranking.values()) {
+            profit += calculateProfit(ranking, winningStatic.getOrDefault(ranking, 0));
+        }
+
+        return profit / (double) price * 100;
+    }
+
+    private Integer calculateProfit(Ranking ranking, Integer rankingCount) {
+        return Integer.parseInt(ranking.getPrize()) * rankingCount;
     }
 }

@@ -22,4 +22,8 @@ public class OutputView {
         System.out.println(Constants.PRINT_WINNING_STATIC);
         System.out.println(winningStatic);
     }
+
+    public void printRateOfReturn(Double makeOfReturn) {
+        System.out.printf(Constants.PRINT_RATE_OF_RETURN, makeOfReturn);
+    }
 }

@@ -28,7 +28,10 @@ public class LottoController {
         Lotto winningNumber = inputView.getWinningNumber();
         Integer bonusNumber = inputView.getBonusNumber(winningNumber);
 
-        String winningStatic = lottoService.getWinningStatic(lottos, winningNumber, bonusNumber);
-        outputView.printWinningStatic(winningStatic);
+        HashMap<Ranking, Integer> winningStatic = lottoService.getWinningStatic(lottos, winningNumber, bonusNumber);
+        outputView.printWinningStatic(lottoService.makeWinningStaticResult(winningStatic));
+
+        Double rateOfReturn = lottoService.getRateOfReturn(price, winningStatic);
+        outputView.printRateOfReturn(rateOfReturn);
     }
 }

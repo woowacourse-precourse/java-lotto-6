@@ -34,7 +34,7 @@ public enum Ranking {
     }
 
     public String getPrize() {
-        return prize;
+        return prize.replaceAll(",", "");
     }
 
     @Override

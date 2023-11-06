@@ -9,6 +9,7 @@ public class Constants {
     public static final String PRINT_WINNING_STATIC = "당첨 통계\n---";
     public static final String PRINT_RANKING = "%d개 일치 (%s원)";
     public static final String PRINT_SECOND_PLACE = "%d개 일치, 보너스 볼 일치 (%s원)";
+    public static final String PRINT_RATE_OF_RETURN = "총 수익률은 %.2f%%입니다.";
 
     /** 로또에 사용되는 숫자 */
     public static final Integer PRICE_UNIT = 1000;

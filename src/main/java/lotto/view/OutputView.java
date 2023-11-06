@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     public static void displayAllLottos(LottosDTO lottosDTO) {
-        List<List<Integer>> lottos = lottosDTO.getLottos();
+        List<List<Integer>> lottos = lottosDTO.lottos();
         System.out.printf(CURRENT_BOUGHT_LOTTO_MESSAGE, lottos.size());
         for (List<Integer> lotto : lottos) {
             ArrayList<Integer> copyLotto = new ArrayList<>(lotto);
@@ -36,12 +36,12 @@ public class OutputView {
     public static void displayAllLottosStatistics(LottoResultsDTO lottoResultsDTO) {
         System.out.println(WINNING_STATISTICS_MESSAGE);
         System.out.println(DIVIDE_LINE);
-        printLottosStatistics(lottoResultsDTO.getResult());
+        printLottosStatistics(lottoResultsDTO.result());
     }
 
     public static void displayRateOfReturn(LottoResultsDTO lottoResultsDTO) {
-        long buyLottoAmount = lottoResultsDTO.getLottoCount() * 1000L;
-        double rateOfReturn = (double) lottoResultsDTO.getWinningAmount() / buyLottoAmount;
+        long buyLottoAmount = lottoResultsDTO.lottoCount() * 1000L;
+        double rateOfReturn = (double) lottoResultsDTO.winningAmount() / buyLottoAmount;
         System.out.printf(TOTAL_RATE_OF_RETURN_MESSAGE, rateOfReturn * 100);
     }
 

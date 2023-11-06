@@ -31,6 +31,6 @@ public class LottosDTOTest {
         LottosDTO lottosDTO = lottos.toLottosDTO();
 
         //then
-        Assertions.assertThat(lottosDTO.getLottos()).isEqualTo(expected);
+        Assertions.assertThat(lottosDTO.lottos()).isEqualTo(expected);
     }
 }

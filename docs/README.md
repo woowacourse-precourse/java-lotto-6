@@ -41,11 +41,12 @@
 - 테스트 코드 작성
 
 ## 기능 추출
-- [x] 랜덤 숫자 생성하기 RandomNumberGenerator#generateRandomNumber()
+- [x] 랜덤 숫자 생성하기 RandomNumberGenerator
+  - [x] 로또 생성하기 generateRandomNumber()
+  - [x] 발행한 로또 출력하기(UI) printMyLottoNumbers() 
 - [x] 사용자 입력 UserInput
   - [x] 구입 금액 입력받기(UI) insertMoney()
   - [x] 당첨 번호 입력받기, 보너스 번호 입력받기(UI) inputWinnerNumbers(), inputBonusNumber()
-- [] 발행한 로또 출력하기(UI) printMyLottoNumbers()
 - [] 당첨자 Winner
   - [] 당첨자 계산하기 checkLottoNumbers()
   - [] 당첨자 결과 출력하기(UI) printLottoResult()

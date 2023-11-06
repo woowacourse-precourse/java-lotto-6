@@ -7,7 +7,12 @@ public class Application {
         // TODO: 프로그램 구현
         UserInput userInput = new UserInput();
         int insertedMoney = userInput.insertMoney("구입금액을 입력해 주세요.");
-        System.out.println(insertedMoney);
+        System.out.println();
+        System.out.println(insertedMoney+"개를 구매했습니다.");
+
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        randomNumberGenerator.generateRandomNumbers(insertedMoney);
+        randomNumberGenerator.printMyLottoNumber();
 
         List<Integer> inputList = userInput.inputWinnerNumbers("당첨 번호를 입력해 주세요.");
         System.out.println(inputList);

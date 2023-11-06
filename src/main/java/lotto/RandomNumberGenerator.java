@@ -2,17 +2,29 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RandomNumberGenerator {
-    private List<Integer> randomNumber;
+    private List<List<Integer>> randomNumbers;
 
-    public List<Integer> generateRandomNumber() {
-        this.randomNumber = Randoms.pickUniqueNumbersInRange(1, 45,6);
-        return this.randomNumber;
+    public void generateRandomNumbers(int quantity) {
+        randomNumbers = new ArrayList<>();
+
+        for (int i = 0; i < quantity; i++) {
+            List<Integer> singleLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            randomNumbers.add(singleLotto);
+        }
     }
 
-    public List<Integer> getRandomNumber() {
-        return this.randomNumber;
+    public List<List<Integer>> getRandomNumbers() {
+        return randomNumbers;
+    }
+
+    public void printMyLottoNumber(){
+        for(int i=0;i<randomNumbers.size();i++){
+            System.out.println(randomNumbers.get(i));
+        }
+        System.out.println();
     }
 }

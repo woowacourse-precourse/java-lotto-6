@@ -12,7 +12,7 @@ public class UserInput {
         String userInput = Console.readLine();
         int insertedMoney = Integer.parseInt(userInput);
 
-        return insertedMoney;
+        return (insertedMoney/1000);
     }
 
     public List<Integer> inputWinnerNumbers(String prompt) {

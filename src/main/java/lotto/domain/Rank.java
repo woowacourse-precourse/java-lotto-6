@@ -46,7 +46,7 @@ public enum Rank {
     public int getMatchCount(){
         return matchCount;
     }
-    public long getPrizeMoney(){
+    public int getPrizeMoney(){
         return prizeMoney;
     }
     public boolean getMatchBonus(){

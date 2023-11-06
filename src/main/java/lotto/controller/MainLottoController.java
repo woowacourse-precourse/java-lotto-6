@@ -13,50 +13,47 @@ public class MainLottoController {
 
     public void startLotto() {
         Money money = inPutMoney();
-        RandomLotto randomLotto = makeRandomLotto(money); //분리해야될듯 money가 갹체가 되어야하
+        RandomLotto randomLotto = makeRandomLotto(money);
         sendRandomLottoDataToView(randomLotto.getRandomLottoNumbers());
-
         UserLotto userLotto = makeUserLotto();
 
-        List<Rank> matchedRankings = getLottoRanking(randomLotto,userLotto);
-
-
+        List<Rank> matchedRankings = getLottoRanking(randomLotto, userLotto);
         LottoResultManager lottoResultManager = updateLottoResult(matchedRankings);
-        sendResultLottoDataToView(lottoResultManager,money);
 
+        sendResultLottoDataToView(lottoResultManager, money);
     }
 
-    private void sendResultLottoDataToView(LottoResultManager lottoResultManager,Money money){
+    private void sendResultLottoDataToView(LottoResultManager lottoResultManager, Money money) {
         int totalPrize = lottoResultManager.getTotalPrize();
         double earningRate = money.getEarningRate(totalPrize);
 
-        Map<Rank,Integer> resultRanking = lottoResultManager.getLottoResult();
-        List<Map.Entry<Rank, Integer>> entries = new ArrayList<>(resultRanking.entrySet());
-        entries.sort((e1, e2)
+        Map<Rank, Integer> resultRanking = lottoResultManager.getLottoResult();
+        List<Map.Entry<Rank, Integer>> sortedResultRanking = new ArrayList<>(resultRanking.entrySet());
+        sortedResultRanking.sort((e1, e2)
                 -> e2.getKey().ordinal() - e1.getKey().ordinal());
 
-        System.out.println(money.getEarningRate(totalPrize));
+        sendResultRankingToView(sortedResultRanking);
+        sendEarningRateToView(earningRate);
+    }
 
-        for (Map.Entry<Rank, Integer> entry : entries) {
+    private void sendEarningRateToView(double earningRate) {
+        Output.printResultRanking(earningRate);
 
-            System.out.println(entry.getKey()+ " ==> " + entry.getValue());
+    }
+
+    private void sendResultRankingToView(List<Map.Entry<Rank, Integer>> rankings) {
+        for (Map.Entry<Rank, Integer> ranking : rankings) {
+            int  matchCount = ranking.getKey().getMatchCount();
+            int prizeMoney = ranking.getKey().getPrizeMoney();
+            int matchedResult = ranking.getValue();
+
+            Output.printEarningRate(matchCount,prizeMoney,matchedResult);
         }
-
-
-    }
-
-    private void sendEarningRateToView(double earningRate){
-
-
-    }
-    private void sendResultRankingToView(){
-
-
     }
 
 
-    private LottoResultManager updateLottoResult(List<Rank> resultRanks){
-        return  new LottoResultManager(resultRanks);
+    private LottoResultManager updateLottoResult(List<Rank> resultRanks) {
+        return new LottoResultManager(resultRanks);
     }
 
     //region 램덤로또
@@ -92,9 +89,9 @@ public class MainLottoController {
     private UserLotto makeUserLotto() {
         Lotto mainNumber = inputMainLottoNumber();
         BonusLotto bonusNumber = inputBonusLottoNumber();
-        try{
-            return new UserLotto(mainNumber,bonusNumber);
-        }catch (IllegalArgumentException e) {
+        try {
+            return new UserLotto(mainNumber, bonusNumber);
+        } catch (IllegalArgumentException e) {
             Output.printErrorMessage(e.getMessage());
             return makeUserLotto();
         }
@@ -108,7 +105,8 @@ public class MainLottoController {
             return inputMainLottoNumber();
         }
     }
-    private BonusLotto inputBonusLottoNumber(){
+
+    private BonusLotto inputBonusLottoNumber() {
         try {
             return new BonusLotto(input.getBonusNumber());
         } catch (IllegalArgumentException e) {
@@ -118,12 +116,11 @@ public class MainLottoController {
     }
     //endregion
 
-    private List<Rank> getLottoRanking(RandomLotto randomLotto, UserLotto userLotto){
+    private List<Rank> getLottoRanking(RandomLotto randomLotto, UserLotto userLotto) {
         LottoNumberMatcher lottoNumberMatcher =
-                new LottoNumberMatcher(randomLotto,userLotto);
+                new LottoNumberMatcher(randomLotto, userLotto);
         return lottoNumberMatcher.getMatchedLottoRank();
     }
-
 
 
 }

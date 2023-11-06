@@ -13,14 +13,17 @@ public class LottoController {
         lottoService = new LottoService();
     }
 
-    public void payMoney() {
-
+    public void startLotto() {
+        Long money = inputPurchaseAmount();
     }
 
     private Long inputPurchaseAmount() {
-        InputMessage.INPUT_PURCHASE_AMOUNT.getInputMessage();
+        InputMessage.INPUT_PURCHASE_AMOUNT.inputMoneyMessage();
         Long myMoney = Long.parseLong(InputView.input());
         Money money = new Money(myMoney);
         return money.getMoney();
+    }
+
+    private void buyLotto() {
     }
 }

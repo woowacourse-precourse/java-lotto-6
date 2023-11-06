@@ -16,7 +16,11 @@ public class OutputMessage {
 
     public static void printResult(Map<Prize,Integer> result){
         for(int i = Prize.values().length - 2 ; i >= 0 ; i--){
-            System.out.println(Prize.printMessage(Prize.values()[i]) + " " +  result.get(Prize.values()[i]));
+            System.out.println(Prize.printMessage(Prize.values()[i]) + " " + result.get(Prize.values()[i]) + "개");
         }
+    }
+
+    public static void printPrizePercent(double prizePercent){
+        System.out.println("총 수익률은 " + prizePercent + "%입니다.");
     }
 }

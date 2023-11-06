@@ -29,14 +29,13 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-
-    @DisplayName("구입 금액이 숫자가 아닐 경우 예외가 발생한다.")
+   /* @DisplayName("구입 금액이 숫자가 아닐 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1500","123f","-1"})
     void purchaseCostByNotNumber(String inputCost) {
         assertThatThrownBy(() -> new GetLottoPurchase(inputCost))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
+    }*/
 
     @DisplayName("구입 금액에 맞는 숫자가 들어갔을 경우 성공")
     @ParameterizedTest

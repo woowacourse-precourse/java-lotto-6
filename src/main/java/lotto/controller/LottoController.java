@@ -22,7 +22,6 @@ public class LottoController {
     private static List<Integer> lotto = new ArrayList<>();
     private static Lotto prizeLotto;
     private static int bonus;
-    private static Prize prize;
 
 
     public void run(){
@@ -81,17 +80,21 @@ public class LottoController {
         String bonus;
         int bonusNum = 0;
         while(!isGetBonus){
+            isGetBonus = true;
             try{
                 bonus = InputMessage.inputBonusNumber();
                 bonusNum = Integer.parseInt(bonus);
                 if(bonusNum < 1 || bonusNum > 45){
                     ExceptionMessage.wrongLottoRangeException();
+                    isGetBonus = false;
+                }
+                if(prizeLotto.checkBonus(bonusNum)){
+                    ExceptionMessage.wrongLottoDuplicateException();
+                    isGetBonus = false;
                 }
             } catch (IllegalArgumentException e){
                 ExceptionMessage.wrongLottoException();
-            }
-            if(bonusNum >= 1 && bonusNum <= 45) {
-                isGetBonus = true;
+                isGetBonus = false;
             }
         }
         return bonusNum;
@@ -102,11 +105,21 @@ public class LottoController {
         Map<Prize,Integer> result = setResult();
         OutputMessage.printPrizeStat();
 
-        for(int i = 0 ; i < lottoList.size(); i++){
-            prize = computePrize.match(lottoList.get(i));
+        for (Lotto value : lottoList) {
+            Prize prize = computePrize.match(value);
             result.put(prize, result.get(prize) + 1);
         }
         OutputMessage.printResult(result);
+        computePrizePercent(result);
+    }
+
+    private void computePrizePercent(Map<Prize, Integer> result) {
+        double prizePercent = 0;
+        for (Prize prize : result.keySet()) {
+            prizePercent += Prize.getPrize(prize) * result.get(prize);
+        }
+        prizePercent = (prizePercent / getLottoPurchase.getCost()) * 100;
+        OutputMessage.printPrizePercent(prizePercent);
     }
 
     private Map<Prize,Integer> setResult(){

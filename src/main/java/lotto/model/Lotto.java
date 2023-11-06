@@ -52,5 +52,4 @@ public class Lotto {
     public boolean checkBonus(int bonus){
         return numbers.contains(bonus);
     }
-
 }

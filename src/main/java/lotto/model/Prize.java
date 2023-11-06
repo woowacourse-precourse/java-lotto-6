@@ -1,16 +1,16 @@
 package lotto.model;
 
 public enum Prize {
-    First(6,2_000_000_000,"6개 일치 (2,000,000,000원ㄴ) -"),
+    First(6,2_000_000_000,"6개 일치 (2,000,000,000원) -"),
     Second(5,20_000_000,"5개 일치, 보너스 볼 일치 (30,000,000원) -"),
     Third(5,1_500_000,"5개 일치 (1,500,000원) -"),
     Fourth(4,50_000,"4개 일치 (50,000원) -"),
     Fifth(3,5_000,"3개 일치 (5,000원) -"),
     Miss(0,0,"");
 
-    private int matchOfLotto;
-    private int prizeOfLotto;
-    private String message;
+    private final int matchOfLotto;
+    private final int prizeOfLotto;
+    private final String message;
 
     Prize(int matchOfLotto, int prizeOfLotto, String message) {
         this.matchOfLotto = matchOfLotto;
@@ -41,4 +41,7 @@ public enum Prize {
         return prize.message;
     }
 
+    public static int getPrize(Prize prize){
+        return prize.prizeOfLotto;
+    }
 }

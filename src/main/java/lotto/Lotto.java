@@ -1,15 +1,13 @@
 package lotto;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        Collections.sort(numbers);
+        validateCount(numbers);
+        validateUniqueNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -36,9 +34,15 @@ public class Lotto {
         return matchCount;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("6개의 번호만 필요합니다.");
+        }
+    }
+
+    private void validateUniqueNumbers(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("로또 번호가 모두 달라야 합니다.");
         }
     }
 

@@ -17,7 +17,7 @@ public class LottoController {
     public void start() {
         List<Lotto> tickets = buyLotto();
         showTickets(tickets);
-        List<Integer> userNumbers = getUserNumbers();
+        Lotto userLotto = getUserLotto();
         int bonusNumber = getBonusNumber();
     }
 
@@ -39,12 +39,13 @@ public class LottoController {
         outputView.printGeneratedLotto(numbers);
     }
 
-    private List<Integer> getUserNumbers() {
+    private Lotto getUserLotto() {
         try {
-            return inputView.inputWinningNumbers();
+            List<Integer> numbers = inputView.inputWinningNumbers();
+            return new Lotto(numbers);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            return getUserNumbers();
+            return getUserLotto();
         }
     }
 

@@ -9,7 +9,6 @@ import lotto.util.InputValidator;
 public class WinningLotto implements InputValidator {
 
     private List<Integer> numbers;
-    private Bonus bonusNumber; //TODO: bonus 제거해야함
 
     @Override
     public boolean getInputUntilValid() {
@@ -22,10 +21,6 @@ public class WinningLotto implements InputValidator {
         List<Integer> integerNumbers = validateWinningNumberIsNumeric(inputDividedByComma);
         validateNumberBetweenInRange(integerNumbers, 1, 45);
         this.numbers = integerNumbers;
-    }
-
-    public void addBonus(Bonus bonus) {
-        this.bonusNumber = bonus;
     }
 
     public List<String> validateDelimiterComma(String numbers) {
@@ -66,9 +61,4 @@ public class WinningLotto implements InputValidator {
     public List<Integer> getNumbers() {
         return this.numbers;
     }
-
-    public int getBonusNumber() {
-        return bonusNumber.getNumber();
-    }
-
 }

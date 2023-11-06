@@ -1,14 +1,15 @@
 package lotto.utils;
 
+import lotto.model.Lotto;
 import lotto.model.Money;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Stack;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
-public class StringToIntegerUtil {
+public class StringUtil {
 
     public static Money stringToMoney(String input) {
         if (containsThousandSeparator(input)) {
@@ -23,7 +24,7 @@ public class StringToIntegerUtil {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
-        
+
         return new Money(amount);
     }
 
@@ -43,6 +44,24 @@ public class StringToIntegerUtil {
 
     protected static String removeComma(String input) {
         return input.replaceAll(",", "");
+    }
+
+    public static Lotto stringToLottery(String input) {
+        List<Integer> numbers = splitWithStrip(input)
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .toList();
+
+        return new Lotto(numbers);
+    }
+
+    protected static Stream<String> splitWithStrip(String input) {
+        return Arrays.stream(input.split(","))
+                .map(String::strip);
+    }
+
+    public static int stringToInt(String input) {
+        return Integer.parseInt(input.strip());
     }
 
 }

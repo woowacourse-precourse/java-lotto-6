@@ -18,6 +18,15 @@ public class LottoGame {
         List<Lotto> lottos = getLottery(money.getNumberOfPurchasedLotto());
 
         lottos.forEach(System.out::println);
+
+        Lotto winningNumbers = InputConsole.getWinningNumbers();
+
+        int bonusNumber = InputConsole.getBonusNumber();
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        System.out.println("winning numbers: " + winningNumbers);
     }
 
     private List<Lotto> getLottery(int lottoCount) {

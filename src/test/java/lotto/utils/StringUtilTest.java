@@ -1,7 +1,6 @@
 package lotto.utils;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class StringToIntegerUtilTest {
+class StringUtilTest {
     @DisplayName("문자열에 `,`가 포함되어 있는지 확인하는 테스트")
     @ParameterizedTest
     @CsvSource(value = {"14000:FALSE", "14,000:TRUE"}, delimiter = ':')
@@ -17,7 +16,7 @@ class StringToIntegerUtilTest {
         // given
 
         // when
-        boolean result = StringToIntegerUtil.containsThousandSeparator(input);
+        boolean result = StringUtil.containsThousandSeparator(input);
 
         // then
         assertThat(result).isEqualTo(expected);
@@ -27,7 +26,7 @@ class StringToIntegerUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {",1000", "10,00", "100,0", "1000,", "10,000000", "1000,000", "10,,000"})
     void validateCommaAtPositionTest(String input) {
-        assertThatThrownBy(() -> StringToIntegerUtil.validateCommaAtPosition(input))
+        assertThatThrownBy(() -> StringUtil.validateCommaAtPosition(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -38,7 +37,7 @@ class StringToIntegerUtilTest {
         // given
 
         // when
-        String result = StringToIntegerUtil.removeComma(input);
+        String result = StringUtil.removeComma(input);
 
         // then
         assertThat(result).isEqualTo(expected);
@@ -48,7 +47,7 @@ class StringToIntegerUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {"", "  ", "abcde", "123abc456"})
     void convertNotAStringTest(String input) {
-        assertThatThrownBy(() -> StringToIntegerUtil.stringToMoney(input))
+        assertThatThrownBy(() -> StringUtil.stringToMoney(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -56,7 +55,14 @@ class StringToIntegerUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {"4294967296", "4,294,967,296"})
     void convertOverInteger(String input) {
-        assertThatThrownBy(() -> StringToIntegerUtil.stringToMoney(input))
+        assertThatThrownBy(() -> StringUtil.stringToMoney(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("`,`를 구분자로 split 했을 때 요소들 중 하나라도 숫자가 아닌 경우 예외 발생 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,a", "1,2,3,a,4", "1, 2,, 4, 5", "1, 2, , 4, 5"})
+    void splitContainsNotNumber(String input) {
+        assertThatThrownBy(() -> StringUtil.stringToLottery(input));
     }
 }

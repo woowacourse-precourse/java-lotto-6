@@ -12,15 +12,13 @@ class StringToListConverterTest {
     private StringToListConverter stringToListConverter = new StringToListConverter();
 
     @Test
-    @DisplayName("문자열이 정수형 리스트로 잘 반환 되는지 확인")
-    void StringToListConverterTest(){
+    @DisplayName("문자열 정수형 리스트로 잘 반환 되는지 확인")
+    void stringToListConverterTest(){
         //given
         String input = "1,2,3,4,5,6";
         List<Integer> answer = Arrays.asList(1,2,3,4,5,6);
-
         //when
         List<Integer> result = stringToListConverter.stringToList(input);
-
         //then
         assertEquals(answer,result);
     }

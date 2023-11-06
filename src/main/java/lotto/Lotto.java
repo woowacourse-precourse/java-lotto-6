@@ -20,25 +20,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        try{
-            if (numbers.size() != 6) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리 이어야 합니다.");
-            }
-        }
-        catch (IllegalArgumentException e){
-            System.out.println("[ERROR] 당첨 번호는 6자리 이어야 합니다.");
-            e.printStackTrace();
+
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리 이어야 합니다.");
         }
 
     }
 
     private void validateDuplicated_1(List<Integer> numbers) {
-        try{
+        try {
             for (int i = 0; i < numbers.size(); i++) {
                 validateDuplicated_2(numbers, i);
             }
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 로또 번호는 중복되지 않아야합니다.");
             e.printStackTrace();
         }

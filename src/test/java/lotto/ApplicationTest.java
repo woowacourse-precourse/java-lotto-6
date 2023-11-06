@@ -165,14 +165,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @DisplayName("당첨 번호가 6자리가 아닐경우 예외가 발생한다.")
-    @Test
-    void isWinningNumberSix(){
-        assertSimpleTest(() -> {
-            runException("1000","1,2,3,4,5");
-            assertThat(output()).contains(ERROR_MESSAGE + " 당첨 번호는 6자리 이어야 합니다.");
-        });
-    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

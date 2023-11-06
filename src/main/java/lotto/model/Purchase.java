@@ -1,17 +1,17 @@
 package lotto.model;
 
 public class Purchase {
-    private final Integer priceNumber;
+    private final Integer money;
 
     public Purchase(String inputPrice){
-        this.priceNumber = validate(inputPrice);
+        this.money = validate(inputPrice);
     }
 
     private Integer validate(String inputPrice) {
         try{
             int validatePrice = Integer.parseInt(inputPrice);
 
-            if((validatePrice % 1000 != 0) || (validatePrice == 0)){
+            if((validatePrice % 1000 != 0) || (validatePrice <= 0)){
                 throw new IllegalArgumentException();
             }
             return validatePrice;
@@ -20,7 +20,7 @@ public class Purchase {
         }
     }
 
-    public Integer getPurchaseAmount(){
-        return priceNumber/1000;
+    public Integer getlottoTicketNumber(){
+        return money/1000;
     }
 }

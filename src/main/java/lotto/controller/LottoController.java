@@ -33,7 +33,7 @@ public class LottoController {
     public int inputLottoPrices() {
         String confirmString = "";
         int lottoPrices = isInteger(confirmString);
-        if(!isPriceBiggerThanMax(lottoPrices)) {
+        if(!isPriceLowerThanMax(lottoPrices)) {
             throw new IllegalArgumentException("최대 구입 가능 금액은 " + MAX_LOTTO_PRICES + "원 입니다.");
         }
         if(!isPositiveNumber(lottoPrices)) {
@@ -52,8 +52,8 @@ public class LottoController {
         }
 
     }
-    public boolean isPriceBiggerThanMax(int confirmInteger) {
-        return confirmInteger > MAX_LOTTO_PRICES;
+    public boolean isPriceLowerThanMax(int confirmInteger) {
+        return confirmInteger < MAX_LOTTO_PRICES;
     }
     public boolean isPositiveNumber(int confirmInteger) {
         return confirmInteger > 0;

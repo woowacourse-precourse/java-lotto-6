@@ -3,7 +3,6 @@ package lotto.domain.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -23,7 +22,7 @@ class LottoServiceTest {
     @DisplayName("로또를 구매할 수 있다.")
     @Test
     void purchaseByAmount() {
-        List<Lotto> lottos = new LottoService().purchase(new PurchaseAmount(new BigInteger("10000")));
+        List<Lotto> lottos = new LottoService().purchase(new PurchaseAmount(10000L));
 
         assertThat(lottos).size().isEqualTo(10);
     }
@@ -51,7 +50,7 @@ class LottoServiceTest {
                                 createLotto(1, 2, 3, 10, 11, 12)
                         ),
                         createWinningNumber(7, 1, 2, 3, 4, 5, 6),
-                        new PurchaseAmount(new BigInteger("2000")),
+                        new PurchaseAmount(2000L),
                         new BigDecimal("500")),
                 Arguments.of(
                         List.of(
@@ -67,7 +66,7 @@ class LottoServiceTest {
                                 createLotto(10, 11, 12, 13, 14, 15)
                         ),
                         createWinningNumber(7, 1, 2, 3, 4, 5, 6),
-                        new PurchaseAmount(new BigInteger("10000")),
+                        new PurchaseAmount(10000L),
                         new BigDecimal("50"))
         );
     }

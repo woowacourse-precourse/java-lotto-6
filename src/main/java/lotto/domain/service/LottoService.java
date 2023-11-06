@@ -1,7 +1,6 @@
 package lotto.domain.service;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -36,17 +35,16 @@ public class LottoService {
     }
 
     private BigDecimal getRateOfReturn(long totalPrize, PurchaseAmount purchaseAmount) {
-        return BigDecimal.valueOf(totalPrize)
+        return new BigDecimal(totalPrize)
                 .multiply(new BigDecimal("100"))
                 .divide(new BigDecimal(purchaseAmount.getAmount()), 1, RoundingMode.HALF_UP);
     }
 
     public List<Lotto> purchase(PurchaseAmount purchaseAmount) {
         List<Lotto> lottos = new ArrayList<>();
-        BigInteger quantity = purchaseAmount.getQuantity();
-        while (quantity.compareTo(BigInteger.ZERO) > 0) {
+        long quantity = purchaseAmount.getQuantity();
+        for (int i = 0; i < quantity; i++) {
             lottos.add(new Lotto(RandomNumberGenerator.generateUniqueNumbersInRange(1, 45, 6)));
-            quantity = quantity.subtract(BigInteger.ONE);
         }
         return lottos;
     }

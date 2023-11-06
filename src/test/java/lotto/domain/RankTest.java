@@ -52,10 +52,10 @@ class RankTest {
 
     public static Stream<Arguments> getTotalPrize() {
         return Stream.of(
-                Arguments.of(createRankToCount(Rank.NONE, Rank.NONE), 0),
-                Arguments.of(createRankToCount(Rank.NONE, Rank.FIFTH), 5000),
-                Arguments.of(createRankToCount(Rank.FIFTH, Rank.FIFTH), 5000 + 5000),
-                Arguments.of(createRankToCount(Rank.FIFTH, Rank.FIFTH, Rank.FIRST), 2_000_000_000 + 5000 + 5000)
+                Arguments.of(createRankToCount(Rank.NONE, Rank.NONE), 0L),
+                Arguments.of(createRankToCount(Rank.NONE, Rank.FIFTH), 5000L),
+                Arguments.of(createRankToCount(Rank.FIFTH, Rank.FIFTH), 5000L + 5000L),
+                Arguments.of(createRankToCount(Rank.FIFTH, Rank.FIFTH, Rank.FIRST), 2_000_000_000L + 5000L + 5000L)
         );
     }
 

@@ -19,11 +19,16 @@ public class outputView {
         int[] winningCounts = new int[6];
         for (Lotto lotto : purchasedLottos) {
             int count = Lotto.getWinningNumberCount(winningNumbers, lotto.getNumbers());
-            if (count == 6) {
-                winningCounts[5]++;
-            } else {
-                winningCounts[count - 1]++;
+            boolean bonuscount = Lotto.isMatchBonusNumber(winningNumbers,bonusNumber);
+            if(bonuscount){
+                count+=1;
             }
+            if(count == 3) winningCounts[0] ++;
+            if(count == 4) winningCounts[1] ++;
+            if(count == 5) winningCounts[2] ++;
+            if(count == 6 && bonuscount) winningCounts[3] ++;
+            if(count==6 && !bonuscount) winningCounts[4] ++;
+
         }
 
         int totalPrize = calculateTotalPrize(winningCounts);
@@ -51,7 +56,7 @@ public class outputView {
         if (totalCost == 0) {
             return 0.0;
         }
-        return (totalPrize - totalCost) / (double) totalCost * 100.0;
+        return 100 + ((totalPrize - totalCost) / (double) totalCost * 100.0);
     }
 
 }

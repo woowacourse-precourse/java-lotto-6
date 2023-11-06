@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.NumberCandidateString;
+import lotto.domain.WinnerLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,7 +21,9 @@ public class LottoController {
         Lotto lotto = new Lotto(numberCandidateStrings.toLottoNumberList());
 
         NumberCandidateString bonusNumber = new NumberCandidateString(InputView.receiveBonusNumber());
-        LottoNumber number = new LottoNumber(bonusNumber.getNumber());
+        LottoNumber bounus = new LottoNumber(bonusNumber.getNumber());
+
+        WinnerLotto winnerLotto = new WinnerLotto(lotto, bounus);
     }
 
     private Lottos issueLottos() {
@@ -28,9 +31,7 @@ public class LottoController {
         Integer amount = numberCandidateString.getNumber();
         Money money = Money.of(amount);
 
-        Lottos lottos = Lottos.from(money.calcBillCount());
-
-        return lottos;
+        return Lottos.from(money.calcBillCount());
     }
 
 }

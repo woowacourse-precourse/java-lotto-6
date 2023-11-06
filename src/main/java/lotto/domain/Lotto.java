@@ -17,6 +17,10 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
+    public boolean contain(LottoNumber bounus) {
+        return numbers.contains(bounus);
+    }
+
     private void validateSameItem(List<LottoNumber> numbers) {
         if (hasSameItem(numbers)) {
             throw new IllegalArgumentException("중복된 값을 입력하지 마세요.");
@@ -36,5 +40,4 @@ public class Lotto {
     private static boolean isUnsuitableSize(List<LottoNumber> numbers) {
         return !LottoConstraint.checkSize(numbers.size());
     }
-
 }

@@ -15,16 +15,6 @@ public class LottoNumber {
         return number;
     }
 
-    private void validateInRange(Integer number) {
-        if (notInRange(number)) {
-            throw new IllegalArgumentException("1~45사이의 값만 입력해주세요.");
-        }
-    }
-
-    private static boolean notInRange(Integer number) {
-        return !LottoConstraint.inRange(number);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -40,5 +30,15 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    private void validateInRange(Integer number) {
+        if (notInRange(number)) {
+            throw new IllegalArgumentException("1~45사이의 값만 입력해주세요.");
+        }
+    }
+
+    private static boolean notInRange(Integer number) {
+        return !LottoConstraint.inRange(number);
     }
 }

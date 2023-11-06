@@ -8,6 +8,8 @@ import lotto.model.LottoReader.WinningNumbers;
 import lotto.model.LottoTicket;
 import lotto.view.InputView;
 
+import java.util.List;
+
 import static lotto.view.InputView.*;
 import static lotto.view.OutputView.printLottoTicket;
 import static lotto.view.OutputView.printPurchaseAmount;
@@ -17,6 +19,10 @@ public class LottoController {
         Deposit deposit = makeDeposit();
         LottoTicket lottoTicket = purchaseLottoTicket(deposit);
         LottoReader lottoReader = drawLotto();
+        List<Integer> read = lottoReader.read(lottoTicket);
+        for (Integer i : read) {
+            System.out.println(i);
+        }
     }
 
     public Deposit makeDeposit() {

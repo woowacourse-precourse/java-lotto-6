@@ -19,6 +19,16 @@ public class Lotto {
         }
     }
 
+    public Boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
+    public Integer compare(List<Integer> numbers) {
+        return (int) numbers.stream()
+                .filter(this.numbers::contains)
+                .count();
+    }
+
     @Override
     public String toString() {
         return "[" + numbers.stream()

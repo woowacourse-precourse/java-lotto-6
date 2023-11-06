@@ -8,6 +8,7 @@ public class Application {
     private static final InputHandler inputHandler = new InputHandler();
     private static final LottoResult lottoResult = new LottoResult();
     private static final LottoGenerator lottoGenerator = new LottoGenerator();
+
     public static void main(String[] args) {
         int userPurchaseAmount = getUserPurchaseAmount();
         int numberOfLottos = calculateNumberOfLottos(userPurchaseAmount);
@@ -22,7 +23,24 @@ public class Application {
 
     private static int getUserPurchaseAmount() {
         printOut.purchaseGuide();
-        return inputHandler.getInputNumber();
+        boolean validPurchaseAmount = false;
+        int userPurchaseAmount = 0;
+        while (!validPurchaseAmount) {
+            try {
+                userPurchaseAmount = inputHandler.getInputNumber();
+                validPrice(userPurchaseAmount);
+                validPurchaseAmount = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return userPurchaseAmount;
+    }
+
+    private static void validPrice(int userPurchaseAmount) {
+        if (userPurchaseAmount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 1장의 가격은 1,000원 입니다. 1,000원 단위로 다시 입력해주세요.");
+        }
     }
 
     private static int calculateNumberOfLottos(int userPurchaseAmount) {
@@ -34,7 +52,7 @@ public class Application {
         List<Lotto> purchasedLottos = lottoGenerator.generateLottos(numberOfLottos);
         return purchasedLottos;
     }
-    
+
     private static List<Integer> getWinningNumber() {
         printOut.inputWinningNumber();
         return inputHandler.getWinningNumber();

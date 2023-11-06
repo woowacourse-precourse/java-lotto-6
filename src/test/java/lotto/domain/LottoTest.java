@@ -52,4 +52,17 @@ class LottoTest {
         // then
         assertThat(result).isFalse();
     }
+
+    @Test
+    void 당첨된_로또와_다른_로또를_비교하여_일치하는_숫자의_개수를_반환한다() {
+        // given
+        Lotto winningLotto = new Lotto(lottoNumberFixtures(List.of(1, 2, 3, 4, 5, 6)));
+        Lotto target = new Lotto(lottoNumberFixtures(List.of(1, 2, 3, 4, 5, 7)));
+
+        // when
+        int result = winningLotto.getMatchCount(target);
+
+        // then
+        assertThat(result).isEqualTo(5);
+    }
 }

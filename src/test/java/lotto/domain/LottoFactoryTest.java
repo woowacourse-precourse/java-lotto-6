@@ -18,7 +18,7 @@ class LottoFactoryTest {
     @Test
     void create() {
         // given
-        Money money = Money.of(5000);
+        Money money = Money.from(5000);
 
         // when
         LottoFactory lottoFactory = LottoFactory.of(new RandomNumberGenerator(), money);
@@ -32,7 +32,7 @@ class LottoFactoryTest {
     @MethodSource("lottoDataProvider")
     void calculateResult(List<Integer> lotto, int bonusNumber, Rank rank, int count) {
         // given
-        LottoFactory lottoFactory = LottoFactory.of(() -> List.of(1, 2, 3, 4, 5, 6), Money.of(6000));
+        LottoFactory lottoFactory = LottoFactory.of(() -> List.of(1, 2, 3, 4, 5, 6), Money.from(6000));
         AnswerLotto answerLotto = AnswerLotto.of(new Lotto(lotto), bonusNumber);
 
         // when
@@ -58,7 +58,7 @@ class LottoFactoryTest {
     @Test
     void getLottoNumbers() {
         // given
-        LottoFactory lottoFactory = LottoFactory.of(() -> List.of(1, 2, 3, 4, 5, 6), Money.of(4000));
+        LottoFactory lottoFactory = LottoFactory.of(() -> List.of(1, 2, 3, 4, 5, 6), Money.from(4000));
 
         // when
         List<String> lottoNumbers = lottoFactory.getLottoNumbers();

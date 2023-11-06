@@ -19,7 +19,7 @@ class ResultTest {
     @MethodSource("rankCountProvider")
     void calculateRateToReturn(Map<Rank, Long> rankCount, float answer) {
         // given
-        Result result = Result.of(rankCount);
+        Result result = Result.from(rankCount);
 
         // when
         float rateToReturn = result.calculateRateToReturn();
@@ -64,7 +64,7 @@ class ResultTest {
     @MethodSource("rankCountProvider")
     void getRankCount(Map<Rank, Long> rankCount) {
         // given
-        Result result = Result.of(rankCount);
+        Result result = Result.from(rankCount);
 
         // when
         Map<Rank, Long> getRankCount = result.getRankCount();

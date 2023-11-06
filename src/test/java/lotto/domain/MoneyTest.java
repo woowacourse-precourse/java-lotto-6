@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.exception.ErrorMessage.INVALID_UNIT;
 import static lotto.exception.ErrorMessage.NOT_ENOUGH_MONEY;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +17,7 @@ class MoneyTest {
     @ValueSource(ints = {1000, 2000, 5000, 1000000})
     void of(int input) {
         // given // when
-        Money money = Money.of(input);
+        Money money = Money.from(input);
 
         // then
         Assertions.assertThat(money.calculateLottoCount()).isEqualTo(input / 1000);
@@ -28,7 +27,7 @@ class MoneyTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 300, 500, 999})
     void ofNotEnoughMoney(int input) {
-        assertThatThrownBy(() -> Money.of(input))
+        assertThatThrownBy(() -> Money.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_ENOUGH_MONEY.getMessage());
     }
@@ -40,7 +39,7 @@ class MoneyTest {
         int money = 5100;
 
         // when then
-        assertThatThrownBy(() -> Money.of(money))
+        assertThatThrownBy(() -> Money.from(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_UNIT.getMessage());
     }

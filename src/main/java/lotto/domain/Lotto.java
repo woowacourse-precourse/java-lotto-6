@@ -12,10 +12,9 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicated(numbers);
-        numbers = numbers.stream()
+        this.numbers = numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
-        this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {

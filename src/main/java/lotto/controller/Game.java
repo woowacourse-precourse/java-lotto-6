@@ -5,11 +5,13 @@ import static lotto.constants.ExceptionMessage.IS_DUPLICATE_BONUS_NUMBER;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import lotto.domain.Calculator;
 import lotto.domain.Comparator;
 import lotto.domain.Convertor;
 import lotto.domain.Lotto;
 import lotto.domain.Number;
-import lotto.domain.WinningNumbersCount;
+import lotto.domain.WinningCount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,9 +19,10 @@ public class Game {
     private static final int THOUSAND_UNIT = 1000;
     private int purchaseAmount;
     private int bonusNumber;
+    private double profitRate;
     private List<Lotto> lottos;
     private List<Integer> winningNumbers;
-    private List<WinningNumbersCount> winningNumbersCounts;
+    private Map<Integer, Integer> winningResult;
 
     public void start() {
         createPurchaseAmount();
@@ -28,9 +31,10 @@ public class Game {
         OutputView.printPurchaseResult(lottos);
         createWinningLotto();
         createBonusNumber();
-        createWinningNumbersCounts();
-        OutputView.printWinningResult(winningNumbersCounts);
-        OutputView.printProfitRate(purchaseAmount);
+        createWinningResult();
+        createProfitRate();
+        OutputView.printWinningResult(winningResult);
+        OutputView.printProfitRate(profitRate);
     }
 
     private void createPurchaseAmount() {
@@ -55,7 +59,8 @@ public class Game {
     private void createWinningLotto() {
         while (true) {
             try {
-                winningNumbers = new Lotto(createWinningNumbers()).getNumbers();
+                Lotto lotto = new Lotto(createWinningNumbers());
+                winningNumbers = lotto.getNumbers();
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e);
@@ -87,9 +92,20 @@ public class Game {
         }
     }
 
-    private void createWinningNumbersCounts() {
+    private void createWinningResult() {
+        List<WinningCount> winningCounts = createWinningCounts();
+        Calculator calculator = new Calculator(winningCounts);
+        winningResult = calculator.classify(winningCounts);
+    }
+
+    private List<WinningCount> createWinningCounts() {
         Comparator comparator = new Comparator();
-        winningNumbersCounts = comparator.compare(lottos, winningNumbers,
+        return comparator.compare(lottos, winningNumbers,
                 bonusNumber);
+    }
+
+    private void createProfitRate() {
+        Calculator calculator = new Calculator(createWinningCounts());
+        profitRate = calculator.calculateProfitRate(purchaseAmount);
     }
 }

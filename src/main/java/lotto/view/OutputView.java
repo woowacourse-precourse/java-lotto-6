@@ -10,12 +10,11 @@ import static lotto.constants.Rank.SECOND;
 import static lotto.constants.Rank.THIRD;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.WinningNumbersCount;
 
 public class OutputView {
     private static final String UNIT = "개";
-    private static List<WinningNumbersCount> winningNumbersCounts;
 
     public static void printPurchaseResult(List<Lotto> lottos) {
         int quantity = lottos.size();
@@ -26,66 +25,23 @@ public class OutputView {
         }
     }
 
-    public static void printWinningResult(List<WinningNumbersCount> winningNumbersCounts) {
-        OutputView.winningNumbersCounts = winningNumbersCounts;
+    public static void printWinningResult(Map<Integer, Integer> winningResult) {
         System.out.println();
         System.out.println(WINNING_RESULT.getMessage());
-        System.out.println(FIFTH.getMessage() + countFifth() + UNIT);
-        System.out.println(FOURTH.getMessage() + countFourth() + UNIT);
-        System.out.println(THIRD.getMessage() + countThird() + UNIT);
-        System.out.println(SECOND.getMessage() + countSecond() + UNIT);
-        System.out.println(FIRST.getMessage() + countFirst() + UNIT);
+        System.out.println(FIFTH.getMessage() + winningResult.get(5) + UNIT);
+        System.out.println(FOURTH.getMessage() + winningResult.get(4) + UNIT);
+        System.out.println(THIRD.getMessage() + winningResult.get(3) + UNIT);
+        System.out.println(SECOND.getMessage() + winningResult.get(2) + UNIT);
+        System.out.println(FIRST.getMessage() + winningResult.get(1) + UNIT);
     }
 
-    public static void printProfitRate(int purchaseAmount) {
-        System.out.printf(PROFIT_RATE.getMessage(), calculateProfitRate(purchaseAmount));
+    public static void printProfitRate(double profitRate) {
+        System.out.printf(PROFIT_RATE.getMessage(), profitRate);
     }
 
     public static void printError(Exception e) {
         System.out.println(e.getMessage());
     }
 
-    private static int calculateProfit() {
-        return countFirst() * FIRST.getPrize()
-                + countSecond() * SECOND.getPrize()
-                + countThird() * THIRD.getPrize()
-                + countFourth() * FOURTH.getPrize()
-                + countFifth() * FIFTH.getPrize();
-    }
 
-    private static double calculateProfitRate(int purchaseAmount) {
-        return calculateProfit() * 100.0 / purchaseAmount;
-    }
-
-    private static int countFirst() {
-        return (int) winningNumbersCounts.stream()
-                .filter(winningNumbersCount -> winningNumbersCount.getCount() == 6)
-                .count();
-    }
-
-    private static int countSecond() {
-        return (int) winningNumbersCounts.stream()
-                .filter(winningNumbersCount -> winningNumbersCount.getCount() == 5
-                        && winningNumbersCount.hasBonusNumber())
-                .count();
-    }
-
-    private static int countThird() {
-        return (int) winningNumbersCounts.stream()
-                .filter(winningNumbersCount -> winningNumbersCount.getCount() == 5
-                        && !winningNumbersCount.hasBonusNumber())
-                .count();
-    }
-
-    private static int countFourth() {
-        return (int) winningNumbersCounts.stream()
-                .filter(winningNumbersCount -> winningNumbersCount.getCount() == 4)
-                .count();
-    }
-
-    private static int countFifth() {
-        return (int) winningNumbersCounts.stream()
-                .filter(winningNumbersCount -> winningNumbersCount.getCount() == 3)
-                .count();
-    }
 }

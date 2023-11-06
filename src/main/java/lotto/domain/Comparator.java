@@ -15,13 +15,13 @@ public class Comparator {
                 .anyMatch(number -> number == bonusNumber);
     }
 
-    public List<WinningNumbersCount> compare(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        List<WinningNumbersCount> winningNumbersCounts = new ArrayList<>();
+    public List<WinningCount> compare(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        List<WinningCount> winningCounts = new ArrayList<>();
         for (Lotto lotto : lottos) {
             int count = countSameNumber(lotto.getNumbers(), winningNumbers);
             boolean hasBonusNumber = checkBonusNumber(lotto.getNumbers(), bonusNumber);
-            winningNumbersCounts.add(new WinningNumbersCount(count, hasBonusNumber));
+            winningCounts.add(new WinningCount(count, hasBonusNumber));
         }
-        return winningNumbersCounts;
+        return winningCounts;
     }
 }

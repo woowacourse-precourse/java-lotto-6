@@ -2,7 +2,7 @@ package lotto.constants;
 
 public class ErrorMessage {
 
-    public static final String ERROR_FORMAT = "[ERROR] %s";
+    public static final String ERROR_FORMAT = "[ERROR] ";
 
     // 모든 입력 공통
     public static final String BLANK_INPUT = "입력값이 빈 문자열입니다: ";

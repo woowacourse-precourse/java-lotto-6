@@ -1,9 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Lotto;
-
-import java.util.List;
 
 public class InputView {
     public static int getPurchaseAmount() {
@@ -14,15 +11,7 @@ public class InputView {
 
         return Integer.parseInt(input);
     }
-
-    public static void displayLottos(List<Lotto> lottos) {
-        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
-
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
-    }
-
+    
     private static void validateInput(String input) {
         if (isNotPositiveInteger(input)) {
             throw new IllegalArgumentException();

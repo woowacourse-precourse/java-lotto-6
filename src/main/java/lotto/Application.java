@@ -8,7 +8,16 @@ class money_for_lotto{
     public static String inputNumber;
 
     public static int realMoney(String inputNumber){
+        moneyIsNumber(inputNumber);
         return Integer.parseInt(inputNumber);
+    }
+
+    public static void  moneyIsNumber(String inputNumber){
+        try{
+            Integer.parseInt(inputNumber);
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
+        }
     }
 
 }

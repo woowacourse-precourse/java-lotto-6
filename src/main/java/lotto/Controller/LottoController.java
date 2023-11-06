@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import static lotto.controller.UserInputMessage.*;
+import static lotto.util.RandomNumberGenerator.generateRandomNumbers;
 import static lotto.util.ThousandSeparator.addThousandsSeparator;
 import static lotto.util.WinningNumbersMaker.makeWinningNumbers;
 import static lotto.validator.Validator.isBonusNumberDuplicate;
@@ -8,6 +9,8 @@ import static lotto.validator.Validator.isBonusNumberValid;
 import static lotto.validator.Validator.isPurchaseAmountValid;
 import static lotto.validator.Validator.isWinningNumberValid;
 
+import java.util.ArrayList;
+import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonus;
@@ -19,6 +22,7 @@ public class LottoController {
     int purchaseAmount;
     Lotto lottoWinningNumbers;
     LottoBonus lottoBonusNumber;
+    List<Lotto> lottoRandomNumbers = new ArrayList<>();
 
 
     public LottoController() {
@@ -26,10 +30,10 @@ public class LottoController {
 
     public void start() {
         requestLottoPurchaseAmount();
+        printOutNumbers();
+
         requestWinningNumbers();
         requestBonusNumber();
-
-
     }
 
     public void requestLottoPurchaseAmount() {
@@ -42,6 +46,23 @@ public class LottoController {
         } catch (Exception error) {
             System.out.println(error.getMessage());
             requestLottoPurchaseAmount();
+        }
+    }
+
+    public void printOutNumbers() {
+        int lottoTicket = purchaseAmount / LOTTO_PRICE;
+        System.out.printf(LOTTO_TICKETS_PURCHASED_MESSAGE, lottoTicket);
+        System.out.println();
+        generateLottoRandomNumbers(lottoTicket);
+        for (Lotto randomNumber : lottoRandomNumbers) {
+            System.out.println(randomNumber);
+        }
+    }
+
+    public void generateLottoRandomNumbers(int lottoTicket) {
+        for (int i = 0; i < lottoTicket; i++) {
+            Lotto randomNumbers = new Lotto(generateRandomNumbers(lottoTicket));
+            lottoRandomNumbers.add(randomNumbers);
         }
     }
 
@@ -70,4 +91,5 @@ public class LottoController {
             requestBonusNumber();
         }
     }
+
 }

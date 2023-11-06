@@ -76,4 +76,32 @@ class LottoTest {
         assertThat(result.getNumbers()).isEqualTo(winningNumbers);
     }
 
+    @Test
+    @DisplayName("구입한 로또와 당첨 번호를 비교해서 일치하는 수를 반환한다.")
+    void getMatchingCount_PurchaseLottoWithWinningLotto() {
+        // Given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 4, 5, 6, 7));
+
+        // When
+        int matchingCount = lotto.getMatchingCount(winningLotto);
+
+        // Then
+        assertThat(matchingCount).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("구입한 로또와 보너스 번호를 비교해서 일치하는지 여부를 반환한다.")
+    void getMatchingBonusNumber_PurchaseLottoWithBonusNumber() {
+        // Given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 4;
+
+        // When
+        boolean matchingBonusNumber = lotto.getMatchingBonusNumber(bonusNumber);
+
+        // Then
+        assertThat(matchingBonusNumber).isTrue();
+    }
+
 }

@@ -57,6 +57,16 @@ public class Lotto {
         return LOTTO_NUMBER_COUNT;
     }
 
+    public int getMatchingCount(Lotto lotto) {
+        return (int) this.numbers.stream()
+                .filter(number -> lotto.getNumbers().contains(number))
+                .count();
+    }
+
+    public boolean getMatchingBonusNumber(int bonusNumber) {
+        return this.numbers.contains(bonusNumber);
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
@@ -104,4 +114,5 @@ public class Lotto {
 
         return sortedNumbers;
     }
+
 }

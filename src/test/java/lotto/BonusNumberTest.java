@@ -62,5 +62,5 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_UNIQUE_BONUS_NUMBER.getMessage());
     }
-    
+
 }

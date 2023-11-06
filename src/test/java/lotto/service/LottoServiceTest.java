@@ -1,11 +1,12 @@
 package lotto.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
 
 class LottoServiceTest {
     private LottoService lottoService;
@@ -49,4 +50,11 @@ class LottoServiceTest {
                 .isSorted();
     }
 
+    @Test
+    @DisplayName("기능9 테스트 : generateLotto 메서드가 Lotto 객체를 예외를 발생시키지 않고 Lotto 객체를 생성한다.")
+    void generateLottoShouldReturnLottoInstanceWithOutException() {
+        // when, then
+        assertThatCode(() -> lottoService.generateLotto())
+                .doesNotThrowAnyException();
+    }
 }

@@ -36,7 +36,7 @@ public class LottoController {
             String input = requestMoneyFromUser();
             return new Money(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.displayERRORMESSAGE(e.getMessage());
             return getMoneyFromUser();
         }
     }
@@ -56,7 +56,7 @@ public class LottoController {
             String WinningNumberFromUser = requestWinningNumberFromUser();
             return new WinningLotto(WinningLottoGenerator.generateLottoNumber(WinningNumberFromUser));
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.displayERRORMESSAGE(e.getMessage());
             return getWinningLottoNumber();
         }
 
@@ -71,7 +71,7 @@ public class LottoController {
         try {
             winningLotto.addBonusNumber(bonus_number);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.displayERRORMESSAGE(e.getMessage());
             winningLotto.removeBonusNumber();
             addBonusNumber(winningLotto, getBonusNumber());
         }
@@ -82,7 +82,7 @@ public class LottoController {
             String BonusNumberFromUser = requestBonusNumberFromUser();
             return NumberValidator.validate(BonusNumberFromUser);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.displayERRORMESSAGE(e.getMessage());
             return getBonusNumber();
         }
     }

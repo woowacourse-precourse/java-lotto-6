@@ -14,8 +14,8 @@ public class WinningLotto {
     }
 
     WinningLotto(List<Integer> numbers, int bonusNumber) {
-        validateBonusNumber(bonusNumber);
         this.lotto = new Lotto(numbers);
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

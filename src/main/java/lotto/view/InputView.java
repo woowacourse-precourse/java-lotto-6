@@ -21,29 +21,22 @@ public class InputView {
     }
 
     public void validateLastCharacter(String input) {
-        char lastCharacter = getLastCharacter(input);
-
-        if (!Character.isDigit(lastCharacter)) {
+        if (!Character.isDigit(getCharacterAtIndex(input, input.length() - 1))) {
             throw new IllegalArgumentException(END_OF_SENTENCE_CHARACTER);
         }
     }
 
     public void validateFirstCharacter(String input) {
-        char firstCharacter = getFirstCharacter(input);
-
-        if (!Character.isDigit(firstCharacter)) {
+        if (!Character.isDigit(getCharacterAtIndex(input, 0))) {
             throw new IllegalArgumentException(START_OF_SENTENCE_CHARACTER);
         }
     }
 
-    private char getFirstCharacter(String input) {
-        char lastCharacter = input.toCharArray()[0];
-        return lastCharacter;
-    }
-
-    private char getLastCharacter(String input) {
-        char lastCharacter = input.toCharArray()[input.length() - 1];
-        return lastCharacter;
+    private char getCharacterAtIndex(String input, int index) {
+        if (index >= 0 && index < input.length()) {
+            return input.charAt(index);
+        }
+        throw new IndexOutOfBoundsException("[ERROR] index 가 문자열의 범위를 벗어났습니다.");
     }
 
     private void printWinningNumber() {

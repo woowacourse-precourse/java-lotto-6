@@ -7,7 +7,6 @@ import static lotto.constant.Constant.RANK_MONEY;
 public class Judgement {
     private static final int MIN_WINNING_NUMBER = 3;
     private static final int DEFAULT_COUNT = 0;
-    private static final int DEFAULT_STATE = 0;
 
     public void checkLottoNumber(Lottos lottos, WinningLotto winningLotto) {
         for (Lotto compare_lotto : lottos.getLottos()) {

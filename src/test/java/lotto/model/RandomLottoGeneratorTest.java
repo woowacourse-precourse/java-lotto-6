@@ -21,7 +21,7 @@ class RandomLottoGeneratorTest {
         assertRandomUniqueNumbersInRangeTest(
                 ()->{
                     Lotto lotto = lottoGenerator.generate();
-                    assertThat(lotto.getNumbers()).isEqualTo(randomNums);
+                    assertThat(lotto.numbers()).isEqualTo(randomNums);
                 },
                 randomNums
         );

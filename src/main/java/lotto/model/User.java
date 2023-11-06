@@ -1,22 +1,25 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class User {
-    private final List<Lotto> lottos;
+    private final Map<Lotto, LottoResult> lottos;
     private final Money spendMoney;
 
     public User(Money money) {
-        lottos = new ArrayList<>();
         this.spendMoney = money;
-        buyLottos();
+        this.lottos = buyLottos(spendMoney.getPurchaseLottoCount())
+                .stream()
+                .collect(Collectors.toMap(lotto -> lotto, result -> LottoResult.DEFAULT));
     }
-
 
     public List<LottoResult> getLottoResults(WinningLotto winningLotto) {
         calculateLottoResults(winningLotto);
-        return lottos.stream().map(Lotto::getResult).toList();
+        return lottos.values().stream().filter(Objects::nonNull).toList();
     }
 
     public double getStatistics() {
@@ -25,28 +28,29 @@ public class User {
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return lottos.keySet().stream().toList();
     }
 
-    private void buyLottos() {
+    private List<Lotto> buyLottos(int lottoCount) {
         RandomLottoGenerator lottoGenerator = new RandomLottoGenerator();
-        int purchaseLottoCount = spendMoney.getPurchaseLottoCount();
-        for (int i = 0; i < purchaseLottoCount; i++) {
-            lottos.add(lottoGenerator.generate());
-        }
+        return IntStream.range(0, lottoCount)
+                .mapToObj(i -> lottoGenerator.generate())
+                .toList();
     }
 
     private void calculateLottoResults(WinningLotto winningLotto){
-        lottos.forEach(lotto -> lotto.calculateResult(winningLotto));
+        lottos.forEach((lotto, result) -> {
+            LottoResult lottoResult = lotto.calculateResult(winningLotto);
+            lottos.put(lotto, lottoResult);
+        });
     }
 
     private double sumEarnedMoney() {
-        return lottos.stream()
-                .filter(lotto -> lotto.getResult() != null)
-                .mapToDouble(lotto -> lotto.getResult().getPrize())
+        return lottos.values().stream()
+                .filter(Objects::nonNull)
+                .mapToDouble(LottoResult::getPrize)
                 .sum();
     }
-
 
     private double calculateRateOfReturn(double earned, double spend) {
         return earned * 100 / spend;

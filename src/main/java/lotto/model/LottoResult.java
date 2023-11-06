@@ -1,14 +1,14 @@
 package lotto.model;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public enum LottoResult {
     FIFTH(3, 0,"3개 일치", 5000),
     FOURTH(4, 0, "4개 일치", 50000),
     THIRD(5, 0, "5개 일치", 1500000),
     SECOND(5, 1, "5개 일치, 보너스 볼 일치", 30000000),
-    FIRST(6, 0, "6개 일치", 2000000000);
+    FIRST(6, 0, "6개 일치", 2000000000),
+    DEFAULT(0, 0, "초기값", 0);
 
     private final int winningCnt;
     private final int bonusCnt;
@@ -52,6 +52,7 @@ public enum LottoResult {
         LottoResult findLottoResult = null;
 
         for (LottoResult lottoResult : LottoResult.values()) {
+            if (lottoResult == LottoResult.DEFAULT) { continue; }
             if (lottoResult.winningCnt != equalLottoCnt) { continue; }
             if (lottoResult.winningCnt == 5 && lottoResult.bonusCnt != equalBonusCnt) { continue; }
             findLottoResult = lottoResult;

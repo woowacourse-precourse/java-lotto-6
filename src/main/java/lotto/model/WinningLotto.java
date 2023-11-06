@@ -23,7 +23,7 @@ public class WinningLotto {
     }
 
     public List<Integer> getLottoNums() {
-        return lotto.getNumbers();
+        return lotto.numbers();
     }
 
     private List<Integer> changeInputToNumbers(String lottoInput) {
@@ -55,7 +55,7 @@ public class WinningLotto {
     }
 
     private void isInLotto(int bonusNum) {
-        if (lotto.getNumbers().contains(bonusNum)) {
+        if (lotto.numbers().contains(bonusNum)) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 당첨 번호에 포함되지 않은 숫자를 선택해야 합니다.");
         }
     }

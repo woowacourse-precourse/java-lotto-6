@@ -7,13 +7,11 @@ import java.util.Set;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicate(numbers);
+        containRange(numbers);
         this.numbers = numbers;
     }
 
@@ -33,4 +31,11 @@ public class Lotto {
         }
     }
 
+    private void containRange(List<Integer> numbers){
+        for(int n : numbers){
+            if(n < 1 || n > 45){
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 }

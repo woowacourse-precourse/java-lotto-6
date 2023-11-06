@@ -1,10 +1,12 @@
 package lotto.domain;
 
-import static lotto.etc.ErrorConstant.BETWEEN_ONE_AND_FORTY_FIVE_ERROR;
 import static lotto.etc.ErrorConstant.BONUS_ERROR;
 import static lotto.etc.ErrorConstant.DUPLICATE_ERROR;
 import static lotto.etc.ErrorConstant.NOT_SIX_ERROR;
+import static lotto.etc.Validate.checkOneAndFortyFive;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +16,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        ArrayList<Integer> tempNumbers = new ArrayList<>(numbers);
+        Collections.sort(tempNumbers);
+        this.numbers = tempNumbers;
     }
 
     public List<Integer> getNumbers(){
@@ -23,29 +27,24 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            System.out.println(NOT_SIX_ERROR);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NOT_SIX_ERROR.toString());
         }
 
         if(new HashSet<>(numbers).size() != 6){
-            System.out.println(DUPLICATE_ERROR);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_ERROR.toString());
         }
 
         for(Integer number : numbers){
-            if (!(number >= 1 && number <= 45)){
-                System.out.println(BETWEEN_ONE_AND_FORTY_FIVE_ERROR);
-                throw new IllegalArgumentException();
-            }
+            checkOneAndFortyFive(number);
         }
     }
 
     public void duplicateBonusNumber(int bonus){
+        checkOneAndFortyFive(bonus);
         Set<Integer> userSet = new HashSet<>(numbers);
         userSet.add(bonus);
         if(userSet.size() == 6){
-            System.out.println(BONUS_ERROR);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(BONUS_ERROR.toString());
         }
     }
 }

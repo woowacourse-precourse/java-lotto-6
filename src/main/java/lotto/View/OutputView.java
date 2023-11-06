@@ -21,6 +21,18 @@ public class OutputView {
         }
     }
 
+    public void printWinningCount(HashMap<LottosConstants, Integer> winningCount){
+        printSpace();
+        System.out.println(START_WINNING_COUNT);
+        for (LottosConstants print : LottosConstants.getValues()){
+            System.out.println(print.getWinningMessage(winningCount.get(print)));
+        }
+    }
+
+    public void printROI(String ROI){
+        System.out.printf(ROI_MESSAGE, ROI);
+    }
+
     private void printSpace(){
         System.out.println();
     }

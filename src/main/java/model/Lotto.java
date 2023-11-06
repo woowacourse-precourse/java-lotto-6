@@ -1,11 +1,14 @@
 package model;
 
+import view.PrintError;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private final PrintError printError = new PrintError();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -15,6 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            printError.numberSizeMessage();
             throw new IllegalArgumentException();
         }
     }
@@ -27,6 +31,7 @@ public class Lotto {
     public void validateNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if(number < 1 || number > 45) {
+                printError.numberRangeMessage();
                 throw new IllegalArgumentException();
             }
         }

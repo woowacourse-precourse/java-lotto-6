@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import model.Grader;
 import model.Lotto;
 import model.WinningLotto;
+import view.PrintError;
 import view.PrintResult;
 
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ import java.util.List;
 
 public class Store {
 
+  private final PrintError printError = new PrintError();
+
+  // 로또 시작
   public void start() {
     int money = inputMoney();
     List<Lotto> lottos = giveLotto(money);
@@ -28,19 +32,47 @@ public class Store {
   }
 
 
+  // 구입 금액 입력
   public int inputMoney() {
-    System.out.println("구입금액을 입력해 주세요.");
-    int money = Integer.parseInt(Console.readLine());
-    validateMoney(money);
+    boolean isValid = false;
+    int money = 0;
+
+    while(!isValid) {
+      System.out.println("구입금액을 입력해 주세요.");
+      String moneyInput = Console.readLine();
+
+      try {
+        validateMoneyIsNumber(moneyInput);
+        money = Integer.parseInt(moneyInput);
+        validateUnitOfThousandMoney(money);
+        isValid = true;
+      } catch (IllegalArgumentException e) {
+
+      }
+    }
+
     return money;
   }
 
+  // 구입 금액이 숫자인지 확인
+  public void validateMoneyIsNumber(String money) {
+    for(char c : money.toCharArray()) {
+      if(!Character.isDigit(c)) {
+        printError.moneyNotNumber();
+        throw new IllegalArgumentException();
+      }
+    }
+  }
 
-  public void validateMoney(int money) {
+  // 구입 금액이 1000단위로 나누어 떨어지는지 확인
+  public void validateUnitOfThousandMoney(int money) {
     if(money % 1000 != 0) {
+      printError.moneyUnitOfThousand();
       throw new IllegalArgumentException();
     }
   }
+
+
 
   public List<Lotto> giveLotto(int money) {
     int count = money / 1000;

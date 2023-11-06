@@ -10,7 +10,6 @@
 * [x] 구입 금액에 해당하는 만큼 로또를 발행한다. 로또 1장의 가격은 1000원이다. - giveLotto()
 * [x] 로또 번호로 1~45까지 범위 중 중복되지 않은 숫자 6개를 발행한다. - makeLottoNumber()
 * [x] 당첨 번호와 보너스 번호를 입력 받는다. - inputWinningLotto()
-* [ ] 예외 상황 시 에러 문구를 출력한다. 에러 문구는 [ERROR]로 시작해야 한다. 
 
 ### Lotto.class
 
@@ -37,6 +36,17 @@
 
 * [x] 당첨 통계를 출력합니다. - winningDetailPrint()
 * [x] 수익률을 출력합니다. - earningRatioPrint()
+  
+### PrintError.class
+* [x] 구입 금액이 숫자가 아닙니다 -  moneyNotNumber()
+  
+* [x] 구입 금액이 1000단위가 아닙니다. - moneyUnitOfThousand()
+  
+* [x] 로또 번호가 6자리가 아닙니다. - numberSizeMessage()
+  
+* [x] 로또 번호가 1~45 사이의 숫자가 아닙니다. - numberRangeMessage()
+  
+* [x] 로또 번호가 중복된 숫자가 있습니다. - numberDuplicatedMessage()
   
   
 

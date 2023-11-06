@@ -1,11 +1,14 @@
 package model;
 
+import view.PrintError;
+
 import java.util.*;
 
 public class WinningLotto {
 
   private final List<Integer> numbers;
   private final Integer bonusNumber;
+  private final PrintError printError = new PrintError();
 
 
   public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
@@ -34,12 +37,14 @@ public class WinningLotto {
 
   public void checkNumberRange(Integer number) {
     if(number < 1 || number > 45) {
+      printError.numberRangeMessage();
       throw new IllegalArgumentException();
     }
   }
 
   public void validateSize(List<Integer> numbers) {
     if (numbers.size() != 6) {
+      printError.numberSizeMessage();
       throw new IllegalArgumentException();
     }
   }
@@ -52,6 +57,7 @@ public class WinningLotto {
     duplicateChecker.add(bonusNumber);
 
     if(duplicateChecker.size() != 7) {
+      printError.numberDuplicatedMessage();
       throw new IllegalArgumentException();
     }
   }

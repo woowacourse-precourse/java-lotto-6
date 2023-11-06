@@ -26,10 +26,10 @@ public class OutputController {
         outputView.renderLottoTicketsText();
     }
 
-    public void printWinningStatistics(Map<LottoPrize, Integer> prizeCounter) {
-        String winningStatisticsText = createWinningStatisticsText(prizeCounter);
-        outputView.updateWinningStatisticsText(winningStatisticsText);
-        outputView.renderWinningStatisticsText();
+    public void printPrizeCounter(Map<LottoPrize, Integer> prizeCounter) {
+        String prizeCounterText = createPrizeCounterText(prizeCounter);
+        outputView.updatePrizeCounterText(prizeCounterText);
+        outputView.renderPrizeCounterText();
     }
 
     public void printRateOfReturn(double rateOfReturn) {
@@ -45,24 +45,27 @@ public class OutputController {
     public String createLottoTicketsText(List<Lotto> lottoTickets) {
         StringBuilder sb = new StringBuilder();
         lottoTickets.forEach(lotto -> {
-            sb.append(lotto.toString()).append(NEW_LINE);
+            sb.append(lotto.toString())
+                    .append(NEW_LINE);
         });
         return sb.toString();
     }
 
-    public String createWinningStatisticsText(Map<LottoPrize, Integer> prizeCounter) {
+    public String createPrizeCounterText(Map<LottoPrize, Integer> prizeCounter) {
         StringBuilder sb = new StringBuilder();
         for (LottoPrize lottoPrize : LottoPrize.values()) {
             if (lottoPrize == LottoPrize.NOTHING) {
                 continue;
             }
             int count = prizeCounter.get(lottoPrize);
-            sb.append(String.format(lottoPrize.getStatisticsFormat(), count)).append(NEW_LINE);
+            sb.append(String.format(lottoPrize.getStatisticsFormat(), count))
+                    .append(NEW_LINE);
         }
         return sb.toString();
     }
 
     public String createRateOfReturnText(double rateOfReturn) {
-        return String.valueOf(rateOfReturn);
+        String ROUND_TO_FIRST_DECIMAL_PLACE_FORMAT = "%.1f";
+        return String.format(ROUND_TO_FIRST_DECIMAL_PLACE_FORMAT, rateOfReturn);
     }
 }

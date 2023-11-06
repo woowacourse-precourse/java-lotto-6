@@ -10,8 +10,8 @@ public class LottoGameService {
     private final InputController inputController;
     private final OutputController outputController;
 
-    private final LottoShop lottoShop;
-    private final Player player;
+    private LottoShop lottoShop;
+    private Player player;
 
     public LottoGameService(InputController inputController, OutputController outputController) {
         LottoMachine lottoMachine = new LottoMachine(new LottoRandomGenerator());
@@ -31,7 +31,7 @@ public class LottoGameService {
         WinningLotto winningLotto = inputController.askWinningLotto();
 
         player.calculateWinningLottoWithMine(winningLotto);
-        outputController.printWinningStatistics(player.getWinningStatistics().getPrizeCounter());
+        outputController.printPrizeCounter(player.getWinningStatistics().getPrizeCounter());
         outputController.printRateOfReturn(player.getWinningStatistics().getRateOfReturn());
     }
 }

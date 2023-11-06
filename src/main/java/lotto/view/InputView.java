@@ -7,7 +7,7 @@ import static lotto.domain.conversion.changeNumbers;
 import static lotto.validator.InputException.checkBlank;
 import static lotto.validator.InputException.checkComma;
 import static lotto.validator.InputException.checkDuplication;
-import static lotto.validator.InputException.checkNull;
+import static lotto.validator.InputException.checkEmpty;
 import static lotto.validator.InputException.checkNumber;
 import static lotto.validator.InputException.checkOutOfNumber;
 
@@ -48,20 +48,20 @@ public class InputView {
 	}
 
 	private static void bonusNumberValidate(String bonusNumber, int bonusNum, List<Integer> winningNums) {
-		checkNull(bonusNumber);
+		checkEmpty(bonusNumber);
 		checkBlank(bonusNumber);
 		checkNumber(bonusNumber);
 		checkDuplication(bonusNum, winningNums);
 	}
 
 	private static void purchaseAmoutVlidate(String buyAmount) {
-		checkNull(buyAmount);
+		checkEmpty(buyAmount);
 		checkBlank(buyAmount);
 		checkOutOfNumber(buyAmount);
 	}
 
 	private static void winningNumberValidate(String winningNumber) {
-		checkNull(winningNumber);
+		checkEmpty(winningNumber);
 		checkBlank(winningNumber);
 		checkNumber(winningNumber);
 		checkComma(winningNumber);

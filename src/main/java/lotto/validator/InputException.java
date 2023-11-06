@@ -11,7 +11,7 @@ import java.util.List;
 
 public class InputException {
 
-	public static void checkNull(String input) {
+	public static void checkEmpty(String input) {
 		if (input.isEmpty()) {
 			throw new IllegalArgumentException(YES_EMPTY);
 		}
@@ -27,7 +27,6 @@ public class InputException {
 
 	public static void checkNumber(String input) {
 		try {
-
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException(NO_NUMBER);
 		}

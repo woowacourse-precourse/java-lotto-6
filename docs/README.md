@@ -15,6 +15,7 @@
 6. ~~구매 개수 출력 - View - outputView - purchasePieces~~
 4. ~~로또 구매 번호 출력 - View - outputView - purchaseNum~~
 5. ~~당첨번호 입력 - View - inputView - winNum~~
+6. 쉼표로 분리된 숫자 Integer로 변환 후 list에 담기
 6. Lotto클래스로 당첨번호 6자리인지 확인 - Model - Lotto - validate
 6. 당첨번호 HashSet에 넣기 - Model - Lotto - winNumIntersection
 7. 보너스 번호 입력 - View - inputView - bonusNum

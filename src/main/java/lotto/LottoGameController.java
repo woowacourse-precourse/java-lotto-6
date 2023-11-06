@@ -22,6 +22,8 @@ public class LottoGameController {
 
     public void runGame() {
         gameInit();
+        Lottos lottos = lottoGame.issueLottos();
+        System.out.println(lottos);
     }
 
     public static boolean isInvalidUserInput(String userInput) {

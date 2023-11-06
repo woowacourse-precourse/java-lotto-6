@@ -1,8 +1,8 @@
 package lotto.model;
 
 public record LottoNo(int no) {
-    private static final int MIN_NO = 1;
-    private static final int MAX_NO = 45;
+    public static final int MIN_NO = 1;
+    public static final int MAX_NO = 45;
     private static final String WRONG_LOTTO_NO = "[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.";
 
     public LottoNo {

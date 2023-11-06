@@ -16,7 +16,17 @@ public class WinningNumberValidator {
     }
 
     private void validate() {
+        isNumber();
         isDuplicate();
+    }
+
+    private void isNumber() {
+        numbers.stream()
+                .filter(numbers -> !WINNING_NUMBER_PATTERN.matcher(numbers).find())
+                .findAny()
+                .ifPresent(s -> {
+                        throw new IllegalArgumentException(ERROR_MESSAGE + WINNING_NUMBER_ERROR);
+                });
     }
 
     private void isDuplicate(){

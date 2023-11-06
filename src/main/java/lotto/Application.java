@@ -15,7 +15,10 @@ public class Application {
             System.out.println(lottoNumber);
         }
 
+        System.out.println();
         System.out.println(buyer.getWinningNumber());
+        System.out.println();
+        System.out.println(buyer.getBonusNumber());
 
     }
 }

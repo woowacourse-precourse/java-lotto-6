@@ -55,4 +55,14 @@ public class Buyer {
 
         return winningNumbers;
     }
+
+    public int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해주세요.");
+        String bonusNumberString = Console.readLine();
+        if (!validator.validateBonusNumber(bonusNumberString)) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다.");
+        }
+        return Integer.parseInt(bonusNumberString);
+
+    }
 }

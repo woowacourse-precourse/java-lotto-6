@@ -4,8 +4,9 @@
 - [x] 로또 구입 금액에 맞게 로또 번호를 출력해주는 기능 - Buyer#generateLottoNumbers()
   - [x] 로또 번호를 랜덤하게, 중복되지 않게 숫자 6개와 보너스 번호 1개를 뽑는다. - getLottoNumber(), getBonusNumber()
 - [x] 당첨 번호와 보너스 번호를 입력받는다. - Buyer#takeWinningNumbers()
-  - [ ] 예외) 당첨 번호의 수가 6개가 아니면 예외 처리 - validate()
-  - [ ] 예외) 보너스 번호의 수가 1개가 아니면 예외 처리 - validateBonnusNumber()
+  - [x] 입력받은 당첨 번호가 모두 쉼표로 구분된 숫자인지 확인 - validateWinningNumber()
+  - [x] 예외) 당첨 번호의 수가 6개가 아니면 예외 처리 - validate()
+  - [x] 예외) 보너스 번호의 수가 1개가 아니면 예외 처리 - validateBonnusNumber()
 - [ ] 구매 번호와 담첨 번호 비교해 
   - 당첨 내역 출력하고  - Evaluate#LottoResults()
   - 수익률을 출력 - Evaluate#rateOfReturn()

@@ -9,4 +9,9 @@ public class validator {
         String regex = "^\\d+(,\\d+)*$";
         return winningNumberString.matches(regex);
     }
+
+    public static boolean validateBonusNumber(String bonusNumberString) {
+        String regex = "^\\d+$";
+        return bonusNumberString.matches(regex);
+    }
 }

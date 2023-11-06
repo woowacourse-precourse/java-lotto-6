@@ -16,4 +16,24 @@ public enum Ranking {
         this.matchCount = matchCount;
         this.reward = reward;
     }
+
+    public static Ranking of(int matchCount, boolean isBonus){
+        if (matchCount == FIRST.matchCount) {
+            return FIRST;
+        }
+
+        if (matchCount == SECOND.matchCount) {
+            return isBonus ? SECOND : THIRD;
+        }
+
+        if (matchCount == FOURTH.matchCount) {
+            return FOURTH;
+        }
+
+        if (matchCount == FIFTH.matchCount) {
+            return FIFTH;
+        }
+
+        return NONE;
+    }
 }

@@ -9,15 +9,15 @@ import lotto.util.LottoNumbersGenerator;
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
 
-    private Lottos(int count) {
+    private Lottos(int count, LottoNumbersGenerator generator) {
         for (int i = 0; i < count; i++) {
-            addLotto();
+            addLotto(generator);
         }
     }
 
-    public static Lottos from(int count) {
+    public static Lottos of(int count, LottoNumbersGenerator generator) {
         try {
-            return new Lottos(count);
+            return new Lottos(count, generator);
         } catch (IllegalArgumentException e) {
             System.out.println(LottoExceptionMessage.MUST_BETWEEN_START_AND_END_INCLUSIVE.getMessage());
         }
@@ -28,7 +28,7 @@ public class Lottos {
         return lottos.size();
     }
 
-    private void addLotto() {
-        lottos.add(new Lotto(LottoNumbersGenerator.generateLottoNumbers()));
+    private void addLotto(LottoNumbersGenerator generator) {
+        lottos.add(new Lotto(generator.getSortedLottoNumbers()));
     }
 }

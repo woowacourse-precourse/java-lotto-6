@@ -15,10 +15,5 @@ public class LottoNumber {
 	
 	public List<Integer> getComputerNumber() {
 		return this.computerNumber;
-	}
-	
-//	public String printLottoNumber() {
-//		return String.format("%s", this.madeNumber);
-//	}
-	
+	}	
 }

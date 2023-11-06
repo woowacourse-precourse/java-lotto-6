@@ -5,14 +5,28 @@ import java.util.List;
 import lotto.Application;
 import lotto.object.LottoNumber;
 
-public class LottoResult {
+public enum LottoResult {
+	
+	FIRST(2000000000),
+	SECOND(30000000),
+	THIRD(1500000),
+	FOURTH(50000),
+	FIFTH(5000);
+	
+	
+	private final int money;
+	
+	LottoResult(int money) {
+		this.money = money;
+	}
+	
 	private static int threeCorrect = 0;
 	private static int fourCorrect = 0;
 	private static int fiveCorrect = 0;
 	private static int fiveBonusCorrect = 0;
 	private static int sixCorrect = 0;
 	private static double earningRate;
-	
+			
 	public static void lottoCompare(List<LottoNumber> lottoList) {
 		List<LottoNumber> lottoCompare = lottoList;
 		int count = 0;
@@ -46,13 +60,7 @@ public class LottoResult {
 		}
 		return false;
 	}
-	
-	public static void earningRateCaculator() {
-		Double purchaseAmount = Double.valueOf(Application.purchaseAmount);
-		double earning = (5000 * threeCorrect) + (50000 * fourCorrect) + (1500000 * fiveCorrect) + (30000000 * fiveBonusCorrect) + (2000000000 * sixCorrect); 
-		earningRate = earning / purchaseAmount * 100;
-	}
-	
+		
 	public static void sumResult(int count) {
 		if (count == 3) {
 			threeCorrect++;
@@ -68,6 +76,12 @@ public class LottoResult {
 		}	
 	}
 	
+	public static void earningRateCaculator() {
+		Double purchaseAmount = Double.valueOf(Application.purchaseAmount);
+		double earning = (FIFTH.money * threeCorrect) + (FOURTH.money * fourCorrect) + (THIRD.money * fiveCorrect) + (SECOND.money * fiveBonusCorrect) + (FIRST.money * sixCorrect); 
+		earningRate = earning / purchaseAmount * 100;
+	}
+	
 	public static void resultContents() {		
 		System.out.println("당첨 통계");
 		System.out.println("---");
@@ -79,3 +93,6 @@ public class LottoResult {
 		System.out.println("총 수익률은 " + String.format("%.1f",earningRate) + "%입니다.");	
 	}
 }
+
+	
+

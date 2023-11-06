@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -18,7 +17,7 @@ public class LottoPlay implements Play{
         int bonusNumber = readBonusNumber(winningLotto);
         Rank[] ranks = getWinningStat(myLotto, winningLotto, bonusNumber);
         printWinningStat(ranks);
-        printYieldRate();
+        printYieldRate(purchaseQuantity, ranks);
     }
 
     private int getPurchaseQuantity() {
@@ -112,8 +111,15 @@ public class LottoPlay implements Play{
         }
     }
 
-    private void printYieldRate() {
+    private void printYieldRate(int purchaseQuantity, Rank[] ranks) {
+        double sum = 0;
+        double yieldRate;
 
+        for (Rank rank : ranks) {
+            sum += rank.getPrize() * (double)rank.getMatchCount();
+        }
+        yieldRate = sum / (double)purchaseQuantity;
+        System.out.print(view.getPrintYieldRate(yieldRate));
     }
 
     private void validateBonusNumber(int bonusNumber, Lotto winningLotto) {

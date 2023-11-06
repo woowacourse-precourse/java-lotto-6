@@ -13,7 +13,7 @@ public class View {
     private static final String PRINT_WINNING_STAT = "당첨 통계\n---\n";
     private static final String PRINT_MATCHES = "%d개 일치 (%s원) - %d개\n";
     private static final String PRINT_BONUS_MATCHES = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
-    private static final String PRINT_YIELD_RATE = "총 수익률은 %.1f입니다.\n";
+    private static final String PRINT_YIELD_RATE = "총 수익률은 %.1f%%입니다.\n";
     private static final String PRINT_SEPARATOR = ", ";
 
     public String getAskPurchaseAmount() {

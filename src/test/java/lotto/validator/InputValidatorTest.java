@@ -80,8 +80,18 @@ public class InputValidatorTest {
     }
 
     @Test
-    void winningNumberOutOfRange() {
+    void winningNumberOutOfUpperRange() {
         String winningNumberInput = "1,2,3,4,5,66";
+        String bonusNumberInput = "6";
+
+        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput, bonusNumberInput))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("번호가 범위를 벗어났습니다.");
+    }
+
+    @Test
+    void winningNumberOutOfLowerRange() {
+        String winningNumberInput = "-1,2,3,4,5,6";
         String bonusNumberInput = "6";
 
         assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput, bonusNumberInput))

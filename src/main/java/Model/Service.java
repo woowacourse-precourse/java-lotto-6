@@ -64,4 +64,6 @@ public class Service {
                 .collect(Collectors.toList());
     }
 
+    public double calculateRevenueRate() {
+    }
 }

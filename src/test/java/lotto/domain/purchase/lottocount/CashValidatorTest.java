@@ -34,4 +34,14 @@ class CashValidatorTest {
             CashValidator.validateCashInput(input);
         });
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1000j"})
+    @DisplayName("특수문자 입력인 경우, 예외 처리합니다.")
+    public void 특수문자입력(String input) throws Exception {
+        // THEN
+        assertThrows(IllegalArgumentException.class, () -> {
+            CashValidator.validateCashInput(input);
+        });
+    }
 }

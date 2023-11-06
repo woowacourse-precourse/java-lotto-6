@@ -4,15 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputValidator {
-    public static void validateInteger(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void validatePurchaseAmount(int purchaseAmount) {
+    public static void validatePurchaseAmount(String input) {
+        validateInteger(input);
+        int purchaseAmount = Integer.parseInt(input);
         validateDividedBy1000(purchaseAmount);
         validateAmountLimit(purchaseAmount);
     }
@@ -28,8 +22,21 @@ public class InputValidator {
         validateWinningNumbersSize(winningNumbers);
         validateDuplicateNumber(winningNumbers);
     }
+    public static void validateBonusNumber(String input) {
+        validateInteger(input);
+        int bonusNumber = Integer.parseInt(input);
+        validateLottoNumberRange(bonusNumber);
+    }
 
-    public static void validateLottoNumberRange(int number) {
+    private static void validateInteger(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateLottoNumberRange(int number) {
         if(number < 1 || number > 45) {
             throw new IllegalArgumentException();
         }

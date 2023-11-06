@@ -45,4 +45,15 @@ class ValidationUtilTest {
 
         Assertions.assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    void isInputFirstZero_첫입력_0으로_시작() {
+        String input = "0008000";
+        boolean expected = true;
+
+        boolean result = ValidationUtil.isInputFirstZero(input);
+
+        Assertions.assertThat(result).isEqualTo(expected);
+    }
+
 }

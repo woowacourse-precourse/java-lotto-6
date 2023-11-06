@@ -18,12 +18,11 @@ public class RateOfReturn {
     public double calculateRateOfReturn(List<LottoPrize> allLottoPrizes, LottoCount lottoCount) {
         Map<LottoPrize, Integer> lottoPrizeResults = LottoPrize.lottoPrizeCount(allLottoPrizes);
         Long income = 0L;
-        int totalCount = 0;
+
         List<LottoPrize> ranks = List.of(LottoPrize.FIFTH, LottoPrize.FOURTH, LottoPrize.THIRD, LottoPrize.SECOND, LottoPrize.FIRST);
 
         for (LottoPrize rank : ranks) {
             Integer count = lottoPrizeResults.get(rank);
-            totalCount += count;
             income += rank.prizeMoney * count;
         }
         System.out.println(income + " " + lottoCount.getLottoCount());

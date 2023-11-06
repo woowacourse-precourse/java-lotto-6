@@ -22,7 +22,10 @@ public class GameController {
         BonusNumber bonusNumber = getBonusNumber(winningLotto);
         List<LottoPrize> allLottoPrizes = winningLotto.getAllLottoPrizes(autoLottoTickets, bonusNumber);
 
-        outputView.displayLottoResults(allLottoPrizes);
+        outputView.displayAllLottoResults(allLottoPrizes);
+
+        RateOfReturn rateOfReturn = new RateOfReturn(allLottoPrizes, lottoCount);
+        outputView.displayRateOfReturn(rateOfReturn);
     }
 
     public PurchaseAmount getPurchaseAmount() {

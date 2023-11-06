@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputUI {
-    private final int ERR_NUM = Integer.MIN_VALUE;
     private final int INIT_NUM = 0;
     private int bonusNum;
     private int cost;
@@ -25,6 +24,15 @@ public class InputUI {
         return cost / 1000;
     }
 
+    public List<Integer> getWinningNums() {
+        List<Integer> copiedWinningNums = new ArrayList<>();
+        copiedWinningNums.addAll(winningNums);
+        return copiedWinningNums;
+    }
+
+    public int getBonusNum() {
+        return bonusNum;
+    }
 
     public void purchase() {
         while (true) {

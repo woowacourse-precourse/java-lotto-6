@@ -121,7 +121,7 @@ class LottoServiceTest {
     @ParameterizedTest(name = "구매 로또가 {1}이면 {2}의 결과를 반환한다.")
     @MethodSource("jackpotAndListAndLottoResultProvider")
     @DisplayName("당첨 로또와 구매 로또를 비교해 결과를 반환한다.")
-    void test_matchLotteries(Lotto jackpotLotto, List<Integer> numbers, LottoResult result) {
+    void test_MatchLotteries_Results(Lotto jackpotLotto, List<Integer> numbers, LottoResult result) {
         //given
         Lotto lotto = new Lotto(numbers);
         lottoStorage.saveLotto(jackpotLotto);
@@ -132,5 +132,23 @@ class LottoServiceTest {
 
         //then
         assertThat(results.get(0)).isEqualTo(result);
+    }
+
+    @Test
+    @DisplayName("구매 로또 개수만큼 결과를 반환한다.")
+    void test_MatchLotteries_ResultSize() {
+        //given
+        Lotto jackpotLotto = new Lotto(List.of(1,2,3,4,5,6), new Bonus(10));
+        lottoStorage.saveLotto(jackpotLotto);
+        Lotto firstLotto = new Lotto(List.of(1,2,3,7,8,9));
+        Lotto secondLotto = new Lotto(List.of(1,2,3,4,7,8));
+        lottoStorage.saveLotto(firstLotto);
+        lottoStorage.saveLotto(secondLotto);
+
+        //when
+        List<LottoResult> results = lottoService.matchLotteries();
+
+        //then
+        assertThat(results).hasSize(2);
     }
 }

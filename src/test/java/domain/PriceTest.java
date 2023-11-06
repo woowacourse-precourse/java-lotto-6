@@ -15,6 +15,6 @@ class PriceTest {
     @ValueSource(ints = {1000,2000,10000,500000})
     void priceCanShowNumOfLotto(int money) {
         price = new Price(money);
-        Assertions.assertEquals(price.numOfLotto(),money/ ConstantOfLotto.priceOfLotto);
+        Assertions.assertEquals(price.numOfLotto(),money/ ConstantOfLotto.PRICE_OF_LOTTO);
     }
 }

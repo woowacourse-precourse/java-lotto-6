@@ -12,7 +12,9 @@ public class PurchaseAmount {
         this.amount = amount;
 
     }
-
+    public int getAmount(){
+        return amount;
+    }
     public int getTicketNum(){
         return amount / 1000;
     }

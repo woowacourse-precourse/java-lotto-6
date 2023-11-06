@@ -22,7 +22,7 @@ public class LottoController {
         outputView.newline();
         WinningNumbers winningNumbers = loop(this::getWinningNumbers);
         outputView.newline();
-        WinningNumber bonusNumber = loop(this::getBonusNumber);
+        WinningNumber bonusNumber = loop(() -> getBonusNumber(winningNumbers));
         outputView.newline();
 
         Result result = lottoPack.calculate(winningNumbers, bonusNumber);
@@ -61,9 +61,11 @@ public class LottoController {
         return WinningNumbers.createWinningNumbers(inputView.getNumbers());
     }
 
-    private WinningNumber getBonusNumber() {
+    private WinningNumber getBonusNumber(WinningNumbers winningNumbers) {
         outputView.printGetBonusNumber();
-        return new WinningNumber(inputView.getNumber());
+        int number = inputView.getNumber();
+        if(winningNumbers.contains(number)) throw new IllegalArgumentException();
+        return new WinningNumber(number);
     }
 
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controllers.LottoStoreManager;
+import lotto.views.LottoView;
 
 import static lotto.views.MessageManager.getPurchaseAmountPromptMessage;
 
@@ -9,9 +10,14 @@ public class Application {
         // TODO: 프로그램 구현
         getPurchaseAmountPromptMessage();
 
-        LottoStoreManager lottoController = new LottoStoreManager();
-        lottoController.purchaseController();
+        LottoStoreManager controller = new LottoStoreManager();
+        LottoView view = new LottoView();
 
+        controller.purchaseController();
         System.out.println();
+
+        controller.lottoMachine();
+        view.lottoTicketCountView(controller.getLottoTicketCount());
+
     }
 }

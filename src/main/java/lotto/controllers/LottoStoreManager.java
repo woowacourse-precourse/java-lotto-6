@@ -9,11 +9,15 @@ import static lotto.views.MessageManager.*;
 public class LottoStoreManager {
     private String inputAmount;
     private final double LOTTO_PRICE = 1000;
+    private int lottoTicketCount;
 
     public void setInput(String inputAmount) {
         this.inputAmount = inputAmount;
     }
 
+    public int getLottoTicketCount() {
+        return lottoTicketCount;
+    }
     public void purchaseController() {
         setInput(InputProcessor.readLine());
 
@@ -38,7 +42,7 @@ public class LottoStoreManager {
         InputProcessor.close();
     }
 
-    public int lottoMachine(String inputAmount) {
-        return (int) divide(Double.parseDouble(inputAmount), LOTTO_PRICE);
+    public void lottoMachine() {
+        this.lottoTicketCount = (int) divide(Double.parseDouble(inputAmount), LOTTO_PRICE);
     }
 }

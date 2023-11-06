@@ -4,7 +4,6 @@ import lotto.config.LottoConfig;
 import lotto.dto.response.LottoTicketsDto;
 import lotto.util.NumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -12,16 +11,18 @@ import java.util.stream.IntStream;
 public class LottoMachine {
 
     private final NumberGenerator numberGenerator;
+    private final Money money;
 
-    private LottoMachine(NumberGenerator numberGenerator) {
+    private LottoMachine(NumberGenerator numberGenerator, Money money) {
         this.numberGenerator = numberGenerator;
+        this.money = money;
     }
 
-    public static LottoMachine of(NumberGenerator numberGenerator) {
-        return new LottoMachine(numberGenerator);
+    public static LottoMachine of(NumberGenerator numberGenerator, Money money) {
+        return new LottoMachine(numberGenerator, money);
     }
 
-    public LottoTicketsDto purchaseLottoTickets(Money money) {
+    public LottoTicketsDto createLottoTickets() {
         int ticketCount = getTicketCount(money);
         List<Lotto> lottoTickets = IntStream.range(0, ticketCount)
                 .mapToObj(i -> createLottoTicket())

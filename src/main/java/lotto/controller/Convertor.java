@@ -14,9 +14,8 @@ public class Convertor {
         } catch (Exception e) {
             throw new IllegalArgumentException(Message.ERROR_MONEY);
         }
-        if (money % Constant.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException();
-        }
+
+        validateMoney(money);
 
         return money;
     }
@@ -25,21 +24,40 @@ public class Convertor {
         List<Integer> numbers = new ArrayList<>();
 
         for (String n : numberString.split(",")) {
-            int num = checkNumberValid(numbers, n.trim());
+            int num = validateNumber(numbers, n.trim());
             numbers.add(num);
         }
-        checkValidSize(numbers);
+        validateLottoSize(numbers);
 
         return numbers;
     }
 
-    public static void checkValidSize(List<Integer> numbers) {
+    public static int convertBonus(String bonusString, List<Integer> winning) {
+        int bonus;
+
+        try {
+            bonus = Integer.parseInt(bonusString);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(Message.ERROR_BONUS_RANGE);
+        }
+        validateBonus(bonus, winning);
+
+        return bonus;
+    }
+
+    private static void validateMoney(int money){
+        if (money % Constant.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != Constant.LOTTO_SELECT_NUMBER) {
             throw new IllegalArgumentException(Message.ERROR_WINNING_COUNT);
         }
     }
 
-    public static int checkNumberValid(List<Integer> numbers, String numString) {
+    private static int validateNumber(List<Integer> numbers, String numString) {
         int num;
 
         try {
@@ -57,20 +75,7 @@ public class Convertor {
         return num;
     }
 
-    public static int convertBonus(String bonusString, List<Integer> winning) {
-        int bonus;
-
-        try {
-            bonus = Integer.parseInt(bonusString);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(Message.ERROR_BONUS_RANGE);
-        }
-        checkBonusValid(bonus, winning);
-
-        return bonus;
-    }
-
-    public static void checkBonusValid(int bonus, List<Integer> winning) {
+    private static void validateBonus(int bonus, List<Integer> winning) {
         if (winning.contains(bonus)) {
             throw new IllegalArgumentException(Message.ERROR_BONUS_DUPLICATE);
         }

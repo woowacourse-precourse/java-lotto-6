@@ -35,10 +35,14 @@ public class LottoMachine {
     }
 
     public List<Lotto> issueWith(Money money) {
-        checkMoneyRange(money);
-        checkHasRemainderWith(money);
+        validate(money);
 
         return issue((int) money.divide(LOTTO_PRICE));
+    }
+
+    private void validate(Money money) {
+        checkMoneyRange(money);
+        checkHasRemainderWith(money);
     }
 
     private void checkMoneyRange(Money money) {

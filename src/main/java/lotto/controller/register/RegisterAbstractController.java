@@ -10,7 +10,7 @@ public abstract class RegisterAbstractController<E> implements RegisterControlle
     public E process() {
         try {
             return doProcess();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             errorView.showErrorMessage(e.getMessage());
             return process();
         }

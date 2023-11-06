@@ -1,16 +1,16 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static lotto.config.LottoConfig.LOTTO_VALUE_MIN;
 import static lotto.config.LottoConfig.LOTTO_VALUE_MAX;
 import static lotto.config.LottoConfig.LOTTO_VALUE_SIZE;
 import static lotto.Message.ErrorMessage.LOTTO_RANGE_ERROR_MESSAGE;
 import static lotto.Message.ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE;
 import static lotto.Message.ErrorMessage.LOTTO_IS_DUPLICATE;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;

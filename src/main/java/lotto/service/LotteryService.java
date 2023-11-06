@@ -17,16 +17,23 @@ import java.util.Map;
 import static lotto.enums.ErrorMessage.*;
 import static lotto.enums.GuideMessage.INFORM_PURCHASED_LOTTOS_NUMBERS_MESSAGE;
 
-public class LottteryService {
+public class LotteryService {
+    private static final LotteryService singleton = new LotteryService();
     private final LottoRepository repository = LottoRepository.getInstance();
     private final ErrorView errorView = ErrorView.getInstance();
-    private final Validations validations = new Validations();
-    private final ResultCalculationService resultCalculationService = new ResultCalculationService();
-    
-    
+    private final Validations validations = Validations.getInstance();
+    private final ResultCalculationService resultCalculationService = ResultCalculationService.getInstance();
+
+    private LotteryService() {
+    }
+
+    public static LotteryService getInstance() {
+        return singleton;
+    }
+
     public void lottoPayment(String input) {
         int desiredPurchaseAmount = validations.validateEnteredLottoPayment(input);
-        
+
         Buyer buyer = repository.getBuyer();
         buyer.setDesiredPurchaseAmount(desiredPurchaseAmount);
         buyer.setNumberOfLotto(desiredPurchaseAmount / 1000);
@@ -70,7 +77,7 @@ public class LottteryService {
     public void printLottos() {
         List<Lotto> lottos = repository.getBuyer().getLottos();
 
-        for(Lotto lotto : lottos)
+        for (Lotto lotto : lottos)
             lotto.printNumber();
     }
 
@@ -78,7 +85,8 @@ public class LottteryService {
         Buyer buyer = repository.getBuyer();
         Map<Integer, LotteryRankInfo> rankingAccumulator = buyer.getRankingAccumulator();
 
-        LotteryWinningNumbers lotteryWinningNumbers = repository.getLotteryWinningNumbers();;
+        LotteryWinningNumbers lotteryWinningNumbers = repository.getLotteryWinningNumbers();
+        ;
 
         resultCalculationService.makeWinningResult(buyer, lotteryWinningNumbers);
 

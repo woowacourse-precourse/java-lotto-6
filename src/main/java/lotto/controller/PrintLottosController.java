@@ -1,15 +1,15 @@
 package lotto.controller;
 
-import lotto.service.LottteryService;
+import lotto.service.LotteryService;
 
 import java.util.Map;
 
 public class PrintLottosController implements BasicController {
-    private final LottteryService lottteryService = new LottteryService();
+    private final LotteryService lotteryService = LotteryService.getInstance();
 
     @Override
     public String handle(Map<String, Object> model) throws IllegalArgumentException {
-        lottteryService.printLottos();
+        lotteryService.printLottos();
         return "printWinningResult";
     }
 }

@@ -12,6 +12,15 @@ import java.util.*;
 import static lotto.enums.GuideMessage.*;
 
 public class ResultCalculationService {
+    private static final ResultCalculationService singleton = new ResultCalculationService();
+
+    private ResultCalculationService() {
+    }
+
+    public static ResultCalculationService getInstance() {
+        return singleton;
+    }
+
     public void makeWinningResult(Buyer buyer, LotteryWinningNumbers lotteryWinningNumbers) {
         int bonusNumber = lotteryWinningNumbers.getBonusNumber();
         Map<Integer, LotteryRankInfo> rankingAccumulator = buyer.getRankingAccumulator();

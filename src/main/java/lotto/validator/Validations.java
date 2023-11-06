@@ -12,6 +12,15 @@ import static lotto.enums.RegexCollections.REGEX_FOR_INPUT_LOTTO_PAYMENT;
 import static lotto.enums.RegexCollections.REGEX_FOR_LOTTO_NUMBER_RANGE;
 
 public class Validations {
+    private static final Validations singleton = new Validations();
+
+    private Validations() {
+    }
+
+    public static Validations getInstance() {
+        return singleton;
+    }
+
     public int validateEnteredLottoPayment(String desiredPurchaseAmount) throws IllegalArgumentException {
         if (Pattern.matches(REGEX_FOR_INPUT_LOTTO_PAYMENT.getRegex(), desiredPurchaseAmount) &&
                 desiredPurchaseAmount.length() >= 4 &&

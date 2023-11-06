@@ -13,8 +13,16 @@ import static lotto.enums.ErrorMessage.*;
 import static lotto.enums.GuideMessage.*;
 
 public class View {
+    private static final View singleton = new View();
     private final FrontController frontController = new FrontController();
     private final ErrorView errorView = ErrorView.getInstance();
+
+    private View() {
+    }
+
+    public static View getInstance() {
+        return singleton;
+    }
 
     public void pleaseEnterLottoPaymentMessage() {
         System.out.println(PLEASE_ENTER_LOTTO_PAYMENT_MESSAGE.getMessage());

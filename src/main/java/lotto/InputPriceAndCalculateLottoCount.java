@@ -2,7 +2,7 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class inputPriceAndCalculateLottoCount {
+public class InputPriceAndCalculateLottoCount {
     int price;
 
     int inputPrice(){
@@ -13,7 +13,7 @@ public class inputPriceAndCalculateLottoCount {
             validLottoCount(inputPrice);
             price = inputPrice;
         }catch(IllegalArgumentException e) {
-            System.out.println("금액은 1000원 단위여야 합니다");
+            System.out.println("[Error] 금액은 1000원 단위여야 합니다");
             inputPrice();
         }
         return price;
@@ -25,7 +25,7 @@ public class inputPriceAndCalculateLottoCount {
 
     void validLottoCount(int inputPrice){
         if (inputPrice % 1000 > 0) {
-            throw new IllegalArgumentException("[Error]");
+            throw new IllegalArgumentException();
         }
     }
 }

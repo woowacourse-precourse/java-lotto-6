@@ -9,11 +9,17 @@ public class lottoProgram {
     };
     void start(){
         setPriceAndLottoCount();
+        makeAndPrintLottos();
     }
 
     void setPriceAndLottoCount(){
-        inputPriceAndCalculateLottoCount priceAndLottoCount = new inputPriceAndCalculateLottoCount();
+        InputPriceAndCalculateLottoCount priceAndLottoCount = new InputPriceAndCalculateLottoCount();
         price = priceAndLottoCount.inputPrice();
         lottoCount = priceAndLottoCount.calculateLottoCount();
+    }
+
+    void makeAndPrintLottos(){
+        Lottos lottos = new Lottos(lottoCount);
+        lottos.showLottoNumber();
     }
 }

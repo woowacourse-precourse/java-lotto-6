@@ -16,11 +16,10 @@
 #### WinningLotto class extends Lotto class
     - bonusNumber 필드에 보너스 번호를 저장한다. ✅
     - bonusNumber 필드의 유효성을 검사한다. ✅
-#### User class
+#### Money class
     - money 필드에 사용자가 입력한 금액을 저장한다. ✅
     - money 필드의 유효성을 검사한다. ✅
-    - 로또를 생성할 때마다 사용자의 money 필드를 감소시킨다.
-#### LottoGame
+#### LottoGame class
     - 사용자가 입력한 금액에 따라 로또를 생성한다.
     - 각 금액 별 당첨 된 로또의 개수를 센다.
     - 수익률을 계산한다.

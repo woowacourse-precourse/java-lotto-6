@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.model;
 
 import static lotto.constant.LottoInfo.LOTTO_MAX_NUMBER;
 import static lotto.constant.LottoInfo.LOTTO_MIN_NUMBER;
@@ -7,7 +7,7 @@ import static lotto.constant.LottoInfo.LOTTO_SIZE;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class RandomNumberGenerator implements NumberGenerator {
+public class RandomLottoNumberGenerator implements LottoNumberGenerator {
 
     @Override
     public List<Integer> pickNumbers() {

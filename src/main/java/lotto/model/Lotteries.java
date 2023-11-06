@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.util.NumberGenerator;
 import lotto.vo.TicketCount;
 
 public class Lotteries {
@@ -13,11 +12,12 @@ public class Lotteries {
         this.lotteries = lotteries;
     }
 
-    public static Lotteries createLotteries(final TicketCount ticketCount, final NumberGenerator numberGenerator) {
+    public static Lotteries createLotteries(final TicketCount ticketCount,
+                                            final LottoNumberGenerator lottoNumberGenerator) {
         List<Lotto> lotteries = IntStream.range(0, ticketCount.count())
-                .mapToObj(eachTicket -> Lotto.createLotto(numberGenerator))
+                .mapToObj(eachTicket -> Lotto.createLotto(lottoNumberGenerator))
                 .toList();
-        
+
         return new Lotteries(lotteries);
     }
 

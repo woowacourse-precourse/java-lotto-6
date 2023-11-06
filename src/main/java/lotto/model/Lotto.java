@@ -10,7 +10,6 @@ import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.ExceedsMaxLottoNumberException;
 import lotto.exception.InvalidLottoSizeException;
 import lotto.exception.LessThanMinLottoNumberException;
-import lotto.util.NumberGenerator;
 
 public class Lotto {
 
@@ -25,12 +24,12 @@ public class Lotto {
         return new Lotto(winningNumbers);
     }
 
-    public static Lotto createLotto(final NumberGenerator numberGenerator) {
-        return new Lotto(getLottoNumbers(numberGenerator));
+    public static Lotto createLotto(final LottoNumberGenerator lottoNumberGenerator) {
+        return new Lotto(getLottoNumbers(lottoNumberGenerator));
     }
 
-    private static List<Integer> getLottoNumbers(final NumberGenerator numberGenerator) {
-        List<Integer> randomNumbers = numberGenerator.pickNumbers();
+    private static List<Integer> getLottoNumbers(final LottoNumberGenerator lottoNumberGenerator) {
+        List<Integer> randomNumbers = lottoNumberGenerator.pickNumbers();
         randomNumbers = new ArrayList<>(randomNumbers);
         Collections.sort(randomNumbers);
 

@@ -8,8 +8,8 @@ import lotto.dto.StatisticDto;
 import lotto.model.Lotteries;
 import lotto.model.Lotto;
 import lotto.model.ProfitRate;
+import lotto.model.RandomLottoNumberGenerator;
 import lotto.model.Statistic;
-import lotto.util.RandomNumberGenerator;
 import lotto.view.View;
 import lotto.vo.BonusNumber;
 import lotto.vo.BuyAmount;
@@ -55,7 +55,7 @@ public class LottoGameController {
     }
 
     private Lotteries initLotteries(final TicketCount ticketCount) {
-        return Lotteries.createLotteries(ticketCount, new RandomNumberGenerator());
+        return Lotteries.createLotteries(ticketCount, new RandomLottoNumberGenerator());
     }
 
     private Statistic createStatistic(final Lotteries lotteries, final Lotto winningLotto,

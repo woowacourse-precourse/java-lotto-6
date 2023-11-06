@@ -1,8 +1,8 @@
-package lotto.util;
+package lotto.model;
 
 import java.util.List;
 
-public interface NumberGenerator {
+public interface LottoNumberGenerator {
 
     List<Integer> pickNumbers();
 }

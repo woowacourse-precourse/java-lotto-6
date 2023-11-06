@@ -5,13 +5,13 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.dto.LottoResult;
 import lotto.util.LottoShop;
-import lotto.view.input.InputView;
+import lotto.view.input.ConsoleInput;
 
 public class LottoInputController {
 
-    private final InputView inputView;
+    private final ConsoleInput inputView;
 
-    public LottoInputController(InputView inputView) {
+    public LottoInputController(ConsoleInput inputView) {
         this.inputView = inputView;
     }
 

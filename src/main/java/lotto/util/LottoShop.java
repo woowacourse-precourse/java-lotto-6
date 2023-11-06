@@ -25,9 +25,12 @@ public class LottoShop {
                 .toList();
     }
 
+    /**
+     * 표준 예외 처리하기
+     */
     private static void validateMultipleOfDenomination(long amount) {
         if (amount % DENOMINATION != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
+            throw new IllegalStateException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
         }
     }
 

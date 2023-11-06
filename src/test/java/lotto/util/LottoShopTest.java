@@ -27,7 +27,7 @@ class LottoShopTest {
         long amount = 1200;
         // when // then
         assertThatThrownBy(() -> LottoShop.buyLottos(amount))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(IllegalStateException.class)
                 .hasMessage(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
     }
 

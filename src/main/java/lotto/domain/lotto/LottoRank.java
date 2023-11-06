@@ -5,6 +5,10 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 //View의 계산을 도와주는 로직인데 domain에서 알고 있는거 분리해보기
+
+/**
+ * DTO로 서비스 로직 분리하기
+ */
 public enum LottoRank {
     NO_RANK(0, count -> 0L,
             count -> System.out.printf("")),

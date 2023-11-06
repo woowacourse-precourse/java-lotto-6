@@ -15,7 +15,7 @@ public class PaymentController {
     
     private Payment repeatUntilReceivePayment() {
         try {
-            String payment = InputView.readLine();
+            final String payment = InputView.readLine();
             return Payment.from(payment);
         } catch (IllegalArgumentException exception) {
             printErrorMessage(exception);

@@ -56,7 +56,7 @@ public class WinningLottoController {
     private Lotto repeatUntilReceiveWinningNumbers() {
         try {
             final String input = InputView.readLine();
-            List<Integer> winningNumbers = splitBySeparator(input);
+            final List<Integer> winningNumbers = splitBySeparator(input);
             return new Lotto(winningNumbers);
         } catch (IllegalArgumentException exception) {
             printErrorMessage(exception);

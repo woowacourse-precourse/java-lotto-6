@@ -81,7 +81,7 @@ public class Lotto {
     }
 
     private String appendLottoNumbers() {
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         for (int index = ZERO; index < VALIDATE_LOTTO_SIZE; index++) {
             sb.append(numbers.get(index));
             if (index < LAST_INDEX_FOR_INSERT_SEPARATOR) {

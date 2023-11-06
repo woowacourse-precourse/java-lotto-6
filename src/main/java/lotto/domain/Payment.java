@@ -61,8 +61,8 @@ public class Payment {
             return BIG_DECIMAL_ZERO;
         }
 
-        BigDecimal totalPriceDecimal = new BigDecimal(totalPrice);
-        BigDecimal amountDecimal = new BigDecimal(amount);
+        final BigDecimal totalPriceDecimal = new BigDecimal(totalPrice);
+        final BigDecimal amountDecimal = new BigDecimal(amount);
 
         return totalPriceDecimal
                 .multiply(new BigDecimal(PERCENTAGE_100))

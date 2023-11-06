@@ -9,7 +9,7 @@ public class MatchingResult {
     private final boolean bonusMatching;
 
     private MatchingResult(final Lotto lotto, final WinningLotto winningLotto) {
-        long count = winningLotto.countMatchingNumbers(lotto);
+        final long count = winningLotto.countMatchingNumbers(lotto);
         this.matchingCount = MatchingCount.from(count);
         this.bonusMatching = winningLotto.containsBonusNumber(lotto);
     }

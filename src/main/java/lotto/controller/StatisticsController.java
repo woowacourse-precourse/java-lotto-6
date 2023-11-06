@@ -16,14 +16,14 @@ import lotto.domain.enums.WinningGrade;
 public class StatisticsController {
 
     public void receiveGameResult(final Payment payment, final Lotteries lotteries, final WinningLotto winningLotto) {
-        MatchingResults gameResults = lotteries.generateGameResult(winningLotto);
-        List<WinningGrade> winningGrades = gameResults.receiveLottoRanks();
-        LottoRanks lottoRanks = LottoRanks.from(winningGrades);
-        RankingResult rankingResult = lottoRanks.generateLottoRanksResult();
+        final MatchingResults gameResults = lotteries.generateGameResult(winningLotto);
+        final List<WinningGrade> winningGrades = gameResults.receiveLottoRanks();
+        final LottoRanks lottoRanks = LottoRanks.from(winningGrades);
+        final RankingResult rankingResult = lottoRanks.generateLottoRanksResult();
 
         printResultsSummary(rankingResult);
 
-        BigDecimal profitability = rankingResult.receiveProfitability(payment);
+        final BigDecimal profitability = rankingResult.receiveProfitability(payment);
         printResultsProfitability(profitability);
     }
 }

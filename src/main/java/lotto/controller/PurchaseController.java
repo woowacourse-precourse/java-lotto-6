@@ -9,8 +9,8 @@ import lotto.domain.Payment;
 public class PurchaseController {
     
     public Lotteries purchaseLotteries(final Payment payment) {
-        Lotteries lotteries = Lotteries.from(payment);
-        List<String> lotteriesInfo = lotteries.receiveLotteriesInfo();
+        final Lotteries lotteries = Lotteries.from(payment);
+        final List<String> lotteriesInfo = lotteries.receiveLotteriesInfo();
         
         printLotteriesInfo(lotteriesInfo);
         

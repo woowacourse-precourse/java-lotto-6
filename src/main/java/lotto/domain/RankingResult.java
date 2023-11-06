@@ -45,12 +45,13 @@ public class RankingResult {
     }
 
     private String receiveFormattedPrice(final WinningGrade winningGrade) {
-        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
+        final DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
+
         return decimalFormat.format(winningGrade.getPrice());
     }
 
     public BigDecimal receiveProfitability(final Payment payment) {
-        long result = rankingResult.keySet()
+        final long result = rankingResult.keySet()
                 .stream()
                 .mapToLong(grade -> grade.getPrice() * rankingResult.get(grade))
                 .sum();

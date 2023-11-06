@@ -15,7 +15,7 @@ public class Lotteries {
     }
     
     public static Lotteries from(final Payment payment) {
-        List<Lotto> result = createLotteries(payment);
+        final List<Lotto> result = createLotteries(payment);
         return new Lotteries(result);
     }
     
@@ -32,7 +32,7 @@ public class Lotteries {
     }
 
     public MatchingResults generateGameResult(final WinningLotto winningLotto) {
-        List<MatchingResult> results = lotteries.stream()
+        final List<MatchingResult> results = lotteries.stream()
                 .map(lotto -> MatchingResult.of(lotto, winningLotto))
                 .toList();
 

@@ -8,7 +8,6 @@ import lotto.model.dto.Yield;
 import lotto.service.convert.ConvertService;
 import lotto.service.exceptionhandler.LottoErrorMessage;
 import lotto.view.LottoOutputPrint;
-import lotto.view.LottoResultPrint;
 
 import java.util.Arrays;
 import java.util.List;
@@ -80,7 +79,6 @@ public class LottoIoService {
         }
         return userLottoNumber;
     }
-
     public LottoBonus userPickMasterBonusNumberOne(Lotto lotto) {
         String bonusString;
         List<Integer> bonusList;
@@ -113,10 +111,9 @@ public class LottoIoService {
             }
         }
     }
-    public Yield userYieldResult(Yield yieldAttribute){
+    public void userYieldResult(Yield yieldAttribute){
         yieldAttribute.setYieldValue(LottoLogicService.yieldCalculation(yieldAttribute));
         print.printLottoYield(yieldAttribute.getYieldValue());
-        return yieldAttribute;
     }
 
 

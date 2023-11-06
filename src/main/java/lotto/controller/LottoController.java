@@ -35,16 +35,13 @@ public class LottoController {
     public LottoBonus userInputMasterLottoBonusNumber(Lotto lotto){
         return lottoIoService.userPickMasterBonusNumberOne(lotto);
     }
-    public Yield LottoYield(Yield yieldAttribute){
-        return lottoIoService.userYieldResult(yieldAttribute);
+    public void LottoYield(Yield yieldAttribute){
+        lottoIoService.userYieldResult(yieldAttribute);
     }
-
     public LottoResultPrint LottoPrizeResult(List<SeasonLottoResultVO> autoLottoTicket,
                                              Lotto userLottoNumbers,
                                              LottoBonus lottoBonus)
     {
         return lottoService.ticketMatchUserPickNumber(autoLottoTicket,userLottoNumbers,lottoBonus);
     }
-
-
 }

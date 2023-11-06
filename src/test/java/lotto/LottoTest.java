@@ -75,7 +75,6 @@ class LottoTest {
     	assertEquals(topThreePrizesTotal, LottoService.getTotalWinningAmount(playerLottos, winningNumbers, bonusNumber));
     }
     
-    @Disabled
     @DisplayName("각 등수가 정확히 카운트 되는지 확인한다.")
     @Test
     void testGetTotalWinningCountSuccess() {
@@ -90,7 +89,7 @@ class LottoTest {
     	Lotto thirdLotto = new Lotto(numbersthird);
     	List<Integer> numbersthird2 = List.of(1,2,3,4,5,10);
     	Lotto thirdLotto2 = new Lotto(numbersthird2);
-    	List<Lotto> playerLottos = List.of(firstLotto,secondLotto,thirdLotto,thirdLotto2);
+    	List<Lotto> playerLottos = List.of(firstLotto,secondLotto,thirdLotto,thirdLotto2);//1등 1개, 2등1개, 3등 2개
     	assertEquals(1, LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber).get("FIRST"));
     	assertEquals(1, LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber).get("SECOND"));
     	assertEquals(2, LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber).get("THIRD"));

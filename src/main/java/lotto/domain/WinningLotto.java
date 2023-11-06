@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.exception.BonusNumberDuplicationException;
 import lotto.exception.WinningLottoNumbersDuplicationException;
@@ -17,7 +16,7 @@ public class WinningLotto {
 
         checkDuplication(winningLottoNumbers);
         checkDuplicationFrom(winningLottoNumbers, bonusNumber);
-        checkLength( winningLottoNumbers);
+        checkLength(winningLottoNumbers);
         winningLotto = winningLottoNumbers.stream()
                                           .map(Integer::parseInt)
                                           .map(number -> LottoNumber.of(number))
@@ -26,31 +25,19 @@ public class WinningLotto {
 
     }
 
-    public Rank calculateRankWith(Lotto lotto) {
-
-        int count = (int) lotto.stream()
-                               .filter(number -> winningLotto.contains(number))
-                               .count();
-
-        boolean isBonusNumber = lotto.contains(bonusNumber);
-
-        return Arrays.stream(Rank.values())
-                     .filter(rank -> rank.matchRank(count, isBonusNumber))
-                     .findFirst()
-                     .orElse(Rank.NONE);
+    public boolean contains(LottoNumber lottoNumber) {
+        return winningLotto.contains(lottoNumber);
     }
 
-    public WinningStatistics calculateStaticsFrom(List<Lotto> lottos) {
-        List<Rank> ranks = lottos.stream()
-                                 .map(this::calculateRankWith)
-                                 .toList();
-        return WinningStatistics.from(ranks);
+    public boolean hasBonusNumberIn(Lotto lotto) {
+        return lotto.contains(bonusNumber);
     }
+
 
     private void checkDuplication(List<String> winningLotto) {
         List<String> distinctList = winningLotto.stream()
-                                             .distinct()
-                                             .toList();
+                                                .distinct()
+                                                .toList();
         if (distinctList.size() != winningLotto.size()) {
             throw new WinningLottoNumbersDuplicationException();
         }
@@ -61,6 +48,7 @@ public class WinningLotto {
             throw new BonusNumberDuplicationException();
         }
     }
+
     private void checkLength(List<String> lottoNumbers) {
         if (lottoNumbers.size() != LENGTH) {
             throw new WrongLottoLengthException();

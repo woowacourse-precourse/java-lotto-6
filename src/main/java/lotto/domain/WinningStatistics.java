@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class WinningStatistics {
 
@@ -15,8 +14,8 @@ public class WinningStatistics {
         winningRanks.forEach(rank -> rankCount.put(rank, rankCount.getOrDefault(rank, 0)+1));
     }
 
-    public static WinningStatistics from(List<Rank> winningRanks) {
-        return new WinningStatistics(winningRanks);
+    public static WinningStatistics from(List<Rank> ranks) {
+        return new WinningStatistics(ranks);
     }
 
     public int showCountOf(Rank rank) {
@@ -29,5 +28,8 @@ public class WinningStatistics {
                             .reduce(0L, Long::sum);
         return revenue;
     }
+
+
+
 
 }

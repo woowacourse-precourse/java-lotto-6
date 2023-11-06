@@ -12,12 +12,14 @@ import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningStatistics;
 import lotto.dto.PurchasedLottosDto;
+import lotto.service.RankCalculateService;
 
 public class LotteryStore {
 
 
     LottoFactory lottoFactory = new LottoFactory();
     LottoRepository lottoRepository = LottoRepository.getInstance();
+    RankCalculateService rankCalculateService = new RankCalculateService();
 
     public void getLottoOrderUpTo(int count) {
         List<Lotto> orderedLottos = lottoFactory.createRandomLottoUpto(count);
@@ -36,8 +38,8 @@ public class LotteryStore {
 
     public WinningStatistics calculateStatisticsWith(WinningLotto winningLotto) {
         List<Lotto> lottos = lottoRepository.showAllLottos();
-
-        return winningLotto.calculateStaticsFrom(lottos);
+        List<Rank> ranks = rankCalculateService.calculateRanksFrom(lottos, winningLotto);
+        return WinningStatistics.from(ranks);
     }
 
 

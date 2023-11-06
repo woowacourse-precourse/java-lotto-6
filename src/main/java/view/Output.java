@@ -1,6 +1,6 @@
 package view;
 
-import contant.ErrorMessage;
+import constant.ErrorMessage;
 
 public class Output {
 

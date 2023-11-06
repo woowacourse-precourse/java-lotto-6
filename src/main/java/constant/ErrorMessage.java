@@ -1,4 +1,4 @@
-package contant;
+package constant;
 
 public enum ErrorMessage {
     NULL_MESSAGE("[ERROR] 입력값이 없습니다. 다시 입력 해주세요."),

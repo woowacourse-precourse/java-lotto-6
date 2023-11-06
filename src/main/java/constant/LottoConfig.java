@@ -1,8 +1,9 @@
-package contant;
+package constant;
 
 public enum LottoConfig {
     START_INCLUSIVE(1),
     END_INCLUSIVE(45),
+    NUM_COUNT(6),
     COST(1000);
 
     private final int value;
@@ -10,8 +11,8 @@ public enum LottoConfig {
         this.value = value;
     }
 
-    @Override
-    public String toString(){
-        return Integer.toString(value);
+    public int getValue() {
+        return value;
     }
+
 }

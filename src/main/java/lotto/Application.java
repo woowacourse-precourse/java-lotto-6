@@ -28,7 +28,7 @@ public class Application {
         while (!validPurchaseAmount) {
             try {
                 userPurchaseAmount = inputHandler.getInputNumber();
-                validPrice(userPurchaseAmount);
+                validation.price(userPurchaseAmount);
                 validPurchaseAmount = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

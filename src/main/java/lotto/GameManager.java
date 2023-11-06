@@ -9,6 +9,11 @@ import java.util.stream.IntStream;
 import lotto.view.Input;
 
 public class GameManager {
+    private int getPurchaseQuantity(int purchaseAmount) {
+        validationPurchaseAmountInThousands(purchaseAmount);
+        return purchaseAmount / 1000;
+    }
+
     private void validationPurchaseAmountInThousands(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(DIVISIBLE_BY_1000.errorMessage());

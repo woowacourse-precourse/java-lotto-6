@@ -25,7 +25,7 @@ public class LottoHost {
     public Integer pickBonusNumber() {
         Integer tempBonusNumber = inputBonusNumber();
 
-//        ValidateException.hasDuplicateNumAndNumbers(tempBonusNumber, winNumbers);
+        ValidateException.hasDuplicateNumAndNumbers(tempBonusNumber, winNumbers);
         ValidateException.isInRangeBonusNumber(tempBonusNumber);
 
         bonusNumber = tempBonusNumber;

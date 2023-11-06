@@ -125,7 +125,7 @@ public class ValidateException {
         return false;
     }
 
-//    // 로또 진행자.
+    //    // 로또 진행자.
 //    public static boolean hasDuplicateEachNumbers(List<Integer> numbers) {
 //        Set<Integer> set = new HashSet<>();
 //
@@ -155,11 +155,11 @@ public class ValidateException {
 //        }
 //        return true;
 //    }
-//
-//    public static boolean hasDuplicateNumAndNumbers(Integer targetNumber, List<Integer> numbers) {
-//        if (numbers.contains(targetNumber)) {
-//            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호가 같다.");
-//        }
-//        return true;
-//    }
+
+    public static boolean hasDuplicateNumAndNumbers(Integer targetNumber, List<Integer> numbers) {
+        if (numbers.contains(targetNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호중 중복되는 숫자가 있습니다.");
+        }
+        return true;
+    }
 }

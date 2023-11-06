@@ -31,6 +31,10 @@
 로또 번호의 정보를 가지는 객체입니다.
 - getNumbers 함수
   - numbers를 반환하는 함수
+- toString 함수
+  - 오버라이드 받아서 작성
+- validate 함수
+  - 중복 값 있는지 확인
 
 
 #### PlayerLotto 객체

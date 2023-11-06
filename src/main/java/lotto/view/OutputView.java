@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.Constant.OutputConstant;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoValue;
@@ -8,12 +9,16 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
+    public static void printNumberOfLotto(int numberOfLotto){
+        System.out.println("\n" + numberOfLotto + OutputConstant.NUM_OF_LOTTO);
+
+    }
     public static void printLotto(LottoMachine lottoMachine) {
         lottoMachine.getLottos().stream().map(Lotto::toString).forEach(System.out::println);
     }
 
     public static void printResult(List<LottoValue> lottoValues) {
-        System.out.println("당첨 통계");
+        System.out.println( "\n당첨 통계");
         System.out.println("---------");
         for (LottoValue lottoValue : LottoValue.values()) {
             System.out.println(lottoValue.result + " - " + lottoValues.stream().filter(a -> a.name().equals(lottoValue.name())).count() + "개");

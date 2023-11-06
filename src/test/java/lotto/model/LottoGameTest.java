@@ -3,7 +3,6 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class StatisticsTest {
+public class LottoGameTest {
 
     private final WinningNumber winningNumber
             = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 7);
@@ -23,8 +22,8 @@ public class StatisticsTest {
             final List<Lotto> lottoTickets
     ) {
         // when
-        final Statistics statistics = new Statistics(winningNumber, lottoTickets);
-        final WinningDetails winningDetails = statistics.getResults();
+        final LottoGame lottoGame = new LottoGame(winningNumber, lottoTickets);
+        final WinningDetails winningDetails = lottoGame.getResults();
         final List<WinningSummary> summaries = winningDetails.getResults();
 
         // then
@@ -54,8 +53,8 @@ public class StatisticsTest {
     void givenLottoTickets_Then_TotalAmountReturns(
             final List<Lotto> lottoTickets
     ) {
-        final Statistics statistics = new Statistics(winningNumber, lottoTickets);
-        final WinningDetails winningDetails = statistics.getResults();
+        final LottoGame lottoGame = new LottoGame(winningNumber, lottoTickets);
+        final WinningDetails winningDetails = lottoGame.getResults();
         final BigDecimal totalAmount = winningDetails.sumUpWinningAmount();
         assertThat(totalAmount).isEqualByComparingTo(BigDecimal.valueOf(2_000_010_000L));
     }

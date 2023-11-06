@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class Statistics {
+public class LottoGame {
 
     private final WinningNumber winningNumber;
 
     private final List<Lotto> lottoTickets;
 
-    public Statistics(final WinningNumber winningNumber, final List<Lotto> lottoTickets) {
+    public LottoGame(final WinningNumber winningNumber, final List<Lotto> lottoTickets) {
         this.winningNumber = winningNumber;
         this.lottoTickets = lottoTickets;
     }

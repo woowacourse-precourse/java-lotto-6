@@ -7,16 +7,19 @@ import lotto.domain.num.LottoTargetNumResults;
 import lotto.utill.Utii;
 
 public class Statistic {
+    private static final Integer MONEY_FIRST_PLACE = 2000000000;
+    private static final Integer MONEY_SECOND_PLACE = 30000000;
+    private static final Integer MONEY_THIRD_PLACE = 1500000;
+    private static final Integer MONEY_FOURTH_PLACE = 50000;
+    private static final Integer MONEY_FIFTH_PLACE = 5000;
     private LottoEnvelop lottoEnvelop;
     private Judgment judgment;
-
     private Integer countOfFirstPlace;
     private Integer countOfSecondPlace;
     private Integer countOfThirdPlace;
     private Integer countOfFourthPlace;
     private Integer countOfFifthPlace;
     private Integer totalWinMoney;
-
 
     public Statistic(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
         this.lottoEnvelop = lottoEnvelop;
@@ -57,12 +60,13 @@ public class Statistic {
         return resultString;
     }
 
+    // TODO: 11/6/23 상수 정리 
     private void calculateTotalWinMoney() {
-        totalWinMoney = totalWinMoney + (countOfFifthPlace * 5000);
-        totalWinMoney = totalWinMoney + (countOfFourthPlace * 50000);
-        totalWinMoney = totalWinMoney + (countOfThirdPlace * 1500000);
-        totalWinMoney = totalWinMoney + (countOfSecondPlace * 30000000);
-        totalWinMoney = totalWinMoney + (countOfFirstPlace * 2000000000);
+        totalWinMoney = totalWinMoney + (countOfFifthPlace * MONEY_FIFTH_PLACE);
+        totalWinMoney = totalWinMoney + (countOfFourthPlace * MONEY_FOURTH_PLACE);
+        totalWinMoney = totalWinMoney + (countOfThirdPlace * MONEY_THIRD_PLACE);
+        totalWinMoney = totalWinMoney + (countOfSecondPlace * MONEY_SECOND_PLACE);
+        totalWinMoney = totalWinMoney + (countOfFirstPlace * MONEY_FIRST_PLACE);
     }
 
     public Integer getTotalWinMoney() {
@@ -73,35 +77,30 @@ public class Statistic {
 
     private void isFirstPlace(Integer countSame) {
         if (isSameCount(countSame, 6)) {
-            // 1등: 6개 번호 일치 / 2,000,000,000원
             countOfFirstPlace = countOfFirstPlace + 1;
         }
     }
 
     private void isSecondPlace(Integer countSame, Boolean isSameBonus) {
         if (isSameCount(countSame, 5) && isSameBonus) {
-            // 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
             countOfSecondPlace = countOfSecondPlace + 1;
         }
     }
 
     private void isThirdPlace(Integer countSame, Boolean isSameBonus) {
         if (isSameCount(countSame, 5) && !isSameBonus) {
-            // 3등: 5개 번호 일치 / 1,500,000원
             countOfThirdPlace = countOfThirdPlace + 1;
         }
     }
 
     private void isFourthPlace(Integer countSame) {
         if (isSameCount(countSame, 4)) {
-            // 4등: 4개 번호 일치 / 50,000원
             countOfFourthPlace = countOfFourthPlace + 1;
         }
     }
 
     private void isFifthPlace(Integer countSame) {
         if (isSameCount(countSame, 3)) {
-            // 5등: 3개 번호 일치 / 5,000원
             countOfFifthPlace = countOfFifthPlace + 1;
         }
     }

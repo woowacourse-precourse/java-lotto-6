@@ -31,6 +31,10 @@ public class Lotto {
         }
     }
 
+    public boolean containsBonusNumber(int bonusNumber){
+        return this.numbers.contains(bonusNumber);
+    }
+
     public void validateNotDuplicated(List<Integer> numbers) {
         long distinctCount = numbers.stream().distinct().count();
         if (numbers.size() != distinctCount){

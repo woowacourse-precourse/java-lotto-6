@@ -60,4 +60,12 @@ class LottoTest {
         Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
         assertThat(lotto.compare(lotto2)).isZero();
     }
+
+    @DisplayName("보너스 숫자를 포함하는 로또임을 확인한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3,4,5,6})
+    void name(int bonusNumber) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.containsBonusNumber(bonusNumber)).isTrue();
+    }
 }

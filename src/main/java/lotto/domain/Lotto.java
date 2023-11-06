@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.util.ErrorMessage;
 import lotto.util.LottoGenerator;
 import lotto.controller.dto.LottoResponseDto;
 
@@ -42,14 +43,14 @@ public class Lotto {
 
     private static void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또번호의 값이 6자리가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_IS_OVER);
         }
     }
 
     private void validateNumbersDuplicated(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또번호가 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED);
         }
     }
 
@@ -57,7 +58,7 @@ public class Lotto {
         for (Integer num : numbers) {
             if (num < LottoGenerator.LOTTO_START_INCLUSIVE
                     || num > LottoGenerator.LOTTO_END_INCLUSIVE) {
-                throw new IllegalArgumentException("[ERROR] 로또번호는 1부터 45까지의 값을 가져야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.NUMBER_IS_OVER_RANGE);
             }
         }
     }

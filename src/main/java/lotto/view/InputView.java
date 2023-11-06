@@ -4,10 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.util.ErrorMessage;
 
 public class InputView {
-
-    public static final String PRICE_NOT_INTEGER_ERROR_MESSAGE = "[ERROR] 입력값이 숫자가 아닙니다.";
 
     public static int getPurchaseLottoPrice() {
         String cost = Console.readLine();
@@ -27,7 +26,7 @@ public class InputView {
 
     private static int convertToInt(String cost) {
         if (!cost.matches("\\d+")) {
-            throw new IllegalArgumentException(PRICE_NOT_INTEGER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.PRICE_NOT_INTEGER_ERROR_MESSAGE);
         }
         return Integer.parseInt(cost);
     }

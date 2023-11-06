@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import lotto.util.ErrorMessage;
+
 public class UserLotto {
+
     private final Lotto lotto;
     private final int bonusNumber;
 
@@ -20,7 +23,7 @@ public class UserLotto {
 
     private void validateDuplicated() {
         if (lotto.isContain(bonusNumber)){
-            throw new IllegalStateException("중복된 번호입니다.");
+            throw new IllegalStateException(ErrorMessage.BONUS_NUMBER_IS_DUPLICATED_MESSAGE);
         }
     }
 }

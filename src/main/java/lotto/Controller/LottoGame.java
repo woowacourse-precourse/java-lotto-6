@@ -14,9 +14,11 @@ public class LottoGame {
 
     public LottoGame() {}
     private static LottoPurchaseAmount lottoPurchaseAmount;
+    private static BonusNumber bonusNumber;
     private static List<Lotto> lottoList;
     private static List<Integer> winningLottoNumbers;
-    private static int bonusNumber;
+    private static int winningBonusNumber;
+
 
 
 
@@ -29,7 +31,7 @@ public class LottoGame {
         OutputView.printPurchasedLottoList(lottoList);
 
         winningLottoNumbers = parseLottoNumbers(InputView.inputLottoNumbers());
-        bonusNumber = inputBonusNumber();
+        winningBonusNumber = inputBonusNumber();
 
 
     }
@@ -78,14 +80,10 @@ public class LottoGame {
     {
         try{
             bonusNumber = new BonusNumber(InputView.inputBonusNumber());
-            return bonusNumber;
+            return bonusNumber.conveyBonusNumber();
         }
         catch(IllegalArgumentException e){
             return inputBonusNumber();
         }
     }
-
-
-
-
 }

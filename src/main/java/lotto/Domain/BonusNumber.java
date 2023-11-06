@@ -14,6 +14,11 @@ BonusNumber {
         this.bonusNumber = bonusNumberInt;
     }
 
+    public  int conveyBonusNumber()
+    {
+        return bonusNumber;
+    }
+
     public static int validateIsNumeric(String input) throws IllegalArgumentException {
         try {
             return Integer.parseInt(input);

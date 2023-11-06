@@ -17,7 +17,7 @@ public class LottoController {
 
     public void startProgram() {
         Lottos lottos = purchaseLottos();
-        FinalWinningNumber finalWinningNumber = setWinningNumber();
+        FinalWinningNumber finalWinningNumber = setFinalWinningNumber();
         printResult(lottos, finalWinningNumber);
     }
 
@@ -43,7 +43,7 @@ public class LottoController {
         }
     }
 
-    private FinalWinningNumber setWinningNumber() {
+    private FinalWinningNumber setFinalWinningNumber() {
         return new FinalWinningNumber(initWinningNumber(), initBonusNumber());
     }
 

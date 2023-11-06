@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -47,7 +48,7 @@ public class Controller {
         return purchase;
     }
 
-    private void validatePurchase(int purchase){
+    private void validatePurchase(int purchase) {
         validatePurchaseUnit(purchase);
         validateNoMoney(purchase);
     }
@@ -58,19 +59,19 @@ public class Controller {
         }
     }
 
-    private void validateNoMoney(int purchase){
-        if (purchase < 0){
+    private void validateNoMoney(int purchase) {
+        if (purchase < 0) {
             throw new IllegalArgumentException(String.format("로또를 구매할 수 없는 금액입니다."));
         }
     }
 
     private List<Lotto> buyLottos(int count) {
-        randomNumbersLotto randomNumbersLotto = new randomNumbersLotto();
+        //randomNumbersLotto randomNumbersLotto = new randomNumbersLotto();
         outputView outputview = new outputView();
 
         List<Lotto> lottos = IntStream.range(0, count)
-                .mapToObj(i -> new Lotto(randomNumbersLotto.makeRandomNumLottos())).collect(
-                        Collectors.toList());
+                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+                .collect(Collectors.toList());
         outputview.printLotto(lottos);
         return lottos;
     }

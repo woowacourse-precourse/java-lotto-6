@@ -46,7 +46,7 @@ public enum Ranking {
         if (bonus) {
             output.append(", 보너스 볼 일치");
         }
-        output.append(String.format("(%,d원)", prize));
+        output.append(String.format(" (%,d원)", prize));
         return output.toString();
     }
 }

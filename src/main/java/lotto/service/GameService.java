@@ -3,7 +3,9 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.Message;
 import lotto.domain.Buyer;
+import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
+import lotto.dto.LottoDTO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,6 +73,13 @@ public class GameService {
         return buyer.getAmount();
     }
 
+    public List<LottoDTO> getPurchaseLottos() {
+
+        List<Lotto> lottos = buyer.getLottos();
+
+        return domainToDto(lottos);
+    }
+
     private List<Integer> createNumbers() {
 
         List<Integer> numbers = new ArrayList<>();
@@ -117,5 +126,19 @@ public class GameService {
 
             throw new IllegalArgumentException(Message.INPUT_BONUS_NUMBER_ERROR_MESSAGE.name());
         }
+    }
+
+    private List<LottoDTO> domainToDto(List<Lotto> lottos) {
+
+        List<LottoDTO> lottoDTOS = new ArrayList<>();
+
+        for(Lotto lotto : lottos) {
+
+            LottoDTO lottoDTO = new LottoDTO();
+            lottoDTO.saveNumbers(lotto.getNumbers());
+            lottoDTOS.add(lottoDTO);
+        }
+
+        return lottoDTOS;
     }
 }

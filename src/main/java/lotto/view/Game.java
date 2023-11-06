@@ -15,6 +15,8 @@ public class Game {
             saveWinningNumbers();
             saveBonusNumbers();
 
+            printPurchaseHistory();
+
         }catch (Exception e){
 
             String errorType = e.getMessage();
@@ -64,5 +66,11 @@ public class Game {
         String input = Console.readLine();
 
         gameController.saveBonusNumber(input);
+    }
+
+    private void printPurchaseHistory() {
+
+        System.out.println(gameController.getPurchaseAmount());
+        System.out.println(gameController.getPurchaseLottos());
     }
 }

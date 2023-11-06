@@ -32,6 +32,13 @@ public class LottoTicket {
         return Collections.unmodifiableList(tickets);
     }
 
+    public String getPrintedLottoTicket() {
+        StringBuilder lottoPrinter = new StringBuilder();
+        tickets.stream()
+                .forEach(lotto -> lottoPrinter.append(lotto).append("\n"));
+        return lottoPrinter.toString();
+    }
+
     public int getLottoCount() {
         return tickets.size();
     }

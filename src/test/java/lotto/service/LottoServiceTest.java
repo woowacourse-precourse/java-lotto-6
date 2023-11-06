@@ -1,6 +1,7 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -67,5 +68,18 @@ public class LottoServiceTest {
         List<Lotto> lottos = lottoService.purchaseLottoTickets(PURCHASE_AMOUNT);
         // then
         assertThat(lottos.size()).isEqualTo(EXPECTED_LOTTO_TICKETS_SIZE);
+    }
+
+    @DisplayName("로또 구입 금액이 1000원 단위가 아니면 예외를 발생한다.")
+    @Test
+    void purchaseLottoTicketsShouldThrowException() {
+        // given
+        final int PURCHASE_AMOUNT = 14001;
+        // when
+        LottoService lottoService = new LottoService();
+        // then
+        assertThatThrownBy(() -> lottoService.purchaseLottoTickets(PURCHASE_AMOUNT))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 구입 금액은 1000원 단위로 가능합니다.");
     }
 }

@@ -13,7 +13,8 @@ public class LottoController {
         LottoTickets lottoNum = buyLotto(amount);
         WinningNumber winningNum = inputWinningNumber();
         BonusNumber bonusNum = inputBonusNumber(winningNum);
-        calculateWinningResult(lottoNum, winningNum, bonusNum);
+        WinningResult winningResult = calculateWinningResult(lottoNum, winningNum, bonusNum);
+        OutputView.printWinningResult(winningResult);
     }
 
     private LottoAmount inputAmount() {

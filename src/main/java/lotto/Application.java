@@ -33,8 +33,8 @@ public class Application {
     private static Customer getCustomer() {
         try {
             PrintService.requestInputPurchasePrice();
-            String purhchasePrice = InputService.purchasePrice();
-            return Customer.create(purhchasePrice);
+            String purchasePrice = InputService.purchasePrice();
+            return Customer.create(purchasePrice);
         }catch (NumberFormatException e) {
             PrintService.error("숫자를 입력해주세요.");
             return getCustomer();

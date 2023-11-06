@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+
 public enum Rank {
 
     FIRST(6, 2000000000L, "2,000,000,000"),
@@ -23,6 +26,23 @@ public enum Rank {
             return String.format("%d개 일치, 보너스 볼 일치 (%s) - %d개", this.getCount(), this.getPrintablePrizeMoney(), count);
         }
         return String.format("%d개 일치 (%s) - %d개", this.getCount(), this.getPrintablePrizeMoney(), count);
+    }
+
+    public static Rank of(int correctCount, boolean correctBonusNumber) {
+        if (determinSecond(correctCount, correctBonusNumber)) {
+            return SECOND;
+        }
+        Rank determindRank = Arrays.stream(values()).filter(rank -> rank.getCount() == correctCount)
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("해당하는 Rank 없습니다."));
+
+        return determindRank;
+    }
+
+    public static boolean determinSecond(int correctCount, boolean correctBonusNumber) {
+        if (correctCount == SECOND.getCount() && correctBonusNumber) {
+            return true;
+        }
     }
 
     public int getCount() {

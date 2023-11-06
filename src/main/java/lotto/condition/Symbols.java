@@ -2,7 +2,9 @@ package lotto.condition;
 
 public enum Symbols {
     DELIMITER(","),
-    SEPARATOR("--");
+    SEPARATOR("---"),
+    PREFIX("["),
+    SUFFIX("]");
 
     private final String symbol;
 

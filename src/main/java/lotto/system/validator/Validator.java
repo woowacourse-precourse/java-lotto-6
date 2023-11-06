@@ -6,11 +6,14 @@ public class Validator {
     private static final Pattern ARABIC_NUMBER_PATTERN = Pattern.compile("^[0-9]?$");
     private static final int MINIMUM_UNIT = 1000;
     private static final int ZERO = 0;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
 
     private enum ExceptionMessage {
         EMPTY_VALUE_NOT_ALLOWED("[ERROR] 빈 값을 입력할 수 없습니다."),
         INVALID_ARABIC_NUMBER("[ERROR] 아라비아 숫자만 입력할 수 있습니다."),
-        NOT_DIVISIBLE_BY_1000("[ERROR] 1,000원 단위로만 입력할 수 있습니다.");
+        NOT_DIVISIBLE_BY_1000("[ERROR] 1,000원 단위로만 입력할 수 있습니다."),
+        NUMBER_OUT_OF_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         private final String message;
 
         ExceptionMessage(String message) {
@@ -33,6 +36,13 @@ public class Validator {
     public void validateDivisibleBy1000(String input) {
         if (Integer.parseInt(input) % MINIMUM_UNIT != ZERO) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_DIVISIBLE_BY_1000.message);
+        }
+    }
+
+    public void validateNumberInRange(String input) {
+        int number = Integer.parseInt(input);
+        if (number < MIN_LOTTO_NUMBER && number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(Validator.ExceptionMessage.NUMBER_OUT_OF_RANGE.message);
         }
     }
 }

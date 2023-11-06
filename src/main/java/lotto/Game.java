@@ -23,6 +23,7 @@ public class Game {
         inputView = new InputView();
         outputView = new OutputView();
         lottos = new ArrayList<>();
+        prizes = new ArrayList<>();
     }
 
     public void run(){

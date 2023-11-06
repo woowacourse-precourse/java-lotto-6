@@ -10,4 +10,12 @@ public class Result {
         this.bonusNumber = bonusNumber;
     }
 
+    public boolean winningNumbersContain(int number) {
+        return winningNumbers.contains(number);
+    }
+
+    public boolean bonusNumberIs(int number) {
+        return bonusNumber.is(number);
+    }
+
 }

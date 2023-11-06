@@ -32,13 +32,13 @@ public class LottoPack {
         return lottoPack.size() * LottoConfig.LOTTO_PRICE;
     }
 
-    public LottoStatistics calculate(WinningNumbers winningNumbers, WinningNumber bonusNumber) {
+    public LottoStatistics calculate(Result result) {
 
         EnumMap<LottoRank, Integer> map = new EnumMap<>(LottoRank.class);
         Arrays.stream(LottoRank.values()).forEach(lottoRank -> map.put(lottoRank, 0));
 
         lottoPack.stream()
-                .map(lotto -> lotto.calculate(winningNumbers, bonusNumber))
+                .map(lotto -> lotto.calculate(result))
                 .forEach(rank -> map.put(rank, map.get(rank) + 1));
 
         return new LottoStatistics(map);

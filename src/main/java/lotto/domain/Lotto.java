@@ -33,9 +33,9 @@ public class Lotto {
         return list;
     }
 
-    public LottoRank calculate(WinningNumbers winningNumbers, WinningNumber bonusNumber) {
-        int winningCount = (int) numbers.stream().filter(winningNumbers::contains).count();
-        int bonus = (int) numbers.stream().filter(bonusNumber::is).count();
+    public LottoRank calculate(Result result) {
+        int winningCount = (int) numbers.stream().filter(result::winningNumbersContain).count();
+        int bonus = (int) numbers.stream().filter(result::bonusNumberIs).count();
         return LottoRank.findRank(winningCount, bonus);
     }
 

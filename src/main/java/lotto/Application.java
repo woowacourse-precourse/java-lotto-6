@@ -39,4 +39,14 @@ public class Application {
         if(cnt==3)result=5;
         return result;
     }
+    public static double calculateProfit(int money, int[] stats){
+        int totalMoney=0;
+        totalMoney+=stats[1]*2000000000;
+        totalMoney+=stats[2]*30000000;
+        totalMoney+=stats[3]*1500000;
+        totalMoney+=stats[4]*50000;
+        totalMoney+=stats[5]*5000;
+        double profit=((double) totalMoney/(double) money)*100;
+        return profit;
+    }
 }

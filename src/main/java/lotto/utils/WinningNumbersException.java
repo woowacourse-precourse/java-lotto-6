@@ -11,14 +11,14 @@ public class WinningNumbersException {
     public void exceedsLength(String input) {
         String[] inputData = input.split(",");
         if (inputData.length > 6) {
-            throw new IllegalArgumentException(String.valueOf(EXCEEDS_LENGTH));
+            throw new IllegalArgumentException(EXCEEDS_LENGTH.getMessage());
         }
     }
     public void notNumeric(String input) {
         try {
             Integer.parseInt(input);
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.valueOf(NOT_NUMBER));
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
     }
     public void outsideRange(String input) {
@@ -28,7 +28,7 @@ public class WinningNumbersException {
         for(String value : inputData) {
             numberValue = Integer.parseInt(value);
             if (numberValue > 45 || numberValue < 0) {
-                throw new IllegalArgumentException(String.valueOf(OUTSIDE_RANGE));
+                throw new IllegalArgumentException(OUTSIDE_RANGE.getMessage());
             }
         }
     }

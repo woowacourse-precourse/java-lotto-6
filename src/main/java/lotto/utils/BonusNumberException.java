@@ -13,7 +13,7 @@ public class BonusNumberException {
         for(String value : inputData) {
             numberValue = Integer.parseInt(value);
             if (numberValue > 45 || numberValue < 0) {
-                throw new IllegalArgumentException(String.valueOf(OUTSIDE_RANGE));
+                throw new IllegalArgumentException(OUTSIDE_RANGE.getMessage());
             }
         }
     }
@@ -21,7 +21,7 @@ public class BonusNumberException {
     public void duplicateNumber(List<String> winningNumbers, String input) {
         for (String number : winningNumbers) {
             if (number.equals(input)) {
-                throw new IllegalArgumentException(String.valueOf(DUPLICATE_INPUT));
+                throw new IllegalArgumentException(DUPLICATE_INPUT.getMessage());
             }
         }
     }
@@ -30,7 +30,7 @@ public class BonusNumberException {
         try {
             Integer.parseInt(input);
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.valueOf(NOT_NUMBER));
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
     }
 }

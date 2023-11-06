@@ -9,14 +9,14 @@ public class PurchaseAmountException {
         try {
             Integer.parseInt(input);
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.valueOf(NOT_NUMBER));
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
     }
 
     public void notDivisible(String input) {
         int numberInput = Integer.parseInt(input);
         if(numberInput % 1000 != 0) {
-            throw new IllegalArgumentException(String.valueOf(NON_DIVISIBLE_BY_1000));
+            throw new IllegalArgumentException(NON_DIVISIBLE_BY_1000.getMessage());
         }
     }
 }

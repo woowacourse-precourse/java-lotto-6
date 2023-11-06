@@ -23,11 +23,11 @@ public class OutputView {
 
 
     public void printQuantityOfLotteries(Quantity quantity) {
-        System.out.printf(MSG_PURCHASE + NEW_LINE, quantity.getQuantity());
+        System.out.printf(MSG_PURCHASE + NEW_LINE, quantity.getAmount());
     }
 
     public void printBoughtLottos(Lottos lottos) {
-        String boughtLottos = lottos.getLottos().stream()
+        String boughtLottos = lottos.getPackOfLotteryTickets().stream()
                 .map(lotto -> lotto.getNumbers() + "")
                 .collect(Collectors.joining(NEW_LINE));
         System.out.println(boughtLottos);
@@ -46,7 +46,7 @@ public class OutputView {
 
     private void printPrizeFormat(Prize prize, String message, LottoResult result) {
         long prizeCount = result.getResult().getOrDefault(prize, 0L);
-        System.out.printf(message + DASH + "%d" + COUNT_NOUN + NEW_LINE, prizeCount);
+        System.out.printf("%s%s%d%s%s", message, DASH, prizeCount, COUNT_NOUN, NEW_LINE);
     }
 
     public void printProfit(double roundedProfit) {

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.config.LottoConfig;
@@ -8,11 +9,11 @@ public class LottoResult {
     private final Map<Prize, Long> result;
 
     private LottoResult(final Map<Prize, Long> result) {
-        this.result = result;
+        this.result = Collections.unmodifiableMap(result);
     }
 
     public static LottoResult of(final Lottos lottos, final WinningLotto winningLotto) {
-        return new LottoResult(lottos.getLottos().stream()
+        return new LottoResult(lottos.getPackOfLotteryTickets().stream()
                 .collect(Collectors.groupingBy(winningLotto::rankPrize, Collectors.counting())));
     }
 
@@ -25,18 +26,15 @@ public class LottoResult {
         long totalWinning = calculateTotalWinning();
         Money totalMoney = calculateTotalMoney();
 
-        double profit = ((double) totalWinning / totalMoney.getValue()) * 100;
-        double roundedProfit = Math.round(profit * 100.0) / 100.0;
-        
-        return roundedProfit;
+        double profit = ((double) totalWinning / totalMoney.getBudget()) * 100;
+        return Math.round(profit * 100.0) / 100.0;
     }
 
     private long calculateTotalWinning() {
-        long totalWinning = result.entrySet()
+        return result.entrySet()
                 .stream()
                 .mapToLong(entry -> entry.getKey().getWinnings() * entry.getValue())
                 .sum();
-        return totalWinning;
     }
 
     private Money calculateTotalMoney() {

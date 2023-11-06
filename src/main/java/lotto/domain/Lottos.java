@@ -5,21 +5,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
-    private final List<Lotto> lottos;
+    private final List<Lotto> packOfLotteryTickets;
 
-    private Lottos(List<Lotto> lottos) {
-        this.lottos = Collections.unmodifiableList(lottos);
+    private Lottos(List<Lotto> packOfLotteryTickets) {
+        this.packOfLotteryTickets = Collections.unmodifiableList(packOfLotteryTickets);
     }
 
     public static Lottos of(final Quantity totalLotteries, final LottoGenerator generator) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < totalLotteries.getQuantity(); i++) {
+        for (int i = 0; i < totalLotteries.getAmount(); i++) {
             lottos.add(new Lotto(generator.generate()));
         }
         return new Lottos(lottos);
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
+    public List<Lotto> getPackOfLotteryTickets() {
+        return packOfLotteryTickets;
     }
 }

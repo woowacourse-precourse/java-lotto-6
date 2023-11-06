@@ -4,11 +4,11 @@ import lotto.config.LottoConfig;
 import lotto.exception.Errors;
 
 public class Money {
-    private final long value;
+    private final long budget;
 
-    public Money(final long value) {
-        validateMoney(value);
-        this.value = value;
+    public Money(final long budget) {
+        validateMoney(budget);
+        this.budget = budget;
     }
 
     private void validateMoney(long value) {
@@ -23,7 +23,7 @@ public class Money {
         }
     }
 
-    public long getValue() {
-        return value;
+    public long getBudget() {
+        return budget;
     }
 }

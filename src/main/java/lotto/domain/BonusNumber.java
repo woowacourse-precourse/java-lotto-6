@@ -6,11 +6,11 @@ import lotto.exception.Errors;
 
 public class BonusNumber {
 
-    private final int bonusNumber;
+    private final int value;
 
-    public BonusNumber(int bonusNumber, Lotto winningNumbers) {
-        validateBonusNumber(bonusNumber, winningNumbers);
-        this.bonusNumber = bonusNumber;
+    public BonusNumber(int value, Lotto winningNumbers) {
+        validateBonusNumber(value, winningNumbers);
+        this.value = value;
     }
 
     private void validateBonusNumber(int bonusNumber, Lotto winningNumbers) {
@@ -21,5 +21,9 @@ public class BonusNumber {
         if (LottoConfig.MIN_NUMBER > bonusNumber || bonusNumber > LottoConfig.MAX_NUMBER) {
             throw Errors.INVALID_RANGE.getLottoException();
         }
+    }
+
+    public int getValue() {
+        return value;
     }
 }

@@ -39,10 +39,6 @@ public enum Prize {
         return this.matches == matches;
     }
 
-    public int getMatches() {
-        return matches;
-    }
-
     public int getWinnings() {
         return winnings;
     }

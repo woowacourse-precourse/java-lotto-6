@@ -25,17 +25,17 @@ public class LottoController {
     }
 
     public void run() {
+        Quantity totalLotteries = makeQuantities();
+        Lottos lottos = makeLottos(totalLotteries);
+        WinningLotto winningLotto = makeWinningLotto();
+        LottoResult result = LottoResult.of(lottos, winningLotto);
+        showResultAndProfit(result);
+    }
+
+    private Quantity makeQuantities() {
         Quantity totalLotteries = Quantity.of(parseIntToMoney(), LottoConfig.PRICE);
         output.printQuantityOfLotteries(totalLotteries);
-        Lottos lottos = Lottos.of(totalLotteries, generator);
-        output.printBoughtLottos(lottos);
-        Lotto winningNumbers = parseListToLotto();
-
-        BonusNumber bonusNumber = parseIntToBonusNumber(winningNumbers);
-        WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
-        LottoResult result = LottoResult.of(lottos, winningLotto);
-        output.printResult(result);
-        output.printProfit(result.calculateProfit());
+        return totalLotteries;
     }
 
     private Money parseIntToMoney() {
@@ -49,6 +49,18 @@ public class LottoController {
             }
         }
         return parsedMoney;
+    }
+
+    private Lottos makeLottos(Quantity totalLotteries) {
+        Lottos lottos = Lottos.of(totalLotteries, generator);
+        output.printBoughtLottos(lottos);
+        return lottos;
+    }
+
+    private WinningLotto makeWinningLotto() {
+        Lotto winningNumbers = parseListToLotto();
+        BonusNumber bonusNumber = parseIntToBonusNumber(winningNumbers);
+        return WinningLotto.of(winningNumbers, bonusNumber);
     }
 
     private Lotto parseListToLotto() {
@@ -75,6 +87,11 @@ public class LottoController {
             }
         }
         return parsedBonusNumber;
+    }
+
+    private void showResultAndProfit(LottoResult result) {
+        output.printResult(result);
+        output.printProfit(result.calculateProfit());
     }
 
 }

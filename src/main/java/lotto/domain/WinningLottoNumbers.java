@@ -32,6 +32,15 @@ public class WinningLottoNumbers {
         inputValidation.isNumber(numbers);
         inputValidation.isNumbersDivied6NumbersWithComma(numbers);
     }
+    // 중복된 당첨번호
+    public void isDuplicateNumbers(String numbers) {
+        List<Integer> numberList = Arrays.stream(numbers.split(","))
+                .mapToInt(Integer::parseInt)
+                .boxed() // IntStream을 Stream<Integer>로 변환
+                .collect(Collectors.toList());
+
+        inputValidation.isDuplicate(numberList);
+    }
     // 보너스번호 validate
     public void validateBonusNumber(String bonus) {
         inputValidation.isNumber(bonus);

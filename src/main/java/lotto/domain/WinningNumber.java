@@ -10,4 +10,12 @@ public class WinningNumber {
         this.winningNumber = new Lotto(winningNumber);
         this.bonusNumber = bonusNumber;
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public boolean isContain(int number) {
+        return winningNumber.isContain(number);
+    }
 }

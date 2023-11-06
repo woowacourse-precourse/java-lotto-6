@@ -16,5 +16,17 @@ public class Controller {
         return lottos;
     }
 
+    public static void LottoStart(){
+        outputView output = new outputView();
 
+        int purchaseAmount = inputView.getInputPurchaseAmount();
+        List<Lotto> purchasedLottos = generateLottos(purchaseAmount);
+        outputView.displayLottoCount(purchasedLottos.size());
+        output.displayLottoNumberList(purchasedLottos);
+
+        List<Integer> winningNumbers = inputView.getInputWinningNumber();
+        int bonusNumber = inputView.getInputBonusNumber();
+
+        output.displayLottoResult(purchasedLottos, winningNumbers, bonusNumber);
+    }
 }

@@ -31,16 +31,14 @@ public class Application {
         application.printPurchasedLottos(lottos);
 
         WinningLotto winningLotto = application.getWinningLottoWithBonusNumber();
-        LottoWinningResult lottoWinningResult = application.calculateLottoWinningResult(lottos, winningLotto);
+        LottoWinningResult lottoWinningResult = LottoWinningResult.of(lottos, winningLotto);
         application.printWinningResult(lottoWinningResult);
+
     }
 
     private void printWinningResult(LottoWinningResult lottoWinningResult) {
         System.out.println("당첨 통계\n---");
-    }
-
-    private LottoWinningResult calculateLottoWinningResult(List<Lotto> lottos, WinningLotto winningLotto) {
-        return null;
+        System.out.println(lottoWinningResult.getLottoRankMessages());
     }
 
     private WinningLotto getWinningLottoWithBonusNumber() {

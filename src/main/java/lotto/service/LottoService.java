@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
+import static lotto.common.ErrorMessageType.*;
+
 /**
  * @Class : 로또 서비스 클래스
  */
@@ -42,7 +44,7 @@ public class LottoService {
         }
     }
 
-        private List<Lotto> issueLottoTicket(int amount) {
+    private List<Lotto> issueLottoTicket(int amount) {
         LottoMachine lottoMachine = new LottoMachine(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT);
         List<Lotto> lottoList = lottoMachine.getLottoList(LOTTO_PRICE, amount);
         OutputViewService.outputLottoEa(lottoList.size());
@@ -79,11 +81,13 @@ public class LottoService {
 
     private static double getRateOfReturn(int amount, List<LottoResult> lottoResultList) {
         if (amount == 0) {
-            throw new IllegalArgumentException("Amount cannot be zero.");
+            throw new IllegalArgumentException(ERROR_AMOUNT_ZERO.getMessage());
         }
-        int totalReward = lottoResultList.stream().mapToInt(LottoResult::getTotalReward).sum();
-        BigDecimal rate = BigDecimal.valueOf(((double) totalReward / amount)).multiply(BigDecimal.valueOf(100));
-
+        int totalReward = lottoResultList.stream()
+                .mapToInt(LottoResult::getTotalReward)
+                .sum();
+        BigDecimal rate = BigDecimal.valueOf(((double) totalReward / amount))
+                .multiply(BigDecimal.valueOf(100));
         BigDecimal rounded = rate.setScale(2, RoundingMode.HALF_UP);
         return rounded.doubleValue();
     }

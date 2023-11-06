@@ -25,7 +25,6 @@ public class OutputView {
         builder.append("[");
         builder.append(getLottoNumber(lottoNumber));
         builder.append("]");
-        builder.append(System.lineSeparator());
         System.out.println(builder);
     }
 

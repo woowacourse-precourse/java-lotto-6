@@ -8,6 +8,7 @@ public class LottoRepository {
 
     private static final LottoRepository instance = new LottoRepository();
     private static final List<Lotto> lottoRepository = new ArrayList<>();
+    private WinningLotto decidedWinningLotto;
 
     private LottoRepository() {
 
@@ -29,5 +30,12 @@ public class LottoRepository {
         return Collections.unmodifiableList(lottoRepository);
     }
 
+    public void save(WinningLotto winningLotto) {
+        decidedWinningLotto = winningLotto;
+    }
+
+    public WinningLotto showWinningLotto() {
+        return decidedWinningLotto;
+    }
 
 }

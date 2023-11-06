@@ -18,7 +18,7 @@ public class Lotto {
         validate(numbers);
 
         List<LottoNumber> lottoNumbers = numbers.stream()
-                                                .map(number -> LottoNumber.of(number))
+                                                .map(LottoNumber::valueOf)
                                                 .toList();
 
         this.numbers = new ArrayList<>(lottoNumbers);
@@ -26,6 +26,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         checkDuplication(numbers);
+
     }
 
     private void checkDuplication(List<Integer> lotto) {

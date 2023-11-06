@@ -20,9 +20,9 @@ public class WinningLotto {
         checkLength(winningLottoNumbers);
         winningLotto = winningLottoNumbers.stream()
                                           .map(Integer::parseInt)
-                                          .map(number -> LottoNumber.of(number))
+                                          .map(number -> LottoNumber.valueOf(number))
                                           .toList();
-        this.bonusNumber = LottoNumber.of(Integer.parseInt(bonusNumber));
+        this.bonusNumber = LottoNumber.valueOf(Integer.parseInt(bonusNumber));
 
     }
 

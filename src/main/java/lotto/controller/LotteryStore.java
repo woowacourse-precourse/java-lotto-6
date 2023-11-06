@@ -32,10 +32,14 @@ public class LotteryStore {
         return PurchasedLottosDto.from(Lottos);
     }
 
-    public WinningStatistics calculateStatisticsWith(WinningLotto winningLotto) {
-        List<Lotto> lottos = lottoRepository.showAllLottos();
-        List<Rank> ranks = rankCalculateService.calculateRanksFrom(lottos, winningLotto);
+    public WinningStatistics calculateStatistics() {
+        List<Rank> ranks = rankCalculateService.calculateRanks();
         return WinningStatistics.from(ranks);
+    }
+
+    public void decideWinningLottoFrom(List<String> winningLottoNumbers, String bonusNumber) {
+        WinningLotto winningLotto = lottoFactory.createWinningLottoFrom(winningLottoNumbers, bonusNumber);
+        lottoRepository.save(winningLotto);
     }
 
 

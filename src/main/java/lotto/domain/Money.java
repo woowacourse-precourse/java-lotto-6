@@ -14,7 +14,7 @@ public class Money {
         this.money = money;
     }
 
-    public static Money of(String money) {
+    public static Money valueOf(String money) {
 
         return new Money(Long.parseLong(money));
     }

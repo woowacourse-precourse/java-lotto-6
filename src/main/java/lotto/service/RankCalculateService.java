@@ -3,10 +3,13 @@ package lotto.service;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRepository;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 
 public class RankCalculateService {
+
+    LottoRepository lottoRepository = LottoRepository.getInstance();
 
     public Rank calculateRankWith(Lotto lotto, WinningLotto winningLotto) {
 
@@ -22,7 +25,10 @@ public class RankCalculateService {
                      .orElse(Rank.NONE);
     }
 
-    public List<Rank> calculateRanksFrom(List<Lotto> lottos, WinningLotto winningLotto) {
+    public List<Rank> calculateRanks() {
+        List<Lotto> lottos = lottoRepository.showAllLottos();
+        WinningLotto winningLotto = lottoRepository.showWinningLotto();
+
         List<Rank> ranks = lottos.stream()
                                  .map(lotto -> calculateRankWith(lotto, winningLotto))
                                  .toList();

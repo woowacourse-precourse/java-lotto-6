@@ -30,11 +30,9 @@ public class LottoApplication {
         PurchasedLottosDto purchasedLottos = fetchPurchasedLottos();
         printFrom(purchasedLottos);
 
-        List<String> winningLottoNumbers = WinningLottoInputView.inputWinningLottoNumbers();
-        String bonusNumber = WinningLottoInputView.inputBonusNumber();
-        WinningLotto winningLotto = createWinningLottoFrom(winningLottoNumbers, bonusNumber);
+        decideWinningLotto();
 
-        WinningStatistics statistics = lottoStore.calculateStatisticsWith(winningLotto);
+        WinningStatistics statistics = lottoStore.calculateStatistics();
         printFrom(statistics);
 
         RateOfReturn rateOfReturn = RateOfReturn.from(this.money.showMoney(), statistics.showRevenue());
@@ -47,7 +45,7 @@ public class LottoApplication {
     }
 
     private void storeMoneyOf(String money) {
-        this.money = Money.of(money);
+        this.money = Money.valueOf(money);
     }
 
     private PurchasedLottosDto fetchPurchasedLottos() {
@@ -61,11 +59,6 @@ public class LottoApplication {
         PurchasedLottoOutputView.outputPurchasedLottos(purchasedLottosDto.show());
     }
 
-    public WinningLotto createWinningLottoFrom(List<String> winningLottoNumbers, String BonusNumber) {
-        return new WinningLotto(winningLottoNumbers, BonusNumber);
-
-    }
-
     private void printFrom(WinningStatistics winningStatistics) {
         LottoStaticsOutputView.outputFrom(winningStatistics);
     }
@@ -74,4 +67,9 @@ public class LottoApplication {
         RateOfReturnOutputView.outputRateOfReturn(rateOfReturn);
     }
 
+    public void decideWinningLotto() {
+        List<String> winningLottoNumbers = WinningLottoInputView.inputWinningLottoNumbers();
+        String bonusNumber = WinningLottoInputView.inputBonusNumber();
+        lottoStore.decideWinningLottoFrom(winningLottoNumbers, bonusNumber);
+    }
 }

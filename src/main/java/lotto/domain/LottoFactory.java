@@ -26,5 +26,10 @@ public class LottoFactory {
                         .toList();
     }
 
+    public WinningLotto createWinningLottoFrom(List<String> winningLotto, String bonusNumber) {
+
+        return new WinningLotto(winningLotto, bonusNumber);
+    }
+
 
 }

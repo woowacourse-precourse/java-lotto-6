@@ -26,7 +26,7 @@ public class LottoNumber implements Comparable {
         this.number = number;
     }
 
-    public static LottoNumber of(int number) {
+    public static LottoNumber valueOf(int number) {
         checkRange(number);
         return lottoNumberStore.get(number);
     }

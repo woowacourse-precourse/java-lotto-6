@@ -16,7 +16,7 @@ public class LottoNumberExceptionTest {
     @ValueSource(ints = {-1, 0, 46, 47})
     void LottoNumberRangeTest(int number) {
 
-        Assertions.assertThatThrownBy(() -> LottoNumber.of(number))
+        Assertions.assertThatThrownBy(() -> LottoNumber.valueOf(number))
                   .isInstanceOf(IllegalArgumentException.class);
 
     }

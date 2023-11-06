@@ -1,10 +1,8 @@
 package lotto.exception;
 
-import lotto.domain.LottoNumber;
 import lotto.domain.Money;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -17,7 +15,7 @@ public class MoneyExceptionTest {
     void wrongMoneyUnitException(String input) {
 
 
-        Assertions.assertThatThrownBy(() -> Money.of(input))
+        Assertions.assertThatThrownBy(() -> Money.valueOf(input))
                   .isInstanceOf(IllegalArgumentException.class);
 
 
@@ -29,7 +27,7 @@ public class MoneyExceptionTest {
     void NegativeMoneyUnitException(String input) {
 
 
-        Assertions.assertThatThrownBy(() -> Money.of(input))
+        Assertions.assertThatThrownBy(() -> Money.valueOf(input))
                   .isInstanceOf(IllegalArgumentException.class);
 
 

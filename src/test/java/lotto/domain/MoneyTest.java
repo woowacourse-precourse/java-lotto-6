@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.sql.Statement;
-import javax.swing.Spring;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +14,7 @@ public class MoneyTest {
     void moneyStoreTest(String input) {
 
         //given
-        Money money = Money.of(input);
+        Money money = Money.valueOf(input);
         //when
 
         long expectedMoney = Long.parseLong(input);

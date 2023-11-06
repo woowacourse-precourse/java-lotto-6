@@ -1,6 +1,8 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.Lotto;
 import lotto.vo.Price;
 
 public class ConsoleManager {
@@ -28,5 +30,9 @@ public class ConsoleManager {
 
     public void printLottoCount(final int count) {
         System.out.println("\n" + count + "개를 구매했습니다.");
+    }
+
+    public void printLotto(List<Lotto> lottos) {
+        lottos.forEach(System.out::println);
     }
 }

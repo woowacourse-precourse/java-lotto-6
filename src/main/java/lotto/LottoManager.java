@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import lotto.io.ConsoleManager;
 
 public class LottoManager {
@@ -17,6 +18,9 @@ public class LottoManager {
 
         int lottoCount = lottoBuyer.getLottoCount(lottoPrice);
         consoleManager.printLottoCount(lottoCount);
+
+        List<Lotto> lottos = lottoBuyer.purchaseLottos(lottoCount);
+        consoleManager.printLotto(lottos);
     }
 
 }

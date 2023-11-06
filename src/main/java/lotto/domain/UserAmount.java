@@ -4,17 +4,21 @@ public class UserAmount {
 
     private static final String EMPTY_VALUE = " ";
     private static final String LOTTO_USER_AMOUNT_CANT_CONTAIN_EMPTY_MESSAGE = "[ERROR] 로또 구입 금액은 공백이 포함될 수 없습니다.";
+    private static final int USER_AMOUNT_DIVIDE_STANDARD = 1000;
+    private static final String LOTTO_USER_AMOUNT_IS_DIVIDE_BY_STANDARD_MESSAGE = "[ERROR] 로또 구입 금액은 1000으로 나누어떨어져야 합니다.";
+    private static final int ALL_DIVIDE_SIGNAL_VALUE = 0;
     private int userAmount;
 
-    private UserAmount(String userAmount) {
-
-        this.userAmount = Integer.parseInt(userAmount);
+    private UserAmount(int userAmount) {
+        this.userAmount = userAmount;
     }
 
     public static UserAmount from(String userAmount) {
         validateContainsEmpty(userAmount);
         validateNumeric(userAmount);
-        return new UserAmount(userAmount);
+        int amount = Integer.parseInt(userAmount);
+        validateDivideByStandard(amount);
+        return new UserAmount(amount);
     }
 
     private static void validateNumeric(String userAmount) {
@@ -26,9 +30,19 @@ public class UserAmount {
     }
 
     private static void validateContainsEmpty(String userAmount) {
-        if(userAmount.contains(EMPTY_VALUE)) {
+        if (userAmount.contains(EMPTY_VALUE)) {
             throw new IllegalArgumentException(LOTTO_USER_AMOUNT_CANT_CONTAIN_EMPTY_MESSAGE);
         }
+    }
+
+    private static void validateDivideByStandard(int userAmount) {
+        if (!isDivideByStandard(userAmount)) {
+            throw new IllegalArgumentException(LOTTO_USER_AMOUNT_IS_DIVIDE_BY_STANDARD_MESSAGE);
+        }
+    }
+
+    private static boolean isDivideByStandard(int userAmount) {
+        return userAmount % USER_AMOUNT_DIVIDE_STANDARD == ALL_DIVIDE_SIGNAL_VALUE;
     }
 
 

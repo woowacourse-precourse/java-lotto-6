@@ -77,8 +77,9 @@ class LottoGameServiceTest {
     @Test
     @DisplayName("입력받은 보너스번호가 숫자인지 검증한다.")
     void inputBonusNumberValidation_정상케이스() {
-        String input = "5";
-        boolean result = lottoGameService.inputBonusNumberValidation(input);
+        String input = "7";
+        List<Integer> winningNumber = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        boolean result = lottoGameService.inputBonusNumberValidation(winningNumber,input);
         assertThat(result).isTrue();
     }
 
@@ -86,7 +87,8 @@ class LottoGameServiceTest {
     @DisplayName("입력받은 보너스번호가 숫자인지 검증한다.")
     void inputBonusNumberValidation_예외케이스() {
         String input = "46";
-        boolean result = lottoGameService.inputBonusNumberValidation(input);
+        List<Integer> winningNumber = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        boolean result = lottoGameService.inputBonusNumberValidation(winningNumber,input);
         assertThat(result).isFalse();
     }
 

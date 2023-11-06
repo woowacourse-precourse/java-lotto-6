@@ -1,21 +1,22 @@
 package lotto.dto.response;
 
-import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.Money;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoTicketsDto {
     private final Lottos lottoTickets;
+    private final Money lottoCost;
 
-    private LottoTicketsDto(Lottos lottoTickets) {
+    private LottoTicketsDto(Lottos lottoTickets, Money lottoCost) {
         this.lottoTickets = lottoTickets;
+        this.lottoCost = lottoCost;
     }
 
-    public static LottoTicketsDto from(Lottos lottoTickets) {
-        return new LottoTicketsDto(lottoTickets);
+    public static LottoTicketsDto of(Lottos lottoTickets, Money lottoCost) {
+        return new LottoTicketsDto(lottoTickets,lottoCost);
     }
 
     public List<List<String>> getFormattedLottoTickets() {
@@ -32,5 +33,9 @@ public class LottoTicketsDto {
 
     public int getLottoTicketCount() {
         return lottoTickets.getLottoTickets().size();
+    }
+
+    public int getLottoCost() {
+        return lottoCost.getAmount();
     }
 }

@@ -1,5 +1,6 @@
 package dto;
 
+import domain.Constants;
 import java.util.List;
 
 public class Lotto {
@@ -17,11 +18,11 @@ public class Lotto {
     }
 
     public void showLottoNumbers(){
-        System.out.print("[");
+        System.out.print(Constants.PRINT_LOTTO_START);
         for (int i = 0; i < 5; i++) {
-            System.out.print(numbers.get(i) + ", ");
+            System.out.print(numbers.get(i) + Constants.COMMA_AND_SPACE);
         }
-        System.out.println(numbers.get(5) + "]");
+        System.out.println(numbers.get(5) + Constants.PRINT_LOTTO_END);
     }
 
     public List<Integer> getLottoNumbers(){

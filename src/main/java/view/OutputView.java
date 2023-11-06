@@ -1,6 +1,5 @@
 package view;
 
-import domain.Constants;
 import dto.Lotto;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +16,4 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoScore.get(6) + "개");
     }
 
-    public void showPublishedLotto(List<Lotto> lottos) {
-        for (int i = 0; i < lottos.size(); i++) {
-            Lotto lotto = lottos.get(i);
-            lotto.showLottoNumbers();
-        }
-    }
 }

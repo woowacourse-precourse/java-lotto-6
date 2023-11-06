@@ -6,7 +6,7 @@ import lotto.domain.Rank;
 import lotto.dto.LottoNumbersDto;
 import lotto.util.NumberFormatConverter;
 
-public class OutputView {
+public final class OutputView {
 
     private static final String PAYMENT_GUIDE = "구입금액을 입력해 주세요.";
     private static final String PURCHASED_LOTTO_COUNT_GUIDE = "%d개를 구매했습니다.";

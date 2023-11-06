@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InputValidator {
+public final class InputValidator {
 
     private static final String INPUT_FORMAT = "^\\d+(?:,\\d+)*$";
     private static final String WRONG_NUMBER_FORMAT = "^0\\d+";

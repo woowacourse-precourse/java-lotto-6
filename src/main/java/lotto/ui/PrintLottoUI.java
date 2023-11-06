@@ -9,6 +9,7 @@ public class PrintLottoUI {
 
     public void printLottoCount(int lottoCount) {
 
+        System.out.println();
         System.out.println(lottoCount + Constants.BOUGHT_LOTTO_COUNT);
     }
 

@@ -16,9 +16,9 @@
     feat - [x] View “[ERROR] 천 단위로 금액 입력 부탁드립니다.” 예외 메세지 출력 기능
     feat - [x] View “[ERROR] 천 단위로 금액 입력 부탁드립니다.” 예외 메세지 누락 수정
     feat - [x] Model 입력된 금액을 복권 매수로 연산하는 기능
-    feat - [ ] View 빈 라인을 출력하는 기능
-    feat - [ ] Controller 복권 매수를 출력하는 기능을 호출하는 기능
-    feat - [ ] View “복권 매수 + 개를 구매했습니다. “ 연산 메세지 출력 기능
+    feat - [x] View 빈 라인을 출력하는 기능(System.out.println();)
+    feat - [x] Controller 복권 매수를 출력하는 기능을 호출하는 기능
+    feat - [x] View “복권 매수 + 개를 구매했습니다. “ 연산 메세지 출력 기능
     feat - [ ] Model 1~45 사이의 서로 다른 수 6개로 이루어진 리스트를 만드는 기능(Randoms)
     feat - [ ] Model 1~45 사이의 서로 다른 수 6개로 이루어진 리스트를 담는 기능(Lotto)
     feat - [ ] Model 1~45 사이의 서로 다른 수 6개로 이루어진 리스트를 오름차순으로 정렬하는 기능

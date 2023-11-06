@@ -11,7 +11,7 @@ public class OutputView {
     private static final String MESSAGE_RESULT_HEADER = "당첨 통계" + NEW_LINE + "---";
     private static final String MESSAGE_RESULT_CONTENT = "%d개 일치 (%d원) - %d개";
     private static final String MESSAGE_RESULT_CONTENT_SECOND_PLACE = "%d개 일치, 보너스 볼 일치 (%d원) - %d개";
-    private static final String MESSAGE_PROFIT_RATE = "총 수익률은 %f입니다.";
+    private static final String MESSAGE_PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
 
     public static void printNumberOfPurchasedLottos(int numberOfPurchasedLottos) {
         System.out.println(String.format(MESSAGE_NUMBER_OF_PURCHASED_LOTTOS, numberOfPurchasedLottos));
@@ -33,7 +33,6 @@ public class OutputView {
     }
 
     private static void printEachStatistics(Prize prize, Long count) {
-        System.out.println(NEW_LINE);
         if (prize == Prize.SECOND_PLACE) {
             printSecondPlaceStatistics(prize, count);
             return;

@@ -28,7 +28,7 @@ public class PrizeResult {
     }
 
     public static Double calculateProfitRate(Integer money, Map<Prize, Long> prizeResults) {
-        return (double) Math.round((calculateNetProfit(money, prizeResults) / (double) money) * 10) / 10 ;
+        return (double) calculateNetProfit(money, prizeResults) / (double) money * 100;
     }
 
     private static Long calculateNetProfit(Integer money, Map<Prize, Long> prizeResults) {

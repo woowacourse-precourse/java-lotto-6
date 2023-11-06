@@ -5,16 +5,15 @@ import java.util.List;
 import lotto.system.ExceptionMessage;
 import lotto.system.LottoNumberConstant;
 import lotto.system.SystemMessage;
-import lotto.validator.BallValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Ball> numbers;
 
     private Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = BallsOf(numbers);
     }
 
     public static Lotto of(List<Integer> numbers) {
@@ -37,10 +36,15 @@ public class Lotto {
                 LottoNumberConstant.MAX.getValue(), LottoNumberConstant.LENGTH.getValue()));
     }
 
+    private List<Ball> BallsOf(List<Integer> numbers) {
+        return numbers.stream()
+                .map(Ball::from)
+                .toList();
+    }
+
     private void validate(List<Integer> numbers) {
         validateLength(numbers);
         validateDistinct(numbers);
-        numbers.forEach(BallValidator::validate);
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -67,15 +71,11 @@ public class Lotto {
                 .count();
     }
 
-    public boolean contains(BonusNumber bonusNumber) {
+    public boolean contains(Ball bonusNumber) {
         return numbers.contains(bonusNumber.get());
     }
 
-    private boolean contains(Integer number) {
-        return numbers.contains(number);
-    }
-
-    public List<Integer> get() {
+    public List<Ball> get() {
         return numbers;
     }
 }

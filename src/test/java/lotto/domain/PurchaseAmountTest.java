@@ -5,7 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static lotto.util.Constant.*;
-import static lotto.validator.PurchaseAmountValidator.*;
+import static lotto.domain.PurchaseAmount.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PurchaseAmountTest {

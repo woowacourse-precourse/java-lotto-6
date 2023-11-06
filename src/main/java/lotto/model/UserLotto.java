@@ -53,4 +53,12 @@ public class UserLotto {
             throw new IllegalArgumentException(LottoException.INVALID_MONEY_UNIT.getExceptionMessage());
         }
     }
+
+    public int getLottoCount() {
+        return lottoCount;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

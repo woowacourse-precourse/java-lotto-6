@@ -5,6 +5,7 @@ import static lotto.error.message.InvalidInputErrorMessage.NOT_A_NUMBER;
 import static lotto.error.message.InvalidInputErrorMessage.OUT_OF_RANGE;
 import static lotto.error.message.InvalidInputErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND;
 import static lotto.error.message.InvalidInputErrorMessage.PURCHASE_AMOUNT_UNDER_THOUSAND;
+import static lotto.error.message.InvalidInputErrorMessage.WINNING_NUMBERS_COUNT_NOT_SIX;
 import static lotto.error.message.InvalidInputErrorMessage.WINNING_NUMBERS_DUPLICATE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -64,6 +65,16 @@ class InputProcessorTest {
                 .isInstanceOf(InvalidInputException.class)
                 .extracting("message")
                 .isEqualTo(OUT_OF_RANGE.getMessage());
+    }
+
+    @DisplayName("입력한 당첨번호의 개수가 6개가 아니다.")
+    @Test
+    void processWinningNumbersCountNotSix() {
+        String input = "1,2,3,4,5";
+        assertThatThrownBy(() -> inputProcessor.processWinningNumbers(input))
+                .isInstanceOf(InvalidInputException.class)
+                .extracting("message")
+                .isEqualTo(WINNING_NUMBERS_COUNT_NOT_SIX.getMessage());
     }
 
     @DisplayName("입력한 당첨번호에 중복이 존재한다.")

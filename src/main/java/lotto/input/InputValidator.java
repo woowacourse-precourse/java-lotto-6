@@ -30,7 +30,7 @@ public class InputValidator {
 
     private void checkWinningNumbersHasSix(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
-            throw new InvalidInputException(WINNING_NUMBERS_NOT_SIX.getMessage(), winningNumbers);
+            throw new InvalidInputException(WINNING_NUMBERS_COUNT_NOT_SIX.getMessage(), winningNumbers);
         }
     }
 

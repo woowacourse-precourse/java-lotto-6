@@ -43,4 +43,16 @@ public final class Validation {
         }
     }
 
+    public static void validateAmountUnit(int amount , int unit ) {
+        if(amount % unit != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void ValidateMinPurchaseAmount(int amount, int minAmount) {
+        if(amount < minAmount) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

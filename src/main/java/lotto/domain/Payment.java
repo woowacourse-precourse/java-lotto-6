@@ -6,12 +6,13 @@ public class Payment {
     private int payment;
 
     public Payment(int payment) {
-        Validator.isPositiveNumber(payment);
-        Validator.isUnitsOfLottoPrice(payment);
+        validator(payment);
         this.payment = payment;
     }
 
-    private void validator() {
+    private void validator(int payment) {
+        Validator.isPositiveNumber(payment);
+        Validator.isUnitsOfLottoPrice(payment);
     }
 
     public int getPayment() {

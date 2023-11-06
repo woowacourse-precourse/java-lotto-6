@@ -12,6 +12,20 @@ public class InputView {
         return Integer.parseInt(money);
     }
 
+    public static String inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String inputWinningNumbers = readLine();
+        return inputWinningNumbers;
+    }
+
+    public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String inputBonusNumber = readLine();
+        isDigit(inputBonusNumber);
+
+        return Integer.parseInt(inputBonusNumber);
+    }
+
     private static void isDigit(String money) {
         if (!money.matches("-?\\d+")) {
             throw new IllegalArgumentException("[ERROR] 정수를 입력해 주세요.");

@@ -23,19 +23,38 @@ public class LottoGame {
     }
 
     private void requestMoneyToBuy() {
-        System.out.println(OutputMessage.REQUEST_MONEY_TO_BUY.getMessage());
-        String string = Console.readLine();
-        moneyToBuy = new MoneyToBuy(Integer.parseInt(string));
+        try {
+            System.out.println(OutputMessage.REQUEST_MONEY_TO_BUY.getMessage());
+            String string = Console.readLine();
+            moneyToBuy = new MoneyToBuy(Integer.parseInt(string));
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            requestMoneyToBuy();
+        }
     }
 
     private void requestWinningLotto() {
-        System.out.println(OutputMessage.REQUEST_WINNING_NUMBERS.getMessage());
-        String winningLottoNumbers = Console.readLine();
+        while (true) {
+            try {
+                System.out.println(OutputMessage.REQUEST_WINNING_NUMBERS.getMessage());
+                String winningLottoNumbers = Console.readLine();
+                winningLotto = new WinningLotto(convertStringToList(winningLottoNumbers));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+        while (true) {
+            try {
+                System.out.println(OutputMessage.REQUEST_BONUS_NUMBER.getMessage());
+                String bonusNumber = Console.readLine();
 
-        System.out.println(OutputMessage.REQUEST_BONUS_NUMBER.getMessage());
-        String bonusNumber = Console.readLine();
-
-        winningLotto = new WinningLotto(convertStringToList(winningLottoNumbers), Integer.parseInt(bonusNumber));
+                winningLotto.setBonusNumber(Integer.parseInt(bonusNumber));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 
     private List<Integer> convertStringToList(String string) {

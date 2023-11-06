@@ -6,18 +6,21 @@ import java.util.Objects;
 public class WinningLotto extends Lotto {
     private Integer bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
+    public WinningLotto(List<Integer> numbers) {
         super(numbers);
+    }
+
+    public void setBonusNumber(Integer bonusNumber) {
         validBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
     private void validBonusNumber(Integer bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("보너스 번호는 1~45이어야 합니다.");
         }
         if (super.isContain(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호랑 중복될 수 없습니다.");
         }
     }
 

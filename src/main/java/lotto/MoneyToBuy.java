@@ -14,10 +14,10 @@ public class MoneyToBuy {
 
     private void validate(Integer value) {
         if (value <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("금액은 양수여야 합니다.");
         }
         else if (value % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("금액은 1000원 단위이어야 합니다.");
         }
     }
 

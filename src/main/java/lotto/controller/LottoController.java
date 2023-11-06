@@ -2,24 +2,22 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.BonusNumber;
-import lotto.model.Lotto;
 import lotto.model.PurchaseAmount;
 import lotto.model.User;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private User user;
-    private Lotto winningLotto;
     private BonusNumber bonusNumber;
 
-    public void start() {
+    public void startGame() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         user = User.purchaseLottos(purchaseAmount);
         OutputView.printLottoNumbers(user.getNumberOfLottoTickets(), user.getAllLottoTicketsNumbers());
-        winningLotto = createWinningLotto();
-        bonusNumber = readBonusNumber();
-        user.compareLottos(winningLotto, bonusNumber);
+        WinningLotto winningLotto = createWinningLotto();
+        user.compareLottos(winningLotto);
         OutputView.printResult(user.getResult());
         OutputView.printProfitPercentage(user.calculateProfitPercentage(purchaseAmount));
     }
@@ -35,25 +33,30 @@ public class LottoController {
         }
     }
 
-    private Lotto createWinningLotto() {
+    private WinningLotto createWinningLotto() {
+        List<Integer> winningNumbers = readWinningNumbers();
+        int bonusNumber = readBonusNumber(winningNumbers);
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> readWinningNumbers() {
         while (true) {
             try {
-                List<Integer> winningNumbers = InputView.readWinningNumbers();
-                return new Lotto(winningNumbers);
+                return InputView.readWinningNumbers();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private BonusNumber readBonusNumber() {
+    private int readBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
                 int bonusNumber = InputView.readBonusNumber();
-                if (winningLotto.contains(bonusNumber)) {
+                if (winningNumbers.contains(bonusNumber)) {
                     throw new IllegalArgumentException("[ERROR] 당첨 번호과 중복되지 않는 숫자를 입력해야 합니다.");
                 }
-                return new BonusNumber(bonusNumber);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

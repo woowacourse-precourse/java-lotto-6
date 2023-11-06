@@ -49,26 +49,10 @@ public class User {
         return lottos.size();
     }
 
-    public void compareLottos(Lotto winningLotto, BonusNumber bonusNumber) {
+    public void compareLottos(WinningLotto winningLotto) {
         for (Lotto lotto : lottos) {
-            int matchingCount = lotto.compareLotto(winningLotto);
-            boolean isContainBonusNumber = lotto.containBonusNumber(bonusNumber);
-
-            if (matchingCount == 3) {
-                updateResult(Result.FIFTH);
-            }
-            if (matchingCount == 4) {
-                updateResult(Result.FOURTH);
-            }
-            if (matchingCount == 5 && !isContainBonusNumber) {
-                updateResult(Result.THIRD);
-            }
-            if (matchingCount == 5 && isContainBonusNumber) {
-                updateResult(Result.SECOND);
-            }
-            if (matchingCount == 6) {
-                updateResult(Result.FIRST);
-            }
+            Result rank = winningLotto.compareLotto(lotto);
+            updateResult(rank);
         }
     }
 

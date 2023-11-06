@@ -48,14 +48,4 @@ public class Lotto {
     public boolean contains(int input) {
         return numbers.contains(input);
     }
-
-    public int compareLotto(Lotto winningLotto) {
-        return (int) numbers.stream()
-                .filter(winningLotto::contains)
-                .count();
-    }
-
-    public boolean containBonusNumber(BonusNumber bonusNumber) {
-        return contains(bonusNumber.getBonusNumber());
-    }
 }

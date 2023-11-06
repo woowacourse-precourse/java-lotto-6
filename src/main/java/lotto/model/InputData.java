@@ -44,4 +44,20 @@ public class InputData {
 		return winningNumber;
 	}
 	
+	public static int bonusNumber() {
+		int bonusNumber = 0;
+		boolean isValidInput = false;
+		while(!isValidInput){
+			try {
+				String inputData = Console.readLine();
+				Validate.numericInput(inputData);
+				bonusNumber = Integer.parseInt(inputData);
+				isValidInput = true;
+			} catch (IllegalArgumentException error) {
+				System.out.println(error.getMessage());
+			}
+		}
+		return bonusNumber;
+	}
+	
 }

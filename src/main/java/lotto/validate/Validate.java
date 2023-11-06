@@ -27,6 +27,9 @@ public class Validate {
 		for(String number : inputData.split(",")) numbers.add(Integer.parseInt(number));
 		for(int number : numbers) if(number >45 || number < 1) throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
 	}
+	public static void numberInRange(int inputData) {
+		if(inputData >45 || inputData < 1) throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+	}
 	
 	//6개의 숫자를 중복없이 입력한게 맞는지
 	public static void validSixNumberInput(String inputData) {
@@ -37,5 +40,10 @@ public class Validate {
 		if(sixNumber.size() !=6) throw new IllegalArgumentException("[ERROR] 중복없는 6개의 숫자로 입력 해주세요.");
 	}
 	
+	public static void numericInput(String inputData) {
+		for(char word : inputData.toCharArray()) {
+			if(!Character.isDigit(word)) throw new IllegalArgumentException("[ERROR] 숫자만 입력 해주세요.");
+		}
+	}
 	
 }

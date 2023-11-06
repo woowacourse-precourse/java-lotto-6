@@ -15,10 +15,14 @@ public class Parser {
     }
 
     public static List<Integer> parseLottoNumbers(String input) {
-        List<Integer> numbers = Arrays.stream(input.split(DELIMITER))
-                .peek(InputValidator::validateNumberType)
+        String[] splitted = input.split(DELIMITER);
+        Arrays.stream(splitted)
+                .forEach(InputValidator::validateNumberType);
+
+        List<Integer> numbers = Arrays.stream(splitted)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+
         InputValidator.validateLottoNumbers(numbers);
         return numbers;
     }

@@ -1,12 +1,13 @@
 package lotto.model;
 
-import static lotto.model.ErrorType.MONEY_CANT_DIVIDED_BY_PRIZE;
-import static lotto.model.ErrorType.MONEY_LESS_THEN_PRIZE;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Money {
+
+    private static final String MONEY_LESS_THEN_PRIZE = "[ERROR] 금액은 1,000원 이상이어야 합니다.";
+    private static final String CANT_DIVIDED_BY_PRIZE =
+            "[ERROR] 금액은 1,000원으로 나누어 떨어지는 수어야 합니다.";
 
     private static final BigDecimal LOTTO_PRIZE = BigDecimal.valueOf(1_000L);
     private static final RoundingMode DEFAULT_ROUNDING = RoundingMode.HALF_EVEN;
@@ -22,7 +23,7 @@ public class Money {
 
     private void validatePrize(final long amount) {
         if (isLessThenPrize(amount)) {
-            throw new IllegalArgumentException(MONEY_LESS_THEN_PRIZE.getMessage());
+            throw new IllegalArgumentException(MONEY_LESS_THEN_PRIZE);
         }
     }
 
@@ -32,7 +33,7 @@ public class Money {
 
     private void validateDivisible(final long amount) {
         if (!isDividedByPrize(amount)) {
-            throw new IllegalArgumentException(MONEY_CANT_DIVIDED_BY_PRIZE.getMessage());
+            throw new IllegalArgumentException(CANT_DIVIDED_BY_PRIZE);
         }
     }
 

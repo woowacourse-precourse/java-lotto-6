@@ -1,9 +1,6 @@
 package lotto.service;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.LottoRanking;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.repository.PrizeMoneyRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -30,9 +27,9 @@ class StatisticsServiceTest {
     @Test
     @DisplayName("사용자가 구매한 총 로또와 당첨 번호를 비교하여 전체 당첨 내역을 알 수 있다.")
     void checkLottoResult() {
-        Map<LottoRanking, Integer> result = statisticsService.checkLottoResult(winningLotto, userLottos);
+        LottoResult lottoResult = statisticsService.checkLottoResult(winningLotto, userLottos);
 
-        assertThat(result).contains(
+        assertThat(lottoResult.getResult()).contains(
                 entry(LottoRanking.FIFTH, 1),
                 entry(LottoRanking.NOTHING, 7)
         );
@@ -41,8 +38,8 @@ class StatisticsServiceTest {
     @Test
     @DisplayName("사용자가 구매한 로또 번호의 결과를 통해 수익률을 계산할 수 있다.")
     void calculateRateOfReturn() {
-        Map<LottoRanking, Integer> lottoResult = statisticsService.checkLottoResult(winningLotto, userLottos);
-        double result = statisticsService.calculateRateOfReturn(lottoResult, userLottos);
+        LottoResult lottoResult = statisticsService.checkLottoResult(winningLotto, userLottos);
+        double result = statisticsService.calculateRateOfReturn(lottoResult.getResult(), userLottos);
 
         assertThat(result).isEqualTo(62.5);
     }

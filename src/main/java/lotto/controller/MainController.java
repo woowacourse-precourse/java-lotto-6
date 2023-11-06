@@ -8,7 +8,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class MainController {
@@ -64,10 +63,10 @@ public class MainController {
     }
 
     private void showLottoResult(WinningLotto winningLotto, List<Lotto> userLottos) {
-        Map<LottoRanking, Integer> result = statisticsService.checkLottoResult(winningLotto, userLottos);
-        double rateOfReturn = statisticsService.calculateRateOfReturn(result, userLottos);
+        LottoResult lottoResult = statisticsService.checkLottoResult(winningLotto, userLottos);
+        double rateOfReturn = statisticsService.calculateRateOfReturn(lottoResult.getResult(), userLottos);
 
-        outputView.printLottoResult(result, rateOfReturn);
+        outputView.printLottoResult(lottoResult.getResult(), rateOfReturn);
     }
 
     private <T> T repeatTemplate(Supplier<T> inputReader) {

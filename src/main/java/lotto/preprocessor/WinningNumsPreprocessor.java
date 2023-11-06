@@ -14,12 +14,14 @@ public class WinningNumsPreprocessor extends Preprocessor<List<Integer>> {
     public boolean isInvalid(String userInput) {
         return !(isEverythingNumber(userInput)
                 && isValidWinningNumsSize(userInput)
-                && isValidWinningNumsRange(userInput));
+                && isValidWinningNumsRange(userInput)
+                && isNotDuplicated(userInput));
     }
 
     @Override
     public List<Integer> convert(String userInput) {
-        return Stream.of(userInput.trim().split(","))
+        return Stream.of(userInput.split(","))
+                .map(num -> num.trim())
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();
@@ -52,6 +54,14 @@ public class WinningNumsPreprocessor extends Preprocessor<List<Integer>> {
     private boolean isValidWinningNumsSize(String userInput) {
         if (convert(userInput).size() != 6) {
             ExceptionHandler.handleException("6개의 당첨 번호를 입력해주세요.");
+            return ExceptionHandler.EXCEPTION_OCCURED;
+        }
+        return ExceptionHandler.NO_EXCEPTION;
+    }
+
+    private boolean isNotDuplicated(String userInput) {
+        if (convert(userInput).stream().distinct().count() != convert(userInput).size()) {
+            ExceptionHandler.handleException("중복되지 않는 6개의 숫자를 입력해주세요.");
             return ExceptionHandler.EXCEPTION_OCCURED;
         }
         return ExceptionHandler.NO_EXCEPTION;

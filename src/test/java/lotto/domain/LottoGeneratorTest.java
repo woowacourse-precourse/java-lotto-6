@@ -15,7 +15,7 @@ public class LottoGeneratorTest {
     @Test
     void 로또_번호_조건_만족_여부_검증() {
         Lotto generatedLotto = lottoGame.generateLotto(new MockedRandomGenerator(
-                () -> Randoms.pickNumberInRange(1, 45) // 주입 관련 리팩토링 해야 한다
+                () -> Randoms.pickUniqueNumbersInRange(1, 45, 6) // 주입 관련 리팩토링 해야 한다
         ));
 
         List<Integer> lottoNumbers = generatedLotto.getLotto();

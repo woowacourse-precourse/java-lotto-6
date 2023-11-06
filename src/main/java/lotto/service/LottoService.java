@@ -16,12 +16,14 @@ public class LottoService {
     public static final int START_INCLUSIVE = 0;
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 45;
+    public static final int STANDARD_SIZE = 6;
 
     public static void generateRandomLotto(UserMoney money, LottoRepository repository) {
         int chances = money.getLottoChances();
         IntStream.range(START_INCLUSIVE, chances)
                 .forEach((num) -> repository.saveLotto(
-                        LottoGenerator.generateLotto(() -> Randoms.pickNumberInRange(MIN_VALUE, MAX_VALUE))
+                        LottoGenerator.generateLotto(
+                                () -> Randoms.pickUniqueNumbersInRange(MIN_VALUE, MAX_VALUE, STANDARD_SIZE))
                 ));
     }
 

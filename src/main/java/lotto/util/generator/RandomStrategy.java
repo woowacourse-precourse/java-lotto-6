@@ -1,8 +1,8 @@
 package lotto.util.generator;
 
-import java.util.function.IntSupplier;
+import java.util.List;
 
 @FunctionalInterface
 public interface RandomStrategy {
-    int generate();
+    List<Integer> generate();
 }

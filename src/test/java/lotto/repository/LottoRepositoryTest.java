@@ -18,7 +18,7 @@ public class LottoRepositoryTest {
     @Test
     void 로도_생성_이후_저장하기() {
         Lotto lotto = lottoGame.generateLotto(new MockedRandomGenerator(
-                () -> Randoms.pickNumberInRange(1, 45) // 주입 관련 리팩토링 필요
+                () -> Randoms.pickUniqueNumbersInRange(1, 45, 6)
         ));
 
         lottoRepository.saveLotto(lotto);

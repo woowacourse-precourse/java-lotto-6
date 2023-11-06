@@ -18,7 +18,8 @@ public enum ExceptionMessage {
     WINNING_NUMBERS_AND_BONUS_NUMBER("로또 번호와 보너스 번호 사이에 중복이 있습니다. 다시 입력해 주세요."),
     WINNING_NUMBERS_ERROR("1~45 사이의 숫자 6개를 공백 없이 %s로 구분하여 입력해 주세요."),
     BONUS_NUMBER_ERROR("1~45 사이의 숫자를 입력해 주세요."),
-    DUPLICATE_NUMBER_ERROR("중복된 숫자가 있습니다.");
+    DUPLICATE_NUMBER_ERROR("중복된 숫자가 있습니다."),
+    SYSTEM_ERROR("시스템에 문제가 발생했습니다.");
     
     private static final String EXCEPTION_PREFIX = "[ERROR]";
     private final String message;

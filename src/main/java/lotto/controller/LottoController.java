@@ -15,7 +15,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    public void startGame() {
+    public void playGame() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         Lottos lottos = purchaseLottos(purchaseAmount);
         OutputView.printLottoNumbers(lottos);

@@ -1,10 +1,13 @@
 package lotto.domain;
 
+import static common.ErrorCode.WINNING_NUMBERS_DUPLICATED;
 import static common.ErrorCode.WINNING_NUMBERS_INVALID_SIZE;
 import static java.util.stream.Collectors.toList;
 
 import common.exception.InvalidArgumentException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WinningNumbers {
 
@@ -13,7 +16,11 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> numbers) {
         validateNumbers(numbers);
-        this.numbers = numbers.stream()
+        this.numbers = convertLottoNumbers(numbers);
+    }
+
+    private static List<LottoNumber> convertLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
                 .map(LottoNumber::new)
                 .collect(toList());
     }
@@ -22,9 +29,18 @@ public class WinningNumbers {
         if (!isValidSize(numbers)) {
             throw new InvalidArgumentException(WINNING_NUMBERS_INVALID_SIZE);
         }
+
+        if (!isUniqueNumbers(numbers)) {
+            throw new InvalidArgumentException(WINNING_NUMBERS_DUPLICATED);
+        }
     }
 
     private boolean isValidSize(List<Integer> numbers) {
         return numbers.size() == VALID_SIZE;
+    }
+
+    private boolean isUniqueNumbers(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        return uniqueNumbers.size() == numbers.size();
     }
 }

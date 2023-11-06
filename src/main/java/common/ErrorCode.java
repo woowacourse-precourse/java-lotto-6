@@ -14,6 +14,7 @@ public enum ErrorCode {
 
     // WinningNumbers
     WINNING_NUMBERS_INVALID_SIZE("당첨 번호는 6개의 숫자를 입력해 주세요."),
+    WINNING_NUMBERS_DUPLICATED("당첨 번호는 중복되지 않는 숫자를 입력해 주세요."),
     ;
 
     private static final String PREFIX_ERROR_MESSAGE = "[ERROR] ";

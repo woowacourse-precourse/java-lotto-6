@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static common.ErrorCode.WINNING_NUMBERS_DUPLICATED;
 import static common.ErrorCode.WINNING_NUMBERS_INVALID_SIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -33,6 +34,18 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> new WinningNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WINNING_NUMBERS_INVALID_SIZE.getMessage());
+    }
+
+    @Test
+    void 중복된_당첨_번호_에외() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+
+        // when
+        // then
+        assertThatThrownBy(() -> new WinningNumbers(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(WINNING_NUMBERS_DUPLICATED.getMessage());
     }
 
     @Test

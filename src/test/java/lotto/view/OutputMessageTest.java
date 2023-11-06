@@ -1,11 +1,10 @@
 package lotto.view;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class OutputViewTest {
-    OutputView outputView = new OutputView();
+public class OutputMessageTest {
+    OutputMessage outputMessage = new OutputMessage();
 
     @Test
     @DisplayName("구매 안내 출력 테스트")

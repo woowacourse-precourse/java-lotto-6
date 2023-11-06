@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
@@ -35,6 +36,12 @@ public class LottoResult {
 
     private void incrementMatchCount(int matchCount) {
         matchCounts.put(matchCount, matchCounts.getOrDefault(matchCount, 0) + 1);
+    }
+
+    public void calculateResults(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
+        for (Lotto purchasedLotto : purchasedLottos) {
+            updateMatchCount(purchasedLotto, winningLotto, bonusNumber);
+        }
     }
 
 }

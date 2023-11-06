@@ -22,7 +22,9 @@ public enum prizeStatus {
         return this.price;
     }
 
-    public int getPrizeNum() {return this.prizeNum;}
+    public int getPrizeNum() {
+        return this.prizeNum;
+    }
 }
 
 

@@ -132,7 +132,6 @@ public class Application {
 
         List<Lotto> lottos = new ArrayList<Lotto>();
 
-        // TODO: 여기부터 모듈화
         lottoIssue(lottoCount, lottos);
         int[] prizeNum = inputPrizeNumber();
         int bonusNum = inputBonusNumber();

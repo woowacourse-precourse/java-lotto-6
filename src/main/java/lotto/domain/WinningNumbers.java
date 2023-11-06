@@ -5,24 +5,20 @@ import static lotto.constant.LottoInformation.MIN_NUMBER;
 import static lotto.constant.message.ErrorMessage.DUPLICATE_BONUS;
 import static lotto.constant.message.ErrorMessage.INVALID_NUMBER_RANGE;
 
-import java.util.List;
 import lotto.constant.Prize;
 
 public class WinningNumbers {
-    private Lotto winningNumber;
-    private int bonusNumber;
+    private final Lotto winningLotto;
+    private final int bonusNumber;
 
-    public void makeWinningNumber(List<Integer> numbers) throws IllegalArgumentException {
-        this.winningNumber = new Lotto(numbers);
-    }
-
-    public void makeBonusNumber(int bonusNumber) throws IllegalArgumentException {
+    public WinningNumbers(Lotto winningLotto, int bonusNumber) {
+        this.winningLotto = winningLotto;
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
     public Prize checkPrize(Lotto otherLotto) {
-        int count = winningNumber.matchCount(otherLotto);
+        int count = winningLotto.matchCount(otherLotto);
         boolean bonusMatch = otherLotto.isContain(bonusNumber);
         if (count == 5 && bonusMatch) {
             return Prize.SECOND;
@@ -32,30 +28,22 @@ public class WinningNumbers {
 
     private void validateBonusNumber(int bonusNumber) {
         validateBonusNumberRange(bonusNumber);
-        validateDuplicateBonus(winningNumber, bonusNumber);
+        validateDuplicateBonus(winningLotto, bonusNumber);
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
-        if (!validRange(bonusNumber)) {
+        if (!isValidRange(bonusNumber)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
-    private boolean validRange(int number) {
+    private boolean isValidRange(int number) {
         return number >= MIN_NUMBER && number <= MAX_NUMBER;
     }
 
-    private void validateDuplicateBonus(Lotto winningNumber, int bonusNumber) {
-        if (winningNumber.isContain(bonusNumber)) {
+    private void validateDuplicateBonus(Lotto winningLotto, int bonusNumber) {
+        if (winningLotto.isContain(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS.getMessage());
         }
-    }
-
-    public Lotto getWinningNumber() {
-        return winningNumber;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 }

@@ -78,6 +78,22 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 보너스숫자_범위_초과_테스트(){
+        String bonus = "0";
+        assertThatThrownBy(() ->
+                Validator.validateBonusNumLimit(bonus))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스숫자_그릇된_형식_테스트(){
+        String bonus = "a";
+        assertThatThrownBy(() ->
+                Validator.validateBonusNumChange(bonus))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 
 }

@@ -18,15 +18,19 @@ public class LottoController {
 
     void inputAmountOfLotto() {
 
-        try {
-            int amount = view.inputNumber(INPUT_BUY_AMOUNT);
-            wallet.addBalance(amount);
+        boolean exceptionOccurrenceStatus = true;
 
-        } catch (Exception e) {
-            view.printMessage(e.getMessage());
-            inputAmountOfLotto();
+        while (exceptionOccurrenceStatus) {
+            try {
+                int amount = view.inputNumber(INPUT_BUY_AMOUNT);
+                wallet.addBalance(amount);
 
-            return;
+                exceptionOccurrenceStatus = false;
+
+            } catch (Exception e) {
+                view.printMessage(e.getMessage());
+                exceptionOccurrenceStatus = true;
+            }
         }
 
         view.printMessage(CRLF);

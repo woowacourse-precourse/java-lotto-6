@@ -40,6 +40,7 @@ public class InputView {
                 String InputData = Console.readLine();
                 storeWinningNumbersArraysToList(WinningNumbers, InputData);
                 CustomizedException.winningNumbersSizeMoreOrLess(WinningNumbers);
+                CustomizedException.winningNumbersNotRange(WinningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

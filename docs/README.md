@@ -86,3 +86,7 @@ InputView클래스 storeWinningNumbersArraysToList메소드
 ``````````````````````````
 InputView클래스 getWinningNumbers메소드
 ```````````````````````````````
+13. 1부터 45가 아닌 수를 당첨숫자에 작성시 오류가나도록 기능 추가
+``````````````````````````
+CustomizedException클래스 winningNumbersNotRange메소드
+```````````````````````````````

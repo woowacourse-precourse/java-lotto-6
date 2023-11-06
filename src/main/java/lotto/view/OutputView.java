@@ -3,7 +3,6 @@ package lotto.view;
 import java.util.List;
 import lotto.dto.LottoDto;
 import lotto.dto.StatisticDto;
-import lotto.model.LottoRank;
 
 public class OutputView {
 
@@ -20,7 +19,6 @@ public class OutputView {
     private static final String STATISTICS_MESSAGE = "당첨 통계";
     private static final String HYPHEN = "---";
     private static final String LINE = "\n";
-    private static final Integer DEFAULT_COUNT = 0;
 
     public void printRequestInputBuyAmountMessage() {
         printMessage(INPUT_BUY_AMOUNT_MESSAGE);
@@ -47,18 +45,11 @@ public class OutputView {
 
     public void printStatistics(final StatisticDto statisticDto) {
         printHeader();
-        printMessage(String.format(FIFTH_RANK_MESSAGE,
-                statisticDto.getRank().getOrDefault(LottoRank.FIFTH_RANK, DEFAULT_COUNT)));
-        printMessage(
-                String.format(FOURTH_RANK_MESSAGE,
-                        statisticDto.getRank().getOrDefault(LottoRank.FOURTH_RANK, DEFAULT_COUNT)));
-        printMessage(String.format(THIRD_RANK_MESSAGE,
-                statisticDto.getRank().getOrDefault(LottoRank.THIRD_RANK, DEFAULT_COUNT)));
-        printMessage(
-                String.format(SECOND_RANK_MESSAGE,
-                        statisticDto.getRank().getOrDefault(LottoRank.SECOND_RANK, DEFAULT_COUNT)));
-        printMessage(String.format(FIRST_RANK_MESSAGE,
-                statisticDto.getRank().getOrDefault(LottoRank.FIRST_RANK, DEFAULT_COUNT)));
+        printMessage(String.format(FIFTH_RANK_MESSAGE, statisticDto.getFifthRankCount()));
+        printMessage(String.format(FOURTH_RANK_MESSAGE, statisticDto.getFourthRankCount()));
+        printMessage(String.format(THIRD_RANK_MESSAGE, statisticDto.getThirdRankCount()));
+        printMessage(String.format(SECOND_RANK_MESSAGE, statisticDto.getSecondRankCount()));
+        printMessage(String.format(FIRST_RANK_MESSAGE, statisticDto.getFirstRankCount()));
     }
 
     private void printHeader() {
@@ -73,5 +64,4 @@ public class OutputView {
     public void printMessage(final String message) {
         System.out.println(message);
     }
-
 }

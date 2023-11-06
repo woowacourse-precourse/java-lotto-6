@@ -31,6 +31,15 @@ public class LottoGame {
 
     private void winningNumber() {
         outputView.winnerNumber();
+        while (true) {
+            String input = inputView.readLine();
+            try {
+                user.setWinnerNumbers(input);
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void makeLotto() {

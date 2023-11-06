@@ -51,4 +51,12 @@ class LottoTest {
 
         assertDoesNotThrow(() -> new Lotto(numbers));
     }
+
+    @Test
+    void 로또_내에_보너스_번호가_포함되어_있는_경우_true_를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Integer bonusNumber = 1;
+
+        assertTrue(lotto.contains(bonusNumber));
+    }
 }

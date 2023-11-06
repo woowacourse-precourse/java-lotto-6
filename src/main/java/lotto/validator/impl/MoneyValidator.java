@@ -2,6 +2,7 @@ package lotto.validator.impl;
 
 import java.util.stream.Stream;
 import lotto.constants.ErrorMessages;
+import lotto.constants.GameInfo;
 import lotto.validator.Validator;
 
 public class MoneyValidator implements Validator<String> {
@@ -14,13 +15,13 @@ public class MoneyValidator implements Validator<String> {
       }
 
       void isInValidRange(int money) {
-            if (money < 1000) {
+            if (money < GameInfo.LOTTO_PRICE.getNumber()) {
                   throwException(ErrorMessages.INPUT_MONEY_RANGE);
             }
       }
 
       void isMultipleOfThousand(int money) {
-            if (money % 1000 != 0) {
+            if (money % GameInfo.LOTTO_PRICE.getNumber() != 0) {
                   throwException(ErrorMessages.INPUT_MONEY_UNIT);
             }
       }

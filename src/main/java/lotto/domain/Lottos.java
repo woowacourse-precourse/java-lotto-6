@@ -9,7 +9,7 @@ import lotto.constants.Prize;
 public class Lottos {
 
     List<Lotto> lottos;
-    HashMap<String, Integer> gameResult = new HashMap<>();
+    HashMap<Prize, Integer> gameResult = new HashMap<>();
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
@@ -22,7 +22,7 @@ public class Lottos {
     public void calculateGameResult(BitSet winningNumberBitSet, BonusNumber bonusNumber) {
         lottos.forEach(lotto -> {
             Prize prize = matchRank(lotto.getWinningCount(winningNumberBitSet), lotto.containsBonus(bonusNumber));
-            gameResult.put(prize.name(), gameResult.getOrDefault(prize.name(), 0) + 1);
+            gameResult.put(prize, gameResult.getOrDefault(prize, 0) + 1);
         });
     }
 
@@ -34,7 +34,7 @@ public class Lottos {
     }
 
     public int getPrizeCount(Prize prize) {
-        return gameResult.getOrDefault(prize.name(), 0);
+        return gameResult.getOrDefault(prize, 0);
     }
 
     public int getPrizeMoney() {

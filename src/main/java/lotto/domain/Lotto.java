@@ -39,13 +39,9 @@ public class Lotto {
     }
 
     public int getWinningCount(BitSet winningNumberBitSet) {
-        int winningCount = 0;
-        for (int number : numbers) {
-            if (winningNumberBitSet.get(number)) {
-                winningCount++;
-            }
-        }
-        return winningCount;
+        return (int) numbers.stream()
+            .filter(winningNumberBitSet::get)
+            .count();
     }
 
     public boolean containsBonus(BonusNumber bonusNumber) {

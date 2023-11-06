@@ -15,12 +15,9 @@ public class LottoGameController {
     public void gameStart() {
         int purchaseAmount = inputView.inputPurchaseAmount();
         LottoBuyer lottoBuyer = generateLottoBuyer(purchaseAmount);
-        int purchaseCount = lottoBuyer.purchaseCount();
-
-        generateLottoStep(lottoBuyer, purchaseCount);
+        generateLottoStep(lottoBuyer);
         WinningLotto winningLotto = generateWinningLottoStep();
-
-        winningResultStep(lottoBuyer,winningLotto);
+        winningResultStep(lottoBuyer, winningLotto, purchaseAmount);
 
     }
 
@@ -28,8 +25,9 @@ public class LottoGameController {
         return new LottoBuyer(purchaseAmount);
     }
 
-    private void generateLottoStep(LottoBuyer lottoBuyer, int purchaseCount) {
+    private void generateLottoStep(LottoBuyer lottoBuyer) {
         LottoMachine lottoMachine = new LottoMachine();
+        int purchaseCount = purchaseCount(lottoBuyer);
         outputView.purchaseAmountOuput(purchaseCount);
         for (int i = 0; i < purchaseCount; i++) {
             Lotto lotto = new Lotto(lottoMachine.generator());
@@ -41,16 +39,25 @@ public class LottoGameController {
 
     private WinningLotto generateWinningLottoStep() {
         List<Integer> winningNumber = ConverterUtil.covertStringToList(inputView.inputWinningNumber());
-        int bounsNumber = inputView.inputBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(winningNumber, bounsNumber);
-        return winningLotto;
+        while (true) {
+            try {
+                int bounsNumber = inputView.inputBonusNumber();
+                WinningLotto winningLotto = new WinningLotto(winningNumber, bounsNumber);
+                return winningLotto;
+            } catch (IllegalArgumentException e) {
+            }
+        }
+    }
+
+    private void winningResultStep(LottoBuyer lottoBuyer, WinningLotto winningLotto, int purchaseAmount) {
+        LottoResult lottoResult = new LottoResult(lottoBuyer.getPurchaseLottos(), winningLotto);
+        lottoResult.judgeResult();
+        outputView.winningStatisticOutput(lottoResult.getLottoResult());
+        double totalReturn = lottoResult.getTotalReturn(purchaseAmount);
+        outputView.totalReturnOutput(totalReturn);
 
     }
 
-    private void winningResultStep(LottoBuyer lottoBuyer, WinningLotto winningLotto){
-        LottoResult lottoResult = new LottoResult(lottoBuyer.getPurchaseLottos(),winningLotto);
-
-    }
     private int purchaseCount(LottoBuyer lottoBuyer) {
         return lottoBuyer.purchaseCount();
 

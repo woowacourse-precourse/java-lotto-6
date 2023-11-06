@@ -47,4 +47,11 @@ public class LottoGameService {
     public boolean isContainBonusNumber(List<Integer> purchasedLotto, int bonusNumber) {
         return purchasedLotto.contains(bonusNumber);
     }
+
+    public LottoRank determineWinningRank(List<Integer> purchasedLotto,
+                                          List<Integer> winningLotto,
+                                          int bonusNumber) {
+        return LottoRank.determineRank(getCollectNumberCount(purchasedLotto, winningLotto),
+                isContainBonusNumber(purchasedLotto, bonusNumber));
+    }
 }

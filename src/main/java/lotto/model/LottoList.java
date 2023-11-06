@@ -18,6 +18,23 @@ public class LottoList {
         return lottoList;
     }
 
+    public Result calculateWinningStatistics(WinningNumber winningNumber) {
+        Result result = new Result();
+
+        lottoList.forEach(lotto -> {
+            int count = findNumberIncludedList(lotto, winningNumber);
+            result.updateResult(count, lotto, winningNumber);
+        });
+
+        return result;
+    }
+
+    private int findNumberIncludedList(Lotto lotto, WinningNumber winningNumber) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumber.getWinningNumbers()::contains)
+                .count();
+    }
+
     private List<Lotto> generateLottoList(int times) {
         return IntStream.range(0, times)
                 .mapToObj(i -> new Lotto(generateLottoNumbers()))

@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import static lotto.enums.ErrorMassage.*;
+import static lotto.enums.ErrorMassage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.enums.ErrorMassage.INVALID_LOTTO_COUNT;
 import static lotto.enums.LottoConfig.LOTTO_COUNT;
 
 import java.util.List;
@@ -27,5 +28,9 @@ public class Lotto {
         if (distinctCount != LOTTO_COUNT.getValue()) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMassage());
         }
+    }
+
+    public boolean contains(final LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
     }
 }

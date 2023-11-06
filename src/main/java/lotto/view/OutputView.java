@@ -4,7 +4,7 @@ import java.util.EnumMap;
 
 import lotto.domain.Rank;
 import lotto.dto.LottoNumbersDto;
-import lotto.util.NumberFormatConverter;
+import lotto.converter.NumberFormatConverter;
 
 public final class OutputView {
 

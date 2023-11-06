@@ -60,4 +60,8 @@ public class Lotto {
         return modifiableNumbers.toString();
     }
 
+    public boolean contain(final int number) {
+        return numbers.contains(number);
+    }
+
 }

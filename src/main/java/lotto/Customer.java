@@ -42,4 +42,9 @@ public class Customer {
             throw new NumberFormatException();
         }
     }
+    public void winPrice(Map<Integer, Integer> result) {
+        for(Integer key : result.keySet()) {
+            winPrice += (key * result.get(key));
+        }
+    }
 }

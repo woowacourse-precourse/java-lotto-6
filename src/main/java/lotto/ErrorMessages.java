@@ -7,7 +7,7 @@ public enum ErrorMessages {
             return DEFAULT_ERROR_MESSAGE + getErrorMessage();
         }
     },
-    IS_VALID_LITERAL(" 구분자는 쉼표(,)여야야 합니다.") {
+    IS_VALID_CHARACTER(" 구분자는 쉼표(,)여야야 합니다.") {
         @Override
         public String writeErrorMessageByCase() {
             return DEFAULT_ERROR_MESSAGE + getErrorMessage();

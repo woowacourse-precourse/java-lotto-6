@@ -7,7 +7,7 @@ public class LottoResponse {
 
     private final List<Integer> numbers;
 
-    public LottoResponse(List<Integer> numbers) {
+    private LottoResponse(List<Integer> numbers) {
         this.numbers = numbers;
     }
 

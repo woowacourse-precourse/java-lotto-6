@@ -9,7 +9,7 @@ public class LottoWinningStatistics {
     private final double rewardRatio;
     private final Map<LottoPrize, Integer> prizeCountMap;
 
-    public LottoWinningStatistics(double rewardRatio, Map<LottoPrize, Integer> prizeCountMap) {
+    private LottoWinningStatistics(double rewardRatio, Map<LottoPrize, Integer> prizeCountMap) {
         this.rewardRatio = rewardRatio;
         this.prizeCountMap = prizeCountMap;
     }

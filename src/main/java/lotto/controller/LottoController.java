@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LottoTicket;
 import lotto.domain.User;
 import lotto.util.Parser;
 import lotto.view.InputView;
@@ -17,7 +18,9 @@ public class LottoController {
     private int readBudgetOfUser() throws IllegalArgumentException {
         try {
             OutputView.println(Messages.BUDGET_INPUT_MESSAGE);
-            return Parser.stringToInt(InputView.read());
+            int budget = Parser.stringToInt(InputView.read());
+            LottoTicket.validateAffordability(budget);
+            return budget;
         } catch (IllegalArgumentException e) {
             return readBudgetOfUser();
         }

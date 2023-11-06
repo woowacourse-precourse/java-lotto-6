@@ -1,6 +1,6 @@
 package view;
 
-public class OutputVIew {
+public class OutputView {
 
     static private int earningRate;
     static final private String lineSeparator = System.lineSeparator();

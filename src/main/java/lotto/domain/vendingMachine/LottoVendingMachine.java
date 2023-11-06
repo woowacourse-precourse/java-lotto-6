@@ -13,16 +13,17 @@ import java.util.List;
 public class LottoVendingMachine {
     LottoGenerator lottoGenerator;
     LottoCashManager lottoCashManager = new LottoCashManager();
+
     public LottoVendingMachine() {
     }
 
-    public List<Lotto> buyLotto(Integer money) {
+    public List<Lotto> buyLotto(Integer money){
         lottoGenerator = new AutoLottoGenerator();
         lottoCashManager.insertMoney(money);
-        Integer ticketCount = calculateNumberOfLottoTicket(money);
+        Integer ticketCount = calculateNumberOfLottoTicket(lottoCashManager.getMoney());
 
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0 ; i < ticketCount ; i ++){
+        for (int i = 0; i < ticketCount; i++) {
 
             Lotto autoLotto = lottoGenerator.generate();
             lottos.add(autoLotto);

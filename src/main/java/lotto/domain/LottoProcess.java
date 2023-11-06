@@ -13,23 +13,27 @@ import lotto.domain.winningManager.WinningManager;
 import java.util.List;
 
 public class LottoProcess {
-    private LottoVendingMachine lottoVendingMachine = new LottoVendingMachine();
-    private LottoDrawMachine lottoDrawMachine = new LottoDrawMachine();
-    private WinningManager winningCheck = new WinningManager();
-    private LottoOutput lottoOutput = new LottoOutput();
-    private InputLotto inputLotto = new InputLotto();
-    private WinningOutput winningOutput = new WinningOutput();
-    private InputLottoDraw inputLottoDraw = new InputLottoDraw();
+    private final LottoVendingMachine lottoVendingMachine = new LottoVendingMachine();
+    private final LottoDrawMachine lottoDrawMachine = new LottoDrawMachine();
+    private final WinningManager winningCheck = new WinningManager();
+    private final LottoOutput lottoOutput = new LottoOutput();
+    private final InputLotto inputLotto = new InputLotto();
 
-    public void run(){
-        Integer money = inputLotto.inputPayLottoMoney();
-
-        List<Lotto> lottos = lottoVendingMachine.buyLotto(money);
+    public void run() {
+        List<Lotto> lottos = null;
+        boolean isCollectMoneyInput = true;
+        while (isCollectMoneyInput) {
+            try {
+                Integer money = inputLotto.inputPayLottoMoney();
+                lottos = lottoVendingMachine.buyLotto(money);
+                isCollectMoneyInput = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         lottoOutput.displayLottosNumber(lottos);
-
-        LottoDraw lottoDraw = lottoDrawMachine.Raffle();
-
+        LottoDraw lottoDraw = null;
+        lottoDraw = lottoDrawMachine.Raffle();
         winningCheck.discrimination(lottos, lottoDraw);
-
     }
 }

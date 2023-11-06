@@ -13,7 +13,7 @@ public class RateOfReturn {
         Integer rank3Count = ranks.get(3);
         Integer rank2Count = ranks.get(2);
         Integer rank1Count = ranks.get(1);
-        int totalReturn = rank1Count * 2000000000
+        double totalReturn = rank1Count * 2000000000
                 + rank2Count * 30000000
                 + rank3Count * 1500000
                 + rank4Count * 50000

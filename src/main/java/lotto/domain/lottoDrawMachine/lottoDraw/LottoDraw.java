@@ -10,19 +10,21 @@ public class LottoDraw {
     private List<Integer> winningNumber;
     private Integer bonusNumber;
 
-    public LottoDraw(List<Integer> winningNumber) {
+    private LottoDraw(List<Integer> winningNumber, Integer bonusNumber) {
         validate(winningNumber);
-        this.winningNumber = winningNumber.subList(0, 6);
-        this.bonusNumber = winningNumber.get(6);
+        this.winningNumber = winningNumber;
+
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
-    public static LottoDraw of(List<Integer> winningNumber) {
-        return new LottoDraw(winningNumber);
+    public static LottoDraw of(List<Integer> winningNumber, Integer bonusNumber) {
+        return new LottoDraw(winningNumber,bonusNumber);
     }
 
     private void validate(List<Integer> winningNumber) {
-        if (winningNumber.size() != 7) {
-            throw new IllegalArgumentException();
+        if (winningNumber.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 ");
         }
 
         if (hasDuplicates(winningNumber)) {
@@ -45,6 +47,21 @@ public class LottoDraw {
                 .anyMatch(number
                         -> number < LottoConstants.MIN_NUMBER_OF_LOTTO.getValue()
                         || number > LottoConstants.MAX_NUMBER_OF_LOTTO.getValue());
+    }
+
+    private void validateBonusNumber(Integer bonusNumber) {
+        if (bonusNumber == null) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 ");
+        }
+
+        if(this.winningNumber.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 ");
+        }
+
+        if( bonusNumber < LottoConstants.MIN_NUMBER_OF_LOTTO.getValue()
+                || bonusNumber > LottoConstants.MAX_NUMBER_OF_LOTTO.getValue()){
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 ");
+        }
     }
 
     public List<Integer> getWinningNumber() {

@@ -13,12 +13,24 @@ public class LottoDrawMachine {
     LottoDrawGenerator lottoDrawGenerator = new LottoDrawGenerator();
 
     public LottoDraw Raffle() {
-        String inputLottoDrawNumbers = inputLottoDraw.inputLottoDrawNumber();
-        List<Integer> lottoDrawNumbers = inputDataAdapter.transformLottoDrawNumber(inputLottoDrawNumbers);
+        boolean isCollectNumberInput = true;
+        List<Integer> lottoDrawNumbers = null;
+        Integer lottoDrawBonusNumber = null;
+        LottoDraw lottoDraw = null;
+        while (isCollectNumberInput) {
+            try {
+                String inputLottoDrawNumbers = inputLottoDraw.inputLottoDrawNumber();
+                lottoDrawNumbers = inputDataAdapter.transformLottoDrawNumber(inputLottoDrawNumbers);
 
-        String inputLottoDrawBonusNumber = inputLottoDraw.inputLottoDrawBonusNumber();
-        Integer lottoDrawBonusNumber = inputDataAdapter.transformLottoDrawBonusNumber(inputLottoDrawBonusNumber);
+                String inputLottoDrawBonusNumber = inputLottoDraw.inputLottoDrawBonusNumber();
+                lottoDrawBonusNumber = inputDataAdapter.transformLottoDrawBonusNumber(inputLottoDrawBonusNumber);
 
-        return lottoDrawGenerator.generate(lottoDrawNumbers, lottoDrawBonusNumber);
+                lottoDraw = lottoDrawGenerator.generate(lottoDrawNumbers, lottoDrawBonusNumber);
+                isCollectNumberInput = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lottoDraw;
     }
 }

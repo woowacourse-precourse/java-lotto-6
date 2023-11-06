@@ -22,7 +22,7 @@ class WinningCheckTest {
         Lotto lotto = Lotto.of(List.of(1,2,3,4,5,6));
         List<Lotto> lottos = List.of(lotto);
 
-        LottoDraw lottoDraw = LottoDraw.of(List.of(1,2,3,4,5,6,7));
+        LottoDraw lottoDraw = LottoDraw.of(List.of(1,2,3,4,5,6),7);
         //when
         HashMap<Integer, Integer> result = winningCheck.checkRanks(lottos, lottoDraw);
         //then
@@ -38,7 +38,7 @@ class WinningCheckTest {
         Lotto lotto = Lotto.of(List.of(1,2,3,44,23,13));
         List<Lotto> lottos = List.of(lotto);
 
-        LottoDraw lottoDraw = LottoDraw.of(List.of(1,2,3,4,5,6,7));
+        LottoDraw lottoDraw = LottoDraw.of(List.of(1,2,3,4,5,6),7);
         //when
         HashMap<Integer, Integer> result = winningCheck.checkRanks(lottos, lottoDraw);
         //then

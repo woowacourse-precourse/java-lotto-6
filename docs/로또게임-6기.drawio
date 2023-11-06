@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-06T13:49:35.810Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="BExopoYp255fz2BCEmvk" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-06T13:51:38.824Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="gs5z56D3xyTsRO2pM52T" version="22.0.8" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="2920" dy="2117" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -212,6 +212,33 @@
         </mxCell>
         <mxCell id="KO2VrwFwqGaNlMHXGD8G-64" value="CashValidator" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="-360" y="-360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KO2VrwFwqGaNlMHXGD8G-69" value="로또 구매" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="830" y="-340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KO2VrwFwqGaNlMHXGD8G-70" value="로또 발행" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="990" y="-340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KO2VrwFwqGaNlMHXGD8G-71" value="로또 당첨번호 저장" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1160" y="-340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KO2VrwFwqGaNlMHXGD8G-72" value="로또 당첨 판단" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1330" y="-340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KO2VrwFwqGaNlMHXGD8G-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="KO2VrwFwqGaNlMHXGD8G-73" target="KO2VrwFwqGaNlMHXGD8G-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KO2VrwFwqGaNlMHXGD8G-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="KO2VrwFwqGaNlMHXGD8G-73" target="KO2VrwFwqGaNlMHXGD8G-71">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KO2VrwFwqGaNlMHXGD8G-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="KO2VrwFwqGaNlMHXGD8G-73" target="KO2VrwFwqGaNlMHXGD8G-72">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KO2VrwFwqGaNlMHXGD8G-73" value="로또 게임" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1080" y="-220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KO2VrwFwqGaNlMHXGD8G-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.583;entryY=1.029;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="KO2VrwFwqGaNlMHXGD8G-73" target="KO2VrwFwqGaNlMHXGD8G-69">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

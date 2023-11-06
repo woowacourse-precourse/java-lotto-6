@@ -14,4 +14,7 @@ public class InputService {
     public static String purchasePrice() {
         return Console.readLine();
     }
+    public static void close() {
+        Console.close();
+    }
 }

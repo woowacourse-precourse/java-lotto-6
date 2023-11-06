@@ -37,7 +37,8 @@ public class UserOutput {
     }
 
     public static void ConsolePrintStatistics(List<Integer> number) {
-        ConsolePrintStatInfo();
+        ConsolePrintNewLine("");
+        ConsolePrintNewLine(Message.OUTPUT_STATICS_INFO);
         ConsolePrintNewLine(Message.OUTPUT_STATICS_FIFTH + number.get(0) + Message.OUTPUT_STATICS_BACK);
         ConsolePrintNewLine(Message.OUTPUT_STATICS_FOURTH + number.get(1) + Message.OUTPUT_STATICS_BACK);
         ConsolePrintNewLine(Message.OUTPUT_STATICS_THIRD + number.get(2) + Message.OUTPUT_STATICS_BACK);
@@ -45,10 +46,6 @@ public class UserOutput {
         ConsolePrintNewLine(Message.OUTPUT_STATICS_FIRST + number.get(4) + Message.OUTPUT_STATICS_BACK);
     }
 
-    private static void ConsolePrintStatInfo() {
-        ConsolePrintNewLine("");
-        ConsolePrintNewLine(Message.OUTPUT_STATICS_INFO);
-    }
     public static void ConsolePrintStatResult(double rate) {
         ConsolePrintNewLine(Message.OUTPUT_STATICS_RATE_FRONT + rate + Message.OUTPUT_STATICS_RATE_BACK);
     }

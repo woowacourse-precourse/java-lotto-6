@@ -28,9 +28,6 @@ public class InputValidator {
         if (isDuplicate(winningNumbers)) {
             throw new DuplicateInputException();
         }
-        if (!hasComma(winningNumbers)) {
-            throw new InvalidInputException(HAS_NOT_COMMA_MESSAGE);
-        }
     }
 
     private boolean isDuplicate(List<Integer> winningNumbers) {

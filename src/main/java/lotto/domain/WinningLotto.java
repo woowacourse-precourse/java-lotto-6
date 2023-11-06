@@ -1,7 +1,12 @@
 package lotto.domain;
 
 
+import lotto.exception.DuplicateInputException;
+import lotto.exception.InvalidInputException;
+
 import java.util.List;
+
+import static lotto.utils.constants.WinningLottoConstants.*;
 
 public class WinningLotto {
     private final List<Integer> winningNumbers;
@@ -14,14 +19,14 @@ public class WinningLotto {
     }
 
     private void validate(List<Integer> userNumbers) {
-        if (userNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 정확히 6개여야 합니다.");
+        if (userNumbers.size() != REQUIRED_NUMBER_COUNT) {
+            throw new InvalidInputException(SIZE_NOT_VALID_MESSAGE);
         }
-        if (userNumbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        if (userNumbers.stream().distinct().count() != REQUIRED_NUMBER_COUNT) {
+            throw new DuplicateInputException();
         }
-        if (userNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45까지의 숫자여야 합니다.");
+        if (userNumbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
+            throw new InvalidInputException(INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
         }
     }
 

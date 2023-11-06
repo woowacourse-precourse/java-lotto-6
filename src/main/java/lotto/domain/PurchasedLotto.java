@@ -14,8 +14,6 @@ public class PurchasedLotto {
         this.lottos = new ArrayList<>();
     }
 
-
-
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }

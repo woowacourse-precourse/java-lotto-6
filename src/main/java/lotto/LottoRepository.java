@@ -37,8 +37,6 @@ public class LottoRepository {
 
     public void addLotto(List<Lotto> lottos) {
         for (int i = 0; i < lottos.size(); i++) {
-            if (calculateRank(lottos.get(i)))
-                return;
             lottos.add(lottos.get(i));
         }
     }

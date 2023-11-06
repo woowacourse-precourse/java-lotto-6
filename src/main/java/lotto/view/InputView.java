@@ -7,6 +7,6 @@ import static lotto.constant.GeneralMessage.ASK_BUY_PRICE;
 public class InputView {
     public static String askBuyPrice() {
         OutputView.printGeneralMessage(ASK_BUY_PRICE);
-        return Console.readLine();
+        return Console.readLine().trim();
     }
 }

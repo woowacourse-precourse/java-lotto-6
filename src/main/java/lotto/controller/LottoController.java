@@ -8,7 +8,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
 	//플레이어 로또 구매
-	void playerBuyLotto() {
+	private static void playerBuyLotto() {
 		OutputView.printBuyInstruction();
 		int playerFinance = InputData.playerFinance();
 		List<Lotto> playerLottos = LottoService.createObjectPerThousandUnits(playerFinance);
@@ -16,7 +16,7 @@ public class LottoController {
 		OutputView.printPlayerLottos(playerLottos);
 	}
 	
-	void matchLottosToPrizes() {
+	private static void matchLottosToPrizes() {
 		OutputView.printWinningNumberInstruction();
 		List<Integer> winningNumbers = InputData.winningNumber();
 		OutputView.printBonusNumberInstruction();
@@ -25,8 +25,9 @@ public class LottoController {
 	
 	
 	//실행
-	void run() {
+	public static void run() {
 		playerBuyLotto();
+		matchLottosToPrizes();
 	}
 	
 }

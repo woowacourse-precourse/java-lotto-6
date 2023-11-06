@@ -14,4 +14,6 @@ public class LottoService {
 		}
 		return lotto_list;
 	}
+	
+	
 }

@@ -57,7 +57,7 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-    @Disabled
+    
     @Override
     public void runMain() {
         Application.main(new String[]{});

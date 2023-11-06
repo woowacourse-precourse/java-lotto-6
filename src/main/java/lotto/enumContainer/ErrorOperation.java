@@ -12,7 +12,8 @@ public enum ErrorOperation {
 	UNDER_ERROR("[ERROR] 1보다 작은 숫자는 입력할 수 없습니다."),
 	OVER_ERROR("[ERROR] 45보다 큰 숫자는 입력할 수 없습니다."),
 	COLLECTION_SIZE_ERROR("[ERROR] 쉼표로 구분된 6개의 숫자를 입력해야 합니다."),
-	DUPLICATE_ERROR("[ERROR] 중복된 숫자는 입력할 수 없습니다.");
+	SELF_DUPLICATE_ERROR("[ERROR] 로또번호 간의 중복은 허용되지 않습니다."),
+	BONUS_DUPLICATE_ERROR("[ERROR] 로또번호와의 중복은 허용되지 않습니다.");
 
 	private String message;
 

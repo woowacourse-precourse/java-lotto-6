@@ -19,13 +19,19 @@ public class Lotto {
 			.toList()
 			.size() != 6;
 		if (isDuplicate) {
-			ErrorOperation.DUPLICATE_ERROR.apply();
+			ErrorOperation.SELF_DUPLICATE_ERROR.apply();
 		}
 	}
 
 	private void validateSizeOfCollection(List<Integer> numbers) {
 		if (numbers.size() != 6) {
 			ErrorOperation.COLLECTION_SIZE_ERROR.apply();
+		}
+	}
+
+	public void validateDuplicateWithBonus(int number) {
+		if (numbers.contains(number)) {
+			ErrorOperation.BONUS_DUPLICATE_ERROR.apply();
 		}
 	}
 }

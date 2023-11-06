@@ -23,8 +23,8 @@ public class LottoProcessImpl implements LottoProcess {
 	@Override
 	public void playGame() {
 		inputPrice();
-		inputWinningNumbers();
 		inputBonusNumber();
+		inputWinningNumbers();
 	}
 
 	private void inputPrice() {
@@ -49,7 +49,7 @@ public class LottoProcessImpl implements LottoProcess {
 	private void inputBonusNumber() {
 		try {
 			int bonusNumber = inputNumber.inputBonusNumber();
-			bonus = new Bonus(bonusNumber);
+			bonus = new Bonus(bonusNumber, this.lotto);
 		} catch (IllegalArgumentException e) {
 			inputBonusNumber();
 		}

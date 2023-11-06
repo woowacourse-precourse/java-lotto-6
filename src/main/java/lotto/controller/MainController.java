@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.controller.subcontroller.IssueLottoController;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -27,23 +26,14 @@ public class MainController {
 
     public void start() {
         issueLottoController.process();
-        {
-            List<Integer> winnings = inputView.inputWinningNumber();
-            WinningLottoRepository.add(new Lotto(winnings));
+        inputWinningNumbers();
+    }
 
-            int bonus = inputView.inputBonusNumber();
-            BonusNumberRepository.add(new BonusNumber(bonus));
-        }
-        {
-            List<Integer> winnings = WinningLottoRepository.findWinningNumbers();
-            System.out.println("\n당첨 번호: " + String.join(
-                    ",", winnings.stream()
-                            .map(String::valueOf)
-                            .collect(Collectors.toList()))
-            );
+    private void inputWinningNumbers() {
+        List<Integer> winnings = inputView.inputWinningNumber();
+        WinningLottoRepository.add(new Lotto(winnings));
 
-            int bonus = BonusNumberRepository.findBonusNumber();
-            System.out.println("보너스 번호: " + bonus);
-        }
+        int bonus = inputView.inputBonusNumber();
+        BonusNumberRepository.add(new BonusNumber(bonus));
     }
 }

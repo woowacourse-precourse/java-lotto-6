@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -73,5 +73,17 @@ class LottoServiceTest {
         assertThatThrownBy(
                 () -> lottoService.purchaseLottoWithValidPrice(inputMoney))
                 .isInstanceOf(InvalidInputException.class);
+    }
+
+    @DisplayName("생성한 번호를 오름차순으로 정렬하는지")
+    @Test
+    void createRandomNumbersSortTest() {
+        // given & when
+        List<Integer> createdNumbers = lottoService.createRandomNumbers();
+
+        // then
+        for (int i = 0; i < createdNumbers.size()-1; i++) {
+            assertThat(createdNumbers.get(i)).isLessThanOrEqualTo(createdNumbers.get(i+1));
+        }
     }
 }

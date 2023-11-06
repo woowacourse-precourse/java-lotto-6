@@ -48,8 +48,8 @@ public class LottoController {
         setBonusNumber();
     }
 
-    private void setWinningNumbers(){
-        InputView.enterWinningNumbers();
+    private Lotto setWinningNumbers(){
+        return new Lotto(InputView.enterWinningNumbers());
     }
 
     private void setBonusNumber(){

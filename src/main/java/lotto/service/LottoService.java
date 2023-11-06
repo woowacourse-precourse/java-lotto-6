@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.view.InputView;
 
@@ -60,7 +61,18 @@ public class LottoService {
         return Prize.UNRANKED;
     }
 
-    public void getRateOfReturn() {
+    public double getRateOfReturn(List<Prize> prizes) {
+        double purchasePrice = inputView.inputPurchasePrice();
+        double totalPrizeMoney = getTotalPrizeMoney(prizes);
+        return totalPrizeMoney / purchasePrice * 100;
+    }
+
+    private double getTotalPrizeMoney(List<Prize> prizes) {
+        double totalPrizeMoney = 0;
+        for (Prize prize : prizes) {
+            totalPrizeMoney += prize.getMoney();
+        }
+        return totalPrizeMoney;
     }
 
     private int findNumbers(List<Integer> winningNumbers, Integer lotteryNumber) {

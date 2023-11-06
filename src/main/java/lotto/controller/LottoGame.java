@@ -17,4 +17,17 @@ public class LottoGame {
         this.purchaseAmount = purchaseAmount;
     }
 
+    public void play() {
+        int lottoCnt = purchaseAmount / LOTTO_PRICE;
+        List<Lotto> lottos = getRandomLottos(lottoCnt);
+        LottoUI.printRandomLottos(lottos, lottoCnt);
+    }
+
+    private static List<Lotto> getRandomLottos(int lottoCnt) {
+        List<Lotto> lottos = new ArrayList<>();
+        for(int i=0;i<lottoCnt;i++){
+            lottos.add(Lotto.generateRandomLotto());
+        }
+        return lottos;
+    }
 }

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
 import lotto.validate.LottoValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoUI {
@@ -21,7 +22,12 @@ public class LottoUI {
         }
     }
 
-    public static void printRandomLottos(List<Lotto> lottos){
-
+    public static void printRandomLottos(List<Lotto> lottos, int lottoCnt){
+        System.out.println(lottoCnt+"개를 구매했습니다.");
+        for(Lotto lotto : lottos){
+            List<Integer> numbers = lotto.getNumbers();
+            System.out.println(numbers);
+        }
+        System.out.println();
     }
 }

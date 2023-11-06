@@ -1,25 +1,30 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.validate.LottoValidator;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        try{
+            LottoValidator.validateLottoNumber(numbers);
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("Numbers must contain exactly 6 integers.");
-        }
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("Numbers must be unique.");
-        }
-        if (numbers.stream().anyMatch(n -> n < 1 || n > 45)) {
-            throw new IllegalArgumentException("Numbers must be between 1 and 45.");
-        }
+    public static Lotto generateRandomLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

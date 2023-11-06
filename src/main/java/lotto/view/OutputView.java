@@ -38,6 +38,10 @@ public class OutputView {
         System.out.printf(PROFIT_RATE.getMessage(), calculateProfitRate(purchaseAmount));
     }
 
+    public static void printError(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
     private static int calculateProfit() {
         return countFirst() * FIRST.getPrize()
                 + countSecond() * SECOND.getPrize()

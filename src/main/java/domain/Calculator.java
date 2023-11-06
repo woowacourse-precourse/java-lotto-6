@@ -3,11 +3,13 @@ package domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import util.HitNumber;
 import util.PrizeMoney;
 
 public class Calculator {
     PrizeStatistics prizeDescribe = PrizeStatistics.getInstance();
     private static final int DIVIDING_UNIT = 1000;
+    private static final double PERCENTAGE_FACTOR = 100;
 
     public int calculateMoneyToLottoCount(int money) {
         return money / DIVIDING_UNIT;
@@ -16,23 +18,23 @@ public class Calculator {
     public void calculatePrizeDescribe(Lotto lottoNumber, List<Integer> prizeNumber, int bonusNumber) {
         int matchedNumberCount = getMatchedNumberCount(lottoNumber, prizeNumber);
 
-        if (matchedNumberCount == 3) {
+        if (matchedNumberCount == HitNumber.HIT_THREE_NUMBER.getHitNumber()) {
             prizeDescribe.winFifthPrize();
         }
 
-        if (matchedNumberCount == 4) {
+        if (matchedNumberCount == HitNumber.HIT_FOUR_NUMBER.getHitNumber()) {
             prizeDescribe.winFourthPrize();
         }
 
-        if (matchedNumberCount == 5) {
+        if (matchedNumberCount == HitNumber.HIT_FIVE_NUMBER.getHitNumber()) {
             prizeDescribe.winThirdPrize();
         }
 
-        if (matchedNumberCount == 5 && isLottoNumberContainBonusNumber(lottoNumber, bonusNumber)) {
+        if (matchedNumberCount == HitNumber.HIT_FIVE_NUMBER.getHitNumber() && isLottoNumberContainBonusNumber(lottoNumber, bonusNumber)) {
             prizeDescribe.winSecondPrize();
         }
 
-        if (matchedNumberCount == 6) {
+        if (matchedNumberCount == HitNumber.HIT_SIX_NUMBER.getHitNumber()) {
             prizeDescribe.winFirstPrize();
         }
     }
@@ -59,7 +61,7 @@ public class Calculator {
                 + (PrizeMoney.PRIZE_MONEY_2ND.getPrizeMoney() * prizeDescribe.getSecondPrize())
                 + (PrizeMoney.PRIZE_MONEY_1ST.getPrizeMoney() * prizeDescribe.getFirstPrize());
 
-        double earningRate = totalPrize / purchaseAmount * 100;
+        double earningRate = totalPrize / purchaseAmount * PERCENTAGE_FACTOR;
 
         String formattedEarningRate = String.format("%.1f%%", earningRate);
 

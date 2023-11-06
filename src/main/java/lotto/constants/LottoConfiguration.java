@@ -7,6 +7,7 @@ public enum LottoConfiguration {
     MAX_RANGE(45),
     LOTTO_SIZE(6),
     SECOND_PRIZE_COUNT(5),
+    RATE_DECIMAL_PLACE(2),
     LOTTO_SEPARATOR(",");
 
     private int config;

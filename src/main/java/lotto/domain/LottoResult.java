@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConfiguration.RATE_DECIMAL_PLACE;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
@@ -9,7 +11,7 @@ public class LottoResult {
 
     private final List<LottoPrize> lottoResults;
     private final int consumerAmount;
-    private final int decimalPlace = 2;
+    private final int decimalPlace = RATE_DECIMAL_PLACE.getConfig();
     private int totalPrize;
     private BigDecimal profitRate;
     private int firstPrize;

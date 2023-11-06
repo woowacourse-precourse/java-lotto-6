@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -48,5 +49,20 @@ class PurchaseAmountTest {
         System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
 
         assertDoesNotThrow(purchaseAmount::ask);
+    }
+
+    @Test
+    void accurateInputAfterInAccurateInputs() {
+        String mockInput = "eight thousand\n8000";
+        System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
+
+        String input = null;
+        try {
+            input = purchaseAmount.ask();
+        } catch (NoSuchElementException ignored) {
+        }
+
+        assertThat(outputStream.toString()).contains("[ERROR]");
+        assertThat(input).isEqualTo("8000");
     }
 }

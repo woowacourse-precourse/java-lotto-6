@@ -7,8 +7,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -39,5 +41,22 @@ class WinningNumbersTest {
         }
 
         assertThat(outputStream.toString()).contains("[ERROR]");
+    }
+
+    @Test
+    void accurateInputAfterInAccurateInputs() {
+        String mockInput = "1,2,3,4,5,99\n1,2,3,4,5,6";
+        System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
+
+        String input = "null";
+        try {
+            input = winningNumbers.ask().stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(","));
+        } catch (NoSuchElementException ignored) {
+        }
+
+        assertThat(outputStream.toString()).contains("[ERROR]");
+        assertThat(input).isEqualTo("1,2,3,4,5,6");
     }
 }

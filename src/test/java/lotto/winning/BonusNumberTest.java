@@ -9,6 +9,7 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -39,5 +40,19 @@ class BonusNumberTest {
         }
 
         assertThat(outputStream.toString()).contains("[ERROR]");
+    }
+
+    @Test
+    void accurateInputAfterInAccurateInputs() {
+        String mockInput = "1,2\n7";
+        System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
+
+        Integer input = -1;
+        try {
+            input = bonusNumber.ask();
+        } catch (NoSuchElementException ignored) {
+        }
+
+        assertThat(input).isEqualTo(7);
     }
 }

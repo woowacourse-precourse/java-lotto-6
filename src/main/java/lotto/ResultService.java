@@ -8,13 +8,13 @@ public class ResultService {
         return purchaseAmount / InputService.AMOUNT_UNIT;
     }
 
-    public static void printNumberOfLottoTickets(int purchaseAmount) {
-        System.out.printf("%d개를 구매했습니다.", purchaseAmount);
+    public static void printNumberOfLottoTickets(int purchaseNumber) {
+        System.out.printf("%d개를 구매했습니다.", purchaseNumber);
     }
 
-    public static List<Lotto> getResultsOfLottoIssuance(int purchaseAmount) {
+    public static List<Lotto> getResultsOfLottoIssuance(int purchaseNumber) {
         List<Lotto> resultsOfLottoIssuance = new ArrayList<>();
-        for (int i = 1; i <= purchaseAmount; i++) {
+        for (int i = 1; i <= purchaseNumber; i++) {
             resultsOfLottoIssuance.add(Lotto.createRandomNumbersForLotto());
         }
         return resultsOfLottoIssuance;

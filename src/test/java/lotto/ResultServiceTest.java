@@ -18,6 +18,17 @@ class ResultServiceTest {
                 .isEqualTo(9);
     }
 
+    @DisplayName("입력된 로또 수량만큼 로또를 발행하는 지 테스트한다.")
+    @Test
+    void getResultsOfLottoIssuanceTest() {
+        // given
+        int purchaseNumber = 9;
+
+        // when & then
+        assertThat(ResultService.getResultsOfLottoIssuance(purchaseNumber).size())
+                .isEqualTo(9);
+    }
+
 
 
 

@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -49,6 +50,7 @@ public class Application {
     private static void lottoIssue(int lottoCnt, List<Lotto> lottos) {
         for (int i = 0; i < lottoCnt; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            numbers.sort(Comparator.naturalOrder());
             Lotto lotto = new Lotto(numbers);
             System.out.println(lotto.getNumbers());
             lottos.add(lotto);

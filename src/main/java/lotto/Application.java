@@ -29,6 +29,17 @@ public class Application {
     		System.out.println(lotto.toString());
     	}
     }
+
+    public static Lotto inputUserLotto() {
+    	List<Integer> number = new ArrayList<Integer>();
+    	
+    	for (String num : Console.readLine().split(","))
+    		number.add(Integer.parseInt(num));
+    	
+    	Lotto lotto = new Lotto(number);
+    	
+    	return lotto;
+    }
     
     public static void countSize(List<Integer> calculateSize) {
     	if (calculateSize.size() > 6)

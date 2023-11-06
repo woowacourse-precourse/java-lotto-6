@@ -22,6 +22,17 @@ public enum LottosConstants {
         this.prizeMoney = prizeMoney;
     }
 
+    public static LottosConstants getPrizeType(int matchNumber, boolean bonus){
+        if (FIVE_MATCH_BONUS.isPrizeRank(matchNumber) && bonus){
+            return FIVE_MATCH_BONUS;
+        } else if (FIVE_MATCH.isPrizeRank(matchNumber) && !bonus){
+            return FIVE_MATCH;
+        }
+        return Arrays.stream(LottosConstants.values())
+                .filter(prizeRank -> prizeRank.isPrizeRank(matchNumber))
+                .findAny().orElse(NONE);
+    }
+
     private boolean isPrizeRank(int matchNumber){
         return this.matchNumber == matchNumber;
     }

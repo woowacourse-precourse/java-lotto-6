@@ -15,7 +15,8 @@ public enum ErrorMassage {
     INCORRECT_AMOUNT_UNIT(String.format("구매 금액은 %d원 단위여야 합니다.", LOTTO_PRICE.getValue())),
     NOT_SEPARATE_BY_DELIMITER(String.format("%s(%s)로 구분되어야 합니다.", COMMA.getKorName(), COMMA.getValue())),
     IS_BLANK("입력값이 비어있습니다."),
-    CONTAIN_SPACE("입력값에 공백이 포함되어 있습니다.");
+    CONTAIN_SPACE("입력값에 공백이 포함되어 있습니다."),
+    INVALID_NUMBER("숫자가 아닌 값이 있습니다."),;
 
     private static final String ERROR = "[ERROR] ";
     private final String massage;

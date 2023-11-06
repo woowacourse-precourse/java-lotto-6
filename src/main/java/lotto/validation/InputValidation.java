@@ -1,7 +1,10 @@
 package lotto.validation;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.domain.Lotto;
 import lotto.utils.constants.ExceptionMessage;
 
 public class InputValidation {
@@ -35,7 +38,7 @@ public class InputValidation {
         validateNoDuplicates(numberList);
         validateNumberRange(numberList);
         validateSixNumbers(numberList);
-        return numberList;
+        return validateDuplicateBonusNumber(numberList);
     }
 
     public static void validateMinimumSize(List<String> numberStrings) {
@@ -78,5 +81,26 @@ public class InputValidation {
             throw new IllegalArgumentException(ExceptionMessage.WINNIG_LOTTO_INCLUDED_VALUE_NUMBER.getMessage());
         }
         return bonusNum;
+    }
+
+    public static List<Integer> validateDuplicateBonusNumber(List<Integer> numberList) {
+        Set<Integer> numberSet = new HashSet<>(numberList);
+        if (numberSet.size() != numberList.size()) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_LOTTO_NUM_DUPLICATED_BONUSNUM.getMessage());
+        }
+        return numberList;
+    }
+
+    public static int validateBonusNumberRange(Lotto winningNumbers, int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ExceptionMessage.WINNIG_LOTTO_INCLUDED_VALUE_NUMBER.getMessage());
+        }
+
+        List<Integer> numbers = winningNumbers.getNumbers();
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_LOTTO_NUM_DUPLICATED_BONUSNUM.getMessage());
+        }
+
+        return bonusNumber;
     }
 }

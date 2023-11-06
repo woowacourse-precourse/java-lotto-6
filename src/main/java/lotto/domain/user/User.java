@@ -43,7 +43,7 @@ public class User {
         return lottoEnvelop.giveInformation();
     }
 
-    public StringBuilder showStatisticLottoResult(LottoTargetNumResults lottoTargetNumResults) {
+    public StringBuilder showLottoStatisticResult(LottoTargetNumResults lottoTargetNumResults) {
         takeTargetNumResults(lottoTargetNumResults);
         statistic = Config.statistic(lottoEnvelop, lottoTargetNumResults);
 

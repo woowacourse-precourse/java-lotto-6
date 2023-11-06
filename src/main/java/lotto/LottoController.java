@@ -1,15 +1,11 @@
 package lotto;
 
-import static lotto.constant.LottoInformation.DELIMITER;
-import static lotto.constant.message.ErrorMessage.NOT_ONLY_DIGIT;
 import static lotto.constant.message.InputMessage.INPUT_BONUS_NUMBER;
 import static lotto.constant.message.InputMessage.INPUT_MONEY;
 import static lotto.constant.message.InputMessage.INPUT_WINNING_NUMBER;
 import static lotto.constant.message.OutputMessage.RESULT_MESSAGE;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.domain.Customer;
 import lotto.domain.LottoCalculator;
 import lotto.domain.LottoSeller;
@@ -76,31 +72,4 @@ public class LottoController {
             }
         }
     }
-
-    private int convertInteger(String input) {
-        validateOnlyDigit(input);
-        return Integer.parseInt(input);
-    }
-
-    private List<Integer> convertIntegerList(String input) {
-        String[] numbers = validateListOnlyDigit(input);
-
-        return Arrays.stream(numbers).map(Integer::parseInt).collect(Collectors.toList());
-    }
-
-    private String[] validateListOnlyDigit(String input) {
-        String[] numbers = input.split(DELIMITER, -1);
-
-        for (String number : numbers) {
-            validateOnlyDigit(number);
-        }
-        return numbers;
-    }
-
-    private void validateOnlyDigit(String input) {
-        if (!input.chars().allMatch(Character::isDigit) || input.isEmpty()) {
-            throw new IllegalArgumentException(NOT_ONLY_DIGIT.getMessage());
-        }
-    }
-
 }

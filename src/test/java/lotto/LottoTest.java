@@ -62,7 +62,15 @@ class LottoTest {
     @Test
     void bonusNotNumber() {
         Validator validator = new Validator();
-        assertThatThrownBy(() -> validator.isBonusNumeric("b2"))
+        assertThatThrownBy(() -> validator.validateBonus("b2", 1, 45))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 범위를 벗어나면 예외가 발생한다.")
+    @Test
+    void bonusOutOfRange() {
+        Validator validator = new Validator();
+        assertThatThrownBy(() -> validator.validateBonus("b2", 1, 45))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

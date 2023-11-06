@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.util.Convertor;
 import lotto.validation.LottoNumberValidator;
 
@@ -15,10 +13,7 @@ public class WinningNumber {
     }
 
     public static WinningNumber from(String input) {
-        List<Integer> winningNumbers = Arrays.stream(Convertor.splitByComma(input))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        return new WinningNumber(winningNumbers);
+        return new WinningNumber(Convertor.convertStringToIntegerList(input));
     }
 
     public boolean isContains(int number) {

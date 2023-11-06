@@ -1,5 +1,9 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Convertor {
     private static final String COMMA = ",";
 
@@ -8,6 +12,12 @@ public class Convertor {
 
     public static int convertStringToInt(String value) {
         return Integer.parseInt(value);
+    }
+
+    public static List<Integer> convertStringToIntegerList(String input) {
+        return Arrays.stream(Convertor.splitByComma(input))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public static String[] splitByComma(String input) {

@@ -19,7 +19,7 @@ public class Lotto {
 
         long uniqueNumbers = numbers.stream().distinct().count();
         if (uniqueNumbers != 6){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.")
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
 
@@ -32,3 +32,4 @@ public class Lotto {
         return numbers;
     }
 }
+

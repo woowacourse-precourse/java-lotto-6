@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class LottoMachineTest {
     private LottoMachine lottoMachine;
+    private Player player;
 
     @BeforeEach
     void setUp() {
@@ -47,5 +48,15 @@ class LottoMachineTest {
 
         assertThat(lotto.size()).isEqualTo(6);
         assertThat(lotto).doesNotHaveDuplicates();
+    }
+
+    @DisplayName("로또 구매 금액만큼 로또를 생성")
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 3000, 5000, 8000})
+    void generatePlayerLotto(int money) {
+        lottoMachine = new LottoMachine(money);
+        player = lottoMachine.generatePlayerLotto();
+
+        assertThat(player.getLottos().size()).isEqualTo(money/1000);
     }
 }

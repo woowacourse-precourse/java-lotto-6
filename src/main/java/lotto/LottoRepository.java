@@ -18,6 +18,14 @@ public class LottoRepository {
     public void setBonusNum(int bonusNum){
         this.bonusNum=bonusNum;
     }
+    public int[] getRanks() {
+        return ranks;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     public void addLotto(Lotto lotto){
         if(calculateRank(lotto))
             return;
@@ -33,9 +41,6 @@ public class LottoRepository {
         return true;
     }
 
-    public int[] getRanks() {
-        return ranks;
-    }
 
     public double getProfitRate(){
         int money=lottos.size()*1000;
@@ -46,4 +51,5 @@ public class LottoRepository {
         double rate=Math.round((double)prize*10/money)/10.0;
         return rate;
     }
+
 }

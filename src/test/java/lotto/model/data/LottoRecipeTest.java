@@ -1,8 +1,7 @@
-package lotto.data;
+package lotto.model.data;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.model.data.LottoRecipe;
 import lotto.model.record.Money;
 import lotto.model.record.NumberOfLotto;
 import org.junit.jupiter.params.ParameterizedTest;

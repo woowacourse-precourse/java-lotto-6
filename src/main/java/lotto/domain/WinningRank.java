@@ -32,10 +32,7 @@ public enum WinningRank {
 
     public static WinningRank from(int countOfCorrect, boolean isBonusCorrect) {
         validate(countOfCorrect);
-
-        return RANKS_ORDERED_BY_PRICE.stream()
-                .filter(rank -> rank.isReached(countOfCorrect, isBonusCorrect))
-                .findFirst().orElseThrow(WinningRank::createNotExistRankException);
+        return findRank(countOfCorrect, isBonusCorrect);
     }
 
     private static void validate(int countOfCorrect) {
@@ -46,6 +43,12 @@ public enum WinningRank {
 
     private static boolean isOutOfRange(int countOfCorrect) {
         return countOfCorrect < MIN_COUNT_OF_CORRECT || countOfCorrect > MAX_COUNT_OF_CORRECT;
+    }
+
+    private static WinningRank findRank(int countOfCorrect, boolean isBonusCorrect) {
+        return RANKS_ORDERED_BY_PRICE.stream()
+                .filter(rank -> rank.isReached(countOfCorrect, isBonusCorrect))
+                .findFirst().orElseThrow(WinningRank::createNotExistRankException);
     }
 
     private boolean isReached(int countOfCorrect, boolean isBonusCorrect) {

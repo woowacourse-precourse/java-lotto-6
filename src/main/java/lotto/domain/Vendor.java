@@ -24,7 +24,7 @@ public class Vendor {
         try {
             String inputMoney = Console.readLine();
             return Integer.parseInt(inputMoney);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessageConstant.NOT_INTEGER);
         }
     }

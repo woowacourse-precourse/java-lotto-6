@@ -13,13 +13,12 @@ import static lotto.constants.MarksAndConstants.RIGHT_BRACKET;
 import static lotto.constants.MarksAndConstants.SPACE;
 import static lotto.constants.MarksAndConstants.START_INDEX;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
 import lotto.constants.LottoRanks;
 
 public class OutputView {
-    public void printQuantityAndAllNumbers(int quantity, List<List<Integer>> manyLotto) {
+    public void printQuantityAndAllLottoNumbers(int quantity, List<List<Integer>> manyLotto) {
         System.out.println(convertQuantityToString(quantity));
         printAllLottoNumber(manyLotto);
     }
@@ -44,11 +43,10 @@ public class OutputView {
         return lottoNum.toString();
     }
 
-    public void printLottoResult(Map<LottoRanks,Integer> result, double returnRate) {
+    public void printTotalResult(Map<LottoRanks,Integer> result, double returnRate) {
         System.out.println(WINNING_RESULT_MSG);
         printWinningLottoCounts(result);
         printTotalReturnRate(returnRate);
-        Console.close();
     }
     public void printWinningLottoCounts(Map<LottoRanks,Integer> result) {
         for (LottoRanks key : result.keySet()) {

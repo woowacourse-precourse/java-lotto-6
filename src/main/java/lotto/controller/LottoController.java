@@ -25,15 +25,15 @@ public class LottoController {
     }
     public void run() {
         int totalCost = getValidBuyingCost(inputView);
-
-        List<List<Integer>> purchased = Lotto.getManyLotto(totalCost/SINGLE_LOTTO_PRICE);
-        outputView.printQuantityAndAllNumbers(purchased.size(), purchased);
+        List<List<Integer>> purchased = purchaseLotto(totalCost);
 
         Lotto winningNum = getValidWinningNum(inputView);
         int bonusNum = getValidBonusNum(inputView, winningNum);
+        inputView.finishInput();
 
-        Map<LottoRanks, Integer> lottoResult = comparing(purchased, winningNum, bonusNum);
-        outputView.printLottoResult(lottoResult, getReturnRate(lottoResult, totalCost));
+        Map<LottoRanks, Integer> lottoResult = compareLotto(purchased, winningNum, bonusNum);
+        double returnRate = getReturnRate(lottoResult, totalCost);
+        outputView.printTotalResult(lottoResult, returnRate);
     }
 
     public int getValidBuyingCost(InputView inputView) {
@@ -77,7 +77,12 @@ public class LottoController {
         return validBonusNum;
     }
 
-    public Map<LottoRanks, Integer> comparing(List<List<Integer>> purchased, Lotto winningNum, int bonusNum) {
+    public List<List<Integer>> purchaseLotto(int totalPrice) {
+        List<List<Integer>> purchased = Lotto.getManyLotto(totalPrice/SINGLE_LOTTO_PRICE);
+        outputView.printQuantityAndAllLottoNumbers(purchased.size(), purchased);
+        return purchased;
+    }
+    public Map<LottoRanks, Integer> compareLotto(List<List<Integer>> purchased, Lotto winningNum, int bonusNum) {
         Comparing nextPhase = new Comparing(winningNum, bonusNum);
         nextPhase.compareAllToWinningNum(purchased);
         return nextPhase.getWinningResult(purchased.size());

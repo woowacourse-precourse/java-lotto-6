@@ -10,6 +10,10 @@ public sealed class ConsoleWriter permits InputView, OutputView {
         System.out.println(data);
     }
 
+    protected void printf(final String format, final Object... values) {
+        System.out.printf(format, values);
+    }
+
     protected void newLine() {
         this.print(System.lineSeparator());
     }

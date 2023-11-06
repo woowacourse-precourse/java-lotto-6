@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoService {
 
@@ -18,6 +19,6 @@ public class LottoService {
     }
     public List<Integer> generateLotto() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1,45,6);
-        return lotto;
+        return lotto.stream().sorted().collect(Collectors.toList());
     }
 }

@@ -1,7 +1,6 @@
 package lotto.service;
 
 import lotto.constants.Message;
-import lotto.constants.Value;
 import lotto.domain.*;
 
 import java.text.DecimalFormat;
@@ -28,7 +27,7 @@ public class LottoResultService {
     public void showRank(List<Lotto> userLottos) {
         calculateLottoResult(userLottos);
 
-        System.out.println(Message.AMOUNT_REQUEST_MESSAGE);
+        System.out.println(Message.PAY_MONEY_REQUEST_MESSAGE);
         Set<Rank> ranks = lottoResults.keySet();
 
         for (Rank rank : ranks) {

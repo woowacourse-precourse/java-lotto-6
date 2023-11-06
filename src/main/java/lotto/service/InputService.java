@@ -14,20 +14,12 @@ public class InputService {
 
     ParseUtils parseUtils = new ParseUtils();
 
-    public int inputAmount() {
-        System.out.println(Message.AMOUNT_REQUEST_MESSAGE);
 
-        while (true) {
-            try {
-                String inputAmount = Console.readLine();
-                int amount = parseUtils.parseStringToInt(inputAmount);
-                amountValidate(amount);
+    public int inputPayMoney() {
+        System.out.println(Message.PAY_MONEY_REQUEST_MESSAGE);
+        String payMoney = Console.readLine();
 
-                return amount;
-            } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.AMOUNT_FORMAT.getMessage());
-            }
-        }
+        return parseUtils.parseStringToInt(payMoney);
     }
 
     private void amountValidate(int amount) {

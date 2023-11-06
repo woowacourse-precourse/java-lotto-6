@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.constants.Message;
+import lotto.constants.ErrorMessage;
 import lotto.constants.Value;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
@@ -17,15 +17,25 @@ public class Controller {
     LottoResultService lottoResultService = new LottoResultService();
 
     public void run() {
-        createUserLottos();
+        buyLotto();
         createWinningLotto();
         showResult();
     }
 
-    private void createUserLottos() {
-        int amount = inputService.inputAmount();
-        lottoService.createUserLottos(amount);
-        lottoService.showUserLottos();
+
+    private void buyLotto() {
+        while (true) {
+            try {
+                int payMoney = inputService.inputPayMoney();
+                lottoService.setBuyLotto(payMoney);
+
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(ErrorMessage.AMOUNT_FORMAT.getMessage());
+            }
+        }
+
+        lottoService.showBuyLottos();
     }
 
     private void createWinningLotto() {

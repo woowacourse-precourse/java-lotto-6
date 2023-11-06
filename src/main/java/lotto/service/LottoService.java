@@ -9,41 +9,38 @@ import java.util.*;
 
 public class LottoService {
 
-    RandomUtils randomUtils = new RandomUtils();
+    private final RandomUtils randomUtils = new RandomUtils();
+    private final List<Lotto> buyLottos = new ArrayList<>();
 
-    List<Lotto> userLottos = new ArrayList<>();
 
-    public int getUserLottoSize() {
-        return userLottos.size();
+    public void setBuyLotto(int payMoney) {
+        validatePaidAmount(payMoney);
+
+        for (int i = 0; i < payMoney / Value.LOTTO_TICKET_PRICE; i++) {
+            List<Integer> numbers = new ArrayList<>(randomUtils.pickSixUniqueRandomNumbers());
+            buyLottos.add(new Lotto(numbers));
+        }
     }
 
-    public void createUserLottos(int amount) {
-        int lottoSize = amount / Value.LOTTO_TICKET_PRICE;
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < lottoSize; i++) {
-            lottos.add(createSingleLotto());
+    private void validatePaidAmount(int payMoney) {
+        if (payMoney < Value.LOTTO_TICKET_PRICE) {
+            throw new IllegalArgumentException();
         }
 
-        this.userLottos =  lottos;
-    }
-
-    private Lotto createSingleLotto() {
-        List<Integer> numbers = new ArrayList<>(randomUtils.sixUniqueRandomNumber());
-        return new Lotto(numbers);
+        if ((payMoney % Value.LOTTO_TICKET_PRICE) != 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Lotto> getUserLottos() {
-        return userLottos;
+        return buyLottos;
     }
 
-    public void showUserLottos() {
-        System.out.println("\n" + userLottos.size() + Message.USER_LOTTOS_COUNT_MESSAGE);
+    public void showBuyLottos() {
+        System.out.println(buyLottos.size() + Message.USER_LOTTOS_COUNT_MESSAGE);
 
-        for (Lotto lotto : userLottos) {
-            System.out.println(lotto.toString());
+        for (Lotto buyLotto : buyLottos) {
+            System.out.println(buyLotto.toString());
         }
-        System.out.println();
     }
-
 }

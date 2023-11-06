@@ -2,13 +2,13 @@ package lotto.domain;
 
 import lotto.ErrorMessage;
 
-public class User {
+public class TicketVendingMachine {
     private static final int TICKET_PRICE = 1000;
 
     private int amount;
     private LottoTicket lottoTicket;
 
-    public User(int amount) {
+    public TicketVendingMachine(int amount) {
         this.amount = amount;
         this.lottoTicket = buyTicket(amount);
     }

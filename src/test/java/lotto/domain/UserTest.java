@@ -4,12 +4,10 @@ import lotto.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserTest {
+class TicketVendingMachineTest {
     private static final int TICKET_PRICE = 1000;
 
     @Test
@@ -17,7 +15,7 @@ class UserTest {
     void validAmount() {
         int buyCount = 4;
         assertDoesNotThrow(() -> {
-            new User(TICKET_PRICE*buyCount);
+            new TicketVendingMachine(TICKET_PRICE*buyCount);
         });
     }
 
@@ -25,7 +23,7 @@ class UserTest {
     @DisplayName("티켓가격의 배수가 아닌 금액을 입력 받으면 로또를 살 수 없다.")
     void invalidAmount() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new User(TICKET_PRICE+TICKET_PRICE/2))
+                .isThrownBy(() -> new TicketVendingMachine(TICKET_PRICE+TICKET_PRICE/2))
                 .withMessageContaining(ErrorMessage.INVALID_TICKET_AMOUNT.getMessage());
     }
 }

@@ -109,8 +109,9 @@ public class LottoService {
 
     /**
      *  수익률을 소수점 둘째 자리에서 반올림하는 메서드
+     *  테스트 코드를 위해 접근제어자를 public으로 변경 (직접 호출 X)
      */
-    private double calculateRoundedProfitRate(double profitRate) {
+    public double calculateRoundedProfitRate(double profitRate) {
         return Math.round(profitRate * ROUNDING_PRECISION) / ROUNDING_PRECISION ;
     }
 }

@@ -22,11 +22,11 @@ public class LottoResult {
         return lottoResult;
     }
 
-    public float getProfit() {
+    public double getProfit() {
         int totalPurchaseAmount = totalPurchaseAmount();
-        int totalPrize = totalPrize();
+        long totalPrize = totalPrize();
 
-        return (float) totalPrize / totalPurchaseAmount * 100;
+        return (double) totalPrize / totalPurchaseAmount * 100;
     }
 
     private int totalPurchaseAmount() {
@@ -39,8 +39,8 @@ public class LottoResult {
         return totalTickts * UNIT_OF_AMOUNT;
     }
 
-    private int totalPrize() {
-        int totalPrize = 0;
+    private long totalPrize() {
+        Long totalPrize = 0L;
 
         for (LottoHandler lottoHandler : LottoHandler.values()) {
             if (lottoHandler == LottoHandler.OTHER) {

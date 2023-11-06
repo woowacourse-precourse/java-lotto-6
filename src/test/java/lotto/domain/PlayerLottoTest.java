@@ -1,25 +1,26 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
+import lotto.helper.TestHelper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class PlayerLottoTest {
 
     @Nested
     @DisplayName("최종 성적을 계산하는 기능 테스트")
-    class calculateResultTest {
-        @Test
+    class CalculateResultTest {
+
+        @ParameterizedTest
+        @MethodSource("lotto.helper.TestHelper#createPlayerLotto")
         @DisplayName("1 ~ 5등을 각각 1회씩 획득")
-        void randomTest1() {
+        void randomTest1(PlayerLotto playerLotto) {
             // given
-            PlayerLotto playerLotto = createPlayerLotto();
             Lotto winningNumber = new Lotto(List.of(1, 3, 2, 4, 7, 5));
             LottoNumber bonusNumber = new LottoNumber(27);
             // when
@@ -29,11 +30,11 @@ class PlayerLottoTest {
             assertEachRankCounts(eachRankCounts, 1, 1, 1, 1, 1, 0);
         }
 
-        @Test
+        @ParameterizedTest
+        @MethodSource("lotto.helper.TestHelper#createPlayerLotto")
         @DisplayName("2, 4, 5등을 각각 1회씩 획득")
-        void randomTest2() {
+        void randomTest2(PlayerLotto playerLotto) {
             // given
-            PlayerLotto playerLotto = createPlayerLotto();
             Lotto winningNumber = new Lotto(List.of(1, 2, 3, 5, 27, 9));
             LottoNumber bonusNumber = new LottoNumber(7);
             // when
@@ -50,8 +51,8 @@ class PlayerLottoTest {
         @DisplayName("1등 테스트 - 6개 일치, 보너스 볼 일치 여부 상관 없음")
         void firstRankWhetherBonusMatchOrNot(String playerLottoInput, String winningNumberInput, int bonusNumberInput) {
             // given
-            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(parser(playerLottoInput))));
-            Lotto winningNumber = new Lotto(parser(winningNumberInput));
+            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
+            Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
             // when
             FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
@@ -66,8 +67,8 @@ class PlayerLottoTest {
         @DisplayName("2등 테스트 - 5개 일치, 보너스 볼 일치")
         void secondTest(String playerLottoInput, String winningNumberInput, int bonusNumberInput) {
             // given
-            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(parser(playerLottoInput))));
-            Lotto winningNumber = new Lotto(parser(winningNumberInput));
+            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
+            Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
             // when
             FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
@@ -83,8 +84,8 @@ class PlayerLottoTest {
         @DisplayName("3등 테스트 - 5개 일치, 보너스 볼 불일치")
         void thirdTest(String playerLottoInput, String winningNumberInput, int bonusNumberInput) {
             // given
-            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(parser(playerLottoInput))));
-            Lotto winningNumber = new Lotto(parser(winningNumberInput));
+            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
+            Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
             // when
             FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
@@ -99,8 +100,8 @@ class PlayerLottoTest {
         @DisplayName("4등 테스트 - 당첨 번호 4개 일치, 보너스 볼 일치 여부 상관 없음")
         void forthTestWhenBonusMatch(String playerLottoInput, String winningNumberInput, int bonusNumberInput) {
             // given
-            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(parser(playerLottoInput))));
-            Lotto winningNumber = new Lotto(parser(winningNumberInput));
+            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
+            Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
             // when
             FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
@@ -115,8 +116,8 @@ class PlayerLottoTest {
         @DisplayName("5등 테스트 - 3개 일치, 보너스 볼 일치 여부 상관 없음")
         void fifthTest(String playerLottoInput, String winningNumberInput, int bonusNumberInput) {
             // given
-            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(parser(playerLottoInput))));
-            Lotto winningNumber = new Lotto(parser(winningNumberInput));
+            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
+            Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
             // when
             FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
@@ -140,8 +141,8 @@ class PlayerLottoTest {
                 "40,41,42,43,44,45:1,2,3,4,5,6:40"}, delimiter = ':')
         void noneTest(String playerLottoInput, String winningNumberInput, int bonusNumberInput) {
             // given
-            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(parser(playerLottoInput))));
-            Lotto winningNumber = new Lotto(parser(winningNumberInput));
+            PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
+            Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
             // when
             FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
@@ -162,20 +163,4 @@ class PlayerLottoTest {
                 .containsEntry(Rank.FIFTH, fifthCounts)
                 .containsEntry(Rank.NONE, noneCounts);
     }
-
-    private static List<Integer> parser(String playerLottoInput) {
-        return Arrays.stream(playerLottoInput.split(","))
-                .map(Integer::parseInt)
-                .toList();
-    }
-
-    private PlayerLotto createPlayerLotto() {
-        List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-                new Lotto(List.of(1, 2, 3, 5, 7, 27)),
-                new Lotto(List.of(1, 4, 5, 7, 2, 28)),
-                new Lotto(List.of(7, 4, 2, 3, 30, 37)),
-                new Lotto(List.of(2, 3, 7, 11, 12, 13)));
-        return new PlayerLotto(lottos);
-    }
-
 }

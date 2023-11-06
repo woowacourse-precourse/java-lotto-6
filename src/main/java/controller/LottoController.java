@@ -14,7 +14,9 @@ public class LottoController {
     List<Lotto> lottos;
     public void start(){
         lottoCostRequst = new LottoCostRequst(Input.getInputForLottoCost());
+
         lottos = publishLottos(lottoCostRequst);
+        printPublishedLottos();
     }
 
     public List<Lotto> publishLottos(LottoCostRequst lottoCostRequst){
@@ -32,6 +34,7 @@ public class LottoController {
     }
 
     private void printPublishedLottos(){
+        System.out.println();
         Output.printLottoPurchaseMessage(this.lottos.size());
         for(Lotto lotto : lottos){
             System.out.println(lotto);

@@ -103,12 +103,4 @@ class LottoTest {
     	List<Lotto> playerLotto = LottoService.createObjectPerThousandUnits(8000);
     	assertEquals(62.5, LottoService.calculateReturnOnInvestment(5000, playerLotto));
     }
-    
-    void ssibal() {
-    	List<Integer> w = InputData.winningNumber();
-    	for(int i : w) System.out.println(i);
-    }
-    
-    
-    
 }

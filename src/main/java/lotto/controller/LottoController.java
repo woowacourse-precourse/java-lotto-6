@@ -24,19 +24,39 @@ public class LottoController {
         Lottos lottoStore = Lottos.of(lottos);
         outputView.outputPurchaseLottos(lottoStore, money.availableLottoCount());
 
-        WinningNumbers winningNumbers = inputWinningNumbers();
+        List<Integer> winningNumber = inputWinningNumber();
+        Integer bonusNumber = inputBonusNumber();
+        WinningNumbers winningNumbers = winningNumbers(winningNumber, bonusNumber);
 
         LottoResult lottoResult = LottoResult.of(lottoStore, winningNumbers);
         outputView.outputWinningResult(lottoResult, money.getMoney());
     }
 
-    private WinningNumbers inputWinningNumbers() {
+    private WinningNumbers winningNumbers(List<Integer> winningNumber, Integer bonusNumber) {
         try {
-            WinningNumbers winningNumbers = WinningNumbers.from(inputView.inputWinningNumbers(), inputView.inputBonusNumber());
-            return winningNumbers;
+            return WinningNumbers.from(winningNumber, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputWinningNumbers();
+            return winningNumbers(winningNumber, inputBonusNumber());
+        }
+    }
+
+    private List<Integer> inputWinningNumber() {
+        try {
+            return inputView.inputWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumber();
+        }
+    }
+
+    private Integer inputBonusNumber() {
+        try {
+            Integer input = inputView.inputBonusNumber();
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
         }
     }
 

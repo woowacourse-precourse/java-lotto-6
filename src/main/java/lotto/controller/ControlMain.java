@@ -101,6 +101,7 @@ public class ControlMain {
         ErrorCheck.isDigitErrorCheck(choice);
         ErrorCheck.isvalidateMaxAndMinNum(choice);
         ErrorCheck.isDuplicationErrorcheck(choice, numbers);
+
     }
 
     public void priceLottoAllError(String price) {

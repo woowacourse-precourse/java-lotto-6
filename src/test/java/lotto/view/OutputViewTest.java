@@ -11,6 +11,7 @@ import static lotto.view.OutputView.printErrorMessage;
 import static lotto.view.OutputView.printLottoNumbers;
 import static lotto.view.OutputView.printNumOfTickets;
 import static lotto.view.OutputView.printSystemMessage;
+import static lotto.view.OutputView.printWinningLottosInfo;
 import static lotto.view.SystemMessage.ASK_BONUS;
 import static lotto.view.SystemMessage.ASK_MONEY;
 import static lotto.view.SystemMessage.ASK_WINNING_NUMBERS;
@@ -22,6 +23,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.model.Rank;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -90,7 +92,7 @@ public class OutputViewTest {
         );
     }
 
-    @DisplayName("출력 (티켓 개수 출력)")
+    @DisplayName("티켓 개수 출력 테스트")
     @ParameterizedTest
     @ValueSource(longs = {1, 2, 3, 4, 5, 2000000})
     void 출력테스트_printNumOfTickets(long input) {
@@ -102,7 +104,7 @@ public class OutputViewTest {
         assertThat(output.toString()).isEqualTo(expect);
     }
 
-    @DisplayName("출력 (로또 번호 출력)")
+    @DisplayName("로또 번호 출력 테스트")
     @Test
     void 출력테스트_printNumOfTickets() {
         //given
@@ -110,6 +112,20 @@ public class OutputViewTest {
         String expect = "[1, 2, 3, 4, 5, 6]\n";
         //when
         printLottoNumbers(input);
+        //then
+        assertThat(output.toString()).isEqualTo(expect);
+    }
+
+    @DisplayName("당청된 로또 정보 출력 테스트")
+    @Test
+    void 출력테스트_printWinningLottosInfo() {
+        //given
+        Rank rank = Rank.SECOND;
+        long cnt = 23;
+        String expect = rank.getMessage() + " - 23개\n";
+
+        //when
+        printWinningLottosInfo(rank, cnt);
         //then
         assertThat(output.toString()).isEqualTo(expect);
     }

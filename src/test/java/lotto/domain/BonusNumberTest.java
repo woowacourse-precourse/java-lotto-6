@@ -11,7 +11,7 @@ import java.util.Arrays;
 class BonusNumberTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5,6,46,-1})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 46, -1})
     @DisplayName("보너스 번호 생성 예외처리 테스트")
     void createBonusNumberExceptionTest(int number) {
         //given

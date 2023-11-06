@@ -12,19 +12,6 @@ class LotteryCheckerTest {
     private static final WinningNumber WINNING_NUMBER = new WinningNumber(Arrays.asList(1, 2, 3, 4, 5, 6));
     private static final BonusNumber BONUS_NUMBER = new BonusNumber(WINNING_NUMBER.getWinningNumber(), 7);
 
-//    @ParameterizedTest
-//    @CsvSource
-//    @DisplayName("")
-//    void calculateRank() {
-//        //given
-//        LottoMachine lottoMachine = new LottoMachine(5000);
-//        LotteryChecker lotteryChecker = new LotteryChecker(lottoMachine);
-//
-//        //when
-//        LottoResult lottoResult = lotteryChecker.calculateRank(WINNING_NUMBER, BONUS_NUMBER);
-//        //then
-//    }
-
     @ParameterizedTest
     @CsvSource({"1,2,3,4,5,6,FIRST_RANK", "1,2,3,4,6,7,SECOND_RANK", "1,2,3,4,5,8,THIRD_RANK", "1,2,3,4,7,8,FORTH_RANK", "1,2,3,10,11,12,FIFTH_RANK", "10,11,12,13,14,15,NO_RANK"})
     @DisplayName("일치하는 번호 계산 테스트")

@@ -27,7 +27,7 @@ public enum Rank {
         final String message = "%d개 일치 (%d원)";
         final String bonusMessage = "%d개 일치, 보너스 볼 일치 (%d원)";
         if (this == SECOND) {
-            return String.format(bonusMessage, winningMoney);
+            return String.format(bonusMessage, matchCount, winningMoney);
         }
         return String.format(message, matchCount, winningMoney);
     }

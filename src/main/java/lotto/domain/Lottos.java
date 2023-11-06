@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,26 +18,33 @@ public class Lottos {
         for (Lotto lotto : lottos) {
             Reward reward = compute(lotto.match(luckyNumbers, bonusNumber));
             income += reward.getMoney();
-            int matchNumber = totalReward.get(reward.getRank());
-            totalReward.put(reward.getRank(), matchNumber + 1);
+            computeRank(totalReward, reward.getRank());
         }
         return new GameResultResponse(totalReward, computeProfit(income, payment));
     }
+
+    private static void computeRank(Map<Integer, Integer> totalReward, int rank) {
+        if (totalReward.get(rank) != null) {
+            int matchNumber = totalReward.get(rank);
+            totalReward.put(rank, matchNumber + 1);
+        }
+    }
+
     private double computeProfit(int income, int payment){
-        return (double) (Math.round((income / payment * 100) * GameConstant.PROFIT_DECIMAL_POINT) / GameConstant.PROFIT_DECIMAL_POINT);
+        String profit = String.format("%.1f", ((double) income / payment) * 100);
+        return Double.parseDouble(profit);
     }
 
     private static Map<Integer, Integer> setUp() {
         Map<Integer, Integer> totalReward = new HashMap<>();
-        for (int i = 0; i <= 5; i++) {
+        for (int i = GameConstant.FIRST_RANK; i <= GameConstant.FIFTH_RANK; i++) {
             totalReward.computeIfAbsent(i, k -> 0);
         }
         return totalReward;
     }
 
     private Reward compute(Map<String, Integer> matchResult){
-        int totalCount = matchResult.get(GameConstant.LUCKY_NUMBERS)+matchResult.get(GameConstant.BONUS_NUMBER);
-        return Reward.computer(totalCount,
+        return Reward.computer(matchResult.get(GameConstant.LUCKY_NUMBERS),
                 matchResult.get(GameConstant.BONUS_NUMBER));
     }
 }

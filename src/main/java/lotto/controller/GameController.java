@@ -5,7 +5,6 @@ import lotto.constant.GameConstant;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
-import lotto.dto.GameResultResponse;
 import lotto.dto.LottosResponse;
 import lotto.util.Validator;
 import lotto.view.InputView;

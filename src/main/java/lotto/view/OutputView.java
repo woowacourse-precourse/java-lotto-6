@@ -2,7 +2,6 @@ package lotto.view;
 
 import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.Reward;
 import lotto.dto.GameResultResponse;
 import lotto.dto.LottosResponse;
 import lotto.message.GameMessage;

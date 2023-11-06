@@ -12,14 +12,14 @@ public class LuckyNumbers {
             duplicateValidate(bonusNumber, winningNumbers);
             this.bonusNumber = bonusNumber;
             this.winningNumbers = winningNumbers;
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(e.getMessage());
         }
     }
 
     private void duplicateValidate(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(UserNumbersValidateStatus.DUPLICATE_NUMBERS_BONUS_ERROR.get());
+            throw new IllegalStateException(UserNumbersValidateStatus.DUPLICATE_NUMBERS_BONUS_ERROR.get());
         }
     }
 

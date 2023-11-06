@@ -25,13 +25,13 @@ public class BonusValidator {
 
     private static void maxValidate(int bonus) {
         if (bonus > MAX_NUMBER) {
-            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
+            throw new NumberFormatException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
         }
     }
 
     private static void minValidate(int bonus) {
         if (bonus < MIN_NUMBER) {
-            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
+            throw new NumberFormatException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
         }
     }
 }

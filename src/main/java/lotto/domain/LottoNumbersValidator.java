@@ -23,7 +23,7 @@ public class LottoNumbersValidator {
         boolean duplicate = numbers.stream().distinct().count() != numbers.size();
 
         if (duplicate) {
-            throw new IllegalArgumentException(LottoNumbersValidateStatus.LOTTO_NUMBERS_DUPLICATE_ERROR.get());
+            throw new IllegalStateException(LottoNumbersValidateStatus.LOTTO_NUMBERS_DUPLICATE_ERROR.get());
         }
     }
 
@@ -34,13 +34,13 @@ public class LottoNumbersValidator {
 
     private static void maxValidate(List<Integer> numbers) {
         if (Collections.max(numbers) > 45) {
-            throw new IllegalArgumentException(LottoNumbersValidateStatus.LOTTO_NUMBERS_RANGE_ERROR.get());
+            throw new NumberFormatException(LottoNumbersValidateStatus.LOTTO_NUMBERS_RANGE_ERROR.get());
         }
     }
 
     private static void minValidate(List<Integer> numbers) {
         if (Collections.min(numbers) < 1) {
-            throw new IllegalArgumentException(LottoNumbersValidateStatus.LOTTO_NUMBERS_RANGE_ERROR.get());
+            throw new NumberFormatException(LottoNumbersValidateStatus.LOTTO_NUMBERS_RANGE_ERROR.get());
         }
     }
 }

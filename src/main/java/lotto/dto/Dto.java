@@ -41,8 +41,8 @@ public class Dto {
     public void setLuckyNumbers() {
         try {
             luckyNumbers = new LuckyNumbers(bonus, numbers);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(e.getMessage());
         }
     }
 

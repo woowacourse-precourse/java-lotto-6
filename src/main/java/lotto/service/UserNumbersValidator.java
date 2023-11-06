@@ -64,7 +64,7 @@ public class UserNumbersValidator {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_SIZE_ERROR.get());
+            throw new IllegalStateException(UserNumbersValidateStatus.LOTTO_NUMBERS_SIZE_ERROR.get());
         }
     }
 
@@ -72,7 +72,7 @@ public class UserNumbersValidator {
         boolean duplicate = numbers.stream().distinct().count() != numbers.size();
 
         if (duplicate) {
-            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_DUPLICATE_ERROR.get());
+            throw new IllegalStateException(UserNumbersValidateStatus.LOTTO_NUMBERS_DUPLICATE_ERROR.get());
         }
     }
 
@@ -83,13 +83,13 @@ public class UserNumbersValidator {
 
     private static void maxValidate(List<Integer> numbers) {
         if (Collections.max(numbers) > MAX_NUMBER) {
-            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
+            throw new NumberFormatException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
         }
     }
 
     private static void minValidate(List<Integer> numbers) {
         if (Collections.min(numbers) < MIN_NUMBER) {
-            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
+            throw new NumberFormatException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
         }
     }
 }

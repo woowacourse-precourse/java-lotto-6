@@ -45,8 +45,8 @@ public class LottoService {
     public void makeLuckyNumbers() {
         try {
             dto.setLuckyNumbers();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
+        } catch (IllegalStateException e) {
+            throw new IllegalStateException(e.getMessage());
         }
     }
 

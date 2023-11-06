@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Player;
 import lotto.util.ExceptionHandler;
 import lotto.validation.InputValidator;
 import lotto.view.ConsoleOutput;
@@ -18,13 +19,17 @@ public class LottoController {
 
     private void getUserInputAndValidate() {
         ConsoleOutput.displayUserInputPrompt();
+        String input = inputView.getUserPurchaseAmount();
         try {
-            String input = inputView.getUserPurchaseAmount();
             InputValidator.validateUserInput(input);
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             getUserInputAndValidate();
         }
+        setPlayerVariableValue(input);
+    }
+
+    private void setPlayerVariableValue(String input) {
+        Player player = new Player(input);
     }
 }

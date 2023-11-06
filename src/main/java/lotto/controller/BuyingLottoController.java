@@ -13,7 +13,7 @@ public class BuyingLottoController {
 
     private BuyingLottoService buyingLottoService = new BuyingLottoService();
 
-    public void buyLotto(){
+    public Buyer buyLotto(){
         Buyer buyer;
 
         int money;
@@ -30,8 +30,6 @@ public class BuyingLottoController {
             OutputView.outputSortingLottoNumber(buyingLottoService.sortLottoNumber(buyer.getLottos().get(i)));
         }
 
-
-
-
+        return buyer;
     }
 }

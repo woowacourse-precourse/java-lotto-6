@@ -28,10 +28,8 @@ public class DrawWinningNumberController {
         int bonusNumber;
         do {
             String inputBonusNumber = InputView.inputBonusNumberMessage();
-            bonusNumber = winningNumberService.validateBonusNumber(inputBonusNumber);
+            bonusNumber = winningNumberService.validateBonusNumber(inputBonusNumber,winningNumber);
         }while(STOP_FLAG>bonusNumber);
-
-        OutputView.outputWinningStatisitcs();
 
         manager = new WinningManager(winningNumber,bonusNumber);
         return manager;

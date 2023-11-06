@@ -36,4 +36,16 @@ public class Money {
         return IntegerUtil.formatByThousandSeparator(amount);
     }
 
+    private static int processStringToInt(String input) {
+        input = input.trim();
+        IntegerValidator.validateInteger(input);
+
+        return Integer.parseInt(input);
+    }
+
+    private void validateMultipleOf1000(int amount) {
+        if (amount % 1000 != 0) {
+            ExceptionUtil.throwInvalidValueException(INVALID_MULTIPLE_OF_1000_MESSAGE.getMessage());
+        }
+    }
 }

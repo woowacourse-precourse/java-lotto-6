@@ -8,15 +8,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class Player {
-
-
     private final PurchasePrice purchasePrice;
-
     private final List<Lotto> lottos;
-    //일급 컬렉션으로 포장해줘야할까
+
     private final Map<LotteryResult, Integer> lotteryResults;
 
     public Player(PurchasePrice purchasePrice, List<Lotto> lottos) {
@@ -36,7 +32,6 @@ public class Player {
                 .forEach(lotteryResult -> lotteryResults.put(lotteryResult, INIT_WINNING_COUNT));
     }
 
-
     public void addLotteryResult(List<LotteryResult> lotteryResults) {
         lotteryResults.forEach((lotteryResult) -> {
             this.lotteryResults.put(lotteryResult,
@@ -50,26 +45,16 @@ public class Player {
 
 
     private Long findAllWinningPrize() {
-        long allWinningPrize = 0L;
-        for (Entry<LotteryResult, Integer> entry : lotteryResults.entrySet()) {
-            LotteryResult lotteryResult = entry.getKey();
-            Integer lotteryCount = entry.getValue();
-            if (lotteryResult.isWinning()) {
-                allWinningPrize += (long) lotteryResult.getPrize() * lotteryCount;
-            }
-        }
-        return allWinningPrize;
-    }
-
-    public PurchasePrice getPurchasePrice() {
-        return purchasePrice;
+        return lotteryResults.keySet().stream()
+                .filter(LotteryResult::isWinning)
+                .mapToLong(result -> result.getPrize() * lotteryResults.get(result))
+                .sum();
     }
 
     public List<Lotto> getLottos() {
         return lottos;
     }
 
-    //지우기
     public Map<LotteryResult, Integer> getLotteryResults() {
         return lotteryResults;
     }

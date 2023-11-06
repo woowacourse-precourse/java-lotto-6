@@ -8,6 +8,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.LottoService;
 import lotto.view.OutputView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -55,5 +57,22 @@ class LottoTest {
     	List<Lotto> lotto_list = LottoService.createObjectPerThousandUnits(5000);
     	OutputView.printPlayerLottos(lotto_list);
     }
+    
+    @DisplayName("등수에 따른 상금이 정상적으로 추출되는지")
+    @Test
+    void testGetTotalWinningAmountSuccess() {
+    	int topThreePrizesTotal = 2031500000; //1,2,3등 합친금액
+    	int bonusNumber = 7;
+    	List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+    	List<Integer> numbersFirst = List.of(1,2,3,4,5,6);
+    	Lotto firstLotto = new Lotto(numbersFirst);
+    	List<Integer> numbersSecond = List.of(1,2,3,4,5,7);
+    	Lotto secondLotto = new Lotto(numbersSecond);
+    	List<Integer> numbersthird = List.of(1,2,3,4,5,10);
+    	Lotto thirdLotto = new Lotto(numbersthird);
+    	List<Lotto> playerLottos = List.of(firstLotto,secondLotto,thirdLotto);
+    	assertEquals(topThreePrizesTotal, LottoService.getTotalWinningAmount(playerLottos, winningNumbers, bonusNumber));
+    }
+    
     
 }

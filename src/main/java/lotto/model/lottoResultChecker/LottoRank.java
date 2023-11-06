@@ -30,6 +30,9 @@ public enum LottoRank {
         if (matchCount == 5 && bonusMatch) {
             return SECOND;
         }
+        if (matchCount == 5) {
+            return THIRD;
+        }
         return Arrays.stream(values())
                 .filter(rank -> rank.getMatchCount() == matchCount)
                 .findFirst()

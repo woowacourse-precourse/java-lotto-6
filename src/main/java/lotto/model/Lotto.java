@@ -5,6 +5,7 @@ import static lotto.util.Constants.CONFIG_NUMBERS_SIZE;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class Lotto {
@@ -19,7 +20,7 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers.stream()
-            .map(number -> number.getNumber())
+            .map(Number::getNumber)
             .toList();
     }
 
@@ -47,5 +48,22 @@ public class Lotto {
         if (checkDuplicate.size() != CONFIG_NUMBERS_SIZE) {
             throw new IllegalArgumentException("중복된 수가 존재");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Lotto lotto = (Lotto) o;
+        return Objects.equals(numbers, lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
     }
 }

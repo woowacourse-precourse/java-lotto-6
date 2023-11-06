@@ -5,7 +5,6 @@ import lotto.domain.WinningRank;
 
 public record WinningStatisticsDto(Map<WinningRank, Integer> countOfRank, int lottoPrice) {
 
-    private static final int NOT_EXIST = 0;
     private static final int RATE_TO_PERCENTAGE = 100;
 
     public double getRateOfReturnPercentage() {
@@ -17,7 +16,7 @@ public record WinningStatisticsDto(Map<WinningRank, Integer> countOfRank, int lo
 
     private long sumOfPrice() {
         return countOfRank.keySet().stream()
-                .mapToLong(rank -> sumOfPrice(rank, countOfRank.getOrDefault(rank, NOT_EXIST)))
+                .mapToLong(rank -> sumOfPrice(rank, countOfRank.get(rank)))
                 .sum();
     }
 

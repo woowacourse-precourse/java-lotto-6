@@ -27,7 +27,7 @@ public class Lotteries {
         }
     }
 
-    public Map<String, Integer> produceStatistics(WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public Map<String, Integer> produceStatistics(final WinningNumber winningNumber, final BonusNumber bonusNumber) {
         Map<String, Integer> statics = new HashMap<>();
         statics.put(RankConstant.FIRST, 0);
         statics.put(RankConstant.SECOND, 0);
@@ -45,7 +45,7 @@ public class Lotteries {
         return statics;
     }
 
-    public double calculateTotalReturnAsPercent(int inputMoney, Map<String, Integer> statistics) {
+    public double calculateTotalReturnAsPercent(final int inputMoney, final Map<String, Integer> statistics) {
         long totalReturn = statistics.get(RankConstant.FIRST) * RankConstant.FIRST_WINNINGS
                 + statistics.get(RankConstant.SECOND) * RankConstant.SECOND_WINNINGS
                 + statistics.get(RankConstant.THIRD) * RankConstant.THIRD_WINNINGS

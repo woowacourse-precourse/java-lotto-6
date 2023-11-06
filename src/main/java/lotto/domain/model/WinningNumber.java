@@ -10,12 +10,12 @@ import java.util.Set;
 public class WinningNumber {
     private final List<Integer> regularWinningNumbers;
 
-    public WinningNumber(List<Integer> regularWinningNumbers) {
+    public WinningNumber(final List<Integer> regularWinningNumbers) {
         validateWinningNumbers(regularWinningNumbers);
         this.regularWinningNumbers = regularWinningNumbers;
     }
 
-    private void validateWinningNumbers(List<Integer> regularWinningNumbers) {
+    private void validateWinningNumbers(final List<Integer> regularWinningNumbers) {
         Validator.validateCountOfNumbers(regularWinningNumbers);
         Validator.validateDuplicateNumbers(regularWinningNumbers);
 
@@ -24,7 +24,7 @@ public class WinningNumber {
         }
     }
 
-    public void validateBonusNumber(int bonusNumber) {
+    public void validateBonusNumber(final int bonusNumber) {
         Set<Integer> duplicateChecker = new HashSet<>(regularWinningNumbers);
 
         if (!duplicateChecker.add(bonusNumber)) {

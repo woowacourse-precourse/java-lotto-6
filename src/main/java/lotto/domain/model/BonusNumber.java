@@ -4,14 +4,14 @@ import lotto.domain.validator.Validator;
 
 public class BonusNumber {
 
-    int bonusNumber;
+    private final int bonusNumber;
 
-    public BonusNumber(int bonusNumber) {
+    public BonusNumber(final int bonusNumber) {
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(final int bonusNumber) {
         Validator.validateNumberInRange(bonusNumber);
     }
 

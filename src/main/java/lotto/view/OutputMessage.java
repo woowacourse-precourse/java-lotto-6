@@ -1,6 +1,7 @@
-package lotto;
+package lotto.view;
 
 import java.text.DecimalFormat;
+import lotto.Prize;
 
 public enum OutputMessage {
     REQUEST_MONEY_TO_BUY("구입금액을 입력해 주세요."),

@@ -1,69 +1,36 @@
-package lotto;
+package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import lotto.LottoGrade;
+import lotto.Prize;
+import lotto.model.Lotto;
+import lotto.model.MoneyToBuy;
+import lotto.model.WinningLotto;
+import lotto.view.InputView;
+import lotto.view.OutputMessage;
+import lotto.view.OutputView;
 
-public class LottoGame {
+public class LottoGameController {
     private List<Lotto> lottos;
     private MoneyToBuy moneyToBuy;
     private WinningLotto winningLotto;
 
-    public LottoGame() {
+    private OutputView outputView;
+    private InputView inputView;
+
+    public LottoGameController() {
         lottos = new ArrayList<Lotto>();
+        outputView = new OutputView();
+        inputView = new InputView();
     }
 
     public void run() {
-        requestMoneyToBuy();
-        requestWinningLotto();
+        moneyToBuy = inputView.requestMoneyToBuy();
+        this.winningLotto = inputView.requestWinningLotto();
         generateLottos();
         printBoughtLottos();
         printLottoGrades();
-    }
-
-    private void requestMoneyToBuy() {
-        try {
-            System.out.println(OutputMessage.REQUEST_MONEY_TO_BUY.getMessage());
-            String string = Console.readLine();
-            moneyToBuy = new MoneyToBuy(Integer.parseInt(string));
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            requestMoneyToBuy();
-        }
-    }
-
-    private void requestWinningLotto() {
-        while (true) {
-            try {
-                System.out.println(OutputMessage.REQUEST_WINNING_NUMBERS.getMessage());
-                String winningLottoNumbers = Console.readLine();
-                winningLotto = new WinningLotto(convertStringToList(winningLottoNumbers));
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
-        while (true) {
-            try {
-                System.out.println(OutputMessage.REQUEST_BONUS_NUMBER.getMessage());
-                String bonusNumber = Console.readLine();
-
-                winningLotto.setBonusNumber(Integer.parseInt(bonusNumber));
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
-    }
-
-    private List<Integer> convertStringToList(String string) {
-        List<Integer> list = new ArrayList<>();
-        Arrays.stream(string.split(",")).toList().forEach(str -> {
-            list.add(Integer.parseInt(str));
-        });
-
-        return list;
     }
 
     private void generateLottos() {

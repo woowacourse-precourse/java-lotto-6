@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 import java.util.Objects;
+import lotto.LottoGrade;
 
 public class WinningLotto extends Lotto {
     private Integer bonusNumber;

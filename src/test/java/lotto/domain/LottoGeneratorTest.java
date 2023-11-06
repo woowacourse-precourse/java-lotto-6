@@ -136,5 +136,17 @@ class LottoGeneratorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력된 보너스 번호가 당첨 번호와 중복될 때, 예외 처리")
+    @Test
+    void createBonusNumberByDuplication() {
+
+        // given
+        Lotto winningLotto = LottoGenerator.createWinningLotto("1,2,3,4,5,6");
+
+        // when, then
+        assertThatThrownBy(() -> LottoGenerator.createBonusNumber(winningLotto, "1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

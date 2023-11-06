@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +17,12 @@ public class Lotto {
         }
     }
 
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        if (numbers.stream()
+                .distinct()
+                .count() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
+        }
+    }
     // TODO: 추가 기능 구현
 }

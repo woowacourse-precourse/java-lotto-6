@@ -3,7 +3,7 @@ package lotto;
 import java.util.Comparator;
 
 public class LottoRank {
-    public enum Rank{
+    public enum Rank {
         NONE("3개 미만 일치", 0, 0),
         FIFTH("3개 일치 (5,000원) - ", 5000, 3),
         FOURTH("4개 일치 (50,000원) - ", 50_000, 4),
@@ -15,29 +15,25 @@ public class LottoRank {
         final int price;
         final int correct;
 
-        public String getMessage() {
-            return message;
-        }
-
         public int getPrice() {
             return price;
         }
 
         Rank(String message, int price, int correct) {
             this.message = message;
-            this.price  = price;
+            this.price = price;
             this.correct = correct;
         }
 
-        public static Rank getLottoResult(int correct, boolean bonus){
-            if(correct < FIFTH.correct){
+        public static Rank getLottoResult(int correct, boolean bonus) {
+            if (correct < FIFTH.correct) {
                 return NONE;
             }
-            if(bonus && correct == SECOND.correct){
+            if (bonus && correct == SECOND.correct) {
                 return SECOND;
             }
-            for( Rank rank : Rank.values()){
-                if(correct == rank.correct){
+            for (Rank rank : Rank.values()) {
+                if (correct == rank.correct) {
                     return rank;
                 }
             }
@@ -45,8 +41,6 @@ public class LottoRank {
         }
 
     }
-
-
 
 
 }

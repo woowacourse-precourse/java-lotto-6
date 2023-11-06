@@ -17,6 +17,8 @@ public class OutputView {
     private static final String DASH_SPLIT_SIGN = "---";
     private static final String GENERAL_MATCH_RESULT_MESSAGE = "%d개 일치 (%s원) - %d개 \n";
     private static final String BONUS_MATCH_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개 \n";
+    public static final String TOTAL_REWARD_RETURN_MESSAGE = "총 수익률은 ";
+    public static final String PERCENT_MESSAGE = "%입니다.";
     private static final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance();
 
     public void printRequestInputBuyMoney() {
@@ -63,6 +65,10 @@ public class OutputView {
                 NUMBER_FORMAT.format(SECOND_AWARD.getRewardMoney()), lottoResultStore.get(SECOND_AWARD.getRewardMoney()));
         System.out.printf(GENERAL_MATCH_RESULT_MESSAGE, FIRST_AWARD.getMatchCount(),
                 NUMBER_FORMAT.format(FIRST_AWARD.getRewardMoney()), lottoResultStore.get(FIRST_AWARD.getRewardMoney()));
+    }
+
+    public void printTotalReturn(double inputMoney) {
+        System.out.print(TOTAL_REWARD_RETURN_MESSAGE + inputMoney + PERCENT_MESSAGE);
     }
 
     public void printExceptionMessage(String message) {

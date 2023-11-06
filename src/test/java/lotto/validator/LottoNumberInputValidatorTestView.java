@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import lotto.message.ErrorMessage;
+import lotto.view.input.validator.LottoNumberInputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

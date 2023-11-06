@@ -9,6 +9,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoFactory {
+    /**
+     * 로또 숫자 Range
+     * 로또 size
+     * 로또 금액 Enum으로 분리하기
+     */
     private static final int START_LOTTO_NUMBER = 1;
     private static final int END_LOTTO_NUMBER = 45;
     private static final int LOTTO_LIMIT_VALUE = 6;

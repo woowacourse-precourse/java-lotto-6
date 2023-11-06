@@ -3,8 +3,8 @@ package lotto.view.input;
 import lotto.domain.lotto.Lotto;
 import lotto.message.LottoBuyMessage;
 import lotto.util.LottoFactory;
-import lotto.validator.LottoGameInputValidator;
-import lotto.validator.LottoNumberInputValidator;
+import lotto.view.input.validator.LottoGameInputValidator;
+import lotto.view.input.validator.LottoNumberInputValidator;
 
 import java.util.Arrays;
 import java.util.List;

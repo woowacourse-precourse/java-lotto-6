@@ -1,6 +1,9 @@
 package lotto.enums;
 
 import java.util.Arrays;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumber;
 
 public enum Rank {
     MISS(0, "", 0),
@@ -28,14 +31,23 @@ public enum Rank {
         return prize;
     }
 
-    public static Rank findRank(int matchCount, boolean matchBonus) {
-        if (matchCount == 5 && matchBonus) {
+    public static Rank findRank(WinningNumber winningNumber, BonusNumber bonusNumber, Lotto lotto) {
+        int matchCount = lotto.getMatchCount(winningNumber);
+        boolean matchBonus = lotto.isMatchBonus(bonusNumber);
+        if (isSecondPlace(matchCount, matchBonus)) {
             return SECOND_PLACE;
         }
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.requiredMatches == matchCount)
                 .findAny()
                 .orElse(MISS);
+    }
+
+    private static boolean isSecondPlace(int matchCount, boolean matchBonus) {
+        if (matchCount == 5 && matchBonus) {
+            return true;
+        }
+        return false;
     }
 }
 

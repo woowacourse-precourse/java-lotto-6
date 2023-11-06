@@ -2,8 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputView {
-    private InputView() {
+public class InputReader {
+    private InputReader() {
     }
 
     public static String readLine() {

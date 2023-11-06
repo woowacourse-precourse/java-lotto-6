@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.lottery.Buyer;
 import lotto.domain.lottery.Lottos;
 import lotto.dto.LottoNumberResponses;
-import lotto.view.OutputView;
+import lotto.view.PurchaseWriter;
 
 public class PurchaseController {
     private PurchaseController() {
@@ -15,9 +15,9 @@ public class PurchaseController {
         LottoNumberResponses lottoResponses =
                 LottoNumberResponses.build(buyer, lottos);
 
-        OutputView.printNewLine();
-        OutputView.printPurchaseCount(lottoResponses);
-        OutputView.printPurchaseLottoNumbers(lottoResponses);
+        PurchaseWriter.printNewLine();
+        PurchaseWriter.printPurchaseCount(lottoResponses);
+        PurchaseWriter.printPurchaseLottoNumbers(lottoResponses);
 
         return lottos;
     }

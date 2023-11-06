@@ -8,7 +8,7 @@ import lotto.domain.prize.PrizeRank;
 import lotto.domain.prize.Revenue;
 import lotto.domain.prize.constants.PrizeGrade;
 import lotto.dto.FinalResultResponse;
-import lotto.view.OutputView;
+import lotto.view.FinalResultWriter;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -34,6 +34,6 @@ public class StatisticsController {
         EnumMap<PrizeGrade, Integer> prizeGradeCount = finalResults.getPrizeGradeCount();
 
         FinalResultResponse finalResultResponse = new FinalResultResponse(revenue.getYield(), prizeGradeCount);
-        OutputView.printFinalResult(finalResultResponse);
+        FinalResultWriter.printFinalResult(finalResultResponse);
     }
 }

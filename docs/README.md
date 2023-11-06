@@ -62,3 +62,7 @@ Customized클래스 NotDivisibleByThousandException메소드
 ``````````````````````````
 Lotto클래스 getNumbers메소드
 ```````````````````````````````
+7. 로또들을 count만큼 반복하고 보여주는 기능 추가
+``````````````````````````
+Outputview repeatGenerateRandomLotto메소드
+```````````````````````````````

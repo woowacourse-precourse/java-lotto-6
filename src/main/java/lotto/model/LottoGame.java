@@ -23,6 +23,17 @@ public class LottoGame {
         }
     }
 
+    public Integer sumOfReturns(Map<Prize, Integer> result) {
+        Integer sum = 0;
+        for (Map.Entry<Prize, Integer> entry : result.entrySet()) {
+            Prize prize = entry.getKey();
+            int count = entry.getValue();
+            sum += count * prize.getPrizeAmount();
+        }
+
+        return sum;
+    }
+
 
     public LottoGame() {
         InputController inputController = new InputController();
@@ -39,7 +50,7 @@ public class LottoGame {
             compareLottoAndPlayer(lottoBoard.getOneLotto(i), player.getNumbers(), player.getBonus());
         }
 
-        outputController.printResult(result);
+        outputController.printResult(result, sumOfReturns(result), lottoBoard.getTickets());
     }
 
     void compareLottoAndPlayer(Lotto lotto, List<Integer> numbers, Integer bonus) {

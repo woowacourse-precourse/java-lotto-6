@@ -52,11 +52,11 @@ public class OutputView {
         for (LottoRanks rank : result.keySet()) {
             if (rank == LottoRanks.NONE)
                 continue;
-            System.out.print(convertCountsToString(appendFormat(rank), rank, result.get(rank)));
+            System.out.print(convertCountsToString(rank, result.get(rank)));
         }
     }
-    public String convertCountsToString(String stringForm, LottoRanks key, int count) {
-        return String.format(stringForm, key.getSameNumber(), key.getWinnings(), count);
+    public String convertCountsToString(LottoRanks rank, int count) {
+        return String.format(appendFormat(rank), rank.getSameNumber(), rank.getWinnings(), count);
     }
     public String appendFormat(LottoRanks rank) {
         StringBuilder result = new StringBuilder(SAME_NUMBER_COUNT_FORMAT);
@@ -67,7 +67,7 @@ public class OutputView {
         result.append(GET_REWARDED_LOTTO_COUNT);
         return result.toString();
     }
-    public void printTotalReturnRate(double returnRate) {
+    private void printTotalReturnRate(double returnRate) {
         System.out.print(convertReturnRateToString(returnRate));
     }
     public String convertReturnRateToString(double returnRate) {

@@ -1,11 +1,9 @@
 package lotto.generator;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.domain.lotto.LottoRewardCondition;
 import lotto.dto.WinningResults;
 
 public class WinningResultMessageGenerator {
@@ -36,7 +34,7 @@ public class WinningResultMessageGenerator {
     }
 
     private static String createProfitRatioMessage(final WinningResults winningResults) {
-        double profitRatio = winningResults.calculateProfitRatio();
+        double profitRatio = winningResults.getProfitRatio();
         return String.format(PROFIT_RATIO_FORMAT, DECIMAL_FORMAT.format(profitRatio));
     }
 

@@ -90,7 +90,7 @@ class LottoMachineTest {
         // when
         WinningResults winningResults = lottoMachine.createWinningResults();
         List<Integer> winningCounts = winningResults.calculateWinningCounts();
-        double actualProfitRatio = winningResults.calculateProfitRatio();
+        double actualProfitRatio = winningResults.getProfitRatio();
 
         // then
         assertAll(

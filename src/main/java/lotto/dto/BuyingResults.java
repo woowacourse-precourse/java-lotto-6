@@ -6,6 +6,8 @@ import lotto.domain.lotto.Lottos;
 
 public record BuyingResults(List<BuyingResult> buyingResults) {
 
+    private static final String DELIMITER = "\n";
+
     public static BuyingResults createFrom(final Lottos userLottos) {
         return new BuyingResults(
                 userLottos.lottos()
@@ -18,7 +20,7 @@ public record BuyingResults(List<BuyingResult> buyingResults) {
     public String createResultMessage() {
         return buyingResults.stream()
                 .map(BuyingResult::createSingleResultMessage)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(DELIMITER));
     }
 
     public int getBuyingCount() {

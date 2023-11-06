@@ -8,7 +8,7 @@ import lotto.exception.LottoException;
 public class UserLotto {
 
     private int lottoCount;
-    private List<Lotto> lottos;
+    private List<Lotto> lottoBundle;
 
     public UserLotto(int money) {
         moneyToCount(money);
@@ -22,12 +22,12 @@ public class UserLotto {
     }
 
     private void publishLottoBundle() {
-        lottos = new ArrayList<>();
+        lottoBundle = new ArrayList<>();
         Lotto newLotto;
 
         for (int i = 0; i < lottoCount; i++) {
             newLotto = publishLotto();
-            lottos.add(newLotto);
+            lottoBundle.add(newLotto);
         }
     }
 
@@ -58,7 +58,7 @@ public class UserLotto {
         return lottoCount;
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
+    public List<Lotto> getLottoBundle() {
+        return lottoBundle;
     }
 }

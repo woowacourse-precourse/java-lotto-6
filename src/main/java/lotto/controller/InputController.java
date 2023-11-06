@@ -19,7 +19,7 @@ public class InputController {
 
     public int cashToLottoCount(int cash){
         int ticket = cash / 1000;
-        model.storeTicketCount(ticket);
+        model.storeTicketCount(cash);
         return ticket;
     }
 

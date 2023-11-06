@@ -24,6 +24,7 @@ public class InputView {
     }
 
     private void inputWinningNumberList() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> list;
         do{
@@ -35,6 +36,7 @@ public class InputView {
     }
 
     private Integer inputBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = inputController.checkValidNumberFormat(Console.readLine());
         inputController.checkRangeLottoNumber(bonusNumber);

@@ -4,6 +4,8 @@ import lotto.model.Lotto;
 import lotto.model.Model;
 import lotto.model.Money;
 
+import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -13,14 +15,9 @@ public class OutputController {
         this.model = model;
     }
 
-    public List<Lotto> getListOfBuyLotto() {
-        return model.getListOfBuyLotto();
-    }
-
     public void printWinningLotto() {
-        model.getWinningScore().forEach((money, integer) -> {
-            System.out.println(money.getPrint() + " - " + integer + "개");
-        });
+        Arrays.stream(Money.values())
+                .forEach(value -> System.out.println(value.getPrint() + " - " + model.getWinningScore().get(value) + "개"));
     }
 
     public void checkWinningLotto(){
@@ -43,5 +40,17 @@ public class OutputController {
         if(count == 5 && listOfBuyLotto.getNumbers().contains(model.getBonusNumber())) count = 7;
         Money money = Money.checkTicketScore(count);
         if (money != null) winningScoreList.put(money, winningScoreList.get(money) + 1);
+    }
+
+    public void printRateOfReturn() {
+        int ticketCount = model.getTicketCount();
+        Map<Money, Integer> winningScoreList = model.getWinningScore();
+        int proceeds = winningScoreList.keySet().stream()
+                .mapToInt(money -> money.getPrice() * winningScoreList.get(money))
+                .sum();
+        double answer = (double) proceeds / ticketCount * 100.00;
+        DecimalFormat decimalFormat = new DecimalFormat("###,##0.0");
+        String formattedNumber = decimalFormat.format(answer);
+        System.out.println("총 수익률은 " + formattedNumber + "%입니다.");
     }
 }

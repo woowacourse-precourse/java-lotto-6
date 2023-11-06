@@ -2,10 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Model {
@@ -31,8 +28,9 @@ public class Model {
     public void storeLottoTicket(int lottoCount){
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            numbers.sort(Integer::compareTo);
-            listOfBuyLotto.add(new Lotto(numbers));
+            List<Integer> sortedNumbers = new ArrayList<>(numbers);
+            Collections.sort(sortedNumbers);
+            listOfBuyLotto.add(new Lotto(sortedNumbers));
         }
     }
 
@@ -54,5 +52,9 @@ public class Model {
 
     public Lotto getLotto() {
         return lotto;
+    }
+
+    public int getTicketCount() {
+        return ticketCount;
     }
 }

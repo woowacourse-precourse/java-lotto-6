@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.dto.input.GetWinningNumberDto;
+import lotto.util.exception.ErrorMessage;
 
 public class Validator {
     private static final int THOUSAND = 1000;
@@ -99,31 +100,31 @@ public class Validator {
 
     private static void checkDistinct(List<Integer> winningNumbersList) {
         if(isNotDistinct(winningNumbersList, getSet(winningNumbersList))){
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자들은 입력하지 마세요.");
+            throw new IllegalArgumentException(ErrorMessage.SHOULD_BE_DISTINCT.toString());
         }
     }
 
     private static void checkNotInWinningNumber(GetWinningNumberDto getWinningNumberDto, String bonusNumberInput) {
         if(hasBonusNumber(getWinningNumberDto, bonusNumberInput)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호들과 달라야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.SHOULD_NOT_SAME_WITH_WINNING_NUMBERS.toString());
         }
     }
 
     private static void checkNumberCounts(int numberCount) {
         if(isNotRightCounts(numberCount)){
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_SIX_NUMBER.toString());
         }
     }
 
     private static void checkNumberInBoundary(int realNumber) {
         if (isNotRightBoundaryNumber(realNumber)){
-            throw  new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw  new IllegalArgumentException(ErrorMessage.NOT_RIGHT_BOUNDARY.toString());
         }
     }
 
     private static int checkThousand(Integer money) {
         if(isThousand(money)){
-            throw new IllegalArgumentException("[ERROR] 구입 금액 단위는 최소 천원이면서 천원 단위여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_THOUSAND.toString());
         }
         return money;
     }
@@ -132,8 +133,7 @@ public class Validator {
         try{
             return Integer.valueOf(buyMoney);
         }catch (NumberFormatException e){
-            System.out.println("[ERROR] 숫자만 입력해주세요");
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요");
+            throw new IllegalArgumentException(ErrorMessage.NOT_ONLY_NUMBER.toString());
         }
     }
 
@@ -143,7 +143,7 @@ public class Validator {
             checkNumberInBoundary(num);
             winningNumbersList.add(num);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_CORRECT_NUMBER.toString());
         }
     }
 }

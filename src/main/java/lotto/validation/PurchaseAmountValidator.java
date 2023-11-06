@@ -6,11 +6,13 @@ public class PurchaseAmountValidator {
 
     private static final Integer LOTTO_PRICE = 1000;
 
-    public void validatePurchaseAmount(String purchaseAmount) {
+    public Integer validatePurchaseAmount(String purchaseAmount) {
         validateEmpty(purchaseAmount);
         validateBlank(purchaseAmount);
         validateOverZero(purchaseAmount);
         validateDivisibleByThousand(purchaseAmount);
+
+        return Integer.parseInt(purchaseAmount);
     }
 
     private void validateBlank(String purchaseAmount) {

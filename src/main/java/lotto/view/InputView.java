@@ -24,15 +24,14 @@ public class InputView {
         while (true) {
             try {
                 String purchaseAmount = Console.readLine();
-                purchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
-                return Integer.valueOf(purchaseAmount);
+                return  purchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public List<String> getDrawnNumbers() {
+    public List<Integer> getDrawnNumbers() {
         System.out.println();
         System.out.println(INPUT_DRAWN_NUMBERS_MESSAGE);
         while (true) {
@@ -45,13 +44,13 @@ public class InputView {
         }
     }
 
-    public Integer getBonusNumber(List<String> lottoNumbers) {
+    public Integer getBonusNumber() {
         System.out.println();
         System.out.println(INPUT_BONUS_NUMBERS_MESSAGE);
         while (true) {
             try {
                 String bonusNumber = Console.readLine();
-                return lottoNumberValidator.validateBonusNumber(bonusNumber, lottoNumbers);
+                return lottoNumberValidator.validateBonusNumber(bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

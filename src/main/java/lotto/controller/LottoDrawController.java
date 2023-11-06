@@ -32,9 +32,9 @@ public class LottoDrawController {
 
     public void startDraw() {
         Integer purchaseAmount = inputView.getPurchaseAmount();
-        Integer countOfPurchasedLotto = UserLotteriesFactory.calculateCountOfPurchasedLotto(purchaseAmount);
         UserLotteries userLotteries = userLotteriesFactory.createFromPurchaseAmount(purchaseAmount);
 
+        int countOfPurchasedLotto = userLotteries.getPurchasedLottoCount();
         showUserLottoDetails(countOfPurchasedLotto, userLotteries);
         WinningLotto winningLotto = createWinningLotto();
 
@@ -51,8 +51,8 @@ public class LottoDrawController {
     }
 
     private WinningLotto createWinningLotto() {
-        List<String> drawnNumbers = inputView.getDrawnNumbers();
-        Integer bonusNumber = inputView.getBonusNumber(drawnNumbers);
+        List<Integer> drawnNumbers = inputView.getDrawnNumbers();
+        Integer bonusNumber = inputView.getBonusNumber();
         return winningLottoFactory.createWinningLotto(drawnNumbers, bonusNumber);
     }
 

@@ -32,20 +32,20 @@ public class Output {
         System.out.println(MSG_ASK_BONUS_NUMBER);
     }
 
-    public static void printWinningStatistics(List<Integer> winningStatistics){
+    public static void printWinningStatistics(List<Integer> winningStatistics) {
         String message = MSG_WINNER_STATISTICS_INTRODUCTION + NEW_LINE
                 + DASH + DASH + DASH + NEW_LINE
                 + MSG_WINNER_STATISTICS_5TH + BLANK + DASH + BLANK + winningStatistics.get(4) + COUNT + NEW_LINE
-                + MSG_WINNER_STATISTICS_4TH + BLANK + DASH + BLANK + winningStatistics.get(3)+ COUNT + NEW_LINE
-                + MSG_WINNER_STATISTICS_3RD + BLANK + DASH + BLANK + winningStatistics.get(2)+ COUNT + NEW_LINE
-                + MSG_WINNER_STATISTICS_2ND + BLANK + DASH + BLANK + winningStatistics.get(1)+ COUNT + NEW_LINE
-                + MSG_WINNER_STATISTICS_1ST + BLANK + DASH + BLANK + winningStatistics.get(0)+ COUNT;
+                + MSG_WINNER_STATISTICS_4TH + BLANK + DASH + BLANK + winningStatistics.get(3) + COUNT + NEW_LINE
+                + MSG_WINNER_STATISTICS_3RD + BLANK + DASH + BLANK + winningStatistics.get(2) + COUNT + NEW_LINE
+                + MSG_WINNER_STATISTICS_2ND + BLANK + DASH + BLANK + winningStatistics.get(1) + COUNT + NEW_LINE
+                + MSG_WINNER_STATISTICS_1ST + BLANK + DASH + BLANK + winningStatistics.get(0) + COUNT;
 
         System.out.println(message);
     }
 
-    public static void printTotalReturn(double totalReturn){
-        String message = MSG_TOTAL_RETURN_HEAD+ totalReturn +PERCENTAGE+ BLANK + MSG_TOTAL_RETURN_FOOT;
+    public static void printTotalReturn(double totalReturn) {
+        String message = MSG_TOTAL_RETURN_HEAD + totalReturn + PERCENTAGE + MSG_TOTAL_RETURN_FOOT;
         System.out.println(message);
     }
 }

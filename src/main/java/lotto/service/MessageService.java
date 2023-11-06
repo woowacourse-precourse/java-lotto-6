@@ -17,7 +17,7 @@ public class MessageService {
     }
 
     public void outputPurchaseNumbers(List<Integer> numbers) {
-        List<Integer>sortNumbers = new ArrayList<>(numbers);
+        List<Integer> sortNumbers = new ArrayList<>(numbers);
         sortNumbers.sort(Comparator.naturalOrder());
         StringBuilder stringBuilder = new StringBuilder("[");
         for (int i = 0; i < sortNumbers.size(); i++) {
@@ -53,8 +53,7 @@ public class MessageService {
 
     public void outputLottoWithBonusStatus(int number, String formatPrice, int resultCount) {
         String message = String.format(OutputMessage.OUTPUT_LOTTO_WITH_BONUS_STATUS_MESSAGE.getMessage(), number - 10,
-                formatPrice,
-                resultCount);
+                formatPrice, resultCount);
         System.out.println(message);
     }
 

@@ -9,14 +9,15 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LottoPurchaseTest {
     private LottoPurchase lottoPurchase;
+
     @BeforeEach
-    void setUp(){
+    void setUp() {
         lottoPurchase = new LottoPurchase();
     }
 
     @Test
     @DisplayName("로또 구매 테스트")
-    void lottoPurchaseAmountTest(){
+    void lottoPurchaseAmountTest() {
         int purchaseAmount = 5;
         List<Lotto> purchaseLottos = lottoPurchase.purchaseLottoNumbers(purchaseAmount);
 

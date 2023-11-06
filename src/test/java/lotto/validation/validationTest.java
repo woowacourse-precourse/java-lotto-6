@@ -70,7 +70,7 @@ public class validationTest {
     void 보너스번호_범위_테스트() {
         int bonusNumber = 51;
         List<Integer> winningNumbers = List.of(1, 2, 3, 6, 4, 5, 8);
-        assertThatThrownBy(() -> validateService.validateBonusNumber(bonusNumber,winningNumbers)).isInstanceOf(
+        assertThatThrownBy(() -> validateService.validateBonusNumber(bonusNumber, winningNumbers)).isInstanceOf(
                         IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_NUMBER_OVER_RANGE_ERROR.getMessage());
     }
@@ -80,7 +80,7 @@ public class validationTest {
     void 보너스번호_당첨번호_중복_테스트() {
         int bonusNumber = 6;
         List<Integer> winningNumbers = List.of(1, 2, 3, 6, 4, 5, 8);
-        assertThatThrownBy(() -> validateService.validateBonusNumber(bonusNumber,winningNumbers)).isInstanceOf(
+        assertThatThrownBy(() -> validateService.validateBonusNumber(bonusNumber, winningNumbers)).isInstanceOf(
                         IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_DUPLICATE_BONUS_NUMBER_ERROR.getMessage());
     }

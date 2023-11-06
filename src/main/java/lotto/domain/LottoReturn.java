@@ -12,6 +12,7 @@ public class LottoReturn {
     public LottoReturn(LottoCount lottoCount) {
         this.lottoCount = lottoCount;
     }
+
     public void getLottoReturnRate(int purchasePrice) {
         int lottoReturn = getLottoReturn();
         if (lottoReturn == 0) {
@@ -21,6 +22,7 @@ public class LottoReturn {
         double returnRate = (double) (lottoReturn - purchasePrice) / purchasePrice * HUNDRED;
         messageService.outputLottoReturnRate(returnRate + HUNDRED);
     }
+
     private int getLottoReturn() {
         return (lottoCount.getSixCount() * LottoPrice.FIRST.getPrice()
                 + lottoCount.getFiveWithBonusCount() * LottoPrice.SECOND.getPrice()

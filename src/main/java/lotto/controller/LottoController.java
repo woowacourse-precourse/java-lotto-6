@@ -8,6 +8,7 @@ import lotto.constant.LottoConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.error.ErrorMessage;
 import lotto.service.LottoService;
@@ -26,42 +27,48 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = getPurchaseAmount();
+        PurchaseAmount purchaseAmount = getPurchaseAmount();
         int lottoCount = getLottoCount(purchaseAmount);
+        List<Lotto> lottos = getLottos(lottoCount);
+        WinningNumbers winningNumbers = getWinningNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumbers);
+        LottoResult lottoResult = lottoService.getLottoResult(lottos, winningNumbers, bonusNumber);
+        float revenue = lottoService.getRevenue(lottoResult);
+
+        announceLottoResult(lottoResult);
+        announceRevenue(purchaseAmount, revenue);
+    }
+
+    private PurchaseAmount getPurchaseAmount() {
+        while (true) {
+            try {
+                outputView.printPurchaseInputMessage();
+                int purchaseAmount = inputView.getNumber();
+                if (purchaseAmount != 0 && purchaseAmount % 1000 != 0) {
+                    throw new IllegalArgumentException();
+                }
+                outputView.println();
+                return new PurchaseAmount(purchaseAmount);
+            } catch(IllegalArgumentException e) {
+                outputView.printErrorMessage(ErrorMessage.INVALID_LOTTO_PURCHASE_AMOUNT);
+            }
+        }
+    }
+
+    private int getLottoCount(PurchaseAmount purchaseAmount) {
+        int lottoCount = lottoService.getLottoCount(purchaseAmount);
+        outputView.printPurchaseCountMessage(lottoCount);
+        return lottoCount;
+    }
+
+    private List<Lotto> getLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             Lotto lotto = getLotto();
             lottos.add(lotto);
         }
-
         outputView.println();
-        WinningNumbers winningNumber = getWinningNumber();
-        BonusNumber bonusNumber = getBonusNumber(winningNumber);
-        LottoResult lottoResult = lottoService.getLottoResult(lottos, winningNumber, bonusNumber);
-
-        float revenue = lottoService.getRevenue(lottoResult);
-
-
-        outputView.printResultStringMessage();
-        for (int rank = 5; rank > 0; rank--) {
-            int rankCount = 0;
-            if (lottoResult.contains(rank)) {
-                rankCount = lottoResult.get(rank);
-            }
-            outputView.printLottoResult(rankCount, rank);
-        }
-
-        if (revenue == 0) {
-            outputView.printRevenue(0);
-        } else {
-            outputView.printRevenue((revenue*100) / purchaseAmount);
-        }
-    }
-
-    private int getLottoCount(int purchaseAmount) {
-        int lottoCount = purchaseAmount / LottoConstant.LOTTO_PRICE;
-        outputView.printPurchaseCountMessage(lottoCount);
-        return lottoCount;
+        return lottos;
     }
 
     private Lotto getLotto() {
@@ -76,23 +83,6 @@ public class LottoController {
                 return lotto;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(ErrorMessage.DUPLICATE_LOTTO_NUMBER);
-            }
-        }
-    }
-
-    private int getPurchaseAmount() {
-        while (true) {
-            try {
-                outputView.printPurchaseInputMessage();
-                int purchaseAmount = inputView.getNumber();
-                if (purchaseAmount != 0 && purchaseAmount % 1000 != 0) {
-                    throw new IllegalArgumentException();
-                }
-
-                outputView.println();
-                return purchaseAmount;
-            } catch(IllegalArgumentException e) {
-                outputView.printErrorMessage(ErrorMessage.INVALID_LOTTO_PURCHASE_AMOUNT);
             }
         }
     }
@@ -123,5 +113,21 @@ public class LottoController {
                 outputView.printErrorMessage(ErrorMessage.INVALID_BONUS_NUMBER);
             }
         }
+    }
+
+    private void announceLottoResult(LottoResult lottoResult) {
+        outputView.printResultStringMessage();
+        for (int rank = LottoConstant.FIFTH_RANK; rank >= LottoConstant.FIRST_RANK; rank--) {
+            int rankCount = 0;
+            if (lottoResult.contains(rank)) {
+                rankCount = lottoResult.get(rank);
+            }
+            outputView.printLottoResult(rankCount, rank);
+        }
+    }
+
+    private void announceRevenue(PurchaseAmount purchaseAmount, float revenue) {
+        float earningRate = lottoService.getEarningRate(purchaseAmount, revenue);
+        outputView.printRevenue(earningRate);
     }
 }

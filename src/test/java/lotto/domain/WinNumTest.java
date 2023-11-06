@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import lotto.domain.WinNum;
 import lotto.enums.LottoEnum;
@@ -33,13 +33,5 @@ public class WinNumTest {
 
     }
 
-    @Test
-    void print() {
-        LottoEnum[] values = LottoEnum.values();
-        Arrays.sort(values, Comparator.reverseOrder());
-        for (LottoEnum value : values) {
-            System.out.println(value);
-        }
-    }
 
 }

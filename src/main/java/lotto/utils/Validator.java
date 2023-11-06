@@ -4,11 +4,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.constValue.ConstMessage.*;
+import static lotto.constValue.ConstNumber.*;
 
 public class Validator {
     public static void validateNullOrEmpty(String input) {
         if (input == null){
             throw new IllegalArgumentException(NULL_ERROR_MESSAGE);
+        }
+    }
+
+    public static void validatePriceRange(String input) {
+        if (Integer.parseInt(input) < LOTTO_PRICE ){
+            throw new IllegalArgumentException(PRICE_ERROR_MESSAGE);
         }
     }
 

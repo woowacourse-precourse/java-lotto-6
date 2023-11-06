@@ -25,7 +25,7 @@ public class Lottery {
 
     public void play(){
         ready();
-        //start();
+        start();
         //end();
     }
 
@@ -38,9 +38,7 @@ public class Lottery {
         printLottoCount(countOfLotto);
 
         for(int i=0;i<countOfLotto;i++){
-            Lotto newLotto = new Lotto(getRandomNumbers());
-            printLottoNumbers(newLotto);
-            lottos.add(newLotto);
+            setLottos(getRandomNumbers());
         }
 
         printWinningNumberPrompt();
@@ -48,14 +46,28 @@ public class Lottery {
 
         printBonusNumberPrompt();
         userInput.inputBonusNumber();
+
+        winningNumbers = new WinningNumber(
+                userInput.getWinningNumbers(),
+                userInput.getBonusNumber()
+        );
     }
 
     private void start(){
-
+        for(Lotto currentLotto:lottos){
+            int count = compareLotto(currentLotto);
+            System.out.println(count);
+        }
     }
 
     private void end(){
 
+    }
+
+    private void setLottos(List<Integer> randomNumbers){
+        Lotto newLotto = new Lotto(randomNumbers);
+        printLottoNumbers(newLotto);
+        lottos.add(newLotto);
     }
 
     public int compareLotto(Lotto lotto){

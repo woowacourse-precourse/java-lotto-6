@@ -24,4 +24,6 @@ public class ConstMessage {
     public static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 당첨 번호는 중복 될 수 없습니다.";
     public static final String LENGTH_ERROR_MESSAGE = "[ERROR] 당첨 번호는 6개 입력 되어야 합니다.";
 
+    public static final String PRICE_ERROR_MESSAGE = "[ERROR] 1000원 이상 입력 해야 합니다.";
+
 }

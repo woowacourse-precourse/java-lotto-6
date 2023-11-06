@@ -15,11 +15,11 @@ public class WinningNumber {
     }
 
     public Lotto getWinningNumbers(){
-        return this.winningNumbers;
+        return winningNumbers;
     }
 
     public int getBonusNumber(){
-        return this.bonusNumber;
+        return bonusNumber;
     }
 
 }

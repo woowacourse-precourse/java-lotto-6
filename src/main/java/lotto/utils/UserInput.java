@@ -55,6 +55,7 @@ public class UserInput {
     private void validateLottoPrice(String input){
         validateNullOrEmpty(input);
         validateIsNumber(input);
+        validatePriceRange(input);
     }
 
     private void validateWinningNumbers(String input){

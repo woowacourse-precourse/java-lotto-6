@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 
 public class Parser {
     private static final String DELIMITER = ",";
@@ -16,7 +17,7 @@ public class Parser {
         return amount;
     }
 
-    public static List<Integer> parseLottoNumbers(String input) {
+    public static Lotto parseLottoNumbers(String input) {
         String[] splitted = input.split(DELIMITER);
         Arrays.stream(splitted)
                 .forEach(InputValidator::validateNumberType);
@@ -26,7 +27,7 @@ public class Parser {
                 .collect(toList());
 
         InputValidator.validateLottoNumbers(numbers);
-        return numbers;
+        return new Lotto(numbers);
     }
 
     public static int parseBonusNumber(String input) {

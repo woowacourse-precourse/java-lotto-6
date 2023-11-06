@@ -33,4 +33,15 @@ public class Lotto {
     public boolean containLottoNumber(LottoNumber lottoNumber){
         return numbers.contains(lottoNumber);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder("[");
+        for(LottoNumber lottoNumber : numbers){
+            result.append(lottoNumber).append(", ");
+        }
+        result.delete(result.length()-2, result.length());
+        result.append("]");
+        return result.toString();
+    }
 }

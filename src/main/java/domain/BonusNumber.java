@@ -36,7 +36,7 @@ public class BonusNumber {
 				.allMatch(Character::isDigit);
 	}
 
-	public void validateWinningLottoNumberDuplicate(int bonusNumber, Lotto lotto) {
+	private void validateWinningLottoNumberDuplicate(int bonusNumber, Lotto lotto) {
 		if (isWinningLottoNumberDuplicate(bonusNumber, lotto)) {
 			throw new IllegalArgumentException("[ERROR] 당첨 번호에 없는 번호를 입력해주세요");
 		}

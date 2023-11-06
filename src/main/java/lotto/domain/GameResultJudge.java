@@ -39,27 +39,7 @@ public class GameResultJudge {
         int matchCount = countMatch(lotto, winLotto);
         boolean isMatchBonus = isMatchBonus(lotto, winLotto.getBonusNum());
 
-        if (matchCount == 6) {
-            return Rank.RANK_1;
-        }
-
-        if (matchCount == 5 && isMatchBonus) {
-            return Rank.RANK_2;
-        }
-
-        if (matchCount == 5) {
-            return Rank.RANK_3;
-        }
-
-        if (matchCount == 4) {
-            return Rank.RANK_4;
-        }
-
-        if (matchCount == 3) {
-            return Rank.RANK_5;
-        }
-
-        return Rank.UNRANK;
+        return Rank.getRank(matchCount, isMatchBonus);
     }
 
     private static boolean isMatchBonus(Lotto lotto, int bonus) {

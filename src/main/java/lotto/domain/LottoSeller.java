@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.randomnumber.RandomNumberPicker;
 
-public class LottoPublisher {
+public class LottoSeller {
 
     private final RandomNumberPicker randomNumberPicker;
 
-    public LottoPublisher(RandomNumberPicker randomNumberPicker) {
+    public LottoSeller(RandomNumberPicker randomNumberPicker) {
         this.randomNumberPicker = randomNumberPicker;
     }
 
-    public LottoTickets publish(LottoPurchaseAmount purchaseAmount) {
+    public LottoTickets purchase(LottoPurchaseAmount purchaseAmount) {
         return publish(purchaseAmount.calculatePurchasableQuantity());
     }
 

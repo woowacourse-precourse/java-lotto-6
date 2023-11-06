@@ -1,18 +1,16 @@
 package lotto.exception;
 
-import java.util.function.BiConsumer;
+import java.util.function.Function;
 import lotto.controller.ExceptionHandlingStrategy;
 import lotto.controller.LottoGameView;
-import lotto.service.LottoGameService;
 
 public class InfiniteRetryExceptionHandlingStrategy implements ExceptionHandlingStrategy {
+
     @Override
-    public void apply(LottoGameView lottoGameView, LottoGameService lottoGameService,
-                      BiConsumer<LottoGameView, LottoGameService> inputBehavior) {
+    public Object applyFunction(LottoGameView lottoGameView, Function<LottoGameView, Object> function) {
         while (true) {
             try {
-                inputBehavior.accept(lottoGameView, lottoGameService);
-                return;
+                return function.apply(lottoGameView);
             } catch (IllegalArgumentException e) {
                 lottoGameView.printException(e);
             }

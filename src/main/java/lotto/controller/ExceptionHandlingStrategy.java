@@ -1,9 +1,8 @@
 package lotto.controller;
 
-import java.util.function.BiConsumer;
-import lotto.service.LottoGameService;
+import java.util.function.Function;
 
 public interface ExceptionHandlingStrategy {
-    void apply(LottoGameView lottoGameView, LottoGameService lottoGameService,
-               BiConsumer<LottoGameView, LottoGameService> inputBehavior);
+
+    Object applyFunction(LottoGameView lottoGameView, Function<LottoGameView, Object> function);
 }

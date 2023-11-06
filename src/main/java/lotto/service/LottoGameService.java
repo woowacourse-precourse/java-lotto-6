@@ -3,9 +3,6 @@ package lotto.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.controller.dto.LottoBonusNumberCreateRequest;
-import lotto.controller.dto.LottoPurchaseRequest;
-import lotto.controller.dto.LottoWinningNumberCreateRequest;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonusNumber;
 import lotto.domain.LottoPrize;
@@ -17,19 +14,14 @@ public class LottoGameService {
 
     private final LottoGenerator lottoGenerator;
 
-    private LottoPurchase lottoPurchase;
-    private List<Lotto> lottoTickets;
-    private LottoWinningNumber lottoWinningNumber;
-    private LottoBonusNumber lottoBonusNumber;
-
     public LottoGameService(LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
     }
 
-    /**
-     * 메서드 호출 전 createLottoWinningNumber 메서드와 createLottoBonusNumber 메서드가 호출되어야 합니다.
-     */
-    public LottoWinningResult calculateLottoWinningResult() {
+    public LottoWinningResult calculateLottoWinningResult(
+            List<Lotto> lottoTickets,
+            LottoPurchase lottoPurchase, LottoWinningNumber lottoWinningNumber,
+            LottoBonusNumber lottoBonusNumber) {
         Map<LottoPrize, Integer> prizeCountMap = new HashMap<>();
         for (Lotto lottoTicket : lottoTickets) {
             LottoPrize lottoPrize = lottoTicket.prize(lottoWinningNumber, lottoBonusNumber);
@@ -38,20 +30,8 @@ public class LottoGameService {
         return new LottoWinningResult(lottoPurchase, prizeCountMap);
     }
 
-    public List<Lotto> createLottoPurchase(LottoPurchaseRequest lottoPurchaseRequest) {
-        lottoPurchase = new LottoPurchase(lottoPurchaseRequest.getPurchaseAmount());
-        return lottoTickets = lottoPurchase.purchase(lottoGenerator);
-    }
-
-    public void createLottoWinningNumber(LottoWinningNumberCreateRequest lottoWinningNumberCreateRequest) {
-        lottoWinningNumber = new LottoWinningNumber(lottoWinningNumberCreateRequest.getNumbers());
-    }
-
-    /**
-     * 메서드 호출 전 createLottoWinningNumber 메서드가 호출되어야 합니다.
-     */
-    public void createLottoBonusNumber(LottoBonusNumberCreateRequest lottoBonusNumberCreateRequest) {
-        lottoBonusNumber = new LottoBonusNumber(lottoWinningNumber, lottoBonusNumberCreateRequest.getBonusNumber());
+    public List<Lotto> purchaseLotto(LottoPurchase lottoPurchase) {
+        return lottoPurchase.purchase(lottoGenerator);
     }
 
 }

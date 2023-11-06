@@ -7,6 +7,9 @@ import lotto.controller.dto.LottoResponse;
 import lotto.controller.dto.LottoWinningNumberCreateRequest;
 import lotto.controller.dto.LottoWinningStatistics;
 import lotto.domain.Lotto;
+import lotto.domain.LottoBonusNumber;
+import lotto.domain.LottoPurchase;
+import lotto.domain.LottoWinningNumber;
 import lotto.domain.LottoWinningResult;
 import lotto.service.LottoGameService;
 
@@ -23,45 +26,57 @@ public class LottoGameController {
     }
 
     public void run() {
-        purchaseLotto();
-        createLottoWinningNumber();
-        createLottoBonusNumber();
-        printLottoWinningStatistics();
+        LottoPurchase lottoPurchase = purchaseLotto();
+        List<Lotto> lottoTickets = createLotto(lottoPurchase);
+        LottoWinningNumber lottoWinningNumber = createLottoWinningNumber();
+        LottoBonusNumber lottoBonusNumber = createLottoBonusNumber(lottoWinningNumber);
+        printLottoWinningStatistics(lottoTickets, lottoPurchase, lottoWinningNumber, lottoBonusNumber);
     }
 
-    private void printLottoWinningStatistics() {
-        LottoWinningResult lottoWinningResult = lottoGameService.calculateLottoWinningResult();
+    private List<Lotto> createLotto(LottoPurchase lottoPurchase) {
+        List<Lotto> lottoTickets = lottoGameService.purchaseLotto(lottoPurchase);
+        List<LottoResponse> lottoResponses = lottoTickets.stream()
+                .map(LottoResponse::from)
+                .toList();
+        lottoGameView.printPurchasedTickets(lottoResponses);
+        return lottoTickets;
+    }
+
+    private void printLottoWinningStatistics(
+            List<Lotto> lottoTickets,
+            LottoPurchase lottoPurchase,
+            LottoWinningNumber lottoWinningNumber,
+            LottoBonusNumber lottoBonusNumber) {
+        LottoWinningResult lottoWinningResult = lottoGameService.calculateLottoWinningResult(
+                lottoTickets, lottoPurchase, lottoWinningNumber, lottoBonusNumber);
         lottoGameView.printWinningStatistics(LottoWinningStatistics.from(lottoWinningResult));
     }
 
-    private void createLottoBonusNumber() {
-        exceptionHandlingStrategy.apply(lottoGameView, lottoGameService,
-                (view, service) -> {
+    private LottoBonusNumber createLottoBonusNumber(LottoWinningNumber lottoWinningNumber) {
+        return (LottoBonusNumber) exceptionHandlingStrategy.applyFunction(lottoGameView,
+                view -> {
                     LottoBonusNumberCreateRequest lottoBonusNumberCreateRequest =
                             view.inputLottoBonusNumberCreateRequest();
-                    service.createLottoBonusNumber(lottoBonusNumberCreateRequest);
+                    return new LottoBonusNumber(lottoWinningNumber,
+                            lottoBonusNumberCreateRequest.getBonusNumber());
                 });
     }
 
-    private void createLottoWinningNumber() {
-        exceptionHandlingStrategy.apply(lottoGameView, lottoGameService,
-                (view, service) -> {
+    private LottoWinningNumber createLottoWinningNumber() {
+        return (LottoWinningNumber) exceptionHandlingStrategy.applyFunction(lottoGameView,
+                view -> {
                     LottoWinningNumberCreateRequest lottoWinningNumberCreateRequest =
                             view.inputLottoWinningNumberCreateRequest();
-                    service.createLottoWinningNumber(lottoWinningNumberCreateRequest);
+                    return new LottoWinningNumber(lottoWinningNumberCreateRequest.getNumbers());
                 });
     }
 
 
-    private void purchaseLotto() {
-        exceptionHandlingStrategy.apply(lottoGameView, lottoGameService,
-                (view, service) -> {
+    private LottoPurchase purchaseLotto() {
+        return (LottoPurchase) exceptionHandlingStrategy.applyFunction(lottoGameView,
+                view -> {
                     LottoPurchaseRequest lottoPurchaseRequest = view.inputPurchaseRequest();
-                    List<Lotto> lottoTickets = service.createLottoPurchase(lottoPurchaseRequest);
-                    List<LottoResponse> lottoResponses = lottoTickets.stream()
-                            .map(LottoResponse::from)
-                            .toList();
-                    view.printPurchasedTickets(lottoResponses);
+                    return new LottoPurchase(lottoPurchaseRequest.getPurchaseAmount());
                 });
     }
 

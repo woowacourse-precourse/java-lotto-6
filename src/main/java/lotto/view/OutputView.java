@@ -38,9 +38,8 @@ public class OutputView {
         }
     }
 
-    public static void printTotalReturnRate(double returnRate){
-        String formatReturnRate = String.format("%,.1f", returnRate);
-        System.out.println("총 수익률은 "+formatReturnRate+"%입니다.");
+    public static void printTotalReturnRate(String returnRate){
+        System.out.println("총 수익률은 "+returnRate+"%입니다.");
     }
 
     public static void errorMessage(String s){

@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.constant.NumberConstant;
 import lotto.model.*;
 
 import java.util.ArrayList;
@@ -44,9 +43,9 @@ public class GameService {
         return matchingCount.getMatchingCounts();
     }
 
-    public double calculateTotalReturnRate(){
-        double profit = CalculateTotal.profit(matchingCount.getMatchingCounts());
-        return CalculateTotal.returnRate(profit, purchaseAmount.getPurchaseAmount());
+    public String calculateTotalReturnRate(){
+        double profit = Calculate.totalProfit(matchingCount.getMatchingCounts());
+        return Calculate.totalReturnRate(profit, purchaseAmount.getPurchaseAmount());
     }
 
 }

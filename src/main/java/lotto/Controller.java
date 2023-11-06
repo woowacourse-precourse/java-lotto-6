@@ -77,7 +77,7 @@ public class Controller {
         OutputView.winningStatisticMessage();
         List<Integer> matchingCounts = gameService.calculateMatchingCount();
         OutputView.printMatchingCounts(matchingCounts);
-        double returnRate = gameService.calculateTotalReturnRate();
+        String returnRate = gameService.calculateTotalReturnRate();
         OutputView.printTotalReturnRate(returnRate);
     }
 }

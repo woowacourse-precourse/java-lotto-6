@@ -19,7 +19,7 @@ public enum Statistic {
             return "5개 일치 (1,500,000원) - " + count + "개";
         }
     },
-    BONUS(5, 3_000_000){
+    BONUS(5, 30_000_000){
         public String printCount(int count){
             return "5개 일치, 보너스 볼 일치 (30,000,000원) - " + count + "개";
         }

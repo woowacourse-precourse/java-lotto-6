@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MatchingCount {
 
-    private List<Integer> matchingCounts;
+    private final List<Integer> matchingCounts;
 
     public MatchingCount(){
         matchingCounts = new ArrayList<>(Collections.nCopies(Statistic.values().length,0));

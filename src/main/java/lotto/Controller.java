@@ -14,7 +14,7 @@ public class Controller {
 
     public void run() {
         int purchaseAmount = inputPurchaseAmount();
-        printIssuedLotto(purchaseAmount/ NumberConstant.LOTTO_ONE_PRICE);
+        printIssuedLotto(purchaseAmount/NumberConstant.LOTTO_ONE_PRICE);
         inputWinningNumbers();
         inputBonusNumber();
         printWinningStatistics();
@@ -37,7 +37,7 @@ public class Controller {
 
     private void printIssuedLotto(int issuedLottoCount){
         OutputView.printIssuedLottoMessage(issuedLottoCount);
-        List<Lotto> issuedLotto = gameService.createIssuedLotto();
+        List<Lotto> issuedLotto = gameService.createIssuedLotto(issuedLottoCount);
         for(Lotto lotto : issuedLotto){
             OutputView.printIssuedLotto(lotto.getSortedNumbers());
         }

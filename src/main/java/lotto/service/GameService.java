@@ -19,8 +19,7 @@ public class GameService {
         return purchaseAmount.getPurchaseAmount();
     }
 
-    public List<Lotto> createIssuedLotto(){
-        int issuedLottoCount = purchaseAmount.getPurchaseAmount()/ NumberConstant.LOTTO_ONE_PRICE;
+    public List<Lotto> createIssuedLotto(int issuedLottoCount){
         issuedLotto = new ArrayList<>();
         for(int i=1; i<=issuedLottoCount; i++){
             issuedLotto.add(new Lotto());

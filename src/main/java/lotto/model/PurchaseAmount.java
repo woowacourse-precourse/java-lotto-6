@@ -5,7 +5,7 @@ import lotto.constant.NumberConstant;
 
 public class PurchaseAmount {
 
-    private int purchaseAmount;
+    private final int purchaseAmount;
 
     public PurchaseAmount(String input){
         int tempPurchaseAmount = notNumber(input);

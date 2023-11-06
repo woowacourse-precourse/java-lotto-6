@@ -49,7 +49,7 @@ public class Lotto {
 
     private void outOfRangeDetail(int number){
         if(number < NumberConstant.LOTTO_NUMBER_MIN || number > NumberConstant.LOTTO_NUMBER_MAX){
-            throw  new IllegalArgumentException(ErrorMessage.OUT_RANGE_WINNING_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.OUT_RANGE_WINNING_NUMBER);
         }
     }
 

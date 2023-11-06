@@ -8,7 +8,7 @@ import lotto.controller.handler.PurchaseAmountHandler;
 import lotto.controller.handler.WinningNumberHandler;
 import lotto.model.Lotto;
 import lotto.model.LottoManager;
-import lotto.model.WinningStatistics;
+import lotto.utils.Message;
 import lotto.view.View;
 
 public class controller {
@@ -25,34 +25,48 @@ public class controller {
 
     public void play() {
         view.displayPurchaseAmountMessage();
-        int lottoCount = getLottoCount();
-
-        lottoManager.issueLottos(lottoCount);
-        Iterator<Lotto> lottoIterator = lottoManager.getLottoListIterator();
-        view.displayRandomLottos(lottoIterator);
+        int purchaseAmount = getPurchaseAmount();
+        displayIssuedLottoNumbers(purchaseAmount);
 
         view.displayWinningNumberMessage();
-        Map<Integer, Integer> winningNumbers = getWinningNumbers();
-        lottoManager.setWinningNumbers(winningNumbers);
-
-        int bonusNumber = getBonusNumber();
-        lottoManager.isDuplicatedBonusNumber(bonusNumber);
-
-        view.displayWinningStatisticsMessage();
-        WinningStatistics winningStatistics = getWinningStatistics();
-        view.displayWinningStatistics(winningStatistics);
-
+        setWinningNumbers();
+        
+        displayGameResult();
     }
 
+    private void setWinningNumbers() {
+        Map<Integer, Integer> sequencedNumbers = getSequencedNumbers();
+        int bonusNumber = getBonusNumber();
+        isBonusNumberDuplicated(sequencedNumbers, bonusNumber);
+        lottoManager.setWinningNumbers(sequencedNumbers, bonusNumber);
+    }
 
-    private int getLottoCount() {
+    private void isBonusNumberDuplicated(Map<Integer, Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.containsKey(bonusNumber)) {
+            throw new IllegalArgumentException(Message.DUPLICATED_NUMBER_EXCEPTION_MESSAGE);
+        }
+    }
+
+    private void displayGameResult() {
+        view.displayWinningStatisticsMessage();
+        String statistics = lottoManager.getStatistics();
+        view.displayWinningStatistics(statistics);
+    }
+
+    private void displayIssuedLottoNumbers(int purchaseAmount) {
+        lottoManager.issueLottos(purchaseAmount);
+        Iterator<Lotto> lottoIterator = lottoManager.getLottoListIterator();
+        view.displayLottos(lottoIterator);
+    }
+
+    private int getPurchaseAmount() {
         String purchaseAmount = view.getPurchaseAmount();
         purchaseNumberHandler = new PurchaseAmountHandler(purchaseAmount);
         purchaseNumberHandler.handle();
         return purchaseNumberHandler.getHandledResult();
     }
 
-    private Map<Integer, Integer> getWinningNumbers() {
+    private Map<Integer, Integer> getSequencedNumbers() {
         String winningNumbers = view.getWinningNumbers();
         winningNumberHandler = new WinningNumberHandler(winningNumbers);
         winningNumberHandler.handle();
@@ -64,9 +78,5 @@ public class controller {
         bonusNumberHandler = new BonusNumberHandler(bonusNumber);
         bonusNumberHandler.handle();
         return bonusNumberHandler.getHandledResult();
-    }
-
-    private WinningStatistics getWinningStatistics() {
-        return lottoManager.getWinningStatistics();
     }
 }

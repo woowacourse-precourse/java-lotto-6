@@ -35,10 +35,10 @@ public class LottoValidatorImpl implements LottoValidator {
 
 	private int validatelottoRange(String lottoNumber) {
 		int parseNumber = parser.toIntPaser(lottoNumber);
-		if (parseNumber < LottoRange.START.getNumber()) {
+		if (parseNumber < LottoRange.START.range()) {
 			ErrorOperation.UNDER_ERROR.apply();
 		}
-		if (parseNumber > LottoRange.END.getNumber()) {
+		if (parseNumber > LottoRange.END.range()) {
 			ErrorOperation.OVER_ERROR.apply();
 		}
 		return parseNumber;

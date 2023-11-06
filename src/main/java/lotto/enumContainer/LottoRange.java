@@ -11,7 +11,7 @@ public enum LottoRange {
 		this.number = number;
 	}
 
-	public int getNumber() {
+	public int range() {
 		return this.number;
 	}
 

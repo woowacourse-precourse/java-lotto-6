@@ -11,7 +11,7 @@ import static lotto.constants.ErrorMessage.NOT_SIX_NUMBERS;
 import static lotto.constants.MarksAndConstants.COMMA;
 import static lotto.constants.MarksAndConstants.MAX_LOTTO_NUM;
 import static lotto.constants.MarksAndConstants.MIN_LOTTO_NUM;
-import static lotto.constants.MarksAndConstants.NEEDED_LOTTO_NUM_COUNT;
+import static lotto.constants.MarksAndConstants.NEEDED_LOTTO_NUM;
 import static lotto.constants.MarksAndConstants.SINGLE_LOTTO_PRICE;
 
 import java.util.HashSet;
@@ -70,7 +70,7 @@ public class Validation {
         }
     }
     public static void validateSixLottoNumbers(List<Integer> numbers) {
-        if (numbers.size() != NEEDED_LOTTO_NUM_COUNT) {
+        if (numbers.size() != NEEDED_LOTTO_NUM) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT+NOT_SIX_NUMBERS));
         }
     }

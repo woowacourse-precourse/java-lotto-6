@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.constants.MarksAndConstants.MAX_LOTTO_NUM;
+import static lotto.constants.MarksAndConstants.MIN_LOTTO_NUM;
+import static lotto.constants.MarksAndConstants.NEEDED_LOTTO_NUM;
 import static lotto.constants.MarksAndConstants.START_INDEX;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -20,10 +23,6 @@ public class Lotto {
         Validation.validateSixLottoNumbers(numbers);
         Validation.validateDuplicatedSixNumber(numbers);
     }
-
-    public List<Integer> getWinningNumbers() {
-        return numbers;
-    }
     public static List<List<Integer>> getManyLotto(int count) {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = START_INDEX; i < count; i++) {
@@ -37,6 +36,9 @@ public class Lotto {
         return oneLotto;
     }
     private static List<Integer> getRandomNum() {
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, NEEDED_LOTTO_NUM);
+    }
+    public List<Integer> getWinningNumbers() {
+        return numbers;
     }
 }

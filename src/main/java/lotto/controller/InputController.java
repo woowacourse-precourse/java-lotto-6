@@ -15,4 +15,9 @@ public class InputController {
         return readLine();
     }
 
+    public static String inputLottoBonusNumber() {
+        printInputLottoBonusNumberPhrase();
+        return readLine();
+    }
+
 }

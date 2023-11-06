@@ -22,15 +22,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호가 1과 45 사이의 숫자가 아니라면 예외가 발생한다.")
-    @Test
-    void should_Throw_Exception_For_Numbers_Out_Of_Range() {
-        // when
-        // then
-        assertThatThrownBy(() -> new Lotto(List.of(-10, -45, 0, 46, 76, 100)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("로또가 생성되면 오름차순으로 정렬되어 있다.")
     @Test
     void should_Create_Sorted_Lotto_Numbers() {

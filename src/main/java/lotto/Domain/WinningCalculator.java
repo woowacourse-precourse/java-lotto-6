@@ -1,6 +1,8 @@
 package lotto.Domain;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Predicate;
 import lotto.Constants.LottosConstants;
 
 public class WinningCalculator {
@@ -19,5 +21,11 @@ public class WinningCalculator {
         }};
 
         totalPrizeMoney = 0;
+    }
+
+    private int getMatchNumbers(List<Integer> lotto, List<Integer> winningNumbers){
+        return (int) lotto.stream()
+                .filter(number -> winningNumbers.stream().anyMatch(Predicate.isEqual(number)))
+                .count();
     }
 }

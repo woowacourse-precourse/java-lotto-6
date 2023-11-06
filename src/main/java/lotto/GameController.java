@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.WinningNumber;
 import lotto.view.BonusNumberInputView;
 import lotto.view.LottoPurchaseInputView;
 import lotto.view.WinningNumbersInputView;
@@ -13,6 +14,9 @@ public class GameController {
         List<Integer> winningNumbers = WinningNumbersInputView.getWinningNumbers();
         // 보너스 번호를 입력 받는다.
         int bonusNumber = BonusNumberInputView.getBonusNumber();
-        
+
+        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
+
+
     }
 }

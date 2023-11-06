@@ -14,15 +14,23 @@ public class WinningResult {
 
         for (Lotto lotto : lottoTickets.getLottoTickets()) {
             Rank rank = winningLotto.match(lotto);
-            if(rank == null) continue;
+            if (rank == null) continue;
             winningResult.put(rank, winningResult.getOrDefault(rank, 0) + 1);
         }
     }
 
     public int getCount(Rank rank) {
-        if(winningResult.get(rank) == null) {
+        if (winningResult.get(rank) == null) {
             return INITIAL_NUMBER;
         }
         return winningResult.get(rank);
+    }
+
+    public int calculateTotalAmount() {
+        return 0;
+    }
+
+    public Map<Rank, Integer> getWinningResult() {
+        return this.winningResult;
     }
 }

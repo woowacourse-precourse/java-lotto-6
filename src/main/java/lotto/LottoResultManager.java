@@ -1,6 +1,10 @@
 package lotto;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoResultManager {
@@ -22,7 +26,7 @@ public class LottoResultManager {
         return resultMap.put(lottoResult, resultMap.get(lottoResult) + 1);
     }
 
-    private long calculateLottoWinnings(){
+    private long calculateLottoWinnings() {
         long lottoWinnings = 0;
         for (LottoResult lottoResult : resultMap.keySet()) {
             int lottoResultCount = resultMap.get(lottoResult);
@@ -31,22 +35,25 @@ public class LottoResultManager {
         return lottoWinnings;
     }
 
-    private int calculateLottoCount(){
+    private int calculateLottoCount() {
         return resultMap.values()
                 .stream()
                 .reduce(Integer::sum)
                 .orElse(ZERO_COUNT);
     }
 
-    public double calculateRateOfReturn(int roundDecimalDigit) {
+    public String calculateRateOfReturn(int returnDecimalDigit) {
         double lottoCount = calculateLottoCount();
-        if( lottoCount == ZERO_COUNT ){
-            return ZERO_COUNT;
+        if (lottoCount == ZERO_COUNT) {
+            return Integer.toString(ZERO_COUNT);
         }
         double lottoTotalBuyPrice = lottoCount * Lotto.PRICE;
         long lottoWinnings = calculateLottoWinnings();
 
-        double percentage = CalculateUtil.calculatePercentage(lottoWinnings, lottoTotalBuyPrice);
-        return CalculateUtil.round(percentage, roundDecimalDigit);
+        return BigDecimal.valueOf(lottoWinnings)
+                .divide(BigDecimal.valueOf(lottoTotalBuyPrice), MathContext.DECIMAL64)
+                .multiply(BigDecimal.valueOf(100))
+                .setScale(returnDecimalDigit, RoundingMode.HALF_UP)
+                .toString();
     }
 }

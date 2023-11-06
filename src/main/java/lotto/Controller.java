@@ -25,16 +25,16 @@ public class Controller {
 
     public void tempInputOutputController() {
         outputView outputview = new outputView();
-        try{
+        try {
             int purchase = purchaseLotto();
-            User user = new User(buyLottos(purchase/1000));
+            User user = new User(buyLottos(purchase / 1000));
             Lotto inputWinningNumber = outputWinningStatistics();
             int bonusNumber = getBonus();
-            wonTheLotto wonTheLotto = new wonTheLotto(inputWinningNumber,bonusNumber);
+            wonTheLotto wonTheLotto = new wonTheLotto(inputWinningNumber, bonusNumber);
             Result result = new Result(user.confirmResult(wonTheLotto));
             outputResult(result);
 
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputview.printError(e.getMessage());
         }
     }
@@ -43,8 +43,25 @@ public class Controller {
         InputView inputView = new InputView();
         String inputPurchase = inputView.howMuchBuyLotto();
         int purchase = converterNumber.convert(inputPurchase);
-        // 추후에 이 값이 유효한지 확인해보는 과정 넣기
+        validatePurchase(purchase);
         return purchase;
+    }
+
+    private void validatePurchase(int purchase){
+        validatePurchaseUnit(purchase);
+        validateNoMoney(purchase);
+    }
+
+    private void validatePurchaseUnit(int purchase) {
+        if (purchase % 1000 != 0) {
+            throw new IllegalArgumentException(String.format("금액은 1000원 단위로 입력해야합니다."));
+        }
+    }
+
+    private void validateNoMoney(int purchase){
+        if (purchase < 0){
+            throw new IllegalArgumentException(String.format("로또를 구매할 수 없는 금액입니다."));
+        }
     }
 
     private List<Lotto> buyLottos(int count) {

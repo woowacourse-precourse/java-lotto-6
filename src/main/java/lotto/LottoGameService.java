@@ -54,4 +54,9 @@ public class LottoGameService {
         return LottoRank.determineRank(getCollectNumberCount(purchasedLotto, winningLotto),
                 isContainBonusNumber(purchasedLotto, bonusNumber));
     }
+
+    public void updateWinningCount(LottoRank lottoRank) {
+        int currentCount = lottoRakingMap.getOrDefault(lottoRank, 0);
+        lottoRakingMap.put(lottoRank, currentCount + 1);
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static java.lang.Integer.parseInt;
+import static lotto.utils.ErrorMessage.IS_LOTTO_NUMBER_DIGIT;
 import static lotto.utils.Message.*;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -26,9 +27,18 @@ public class InputView {
 
     public Lotto inputWinningNumbers() {
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE.getMessage());
-        List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        return new Lotto(winningNumbers);
+        while (true) {
+            try {
+                List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+                return new Lotto(winningNumbers);
+            }  catch (NumberFormatException e) {
+                System.out.println(IS_LOTTO_NUMBER_DIGIT.getMessage());
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

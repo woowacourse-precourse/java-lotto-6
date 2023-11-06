@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static java.util.Collections.sort;
+import static lotto.utils.ErrorMessage.*;
 
 import java.util.List;
 
@@ -20,13 +21,13 @@ public class Lotto {
 
     private void isLottoNumberRangeValid(List<Integer> numbers) {
         if (numbers.get(numbers.size()-1) > 45 || numbers.get(0) < 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(IS_INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private void isLottoSizeValid(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(IS_INVALID_LOTTO_SIZE.getMessage());
         }
     }
 

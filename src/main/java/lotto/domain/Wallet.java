@@ -4,8 +4,8 @@ import static lotto.domain.LottoNumbersMaker.getLottoNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.LottoConstant;
-import lotto.Message;
+import lotto.constant.LottoConstant;
+import lotto.constant.Message;
 
 public class Wallet {
 

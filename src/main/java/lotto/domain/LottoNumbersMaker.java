@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.LottoConstant;
+import lotto.constant.LottoConstant;
 
 public class LottoNumbersMaker {
 

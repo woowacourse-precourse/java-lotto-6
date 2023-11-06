@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.constant.Message;
 import lotto.domain.Lotto;
 import lotto.domain.Wallet;
 import lotto.domain.WinnerNumbers;

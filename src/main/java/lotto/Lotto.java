@@ -1,5 +1,8 @@
 package lotto;
 
+import static java.lang.reflect.AccessibleObject.setAccessible;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -16,5 +19,14 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     // TODO: 추가 기능 구현
+    public void setNumber(ArrayList<Integer> numbers) {
+        this.numbers.clear();
+        this.numbers.addAll(numbers);
+    }
+
 }

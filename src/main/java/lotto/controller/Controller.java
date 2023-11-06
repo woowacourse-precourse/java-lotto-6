@@ -1,10 +1,12 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoPlayer;
 import lotto.domain.LottoResult;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -37,11 +39,15 @@ public class Controller {
 	private void createWinningLotto() {
 		OutputView.askWinningNumbers();
 
-		String winningNumbers = InputView.getUserInput();
+		String numbers = InputView.getUserInput();
+
+		WinningNumbers winningNumbers = new WinningNumbers(numbers);
 
 		OutputView.askBonusNumber();
 
-		String bonusNumber = InputView.getUserInput();
+		String number = InputView.getUserInput();
+
+		BonusNumber bonusNumber = new BonusNumber(number);
 
 		winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 	}

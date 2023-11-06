@@ -21,10 +21,10 @@ class WinningLottoTest {
 		String numbers = "1,2,3,4,5,6";
 		String bonusNumber = "44";
 
-		winningLotto = new WinningLotto(numbers, bonusNumber);
+		winningLotto = new WinningLotto(new WinningNumbers(numbers), new BonusNumber(bonusNumber));
 
-		assertThat(winningLotto.getWinningNumbers().getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
-		assertThat(winningLotto.getWinningNumbers()).isInstanceOf(Lotto.class);
+		assertThat(winningLotto.getWinningNumbers().getWinningNumbers().getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+		assertThat(winningLotto.getWinningNumbers()).isInstanceOf(WinningNumbers.class);
 
 		assertThat(winningLotto.getBonusNumber().getBonusNumber()).isEqualTo(44);
 		assertThat(winningLotto.getBonusNumber()).isInstanceOf(BonusNumber.class);
@@ -36,7 +36,7 @@ class WinningLottoTest {
 		String numbers = "1,2,3,4,5,6";
 		String bonusNumber = "6";
 
-		exception = assertThrows(IllegalArgumentException.class, () -> winningLotto = new WinningLotto(numbers, bonusNumber));
+		exception = assertThrows(IllegalArgumentException.class, () -> winningLotto = new WinningLotto(new WinningNumbers(numbers), new BonusNumber(bonusNumber)));
 
 		assertEquals(exception.getMessage(), OVERLAPPED_BONUS_NUMBER.getMessage());
 	}

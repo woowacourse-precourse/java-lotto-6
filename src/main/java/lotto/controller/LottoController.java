@@ -1,12 +1,12 @@
 package lotto.controller;
 
-import lotto.domain.Lottos;
 import lotto.domain.Payment;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 
-public class LottosController {
+public class LottoController {
 
-    private Lottos lottos;
+    private LottoService lottoService = new LottoService();
 
     public void run() {
         buyTickets();
@@ -15,7 +15,7 @@ public class LottosController {
     private void buyTickets() {
         try {
             Payment payment = new Payment(InputView.readPayment());
-            this.lottos = Lottos.from(payment.getLottoCount());
+            lottoService.init(payment.getLottoCount());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             buyTickets();

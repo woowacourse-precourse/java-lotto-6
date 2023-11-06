@@ -12,7 +12,7 @@ public enum Price {
     }
 
     public int calculate(int money){
-        if(money % amount != 0){
+        if(money == 0 || money % amount != 0){
             throw new IllegalArgumentException(exceptionMessage);
         }
         return money / amount;

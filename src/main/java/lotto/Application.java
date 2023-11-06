@@ -10,11 +10,14 @@ import lotto.io.MoneyReader;
 
 public class Application {
     public static void main(String[] args) {
-        ClientLottoNumber lottoNumberGenerator =new ClientLottoNumber();
-        Lotto lotto =new Lotto(lottoNumberGenerator.NumberGenerator());
+        //ClientLottoNumber lottoNumberGenerator =new ClientLottoNumber();
+        //Lotto lotto =new Lotto(lottoNumberGenerator.NumberGenerator());
+        System.out.println("보너스 번호 입력");
         BonusNumberReader bonusNumber = new BonusNumberReader();
         bonusNumber.bonusnumber();
+        System.out.println("소유하고있는 돈입력");
         LottoQuantity.Quantity();
+        System.out.println("로또번호입력");
         LottoNumberReader lottoNumberReader=new LottoNumberReader();
         lottoNumberReader.lotto_reader();
 

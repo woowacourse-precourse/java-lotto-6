@@ -1,7 +1,7 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.NumberException;
+import lotto.exception.MoneyAmountException;
 import lotto.exception.ValueException;
 
 public class MoneyReader {
@@ -10,7 +10,7 @@ public class MoneyReader {
                 String value = Console.readLine();
                 ValueException.validateNumber(value);
                 int number = Integer.parseInt(value);
-                NumberException.money_reader(number);
+                MoneyAmountException.money_reader(number);
                 return number;
             } catch (Exception e) {
                 System.out.println(e.getMessage());

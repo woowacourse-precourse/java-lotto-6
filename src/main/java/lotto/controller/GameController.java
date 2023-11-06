@@ -1,2 +1,5 @@
-package lotto.controller;public class GameController {
+package lotto.controller;
+
+public class GameController {
+
 }

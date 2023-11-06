@@ -5,7 +5,6 @@ import java.util.List;
 
 public class LottoRepository {
     private List<Lotto> lottos;
-    private LottoRank lottoRank;
     private int[] ranks = new int[6];
     private Lotto winningLotto;
     private int bonusNum;
@@ -45,7 +44,7 @@ public class LottoRepository {
     }
 
     private boolean calculateRank(Lotto lotto) {
-        int rank = lottoRank.isRank(lotto, winningLotto, bonusNum);
+        int rank = LottoRank.isRank(lotto, winningLotto, bonusNum);
         if (rank == -1) {
             System.out.println(RANK_ERROR_MESSAGE);
             return false;

@@ -6,15 +6,9 @@ import java.util.List;
 
 public class Input {
     public static int purchaseAmount() throws IllegalArgumentException {
-        int amount = 0;
-
-        try {
-            amount = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException();
-        }
-
-        return amount;
+        String amount = Console.readLine();
+        Exception.NotNumberException(amount);
+        return Integer.parseInt(amount);
     }
 
     public static List<Integer> winNumbers() {

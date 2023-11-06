@@ -35,6 +35,6 @@ public enum Prize {
                 return prize;
             }
         }
-        throw new IllegalArgumentException(count + "에 해당하는 상수타입이 없습니다.");
+        throw new IllegalArgumentException("[ERROR] " + count + "에 해당하는 상수타입이 없습니다.");
     }
 }

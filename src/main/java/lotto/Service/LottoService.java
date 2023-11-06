@@ -20,13 +20,11 @@ public class LottoService {
         return amount / 1000;
     }
 
-    //로또 번호 생성 함수
     public List<Integer> createLottoNumber() {
         return Randoms.pickUniqueNumbersInRange(
                 MIN_LOTTO_NUMBER.getNumber(), MAX_LOTTO_NUMBER.getNumber(), LOTTO_NUMBER_COUNT.getNumber());
     }
 
-    // 생성된 로또 번호 리스트와 당첨번호를 비교하는 기는
     public int sameNumberCount(Lotto lotto, Lotto correct) {
         int count = 0;
         for (int number : correct.getNumbers()) {
@@ -57,7 +55,7 @@ public class LottoService {
 
     public void ValidateBonus(int bonus, Lotto winNumber) {
         if (bonus > MAX_LOTTO_NUMBER.getNumber() || bonus < MIN_LOTTO_NUMBER.getNumber()) {
-            throw new IllegalArgumentException(LottoError.NumberRange.getErrorMessage());
+            throw new IllegalArgumentException();
         }
         if (winNumber.getNumbers().contains(bonus)) {
             throw new IllegalStateException(LottoError.BonusFormat.getErrorMessage());

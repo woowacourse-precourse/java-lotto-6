@@ -36,6 +36,7 @@ public class LottoController {
     }
 
     private void LottoResult() {
+        ResultInit();
         for (Lotto lotto : lottos) {
             insertResult(lotto, winNumber);
         }
@@ -51,8 +52,10 @@ public class LottoController {
                 bonus = Integer.parseInt(inputView.bonusNumber());
                 lottoService.ValidateBonus(bonus, winNumber);
                 validateInput = true;
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                System.err.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(LottoError.NumberRange.getErrorMessage());
+            } catch (IllegalStateException e){
+                System.out.println(e.getMessage());
             }
         }
         System.out.println();
@@ -72,7 +75,7 @@ public class LottoController {
             winNumber = new Lotto(numbers);
             return true;
         } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return false;
     }
@@ -85,7 +88,7 @@ public class LottoController {
                 int value = Integer.parseInt(number);
                 numbers.add(value);
             } catch (NumberFormatException e) {
-                System.err.println(LottoError.NumberFormat.getErrorMessage());
+                System.out.println(LottoError.NumberFormat.getErrorMessage());
             }
         }
         return numbers;
@@ -108,7 +111,7 @@ public class LottoController {
                 count = lottoService.countingLottoByAmount(amount);
                 validInput = true;
             } catch (IllegalArgumentException e) {
-                System.err.println(LottoError.AmountFormat.getErrorMessage());
+                System.out.println(LottoError.AmountFormat.getErrorMessage());
             }
         }
         System.out.println();
@@ -117,7 +120,6 @@ public class LottoController {
     }
 
     public void insertResult(Lotto lotto, Lotto winNumbers) {
-        ResultInit();
         int CorrectCount = lottoService.sameNumberCount(lotto, winNumbers);
         if (CorrectCount >= MIN_PRIZE_CORRECT_COUNT.getNumber()) {
             String prizeCount = String.valueOf(CorrectCount);
@@ -130,7 +132,7 @@ public class LottoController {
     }
 
     private void ResultInit() {
-        winResult = new HashMap<>();
+        winResult = new TreeMap<>(Collections.reverseOrder());
         winResult.put(Prize.THREE_CORRECT, 0);
         winResult.put(Prize.FOUR_CORRECT, 0);
         winResult.put(Prize.FIVE_CORRECT_NOT_BONUS, 0);

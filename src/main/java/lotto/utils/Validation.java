@@ -40,4 +40,10 @@ public class Validation {
             ExceptionMessages.INPUT_COUNT.throwException(count);
         }
     }
+
+    public static void validateBonusNumberNotInWinningNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            ExceptionMessages.DUPLICATED_NUMBER_IN_LIST.throwException();
+        }
+    }
 }

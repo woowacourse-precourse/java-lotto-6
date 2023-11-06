@@ -3,6 +3,7 @@ package lotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.WinningNumber;
 import lotto.validator.LottoNumberValidator;
+import lotto.validator.Validator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ public class BonusNumberTest {
     @ValueSource(strings = {"a",","," "})
     void 문자_입력_예외_테스트(String input) {
         Assertions.assertThatThrownBy(
-                () -> LottoNumberValidator.validateBonusNumber(input)
+                () -> Validator.validateBonusNumberForm(input)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 

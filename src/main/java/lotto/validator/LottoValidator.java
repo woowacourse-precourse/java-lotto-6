@@ -1,8 +1,6 @@
 package lotto.validator;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.exception.ExceptionMessage;
 import lotto.model.Constants;
 
@@ -18,7 +16,6 @@ public class LottoValidator extends Validator {
                 .map(Integer::parseInt)
                 .toList();
         validateCount(lottoNumbers.size());
-        validateDuplicated(lottoNumbers);
         lottoNumbers.forEach(this::validateLottoRange);
     }
 
@@ -31,13 +28,6 @@ public class LottoValidator extends Validator {
     private void validateCount(int size) {
         if (size != Constants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_COUNT_EXCEPTION.getMessage());
-        }
-    }
-
-    private void validateDuplicated(List<Integer> lottoNumbers) {
-        Set<Integer> unduplicatedNumbers = new HashSet<>(lottoNumbers);
-        if (unduplicatedNumbers.size() != lottoNumbers.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_EXCEPTION.getMessage());
         }
     }
 }

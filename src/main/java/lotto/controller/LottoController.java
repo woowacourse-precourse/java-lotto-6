@@ -7,9 +7,11 @@ import lotto.domain.lotto.LottoNumbersGenerator;
 import lotto.domain.lotto.WinningLottoNumbers;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 import lotto.domain.lotto.strategy.PickRandomNumbersStrategy;
+import lotto.domain.prize.Prize;
 import lotto.domain.shop.LottoShop;
 import lotto.domain.win.WinStatesCounter;
 import lotto.dto.LottoNumbersDTO;
+import lotto.dto.WinStateInformationDTO;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -37,6 +39,7 @@ public class LottoController {
         inputPurchaseCash();
         generateLotteries();
         inputWinningLottoNumbers();
+        printResult();
     }
 
     private void inputPurchaseCash() {
@@ -82,6 +85,16 @@ public class LottoController {
             outputView.print(e.getMessage());
             return inputBonusNumber();
         }
+    }
+
+    private void printResult() {
+        WinStatesCounter winStatesCounter = new WinStatesCounter(winningLottoNumbers, lotteries);
+        List<WinStateInformationDTO> winStateInformationDTOs = winStatesCounter.getWinStateInformationDTOs();
+        // 당첨 통계\n---
+        // 통계 출력
+        Prize prize = Prize.from(winStateInformationDTOs);
+        double yield = prize.getYield(purchaseCash);
+        // 수익률 출력
     }
 
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.validator.system.LottoValidator;
 import lotto.validator.system.SystemValidator;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        SystemValidator.lottoValidator(numbers);
+        LottoValidator.validateLotto(numbers);
         this.numbers = orderLotto(numbers);
     }
 

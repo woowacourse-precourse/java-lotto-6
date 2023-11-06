@@ -1,17 +1,18 @@
 package lotto.domain;
 
 import lotto.validator.system.SystemValidator;
+import lotto.validator.system.WinningCombinationValidator;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningLottoNumbers {
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public WinningLottoNumbers(String numbers){
-        changeToList(numbers);
-        SystemValidator.winningNumbersValidator(this.numbers);
+        this.numbers = changeToList(numbers);
+        WinningCombinationValidator.validateWinningNumbers(this.numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -21,8 +22,8 @@ public class WinningLottoNumbers {
         return numbers;
     }
 
-    private void changeToList(String numbers){
-        this.numbers = Arrays.stream(numbers.split(","))
+    private List<Integer> changeToList(String numbers){
+        return Arrays.stream(numbers.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }

@@ -83,6 +83,8 @@ public class LottoService {
             scoreBoard = calculateLottoScore(countMatchingWinningNumbers(myLotto.get(i),winningLotto),bonusNumber,scoreBoard);
         }
 
+        return scoreBoard;
+
     }
 
     public HashMap<String, Long> calculateLottoScore(Integer matchingWinningNumber, Integer matchingBonusNumber, HashMap<String, Long> scoreBoard) {

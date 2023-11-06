@@ -6,7 +6,11 @@ public enum ErrorMessage {
     STRING_IS_NOT_INT("[ERROR] 숫자를 입력해주세요"),
     NUMBER_IS_NOT_IN_RANGE("[ERROR] 주어진 수는 " +
             ConstantNum.LOTTO_NUMBER_MIN + " 이상, " +
-            ConstantNum.LOTTO_NUMBER_MAX + " 이하가 아닙니다.");
+            ConstantNum.LOTTO_NUMBER_MAX + " 이하가 아닙니다."),
+    NOT_ENOUGH_LOTTO_NUMBERS("[ERROR] 주어진 당첨 번호의 개수는 " +
+            ConstantNum.LOTTO_NUMBER_CNT.getNum() +
+            "가 아닙니다.")
+    ;
 
     private String message;
 

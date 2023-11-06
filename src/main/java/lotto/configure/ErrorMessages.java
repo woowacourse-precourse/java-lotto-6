@@ -1,5 +1,8 @@
 package lotto.configure;
 
+/**
+ * 예외 메시지를 정의한 enum.
+ */
 public enum ErrorMessages {
     ERROR_MESSAGE_COMMON_PREFIX("[ERROR]"),
     NOT_AN_INTEGER(ERROR_MESSAGE_COMMON_PREFIX.get() + " 정수를 입력하셔야 합니다."),

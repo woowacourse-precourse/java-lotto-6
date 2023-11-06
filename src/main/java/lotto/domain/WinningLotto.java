@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.validator.WinningLottoValidator;
+
 public class WinningLotto {
 
     private static final String RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1 ~ 45 숫자만 가능합니다.";
@@ -15,20 +17,7 @@ public class WinningLotto {
     }
 
     private void validate(final int bonusNumber, final Lotto winningLotto) {
-        validateNumberRange(bonusNumber);
-        validateDuplication(bonusNumber, winningLotto);
-    }
-
-    private void validateNumberRange(final int bonusNumber) {
-        if (LottoNumbersRule.hasOutOfRangeNumber(bonusNumber)) {
-            throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
-        }
-    }
-
-    private void validateDuplication(final int bonusNumber, final Lotto winningLotto) {
-        if (winningLotto.hasNumber(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATION_ERROR_MESSAGE);
-        }
+        WinningLottoValidator.validate(bonusNumber, winningLotto);
     }
 
     public int countMatchingNumber(final Lotto userLotto) {

@@ -19,7 +19,7 @@ public class Lottos {
         try {
             return new Lottos(count, generator);
         } catch (IllegalArgumentException e) {
-            System.out.println(LottoExceptionMessage.MUST_BETWEEN_START_AND_END_INCLUSIVE.getMessage());
+            System.out.println(LottoExceptionMessage.LOTTO_NUMBERS_MUST_BETWEEN_START_AND_END_INCLUSIVE.getMessage());
         }
         return null;
     }

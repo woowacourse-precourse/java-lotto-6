@@ -15,7 +15,7 @@ public class PurchasePriceTest extends OutputTest {
     void getErrorMessageByNonMultiplePrice(int price) {
         PurchasePrice.from(price);
         assertThat(output()).contains(
-                LottoExceptionMessage.MUST_BE_POSITIVE_MULTIPLE.getMessage()
+                LottoExceptionMessage.PURCHASE_PRICE_MUST_BE_POSITIVE_MULTIPLE.getMessage()
         );
     }
 

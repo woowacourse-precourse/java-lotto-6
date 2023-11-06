@@ -33,7 +33,7 @@ public class PurchasePrice {
         try {
             return new PurchasePrice(price);
         } catch (IllegalArgumentException e) {
-            System.out.println(LottoExceptionMessage.MUST_BE_POSITIVE_MULTIPLE.getMessage());
+            System.out.println(LottoExceptionMessage.PURCHASE_PRICE_MUST_BE_POSITIVE_MULTIPLE.getMessage());
         }
         return null;
     }
@@ -50,19 +50,22 @@ public class PurchasePrice {
 
     private void isZero(int price) {
         if (price == 0) {
-            throw new IllegalArgumentException(LottoExceptionMessage.MUST_BE_POSITIVE_MULTIPLE.getMessage());
+            throw new IllegalArgumentException(
+                    LottoExceptionMessage.PURCHASE_PRICE_MUST_BE_POSITIVE_MULTIPLE.getMessage());
         }
     }
 
     private void isNegative(int price) {
         if (price < 0) {
-            throw new IllegalArgumentException(LottoExceptionMessage.MUST_BE_POSITIVE_MULTIPLE.getMessage());
+            throw new IllegalArgumentException(
+                    LottoExceptionMessage.PURCHASE_PRICE_MUST_BE_POSITIVE_MULTIPLE.getMessage());
         }
     }
 
     private void isNotMultiple(int price) {
         if (price % MULTIPLE != 0) {
-            throw new IllegalArgumentException(LottoExceptionMessage.MUST_BE_POSITIVE_MULTIPLE.getMessage());
+            throw new IllegalArgumentException(
+                    LottoExceptionMessage.PURCHASE_PRICE_MUST_BE_POSITIVE_MULTIPLE.getMessage());
         }
     }
 }

@@ -6,13 +6,18 @@ import static lotto.enums.ErrorMassage.IS_BLANK;
 public class InputValidator {
     private static final String SPACE = " ";
 
-    public void validateBlank(final String input) {
+    public void validate(final String input) {
+        validateBlank(input);
+        validateContainSpace(input);
+    }
+
+    private void validateBlank(final String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(IS_BLANK.getMassage());
         }
     }
 
-    public void validateContainSpace(final String input) {
+    private void validateContainSpace(final String input) {
         if (input.contains(SPACE)) {
             throw new IllegalArgumentException(CONTAIN_SPACE.getMassage());
         }

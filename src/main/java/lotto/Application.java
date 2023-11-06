@@ -8,7 +8,7 @@ import lotto.domain.Statistics;
 public class Application {
     public static void main(String[] args) {
         System.out.println(Constant.amount);
-        Purchase purchase = new Purchase(Console.readLine());
+        Purchase purchase = new Purchase();
 
         System.out.println("\n" + purchase.getAmount() + Constant.purchaseCount);
         purchase.printPurchasedLotto();

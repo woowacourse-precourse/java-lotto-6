@@ -41,4 +41,9 @@ public class InputException {
         if (list.size() != 6)
             throw new IllegalArgumentException(PrintMessage.ONLY_SIX_NUMBER);
     }
+
+    public static void isContainNumber(List<Integer> list, int number) {
+        if (list.contains(number))
+            throw new IllegalArgumentException(PrintMessage.NOT_DUPLICATION);
+    }
 }

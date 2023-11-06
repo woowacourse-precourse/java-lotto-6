@@ -85,4 +85,24 @@ class LottoServiceTest {
         final int expectedWinningCount = 0;
         assertThat(winningCount).isEqualTo(expectedWinningCount);
     }
+
+    @DisplayName("보너스 번호를 맞췄다.")
+    @Test
+    void containBonusNumber() {
+        Lotto winningNumbers = new Lotto(List.of(1,17,20,21,30,42));
+        LottoService lottoService = new LottoService(winningNumbers, 7);
+        Lotto lotto = new Lotto(List.of(2,7,22,34,41,45));
+        boolean isContainNumber = lottoService.checkBonusNumber(lotto);
+        assertThat(isContainNumber).isTrue();
+    }
+
+    @DisplayName("보너스 번호가 맞추지 못했다.")
+    @Test
+    void notContainBonusNumber() {
+        Lotto winningNumbers = new Lotto(List.of(1,17,20,21,30,42));
+        LottoService lottoService = new LottoService(winningNumbers, 7);
+        Lotto lotto = new Lotto(List.of(2,9,22,34,41,45));
+        boolean isContainNumber = lottoService.checkBonusNumber(lotto);
+        assertThat(isContainNumber).isFalse();
+    }
 }

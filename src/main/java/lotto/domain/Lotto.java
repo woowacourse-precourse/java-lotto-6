@@ -30,4 +30,8 @@ public class Lotto {
                         .filter(number::equals)
         ).count();
     }
+
+    public boolean compareNumber(int number) {
+        return numbers.contains(number);
+    }
 }

@@ -29,6 +29,10 @@ public class LottoService {
         return winningNumbers.compareNumbers(lotto);
     }
 
+    public boolean checkBonusNumber(Lotto lotto) {
+        return lotto.compareNumber(bonusNumber);
+    }
+
     private int calculateLottoCount(int lottoPurchaseAmount) {
         return lottoPurchaseAmount / LOTTO_PRICE;
     }

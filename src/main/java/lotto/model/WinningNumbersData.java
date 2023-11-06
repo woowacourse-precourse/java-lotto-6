@@ -28,11 +28,14 @@ public class WinningNumbersData {
     }
 
     private void validateNumberInRange(final List<Integer> winningNumbers) {
-        for (final Integer winningNumber : winningNumbers) {
-            if (isNotValidWinningNumber(winningNumber)) {
-                throw new IllegalArgumentException(WINNING_NUMBER_OUT_OF_RANGE_EXCEPTION_MESSAGE);
-            }
+        if (hasInvalidWinningNumber(winningNumbers)) {
+            throw new IllegalArgumentException(WINNING_NUMBER_OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
+    }
+
+    private boolean hasInvalidWinningNumber(final List<Integer> winningNumbers) {
+        return winningNumbers.stream()
+                .anyMatch(this::isNotValidWinningNumber);
     }
 
     private boolean isNotValidWinningNumber(final int winningNumber) {

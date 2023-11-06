@@ -37,18 +37,6 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-    public String listToString(){
-        String[] array = numbers.stream()
-                                .sorted()
-                                .map(String::valueOf)
-                                .toArray(String[]::new);
-        return String.join(", ", array);
-    }
-
     public int matching(Lotto buyLotto) {
         int cnt=0;
         List<Integer> buyNumbers = buyLotto.getNumbers();
@@ -72,7 +60,19 @@ public class Lotto {
         return 0;
     }
 
+    public String listToAscendingString(){
+        String[] array = numbers.stream()
+                .sorted()
+                .map(String::valueOf)
+                .toArray(String[]::new);
+        return String.join(", ", array);
+    }
+
     public boolean has(int bonusNum){
         return numbers.contains(bonusNum);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

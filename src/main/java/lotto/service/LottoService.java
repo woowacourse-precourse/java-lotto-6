@@ -21,13 +21,13 @@ public class LottoService {
             Lotto lotto = new Lotto(createRandomNumbers());
             buyLottoRepo.add(lotto);
 
-            extractAscendingNumbers(lotto.listToString());
+            extractNumbers(lotto.listToAscendingString());
             purchaseCount --;
         }
         return buyLottoRepo;
     }
 
-    private void extractAscendingNumbers(String lottoNumber) {
+    private void extractNumbers(String lottoNumber) {
         View.buyLottos(lottoNumber);
     }
 

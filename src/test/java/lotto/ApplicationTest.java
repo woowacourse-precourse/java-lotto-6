@@ -99,6 +99,12 @@ class ApplicationTest extends NsTest {
         Assertions.assertEquals(14, money_for_lotto.repeatTime(test));
     }
 
+    @Test
+    void 복권_개수_확인_테스트(){
+        int test = 8;
+        assertThat(random_lotto.print_lotto(test)).hasSize(8);
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

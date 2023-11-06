@@ -37,19 +37,26 @@ public class Controller {
 	}
 
 	private void createWinningLotto() {
-		OutputView.askWinningNumbers();
+		WinningNumbers winningNumbers = createWinningNumbers();
+		BonusNumber bonusNumber = createBonusNumber();
 
-		String numbers = InputView.getUserInput();
+		winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+	}
 
-		WinningNumbers winningNumbers = new WinningNumbers(numbers);
-
+	private BonusNumber createBonusNumber() {
 		OutputView.askBonusNumber();
 
 		String number = InputView.getUserInput();
 
-		BonusNumber bonusNumber = new BonusNumber(number);
+		return new BonusNumber(number);
+	}
 
-		winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+	private WinningNumbers createWinningNumbers() {
+		OutputView.askWinningNumbers();
+
+		String numbers = InputView.getUserInput();
+
+		return new WinningNumbers(numbers);
 	}
 
 	private void printResult() {

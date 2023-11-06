@@ -14,7 +14,15 @@ class BonusNumberTest {
     @DisplayName("보너스 번호에 1~45범위를 넘은 숫자가 있으면 예외가 발생한다.")
     @ParameterizedTest
     @CsvSource({"0", "46", "77"})
-    void createLottoByDuplicatedNumber(int input) {
+    void createBonusNumberByOverRange(int input) {
+        assertThatThrownBy(() -> new BonusNumber(input, winningNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호와 당첨 번호가 중복되면 예외가 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"1", "2", "3", "4", "5", "6"})
+    void createBonusNumberByDuplicate(int input) {
         assertThatThrownBy(() -> new BonusNumber(input, winningNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }

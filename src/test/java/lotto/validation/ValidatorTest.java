@@ -45,4 +45,11 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 로또 번호와 보너스 번호가 중복된다면 예외를 발생시킨다.")
+    @Test
+    void bonusDuplicateExceptionTest() {
+        Assertions.assertThatThrownBy(() -> validator.validBonus("1", Arrays.asList(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

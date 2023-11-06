@@ -29,24 +29,10 @@ public class ConsoleInputParser {
     }
 
     private void validateInteger(String input) {
-        validateNotNull(input);
-        validateNotEmpty(input);
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_INPUT.getWithPrefix());
-        }
-    }
-
-    private void validateNotNull(String input) {
-        if (input == null) {
-            throw new IllegalArgumentException(ErrorMessage.NULL_INPUT.getWithPrefix());
-        }
-    }
-
-    private void validateNotEmpty(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getWithPrefix());
         }
     }
 }

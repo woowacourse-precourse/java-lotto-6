@@ -12,6 +12,7 @@ public class LottoGameController {
     User user;
     View view = new View();
     LottoGame lottoGame;
+    Scanner sc = new Scanner(System.in);
 
 
 
@@ -34,7 +35,6 @@ public class LottoGameController {
 
     private int setBonusNumber() {
         view.printAskBonusNumber();
-        Scanner sc = new Scanner(System.in);
 
         return sc.nextInt();
     }
@@ -42,9 +42,8 @@ public class LottoGameController {
     private List<Integer> setWinningNumbers() {
 
         view.printAskWinningNumber();
-        Scanner sc = new Scanner(System.in);
 
-        String inputString = sc.nextLine();
+        String inputString = sc.next();
         String[] numbersString = inputString.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
 
@@ -70,12 +69,16 @@ public class LottoGameController {
 
 
     private void setUser() {
-        Scanner sc = new Scanner(System.in);
 
         view.printAskMoneyInput();
-
-        StringTokenizer tk = new StringTokenizer(sc.next());
-        int inputMoney = Integer.parseInt(tk.nextToken());
+        int inputMoney=0;
+        try {
+            StringTokenizer tk = new StringTokenizer(sc.next());
+            inputMoney = Integer.parseInt(tk.nextToken());
+        }catch (NumberFormatException e){
+            System.out.println("[ERROR]");
+            setUser();
+        }
 
         user = new User(inputMoney);
     }

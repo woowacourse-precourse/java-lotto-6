@@ -22,7 +22,7 @@ public class Money {
         try {
             parsedMoney = Integer.parseInt(inputMoney);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자만 입력 가능");
+            throw new IllegalArgumentException("정수만 입력 가능");
         }
 
         if (parsedMoney <= 0 || parsedMoney % LOTTO_PRICE != 0) {

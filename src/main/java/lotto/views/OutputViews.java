@@ -29,4 +29,8 @@ public class OutputViews {
     public static void wrtieResultStatistic(String mess, int matchNum) {
         System.out.println(mess + matchNum + "개");
     }
+
+    public static void wrtieResultRate(double per) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", per);
+    }
 }

@@ -34,16 +34,8 @@ public class LottoController {
         }
         OutputViews.endOfSection();
 
-        lotto.lottoResultSearch(allLotto, bonusNumInput);
-        OutputViews.startWriteStat();
-        for (LottoResult lottoResultName: LottoResult.values()) {
-            String stsMess = lottoResultName.getMatchesMess();
-            int matchNum = lottoResultName.getNumOfMatches();
-            OutputViews.wrtieResultStatistic(stsMess, matchNum);
-
-            reciveAmount += lottoResultName.getAmount() * matchNum;
-        }
-        System.out.println(reciveAmount);
+        writeMatchesNumResult();
+//        System.out.println(reciveAmount);
     }
 
     public boolean readPurchaseLotto() {
@@ -100,5 +92,22 @@ public class LottoController {
             return true;
         }
         return false;
+    }
+
+    public void writeMatchesNumResult() {
+        lotto.lottoResultSearch(allLotto, bonusNumInput);
+        OutputViews.startWriteStat();
+        for (LottoResult lottoResultName: LottoResult.values()) {
+            String stsMess = lottoResultName.getMatchesMess();
+            int matchNum = lottoResultName.getNumOfMatches();
+            OutputViews.wrtieResultStatistic(stsMess, matchNum);
+
+            reciveAmount += lottoResultName.getAmount() * matchNum;
+//            System.out.println("reciveAmount : " + reciveAmount);
+        }
+        double per = (double) reciveAmount/purchaseAmount * 100;
+//        System.out.println("purchaseAmount : " + purchaseAmount);
+//        System.out.println("per : " + per);
+        OutputViews.wrtieResultRate(per);
     }
 }

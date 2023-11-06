@@ -15,20 +15,22 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-        if(pickNumberDuplicate(numbers)){
+        if (pickNumberDuplicate(numbers)) {
             throw new IllegalArgumentException();
         }
     }
-    public boolean pickNumberDuplicate(List<Integer> numbers){
+
+    public boolean pickNumberDuplicate(List<Integer> numbers) {
         boolean result = false;
-        for(int i=1;i<numbers.size();i++){
-            if(numbers.get(i)==numbers.get(i-1)){
+        for (int i = 1; i < numbers.size(); i++) {
+            if (numbers.get(i) == numbers.get(i - 1)) {
                 result = true;
             }
         }
         return result;
     }
-    public List<Integer> getLotto(){
+
+    public List<Integer> getLotto() {
         return numbers;
     }
 }

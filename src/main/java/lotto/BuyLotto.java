@@ -23,6 +23,7 @@ public class BuyLotto {
         List<Integer> paper = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return paper;
     }
+
     public boolean checkSameNumber(List<Integer> paper, int number) {
         boolean result = true;
         for (int i = 0; i < paper.size(); i++) {

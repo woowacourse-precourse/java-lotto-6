@@ -35,7 +35,7 @@ public class Game {
         calculate.calculateRevenue(lotto_number, total_money);
     }
 
-    public void run(){
+    public void run() {
         askMoney();
         askNumber();
         correctNumber();

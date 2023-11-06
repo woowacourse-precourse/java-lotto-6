@@ -12,29 +12,36 @@ public class InputView {
 
     public static int readPayMoney() {
         System.out.println(ViewMessage.INPUT_MONEY.getMessage());
-        String input = Console.readLine();
-        validateNumberFormat(input);
-        System.out.println();
-        return Integer.parseInt(input);
-    }
-
-    private static void validateNumberFormat(String input) {
-        if (!input.matches("^[0-9]*$")) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
+        try {
+            String input = Console.readLine();
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println(ErrorMessage.INVALID_INPUT.getMessage());
+            return readPayMoney();
         }
     }
 
     public static List<Integer> readWinningNumbers() {
         System.out.println(ViewMessage.INPUT_WINNING_NUMBERS.getMessage());
-        String input = Console.readLine();
-        System.out.println();
-        return Arrays.stream(input.split(DELIMITER)).map(Integer::parseInt).toList();
+        try {
+            String input = Console.readLine();
+            System.out.println();
+            return Arrays.stream(input.split(DELIMITER)).map(Integer::parseInt).toList();
+        } catch (NumberFormatException e) {
+            System.out.println(ErrorMessage.INVALID_INPUT.getMessage());
+            return readWinningNumbers();
+        }
     }
 
     public static int readBonusNumber() {
         System.out.println(ViewMessage.INPUT_BONUS_NUMBER.getMessage());
-        String input = Console.readLine();
-        System.out.println();
-        return Integer.parseInt(input);
+        try {
+            String input = Console.readLine();
+            System.out.println();
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println(ErrorMessage.INVALID_INPUT.getMessage());
+            return readBonusNumber();
+        }
     }
 }

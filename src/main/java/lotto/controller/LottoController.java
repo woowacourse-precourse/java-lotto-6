@@ -30,6 +30,10 @@ public class LottoController {
         OutputView.printGameResult(result, yieldRate);
     }
 
+    private void printLottos(List<Lotto> lottos) {
+        OutputView.printIssueResults(lottos);
+    }
+
     private double getYieldRate(Map<LottoResult, Integer> result, int purchaseQuantity) {
         int purchasePrice = purchaseQuantity * LOTTO_PRICE;
         int totalYield = getTotalYield(result);
@@ -81,6 +85,7 @@ public class LottoController {
         System.out.println();
         try {
             List<Lotto> lottos = lottoIssuer.buy(InputView.getPrice());
+            printLottos(lottos);
             System.out.println();
             return lottos;
         } catch (IllegalArgumentException e) {

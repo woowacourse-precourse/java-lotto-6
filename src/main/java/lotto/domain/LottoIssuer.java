@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.message.Error;
 import lotto.util.Validation;
-import lotto.view.OutputView;
 
 public class LottoIssuer {
 
@@ -25,16 +24,11 @@ public class LottoIssuer {
         System.out.println();
         int quantity = calculateQuantity(price);
         List<Lotto> lottos = issueLottos(quantity);
-        printLottos(lottos);
         return lottos;
     }
 
     private boolean hasCorrectUnit(int price) {
         return price % lottoPrice == 0;
-    }
-
-    private void printLottos(List<Lotto> lottos) {
-        OutputView.printIssueResults(lottos);
     }
 
     private int calculateQuantity(int price) {
@@ -54,6 +48,4 @@ public class LottoIssuer {
     private List<Integer> createLottoNumbers() {
         return pickUniqueNumbersInRange(minimumLottoNum, maximumLottoNum, lottoNumbersCount);
     }
-
-
 }

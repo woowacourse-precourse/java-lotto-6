@@ -14,7 +14,7 @@ class PurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액이 1000원 단위가 아닌 경우 예외가 발생한다..")
+    @DisplayName("구입 금액이 1000원 단위가 아닌 경우 예외가 발생한다.")
     @Test
     void createPurchaseAmountByIndivisibleNumber() {
         assertThatThrownBy(() -> new PurchaseAmount(1234))

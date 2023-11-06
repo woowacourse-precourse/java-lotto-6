@@ -25,7 +25,7 @@ public class GenerateLotto {
     private List<Lotto> generateBuyLottos(Money money) {
         int ticket = money.getTicket();
 
-        List<Lotto> buyLottos = IntStream.range(0, ticket)
+        List<Lotto> buyLottos = IntStream.range(INIT_INT_VALUE, ticket)
                 .mapToObj(ticketCount -> Lotto.create(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE)))
                 .collect(Collectors.toList());
 

@@ -4,7 +4,7 @@ import lotto.handler.LottoHandler;
 
 import java.util.Map;
 
-import static lotto.handler.ConstantsHandler.UNIT_OF_AMOUNT;
+import static lotto.handler.ConstantsHandler.*;
 
 public class LottoResult {
 
@@ -26,11 +26,11 @@ public class LottoResult {
         int totalPurchaseAmount = totalPurchaseAmount();
         long totalPrize = totalPrize();
 
-        return (double) totalPrize / totalPurchaseAmount * 100;
+        return (double) totalPrize / totalPurchaseAmount * TOTAL_PERCENTAGE;
     }
 
     private int totalPurchaseAmount() {
-        int totalTickts = 0;
+        int totalTickts = INIT_INT_VALUE;
 
         for (int tickets : lottoResult.values()) {
             totalTickts += tickets;
@@ -40,14 +40,14 @@ public class LottoResult {
     }
 
     private long totalPrize() {
-        Long totalPrize = 0L;
+        Long totalPrize = INIT_LONG_VALUE;
 
         for (LottoHandler lottoHandler : LottoHandler.values()) {
             if (lottoHandler == LottoHandler.OTHER) {
                 continue;
             }
 
-            totalPrize += lottoHandler.getPrize() * lottoResult.getOrDefault(lottoHandler, 0);
+            totalPrize += lottoHandler.getPrize() * lottoResult.getOrDefault(lottoHandler, DEFAULT_VALUE);
         }
 
         return totalPrize;

@@ -9,4 +9,9 @@ public class ConstantsHandler {
     public static final String COMMA_DELIMITER = ",";
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
+    public static final int TOTAL_PERCENTAGE = 100;
+    public static final int DEFAULT_VALUE = 0;
+    public static final long INIT_LONG_VALUE = 0L;
+    public static final int INIT_INT_VALUE = 0;
+    public static final int PLUS_NUMBER = 1;
 }

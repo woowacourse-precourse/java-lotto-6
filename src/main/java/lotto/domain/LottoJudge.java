@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.handler.ConstantsHandler.*;
 import static lotto.handler.LottoHandler.FIVE;
 import static lotto.handler.LottoHandler.FIVE_WITH_BONUS;
 
@@ -38,19 +39,18 @@ public class LottoJudge {
             if (lottoHandler == FIVE) {
                 lottoHandler = checkBonus(sortBuyLotto, winLottoWithBonus.getBonusNumber());
             }
-
-            lottoResult.put(lottoHandler, lottoResult.getOrDefault(lottoHandler, 0) + 1);
+            lottoResult.put(lottoHandler, lottoResult.getOrDefault(lottoHandler, DEFAULT_VALUE) + PLUS_NUMBER);
         }
 
         return LottoResult.create(lottoResult);
     }
 
     private int compareLotto(List<Integer> sortBuyLotto, List<Integer> winningLotto) {
-        int count = 0;
+        int count = INIT_INT_VALUE;
 
         for (int winNumber : winningLotto) {
             if (sortBuyLotto.contains(winNumber)) {
-                count += 1;
+                count += PLUS_NUMBER;
             }
         }
 

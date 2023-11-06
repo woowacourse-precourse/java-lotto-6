@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.handler.ConstantsHandler.DEFAULT_VALUE;
 import static lotto.handler.LottoHandler.OTHER;
 
 public class ConsoleOutput implements OutputHandler {
@@ -54,7 +55,7 @@ public class ConsoleOutput implements OutputHandler {
                 continue;
             }
 
-            System.out.printf("%d개 일치%s (%s원) - %d개\n", lottoHandler.getCount(), lottoHandler.getMessage(), prizeFormat.format(lottoHandler.getPrize()), result.getOrDefault(lottoHandler, 0));
+            System.out.printf("%d개 일치%s (%s원) - %d개\n", lottoHandler.getCount(), lottoHandler.getMessage(), prizeFormat.format(lottoHandler.getPrize()), result.getOrDefault(lottoHandler, DEFAULT_VALUE));
         }
     }
 

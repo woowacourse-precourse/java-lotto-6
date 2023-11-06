@@ -58,6 +58,17 @@ public class Application {
     }
 
     private static void validateWinningNumbersInput(String winningNumbersInput) {
+        List<String> winningNumbersStrings = Arrays.stream(winningNumbersInput.split(",")).toList();
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String numberString: winningNumbersStrings) {
+            try {
+                int number = Integer.parseInt(numberString);
+                winningNumbers.add(number);
+            } catch (NumberFormatException e) {
+                printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE);
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     private static void printErrorMessage(String errorMessage) {

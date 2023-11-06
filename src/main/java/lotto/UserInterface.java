@@ -15,16 +15,13 @@ public class UserInterface {
         countByRank=new HashMap<Raffle.LottoRank, Integer>();
         ranks = new ArrayList<>();
     }
-    public void playLotto(){
-        Customer customer = new Customer();
-        Raffle raffle = new Raffle();
+    public int[][] playLotto(){
         int price = customer.inputpprice();
         customer.forraffle();
         int[][] lottos = raffle.showLottes(customer);
-        Lotto userLotto = customer.getLotto();
-        int bonus = customer.getbonus();
         System.out.println("당첨 통계");
         System.out.println("---");
+        return lottos;
     }
     public void makingRank(int[][] lottos, Lotto userLotto, int bonus){
         for (int[] lottoNumbers : lottos) {
@@ -33,14 +30,11 @@ public class UserInterface {
                     .collect(Collectors.toList());
             Lotto lotto = new Lotto(lottoList);
             Raffle.LottoRank rank = raffle.rankLotto(lotto, userLotto, bonus);
-
             countByRank.put(rank, countByRank.getOrDefault(rank, 0) + 1);
             ranks.add(rank);
         }
     }
-    public void doLotto(){
-        playLotto();
-        makingRank(raffle.showLottes(customer),customer.getLotto(),customer.getbonus());
+    public void printResults() {
         int price = customer.getPrice();
         System.out.println("3개 일치 (5,000원) - " + countByRank.getOrDefault(Raffle.LottoRank.FIFTH, 0) + "개");
         System.out.println("4개 일치 (50,000원) - " + countByRank.getOrDefault(Raffle.LottoRank.FOURTH, 0) + "개");
@@ -49,6 +43,11 @@ public class UserInterface {
         System.out.println("6개 일치 (2,000,000,000원) - " + countByRank.getOrDefault(Raffle.LottoRank.FIRST, 0) + "개");
         String returnRate = raffle.calculateReturnRate(ranks, price);
         System.out.println(returnRate);
+    }
+    public void doLotto(){
+        int[][] lottos=playLotto();
+        makingRank(lottos,customer.getLotto(),customer.getbonus());
+        printResults();
     }
 
 

@@ -51,4 +51,12 @@ public enum Rank {
         return rank.equals(UNRANKED);
     }
 
+    public int matchingCount() {
+        return matchingCount;
+    }
+
+    public int reward() {
+        return reward;
+    }
+
 }

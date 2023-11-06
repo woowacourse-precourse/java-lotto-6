@@ -1,35 +1,39 @@
 package lotto;
 
 public enum WinningStatus {
-    NONE(0, 0),
-    THREE_MATCHES(3, 5000),
-    FOUR_MATCHES(4, 50000),
-    FIVE_MATCHES(5, 1500000),
-    FIVE_PLUS_BONUS(5, 30000000),
-    SIX_MATCHES(6, 2000000000);
+    NONE(0, 0, false),
+    THREE_MATCHES(3, 5000, false),
+    FOUR_MATCHES(4, 50000, false),
+    FIVE_MATCHES(5, 1500000, false),
+    FIVE_PLUS_BONUS(5, 30000000, true),
+    SIX_MATCHES(6, 2000000000, false);
 
-    private final int matches;
-    private final int prize;
+    private final int matchCount;
+    private final int prizeMoney;
+    private final boolean bonusMatch;
 
-    WinningStatus(int matches, int prize) {
-        this.matches = matches;
-        this.prize = prize;
+    WinningStatus(int matchCount, int prizeMoney, boolean bonusMatch) {
+        this.matchCount = matchCount;
+        this.prizeMoney = prizeMoney;
+        this.bonusMatch = bonusMatch;
     }
 
-    public int getMatches() {
-        return matches;
+    public int getMatchCount() {
+        return matchCount;
     }
 
-    public int getPrize() {
-        return prize;
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 
-    public static WinningStatus valueOf(int matches, boolean bonus) {
-        if (matches == FIVE_MATCHES.matches && bonus) {
-            return FIVE_PLUS_BONUS;
-        }
-        for (WinningStatus status : values()) {
-            if (status.matches == matches) {
+    public boolean isBonusMatch() {
+        return bonusMatch;
+    }
+
+    // 주어진 매치 수와 보너스 매치 여부에 따라 적절한 WinningStatus를 반환하는 메서드.
+    public static WinningStatus valueOf(int matchCount, boolean bonusMatch) {
+        for (WinningStatus status : WinningStatus.values()) {
+            if (status.matchCount == matchCount && (bonusMatch == status.bonusMatch || status.bonusMatch == false)) {
                 return status;
             }
         }

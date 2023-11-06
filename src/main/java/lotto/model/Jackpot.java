@@ -44,4 +44,12 @@ public class Jackpot {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개로 이루어져야 합니다.");
         }
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

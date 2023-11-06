@@ -15,7 +15,7 @@ public class User {
         while(true){
             try{
                 this.money = Integer.parseInt(Console.readLine());
-                tickets = getTickets(money);
+                this.tickets = getTickets(money);
                 return;
             } catch (IllegalArgumentException e){
                 System.out.println("[ERROR] 구매 금액은 천원 단위로 입력해주세요.");

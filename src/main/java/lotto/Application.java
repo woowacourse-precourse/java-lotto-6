@@ -16,14 +16,12 @@ public class Application {
 
     }
 
-    private static int getMoney() {
-
-        return 1;
-    }
-
     public static List<Integer> getLottoNumbers(){
         List<Integer> numbers = new ArrayList<>();
         String[] input = Console.readLine().split(",");
+        for(String number: input){
+            numbers.add(Integer.parseInt(number));
+        }
 
         return numbers;
     }

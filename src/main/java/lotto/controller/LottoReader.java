@@ -7,6 +7,7 @@ import lotto.model.WinningNumbers;
 import lotto.utils.PrizeType;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LottoReader {
     public static List<PrizeType> read(
@@ -16,6 +17,7 @@ public class LottoReader {
     ) {
         return lottoTicket.getLottos().stream()
                 .map(lotto -> match(winningNumbers, bonusNumber, lotto))
+                .filter(Objects::nonNull)
                 .toList();
     }
 
@@ -33,11 +35,7 @@ public class LottoReader {
             matchedCount++;
         }
 
-        PrizeType prizeType = PrizeType.getTypeByCode(mapToPrizeCode(matchedCount));
-        if (prizeType == null) {
-            prizeType = PrizeType.LOSS;
-        }
-        return prizeType;
+        return PrizeType.getTypeByCode(mapToPrizeCode(matchedCount));
     }
 
     private static Integer mapToPrizeCode(Integer value) {

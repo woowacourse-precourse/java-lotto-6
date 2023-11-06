@@ -10,6 +10,7 @@ import java.util.List;
 
 import static lotto.controller.LottoDrawingMachine.drawBonusNumber;
 import static lotto.controller.LottoDrawingMachine.drawWinningNumbers;
+import static lotto.controller.LottoStatisticMachine.drawStatistic;
 import static lotto.view.InputView.askPurchaseAmount;
 import static lotto.view.InputView.askUntilGetValidAnswer;
 import static lotto.view.OutputView.printLottoTicket;
@@ -22,6 +23,7 @@ public class LottoController {
         WinningNumbers winningNumbers = drawWinningNumbers();
         BonusNumber bonusNumber = drawBonusNumber();
         List<PrizeType> lottoResult = LottoReader.read(winningNumbers, bonusNumber, lottoTicket);
+        drawStatistic(lottoResult);
     }
 
     public Deposit makeDeposit() {

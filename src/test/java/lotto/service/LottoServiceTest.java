@@ -34,7 +34,7 @@ class LottoServiceTest {
     @Test
     @DisplayName("발행하기")
     void issueLotteryTicket() {
-        List<Integer> lotteryTicket = lottoService.issueLotteryTicket();
-        System.out.println("lotteryTicket = " + lotteryTicket.toString());
+        List<Integer> lotteryTicketNumbers = lottoService.issueLotteryTicket();
+        System.out.println("lotteryTicketNumbers = " + lotteryTicketNumbers.toString());
     }
 }

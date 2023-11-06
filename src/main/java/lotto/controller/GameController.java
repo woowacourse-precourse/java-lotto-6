@@ -25,7 +25,8 @@ public class GameController {
     LottoManager lottoManager = new LottoManager();
 
     public void run() {
-        int lottoQuantity = lottoManager.isValidPurchaseAmount(InputView.requestLottoPurchaseAmount());
+
+        int lottoQuantity = purchaseLottoQuantity();
 
         List<Lotto> lottoList = new ArrayList<>();
         for (int i=0; i<lottoQuantity; i++) {
@@ -36,10 +37,24 @@ public class GameController {
 
         LottoBuyer lottoBuyer = new LottoBuyer(lottoQuantity, lottoList);
 
-
-
         OutputView.announceLottoPurchaseQuantity(lottoBuyer.getPurchaseQuantity());
         OutputView.announceMultipleLottoNumbers(lottoBuyer.getLottoTickets());
+    }
+
+    private int purchaseLottoQuantity() {
+        while (true) {
+            try {
+                String stringPurchaseAmount = InputView.requestLottoPurchaseAmount();
+                int purchaseAmount = Integer.parseInt(stringPurchaseAmount);
+                lottoManager.isValidPurchaseAmount(purchaseAmount);
+
+                return purchaseAmount / 1000;
+            } catch (NumberFormatException e) {
+                System.err.println("[ERROR] 올바른 입력이 아닙니다. 구입금액을 다시 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.err.println("[ERROR] 구입 금액은 1000원 단위여야 합니다. 구입금액을 다시 입력해주세요.");
+            }
+        }
     }
 
 

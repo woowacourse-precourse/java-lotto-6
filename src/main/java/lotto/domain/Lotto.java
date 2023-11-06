@@ -23,6 +23,10 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int countMatching(Lotto lotto) {
+        return (int) numbers.stream().filter(n -> lotto.hasNumber(n)).count();
+    }
+
     private void validate(List<Integer> numbers) {
         if (!isLottoSize(numbers)) {
             throwException(LOTTO_WRONG_SIZE_ERROR_MESSAGE.get());

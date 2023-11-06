@@ -23,17 +23,21 @@ public class Error {
         }
     }
 
-    public void isAllInteger(String number) {
-        if (!number.chars().allMatch(Character::isDigit)) {
-            ONLY_INTEGER_ERROR_MESSAGE.print();
-            throw new IllegalArgumentException(ONLY_INTEGER_ERROR_MESSAGE.get());
+    public void isAllInteger(String[] numbers) {
+        for (String number : numbers) {
+            if (!number.chars().allMatch(Character::isDigit)) {
+                ONLY_INTEGER_ERROR_MESSAGE.print();
+                throw new IllegalArgumentException(ONLY_INTEGER_ERROR_MESSAGE.get());
+            }
         }
     }
 
-    public void isRange45(int number) {
-        if (number < 1 || number > 45) {
-            RANGE_1_45_ERROR_MESSAGE.print();
-            throw new IllegalArgumentException(RANGE_1_45_ERROR_MESSAGE.get());
+    public void isRange45(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                RANGE_1_45_ERROR_MESSAGE.print();
+                throw new IllegalArgumentException(RANGE_1_45_ERROR_MESSAGE.get());
+            }
         }
     }
 

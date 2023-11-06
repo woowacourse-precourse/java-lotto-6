@@ -3,8 +3,11 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoController {
 
@@ -18,8 +21,9 @@ public class LottoController {
         int price = buyLotto();
         int lottoCount = getLottoCount(price);
 
-        List<Lotto> lottos = userLotto(lottoCount);
+        List<Lotto> userLottos = userLotto(lottoCount);
 
+        Lotto winLotto = getWinNumber();
     }
 
     private int buyLotto() {
@@ -32,7 +36,7 @@ public class LottoController {
         int price = 0;
 
         try {
-            Error.CHECK.isAllInteger(inputPrice);
+            Error.CHECK.isAllInteger(new String[]{inputPrice});
             price = Integer.parseInt(inputPrice);
             Error.CHECK.isUnder1000Price(price);
         } catch (IllegalArgumentException e) {
@@ -63,6 +67,45 @@ public class LottoController {
             lottoCount--;
         }
         return lottos;
+    }
+
+    public Lotto getWinNumber() {
+        List<Integer> winnerNumbers = null;
+        while (true) {
+            OUTPUT_VIEW.printInsertNumberMessage();
+            try {
+                String input = removeSpace(Console.readLine());
+                String[] inputNumbers = input.split(",");
+                winnerNumbers = validationWinNumber(inputNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+            }
+        }
+        return new Lotto(winnerNumbers);
+    }
+
+    public String removeSpace(String number) {
+        if (!number.contains(" ")) {
+            return number;
+        }
+        return number.replace(" ", "");
+    }
+
+    public List<Integer> validationWinNumber(String[] inputNumbers) {
+        Error.CHECK.isAllInteger(inputNumbers);
+        List<Integer> winnerNumbers = arrayToList(stringArrayToInteger(inputNumbers));
+        Error.CHECK.isCollect6Number(winnerNumbers);
+        Error.CHECK.isRange45(winnerNumbers);
+        Error.CHECK.isDuplicate(winnerNumbers);
+        return winnerNumbers;
+    }
+
+    public int[] stringArrayToInteger(String[] array) {
+        return Stream.of(array).mapToInt(Integer::parseInt).toArray();
+    }
+
+    public List<Integer> arrayToList(int[] array) {
+        return Arrays.stream(array).boxed().collect(Collectors.toList());
     }
 
 }

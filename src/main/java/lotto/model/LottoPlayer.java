@@ -2,10 +2,12 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.TreeMap;
 
 public class LottoPlayer {
     private static final int LOTTO_PRICE = 1000;
@@ -16,6 +18,10 @@ public class LottoPlayer {
 
     public LottoPlayer(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
+
+        for (LottoRank rank : LottoRank.values()) {
+            result.put(rank, 0);
+        }
     }
 
     public void buyLottos() {
@@ -67,7 +73,28 @@ public class LottoPlayer {
         return LottoRank.NONE;
     }
 
-//    public Map<LottoRank, Integer> getResult(){
-//        return result;
+    // 수익률 계산
+//    public double getRateOfReturn(){
+//
 //    }
+
+    // 당첨 통계 글자 생성
+    public String getLottoResult() {
+
+        StringJoiner lottoResult = new StringJoiner("\n");
+        Map<LottoRank, Integer> sortedResult = new TreeMap<>(Collections.reverseOrder());
+
+        sortedResult.putAll(result);
+
+        for (Map.Entry<LottoRank, Integer> entry : sortedResult.entrySet()) {
+            LottoRank rank = entry.getKey();
+            int count = entry.getValue();
+
+            if (rank != LottoRank.NONE) {
+                lottoResult.add(rank.printStatus() + " - " + count + "개");
+            }
+        }
+
+        return lottoResult.toString();
+    }
 }

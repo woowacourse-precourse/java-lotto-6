@@ -30,5 +30,7 @@ public class LottoGame {
         int bonusNumber = inputView.getBonusNumber(winningNumbers);
 
         lottoPlayer.checkLottoResult(winningNumbers, bonusNumber);
+
+        outputView.printLottoResult(lottoPlayer.getLottoResult());
     }
 }

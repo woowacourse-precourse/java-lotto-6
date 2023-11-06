@@ -54,7 +54,7 @@ public class LottoController {
             readBonusNumber();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readWinningLotto();
+            getBonusNumber();
         }
     }
 

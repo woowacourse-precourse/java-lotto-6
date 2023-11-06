@@ -40,7 +40,7 @@ public class InputView {
         return winningLotto;
     }
 
-    public String readBonusNumber() {
+    public String readBonusNumber() throws IllegalArgumentException {
         System.out.println(BONUS_NUMBER_MESSAGE);
         String bonusNumber = Console.readLine();
         new BonusNumberValidator().validate(bonusNumber);

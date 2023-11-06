@@ -7,8 +7,15 @@ import lotto.domain.WinningNumbers;
 
 import java.util.List;
 
+import static lotto.domain.LottoConst.LOTTO_PRICE;
+
 public class LottoService {
 
+    public int getBuyCount(int input) {
+        int buyCount = input / LOTTO_PRICE;
+        System.out.println(buyCount + "개를 구매했습니다.");
+        return buyCount;
+    }
 
     public LottoResult calculateResult(List<Lotto> myLottos, WinningNumbers winningNumbers) {
 

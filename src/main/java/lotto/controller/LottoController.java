@@ -9,6 +9,8 @@ import lotto.view.ResultView;
 
 import java.util.List;
 
+import static lotto.domain.LottoConst.*;
+
 public class LottoController {
 
     private final LottoService lottoService;
@@ -24,19 +26,16 @@ public class LottoController {
     public void startLotto() {
 
         int input = inputView.inputPurchaseMoney();
-        int buyCount = input / 1000;
-        System.out.println(buyCount + "개를 구매했습니다.");
+        int buyCount = lottoService.getBuyCount(input);
 
         List<Lotto> myLottos = Lotto.createMyLottos(buyCount);
 
         resultView.printLottos(myLottos);
 
-        WinningNumbers winningNums = inputView.createWinningNums();
+        WinningNumbers winningNums = inputView.inputWinningNums();
 
         LottoResult lottoResult = lottoService.calculateResult(myLottos, winningNums);
 
         resultView.printResult(lottoResult, input);
     }
-
-
 }

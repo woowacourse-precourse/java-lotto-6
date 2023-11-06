@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import static lotto.domain.LottoConst.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -15,19 +17,28 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-        HashSet<Integer> set = new HashSet<>();
-        for (int j = 0; j < numbers.size(); j++) {
-            if (set.contains(numbers.get(j))) {
-                throw new IllegalArgumentException("중복 숫자 예외");
+
+        try {
+            if (numbers.size() != 6) {
+                throw new IllegalArgumentException();
             }
-            set.add(numbers.get(j));
+            for (int num : numbers) {
+                if (num < LOTTO_MIN_NUM || num > LOTTO_MAX_NUM)
+                    throw new IllegalArgumentException(NOT_INPUT_NUM_IN_RANGE);
+            }
+
+            HashSet<Integer> set = new HashSet<>();
+            for (int j = 0; j < numbers.size(); j++) {
+                if (set.contains(numbers.get(j))) {
+                    throw new IllegalArgumentException(DUPLICATE_NUMS);
+                }
+                set.add(numbers.get(j));
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_INPUT_WINNING_NUMS_NUMBER);
         }
     }
 
-    // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
     }
@@ -35,7 +46,7 @@ public class Lotto {
     public static List<Lotto> createMyLottos(int buyCount) {
         List<Lotto> myLottos = new ArrayList<>();
         for (int i = 0; i < buyCount; i++) {
-            List<Integer> randomList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> randomList = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_SIZE);
             Lotto lotto = new Lotto(randomList);
             myLottos.add(lotto);
         }

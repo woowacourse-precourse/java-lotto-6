@@ -53,7 +53,7 @@ public class LottoController {
         return purchasedLottos;
     }
 
-    private WinningLotto ㅂ () {
+    private WinningLotto getWinningLotto() {
         while (true) {
             try {
                 List<Integer> winningNumbers = lottoView.inputWinningNumbers();

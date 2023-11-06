@@ -37,6 +37,26 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 3개 이하의 번호가 일치하는 경우 RANK.NON_RANKING 반환한다.")
+    @Test
+    void matchWithNumbers_NON_RANKING() {
+        // given
+        Lotto lottoZero = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12));
+        Lotto lottoOne = new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11));
+        Lotto lottoTwo = new Lotto(Arrays.asList(1, 2, 7, 8, 9, 10));
+        WinLotto winLotto = new WinLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 10);
+
+        // when
+        Ranking rankingZero = lottoZero.matchWithWinLotto(winLotto);
+        Ranking rankingOne = lottoOne.matchWithWinLotto(winLotto);
+        Ranking rankingTwo = lottoTwo.matchWithWinLotto(winLotto);
+
+        // then
+        assertThat(rankingZero).isEqualTo(Ranking.NON_RANKING);
+        assertThat(rankingOne).isEqualTo(Ranking.NON_RANKING);
+        assertThat(rankingTwo).isEqualTo(Ranking.NON_RANKING);
+    }
+
     @DisplayName("로또의 3개의 번호가 일치하는 경우 RANK.FIFTH를 반환한다.")
     @Test
     void matchWithNumbers_FIFTH() {

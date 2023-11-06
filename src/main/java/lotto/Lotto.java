@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.constants.ConstantValues.*;
@@ -19,5 +21,5 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+
 }

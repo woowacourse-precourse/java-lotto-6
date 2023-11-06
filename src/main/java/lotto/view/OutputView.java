@@ -2,7 +2,6 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.EnumMap;
-import java.util.Map.Entry;
 
 import lotto.domain.Payment;
 import lotto.domain.Rank;
@@ -52,19 +51,33 @@ public class OutputView {
     public static void printWinningStatistics(final EnumMap<Rank, Integer> rankResult) {
         System.out.println(addLineSeparator(WINNING_STATISTICS_GUIDE));
         System.out.println(LINE_SEPARATOR);
-        for (Entry<Rank, Integer> entry : rankResult.entrySet()) {
-            Rank rank = entry.getKey();
+        printEachRankResult(rankResult);
+    }
+
+    private static void printEachRankResult(final EnumMap<Rank, Integer> rankResult) {
+        rankResult.forEach((rank, rankingCount) -> {
             int matchingCount = rank.matchingCount();
-            DecimalFormat decimalFormat = new DecimalFormat("#,###원");
-            String reward = decimalFormat.format(rank.reward());
-            int rankingCount = entry.getValue();
+            String reward = applyRewardFormat(rank);
             if (rank.equals(Rank.SECOND)) {
-                System.out.printf(addLineSeparatorInSuffix(SECOND_RANK_RESULT_GUIDE), matchingCount, reward,
-                        rankingCount);
-                continue;
+                printSecondRankResult(rankingCount, matchingCount, reward);
             }
-            System.out.printf(addLineSeparatorInSuffix(RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);
-        }
+            if (!rank.equals(Rank.SECOND)) {
+                printRankResult(rankingCount, matchingCount, reward);
+            }
+        });
+    }
+
+    private static void printSecondRankResult(final int rankingCount, final int matchingCount, final String reward) {
+        System.out.printf(addLineSeparatorInSuffix(SECOND_RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);
+    }
+
+    private static void printRankResult(final int rankingCount, final int matchingCount, final String reward) {
+        System.out.printf(addLineSeparatorInSuffix(RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);
+    }
+
+    private static String applyRewardFormat(final Rank rank) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###원");
+        return decimalFormat.format(rank.reward());
     }
 
     public static void printTotalYield(final double yield) {

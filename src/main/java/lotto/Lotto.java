@@ -6,10 +6,16 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
+    //computer's Lotto constructor
+    public Lotto() {
+        this.numbers = LottoMaker.generate();
+    }
+
+    //user's Lotto constructor
     public Lotto(List<Integer> numbers) {
         validateLength(numbers);
         validateDuplication(numbers);
-        
+
         this.numbers = numbers;
     }
 

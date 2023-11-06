@@ -258,4 +258,56 @@ class InputExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(PrintMessage.ONLY_SIX_NUMBER);
     }
+
+    @Test
+    @DisplayName("리스트 내에 특정 숫자가 포함되어 있는지 확인하는 메서드 테스트")
+    void isContainNumberTest() {
+        // given
+        List<Integer> list = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        Throwable throwable1 = catchThrowable(() -> {
+            InputException.isContainNumber(list, 7);
+        });
+        Throwable throwable2 = catchThrowable(() -> {
+            InputException.isContainNumber(list, 8);
+        });
+        Throwable throwable3 = catchThrowable(() -> {
+            InputException.isContainNumber(list, 9);
+        });
+
+        // then
+        assertThat(throwable1).doesNotThrowAnyException();
+        assertThat(throwable2).doesNotThrowAnyException();
+        assertThat(throwable3).doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("리스트 내에 특정 숫자가 포함되어 있는지 확인하는 메서드 예외처리 테스트")
+    void isContainNumberExceptionTest() {
+        // given
+        List<Integer> list = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        Throwable throwable1 = catchThrowable(() -> {
+            InputException.isContainNumber(list, 1);
+        });
+        Throwable throwable2 = catchThrowable(() -> {
+            InputException.isContainNumber(list, 3);
+        });
+        Throwable throwable3 = catchThrowable(() -> {
+            InputException.isContainNumber(list, 5);
+        });
+
+        // then
+        assertThat(throwable1)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(PrintMessage.NOT_DUPLICATION);
+        assertThat(throwable2)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(PrintMessage.NOT_DUPLICATION);
+        assertThat(throwable3)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(PrintMessage.NOT_DUPLICATION);
+    }
 }

@@ -16,6 +16,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -29,6 +31,6 @@ public class Lotto {
         return numbers.stream()
                 .map(LottoNumber::getLottoNumber)
                 .map(String::valueOf)
-                .collect(Collectors.joining(",", "[", "]"));
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 }

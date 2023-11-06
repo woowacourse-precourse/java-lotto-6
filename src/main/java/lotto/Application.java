@@ -13,11 +13,12 @@ import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        Price purchasePrice = new Price(InputView.purchasePrice());
-//        String purchasePrice = InputView.purchasePrice();
         LottoController lottoController = new LottoController();
+
+        Price purchasePrice = new Price(InputView.purchasePrice());
         List<Lotto> lottery = lottoController.buyLottery(purchasePrice);
+
+        OutputView.printPurchaseResult(purchasePrice.numberLotteryAvailablePurchase());
         OutputView.printLotteryNumber(lottery);
 
         String stringWinningNumber = InputView.winningNumber();
@@ -30,8 +31,7 @@ public class Application {
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
 
-        LottoNumber bonusNumber = new LottoNumber(InputView.bonusNumber());
-        Ranks ranks = lottoController.lottoResults(lottery, winningNumber, bonusNumber);
+        Ranks ranks = lottoController.lottoResults(lottery, winningNumber, new LottoNumber(InputView.bonusNumber()));
 
         OutputView.printLotteryResult(ranks.lotteryRankStatus());
         OutputView.printRateOfReturn(ranks.calWinningPrice(), purchasePrice);

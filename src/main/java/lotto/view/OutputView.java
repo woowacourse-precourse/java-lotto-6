@@ -27,6 +27,10 @@ public class OutputView {
 
     public static void printRateOfReturn(Long totalPrice, Price purchasePrice) {
         double result = (totalPrice * 100) / (purchasePrice.getPurchasePrice() * 1.0);
-        System.out.println(String.format("%,.1f%%", result));
+        System.out.println(String.format("총 수익률은 %,.1f%%입니다.", result));
+    }
+
+    public static void printPurchaseResult(Integer numOfLotto) {
+        System.out.println(String.format("%s개를 구매했습니다.", numOfLotto));
     }
 }

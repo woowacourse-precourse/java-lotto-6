@@ -13,6 +13,8 @@ public class LottoGame {
 
 	public void run() {
 		controller.purchasePrice();
+		controller.winningNumber();
+		controller.bonusNumber();
 	}
 
 }

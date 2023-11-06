@@ -9,6 +9,7 @@ public class ValidatorFactory {
 
     private ValidatorFactory() {
         addValidator(new NumberValidator());
+        addValidator(new PurchaseValidator());
     }
 
     public static ValidatorFactory getInstance() {

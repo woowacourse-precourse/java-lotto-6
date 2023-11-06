@@ -14,7 +14,7 @@ public class LottoTicket {
         return this.lottoTicket;
     }
 
-    public List<String> printLottoTicket() {
+    public List<String> convertString() {
         List<String> issuedLottoTicket = new ArrayList<>();
         for (Lotto lotto : this.lottoTicket) {
             issuedLottoTicket.add(lotto.sortNumbers().toString());

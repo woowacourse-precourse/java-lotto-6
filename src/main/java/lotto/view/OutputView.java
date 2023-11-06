@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void printLottoTicket(LottoTicket lottoTicket) {
-        for (String lotto : lottoTicket.printLottoTicket()) {
+        for (String lotto : lottoTicket.convertString()) {
             System.out.println(lotto);
         }
     }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.enums;
 
 public enum ErrorMessage {
     ERROR_OF_NOT_NUMBER("[ERROR] 입력값은 정수형 숫자여야 합니다!"),

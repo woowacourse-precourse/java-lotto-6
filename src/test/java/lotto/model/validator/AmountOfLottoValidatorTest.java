@@ -1,6 +1,10 @@
 package lotto.model.validator;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static lotto.model.util.ExceptionMessage.BIGGER_THAN_MAX;
+import static lotto.model.util.ExceptionMessage.INVALID_INPUT_TYPE;
+import static lotto.model.util.ExceptionMessage.NOT_DIVIDE_BY_LOTTO_PRICE;
+import static lotto.model.util.ExceptionMessage.NOT_POSITIVE_INPUT;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,8 +35,9 @@ class AmountOfLottoValidatorTest {
     void notNumberFailTest(String amountOfLotto) {
         // given
         // when & then
-        assertThatIllegalArgumentException().isThrownBy(
-                () -> amountOfLottoValidator.checkType(amountOfLotto));
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> amountOfLottoValidator.checkType(amountOfLotto))
+                .withMessage(INVALID_INPUT_TYPE.getMessage());
     }
 
     @ParameterizedTest
@@ -41,8 +46,9 @@ class AmountOfLottoValidatorTest {
     void biggerThanIntegerMaxFailTest(Long amountOfLotto) {
         // given
         // when & then
-        assertThatIllegalArgumentException().isThrownBy(
-                () -> amountOfLottoValidator.checkAmountWithinLottoPriceRange(amountOfLotto));
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> amountOfLottoValidator.checkAmountWithinLottoPriceRange(amountOfLotto))
+                .withMessage(BIGGER_THAN_MAX.getMessage());
     }
 
     @ParameterizedTest
@@ -61,8 +67,9 @@ class AmountOfLottoValidatorTest {
     void zeroFailTest(Long amountOfLotto) {
         // given
         // when & then
-        assertThatIllegalArgumentException().isThrownBy(
-                () -> amountOfLottoValidator.checkAmountWithinLottoPriceRange(amountOfLotto));
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> amountOfLottoValidator.checkAmountWithinLottoPriceRange(amountOfLotto))
+                .withMessage(NOT_POSITIVE_INPUT.getMessage());
     }
 
     @ParameterizedTest
@@ -80,7 +87,8 @@ class AmountOfLottoValidatorTest {
     void notDivideByLottoPrice(Long amountOfLotto) {
         // given
         // when & then
-        assertThatIllegalArgumentException().isThrownBy(
-                () -> amountOfLottoValidator.checkDivideByLottoPrice(amountOfLotto));
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> amountOfLottoValidator.checkDivideByLottoPrice(amountOfLotto))
+                .withMessage(NOT_DIVIDE_BY_LOTTO_PRICE.getMessage());
     }
 }

@@ -13,7 +13,7 @@ public class LottoGenerator {
     private static final int MAX_LOTTO_NUMBER_RANGE = 45;
     private static final int MIN_LOTTO_NUMBER_RANGE = 1;
     private static final int MAX_LOTTO_NUMBER_COUNT = 6;
-    private User user;
+    private final User user;
     private final List<Lotto> lottoList;
 
     public LottoGenerator(User user) {
@@ -31,20 +31,22 @@ public class LottoGenerator {
         return lottoList;
     }
 
-    private Lotto createLotto() {
-        List<Integer> numbers = getLottoNumbers();
-        numbers.sort(Comparator.naturalOrder());
-
-        return new Lotto(numbers);
+    private int lottoTicket() {
+        return user.inputLottoTicketPrice();
     }
 
-    private static List<Integer> getLottoNumbers() {
+
+    private Lotto createLotto() {
+        List<Integer> lottoNumbersList = getLottoNumbers();
+        lottoNumbersList.sort(Comparator.naturalOrder());
+
+        return new Lotto(lottoNumbersList);
+    }
+
+    private List<Integer> getLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange
                 (MIN_LOTTO_NUMBER_RANGE, MAX_LOTTO_NUMBER_RANGE, MAX_LOTTO_NUMBER_COUNT);
     }
 
-    private int lottoTicket() {
-        return Integer.parseInt(user.getInputBuyLottoTicket()) / 100;
-    }
 
 }

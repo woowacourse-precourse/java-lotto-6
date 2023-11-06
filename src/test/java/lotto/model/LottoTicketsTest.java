@@ -13,19 +13,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class LottoTicketsTest {
 
     @Test
-    @DisplayName("입력된 개수만큼 로또 만들기")
+    @DisplayName("입력된 개수만큼 랜덤 로또 만들기")
     void makeLottoTickets(){
         List<Lotto> tickets = new ArrayList<>();
         tickets.add(new Lotto(List.of(8, 21, 23, 41, 42, 43)));
         tickets.add(new Lotto(List.of(3, 5, 11, 16, 32, 38)));
         tickets.add(new Lotto(List.of(7, 11, 16, 35, 36, 44)));
         tickets.add(new Lotto(List.of(1, 8, 11, 31, 41, 42)));
-        LottoTickets expectedTicktes = new LottoTickets(tickets);
+        LottoTickets expectedTickets = new LottoTickets(tickets);
 
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    LottoTickets lottoTickets = new LottoTickets(8);
-                    assertThat(lottoTickets.makeTickets()).isEqualTo(expectedTicktes);
+                    LottoTickets lottoTickets = new LottoTickets(4);
+                    assertThat(lottoTickets).isEqualTo(expectedTickets);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),

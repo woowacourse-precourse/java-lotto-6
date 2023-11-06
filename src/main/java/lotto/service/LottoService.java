@@ -8,4 +8,6 @@ public interface LottoService {
     List<Lotto> issueNewLotto(int count) throws IllegalArgumentException;
 
     WinningStatisticsDto getWinningStatistics(List<Lotto> lottos, Lotto winningLotto, int bonusNumber);
+
+    int getNumberOfLottoToBeIssued(int price);
 }

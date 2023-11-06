@@ -45,6 +45,14 @@ public class LottoServiceImpl implements LottoService {
         return mapToWinningStatisticsDto(countMap, winningRate);
     }
 
+    @Override
+    public int getNumberOfLottoToBeIssued(int price) throws IllegalArgumentException {
+        if (price == 0 || price % 1000 != 0) {
+            throw new NotValidGivenPriceException();
+        }
+        return price / 1000;
+    }
+
     private WinningStatisticsDto mapToWinningStatisticsDto(Map<Integer, Integer> countMap, double winningRate) {
         return new WinningStatisticsDto(countMap.getOrDefault(3, 0), countMap.getOrDefault(4, 0),
                 countMap.getOrDefault(5, 0), countMap.getOrDefault(7, 0),
@@ -91,13 +99,6 @@ public class LottoServiceImpl implements LottoService {
         return (int) winningLotto.getNumbers().stream().
                 filter(lotto::containNumber).
                 count();
-    }
-
-    private int getNumberOfLottoToBeIssued(int price) throws IllegalArgumentException {
-        if (price == 0 || price % 1000 != 0) {
-            throw new NotValidGivenPriceException();
-        }
-        return price / 1000;
     }
 
 }

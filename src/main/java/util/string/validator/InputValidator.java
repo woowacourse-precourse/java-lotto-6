@@ -36,12 +36,20 @@ public class InputValidator {
         checkLottoNumberRangeAndThrowException(numbers);
     }
 
-    public static void checkBonusInput(String input) throws IllegalArgumentException {
+    public static void checkBonusInput(String input, List<Integer> numbers)
+            throws IllegalArgumentException {
         checkEmptyAndThrowException(input);
         checkSpaceAndThrowException(input);
         checkIntegerInputAndThrowException(input);
         checkBonusNumberRangeAndThrowException(input);
+        checkWinningLottoAndBonusDuplicated(numbers, StringUtils.parseStringToInt(input));
+    }
 
+    private static void checkWinningLottoAndBonusDuplicated(List<Integer> numbers, int bonus)
+            throws IllegalArgumentException {
+        if (numbers.contains(bonus)) {
+            throw new DuplicatedLottoNumberException();
+        }
     }
 
     private static void checkBonusNumberRangeAndThrowException(String input) throws IllegalArgumentException {
@@ -59,10 +67,10 @@ public class InputValidator {
         }
     }
 
-    private static void checkLottoNumberDuplicatedAndThrowException(List<Integer> carNameList)
+    private static void checkLottoNumberDuplicatedAndThrowException(List<Integer> numbers)
             throws IllegalArgumentException {
-        Set<Integer> set = new HashSet<>(carNameList);
-        if (set.size() != carNameList.size()) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != numbers.size()) {
             throw new DuplicatedLottoNumberException();
         }
     }

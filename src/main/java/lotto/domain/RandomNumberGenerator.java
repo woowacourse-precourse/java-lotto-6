@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RandomNumberGenerator implements LottoNumberGenerator {
 
@@ -12,7 +12,7 @@ public class RandomNumberGenerator implements LottoNumberGenerator {
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
+        numbers.stream().sorted().collect(Collectors.toList());
         return numbers;
     }
 }

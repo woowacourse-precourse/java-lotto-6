@@ -2,6 +2,9 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.dto.IssuedLottoDto;
+import lotto.dto.WinningStatisticsDto;
 import lotto.service.LottoService;
 import lotto.view.View;
 import util.string.StringUtils;
@@ -19,17 +22,35 @@ public class Controller {
 
     public void play() {
         int userPrice = getUserInputPrice();
-        List<Integer> winningLottonumbers = getWinningLottonumbers();
-        int bonus = getInputBonusNumber();
+        List<Lotto> lottos = issueLotto(userPrice);
+
+        Lotto winningLotto = new Lotto(getWinningLottonumbers());
+        int bonus = getInputBonusNumber(winningLotto.getNumbers());
+
+        WinningStatisticsDto result = lottoService.getWinningStatistics(lottos, winningLotto, bonus);
+        view.printWinningStatistics(result);
     }
 
-    private int getInputBonusNumber() {
+    private List<Lotto> issueLotto(int userPrice) {
+        List<Lotto> lottos = lottoService.issueNewLotto(userPrice);
+        view.printNumberOfPurchasedLotto(lottoService.getNumberOfLottoToBeIssued(userPrice));
+        view.printIssuedLottoNumbers(parseLottoToDto(lottos));
+        return lottos;
+    }
+
+    private List<IssuedLottoDto> parseLottoToDto(List<Lotto> lottos) {
+        return lottos.stream()
+                .map(i -> new IssuedLottoDto(i.getNumbers()))
+                .toList();
+    }
+
+    private int getInputBonusNumber(List<Integer> numbers) {
         String inputNumber;
         while (true) {
             view.printRequestBonusNumber();
             inputNumber = readInput();
             try {
-                InputValidator.checkBonusInput(inputNumber);
+                InputValidator.checkBonusInput(inputNumber, numbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

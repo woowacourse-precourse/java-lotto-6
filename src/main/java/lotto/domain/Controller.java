@@ -1,19 +1,13 @@
 package lotto.domain;
 
-import static java.util.Collections.list;
 import static java.util.Collections.sort;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import com.sun.security.jgss.GSSUtil;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.LottoTicket;
 import lotto.model.Purchase;
 import lotto.model.WinningNumbers;
-import lotto.validator.ValidatorPurchaseAmount;
-import lotto.validator.ValidatorWinningNumbers;
 import lotto.view.View;
 
 public class Controller {
@@ -23,35 +17,26 @@ public class Controller {
     public void lotto_Logic() {
         View view = new View();
         view.inputPurchaseAmount();
-        Purchase purchase = new Purchase(view.input());
 
-        ValidatorPurchaseAmount validatorPurchaseAmount = new ValidatorPurchaseAmount();
-
-        while (!validatorPurchaseAmount.processPurchaseAmountError(purchase)) {
-            validatorPurchaseAmount.processErrorResult();
-
-            purchase = new Purchase(view.input());
-            validatorPurchaseAmount = new ValidatorPurchaseAmount();
-        }
-
-        LottoTicket lottoTicket = new LottoTicket(calculateLottoTicketCount(purchase));
-        view.displayPurchaseQuantityMessage(lottoTicket);
+        inputAmountLogic(view);
+        System.out.println();
+        view.displayPurchaseQuantityMessage(Purchase.getPurchaseCount());
 
         // 로또 번호 출력
-        displayLottoNumbers(generateLottoNumbersList(generateLottoTickets(lottoTicket)));
+        displayLottoNumbers(generateLottoNumbersList(generateLottoTickets(Purchase.getPurchaseCount())));
 
+        System.out.println();
         view.inputWinningNumbers();
 
         // 당첨 번호 입력 ~ 검증 ~ 저장
-        winningNumberLogic(view);
+        inputNumberLogic(view);
 
+        // 보너스 번호 입력
+        System.out.println();
+        view.inputBonusNumber();
 
     }
 
-    // 로또 티켓 개수 계산
-    public int calculateLottoTicketCount(Purchase purchase) {
-        return Integer.parseInt(purchase.getPurchaseAmount()) / 1000;
-    }
 
     // 로또 번호 랜덤 뽑기
     public List<Integer> generateLottoNumbers() {
@@ -59,9 +44,9 @@ public class Controller {
     }
 
     // 로또 티켓 개수만큼 로또 객체 생성
-    public List<Lotto> generateLottoTickets(LottoTicket lottoTicket) {
+    public List<Lotto> generateLottoTickets(int purchaseAmount) {
         List<Lotto> lottoNumbers = new ArrayList<>();
-        for (int i = 0; i < lottoTicket.getLottoTicketCount(); i++) {
+        for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> numbers = generateLottoNumbers();
             sort(numbers);
             Lotto lotto = new Lotto(numbers);
@@ -127,8 +112,7 @@ public class Controller {
     }
 
 
-
-    public void winningNumberLogic(View view) {
+    public void inputNumberLogic(View view) {
         //당첨 번호 입력
         String input = view.input();
         //최소 검증 로직 수행 후 모델에 넘김
@@ -138,12 +122,12 @@ public class Controller {
 
     }
 
-    public void preprocessDataWithErrorHandling(String input, View view){
+    public void preprocessDataWithErrorHandling(String input, View view) {
         try {
             validateInput(input);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             processErrorResult();
-            winningNumberLogic(view);
+            inputNumberLogic(view);
         }
     }
 
@@ -152,7 +136,33 @@ public class Controller {
             new WinningNumbers(performTypeConversion(input));
         } catch (IllegalArgumentException e) {
             processErrorResult();
-            winningNumberLogic(view);
+            inputNumberLogic(view);
+        }
+    }
+
+    public void inputAmountLogic(View view) {
+        //당첨 번호 입력
+        String input = view.input();
+        //최소 검증 로직 수행 후 모델에 넘김
+        preprocessAmountDataWithErrorHandling(input, view);
+        processAmountDataWithErrorHandling(input, view);
+    }
+
+    public void preprocessAmountDataWithErrorHandling(String input, View view) {
+        try {
+            validateInput(input);
+        } catch (IllegalArgumentException e) {
+            processErrorResult();
+            inputAmountLogic(view);
+        }
+    }
+
+    public void processAmountDataWithErrorHandling(String input, View view) {
+        try {
+            new Purchase(Integer.parseInt((input)));
+        } catch (IllegalArgumentException e) {
+            processErrorResult();
+            inputAmountLogic(view);
         }
     }
 }

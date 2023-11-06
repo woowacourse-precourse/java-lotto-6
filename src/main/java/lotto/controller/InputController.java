@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.Exception.*;
-import static lotto.Exception.isValidLottoNumberRange;
+import static lotto.Exception.isValidNotThousandAndNegativeException;
+import static lotto.Exception.isValidNumberFormat;
 
 public class InputController {
     private final Model model;

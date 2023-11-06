@@ -25,7 +25,9 @@ public class InputView {
     private void inputLottoWinningNumber() {
         List<Integer> list = inputWinningNumnberList();
         Integer bonusNumber = inputBonusNumber();
-        lotto = new Lotto(list, bonusNumber);
+        // todo : 코드 수정 예정
+        lotto = new Lotto(list);
+        lotto.setBonusNumber(bonusNumber);
     }
 
     private List<Integer> inputWinningNumnberList() {

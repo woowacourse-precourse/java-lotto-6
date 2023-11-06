@@ -16,18 +16,19 @@ public class LottoSimulationResult {
 
     public void add(LottoMatchResult result) {
         int value = resultCount.get(result.getIndex());
-        resultCount.set(value + 1, result.getIndex());
+        resultCount.set(result.getIndex(), value + 1);
     }
 
-    public float calculateReturn() {
+    public double calculateReturn() {
         int totalAmount = 0, returnAmount = 0;
 
         for (LottoMatchResult matchResult : LottoMatchResult.values()) {
-            totalAmount += LottoSimulator.LOTTO_PRICE;
-            returnAmount += matchResult.getReward();
+            int index = matchResult.getIndex();
+            totalAmount += LottoSimulator.LOTTO_PRICE * resultCount.get(index);
+            returnAmount += matchResult.getReward() * resultCount.get(index);
         }
 
-        return (float)returnAmount / totalAmount;
+        return (double) returnAmount / totalAmount;
     }
 
     @Override

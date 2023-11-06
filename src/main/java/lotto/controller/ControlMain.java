@@ -8,25 +8,28 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
-public class ControllMain {
-    List<List<Integer>> mainLotto = new ArrayList<>();
+public class ControlMain {
+
+    private List<List<Integer>> mainLotto = new ArrayList<>();
 
     public ControlMain() {
         Player player = new Player();
         priceLotto(player);
         buyLotto(player.getCount());
-        Lotto lotto = setChoiceLottoNum();
+
+        Lotto lotto = new Lotto(setChoiceLottoNum());
+
         bonusNumAdd(lotto.getNumbers(), player);
+
         equalsNumber(mainLotto, lotto.getNumbers(), player);
         EnumRanking.Ranking.printSentence(player);
     }
 
     // 입력
     public void priceLotto(Player player) {
-        System.out.print("구입금액을 입력해 주세요.");
+        System.out.println("구입금액을 입력해 주세요.");
         priceLottoTry(player);
     }
 
@@ -35,45 +38,44 @@ public class ControllMain {
         bonusNumTry(numbers, player);
     }
 
-    public Lotto setChoiceLottoNum() {
+    public List<Integer> setChoiceLottoNum() {
         System.out.println("당첨 번호를 입력해주세요.");
         return choiceLottoNumTry();
     }
 
     public List<Integer> randomLottoNum() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(1, 10, 6);
     }
 
 
-    /// util 사는거
     public void buyLotto(int count) {
         System.out.println();
         for (int i = 0; i < count; i++) {
             this.mainLotto.add(randomLottoNum());
         }
-        System.out.println(count + "개를 구매했습니다.");
-        OutputView.printBuyLotto(mainLotto);
+        OutputView.printBuyLotto(mainLotto, count);
     }
 
 
-    public List<Integer> lottoList(String[] choiceLottoNum) {
+    public List<Integer> lottoNumbers(String[] choiceLottoNum) {
         ErrorCheck.stringArrChangeString(choiceLottoNum);
         ErrorCheck.stringChangeChar(choiceLottoNum);
-        return setChoicelottoList(choiceLottoNum);
+        return setChoiceLottoNumbers(choiceLottoNum);
     }
 
-    public List<Integer> setChoicelottoList(String[] choiceLottoNum) {
-        List<Integer> tmp = new ArrayList<>();
+    public List<Integer> setChoiceLottoNumbers(String[] choiceLottoNum) {
+        List<Integer> choiceLottoNumbers = new ArrayList<>();
         for (int i = 0; i < choiceLottoNum.length; i++) {
-            tmp.add(Integer.parseInt(choiceLottoNum[i]));
+            choiceLottoNumbers.add(Integer.parseInt(choiceLottoNum[i]));
         }
-        return tmp;
+        return choiceLottoNumbers;
     }
 
     public void equalsNumber(List<List<Integer>> mainLotto, List<Integer> lottoNumber, Player player) {
         for (int i = 0; i < mainLotto.size(); i++) {
             int cnt = getLottoNumTotal(mainLotto.get(i), lottoNumber);
-            EnumRanking.Ranking.rankingTotal(cnt, mainLotto.get(i), player);
+            player.updateMatchCountAndTotal(EnumRanking.Ranking.matchPoint(cnt, mainLotto.get(i), player));
+
 
         }
     }
@@ -94,7 +96,7 @@ public class ControllMain {
         player.updateBonusNumber(choiceInt);
     }
 
-    public void bonusNumAllErorr(String choice, List<Integer> numbers) {
+    public void bonusNumAllError(String choice, List<Integer> numbers) {
         ErrorCheck.isSpaceValue(choice);
         ErrorCheck.isDigitErrorCheck(choice);
         ErrorCheck.isvalidateMaxAndMinNum(choice);
@@ -107,17 +109,21 @@ public class ControllMain {
         ErrorCheck.priceErrorCheck(price);
     }
 
-    public Lotto choiceLottoNumTry() {
-        Lotto lotto = null;
+    public List<Integer> choiceLottoNumTry() {
+        boolean isTrue = false;
+        List<Integer> numbers = new ArrayList<>();
         do {
             try {
                 String[] choiceLottoNum = InputView.choiceMainLottoNum().split(",");
-                lotto = new Lotto(lottoList(choiceLottoNum));
+                numbers = lottoNumbers(choiceLottoNum);
+                new Lotto(numbers);
+                isTrue = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        } while (Objects.isNull(lotto));
-        return lotto;
+        } while (!isTrue);
+        OutputView.printNumbers(numbers);
+        return numbers;
     }
 
     public void priceLottoTry(Player player) {
@@ -135,16 +141,17 @@ public class ControllMain {
 
     public void bonusNumTry(List<Integer> numbers, Player player) {
         boolean isTrue = false;
+        String choice ="";
         do {
             try {
-                String choice = InputView.choiceBonusLottoNum();
-                bonusNumAllErorr(choice, numbers);
+                choice = InputView.choiceBonusLottoNum();
+                bonusNumAllError(choice, numbers);
                 playerUpdateBonusNumber(choice, player);
                 isTrue = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         } while (!isTrue);
+        OutputView.printBonusNumber(choice);
     }
-
 }

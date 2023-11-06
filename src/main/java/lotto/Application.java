@@ -17,7 +17,7 @@ public class Application {
         User user = new User();
 
         Output.printPurchase();
-        user.purchaseLotto(new Money(Input.get()));
+        user.purchaseLotto();
         Output.printCount(user.lottoCount);
 
         // 4. 로또 번호 출력

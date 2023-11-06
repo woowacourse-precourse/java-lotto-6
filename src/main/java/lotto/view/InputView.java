@@ -43,6 +43,20 @@ public class InputView {
         return winningNumberList;
     }
 
+    public static int inputBonusNumber(List<Integer> list) {
+        String bonusNumber = "";
+        while (true) {
+            try {
+                bonusNumber = printAndInput(PrintMessage.INPUT_BONUS_NUMBER);
+                InputException.validateBonusNumber(bonusNumber, list);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return Integer.parseInt(bonusNumber);
+    }
+
     public static String printAndInput(String message) {
         System.out.println(message);
         return Console.readLine();

@@ -23,6 +23,12 @@ public class InputException {
         return list;
     }
 
+    public static void validateBonusNumber(String input, List<Integer> list) {
+        isDigit(input);
+        isBetweenOneAndFourtyfive(Integer.parseInt(input));
+        isContainNumber(list, Integer.parseInt(input));
+    }
+
     public static List<Integer> validateList(String[] arr) {
         List<Integer> list = new ArrayList<>();
 

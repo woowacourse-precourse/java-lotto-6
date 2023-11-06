@@ -22,6 +22,10 @@ public class Validator {
         checkLottoNumberRange(winningNumber);
         checkLottoNumberDuplicate(winningNumber);
     }
+
+    public static void checkBonusNumber(Integer bonusNumber) throws IllegalArgumentException{
+        checkLottoNumberRange(bonusNumber);
+    }
     private static void checkWinningNumberSize(List<Integer> winningNumber) throws IllegalArgumentException{
         if(winningNumber.size() != 6){
             throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 6개가 아닙니다.");
@@ -35,6 +39,14 @@ public class Validator {
             }
         }
     }
+
+    private static void checkLottoNumberRange(Integer lottoNumber) throws IllegalArgumentException{
+        if(lottoNumber < 1 || lottoNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 각 로또 번호는 1과 45 사이의 값이어야 합니다.");
+        }
+    }
+
+
 
     private static void checkLottoNumberDuplicate(List<Integer> lottoNumber) throws IllegalArgumentException{
         Long lottoNumberCount = lottoNumber.stream().distinct().count();

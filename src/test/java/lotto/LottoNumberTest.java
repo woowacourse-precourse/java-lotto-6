@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -13,5 +14,15 @@ public class LottoNumberTest {
     void 범위_예외처리(long number) {
         assertThatThrownBy(() -> new LottoNumber(number))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("equals() 확인 기능")
+    @ParameterizedTest
+    @ValueSource(longs = {1, 4, 8, 45})
+    void 동일_값_객체_확인(long number) {
+        LottoNumber one = new LottoNumber(number);
+        LottoNumber other = new LottoNumber(number);
+
+        assertThat(one).isEqualTo(other);
     }
 }

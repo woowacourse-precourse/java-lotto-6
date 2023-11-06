@@ -19,4 +19,13 @@ public class LottoResult {
         }
         return result;
     }
+
+    public double calculateReturnRate(Map<Rank, Integer> result, int money) {
+        double totalReward = 0;
+        for (Rank rank : result.keySet()) {
+            totalReward += rank.getReward() * result.get(rank);
+        }
+        return (double) Math.round(totalReward / money * 100 * 100) / 100.0;
+    }
 }
+

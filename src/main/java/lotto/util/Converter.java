@@ -13,11 +13,11 @@ public class Converter {
 
     public static List<Integer> convertStringToIntegerListByDelimiter(final String input) {
         return Arrays.stream(input.split(DELIMITER))
-                .map(number -> getLottoNumber(number.trim()))
+                .map(number -> getNumber(number.trim()))
                 .toList();
     }
 
-    private static Integer getLottoNumber(final String number) {
+    private static Integer getNumber(final String number) {
         try {
             return Integer.valueOf(number);
         } catch (NumberFormatException e) {

@@ -18,12 +18,19 @@ public class Money {
 
     private int validate(String money) {
         validateMoney(money);
+        validateRealMoney(money);
 
         return moneySize(money);
     }
 
     private void validateMoney(String money) {
         if(!money.matches("[0-9]+")) {
+            throw new IllegalArgumentException(ConstantErrorMessage.ERROR_NUMBER.errorMessage());
+        }
+    }
+
+    private void validateRealMoney(String money) {
+        if(money.charAt(0) == '0') {
             throw new IllegalArgumentException(ConstantErrorMessage.ERROR_NUMBER.errorMessage());
         }
     }

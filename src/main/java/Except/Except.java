@@ -94,9 +94,13 @@ public class Except {
         }
         return result;
     }
-    public List<Integer> numberCheckAll(String number){
+
+    public List<Integer> numberCheckAll(String number) {
         List<Integer> result = new ArrayList<>();
         String length_check = numberLengthCheck(number);
-
+        if (!length_check.equals("")) {
+            result = numberAllCheckNumber(length_check);
+        }
+        return result;
     }
 }

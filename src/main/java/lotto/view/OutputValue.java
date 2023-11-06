@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.message.OutputMessage;
 
 public class OutputValue {
     public static void guidePrize(List<Integer> resultList) {

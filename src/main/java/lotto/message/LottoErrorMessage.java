@@ -1,4 +1,4 @@
-package lotto.utility;
+package lotto.message;
 
 public enum LottoErrorMessage {
     WRONG_SIZE_ERROR("[ERROR] 총 6개의 숫자를 입력해야 합니다."),

@@ -1,8 +1,7 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.domain.Bonus;
-import lotto.utility.LottoErrorMessage;
+import lotto.message.LottoErrorMessage;
 
 public class LottoBonusComparer {
     public static void isValidBonusNumber(List<Integer> numbers, int inputNumber) {

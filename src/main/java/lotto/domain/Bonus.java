@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.utility.LottoErrorMessage;
+import lotto.message.LottoErrorMessage;
 
 public class Bonus {
     private int number;

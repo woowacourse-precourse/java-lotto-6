@@ -1,5 +1,7 @@
 package lotto.utility;
 
+import lotto.message.PurchaseErrorMessage;
+
 public class NumberTypeChanger {
     private static final String MATCH_NUMBER = "\\d+";
 

@@ -2,6 +2,7 @@ package lotto.utility;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.message.LottoErrorMessage;
 
 public class ListTypeChanger {
     public static List<Integer> changeListType(String input) {

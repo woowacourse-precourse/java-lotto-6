@@ -1,4 +1,4 @@
-package lotto.utility;
+package lotto.message;
 
 public enum PurchaseErrorMessage {
     NOT_NUMBER_ERROR("[ERROR] 숫자 이외의 문자를 입력할 수 없습니다."),

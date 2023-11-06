@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.utility.LottoErrorMessage;
+import lotto.message.LottoErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;

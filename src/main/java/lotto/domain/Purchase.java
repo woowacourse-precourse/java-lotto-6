@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.utility.PurchaseErrorMessage;
+import lotto.message.PurchaseErrorMessage;
 
 public class Purchase {
     private final int amount;

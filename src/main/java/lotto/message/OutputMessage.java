@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.message;
 
 public enum OutputMessage {
     PURCHASE("%d개를 구매했습니다."),

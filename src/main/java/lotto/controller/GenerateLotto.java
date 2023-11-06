@@ -7,9 +7,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class GenerateLotto {
 	
+	private final int MIN_LOTTO_NUMBER = 1;
+	private final int MAX_LOTTO_NUMBER = 45;
+	private final int NUMBER_OF_LOTTO = 6;
+	
 	public List<Integer> numbers(){
 		
-		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO);
 		sort(numbers);
 		
 		return numbers;	
@@ -18,5 +22,4 @@ public class GenerateLotto {
 	private void sort(List<Integer> numbers) {
 		Collections.sort(numbers);
 	}
-	
 }

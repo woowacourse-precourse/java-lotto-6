@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.Lotto;
 import lotto.domain.collections.LotteryResultCollection;
 import lotto.domain.collections.UserTicketCollection;
 

@@ -1,7 +1,6 @@
 package lotto.domain.collections;
 
-import lotto.Lotto;
-import net.bytebuddy.pool.TypePool;
+import lotto.domain.Lotto;
 
 import java.util.Collections;
 import java.util.List;

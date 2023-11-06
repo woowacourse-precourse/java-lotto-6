@@ -1,9 +1,5 @@
-package lotto;
+package lotto.domain;
 
-import lotto.domain.LotteryResult;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {

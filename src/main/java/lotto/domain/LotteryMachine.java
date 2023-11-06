@@ -1,13 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
-import lotto.validator.LotteryMachineValidator;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-import static java.util.Collections.*;
 import static lotto.validator.LotteryMachineValidator.*;
 
 public class LotteryMachine {

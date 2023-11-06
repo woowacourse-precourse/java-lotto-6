@@ -1,10 +1,8 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
 import lotto.domain.collections.LotteryResultCollection;
 import lotto.domain.collections.UserTicketCollection;
-import lotto.validator.TypeMismatchValidator;
 import lotto.validator.UserTicketValidator;
 
 import java.util.List;

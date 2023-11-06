@@ -6,6 +6,7 @@ import lotto.model.RandomLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Application {
         try {
             purchasePieces = new Purchase(purchasingAmount).pieces();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.errorMessage(e.getMessage());
             purchaseCount(inputView.purchaseAmount());
         }
     }
@@ -48,7 +49,7 @@ public class Application {
         try {
             Lotto lotto = new Lotto(numbers);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.errorMessage(e.getMessage());
             winNum = convertNum(inputView.winNum());
             winLottoNum(winNum);
         }

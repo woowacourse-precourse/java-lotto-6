@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constant.LottoConfig;
 import lotto.domain.*;
 import lotto.view.InputView;
 
@@ -28,6 +29,8 @@ public class LottoController {
             resultLotto.addResult(lotto, winnerNumber, bonusNumber);
         }
         printMatchLotto(resultLotto);
+
+        printProfitRate(resultLotto, purchaseLotto.getLottoCount() * LottoConfig.PURCHASE_AMOUNT_UNIT);
     }
 
     private PurchaseLotto getPurChaseAmount() {

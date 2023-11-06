@@ -13,7 +13,7 @@ public class Validator {
     }
 
     private boolean notThousands(String cost, Integer lottoPrice) {
-        return (Integer.parseInt(cost) % lottoPrice == 0);
+        return (Integer.parseInt(cost) % lottoPrice != 0);
     }
 
     public void validateAnswer(String number, Integer start, Integer end) {

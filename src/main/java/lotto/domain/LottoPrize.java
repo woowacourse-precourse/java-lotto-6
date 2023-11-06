@@ -27,4 +27,13 @@ public enum LottoPrize {
     public String getMoney() {
         return money;
     }
+
+    public static Long findPrizeMoney(int number) {
+        for (LottoPrize prize : values()) {
+            if (prize.count == number) {
+                return prize.prizeMoney;
+            }
+        }
+        return 0l;
+    }
 }

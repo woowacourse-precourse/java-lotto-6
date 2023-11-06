@@ -10,6 +10,7 @@ import lotto.domain.IssuedLottos;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseNumber;
 import lotto.domain.Rank;
+import lotto.utility.validation.WinningNumberChecker;
 import lotto.utility.vo.BonusNumberRequest;
 import lotto.utility.vo.PurchaseAmountRequest;
 import lotto.utility.vo.WinningNumberRequest;
@@ -37,7 +38,10 @@ public class LottoService {
         WinningNumberRequest winningNumberRequest) {
         Lotto winningLotto = winningNumberRequest.convertToValidLotto();
         BonusNumber bonusNumber = bonusNumberRequest.convertToValidBonusNumber();
+        WinningNumberChecker.validate(winningLotto, bonusNumber);
+
         List<Rank> ranks = issuedLottos.determineRanks(winningLotto, bonusNumber);
+
         return new WinningResponse(ranks);
     }
 }

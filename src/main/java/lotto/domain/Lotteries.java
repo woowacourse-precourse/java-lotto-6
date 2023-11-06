@@ -1,8 +1,11 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.constant.NumberConstant;
 
 public class Lotteries {
@@ -18,10 +21,13 @@ public class Lotteries {
     }
 
     private List<Lotto> generateLotteries(int purchaseCount) {
-        for (int i = 0; i < purchaseCount; i++) {
-            lotteries.add(new Lotto(generateLottoNumbers()));
-        }
-        return lotteries;
+        return IntStream.range(0, purchaseCount)
+                .mapToObj(i -> this.generateLotto())
+                .collect(Collectors.toList());
+    }
+
+    private Lotto generateLotto() {
+        return new Lotto(generateLottoNumbers());
     }
 
     private List<Integer> generateLottoNumbers() {
@@ -32,9 +38,5 @@ public class Lotteries {
         );
         Collections.sort(randomNumbers);
         return randomNumbers;
-    }
-
-    public List<Lotto> getLotteries() {
-        return lotteries;
     }
 }

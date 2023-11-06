@@ -76,8 +76,8 @@ public class View {
         outputView.printStatistics(result);
     }
 
-    public void showRateOfProfit(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
-        outputView.printRateOfProfit(result, buyAmount);
+    public void showProfitRate(final Double profitRate) {
+        outputView.printProfitRate(profitRate);
     }
 
     private void validateBonusNumberContainsWinningNumber(final List<Integer> winningNumbers,

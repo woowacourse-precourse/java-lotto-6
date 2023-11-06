@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.vo.BonusNumber;
+import lotto.vo.BuyAmount;
 
 public class LottoResultCalculator {
+
+    private static final Integer PERCENTAGE = 100;
 
     private final Lotteries lotteries;
     private final Lotto winningLotto;
@@ -65,5 +68,17 @@ public class LottoResultCalculator {
             return true;
         }
         return false;
+    }
+
+    public Double calculateRateOfProfit(final Map<LottoRank, Integer> result, BuyAmount buyAmount) {
+        double reward = result.keySet()
+                .stream()
+                .mapToDouble(lottoRank -> (lottoRank.getPrizeMoney() * result.get(lottoRank)))
+                .sum();
+
+        double totalBuyAmount = (double) buyAmount.amount();
+        double profitRate = (reward / totalBuyAmount) * PERCENTAGE;
+
+        return profitRate;
     }
 }

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import lotto.dto.LottoDto;
 import lotto.model.LottoRank;
-import lotto.vo.BuyAmount;
 
 public class OutputView {
 
@@ -21,7 +20,6 @@ public class OutputView {
     private static final String STATISTICS_MESSAGE = "당첨 통계";
     private static final String HYPHEN = "---";
     private static final String LINE = "\n";
-    private static final Integer PERCENTAGE = 100;
     private static final Integer DEFAULT_COUNT = 0;
 
     public void printRequestInputBuyAmountMessage() {
@@ -57,15 +55,7 @@ public class OutputView {
         printMessage(String.format(FIRST_RANK_MESSAGE, result.getOrDefault(LottoRank.FIRST_RANK, DEFAULT_COUNT)));
     }
 
-    public void printRateOfProfit(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
-        double reward = result.keySet()
-                .stream()
-                .mapToDouble(lottoRank -> (lottoRank.getPrizeMoney() * result.get(lottoRank)))
-                .sum();
-
-        double totalBuyAmount = (double) buyAmount.amount();
-        double profitRate = (reward / totalBuyAmount) * PERCENTAGE;
-
+    public void printProfitRate(final Double profitRate) {
         printMessage(String.format(PROFIT_RATE_MESSAGE, profitRate));
     }
 

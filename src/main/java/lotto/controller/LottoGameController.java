@@ -26,15 +26,19 @@ public class LottoGameController {
     public void run() {
         BuyAmount buyAmount = initBuyAmount();
         TicketCount ticketCount = initTicketCount(buyAmount);
-
         Lotteries lotteries = initLotteries(ticketCount);
+
         showLotteriesNumber(lotteries);
 
         Lotto winningLotto = initWinningLotto();
         BonusNumber bonusNumber = initBonusNumber(winningLotto.getNumbers());
 
         LottoResultCalculator lottoResultCalculator = initLottoResultCalculator(lotteries, winningLotto, bonusNumber);
-        showResult(buyAmount, lottoResultCalculator);
+
+        Map<LottoRank, Integer> result = lottoResultCalculator.getResult();
+        Double profitRate = lottoResultCalculator.calculateRateOfProfit(result, buyAmount);
+
+        showResult(result, profitRate);
     }
 
     private BuyAmount initBuyAmount() {
@@ -70,9 +74,8 @@ public class LottoGameController {
         view.showLotteriesNumber(LottoDto.toDto(lotteries.getLotteries()));
     }
 
-    private void showResult(final BuyAmount buyAmount, final LottoResultCalculator lottoResultCalculator) {
-        Map<LottoRank, Integer> result = lottoResultCalculator.getResult();
+    private void showResult(Map<LottoRank, Integer> result, double profitRate) {
         view.showStatistics(result);
-        view.showRateOfProfit(result, buyAmount);
+        view.showProfitRate(profitRate);
     }
 }

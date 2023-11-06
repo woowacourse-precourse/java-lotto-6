@@ -7,11 +7,12 @@ import view.validator.PriceFormatValidator;
 public class InputView {
 
     private static final PriceFormatValidator priceFormatValidator = new PriceFormatValidator();
-    public static int enterPrice() {
+
+    public static String enterPrice() {
         System.out.println(InputMessage.ENTER_PRICE.getInputMessage());
         String input = Console.readLine();
-        return priceFormatValidator.checkPriceFormat(input);
-
+        priceFormatValidator.checkPriceFormat(input);
+        return input;
     }
 
     public static String enterWinningNumbers() {

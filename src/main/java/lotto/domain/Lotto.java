@@ -17,6 +17,11 @@ public class Lotto {
         }
     }
 
+    public String convertNumbersToString() {
+        sortAsc(numbers);
+        return numbers.toString();
+    }
+
     public void sortAsc(List<Integer> numbers) {
         Collections.sort(numbers);
     }

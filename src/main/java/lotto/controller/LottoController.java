@@ -5,6 +5,7 @@ import lotto.utils.numbergenerators.RandomNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import static lotto.utils.PurchaseManager.dividePurchaseAmount;
 
 
 public class LottoController {
@@ -24,6 +25,7 @@ public class LottoController {
         PurchaseAmount purchaseAmount = payOnAmount();
         buyLotto(purchaseAmount.getPurchaseAmount());
 
+        printPurchasedLotto(purchaseAmount.getPurchaseAmount());
     }
 
     private PurchaseAmount payOnAmount() {
@@ -46,5 +48,12 @@ public class LottoController {
             System.out.println(purchasedLottoError.getMessage());
             return getPurchasedLotto(purchaseAmount);
         }
+    }
+
+    private void printPurchasedLotto(int purchaseAmount) {
+        outputView.printNumberOfPurchases(dividePurchaseAmount(purchaseAmount));
+        purchasedLotto.getPurchasedLotto().stream()
+                .map(Lotto::toString)
+                .forEach(outputView::printPurchasedLotto);
     }
 }

@@ -1,6 +1,5 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
 
 import java.util.List;
@@ -16,6 +15,10 @@ public class OutputView {
         System.out.println(INPUT_MONEY);
     }
 
+    public void inputBonusNumber(){
+        System.out.println(INPUT_BONUS_NUMBER);
+    }
+
     public void count(int lotto){
         System.out.println("\n" + lotto + COUNT_LOTTO);
     }
@@ -28,18 +31,5 @@ public class OutputView {
 
     public void winningNumbers(){
         System.out.println(INPUT_LOTTO_NUMBERS);
-    }
-
-    public int bonusNumber(){
-        System.out.println(INPUT_BONUS_NUMBER);
-
-        while(true){
-            String input = Console.readLine();
-            try{
-                return Integer.parseInt(input);
-            }   catch (IllegalArgumentException e){
-                System.out.println("[ERROR] 다시 입력하세요");
-            }
-        }
     }
 }

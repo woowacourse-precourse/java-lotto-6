@@ -39,7 +39,7 @@ public class Generator {
         if (money % LOTTERY_COST != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
-        return money % LOTTERY_COST;
+        return money / LOTTERY_COST;
     }
 
     private int isCorrectFormat() {

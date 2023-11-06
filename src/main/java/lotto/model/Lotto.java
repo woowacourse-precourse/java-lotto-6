@@ -7,19 +7,16 @@ import static lotto.constant.LottoGameConfig.AMOUNT_OF_NUMBERS;
 import static lotto.constant.LottoGameConfig.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoGameConfig.MIN_LOTTO_NUMBER;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
-
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
         validateNumbersDuplicated(numbers);
         validateNumbersAmount(numbers);
         validateIsNumberInCorrectRange(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = applySort(numbers);
     }
 
     public static Lotto from(List<Integer> numbers) {
@@ -52,6 +49,12 @@ public class Lotto {
     private boolean isNumberInCorrectRange(int lottoNumber) {
         return lottoNumber < MIN_LOTTO_NUMBER.getValue()
                 || lottoNumber > MAX_LOTTO_NUMBER.getValue();
+    }
+
+    private List<Integer> applySort(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
     @Override

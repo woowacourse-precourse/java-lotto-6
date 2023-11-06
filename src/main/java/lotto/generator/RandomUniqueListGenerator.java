@@ -7,9 +7,10 @@ import static lotto.constant.LottoGameConfig.MIN_LOTTO_NUMBER;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class RandomUniqueListGenerator {
+public class RandomUniqueListGenerator implements IntegerListGenerator {
 
-    public List<Integer> generateRandomNumber() {
+    @Override
+    public List<Integer> generateIntegerList() {
         return Randoms.pickUniqueNumbersInRange(
                 MIN_LOTTO_NUMBER.getValue(),
                 MAX_LOTTO_NUMBER.getValue(),

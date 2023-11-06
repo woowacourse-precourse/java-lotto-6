@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.LottosInfo;
-import lotto.generator.RandomUniqueListGenerator;
+import lotto.generator.IntegerListGenerator;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -12,11 +12,11 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos of(PurchasePrice purchasePrice, RandomUniqueListGenerator generator) {
+    public static Lottos of(PurchasePrice purchasePrice, IntegerListGenerator generator) {
         List<Lotto> randomLottos = new ArrayList<>();
         long quotient = purchasePrice.getQuotient();
         while (quotient-- != 0) {
-            randomLottos.add(Lotto.from(generator.generateRandomNumber()));
+            randomLottos.add(Lotto.from(generator.generateIntegerList()));
         }
         return new Lottos(randomLottos);
     }

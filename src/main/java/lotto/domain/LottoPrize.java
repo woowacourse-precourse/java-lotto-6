@@ -1,39 +1,38 @@
 package lotto.domain;
 
+import lotto.constant.LottoRank;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class LottoPrize {
-
-    final String bonusOff = "NoBonus";
-
-    final String fiveBonusOn = "5Bonus";
-    final String fiveBonusOff = "5NoBonus";
-
+    LottoRank lottoRank;
 
     public Map<Integer, Map<String, Integer>> initLottoPrize() {
         Map<Integer, Map<String, Integer>> lottoPrize = new HashMap<>();
 
-        for (int winCount = 3; winCount <= 6; winCount++) {
-            if (winCount == 5) {
-                Map<String, Integer> hasBonus = new HashMap<>();
-                lottoPrize.put(winCount, hasBonus);
+        for (LottoRank lottoRank : LottoRank.values()) {
+            int winCount = lottoRank.getWinningCount();
 
-                hasBonus.put(fiveBonusOn, 0);
-                hasBonus.put(fiveBonusOff, 0);
-                continue;
-            }
-            lottoPrize.put(winCount, innerMap(winCount, bonusOff, 0));
+            if(winCount == 5) continue;
+            lottoPrize.put(winCount, bonusValue(winCount, lottoRank.getBonus()));
         }
-
+        lottoPrize.put(5, doubleValue());
         return lottoPrize;
     }
 
-    public Map<String, Integer> innerMap(int winCount, String bonusCheck, int count) {
-        StringBuilder key = new StringBuilder();
-        key.append(winCount).append(bonusCheck);
+    public Map<String, Integer> doubleValue() {
+        Map<String, Integer> doubleMap = new HashMap<>();
+        doubleMap.put(lottoRank.SECOND.getWinningCount()+lottoRank.SECOND.getBonus(), 0);
+        doubleMap.put(lottoRank.THIRD.getWinningCount()+lottoRank.THIRD.getBonus(), 0);
+
+        return doubleMap;
+    }
+
+    public Map<String, Integer> bonusValue(int winCount, String checkBonus) {
         Map<String, Integer> bonus = new HashMap<>();
-        bonus.put(key.toString(), count);
+        String bonusKey = winCount + checkBonus;
+        bonus.put(bonusKey, 0);
         return bonus;
     }
 }

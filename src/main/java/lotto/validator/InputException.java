@@ -1,9 +1,13 @@
 package lotto.validator;
 
+import static lotto.constants.MessageConstants.INPUT_DUPLICATION;
 import static lotto.constants.MessageConstants.NO_NUMBER;
 import static lotto.constants.MessageConstants.NO_THOUSAND_UNITS;
+import static lotto.constants.MessageConstants.WRONG_INPUT;
 import static lotto.constants.MessageConstants.YES_BLANK;
-import static lotto.constants.MessageConstants.YES_EMPTY;;
+import static lotto.constants.MessageConstants.YES_EMPTY;
+
+import java.util.List;
 
 public class InputException {
 
@@ -44,7 +48,13 @@ public class InputException {
 
 	public static void checkComma(String input) {
 		if (input.startsWith(",") || input.endsWith(",")) {
-			throw new IllegalArgumentException("잘못 입력 되었습니다.");
+			throw new IllegalArgumentException(WRONG_INPUT);
+		}
+	}
+
+	public static void checkDuplication(int bonusNumber, List<Integer> winningNumber) {
+		if (winningNumber.contains(bonusNumber)) {
+			throw new IllegalArgumentException(INPUT_DUPLICATION);
 		}
 	}
 

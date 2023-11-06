@@ -3,19 +3,16 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import lotto.validator.Lotto;
-
 public class Ranking {
 
-	public static List<Rank> correct(String winningNumbers, String bonusNumber, List<List<Integer>> lottoTickets) {
-		List<Integer> winningNums = changeNumbers(winningNumbers);
-		Lotto lotto = new Lotto(winningNums);
-		List<Integer> matchNumber = numberMatch(winningNums, lottoTickets);
-		return determineRanks(matchNumber, bonusNumber, lottoTickets, winningNums);
+	public static List<Rank> correct(List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottoTickets) {
+
+		List<Integer> matchNumber = numberMatch(winningNumbers, lottoTickets);
+		return determineRanks(matchNumber, bonusNumber, lottoTickets, winningNumbers);
 
 	}
 
-	private static List<Rank> determineRanks(List<Integer> matchNumbers, String bonusNumber,
+	private static List<Rank> determineRanks(List<Integer> matchNumbers, int bonusNumber,
 			List<List<Integer>> lottoTickets, List<Integer> winningNumber) {
 		List<Rank> lottoRank = new ArrayList<>();
 		for (int i = 0; i < matchNumbers.size(); i++) {
@@ -23,7 +20,7 @@ public class Ranking {
 				lottoRank.add(Rank.RANK_1);
 			}
 			if (matchNumbers.get(i) == 5) {
-				if (lottoTickets.get(i).contains(Integer.parseInt(bonusNumber))) {
+				if (lottoTickets.get(i).contains(bonusNumber)) {
 					matchNumbers.set(i, matchNumbers.get(i) + 1);
 					lottoRank.add(Rank.RANK_2);
 				}
@@ -42,15 +39,6 @@ public class Ranking {
 			}
 		}
 		return lottoRank;
-	}
-
-	private static List<Integer> changeNumbers(String winningNumbers) {
-		String[] numbers = winningNumbers.split(",");
-		List<Integer> result = new ArrayList<>();
-		for (String number : numbers) {
-			result.add(Integer.parseInt(number));
-		}
-		return result;
 	}
 
 	private static List<Integer> numberMatch(List<Integer> winningNumbers, List<List<Integer>> lottoTickets) {

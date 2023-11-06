@@ -20,8 +20,8 @@ public class LottoController {
 		int buyAmount = inputPurchaseAmout();
 		int lottoCount = buyCount(buyAmount);
 		List<List<Integer>> LottoTickets = buyLotto(lottoCount);
-		String winningNumber = inputWinningNumber();
-		String bonusNumber = inputBonusNumber();
+		List<Integer> winningNumber = inputWinningNumber();
+		int bonusNumber = inputBonusNumber();
 		List<Rank> lottoRanks = correct(winningNumber, bonusNumber, LottoTickets);
 		int totalPrice = profitability(lottoRanks);
 		double profit = revenue(totalPrice, buyAmount);

@@ -3,15 +3,21 @@ package lotto.view;
 import static lotto.constants.MessageConstants.INPUT_BONUS_NUMBER;
 import static lotto.constants.MessageConstants.INPUT_PURCHASE_AMOUT;
 import static lotto.constants.MessageConstants.INPUT_WINNING_NUMBER;
+import static lotto.domain.conversion.changeNumbers;
 import static lotto.validator.InputException.checkBlank;
 import static lotto.validator.InputException.checkComma;
+import static lotto.validator.InputException.checkDuplication;
 import static lotto.validator.InputException.checkNull;
 import static lotto.validator.InputException.checkNumber;
 import static lotto.validator.InputException.checkOutOfNumber;
 
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.Lotto;
 
 public class InputView {
+	static List<Integer> winningNums;
 
 	public static int inputPurchaseAmout() {
 		System.out.println(INPUT_PURCHASE_AMOUT);
@@ -22,19 +28,30 @@ public class InputView {
 		return purchaseAmount;
 	}
 
-	public static String inputWinningNumber() {
+	public static List<Integer> inputWinningNumber() {
 		System.out.println(INPUT_WINNING_NUMBER);
 		String winningNumber = Console.readLine();
-		WinningNumberValidate(winningNumber);
+		winningNums = changeNumbers(winningNumber);
+		Lotto lotto = new Lotto(winningNums);
+		winningNumberValidate(winningNumber);
 		System.out.println();
-		return winningNumber;
+		return winningNums;
 	}
 
-	public static String inputBonusNumber() {
+	public static int inputBonusNumber() {
 		System.out.println(INPUT_BONUS_NUMBER);
 		String bonusNumber = Console.readLine();
+		int bonusNum = Integer.parseInt(bonusNumber);
+		bonusNumberValidate(bonusNumber, bonusNum, winningNums);
 		System.out.println();
-		return bonusNumber;
+		return bonusNum;
+	}
+
+	private static void bonusNumberValidate(String bonusNumber, int bonusNum, List<Integer> winningNums) {
+		checkNull(bonusNumber);
+		checkBlank(bonusNumber);
+		checkNumber(bonusNumber);
+		checkDuplication(bonusNum, winningNums);
 	}
 
 	private static void purchaseAmoutVlidate(String buyAmount) {
@@ -43,7 +60,7 @@ public class InputView {
 		checkOutOfNumber(buyAmount);
 	}
 
-	private static void WinningNumberValidate(String winningNumber) {
+	private static void winningNumberValidate(String winningNumber) {
 		checkNull(winningNumber);
 		checkBlank(winningNumber);
 		checkNumber(winningNumber);

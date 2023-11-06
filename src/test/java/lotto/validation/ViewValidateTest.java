@@ -2,8 +2,7 @@ package lotto.validation;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class ViewValidateTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -33,5 +32,17 @@ class ViewValidateTest {
         assertThatThrownBy(() -> ViewValidate.validateNotNull(nullContent))
                 .isInstanceOf(NullPointerException.class).hasMessageContaining(ERROR_MESSAGE);
         assertThatCode(() -> ViewValidate.validateNotNull(content)).doesNotThrowAnyException();
+    }
+
+    @Test
+    void validateString2Integer() {
+        // given
+        String notNumber = "1@3";
+        String number = "123";
+
+        // when & then
+        assertThatThrownBy(() -> ViewValidate.validateConvertingString2Int(notNumber))
+                .isInstanceOf(NumberFormatException.class).hasMessageContaining(ERROR_MESSAGE);
+        assertThatCode(() -> ViewValidate.validateConvertingString2Int(number)).doesNotThrowAnyException();
     }
 }

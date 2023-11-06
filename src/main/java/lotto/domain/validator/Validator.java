@@ -31,12 +31,10 @@ public final class Validator {
         return Integer.parseInt(inputValue);
     }
 
-    public static int validateDivisibleBy1000(int inputMoney) {
+    public static void validateDivisibleBy1000(int inputMoney) {
         if (inputMoney % RegularConstant.UNIT_AMOUNT != 0) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_INDIVISIBLE_BY_1000.getMessage());
         }
-
-        return inputMoney / RegularConstant.UNIT_AMOUNT;
     }
 
     public static void validateDuplicateNumbers(List<Integer> numbers) {

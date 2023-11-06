@@ -16,7 +16,8 @@ public class LottoNumbers {
 
     PrintUtil printUtil = new PrintUtil();
 
-    public Lotto[] pickLottoNumbers(int numberOfLotto) {
+    public Lotto[] pickLottoNumbers(int purchaseAmount) {
+        int numberOfLotto = purchaseAmount / 1000;
         printUtil.printNumberOfLotto(numberOfLotto);
 
         Lotto[] lottos = new Lotto[numberOfLotto];

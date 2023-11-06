@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import lotto.validation.InputValidation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputValidationTest {
 
@@ -28,5 +30,32 @@ public class InputValidationTest {
         })
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액이 1000원 단위가 아닙니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3.4,5,6", "입력값들..", "1,2,3,3,4,5", "1,2,3,4,5"})
+    @DisplayName("당첨 번호 검증 테스트")
+    public void validateWinningNumbers(String input) {
+        assertThatThrownBy(() -> {
+            inputValidation.validateWinningNumbers(input);
+        })
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(findEachExceptionMessage(input));
+    }
+
+    private String findEachExceptionMessage(String input) {
+        if (input.equals("1,2,3.4,5,6")) {
+            return "[ERROR] 올바른 당첨 번호 형식이 아닙니다.";
+        }
+        if (input.equals("입력값들..")) {
+            return "[ERROR] 당첨 번호가 숫자가 아닙니다.";
+        }
+        if (input.equals("1,2,3,3,4,5")) {
+            return "[ERROR] 중복된 당첨번호가 있습니다.";
+        }
+        if (input.equals("1,2,3,4,5")) {
+            return "[ERROR] 당첨 번호가 6가지가 아닙니다.";
+        }
+        return "알 수 없는 에러 발생";
     }
 }

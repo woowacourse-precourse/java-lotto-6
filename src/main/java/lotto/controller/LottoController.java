@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.LottoBuyPrice;
+import lotto.domain.LottoWinningNumber;
 import lotto.dto.LottoNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -9,7 +10,8 @@ import lotto.view.OutputView;
 import java.util.List;
 
 import static lotto.constant.LottoErrorMessage.INPUT_LOTTO_BUY_PRICE_ERROR_MESSAGE;
-import static lotto.constant.LottoInputMessage.INPUT_LOTTO_BUY_PRICE_MESSAGE;
+import static lotto.constant.LottoErrorMessage.INPUT_LOTTO_WINNING_NUMBER_ERROR_MESSAGE;
+import static lotto.constant.LottoInputMessage.*;
 
 public class LottoController {
 
@@ -23,6 +25,8 @@ public class LottoController {
         LottoBuyPrice lottoBuyPrice = inputLottoBuyPrice();
         List<LottoNumbers> buyLottoNumbers = lottoService.buyLotto(lottoBuyPrice);
         OutputView.printBuyLottoResultMessage(buyLottoNumbers);
+
+        LottoWinningNumber lottoWinningNumber = inputLottoWinningNumber();
     }
 
     private LottoBuyPrice inputLottoBuyPrice() {
@@ -34,6 +38,21 @@ public class LottoController {
             OutputView.printErrorMessage(INPUT_LOTTO_BUY_PRICE_ERROR_MESSAGE);
 
             return inputLottoBuyPrice();
+        }
+    }
+
+    private LottoWinningNumber inputLottoWinningNumber() {
+        try {
+            List<Integer> inputLottoWinningNumbers = InputView.inputNumbersWithDelimiter(
+                    INPUT_LOTTO_WINNING_NUMBER_MESSAGE,
+                    INPUT_LOTTO_WINNING_NUMBER_DELIMITER
+            );
+
+            return new LottoWinningNumber(inputLottoWinningNumbers);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(INPUT_LOTTO_WINNING_NUMBER_ERROR_MESSAGE);
+
+            return inputLottoWinningNumber();
         }
     }
 }

@@ -24,6 +24,11 @@ public final class View {
         printLottosInfo(lottos.getLottos());
     }
 
+    public static void requestDrawnNumbers() {
+        printlnMessage(WINNING_NUMBERS_REQUEST_MESSAGE);
+        enterMessage();
+    }
+
     private static void printLottosCount(int count) {
         printlnFormat(LOTTO_COUNT_MESSAGE, count);
     }
@@ -62,10 +67,6 @@ public final class View {
     /* Input View */
     private static String enterMessage() {
         return Validator.validate(Console.readLine());
-    }
-
-    public static void requestWinningNumbers() {
-        printlnMessage(WINNING_NUMBERS_REQUEST_MESSAGE);
     }
 
     private static class Validator {

@@ -14,6 +14,11 @@ public class UserLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public Lotto getUserNumbers() {
+        return userLotto;
+    }
+
+
     public int getBonusNumber() {
         return bonusNumber;
     }

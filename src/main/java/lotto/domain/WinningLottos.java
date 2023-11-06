@@ -12,4 +12,8 @@ public class WinningLottos {
 
         this.winningLottos = winningLottos;
     }
+
+    public List<Lotto> getWiningLottos() {
+        return winningLottos;
+    }
 }

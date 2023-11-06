@@ -37,7 +37,7 @@ class LottoStatisticsTest {
     @Test
     @DisplayName("각 등수별로 당첨 횟수를 계산한다.")
     void calculateWinsPerCategory() {
-        List<Integer> winsPerCategory = lottoStatistics.calculateWinsPerCategory();
+        List<Integer> winsPerCategory = lottoStatistics.getWinsPerCategory();
         assertThat(winsPerCategory).containsExactly(1, 1, 1, 1, 1, 0);
     }
 
@@ -45,7 +45,8 @@ class LottoStatisticsTest {
     @DisplayName("총 당첨금액을 이용해 수익률을 계산한다.")
     void calculateRateOfReturn() {
         double purchaseAmount = userLottos.size() * Constants.LOTTO_PRICE;
-        double rateOfReturn = lottoStatistics.calculateRateOfReturn();
-        assertThat(rateOfReturn).isEqualTo(Math.round((2030505000 / purchaseAmount - 1) * 10) / 10.0);
+
+        double rateOfReturn = lottoStatistics.getTotalRate();
+        assertThat(rateOfReturn).isEqualTo(Math.round((2031555000 / purchaseAmount - 1) * 10) / 10.0);
     }
 }

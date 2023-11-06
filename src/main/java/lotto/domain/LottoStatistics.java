@@ -10,8 +10,9 @@ public class LottoStatistics {
     private List<Integer> winningNumbers;
     private int bonusNumber;
     private LottoService lottoService;
-
     private long totalRevenue = 0;
+    private final List<Integer> winsPerCategory;
+    private final double totalRate;
 
     public LottoStatistics(LottoService lottoService, List<Lotto> userLottos, List<Integer> winningNumbers,
                            int bonusNumber) {
@@ -19,9 +20,20 @@ public class LottoStatistics {
         this.userLottos = userLottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+
+        winsPerCategory = calculateWinsPerCategory();
+        totalRate = calculateRateOfReturn();
     }
 
-    public List<Integer> calculateWinsPerCategory() {
+    public List<Integer> getWinsPerCategory() {
+        return winsPerCategory;
+    }
+
+    public double getTotalRate() {
+        return totalRate;
+    }
+
+    private List<Integer> calculateWinsPerCategory() {
         int[] wins = new int[LottoRank.values().length];
 
         for (Lotto lotto : userLottos) {
@@ -30,6 +42,7 @@ public class LottoStatistics {
             wins[rank.ordinal()]++;
         }
 
+        System.out.println("totalRevenue = " + totalRevenue);
         List<Integer> winsPerCategory = new ArrayList<>();
         for (LottoRank rank : LottoRank.values()) {
             winsPerCategory.add(wins[rank.ordinal()]);
@@ -38,7 +51,7 @@ public class LottoStatistics {
         return winsPerCategory;
     }
 
-    public double calculateRateOfReturn() {
+    private double calculateRateOfReturn() {
         double purchaseAmount = userLottos.size() * Constants.LOTTO_PRICE;
         return Math.round((totalRevenue / purchaseAmount - 1) * 100) / 100.0;
     }

@@ -1,6 +1,12 @@
 package lotto.domain.enums;
 
+import java.util.Arrays;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumber;
+
 public enum LottoRank {
+    NONE(0, 0, false, "꽝"),
     FIFTH(5000, 3, false, "3개 일치 (5,000원) - "),
     FOURTH(50000, 4, false, "4개 일치 (50,000원) - "),
     THIRD(1500000, 5, false, "5개 일치 (1,500,000원) - "),
@@ -17,5 +23,37 @@ public enum LottoRank {
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
         this.message = message;
+    }
+
+    public static LottoRank getResult(Lotto lotto, WinningNumber winningNumber) {
+        Lotto winningLotto = winningNumber.getWinningNumber();
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+
+        int matchCountResult = (int) winningNumbers.stream()
+                .filter(lotto::isContain)
+                .count();
+
+        boolean matchBonusResult = false;
+        if (matchCountResult == 5) {
+            matchBonusResult = lotto.isContain(winningNumber.getBonusNumber());
+        }
+
+        return getRank(matchCountResult, matchBonusResult);
+    }
+
+    private static LottoRank getRank(int matchCountResult, boolean matchBonusResult) {
+        return Arrays.stream(LottoRank.values())
+                .filter(lottoRank -> lottoRank.matchCount == matchCountResult)
+                .filter(lottoRank -> lottoRank.matchBonus == matchBonusResult)
+                .findAny()
+                .orElse(NONE);
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

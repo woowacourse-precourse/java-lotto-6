@@ -23,4 +23,16 @@ class LottoFactoryTest {
                 .isNotNull()
                 .isInstanceOf(Lotto.class);
     }
+
+    @DisplayName("로또의 숫자를 오름차순으로 정렬한다.")
+    @Test
+    void sortLottoNumbers() {
+        //given
+        LottoFactory lottoFactory = new LottoFactory(() -> List.of(6, 1, 5, 4, 7, 9));
+
+        //when
+        Lotto lotto = lottoFactory.createLotto();
+
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 4, 5, 6, 7, 9));
+    }
 }

@@ -24,6 +24,7 @@ public class LottoController {
 
     private static int amount;
     private static List<Lotto> lotto;
+    private static Lotto winningNumbers;
     public void playLotto(){
         try {
             purchaseLotto();
@@ -45,16 +46,16 @@ public class LottoController {
     }
 
     private void setWinningAndBonus(){
-        setWinningNumbers();
-        setBonusNumber();
+        winningNumbers = setWinningNumbers();
+        setBonusNumber(winningNumbers);
     }
 
     private Lotto setWinningNumbers(){
         return new Lotto(InputView.enterWinningNumbers());
     }
 
-    private BonusNumber setBonusNumber(){
-        return new BonusNumber(InputView.enterBonusNumber());
+    private BonusNumber setBonusNumber(Lotto winningNumbers){
+        return new BonusNumber(InputView.enterBonusNumber(), winningNumbers);
     }
 
     private PurchaseAmount setPurchaseAmount(){

@@ -19,15 +19,22 @@ public class BonusNumber {
     private static final int LOTTO_GAME_END_NUMBER = 45;
     private static final String COMMA = ",";
     private static final String SPACE = " ";
-    public BonusNumber(String bonusNumber){
-        validate(bonusNumber);
+    private final int bonusNumber;
+
+    public int getBonusNumber(){
+        return bonusNumber;
+    }
+    public BonusNumber(String bonusNumber, Lotto winningNumbers){
+        validate(bonusNumber, winningNumbers);
+        this.bonusNumber = convertStringToInt(bonusNumber);
     }
 
-    private void validate(String bonusNumber){
+    private void validate(String bonusNumber, Lotto winningNumbers){
         isStringEmpty(bonusNumber);
         isSeparatorChar(bonusNumber);
         isDigit(bonusNumber);
         isBetweenLottoRange(convertStringToInt(bonusNumber));
+        isNumberInLotto(convertStringToInt(bonusNumber), winningNumbers);
     }
 
     private int convertStringToInt(String number) {
@@ -55,5 +62,11 @@ public class BonusNumber {
         if(number < LOTTO_GAME_START_NUMBER || number > LOTTO_GAME_END_NUMBER){
             ExceptionMessage.IS_RAGNE_BONUS.throwException();
         };
+    }
+
+    private void isNumberInLotto(int number, Lotto winningNumbers){
+        if(winningNumbers.getNumbers().contains(number)){
+            ExceptionMessage.NOT_IN_WINNING_NUMBERS.throwException();
+        }
     }
 }

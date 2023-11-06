@@ -21,7 +21,7 @@ public class LottoController {
     public void run() {
         Money money = inputLottoMoney();
         List<Lotto> lottos = purchaseLottos(money);
-        Lottos lottoStore = Lottos.of(lottos);
+        LottoStorage lottoStore = LottoStorage.from(lottos);
         outputView.outputPurchaseLottos(lottoStore, money.availableLottoCount());
 
         Lotto winningNumber = inputWinningNumber();

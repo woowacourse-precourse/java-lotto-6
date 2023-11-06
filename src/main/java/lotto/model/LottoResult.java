@@ -7,15 +7,15 @@ public class LottoResult {
 
     private final Map<PriceMoney, Integer> result = new HashMap<>();
 
-    private LottoResult(Lottos lottos, WinningNumbers winningNumbers) {
-        for (Lotto lotto : lottos.getLottos()) {
+    private LottoResult(LottoStorage lottoStorage, WinningNumbers winningNumbers) {
+        for (Lotto lotto : lottoStorage.getLottoStorage()) {
             PriceMoney priceMoney = PriceMoney.of(lotto.sameNumberCounter(winningNumbers), lotto.hasNumber(winningNumbers.getBonusNumber()));
             result.merge(priceMoney, 1, Integer::sum);
         }
     }
     // of -> from
-    public static LottoResult of(Lottos lottos, WinningNumbers winningNumbers) {
-        return new LottoResult(lottos,winningNumbers);
+    public static LottoResult of(LottoStorage lottoStorage, WinningNumbers winningNumbers) {
+        return new LottoResult(lottoStorage,winningNumbers);
     }
 
     public long calculatePrice() {

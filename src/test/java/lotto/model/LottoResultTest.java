@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class LottoResultTest {
 
     @Test
@@ -16,12 +14,12 @@ class LottoResultTest {
         // given
         Lotto lotto1 = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = Lotto.from(List.of(1, 2, 3, 4, 7, 8));
-        Lottos lottos = Lottos.of(List.of(lotto1, lotto2));
+        LottoStorage lottoStorage = LottoStorage.from(List.of(lotto1, lotto2));
         List<Integer> winningNumbers = List.of(1, 2, 3, 40, 41, 42);
         Integer bonusNumber = 43;
         WinningNumbers winningNumber = WinningNumbers.from(Lotto.from(winningNumbers), bonusNumber);
         // when
-        LottoResult lottoResult = LottoResult.of(lottos, winningNumber);
+        LottoResult lottoResult = LottoResult.of(lottoStorage, winningNumber);
         long price = lottoResult.calculatePrice();
         // then
         Assertions.assertThat(price).isEqualTo(10000);
@@ -33,12 +31,12 @@ class LottoResultTest {
         // given
         Lotto lotto1 = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = Lotto.from(List.of(1, 2, 3, 4, 7, 8));
-        Lottos lottos = Lottos.of(List.of(lotto1, lotto2));
+        LottoStorage lottoStorage = LottoStorage.from(List.of(lotto1, lotto2));
         List<Integer> winningNumbers = List.of(1, 2, 3, 40, 41, 42);
         Integer bonusNumber = 43;
         WinningNumbers winningNumber = WinningNumbers.from(Lotto.from(winningNumbers), bonusNumber);
         // when
-        LottoResult lottoResult = LottoResult.of(lottos, winningNumber);
+        LottoResult lottoResult = LottoResult.of(lottoStorage, winningNumber);
         int count = lottoResult.getRankCount(PriceMoney.FIFTH);
         // then
         Assertions.assertThat(count).isEqualTo(2);

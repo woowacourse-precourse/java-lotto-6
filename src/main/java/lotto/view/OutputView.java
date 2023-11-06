@@ -2,16 +2,16 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
-import lotto.model.Lottos;
+import lotto.model.LottoStorage;
 import lotto.model.PriceMoney;
 
 import static lotto.view.constant.viewMessage.*;
 
 public class OutputView {
 
-    public void outputPurchaseLottos(Lottos result, int count) {
+    public void outputPurchaseLottos(LottoStorage result, int count) {
         System.out.printf(OUTPUT_PURCHASE_RESULT, count);
-        for (Lotto lotto : result.getLottos()) {
+        for (Lotto lotto : result.getLottoStorage()) {
             System.out.println(lotto);
         }
     }

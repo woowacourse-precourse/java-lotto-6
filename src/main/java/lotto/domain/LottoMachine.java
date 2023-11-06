@@ -16,20 +16,26 @@ public class LottoMachine {
     }
 
     public Lottos purchaseLottos() {
-        List<Lotto> purchasedLottos = new ArrayList<>();
+        List<Lotto> generatedLottos = generateLottosByCash();
+        return new Lottos(generatedLottos);
+    }
+
+    private List<Lotto> generateLottosByCash() {
+        List<Lotto> generatedLottos = new ArrayList<>();
         while (cash.isAfford()) {
             cash.spendOneUnit();
             Lotto lotto = generateLotto();
-            purchasedLottos.add(lotto);
+            generatedLottos.add(lotto);
         }
 
-        return new Lottos(purchasedLottos);
+        return generatedLottos;
     }
 
     private Lotto generateLotto() {
         List<Integer> numbers = numberGenerator.generateNumbers();
         return new Lotto(numbers);
     }
+
 
 
 }

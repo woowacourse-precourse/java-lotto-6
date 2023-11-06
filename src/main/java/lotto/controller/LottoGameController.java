@@ -25,35 +25,56 @@ public class LottoGameController {
     
     private WinningLotto receiveWinningLotto() {
         try {
-            printEnterWinningNumbers();
             final Lotto winningNumbers = receiveWinningNumbers();
-            printEnterBonusNumber();
-            final Integer bonusNumber = receiveBonusNumber();
-            return WinningLotto.of(winningNumbers, bonusNumber);
+            return receiveWinningLottoWithBonusNumber(winningNumbers);
         } catch (IllegalArgumentException exception) {
             printErrorMessage(exception);
             return receiveWinningLotto();
         }
     }
     
+    private WinningLotto receiveWinningLottoWithBonusNumber(Lotto winningNumbers) {
+        printEnterBonusNumber();
+        return repeatUntilReceiveWinningLotto(winningNumbers);
+    }
+    
+    private WinningLotto repeatUntilReceiveWinningLotto(Lotto winningNumbers) {
+        try {
+            final Integer bonusNumber = receiveBonusNumber();
+            return WinningLotto.of(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException exception) {
+            printErrorMessage(exception);
+            return repeatUntilReceiveWinningLotto(winningNumbers);
+        }
+    }
+    
     private int receiveBonusNumber() {
+        return repeatUntilReceiveBonusNumber();
+    }
+    
+    private int repeatUntilReceiveBonusNumber() {
         try {
             final String input = InputView.readLine();
             return convertToInt(input);
         } catch (IllegalArgumentException exception) {
             printErrorMessage(exception);
-            return receiveBonusNumber();
+            return repeatUntilReceiveBonusNumber();
         }
     }
     
     private Lotto receiveWinningNumbers() {
+        printEnterWinningNumbers();
+        return repeatUntilReceiveWinningNumbers();
+    }
+    
+    private Lotto repeatUntilReceiveWinningNumbers() {
         try {
             final String input = InputView.readLine();
             List<Integer> winningNumbers = splitBySeparator(input);
             return new Lotto(winningNumbers);
         } catch (IllegalArgumentException exception) {
             printErrorMessage(exception);
-            return receiveWinningNumbers();
+            return repeatUntilReceiveWinningNumbers();
         }
     }
     
@@ -68,13 +89,16 @@ public class LottoGameController {
     
     private Payment receivePayment() {
         printEnterPurchaseAmount();
-        
+        return repeatUntilReceivePayment();
+    }
+    
+    private Payment repeatUntilReceivePayment() {
         try {
             String payment = InputView.readLine();
             return Payment.from(payment);
         } catch (IllegalArgumentException exception) {
             printErrorMessage(exception);
-            return receivePayment();
+            return repeatUntilReceivePayment();
         }
     }
 }

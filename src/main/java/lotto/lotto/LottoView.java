@@ -5,7 +5,7 @@ import lotto.enums.ViewMessage;
 
 public class LottoView {
 
-    public String inputLottoNumber(){
+    public String inputNormalNumber(){
         System.out.println(ViewMessage.INPUT_LOTTO_NUMBER);
         return Console.readLine();
     }
@@ -14,4 +14,5 @@ public class LottoView {
         System.out.println(ViewMessage.INPUT_BONUS_NUMBER);
         return Console.readLine();
     }
+
 }

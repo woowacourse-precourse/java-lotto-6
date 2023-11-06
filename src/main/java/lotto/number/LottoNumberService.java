@@ -19,8 +19,4 @@ public class LottoNumberService {
                 .collect(Collectors.toList());
     }
 
-    public List<LottoNumber> raffleLottoNumbers(){
-        return LottoNumber::
-    }
-
 }

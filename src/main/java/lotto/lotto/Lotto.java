@@ -8,7 +8,8 @@ import lotto.number.LottoNumber;
 
 public class Lotto {
 
-    private final List<LottoNumber> numbers = new ArrayList<>();
+    private static final int LOTTO_NUMBERS_SIZE = 6;
+    private List<LottoNumber> numbers = new ArrayList<>();
 
     public static Lotto forUserLotto(List<LottoNumber> lottoNumbers){
         return new Lotto(lottoNumbers);

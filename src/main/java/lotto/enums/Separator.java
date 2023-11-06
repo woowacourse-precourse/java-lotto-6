@@ -11,4 +11,9 @@ public enum Separator {
         this.separator = separator;
     }
 
+    @Override
+    public String toString(){
+        return this.separator;
+    }
+
 }

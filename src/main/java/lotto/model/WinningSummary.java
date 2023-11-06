@@ -5,4 +5,12 @@ public record WinningSummary(
         boolean containsBonus,
         long prize,
         long count) {
+    public static WinningSummary from(final LottoRank rank, final long frequency) {
+        return new WinningSummary(
+                rank.getNumberOfMatches(),
+                rank.bonusMatches(),
+                rank.getPrize(),
+                frequency
+        );
+    }
 }

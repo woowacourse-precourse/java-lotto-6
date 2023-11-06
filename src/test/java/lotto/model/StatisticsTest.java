@@ -24,7 +24,8 @@ public class StatisticsTest {
     ) {
         // when
         final Statistics statistics = new Statistics(winningNumber, lottoTickets);
-        final List<WinningSummary> summaries = statistics.getResults();
+        final WinningDetails winningDetails = statistics.getResults();
+        final List<WinningSummary> summaries = winningDetails.getResults();
 
         // then
         assertThat(summaries.size()).isEqualTo(5);
@@ -54,7 +55,8 @@ public class StatisticsTest {
             final List<Lotto> lottoTickets
     ) {
         final Statistics statistics = new Statistics(winningNumber, lottoTickets);
-        final BigDecimal totalAmount = statistics.sumUpWinningAmount();
+        final WinningDetails winningDetails = statistics.getResults();
+        final BigDecimal totalAmount = winningDetails.sumUpWinningAmount();
         assertThat(totalAmount).isEqualByComparingTo(BigDecimal.valueOf(2_000_010_000L));
     }
 }

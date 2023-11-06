@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import static lotto.controller.UserInputMessage.*;
+import static lotto.exception.ErrorMessage.*;
 import static lotto.util.ThousandSeparator.addThousandsSeparator;
+import static lotto.validator.Validator.isPurchaseAmountValid;
 
 import camp.nextstep.edu.missionutils.Console;
 

@@ -24,15 +24,15 @@ public class MoneyTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1000,1", "2000,2", "3000,3", "4000,4", "5000,5"})
-    void 주어진_금액으로부터_로또_개수를_구할_수_있다(int purchaseMoney, int expectedQuantity) {
+    void 주어진_금액으로부터_로또_개수를_구할_수_있다(int purchaseMoney, int expectedCount) {
         // given
         Money money = new Money(purchaseMoney);
 
         // when
-        int actualQuantity = money.calculateQuantity(1000);
+        int actualCount = money.getCountForPrice(1000);
 
         // then
-        assertThat(actualQuantity).isEqualTo(expectedQuantity);
+        assertThat(actualCount).isEqualTo(expectedCount);
     }
 
     @ParameterizedTest

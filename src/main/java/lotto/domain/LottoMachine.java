@@ -16,19 +16,19 @@ public class LottoMachine {
 
     public Lottos purchaseLotto(Money purchaseMoney) {
         validate(purchaseMoney);
-        int lottoQuantity = purchaseMoney.calculateQuantity(LOTTO_PRICE);
-        return new Lottos(createLottos(lottoQuantity));
+        int lottoCount = purchaseMoney.getCountForPrice(LOTTO_PRICE);
+        return new Lottos(createLottos(lottoCount));
     }
 
     private static void validate(Money purchaseMoney) {
-        if (!purchaseMoney.isUnitOf(LOTTO_PRICE)) {
+        if (!purchaseMoney.isMultipleOf(LOTTO_PRICE)) {
             throw new IllegalArgumentException(String.format(LOTTO_PURCHASE_ERROR.getMessage(), LOTTO_PRICE));
         }
     }
 
-    private List<Lotto> createLottos(int lottoQuantity) {
+    private List<Lotto> createLottos(int lottoCount) {
         return Stream.generate(() -> Lotto.createLotto(numbersCreator))
-                .limit(lottoQuantity)
+                .limit(lottoCount)
                 .toList();
     }
 }

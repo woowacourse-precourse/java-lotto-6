@@ -5,37 +5,37 @@ import static lotto.ErrorMessage.MONEY_NEGATIVE_ERROR;
 import java.util.Objects;
 
 public final class Money {
-    private final int money;
+    private final int amount;
 
-    public Money(int money) {
-        validate(money);
-        this.money = money;
+    public Money(int amount) {
+        validate(amount);
+        this.amount = amount;
     }
 
-    private void validate(int money) {
-        if (money < 0) {
+    private void validate(int amount) {
+        if (amount < 0) {
             throw new IllegalArgumentException(MONEY_NEGATIVE_ERROR.getMessage());
         }
     }
 
-    public boolean isUnitOf(int unitPrice) {
-        return money % unitPrice == 0 && money >= unitPrice;
+    public boolean isMultipleOf(int unitPrice) {
+        return amount % unitPrice == 0 && amount >= unitPrice;
     }
 
-    public int calculateQuantity(int price) {
-        return money / price;
+    public int getCountForPrice(int price) {
+        return amount / price;
     }
 
     public Money multiply(int multiplier) {
-        return new Money(money * multiplier);
+        return new Money(amount * multiplier);
     }
 
     public Money add(Money addendMoney) {
-        return new Money(money + addendMoney.money);
+        return new Money(amount + addendMoney.amount);
     }
 
     public double getRatio(Money divisorMoney) {
-        return (double) money / divisorMoney.money;
+        return (double) amount / divisorMoney.amount;
     }
 
     @Override
@@ -46,11 +46,11 @@ public final class Money {
         if (!(object instanceof Money otherMoney)) {
             return false;
         }
-        return this.money == otherMoney.money;
+        return this.amount == otherMoney.amount;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(money);
+        return Objects.hash(amount);
     }
 }

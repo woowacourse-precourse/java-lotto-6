@@ -28,7 +28,7 @@ public class LottoController {
     }
     private LottoSystem makeLottoSystem(){
         List<Integer> winningNumber = parser.parseWinningNumber(getWinningNumberByUserInput());
-        int bonusNumber = parser.parseInteger(getBonusNumberByUserInput());
+        int bonusNumber = parser.parseInteger(getBonusNumberByUserInput(winningNumber));
         return new LottoSystem(winningNumber, bonusNumber);
     }
     private String getTotalMoneyByUserInput(){
@@ -41,10 +41,10 @@ public class LottoController {
         String input = Console.readLine();
         return CheckValidateWinningNumberInput(input);
     }
-    private String getBonusNumberByUserInput(){
+    private String getBonusNumberByUserInput(List<Integer> winningNumber){
         LottoView.printAskInputBonusNumber();
         String input = Console.readLine();
-        return CheckValidateBonusNumberInput(input);
+        return CheckValidateBonusNumberInput(input, winningNumber);
     }
     private String CheckValidateMoneyInput(String input){
         try {
@@ -64,13 +64,13 @@ public class LottoController {
             return getWinningNumberByUserInput();
         }
     }
-    private String CheckValidateBonusNumberInput(String input){
+    private String CheckValidateBonusNumberInput(String input, List<Integer> winningNumber){
         try{
-            validate.CheckBonusNumber(input);
+            validate.CheckBonusNumber(input, winningNumber);
             return input;
         } catch (IllegalArgumentException e){
             LottoView.printException(e.getMessage());
-            return getBonusNumberByUserInput();
+            return getBonusNumberByUserInput(winningNumber);
         }
     }
 

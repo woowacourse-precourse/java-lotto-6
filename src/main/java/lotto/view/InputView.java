@@ -19,9 +19,9 @@ public class InputView {
 
     public int printAskingBudget() {
         int budget;
+        System.out.println(MSG_ASKING_BUDGET);
         while (true) {
             try {
-                System.out.println(MSG_ASKING_BUDGET);
                 budget = Integer.parseInt(getUserInput());
                 break;
             } catch (NumberFormatException e) {
@@ -34,9 +34,9 @@ public class InputView {
 
     public List<Integer> printAskingWinningNumbers() {
         List<Integer> winningNumbers;
+        System.out.println(MSG_ASKING_WINNING_NUMBERS);
         while (true) {
             try {
-                System.out.println(MSG_ASKING_WINNING_NUMBERS);
                 winningNumbers = parseStringToList(getUserInput());
                 break;
             } catch (NumberFormatException e) {
@@ -56,9 +56,9 @@ public class InputView {
 
     public int printAskingBonusNumber() {
         int bonusNumber;
+        System.out.println(MSG_ASKING_BONUS_NUMBER);
         while (true) {
             try {
-                System.out.println(MSG_ASKING_BONUS_NUMBER);
                 bonusNumber = Integer.parseInt(getUserInput());
                 break;
             } catch (NumberFormatException e) {

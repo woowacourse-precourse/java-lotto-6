@@ -2,10 +2,13 @@ package lotto.domain;
 
 public class MoneyManagement {
     private final int quantity;
+    private static final int LOTTO_AMOUNT = 1000;
+    private static final int ZERO = 0;
+    private static final String NUMERIC_PATTERN = "\\d+";
 
     public MoneyManagement(final String userInput) {
         validate(userInput);
-        quantity = toInt(userInput) / 1000 ;
+        quantity = toInt(userInput) / LOTTO_AMOUNT ;
     }
 
     private void validate(final String userInput) {
@@ -16,7 +19,7 @@ public class MoneyManagement {
     }
 
     private void validNumber(final String userInput) {
-        if (!userInput.matches("\\d+")) {
+        if (!userInput.matches(NUMERIC_PATTERN)) {
             throw new IllegalArgumentException("금액은 숫자만 입력 가능합니다.");
         }
     }
@@ -30,13 +33,13 @@ public class MoneyManagement {
     }
 
     private void validRange(final int userAmount) {
-        if (userAmount < 1000) {
+        if (userAmount < LOTTO_AMOUNT) {
             throw new IllegalArgumentException("로또 최소 구입 가능 금액은 1000원입니다.");
         }
     }
 
     private void validLottoAmount(final int userAmount) {
-        if (userAmount % 1000 != 0) {
+        if (userAmount % LOTTO_AMOUNT != ZERO) {
             throw new IllegalArgumentException("로또 금액은 1000원 단위입니다.");
         }
     }
@@ -44,5 +47,5 @@ public class MoneyManagement {
     public int getQuantity() {
         return quantity;
     }
-
+    
 }

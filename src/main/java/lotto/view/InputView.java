@@ -22,7 +22,7 @@ public class InputView {
         WinningLottoNumbers winningLottoNumbers = getWinningLottoNumbers();
     }
 
-    private WinningLottoNumbers getWinningLottoNumbers(){
+    public WinningLottoNumbers getWinningLottoNumbers(){
         return inputParser.parseWinningLottoNumbers(readLine());
     }
 

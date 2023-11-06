@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.RandomNumberGenerator;
 import lotto.domain.WinningNumber;
 import lotto.view.BonusNumberInputView;
 import lotto.view.LottoPurchaseInputView;
@@ -16,7 +19,16 @@ public class GameController {
         int bonusNumber = BonusNumberInputView.getBonusNumber();
 
         WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
+        List<Lotto> lottos = getLottos(purchaseAmount);
+    }
 
-
+    private List<Lotto> getLottos(int purchaseAmount) {
+        List<Lotto> lottos = new ArrayList<>();
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        while (purchaseAmount > 0) {
+            lottos.add(new Lotto(randomNumberGenerator.generateRandomNumber()));
+            purchaseAmount -= 1000;
+        }
+        return lottos;
     }
 }

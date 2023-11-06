@@ -5,6 +5,11 @@ import java.util.Objects;
 import lotto.util.Validator;
 
 public class LottoGameController {
+    private View view = new View();
+
+    public BuyCash inputBuyCash() {
+        return new BuyCash(view.inputBuyCashFromUser());
+    }
 
     public Lottos purchaseLotto(BuyCash buyCash) {
         List<Lotto> lottos = LottoGenerator.INSTANCE.generate(buyCash.getLottoAmount());

@@ -20,6 +20,13 @@ public class LottoWinningNumbers {
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
+        long distinctCount = numbers.stream()
+                .distinct()
+                .count();
+
+        if (distinctCount != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+        }
     }
 
     public List<Integer> getNumbers() {

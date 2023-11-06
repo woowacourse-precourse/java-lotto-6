@@ -18,6 +18,7 @@ public class Pick {
             try {
                 groupNumbers = Console.readLine();
                 cutNumbers();
+                raiseInvalidNumbersException();
                 break;
             } catch(IllegalArgumentException e) {
                 System.out.println("[ERROR] 올바른 숫자를 입력해야 합니다.");
@@ -53,6 +54,12 @@ public class Pick {
     public static void playPick() {
         inputNumbers();
         inputBonusNumber();
+    }
+
+    private static void raiseInvalidNumbersException() {
+        if (luckyNumber.size() != 6) {
+            throw new IllegalArgumentException();
+        }
     }
 
 }

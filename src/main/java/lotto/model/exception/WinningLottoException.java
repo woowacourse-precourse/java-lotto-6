@@ -15,7 +15,7 @@ public class WinningLottoException extends IllegalArgumentException{
     }
 
     public static void checkBonusNumberTypeException(String userBonusNumber) {
-        if (!userBonusNumber.matches("\\d+")) {
+        if (!userBonusNumber.matches("[+-]?\\d*(\\.\\d+)?")) {
             throw new WinningLottoException(BONUS_NUMBER_TYPE_ERROR_MESSAGE.getErrorMessage());
         }
     }

@@ -21,7 +21,7 @@ public class ConfirmationService {
             winningPrizeAmount += winning.getAmount();
         }
     };
-    public int getWinningPrizeAmount(List<Integer> winningNumbers, int bonus){
+    public int getWinningPrizeAmount(){
         return winningPrizeAmount;
     };
 

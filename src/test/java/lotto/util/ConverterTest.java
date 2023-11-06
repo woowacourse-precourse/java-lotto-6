@@ -70,4 +70,14 @@ class ConverterTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1.25,1.3", "64.38,64.4", "0.01,0.0", "0.05,0.1"})
+    void 소수점_둘째_자리에서_반올림한_실수를_문자열로_변환한다(double value, String expected) {
+        // when
+        String result = Converter.convertToStringWithRound(value);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
 }

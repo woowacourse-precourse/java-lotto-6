@@ -1,6 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+
+import java.util.List;
 
 public class LottoView {
     private static final String PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
@@ -22,5 +26,10 @@ public class LottoView {
         }
 
         return money;
+    }
+
+    public void printLottoNumbers(Lottos lottos) {
+        System.out.println(lottos.getSize() + "개를 구매했습니다.");
+        System.out.println(lottos);
     }
 }

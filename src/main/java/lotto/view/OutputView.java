@@ -6,7 +6,6 @@ import lotto.domain.Rank;
 import java.util.List;
 
 import static lotto.service.LottoService.*;
-import static lotto.util.Constant.DIVIDER_FOR_COUNT_PURCHASE_QUANTITY;
 import static lotto.util.Constant.LOTTO_NUMBERS_COUNT;
 
 public class OutputView {
@@ -15,13 +14,10 @@ public class OutputView {
     private static final String OPEN_BRACKET = "[";
     private static final String CLOSE_BRACKET = "]";
     private static final String PURCHASE_COUNT_ALERT = "개를 구매했습니다.";
-
     private static final String WINNING_STATUS = "당첨 통계\n---";
     private static final String TOTAL_EARNING_RATIO = "총 수익률은 %.1f%%입니다.\n";
 
-
-    public static void printPurchaseAmount(int purchaseMoney){
-        int purchaseAmount = purchaseMoney / DIVIDER_FOR_COUNT_PURCHASE_QUANTITY;
+    public static void printPurchaseAmount(int purchaseAmount){
         System.out.println(purchaseAmount + PURCHASE_COUNT_ALERT);
         System.out.println();
     }

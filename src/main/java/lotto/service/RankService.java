@@ -46,6 +46,19 @@ public class RankService {
         return null;
     }
 
+    public double rateOfReturn() {
+        long sum = 0;
+        for (int i = 0; i < Config.RANK_LOTTO; i++) {
+            LottoRank rank = LottoRank.values()[i];
+            int count = winningCount[rank.getRank()];
+            sum += rank.getMoney() * count;
+        }
+
+        double result = (double) sum / (user.getCount() * Config.PRICE_UNIT) * 100;
+
+        result = Math.round(result * 100.0) / 100.0;
+        return result;
+    }
 
 
 }

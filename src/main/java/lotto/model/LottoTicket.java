@@ -10,6 +10,12 @@ public class LottoTicket {
         this.lottos = lottos;
     }
 
+    public List<Ranking> checkRankings(WinLotto winLotto) {
+        return lottos.stream()
+                .map(lotto -> lotto.compareWinLotto(winLotto))
+                .collect(Collectors.toList());
+    }
+
     public List<List<Integer>> getLottosNumber() {
         return lottos.stream()
                 .map(Lotto::getNumberValues)

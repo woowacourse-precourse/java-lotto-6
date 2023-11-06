@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.domain.WinningNumber;
@@ -12,6 +13,7 @@ public class LottoController {
 
     private static User user;
     private static WinningNumber winningNumber;
+    private static BonusNumber bonusNumber;
 
     public void start(){
         OutputView.printRequestPurchaseAmount();
@@ -30,6 +32,15 @@ public class LottoController {
         while(true){
             try{
                 winningNumber = new WinningNumber(InputView.inputWinningNumber());
+                break;
+            } catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while(true){
+            try{
+                bonusNumber = new BonusNumber(InputView.inputBonusNumber());
                 break;
             } catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());

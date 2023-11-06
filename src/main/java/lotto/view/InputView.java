@@ -12,4 +12,8 @@ public class InputView {
     public static String inputWinningNumber(){
         return Validator.checkNullValue(Console.readLine());
     }
+
+    public static String inputBonusNumber() {
+        return Validator.checkNullValue(Console.readLine());
+    }
 }

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.Lottos;
@@ -50,8 +51,8 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto() {
-        List<Integer> winningNumbers = readWinningNumbers();
-        int bonusNumber = readBonusNumber(winningNumbers);
+        Lotto winningNumbers = LottoGenerator.createLotto(readWinningNumbers());
+        BonusNumber bonusNumber = readBonusNumber(winningNumbers);
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
@@ -65,21 +66,15 @@ public class LottoController {
         }
     }
 
-    private int readBonusNumber(List<Integer> winningNumbers) {
+    private BonusNumber readBonusNumber(Lotto winningNumbers) {
         while (true) {
             try {
-                int bonusNumber = InputView.readBonusNumber();
-                validateIsDuplicate(winningNumbers, bonusNumber);
+                BonusNumber bonusNumber = new BonusNumber(InputView.readBonusNumber());
+                bonusNumber.validateIsDuplicate(winningNumbers);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    private void validateIsDuplicate(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호과 중복되지 않는 숫자를 입력해야 합니다.");
         }
     }
 }

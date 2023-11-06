@@ -50,4 +50,10 @@ public class Lotto {
     public boolean contains(int input) {
         return numbers.contains(input);
     }
+
+    public int countCorrectNumbers(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
 }

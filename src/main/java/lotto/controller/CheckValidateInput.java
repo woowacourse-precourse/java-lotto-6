@@ -8,6 +8,8 @@ public class CheckValidateInput {
 			throw new IllegalArgumentException();
 		if(!isUnits1000(Integer.parseInt(money)))
 			throw new IllegalArgumentException();
+		if(!inRange(Integer.parseInt(money)))
+			throw new IllegalArgumentException();
 
 		return Integer.parseInt(money);
 	}
@@ -25,6 +27,9 @@ public class CheckValidateInput {
 		return (money%1000) == 0;	
 	}
 	
-	
+	private boolean inRange(int money) {
+		return (money>0) && (money<Integer.MAX_VALUE);
+	}
+
 
 }

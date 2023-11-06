@@ -30,7 +30,7 @@ public class LottoController {
     public Lotto userInputMasterLottoNumbers(){
         return lottoIoService.userPickMasterLottoNumbers();
     }
-int 커밋용도로_임시생성 = 1;
+
     public LottoBonus userInputMasterLottoBonusNumber(Lotto lotto){
         return lottoIoService.userPickMasterBonusNumberOne(lotto);
     }

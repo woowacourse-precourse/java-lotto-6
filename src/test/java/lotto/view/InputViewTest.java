@@ -11,6 +11,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
 
@@ -27,6 +28,44 @@ class InputViewTest {
 
         assertThat(InputView.readPurchaseAmount()).isEqualTo(Integer.parseInt(inputPurchaseAmount));
     }
+
+    @Test
+    void 구입금액_문자입력_예외테스트() {
+        String inputPurchaseAmount = "abcd";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        assertThatThrownBy(InputView::readPurchaseAmount).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 구입금액_1000단위입력_예외테스트() {
+        String inputPurchaseAmount = "1222";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        assertThatThrownBy(InputView::readPurchaseAmount).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 구입금액_최대금액_테스트() {
+        String inputPurchaseAmount = "100000";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        assertThat(InputView.readPurchaseAmount()).isEqualTo(Integer.parseInt(inputPurchaseAmount));
+    }
+
+    @Test
+    void 구입금액_최대금액_예외테스트() {
+        String inputPurchaseAmount = "100001";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        assertThatThrownBy(InputView::readPurchaseAmount).isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 
     @Test
     void 당첨번호_입력_테스트() {

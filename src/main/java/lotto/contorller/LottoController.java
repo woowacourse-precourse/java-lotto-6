@@ -5,9 +5,17 @@ import lotto.domain.Lotto;
 import lotto.service.LottoService;
 
 public class LottoController {
+
+    int amount;
+    Lotto lotto;
     private final LottoService lottoService = new LottoService();
     public void getLottoInput() {
+        String lottoInput = Console.readLine();
+        lotto = lottoService.stringToLotto(lottoInput);
+    }
+
+    public void getAmountInput() {
         String amountInput = Console.readLine();
-        Lotto lotto = lottoService.stringToLotto(amountInput);
+        amount = Integer.parseInt(amountInput);
     }
 }

@@ -38,8 +38,8 @@
 
 5. 예외 처리
 
-- [ ] 사용자의 잘못된 입력에 대해 적절한 예외(IllegalArgumentException, IllegalStateException 등)를 발생시키고 처리한다.
-- [ ] 예외 발생 시 "[ERROR] 잘못된 입력입니다. 다시 시도해주세요."와 같은 메시지를 출력하고 해당 입력 단계부터 다시 시작한다.
+- [x] 사용자의 잘못된 입력에 대해 적절한 예외(IllegalArgumentException, IllegalStateException 등)를 발생시키고 처리한다.
+- [x] 예외 발생 시 "[ERROR] 잘못된 입력입니다. 다시 시도해주세요."와 같은 메시지를 출력하고 해당 입력 단계부터 다시 시작한다.
 
 6. 게임 종료
 

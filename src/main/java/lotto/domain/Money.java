@@ -1,10 +1,10 @@
 package lotto.domain;
 
-import lotto.util.Validator;
+import lotto.util.MoneyValidator;
 
 public class Money {
     private String money = "";
-    private Validator validator = new Validator();
+    private MoneyValidator validator = new MoneyValidator();
 
     public Money(String inputMoney) {
         validator.money(inputMoney);

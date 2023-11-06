@@ -37,6 +37,7 @@ public class IssuingMachine {
     }
 
     public List<Lotto> issueLotto() {
+        operate();
         return lottos;
     }
 

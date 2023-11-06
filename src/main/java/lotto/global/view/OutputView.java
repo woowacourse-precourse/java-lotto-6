@@ -8,6 +8,8 @@ import lotto.global.constant.WinningType;
 
 public class OutputView {
 
+    private static final String PERCENT = "%";
+
     private OutputView() {
     }
 
@@ -23,7 +25,7 @@ public class OutputView {
         System.out.println(ConsoleType.FIVE_AND_BONUS_MATCH.getComment(lottoResultManager.getStatistics().get(
                 WinningType.SECOND)));
         System.out.println(ConsoleType.ALL_MATCH.getComment(lottoResultManager.getStatistics().get(WinningType.FIRST)));
-        System.out.println(ConsoleType.OUTPUT_RATE_OF_RETURN.getComment(rateOfReturn + "%"));
+        System.out.println(ConsoleType.OUTPUT_RATE_OF_RETURN.getComment(rateOfReturn + PERCENT));
     }
 
     public static void outputLottoNumbers(List<LottoResult> lottoResults) {

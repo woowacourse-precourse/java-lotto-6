@@ -6,6 +6,8 @@ import lotto.global.constant.WinningType;
 
 public class LottoResultManager {
 
+    private static final int COUNT = 1;
+
     private final LottoResults lottoResults;
     private final LottoStatistics lottoStatistics;
     private long totalRevenue;
@@ -19,7 +21,8 @@ public class LottoResultManager {
         for (LottoResult lottoResult : lottoResults.getLottoResults()) {
             lottoResult.calculateResult(winningLotto);
             WinningType key = lottoResult.getWinning();
-            lottoStatistics.getStatistics().put(key, lottoStatistics.getStatistics().getOrDefault(key, 0) + 1);
+            lottoStatistics.getStatistics()
+                    .put(key, lottoStatistics.getStatistics().getOrDefault(key, 0) + COUNT);
             totalRevenue += lottoResult.getWinning().getRevenue();
         }
     }

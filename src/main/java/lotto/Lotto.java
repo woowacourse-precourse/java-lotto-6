@@ -19,4 +19,14 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public LottoRank match(List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        boolean hasBonusNumber = numbers.contains(bonusNumber);
+
+        return LottoRank.getRank(matchCount, hasBonusNumber);
+    }
 }

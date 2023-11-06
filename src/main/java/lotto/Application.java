@@ -1,5 +1,9 @@
 package lotto;
 
+import lotto.controller.BuyingController;
+import lotto.controller.LottoNumberAddController;
+import lotto.controller.WinningNumberController;
+
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -8,5 +12,8 @@ public class Application {
 
         LottoNumberAddController lottoNumberAddController = new LottoNumberAddController();
         lottoNumberAddController.handle();
+
+        WinningNumberController winningNumberController = new WinningNumberController();
+        winningNumberController.handle();
     }
 }

@@ -1,6 +1,9 @@
-package lotto;
+package lotto.controller;
 
-import java.util.ArrayList;
+import lotto.manager.IOManager;
+import lotto.Lotto;
+import lotto.manager.LottoManager;
+
 import java.util.List;
 
 public class LottoNumberAddController {
@@ -9,7 +12,7 @@ public class LottoNumberAddController {
     private final IOManager ioManager = new IOManager();
 
     public void handle() {
-        List<Lotto> lottoList = lottoManager.generateLottoList();;
+        List<Lotto> lottoList = lottoManager.generateLottoList();
         ioManager.printLottoList(lottoList);
     }
 }

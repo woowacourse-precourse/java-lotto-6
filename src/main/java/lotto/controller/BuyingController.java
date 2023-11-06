@@ -1,4 +1,8 @@
-package lotto;
+package lotto.controller;
+
+import lotto.manager.AppManager;
+import lotto.manager.IOManager;
+import lotto.manager.LottoManager;
 
 public class BuyingController {
 
@@ -8,17 +12,19 @@ public class BuyingController {
 
     public void handle() {
 
-        ioManager.printPayAmountGuide();
-        int payAmount = ioManager.readPayAmount();
+        ioManager.printPayAmountInputGuide();
+        int payAmount = Integer.MIN_VALUE;
 
         try {
-            int lottoTicketsCount = lottoManager.generateLottoTickets(payAmount);
-            lottoManager.setLottoTicketCount(lottoTicketsCount);
-            ioManager.printLottoTicketCount(lottoManager.getLottoTicketCount());
+            payAmount = ioManager.readPayAmount();
         } catch (IllegalArgumentException e) {
             ioManager.printExceptionMessage(e.getMessage());
             String className = this.getClass().getName();
             appManager.handleInvalidInput(className);
         }
+
+        int lottoTicketsCount = lottoManager.generateLottoTickets(payAmount);
+        lottoManager.setLottoTicketCount(lottoTicketsCount);
+        ioManager.printLottoTicketCount(lottoManager.getLottoTicketCount());
     }
 }

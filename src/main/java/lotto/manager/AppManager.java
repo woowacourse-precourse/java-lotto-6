@@ -1,4 +1,4 @@
-package lotto;
+package lotto.manager;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

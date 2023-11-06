@@ -1,16 +1,19 @@
-package lotto;
+package lotto.manager;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.InputValidator;
+import lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.IntegerUtil.*;
-import static lotto.StringUtil.*;
+import static lotto.utility.IntegerUtil.*;
+import static lotto.utility.StringUtil.*;
 
 public class LottoManager {
 
     private static LottoManager lottoManager;
+    InputValidator inputValidator = new InputValidator();
 
     private LottoManager() {
 
@@ -25,11 +28,6 @@ public class LottoManager {
     private int lottoTicketCount;
 
     public int generateLottoTickets(int payAmount) {
-
-        if ( payAmount % PAY_AMOUNT_UNIT.getValue() != 0 ) {
-            throw new IllegalArgumentException(PRINT_ERR_PAY_AMONUT.getMessage());
-        }
-
         return payAmount / PAY_AMOUNT_UNIT.getValue();
     }
 
@@ -53,6 +51,6 @@ public class LottoManager {
     }
 
     public List<Integer> generateLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START_INCLUSIVE.getValue(), LOTTO_NUMBER_END_INCLUSIVE.getValue(), LOTTO_NUMBER_COUNT.getValue());
     }
 }

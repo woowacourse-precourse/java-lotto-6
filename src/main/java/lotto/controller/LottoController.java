@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.model.Buyer;
 
-public class Controller {
+public class LottoController {
     private Buyer buyer;
     public void getInputPrice(){
         //TODO: 구매금액 입력

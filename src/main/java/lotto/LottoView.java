@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoView {
@@ -14,6 +15,6 @@ public class LottoView {
 
     public void showLottos(LottoRepository lottoRepository){
         List<Lotto> lottos = lottoRepository.getLottos();
-        lottos.forEach(lotto->System.out.println(lotto.getNumbers()));
+        lottos.forEach(lotto->System.out.println(Arrays.toString(lotto.getNumbers().toArray())));
     }
 }

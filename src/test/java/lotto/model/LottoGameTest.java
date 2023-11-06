@@ -28,7 +28,7 @@ public class LottoGameTest {
 
         // then
         assertThat(summaries.size()).isEqualTo(5);
-        final long[] rankCounts = summaries.stream().mapToLong(WinningSummary::count).toArray();
+        final long[] rankCounts = summaries.stream().mapToLong(WinningSummary::frequency).toArray();
         assertThat(rankCounts).containsExactly(2L, 0L, 0L, 0L, 1L);
     }
 

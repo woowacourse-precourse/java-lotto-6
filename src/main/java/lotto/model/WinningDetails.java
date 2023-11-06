@@ -30,7 +30,7 @@ public class WinningDetails {
 
     private long calculateTotalAmount() {
         return summaries.stream()
-                .mapToLong(summary -> summary.count() * summary.prize())
+                .mapToLong(summary -> summary.frequency() * summary.prize())
                 .sum();
     }
 }

@@ -5,13 +5,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import lotto.ConsoleTestSuper;
 import org.junit.jupiter.api.Test;
 
-class OutputTest extends ConsoleTestSuper {
+class ConsoleOutputTest extends ConsoleTestSuper {
 
     @Test
     void console_테스트() {
         String message = "hello, precourse!";
 
-        Output.console(message);
+        new ConsoleOutput().print(message);
 
         assertThat(outputStream.toString()).isEqualTo(message);
     }
@@ -20,7 +20,7 @@ class OutputTest extends ConsoleTestSuper {
     void 인자가없는_consoleLine_테스트() {
         String expected = "\n";
 
-        Output.consoleLine();
+        new ConsoleOutput().println();
 
         assertThat(outputStream.toString()).isEqualTo(expected);
     }
@@ -29,7 +29,7 @@ class OutputTest extends ConsoleTestSuper {
     void 기본_consoleLine_테스트() {
         String message = "hello, precourse!";
 
-        Output.consoleLine(message);
+        new ConsoleOutput().println(message);
 
         assertThat(outputStream.toString()).isEqualTo(message + "\n");
     }

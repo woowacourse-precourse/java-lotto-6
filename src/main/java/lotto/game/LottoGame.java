@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.collaboration.lottos.Lotto;
 import lotto.collaboration.lottos.Lottos;
 import lotto.collaboration.lottos.WinningLotto;
+import lotto.game.io.Output;
 import lotto.game.io.Randoms;
 import lotto.game.io.views.LottoGameView;
 
@@ -11,10 +12,12 @@ public class LottoGame {
 
     private final LottoGameView lottoGameView;
     private final Randoms randoms;
+    private final Output output; // TODO : while-true 제거할 때 함께 제거할 것
 
-    public LottoGame(LottoGameView lottoGameView, Randoms randoms) {
+    public LottoGame(LottoGameView lottoGameView, Randoms randoms, Output output) {
         this.lottoGameView = lottoGameView;
         this.randoms = randoms;
+        this.output = output;
     }
 
     public void run() {
@@ -27,7 +30,7 @@ public class LottoGame {
                 lottos.purchase(purchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                output.println("[ERROR] " + e.getMessage());
             }
         }
 
@@ -46,7 +49,7 @@ public class LottoGame {
                 winningLotto = new WinningLotto(winningNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                output.println("[ERROR] " + e.getMessage());
             }
         }
 

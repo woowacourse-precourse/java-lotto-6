@@ -7,7 +7,7 @@ import java.util.regex.PatternSyntaxException;
 import lotto.game.io.Input;
 import lotto.io.enums.InputMessage;
 
-public final class ConsoleInput implements Input {
+public class ConsoleInput implements Input {
 
     private static final String DEFAULT_SPLIT_REGEX = "";
 

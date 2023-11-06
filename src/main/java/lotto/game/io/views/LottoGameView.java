@@ -5,46 +5,48 @@ import java.util.Map;
 import lotto.collaboration.enums.Prize;
 import lotto.collaboration.lottos.Lotto;
 import lotto.game.io.Input;
-import lotto.io.Output;
+import lotto.game.io.Output;
 
 public class LottoGameView {
 
     public static final String ERROR_HEADER_MESSAGE = "[ERROR] ";
     public final Input input;
+    public final Output output;
 
-    public LottoGameView(Input input) {
+    public LottoGameView(Input input, Output output) {
         this.input = input;
+        this.output = output;
     }
 
     public int askPurchaseAmount() {
         while (true) {
-            Output.consoleLine("구입금액을 입력해 주세요.");
+            output.println("구입금액을 입력해 주세요.");
             try {
                 return input.number();
             } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_HEADER_MESSAGE + e.getMessage());
+                output.println(ERROR_HEADER_MESSAGE + e.getMessage());
             }
         }
     }
 
     public void announcePurchaseLottos(List<Lotto> purchaseLottos) {
-        Output.consoleLine();
-        Output.consoleLine(purchaseLottos.size() + "개를 구매했습니다.");
+        output.println();
+        output.println(purchaseLottos.size() + "개를 구매했습니다.");
         for (Lotto purchaseLotto : purchaseLottos) {
-            Output.consoleLine(purchaseLotto);
+            output.println(purchaseLotto);
         }
     }
 
     public List<Integer> askWinningNumbers() {
-        Output.consoleLine();
-        Output.consoleLine("당첨 번호를 입력해 주세요");
+        output.println();
+        output.println("당첨 번호를 입력해 주세요");
         while (true) {
             try {
                 List<Integer> winningNumbers = input.numbers(",");
                 validate(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_HEADER_MESSAGE + e.getMessage());
+                output.println(ERROR_HEADER_MESSAGE + e.getMessage());
             }
         }
     }
@@ -74,8 +76,8 @@ public class LottoGameView {
     }
 
     public int askBonusNumber() {
-        Output.consoleLine();
-        Output.consoleLine("보너스 번호를 입력해 주세요.");
+        output.println();
+        output.println("보너스 번호를 입력해 주세요.");
         while (true) {
             try {
                 int bonusNumber = input.number();
@@ -88,21 +90,21 @@ public class LottoGameView {
     }
 
     public void announceWinningStatistics(int purchaseAmount, Map<Prize, List<Lotto>> prizeListMap) {
-        Output.consoleLine();
-        Output.consoleLine("당첨 통계");
-        Output.consoleLine("---");
+        output.println();
+        output.println("당첨 통계");
+        output.println("---");
         long totalPrizeMoney = 0L;
         for (Prize prize : Prize.values()) {
             if (prize == Prize.LOST) {
                 continue;
             }
             List<Lotto> prizeLottos = prizeListMap.getOrDefault(prize, List.of());
-            System.out.println(prize.message() + " - " + prizeLottos.size() + "개");
+            output.println(prize.message() + " - " + prizeLottos.size() + "개");
             totalPrizeMoney += prize.money() * prizeLottos.size();
         }
 
         double result = (double) Math.round(((double) totalPrizeMoney / purchaseAmount) * 1_000) / 10;
-        Output.consoleLine("총 수익률은 " + result + "%입니다.");
+        output.println("총 수익률은 " + result + "%입니다.");
     }
 
 }

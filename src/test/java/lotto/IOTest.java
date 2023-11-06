@@ -2,10 +2,13 @@ package lotto;
 
 import lotto.enums.Messages;
 import lotto.model.Lotto;
+import lotto.utils.Order;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,5 +38,19 @@ public class IOTest {
         assertThatThrownBy(() ->InputView.intputAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(Messages.PURE_INTEGER_ERROR_MESSAGE.getMessage());
+    }
+
+    @DisplayName("오름차순 출력 확인")
+    @Test
+    void orderPrint(){
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(40);
+        numbers.add(22);
+        numbers.add(6);
+        numbers.add(17);
+        numbers.add(1);
+        numbers.add(15);
+        Lotto lotto = new Lotto(numbers);
+        assertThat(Order.orderNumbers(lotto.getNumbers()).toString()).isEqualTo("[1, 6, 15, 17, 22, 40]");
     }
 }

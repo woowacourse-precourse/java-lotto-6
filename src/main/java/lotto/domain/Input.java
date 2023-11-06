@@ -63,7 +63,7 @@ public class Input {
                 .collect(Collectors.toList());
     }
 
-    public static int askTheWinningLotteryBonusNumber() {
+    public static int askBonusNumber() {
         while (true) {
             try {
                 String bonus = readTheWinningLotteryBonusNumber();

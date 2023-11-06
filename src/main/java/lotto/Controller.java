@@ -21,7 +21,7 @@ public class Controller {
         return matchingCount;
     }
 
-    public static void setRankOnList(List<Rank> rankList, List<Integer> matchingNumberCountList) {
+    public static void fillRankList(List<Rank> rankList, List<Integer> matchingNumberCountList) {
         for (Integer matchingNumberCount : matchingNumberCountList) {
             if (matchingNumberCount.equals(6)) {
                 rankList.add(Rank.FIRST);

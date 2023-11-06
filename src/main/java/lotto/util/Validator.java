@@ -38,6 +38,9 @@ public class Validator {
     }
 
 
+    public static void isSmallAndBig(int inputNum) {
+        if(inputNum < Config.MIN_LOTTO || inputNum > Config.MAX_LOTTO) ErrorView.isSmallAndBigError();
+    }
 
 
 

@@ -20,7 +20,7 @@ public class LottoValidator {
                 .toList();
 
         if (disticedNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 숫자는 서로 중복되면 안됩니다.");
+            throw new IllegalArgumentException();
         }
     }
 }

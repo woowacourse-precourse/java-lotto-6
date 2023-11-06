@@ -29,4 +29,12 @@ public class LottoValidation {
 
     }
 
+    public void validatorWinningNumberCheck(String winningNumber) {
+
+        if (!winningNumber.matches("^\\d+[,|\\d]*\\d$")) {
+            ErrorThrower.throwIllegalArgumentException(WINNING_NUMBER_ONLY_NUMBER_ERROR.getMessage());
+        }
+
+    }
+
 }

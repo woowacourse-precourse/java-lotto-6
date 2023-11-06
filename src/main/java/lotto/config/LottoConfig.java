@@ -9,16 +9,26 @@ public enum LottoConfig {
     LOTTO_THIRD_NUMBER(3),
     LOTTO_FOURTH_NUMBER(4),
     LOTTO_FIFTH_NUMBER(5),
-    LOTTO_SIXTH_NUMBER(6);
+    LOTTO_SIXTH_NUMBER(6),
+    LOTTO_NUMBER_SPLIT_COMMA(",");
 
-    private final int value;
+    private int value;
+    private String content;
 
     LottoConfig(int value) {
         this.value = value;
     }
 
+    LottoConfig(String content) {
+        this.content = content;
+    }
+
     public int getValue() {
         return value;
+    }
+
+    public String getContent() {
+        return content;
     }
 
 }

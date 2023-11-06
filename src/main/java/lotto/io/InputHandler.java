@@ -13,6 +13,11 @@ public class InputHandler {
         return Console.readLine();
     }
 
+    public static String askBonusNumber() {
+        printMessage(Command.ASK_BONUS_NUMBER);
+        return Console.readLine();
+    }
+
     private static void printMessage(Command command) {
         System.out.println(command.prompt());
     }

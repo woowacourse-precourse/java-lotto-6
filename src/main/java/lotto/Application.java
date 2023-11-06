@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.BonusNumberGenerator;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAmountGenerator;
 import lotto.domain.LottoGenerator;
@@ -10,8 +11,8 @@ import lotto.io.OutputHandler;
 public class Application {
     static int amount;
     static List<Lotto> lottos;
-
     static Lotto winningNumbers;
+    static int bonusNumber;
 
 
     public static void main(String[] args) {
@@ -22,5 +23,6 @@ public class Application {
         OutputHandler.printLottos(lottos);
 
         winningNumbers = WinningNumbersGenerator.generateWinningNumbers();
+        bonusNumber = BonusNumberGenerator.generateBonusNumber();
     }
 }

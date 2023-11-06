@@ -33,7 +33,7 @@ public class Investor {
         return (double) profitMoney.getMoney() / investMoney.getMoney();
     }
 
-    public int getInvestMoney() {
-        return investMoney.getMoney();
+    public Money getInvestMoney() {
+        return investMoney;
     }
 }

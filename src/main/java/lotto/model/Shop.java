@@ -7,15 +7,13 @@ import java.util.List;
 
 public class Shop {
 
-    private static final int DIVIDE_REMAIN_VALUE = 0;
+    private final Money money;
 
-    private final int money;
-
-    private Shop(final int money) {
+    private Shop(final Money money) {
         this.money = money;
     }
 
-    public static Shop withOrderedMoney(final int money) {
+    public static Shop withOrderedMoney(final Money money) {
         return new Shop(money);
     }
 
@@ -31,7 +29,7 @@ public class Shop {
         return lottos;
     }
 
-    private int calculateBuyLottoSize(final int money) {
-        return money / LOTTO_COST.getValue();
+    private int calculateBuyLottoSize(final Money money) {
+        return money.getMoney() / LOTTO_COST.getValue();
     }
 }

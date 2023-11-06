@@ -1,17 +1,16 @@
-package lotto.domain;
+package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
 
+import lotto.constant.NumbersOption;
 import lotto.validation.NumbersValidation;
 
 public class WinningNumberMaker {
 
-	private static final String SEPARATOR = ",";
-
 	public static List<Integer> make(String inputNumber) {
 
-		List<Integer> winningNumber = Arrays.stream(inputNumber.split(SEPARATOR))
+		List<Integer> winningNumber = Arrays.stream(inputNumber.split(NumbersOption.SEPARATOR))
 			.map(String::trim)
 			.distinct()
 			.peek(NumbersValidation::validateOnlyNumber)
@@ -26,9 +25,11 @@ public class WinningNumberMaker {
 	}
 
 	public static int makeBonusNumber(String inputBonusNumber) {
+
+		NumbersValidation.validateOnlyNumber(inputBonusNumber);
+		NumbersValidation.validateRange(inputBonusNumber);
+
 		return Integer.parseInt(inputBonusNumber);
 	}
-
-
 
 }

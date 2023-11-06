@@ -1,11 +1,15 @@
 package lotto.util;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Parser {
-    public static int stringToInt(String message) {
-        try{
-            return Integer.parseInt(message);
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[예외처리] 정수가 아닙니다.");
-        }
+    public static int stringToInt(String str) throws NumberFormatException {
+            return Integer.parseInt(str);
+    }
+
+    public static List<Integer> stringToList(String str) {
+        return Stream.of(str.split("")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
     }
 }

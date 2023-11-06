@@ -1,5 +1,6 @@
 package lotto;
 
+import javax.swing.*;
 import java.util.List;
 
 public class Lotto {
@@ -12,6 +13,9 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+        if (numbers.stream().distinct().count()< numbers.size()){
             throw new IllegalArgumentException();
         }
     }

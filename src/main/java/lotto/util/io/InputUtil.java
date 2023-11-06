@@ -50,7 +50,7 @@ public class InputUtil {
     }
 
     private static String readLine() {
-        String input = Console.readLine();
+        String input = Console.readLine().trim();
         validateHasInput(input);
         return input;
     }

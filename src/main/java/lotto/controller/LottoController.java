@@ -9,6 +9,7 @@ import lotto.view.OutputView;
 import java.util.List;
 
 import static lotto.constant.LottoErrorMessage.INPUT_LOTTO_BUY_PRICE_ERROR_MESSAGE;
+import static lotto.constant.LottoInputMessage.INPUT_LOTTO_BUY_PRICE_MESSAGE;
 
 public class LottoController {
 
@@ -26,7 +27,7 @@ public class LottoController {
 
     private LottoBuyPrice inputLottoBuyPrice() {
         try {
-            int inputLottoBuyPrice = InputView.inputNumber();
+            int inputLottoBuyPrice = InputView.inputNumber(INPUT_LOTTO_BUY_PRICE_MESSAGE);
 
             return new LottoBuyPrice(inputLottoBuyPrice);
         } catch (IllegalArgumentException e) {

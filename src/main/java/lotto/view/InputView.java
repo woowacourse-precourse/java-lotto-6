@@ -4,10 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    private static final String INPUT_LOTTO_BUY_PRICE_MESSAGE = "구입 금액을 입력해 주세요.";
-
-    public static int inputNumber() {
-        printInputMessage(INPUT_LOTTO_BUY_PRICE_MESSAGE);
+    public static int inputNumber(String inputMessage) {
+        printInputMessage(inputMessage);
         String inputValue = Console.readLine();
 
         return parseNumber(inputValue);

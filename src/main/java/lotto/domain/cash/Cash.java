@@ -1,18 +1,15 @@
 package lotto.domain.cash;
 
-public class Cash {
+public record Cash(int amount) {
 
-    private final int amount;
-
-    public Cash(int amount) {
+    public Cash {
         validateUnit(amount);
         validateIsPositive(amount);
-        this.amount = amount;
     }
 
     private void validateUnit(int amount) {
         int cashUnit = CashConfig.CASH_UNIT.getValue();
-        int remainder =  amount % cashUnit;
+        int remainder = amount % cashUnit;
         int zero = 0;
         if (remainder > zero) {
             throw new IllegalArgumentException(CashExceptionMessages.INVALID_CASH_UNIT.getMessage());

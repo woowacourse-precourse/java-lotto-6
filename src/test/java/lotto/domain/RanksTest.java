@@ -66,4 +66,12 @@ class RanksTest {
 
         assertThat(result.getOrDefault(4, 0)).isEqualTo(0);
     }
+
+    @DisplayName("당첨금의 총액을 반환한다.")
+    @Test
+    void getWinningSum() {
+        Double result = test.calculateWinningSum();
+
+        assertThat(result).isEqualTo(31_615_000.0);
+    }
 }

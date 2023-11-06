@@ -16,11 +16,38 @@ import java.util.Map;
 import static lotto.constant.LottoConstant.*;
 
 public class Application {
+    private static LottoInputView inputView;
+    private static LottoOutputView outputView;
+
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        LottoInputView inputView = new LottoInputView();
-        LottoOutputView outputView = new LottoOutputView();
+        inputView = new LottoInputView();
+        outputView = new LottoOutputView();
 
+        int userPaid = getUserPaid();
+
+        List<Lotto> userLottos = new ArrayList<>();
+        for (int i = 0; i < userPaid / LOTTO_PRICE; i++) {
+            Lotto lotto = new Lotto(LottoNumberGenerator.generateLottoNumbers());
+            userLottos.add(lotto);
+        }
+        outputView.printBoughtResult(userLottos);
+
+        Lotto winningLotto = getWinningLotto();
+        int bonus = getBonusNumber();
+
+        LottoAnswer answer = new LottoAnswer(winningLotto, bonus);
+        LottoJudgement judgement = new LottoJudgement(answer);
+
+        Map<LottoRanking, Integer> lottoResult = judgement.calculateLottoRanking(userLottos);
+        outputView.printLottoResult(lottoResult);
+
+        int totalPrize = LottoJudgement.calculateTotalPrize(lottoResult);
+        outputView.printProfit(userPaid, totalPrize);
+    }
+
+    public static int getUserPaid() {
         int userPaid;
         while (true) {
             try {
@@ -33,14 +60,10 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+        return userPaid;
+    }
 
-        List<Lotto> userLottos = new ArrayList<>();
-        for (int i = 0; i < userPaid / LOTTO_PRICE; i++) {
-            Lotto lotto = new Lotto(LottoNumberGenerator.generateLottoNumbers());
-            userLottos.add(lotto);
-        }
-        outputView.printBoughtResult(userLottos);
-
+    public static Lotto getWinningLotto() {
         Lotto winningLotto;
         while (true) {
             try {
@@ -53,7 +76,10 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+        return winningLotto;
+    }
 
+    public static int getBonusNumber() {
         int bonus;
         while (true) {
             try {
@@ -66,15 +92,7 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
-
-        LottoAnswer answer = new LottoAnswer(winningLotto, bonus);
-        LottoJudgement judgement = new LottoJudgement(answer);
-
-        Map<LottoRanking, Integer> lottoResult = judgement.calculateLottoRanking(userLottos);
-        outputView.printLottoResult(lottoResult);
-
-        int totalPrize = LottoJudgement.calculateTotalPrize(lottoResult);
-        outputView.printProfit(userPaid, totalPrize);
+        return bonus;
     }
 
     public static List<Integer> validateLottoIntegers(String input) {

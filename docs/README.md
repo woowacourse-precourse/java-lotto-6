@@ -1,11 +1,12 @@
 # Lotto 
 - ## Steps
   - "구입금액을 입력해 주세요."
-    - take in boughtAmount using given api
-      - each lotto card is 1000 won
-        - if boughtAmount cannot be divided by 1000 throw exception
-        - throw exception if negative
-        - throw exception if non-integer
+    - [x] take in boughtAmount using given api (checkBoughtAmount)
+      - [x] each lotto card is 1000 won
+        - [x] if boughtAmount cannot be divided by 1000 throw exception
+        - [x] throw exception if negative
+        - [x] throw exception if non-integer
+        - [x] unit tests
     -  make lotto card
       - unique 6 numbers
         - one bonus number

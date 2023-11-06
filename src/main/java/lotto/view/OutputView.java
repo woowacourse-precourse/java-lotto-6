@@ -1,9 +1,10 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningLottoStorage;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class OutputView {
@@ -11,7 +12,7 @@ public class OutputView {
     private final Map<Rank, String> rankPrinter;
 
     public OutputView() {
-        rankPrinter = new HashMap<>();
+        rankPrinter = new LinkedHashMap<>();
         initRankPrinter();
     }
 

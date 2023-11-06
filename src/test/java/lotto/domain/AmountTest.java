@@ -1,0 +1,18 @@
+package lotto.domain;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+public class AmountTest {
+
+    @DisplayName("구입금액이 최소 금액보다 모자라다면 예외 발생")
+    @ValueSource(ints = {500})
+    @Test
+    void buyAmountIsNotEnough(int amount) {
+        assertThatThrownBy(() -> new Amount(amount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+}

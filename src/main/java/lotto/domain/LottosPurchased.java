@@ -15,11 +15,23 @@ public class LottosPurchased {
 
     public LottosPurchased(int amount) {
         lottos = new ArrayList<>();
-        int numberOfLottos = amount / LOTTO_PRICE;
+        int numberOfLottos = calculateNumberOfLottos(amount);
 
         for (int i = 0; i < numberOfLottos; i++) {
             lottos.add(new Lotto(generateRandomLottoNumbers()));
         }
+    }
+
+    public int getNumberOfLottos() {
+        return lottos.size();
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    private int calculateNumberOfLottos(final int amount) {
+        return amount / LOTTO_PRICE;
     }
 
     private List<Integer> generateRandomLottoNumbers() {

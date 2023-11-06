@@ -32,7 +32,7 @@ public enum OutputMessage {
         sb.append(LottoResult.THIRD.getMessage()).append(" - ").append(result.get(LottoResult.THIRD)).append("개\n");
         sb.append(LottoResult.SECOND.getMessage()).append(" - ").append(result.get(LottoResult.SECOND)).append("개\n");
         sb.append(LottoResult.FIRST.getMessage()).append(" - ").append(result.get(LottoResult.FIRST)).append("개\n");
-        sb.append(String.format("총 수익률은 %.1f입니다.", profitRate));
+        sb.append(String.format("총 수익률은 %.1f%%입니다.", profitRate));
         System.out.println(sb);
     }
 }

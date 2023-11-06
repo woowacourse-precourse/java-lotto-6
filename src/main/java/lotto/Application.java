@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -13,6 +15,7 @@ public class Application {
         }
         return purchaseAmount;
     }
+
     private static int isValidPurchaseAmount(int purchaseAmount) {
         try {
             if (purchaseAmount % 1000 != 0) {
@@ -30,11 +33,26 @@ public class Application {
         System.out.println(purchaseAmount + "개를 구매했습니다.");
     }
 
-    private static List<Integer> inputLottoNumbers(int purchaseNumber) {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        System.out.println(lotto);
-        return lotto;
+    private static Lotto inputLottoNumbers() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lottoNumbers);
+        Lotto myLotto = new Lotto(lottoNumbers);
+        return myLotto;
     }
+
+    private static List<Lotto> generateLottos(int purchaseNumber) {
+        List<Lotto> myLottos = new ArrayList<>();
+        for (int i = 0; i < purchaseNumber; i++) {
+            myLottos.add(inputLottoNumbers());
+        }
+        return myLottos;
+    }
+
+/*    private static void printMyLottos(List<Lotto> myLottos, int purchaseNumber) {
+        for (int i = 0; i < purchaseNumber; i++) {
+            myLottos.get(i).printLottoNumbers();
+        }
+    }*/
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -42,6 +60,7 @@ public class Application {
         int purchaseAmount = inputPurchaseAmount();
         int purchaseNumber = purchaseAmount / 1000;
         printPurchaseNumber(purchaseNumber);
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> myLottos = generateLottos(purchaseNumber);
+//        printMyLottos(myLottos, purchaseNumber);
     }
 }

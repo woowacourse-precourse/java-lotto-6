@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import lotto.domain.Lotto;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,4 +46,13 @@ public class Validate {
         }
     }
 
+    public static int bonusNumber(Lotto winningLottery, String userInput) {
+        int bonusNumber = lotteryNumber(userInput);
+
+        List<Integer> numbers = winningLottery.getNumbers();
+        numbers.add(bonusNumber);
+        hasDuplicateNumbers(numbers);
+
+        return bonusNumber;
+    }
 }

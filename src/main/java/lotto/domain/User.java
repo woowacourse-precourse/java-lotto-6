@@ -1,71 +1,49 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validation.AmountCheckValidator;
-import lotto.validation.NumberCheckValidator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.validation.AmountCheckValidator.*;
+import static lotto.validation.PurchaseAmountCheckValidator.*;
 import static lotto.validation.NumberCheckValidator.*;
 
 public class User {
-    private int count;
-    private List<Integer> winningNumbers = new ArrayList<>();
+    private static User user;
 
-    public User() {
+    List<Integer> winningNumbers = new ArrayList<>();
+
+    private User() {
     }
 
-    public int inputAmount() {
-        int amount = Integer.parseInt(Console.readLine());
-        retryAmount(amount);
-        return count;
+    public static User getInstance() {
+        if (user == null) {
+            return user = new User();
+        }
+        return user;
     }
 
-    private void injectCount(int amount) {
-        count = amount / 1_000;
+    public int inputPurchaseAmount() {
+        String stringPurchaseAmount = Console.readLine();
+        return validatePurchaseAmount(stringPurchaseAmount);
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public int injectCount(int purchaseAmount) {
+        return purchaseAmount / 1_000;
+    }
+
+    public Lotto inputWinningNumbers() {
+        winningNumbers.clear();
         Arrays.stream(Console.readLine().split(",")).toList()
                 .forEach(s -> winningNumbers.add(Integer.valueOf(s)));
 
-        retryWinningNumber();
-        return winningNumbers;
+        return new Lotto(winningNumbers);
     }
 
     public int inputBonusNumber() {
         int bonusNumber = Integer.parseInt(Console.readLine());
-        retryBonusNumber(bonusNumber);
+        validateBonusNumber(winningNumbers, bonusNumber);
         return bonusNumber;
-    }
-
-    private void retryAmount(int amount) {
-        try {
-            validateAmount(amount);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            inputAmount();
-        }
-    }
-
-    private void retryWinningNumber() {
-        try {
-            validateWinningNumber(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            inputWinningNumbers();
-        }
-    }
-
-    private void retryBonusNumber(int bonusNumber) {
-        try {
-            validateBonusNumber(winningNumbers, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            inputBonusNumber();
-        }
     }
 }

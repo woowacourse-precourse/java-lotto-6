@@ -38,9 +38,13 @@ public class Payment {
     }
 
     private void validateThousandUnit(final String amount) {
-        if (Integer.parseInt(amount) % LOTTO_PRICE != 0) {
+        if (isThousandUnit(amount)) {
             throw new IllegalArgumentException(UNIT_ERROR_MESSAGE);
         }
+    }
+
+    private boolean isThousandUnit(final String amount) {
+        return Integer.parseInt(amount) % LOTTO_PRICE != 0;
     }
 
     private void validateMaximumAmount(final String amount) {

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
@@ -12,9 +13,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+
         checkSizeOfLotto(numbers);
-
-
+        numbers.stream().forEach(number -> checkRangeOfLottoNumber(number));
     }
 
     private static void checkSizeOfLotto(List<Integer> numbers) {
@@ -22,5 +23,13 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.OVER_SIZE_OF_LOTTO);
         }
     }
+
+    private static void checkRangeOfLottoNumber(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_ERROR);
+        }
+    }
+
+
 
 }

@@ -3,8 +3,10 @@ package lotto;
 import static lotto.domain.enums.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
 import static lotto.domain.enums.ErrorMessage.EXCEED_LENGTH_ERROR_MESSAGE;
 import static lotto.domain.enums.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR_MESSAGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -43,4 +45,29 @@ class LottoTest {
                 .hasMessage(NUMBER_OUT_OF_RANGE_ERROR_MESSAGE.getMessage());
     }
 
+    @DisplayName("로또 번호가 포함한 숫자가 있는 경우 참을 반환한다.")
+    @Test
+    void containsNumberTest() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int number = 1;
+
+        //when and then
+        assertTrue(lotto.isContainNumber(number));
+    }
+
+    @DisplayName("두 개의 로또 번호가 일치한 개수를 반환한다.")
+    @Test
+    void matchLottoCountTest() {
+        //given
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(4, 5, 6, 10, 11, 1));
+        int expectedCount = 4;
+
+        //when
+        int matchCount = lotto1.match(lotto2);
+
+        //then
+        assertThat(matchCount).isEqualTo(expectedCount);
+    }
 }

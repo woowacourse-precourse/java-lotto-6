@@ -5,6 +5,8 @@ import static lotto.domain.enums.Constant.LOTTO_MIN_NUMBER;
 import static lotto.domain.enums.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
 import static lotto.domain.enums.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR_MESSAGE;
 
+import lotto.domain.enums.Score;
+
 public class WinningLotto {
 
     private final Lotto winningNumbers;
@@ -37,4 +39,11 @@ public class WinningLotto {
     private boolean isOutOfRange(final int bonusNumber) {
         return bonusNumber < LOTTO_MIN_NUMBER.getConstant() || bonusNumber > LOTTO_MAX_NUMBER.getConstant();
     }
+
+    public Score matchLotto(Lotto lotto) {
+        int matchCount = winningNumbers.match(lotto);
+        boolean containBonusNumber = lotto.isContainNumber(bonusNumber);
+        return Score.of(matchCount, containBonusNumber);
+    }
+    
 }

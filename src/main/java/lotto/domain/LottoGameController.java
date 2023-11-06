@@ -13,6 +13,7 @@ public class LottoGameController {
         List<Lotto> lottos = lottoStore.buyLotto(money);
         OutputView.printPurchaseLottos(lottos);
         WinningLotto winningLotto = generateWinningLotto();
+        GameResult gameResult = new GameResult(lottos, winningLotto);
     }
 
 

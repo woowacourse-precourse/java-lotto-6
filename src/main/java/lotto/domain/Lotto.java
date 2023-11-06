@@ -59,4 +59,8 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
+    public int match(Lotto lotto) {
+        return (int) numbers.stream().filter(lotto::isContainNumber).count();
+    }
+
 }

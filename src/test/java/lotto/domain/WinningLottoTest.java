@@ -2,10 +2,12 @@ package lotto.domain;
 
 import static lotto.domain.enums.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
 import static lotto.domain.enums.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR_MESSAGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
+import lotto.domain.enums.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +35,32 @@ class WinningLottoTest {
         assertDoesNotThrow(() -> new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7));
     }
 
+    @Test
+    @DisplayName("1등 당첨")
+    void firstScoreByMatchLotto() {
+        //given
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        //when
+        Score score = winningLotto.matchLotto(lotto);
+
+        //then
+        assertThat(score).isEqualTo(Score.FIRST);
+    }
+
+    @Test
+    @DisplayName("2등 당첨")
+    void secondScoreByMatchLotto() {
+        //given
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+
+        //when
+        Score score = winningLotto.matchLotto(lotto);
+
+        //then
+        assertThat(score).isEqualTo(Score.SECOND);
+    }
 
 }

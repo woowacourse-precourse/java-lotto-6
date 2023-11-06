@@ -3,8 +3,10 @@ package lotto.service;
 
 import lotto.Lotto;
 import lotto.domain.UserLotto;
+import lotto.dto.requset.WinningBonusNumber;
 import lotto.dto.response.LottoCollection;
 import lotto.dto.response.LottoNumber;
+import lotto.dto.response.WinningResult;
 
 public class LottoService implements Calculation{
 
@@ -20,5 +22,10 @@ public class LottoService implements Calculation{
 			lottoCollection.addLottoCollection(lottoNumber);
 		}
 		return lottoCollection;
+	}
+
+	@Override
+	public WinningResult winningCalculation(WinningBonusNumber winningBonusNumber) {
+		return null;
 	}
 }

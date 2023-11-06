@@ -15,6 +15,10 @@ public class WinnerLottoValidator extends Validator {
 
     @Override
     public boolean validation(String input) {
+        if (validationInputLength(input)) {
+            System.out.println(ExceptionMessage.INVALID_INPUT_LENGTH.getMessage());
+            return false;
+        }
         if (validationHasDuplicate(input)){
             System.out.println(ExceptionMessage.INVALID_INPUT_DUPLICATE.getMessage());
             return false;
@@ -25,10 +29,6 @@ public class WinnerLottoValidator extends Validator {
         }
         if (validationHasBlank(input)) {
             System.out.println(ExceptionMessage.INVALID_INPUT_HAS_BLAMK.getMessage());
-            return false;
-        }
-        if (validationInputLength(input)) {
-            System.out.println(ExceptionMessage.INVALID_INPUT_LENGTH.getMessage());
             return false;
         }
         return true;

@@ -16,11 +16,11 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(String winningNumbers, String bonusNumber) {
-        this.winningNumbers = getWinningNumbers(winningNumbers);
-        this.bonusNumber = getBonusNumber(bonusNumber);
+        this.winningNumbers = createWinningNumbers(winningNumbers);
+        this.bonusNumber = createBonusNumber(bonusNumber);
     }
 
-    private Lotto getWinningNumbers(String winningNumbers) {
+    private Lotto createWinningNumbers(String winningNumbers) {
         InputValidator.validateEmpty(winningNumbers);
         InputValidator.validateNull(winningNumbers);
         List<Integer> numbers = parseNumbers(winningNumbers);
@@ -30,12 +30,18 @@ public class WinningLotto {
         return new Lotto(numbers);
     }
 
-    private int getBonusNumber(String bonusNumber) {
+    private int createBonusNumber(String bonusNumber) {
         InputValidator.validateEmpty(bonusNumber);
         InputValidator.validateNull(bonusNumber);
         return parseNumber(bonusNumber);
     }
 
+    public Lotto getWinningNumbers(){
+        return this.winningNumbers;
+    }
+    public int getBonusNumber(){
+        return this.bonusNumber;
+    }
     private List<Integer> parseNumbers(String numbers) {
         return Stream.of(numbers.split(","))
                 .map(String::trim)
@@ -83,5 +89,8 @@ public class WinningLotto {
             throw new IllegalArgumentException(
                     "로또번호는" + MIN_VALUE + "과" + MAX_VALUE + "사이만 가능");
         }
+    }
+    public List<Integer> getCurrentWinningNumbers() {
+        return winningNumbers.getCurrentNumbers();
     }
 }

@@ -26,33 +26,35 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
     @DisplayName("다른 로또 번호와 비교하여 일치하는 갯수를 반환한다.")
     @Test
     void compareOtherLotto() {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
-        Assertions.assertThat(lotto1.calculateMatchCount(lotto2))
+        assertThat(lotto1.calculateMatchCount(lotto2))
                 .isEqualTo(3);
+    }
+
+    @DisplayName("로또 번호의 숫자가 범위를 벗어나면, 예외 발생")
+    @Test
+    void createLottoByOutOfRangeNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,47)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호 안에, 보너스 번호가 있는지 확인한다. 있으면 ture")
     @Test
     void checkBonusNumberInLottoNumbers() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        Assertions.assertThat(lotto.checkContainBonusNumber(7))
+        assertThat(lotto.checkContainBonusNumber(7))
                 .isFalse();
     }
-
 
     @DisplayName("로또 번호 안에, 보너스 번호가 있는지 확인한다. 있으면 ture")
     @Test
     void checkBonusNumberNotInLottoNumbers() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        Assertions.assertThat(lotto.checkContainBonusNumber(7))
+        assertThat(lotto.checkContainBonusNumber(7))
                 .isFalse();
     }
-
 }

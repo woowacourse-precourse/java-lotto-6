@@ -8,7 +8,7 @@ public class LottoResult {
     private final Lotto winningLotto;
     private final int bonusNumber;
     private static final int ADD_COUNT = 1;
-    
+
     public LottoResult(Lotto winningLotto, int bonusNumber) {
         validateBonusNumber(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
@@ -35,7 +35,7 @@ public class LottoResult {
         for (Lotto issuedLotto : issuedLottos) {
             int matchCount = winningLotto.calculateMatchCount(issuedLotto);
             boolean isContainBonusNumber = issuedLotto.checkContainBonusNumber(bonusNumber);
-            LottoPrizeStatus status = LottoPrizeStatus.getSatisfiedContainsStatus(matchCount, isContainBonusNumber);
+            LottoPrizeStatus status = LottoPrizeStatus.getSatisfiedConditionsStatus(matchCount, isContainBonusNumber);
             if (status != null) {
                 prizeResult.put(status, prizeResult.get(status) + ADD_COUNT);
             }

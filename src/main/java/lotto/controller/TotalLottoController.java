@@ -19,20 +19,6 @@ public class TotalLottoController {
         this.inputView = new InputView();
     }
 
-    public Lotto issueWinningLotto() {
-        Lotto lotto = null;
-        while (lotto == null) {
-            try {
-                outputView.enterYourNumber();
-                List<Integer> winningNumber = inputView.inputNumbers();
-                lotto = issueController.issueWinningLotto(winningNumber);
-            } catch (IllegalArgumentException e) {
-                outputView.showErrorReason(e.getMessage());
-            }
-        }
-        return lotto;
-    }
-
     public List<Lotto> issueLottos() {
         List<Lotto> issueLottos = null;
         while (issueLottos == null) {
@@ -50,8 +36,9 @@ public class TotalLottoController {
         outputView.showLottosNumber(lottos);
     }
 
-    public LottoResult issueLottoResult(Lotto winningLotto) {
+    public LottoResult issueLottoResult() {
         LottoResult lottoResult = null;
+        Lotto winningLotto = issueWinningLotto();
         while (lottoResult == null) {
             try {
                 int bonusNumber = inputView.inputBonusNumber();
@@ -61,6 +48,20 @@ public class TotalLottoController {
             }
         }
         return lottoResult;
+    }
+
+    private Lotto issueWinningLotto() {
+        Lotto lotto = null;
+        while (lotto == null) {
+            try {
+                outputView.enterYourNumber();
+                List<Integer> winningNumber = inputView.inputNumbers();
+                lotto = issueController.issueWinningLotto(winningNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.showErrorReason(e.getMessage());
+            }
+        }
+        return lotto;
     }
 
     public void showStatistics(ResultStatics resultStatics) {

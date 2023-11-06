@@ -13,8 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = new ArrayList<>(numbers);
-        Collections.sort(this.numbers);
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -22,7 +21,7 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessages.NOT_SIX_NUMBER_ERROR.getMessage());
         }
 
-        if (isContainSameNumber(numbers)) {
+        if (isNumbersInSameNumber(numbers)) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER_ERROR.getMessage());
         }
 
@@ -37,7 +36,7 @@ public class Lotto {
                 .count() != 0;
     }
 
-    private boolean isContainSameNumber(List<Integer> numbers) {
+    private boolean isNumbersInSameNumber(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         return numbers.size() != set.size();
     }
@@ -56,6 +55,7 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.stream()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[",  "]"));
     }

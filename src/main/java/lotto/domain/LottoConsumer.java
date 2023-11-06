@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class LottoConsumer {
     private final List<Lotto> issuedLottos;
+
     public LottoConsumer(List<Lotto> issuedLottos) {
         this.issuedLottos = issuedLottos;
     }

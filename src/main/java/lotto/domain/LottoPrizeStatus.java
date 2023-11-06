@@ -31,7 +31,7 @@ public enum LottoPrizeStatus {
         return matchInformation;
     }
 
-    public static LottoPrizeStatus getSatisfiedContainsStatus(int sameCount, boolean isContainBonusNum) {
+    public static LottoPrizeStatus getSatisfiedConditionsStatus(int sameCount, boolean isContainBonusNum) {
         LottoPrizeStatus status = null;
         if (sameCount == FIVE_SAME.getSameCount()) {
             return getFiveMatchStatus(isContainBonusNum);

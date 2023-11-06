@@ -60,17 +60,14 @@
 - `AllWinningNumbers`
 
 ### AllLottoNumbers
-- List\<LottoNumbers>
+- List\<Lotto>
 
-### LottoNumbers
-- List\<Number>
-
-### Number
-- int
+### Lotto
+- List\<Integer>
 
 ### AllWinningNumbers
 - `WinningNumbers`
 - bonusNumber
 
 ### WinningNumbers
-- List\<Number>
+- List\<Integer>

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Validator {
     // 공백이거나 NULL인지 검증
@@ -52,5 +53,14 @@ public class Validator {
     public static void checkNumberIn(int start, int end, Integer number) {
         if (number < start || number > end)
             throw new IllegalArgumentException("[ERROR]");
+    }
+
+    // 중복입력이 있는지 검증
+    public static void checkDuplicated(List<Integer> numbers) {
+        for(int i = 0 ; i < numbers.size()-1; i++) {
+            for(int j = i+1; j < numbers.size() ; j++)
+                if (numbers.get(i) == numbers.get(j))
+                    throw new IllegalArgumentException("[ERROR]");
+        }
     }
 }

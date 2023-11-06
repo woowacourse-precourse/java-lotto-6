@@ -16,5 +16,13 @@ public class LottoNumbersTest {
         lottoNumberList = lottoNumbers.setRandomNumbers();
         assertThat(lottoNumberList.size()).isEqualTo(6);
     }
-    
+
+    @DisplayName("구매 개수에 맞게 로또를 생성하지 않으면 예외가 발생한다.")
+    @Test
+    void createLottoByValidNumber() {
+        int numOfLotto = 12;
+        LottoNumbers lottos = new LottoNumbers(numOfLotto);
+        assertThat(lottos.getLottos().size()).isEqualTo(12);
+    }
+
 }

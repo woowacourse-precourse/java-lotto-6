@@ -28,6 +28,8 @@ public class LottoValidator {
         List<Integer> lottoNumbers = makeLotto(numbers);
         validateDuplicateNumber(new Lotto(lottoNumbers));
 
+        validateNumberCount(lottoNumbers);
+
         for(int number : lottoNumbers){
             validateNumberOutOfRange(number);
         }
@@ -74,6 +76,12 @@ public class LottoValidator {
         List<Integer> lottoNumbers = lotto.getLotto();
         if(lottoNumbers.contains(bonusNumber)){
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_ALREADY_IN_WINNING_ERROR);
+        }
+    }
+
+    public static void validateNumberCount(List<Integer> numbers) {
+        if(numbers.size() != 6){
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_CAN_HAVE_ONLY_SIX_NUMBERS);
         }
     }
 

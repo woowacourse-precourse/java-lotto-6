@@ -28,9 +28,9 @@ public class InputNumberImpl implements InputNumber {
 	}
 
 	@Override
-	public void inputBonusNumber() {
+	public int inputBonusNumber() {
 		String bonusNumber = Console.readLine();
-		validator.validateBonusNumber(bonusNumber);
+		return validator.validateBonusNumber(bonusNumber);
 	}
 
 

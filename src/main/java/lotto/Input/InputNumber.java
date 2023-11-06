@@ -8,6 +8,6 @@ public interface InputNumber {
 
 	void inputWinningNumbers(List<Integer> lottoNumbers);
 
-	void inputBonusNumber();
+	int inputBonusNumber();
 
 }

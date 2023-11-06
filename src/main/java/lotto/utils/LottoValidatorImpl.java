@@ -31,9 +31,9 @@ public class LottoValidatorImpl implements LottoValidator {
 	}
 
 	@Override
-	public void validateBonusNumber(String bonusNumber) {
+	public int validateBonusNumber(String bonusNumber) {
 		validateIsDigit(bonusNumber);
-		int parseNumber = validateLottoRange(bonusNumber);
+		return validateLottoRange(bonusNumber);
 	}
 
 	private int validateLottoRange(String lottoNumber) {

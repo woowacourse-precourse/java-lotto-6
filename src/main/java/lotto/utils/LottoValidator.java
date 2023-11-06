@@ -9,5 +9,5 @@ public interface LottoValidator {
 
 	void validateWinningNumber(StringTokenizer numberSplitter, List<Integer> lotto);
 
-	void validateBonusNumber(String bonusNumber);
+	int validateBonusNumber(String bonusNumber);
 }

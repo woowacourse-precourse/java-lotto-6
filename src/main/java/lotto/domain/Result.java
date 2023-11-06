@@ -30,6 +30,12 @@ public enum Result {
                 .orElseThrow();
     }
 
+    public static Long sumOfRewards(List<Result> results) {
+        return results.stream()
+                .map(it -> it.reward)
+                .mapToLong(Integer::longValue)
+                .sum();
+    }
 
     public String getContent() {
         return content;

@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import static lotto.enums.Prize.*;
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,10 +35,10 @@ public class WinningDetailsTest {
 
         //when
         WinningDetails winningDetails = new WinningDetails(lottos,winningNumbers,bonusNumber);
-        int[] rank = winningDetails.getRank();
+        HashMap<Integer,Integer> rank = winningDetails.getRank();
 
         //then
-        assertThat(rank[1]).isEqualTo(1);
+        assertThat(rank.get(FIRST_RANK.getRank())).isEqualTo(1);
     }
 
     @Test
@@ -48,10 +50,10 @@ public class WinningDetailsTest {
 
         //when
         WinningDetails winningDetails = new WinningDetails(lottos,winningNumbers,bonusNumber);
-        int[] rank = winningDetails.getRank();
+        HashMap<Integer,Integer> rank = winningDetails.getRank();
 
         //then
-        assertThat(rank[2]).isEqualTo(1);
+        assertThat(rank.get(SECOND_RANK.getRank())).isEqualTo(1);
     }
 
     @Test
@@ -63,10 +65,10 @@ public class WinningDetailsTest {
 
         //when
         WinningDetails winningDetails = new WinningDetails(lottos,winningNumbers,bonusNumber);
-        int[] rank = winningDetails.getRank();
+        HashMap<Integer,Integer> rank = winningDetails.getRank();
 
         //then
-        assertThat(rank[3]).isEqualTo(1);
+        assertThat(rank.get(THIRD_RANK.getRank())).isEqualTo(1);
     }
 
     @Test
@@ -78,10 +80,10 @@ public class WinningDetailsTest {
 
         //when
         WinningDetails winningDetails = new WinningDetails(lottos,winningNumbers,bonusNumber);
-        int[] rank = winningDetails.getRank();
+        HashMap<Integer,Integer> rank = winningDetails.getRank();
 
         //then
-        assertThat(rank[4]).isEqualTo(1);
+        assertThat(rank.get(FOURTH_RANK.getRank())).isEqualTo(1);
     }
 
     @Test
@@ -93,10 +95,10 @@ public class WinningDetailsTest {
 
         //when
         WinningDetails winningDetails = new WinningDetails(lottos,winningNumbers,bonusNumber);
-        int[] rank = winningDetails.getRank();
+        HashMap<Integer,Integer> rank = winningDetails.getRank();
 
         //then
-        assertThat(rank[5]).isEqualTo(1);
+        assertThat(rank.get(FIFTH_RANK.getRank())).isEqualTo(1);
     }
 
     @Test
@@ -108,9 +110,9 @@ public class WinningDetailsTest {
 
         //when
         WinningDetails winningDetails = new WinningDetails(lottos,winningNumbers,bonusNumber);
-        int[] rank = winningDetails.getRank();
+        HashMap<Integer,Integer> rank = winningDetails.getRank();
 
         //then
-        assertThat(rank[5]).isEqualTo(2);
+        assertThat(rank.get(FIFTH_RANK.getRank())).isEqualTo(2);
     }
 }

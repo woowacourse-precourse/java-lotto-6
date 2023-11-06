@@ -1,7 +1,6 @@
 package lotto.service;
 
 import lotto.domain.*;
-import lotto.util.WinnerRank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,13 +14,36 @@ public class LottoGame {
     private WinResult winResult = new WinResult();
 
     public void game() {
-        outputView.printMoneyInputGuideMessage();
-        PurchasePrice purchasePrice = inputView.inputPrice();
+        PurchasePrice purchasePrice = inputPurchasePrice();
 
         int lottoAmount = purchasePrice.getLottoAmount();
         outputView.printLottoAmount(lottoAmount);
 
+        List<Lotto> lottos = generateUserLottos(lottoAmount);
+        WinningLotto winningLotto = inputWinLotto();
+
+        inputBonusNumber(winningLotto);
+
+        for (Lotto userLotto : lottos) {
+            int rankValue = winningLotto.matchSameNumberNum(userLotto);
+            changeWinResultByRankValue(winningLotto, userLotto, rankValue);
+        }
+
+        printWinResult();
+
+        printProfit(purchasePrice);
+    }
+
+    private PurchasePrice inputPurchasePrice() {
+        outputView.printMoneyInputGuideMessage();
+        PurchasePrice purchasePrice = inputView.inputPrice();
+
+        return purchasePrice;
+    }
+
+    private List<Lotto> generateUserLottos(int lottoAmount) {
         List<Lotto> lottos = new ArrayList<>();
+
         while (lottoAmount > 0) {
             List<Integer> randomNumbers = randomNumber.generateRandomNumbers();
             outputView.printUserLottos(randomNumbers);
@@ -29,25 +51,19 @@ public class LottoGame {
             lottoAmount--;
         }
 
+        return lottos;
+    }
+
+    private WinningLotto inputWinLotto() {
         outputView.printWinLottoNumbersInputGuide();
         Lotto winLotto = inputView.inputWinLotto();
-        WinningLotto winningLotto = new WinningLotto(winLotto);
 
+        return new WinningLotto(winLotto);
+    }
+
+    private void inputBonusNumber(WinningLotto winningLotto) {
         outputView.printBonusNumbersInputGuide();
         winningLotto.setBonusLottoNum(inputView.inputBonusNumber());
-
-        for (Lotto userLotto : lottos) {
-            int rankValue = winningLotto.matchSameNumberNum(userLotto);
-            changeWinResultByRankValue(winningLotto, userLotto, rankValue);
-        }
-
-        for (WinnerRank winnerRank : WinnerRank.values()) {
-            int key = winnerRank.getValue();
-            outputView.printWinResult(winResult);
-        }
-
-        double profit = new Profit().calculateProfitRate(purchasePrice, winResult);
-        outputView.printProfit(profit);
     }
 
     private void changeWinResultByRankValue(WinningLotto winningLotto, Lotto userLotto, int rankValue) {
@@ -76,5 +92,15 @@ public class LottoGame {
 
     private void increaseWinResultValueByRankValue(int rankValue) {
         winResult.increaseWinResultValue(rankValue);
+    }
+
+    private void printWinResult() {
+        outputView.printWinningResultGuideMessage();
+        outputView.printWinResult(winResult);
+    }
+
+    private void printProfit(PurchasePrice purchasePrice) {
+        double profit = new Profit().calculateProfitRate(purchasePrice, winResult);
+        outputView.printProfit(profit);
     }
 }

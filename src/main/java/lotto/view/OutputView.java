@@ -40,4 +40,8 @@ public final class OutputView extends ConsoleView {
         }
         println(String.format(ROI_FORMAT, roi));
     }
+
+    public void displayErrorMessage(String message) {
+        println(String.format(ERROR_PREFIX, message));
+    }
 }

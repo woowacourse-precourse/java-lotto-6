@@ -1,7 +1,6 @@
-package lotto.model;
+package lotto.model.prize;
 
-import lotto.model.prize.Prize;
-import lotto.model.prize.PrizeEvaluator;
+import lotto.model.Lotto;
 import lotto.model.winning.WinningNumbers;
 import org.junit.jupiter.api.*;
 

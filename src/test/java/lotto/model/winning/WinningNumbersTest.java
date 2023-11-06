@@ -1,7 +1,10 @@
-package lotto.model;
+package lotto.model.winning;
 
-import lotto.model.winning.WinningNumbers;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

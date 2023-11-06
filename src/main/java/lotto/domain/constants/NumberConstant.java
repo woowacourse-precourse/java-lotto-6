@@ -3,7 +3,7 @@ package lotto.domain.constants;
 import java.math.BigDecimal;
 
 public class NumberConstant {
-    
+
     public static final int ZERO = 0;
     public static final long LONG_TYPE_ZERO = 0L;
     public static final BigDecimal BIG_DECIMAL_ZERO = BigDecimal.ZERO;

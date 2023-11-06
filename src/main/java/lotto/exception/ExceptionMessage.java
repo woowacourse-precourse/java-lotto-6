@@ -6,7 +6,7 @@ import static lotto.domain.constants.NumberConstant.MINIMUM_LOTTO_NUMBER;
 import static lotto.domain.constants.NumberConstant.VALIDATE_LOTTO_SIZE;
 
 public enum ExceptionMessage {
-    
+
     EMPTY_INPUT_ERROR("비어 있는 값입니다. 다시 입력해 주세요."),
     INVALID_NUMBER_ERROR("숫자가 아닙니다. 다시 입력해 주세요."),
     MINIMUM_PAYMENT_ERROR("로또 구입 비용 이상으로 입력해 주세요."),
@@ -20,14 +20,14 @@ public enum ExceptionMessage {
     BONUS_NUMBER_ERROR("1~45 사이의 숫자를 입력해 주세요."),
     DUPLICATE_NUMBER_ERROR("중복된 숫자가 있습니다."),
     SYSTEM_ERROR("시스템에 문제가 발생했습니다.");
-    
+
     private static final String EXCEPTION_PREFIX = "[ERROR]";
     private final String message;
-    
+
     ExceptionMessage(final String message) {
         this.message = message;
     }
-    
+
     public String getMessage() {
         return format("%s %s", EXCEPTION_PREFIX, message);
     }

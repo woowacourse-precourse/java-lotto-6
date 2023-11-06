@@ -1,13 +1,13 @@
 package lotto.view;
 
 import static java.lang.String.format;
+import static lotto.domain.constants.SeparatorConstant.RESULT_SUMMARY_SEPARATOR;
 import static lotto.domain.enums.ConsoleMessage.ENTER_BONUS_NUMBER;
 import static lotto.domain.enums.ConsoleMessage.ENTER_PURCHASE_AMOUNT;
 import static lotto.domain.enums.ConsoleMessage.ENTER_WINNING_NUMBERS;
 import static lotto.domain.enums.ConsoleMessage.RESULTS_SUMMARY;
 import static lotto.domain.enums.ConsoleMessage.SUCCESS_PURCHASE_LOTTO;
 import static lotto.domain.enums.ConsoleMessage.TOTAL_RETURN;
-import static lotto.domain.constants.SeparatorConstant.RESULT_SUMMARY_SEPARATOR;
 
 import java.math.BigDecimal;
 import java.util.List;

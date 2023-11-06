@@ -12,7 +12,7 @@ import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 
 public class WinningLottoController {
-    
+
     public WinningLotto receiveWinningLotto() {
         try {
             final Lotto winningNumbers = receiveWinningNumbers();
@@ -22,12 +22,12 @@ public class WinningLottoController {
             return receiveWinningLotto();
         }
     }
-    
+
     private WinningLotto receiveWinningLottoWithBonusNumber(final Lotto winningNumbers) {
         printEnterBonusNumber();
         return repeatUntilReceiveWinningLotto(winningNumbers);
     }
-    
+
     private WinningLotto repeatUntilReceiveWinningLotto(final Lotto winningNumbers) {
         try {
             final Integer bonusNumber = repeatUntilReceiveBonusNumber();
@@ -37,7 +37,7 @@ public class WinningLottoController {
             return repeatUntilReceiveWinningLotto(winningNumbers);
         }
     }
-    
+
     private int repeatUntilReceiveBonusNumber() {
         try {
             final String input = InputView.readLine();
@@ -47,12 +47,12 @@ public class WinningLottoController {
             return repeatUntilReceiveBonusNumber();
         }
     }
-    
+
     private Lotto receiveWinningNumbers() {
         printEnterWinningNumbers();
         return repeatUntilReceiveWinningNumbers();
     }
-    
+
     private Lotto repeatUntilReceiveWinningNumbers() {
         try {
             final String input = InputView.readLine();

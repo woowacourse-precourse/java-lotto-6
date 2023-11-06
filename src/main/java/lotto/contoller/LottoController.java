@@ -1,16 +1,31 @@
 package lotto.contoller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.LottoList;
 import lotto.model.PurchaseAmount;
+import lotto.model.Result;
 import lotto.model.WinningNumber;
 import lotto.view.LottoView;
 
 public class LottoController {
 
-    public final LottoView lottoView;
+    private final LottoView lottoView;
 
     public LottoController(LottoView lottoView) {
         this.lottoView = lottoView;
+    }
+
+    public void startLotto() {
+        PurchaseAmount purchaseAmount = receivePurchaseAmount();
+
+        LottoList lottoList = new LottoList(purchaseAmount);
+        lottoView.printLottoNumber(lottoList);
+
+        WinningNumber winningNumber = receiveWinningNumber();
+        winningNumber = receiveBonusNumber(winningNumber);
+
+        Result result = lottoList.calculateWinningStatistics(winningNumber);
+        lottoView.printResult(result, purchaseAmount);
     }
 
     private PurchaseAmount receivePurchaseAmount() {

@@ -34,5 +34,13 @@ public final class Validation {
         }
     }
 
+    public static void validateDuplicateBonus(List<Integer> winningNumbers, int bonusNumber) {
+        boolean hasDuplicate = winningNumbers.stream()
+                .anyMatch(number -> number == bonusNumber);
+        if (hasDuplicate) {
+            //Mesaage 출력
+            throw new IllegalArgumentException();
+        }
+    }
 
 }

@@ -9,4 +9,7 @@ public class MakeObjectService {
         return new Amount(input);
     }
 
+    public static Lottos lottos() {
+        return new Lottos();
+    }
 }

@@ -24,6 +24,15 @@ public class InputView {
         return toIntegers(split(removeSpaces(input)));
     }
 
+    public static Integer getBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+
+        validateBonusNumberInput(input);
+
+        return toInteger(input);
+    }
+
     private static void validatePurchaseAmountInput(String input) {
         if (isNotPositiveInteger(input)) {
             throw new IllegalArgumentException();
@@ -32,6 +41,12 @@ public class InputView {
 
     private static void validateWinningNumbersInput(String input) {
         if (endsWithComma(input) || hasNotPositiveInteger(split(input)) || isNotSixIntegers(split(input))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateBonusNumberInput(String input) {
+        if (isNotPositiveInteger(input)) {
             throw new IllegalArgumentException();
         }
     }

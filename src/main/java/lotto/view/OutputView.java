@@ -10,13 +10,13 @@ public class OutputView {
         System.out.println(purchasableLotto+"개를 구매했습니다.");
     }
 
-    public static void LottoNumberMessage(List<Lotto> lottoTickets) {
+    public static void lottoNumberMessage(List<Lotto> lottoTickets) {
         for (Lotto lotto: lottoTickets) {
             System.out.println(lotto.getNumbers());
         }
     }
 
-    public static void LineBreakMessage() {
+    public static void lineBreakMessage() {
         System.out.println();
     }
 }

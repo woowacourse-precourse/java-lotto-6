@@ -37,7 +37,7 @@ public class Controller {
     private List<Lotto> purchaseLotto(int money) {
         int purchasableLotto = money / 1000;
         OutputView.purchaseLottoMessage(purchasableLotto);
-        OutputView.LineBreakMessage();
+        OutputView.lineBreakMessage();
         List<Lotto> lottoTickets = new ArrayList<Lotto>();
 
         for (int i = 0; i < purchasableLotto; i++) {
@@ -50,6 +50,6 @@ public class Controller {
     }
 
     private void printLottoNumbers(List<Lotto> lottoTickets) {
-        OutputView.LottoNumberMessage(lottoTickets);
+        OutputView.lottoNumberMessage(lottoTickets);
     }
 }

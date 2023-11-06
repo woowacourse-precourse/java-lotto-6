@@ -26,8 +26,6 @@ public class Message {
     public static final String ERROR_WINNING_COUNT = String.format("[ERROR] 당첨 번호는 %d개만 입력해야합니다.",Constant.LOTTO_SELECT_NUMBER);
     public static final String ERROR_WINNING_RANGE = String.format("[ERROR] 당첨 번호는 %d와 %d 사이의 숫자이어야 합니다.", Constant.LOTTO_START_NUMBER, Constant.LOTTO_END_NUMBER);
     public static final String ERROR_BONUS_DUPLICATE = "[ERROR] 보너스 번호가 당첨번호와 중복되었습니다.";
-    public static final String ERROR_BONUS_COUNT = String.format("[ERROR] 보너스 번호는 %d개만 입력해야합니다.",Constant.BONUS_NUMBER);
     public static final String ERROR_BONUS_RANGE = String.format("[ERROR] 보너스 번호는 %d와 %d 사이의 숫자이어야 합니다.", Constant.LOTTO_START_NUMBER, Constant.LOTTO_END_NUMBER);
-
 }
 

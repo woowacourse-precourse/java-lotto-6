@@ -34,14 +34,9 @@ public class LottoGame {
         OutputView.printLottoAmount(lottoPurchaseCount);
         OutputView.printPurchasedLottoList(lottoList);
 
-        winningLottoNumbers = inputLottoNumbers();
-        winningBonusNumber = inputBonusNumber();
-
-        lottoList = makeLottoList(lottoPurchaseCount);
         compareResult = validateBonusNumber();
 
         lottoResult(lottoList, compareResult, lottoPurchaseCount);
-
     }
 
     public int inputPurchaseAmount() {
@@ -87,12 +82,11 @@ public class LottoGame {
         return new Lotto(lottoNumbers);
     }
 
+
     public CompareResult validateBonusNumber() {
         Lotto lotto = new Lotto(InputView.inputLottoNumbers());
         List<Integer> compareNumber = lotto.getLottoNumbers();
-        int bonusNum = inputBonusNumber();
-        lotto.validateBonusNumberDuplicate(compareNumber, bonusNum);
-        compareResult = new CompareResult(new Lotto(compareNumber), bonusNum);
+        compareResult = new CompareResult(new Lotto(compareNumber), inputBonusNumber());
 
         return compareResult;
     }

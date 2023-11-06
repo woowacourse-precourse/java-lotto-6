@@ -1,5 +1,7 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
@@ -21,7 +23,7 @@ public class LottoNumberGeneratorTest {
         System.out.println("생성된 로또 번호: " + generatedLotto);
     }
 
-    @DisplayName("구매한 로또 수만큼 생성된 로또 번호 확인")
+    @DisplayName("로또 번호가 오름차순으로 정렬되는지 확인")
     @Test
     void generateLottoNumberForPurchaseCount() {
         int purchaseCount = 5;
@@ -31,5 +33,15 @@ public class LottoNumberGeneratorTest {
         for (Lotto lotto : generatedLotto) {
             System.out.println("생성된 로또 번호: " + lotto.toString());
         }
+    }
+
+    @DisplayName("로또 번호가 오름차순으로 정렬되는지 확인")
+    @Test
+    void lottoIsAscSorted() {
+        List<Integer> numbers = List.of(33, 26, 39, 12, 4, 16);
+        Lotto lotto = new Lotto(numbers);
+        List<Integer> expected = List.of(4, 12, 16, 26, 33, 39);
+        assertThat(lotto.toString()).isEqualTo(expected.toString());
+
     }
 }

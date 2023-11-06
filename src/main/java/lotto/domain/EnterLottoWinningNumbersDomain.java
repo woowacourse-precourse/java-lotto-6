@@ -11,9 +11,8 @@ import static java.lang.Integer.parseInt;
 import static lotto.constants.NumberOfLottoPurchaseConstants.COMMA;
 
 public class EnterLottoWinningNumbersDomain {
-    private List<Integer> lottoWinningNumber;
-    private EnterLottoWinningNumberView enterLottoWinningNumberView;
-    private LottoWinningNumberValidation lottoWinningNumberValidation;
+    private final EnterLottoWinningNumberView enterLottoWinningNumberView;
+    private final LottoWinningNumberValidation lottoWinningNumberValidation;
 
     public EnterLottoWinningNumbersDomain() {
         this.enterLottoWinningNumberView = new EnterLottoWinningNumberView();
@@ -23,7 +22,7 @@ public class EnterLottoWinningNumbersDomain {
     public List<Integer> userSetWinningNumberLogic() {
         String winningNumber = inputAndValidateLottoWinningNumbers();
         String additionNumber = inputAndValidateLottoAdditionNumbers();
-        lottoWinningNumber = parseWinningNumbers(winningNumber, additionNumber);
+        List<Integer> lottoWinningNumber = parseWinningNumbers(winningNumber, additionNumber);
         return List.copyOf(lottoWinningNumber);
     }
 

@@ -15,9 +15,13 @@ public class LottoWinningResultDomain {
     }
 
     public void lottoWinningResultLogic() {
-        LottoStatisticsDomain lottoStatisticsDomain = new LottoStatisticsDomain(purchaseLotto, winningLottoNumber);
-        List<Integer> lottoStatistics = lottoStatisticsDomain.lottoStatistics();
+        List<Integer> lottoStatistics = lottoStatisticsCalculation();
         lottoStatisticsView(lottoStatistics);
+    }
+
+    private List<Integer> lottoStatisticsCalculation() {
+        LottoStatisticsDomain lottoStatisticsDomain = new LottoStatisticsDomain(purchaseLotto, winningLottoNumber);
+        return lottoStatisticsDomain.lottoStatistics();
     }
 
     private void lottoStatisticsView(List<Integer> lottoStatistics) {

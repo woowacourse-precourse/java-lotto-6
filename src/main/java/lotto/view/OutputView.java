@@ -45,7 +45,7 @@ public class OutputView {
             sum += Integer.parseInt(winLottoCountList.get(i)) * money[i];
         }
         float total = Float.parseFloat(String.valueOf(sum)) / Float.parseFloat(purchasedPrice);
-        System.out.println("총 수익률은 " + total * 100 + "%입니다.");
+        System.out.printf("총 수익률은 .1f%입니다.",total * 100 );
     }
 
     public static void printLottoStates(ArrayList<String> matchedNumberCountList){//모델이나 컨트롤러로 옮김

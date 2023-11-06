@@ -7,6 +7,7 @@ import lotto.Lotto;
 public class WinningStatistics {
     private static final int WINNING_STATISTICS = 3;
     private static final int BONUS_CHECK_NUMBER = 5;
+    private static final int BONUS_VALUE = 7;
     private List<Integer> winningStatistics = new ArrayList<>();
 
     public void makeWinningStatistics(LottoTickets lottoTickets, LuckyNumbers luckyNumbers) {
@@ -28,7 +29,7 @@ public class WinningStatistics {
 
     private int bonusCheck(int count, boolean matchBonus) {
         if (count == BONUS_CHECK_NUMBER && matchBonus) {
-            return BONUS_CHECK_NUMBER + BONUS_CHECK_NUMBER;
+            return BONUS_VALUE;
         }
         return count;
     }
@@ -41,7 +42,7 @@ public class WinningStatistics {
     }
 
     private void add(int count) {
-        if (count > WINNING_STATISTICS) {
+        if (count >= WINNING_STATISTICS) {
             winningStatistics.add(count);
         }
     }

@@ -23,12 +23,16 @@ public class InputView {
 
                 return numberCreateFunction.apply(input);
             } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
+                printErrorMessage(e.getMessage());
             }
         }
     }
 
     private static String getInputMessage(String key) {
         return inputMessages.get(key);
+    }
+
+    private static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }

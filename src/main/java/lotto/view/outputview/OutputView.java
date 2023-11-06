@@ -23,8 +23,4 @@ public class OutputView {
         LottoResultFormatOutputView.printLottoResultFormat(lottoCheckResult);
         EarningRateOutputView.printEarningRate(earningRate);
     }
-
-    public static void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
-    }
 }

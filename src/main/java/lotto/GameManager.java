@@ -52,11 +52,6 @@ public class GameManager {
         }
     }
 
-    private void generateLottoBonusNumber() {
-        String inputString = inputView.readBonusNumber();
-        bonusNumber = new LottoBonusNumber(Integer.parseInt(inputString));
-    }
-
     private List<Integer> parseToIntegerList(List<String> strings) {
         try {
             return strings.stream()
@@ -64,6 +59,24 @@ public class GameManager {
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호를 숫자로 입력해주세요.");
+        }
+    }
+
+    private void generateLottoBonusNumber() {
+        try {
+            String inputString = inputView.readBonusNumber();
+            bonusNumber = new LottoBonusNumber(parseToInt(inputString));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            generateLottoBonusNumber();
+        }
+    }
+
+    private int parseToInt(String inputString) {
+        try {
+            return Integer.parseInt(inputString);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
         }
     }
 }

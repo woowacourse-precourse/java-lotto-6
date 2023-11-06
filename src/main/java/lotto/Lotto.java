@@ -35,6 +35,12 @@ public class Lotto {
         return numbers;
     }
 
+    public static void validateSingleNumberRange(Integer number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이로 발급되어야 합니다.");
+        }
+    }
+
     private void validateSixNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -53,12 +59,6 @@ public class Lotto {
 
     private void validateNumberRange(List<Integer> numbers) {
         numbers.forEach(this::validateSingleNumberRange);
-    }
-
-    private void validateSingleNumberRange(Integer number) {
-        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이로 발급되어야 합니다.");
-        }
     }
 
     @Override

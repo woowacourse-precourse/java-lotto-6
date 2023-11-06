@@ -4,14 +4,16 @@ import java.util.List;
 import lotto.utils.enums.Code;
 import lotto.utils.InputValidator;
 
-public class WinningNumbers extends Lotto {
-    private final List<Integer> numbers;
+public class WinningNumbers {
+    private final Lotto winningNumbers;
 
     public WinningNumbers(List<Integer> numbers) {
-        super(numbers);
-
+        this.winningNumbers = new Lotto(numbers);
         numbers.forEach(
                 number -> InputValidator.validateNumberInRange(number, Code.WINNING.getCode()));
-        this.numbers = numbers;
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers.getNumbers();
     }
 }

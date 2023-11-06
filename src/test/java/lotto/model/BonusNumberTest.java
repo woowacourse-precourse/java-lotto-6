@@ -13,7 +13,7 @@ public class BonusNumberTest {
         WinningNumbers winning = new WinningNumbers(winningNumbers);
         int bonusNumber = 6;
 
-        Assertions.assertThatThrownBy(() -> new BonusNumber(winning.getNumbers(), bonusNumber))
+        Assertions.assertThatThrownBy(() -> new BonusNumber(winning.getWinningNumbers(), bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NOT_DUPLICATED.getMessage());
     }
@@ -24,7 +24,7 @@ public class BonusNumberTest {
         WinningNumbers winning = new WinningNumbers(winningNumbers);
         int bonusNumber = 7;
 
-        Assertions.assertThatCode(() -> new BonusNumber(winning.getNumbers(), bonusNumber))
+        Assertions.assertThatCode(() -> new BonusNumber(winning.getWinningNumbers(), bonusNumber))
                 .doesNotThrowAnyException();
     }
 }

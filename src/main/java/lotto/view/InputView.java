@@ -48,7 +48,7 @@ public class InputView {
                 System.out.println(Code.Error.getCode() + " " + e.getMessage());
             }
         }
-        return winning.getNumbers();
+        return winning.getWinningNumbers();
     }
 
     public int getBonusNumber(List<Integer> winningNumbers) {

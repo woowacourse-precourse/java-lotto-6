@@ -34,4 +34,10 @@ public class InputNumberImpl implements InputNumber {
 		return validator.validateBonusNumber(bonusNumber);
 	}
 
+	@Override
+	public List<Integer> generateLotto() {
+
+		return null;
+	}
+
 }

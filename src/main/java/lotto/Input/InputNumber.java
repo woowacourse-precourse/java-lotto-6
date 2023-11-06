@@ -10,4 +10,6 @@ public interface InputNumber {
 
 	int inputBonusNumber();
 
+	List<Integer> generateLotto();
+
 }

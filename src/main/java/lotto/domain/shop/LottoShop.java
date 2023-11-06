@@ -18,7 +18,7 @@ public class LottoShop {
         return cash / LOTTO_PRICE;
     }
 
-    public List<LottoNumbersDTO> purchaseMany(int count) {
+    public List<LottoNumbersDTO> publishNumbers(int count) {
         return lottoGenerator.generateByCount(count);
     }
 

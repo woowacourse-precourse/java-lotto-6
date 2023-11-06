@@ -12,7 +12,14 @@ public class ShowLottoProcess {
 
     public void printBuyLotto() {
         System.out.println("구입금액을 입력해 주세요.");
-        process.buyLotto();
+        while (true) {
+            try {
+                process.buyLotto();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.println();
     }
 

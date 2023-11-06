@@ -11,12 +11,13 @@ public class Input {
         String[] arr = null;
         String inputStringLine = Console.readLine().trim();
 
-        ValidateException.includeString(inputStringLine);
-        ValidateException.blankCheck(inputStringLine);
-        ValidateException.includeBlank(inputStringLine);
-        ValidateException.includeSpecialString(inputStringLine);
-        ValidateException.commaStartAndEnd(inputStringLine);
-        ValidateException.hasConsecutiveEmptyValues(inputStringLine);
+        // TODO: 11/6/23
+        ValidateException.includeStringExceptionComma(inputStringLine);
+//        ValidateException.blankCheck(inputStringLine);
+//        ValidateException.includeBlank(inputStringLine);
+//        ValidateException.includeSpecialString(inputStringLine);
+//        ValidateException.commaStartAndEnd(inputStringLine);
+//        ValidateException.hasConsecutiveEmptyValues(inputStringLine);
 
         arr = Utii.makeArrSplitComma(inputStringLine);
         results = Utii.makeListFromArr(arr);
@@ -26,13 +27,10 @@ public class Input {
 
     public static Integer InputNumber() {
         String inputStringLine = Console.readLine().trim();
-
-        ValidateException.blankCheck(inputStringLine);
-        ValidateException.includeBlank(inputStringLine);
-        ValidateException.negative(inputStringLine);
-        ValidateException.includeString(inputStringLine);
-        ValidateException.includeSpecialString(inputStringLine);
-        ValidateException.zeroNum(inputStringLine);
+// TODO: 11/6/23
+        ValidateException.containsNonNumericCharacter(inputStringLine);
+//        ValidateException.negative(inputStringLine);
+//        ValidateException.zeroNum(inputStringLine);
 
         return Utii.parseInteger(inputStringLine);
     }

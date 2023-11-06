@@ -14,4 +14,9 @@ public class InputValidation {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 입력값은 숫자여야 합니다.");
         }
     }
+    public static void validateEmptySpace(String input) {
+        if (input.contains(" ")) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 입력값은 빈칸이 될 수 없습니다.");
+        }
+    }
 }

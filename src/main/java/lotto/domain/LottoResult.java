@@ -2,8 +2,6 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import lotto.enums.Rank;
 
 public class LottoResult {
@@ -13,9 +11,9 @@ public class LottoResult {
         this.result = result;
     }
 
-    public static LottoResult of(WinningNumber winningNumber, BonusNumber bonusNumber, LottoTickets lottoTickets) {
+    public static LottoResult of(WinningNumber winningNumber, BonusNumber bonusNumber, LottoTicket lottoTickets) {
         Map<Rank, Integer> result = new HashMap<>();
-        for (Lotto lotto : lottoTickets.getLottoTickets()) {
+        for (Lotto lotto : lottoTickets.getLottoTicket()) {
             Rank rank = Rank.findRank(winningNumber, bonusNumber, lotto);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
@@ -26,25 +24,20 @@ public class LottoResult {
         return result.getOrDefault(rank, 0);
     }
 
-    public double getRateOfReturn(int purchasePrice) {
-        int totalPrize = calculateTotalPrize();
-        return (totalPrize / (double) purchasePrice) * 100;
-    }
-
-    private int calculateTotalPrize() {
+    public int calculateTotalPrize() {
         return result.entrySet().stream()
                 .filter(this::isGtZero)
                 .mapToInt(this::calculateRankPrize)
                 .sum();
     }
 
-    private boolean isGtZero(Map.Entry<Rank, Integer> rankDetail) {
-        return rankDetail.getValue() > 0;
+    private boolean isGtZero(Map.Entry<Rank, Integer> resultDetail) {
+        return resultDetail.getValue() > 0;
     }
 
-    private int calculateRankPrize(Map.Entry<Rank, Integer> rankDetail) {
-        Rank rank = rankDetail.getKey();
-        int winningCount = rankDetail.getValue();
+    private int calculateRankPrize(Map.Entry<Rank, Integer> resultDetail) {
+        Rank rank = resultDetail.getKey();
+        int winningCount = resultDetail.getValue();
         return rank.getPrize() * winningCount;
     }
 }

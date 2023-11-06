@@ -5,4 +5,8 @@ public class ErrorLogger {
     public static void log(IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
+
+    public static void exceptionLog(Exception e){
+        System.out.println(ERROR_PREFIX + e.getMessage());
+    }
 }

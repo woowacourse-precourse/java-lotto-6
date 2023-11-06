@@ -53,12 +53,12 @@ public class Lotto {
         return true;
     }
 
-    List<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
-    @Override
-    public String toString() {
-        return numbers.stream().map(String::valueOf).collect(Collectors.joining(", ","[","]"));
-    }
+//    @Override
+//    public String toString() {
+//        return numbers.stream().map(String::valueOf).collect(Collectors.joining(", ","[","]"));
+//    }
 }

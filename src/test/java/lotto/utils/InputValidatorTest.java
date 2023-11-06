@@ -1,21 +1,24 @@
 package lotto.utils;
 
+import static lotto.constants.TestGlobalConstant.ERROR_PREFIX_TEXT;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidatorTest {
 
-    private final String NULL_TEXT = null;
-    private final String WHITE_SPACE_TEXT = " ";
-    private final String BLANK_TEXT = "";
-    private final String NOT_NUMBER_TEXT = "1NO";
-    private final String NUMBER_TEXT = "1000";
-    private final String ERROR_PREFIX_TEXT = "[ERROR]";
+    private static final String NULL_TEXT = null;
+    private static final String WHITE_SPACE_TEXT = " ";
+    private static final String BLANK_TEXT = "";
+    private static final String NOT_NUMBER_TEXT = "1NO";
+    private static final String NUMBER_TEXT = "1000";
 
     @Test
     @DisplayName("입력값 NULL 예외 발생")
@@ -25,15 +28,20 @@ class InputValidatorTest {
                 .hasMessageContaining(ERROR_PREFIX_TEXT, "NULL 값이 입력 되었습니다.");
     }
 
-    @Test
+    @ParameterizedTest
+    @MethodSource("whiteSpaceBlankData")
     @DisplayName("입력값 공백,빈값 예외 발생")
-    void whiteSpaceBlankTest() {
-        assertThatThrownBy(() -> InputValidator.blankCheck(WHITE_SPACE_TEXT))
+    void whiteSpaceBlankTest(String inputValue, String errorPrefix, String errorMessage) {
+        assertThatThrownBy(() -> InputValidator.blankCheck(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "공백,빈 값이 입력 되었습니다.");
-        assertThatThrownBy(() -> InputValidator.blankCheck(BLANK_TEXT))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "공백,빈 값이 입력 되었습니다.");
+                .hasMessageContaining(errorPrefix, errorMessage);
+    }
+
+    static Stream<Arguments> whiteSpaceBlankData() {
+        return Stream.of(
+                Arguments.of(WHITE_SPACE_TEXT, ERROR_PREFIX_TEXT, "공백,빈 값이 입력 되었습니다."),
+                Arguments.of(BLANK_TEXT, ERROR_PREFIX_TEXT, "공백,빈 값이 입력 되었습니다.")
+        );
     }
 
     @Test

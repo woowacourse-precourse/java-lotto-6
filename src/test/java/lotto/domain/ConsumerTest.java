@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constants.TestGlobalConstant.ERROR_PREFIX_TEXT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -13,12 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ConsumerTest {
-
-    private static final int LESS_AMOUNT = 900;
-    private static final int GREATER_AMOUNT = 101000;
-    private static final int DIVIDE_AMOUNT = 1250;
     private static final int AMOUNT = 1000;
-    private static final String ERROR_PREFIX_TEXT = "[ERROR]";
 
     @ParameterizedTest
     @MethodSource("errorAmountData")
@@ -31,14 +27,14 @@ class ConsumerTest {
 
     static Stream<Arguments> errorAmountData() {
         return Stream.of(
-                Arguments.of(LESS_AMOUNT, ERROR_PREFIX_TEXT, "구매 금액이 최소 구매 금액(1,000원)보다 미만입니다."),
-                Arguments.of(GREATER_AMOUNT, ERROR_PREFIX_TEXT, "구매 금액이 최대 구매 금액(100,000원)보다 초과 되었습니다."),
-                Arguments.of(DIVIDE_AMOUNT, ERROR_PREFIX_TEXT, "구매 금액이 1,000원으로 나누어 떨어지지 않습니다.")
+                Arguments.of(900, ERROR_PREFIX_TEXT, "구매 금액이 최소 구매 금액(1,000원)보다 미만입니다."),
+                Arguments.of(101000, ERROR_PREFIX_TEXT, "구매 금액이 최대 구매 금액(100,000원)보다 초과 되었습니다."),
+                Arguments.of(1250, ERROR_PREFIX_TEXT, "구매 금액이 1,000원으로 나누어 떨어지지 않습니다.")
         );
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1000, 2000, 3000})
+    @MethodSource("normalAmountData")
     @DisplayName("구매자의 구매 금액이 정상적으로 입력된 경우 저장")
     void buyAmountSave(int amount) {
         Consumer consumer = new Consumer(amount);
@@ -46,12 +42,20 @@ class ConsumerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1000, 2000, 3000})
+    @MethodSource("normalAmountData")
     @DisplayName("구매자의 구매 금액이 정상적인 경우 구매 가능 수량 확인")
     void buyAvailableQuantity(int amount) {
         Consumer consumer = new Consumer(amount);
 
         assertThat(consumer.getBuyAvailableQuantity()).isEqualTo(amount / AMOUNT);
+    }
+
+    static Stream<Arguments> normalAmountData() {
+        return Stream.of(
+                Arguments.of(1000),
+                Arguments.of(2000),
+                Arguments.of(15000)
+        );
     }
 
     @ParameterizedTest

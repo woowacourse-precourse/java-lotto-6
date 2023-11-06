@@ -8,14 +8,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoMachineTest {
 
-    LottoMachine lottoMachine = LottoMachine.getInstance();
+    LottoMachine lottoMachine = new LottoMachine();
 
     @ParameterizedTest
     @DisplayName("요청 갯수 만큼 로또 번호 생성 테스트")
     @ValueSource(ints = {1, 5, 10, 23})
     void createLottoNumberRangeCheckTest(int quantity) {
-        List<Lotto> lottos = lottoMachine.getPurchaseLottoes(quantity);
+        List<Lotto> createdlottoes = lottoMachine.getPurchaseLottoes(quantity);
 
-        Assertions.assertThat(lottos.size()).isEqualTo(quantity);
+        Assertions.assertThat(createdlottoes.size()).isEqualTo(quantity);
     }
 }

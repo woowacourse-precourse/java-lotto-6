@@ -7,6 +7,8 @@ import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoAnswer;
+import lotto.model.Lottos;
+import lotto.model.PurchaseAmount;
 import lotto.model.Rank;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,7 +24,8 @@ public class LottoManagerTest {
     @BeforeAll
     private static void beforeAll() {
         LottoAnswer lottoAnswer = new LottoAnswer(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
-        lottoManager = new LottoManager(lottoAnswer);
+        Lottos lottos = new Lottos(new PurchaseAmount(5));
+        lottoManager = new LottoManager(lottos, lottoAnswer);
         randoms = mockStatic(Randoms.class);
     }
 
@@ -41,8 +44,6 @@ public class LottoManagerTest {
                 .thenReturn(List.of(1, 2, 3, 4, 5, 8))  // 3등
                 .thenReturn(List.of(1, 2, 3, 4, 8, 9))  // 4등
                 .thenReturn(List.of(1, 2, 3, 7, 8, 9)); // 5등
-
-        lottoManager.purchaseLottos(5);
 
         // when
         List<Rank> ranks = lottoManager.calculateResults();

@@ -8,13 +8,16 @@ public class Lottos implements Iterable<Lotto> {
 
     private final List<Lotto> lottos;
 
-    public Lottos() {
+    public Lottos(PurchaseAmount purchaseAmount) {
         this.lottos = new ArrayList<>();
+        addLotto(purchaseAmount.getNumberOfTickets());
     }
 
-    public void addLotto() {
-        Lotto newLotto = new Lotto(RandomNumbersGenerator.generate());
-        lottos.add(newLotto);
+    private void addLotto(int numberOfTickets) {
+        for (int i = 0; i < numberOfTickets; i++) {
+            Lotto newLotto = new Lotto(RandomNumbersGenerator.generate());
+            lottos.add(newLotto);
+        }
     }
 
     @Override

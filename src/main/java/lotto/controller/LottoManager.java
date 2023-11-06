@@ -12,15 +12,9 @@ public class LottoManager {
     private final Lottos lottos;
     private final LottoAnswer lottoAnswer;
 
-    public LottoManager(LottoAnswer lottoAnswer) {
-        this.lottos = new Lottos();
+    public LottoManager(Lottos lottos, LottoAnswer lottoAnswer) {
+        this.lottos = lottos;
         this.lottoAnswer = lottoAnswer;
-    }
-
-    public void purchaseLottos(int amount) {
-        for (int i = 0; i < amount; i++) {
-            lottos.addLotto();
-        }
     }
 
     public List<Rank> calculateResults() {

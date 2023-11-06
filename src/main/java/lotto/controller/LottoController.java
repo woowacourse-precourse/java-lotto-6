@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoMatch;
+import lotto.dto.LottoMatchCountDto;
 import lotto.model.LottoModel;
 import lotto.validate.BonusNumberValidation;
 import lotto.validate.PurchaseAmountValidation;
@@ -34,5 +36,10 @@ public class LottoController {
 
         lottoOutputView.printUserInputBonusNumber();
         int bonusNumber = lottoInputView.inputBonusNumber(new BonusNumberValidation(), winningNumbers);
+
+        List<LottoMatch> lottoMatches = lottoModel.getLottoMatches(lottos, winningNumbers, bonusNumber);
+        LottoMatchCountDto lottoMatchCountDto = lottoModel.getLottoMatchCount(lottoMatches);
+        lottoOutputView.printLottoResult(lottoMatchCountDto);
+
     }
 }

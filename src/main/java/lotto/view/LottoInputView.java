@@ -31,7 +31,7 @@ public class LottoInputView {
         if (!lottoValidation.validate(userInput)) throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR_MSG);
 
         int bonusNumber = Integer.parseInt(userInput);
-        if (!winningNumbers.contains(bonusNumber)) throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR_MSG);
+        if (winningNumbers.contains(bonusNumber)) throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR_MSG);
         return bonusNumber;
     }
 }

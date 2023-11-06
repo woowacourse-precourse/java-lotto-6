@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMatch;
+import lotto.dto.LottoMatchCountDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,14 @@ public class LottoModel {
             lottoMatches.add(lottoMatch);
         }
         return lottoMatches;
+    }
+
+    public LottoMatchCountDto getLottoMatchCount(final List<LottoMatch> lottoMatches) {
+        LottoMatchCountDto lottoMatchCountDto = new LottoMatchCountDto();
+        for (LottoMatch lottoMatch : lottoMatches) {
+            lottoMatchCountDto.countLottoMatch(lottoMatch);
+        }
+        return lottoMatchCountDto;
     }
 
 }

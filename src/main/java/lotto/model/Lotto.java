@@ -9,9 +9,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {
-        validate(numbers);
+        validateLottoSize(numbers);
         validateDuplicate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortLottoNumber(numbers);
     }
 
     public boolean hasNumber(final int number) {
@@ -20,32 +20,32 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return sortLottoNumber().toString();
+        return numbers.toString();
     }
-    
-    private void validate(final List<Integer> numbers) {
-        if (numbers.size() != 6) {
+
+    private void validateLottoSize(final List<Integer> numbers) {
+        if (isNotLottoSizeSix(numbers)) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateDuplicate(final List<Integer> numbers) {
-        if (isNotLottoSizeSix(numbers)) {
+        if (isNotLottoSizeSix(removeDuplicateLottoNumbers(numbers))) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
 
     private boolean isNotLottoSizeSix(final List<Integer> numbers) {
-        return countUniqueLottoNumbers(numbers) != LottoConstants.LOTTO_NUMBER_SIZE;
+        return numbers.size() != LottoConstants.LOTTO_NUMBER_SIZE;
     }
 
-    private int countUniqueLottoNumbers(final List<Integer> numbers) {
-        return (int) numbers.stream()
+    private List<Integer> removeDuplicateLottoNumbers(final List<Integer> numbers) {
+        return numbers.stream()
                 .distinct()
-                .count();
+                .toList();
     }
 
-    private List<Integer> sortLottoNumber() {
+    private List<Integer> sortLottoNumber(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();

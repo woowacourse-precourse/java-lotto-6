@@ -91,7 +91,7 @@ class LottoTest {
     void createBonusByCorrectRange() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 67;
-
+        
         assertThatThrownBy(() -> lotto.setBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }

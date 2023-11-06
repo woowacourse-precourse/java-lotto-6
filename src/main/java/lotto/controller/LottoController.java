@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.LottoGenerator;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.WinningNumber;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,6 +16,8 @@ public class LottoController {
         OutputView.printLottos(lottos);
 
         WinningNumber winningNumber = getWinningNumber();
+        RankResult rankResult = new RankResult();
+        calcLottoResult(rankResult, winningNumber, lottos);
     }
 
     private String inputMoney() {
@@ -47,5 +46,9 @@ public class LottoController {
         Integer bonusNumber = inputView.getBonusNumber();
 
         return new WinningNumber(winningNumbers, bonusNumber);
+    }
+
+    private void calcLottoResult(RankResult rankResult, WinningNumber winningNumber, Lottos lottos) {
+        rankResult.calculateRankResult(winningNumber, lottos);
     }
 }

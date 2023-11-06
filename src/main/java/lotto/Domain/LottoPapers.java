@@ -13,6 +13,9 @@ public class LottoPapers implements RandomNumberGenerator{
 
     public LottoPapers(int amount){
         List<Lotto> lottoPapers = new ArrayList<>();
+        while (lottoPapers.size() < amount){
+            lottoPapers.add(makingLotto());
+        }
         this.lottoPapers = lottoPapers;
     }
 
@@ -23,7 +26,6 @@ public class LottoPapers implements RandomNumberGenerator{
     private List<Integer> sortLottoNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
-
     @Override
     public List<Integer> generateRandomNumbers(){
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_NUMBERS);

@@ -33,9 +33,12 @@ public class LottoController {
 
     private int getUserAmount() {
         int money;
+        UserAmountValidator userAmountValidator = new UserAmountValidator();
         try {
             output.printInputPurchaseAmountMessage();
-            money = input.getUserAmount();
+            String userInput = input.getUserAmount();
+            userAmountValidator.validateUserAmout(userInput);
+            money = Integer.parseInt(userInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             money = getUserAmount();

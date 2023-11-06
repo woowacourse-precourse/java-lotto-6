@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.io.Input;
-import org.assertj.core.api.Assertions;
+import lotto.controller.UserAmountValidator;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,18 +12,17 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class MoneyTest {
 
     Money money;
-    Input input;
+    UserAmountValidator userAmountValidator;
 
     @BeforeEach
     void setUp() {
-        input = new Input();
+        userAmountValidator = new UserAmountValidator();
         money = new Money(1000);
     }
 
@@ -65,7 +64,7 @@ public class MoneyTest {
         //when
 
         //then
-        assertThatThrownBy(() -> new Money(input.getUserAmount()))
+        assertThatThrownBy(() -> userAmountValidator.validateUserAmout(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -78,7 +77,7 @@ public class MoneyTest {
         //when
 
         //then
-        assertThatThrownBy(() -> new Money(input.getUserAmount()))
+        assertThatThrownBy(() -> userAmountValidator.validateUserAmout(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -91,7 +90,7 @@ public class MoneyTest {
         //when
 
         //then
-        assertThatThrownBy(() -> new Money(input.getUserAmount()))
+        assertThatThrownBy(() -> userAmountValidator.validateUserAmout(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

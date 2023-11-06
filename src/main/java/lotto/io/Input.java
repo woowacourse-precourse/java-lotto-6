@@ -11,10 +11,8 @@ public class Input {
 
     private final InputValidator inputValidator = new InputValidator();
 
-    public int getUserAmount() {
-        String userInput = Console.readLine();
-        inputValidator.validateUserInput(userInput);
-        return Integer.parseInt(userInput);
+    public String getUserAmount() {
+        return Console.readLine();
     }
 
     public List<Integer> getWinningNumbers() {

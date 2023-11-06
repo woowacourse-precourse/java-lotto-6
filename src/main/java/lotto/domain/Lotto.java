@@ -13,12 +13,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<LottoNumber> toIntegerList() {
-        return Collections.unmodifiableList(numbers);
-    }
-
     public boolean contain(LottoNumber bounus) {
         return numbers.contains(bounus);
+    }
+
+    public Integer calcSimilarity(Lotto lotto) {
+        return (int) this.numbers.stream().filter(lotto::contain).count();
+    }
+
+    public List<LottoNumber> toIntegerList() {
+        return Collections.unmodifiableList(numbers);
     }
 
     private void validateSameItem(List<LottoNumber> numbers) {

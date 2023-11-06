@@ -1,14 +1,20 @@
 package lotto.domain;
 
+import java.util.Optional;
+
 public class WinnerLotto {
 
-    private final Lotto lotto;
+    private final Lotto winnerLotto;
     private final LottoNumber bounus;
 
-    public WinnerLotto(Lotto lotto, LottoNumber bounus) {
-        validContainBounus(lotto, bounus);
-        this.lotto = lotto;
+    public WinnerLotto(Lotto winnerLotto, LottoNumber bounus) {
+        validContainBounus(winnerLotto, bounus);
+        this.winnerLotto = winnerLotto;
         this.bounus = bounus;
+    }
+
+    public Optional<Rank> calcRank(Lotto lotto) {
+        return Rank.findRank(lotto.calcSimilarity(winnerLotto), lotto.contain(bounus));
     }
 
     private static void validContainBounus(Lotto lotto, LottoNumber bounus) {

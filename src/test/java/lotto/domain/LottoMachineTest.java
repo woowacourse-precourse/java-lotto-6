@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LottoMachineTest {
@@ -27,7 +26,7 @@ class LottoMachineTest {
     void buy_lotto(int money, int expected) {
         lottoMachine = new LottoMachine(money);
 
-        int lottoCount = lottoMachine.getLottoCount();
+        int lottoCount = lottoMachine.calculatePurchaseCount();
 
         assertThat(lottoCount).isEqualTo(expected);
     }

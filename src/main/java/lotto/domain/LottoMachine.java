@@ -11,41 +11,33 @@ public class LottoMachine {
     private static final int LOTTO_MAX_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
     private static final int defaultSalePrice = 1_000;
-    private int lottoCount;
+    private int amount;
 
     public LottoMachine() {
     }
 
-    public LottoMachine(int price) {
-        validateUnitOfMoney(price);
-        lottoCount = calculatePurchaseCount(price);
+    public LottoMachine(int money) {
+        validateUnitOfMoney(money);
+        amount = money;
     }
 
-    private void validateUnitOfMoney(int price) {
-        if (price % defaultSalePrice != 0) {
+    private void validateUnitOfMoney(int money) {
+        if (money % defaultSalePrice != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위입니다.");
         }
     }
 
-    private int calculatePurchaseCount(int price) {
-        return price / defaultSalePrice;
+    public int calculatePurchaseCount() {
+        return amount / defaultSalePrice;
     }
 
     public List<Integer> generateLotto() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
     }
 
-    public int getLottoCount() {
-        return lottoCount;
-    }
-
-    public int getPurchasePrice() {
-        return lottoCount * defaultSalePrice;
-    }
-
     public Player generatePlayerLotto() {
-        return new Player(IntStream.range(0, lottoCount)
-                .mapToObj(i -> new Lotto(this.generateLotto()))
+        return new Player(IntStream.range(0, calculatePurchaseCount())
+                .mapToObj(i -> new Lotto(generateLotto()))
                 .collect(Collectors.toList()));
     }
 }

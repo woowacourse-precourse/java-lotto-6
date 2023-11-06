@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.config.LottoConfig;
 import lotto.domain.BonusNumber;
 import lotto.exception.Errors;
@@ -17,6 +18,32 @@ public class Lotto {
         if (numbers.size() != LottoConfig.MAX_BALLS) {
             throw Errors.INVALID_SIZE.getLottoException();
         }
+        if (hasDuplicatedNumbers(numbers)) {
+            throw Errors.DUPLICATED_LOTTO_NUMBER.getLottoException();
+        }
+        if (hasNumberOutOfRange(numbers)) {
+            throw Errors.INVALID_RANGE.getLottoException();
+        }
+        if (isNotSorted(numbers)) {
+            throw Errors.IS_NOT_SORTED.getLottoException();
+        }
+    }
+
+    private boolean hasDuplicatedNumbers(List<Integer> numbers) {
+        long count = numbers.stream()
+                .distinct()
+                .count();
+        return count != LottoConfig.MAX_BALLS;
+    }
+
+    private boolean hasNumberOutOfRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(number -> LottoConfig.MIN_NUMBER > number || number > LottoConfig.MAX_NUMBER);
+    }
+
+    private boolean isNotSorted(List<Integer> numbers) {
+        return IntStream.range(1, numbers.size())
+                .anyMatch(index -> numbers.get(index) < numbers.get(index - 1));
     }
 
     public int countMatches(final Lotto winningLotto) {

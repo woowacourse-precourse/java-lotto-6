@@ -7,7 +7,10 @@ public enum Errors {
     INVALID_BONUS_NUMBER("[ERRORS] 보너스번호는 당첨번호와 중복될 수 없습니다."),
     NOT_DIVISIBLE_BY_PRICE("[ERRORS] 올바른 단위의 수가 아닙니다."),
     IS_NOT_NUMBER("[ERRORS] 숫자를 입력하세요."),
-    INVALID_QUANTITY("[ERRORS] 유효하지 않은 구매 수입니다.");
+    INVALID_QUANTITY("[ERRORS] 유효하지 않은 구매 수입니다."),
+    INVALID_RANGE("[ERRORS] 유효하지 않은 로또 번호입니다."),
+    DUPLICATED_LOTTO_NUMBER("[ERRORS] 중복되는 로또 번호가 생성되었습니다."),
+    IS_NOT_SORTED("[ERRORS] 정렬되지 않은 로또번호가 생성되었습니다.");
 
 
     private final String message;

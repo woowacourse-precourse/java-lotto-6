@@ -10,7 +10,7 @@ public class PurchaseAmountExceptionTest{
     @Test
     void 숫자가_아닌_값을_입력한_경우() {
         assertThrows(IllegalArgumentException.class, () ->
-                        purchaseAmountException.notNullNumeric("8"), "[ERROR]숫자를 입력하세요.");
+                        purchaseAmountException.notNumeric("a"), "[ERROR]숫자를 입력하세요.");
     }
 
     @Test
@@ -18,5 +18,4 @@ public class PurchaseAmountExceptionTest{
         assertThrows(IllegalArgumentException.class, () ->
                 purchaseAmountException.notDivisible("1001"), "[ERROR]1000으로 나누어 떨어지지 않습니다.");
     }
-
 }

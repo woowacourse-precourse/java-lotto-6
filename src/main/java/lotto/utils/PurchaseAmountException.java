@@ -5,7 +5,7 @@ import static lotto.utils.ExceptionMessage.NOT_NUMBER;
 
 public class PurchaseAmountException {
 
-    public void notNullNumeric(String input) {
+    public void notNumeric(String input) {
         try {
             Integer.parseInt(input);
         }catch (NumberFormatException e) {

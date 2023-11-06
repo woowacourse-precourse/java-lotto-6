@@ -11,16 +11,15 @@ import java.util.List;
 
 public class InvalidInput {
     private static String message;
+
     public boolean duplicateNumberException(List<Integer> numbers) {
         message = ExceptionMessage.DUPLICATE_NUMBER.getMessage();
 
-        try {
-            for (Integer number : numbers) {
-                isDuplicate(numbers, number);
+        for (Integer number : numbers) {
+            if (isDuplicate(numbers, number)) {
+                System.out.println(message);
+                return false;
             }
-        } catch (IllegalArgumentException e){
-            System.out.println(message);
-            return false;
         }
         return true;
     }
@@ -38,15 +37,12 @@ public class InvalidInput {
     public boolean outOfRangeException(List<Integer> numbers) {
         message = ExceptionMessage.OUT_OF_RANGE.getMessage();
 
-        try{
-            for (Integer number : numbers) {
-                isBetweenInRange(number);
+        for (Integer number : numbers) {
+            if (!isBetweenInRange(number)) {
+                System.out.println(message);
+                return false;
             }
-        }catch (IllegalArgumentException e){
-            System.out.println(message);
-            return false;
         }
-
         return true;
     }
     public boolean notIntegerValueException(String number) {
@@ -77,20 +73,22 @@ public class InvalidInput {
 
         if (cost % UNIT.getValue() != 0) {
             System.out.println(message);
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
-    private static void isDuplicate(List<Integer> numbers, int number) {
+    private boolean isDuplicate(List<Integer> numbers, int number) {
         if (Collections.frequency(numbers, number) > ALLOW_DUPLICATE_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException();
+            return true;
         }
+        return false;
     }
 
-    private static void isBetweenInRange(int number) {
-        if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException();
+    private boolean isBetweenInRange(int number) {
+        if (number >= MIN_NUMBER.getValue() || number <= MAX_NUMBER.getValue()) {
+            return true;
         }
+        return false;
     }
 }

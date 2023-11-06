@@ -18,12 +18,12 @@ public class Input {
     }
 
     public int cost() {
-        Cost cost;
-        do {
-            cost = new Cost(inputView.inputBuyingCost());
-        } while (!cost.isValid());
-
-        return cost.getQuantity();
+        try {
+            Cost cost = new Cost(inputView.inputBuyingCost());
+            return cost.getQuantity();
+        } catch (IllegalArgumentException e) {
+            return cost();
+        }
     }
     public Lotto winningNumberWithoutBonus() {
         List<Integer> winningNumbers;
@@ -36,9 +36,11 @@ public class Input {
     }
 
     private Lotto makeWinningLotto(List<Integer> winningNumbers) {
-        Lotto lotto = new Lotto(winningNumbers);
-        if (!lotto.isValid()) {
-            winningNumberWithoutBonus();
+        Lotto lotto;
+        try {
+            lotto = new Lotto(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            lotto = winningNumberWithoutBonus();
         }
         return lotto;
     }
@@ -46,12 +48,12 @@ public class Input {
 
     public WinningLotto bonusNumber(Lotto winningLottoWithoutBonus) {
         WinningLotto winningLotto;
-
-        do {
+        try {
             int bonusNumber = inputView.inputBonusNumber();
             winningLotto = new WinningLotto(winningLottoWithoutBonus, bonusNumber);
-        } while (!winningLotto.isValid());
-
+        } catch (IllegalArgumentException e) {
+            winningLotto = bonusNumber(winningLottoWithoutBonus);
+        }
         return winningLotto;
     }
 }

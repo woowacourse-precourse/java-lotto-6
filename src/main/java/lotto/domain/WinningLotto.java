@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import java.util.List;
+import static lotto.exception.ExceptionMessage.DUPLICATE_BONUSE_NUMBER;
+
 
 public class WinningLotto {
     private final Lotto winningLottoNumbers;
@@ -11,10 +12,6 @@ public class WinningLotto {
         this.winningLottoNumbers = winningNumbers;
         validate(bonusNumber);
         this.bonusNumber = bonusNumber;
-    }
-
-    public boolean isValid() {
-        return isValid;
     }
 
     public int getScore(Lotto myLotto) {
@@ -33,6 +30,7 @@ public class WinningLotto {
     }
 
     private void validate(int bonusNumber) {
-        isValid = winningLottoNumbers.validateBonusNumber(bonusNumber);
+        if(winningLottoNumbers.checkContains(bonusNumber))
+            throw new IllegalArgumentException(DUPLICATE_BONUSE_NUMBER.getMessage());
     }
 }

@@ -6,7 +6,6 @@ import lotto.exception.InvalidInput;
 
 public class Cost {
     private final int paidCost;
-    private static boolean isValid = false;
 
     public Cost(int paidCost) {
         validate(paidCost);
@@ -17,11 +16,10 @@ public class Cost {
         return paidCost / UNIT.getValue();
     }
 
-    public boolean isValid(){
-        return isValid;
-    }
-    private void validate(int cost){
+    private void validate(int cost) {
         InvalidInput invalidInput = new InvalidInput();
-        isValid = invalidInput.notThousandUnitException(cost);
+        if (invalidInput.notThousandUnitException(cost)) {
+            throw new IllegalArgumentException();
+        }
     }
 }

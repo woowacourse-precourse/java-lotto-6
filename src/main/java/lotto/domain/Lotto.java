@@ -5,26 +5,15 @@ import lotto.exception.InvalidInput;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private static boolean isValid = false;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    public boolean isValid() {
-        return isValid;
-    }
-
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-    public boolean validateBonusNumber(int bonusNumber) {
-        InvalidInput invalidInput = new InvalidInput();
-        return invalidInput.duplicateNumberException(numbers, bonusNumber);
-    }
-
     public int getSameNumberCount(Lotto myLottoNumbers) {
         long sameNumberCount = myLottoNumbers.numbers.stream()
                 .filter(numbers::contains)
@@ -42,14 +31,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         InvalidInput invalidInput = new InvalidInput();
-        isValid = true;
 
         if (!invalidInput.sizeExceededException(numbers)) {
-            isValid = false;
+            throw new IllegalArgumentException();
         } else if (!invalidInput.duplicateNumberException(numbers)) {
-            isValid = false;
+            throw new IllegalArgumentException();
         } else if (!invalidInput.outOfRangeException(numbers)) {
-            isValid = false;
+            throw new IllegalArgumentException();
         }
     }
 }

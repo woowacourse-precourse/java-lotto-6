@@ -8,6 +8,9 @@ public class LottoResultWinners {
 
     public LottoResultWinners(){
         this.lottoResultWinner = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            lottoResultWinner.put(rank, 0);
+        }
     }
 
     public void add(LottoResult lottoResult) {
@@ -15,14 +18,11 @@ public class LottoResultWinners {
             if(!checkWinner(lottoResult,rank)){
                 continue;
             }
-            if(lottoResultWinner.containsKey(rank)){
-                Integer currentValue = lottoResultWinner.get(rank);
-                lottoResultWinner.put(rank, currentValue + 1);
-            } else if (!lottoResultWinner.containsKey(rank)) {
-                lottoResultWinner.put(rank, 1);
+            Integer currentValue = lottoResultWinner.get(rank);
+            lottoResultWinner.put(rank, currentValue + 1);
+            continue;
             }
         }
-    }
 
     private Boolean checkWinner(LottoResult lottoResult, Rank rank) {
         if(lottoResult.getNumberOfMatch() == rank.getNumberOfMatch()){

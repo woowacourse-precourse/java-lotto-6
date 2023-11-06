@@ -6,12 +6,15 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoSet;
 import lotto.domain.dto.LottoPrizeDto;
 
-public class LottoGameService {
+public class LottoService {
+    private static final int THOUSAND = 1000;
+    private static final double TEN = 10.0;
+
     private final LottoSet lottoSet;
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    LottoGameService(LottoSet lottoSet, List<Integer> winningNumbers, int bonusNumber) {
+    public LottoService(LottoSet lottoSet, List<Integer> winningNumbers, int bonusNumber) {
         this.lottoSet = lottoSet;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;

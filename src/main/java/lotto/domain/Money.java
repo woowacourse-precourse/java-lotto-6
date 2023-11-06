@@ -24,4 +24,8 @@ public class Money {
         return amount;
     }
 
+    public int getLottoCount() {
+        return amount / EACH_LOTTO;
+    }
+
 }

@@ -13,7 +13,7 @@ import lotto.domain.dto.LottoPrizeDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoGameServiceTest {
+class LottoServiceTest {
 
     @DisplayName("로또 집계 테스트")
     @Test
@@ -51,8 +51,8 @@ class LottoGameServiceTest {
         List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
 
-        LottoGameService lottoGameService = new LottoGameService(lottoSet, winningNumbers, bonusNumber);
-        LottoPrizeDto dto = lottoGameService.compareLottos();
+        LottoService lottoService = new LottoService(lottoSet, winningNumbers, bonusNumber);
+        LottoPrizeDto dto = lottoService.compareLottos();
 
         assertThat(dto.getFirst()).isEqualTo(2);
         assertThat(dto.getSecond()).isEqualTo(3);

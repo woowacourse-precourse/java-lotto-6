@@ -3,6 +3,11 @@ package lotto.domain.lotto;
 import java.util.*;
 
 public class Lotto {
+    private static final String START_APPEND_STING = "[";
+    private static final String MIDDLE_APPEND_COMMA_BLANK = ", ";
+    private static final String END_APPEND_COMMA_BLANK = ", ";
+
+    // TODO: 추가 기능 구현
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,8 +22,6 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-    // TODO: 추가 기능 구현
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
@@ -47,21 +50,21 @@ public class Lotto {
         return informationOfNumbers;
     }
 
-    private StringBuilder getInformation(int sizeNumbers, List<Integer> organizeLotto) {
+    private StringBuilder getInformation(int sizeNumbers, List<Integer> organizeNumbers) {
         int num;
         StringBuilder informationOfNumbers = new StringBuilder();
 
-        appendStringBuild(informationOfNumbers, "[");
+        appendStringBuild(informationOfNumbers, START_APPEND_STING);
 
         for (int i = 0; i < sizeNumbers; i++) {
-            num = getNum(organizeLotto, i);
+            num = getNum(organizeNumbers, i);
             informationOfNumbers.append(num);
 
             if (i != sizeNumbers - 1) {
-                appendStringBuild(informationOfNumbers, ", ");
+                appendStringBuild(informationOfNumbers, MIDDLE_APPEND_COMMA_BLANK);
             }
         }
-        appendStringBuild(informationOfNumbers, "]");
+        appendStringBuild(informationOfNumbers, END_APPEND_COMMA_BLANK);
 
         return informationOfNumbers;
     }

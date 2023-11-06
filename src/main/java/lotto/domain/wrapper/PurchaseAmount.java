@@ -5,6 +5,7 @@ import lotto.utils.ErrorMessage;
 
 public class PurchaseAmount {
     private static final int NO_MONEY = 0;
+    private static final int PERCENTAGE_MULTIPLIER = 100;
     private final int purchaseAmount;
 
     public PurchaseAmount(int purchaseAmount) {
@@ -34,6 +35,6 @@ public class PurchaseAmount {
     }
 
     public double calculateProfitRate(long allPrizeProfit) {
-        return (allPrizeProfit / (double) purchaseAmount) * 100;
+        return (allPrizeProfit / (double) purchaseAmount) * PERCENTAGE_MULTIPLIER;
     }
 }

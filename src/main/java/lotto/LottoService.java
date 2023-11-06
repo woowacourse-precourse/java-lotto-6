@@ -35,6 +35,7 @@ public class LottoService {
 		validator.isThisSizeSix(numbers);
 		for (int i = 0; i < numbers.length; i++) {
 			validator.isComposedOfNumbers(numbers[i]);
+			validator.isInRange(numbers[i]);
 		}
 		return null;
 	}

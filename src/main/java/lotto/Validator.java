@@ -15,9 +15,16 @@ public class Validator {
 		}
 	}
 
-	public void isThisSizeSix(String[] numbers) throws IllegalArgumentException{
+	public void isThisSizeSix(String[] numbers) throws IllegalArgumentException {
 		if (numbers.length != 6) {
 			throw new IllegalArgumentException(ErrorCode.ELEMENTS_SHOULD_BE_SIX.getErrorMessage());
+		}
+	}
+
+	public void isInRange(String number) throws IllegalArgumentException{
+		int checkNumber = Integer.parseInt(number);
+		if (!(1 <= checkNumber && checkNumber <= 45)) {
+			throw new IllegalArgumentException(ErrorCode.NOT_IN_RANGE.getErrorMessage());
 		}
 	}
 }

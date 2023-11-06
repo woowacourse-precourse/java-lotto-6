@@ -3,11 +3,11 @@ package lotto.config;
 import java.util.Arrays;
 
 public enum WinningPrize {
-    FIRST_PLACE(6, "6개 일치", 2000000000),
-    SECOND_PLACE(-1, "5개 일치, 보너스 볼 일치", 30000000),
-    THIRD_PLACE(5, "5개 일치", 1500000),
+    FIFTH_PLACE(3, "3개 일치", 5000),
     FOURTH_PLACE(4, "4개 일치", 50000),
-    FIFTH_PLACE(3, "3개 일치", 5000);
+    THIRD_PLACE(5, "5개 일치", 1500000),
+    SECOND_PLACE(-1, "5개 일치, 보너스 볼 일치", 30000000),
+    FIRST_PLACE(6, "6개 일치", 2000000000);
 
     private final int match;
     private final String message;

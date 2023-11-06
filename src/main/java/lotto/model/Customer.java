@@ -8,4 +8,14 @@ public class Customer {
     public void buyLotto(Money money){
         this.lottos = LottoGenerator.issueLottoTickets(money);
     }
+
+    public int getLottoCount() {
+        return lottos.size();
+    }
+
+    public String getLottos(){
+        StringBuilder sb = new StringBuilder();
+        lottos.forEach((lotto)->sb.append(lotto.toString()).append("\n"));
+        return sb.toString();
+    }
 }

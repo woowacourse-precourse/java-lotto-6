@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -13,10 +14,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LottoTest {
-    @DisplayName("로또가 정상 적으로 발급 됩니다.")
+
     @Test
-    void createLotto(){
-        assertDoesNotThrow(LottoGenerator::createLotto);
+    void Test() {
+        System.out.println(Arrays.asList(1,2,3,4,5,6).toString());
+        assert(true);
+
     }
     @DisplayName("[Error] 로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test

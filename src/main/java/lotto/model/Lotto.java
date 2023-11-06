@@ -16,4 +16,9 @@ public class Lotto {
         LottoValidator.validateDuplicateNumber(numbers);
         LottoValidator.validateNumbersInRange(numbers);
     }
+
+    @Override
+    public String toString(){
+        return numbers.toString();
+    }
 }

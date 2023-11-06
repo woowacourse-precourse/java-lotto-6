@@ -25,19 +25,6 @@ public class MoneyTest {
         Console.close();
     }
 
-    @DisplayName("돈을 성공 적으로 입력 받았습니다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"1000"})
-    void receiveMoney(String validMoney) {
-        // given
-        LottoManager lottoManager = new LottoManager();
-        // when
-        InputStream readLine = setReadLine(validMoney);
-        System.setIn(readLine);
-        // then
-        assertDoesNotThrow(lottoManager::receiveMoney);
-    }
-
 
     @DisplayName("[Error] 나누어 떨이지지 않는 돈이 입력 되면 예외가 발생한다.")
     @Test

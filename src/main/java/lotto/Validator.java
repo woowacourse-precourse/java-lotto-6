@@ -34,7 +34,7 @@ public class Validator {
     }
 
     // 1000원으로 나누어 떨어지는지 검증
-    public static Boolean isDividedBy(int divisor, Long amount) {
+    public static Boolean isDividedBy(int divisor, Integer amount) {
         if (amount%divisor != 0)
             throw new IllegalArgumentException("[ERROR]");
 

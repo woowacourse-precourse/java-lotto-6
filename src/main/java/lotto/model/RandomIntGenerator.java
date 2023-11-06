@@ -15,12 +15,12 @@ public class RandomIntGenerator {
     private static List<List<Integer>> numbers = new ArrayList<>();
     public RandomIntGenerator(){
     }
-    public  List<List<Integer>> makeLottoNumber(int count){
+    public  void makeLottoNumber(int count){
 
       IntStream.range(0, count/COUNT_DIVISION.getValue())
               .forEach(i -> numbers.add(makeRandomNumber()));
         System.out.println(numbers);
-       return numbers;
+
 
 
     }

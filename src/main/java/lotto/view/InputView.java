@@ -5,13 +5,16 @@ import static lotto.util.Utils.removeSpace;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.util.PurchaseAmountValidator;
+import lotto.util.Validator;
 import lotto.util.WinningNumbersValidator;
 
 public class InputView {
 
     private static final String PROMPT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String PROMPT_WINNING_TICKET = "당첨 번호를 입력해 주세요.";
+    private static final String PROMPT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public int readPurchaseAmount() {
         try {
@@ -36,6 +39,19 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readWinningNumbers();
+        }
+    }
+
+    public int readBonusNumber() {
+        try{
+            System.out.println(PROMPT_BONUS_NUMBER);
+            String userInput = Console.readLine();
+            new Validator().validate(userInput);
+
+            return Integer.parseInt(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBonusNumber();
         }
     }
 }

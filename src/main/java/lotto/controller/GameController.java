@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.LottoStore;
 import lotto.domain.lotto.Lotto;
 import lotto.view.InputView;
@@ -29,6 +30,8 @@ public class GameController {
 
         Lotto winningTicket= getWinningTicket();
         printPurchaseResult(winningTicket);
+        BonusNumber bonusNumber = askBonusNumber(winningTicket);
+        System.out.println(bonusNumber);
     }
 
     private Lotto getWinningTicket() {
@@ -38,6 +41,16 @@ public class GameController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningTicket();
+        }
+    }
+
+    private BonusNumber askBonusNumber(Lotto winningTicket) {
+        try {
+            int userInputBonusNumber = inputView.readBonusNumber();
+            return new BonusNumber(userInputBonusNumber, winningTicket);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return askBonusNumber(winningTicket);
         }
     }
 

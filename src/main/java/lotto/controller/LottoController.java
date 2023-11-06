@@ -10,14 +10,10 @@ public class LottoController {
     private static final int MAX_NUMBER = 45;
     private static final int LENGTH = 6;
 
-    static Lotto generateLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LENGTH));
-    }
-
     public static List<Lotto> generateTicket(int number) {
         List<Lotto> ticket = new ArrayList<Lotto>();
         for (int i = 0; i < number / 1000; i++) {
-            ticket.add(generateLotto());
+            ticket.add(new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LENGTH)));
         }
         return ticket;
     }

@@ -2,8 +2,14 @@ package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class AmountTest {
@@ -30,5 +36,22 @@ public class AmountTest {
     void buyAmountDivide(int amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest(name = "구입금액에 따른 로또 갯수 : {0}, 결과 : {1}")
+    @DisplayName("구입금액에 따른 발행 로또 갯수 테스트")
+    @MethodSource("lottoCount")
+    void calculateLottoCount(int lottoCount, int result) {
+        assertThat(lottoCount).isEqualTo(result);
+    }
+
+
+    static Stream<Arguments> lottoCount() {
+        return Stream.of(
+                Arguments.arguments(new Amount(2000).buyCount(), 2),
+                Arguments.arguments(new Amount(3000).buyCount(), 3),
+                Arguments.arguments(new Amount(4000).buyCount(), 4),
+                Arguments.arguments(new Amount(5000).buyCount(), 5)
+        );
     }
 }

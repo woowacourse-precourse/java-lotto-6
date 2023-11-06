@@ -1,6 +1,7 @@
 package lotto.Domain;
 
 import lotto.Domain.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,5 +31,13 @@ class LottoTest {
     void createLottoByOutBoundaryNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호는 오름차순으로 출력된다.")
+    @Test
+    void printAscendingOrderOfLotto() {
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+
+        Assertions.assertThat(lotto.toString()).isEqualTo("[1,2,3,4,5,6]");
     }
 }

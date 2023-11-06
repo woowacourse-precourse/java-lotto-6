@@ -12,14 +12,15 @@ public class WinningResult {
 
     public WinningResult() {
         this.winningResult = new EnumMap<>(Rank.class);
+
         Arrays.stream(Rank.values())
                 .forEach(rank -> winningResult.put(rank, 0));
     }
 
     public void calculateWinning(Lottos lottos, WinningNumber winningNumber) {
         for (Lotto lotto : lottos.getLottos()) {
-            Rank from = Rank.from(lotto.calculateMatchCount(winningNumber.getWinningNumber())
-                    , lotto.isContain(winningNumber.getBonusNumber()));
+            Rank from = Rank.from(lotto.calculateMatchCount(winningNumber.getWinningNumber()),
+                    lotto.isContain(winningNumber.getBonusNumber()));
 
             winningResult.put(from, winningResult.get(from) + 1);
         }
@@ -31,6 +32,7 @@ public class WinningResult {
 
     public float calculateRate(Lottos lottos) {
         int totalPrize = INIT_NUMBER;
+
         for (Rank rank : winningResult.keySet()) {
             if (rank == Rank.BLANK) {
                 continue;

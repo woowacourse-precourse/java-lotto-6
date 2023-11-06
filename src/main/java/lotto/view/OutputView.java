@@ -13,10 +13,11 @@ public class OutputView {
     private static final String WINNING_STATICS_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_WINNING_STATICS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String RATE_MESSAGE = "총 수익률은 %s%%입니다.";
-    private static final DecimalFormat integerDecFormat = new DecimalFormat("###,###");
-    private static final DecimalFormat floatDecFormat = new DecimalFormat("###,###.0");
 
-    public static void printLottos(Lottos lottos) {
+    private final DecimalFormat integerDecFormat = new DecimalFormat("###,###");
+    private final DecimalFormat floatDecFormat = new DecimalFormat("###,###.0");
+
+    public void printLottos(Lottos lottos) {
         System.out.printf(LOTTO_AMOUNT_MESSAGE, lottos.getAmount());
 
         for (Lotto lotto : lottos.getLottos()) {
@@ -26,7 +27,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinningStatics(WinningResult winningResult) {
+    public void printWinningStatics(WinningResult winningResult) {
         System.out.println(LOTTO_WINNING_STATICS_MESSAGE);
         System.out.println(LINE_SEPARATE);
         for (Rank rank : Rank.values()) {
@@ -34,7 +35,7 @@ public class OutputView {
         }
     }
 
-    private static String formatWinningStaticsMessage(Rank rank, WinningResult winningResult) {
+    private String formatWinningStaticsMessage(Rank rank, WinningResult winningResult) {
         if (rank == Rank.SECOND) {
             return String.format(SECOND_WINNING_STATICS_MESSAGE, rank.getMatchCount()
                     , toIntegerFormat(rank.getPrize()), winningResult.getWinningCount(rank));
@@ -44,19 +45,19 @@ public class OutputView {
                 , toIntegerFormat(rank.getPrize()), winningResult.getWinningCount(rank));
     }
 
-    private static String toIntegerFormat(int prize) {
+    private String toIntegerFormat(int prize) {
         return integerDecFormat.format(prize);
     }
 
-    public static void printRate(float rate) {
+    public void printRate(float rate) {
         System.out.println(formatRate(rate));
     }
 
-    private static String formatRate(float rate) {
+    private String formatRate(float rate) {
         return String.format(RATE_MESSAGE, toFloatFormat(rate));
     }
 
-    private static String toFloatFormat(float rate) {
+    private String toFloatFormat(float rate) {
         return floatDecFormat.format(rate);
     }
 }

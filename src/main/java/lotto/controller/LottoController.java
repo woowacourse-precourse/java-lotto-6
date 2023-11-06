@@ -9,17 +9,23 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private final InputView inputView;
+    private final ExceptionView exceptionView;
+    private final OutputView outputView;
 
-    private final InputView inputView = new InputView();
-    private final ExceptionView exceptionView = new ExceptionView();
+    public LottoController(InputView inputView, ExceptionView exceptionView, OutputView outputView) {
+        this.inputView = inputView;
+        this.exceptionView = exceptionView;
+        this.outputView = outputView;
+    }
 
     public void lottoRun() {
         Lottos lottos = buyLotto();
         WinningNumber winningNumber = decideWinningNumber();
         decideBonusNumber(winningNumber);
         WinningResult winningResult = calculateWinning(lottos, winningNumber);
-        OutputView.printWinningStatics(winningResult);
-        OutputView.printRate(winningResult.calculateRate(lottos));
+        outputView.printWinningStatics(winningResult);
+        outputView.printRate(winningResult.calculateRate(lottos));
 
     }
 
@@ -28,7 +34,7 @@ public class LottoController {
         while (true) {
             try {
                 Lottos lottos = lottosFactory.createLottos(inputView.inputMoney());
-                OutputView.printLottos(lottos);
+                outputView.printLottos(lottos);
                 return lottos;
             } catch (IllegalArgumentException e) {
                 exceptionView.printException(e.getMessage());

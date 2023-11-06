@@ -1,12 +1,11 @@
 package lotto.domain.factory;
 
-import static lotto.exception.ExceptionMessage.MONEY_TEN_THOUSAND_UNIT_EXCEPTION;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.exception.ExceptionMessage;
 
 public class LottosFactory {
     private static final int MIN_RANGE = 1;
@@ -28,7 +27,7 @@ public class LottosFactory {
 
     private void validateTenThousandMultiple(int money) {
         if (money == 0 || money % TEN_THOUSAND != 0) {
-            throw new IllegalArgumentException(MONEY_TEN_THOUSAND_UNIT_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.MONEY_TEN_THOUSAND_UNIT_EXCEPTION.getMessage());
         }
     }
 

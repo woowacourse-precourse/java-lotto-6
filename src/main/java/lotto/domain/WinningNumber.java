@@ -1,11 +1,7 @@
 package lotto.domain;
 
-import static lotto.exception.ExceptionMessage.BONUS_NUMBER_DUPLICATE_EXCEPTION;
-import static lotto.exception.ExceptionMessage.NUMBER_RANGE_EXCEPTION;
-import static lotto.exception.ExceptionMessage.WINNING_NUMBER_DUPLICATE_EXCEPTION;
-import static lotto.exception.ExceptionMessage.WINNING_NUMBER_SIZE_EXCEPTION;
-
 import java.util.List;
+import lotto.exception.ExceptionMessage;
 
 public class WinningNumber {
     private static final int WINNING_NUMBER_SIZE = 6;
@@ -31,8 +27,9 @@ public class WinningNumber {
     }
 
     private void validateSize(List<Integer> winningNumber) {
+
         if (winningNumber.size() != WINNING_NUMBER_SIZE) {
-            throw new IllegalArgumentException(WINNING_NUMBER_SIZE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_SIZE_EXCEPTION.getMessage());
         }
     }
 
@@ -40,13 +37,13 @@ public class WinningNumber {
         int noDuplicate = numbers.stream().distinct().toList().size();
 
         if (noDuplicate != numbers.size()) {
-            throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 
     private void validateRange(int number) {
         if (number < MIN_RANGE || number > MAX_RANGE) {
-            throw new IllegalArgumentException(NUMBER_RANGE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_RANGE_EXCEPTION.getMessage());
         }
     }
 
@@ -62,7 +59,7 @@ public class WinningNumber {
 
     private void validateDuplicateBonusNumber(int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 

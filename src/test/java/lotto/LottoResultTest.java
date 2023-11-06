@@ -40,11 +40,11 @@ public class LottoResultTest {
         Assertions.assertThat(result).isEqualTo(LottoResult.THIRD_PRIZE);
     }
 
-    @DisplayName("4개의 번호가 일치하면 4등으로 간주한다")
+    @DisplayName("4개의 번호가 일치하면 보너스번호가 일치여부와 상관없이 4등으로 간주한다")
     @Test
     void fourthPrize_when_equal_4_numbers() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoDraw lottoDraw = new LottoDraw(List.of(1, 2, 3, 4, 20, 10), 12);
+        LottoDraw lottoDraw = new LottoDraw(List.of(1, 2, 3, 4, 20, 10), 5);
 
         LottoResult result = LottoResult.calculateResult(lotto, lottoDraw);
 
@@ -52,11 +52,11 @@ public class LottoResultTest {
     }
 
 
-    @DisplayName("3개의 번호가 일치하면 5등으로 간주한다")
+    @DisplayName("3개의 번호가 일치하면 일치여부와 상관없이 5등으로 간주한다")
     @Test
     void fifthPrize_when_equal_3_numbers() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoDraw lottoDraw = new LottoDraw(List.of(1, 2, 3, 20, 40, 10), 12);
+        LottoDraw lottoDraw = new LottoDraw(List.of(1, 2, 3, 20, 40, 10), 4);
 
         LottoResult result = LottoResult.calculateResult(lotto, lottoDraw);
 

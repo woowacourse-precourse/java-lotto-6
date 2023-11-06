@@ -24,6 +24,7 @@ public class LottoController {
         lottoView.printPublishedLotto(lottoMachine.getLottos());
 
         String winningNumber = lottoView.inputLottoWinningNumber();
+        List<Integer> winningNumbers = lottoService.getWinningNumbers(winningNumber);
         String bonusNumber = lottoView.inputLottoBonusNumber();
 
 

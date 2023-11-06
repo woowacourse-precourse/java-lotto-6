@@ -42,4 +42,13 @@ public class LottoService {
         return new LottoMachine(lottoCount, lottos, lottoRanks);
     }
 
+    public List<Integer> getWinningNumbers(String winningNumber){
+        String[] winning = winningNumber.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for(String number:winning){
+            winningNumbers.add(Integer.parseInt(number));
+        }
+        return winningNumbers;
+    }
+
 }

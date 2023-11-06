@@ -2,7 +2,10 @@ package lotto.exception;
 
 import lotto.Constants;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class LottoException {
 
@@ -28,12 +31,18 @@ public class LottoException {
             throw new IllegalArgumentException(Constants.ERROR + "로또 번호는 6개이어야 합니다");
         }
     }
-
     public void validateNumbersPermittedRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number > Constants.MAX_RANGE_NUMBER || number < Constants.MIN_RANGE_NUMBER) {
                 throw new IllegalArgumentException(Constants.ERROR + "로또 번호의 범위는 1~45 사이여야 합니다");
             }
+        }
+    }
+    public void validateDuplicatedNumbers(List<Integer> inputNumbers) {
+        Set<Integer> numbers = new HashSet<>();
+        inputNumbers.stream().map(numbers::add).collect(Collectors.toList());
+        if (numbers.size() != Constants.DESIGNATED_LOTTO_LENGTH) {
+            throw new IllegalArgumentException(Constants.ERROR + "번호가 중복 되었습니다");
         }
     }
 }

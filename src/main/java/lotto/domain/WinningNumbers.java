@@ -4,11 +4,11 @@ import lotto.message.ExceptionMessage;
 
 import java.util.List;
 
-public class WinningNumber {
+public class WinningNumbers {
     private final List<Integer> numbers;
-    private BonusNumber bonus;
+    private BonusNumber bonusNumber;
 
-    public WinningNumber(List<Integer> numbers) {
+    public WinningNumbers(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
@@ -35,20 +35,5 @@ public class WinningNumber {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_6_LENGTH_OF_WINNING.toString());
         }
-    }
-
-    public void addBonusNumber(BonusNumber bonus) {
-        validateWinningNumbersContainsBonusNumber(bonus);
-        this.bonus = bonus;
-    }
-
-    private void validateWinningNumbersContainsBonusNumber(BonusNumber bonus) {
-        if (bonusNumberAlreadyIncluded(bonus)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_DUPLICATED_WITH_WINNING.toString());
-        }
-    }
-
-    private boolean bonusNumberAlreadyIncluded(BonusNumber bonus) {
-        return numbers.contains(bonus.getNumber());
     }
 }

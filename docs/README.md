@@ -32,11 +32,11 @@
 - bonusNumber
 # Output
     출력을 하는 클래스
-- buyMoneyAsk
-- buyNumberPaperAns
-- answerNumberAsk
-- bonusNumberAsk
-- correctStatisPrint
+- *buyMoneyAsk 
+- *buyNumberPaperAns
+- *answerNumberAsk
+- *bonusNumberAsk
+- *correctStatisPrint
 - lottoBuyPaperPrint
 - correctPaperTotalPrint
 - correctPaperPrint
@@ -70,7 +70,12 @@
 - printCorrect
 # Exception
     예외 처리를 해주는 클래스
-- outOfRangeMoney
+- *outOfRangeMoney
 - sameNumberCheck
 - incorrectFormatNumber
-- incorrectFormatMoney
+- *incorrectFormatMoney
+
+# Message
+- Message
+- getCode
+- getMessage

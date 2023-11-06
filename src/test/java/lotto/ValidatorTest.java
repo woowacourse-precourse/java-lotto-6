@@ -35,4 +35,13 @@ class ValidatorTest {
             assertThatThrownBy(() -> Validator.containSpace(testCase));
         }
     }
+
+    @Test
+    @DisplayName("숫자가 아닐 경우 예외 발생")
+    void isNumberTest() {
+        testCases = Arrays.asList(new String[]{"a", "asdf", "120a", "!230"});
+        for (String testCase : testCases) {
+            assertThatThrownBy(() -> Validator.isNumber(testCase));
+        }
+    }
 }

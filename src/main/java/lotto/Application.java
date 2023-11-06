@@ -14,18 +14,9 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
-        User user = new User();
-
-
-        GameManager.handlePurchase();
-        Output.printCount(user.lottoCount);
-
-        // 4. 로또 번호 출력
-        Output.printLottos(user.lottos);
-
         // 5. 당첨 번호 입력
-        Output.printWinningNumber();
-        Lotto winningLotto = LottoGenerator.createWinningLotto(Input.get());
+
+
 
         // 6. 보너스 번호 입력
         Output.printBonusNumber();

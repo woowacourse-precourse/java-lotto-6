@@ -1,6 +1,10 @@
 package lotto.validator;
 
+import static lotto.constant.Constant.MAX_PRICE;
+import static lotto.constant.Constant.UNIT;
+import static lotto.constant.Constant.ZERO;
 import static lotto.exception.ExceptionMessage.DIFFERENT_FORMAT_EXCEPTION_MESSAGE;
+import static lotto.exception.ExceptionMessage.MAX_PRICE_MESSAGE;
 import static lotto.exception.ExceptionMessage.NOT_NUMBER_EXCEPTION_MESSAGE;
 import static lotto.exception.ExceptionMessage.NULL_POINTER_EXCEPTION_MESSAGE;
 
@@ -31,7 +35,17 @@ public class InputValidator {
 
     private boolean availDividePrice(String input) {
         Integer price = convertPrice(input);
-        return price >= 1000 && price % 1000==0;
+        return price >= UNIT && price % UNIT==ZERO;
+    }
+
+    public void validateMaxPrice(String input) {
+        if (!underMaxPrice(input)) {
+            throw new LottoApplicationException(MAX_PRICE_MESSAGE);
+        }
+    }
+
+    public boolean underMaxPrice(String input){
+        return input.length() < 11 && convertPrice(input) < MAX_PRICE;
     }
 
     private Integer convertPrice(String input) {

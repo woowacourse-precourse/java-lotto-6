@@ -32,7 +32,7 @@ public class PrizeResult {
     }
 
     private Map<Prize, Long> calculatePrizeResult(Lottos lottos, WinnerLotto winnerLotto) {
-        return lottos.getLottos().stream()
+        return lottos.lottos().stream()
                 .map(lotto -> findPrize(lotto.countMatch(winnerLotto), lotto.countBonusMatch(winnerLotto)))
                 .collect(Collectors.groupingBy(prize -> prize, Collectors.counting()));
     }

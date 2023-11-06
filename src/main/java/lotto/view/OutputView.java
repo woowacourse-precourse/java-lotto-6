@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     public static void printGeneratedLottos(Lottos lottos) {
-        lottos.getLottos()
+        lottos.lottos()
                 .forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 

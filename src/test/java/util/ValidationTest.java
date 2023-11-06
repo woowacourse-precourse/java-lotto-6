@@ -89,5 +89,10 @@ public class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE));
     }
-   
+    @Test
+    void  보너스_번호가_이미_당첨번호에_있는_경우(){
+        assertSimpleTest(() -> assertThatThrownBy(() -> validate.CheckBonusNumber("3", Arrays.asList(1,3,5,7,8,9)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE));
+    }
 }

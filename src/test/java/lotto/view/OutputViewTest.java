@@ -1,13 +1,9 @@
 package lotto.view;
 
 import lotto.domain.Buyer;
-import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayInputStream;
-import java.util.List;
 
 class OutputViewTest {
 
@@ -16,16 +12,22 @@ class OutputViewTest {
 
     @Test
     @DisplayName("구입 금액 입력 안내")
-    void outputPurchasePrice() {
-        System.setIn(new ByteArrayInputStream("14000".getBytes()));
-        outputView.outputPurchasePrice();
+    void printInputPurchasePriceSentence() {
+        outputView.printInputPurchasePriceSentence();
+    }
+
+    @Test
+    @DisplayName("구입 금액 출력")
+    void printPurchasePrice() {
+        int purchasePrice = 14000;
+        outputView.printPurchasePrice(purchasePrice);
     }
 
     @Test
     @DisplayName("구매 완료 및 발행 내역 안내")
-    void outputIssuingLotteryTicket() {
-        System.setIn(new ByteArrayInputStream("5000".getBytes()));
-        Buyer buyer = lottoService.issueLotteryTicketAll();
-        outputView.outputIssuingLotteryTicket(buyer.getLottos(), lottoService.getTicketCount());
+    void printIssuingLotteryTicket() {
+        int purchasePrice = 5000;
+        Buyer buyer = lottoService.issueLotteryTicketAll(purchasePrice);
+        outputView.printIssuingLotteryTicket(buyer.getLottos(), lottoService.getLotteryTicketCount(purchasePrice));
     }
 }

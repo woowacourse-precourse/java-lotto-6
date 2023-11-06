@@ -16,13 +16,15 @@ public class OutputView {
     InputView inputView = new InputView();
     LottoService lottoService = new LottoService();
 
-    public void outputPurchasePrice() {
+    public void printInputPurchasePriceSentence() {
         System.out.println(INPUT_PURCHASE_PRICE_SENTENCE);
-        System.out.println(inputView.inputPurchasePrice());
-        System.out.println();
     }
 
-    public void outputIssuingLotteryTicket(List<Lotto> lottos, int lotteryTicketCount) {
+    public void printPurchasePrice(int purchasePrice) {
+        System.out.println(purchasePrice + "\n");
+    }
+
+    public void printIssuingLotteryTicket(List<Lotto> lottos, int lotteryTicketCount) {
         System.out.println(lotteryTicketCount + OUTPUT_PURCHASE_COUNT_SENTENCE);
         for (Lotto lotto : lottos) {
             System.out.println(lotto);

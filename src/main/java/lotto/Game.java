@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Game {
     private final int money;
+    private static final int PRICE=1000;
     private final List<Lotto> lottos = new ArrayList<>();
     List<Integer> results = new ArrayList<>(Collections.nCopies(6,0));
     float earn=0;
@@ -13,7 +14,7 @@ public class Game {
     public Game(int money){
         moneyValidCheck(money);
         this.money = money;
-        for (int i = 0; i < money/1000; i++) {
+        for (int i = 0; i < money/PRICE; i++) {
             makeLotto();
         }
         printLotto();
@@ -32,7 +33,7 @@ public class Game {
     }
 
     private void printLotto(){
-        System.out.printf("%d개를 구매했습니다.\n",this.money/1000);
+        System.out.printf("%d개를 구매했습니다.\n",this.money/PRICE);
         for (Lotto lotto:lottos) {
             System.out.println(lotto.toString());
         }

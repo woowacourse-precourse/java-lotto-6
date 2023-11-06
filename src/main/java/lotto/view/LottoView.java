@@ -31,8 +31,13 @@ public class LottoView {
 
     public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
-        // TODO: 예외처리
+        try {
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            // TODO : 예외처리 추가.
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
+        }
     }
 
 }

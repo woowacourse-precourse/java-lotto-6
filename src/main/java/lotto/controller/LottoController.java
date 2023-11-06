@@ -64,7 +64,7 @@ public class LottoController {
             }
         }
     }
-    
+
     private void validatePurchaseAmount(int money) {
         if (money < 1000 || money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위의 정수여야 합니다.");
@@ -73,6 +73,5 @@ public class LottoController {
     private void checkResults(List<Lotto> purchasedLottos, Lotto winningLotto) {
         // TODO: 당첨 결과를 계산하고 출력하는 로직을 구현해야 함.
     }
-
 
 }

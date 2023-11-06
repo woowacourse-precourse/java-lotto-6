@@ -42,20 +42,30 @@ public class LottoResultCalculator {
     private int calculateScore(List<Integer> userNumbers, List<Integer> winningNumberList) {
         int score = 0;
         for (int userNumber : userNumbers) {
-            if (winningNumberList.contains(userNumber)) {
-                score++;
-            }
+            score += countMatches(userNumber, winningNumberList);
         }
         return score;
+    }
+
+    private int countMatches(int userNumber, List<Integer> winningNumberList) {
+        if (winningNumberList.contains(userNumber)) {
+            return 1;
+        }
+        return 0;
     }
 
     private static int calculateBonusScore(List<Integer> userNumbers, int bonusNumber) {
         int bonusScore = 0;
         for (int userNumber : userNumbers) {
-            if (userNumber == bonusNumber) {
-                bonusScore++;
-            }
+            bonusScore += countBonusMatches(userNumber, bonusNumber);
         }
         return bonusScore;
+    }
+
+    private static int countBonusMatches(int userNumber, int bonusNumber) {
+        if (userNumber == bonusNumber) {
+            return 1;
+        }
+        return 0;
     }
 }

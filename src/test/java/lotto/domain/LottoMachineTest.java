@@ -89,12 +89,12 @@ class LottoMachineTest {
 
         // when
         WinningResults winningResults = lottoMachine.createWinningResults();
-        int rewardCount = winningResults.getRewardCount(LottoRewardCondition.SECOND_WINNER);
+        List<Integer> winningCounts = winningResults.calculateWinningCounts();
         double actualProfitRatio = winningResults.calculateProfitRatio();
 
         // then
         assertAll(
-                () -> assertThat(rewardCount).isEqualTo(2),
+                () -> assertThat(winningCounts).containsExactly(0, 0, 0, 2, 0),
                 () -> assertThat(actualProfitRatio).isEqualTo(expectedProfitRatio)
         );
     }

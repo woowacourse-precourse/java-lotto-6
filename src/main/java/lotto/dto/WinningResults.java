@@ -1,5 +1,6 @@
 package lotto.dto;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -14,8 +15,11 @@ public record WinningResults(Map<LottoRewardCondition, Integer> results) {
                         Collectors.collectingAndThen(Collectors.counting(), Long::intValue))));
     }
 
-    public int getRewardCount(final LottoRewardCondition lottoRewardCondition) {
-        return results.getOrDefault(lottoRewardCondition, 0);
+    public List<Integer> calculateWinningCounts() {
+       return Arrays.stream(LottoRewardCondition.values())
+                .filter(LottoRewardCondition::isNotFail)
+                .map(condition -> results.getOrDefault(condition, 0))
+                .toList();
     }
 
     public double calculateProfitRatio() {

@@ -25,10 +25,7 @@ public class WinningResultMessageGenerator {
     }
 
     public static String generate(final WinningResults winningResults) {
-        List<Integer> winningCounts = Arrays.stream(LottoRewardCondition.values())
-                .filter(LottoRewardCondition::isNotFail)
-                .map(winningResults::getRewardCount)
-                .toList();
+        List<Integer> winningCounts = winningResults.calculateWinningCounts();
         return createResultMessage(winningResults, winningCounts);
     }
 

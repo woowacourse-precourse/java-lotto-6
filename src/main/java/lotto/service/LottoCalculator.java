@@ -26,6 +26,7 @@ public class LottoCalculator {
             Ranking.increaseRankingCount(rank);
         }
     }
+
     //Set에 담은 후 Lotto의 숫자 개수(6)만큼 빼면 교집합 -> 로또 숫자 갯수 - 교집합 = 당첨 등수
     private int calculateRanking(Lotto number, WinningLotto winningLotto) {
         Set<Integer> winningNumber = new HashSet<>(winningLotto.numbers().getNumbers());

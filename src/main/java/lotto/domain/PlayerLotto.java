@@ -22,8 +22,10 @@ public class PlayerLotto {
     }
 
     private List<Integer> generateSixRandomNumbers() {
-        List<Integer> sixNumbers = Randoms.pickUniqueNumbersInRange(LottoNumbers.MIN_LOTTO_NUMBER.getNumber(),
-                LottoNumbers.MAX_LOTTO_NUMBER.getNumber(), LottoNumbers.LOTTO_SIZE.getNumber());
+        List<Integer> sixNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                LottoNumbers.MIN_LOTTO_NUMBER.getNumber(),
+                LottoNumbers.MAX_LOTTO_NUMBER.getNumber(),
+                LottoNumbers.LOTTO_SIZE.getNumber()));
         Collections.sort(sixNumbers);
         return sixNumbers;
     }

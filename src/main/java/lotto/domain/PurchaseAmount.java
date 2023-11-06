@@ -23,7 +23,7 @@ public class PurchaseAmount {
 
     private void validate(String amount) {
         if (isEmpty(amount)) {
-            ErrorMessage.PURCHASE_AMOUNT_IS_EMPTY.throwIllegalArgumentException();
+            ErrorMessage.INPUT_IS_EMPTY.throwIllegalArgumentException();
         }
         if (!isNumeric(amount)) {
             ErrorMessage.PURCHASE_AMOUNT_IS_NOT_A_NUMBER.throwNumberFormatException();

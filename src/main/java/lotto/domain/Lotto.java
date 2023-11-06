@@ -13,8 +13,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     private void validate(List<Integer> numbers) {

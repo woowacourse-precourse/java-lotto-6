@@ -18,7 +18,7 @@ public class InputController {
         try{
             money = new Money(InputView.inputMoney());
             OutputView.printBlank();
-            return money.getLottoTickets();
+            return money.getMoney();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputMoney();

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -104,13 +105,27 @@ class LottoTest {
         );
     }
 
-//    @DisplayName("보너스 번호가 존재하는지 체크")
-//    @ParameterizedTest
-//    @MethodSource("")
-//    void 테스트_compareBonus(Lotto myLotto, int expect) {
-//        //when
-//        int result = myLotto.compareLotto(firstPrizeLotto);
-//        //then
-//        assertThat(result).isEqualTo(expect);
-//    }
+    @DisplayName("보너스 번호가 존재하는 경우")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void 테스트_compareBonus_보너스번호_포함(int bounsNumber) {
+        //given
+        Lotto myLotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        //when
+        boolean result = myLotto.compareBonus(bounsNumber);
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("보너스 번호가 존재하지 않는 경우")
+    @ParameterizedTest
+    @ValueSource(ints = {7, 8, 9, 10, 45, 23})
+    void 테스트_compareBonus_보너스번호_포함_X(int bounsNumber) {
+        //given
+        Lotto myLotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        //when
+        boolean result = myLotto.compareBonus(bounsNumber);
+        //then
+        assertThat(result).isFalse();
+    }
 }

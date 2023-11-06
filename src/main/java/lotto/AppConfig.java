@@ -7,11 +7,7 @@ import lotto.view.OutputView;
 
 public class AppConfig {
     public static LottoController lottoController () {
-        return new LottoController(lottoBuyer(),inputView(),outputView());
-    }
-
-    private static LottoBuyer lottoBuyer() {
-        return new LottoBuyer();
+        return new LottoController(inputView(),outputView());
     }
 
     private static InputView inputView() {

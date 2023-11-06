@@ -1,21 +1,22 @@
 package lotto.controller;
 
+import lotto.domain.Payment;
 import lotto.service.LottoBuyer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private final LottoBuyer lottoBuyer;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LottoController(LottoBuyer lottoBuyer, InputView inputView, OutputView outputView) {
-        this.lottoBuyer = lottoBuyer;
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void run() {
-
+        Payment payment = inputView.inputPayment();
+        LottoBuyer lottoBuyer = new LottoBuyer(payment);
     }
+
 }

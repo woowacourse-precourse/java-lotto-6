@@ -1,10 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.LottoWinningResult;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
+import lotto.dto.LottoResponse;
 import lotto.dto.LottoWinningNumberCreateRequest;
 import lotto.dto.LottoWinningStatistics;
 import lotto.service.LottoGameService;
@@ -63,7 +63,7 @@ public class LottoGameController {
         while (true) {
             try {
                 LottoPurchaseRequest lottoPurchaseRequest = lottoGameView.inputPurchaseRequest();
-                List<Lotto> lottoTickets = lottoGameService.createLottoPurchase(lottoPurchaseRequest);
+                List<LottoResponse> lottoTickets = lottoGameService.createLottoPurchase(lottoPurchaseRequest);
                 lottoGameView.printPurchasedTickets(lottoTickets);
                 return;
             } catch (IllegalArgumentException e) {

@@ -1,16 +1,16 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
+import lotto.dto.LottoResponse;
 import lotto.dto.LottoWinningNumberCreateRequest;
 import lotto.dto.LottoWinningStatistics;
 
 public interface LottoGameView {
     LottoPurchaseRequest inputPurchaseRequest();
 
-    void printPurchasedTickets(List<Lotto> purchasedLottoTickets);
+    void printPurchasedTickets(List<LottoResponse> purchasedLottoTickets);
 
     LottoWinningNumberCreateRequest inputLottoWinningNumberCreateRequest();
 

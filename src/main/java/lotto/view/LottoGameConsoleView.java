@@ -2,10 +2,10 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.LottoPrize;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
+import lotto.dto.LottoResponse;
 import lotto.dto.LottoWinningNumberCreateRequest;
 import lotto.dto.LottoWinningStatistics;
 
@@ -21,13 +21,13 @@ public class LottoGameConsoleView implements LottoGameView {
     }
 
     @Override
-    public void printPurchasedTickets(List<Lotto> purchasedLottoTickets) {
+    public void printPurchasedTickets(List<LottoResponse> purchasedLottoTickets) {
         long numLottoTickets = purchasedLottoTickets.size();
 
         System.out.println();
         System.out.println(numLottoTickets + "개를 구매했습니다.");
 
-        for (Lotto lottoTicket : purchasedLottoTickets) {
+        for (LottoResponse lottoTicket : purchasedLottoTickets) {
             System.out.println(lottoTicket.getNumbers());
         }
     }

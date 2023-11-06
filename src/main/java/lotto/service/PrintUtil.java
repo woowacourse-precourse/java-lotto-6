@@ -1,36 +1,36 @@
 package lotto.service;
 
 
+import lotto.constant.DrawMessage;
+
 public class PrintUtil {
+    DrawMessage drawMessage;
 
     public void printPurchaseAmountInput() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(drawMessage.ENTER_PURCHASE_AMOUNT_MESSAGE.getMessage());
     }
 
     public void printNumberOfLotto(int number) {
-        System.out.println();
-        System.out.println(number + "개를 구매했습니다.");
+        System.out.printf(drawMessage.PURCHASE_COUNT_MESSAGE.getMessage(), number);
     }
     public void printLottoNumbers(StringBuilder output) {
         System.out.println(output);
     }
 
     public void printWinnerNumbersInput() {
-        System.out.println("당첨 번호를 입력해주세요.");
+        System.out.println(drawMessage.ENTER_WINNER_NUMBERS_MESSAGE.getMessage());
     }
 
     public void printBonusNumberInput() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해주세요.");
+        System.out.println(drawMessage.ENTER_BONUS_NUMBER_MESSAGE.getMessage());
     }
 
     public void printWinnerStatistics() {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(drawMessage.WINNING_STATISTICS_MESSAGE.getMessage());
     }
 
     public void printProfit(String totalProfit) {
-        System.out.print("총 수익률은 " + totalProfit + "%입니다.");
+        totalProfit += "%";
+        System.out.printf(drawMessage.TOTAL_PROFIT_MESSAGE.getMessage(), totalProfit);
     }
 }

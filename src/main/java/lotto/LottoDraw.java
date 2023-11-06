@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.constant.DrawMessage;
 import lotto.domain.*;
 import lotto.service.PrintUtil;
 
@@ -10,6 +11,7 @@ public class LottoDraw {
 
     Map<Integer, Map<String, Integer>> lottoPrizeSummary;
 
+    DrawMessage drawMessage;
     LottoNumber lottoNumber = new LottoNumber();
     LottoNumbers lottoNumbers = new LottoNumbers();
     LottoStatistics lottoStatistics = new LottoStatistics();
@@ -73,15 +75,15 @@ public class LottoDraw {
 
             if (winCount == 5) {
                 int count = lottoPrizeSummary.get(winCount).get("5NoBonus");
-                System.out.println(winCount + "개 일치 (" + lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",") + "원) - " + count + "개");
+                System.out.printf(drawMessage.NO_BONUS_WINNING_RESULT_MESSAGE.getMessage(), winCount, lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","), count);
                 lottoPlacePriceIdx++;
                 count = lottoPrizeSummary.get(winCount).get("5Bonus");
-                System.out.println(winCount + "개 일치, 보너스 볼 일치 (" + lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",") + "원) - " + count + "개");
+                System.out.printf(drawMessage.BONUS_WINNING_RESULT_MESSAGE.getMessage(), winCount, lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","), count);
                 continue;
             }
             String str = winCount + "NoBonus";
             int count = lottoPrizeSummary.get(winCount).get(str);
-            System.out.println(winCount + "개 일치 (" + lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",") + "원) - " + count + "개");
+            System.out.printf(drawMessage.NO_BONUS_WINNING_RESULT_MESSAGE.getMessage(), winCount, lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","), count);
         }
     }
 

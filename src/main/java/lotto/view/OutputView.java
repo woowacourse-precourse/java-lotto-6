@@ -23,4 +23,8 @@ public class OutputView {
     public static void printStatsMessage() {
         System.out.print(STATS_MESSAGE + "\n---\n");
     }
+
+    public static void printProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    }
 }

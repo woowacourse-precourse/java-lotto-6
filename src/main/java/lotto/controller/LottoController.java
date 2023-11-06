@@ -3,8 +3,8 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.application.LottoMachine;
+import lotto.domain.Amount;
 import lotto.domain.Lotto;
-import lotto.domain.LottoAmount;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoTicket;
 import lotto.dto.WinningLotto;
@@ -25,26 +25,26 @@ public class LottoController {
     }
 
     public void run() {
-        LottoAmount lottoAmount = this.getLottoAmount();
-        LottoTicket lottoTicket = this.buyLottoTicket(lottoAmount);
+        Amount amount = this.getAmount();
+        LottoTicket lottoTicket = this.buyLottoTicket(amount);
         outputView.printLottoTicket(lottoTicket);
 
         WinningLotto winningLotto = this.getWinningLotto();
         WinningResult winningResult = lottoTicket.match(winningLotto);
         outputView.printWinningResult(winningResult);
-        outputView.printYield(winningResult.calculateYield(lottoAmount));
+        outputView.printYield(winningResult.calculateYield(amount));
     }
 
-    private LottoAmount getLottoAmount() {
+    private Amount getAmount() {
         return this.inputWithRetry(() -> {
-            String input = inputView.scanLottoAmount();
+            String input = inputView.scanAmount();
             int amount = Converter.convertToInt(input);
-            return new LottoAmount(amount);
+            return new Amount(amount);
         });
     }
 
-    private LottoTicket buyLottoTicket(LottoAmount lottoAmount) {
-        int quantity = lottoAmount.getLottoQuantity();
+    private LottoTicket buyLottoTicket(Amount amount) {
+        int quantity = amount.getLottoQuantity();
         return lottoMachine.createLottoTicketByAuto(quantity);
     }
 

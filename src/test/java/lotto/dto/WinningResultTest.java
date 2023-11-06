@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Map;
-import lotto.domain.LottoAmount;
+import lotto.domain.Amount;
 import lotto.enums.Prize;
 import org.junit.jupiter.api.Test;
 
@@ -48,7 +48,7 @@ class WinningResultTest {
         WinningResult winningResult = new WinningResult(Map.of(Prize.FIFTH, 1));
 
         // when
-        double yield = winningResult.calculateYield(new LottoAmount(1_000));
+        double yield = winningResult.calculateYield(new Amount(1_000));
 
         // then
         assertThat(yield).isEqualTo(500.0);

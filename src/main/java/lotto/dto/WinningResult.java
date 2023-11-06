@@ -1,7 +1,7 @@
 package lotto.dto;
 
 import java.util.Map;
-import lotto.domain.LottoAmount;
+import lotto.domain.Amount;
 import lotto.enums.Prize;
 
 public record WinningResult(Map<Prize, Integer> prizes) {
@@ -11,7 +11,7 @@ public record WinningResult(Map<Prize, Integer> prizes) {
         return prizes.getOrDefault(prize, ZERO);
     }
 
-    public double calculateYield(final LottoAmount amount) {
+    public double calculateYield(final Amount amount) {
         return (double) this.totalWinningMoney() / amount.amount() * 100;
     }
 

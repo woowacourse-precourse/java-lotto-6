@@ -10,7 +10,7 @@ public class InputView {
         this.inputValidator = inputValidator;
     }
 
-    public String scanLottoAmount() {
+    public String scanAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return scanInput();
     }

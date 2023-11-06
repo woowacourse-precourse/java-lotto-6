@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.LottoManager.AMOUNT_UNIT;
+
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
@@ -20,7 +22,7 @@ public class LottoBuyer {
         }
     }
 
-    public Map<LottoGrade, Integer> calculateLottoResult(final LottoResult lottoResult) {
+    public Map<LottoGrade, Integer> calculateResult(final LottoResult lottoResult) {
         for (final Lotto lotto : lottos) {
             final LottoGrade lottoGrade = lottoResult.calculateGrade(lotto);
             if (lottoGrade != null) {
@@ -28,5 +30,23 @@ public class LottoBuyer {
             }
         }
         return Collections.unmodifiableMap(result);
+    }
+
+    public double returnOnInvestment() {
+        double amount = 0;
+        for (final Map.Entry<LottoGrade, Integer> entry : result.entrySet()) {
+            final Integer winningCount = entry.getValue();
+            if (winningCount > 0) {
+                amount += entry.getKey().getAmount() * winningCount;
+            }
+        }
+        return calculateReturnOnInvestment(amount);
+    }
+
+    private double calculateReturnOnInvestment(final double amount) {
+        if (amount == 0) {
+            return amount;
+        }
+        return (amount / (lottos.size() * AMOUNT_UNIT)) * 100;
     }
 }

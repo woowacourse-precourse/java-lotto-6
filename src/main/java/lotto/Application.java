@@ -11,15 +11,15 @@ public class Application {
     public Application() {
         Model model = new Model();
         this.inputView = new InputView(model);
-        this.outputView = new OutputView(model);
+        this.outputView = new OutputView(model, inputView.returnLotto());
     }
 
     public static void main(String[] args) {
         Application application = new Application();
-        application.start(application);
+        application.start();
     }
 
-    private void start(Application application) {
+    private void start() {
         inputView.start();
         outputView.start();
     }

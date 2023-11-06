@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
-    private final List<List<Integer>> listOfBuyLotto;
+    private final List<Lotto> listOfBuyLotto;
     private int bonusNumber;
 
     public Model() {
@@ -22,11 +22,11 @@ public class Model {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             numbers.sort(Integer::compareTo);
-            listOfBuyLotto.add(numbers);
+            listOfBuyLotto.add(new Lotto(numbers));
         }
     }
 
-    public List<List<Integer>> getListOfBuyLotto() {
+    public List<Lotto> getListOfBuyLotto() {
         return listOfBuyLotto;
     }
 }

@@ -33,7 +33,7 @@ public class InputController {
     }
 
     public void showLottoTicket() {
-        model.getListOfBuyLotto().forEach(i -> System.out.println(i.toString()));
+        model.getListOfBuyLotto().forEach(i -> System.out.println(i.getNumbers().toString()));
     }
 
     public int checkValidNumberFormat(String input) {

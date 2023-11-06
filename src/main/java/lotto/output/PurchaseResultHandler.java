@@ -1,13 +1,13 @@
-package lotto.Output;
+package lotto.output;
 
-import lotto.Input.PurchaseInputHandler;
+import lotto.input.PurchaseInputHandler;
 
 public class PurchaseResultHandler {
-    public static void purchaseRequest() {
+    public static int purchaseRequest() {
         System.out.println("구입금액을 입력해 주세요.");
         int amount = getValidAmount();
         System.out.println();
-        numberOfLotto(amount);
+        return numberOfLotto(amount);
     }
 
 
@@ -24,8 +24,9 @@ public class PurchaseResultHandler {
         return amount;
     }
 
-    private static void numberOfLotto(int amount) {
+    private static int numberOfLotto(int amount) {
         int lotto = amount / 1000;
         System.out.println(lotto + "개를 구매했습니다.");
+        return lotto;
     }
 }

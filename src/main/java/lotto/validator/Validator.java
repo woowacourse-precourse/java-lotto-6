@@ -6,14 +6,16 @@ public class Validator {
     private Validator() {
     }
 
-    public static boolean validatePurchaseAmount(int purchaseAmount) {
+    public static boolean isPurchaseAmountValid(int purchaseAmount) {
 
     }
 
-    public static boolean validateDivideByLottoPrice(int money) {
+    public static boolean isDividedByLottoPrice(int money) {
         if (money / LottoController.LOTTO_PRICE == 0) {
             return true;
         }
         return false;
     }
+
+    
 }

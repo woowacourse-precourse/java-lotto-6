@@ -5,7 +5,7 @@ import lotto.exception.ExceptionMessage;
 
 public class LottoBonusNumber {
 
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public LottoBonusNumber(LottoWinningNumber lottoWinningNumber, int bonusNumber) {
         validateDuplicate(lottoWinningNumber, bonusNumber);

@@ -18,7 +18,7 @@ public class Profit {
     }
 
     private static double calculateProfit(int count, int totalPrize) {
-        return (double) totalPrize / (count * LOTTO_PRICE.getValue());
+        return (double) totalPrize * 100 / (count * LOTTO_PRICE.getValue());
     }
 
     private static int calculateTotalPrize(Map<Integer, Integer> prizeResult) {

@@ -20,19 +20,21 @@ class ProfitTest {
         //given
         int count = 6;
         Map<Integer, Integer> prizeResult = new HashMap<>();
-        prizeResult.put(2_000_000_000, 1);
-        prizeResult.put(30_000_000, 1);
-        prizeResult.put(1_500_000, 1);
+        prizeResult.put(2_000_000_000, 0);
+        prizeResult.put(30_000_000, 0);
+        prizeResult.put(1_500_000, 0);
         prizeResult.put(50_000, 1);
         prizeResult.put(5_000, 1);
-
         //when
         Profit profit = Profit.create(count, prizeResult);
         ProfitResponse profitResponse = profit.generateProfitResponse();
         double lottoProfit = profitResponse.getResponse();
+        String formattedProfit = String.format("%.1f", lottoProfit);
+        double finalLottoProfit = Double.parseDouble(formattedProfit);
+
 
         //then
-        assertThat(lottoProfit).isEqualTo(338_592.5);
+        assertThat(finalLottoProfit).isEqualTo(916.7);
     }
 
 }

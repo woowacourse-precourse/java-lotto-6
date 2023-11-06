@@ -1,6 +1,6 @@
 package lottoTicketPurchase;
 
-import static constant.Message.PURCHASE_AMOUNT_REQUEST_MESSAGE;
+import static constant.RequestMessage.PURCHASE_AMOUNT_REQUEST_MESSAGE;
 
 import base.Converter;
 import camp.nextstep.edu.missionutils.Console;

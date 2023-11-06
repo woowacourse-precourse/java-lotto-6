@@ -1,6 +1,6 @@
 package lottoResult;
 
-import static constant.Message.WINNING_STATISTICS_NOTICE_MESSAGE;
+import static constant.GeneralMessage.WINNING_STATISTICS_NOTICE_MESSAGE;
 
 import java.util.List;
 

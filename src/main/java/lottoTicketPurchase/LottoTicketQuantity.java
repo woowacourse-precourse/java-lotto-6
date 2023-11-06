@@ -1,6 +1,6 @@
 package lottoTicketPurchase;
 
-import static constant.Message.PURCHASE_QUANTITY_PRINT_MESSAGE;
+import static constant.GeneralMessage.PURCHASE_QUANTITY_PRINT_MESSAGE;
 import static constant.Number.PURCHASE_UNIT;
 
 public class LottoTicketQuantity {

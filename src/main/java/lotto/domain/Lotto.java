@@ -20,9 +20,11 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.stream()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
     }
+
 
     public boolean contains(int number) {
         return numbers.contains(number);

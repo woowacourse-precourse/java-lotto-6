@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.GuideMessage.COMMA;
+
 public class LottoGame {
 
     public LottoGame(){
@@ -22,7 +24,30 @@ public class LottoGame {
         Integer bonusNumber = GameInput.insertBonusNumber();
 
         LottoResultWinners lottoResultWinners = findWinnerOfLotto(lottos,winnigNumbers,bonusNumber);
+        Integer sumOfPrizeMoney = findSumOfPrizeMoney(lottoResultWinners);
+        Double earningRate = getEarningRate(money,sumOfPrizeMoney);
+        GuideMessage.ofLottoWinnerResult(lottoResultWinners,earningRate);
 
+    }
+
+    public Integer findSumOfPrizeMoney(LottoResultWinners lottoResultWinners){
+        Integer sum = 0;
+        for (Rank rank : Rank.values()) {
+            if (lottoResultWinners.getNumberOfWinner(rank) == 0){
+                continue;
+            }
+            sum += Integer.valueOf(convertCommaStringToString(rank.getPrizeMoney()))
+            * lottoResultWinners.getNumberOfWinner(rank);
+        }
+        return sum;
+    }
+
+    public String convertCommaStringToString(String value){
+        String result = "";
+        for (String splitedValue : value.split(COMMA)) {
+            result += splitedValue;
+        }
+        return result;
     }
 
     public LottoResultWinners findWinnerOfLotto(Lottos lottos, Lotto winningNumbers, Integer bonusNumber) {
@@ -49,4 +74,8 @@ public class LottoGame {
         return new LottoResult(numberOfMatch,bonus);
     }
 
+    public Double getEarningRate(Integer money,Integer sumOfPrizeMoney) {
+        Double earningRate = Double.valueOf(sumOfPrizeMoney/money) * 100;
+        return Double.valueOf(Math.round(earningRate * 10)) / 10;
+    }
 }

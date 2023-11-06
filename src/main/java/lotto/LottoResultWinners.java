@@ -39,4 +39,8 @@ public class LottoResultWinners {
                 && lottoResult.getBonus() != rank.getBonus();
     }
 
+    public Integer getNumberOfWinner(Rank rank) {
+        return lottoResultWinner.get(rank);
+    }
+
 }

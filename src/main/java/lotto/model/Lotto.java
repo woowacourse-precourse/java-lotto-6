@@ -1,6 +1,8 @@
 package lotto.model;
 
+import static lotto.util.Constant.END_NUMBER;
 import static lotto.util.Constant.LOTTO_LENGTH;
+import static lotto.util.Constant.START_NUMBER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +24,13 @@ public class Lotto {
         if (validateDuplicate(numbers)){
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_DUPLICATE.getMessage());
         }
+        if (validateRange(numbers)){
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
+        }
+    }
+
+    private boolean validateRange(List<Integer> numbers) {
+        return numbers.stream().anyMatch(number -> START_NUMBER > number || number > END_NUMBER);
     }
 
     private boolean validateDuplicate(List<Integer> numbers) {

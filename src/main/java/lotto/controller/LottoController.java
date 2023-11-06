@@ -12,11 +12,13 @@ import lotto.view.OutputView;
 public class LottoController {
 
     private final InputView inputView;
+    private final OutputView outputView;
     private final LottoPurchaseService lottoPurchaseService;
     private final LottosService lottosService;
 
     public LottoController() {
         this.inputView = new InputView();
+        this.outputView = new OutputView();
         this.lottoPurchaseService = new LottoPurchaseService();
         this.lottosService = new LottosService();
     }
@@ -25,10 +27,16 @@ public class LottoController {
         String purchaseAmount = getPurchaseAmount();
         LottoPurchase lottoPurchase = lottoPurchaseService.createLottoPurchase(purchaseAmount);
         Lottos lottos = lottosService.createLottos(lottoPurchase);
+
+        printLottoNumbers(lottos);
     }
 
     public String getPurchaseAmount() {
         OutputView.printMessage(GET_PURCHASE_AMOUNT_MESSAGE.getMessage());
         return inputView.readAmountInput();
+    }
+
+    public void printLottoNumbers(Lottos lottos) {
+        outputView.printLottoNumbers(lottos);
     }
 }

@@ -3,7 +3,7 @@ package lotto.service;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.LottoWinningRanking;
-import lotto.vo.LottoWinningSet;
+import lotto.vo.LottoWinningNumbers;
 import lotto.vo.LottoNumber;
 
 import java.util.EnumMap;
@@ -16,7 +16,7 @@ public class LottoWinningRankingService {
         return instance;
     }
 
-    public EnumMap<LottoWinningRanking, Integer> countWinningRankings(Lottos userLottos, LottoWinningSet winningLotto) {
+    public EnumMap<LottoWinningRanking, Integer> countWinningRankings(Lottos userLottos, LottoWinningNumbers winningLotto) {
         EnumMap<LottoWinningRanking, Integer> rankingCountMap = new EnumMap<>(LottoWinningRanking.class);
 
         for (Lotto lotto : userLottos.lottos()) {
@@ -30,7 +30,7 @@ public class LottoWinningRankingService {
         return rankingCountMap;
     }
 
-    private int countMatchedNumbers(Lotto lotto, LottoWinningSet winningLotto) {
+    private int countMatchedNumbers(Lotto lotto, LottoWinningNumbers winningLotto) {
         int matchedNumberCount = 0;
         for (LottoNumber number : winningLotto.lotto().getNumbers()) {
             if (lotto.getNumbers().contains(number)) {
@@ -40,8 +40,8 @@ public class LottoWinningRankingService {
         return matchedNumberCount;
     }
 
-    private boolean hasBonusNumber(Lotto lotto, LottoWinningSet lottoWinningSet) {
-        return lotto.containsBonusNumber(lottoWinningSet.lottoBonusNumber());
+    private boolean hasBonusNumber(Lotto lotto, LottoWinningNumbers lottoWinningNumbers) {
+        return lotto.containsBonusNumber(lottoWinningNumbers.lottoWinningBonusNumber());
     }
 
     private LottoWinningRanking calculateRanking(int matchedNumberCount, boolean needsBonusNumber) {

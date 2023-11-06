@@ -3,7 +3,7 @@ package lotto.service;
 import lotto.domain.Lotto;
 import lotto.exception.LottoException;
 import lotto.service.generate.LottoManualGenerateService;
-import lotto.vo.LottoBonusNumber;
+import lotto.vo.LottoWinningBonusNumber;
 
 import java.util.List;
 
@@ -24,8 +24,8 @@ public class LottoWinningNumbersPickService {
         return lottoManualGenerator.generate(splitLottoNumbers);
     }
 
-    public LottoBonusNumber pickBonusNumber(String input) {
-        return new LottoBonusNumber(Integer.parseInt(input));
+    public LottoWinningBonusNumber pickBonusNumber(String input) {
+        return new LottoWinningBonusNumber(Integer.parseInt(input));
     }
 
     private List<String> splitLottoNumbers(String input) {

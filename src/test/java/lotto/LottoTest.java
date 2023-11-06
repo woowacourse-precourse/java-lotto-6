@@ -5,7 +5,6 @@ import lotto.model.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,5 +48,13 @@ class LottoTest {
         String[] lottoNumbers = new String[] {"1", "2", "3", "14", "25", "36"};
         assertThat(lotto.stringLotto())
                 .containsExactly(lottoNumbers);
+    }
+
+    @DisplayName("당첨 번호가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void answerNotNumber() {
+        Validator validator = new Validator();
+        assertThatThrownBy(() -> validator.isAnswerNumeric("1a"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

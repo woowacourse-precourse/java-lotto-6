@@ -71,7 +71,12 @@ public class LottoGameService {
         }
     }
 
-    public boolean isDigit(String input){
+    public int lottoQuantity(int lottoPurchaseAmount){
+        int lottoQuantity = lottoPurchaseAmount / 1000;
+        return lottoQuantity;
+    }
+
+    private boolean isDigit(String input){
         try {
             Integer.parseInt(input);
             return true;
@@ -80,7 +85,7 @@ public class LottoGameService {
         }
     }
 
-    public boolean isThousandUnits(String inputPurchaseAmount){
+    private boolean isThousandUnits(String inputPurchaseAmount){
         int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
         int lottoPurchaseAmountRemain = purchaseAmount % 1000;
 
@@ -90,12 +95,7 @@ public class LottoGameService {
         return true;
     }
 
-    public int lottoQuantity(int lottoPurchaseAmount){
-        int lottoQuantity = lottoPurchaseAmount / 1000;
-        return lottoQuantity;
-    }
-
-    public String[] inputWinningNumberSplit(String inputWinningNumber){
+    private String[] inputWinningNumberSplit(String inputWinningNumber){
         String[] inputWinningNumberSplit = inputWinningNumber.split(",");
         if(inputWinningNumberSplit.length != 6){
             throw new IllegalArgumentException(LottoException.INPUT_NOT_SPLIT.getMessage());
@@ -103,7 +103,7 @@ public class LottoGameService {
         return inputWinningNumberSplit;
     }
 
-    public boolean isWinningNumberDigit(String[] inputWinningNumberSplit){
+    private boolean isWinningNumberDigit(String[] inputWinningNumberSplit){
         try {
 
             for (int i = 0 ; i < inputWinningNumberSplit.length ; i++){
@@ -115,7 +115,7 @@ public class LottoGameService {
         }
     }
 
-    public boolean isRange(int inputBonusNumber,int start , int end){
+    private boolean isRange(int inputBonusNumber,int start , int end){
 
         if(inputBonusNumber < start || inputBonusNumber > end){
             throw new IllegalArgumentException(LottoException.INPUT_NOT_RANGE.getMessage());

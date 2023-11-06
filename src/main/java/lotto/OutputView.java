@@ -14,7 +14,7 @@ public class OutputView {
     }
 
     public void printGeneratedNums(List<Integer> nums){
-        System.out.println(nums.stream().map(i -> i.toString()).collect(Collectors.joining(",  ", "[", "]")));
+        System.out.println(nums.stream().map(i -> i.toString()).collect(Collectors.joining(", ", "[", "]")));
     }
 
     public void askWinningNums(){

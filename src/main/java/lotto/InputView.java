@@ -13,18 +13,30 @@ public class InputView {
 			try {
 				System.out.println("구입금액을 입력해 주세요.");
 				String input = Console.readLine();
-				price = validatePrice(input);
+				price = validatePriceIsNumber(input);
+				validatePriceIsDivideBy1000(price);
 				break;
 			} catch(IllegalArgumentException e) {
-				System.out.println("[ERROR] 구입금액은 숫자만 입력 해주시기 바랍니다.");
+				System.out.println(e.getMessage());
 			}
 		}
 		return price;
 	}
 
-	int validatePrice(String input) {
-		int price = Integer.parseInt(input);
+	int validatePriceIsNumber(String input) {
+		int price = 0;
+		try {
+			price = Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("[ERROR] 구입금액은 숫자만 입력할 수 있습니다.");
+		}
 		return price;
+	}
+
+	void validatePriceIsDivideBy1000(int price) {
+		if(price % 1000 != 0) {
+			throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위로 입력해주세요.");
+		}
 	}
 
 	String getLottoNumber() {

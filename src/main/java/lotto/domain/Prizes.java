@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Prizes {
+
     private final Map<Prize, Integer> prizes;
 
     public Prizes(List<Prize> prizes) {
@@ -25,8 +26,8 @@ public class Prizes {
 
     private void updatePrizes(List<Prize> prizes) {
         for (Prize prize : prizes) {
-            this.prizes
-                    .put(prize, this.prizes.get(prize)+1);
+            Integer currentCount = this.prizes.get(prize);
+            this.prizes.put(prize, currentCount++);
         }
     }
 
@@ -38,8 +39,8 @@ public class Prizes {
     private Double getTotalReward() {
         Double totalReward = 0.0;
         for (Prize prize : prizes.keySet()) {
-            Integer count = prizes.get(prize);
-            totalReward += prize.getReward() * count;
+            Integer currentCount = prizes.get(prize);
+            totalReward += prize.getReward() * currentCount;
         }
 
         return totalReward;
@@ -47,12 +48,12 @@ public class Prizes {
 
     public Double getTotalBenefit(Integer totalSpendAmount) {
         Double totalReward = getTotalReward();
-        if (totalReward == 0) {
+        if (totalReward == 0.0) {
             return 0.0;
         }
 
         Double totalBenefit = (totalReward / totalSpendAmount) * 100.0;
-        return Math.round(totalBenefit * 100) / 100.0;
+        return Math.round(totalBenefit * 100.0) / 100.0;
     }
 
 }

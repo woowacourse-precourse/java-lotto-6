@@ -9,37 +9,45 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 
 public class LottoService {
-    private final Amount amount;
-    private final BonusLotto bonusLotto;
-    private final Lotto lotto;
-    private final UserLotto userLotto;
-    private ConcurrentHashMap<List<Integer>, Winning> winngResult;
+    private final List<List<Integer>> userNumbers;
+    private final List<Integer> numbers;
+    private final int bonusNumber;
+    private ConcurrentHashMap<List<Integer>, Winning> winningResult;
 
-    public LottoService(Amount amount, UserLotto userLotto, Lotto lotto, BonusLotto bonusLotto) {
-        this. amount = amount;
-        this.userLotto = userLotto;
-        this.lotto = lotto;
-        this.bonusLotto = bonusLotto;
+    public LottoService(List<List<Integer> >userNumbers, List<Integer> numbers, int bonusNumber) {
+        this.userNumbers = userNumbers;
+        this.numbers = numbers;
+        this.bonusNumber = bonusNumber;
     }
-    public void compareLottoNumber() {
-        winngResult = countEqualNumber();
+    public ConcurrentHashMap<List<Integer>, Winning> compareLottoNumber() {
+        winningResult = countEqualNumber();
 
-        for (Map.Entry<List<Integer>, Winning> entry : winngResult.entrySet()) {
-            if(entry.getValue().getEqualCount().equals(5)) {
-                entry.getValue().updateBonus(entry.getKey(), bonusLotto.getBonusNumber());
+        for (Map.Entry<List<Integer>, Winning> entrySet : winningResult.entrySet()) {
+            System.out.println(entrySet.getKey() + " : " + entrySet.getValue().getEqualCount() + "," + entrySet.getValue().getBonus());
+        }
+
+        for (Map.Entry<List<Integer>, Winning> entry : winningResult.entrySet()) {
+            if(entry.getValue().getEqualCount() == 5) {
+                entry.getValue().updateBonus(entry.getKey(), bonusNumber);
             }
         }
+
+        for (Map.Entry<List<Integer>, Winning> entrySet : winningResult.entrySet()) {
+            System.out.println(entrySet.getKey() + " : " + entrySet.getValue().getEqualCount() + "," + entrySet.getValue().getBonus());
+        }
+
+        return winningResult;
     }
 
     private ConcurrentHashMap<List<Integer>, Winning> countEqualNumber() {
         List<Long> equalCounts = new ArrayList<>();
 
-        for (List<Integer> userNumbers : userLotto.getUserNumbers()) {
-            equalCounts.add(userNumbers.stream().filter(u -> lotto.getNumbers().stream()
-                            .anyMatch(Predicate.isEqual(u)))
+        for (List<Integer> userNumber : userNumbers) {
+            equalCounts.add(userNumber.stream().filter(number -> numbers.stream()
+                            .anyMatch(Predicate.isEqual(number)))
                     .count());
         }
-        WinningResult winningResult = new WinningResult(userLotto, equalCounts);
+        WinningResult winningResult = new WinningResult(userNumbers, equalCounts);
 
         return winningResult.getWinngResult();
     }

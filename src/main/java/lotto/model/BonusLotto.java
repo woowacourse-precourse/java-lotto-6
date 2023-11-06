@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.List;
 
-import static lotto.Message.ErrorMessage.LOTTO_IS_DUPLICATE;
 import static lotto.Message.ErrorMessage.LOTTO_RANGE_ERROR_MESSAGE;
 import static lotto.Message.ErrorMessage.BONUS_LOTTO_IS_DUPLICATE;
 import static lotto.config.LottoConfig.*;

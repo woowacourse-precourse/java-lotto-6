@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.LottoFactory;
 import lotto.model.BonusLotto;
 import lotto.model.Lotto;
 import lotto.model.UserLotto;
@@ -31,7 +30,8 @@ public class LottoController {
             //보너스 번호 입력
             BonusLotto bonusLotto = new BonusLotto(Integer.parseInt(inputView.input()), lotto.getNumbers());
             //당첨 내역 출력
-            LottoService lottoService = new LottoService(amount, userLotto, lotto, bonusLotto);
+            LottoService lottoService = new LottoService(userLotto.getUserNumbers(), lotto.getNumbers(), bonusLotto.getBonusNumber());
+            lottoService.compareLottoNumber();
             //총 수익률 출력
         } catch (NumberFormatException e) {
             throw new NumberFormatException(VALUE_IS_NOT_CONVERT_INTEGER.getMessage());

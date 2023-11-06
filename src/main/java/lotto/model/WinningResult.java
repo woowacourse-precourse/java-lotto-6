@@ -4,15 +4,15 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class WinningResult {
-    private final ConcurrentHashMap<List<Integer>, Winning> winngResult = new ConcurrentHashMap<List<Integer>, Winning>();
+    private final ConcurrentHashMap<List<Integer>, Winning> winningResult = new ConcurrentHashMap<List<Integer>, Winning>();
 
-    public WinningResult(UserLotto userLotto, List<Long> equalCounts) {
-        for (List<Integer> userNumbers : userLotto.getUserNumbers()) {
-            winngResult.put(userNumbers, new Winning(equalCounts.get(userLotto.getUserNumbers().indexOf(userNumbers))));
+    public WinningResult(List<List<Integer>> userNumbers, List<Long> equalCounts) {
+        for (List<Integer> userNumber : userNumbers) {
+            winningResult.put(userNumber, new Winning(equalCounts.get(userNumbers.indexOf(userNumber))));
         }
     }
 
     public ConcurrentHashMap<List<Integer>, Winning> getWinngResult() {
-        return new ConcurrentHashMap<>(winngResult);
+        return new ConcurrentHashMap<>(winningResult);
     }
 }

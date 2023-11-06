@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class WinningTest {
-    @DisplayName("model_Winning_업데이트")
+    @DisplayName("model_Winning_보너스_볼_업데이트")
     @Test
     public void model_Winning_updateBonus() {
         Long equalCount = 5L;
@@ -23,7 +23,7 @@ class WinningTest {
         assertThat(winning.getBonus()).contains("보너스 볼");
     }
 
-    @DisplayName("model_Winning_업데이트_하지_않음")
+    @DisplayName("model_Winning_보너스_볼_업데이트_하지_않음")
     @Test
     public void model_Winning_not_updateBonus() {
         Long equalCount = 5L;

@@ -12,6 +12,11 @@ public class GameService {
 
         System.out.println("구입금액을 입력해 주세요.");
         int price = getPrice();
+
+        List<Lotto> lottos = createLottoByPrice(price);
+        getLottoByPrice(lottos);
+
+
     }
 
     public int getPrice() {
@@ -30,4 +35,24 @@ public class GameService {
         }
         return price;
     }
+
+    public List<Lotto> createLottoByPrice(int price) {
+        List<Lotto> lottos = new ArrayList<>();
+        int createLottoNumber = price / 1000;
+        System.out.println(createLottoNumber + "개를 구매했습니다.");
+
+        for (int i = 0; i < createLottoNumber; i++) {
+            List<Integer> newLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(newLotto));
+        }
+
+        return lottos;
+    }
+
+    public void getLottoByPrice(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getLotto());
+        }
+    }
+
 }

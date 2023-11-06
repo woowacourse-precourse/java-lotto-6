@@ -22,7 +22,7 @@ public class LottoResult {
 
   public static String calculateRoundedProfitabilityWithCommas(double value) {
     double roundedValue = Math.round(value * 100.0) / 100.0;
-    return String.format("%,.2f", roundedValue);
+    return String.format("%,.1f", roundedValue);
   }
 
 }

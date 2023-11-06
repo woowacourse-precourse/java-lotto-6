@@ -1,6 +1,6 @@
 package lotto.utils;
 
-import static lotto.utils.Constants.DELIMETER;
+import static lotto.utils.Constants.DELIMITER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Util {
     }
 
     public static List<Integer> numberList(String winningNumber) {
-        return Arrays.stream(winningNumber.split(DELIMETER))
+        return Arrays.stream(winningNumber.split(DELIMITER))
                 .map(String::trim)
                 .map(Util::convertToInt)
                 .collect(Collectors.toList());

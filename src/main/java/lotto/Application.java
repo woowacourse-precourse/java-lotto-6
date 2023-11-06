@@ -4,8 +4,7 @@ import lotto.controller.GameController;
 
 public class Application {
     public static void main(String[] args) {
-    // TODO: 프로그램 구현
-        final GameController game = new GameController();
-        game.start();
+        GameController gameController = new GameController();
+        gameController.run();
     }
 }

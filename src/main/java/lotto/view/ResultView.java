@@ -9,7 +9,7 @@ public class ResultView {
     private static final String TICKET_COUNT_MESSAGE = "%d개를 구매했습니다.";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계\n---";
     private static final String REVENUE_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
-    private static final String MATCH_MESSAGE_FORMAT = "%s: %d개";
+    private static final String MATCH_MESSAGE_FORMAT = "%s%d개";
 
     public static void printTicketCount(int count) {
         System.out.printf((TICKET_COUNT_MESSAGE) + "%n", count);

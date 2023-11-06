@@ -30,12 +30,12 @@ public class Judgment {
     }
 
     public Boolean isSameBonusNum(Lotto lotto) {
-        Integer numOfLotto = 0;
+        Integer lottoNumber = 0;
 
         for (int i = 0; i < SIZE_LOTTO_NUMBERS; i++) {
-            numOfLotto = getLottoNumber(lotto, i);
+            lottoNumber = getLottoNumber(lotto, i);
 
-            if (isSameBonusNumber(numOfLotto)) {
+            if (isSameBonusNumber(lottoNumber)) {
                 return true;
             }
         }

@@ -117,5 +117,15 @@ public class MoneyTest {
         assertTrue(result.isSameAmount(3000));
     }
 
+    @Test
+    public void 금액_천단위_구분자_문자형식으로_변환() {
+        // Given
+        Money money1 = Money.create(1000);
 
+        // When
+        String result = money1.toString();
+
+        // Then
+        assertThat(result).isEqualTo("1,000");
+    }
 }

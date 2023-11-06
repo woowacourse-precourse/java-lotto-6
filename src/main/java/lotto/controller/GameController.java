@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.LotteryOffice;
 import lotto.domain.LottoStore;
+import lotto.domain.MarginCalculator;
 import lotto.domain.lotto.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -35,6 +36,8 @@ public class GameController {
         System.out.println(bonusNumber);
         LotteryOffice lotteryOffice = new LotteryOffice(lottoStore.getIssuedLotto(), winningTicket, bonusNumber);
         outputView.printWinningResult(lotteryOffice.getWinningsAndCounts());
+        MarginCalculator marginCalculator = new MarginCalculator(lotteryOffice.getWinningsAndCounts(), userPurchaseAmount);
+        System.out.println(marginCalculator.getMargin());
     }
 
     private Lotto getWinningTicket() {

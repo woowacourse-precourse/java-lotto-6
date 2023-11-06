@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.domain.Rankings.decideRankings;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +40,7 @@ public class LotteryOffice {
         for (Rankings rankings : winningResult) {
             finalResult.put(rankings, finalResult.get(rankings) + INCREMENT);
         }
+        finalResult.remove(Rankings.NONE);
         return finalResult;
     }
 

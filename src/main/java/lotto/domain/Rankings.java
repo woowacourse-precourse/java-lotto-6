@@ -44,8 +44,8 @@ public enum Rankings {
                 .orElse(NONE);
     }
 
-    public int getPrizeMoney() {
-        return prizeMoney;
+    public int getPrizeMoney(int count) {
+        return prizeMoney * count;
     }
 
     public String getMessage(int count) {

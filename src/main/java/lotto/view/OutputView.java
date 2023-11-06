@@ -21,7 +21,6 @@ public class OutputView {
     }
 
     public void printWinningResult(Map<Rankings,Integer> finalResult) {
-        finalResult.remove(Rankings.NONE);
         finalResult.forEach((key, value) -> {
             System.out.println(key.getMessage(value));
         });

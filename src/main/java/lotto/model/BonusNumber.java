@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.LottoValue;
 
 public class BonusNumber {
     private final int bonusNumber;
@@ -12,7 +13,8 @@ public class BonusNumber {
     }
 
     private void validateRange(int bonusNumber) {
-        if (bonusNumber < 1 || 45 < bonusNumber) {
+        if (bonusNumber < LottoValue.MINIMUM_LOTTO_NUMBER.getValue()
+                || LottoValue.MAXIMUM_LOTTO_NUMBER.getValue() < bonusNumber) {
             throw new IllegalArgumentException();
         }
     }

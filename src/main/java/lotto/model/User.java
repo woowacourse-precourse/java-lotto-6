@@ -3,6 +3,8 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.LottoValue;
+import lotto.RankValue;
 
 public class User {
     private final int payment;
@@ -13,13 +15,13 @@ public class User {
     public User(int payment) {
         validatePayment(payment);
         this.payment = payment;
-        this.purchaseNumber = payment / 1000;
+        this.purchaseNumber = payment / (int)LottoValue.PAYMENT_UNIT.getValue();
         this.purchasedLottoNumbers = generateLottoNumbers(purchaseNumber);
         this.rankCount = initCount();
     }
 
     private void validatePayment(int payment) {
-        if (payment % 1000 != 0) {
+        if (payment % (int)LottoValue.PAYMENT_UNIT.getValue() != 0) {
             throw new IllegalArgumentException();
         }
     }
@@ -27,8 +29,8 @@ public class User {
     private List<Integer> initCount() {
         this.rankCount = new ArrayList<>();
 
-        for (int i = 0; i < ModelValue.RANK_NUMBER.getModelValue(); i++) {
-            this.rankCount.add(0);
+        for (int i = 0; i < RankValue.RANK_NUMBER.getRankValue(); i++) {
+            this.rankCount.add(RankValue.INIT_RANK_ARRAY.getRankValue());
         }
         return this.rankCount;
     }
@@ -44,16 +46,16 @@ public class User {
     }
 
     public void increaseRankCount(int rank) {
-        if (rank == ModelValue.FIFTH_PLACE.getModelValue()) {
-            this.rankCount.set(ModelValue.FIFTH_PLACE.getModelValue(), this.rankCount.get(ModelValue.FIFTH_PLACE.getModelValue()) + 1);
-        } else if (rank == ModelValue.FOURTH_PLACE.getModelValue()) {
-            this.rankCount.set(ModelValue.FOURTH_PLACE.getModelValue(), this.rankCount.get(ModelValue.FOURTH_PLACE.getModelValue()) + 1);
-        } else if (rank == ModelValue.THIRD_PLACE.getModelValue()) {
-            this.rankCount.set(ModelValue.THIRD_PLACE.getModelValue(), this.rankCount.get(ModelValue.THIRD_PLACE.getModelValue()) + 1);
-        } else if (rank == ModelValue.SECOND_PLACE.getModelValue()) {
-            this.rankCount.set(ModelValue.SECOND_PLACE.getModelValue(), this.rankCount.get(ModelValue.SECOND_PLACE.getModelValue()) + 1);
-        } else if (rank == ModelValue.FIRST_PLACE.getModelValue()) {
-            this.rankCount.set(ModelValue.FIRST_PLACE.getModelValue(), this.rankCount.get(ModelValue.FIRST_PLACE.getModelValue()) + 1);
+        if (rank == RankValue.FIFTH_PLACE.getRankValue()) {
+            this.rankCount.set(RankValue.FIFTH_PLACE.getRankValue(), this.rankCount.get(RankValue.FIFTH_PLACE.getRankValue()) + 1);
+        } else if (rank == RankValue.FOURTH_PLACE.getRankValue()) {
+            this.rankCount.set(RankValue.FOURTH_PLACE.getRankValue(), this.rankCount.get(RankValue.FOURTH_PLACE.getRankValue()) + 1);
+        } else if (rank == RankValue.THIRD_PLACE.getRankValue()) {
+            this.rankCount.set(RankValue.THIRD_PLACE.getRankValue(), this.rankCount.get(RankValue.THIRD_PLACE.getRankValue()) + 1);
+        } else if (rank == RankValue.SECOND_PLACE.getRankValue()) {
+            this.rankCount.set(RankValue.SECOND_PLACE.getRankValue(), this.rankCount.get(RankValue.SECOND_PLACE.getRankValue()) + 1);
+        } else if (rank == RankValue.FIRST_PLACE.getRankValue()) {
+            this.rankCount.set(RankValue.FIRST_PLACE.getRankValue(), this.rankCount.get(RankValue.FIRST_PLACE.getRankValue()) + 1);
         }
     }
 

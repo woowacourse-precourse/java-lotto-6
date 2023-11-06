@@ -2,13 +2,14 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.LottoValue;
+import lotto.RankValue;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.view.Output;
 
 public class LottoProcedure {
-    private final int MINIMUM_NUMBER_OF_SAME = 3;
     private final int LOTTO_SIZE = 6;
     private final List<Double> reward = new ArrayList<>();
     User user;
@@ -16,16 +17,16 @@ public class LottoProcedure {
     BonusNumber bonusNumber;
 
     public LottoProcedure() {
-        List<Double> reward = List.of(Values.LOSE.getValue(),
-                Values.FIRST_REWARD.getValue(),
-                Values.SECOND_REWARD.getValue(),
-                Values.THIRD_REWARD.getValue(),
-                Values.FOURTH_REWARD.getValue(),
-                Values.FIFTH_REWARD.getValue());
+        List<Double> reward = List.of(LottoValue.LOSE.getValue(),
+                LottoValue.FIRST_REWARD.getValue(),
+                LottoValue.SECOND_REWARD.getValue(),
+                LottoValue.THIRD_REWARD.getValue(),
+                LottoValue.FOURTH_REWARD.getValue(),
+                LottoValue.FIFTH_REWARD.getValue());
         this.reward.addAll(reward);
     }
 
-    public void lottoProgress() {
+    public void lottoProceed() {
         user = Setting.getPayment();
         Output.printAboutPurchase(user);
         winningNumber = Setting.getLotto();
@@ -57,23 +58,23 @@ public class LottoProcedure {
 
 
     public int calculateRank(double count) {
-        if (count == 3) {
-            return 5;
-        } else if (count == 4) {
-            return 4;
-        } else if (count == 5) {
-            return 3;
-        } else if (count == 5.5) {
-            return 2;
-        } else if (count == 6) {
-            return 1;
+        if (count == LottoValue.MATCH_NUMBER_TO_WIN_FIFTH.getValue()) {
+            return RankValue.FIFTH_PLACE.getRankValue();
+        } else if (count == LottoValue.MATCH_NUMBER_TO_WIN_FOURTH.getValue()) {
+            return RankValue.FOURTH_PLACE.getRankValue();
+        } else if (count == LottoValue.MATCH_NUMBER_TO_WIN_THIRD.getValue()) {
+            return RankValue.THIRD_PLACE.getRankValue();
+        } else if (count == LottoValue.MATCH_NUMBER_TO_WIN_SECOND.getValue()) {
+            return RankValue.SECOND_PLACE.getRankValue();
+        } else if (count == LottoValue.MATCH_NUMBER_TO_WIN_FIRST.getValue()) {
+            return RankValue.FIRST_PLACE.getRankValue();
         }
-        return 0;
+        return RankValue.LOSE.getRankValue();
     }
 
     public double checkBonusNumber(double count, List<Integer> winningNumbers, int bonusNumber) {
-        if (count == Values.MATCH_NUMBER_TO_WIN_THIRD.getValue() & winningNumbers.contains(bonusNumber)) {
-            return Values.MATCH_NUMBER_TO_WIN_SECOND.getValue();
+        if (count == LottoValue.MATCH_NUMBER_TO_WIN_THIRD.getValue() & winningNumbers.contains(bonusNumber)) {
+            return LottoValue.MATCH_NUMBER_TO_WIN_SECOND.getValue();
         }
         return count;
     }

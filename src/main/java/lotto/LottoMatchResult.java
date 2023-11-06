@@ -3,18 +3,20 @@ package lotto;
 import java.text.DecimalFormat;
 
 public enum LottoMatchResult {
-    UNMATCHED("0개 일치", 0),
-    MATCHED_3("3개 일치", 5000),
-    MATCHED_4("4개 일치", 50000),
-    MATCHED_5("5개 일치", 1500000),
-    MATCHED_5_WITH_BONUS("5개 일치, 보너스 볼 일치", 30000000),
-    MATCHED_6("6개 일치", 2000000000);
+    UNMATCHED("0개 일치", 0, 0),
+    MATCHED_3("3개 일치", 1, 5000),
+    MATCHED_4("4개 일치", 2, 50000),
+    MATCHED_5("5개 일치", 3, 1500000),
+    MATCHED_5_WITH_BONUS("5개 일치, 보너스 볼 일치", 4, 30000000),
+    MATCHED_6("6개 일치", 5, 2000000000);
 
     private final String name;
+    private final int index;
     private final int reward;
 
-    LottoMatchResult(String name, int reward) {
+    LottoMatchResult(String name, int index, int reward) {
         this.name = name;
+        this.index = index;
         this.reward = reward;
     }
 
@@ -36,6 +38,9 @@ public enum LottoMatchResult {
 
     public String getName() {
         return name;
+    }
+    public int getIndex() {
+        return index;
     }
 
     public int getReward() {

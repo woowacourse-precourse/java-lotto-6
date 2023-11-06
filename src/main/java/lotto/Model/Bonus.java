@@ -10,6 +10,10 @@ public class Bonus {
         this.bonusNumber = toInt(input);
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validate(String input) {
         int validInput = isNumber(input);
         isCorrectRange(validInput);
@@ -20,7 +24,7 @@ public class Bonus {
         try {
             return toInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로만 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45사이의 숫자로만 입력해야 합니다.");
         }
     }
 

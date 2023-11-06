@@ -25,4 +25,14 @@ public class InputView {
         }
         return winningNumber;
     }
+
+    String getBonusNumber() {
+        String bonusNumber;
+        try {
+            bonusNumber = Console.readLine();
+        } catch (NoSuchElementException noSuchElementException) {
+            throw new IllegalArgumentException();
+        }
+        return bonusNumber;
+    }
 }

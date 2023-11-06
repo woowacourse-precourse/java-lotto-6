@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.DivideMoneyException;
+import lotto.exception.ZeroMoneyException;
+
 public class Money {
     private final int money;
 
@@ -18,13 +21,13 @@ public class Money {
 
     private void validateZero(int inputValue) {
         if (inputValue == ZERO) {
-            throw new IllegalArgumentException();
+            throw new ZeroMoneyException();
         }
     }
 
     private void validateDivideMoney(int inputValue) {
         if (inputValue % THOUSAND != ZERO) {
-            throw new IllegalArgumentException();
+            throw new DivideMoneyException();
         }
     }
 

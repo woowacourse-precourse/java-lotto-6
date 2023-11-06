@@ -1,4 +1,7 @@
-package lotto;
+package lotto.view;
+
+import lotto.domain.Lottos;
+import lotto.domain.Money;
 
 public class OutputView {
     private static final String TICKET_COUNT = "%d개를 구매했습니다.";

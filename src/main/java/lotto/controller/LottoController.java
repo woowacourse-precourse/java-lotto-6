@@ -1,8 +1,12 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.LottoGenerator;
+import lotto.domain.Lottos;
+import lotto.domain.Money;
+import lotto.view.OutputView;
 
-public class Controller {
+public class LottoController {
     public void run() {
         Money money = getMoney();
         Lottos lottos = getLottos(money.getTicket());

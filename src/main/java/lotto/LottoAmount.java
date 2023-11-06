@@ -10,6 +10,9 @@ public class LottoAmount {
         validateDivisibleByThousand(money);
         this.amount = money;
     }
+    public int getAmount() {
+        return amount;
+    }
 
     private void validateDivisibleByThousand(int money) {
         if (money % LOTTO_PRICE != 0) {

@@ -11,7 +11,7 @@ import java.util.List;
 public class InputView {
     private final String WINNING_NUMBERS_DELIMITER = ",";
 
-    public int inputMoney() {
+    public static int inputMoney() {
         try {
             return Integer.parseInt(readLine());
         } catch (NumberFormatException e) {

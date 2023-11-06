@@ -17,11 +17,11 @@ public class Validator {
         }
     }
 
-    public static void winNumberNum(List<Integer> winNumber) {
-        if (winNumber.size() != LOTTO_NUM) {
-            throw new IllegalArgumentException();
-        }
-    }
+//    public static void winNumberNum(List<Integer> winNumber) {
+//        if (winNumber.size() != LOTTO_NUM) {
+//            throw new IllegalArgumentException();
+//        }
+//    }
 
     public static void winNumberDuplication(List<Integer> winNumber) {
         Set<Integer> setWinNumber = winNumber.stream().collect(Collectors.toSet());

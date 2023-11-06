@@ -13,14 +13,14 @@ public class WinningNumberTest {
     @Test
     public void purchaseNumber() {
         WinningNumber winningNumber = new WinningNumber(List.of(
-            new LottoNumber(1),
-            new LottoNumber(2),
-            new LottoNumber(3),
-            new LottoNumber(4),
-            new LottoNumber(5),
-            new LottoNumber(6)
+                new LottoNumber(1),
+                new LottoNumber(2),
+                new LottoNumber(3),
+                new LottoNumber(4),
+                new LottoNumber(5),
+                new LottoNumber(6)
         ), new LottoNumber(7));
-        assertThat(winningNumber.getNumbersValue()).isEqualTo(List.of(1,2,3,4,5,6));
+        assertThat(winningNumber.getNumbersValue()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
         assertThat(winningNumber.getBonusNumberValue()).isEqualTo(7);
     }
 
@@ -28,13 +28,15 @@ public class WinningNumberTest {
     @Test
     public void purchaseNumberLength() {
         assertThatThrownBy(
-            () -> {new PurchaseNumber(List.of(
-                    new LottoNumber(1),
-                    new LottoNumber(2),
-                    new LottoNumber(3),
-                    new LottoNumber(4),
-                    new LottoNumber(5)));
-            }
+                () -> {
+                    new WinningNumber(List.of(
+                            new LottoNumber(1),
+                            new LottoNumber(2),
+                            new LottoNumber(3),
+                            new LottoNumber(4),
+                            new LottoNumber(5)
+                    ), new LottoNumber(7));
+                }
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +44,16 @@ public class WinningNumberTest {
     @Test
     public void purchaseNumberDuplicated() {
         assertThatThrownBy(
-            () -> new PurchaseNumber(null)
+                () -> {
+                    new WinningNumber(List.of(
+                            new LottoNumber(1),
+                            new LottoNumber(1),
+                            new LottoNumber(3),
+                            new LottoNumber(4),
+                            new LottoNumber(5),
+                            new LottoNumber(6)
+                    ), new LottoNumber(7));
+                }
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -50,7 +61,16 @@ public class WinningNumberTest {
     @Test
     public void purchaseNumberAndBonus() {
         assertThatThrownBy(
-            () -> new PurchaseNumber(null)
+                () -> {
+                    new WinningNumber(List.of(
+                            new LottoNumber(1),
+                            new LottoNumber(1),
+                            new LottoNumber(3),
+                            new LottoNumber(4),
+                            new LottoNumber(5),
+                            new LottoNumber(6)
+                    ), new LottoNumber(6));
+                }
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

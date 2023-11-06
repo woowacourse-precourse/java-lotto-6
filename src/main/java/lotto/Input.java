@@ -12,13 +12,11 @@ public class Input {
     public List<Integer> input(InputType inputtype){
         String inputStr = Utils.input();
         List<Integer> inputResult = new ArrayList<>();
-        if (inputtype == InputType.PURCHASE_AMOUNT){
-            inputResult = purchaseAmountInput(inputStr);
-        }
+        inputTypeSelect(inputStr, inputtype);
         return inputResult;
     }
 
-    private List<Integer> inputTypeSelect(InputType inputType, String inputStr){
+    private List<Integer> inputTypeSelect(String inputStr, InputType inputType){
         List<Integer> conversionResult = new ArrayList<>();
         try{
             if (inputType == InputType.PURCHASE_AMOUNT){
@@ -33,7 +31,6 @@ public class Input {
             }
             */
         }catch(IllegalArgumentException e){
-            System.out.println("TEST");
             return null;
         }
         return conversionResult;
@@ -41,7 +38,11 @@ public class Input {
 
     public List<Integer> purchaseAmountInput(String inputStr){
         List<Integer> conversionResult = new ArrayList<>();
-        purchaseAmountValidate(inputStr);
+        try{
+            purchaseAmountValidate(inputStr);
+        } catch(IllegalArgumentException e){
+            throw e;
+        }
         conversionResult.add(Integer.parseInt(inputStr));
         return conversionResult;
     }
@@ -54,6 +55,9 @@ public class Input {
             if (Utils.isChar(inputStr.charAt(i)) == false) {
                 throw new IllegalArgumentException(ErrorMessage.NONNUMERICCHAR.getMessage());
             }
+        }
+        if (Integer.parseInt(inputStr) % 1000 != 0){
+            throw new IllegalArgumentException(ErrorMessage.NOTDIVIED1000.getMessage());
         }
     }
 

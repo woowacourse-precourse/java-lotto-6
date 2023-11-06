@@ -23,20 +23,20 @@ public class Prizes {
     }
 
     private void initPrizes() {
-        for (Prize prize : Prize.values()) {
+        for (final Prize prize : Prize.values()) {
             prizes.put(prize, INIT_PRIZE_COUNT);
         }
     }
 
-    private void updatePrizes(List<Prize> prizes) {
-        for (Prize prize : prizes) {
+    private void updatePrizes(final List<Prize> prizes) {
+        for (final Prize prize : prizes) {
             Integer currentCount = this.prizes.get(prize);
             currentCount++;
             this.prizes.put(prize, currentCount);
         }
     }
 
-    public Integer countPrize(Prize prize) {
+    public Integer countPrize(final Prize prize) {
         return prizes.get(prize);
     }
 
@@ -51,14 +51,14 @@ public class Prizes {
         return totalReward;
     }
 
-    public Double getRoundedTotalBenefit(Integer totalSpendAmount) {
-        Double totalBenefit = calculateTotalBenefit(totalSpendAmount);
-        Double roundedTotalBenefit = roundOffTotalBenefit(totalBenefit);
+    public Double getRoundedTotalBenefit(final Integer totalSpendAmount) {
+        final Double totalBenefit = calculateTotalBenefit(totalSpendAmount);
+        final Double roundedTotalBenefit = roundOffTotalBenefit(totalBenefit);
         return roundedTotalBenefit;
     }
 
-    private Double calculateTotalBenefit(Integer totalSpendAmount) {
-        Double totalReward = getTotalReward();
+    private Double calculateTotalBenefit(final Integer totalSpendAmount) {
+        final Double totalReward = getTotalReward();
         if (totalReward == INIT_REWARD.getSetting()) {
             return NO_BENEFIT.getSetting();
         }
@@ -67,7 +67,7 @@ public class Prizes {
     }
 
 
-    private Double roundOffTotalBenefit(Double totalBenefit) {
+    private Double roundOffTotalBenefit(final Double totalBenefit) {
         return Math.round(totalBenefit * ROUND_INDICATOR.getSetting())
                 / ROUND_INDICATOR.getSetting();
     }

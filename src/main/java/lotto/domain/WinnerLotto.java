@@ -14,6 +14,7 @@ public class WinnerLotto {
     }
 
 
+
     public List<Integer> getWinnerNumbers() {
         return Collections.unmodifiableList(winnerNumbers);
     }

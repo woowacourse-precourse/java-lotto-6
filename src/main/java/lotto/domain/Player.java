@@ -26,6 +26,14 @@ public class Player {
         return new Player(userInput);
     }
 
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
+    public int getGameCount() {
+        return gameCount;
+    }
+
     private void validate(int convertedInput) {
         validateNegativeNumber(convertedInput);
         validateLessThanMinimumAmount(convertedInput);

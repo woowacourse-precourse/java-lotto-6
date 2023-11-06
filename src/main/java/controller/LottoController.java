@@ -1,14 +1,12 @@
 package controller;
 
-import model.MyLotto;
-import model.WinningNumber;
+import model.LottoNumber;
 import service.InputService;
-import view.OutputView;
 
 public class LottoController {
 
     InputService inputService = new InputService();
-    public WinningNumber winningNumber = new WinningNumber();
+    public LottoNumber winningNumber = new LottoNumber();
 
 
     public LottoController(){
@@ -17,7 +15,7 @@ public class LottoController {
 
     public void startLotto(){
         inputService.getLottoCost();
-
+        inputService.createLottoNumber();
     }
 
 }

@@ -5,7 +5,6 @@ import lotto.constant.LottoRank;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoReceiptDto;
 import lotto.dto.LottoResultDto;
-
 import java.util.List;
 import java.util.Map;
 
@@ -39,13 +38,22 @@ public class OutputView {
 
     private void printResult(Map<LottoRank, Integer> result) {
         for (LottoRank lottoRank : result.keySet()) {
-            print(String.format(
-                    InformationMessage.WINNING_RESULT_FORMAT.getMessage(),
-                    lottoRank.getMatchedNumberCount(),
-                    lottoRank.getPrizeMoney(),
-                    result.get(lottoRank)
-                    ));
+            printRank(lottoRank, result.get(lottoRank));
         }
+    }
+
+    private void printRank(LottoRank rank, int count) {
+        String format = InformationMessage.GENERAL_RANK_RESULT_FORMAT.getMessage();
+        if(rank.equals(LottoRank.FIVE_AND_BONUS_MATCH)) {
+            format = InformationMessage.SECOND_RANK_RESULT_FORMAT.getMessage();
+        }
+
+        print(String.format(
+                format,
+                rank.getMatchedNumberCount(),
+                rank.getPrizeMoney(),
+                count
+        ));
     }
 
     private void printProfitRate(double profitRate) {

@@ -13,7 +13,7 @@ public enum Message {
     private final String content;
 
     Message(String message) {
-        this.content = message;
+        this.content = "[ERROR] "+message;
     }
 
     public String getMessage() {

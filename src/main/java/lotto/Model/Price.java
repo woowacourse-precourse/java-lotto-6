@@ -16,6 +16,13 @@ public class Price {
         return purchasePrice / 1000;
     }
 
+    public double divideWith(int totalPrize) {
+        if (totalPrize == 0) {
+            return 0d;
+        }
+        return (double)totalPrize / purchasePrice * 100;
+    }
+
     private void validate(String input) {
         int validInput = isNumber(input);
         isDivideWithOneThousands(validInput);

@@ -3,6 +3,7 @@ package lotto.controller;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import lotto.dto.requset.Price;
+import lotto.service.LottoService;
 import lotto.view.Exception;
 import lotto.view.ExceptionText;
 import lotto.view.LottoView;
@@ -13,9 +14,12 @@ public class LottoController implements Input {
 	private Output lottoView;
 	private Exception exceptionView;
 
-	public LottoController(Output lottoView, Exception exceptionView) {
+	private LottoService lottoService;
+
+	public LottoController(Output lottoView, Exception exceptionView, LottoService lottoService) {
 		this.lottoView = lottoView;
 		this.exceptionView = exceptionView;
+		this.lottoService = lottoService;
 	}
 
 	@Override
@@ -25,6 +29,7 @@ public class LottoController implements Input {
 			Price price = new Price(readLine());
 			validatePriceInput(price.getPrice());
 			System.out.println("성공" + price.getPrice());
+			lottoView.PurchaseCompleted(lottoService.createLotto(price.getPrice()));
 		} catch (IllegalArgumentException e) {
 			exceptionView.PriceException(e);
 			purchasePrice();

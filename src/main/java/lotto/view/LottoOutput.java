@@ -24,4 +24,8 @@ public class LottoOutput {
         return "당첨 번호를 입력해 주세요.";
     }
 
+    public String requestBonusNumber() {
+        return "보너스 번호를 입력해 주세요.";
+    }
+
 }

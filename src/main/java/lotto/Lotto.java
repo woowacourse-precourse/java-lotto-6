@@ -1,8 +1,17 @@
 package lotto;
 
+import Exception.ContainDuplicatedNumberException;
+import Exception.InvalidLottoNumberCountException;
+import Exception.OutOfRangeNumberException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,9 +31,31 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        validateSize(numbers);
+        validateDuplication(numbers);
+        validateNumberRange(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new InvalidLottoNumberCountException();
         }
     }
+
+    private void validateDuplication(List<Integer> numbers) {
+        Set set = new HashSet(numbers);
+        if (numbers.size() != set.size()) {
+            throw new ContainDuplicatedNumberException();
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        for (int i : numbers) {
+            if (i < MIN_NUMBER || i > MAX_NUMBER) {
+                throw new OutOfRangeNumberException();
+            }
+        }
+    }
+
     // TODO: 추가 기능 구현
 }

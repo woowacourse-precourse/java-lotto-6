@@ -19,5 +19,6 @@ public class LottoController {
         winner = new Winner(inputView.lottoWinningNumber());
         winner.lottoWinningBonusNumber(inputView.lottoWinningBonus(winner.noticeLottoWinningNumbers()));
         winner.compareWithUserLottoAndWinningLotto(user);
+        outputView.printTotalLottoResult(winner.countTotalLottoPrizes(), winner.totalProfitMargin());
     }
 }

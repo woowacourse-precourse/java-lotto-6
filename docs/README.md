@@ -91,8 +91,8 @@
 2. OutputView
    - [x] 로또 구매 수 메시지
    - [x] 구매한 로또 번호 메시지
-   - [] 당첨통계 메시지
-   - [] 수익률 메시지
+   - [x] 당첨통계 메시지
+   - [x] 수익률 메시지
 
 ### Controller
 1. LottoController

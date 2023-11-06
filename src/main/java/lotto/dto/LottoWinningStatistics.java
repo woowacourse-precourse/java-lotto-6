@@ -1,27 +1,16 @@
 package lotto.dto;
 
-import java.util.HashMap;
 import java.util.Map;
 import lotto.domain.LottoPrize;
 
 public class LottoWinningStatistics {
 
     private final double rewardRatio;
-    private final Map<LottoPrize, Integer> table = new HashMap<>();
+    private final Map<LottoPrize, Integer> prizeCountMap;
 
-    public LottoWinningStatistics(long purchaseAmount, Map<LottoPrize, Integer> prizeTable) {
-        long lottoWinningAmount = calculateLottoWinningAmount(prizeTable);
-        rewardRatio = (double) lottoWinningAmount / purchaseAmount;
-    }
-
-    private long calculateLottoWinningAmount(Map<LottoPrize, Integer> prizeTable) {
-        long lottoWinningAmount = 0L;
-        for (LottoPrize lottoPrize : prizeTable.keySet()) {
-            int numOfWins = prizeTable.getOrDefault(lottoPrize, 0);
-            lottoWinningAmount += lottoPrize.getWinningAmount();
-            this.table.put(lottoPrize, numOfWins);
-        }
-        return lottoWinningAmount;
+    public LottoWinningStatistics(double rewardRatio, Map<LottoPrize, Integer> prizeCountMap) {
+        this.rewardRatio = rewardRatio;
+        this.prizeCountMap = prizeCountMap;
     }
 
     public double getRewardRatio() {
@@ -29,6 +18,6 @@ public class LottoWinningStatistics {
     }
 
     public int getCountLottoPrize(LottoPrize lottoPrize) {
-        return table.getOrDefault(lottoPrize, 0);
+        return prizeCountMap.getOrDefault(lottoPrize, 0);
     }
 }

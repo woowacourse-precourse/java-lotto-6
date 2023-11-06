@@ -2,7 +2,6 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPurchase;
 import lotto.domain.LottoWinningResult;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
@@ -29,9 +28,8 @@ public class LottoGameController {
 
     private void printLottoWinningResult() {
         LottoWinningResult lottoWinningResult = lottoGameService.calculateLottoWinningResult();
-        LottoPurchase lottoPurchase = lottoGameService.getLottoPurchase();
         lottoGameView.printWinningStatistics(new LottoWinningStatistics(
-                lottoPurchase.getPurchaseAmount(),
+                lottoWinningResult.getRewardRatio(),
                 lottoWinningResult.getTable()));
     }
 

@@ -1,6 +1,8 @@
 package lotto.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonusNumber;
 import lotto.domain.LottoPrize;
@@ -26,16 +28,12 @@ public class LottoGameService {
     }
 
     public LottoWinningResult calculateLottoWinningResult() {
-        LottoWinningResult lottoWinningResult = new LottoWinningResult();
+        Map<LottoPrize, Integer> prizeCountMap = new HashMap<>();
         for (Lotto lottoTicket : lottoTickets) {
             LottoPrize lottoPrize = lottoTicket.prize(lottoWinningNumber, lottoBonusNumber);
-            lottoWinningResult.addPrize(lottoPrize);
+            prizeCountMap.put(lottoPrize, prizeCountMap.getOrDefault(lottoPrize, 0) + 1);
         }
-        return lottoWinningResult;
-    }
-
-    public LottoPurchase getLottoPurchase() {
-        return lottoPurchase;
+        return new LottoWinningResult(lottoPurchase, prizeCountMap);
     }
 
     public List<Lotto> createLottoPurchase(LottoPurchaseRequest lottoPurchaseRequest) {

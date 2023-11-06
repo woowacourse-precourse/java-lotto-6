@@ -55,6 +55,10 @@ public enum LottoResult {
         return match;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public String getStringPrize() {
         return stringPrice;
     }

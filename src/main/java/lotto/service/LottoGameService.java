@@ -21,19 +21,71 @@ public class LottoGameService {
         return lottos;
     }
 
-    public int inputPurchaseAmountValidation(String inputPurchaseAmount){
+    public List<Integer> createWinningNumber(String inputWinningNumber){
+        List<Integer> winningNumber = new ArrayList<>();
+        String[] inputWinningNumberSplit = inputWinningNumber.split(",");
+
+        for (int i = 0 ; i < inputWinningNumberSplit.length ; i++){
+            int number = Integer.parseInt(inputWinningNumberSplit[i]);
+            winningNumber.add(number);
+        }
+
+        Collections.sort(winningNumber);
+
+        return winningNumber;
+    }
+
+    public boolean inputPurchaseAmountValidation(String inputPurchaseAmount){
         try {
-            int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
-            return purchaseAmount;
+            isDigit(inputPurchaseAmount);
+            isThousandUnits(inputPurchaseAmount);
+
+            return true;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean inputWinningNumberValidation(String inputWinningNumber){
+        try {
+            String[] inputWinningNumberSplit = inputWinningNumberSplit(inputWinningNumber);
+            isWinningNumberDigit(inputWinningNumberSplit);
+
+            return true;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean inputBonusNumberValidation(String inputBonusNumber){
+        try {
+            isDigit(inputBonusNumber);
+            int bonusNumber = Integer.parseInt(inputBonusNumber);
+            isRange(bonusNumber,1,45);
+            return true;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean isDigit(String input){
+        try {
+            Integer.parseInt(input);
+            return true;
         }catch (NumberFormatException e){
             throw new IllegalArgumentException(LottoException.INPUT_NOT_DiGIT.getMessage());
         }
     }
 
-    public boolean isThousandUnits(int lottoPurchaseAmount){
-        int lottoPurchaseAmountRemain = lottoPurchaseAmount % 1000;
+    public boolean isThousandUnits(String inputPurchaseAmount){
+        int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
+        int lottoPurchaseAmountRemain = purchaseAmount % 1000;
+
         if(lottoPurchaseAmountRemain != 0){
-            throw new IllegalArgumentException(LottoException.INPUT_NOT_THOUSAND_UNITS.getMessage());
+           throw new IllegalArgumentException(LottoException.INPUT_NOT_THOUSAND_UNITS.getMessage());
         }
         return true;
     }
@@ -51,34 +103,24 @@ public class LottoGameService {
         return inputWinningNumberSplit;
     }
 
-    public List<Integer> inputWinningNumberValidation(String[] inputWinningNumberSplit){
+    public boolean isWinningNumberDigit(String[] inputWinningNumberSplit){
         try {
-            List<Integer> winningNumber = new ArrayList<>();
+
             for (int i = 0 ; i < inputWinningNumberSplit.length ; i++){
-                int number = Integer.parseInt(inputWinningNumberSplit[i]);
-                winningNumber.add(number);
+                isDigit(inputWinningNumberSplit[i]);
             }
-            Collections.sort(winningNumber);
-            return winningNumber;
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException(LottoException.INPUT_NOT_DiGIT.getMessage());
+            return true;
+        }catch (Exception e){
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
-    public int inputBonusNumberValidation(String inputBonusNumber){
-        try {
-            int bonusNumber = Integer.parseInt(inputBonusNumber);
-            return bonusNumber;
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException(LottoException.INPUT_NOT_DiGIT.getMessage());
-        }
-    }
+    public boolean isRange(int inputBonusNumber,int start , int end){
 
-    public int inputBonusNumberRangeValidation(int inputBonusNumberValidation){
-        if(inputBonusNumberValidation < 1 || inputBonusNumberValidation > 45){
+        if(inputBonusNumber < start || inputBonusNumber > end){
             throw new IllegalArgumentException(LottoException.INPUT_NOT_RANGE.getMessage());
         }
-        return inputBonusNumberValidation;
+        return true;
     }
 
 }

@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Messages.ErrorMessage;
+import lotto.Messages.MainMessage;
 
 public class Input {
     public static enum InputType{
@@ -38,11 +39,7 @@ public class Input {
 
     public List<Integer> purchaseAmountInput(String inputStr){
         List<Integer> conversionResult = new ArrayList<>();
-        try{
-            purchaseAmountValidate(inputStr);
-        } catch(IllegalArgumentException e){
-            throw e;
-        }
+        purchaseAmountValidate(inputStr);
         conversionResult.add(Integer.parseInt(inputStr));
         return conversionResult;
     }
@@ -52,7 +49,7 @@ public class Input {
             throw new IllegalArgumentException(ErrorMessage.NULLSTRING.getMessage());
         }
         for (int i = 0; i < inputStr.length(); i++) {
-            if (Utils.isChar(inputStr.charAt(i)) == false) {
+            if (Utils.isNumeric(inputStr.charAt(i)) == false) {
                 throw new IllegalArgumentException(ErrorMessage.NONNUMERICCHAR.getMessage());
             }
         }

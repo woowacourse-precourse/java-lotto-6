@@ -17,6 +17,7 @@ public class LottoHost {
 
         ValidateException.hasDuplicateEachNumbers(tempWinNumbers);
         ValidateException.isWinNumbersCountSix(tempWinNumbers);
+        ValidateException.checkRangeWinNumbers(tempWinNumbers);
 
         winNumbers = tempWinNumbers;
         return winNumbers;
@@ -24,11 +25,15 @@ public class LottoHost {
 
     public Integer pickBonusNumber() {
         // TODO: 11/5/23 입력 체크.
-        bonusNumber = inputBonusNumber();
+        Integer tempBonusNumber = inputBonusNumber();
+
+        ValidateException.hasDuplicateNumAndNumbers(tempBonusNumber, winNumbers);
+
+        bonusNumber = tempBonusNumber;
         return bonusNumber;
     }
 
-    // TODO: 11/6/23 예외 처리 
+    // TODO: 11/6/23 예외 처리
     private Integer inputBonusNumber() {
         return Input.InputNumber();
     }

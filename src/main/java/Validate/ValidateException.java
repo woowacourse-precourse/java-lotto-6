@@ -17,6 +17,8 @@ public class ValidateException {
     private static final Integer POSITIVE_CONDITION_ZERO = 0;
     private static final Integer ZERO_NUM = 0;
     private static final Integer SIZE_WIN_NUMBERS_HOST = 6;
+    private static final Integer MIN_WIN_NUMBERS = 1;
+    private static final Integer MAX_WIN_NUMBERS = 45;
 
     public static void includeString(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_REGEX);
@@ -111,7 +113,23 @@ public class ValidateException {
         if (Utii.isSameInt(sizeNumbers, SIZE_WIN_NUMBERS_HOST)) {
             return true;
         }
-        
+
         throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입니다.");
+    }
+
+    public static boolean checkRangeWinNumbers(List<Integer> numbers) {
+        for (int num : numbers) {
+            if (num < MIN_WIN_NUMBERS || num > MAX_WIN_NUMBERS) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호의 범위는 1 ~ 45 입니다.");
+            }
+        }
+        return true;
+    }
+
+    public static boolean hasDuplicateNumAndNumbers(Integer targetNumber, List<Integer> numbers) {
+        if (numbers.contains(targetNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호가 같다.");
+        }
+        return true;
     }
 }

@@ -6,6 +6,7 @@ public class Vendor {
     private int money;
 
     public int setMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
         int numOfLotto = 0;
         while (true) {
             try {
@@ -37,6 +38,5 @@ public class Vendor {
         }
         return money / 1000;
     }
-
 
 }

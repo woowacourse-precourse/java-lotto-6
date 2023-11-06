@@ -14,6 +14,7 @@ public class LottoMachine {
     }
 
     public void setLottos() {
+        System.out.println(this.numOfLotto + "개를 구매했습니다.");
         for (int i = 0; i < this.numOfLotto; i++) {
             this.lottos.add(makeLottoNum());
         }

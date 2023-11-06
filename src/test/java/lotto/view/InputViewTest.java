@@ -1,6 +1,5 @@
 package lotto.view;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
 
@@ -23,7 +21,7 @@ class InputViewTest {
         int wrongAnswer = 10000;
 
         // when
-        int purchaseAmount = inputView.inputPurchaseAmount();
+        int purchaseAmount = inputView.inputPurchasePrice();
 
         // then
         assertThat(purchaseAmount).isEqualTo(correctAnswer);

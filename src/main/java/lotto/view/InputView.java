@@ -8,11 +8,9 @@ import java.util.StringTokenizer;
 
 public class InputView {
 
-    private static final String INPUT_Purchase_Amount = "구입금액을 입력해 주세요.";
-
     private StringTokenizer st;
 
-    public int inputPurchaseAmount() {
+    public int inputPurchasePrice() {
         return Integer.parseInt(Console.readLine());
     }
 

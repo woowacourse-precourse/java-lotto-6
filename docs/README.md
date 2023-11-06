@@ -1,7 +1,7 @@
 # 로또 - 기능 목록
 - - -
 ### 1. 사용자 입력 처리 - `view\InputView`
-- [x] 로또 구입 금액 입력받기 - `inputPurchaseAmount()`
+- [x] 로또 구입 금액 입력받기 - `inputPurchasePrice()`
   - [x] 테스트: 입력 후 int로 반환 확인
 - [x] 당첨 번호 입력받기 - `inputWinningNumbers()`
   - [x] 테스트: 입력 후 List로 반환 확인

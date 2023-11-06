@@ -1,5 +1,6 @@
 package lotto.views;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 
@@ -17,7 +18,9 @@ public class OutputViews {
 
     public static void listOfPurchaseLotto(List<List<Integer>> allLotto) {
         for (List<Integer> lotto : allLotto) {
-            System.out.println(lotto);
+            List<Integer> lottoSorted = new ArrayList<>(lotto);
+            lottoSorted.sort(null);
+            System.out.println(lottoSorted);
         }
     }
 

@@ -14,7 +14,6 @@ public class MakeLottos {
         List<List<Integer>> allLotto = new ArrayList<>();
         for (var i=0; i<purchaseNum; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_CNT);
-//            numbers.sort(null);
             allLotto.add(numbers);
         }
         return allLotto;

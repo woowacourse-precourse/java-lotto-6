@@ -31,7 +31,9 @@ public class LottoGame {
 
         lottoGameView.showPurchaseLottos(lottos.make(lottosRandoms));
 
-        List<Integer> numbers = lottoGameView.askWinningNumbers();
+        List<Integer> winningNumbers = lottoGameView.askWinningNumbers();
+        int bonusNumber = lottoGameView.askBonusNumber();
+        
     }
 
 }

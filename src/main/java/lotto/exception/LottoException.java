@@ -57,4 +57,9 @@ public class LottoException {
             }
         }
     }
+    public void validateBonusNumberPermittedRange(int bonusNumber) {
+        if (bonusNumber > Constants.MAX_RANGE_NUMBER || bonusNumber < Constants.MIN_RANGE_NUMBER) {
+            throw new IllegalArgumentException(Constants.ERROR + "보너스 번호의 범위는 1~45이여야 합니다");
+        }
+    }
 }

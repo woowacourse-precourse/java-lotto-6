@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Utils;
 import lotto.message.ExceptionMessage;
 
 public class InputView {
@@ -26,14 +27,6 @@ public class InputView {
 
     private static void validateInteger(String inputValue) {
         validateBlank(inputValue);
-        validateNumber(inputValue);
-    }
-
-    private static void validateNumber(String inputValue) {
-        try {
-            Integer.parseInt(inputValue);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.NUMBER_FORMAT);
-        }
+        Utils.validateNumber(inputValue);
     }
 }

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
 
@@ -15,7 +16,9 @@ public class OutputView {
     
     public static void printPlayerLottos(List<Lotto> playersLottos) {
     	for(Lotto lotto : playersLottos) {
-    		System.out.println(lotto.getNumbers().toString());
+    		List<Integer> lottoNumberSort = lotto.getNumbers();
+    		Collections.sort(lottoNumberSort);
+    		System.out.println(lottoNumberSort.toString());
     	}
     	System.out.println();
     }

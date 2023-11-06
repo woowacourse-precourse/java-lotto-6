@@ -2,9 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import lotto.Exception.LottoNumbersException;
 
 public class LottoMachine {
 
@@ -54,33 +53,13 @@ public class LottoMachine {
     List<Integer> generateLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
-        notSixNumbers(numbers);
-        duplicateNumber(numbers);
+        LottoNumbersException.notSixNumbers(numbers);
+        LottoNumbersException.duplicateNumber(numbers);
         for (Integer number : numbers) {
-            numberNotInRange(number);
+            LottoNumbersException.numberNotInRange(number);
         }
 
         return numbers;
-    }
-
-    public void notSixNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 가지고 있지 않습니다.");
-        }
-    }
-
-    public void duplicateNumber(List<Integer> numbers) {
-        Set<Integer> numberSet = new HashSet<>(numbers);
-
-        if (numberSet.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복 숫자가 존재합니다.");
-        }
-    }
-
-    public void numberNotInRange(Integer number) {
-        if (!(1 <= number && number <= 45)) {
-            throw new IllegalArgumentException("[ERROR] 1~45의 범위가 아닌 숫자가 있습니다.");
-        }
     }
 
 

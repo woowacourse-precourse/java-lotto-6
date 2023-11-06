@@ -13,5 +13,7 @@ public interface LottoFinalConsts {
     public final int LOTTO_FIFTH_RETURN = 5000;
     public final String LOTTO_ERROR_MESSAGE = "[ERROR]";
     public final String LOTTO_NOT_VALID_LOTTOPURCHASE = "구입 금액이 1000으로 나눠 떨어지지 않습니다.";
+    public final String INPUT_LOTTO_PURCHASE = "구입금액을 입력해 주세요.";
+    public final String PRINT_LOTTO_PURCHASE_COUNT = "개를 구매했습니다.";
 
 }

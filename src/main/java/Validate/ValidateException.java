@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class ValidateException {
     private static final String KOREAN_ENGLISH_REGEX = ".*[^0-9\\s].*";
-    private static final String KOREAN_ENGLISH_EXCEPTION_COMMA_REGEX = "[^0-9,\\s]";
+    private static final String KOREAN_ENGLISH_EXCEPTION_COMMA_REGEX = ".*[^0-9,\\s].*";
     private static final String NOTING_STRING = "";
     private static final String BLANK = " ";
     private static final String SPECIAL_CHARACTER_REGEX = "[!@#$%^&*().?\":{}|<>]";
@@ -38,7 +38,7 @@ public class ValidateException {
         Matcher matcher = pattern.matcher(strLine);
 
         if (matcher.matches()) {
-            throw new NumberFormatException("[ERROR] 입력에 문자가 포함되어 있습니다.");
+            throw new NumberFormatException("[ERROR] 입력에 숫자 or ',' 을 제외한 문자가 포함되어 있습니다.");
         }
     }
 //

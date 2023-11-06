@@ -31,6 +31,7 @@ public class LotteryGame {
     private void init() {
         outputHandler.print(Messasge.REQUEST_PRICE);
         lottoList = getLottoList(getPrice());
+        outputHandler.print(Messasge.getLottoListMessage(lottoList));
         outputHandler.print(Messasge.REQUEST_NUMBERS);
         winNumber = getWinNumber();
     }
@@ -93,6 +94,8 @@ public class LotteryGame {
     }
 
     private int getBonusNumber(List<Integer> numbers) {
+        // test
+        System.out.println(numbers.toString());
         while (true) {
             try {
                 String inputNumber = inputHandler.readLine();

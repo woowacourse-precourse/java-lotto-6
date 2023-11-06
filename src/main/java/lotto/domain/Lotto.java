@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import lotto.game.Rank;
@@ -10,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -46,5 +48,10 @@ public class Lotto {
             }
         }
         return bonus;
+    }
+
+    @Override
+    public String toString(){
+        return numbers.toString();
     }
 }

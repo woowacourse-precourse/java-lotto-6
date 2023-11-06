@@ -51,7 +51,7 @@ public class InputViewTest {
                 () -> new WinningNumberValidator(winningNumber));
         //then
         assertThat(e.getMessage()).isEqualTo(
-                "[ERROR] 당첨 번호는 '1,2'의 형태로 총 6개의 숫자를 입력해야 합니다.(시작과 끝은 모두 숫자이며, 1-45까지의 숫자 입력))");
+                "[ERROR] 당첨 번호는 숫자를 입력해야 합니다.");
     }
 
     @Test
@@ -63,7 +63,7 @@ public class InputViewTest {
                 () -> new WinningNumberValidator(winningNumber));
         //then
         assertThat(e.getMessage()).isEqualTo(
-                "[ERROR] 당첨 번호는 '1,2'의 형태로 총 6개의 숫자를 입력해야 합니다.(시작과 끝은 모두 숫자이며, 1-45까지의 숫자 입력)");
+                "[ERROR] 당첨 번호는 '1,2'와 같이 숫자쉼표숫자의 형태로 입력해야하고 총 6개의 숫자를 입력해야 합니다.");
     }
 
     @Test
@@ -75,7 +75,31 @@ public class InputViewTest {
                 () -> new WinningNumberValidator(winningNumber));
         //then
         assertThat(e.getMessage()).isEqualTo(
-                "[ERROR] 당첨 번호는 '1,2'의 형태로 총 6개의 숫자를 입력해야 합니다.(시작과 끝은 모두 숫자이며, 1-45까지의 숫자 입력)");
+                "[ERROR] 당첨 번호는 '1,2'와 같이 숫자쉼표숫자의 형태로 입력해야하고 총 6개의 숫자를 입력해야 합니다.");
+    }
+
+    @Test
+    void 입력된_당첨_번호가_6개가_아닐_때() {
+        //given
+        String winningNumber = "1,2,3,4,5,6,7";
+        //when
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+                () -> new WinningNumberValidator(winningNumber));
+        //then
+        assertThat(e.getMessage()).isEqualTo(
+                "[ERROR] 당첨 번호는 '1,2'와 같이 숫자쉼표숫자의 형태로 입력해야하고 총 6개의 숫자를 입력해야 합니다.");
+    }
+
+    @Test
+    void 입력된_당첨_번호가_범위가_아닐_때() {
+        //given
+        String winningNumber = "1,2,3,4,5,46";
+        //when
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+                () -> new WinningNumberValidator(winningNumber));
+        //then
+        assertThat(e.getMessage()).isEqualTo(
+                "[ERROR] 당첨 번호는 1부터 45사이의 숫자를 입력해야 합니다.");
     }
 
 }

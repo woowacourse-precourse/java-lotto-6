@@ -14,7 +14,7 @@
   -[x] 등수 저장 enum 생성
 
 - 입출력 클래스 생성
-  -[ ] inputView생성
+  -[x] inputView생성
   -[ ] outView생성
 
 - 로또 실행 클래스

@@ -11,16 +11,13 @@ public class RandomNumberUtil {
     private static final int MAX_NUMBER = 9;
     private static final int NumberQuantity = 6;
 
-    public List<Integer> generateRandomNumberList() {
-        List<Integer> randomNumberList = new ArrayList<>();
+    public static void generateRandomNumberList(List<Integer> randomNumberList) {
         IntStream.range(0, NumberQuantity)
                 .forEach(i -> randomNumberList.add(generateRandomNumber()));
-
-        return randomNumberList;
     }
 
     //TODO : 재귀로 짜도 괜찮은지 확인
-    public int generateRandomNumber() {
+    public static int generateRandomNumber() {
         List<Integer> numberList = new ArrayList<>();
         int randomNumber = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
         if (hasNumberDuplicatesInList(numberList, randomNumber)) {
@@ -30,7 +27,8 @@ public class RandomNumberUtil {
         return randomNumber;
     }
 
-    private boolean hasNumberDuplicatesInList(List<Integer> numberList, int number) {
+    //TODO : 접근 제어자 고려해볼 필요 있음
+    private static boolean hasNumberDuplicatesInList(List<Integer> numberList, int number) {
         boolean hasDuplicate;
 
         hasDuplicate = numberList.stream()

@@ -137,7 +137,7 @@ public class UnifiedController {
     }
 
     public Rank resultSecondAndThird(Lotto lotto) {
-        if (lotto.compareBonus(Register.bonus)) {
+        if (lotto.compareBonus(Register.bonus.getNumber())) {
             return SECOND;
         }
         return THIRD;

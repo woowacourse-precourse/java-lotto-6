@@ -68,8 +68,8 @@ public class Lotto {
         return match;
     }
 
-    public boolean compareBonus(Bonus bonus) {
+    public boolean compareBonus(int bonusNumber) {
         Set<Integer> check = new HashSet<>(this.numbers);
-        return check.contains(bonus.getNumber());
+        return check.contains(bonusNumber);
     }
 }

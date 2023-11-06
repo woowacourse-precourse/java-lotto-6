@@ -103,4 +103,14 @@ class LottoTest {
                 Arguments.of(lottos.get(1), firstPrizeLotto, 0)
         );
     }
+
+//    @DisplayName("보너스 번호가 존재하는지 체크")
+//    @ParameterizedTest
+//    @MethodSource("")
+//    void 테스트_compareBonus(Lotto myLotto, int expect) {
+//        //when
+//        int result = myLotto.compareLotto(firstPrizeLotto);
+//        //then
+//        assertThat(result).isEqualTo(expect);
+//    }
 }

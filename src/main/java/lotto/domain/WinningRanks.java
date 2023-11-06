@@ -15,13 +15,19 @@ public class WinningRanks {
 
     public void calculateRanks() {
         List<Rank> ranks = new ArrayList<>();
+
         for (Lotto lotto : lottos) {
-            Integer matchingNumbers = lotto.getMatchingNumbers(winningNumbers.getWinningNumber().getNumbers(), winningNumbers.getBonusNumber().getNumber());
-            boolean isBonusNumberMatch = lotto.isMatchingWithBonusNumber(winningNumbers.getBonusNumber().getNumber());
-            Rank rank = Rank.getRankByMatchingNumbersAndBonus(matchingNumbers, isBonusNumberMatch);
+            Rank rank = generateRank(lotto);
             ranks.add(rank);
         }
+
         this.ranks = ranks;
+    }
+
+    private Rank generateRank(Lotto lotto) {
+        Integer matchingNumbers = lotto.getMatchingNumbers(winningNumbers.getWinningNumber().getNumbers(), winningNumbers.getBonusNumber().getNumber());
+        boolean isBonusNumberMatch = lotto.isMatchingWithBonusNumber(winningNumbers.getBonusNumber().getNumber());
+        return Rank.getRankByMatchingNumbersAndBonus(matchingNumbers, isBonusNumberMatch);
     }
 
     public List<Rank> getRanks() {

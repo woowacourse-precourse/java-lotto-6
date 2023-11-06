@@ -1,7 +1,6 @@
 package lotto.lottery;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.exception.InputValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,6 @@ public class Ticket {
 
     public Ticket(String buyingAmount) {
         this.buyingAmount = Integer.parseInt(buyingAmount);
-        checkBuyingAmount(buyingAmount);
     }
 
 
@@ -25,14 +23,6 @@ public class Ticket {
 
     public int getTicketCount() {
         return buyTicket();
-    }
-
-
-    //구입 금액 예외 체크
-    private void checkBuyingAmount(String buyingAmount) {
-        InputValidator inputValidator = new InputValidator();
-        inputValidator.checkBuyingAmount(this.buyingAmount);
-        inputValidator.checkInputValue(buyingAmount);
     }
 
     private int buyTicket() {

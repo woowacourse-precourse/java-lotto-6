@@ -7,11 +7,11 @@ public class Lotto {
     private final List<LottoNumber> numbers;
 
     private Lotto(List<LottoNumber> numbers) {
+        validateLottoNumber(numbers);
         this.numbers = new ArrayList<>(numbers);
     }
 
     public static Lotto create(List<LottoNumber> numbers) {
-        validateLottoNumber(numbers);
         return new Lotto(numbers);
     }
 

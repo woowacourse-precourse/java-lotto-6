@@ -5,11 +5,11 @@ public class LottoNumber {
     private Integer lottoNumber;
 
     private LottoNumber(Integer lottoNumber) {
+        validateLottoNumber(lottoNumber);
         this.lottoNumber = lottoNumber;
     }
 
     public static LottoNumber create(Integer lottoNumber) {
-        validateLottoNumber(lottoNumber);
         return new LottoNumber(lottoNumber);
     }
 

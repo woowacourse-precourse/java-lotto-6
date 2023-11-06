@@ -1,15 +1,13 @@
 package lotto.domain;
 
-import lotto.constant.PrizesConstant;
-import org.mockito.junit.MockitoTestRule;
-
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import static lotto.constant.PrizesConstant.*;
+import static lotto.constant.PrizesConstant.INIT_REWARD;
+import static lotto.constant.PrizesConstant.NO_BENEFIT;
+import static lotto.constant.PrizesConstant.PERCENTAGE_INDICATOR;
+import static lotto.constant.PrizesConstant.ROUND_INDICATOR;
 
 public class Prizes {
 

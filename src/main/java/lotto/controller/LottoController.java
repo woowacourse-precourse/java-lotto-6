@@ -7,10 +7,13 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.util.Collections.sort;
 import static lotto.Lotto.LottoRank.*;
+import static lotto.view.OutputView.printPrizeResult;
 
 public class LottoController {
 
@@ -49,10 +52,7 @@ public class LottoController {
             List<Integer> lottoNumbers = lotto.get(i).getNumbers();
             List<Integer> winNumbers = winLotto.getNumbers();
             int sameNumberCount = compareLotto(lottoNumbers, winNumbers);
-//            System.out.println("다시 한 번!!! 갯수는!!! " + sameNumberCount);
-//            System.out.println("어떤 로또라고??? " + lotto.get(i));
             setRank(lotto.get(i), sameNumberCount);
-//            System.out.println("그렇다면... 이 로또의 등수는!!! " + lotto.get(i).getRank());
         }
 
         /**
@@ -84,68 +84,24 @@ public class LottoController {
 
         }
 
+//        Map<Lotto.LottoRank, Integer> rates = new HashMap<>();
+//        rates.put(FIRST, first);
+//        rates.put(SECOND, second);
+//        rates.put(THIRD, third);
+//        rates.put(FOURTH, fourth);
+//        rates.put(FIFTH, fifth);
+
         List<Integer> rates = new ArrayList<>();
         rates.add(first);
         rates.add(second);
-        rates.add(second);
+        rates.add(third);
         rates.add(fourth);
         rates.add(fifth);
 
         long rateOfProfit = getRateOfProfit(purchasePrice, rates);
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
-
-        StringBuilder result = new StringBuilder();
-
-        result.append("3개 일치 (5,000원) - ");
-        result.append(fifth);
-        result.append("개\n");
-
-        result.append("4개 일치 (50,000원) - ");
-        result.append(fourth);
-        result.append("개\n");
-
-        result.append("5개 일치 (1,500,000원) - ");
-        result.append(third);
-        result.append("개\n");
-
-        result.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
-        result.append(second);
-        result.append("개\n");
-
-        result.append("6개 일치 (2,000,000,000원) - ");
-        result.append(first);
-        result.append("개\n");
-
-//        result.append(FIRST);
-//        result.append(first);
-//        result.append("개\n");
-//
-//        result.append(SECOND);
-//        result.append(second);
-//        result.append("개\n");
-//
-//        result.append(THIRD);
-//        result.append(third);
-//        result.append("개\n");
-//
-//        result.append(FOURTH);
-//        result.append(fourth);
-//        result.append("개\n");
-//
-//        result.append(FIFTH);
-//        result.append(fifth);
-//        result.append("개\n");
-
-//        getRateOfProfit(purchasePrice, rates);
-
-        result.append("총 수익률은 ");
-        result.append(String.format("%.2f", rateOfProfit));
-        result.append("%입니다.");
-
-        System.out.println(result);
-
+        OutputView.printPrizeResult(rates);
+        OutputView.printRateOfProfit(rateOfProfit);
 
     }
 
@@ -169,13 +125,6 @@ public class LottoController {
             System.out.println("당첨 번호를 6개 입력해주세요.");
             getWinLottoNumber();
         }
-
-//        try {
-//            Validator.winNumberDuplication(winNumber);
-//        } catch (IllegalArgumentException e) {
-//            System.out.println("당첨 번호를 중복 없이 입력해주세요.");
-//            getWinLottoNumber();
-//        }
     }
 
     public int getBonusNumber() {
@@ -201,14 +150,7 @@ public class LottoController {
             }
         }
 
-//        System.out.println(lottoNumber + " 인 로또의 같은 번호 갯수는: " + count);
-
         return count;
-
-//        for (int i = 0; i < lottoNumber.size() < i++) {
-//            winNumber.contains(lottoNumber.get(i));
-//        }
-//        lottoNumber.forEach(num -> winNumber.contains(num));
 
     }
 
@@ -224,13 +166,11 @@ public class LottoController {
     }
 
     private void setRank(Lotto lotto, int sameNumberCount) {
-//        System.out.println("갯수가 잘 들어갔나??? " + sameNumberCount);
         switch (sameNumberCount) {
             case 6:
                 lotto.setRank(FIRST);
                 break;
             case 5:
-//                System.out.println("switch가 잘 되나??? " + sameNumberCount);
                 if (compareBonusNumber(lotto, bonusNumber)) {
                     lotto.setRank(SECOND);
                     break;

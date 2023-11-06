@@ -20,6 +20,10 @@ public class LottoStart {
     public static void firstGameProgress(){
         System.out.print(LottoStart.HOW_MUCH_BUY_MESSAGE);
     }
+    public static void firstInputProgress(){
+        String inputHowMuchBuy = Console.readLine();
+        Integer.parseInt(inputHowMuchBuy);
+    }
 
     private static void secondGameProgress() {
         System.out.print(LottoStart.MAKE_WINNING_NUMBER);

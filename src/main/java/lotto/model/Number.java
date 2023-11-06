@@ -17,6 +17,10 @@ public class Number {
         return numbers;
     }
 
+    public List<Integer> getNumberList() {
+        return numberList;
+    }
+
     public WinningGrade getGrade() {
         return grade;
     }

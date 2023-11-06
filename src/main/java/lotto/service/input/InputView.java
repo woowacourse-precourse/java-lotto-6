@@ -6,37 +6,41 @@ import lotto.dto.input.GetLottoCountDto;
 import lotto.dto.input.GetWinningNumberDto;
 import lotto.util.message.Printer;
 import lotto.util.validate.Validator;
+import org.assertj.core.internal.bytebuddy.implementation.bytecode.StackManipulation.Illegal;
 
 public class InputView implements Input{
     @Override
     public GetLottoCountDto getLottoBuyMoney() {
-        Printer.askBuyMoney();
-        return new GetLottoCountDto(
-                Validator.checkBuyMoney(
-                        getMoneyReadLine()
-                )
-        );
+        try{
+            Printer.askBuyMoney();
+            return new GetLottoCountDto(Validator.checkBuyMoney(getMoneyReadLine()));
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getLottoBuyMoney();
+        }
     }
 
     @Override
     public GetWinningNumberDto getWinningNumber() {
-        Printer.askWinningNumber();
-        return new GetWinningNumberDto(
-                Validator.checkWinningNumbers(
-                        getWinningNumbersReadline()
-                )
-        );
+        try{
+            Printer.askWinningNumber();
+            return new GetWinningNumberDto(Validator.checkWinningNumbers(getWinningNumbersReadline()));
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getWinningNumber();
+        }
+
     }
 
     @Override
     public GetBonusNumberDto getBonusNumber(GetWinningNumberDto getWinningNumberDto) {
-        Printer.askBonusNumber();
-        return new GetBonusNumberDto(
-                Validator.checkBonusNumber(
-                        getWinningNumberDto,
-                        getBonusNumberReadline()
-                )
-        );
+        try {
+            Printer.askBonusNumber();
+            return new GetBonusNumberDto(Validator.checkBonusNumber(getWinningNumberDto, getBonusNumberReadline()));
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber(getWinningNumberDto);
+        }
     }
 
     private static String getMoneyReadLine() {

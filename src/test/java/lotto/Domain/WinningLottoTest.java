@@ -33,6 +33,20 @@ class WinningLottoTest {
         String inputBonusNumber = "6";
 
         // when
+
+        // then
+        assertThrows(LottoException.class, () -> WinningLotto.of(inputWinningNumbers, inputBonusNumber));
+    }
+
+    @DisplayName("WinningLotto 객체 생성 테스트 - 로또 번호에 중복 되어 있는 경우")
+    @Test
+    void WinningNumbersDuplicateTest() {
+        // given
+        String inputWinningNumbers = "1,2,3,4,5,5";
+        String inputBonusNumber = "6";
+
+        // when
+
         // then
         assertThrows(LottoException.class, () -> WinningLotto.of(inputWinningNumbers, inputBonusNumber));
     }

@@ -29,23 +29,6 @@ public class WinningResult {
         return result;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        WinningResult that = (WinningResult) o;
-        return Objects.equals(winningResult, that.winningResult);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(winningResult);
-    }
-
     //todo : 불변 테스트
     public Map<WinningRank, Integer> getResult() {
         return Collections.unmodifiableMap(winningResult);

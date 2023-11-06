@@ -8,7 +8,7 @@ public enum WinningRank {
     THIRD(5, false, 1500000),
     SECOND(5, true, 30000000),
     FIRST(6, false, 2000000000),
-    EMPTY(-1,false,0);
+    EMPTY(-1, false, 0);
 
     private int count;
     private boolean bonusNumber;
@@ -21,9 +21,10 @@ public enum WinningRank {
     }
 
     public static WinningRank findWinningRank(int matchCount, boolean hasBonusNumber) {
-        if(matchCount == 5) {
+        if (matchCount == 5) {
             return Arrays.stream(WinningRank.values())
-                    .filter(winningResult -> winningResult.count == matchCount && winningResult.bonusNumber == hasBonusNumber)
+                    .filter(winningResult -> winningResult.count == matchCount
+                            && winningResult.bonusNumber == hasBonusNumber)
                     .findAny()
                     .orElse(EMPTY);
         }
@@ -35,5 +36,13 @@ public enum WinningRank {
 
     public int getMoney() {
         return money;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public boolean isBonusNumber() {
+        return bonusNumber;
     }
 }

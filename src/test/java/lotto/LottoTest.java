@@ -70,6 +70,12 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         assertThat(lotto.confirmRank(new ArrayList<Integer>(List.of(1, 2, 3, 4, 5, 8)), 7)).isEqualTo(Rank.SECOND);
     }
+
+    @DisplayName("Int List를 String으로 바꾸어 준다.")
+    @Test
+    void createStringByIntList() {
+        assertThat(Convert.intListToString(List.of(1,2,3,4,5,6), ",")).isEqualTo("[1,2,3,4,5,6]");
+    }
 }
 
 

@@ -13,14 +13,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoNumberTest {
-    private static List<Integer> provideLottoNumbers() {
+    private static List<Integer> provideNumbers() {
         return IntStream.rangeClosed(MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue())
                 .boxed()
                 .toList();
     }
 
     @ParameterizedTest
-    @MethodSource("provideLottoNumbers")
+    @MethodSource("provideNumbers")
     void 숫자가_LOTTO_MIN_NUMBER과_LOTTO_MAX_NUMBER사이일_경우_객체를_올바르게_생성한다(int number) {
         // when & then
         assertDoesNotThrow(() -> LottoNumber.from(number));

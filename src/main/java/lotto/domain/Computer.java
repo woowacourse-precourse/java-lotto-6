@@ -21,7 +21,7 @@ public class Computer {
     }
 
     public boolean checkBonus(List<Integer> lotto) {
-        return true;
+        return lotto.contains(bonus);
     }
 
     public void save() {

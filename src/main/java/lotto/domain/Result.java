@@ -43,4 +43,20 @@ public class Result {
         return lotto.isExist(winningLotto.getBonusNumber());
     }
 
+    public long calculateTotalWinnings() {
+        long total = 0;
+        for (Map.Entry<Rank, Integer> entry : result.entrySet()) {
+            total += calculateSingleWinnings(entry.getKey(), entry.getValue());
+        }
+        return total;
+    }
+
+    private long calculateSingleWinnings(Rank rank, Integer count) {
+        return (long) rank.getWinnings() * count;
+    }
+
+    public Map<Rank, Integer> getResult() {
+        return new HashMap<>(result);
+    }
+
 }

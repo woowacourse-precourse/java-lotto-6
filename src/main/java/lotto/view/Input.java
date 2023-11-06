@@ -7,9 +7,9 @@ public class Input {
 	private final String WINNING_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
 	private final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 	
-	public int buy() {
+	public String buy() {
 		System.out.println(MONEY_INPUT_MESSAGE);
-		return Integer.parseInt(Console.readLine());
+		return Console.readLine();
 	}
 	
 	public String winningNumber() {
@@ -17,8 +17,8 @@ public class Input {
 		return Console.readLine();
 	}
 	
-	public int bonusNumber() {
+	public String bonusNumber() {
 		System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
-		return Integer.parseInt(Console.readLine());
+		return Console.readLine();
 	}
 }

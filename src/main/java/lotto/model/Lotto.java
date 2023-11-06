@@ -43,6 +43,4 @@ public class Lotto {
     	Set <Integer> set = new HashSet<Integer>(numbers);
     	return set.size();
     }
-    
-    	
 }

@@ -14,6 +14,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if (numbers.stream().count() > 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Integer> get_lotto_numbers() {

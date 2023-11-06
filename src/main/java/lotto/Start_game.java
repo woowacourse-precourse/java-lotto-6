@@ -9,7 +9,6 @@ public class Start_game {
     public static int bonus_number = 0;
     private Input_function input_function = new Input_function();
     private Calculation calculation = new Calculation();
-    private List<Integer> user_lottos = new ArrayList<>();
     private List<List<Integer>> all_lotto_numbers = new ArrayList<>();
     
     public void run() {

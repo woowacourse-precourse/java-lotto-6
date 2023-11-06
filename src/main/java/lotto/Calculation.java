@@ -28,4 +28,14 @@ public class Calculation {
             all_numbers.add(user_lotto);
         }
     }
+
+    public int compare_number(List<Integer> user_number, List<Integer> lotto_number) {
+        int count = 0;
+        for(int number: user_number) {
+            if(lotto_number.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

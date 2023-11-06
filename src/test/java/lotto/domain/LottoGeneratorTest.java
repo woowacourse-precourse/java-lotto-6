@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoGeneratorTest {
 
-
     @DisplayName("로또 개수만큼 로또를 생성")
     @ParameterizedTest
     @ValueSource(ints = {1, 10, 8})
@@ -28,6 +27,19 @@ class LottoGeneratorTest {
         // when, then
         assertThat(LottoGenerator.createWinningLotto("1,2,3,4,5,6").getNumbers()).isEqualTo(lotto.getNumbers());
 
+    }
+    @DisplayName("보너스 번호를 입력 받아, Integer로 변환")
+    @Test
+    void createBonusNumber(){
+
+        // given
+        Lotto winningLotto = LottoGenerator.createWinningLotto("1,2,3,4,5,6");
+
+        // when
+        Integer bonusNumber = LottoGenerator.createBonusNumber(winningLotto, "7");
+
+        // then
+        assertThat(bonusNumber).isEqualTo(7);
     }
 
 

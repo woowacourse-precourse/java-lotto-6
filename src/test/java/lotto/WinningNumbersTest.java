@@ -2,7 +2,7 @@ package lotto;
 
 import static lotto.Exception.DUPLICATE_BONUS_NUMBER;
 import static lotto.Exception.DUPLICATE_WINNING_NUMBER;
-import static lotto.Exception.INVALID_WINNING_NUMBER_RANGE;
+import static lotto.Exception.INVALID_NUMBER_RANGE;
 import static lotto.Exception.WINNING_NUMBERS_SIZE_SHOULD_BE_SIX;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
@@ -27,7 +27,7 @@ class WinningNumbersTest {
 
             assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 10, outRangeNumbers), any(Integer.class)))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(INVALID_WINNING_NUMBER_RANGE.getMessage());
+                    .hasMessage(INVALID_NUMBER_RANGE.getMessage());
         }
 
         @Test

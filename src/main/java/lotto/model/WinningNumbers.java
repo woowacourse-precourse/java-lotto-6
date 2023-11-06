@@ -13,8 +13,8 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningNumbers from(List<Integer> lotto, Integer bonusNumber) {
-        return new WinningNumbers(new Lotto(lotto), bonusNumber);
+    public static WinningNumbers from(Lotto lotto, Integer bonusNumber) {
+        return new WinningNumbers(lotto, bonusNumber);
     }
 
     public boolean hasNumber(Integer number) {

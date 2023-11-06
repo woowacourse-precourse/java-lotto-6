@@ -6,7 +6,6 @@ import static lotto.exception.ExceptionMessage.DUPLICATE_BONUSE_NUMBER;
 public class WinningLotto {
     private final Lotto winningLottoNumbers;
     private final int bonusNumber;
-    private static boolean isValid = false;
 
     public WinningLotto(Lotto winningNumbers, int bonusNumber) {
         this.winningLottoNumbers = winningNumbers;
@@ -30,7 +29,9 @@ public class WinningLotto {
     }
 
     private void validate(int bonusNumber) {
-        if(winningLottoNumbers.checkContains(bonusNumber))
-            throw new IllegalArgumentException(DUPLICATE_BONUSE_NUMBER.getMessage());
+        if (winningLottoNumbers.checkContains(bonusNumber)) {
+            System.out.println(DUPLICATE_BONUSE_NUMBER.getMessage());
+            throw new IllegalArgumentException();
+        }
     }
 }

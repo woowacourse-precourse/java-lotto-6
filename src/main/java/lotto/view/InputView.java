@@ -19,7 +19,7 @@ public class InputView {
         do {
             System.out.println(INPUT_BUYING_COST_MESSAGE);
             cost = readLine();
-        } while (!invalidInput.notIntegerValueException(cost));
+        } while (invalidInput.notIntegerValueException(cost));
 
         return Integer.parseInt(cost);
     }
@@ -38,7 +38,7 @@ public class InputView {
         do {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
             bonus = readLine();
-        } while (!invalidInput.notIntegerValueException(bonus));
+        } while (invalidInput.notIntegerValueException(bonus));
 
         return Integer.parseInt(bonus);
     }

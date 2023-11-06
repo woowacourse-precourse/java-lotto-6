@@ -62,13 +62,11 @@ public class MyLotto {
         return cost / UNIT.getValue();
     }
     private Lotto generateMyLotto() {
-        Lotto lotto = new Lotto(generateLottoNumber());
-        return lotto;
+        return new Lotto(generateLottoNumber());
     }
 
     private List<Integer> generateLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(
-                MIN_NUMBER.getValue(), MAX_NUMBER.getValue(), LOTTO_SIZE.getValue());
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getValue(), MAX_NUMBER.getValue(), LOTTO_SIZE.getValue());
     }
 
 }

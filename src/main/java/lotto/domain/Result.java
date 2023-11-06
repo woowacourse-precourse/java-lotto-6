@@ -6,9 +6,11 @@ import lotto.constant.PrizeConstant;
 public class Result {
     private final static int PERCENT = 10;
     private final List<Integer> statistics;
+    private final int totalReward;
 
     public Result(List<Integer> statistics) {
         this.statistics = statistics;
+        this.totalReward = getTotalReward();
     }
 
     public List<Integer> getStatistics() {
@@ -16,18 +18,17 @@ public class Result {
     }
 
     public float getProfitability(int quantity) {
-        float totalReward = getTotalReward();
-        return totalReward / (quantity * PERCENT);
+        return (float)totalReward / (quantity * PERCENT);
     }
 
-    private float getTotalReward() {
+    private int getTotalReward() {
         int totalReward = 0;
         for (int i = 0; i < statistics.size(); i++) {
             int reward = PrizeConstant.getRewardByScore(i);
             int count = statistics.get(i);
             totalReward += (reward * count);
         }
-        return (float) totalReward;
+        return totalReward;
     }
 
 }

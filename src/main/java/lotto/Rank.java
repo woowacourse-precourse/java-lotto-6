@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.StringJoiner;
 
 public enum Rank {
-    FIRST(6, false, 2000000000, "(2,000,000,000원)"),
-    SECOND(5, true, 30000000, "(30,000,000원)"),
-    THIRD(5, false, 1500000, "(1,500,000원)"),
+    FIFTH(3, false, 5000, "(5,000원)"),
     FOURTH(4, false, 50000, "(50,000원)"),
-    FIFTH(3, false, 5000, "(5,000원)");
+    THIRD(5, false, 1500000, "(1,500,000원)"),
+    SECOND(5, true, 30000000, "(30,000,000원)"),
+    FIRST(6, false, 2000000000, "(2,000,000,000원)");
 
     private static final String CORRECT_MESSAGE = "개 일치";
     private static final String BONUS_NUMBER_MESSAGE = ", 보너스 볼 일치";

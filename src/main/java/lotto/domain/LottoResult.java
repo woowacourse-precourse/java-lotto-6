@@ -10,7 +10,14 @@ public class LottoResult {
     private final Map<LottoRank, Integer> lottoResult = new EnumMap<>(LottoRank.class);
 
     public LottoResult(List<LottoRank> ranks) {
+        initLottoResult();
         putRankCount(ranks);
+    }
+
+    private void initLottoResult() {
+        for (LottoRank rank : LottoRank.values()) {
+            lottoResult.put(rank, 0);
+        }
     }
 
     private void putRankCount(List<LottoRank> ranks) {

@@ -32,7 +32,7 @@ class WinningLottoTest extends NsTest {
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,4,5,6})
     void winningNumberContainBonusNumber(int bonusNumber) {
-        winningLotto.setWinningNumber(Arrays.asList(1,2,3,4,5,6));
+        winningLotto.setWinningNumber(List.of(1,2,3,4,5,6));
         assertThatThrownBy(() -> winningLotto.setBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThat(output()).isEqualTo(ErrorMessage.WINNING_NUMBER_AND_BONUS_NUMBER_ARE_SAME.getErrorMessage());

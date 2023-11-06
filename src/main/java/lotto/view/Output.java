@@ -16,7 +16,7 @@ public class Output {
     }
 
     public static void printPurchaseLottoQuantityMessage(int lottoQuantity) {
-        System.out.println(lottoQuantity + "개를 구매했습니다.");
+        System.out.println("\n" + lottoQuantity + "개를 구매했습니다.");
     }
 
     public static void printWinningNumberMessage() {
@@ -31,7 +31,7 @@ public class Output {
         System.out.println("총 수익률은 " + profitPercentage + "입니다.");
     }
 
-    public static void printTotalLotto(List<Lotto> totalLotto){
+    public static void printTotalLotto(List<Lotto> totalLotto) {
         totalLotto.stream().forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 }

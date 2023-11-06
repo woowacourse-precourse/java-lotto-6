@@ -21,6 +21,7 @@ public class InputView {
     }
 
     public List<Integer> inputLottoNumbers() {
+        System.out.println();
         System.out.println(INPUT_LOTTO_MSG);
         String lottoNumbers = Console.readLine();
         return Arrays.stream(lottoNumbers.split(MessageConst.DELIMITER))
@@ -29,6 +30,7 @@ public class InputView {
     }
 
     public int inputBonusNumber() {
+        System.out.println();
         System.out.println(INPUT_BONUS_MSG);
         return Integer.parseInt(Console.readLine());
     }

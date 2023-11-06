@@ -11,13 +11,14 @@ public class LottoController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
+    int money;
     PlayerLottos playerLottos;
     Lotto lotto;
     Bonus bonus;
     WinningResult winningResult;
 
     public void run() {
-        int money = inputView.inputMoney();
+        money = inputView.inputMoney();
         playerLottos = new PlayerLottos(money);
 
         outputView.printIssueCount(money);
@@ -29,5 +30,6 @@ public class LottoController {
         winningResult = new WinningResult(lotto, bonus, playerLottos);
 
         outputView.printWinningResult(winningResult);
+        outputView.printProfit(money, winningResult.getTotalRevenue());
     }
 }

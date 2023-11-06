@@ -53,4 +53,10 @@ public class OutputView {
         return decimalFormat.format(reward);
     }
 
+    public void printProfit(int money, int totalRevenue) {
+        double profit = ((double) totalRevenue / money) * 100;
+        System.out.print("총 수익률은 ");
+        System.out.print(String.format("%.1f", profit));
+        System.out.println("%입니다.");
+    }
 }

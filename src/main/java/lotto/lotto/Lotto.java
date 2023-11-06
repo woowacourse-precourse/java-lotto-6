@@ -18,11 +18,11 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또의 숫자는 " + DIGIT.getValue() + "개 입니다");
         }
         for (Integer num1 : numbers) {
-            validateNumber(num1);
+            validateNumber(num1, numbers);
         }
     }
 
-    private void validateNumber(Integer num1){
+    private void validateNumber(Integer num1, List<Integer> numbers){
         int count = 0;
         for (Integer num2 : numbers) {
             if(num1 == num2) count++;

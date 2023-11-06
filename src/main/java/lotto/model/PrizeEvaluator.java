@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 
 public class PrizeEvaluator {
+    private static final int NO_MATCH_PRIZE = 0;
     private static final int THREE_MATCH_PRIZE = 5_000;
     private static final int FOUR_MATCH_PRIZE = 50_000;
     private static final int FIVE_MATCH_PRIZE = 1_500_000;
@@ -60,6 +61,6 @@ public class PrizeEvaluator {
             sixMatchCount++;
             return SIX_MATCH_PRIZE;
         }
-        return 0;
+        return NO_MATCH_PRIZE;
     }
 }

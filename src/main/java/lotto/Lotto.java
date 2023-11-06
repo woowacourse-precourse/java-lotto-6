@@ -21,18 +21,18 @@ public class Lotto {
         }
     }
 
-    private void duplicate(List<Integer> numbers){
+    private void duplicate(List<Integer> numbers) {
         HashSet<Integer> findDuplicate = new HashSet<>();
-        for(Integer x : numbers){
-            if(!findDuplicate.add(x)){
+        for (Integer x : numbers) {
+            if (!findDuplicate.add(x)) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
             }
         }
     }
 
-    private void validateNumRange(List<Integer> numbers){
-        for(int i = 0; i < numbers.size(); i++){
-            if(numbers.get(i) < 1 || numbers.get(i) > 45){
+    private void validateNumRange(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) < 1 || numbers.get(i) > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }

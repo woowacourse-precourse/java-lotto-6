@@ -11,7 +11,7 @@ public class Application {
         int moneyValue = inputMoney();
         List<List<Integer>> lottoNum = createLottoNum(moneyValue);
         inputWinningNumbers();
-        int bonusNum = inputBonusNumber();
+        winningStatistics(lottoNum);
     }
 
     public static int inputMoney() {
@@ -82,6 +82,46 @@ public class Application {
             inputBonusNumber();
             return Integer.valueOf(bonusNumber);
         }
+    }
+
+    public static void winningStatistics(List<List<Integer>> lottoNum) {
+        int bonusNum = inputBonusNumber();
+        List<Integer> cnt = new ArrayList<>();
+        int[] bonusCnt = new int[lottoNum.size()];
+
+        for (int i = 0; i < lottoNum.size(); i++) {
+            List<Integer> innerList = new ArrayList<>(lottoNum.get(i));
+            innerList.removeAll(winningNumbers);
+            lottoNum.set(i, innerList);
+            cnt.add(i, 6 - innerList.size());
+
+            if (innerList.contains(bonusNum)) bonusCnt[i] = 1;
+        }
+        calWinningStatistics(cnt, bonusCnt);
+    }
+
+    public static void calWinningStatistics(List<Integer> cnt, int[] bonusCnt) {
+        int[] result = new int[5];
+
+        for (int i = 0; i < cnt.size(); i++) {
+            if (cnt.get(i) == Award.세개.get일치()) result[0] += Award.세개.get상금();
+            else if (cnt.get(i) == Award.네개.get일치()) result[1] += Award.네개.get상금();
+            else if (cnt.get(i) == Award.다섯개.get일치() && bonusCnt[i] != 1) result[2] += Award.다섯개.get상금();
+            else if (cnt.get(i) == Award.다섯개보너스.get일치() && bonusCnt[i] == 1) result[3] += Award.다섯개보너스.get상금();
+            else if (cnt.get(i) == Award.여섯개.get일치()) result[4] += Award.여섯개.get상금();
+        }
+        double rate = calRate(result, bonusCnt.length);
+        UI.printWinningStatistics(result, rate);
+    }
+
+    public static double calRate(int[] result, int initialMoney) {
+        int money = 0;
+        for (int num : result) {
+            money += num;
+        }
+        double rate = (double) money / initialMoney / 1000 * 100;
+        rate = Math.round(rate * 100) / 100.0;
+        return rate;
     }
 
     public static boolean isValidMoney(String money) {

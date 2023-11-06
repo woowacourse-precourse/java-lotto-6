@@ -9,17 +9,19 @@ public class Customer {
     private final static Integer ZERO = 0;
     private final Integer buyPrice;
     private final Map<Integer, List<Integer>> lottoNumbers = new LinkedHashMap<>();
-    private Integer winPrice;
+    private Integer winPrice = 0;
 
     private Customer(Integer buyPrice,Integer winPrice) {
         this.buyPrice = buyPrice;
     }
 
-    public static Customer create(Integer buyPrice) {
-        if(buyPrice % MIN_MONEY != ZERO || buyPrice.equals(ZERO)) {
+    public static Customer create(String buyPrice) {
+        validateBuyPrice(buyPrice);
+        Integer price = Integer.parseInt(buyPrice);
+        if(price % MIN_MONEY != ZERO || price.equals(ZERO)) {
             throw new IllegalArgumentException();
         }
-        return new Customer(buyPrice, 0);
+        return new Customer(price, 0);
     }
 
     public void putLottoNumber(int key, List<Integer> value) {
@@ -33,5 +35,11 @@ public class Customer {
         return buyPrice / MIN_MONEY;
     }
 
-
+    private static void validateBuyPrice(String buyPrice) {
+        try {
+            Integer.parseInt(buyPrice);
+        }catch (NumberFormatException e) {
+            throw new NumberFormatException();
+        }
+    }
 }

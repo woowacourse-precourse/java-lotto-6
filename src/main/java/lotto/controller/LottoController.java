@@ -46,5 +46,6 @@ public class LottoController {
         for(LottoRank rank : rankCount.keySet()) {
             outputView.outputRankResult(rank.getRankContent(), rankCount.get(rank));
         }
+        outputView.outputTotalRateOfReturn(lottos.calculateTotalRateOfReturn());
     }
 }

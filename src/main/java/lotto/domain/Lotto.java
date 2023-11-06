@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -12,6 +13,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        numbers.forEach(number -> {
+            if(number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
+        });
+
+        if( new HashSet<>(numbers).size() != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
@@ -19,6 +29,10 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     @Override

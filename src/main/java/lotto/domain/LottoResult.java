@@ -19,14 +19,27 @@ public class LottoResult {
     }
 
     public Map<WinningStatistics, Integer> getSortedStatistics() {
+        List<WinningStatistics> sortedStatistics = createSortedStatistics();
+        return createSortedStatisticsMap(sortedStatistics);
+    }
+
+    private List<WinningStatistics> createSortedStatistics() {
         List<WinningStatistics> winningStatistics = new ArrayList<>(statistics.keySet());
-        winningStatistics.remove(WinningStatistics.MISS);
+        removeMiss(winningStatistics);
         winningStatistics.sort(Collections.reverseOrder());
-        Map<WinningStatistics, Integer> sortedStatistics = new LinkedHashMap<>();
-        for (WinningStatistics statistic : winningStatistics) {
-            sortedStatistics.put(statistic, statistics.get(statistic));
+        return winningStatistics;
+    }
+
+    private void removeMiss(List<WinningStatistics> winningStatistics) {
+        winningStatistics.remove(WinningStatistics.MISS);
+    }
+
+    private Map<WinningStatistics, Integer> createSortedStatisticsMap(List<WinningStatistics> sortedStatistics) {
+        Map<WinningStatistics, Integer> sortedStatisticsMap = new LinkedHashMap<>();
+        for (WinningStatistics statistic : sortedStatistics) {
+            sortedStatisticsMap.put(statistic, statistics.get(statistic));
         }
-        return sortedStatistics;
+        return sortedStatisticsMap;
     }
 
     public double calculateProfitPercent() {

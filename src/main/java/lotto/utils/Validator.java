@@ -17,17 +17,18 @@ public class Validator {
         return inputValue;
     }
 
-    public static void checkWinningNumber(List<Integer> winningNumber){
+    public static void checkWinningNumber(List<Integer> winningNumber) throws IllegalArgumentException{
         checkWinningNumberSize(winningNumber);
         checkLottoNumberRange(winningNumber);
+        checkLottoNumberDuplicate(winningNumber);
     }
-    private static void checkWinningNumberSize(List<Integer> winningNumber){
+    private static void checkWinningNumberSize(List<Integer> winningNumber) throws IllegalArgumentException{
         if(winningNumber.size() != 6){
             throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 6개가 아닙니다.");
         }
     }
 
-    private static void checkLottoNumberRange(List<Integer> lottoNumber){
+    private static void checkLottoNumberRange(List<Integer> lottoNumber) throws IllegalArgumentException{
         for(Integer number : lottoNumber){
             if(number < 1 || number > 45){
                 throw new IllegalArgumentException("[ERROR] 각 로또 번호는 1과 45 사이의 값이어야 합니다.");
@@ -35,5 +36,11 @@ public class Validator {
         }
     }
 
+    private static void checkLottoNumberDuplicate(List<Integer> lottoNumber) throws IllegalArgumentException{
+        Long lottoNumberCount = lottoNumber.stream().distinct().count();
+        if(lottoNumberCount != lottoNumber.size()){
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
+        }
+    }
 
 }

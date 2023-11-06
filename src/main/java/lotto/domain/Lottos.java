@@ -9,16 +9,16 @@ public class Lottos {
     private final List<Lotto> lottos;
     private final Integer count;
 
-    public Lottos(List<Lotto> lottos) {
+    public Lottos(final List<Lotto> lottos) {
         this.lottos = lottos;
         this.count = lottos.size();
     }
 
-    public Prizes createPrizes(List<Integer> winnerNumbers, Integer bonusNumber) {
-        List<Prize> prizes = compareAllLottoWithWinnerLotto(winnerNumbers, bonusNumber);
+    public Prizes createPrizes(final List<Integer> winnerNumbers, final Integer bonusNumber) {
+        final List<Prize> prizes = compareAllLottoWithWinnerLotto(winnerNumbers, bonusNumber);
         return new Prizes(prizes);
     }
-    private List<Prize> compareAllLottoWithWinnerLotto(List<Integer> winnerNumbers, Integer bonusNumber) {
+    private List<Prize> compareAllLottoWithWinnerLotto(final List<Integer> winnerNumbers, final Integer bonusNumber) {
         return lottos.stream()
                 .map(lotto -> lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber))
                 .collect(Collectors.toList());

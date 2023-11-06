@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class LottoGenerator {
@@ -13,8 +12,8 @@ public class LottoGenerator {
 
     public static Lotto generateLotto() {
         try {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, 6);
-            numbers.sort(Comparator.naturalOrder());
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, 6));
+            numbers.sort(Integer::compareTo);
             return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("로또 번호 생성 중 오류가 발생했습니다: " + e.getMessage());

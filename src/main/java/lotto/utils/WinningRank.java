@@ -38,7 +38,8 @@ public enum WinningRank {
     }
 
     private String getFormattedAmount() {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String pattern = "#,###원";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
         return decimalFormat.format(getWinningAmount());
     }
 }

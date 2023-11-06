@@ -31,10 +31,12 @@ public class View {
     }
 
     public void winningNumberInputGuideMsg() {
+        printEmptyLine();
         System.out.println(Messages.WINNING_NUMBER_INPUT_GUIDE.getMsg());
     }
 
     public void bonusNumberInputGuideMsg() {
+        printEmptyLine();
         System.out.println(Messages.BONUS_NUMBER_INPUT_GUIDE.getMsg());
     }
 
@@ -50,5 +52,9 @@ public class View {
 
     public void printRateOfReturn(double rate) {
         System.out.println(Messages.RATE_OF_RETURN_HEAD.getMsg() + rate + Messages.RATE_OF_RETURN_TAIL.getMsg());
+    }
+
+    private void printEmptyLine() {
+        System.out.println("");
     }
 }

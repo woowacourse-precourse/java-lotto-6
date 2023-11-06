@@ -1,5 +1,7 @@
 package config;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import view.InputView;
 
 public class GameLauncher {
@@ -11,6 +13,8 @@ public class GameLauncher {
         inputView.inputPayment();
         inputView.inputWinNumber();
         inputView.inputBonusNumber();
+
+        Console.close();
     }
 
 }

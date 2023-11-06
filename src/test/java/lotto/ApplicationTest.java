@@ -1,13 +1,12 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +51,54 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 상세한_기능_테스트() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("15000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "15개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "[1, 2, 3, 4, 5, 7]",
+                            "[1, 2, 3, 4, 6, 7]",
+                            "[1, 2, 3, 4, 5, 8]",
+                            "[1, 2, 3, 4, 5, 17]",
+                            "[1, 2, 3, 4, 5, 18]",
+                            "[1, 2, 3, 4, 7, 15]",
+                            "[1, 2, 3, 5, 15, 19]",
+                            "[1, 2, 3, 6, 15, 18]",
+                            "[1, 2, 3, 4, 7, 18]",
+                            "[1, 2, 3, 14, 15, 16]",
+                            "[1, 2, 3, 7, 15, 16]",
+                            "[1, 2, 3, 7, 25, 26]",
+                            "[1, 2, 3, 7, 35, 36]",
+                            "[1, 2, 3, 7, 15, 26]",
+                            "3개 일치 (5,000원) - 5개",
+                            "4개 일치 (50,000원) - 4개",
+                            "5개 일치 (1,500,000원) - 3개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 13,764,833.3%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(1, 2, 3, 4, 6, 7),
+                List.of(1, 2, 3, 4, 5, 8),
+                List.of(1, 2, 3, 4, 5, 17),
+                List.of(1, 2, 3, 4, 5, 18),
+                List.of(1, 2, 3, 4, 7, 15),
+                List.of(1, 2, 3, 5, 15, 19),
+                List.of(1, 2, 3, 6, 15, 18),
+                List.of(1, 2, 3, 4, 7, 18),
+                List.of(1, 2, 3, 14, 15, 16),
+                List.of(1, 2, 3, 7, 15, 16),
+                List.of(1, 2, 3, 7, 25, 26),
+                List.of(1, 2, 3, 7, 35, 36),
+                List.of(1, 2, 3, 7, 15, 26)
+        );
     }
 
     @Override

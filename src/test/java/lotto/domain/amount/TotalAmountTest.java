@@ -22,4 +22,14 @@ class TotalAmountTest {
     void initialTotalAmountIsZero() {
         assertEquals(0, totalAmount.getAmount());
     }
+
+    @DisplayName("로또 당첨금은 총 금액에 누적된다.")
+    @Test
+    void accumulateLottoPrizeToTotalAmount() {
+        totalAmount = totalAmount.addLottoPrize(LottoPrize.FIFTH);
+        totalAmount = totalAmount.addLottoPrize(LottoPrize.FOURTH);
+
+        int expectedTotal = LottoPrize.FIFTH.getPrizeAmount() + LottoPrize.FOURTH.getPrizeAmount();
+        assertEquals(expectedTotal, totalAmount.getAmount()); // getAmount() 메서드를 통한 값 확인
+    }
 }

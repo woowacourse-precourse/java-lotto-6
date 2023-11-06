@@ -75,7 +75,7 @@ public class LottoSystem {
         buyer.getLottos().stream()
                 .map(lotto -> WinningJudge.judgeWinningType(lotto, winningLotto))
                 .flatMap(Optional::stream)
-                .forEach(winningType -> winningTypeCount.put(winningType, winningTypeCount.get(winningType) + 1));
+                .forEach(winningType -> increaseWinningCount(winningType, winningTypeCount));
         return winningTypeCount;
     }
 
@@ -85,5 +85,9 @@ public class LottoSystem {
             winningCount.put(winningType, 0);
         }
         return winningCount;
+    }
+
+    private void increaseWinningCount(WinningType winningType, Map<WinningType, Integer> winningTypeCount) {
+        winningTypeCount.put(winningType, winningTypeCount.get(winningType) + 1);
     }
 }

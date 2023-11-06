@@ -6,6 +6,9 @@ import java.util.List;
 
 public class Calculator {
 
+    private Calculator() {
+    }
+
     public static double calculateReturnRate(List<WinningStatus> winningStatuses, int purchaseAmount) {
         int totalIncome = calculateTotalIncome(winningStatuses);
         return (double) totalIncome / purchaseAmount * 100;

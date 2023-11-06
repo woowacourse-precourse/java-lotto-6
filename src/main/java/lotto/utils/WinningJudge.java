@@ -9,6 +9,9 @@ import java.util.Optional;
 
 public class WinningJudge {
 
+    private WinningJudge() {
+    }
+
     public static Optional<WinningType> judgeWinningType(Lotto lotto, WinningLotto winningLotto) {
         List<Integer> numbers = lotto.getNumbers();
         int matchesCount = countMatches(numbers, winningLotto);

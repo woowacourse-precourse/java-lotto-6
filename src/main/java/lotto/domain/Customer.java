@@ -15,6 +15,10 @@ public class Customer {
         this.money = money;
     }
 
+    public void buyLottoTickets(LottoSeller seller) {
+        this.lotteryTicket = seller.makeLottoTickets();
+    }
+
     public Map<Prize, Integer> checkWinningResult(WinningNumbers winningNumbers) {
         Map<Prize, Integer> result = initResult();
         lotteryTicket.stream()
@@ -32,10 +36,6 @@ public class Customer {
 
     public int getMoney() {
         return money;
-    }
-
-    public void setLotteryTicket(List<Lotto> lotteryTicket) {
-        this.lotteryTicket = lotteryTicket;
     }
 
     public List<Lotto> getLotteryTicket() {

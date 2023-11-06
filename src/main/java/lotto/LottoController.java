@@ -1,73 +1,54 @@
 package lotto;
 
-import static lotto.constant.LottoInformation.LOTTO_PRICE;
-import static lotto.constant.message.ErrorMessage.HAS_REMAINDER;
 import static lotto.constant.message.InputMessage.INPUT_BONUS_NUMBER;
 import static lotto.constant.message.InputMessage.INPUT_MONEY;
 import static lotto.constant.message.InputMessage.INPUT_WINNING_NUMBER;
 
-import java.util.List;
 import lotto.domain.Customer;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCalculator;
 import lotto.domain.LottoSeller;
 import lotto.domain.WinningNumbers;
-import lotto.util.Converter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private final OutputView outputView = new OutputView();
-    private final InputView inputView = new InputView();
-    private final Converter converter = new Converter();
+    private final OutputView outputView;
+    private final InputView inputView;
 
-    public LottoController() {
+    public LottoController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
 
     }
 
     public void run() {
-        int money = getPurchase();
-        Customer customer = purchaseLotto(money);
+        Customer customer = purchaseLotto();
         Lotto winningNumbers = getWinningLotto();
         WinningNumbers winningLotto = generateWinningLotto(winningNumbers);
         LottoCalculator calculator = new LottoCalculator(customer.checkWinningResult(winningLotto));
         printPrizeResult(calculator);
-
     }
 
-    private int getPurchase() {
+    private Customer purchaseLotto() {
         while (true) {
             try {
-                String stringMoney = inputView.requestInputValue(INPUT_MONEY);
-                int money = converter.convertInteger(stringMoney);
-                validatePurchaseAmount(money);
-                return money;
+                int money = inputView.requestNumberInput(INPUT_MONEY);
+                Customer customer = new Customer(money);
+                LottoSeller seller = new LottoSeller(customer.getMoney());
+                customer.buyLottoTickets(seller);
+                outputView.printLottoNumbers(customer.getLotteryTicket());
+                return customer;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private void validatePurchaseAmount(int money) {
-        if (money % LOTTO_PRICE != 0 || money <= 0) {
-            throw new IllegalArgumentException(HAS_REMAINDER.getMessage());
-        }
-    }
-
-    private Customer purchaseLotto(int money) {
-        Customer customer = new Customer(money);
-        LottoSeller seller = new LottoSeller(customer.getMoney());
-        customer.setLotteryTicket(seller.makeLottoTickets());
-        outputView.printLottoNumbers(customer.getLotteryTicket());
-        return customer;
-    }
-
     private Lotto getWinningLotto() {
         while (true) {
             try {
-                String input = inputView.requestInputValue(INPUT_WINNING_NUMBER);
-                List<Integer> winningNumber = converter.convertIntegerList(input);
-                return new Lotto(winningNumber);
+                return new Lotto(inputView.requestListInput(INPUT_WINNING_NUMBER));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -77,8 +58,7 @@ public class LottoController {
     private WinningNumbers generateWinningLotto(Lotto winningLotto) {
         while (true) {
             try {
-                String input = inputView.requestInputValue(INPUT_BONUS_NUMBER);
-                int bonusNumber = converter.convertInteger(input);
+                int bonusNumber = inputView.requestNumberInput(INPUT_BONUS_NUMBER);
                 return new WinningNumbers(winningLotto, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

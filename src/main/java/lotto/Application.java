@@ -21,8 +21,6 @@ public class Application {
     	inputNumbers();
     	inputBonus();
     	
-    	
-    	
     }
     
     public static int purchase() throws IllegalArgumentException {

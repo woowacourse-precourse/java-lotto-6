@@ -1,8 +1,9 @@
 package lotto.domain;
 
-import static java.util.Collections.sort;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.exception.ErrorMessage;
 
 public class Lotto {
     public static final int LOTTO_PRICE_UNIT = 1000;
@@ -14,7 +15,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sort(numbers);
+        numbers.sort(Integer::compareTo);
         this.numbers = numbers;
     }
 
@@ -35,6 +36,11 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException();
+        }
+
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getMessage());
         }
     }
 

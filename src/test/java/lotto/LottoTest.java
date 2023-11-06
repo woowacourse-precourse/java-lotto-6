@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoBuyer;
+import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +27,17 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("구입 금액이 1,000원 단위가 아니면 예외가 발생한다.")
+    @Test
+    void enterDifferentUnits() {
+        assertThatThrownBy(() -> new LottoBuyer("8500"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void enterValueIsNotNumber() {
+        assertThatThrownBy(() -> new LottoBuyer("우하하"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import lotto.constant.Message;
+import lotto.domain.BonusNumber;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningNumbers;
 import lotto.exception.LottoExceptionMessage;
@@ -33,6 +34,20 @@ public class InputView {
         }
 
         return winningNumbers;
+    }
+
+    public BonusNumber inputBonusNumber() {
+        BonusNumber bonusNumber = null;
+
+        while (!isValidBonusNumber(bonusNumber)) {
+            System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
+            String inputBonusNumber = Console.readLine().trim();
+
+            Integer validBonusNumber = parseValidBonusNumber(inputBonusNumber);
+
+            bonusNumber = createBonusNumber(validBonusNumber);
+        }
+        return bonusNumber;
     }
 
     private PurchasePrice createPurchasePrice(Integer validPrice) {
@@ -97,5 +112,40 @@ public class InputView {
             throw new IllegalArgumentException(LottoExceptionMessage.WINNING_NUMBERS_MUST_BE_NUMBERS.getMessage());
         }
 
+    }
+
+    private BonusNumber createBonusNumber(Integer validBonus) {
+        if (isValidBonus(validBonus)) {
+            return BonusNumber.from(validBonus);
+        }
+        return null;
+    }
+
+    private boolean isValidBonusNumber(BonusNumber validBonusNumber) {
+        return !Objects.isNull(validBonusNumber);
+    }
+
+    private boolean isValidBonus(Integer validBonus) {
+        return !Objects.isNull(validBonus);
+    }
+
+    private Integer parseValidBonusNumber(String inputBonusNumber) {
+        try {
+            if (isBonusNumber(inputBonusNumber)) {
+                return Integer.parseInt(inputBonusNumber);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(LottoExceptionMessage.BONUS_NUMBER_MUST_BE_NUMBER.getMessage());
+        }
+        return null;
+    }
+
+    private boolean isBonusNumber(String bonusNumber) {
+        try {
+            Integer.parseInt(bonusNumber);
+            return true;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(LottoExceptionMessage.BONUS_NUMBER_MUST_BE_NUMBER.getMessage());
+        }
     }
 }

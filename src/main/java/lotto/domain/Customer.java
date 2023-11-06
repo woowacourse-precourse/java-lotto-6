@@ -8,11 +8,13 @@ import java.util.List;
 public class Customer {
     private int wallet;
     private List<Lotto> customerLotto;
+    private int hasTicket;
 
     public Customer(int coin) {
         validateCoin(coin);
         this.wallet = coin;
         this.customerLotto = new ArrayList<>();
+        this.hasTicket = 0;
     }
 
     private void validateCoin(int coin) {
@@ -23,10 +25,13 @@ public class Customer {
     public int getWallet() {
         return this.wallet;
     }
-    public List<Lotto> getCustomerLotto() {
-        return this.customerLotto;
+    public Lotto getCustomerLotto(int i) {
+        return this.customerLotto.get(i);
     }
-    public void setCustomerLotto(List<Lotto> newLotto) {
-        this.customerLotto = newLotto;
+    public void addCustomerLotto(Lotto newLotto) {
+        if (hasTicket!=wallet/1000) {
+            this.customerLotto.add(newLotto);
+            hasTicket++;
+        }
     }
 }

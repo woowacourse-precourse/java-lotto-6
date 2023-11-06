@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.Lotto;
+import lotto.enums.LottoNumberRange;
 
 public class User {
     private static int paymentAmount;
@@ -26,7 +27,7 @@ public class User {
     }
 
     public int howManyLottoTicket() {
-        return paymentAmount / 1000;
+        return paymentAmount / LottoNumberRange.MIN_PAYMENT_AMOUNT.getValue();
     }
 
     public void inputWinningNumber() {
@@ -56,7 +57,7 @@ public class User {
         checkBonusNumber(input);
     }
 
-    public void checkBonusNumber(String input){
+    public void checkBonusNumber(String input) {
         bonusNumber = Exception.checkInvalidNumber(input);
         Exception.checkRangeLottoNumber(bonusNumber);
     }

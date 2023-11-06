@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.enums.LottoNumberRange;
 import lotto.enums.Message;
 
 public class Exception {
@@ -21,19 +22,19 @@ public class Exception {
     }
 
     public static void checkUnitPaymentAmount(int paymentAmount) {
-        if (paymentAmount % 1000 != 0) {
+        if (paymentAmount % LottoNumberRange.MIN_PAYMENT_AMOUNT.getValue() != 0) {
             throw new IllegalArgumentException(Message.INVALID_AMOUNT.getMessage());
         }
     }
 
     public static void checkRangePaymentAmount(int paymentAmount) {
-        if (paymentAmount < 1000) {
+        if (paymentAmount < LottoNumberRange.MIN_PAYMENT_AMOUNT.getValue()) {
             throw new IllegalArgumentException(Message.OUT_OF_RANGE_AMOUNT.getMessage());
         }
     }
 
     public static void checkRangeLottoNumber(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LottoNumberRange.MIN_NUMBER.getValue() || number > LottoNumberRange.MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(Message.OUT_OF_RANGE_LOTTO.getMessage());
         }
     }

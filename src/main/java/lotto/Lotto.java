@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.enums.LottoNumberRange;
 import lotto.util.Exception;
 
 public class Lotto {
@@ -13,7 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoNumberRange.MIN_SELECT_COUNT.getValue()) {
             throw new IllegalArgumentException();
         }
     }
@@ -21,7 +22,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public void checkNumber(List<Integer> numbers) {
         Exception.checkDuplicationNumber(numbers);
-        for(int number : numbers) {
+        for (int number : numbers) {
             Exception.checkRangeLottoNumber(number);
         }
     }

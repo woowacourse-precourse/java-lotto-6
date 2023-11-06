@@ -51,6 +51,7 @@ public class StartController {
 
     private void lottoTicketNumbers(Ticket lottoTicketCount) {
         view.lottoTicketInformation(lottoTicketCount.getLottoTicket());
+        System.out.println();
     }
 
     private void buyPriceValidate() {
@@ -65,6 +66,7 @@ public class StartController {
     private void sixHitNumberValidate() {
         try {
             lotto = new Lotto(inputSixHitLottoNumber());
+            System.out.println();
         } catch (IllegalArgumentException e) {
             sixHitNumberValidate();
         }
@@ -80,6 +82,7 @@ public class StartController {
         try {
             bonus = new Bonus(inputBonusHitNumber());
             compareLottoAndBonusNumberValidate();
+            System.out.println();
         } catch (IllegalArgumentException e) {
             bonusHitNumberValidate();
         }

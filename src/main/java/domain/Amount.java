@@ -20,7 +20,10 @@ public class Amount{
     }
 
     private void validate(int amount) {
-        if(!validateIsPositive(amount) || !validateIsDivisible(amount)){
+        if(!validateIsPositive(amount)){
+            inputLottoPurchaseAmount();
+        }
+        if(!validateIsDivisible(amount)){
             inputLottoPurchaseAmount();
         }
     }

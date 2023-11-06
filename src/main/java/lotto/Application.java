@@ -7,6 +7,7 @@ public class Application {
         // TODO: 프로그램 구현
         try{
             LottoController.inputPurchaseAmount();
+            LottoController.inputSelectedNumbers();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }

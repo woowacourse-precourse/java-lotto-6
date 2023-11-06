@@ -17,9 +17,22 @@ public class LottoController {
     public static void inputPurchaseAmount(){
         InputView.requestPurchaseAmountMessage();
         String amount = Console.readLine();
-        Validator.validateInputAmount(amount);
-        OutputView.purchaseLottoNumber();
+        System.out.println();
+        inputAmountValidator(amount);
         lottoCount(amount);
+    }
+
+    public static void inputAmountValidator(String amount){
+        Validator.validateInputAmount(amount);
+        int lottoCounts = (Integer.parseInt(amount)) / 1000;
+        OutputView.purchaseLottoNumber(lottoCounts);
+    }
+
+    public static void inputSelectedNumbers(){
+        InputView.requestWinningNumber();
+        String[] selectedNumbers = Console.readLine().split(",");
+        System.out.println(selectedNumbers);
+
     }
 
     public static void lottoCount(String amount){

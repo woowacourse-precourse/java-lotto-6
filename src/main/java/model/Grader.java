@@ -1,23 +1,28 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Grader {
 
-  static int[] result;
-  static boolean[] bonus;
-  static int earningRate;
-
   public Grader() {
   }
 
-  public void compareLottoWinningLotto(List<Lotto> lottos, WinningLotto winningLotto) {
-
+  public List<Integer> compareLottoWinningLotto(List<Lotto> lottos, WinningLotto winningLotto) {
+    List<Integer> winningDetails = new ArrayList<>();
+    for(int i = 0; i <= 5; i++) {
+      winningDetails.add(0);
+    }
+    for(Lotto lotto : lottos) {
+      Integer rank = compareNumber(lotto, winningLotto);
+      winningDetails.set(rank, winningDetails.get(rank) + 1);
+    }
+    return winningDetails;
   }
 
-  public Map<String, Integer> compareNumber(Lotto lotto, WinningLotto winningLotto) {
+  public Integer compareNumber(Lotto lotto, WinningLotto winningLotto) {
     int sameNumberCount = 0, sameBonusNumber = 0;
     for(int i = 0; i < 6; i++) {
       for(int j = 0; j < 6; j++) {
@@ -29,10 +34,27 @@ public class Grader {
         }
       }
     }
-    Map<String, Integer> result = new HashMap<>();
-    result.put("sameNumberCount", sameNumberCount);
-    result.put("sameBonusNumber", sameBonusNumber);
-    return result;
+    return checkRank(sameNumberCount, sameBonusNumber);
+  }
+
+  public Integer checkRank(int sameNumberCount, int sameBonusNumber) {
+    int rank = 0;
+    if(sameNumberCount == 6) {
+       rank = 1;
+    }
+    else if(sameNumberCount == 5 && sameBonusNumber == 1) {
+      rank = 2;
+    }
+    else if(sameNumberCount == 5) {
+      rank = 3;
+    }
+    else if(sameNumberCount == 4) {
+      rank = 4;
+    }
+    else if(sameNumberCount == 3) {
+      rank = 5;
+    }
+    return rank;
   }
 
 }

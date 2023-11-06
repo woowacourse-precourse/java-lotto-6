@@ -34,7 +34,7 @@ public class UserInputHandler {
     }
 
     // 1000원단위, 1000원 미만, 숫자 이외의 값 확인
-    private void validUserLottoPurchase(String lottoPurchase) {
+    public void validUserLottoPurchase(String lottoPurchase) {
         try {
             long lottoPurchaseValue = Long.parseLong(lottoPurchase);
             if (lottoPurchaseValue % DIVISION_ROLE != 0) {
@@ -43,7 +43,7 @@ public class UserInputHandler {
                 throw new IllegalArgumentException(LOTTO_PURCHASE_MIN_ERROR.getMessage());
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NON_NUMERIC_INPUT.getMessage());
+            throw new NumberFormatException(NON_NUMERIC_INPUT.getMessage());
         }
     }
 

@@ -16,7 +16,7 @@ public class InputView {
     private static final String SIX_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public Optional<Money> inputMoney(){
+    public static Optional<Money> inputMoney(){
         System.out.println(MONEY_INPUT_MESSAGE);
         String input = Console.readLine();
         try{
@@ -28,7 +28,7 @@ public class InputView {
             return Optional.empty();
         }
     }
-    public Optional<Lotto> inputSixNumbers(){
+    public static Optional<Lotto> inputSixNumbers(){
         System.out.println(SIX_NUMBERS_INPUT_MESSAGE);
         String input = Console.readLine();
         List<Integer> numbers = new ArrayList<>();
@@ -47,7 +47,7 @@ public class InputView {
         }
     }
 
-    public Optional<Bonus> inputBonusNumber(Lotto lotto){
+    public static Optional<Bonus> inputBonusNumber(Lotto lotto){
         System.out.println(BONUS_INPUT_MESSAGE);
         String input = Console.readLine();
         try{
@@ -62,7 +62,7 @@ public class InputView {
         }
     }
 
-    private List<String> parseNumbersFromInput(String input){
+    private static List<String> parseNumbersFromInput(String input){
         String[] numbers = input.split(",", -1);
         // convert array type into list type
         return new ArrayList<>(Arrays.asList(numbers));

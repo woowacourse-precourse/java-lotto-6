@@ -1,11 +1,12 @@
 package lotto.controller;
 
+import lotto.domain.UserMoney;
 import lotto.dto.input.UserMoneyDTO;
 import lotto.repository.LottoRepository;
 import lotto.service.LottoService;
 import lotto.view.LottoScreen;
 
-public class RegisterUserMoneyController extends AbstractController {
+public class RegisterUserMoneyController extends RegisterAbstractController<UserMoney> {
     private final LottoRepository lottoRepository;
     private final LottoScreen lottoScreen;
 
@@ -15,8 +16,9 @@ public class RegisterUserMoneyController extends AbstractController {
     }
 
     @Override
-    void doProcess() {
+    UserMoney doProcess() {
         UserMoneyDTO inputUserMoney = lottoScreen.inputUserMoney();
         LottoService.generateRandomLotto(inputUserMoney.toUserMoney(), lottoRepository);
+        return inputUserMoney.toUserMoney();
     }
 }

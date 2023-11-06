@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.dto.input.UserLottoDTO;
 import lotto.view.LottoScreen;
 
-public class RegisterLottoController extends AbstractController {
+public class RegisterLottoController extends RegisterAbstractController<Lotto> {
     private final LottoScreen lottoScreen;
 
     public RegisterLottoController(LottoScreen lottoScreen) {
@@ -12,8 +12,8 @@ public class RegisterLottoController extends AbstractController {
     }
 
     @Override
-    void doProcess() {
+    Lotto doProcess() {
         UserLottoDTO userLottoDTO = lottoScreen.registerLotto();
-        Lotto userLotto = userLottoDTO.toLotto();
+        return userLottoDTO.toLotto();
     }
 }

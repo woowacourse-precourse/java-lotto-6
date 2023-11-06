@@ -8,11 +8,13 @@ import java.util.stream.Collectors;
 
 public class WinningLotto {
     private static final String TYPE_ERROR_MESSAGE = "숫자를 입력해 주세요.";
+    private static final String SIZE_ERROR_MESSAGE = "6개의 숫자를 입력해 주세요.";
     private static final String RANGE_ERROR_MESSAGE = "1부터 45까지의 범위를 가져야 합니다.";
     private static final String DUPLICATE_ERROR_MESSAGE = "중복된 숫자는 허용하지 않습니다.";
     private static final String SPLIT_DELIMITER = ",";
     private static final int MIN = 1;
     private static final int MAX = 45;
+    private static final int LOTTO_SIZE = 6;
     private static final int WINNING_LOTTO_SIZE = 7;
 
     private final Lotto winningLotto;
@@ -25,6 +27,7 @@ public class WinningLotto {
 
     public static WinningLotto of(String inputLottoNumbers, String inputBonusNumber) {
         List<Integer> lottoNumbers = parse(inputLottoNumbers);
+        validateSize(lottoNumbers);
 
         validateType(inputBonusNumber);
         int bonusNumber = Integer.parseInt(inputBonusNumber);
@@ -49,6 +52,12 @@ public class WinningLotto {
                 .peek(WinningLotto::validateRange)
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    private static void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(SIZE_ERROR_MESSAGE);
+        }
     }
 
     private static void validateType(String inputData) {

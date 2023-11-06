@@ -20,7 +20,7 @@ public class LottoController {
         calcLottoResult(rankResult, winningNumber, lottos);
 
         Rate rate = getRate(money, rankResult);
-        OutputView.printResult(rankResult);
+        OutputView.printResult(rankResult, rate);
     }
 
     private String inputMoney() {

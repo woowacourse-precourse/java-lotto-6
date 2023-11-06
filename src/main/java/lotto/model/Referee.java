@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
-import lotto.model.Lotto;
-import lotto.model.Prize;
-import lotto.model.WinningLotto;
 
 public class Referee {
     private final Map<Prize, Integer> result;
@@ -44,11 +41,11 @@ public class Referee {
                 .sorted(Comparator.comparingLong(o -> o.getKey().getMoney()))
                 .forEach(
                         entry -> output.add(entry.getKey() + " - " + entry.getValue() + "개"));
-        return output.toString();
+        return "\n당첨 통계\n---\n" + output;
     }
 
     private Map<Prize, Integer> init() {
-        Map<Prize, Integer> result = new HashMap<>();
+        final Map<Prize, Integer> result = new HashMap<>();
         Arrays.stream(Prize.values())
                 .forEach(prize -> result.put(prize, 0));
         return result;
@@ -65,8 +62,8 @@ public class Referee {
     }
 
     private Prize compare(final List<Integer> lottoNumbers, final WinningLotto winningLotto) {
-        int count = countSameNumbers(lottoNumbers, winningLotto.getNumbers());
-        boolean isBonus = judgeContainBonusNumber(lottoNumbers, winningLotto.getBonusNumber());
+        final int count = countSameNumbers(lottoNumbers, winningLotto.getNumbers());
+        final boolean isBonus = judgeContainBonusNumber(lottoNumbers, winningLotto.getBonusNumber());
         return Arrays.stream(Prize.values())
                 .filter(prize -> prize.judge(count, isBonus))
                 .findFirst()

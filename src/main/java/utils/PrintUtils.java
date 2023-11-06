@@ -8,7 +8,7 @@ public class PrintUtils {
         System.out.println(message);
     }
     public static void printf(String formatMessage, Object args){
-        System.out.printf(formatMessage,args);
+        System.out.printf("%n"+formatMessage+"%n",args);
     }
     public static void errorPrint(String message){
         System.out.println(ErrorCodeConstant.DEFAULT_ERROR + message);

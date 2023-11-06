@@ -18,14 +18,14 @@ public class LottoGameService {
     private LottoGame lottoGame = new LottoGame();
 
     public void runLottoGame(){
-        print(LottoGameMessage.PURCHASE_AMOUNT.toString());
         purchaseLotto();
 
         printf(LottoGameMessage.PURCHASED_COUNT.toString(), userLotto.getLottoCount());
         List<Lotto> lottoList = getLottoList(userLotto.getLottoCount());
-        for(Lotto lotto : lottoList){
-            print(lotto.toString());
-        }
+        lottoList.stream()
+                .forEach(lotto -> print(lotto.getNumbers().toString()));
+
+        print(LottoGameMessage.WINNING_NUMBER.toString());
     }
     public List<Lotto> getLottoList(int lottoCount){
         List<Lotto> lottoList = new ArrayList<>();
@@ -40,6 +40,7 @@ public class LottoGameService {
     public void purchaseLotto(){
         boolean isAmount = false;
         while(!isAmount){
+            print(LottoGameMessage.PURCHASE_AMOUNT.toString());
             isAmount = isGetUserLotto(readInput());
         }
     }

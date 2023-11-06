@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constant.ExceptionConstant;
@@ -24,8 +25,8 @@ public class WinningLotto {
     }
 
     private Lotto createWinningLotto(String winningLotto) {
-        List<Integer> winningLottoList = convertStrToList(winningLotto);
-        return new Lotto(winningLottoList);
+        List<Integer> winningLottoNumbers = convertStrToList(winningLotto);
+        return new Lotto(winningLottoNumbers);
     }
 
     private List<Integer> convertStrToList(String winningLotto) {
@@ -35,16 +36,19 @@ public class WinningLotto {
     }
 
     private void validateDuplication(String winningLotto, String bonusNumber) {
-        if (winningLotto.contains(bonusNumber)) {
+        List<Integer> winningLottoNumbers = convertStrToList(winningLotto);
+        winningLottoNumbers.add(convertStrToInt(bonusNumber));
+
+        if (new HashSet<>(winningLottoNumbers).size() == NumberConstant.LOTTO_COUNT.getNumber()) {
             throw new IllegalArgumentException(ExceptionConstant.LOTTO_NUMBER_DUPliCATE.getMessage());
         }
     }
 
-    private void validateNumberSize(String bonusNumber) {
-        int bonusNumberInt = convertStrToInt(bonusNumber);
+    private void validateNumberSize(String number) {
+        int bonusNumber = convertStrToInt(number);
 
-        if (bonusNumberInt < NumberConstant.LOTTO_MIN_NUMBER.getNumber()
-                || NumberConstant.LOTTO_MAX_NUMBER.getNumber() < bonusNumberInt) {
+        if (bonusNumber < NumberConstant.LOTTO_MIN_NUMBER.getNumber()
+                || NumberConstant.LOTTO_MAX_NUMBER.getNumber() < bonusNumber) {
             throw new IllegalArgumentException(ExceptionConstant.LOTTO_NUMBER_SIZE.getMessage());
         }
     }

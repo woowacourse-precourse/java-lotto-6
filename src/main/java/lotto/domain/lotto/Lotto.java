@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Lotto {
@@ -50,6 +51,15 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return numbers.stream().sorted().toList();
+    }
+
+    public int countMatches(Lotto lotto) {
+        return this.numbers.stream()
+                .filter(o -> lotto.getNumbers()
+                        .stream()
+                        .anyMatch(Predicate.isEqual(o)))
+                .toList()
+                .size();
     }
 }

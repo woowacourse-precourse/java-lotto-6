@@ -24,8 +24,12 @@ public enum LottoPrize {
 
 
     public boolean matches(int numNumberMatches, int numBonusNumberMatches) {
-        return this.numNumberMatches == numNumberMatches &&
-                this.numBonusNumberMatches == numBonusNumberMatches;
+        if (this.equals(SECOND_PRIZE) || this.equals(THIRD_PRIZE)) {
+            return this.numNumberMatches == numNumberMatches &&
+                    this.numBonusNumberMatches == numBonusNumberMatches;
+        }
+
+        return this.numNumberMatches == numNumberMatches;
     }
 
     public long getWinningAmount() {

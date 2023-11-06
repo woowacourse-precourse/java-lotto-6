@@ -15,14 +15,18 @@ import lotto.view.OutputView;
 public class LottoGameController {
 
     public void run() {
+        playLottoGame();
+    }
+
+    private void playLottoGame() {
         Payment payment = getPayment();
         Lottos lottos = issueLottosByAuto(payment.calculatePurchasedLottoCount());
         printPurchaseHistory(payment, lottos);
 
         WinningLotto winningLotto = issueWinningLottoByManual(getWinningLotto());
         EnumMap<Rank, Integer> rankResult = lottos.getRankResult(winningLotto);
-        OutputView.printWinningStatistics(rankResult);
-        OutputView.printTotalYield(payment.calculateYield(lottos.calculateTotalReward(rankResult)));
+        double yield = payment.calculateYield(lottos.calculateTotalReward(rankResult));
+        printLottoGameResult(rankResult, yield);
     }
 
     private Payment getPayment() {
@@ -71,6 +75,11 @@ public class LottoGameController {
     private int getBonusNumber() {
         OutputView.printBonusNumberGuide();
         return Integer.parseInt(InputView.readInput());
+    }
+
+    private void printLottoGameResult(final EnumMap<Rank, Integer> rankResult, final double yield) {
+        OutputView.printWinningStatistics(rankResult);
+        OutputView.printTotalYield(yield);
     }
 
 }

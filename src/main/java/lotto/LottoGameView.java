@@ -11,6 +11,10 @@ public class LottoGameView {
     private static final String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBERS = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_RESULT = "당첨 통계\n---\n";
+    public static final String PURCHASE_RESULT = "%d개를 구매했습니다.\n";
+    public static final String LOTTERY_RESULT = "%d개 일치 (%s) - %d개\n";
+    public static final String LOTTERY_RESULT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%s) - %d개\n";
+    public static final String RETURN_RATE = "총 수익률은 %.1f%%입니다.";
 
     public int inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
@@ -34,8 +38,7 @@ public class LottoGameView {
     }
 
     public void printLotteryAmount(int amount) {
-        System.out.printf("%d개를 구매했습니다.", amount);
-        System.out.println();
+        System.out.printf(PURCHASE_RESULT, amount);
     }
 
     public void printLotteries(List<Lotto> lotteries) {
@@ -69,19 +72,14 @@ public class LottoGameView {
         int first = Collections.frequency(result, Prize.First);
 
         System.out.println(WINNING_RESULT);
-        System.out.printf("3개 일치 (%s) - %d개", Prize.Fifth.getMoneyString(), fifth);
-        System.out.println();
-        System.out.printf("4개 일치 (%s) - %d개", Prize.Forth.getMoneyString(), forth);
-        System.out.println();
-        System.out.printf("5개 일치 (%s) - %d개", Prize.Third.getMoneyString(), third);
-        System.out.println();
-        System.out.printf("5개 일치, 보너스 볼 일치 (%s) - %d개", Prize.Second.getMoneyString(), second);
-        System.out.println();
-        System.out.printf("6개 일치 (%s) - %d개", Prize.First.getMoneyString(), first);
-        System.out.println();
+        System.out.printf(LOTTERY_RESULT, 3, Prize.Fifth.getMoneyString(), fifth);
+        System.out.printf(LOTTERY_RESULT, 4, Prize.Forth.getMoneyString(), forth);
+        System.out.printf(LOTTERY_RESULT, 5, Prize.Third.getMoneyString(), third);
+        System.out.printf(LOTTERY_RESULT_WITH_BONUS, 5, Prize.Second.getMoneyString(), second);
+        System.out.printf(LOTTERY_RESULT, 6, Prize.First.getMoneyString(), first);
     }
 
     public void printRateReturn(double rateReturn) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", rateReturn);
+        System.out.printf(RETURN_RATE, rateReturn);
     }
 }

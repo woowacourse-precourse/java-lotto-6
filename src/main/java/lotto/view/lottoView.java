@@ -5,6 +5,8 @@ import lotto.model.Lotto;
 import lotto.service.LottoService;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static lotto.service.LottoService.inputNumberOfLotto;
 
@@ -28,5 +30,8 @@ public class LottoView {
         }
     }
 
-
+    public static String inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
 }

@@ -26,7 +26,7 @@ public class Application {
     }
 
     public static void runPurchaseAmountPart() {
-        final String purchaseAmountMessage = "구입금액을 입력해 주세요.";
+        final String purchaseAmountMessage = "\n구입금액을 입력해 주세요.";
         Output.message(purchaseAmountMessage);
         try {
             purchaseAmount = Input.purchaseAmount();

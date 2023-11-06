@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +17,7 @@ class LottoServiceTest {
 
     @Test
     @DisplayName("발행 수량 구하기")
-    void getPurchaseAmount() {
+    void getLotteryTicketCount() {
         // given
         System.setIn(new ByteArrayInputStream("14000".getBytes()));
         int correctCount = 14;
@@ -28,5 +29,12 @@ class LottoServiceTest {
         // then
         assertThat(lotteryTicketCount).isEqualTo(correctCount);
         assertThat(lotteryTicketCount).isNotEqualTo(wrongCount);
+    }
+
+    @Test
+    @DisplayName("발행하기")
+    void issueLotteryTicket() {
+        List<Integer> lotteryTicket = lottoService.issueLotteryTicket();
+        System.out.println("lotteryTicket = " + lotteryTicket.toString());
     }
 }

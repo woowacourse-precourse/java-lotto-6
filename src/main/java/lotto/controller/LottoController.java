@@ -16,7 +16,21 @@ public class LottoController {
         this.lottoService = new LottoService();
     }
 
+    public void run() {
+        User user = initInputUser();
+        List<Integer> winningNumbers = getInputWinningNumbers();
+        int bonusNum = getInputBonusNumber();
 
+    }
+
+
+    public User initInputUser() {
+        int count = getInputMoney();
+        User user = lottoService.initUser(count);
+
+        PrintView.printLottos(user);
+        return user;
+    }
 
 
     public int getInputMoney() {

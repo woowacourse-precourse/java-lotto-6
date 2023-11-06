@@ -38,7 +38,7 @@ public class PlayerTest {
         Player player = new Player();
         int budget = 8000;
         player.setBudget(budget);
-        List<Lotto> expected = ((LottoNotRandomGenerator) lottoGenerator).fixedTickets;
+        List<Lotto> expected = LottoNotRandomGenerator.fixedTickets;
 
         // when
         player.buyLottoTickets(lottoShop);

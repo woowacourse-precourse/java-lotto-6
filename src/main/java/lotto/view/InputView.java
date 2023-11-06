@@ -3,8 +3,8 @@ package lotto.view;
 import static lotto.validator.Validator.validateMainNumbersInput;
 import static lotto.validator.Validator.validateNumeric;
 import static lotto.view.ViewConstant.ASK_BONUS_NUMBER_MESSAGE;
+import static lotto.view.ViewConstant.ASK_MAIN_NUMBER_MESSAGE;
 import static lotto.view.ViewConstant.ASK_PAYMENT_MESSAGE;
-import static lotto.view.ViewConstant.ASK_WINNING_NUMBER_MESSAGE;
 import static lotto.view.ViewConstant.MAIN_NUMBER_DELIMITER;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -21,8 +21,8 @@ public class InputView {
         return Integer.parseInt(payment);
     }
 
-    public static List<Integer> readWinningNumbers() {
-        System.out.println(ASK_WINNING_NUMBER_MESSAGE);
+    public static List<Integer> readMainNumbers() {
+        System.out.println(ASK_MAIN_NUMBER_MESSAGE);
 
         String numbers = Console.readLine();
         validateMainNumbersInput(numbers);

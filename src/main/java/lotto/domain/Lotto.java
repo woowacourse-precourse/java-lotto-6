@@ -22,7 +22,15 @@ public class Lotto {
         }
     }
 
-    public LottoTicket toLottoTicket(){
+    public long countMatchingMainNumbers(WinningNumbers winningNumbers) {
+        return this.numbers.stream().filter(winningNumbers::isMainNumber).count();
+    }
+
+    public boolean isBonusMatched(WinningNumbers winningNumbers) {
+        return this.numbers.stream().anyMatch(winningNumbers::isBonusNumber);
+    }
+
+    public LottoTicket toLottoTicket() {
         return new LottoTicket(this.numbers);
     }
 

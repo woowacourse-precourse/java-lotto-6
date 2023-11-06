@@ -32,4 +32,15 @@ public class LottoValidator {
             throw new IllegalArgumentException("[ERROR] 입력 가능한 로또 숫자 범위는 1 ~ 45입니다.");
         }
     }
+
+    private boolean isDuplicateWinningNumbers(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        return numbers.size() != uniqueNumbers.size();
+    }
+
+    public void checkDuplicateWinningNumbers(List<Integer> numbers) {
+        if(isDuplicateWinningNumbers(numbers)){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력에 중복된 숫자를 넣지마세요.");
+        }
+    }
 }

@@ -22,12 +22,12 @@ public class Lotto {
             throw new IllegalArgumentException(LOTTO_LENGTH_IS_NOT_SIX.getMessage());
         }
 
-        if (isDuplicateNumber(numbers)) {
+        if (hasDuplicateNumber(numbers)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 
-    private boolean isDuplicateNumber(final List<Integer> numbers) {
+    private boolean hasDuplicateNumber(final List<Integer> numbers) {
         List<Integer> removedDuplicateNumbers = numbers.stream()
                 .distinct()
                 .toList();

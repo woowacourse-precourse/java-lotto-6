@@ -16,5 +16,29 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public void printLottoNumber() {
+        StringBuilder lottoNumbers = new StringBuilder();
+        lottoNumbers.append("[");
+        for(int lottoNumber : numbers) {
+            lottoNumbers.append(lottoNumber + ", ");
+        }
+        lottoNumbers.delete(lottoNumbers.length() - 2, lottoNumbers.length());
+        lottoNumbers.append("]");
+
+        System.out.println(lottoNumbers);
+    }
+    public int checkWinning(int[] winningNumbers, int bonusNumber) {
+        int winningCount = 0;
+        for (int i = 0; i < winningNumbers.length; i++) {
+            if(numbers.contains(winningNumbers[i])) {
+                winningCount++;
+            }
+        }
+
+        if(winningCount == 5 && numbers.contains(bonusNumber)) {
+            return 9;
+        }
+        return winningCount;
+    }
+
 }

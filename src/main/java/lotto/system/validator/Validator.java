@@ -64,4 +64,13 @@ public class Validator {
         validateNotEmptyAndArabicNumber(input);
         validateDivisibleBy1000(input);
     }
+
+    public void validateWinningNumbers(List<String> userInputNumbers) {
+        userInputNumbers.forEach(
+                number -> {
+                    validateNotEmptyAndArabicNumber(number);
+                    validateNumberInRange(number);
+                }
+        );
+    }
 }

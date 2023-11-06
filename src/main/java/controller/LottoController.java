@@ -20,6 +20,8 @@ public class LottoController {
         OuputView.lottosNumbers(lottos);
 
         //createWinningNumbers
+        InputView.winningNumbersMessage();
+
         //compareLottoNumbers
         //printResult
     }

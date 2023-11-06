@@ -34,18 +34,18 @@
 
 ### Model
 
-- `Lotto` : 로또 번호를 저장하는 클래스
-- `LottoPurchaseManager` : 로또들을 발행하고 당첨을 확인하는 클래스.
-- `LottoResult` : 로또 당첨 결과를 저장하는 클래스. 당첨 등급, 보너스 번호 일치 여부 등을 포함한다.
+- [X] `Lotto` : 로또 번호를 저장하는 클래스
+- [ ] `LottoPurchaseManager` : 로또들을 발행하고 당첨을 확인하는 클래스.
+- [ ] `LottoResult` : 로또 당첨 결과를 저장하는 클래스. 당첨 등급, 보너스 번호 일치 여부 등을 포함한다.
     - ValidatorPolicy를 바탕으로 Lottos의 당첨을 확인한다.
     - 당첨 금액을 계산한다.
-- `LottoValidatorPolicy` : 로또 당첨의 규칙과 상금 정보를 정의하는 클래스.
+- [ ] `LottoValidatorPolicy` : 로또 당첨의 규칙과 상금 정보를 정의하는 클래스.
     - 1등: 6개 번호 일치 / 2,000,000,000원
     - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
     - 3등: 5개 번호 일치 / 1,500,000원
     - 4등: 4개 번호 일치 / 50,000원
     - 5등: 3개 번호 일치 / 5,000원
-- `LottoProfit` : 로또로 인한 수익률을 관리하는 클래스.
+- [ ] `LottoProfit` : 로또로 인한 수익률을 관리하는 클래스.
     - private 값으로 구매 금액을 갖는다.
     - LottoResults에서 당첨 금액을 매개변수로 받아온다.
     - 구매 금액과 당첨 금액을 바탕으로 Profit을 계산한다.
@@ -53,24 +53,24 @@
 
 ### View
 
-- `InputView` : 사용자로부터 입력을 받아 컨트롤러에게 전달한다.
+- [ ] `InputView` : 사용자로부터 입력을 받아 컨트롤러에게 전달한다.
     - input의 역할만 수행해야 하므로, 기본적인 공백 예외를 제외하고 그대로 리턴한다.
-- `OutputView` : 사용자에게 메시지를 출력한다.
+- [ ] `OutputView` : 사용자에게 메시지를 출력한다.
 
 ### Controller
 
-- `LottoController` : 사용자 입력을 처리하고 모델을 통해 로또 게임을 관리한다. 결과를 뷰에 전달하여 출력한다.
+- [ ] `LottoController` : 사용자 입력을 처리하고 모델을 통해 로또 게임을 관리한다. 결과를 뷰에 전달하여 출력한다.
 
 ### Enums
 
-- `ErrorMessage` : 발생할 수 있는 에러 메시지를 한번에 관리한다.
-- `OutputMessage` : 출력할 명령 프롬프트를 한번에 관리한다.
-- `LottoRank` : 당첨 등급을 정의. 1등부터 5등까지의 등급을 관리한다.
+- [ ] `ErrorMessage` : 발생할 수 있는 에러 메시지를 한번에 관리한다. 
+- [X] `OutputMessage` : 출력할 명령 프롬프트를 한번에 관리한다.
+- [X] `LottoRank` : 당첨 등급을 정의. 1등부터 5등까지의 등급을 관리한다.
 
 ### Util
 
-- `NumberGenerator` (interface)
-- `RandomNumberGenerator` : 중복되지 않은 6개의 로또 번호를 뽑는 클래스
+- [ ] `NumberGenerator` (interface)
+- [ ] `RandomNumberGenerator` : 중복되지 않은 6개의 로또 번호를 뽑는 클래스
 
 ### 실행 결과 예시
 

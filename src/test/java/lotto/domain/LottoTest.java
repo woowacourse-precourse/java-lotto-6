@@ -108,4 +108,18 @@ class LottoTest {
         assertThatCode(() -> new Lotto(lottoNumbers))
                 .doesNotThrowAnyException();
     }
+
+    @DisplayName("로또 번호와 당첨 번호가 같은 경우 6개 전부 일치하는지 확인한다.")
+    @Test
+    void matchBySameNumbers() {
+        // given
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        // when
+        Lotto lotto = new Lotto(lottoNumbers);
+        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
+        // then
+        assertThat(lotto.match(winningNumber)).isEqualTo(6);
+    }
 }

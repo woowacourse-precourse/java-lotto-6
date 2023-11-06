@@ -5,18 +5,22 @@ import java.util.List;
 
 public class Customer {
     private final int money;
-    private List<Lotto> issuedLottos;
+    private final List<Lotto> issuedLottos;
 
     public Customer(int money) {
         this.money = money;
-        issuedLottos = new ArrayList<>();
+        this.issuedLottos = new ArrayList<>();
     }
 
     public void buyLotto(Lotto lotto) {
-        issuedLottos.add(lotto);
+        this.issuedLottos.add(lotto);
     }
 
-    public List<Lotto> getIssuedLottos() {
-        return issuedLottos;
+    public final List<Lotto> getIssuedLottos() {
+        return this.issuedLottos;
+    }
+
+    public final int getMoney() {
+        return this.money;
     }
 }

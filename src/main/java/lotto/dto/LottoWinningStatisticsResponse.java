@@ -1,4 +1,4 @@
 package lotto.dto;
 
-public class LottoWinningStatistics {
+public class LottoWinningStatisticsResponse {
 }

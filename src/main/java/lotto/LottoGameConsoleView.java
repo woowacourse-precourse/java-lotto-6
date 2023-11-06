@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
 import lotto.dto.LottoWinningNumberCreateRequest;
-import lotto.dto.LottoWinningStatistics;
+import lotto.dto.LottoWinningStatisticsResponse;
 
 public class LottoGameConsoleView implements LottoGameView {
 
@@ -45,7 +45,7 @@ public class LottoGameConsoleView implements LottoGameView {
     }
 
     @Override
-    public void printWinningStatistics(LottoWinningStatistics lottoWinningStatistics) {
+    public void printWinningStatistics(LottoWinningStatisticsResponse lottoWinningStatisticsResponse) {
 
     }
 

@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
 import lotto.dto.LottoWinningNumberCreateRequest;
-import lotto.dto.LottoWinningStatistics;
+import lotto.dto.LottoWinningStatisticsResponse;
 
 public interface LottoGameView {
     LottoPurchaseRequest inputPurchaseRequest();
@@ -15,7 +15,7 @@ public interface LottoGameView {
 
     LottoBonusNumberCreateRequest inputLottoBonusNumberCreateRequest();
 
-    void printWinningStatistics(LottoWinningStatistics lottoWinningStatistics);
+    void printWinningStatistics(LottoWinningStatisticsResponse lottoWinningStatisticsResponse);
 
     void printException(Exception exception);
 }

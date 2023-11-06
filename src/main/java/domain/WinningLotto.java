@@ -1,5 +1,7 @@
 package domain;
 
+import util.ErrorMessage;
+
 import java.util.List;
 
 public class WinningLotto {
@@ -11,7 +13,12 @@ public class WinningLotto {
     }
 
     public void setBonusNumber(int number) {
-        this.bonusNumber = bonusNumber;
+        if(isWinningNumberContainBonusNumber(number)) {
+            System.out.println(ErrorMessage.WINNING_NUMBER_AND_BONUS_NUMBER_ARE_SAME.getErrorMessage());
+            throw new IllegalArgumentException();
+        }
+        this.bonusNumber = number;
+
     }
 
     public boolean isWinningNumberContainBonusNumber(int number){

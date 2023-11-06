@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
+import lotto.domain.Result;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -13,10 +14,12 @@ public class LottoGame {
     Lotto winningNumber;
     Integer bonusNumber;
     List<Prize> prizeRanks;
+    Result result;
 
     public LottoGame() {
         this.lottos = new ArrayList<>();
         this.prizeRanks = new ArrayList<>();
+        this.result = new Result();
     }
 
 
@@ -77,5 +80,13 @@ public class LottoGame {
             prize = Prize.SECOND;
         }
         return prize;
+    }
+
+    public void setResult() {
+        result.setResult(prizeRanks);
+    }
+
+    public int[] getResult() {
+        return result.getResult();
     }
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.ResultBuilder;
 import lotto.validation.ValidateNumberFormat;
 import lotto.validation.ValidateThousandWonFormat;
 
@@ -21,5 +22,10 @@ public class OutputView {
         for (List<Integer> lotto : lottos) {
             System.out.println(lotto);
         }
+    }
+
+    public void readWinningLottoResult(int[] result) {
+        ResultBuilder resultBuilder = new ResultBuilder();
+        System.out.println(resultBuilder.resultBuild(result));
     }
 }

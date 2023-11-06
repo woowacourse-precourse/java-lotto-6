@@ -20,8 +20,14 @@ public class LottoController {
         butLotto(quantity);
         String[] winningNumber = getWinningNumber();
         getBonusNumber(winningNumber);
+        setLottoReult();
         outputView.readWinningLottoMessage();
+        outputView.readWinningLottoResult(lottoGame.getResult());
+    }
+
+    private void setLottoReult() {
         lottoGame.confirmWin();
+        lottoGame.setResult();
     }
 
     private void getBonusNumber(String[] winningNumber) {

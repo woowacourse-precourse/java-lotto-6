@@ -9,7 +9,7 @@ public enum Prize {
     FOURTH(4, 4, money -> money + 50000),
     THIRD(3, 5, money -> money + 1500000),
     SECOND(2, 5, money -> money + 30000000),
-    FIRST(1, 6, money -> money + 200000000);
+    FIRST(1, 6, money -> money + 2000000000);
 
     private int rank;
     private int matched;

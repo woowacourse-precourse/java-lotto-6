@@ -51,7 +51,7 @@ public class Money {
         return input.trim();
     }
 
-    public int getAmount() {
-        return amount;
+    public int calculateLottoQuantity(int price) {
+        return this.amount / price;
     }
 }

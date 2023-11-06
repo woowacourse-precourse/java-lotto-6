@@ -8,8 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.Exception.isValidNotThousandAndNegativeException;
-import static lotto.Exception.isValidNumberFormat;
+import static lotto.Exception.*;
 
 public class InputController {
     private final Model model;
@@ -52,6 +51,15 @@ public class InputController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             checkRangeLottoNumber(createWinningLottoList(Console.readLine()));
+        }
+    }
+
+    public void checkRangeLottoNumber(int number){
+        try{
+            isValidLottoNumberRange(number);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            checkRangeLottoNumber(checkValidNumberFormat(Console.readLine()));
         }
     }
 

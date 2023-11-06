@@ -38,7 +38,9 @@ public class InputView {
 
     private Integer inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return inputController.checkValidNumberFormat(Console.readLine());
+        int bonusNumber = inputController.checkValidNumberFormat(Console.readLine());
+        inputController.checkRangeLottoNumber(bonusNumber);
+        return bonusNumber;
     }
 
     private void printBuyLottoList(int cash) {

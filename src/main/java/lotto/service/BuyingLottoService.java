@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -49,7 +50,7 @@ public class BuyingLottoService {
     }
 
     public List<Integer> sortLottoNumber(Lotto lotto){
-        List<Integer> sortingNumber = lotto.getNumbers();
+        List<Integer> sortingNumber = new ArrayList<>(lotto.getNumbers());
         Collections.sort(sortingNumber);
         return sortingNumber;
     }

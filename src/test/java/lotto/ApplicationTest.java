@@ -18,6 +18,7 @@ class ApplicationTest extends NsTest {
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
                     assertThat(output()).contains(
+                            "구입금액을 입력해 주세요.",
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
                             "[3, 5, 11, 16, 32, 38]",

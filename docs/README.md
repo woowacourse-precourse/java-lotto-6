@@ -2,9 +2,9 @@
 
 - 작성자 : 제민수(우테코 프리코스 6기)
 - 작성 기간 : 2023-11-02 pm4:00 ~ 현재 작성 중
-- 🔖버전 관리 : 0.0ver
+- 🔖버전 관리 : 1.2ver
     - 0.x 프로그램 실행 안됨 테스트 및 코딩 작성 중. //x수정 내용은 제일 마지막 페이지에 있음.
-    -
+    - 1.x 프로그램 실행 가능
 
 ## 📜목차
 
@@ -20,14 +20,14 @@
 5. [기능 구현 목록](#🎯기능-구현-목록)
 6. [유효성 확인(코드 검증)](#📝유효성-확인(코드-검증))
 7. [프로그램 FlowChart](#💡프로그램-FlowChart)
+8. [클래스 다이어그램](#👀클래스-다이어그램)
 
 ### 3장. 기타
 
-8. [사용된 라이브러리](#📚사용된-라이브러리)
-9. [요구사항 이외 고려사항](😵요구사항-이외-고려사항)
-10. [작성 체크리스트](#🚨작성-체크리스트)
-11. [ver 수정 내용](#👁️‍🗨️Ver-수정-내용)
-
+9. [사용된 라이브러리](#📚사용된-라이브러리)
+10. [요구사항 이외 고려사항](😵요구사항-이외-고려사항)
+11. [작성 체크리스트](#🚨작성-체크리스트)
+12. [ver 수정 내용](#👁️‍🗨️Ver-수정-내용)
 ---
 ---
 
@@ -195,23 +195,228 @@
 
 ### 4. 예외처리 기능 구현
 
-- 입력 받은 값이 수가 아닐 경우 `IllegalArgumentException`를 발생시키고, 다시 입력 받는다.
-- 입력 받은 값이 범위를 벗어 났을 경우 `IllegalArgumentException`를 발생시키고, 다시 입력 받는다.
-- 입력 받은 값이 중복 되었을 경우 `IllegalArgumentException`를 발생시키고, 다시 입력 받는다.
-- 수익률 계산시 각각의 값 또는 계산된 수익률이 정수형의 범위를 벗어났을 경우 `IllegalArgumentException`를 발생시키고, "[ERROR] 최대 수익률 계산 범위를 벗어났습니다."라는 문구를
-  화면에 출력한다.
-- 저장된 값이 범위를 벗어났거나, 중복됬을 경우`IllegalArgumentException`를 발생시키고 프로그램을 종료한다.(Lotto클래스를 참고하여, 저장값의
-  오류는 `IllegalArgumentException`를 발생하고 프로그램을 종료한다.)
-- 로또의 번호가 6개가 아닐 경우 `IllegalArgumentException`를 발생시키고 프로그램을 종료한다.(주어진 Lotto클래스의 설정된 부분이며, 수정 불가.)
+- 입력 받은 값이 수가 아닐 경우 `IllegalArgumentException`를 발생시키고 에러문구 출력 후, 다시 입력 받는다.
+- 입력 받은 값이 범위를 벗어 났을 경우 `IllegalArgumentException`를 발생시키고 에러문구 출력 후, 다시 입력 받는다.
+- 입력 받은 값이 중복 되었을 경우 `IllegalArgumentException`를 발생시키고 에러문구 출력 후, 다시 입력 받는다.
+- 로또의 번호가 6개가 아닐 경우 `IllegalArgumentException`를 발생시키고 에러문구 출력 후, 프로그램을 종료한다.(주어진 Lotto클래스의 설정된 부분이며, 수정 불가.)
 
 ## 📝유효성 확인(코드 검증)
 
-- Test 문서 관련 정리한 페이지 이다. 아래의 내용은 주로 Test코드 작성 이후 작성 되었음을 알려드립니다.
+- Test 문서에서 오류코드 관련 정리한 페이지 이다.
+
+### 1. Error message 내용 및 선언
+- 
+
+### 2. Test코드 상에서 Error 체크리스트
 
 ## 💡프로그램 FlowChart
 
 - 프로그램의 동작을 간략하게 FlowChart로 표현한 페이지 이다.
-- Test까지 완료 된 이후 작성 예정.
+
+```mermaid
+graph TD
+    RUN[run] --> A[구매액 요청];
+    A --> B;
+    B[사용자 입력] --> C{데이터 확인};
+    C -- 잘못된입력 예외발생 --> A;
+    C -- 올바른입력 --> D[데이터 생성 및 저장];
+    D --> E[로또 데이터 생성 및 저장];
+    E --> F[로또 당첨 및 보너스 번호 요청];
+    F --> G[사용자 입력];
+    G --> H{데이터 확인};
+    H -- 잘못된입력 예외 발생 --> F;
+    H -- 올바른입력 --> I[당첨 데이터 생성 및 저장];
+    I --> J[비교];
+    E --> J;
+    J --> K[당첨금 확인];
+    K --> L[수익률 계산];
+    L --> M[수익률 확인];
+    M --> N[끝];
+    E -- 잘못된 데이터 저장 --> O[예외 발생]
+    I -- 잘못된 데이터 저장 --> O[예외 발생]
+    J -- 비교데이터 없음 --> O;
+    O --> N;
+```
+
+- 잘못된 데이터 저장은 Lotto()함수에서 발생하며, Lotto 생성자 사용 시 Lotto의 값이 중복, 6개가이닌 데이터 일시 예외로 처리함.
+
+## 👀클래스 다이어그램
+
+````mermaid
+classDiagram
+    LottoControl: +run()
+    LottoControl: -LottoIssuancePrograss()
+    LottoControl: -LottoWinningPrograss()
+    LottoControl --> LottoIssuance
+    LottoIssuance --> PrintScreen
+    PrintScreen --> LottosNumber
+    PrintScreen --> Text
+    PrintScreen --> LottoBuy
+    LottoIssuance --> LottoBuy
+    LottoIssuance --> LottoGenerator
+    LottoIssuance --> LottosNumber
+    LottoIssuance --> Request
+    Request --> LottoBuy
+    Request --> WinningLotto
+    Request --> TextNumberConvert
+    LottoControl --> PrintScreen
+    LottoControl --> FindWinning
+    FindWinning --> Request
+    FindWinning --> LottoBuy
+    FindWinning --> WinningLotto
+    FindWinning --> PrintScreen
+    FindWinning --> RateofReturn
+    RateofReturn --> PrintScreen
+    FindWinning --> enum Winning
+enum Winning-->Text
+enum Winning-->NumberData
+enum Winning-->ErrorCheck
+ErrorCheck-->Text
+ErrorCheck-->WinningLotto
+ErrorCheck-->ErrorText
+ErrorCheck-->NumberData
+TextNumberConvert-->ErrorCheck
+interface Viewr<--PrintScreen
+interface Viewr<--enum Winning
+interface Viewr<--Request
+interface input<--Request
+
+class LottoIssuance{
++void Issuance()
+-List<Lotto> LottosGenerator(long)
+}
+
+class PrintScreen{
++void PrintLottoIssuanceNumber()
++void PrintLottoIssuance()
++void StartPrintWinningStatistics()
++void ShowRateofReturn()
+}
+
+class Request{
+-long MoneyInputConversion(String)
+-void MoneyInputMultipleRead()
++void RequestBuyMoney()
+-Lotto WinningNumberInputConversion(String)
+-void WinningNumberMultipleRead()
+-void RequestLottoWinningNumber()
+-int BonusNumberInputConversion(String)
+-void BonusNumberMultipleRead()
+-void RequestLottoBonusNumber()
++void RequestSetNumber()
+}
+
+class ErrorText{
++String errors
+}
+class Text{
++String usetext
+}
+class NumberData{
++int fixeddata
++long fixeddata
+}
+
+class ErrorCheck{
+-long IsNumber64bit(String)
+-void MoneyRange(long)
+-void UnitConfirmation(long)
++long MoneyInput(String)
+-int IsNumber(String)
+-int WiningNumberRange(int)
+-Lotto IsNumberMulti(List<String>)
+-Lotto SeparatorWinnerNumber(String)
++Lotto WinnerNumberInput(String)
+-int BonusNumberRange(int)
+-void BonusDuplicateNumber(int, int)
+-int CheckDuplicateNumber(String)
++int BonusNumberInput(String)
++void WinningValueOf()
+
+}
+
+class LottoGenerator{
++List<Integer> LottoNumberGenerator()
+-List<Integer> NumberAscendingSort()
+-List<Integer> RandomNumberGenerator()
+}
+
+class RateofReturn{
++void CalculateRateOfReturn(long, long)
+}
+
+class TextNumberConvert{
++long MoneyConvert(String)
++Lotto WinnerNumberConvert(String)
++int BonusNumberConversion(String)
+}
+
+class enum Winning{
+-String textmatch
+-int matchwinningcountnumber
+-long prize
++void PrintWinnging(int)
+-boolean matchCount(int)
++long GetWinningPrize()
++Winning valueOf(int, boolean)
+}
+
+class FindWinning{
+-Winning Match(Lotto)
+-Map<Winning, Integer> SetResult()
+-Map<Winning, Integer> WinningCalculate(List<Lotto>, FindWinning)
+-void PrintWinningStatistics(Map<Winning, Integer>)
+-void WinningPriceTotal(Map<Winning, Integer>)
++void Result(List<Lotto>, FindWinning)
++void FindLottoWinning(List<Lotto> , FindWinning)
+}
+
+class LottoBuy{
+-long buymoney
+-long lottoIssuanceNumber
++void SetBuyMoney(long)
++void SetlottoIssuanceNumber(long)
++long GetBuyMoney()
++long GetLottoIssuanceNumber()
+}
+
+class LottosNumber{
+-List<Lotto> lottos
++void SetLottos(List<Lotto>)
++List<Lotto> Lottos GetLottos()
+}
+
+class WinningLotto{
+-Lotto winningnumber
+-int bonusnumber
+-long totalwinningprice
++void setWinningnumber(Lotto)
++void setBonusnumber(int)
++void setTotalWinningPrice(long)
++Lotto GetWinningNumber()
++int GetBonusNumber()
++long GetTotalWinningPrice()
+}
+
+
+class interface Viewr{
++ViewPrint()
+}
+interface Viewr<|.. UserScreen
+class UserScreen{
++ViewPrint()
+}
+
+class interface input{
++String GetData()
++void close()
+}
+interface input<|.. Keyboard
+class Keyboard{
++String GetData()
++void close()
+}
+````
 
 ---
 ---
@@ -241,11 +446,27 @@ List<Integer>로 로또 번호를 입력하고, 입력 받은 값이 6개가 아
 
 ## 😵요구사항 이외 고려사항
 
+- 기존에 c언어를 작성 할때 자주 하였던 저장된 자료 검증 -> 애초에 잘못 넣지 않는 이상 잘못된 값이 반환되지 않음.
+- Screen화면을 따로 메소드로 작성하여야하는가... -> Text자체를 따로 선언 함.
+    - 메소드는 한번에 무슨 문구가 작성되었는지 바로 알기 힘들지만
+      제작한 io를 통해 출력되는 Text를 따로 선언 하면 쉽게 무슨 String이 저장되었는가 확인가능
+    - 선언된 Text를 통해 쉽게 어느 문구가 어디에 적용되서 변하는지 알 수 있어 수정도 용이한것으로 생각됨.
+- 패키지 생성은 어떻게 할 것인가
+    - io는 그대로 intput, output으로 나중에 추가적인 도구들이 생성되는 것을 고려해 인터페이스로 작업 진행
+        - io 자체는 어떤 프로그램에서도 똑같이 적용 할 수 있다고 생각해서 util 패키지에 만듬.
+    - 로또 구매, 발행, 당첨으로 크게 구분
+    - 어디서든 사용가능한 Final값들의 fiexd data 생성
+    - 특정 값을 반환 받기 위한 generator 생성(계산으로 따로 빼놨던 것들은 결과적으로 값을 생성하는 것으로 생각되어 합침.)
+    - Lotto같이 이미 만들어진 에러를 제외한 모든 에러(예외사항)을 한곳에서 보기 위한 errorcheck
+- README.md는 어디까지 작성할 것인가?
+    - 현재 문서의 목적을 생각하여 최대한 많이 작성 해볼 예정.
+    - 틀리더라도 작성해보고 점차 알맞은 것들로만 구성하게 노력해봐야 할것으로 보임.
+
 ## 🚨작성 체크리스트
 
-- [ ] 프로그램 요구 사항 및 추가된 요구사항에 만족하는지 확인 하였는가?
-- [ ] 예외 상황 시 `"[ERROR]"`문구로 시작하여 화면에 출력 하였는가? 또한 기능요구사항에 명시된 에러 처리를 기능 구현 하였는가?
-- [ ] 공통 피드백을 고려하여 작성하였는가?
+- [ ] 프로그램 요구 사항 및 추가된 요구사항에 만족하는지 확인 하였는가? -> 단위테스트가 안된거 같아서 체크를 못하겠음.
+- [x] 예외 상황 시 `"[ERROR]"`문구로 시작하여 화면에 출력 하였는가? 또한 기능요구사항에 명시된 에러 처리를 기능 구현 하였는가?
+    - [ ] 공통 피드백을 고려하여 작성하였는가? ->여기도 테스트 때문에...
 - [ ] 마지막으로 다시 한번 코드와 문서를 확인하고 문제점이 있는지 확인 하였는가?
 
 ---
@@ -254,8 +475,23 @@ List<Integer>로 로또 번호를 입력하고, 입력 받은 값이 6개가 아
 ## 👁️‍🗨️Ver 수정 내용
 
 - Ver0.x
+    - 프로그램완성 이전 수정 및 추가 사항 관리
     - [23.11.03 am 00:04] 초안 작성 완료
     - [23.11.04 am 10:50] 초안 수정 완료
     - [23.11.04 pm 11:00] fixed data io 작성
     - [23.11.05 am 01:35] Buy 클래스 생성 및 Test
     - [23.11.05 pm 06:50] LottoIssuance, LottoGenerator 클래스 생성 및 테스트
+    - [23.11.05 pm 11:10] 최종본 완성 및 테스트
+- Ver1.x
+    - 프로그램 완성 이후 수정사항 관리
+    - [23.11.06 PM08:00] README.md 문서 수정.
+    - [23.11.06 PM11:50] README.md 문서 수정(다이어그램 추가) 및 코드 분리, 패키지 정리.
+
+## 작성후기?
+- 코드 작성부터 README.md 파일까지 작성하는데 심혈을 기울였으나... 아직 뭐가 정답에 가까울지 잘모르겠다.
+- mvc패턴은 아직 잘 모르겠다. 이전에 C로 임베디드 코드 작성하던 버릇은 이제 많이 빠졌으나.. 아직 코드 작성시에 버벅거린다.
+- 방금 알았는데 커밋이 최종본 완성쯤부터 안됬다... 확인을 좀더 자주 해야겠다...
+- 작성 체크리스트는 하나 말고 체크를 못하겠다.. 아직 모자란 부분이 너무 많다고 생각하지만 차근차근 채워서 체크리스트에 확신을 가질 날이 오길 바란다...
+- 아 그리고 이번엔 로또 클래스를 만들어서 주셨는데.... 정리하고 싶은데.... 못함... 예외는 따로 처리하고 싶은데 안옮겼음 그리고 분류에도 아예 안넣음..
+  - 넣는다면 vo에 옮기고 싶고 예외처리도 따로 ErrorCheck함수로 옮기고 싶음
+- 혹시 이글을 읽으시는 분 중에 프리코스 관련자분이 있으시면... 너무 과하면 과하다고 말해주세요 ㅋㅋㅋ

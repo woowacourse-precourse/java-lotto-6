@@ -1,17 +1,18 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.Issuance.LottoIssuance;
+import lotto.Controller.PrintScreen;
+import lotto.service.generator.LottoIssuance;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class IssuanceTest extends NsTest {
     LottoIssuance lottoissuance = new LottoIssuance();
+    PrintScreen print = new PrintScreen();
 
     @Test
     public void Issuance_테스트() {
@@ -45,5 +46,6 @@ public class IssuanceTest extends NsTest {
     @Override
     public void runMain() {
         lottoissuance.Issuance();
+        print.PrintLottoIssuance();
     }
 }

@@ -2,11 +2,13 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CheckValidateInput {
-
+	
+	
 	public int money(String money) {
 
 		if (!isInteger(money))
@@ -27,20 +29,14 @@ public class CheckValidateInput {
 		return (money > 0) && (money < Integer.MAX_VALUE);
 	}
 
-	public int bonusNumber(String bonusNumber, List<Integer> lotto) {
+	public int bonusNumber(String bonusNumber) {
 
 		if (!isInteger(bonusNumber))
 			throw new IllegalArgumentException();
 		if (!inRangeBonusNumber(Integer.parseInt(bonusNumber)))
 			throw new IllegalArgumentException();
-		if (numberInLotto(Integer.parseInt(bonusNumber), lotto))
-			throw new IllegalArgumentException();
 
 		return Integer.parseInt(bonusNumber);
-	}
-
-	private boolean numberInLotto(int bonusNumber, List<Integer> lotto) {
-		return lotto.contains(bonusNumber);
 	}
 
 	private boolean inRangeBonusNumber(int bonusNumber) {
@@ -56,7 +52,12 @@ public class CheckValidateInput {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 		
+		sort(winnings);
 		return winnings;
+	}
+	
+	private void sort(List<Integer> numbers) {
+		Collections.sort(numbers);
 	}
 	
 	private String[] separated(String numbers) {

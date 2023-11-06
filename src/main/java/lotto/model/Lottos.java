@@ -7,7 +7,7 @@ public class Lottos {
 	
 	private List<Lotto> lottos = new ArrayList<Lotto>();
 	
-	Lottos(){}
+	public Lottos(){}
 	public void addLotto(Lotto lotto) {
 		this.lottos.add(lotto);
 	}

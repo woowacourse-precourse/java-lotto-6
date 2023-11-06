@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.dto.input.UserBonusDTO;
 import lotto.dto.input.UserLottoDTO;
 import lotto.dto.input.UserMoneyDTO;
 import lotto.io.Reader;
@@ -12,6 +13,11 @@ public class LottoScreen {
     public LottoScreen(Reader reader, Writer writer) {
         this.reader = reader;
         this.writer = writer;
+    }
+
+    public UserBonusDTO registerBonus() {
+        writer.writeLine("보너스 번호를 입력해 주세요");
+        return new UserBonusDTO(reader.readLine().trim());
     }
 
     public UserMoneyDTO inputUserMoney() {

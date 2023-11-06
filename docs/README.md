@@ -7,8 +7,8 @@
 - [x] 중복된 숫자가 있는지 확인한다
 - [x] 로또 숫자가 1과 45사이의 값인지 검증한다.
 
-# WinningLotto
-- [ ] 매개변수로 들어온 Lotto<List>와 자신이 가지고 있는 1등 로또를 비교해 Ranks를 반환한다.
+# LottoManager
+- [x] 매개변수로 들어온 Lotto<List>와 자신이 가지고 있는 1등 로또를 비교해 Ranks를 반환한다.
 - [ ] 보너스 숫자가 1과 45 사이의 값인지 확인한다.
 
 #LottoMachine

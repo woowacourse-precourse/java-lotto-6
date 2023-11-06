@@ -12,10 +12,11 @@ public class BuyLottoController {
     RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public void buyLottoLogic(int money) {
+        // 구입 금액으로 살 수 있는 로또의 수 계산
         int lottoCount = calculator.calculateMoneyToLottoCount(money);
         // 로또의 수 출력
         outputView.printLottoCount(lottoCount);
-        // 로또로 구성된 로또 묶음 생성
+        // 구매한 로또로 구성된 로또 묶음 생성
         createLottoBundle(lottoCount);
         // 로또 묶음 출력
         outputView.printLottoBundle(lottoBundle.getLottoBundle());

@@ -3,7 +3,7 @@ package lotto.domain;
 public enum LottoConstraint {
     MIN(1),
     MAX(45),
-    COUNT(6);
+    SIZE(6);
 
     private final int constraint;
 
@@ -12,7 +12,7 @@ public enum LottoConstraint {
     }
 
     public static boolean checkSize(int size) {
-        return size == COUNT.constraint;
+        return size == SIZE.constraint;
     }
 
     public int getConstraint() {

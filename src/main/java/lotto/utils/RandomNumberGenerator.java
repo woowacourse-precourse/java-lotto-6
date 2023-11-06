@@ -8,6 +8,6 @@ public class RandomNumberGenerator {
 
     public static List<Integer> generateUniqueNumbers() {
         return Randoms.pickUniqueNumbersInRange(LottoConstraint.MIN.getConstraint(),
-                LottoConstraint.MAX.getConstraint(), LottoConstraint.COUNT.getConstraint());
+                LottoConstraint.MAX.getConstraint(), LottoConstraint.SIZE.getConstraint());
     }
 }

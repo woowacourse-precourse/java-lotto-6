@@ -19,6 +19,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     // TODO: 추가 기능 구현
 
         // 기능1. 로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 1장 당 1000원의 로또를 발행해야 한다.
@@ -30,6 +34,7 @@ public class Lotto {
                 int numberOfLottos = amount / 1000;
                 List<Lotto> lottos = new ArrayList<>();
                 for (int i = 0; i < numberOfLottos; i++) {
+
 
                 }
                 return lottos;

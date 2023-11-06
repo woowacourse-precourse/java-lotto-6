@@ -1,5 +1,6 @@
 package lotto.model; //패키지 변경은 가능
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto { //번호들이 범위 내에 있는지, 중복되지 않는지 검증
@@ -11,6 +12,7 @@ public class Lotto { //번호들이 범위 내에 있는지, 중복되지 않는
         validate(numbers);
         checkDuplicate(numbers);
         checkElementsInRange(numbers);
+        numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
 
@@ -31,6 +33,10 @@ public class Lotto { //번호들이 범위 내에 있는지, 중복되지 않는
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
                 throw new IllegalArgumentException();
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return this.numbers;
     }
 
 }

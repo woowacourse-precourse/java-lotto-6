@@ -23,27 +23,32 @@ public class InputView {
         return generateNumberList(winningString);
     }
 
-    public static List<Integer> generateNumberList(String winningString){
-        String[] result = winningString.split(",");
-        List<Integer> winning = new ArrayList<>();
-
-        for(int i = 0; i < result.length; i++){
-            winning.add(converToInt(result[i]));
-        }
-        return winning;
-    }
-
     public static int inputLottoBonus(){
         System.out.println(INPUT_LOTTO_BONUS);
         String bonusString = Console.readLine();
         return converToInt(bonusString);
     }
 
+    public static List<Integer> generateNumberList(String winningString){
+        try {
+            String[] result = winningString.split(",");
+            List<Integer> winning = new ArrayList<>();
+
+            for (int i = 0; i < result.length; i++) {
+                winning.add(converToInt(result[i]));
+            }
+            return winning;
+        } catch (Exception e){
+            throw new IllegalArgumentException("[ERROR] 값을 올바르게 입력하지 않았습니다.");
+        }
+    }
+
     private static int converToInt(String numString){
         try{
             return Integer.parseInt(numString);
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 값을 올바르게 입력하지 않았습니다.");
+            ExceptionMessage.typeException();
+            throw new IllegalArgumentException();
         }
     }
 }

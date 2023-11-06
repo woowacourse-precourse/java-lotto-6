@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.view.ExceptionMessage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +20,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            ExceptionMessage.lengthException();
+            throw new IllegalArgumentException();
+        }
+        if(!numbers.stream().allMatch(number -> number >=LOTTO_MIN_NUMBER && number <= LOTTO_MAX_NUMBER)){
+            ExceptionMessage.rangeException();
+            throw new IllegalArgumentException();
+        }
+        if(numbers.stream().distinct().count() != LOTTO_ENTITY_SIZE){
+            ExceptionMessage.duplicateException();
             throw new IllegalArgumentException();
         }
     }

@@ -48,6 +48,7 @@ public enum LottoRank {
                 return rank;
             }
         }
+
         throw new IllegalArgumentException();
     }
 }

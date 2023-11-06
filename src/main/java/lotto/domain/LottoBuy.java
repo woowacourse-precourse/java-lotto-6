@@ -16,13 +16,13 @@ public class LottoBuy {
         return this.money;
     }
 
+    public Integer getQuantity(){
+        return this.quantity = money / MONEY_UNIT;
+    }
+
     private void validate(Integer money) {
         if(money % MONEY_UNIT != 0){
             throw new IllegalArgumentException(LOTTO_MONEY_UNIT_ERROR_MESSAGE);
         }
-    }
-
-    public Integer getQuantity(){
-        return this.quantity = money / MONEY_UNIT;
     }
 }

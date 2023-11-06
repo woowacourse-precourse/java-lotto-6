@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.ExceptionMessage;
+
 import java.util.List;
 
 public class LottoBonus {
@@ -18,9 +20,11 @@ public class LottoBonus {
 
     public void validate(Lotto lotto, int number){
         if(lotto.getNumbers().contains(number)){
-            throw new IllegalArgumentException("[ERROR] 입력한 보너스 번호와 중복되는 당첨 번호가 있습니다.");
+            ExceptionMessage.duplicateException();
+            throw new IllegalArgumentException();
         } else if(number < 1 || number > 45){
-            throw new IllegalArgumentException("[ERROR] 입력한 보너스 번호는 범위에 해당하지 않습니다.");
+            ExceptionMessage.rangeException();
+            throw new IllegalArgumentException();
         }
     }
 }

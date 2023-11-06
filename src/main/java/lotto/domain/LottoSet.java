@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoSet {
-
     private List<Lotto> lottoSet = new ArrayList<>();
+
     public LottoSet(Integer lottoQuantity){
         this.lottoSet = generateLottoSet(lottoQuantity);
     }

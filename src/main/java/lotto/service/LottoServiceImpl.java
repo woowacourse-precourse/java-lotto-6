@@ -169,7 +169,7 @@ public class LottoServiceImpl implements LottoService {
      */
     @Override
     public double calculateReturnRate(int purchaseAmount, int earnings) {
-        return 0;
+        return (double) purchaseAmount / earnings;
     }
 
     private int stringToInt(String str) {

@@ -20,7 +20,7 @@ public class UiVO {
     private static final String BONUS_NUMBER_INPUT_TEXT = "\n보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTICS = "\n당첨 통계\n---\n";
     private static final String MATCHES_FORMAT = "%s개 일치 (%,d원) - %d개\n";
-    private static final String TOTAL_RETURN_FORMAT = "총 수익률은 %f입니다.";
+    private static final String TOTAL_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public static String getBonusNumberExistsInWinningNumbersException() {
         return BONUS_NUMBER_EXISTS_IN_WINNING_NUMBERS_EXCEPTION;
@@ -90,7 +90,7 @@ public class UiVO {
                     matchType.getPrizeMoney(),
                     winningStatistics.getOrDefault(matchType, 0)));
         }
-        System.out.println(sb);
+        System.out.print(sb);
     }
 
     public static void printTotalReturn(double totalReturn) {

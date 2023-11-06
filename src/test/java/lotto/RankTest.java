@@ -21,4 +21,23 @@ class RankTest {
 
         assertEquals(expected, result);
     }
+
+
+    @DisplayName("당첨번호와 일치하는 개수와 보너스 번호 일치 여부를 확인하여 등수를 부여한다.")
+    @ParameterizedTest
+    @CsvSource({
+            "FIFTH,3,false",
+            "FIFTH,3,true",
+            "FOURTH,4,false",
+            "FOURTH,4,true",
+            "THIRD,5,false",
+            "SECOND,5,true",
+            "FIRST,6,false",
+    })
+    void testOf(Rank expected, int correctCount, boolean correctBonusNumber) {
+        Rank result = Rank.of(correctCount, correctBonusNumber);
+
+        assertEquals(expected, result);
+    }
+
 }

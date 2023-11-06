@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.constant.ExceptionConstant;
 import lotto.constant.NumberConstant;
 
-public class Lotto {
+public class Lotto implements Comparable<Lotto> {
 
     private final List<Integer> numbers;
 
@@ -34,5 +34,25 @@ public class Lotto {
                 throw new IllegalArgumentException(ExceptionConstant.LOTTO_NUMBER_SIZE.getMessage());
             }
         }
+    }
+
+    public boolean isCompareByBonusNumber(int bonusNumber) {
+        for(Integer integer : this.numbers) {
+            if (integer == bonusNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int compareTo(Lotto otherLotto) {
+        int sameCount = 0;
+        for(Integer integer : this.numbers) {
+            if (otherLotto.numbers.equals(integer)) {
+                sameCount++;
+            }
+        }
+        return sameCount;
     }
 }

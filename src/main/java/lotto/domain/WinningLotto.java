@@ -56,4 +56,12 @@ public class WinningLotto {
     private int convertStrToInt(String bonusNumber) {
         return Integer.parseInt(bonusNumber);
     }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

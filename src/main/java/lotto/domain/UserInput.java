@@ -1,40 +1,59 @@
 package lotto.domain;
 
-import lotto.ui.InputView;
+import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
 public class UserInput {
     private int amount;
-    private List<Integer> prizeLotto;
-    public UserInput() {
-    }
+    private List<Integer> prizeNumbers;
+    private int bonusNumber;
 
-    public void setAmount() {
-        try {
-            String cost = InputView.readCost();
-            Validator validator = new Validator();
-            validator.validateCost(cost);
-            amount = Integer.parseInt(cost) / 1000;
-        } catch (IllegalArgumentException illegalArgumentException) {
-            setAmount();
-        }
+    public UserInput() {
     }
 
     public int getAmount() {
         return amount;
     }
 
-    public void setPrizeLotto() {
-        try{
-            String numbers = InputView.readNumbers();
-            String bonusNumber = InputView.readBonusNumber();
-            // 검증
+    public List<Integer> getPrizeNumbers() {
+        return prizeNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public void setAmount() {
+        try {
+            String cost = Console.readLine();
+            CostValidator costValidator = new CostValidator();
+            costValidator.validateCost(cost);
+            amount = costValidator.cost / 1000;
         } catch (IllegalArgumentException illegalArgumentException) {
-            setPrizeLotto();
+            setAmount();
         }
     }
-    public List<Integer> getPrizeLotto() {
-        return this.prizeLotto;
+
+    public void setPrizeNumbers() {
+        try {
+            String numbers = Console.readLine();
+            PrizeNumbersValidator prizeNumbersValidator = new PrizeNumbersValidator();
+            prizeNumbersValidator.validate(numbers);
+            prizeNumbers = prizeNumbersValidator.numbers;
+        } catch (IllegalArgumentException illegalArgumentException) {
+            setPrizeNumbers();
+        }
+    }
+
+    public void setBonusNumber() {
+        try {
+            String bonusNumber = Console.readLine();
+            BonusNumberValidator bonusNumberValidator = new BonusNumberValidator(prizeNumbers);
+            bonusNumberValidator.validate(bonusNumber);
+            this.bonusNumber = bonusNumberValidator.bonusNumber;
+        } catch (IllegalArgumentException illegalArgumentException) {
+            setBonusNumber();
+        }
     }
 }

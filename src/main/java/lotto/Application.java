@@ -13,5 +13,7 @@ public class Application {
         String inputMoney = inputView.inputLottoPurchaseAmount();
 
         Buyer buyer = new Buyer(inputMoney);
+
+        inputView.close();
     }
 }

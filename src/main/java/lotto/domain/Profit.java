@@ -13,9 +13,13 @@ public class Profit {
     }
 
     private void validate(Integer profit) {
-        if (profit < 0) {
+        if (isNotPositiveProfit(profit)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isNotPositiveProfit(Integer profit) {
+        return profit >= 0;
     }
 
     public Integer getAmount() {

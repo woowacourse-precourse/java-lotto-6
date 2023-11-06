@@ -49,4 +49,8 @@ public class Service {
     public void setLottoWinningNumber(List<Integer> lottoWinningNumber) {
         DOMAIN.lottoWinningNumber = lottoWinningNumber;
     }
+
+    public void setBonusNumber(int bonusNumber) {
+        DOMAIN.bonusNumber = bonusNumber;
+    }
 }

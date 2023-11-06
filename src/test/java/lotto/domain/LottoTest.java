@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.ErrorMessage.HAS_DUPLICATION_ERROR_MESSAGE;
 import static lotto.ErrorMessage.WRONG_RANGE_ERROR_MESSAGE;
 import static lotto.ErrorMessage.WRONG_SIZE_ERROR_MESSAGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -43,5 +44,22 @@ class LottoTest {
                 .hasMessage(WRONG_RANGE_ERROR_MESSAGE.get());
     }
 
+    @Test
+    @DisplayName("로또 클래스에 해당 숫자가 있으면 True를 리턴한다.")
+    void testHasCaseTrue() {
+        Lotto lotto = new Lotto(List.of(4, 11, 14, 42, 1, 7));
+
+        assertThat(lotto.hasNumber(4)).isTrue();
+        assertThat(lotto.hasNumber(42)).isTrue();
+    }
+
+    @Test
+    @DisplayName("로또 클래스에 해당 숫자가 없으면 False를 리턴한다.")
+    void testHasCaseFalse() {
+        Lotto lotto = new Lotto(List.of(4, 11, 14, 42, 1, 7));
+
+        assertThat(lotto.hasNumber(45)).isFalse();
+        assertThat(lotto.hasNumber(12)).isFalse();
+    }
 
 }

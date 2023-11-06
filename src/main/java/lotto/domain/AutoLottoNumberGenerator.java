@@ -3,10 +3,10 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class AutoLottoNumberGenerator implements LottoNumberGenerateStrategy {
+public class AutoLottoNumberGenerator implements NumberGenerateStrategy {
 
     @Override
-    public List<Integer> createLotto() {
+    public List<Integer> createNumber() {
         return Randoms.pickUniqueNumbersInRange(Lotto.START_NUMBER, Lotto.END_NUMBER, Lotto.SIZE);
     }
 }

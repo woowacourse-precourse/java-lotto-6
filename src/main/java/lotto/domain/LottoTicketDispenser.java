@@ -5,9 +5,9 @@ import java.util.stream.Stream;
 
 public class LottoTicketDispenser implements TicketDispenser<Lotto> {
 
-    private final LottoNumberGenerateStrategy lottoNumberGenerator;
+    private final NumberGenerateStrategy lottoNumberGenerator;
 
-    public LottoTicketDispenser(LottoNumberGenerateStrategy lottoNumberGenerator) {
+    public LottoTicketDispenser(NumberGenerateStrategy lottoNumberGenerator) {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
@@ -29,10 +29,14 @@ public class LottoTicketDispenser implements TicketDispenser<Lotto> {
     }
 
     private List<Lotto> createAutoLottoTickets(int amount) {
-        return Stream.generate(lottoNumberGenerator::createLotto)
+        return Stream.generate(lottoNumberGenerator::createNumber)
                 .limit(amount)
                 .map(Lotto::new)
                 .toList();
     }
 
+    @Override
+    public Lotto createWinningTicket(NumberGenerateStrategy strategy) {
+        return new Lotto(strategy.createNumber());
+    }
 }

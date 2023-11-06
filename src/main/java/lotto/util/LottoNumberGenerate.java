@@ -23,8 +23,5 @@ public class LottoNumberGenerate {
     private static List<Integer> generateLottoNumber(){
         return Randoms.pickUniqueNumbersInRange(NUMBER_MIN_VALUE, NUMBER_MAX_VALUE, NUMBER_PICK_VALUE);
     }
-//    private static List<Integer> sortNumber(List<Integer> numbers) {
-//        Collections.sort(numbers);
-//        return numbers;
-//    }
+
 }

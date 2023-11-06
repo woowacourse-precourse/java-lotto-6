@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
 	private static Integer money;
 	private static List<Integer> winningNumberList;
+	private static Integer bonusNumber;
 
 	public static void main(String[] args) {
 		setMoney();
@@ -44,7 +45,7 @@ public class Application {
 		try {
 			number = Integer.parseInt(Console.readLine());
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 구입금액은 숫자만 입력 가능합니다!");
+			throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다!");
 		}
 		return number;
 	}

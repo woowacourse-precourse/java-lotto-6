@@ -8,14 +8,14 @@ public class LottoStore {
 
     private static final Integer LOTTO_PRICE = 1000;
     private static final int ZERO_COUNT_VALUE = 0;
-    private NumberGenerator numberGenerator;
+    private NumberGenerateStrategy numberGenerateStrategy;
 
-    private LottoStore(NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
+    private LottoStore(NumberGenerateStrategy numberGenerateStrategy) {
+        this.numberGenerateStrategy = numberGenerateStrategy;
     }
 
-    public static LottoStore of(NumberGenerator numberGenerator) {
-        return new LottoStore(numberGenerator);
+    public static LottoStore of(NumberGenerateStrategy numberGenerateStrategy) {
+        return new LottoStore(numberGenerateStrategy);
     }
 
     public List<Lotto> sellLotto(Money money) {
@@ -44,6 +44,6 @@ public class LottoStore {
     }
 
     private List<Integer> createLottoNumber() {
-        return numberGenerator.generate();
+        return numberGenerateStrategy.generate();
     }
 }

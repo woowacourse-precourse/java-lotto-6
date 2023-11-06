@@ -5,7 +5,7 @@ import lotto.controller.dto.response.PurchaseHistoryDto;
 import lotto.model.LottoStore;
 import lotto.model.Money;
 import lotto.model.Player;
-import lotto.model.RandomNumberGenerator;
+import lotto.model.RandomNumberGenerateStrategy;
 import lotto.view.ErrorView;
 import lotto.view.OutputView;
 
@@ -28,7 +28,7 @@ public class LottoGameController {
             // 구입 금액 입력
             outputView.printPurchaseInput();
             Money money = new Money(Console.readLine());
-            Player player = Player.of(money, LottoStore.of(new RandomNumberGenerator()));
+            Player player = Player.of(money, LottoStore.of(new RandomNumberGenerateStrategy()));
             // 로또 구매
             player.buyLotto();
             // 로또 번호 반환 및 출력

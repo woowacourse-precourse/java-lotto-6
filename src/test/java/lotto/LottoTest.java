@@ -49,14 +49,16 @@ class LottoTest {
             int bonusNum = 7;
             WinNum winNum = new WinNum(list, bonusNum);
 
+        Result result = new Result();
+
         // when
         LottoEnum lottoEnum = lotto.countResult(winNum);
         LottoEnum lottoEnum2 = lotto2.countResult(winNum);
-        Result.resultCount(lottoEnum);
-        Result.resultCount(lottoEnum2);
+        result.resultCount(lottoEnum);
+        result.resultCount(lottoEnum2);
 
         // then
-        Assertions.assertThat(Result.getCount(W1)).isEqualTo(1);
-        Assertions.assertThat(Result.getCount(W2)).isEqualTo(1);
+        Assertions.assertThat(result.getCount(W1)).isEqualTo(1);
+        Assertions.assertThat(result.getCount(W2)).isEqualTo(1);
     }
 }

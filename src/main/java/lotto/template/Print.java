@@ -22,26 +22,26 @@ public class Print {
         System.out.println();
     }
 
-    public static void printResult(int amount) {
+    public static void printResult(int amount, Result result) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        printEnums();
-        System.out.println("총 수익률은 " + getRewardPercent(amount) + "입니다.");
+        printEnums(result);
+        System.out.println("총 수익률은 " + getRewardPercent(amount, result) + "입니다.");
     }
 
-    private static void printEnums() {
+    private static void printEnums(Result result) {
         LottoEnum[] values = LottoEnum.values();
         Arrays.sort(values, Comparator.reverseOrder());
         for (LottoEnum value : values) {
-            System.out.println(getResultString(value));
+            System.out.println(getResultString(value, result));
         }
     }
 
-    private static String getResultString(LottoEnum value) {
+    private static String getResultString(LottoEnum value, Result result) {
         DecimalFormat df = new DecimalFormat("###,###");
         int winCount = value.getWinCount();
         String reward = df.format(value.getReward());
-        int count = Result.getCount(value);
+        int count = result.getCount(value);
         if (value.equals(W2)){
             return winCount + "개 일치, 보너스 볼 일치 (" + reward + "원) - " + count + "개";
         }
@@ -50,8 +50,8 @@ public class Print {
 
 
 
-    private static String getRewardPercent(int amount) {
-        int total = Result.getTotal();
+    private static String getRewardPercent(int amount, Result result) {
+        int total = result.getTotal();
         double totalDouble = 100.0 * total / (amount * LOTTO_PRICE);
         System.out.println(totalDouble);
         String temp = String.format("%.1f%%", totalDouble);

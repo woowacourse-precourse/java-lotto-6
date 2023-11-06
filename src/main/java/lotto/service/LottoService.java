@@ -39,11 +39,13 @@ public class LottoService {
         return new WinNum(winNum, bonusNum);
     }
 
-    public void getResult(List<Lotto> myLottoList, WinNum winNum) {
+    public Result getResult(List<Lotto> myLottoList, WinNum winNum) {
+        Result result = new Result();
         for (Lotto lotto : myLottoList) {
             LottoEnum lottoEnum = lotto.countResult(winNum);
-            Result.resultCount(lottoEnum);
+            result.resultCount(lottoEnum);
         }
+        return result;
     }
 
 }

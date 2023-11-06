@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.Result;
 import lotto.domain.WinNum;
 import lotto.service.LottoService;
 
@@ -22,9 +23,9 @@ public class LottoController {
 
         WinNum winNum = lottoService.createWinNum();
 
-        lottoService.getResult(myLottoList, winNum);
+        Result result = lottoService.getResult(myLottoList, winNum);
 
-        printResult(amount);
+        printResult(amount, result);
 
     }
 

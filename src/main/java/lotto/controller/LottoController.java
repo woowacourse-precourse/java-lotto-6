@@ -6,10 +6,12 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.validation.InputValidation;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     InputValidation inputValidation = new InputValidation();
     Lottos lottos = new Lottos();
 
@@ -18,6 +20,7 @@ public class LottoController {
     public void lottoService() {
         int numberOfLottoTickets = purchaseLottoTickets();
         generateLottoTickets(numberOfLottoTickets);
+        showPurchasedLottoTickets();
     }
 
     public String getPurchaseAmount() {
@@ -29,6 +32,14 @@ public class LottoController {
     public int purchaseLottoTickets() {
         String purchaseAmount = getPurchaseAmount();
         return calculateNumberOfLottoTickets(purchaseAmount);
+    }
+
+    public void showPurchasedLottoTickets() {
+        List<Lotto> generatedLottos = lottos.getLottos();
+        showNumberOfLottos(generatedLottos.size());
+        for (Lotto lotto : generatedLottos) {
+            showGeneratedLottos(lotto.getNumbers());
+        }
     }
 
     public void generateLottoTickets(int numberOfLottoTickets) {
@@ -47,6 +58,14 @@ public class LottoController {
     private static Lotto generateRandomLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(randomNumbers);
+    }
+
+    private void showNumberOfLottos(int numberOfLottoTickets) {
+        outputView.printNumberOfPurchasedLottoTickets(numberOfLottoTickets);
+    }
+
+    private void showGeneratedLottos(List<Integer> lotto) {
+        outputView.printGeneratedLottos(lotto);
     }
 
 }

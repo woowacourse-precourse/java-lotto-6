@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.function.Consumer;
 import lotto.validation.InputValidator;
 
 public class InputView {
@@ -9,25 +10,20 @@ public class InputView {
     }
 
     public static String inputPurchasePrice() {
-        String purchasePrice = AddNewLineAfterReadLine();
-        InputValidator.validatePurchasePrice(purchasePrice);
-        return purchasePrice;
+        return readLine(InputValidator::validatePurchasePrice);
     }
 
     public static String inputWinningNumber() {
-        String winningNumber = AddNewLineAfterReadLine();
-        InputValidator.validateWinningNumber(winningNumber);
-        return winningNumber;
+        return readLine(InputValidator::validateWinningNumber);
     }
 
     public static String inputBonusNumber() {
-        String bonusNumber = AddNewLineAfterReadLine();
-        InputValidator.validateBonusNumber(bonusNumber);
-        return bonusNumber;
+        return readLine(InputValidator::validateBonusNumber);
     }
 
-    private static String AddNewLineAfterReadLine() {
+    private static String readLine(Consumer<String> validator) {
         String input = Console.readLine();
+        validator.accept(input);
         OutputView.printNewLine();
         return input;
     }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.function.Supplier;
 import lotto.io.InputView;
 import lotto.io.OutputView;
 import lotto.model.Lotto;
@@ -21,9 +22,7 @@ public class LottoController {
     }
 
     public void run() {
-        LottoMachine lottoMachine = new LottoMachine();
-
-        lottoMachine.buyLottos(inputMoney());
+        LottoMachine lottoMachine = getLottoMachine();
 
         displayLottos(lottoMachine.getLottos());
 
@@ -34,34 +33,28 @@ public class LottoController {
         outputView.displayProfitRate(winningCalculator.getProfitRate());
     }
 
-    private WinningLottoWithBonus inputWinningLottoWithBonus() {
-        Lotto lotto = inputLotto();
-        int bonus = inputBonus();
+    private LottoMachine getLottoMachine() {
+        return repeat(() -> {
+            LottoMachine lottoMachine = new LottoMachine();
+            lottoMachine.buyLottos(inputMoney());
+            return lottoMachine;
+        });
+    }
 
-        try {
-            return new WinningLottoWithBonus(lotto, bonus);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-        }
-        return inputWinningLottoWithBonus();
+    private Money inputMoney() {
+        return new Money(inputView.inputMoney());
+    }
+
+    private WinningLottoWithBonus inputWinningLottoWithBonus() {
+        return repeat(() -> new WinningLottoWithBonus(inputLotto(), inputBonus()));
     }
 
     private Lotto inputLotto() {
-        try {
-            return new Lotto(inputView.inputLotto());
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-        }
-        return inputLotto();
+        return new Lotto(inputView.inputLotto());
     }
 
     private int inputBonus() {
-        try {
-            return inputView.inputBonus();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-        }
-        return inputBonus();
+        return inputView.inputBonus();
     }
 
     private void displayLottos(Lottos lottos) {
@@ -69,12 +62,12 @@ public class LottoController {
         outputView.displayLottos(lottos);
     }
 
-    private Money inputMoney() {
+    private <T> T repeat(Supplier<T> input) {
         try {
-            return new Money(inputView.inputMoney());
+            return input.get();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return repeat(input);
         }
-        return inputMoney();
     }
 }

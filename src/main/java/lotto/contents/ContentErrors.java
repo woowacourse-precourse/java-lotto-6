@@ -10,7 +10,8 @@ public enum ContentErrors {
     INVALID_BONUS_NUMBER("[ERROR] 보너스 번호가 올바르지 않습니다."),
     INVALID_OUT_OF_RANGE("[ERROR] 로또의 1인당 최대 구매금액은 100,000원 입니다."),
     BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
-    BLANK_SPACE_IN_INPUT("[ERROR] 입력 값에 공백이 포함될 수 없습니다.");
+    BLANK_SPACE_IN_INPUT("[ERROR] 입력 값에 공백이 포함될 수 없습니다."),
+    INPUT_OUT_OF_RANGE("[ERROR] 입력값의 길이가 초과됐습니다.");
 
 
     private final String errorMessage;

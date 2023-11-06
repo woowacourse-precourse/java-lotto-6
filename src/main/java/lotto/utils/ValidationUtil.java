@@ -1,9 +1,11 @@
 package lotto.utils;
 
+import static lotto.contents.ContentErrors.INPUT_OUT_OF_RANGE;
 import static lotto.contents.ContentErrors.INVALID_OUT_OF_RANGE;
 import static lotto.contents.ContentNumbers.LOTTO_BUY_MAX;
 import static lotto.contents.ContentNumbers.LOTTO_PRICE;
 import static lotto.contents.ContentNumbers.LOTTO_STRING_LENGTH;
+import static lotto.contents.ContentNumbers.LOTTO_STRING_LENGTH_WINNING_NUMBER;
 import static lotto.contents.ContentNumbers.ZERO;
 import static lotto.contents.ContentNumbers.LOTTO_MIN_NUMBER;
 import static lotto.contents.ContentNumbers.LOTTO_MAX_NUMBER;
@@ -63,9 +65,16 @@ public class ValidationUtil {
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getErrorMessage());
         }
     }
+
     public static void validateOutOfRange(String input) {
         if (input.length() > LOTTO_STRING_LENGTH.getNumber()) {
-            throw new IllegalArgumentException(INVALID_OUT_OF_RANGE.getErrorMessage());
+            throw new IllegalArgumentException(INPUT_OUT_OF_RANGE.getErrorMessage());
+        }
+    }
+
+    public static void validateWinningNumbersOutOfRange(String input) {
+        if (input.length() > LOTTO_STRING_LENGTH_WINNING_NUMBER.getNumber()) {
+            throw new IllegalArgumentException(INPUT_OUT_OF_RANGE.getErrorMessage());
         }
     }
 
@@ -74,7 +83,6 @@ public class ValidationUtil {
             throw new IllegalArgumentException(INVALID_OUT_OF_RANGE.getErrorMessage());
         }
     }
-
 
     public static void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < LOTTO_MIN_NUMBER.getNumber() || bonusNumber > LOTTO_MAX_NUMBER.getNumber()) {

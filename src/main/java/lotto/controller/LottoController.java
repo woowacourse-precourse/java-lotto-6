@@ -6,8 +6,9 @@ import lotto.application.LottoStatistics;
 import lotto.ui.InputHandler;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
-import lotto.utils.ParserUtil;
-import lotto.utils.ValidationUtil;
+import lotto.domain.vo.BonusNumberVO;
+import lotto.domain.vo.PurchaseAmountVO;
+import lotto.domain.vo.WinningNumbersVO;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -15,13 +16,11 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
-
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
         this.outputView = outputView;
         this.inputHandler = new InputHandler(outputView);
-
     }
 
     public void run() {
@@ -52,35 +51,19 @@ public class LottoController {
 
     private int inputValidatePurchaseAmount() {
         String purchaseAmountInput = inputView.inputPurchaseAmount();
-        validateBasicInput(purchaseAmountInput);
-        ValidationUtil.validateOutOfRange(purchaseAmountInput);
-        int purchaseAmount = ParserUtil.parseLottoNumber(purchaseAmountInput);
-        ValidationUtil.validatePurchaseAmountRange(purchaseAmount);
-        ValidationUtil.validateThousandUnit(purchaseAmount);
-        return purchaseAmount;
+        PurchaseAmountVO purchaseAmount = new PurchaseAmountVO(purchaseAmountInput);
+        return purchaseAmount.getAmount();
     }
 
     private List<Integer> inputValidateWinningNumbers() {
         String winningNumbersInput = inputView.inputWinningNumbers();
-        validateBasicInput(winningNumbersInput);
-        List<Integer> winningNumbers = ParserUtil.parseWinningNumbers(winningNumbersInput);
-        ValidationUtil.validateCorrectNumbersCount(winningNumbers);
-        ValidationUtil.validateNoDuplicates(winningNumbers);
-        ValidationUtil.validateNumberRange(winningNumbers);
-        return winningNumbers;
+        WinningNumbersVO winningNumbers = new WinningNumbersVO(winningNumbersInput);
+        return winningNumbers.getNumbers();
     }
 
     private int inputValidateBonusNumber(List<Integer> winningNumbers) {
         String bonusNumberInput = inputView.inputBonusNumber();
-        validateBasicInput(bonusNumberInput);
-        int bonusNumber = ParserUtil.parseLottoNumber(bonusNumberInput);
-        ValidationUtil.validateBonusNumber(bonusNumber);
-        ValidationUtil.validateBonusNumberNotInWinningNumbers(bonusNumber, winningNumbers);
-        return bonusNumber;
-    }
-
-    private void validateBasicInput(String input) {
-        ValidationUtil.validateBlank(input);
-        ValidationUtil.validateSpecialCharacters(input);
+        BonusNumberVO bonusNumber = new BonusNumberVO(bonusNumberInput, winningNumbers);
+        return bonusNumber.getNumber();
     }
 }

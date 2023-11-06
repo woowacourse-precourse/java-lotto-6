@@ -8,6 +8,7 @@ public enum ContentNumbers {
     ZERO(0),
     PERCENTAGE(100),
     LOTTO_STRING_LENGTH(6),
+    LOTTO_STRING_LENGTH_WINNING_NUMBER(17),
     LOTTO_BUY_MAX(100_000);
 
     private final int number;

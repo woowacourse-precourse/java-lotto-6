@@ -12,4 +12,8 @@ public class LottoService {
         List<Lotto> lottos = lottoMarket.sellLotto(money);
         lottoBuyer = new LottoBuyer(lottos);
     }
+
+    public List<Lotto> findLottos() {
+        return lottoBuyer.getLottos();
+    }
 }

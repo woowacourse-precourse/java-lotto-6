@@ -1,7 +1,7 @@
 package lotto.controller.inputController;
 import lotto.view.inputView.LottoPurchaseInput;
 
-public class PurchaseController {
+public class LottoPurchaseController {
 
     private final LottoPurchaseInput inputView = new LottoPurchaseInput();
 

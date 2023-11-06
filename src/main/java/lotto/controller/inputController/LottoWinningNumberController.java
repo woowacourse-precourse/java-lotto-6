@@ -4,12 +4,12 @@ import lotto.view.inputView.LottoBonusWinningNumberInput;
 import lotto.view.inputView.LottoWinningNumberInput;
 import java.util.List;
 
-public class WinningNumberController {
+public class LottoWinningNumberController {
 
     private final LottoWinningNumberInput winningNumberInput;
     private final LottoBonusWinningNumberInput bonusNumberInput;
 
-    public WinningNumberController() {
+    public LottoWinningNumberController() {
         this.winningNumberInput = new LottoWinningNumberInput();
         this.bonusNumberInput = new LottoBonusWinningNumberInput();
     }

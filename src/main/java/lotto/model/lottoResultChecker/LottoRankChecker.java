@@ -8,12 +8,7 @@ public class LottoRankChecker {
         return Arrays.stream(LottoRank.values())
                 .collect(Collectors.toMap(
                         rank -> rank,
-                        rank -> {
-                            if (rank == LottoRank.SECOND) {
-                                return matchingData.getBonusMatchCount();
-                            }
-                            return matchingData.getCountForMatch(rank.getMatchCount());
-                        }
+                        matchingData::getCountForRank
                 ));
     }
 }

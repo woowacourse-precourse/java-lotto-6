@@ -1,29 +1,29 @@
 package lotto.model.lottoResultChecker;
 
+import lotto.model.lottoGenerator.Lotto;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoMatchingData {
-    private final Map<Integer, Integer> resultCounts = new HashMap<>();
+    private final Map<LottoRank, Integer> resultCounts = new HashMap<>();
 
     public void addResult(int matchCount, boolean bonusMatch) {
-        if (matchCount == 5 && bonusMatch) {
-            incrementCount(5.5);
+        LottoRank rank = LottoRank.valueOf(matchCount, bonusMatch);
+        resultCounts.put(rank, resultCounts.getOrDefault(rank, 0) + 1);
+    }
+
+    public int getCountForRank(LottoRank rank) {
+        return resultCounts.getOrDefault(rank, 0);
+    }
+    public void matchLottoToWinningNumbers(List<Lotto> lotto, List<Integer> winningNumbers, int bonusNumber) {
+        for (Lotto singleLotto : lotto) {
+            int matchCount = (int) singleLotto.getNumbers().stream()
+                    .filter(winningNumbers::contains)
+                    .count();
+            boolean bonusMatch = singleLotto.getNumbers().contains(bonusNumber);
+            addResult(matchCount, bonusMatch);
         }
-        incrementCount((double) matchCount);
     }
-
-    private void incrementCount(double key) {
-        resultCounts.putIfAbsent((int) key, 0);
-        resultCounts.put((int) key, resultCounts.get((int) key) + 1);
-    }
-
-    public int getCountForMatch(int matchCount) {
-        return resultCounts.getOrDefault(matchCount, 0);
-    }
-
-    public int getBonusMatchCount() {
-        return resultCounts.getOrDefault(5.5, 0);
-    }
-
 }

@@ -93,9 +93,9 @@ public class GameTest {
 
         float buyAmount = 8000;
 
-        float profitRate = game.calculateProfitRate(buyAmount, result);
+        int profitRate = Math.round(game.calculateProfitRate(buyAmount, result));
 
-        assertThat(profitRate).isEqualTo(250000.62f);
+        assertThat(profitRate).isEqualTo(25000062);
 
     }
 

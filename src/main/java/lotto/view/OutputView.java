@@ -10,7 +10,7 @@ public class OutputView {
     }
 
     public static void printBuyCount(int count) {
-        System.out.println("\n" + count + "개를 구매했습니다.");
+        System.out.println("\n" + count / 1000 + "개를 구매했습니다.");
     }
 
 
@@ -26,6 +26,11 @@ public class OutputView {
     public static void printRequestBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
+
+    public static void printStartResult() {
+        System.out.println("\n당첨 통계\n---");
+    }
+
 
     public static void printWinningResult(int[] result) {
 

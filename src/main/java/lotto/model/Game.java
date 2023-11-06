@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Game {
-    public Lottos createLottos(int count) {
+    public Lottos createLottos(int buyAmount) {
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < buyAmount/1000; i++) {
             lottos.add(new Lotto(Generator.createNumbers()));
         }
 

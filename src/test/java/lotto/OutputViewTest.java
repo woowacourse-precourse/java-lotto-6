@@ -39,11 +39,11 @@ public class OutputViewTest {
 
     @DisplayName("로또 구매 갯수 메세지 정상 작동 확인 테스트")
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 5})
-    void printBuyCount_Different_ExceptionThrow(int count) {
+    @ValueSource(ints = {1000, 2000, 3000, 4000, 5000})
+    void printBuyCount_Different_ExceptionThrow(int buyAmount) {
         ByteArrayOutputStream output = captureOutputValues();
-        OutputView.printBuyCount(count);
-        assertThat(output.toString()).isEqualTo("\n" + count + "개를 구매했습니다.\n");
+        OutputView.printBuyCount(buyAmount);
+        assertThat(output.toString()).isEqualTo("\n" + buyAmount/1000 + "개를 구매했습니다.\n");
     }
 
 

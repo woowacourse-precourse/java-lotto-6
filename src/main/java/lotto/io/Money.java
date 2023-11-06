@@ -5,8 +5,16 @@ public class Money {
 
     public Money(String input) {
         isNum(input);
+        isPositive(input);
         isDividedBy1000(input);
         this.amount = Integer.parseInt(input);
+    }
+
+    private void isPositive(String input) {
+        int num = Integer.parseInt(input);
+        if (num <= 0) {
+            throw new IllegalArgumentException("양수를 입력해주세요");
+        }
     }
 
     private void isDividedBy1000(String input) {

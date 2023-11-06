@@ -62,7 +62,7 @@ public class Application {
             if (Validator.isInputEmpty(winningNumbersInput)) {
                 continue;
             }
-            if (Validator.isValidCharacter(lottoBudgetInput)) {
+            if (Validator.isValidCharacter(winningNumbersInput)) {
                 continue;
             }
 
@@ -116,20 +116,13 @@ public class Application {
 
         List<Integer> winningNumbers = gameData.getWinningNumbers();
         gameStatistics.generateMatchingNumberCountList();
-        List<Integer> matchingNumberCountList = gameStatistics.getSameNumberCountList();
+        List<Integer> matchingNumberCountList = gameStatistics.getMatchingNumberCountList();
         gameStatistics.generateRankList();
         List<Rank> rankList = gameStatistics.getRankList();
 
-        for (Lotto lotto : lottoList) {
-            int countTemp = 0;
-            List<Integer> lottoNumbers = lotto.getNumbers();
-            for (Integer lottoNumber : lottoNumbers) {
-                countTemp += Controller.countMatchingNumbersByLotteryNumber(winningNumbers, lottoNumber);
-            }
-            matchingNumberCountList.add(countTemp);
-        }// 리팩토링 고민해봐야 함.
+        gameStatistics.fillMatchingNumberCountList(lottoList, winningNumbers, matchingNumberCountList);
 
-        Controller.setRankOnList(rankList, matchingNumberCountList);
+        Controller.fillRankList(rankList, matchingNumberCountList);
 
         Integer bonusNumber = gameData.getBonusNumber();
         for (int i = 0; i < rankList.size(); i++) {
@@ -163,7 +156,5 @@ public class Application {
         Integer totalPrize = Controller.calculateTotalPrize(rankList);
         Double pricePrizeRatio = Controller.calculatePricePrizeRatio(totalPrize, budget);
         View.printPricePrizeRatio(pricePrizeRatio);
-
     }
-
 }

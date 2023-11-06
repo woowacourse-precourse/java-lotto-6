@@ -6,11 +6,11 @@ import static lotto.util.Validate.validateSize;
 
 import java.util.List;
 
-public class WinningLotto {
+public class WinningNumber {
 
     private final List<Integer> winning;
 
-    public WinningLotto(List<Integer> winning) {
+    public WinningNumber(List<Integer> winning) {
         validate(winning);
         this.winning = winning;
     }

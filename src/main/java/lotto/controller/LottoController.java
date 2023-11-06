@@ -12,7 +12,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
-import lotto.model.WinningLotto;
+import lotto.model.WinningNumber;
 import lotto.model.WinningResult;
 import lotto.view.OutputView;
 
@@ -20,7 +20,7 @@ public class LottoController {
 
     private Purchase purchase;
     private Lottos lottos;
-    private WinningLotto winningLotto;
+    private WinningNumber winningLotto;
     private BonusNumber bonusNumber;
 
     public void run() {
@@ -55,7 +55,7 @@ public class LottoController {
 
         try {
 
-            winningLotto = new WinningLotto(stringToList(winningNumber));
+            winningLotto = new WinningNumber(stringToList(winningNumber));
 
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception.getMessage());

@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class PurchasePriceTest {
 
@@ -66,6 +68,21 @@ class PurchasePriceTest {
         long result = purchasePrice.getQuotient();
 
         // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @DisplayName("상금의 합을 이용하여 수익률을 계산한다. 수익률은 소수점 둘째자리에서 반올림한다.")
+    @CsvSource({"12378,123.8", "192,1.9", "150000,1500.0"})
+    @ParameterizedTest
+    void calculateRateOfReturn(long prizeSum, double expected) {
+        //given
+        long givenAmount = 10000L;
+        PurchasePrice purchasePrice = PurchasePrice.from(givenAmount);
+
+        //when
+        double result = purchasePrice.calculateRateOfReturn(prizeSum);
+
+        //then
         assertThat(result).isEqualTo(expected);
     }
 }

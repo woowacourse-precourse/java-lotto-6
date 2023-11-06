@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.WinningNumbers;
-import lotto.model.InputMoney;
+import lotto.model.*;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
@@ -16,12 +13,14 @@ public class LottoGame {
     private final InputMoney inputMoney = new InputMoney();
     private final BonusNumber bonusNumber = new BonusNumber();
     private final List<Lotto> totalLotto = new ArrayList<>();
+    private final TotalResult totalResult = new TotalResult();
 
     public void run() {
-        countLotto(inputMoney()/THOUSAND);
+        int initMoney = inputMoney.save();
+        countLotto(initMoney /THOUSAND);
         WinningNumbers winningNumbers = makeWinningNumbers();
         addBonusNumber(winningNumbers);
-
+        totalResult.print(initMoney, totalLotto, winningNumbers);
     }
 
     private void addBonusNumber(WinningNumbers winningNumbers) {
@@ -45,21 +44,6 @@ public class LottoGame {
         }
 
         outputView.printTotalLotto(totalLotto);
-    }
-
-    private int inputMoney(){
-        outputView.inputMoney();
-
-        while(true){
-            try {
-                int number = inputMoney.Number();
-                if(number != 0){
-                    return number;
-                }
-            }   catch (IllegalArgumentException e){
-                System.out.println("[ERROR] 숫자를 입력해주세요.");
-            }
-        }
     }
 }
 

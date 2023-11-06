@@ -25,4 +25,19 @@ public class InputMoney {
     private boolean isUnit(int money) {
         return money % 1000 == 0;
     }
+
+    public int save(){
+        outputView.inputMoney();
+
+        while(true){
+            try {
+                int number = Number();
+                if(number != 0){
+                    return number;
+                }
+            }   catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 숫자를 입력해주세요.");
+            }
+        }
+    }
 }

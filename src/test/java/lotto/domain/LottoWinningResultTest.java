@@ -31,4 +31,22 @@ class LottoWinningResultTest {
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
                 "6개 일치 (2,000,000,000원) - 1개");
     }
+
+    @DisplayName("수익률 올바르게 계산")
+    @Test
+    void calculateWinningRate() {
+        // Given
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(Lotto.from(List.of(1, 2, 3, 4, 5, 8)));
+        lottos.add(Lotto.from(List.of(1, 2, 3, 4, 5, 6)));
+        WinningLotto winningLotto = WinningLotto.from(List.of(1, 2, 3, 4, 5, 6));
+        winningLotto.addBonusNumber(7);
+
+        // When
+        LottoWinningResult lottoWinningResult = LottoWinningResult.of(lottos, winningLotto);
+
+        // Then
+        assertThat(lottoWinningResult.calculateWinningRate())
+                .isEqualTo(100075000);
+    }
 }

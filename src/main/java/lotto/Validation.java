@@ -3,6 +3,8 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static lotto.Constant.*;
 
 public class Validation {
@@ -46,6 +48,13 @@ public class Validation {
     }
 
     private static List<Integer> validateIntegers(List<String> input){
+        try {
+            List<Integer> winningNumber = input.stream()
+                    .map(s -> Integer.parseInt(s))
+                    .collect(Collectors.toList());
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException(INPUT_NUMBER_EXCEPTION_MSG);
+        }
         return null;
     }
 }

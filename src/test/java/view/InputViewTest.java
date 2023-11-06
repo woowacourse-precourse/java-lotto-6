@@ -148,7 +148,6 @@ public class InputViewTest {
     @Nested
     class 보너스_번호_입력 {
 
-
         @Nested
         class 입력_실패_케이스 {
 

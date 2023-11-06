@@ -6,4 +6,8 @@ public class LotteryRound {
     LotteryRound(int round) {
         this.round = round;
     }
+
+    LotteryRound next() {
+        return new LotteryRound(round + 1);
+    }
 }

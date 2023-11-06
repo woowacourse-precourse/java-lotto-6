@@ -1,13 +1,18 @@
 package lotto;
 
-import static lotto.resource.TextResourceProvider.OUTPUT_LOTTERY_RESULT;
+import lotto.domain.LotteryOperator;
+import lotto.domain.LotteryResultsCalculator;
+import lotto.domain.User;
 
 public class Application {
     public static void main(String[] args) {
 
-        Controller controller = new Controller(new InputInterface(), new OutputInterface());
+        LotteryOperator operator = new LotteryOperator();
+        Controller controller = new Controller(new InputInterface(), new OutputInterface(), operator,
+                new User(), new LotteryResultsCalculator(operator));
         controller.purchaseLotteries();
         controller.drawWinningLottery();
-        System.out.println(OUTPUT_LOTTERY_RESULT);
+        controller.calculateEarningRate();
+
     }
 }

@@ -24,6 +24,12 @@ public class Lotto {
         }
     }
 
+    public int matches(List<Integer> otherNumbers){
+        return (int) numbers.stream()
+                .filter(otherNumbers::contains)
+                .count();
+    }
+
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }

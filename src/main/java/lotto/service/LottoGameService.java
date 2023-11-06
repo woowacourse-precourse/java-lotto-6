@@ -1,8 +1,12 @@
 package lotto.service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.dto.LottoNumbersResult;
-import lotto.dto.WinningLottoResult;
+import lotto.dto.LottoRankResultDTO;
+import lotto.model.LottoRank;
+import lotto.model.LottoRankResult;
 import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
@@ -50,8 +54,8 @@ public class LottoGameService {
 
     public void printWinningResult(final WinningLotto winningLotto, Lottos lottos) {
         outputView.printWinningStatistics();
-        WinningLottoResult result = calculateWinningResult(winningLotto, lottos);
-        outputView.printWinningNumberCount(result);
+        LottoRankResult result = calculateWinningResult(winningLotto, lottos);
+        printWinningCountsByRank(result);
     }
 
     private Lotto getWinningLottoNumbers() {
@@ -90,12 +94,21 @@ public class LottoGameService {
         System.out.println(e.getMessage());
     }
 
-    private WinningLottoResult calculateWinningResult(WinningLotto winningLotto, Lottos lottos) {
-        WinningLottoResult result = new WinningLottoResult();
+    private LottoRankResult calculateWinningResult(WinningLotto winningLotto, Lottos lottos) {
+        LottoRankResult result = new LottoRankResult();
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.findLottoByIndex(i);
             result.countWinningResult(winningLotto, lotto);
         }
         return result;
+    }
+
+    private void printWinningCountsByRank(LottoRankResult result) {
+        List<LottoRank> ranks = Arrays.asList(LottoRank.values());
+        IntStream.range(1, ranks.size())
+                .forEach(i -> {
+                    LottoRank rank = ranks.get(i);
+                    outputView.printWinningNumberCount(new LottoRankResultDTO(rank, result));
+                });
     }
 }

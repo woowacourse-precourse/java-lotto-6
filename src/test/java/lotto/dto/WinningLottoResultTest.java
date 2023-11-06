@@ -8,19 +8,20 @@ import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
+import lotto.model.LottoRankResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WinningLottoResultTest {
-    WinningLottoResult result;
+    LottoRankResult result;
     Lotto winningLottoNumbers;
     int bonusNumber;
     WinningLotto winningLotto;
 
     @BeforeEach
     void setTest() {
-        result = new WinningLottoResult();
+        result = new LottoRankResult();
         winningLottoNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         bonusNumber = 7;
         winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);

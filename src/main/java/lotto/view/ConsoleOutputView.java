@@ -10,7 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.dto.LottoNumbersResult;
-import lotto.dto.WinningLottoResult;
+import lotto.dto.LottoRankResultDTO;
+import lotto.model.LottoRankResult;
 import lotto.model.LottoRank;
 
 public class ConsoleOutputView {
@@ -43,14 +44,9 @@ public class ConsoleOutputView {
         System.out.println(WINNING_STATISTICS.getMessage());
     }
 
-    public void printWinningNumberCount(WinningLottoResult result) {
-        List<LottoRank> ranks = Arrays.asList(LottoRank.values());
-        IntStream.range(1, ranks.size())
-                .forEach(i -> {
-                    LottoRank rank = ranks.get(i);
-                    System.out.printf(rank.getMessage(), result.getCountByLottoRank(rank));
-                    printBlankLine();
-                });
+    public void printWinningNumberCount(LottoRankResultDTO result) {
+        System.out.printf(result.getRankMessage(), result.getCount());
+        printBlankLine();
     }
 
     private void printBlankLine() {

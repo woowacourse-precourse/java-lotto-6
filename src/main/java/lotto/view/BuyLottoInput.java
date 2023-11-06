@@ -1,7 +1,5 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import lotto.exception.BuyLottoException;
 
 public class BuyLottoInput {
@@ -10,9 +8,9 @@ public class BuyLottoInput {
 
     public static int buyLottoInput() {
         System.out.println(BUY_LOTTO_MESSAGE);
-        String price = Console.readLine();
-        int buy = validatePrice(price);
-        return buy;
+        String price = UserInput.userInput();
+        int money = validatePrice(price);
+        return tickets(money);
     }
 
     public static int validatePrice(String price) {
@@ -20,8 +18,7 @@ public class BuyLottoInput {
             validateInteger(price);
             validateKilo(price);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.out.println("");
+            System.out.println(e.getMessage() + System.lineSeparator());
             return buyLottoInput();
         }
         return Integer.parseInt(price);
@@ -40,6 +37,10 @@ public class BuyLottoInput {
             BuyLottoException.buyKiloException();
         }
 
+    }
+
+    public static int tickets(int money) {
+        return money / 1000;
     }
 
 }

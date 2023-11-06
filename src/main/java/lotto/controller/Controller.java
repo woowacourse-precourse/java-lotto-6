@@ -1,12 +1,13 @@
 package lotto.controller;
 
 import lotto.view.BuyLottoInput;
+import lotto.view.LottosOutput;
 
 public class Controller {
 
     public static void Run() {
-        BuyLottoInput.buyLottoInput();
-        System.out.println("test");
+        int tickets = BuyLottoInput.buyLottoInput();
+        LottosOutput.lottosOutput(tickets);
     }
 
 }

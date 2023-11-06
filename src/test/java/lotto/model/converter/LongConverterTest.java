@@ -1,6 +1,6 @@
 package lotto.model.converter;
 
-import static lotto.model.util.ExceptionMessage.INVALID_LONG_TYPE;
+import static lotto.util.ExceptionMessage.INVALID_LONG_TYPE;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 

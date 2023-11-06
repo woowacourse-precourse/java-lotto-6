@@ -22,13 +22,14 @@ public class LottoGameController {
 
     public void run() {
         Player player = buyLotto();
-        setWinNumber();
+        WinNumber winNumber = setWinNumber();
     }
 
-    private void setWinNumber() {
+    private WinNumber setWinNumber() {
+        WinNumber winNumber = null;
         try {
             outputView.printWinNumberInput();
-            WinNumber winNumber = WinNumber.of(input());
+            winNumber = WinNumber.of(input());
             winNumber.getWinNumber().stream()
                     .forEach((num) -> System.out.print(num + " "));
         } catch (NumberFormatException e) {
@@ -38,6 +39,7 @@ public class LottoGameController {
             errorView.printErrorMessage(e.getMessage());
             setWinNumber();
         }
+        return winNumber;
     }
 
     private Player buyLotto() {

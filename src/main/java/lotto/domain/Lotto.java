@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import lotto.views.Exceptions;
+import lotto.domain.LottoResult;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -54,5 +55,9 @@ public class Lotto {
             Exceptions.exceptionBonusNumInWinnerNum();
             throw new IllegalArgumentException();
         }
+    }
+
+    public void lottoResultSearch(List<List<Integer>> allLotto) {
+        LottoResult.countResult(allLotto, numbers);
     }
 }

@@ -30,6 +30,8 @@ public class LottoController {
         while (readBonusNum()) {
         }
         OutputViews.endOfSection();
+
+        lotto.lottoResultSearch(allLotto);
     }
 
     public boolean readPurchaseLotto() {

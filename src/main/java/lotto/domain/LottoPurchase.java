@@ -12,4 +12,8 @@ public class LottoPurchase {
     public static LottoPurchase create(final int count) {
         return new LottoPurchase(count);
     }
+
+    public boolean isRunning(int count) {
+        return this.purchaseCount.getCount() != count;
+    }
 }

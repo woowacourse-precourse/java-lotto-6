@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.utils.numbergenerators.NumberGenerator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -23,5 +24,9 @@ public class PurchasedLotto {
         return IntStream.range(0, dividePurchaseAmount(purchaseAmount))
                 .mapToObj(i -> new Lotto(numberGenerator.generateNumber()))
                 .toList();
+    }
+
+    public List<Lotto> getPurchasedLotto() {
+        return Collections.unmodifiableList(purchasedLotto);
     }
 }

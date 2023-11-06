@@ -11,9 +11,9 @@ public class OutputView {
     private static final int MIN_MATCHING_COUNT = 3;
     private static final int MAX_MATCHING_COUNT = 6;
 
-    public static void printLottoAmount(int purchasedAmount) {
+    public static void printLottoAmount(int lottoPurchaseCount) {
 
-        System.out.println(purchasedAmount + LOTTO_AMOUNT_MESSAGE);
+        System.out.println(lottoPurchaseCount + LOTTO_AMOUNT_MESSAGE);
     }
 
     public static void printPurchasedLottoList(List<Lotto> lottoList) {

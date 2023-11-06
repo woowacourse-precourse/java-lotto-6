@@ -18,10 +18,17 @@ public class LottoGame {
     private static int bonusNumber;*/
 
     private static LottoPurchaseAmount lottoPurchaseAmount;
+    private static List<Integer> lotto = new ArrayList<>();
+    private static List<Lotto> lottoList = new ArrayList<>();
 
     public void LottoGameRun() {
 
         int lottoPurchaseCount = inputPurchaseAmount();
+        lottoList = makeLottoList(lottoPurchaseCount);
+
+        OutputView.printLottoAmount(lottoPurchaseCount);
+        OutputView.printPurchasedLottoList(lottoList);
+
 
     }
 
@@ -34,11 +41,7 @@ public class LottoGame {
         }
     }
 
-/*
-
-
     private static List<Lotto> makeLottoList(int purchaseAmount) {
-        // 발행할 개수만큼 로또 리스트 만들어줌
         lottoList = new ArrayList<>();
 
         for (int i = 0; i < purchaseAmount; i++) {
@@ -48,7 +51,6 @@ public class LottoGame {
     }
 
     private static Lotto makeLotto() {
-        //로또를 번호 1개 생성하는 메서드
         LottoGenerator lottoGenerator = new LottoGenerator();
         List<Integer> lottoNumbers = lottoGenerator.generateLottoNumbers();
 
@@ -69,6 +71,5 @@ public class LottoGame {
 
         return lottoNumbers;
     }
-*/
 
 }

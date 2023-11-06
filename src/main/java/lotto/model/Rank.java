@@ -1,23 +1,24 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public enum Rank {
-    NO_RANK(0, 0L, ""),
-    FIFTH(3, 5_000L, "3개 일치 (5,000원) - "),
-    FOURTH(4, 50_000L, "4개 일치 (50,000원) - "),
-    THIRD(5, 15_000_000L, "5개 일치 (1,500,000원) - "),
-    SECOND(5, 30_000_000L, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
-    FIRST(6, 2_000_000_000L, "6개 일치 (2,000,000,000원) - ");
+    NO_RANK(0, 0L, false),
+    FIFTH(3, 5_000L, false),
+    FOURTH(4, 50_000L, false),
+    THIRD(5, 1_500_000L, false),
+    SECOND(5, 30_000_000L, true),
+    FIRST(6, 2_000_000_000L, false);
 
     private int matchCount;
     private long prizeMoney;
-    private String message;
+    private boolean isBonus;
 
-    Rank(int matchCount, long prizeMoney, String message) {
+    Rank(int matchCount, long prizeMoney, boolean isBonus) {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
-        this.message = message;
+        this.isBonus = isBonus;
     }
 
     public int getMatchCount() {
@@ -26,10 +27,6 @@ public enum Rank {
 
     public long getPrizeMoney() {
         return prizeMoney;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public static Rank valueOf(int matchCount, boolean isBonus) {
@@ -41,5 +38,16 @@ public enum Rank {
                 .filter(rank -> rank.matchCount == matchCount)
                 .findFirst()
                 .orElse(null);
+    }
+
+    public String getMessage() {
+        DecimalFormat decFormat = new DecimalFormat("###,###");
+        StringBuilder message = new StringBuilder();
+        message.append(matchCount).append("개 일치");
+        if (isBonus) {
+            message.append(", 보너스 볼 일치");
+        }
+        message.append(" (").append(decFormat.format(prizeMoney)).append("원) - ");
+        return message.toString();
     }
 }

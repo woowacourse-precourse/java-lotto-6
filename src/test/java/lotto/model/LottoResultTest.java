@@ -57,6 +57,6 @@ public class LottoResultTest {
         double yield = lottoResult.getYield();
 
         // then
-        assertEquals(500000, yield);
+        assertEquals(50000, yield);
     }
 }

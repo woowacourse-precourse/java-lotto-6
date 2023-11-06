@@ -13,10 +13,8 @@ public class LottoPurchaseInfo {
         numberOfLottoPurchased = purchaseAmount.divide(lottoPrice, BigDecimal.ROUND_DOWN);
     }
 
-    private static void validateMultiplesOf(BigDecimal num, BigDecimal factor) {
-        if (num.remainder(factor).compareTo(BigDecimal.ZERO) != 0) {
-            throw new IllegalArgumentException(AMOUNT_IS_NOT_IN_THOUSAND_WON_UNITS.getMessage());
-        }
+    public BigDecimal getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     public BigDecimal getLottoPrice() {

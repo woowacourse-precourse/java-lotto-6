@@ -6,12 +6,12 @@ public class ClientInform {
     private PurchaseAmount purchaseAmount;
     private LottoWinningAmount lottoWinningAmount;
 
-    private ClientInform(int purchaseAmount) {
+    private ClientInform(int purchaseAmount) throws IllegalArgumentException {
         this.purchaseAmount = PurchaseAmount.getInstance(purchaseAmount);
         this.lottoWinningAmount = LottoWinningAmount.getInstance(ZERO);
     }
 
-    public static ClientInform getInstance(int purchaseAmount) {
+    public static ClientInform getInstance(int purchaseAmount) throws IllegalArgumentException {
         return new ClientInform(purchaseAmount);
     }
 

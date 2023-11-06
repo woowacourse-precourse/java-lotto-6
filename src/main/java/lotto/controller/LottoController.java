@@ -28,17 +28,22 @@ public class LottoController {
     }
 
     private void lottoStart() {
-        String purchaseAmount = readPurchaseAmount();
-        makeLottoByPurchaseAmount(purchaseAmount);
+        try {
+            int purchaseAmount = readPurchaseAmount();
+            makeLottoByPurchaseAmount(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            lottoStart();
+        }
         printLottoNumbers(getLottoNumbers());
         makeWinningLotto(readWinningLotto(), readBonusNumber());
     }
 
-    private String readPurchaseAmount() {
+    private int readPurchaseAmount() throws IllegalArgumentException{
         return inputView.readPurchaseAmount();
     }
 
-    private void makeLottoByPurchaseAmount(String purchaseAmount) {
+    private void makeLottoByPurchaseAmount(int purchaseAmount) throws IllegalArgumentException {
         lottoService.makeLottoByPurchaseAmount(purchaseAmount);
     }
 

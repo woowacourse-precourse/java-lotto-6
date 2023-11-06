@@ -28,10 +28,9 @@ public class LottoService {
         return instance;
     }
 
-    public void makeLottoByPurchaseAmount(String purchaseAmount) {
-        int purchase = Integer.parseInt(purchaseAmount);
+    public void makeLottoByPurchaseAmount(int purchaseAmount) throws IllegalArgumentException{
         // 1. ClientInform 만들기
-        clientInform = ClientInform.getInstance(purchase);
+        clientInform = ClientInform.getInstance(purchaseAmount);
         // 2. 로또 객체 만들기 (구매 금액만큼 로또를 만들어야함)
         List<Lotto> newLottos = new ArrayList<>();
         int lottoNum = clientInform.getLottoNum();

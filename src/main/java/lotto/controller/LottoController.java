@@ -3,6 +3,8 @@ package lotto.controller;
 import java.util.List;
 
 import lotto.domain.AnswerLotto;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.service.LottoService;
@@ -12,14 +14,14 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-	private MoneyService moneyService;
-	private LottoService lottoService;
+	private final LottoService lottoService;
+	private final MoneyService moneyService;
 	private final InputView inputView;
 	private final OutputView outputView;
 
 	public LottoController() {
-		this.moneyService = new MoneyService();
 		this.lottoService = new LottoService();
+		this.moneyService = new MoneyService();
 		this.inputView = new InputView();
 		this.outputView = new OutputView();
 	}
@@ -67,31 +69,31 @@ public class LottoController {
 	public AnswerLotto createAnswerLotto() {
 		outputView.printInputAnswerLottoNumberMessage();
 
-		List<Integer> numbers = createAnswerLottoNumbersProgress();
+		Lotto answerLottoNumbers = createAnswerLottoNumbersProgress();
 
 		outputView.printInputBonusNumberMessage();
 
-		int bonusNumber = createBonusNumberProgress(numbers);
+		BonusNumber bonusNumber = createBonusNumberProgress(answerLottoNumbers);
 
-		return lottoService.createAnswerLotto(numbers, bonusNumber);
+		return lottoService.createAnswerLotto(answerLottoNumbers, bonusNumber);
 	}
 
-	private List<Integer> createAnswerLottoNumbersProgress() {
+	private Lotto createAnswerLottoNumbersProgress() {
 		while (true) {
 			try {
-				List<Integer> numbers = inputView.inputAnswerLottoNumbers();
-				return numbers;
+				List<Integer> answerLottoNumbers = inputView.inputAnswerLottoNumbers();
+				return new Lotto(answerLottoNumbers);
 			} catch (IllegalArgumentException e) {
 				outputView.printErrorMessage(e);
 			}
 		}
 	}
 
-	private int createBonusNumberProgress(List<Integer> numbers) {
+	private BonusNumber createBonusNumberProgress(Lotto answerLottoNumbers) {
 		while (true) {
 			try {
-				int bonusNumber = inputView.inputBonusNumber(numbers);
-				return bonusNumber;
+				int bonusNumber = inputView.inputBonusNumber();
+				return new BonusNumber(answerLottoNumbers, bonusNumber);
 			} catch (IllegalArgumentException e) {
 				outputView.printErrorMessage(e);
 			}

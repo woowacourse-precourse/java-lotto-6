@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -10,6 +9,8 @@ import java.util.StringJoiner;
 
 import lotto.calculator.LottoCalculator;
 import lotto.domain.AnswerLotto;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -33,8 +34,8 @@ public class LottoService {
 		return lottosGenerator.generate();
 	}
 
-	public AnswerLotto createAnswerLotto(List<Integer> numbers, int bonusNumber) {
-		return new AnswerLotto(numbers, bonusNumber);
+	public AnswerLotto createAnswerLotto(Lotto lotto, BonusNumber bonusNumber) {
+		return new AnswerLotto(lotto, bonusNumber);
 	}
 
 	public int calculateLottoPriceSum(Lottos lottos, AnswerLotto answerLotto) {

@@ -8,7 +8,6 @@ public class Checker {
     private static final Integer MINIMUM_RANGE = 1;
     private static final Integer MAXIMUM_RANGE = 45;
 
-    // features
     public static void priceCorrect(Integer price) {
         if (price % UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 합니다.");
@@ -43,11 +42,17 @@ public class Checker {
         return false;
     }
 
-    public static void numbersInRange(List<Integer> winningNumbers) {
+    public static void winningInRange(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
             if (!inRange(winningNumber)) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이의 수여야 합니다.");
             }
+        }
+    }
+
+    public static void bonusInRange(Integer bonusNumber) {
+        if (!inRange(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 수여야 합니다.");
         }
     }
 }

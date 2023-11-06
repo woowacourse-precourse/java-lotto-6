@@ -39,7 +39,16 @@ public class CheckerTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 46);
 
         assertThatThrownBy(() -> {
-            Checker.numbersInRange(winningNumbers);
+            Checker.winningInRange(winningNumbers);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스_번호_범위_초과_시_예외_리턴() {
+        Integer bonusNumber = 99;
+
+        assertThatThrownBy(() -> {
+            Checker.bonusInRange(bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

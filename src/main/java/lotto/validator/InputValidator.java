@@ -1,19 +1,14 @@
-package util.string.validator;
+package lotto.validator;
 
 import java.util.List;
-import lotto.exception.DuplicatedLottoNumberException;
 import lotto.exception.EmptyInputException;
 import lotto.exception.EmptySpaceIncludeException;
 import lotto.exception.NotIntegerInputException;
 import lotto.exception.OutOfLengthException;
-import lotto.exception.OutOfNumberRangeException;
 import util.string.StringUtils;
 
 public class InputValidator {
     private static final String EMPTY_SPACE = " ";
-    private static final int LOTTO_DIGIT_RESTRICTIONS = 6;
-    private static final int LOTTO_NUMBER_MIN_RANGE = 1;
-    private static final int LOTTO_NUMBER_MAX_RANGE = 45;
 
     private InputValidator() {
     }
@@ -31,31 +26,16 @@ public class InputValidator {
         checkLottoLengthAndThrowException(numbers);
     }
 
-    public static void checkBonusInput(String input, List<Integer> numbers)
+    public static void checkBonusInput(String input)
             throws IllegalArgumentException {
         checkEmptyAndThrowException(input);
         checkSpaceAndThrowException(input);
         checkIntegerInputAndThrowException(input);
-        checkBonusNumberRangeAndThrowException(input);
-        checkWinningLottoAndBonusDuplicated(numbers, StringUtils.parseStringToInt(input));
     }
 
-    private static void checkWinningLottoAndBonusDuplicated(List<Integer> numbers, int bonus)
-            throws IllegalArgumentException {
-        if (numbers.contains(bonus)) {
-            throw new DuplicatedLottoNumberException();
-        }
-    }
-
-    private static void checkBonusNumberRangeAndThrowException(String input) throws IllegalArgumentException {
-        int x = StringUtils.parseStringToInt(input);
-        if (x > LOTTO_NUMBER_MAX_RANGE || x < LOTTO_NUMBER_MIN_RANGE) {
-            throw new OutOfNumberRangeException();
-        }
-    }
 
     private static void checkLottoLengthAndThrowException(List<Integer> carNameList) throws IllegalArgumentException {
-        if (LOTTO_DIGIT_RESTRICTIONS != carNameList.size()) {
+        if (ValidNumber.LOTTO_DIGIT_RESTRICTIONS.getNumber() != carNameList.size()) {
             throw new OutOfLengthException();
         }
     }

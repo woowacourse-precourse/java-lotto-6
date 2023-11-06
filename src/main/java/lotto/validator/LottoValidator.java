@@ -1,4 +1,4 @@
-package util.string.validator;
+package lotto.validator;
 
 import java.util.HashSet;
 import java.util.List;
@@ -7,8 +7,6 @@ import lotto.exception.DuplicatedLottoNumberException;
 import lotto.exception.OutOfNumberRangeException;
 
 public class LottoValidator {
-    private static final int LOTTO_NUMBER_MIN_RANGE = 1;
-    private static final int LOTTO_NUMBER_MAX_RANGE = 45;
 
     private LottoValidator() {
     }
@@ -23,8 +21,9 @@ public class LottoValidator {
 
     public static void checkLottoNumberRangeAndThrowException(List<Integer> numbers) throws IllegalArgumentException {
 
-        for (int x : numbers) {
-            if (x > LOTTO_NUMBER_MAX_RANGE || x < LOTTO_NUMBER_MIN_RANGE) {
+        for (int number : numbers) {
+            if (number > ValidNumber.LOTTO_NUMBER_MAX_RANGE.getNumber()
+                    || number < ValidNumber.LOTTO_NUMBER_MIN_RANGE.getNumber()) {
                 throw new OutOfNumberRangeException();
             }
         }

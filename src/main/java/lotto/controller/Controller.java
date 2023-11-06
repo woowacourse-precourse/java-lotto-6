@@ -6,9 +6,10 @@ import lotto.domain.Lotto;
 import lotto.dto.IssuedLottoDto;
 import lotto.dto.WinningStatisticsDto;
 import lotto.service.LottoService;
+import lotto.validator.BonusNumberValidator;
+import lotto.validator.InputValidator;
 import lotto.view.View;
 import util.string.StringUtils;
-import util.string.validator.InputValidator;
 
 public class Controller {
 
@@ -25,7 +26,7 @@ public class Controller {
         List<Lotto> lottos = issueLotto(userPrice);
 
         Lotto winningLotto = getWinningLotto(getWinningLottonumbers());
-        int bonusNumber = getInputBonusNumber(winningLotto.getNumbers());
+        int bonusNumber = getInputBonusNumber(winningLotto);
 
         WinningStatisticsDto result = lottoService.getWinningStatistics(lottos, winningLotto, bonusNumber);
         view.printWinningStatistics(result);
@@ -58,19 +59,26 @@ public class Controller {
                 .toList();
     }
 
-    private int getInputBonusNumber(List<Integer> numbers) {
+    private int getInputBonusNumber(Lotto winningLotto) {
         String inputBonusNumber;
         while (true) {
             view.printRequestBonusNumber();
             inputBonusNumber = readInput();
             try {
-                InputValidator.checkBonusInput(inputBonusNumber, numbers);
+                InputValidator.checkBonusInput(inputBonusNumber);
+                checkBonusNumberValidate(inputBonusNumber, winningLotto);
                 break;
             } catch (IllegalArgumentException error) {
                 System.out.println(error.getMessage());
             }
         }
         return StringUtils.parseStringToInt(inputBonusNumber);
+    }
+
+    private void checkBonusNumberValidate(String inputBonusNumber, Lotto winningLotto) {
+        int bonusNumber = StringUtils.parseStringToInt(inputBonusNumber);
+        BonusNumberValidator.checkBonusNumberRangeAndThrowException(bonusNumber);
+        BonusNumberValidator.checkWinningLottoAndBonusDuplicated(winningLotto, bonusNumber);
     }
 
     private int getUserInputPrice() {

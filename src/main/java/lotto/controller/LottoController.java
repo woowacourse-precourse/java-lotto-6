@@ -2,8 +2,11 @@ package lotto.controller;
 
 import lotto.model.LottoModel;
 import lotto.validate.PurchaseAmountValidation;
+import lotto.validate.WinningNumberValidation;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
+
+import java.util.List;
 
 public class LottoController {
     private final LottoInputView lottoInputView;
@@ -19,5 +22,8 @@ public class LottoController {
     public void startGame() {
         lottoOutputView.printUserInputPurchaseAmount();
         int purchaseAmount = lottoInputView.inputPurchaseAmount(new PurchaseAmountValidation());
+
+        lottoOutputView.printUserInputWinningNumber();
+        List<Integer> winningNumbers = lottoInputView.inputWinningNumber(new WinningNumberValidation());
     }
 }

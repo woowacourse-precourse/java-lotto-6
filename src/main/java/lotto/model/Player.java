@@ -6,18 +6,16 @@ public class Player {
 
     private List<Lotto> lottos;
     private Money money;
-    private LottoStore lottoStore;
 
-    private Player(Money money, LottoStore lottoStore) {
+    private Player(Money money) {
         this.money = money;
-        this.lottoStore = lottoStore;
     }
 
-    public static Player of(Money money, LottoStore lottoStore) {
-        return new Player(money, lottoStore);
+    public static Player of(Money money) {
+        return new Player(money);
     }
 
-    public void buyLotto() {
+    public void buyLotto(LottoStore lottoStore) {
         lottos = lottoStore.sellLotto(money);
     }
 

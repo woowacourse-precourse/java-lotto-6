@@ -28,9 +28,9 @@ public class LottoGameController {
             // 구입 금액 입력
             outputView.printPurchaseInput();
             Money money = new Money(Console.readLine());
-            Player player = Player.of(money, LottoStore.of(new RandomNumberGenerateStrategy()));
+            Player player = Player.of(money);
             // 로또 구매
-            player.buyLotto();
+            player.buyLotto(LottoStore.of(new RandomNumberGenerateStrategy()));
             // 로또 번호 반환 및 출력
             PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(player.getEA(), player.getHistory());
             outputView.printPurchaseHistory(dto);

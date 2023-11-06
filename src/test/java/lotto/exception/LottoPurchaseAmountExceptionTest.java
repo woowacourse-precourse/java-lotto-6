@@ -12,10 +12,10 @@ class LottoPurchaseAmountExceptionTest {
     @DisplayName("구입 금액이 1,000으로 나누어 떨어지지 않으면 예외 처리")
     void checkLottoPurchaseAmountDivideThousand(){
         // given
-        int purchaseAmount = 2500;
+        String input = "2500";
 
         //then
-        assertThatThrownBy(() -> new LottoPurchaseAmountException().isDivideThousand()).isInstanceOf(
+        assertThatThrownBy(() -> new LottoPurchaseAmountException().isDivideThousand(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
@@ -26,7 +26,7 @@ class LottoPurchaseAmountExceptionTest {
         String input = "abc";
 
         //then
-        assertThatThrownBy(() -> new LottoPurchaseAmountException().isNumber()).isInstanceOf(
+        assertThatThrownBy(() -> new LottoPurchaseAmountException().isNumber(input)).isInstanceOf(
                 IllegalArgumentException.class);
 
     }
@@ -38,7 +38,7 @@ class LottoPurchaseAmountExceptionTest {
         String input = " ";
 
         //then
-        assertThatThrownBy(() -> new LottoPurchaseAmountException().isBlank()).isInstanceOf(
+        assertThatThrownBy(() -> new LottoPurchaseAmountException().isBlank(input)).isInstanceOf(
                 IllegalArgumentException.class);
 
     }

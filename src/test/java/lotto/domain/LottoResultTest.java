@@ -18,5 +18,11 @@ class LottoResultTest {
         assertEquals(LottoResult.FIVE_WITH_BONUS, LottoResult.valueOf(5, true));
         assertEquals(LottoResult.SIX, LottoResult.valueOf(6, false));
     }
+    @DisplayName("잘못된 숫자의 개수를 입력했을 때의 예외 처리")
+    @Test
+    public void testValueOfWithInvalidMatchCount() {
+        assertThrows(IllegalArgumentException.class, () -> LottoResult.valueOf(7, false));
+        assertThrows(IllegalArgumentException.class, () -> LottoResult.valueOf(-1, false));
+    }
 
 }

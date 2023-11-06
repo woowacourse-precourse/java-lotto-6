@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.domain.IncomeRate;
 import lotto.domain.LottoPack;
-import lotto.domain.Result;
+import lotto.domain.LottoStatistics;
 import lotto.util.Printer.IPrinter;
 
 import static lotto.constant.OutputMessage.*;
@@ -40,9 +40,9 @@ public class OutputView {
         printer.println(GET_BONUS_NUMBER_MESSAGE);
     }
 
-    public void printResult(Result result) {
+    public void printResult(LottoStatistics lottoStatistics) {
         printer.println(LOTTO_RESULT_MESSAGE);
-        printer.println(result.toString());
+        printer.println(lottoStatistics.toString());
     }
 
     public void printIncomeRate(IncomeRate incomeRate) {

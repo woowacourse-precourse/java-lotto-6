@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
-public class Result {
+public class LottoStatistics {
 
     private final EnumMap<LottoRank, Integer> result;
 
-    public Result(EnumMap<LottoRank, Integer> result) {
+    public LottoStatistics(EnumMap<LottoRank, Integer> result) {
         result.remove(LottoRank.NOTHING);
         this.result = result;
     }

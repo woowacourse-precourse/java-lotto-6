@@ -25,10 +25,10 @@ public class LottoController {
         WinningNumber bonusNumber = loop(() -> getBonusNumber(winningNumbers));
         outputView.newline();
 
-        Result result = lottoPack.calculate(winningNumbers, bonusNumber);
-        outputView.printResult(result);
+        LottoStatistics lottoStatistics = lottoPack.calculate(winningNumbers, bonusNumber);
+        outputView.printResult(lottoStatistics);
 
-        IncomeRate incomeRate = new IncomeRate(lottoPack.getPrice(), result.getIncome());
+        IncomeRate incomeRate = new IncomeRate(lottoPack.getPrice(), lottoStatistics.getIncome());
         outputView.printIncomeRate(incomeRate);
 
     }

@@ -32,7 +32,7 @@ public class LottoPack {
         return lottoPack.size() * LottoConfig.LOTTO_PRICE;
     }
 
-    public Result calculate(WinningNumbers winningNumbers, WinningNumber bonusNumber) {
+    public LottoStatistics calculate(WinningNumbers winningNumbers, WinningNumber bonusNumber) {
 
         EnumMap<LottoRank, Integer> map = new EnumMap<>(LottoRank.class);
         Arrays.stream(LottoRank.values()).forEach(lottoRank -> map.put(lottoRank, 0));
@@ -41,7 +41,7 @@ public class LottoPack {
                 .map(lotto -> lotto.calculate(winningNumbers, bonusNumber))
                 .forEach(rank -> map.put(rank, map.get(rank) + 1));
 
-        return new Result(map);
+        return new LottoStatistics(map);
 
     }
 

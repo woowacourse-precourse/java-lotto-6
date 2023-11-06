@@ -9,8 +9,8 @@ public class PayAmountValidator {
         isBlank(payAmount);
         isNotNumeric(payAmount);
         isInvalidDigits(payAmount);
-        cannotDivideOneThousand(payAmount);
         isInvalidRange(payAmount);
+        cannotDivideOneThousand(payAmount);
     }
 
     private void isBlank(String payAmount) {
@@ -31,16 +31,16 @@ public class PayAmountValidator {
         }
     }
 
-    private void cannotDivideOneThousand(String payAmount) {
-        if (!payAmount.matches(DIVIDE_ONE_THOUSAND.pattern())) {
-            throw new IllegalArgumentException(PAY_AMOUNT_ONE_THOUSAND_UNIT_ERROR.message());
-        }
-    }
-
     private void isInvalidRange(String payAmount) {
         long amount = Long.parseLong(payAmount);
         if (amount > MAX_PAY_AMOUNT.criteria()) {
             throw new IllegalArgumentException(PAY_AMOUNT_RANGE_ERROR.message());
+        }
+    }
+
+    private void cannotDivideOneThousand(String payAmount) {
+        if (!payAmount.matches(DIVIDE_ONE_THOUSAND.pattern())) {
+            throw new IllegalArgumentException(PAY_AMOUNT_ONE_THOUSAND_UNIT_ERROR.message());
         }
     }
 }

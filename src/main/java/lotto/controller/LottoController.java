@@ -12,14 +12,14 @@ public class LottoController {
     private static final LottoStore lottoStore = new LottoStore();
 
     public void run() {
-        Client client = newClient();
+        Client client = buyLottos();
         issueLottos(client);
         LottoResult lottoResult = createWinningNumbers();
         createBonusNumber(lottoResult);
         announceLottoResults(client, lottoResult);
     }
 
-    private Client newClient() {
+    private Client buyLottos() {
         view.printPayAmountInputMessage();
         while (true) {
             try {

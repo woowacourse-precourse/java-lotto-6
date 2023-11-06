@@ -6,12 +6,12 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class View {
-    public void printPayAmountInputMessage() {
-        System.out.println(PAY_AMOUNT_INPUT.message());
-    }
-
     public String inputValue() {
         return Console.readLine();
+    }
+
+    public void printPayAmountInputMessage() {
+        System.out.println(PAY_AMOUNT_INPUT.message());
     }
 
     public void printExceptionMessage(Exception e) {

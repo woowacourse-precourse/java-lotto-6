@@ -12,4 +12,11 @@ class MoneyTest {
         assertThatThrownBy(() -> new Money(1200))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("로또 구입 금액에 음수를 넣으면 예외가 발생한다.")
+    void negativeMoney() {
+        assertThatThrownBy(() -> new Money(-1000))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

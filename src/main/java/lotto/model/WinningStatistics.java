@@ -10,6 +10,7 @@ public class WinningStatistics {
 
 	private final int NO_MATCH_NUMBERS = 12;
 	private final int PERCENT = 100;
+	private final int ROUND_NUMBER = 10;
 
 	private Map<Rank, Integer> winnings;
 	private int totalWinningAmount;
@@ -36,6 +37,9 @@ public class WinningStatistics {
 		Rank rank = Rank.getRank(matchNumberSize(purchasedLotto.getNumbers(), winningLotto.getNumbers()),
 				winBonusNumber(purchasedLotto.getNumbers(),bonusNumber));
 		
+		if(rank == null)
+			return;
+		
 		winnings.put(rank, winnings.get(rank)+1);
 		totalWinningAmount += rank.getMoney();
 	}
@@ -57,8 +61,6 @@ public class WinningStatistics {
 	}
 	
 	private double calculateTotalProfitRate(int money) {
-		return PERCENT * totalWinningAmount/money;
+		return Math.round(PERCENT * totalWinningAmount/money * ROUND_NUMBER) / ROUND_NUMBER;
 	}
-	
-	
 }

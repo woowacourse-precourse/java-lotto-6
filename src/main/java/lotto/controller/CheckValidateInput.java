@@ -56,7 +56,7 @@ public class CheckValidateInput {
 
 	public List<Integer> winningNumber(String numbers) {
 
-		if (isNumbersInteger(separated(numbers)))
+		if (!isNumbersInteger(separated(numbers)))
 			throw new IllegalArgumentException(ERROR_MESSAGE_TAG + NOT_NUMBER_MESSAGE);
 
 		List<Integer> winnings = Arrays

@@ -13,7 +13,7 @@ public class BonusNumber {
 	
 	private final int number;
 	
-	BonusNumber(int bonusNumber, Lotto lotto){
+	public BonusNumber(int bonusNumber, Lotto lotto){
 		validate(bonusNumber, lotto);
 		this.number = bonusNumber;
 	}
@@ -30,7 +30,7 @@ public class BonusNumber {
 	}
 	
 	private boolean isNumbersRange1to45(int bonusNumber) {
-		return (number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER);
+		return (bonusNumber >= MIN_LOTTO_NUMBER && bonusNumber <= MAX_LOTTO_NUMBER);
 	}
 
 	private boolean isDuplicationNumber(int bonusNumber, List<Integer> lottoNumber) {

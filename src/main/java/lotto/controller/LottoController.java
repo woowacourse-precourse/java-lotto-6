@@ -1,8 +1,7 @@
 package lotto.controller;
 
-import lotto.dto.PurchaseResult;
-import lotto.dto.WinningResult;
 import lotto.model.*;
+import lotto.util.LottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,35 +19,40 @@ public class LottoController {
     }
 
     public void run() {
-        Purchase purchase = lottoPurchaeByMoney(Integer.parseInt(inputView.inputMoney()));
-        WinningNumbers winningNumbers = createWinningNumbers();
-        LottResult(purchase,winningNumbers);
+        Money money = inputLottoMoney();
+        List<Lotto> lottos = purchaseLottos(money);
+        Lottos lottoStore = Lottos.of(lottos);
+        outputView.outputPurchaseLottos(lottoStore, money.availableLottoCount());
+
+        WinningNumbers winningNumbers = inputWinningNumbers();
+
+        LottoResult lottoResult = LottoResult.of(lottoStore, winningNumbers);
+        outputView.outputWinningResult(lottoResult, money.getMoney());
     }
 
-    private Purchase lottoPurchaeByMoney(Integer money) {
-        Lottos lottos = new Lottos();
-        Purchase purchase = Purchase.purchase(lottos, money);
-
-        PurchaseResult result = new PurchaseResult(purchase.getLottos(), purchase.getAvailableLotto());
-        outputView.outputPurchaseLottos(result);
-        return purchase;
-    }
-
-    private WinningNumbers createWinningNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-        String[] split = inputView.inputWinningNumbers().split(",");
-        for (String s : split) {
-            numbers.add(Integer.parseInt(s));
-        }
-        int i = Integer.parseInt(inputView.inputBonusNumber());
-        WinningNumbers winningNumbers = new WinningNumbers(new Lotto(numbers), i);
+    private WinningNumbers inputWinningNumbers() {
+        WinningNumbers winningNumbers = WinningNumbers.from(stringToInteger(inputView.inputWinningNumbers()), Integer.parseInt(inputView.inputBonusNumber()));
         return winningNumbers;
     }
 
-    private void LottResult(Purchase purchase, WinningNumbers winningNumbers) {
-        LottoResult lottoResult = new LottoResult(purchase, winningNumbers);
-        float rateResult = ((float) lottoResult.calculatePriceSum() * 100) / purchase.getMoney();
-        WinningResult winningResult = new WinningResult(lottoResult.calculateRank(), rateResult);
-        outputView.outputWinningResult(winningResult);
+    private static List<Lotto> purchaseLottos(Money money) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < money.availableLottoCount(); i++) {
+            lottos.add(new Lotto(LottoGenerator.lottoGenerator()));
+        }
+        return lottos;
+    }
+
+    private Money inputLottoMoney() {
+        return new Money(Integer.parseInt(inputView.inputMoney()));
+    }
+
+    private List<Integer> stringToInteger(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        String[] split = input.split(",");
+        for (String s : split) {
+            numbers.add(Integer.parseInt(s));
+        }
+        return numbers;
     }
 }

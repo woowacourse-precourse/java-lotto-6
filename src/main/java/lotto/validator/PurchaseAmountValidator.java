@@ -4,11 +4,10 @@ import lotto.exception.ExceptionMessage;
 
 import static lotto.domain.LottoStore.LOTTO_PRICE;
 
-public class PurchaseLottoValidator {
+public class PurchaseAmountValidator {
     private static final int MAXIMUM_PRICE = 100000;
 
-
-    private PurchaseLottoValidator() {
+    private PurchaseAmountValidator() {
         throw new AssertionError();
     }
 

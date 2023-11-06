@@ -7,8 +7,13 @@ import lotto.ui.OutputView;
 
 public class LottoWinningProcess {
     public void run() {
-        buyLotto();
-        setUpWinningLotto();
+        List<Lotto> lottos = buyLotto();
+        WinningLotto winningLotto = setUpWinningLotto();
+        List<Integer> counted = new ArrayList<>();
+        
+        for (Lotto lotto : lottos) {
+            counted.add(winningLotto.getLotto().countOverlappingNumbers(lotto));
+        }
     }
 
     public List<Lotto> buyLotto() {

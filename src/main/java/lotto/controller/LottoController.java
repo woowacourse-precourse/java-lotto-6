@@ -64,16 +64,14 @@ public class LottoController implements Input {
 			checkForOverlap(winningBonusNumber.getWinningNumber(),
 				winningBonusNumber.getBonusNumber());
 			System.out.println(winningBonusNumber.getBonusNumber()+"성공");
+			lottoService.winningCalculation(winningBonusNumber);
 		} catch (IllegalArgumentException e) {
 			exceptionView.PriceException(e);
 			bonusNumber();
 		}
 	}
 
-	@Override
-	public void result() {
 
-	}
 
 	public void checkForOverlap(String winningNumber, String bonusNumber) {
 		String[] winningNumbers = winningNumber.split(",");

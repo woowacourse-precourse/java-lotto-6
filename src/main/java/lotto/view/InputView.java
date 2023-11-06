@@ -14,6 +14,7 @@ public class InputView {
     public static int readPurchaseAmount() {
         printInputGuideMessage("구입금액을 입력해 주세요.");
         String input = Console.readLine();
+        validateContainsBlank(input);
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -24,6 +25,7 @@ public class InputView {
     public static List<Integer> readWinningNumbers() {
         printInputGuideMessage("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
+        validateContainsBlank(input);
         try {
             return toList(input);
         } catch (NumberFormatException e) {
@@ -34,6 +36,7 @@ public class InputView {
     public static int readBonusNumber() {
         printInputGuideMessage("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
+        validateContainsBlank(input);
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -43,6 +46,12 @@ public class InputView {
 
     private static void printInputGuideMessage(String message) {
         System.out.println(message);
+    }
+
+    private static void validateContainsBlank(String input) {
+        if (input.contains(" ")) {
+            throw new IllegalArgumentException("[ERROR] 공백이 포함되어 있습니다.");
+        }
     }
 
     private static List<Integer> toList(String input) {

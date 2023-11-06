@@ -6,7 +6,7 @@
 
 ### LottoIssuer
 - [x] 구입 금액만큼 로또를 발행한다. `List<Lotto> issue(PurchaseAmount purchaseAmount)`
-    - 로또 번호는 1~45 사이의 서로 다른 랜덤한 숫자 6개로 구성되어 있다.
+  - 로또 번호는 1~45 사이의 서로 다른 랜덤한 숫자 6개로 구성되어 있다.
 
 ### Lotto
 - [x] 생성 시 로또 번호를 오름차순 정렬한다.
@@ -22,11 +22,14 @@
 
 ### InputView
 - [x] 구입 금액을 입력 받는다. `int readPurchaseAmount()`
-    - 정수만 입력 가능하다.
+  - 공백이 포함되서는 안 된다. 
+  - 정수만 입력 가능하다.
 - [x] 당첨 번호를 입력 받는다. `List<Integer> readWinningNumbers()`
-    - 쉼표(,)를 기준으로 구분한다.
+  - 공백이 포함되서는 안 된다.
+  - 쉼표(,)를 기준으로 구분한다.
 - [x] 보너스 번호를 입력 받는다. `int readBonusNumber()`
-    - 정수만 입력 가능하다.
+  - 공백이 포함되서는 안 된다.
+  - 정수만 입력 가능하다.
 
 ### OutputView
 - [x] 발행한 로또 수량 및 번호를 출력한다. `void printIssuedLottoDetails(int lottoQuantity, List<String> lottos)`

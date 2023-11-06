@@ -17,19 +17,6 @@ public class LottoGame {
 
     }
 
-    public void generateWinningNumbers(String winningNormalNumber, String bonusNumber) {
-        generateWinningNormalNumbers(winningNormalNumber);
-        generateBonusNumber(bonusNumber);
-    }
-
-    private void generateWinningNormalNumbers(String winningNormalNumber) {
-        winningNumbers.generateWinningNormalNumbers(winningNormalNumber);
-    }
-
-    private void generateBonusNumber(String bonusNumber) {
-        winningNumbers.generateBonusNumber(bonusNumber);
-    }
-
     public Map<LottoRank, Integer> calculateLottoResults() {
         Map<LottoRank, Integer> rankMap = new HashMap<>();
 

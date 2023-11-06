@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lottos {
-    private int numberOfTheLotto;
+    private long numberOfTheLotto;
     private NumberUtil numberUtil;
     private List<Lotto> lottos;
 
-    public Lottos(int numberOfTheLotto, NumberUtil numberUtil) {
+    public Lottos(long numberOfTheLotto, NumberUtil numberUtil) {
         this.numberOfTheLotto = numberOfTheLotto;
         this.numberUtil = numberUtil;
         this.lottos = new ArrayList<>();
@@ -20,6 +20,7 @@ public class Lottos {
     public void generateLottos() {
         for(int i = 0; i< numberOfTheLotto; i++) {
             List<Integer> lottoNumbers = numberUtil.generateNumbers();
+
             Lotto lotto = new Lotto(lottoNumbers);
             lottos.add(lotto);
         }
@@ -32,7 +33,7 @@ public class Lottos {
             List<Integer> lottoNumbers = lotto.getNumbers();
             String lottoResult = lottoNumbers.stream()
                     .map(Object::toString)
-                    .collect(Collectors.joining(",","[","]"));
+                    .collect(Collectors.joining(", ","[","]"));
             result.append(lottoResult).append("\n");
         }
         return result.toString();

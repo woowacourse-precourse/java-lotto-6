@@ -9,7 +9,7 @@ public class ProfitMessageTest {
 
     @Test
     void 수익률_메시지가_잘_나오는지_확인() {
-        double profitRate = 100.0;
+        Double profitRate = 100.0;
 
         String expected = "총 수익률은 100.0%입니다.";
 

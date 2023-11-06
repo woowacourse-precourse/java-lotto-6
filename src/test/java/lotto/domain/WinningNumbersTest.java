@@ -21,9 +21,11 @@ public class WinningNumbersTest {
 
     @Test
     void 당첨번호_생성시_잘_만들어지는지_확인() {
-        String inputNumbers = "1, 2, 3, 4, 5, 6";
+        String winningNormalNumbers = "1, 2, 3, 4, 5, 6";
+
+        winningNumbers.generateWinningNormalNumbers(winningNormalNumbers);
+
         List<Integer> expected = List.of(1,2,3,4,5,6);
-        winningNumbers.generateWinningNormalNumbers(inputNumbers);
 
         List<WinningNumber> winningNormalNumber = winningNumbers.getWinningNormalNumbers();
         for(int i = 0; i<winningNormalNumber.size(); i++) {

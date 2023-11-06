@@ -28,6 +28,7 @@ public class NumberConverter {
     private static void validateInputNumbersAreNumber(String[] numbers) {
         try {
             Arrays.stream(numbers)
+                    .map(String::trim)
                     .forEach(Integer::parseInt);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자를 입력해야 합니다.");
@@ -35,10 +36,6 @@ public class NumberConverter {
     }
 
     public static Integer convertToNumber(String inputNumber) {
-        try {
-            return Integer.parseInt(inputNumber);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자 입력");
-        }
+        return Integer.parseInt(inputNumber);
     }
 }

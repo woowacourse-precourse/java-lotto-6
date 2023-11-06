@@ -5,15 +5,17 @@ import lotto.global.constant.LottoRank;
 import java.util.Map;
 
 public class Profit {
-    private static final int PERCENTAGE = 100;
+    private static final double HUNDRED = 100.0;
 
-    public double calculateProfit(int money, Map<LottoRank, Integer> winningResultMap) {
+    public double calculateProfit(long money, Map<LottoRank, Integer> winningResultMap) {
         double profit = 0;
         for (LottoRank lottoRank : winningResultMap.keySet()) {
             int rankCount = winningResultMap.getOrDefault(lottoRank, 0);
             profit += lottoRank.getPrice() * rankCount;
         }
 
-        return Math.round((profit * PERCENTAGE) / money);
+        double profitRate = (profit / (double) money) * 100;
+
+        return Math.round(profitRate * HUNDRED) / HUNDRED;
     }
 }

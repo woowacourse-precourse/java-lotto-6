@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,6 @@ public class LottosTest {
 
     @Test
     void Lottos가_입력한_숫자만큼_로또를_생성하는지_확인하는_테스트() {
-        this.lottos.generateLottos();
         List<Lotto> lottoList = this.lottos.getLottos();
 
         assertThat(lottoList.size())
@@ -37,7 +37,6 @@ public class LottosTest {
 
     @Test
     void Lottos가_숫자를_잘_생성하는지_테스트() {
-        this.lottos.generateLottos();
         List<Lotto> lottoList = this.lottos.getLottos();
 
         for (Lotto lotto : lottoList) {

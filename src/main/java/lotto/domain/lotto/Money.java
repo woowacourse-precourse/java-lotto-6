@@ -1,12 +1,25 @@
 package lotto.domain.lotto;
 
 public class Money {
-    private static final int LOTTO_COST = 1_000;
-    private final int money;
+    private static final long LOTTO_COST = 1_000;
+    private static final long MAX_LIMIT = 1_000_000_000;
+    private final long money;
 
-    public Money(int money) {
+    public Money(long money) {
         this.money = money;
+        validateMoneyIsMoreThanThousand();
         validateMoneyDividedByThousand();
+    }
+    private void validateMoneyIsMoreThanThousand() {
+        if(money < LOTTO_COST) {
+            throw new IllegalArgumentException("1000원 이상 입금");
+        }
+    }
+
+    private void validateMoneyLessThanLongMax() {
+        if(money >= MAX_LIMIT) {
+            throw new IllegalArgumentException("10억원 미만 구매");
+        }
     }
 
     private void validateMoneyDividedByThousand() {
@@ -15,11 +28,11 @@ public class Money {
         }
     }
 
-    public int getNumberOfTheLotto() {
+    public long getNumberOfTheLotto() {
         return money / LOTTO_COST;
     }
 
-    public int getMoney() {
+    public long getMoney() {
         return money;
     }
 }

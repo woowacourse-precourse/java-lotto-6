@@ -19,6 +19,12 @@ public class Lotto {
             .collect(Collectors.toList());
     }
 
+    public List<Integer> getNumbers(){
+        return numbers.stream()
+            .map(LottoNumber::getLottoNumber)
+            .collect(Collectors.toList());
+    }
+
     private void validate(List<Integer> numbers) {
         validateLottoSize(numbers);
         validateRepetitionOfLottoNumber(numbers);

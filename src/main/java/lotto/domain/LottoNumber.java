@@ -16,6 +16,10 @@ public class LottoNumber {
         this.lottoNumber = lottoNumber;
     }
 
+    public int getLottoNumber() {
+        return lottoNumber;
+    }
+
     private void validateLottoNumberRange(int lottoNumber) {
         validateBiggerThanMinimumNumberOfRange(lottoNumber);
         validateLessThanMaximumNumberOfRange(lottoNumber);

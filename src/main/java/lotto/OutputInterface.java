@@ -24,12 +24,12 @@ public class OutputInterface {
         this.numberFormat = numberFormat;
     }
 
-    void printReceipt(LotteryReceipt receipt) {
+    public void printReceipt(LotteryReceipt receipt) {
         System.out.println(QUANTITY_OUTPUT_TEXT_FORMAT.format(Long.toString(receipt.size())));
         System.out.println(renderReceipt(receipt));
     }
 
-    void printResults(List<LotteryResult> results, double earningRate) {
+    public void printResults(List<LotteryResult> results, double earningRate) {
         System.out.println(OUTPUT_LOTTERY_RESULT_TEXT);
         System.out.println(OUTPUT_LOTTERY_RESULT_HEADER_LINE_TEXT);
         System.out.println(renderLotteryResults(results));
@@ -37,7 +37,7 @@ public class OutputInterface {
 
     }
 
-    String renderReceipt(LotteryReceipt receipt) {
+    private String renderReceipt(LotteryReceipt receipt) {
         StringBuilder builder = new StringBuilder();
         for (PurchasedLottery lottery : receipt.getLotteries()) {
             builder.append(renderPurchasedLottery(lottery));
@@ -45,17 +45,17 @@ public class OutputInterface {
         return builder.toString();
     }
 
-    String renderPurchasedLottery(PurchasedLottery lottery) {
+    private String renderPurchasedLottery(PurchasedLottery lottery) {
         String[] arguments = lottery.getNumbers()
                 .stream()
                 .sorted()
                 .map(number -> Integer.toString(number))
                 .toArray(String[]::new);
 
-        return LOTTO_NUMBERS_TEXT_FORMAT.format(arguments)+"\n";
+        return LOTTO_NUMBERS_TEXT_FORMAT.format(arguments) + "\n";
     }
 
-    String renderLotteryResults(List<LotteryResult> results) {
+    private String renderLotteryResults(List<LotteryResult> results) {
         StringBuilder builder = new StringBuilder();
         for (LotteryResult result : results) {
             builder.append(renderLotteryResult(result));
@@ -63,7 +63,7 @@ public class OutputInterface {
         return builder.toString();
     }
 
-    String renderLotteryResult(LotteryResult result) {
+    private String renderLotteryResult(LotteryResult result) {
         String counts = Integer.toString(result.counts());
         if (result.ranking() == LotteryRanking.LAST_PLACE) {
             return "";
@@ -80,7 +80,7 @@ public class OutputInterface {
         return LOTTERY_RANKING_RESULT_FORMAT.format(header, counts) + "\n";
     }
 
-    String renderAmount(int amount) {
+    private String renderAmount(int amount) {
         return numberFormat.format(amount);
     }
 

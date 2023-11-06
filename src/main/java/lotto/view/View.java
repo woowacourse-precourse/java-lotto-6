@@ -23,7 +23,7 @@ public class View {
     }
 
     public static String input() {
-        String input =  Console.readLine();
+        String input = Console.readLine();
         System.out.println();
         return input;
     }

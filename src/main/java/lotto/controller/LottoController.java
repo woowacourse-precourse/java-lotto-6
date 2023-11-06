@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.dto.InputNumbersDTO;
-import lotto.service.LottoService;
 import lotto.service.PlayerService;
 
 public class LottoController {
@@ -39,7 +38,8 @@ public class LottoController {
     }
 
     public int[] inputNumbers(InputNumbersDTO inputNumbersDTO) {
-        List<Integer> inputNumbers = validateDuplicateNumber(validateIsNumeric(validateInputSize(inputNumbersDTO.getInputNumbers())));
+        List<Integer> inputNumbers = validateDuplicateNumber(
+                validateIsNumeric(validateInputSize(inputNumbersDTO.getInputNumbers())));
         validateBonusNumber(inputNumbersDTO.getBonusNumber());
 
         return playerService.compareLottoNumbers(inputNumbers, Integer.parseInt(inputNumbersDTO.getBonusNumber()));

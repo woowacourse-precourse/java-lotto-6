@@ -10,7 +10,8 @@ import java.util.List;
 public class RandomGenerator {
 
     public static List<Integer> generateNumber() {
-        return Randoms.pickUniqueNumbersInRange(MINIMUM_NUMBER.getInfo(), MAXIMUM_NUMBER.getInfo(), LOTTO_SIZE.getInfo());
+        return Randoms.pickUniqueNumbersInRange(MINIMUM_NUMBER.getInfo(), MAXIMUM_NUMBER.getInfo(),
+                LOTTO_SIZE.getInfo());
     }
-
+    
 }

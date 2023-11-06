@@ -1,17 +1,14 @@
 package lotto.controller;
 
+import static lotto.constant.ExceptionMessage.INSUFFICIENT_PRICE_TO_BUY;
+import static lotto.constant.ExceptionMessage.NON_NUMERIC_ERROR;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import lotto.config.AppConfig;
-import lotto.domain.Player;
-import lotto.service.LottoService;
-import lotto.service.PlayerService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static lotto.constant.ExceptionMessage.NON_NUMERIC_ERROR;
-import static lotto.constant.ExceptionMessage.INSUFFICIENT_PRICE_TO_BUY;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayerControllerTest {
 
@@ -20,7 +17,7 @@ class PlayerControllerTest {
 
     @ParameterizedTest
     @DisplayName(value = "입력 값에 숫자 이외의 값이 있으면 예외가 발생하는지 확인")
-    @ValueSource(strings = { "aaa", "1a1", "11a", "-11" })
+    @ValueSource(strings = {"aaa", "1a1", "11a", "-11"})
     void purchaseLottoByNonNumericInput(String input) {
         assertThatThrownBy(() -> playerController.purchaseLotto(input))
                 .isInstanceOf(IllegalArgumentException.class)

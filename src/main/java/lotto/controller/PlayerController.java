@@ -1,17 +1,15 @@
 package lotto.controller;
 
-import static lotto.constant.ExceptionMessage.NON_NUMERIC_ERROR;
 import static lotto.constant.ExceptionMessage.INSUFFICIENT_PRICE_TO_BUY;
+import static lotto.constant.ExceptionMessage.NON_NUMERIC_ERROR;
 import static lotto.constant.LottoInfo.LOTTO_PRICE;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Player;
-import lotto.service.LottoService;
 import lotto.service.PlayerService;
 
 public class PlayerController {
-
+    
     private final PlayerService playerService;
 
     private static PlayerController INSTANCE;

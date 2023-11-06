@@ -1,14 +1,10 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.config.AppConfig;
 import lotto.controller.LottoController;
 import lotto.controller.PlayerController;
 import lotto.domain.Lotto;
-import lotto.domain.Player;
-import lotto.service.LottoService;
-import lotto.service.PlayerService;
 import lotto.view.View;
 
 public class Application {

@@ -8,7 +8,6 @@ import static lotto.constant.LottoResult.FOURTH_PLACE;
 import static lotto.constant.LottoResult.SECOND_PLACE;
 import static lotto.constant.LottoResult.THIRD_PLACE;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Player;
@@ -21,7 +20,7 @@ public class PlayerService {
 
     private static PlayerService INSTANCE;
 
-    private int[] lottoResult;
+    private int[] lottoResult = new int[LOTTO_SIZE.getInfo() + 2];
 
     private PlayerService(LottoService lottoService, Player player) {
         this.lottoService = lottoService;
@@ -51,7 +50,6 @@ public class PlayerService {
 
     public int[] compareLottoNumbers(List<Integer> inputNumbers, int bonusNumber) {
         List<Lotto> purchasedLotto = player.getPurchasedLotto();
-        lottoResult = new int[LOTTO_SIZE.getInfo() + 2];
 
         for (Lotto lotto : purchasedLotto) {
             int sameCount = lottoService.compareLotto(lotto, inputNumbers);

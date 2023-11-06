@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -44,19 +43,6 @@ public class InputView {
     }
 
     private String readLine() {
-        try {
-            String input = Console.readLine();
-            validateInput(input);
-            return input;
-        }
-        catch (NoSuchElementException e) {
-            throw new IllegalArgumentException(ErrorMessage.BLANK_INPUT.getMessage());
-        }
-    }
-
-    private void validateInput(String input) {
-        if(input == null || input.isBlank()) {
-            throw new NoSuchElementException();
-        }
+        return Console.readLine();
     }
 }

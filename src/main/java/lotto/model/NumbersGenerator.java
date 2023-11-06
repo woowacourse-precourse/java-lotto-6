@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.List;
 
-public interface NumbersGenerator {
+public interface NumbersGenerator <T extends Number> {
 
-    List<Integer> generate();
+    List<T> generate();
 }

@@ -26,9 +26,15 @@ public class Lotto {
     }
 
     private void validateNumbersInRange(List<Integer> numbers) {
-        NumberValidator numberValidator = new NumberValidator();
         for (int number : numbers) {
-            numberValidator.validateNumberInRange(number);
+            validateNumberInRange(number);
+        }
+    }
+
+    private void validateNumberInRange(int number) {
+        if (number < LottoNumbers.MIN_LOTTO_NUMBER.getNumber()
+                || number > LottoNumbers.MAX_LOTTO_NUMBER.getNumber()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45까지의 숫자만 입력할 수 있습니다.");
         }
     }
 

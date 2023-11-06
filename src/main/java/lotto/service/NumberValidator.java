@@ -9,13 +9,6 @@ public class NumberValidator {
 
     private static final String NUMBER = "^[0-9]+$";
 
-    public void validateNumberInRange(int lottoNumber) {
-        if (lottoNumber < LottoNumbers.MIN_LOTTO_NUMBER.getNumber()
-                || lottoNumber > LottoNumbers.MAX_LOTTO_NUMBER.getNumber()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45까지의 숫자만 입력할 수 있습니다.");
-        }
-    }
-
     public void validatePurchasePriceIsNumber(String purchasePrice){
         if (!Pattern.matches(NUMBER, purchasePrice)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");

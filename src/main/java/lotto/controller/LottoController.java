@@ -1,7 +1,12 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import lotto.constant.LottoConstant;
 import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
 import lotto.error.ErrorMessage;
 import lotto.view.InputView;
@@ -18,12 +23,20 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
+        int lottoCount = purchaseAmount / 1000;
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_MIN_NUMBER,
+                    LottoConstant.LOTTO_MAX_NUMBER,
+                    LottoConstant.LOTTO_LENGTH);
+            Collections.sort(numbers);
+            outputView.printLottoNumber(numbers);
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
+        }
+
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
-        int lottoCount = purchaseAmount / 1000;
-        for (int i = 0; i < lottoCount; i++) {
-
-        }
     }
 
     private int getPurchaseAmount() {

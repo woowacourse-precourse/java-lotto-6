@@ -9,6 +9,7 @@ import lotto.view.OutputView;
 
 public class Game {
     public static void start() {
+        // 예외 발생해도 해당 부분에서 다시 시작하기 위해 try-catch 문 추가 예정
         // 구입금액
         String purchaseAmount = InputView.requestPurchaseAmount();
         int ticketAmount = Parser.parsePurchaseAmount(purchaseAmount);

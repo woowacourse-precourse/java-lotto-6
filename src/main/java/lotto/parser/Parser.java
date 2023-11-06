@@ -1,8 +1,11 @@
 package lotto.parser;
 
+import static lotto.exception.ErrorMessage.NOT_INTEGER;
+
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
+import lotto.exception.LottoException;
 import lotto.validator.Validator;
 
 public class Parser {
@@ -31,7 +34,7 @@ public class Parser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+            throw LottoException.of(NOT_INTEGER);
         }
     }
 }

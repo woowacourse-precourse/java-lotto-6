@@ -1,12 +1,13 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class LottoTicketMoneyTest {
+class LottoTicketMoneyTest extends NsTest {
     @DisplayName("1000원으로 나눠 떨어지지 않는 금액 입력 시 예외 발생.")
     @Test
     void LottoTicketMoney_test() {
@@ -21,4 +22,7 @@ public class LottoTicketMoneyTest {
         assertThat(lottoTicketMoney.calculateTicketNumber())
                 .isEqualTo(3);
     }
+
+    @Override
+    protected void runMain() {Application.main(new String[]{});}
 }

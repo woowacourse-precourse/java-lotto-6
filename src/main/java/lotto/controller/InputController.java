@@ -1,9 +1,11 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.Constants;
 import lotto.model.PurchaseAmountValidator;
 import lotto.model.Quantity;
 import lotto.view.InputView;
+import lotto.model.RandomLotto;
 
 public class InputController {
         public static int setQuantity() {
@@ -17,4 +19,10 @@ public class InputController {
                         return setQuantity();
                 }
         }
+
+        public static List<List<Integer>> setRandomNumbers(int quantity) {
+                RandomLotto randomLotto = new RandomLotto(quantity);
+                return randomLotto.randomLotto;
+        }
+
 }

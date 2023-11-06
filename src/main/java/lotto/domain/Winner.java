@@ -37,6 +37,13 @@ public class Winner {
                 sameNumberCount += 1;
             }
         }
+        if (sameFiveNumbersAndBonus(userLotto, sameNumberCount)) {
+            sameNumberCount *= 10;
+        }
         return sameNumberCount;
+    }
+
+    private boolean sameFiveNumbersAndBonus(Lotto userLotto, int sameNumberCount) {
+        return sameNumberCount == 5 && userLotto.checkUserAndLottoNumbers(userLotto.getLottoNumbers(), bonus);
     }
 }

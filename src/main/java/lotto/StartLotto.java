@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Objects;
 
 public class StartLotto {
-    private List<Lotto> lottoList;
+    private final List<Lotto> lottoList;
     private int purchasePrice;
-    private List<Integer> winningNumbers;
+    private Lotto winningNumbers;
     private int bonusNumber;
-    private HashMap<String, Integer> priceHistory;
+    private final HashMap<String, Integer> priceHistory;
 
     public StartLotto() {
         this.lottoList = new ArrayList<Lotto>();
         this.purchasePrice = 0;
         this.bonusNumber = 0;
-        this.winningNumbers = new ArrayList<Integer>();
+        this.winningNumbers = null;
         this.priceHistory = new HashMap<>() {{
             put("Fifth", 0);
             put("Forth", 0);
@@ -41,7 +41,7 @@ public class StartLotto {
     }
 
     /*
-     * String List를 Integer List로 변환한다. 이때, 숫자가 1~45 사이인지 확인하고 중복된 숫자가 있는지 확인한다.
+     * String List를 Integer List로 변환한다.
      */
     private List<Integer> changeStringToInteger(String[] inputString) {
         List<Integer> retVal = new ArrayList<Integer>();
@@ -58,15 +58,16 @@ public class StartLotto {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
+    /*
+     * 구입 금액을 입력받는다. 이때, 구입 금액이 숫자 형식인지 확인하고 1000단위의 숫자인지 확인한다.
+     * 만약 Exception이 발생하면 다시 입력받게 한다.
+     */
     public void inputPurchasePriceForClient() {
         boolean errorOccurred;
         do {
             try {
                 inputPurchasePrice();
                 errorOccurred = false;
-            } catch (NumberFormatException e) {
-                printErrorMessage(e);
-                errorOccurred = true;
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e);
                 errorOccurred = true;
@@ -77,7 +78,9 @@ public class StartLotto {
     private void inputPurchasePrice() {
         String purchasePrice = Console.readLine();
 
+        // String -> Integer로 변환한다.
         int purchaseNumber = changeStringToInteger(purchasePrice);
+        // 1000원 단위인지 확인한다.
         checkIs1000wonUnit(purchaseNumber);
         this.purchasePrice = purchaseNumber;
     }
@@ -92,15 +95,16 @@ public class StartLotto {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
+    /*
+     * 당첨 번호를 입력받는다. 이때, 당첨 번호가 숫자 형식인지 확인하고 1 ~ 45 사이의 숫자인지, 중복되는 숫자는 없는지 확인한다.
+     * 만약 Exception이 발생하면 다시 입력받게 한다.
+     */
     public void inputWinningNumbersForClient() {
         boolean errorOccurred;
         do {
             try {
                 inputWinningNumbers();
                 errorOccurred = false;
-            } catch (NumberFormatException e) {
-                printErrorMessage(e);
-                errorOccurred = true;
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e);
                 errorOccurred = true;
@@ -109,10 +113,14 @@ public class StartLotto {
     }
 
     private void inputWinningNumbers() {
-        String winningNumbers = Console.readLine();
+        String winningNumbersString = Console.readLine();
 
-        String[] splitWinningNumbers = splitInputString(winningNumbers);
-        this.winningNumbers = changeStringToInteger(splitWinningNumbers);
+        // String을 ,(쉼표) 단위로 split. String에 공백이 포함되어 있으면 공백을 없엔다.
+        String[] splitWinningNumbersString = splitInputString(winningNumbersString);
+        // String -> Integer로 변환한다.
+        List<Integer> winningNumbers = changeStringToInteger(splitWinningNumbersString);
+        // 입력받은 당첨 번호 리스트로 Lotto 객체를 만든다.
+        this.winningNumbers = new Lotto(winningNumbers);
     }
 
     private String[] splitInputString(String winningNumbers) {
@@ -124,15 +132,16 @@ public class StartLotto {
         System.out.println("보너스 번호를 입력해 주세요");
     }
 
+    /*
+     * 보너스 번호를 입력받는다. 이때, 보너스 번호가 숫자 형식인지 확인하고 1 ~ 45 사이의 숫자인지, 중복되는 숫자는 없는지 확인한다.
+     * 만약 Exception이 발생하면 다시 입력받게 한다.
+     */
     public void inputBonusNumberForClient() {
         boolean errorOccurred;
         do {
             try {
                 inputBonusNumber();
                 errorOccurred = false;
-            } catch (NumberFormatException e) {
-                printErrorMessage(e);
-                errorOccurred = true;
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e);
                 errorOccurred = true;
@@ -143,25 +152,44 @@ public class StartLotto {
     private void inputBonusNumber() {
         String bonusNumberString = Console.readLine();
 
+        // String -> Integer로 변환한다.
         int bonusNumber = changeStringToInteger(bonusNumberString);
-        checkNumberInRange(bonusNumber);
-        checkDuplicatedNumber(bonusNumber, this.winningNumbers);
+        // 1 ~ 45 사이의 숫자인지 확인한다.
+        checkBonusNumberInRange(bonusNumber);
+        // 당첨 번호와 보너스 번호가 중복되지 않는지 확인한다.
+        checkDuplicatedNumberBonus(bonusNumber, this.winningNumbers.getNumbers());
         this.bonusNumber = bonusNumber;
     }
 
-    public void generateLottoList() {
-        int listLen = this.purchasePrice / 1000;
-
-        try {
-            for (int i = 0; i < listLen; i++) {
-                Lotto oneLotto = generateLotto();
-                this.lottoList.add(oneLotto);
-            }
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("로또 번호는 6개의 숫자입니다.");
+    private void checkBonusNumberInRange(int bonusNumber) {
+        if (bonusNumber < 1 || 45 < bonusNumber) {
+            throw new IllegalArgumentException("보너스 번호는 1 ~ 45 사이의 값을 가집니다.");
         }
     }
 
+    private void checkDuplicatedNumberBonus(int bonusNumber, List<Integer> winningNumbers) {
+        for (Integer oneNumber : winningNumbers) {
+            if (bonusNumber == oneNumber) {
+                throw new IllegalArgumentException("보너스 번호와 당첨 번호에는 서로 중복되는 숫자가 없습니다. 다시 입력해주세요.");
+            }
+        }
+    }
+
+    /*
+     * 구입 금액 만큼 렌덤한 Lotto를 생성한다.
+     */
+    public void generateLottoList() {
+        int listLen = this.purchasePrice / 1000;
+
+        for (int i = 0; i < listLen; i++) {
+            Lotto oneLotto = generateLotto();
+            this.lottoList.add(oneLotto);
+        }
+    }
+
+    /*
+     * 서로 중복되지 않는 렌덤 숫자 6개를 발생시키고 오름차순으로 정렬한다.
+     */
     private Lotto generateLotto() {
         List<Integer> temp = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         sortLottoNumber(temp);
@@ -178,6 +206,9 @@ public class StartLotto {
         System.out.println(lottoAmount + "개를 구매했습니다.");
     }
 
+    /*
+     * 구매한 Lotto 리스트를 출력한다.
+     */
     public void printLottoList() {
         int listLen = this.purchasePrice / 1000;
 
@@ -207,6 +238,9 @@ public class StartLotto {
         System.out.println("6개 일치 (2,000,000,000원) - " + this.priceHistory.get("First") + "개");
     }
 
+    /*
+     * 구입한 Lotto 리스트에서 1등부터 5등까지 몇개가 당첨되었는지 갯수를 파악한다.
+     */
     public void fillPriceHistoryMap() {
         for (Lotto lotto : this.lottoList) {
             int sameNumberCount = countSameNumber(lotto);
@@ -233,7 +267,7 @@ public class StartLotto {
     }
 
     private boolean checkNumberInWinningNumbers(int number) {
-        for (int winningNumber : this.winningNumbers) {
+        for (int winningNumber : this.winningNumbers.getNumbers()) {
             if (number == winningNumber) {
                 return true;
             }
@@ -276,6 +310,9 @@ public class StartLotto {
         System.out.println("총 수익률은 " + totalEarningRate + "%입니다.");
     }
 
+    /*
+     * 당첨 통계 바탕으로 수익률을 계산한다.
+     */
     public double calcEarningRate() {
         double priceSum = 0.0;
         for (String price : new String[]{"Fifth", "Forth", "Third", "Second", "First"}) {
@@ -305,7 +342,7 @@ public class StartLotto {
     private double roundSecondDigit(double value) {
         return Math.round(value * 100.0) / 100.0;
     }
-
+    
     private void printErrorMessage(Exception e) {
         System.out.println("[ERROR] " + e.getMessage());
     }

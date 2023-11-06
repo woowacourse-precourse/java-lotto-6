@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +15,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 번호는 6개의 숫자입니다.");
         }
     }
 
@@ -22,6 +23,9 @@ public class Lotto {
         return this.numbers;
     }
 
+    /*
+     * Lotto의 숫자들이 1 ~ 45 사이의 숫자인지 확인
+     */
     private void checkNumbersInRange(List<Integer> numbers) {
         for (int number : numbers) {
             checkNumberInRange(number);
@@ -30,20 +34,23 @@ public class Lotto {
 
     private void checkNumberInRange(int number) {
         if (number < 1 || 45 < number) {
-            throw new IllegalArgumentException("당첨(보너스) 번호는 1 ~ 45 사이의 값을 가집니다.");
+            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 값을 가집니다.");
         }
     }
 
+    /*
+     * Lotto의 숫자들 중 중복되는 숫자가 있는지 확인
+     */
     private void checkDuplicatedNumber(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            checkOneDuplicatedNumber(number, numbers);
+        for (int idx = 0; idx < numbers.size(); idx++) {
+            checkOneDuplicatedNumber(idx, numbers);
         }
     }
 
-    private void checkOneDuplicatedNumber(int number, List<Integer> numbers) {
-        for (Integer oneNumber : numbers) {
-            if (number == oneNumber) {
-                throw new IllegalArgumentException("당첨(보너스) 번호는 서로 중복되는 숫자가 없습니다. 다시 입력해주세요.");
+    private void checkOneDuplicatedNumber(int idx, List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if (idx != i && Objects.equals(numbers.get(idx), numbers.get(i))) {
+                throw new IllegalArgumentException("로또 번호는 서로 중복되는 숫자가 없습니다. 다시 입력해주세요.");
             }
         }
     }

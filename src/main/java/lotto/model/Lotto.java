@@ -30,4 +30,8 @@ public class Lotto {
                 .sorted()
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public LottoPaper toLottoPaper() {
+        return new LottoPaper(ascendingSort(numbers));
+    }
 }

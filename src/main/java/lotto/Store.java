@@ -21,7 +21,7 @@ public class Store {
 
     private static void validateDividedByPrice(Integer money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000으로 가격이 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException("1000으로 가격이 나누어 떨어져야 합니다.");
         }
     }
 }

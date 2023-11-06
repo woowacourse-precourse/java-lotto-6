@@ -23,6 +23,6 @@ class StoreTest {
         assertThatThrownBy(() -> {
             store.sellLottos(9500);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 1000으로 가격이 나누어 떨어져야 합니다.");
+                .hasMessageContaining("1000으로 가격이 나누어 떨어져야 합니다.");
     }
 }

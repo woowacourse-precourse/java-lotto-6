@@ -15,6 +15,6 @@ class BroadCastingStationTest {
         Assertions.assertThatThrownBy(() -> {
                     broadCastingStation.drawLotto(lotto, 5);
                 }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호와 보너스 번호가 중복됩니다.");
+                .hasMessageContaining("로또 번호와 보너스 번호가 중복됩니다.");
     }
 }

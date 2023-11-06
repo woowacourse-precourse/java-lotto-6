@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public class CostValidator {
-    private int cost;
+    public int cost;
     public CostValidator() {
     }
 

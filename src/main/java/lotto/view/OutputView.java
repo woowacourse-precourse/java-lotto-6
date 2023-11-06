@@ -1,6 +1,9 @@
 package lotto.view;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 
@@ -23,9 +26,13 @@ public class OutputView {
     }
 
     public void printRandomLottos(List<Lotto> lottos) {
-        IntStream.range(0, lottos.size())
-                .mapToObj(index -> lottos.get(index).getNumbers())
-                .forEach(System.out::println);
+        List<List<Integer>> sortedLottoNumbers = IntStream.range(0, lottos.size())
+                .mapToObj(index -> new ArrayList<>(lottos.get(index).getNumbers()))
+                .peek(Collections::sort)
+                .collect(Collectors.toList());
+
+        sortedLottoNumbers.forEach(System.out::println);
+
     }
 
     public void printRateOfReturn(double rateOfReturn) {

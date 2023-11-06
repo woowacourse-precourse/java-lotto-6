@@ -110,6 +110,13 @@ public class Application {
     }
 
     private static void validateBonusNumberInput(String bonusNumberInput) {
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException e) {
+            printErrorMessage(ERROR_MESSAGE_FOR_BONUS_NUMBER_TYPE);
+            throw new IllegalArgumentException();
+        }
     }
 
     private static void printErrorMessage(String errorMessage) {

@@ -1,6 +1,8 @@
 package lotto.model;
 
 public enum LottoRank {
+    // 주의: LottoComparator가 LottoRank에 의존하기 때문에,
+    // 열거형 원소 순서가 변경되면 예측하지 못한 결과를 낼 수 있습니다.
     FIRST_PLACE(6, false, "6개 일치", 2_000_000_000),
     SECOND_PLACE(5, true, "5개 일치, 보너스 볼 일치", 30_000_000),
     THIRD_PLACE(5, false, "5개 일치", 30_000_000),

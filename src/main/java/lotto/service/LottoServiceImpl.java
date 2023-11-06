@@ -3,9 +3,11 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -102,25 +104,37 @@ public class LottoServiceImpl implements LottoService {
     /**
      * 당첨 통계 계산하기
      *
-     * @param lottos : Lotto 리스트
+     * @param myLottos : Lotto 리스트
      * @return : 당첨 통계
      */
     @Override
-    public Map<MatchType, Integer> calculateWinningStatistics(List<Lotto> lottos,
+    public Map<MatchType, Integer> calculateWinningStatistics(List<Lotto> myLottos,
                                                               List<Integer> winningNumbers,
                                                               int bonusNumber) {
 
-        int[] result = new int[8];
+        Map<MatchType, Integer> winningStatistics = new HashMap<>();
 
-        for (Lotto lotto : lottos) {
-            List<Integer> myLottoNumbers = lotto.getNumbers();
-            int sameNumbersCount = countSameNumbers(myLottoNumbers, winningNumbers);
+        for (Lotto lotto : myLottos) {
+            int sameNumbersCount = lotto.countSameNumbers(winningNumbers);
 
+            Optional<MatchType> matchTypeOpt =
+                    MatchType.valueOf(sameNumbersCount, lotto.containsBonusNumber(bonusNumber));
+
+            if (matchTypeOpt.isPresent()) {
+                MatchType matchType = matchTypeOpt.get();
+                winningStatistics.put(matchType, winningStatistics.getOrDefault(matchType, 0) + 1);
+            }
         }
 
-        return null;
+        return winningStatistics;
     }
 
+    /**
+     * 수익 계산하는 함수
+     *
+     * @param winningStatistics : 당첨 통계
+     * @return : 수익
+     */
     @Override
     public int computeEarnings(Map<MatchType, Integer> winningStatistics) {
         return 0;
@@ -177,9 +191,13 @@ public class LottoServiceImpl implements LottoService {
 
     private Lotto generateLottoNumbers() {
 
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
-        return new Lotto(numbers);
+        try {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     private List<Integer> convertStringToNumbers(String inputText) {
@@ -200,15 +218,11 @@ public class LottoServiceImpl implements LottoService {
 
     private void validateDistinctNumbers(List<Integer> numbers) {
 
-        Set<Integer> distinctNumbers = convertListToSet(numbers);
+        Set<Integer> distinctNumbers = new HashSet<>(numbers);
 
         if (distinctNumbers.size() != LottoVO.getLottoNumberCount()) {
             throw new IllegalArgumentException(UiVO.getWinningNumberCountException());
         }
-    }
-
-    private Set<Integer> convertListToSet(List<Integer> list) {
-        return new HashSet<>(list);
     }
 
     private void validateEachNumber(List<Integer> numbers) {
@@ -236,11 +250,5 @@ public class LottoServiceImpl implements LottoService {
         if (!isInRange(number)) {
             throw new IllegalArgumentException(UiVO.getLottoNumberException());
         }
-    }
-
-    private int countSameNumbers(List<Integer> myLottoNumbers, List<Integer> winningNumbers) {
-        List<Integer> tmp = new ArrayList<>(myLottoNumbers);
-        tmp.retainAll(winningNumbers);
-        return tmp.size();
     }
 }

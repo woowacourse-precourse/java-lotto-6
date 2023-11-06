@@ -23,17 +23,20 @@ public class Application {
         OutputView.printLotteryNumber(lottery);
 
         String stringWinningNumber = getWinningNumber();
-
-        // todo 메서드 분리 필요
-        List<LottoNumber> winningNumber = Arrays.stream(stringWinningNumber.split(","))
-                .map(s -> Integer.valueOf(s))
-                .map(LottoNumber::new)
-                .collect(Collectors.toList());
+        List<LottoNumber> winningNumber = toLottoNumbers(stringWinningNumber);
 
         Ranks ranks = lottoController.lottoResults(lottery, winningNumber, new LottoNumber(InputView.bonusNumber()));
 
         OutputView.printLotteryResult(ranks.lotteryRankStatus());
         OutputView.printRateOfReturn(ranks.calWinningPrice(), purchasePrice);
+    }
+
+    private static List<LottoNumber> toLottoNumbers(String stringWinningNumber) {
+        List<LottoNumber> winningNumber = Arrays.stream(stringWinningNumber.split(","))
+                .map(s -> Integer.valueOf(s))
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
+        return winningNumber;
     }
 
     private static Price getPurchasePrice() {

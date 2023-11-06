@@ -36,4 +36,12 @@ public class Lottos {
         return rankResult;
     }
 
+    public double calEarnings(Map<Rank, Integer> rankResult) {
+        int earnings = 0;
+        for (Rank rank : Rank.values()) {
+            earnings += (rankResult.get(rank) * rank.getPrize());
+        }
+        return earnings;
+    }
+
 }

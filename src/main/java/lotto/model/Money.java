@@ -11,5 +11,6 @@ public class Money {
 
     private void validateMoney(int money){
         MoneyValidator.validateMoneyRange(money);
+        MoneyValidator.validateMoneyDivision(money);
     }
 }

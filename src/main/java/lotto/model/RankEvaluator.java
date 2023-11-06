@@ -5,26 +5,24 @@ import lotto.utils.Match;
 import lotto.utils.WinningRank;
 
 public class RankEvaluator {
-    WinningNumbers winningNumbers;
+    PrizeNumbers prizeNumbers;
 
-    public RankEvaluator(WinningNumbers winningNumbers) {
-        this.winningNumbers = winningNumbers;
+    public RankEvaluator(PrizeNumbers prizeNumbers) {
+        this.prizeNumbers = prizeNumbers;
     }
 
     public WinningRank getRank(Iterator<Integer> lottoIterator) {
         int matchedNumberCount = 0;
         boolean bonusNumberMatched = false;
 
-        int sequence = 0;
         while (lottoIterator.hasNext()) {
             int lottoNumber = lottoIterator.next();
-            if (winningNumbers.isMatched(lottoNumber, sequence)) {
+            if (prizeNumbers.isMatched(lottoNumber)) {
                 matchedNumberCount++;
             }
-            if (winningNumbers.isBonusNumber(lottoNumber)) {
+            if (prizeNumbers.isBonusNumber(lottoNumber)) {
                 bonusNumberMatched = true;
             }
-            sequence++;
         }
         return getRank(matchedNumberCount, bonusNumberMatched);
     }

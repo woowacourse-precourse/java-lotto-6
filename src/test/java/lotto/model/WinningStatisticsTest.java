@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import lotto.controller.handler.BonusNumberHandler;
 import lotto.controller.handler.PurchaseAmountHandler;
 import lotto.controller.handler.WinningNumberHandler;
@@ -32,7 +33,7 @@ class WinningStatisticsTest {
 
         WinningNumberHandler winningNumberHandler = new WinningNumberHandler("1,2,3,4,5,6");
         winningNumberHandler.handle();
-        Map<Integer, Integer> sequencedNumbers = winningNumberHandler.getHandledResult();
+        Set<Integer> sequencedNumbers = winningNumberHandler.getHandledResult();
 
         BonusNumberHandler bonusNumberHandler = new BonusNumberHandler("7");
         bonusNumberHandler.handle();

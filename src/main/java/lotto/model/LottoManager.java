@@ -5,13 +5,14 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 import lotto.utils.GameConstants;
 
 public class LottoManager {
     private ArrayList<Lotto> lottos;
     private WinningStatistics statistics;
-    private WinningNumbers winningNumbers;
+    private PrizeNumbers prizeNumbers;
+
 
     public LottoManager() {
         lottos = new ArrayList<>();
@@ -31,8 +32,9 @@ public class LottoManager {
         }
     }
 
-    public void setWinningNumbers(Map<Integer, Integer> sequencedNumbers, int bonusNumber) {
-        this.winningNumbers = new WinningNumbers(sequencedNumbers, bonusNumber);
+    public void setPrizeNumbers(Set<Integer> winningNumbers, int bonusNumber) {
+
+        this.prizeNumbers = new PrizeNumbers(winningNumbers, bonusNumber);
     }
 
     public Iterator<Lotto> getLottoListIterator() {
@@ -41,7 +43,7 @@ public class LottoManager {
 
     public String getStatistics() {
         Iterator<Lotto> lottoIterator = lottos.iterator();
-        statistics.calculateStatistics(winningNumbers, lottoIterator);
+        statistics.calculateStatistics(prizeNumbers, lottoIterator);
         return statistics.toString();
     }
 }

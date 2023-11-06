@@ -19,8 +19,8 @@ public class WinningStatistics {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public void calculateStatistics(WinningNumbers winningNumbers, Iterator<Lotto> lottoIterator) {
-        RankEvaluator rankEvaluator = new RankEvaluator(winningNumbers);
+    public void calculateStatistics(PrizeNumbers prizeNumbers, Iterator<Lotto> lottoIterator) {
+        RankEvaluator rankEvaluator = new RankEvaluator(prizeNumbers);
         while (lottoIterator.hasNext()) {
             Lotto lotto = lottoIterator.next();
             WinningRank winningRank = rankEvaluator.getRank(lotto.getIterator());

@@ -6,16 +6,19 @@ import lotto.model.Lotto;
 import lotto.model.LottoManager;
 import lotto.model.Referee;
 import lotto.model.WinningLotto;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoManager lottoManager;
     private final Validator validator;
+    private final InputView inputView;
     private final OutputView outputView;
     private final Referee referee;
 
     public LottoController() {
         this.validator = new Validator();
+        this.inputView = new InputView();
         this.outputView = new OutputView();
         this.lottoManager = inputPurchaseMoney();
         this.referee = new Referee();
@@ -39,12 +42,12 @@ public class LottoController {
         lottoManager.setWinningLotto(winningLotto);
     }
 
-    public void getPrizeList() {
+    public void getLottoPrize() {
         final List<Lotto> lottos = lottoManager.getLottos();
         final WinningLotto winningLotto = lottoManager.getWinningLotto();
         referee.judge(lottos, winningLotto);
 
-        double rateOfReturn = referee.getRateOfReturn(lottos.size() * 1000);
+        final double rateOfReturn = referee.getRateOfReturn(lottos.size() * 1000);
         outputView.printResult(referee, rateOfReturn);
     }
 
@@ -61,7 +64,7 @@ public class LottoController {
     }
 
     private int inputWinningLottoBonusNumber(final List<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        inputView.printWinningBonusNumberMessage();
         String input;
         do {
             input = Console.readLine();

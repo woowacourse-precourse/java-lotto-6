@@ -13,7 +13,7 @@ public class InputView {
         return inputNumber();
     }
     
-    private static int inputNumber() {
+    private int inputNumber() {
         try {
             return Integer.parseInt(readLine());
         } catch (Exception e) {
@@ -22,10 +22,14 @@ public class InputView {
     }
 
     public List<Integer> winningNumbers() {
-        return Arrays.stream(readLine().split(DELIMITER))
-                .mapToInt(Integer::parseInt)
-                .boxed()
-                .toList();
+        try {
+            return Arrays.stream(readLine().split(DELIMITER))
+                    .mapToInt(Integer::parseInt)
+                    .boxed()
+                    .toList();
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ExceptionMessage.NON_NUMERIC_INPUT.get());
+        }
     }
 
     public int bonusNumber() {

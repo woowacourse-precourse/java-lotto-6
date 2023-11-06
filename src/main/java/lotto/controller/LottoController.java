@@ -41,7 +41,7 @@ public class LottoController {
 
         try {
             Validator.validateExistValue(inputValue);
-            int inputMoney = Validator.validateNumericInput(inputValue);
+            int inputMoney = Validator.validateNumericInput(inputValue.trim());
             Validator.validateDivisibleBy1000(inputMoney);
 
             return inputMoney;

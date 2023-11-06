@@ -34,7 +34,7 @@ public class WinningNumberGenerator {
             Validator.validateCountOfValues(splitByCommasValues);
 
             for (String val : splitByCommasValues) {
-                int convertedNum = Validator.validateNumericInput(val);
+                int convertedNum = Validator.validateNumericInput(val.trim());
                 int numberInRange = Validator.validateNumberInRange(convertedNum);
                 numbersInRange.add(numberInRange);
             }

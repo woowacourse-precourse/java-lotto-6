@@ -1,8 +1,7 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.utils.Validator;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -12,9 +11,16 @@ public class User {
 
     public User(Integer purchaseAmount){
         Validator.checkAmount(purchaseAmount);
-        lottos = new ArrayList<>();
+        purchaseLotto(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
 
-
+    private void purchaseLotto(Integer purchaseAmount) throws IllegalArgumentException{
+        Integer usedAmount = 0;
+        while(usedAmount != purchaseAmount){
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(numbers));
+            usedAmount += 1000;
+        }
+    }
 }

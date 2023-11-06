@@ -11,17 +11,22 @@ import org.junit.jupiter.api.Test;
 
 class UserInputManagerTest {
 	private final static int COST_UNIT = 1000;
+	private final static int NUMBER_OF_LOTTO_NUMBERS = 6;
+	private final static int MIN_LOTTO_NUMBER = 1;
+	private final static int MAX_LOTTO_NUMBER = 45;
 	static Class<UserInputManager> testClass = UserInputManager.class;
 
+	@DisplayName(COST_UNIT + "의 배수 입력")
 	@Test
-	public void checkPurchaseAmountIsValidTestWithValidValue() throws NoSuchMethodException, IllegalAccessException {
+	public void checkPurchaseAmountIsValidTestWithValidValue() throws Throwable {
 		String testMethodName = "checkPurchaseAmountIsValid";
 		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class);
 		testMethod.setAccessible(true);
+
 		try {
 			testMethod.invoke(testClass, "13000");
 		} catch (InvocationTargetException e) {
-			throw new RuntimeException();
+			throw e.getCause();
 		}
 	}
 
@@ -41,7 +46,9 @@ class UserInputManagerTest {
 
 	@DisplayName("단위 금액 이하의 숫자를 입력하면 예외가 발생한다.")
 	@Test
-	public void checkPurchaseAmountIsValidTestWithNumberUnderCostUnit() throws NoSuchMethodException, IllegalAccessException {
+	public void checkPurchaseAmountIsValidTestWithNumberUnderCostUnit() throws
+		NoSuchMethodException,
+		IllegalAccessException {
 		String testMethodName = "checkPurchaseAmountIsValid";
 		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class);
 		testMethod.setAccessible(true);
@@ -49,13 +56,16 @@ class UserInputManagerTest {
 		try {
 			testMethod.invoke(testClass, String.valueOf(COST_UNIT - 1));
 		} catch (InvocationTargetException e) {
-			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] " + COST_UNIT + " 이상의 숫자를 입력하세요.");
+			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] " + COST_UNIT + " 이상의 숫자를 입력하세요.");
 		}
 	}
 
 	@DisplayName("단위 금액의 배수가 아닌 숫자를 입력하면 예외가 발생한다.")
 	@Test
-	public void checkPurchaseAmountIsValidTestWithNumberCanNotDividedByCostUnit() throws NoSuchMethodException, IllegalAccessException {
+	public void checkPurchaseAmountIsValidTestWithNumberCanNotDividedByCostUnit() throws
+		NoSuchMethodException,
+		IllegalAccessException {
 		String testMethodName = "checkPurchaseAmountIsValid";
 		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class);
 		testMethod.setAccessible(true);
@@ -67,7 +77,102 @@ class UserInputManagerTest {
 		try {
 			testMethod.invoke(testClass, String.valueOf(value));
 		} catch (InvocationTargetException e) {
-			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 구입 금액은 " + COST_UNIT + " 단위로 입력해주세요.");
+			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 구입 금액은 " + COST_UNIT + " 단위로 입력하세요.");
+		}
+	}
+
+	@DisplayName("1 이상 45 이하의 6개의 숫자를 중복되지 않게 쉼표(,)로 구분해서 입력")
+	@Test
+	public void checkWinningNumberIsValidTestWithValidValue() throws Throwable {
+		String testMethodName = "checkWinningNumberIsValid";
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class);
+		testMethod.setAccessible(true);
+
+		try {
+			testMethod.invoke(testClass, "2,5,11,17,19,23");
+		} catch (InvocationTargetException e) {
+			throw e.getCause();
+		}
+	}
+
+	@DisplayName("입력이 공백인 경우 예외가 발생한다.")
+	@Test
+	public void checkWinningNumberIsValidTestWithBlankInput() throws NoSuchMethodException, IllegalAccessException {
+		String testMethodName = "checkWinningNumberIsValid";
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class);
+		testMethod.setAccessible(true);
+
+		try {
+			testMethod.invoke(testClass, "");
+		} catch (InvocationTargetException e) {
+			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 당첨 번호를 입력하세요.");
+		}
+	}
+
+	@DisplayName("입력을 쉼표(,)로 구분해서 얻은 값의 갯수가 6개가 아닌 경우 예외가 발생한다.")
+	@Test
+	public void checkWinningNumberIsValidTestWithMoreThanNumberOFLottoNumbers() throws
+		NoSuchMethodException,
+		IllegalAccessException {
+		String testMethodName = "checkWinningNumberIsValid";
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class);
+		testMethod.setAccessible(true);
+
+		try {
+			testMethod.invoke(testClass, "2,5,11,17,19,23,29");
+		} catch (InvocationTargetException e) {
+			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] " + NUMBER_OF_LOTTO_NUMBERS + "개의 숫자를 입력하세요.");
+		}
+	}
+
+	@DisplayName("입력을 쉼표(,)로 구분해서 얻은 값들 중 숫자가 아닌 값이 있는 경우 예외가 발생한다.")
+	@Test
+	public void checkWinningNumberIsValidTestWithNotNumber() throws NoSuchMethodException, IllegalAccessException {
+		String testMethodName = "checkWinningNumberIsValid";
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class);
+		testMethod.setAccessible(true);
+
+		try {
+			testMethod.invoke(testClass, "2,,5,11,17,19,23");
+		} catch (InvocationTargetException e) {
+			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 숫자를 쉼표(',')로 구분하여 입력하세요.");
+		}
+	}
+
+	@DisplayName("입력을 쉼표(,)로 구분해서 얻은 값들 중 1 이상 45 이하의 수가 아닌 수가 있는 경우 예외가 발생한다.")
+	@Test
+	public void checkWinningNumberIsValidTestWithNumberNotInRange() throws
+		NoSuchMethodException,
+		IllegalAccessException {
+		String testMethodName = "checkWinningNumberIsValid";
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class);
+		testMethod.setAccessible(true);
+
+		try {
+			testMethod.invoke(testClass, "2,5,11,17,19,47");
+		} catch (InvocationTargetException e) {
+			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] " + MIN_LOTTO_NUMBER + " 이상 " + MAX_LOTTO_NUMBER + " 이하의 숫자를 입력하세요.");
+		}
+	}
+
+	@DisplayName("입력을 쉼표(,)로 구분해서 얻은 값들 중 중복된 수가 있는 경우 예외가 발생한다.")
+	@Test
+	public void checkWinningNumberIsValidTestWithDuplicatedNumber() throws
+		NoSuchMethodException,
+		IllegalAccessException {
+		String testMethodName = "checkWinningNumberIsValid";
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class);
+		testMethod.setAccessible(true);
+
+		try {
+			testMethod.invoke(testClass, "2,5,11,17,19,2");
+		} catch (InvocationTargetException e) {
+			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 서로 다른 숫자를 입력하세요.");
 		}
 	}
 }

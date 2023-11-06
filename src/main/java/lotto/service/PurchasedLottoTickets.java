@@ -41,4 +41,12 @@ public class PurchasedLottoTickets {
         counts.put("5th", 0);
         counts.put("lose", 0);
     }
+
+    public String textForTicketsPrint() {
+        StringBuilder allTickets = new StringBuilder();
+        for (Lotto lotto : tickets) {
+            allTickets.append(lotto.textForLottoPrint()).append("\n");
+        }
+        return allTickets.toString();
+    }
 }

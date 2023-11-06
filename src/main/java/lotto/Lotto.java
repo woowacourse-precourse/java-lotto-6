@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -20,5 +21,10 @@ public class Lotto {
     //  존재유무 확인하는 기능만 추가
     public boolean isContainNumber(int number) {
         return numbers.contains(number);
+    }
+
+    public String textForLottoPrint() {
+        Collections.sort(numbers);
+        return numbers.toString();
     }
 }

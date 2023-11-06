@@ -7,14 +7,10 @@ import java.util.List;
 public class RandomNumbers {
 
     public static List<Integer> draw() {
-        List<Integer> numbers = new ArrayList<>();
-        while(numbers.size() < 6) { // 상수로 치환 가능
-            numbers.add(randomNumberPick());
-        }
-        return numbers;
+        return randomNumberPick();
     }
 
-    public static int randomNumberPick() {
-        return Randoms.pickNumberInRange(1, 45);    // 상수로 치환 가능.
+    public static List<Integer> randomNumberPick() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);    // 상수로 치환 가능.
     }
 }

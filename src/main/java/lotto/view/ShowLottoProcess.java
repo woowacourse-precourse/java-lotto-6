@@ -40,7 +40,14 @@ public class ShowLottoProcess {
 
     public void printPickBonusNumbers() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        process.pickBonusNumber();
+        while (true) {
+            try {
+                process.pickBonusNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.println();
     }
 

@@ -1,7 +1,10 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
     public static int makeOrder() {
-        return 0;
+        String order = Console.readLine();
+        return Integer.parseInt(order);
     }
 }

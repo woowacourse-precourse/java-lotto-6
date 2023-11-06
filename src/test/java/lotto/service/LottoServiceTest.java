@@ -32,7 +32,7 @@ class LottoServiceTest {
     void getLottoResult() {
         int payment = TestConstant.minPaymentAmount;
         lottoService.getLottoReceipt(payment);
-        lottoService.generateWinningLottoWithoutBonusNumber(TestConstant.normalNumbers);
+        lottoService.drawLottoWithoutBonusNumber(TestConstant.normalNumbers);
         lottoService.generateWinningLotto(45);
 
         LottoResultDto lottoResultDto = lottoService.getLottoResult();

@@ -5,7 +5,6 @@ import lotto.dto.LottoReceiptDto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
 import java.util.List;
 
 public class LottoController {
@@ -21,7 +20,7 @@ public class LottoController {
 
     public void run() {
         runUntilNoException(createPurchaseLottoRunnable());
-        runUntilNoException(createDrawLottoRunnable());
+        runUntilNoException(createDrawLottoWithoutBonusNumberRunnable());
     }
 
     private void runUntilNoException(Runnable runnable) {
@@ -46,11 +45,11 @@ public class LottoController {
         };
     }
 
-    private Runnable createDrawLottoRunnable() {
+    private Runnable createDrawLottoWithoutBonusNumberRunnable() {
         return () -> {
             outputView.print(InformationMessage.GUIDE_INPUT_WINNING_LOTTO_NUMBER.getMessage());
             List<Integer> numbers = inputView.readMultipleIntLine();
-            lottoService.generateWinningLottoWithoutBonusNumber(numbers);
+            lottoService.drawLottoWithoutBonusNumber(numbers);
             outputView.printNewLine();
         };
     }

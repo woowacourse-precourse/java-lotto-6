@@ -47,7 +47,7 @@ public class LottoService {
         );
     }
 
-    public void generateWinningLottoWithoutBonusNumber(List<Integer> winningLottoNumbers) {
+    public void drawLottoWithoutBonusNumber(List<Integer> winningLottoNumbers) {
         winningLotto = new WinningLotto(winningLottoNumbers);
     }
 

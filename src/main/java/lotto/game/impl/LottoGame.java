@@ -2,7 +2,7 @@ package lotto.game.impl;
 
 import lotto.domain.Statistics;
 import lotto.domain.Wallet;
-import lotto.domain.WinnerNumbers;
+import lotto.domain.WinningLotto;
 import lotto.game.Game;
 import lotto.game.controller.MoneyController;
 import lotto.game.controller.PrintController;
@@ -36,8 +36,8 @@ public class LottoGame implements Game {
         Money money = moneyController.make();
         Wallet wallet = walletController.make(money);
         printController.newLine();
-        WinnerNumbers winnerLotto = winningLottoController.make();
-        Statistics statistics = statisticsController.make(wallet, winnerLotto);
+        WinningLotto winningLotto = winningLottoController.make();
+        Statistics statistics = statisticsController.make(wallet, winningLotto);
         printController.statistics(statistics);
         printController.rateOfReturn(money, statistics);
     }

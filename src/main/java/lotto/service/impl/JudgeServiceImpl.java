@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Wallet;
-import lotto.domain.WinnerNumbers;
+import lotto.domain.WinningLotto;
 import lotto.service.JudgeService;
 import lotto.vo.Result;
 
@@ -23,7 +23,7 @@ public class JudgeServiceImpl implements JudgeService {
     }
 
     @Override
-    public List<Result> compareLottoBundleAndWinnerNumbers(Wallet wallet, WinnerNumbers winnerNumbers) {
+    public List<Result> compareLottoBundleAndWinnerNumbers(Wallet wallet, WinningLotto winnerNumbers) {
         List<Lotto> lottoBundle = wallet.getLottoBundle();
         List<Integer> winner = winnerNumbers.getWinnerNumbers();
         Integer bonusNumber = winnerNumbers.getBonusNumber();

@@ -4,11 +4,11 @@ import java.util.List;
 import lotto.exception.OutOfRangeNumbersException;
 import lotto.exception.WrongSameNumberException;
 
-public class WinnerNumbers extends Lotto {
+public class WinningLotto extends Lotto {
 
     private final Integer bonusNumber;
 
-    public WinnerNumbers(List<Integer> numbers, Integer bonusNumber) {
+    public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
         super(numbers);
         checkSameNumbers(numbers, bonusNumber);
         checkBonusNumberInRange(bonusNumber);

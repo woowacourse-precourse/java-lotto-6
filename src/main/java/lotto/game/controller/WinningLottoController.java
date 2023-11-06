@@ -2,7 +2,7 @@ package lotto.game.controller;
 
 import java.util.List;
 import lotto.adapter.IoAdapter;
-import lotto.domain.WinnerNumbers;
+import lotto.domain.WinningLotto;
 import lotto.message.ErrorMessage;
 import lotto.message.LottoMessage;
 import lotto.service.ValidateService;
@@ -19,12 +19,12 @@ public class WinningLottoController {
         this.validateService = validateService;
     }
 
-    public WinnerNumbers make() {
+    public WinningLotto make() {
         while (true) {
             try {
                 List<Integer> winnerNumbers = makeWinnerNumber();
                 Integer bonusNumber = makeBonusNumber();
-                return new WinnerNumbers(winnerNumbers, bonusNumber);
+                return new WinningLotto(winnerNumbers, bonusNumber);
             } catch (IllegalArgumentException exception) {
                 ErrorMessage wrongLottoError = ErrorMessage.WRONG_LOTTO_ERROR;
                 ioAdapter.printMessage(wrongLottoError.getMessage());

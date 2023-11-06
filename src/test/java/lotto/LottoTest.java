@@ -59,7 +59,7 @@ class LottoTest {
     @DisplayName("당첨 번호와 발급받은 번호의 일치하는 개수를 반환합니다.")
     @ParameterizedTest
     @MethodSource("provideUniqueNumbers")
-    void testCountCorrectLottoNumber(Set<Integer> prizeNumbers, int expected) {
+    void testCountCorrectLottoNumber(List<Integer> prizeNumbers, int expected) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int result = lotto.countCorrectLottoNumber(prizeNumbers);
 

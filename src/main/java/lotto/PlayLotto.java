@@ -3,16 +3,15 @@ package lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class PlayLotto {
 
     public static int MIN_WIN_CONDITION = 3;
     private final Map<Rank, Integer> lottoResult = new HashMap<>();
-    private final Set<Integer> prizeNumbers;
+    private final List<Integer> prizeNumbers;
     private final int bonusNumber;
 
-    public PlayLotto(Set<Integer> prizeNumbers, int bonusNumber) {
+    public PlayLotto(List<Integer> prizeNumbers, int bonusNumber) {
         this.prizeNumbers = prizeNumbers;
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
@@ -35,7 +34,7 @@ public class PlayLotto {
 
     public long prizeSum() {
         long prizeSum = 0;
-        
+
         for (Rank key : lottoResult.keySet()) {
             prizeSum += key.getPrizeMoney() * lottoResult.get(key);
         }

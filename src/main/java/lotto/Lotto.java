@@ -13,6 +13,10 @@ public class Lotto {
     public static final int LOTTO_PRICE = 1000;
     private final List<Integer> numbers;
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public Lotto(List<Integer> numbers) {
         validateSixNumberCount(numbers);
         validateOverlapNumber(numbers);
@@ -26,7 +30,7 @@ public class Lotto {
         }
     }
 
-    public int countCorrectLottoNumber(Set<Integer> prizeNumbers) {
+    public int countCorrectLottoNumber(List<Integer> prizeNumbers) {
         int correctNumberCount = 0;
 
         for (Integer number : numbers) {
@@ -50,7 +54,7 @@ public class Lotto {
 
     private void validateSixNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 입력이 필요합니다.");
         }
     }
 

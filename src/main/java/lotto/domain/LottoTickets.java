@@ -17,7 +17,7 @@ public class LottoTickets {
         this.lottoGenerator = new LottoGenerator();
     }
 
-    public ArrayList<Lotto> buyLotto(Integer money) {
+    public List<Lotto> buyLotto(Integer money) {
         int ticket = money / ConstNum.PRICE.getNum();
 
         while (lottoTickets.size() != ticket) {
@@ -28,7 +28,7 @@ public class LottoTickets {
 
         LottoValidator.ticketSizeValidate(lottoTickets, ticket);
 
-        return lottoTickets;
+        return Collections.unmodifiableList(lottoTickets);
     }
 
     public Result getResult(WinningNum winningNum) {

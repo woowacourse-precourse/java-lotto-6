@@ -3,11 +3,15 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -26,4 +30,15 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 객체의 numbers 인스터스 변수에 Randoms배열을 할당할 떄, 중복이 있는지.")
+    @Test
+    void createLottoView() {
+    	List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    	Lotto lotto = new Lotto(numbers);
+    	int uniqueCount = (int) numbers.stream().distinct().count();
+    	assertEquals(uniqueCount,lotto.getNumbers().size());
+    	
+    }
+    
+    
 }

@@ -25,9 +25,12 @@ public class User {
         try {
             String[] numberTokens = number.split(",");
             for (int i = 0; i < numberTokens.length; i++) {
-                numbers.add(validateInt(numberTokens[i]));
+                int checkNumber = validateInt(numberTokens[i]);
+                validateRange(checkNumber);
+                numbers.add(checkNumber);
             }
             validateSize(numbers.size());
+            validateDuplication(numbers);
             this.numbers = numbers;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -36,6 +39,25 @@ public class User {
 
     public long getPurchaseAmount() {
         return purchaseAmount;
+    }
+
+    private void validateRange(int checkNumber) {
+        if (checkNumber < 1 || checkNumber > 45) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_RANGE.getMessage());
+        }
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+        List<Integer> uniqueNumbers = new ArrayList<>();
+
+        for (int i = 0; i < numbers.size(); i++) {
+            int number = numbers.get(i);
+            if (uniqueNumbers.contains(number)) {
+                throw new IllegalArgumentException(ErrorMessages.INVALID_DUPLICATION.getMessage());
+            } else {
+                uniqueNumbers.add(number);
+            }
+        }
     }
 
     private void validateSize(int size) {

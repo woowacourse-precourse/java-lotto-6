@@ -14,16 +14,27 @@ public class LottoController {
     }
 
     private void prepareLotto() {
-        player = new Player(getAmount());
-        OutputView.printAmount(player.convertToUnit());
-        OutputView.printLotteries(player);
+        try {
+            player = new Player(getAmount());
+            OutputView.printAmount(player.convertToUnit());
+            OutputView.printLotteries(player);
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e);
+            prepareLotto();
+        }
     }
 
     private int getAmount() {
-        InputView.inputAmount();
-        String input = Console.readLine();
-        LottoValidation.validateIsNumber(input);
-        return convertStringToInt(input);
+        try {
+            InputView.inputAmount();
+            String input = Console.readLine();
+            LottoValidation.validateIsNumber(input);
+            return convertStringToInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+            return getAmount();
+        }
     }
 
     private int convertStringToInt(String input) {

@@ -51,4 +51,7 @@ public class LottoResult {
             }
         }
     }
+    public List<Integer> getCountList(){
+        return List.of(this.countOf3,this.countOf4,this.countOf5,this.countOf5AndBonus,this.countOf6);
+    }
 }

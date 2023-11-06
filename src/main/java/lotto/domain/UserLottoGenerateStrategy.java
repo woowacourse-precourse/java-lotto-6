@@ -1,4 +1,10 @@
 package lotto.domain;
 
-public class UserLottoGenerateStrategy {
+import camp.nextstep.edu.missionutils.Randoms;
+
+public class UserLottoGenerateStrategy implements LottoGenerateStrategy{
+    @Override
+    public Lotto generate(){
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE));
+    }
 }

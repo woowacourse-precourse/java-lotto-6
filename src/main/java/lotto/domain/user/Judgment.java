@@ -47,8 +47,8 @@ public class Judgment {
         return lottoTargetNumResults.isSameBonusNum(numOfLotto, BONUS_NUM_INDEX);
     }
 
-    private Integer getLottoNumber(Lotto lotto, int i) {
-        return lotto.getNumber(i);
+    private Integer getLottoNumber(Lotto lotto, Integer index) {
+        return lotto.getNumber(index);
     }
 
     private Boolean isSameWinNumbers(Integer numOfLotto) {

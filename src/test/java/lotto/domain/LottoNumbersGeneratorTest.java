@@ -2,12 +2,10 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
-import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoNumbersGeneratorTest {
     @DisplayName("로또 번호 생성 테스트")

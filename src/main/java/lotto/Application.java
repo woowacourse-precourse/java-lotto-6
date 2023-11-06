@@ -19,7 +19,6 @@ public class Application {
             int purchaseAmount = readPurchaseAmount();
             // 구입 금액을 토대로 로또 번호를 생성
             List<Lotto> lottos = generateLottos(purchaseAmount);
-            // 생성된 로또 번호를 출력
             printLottos(lottos);
 
             // 사용자로부터 당첨 번호와 보너스 번호를 입력받음
@@ -34,15 +33,6 @@ public class Application {
             System.out.println("[ERROR] " + e.getMessage());
         }
     }
-//    private static Prize calculatePrize(int matchedNumbers, boolean hasBonusNumber) {
-//        if (matchedNumbers == 6) return Prize.FIRST;
-//        if (matchedNumbers == 5 && hasBonusNumber) return Prize.SECOND;
-//        if (matchedNumbers == 5) return Prize.THIRD;
-//        if (matchedNumbers == 4) return Prize.FOURTH;
-//        if (matchedNumbers == 3) return Prize.FIFTH;
-//        return Prize.NONE;
-//    }
-
     private static int readPurchaseAmount() {
         // 무한 루프를 통해 사용자에게 올바른 구입 금액을 입력받음
         while (true) {
@@ -97,9 +87,15 @@ public class Application {
     // 로또 번호를 출력하는 함수
     private static void printLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
+//        lottos.forEach(lotto -> {
+//            lotto.getNumbers().sort(Comparator.naturalOrder()); // 번호를 오름차순으로 정렬
+//            System.out.println("[" + lotto.getNumbers() + "]");
+//        });
+
         lottos.forEach(lotto -> {
-            lotto.getNumbers().sort(Comparator.naturalOrder()); // 번호를 오름차순으로 정렬
-            System.out.println("[" + lotto.getNumbers() + "]");
+            List<Integer> numberList = new ArrayList<>(lotto.getNumbers());
+            numberList.sort(Comparator.naturalOrder()); // 번호를 오름차순으로 정렬
+            System.out.println("[" + numberList + "]");
         });
     }
 

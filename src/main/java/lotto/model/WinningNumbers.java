@@ -28,7 +28,7 @@ public class WinningNumbers {
         return winningNumber.getNumbers();
     }
 
-    public int getBonusNumber() {
-        return bonusNumber.getNumber();
+    public LottoNumber getBonusNumber() {
+        return bonusNumber;
     }
 }

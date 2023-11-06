@@ -71,7 +71,7 @@ public class LottoPrizeCalculator {
         };
     }
 
-    private LottoPrize checkBonusNumber(final Lotto lotto, final int bonusNumber) {
+    private LottoPrize checkBonusNumber(final Lotto lotto, final LottoNumber bonusNumber) {
         if (lotto.hasBonusNumber(bonusNumber)) {
             return SECOND_PRIZE;
         }

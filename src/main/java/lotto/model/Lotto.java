@@ -48,10 +48,9 @@ public class Lotto {
                 .count();
     }
 
-    public boolean hasBonusNumber(final int bonusNumber) {
+    public boolean hasBonusNumber(final LottoNumber bonusNumber) {
 
         return numbers.stream()
-                .map(LottoNumber::getNumber)
                 .anyMatch(number -> number == bonusNumber);
     }
 

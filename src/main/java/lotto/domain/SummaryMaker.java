@@ -38,7 +38,7 @@ public class SummaryMaker {
 
 	public double calculateYield(int purchaseTime) {
 
-		int purchaseAmount = purchaseTime + LOTTO_PRIZE;
+		int purchaseAmount = purchaseTime * LOTTO_PRIZE;
 
 		long winPirze = 0;
 

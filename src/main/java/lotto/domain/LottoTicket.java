@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import static lotto.constant.NumberConstant.ZERO;
+
 import java.util.List;
+import lotto.constant.NumberConstant;
 
 public class LottoTicket {
 
@@ -12,7 +15,7 @@ public class LottoTicket {
 
     public LottoTicket(List<Integer> numbers) {
         this.numbers = numbers;
-        this.sameCount = 0;
+        this.sameCount = ZERO.getNumber();
         this.bonus = false;
     }
 

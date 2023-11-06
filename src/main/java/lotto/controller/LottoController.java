@@ -1,7 +1,12 @@
 package lotto.controller;
 
+import static lotto.constant.NumberConstant.MONEY_UNIT;
+import static lotto.constant.NumberConstant.PERCENT;
+import static lotto.constant.NumberConstant.ZERO;
+
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.NumberConstant;
 import lotto.domain.LottoTicket;
 import lotto.service.InputBonusNumberService;
 import lotto.service.InputMoneyService;
@@ -30,7 +35,7 @@ public class LottoController {
 
     public void start() {
         Long money = inputMoney(new InputMoneyService());
-        List<LottoTicket> lottoTickets = buyLottoTicket(money / 1000);
+        List<LottoTicket> lottoTickets = buyLottoTicket(money / MONEY_UNIT.getNumber());
         List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinnerNumberService());
         Integer bonusNumber = inputBonusNumber(lottoWinNumbers);
         Long result = lottoService.calculateMoney(lottoTickets, lottoWinNumbers, bonusNumber);
@@ -40,7 +45,7 @@ public class LottoController {
 
     private static double calculateYield(Long result, Long money) {
         double v = result.doubleValue();
-        double yield = v / money * 100;
+        double yield = v / money * PERCENT.getNumber();
         return yield;
     }
 
@@ -62,9 +67,9 @@ public class LottoController {
         outputView.printBeforeBuyLotto(count);
         LottoGenerator lottoGenerator = LottoGenerator.getInstance();
         List<LottoTicket> lottoTickets = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int ticketNum = ZERO.getNumber(); ticketNum < count; ticketNum++) {
             lottoTickets.add(new LottoTicket(lottoGenerator.generateNumberList()));
-            outputView.printTicket(lottoTickets.get(i).getNumbers());
+            outputView.printTicket(lottoTickets.get(ticketNum).getNumbers());
         }
         return lottoTickets;
     }

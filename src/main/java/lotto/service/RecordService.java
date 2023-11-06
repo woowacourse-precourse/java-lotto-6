@@ -1,6 +1,9 @@
 package lotto.service;
 
+import static lotto.constant.NumberConstant.SAME_COUNT_FIVE;
+
 import java.util.List;
+import lotto.constant.NumberConstant;
 import lotto.domain.LottoTicket;
 import lotto.domain.Result;
 
@@ -16,7 +19,7 @@ public class RecordService {
 
     private void recordResult(LottoTicket lottoTicket, Result value) {
         if (lottoTicket.getSameCount() == value.getSameCount()) {
-            if (value.getSameCount() == 5) {
+            if (value.getSameCount() == SAME_COUNT_FIVE.getNumber()) {
                 checkIsSecond(lottoTicket, value);
                 return;
             }

@@ -1,7 +1,13 @@
 package lotto.util;
 
+import static lotto.constant.NumberConstant.LAST_LOTTO_NUMBER;
+import static lotto.constant.NumberConstant.MONEY_UNIT;
+import static lotto.constant.NumberConstant.START_LOTTO_NUMBER;
+import static lotto.constant.NumberConstant.ZERO;
+
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constant.NumberConstant;
 import lotto.service.Lotto;
 
 public class Validator {
@@ -15,13 +21,13 @@ public class Validator {
     }
 
     public void validateNumberUnitIsThousand(Long money) {
-        if (money % 1000 != 0) {
+        if (money % MONEY_UNIT.getNumber() != ZERO.getNumber()) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다!");
         }
     }
 
     public void validateNumberNegativeOrZero(Long money) {
-        if (money <= 0) {
+        if (money <= ZERO.getNumber()) {
             throw new IllegalArgumentException("[ERROR] 금액은 음수가 아니라 양수여야 합니다!");
         }
     }
@@ -38,7 +44,7 @@ public class Validator {
     public void validateOnlyNumber(List<String> inputWinnerNumbers) {
         try {
             List<Integer> collect = inputWinnerNumbers.stream().map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자 와 구분자 , 만을 허용합니다!");
         }
@@ -46,11 +52,12 @@ public class Validator {
 
     public void validateRangeNumber(List<Integer> winnerNumbers) {
         for (Integer winnerNumber : winnerNumbers) {
-            if (winnerNumber < 1 || winnerNumber > 45) {
+            if (isNumberNotInRange(winnerNumber)) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호의 숫자는 1-45 사이여야 합니다!");
             }
         }
     }
+
 
 
     public void validateNumberLength(List<Integer> winnerNumbers) {
@@ -70,7 +77,7 @@ public class Validator {
     }
 
     public void validateBonusNumberRange(int convertedBonusNumber) {
-        if (convertedBonusNumber < 1 || convertedBonusNumber > 45) {
+        if (isNumberNotInRange(convertedBonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1-45 사이의 숫자여야 합니다!");
         }
     }
@@ -81,4 +88,9 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복이 되는 숫자로 와서는 안됩니다!");
         }
     }
+
+    private boolean isNumberNotInRange(Integer winnerNumber) {
+        return winnerNumber < START_LOTTO_NUMBER.getNumber() || winnerNumber > LAST_LOTTO_NUMBER.getNumber();
+    }
+
 }

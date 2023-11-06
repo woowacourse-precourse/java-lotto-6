@@ -39,10 +39,6 @@ public enum LottoRank {
                 .findFirst();
     }
 
-    public static Optional<LottoRank> find(int matchCount) {
-        return find(matchCount, false);
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
     }

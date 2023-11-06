@@ -20,10 +20,6 @@ public class LottoPurchase {
         return lottoNumbersInfo.getResult();
     }
 
-    public BigDecimal getNumberOfLottoPurchased() {
-        return purchaseInfo.numberOfLottoPurchased;
-    }
-
     public float getProfitRate() {
         HashMap<LottoResult, BigDecimal> result = getResult();
 

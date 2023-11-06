@@ -8,7 +8,7 @@ public enum ExceptionMessage {
     NEGATIVE_AMOUNT("[ERROR] 금액은 음수가 될 수 없습니다.\n"),
     LOTTO_NUMBERS_LENGTH("[ERROR] 로또는 6개의 번호로 구성되어야 합니다.\n"),
     LOTTO_NUMBERS_DUPLICATED("[ERROR] 중복된 번호가 존재합니다.\n"),
-    LOTTO_NUMBER_RANGE("[ERROR] %d와 %d사이의 숫자만 번호로 등록 가능 합니다.\n");
+    LOTTO_NUMBER_RANGE("[ERROR] %d과 %d사이의 숫자만 번호로 등록 가능 합니다.\n");
     private final String message;
 
     ExceptionMessage(String message) {

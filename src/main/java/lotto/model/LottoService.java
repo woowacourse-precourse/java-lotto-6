@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoService {
 	private static final int LOTTO_NUMBERS_COUNT = 6;
+	private static final int LOTTO_N = 6;
 	//1000단위의 정수당 한개의 Lotto 객체 리스트
 	public static List<Lotto> createObjectPerThousandUnits(int inputData){
 		int playerInputThousands = inputData/1000;
@@ -31,13 +32,23 @@ public class LottoService {
 	}
 	
 	public static long getTotalWinningAmount(List<Lotto> playerLottos,List<Integer> winningNumbers,int bonusNumber) {
-		boolean bonusMatch = false; int winningCount = 0; long totalWinningAmount = 0;
+		long totalWinningAmount = 0;
 		for(Lotto playerLotto : playerLottos) {
-			winningCount = getWinningCount(playerLotto.getNumbers(),winningNumbers);
-			bonusMatch = isBonusNumberIncluded(playerLotto.getNumbers(), bonusNumber);
+			int winningCount = getWinningCount(playerLotto.getNumbers(),winningNumbers);
+			boolean bonusMatch = isBonusNumberIncluded(playerLotto.getNumbers(), bonusNumber);
 			totalWinningAmount += LottoPrize.valueOf(winningCount, bonusMatch).getWinnings();
 		}
 		return totalWinningAmount;
 	}
-
+	public static Map<String,Integer> getTotalWinningRankCount(List<Lotto> playerLottos,List<Integer> winningNumbers,int bonusNumber) {
+		Map<String,Integer> rankCount = new HashMap<>(); 
+		for(Lotto playerLotto : playerLottos) {
+			int winningCount = getWinningCount(playerLotto.getNumbers(), winningNumbers);
+			boolean bonusMatch = isBonusNumberIncluded(playerLotto.getNumbers(), bonusNumber);
+			String rank = LottoPrize.valueOf(winningCount,bonusMatch).name();
+			rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+		}
+		return rankCount;
+	}
+	
 }

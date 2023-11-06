@@ -27,19 +27,18 @@ public class GameController {
     public void run() {
 
         int lottoQuantity = purchaseLottoQuantity();
+        List<Lotto> lottoTickets = lottoManager.createLottoTickets(lottoQuantity);
 
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i=0; i<lottoQuantity; i++) {
-            List<Integer> lottoNumbers = LottoGenerator.generateLottoNumbers();
-            Lotto lotto = new Lotto(lottoNumbers);
-            lottoList.add(lotto);
-        }
-
-        LottoBuyer lottoBuyer = new LottoBuyer(lottoQuantity, lottoList);
+        LottoBuyer lottoBuyer = new LottoBuyer(lottoTickets);
 
         OutputView.announceLottoPurchaseQuantity(lottoBuyer.getPurchaseQuantity());
         OutputView.announceMultipleLottoNumbers(lottoBuyer.getLottoTickets());
+
+        List<Integer> winningLottoNumbers = InputView.requestWinningLottoNumbers();
+
     }
+
+
 
     private int purchaseLottoQuantity() {
         while (true) {

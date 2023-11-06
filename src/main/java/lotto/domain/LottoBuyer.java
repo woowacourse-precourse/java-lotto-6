@@ -4,11 +4,9 @@ import java.util.List;
 
 public class LottoBuyer {
 
-    private final int purchaseAmount;
     private final List<Lotto> lottoTickets;
 
-    public LottoBuyer(int purchaseAmount, List<Lotto> lottoTickets) {
-        this.purchaseAmount = purchaseAmount;
+    public LottoBuyer(List<Lotto> lottoTickets) {
         this.lottoTickets = lottoTickets;
     }
 

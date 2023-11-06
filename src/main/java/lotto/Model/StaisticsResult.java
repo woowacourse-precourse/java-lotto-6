@@ -1,6 +1,6 @@
 package lotto.Model;
 
-import static lotto.Model.MatchNums.*;
+import static lotto.MatchNums.*;
 
 import java.util.HashMap;
 import java.util.List;

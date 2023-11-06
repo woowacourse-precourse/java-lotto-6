@@ -1,6 +1,6 @@
 package lotto.domain;
+import static lotto.constant.CashConstant.INIT_SPEND_AMOUNT;
 import static lotto.constant.CashConstant.UNIT;
-import static lotto.constant.CashConstant.ZERO;
 import static lotto.exception.CashExceptionMessage.NOT_MORE_THAN_UNIT;
 import static lotto.exception.CashExceptionMessage.NOT_DIVISIBLE_BY_UNIT;
 
@@ -13,7 +13,7 @@ public class Cash {
         validateMoreThanUnit(depositAmount);
         validateDivisibleByUnit(depositAmount);
         this.depositAmount = depositAmount;
-        this.spendAmount = ZERO.getSetting();
+        this.spendAmount = INIT_SPEND_AMOUNT.getSetting();
     }
 
     private void validateMoreThanUnit(final Integer amount) {
@@ -25,7 +25,7 @@ public class Cash {
 
     private void validateDivisibleByUnit(final Integer amount) {
         final int remainder = amount % UNIT.getSetting();
-        if (remainder != ZERO.getSetting()) {
+        if (remainder != INIT_SPEND_AMOUNT.getSetting()) {
             throw new IllegalArgumentException(NOT_DIVISIBLE_BY_UNIT.getMessage());
         }
     }

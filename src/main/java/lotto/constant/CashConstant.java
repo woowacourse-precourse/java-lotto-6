@@ -2,7 +2,7 @@ package lotto.constant;
 
 public enum CashConstant {
     UNIT(1000),
-    ZERO(0);
+    INIT_SPEND_AMOUNT(0);
 
     private final Integer setting;
 

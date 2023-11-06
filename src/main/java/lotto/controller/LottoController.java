@@ -19,6 +19,7 @@ public class LottoController {
         Payment payment = inputView.inputPayment();
         LottoBuyer lottoBuyer = new LottoBuyer(payment);
         lottoBuyer.generateLotto();
+        outputView.printLottoNumbers(lottoBuyer.getLottos());
     }
 
 

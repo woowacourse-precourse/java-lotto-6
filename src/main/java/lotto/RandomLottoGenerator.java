@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,8 +13,9 @@ public class RandomLottoGenerator implements LottoGenerator {
                 LottoConstant.LOTTO_END_NUMBER,
                 LottoConstant.LOTTO_NUMBER_COUNT);
 
-        Collections.sort(numbers);
+        ArrayList<Integer> numbersToSort = new ArrayList<>(numbers);
+        Collections.sort(numbersToSort);
 
-        return new Lotto(numbers);
+        return new Lotto(numbersToSort);
     }
 }

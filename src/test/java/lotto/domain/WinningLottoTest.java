@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -24,6 +25,25 @@ public class WinningLottoTest {
         return Stream.of(
             Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6),
             Arguments.of(List.of(1, 2, 3, 4, 5, 6), 50)
+        );
+    }
+
+    @DisplayName("당첨 번호와 로또 번호가 일치하는지 확인한다.")
+    @ParameterizedTest
+    @MethodSource("parametersForMatchWinningLottoToLotto")
+    void matchWinningLottoToLotto(Lotto lotto, Rank rank) {
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        assertThat(winningLotto.match(lotto)).isEqualTo(rank);
+    }
+
+    static Stream<Arguments> parametersForMatchWinningLottoToLotto() {
+        return Stream.of(
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), Rank.FIRST),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), Rank.SECOND),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 8)), Rank.THIRD),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 7, 8)), Rank.FOURTH),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 7, 8, 9)), Rank.FIFTH),
+            Arguments.of(new Lotto(List.of(1, 2, 7, 8, 9, 10)), Rank.MISS)
         );
     }
 }

@@ -1,12 +1,17 @@
-package lotto.domain;
+package lotto.domain.amount;
 
 public class Amount {
 
-    private int amount;
+    protected int amount;
 
-    public Amount(int amount) {
+    protected Amount(int amount) {
         validate(amount);
         this.amount = amount;
+    }
+
+    public static Amount of(int amount) {
+        // 공통 생성 로직
+        return new Amount(amount);
     }
 
     private void validate(int amount) {

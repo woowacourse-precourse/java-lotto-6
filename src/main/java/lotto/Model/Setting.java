@@ -2,8 +2,9 @@ package lotto.Model;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Setting {
     Lotto winningNumbers;
@@ -38,17 +39,16 @@ public class Setting {
 
     private int input_bonusNumber() {
         String input = Console.readLine();
-        inputToInt(input);
-        int bonusNumber = Integer.parseInt(input);
+        int bonusNumber = inputToInt(input);
         checkNumber(bonusNumber);
         winningNumbers.check_bonusNumber(bonusNumber);
 
         return bonusNumber;
     }
 
-    private void inputToInt(String input) {
+    private int inputToInt(String input) {
         try {
-            Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             System.out.println("\n[ERROR] 숫자를 입력해주세요.");
             throw new IllegalArgumentException();
@@ -87,16 +87,9 @@ public class Setting {
     }
 
     public List<Integer> stringToList(String input) throws IllegalArgumentException {
-        List<Integer> player = new ArrayList<>();
-        String[] numbers = input.split(",");
-
-        for (String number : numbers) {
-            inputToInt(number);
-            int playerNumber = Integer.parseInt(number);
-            player.add(playerNumber);
-        }
-
-        return player;
+        return Arrays.stream(input.split(","))
+                .map(this::inputToInt)
+                .collect(Collectors.toList());
     }
 
 }

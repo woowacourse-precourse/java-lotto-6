@@ -50,11 +50,11 @@ public class Lotto {
 
     public int[] matchNumber(Lotto lottoNumbers, int bonusBall){
         int[] matchResult = new int[]{0,0};
-        for (int number : lottoNumbers.numbers){
-            if (numbers.contains(number)){
-                matchResult[0] += 1;
-            }
-        }
+
+        matchResult[0] = (int) lottoNumbers.numbers.stream()
+                .filter(numbers::contains)
+                .count();
+
         if (lottoNumbers.numbers.contains(bonusBall)){
             matchResult[1] = 1;
         }

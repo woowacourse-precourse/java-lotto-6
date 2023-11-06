@@ -2,15 +2,15 @@ package lotto.Model;
 
 import lotto.View.PrintOutput;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 
 public class Result {
     private final EnumMap<Winning, Integer> result = new EnumMap<>(Winning.class);
 
     public Result() {
-        for (Winning winning : Winning.values()) {
-            result.put(winning, 0);
-        }
+        Arrays.stream(Winning.values())
+                .forEach(value -> result.put(value, 0));
     }
 
     public void winningResult(int match, int bonusBall) {
@@ -21,10 +21,12 @@ public class Result {
     public void printResult(int purchasePrice) {
         int totalPrice = 0;
         System.out.println("\n" + PrintOutput.RESURLT_LOTTO + "\n---");
+
         for (Winning winning : Winning.values()) {
             totalPrice += winning.getWinningPrice() * result.get(winning);
             printMatch(winning);
         }
+
         System.out.printf("총 수익률은 %,.1f%%입니다.", (double) totalPrice / purchasePrice * 100);
     }
 
@@ -34,12 +36,15 @@ public class Result {
                 winning.getMatchNumber(),
                 String.format("%,d", winning.getWinningPrice()),
                 result.get(winning));
+
         if (winning != Winning.No_Match) {
             System.out.println(message);
         }
+
         if (winning == Winning.SECOND) {
             message = message.replace("일치", "일치, 보너스 볼 일치");
             System.out.println(message);
         }
+
     }
 }

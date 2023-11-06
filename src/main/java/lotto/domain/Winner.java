@@ -10,4 +10,11 @@ public class Winner {
     public Winner(String lottoNumbers) {
         lotto = new Lotto(lottoNumbers);
     }
+
+    public List<Integer> noticeLottoWinningNumbers() {
+        return lotto.lottoNumbers();
+    }
+    public void lottoWinningBonusNumber(String bonus){
+        this.bonus = new Bonus(bonus);
+    }
 }

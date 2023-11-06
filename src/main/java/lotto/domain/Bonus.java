@@ -12,6 +12,10 @@ public class Bonus {
         this.bonus = drawBonusNumber(lotto);
     }
 
+    public Bonus(String bonus) {
+        this.bonus = changeInteger(bonus);
+    }
+
     public int getBonus() {
         return bonus;
     }
@@ -24,5 +28,9 @@ public class Bonus {
                 return number;
             }
         }
+    }
+
+    private int changeInteger(String bonus) {
+        return Integer.parseInt(bonus);
     }
 }

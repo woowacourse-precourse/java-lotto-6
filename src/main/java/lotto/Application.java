@@ -10,6 +10,7 @@ import java.util.Set;
 public class Application {
     private static final String MESSAGE_FOR_PURCHASE_AMOUNT_INPUT = "구입금액을 입력해 주세요.";
     private static final String MESSAGE_FOR_WINNING_NUMBERS_INPUT = "당첨 번호를 입력해 주세요.";
+    private static final String MESSAGE_FOR_BONUS_NUMBERS_INPUT = "보너스 번호를 입력해 주세요.";
 
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     private static final String ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_INPUT = "구앱금액은 1000원 단위로 숫자를 입력해 주세요.";
@@ -21,6 +22,12 @@ public class Application {
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmountWithInput();
         List<Integer> winningNumbers = getWinningNumbersWithInput();
+        int bonusNumber = getBonusNumberWithInput();
+    }
+
+    private static int getBonusNumberWithInput() {
+        System.out.println(MESSAGE_FOR_BONUS_NUMBERS_INPUT);
+        return 0;
     }
 
     private static int getPurchaseAmountWithInput() {

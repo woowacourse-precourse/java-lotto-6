@@ -1,11 +1,11 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
-import lotto.Prize;
+import lotto.constant.Prize;
 
 public enum OutputMessage {
     REQUEST_MONEY_TO_BUY("구입금액을 입력해 주세요."),
-    BUY_LOTTO_RESULT("%d개를 구매했습니다."),
+    BUY_LOTTO_RESULT("%d개를 구매했습니다.\n"),
     REQUEST_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
     REQUEST_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     LOTTO_GRADE_RESULT(

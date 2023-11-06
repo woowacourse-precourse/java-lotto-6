@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Objects;
-import lotto.LottoGrade;
+import lotto.constant.LottoGrade;
 
 public class WinningLotto extends Lotto {
     private Integer bonusNumber;

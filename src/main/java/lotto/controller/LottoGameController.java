@@ -1,20 +1,21 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import lotto.LottoGrade;
-import lotto.Prize;
+import java.util.Map;
+import lotto.constant.LottoGrade;
 import lotto.model.Lotto;
 import lotto.model.MoneyToBuy;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
-import lotto.view.OutputMessage;
 import lotto.view.OutputView;
 
 public class LottoGameController {
     private List<Lotto> lottos;
     private MoneyToBuy moneyToBuy;
     private WinningLotto winningLotto;
+
 
     private OutputView outputView;
     private InputView inputView;
@@ -28,9 +29,16 @@ public class LottoGameController {
     public void run() {
         moneyToBuy = inputView.requestMoneyToBuy();
         this.winningLotto = inputView.requestWinningLotto();
+
         generateLottos();
-        printBoughtLottos();
-        printLottoGrades();
+
+        outputView.printNumberOfBoughtLottos(moneyToBuy.getLottosSize());
+        outputView.printLottos(lottos);
+
+        Map<LottoGrade, Integer> grades = calculateLottoGrades();
+
+        outputView.printPrizeResults(grades);
+        outputView.printRateOfReturn(grades, moneyToBuy);
     }
 
     private void generateLottos() {
@@ -39,43 +47,13 @@ public class LottoGameController {
         }
     }
 
-    private void printBoughtLottos() {
-        System.out.printf(OutputMessage.BUY_LOTTO_RESULT.getMessage() + "\n", moneyToBuy.getLottosSize());
-        lottos.forEach(lotto -> System.out.println(lotto));
-    }
-
-    private void printLottoGrades() {
-        int threeMatch = 0;
-        int fourMatch = 0;
-        int fiveMatch = 0;
-        int fiveAndBonusMatch = 0;
-        int sixMatch = 0;
-
+    private Map<LottoGrade, Integer> calculateLottoGrades() {
+        Map<LottoGrade, Integer> grades = new HashMap<LottoGrade, Integer>();
         for (int i = 0; i < lottos.size(); i++) {
             LottoGrade lottoGrade = winningLotto.determineLottoGrade(lottos.get(i));
-            if (lottoGrade == LottoGrade.SIX_MATCH) {
-                sixMatch += 1;
-            } else if (lottoGrade == LottoGrade.FIVE_AND_BONUS_MATCH) {
-                fiveAndBonusMatch += 1;
-            } else if (lottoGrade == LottoGrade.FIVE_MATCH) {
-                fiveMatch += 1;
-            } else if (lottoGrade == LottoGrade.FOUR_MATCH) {
-                fourMatch += 1;
-            } else if (lottoGrade == LottoGrade.THREE_MATCH) {
-                threeMatch += 1;
-            }
+            grades.put(lottoGrade, grades.getOrDefault(lottoGrade, 0) + 1);
         }
 
-        System.out.printf(OutputMessage.LOTTO_GRADE_RESULT.getMessage(), threeMatch, fourMatch, fiveMatch,
-                fiveAndBonusMatch, sixMatch);
-        printRateOfReturn(threeMatch, fourMatch, fiveMatch,
-                fiveAndBonusMatch, sixMatch);
-    }
-
-    private void printRateOfReturn(int threeMatch, int fourMatch, int fiveMatch, int fiveAndBonusMatch, int sixMatch) {
-        Integer totalIncome = Prize.getTotalIncome(threeMatch, fourMatch, fiveMatch,
-                fiveAndBonusMatch, sixMatch);
-        Double rateOfReturn = totalIncome.doubleValue() / moneyToBuy.getValue() * 100;
-        System.out.printf(OutputMessage.RATE_OF_RETURN.getMessage(), String.format("%.1f", rateOfReturn));
+        return grades;
     }
 }

@@ -4,12 +4,14 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.view.InputValidator;
 
 public class Lotto {
     private final List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
+        validate(numbers);
         this.numbers = numbers
                 .stream()
                 .map(Number::from)
@@ -49,26 +51,11 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
-    public static Lotto from(String userInput) {
-        List<String> userInputList = toStringList(userInput);
-        validate(userInputList);
-        List<Integer> lottoList = toIntegerList(userInputList);
-        return new Lotto(lottoList);
+    private static void validate(List<Integer> list) {
+        validRange(list);
+        validDuplicated(list);
     }
 
-    private static void validate(List<String> list) {
-        validDigit(list);
-        List<Integer> integerList = toIntegerList(list);
-        validRange(integerList);
-        validDuplicated(integerList);
-    }
-
-    private static void validDigit(List<String> list) {
-        boolean isDigit = list.stream().allMatch(s -> s.matches("\\d+"));
-        if (!isDigit) {
-            throw new IllegalArgumentException("로또 번호는 1~45 숫자만 입력 가능합니다.");
-        }
-    }
 
     private static void validRange(List<Integer> list) {
         boolean overRange = list.stream().anyMatch(num -> num > 45);
@@ -82,12 +69,6 @@ public class Lotto {
         if (uniqueCount < list.size()) {
             throw new IllegalArgumentException("중복된 숫자가 있습니다!");
         }
-    }
-
-    private static List<String> toStringList(String userInput) {
-        return Arrays.stream(userInput.split(","))
-                .map(String::trim)
-                .toList();
     }
 
     private static List<Integer> toIntegerList(List<String> stringList) {

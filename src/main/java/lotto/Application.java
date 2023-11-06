@@ -9,7 +9,7 @@ public class Application {
     private static final int price = 1000;
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+
         // 로또 구입 기능 입력 처리
         PrintOutput.printNoticeMessage(NoticeMessage.BUY_MONEY);
         int money = UserInput.getUserMoney();
@@ -28,7 +28,24 @@ public class Application {
         PrintOutput.printCountOfLotto(lottoCount);
         PrintOutput.printLottos(lottos);
     }
+
+        // 로또 당첨 번호 입력 처리
+        PrintOutput.printNoticeMessage(NoticeMessage.WINNING_NUMBERS);
+        Lotto winningLotto = new Lotto(UserInput.getWinningNumbers());
+
+        // 보너스 번호 입력 처리
+        PrintOutput.printNoticeMessage(NoticeMessage.BONUS_NUMBER);
+        int bonusNumber = UserInput.getBonusNumber();
+        while (isBonusNumberSameWithWinningNumbers(winningLotto, bonusNumber)) {
+            bonusNumber = UserInput.getBonusNumber();
+        }
+    }
+
     public static List<Integer> makeLottoNumbers() {
         return pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    private static boolean isBonusNumberSameWithWinningNumbers(Lotto winningNumbers, int bonusNumber) {
+        return winningNumbers.contains(bonusNumber);
     }
 }

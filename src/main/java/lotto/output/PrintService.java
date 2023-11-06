@@ -55,4 +55,7 @@ public class PrintService {
     public static void error(String message) {
         System.out.printf("[ERROR] %s\n", message);
     }
+    public static void totalRateOfReturn(Double rate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n",rate);
+    }
 }

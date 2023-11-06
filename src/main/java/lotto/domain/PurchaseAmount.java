@@ -13,6 +13,10 @@ public class PurchaseAmount {
 
     }
 
+    public int getAmout(){
+        return amount;
+    }
+
     public void validateUnderThousand(int input){
         if(input < 1000){
             throw new IllegalArgumentException(Errors.PURCHASE_AMOUNT_UNDER_THOUSAND_MESSAGE.getErrorMessage());

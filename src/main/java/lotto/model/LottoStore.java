@@ -1,6 +1,5 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +18,15 @@ public class LottoStore {
     }
 
     public List<Lotto> sellLotto(int money) {
+        validateDivideBy1000(money);
         int quantity = calculatePurchaseQuantity(money);
         return createLottos(quantity);
+    }
+
+    private void validateDivideBy1000(int money) {
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000 단위의 금액이 아닙니다.");
+        }
     }
 
     private int calculatePurchaseQuantity(int money) {

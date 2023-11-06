@@ -43,6 +43,7 @@ public class Lotto {
 
     public String listToString(){
         String[] array = numbers.stream()
+                                .sorted()
                                 .map(String::valueOf)
                                 .toArray(String[]::new);
         return String.join(", ", array);

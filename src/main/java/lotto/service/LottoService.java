@@ -19,13 +19,13 @@ public class LottoService {
             Lotto lotto = new Lotto(createRandomNumbers());
             buyLottoRepo.add(lotto);
 
-            numberExtraction(lotto.listToString());
+            extractAscendingNumbers(lotto.listToString());
             purchaseCount --;
         }
         return buyLottoRepo;
     }
 
-    private void numberExtraction(String lottoNumber) {
+    private void extractAscendingNumbers(String lottoNumber) {
         View.buyLottos(lottoNumber);
     }
 

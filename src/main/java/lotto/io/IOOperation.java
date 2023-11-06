@@ -2,7 +2,9 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Checker;
+import lotto.domain.Judge;
 import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,5 +74,22 @@ public class IOOperation {
         lottos.forEach((lotto) -> {
             lotto.print();
         });
+    }
+
+    public static void printResult(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber, Integer price) {
+        List<Integer> rankings = Judge.result(lottos, winningNumbers, bonusNumber);
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (Integer rank = rankings.size() - 1; rank >= 0; rank--) {
+            Integer count = rankings.get(rank);
+            String message = Ranking.findRankingByRank(rank + 1).message();
+
+            System.out.println(message + " - " + count + "개");
+        }
+
+        Double rateOfReturn = Judge.rateOfReturn(rankings, price);
+        String formattedReturn = String.format("%.1f", rateOfReturn);
+        System.out.println("총 수익률은 " + formattedReturn + "입니다.");
     }
 }

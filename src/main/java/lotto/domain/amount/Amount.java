@@ -1,33 +1,21 @@
 package lotto.domain.amount;
 
+import lotto.util.ValidationUtils;
+
 public class Amount {
 
-    protected int amount;
+    protected final int amount;
 
     protected Amount(int amount) {
         validate(amount);
         this.amount = amount;
     }
 
-    public static Amount of(int amount) {
-        // 공통 생성 로직
-        return new Amount(amount);
+    public int getAmount() {
+        return amount;
     }
 
-    private void validate(int amount) {
-        validateIsLessThanThousand(amount);
-        validateIsDividedByThousand(amount);
-    }
-
-    private void validateIsDividedByThousand(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateIsLessThanThousand(int amount) {
-        if (amount < 1000) {
-            throw new IllegalArgumentException("금액이 1000원 보다 작습니다.");
-        }
+    protected void validate(int amount) {
+        ValidationUtils.validateNotNull(amount);
     }
 }

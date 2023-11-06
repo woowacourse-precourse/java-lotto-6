@@ -37,10 +37,10 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbersInput = Console.readLine();
         List<Integer> winningNumbers = parseNumbers(winningNumbersInput);
-
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
-
+        System.out.println();
         return new WinningNumbers(new Lotto(winningNumbers), bonusNumber);
     }
 

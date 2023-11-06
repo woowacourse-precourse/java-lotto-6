@@ -5,6 +5,7 @@ import lotto.model.LottoMachine;
 import lotto.model.LottoTicket;
 import lotto.view.InputView;
 
+import static lotto.view.InputView.askUntilGetValidAnswer;
 import static lotto.view.OutputView.printLottoTicket;
 import static lotto.view.OutputView.printPurchaseAmount;
 
@@ -15,14 +16,12 @@ public class LottoController {
     }
 
     public Deposit makeDeposit() {
-        while (true) {
-            try {
-                String purchaseAmount = InputView.askPurchaseAmount();
-                return new Deposit(purchaseAmount);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return (Deposit) askUntilGetValidAnswer(
+                () -> {
+                    String purchaseAmount = InputView.askPurchaseAmount();
+                    return new Deposit(purchaseAmount);
+                }
+        );
     }
 
     public LottoTicket purchaseLottoTicket(Deposit deposit) {

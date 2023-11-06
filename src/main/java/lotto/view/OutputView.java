@@ -24,6 +24,6 @@ public class OutputView {
 
     public static void printIncomeRate(Calculator calculator, Result result){
         double incomeRate = calculator.calculateIncomeRate(result);
-        System.out.printf("총 수익률은 %.2f%%입니다.", incomeRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.", incomeRate);
     }
 }

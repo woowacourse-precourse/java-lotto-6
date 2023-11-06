@@ -19,10 +19,11 @@ public class GameController {
         Payment payment = Payment.create(inputPayment);
 
         int coin = Parser.parseAmountToCoin(payment);
+        OutputView.printNumberOfLotto(coin);
         for (int i = 0; i < coin; i++) {
             Lotto lotto = LottoMachine.createLotto();
             lottos.addLotto(lotto);
-            System.out.println(lotto.toString());
+            System.out.println(lotto);
         }
 
         String inputWinningNumber = InputView.inputWinningNumber();

@@ -1,11 +1,8 @@
-package lotto.util;
+package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-import lotto.model.LottoInfo;
-import lotto.model.LottoNumberGenerator;
-import lotto.model.RandomLottoNumberGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

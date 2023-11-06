@@ -1,5 +1,8 @@
 package lotto.model;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LottoBonusPair {
     private final Lotto winnerNumbers;
     private final Integer bonusNumber;
@@ -14,7 +17,14 @@ public class LottoBonusPair {
         return new LottoBonusPair(winnerNumbers, bonusNumber);
     }
 
-    public Integer checkRank(Lotto lotto) {
+    public List<Integer> getResults(PublishedLottos publishedLottos) {
+        return publishedLottos.getPublishedLottos()
+                .stream()
+                .map(this::checkRank)
+                .collect(Collectors.toList());
+    }
+
+    private Integer checkRank(Lotto lotto) {
         boolean hasBonusNumber = lotto.contains(bonusNumber);
         Integer correctNumbers = winnerNumbers.compare(lotto);
         if (correctNumbers == 6) {

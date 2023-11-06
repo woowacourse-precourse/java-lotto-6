@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -20,5 +21,23 @@ public class LottoCalculator {
     public double roi(double investment, double current){
         double result = investment/current * 100;
         return Math.round(result*100)/100.0;
+    }
+
+    public int getProfit(Map<Integer, Integer> matchMap){
+        int profit = 0;
+        for (Map.Entry<Integer, Integer> items: matchMap.entrySet()) {
+            if (items.getKey() == 3) {
+                profit += (5000 * items.getValue());
+            } else if (items.getKey() == 4) {
+                profit += (50_000 * items.getValue());
+            } else if (items.getKey() == 5) {
+                profit += (1_500_000 * items.getValue());
+            } else if (items.getKey()== 55) {
+                profit += (30_000_000 * items.getValue());
+            } else if (items.getKey() == 6){
+                profit += (2_000_000_000 * items.getValue());
+            }
+        }
+        return profit;
     }
 }

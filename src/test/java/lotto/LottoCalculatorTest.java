@@ -3,6 +3,7 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,5 +26,25 @@ public class LottoCalculatorTest {
     void 수익률_계산_확인(){
         assertEquals(62.5, lottoCalculator.roi(5000, 8000));
         assertEquals(285.71, lottoCalculator.roi(20000, 7000));
+    }
+
+    @Test
+    void 수익금_계산(){
+        Map<Integer, Integer> matchMap = Map.of(
+                3,2,
+                4,0,
+                5,0,
+                6,0,
+                55,0
+        );
+        assertEquals(10000, lottoCalculator.getProfit(matchMap));
+        Map<Integer, Integer> matchMap2 = Map.of(
+                3,2,
+                4,0,
+                5,1,
+                6,0,
+                55,0
+        );
+        assertEquals(1_510_000, lottoCalculator.getProfit(matchMap2));
     }
 }

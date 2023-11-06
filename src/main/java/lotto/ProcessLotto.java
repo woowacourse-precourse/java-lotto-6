@@ -47,6 +47,7 @@ public class ProcessLotto {
         countMap.put(55, 0);
         countMap.put(6, 0);
         
+        // TODO: 클래스 만들기
         int cnt = 0;
         for (Lotto nums: lottos){
             if (lottoCalculator.checkBonus(nums.getNumbers(), winningNums, bonusNum)){

@@ -1,16 +1,16 @@
 package lotto.error.exception;
 
 public class InvalidInputException extends IllegalArgumentException {
-    private final String messageKey;
+    private final String message;
     private final Object[] params;
 
-    public InvalidInputException(String messageKey, Object... params) {
-        this.messageKey = messageKey;
+    public InvalidInputException(String message, Object... params) {
+        this.message = message;
         this.params = params;
     }
 
-    public String getMessageKey() {
-        return messageKey;
+    public String getMessage() {
+        return message;
     }
 
     public Object[] getParams() {

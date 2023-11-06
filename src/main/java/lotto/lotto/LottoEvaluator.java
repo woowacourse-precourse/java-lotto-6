@@ -25,10 +25,13 @@ public class LottoEvaluator {
 
     private int determineRank(int winningCount, boolean isBonusNumberCorrect) {
         if (winningCount == 6) {
+            return 1;
+        }
+        if (winningCount == 5) {
             if (isBonusNumberCorrect) {
-                return 1;
+                return 2;
             }
-            return 2;
+            return 3;
         }
         return 8 - winningCount;
     }

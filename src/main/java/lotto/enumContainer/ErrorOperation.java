@@ -8,7 +8,8 @@ public enum ErrorOperation {
 	UNIT_ERROR("[ERROR] 1000원 단위부터 입력할 수 있습니다."),
 	EMPTY_ERROR("[ERROR] 빈 문자열은 유효하지 않습니다."), 
 	UNDER_ERROR("[ERROR] 1보다 작은 숫자는 입력할 수 없습니다."),
-	OVER_ERROR("[ERROR] 45보다 큰 숫자는 입력할 수 없습니다.");
+	OVER_ERROR("[ERROR] 45보다 큰 숫자는 입력할 수 없습니다."),
+	TOKEN_NUMBER_ERROR("[ERROR] 6개의 숫자를 입력해야 합니다.");
 
 	private String message;
 	private

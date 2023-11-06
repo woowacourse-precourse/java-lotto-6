@@ -25,7 +25,7 @@ public class InputNumberImpl implements InputNumber {
 	@Override
 	public void inputWinningNumbers(Lotto lotto) {
 		numberSplitter = new StringTokenizer(Console.readLine(), ",");
-		validator.validateWinningNumber(numberSplitter);
+		validator.validateWinningNumber(numberSplitter, lotto);
 	}
 
 }

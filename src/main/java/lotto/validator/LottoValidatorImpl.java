@@ -2,6 +2,7 @@ package lotto.validator;
 
 import java.util.StringTokenizer;
 
+import lotto.Lotto;
 import lotto.enumContainer.ErrorOperation;
 import lotto.enumContainer.LottoRange;
 import lotto.utils.ParserFromString;
@@ -24,12 +25,13 @@ public class LottoValidatorImpl implements LottoValidator {
 	}
 
 	@Override
-	public void validateWinningNumber(StringTokenizer numberSplitter) {
+	public void validateWinningNumber(StringTokenizer numberSplitter, Lotto lotto) {
+		validateCountOfTokens(numberSplitter.countTokens());
 		for (int i = 0; i < numberSplitter.countTokens(); i++) {
 			String lottoNumber = numberSplitter.nextToken();
-			validateEmptyString(lottoNumber);
 			validateIsDigit(lottoNumber);
 			int parseNumber = validatelottoRange(lottoNumber);
+			lotto.pushIntoCollection(parseNumber);
 		}
 	}
 
@@ -42,6 +44,12 @@ public class LottoValidatorImpl implements LottoValidator {
 			ErrorOperation.OVER_ERROR.apply();
 		}
 		return parseNumber;
+	}
+
+	private void validateCountOfTokens(int numberOfTokens) {
+		if (numberOfTokens != 6) {
+			ErrorOperation.TOKEN_NUMBER_ERROR.apply();
+		}
 	}
 
 	private void validateEmptyString(String lottoPrice) {

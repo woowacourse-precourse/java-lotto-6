@@ -10,7 +10,7 @@ public class Utils {
 
     public static List<String> splitByComma(String input) {
         validateHasInput(input);
-        return Arrays.asList(removeSpace(input).split(Regex.COMMA.regex));
+        return List.of(removeSpace(input).split(Regex.COMMA.regex));
     }
 
     public static void validateHasInput(String input) {

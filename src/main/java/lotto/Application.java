@@ -32,11 +32,11 @@ public class Application {
 
     static int inputLottoPurchase(){
         int lotto_purchase_amount;
+        String input_lotto_purchase = inputMethod("구입금액을 입력해 주세요");
 
-        System.out.println("구입금액을 입력해 주세요");
         while(true){
             try {
-                lotto_purchase_amount = stringToInt(Console.readLine());
+                lotto_purchase_amount = stringToInt(input_lotto_purchase);
                 checkMultiple1000(lotto_purchase_amount);
                 break;
             } catch (IllegalArgumentException e) {
@@ -74,5 +74,10 @@ public class Application {
         if (num % 1000 != 0){
             throw new IllegalArgumentException("[ERROR] 1000의 배수를 입력해야 합니다.");
         }
+    }
+
+    static String inputMethod(String announcement){
+        System.out.println(announcement);
+        return Console.readLine();
     }
 }

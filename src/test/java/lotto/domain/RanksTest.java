@@ -12,12 +12,11 @@ import static lotto.domain.Rank.*;
 import static org.assertj.core.api.Assertions.*;
 
 class RanksTest {
-    private List<Rank> ranks;
     private Ranks test;
 
     @BeforeEach
     void init() {
-        ranks = new ArrayList<>();
+        List<Rank> ranks = new ArrayList<>();
         ranks.add(FIFTH);
         ranks.add(FIFTH);
         ranks.add(FIFTH);

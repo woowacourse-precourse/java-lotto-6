@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomUtil {
+public class RandomUtils {
     public static List<Integer> createSortedUniqueRandomListOf(int startInclusive, int endInclusive, int expectedSize) {
         List<Integer> ret = new ArrayList<>();
         while (ret.size() < expectedSize) {

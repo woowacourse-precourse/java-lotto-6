@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import utils.RandomUtil;
+import utils.RandomUtils;
 
 public class LottoMachine {
     final int lottoPrice = 1000;
@@ -14,7 +14,7 @@ public class LottoMachine {
         var lottoCount = inputPrice / lottoPrice;
 
         var lottos = IntStream.rangeClosed(1, lottoCount)
-                .mapToObj((i) -> new Lotto(RandomUtil.createSortedUniqueRandomListOf(1, 45, 6)))
+                .mapToObj((i) -> new Lotto(RandomUtils.createSortedUniqueRandomListOf(1, 45, 6)))
                 .collect(Collectors.toList());
         System.out.println(String.format("%d개를 구매했습니다.", lottoCount));
         for (var lotto : lottos) {

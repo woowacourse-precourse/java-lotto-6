@@ -30,7 +30,6 @@ public enum Rank {
 
         if (SECOND.matchCorrectingCount(countOfMatch) && hasBonus) {
             return SECOND;
-
         }
 
         for (Rank rank : Rank.values()) {
@@ -38,8 +37,7 @@ public enum Rank {
                 return rank;
             }
         }
-
-        throw new IllegalArgumentException(countOfMatch + "는 유효하지 않은 값입니다.");
+        return null;
     }
 
     private boolean matchCorrectingCount(int countOfMatch) {

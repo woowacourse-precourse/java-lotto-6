@@ -11,4 +11,8 @@ public class Output {
             System.out.println(lotto);
         }
     }
+
+    public static void printWinStats() {
+
+    }
 }

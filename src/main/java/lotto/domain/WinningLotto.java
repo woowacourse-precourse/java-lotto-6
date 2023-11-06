@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public class WinningLotto   {
+public class WinningLotto {
     private static Lotto LOTTO;
     private static int BONUS;
 

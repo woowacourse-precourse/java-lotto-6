@@ -35,4 +35,13 @@ public class LottoNumberTest {
 
         assertThat(one.compareTo(two)).isEqualTo(-1);
     }
+
+    @DisplayName("로또번호 문자 변환후 반환 기능")
+    @Test
+    void 로또번호_문자화() {
+        LottoNumber lottoNumber = new LottoNumber(15);
+        String expected = "15";
+
+        assertThat(lottoNumber.getNumberMessage()).isEqualTo(expected);
+    }
 }

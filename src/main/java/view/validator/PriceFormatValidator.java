@@ -4,10 +4,9 @@ import util.ErrorMessage;
 
 public class PriceFormatValidator {
 
-    public int checkPriceFormat(String input) {
+    public void checkPriceFormat(String input) {
         isPriceEmpty(input);
-        int price = isPriceContainsOnlyNumber(input);
-        return price;
+        isPriceContainsOnlyNumber(input);
     }
 
     private void isPriceEmpty(String input) {
@@ -17,9 +16,9 @@ public class PriceFormatValidator {
         }
     }
 
-    private int isPriceContainsOnlyNumber(String input) {
+    private void isPriceContainsOnlyNumber(String input) {
         try {
-            return Integer.parseInt(input);
+            Integer.parseInt(input);
         } catch(NumberFormatException e) {
             System.out.println(ErrorMessage.PRICE_CONTAIN_NON_NUMERIC_CHARACTER.getErrorMessage());
             throw new IllegalArgumentException();

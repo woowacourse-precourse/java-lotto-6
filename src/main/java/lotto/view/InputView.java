@@ -11,11 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.util.CharacterUnits.COMMA;
+import static lotto.view.InputViewMessage.*;
 
 public class InputView {
 
     public Cash inputCash() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_CASH_MESSAGE.getMessage());
         String input = getInput();
         Integer cash = Parser.parseInt(input);
         return new Cash(cash);
@@ -23,7 +24,7 @@ public class InputView {
 
 
     public List<Integer> inputWinnerNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_WINNER_NUMBER_MESSAGE.getMessage());
         String input = getInput();
         List<String> numberDummy = Parser.parseNumberDummy(input);
         InputValidator.validateInputNumbersFormat(numberDummy);
@@ -31,12 +32,10 @@ public class InputView {
     }
 
     public Integer inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER.getMessage());
         String input = getInput();
         return Parser.parseInt(input);
     }
-
-
 
 
     private String getInput() {

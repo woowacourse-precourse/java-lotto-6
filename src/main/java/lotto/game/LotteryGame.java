@@ -2,7 +2,9 @@ package lotto.game;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.WinNumber;
 import lotto.io.InputHandler;
@@ -17,6 +19,8 @@ public class LotteryGame {
     private final OutputHandler outputHandler = new OutputHandler();
 
     public void run() {
+        init();
+        outputHandler.print(Messasge.RESULT);
 
     }
 
@@ -82,7 +86,7 @@ public class LotteryGame {
         }
     }
 
-    public int getBonusNumber(List<Integer> numbers) {
+    private int getBonusNumber(List<Integer> numbers) {
         while (true) {
             try {
                 String inputNumber = inputHandler.readLine();
@@ -94,5 +98,14 @@ public class LotteryGame {
                 outputHandler.print(Messasge.ERROR + e.getMessage());
             }
         }
+    }
+
+    private Map<Rank, Integer> getResult(){
+        Map<Rank, Integer> result = new HashMap<>();
+        for (Lotto lotto : lottoList){
+            Rank rank = lotto.getRank(winNumber);
+            result.put(rank, result.getOrDefault(rank, 0)+1);
+        }
+        return result;
     }
 }

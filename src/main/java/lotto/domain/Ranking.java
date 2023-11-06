@@ -9,18 +9,16 @@ public enum Ranking {
     FOURTH(4, 50_000, "4개 일치 (50,000원) - "),
     FIFTH(3, 5_000, "3개 일치 (5,000원) - "),
     MISS(0, 0, "");
-
     Ranking(int countOfmatch, int winningAmount, String message) {
         this.countOfmatch = countOfmatch;
         this.winningAmount = winningAmount;
         this.message = message;
     }
 
+    private static final int WINNING_MIN_COUNT = 3;
     private int countOfmatch;
     private int winningAmount;
     private String message;
-
-    private static final int WINNING_MIN_COUNT = 3;
 
     public static Ranking valueOf(int countOfmatch, boolean matchBonus) {
         if (countOfmatch < WINNING_MIN_COUNT) {
@@ -35,6 +33,14 @@ public enum Ranking {
             }
         }
         throw new IllegalArgumentException();
+    }
+
+    public int getCountOfmatch() {
+        return countOfmatch;
+    }
+
+    public int getWinningMinCount() {
+        return winningAmount;
     }
 
     public boolean matchCount(int countOfmatch) {

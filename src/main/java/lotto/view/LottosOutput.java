@@ -1,8 +1,5 @@
 package lotto.view;
 
-import java.util.List;
-
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.LottoGenerate;
 
@@ -18,5 +15,6 @@ public class LottosOutput {
 
     public static void printLottos(String lottos) {
         System.out.println(lottos);
+        System.out.println("");
     }
 }

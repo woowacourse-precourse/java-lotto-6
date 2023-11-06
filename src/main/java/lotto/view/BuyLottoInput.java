@@ -9,6 +9,7 @@ public class BuyLottoInput {
     public static int buyLottoInput() {
         System.out.println(BUY_LOTTO_MESSAGE);
         String price = UserInput.userInput();
+        System.out.println("");
         int money = validatePrice(price);
         return tickets(money);
     }

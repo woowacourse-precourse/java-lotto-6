@@ -7,6 +7,7 @@ import static lotto.exception.LottoErrorCode.LOTTO_NUMBER_DUPLICATE;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBER_RANGE;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBER_SIZE;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.exception.LottoException;
@@ -54,7 +55,9 @@ public class Lotto {
     }
 
     public String numbersToString() {
-        return numbers.toString();
+        final List<Integer> modifiableNumbers = new ArrayList<>(numbers);
+        Collections.sort(modifiableNumbers);
+        return modifiableNumbers.toString();
     }
 
 }

@@ -24,16 +24,16 @@ public class Controller {
 
     public void run() {
         Money money = getMoney();
-        Lottos lottos = getLottos(money.getMoney());
+        Lottos lottos = getLottos(money.calculateTicketCount());
         showPurchasedLottos(lottos);
         WinningNumbers winningNumbers = getWinningNumbers();
         LottoPrizeCalculator lottoPrizeCalculator = getLottoPrizeCalculator(lottos, winningNumbers);
         showWinningStatistics(lottoPrizeCalculator);
-        showTotalProfit(lottoPrizeCalculator, money.getMoney());
+        showTotalProfit(lottoPrizeCalculator, money.getLottoMoney());
     }
 
     private void showPurchasedLottos(final Lottos lottos) {
-        LottosResponse lottosResponse = LottosResponse.from(lottos.getLottos());
+        LottosResponse lottosResponse = LottosResponse.from(lottos.getPurchasedLottos());
         outputView.printPurchasedLottos(lottosResponse.getLottos());
     }
 

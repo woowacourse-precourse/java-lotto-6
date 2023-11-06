@@ -9,10 +9,10 @@ public class Money {
     private static final int LOTTO_PRICE = 1_000;
     private static final int ZERO = 0;
 
-    private final long money;
+    private final long lottoMoney;
 
-    private Money(final long money) {
-        this.money = money;
+    private Money(final long lottoMoney) {
+        this.lottoMoney = lottoMoney;
     }
 
     public static Money createWith(final String money) {
@@ -60,8 +60,12 @@ public class Money {
         return money % LOTTO_PRICE == ZERO;
     }
 
-    public long getMoney() {
-        return money;
+    public long calculateTicketCount() {
+        return lottoMoney / LOTTO_PRICE;
+    }
+
+    public long getLottoMoney() {
+        return lottoMoney;
     }
 
     @Override
@@ -73,11 +77,11 @@ public class Money {
             return false;
         }
         Money money1 = (Money) object;
-        return money == money1.money;
+        return lottoMoney == money1.lottoMoney;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(money);
+        return Objects.hash(lottoMoney);
     }
 }

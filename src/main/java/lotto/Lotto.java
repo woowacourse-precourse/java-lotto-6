@@ -22,5 +22,8 @@ public class Lotto {
         return numbers.get(index);
     }
 
+    public int getSize(){
+        return numbers.size();
+    }
 
 }

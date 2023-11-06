@@ -1,7 +1,6 @@
 package lotto;
 
 import static lotto.LottoSettingValue.FIRST_LOTTO_INDEX;
-import static lotto.LottoSettingValue.LOTTO_SIZE;
 
 public class GuideMessage{
 
@@ -29,7 +28,7 @@ public class GuideMessage{
     private static String joinCommaWithNumbers(Lotto lotto){
         String commaSplitNumbers = "";
         commaSplitNumbers += lotto.getNumber(FIRST_LOTTO_INDEX);
-        for (int index = 1; index < LOTTO_SIZE ; index++) {
+        for (int index = 1; index < lotto.getSize() ; index++) {
             commaSplitNumbers += COMMA+lotto.getNumber(index);
         }
         return commaSplitNumbers;

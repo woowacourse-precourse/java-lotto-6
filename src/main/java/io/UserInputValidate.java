@@ -25,7 +25,7 @@ public class UserInputValidate {
         return userMoneyAmount;
     }
 
-    static void winLotteryDuplicateAndLength(String winningLotteryInput) {
+    static List<String> winLotteryDuplicateAndLength(String winningLotteryInput) {
         List<String> winningLottery = Arrays.asList(winningLotteryInput.split(","));
         Set<String> removeDuplicatedNum = new HashSet<>(winningLottery);
 
@@ -35,6 +35,7 @@ public class UserInputValidate {
             throw new IllegalArgumentException("[ERROR] 당첨 숫자는 6개 입니다.");
 
         winLotteryRange(winningLotteryInput);
+        return winningLottery;
     }
 
     static List<String> winLotteryRange(String winningLotteryInput) {
@@ -62,6 +63,24 @@ public class UserInputValidate {
         }
 
         return winningLotteryNumber;
+    }
+
+
+    static int bonusNumCheck(String bonusInput, List<Integer> winningLotteryNum) {
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(bonusInput);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
+        }
+        for (int lotteryNum:winningLotteryNum) {
+            if (lotteryNum == bonusNumber)
+                throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 로또 번호는 중복되면 안됩니다.");
+        }
+        if (bonusNumber < minLotteryNum || bonusNumber > maxLotteryNum)
+            throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1부터 45까지입니다.");
+
+        return bonusNumber;
     }
 
 }

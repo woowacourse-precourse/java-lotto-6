@@ -111,4 +111,48 @@ class UserInputValidateTest {
 
         Assertions.assertThat(result).containsExactly(1,2,3,4,5,6);
     }
+
+    @DisplayName("보너스 번호가 유효하면 return 한다.")
+    @Test
+    void 보너스_번호_희망편() {
+        String bonusInput = "6";
+        List<Integer> winningLotteryNum = Arrays.asList(1,2,3,4,30,8);
+
+        int result = UserInputValidate.bonusNumCheck(bonusInput, winningLotteryNum);
+
+        Assertions.assertThat(result).isEqualTo(6);
+    }
+
+    @DisplayName("보너스 번호가 정수가 아닌 경우 에러가 난다.")
+    @Test
+    void 보너스_번호_정수가_아닌_수() {
+        String bonusInput = "가";
+        List<Integer> winningLotteryNum = Arrays.asList(1,2,3,4,30,8);
+
+        Assertions.assertThatThrownBy(() -> UserInputValidate.bonusNumCheck(bonusInput, winningLotteryNum))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 정수여야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 당청 로또 번호와 중복되는 경우 에러가 난다.")
+    @Test
+    void 보너스_번호_중복() {
+        String bonusInput = "30";
+        List<Integer> winningLotteryNum = Arrays.asList(1,2,3,4,30,8);
+
+        Assertions.assertThatThrownBy(() -> UserInputValidate.bonusNumCheck(bonusInput, winningLotteryNum))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호와 당첨 로또 번호는 중복되면 안됩니다.");
+    }
+
+    @DisplayName("보너스 번호의 범위가 1-45가 아닌 경우 에러가 난다.")
+    @Test
+    void 보너스_번호_범위() {
+        String bonusInput = "46";
+        List<Integer> winningLotteryNum = Arrays.asList(1,2,3,4,30,8);
+
+        Assertions.assertThatThrownBy(() -> UserInputValidate.bonusNumCheck(bonusInput, winningLotteryNum))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호의 범위는 1부터 45까지입니다.");
+    }
 }

@@ -22,4 +22,11 @@ public class LottoCollection {
                 .map(lotto -> lotto.getResult(winningLotto, bonusNumber))
                 .toList();
     }
+
+    public void setResultGroup(Lotto winningLotto, int bonusNumber) {
+        List<LottoResult> resultGroup = getResultGroup(winningLotto, bonusNumber);
+        for (LottoResult lottoResult:resultGroup) {
+            lottoResult.setResult();
+        }
+    }
 }

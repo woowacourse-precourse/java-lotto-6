@@ -16,12 +16,31 @@ public class PlayLotto {
         this.prizeNumbers = prizeNumbers;
         validateBonusNuber(bonusNumber);
         this.bonusNumber = bonusNumber;
+        lottoResult.put(Rank.FIFTH, 0);
+        lottoResult.put(Rank.FOURTH, 0);
+        lottoResult.put(Rank.THIRD, 0);
+        lottoResult.put(Rank.SECOND, 0);
+        lottoResult.put(Rank.FIRST, 0);
     }
 
     public void lottoResult(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             putResult(lotto);
         }
+    }
+
+    public Map<Rank, Integer> getLottoResult() {
+        return lottoResult;
+    }
+
+    public long prizeSum() {
+        long prizeSum = 0;
+        
+        for (Rank key : lottoResult.keySet()) {
+            prizeSum += key.getPrizeMoney() * lottoResult.get(key);
+        }
+
+        return prizeSum;
     }
 
     private void putResult(Lotto lotto) {
@@ -39,5 +58,6 @@ public class PlayLotto {
             throw new IllegalArgumentException("보너스 번호는 당첨번호와 중복 값으로 설정할 수 없습니다.");
         }
     }
+
 
 }

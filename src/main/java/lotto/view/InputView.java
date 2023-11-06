@@ -13,6 +13,12 @@ public class InputView {
     private InputView() {
     }
 
+    public String readLottoNumber() {
+        System.out.println(Message.INPUT_LOTTO_NUMBER.message);
+        String input = Console.readLine();
+        return input;
+    }
+
     public String readBonusNumber() {
         System.out.println(Message.INPUT_BONUS_NUMBER.message);
         String input = Console.readLine();

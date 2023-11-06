@@ -6,6 +6,10 @@ public class Validator {
     private static final String MONEY_NEGATIVE_ERROR_MESSAGE = "[ERROR] 구입 금액은 양수여야 합니다.";
     private static final String MONEY_FORMAT_ERROR_MESSAGE = "[ERROR] 구입 금액은 1000 단위로 받습니다.";
 
+    public static String validateLottoNumber(String input) {
+        return "";
+    }
+
     public static int validateBonusNumber(String input) {
         return parseInt(input);
     }

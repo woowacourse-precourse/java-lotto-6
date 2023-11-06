@@ -22,6 +22,7 @@ public class MainController {
         // 수량만큼 로또 생성 후 로또번호 출력
 
         // 당첨번호 입력
+        String inputLotto = inputView.readBonusNumber();
 
         // 보너스번호 입력
         String inputBonus = inputView.readBonusNumber();

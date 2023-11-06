@@ -13,7 +13,7 @@ public class MessageResolver {
 
         message.append(String.format("\n%d개를 구매했습니다.\n", lottos.size()));
         lottos.stream()
-                .map(Lotto::mapToIntegers)
+                .map(Lotto::mapToSortedIntegers)
                 .forEach(numbers -> {
                     message.append(numbers)
                             .append("\n");

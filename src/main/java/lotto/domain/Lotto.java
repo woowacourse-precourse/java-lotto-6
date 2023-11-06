@@ -18,9 +18,10 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public List<Integer> mapToIntegers() {
+    public List<Integer> mapToSortedIntegers() {
         return numbers.stream()
                 .map(LottoNumber::getValue)
+                .sorted()
                 .collect(Collectors.toList());
     }
 

@@ -1,8 +1,10 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 public class Lottos {
@@ -24,6 +26,16 @@ public class Lottos {
         }
 
         return lottos;
+    }
+
+    public Map<Integer, Integer> countNumberOfWins(Lotto winningLotto, BonusNumber bonusNumber) {
+        HashMap<Integer, Integer> numberByRank = new HashMap<>();
+        lottos.forEach(lotto -> {
+            int rank = lotto.judge(winningLotto, bonusNumber);
+            numberByRank.put(rank, numberByRank.getOrDefault(rank, 0) + 1);
+        });
+
+        return numberByRank;
     }
 
     private Lotto createLotto() {

@@ -1,7 +1,7 @@
 package lotto;
 
 public class Application {
-    public static Purchase getPurchaseAmount(getPurchaseUI getPurchaseUI) {
+    public static Purchase getPurchaseAmount(GetPurchaseUI getPurchaseUI) {
 
         String input = getPurchaseUI.enterPurchaseAmountUI();
 
@@ -10,7 +10,7 @@ public class Application {
 
     public static void main(String[] args) {
 
-        getPurchaseUI getPurchaseUI = new getPurchaseUI();
+        GetPurchaseUI getPurchaseUI = new GetPurchaseUI();
         Purchase purchase;
 
         while (true) {

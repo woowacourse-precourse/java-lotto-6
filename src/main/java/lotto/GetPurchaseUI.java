@@ -2,7 +2,7 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class getPurchaseUI {
+public class GetPurchaseUI {
 
     public String enterPurchaseAmountUI() {
 

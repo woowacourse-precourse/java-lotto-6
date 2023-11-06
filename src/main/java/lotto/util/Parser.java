@@ -1,14 +1,16 @@
 package lotto.util;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 
 public class Parser {
     private static final String DELIMITER = ",";
+
+    private Parser() {
+    }
 
     public static int parsePurchasePrice(String input) {
         InputValidator.validateNumberType(input);
@@ -24,7 +26,7 @@ public class Parser {
 
         List<Integer> numbers = Arrays.stream(splitted)
                 .map(Integer::parseInt)
-                .collect(toList());
+                .toList();
 
         InputValidator.validateLottoNumbers(numbers);
         return new Lotto(numbers);

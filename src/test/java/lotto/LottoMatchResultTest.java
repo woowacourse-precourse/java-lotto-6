@@ -1,11 +1,9 @@
 package lotto;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoMatchResultTest {
     @Test
@@ -17,8 +15,8 @@ class LottoMatchResultTest {
         assertThat(LottoMatchResult.fromMatchedCount(5, true)).isEqualTo(LottoMatchResult.MATCHED_5_WITH_BONUS);
         assertThat(LottoMatchResult.fromMatchedCount(6, false)).isEqualTo(LottoMatchResult.MATCHED_6);
 
-        assertThatThrownBy(()->LottoMatchResult.fromMatchedCount(-1, false)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(()->LottoMatchResult.fromMatchedCount(7, false)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoMatchResult.fromMatchedCount(-1, false)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoMatchResult.fromMatchedCount(7, false)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

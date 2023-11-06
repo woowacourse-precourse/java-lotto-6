@@ -35,17 +35,42 @@ public class BuyLotto {
         }
         return result;
     }
-    public int calculateRank(int correct_number,int bonus){
+
+    public int calculateRank(int correct_number, int bonus) {
         int result = correct_number;
-        if(correct_number==6){
+        if (correct_number == 6) {
             result = 7;
         }
-        if(correct_number==5 &&bonus==1){
-            result =6;
+        if (correct_number == 5 && bonus == 1) {
+            result = 6;
         }
-        if(correct_number<3){
+        if (correct_number < 3) {
             result = 0;
         }
+        return result;
+    }
+
+    public int paperRank(List<Integer> paper, List<Integer> answer_number, int bonus) {
+        int correct_number = 0;
+        int bonus_number = 0;
+        int result=0;
+        for (int p = 0, a = 0; p < 6 || a < 6; ) {
+            if (paper.get(p) == answer_number.get(a)) {
+                correct_number++;
+                p++;
+                a++;
+            }
+            if (paper.get(p) == bonus) {
+                bonus_number++;
+            }
+            if (paper.get(p) < answer_number.get(a)) {
+                p++;
+            }
+            if (answer_number.get(a) < paper.get(p)) {
+                a++;
+            }
+        }
+        result = calculateRank(correct_number,bonus_number);
         return result;
     }
 }

@@ -18,8 +18,10 @@ public class InputView {
         return validateNegativeIntegerAndZero(validateInteger(input));
     }
 
-    private void validateLastCharacter(String input) {
-        if (input.endsWith(USER_DEFAULT_DELIMITER)) {
+    public void validateLastCharacter(String input) {
+        char lastCharacter = getLastCharacter(input);
+
+        if (!Character.isDigit(lastCharacter)) {
             throw new IllegalArgumentException(END_OF_SENTENCE_CHARACTER);
         }
     }
@@ -34,6 +36,11 @@ public class InputView {
 
     private char getFirstCharacter(String input) {
         char lastCharacter = input.toCharArray()[0];
+        return lastCharacter;
+    }
+
+    private char getLastCharacter(String input) {
+        char lastCharacter = input.toCharArray()[input.length() - 1];
         return lastCharacter;
     }
 

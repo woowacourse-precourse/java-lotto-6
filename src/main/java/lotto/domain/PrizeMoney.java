@@ -1,7 +1,6 @@
-package lotto.view;
+package lotto.domain;
 
 public enum PrizeMoney {
-
     THREE(5_000),
     FOUR(50_000),
     FIVE(1_500_000),
@@ -17,4 +16,6 @@ public enum PrizeMoney {
     public int getPrizeMoneyValue() {
         return prizeMoneyValue;
     }
+
 }
+

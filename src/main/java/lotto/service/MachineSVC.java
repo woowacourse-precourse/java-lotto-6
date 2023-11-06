@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.*;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class MachineSVC {
         LottoMachine lottoMachine = new LottoMachine();
 
         lottoMachine.setNumOfLotto(vendor.setMoney());
+        OutputView.printNumberOfLotto(lottoMachine.getNumOfLotto());
         lottoMachine.setLottos();
 
         return lottoMachine;

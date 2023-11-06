@@ -25,7 +25,6 @@ public class Client {
     }
 
     public void setBonusNum() {
-        InputView.insertBonusNumber();
         String userInput;
         while (true) {
             userInput = Console.readLine();
@@ -40,7 +39,6 @@ public class Client {
     }
 
     public Lotto getCilentLotto() {
-        InputView.insertLottoNumber();
         String[] clientInput;
         while (true) {
             clientInput = Console.readLine().split(",");

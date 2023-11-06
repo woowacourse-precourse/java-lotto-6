@@ -23,7 +23,6 @@ public class LottoMachine {
     }
 
     public void setLottos() {
-        OutputView.printNumberOfLotto(this.numOfLotto);
         for (int i = 0; i < this.numOfLotto; i++) {
             this.lottos.add(makeLottoNum());
         }

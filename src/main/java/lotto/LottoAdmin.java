@@ -20,6 +20,12 @@ public class LottoAdmin {
         return ranks;
     }
 
+    public void payPrizeMoney(LottoPlayer player) {
+        for (LottoRank rank: checkLottos(player)) {
+            player.addMoney(rank.getValue());
+        }
+    }
+
     private LottoRank getRank(Lotto lotto) {
         int correct = checkNumber(lotto);
         boolean isBonus = checkBonus(lotto);

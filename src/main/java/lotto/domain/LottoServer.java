@@ -46,4 +46,16 @@ public final class LottoServer {
             }
         }
     }
+
+    private BonusNumber receiveBonusNumber(Lotto winningNumber) {
+        outputPort.printInputBonusNumber();
+        while (true) {
+            try {
+                int bonusNumber = inputPort.receiveBonus();
+                return new BonusNumber(bonusNumber, winningNumber);
+            } catch (IllegalArgumentException e) {
+                outputPort.printErrorMessage(e.getMessage());
+            }
+        }
+    }
 }

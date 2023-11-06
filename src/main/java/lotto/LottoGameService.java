@@ -14,6 +14,10 @@ public class LottoGameService {
     private final EnumMap<LottoRank, Integer> lottoRakingMap = new EnumMap<>(LottoRank.class);
 
     public LottoGameService() {
+        initLottoRakingMap();
+    }
+
+    private void initLottoRakingMap() {
         for (LottoRank rank : LottoRank.values()) {
             lottoRakingMap.put(rank, initialCount);
         }

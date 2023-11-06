@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningNumbers;
+import lotto.domain.winningLotto.BonusNumber;
+import lotto.domain.winningLotto.WinningNumbers;
+import lotto.domain.winningLotto.WinningLotto;
 import lotto.dto.IssuedLottoDetails;
 import lotto.service.LottoManager;
 import lotto.view.InputView;
@@ -24,7 +26,9 @@ public class LottoController {
         OutputView.printIssuedLottoDetails(IssuedLottoDetails.createIssuedLottoDetails(issuedLottos));
 
         WinningNumbers winningNumbers = repeatReadForInvalid(this::getWinningNumbers);
-        lottoManager.addRankToWinningDetails(issuedLottos, winningNumbers);
+        BonusNumber bonusNumber = repeatReadForInvalid(this::getBonusNumber);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        lottoManager.addRankToWinningDetails(issuedLottos, winningLotto);
         OutputView.printWinningDetails(lottoManager.getWinningDetailsToString());
 
         double profitRate = lottoManager.calculateProfitRate(purchaseAmount);
@@ -36,10 +40,11 @@ public class LottoController {
     }
 
     private WinningNumbers getWinningNumbers() {
-        return new WinningNumbers(
-                InputView.readWinningNumbers(),
-                InputView.readBonusNumber()
-        );
+        return new WinningNumbers(InputView.readWinningNumbers());
+    }
+
+    private BonusNumber getBonusNumber() {
+        return new BonusNumber(InputView.readBonusNumber());
     }
 
     private <T> T repeatReadForInvalid(Supplier<T> reader) {

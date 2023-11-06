@@ -6,7 +6,7 @@ import lotto.domain.LottoIssuer;
 import lotto.domain.ProfitRateCalculator;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningDetails;
-import lotto.domain.WinningNumbers;
+import lotto.domain.winningLotto.WinningLotto;
 
 public class LottoManager {
 
@@ -24,9 +24,9 @@ public class LottoManager {
         return lottoIssuer.issue(purchaseAmount);
     }
 
-    public void addRankToWinningDetails(List<Lotto> lottos, WinningNumbers winningNumbers) {
+    public void addRankToWinningDetails(List<Lotto> lottos, WinningLotto winningLotto) {
         for (Lotto lotto : lottos) {
-            winningDetails.addRank(winningNumbers.determineRank(lotto));
+            winningDetails.addRank(winningLotto.determineRank(lotto));
         }
     }
 

@@ -35,11 +35,11 @@ public class InputValidation {
         return !number.replaceAll("\\s","").equals(number);
     }
 
-    /* 로또 번호 validation*/
+    /* 당첨 번호 validation*/
     // 1-45 숫자 외 값, 공백은 공통으로 사용
 
     // , 이외의 값
-    public boolean isNumberAndCommaOnly(String numbers) {
+    public boolean commaOnly(String numbers) {
         return numbers.matches(COMMA_REG_EXP);
     }
     // 6자리 인지
@@ -50,6 +50,16 @@ public class InputValidation {
     public void isDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException("중복된 번호를 입력할 수 없습니다.");
+        }
+    }
+
+    /* 보너스 번호 validation
+    *  당첨번호와 공통으로 사용 */
+
+    // 당첨번호와의 중복 여부
+    public void isDuplicateWinningNumber(String number) {
+        if (lotto.contains(number)) {
+            throw new IllegalArgumentException("중복된 번호입니다.");
         }
     }
 }

@@ -58,7 +58,7 @@ public class User {
 
     // 보너스 번호 중복 검사
     private void validateDuplicate(Lotto winningNums, LottoNumber bonusNum) {
-        if(winningNums.getNumbers().contains(bonusNum)) {
+        if(winningNums.getNumbers().stream().anyMatch(e -> e.getNumber() == bonusNum.getNumber())) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUM.getMessage());
         }
     }

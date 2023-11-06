@@ -19,9 +19,21 @@ class MoneyTest {
     @DisplayName("비정상적인 입력으로 돈을 생성하면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(longs = {10001, -1000, 123})
-    void createMoneyByInvalidInput(long unitsOf1000Won) {
+    void createMoneyByInvalidInput(long invalidInput) {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Money(unitsOf1000Won);
+            new Money(invalidInput);
         });
     }
+
+    @DisplayName("구입 가능한 로또의 수를 계산한다.")
+    @ParameterizedTest
+    @ValueSource(longs = {1000, 2000, 3000})
+    void calculatePurchasableLottosCount(long validInput) {
+        Money money = new Money(validInput);
+        long actualPurchasableLottosCount = money.calculatePurchasableLottosCount();
+        long expectedPurchasableLottosCount = validInput / 1000;
+
+        assertEquals(expectedPurchasableLottosCount, actualPurchasableLottosCount);
+    }
+
 }

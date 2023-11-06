@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.constant.ErrorMessage.MONEY_INVALID_AMOUNT_UNIT;
+import static lotto.model.constant.ErrorMessage.MONEY_INVALID_MINIMUM_AMOUNT;
 import static lotto.model.constant.LottoConfig.LOTTO_AMOUNT;
 import static lotto.model.constant.LottoConfig.ZERO;
 
@@ -23,13 +25,13 @@ public class LottoMoney {
 
     private void validateOverZero(int money) {
         if (isOverMinimum(money)) {
-            throw new IllegalArgumentException("[ERROR] 돈은 1,000원 이상 입력가능합니다.");
+            throw new IllegalArgumentException(MONEY_INVALID_MINIMUM_AMOUNT);
         }
     }
 
     private void validateWonUnit(int money) {
         if (money % LOTTO_AMOUNT != ZERO) {
-            throw new IllegalArgumentException("[ERROR] 돈은 1,000원 단위로 입력가능합니다.");
+            throw new IllegalArgumentException(MONEY_INVALID_AMOUNT_UNIT);
         }
     }
 

@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.model.constant.ErrorMessage.NUMBER_DUPLICATED;
+import static lotto.model.constant.ErrorMessage.NUMBER_INVALID_RANGE;
+
 public class WinningNumbers {
 
     private Lotto winningNumbers;
@@ -26,13 +29,13 @@ public class WinningNumbers {
 
     private void validateDuplicateWithWinningNumbers(Lotto lotto, Integer bonusNumber) {
         if (lotto.hasNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호의 숫자는 입력할 수 없습니다.");
+            throw new IllegalArgumentException(NUMBER_DUPLICATED);
         }
     }
 
     private void validateNumberRange(Integer bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 숫자 범위는 입력될 수 없습니다.");
+            throw new IllegalArgumentException(NUMBER_INVALID_RANGE);
         }
     }
 }

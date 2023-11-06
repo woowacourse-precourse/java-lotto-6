@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 
+import static lotto.model.constant.ErrorMessage.*;
 import static lotto.model.constant.LottoConfig.*;
 
 public class Lotto {
@@ -30,19 +31,19 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (isCorrectSize(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호의 개수는 6개만 가능합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_INVALID_SIZE);
         }
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
         if (hasDuplicated(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력될 수 없습니다.");
+            throw new IllegalArgumentException(NUMBER_DUPLICATED);
         }
     }
 
     private void validateRangeNumbers(List<Integer> numbers) {
         if (isValidRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 숫자 범위는 입력될 수 없습니다.");
+            throw new IllegalArgumentException(NUMBER_INVALID_RANGE);
         }
     }
 

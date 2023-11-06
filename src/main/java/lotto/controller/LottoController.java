@@ -23,5 +23,6 @@ public class LottoController {
             }
         }
         OutputView.printLottoQuantity(user.getLottoQuantity());
+        OutputView.printLottoNumber(user.getLottos());
     }
 }

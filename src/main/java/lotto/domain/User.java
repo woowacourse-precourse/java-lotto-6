@@ -30,4 +30,8 @@ public class User {
     public Integer getLottoQuantity() {
         return lottos.size();
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

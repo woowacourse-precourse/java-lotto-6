@@ -13,8 +13,8 @@ import lotto.view.OutputHandler;
 
 public class LottoController {
 
-    int paymentPrice;
-    int ticketCount;
+    long paymentPrice;
+    long ticketCount;
     List<Lotto> lottos;
 
     List<Integer> winningNumbers;
@@ -38,15 +38,15 @@ public class LottoController {
         showRateOfReturn(rank, paymentPrice);
     }
 
-    int getPaymentPrice() {
+    long getPaymentPrice() {
         OutputHandler.requirePaymentPrice();
         String paymentPriceInput = InputHandler.getInput();
-        int paymentPrice = Converter.pay(paymentPriceInput);
+        Long paymentPrice = Converter.pay(paymentPriceInput);
         OutputHandler.printEmptyLine();
         return paymentPrice;
     }
 
-    int getTicketCount(int paymentPrice) throws IllegalArgumentException {
+    long getTicketCount(long paymentPrice) throws IllegalArgumentException {
         if (paymentPrice < 0) {
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_INTEGER);
         }
@@ -56,7 +56,7 @@ public class LottoController {
         return paymentPrice / Number.LOTTO_PRICE;
     }
 
-    List<Lotto> issueLottos(int ticketCount) {
+    List<Lotto> issueLottos(long ticketCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             Lotto lotto = new Lotto();
@@ -119,7 +119,7 @@ public class LottoController {
         return rank;
     }
 
-    void showRateOfReturn(Rank rank, int paymentPrice) {
+    void showRateOfReturn(Rank rank, Long paymentPrice) {
         int winningPrice = rank.getRank(1) * Number.RANK1_PRICE + rank.getRank(2) * Number.RANK2_PRICE
                 + rank.getRank(3) * Number.RANK3_PRICE + rank.getRank(4) * Number.RANK4_PRICE
                 + rank.getRank(5) * Number.RANK5_PRICE;

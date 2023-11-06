@@ -9,7 +9,7 @@ public class OutputHandler {
         System.out.println(SystemMessage.REQUIRE_PAYMENT_PRICE);
     }
 
-    public static void sayTicketCount(int ticketCount) {
+    public static void sayTicketCount(long ticketCount) {
         System.out.println(ticketCount + SystemMessage.SAY_TICKET_COUNT_FORMAT);
     }
 

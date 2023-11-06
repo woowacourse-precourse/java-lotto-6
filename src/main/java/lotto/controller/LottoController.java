@@ -13,10 +13,18 @@ public class LottoController {
     }
 
     public void run() {
+        getUserInputAndValidate();
+    }
+
+    private void getUserInputAndValidate() {
         ConsoleOutput.displayUserInputPrompt();
-        String input = inputView.getUserPurchaseAmount();
-        InputValidator.validateForNonNumericCharacters(input);
-        InputValidator.validateNumberLessThan1000(input);
-        InputValidator.validateChangeAvailableFor1000(input);
+        try {
+            String input = inputView.getUserPurchaseAmount();
+            InputValidator.validateUserInput(input);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getUserInputAndValidate();
+        }
     }
 }

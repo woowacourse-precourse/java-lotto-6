@@ -6,6 +6,13 @@ import lotto.util.ExceptionHandler;
 
 public class InputValidator {
     private static final int THOUSAND = 1000;
+
+    public static void validateUserInput(String input) {
+        validateForNonNumericCharacters(input);
+        validateNumberLessThan1000(input);
+        validateChangeAvailableFor1000(input);
+    }
+
     public static void validateForNonNumericCharacters(String input) {
         String regex = "^[0-9]+$";
 

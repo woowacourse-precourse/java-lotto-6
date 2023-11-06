@@ -10,14 +10,6 @@ public class WinningLotto {
         this.winningLottoNumbers = winningLottoNumbers;
     }
 
-    private static List<Integer> splitWinningLottoNumbers(String winningLottoNumbers) {
-        List<Integer> inputWinningLottoNumbers = new ArrayList<>();
-        for (String winningLottoNumber : winningLottoNumbers.split(",")) {
-            inputWinningLottoNumbers.add(Integer.parseInt(winningLottoNumber));
-        }
-        return inputWinningLottoNumbers;
-    }
-
     public List<Integer> getWinningLottoNumbers() {
         return winningLottoNumbers;
     }

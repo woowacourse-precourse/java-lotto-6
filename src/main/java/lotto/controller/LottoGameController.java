@@ -2,13 +2,14 @@ package lotto.controller;
 
 import lotto.LottoNumberGenerator.NormalLottoGenerator;
 import lotto.model.Game.Game;
-import lotto.model.Lotto.BonusNumber;
 import lotto.model.Lotto.Lotto;
-import lotto.model.Lotto.WinningLotto;
+import lotto.model.Result.Rank;
 import lotto.model.money.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGameController {
@@ -26,9 +27,39 @@ public class LottoGameController {
         printLottoAmount(game);
         generateLottoNumber(game);
         printLottoNumber(game);
-        WinningLotto winningLotto = new WinningLotto(inputWinningLottoNumbers());
-        BonusNumber bonusNumber = inputUserBonusNumber(winningLotto);
-        bonusNumber.getBonusNumber();
+        inputWinningLottoNumbers(game);
+        inputUserBonusNumber(game);
+        compareLotto(game);
+        printResultLottoGame(money, game);
+    }
+
+    private void printResultLottoGame(Money money, Game game) {
+        outputView.printEmptyLine();
+        outputView.printResultTitle();
+
+        List<Integer> list = new ArrayList<>();
+        for (Rank rank : Rank.values()) {
+            list.add(rank.getAmount());
+        }
+        outputView.printLottoResult(list);
+        outputView.printProfit(money.getMoney(), game.getTotalPrice());
+    }
+
+    private void compareLotto(Game game) {
+        List<Integer> comparedWinning = compareWinningLottoNumber(game);
+        List<Boolean> comparedBonus = compareBonusLottoNumber(game);
+
+        for (int i = 0; i < game.getAmountOfLotto(); i++) {
+            game.checkLottoResult(comparedWinning.get(i), comparedBonus.get(i));
+        }
+    }
+
+    private List<Boolean> compareBonusLottoNumber(Game game) {
+        return game.compareBonusLotto();
+    }
+
+    private List<Integer> compareWinningLottoNumber(Game game) {
+        return game.compareLotto();
     }
 
     private Money inputUserMoneyAmount() {
@@ -49,13 +80,13 @@ public class LottoGameController {
         }
     }
 
-    private List<Integer> inputWinningLottoNumbers() {
+    private void inputWinningLottoNumbers(Game game) {
         outputView.printEmptyLine();
-        return inputView.inputWinningLottoNumbers();
+        game.createWinningLotto(inputView.inputWinningLottoNumbers());
     }
 
-    private BonusNumber inputUserBonusNumber(WinningLotto winningLotto) {
+    private void inputUserBonusNumber(Game game) {
         outputView.printEmptyLine();
-        return BonusNumber.create(inputView.inputBonusNumber(winningLotto.getWinningLottoNumbers()));
+        game.createBonusNumber(inputView.inputBonusNumber(game.getWinningLotto().getWinningLottoNumbers()));
     }
 }

@@ -49,4 +49,8 @@ public class OutputView {
     public void printRateOfReturn(double rateOfReturn) {
         System.out.println(StringUtil.doubleToString(rateOfReturn));
     }
+
+    public void printNumberOfPurchases(int purchaseCount) {
+        System.out.println(purchaseCount + "개를 구매했습니다.");
+    }
 }

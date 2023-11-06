@@ -39,9 +39,7 @@ public class InputView {
                 WinningNumbers = new ArrayList<>();
                 String InputData = Console.readLine();
                 storeWinningNumbersArraysToList(WinningNumbers, InputData);
-                CustomizedException.winningNumbersSizeMoreOrLess(WinningNumbers);
-                CustomizedException.winningNumbersNotRange(WinningNumbers);
-                CustomizedException.winningNumberHasSameNumber(WinningNumbers);
+                CustomizedException.winningNumbersQualification(WinningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

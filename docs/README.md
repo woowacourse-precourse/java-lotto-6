@@ -92,5 +92,9 @@ CustomizedException클래스 winningNumbersNotRange메소드
 ```````````````````````````````
 14. 당첨 숫자에 동일한 숫자를 넣으면 오류를 일으키는 기능 추가
 ``````````````````````````
-CustomizedException클래스 winningNumberHasSameNumber
+CustomizedException클래스 winningNumberHasSameNumber메소드
+```````````````````````````````
+15. 당첨 숫자의 자격에서 벗어나면 오류를 일으키는 메소드들을 묶어놓은 기능 추가
+``````````````````````````
+CustomizedException클래스 winningNumbersQualification메소드
 ```````````````````````````````

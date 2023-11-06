@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 public class CustomizedException {
     static final String ERROR_MESSAGE_INIT = "[ERROR] ";
     static final int WINNING_NUMBERS_SIZE = 6;
@@ -38,4 +39,9 @@ public class CustomizedException {
         }
     }
 
+    public static void winningNumbersQualification(List<Integer> winningNumbers){
+        CustomizedException.winningNumbersSizeMoreOrLess(winningNumbers);
+        CustomizedException.winningNumbersNotRange(winningNumbers);
+        CustomizedException.winningNumberHasSameNumber(winningNumbers);
+    }
 }

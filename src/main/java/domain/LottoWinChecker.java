@@ -9,9 +9,7 @@ public class LottoWinChecker {
     private final List<Integer> winningNumbers;
     private List<Integer> userNumbers;
 
-
     boolean correctBonus = false;
-
 
     public LottoWinChecker(Lotto lotto, List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;

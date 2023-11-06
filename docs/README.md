@@ -45,9 +45,9 @@
 
 ## 테스트 목표
 1. 로또 구입 금액 테스트
-    - [ ]   올바른 입력일 시 어떠한 Exception도 감지되지 않는다.
-    - [ ]   숫자가 아닐 경우 IllegalArgumentException을 반환한다.
-    - [ ]   integer의 범위를 초과할 경우 IllegalArgumentException을 반환한다.
-    - [ ]   0이하의 값을 입력할 경우 IllegalArgumentException을 반환한다.
-    - [ ]   로또 구입 금액이 로또 금액 (현재 기준 1,000원)으로 나누어 떨어진다면 어떠한 Exception도 감지되지 않는다.
-    - [ ]   로또 구입 금액이 로또 금액 (현재 기준 1,000원)으로 나누어 떨어지지 않는다면 IllegalArgumentException을 반환한다.
+    - [x]   올바른 입력일 시 어떠한 Exception도 감지되지 않는다.
+    - [x]   숫자가 아닐 경우 IllegalArgumentException을 반환한다.
+    - [x]   integer의 범위를 초과할 경우 IllegalArgumentException을 반환한다.
+    - [x]   0이하의 값을 입력할 경우 IllegalArgumentException을 반환한다.
+    - [x]   로또 구입 금액이 로또 금액 (현재 기준 1,000원)으로 나누어 떨어진다면 어떠한 Exception도 감지되지 않는다.
+    - [x]   로또 구입 금액이 로또 금액 (현재 기준 1,000원)으로 나누어 떨어지지 않는다면 IllegalArgumentException을 반환한다.

@@ -19,14 +19,26 @@ public class RecordService {
 
     private void recordResult(LottoTicket lottoTicket, Result value) {
         if (lottoTicket.getSameCount() == value.getSameCount()) {
-            if (value.getSameCount() == SAME_COUNT_FIVE.getNumber()) {
-                checkIsSecond(lottoTicket, value);
-                return;
-            }
-            if (!lottoTicket.isBonus()) {
-                value.addCount();
-            }
+            addResultCount(lottoTicket, value);
         }
+    }
+
+    private void addResultCount(LottoTicket lottoTicket, Result value) {
+        if (isSameCountFive(value)) {
+            checkIsSecond(lottoTicket, value);
+            return;
+        }
+        if (isNoBonus(lottoTicket)) {
+            value.addCount();
+        }
+    }
+
+    private boolean isNoBonus(LottoTicket lottoTicket) {
+        return !lottoTicket.isBonus();
+    }
+
+    private boolean isSameCountFive(Result value) {
+        return value.getSameCount() == SAME_COUNT_FIVE.getNumber();
     }
 
     private void checkIsSecond(LottoTicket lottoTicket, Result value) {

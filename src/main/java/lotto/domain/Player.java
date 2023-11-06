@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class Player {
     private static final int LOTTO_MIN_PRICE = 1000;
-    private static final String NUMBER_ERROR_MESSAGE = "숫자를 입력하세요.";
+    private static final String NUMBER_ERROR_MESSAGE = "숫자만 입력가능합니다.";
     private static final String NATURAL_ERROR_MESSAGE = "최소금액은 " + LOTTO_MIN_PRICE + "원 입니다.";
     private static final String DIVISIBLE_ERROR_MESSAGE = LOTTO_MIN_PRICE + "원 단위로 입력하세요.";
     private static int amount;

@@ -26,6 +26,7 @@ public class LottoController {
     public void playLotto(){
         try {
             purchaseLotto();
+            setWinningAndBonus();
         } catch(NumberFormatException e){
 
         } catch(IllegalArgumentException e){
@@ -40,6 +41,19 @@ public class LottoController {
         PurchaseLottos purchaseLottos = setPurchaseLottos(numberOfLottosPurchased);
         lotto = purchaseLottos.getPurchaseLottos();
         printInfo(lotto, numberOfLottosPurchased);
+    }
+
+    private void setWinningAndBonus(){
+        setWinningNumbers();
+        setBonusNumber();
+    }
+
+    private void setWinningNumbers(){
+        InputView.enterWinningNumbers();
+    }
+
+    private void setBonusNumber(){
+        InputView.enterBonusNumber();
     }
 
     private PurchaseAmount setPurchaseAmount(){

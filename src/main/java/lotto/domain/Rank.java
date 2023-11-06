@@ -20,21 +20,17 @@ public enum Rank {
         this.prizeMoney = prizeMoney;
     }
 
-    public Rank decideRank(int sameNumberCount, boolean isContainBonusNumber) {
+    public static Rank decideRank(int sameNumberCount, boolean isContainBonusNumber) {
         if(isContainBonusNumber && sameNumberCount == 5) {
             return SECOND;
         }
         return Arrays.stream(Rank.values())
-                .filter(rank -> isCountMatch(sameNumberCount) && rank != SECOND)
+                .filter(rank -> rank.sameNumberCount == sameNumberCount && rank != SECOND)
                 .findAny()
                 .orElse(ZERO);
     }
 
     public int getPrizeMoney() {
         return prizeMoney;
-    }
-
-    private boolean isCountMatch(int sameNumberCount) {
-        return this.sameNumberCount == sameNumberCount;
     }
 }

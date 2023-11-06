@@ -12,5 +12,8 @@ public class DisplayInput {
         String lottoNumbers = Console.readLine();
         return lottoNumbers;
     }
+    public Integer inputBonusNumber(){
+        return Integer.parseInt(Console.readLine());
+    }
 
 }

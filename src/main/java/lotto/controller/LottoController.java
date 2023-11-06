@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.BounsNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoAmountofMoney;
 import lotto.view.DisplayInput;
@@ -15,6 +16,7 @@ public class LottoController {
     public void play(){
         LottoAmountofMoney lottoAmountofMoney = new LottoAmountofMoney(getLottoAmountofMoney());
         Lotto answerLotto = new Lotto(getAnswerLottoNumber());
+        BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
     }
     private Integer getLottoAmountofMoney(){
         return displayInput.inputLottoAmountofMoney();
@@ -28,6 +30,9 @@ public class LottoController {
             lottoNumbers.add(Integer.parseInt(lottoNumber));
         }
         return lottoNumbers;
+    }
+    private Integer getBonusNumber(){
+        return displayInput.inputBonusNumber();
     }
 
 

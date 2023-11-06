@@ -1,6 +1,9 @@
 package lotto.view;
 
 import lotto.constant.Views;
+import lotto.domain.Lotto;
+
+import java.util.List;
 
 public class LottoView {
 
@@ -12,4 +15,12 @@ public class LottoView {
         System.out.println();
         System.out.println(amount + Views.OUTPUT_PURCHASE_AMOUT_MESSAGE.getMessage());
     }
+
+    public void printPurchaseLotto(List<Lotto> lotts){
+        for(Lotto lotto : lotts){
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
+
 }

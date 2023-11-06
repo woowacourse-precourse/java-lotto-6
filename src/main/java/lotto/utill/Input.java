@@ -13,7 +13,7 @@ public class Input {
 
         // TODO: 11/6/23
         ValidateException.includeStringExceptionComma(inputStringLine);
-//        ValidateException.blankCheck(inputStringLine);
+        ValidateException.blankCheck(inputStringLine);
 //        ValidateException.includeBlank(inputStringLine);
 //        ValidateException.includeSpecialString(inputStringLine);
 //        ValidateException.commaStartAndEnd(inputStringLine);

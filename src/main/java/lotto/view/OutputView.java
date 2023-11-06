@@ -24,4 +24,14 @@ public class OutputView {
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", lottoResult.getOrDefault(Rank.SECOND, 0));
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", lottoResult.getOrDefault(Rank.FIRST, 0));
     }
+
+    public static void printRate(Map<Rank, Integer> lottoResult, Money money) {
+        double totalPrize = lottoResult.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        double rate = (totalPrize / money.getMoney()) * 100;
+
+        System.out.printf("총 수익률은 %.1f%%입니다.", rate);
+
+    }
 }

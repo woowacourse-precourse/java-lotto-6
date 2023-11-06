@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.domain.ErrorMessage;
+import lotto.util.ErrorMessage;
 
 public class PurchaseAmountValidator {
 
@@ -10,7 +10,7 @@ public class PurchaseAmountValidator {
         validateMoneyType(money);
         int purchaseMoney = Integer.parseInt(money);
         validateMoneyDivide(purchaseMoney, divider);
-        validateMoneyLessThanZero(purchaseMoney);
+        validateMoneyNotMoreThanZero(purchaseMoney);
     }
 
     public static void validateMoneyType(String money){
@@ -25,9 +25,9 @@ public class PurchaseAmountValidator {
         }
     }
 
-    public static void validateMoneyLessThanZero(int money){
-        if(money < 0){
-            throw new IllegalArgumentException(ErrorMessage.CANT_BUY_LESS_THAN_ZERO);
+    public static void validateMoneyNotMoreThanZero(int money){
+        if(money <= 0){
+            throw new IllegalArgumentException(ErrorMessage.CANT_BUY_NOT_MORE_THAN_ZERO);
         }
     }
 

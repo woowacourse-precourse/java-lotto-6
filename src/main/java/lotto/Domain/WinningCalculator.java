@@ -46,4 +46,8 @@ public class WinningCalculator {
                 .filter(number -> winningNumbers.stream().anyMatch(Predicate.isEqual(number)))
                 .count();
     }
+
+    private String totalprizeMoneyToString(double amount){
+        return String.format("%.1f", amount);
+    }
 }

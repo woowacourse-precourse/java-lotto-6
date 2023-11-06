@@ -4,11 +4,11 @@ import java.text.NumberFormat;
 import java.util.Arrays;
 
 public enum RankMessage {
-    FIRST_MESSAGE(Rank.FIRST, "6개 일치 %s - %d개"),
-    SECOND_MESSAGE(Rank.SECOND, "5개 일치, 보너스 볼 일치 %s - %d개"),
-    THIRD_MESSAGE(Rank.THIRD, "5개 일치 %s - %d개"),
-    FOURTH_MESSAGE(Rank.FOURTH, "4개 일치 %s - %d개"),
-    FIFTH_MESSAGE(Rank.FIFTH, "3개 일치 %s - %d개"),
+    FIRST_MESSAGE(Rank.FIRST, "6개 일치 (%s원) - %d개"),
+    SECOND_MESSAGE(Rank.SECOND, "5개 일치, 보너스 볼 일치 (%s원) - %d개"),
+    THIRD_MESSAGE(Rank.THIRD, "5개 일치 (%s원) - %d개"),
+    FOURTH_MESSAGE(Rank.FOURTH, "4개 일치 (%s원) - %d개"),
+    FIFTH_MESSAGE(Rank.FIFTH, "3개 일치 (%s원) - %d개"),
     NONE_MESSAGE(Rank.NONE, "");
 
     private final Rank rank;

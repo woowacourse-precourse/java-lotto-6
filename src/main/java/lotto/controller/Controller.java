@@ -14,6 +14,7 @@ public class Controller {
     private final static String PROFITS_RATE_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
     private final static String RESULT_INSTRUCTION_MESSAGE = "당첨 통계";
     private final static String SEPARATOR_LINE = "---";
+    private final static double PERCENTAGE_MULTIPLIER = 100.0;
 
     private final PurchaseAmount purchaseAmount;
     private final LottoManager lottoManager;
@@ -32,7 +33,7 @@ public class Controller {
     }
 
     private double calculateProfitRate() {
-        return (double) lottoResult.getProfits() / purchaseAmount.purchaseAmount();
+        return PERCENTAGE_MULTIPLIER * lottoResult.getProfits() / purchaseAmount.purchaseAmount();
     }
 
     private void printProfitRate() {

@@ -25,8 +25,8 @@ public class LottoParser extends Parser {
     /**
      * Description: Parse LottoNumbers to List&lt;Integer&gt;
      */
-    public static Integer[] parseLottoNumbersToIntArray(LottoNumbers args) {
-        return (Integer[]) args.getNumbers().stream()
+    private static Object[] parseLottoNumbersToIntArray(LottoNumbers args) {
+        return args.getNumbers().stream()
                 .map(LottoNumber::getNumber)
                 .toArray();
     }

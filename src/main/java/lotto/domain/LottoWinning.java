@@ -12,7 +12,7 @@ public class LottoWinning {
     }
 
     public List<Integer> getNumbers(){
-        return winningNumbers.getNumbers();
+        return winningNumbers.numbers();
     }
 
     public int getBonusNumber(){

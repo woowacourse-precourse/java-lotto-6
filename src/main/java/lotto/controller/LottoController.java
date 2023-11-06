@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
+    public static final int lottoPrice = 1000;
 
     private NumberGenerator lottoGenerator;
 

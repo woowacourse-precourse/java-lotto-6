@@ -21,8 +21,9 @@ public enum Rank {
 
     public static Rank Of(int matched, boolean matchedBonus) {
         if (matched == SECOND.matched) {
-            if (matchedBonus)
+            if (matchedBonus) {
                 return SECOND;
+            }
             return THIRD;
         }
 

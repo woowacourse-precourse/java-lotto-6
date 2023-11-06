@@ -21,6 +21,7 @@ public class PurchaseAmountValidator implements Validator<String> {
         notStartsZero(input);
         range(input);
         divisibleByUnit(input);
+
         return input;
     }
 

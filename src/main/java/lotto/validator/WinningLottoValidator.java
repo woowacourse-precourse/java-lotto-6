@@ -21,10 +21,10 @@ public class WinningLottoValidator implements Validator <String> {
 
     @Override
     public String validate(String input) {
-        List<String> splitNumbers = NumberSplitter.splitNumbers(input);
-
         comma(input);
         numericWithComma(input);
+
+        List<String> splitNumbers = NumberSplitter.splitNumbers(input);
         maxAmount(splitNumbers);
         unique(splitNumbers);
 

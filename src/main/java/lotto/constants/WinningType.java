@@ -1,6 +1,12 @@
 package lotto.constants;
 
 public enum WinningType implements Calculator {
+    NONE("") {
+        @Override
+        public int calculateProfit(int amount) {
+            return 0;
+        }
+    },
     THREE("3개 일치 (5,000원) - %d개") {
         @Override
         public int calculateProfit(int amount) {
@@ -36,6 +42,25 @@ public enum WinningType implements Calculator {
 
     WinningType(String message) {
         this.message = message;
+    }
+
+    public static WinningType findTypeByCount(int matchedCount, boolean isBonus) {
+        if (matchedCount == 3) {
+            return WinningType.THREE;
+        }
+        if (matchedCount == 4) {
+            return WinningType.FOUR;
+        }
+        if (matchedCount == 5) {
+            if (isBonus) {
+                return WinningType.FIVE_BONUS;
+            }
+            return WinningType.FIVE;
+        }
+        if (matchedCount == 6) {
+            return WinningType.SIX;
+        }
+        return WinningType.NONE;
     }
 
     public String getMessage() {

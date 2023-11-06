@@ -9,6 +9,7 @@ import lotto.constants.WinningType;
 public record WinningResult(Map<WinningType, Integer> winningMap) {
     public WinningResult() {
         this(new TreeMap<>(Map.of(
+                WinningType.NONE, 0,
                 WinningType.THREE, 0,
                 WinningType.FOUR, 0,
                 WinningType.FIVE, 0,
@@ -18,19 +19,8 @@ public record WinningResult(Map<WinningType, Integer> winningMap) {
     }
 
     public void updateResult(int matchedCount, boolean isBonus) {
-        if (matchedCount == 3) {
-            winningMap.replace(WinningType.THREE, winningMap().get(WinningType.THREE) + 1);
-        } else if (matchedCount == 4) {
-            winningMap.replace(WinningType.FOUR, winningMap().get(WinningType.FOUR) + 1);
-        } else if (matchedCount == 5) {
-            if (isBonus) {
-                winningMap.replace(WinningType.FIVE_BONUS, winningMap().get(WinningType.FIVE_BONUS) + 1);
-                return;
-            }
-            winningMap.replace(WinningType.FIVE, winningMap().get(WinningType.FIVE) + 1);
-        } else if (matchedCount == 6) {
-            winningMap.replace(WinningType.SIX, winningMap().get(WinningType.SIX) + 1);
-        }
+        WinningType winningType = WinningType.findTypeByCount(matchedCount, isBonus);
+        winningMap.replace(winningType, winningMap.get(winningType) + 1);
     }
 
     public int getTotalPrize() {
@@ -46,9 +36,12 @@ public record WinningResult(Map<WinningType, Integer> winningMap) {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for (Map.Entry<WinningType, Integer> entry : winningMap.entrySet()) {
-            builder.append(String.format(entry.getKey().getMessage() + NEW_LINE.getMessage(), entry.getValue()));
-        }
+        winningMap.keySet()
+                .forEach((winningType) -> {
+                    String message = winningType.getMessage();
+                    int quantity = winningMap.get(winningType);
+                    builder.append(String.format(message + NEW_LINE.getMessage(), quantity));
+                });
         return builder.toString();
     }
 }

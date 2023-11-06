@@ -38,4 +38,28 @@ public class LottoValidatorTest {
                 Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7))
         );
     }
+
+    @Test
+    void checkRange() {
+        List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThatCode(() -> lottoValidator.checkRange(numbers))
+                .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @MethodSource("numbersProviderForRange")
+    void checkInvalidRangeNumber(List<Integer> numbers) {
+        assertThatThrownBy(() -> lottoValidator.checkRange(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContainingAll("[ERROR] 입력 가능한 로또 숫자 범위는 1 ~ 45입니다.");
+    }
+
+    private static Stream<Arguments> numbersProviderForRange() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 23, 44, 55, 24)),
+                Arguments.of(List.of(0, 12, 3, 4, 5, 45)),
+                Arguments.of(List.of(1, 2, 23, 44, 45, 46))
+        );
+    }
 }

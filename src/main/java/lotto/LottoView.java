@@ -18,7 +18,8 @@ public class LottoView {
         checkWinningNumber();
         checkBonusNumber();
         double rewardRate = showReward();
-        System.out.println(text.RATE1.getText()+rewardRate+text.RATE2.getText());
+        String result = text.RATE1 + Double.toString(rewardRate) + text.RATE2;
+        System.out.println(result);
     }
     private void checkMoney(){
         try {

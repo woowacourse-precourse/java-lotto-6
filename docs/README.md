@@ -33,5 +33,28 @@
 5. 추가 변경사항
    1. 금액을 처리하는 Money 클래스 생성
        - 구입금액, 수익금, 수익률을 처리한다.
+   2. Enum 클래스 생성
+       - 안내 텍스트를 가진 Text, 당첨금 출력 및 통계를 위한 Reward 생성
+       - 기존 상수를 없애고 Enum으로 대체
+       - toString()을 추가하여 출력시 원하는 포맷으로 출력 
 <br></br>
 6. 메서드 정의
+   1. LottoView 클래스
+       1. checkMoney() : 금액을 입력받는다.
+       2. purchaceLotto() : 입력받은 금액으로 로또를 구입, 출력한다.
+       3. checkWinningNumber() : 당첨번호를 입력받는다.
+       4. checkBonusNumber() : 보너스 번호를 입력받는다.
+       5. showReward() : 당첨 통계를 구하고 출력한뒤, 수익률을 반환한다.
+       <br></br>
+       - 각 함수들은 try-catch 구문을 사용하여 오류를 체크하고 catch 내에서 재귀하여 
+           예외 발생 시 다시 해당 부분부터 재시작하도록 하였다.
+       - NumberFormatException이 IllegalArgumentException을 상속받아 동일한 catch구문에 걸렸기 때문에 
+           NumberFormatException 시 원하는 문구를 출력하기 위해서 if문을 추가하였다. 
+      <br></br>
+   2. LottoController 클래스
+       1. start() : 입력받은 금액으로 구입해야 할 로또의 수를 구한다. 
+       2. startLotto() : Randoms를 통해 복권을 생성하고 저장하는 함수
+       3. showLottos() : 생성한 복권을 출력하는 함수
+       4. showLottoReward() : 복권을 당첨번호와 비교하여 통계를 만들고 구한 통계를 출력하는 함수, 
+          이후 수익률을 반환한다.
+           - checkNumber() : 생성한 로또복권과 당첨번호를 비교하는 함수

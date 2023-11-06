@@ -7,9 +7,11 @@ import lotto.io.views.LottoGameView;
 public class LottoGame {
 
     private final LottoGameView lottoGameView;
+    private final LottosRandoms lottosRandoms;
 
-    public LottoGame(LottoGameView lottoGameView) {
+    public LottoGame(LottoGameView lottoGameView, LottosRandoms lottosRandoms) {
         this.lottoGameView = lottoGameView;
+        this.lottosRandoms = lottosRandoms;
     }
 
     public void run() {
@@ -26,8 +28,7 @@ public class LottoGame {
             }
         }
 
-        LottosRandoms lottoNumberAlgorithm = new LottosRandoms();
-        lottos.make(lottoNumberAlgorithm);
+        lottos.make(lottosRandoms);
     }
 
 }

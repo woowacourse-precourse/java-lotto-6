@@ -35,6 +35,9 @@ public class Application {
         Result result = lottoController.createResult(jackpot, lottos, purchase);
         lottoController.calculateWinningRanks(result);
         outputView.printWinningStatistics(result);
-        
+
+        // 발행된 로또들의 수익률 계산
+        Double rate = lottoController.calculateProfitRate(result);
+        outputView.printProfitRate(rate);
     }
 }

@@ -19,9 +19,10 @@ public class LottoController {
     private final LottoService lottoService = LottoService.getInstance();
 
     public void run() {
-        OutputView.PrintBuyPrice();
+        OutputView.printBuyPrice();
         int buyAmount = InputView.getBuyAmount();
-        OutputView.PrintBuyAmount(buyAmount);
+        OutputView.printBuyAmount(buyAmount);
         List<Lotto> userLottos = lottoService.getLottoNumbers(buyAmount);
+        OutputView.printUserLottos(userLottos);
     }
 }

@@ -42,7 +42,7 @@ class InputValidatorTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputValidator.validate(input))
                 .withMessageStartingWith(error)
-                .withMessageContaining("숫자와 구분자 쉼표(,)만 입력할 수 있습니다.");
+                .withMessageContaining("숫자와 구분자 쉼표(,)로 구분한 숫자들만 입력할 수 있습니다.");
     }
 
     @ParameterizedTest(name = "입력값 : {0}")

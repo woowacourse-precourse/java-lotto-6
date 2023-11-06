@@ -2,12 +2,7 @@ package lotto.winning;
 
 public enum PrizeIndex {
     COUNT(0),
-    PRIZE(1),
-    FIRST(2000000000),
-    SECOND(30000000),
-    THIRD(1500000),
-    FOURTH(50000),
-    FIFTH(5000);
+    PRIZE(1);
 
     private final int number;
 

@@ -24,4 +24,7 @@ public class PrintOutput {
             System.out.println(sb);
         }
     }
+    public void printLottoNumberQuestion(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

@@ -47,4 +47,12 @@ public enum WinningStatistics {
     public int getRank() {
         return this.rank;
     }
+
+    public double getWinningDoublePrice() {
+        return (double) this.winningPrice;
+    }
+
+    public int getWinningPrice() {
+        return this.winningPrice;
+    }
 }

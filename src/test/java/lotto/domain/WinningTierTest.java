@@ -27,19 +27,16 @@ public class WinningTierTest {
         WinningTier winningTier = new WinningTier();
         winningTier.estimate(userCorrectWinningsCount, userCorrectBonuses);
 
-        Assertions.assertThat(winningTier.getWinningTier().get(0).getRank()).isEqualTo(1);
-        Assertions.assertThat(winningTier.getWinningTier().get(1).getRank()).isEqualTo(2);
-        Assertions.assertThat(winningTier.getWinningTier().get(2).getRank()).isEqualTo(1);
+        Assertions.assertThat(winningTier.getWinningTier().get(1)).isEqualTo(2);
+        Assertions.assertThat(winningTier.getWinningTier().get(2)).isEqualTo(1);
     }
 
     @Test
     void 소수점_둘째_자리에서_반올림하는_기능_검증() {
-        WinningTier winningTier = new WinningTier();
-
         double before = 66.2565;
         double after = 66.26;
 
-        double result = winningTier.calculateRounds(before);
+        double result = WinnerRevenue.calculateRounds(before);
         Assertions.assertThat(result).isEqualTo(after);
     }
 }

@@ -31,16 +31,14 @@ public class DrawController {
     }
 
     public void draw() {
-        System.out.println("구입금액을 입력해 주세요.");
-        purchaseLotto.purchase(InputView.input());
+        inputPurchaseAmount();
 
         issueLotto.issue(purchaseLotto.getNumberOfPurchases());
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        winningNumber.inputWinningNumber(InputView.input());
+        inputWinningNumber();
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNumber.inputBonusNumber(InputView.input(), winningNumber.getWinningNumbers());
+        inputBonusNumber();
+
         matchLotto.matchLotto(winningNumber.getWinningNumbers(),
                 bonusNumber.getBonusNumber(), issueLotto.getLottoPurchaseHistory());
         lottoResult.checkResult(matchLotto.getWinningMatchResult(), matchLotto.getBonusMatchResult());
@@ -65,6 +63,36 @@ public class DrawController {
 
         yield.calculateYield(lottoResult.getTotalPrizeMoney(), purchaseLotto.getPurchaseAmount());
         System.out.println("총 수익률은 " + yield.getYield() + "%입니다.");
+    }
+
+    private void inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        try {
+            bonusNumber.inputBonusNumber(InputView.input(), winningNumber.getWinningNumbers());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+            bonusNumber.inputBonusNumber(InputView.input(), winningNumber.getWinningNumbers());
+        }
+    }
+
+    private void inputWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        try {
+            winningNumber.inputWinningNumber(InputView.input());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+            winningNumber.inputWinningNumber(InputView.input());
+        }
+    }
+
+    private void inputPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+        try {
+            purchaseLotto.purchase(InputView.input());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+            purchaseLotto.purchase(InputView.input());
+        }
     }
 
     private static String formatWinningAmount(int amount) {

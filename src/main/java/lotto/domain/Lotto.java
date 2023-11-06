@@ -50,4 +50,14 @@ public class Lotto {
         sortIncreasingOrder();
         return new LottoResponse(numbers);
     }
+
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
+    public int countMatching(Lotto other) {
+        return (int) numbers.stream()
+            .filter(num -> other.contains(num))
+            .count();
+    }
 }

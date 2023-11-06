@@ -15,7 +15,14 @@ public class Lotto {
     }
 
     private void validateOverlap(List<Integer> numbers) {
+
+
         Set<Integer> overlapCheck = new HashSet<>();
+
+        for(int i : numbers){
+            overlapCheck.add(i);
+        }
+
         if(overlapCheck.size()!=6){
             throw new IllegalArgumentException();
         }

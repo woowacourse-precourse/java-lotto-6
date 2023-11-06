@@ -30,6 +30,11 @@ public class Application {
         String winningNumbers = inputView.inputWinningNumbers();
         String bonusNumber = inputView.inputBonusNumber();
         Jackpot jackpot = lottoController.createWinningNumbers(winningNumbers, bonusNumber);
+
+        // 발행된 로또들의 당첨 여부 계산
+        Result result = lottoController.createResult(jackpot, lottos, purchase);
+        lottoController.calculateWinningRanks(result);
+        outputView.printWinningStatistics(result);
         
     }
 }

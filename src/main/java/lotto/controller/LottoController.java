@@ -41,7 +41,7 @@ public class LottoController {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         Map<Rank, Integer> result = lottoResult.checkResult(winningLotto);
         outputView.printWinningStatistics(result);
-        double returnRate = lottoResult.calculateReturnRate(result, money);
+        double returnRate = lottoResult.calculateReturnRatePercentage(result, money);
         outputView.printTotalProfit(returnRate);
     }
 

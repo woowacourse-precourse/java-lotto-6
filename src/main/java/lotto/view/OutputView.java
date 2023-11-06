@@ -37,9 +37,13 @@ public class OutputView {
     }
 
     private void printCommaBetweenNumbers(List<Integer> numbers, int i) {
-        if (i != numbers.size() - 1) {
+        if (isCommaNeeded(numbers, i)) {
             System.out.print(COMMA);
         }
+    }
+
+    private boolean isCommaNeeded(List<Integer> numbers, int i) {
+        return i != numbers.size() - 1;
     }
 
     public void askForWinningNumbers() {

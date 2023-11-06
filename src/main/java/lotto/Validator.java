@@ -1,8 +1,10 @@
 package lotto;
 
+import static lotto.constants.Error.COMMA_ERROR;
 import static lotto.constants.Message.COMMA;
 import static lotto.constants.Value.ASCII_ZERO;
 import static lotto.constants.Value.FIRST_CHARACTER;
+import static lotto.constants.Value.INDEX_MINUS_ONE;
 import static lotto.constants.Value.MAX_LOTTO_NUMBER;
 import static lotto.constants.Value.MIN_LOTTO_NUMBER;
 import static lotto.constants.Value.REMAINDER_ZERO;
@@ -49,8 +51,8 @@ public class Validator {
     }
 
     public static void checkComma(String userInput){
-        if(userInput.substring(userInput.length() - 1) == COMMA.getMessage()){
-            throw new IllegalArgumentException();
+        if(userInput.substring(userInput.length() - INDEX_MINUS_ONE.get()) == COMMA.getMessage()){
+            throw new IllegalArgumentException(COMMA_ERROR.getMessage());
         }
     }
 }

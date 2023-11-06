@@ -12,7 +12,8 @@ public enum Value {
     FIRST_CHARACTER(0),
     ZERO(0),
     ASCII_ZERO(48),
-    COUNT_ONE(1);
+    COUNT_ONE(1),
+    INDEX_MINUS_ONE(1);
 
     private final Integer value;
 

@@ -14,4 +14,9 @@ public record LottoNo(int no) {
             throw new IllegalArgumentException(WRONG_LOTTO_NO);
         }
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(no);
+    }
 }

@@ -9,8 +9,14 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers.stream()
+        this.numbers = sort(numbers).stream()
                 .map(LottoNo::new)
+                .toList();
+    }
+
+    private List<Integer> sort(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
                 .toList();
     }
 
@@ -48,5 +54,10 @@ public class Lotto {
                 .mapToInt(item -> 1)
                 .sum();
         return Score.from(score);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

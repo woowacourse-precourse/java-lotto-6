@@ -19,7 +19,7 @@ public class WinnerLotto {
     private final List<Integer> winnerNumbers;
     private final Integer bonusNumber;
 
-    public WinnerLotto(List<Integer> winnerNumbers, Integer bonusNumber) {
+    public WinnerLotto(final List<Integer> winnerNumbers, final Integer bonusNumber) {
         validateWinnerNumbersLength(winnerNumbers);
         validateEachWinnerNumberRange(winnerNumbers);
         validateDuplicatedNumber(winnerNumbers);
@@ -29,20 +29,20 @@ public class WinnerLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateWinnerNumbersLength(List<Integer> winnerNumbers) {
+    private void validateWinnerNumbersLength(final List<Integer> winnerNumbers) {
         if (winnerNumbers.size() != LOTTO_LENGTH.getSetting()) {
             throw new IllegalArgumentException(WRONG_WINNER_LOTTO_LENGTH.getMessage());
         }
     }
 
-    private void validateEachWinnerNumberRange(List<Integer> winnerNumbers) {
+    private void validateEachWinnerNumberRange(final List<Integer> winnerNumbers) {
         if (winnerNumbers.stream()
                 .anyMatch(number -> !(RANGE_START_NUMBER.getSetting() <= number && number <= RANGE_END_NUMBER.getSetting()))) {
             throw new IllegalArgumentException(WRONG_WINNER_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
-    private void validateDuplicatedNumber(List<Integer> winnerNumbers) {
+    private void validateDuplicatedNumber(final List<Integer> winnerNumbers) {
         if (winnerNumbers.stream()
                 .collect(Collectors.toSet())
                 .size()
@@ -51,13 +51,14 @@ public class WinnerLotto {
         }
     }
 
-    private void validateBonusNumberRange(Integer bonusNumber) {
+    private void validateBonusNumberRange(final Integer bonusNumber) {
         if (!(RANGE_START_NUMBER.getSetting() <= bonusNumber && bonusNumber <= RANGE_END_NUMBER.getSetting())) {
             throw new IllegalArgumentException(WRONG_BONUS_NUMBER_RANGE.getMessage());
         }
     }
 
-    private void validateDuplicatedNumberBetweenWinnerNumbersAndBonusNumber(List<Integer> winnerNumbers, Integer bonusNumber) {
+    private void validateDuplicatedNumberBetweenWinnerNumbersAndBonusNumber(final List<Integer> winnerNumbers,
+                                                                            final Integer bonusNumber) {
         if (winnerNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_NUMBER_BETWEEN_WINNER_NUMBER_AND_BONUS_NUMBER.getMessage());
         }

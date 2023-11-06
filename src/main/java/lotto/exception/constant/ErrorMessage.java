@@ -16,6 +16,6 @@ public enum ErrorMessage {
         this.message = message;
     }
     public String getErrorMessage() {
-        return prefix + message;
+        return prefix + this.message;
     }
 }

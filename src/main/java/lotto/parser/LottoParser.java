@@ -1,7 +1,8 @@
 package lotto.parser;
 
+import lotto.exception.*;
 import lotto.model.Lotto;
-import lotto.validator.InputPriceValidator;
+import lotto.view.LottoView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +14,15 @@ public class LottoParser {
     private LottoParser() {
     }
     public static Lotto parse(final String winningLotto) {
-        validateLotto(winningLotto);
+        try{
+            validateLotto(winningLotto);
+        }catch (InvalidLottoFormatException |
+                EmptyException |
+                InvalidLottoLengthException |
+                DuplicatedNumberException |
+                InvalidLottoNumberRangeException e){
+            return parse(LottoView.requestInputWinningNumbers());
+        }
         return new Lotto(parseNumbers(winningLotto));
     }
 

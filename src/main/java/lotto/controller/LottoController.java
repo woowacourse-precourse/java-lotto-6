@@ -18,7 +18,6 @@ public class LottoController {
         Lotto winningLotto = LottoParser.parse(winningNumbers);
         String bonusNumber = LottoView.requestInputBonusNumber();
         LottoResult lottoResult = new LottoResult(randomLottos, winningLotto, Integer.parseInt(bonusNumber));
-
         LottoView.responseResultMessages();
         FinalResult finalResult = new FinalResult(lottoResult);
         finalResult.printResult();

@@ -1,7 +1,6 @@
 package lotto.validator;
 
-import lotto.exception.LottoException;
-import lotto.exception.constant.ErrorMessage;
+import lotto.exception.*;
 
 public class InputPriceValidator {
     private static final Integer DIVIDE_BY = 1000;
@@ -13,29 +12,29 @@ public class InputPriceValidator {
     }
     private static void validateEndsWithComma(final String input) {
         if (input.endsWith(DELIMITER)) {
-            throw LottoException.of(ErrorMessage.INVALID_INPUT);
+            throw new InvalidInputException();
         }
     }
     private static void validateEmpty(final String input) {
         if (input.isEmpty()) {
-            throw LottoException.of(ErrorMessage.EMPTY);
+            throw new EmptyException();
         }
     }
     private static void validatePriceRange(final int price) {
         if (price < LOWEST_PRICE) {
-            throw LottoException.of(ErrorMessage.INVALID_PRICE_RANGE);
+            throw new InvalidPriceRangeException();
         }
     }
     private static void validatePriceFormat(final int number) {
         if(number % DIVIDE_BY != REST) {
-            throw LottoException.of(ErrorMessage.INVALID_INPUT_PRICE);
+            throw new InvalidInputPriceException();
         }
     }
     private static void validatePriceIsNumeric(final String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw LottoException.of(ErrorMessage.INVALID_PRICE_TYPE);
+            throw new InvalidPriceTypeException();
         }
     }
     public static void validatePrice(final String input) {

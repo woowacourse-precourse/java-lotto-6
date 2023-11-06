@@ -16,13 +16,13 @@ public class LottoInfo {
         return this.matchCount;
     }
     public boolean isMatchBonus(Integer bonusNumber) {
-        this.matchBonus = this.lotto.getNumbers().contains(bonusNumber);
-        return this.matchBonus;
+        this.matchBonus = this.contain(bonusNumber);
+        return matchBonus;
     }
     public boolean contain(Integer number) {
-        return this.lotto.getNumbers().contains(number);
+        return this.lotto.numbers().contains(number);
     }
     public void countMatch(Lotto winningLotto) {
-        winningLotto.getNumbers().stream().filter(this::contain).forEach(number -> this.matchCount++);
+        winningLotto.numbers().stream().filter(this::contain).forEach(number -> this.matchCount++);
     }
 }

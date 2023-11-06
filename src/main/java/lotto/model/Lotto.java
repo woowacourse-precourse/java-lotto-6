@@ -1,36 +1,24 @@
 package lotto.model;
-
+import lotto.exception.*;
 import java.util.List;
-
-public class Lotto {
-    private final String OPEN_BRACKET = "[";
-    private final String CLOSE_BRACKET = "]";
-    private final String DELIMITER = ", ";
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
+public record Lotto(List<Integer> numbers) {
+    public Lotto {
         validateDuplicated(numbers);
         validateLength(numbers);
-        this.numbers = numbers;
     }
-
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new InvalidLottoLengthException();
         }
     }
     private void validateDuplicated(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException();
+            throw new DuplicatedNumberException();
         }
-    }
-    public List<Integer> getNumbers() {
-        return numbers;
     }
     @Override
     public String toString() {
-        return OPEN_BRACKET
-                + String.join(DELIMITER, numbers.stream().map(String::valueOf).toList())
-                + CLOSE_BRACKET;
+        String DELIMITER = ",";
+        return String.join(DELIMITER, numbers.stream().map(String::valueOf).toList());
     }
 }

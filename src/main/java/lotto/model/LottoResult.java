@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class LottoResult {
-    private Lottos lottos;
-    private Lotto winningLotto;
-    private Integer bonusNumber;
+    private final Lottos lottos;
+    private final Lotto winningLotto;
+    private final Integer bonusNumber;
     private Integer countOf3;
     private Integer countOf4;
     private Integer countOf5;
@@ -28,7 +28,7 @@ public class LottoResult {
             lottoInfo.isMatchBonus(this.bonusNumber);
         }
     }
-    public void matchingCount(Integer number,boolean isBonus) {
+    public void matchingCount(Integer number) {
         for(LottoInfo lottoInfo : lottos.getLottos()) {
             if(Objects.equals(lottoInfo.getMatchCount(), number)) {
                 if(number == 3) {
@@ -41,7 +41,7 @@ public class LottoResult {
                     this.countOf5 = this.countOf5 + 1;
                 }
                 else if(number == 6) {
-                    if (isBonus) {
+                    if (lottoInfo.isMatchBonus(this.bonusNumber)) {
                         this.countOf5AndBonus = this.countOf5AndBonus + 1;
                     }
                     else {

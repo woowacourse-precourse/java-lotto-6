@@ -1,7 +1,9 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.*;
 import lotto.validator.InputPriceValidator;
+import lotto.view.LottoView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,17 +18,22 @@ public class LottoGenerator {
     public LottoGenerator() {
     }
     public static Lottos generate(String price) {
-        InputPriceValidator.validatePrice(price);
+        try{
+            InputPriceValidator.validatePrice(price);
+        }catch(InvalidPriceTypeException |
+               InvalidInputException |
+               EmptyException |
+               InvalidPriceRangeException |
+               InvalidInputPriceException e){
+            return generate(LottoView.requestInputPrice());
+        }
         Integer priceInt = Integer.parseInt(price);
         List<LottoInfo> randomLottosList = getLottos(priceInt);
         return new Lottos(randomLottosList);
     }
-
     private static List<LottoInfo> getLottos(Integer priceInt) {
         return IntStream.range(START_INDEX, priceInt / DIVIDE_BY).mapToObj(i -> generateLotto()).collect(Collectors.toList());
     }
-
-
     private static LottoInfo generateLotto(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_SIZE);
         return new LottoInfo(new Lotto(sortingNumbers(numbers)));

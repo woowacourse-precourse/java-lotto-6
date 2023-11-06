@@ -1,4 +1,4 @@
-package lotto.domain.inputOutput;
+package lotto.domain.inputOutput.input;
 
 import java.util.Arrays;
 import java.util.List;

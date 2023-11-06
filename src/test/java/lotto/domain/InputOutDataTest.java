@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import lotto.domain.inputOutput.InputDataAdapter;
-import lotto.domain.inputOutput.InputManager;
+import lotto.domain.inputOutput.input.InputDataAdapter;
+import lotto.domain.inputOutput.input.InputLottoDraw;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputOutDataTest {
-    InputManager inputManager = new InputManager();
+    InputLottoDraw inputLottoDraw = new InputLottoDraw();
     InputDataAdapter inputDataAdapter = new InputDataAdapter();
 
     @DisplayName("당첨 번호 입력값에 숫자가 아닐 경우 예외 발생")

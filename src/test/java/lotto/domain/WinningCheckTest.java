@@ -1,11 +1,12 @@
 package lotto.domain;
 
-import lotto.domain.lottoDraw.LottoDraw;
+import lotto.domain.lottoDrawMachine.lottoDraw.LottoDraw;
 import lotto.domain.vendingMachine.lotto.Lotto;
+import lotto.domain.winningManager.RateOfReturn;
+import lotto.domain.winningManager.WinningCheck;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 

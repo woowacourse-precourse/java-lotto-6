@@ -32,7 +32,7 @@ public class UserIOTest {
     void getAmountTest2() {
         ByteArrayInputStream in = new ByteArrayInputStream("34001\n34000".getBytes());
         System.setIn(in);
-        System.out.println(userIO.getAmount());
+        assertEquals(34, userIO.getAmount());
     }
 
     @DisplayName("getAmount에 대해 숫자가 아닌 입력값")

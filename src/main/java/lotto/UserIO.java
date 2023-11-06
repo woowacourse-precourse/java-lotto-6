@@ -22,12 +22,6 @@ public class UserIO {
         }
     }
 
-    private String iOAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        return input;
-    }
-
     public List<Integer> getNumbers() {
         try {
             String input = iONumbers();
@@ -44,18 +38,6 @@ public class UserIO {
         }
     }
 
-    private void checkLength(List<String> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private String iONumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        return input;
-    }
-
     public int getBonusNumber() {
         while (true) {
             try {
@@ -68,6 +50,12 @@ public class UserIO {
                 System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
+    }
+
+    private String iOAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+        return input;
     }
 
     private String iOBonusNumbers() {
@@ -92,6 +80,18 @@ public class UserIO {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void checkLength(List<String> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private String iONumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        return input;
     }
 
 }

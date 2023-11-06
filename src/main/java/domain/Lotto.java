@@ -78,4 +78,13 @@ public class Lotto {
         System.out.println(lotto.numbers.toString());
     }
 
+
+    public static int getMatchCounts(Lotto lotto, Lotto winningLotto) {
+        long matchCount = lotto.numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
+
+        return Long.valueOf(matchCount).intValue();
+    }
+
 }

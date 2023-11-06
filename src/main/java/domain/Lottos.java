@@ -12,4 +12,9 @@ public class Lottos {
     public void outputLottos() {
         lottos.forEach(Lotto::outputLotto);
     }
+
+    public List<Lotto> get() {
+        return List.copyOf(lottos);
+    }
+
 }

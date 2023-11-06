@@ -6,9 +6,10 @@ import static view.InputView.inputWinningLottoNumber;
 
 
 import domain.Amount;
-import domain.Lotto;
 import domain.Lottos;
+import domain.Result;
 import domain.WinningLotto;
+import view.ResultView;
 
 
 public class LottoController {
@@ -18,6 +19,8 @@ public class LottoController {
         Lottos lottos = amount.buyLotto();
         lottos.outputLottos();
         WinningLotto winningLotto = new WinningLotto(inputWinningLottoNumber(), inputBonusNumber());
+        Result result = new Result(lottos, winningLotto);
+        ResultView.printResult(result);
     }
 
 }

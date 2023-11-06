@@ -35,4 +35,11 @@ public class WinningLotto {
         }
         return true;
     }
+
+    public static Rank getMatchCounts(Lotto lotto, WinningLotto winningLotto) {
+        int matchCount = Lotto.getMatchCounts(lotto, winningLotto.lotto);
+        boolean bonus = lotto.contains(winningLotto.bonusNumber);
+
+        return Rank.getRank(matchCount, bonus);
+    }
 }

@@ -30,14 +30,14 @@ public class LottoService {
         return sortWinningStatistics(winningStatistics);
     }
 
-    public Map<Rank, Integer> initWinningStatistics() {
+    private Map<Rank, Integer> initWinningStatistics() {
         Map<Rank, Integer> winningStatistics = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values())
             winningStatistics.put(rank, 0);
         return winningStatistics;
     }
 
-    public Map<Rank, Integer> sortWinningStatistics(Map<Rank, Integer> winningStatistics) {
+    private Map<Rank, Integer> sortWinningStatistics(Map<Rank, Integer> winningStatistics) {
         return winningStatistics.entrySet().stream()
                 .filter(entry -> !entry.getKey().equals(Rank.NONE))
                 .sorted(Comparator.comparingInt(entry -> entry.getKey().getPrizeMoney()))
@@ -45,7 +45,7 @@ public class LottoService {
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
     }
 
-    public int calculateTotalPrizeMoney(Map<Rank, Integer> winningStatistics) {
+    private int calculateTotalPrizeMoney(Map<Rank, Integer> winningStatistics) {
         int totalPrizeMoney = 0;
         for (Rank rank : winningStatistics.keySet()) {
             Integer winningNumber = winningStatistics.get(rank);

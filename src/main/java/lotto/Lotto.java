@@ -20,5 +20,14 @@ public class Lotto {
         return numbers.size() != numbers.stream().distinct().count();
     }
 
+    private boolean areInRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45)
+                return false;
+        }
+        return true;
+
+    }
+
 
 }

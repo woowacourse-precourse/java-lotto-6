@@ -26,6 +26,7 @@ public class View {
     }
 
     public List<Integer> inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해주세요.");
         List<String> inputNumbers = split(readLine());
         inputNumbers.forEach(Validator.INSTANCE::numberValidate);
 
@@ -38,5 +39,15 @@ public class View {
 
     private List<Integer> toIntegerList(List<String> inputNumbers) {
         return inputNumbers.stream().map(Integer::parseInt).toList();
+    }
+
+    public long inputBuyCashFromUser() {
+        System.out.println("구입금액을 입력하세요");
+        return inputNumericValue();
+    }
+
+    public long inputBonusNumberFromUser() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return inputNumericValue();
     }
 }

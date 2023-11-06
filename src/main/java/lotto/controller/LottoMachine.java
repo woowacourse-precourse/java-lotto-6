@@ -20,6 +20,7 @@ public class LottoMachine {
         drawLottoNumber();
         result.printLottoNumber(lottoNumbers);
         drawWinningNumber();
+        drawBonusNumber();
     }
 
     public void buyLotto() {
@@ -60,6 +61,18 @@ public class LottoMachine {
                 user.inputWinningNumber();
                 break;
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void drawBonusNumber() {
+        System.out.println("\n" + Message.BONUS_INPUT.getMessage());
+        while (true){
+            try {
+                user.inputBonusNumber();
+                break;
+            }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }

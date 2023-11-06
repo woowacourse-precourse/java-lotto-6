@@ -11,6 +11,7 @@ public class User {
     private static int paymentAmount;
     private static Lotto winningNumber;
     private static int manyLottoTicket;
+    private static int bonusNumber;
 
     public void inputPaymentAmount() {
         String input = Console.readLine();
@@ -56,7 +57,8 @@ public class User {
     }
 
     public void checkBonusNumber(String input){
-        int bonusNumber = Exception.checkInvalidNumber(input);
+        bonusNumber = Exception.checkInvalidNumber(input);
+        Exception.checkRangeLottoNumber(bonusNumber);
     }
 
     public int getPaymentAmount() {

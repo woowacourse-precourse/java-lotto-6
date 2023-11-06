@@ -22,16 +22,16 @@ public enum Prize {
         if(countOfMatch < 3){
             return Miss;
         }
-        if(countOfMatch == 3){
+        if(countOfMatch == Prize.Fifth.matchOfLotto){
             return Fifth;
         }
-        if(countOfMatch == 4){
+        if(countOfMatch == Prize.Fourth.matchOfLotto){
             return Fourth;
         }
-        if(countOfMatch == 5 && !checkBonus){
+        if(countOfMatch == Prize.Third.matchOfLotto && !checkBonus){
             return Third;
         }
-        if(countOfMatch == 5 && checkBonus){
+        if(countOfMatch == Prize.Second.matchOfLotto && checkBonus){
             return Second;
         }
         return First;

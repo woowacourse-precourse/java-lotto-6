@@ -36,7 +36,6 @@ public class LottoController {
         prizeLotto = makePrizeLotto();
         bonus = makeBonus();
         computePrize(lottoList);
-
     }
 
     public int purchaseAmount(){
@@ -107,15 +106,7 @@ public class LottoController {
             prize = computePrize.match(lottoList.get(i));
             result.put(prize, result.get(prize) + 1);
         }
-
         OutputMessage.printResult(result);
-        /*번호 가져오기
-           번호 비교
-           3개 미만 -> miss
-           3개, 4개, 6개 -> 순위 Prize 대로
-           5개 -> 보너스 번호 비교 후 순위 책정
-           출력
-         */
     }
 
     private Map<Prize,Integer> setResult(){

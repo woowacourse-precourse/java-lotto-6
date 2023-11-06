@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    private static final int PRICE = 1000;
+    public static final int PRICE = 1000;
 
     public List<Lotto> buy(int money) throws IllegalArgumentException {
         validateMoney(money);

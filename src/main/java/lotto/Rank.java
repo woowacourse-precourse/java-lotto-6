@@ -21,4 +21,8 @@ public enum Rank {
         }
         return this.matchCount == matchCount;
     }
+
+    public int getPrize() {
+        return prize;
+    }
 }

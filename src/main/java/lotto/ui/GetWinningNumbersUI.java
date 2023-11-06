@@ -13,4 +13,11 @@ public class GetWinningNumbersUI {
 
         return readLine();
     }
+
+    public String enterBonusNumberUI() {
+        System.out.println();
+        System.out.println(Constants.ENTER_BONUS_NUMBER);
+
+        return readLine();
+    }
 }

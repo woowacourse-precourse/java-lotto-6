@@ -34,15 +34,45 @@ public class Application {
         return new Lotto(numbers);
     }
 
+    private static Integer getBonusNumbers(GetWinningNumbersUI winningNumbersUI) {
+        String input = winningNumbersUI.enterBonusNumberUI();
+        int bonusNumber;
+
+        try {
+            bonusNumber = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+
+        if(bonusNumber >= 1 && bonusNumber <= 45) {
+            return bonusNumber;
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+    private static void isValidBonusNumber(Lotto winningLotto, Integer bonusNumber) {
+        List<Integer> winningNumbers = winningLotto.getLotto();
+
+        if(winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void main(String[] args) {
 
         GetPurchaseUI getPurchaseUI = new GetPurchaseUI();
         PrintLottoUI printLottoUI = new PrintLottoUI();
         GetWinningNumbersUI winningNumbersUI = new GetWinningNumbersUI();
+
         Purchase purchase;
+
         int lottoCount;
+
         List<Lotto> lottos = new ArrayList<>();
+
         Lotto winningLotto;
+        int bonusNumber;
 
         while (true) {
             try {
@@ -74,6 +104,14 @@ public class Application {
             }
         }
 
-        System.out.println(winningLotto.getLotto());
+        while (true) {
+            try {
+                bonusNumber = getBonusNumbers(winningNumbersUI);
+                isValidBonusNumber(winningLotto, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(Constants.ERROR_NOT_VALID_BONUS_NUMBER);
+            }
+        }
     }
 }

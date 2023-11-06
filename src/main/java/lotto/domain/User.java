@@ -7,15 +7,44 @@ import lotto.util.RankUtil;
 
 public class User {
     private static final int LOTTO_PRICE = Constant.LOTTO_PRICE;
+    private static final int MONEY_THRESHOLD = Constant.MONEY_THRESHOLD;
     private final List<Lotto> lottos;
     private final long money;
 
     public User(long money) {
-        lottos = buyLotto(money);
+        validate(money);
         this.money = money;
+        lottos = buyLotto();
     }
 
-    public List<Lotto> buyLotto(long money) {
+    private void validate(long money) {
+        validatePositive(money);
+        validateMoneyDivisible(money);
+        validateMinimumMoney(money);
+    }
+
+    private void validatePositive(long money) {
+        final String message = "금액은 음수일 수 없습니다.";
+        if (money < 0) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    private void validateMoneyDivisible(long money) {
+        final String message = "금액은 %d원 단위여야 합니다.";
+        if (money % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(String.format(message, LOTTO_PRICE));
+        }
+    }
+
+    private void validateMinimumMoney(long money) {
+        final String message = "금액은 %d원 이상이어야 합니다.";
+        if (money < MONEY_THRESHOLD) {
+            throw new IllegalArgumentException(String.format(message, MONEY_THRESHOLD));
+        }
+    }
+
+    private List<Lotto> buyLotto() {
         List<Lotto> lottoList = new ArrayList<>();
         final long lottoCount = money / LOTTO_PRICE;
         for (int i = 0; i < lottoCount; i++) {

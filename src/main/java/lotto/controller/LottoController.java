@@ -9,6 +9,7 @@ import lotto.domain.winningLotto.WinningNumbers;
 import lotto.domain.winningLotto.WinningLotto;
 import lotto.dto.IssuedLottoDetails;
 import lotto.service.LottoManager;
+import lotto.utils.Converter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -36,15 +37,19 @@ public class LottoController {
     }
 
     private PurchaseAmount getPurchaseAmount() {
-        return new PurchaseAmount(InputView.readPurchaseAmount());
+        int purchaseAmount = Converter.convertToInt(InputView.readPurchaseAmount());
+        return new PurchaseAmount(purchaseAmount);
     }
 
     private WinningNumbers getWinningNumbers() {
-        return new WinningNumbers(InputView.readWinningNumbers());
+        List<Integer> winningNumbers =
+                Converter.convertToIntegerListWithDelimiter(InputView.readWinningNumbers(), ",");
+        return new WinningNumbers(winningNumbers);
     }
 
     private BonusNumber getBonusNumber() {
-        return new BonusNumber(InputView.readBonusNumber());
+        int bonusNumber = Converter.convertToInt(InputView.readBonusNumber());
+        return new BonusNumber(bonusNumber);
     }
 
     private <T> T repeatReadForInvalid(Supplier<T> reader) {

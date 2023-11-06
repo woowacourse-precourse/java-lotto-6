@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        isOneToFourtyfive(numbers);
         this.numbers = numbers;
     }
 
@@ -17,4 +18,15 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+/*    public void printLottoNumbers() {
+        System.out.println(this.numbers);
+    }*/
+
+    private void isOneToFourtyfive(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if(numbers.get(i) < 1 || numbers.get(i) > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 }

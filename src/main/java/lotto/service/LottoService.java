@@ -1,5 +1,7 @@
 package lotto.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.Rank;
 import lotto.domain.LottoMachine;
@@ -17,11 +19,20 @@ public class LottoService {
     public LottoService() {
     }
 
-    public consoleOutDTO respondToRequest(Money money, WinningLotto winningLotto) {
+    public ConsoleOutDTO respondToRequest(Money money, WinningLotto winningLotto) {
         Lottos lottos = lottoMachine.issueLottos(money);
         List<Rank> lottoResult = lottoScanner.sendAnalyzedResult(lottos, winningLotto);
-        long profitRate = profitRateCalculator.calculateProfitRate(lottoResult, money);
+        double profitRate = profitRateCalculator.calculateProfitRate(lottoResult, money);
 
-        return new consoleOutDTO(lottos.numberOfLotto(), lottos, lottoResult, profitRate);
+        return new ConsoleOutDTO(lottos.numberOfLotto(), lottos, ranksToFifthToFirst(lottoResult), profitRate);
+    }
+
+    private List<Integer> ranksToFifthToFirst(List<Rank> lottoResult) {
+        List<Integer> FifthToFirst = new ArrayList<>();
+        for(Rank rank : Rank.values()) {
+            FifthToFirst.add(Collections.frequency(lottoResult, rank));
+        }
+        Collections.reverse(FifthToFirst);
+        return FifthToFirst;
     }
 }

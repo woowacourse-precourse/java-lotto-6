@@ -9,11 +9,11 @@ public class ProfitRateCalculator {
     public ProfitRateCalculator() {
     }
 
-    public long calculateProfitRate(List<Rank> ranks, Money money) {
+    public double calculateProfitRate(List<Rank> ranks, Money money) {
         int totalGain = ranks.stream()
                 .map(Rank::getPrize)
                 .reduce(0, Integer::sum);
 
-        return totalGain / money.getMoney();
+        return  (double) totalGain / money.getMoney();
     }
 }

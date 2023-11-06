@@ -4,16 +4,16 @@ import java.util.List;
 import lotto.Rank;
 import lotto.domain.Lottos;
 
-public class consoleOutDTO {
+public class ConsoleOutDTO {
     private final int totalBought;
     private final List<List<Integer>> lottos;
-    private final List<Rank> result;
-    private final long profitRate;
+    private final List<Integer> result;
+    private final double profitRate;
 
-    public consoleOutDTO(int totalBought, Lottos lottos, List<Rank> result, long profitRate) {
+    public ConsoleOutDTO(int totalBought, Lottos lottos, List<Integer> result, double profitRate) {
         this.totalBought = totalBought;
         this.lottos = lottos.getLottoBundle().stream()
-                .map(x -> x.getNumbers().stream().toList())
+                .map(x -> x.getNumbers().stream().sorted().toList())
                 .toList();
         this.result = result;
         this.profitRate = profitRate;
@@ -27,11 +27,11 @@ public class consoleOutDTO {
         return lottos;
     }
 
-    public List<Rank> getResult() {
+    public List<Integer> getResult() {
         return result;
     }
 
-    public long getProfitRate() {
+    public double getProfitRate() {
         return profitRate;
     }
 }

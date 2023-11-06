@@ -1,11 +1,11 @@
 package lotto;
 
+import static lotto.LottoConstants.LOTTO_TICKET_PRICE;
+import static lotto.LottoConstants.ZERO;
+
 import exception.LottoException;
 
 public class LottoPurchaseAmount {
-
-    private static final int LOTTO_TICKET_PRICE = 1000;
-    private static final int ZERO = 0;
 
     private int purchaseAmount;
 

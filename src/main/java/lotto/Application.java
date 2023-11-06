@@ -1,10 +1,13 @@
 package lotto;
 
 import view.Input;
+import view.Output;
 
 public class Application {
     public static void main(String[] args) {
         int purchaseAmount = inputPurchaseAmount();
+        Lotteries lotteries = new Lotteries(purchaseAmount);
+        Output.printIssuedLotto(lotteries.getLotteries());
     }
 
     private static int inputPurchaseAmount() {

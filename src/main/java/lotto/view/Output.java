@@ -2,6 +2,9 @@ package lotto.view;
 
 import static lotto.message.Message.*;
 
+import java.util.List;
+import lotto.Lotto;
+
 public class Output {
     public static void printWinningStatisticsMessage() {
         System.out.println(WINNING_STATISTICS.message());
@@ -26,5 +29,9 @@ public class Output {
 
     public static void printProfitPercentage(int profitPercentage) {
         System.out.println("총 수익률은 " + profitPercentage + "입니다.");
+    }
+
+    public static void printTotalLotto(List<Lotto> totalLotto){
+        totalLotto.stream().forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 }

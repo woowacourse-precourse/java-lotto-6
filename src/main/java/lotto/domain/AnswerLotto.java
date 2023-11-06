@@ -5,8 +5,8 @@ public class AnswerLotto {
 	private final Lotto answerLottoNumbers;
 	private final BonusNumber bonusNumber;
 
-	public AnswerLotto(Lotto lotto, BonusNumber bonusNumber) {
-		this.answerLottoNumbers = lotto;
+	public AnswerLotto(Lotto answerLottoNumbers, BonusNumber bonusNumber) {
+		this.answerLottoNumbers = answerLottoNumbers;
 		this.bonusNumber = bonusNumber;
 	}
 

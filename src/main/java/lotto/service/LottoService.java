@@ -75,11 +75,11 @@ public class LottoService {
 	}
 
 	private String getFormattedMessage(boolean isBonusNumber, LottoRank rank, int count) {
-		WinningStatisticsMessage message = filterMessage(isBonusNumber);
+		WinningStatisticsMessage message = filterBonusMessage(isBonusNumber);
 		return message.getFormattedMessage(rank.getMatchedNumCount(), rank.getPrice(), count);
 	}
 
-	private WinningStatisticsMessage filterMessage(boolean isBonusNumber) {
+	private WinningStatisticsMessage filterBonusMessage(boolean isBonusNumber) {
 		if (isBonusNumber) {
 			return WinningStatisticsMessage.HAVE_BONUS_NUMBER;
 		}

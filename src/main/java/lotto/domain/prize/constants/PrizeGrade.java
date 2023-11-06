@@ -58,28 +58,25 @@ public enum PrizeGrade {
         this.prizeAmount = prizeAmount;
     }
 
+    // Utility Method
     public static PrizeGrade findPrizeRank(final MatchingResult matchingResult) {
         return Arrays.stream(PrizeGrade.values())
-                .filter(findSameMatchingCount(matchingResult))
-                .filter(findMatchingCase(matchingResult))
+                .filter(findGradeByCount(matchingResult))
+                .filter(isSatisfyBonusCondition(matchingResult))
                 .findFirst()
                 .orElseThrow(() -> LottoException.from(SYSTEM_CRASHED));
     }
 
-    private static Predicate<PrizeGrade> findSameMatchingCount(MatchingResult matchingResult) {
+    // Validation Method
+    private static Predicate<PrizeGrade> findGradeByCount(MatchingResult matchingResult) {
         return rank -> matchingResult.isSamePrizeMatchingCount(rank.prizeMatchingCount);
     }
 
-    private static Predicate<PrizeGrade> findMatchingCase(MatchingResult matchingResult) {
+    private static Predicate<PrizeGrade> isSatisfyBonusCondition(MatchingResult matchingResult) {
         return rank -> rank.matchingBonus.apply(matchingResult.getMatchingBonus());
     }
 
-    public boolean hasPositivePrizeAmount() {
-        final int NO_PRIZE_AMOUNT = 0;
-
-        return prizeAmount > NO_PRIZE_AMOUNT;
-    }
-
+    // Getter
     public int getPrizeMatchingCount() {
         return prizeMatchingCount.getCount();
     }

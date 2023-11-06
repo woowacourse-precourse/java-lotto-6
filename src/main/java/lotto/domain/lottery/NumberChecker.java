@@ -11,6 +11,8 @@ import static lotto.exception.ErrorMessage.NUMBER_DUPLICATED;
 import static lotto.exception.ErrorMessage.NUMBER_OUT_OF_RANGE;
 
 public abstract class NumberChecker {
+
+    // Exception Handling Method
     protected void validateNumbersRange(final List<Integer> numbers) {
         if (areOutOfRange(numbers)) {
             throw LottoException.from(NUMBER_OUT_OF_RANGE);
@@ -23,7 +25,14 @@ public abstract class NumberChecker {
         }
     }
 
-    private boolean areOutOfRange(List<Integer> numbers) {
+    protected void validateDuplicatedList(final List<Integer> numbers) {
+        if (isDuplicated(numbers)) {
+            throw LottoException.from(NUMBER_DUPLICATED);
+        }
+    }
+
+    // Validation Method
+    private boolean areOutOfRange(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(NumberChecker::isOutOfRange);
     }
@@ -40,15 +49,9 @@ public abstract class NumberChecker {
         return number < NUMBER_LOWER_BOUND.getValue();
     }
 
-
-    protected void validateDuplicatedList(final List<Integer> numbers) {
-        if (isDuplicated(numbers)) {
-            throw LottoException.from(NUMBER_DUPLICATED);
-        }
-    }
-
-    protected static boolean isDuplicated(final List<Integer> numbers) {
+    private boolean isDuplicated(final List<Integer> numbers) {
         final int uniqueNumberCount = (int) numbers.stream().distinct().count();
+
         return !Objects.equals(numbers.size(), uniqueNumberCount);
     }
 }

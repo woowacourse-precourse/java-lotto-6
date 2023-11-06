@@ -7,6 +7,7 @@ import lotto.view.output.PurchaseWriter;
 
 public class PurchaseController {
     private PurchaseController() {
+        
     }
 
     public static Lottos purchase(final Buyer buyer) {

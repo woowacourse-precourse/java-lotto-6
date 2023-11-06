@@ -9,27 +9,31 @@ public class MatchingResult {
     private final PrizeMatchingCount prizeMatchingCount;
     private final boolean bonusMatching;
 
+    // Constructor
     private MatchingResult(
-            Lotto lotto,
-            Prize prize
+            final Lotto lotto,
+            final Prize prize
     ) {
-        int normalMatchingCount = lotto.countPrizeNumberMatchingCount(prize);
+        final int normalMatchingCount = lotto.countPrizeNumberMatchingCount(prize);
 
         this.prizeMatchingCount = PrizeMatchingCount.from(normalMatchingCount);
         this.bonusMatching = lotto.isBonusNumberMatching(prize);
     }
 
+    // Static Factory Method
     public static MatchingResult of(
-            Lotto lotto,
-            Prize prize
+            final Lotto lotto,
+            final Prize prize
     ) {
         return new MatchingResult(lotto, prize);
     }
 
+    // Utility Method
     public boolean isSamePrizeMatchingCount(PrizeMatchingCount prizeMatchingCount) {
         return Objects.equals(this.prizeMatchingCount, prizeMatchingCount);
     }
 
+    // Getter
     public boolean getMatchingBonus() {
         return bonusMatching;
     }

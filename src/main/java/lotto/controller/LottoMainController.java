@@ -16,7 +16,7 @@ public class LottoMainController {
         Lottos lottos = PurchaseController.purchase(buyer);
         Prize prize = PrizeController.requestJackpotNumbers();
 
-        FinalResults finalResults = FinalResultController.getFinalResult(lottos, prize);
+        FinalResults finalResults = FinalResultController.generateFinalResult(lottos, prize);
         FinalResultResponse finalResultResponse = FinalResultController.responseFinalResult(buyer, finalResults);
 
         FinalResultWriter.responseMatchingResult(finalResultResponse);

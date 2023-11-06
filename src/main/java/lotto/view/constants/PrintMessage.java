@@ -2,7 +2,7 @@ package lotto.view.constants;
 
 public enum PrintMessage {
     /**
-     * Reqeust
+     * Request
      */
     REQUEST_PURCHASE_PAYMENT("구입금액을 입력해주세요."),
     REQUEST_JACKPOT_NUMBER("당첨 번호를 입력해주세요."),

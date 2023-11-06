@@ -2,8 +2,7 @@ package lotto.view.output;
 
 import lotto.view.constants.PrintMessage;
 
-public sealed class OutputWriter permits PurchaseWriter, FinalResultWriter {
-
+public class OutputWriter {
     public static void println(final Object data) {
         System.out.println(data);
     }

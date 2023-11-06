@@ -9,9 +9,10 @@ public class Revenue {
     private final long income;
     private final BigDecimal yield;
 
+    // Constructor
     private Revenue(
-            Buyer buyer,
-            FinalResults finalResults
+            final Buyer buyer,
+            final FinalResults finalResults
     ) {
         final int payment = buyer.getPayment();
 
@@ -19,13 +20,15 @@ public class Revenue {
         this.yield = LottoService.calculateFinalYield(payment, income);
     }
 
+    // Static Factory Method
     public static Revenue of(
-            Buyer buyer,
-            FinalResults finalResults
+            final Buyer buyer,
+            final FinalResults finalResults
     ) {
         return new Revenue(buyer, finalResults);
     }
 
+    // Getter
     public BigDecimal getYield() {
         return yield;
     }

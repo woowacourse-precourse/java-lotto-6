@@ -10,13 +10,14 @@ import java.util.List;
 import static lotto.domain.lottery.constants.LottoConstraint.*;
 
 public class LottoService {
-    private static final BigDecimal BIG_DECIMAL_ZERO = BigDecimal.ZERO;
     private static final BigDecimal PERCENT = new BigDecimal(100);
-    private static final int INT_ZERO = 0;
+    private static final int DECIMAL_PLACES = 1;
 
+    // Default Constructor
     private LottoService() {
     }
 
+    // Utility Method
     public static List<Integer> generateOrderedLottoNumbers() {
         List<Integer> randomNumbers = generateLottoNumber();
         Collections.sort(randomNumbers);
@@ -32,14 +33,16 @@ public class LottoService {
     }
 
     public static BigDecimal calculateFinalYield(
-            int payment,
-            long income
+            final int payment,
+            final long income
     ) {
         BigDecimal castedIncome = new BigDecimal(income);
         BigDecimal castedPayment = new BigDecimal(payment);
 
         return castedIncome
                 .multiply(PERCENT)
-                .divide(castedPayment, 1, RoundingMode.HALF_UP);
+                .divide(castedPayment,
+                        DECIMAL_PLACES,
+                        RoundingMode.HALF_UP);
     }
 }

@@ -7,25 +7,40 @@ import java.util.*;
 public class FinalResults {
     private final EnumMap<PrizeGrade, Integer> finalResults;
 
-    public FinalResults(List<PrizeGrade> prizeRanks) {
+    // Constructor
+    public FinalResults(final List<PrizeGrade> prizeRanks) {
         EnumMap<PrizeGrade, Integer> results = new EnumMap<>(PrizeGrade.class);
-        PrizeGrade[] entirePrizeGradeArray = PrizeGrade.values();
+        final PrizeGrade[] entirePrizeGradeArray = PrizeGrade.values();
 
         Arrays.stream(entirePrizeGradeArray)
-                .forEach(grade -> results.put(grade, countPrizeGrade(prizeRanks, grade)));
+                .forEach(grade -> putPrizeGradeCount(prizeRanks, results, grade));
+
         this.finalResults = results;
     }
 
-    public static FinalResults from(List<PrizeGrade> prizeRanks) {
+    // Static Factory Method
+    public static FinalResults from(final List<PrizeGrade> prizeRanks) {
         return new FinalResults(prizeRanks);
     }
 
-    public Integer countPrizeGrade(List<PrizeGrade> prizeRanks, PrizeGrade prizeGrade) {
+    // Utility Method
+    private void putPrizeGradeCount(
+            final List<PrizeGrade> prizeRanks,
+            final EnumMap<PrizeGrade, Integer> results,
+            final PrizeGrade grade
+    ) {
+        results.put(grade,
+                countPrizeGrade(prizeRanks, grade));
+    }
+
+    private Integer countPrizeGrade(
+            final List<PrizeGrade> prizeRanks,
+            final PrizeGrade prizeGrade
+    ) {
         return (int) prizeRanks.stream()
                 .filter(rank -> Objects.equals(rank, prizeGrade))
                 .count();
     }
-
 
     public long calculateFinalRevenueAmount() {
         return finalResults.entrySet().stream()
@@ -38,6 +53,7 @@ public class FinalResults {
         return entry.getKey().getPrizeAmount() * entry.getValue();
     }
 
+    // Getter
     public EnumMap<PrizeGrade, Integer> getFinalResults() {
         return finalResults;
     }

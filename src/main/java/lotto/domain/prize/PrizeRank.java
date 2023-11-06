@@ -7,14 +7,17 @@ import java.util.List;
 public class PrizeRank {
     private final List<MatchingResult> matchingResults;
 
-    private PrizeRank(List<MatchingResult> matchingResults) {
+    // Constructor
+    private PrizeRank(final List<MatchingResult> matchingResults) {
         this.matchingResults = matchingResults;
     }
 
-    public static PrizeRank from(List<MatchingResult> matchingCounts) {
+    // Static Factory Method
+    public static PrizeRank from(final List<MatchingResult> matchingCounts) {
         return new PrizeRank(matchingCounts);
     }
 
+    // Utility Method
     public List<PrizeGrade> findPrizeRanks() {
         return matchingResults.stream()
                 .map(PrizeGrade::findPrizeRank)

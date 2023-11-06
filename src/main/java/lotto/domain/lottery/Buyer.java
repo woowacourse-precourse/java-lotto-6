@@ -14,6 +14,7 @@ public class Buyer {
     private final int payment;
     private final int ticketCount;
 
+    // Constructor
     private Buyer(final String paymentInput) {
         int parsedPayment = Parser.parseStringToInt(paymentInput);
 
@@ -25,20 +26,17 @@ public class Buyer {
         this.ticketCount = calculateTicketCount(parsedPayment);
     }
 
+    // Static Factory Method
     public static Buyer from(final String paymentInput) {
         return new Buyer(paymentInput);
     }
 
+    // Utility Method
     private int calculateTicketCount(final int payment) {
         return payment / UNIT_PRICE.getValue();
     }
 
-    private void validateUnitPrice(final int payment) {
-        if (isNotDivisibleByUnitPrice(payment)) {
-            throw LottoException.from(PAYMENT_NOT_DIVISIBLE_BY_UNIT_PRICE);
-        }
-    }
-
+    // Exception Handling Method
     private void validateMinimumPayment(final int payment) {
         if (isSmallerThanUnitPrice(payment)) {
             throw LottoException.from(NOT_ENOUGH_PAYMENT);
@@ -51,22 +49,30 @@ public class Buyer {
         }
     }
 
-    private boolean isSmallerThanUnitPrice(final int payment) {
-        return payment < UNIT_PRICE.getValue();
+    private void validateUnitPrice(final int payment) {
+        if (isNotDivisibleByUnitPrice(payment)) {
+            throw LottoException.from(PAYMENT_NOT_DIVISIBLE_BY_UNIT_PRICE);
+        }
+    }
+
+    // Validation Method
+    private boolean isNotDivisibleByUnitPrice(final int payment) {
+        return !Objects.equals(calculateRemainder(payment), INT_ZERO);
+    }
+
+    private int calculateRemainder(final int payment) {
+        return payment % UNIT_PRICE.getValue();
     }
 
     private boolean isBiggerThanMaximumPayment(final int payment) {
         return payment > MAXIMUM_PURCHASE_PAYMENT.getValue();
     }
 
-    private boolean isNotDivisibleByUnitPrice(final int payment) {
-        return !Objects.equals(calculateRemainder(payment), INT_ZERO);
+    private boolean isSmallerThanUnitPrice(final int payment) {
+        return payment < UNIT_PRICE.getValue();
     }
-
-    private static int calculateRemainder(final int payment) {
-        return payment % UNIT_PRICE.getValue();
-    }
-
+    
+    // Getter
     public int getPayment() {
         return payment;
     }

@@ -15,7 +15,7 @@ public class FinalResultController {
     private FinalResultController() {
     }
 
-    public static FinalResults getFinalResult(
+    public static FinalResults generateFinalResult(
             final Lottos lottos,
             final Prize prize
     ) {

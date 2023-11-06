@@ -11,6 +11,7 @@ public final class Prize extends NumberChecker {
     private final Lotto prizeNumbers;
     private final int bonusNumber;
 
+    // Constructor
     private Prize(
             final Lotto prizeNumbers,
             final String bonusNumberInput
@@ -18,12 +19,14 @@ public final class Prize extends NumberChecker {
         this.prizeNumbers = prizeNumbers;
 
         int parsedBonusNumber = Parser.parseStringToInt(bonusNumberInput);
+
         validateNumberRange(parsedBonusNumber);
         validateDuplicatedBonusNumber(parsedBonusNumber);
 
         this.bonusNumber = parsedBonusNumber;
     }
 
+    // Static Factory Method
     public static Prize of(
             final Lotto prizeNumbers,
             final String bonusNumberInput
@@ -31,21 +34,23 @@ public final class Prize extends NumberChecker {
         return new Prize(prizeNumbers, bonusNumberInput);
     }
 
-    public boolean isPrizeNumber(int comparableNumber) {
-        return prizeNumbers.containNumber(comparableNumber);
+    // Utility Method
+    public boolean isPrizeNumber(final int comparableNumber) {
+        return prizeNumbers.hasNumber(comparableNumber);
     }
 
-    public boolean isBonusNumber(int comparableNumber) {
+    public boolean isBonusNumber(final int comparableNumber) {
         return bonusNumber == comparableNumber;
     }
 
+    // Exception Handling Method
     private void validateDuplicatedBonusNumber(final int number) {
         if (prizeNumbers.isAlreadyContainBonusNumber(number)) {
             throw LottoException.from(BONUS_NUMBER_DUPLICATED);
         }
     }
 
-
+    // Getter
     public Lotto getPrizeNumbers() {
         return prizeNumbers;
     }

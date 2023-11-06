@@ -10,9 +10,11 @@ import static lotto.exception.ErrorMessage.*;
 public class Parser {
     private static final String DELIMITER = ",";
 
+    // Default Constructor
     private Parser() {
     }
 
+    // Utility Method
     public static int parseStringToInt(final String input) {
         try {
             validateContainWhiteSpace(input);
@@ -34,20 +36,22 @@ public class Parser {
         }
     }
 
+    // Exception Handling Method
     private static void validateContainWhiteSpace(final String input) {
         if (hasWhiteSpace(input)) {
             throw LottoException.from(CONTAIN_WHITESPACE);
         }
     }
 
-    private static boolean hasWhiteSpace(final String input) {
-        return input.chars().anyMatch(Character::isWhitespace);
-    }
-
     private static void validateEndsWithDelimiter(final String input) {
         if (isEndsWithDelimiter(input)) {
             throw LottoException.from(ENDS_WITH_DELIMITER);
         }
+    }
+
+    // Validation Method
+    private static boolean hasWhiteSpace(final String input) {
+        return input.chars().anyMatch(Character::isWhitespace);
     }
 
     private static boolean isEndsWithDelimiter(final String input) {

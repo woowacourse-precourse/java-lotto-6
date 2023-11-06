@@ -10,7 +10,7 @@ public class OutputView {
     private final InputView inputView;
     private final RandomGenerator randomGenerator;
     private final PrizeHandler prizeHandler;
-    private Game game;
+    private final Game game;
 
     public OutputView(InputView inputView, RandomGenerator randomGenerator, PrizeHandler prizeHandler, Game game) {
         this.inputView = inputView;

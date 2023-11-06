@@ -2,7 +2,6 @@ package lotto.domain.lotto;
 
 import lotto.domain.proxy.PrizeHandler;
 import lotto.utils.RandomGenerator;
-import lotto.utils.StringUtils;
 
 import java.util.List;
 import java.util.Objects;

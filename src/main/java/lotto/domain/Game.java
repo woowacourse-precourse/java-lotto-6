@@ -6,10 +6,8 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Paper;
 import lotto.domain.proxy.PrizeHandler;
 import lotto.utils.RandomGenerator;
-import lotto.utils.StringUtils;
 import lotto.view.InputView;
 
-import java.util.List;
 import java.util.Optional;
 
 import static lotto.utils.StringUtils.toInt;

@@ -1,8 +1,5 @@
 package lotto.domain.lotto;
 
-import lotto.utils.StringUtils;
-
-import java.util.List;
 import java.util.Objects;
 
 public class Paper {

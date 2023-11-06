@@ -19,11 +19,11 @@ public class Lotto {
         }
     }
 
-    private void sortNumbers() {
+    public void sortNumbers() {
         Collections.sort(numbers);
     }
 
-    private List<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 

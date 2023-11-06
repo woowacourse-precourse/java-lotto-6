@@ -16,10 +16,8 @@ public class LottoController {
     private static final int LOTTO_TICKET_PRIZE = 1000;
 
     public void lottoService() {
-
         int numberOfLottoTickets = purchaseLottoTickets();
         generateLottoTickets(numberOfLottoTickets);
-
     }
 
     public String getPurchaseAmount() {
@@ -28,14 +26,15 @@ public class LottoController {
         return purchaseAmount;
     }
 
-    public int purchaseLottoTickets(){
+    public int purchaseLottoTickets() {
         String purchaseAmount = getPurchaseAmount();
         return calculateNumberOfLottoTickets(purchaseAmount);
     }
 
-    public void generateLottoTickets(int numberOfLottoTickets){
-        for (int i = 0; i < numberOfLottoTickets ; i++){
+    public void generateLottoTickets(int numberOfLottoTickets) {
+        for (int i = 0; i < numberOfLottoTickets; i++) {
             Lotto randomLotto = generateRandomLotto();
+            randomLotto.sortNumbers();
             lottos.addLotto(randomLotto);
         }
     }
@@ -45,10 +44,9 @@ public class LottoController {
         return parsedPurchaseAmount / LOTTO_TICKET_PRIZE;
     }
 
-    private static Lotto generateRandomLotto(){
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+    private static Lotto generateRandomLotto() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(randomNumbers);
     }
-
 
 }

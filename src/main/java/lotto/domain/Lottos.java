@@ -7,15 +7,15 @@ public class Lottos {
 
     private List<Lotto> lottos;
 
-    public Lottos(){
+    public Lottos() {
         lottos = new ArrayList<>();
     }
 
-    public void addLotto(Lotto lotto){
+    public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return lottos;
     }
 

@@ -13,7 +13,7 @@ public final class Money {
     }
 
     private void validate(int money) {
-        if (money <= 0) {
+        if (money < 0) {
             throw new IllegalArgumentException(MONEY_NEGATIVE_ERROR.getMessage());
         }
     }

@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -10,12 +12,13 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.STRING;
 
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
     enum Word{
-        STRING("숫자가 아님"), SPACE(" "), STRNUM1("123");
+        STRING("숫자가 아님"), SPACE(" ");
 
         private String word;
 
@@ -72,22 +75,20 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 입력금액_정수변환(){
-        String test = "123";
-        Assertions.assertEquals(123, money_for_lotto.realMoney(test));
+        String test = "1000";
+        Assertions.assertEquals(1000, money_for_lotto.realMoney(test));
     }
 
     @Test
     void 숫자가_아닌_초기입력예외(){
-        String test = "숫자가 아님";
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> money_for_lotto.moneyIsNumber(test));
+                () -> money_for_lotto.moneyIsNumber(Word.STRING.getWord()));
     }
 
     @Test
     void 공백_초기입력예외(){
-        String test = " ";
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> money_for_lotto.moneyIsNumber(test));
+                () -> money_for_lotto.moneyIsNumber(Word.SPACE.getWord()));
     }
 
     @Test
@@ -115,8 +116,8 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 복권_개수_확인_테스트(){
-        int test = 8;
-        assertThat(random_lotto.print_lotto(test)).hasSize(8);
+        int test = 5;
+        assertThat(random_lotto.print_lotto(test)).hasSize(5);
     }
 
     @Test
@@ -124,6 +125,14 @@ class ApplicationTest extends NsTest {
         String test = "4,5,9";
         List<Integer> expected = Arrays.asList(4,5,9);
         Assertions.assertEquals(expected,winning_number.splitInput(test));
+    }
+
+    @Test
+    void 당첨숫자_정수확인_테스트(){
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> winning_number.changeAsInt(Word.STRING.getWord()));
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> winning_number.changeAsInt(Word.SPACE.getWord()));
     }
 
     @Override

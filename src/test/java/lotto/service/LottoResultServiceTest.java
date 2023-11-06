@@ -31,9 +31,11 @@ public class LottoResultServiceTest {
             3000
         );
 
+        // 실행
         LottoResult result = lottoResultService.getLottoResult(lottos, drawnInfo);
 
+        // 검증
         assertThat(result.matchedCounts()).containsExactly(Rank.FIRST, Rank.SECOND, Rank.THIRD);
-        assertThat(result.roi()).isEqualTo(677166.7);
+        assertThat(result.roi()).isEqualTo(6.77166667E7);
     }
 }

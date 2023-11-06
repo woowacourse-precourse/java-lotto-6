@@ -1,19 +1,15 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public final class ROICalculator {
 
-    private static final double DECIMAL_ROUNDING_FACTOR = 10.0;
-
     public double calculate(long totalPrize, long investment) {
-        double rawROI = computeRawROI(totalPrize, investment);
-        return roundToFirstDecimal(rawROI);
-    }
-
-    private double computeRawROI(long totalPrize, long investment) {
-        return (double) totalPrize / investment;
-    }
-
-    private double roundToFirstDecimal(double value) {
-        return Math.round(value * DECIMAL_ROUNDING_FACTOR) / DECIMAL_ROUNDING_FACTOR;
+        BigDecimal bdTotalPrize = BigDecimal.valueOf(totalPrize);
+        BigDecimal bdInvestment = BigDecimal.valueOf(investment);
+        BigDecimal rawROI = bdTotalPrize.divide(bdInvestment, 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
+        rawROI = rawROI.setScale(1, RoundingMode.HALF_UP);
+        return rawROI.doubleValue();
     }
 }

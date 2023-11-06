@@ -15,7 +15,7 @@ public class ROICalculatorTest {
         long totalPrize = 2_000_000;
         long investment = 1_000_000;
 
-        double expectedROI = 2.0;
+        double expectedROI = 200.0;
 
         assertThat(roiCalculator.calculate(totalPrize, investment)).isEqualTo(expectedROI);
     }
@@ -26,7 +26,7 @@ public class ROICalculatorTest {
 
         long totalPrize = 117;
         long investment = 100;
-        double expectedROI = 1.2;
+        double expectedROI = 117.0;
 
         assertThat(roiCalculator.calculate(totalPrize, investment)).isEqualTo(expectedROI);
     }
@@ -38,7 +38,7 @@ public class ROICalculatorTest {
 
         long totalPrize = 1_000_000;
         long investment = 3;
-        double expectedROI = 333333.3;
+        double expectedROI = 3.33333333E7;
 
         assertThat(roiCalculator.calculate(totalPrize, investment)).isEqualTo(expectedROI);
     }

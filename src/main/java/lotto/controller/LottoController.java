@@ -9,13 +9,12 @@ public class LottoController {
         LottoOutPut.depositMessage();
 
         Seller seller = seller();
-        System.out.println(seller.getLottoTickets());
+        LottoOutPut.lottoTicketsCountMessage(seller.getLottoTickets());
+
     }
 
     private Seller seller() {
         int deposit = DepositInput.deposit();
         return new Seller(deposit);
     }
-
-
 }

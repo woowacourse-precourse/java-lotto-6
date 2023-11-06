@@ -14,7 +14,7 @@ public class Consumer {
         return amount;
     }
 
-    public int getLottoTickets() {
+    public int getTicketCount() {
         return tickets;
     }
 }

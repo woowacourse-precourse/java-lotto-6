@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 
-public class LottoTickets {
+public class DrawTicket {
     public static List<Lotto> tickets(int ticketCount) {
         List<Lotto> tickets = new ArrayList<>();
         while (tickets.size() < ticketCount) {
@@ -14,6 +14,6 @@ public class LottoTickets {
     }
 
     private static Lotto ticket() {
-        return new Lotto(LottoTicket.drawLottoTicket());
+        return new Lotto(DrawTicketNumber.drawLottoTicket());
     }
 }

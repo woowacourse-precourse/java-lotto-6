@@ -1,18 +1,19 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Lotto;
+import lotto.domain.User;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Service {
 
-    private final Repository repository;
+    private final User repository;
     public Service() {
-        this.repository = new Repository();
+        this.repository = new User();
     }
 
 

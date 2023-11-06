@@ -1,9 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Repository {
+public class User {
     List<List<Integer>> repository = new ArrayList<>();
     public void add(List<Integer> numbers) {
         repository.add(numbers);

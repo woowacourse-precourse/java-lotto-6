@@ -16,4 +16,5 @@ public class Config {
     final static int FIFTH_PRIZE_HAS_WINNING = 3;
     final static String FIRST_PRIZE_REWARD = "2,000,000,000";
     final static String SECOND_PRIZE_REWARD = "30,000,000";
+    final static String THIRD_PRIZE_REWARD = "1,500,000";
 }

@@ -27,5 +27,14 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int LottoCheck(List<Integer> mylotto, int bonusNumber){
+        int count = 0;
+        for(int mynumber : mylotto){
+            if (numbers.contains(mynumber))
+                count++;
+        }
+        if (mylotto.contains(bonusNumber))
+            count += 10;
+        return count;
+    }
 }

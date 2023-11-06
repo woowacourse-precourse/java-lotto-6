@@ -23,12 +23,27 @@ public class LottoService {
                 .toList();
     }
 
-    public Lotto generateJackpot(String jackpotNumbers) {
+    public List<Integer> generateJackpotNumbers(String jackpotNumbers) {
         try {
-            return saveJackpotLotto(jackpotNumbers.strip());
+            return returnValidatedNumbers(jackpotNumbers.split(","));
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("올바른 입력 형식이 아닙니다. 숫자를 입력해주세요.");
         }
+    }
+
+    public Bonus generateBonus(String bonusNumber) {
+        try {
+            Integer validatedBonusNumber = returnValidatedNumber(bonusNumber);
+            return new Bonus(validatedBonusNumber);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("올바른 입력 형식이 아닙니다. 숫자를 입력해주세요.");
+        }
+    }
+
+    public Lotto saveJackpotLotto(List<Integer> jackpotNumbers, Bonus bonus) {
+        Lotto jackpotLotto = new Lotto(jackpotNumbers, bonus);
+        lottoStorage.saveLotto(jackpotLotto);
+        return jackpotLotto;
     }
 
     private List<Integer> generateNumbers() {
@@ -44,13 +59,6 @@ public class LottoService {
         return lottoStorage.saveLotto(lotto);
     }
 
-    private Lotto saveJackpotLotto(String jackpotNumbers) {
-        List<Integer> numbers = Arrays.stream(jackpotNumbers.split(","))
-                .map(this::returnValidatedNumber)
-                .toList();
-        return new Lotto(numbers, true);
-    }
-
     private Integer returnValidatedNumber(String numberInput) {
         Integer number = Integer.parseInt(numberInput.strip());
         validateNumber(number);
@@ -60,6 +68,23 @@ public class LottoService {
     private void validateNumber(Integer number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.");
+        }
+    }
+
+    private List<Integer> returnValidatedNumbers(String[] numbers) {
+        List<Integer> validatedNumbers = Arrays.stream(numbers)
+                .map(this::returnValidatedNumber)
+                .toList();
+        validateDistinct(validatedNumbers);
+        return validatedNumbers;
+    }
+
+    private void validateDistinct(List<Integer> numbers) {
+        long distinctCount = numbers.stream()
+                .distinct()
+                .count();
+        if (numbers.size() != distinctCount) {
+            throw new IllegalArgumentException("중복이 포함되어 있습니다.");
         }
     }
 }

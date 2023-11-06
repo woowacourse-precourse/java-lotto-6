@@ -1,6 +1,8 @@
 package lotto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoController {
@@ -37,21 +39,45 @@ public class LottoController {
         }
     }
 
-    private Lotto confirmJackpotLotto() {
-        Lotto jackpotLotto = null;
-        while (jackpotLotto == null) {
-            String jackpotNumbers = communicator.instructJackpotNumbers();
-            jackpotLotto = decideJackpotLotto(jackpotNumbers);
+    private List<Integer> confirmJackpotNumbers() {
+        List<Integer> jackpotNumbers = new ArrayList<>();
+        while (jackpotNumbers.isEmpty()) {
+            String jackpotNumbersInput = communicator.instructJackpotNumbers();
+            jackpotNumbers = decideJackpotNumbers(jackpotNumbersInput);
         }
-        return jackpotLotto;
+        return jackpotNumbers;
     }
 
-    private Lotto decideJackpotLotto(String jackpotNumbers) {
+    private Bonus confirmBonus() {
+        Bonus bonus = Bonus.emptyBonus();
+        while (bonus.isEmpty()) {
+            String bonusNumber = communicator.instructBonusNumber();
+            bonus = decideBonusNumber(bonusNumber);
+        }
+        return bonus;
+    }
+
+    private List<Integer> decideJackpotNumbers(String jackpotNumbers) {
         try {
-            return lottoService.generateJackpot(jackpotNumbers);
+            return lottoService.generateJackpotNumbers(jackpotNumbers);
         } catch (IllegalArgumentException exception) {
             communicator.printException(exception);
-            return null;
+            return Collections.emptyList();
         }
+    }
+
+    private Bonus decideBonusNumber(String bonusNumber) {
+        try {
+            return lottoService.generateBonus(bonusNumber);
+        } catch (IllegalArgumentException exception) {
+            communicator.printException(exception);
+            return Bonus.emptyBonus();
+        }
+    }
+
+    private Lotto confirmJackpotLotto() {
+        List<Integer> jackpotNumbers = confirmJackpotNumbers();
+        Bonus bonus = confirmBonus();
+        return lottoService.saveJackpotLotto(jackpotNumbers, bonus);
     }
 }

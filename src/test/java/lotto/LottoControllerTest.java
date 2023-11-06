@@ -43,7 +43,7 @@ class LottoControllerTest {
     @DisplayName("로또 구입 시 IllegalArgumentException이 발생하면 에러 메시지를 출력하고 구입 금액을 다시 입력받는다.")
     void test_Run_ReceivePaymentAgain() {
         //given
-        String input = "0\n1000\n1,2,3,4,5,6";
+        String input = "0\n1000\n1,2,3,4,5,6\n1";
         setIn(input);
         setOut();
 
@@ -62,7 +62,7 @@ class LottoControllerTest {
     @DisplayName("로또 구입 후 생성된 로또들을 출력한다.")
     void test_Run_PrintLotteriesBought() {
         //given
-        String input = "2000";
+        String input = "2000\n1,2,3,4,5,6\n1";
         setIn(input);
         setOut();
 
@@ -71,7 +71,7 @@ class LottoControllerTest {
         String output = output();
 
         //then
-        int numberOfLotteries = new BigDecimal(input).divide(new BigDecimal(1000), RoundingMode.UNNECESSARY)
+        int numberOfLotteries = new BigDecimal("2000").divide(new BigDecimal(1000), RoundingMode.UNNECESSARY)
                 .intValueExact();
         assertThat(output).contains("%s개를 구매했습니다.".formatted(numberOfLotteries));
     }
@@ -82,7 +82,7 @@ class LottoControllerTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     //given
-                    String input = "1000";
+                    String input = "1000\n1,2,3,4,5,6\n1";
                     setIn(input);
                     setOut();
 
@@ -103,7 +103,7 @@ class LottoControllerTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     //given
-                    String input = "2000";
+                    String input = "2000\n1,2,3,4,5,6\n1";
                     setIn(input);
                     setOut();
 
@@ -124,7 +124,7 @@ class LottoControllerTest {
     @DisplayName("당첨 번호 입력 시 IllegalArgumentException이 발생하면 에러 메시지를 출력하고 당첨 번호를 다시 입력받는다.")
     void test_Run_ReceiveJackpotNumberAgain() {
         //given
-        String input = "1000\n1,2,3,4,5,0\n1,2,3,4,5,6";
+        String input = "1000\n1,2,3,4,5,0\n1,2,3,4,5,6\n1";
         setIn(input);
         setOut();
 

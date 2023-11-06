@@ -4,16 +4,16 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private final boolean isJackpot;
+    private final Bonus bonus;
 
     public Lotto(List<Integer>numbers) {
-        this(numbers, false);
+        this(numbers, new Bonus());
     }
 
-    public Lotto(List<Integer> numbers, boolean isJackpot) {
+    public Lotto(List<Integer> numbers, Bonus bonus) {
         validate(numbers);
         this.numbers = numbers;
-        this.isJackpot = isJackpot;
+        this.bonus = bonus;
     }
 
     private void validate(List<Integer> numbers) {
@@ -31,7 +31,7 @@ public class Lotto {
     }
 
     public boolean isJackpotLotto() {
-        return isJackpot;
+        return bonus.isJackpot() ;
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -41,11 +41,6 @@ public class Lotto {
     }
 
     private void validateDistinct(List<Integer> numbers) {
-        long distinctCount = numbers.stream()
-                .distinct()
-                .count();
-        if (numbers.size() != distinctCount) {
-            throw new IllegalArgumentException("중복이 포함되어 있습니다.");
-        }
+
     }
 }

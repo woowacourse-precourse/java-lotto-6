@@ -62,7 +62,13 @@ class LottoTest {
                 Validator.validateSameNumberCheckStart(중복된로또번호))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
+    @Test
+    void 범위_초과_테스트(){
+        List<String> 범위초과리스트 = List.of("1","2","50","0","5","8");
+        assertThatThrownBy(() ->
+                Validator.validateLottoNumLimit(범위초과리스트))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 
 

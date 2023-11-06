@@ -26,7 +26,7 @@ public class Player {
         this.lottos = new ArrayList<>();
     }
 
-    public void lottoDraw() {
+    public void drawLotto() {
         for (int i = 0; i < attempt; i++) {
             Lotto lotto = LottoGenerator.generate();
             lottos.add(lotto);

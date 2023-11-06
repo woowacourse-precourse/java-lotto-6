@@ -10,6 +10,20 @@ import java.util.random.RandomGenerator;
 public class LottoController {
     public void start() {
         Player player = new Player();
+        inputCash(player);
+        OutputView.printAttempt(player.getCash());
+
+        drawLotto(player);
+
+        Lotto winningLotto = InputView.inputWinningLotto();
+        Bonus bonus = InputView.inputBonus(winningLotto);
+
+        List<LottoResult> lottoResults = Comparator.compare(player.getLottos(), winningLotto, bonus);
+
+        printResult(lottoResults, player);
+    }
+
+    private void inputCash(Player player) {
         boolean isRightInput = false;
         while (!isRightInput) {
             try {
@@ -19,17 +33,16 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-        OutputView.printAttempt(player.getCash());
+    }
 
-        player.lottoDraw();
+    private void drawLotto(Player player) {
+        player.drawLotto();
         OutputView.printLotto(player.getLottos());
+    }
 
-        Lotto winningLotto = InputView.inputWinningLotto();
-        Bonus bonus = InputView.inputBonus(winningLotto);
-
-        List<LottoResult> lottoResults = Comparator.compare(player.getLottos(), winningLotto, bonus);
+    private void printResult(List<LottoResult> lottoResults, Player player) {
         OutputLottoResult outputLottoResult = new OutputLottoResult(lottoResults);
-
+        
         OutputView.printStat(outputLottoResult);
         OutputView.printRateOfReturn(Calculator.calculateRateOfReturn(outputLottoResult.getTotalReturn(), player.getCash()));
     }

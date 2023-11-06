@@ -27,4 +27,12 @@ public enum Result {
                 .findFirst()
                 .orElseThrow();
     }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Integer getReward() {
+        return reward;
+    }
 }

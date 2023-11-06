@@ -19,6 +19,15 @@ class LottoViewTest extends UiTest {
     @Test
     void printMessageTest() {
         lottoView.printMessage(PURCHASE_AMOUNT_PROMPT);
+
         assertThat(getSystemOutput()).contains(PURCHASE_AMOUNT_PROMPT.getMessage());
+    }
+
+    @Test
+    void askPurchaseAmount() {
+        input("5000");
+        String inputAmount = lottoView.askPurchaseAmount();
+
+        assertThat(inputAmount).isEqualTo("5000");
     }
 }

@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.constant.Message;
 import lotto.view.View;
 
 public class LottoController {
@@ -15,6 +14,7 @@ public class LottoController {
     }
 
     public void run() {
-        view.printMessage(Message.PURCHASE_AMOUNT_PROMPT);
+        view.askPurchaseAmount();
+        view.close();
     }
 }

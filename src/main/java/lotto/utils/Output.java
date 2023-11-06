@@ -1,8 +1,10 @@
 package lotto.utils;
 
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 
 import java.util.List;
+import java.util.Map;
 
 public class Output {
     public static void printLottery(Lotto lotto) {
@@ -25,5 +27,17 @@ public class Output {
         for (Lotto lotto : lottos) {
             printLottery(lotto);
         }
+    }
+
+    public static void printResult(Map<Prize, Integer> result, double winningStatistics) {
+        System.out.println("당첨 통계\n" + "---");
+        for (int i = Prize.values().length - 1; i >= 0; i--) {
+            String description = Prize.values()[i].getDescription();
+            Integer wins = result.get(Prize.values()[i]);
+
+            System.out.println(description + wins + "개");
+        }
+
+        System.out.println("총 수익률은 " + String.format("%.1f", winningStatistics) + "%입니다.");
     }
 }

@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
 import lotto.constants.ErrorMessage;
+import lotto.utils.Converter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,7 +25,7 @@ class InputViewTest {
         System.setIn(createUserInput("8000"));
 
         // when
-        int purchaseAmount = InputView.readPurchaseAmount();
+        int purchaseAmount = Converter.convertToInt(InputView.readPurchaseAmount());
 
         // then
         Assertions.assertThat(purchaseAmount).isEqualTo(8000);
@@ -37,7 +38,7 @@ class InputViewTest {
         System.setIn(createUserInput("hi"));
 
         // when, then
-        Assertions.assertThatThrownBy(InputView::readPurchaseAmount)
+        Assertions.assertThatThrownBy(() -> Converter.convertToInt(InputView.readPurchaseAmount()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
     }
@@ -49,22 +50,24 @@ class InputViewTest {
         System.setIn(createUserInput("1,2,3,4,5,6"));
 
         // when
-        List<Integer> winningNumbers = InputView.readWinningNumbers();
+        List<Integer> winningNumbers =
+                Converter.convertToIntegerListWithDelimiter(InputView.readWinningNumbers(), ",");
 
         // then
         Assertions.assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
-    @DisplayName("당첨 번호 입력 시 숫자가 아닌 다른 문자가 포함되어 있으면 예외가 발생한다.")
+    @DisplayName("당첨 번호 입력 시 주어진 입력 형식과 일치하지 않으면 예외가 발생한다.")
     @Test
-    void readWinningNumbers_ByNotInteger() {
+    void readWinningNumbers_ByInvalidNumbersRegex() {
         // given
         System.setIn(createUserInput("1,f,2,6,7,10"));
 
         // when
-        Assertions.assertThatThrownBy(InputView::readWinningNumbers)
+        Assertions.assertThatThrownBy(() ->
+                        Converter.convertToIntegerListWithDelimiter(InputView.readWinningNumbers(), ","))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
+                .hasMessageContaining(ErrorMessage.INVALID_REGEX_INPUT.getMessage());
     }
 
     @DisplayName("보너스 번호를 성공적으로 입력 받으면, 그 값을 정수형으로 반환한다.")
@@ -74,7 +77,7 @@ class InputViewTest {
         System.setIn(createUserInput("7"));
 
         // when
-        int bonusNumber = InputView.readBonusNumber();
+        int bonusNumber = Converter.convertToInt(InputView.readBonusNumber());
 
         // then
         Assertions.assertThat(bonusNumber).isEqualTo(7);
@@ -87,7 +90,7 @@ class InputViewTest {
         System.setIn(createUserInput("notNumber"));
 
         // when, then
-        Assertions.assertThatThrownBy(InputView::readBonusNumber)
+        Assertions.assertThatThrownBy(() -> Converter.convertToInt(InputView.readBonusNumber()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
     }

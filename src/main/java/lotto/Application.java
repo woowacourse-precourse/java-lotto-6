@@ -62,7 +62,7 @@ public class Application {
     private static LottoGameResult calculateResult(LottoTicket ticket, WinningNumbers winningNumbers) {
         Map<Integer, Long> matchCounts = new HashMap<>();
         for (Lotto lotto : ticket.getLottoNumbers()) {
-            int matchCount = countMatchingNumbers(lotto, winningNumbers.getWinningLotto());
+            int matchCount = countMatchingNumbers(lotto, winningNumbers);
             matchCounts.put(matchCount, matchCounts.getOrDefault(matchCount, 0L) + 1);
         }
         return new LottoGameResult(matchCounts);

@@ -1,4 +1,4 @@
-package lotto.manager;
+package lotto.domain.manager;
 
 import lotto.domain.Award;
 import lotto.system.Constant;

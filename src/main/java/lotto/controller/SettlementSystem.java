@@ -5,8 +5,8 @@ import lotto.domain.BonusNumber;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
 import lotto.io.OutputHandler;
-import lotto.manager.AwardManager;
-import lotto.manager.YieldManager;
+import lotto.domain.manager.AwardManager;
+import lotto.domain.manager.YieldManager;
 
 
 import java.util.List;

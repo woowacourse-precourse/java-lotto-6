@@ -24,7 +24,7 @@ public class LottoController {
 
     public void run() {
         output.showMoneyInputMessage();
-        int money = toInt(input.readMoney());
+        int money = repeatReadMoney();
 
         LottoTickets lottoTickets = makeLottoTickets(money);
         output.showLottoTickets(lottoTickets);
@@ -34,6 +34,15 @@ public class LottoController {
         Map<Rank, Integer> winningResult = makeWinningResult(rankByLotto);
         double totalReturn = winningCondition.calculateTotalReturn(money, winningResult);
         output.showWinningStats(winningResult, totalReturn);
+    }
+
+    private int repeatReadMoney() {
+        try {
+            return toInt(input.readMoney());
+        } catch (IllegalArgumentException e) {
+            output.showError(e.getMessage());
+            return repeatReadMoney();
+        }
     }
 
     private Map<Rank, Integer> makeWinningResult(Map<Lotto, Rank> rankByLotto) {

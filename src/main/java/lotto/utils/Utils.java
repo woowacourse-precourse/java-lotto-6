@@ -22,4 +22,10 @@ public class Utils {
 				.map(String::trim)
 				.collect(Collectors.toList());
 	}
+	
+	public static List<Integer> stringToIntegerList(String input) {
+		return splitString(input).stream()
+				.map(Integer::valueOf)
+				.collect(Collectors.toList());
+	}
 }

@@ -63,4 +63,10 @@ public class Validator {
         isNumeric(input);
     }
 
+    public static void isBonusNumberDuplicate(List<Integer> numbers, int number) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_IN_BONUS_ERROR);
+        }
+    }
+
 }

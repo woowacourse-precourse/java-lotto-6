@@ -15,16 +15,23 @@ public class LottoTickets {
     }
 
     public EnumMap<Rank, Integer> getRankResult(WinningTicket winningTicket) {
-        EnumMap<Rank, Integer> rankToInteger = new EnumMap<>(Rank.class);
+        EnumMap<Rank, Integer> rankResult = initRankResult();
+
+        lottos.stream()
+                .map(lotto -> Rank.of(lotto, winningTicket))
+                .filter(rank -> rank != Rank.NONE)
+                .forEach(rank -> rankResult.put(rank, rankResult.get(rank) + 1));
+
+        return rankResult;
+    }
+
+    private EnumMap<Rank, Integer> initRankResult() {
+        EnumMap<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
-            rankToInteger.put(rank, 0);
+            rankResult.put(rank, 0);
         }
-        for (Lotto lotto : lottos) {
-            Rank rank = Rank.of(lotto, winningTicket);
-            rankToInteger.put(rank, rankToInteger.get(rank) + 1);
-        }
-        rankToInteger.remove(Rank.NONE);
-        return rankToInteger;
+        rankResult.remove(Rank.NONE);
+        return rankResult;
     }
 
     public BigDecimal getRateOfReturn(long totalPrize) {

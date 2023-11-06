@@ -1,18 +1,20 @@
 package lotto;
 
-import static lotto.MatchCountMessage.COUNT_NUMBER;
-import static lotto.NoticeMessage.BUY_COUNT;
-import static lotto.NoticeMessage.RATE_OF_RETURN_HEAD;
-import static lotto.NoticeMessage.RATE_OF_RETURN_TAIL;
+import static lotto.enums.NoticeMessage.BUY_COUNT;
+import static lotto.enums.NoticeMessage.RATE_OF_RETURN_HEAD;
+import static lotto.enums.NoticeMessage.RATE_OF_RETURN_TAIL;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
+import lotto.enums.MatchCountMessage;
+import lotto.enums.NoticeMessage;
 
 public class PrintOutput {
+    private static final String COUNT_NUMBER = "개";
+
     public static void printNoticeMessage(NoticeMessage message) {
         System.out.println(message.getMessage());
-    }
-
-    public static void printRateOfReturn(int rate) {
-        System.out.println(RATE_OF_RETURN_HEAD.getMessage() + rate + RATE_OF_RETURN_TAIL.getMessage());
-
     }
 
     public static void printCountOfLotto(int count) {
@@ -26,11 +28,22 @@ public class PrintOutput {
             lottoNumbers.append(lottos.getIndexLotto(i).toString()).append("\n");
         }
         System.out.println(lottoNumbers);
-        System.out.println();
     }
 
-    public static void printMatchCountMessage(MatchCountMessage message, int count) {
-        System.out.println(message.getMessage() + count + COUNT_NUMBER.getMessage());
-        System.out.println();
+    public static void printLottosRank(Map<Integer, Integer> winningRanks) {
+        List<String> messages = Stream.of(MatchCountMessage.values()).map(MatchCountMessage::getMessage).toList();
+        for (int i = 4; i >= 0; i--) {
+            printMatchCountMessage(messages.get(i), winningRanks.get(i + 1));
+        }
+    }
+
+    private static void printMatchCountMessage(String message, int count) {
+        System.out.println(message + count + COUNT_NUMBER);
+    }
+
+    public static void printRateOfReturn(double rate) {
+        System.out.println(
+                RATE_OF_RETURN_HEAD.getMessage() + String.format("%.1f", rate) + RATE_OF_RETURN_TAIL.getMessage());
+
     }
 }

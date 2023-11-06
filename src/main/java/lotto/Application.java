@@ -12,7 +12,6 @@ import lotto.exception.BelowMinimumPurchasePriceException;
 import lotto.exception.InvalidBonusNumberException;
 import lotto.exception.InvalidBonusNumberFormatException;
 import lotto.exception.InvalidLottoException;
-import lotto.exception.InvalidLottoNumberFormatException;
 import lotto.exception.InvalidPurchasePriceFormatException;
 import lotto.exception.NonMultipleOfPriceUnitException;
 import lotto.util.WinningLottoConverter;
@@ -22,7 +21,6 @@ public class Application {
 
     private static final int PURCHASE_PRICE_UNIT = 1000;
     private static final int EMPTY = 0;
-
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현

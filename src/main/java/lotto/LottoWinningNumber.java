@@ -24,4 +24,12 @@ public class LottoWinningNumber {
             throw new IllegalArgumentException("Bonus number must be between 1 and 45.");
         }
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBounsNumber() {
+        return bounsNumber;
+    }
 }

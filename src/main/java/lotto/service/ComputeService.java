@@ -17,28 +17,36 @@ public class ComputeService {
 
 
     public static Map<MatchResult, Integer> computeResult(List<Lotto> randomLottos, Lotto winningLotto, int bonusNum) {
-        Map<MatchResult, Integer> totalResult = initEnumMap();
+        Map<MatchResult, Integer> result = initEnumMap();
 
         for (Lotto randomLotto : randomLottos) {
             MatchResult matchResult = Lotto.match(randomLotto, winningLotto, bonusNum);
 
-            totalResult.compute(matchResult, (k, v) -> v + MATCHRESULT_INCREMENT);
+            result.compute(matchResult, (k, v) -> v + MATCHRESULT_INCREMENT);
         }
 
-        return totalResult;
+        return result;
     }
 
     private static Map<MatchResult, Integer> initEnumMap() {
         EnumMap<MatchResult, Integer> enumMap = new EnumMap<>(MatchResult.class);
 
-        for (MatchResult result : MatchResult.values())
-            enumMap.put(result, 0);
+        for (MatchResult matchResult : MatchResult.values())
+            enumMap.put(matchResult, MATCHRESULT_INIT_NUM);
 
         return enumMap;
     }
 
 
-    public static long computeTotalPrize(Map<MatchResult, Integer> result) {
+    public static double computeMargin(Map<MatchResult, Integer> result, int lottoTicketNum) {
+        long totalPrize = computeTotalPrize(result);
+        long expense = computeExpense(lottoTicketNum);
+        double margin = (double) totalPrize / expense * PERCENT_MULTIPLIER;
+
+        return computeDecimalPoint(margin);
+    }
+
+    private static long computeTotalPrize(Map<MatchResult, Integer> result) {
         return result.entrySet().stream()
                 .mapToLong(match -> computePrizeByNum(match.getKey(), match.getValue()))
                 .sum();
@@ -46,11 +54,6 @@ public class ComputeService {
 
     private static long computePrizeByNum(MatchResult matchResult, int num) {
         return matchResult.getPrizeMoney() * num;
-    }
-
-
-    public static double computeMargin(int lottoTicketNum, long totalPrize) {
-        return computeDecimalPoint((double) totalPrize / (computeExpense(lottoTicketNum)));
     }
 
     private static long computeExpense(int lottoTicketNum) {

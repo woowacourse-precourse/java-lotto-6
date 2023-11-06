@@ -35,6 +35,6 @@ public class WinningStatisticsCalculator {
 
     private boolean hasBonusNumber(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
-        return lottoNumbers.contains(winningLotto.bonusNumber());
+        return lottoNumbers.contains(winningLotto.bonusNumber().getBonusNumber());
     }
 }

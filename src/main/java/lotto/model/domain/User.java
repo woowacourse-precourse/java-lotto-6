@@ -8,7 +8,7 @@ public class User {
     private final int purchaseMoney;
     private final int havingLottosCount;
     private long moneyOfReturn;
-    private int[] lottoRanks;
+    private int[] lottoRanks = {0,0,0,0,0,0,0,0};
 
     public User(int purchaseMoney) {
         this.purchaseMoney = purchaseMoney;
@@ -32,8 +32,12 @@ public class User {
         return this.lottoRanks;
     }
 
-    public void increaseUserRank(int rankIdx) {
-        this.lottoRanks[rankIdx]+=1;
+    public void increaseUserRank(int identifyNum) {
+        if (identifyNum == 10) {
+            this.lottoRanks[6]+=1;
+            return;
+        }
+        this.lottoRanks[identifyNum]+=1;
     }
 
     public long getMoneyOfReturn() {

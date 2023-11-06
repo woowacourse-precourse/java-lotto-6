@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -14,7 +15,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    // TODO: 추가 기능 구현
 }

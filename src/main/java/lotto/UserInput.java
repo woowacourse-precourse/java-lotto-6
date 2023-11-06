@@ -6,30 +6,56 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import lotto.enums.ErrorMessage;
 
 public class UserInput {
 
     public static int getUserMoney() {
-        String input = readLine();
-        validateUserMoney(input);
+        String input;
+
+        while (true) {
+            try {
+                input = readLine();
+                validateUserMoney(input);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
 
         return Integer.parseInt(input);
     }
 
     public static List<Integer> getWinningNumbers() {
-        String input = readLine().replace(" ", "");
-        List<String> inputs = Arrays.asList(input.split(","));
-        validateWinningNumbers(inputs);
+        String input;
+        List<String> inputs;
 
-        return inputs.stream().map(Integer::parseInt).toList();
+        while (true) {
+            try {
+                input = readLine().replace(" ", "");
+                inputs = Arrays.asList(input.split(","));
+                validateWinningNumbers(inputs);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+
         List<Integer> winningNumbers = new ArrayList<>(inputs.stream().map(Integer::parseInt).toList());
         return winningNumbers;
     }
 
     public static int getBonusNumber() {
-        String input = readLine();
-        validateBonusNumber(input);
-
+        String input;
+        while (true) {
+            try {
+                input = readLine();
+                validateBonusNumber(input);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
         return Integer.parseInt(input);
     }
 

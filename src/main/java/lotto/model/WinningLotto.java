@@ -7,23 +7,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WinningLotto {
-    private final String SPLIT_SENTENCE = ",";
-    private final String POSITIVE_NUMBER_PATTERN = "\\d+$";
+    private static final String SPLIT_SENTENCE = ",";
+    private static final String POSITIVE_NUMBER_PATTERN = "\\d+$";
 
-    private Lotto lotto;
-    private int bonus;
+    private final Lotto lotto;
+    private final int bonus;
 
     public WinningLotto(String lottoInput, String bonusInput) {
         lotto = new Lotto(changeInputToNumbers(lottoInput));
         bonus = changeInputToBonus(bonusInput);
     }
 
-    public Lotto getLotto() {
-        return lotto;
-    }
-
     public int getBonus() {
         return bonus;
+    }
+
+    public List<Integer> getLottoNums() {
+        return lotto.getNumbers();
     }
 
     private List<Integer> changeInputToNumbers(String lottoInput) {

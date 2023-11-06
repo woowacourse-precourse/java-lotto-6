@@ -1,31 +1,41 @@
 package lotto.model;
 
-public class Rank {
-    private int rank;
-    private long amount;
-    private int count;
-    private int matchingCount;
+public enum Rank {
+    FIRST(6, true, 2_000_000_000),
+    SECOND(5, true, 30_000_000),
+    THIRD(5, false, 1_500_000),
+    FOURTH(4, false, 50_000),
+    FIFTH(3, false, 5_000),
+    NONE(0, false, 0);
 
-    public Rank(int rank, long amount, int count, int matchingCount) {
-        this.rank = rank;
-        this.amount = amount;
-        this.count = count;
-        this.matchingCount = matchingCount;
+    private final int matchingNumbers;
+    private final boolean hasBonusNumber;
+    private final int prize;
+
+    Rank(int matchingNumbers, boolean hasBonusNumber, int prize) {
+        this.matchingNumbers = matchingNumbers;
+        this.hasBonusNumber = hasBonusNumber;
+        this.prize = prize;
     }
 
-    public int getRank() {
-        return rank;
+    public int getMatchingNumbers() {
+        return matchingNumbers;
     }
 
-    public long getAmount() {
-        return amount;
+    public boolean hasBonusNumber() {
+        return hasBonusNumber;
     }
 
-    public int getCount() {
-        return count;
+    public int calculatePrize() {
+        return prize;
     }
 
-    public int getMatchingCount() {
-        return matchingCount;
+    public static Rank calculateRank(int matchingNumbers, boolean hasBonusNumber) {
+        for (Rank rank : values()) {
+            if (rank.matchingNumbers == matchingNumbers && rank.hasBonusNumber == hasBonusNumber) {
+                return rank;
+            }
+        }
+        return NONE;
     }
 }

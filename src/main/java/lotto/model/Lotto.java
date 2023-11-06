@@ -1,11 +1,14 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -17,23 +20,39 @@ public class Lotto {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
 
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != 6) {
+        if (hasDuplicateNumbers(numbers)) {
             throw new IllegalArgumentException("로또 번호에 중복된 숫자가 있습니다.");
         }
 
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 값이어야 합니다.");
+        if (isOutOfRange(numbers)) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private boolean hasDuplicateNumbers(List<Integer> numbers) {
+        Set<Integer> numberSet = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!numberSet.add(number)) {
+                return true;
             }
         }
+        return false;
+    }
+
+    private boolean isOutOfRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public boolean isWinningLotto(List<Integer> winningNumbers) {
-        return numbers.containsAll(winningNumbers);
+    public void sortNumbers() {
+        Collections.sort(numbers);
     }
 }

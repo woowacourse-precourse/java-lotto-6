@@ -1,32 +1,40 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import lotto.LottoBuying;
-import lotto.View.ConsoleInput;
-import lotto.View.ConsoleOutput;
+import lotto.LottoGenerator;
 import lotto.WinningCalculator;
 import lotto.model.Lotto;
 import lotto.model.WinningNumbers;
+import lotto.view.ConsoleInput;
+import lotto.view.ConsoleOutput;
 
 public class LottoController {
-    public static void start() {
-        Scanner scanner = new Scanner(System.in);
+    public void run() {
+        ConsoleInput input = new ConsoleInput();
+        int purchaseAmount = input.getPurchaseAmount();
+        WinningNumbers winningNumbers = input.getWinningNumbers();
 
-        int purchaseAmount = ConsoleInput.getPurchaseAmount(scanner);
-        List<Lotto> purchasedLottos = LottoBuying.buyLotto(purchaseAmount);
+        LottoBuying lottoBuying = new LottoBuying();
+        List<Lotto> lottos = lottoBuying.buyLottos(purchaseAmount);
 
-        ConsoleOutput.printPurchasedLottos(purchasedLottos);
+        WinningCalculator winningCalculator = new WinningCalculator();
+        List<Lotto> winningLottos = generateWinningLottos();
 
-        WinningNumbers winningNumbers = getWinningNumbers(scanner);
+        winningCalculator.calculateWinnings(lottos, winningLottos);
 
-        WinningCalculator.calculateAndPrintRanks(purchasedLottos, winningNumbers);
+        ConsoleOutput output = new ConsoleOutput();
+        output.displayPurchasedLottos(lottos);
+        output.displayWinningStatistics(winningCalculator.getWinningStatistics());
+        output.displayTotalProfitRate(winningCalculator.calculateTotalProfitRate(purchaseAmount));
     }
 
-    private static WinningNumbers getWinningNumbers(Scanner scanner) {
-        List<Integer> winningNumbers = ConsoleInput.getWinningNumbers(scanner);
-        int bonusNumber = ConsoleInput.getBonusNumber(scanner);
-
-        return new WinningNumbers(winningNumbers, bonusNumber);
+    private List<Lotto> generateWinningLottos() {
+        List<Lotto> winningLottos = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            winningLottos.add(new Lotto(LottoGenerator.generateRandomNumbers()));
+        }
+        return winningLottos;
     }
 }

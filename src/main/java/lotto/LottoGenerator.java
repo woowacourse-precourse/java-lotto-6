@@ -5,22 +5,17 @@ import java.util.List;
 import java.util.Random;
 
 public class LottoGenerator {
-    public static List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>();
-        List<Integer> candidateNumbers = new ArrayList<>();
-
-        for (int i = 1; i <= 45; i++) {
-            candidateNumbers.add(i);
-        }
-
+    public static List<Integer> generateRandomNumbers() {
+        List<Integer> numbers = new ArrayList<>();
         Random random = new Random();
 
-        for (int i = 0; i < 6; i++) {
-            int randomIndex = random.nextInt(candidateNumbers.size());
-            int selectedNumber = candidateNumbers.remove(randomIndex);
-            lottoNumbers.add(selectedNumber);
+        while (numbers.size() < 6) {
+            int randomNumber = random.nextInt(45) + 1;
+            if (!numbers.contains(randomNumber)) {
+                numbers.add(randomNumber);
+            }
         }
 
-        return lottoNumbers;
+        return numbers;
     }
 }

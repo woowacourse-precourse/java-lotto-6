@@ -12,7 +12,7 @@ public class Wallet {
     private static final int MIN_AMOUNT_OF_LOTTO = LottoConstant.MIN_AMOUNT_OF_LOTTO.getValue();
     private static final int MAX_AMOUNT_OF_LOTTO = LottoConstant.MAX_AMOUNT_OF_LOTTO.getValue();
     private static final String ERROR_NOT_MULTIPLES_NUMBER = Message.ERROR_NOT_MULTIPLES_NUMBER.getValue();
-    private static final String ERROR_NOT_NUMBER_RANGE = Message.ERROR_NOT_NUMBER_RANGE.getValue();
+    private static final String ERROR_NOT_AMOUNT_RANGE = Message.ERROR_NOT_AMOUNT_RANGE.getValue();
 
     private int balance = 0;
     private final List<Lotto> lottos = new ArrayList<>();
@@ -55,7 +55,7 @@ public class Wallet {
 
     private void validateNumberRange(int number) {
         if (number < MIN_AMOUNT_OF_LOTTO || number > MAX_AMOUNT_OF_LOTTO) {
-            throw new IllegalArgumentException(ERROR_NOT_NUMBER_RANGE);
+            throw new IllegalArgumentException(ERROR_NOT_AMOUNT_RANGE);
         }
     }
 }

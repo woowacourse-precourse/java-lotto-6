@@ -3,7 +3,7 @@ package lotto.constant;
 public enum Message {
 
     ERROR_NOT_MULTIPLES_NUMBER("[ERROR] 로또 구입 금액은 " + LottoConstant.MIN_AMOUNT_OF_LOTTO.getValue() + " 원 단위어야 합니다."),
-    ERROR_NOT_NUMBER_RANGE("[ERROR] 로또 구입 금액은 " + LottoConstant.MIN_AMOUNT_OF_LOTTO.getValue() + " ~ " + LottoConstant.MAX_AMOUNT_OF_LOTTO + " 원 이어야 합니다."),
+    ERROR_NOT_AMOUNT_RANGE("[ERROR] 로또 구입 금액은 " + LottoConstant.MIN_AMOUNT_OF_LOTTO.getValue() + " ~ " + LottoConstant.MAX_AMOUNT_OF_LOTTO + " 원 이어야 합니다."),
     ERROR_NOT_NUMBER("[ERROR] 숫자가 아닙니다."),
     ERROR_NOT_IN_SPLIT_WORD("[ERROR] 구분자가 없습니다."),
     ERROR_NOT_NUMBERS_SIZE("[ERROR] 로또 번호는 "+ LottoConstant.LOTTO_NUMBER_SIZE.getValue() +"개 이어야 합니다."),

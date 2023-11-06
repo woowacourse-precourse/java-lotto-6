@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.LottoConst;
 import lotto.enums.LottoEnum;
 
 import java.util.*;
@@ -30,14 +29,15 @@ public class Lotto {
         }
     }
 
-    public void countResult(WinNum winNum) {
+    public LottoEnum countResult(WinNum winNum) {
         int count = 0, bonusCount = 0;
 
         for (int number : numbers) {
             count += winNum.count(number);
             bonusCount += winNum.bonusCount(number);
         }
-        LottoEnum.getLottoEnum(count, bonusCount);
+
+        return LottoEnum.getLottoEnum(count, bonusCount);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.Result;
 import lotto.domain.WinNum;
 import lotto.enums.LottoEnum;
 import org.assertj.core.api.Assertions;
@@ -49,11 +50,13 @@ class LottoTest {
             WinNum winNum = new WinNum(list, bonusNum);
 
         // when
-        lotto.countResult(winNum);
-        lotto2.countResult(winNum);
+        LottoEnum lottoEnum = lotto.countResult(winNum);
+        LottoEnum lottoEnum2 = lotto2.countResult(winNum);
+        Result.resultCount(lottoEnum);
+        Result.resultCount(lottoEnum2);
 
         // then
-        Assertions.assertThat(W1.getResult()).isEqualTo(1);
-        Assertions.assertThat(W2.getResult()).isEqualTo(1);
+        Assertions.assertThat(Result.getCount(W1)).isEqualTo(1);
+        Assertions.assertThat(Result.getCount(W2)).isEqualTo(1);
     }
 }

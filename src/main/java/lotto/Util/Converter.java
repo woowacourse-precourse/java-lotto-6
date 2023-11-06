@@ -9,6 +9,14 @@ public class Converter {
     private static final String NULL = "";
     private static final String KOMA = ",";
 
+    public int convertAmount(String value){
+        value = value.replaceAll(SPACE, NULL);
+        checkEmpty(value);
+        checkType(value);
+        checkValueOverflow(value);
+        return Integer.parseInt(value);
+    }
+
     private void checkEmpty(String amount){
         if (amount.isEmpty()){
             throw ExceptionMessage.INPUT_EMPTY.throwexception();

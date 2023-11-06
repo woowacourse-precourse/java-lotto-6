@@ -1,8 +1,8 @@
 package lotto.view;
 
 import java.util.List;
-import java.util.Map;
 import lotto.dto.LottoDto;
+import lotto.dto.StatisticDto;
 import lotto.model.LottoRank;
 
 public class OutputView {
@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     public void printTicketCountMessage(final Integer count) {
-        printMessage(String.format(TICKET_COUNT_MESSAGE, count));
+        printMessage(LINE + String.format(TICKET_COUNT_MESSAGE, count));
     }
 
     public void printRequestInputWinningNumberMessage() {
@@ -45,14 +45,25 @@ public class OutputView {
         printMessage(LINE);
     }
 
-    public void printStatistics(final Map<LottoRank, Integer> result) {
+    public void printStatistics(final StatisticDto statisticDto) {
+        printHeader();
+        printMessage(String.format(FIFTH_RANK_MESSAGE,
+                statisticDto.getRank().getOrDefault(LottoRank.FIFTH_RANK, DEFAULT_COUNT)));
+        printMessage(
+                String.format(FOURTH_RANK_MESSAGE,
+                        statisticDto.getRank().getOrDefault(LottoRank.FOURTH_RANK, DEFAULT_COUNT)));
+        printMessage(String.format(THIRD_RANK_MESSAGE,
+                statisticDto.getRank().getOrDefault(LottoRank.THIRD_RANK, DEFAULT_COUNT)));
+        printMessage(
+                String.format(SECOND_RANK_MESSAGE,
+                        statisticDto.getRank().getOrDefault(LottoRank.SECOND_RANK, DEFAULT_COUNT)));
+        printMessage(String.format(FIRST_RANK_MESSAGE,
+                statisticDto.getRank().getOrDefault(LottoRank.FIRST_RANK, DEFAULT_COUNT)));
+    }
+
+    private void printHeader() {
         printMessage(LINE + STATISTICS_MESSAGE);
         printMessage(HYPHEN);
-        printMessage(String.format(FIFTH_RANK_MESSAGE, result.getOrDefault(LottoRank.FIFTH_RANK, DEFAULT_COUNT)));
-        printMessage(String.format(FOURTH_RANK_MESSAGE, result.getOrDefault(LottoRank.FOURTH_RANK, DEFAULT_COUNT)));
-        printMessage(String.format(THIRD_RANK_MESSAGE, result.getOrDefault(LottoRank.THIRD_RANK, DEFAULT_COUNT)));
-        printMessage(String.format(SECOND_RANK_MESSAGE, result.getOrDefault(LottoRank.SECOND_RANK, DEFAULT_COUNT)));
-        printMessage(String.format(FIRST_RANK_MESSAGE, result.getOrDefault(LottoRank.FIRST_RANK, DEFAULT_COUNT)));
     }
 
     public void printProfitRate(final Double profitRate) {
@@ -62,4 +73,5 @@ public class OutputView {
     public void printMessage(final String message) {
         System.out.println(message);
     }
+
 }

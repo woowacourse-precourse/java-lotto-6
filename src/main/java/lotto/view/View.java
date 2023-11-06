@@ -1,11 +1,10 @@
 package lotto.view;
 
 import java.util.List;
-import java.util.Map;
 import lotto.dto.LottoDto;
+import lotto.dto.StatisticDto;
 import lotto.exception.WinningNumberContainsBonusNumberException;
 import lotto.model.Lotto;
-import lotto.model.LottoRank;
 import lotto.util.Converter;
 import lotto.validation.InputValidator;
 import lotto.vo.BonusNumber;
@@ -72,8 +71,8 @@ public class View {
         outputView.printLotteriesNumber(lotteries);
     }
 
-    public void showStatistics(final Map<LottoRank, Integer> result) {
-        outputView.printStatistics(result);
+    public void showStatistics(final StatisticDto statisticDto) {
+        outputView.printStatistics(statisticDto);
     }
 
     public void showProfitRate(final Double profitRate) {

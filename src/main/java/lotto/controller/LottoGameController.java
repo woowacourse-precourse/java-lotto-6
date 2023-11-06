@@ -3,12 +3,12 @@ package lotto.controller;
 import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
 
 import java.util.List;
-import java.util.Map;
 import lotto.dto.LottoDto;
+import lotto.dto.StatisticDto;
 import lotto.model.Lotteries;
 import lotto.model.Lotto;
-import lotto.model.LottoRank;
-import lotto.model.LottoResultCalculator;
+import lotto.model.ProfitRate;
+import lotto.model.Statistic;
 import lotto.util.RandomNumberGenerator;
 import lotto.view.View;
 import lotto.vo.BonusNumber;
@@ -33,12 +33,14 @@ public class LottoGameController {
         Lotto winningLotto = initWinningLotto();
         BonusNumber bonusNumber = initBonusNumber(winningLotto.getNumbers());
 
-        LottoResultCalculator lottoResultCalculator = initLottoResultCalculator(lotteries, winningLotto, bonusNumber);
+        Statistic statistic = createStatistic(lotteries, winningLotto, bonusNumber);
+        ProfitRate profitRate = calculateProfitRate(buyAmount, statistic);
 
-        Map<LottoRank, Integer> result = lottoResultCalculator.getResult();
-        Double profitRate = lottoResultCalculator.calculateRateOfProfit(result, buyAmount);
+        showResult(statistic, profitRate);
+    }
 
-        showResult(result, profitRate);
+    private ProfitRate calculateProfitRate(BuyAmount buyAmount, Statistic statistic) {
+        return ProfitRate.from(statistic.getRank(), buyAmount);
     }
 
     private BuyAmount initBuyAmount() {
@@ -57,9 +59,9 @@ public class LottoGameController {
         return Lotteries.createLotteries(ticketCount, new RandomNumberGenerator());
     }
 
-    private LottoResultCalculator initLottoResultCalculator(final Lotteries lotteries, final Lotto winningLotto,
-                                                            final BonusNumber bonusNumber) {
-        return LottoResultCalculator.from(lotteries, winningLotto, bonusNumber);
+    private Statistic createStatistic(final Lotteries lotteries, final Lotto winningLotto,
+                                      final BonusNumber bonusNumber) {
+        return Statistic.from(lotteries, winningLotto, bonusNumber);
     }
 
     private Lotto initWinningLotto() {
@@ -74,8 +76,8 @@ public class LottoGameController {
         view.showLotteriesNumber(LottoDto.toDto(lotteries.getLotteries()));
     }
 
-    private void showResult(Map<LottoRank, Integer> result, double profitRate) {
-        view.showStatistics(result);
-        view.showProfitRate(profitRate);
+    private void showResult(Statistic statistic, ProfitRate profitRate) {
+        view.showStatistics(StatisticDto.from(statistic));
+        view.showProfitRate(profitRate.getRate());
     }
 }

@@ -25,9 +25,9 @@ public class Lotto {
         return sortedNumbers.toString();
     }
 
-    public int getMatchCountWith(List<Integer> numbers) {
+    public int getMatchCountWith(List<Integer> targetNumbers) {
         int matchCount = 0;
-        for (Integer number : numbers) {
+        for (Integer number : targetNumbers) {
             if (numbers.contains(number)) {
                 matchCount += 1;
             }

@@ -25,6 +25,14 @@ class WinningLottoTest {
                 .hasMessage("[ERROR] 공백 없이 1~45까지의 숫자를 입력해주세요.");
     }
 
+    @DisplayName("숫자 입력 시, 공백이 있으면 예외가 발생한다.")
+    @Test
+    void createWinningLottoByBlank() {
+        assertThatThrownBy(() -> new WinningLotto(List.of(" 3", "12", "20", "21 ", "30, 31")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 공백 없이 1~45까지의 숫자를 입력해주세요.");
+    }
+
     @DisplayName("로또 번호의 숫자가 45보다 크면 안 된다.")
     @Test
     void createWinningLottoByOverNumberRange() {
@@ -62,7 +70,7 @@ class WinningLottoTest {
     void plusBonusByNotNumber() {
         assertThatThrownBy(() -> lotto.plusBonusNumber(List.of("테스트!")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 공백 없이 1~45까지의 숫자를 입력해주세요.");
     }
 
     @DisplayName("보너스 번호는 45보다 커선 안 된다.")
@@ -70,7 +78,7 @@ class WinningLottoTest {
     void plusBonusByOverRange() {
         assertThatThrownBy(() -> lotto.plusBonusNumber(List.of("500")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 공백 없이 1~45까지의 숫자를 입력해주세요.");
     }
 
     @DisplayName("보너스 번호는 1보다 작아선 안 된다.")
@@ -78,7 +86,7 @@ class WinningLottoTest {
     void plusBonusByUnderRange() {
         assertThatThrownBy(() -> lotto.plusBonusNumber(List.of("-10")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 공백 없이 1~45까지의 숫자를 입력해주세요.");
     }
 
     @DisplayName("당첨 번호와 보너스 번호는 중복되어선 안 된다.")

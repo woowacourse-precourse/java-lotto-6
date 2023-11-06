@@ -1,4 +1,4 @@
-package lotto.input.constant;
+package lotto.constant;
 
 public class Constant {
 

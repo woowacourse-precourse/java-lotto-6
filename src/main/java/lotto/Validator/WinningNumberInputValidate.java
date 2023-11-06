@@ -1,10 +1,10 @@
-package lotto.input.Validator;
+package lotto.Validator;
 
-import static lotto.input.constant.Constant.DUPLICATE_ERROR;
-import static lotto.input.constant.Constant.LOTTO_NUMBER_SIZE;
-import static lotto.input.constant.Constant.NOT_NUMBER_ERROR;
-import static lotto.input.constant.Constant.NUMBER_SCOPE_ERROR;
-import static lotto.input.constant.Constant.WINNING_NUMBER_SIZE_ERROER;
+import static lotto.constant.Constant.DUPLICATE_ERROR;
+import static lotto.constant.Constant.LOTTO_NUMBER_SIZE;
+import static lotto.constant.Constant.NOT_NUMBER_ERROR;
+import static lotto.constant.Constant.NUMBER_SCOPE_ERROR;
+import static lotto.constant.Constant.WINNING_NUMBER_SIZE_ERROER;
 
 import java.util.List;
 

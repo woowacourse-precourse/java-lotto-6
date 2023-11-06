@@ -1,6 +1,6 @@
-package lotto.input.Validator;
+package lotto.Validator;
 
-import static lotto.input.constant.Constant.LOTTO_PRICE;
+import static lotto.constant.Constant.LOTTO_PRICE;
 
 public class AmountInputValidate {
 

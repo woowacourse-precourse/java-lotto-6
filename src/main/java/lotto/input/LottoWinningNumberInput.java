@@ -1,14 +1,14 @@
-package lotto.input.view.input;
+package lotto.input;
 
-import static lotto.input.constant.Constant.BOUNS_NUMBER_INPUPT_MESSAGE;
-import static lotto.input.constant.Constant.WINNING_NUMBER_INPUT_MESSAGE;
+import static lotto.constant.Constant.BOUNS_NUMBER_INPUPT_MESSAGE;
+import static lotto.constant.Constant.WINNING_NUMBER_INPUT_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import lotto.input.Validator.WinningNumberInputValidate;
+import lotto.Validator.WinningNumberInputValidate;
 
 public class LottoWinningNumberInput {
     List<Integer> winningNumbers = new ArrayList<>();

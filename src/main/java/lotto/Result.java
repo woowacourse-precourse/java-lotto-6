@@ -1,18 +1,18 @@
-package lotto.input;
+package lotto;
 
-import static lotto.input.constant.Constant.COUNT;
-import static lotto.input.constant.Constant.FIFTH_RESULT;
-import static lotto.input.constant.Constant.FIFTH_WINNING_PRICE;
-import static lotto.input.constant.Constant.FIRST_RESULT;
-import static lotto.input.constant.Constant.FIRST_WINNING_PRICE;
-import static lotto.input.constant.Constant.FOURTH_RESULT;
-import static lotto.input.constant.Constant.FOURTH_WINNING_PRICE;
-import static lotto.input.constant.Constant.LOTTO_PRICE;
-import static lotto.input.constant.Constant.LOTTO_RESULT;
-import static lotto.input.constant.Constant.SECOND_WINNING_PRICE;
-import static lotto.input.constant.Constant.SECONT_RESULT;
-import static lotto.input.constant.Constant.THIRD_RESULT;
-import static lotto.input.constant.Constant.THIRD_WINNING_PRICE;
+import static lotto.constant.Constant.COUNT;
+import static lotto.constant.Constant.FIFTH_RESULT;
+import static lotto.constant.Constant.FIFTH_WINNING_PRICE;
+import static lotto.constant.Constant.FIRST_RESULT;
+import static lotto.constant.Constant.FIRST_WINNING_PRICE;
+import static lotto.constant.Constant.FOURTH_RESULT;
+import static lotto.constant.Constant.FOURTH_WINNING_PRICE;
+import static lotto.constant.Constant.LOTTO_PRICE;
+import static lotto.constant.Constant.LOTTO_RESULT;
+import static lotto.constant.Constant.SECOND_WINNING_PRICE;
+import static lotto.constant.Constant.SECONT_RESULT;
+import static lotto.constant.Constant.THIRD_RESULT;
+import static lotto.constant.Constant.THIRD_WINNING_PRICE;
 
 public enum Result {
     FIRST(0), SECOND(0), THIRD(0), FOURTH(0), FIFTH(0);

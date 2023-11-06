@@ -2,7 +2,7 @@ package lotto;
 
 
 import java.util.List;
-import lotto.input.view.output.GeneratedLottoOutput;
+import lotto.output.GeneratedLottoOutput;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

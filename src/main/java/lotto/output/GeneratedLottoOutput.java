@@ -1,4 +1,4 @@
-package lotto.input.view.output;
+package lotto.output;
 
 import java.util.ArrayList;
 import java.util.Collections;

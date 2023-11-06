@@ -1,11 +1,11 @@
-package lotto.input.view.input;
+package lotto.input;
 
-import static lotto.input.constant.Constant.LOTTO_PRICE;
-import static lotto.input.constant.Constant.PURCHASE_AMOUNT_INPUT_ERROR;
-import static lotto.input.constant.Constant.PURCHASE_AMOUNT_INPUT_MESSAGE;
+import static lotto.constant.Constant.LOTTO_PRICE;
+import static lotto.constant.Constant.PURCHASE_AMOUNT_INPUT_ERROR;
+import static lotto.constant.Constant.PURCHASE_AMOUNT_INPUT_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.input.Validator.AmountInputValidate;
+import lotto.Validator.AmountInputValidate;
 
 public class PurchaseAmountInput {
     private final AmountInputValidate inputValidate = new AmountInputValidate();

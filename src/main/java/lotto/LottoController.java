@@ -1,14 +1,11 @@
-package lotto.input;
+package lotto;
 
-import static lotto.input.Result.printResult;
+import static lotto.Result.printResult;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoGenerator;
-import lotto.LottoService;
-import lotto.input.view.input.LottoWinningNumberInput;
-import lotto.input.view.input.PurchaseAmountInput;
-import lotto.input.view.output.GeneratedLottoOutput;
+import lotto.input.LottoWinningNumberInput;
+import lotto.input.PurchaseAmountInput;
+import lotto.output.GeneratedLottoOutput;
 
 public class LottoController {
     private final PurchaseAmountInput userAmountInput = new PurchaseAmountInput();

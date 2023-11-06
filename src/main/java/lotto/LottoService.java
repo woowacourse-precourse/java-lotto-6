@@ -1,13 +1,12 @@
 package lotto;
 
-import static lotto.input.constant.Constant.BONUS_NUMBER_INDEX;
-import static lotto.input.constant.Constant.FIFTH_STRIKE_COUNT;
-import static lotto.input.constant.Constant.FIRST_STRIKE_COUNT;
-import static lotto.input.constant.Constant.FOURTH_STRIKE_COUNT;
-import static lotto.input.constant.Constant.SECOND_THIRD_STRIKE_COUNT;
+import static lotto.constant.Constant.BONUS_NUMBER_INDEX;
+import static lotto.constant.Constant.FIFTH_STRIKE_COUNT;
+import static lotto.constant.Constant.FIRST_STRIKE_COUNT;
+import static lotto.constant.Constant.FOURTH_STRIKE_COUNT;
+import static lotto.constant.Constant.SECOND_THIRD_STRIKE_COUNT;
 
 import java.util.List;
-import lotto.input.Result;
 
 public class LottoService {
 

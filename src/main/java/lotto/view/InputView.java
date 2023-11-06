@@ -33,9 +33,9 @@ public class InputView {
         return new Lotto(winningNumbers);
     }
 
-    public void inputBonusNumber(WinningLotto winningLotto) {
+    public int inputBonusNumber() {
         String bonusNumber = Console.readLine();
         inputValidator.checkInteger(bonusNumber);
-        winningLotto.setBonusLottoNum(Integer.parseInt(bonusNumber));
+        return Integer.parseInt(bonusNumber);
     }
 }

@@ -8,14 +8,14 @@ import lotto.Lotto;
 public class Ui {
 
     public static final String PRICE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
-    public static final String BUY_COMFIRM_MESSAGE = "%s개를 구매했습니다.";
+    public static final String BUY_CONFIRM_MESSAGE = "%s개를 구매했습니다.";
 
     public void printPrice() {
         System.out.println(PRICE_INPUT_MESSAGE);
     }
 
     public void printLotto(List<Lotto> lottos) {
-        System.out.println(String.format(BUY_COMFIRM_MESSAGE, lottos.size()));
+        System.out.println(String.format(BUY_CONFIRM_MESSAGE, lottos.size()));
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = deepCopy(lotto.getNumbers());
             Collections.sort(lottoNumbers);

@@ -1,21 +1,22 @@
 package lotto.model;
 
-import java.util.List;
-import lotto.utils.InputValidator;
+import lotto.utils.StringConvertor;
 
 public class User {
 
-    private String bonus;
-    private UserLotto userLotto;
+    private int bonus;
+    private Lotto userLotto;
 
-    public User(List<Integer> numbers, String bonus) {
-        validate(numbers, bonus);
-        this.userLotto = new UserLotto(numbers);
-        this.bonus = bonus;
+    public User(Lotto userLotto, String bonusInput) {
+        this.bonus = StringConvertor.stringToInt(bonusInput);
+        this.userLotto = userLotto;
     }
 
-    private void validate(List<Integer> numbers, String bonus) {
-        InputValidator.checkBonusNumber(numbers, bonus);
+    public Rank getRank(Lotto lotto) {
+        int matchingNumber = userLotto.countMatchingNumber(lotto);
+        boolean isBonusContain = userLotto.isContain(bonus);
+
+        return Rank.findRank(matchingNumber, isBonusContain);
     }
 
 }

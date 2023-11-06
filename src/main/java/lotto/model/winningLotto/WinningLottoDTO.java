@@ -7,8 +7,8 @@ public record WinningLottoDTO(
         Lotto winningNumber,
         int bonusNumber) {
 
-    public static WinningLottoDTO of(WinningLotto winningLotto){
-        return new WinningLottoDTO(winningLotto.winningNumber, winningLotto.bonusNumber);
+    public static WinningLottoDTO of(Lotto winningNumber, int bonusNumber){
+        return new WinningLottoDTO(winningNumber, bonusNumber);
     }
 
 }

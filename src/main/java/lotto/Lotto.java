@@ -6,15 +6,17 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLength(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private void validateLength(List<Integer> numbers) {
+        if (isValidLength(numbers)) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    private boolean isValidLength(List<Integer> numbers) {
+        return numbers.size() != 6;
+    }
 }

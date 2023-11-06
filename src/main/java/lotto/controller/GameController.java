@@ -5,6 +5,8 @@ import lotto.domain.LottoVendingMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class GameController {
 
     private final LottoVendingMachine lottoVendingMachine;
@@ -19,21 +21,21 @@ public class GameController {
         OutputView.printLottoTicketNumber(lottoVendingMachine.getLottoTicketNumber());
         OutputView.printPurchasedLottoTickets(lottoVendingMachine.getLottos());
 
-        LottoAnalyzer lottoAnalyzer = new LottoAnalyzer(lottoVendingMachine.getLottos());
-        lottoAnalyzer.addWinningNumbers(InputView.inputWinningNumbers());
-        addBonusNumber(lottoAnalyzer);
-        lottoAnalyzer.analyzeLotto();
+        List<Integer> winningNumbers = InputView.inputWinningNumbers();
+        LottoAnalyzer lottoAnalyzer = inputBonusNumber(winningNumbers);
+
+        lottoAnalyzer.analyzeLotto(lottoVendingMachine.getLottos());
         OutputView.printFinalResult(lottoAnalyzer.getWinningStatistics());
         OutputView.printTotalProfitRate(lottoAnalyzer.getWinningStatistics(), purchaseAmount);
     }
 
-    private static void addBonusNumber(LottoAnalyzer lottoAnalyzer) {
+    private static LottoAnalyzer inputBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber = InputView.inputBonusNumber();
         try {
-            lottoAnalyzer.addBonusNumber(bonusNumber);
+            return new LottoAnalyzer(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
-            addBonusNumber(lottoAnalyzer);
+            return inputBonusNumber(winningNumbers);
         }
     }
 }

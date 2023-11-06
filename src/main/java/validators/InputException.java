@@ -10,12 +10,17 @@ public class InputException {
 	private static final int MAX = 45;
 
 	public static void checkNumber(String buyAmountText) {
-		if(!buyAmountText.matches("[0-9]+")) {
+		boolean what = buyAmountText.matches("\\d+");
+		if(!what) {
 			throw new IllegalArgumentException(Error.WRONG_VALUE.getMessage());
 		}
 	}
 
 	public static void checkRightAmount(int buyAmount, int lottoPrice) {
+		if(buyAmount == 0) {
+			throw new IllegalArgumentException(Error.WRONG_AMOUNT.getMessage());
+		}
+		
 		int rest = buyAmount%lottoPrice;
 		if(rest != 0) {
 			throw new IllegalArgumentException(Error.WRONG_AMOUNT.getMessage());
@@ -41,6 +46,14 @@ public class InputException {
 	public static void checkNull(String numberText) {
 		if(numberText == null) {
 			throw new IllegalArgumentException(Error.NULL_VALUE.getMessage());
+		}
+	}
+
+	public static void checkBonusNumberOverlap(int bonusNumber, List<Integer> numbers) {
+		for(int number : numbers) {
+			if(bonusNumber == number) {
+				throw new IllegalArgumentException(Error.NUMBER_OVERLAP.getMessage());
+			}
 		}
 	}
 }

@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -14,12 +13,12 @@ public class BuyLottoNumber {
 		this.numbers = getRandomNumberList();
 	}
 	
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+	
 	private static List<Integer> getRandomNumberList(){
-		List<Integer> numbers = new ArrayList<>();
-		for(int i = 0; i < LOTTO_NUMBER; i++) {
-			int number = Randoms.pickNumberInRange(1, 45);
-			numbers.add(number);
-		}
+		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER);
 		validateNotOverlap(numbers);
 		return numbers;
 	}
@@ -27,14 +26,8 @@ public class BuyLottoNumber {
     private static void validateNotOverlap(List<Integer> numbers) {
     	for(int i = 0; i < numbers.size() - 1; i++) {
     		if(numbers.get(i) == numbers.get(i + 1)) {
-    			int randomNumber = Randoms.pickNumberInRange(1, 45);
-    			numbers.set(i + 1, randomNumber);
-    			validateNotOverlap(numbers);
+    			numbers = Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER);
     		}
     	}
-	}
-
-	public List<Integer> getNumbers() {
-		return numbers;
 	}
 }

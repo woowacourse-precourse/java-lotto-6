@@ -1,19 +1,19 @@
-package model;
+package dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import model.BuyLottoNumber;
 import validators.InputException;
 
-public class BuyLotto {
+public class BuyLottoDto {
 
 	private static final int LOTTO_PRICE = 1000;
 	private int amount;
 	private int page;
 	private List<BuyLottoNumber> numberList;
 	
-	public BuyLotto(String amountText) {
-		int amount = changeBuyAmount(amountText);
+	public BuyLottoDto(int amount) throws IllegalArgumentException {
 		int page = checkRightAmount(amount);
 		
 		this.amount = amount;
@@ -21,7 +21,19 @@ public class BuyLotto {
 		this.numberList = numberList();
 	}
 
-	private static int changeBuyAmount(String amountText) {
+	public int getPage() {
+		return page;
+	}
+
+	public List<BuyLottoNumber> getNumberList() {
+		return numberList;
+	}
+	
+	public int getAmount() {
+		return amount;
+	}
+
+	public static int changeBuyAmount(String amountText) {
 		amountText = amountText.trim();
 		amountText = validateBuyAmount(amountText);
 		return Integer.valueOf(amountText);
@@ -47,13 +59,5 @@ public class BuyLotto {
 			buyLottoNumberList.add(buyLottoNumber);
 		}
 		return buyLottoNumberList;
-	}
-
-	public int getPage() {
-		return page;
-	}
-
-	public List<BuyLottoNumber> getNumberList() {
-		return numberList;
 	}
 }

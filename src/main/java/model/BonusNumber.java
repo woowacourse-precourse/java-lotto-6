@@ -6,18 +6,22 @@ public class BonusNumber {
 
 	private int bonusNumber;
 	
-	public BonusNumber(int bonusNumber) {
+	public BonusNumber(String bonusNumberText, Lotto lotto) throws IllegalArgumentException {
+		InputException.checkNull(bonusNumberText);
+		int bonusNumber = changeNumber(bonusNumberText);
+		InputException.checkBonusNumberOverlap(bonusNumber, lotto.getNumbers());
+		
 		this.bonusNumber = bonusNumber;
 	}
 	
-	public static int changeToNumber(String bonusNumberText) {
-		bonusNumberText = bonusNumberText.trim();
-		InputException.checkNumber(bonusNumberText);
-		
-		return Integer.valueOf(bonusNumberText);
-	}
-
 	public int getBonusNumber() {
+		return bonusNumber;
+	}
+	
+	private int changeNumber(String bonusNumberText) {
+		InputException.checkNumber(bonusNumberText.trim());
+		int bonusNumber = Integer.valueOf(bonusNumberText);
+		
 		return bonusNumber;
 	}
 }

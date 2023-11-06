@@ -1,8 +1,12 @@
 package lotto.domian;
 
 public class LottoAmount {
-    public long lottoAmount(long amount) {
+    private final long amount;
+    public LottoAmount(long amount) {
         validateAmount(amount);
+        this.amount = amount;
+    }
+    public long calculateLottoAmount() {
         return amount / 1000;
     }
 

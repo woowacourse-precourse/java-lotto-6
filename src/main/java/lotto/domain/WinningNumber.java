@@ -8,9 +8,12 @@ public class WinningNumber {
     private static final int RANGE_START = LottoConfig.RANGE_START.value();
     private static final int RANGE_END = LottoConfig.RANGE_END.value();
 
-    private final Lotto numbers;
-    private final int bonus;
+    private Lotto numbers;
+    private int bonus;
 
+    public WinningNumber() {
+        // 기본 생성자
+    }
     public WinningNumber(Lotto numbers, int bonus) {
         validateRange(bonus);
         validateDuplicates(numbers, bonus);
@@ -18,7 +21,20 @@ public class WinningNumber {
         this.bonus = bonus;
     }
 
+    public void setNumbers(Lotto numbers) {
+        this.numbers = numbers;
+    }
+
+    public void setBonus(int bonus) {
+        validateRange(bonus);
+        validateDuplicates(numbers, bonus);
+        this.bonus = bonus;
+    }
+
     public WinningPrize compareWithLotto(Lotto target) {
+        if (numbers == null || bonus == 0) {
+            return null;
+        }
         return target.compareWithAnswer(numbers, bonus);
     }
 

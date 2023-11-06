@@ -1,3 +1,5 @@
+package lotto;
+
 public class Constants {
 
     public static final int MIN_RANGE_NUMBER = 1;

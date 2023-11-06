@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.utils.validator.LottoNumberValidator.validateDuplicateBonusNumber;
+import static lotto.constant.ExceptionMessage.NO_DUPLICATE_WINNING_NUMBER_ERROR_MESSAGE;
 import static lotto.utils.validator.LottoNumberValidator.validateDuplicateNumbers;
 import static lotto.utils.validator.LottoNumberValidator.validateOutOfRange;
 
@@ -24,5 +24,11 @@ public class WinningNumbers {
         int correctCount = winningNumber.calculateCorrectNumberCount(lotto);
         boolean hasBonus = bonusNumber.hasBonus(lotto);
         return LottoResults.getLottoResult(correctCount, hasBonus);
+    }
+
+    private void validateDuplicateBonusNumber(List<Integer> winningNumber, int bonusNumber) {
+        if (winningNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException(NO_DUPLICATE_WINNING_NUMBER_ERROR_MESSAGE);
+        }
     }
 }

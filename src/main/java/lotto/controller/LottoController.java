@@ -2,11 +2,8 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.validation.Validator;
-import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.LottoResult;
-import lotto.validator.BonusNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

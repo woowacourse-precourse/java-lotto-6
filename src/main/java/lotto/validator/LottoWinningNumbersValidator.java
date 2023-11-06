@@ -3,7 +3,6 @@ package lotto.validator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.view.InputView;
 
 public class LottoWinningNumbersValidator {
   public static final String LOTTO_NUMBERS_LENGTH_INVALID_MESSAGE = "[ERROR] 6개의 번호를 입력하시오. ";

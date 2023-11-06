@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.validator.BonusNumberValidator;
-import lotto.validator.LottoWinningNumbersValidator;
 import lotto.validator.PurchaseAmountValidator;
 
 public class InputView {

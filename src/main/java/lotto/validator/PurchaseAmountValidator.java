@@ -1,7 +1,5 @@
 package lotto.validator;
 
-import lotto.view.InputView;
-
 public class PurchaseAmountValidator {
   public static final String AMOUNT_NOT_NUMBER_MESSAGE = "[ERROR] 숫자가 아닙니다.";
   public static final String AMOUNT_OVER_1000_MESSAGE = "[ERROR] 1000원 이상 입력해 주세요.";

@@ -1,7 +1,6 @@
 package lotto.validator;
 
 import java.util.List;
-import lotto.view.InputView;
 
 public class BonusNumberValidator {
   public static final int MAX_LOTTO_NUMBER = 45;

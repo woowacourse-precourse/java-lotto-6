@@ -41,12 +41,15 @@
 - validate(): List<Integer>로 받은 데이터에 대하여 유효성 검사
 - 구현 내용
   - validateRange() : 랜덤해서 나온 숫자의 범위가 1~45 내에 있는지 확인, 없으면 error 출력
+  - validateDuplicate() : lotto 번호 중 중복되는 번호가 존재하는 경우 확인
   - getNumbers():  lotto 번호 list 반환
 
 #### 그 외 기능 추가 구현 사항
 - 정상적인 결과 출력을 위한 비교를 구현한 내용 필요
 - 1등부터 당첨이 없는 경우에 대한 case에 대한 enum 선언
-- 
+- 당첨 case를 계산하는 class 추가 생성(WinLotto)
+  - 가독성을 높이기 위해 별개의 파일형태로 class 생성
+  - enum을 해당 class에 정의
 
 
 #### LottoTest 구현

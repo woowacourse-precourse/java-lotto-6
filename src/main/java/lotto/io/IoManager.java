@@ -1,4 +1,4 @@
-package lotto.ioManager;
+package lotto.io;
 
 public interface IoManager {
 

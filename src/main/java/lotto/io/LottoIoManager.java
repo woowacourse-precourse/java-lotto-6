@@ -1,4 +1,4 @@
-package lotto.ioManager;
+package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;

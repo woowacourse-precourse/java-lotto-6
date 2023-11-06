@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.ioManager.LottoIoManager;
+import lotto.io.LottoIoManager;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.Lottos;

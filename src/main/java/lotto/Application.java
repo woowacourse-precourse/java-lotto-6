@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.ioManager.LottoIoManager;
+import lotto.io.LottoIoManager;
 
 public class Application {
 

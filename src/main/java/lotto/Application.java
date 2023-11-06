@@ -1,9 +1,18 @@
 package lotto;
 
+import lotto.constant.ExceptionMessage;
+import lotto.constant.LottoRank;
+import lotto.controller.LottoController;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumberGenerator;
+import lotto.domain.dto.LottoAnswer;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static lotto.constant.LottoConstant.*;
 
@@ -13,32 +22,93 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        inputView = new LottoInputView();
+        outputView = new LottoOutputView();
+
+        int userPaid;
+        while (true) {
+            try {
+                outputView.printBuyingPriceInputRequest();
+                String input = inputView.getBuyingPrice();
+                validateBuyingPrice(input);
+                userPaid = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        List<Lotto> userLottos = new ArrayList<>();
+        for (int i = 0; i < userPaid / LOTTO_PRICE; i++) {
+            Lotto lotto = new Lotto(LottoNumberGenerator.generateLottoNumbers());
+            userLottos.add(lotto);
+        }
+        outputView.printBoughtResult(userLottos);
+
+        Lotto winningLotto;
+        while (true) {
+            try {
+                outputView.printAnswerInputRequest();
+                String input = inputView.getLottoWinningNumbers();
+                List<Integer> numbers = validateIntegers(Arrays.asList(input.split(",")));
+                winningLotto = new Lotto(numbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        int bonus;
+        while (true) {
+            try {
+                outputView.printBonusInputRequest();
+                String input = inputView.getBonusNumber();
+                validateBonusNumber(input);
+                bonus = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        LottoAnswer answer = new LottoAnswer(winningLotto, bonus);
+
+        Map<LottoRank, Integer> lottoResult = LottoController.calculateLottoResult(answer, userLottos);
+        outputView.printLottoResult(lottoResult);
+
+        int totalPrize = LottoController.calculateTotalPrize(lottoResult);
+        outputView.printProfit(userPaid, totalPrize);
     }
 
-    public static void validateIntegers(List<String> input) {
+    public static List<Integer> validateIntegers(List<String> input) {
+        List<Integer> integers = new ArrayList<>();
         if (!LottoUtil.isIntegers(input)) {
-            throw new IllegalArgumentException("로또 번호는 정수만 가능합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER);
         }
+        for (String s : input) {
+            integers.add(Integer.parseInt(s));
+        }
+        return integers;
     }
 
     public static void validateBuyingPrice(String input) {
         if (!LottoUtil.isInteger(input)) {
-            throw new IllegalArgumentException("구매가격은 정수만 가능합니다");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BUYING_PRICE);
         }
         if (Integer.parseInt(input) < 0) {
-            throw new IllegalArgumentException("구매가격은 0보다 큰 값만 가능합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NEGATIVE_BUYING_PRICE);
         }
         if (Integer.parseInt(input) % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("구매가격은 1000의 배수만 가능합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.BUYING_PRICE_NOT_DIVISIBLE);
         }
     }
 
     public static void validateBonusNumber(String input) {
         if (!LottoUtil.isInteger(input)) {
-            throw new IllegalArgumentException("보너스 번호는 정수만 가능합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_NUMBER);
         }
         if (!LottoUtil.isInRange(Integer.parseInt(input), LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX)) {
-            throw new IllegalArgumentException("로또 번호는 1~45값만 가능합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_BONUS_NUMBER);
         }
     }
 }

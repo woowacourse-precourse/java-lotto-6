@@ -9,11 +9,6 @@ import java.util.Map;
 
 public class LottoOutputView {
     private static final String MONEY_FORMAT = "###,###원";
-    private static final int SIX_MATCH_PRIZE = 2000000000;
-    private static final int FIVE_WITH_BONUS_MATCH_PRIZE = 30000000;
-    private static final int FIVE_MATCH_PRIZE = 1500000;
-    private static final int FOUR_MATCH_PRIZE = 50000;
-    private static final int THREE_MATCH_PRIZE = 5000;
 
     public void printBuyingPriceInputRequest() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -46,7 +41,7 @@ public class LottoOutputView {
     }
 
     public void printProfit(int before, int after) {
-        double profit = (double) (after - before) / before * 100;
+        double profit = (double) after / before * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profit);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.LottoUtil;
+import lotto.constant.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,10 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         if (!isLottoNumbers(numbers)) {
-            String message = String.format("로또 숫자의 범위는 %d~%d입니다.", LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER);
         }
         if (LottoUtil.hasDuplicatedNumbers(numbers)) {
-            throw new IllegalArgumentException("로또 번호에는 중복이 있을 수 없습니다");
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_LOTTO_NUMBER);
         }
     }
 

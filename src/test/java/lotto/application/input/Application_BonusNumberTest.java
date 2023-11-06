@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class Application_BonusNumber extends Application_InputTest {
+public class Application_BonusNumberTest extends Application_InputTest {
     @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")
     @MethodSource("getStringCanNotConvertToInteger")

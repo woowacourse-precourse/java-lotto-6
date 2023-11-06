@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.resource.TextResourceProvider.OUTPUT_LOTTERY_RESULT;
+import static lotto.resource.TextResourceProvider.OUTPUT_LOTTERY_RESULT_TEXT;
 
 import java.util.List;
 import lotto.domain.LotteryReceipt;
@@ -45,7 +45,7 @@ public class Controller {
         long purchaseAmount = calculatePurchaseAmount(receipts);
         long resultAmount = calculateResultAmount(receipts);
         double earningRate = resultAmount / purchaseAmount * 100;
-        System.out.println(OUTPUT_LOTTERY_RESULT);
+        System.out.println(OUTPUT_LOTTERY_RESULT_TEXT);
     }
 
     private long calculatePurchaseAmount(List<LotteryReceipt> receipts) {

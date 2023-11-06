@@ -4,7 +4,6 @@ import static java.util.stream.Collectors.toList;
 import static lotto.resource.TextResourceProvider.LOTTO_NUMBERS_TEXT_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("[Application] 구입로또에 대한 출력에 관한 테스트")
-public class Application_PurchasedLottery extends MyApplicationTest {
+public class Application_PurchasedLotteryTest extends MyApplicationTest {
     @Test
     void 각_로또_번호가_LottoNumbersFormat으로_출력된다() {
         runWithValidArguments();

@@ -4,7 +4,7 @@ import static lotto.resource.TextResourceProvider.ERROR_MESSAGE_TAG;
 import static lotto.resource.TextResourceProvider.INPUT_BONUS_NUMBER_TEXT;
 import static lotto.resource.TextResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
 import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
-import static lotto.resource.TextResourceProvider.OUTPUT_LOTTERY_RESULT;
+import static lotto.resource.TextResourceProvider.OUTPUT_LOTTERY_RESULT_TEXT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.regex.Pattern;
@@ -28,7 +28,7 @@ public class Application_InputTest extends MyApplicationTest {
                 .containsSubsequence(INPUT_PURCHASE_AMOUNT_TEXT,
                         INPUT_WINNING_NUMBERS_TEXT,
                         INPUT_BONUS_NUMBER_TEXT,
-                        OUTPUT_LOTTERY_RESULT);
+                        OUTPUT_LOTTERY_RESULT_TEXT);
     }
 }
 

@@ -30,22 +30,7 @@ public class InputView {
     }
 
     private static void validateWinningNumbersInput(String input) {
-        String[] numbers = input.split(",");
-        int lastIndex = numbers.length - 1;
-
-        for (int i = 0; i < numbers.length; i++) {
-            String numberStr = numbers[i].trim();
-
-            if (!isNotPositiveInteger(numberStr)) {
-                throw new IllegalArgumentException();
-            }
-
-            if (i < lastIndex && numberStr.isEmpty()) {
-                throw new IllegalArgumentException();
-            }
-        }
-
-        if (numbers[lastIndex].isEmpty()) {
+        if (endsWithComma(input) || hasNotPositiveInteger(split(input))) {
             throw new IllegalArgumentException();
         }
     }
@@ -60,5 +45,24 @@ public class InputView {
         } catch (NumberFormatException e) {
             return true;
         }
+    }
+
+    private static String[] split(String input) {
+        return input.split(",");
+    }
+
+    private static boolean hasNotPositiveInteger(String[] numbers) {
+        for (int i = 0; i < numbers.length; i++) {
+            String numberStr = numbers[i].trim();
+
+            if (isNotPositiveInteger(numberStr)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean endsWithComma(String input) {
+        return input.endsWith(",");
     }
 }

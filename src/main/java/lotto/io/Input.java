@@ -1,6 +1,8 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import java.util.stream.Stream;
 import lotto.validation.InputValidator;
 
 public class Input {
@@ -10,5 +12,15 @@ public class Input {
         int purchaseAmount = Integer.parseInt(input);
         InputValidator.validatePurchaseAmount(purchaseAmount);
         return purchaseAmount;
+    }
+
+    public static List<Integer> winningNumbers() {
+        String input = Console.readLine();
+        InputValidator.validateWinningNumbersFormat(input);
+        List<Integer> winningNumbers = Stream.of(input.split(","))
+            .map(Integer::parseInt)
+            .toList();
+        InputValidator.validateWinningNumbers(winningNumbers);
+        return winningNumbers;
     }
 }

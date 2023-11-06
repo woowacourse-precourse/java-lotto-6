@@ -2,12 +2,6 @@ package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.model.Lotto;
-import lotto.model.LottoResult;
-import lotto.model.Rank;
-import lotto.model.RankCounter;
-import lotto.model.User;
-import lotto.model.WinningNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,9 +18,9 @@ public class LottoResultTest {
     @BeforeEach
     public void setUp() {
         user = User.from(3000);
-        String[] inputNumbers = new String[] {"1","2","3","4","5","6"};
+        Lotto numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
-        winningNumber = WinningNumber.from(inputNumbers, bonusNumber);
+        winningNumber = WinningNumber.from(numbers, bonusNumber);
         lottoResult = new LottoResult(user, winningNumber);
     }
 

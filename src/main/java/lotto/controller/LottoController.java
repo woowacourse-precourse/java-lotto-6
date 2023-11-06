@@ -1,10 +1,13 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.User;
 import lotto.model.WinningNumber;
+import lotto.utils.Util;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import java.util.List;
 
 public class LottoController {
 
@@ -15,7 +18,7 @@ public class LottoController {
     public void run() {
         inputAmount();
         purchaseLotto();
-        inputWinningNumberAndBonusNumber();
+        setWinningNumber();
         printLottoResult();
     }
 
@@ -34,14 +37,29 @@ public class LottoController {
         OutputView.printPurchasedLottos(user.getPurchasedLottos());
     }
 
-    private void inputWinningNumberAndBonusNumber() {
+    private void setWinningNumber() {
+        Lotto winningNumbers = inputWinningNumber();
+        inputBonusNumber(winningNumbers);
+    }
+
+    private Lotto inputWinningNumber() {
         try {
-            String[] winningNumbers = InputView.inputWinningNumbers();
+            String[] inputNumbers = InputView.inputWinningNumbers();
+            List<Integer> numbers = Util.stringToIntegerList(inputNumbers);
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumber();
+        }
+    }
+
+    private void inputBonusNumber(Lotto winningNumbers) {
+        try {
             int bonusNumber = InputView.inputBonusNumber();
             winningNumber = WinningNumber.from(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputWinningNumberAndBonusNumber();
+            inputBonusNumber(winningNumbers);
         }
     }
 

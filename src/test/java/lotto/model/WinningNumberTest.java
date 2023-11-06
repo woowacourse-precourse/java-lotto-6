@@ -2,10 +2,11 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.model.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 public class WinningNumberTest {
 
@@ -13,9 +14,9 @@ public class WinningNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 46, 0})
     void 보너스_번호_입력값_검증(int bonusNumber) {
-        String[] winningNumber = {"1", "2", "3", "4", "5", "6"};
+        Lotto numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThatThrownBy(() -> WinningNumber.from(winningNumber, bonusNumber))
+        assertThatThrownBy(() -> WinningNumber.from(numbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

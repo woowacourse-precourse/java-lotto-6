@@ -2,8 +2,6 @@ package lotto.model;
 
 import lotto.utils.Constants;
 import lotto.utils.message.ErrorMessage;
-import lotto.utils.Util;
-import java.util.List;
 
 public class WinningNumber {
 
@@ -15,9 +13,7 @@ public class WinningNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningNumber from(String[] inputNumbers, int bonusNumber) {
-        List<Integer> numbers = Util.stringToIntegerList(inputNumbers);
-        Lotto winningNumber = new Lotto(numbers);
+    public static WinningNumber from(Lotto winningNumber, int bonusNumber) {
         validateDuplicatedNumber(winningNumber, bonusNumber);
         validateNumberRange(bonusNumber);
         return new WinningNumber(winningNumber, bonusNumber);

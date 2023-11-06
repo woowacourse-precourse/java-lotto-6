@@ -28,7 +28,7 @@ public class BonusNumber {
         }
     }
 
-    private static boolean isInRange(Integer num) {
+    private boolean isInRange(Integer num) {
         return num < LottoRule.START_NUMBER || num > LottoRule.END_NUMBER;
     }
 

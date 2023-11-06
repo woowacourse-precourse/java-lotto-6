@@ -21,11 +21,11 @@ public class LottoView implements Output{
 
 	@Override
 	public void WinningNumber() {
-		System.out.println();
+		System.out.println(GameText.WINNING_NUMBER.getText());
 	}
 
 	@Override
 	public void BonusNumber() {
-		System.out.println();
+		System.out.println(GameText.BONUS_NUMBER.getText());
 	}
 }

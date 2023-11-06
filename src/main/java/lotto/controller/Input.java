@@ -8,4 +8,6 @@ public interface Input {
 
 	void bonusNumber();
 
+	void result();
+
 }

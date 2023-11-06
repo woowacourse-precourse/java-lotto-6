@@ -6,4 +6,6 @@ public interface Calculation {
 
 	LottoCollection createLotto(String price);
 
+
+
 }

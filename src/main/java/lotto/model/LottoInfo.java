@@ -19,4 +19,7 @@ public class LottoInfo {
         this.matchBonus = this.lotto.getNumbers().contains(bonusNumber);
         return this.matchBonus;
     }
+    public boolean contain(Integer number) {
+        return this.lotto.getNumbers().contains(number);
+    }
 }

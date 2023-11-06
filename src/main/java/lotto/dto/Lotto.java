@@ -20,7 +20,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private void validateDuplicate(List<Integer> lottoNumbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(lottoNumbers);
         if (nonDuplicateNumbers.size() != LOTTO_NUMBERS_SIZE) {

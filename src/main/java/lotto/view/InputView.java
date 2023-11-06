@@ -12,6 +12,8 @@ import lotto.exception.ExceptionMessage;
 
 public class InputView {
     private static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_MIN_VALUE = 1;
+    private static final int LOTTO_MAX_VALUE = 45;
 
     public int getPurchaseAmount() {
         while (true) {
@@ -65,13 +67,41 @@ public class InputView {
 
     private void validWinningNumbers(List<Integer> inputNumbers) {
         // 번호 6개 맞는지 확인
-        if (inputNumbers.size() != 6 || Collections.min(inputNumbers) < 1 || Collections.max(inputNumbers) > 45) {
+        if (inputNumbers.size() != 6 || Collections.min(inputNumbers) < LOTTO_MIN_VALUE
+                || Collections.max(inputNumbers) > LOTTO_MAX_VALUE) {
             throw new BusinessLogicException(ExceptionMessage.INVALID_WINNING_NUMBER);
         }
         // 중복값 없는지 확인
         Set<Integer> uniqueNumbers = new HashSet<>(inputNumbers);
         if (inputNumbers.size() > uniqueNumbers.size()) {
             throw new BusinessLogicException(ExceptionMessage.INVALID_WINNING_NUMBER);
+        }
+    }
+
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                int bonusNumber = checkBonusNumber(input);
+                validBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    private int checkBonusNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new BusinessLogicException(ExceptionMessage.INVALID_BONUS_NUMBER);
+        }
+    }
+
+    private void validBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber) || bonusNumber < LOTTO_MIN_VALUE || bonusNumber > LOTTO_MAX_VALUE) {
+            throw new BusinessLogicException(ExceptionMessage.INVALID_BONUS_NUMBER);
         }
     }
 }

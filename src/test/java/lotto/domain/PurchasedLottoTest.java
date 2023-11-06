@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -19,5 +21,18 @@ class PurchasedLottoTest {
 
         // when, then
         assertThat(purchasedLotto.getPurchasedLotto().size()).isEqualTo(3);
+    }
+
+    @DisplayName("구입한 로또 리스트를 반환한다.")
+    @Test
+    void getPurchasedLotto() {
+        // given
+        PurchasedLotto purchasedLotto = PurchasedLotto.of(3000, RandomNumberGenerator.getInstance());
+
+        // when
+        List<Lotto> lottos = purchasedLotto.getPurchasedLotto();
+
+        // then
+        assertThat(lottos).isEqualTo(purchasedLotto.getPurchasedLotto());
     }
 }

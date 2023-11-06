@@ -81,4 +81,11 @@ class ValidatorTest {
             assertThatThrownBy(() -> Validator.checkNumberIn(1, 45, testCase));
         }
     }
+
+    @Test
+    @DisplayName("중복입력이 있을 경우 예외 발생")
+    void checkDuplicatedTest() {
+        numberTestCases = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 5});
+        assertThatThrownBy(() -> Validator.checkDuplicated(numberTestCases));
+    }
 }

@@ -8,16 +8,17 @@ public class UI {
 	LottoService lottoService = new LottoService();
 
 	void on() {
+		System.out.println("구입금액을 입력해 주세요.");
 		long numberOfLottoTickets = inputMoney();
-		System.out.println(numberOfLottoTickets + "개를 구매했습니다.");
+		System.out.println("\n" + numberOfLottoTickets + "개를 구매했습니다.");
 		showComputerLottos(numberOfLottoTickets);
+		System.out.println("\n당첨 번호를 입력해 주세요.");
+		List<Integer> userNumber = inputNumbers();
 	}
 
 	private long inputMoney() {
 		try {
-			System.out.println("구입금액을 입력해 주세요.");
 			String cost = Console.readLine();
-			System.out.println();
 			return lottoService.getNumberOfLottoTickets(cost);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -31,9 +32,14 @@ public class UI {
 			for (int i = 0; i < lottos.size(); i++) {
 				System.out.println(lottos.get(i).getNumbers());
 			}
+			System.out.println();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			on();
 		}
+	}
+
+	private List<Integer> inputNumbers() {
+		return null;
 	}
 }

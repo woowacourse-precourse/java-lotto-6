@@ -35,7 +35,7 @@ public class Prizes {
     }
 
 
-    public Double getTotalReward() {
+    private Double getTotalReward() {
         Double totalReward = 0.0;
         for (Prize prize : prizes.keySet()) {
             Integer count = prizes.get(prize);

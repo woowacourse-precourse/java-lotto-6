@@ -17,4 +17,9 @@ public class ConsoleInput {
         String line = Console.readLine();
         return Parser.parseLotto(line);
     }
+
+    public static Integer readLottoBonusNumber() {
+        String line = Console.readLine();
+        return Parser.parseLottoBonusNumber(line);
+    }
 }

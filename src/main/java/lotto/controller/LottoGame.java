@@ -4,7 +4,7 @@ package lotto.controller;
 import lotto.domain.Calculator;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
-import lotto.domain.Lottos;
+import lotto.domain.LottoTicket;
 import lotto.domain.Money;
 import lotto.view.ConsoleInput;
 import lotto.view.ConsoleOutput;
@@ -14,11 +14,13 @@ public class LottoGame {
         Money amount = getLottoAmount();
         Integer numberOfLotto = Calculator.getNumberOfLotto(amount.getMoney());
 
-        Lottos lottos = LottoGenerator.makeNewLottos(numberOfLotto);
-        ConsoleOutput.printLottoTickets(lottos);
+        LottoTicket lottoTicket = LottoGenerator.makeNewLottos(numberOfLotto);
+        ConsoleOutput.printLottoTickets(lottoTicket);
 
         Lotto winningLotto = getLotto();
-        System.out.println(winningLotto.getNumbers().toString());
+        Integer bonusNumber = getLottoBonusNumber();
+
+        
     }
 
     private static Money getLottoAmount() {
@@ -30,5 +32,11 @@ public class LottoGame {
     private static Lotto getLotto() {
         ConsoleOutput.askWinningLottoNumbers();
         return ConsoleInput.readLottoNumbers();
+    }
+
+    private static Integer getLottoBonusNumber() {
+        ConsoleOutput.askLottoBonusNumber();
+        // TODO: Parser?
+        return ConsoleInput.readLottoBonusNumber();
     }
 }

@@ -25,4 +25,15 @@ public class WinStatisticsTest {
                         Ranking.NONE, 1
                 ));
     }
+
+    @Test
+    void 수익률을_계산해_반환한다() {
+        //given
+        List<Ranking> rankings = List.of(Ranking.FIFTH, Ranking.NONE, Ranking.NONE, Ranking.NONE, Ranking.NONE, Ranking.NONE, Ranking.NONE, Ranking.NONE);
+        //when
+        WinStatistics winStatistics = WinStatistics.from(rankings);
+        double profit = winStatistics.calculateProfit();
+        //then
+        assertThat(profit).isEqualTo(62.5);
+    }
 }

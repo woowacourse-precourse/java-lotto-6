@@ -12,7 +12,7 @@ public class ParserTest {
     @Test
     @DisplayName("유효성 검사 예외발생 테스트")
     public void exceptionTest() {
-        String[] invalidInputs = {null, "", "3,24,", "1,2,3,4,5,46"};
+        String[] invalidInputs = {null, "", "3,24,", "1,2,3,4,5,46" ,"1,1,2,3,4,5"};
 
         for (String input : invalidInputs) {
             assertThatThrownBy(() -> Parser.convertStringToNumbers(input)).isInstanceOf(

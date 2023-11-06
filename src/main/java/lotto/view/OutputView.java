@@ -13,4 +13,6 @@ public class OutputView {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    public static void printWinningResult(){}
 }

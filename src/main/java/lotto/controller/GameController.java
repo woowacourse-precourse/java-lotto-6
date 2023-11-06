@@ -16,11 +16,21 @@ public class GameController {
     private GameNumbers gameNumbers;
 
 
-    public void beforePlayGame() {
+    public void run() {
+        beforePlayGame();
+        gameResult();
+    }
+
+    private void beforePlayGame() {
         buyer = Buyer.from(getInputPurchaseAmount());
         Service.buyLotteries(buyer);
         showPurchasedLotteries(buyer.getPurchasedLotto());
         gameNumbers = GameNumbers.of(getInputWinningNumbers(), getInputBonusNumbers());
+    }
+
+    private void gameResult() {
+        Service.resultLotteries(buyer, gameNumbers);
+        OutputMessage.showLottoResult(buyer.getResultRank());
     }
 
     private int getInputPurchaseAmount() {

@@ -32,4 +32,19 @@ public class Util {
     public static int stringToInt(String input) {
         return Integer.parseInt(input);
     }
+
+    public static boolean checkContainNumber(List<Integer> list, int number) {
+        return list.contains(number);
+    }
+
+    public static int countContainNumbers(List<Integer> list1, List<Integer> list2) {
+        int count = 0;
+        for (int number : list2) {
+            if (checkContainNumber(list1, number)) {
+                count += 1;
+            }
+        }
+        
+        return count;
+    }
 }

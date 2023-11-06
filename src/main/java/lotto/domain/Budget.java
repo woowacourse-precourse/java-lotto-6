@@ -10,10 +10,6 @@ public class Budget {
         this.budget = budget;
     }
 
-    public int getBudget() {
-        return budget;
-    }
-
     public int makeTicket() {
         if (canMakeTicket()) {
             throw new IllegalArgumentException(INVALID_UNIT_OF_BUDGET.getMessage());

@@ -7,18 +7,16 @@ import lotto.util.LottoGenerator;
 import lotto.util.RandomLottoGenerator;
 
 public class LottoTicket {
-    private Budget budget;
     private final List<Lotto> lottos;
 
-    private LottoTicket(Budget budget, List<Lotto> lottos) {
-        this.budget = budget;
+    private LottoTicket(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
     public static LottoTicket create(int inputBudget) {
         Budget budget = new Budget(inputBudget);
         List<Lotto> lottos = makeLottos(budget);
-        return new LottoTicket(budget, lottos);
+        return new LottoTicket(lottos);
     }
 
     private static List<Lotto> makeLottos(Budget budget) {

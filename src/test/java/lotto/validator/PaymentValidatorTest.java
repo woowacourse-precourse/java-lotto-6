@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import lotto.Constants;
+
 class PaymentValidatorTest {
 
     @ParameterizedTest(name = "입력값 : {0}")
@@ -17,7 +19,7 @@ class PaymentValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> PaymentValidator.validate(amount))
-                .withMessageStartingWith("[ERROR]")
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("구입 금액은 숫자만 입력할 수 있습니다.");
     }
 
@@ -28,7 +30,7 @@ class PaymentValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> PaymentValidator.validate(amount))
-                .withMessageStartingWith("[ERROR]")
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("최소 구입 금액은 1,000원 입니다.");
     }
 
@@ -41,7 +43,7 @@ class PaymentValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> PaymentValidator.validate(amount))
-                .withMessageStartingWith("[ERROR]")
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("구입 금액은 1,000원 단위 입니다.");
     }
 
@@ -54,7 +56,7 @@ class PaymentValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> PaymentValidator.validate(amount))
-                .withMessageStartingWith("[ERROR]")
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("최대 구입 금액은 2,000,000,000원 입니다.");
     }
 

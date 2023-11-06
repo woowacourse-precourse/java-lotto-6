@@ -12,6 +12,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import lotto.Constants;
+
 class LottoNumbersValidatorTest {
 
     @ParameterizedTest
@@ -21,7 +23,7 @@ class LottoNumbersValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LottoNumbersValidator.validate(numbers))
-                .withMessageStartingWith("[ERROR]")
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("로또 번호는 6개여야 합니다.");
     }
 
@@ -41,7 +43,7 @@ class LottoNumbersValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LottoNumbersValidator.validate(numbers))
-                .withMessageStartingWith("[ERROR]")
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("로또 번호에 중복된 숫자가 존재할 수 없습니다.");
     }
 
@@ -52,7 +54,7 @@ class LottoNumbersValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LottoNumbersValidator.validate(numbers))
-                .withMessageStartingWith("[ERROR]")
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("로또 번호는 1 ~ 45 숫자만 가능합니다.");
     }
 

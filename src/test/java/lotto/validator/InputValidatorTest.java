@@ -8,9 +8,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class InputValidatorTest {
+import lotto.Constants;
 
-    private final String error = "[ERROR]";
+class InputValidatorTest {
 
     @ParameterizedTest
     @NullSource
@@ -19,7 +19,7 @@ class InputValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputValidator.validate(input))
-                .withMessageStartingWith(error)
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("입력 값이 null 입니다.");
     }
 
@@ -30,7 +30,7 @@ class InputValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputValidator.validate(input))
-                .withMessageStartingWith(error)
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("값을 입력해 주세요.");
     }
 
@@ -41,7 +41,7 @@ class InputValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputValidator.validate(input))
-                .withMessageStartingWith(error)
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("숫자와 구분자 쉼표(,)로 구분한 숫자들만 입력할 수 있습니다.");
     }
 
@@ -52,7 +52,7 @@ class InputValidatorTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputValidator.validate(input))
-                .withMessageStartingWith(error)
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("숫자는 0으로 시작할 수 없습니다.");
     }
 

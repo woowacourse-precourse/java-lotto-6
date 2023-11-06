@@ -13,6 +13,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import lotto.Constants;
+
 class WinningLottoTest {
 
     private final Lotto lotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
@@ -24,7 +26,7 @@ class WinningLottoTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new WinningLotto(lotto, bonusNumber))
-                .withMessageStartingWith("[ERROR]")
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("로또 번호는 1 ~ 45 숫자만 가능합니다.");
     }
 
@@ -35,7 +37,7 @@ class WinningLottoTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new WinningLotto(lotto, bonusNumber))
-                .withMessageStartingWith("[ERROR]")
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("당첨 번호에 이미 존재하는 숫자입니다.");
     }
 

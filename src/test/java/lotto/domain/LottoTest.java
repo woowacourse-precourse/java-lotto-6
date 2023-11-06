@@ -15,6 +15,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import lotto.Constants;
+
 class LottoTest {
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -38,7 +40,7 @@ class LottoTest {
     void givenOutOfRangeNumbers_whenCreateLotto_then(List<Integer> numbers) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(numbers))
-                .withMessageStartingWith("[ERROR]")
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
                 .withMessageContaining("로또 번호는 1 ~ 45 숫자만 가능합니다.");
     }
 

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,6 +16,21 @@ public class PlayLotto {
         this.prizeNumbers = prizeNumbers;
         validateBonusNuber(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public void lottoResult(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            putResult(lotto);
+        }
+    }
+
+    private void putResult(Lotto lotto) {
+        int count = lotto.countCorrectLottoNumber(prizeNumbers);
+        if (count < MIN_WIN_CONDITION) {
+            return;
+        }
+        Rank rank = Rank.of(count, lotto.contains(bonusNumber));
+        lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
     }
 
     private void validateBonusNuber(int bonusNumber) {

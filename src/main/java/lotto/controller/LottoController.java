@@ -17,18 +17,71 @@ import lotto.view.InputView;
 
 public class LottoController {
 
+    private static WinningLotto getWinningLotto(Lotto lotto, int bonusNumber) {
+        return new WinningLotto(lotto, bonusNumber);
+    }
+
     public void start() {
-        Money money = getMoney();
+        Money money = getValidMoney();
         printByLottoCount(money);
 
         Lottos lottos = generateLottos(money);
         printLottos(lottos);
 
-        WinningLotto winningLotto = getWinningLotto();
-        WinningResult winningResult = calculateWinningResult(lottos, winningLotto);
+        Lotto validWinningLotto = getValidLotto();
+        WinningLotto validWinningLotto1 = getValidWinningLotto(validWinningLotto);
+        WinningResult winningResult = calculateWinningResult(lottos, validWinningLotto1);
 
         double rateOfReturn = getRateOfReturn(money, winningResult);
         printWinningResultAndRateOfReturn(winningResult, rateOfReturn);
+
+    }
+
+    private Money getValidMoney() {
+        Money money = null;
+        while (money == null) {
+            try {
+                int userInputForLottoBuyAccount = InputView.getUserInputForLottoBuyAccount();
+                money = getMoney(userInputForLottoBuyAccount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return money;
+    }
+
+    private Money getMoney(int money) {
+        return new Money(money);
+    }
+
+    private Lotto getValidLotto() {
+        Lotto lotto = null;
+        while (lotto == null) {
+            try {
+                List<Integer> winningNumbers = InputView.getUserInputForWinningNumbers();
+                lotto = getLotto(winningNumbers);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lotto;
+    }
+
+    private Lotto getLotto(List<Integer> winningNumbers) {
+        return new Lotto(winningNumbers);
+    }
+
+    private WinningLotto getValidWinningLotto(Lotto lotto) {
+        WinningLotto winningLotto = null;
+        while (winningLotto == null) {
+            try {
+                int bonusNumber = InputView.getUserInputForBonusNumber();
+                winningLotto = getWinningLotto(lotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningLotto;
     }
 
     private double getRateOfReturn(Money money, WinningResult winningResult) {
@@ -47,22 +100,8 @@ public class LottoController {
         return winningResult;
     }
 
-    private WinningLotto getWinningLotto() {
-        List<Integer> winningNumbers = InputView.getUserInputForWinningNumbers();
-        int bonusNumber = InputView.getUserInputForBonusNumber();
-
-        return new WinningLotto(winningNumbers, bonusNumber);
-    }
-
-    private Money getMoney() {
-        int money = InputView.getUserInputForLottoBuyAccount();
-
-        return new Money(money);
-    }
-
     private Lottos generateLottos(Money money) {
         LottosGeneratorMachine lottosGeneratorMachine = new LottosGeneratorMachine();
-
         return new Lottos(lottosGeneratorMachine.generateLottos(money.getLottoCount()));
     }
 }

@@ -14,10 +14,10 @@ public class WinningLotto {
     private final Lotto winningNumbers;
     private final Integer bonusNumber;
 
-    public WinningLotto(List<Integer> winningNumbers, Integer bonusNumber) {
-        this.winningNumbers = new Lotto(winningNumbers);
+    public WinningLotto(Lotto lotto, Integer bonusNumber) {
+        this.winningNumbers = lotto;
 
-        validate(winningNumbers, bonusNumber);
+        validate(winningNumbers.getNumbers(), bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

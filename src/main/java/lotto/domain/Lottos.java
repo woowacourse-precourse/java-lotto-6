@@ -14,8 +14,9 @@ public class Lottos {
         this.count = lottos.size();
     }
 
-    public Prizes createPrizes(final List<Integer> winnerNumbers, final Integer bonusNumber) {
-        final List<Prize> prizes = compareAllLottoWithWinnerLotto(winnerNumbers, bonusNumber);
+    public Prizes createPrizes(final WinnerLotto winnerLotto) {
+        final List<Prize> prizes = compareAllLottoWithWinnerLotto(winnerLotto.getWinnerNumbers(),
+                                                                winnerLotto.getBonusNumber());
         return new Prizes(prizes);
     }
     private List<Prize> compareAllLottoWithWinnerLotto(final List<Integer> winnerNumbers, final Integer bonusNumber) {

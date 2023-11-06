@@ -23,7 +23,7 @@ public class UtilsTest {
         return Stream.of(
                 Arguments.of("1,2,3", ",", List.of(1, 2, 3)),
                 Arguments.of("1 2 3", " ", List.of(1, 2, 3)),
-                Arguments.of("48, 132, 0235", ", ", List.of(45, 132, 235))
+                Arguments.of("48, 132, 0235", ", ", List.of(48, 132, 235))
         );
     }
 

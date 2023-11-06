@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class AnswerLottoTest {
     @DisplayName("정상 정답 로또인 경우 예외가 발생하지 않는다.")
@@ -30,19 +31,12 @@ public class AnswerLottoTest {
 
     @DisplayName("보너스 숫자가 1~45 숫자가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
-    @MethodSource("invalidBonusProvider")
-    void createAnswerLottoWithInvalidBonus(Lotto lotto, BonusNumber bonus) {
-        Assertions.assertThatThrownBy(() -> new WinningLotto(lotto, bonus))
+    @ValueSource(ints = {0, 46, -2})
+    void createAnswerLottoWithInvalidBonus(int number) {
+        Assertions.assertThatThrownBy(() -> new BonusNumber(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    static Stream<Arguments> invalidBonusProvider() {
-        return Stream.of(
-                Arguments.of(new Lotto(List.of(12, 31, 24, 9, 37, 4)), new BonusNumber(0)),
-                Arguments.of(new Lotto(List.of(5, 18, 27, 42, 11, 38)), new BonusNumber(46)),
-                Arguments.of(new Lotto(List.of(21, 8, 33, 10, 15, 30)), new BonusNumber(-2))
-        );
-    }
 
     @DisplayName("로또 숫자와 보너스 숫자가 겹치는 경우 예외가 발생한다.")
     @ParameterizedTest

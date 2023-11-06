@@ -9,4 +9,5 @@ public class Constant {
     public static final String NUMBER_REGEX = "^[0-9]+$";
     public static final int LOTTO_NUMBERS_COUNT = 6;
     public static final int DIVIDER_FOR_COUNT_PURCHASE_QUANTITY = 1000;
+    public static final String DELIMITER = ",";
 }

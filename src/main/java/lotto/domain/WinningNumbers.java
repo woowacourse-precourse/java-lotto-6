@@ -17,4 +17,10 @@ public final class WinningNumbers {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
+
+    public WinningResult getWinningResult(Lotto lotto) {
+        int matchCount = lotto.countMatchNumbers(winningNumbers);
+        boolean matchBonus = lotto.contains(bonusNumber);
+        return WinningResult.of(matchCount, matchBonus);
+    }
 }

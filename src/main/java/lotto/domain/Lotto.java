@@ -40,4 +40,10 @@ public final class Lotto {
     public boolean contains(LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }
+
+    public int countMatchNumbers(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
 }

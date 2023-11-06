@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -17,5 +19,12 @@ public class LottoController {
     }
 
     public void run() {
+        purchase();
+    }
+
+    private void purchase() {
+        Money money = Money.from(inputView.getMoneyInput());
+        List<Lotto> lottoTickets = lottoService.generateWith(money);
+        outputView.print(lottoTickets);
     }
 }

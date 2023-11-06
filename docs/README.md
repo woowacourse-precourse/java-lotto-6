@@ -24,8 +24,8 @@
   - [x] [ERROR] 1000으로 나눠 떨어지는 값이 아닌 경우.
   - [x] [ERROR] 1000보다 작은 값인 경우
 
-- [ ] (로또 구입 금액 / 1000) 개의 `Lotto`를 생성.
-    - [] `Randoms.pickUniqueNumbersInRange()` 메서드로 `LottoNumber` 생성
+- [x] (로또 구입 금액 / 1000) 개의 `Lotto`를 생성.
+    - [x] `Randoms.pickUniqueNumbersInRange()` 메서드로 `LottoNumber` 생성
     - [x] `LottoNumber`를 가지는 Lotto 생성
       - [x] 로또 숫자는 오름 차순으로 정렬한다.
     - [x] [ERROR] 로또의 번호가 1보다 작거나 45보다 큰 경우.

@@ -26,13 +26,8 @@ public class Process {
     public void buyLotto() {
         LottoEnvelop lottoEnvelop = null;
 
-        // 유저가 로또를 산다.
         Integer moneyOfUser = user.payMoney();
-
-        // 로또 판매자가 로또를 판다.
         lottoEnvelop = lottoSeller.sell(moneyOfUser);
-
-        // 유저가 봉투를 받는다.
         user.takeLottoEnvelop(lottoEnvelop);
     }
 

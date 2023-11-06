@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.message.ExceptionMessage.INPUT_NOT_DISTINCT;
+
 public class WinningLotto {
 
     private Lotto winningLotto;
@@ -17,7 +19,7 @@ public class WinningLotto {
 
     private void validateNumbersDuplicate(Lotto winningLotto, Integer bonusNumber) {
         if (winningLotto.contains(bonusNumber)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_NOT_DISTINCT);
         }
     }
 

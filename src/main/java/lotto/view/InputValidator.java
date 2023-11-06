@@ -7,11 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class InputValidator {
-    private static final String INVALID_INPUT_MESSAGE = "[ERROR] 금액에는 정수를 입력해주세요.";
-    private static final String HAS_NOT_COMMA_MESSAGE = "[ERROR] 당첨 번호는 콤마로 구분해야 합니다.";
-    private static final String NUMERIC = "^\\d+$";
+import static lotto.utils.constants.InputConstants.*;
 
+public class InputValidator {
     public void validateInputMoney(String inputMoney) {
         if (!isNumeric(inputMoney)) {
             throw new InvalidInputException(INVALID_INPUT_MESSAGE);

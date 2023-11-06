@@ -8,8 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.utils.constants.InputConstants.SPLIT_STANDARD;
+
 public class InputView {
-    private static final String SPLIT_STANDARD = ",";
 
     private final InputValidator inputValidator;
 

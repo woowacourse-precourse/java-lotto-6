@@ -2,7 +2,7 @@ package utils;
 
 import java.util.List;
 
-public class numbersValidation {
+public class NumbersValidation {
     private final static int MAX_INPUT_LENGTH = 6;
     private final static String INPUT_OVER_LENGTH = "[ERROR] 입력은 6자 이하여야 합니다.";
     private final static String INPUT_UNDER_LENGTH = "[ERROR] 입력은 6자 보다 작을 수 없습니다.";

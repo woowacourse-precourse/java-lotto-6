@@ -1,6 +1,6 @@
 package utils;
 
-public class numberValidation {
+public class NumberValidation {
     private static final int MAX_NUMBER = 45;
     private static final int MIN_NUMBER = 1;
 

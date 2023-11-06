@@ -52,7 +52,7 @@
 # 세부사항 수정전 구현완료된 코드
 
 ### 코드 구현 과정에서 수정된 package와 class 목록 
-(첫 구현 로직 성공 까지의 수정 사항 반영)
+(첫 구현 로직 성공 까지의 수정 사항 반영) & 추가수정 실시간 반영 (**)
 
 - lotto
   - controller
@@ -61,6 +61,7 @@
     - 수정이유 : 기존 제공되던 Lotto 클래스가 유효성검사로직을 품고 있기에, 해당 클래스와 유사한 기능을 하도록 유효성검사에 초점을 맞춤
     - Lotto.java
     - LottoTicket.java
+      - ** 수정,LottoTicketCount(클래스 역할에 맞게 더욱 명확한 이름으로 수정)
     - LottoPrize (enum)
     - WinningNumber.java
     - BonusNumber.java
@@ -92,7 +93,7 @@
 - [ ] Lotto
   - 제공된 클래스를 어떻게 수정해야 할 지 모르겠으나, 오류 검증위주로 코드추가예정
   - randomNumber 추출의 경우 제공된 코드가 있기에 어떻게 수정해 나갈지 미정.
-- [ ] LottoTicket
+- [x] LottoTicket
   - 해당 검증에 빠진 부분이 있는지 추가 고려 필요
 - [ ] LottoService
   - switch/case로 구성된 메소드 다시 생각 
@@ -102,3 +103,4 @@
 - [ ] 전체 수정사항
   - [ ] 구현순서가 제대로 되어있는지 체크할 것.
 - [ ] 테스트 코드 추가 하기 
+  - [x] LottoTicketCount

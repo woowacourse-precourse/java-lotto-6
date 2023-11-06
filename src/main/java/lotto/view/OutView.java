@@ -12,4 +12,9 @@ public class OutView {
     public void lottoPriceView(int divisionLottoPrice) {
         System.out.println(String.format(LottoMsg.LOTTO_PRICE_COUNT.getMsg(), divisionLottoPrice));
     }
+
+    public void lottoCommonNumberView(String winningOrBonus) {
+        System.out.println();
+        System.out.println(String.format(LottoMsg.LOTTO_COMMON_MSG.getMsg(), winningOrBonus));
+    }
 }

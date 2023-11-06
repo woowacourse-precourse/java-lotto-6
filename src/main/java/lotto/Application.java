@@ -1,12 +1,15 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) {
         System.out.println(InputMessage.purchaseAmount);
         int result = inputPurchaseAmount();
+
 
     }
 
@@ -62,5 +65,10 @@ public class Application {
         if (input == null) {
             throw new IllegalArgumentException(ErrorMessage.NULL);
         }
+    }
+
+    public void createLotto() {
+        Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(LottoNumbers.START_LOTTO_NUMBER,
+                LottoNumbers.END_LOTT0_NUMBER, LottoNumbers.COUNT));
     }
 }

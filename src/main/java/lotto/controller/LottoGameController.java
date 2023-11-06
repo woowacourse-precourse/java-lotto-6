@@ -28,10 +28,10 @@ public class LottoGameController {
         purchaseLotto();
         createLottoWinningNumber();
         createLottoBonusNumber();
-        printLottoWinningResult();
+        printLottoWinningStatistics();
     }
 
-    private void printLottoWinningResult() {
+    private void printLottoWinningStatistics() {
         LottoWinningResult lottoWinningResult = lottoGameService.calculateLottoWinningResult();
         lottoGameView.printWinningStatistics(new LottoWinningStatistics(
                 lottoWinningResult.calculateRewardRatio(),

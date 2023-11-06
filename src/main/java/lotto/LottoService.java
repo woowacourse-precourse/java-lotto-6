@@ -30,4 +30,7 @@ public class LottoService {
 		return lottos;
 	}
 
+	public List<Integer> checkNumbers(String inputNumbers) {
+		return null;
+	}
 }

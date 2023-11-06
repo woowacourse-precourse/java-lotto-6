@@ -40,6 +40,8 @@ public class UI {
 	}
 
 	private List<Integer> inputNumbers() {
-		return null;
+		String inputNumbers = Console.readLine();
+		List<Integer> numbers = lottoService.checkNumbers(inputNumbers);
+		return numbers;
 	}
 }

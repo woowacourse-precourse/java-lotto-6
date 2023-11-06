@@ -137,7 +137,7 @@ public class Application {
     }
 
     public static void SumLottoResult(){
-        for(int i=0; i<lotteryWinningRank-1; i++){
+        for(int i=0; i<lotteryWinningRank; i++){
             totalLottoMoney += GetMoney(i, myWinningLotto.get(i));
         }
         System.out.println(totalLottoMoney);

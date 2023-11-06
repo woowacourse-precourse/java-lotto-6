@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.LottoException;
 import lotto.domain.Lotto;
+import lotto.model.LottoResultModel;
 
 import java.util.*;
 
@@ -45,8 +46,8 @@ public class LottoGameService {
         }
     }
 
-    public Map<String,String> lottoWinningResultCalculation(List<Lotto> lotto , List<Integer> winningNumber, int bonusNumber){
-        Map<String,String> lottoWinningResult = new HashMap<>();
+    public LottoResultModel lottoWinningResultCalculation(List<Lotto> lotto , List<Integer> winningNumber, int bonusNumber){
+        LottoResultModel lottoResultModel = new LottoResultModel();
 
         int totalWinningAmount = 0;
         String totalReturnRate;
@@ -87,14 +88,14 @@ public class LottoGameService {
         }
         totalReturnRate = String.valueOf((totalWinningAmount/totalLottoPurchase)*100);
 
-        lottoWinningResult.put("총 수익률",totalReturnRate);
-        lottoWinningResult.put("3개일치",String.valueOf(threeMatches));
-        lottoWinningResult.put("4개일치",String.valueOf(fourMatches));
-        lottoWinningResult.put("5개일치",String.valueOf(fiveMatches));
-        lottoWinningResult.put("5개일치_보너스일치",String.valueOf(fiveBonusMatches));
-        lottoWinningResult.put("6개일치",String.valueOf(sixMatches));
+        lottoResultModel.setTotalReturnRate(totalReturnRate);
+        lottoResultModel.setThreeMatch(String.valueOf(threeMatches));
+        lottoResultModel.setFourMatch(String.valueOf(fourMatches));
+        lottoResultModel.setFiveMatch(String.valueOf(fiveMatches));
+        lottoResultModel.setFiveBonusMatch(String.valueOf(fiveBonusMatches));
+        lottoResultModel.setSixMatch(String.valueOf(sixMatches));
 
-        return lottoWinningResult;
+        return lottoResultModel;
     }
 
     public boolean inputWinningNumberValidation(String inputWinningNumber){

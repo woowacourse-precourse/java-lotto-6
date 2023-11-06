@@ -8,7 +8,9 @@ public enum Message {
     RESPONSE_TICKETS("%d개를 구매했습니다."),
     RESPONSE_TICKET_NUMBERS("%s"),
     RESPONSE_FINAL_TITLE("당첨 통계\n---"),
-    RESPONSE_MATCHED("%d개 일치%s ($s원) - %d개"),
+    RESPONSE_MATCHED("%d개 일치%s (%s원) - %d개"),
+    RESPONSE_BONUS_TEXT(", 보너스 볼 일치"),
+    RESPONSE_PRIZE_FORMATTER("%,d"),
     RESPONSE_PNL("총 수익률은 %.1f%%입니다.");
 
     private final String content;

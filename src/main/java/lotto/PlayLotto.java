@@ -25,7 +25,7 @@ public class PlayLotto {
     public void play(){
         getMoney();
         makeLotto();
-        getNumber();
+        getLottoNumber();
     }
 
     public void getMoney(){
@@ -68,7 +68,7 @@ public class PlayLotto {
         return curNumbers;
     }
 
-    public void getNumber(){
+    public void getLottoNumber(){
         try{
             System.out.println("당첨 번호를 입력해 주세요.");
             inputLottoNumbers = readLine().split(",");
@@ -77,7 +77,7 @@ public class PlayLotto {
             System.out.println();
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            getNumber();
+            getLottoNumber();
         }
     }
 

@@ -4,7 +4,7 @@ import lotto.exception.ExceptionMessage;
 
 public class LottoPurchaseRequest {
 
-    private int purchaseAmount;
+    private final int purchaseAmount;
 
     public LottoPurchaseRequest(String purchaseAmount) {
         try {

@@ -8,7 +8,7 @@ public class LottoWinningNumberCreateRequest {
 
     private static final String NUMBER_SEPARATOR = ",";
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public LottoWinningNumberCreateRequest(String winningNumbers) {
         String[] numbers = winningNumbers.split(NUMBER_SEPARATOR);

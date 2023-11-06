@@ -3,7 +3,7 @@ package lotto.dto;
 import lotto.exception.ExceptionMessage;
 
 public class LottoBonusNumberCreateRequest {
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public LottoBonusNumberCreateRequest(String bonusNumber) {
         try {

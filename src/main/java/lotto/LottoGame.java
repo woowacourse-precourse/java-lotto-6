@@ -37,11 +37,37 @@ public class LottoGame {
     // 보너스 번호 입력
     public int inputBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonus = Integer.parseInt(Console.readLine());
+        int bonus = Integer.parseInt(Console.readLine().strip());
 
         return bonus;
     }
-    // 당첨 내역 출력
+
+    // 당첨 조회
+    public int[] winningResult(List<Lotto> draws, Lotto win, int bonus) {
+        int[] winningList = new int[5];
+        int count;
+
+        for(int i = 0; i < draws.size(); i++) {
+            Lotto draw = draws.get(i);
+            count = numberComparison(draw, win);
+            if (count > 2) {
+                winningList[count-3]++;
+            }
+        }
+        return winningList;
+    }
+
+    public int numberComparison(Lotto draw, Lotto win) {
+        int count = 0;
+        for(Integer number : win){
+            if (draw.contains(number)) {
+               count++;
+            }
+        }
+        return count;
+    }
+
+    // 보너스 카운트
     // 수익률 출력
     // 예외 상황 출력
 }

@@ -1,11 +1,11 @@
 package lotto.view;
 
-import java.text.DecimalFormat;
 import java.util.EnumMap;
 
 import lotto.domain.Payment;
 import lotto.domain.Rank;
 import lotto.dto.LottoNumbersDto;
+import lotto.util.NumberFormatConverter;
 
 public class OutputView {
 
@@ -76,14 +76,12 @@ public class OutputView {
     }
 
     private static String applyRewardFormat(final Rank rank) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###원");
-        return decimalFormat.format(rank.reward());
+        return NumberFormatConverter.convertToRewardFormat(rank.reward());
     }
 
     public static void printTotalYield(final double yield) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
-        String format = decimalFormat.format(yield);
-        System.out.printf(TOTAL_YIELD_GUIDE, format);
+        String formattedYield = NumberFormatConverter.convertToYieldFormat(yield);
+        System.out.printf(TOTAL_YIELD_GUIDE, formattedYield);
     }
 
     private static String addLineSeparator(final String guide) {

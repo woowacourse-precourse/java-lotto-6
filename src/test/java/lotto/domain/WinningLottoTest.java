@@ -2,41 +2,32 @@ package lotto.domain;
 
 import static lotto.domain.constant.ErrorMessages.NOT_INTEGER;
 import static lotto.domain.constant.ErrorMessages.NOT_UNIQUE;
+import static lotto.domain.constant.ErrorMessages.RANGE_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class WinningLottoTest {
-    @DisplayName("당첨 번호 입력시 정수가 아닌 것이 존재하면 예외가 발생한다.")
-    @Test
-    void inputNumbersNotInteger() {
-        String numbersInput = ",2.4,5,-,,";
-        String bonusInput = "1";
-        assertThatThrownBy(() -> new WinningLotto(numbersInput, bonusInput))
+    @ParameterizedTest
+    @MethodSource("provideNumberAndBonusInputs")
+    @DisplayName("입력된 당첨 번호와 보너스 번호가 잘못되면 예외가 발생한다.")
+    void inputNumbersValidateTest(String inputNumbers, String inputBonus, String result) {
+        assertThatThrownBy(() -> new WinningLotto(inputNumbers, inputBonus))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NOT_INTEGER.getMessage());
+                .hasMessageContaining(result);
     }
 
-    @DisplayName("보너스 번호 입력시 1이상 45이하의 정수가 아니면 예외가 발생한다.")
-    @Test
-    void inputBonusNotInteger() {
-        String numbersInput = "1,2,3,4,5,6";
-        List<String> bonusInputs = List.of("-1", "!?!", "46", ",");
-        bonusInputs.stream().forEach(bonus -> {
-            assertThatThrownBy(() -> new WinningLotto(numbersInput, bonus))
-                    .isInstanceOf(IllegalArgumentException.class);
-        });
-    }
-
-    @DisplayName("보너스 번호가 로또 번호와 중복되면 예외가 발생한다.")
-    @Test
-    void inputBonusDuplicatedNumber() {
-        String numbersInput = "1,2,3,4,5,6";
-        String bonusInput = "3";
-        assertThatThrownBy(() -> new WinningLotto(numbersInput, bonusInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NOT_UNIQUE.getMessage());
+    private static Stream<Arguments> provideNumberAndBonusInputs() {
+        return Stream.of(
+                Arguments.of(",2.4,5,-,,", "1", NOT_INTEGER.getMessage()),
+                Arguments.of("1,2,3,4,5,6", "-1", RANGE_NUMBER.getMessage()),
+                Arguments.of("1,2,3,4,5,6", "!?!", NOT_INTEGER.getMessage()),
+                Arguments.of("1,2,3,4,5,6", "46", RANGE_NUMBER.getMessage()),
+                Arguments.of("1,2,3,4,5,6", "3", NOT_UNIQUE.getMessage())
+        );
     }
 }

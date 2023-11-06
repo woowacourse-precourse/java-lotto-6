@@ -4,46 +4,66 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.ResultRepository;
 import lotto.domain.WinningLotto;
 import lotto.domain.constant.Rank;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class WinningStatisticsTest {
-    WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6", "7");
-    Lotto FourthRankLotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 15, 16)));
-    Lotto NoneRankLotto = new Lotto(new ArrayList<>(List.of(11, 12, 13, 14, 15, 16)));
-    ResultRepository FourthRankRepository = new ResultRepository(winningLotto, FourthRankLotto);
-    ResultRepository NoneRankRepository = new ResultRepository(winningLotto, NoneRankLotto);
+    private static WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6", "7");
+    private static Lotto FourthRankLotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 15, 16)));
+    private static Lotto NoneRankLotto = new Lotto(new ArrayList<>(List.of(11, 12, 13, 14, 15, 16)));
 
-    @DisplayName("당첨률 계산")
-    @Test
-    void WinningPercentage() {
-        WinningStatistics winningStatistics = setOneFourthRank();
-        assertThat(winningStatistics.getWinningRate()).isEqualTo(1666.7);
-
-        winningStatistics = setTwoFourthRank();
-        assertThat(winningStatistics.getWinningRate()).isEqualTo(3333.3);
+    @ParameterizedTest
+    @MethodSource("provideWinningLottoAndResult")
+    @DisplayName("당첨률을 계산한다.")
+    void calculateWinningPercentage(WinningStatistics winningStatistics, double result) {
+        assertThat(winningStatistics.getWinningRate()).isEqualTo(result);
     }
 
-    @DisplayName("당첨 통계 출력 테스트")
-    @Test
-    void WinningDetail() {
+    private static Stream<Arguments> provideWinningLottoAndResult() {
+        return Stream.of(
+                Arguments.of(setOneFourthRank(), 1666.7),
+                Arguments.of(setTwoFourthRank(), 3333.3)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideRankAndOutput")
+    @DisplayName("당첨 통계 출력를 출력한다.")
+    void winningDetail(Rank rank, String result) {
         final WinningStatistics winningStatistics = setTwoFourthRank();
-
-        assertThat(winningStatistics.getWinningDetail(Rank.First)).isEqualTo("6개 일치 (2,000,000,000원) - 0개");
-        assertThat(winningStatistics.getWinningDetail(Rank.Fourth)).isEqualTo("4개 일치 (50,000원) - 2개");
+        assertThat(winningStatistics.getWinningDetail(rank)).isEqualTo(result);
     }
 
-    private WinningStatistics setOneFourthRank() {
-        return new WinningStatistics(
-                List.of(FourthRankRepository, NoneRankRepository, NoneRankRepository));
+    private static Stream<Arguments> provideRankAndOutput() {
+        return Stream.of(
+                Arguments.of(Rank.First, "6개 일치 (2,000,000,000원) - 0개"),
+                Arguments.of(Rank.Fourth, "4개 일치 (50,000원) - 2개")
+        );
     }
 
-    private WinningStatistics setTwoFourthRank() {
+    private static ResultRepository getFourthRankRepository() {
+        return new ResultRepository(winningLotto, FourthRankLotto);
+    }
+
+    private static ResultRepository getNoneRankRepository() {
+        return new ResultRepository(winningLotto, NoneRankLotto);
+    }
+
+    private static WinningStatistics setOneFourthRank() {
+
         return new WinningStatistics(
-                List.of(FourthRankRepository, FourthRankRepository, NoneRankRepository));
+                List.of(getFourthRankRepository(), getNoneRankRepository(), getNoneRankRepository()));
+    }
+
+    private static WinningStatistics setTwoFourthRank() {
+        return new WinningStatistics(
+                List.of(getFourthRankRepository(), getFourthRankRepository(), getNoneRankRepository()));
     }
 }

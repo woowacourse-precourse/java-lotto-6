@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,6 +44,14 @@ class LottoTest {
     @Test
     void createLottoByInputStringExceptRange1To45() {
         assertThatThrownBy(() -> new Lotto(Input.inputWinningNumbers("46,5,3,4,1,2")))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("기존 번호들과 중복된 값이 있으면 예외가 발생한다.")
+    @Test
+    void inputBonusNumberDuplicatedWinningNumbers() {
+        List<Integer> winningNumbers = new ArrayList<Integer>(List.of(1, 2, 3, 4, 5, 6));
+        assertThatThrownBy(() -> Input.inputBonusNumber("3", winningNumbers))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

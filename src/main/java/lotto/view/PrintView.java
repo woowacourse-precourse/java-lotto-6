@@ -42,7 +42,7 @@ public class PrintView {
         System.out.println(sb.toString());
     }
 
-    public static void printWinningResult(int[] winningCount) {
+    public static void printWinningResult(int[] winningCount, double result) {
         StringBuilder sb = new StringBuilder();
         sb.append("\n당첨 통계");
         sb.append("\n---");
@@ -55,6 +55,7 @@ public class PrintView {
             sb.append(" ").append(count).append("개");
         }
 
+        sb.append("\n총 수익률은 ").append(result).append("%입니다.");
 
         System.out.println(sb.toString());
     }

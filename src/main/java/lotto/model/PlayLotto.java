@@ -50,21 +50,19 @@ public class PlayLotto {
     }
 
     private static LottoResult determineLottoResult(int matchCount, boolean bonusMatch) {
-        if (matchCount == 6) {
-            return LottoResult.SIX_MATCHES;
-        }
-        if (matchCount == 5 && bonusMatch) {
-            return LottoResult.FIVE_MATCHES_WITH_BONUS;
-        }
-        if (matchCount == 5) {
-            return LottoResult.FIVE_MATCHES;
-        }
-        if (matchCount == 4) {
-            return LottoResult.FOUR_MATCHES;
-        }
-        if (matchCount == 3) {
-            return LottoResult.THREE_MATCHES;
+        for (LottoResult result : LottoResult.values()) {
+            if (result.getMatchCount() == matchCount && (bonusMatch == result.isBonusMatch())) {
+                return result;
+            }
         }
         return LottoResult.NON_WINNING;
+    }
+
+    public static double calculateIncome(Map<LottoResult, Integer> matchCounts, int purchaseAmount) {
+        int totalPrize = matchCounts.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getWinPrize() * entry.getValue())
+                .sum();
+
+        return (double) totalPrize / purchaseAmount * 100;
     }
 }

@@ -43,6 +43,10 @@ public class OutputView {
         }
     }
 
+    public static void printIncome(double lottoIncome) {
+        System.out.print("총 수익률은 " + String.format("%.1f", lottoIncome) + "%입니다.\n");
+    }
+
     public static void printNextLine() {
         System.out.print("\n");
     }

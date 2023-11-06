@@ -13,7 +13,6 @@ import java.util.Map;
 public class LottoController {
     private Map<LottoResult, Integer> matchCounts = new EnumMap<>(LottoResult.class);
     InputView inputView = new InputView();
-
     public int purchaseAmount;
     public int lottoCount;
     public int bonusNumber;
@@ -34,6 +33,8 @@ public class LottoController {
         OutputView.printNextLine();
 
         gradeLotto();
+
+        findIncome();
     }
 
     public void requestPurchaseAmount() {
@@ -77,5 +78,10 @@ public class LottoController {
         OutputView.printLottoResult();
         matchCounts = PlayLotto.calculateLotto(lottos, answerNumber, bonusNumber);
         OutputView.printResults(matchCounts);
+    }
+
+    public void findIncome() {
+        double lottoIncome = PlayLotto.calculateIncome(matchCounts, purchaseAmount);
+        OutputView.printIncome(lottoIncome);
     }
 }

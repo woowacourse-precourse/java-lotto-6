@@ -11,7 +11,6 @@ import lotto.domain.LottoWinningNumber;
 import lotto.domain.LottoWinningResult;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
-import lotto.dto.LottoResponse;
 import lotto.dto.LottoWinningNumberCreateRequest;
 import lotto.generator.LottoGenerator;
 
@@ -37,13 +36,9 @@ public class LottoGameService {
         return new LottoWinningResult(lottoPurchase, prizeCountMap);
     }
 
-    public List<LottoResponse> createLottoPurchase(LottoPurchaseRequest lottoPurchaseRequest) {
+    public List<Lotto> createLottoPurchase(LottoPurchaseRequest lottoPurchaseRequest) {
         lottoPurchase = new LottoPurchase(lottoPurchaseRequest.getPurchaseAmount());
-        lottoTickets = lottoPurchase.purchase(lottoGenerator);
-
-        return lottoTickets.stream()
-                .map(lotto -> new LottoResponse(lotto.getNumbers()))
-                .toList();
+        return lottoTickets = lottoPurchase.purchase(lottoGenerator);
     }
 
     public void createLottoWinningNumber(LottoWinningNumberCreateRequest lottoWinningNumberCreateRequest) {

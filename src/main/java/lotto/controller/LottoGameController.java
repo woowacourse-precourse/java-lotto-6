@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.LottoWinningResult;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
@@ -63,8 +64,11 @@ public class LottoGameController {
         while (true) {
             try {
                 LottoPurchaseRequest lottoPurchaseRequest = lottoGameView.inputPurchaseRequest();
-                List<LottoResponse> lottoTickets = lottoGameService.createLottoPurchase(lottoPurchaseRequest);
-                lottoGameView.printPurchasedTickets(lottoTickets);
+                List<Lotto> lottoTickets = lottoGameService.createLottoPurchase(lottoPurchaseRequest);
+                List<LottoResponse> lottoResponses = lottoTickets.stream()
+                        .map(lotto -> new LottoResponse(lotto.getNumbers()))
+                        .toList();
+                lottoGameView.printPurchasedTickets(lottoResponses);
                 return;
             } catch (IllegalArgumentException e) {
                 lottoGameView.printException(e);

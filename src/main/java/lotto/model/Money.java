@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.math.BigDecimal;
+
 public class Money {
 
     private static final String MONEY_LESS_THEN_PRIZE = "[ERROR] 금액은 1,000원 이상이어야 합니다.";
@@ -42,5 +44,9 @@ public class Money {
 
     public long calculateTicketCount() {
         return amount / LOTTO_PRIZE;
+    }
+
+    public BigDecimal getAmount() {
+        return new BigDecimal(amount);
     }
 }

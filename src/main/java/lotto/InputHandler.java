@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputHandler {
+    private static final Validation validation = new Validation();
 
     public List<Integer> getWinningNumber() {
         List<Integer> winningNumber = new ArrayList<>();
@@ -15,6 +16,9 @@ public class InputHandler {
             winningNumber = Arrays.stream(Console.readLine().split(","))
                     .map(String::trim)
                     .map(Integer::parseInt)
+                    .peek(number -> {
+                        validation.numberRange(number);
+                    })
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");

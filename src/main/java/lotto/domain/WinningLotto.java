@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
-
 import java.util.List;
 
 public class WinningLotto {
@@ -26,9 +25,13 @@ public class WinningLotto {
     }
 
     private void validateInitialized() {
-        if (bonusNumber != 0) {
+        if (isInitializedBonusNumber()) {
             throw new IllegalStateException(ErrorMessage.BONUS_NUMBER_ALREADY_INITIALIZED.getMessage());
         }
+    }
+
+    private boolean isInitializedBonusNumber() {
+        return bonusNumber != 0;
     }
 
     private void validateUniqueNumber(int bonusNumber) {
@@ -38,6 +41,10 @@ public class WinningLotto {
     }
 
     public Rank calculateRank(Lotto comparedLotto) {
+        if(!isInitializedBonusNumber()) {
+            throw new IllegalStateException(ErrorMessage.BONUS_NUMBER_NOT_INITIALIZED.getMessage());
+        }
+
         int matchedNumberCount = lotto.countMatchedNumber(comparedLotto);
         boolean bonusNumberMatched = comparedLotto.containNumber(bonusNumber);
 

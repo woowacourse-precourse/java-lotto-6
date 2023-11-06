@@ -8,7 +8,6 @@ import lotto.domain.Lottos;
 import lotto.domain.Prize;
 import lotto.domain.PrizeResult;
 import lotto.domain.WinningLotto;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

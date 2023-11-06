@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private static final String SIZE_ERROR_MESSAGE = "[ERROR] 6개의 숫자를 입력해 주세요.";
-    private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 중복되지 않은 6개의 숫자를 입력해 주세요.";
+    private static final String SIZE_ERROR_MESSAGE = "6개의 숫자를 입력해 주세요.";
+    private static final String DUPLICATE_ERROR_MESSAGE = "중복되지 않은 6개의 숫자를 입력해 주세요.";
     private static final int LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;

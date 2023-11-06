@@ -1,6 +1,3 @@
-import lotto.Domain.BonusNumber;
-import org.junit.jupiter.api.Test;
-
 package lotto;
 
 import lotto.Domain.BonusNumber;

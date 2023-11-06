@@ -3,37 +3,26 @@ package lotto.domain.lotto.userLotto;
 import lotto.domain.*;
 import lotto.domain.lotto.AnswerLotto;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoCondition;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserLotto {
 
-    private final List<Lotto> lottos = new ArrayList<>();
     private final PurchasePrice purchasePrice;
-    private final LottoAmount lottoAmount;
-    private final NumberGenerator numberGenerator = NumberGenerator.getInstance();
+    private final Lottos lottos;
 
     public UserLotto(int purchasePrice) {
         this.purchasePrice = new PurchasePrice(purchasePrice);
-        this.lottoAmount = new LottoAmount(purchasePrice);
-        generateLottos();
-    }
-
-    private void generateLottos() {
-        while (lottos.size() < lottoAmount.getLottoAmount()) {
-            lottos.add(new Lotto(numberGenerator.generateRandomNumbers()));
-        }
+        this.lottos = new Lottos(purchasePrice / LottoCondition.PRICE.getValue());
     }
 
     public WinningResult calculateWinningResult(AnswerLotto answerLotto) {
-        List<Ranking> rankingResult = lottos.stream()
-                .map(lotto -> answerLotto.calculateWinningResult(lotto))
-                .toList();
-        return new WinningResult(rankingResult, purchasePrice.getPurchasePrice());
+        List<Ranking> rankings = lottos.calculateWinningResult(answerLotto);
+        return new WinningResult(rankings, purchasePrice.getPurchasePrice());
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return lottos.getLottos();
     }
 }

@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.DuplicatedNumberException;
+import lotto.exception.InvalidSizeException;
 
 public class Lotto {
 
@@ -32,20 +34,20 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException();
+            throw new InvalidSizeException();
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.stream().distinct().collect(Collectors.toList()).size() < LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException();
+            throw new DuplicatedNumberException();
         }
     }
 
     private void validateRange(List<Integer> numbers) throws IllegalArgumentException {
         for (int number: numbers) {
             if (number < LOTTO_NUMBER_MIN_INCLUDE || number > LOTTO_NUMBER_MAX_INCLUDE) {
-                throw new IllegalArgumentException();
+                throw new InvalidSizeException();
             }
         }
     }

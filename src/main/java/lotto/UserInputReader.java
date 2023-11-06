@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import lotto.exception.NonPureNumberException;
 
 public class UserInputReader {
 
@@ -35,7 +36,7 @@ public class UserInputReader {
         Pattern pattern = Pattern.compile(pureNumberPattern);
         Matcher matcher = pattern.matcher(rawInput);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException();
+            throw new NonPureNumberException();
         }
     }
 

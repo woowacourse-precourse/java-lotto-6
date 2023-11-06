@@ -54,6 +54,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_보너스_번호() {
+        assertSimpleTest(() -> {
+            run("9000", "1, 2, 3 ,44, 4, 9", "3K");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨_번호() {
+        assertSimpleTest(() -> {
+            run("9000", "1, 2, 2 ,44, 4, 9");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

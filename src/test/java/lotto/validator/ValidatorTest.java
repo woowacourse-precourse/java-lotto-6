@@ -40,14 +40,14 @@ class ValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "1,2,3,4,5,6"})
     void validateWinningNumbersInput(String input) {
-        assertDoesNotThrow(() -> Validator.validateWinningNumbersInput(input));
+        assertDoesNotThrow(() -> Validator.validateMainNumbersInput(input));
     }
 
     @DisplayName("당첨 번호 입력 검증_숫자가 아닌 경우")
     @ParameterizedTest
     @ValueSource(strings = {"a", "1,A,3,4,5,6"})
     void validateWinningNumbersInputFail(String input) {
-        Assertions.assertThatThrownBy(() -> Validator.validateWinningNumbersInput(input))
+        Assertions.assertThatThrownBy(() -> Validator.validateMainNumbersInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.INVALID_FORMAT_WINNING_NUMBERS.message());
     }
@@ -77,21 +77,21 @@ class ValidatorTest {
     @DisplayName("당첨 번호 검증")
     @Test
     void winningNumbers() {
-        assertDoesNotThrow(() -> Validator.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 45)));
+        assertDoesNotThrow(() -> Validator.validateMainNumbers(List.of(1, 2, 3, 4, 5, 45)));
     }
 
     @DisplayName("당첨 번호 검증_6개가 아닌 경우")
     @Test
     void winningNumbers_invalidSize() {
-        Assertions.assertThatThrownBy(() -> Validator.validateWinningNumbers(List.of(1, 2, 3, 4)))
+        Assertions.assertThatThrownBy(() -> Validator.validateMainNumbers(List.of(1, 2, 3, 4)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Error.INVALID_NUM_WINNING_NUMBER.message());
+                .hasMessage(Error.INVALID_NUM_MAIN_NUMBER.message());
     }
 
     @DisplayName("당첨 번호 검증_범위를 벗어난 경우")
     @Test
     void winningNumbers_invalidRange() {
-        Assertions.assertThatThrownBy(() -> Validator.validateWinningNumbers(List.of(1, 2, 3, 4, 45, 50)))
+        Assertions.assertThatThrownBy(() -> Validator.validateMainNumbers(List.of(1, 2, 3, 4, 45, 50)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.INVALID_RANGE_WINNING_NUMBER.message());
     }
@@ -99,9 +99,9 @@ class ValidatorTest {
     @DisplayName("당첨 번호 검증_중복 번호")
     @Test
     void winningNumbers_Duplicated() {
-        Assertions.assertThatThrownBy(() -> Validator.validateWinningNumbers(List.of(1, 2, 3, 4, 45, 45)))
+        Assertions.assertThatThrownBy(() -> Validator.validateMainNumbers(List.of(1, 2, 3, 4, 45, 45)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Error.DUPLICATED_WINNING_NUMBER.message());
+                .hasMessage(Error.DUPLICATED_MAIN_NUMBER.message());
     }
 
     //validateBonusNumber

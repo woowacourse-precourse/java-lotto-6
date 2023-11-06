@@ -1,7 +1,7 @@
 package lotto.validator;
 
+import static lotto.view.ViewConstant.MAIN_NUMBER_PATTERN;
 import static lotto.view.ViewConstant.NUMBER_PATTERN;
-import static lotto.view.ViewConstant.WINNING_NUMBER_PATTERN;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,8 +16,8 @@ public class Validator {
         throw new IllegalArgumentException(Error.NOT_NUMERIC_INPUT.message());
     }
 
-    public static void validateWinningNumbersInput(String input) {
-        if (input.matches(WINNING_NUMBER_PATTERN.value())) {
+    public static void validateMainNumbersInput(String input) {
+        if (input.matches(MAIN_NUMBER_PATTERN.value())) {
             return;
         }
         throw new IllegalArgumentException(Error.INVALID_FORMAT_WINNING_NUMBERS.message());
@@ -46,21 +46,21 @@ public class Validator {
         return (dividend % divider) == 0;
     }
 
-    public static void validateWinningNumbers(List<Integer> winningNumbers) {
-        validateWinningNumbersSize(winningNumbers);
-        validateWinningNumbersInRange(winningNumbers);
-        validateWinningNumbersNotDuplicated(winningNumbers);
+    public static void validateMainNumbers(List<Integer> mainNumbers) {
+        validateMainNumbersSize(mainNumbers);
+        validateMainNumbersInRange(mainNumbers);
+        validateMainNumbersNotDuplicated(mainNumbers);
     }
 
-    private static void validateWinningNumbersNotDuplicated(List<Integer> winningNumbers) {
+    private static void validateMainNumbersNotDuplicated(List<Integer> winningNumbers) {
         HashSet<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
         if (uniqueNumbers.size() == winningNumbers.size()) {
             return;
         }
-        throw new IllegalArgumentException(Error.DUPLICATED_WINNING_NUMBER.message());
+        throw new IllegalArgumentException(Error.DUPLICATED_MAIN_NUMBER.message());
     }
 
-    private static void validateWinningNumbersInRange(List<Integer> winningNumbers) {
+    private static void validateMainNumbersInRange(List<Integer> winningNumbers) {
         if (winningNumbers.stream().allMatch(Validator::inRange)) {
             return;
         }
@@ -71,11 +71,11 @@ public class Validator {
         return LottoRule.LOTTO_NUMBER_START.value() <= value && value <= LottoRule.LOTTO_NUMBER_END.value();
     }
 
-    private static void validateWinningNumbersSize(List<Integer> winningNumbers) {
+    private static void validateMainNumbersSize(List<Integer> winningNumbers) {
         if (winningNumbers.size() == LottoRule.LOTTO_NUMBER_COUNT.value()) {
             return;
         }
-        throw new IllegalArgumentException(Error.INVALID_NUM_WINNING_NUMBER.message());
+        throw new IllegalArgumentException(Error.INVALID_NUM_MAIN_NUMBER.message());
     }
 
     public static void validateBonusNumber(List<Integer> winningNumbers, int bonus) {

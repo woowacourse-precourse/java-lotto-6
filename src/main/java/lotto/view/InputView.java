@@ -1,11 +1,11 @@
 package lotto.view;
 
+import static lotto.validator.Validator.validateMainNumbersInput;
 import static lotto.validator.Validator.validateNumeric;
-import static lotto.validator.Validator.validateWinningNumbersInput;
 import static lotto.view.ViewConstant.ASK_BONUS_NUMBER_MESSAGE;
 import static lotto.view.ViewConstant.ASK_PAYMENT_MESSAGE;
 import static lotto.view.ViewConstant.ASK_WINNING_NUMBER_MESSAGE;
-import static lotto.view.ViewConstant.WINNING_NUMBER_DELIMITER;
+import static lotto.view.ViewConstant.MAIN_NUMBER_DELIMITER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -25,7 +25,7 @@ public class InputView {
         System.out.println(ASK_WINNING_NUMBER_MESSAGE);
 
         String numbers = Console.readLine();
-        validateWinningNumbersInput(numbers);
+        validateMainNumbersInput(numbers);
         return toIntegerList(numbers);
     }
 
@@ -37,7 +37,7 @@ public class InputView {
     }
 
     private static List<Integer> toIntegerList(String numbers) {
-        return Arrays.stream(numbers.split(WINNING_NUMBER_DELIMITER.value()))
+        return Arrays.stream(numbers.split(MAIN_NUMBER_DELIMITER.value()))
                 .map(Integer::parseInt)
                 .toList();
     }

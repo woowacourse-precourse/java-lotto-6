@@ -8,9 +8,9 @@ public enum ViewConstant {
     LOTTO_COUNT_MESSAGE("\n%d개를 구매했습니다.\n"),
     TICKET_MESSAGE("[%s]\n"),
     TICKET_NUMBER_DELIMITER(", "),
-    WINNING_NUMBER_DELIMITER(","),
+    MAIN_NUMBER_DELIMITER(","),
     NUMBER_PATTERN("\\d+"),
-    WINNING_NUMBER_PATTERN("([\\d]+[,])*[\\d]");
+    MAIN_NUMBER_PATTERN("([\\d]+[,])*[\\d]");
 
     private final String value;
 

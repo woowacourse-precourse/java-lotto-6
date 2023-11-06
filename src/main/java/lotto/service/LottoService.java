@@ -9,17 +9,23 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
 import lotto.dto.LottoTicket;
 
 public class LottoService {
 
     private List<Lotto> lottos;
+    private WinningNumbers winningNumbers;
 
     public void init(int size) {
         this.lottos = new ArrayList<>();
         while (lottos.size() < size) {
             lottos.add(new Lotto(createLottoNumbers()));
         }
+    }
+
+    public void initWinningNumbers(List<Integer> mainNumbers, int bonus) {
+        this.winningNumbers = new WinningNumbers(mainNumbers, bonus);
     }
 
     public List<LottoTicket> tickets() {

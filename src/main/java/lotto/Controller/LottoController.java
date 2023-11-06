@@ -2,7 +2,9 @@ package lotto.controller;
 
 import static lotto.controller.UserInputMessage.*;
 import static lotto.util.ThousandSeparator.addThousandsSeparator;
+import static lotto.util.WinningNumbersMaker.makeWinningNumbers;
 import static lotto.validator.Validator.isPurchaseAmountValid;
+import static lotto.validator.Validator.isWinningNumberValid;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
@@ -17,7 +19,7 @@ public class LottoController {
 
     public void start() {
         int purchaseAmount = requestLottoPurchaseAmount();
-
+        Lotto winningNumbers = requestWinningNumbers();
     }
 
     public int requestLottoPurchaseAmount() {
@@ -37,7 +39,11 @@ public class LottoController {
         try {
             System.out.println(REQUEST_WINNING_NUMBERS);
             String userInput = Console.readLine();
-
+            isWinningNumberValid(userInput);
+            return makeWinningNumbers(userInput);
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+            return requestWinningNumbers();
         }
     }
 }

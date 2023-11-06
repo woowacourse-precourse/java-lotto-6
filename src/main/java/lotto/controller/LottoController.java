@@ -31,11 +31,26 @@ public class LottoController {
     }
 
     private WinningNumbers inputWinningNumbers() {
-        WinningNumbers winningNumbers = WinningNumbers.from(inputView.inputWinningNumbers(), inputView.inputBonusNumber());
-        return winningNumbers;
+        try {
+            WinningNumbers winningNumbers = WinningNumbers.from(inputView.inputWinningNumbers(), inputView.inputBonusNumber());
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumbers();
+        }
     }
 
     private static List<Lotto> purchaseLottos(Money money) {
+        try {
+            List<Lotto> lottos = addLottoByMoney(money);
+            return lottos;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return purchaseLottos(money);
+        }
+    }
+
+    private static List<Lotto> addLottoByMoney(Money money) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < money.availableLottoCount(); i++) {
             lottos.add(new Lotto(LottoGenerator.lottoGenerator()));
@@ -44,6 +59,12 @@ public class LottoController {
     }
 
     private Money inputLottoMoney() {
-        return new Money(inputView.inputMoney());
+        try {
+            return new Money(inputView.inputMoney());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputLottoMoney();
+        }
     }
+
 }

@@ -49,6 +49,9 @@ public class BuyLotto {
         for(int i = 0; i < buyingQuantityLotto; i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
+            for(int num : numbers){
+                lottoNumbersPurchased.add(num);
+            }
             System.out.println(numbers);
         }
 

@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.BuyLotto;
 import lotto.domain.InputNumber;
+import lotto.domain.ResultLotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,14 @@ public class Application {
         BuyLotto buyLotto = new BuyLotto();
         buyLotto.inputMoney();
 
-        List<Integer> lottoNumbersPurchased = new ArrayList<>();
+        List<Integer> lottoNumbersPurchased;
         lottoNumbersPurchased = buyLotto.numberLotto();
 
         InputNumber inputNumber = new InputNumber();
-        inputNumber.inputWinningNumber();
-        inputNumber.inputBonusNumber();
+        List<Integer> winningNumber = inputNumber.inputWinningNumber();
+        int bonusNumber = inputNumber.inputBonusNumber();
+
+        ResultLotto resultLotto = new ResultLotto();
+        resultLotto.showDetail(lottoNumbersPurchased, winningNumber, bonusNumber);
     }
 }

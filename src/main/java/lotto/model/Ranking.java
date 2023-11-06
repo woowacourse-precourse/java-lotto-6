@@ -10,7 +10,7 @@ public enum Ranking {
     THIRD(5, 1_500_000, (count, isBonus) -> count == 5 && !isBonus),
     FOURTH(4, 50_000, (count, isBonus) -> count == 4),
     FIFTH(3, 5_000, (count, isBonus) -> count == 3),
-    NONE(null, 0, (count, isBonus) -> count < 3);
+    NONE(-1, 0, (count, isBonus) -> count < 3);
 
     private final Integer matchCount;
     private final int reward;

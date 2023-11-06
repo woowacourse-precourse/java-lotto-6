@@ -30,4 +30,9 @@ public class Result {
     public int getResult(LottoPrize lottoPrize) {
         return result.getOrDefault(lottoPrize, 0);
     }
+
+    @Override
+    public String toString() {
+        return result.toString();
+    }
 }

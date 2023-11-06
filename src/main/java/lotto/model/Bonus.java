@@ -5,11 +5,11 @@ import lotto.constant.Rule;
 
 public class Bonus {
 
-    private final Integer bonusNumber;
+    private final Integer number;
 
-    public Bonus(Integer bonusNumber) {
-        validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
+    public Bonus(Integer number) {
+        validate(number);
+        this.number = number;
     }
 
     private void validate(Integer bonusNumber) {
@@ -23,6 +23,13 @@ public class Bonus {
     }
 
     public Boolean hasBonusNumber(Lotto lotto) {
-        return lotto.contains(bonusNumber);
+        return lotto.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        return "Bonus{" +
+                "number=" + number +
+                "}";
     }
 }

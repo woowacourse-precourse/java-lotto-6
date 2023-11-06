@@ -24,4 +24,12 @@ public class WinningLotto {
     public LottoPrize compare(Lotto boughtLotto) {
         return LottoPrize.from(lotto.count(boughtLotto), bonus.hasBonusNumber(boughtLotto));
     }
+
+    @Override
+    public String toString() {
+        return "WinningLotto{" +
+                "lotto=" + lotto.toString() +
+                ", " + bonus.toString() +
+                "}";
+    }
 }

@@ -19,7 +19,7 @@ public class RandomIntGenerator {
 
       IntStream.range(0, count/COUNT_DIVISION.getValue())
               .forEach(i -> numbers.add(makeRandomNumber()));
-        System.out.println(numbers);
+//        System.out.println(numbers);
 
 
 
@@ -32,4 +32,7 @@ public class RandomIntGenerator {
     }
 
 
+    public List<List<Integer>> getLottoNumber() {
+        return numbers;
+    }
 }

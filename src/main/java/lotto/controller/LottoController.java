@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LottoController {
     private static LottoView lottoView = new LottoView();
-    private static RandomIntGenerator randomIntGenerator = new RandomIntGenerator();
+    private static final RandomIntGenerator randomIntGenerator = new RandomIntGenerator();
 //    private static List<List<Integer>> buyLottoList = new ArrayList<>();
     public LottoController() {
 
@@ -21,7 +21,7 @@ public class LottoController {
     }
 
     public static void setBuyLottoNumberPrint() {
-
+        lottoView.buyLottoNumberPrint(randomIntGenerator.getLottoNumber());
     }
 
     public void setRandomNumber(Integer Price) {

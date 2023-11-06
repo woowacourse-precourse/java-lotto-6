@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Lotto {
 
@@ -43,6 +44,10 @@ public class Lotto {
 
     public boolean contains(final int number) {
         return numbers.contains(number);
+    }
+
+    public Stream<Integer> stream() {
+        return numbers.stream();
     }
 
     @Override

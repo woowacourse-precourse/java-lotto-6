@@ -5,7 +5,10 @@ import java.util.stream.Stream;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.LottoPrize;
 import lotto.model.PurchaseAmount;
+import lotto.model.LottoStatistic;
+import lotto.model.WinningNumbers;
 
 public class LottoService {
 
@@ -15,6 +18,15 @@ public class LottoService {
                 .limit(lottoCount)
                 .sorted()
                 .toList());
+    }
+
+    public LottoStatistic generateStatistic(final Lottos lottos, final WinningNumbers winningNumbers) {
+        LottoStatistic statistic = LottoStatistic.create();
+        lottos.stream()
+                .map(winningNumbers::match)
+                .map(LottoPrize::from)
+                .forEach(statistic::add);
+        return statistic;
     }
 
     private Lotto createLotto() {

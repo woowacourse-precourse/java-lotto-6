@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 
+import lotto.model.result.LottoMatchResult;
+
 public class WinningNumbers extends Lotto {
 
     private final int bonusNumber;
@@ -27,5 +29,11 @@ public class WinningNumbers extends Lotto {
         if (contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public LottoMatchResult match(final Lotto lotto) {
+        int matchCount = (int) lotto.stream().filter(this::contains).count();
+        boolean hasBonus = lotto.stream().anyMatch(number -> number == bonusNumber);
+        return new LottoMatchResult(matchCount, hasBonus);
     }
 }

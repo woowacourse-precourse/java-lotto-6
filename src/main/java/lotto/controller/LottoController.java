@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 
+import lotto.model.LottoStatistic;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
@@ -22,6 +23,7 @@ public class LottoController {
         PurchaseAmount purchaseAmount = askPurchaseAmount();
         Lottos lottos = lottoService.generateLottos(purchaseAmount);
         WinningNumbers winningNumbers = askWinningNumbers();
+        LottoStatistic statistic = lottoService.generateStatistic(lottos, winningNumbers);
     }
 
     private PurchaseAmount askPurchaseAmount() {

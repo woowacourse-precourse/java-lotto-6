@@ -16,7 +16,12 @@ public class ReturnPercentage {
     private ArrayList<String> winLottoCountList = new ArrayList<>();
     public ReturnPercentage(){
     }
-    public float calculateReturnPercentage(ArrayList<String> matchedNumberCountList, String purchasedPrice){
+    public float getReturnPercentage(ArrayList<String> matchedNumberCountList, String purchasedPrice){
+        matchedLottoCountToList(matchedNumberCountList,purchasedPrice);
+        int sumOfWinPrize = getTotalWinPrize();
+        return Float.parseFloat(String.valueOf(sumOfWinPrize)) / (Float.parseFloat(purchasedPrice) * 10);
+    }
+    private void matchedLottoCountToList(ArrayList<String> matchedNumberCountList, String purchasedPrice){
         int lottoFrequency = 0;
         for(String number : LOTT_RANK_SET){
             lottoFrequency = Collections.frequency(matchedNumberCountList,number);
@@ -24,11 +29,12 @@ public class ReturnPercentage {
                 winLottoCountList.add(String.valueOf(lottoFrequency));
             }
         }
+    }
+    private int getTotalWinPrize(){
         int sum = 0;
         for(int i = 0; i < winLottoCountList.size(); i++){
             sum += Integer.parseInt(winLottoCountList.get(i)) * LOTTO_WIN_PRIZE[i];
         }
-        float total = Float.parseFloat(String.valueOf(sum)) / (Float.parseFloat(purchasedPrice) * 10);
-        return total;
+        return sum;
     }
 }

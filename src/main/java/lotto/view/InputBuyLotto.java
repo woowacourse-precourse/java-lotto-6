@@ -1,11 +1,15 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.DivideThousand;
+import lotto.exception.ZeroException;
 
 public class InputBuyLotto {
     private static final String BUY_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final int ZERO = 0;
+    private static final int THOUSAND = 1000;
 
-    public int getTicket() {
+    public int getMoney() {
         System.out.println(BUY_MESSAGE);
         String money = Console.readLine();
         System.out.println();
@@ -14,10 +18,30 @@ public class InputBuyLotto {
     }
 
     private void validate(String money) {
+
         try {
             int number = Integer.parseInt(money);
         } catch (NumberFormatException e) {
             throw new NumberFormatException();
+        }
+    }
+
+    private int getTicket(int money) {
+        validateZero(money);
+        validateDivideThousand(money);
+
+        return money / THOUSAND;
+    }
+
+    private void validateZero(int money) {
+        if (money == ZERO) {
+            throw new ZeroException();
+        }
+    }
+
+    private void validateDivideThousand(int money) {
+        if (money % THOUSAND != 0) {
+            throw new DivideThousand();
         }
     }
 

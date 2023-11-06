@@ -16,7 +16,9 @@ import static lotto.domain.constants.WinningPrize.CORRECT_THREE_NUMBERS_PRICE;
 import static lotto.domain.constants.WinningPrize.CORRECT_TWO_NUMBERS_PRICE;
 import static lotto.domain.constants.WinningPrize.CORRECT_ZERO_NUMBER_PRICE;
 import static lotto.exception.ExceptionMessage.SYSTEM_ERROR;
+import static lotto.view.SeparatorConstant.DECIMAL_FORMAT;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.function.UnaryOperator;
 import lotto.domain.MatchingResult;
@@ -24,15 +26,15 @@ import lotto.exception.LottoGameException;
 
 public enum WinningGrade {
 
-    CORRECT_SIX_NUMBERS(SIX, (always) -> true, CORRECT_SIX_NUMBERS_PRICE),
+    CORRECT_ZERO_NUMBER(ZERO, (always) -> true, CORRECT_ZERO_NUMBER_PRICE),
+    CORRECT_ONE_NUMBER(ONE, (always) -> true, CORRECT_ONE_NUMBER_PRICE),
+    CORRECT_TWO_NUMBERS(TWO, (always) -> true, CORRECT_TWO_NUMBERS_PRICE),
+    CORRECT_THREE_NUMBERS(THREE, (always) -> true, CORRECT_THREE_NUMBERS_PRICE),
+    CORRECT_FOUR_NUMBERS(FOUR, (always) -> true, CORRECT_FOUR_NUMBERS_PRICE),
+    CORRECT_FIVE_NUMBERS(FIVE, (incorrectBonusNumber) -> !incorrectBonusNumber, CORRECT_FIVE_NUMBERS_PRICE),
     CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER(
             FIVE, (correctBonusNumber) -> correctBonusNumber, CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER_PRICE),
-    CORRECT_FIVE_NUMBERS(FIVE, (incorrectBonusNumber) -> !incorrectBonusNumber, CORRECT_FIVE_NUMBERS_PRICE),
-    CORRECT_FOUR_NUMBERS(FOUR, (always) -> true, CORRECT_FOUR_NUMBERS_PRICE),
-    CORRECT_THREE_NUMBERS(THREE, (always) -> true, CORRECT_THREE_NUMBERS_PRICE),
-    CORRECT_TWO_NUMBERS(TWO, (always) -> true, CORRECT_TWO_NUMBERS_PRICE),
-    CORRECT_ONE_NUMBER(ONE, (always) -> true, CORRECT_ONE_NUMBER_PRICE),
-    CORRECT_ZERO_NUMBER(ZERO, (always) -> true, CORRECT_ZERO_NUMBER_PRICE);
+    CORRECT_SIX_NUMBERS(SIX, (always) -> true, CORRECT_SIX_NUMBERS_PRICE);
 
     private final MatchingCount matchingCount;
     private final UnaryOperator<Boolean> matchingBonus;
@@ -50,5 +52,18 @@ public enum WinningGrade {
                 .filter(grade -> lottoMatchingResult.isBonusMatching(grade.matchingBonus))
                 .findFirst()
                 .orElseThrow(() -> LottoGameException.from(SYSTEM_ERROR));
+    }
+
+    public long getMatchingCount() {
+        return matchingCount.getCount();
+    }
+
+    public boolean incorrectFiveNumbersWithBonusNumber() {
+        return matchingBonus.apply(false);
+    }
+
+    public String getPrice() {
+        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
+        return decimalFormat.format(price.getPrice());
     }
 }

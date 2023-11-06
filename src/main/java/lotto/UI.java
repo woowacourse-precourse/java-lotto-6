@@ -24,7 +24,10 @@ public class UI {
         try {
             payment = Integer.parseInt(line);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("정수를 입력하지 않았습니다.");
+            throw new IllegalArgumentException("자연수를 입력하지 않았습니다.");
+        }
+        if (payment <= 0) {
+            throw new IllegalArgumentException("자연수를 입력하지 않았습니다.");
         }
         return payment;
     }

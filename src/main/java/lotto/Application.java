@@ -10,6 +10,7 @@ public class Application {
             lottery.getNumbers();
             lottery.bonus();
             lottery.perform();
+            lottery.result();
         } catch (Exception e) {
             System.out.println("[ERROR]");
         }

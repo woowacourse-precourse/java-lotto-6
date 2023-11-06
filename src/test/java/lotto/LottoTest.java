@@ -25,7 +25,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("번호 받을 때 정수형이 아닌 문자열이 들어오면 예외발생")
+    @DisplayName("번호를 받을 때 정수형이 아닌 문자열이 들어오면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {""," ","6k", "*"})
     void createLottoByNonInteger(String input) {

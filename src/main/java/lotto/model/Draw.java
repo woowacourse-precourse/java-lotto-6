@@ -16,12 +16,12 @@ public class Draw {
         return ""+drawed;
     }
     // 방법이 생각안나서 임시로 만듦 => 리팩토링 꼭 해야됨
-    public int returnprint(List<Integer> numbers, int bonus) {
+    public int match(List<Integer> numbers, int bonus) {
         int match = 0;
         for (int i : drawed) {
             match += isMatch(numbers, i);
         }
-        if (drawed.contains(bonus)) match += 1;
+        if (drawed.contains(bonus)) match *= -1;
         return match;
     }
     public int isMatch(List<Integer> numbers, int number) {

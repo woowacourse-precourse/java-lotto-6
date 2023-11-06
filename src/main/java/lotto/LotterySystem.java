@@ -46,5 +46,8 @@ public class LotterySystem {
     public void perform() {
         Perform.checknumbers(tickets, lotto, bonus);
     }
+    public void result() {
+        Perform.result(ticketCnt);
+    }
 
 }

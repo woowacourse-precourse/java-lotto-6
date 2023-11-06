@@ -40,7 +40,7 @@ class LottoTest {
     void givenSameLotto_Then_SixReturns() {
         final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         final Lotto other = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lotto.findMatchCount(other)).isEqualTo(6);
+        assertThat(lotto.findMatchCount(other)).isEqualTo(MatchCount.SIX);
     }
 
     @DisplayName("서로 다른 숫자를 가지는 로또와 비교하는 경우 일치하는 개수는 0개이다.")
@@ -48,7 +48,7 @@ class LottoTest {
     void givenDifferentLotto_Then_SixReturns() {
         final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         final Lotto other = new Lotto(List.of(7, 8, 9, 10, 11, 12));
-        assertThat(lotto.findMatchCount(other)).isEqualTo(0);
+        assertThat(lotto.findMatchCount(other)).isEqualTo(MatchCount.NONE);
     }
 
     @DisplayName("주어진 로또에서 일치하는 번호의 개수를 구한다.")
@@ -56,7 +56,7 @@ class LottoTest {
     @MethodSource("generateLottoTicketsWithMatchCount")
     void givenNumberOfLotto_Then_MatchCountReturns(
             final Lotto ticket,
-            final int matchCount
+            final MatchCount matchCount
     ) {
         final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(winningLotto.findMatchCount(ticket)).isEqualTo(matchCount);
@@ -64,14 +64,14 @@ class LottoTest {
 
     private static Stream<Arguments> generateLottoTicketsWithMatchCount() {
         return Stream.of(
-                Arguments.of(new Lotto(List.of(8, 21, 23, 41, 42, 43)), 0),
-                Arguments.of(new Lotto(List.of(3, 5, 11, 16, 32, 38)), 2),
-                Arguments.of(new Lotto(List.of(7, 11, 16, 35, 36, 44)), 0),
-                Arguments.of(new Lotto(List.of(1, 8, 11, 31, 41, 42)), 1),
-                Arguments.of(new Lotto(List.of(13, 14, 16, 38, 42, 45)), 0),
-                Arguments.of(new Lotto(List.of(7, 11, 30, 40, 42, 43)), 0),
-                Arguments.of(new Lotto(List.of(2, 13, 22, 32, 38, 45)), 1),
-                Arguments.of(new Lotto(List.of(1, 3, 5, 14, 22, 45)), 3)
+                Arguments.of(new Lotto(List.of(8, 21, 23, 41, 42, 43)), MatchCount.NONE),
+                Arguments.of(new Lotto(List.of(3, 5, 11, 16, 32, 38)), MatchCount.NONE),
+                Arguments.of(new Lotto(List.of(7, 11, 16, 35, 36, 44)), MatchCount.NONE),
+                Arguments.of(new Lotto(List.of(1, 8, 11, 31, 41, 42)), MatchCount.NONE),
+                Arguments.of(new Lotto(List.of(13, 14, 16, 38, 42, 45)), MatchCount.NONE),
+                Arguments.of(new Lotto(List.of(7, 11, 30, 40, 42, 43)), MatchCount.NONE),
+                Arguments.of(new Lotto(List.of(2, 13, 22, 32, 38, 45)), MatchCount.NONE),
+                Arguments.of(new Lotto(List.of(1, 3, 5, 14, 22, 45)), MatchCount.THREE)
         );
     }
 }

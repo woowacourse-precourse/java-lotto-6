@@ -45,7 +45,12 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int findMatchCount(final Lotto other) {
+    public MatchCount findMatchCount(final Lotto other) {
+        final int numberOfMatches = getNumberOfMatches(other);
+        return MatchCount.of(numberOfMatches);
+    }
+
+    private int getNumberOfMatches(final Lotto other) {
         return numbers.stream()
                 .filter(other::contains)
                 .collect(collectingAndThen(counting(), Long::intValue));

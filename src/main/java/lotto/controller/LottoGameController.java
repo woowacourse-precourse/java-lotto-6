@@ -2,11 +2,15 @@ package lotto.controller;
 
 import static java.lang.String.format;
 import static lotto.constant.LottoOutputMessage.*;
+import static lotto.domain.LottoRank.*;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
+import lotto.domain.LottoRank;
 import lotto.domain.LottoStore;
 import lotto.domain.PurchaseCount;
 import lotto.domain.WinningNumber;
@@ -27,12 +31,39 @@ public class LottoGameController {
     }
 
     public void run() {
+        LottoGame lottoGame = initLottoGame();
+        Map<LottoRank, Integer> lottoResult = lottoGameService.play(lottoGame);
+        printLottoResult(lottoResult);
+    }
+
+    private void printLottoResult(Map<LottoRank, Integer> lottoResult) {
+        outputView.output(WINNING_RESULT.getMessage());
+        Arrays.stream(LottoRank.values())
+                .filter(rank -> rank.getCount() > 0)
+                .forEach(rank -> {
+                    String message = getResultMessage(lottoResult, rank);
+                    outputView.output(message);
+                });
+    }
+
+    private static String getResultMessage(Map<LottoRank, Integer> lottoResult, LottoRank rank) {
+        int count = rank.getCount();
+        String message = format(RANK_RESULT.getMessage(), count);
+        if (rank == FIVE_BONUS) {
+            message += format(BONUS_RESULT.getMessage());
+        }
+        String winningAmount = rank.getWinningAmount();
+        int numberOfMatches = lottoResult.getOrDefault(rank, 0);
+        message += format(COUNT_RESULT.getMessage(), winningAmount, numberOfMatches);
+        return message;
+    }
+
+    private LottoGame initLottoGame() {
         PurchaseCount purchaseCount = initPurchaseAmount();
         LottoStore lottoStore = initLottoStore(purchaseCount);
         WinningNumber winningNumber = initWinningNumber();
         BonusNumber bonusNumber = initBonusNumber(winningNumber);
-        LottoGame lottoGame = new LottoGame(lottoStore, winningNumber, bonusNumber);
-        lottoGameService.play(lottoGame);
+        return new LottoGame(lottoStore, winningNumber, bonusNumber);
     }
 
     private BonusNumber initBonusNumber(WinningNumber winningNumber) {

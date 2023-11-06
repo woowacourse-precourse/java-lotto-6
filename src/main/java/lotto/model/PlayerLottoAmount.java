@@ -5,12 +5,16 @@ import lotto.view.ErrorMessage;
 public class PlayerLottoAmount {
 
     private static final int LOTTO_MIN_AMOUNT = 1000;
-    private final int amount;
+    private int amount;
 
     public PlayerLottoAmount(String amount) {
-        int amountNum = validateNumber(amount);
-        validateAmount(amountNum);
-        this.amount = amountNum;
+        try {
+            int amountNum = validateNumber(amount);
+            validateAmount(amountNum);
+            this.amount = amountNum;
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int calculateLottoCount() {

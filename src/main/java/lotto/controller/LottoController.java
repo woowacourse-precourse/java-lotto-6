@@ -16,6 +16,7 @@ public class LottoController {
 
     private static List<Lotto> lottoList;
     private static LottoTarget lottoTarget;
+    private static PlayerLottoAmount playerLottoAmount;
 
     public void run() {
         try {
@@ -35,7 +36,12 @@ public class LottoController {
     }
 
     private int inputPlayerAmount() {
-        PlayerLottoAmount playerLottoAmount = new PlayerLottoAmount(InputView.inputPlayerAmount());
+        try {
+            playerLottoAmount = new PlayerLottoAmount(InputView.inputPlayerAmount());
+        } catch (IllegalArgumentException e) {
+            return inputPlayerAmount(); // 재귀
+        }
+
         return playerLottoAmount.calculateLottoCount();
     }
 

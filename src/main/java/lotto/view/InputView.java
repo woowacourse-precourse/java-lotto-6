@@ -7,7 +7,6 @@ public class InputView {
 
     public int parseInputFromUserInteger() {
         System.out.println(LottoMsg.LOTTO_BUY_PRICE.getMsg());
-        int parseInt = Integer.parseInt(Console.readLine());
-        return parseInt;
+        return Integer.parseInt(Console.readLine());
     }
 }

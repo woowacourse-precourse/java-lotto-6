@@ -55,4 +55,15 @@ class LottoTest {
         assertThat(lottoNumber)
                 .isEqualTo("[8, 21, 23, 41, 42, 43]");
     }
+
+    @DisplayName("로또 번호에 특정 번호가 포함되어 있으면 true를 반환한다.")
+    @Test
+    void checkLottoContainSpecificNumber(){
+        // given
+        Lotto lotto = new Lotto(List.of(43,21,23,42,41,8));
+
+        // when, then
+        assertThat(lotto.isContainNumber(43))
+                .isEqualTo(true);
+    }
 }

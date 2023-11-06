@@ -60,4 +60,8 @@ public class Lotto {
                 .toList()
                 .toString();
     }
+
+    public boolean isContainNumber(int number){
+        return numbers.contains(number);
+    }
 }

@@ -1,6 +1,8 @@
-package lotto;
+package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.LottoNumber;
+import lotto.LottoNumbers;
 
 public class RandomNumberGenerator implements NumberGenerator {
 

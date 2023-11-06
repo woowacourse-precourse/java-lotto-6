@@ -1,4 +1,7 @@
-package lotto;
+package lotto.fixtures;
+
+import lotto.LottoNumber;
+import lotto.LottoNumbers;
 
 public class LottoNumbersFixtures {
 

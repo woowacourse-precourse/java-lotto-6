@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.LottoNumberOutOfRangeException;
+import lotto.fixtures.LottoNumbersFixtures;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

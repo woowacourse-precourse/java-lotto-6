@@ -5,6 +5,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.InvalidSizeException;
 import lotto.exception.LottoNumberOutOfRangeException;
+import lotto.fixtures.LottoNumbersFixtures;
+import lotto.utils.NumberGenerator;
+import lotto.utils.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

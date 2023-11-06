@@ -1,6 +1,7 @@
 package lotto.domain.model;
 
 import lotto.domain.util.ErrorMessage;
+import lotto.domain.util.InputValidator;
 import lotto.view.OutputView;
 
 import java.util.HashSet;
@@ -98,8 +99,8 @@ public class LottoWinnerSystem {
     // 당첨 번호가 유효한지 검사
     public List<Integer> isValidWinNumber(String input) {
         try {
-            isNull(input);
-            isEmptyOrBlank(input);
+            InputValidator.isNull(input);
+            InputValidator.isEmptyOrBlank(input);
             List<Integer> numbers = convertIntegerList(input);
             isValidLength(numbers, WINNER_NUMBER_COUNT);
             isDistinct(numbers);
@@ -114,8 +115,8 @@ public class LottoWinnerSystem {
     // 보너스 번호가 유효한지 검사
     public List<Integer> isValidBonusNumber(String input, List<Integer> winNumbers) {
         try {
-            isNull(input);
-            isEmptyOrBlank(input);
+            InputValidator.isNull(input);
+            InputValidator.isEmptyOrBlank(input);
             List<Integer> numbers = convertIntegerList(input);
             isValidLength(numbers, BONUS_NUMBER_COUNT);
             isValidRange(numbers);
@@ -130,18 +131,6 @@ public class LottoWinnerSystem {
     private List<Integer> convertIntegerList(String input) {
         List<Integer> numbers = Stream.of(input.split(",")).map(Integer::parseInt).collect(Collectors.toList());
         return numbers;
-    }
-
-    private static void isNull(String word) {
-        if (word == null) {
-            throw new IllegalArgumentException(ErrorMessage.STRING_IS_NULL.getErrorMessage());
-        }
-    }
-
-    private static void isEmptyOrBlank(String word) {
-        if (word.isEmpty() || word.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.STRING_IS_EMPTY_OR_BLANK.getErrorMessage());
-        }
     }
 
     private static void isValidLength(List<Integer> numbers, int numberCount) {

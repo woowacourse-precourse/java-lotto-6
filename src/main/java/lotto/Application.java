@@ -30,7 +30,7 @@ public class Application {
             System.out.println("[ERROR] 로또 구입 금액에는 숫자만 존재해야 합니다.");        
             throw new IllegalArgumentException();
         }
-        
+
         if (inputCoin % coinStandard != 0){
             System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");        
             throw new IllegalStateException();

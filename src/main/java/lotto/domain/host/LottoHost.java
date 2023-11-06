@@ -24,8 +24,7 @@ public class LottoHost {
     public Integer pickBonusNumber() {
         Integer tempBonusNumber = inputBonusNumber();
 
-        ValidateException.hasDuplicateNumAndNumbers(tempBonusNumber, winNumbers);
-        ValidateException.isInRangeBonusNumber(tempBonusNumber);
+        validateInputBonusNumber(tempBonusNumber);
 
         bonusNumber = tempBonusNumber;
         return bonusNumber;
@@ -33,7 +32,7 @@ public class LottoHost {
 
     public LottoTargetNumResults giveLottoTargetNumResults() {
         return Config.lottoTargetNumResults(winNumbers, bonusNumber);
-    
+
 
     }
 
@@ -41,6 +40,11 @@ public class LottoHost {
         ValidateException.hasDuplicateEachNumbers(tempWinNumbers);
         ValidateException.isWinNumbersCountSix(tempWinNumbers);
         ValidateException.checkRangeWinNumbers(tempWinNumbers);
+    }
+
+    private void validateInputBonusNumber(Integer tempBonusNumber) {
+        ValidateException.hasDuplicateNumAndNumbers(tempBonusNumber, winNumbers);
+        ValidateException.isInRangeBonusNumber(tempBonusNumber);
     }
 
     private Integer inputBonusNumber() {

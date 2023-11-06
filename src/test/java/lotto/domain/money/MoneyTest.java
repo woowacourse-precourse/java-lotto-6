@@ -24,6 +24,18 @@ class MoneyTest {
         assertThat(money.getValue()).isEqualTo(value);
     }
 
+    @DisplayName("음수로 생성하려는 경우 예외가 발생한다.")
+    @Test
+    void createByNegativeNumber() {
+        // given
+        final int value = -1000;
+
+        // when
+        assertThatThrownBy(() -> Money.valueOf(value))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("금액은 음수일 수 없습니다.");
+    }
+
     @DisplayName("입력한 금액 만큼 대금을 지불할 수 있다.")
     @Test
     void payInputPrice() {
@@ -48,21 +60,19 @@ class MoneyTest {
         // when, then
         assertThatThrownBy(() -> money.pay(price))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("잔액 500원 으로는 1000원의 물건을 구매하실 수 없습니다.");
+            .hasMessage("잔액 500원 으로는 1000원의 로또를 구매하실 수 없습니다.");
     }
 
-    @DisplayName("구매 가능 여부를 알려준다.")
+    @DisplayName("남은 돈이 있는지 여부를 알려준다.")
     @ParameterizedTest(name = "[{index}] : money = {0}, price = {1}, expected = {2}")
-    @CsvSource(value = {"1000, 500, true", "500, 1000, false"})
-    void indicatesPurchaseAvailability(final int moneyValue,
-                                       final int priceValue,
-                                       final boolean expected) {
+    @CsvSource(value = {"1000, true", "0, false"})
+    void indicatesMoneyIsRemain(final int moneyValue,
+                                final boolean expected) {
         // given
         final Money money = Money.valueOf(moneyValue);
-        final Money price = Money.valueOf(priceValue);
 
         // when
-        boolean result = money.canPay(price);
+        boolean result = money.isRemain();
 
         // then
         assertThat(result).isEqualTo(expected);

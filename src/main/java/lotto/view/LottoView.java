@@ -50,5 +50,8 @@ public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨
         });
     }
 
+    public static void writeLottoProfit(double profit) {
+        System.out.println(String.format(TOTAL_PROFIT_MESSAGE, profit));
+    }
 
 }

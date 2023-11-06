@@ -33,7 +33,7 @@ public class LottoController {
 
     private void issueLottos(Client client) {
         int purchasedLottoAmount = lottoStore.calculatePurchasedLottoAmount(client.getPayAmount());
-        view.printPurchaseLottoAmount(purchasedLottoAmount);
+        view.printPurchasedLottoAmount(purchasedLottoAmount);
         for (int issuedLottoCount = 1; issuedLottoCount <= purchasedLottoAmount; issuedLottoCount++) {
             Lotto lotto = lottoStore.issueRandomLotto();
             view.printIssuedLotto(lotto.toString());

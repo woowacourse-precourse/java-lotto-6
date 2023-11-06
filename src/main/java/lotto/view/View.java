@@ -18,9 +18,9 @@ public class View {
         System.out.println(e.getMessage());
     }
 
-    public void printPurchaseLottoAmount(int purchasedLottoAmount) {
+    public void printPurchasedLottoAmount(int purchasedLottoAmount) {
         System.out.println();
-        System.out.printf((PURCHASE_LOTTO.message()), purchasedLottoAmount);
+        System.out.printf((PURCHASED_LOTTO.message()), purchasedLottoAmount);
     }
 
     public void printIssuedLotto(String lotto) {

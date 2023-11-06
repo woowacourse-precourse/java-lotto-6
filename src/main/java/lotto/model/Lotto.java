@@ -6,7 +6,6 @@ import static lotto.validator.constants.ExceptionMessage.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.validator.constants.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -44,15 +43,11 @@ public class Lotto {
     @Override
     public String toString() {
         List<Integer> clonedNumbers = new ArrayList<>(numbers);
-        sortNumbers(clonedNumbers);
+        Collections.sort(clonedNumbers);
         return clonedNumbers.toString();
     }
 
-    private void sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-    }
-
-    public boolean contains(int targetNumber) {
-        return numbers.contains(targetNumber);
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 }

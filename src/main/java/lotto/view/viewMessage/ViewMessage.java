@@ -2,7 +2,7 @@ package lotto.view.viewMessage;
 
 public enum ViewMessage {
     PAY_AMOUNT_INPUT("구입금액을 입력해 주세요."),
-    PURCHASE_LOTTO("%d개를 구매했습니다.\n"),
+    PURCHASED_LOTTO("%d개를 구매했습니다.\n"),
     WINNING_NUMBER_INPUT("\n당첨 번호를 입력해 주세요."),
     BONUS_NUMBER_INPUT("\n보너스 번호를 입력해 주세요."),
     LOTTO_RESULT("\n당첨 통계\n--- "),

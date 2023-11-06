@@ -7,7 +7,7 @@ public enum Message {
     NUMBER_SIZE("6자리를 기입해 주세요."),
     NUMBER_UNIQUE("중복되는 숫자가 존재합니다."),
     NUMBER_TYPE("숫자만 입력해 주세요."),
-    MONEY_RANGE("음수가 입력될 수 없습니다."),
+    MONEY_RANGE("음수 또는 0이 입력될 수 없습니다."),
     MONEY_REMAINDER("1000 단위의 수를 입력해 주세요.");
 
     private final String content;

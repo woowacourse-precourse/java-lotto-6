@@ -31,7 +31,21 @@ public class Lotto {
     }
 
     public enum LottoRank {
-        FIRST, SECOND, THIRD, FOURTH, FIFTH, NO_WIN;
+        FIRST("2000000000"),
+        SECOND("30000000"),
+        THIRD("1500000"),
+        FOURTH("50000"),
+        FIFTH("5000"),
+        NO_WIN("0");
 
+        private final String prize;
+
+        LottoRank(String prize) {
+            this.prize = prize;
+        }
+
+        public String getPrize() {
+            return prize;
+        }
     }
 }

@@ -44,4 +44,14 @@ class LottoTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    void lottoRankGetPrizeTest() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        lotto.setRank(Lotto.LottoRank.FIRST);
+        String actual = lotto.getRank().getPrize();
+        String expected = "2000000000";
+
+        Assertions.assertEquals(expected, actual);
+    }
 }

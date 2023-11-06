@@ -1,6 +1,7 @@
 package lotto;
 
 import domain.LottoNumberGenerator;
+import domain.LottoProfitCalculator;
 import domain.LottoWinChecker;
 
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
         int purchaseAmount = Integer.parseInt(readLine()); // 로또 구입 금액
         int numberOfLottos = purchaseAmount / 1000; // 구입한 로또 개수
@@ -41,14 +41,16 @@ public class Application {
         int bonusNumber = Integer.parseInt(readLine());
         winningNumbers.add(bonusNumber);
 
-        System.out.println('\n' + "당첨 통계");
-        for (int i = 0; i < numberOfLottos; i++) {
+        LottoWinChecker winChecker;
+        for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);
-            new LottoWinChecker(lotto, winningNumbers);
-            System.out.println(lotto.getRank());
+            winChecker = new LottoWinChecker(lotto, winningNumbers);
         }
 
-//        Lotto lotto = new Lotto(new LottoNumberGenerator().getLottoNumbers());
-
+        System.out.println('\n' + "당첨 통계");
+        System.out.println('\n' + "---");
+        LottoProfitCalculator lottoProfitCalculator = new LottoProfitCalculator(purchaseAmount, lottos);
+        lottoProfitCalculator.rankPrinter();
+        System.out.println("총 수익률은 " + lottoProfitCalculator.getProfitRate() + "%입니다.");
     }
 }

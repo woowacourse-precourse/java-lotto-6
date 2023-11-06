@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MakeLottoCard {
-    static List<List<Integer>> numbers = new ArrayList<>();
+    List<List<Integer>> numbers = new ArrayList<>();
 
     public MakeLottoCard(Integer number) {
         makeCard(number);

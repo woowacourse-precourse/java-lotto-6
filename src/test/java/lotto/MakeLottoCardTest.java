@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.io.ErrorHandler.validateRepeat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -11,7 +12,7 @@ class MakeLottoCardTest {
     void pickNumbers() {
         MakeLottoCard lottoCard = new MakeLottoCard(1);
         List<Integer> numbers = lottoCard.pickNumbers();
-        Lotto.validateRepeat(numbers);
+        validateRepeat(numbers);
     }
 
     @Test

@@ -4,21 +4,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoService;
+import lotto.domain.LottoScanner;
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoServiceTest {
+public class LottoScannerTest {
 
-    private static final LottoService lottoService = new LottoService();
+    private static final LottoScanner LOTTO_SCANNER = new LottoScanner();
     private static Lottos lottos;
     @BeforeAll
     static void init() {
-        LottoService lottoService = new LottoService();
+        LottoScanner lottoScanner = new LottoScanner();
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
         Lotto lotto3 = new Lotto(List.of(9, 10, 11, 12, 13, 14));
@@ -43,7 +42,7 @@ public class LottoServiceTest {
     @Test
     @DisplayName("로또 당첨 여부 확인후 enum으로 리턴")
     void fullLottoService() {
-        assertThat(lottoService.sendAnalyzedResult(lottos, new WinningLotto(new Lotto(List.of(3, 4, 5, 6, 7, 8)), 12)))
+        assertThat(LOTTO_SCANNER.sendAnalyzedResult(lottos, new WinningLotto(new Lotto(List.of(3, 4, 5, 6, 7, 8)), 12)))
                 .contains(Rank.FOURTH, Rank.FIRST, Rank.SECOND);
     }
 }

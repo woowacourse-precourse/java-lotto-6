@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.Rank;
 
-public class LottoService {
+public class LottoScanner {
     private final LottoMachine lottoMachine = new LottoMachine();
 
-    public LottoService() {
+    public LottoScanner() {
     }
 
     private  List<Integer> checkMatchedStandardNumberWithoutBonusNumber(Lottos lottos, WinningLotto winningLotto) {

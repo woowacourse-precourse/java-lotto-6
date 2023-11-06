@@ -16,4 +16,10 @@ public class LottoCollection {
     public List<Lotto> getLottoCollection() {
         return lottoCollection;
     }
+
+    public List<LottoResult> getResultGroup(Lotto winningLotto, int bonusNumber) {
+        return lottoCollection.stream()
+                .map(lotto -> lotto.getResult(winningLotto, bonusNumber))
+                .toList();
+    }
 }

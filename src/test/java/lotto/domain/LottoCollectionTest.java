@@ -1,20 +1,32 @@
 package lotto.domain;
 
+import static lotto.constant.testConstant.LOTTO_1_TO_6;
+import static lotto.constant.testConstant.LOTTO_7_TO_12;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.constant.testConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoCollectionTest {
+    List<Lotto> lottos = List.of(LOTTO_1_TO_6, LOTTO_7_TO_12);
+
     @DisplayName("from은 로또 리스트를 받아서 로또 컬렉션 객체를 생성한다")
     @Test
     void check_from() {
-        List<Lotto> lottos = List.of(new Lotto(List.of(1,2,3,4,5,6)), new Lotto(List.of(7,8,9,10,11,12)));
-        assertThat(LottoCollection.from(lottos))
-                .isInstanceOf(LottoCollection.class);
+        assertThat(LottoCollection.from(lottos)).isInstanceOf(LottoCollection.class);
+
         assertThat(LottoCollection.from(lottos).getLottoCollection())
                 .hasSize(lottos.size())
                 .allSatisfy(lotto -> assertThat(lotto).isInstanceOf(Lotto.class));
     }
+
+//    @Test
+//    void check_getResultGroup() {
+//        LottoCollection lottoCollection = LottoCollection.from(List.of(LOTTO_1_TO_6, LOTTO_7_TO_12));
+//        Lotto winningLotto = new Lotto(List.of(1, 2, 7, 41, 42, 43));
+//        int bonusNumber = 8;
+//        List<LottoResult> resultGroup = lottoCollection.getResultGroup(winningLotto, bonusNumber);
+//    }
 }

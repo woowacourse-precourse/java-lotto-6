@@ -17,4 +17,20 @@ public class Lotto {
         Validator validator = validatorFactory.getValidator(Lotto.class);
         validator.validate(numbers);
     }
+
+    public LottoResult getResult(Lotto winningLotto, int bonusNumber) {
+        int winningCount = getSameNumbersCount(winningLotto);
+        boolean bonusNumberMatching = numbers.contains(bonusNumber);
+        return LottoResult.of(winningCount, bonusNumberMatching);
+    }
+
+    private int getSameNumbersCount(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::contains)
+                .count();
+    }
+
+    private boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }

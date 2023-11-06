@@ -12,7 +12,7 @@ public class WinningNumbersValidator {
 
     public static void validateLength(List<Integer> winningNumbers) {
         if (winningNumbers.size() != LENGTH) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "6자리 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + "6개 숫자가 아닙니다.");
         }
     }
 

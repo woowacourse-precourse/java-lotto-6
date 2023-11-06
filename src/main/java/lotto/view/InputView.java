@@ -1,6 +1,9 @@
 package lotto.view;
 
+import static lotto.constant.Constant.LOTTO_PURCHASE_MINIMUM_AMOUNT;
+
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.Constant;
 import lotto.validation.LottoPurchaseAmountValidator;
 
 public class InputView {
@@ -19,7 +22,7 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-        return Integer.parseInt(lottoPurchaseAmount);
+        return Integer.parseInt(lottoPurchaseAmount) / LOTTO_PURCHASE_MINIMUM_AMOUNT;
     }
 
 }

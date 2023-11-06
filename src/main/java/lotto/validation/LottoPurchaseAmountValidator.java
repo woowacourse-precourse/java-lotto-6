@@ -1,11 +1,12 @@
 package lotto.validation;
 
+import static lotto.constant.Constant.LOTTO_PURCHASE_MINIMUM_AMOUNT;
+
 import java.util.regex.Pattern;
 import lotto.error.ErrorMessage;
 
 public class LottoPurchaseAmountValidator {
 
-    private static final int LOTTO_PURCHASE_MINIMUM_AMOUNT = 1000;
     private static final String REGEXP_PATTERN_ZERO_TO_NINE_NUMBER = "^[0-9]*$";
 
     public static void validateLottoPurchaseAmount(String lottoPurchaseAmount) {

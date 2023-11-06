@@ -9,7 +9,14 @@ public class WinningLotto extends Lotto{
     }
 
     private void validateBonusNumber(Integer bonusNumber) {
+        validateNotNullBonusNumber(bonusNumber);
         vaildateOutOfRangeBonusNumber(bonusNumber);
+    }
+
+    private void validateNotNullBonusNumber(Integer bonusNumber) {
+        if (bonusNumber == null) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요.");
+        }
     }
 
     private void vaildateOutOfRangeBonusNumber(Integer bonusNumber) {

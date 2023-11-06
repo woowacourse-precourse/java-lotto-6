@@ -170,17 +170,17 @@ OutputController를 통해 사용자에게 원하는 화면을 출력하도록 �
 
 #### InputController
 
-LottoGameController는 사용자 입력이 필요할 때마다 InputController를 통해 사용자 입력을 받아옵니다.
+LottoGameService는 사용자 입력이 필요할 때마다 InputController를 통해 사용자 입력을 받아옵니다.
 
 InputController는 InputView로부터 사용자 입력(String)을 받아옵니다.
 
-String 타입의 사용자 입력을 InputController에서 적절한 model 타입(LottoGameController에서 요청한 model 타입)으로 변환합니다.
+String 타입의 사용자 입력을 InputController에서 적절한 model 타입(LottoGameService에서 요청한 model 타입)으로 변환합니다.
 
-LottoGameController에게 변환한 객체를 넘겨줍니다.
+LottoGameService에게 변환한 객체를 넘겨줍니다.
 
 #### OutputController
 
-OutputController는 LottoGameController로부터 사용자에게 화면을 출력할 것을 요청받습니다.
+OutputController는 LottoGameService로부터 사용자에게 화면을 출력할 것을 요청받습니다.
 
 OutputView에서 업데이트가 될 화면(String)을 생성합니다.
 

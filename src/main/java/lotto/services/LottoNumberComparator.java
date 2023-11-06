@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto.services;
 
 import java.util.EnumMap;
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.enums.LottoPrize;
 
 public class LottoNumberComparator {

@@ -35,4 +35,15 @@ public final class LottoServer {
         outputPort.printCreatedLottos(generatedLottos);
     }
 
+    private Lotto receiveWinningNumber() {
+        outputPort.printInputWinningNumbers();
+        while (true) {
+            try {
+                List<Integer> winningNumbers = inputPort.receiveLottos();
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                outputPort.printErrorMessage(e.getMessage());
+            }
+        }
+    }
 }

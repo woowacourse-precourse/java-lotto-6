@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -38,12 +39,6 @@ public class Application {
         return userPurchaseAmount;
     }
 
-    private static void validPrice(int userPurchaseAmount) {
-        if (userPurchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 1장의 가격은 1,000원 입니다. 1,000원 단위로 다시 입력해주세요.");
-        }
-    }
-
     private static int calculateNumberOfLottos(int userPurchaseAmount) {
         return userPurchaseAmount / LOTTO_PRICE;
     }
@@ -56,7 +51,18 @@ public class Application {
 
     private static List<Integer> getWinningNumber() {
         printOut.inputWinningNumber();
-        return inputHandler.getWinningNumber();
+        boolean validInputNumber = false;
+        List<Integer> winningNumber = new ArrayList<>();
+        while (!validInputNumber) {
+            try {
+                winningNumber = inputHandler.getWinningNumber();
+                validation.duplicates(winningNumber);
+                validInputNumber = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningNumber;
     }
 
     private static int getBonusNumber() {

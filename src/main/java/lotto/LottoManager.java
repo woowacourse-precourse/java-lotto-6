@@ -19,4 +19,8 @@ public class LottoManager {
     public void setLottoTicketCount(int lottoTicketCount) {
         this.lottoTicketCount = lottoTicketCount;
     }
+
+    public int getLottoTicketCount() {
+        return lottoTicketCount;
+    }
 }

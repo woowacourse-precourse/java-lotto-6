@@ -63,4 +63,26 @@ class RankTest {
         assertFalse(result);
     }
 
+    @ParameterizedTest(name = "입력값 : {0}")
+    @EnumSource(value = Rank.class, names = "SECOND")
+    @DisplayName("2등인지 확인: 2등이 맞으면 true")
+    void givenRank_whenIsSecond_thenReturnTrue(Rank rank) {
+        // when
+        boolean result = rank.isSecond(rank);
+
+        // then
+        assertTrue(result);
+    }
+
+    @ParameterizedTest(name = "입력값 : {0}")
+    @EnumSource(value = Rank.class, names = "SECOND", mode = Mode.EXCLUDE)
+    @DisplayName("2등인지 확인: 2등이 아니면 false")
+    void givenRank_whenIsSecond_thenReturnFalse(Rank rank) {
+        // when
+        boolean result = rank.isSecond(rank);
+
+        // then
+        assertFalse(result);
+    }
+
 }

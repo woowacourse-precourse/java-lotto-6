@@ -51,6 +51,10 @@ public enum Rank {
         return rank.equals(UNRANKED);
     }
 
+    public boolean isSecond(final Rank rank) {
+        return rank.equals(SECOND);
+    }
+
     public int matchingCount() {
         return matchingCount;
     }

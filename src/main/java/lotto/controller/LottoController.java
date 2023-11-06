@@ -26,7 +26,7 @@ public class LottoController {
     public void run() {
         Investor investor = initInvestor();
         Shop shop = Shop.withOrderedMoney(investor.getInvestMoney());
-        List<Lotto> lottos = investor.buyLottosFromShop(shop);
+        List<Lotto> lottos = shop.createLottos();
 
         outputView.printBoughtLottoSize(lottos.size());
         printLottoValues(lottos);

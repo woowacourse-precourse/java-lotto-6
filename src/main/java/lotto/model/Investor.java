@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.constants.LottoRule;
-import java.util.List;
 
 public class Investor {
 
@@ -19,10 +18,6 @@ public class Investor {
         LottoRule.validateInvestMoney(investMoney.getMoney());
 
         return new Investor(investMoney, profitMoney);
-    }
-
-    public List<Lotto> buyLottosFromShop(final Shop shop) {
-        return shop.createLottos();
     }
 
     public void addProfitMoney(final int money) {

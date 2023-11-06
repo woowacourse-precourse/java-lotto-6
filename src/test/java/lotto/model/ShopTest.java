@@ -16,7 +16,7 @@ public class ShopTest {
         Shop shop = Shop.withOrderedMoney(investor.getInvestMoney());
 
         // when
-        List<Lotto> boughtLottos = investor.buyLottosFromShop(shop);
+        List<Lotto> boughtLottos = shop.createLottos();
 
         // then
         assertThat(boughtLottos.size()).isEqualTo(5);

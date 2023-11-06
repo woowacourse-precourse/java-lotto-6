@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 public class Service {
 
-    private final User repository;
+    private final User user;
     public Service() {
-        this.repository = new User();
+        this.user = new User();
     }
 
 
@@ -21,9 +21,9 @@ public class Service {
         for (int i = 0; i < amount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
-            repository.add(numbers);
+            user.add(numbers);
         }
-        return repository.getLottoNum();
+        return user.getLottoNum();
     }
 
     public Lotto saveWinningNumbers(String[] split) {
@@ -33,4 +33,12 @@ public class Service {
         return new Lotto(lottoNum);
     }
 
+    public int[] findWinner(Lotto lotto, int bonusNum) {
+        List<List<Integer>> userNums = user.getLottoNum();
+        int[] result = new int[8];
+        for (List<Integer> userNun : userNums) {
+            result[lotto.checkSameNum(userNun, bonusNum)]++;
+        }
+        return result;
+    }
 }

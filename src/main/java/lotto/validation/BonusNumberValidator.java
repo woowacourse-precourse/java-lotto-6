@@ -2,16 +2,17 @@ package lotto.validation;
 
 import lotto.domain.WinningNumber;
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoValue;
 
 public class BonusNumberValidator {
-    private static final int MIN_NUMBER_RANGE = 1;
-    private static final int MAX_NUMBER_RANGE = 45;
 
     private BonusNumberValidator() {
     }
 
     public static void validateRange(int number) {
-        if (number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE) {
+        int minNumberRange = LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue();
+        int maxNumberRange = LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue();
+        if (number < minNumberRange || number > maxNumberRange) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage());
         }
     }

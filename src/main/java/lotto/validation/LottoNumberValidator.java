@@ -3,11 +3,9 @@ package lotto.validation;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoValue;
 
 public class LottoNumberValidator {
-    private static final int MIN_NUMBER_RANGE = 1;
-    private static final int MAX_NUMBER_RANGE = 45;
-    private static final int WINNING_NUMBER_SIZE = 6;
 
     private LottoNumberValidator() {
     }
@@ -19,14 +17,16 @@ public class LottoNumberValidator {
     }
 
     private static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != WINNING_NUMBER_SIZE) {
+        if (numbers.size() != LottoValue.NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SIZE.getMessage());
         }
     }
 
     private static void validateRange(List<Integer> numbers) {
+        int minNumberRange = LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue();
+        int maxNumberRange = LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue();
         numbers.stream().forEach(number -> {
-            if (number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE) {
+            if (number < minNumberRange || number > maxNumberRange) {
                 throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage());
             }
         });

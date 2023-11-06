@@ -1,10 +1,9 @@
 package lotto.validation;
 
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoValue;
 
 public class PriceValidator {
-    private static final int ZERO = 0;
-    private static final int STANDARD_OF_DIVIDE = 1000;
 
     private PriceValidator() {
     }
@@ -17,7 +16,7 @@ public class PriceValidator {
 
 
     private static void validateZero(int price) {
-        if (price == ZERO) {
+        if (price == 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ZERO.getMessage());
         }
     }
@@ -29,14 +28,14 @@ public class PriceValidator {
     }
 
     private static boolean isNotDivisibleByThousand(int price) {
-        if ((price % STANDARD_OF_DIVIDE) != ZERO) {
+        if ((price % LottoValue.PRICE_PER_LOTTO.getValue()) != 0) {
             return true;
         }
         return false;
     }
 
     private static void validateLimit(int price) {
-        if (price > 100_000) {
+        if (price > LottoValue.PURCHASE_LIMIT_PRICE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_LIMIT.getMessage());
         }
     }

@@ -4,9 +4,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.enums.LottoValue;
 
 public class LottoTicket {
-    private static final int STANDARD_OF_DIVIDE = 1000;
     private final List<Lotto> tickets;
 
     private LottoTicket(List<Lotto> tickets) {
@@ -19,7 +19,7 @@ public class LottoTicket {
     }
 
     private static int calculateTicketCount(PurchasePrice purchasePrice) {
-        return purchasePrice.getPrice() / STANDARD_OF_DIVIDE;
+        return purchasePrice.getPrice() / LottoValue.PRICE_PER_LOTTO.getValue();
     }
 
     private static List<Lotto> pickAutoLottoEqualTo(int purchaseCount, NumberGenerator lottoNumberGenerator) {

@@ -3,9 +3,9 @@ package lotto.util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.enums.Delimiter;
 
 public class Convertor {
-    private static final String COMMA = ",";
 
     private Convertor() {
     }
@@ -21,6 +21,6 @@ public class Convertor {
     }
 
     public static String[] splitByComma(String input) {
-        return input.split(COMMA);
+        return input.split(Delimiter.COMMA.getDelimiter());
     }
 }

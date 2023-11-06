@@ -1,13 +1,12 @@
 package lotto.validation;
 
 import java.util.Arrays;
-import java.util.regex.Pattern;
+import lotto.enums.Delimiter;
 import lotto.enums.ErrorMessage;
+import lotto.enums.RegexPattern;
 import lotto.util.Convertor;
 
 public class InputValidator {
-    private static final String COMMA = ",";
-    private static final Pattern NOT_NUMBER = Pattern.compile(".*[\\D].*");
 
     private InputValidator() {
     }
@@ -36,7 +35,7 @@ public class InputValidator {
     }
 
     private static void validateIsNumber(String input) {
-        if (NOT_NUMBER.matcher(input).matches()) {
+        if (RegexPattern.NOT_NUMBER.matches(input)) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getMessage());
         }
     }
@@ -44,14 +43,14 @@ public class InputValidator {
     private static void validateIsNumberSeparatedByComma(String input) {
         String[] numbers = Convertor.splitByComma(input);
         boolean hasNonNumber = Arrays.stream(numbers)
-                .anyMatch(number -> NOT_NUMBER.matcher(number).matches());
+                .anyMatch(number -> RegexPattern.NOT_NUMBER.matches(input));
         if (hasNonNumber) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getMessage());
         }
     }
 
     private static void validateSeparator(String input) {
-        if (!input.contains(COMMA)) {
+        if (!input.contains(Delimiter.COMMA.getDelimiter())) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_COMMA.getMessage());
         }
     }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Map;
+import lotto.enums.LottoValue;
 import lotto.enums.Rank;
 
 public class LottoResult {
@@ -34,6 +35,6 @@ public class LottoResult {
     }
 
     public int getPurchasePrice() {
-        return lottoCount * 1000;
+        return lottoCount * LottoValue.PRICE_PER_LOTTO.getValue();
     }
 }

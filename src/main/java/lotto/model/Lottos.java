@@ -22,9 +22,8 @@ public class Lottos {
         Map<Rank, Integer> rankResult = initRank();
         for (Lotto lotto : lottos) {
             Rank rank = user.getRank(lotto);
-            rankResult.put(rank, rankResult.get(rank));
+            rankResult.put(rank, rankResult.get(rank) + 1);
         }
-        rankResult.remove(Rank.ECT);
         return rankResult;
     }
 
@@ -37,7 +36,7 @@ public class Lottos {
     }
 
     public double calEarnings(Map<Rank, Integer> rankResult) {
-        int earnings = 0;
+        double earnings = 0;
         for (Rank rank : Rank.values()) {
             earnings += (rankResult.get(rank) * rank.getPrize());
         }

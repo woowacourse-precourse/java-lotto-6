@@ -1,6 +1,7 @@
 package lotto.view.validator;
 
 import lotto.domain.constant.LottoConstant;
+import lotto.view.constant.InputConstant;
 import lotto.view.exception.LottoInputException;
 import lotto.view.message.LottoInputExceptionMessage;
 
@@ -8,7 +9,7 @@ public class UserMoneyInputValidator {
     public void validate(String userInput){
         isNotEmpty(userInput);
         isNotNumeric(userInput);
-        isNotDivisibleWithLottoPrice(userInput);
+        isDivisibleWithLottoPrice(userInput);
     }
 
     private void isNotEmpty(String userInput){
@@ -25,13 +26,13 @@ public class UserMoneyInputValidator {
         }
     }
 
-    private void isNotDivisibleWithLottoPrice(String userInput){
+    private void isDivisibleWithLottoPrice(String userInput){
         if(!divisibleWithLottoPrice(userInput)){
             throw LottoInputException.of(LottoInputExceptionMessage.USER_MONEY_IS_NOT_DIVISIBLE_WITH_LOTTO_PRICE);
         }
     }
 
     private boolean divisibleWithLottoPrice(String userInput){
-        return ( Long.parseLong(userInput) % LottoConstant.LOTTO_PRICE.getValue() == 0 );
+        return Long.parseLong(userInput) % LottoConstant.LOTTO_PRICE.getValue() == InputConstant.ZERO;
     }
 }

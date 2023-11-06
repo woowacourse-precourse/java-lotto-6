@@ -9,11 +9,7 @@ public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(int count, LottoNumbers lottoNumbers) {
-        this.lottos = generateLottos(count, lottoNumbers);
-    }
-
-    private List<Lotto> generateLottos(int count, LottoNumbers lottoNumbers) {
-        return IntStream.range(0, count)
+        this.lottos = IntStream.range(0, count)
                 .mapToObj(i -> new Lotto(lottoNumbers.generateNumbers()))
                 .collect(Collectors.toList());
     }

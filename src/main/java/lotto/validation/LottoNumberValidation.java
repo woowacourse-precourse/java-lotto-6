@@ -12,9 +12,7 @@ public class LottoNumberValidation {
         Set<Integer> numbers = new HashSet<>();
         List<Integer> lottoNumbers = lotto.getLottoNumbers();
 
-        for (Integer number : lottoNumbers) {
-            numbers.add(number);
-        }
+        numbers.addAll(lottoNumbers);
 
         if (lottoNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER_CONSTRAINT_MESSAGE.getMessage());

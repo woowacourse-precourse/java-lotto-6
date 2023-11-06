@@ -16,11 +16,36 @@ public enum Rank {
         this.reward = reward;
     }
 
-    public int getReward() {
-        return reward;
+    public static Rank getRankByLotto(Lotto lotto, WinningLotto winningLotto) {
+        int matchCount = lotto.getMatchCount(winningLotto.getWinningLottoNumbers());
+        boolean isBonusMatch = lotto.hasBonusNumber(winningLotto.getBonusNumber());
+        return getRank(matchCount, isBonusMatch);
+    }
+
+    private static Rank getRank(int matchCount, boolean isBonusMatch) {
+        if (matchCount == 2) {
+            return FIRST;
+        }
+        if (matchCount == 5 && isBonusMatch) {
+            return SECOND;
+        }
+        if (matchCount == 5) {
+            return THIRD;
+        }
+        if (matchCount == 4) {
+            return FOURTH;
+        }
+        if (matchCount == 3) {
+            return FIFTH;
+        }
+        return MISS;
     }
 
     public int getMatchCount() {
         return matchCount;
+    }
+
+    public int getReward() {
+        return reward;
     }
 }

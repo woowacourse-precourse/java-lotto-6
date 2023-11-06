@@ -1,14 +1,22 @@
 package lotto;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
         User user = new User();
+        int volume;
         System.out.println("구입금액을 입력해 주세요.");
-        int volume = user.inputPurchasingVolume();
+        while (true) {
+            try {
+                volume = user.inputPurchasingVolume();
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                System.out.println("다시 입력해 주세요");
+            }
+        }
         List<Lotto> allLotto = user.getLottoAsMuchAsVolume(volume);
         System.out.println(volume+"개를 구매했습니다.");
         for(Lotto lotto : allLotto){
@@ -16,9 +24,31 @@ public class Application {
         }
         MatchingMachine machine = new MatchingMachine();
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumber = user.inputWinningNumbers();
+        List<Integer> winningNumber = null;
+        while (true) {
+            try {
+                winningNumber = user.inputWinningNumbers();
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                System.out.println("다시 입력해 주세요");
+            }
+        }
+//        List<Integer> winningNumber = user.inputWinningNumbers();
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        int bonusNum = user.inputBonusNumber();
+        int bonusNum =0;
+        while (true) {
+            try {
+                bonusNum = user.inputBonusNumber();
+                user.validateBonusNumber(winningNumber, bonusNum);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                System.out.println("다시 입력해 주세요");
+            }
+        }
+//        int bonusNum = user.inputBonusNumber();
+//        user.validateBonusNumber(winningNumber, bonusNum);
         List<MatchingCount> matchingCounts = machine.countAllLottoMatchingNumbers(allLotto,winningNumber,bonusNum);
         System.out.println("\n당첨 통계 \n ---");
         Map<MatchingCount, Integer> map = machine.getLottoResultAsMap(matchingCounts);

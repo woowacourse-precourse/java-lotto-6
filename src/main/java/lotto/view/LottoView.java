@@ -13,53 +13,59 @@ import static lotto.etc.SystemConstant.THREE_SAME;
 import static lotto.etc.SystemConstant.WINNING_STATISTICS;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
 import lotto.dto.BonusRequestDTO;
-import lotto.dto.LottoRequestDTO;
-import lotto.dto.LottoResponseDTO;
+import lotto.dto.CountScoreRequestDTO;
+import lotto.dto.CountScoreResponseDTO;
 
 public class LottoView {
-
-    private Lottos lottos;
+    private List<Lotto> lottoTickets;
     private Lotto userLotto;
     private int bonus;
+    private LottoController lottoController;
+    public LottoView(){
+        this.lottoController = LottoController.getInstance();
+    }
 
     public void start() {
         System.out.println(START);
-        lottoPay(Console.readLine());
-        parseLotto(Console.readLine());
-        parseBonusInteger(Console.readLine());
+        lottoPay();
+        parseLotto();
+        parseBonusInteger();
         lottoResult();
     }
 
-    private void lottoPay(String money) {
+    private void lottoPay() {
+        String money = Console.readLine();
         while (true) {
             try {
-                Lottos lottos = LottoController
-                        .getInstance()
-                        .lottoSell(money);
-                this.lottos = lottos;
+                List<Lotto> tickets = lottoController.setLottoBudget(money);
+                this.lottoTickets = tickets;
                 break;
             } catch (IllegalArgumentException e) {
+                System.out.println("IllegalArgumentException : " + e.getMessage());
                 money = Console.readLine();
             }
         }
 
-        System.out.printf(BUY.toString(), lottos.getLottoCount());
-        lottos.getLottos().forEach(lotto -> System.out.println(lotto.getNumbers()));
+        System.out.printf(BUY.toString(), lottoTickets.size());
+        lottoTickets.stream()
+                .forEach(ticket -> System.out.println(ticket.getNumbers().toString()));
 
         System.out.println(JACKPOT);
     }
 
-    private void parseLotto(String number) {
+    private void parseLotto() {
+        String number = Console.readLine();
         while (true) {
             try {
                 this.userLotto = LottoController.getInstance()
                         .createUserLottoNumber(number);
                 break;
             } catch (IllegalArgumentException e) {
+                System.out.println("IllegalArgumentException : " + e.getMessage());
                 number = Console.readLine();
             }
         }
@@ -67,45 +73,44 @@ public class LottoView {
         System.out.println(BONUS);
     }
 
-    private void parseBonusInteger(String bonus) {
+    private void parseBonusInteger() {
+        String bonus = Console.readLine();
         while (true) {
             try {
                 BonusRequestDTO bonusRequestDTO = new BonusRequestDTO.Builder()
                         .lotto(userLotto)
                         .bonus(bonus)
                         .build();
-                this.bonus = LottoController
-                        .getInstance()
-                        .checkBonusNumber(bonusRequestDTO);
+                this.bonus = lottoController
+                        .createBonusNumber(bonusRequestDTO);
                 break;
             } catch (IllegalArgumentException e) {
+                System.out.println("IllegalArgumentException : " + e.getMessage());
                 bonus = Console.readLine();
             }
         }
     }
 
     private void lottoResult() {
-        LottoRequestDTO lottoRequestDTO = new LottoRequestDTO.Builder()
-                .lottos(lottos)
+        CountScoreRequestDTO countScoreRequestDTO = new CountScoreRequestDTO.Builder()
+                .lottoTickets(lottoTickets)
                 .numbers(userLotto)
                 .bonus(bonus)
                 .build();
 
-        LottoResponseDTO lottoResponseDTO = LottoController
-                .getInstance()
-                .CountScore(lottoRequestDTO);
+        CountScoreResponseDTO countScoreResponseDTO = lottoController.countScore(countScoreRequestDTO);
 
-        printResult(lottoResponseDTO);
+        printResult(countScoreResponseDTO);
 
     }
 
-    private void printResult(LottoResponseDTO lottoResponseDTO) {
+    private void printResult(CountScoreResponseDTO countScoreResponseDTO) {
         System.out.println(WINNING_STATISTICS);
-        System.out.printf(THREE_SAME.toString(), lottoResponseDTO.getFifthPlace());
-        System.out.printf(FOUR_SAME.toString(), lottoResponseDTO.getFourthPlace());
-        System.out.printf(FIVE_SAMECONSTANT.toString(), lottoResponseDTO.getThirdPlace());
-        System.out.printf(FIVE_BONUS_SAMECONSTANT.toString(), lottoResponseDTO.getSecondPlace());
-        System.out.printf(SIX_SAME.toString(), lottoResponseDTO.getFirstPlace());
-        System.out.printf(RATE_OF_RETURN.toString(), lottoResponseDTO.getRateOfReturn());
+        System.out.printf(THREE_SAME.toString(), countScoreResponseDTO.getFifthPlace());
+        System.out.printf(FOUR_SAME.toString(), countScoreResponseDTO.getFourthPlace());
+        System.out.printf(FIVE_SAMECONSTANT.toString(), countScoreResponseDTO.getThirdPlace());
+        System.out.printf(FIVE_BONUS_SAMECONSTANT.toString(), countScoreResponseDTO.getSecondPlace());
+        System.out.printf(SIX_SAME.toString(), countScoreResponseDTO.getFirstPlace());
+        System.out.printf(RATE_OF_RETURN.toString(), countScoreResponseDTO.getRateOfReturn());
     }
 }

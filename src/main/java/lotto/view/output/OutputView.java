@@ -12,6 +12,7 @@ public class OutputView {
             String lottoNumber = outputMaker.lottoNumberCheckMaker(lotto.getNumbers());
             System.out.println(lottoNumber);
         }
+        generateBlank();
     }
 
     public void generateBlank() {

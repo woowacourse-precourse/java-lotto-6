@@ -6,8 +6,8 @@ import lotto.view.output.OutputView;
 
 public class LottoGameController {
     private final InputView inputView;
-    private final LottoGameService lottoGameService;
     private final OutputView outputView;
+    private final LottoGameService lottoGameService;
 
     public LottoGameController(InputView inputView, OutputView outputView, LottoGameService lottoGameService) {
         this.inputView = inputView;
@@ -17,16 +17,21 @@ public class LottoGameController {
 
     public void start() {
         buyLotto();
+        generateWinningNumber();
     }
 
     private void buyLotto() {
         int paymentAmount = Integer.parseInt(inputView.enterPaymentAmount());
         outputView.generateBlank();
-//        lottoGameService.buyLotto(paymentAmount);
-//        lottoGameService.checkPurchasedLotto();
         outputView.showPurchasedLotto(
                 lottoGameService.buyLotto(paymentAmount),
                 lottoGameService.checkPurchasedLotto()
         );
+    }
+
+    private void generateWinningNumber() {
+        String winningNumbers = inputView.enterWinningNumbers();
+        int bonusWinningNumber = inputView.enterBonusWinningNumber();
+        lottoGameService.completeMakingWinningNumber(winningNumbers, bonusWinningNumber);
     }
 }

@@ -3,10 +3,10 @@ package lotto.model;
 import java.util.ArrayList;
 
 public class Buyer {
-    private Integer purchasedLottoCount;
+    private final Integer purchasedLottoCount;
     private ArrayList<Lotto> purchasedLottoList = new ArrayList<>();
 
-    public void setPurchasedLottoCount(int purchasedLottoCount) {
+    public Buyer(Integer purchasedLottoCount) {
         this.purchasedLottoCount = purchasedLottoCount;
     }
 

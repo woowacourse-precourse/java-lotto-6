@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 public class LottoGameController {
 
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
     User user;
     View view = new View();
     LottoGame lottoGame;
@@ -25,18 +25,33 @@ public class LottoGameController {
 
     private void setLottoGame() {
 
+        List<Integer> winningNumbers = setWinningNumbers();
+        int bonusNumber = setBonusNumber();
+
+        lottoGame = new LottoGame(winningNumbers, bonusNumber);
+
+    }
+
+    private int setBonusNumber() {
+        view.printAskBonusNumber();
+        Scanner sc = new Scanner(System.in);
+
+        return sc.nextInt();
+    }
+
+    private List<Integer> setWinningNumbers() {
+
+        view.printAskWinningNumber();
         Scanner sc = new Scanner(System.in);
 
         String inputString = sc.nextLine();
         String[] numbersString = inputString.split(",");
-        List<Integer> numbers = new ArrayList<>();
+        List<Integer> winningNumbers = new ArrayList<>();
 
         for (String numberString: numbersString){
-            numbers.add(Integer.valueOf(numberString));
+            winningNumbers.add(Integer.valueOf(numberString));
         }
-
-        lottoGame = new LottoGame(numbers);
-
+        return winningNumbers;
     }
 
     private void setLotto() {

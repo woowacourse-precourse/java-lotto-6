@@ -37,7 +37,11 @@ public class Lotto {
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getErrorMessage());
             }
         }
+    }
 
+
+    public static void outputLotto(Lotto lotto) {
+        System.out.println(lotto.numbers.toString());
     }
 
 }

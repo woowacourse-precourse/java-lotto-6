@@ -1,10 +1,8 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.ErrorMessages;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -41,5 +39,9 @@ public class Lotto {
 
     public List<Integer> numbers() {
         return numbers;
+    }
+
+    public int number(int index) {
+        return numbers.get(index);
     }
 }

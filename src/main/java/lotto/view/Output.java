@@ -40,15 +40,15 @@ public class Output {
     }
 
     // 수정 필요
-    public static void printStatistics(List<Integer> rankCount, double winnings, double payment) {
+    public static void printStatistics(List<Integer> rankCount, double result, double payment) {
         System.out.println(PrintMessages
                 .CHECK_WINNING_MESSAGE
                 .getMessage());
-        System.out.println("3개 일치 (5,000원) - " + rankCount.get(5) + "개");
-        System.out.println("4개 일치 (50,000원) - " + rankCount.get(4) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + rankCount.get(3) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount.get(2) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + rankCount.get(1) + "개");
-        System.out.printf("총 수익률은 %.1f%%입니다.", winnings / payment * 100);
+        System.out.printf(PrintMessages.FIFTH_PLACE_MESSAGE.getMessage(), rankCount.get(5));
+        System.out.printf(PrintMessages.FOURTH_PLACE_MESSAGE.getMessage(), rankCount.get(4));
+        System.out.printf(PrintMessages.THIRD_PLACE_MESSAGE.getMessage(), rankCount.get(3));
+        System.out.printf(PrintMessages.SECOND_PLACE_MESSAGE.getMessage(), rankCount.get(2));
+        System.out.printf(PrintMessages.FIRST_PLACE_MESSAGE.getMessage(), rankCount.get(1));
+        System.out.printf(PrintMessages.TOTAL_YIELD_MESSAGE.getMessage(), result / payment * 100);
     }
 }

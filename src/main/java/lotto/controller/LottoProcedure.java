@@ -16,35 +16,47 @@ public class LottoProcedure {
     BonusNumber bonusNumber;
 
     public LottoProcedure() {
-        List<Double> reward = List.of(0.0, 200000000.0, 30000000.0, 1500000.0, 50000.0, 5000.0);
+        List<Double> reward = List.of(Values.LOSE.getValue(),
+                Values.FIRST_REWARD.getValue(),
+                Values.SECOND_REWARD.getValue(),
+                Values.THIRD_REWARD.getValue(),
+                Values.FOURTH_REWARD.getValue(),
+                Values.FIFTH_REWARD.getValue());
         this.reward.addAll(reward);
     }
 
-    public void startLotto() {
+    public void lottoProgress() {
         user = Setting.getPayment();
         Output.printAboutPurchase(user);
         lotto = Setting.getLotto();
         bonusNumber = Setting.getBonusNumber(lotto);
         produceStatistics();
-        Output.printStatistics(user.rankCount(), calculateWinnings(), user.payment());
+        Output.printStatistics(user.rankCount(), calculateResult(), user.payment());
     }
 
     public void produceStatistics() {
         for (int i = 0; i < user.purchasedLottoNumbersSize(); i++) {
-            double count = 0;
-            for (int j = 0; j < LOTTO_SIZE; j++) {
-                if (user.PurchasedLottoNumbers().get(i).contains(lotto.numbers().get(j))) {
-                    count += 1;
-                }
-            }
-            if (count == 5) {
-                count = checkBonusNumber(user.PurchasedLottoNumbers().get(i), bonusNumber.bonusNumber());
-            }
-            user.increaseRankCount(rank(count));
+            double count = increaseCount(i);
+            count = checkBonusNumber(count,
+                    user.getPurchasedLottoNumbers(i),
+                    bonusNumber.bonusNumber());
+            user.increaseRankCount(calculateRank(count));
         }
     }
 
-    public int rank(double count) {
+    public double increaseCount(int index) {
+        double count = 0;
+
+        for (int j = 0; j < LOTTO_SIZE; j++) {
+            if (user.getPurchasedLottoNumbers(index).contains(lotto.number(j))) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+
+    public int calculateRank(double count) {
         if (count == 3) {
             return 5;
         } else if (count == 4) {
@@ -59,20 +71,21 @@ public class LottoProcedure {
         return 0;
     }
 
-    public double checkBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            return 5.5;
+    public double checkBonusNumber(double count, List<Integer> winningNumbers, int bonusNumber) {
+        if (count == Values.MATCH_NUMBER_TO_WIN_THIRD.getValue() & winningNumbers.contains(bonusNumber)) {
+            return Values.MATCH_NUMBER_TO_WIN_SECOND.getValue();
         }
-        return 5;
+        return count;
     }
 
-    public double calculateWinnings() {
-        double winnings = 0;
-        for (int i = MINIMUM_NUMBER_OF_SAME; i < user.rankCount().size(); i++) {
-            if (user.rankCount().get(i) != 0) {
-                winnings += this.reward.get(i);
+    public double calculateResult() {
+        double result = 0;
+
+        for (int i = 1; i < user.rankCountSize(); i++) {
+            if (user.getRankCount(i) != 0) {
+                result += this.reward.get(i) * user.getRankCount(i);
             }
         }
-        return winnings;
+        return result;
     }
 }

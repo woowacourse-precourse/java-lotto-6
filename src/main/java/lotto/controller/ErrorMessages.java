@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 public enum ErrorMessages {
     PAYMENT_ERROR_MESSAGE("[ERROR]1000원 단위로만 입력 가능합니다."),

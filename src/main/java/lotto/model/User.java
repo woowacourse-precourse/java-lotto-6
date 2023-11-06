@@ -3,7 +3,6 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.ErrorMessages;
 
 public class User {
     private final int payment;
@@ -11,8 +10,6 @@ public class User {
     private final List<List<Integer>> purchasedLottoNumbers;
     private List<Integer> rankCount;
     private final int RANK_NUMBER = 6;
-    private final int MINIMUM_NUMBER_OF_SAME = 3;
-    private final int BONUS_NUMBER_SAME = 2;
 
     public User(int payment) {
         validatePayment(payment);
@@ -73,8 +70,20 @@ public class User {
         return this.purchasedLottoNumbers;
     }
 
+    public List<Integer> getPurchasedLottoNumbers(int index) {
+        return this.PurchasedLottoNumbers().get(index);
+    }
+
     public List<Integer> rankCount() {
         return this.rankCount;
+    }
+
+    public int rankCountSize() {
+        return this.rankCount.size();
+    }
+
+    public int getRankCount(int index) {
+        return this.rankCount.get(index);
     }
 
     public int purchasedLottoNumbersSize() {

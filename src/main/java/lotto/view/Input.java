@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.ErrorMessages;
 
 public class Input {
     public static int inputPayment() {

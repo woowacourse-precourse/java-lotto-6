@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.dto.input.MoneyDto;
+import lotto.dto.input.WinningCombinationDto;
+import lotto.dto.output.DrawingResultDto;
 import lotto.dto.output.LottosDto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -19,24 +21,24 @@ public class LottoController {
 
     public void run() {
         // 입력
-        MoneyDto money = getAmountFromUserInput();
+        MoneyDto money = inputView.inputMoney();
         // 실행
-        LottosDto lottoTickets = service.drawLottoTicketsWithGivenMoney(money);
+        LottosDto lottoTickets = service.purchaseLottoTickets(money);
         // 출력
         printPurchasedLottoTickets(lottoTickets);
 
+        // 입력
+        WinningCombinationDto winningNumbers = inputView.inputWinningNumbers();
+        //BonusNumberDto bonusNumber = getBonusNumberFromUserInput();
+        // 실행
+        //DrawingResultDto result = service.findPrize(winningNumbers, bonusNumber);
+        DrawingResultDto result = service.findPrize(winningNumbers);
+        // 출력
+        outputView.printResult(result);
     }
 
     private void printPurchasedLottoTickets(LottosDto lottoTickets) {
-        outputView.printLottoTickets(lottoTickets);
+        outputView.printPurchasedLottoTickets(lottoTickets);
     }
 
-    private MoneyDto getAmountFromUserInput() {
-        try {
-            return inputView.inputMoney();
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            return getAmountFromUserInput();
-        }
-    }
 }

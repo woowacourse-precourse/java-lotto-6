@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateLottoByAmount extends CreateLotto {
-    private List<Lotto> lottos = new ArrayList<>();
-    public int amount;
+    private List<Lotto> lottos;
+    private int amount;
 
     public void setAmount(Money money) {
         amount = money.getMoney() / 1000;
@@ -16,8 +16,9 @@ public class CreateLottoByAmount extends CreateLotto {
     }
 
     public void multipleLotto() {
+        lottos = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
-            Lotto lotto = create();
+            Lotto lotto = createRandom();
             lottos.add(lotto);
         }
     }

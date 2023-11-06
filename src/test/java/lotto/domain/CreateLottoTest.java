@@ -15,6 +15,6 @@ class CreateLottoTest {
     @Test
     void createRandomSingleLotto() {
         createLotto = new CreateLotto();
-        assertThat(createLotto.create()).isInstanceOf(Lotto.class);
+        assertThat(createLotto.createRandom()).isInstanceOf(Lotto.class);
     }
 }

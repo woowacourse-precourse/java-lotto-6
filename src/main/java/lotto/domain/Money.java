@@ -1,18 +1,27 @@
 package lotto.domain;
 
-import lotto.Validate;
 
 public class Money {
     private int money;
-    private final Validate validate = new Validate();
+
     public Money(String inputMoney) {
-        validate.IsInteger(inputMoney);
+        isInteger(inputMoney);
         money = Integer.parseInt(inputMoney);
-        checkMoney(money);
+        isThousands(money);
     }
 
-    public void checkMoney(int money) {
-        validate.IsThousands(money);
+    public void isInteger(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void isThousands(int money) {
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int getMoney() {

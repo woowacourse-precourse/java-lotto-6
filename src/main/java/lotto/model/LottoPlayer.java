@@ -5,13 +5,23 @@ import lotto.util.ValidationManager;
 
 public class LottoPlayer {
 
-    private int purchaseMoney;
+    private final int purchaseMoney;
+    private final int numberOfLottoTickets;
 
     public LottoPlayer(String purchaseMoney) {
         ValidationManager.validateInput(purchaseMoney);
         validatePurchaseMoney(purchaseMoney);
 
         this.purchaseMoney = Integer.parseInt(purchaseMoney);
+        this.numberOfLottoTickets = calculateNumberOfLottoTickets();
+    }
+
+    public int getNumberOfLottoTickets() {
+        return numberOfLottoTickets;
+    }
+
+    private int calculateNumberOfLottoTickets() {
+        return purchaseMoney / Constant.LOTTO_PRICE;
     }
 
 

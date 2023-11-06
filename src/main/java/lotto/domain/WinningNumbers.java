@@ -9,7 +9,6 @@ import java.util.List;
 
 public class WinningNumbers extends Lotto {
     private static final String NUMBERS_DELIMITER = ",";
-
     private final List<Integer> numbers;
 
     private WinningNumbers(List<Integer> numbers) {

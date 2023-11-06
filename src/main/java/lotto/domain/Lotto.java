@@ -15,14 +15,19 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public PrizeCondition getPrizeCondition(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        int countMatchingNumbers = countMatchingNumbers(winningNumbers);
-        boolean containsBonusNumber = containsBonusNumber(bonusNumber);
+    public PrizeCondition getPrizeCondition(WinningLotto winningLotto) {
+        int countMatchingNumbers = countMatchingNumbers(winningLotto.getWinningNumbers());
+        boolean containsBonusNumber = containsBonusNumber(winningLotto.getBonusNumber());
         return PrizeCondition.findPrizeCondition(countMatchingNumbers, containsBonusNumber);
     }
 
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 
     private void validate(List<Integer> numbers) {
@@ -41,10 +46,5 @@ public class Lotto {
 
     private boolean containsBonusNumber(BonusNumber bonusNumber) {
         return numbers.contains(bonusNumber.getNumber());
-    }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
     }
 }

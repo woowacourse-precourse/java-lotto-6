@@ -15,7 +15,7 @@ public class Lottos {
 
     public List<PrizeCondition> providePrizeConditions(WinningLotto winningLotto) {
         return lottos.stream()
-                .map(lotto -> lotto.getPrizeCondition(winningLotto.getWinningNumbers(), winningLotto.getBonusNumber()))
+                .map(lotto -> lotto.getPrizeCondition(winningLotto))
                 .toList();
     }
 

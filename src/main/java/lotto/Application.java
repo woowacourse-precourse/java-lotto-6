@@ -1,31 +1,20 @@
 package lotto;
 
+import lotto.controller.Money;
 import lotto.utils.LottoUtil;
 import lotto.view.LottoView;
 
 public class Application {
+    private static LottoView lottoView = new LottoView();
+    private static LottoUtil lottoUtil = new LottoUtil();
+    private static String payment = null;
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        LottoView lottoView = new LottoView();
-        LottoUtil lottoUtil = new LottoUtil();
-        boolean numberCheck = false;
-        String payment = null;
-        int count = 0;
-
         lottoView.printBuyLottomMoneyMessage();
-        while (!numberCheck) {
-            payment = lottoUtil.getUserInput();
-            numberCheck = lottoUtil.validateNumber(payment);
-            if(numberCheck) {
-                numberCheck = lottoUtil.validateThousand(payment);
-            }
-        }
-        count = lottoUtil.getCount(payment);
-        lottoView.printLottoTicketCount(count);
-
-
-
-
+        Money money = new Money();
+        lottoView.printLottoTicketCount(money.getCount());
 
     }
+
 }

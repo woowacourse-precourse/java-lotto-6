@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import lotto.model.WinningResult;
 
 
 public class LottoView {
@@ -36,11 +37,11 @@ public class LottoView {
         return scanner.nextInt();
     }
 
-    public void printWinningResults(List<String> results) {
+    public void printWinningResults(List<WinningResult> results) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (String result : results) {
-            System.out.println(result);
+        for (WinningResult result : results) {
+            System.out.println(result.toString());
         }
     }
 

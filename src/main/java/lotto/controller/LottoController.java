@@ -17,7 +17,7 @@ public class LottoController {
     private final OutputView outputView;
     private final ResultDetails resultDetails;
 
-    public LottoController(InputView inputView, OutputView outputView, ResultDetails resultDetails) {
+    public LottoController(final InputView inputView, final OutputView outputView, final ResultDetails resultDetails) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.resultDetails = resultDetails;

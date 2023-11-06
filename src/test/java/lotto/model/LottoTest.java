@@ -38,7 +38,7 @@ public class LottoTest {
 
     @DisplayName("다른 로또 번호와 비교하여 몇개의 숫자가 일치하는지 개수를 계산하는 함수다. 일치하는 개수가 틀리면 예외가 발생한다.")
     @Test
-    void compare_테스트() {
+    void matchedCount_테스트() {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 30, 31));
         assertThat(lotto1.matchedCount(lotto2))

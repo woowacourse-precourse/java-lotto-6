@@ -17,6 +17,6 @@ public class LottoStore {
     }
 
     private List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.value(), MAX_LOTTO_NUMBER.value(), LOTTO_SIZE.value());
     }
 }

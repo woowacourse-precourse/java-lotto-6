@@ -2,10 +2,10 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import lotto.model.Lotto;
 import lotto.model.LottoPrize;
 import lotto.factory.LottoFactory;
 import lotto.factory.UserLotteriesFactory;
-import lotto.factory.WinningLottoFactory;
 import lotto.model.LottoNumbersGenerator;
 import lotto.utils.LottoProfitCalculator;
 import lotto.model.UserLotteries;
@@ -20,14 +20,12 @@ public class LottoDrawController {
     private final OutputView outputView;
     private final UserLotteriesFactory userLotteriesFactory;
     private final LottoFactory lottoFactory;
-    private final WinningLottoFactory winningLottoFactory;
 
     public LottoDrawController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoFactory = new LottoFactory(new LottoNumbersGenerator());
         this.userLotteriesFactory = new UserLotteriesFactory(lottoFactory);
-        this.winningLottoFactory = new WinningLottoFactory(lottoFactory);
     }
 
     public void startDraw() {
@@ -53,7 +51,7 @@ public class LottoDrawController {
     private WinningLotto createWinningLotto() {
         List<Integer> drawnNumbers = inputView.getDrawnNumbers();
         Integer bonusNumber = inputView.getBonusNumber();
-        return winningLottoFactory.createWinningLotto(drawnNumbers, bonusNumber);
+        return new WinningLotto(new Lotto(drawnNumbers), bonusNumber);
     }
 
     public void showDrawResult(Map<LottoPrize, Long> winningCountPerLottoPrize, Double lottoProfitPercentage) {

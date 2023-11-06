@@ -44,6 +44,17 @@ public class WinningNumbersValidatorTest {
         assertThat(winningNumbersException.getMessage()).contains("[ERROR]");
     }
 
+    @DisplayName("당첨 번호로 당첨 번호 개수보다 작거나 큰 값 입력 시 예외가 발생한다.")
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "11,12,13,14,15"})
+    void testWhenInvalidSizeNumberInWinningNumbers(String winningNumbers) {
+        IllegalArgumentException winningNumbersException =
+                Assertions.assertThrows(IllegalArgumentException.class,
+                        () -> winningNumbersValidator.validate(winningNumbers));
+        assertThat(winningNumbersException.getMessage()).contains("[ERROR]");
+    }
+
     @DisplayName("당첨 번호로 중복된 숫자 입력 시 예외가 발생한다.")
     @ParameterizedTest
     @NullAndEmptySource

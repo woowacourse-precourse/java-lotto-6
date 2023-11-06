@@ -16,4 +16,6 @@ public interface LottoGameView {
     LottoBonusNumberCreateRequest inputLottoBonusNumberCreateRequest();
 
     void printWinningStatistics(LottoWinningStatistics lottoWinningStatistics);
+
+    void printException(Exception exception);
 }

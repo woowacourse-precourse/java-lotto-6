@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.collaboration.lottos.Lotto;
 import lotto.collaboration.lottos.Lottos;
 import lotto.collaboration.lottos.WinningLotto;
-import lotto.io.Randoms;
+import lotto.game.io.Randoms;
 import lotto.io.views.LottoGameView;
 
 public class LottoGame {

@@ -2,7 +2,7 @@ package lotto.collaboration.lottos;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.io.Randoms;
+import lotto.game.io.Randoms;
 
 public class Lottos {
 

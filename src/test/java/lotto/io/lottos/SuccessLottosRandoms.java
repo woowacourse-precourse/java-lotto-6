@@ -1,7 +1,7 @@
 package lotto.io.lottos;
 
 import java.util.List;
-import lotto.io.Randoms;
+import lotto.game.io.Randoms;
 
 public class SuccessLottosRandoms implements Randoms {
 

@@ -1,81 +1,64 @@
 package lotto.game;
 
-import camp.nextstep.edu.missionutils.Console;
-
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.Numbers;
-import lotto.domain.Ticket;
-import lotto.type.ErrorCode;
+import lotto.type.MainMessage;
+import lotto.type.ResultMessage;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Arrays.stream;
-
 
 public class Game {
 
     public void play() {
-        int totalTicketCount;
-        try {
-            totalTicketCount = buyTicket();
-        } catch (IllegalArgumentException e) {
-            System.out.println(ErrorCode.INVALID_MONEY_TO_BUY.getDescription());
-            totalTicketCount = buyTicket();
+        Machine machine = insertMoney();
+        List<Lotto> lottos = getLottos(machine);
+        List<Integer> winningNumber = getWinningNumber(machine);
+        Numbers numbers = getBonusNumber(machine, winningNumber);
+        int[] matchResult = getMatchResult(machine, lottos, numbers);
+        getInvestmentResult(machine, matchResult);
+    }
+
+    private Machine insertMoney() {
+        UserInterface.printOut(MainMessage.MONEY_TO_BUY.getMessage());
+        Machine machine = new Machine(UserInterface.printIn());
+        UserInterface.printOut(machine.getCount() + MainMessage.COUNT_OF_LOTTO.getMessage());
+        return machine;
+    }
+
+    private List<Lotto> getLottos(Machine machine) {
+        List<Lotto> lottos = machine.createLottoNumbers();
+        for (int i = 0; i < machine.getCount(); i++) {
+            UserInterface.printOut(lottos.get(i).getNumbers().toString());
         }
-        Numbers numbers = new Numbers();
-
-        showTickets(totalTicketCount);
-        pickLuckyNumbers(numbers);
-
-        pickBonusNumber(numbers);
+        return lottos;
     }
 
-    private void pickBonusNumber(Numbers numbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        numbers.setBonusNumber(bonusNumber);
+    private List<Integer> getWinningNumber(Machine machine) {
+        UserInterface.printOut(MainMessage.TYPE_IN_WINNING_NUMBER.getMessage());
+        return machine.createWinningNumber(UserInterface.printIn());
     }
 
-    private int buyTicket() {
-        System.out.println("구입금액을 입력해 주세요.");
-        int moneyInput = Integer.parseInt(Console.readLine());
-        Ticket ticket = new Ticket();
-        ticket.setCount(moneyInput);
-        return ticket.getCount();
+    private Numbers getBonusNumber(Machine machine, List<Integer> winningNumber) {
+        UserInterface.printOut(MainMessage.TYPE_IN_BONUS_NUMBER.getMessage());
+        return machine.createBonusNumber(winningNumber, Integer.parseInt(UserInterface.printIn()));
     }
 
-    private void showTickets(int totalTicketCount) {
-        System.out.println(totalTicketCount + "개를 구매했습니다.");
-        List<Lotto> tickets = getTickets(totalTicketCount);
-        for (Lotto lotto : tickets) {
-            System.out.println(lotto.getNumbers());
+    private int[] getMatchResult(Machine machine, List<Lotto> lottos, Numbers numbers) {
+        UserInterface.printOut(MainMessage.RESULT_OF_LOTTO.getMessage());
+        int[] result = machine.createMatchResult(lottos, numbers);
+        ResultMessage[] resultMessages = ResultMessage.values();
+        for (int i = 0; i < result.length; i++) {
+            UserInterface.printOut(resultMessages[i].getMessage() + result[i] + "개");
         }
-    }
-    List<Lotto> getTickets(int totalTicketCount) {
-        List<Lotto> tickets = new ArrayList<>();
-        for (int i = 0; i < totalTicketCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            tickets.add(new Lotto(numbers));
-        }
-        return tickets;
+        return result;
     }
 
-    private void pickLuckyNumbers(Numbers numbers) {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        List<String> numberInput = stream(Console.readLine().split(",")).toList();
-        validateLuckyNumbers(numberInput);
-        List<Integer> luckyNumbers = new ArrayList<>();
-        for (String num : numberInput) {
-            luckyNumbers.add(Integer.parseInt(num));
-        }
-        numbers.setLuckyNumbers(luckyNumbers);
-    }
-    void validateLuckyNumbers(List<String> numberInput) {
-        if (numberInput.size() != 6 || numberInput.size() != numberInput.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_LUCKY_NUMBERS.getDescription());
-        }
+    private void getInvestmentResult(Machine machine, int[] matchResult) {
+        UserInterface.printOut(
+                MainMessage.TOTAL_INVESTMENT_RESULT.getMessage()
+                        + machine.calculateInvestmentResult(matchResult)
+                        + MainMessage.RESULT_IS_PERCENTAGE.getMessage()
+        );
     }
 
 }

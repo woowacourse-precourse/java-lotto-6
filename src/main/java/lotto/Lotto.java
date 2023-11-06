@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collection;
 import java.util.List;
 
 public class Lotto {
@@ -19,5 +20,13 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return numbers;
+    }
+
+    public Rank getRankResult(WinningLotto winningLotto) {
+        return winningLotto.match(this);
     }
 }

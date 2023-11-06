@@ -8,4 +8,11 @@ public class WinningLotto {
         this.lotto = lotto;
         this.bonus = bonus;
     }
+
+    public Rank match(Lotto userLotto) {
+        boolean hasBonus = userLotto.getLottoNumbers().contains(bonus);
+        userLotto.getLottoNumbers().retainAll(lotto.getLottoNumbers());
+
+        return Rank.getRank(userLotto.getLottoNumbers().size(), hasBonus);
+    }
 }

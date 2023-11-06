@@ -10,6 +10,9 @@ import lotto.vo.Lotto;
 public class OutputView {
     private static final String LOTTO_COUNT_PRINT_MESSAGE = "개를 구매했습니다.";
     private static final String LOTTO_NUMBERS_DELIMETER = ", ";
+    private static final String RESULT_LOTTO_PRIZE_MESSAGE = System.lineSeparator() + "당첨 통계";
+    private static final String RESULT_LOTTO_PRIZE_SEPERATOR = "---";
+    private static final String RATE_RETURN_MESSASGE = "총 수익률은 %.1f%%입니다.";
 
     public static void printLottos(List<Lotto> lottos) {
         printLottoCount(lottos.size());
@@ -19,8 +22,8 @@ public class OutputView {
     }
 
     private static void printLottoCount(int lottoCount) {
-        System.out.print(lottoCount);
-        System.out.println(LOTTO_COUNT_PRINT_MESSAGE);
+        System.out.println();
+        System.out.println(lottoCount + LOTTO_COUNT_PRINT_MESSAGE);
     }
 
     private static void printCurrentLottoList(Lotto lotto) {
@@ -37,9 +40,8 @@ public class OutputView {
      * 결과 출력
      */
     public static void printResultLottoPrize(Map<Rank, Integer> rankIntegerMap) {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(RESULT_LOTTO_PRIZE_MESSAGE);
+        System.out.println(RESULT_LOTTO_PRIZE_SEPERATOR);
 
         for (Rank rank : rankIntegerMap.keySet()) {
             if (rank == Rank.UNRANK) {
@@ -55,7 +57,7 @@ public class OutputView {
      * 백분위 수익률 출력
      */
     public static void printPrizePercentResult(BigDecimal out) {
-        System.out.print("총 수익률은 " + out + "%" + "입니다.");
+        System.out.printf(RATE_RETURN_MESSASGE, out);
     }
 
 

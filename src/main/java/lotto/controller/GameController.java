@@ -17,15 +17,13 @@ public class GameController {
 
     private BigDecimal buyPrice;
 
-    //전체 게임 여기서 컨트롤
     public void start() {
         List<Lotto> lottos = buyLottos();
         WinLotto winLotto = drawLottoNumber();
         Map<Rank, Integer> rankCountMap = matchResult(winLotto, lottos);
         returnRate(rankCountMap);
     }
-
-    // 로또 구매
+    
     private List<Lotto> buyLottos() {
         //1) 구매 금액 입력받기
         buyPrice = InputView.readLottoPrice();

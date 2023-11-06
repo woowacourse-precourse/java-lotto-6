@@ -13,7 +13,7 @@ public class LottoHost {
 
     public List<Integer> pickWinNumbers() {
         // TODO: 11/5/23 입력 체크.
-        List<Integer> tempWinNumbers = Input.InputNumbers();
+        List<Integer> tempWinNumbers = inputWinNumbers();
 
         ValidateException.hasDuplicateEachNumbers(tempWinNumbers);
         ValidateException.isWinNumbersCountSix(tempWinNumbers);
@@ -38,6 +38,9 @@ public class LottoHost {
         return Input.InputNumber();
     }
 
+    private List<Integer> inputWinNumbers() {
+        return Input.InputNumbers();
+    }
 
     public LottoTargetNumResults giveLottoTargetNumResults() {
         return Config.lottoTargetNumResults(winNumbers, bonusNumber);

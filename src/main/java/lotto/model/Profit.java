@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class Profit {
@@ -14,11 +16,11 @@ public class Profit {
     public float calculateWinningPrice(Map<LottoRank, Integer> lottoRankInfo) {
         float profit = 0;
 
-        profit += lottoRankInfo.get(LottoRank.FIFTH) * 5000;
-        profit += lottoRankInfo.get(LottoRank.SECOND) * 50000;
-        profit += lottoRankInfo.get(LottoRank.THIRD) * 150000;
-        profit += lottoRankInfo.get(LottoRank.SECOND) * 30000000;
-        profit += lottoRankInfo.get(LottoRank.FIRST) * 2000000000;
+        List<Integer> prizes = List.of(0,5000, 50000, 150000, 30000000, 2000000000);
+
+        for (LottoRank lottoRank : LottoRank.values()) {
+            profit += lottoRankInfo.get(lottoRank) * prizes.get(lottoRank.ordinal());
+        }
 
         return profit;
     }

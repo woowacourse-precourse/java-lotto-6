@@ -106,6 +106,7 @@ public class OutputViewTest {
         ByteArrayOutputStream output = captureOutputValues();
         Game game = new Game();
         Map<LottoRank, Integer> lottoRankInfo = new EnumMap(LottoRank.class);
+        lottoRankInfo.put(LottoRank.NONE,0);
         lottoRankInfo.put(LottoRank.FIRST,0);
         lottoRankInfo.put(LottoRank.SECOND,0);
         lottoRankInfo.put(LottoRank.THIRD,0);

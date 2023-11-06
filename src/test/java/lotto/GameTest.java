@@ -63,6 +63,7 @@ public class GameTest {
         Game game = new Game();
 
         Map<LottoRank, Integer> lottoRankInfo = new EnumMap(LottoRank.class);
+        lottoRankInfo.put(LottoRank.NONE,0);
         lottoRankInfo.put(LottoRank.FIRST,1);
         lottoRankInfo.put(LottoRank.SECOND,0);
         lottoRankInfo.put(LottoRank.THIRD,0);

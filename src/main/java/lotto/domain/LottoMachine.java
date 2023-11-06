@@ -18,7 +18,7 @@ public class LottoMachine {
         for (int i = 0; i < size; i++) {
             lottos.add(new Lotto(RandomGenerator.generate()));
         }
-        return lottos;
+        return List.copyOf(lottos);
     }
 
     public Map<Ranking, Integer> rank(List<Lotto> lottos, WinningLotto winningLotto) {
@@ -35,6 +35,6 @@ public class LottoMachine {
             rankingCounts.put(ranking, rankingCounts.get(ranking) + 1);
         }
 
-        return rankingCounts;
+        return Map.copyOf(rankingCounts);
     }
 }

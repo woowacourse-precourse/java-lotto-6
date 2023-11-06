@@ -21,6 +21,7 @@ public class LottoController {
         String[] winningNumber = getWinningNumber();
         getBonusNumber(winningNumber);
         outputView.readWinningLottoMessage();
+        lottoGame.confirmWin();
     }
 
     private void getBonusNumber(String[] winningNumber) {

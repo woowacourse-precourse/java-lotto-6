@@ -2,10 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoGame {
@@ -13,9 +12,11 @@ public class LottoGame {
     List<Lotto> lottos;
     Lotto winningNumber;
     Integer bonusNumber;
+    List<Prize> prizeRanks;
 
     public LottoGame() {
         this.lottos = new ArrayList<>();
+        this.prizeRanks = new ArrayList<>();
     }
 
 
@@ -40,11 +41,41 @@ public class LottoGame {
     public void setWinningNumber(String[] numbers) {
         List<Integer> winningNumber = Arrays.stream(numbers)
                 .map(Integer::parseInt)
-                .toList();
+                .collect(Collectors.toList());
         this.winningNumber = new Lotto(winningNumber);
     }
 
     public void setBonusNumber(String number) {
         this.bonusNumber = Integer.parseInt(number);
+    }
+
+    public void confirmWin() {
+        collectPrizeRanks();
+    }
+
+    private void collectPrizeRanks() {
+        for (Lotto lotto : lottos) {
+            long correct = lotto.getNumbers().stream()
+                    .filter(number -> winningNumber.getNumbers().contains(number))
+                    .count();
+            prizeRanks.add(getRank(correct,lotto));
+        }
+    }
+
+    private Boolean isSecondPrize(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    private Prize getRank(long correct,Lotto lotto) {
+        Prize prize = Arrays.stream(Prize.values())
+                .filter(p ->
+                    p.getMatched() == correct
+                )
+                .findAny()
+                .orElse(Prize.EMPTY);
+        if (correct == 5 && isSecondPrize(lotto)) {
+            prize = Prize.SECOND;
+        }
+        return prize;
     }
 }

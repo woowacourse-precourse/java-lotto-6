@@ -25,6 +25,9 @@ public class LottoController {
 
         List<Integer> jackpotNumbers = converteToList(jackpotNumberInput);
 
+        InputView.printBonusNumberInputMessage();
+        String bonusNumberInput = Console.readLine();
+        // TODO : 보너스 번호 인풋 Validate
 
     }
 

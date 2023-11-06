@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.enums.Constant;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,20 +15,21 @@ public class Lotto {
     }
 
     private void validateCount(List<Integer> numbers) {
-        if (numbers.size() != COUNT_OF_LOTTO_NUMBERS) { // 상수 enum 추가
+        if (numbers.size() != Constant.COUNT_OF_LOTTO_NUMBERS.getValue()) {
             throw new IllegalArgumentException(); // 에러문 추가
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != COUNT_OF_LOTTO_NUMBERS) { // 상수 enum 추가
+        if (numbers.stream().distinct().count() != Constant.COUNT_OF_LOTTO_NUMBERS.getValue()) {
             throw new IllegalArgumentException(); // 에러문 추가
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < START_RANGE_OF_NUMBER || END_RANGE_OF_NUMBER < number) { // 상수 enum 추가
+            if (number < Constant.START_RANGE_OF_NUMBER.getValue()
+                    || Constant.END_RANGE_OF_NUMBER.getValue() < number) {
                 throw new IllegalArgumentException(); // 에러문 추가
             }
         }

@@ -11,7 +11,7 @@ public class InputView {
             try {
                 System.out.println(inputValueType.getMessage());
 
-                Function<String, Object> createFunction = inputValueType.getCreateFunction();
+                Function<String, Object> createFunction = inputValueType.getCreateFunction(null);
                 String input = Console.readLine();
 
                 return createFunction.apply(input);

@@ -22,12 +22,11 @@ public enum InputValueType {
         return message;
     }
 
-    public Function<String, Object> getCreateFunction() {
-        return createFunction;
-    }
-
     public Function<String, Object> getCreateFunction(WinningNumbers winningNumbers) {
-        return inputValue -> BonusNumber.create(inputValue, winningNumbers);
-        //확장 고려) winningNumbers가 필요한 객체가 추가된다면 조건을 걸어 해당 객체를 create하도록 수정.
+        if (this.equals(BONUS_NUMBER)) {
+            return inputValue -> BonusNumber.create(inputValue, winningNumbers);
+        }
+
+        return createFunction;
     }
 }

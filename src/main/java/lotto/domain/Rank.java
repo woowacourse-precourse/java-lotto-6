@@ -18,4 +18,37 @@ public enum Rank {
         this.bonus = bonus;
         this.award = award;
     }
+
+    public static Rank valueOf(int count, boolean bonus){
+        if (count < 3){
+            return NONE;
+        }
+
+        if (SECOND.matchCount(count) && bonus) {
+            return SECOND;
+        }
+
+        for (Rank rank : values()){
+            if (rank.matchCount(count) && rank != SECOND) {
+                return rank;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public int getCount(){
+        return count;
+    }
+
+    public boolean getBonus(){
+        return bonus;
+    }
+
+    public long getAward(){
+        return award;
+    }
+
+    public boolean matchCount(int count){
+        return this.count == count;
+    }
 }

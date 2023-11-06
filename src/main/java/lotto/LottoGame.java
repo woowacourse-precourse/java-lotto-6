@@ -29,6 +29,8 @@ public class LottoGame {
         getWinningNumberInput();
         getBonusNumberInput();
 
+        judgeResult();
+        showResult();
     }
 
     private void getPurchaseInput() {
@@ -161,5 +163,63 @@ public class LottoGame {
         if (winningNums.contains(number)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + BONUS_NUMBER_DUPLICATE_ERROR);
         }
+    }
+
+    private void judgeResult() {
+        for (Lotto lottery : lotteries) {
+            boolean isMatchingBonusNum = judgeBonusMatching(lottery);
+            int count = countMatchingNumber(lottery);
+            judgementWinning(count, isMatchingBonusNum);
+        }
+        calculateProfit();
+    }
+
+    private void calculateProfit() {
+        profitPercentage = (double) profit / purchaseAmount * 100;
+    }
+
+    private boolean judgeBonusMatching(Lotto lottery) {
+        return lottery.getNumbers().contains(bonusNum);
+    }
+
+    private void judgementWinning(int count, boolean isMatchingBonusNumber) {
+        EnumSet<Prize> es = EnumSet.allOf(Prize.class);
+        es.forEach(e -> {
+            if (count == e.count() && e.rank() == Prize.second.rank() && isMatchingBonusNumber) {
+                prizes.set(e.rank(), prizes.get(e.rank()) + 1);
+                profit += Prize.second.money();
+                return;
+            }
+            if (count == e.count()) {
+                prizes.set(e.rank(), prizes.get(e.rank()) + 1);
+                profit += e.money();
+            }
+        });
+    }
+
+    int countMatchingNumber(Lotto lotto) {
+        int count = 0;
+        for (int i = 0; i < lotto.getNumbers().size(); i++) {
+            if (winningNums.contains(lotto.getNumbers().get(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    void showResult() {
+        System.out.println(RESULT_SHOW_MESSAGE);
+        System.out.println(DIVIDER);
+        printPrizes();
+        printProfitPercentage();
+    }
+
+    private void printPrizes() {
+        EnumSet<Prize> es = EnumSet.allOf(Prize.class);
+        es.forEach(e -> System.out.println(e.label() + prizes.get(e.rank()) + "개"));
+    }
+
+    private void printProfitPercentage() {
+        System.out.println("총 수익률은 " + String.format("%.1f", profitPercentage) + "%입니다.");
     }
 }

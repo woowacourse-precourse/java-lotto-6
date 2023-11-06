@@ -4,21 +4,27 @@ import static lotto.Controller.LOTTERY_PRICE;
 
 public class Validator {
 
-    public static Boolean validationFlag = true;
+    public static Boolean validationFlag = false;
 
-    public static void isInputEmpty(String userInput) {
+    public static boolean isInputEmpty(String userInput) {
         try {
             if (userInput.isEmpty()) {
                 throw new IllegalArgumentException(ErrorMessages.IS_EMPTY.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return true;
         }
+        return false;
     }
 
     public static boolean isNumber(String userInput) {
+        if (userInput.equals("")) {
+            return false;
+        }
         try {
-            Integer.parseInt(userInput);
+            System.out.println(Integer.parseInt(userInput));
+//            Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
             try {
                 throw new IllegalArgumentException(ErrorMessages.IS_NUMBER.writeErrorMessageByCase());
@@ -30,23 +36,29 @@ public class Validator {
         return false;
     }
 
-    public static void isPriceUnder1000(Integer userInputNumber) {
+    public static boolean isPriceUnder1000(String userInput) {
         try {
-            if (userInputNumber < LOTTERY_PRICE) {
+            int inputBudget = Integer.parseInt(userInput);
+            if (inputBudget < LOTTERY_PRICE) {
                 throw new IllegalArgumentException(ErrorMessages.IS_UNDER_1000.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return true;
         }
+        return false;
     }
 
-    public static void isPriceIndivisible(Integer userInputNumber) {
+    public static boolean isPriceIndivisible(String userInput) {
         try {
-            if ((userInputNumber % LOTTERY_PRICE) != 0) {
+            int inputBudget = Integer.parseInt(userInput);
+            if ((inputBudget % LOTTERY_PRICE) != 0) {
                 throw new IllegalArgumentException(ErrorMessages.IS_INDIVISIBLE_BY_1000.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return true;
         }
+        return false;
     }
 }

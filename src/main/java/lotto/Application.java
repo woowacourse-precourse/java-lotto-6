@@ -13,7 +13,34 @@ public class Application {
         GameStatistics gameStatistics = new GameStatistics();
 
         View.printMessage(ASK_BUDGET);
-        String lottoBudgetInput = View.getUserInput();
+
+        String lottoBudgetInput = "";
+
+        while (true) {
+            lottoBudgetInput = View.getUserInput();
+//            Validator.validationFlag = Validator.isInputEmpty(lottoBudgetInput);
+            if (Validator.isInputEmpty(lottoBudgetInput)) {
+                continue;
+            }
+//            Validator.validationFlag = Validator.isNumber(lottoBudgetInput);
+            if (Validator.isNumber(lottoBudgetInput)) {
+                continue;
+            }
+//            Validator.validationFlag = Validator.isPriceUnder1000(lottoBudgetInput);
+            if (Validator.isPriceUnder1000(lottoBudgetInput)) {
+                continue;
+            }
+//            Validator.validationFlag = Validator.isPriceIndivisible(lottoBudgetInput);
+            if (Validator.isPriceIndivisible(lottoBudgetInput)) {
+                continue;
+            }
+
+            if (!Validator.validationFlag) {
+                break;
+            }
+        }
+
+
         Integer budget = Convertor.convertInputToInteger(lottoBudgetInput);
         Integer lotteryCount = Controller.calculateLotteryCount(budget);
         View.printLotteryCount(lotteryCount);

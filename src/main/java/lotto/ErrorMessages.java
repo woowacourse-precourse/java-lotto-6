@@ -31,7 +31,7 @@ public enum ErrorMessages {
             return DEFAULT_ERROR_MESSAGE + getErrorMessage();
         }
     },
-    IS_INDIVISIBLE_BY_1000(" 로또 구입 금액은 1,000으로 나누어떨어지는 숫자이어야 합니다.") {
+    IS_INDIVISIBLE_BY_1000(" 로또 구입 금액은 1,000으로 나누어 떨어지는 숫자이어야 합니다.") {
         @Override
         public String writeErrorMessageByCase() {
             return DEFAULT_ERROR_MESSAGE + getErrorMessage();

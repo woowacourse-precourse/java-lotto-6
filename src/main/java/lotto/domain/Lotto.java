@@ -10,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplication(numbers);
+        validateNumberRange(numbers);
         this.numbers = numbers;
     }
 
@@ -21,7 +22,7 @@ public class Lotto {
 
     private void validateDuplication(List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 중복할 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 중복일 수 없습니다.");
         }
     }
 
@@ -42,5 +43,10 @@ public class Lotto {
 
     protected List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

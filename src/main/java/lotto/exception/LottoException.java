@@ -10,7 +10,9 @@ import java.util.stream.Collectors;
 public class LottoException {
 
     public void validateLottoNumbers(List<Integer> numbers) {
-
+        validateLottoNumbersLength(numbers);
+        validateDuplicatedNumbers(numbers);
+        validateNumbersPermittedRange(numbers);
     }
 
     public void validateBonusNumber(List<Integer> inputNumbers, int bonusNumber) {
@@ -43,6 +45,16 @@ public class LottoException {
         inputNumbers.stream().map(numbers::add).collect(Collectors.toList());
         if (numbers.size() != Constants.DESIGNATED_LOTTO_LENGTH) {
             throw new IllegalArgumentException(Constants.ERROR + "번호가 중복 되었습니다");
+        }
+    }
+
+    // bonus number
+    public void validInputBonusNumber(String number) {
+        for (int i = 0; i < number.length(); i++) {
+            char n = number.charAt(i);
+            if (!Character.isDigit(n)) {
+                throw new IllegalArgumentException(Constants.ERROR + "보너스 번호는 숫자로 구성되어야 합니다");
+            }
         }
     }
 }

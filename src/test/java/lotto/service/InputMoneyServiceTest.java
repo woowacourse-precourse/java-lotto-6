@@ -3,6 +3,7 @@ package lotto.service;
 import static lotto.constant.ErrorMessage.BONUS_NUMBER_RIGHT_RANGE;
 import static lotto.constant.ErrorMessage.MONEY_NO_NEGATIVE;
 import static lotto.constant.ErrorMessage.MONEY_ONLY_NUMBER;
+import static lotto.constant.ErrorMessage.MONEY_UNIT_NUMBER;
 import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.constant.ErrorMessage;
@@ -27,16 +28,7 @@ class InputMoneyServiceTest {
         validator = new Validator();
     }
 
-    @Test
-    void getRightMoneyProcess() {
 
-//        public void getRightMoneyProcess(Validator validator, String money) {
-//            validator.validateInputMoneyIsNumber(money);
-//            long convertedMoney = Long.parseLong(money);
-//            validator.validateNumberNegativeOrZero(convertedMoney);
-//            validator.validateNumberUnitIsThousand(convertedMoney);
-//        }
-    }
     @ParameterizedTest
     @ValueSource(strings = {"2##@", "2  3", "12,3,"})
     @DisplayName("입력 금액에 숫자가 아닌 문자가 온 경우!")
@@ -54,6 +46,16 @@ class InputMoneyServiceTest {
         Assertions.assertThatThrownBy(() -> validator.validateNumberNegativeOrZero(inputMoney))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(MONEY_NO_NEGATIVE.getMessage());
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(longs = {1234, 3200, 11100})
+    @DisplayName("입력 금액 단위가 1000이 아닌 경우!")
+    void validateNumberUnitIsThousand(long inputMoney) {
+        Assertions.assertThatThrownBy(() -> validator.validateNumberUnitIsThousand(inputMoney))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(MONEY_UNIT_NUMBER.getMessage());
     }
 
 

@@ -13,4 +13,8 @@ public enum LottoResult {
     LottoResult(long price) {
         this.price = price;
     }
+
+    public long getPrice(){
+        return price;
+    }
 }

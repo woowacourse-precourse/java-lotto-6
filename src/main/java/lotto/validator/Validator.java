@@ -42,11 +42,14 @@ public class Validator {
 
     public static void isWinningNumberValid(String input) {
         isInputEmpty(input);
-        isInputNumberValid(input);
+        isInputFormatValid(input);
     }
 
-    public static void isInputNumberValid(String input) {
-
+    public static void isInputFormatValid(String input) {
+        int inputLength = input.length();
+        if (input.charAt(0) == ',' || input.charAt(inputLength - 1) == ',') {
+            throw new IllegalArgumentException(INVALID_FORMAT_ERROR);
+        }
     }
 
 

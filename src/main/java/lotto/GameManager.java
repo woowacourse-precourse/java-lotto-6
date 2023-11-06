@@ -7,17 +7,30 @@ import static lotto.constants.Value.INITIAL_ZERO;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
+import lotto.domain.LottoManager;
+import lotto.domain.LottoResult;
 import lotto.domain.Money;
 import lotto.domain.User;
 import lotto.ui.Input;
 import lotto.ui.Output;
 
 public class GameManager {
-    static User user = new User();
-    static Lotto winningLotto;
-    static Integer bonusNumber;
+    private static User user = new User();
+    private static Lotto winningLotto;
+    private static Integer bonusNumber;
 
-    public static void handlePurchase() {
+    public static void run() {
+        handlePurchase();
+        Output.printLottos(user.lottos);
+
+        winningLotto = handleWinningLotto();
+        bonusNumber = handleBonusNumber(winningLotto);
+
+        LottoResult lottoResult = LottoManager.checkWinning(user.lottos, winningLotto, bonusNumber);
+        Output.printResult(lottoResult, lottoResult.calculateEarningsRate(user.lottoCount));
+    }
+
+    private static void handlePurchase() {
         boolean isPurchasing = TRUE.get();
         Output.printPurchase();
 
@@ -33,7 +46,7 @@ public class GameManager {
         Output.printCount(user.lottoCount);
     }
 
-    public static Lotto handleWinningLotto() {
+    private static Lotto handleWinningLotto() {
         boolean isCreating = TRUE.get();
         Lotto winningLotto = NULL.get();
         Output.printWinningNumber();
@@ -50,7 +63,7 @@ public class GameManager {
         return winningLotto;
     }
 
-    public static Integer handleBonusNumber(Lotto winningLotto) {
+    private static Integer handleBonusNumber(Lotto winningLotto) {
         boolean isRunning = TRUE.get();
         Integer bonusNumber = INITIAL_ZERO.get();
         Output.printBonusNumber();
@@ -66,13 +79,4 @@ public class GameManager {
 
         return bonusNumber;
     }
-
-    public static void main(String[] args) {
-        handlePurchase();
-        Output.printLottos(user.lottos);
-
-        winningLotto = handleWinningLotto();
-        bonusNumber = handleBonusNumber(winningLotto);
-    }
-
 }

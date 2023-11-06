@@ -8,7 +8,11 @@ import java.util.stream.Collectors;
 
 public class InputValidate {
     public int validateCost(String input){
-        return changeInt(validateIsNumber(input));
+        int result = changeInt(validateIsNumber(input));
+        if (result <= 0){
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 0이하가 될 수 없습니다. 다시 입력해주세요.");
+        }
+        return result;
     }
 
     public List<Integer> validateWinningNums(String input){

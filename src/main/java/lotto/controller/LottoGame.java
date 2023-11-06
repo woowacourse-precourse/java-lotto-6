@@ -12,6 +12,7 @@ public class LottoGame implements Game {
     private LottoTickets lottoTickets;
     private WinningLotto winningLotto;
     private WinningResult winningResult;
+    private TotalWinning totalWinning;
 
     @Override
     public void run() {
@@ -21,7 +22,10 @@ public class LottoGame implements Game {
 
         collectWinningNumbers();
         calculateWinningResult();
+        calculateTotalReturn();
+
         printWinningResult();
+        printTotalReturn();
     }
 
     private void collectPurchaseAmount() {
@@ -54,12 +58,20 @@ public class LottoGame implements Game {
     private void calculateWinningResult() {
         winningResult = new WinningResult(lottoTickets, winningLotto);
     }
+    private void calculateTotalReturn() { totalWinning = new TotalWinning(lottoPurchase, winningResult);}
 
     private void printWinningResult() {
         if(winningResult == null) {
             throw new IllegalStateException(ErrorMessages.RESULT_WAS_NOT_CREATED.getMessage());
         }
         OutputView.printWinningResults(winningResult);
+    }
+
+    private void printTotalReturn() {
+        if(totalWinning == null) {
+            throw new IllegalStateException();
+        }
+        OutputView.printTotalReturn(totalWinning);
     }
 }
 

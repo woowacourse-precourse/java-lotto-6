@@ -2,10 +2,10 @@ package lotto.Controller;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.function.LongToDoubleFunction;
 import lotto.domain.Lotto;
 import lotto.domain.LottoChecker;
 import lotto.domain.LottoGenerator;
+import lotto.domain.LottoPurchaseMoney;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,12 +20,13 @@ public class LottoController {
 
     public void start(){
         int money = inputView.getMoney();
+        int ticketCount = getTickets(money);
 
         Lotto winTicket = new Lotto(inputView.getWinNumbers());
         int bonusNumber = inputView.getBonusNumber();
 
         LottoGenerator lottoGenerator = new LottoGenerator();
-        List<Lotto> tickets = lottoGenerator.getTickets(money);
+        List<Lotto> tickets = lottoGenerator.makeTickets(ticketCount);
 
         outputView.printAllTickets(tickets);
 
@@ -42,6 +43,10 @@ public class LottoController {
 
         outputView.printRankResult(rankCount, profitability);
 
+    }
+    public int getTickets(int money){
+        LottoPurchaseMoney lottoPurchaseMoney = new LottoPurchaseMoney();
+        return lottoPurchaseMoney.getTicketCount(money);
     }
 
 }

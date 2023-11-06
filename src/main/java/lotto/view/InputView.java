@@ -7,8 +7,14 @@ import java.util.List;
 public class InputView {
 
     public int getMoney(){
-        System.out.println("구입 금액을 입력해 주세요.");
-        return changeToInt(Console.readLine());
+        while (true) {
+            System.out.println("구입 금액을 입력해 주세요.");
+            try {
+                return changeToInt(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> getWinNumbers(){
@@ -30,7 +36,7 @@ public class InputView {
         try{
             return Integer.parseInt(value);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("정수를 입력해 주세요");
+            throw new IllegalArgumentException("[ERROR] 정수를 입력해 주세요");
         }
     }
 }

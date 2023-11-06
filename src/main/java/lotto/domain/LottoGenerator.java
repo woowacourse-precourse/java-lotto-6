@@ -7,9 +7,8 @@ import java.util.List;
 public class LottoGenerator {
     public static final int LOTTO_PRICE = 1000;
 
-    public List<Lotto> getTickets(int money){
+    public List<Lotto> makeTickets(int tickets){
         List<Lotto> allTickets = new ArrayList<>();
-        int tickets = money/1000;
         for (int i = 0; i <tickets ; i++) {
             allTickets.add(generateTicket());
         }

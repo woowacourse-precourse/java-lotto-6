@@ -10,6 +10,7 @@ public enum ErrorMessages {
     LOTTO_CHAR_ERROR("당첨 번호는 쉼표(,)를 기준으로 숫자로 입력해야 합니다."),
     LOTTO_RANGE_ERROR("로또 번호는 1부터 45사이의 숫자여야 합니다."),
     LOTTO_LENGTH_ERROR("로또 번호는 6개여야 합니다."),
+    LOTTO_DUPLICATE_ERROR("로또 번호는 중복될 수 없습니다."),
     BONUS_EMPTY_ERROR("보너스 번호를 입력해야 합니다.");
 
     private final String message;

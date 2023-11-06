@@ -32,7 +32,7 @@ class LottoTest {
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호의 범위가 1부터 45가 아니라면 예외가 발생힌다.")
@@ -46,7 +46,7 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("Lotto 숫자를 오름차순으로 정렬하여 반환한다.")

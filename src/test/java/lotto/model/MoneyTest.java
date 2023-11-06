@@ -15,14 +15,14 @@ class MoneyTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액이 1,000 원 미만이라면 예외를 발생한다.")
+    @DisplayName("구입 금액이 1000 원 미만(0 원)이라면 예외를 발생한다.")
     @Test
     void createBonusByOverRange() {
         assertThatThrownBy(() -> new Money("0"))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액의 단위가 1,000 원이 아니라면 예외를 발생한다.")
+    @DisplayName("구입 금액의 단위가 1000 원이 아니라면(1111 원) 예외를 발생한다.")
     @Test
     void createBonusByDuplicatedAnswer() {
         assertThatThrownBy(() -> new Money("1111"))
@@ -31,7 +31,13 @@ class MoneyTest {
 
     @DisplayName("구입 금액이 5000 원이라면 구매한 로또 개수가 5 개이다.")
     @Test
-    void countLottos() {
-        assertThat(new Money("5000").getMoney()).isEqualTo(5);
+    void lottoCountByMoney() {
+        assertThat(new Money("5000").countLottos()).isEqualTo(5);
+    }
+
+    @DisplayName("구입 금액이 5000 원이라면 getter 가 5000원을 반환한다.")
+    @Test
+    void checkMoneyGetter() {
+        assertThat(new Money("5000").getMoney()).isEqualTo(5000);
     }
 }

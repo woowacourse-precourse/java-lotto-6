@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BonusTest {
+
     private final List<Integer> answer = List.of(1, 2, 3, 4, 5, 6);
 
     @DisplayName("Bonus 번호에 숫자 외의 문자가 입력되면 예외를 발생한다.")

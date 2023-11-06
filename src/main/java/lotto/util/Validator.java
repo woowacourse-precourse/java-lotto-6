@@ -14,11 +14,10 @@ public class Validator {
      * @throws IllegalArgumentException
      */
     public static void validateLottoNumbers(List<LottoNumber> numbers) {
-        LottoNumbers lottoNumbers = new LottoNumbers(numbers);
-        if (isLotteryNumberSizeValid(lottoNumbers)) {
+        if (isLotteryNumberSizeValid(numbers)) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
-        if (isLottoNumberDuplicate(lottoNumbers)) {
+        if (isLottoNumberDuplicate(numbers)) {
             throw new IllegalArgumentException("로또 번호는 중복되지 않아야 합니다.");
         }
     }
@@ -42,7 +41,7 @@ public class Validator {
      * @param numbers
      * @return boolean
      */
-    private static boolean isLotteryNumberSizeValid(LottoNumbers numbers) {
+    private static boolean isLotteryNumberSizeValid(List<LottoNumber> numbers) {
         return numbers.size() != 6;
     }
 
@@ -52,7 +51,7 @@ public class Validator {
      * @param numbers
      * @return boolean
      */
-    private static boolean isLottoNumberDuplicate(LottoNumbers numbers) {
-        return numbers.getNumbers().stream().distinct().count() != numbers.size();
+    private static boolean isLottoNumberDuplicate(List<LottoNumber> numbers) {
+        return numbers.stream().distinct().count() != numbers.size();
     }
 }

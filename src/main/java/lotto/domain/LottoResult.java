@@ -21,12 +21,11 @@ public class LottoResult {
         }
     }
 
-    public String calculateProfit(List<LottoRank> lottoRankList, int money) {
+    public double calculateProfit(List<LottoRank> lottoRankList, int money) {
         long sum = lottoRankList.stream()
                 .mapToLong(LottoRank::getPrize)
                 .sum();
-        double profit = (double) (sum * 100) / money;
-        return String.format("%,.1f%%", profit);
+        return (double) (sum * 100) / money;
     }
 
 

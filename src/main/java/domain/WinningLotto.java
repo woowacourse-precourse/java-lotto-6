@@ -13,15 +13,14 @@ public class WinningLotto {
     }
 
     public void setBonusNumber(int number) {
-        if(isWinningNumberContainBonusNumber(number)) {
+        checkBonusNumberValidation(number);
+        this.bonusNumber = number;
+    }
+
+    private void checkBonusNumberValidation(int bonusNumber) {
+        if(winningNumber.isContainNumber(bonusNumber)) {
             System.out.println(ErrorMessage.WINNING_NUMBER_AND_BONUS_NUMBER_ARE_SAME.getErrorMessage());
             throw new IllegalArgumentException();
         }
-        this.bonusNumber = number;
-
-    }
-
-    public boolean isWinningNumberContainBonusNumber(int number){
-        return winningNumber.isContainNumber(number);
     }
 }

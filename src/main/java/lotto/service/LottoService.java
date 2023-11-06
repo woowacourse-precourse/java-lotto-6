@@ -8,7 +8,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
-    private static final String INVALID_NON_THOUSAND_UNIT = "1000원 단위로 입력해주세요.";
+    private static final String INVALID_NON_THOUSAND_UNIT_MESSAGE = "1000원 단위로 입력해주세요.";
+    private static final String INPUT_ZERO_MESSAGE = "1000원 단위로 입력해주세요.";
+    private static final Integer ZERO_AMOUNT = 0;
     private static final Integer MIN_NUMBER = 1;
     private static final Integer MAX_NUMBER = 45;
     private static final Integer NUMBER_STANDARD = 6;
@@ -20,13 +22,20 @@ public class LottoService {
     }
 
     private void validateInputMoney(Integer inputMoney) {
-        if (!IsThousandUnit(inputMoney)) {
-            throw new InvalidInputException(INVALID_NON_THOUSAND_UNIT);
+        if (!isThousandUnit(inputMoney)) {
+            throw new InvalidInputException(INVALID_NON_THOUSAND_UNIT_MESSAGE);
+        }
+        if (isZero(inputMoney)) {
+            throw new InvalidInputException(INPUT_ZERO_MESSAGE);
         }
     }
 
-    private Boolean IsThousandUnit(Integer inputMoney) {
-        return inputMoney % DIVIDE_STANDARD == 0;
+    private boolean isZero(Integer inputMoney) {
+        return inputMoney.equals(ZERO_AMOUNT);
+    }
+
+    private Boolean isThousandUnit(Integer inputMoney) {
+        return inputMoney % DIVIDE_STANDARD == ZERO_AMOUNT;
     }
 
     public List<Integer> createRandomNumbers() {

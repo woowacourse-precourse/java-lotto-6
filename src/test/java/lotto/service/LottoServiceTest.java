@@ -5,6 +5,7 @@ import lotto.domain.PurchasedLotto;
 import lotto.exception.InvalidInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -57,6 +58,18 @@ class LottoServiceTest {
     @ValueSource(ints = {1, 888, 1950, 2350})
     void invalidInputMoneyTest(Integer inputMoney) {
         // given & when & then
+        assertThatThrownBy(
+                () -> lottoService.purchaseLottoWithValidPrice(inputMoney))
+                .isInstanceOf(InvalidInputException.class);
+    }
+
+    @DisplayName("0이 입력되었을 때, 예외처리를 하는지")
+    @Test
+    void invalidInputMoneyZeroTest() {
+        // given
+        Integer inputMoney = 0;
+
+        // when & then
         assertThatThrownBy(
                 () -> lottoService.purchaseLottoWithValidPrice(inputMoney))
                 .isInstanceOf(InvalidInputException.class);

@@ -11,12 +11,11 @@ import java.util.*;
 
 public class LottoDraw {
     private final List<String> lottoPlacePrice = new ArrayList<>(Arrays.asList("5000", "50000", "1500000", "30000000", "2000000000"));
-    private String hasBonus = BonusString.BONUS.getBonus();
-    private String noBonus = BonusString.NOBONUS.getBonus();
+    private final String hasBonus = BonusString.BONUS.getBonus();
+    private final String noBonus = BonusString.NOBONUS.getBonus();
     Map<Integer, Map<String, Integer>> lottoPrizeSummary;
     StringBuilder result;
 
-    DrawMessage drawMessage;
     LottoNumber lottoNumber = new LottoNumber();
     LottoNumbers lottoNumbers = new LottoNumbers();
     LottoStatistics lottoStatistics = new LottoStatistics();
@@ -57,9 +56,9 @@ public class LottoDraw {
 
     public Map<String, Integer> summarizeLottoResults(Lotto[] lottoNumbers, Lotto winnerNumbers, int bonusNumber) {
         Map<String, Integer> summary = innerMap();
-        for (int i = 0; i < lottoNumbers.length; i++) {
-            int winCount = lottoStatistics.compareLottoNumbersWithWinnerNumbers(lottoNumbers[i], winnerNumbers);
-            String checkBonus = lottoStatistics.compareLottoNumbersWithBonusNumber(lottoNumbers[i], bonusNumber);
+        for (Lotto number : lottoNumbers) {
+            int winCount = lottoStatistics.compareLottoNumbersWithWinnerNumbers(number, winnerNumbers);
+            String checkBonus = lottoStatistics.compareLottoNumbersWithBonusNumber(number, bonusNumber);
 
             if (winCount < NumberUtil.MIN_WINNING_COUNT.getNumber()) continue;
             implementCount(summary, winCount, checkBonus);

@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 
 public class InputValidation {
 
-    private int minNumber = NumberUtil.MIN_NUMBER.getNumber();
-    private int startNumber = NumberUtil.START_NUMBER.getNumber();
-    private int endNumber = NumberUtil.END_NUMBER.getNumber();
-    ErrorMessage error;
+    private final int minNumber = NumberUtil.MIN_NUMBER.getNumber();
+    private final int startNumber = NumberUtil.START_NUMBER.getNumber();
+    private final int endNumber = NumberUtil.END_NUMBER.getNumber();
+
     public int validatePurchaseAmount(String input) {
         validateInputIsNumeric(input);
         validateCheckRangeOfPurchaseAmountInput(input);
@@ -49,7 +49,9 @@ public class InputValidation {
 
     public void validateInputIsNumeric(String input) {
         if (!input.matches("[-+]?\\d*")) {
-            throw new NumberFormatException(error.INPUT_ONLY_NUMBERS_ERROR_MESSAGE.getMessage());
+            throw new NumberFormatException(ErrorMessage
+                    .INPUT_ONLY_NUMBERS_ERROR_MESSAGE
+                    .getMessage());
         }
     }
 
@@ -57,38 +59,50 @@ public class InputValidation {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException(error.MAX_PURCHASE_AMOUNT_CONSTRAINT_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .MAX_PURCHASE_AMOUNT_CONSTRAINT_ERROR_MESSAGE
+                    .getMessage());
         }
     }
 
     public void validatePurchaseAmountOutOfRange(int purchaseAmount) {
         if (purchaseAmount > NumberUtil.MAX_NUMBER.getNumber()) {
-            throw new IllegalArgumentException(error.PURCHASE_AMOUNT_LIMIT_CONSTRAINT_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .PURCHASE_AMOUNT_LIMIT_CONSTRAINT_ERROR_MESSAGE
+                    .getMessage());
         }
     }
 
     public void validatePurchaseAmountIsPositive(int purchaseAmount) {
         if (purchaseAmount < minNumber) {
-            throw new IllegalArgumentException(error.POSITIVE_PURCHASE_AMOUNT_CONSTRAINT_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .POSITIVE_PURCHASE_AMOUNT_CONSTRAINT_ERROR_MESSAGE
+                    .getMessage());
         }
     }
 
     public void validatePurchaseAmountUnit(int purchaseAmount) {
         if (purchaseAmount == 0 || purchaseAmount % NumberUtil.LOTTO_PRICE.getNumber() != 0) {
-            throw new IllegalArgumentException(error.PURCHASE_AMOUNT_UNITS_CONSTRAINT_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .PURCHASE_AMOUNT_UNITS_CONSTRAINT_ERROR_MESSAGE
+                    .getMessage());
         }
     }
 
     public void validateInputIsNull(String input) {
         if (input == null || input.equals("")) {
-            throw new NullPointerException(error.NULL_OR_EMPTY_INPUT_ERROR_MESSAGE.getMessage());
+            throw new NullPointerException(ErrorMessage
+                    .NULL_OR_EMPTY_INPUT_ERROR_MESSAGE
+                    .getMessage());
         }
     }
 
     public void validateInputUseCorrectSeperator(String input) {
         String deleteAllWords = input.replaceAll("[가-힣a-zA-Z0-9,-]", "");
         if (deleteAllWords.length() != 0) {
-            throw new IllegalArgumentException(error.CORRECT_SEPARATOR_INPUT_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .CORRECT_SEPARATOR_INPUT_ERROR_MESSAGE
+                    .getMessage());
         }
     }
 
@@ -103,7 +117,9 @@ public class InputValidation {
                 Integer.parseInt(number);
             }
         } catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException(error.WINNING_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .WINNING_NUMBER_OUT_OF_RANGE_MESSAGE
+                    .getMessage());
         }
     }
 
@@ -113,7 +129,9 @@ public class InputValidation {
         validateCheckRangeOfWinnerNumberInput(winnerNumbers);
         for (String number : winnerNumbers) {
             if (Integer.parseInt(number) < minNumber) {
-                throw new IllegalArgumentException(error.POSITIVE_LOTTO_NUMBER_CONSTRAINT_MESSAGE.getMessage());
+                throw new IllegalArgumentException(ErrorMessage
+                        .POSITIVE_LOTTO_NUMBER_CONSTRAINT_MESSAGE
+                        .getMessage());
             }
         }
     }
@@ -121,7 +139,9 @@ public class InputValidation {
     public void validateWinnerNumbersOutOfRange(List<Integer> winnerNumbers) {
         for (Integer number : winnerNumbers) {
             if (number < startNumber || number > endNumber) {
-                throw new IllegalArgumentException(error.WINNING_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
+                throw new IllegalArgumentException(ErrorMessage
+                        .WINNING_NUMBER_OUT_OF_RANGE_MESSAGE
+                        .getMessage());
             }
         }
     }
@@ -129,12 +149,12 @@ public class InputValidation {
     public void validateDuplicateWinnerNumbers(List<Integer> winnerNumbers) {
         Set<Integer> numbers = new HashSet<>();
 
-        for (Integer number : winnerNumbers) {
-            numbers.add(number);
-        }
+        numbers.addAll(winnerNumbers);
 
         if (winnerNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(error.DUPLICATE_NUMBER_CONSTRAINT_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .DUPLICATE_NUMBER_CONSTRAINT_MESSAGE
+                    .getMessage());
         }
     }
 
@@ -142,26 +162,34 @@ public class InputValidation {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException(error.BONUS_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .BONUS_NUMBER_OUT_OF_RANGE_MESSAGE
+                    .getMessage());
         }
     }
 
     public void validateBonusNumberIsPositive(int bonusNumber) {
         if (bonusNumber < minNumber) {
-            throw new IllegalArgumentException(error.POSITIVE_BONUS_NUMBER_CONSTRAINT_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .POSITIVE_BONUS_NUMBER_CONSTRAINT_MESSAGE
+                    .getMessage());
         }
     }
 
     public void validateBonusNumberOutOfRange(int bonusNumber) {
         if (bonusNumber < startNumber || bonusNumber > endNumber) {
-            throw new IllegalArgumentException(error.BONUS_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .BONUS_NUMBER_OUT_OF_RANGE_MESSAGE
+                    .getMessage());
         }
     }
 
     public void validateDuplicateBonusNumber(Lotto lotto, int bonusNumber) {
         List<Integer> winnerNumbers = lotto.getLottoNumbers();
         if (winnerNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(error.DUPLICATE_WINNING_NUMBER_CONSTRAINT_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage
+                    .DUPLICATE_WINNING_NUMBER_CONSTRAINT_MESSAGE
+                    .getMessage());
         }
     }
 }

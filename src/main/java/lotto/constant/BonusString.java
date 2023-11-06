@@ -3,7 +3,7 @@ package lotto.constant;
 public enum BonusString {
     BONUS("Bonus"),
     NOBONUS("NoBonus");
-    private String bonus;
+    private final String bonus;
 
     BonusString(String hasBonus) {
         this.bonus = hasBonus;

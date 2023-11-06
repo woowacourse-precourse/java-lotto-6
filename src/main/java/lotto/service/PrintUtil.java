@@ -26,7 +26,7 @@ public class PrintUtil {
     }
 
     public void printWinnerStatistics() {
-        System.out.println(drawMessage.WINNING_STATISTICS_MESSAGE.getMessage());
+        System.out.print(drawMessage.WINNING_STATISTICS_MESSAGE.getMessage());
     }
 
     public void printProfit(String totalProfit) {

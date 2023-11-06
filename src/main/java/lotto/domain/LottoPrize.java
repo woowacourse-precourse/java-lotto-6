@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoPrize {
-    private int bonusKey = NumberUtil.BONUS_KEY_FIVE.getNumber();
-    LottoRank lottoRank;
+    private final int bonusKey = NumberUtil.BONUS_KEY_FIVE.getNumber();
 
     public Map<Integer, Map<String, Integer>> initLottoPrize() {
         Map<Integer, Map<String, Integer>> lottoPrize = new HashMap<>();
@@ -25,8 +24,8 @@ public class LottoPrize {
 
     public Map<String, Integer> doubleValue() {
         Map<String, Integer> doubleMap = new HashMap<>();
-        doubleMap.put(lottoRank.SECOND.getWinningCount()+lottoRank.SECOND.getBonus(), 0);
-        doubleMap.put(lottoRank.THIRD.getWinningCount()+lottoRank.THIRD.getBonus(), 0);
+        doubleMap.put(LottoRank.SECOND.getWinningCount()+LottoRank.SECOND.getBonus(), 0);
+        doubleMap.put(LottoRank.THIRD.getWinningCount()+LottoRank.THIRD.getBonus(), 0);
 
         return doubleMap;
     }

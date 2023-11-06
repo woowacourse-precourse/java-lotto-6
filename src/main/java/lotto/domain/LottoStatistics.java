@@ -8,16 +8,16 @@ import java.util.Map;
 
 public class LottoStatistics {
 
-    private int lottoPrice = NumberUtil.LOTTO_PRICE.getNumber();
-    private int profitPercent = NumberUtil.PROFIT_PERCENT.getNumber();
+    private final int lottoPrice = NumberUtil.LOTTO_PRICE.getNumber();
+    private final int profitPercent = NumberUtil.PROFIT_PERCENT.getNumber();
 
     public int compareLottoNumbersWithWinnerNumbers(Lotto lottoNumbers, Lotto winnerNumbers) {
 
         List<Integer> numbers = lottoNumbers.getLottoNumbers();
         List<Integer> winNumbers = winnerNumbers.getLottoNumbers();
         int winCount = 0;
-        for (int index = 0; index < winNumbers.size(); index++) {
-            if (numbers.contains(winNumbers.get(index))) {
+        for (Integer winNumber : winNumbers) {
+            if (numbers.contains(winNumber)) {
                 winCount++;
             }
         }
@@ -49,6 +49,6 @@ public class LottoStatistics {
     }
 
     public double calculateProfit(double profit, int lottoPurchaseAmount) {
-        return profit / (lottoPurchaseAmount * lottoPrice / profitPercent);
+        return profit / ((double) (lottoPurchaseAmount * lottoPrice) / profitPercent);
     }
 }

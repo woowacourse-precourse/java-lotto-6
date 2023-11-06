@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 
 public class LottoNumbers {
 
-    private StringBuilder sb = new StringBuilder();
+    private final StringBuilder sb = new StringBuilder();
 
     LottoNumberValidation lottoNumberValidation = new LottoNumberValidation();
 

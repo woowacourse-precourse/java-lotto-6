@@ -16,4 +16,12 @@ public class Player {
         if (cash % 1000 != 0)
             throw new IllegalArgumentException();
     }
+
+    public int getCash() {
+        return this.cash;
+    }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
 }

@@ -35,7 +35,7 @@ public class OutputViewImpl implements OutputView {
         List<Prize> allPrize = lottoResult.findAllPrize();
         Collections.reverse(allPrize);
         for (Prize prize : allPrize) {
-            if (prize.getAward() == 30000000) {
+            if (prize.getAward() == Prize.SECOND_PRIZE.getAward()) {
                 resultWithBonus(prize);
                 continue;
             }

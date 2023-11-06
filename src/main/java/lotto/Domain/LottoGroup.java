@@ -1,5 +1,10 @@
 package lotto.Domain;
 
+import static lotto.Dictionary.LottoDictionary.LOTTO_MAX_NUMBER;
+import static lotto.Dictionary.LottoDictionary.LOTTO_MIN_NUMBER;
+import static lotto.Dictionary.LottoDictionary.LOTTO_NUMBER_SIZE;
+import static lotto.Dictionary.LottoDictionary.LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -9,7 +14,6 @@ import java.util.Set;
 public class LottoGroup {
 
     private final List<Lotto> lottoGroup;
-    private static final int LOTTO_PRICE = 1000;
 
     private LottoGroup(Money money) {
         this.lottoGroup = new LinkedList<>();
@@ -24,11 +28,14 @@ public class LottoGroup {
     }
 
     private Integer findLottoCount(Money money) {
-        return money.getMoney()/LOTTO_PRICE;
+        return money.getMoney()/LOTTO_PRICE.getValue();
     }
 
     private List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(
+                LOTTO_MIN_NUMBER.getValue(),
+                LOTTO_MAX_NUMBER.getValue(),
+                LOTTO_NUMBER_SIZE.getValue());
     }
 
     public Integer findLottoNumbersSize() {

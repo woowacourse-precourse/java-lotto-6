@@ -1,9 +1,11 @@
 package lotto.Domain;
 
 import static lotto.CommonValidation.CommonValidation.isValueBetween1And45;
+import static lotto.Dictionary.LottoDictionary.*;
 import static lotto.Message.ExceptionMessage.LottoExceptionMessage.*;
 
 import java.util.List;
+import lotto.Dictionary.LottoDictionary;
 import lotto.Exception.LottoException;
 
 public class Lotto {
@@ -32,13 +34,13 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE.getValue()) {
             throw new LottoException(LOTTO_SIZE_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != LOTTO_NUMBER_SIZE.getValue()) {
             throw new LottoException(LOTTO_DUPLICATE_ERROR_MESSAGE.getMessage());
         }
     }

@@ -1,9 +1,11 @@
 package lotto.Model;
 
+import static lotto.Dictionary.LottoDictionary.*;
 import static lotto.Domain.LottoResult.Rank.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Dictionary.LottoDictionary;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoGroup;
 import lotto.Domain.LottoResult.LottoResult;
@@ -27,7 +29,9 @@ public class LottoResultHandlerModel {
     }
 
     public float findProfitRate() {
-        float rate = (float) lottoResult.findTotalAward() * 100 / (lottoGroup.findLottoNumbersSize() * 1000);
+        float rate = (float) lottoResult.findTotalAward()
+                / (lottoGroup.findLottoNumbersSize() * LOTTO_PRICE.getValue()) * 100;
+
         return (float) (Math.round(rate * 100.0) / 100.0);
     }
 
@@ -36,8 +40,9 @@ public class LottoResultHandlerModel {
             Lotto lottoByIndex = lottoGroup.findLottoByIndex(i);
             Integer matchCount = checkWinning(winningLotto.getLotto(), lottoByIndex);
             Integer rank = convertRank(matchCount, checkBonusNumber(lottoByIndex));
-            if (rank != MISS.getRank())
+            if (rank != MISS.getRank()) {
                 lottoResult.addPrizeCount(rank);
+            }
         }
     }
 
@@ -52,16 +57,21 @@ public class LottoResultHandlerModel {
     }
 
     private Integer convertRank(Integer matchCount, boolean isBonusNumberMatched) {
-        if (matchCount == 6)
+        if (matchCount == 6) {
             return FIRST.getRank();
-        if (matchCount == 5 && isBonusNumberMatched)
+        }
+        if (matchCount == 5 && isBonusNumberMatched) {
             return SECOND.getRank();
-        if (matchCount == 5)
+        }
+        if (matchCount == 5) {
             return THIRD.getRank();
-        if (matchCount == 4)
+        }
+        if (matchCount == 4) {
             return FOURTH.getRank();
-        if (matchCount == 3)
+        }
+        if (matchCount == 3) {
             return FIFTH.getRank();
+        }
 
         return MISS.getRank();
     }

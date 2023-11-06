@@ -20,6 +20,7 @@ public class Purchase {
     public int getPurchaseCount() {
         return purchaseCount;
     }
+    public int getPurchasePrice(){return purchasePrice;}
 
 
 

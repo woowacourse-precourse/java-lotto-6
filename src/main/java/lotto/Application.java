@@ -37,7 +37,9 @@ public class Application {
         ranking = prizeChecker.checkRank(lottos,prizeNumber);
         System.out.println(ranking.getWinningDetails());
 
-        System.out.println(YieldCalculator.totalPrize(ranking));
+        System.out.println(YieldCalculator.totalPrize(ranking)); //당첨 총액
+
+        System.out.println(YieldCalculator.yieldcalculate(YieldCalculator.totalPrize(ranking),purchase.getPurchasePrice()));
 
     }
 

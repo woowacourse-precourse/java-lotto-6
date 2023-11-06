@@ -28,4 +28,11 @@ public class YieldCalculator {
         }
         return rank.getPrice();
     }
+
+    public static double yieldcalculate(int total , int purchase){
+        double yield = (double) total / purchase;
+        yield *= 100;
+        yield = (double) Math.round(yield*10)/10;
+        return yield;
+    }
 }

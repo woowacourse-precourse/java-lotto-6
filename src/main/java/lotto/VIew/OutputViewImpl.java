@@ -8,6 +8,7 @@ import static lotto.Message.OutputViewMessage.WINNING_STATS;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.Domain.LottoGroup;
 import lotto.Domain.LottoResult.LottoResult;
 import lotto.Domain.LottoResult.Prize;
@@ -30,8 +31,11 @@ public class OutputViewImpl implements OutputView {
     public void printOrderedLottos(LottoGroup lottoGroup) {
         for (int order = 0; order < lottoGroup.findLottoNumbersSize(); order++) {
             List<Integer> numbers = lottoGroup.findLottoByIndex(order).getNumbers();
-            numbers.sort(Integer::compareTo);
-            System.out.println(numbers);
+            List<Integer> sortedNumbers = numbers.stream()
+                    .sorted()
+                    .toList();
+
+            System.out.println(sortedNumbers);
         }
     }
 

@@ -34,4 +34,10 @@ public class Game {
         long total_money = output.totalMoney(rank);
         calculate.calculateRevenue(lotto_number, total_money);
     }
+
+    public void run(){
+        askMoney();
+        askNumber();
+        correctNumber();
+    }
 }

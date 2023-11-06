@@ -7,6 +7,7 @@ public class PurchaseAmount {
 		validateIsDigit(amount);
 		int convertedAmount = convertStringToInt(amount);
 		validateIsPositive(convertedAmount);
+		validateIsThousandUnit(convertedAmount);
 		this.amount = convertedAmount;
 	}
 
@@ -21,6 +22,12 @@ public class PurchaseAmount {
 	private void validateIsDigit(String amount) {
 		if (!isDigit(amount)) {
 			throw new IllegalArgumentException("[ERROR] 금액을 숫자로만 다시 입력해주세요");
+		}
+	}
+
+	private void validateIsThousandUnit(int amount) {
+		if (!(amount % 1000 == 0)) {
+			throw new IllegalArgumentException("[ERROR] 입력 단위는 1000단위 입니다");
 		}
 	}
 

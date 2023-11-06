@@ -33,4 +33,16 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있으면 true를 반환한다.")
+    @Test
+    void lottoHasBonus() {
+        Assertions.assertTrue(new Lotto(List.of(1,2,3,4,5,6)).hasBonus(5));
+    }
+
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있으면 false를 반환한다.")
+    @Test
+    void lottoHasNotBonus() {
+        Assertions.assertTrue(new Lotto(List.of(1,2,3,4,5,6)).hasBonus(7));
+    }
 }

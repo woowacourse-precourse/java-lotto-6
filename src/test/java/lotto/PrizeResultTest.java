@@ -32,7 +32,6 @@ public class PrizeResultTest {
         assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(1);
         assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
         assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.MISS)).isEqualTo(1);
     }
 
     @DisplayName("총 상금 계산 테스트")

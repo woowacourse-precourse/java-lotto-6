@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.List;
 
 public class PrizeResult {
     EnumMap<Prize, Integer> prizeCount = new EnumMap<>(Prize.class);
@@ -36,6 +35,8 @@ public class PrizeResult {
     }
 
     private void updatePrizeCount(Prize prize) {
-        prizeCount.put(prize, prizeCount.get(prize) + 1);
+        if (prize != null) {
+            prizeCount.put(prize, prizeCount.get(prize) + 1);
+        }
     }
 }

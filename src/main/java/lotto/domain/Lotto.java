@@ -12,9 +12,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (!LottoNumberValidator.hasDuplicateNumbers(numbers) && !LottoNumberValidator.validateLottoNumbersRange(numbers)) {
-            throw new IllegalArgumentException();
-        }
+        LottoNumberValidator.hasDuplicateNumbers(numbers);
+        LottoNumberValidator.validateLottoNumbersRange(numbers);
     }
 
     // TODO: 추가 기능 구현

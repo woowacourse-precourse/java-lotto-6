@@ -5,11 +5,11 @@ import lotto.domain.wrapper.LottoNumber;
 import lotto.utils.ErrorMessage;
 import lotto.utils.Prize;
 
-public class LottoPrizeChecker {
+public class PrizeChecker {
     Lotto winningLotto;
     LottoNumber bonusNumber;
 
-    public LottoPrizeChecker(Lotto winningLotto, LottoNumber bonusNumber) {
+    public PrizeChecker(Lotto winningLotto, LottoNumber bonusNumber) {
         validateBonusNumber(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;

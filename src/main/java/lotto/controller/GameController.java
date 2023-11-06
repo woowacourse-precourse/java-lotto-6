@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Lottos;
 import lotto.domain.wrapper.PurchaseAmout;
-import lotto.service.LottoVendingMachine;
+import lotto.service.VendingMachine;
 import lotto.service.PrizeManager;
 import lotto.utils.Prize;
 import lotto.view.InputView;
@@ -31,8 +31,8 @@ public class GameController {
     }
 
     private Lottos buyLottos(PurchaseAmout purchaseAmout) {
-        LottoVendingMachine lottoVendingMachine = new LottoVendingMachine(purchaseAmout);
-        return lottoVendingMachine.getLottos();
+        VendingMachine vendingMachine = new VendingMachine(purchaseAmout);
+        return vendingMachine.getLottos();
     }
 
     private void printLottos(Lottos playerLottos) {

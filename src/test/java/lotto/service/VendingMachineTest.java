@@ -11,17 +11,17 @@ import lotto.domain.wrapper.PurchaseAmout;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoVendingMachineTest extends NsTest {
+class VendingMachineTest extends NsTest {
 
     @DisplayName("구입 금액에 따라 구입한 개수만큼 로또가 랜덤 번호를 기반으로 생성된다.")
     @Test
     void buyLottos() {
         // given
         PurchaseAmout purchaseAmout = new PurchaseAmout(8000);
-        LottoVendingMachine lottoVendingMachine = new LottoVendingMachine(purchaseAmout);
+        VendingMachine vendingMachine = new VendingMachine(purchaseAmout);
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    Lottos lottos = lottoVendingMachine.getLottos();
+                    Lottos lottos = vendingMachine.getLottos();
                     System.out.println(lottos.toString());
                     assertThat(output()).contains(
                             "[8, 21, 23, 41, 42, 43]",

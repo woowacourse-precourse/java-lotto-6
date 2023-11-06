@@ -8,11 +8,11 @@ import lotto.domain.Lottos;
 import lotto.domain.wrapper.PurchaseAmout;
 import lotto.utils.LottoConstantValue;
 
-public class LottoVendingMachine {
+public class VendingMachine {
     private static final int START_COUNT = 0;
     private PurchaseAmout purchaseAmout;
 
-    public LottoVendingMachine(PurchaseAmout purchaseAmount) {
+    public VendingMachine(PurchaseAmout purchaseAmount) {
         this.purchaseAmout = purchaseAmount;
     }
     public Lottos getLottos() {

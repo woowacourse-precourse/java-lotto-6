@@ -16,7 +16,7 @@ public class Lotto {
 
     private void validateSize(final List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_COUNT.getValue()) {
-            throw new IllegalArgumentException(INCORRECT_LOTTO_COUNT.getMassage());
+            throw new IllegalArgumentException(INVALID_LOTTO_COUNT.getMassage());
         }
     }
 

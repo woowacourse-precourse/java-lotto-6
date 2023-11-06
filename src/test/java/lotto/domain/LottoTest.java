@@ -13,7 +13,7 @@ class LottoTest {
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(createLottoNumbers(List.of(1, 2, 3, 4, 5, 6, 7))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INCORRECT_LOTTO_COUNT.getMassage());
+                .hasMessage(INVALID_LOTTO_COUNT.getMassage());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")

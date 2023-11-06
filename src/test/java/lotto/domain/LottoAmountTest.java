@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.enums.ErrorMassage.INCORRECT_AMOUNT_UNIT;
+import static lotto.enums.ErrorMassage.INVALID_AMOUNT_UNIT;
 import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -27,7 +27,7 @@ class LottoAmountTest {
         // when & then
         assertThatThrownBy(() -> new LottoAmount(amount))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INCORRECT_AMOUNT_UNIT.getMassage());
+                .hasMessage(INVALID_AMOUNT_UNIT.getMassage());
     }
 
     @ParameterizedTest

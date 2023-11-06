@@ -15,4 +15,17 @@ public class LottoService {
 
         return lottos;
     }
+
+    public int makeIdentifyNum(Lotto lotto, WinningNum winningNum, BonusNum bonusNum) {
+        int identifyNum = 0;
+        for (int o : winningNum.getWinningnum()) {
+            if (lotto.getLotto().contains(o)) {
+                identifyNum+=1;
+            }
+        }
+        if (identifyNum == 5 && lotto.getLotto().contains(bonusNum.getBonusNum())) {
+            identifyNum=10;
+        }
+        return identifyNum;
+    }
 }

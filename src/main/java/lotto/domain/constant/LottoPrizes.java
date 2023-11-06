@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.constant;
 
 import static lotto.domain.constant.DomainConstant.ZERO;
 

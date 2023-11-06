@@ -1,15 +1,16 @@
 package lotto.domain;
 
-import static lotto.domain.LottoPrizes.FIVE_NUMBER_AND_BONUS_MATCHED;
-import static lotto.domain.LottoPrizes.FIVE_NUMBER_MATCHED;
-import static lotto.domain.LottoPrizes.FOUR_NUMBERS_MATCHED;
-import static lotto.domain.LottoPrizes.SIX_NUMBER_MATCHED;
-import static lotto.domain.LottoPrizes.THREE_NUMBERS_MATCHED;
+import static lotto.domain.constant.LottoPrizes.FIVE_NUMBER_AND_BONUS_MATCHED;
+import static lotto.domain.constant.LottoPrizes.FIVE_NUMBER_MATCHED;
+import static lotto.domain.constant.LottoPrizes.FOUR_NUMBERS_MATCHED;
+import static lotto.domain.constant.LottoPrizes.SIX_NUMBER_MATCHED;
+import static lotto.domain.constant.LottoPrizes.THREE_NUMBERS_MATCHED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.domain.constant.LottoPrizes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

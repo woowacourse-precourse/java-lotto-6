@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import lotto.domain.constant.LottoPrizes;
 
 public record UserLotto(List<Lotto> lottos) {
     private static final long COUNT_UNIT = 1L;

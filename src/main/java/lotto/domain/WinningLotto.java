@@ -6,6 +6,7 @@ import static lotto.domain.constant.DomainConstant.SIX;
 import static lotto.domain.constant.DomainConstant.THREE;
 
 import java.util.List;
+import lotto.domain.constant.LottoPrizes;
 
 public record WinningLotto(List<Integer> numbers, int bonusNumber) {
     public LottoPrizes compare(final Lotto lotto) {

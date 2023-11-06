@@ -8,15 +8,11 @@ public class InputCommonValidator {
     private InputCommonValidator() {
     }
 
-    public static void validateMultiple(final List<String> inputs) {
+    public static void validateNumbers(final List<String> inputs) {
         inputs.forEach(InputCommonValidator::validateNumber);
     }
 
-    public static void validateSingle(final String input) {
-        validateNumber(input);
-    }
-
-    private static void validateNumber(final String input) {
+    public static void validateNumber(final String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {

@@ -15,7 +15,7 @@ public class InputView {
     public int inputBuyingPrice() {
         System.out.println(INPUT_MONEY_MESSAGE);
         String inputPrice = readLine().trim();
-        InputCommonValidator.validateSingle(inputPrice);
+        InputCommonValidator.validateNumber(inputPrice);
         return Integer.parseInt(inputPrice);
     }
 
@@ -24,14 +24,14 @@ public class InputView {
         List<String> inputNumbers = Arrays.stream(readLine().split(DELIMITER))
                 .map(String::trim)
                 .toList();
-        InputCommonValidator.validateMultiple(inputNumbers);
+        InputCommonValidator.validateNumbers(inputNumbers);
         return convertToNumbers(inputNumbers);
     }
 
     public int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         String number = readLine();
-        InputCommonValidator.validateSingle(number);
+        InputCommonValidator.validateNumber(number);
         return Integer.parseInt(number);
     }
 

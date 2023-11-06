@@ -46,7 +46,6 @@ public class Game {
         }
     }
 
-
     public void start() {
         List<Lotto> lotteries = createLotteries();
         Output.printLotto(lotteries);
@@ -56,6 +55,6 @@ public class Game {
         List<Rank> result = lottoMachine.draw(winningNumber, bonus, lotteries);
         Output.printResult(result);
         double winnings = lottoMachine.combineWinnings(result);
-        System.out.printf("%.2f%n", winnings / amount * 100);
+        Output.printEarnings(winnings / amount * 100);
     }
 }

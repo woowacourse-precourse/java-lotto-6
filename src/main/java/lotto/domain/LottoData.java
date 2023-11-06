@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.utils.Validation;
 
 public record LottoData(List<Integer> winningNumbers, int bonusNumber) {
 
@@ -12,13 +13,13 @@ public record LottoData(List<Integer> winningNumbers, int bonusNumber) {
     }
 
     private void validatewinningNumbers(List<Integer> winningNumbers) {
-        // TODO: 6개의 숫자가 아니면 예외 발생
-        // TODO: 1~45 사이의 숫자가 아니면 예외 발생
-        // TODO: 중복된 숫자가 있으면 예외 발생
+        Validation.validateListNumberCount(winningNumbers, 6);
+        Validation.validateListNumberInRange(winningNumbers, 1, 45);
+        Validation.validateListNumberNotDuplicated(winningNumbers);
     }
 
     private void validateBonusNumber(int bonusNumber) {
-        // TODO: 1~45 사이의 숫자가 아니면 예외 발생
-        // TODO: 당첨 번호에 포함되는 숫자면 예외 발생
+        Validation.validateNumberInRange(bonusNumber, 1, 45);
+        Validation.validateBonusNumberNotInWinningNumber(bonusNumber, winningNumbers);
     }
 }

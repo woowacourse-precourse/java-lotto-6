@@ -1,6 +1,13 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.LottoException;
+import lotto.utils.Checker;
+import lotto.utils.Parser;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
 
 public class View {
 
@@ -16,24 +23,53 @@ public class View {
         System.out.println();
     }
 
-    public static String requestMoney(){
-        printMessage(Message.REQUEST_MONEY);
-        final String request = Console.readLine();
-        printNewLine();
-        return request;
+    public static <T> T inputHandler(Message message, Function<String, T> func) {
+        while (true) {
+            try {
+                printMessage(message);
+                final String input = Console.readLine();
+                return func.apply(input);
+            } catch (LottoException ignored) {
+            }
+        }
     }
 
-    public static String requestNumbers(){
-        printMessage(Message.REQUEST_NUMBERS);
-        final String request = Console.readLine();
-        printNewLine();
-        return request;
+
+    public static Integer requestMoney() {
+        return inputHandler(Message.REQUEST_MONEY, input -> {
+            Integer result = Parser.parseStringToInt(input);
+            if (!Checker.isPositive(result)) {
+                throw LottoException.of(lotto.exception.Message.MONEY_RANGE);
+            }
+            if (!Checker.is1k(result)) {
+                throw LottoException.of(lotto.exception.Message.MONEY_REMAINDER);
+            }
+            return result;
+        });
     }
 
-    public static String requestNumberBonus(){
-        printMessage(Message.REQUEST_NUMBER_BONUS);
-        final String request = Console.readLine();
-        printNewLine();
-        return request;
+    public static List<Integer> requestNumbers() {
+        return inputHandler(Message.REQUEST_NUMBERS, input -> {
+            List<Integer> result = Parser.parseStringToIntList(input);
+            Checker.validateUnique(result);
+            Checker.validateSize(result, 6);
+            Checker.validateRange(result, 1, 45);
+            return result;
+        });
+    }
+
+    public static Integer requestNumberBonus(List<Integer> ticketNumbers) {
+        return inputHandler(Message.REQUEST_NUMBER_BONUS, input -> {
+            Integer result = Parser.parseStringToInt(input);
+
+            if (!Checker.isValidateRange(result, 1, 45)) {
+                throw LottoException.of(lotto.exception.Message.MONEY_RANGE);
+            }
+
+            List<Integer> copiedList = new ArrayList<>(ticketNumbers);
+            copiedList.add(result);
+            Checker.validateUnique(copiedList);
+            return result;
+        });
     }
 }

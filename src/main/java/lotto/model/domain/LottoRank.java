@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 public enum LottoRank {
     NO_LUCK(0, false, 0),

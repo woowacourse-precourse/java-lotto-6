@@ -3,9 +3,9 @@ package lotto.view.output;
 import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.LottoRank;
-import lotto.model.LottoResult;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.LottoRank;
+import lotto.model.domain.LottoResult;
 
 public class OutputView {
 

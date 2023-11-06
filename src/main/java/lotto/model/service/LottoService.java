@@ -1,14 +1,18 @@
-package lotto.model;
+package lotto.model.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.configuration.LottoConstants;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.LottoRank;
+import lotto.model.domain.LottoResult;
+import lotto.model.domain.WinningNumber;
 
 public class LottoService {
 
-    public List<Lotto> purchaseLotto(Integer money) {
+    public List<Lotto> purchaseLotto(int money) {
         int lottoCount = money / LottoConstants.LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 

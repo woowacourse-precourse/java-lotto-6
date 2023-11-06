@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.vo.WinningLottoNumbers;
 
 public class WinningLotto {
-    private WinningLottoNumbers lottoNumbers;
+    private final WinningLottoNumbers lottoNumbers;
     private final static int DELETE_INDEX = 6;
 
     public WinningLotto(List<Integer> lottoNumbers){

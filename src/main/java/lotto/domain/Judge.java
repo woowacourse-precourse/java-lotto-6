@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class Judge {
         return false;
     }
 
-    public static Enum<Ranking> resultPerLotto(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
+    public static Ranking resultPerLotto(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
         Integer winningCount = winningCount(lotto, winningNumbers);
         Boolean bonusMatch = isBonusMatch(lotto, bonusNumber);
 
@@ -54,5 +55,22 @@ public class Judge {
             return Ranking.FIRST;
         }
         return Ranking.NONE;
+    }
+
+    public static List<Integer> result(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber) {
+        List<Integer> result = Arrays.asList(0, 0, 0, 0, 0);
+
+        for (Lotto lotto : lottos) {
+            Ranking ranking = resultPerLotto(lotto, winningNumbers, bonusNumber);
+
+            if (ranking != Ranking.NONE) {
+                Integer index = ranking.rank() - 1;
+                Integer count = result.get(index);
+
+                result.set(index, count + 1);
+            }
+        }
+
+        return result;
     }
 }

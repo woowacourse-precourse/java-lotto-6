@@ -3,9 +3,10 @@ package lotto.view;
 import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
 import static lotto.view.constants.MessageType.WINNING_NUMBERS_REQUEST_MESSAGE;
+import static lotto.view.constants.SymbolType.INPUT_SEPARATOR;
+import static lotto.view.constants.SymbolType.OUTPUT_SEPARATOR;
 import static lotto.view.constants.SymbolType.POSTFIX;
 import static lotto.view.constants.SymbolType.PREFIX;
-import static lotto.view.constants.SymbolType.SEPARATOR;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -26,7 +27,7 @@ public final class View {
 
     public static void requestDrawnNumbers() {
         printlnMessage(WINNING_NUMBERS_REQUEST_MESSAGE);
-        enterMessage();
+        Validator.validateDrawnNumbers(enterMessage());
     }
 
     private static void printLottosCount(int count) {
@@ -40,7 +41,7 @@ public final class View {
     }
 
     private static void printLottoInfo(Lotto lotto) {
-        String result = String.join(SEPARATOR.getSymbol(), convertNumbers(lotto.getNumbers()));
+        String result = String.join(OUTPUT_SEPARATOR.getSymbol(), convertNumbers(lotto.getNumbers()));
         printlnResult(PREFIX + result + POSTFIX);
     }
 
@@ -106,5 +107,28 @@ public final class View {
         private static boolean isNotDivisible(String cost) {
             return Integer.parseInt(cost) % 1000 != 0;
         }
+
+        private static void validateDrawnNumbers(String message) {
+            validateInvalidSeparators(message);
+        }
+
+        private static void validateInvalidSeparators(String message) {
+            if (hasEdgeSeparator(message)) {
+                throw new IllegalArgumentException("올바르지 않은 구분자 입력입니다.");
+            }
+        }
+
+        private static boolean hasEdgeSeparator(String message) {
+            return startsWithSeparator(message) || endsWithSeparator(message);
+        }
+
+        private static boolean startsWithSeparator(String message) {
+            return message.startsWith(INPUT_SEPARATOR.getSymbol());
+        }
+
+        private static boolean endsWithSeparator(String message) {
+            return message.endsWith(INPUT_SEPARATOR.getSymbol());
+        }
+
     }
 }

@@ -1,7 +1,8 @@
 package lotto.view.constants;
 
 public enum SymbolType {
-    SEPARATOR(", "),
+    OUTPUT_SEPARATOR(", "),
+    INPUT_SEPARATOR(","),
     PREFIX("["),
     POSTFIX("]");
 

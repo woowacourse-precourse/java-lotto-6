@@ -34,7 +34,6 @@ public class View {
         }
     }
 
-
     public static Integer requestMoney() {
         return inputHandler(Message.REQUEST_MONEY, input -> {
             Integer result = Parser.parseStringToInt(input);

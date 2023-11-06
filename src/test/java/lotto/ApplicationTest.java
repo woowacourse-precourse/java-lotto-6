@@ -23,7 +23,14 @@ class ApplicationTest extends NsTest {
         Prize.FOUR.setCount(0);
         Prize.THREE.setCount(0);
     }
+    @Test
+    void 보너스번호_중복_체크(){
+        assertSimpleTest(() -> {
+            runException("1000" , "1,2,3,4,5,6" , "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
 
+    }
 
     @Test
     void 당첨번호_범위_테스트(){

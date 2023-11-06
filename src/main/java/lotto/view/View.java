@@ -45,7 +45,7 @@ public class View {
                 throw LottoException.of(lotto.exception.Message.MONEY_REMAINDER);
             }
             printNewLine();
-            return result /~ GameSetting.TICKET_PRICE.getValue();
+            return result / GameSetting.TICKET_PRICE.getValue();
         });
     }
 

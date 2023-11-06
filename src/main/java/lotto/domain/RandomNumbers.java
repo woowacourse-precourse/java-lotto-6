@@ -4,11 +4,7 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.List;
 
-public class RandomNumbers {
-    private static final int LOTTO_SIZE = 6;
-    private static final int NUMBER_MAX_SIZE = 45;
-    private static final int NUMBER_MIN_SIZE = 1;
-
+public class RandomNumbers extends LottoNumber {
 
     public RandomNumbers() {
     }

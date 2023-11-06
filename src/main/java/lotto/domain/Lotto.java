@@ -1,14 +1,19 @@
 package lotto.domain;
 
 import static java.util.Collections.sort;
-import static lotto.utils.ErrorMessage.*;
+import static lotto.utils.ErrorMessage.IS_INVALID_LOTTO_SIZE;
 
 import java.util.List;
 
-public class Lotto {
-    private final List<Integer> numbers;
+public class Lotto extends lotto.domain.LottoNumber {
+    private List<Integer> numbers;
 
+    public Lotto(int lottoNumber) {
+        super(lottoNumber);
+    }
     public Lotto(List<Integer> numbers) {
+        super();
+        numbers.forEach(Lotto::new);
         sort(numbers);
         validate(numbers);
         this.numbers = numbers;
@@ -16,17 +21,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         isLottoSizeValid(numbers);
-        isLottoNumberRangeValid(numbers);
     }
 
-    private void isLottoNumberRangeValid(List<Integer> numbers) {
-        if (numbers.get(numbers.size()-1) > 45 || numbers.get(0) < 1) {
-            throw new IllegalArgumentException(IS_INVALID_LOTTO_NUMBER_RANGE.getMessage());
-        }
-    }
-
-    private void isLottoSizeValid(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    protected void isLottoSizeValid(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(IS_INVALID_LOTTO_SIZE.getMessage());
         }
     }

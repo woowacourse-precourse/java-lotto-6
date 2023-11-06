@@ -12,6 +12,7 @@ public class LottoWinningNumber {
         this.numbers = new ArrayList<>();
 
         validateNumbersSize(numbers);
+        validateDuplicateNumbers(numbers);
 
         for (int i = 0; i < numbers.size(); ++i) {
             int number = numbers.get(i);
@@ -20,6 +21,17 @@ public class LottoWinningNumber {
         }
         this.numbers = numbers;
     }
+
+    private void validateDuplicateNumbers(List<Integer> numbers) {
+        List<Integer> distinctNumbers = numbers.stream()
+                .distinct()
+                .toList();
+
+        if (distinctNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("당첨 번호는 중복될 수 없습니다.");
+        }
+    }
+
 
     private static void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT) {

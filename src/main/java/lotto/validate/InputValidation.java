@@ -20,4 +20,10 @@ public class InputValidation {
             throw new IllegalArgumentException(ONLY_DIVIDED_THOUSAND);
         }
     }
+    // 숫자 사이의 공백, null
+    private void isNullOrBlank(String number) {
+        if (Objects.isNull(number) || number.isBlank()) {
+            throw new IllegalArgumentException("빈 값을 입력할 수 없습니다.");
+        }
+    }
 }

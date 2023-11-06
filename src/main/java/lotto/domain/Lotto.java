@@ -67,6 +67,15 @@ public class Lotto {
         return false;
     }
 
+    public boolean hasNumber(int number) {
+        for (int num : numbers) {
+            if (num == number) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // TODO: 추가 기능 구현
     public static Lotto generate() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

@@ -8,7 +8,7 @@
 - [x] 로또를 발행한다. - Lotto#generate()
   - 아래에서 설명하는 규칙을 따른다.
   - 1장의 발행 가격은 1,000원이다.
-- [ ] 사용자로부터 당첨 번호와 보너스 번호를 입력받는다.
+- [x] 사용자로부터 당첨 번호와 보너스 번호를 입력받아 당첨 로또를 만든다. - LottoService#createWinningLotto()
   - [x] 당첨 번호를 입력 받는다. - InputView#requestWinningLottoNumbers()
     - 번호는 쉼표(,)를 기준으로 구분한다.
   - [x] 보너스 번호를 입력받는다. - InputView#requestBonusNumber()

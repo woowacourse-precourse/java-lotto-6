@@ -21,46 +21,46 @@ class ValidatorTest {
 
     @Test
     @DisplayName("입력값이 공백이거나 null일 시 예외 발생")
-    void isBlankOrNULLTest() {
+    void checkBlankOrNULLTest() {
         stringTestCases = Arrays.asList(new String[]{"", null});
         for (String testCase : stringTestCases) {
-            assertThatThrownBy(() -> Validator.isBlankOrNULL(testCase));
+            assertThatThrownBy(() -> Validator.checkBlankOrNULL(testCase));
         }
     }
 
     @Test
     @DisplayName("공백 문자를 포함할 시 예외 발생")
-    void containSpaceTest() {
+    void checkContainSpaceTest() {
         stringTestCases = Arrays.asList(new String[]{" 1", "1, 2", "1 ", "1,2 "});
         for (String testCase : stringTestCases) {
-            assertThatThrownBy(() -> Validator.containSpace(testCase));
+            assertThatThrownBy(() -> Validator.checkContainSpace(testCase));
         }
     }
 
     @Test
     @DisplayName("양의 정수가 아닐 경우 예외 발생")
-    void isNumberTest() {
+    void checkNANTest() {
         stringTestCases = Arrays.asList(new String[]{"a", "asdf", "120a", "!230"});
         for (String testCase : stringTestCases) {
-            assertThatThrownBy(() -> Validator.isNumber(testCase));
+            assertThatThrownBy(() -> Validator.checkNAN(testCase));
         }
     }
 
     @Test
     @DisplayName("1000원으로 나누어 떨어지지 않을 경우 예외 발생")
-    void isDividedByTest() {
+    void checkDividedByTest() {
         numberTestCases = Arrays.asList(new Integer[]{1001, 1100, 3500, 9});
         for (Integer testCase : numberTestCases) {
-            assertThatThrownBy(() -> Validator.isDividedBy(1000, testCase));
+            assertThatThrownBy(() -> Validator.checkDividedBy(1000, testCase));
         }
     }
 
     @Test
     @DisplayName(",,가 포함되어 있거나 ,로 시작하거나 끝날 경우 예외 발생")
-    void containInvalidComma() {
+    void checkInvalidComma() {
         stringTestCases = Arrays.asList(new String[]{"1,,2", ",1,2", "1,2,", ",1", "1,"});
         for (String testCase : stringTestCases) {
-            assertThatThrownBy(() -> Validator.containInvalidComma(testCase));
+            assertThatThrownBy(() -> Validator.checkInvalidComma(testCase));
         }
     }
 }

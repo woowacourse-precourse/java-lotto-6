@@ -1,14 +1,16 @@
 package lotto.controller;
 
-import lotto.model.*;
+import lotto.model.Lotto;
+import lotto.model.LotteryBallMachine;
+import lotto.model.Purchase;
 import lotto.model.prize.Prize;
 import lotto.model.prize.PrizeEvaluator;
 import lotto.model.winning.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LottoGameConsole {
     private final InputView inputView = new InputView();
@@ -18,33 +20,39 @@ public class LottoGameConsole {
     private WinningNumbers winningNumbers;
 
     public void start() {
+        inputPurchaseMoney();
         purchaseLotto();
 
+        inputWinningNumbers();
+        inputBonusNumber();
+
+        Prize prize = evaluatePrize();
+        printResult(prize);
+    }
+
+    private void inputPurchaseMoney() {
+        try {
+            String inputMoney = inputView.inputMoney();
+            purchase = new Purchase<>(inputMoney);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputPurchaseMoney();
+        }
+    }
+
+    private void purchaseLotto() {
         int purchaseMoney = purchase.getMoney();
         int purchaseCount = purchaseMoney / Purchase.PURCHASE_MONEY_UNIT;
 
         outputView.printLottoCount(purchaseCount);
         purchase.purchaseItems(generateLotto(purchaseCount));
         outputView.printLotto(purchase.toString());
-
-        inputWinningNumbers();
-        inputBonusNumber();
-
-        PrizeEvaluator prizeEvaluator = new PrizeEvaluator();
-        Prize prize = prizeEvaluator.evaluate(winningNumbers, purchase.getItems());
-
-        outputView.printPrizeResult(prize);
-        outputView.printPrizeRate(calculatePrizeRate(prize.prizeMoney()));
     }
 
-    private void purchaseLotto() {
-        try {
-            String inputMoney = inputView.inputMoney();
-            purchase = new Purchase<>(inputMoney);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            purchaseLotto();
-        }
+    private List<Lotto> generateLotto(int purchaseCount) {
+        return Stream.generate(() -> new Lotto(LotteryBallMachine.generateNumbers()))
+                .limit(purchaseCount)
+                .toList();
     }
 
     private void inputWinningNumbers() {
@@ -67,15 +75,14 @@ public class LottoGameConsole {
         }
     }
 
-    private List<Lotto> generateLotto(int purchaseCount) {
-        List<Lotto> lottos = new ArrayList<>();
+    private Prize evaluatePrize() {
+        PrizeEvaluator prizeEvaluator = new PrizeEvaluator();
+        return prizeEvaluator.evaluate(winningNumbers, purchase.getItems());
+    }
 
-        for (int i = 0; i < purchaseCount; i++) {
-            Lotto lotto = new Lotto(LotteryBallMachine.generateNumbers());
-            lottos.add(lotto);
-        }
-
-        return lottos;
+    private void printResult(Prize prize) {
+        outputView.printPrizeResult(prize);
+        outputView.printPrizeRate(calculatePrizeRate(prize.prizeMoney()));
     }
 
     private double calculatePrizeRate(int prizeMoney) {

@@ -8,7 +8,7 @@
         - [x] throw exception if non-integer
         - [x] unit tests
     - [x] make lotto card (MakeLottoCard)
-      - unique 6 numbers
+      - unique 7 numbers (includes bonus number within same list)
         - one bonus number
         - make_random_number()
             - 1~45****

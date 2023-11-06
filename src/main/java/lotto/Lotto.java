@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.List;
 
+import static lotto.LottoConstants.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -11,13 +13,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException();
         }
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException();
         }
-        if (numbers.stream().anyMatch(n -> n < 1 || n > 45)) {
+        if (numbers.stream().anyMatch(n -> n < MIN_LOTTO_NUMBER.getValue() || n > MAX_LOTTO_NUMBER.getValue())) {
             throw new IllegalArgumentException();
         }
     }

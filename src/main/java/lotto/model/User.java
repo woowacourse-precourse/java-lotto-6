@@ -20,7 +20,8 @@ public class User {
     }
 
     public double getStatistics() {
-        return calculateStatistic();
+        double earnedMoney = sumEarnedMoney();
+        return calculateRateOfReturn(earnedMoney, spendMoney.getMoney());
     }
 
     public List<Lotto> getLottos() {
@@ -39,14 +40,13 @@ public class User {
         lottos.forEach(lotto -> lotto.calculateResult(winningLotto));
     }
 
-    private double calculateStatistic() {
-        double earnedMoney = lottos.stream()
+    private double sumEarnedMoney() {
+        return lottos.stream()
                 .filter(lotto -> lotto.getResult() != null)
                 .mapToDouble(lotto -> lotto.getResult().getPrize())
                 .sum();
-
-        return calculateRateOfReturn(earnedMoney, spendMoney.getMoney());
     }
+
 
     private double calculateRateOfReturn(double earned, double spend) {
         return earned * 100 / spend;

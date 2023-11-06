@@ -13,7 +13,9 @@ import static lotto.utility.StringUtil.*;
 public class LottoManager {
 
     private static LottoManager lottoManager;
-    InputValidator inputValidator = new InputValidator();
+    private int lottoTicketCount;
+    private List<Integer> winningNumber;
+
 
     private LottoManager() {
 
@@ -25,18 +27,9 @@ public class LottoManager {
         }
         return lottoManager;
     }
-    private int lottoTicketCount;
 
     public int generateLottoTickets(int payAmount) {
         return payAmount / PAY_AMOUNT_UNIT.getValue();
-    }
-
-    public void setLottoTicketCount(int lottoTicketCount) {
-        this.lottoTicketCount = lottoTicketCount;
-    }
-
-    public int getLottoTicketCount() {
-        return lottoTicketCount;
     }
 
     public List<Lotto> generateLottoList() {
@@ -51,6 +44,22 @@ public class LottoManager {
     }
 
     public List<Integer> generateLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START_INCLUSIVE.getValue(), LOTTO_NUMBER_END_INCLUSIVE.getValue(), LOTTO_NUMBER_COUNT.getValue());
+        return Randoms.pickUniqueNumbersInRange(
+                LOTTO_NUMBER_START_INCLUSIVE.getValue(),
+                LOTTO_NUMBER_END_INCLUSIVE.getValue(),
+                LOTTO_NUMBER_COUNT.getValue()
+        );
+    }
+
+    public void setLottoTicketCount(int lottoTicketCount) {
+        this.lottoTicketCount = lottoTicketCount;
+    }
+
+    public int getLottoTicketCount() {
+        return lottoTicketCount;
+    }
+
+    public void setWinningNumber(List<Integer> winningNumber) {
+        this.winningNumber = winningNumber;
     }
 }

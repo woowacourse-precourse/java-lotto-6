@@ -64,6 +64,18 @@ public class IOManager {
         for(String element: inputWinningNumber) {
             winningNumber.add(Integer.parseInt(element));
         }
+
+        if (!inputValidator.isValidWinningNumberRange(winningNumber)) {
+            throw new IllegalArgumentException(PRINT_ERR_WINNING_NUMBER_INVALID_RANGE.getMessage());
+        }
+
+        if (!inputValidator.isVailidWinningNumberCount(winningNumber)) {
+            throw new IllegalArgumentException(PRINT_ERR_WINNING_NUMBER_INVALID_COUNT.getMessage());
+        }
+
+        if (!inputValidator.hasDuplicates(winningNumber)) {
+            throw new IllegalArgumentException(PRINT_ERR_WINNING_NUMBER_DUPLICATE.getMessage());
+        }
         return winningNumber;
     }
 }

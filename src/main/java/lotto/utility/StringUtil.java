@@ -1,5 +1,7 @@
 package lotto.utility;
 
+import static lotto.utility.IntegerUtil.*;
+
 public enum StringUtil {
 
     ENTER_PAY_AMOUNT("구입금액을 입력해 주세요."),
@@ -9,9 +11,15 @@ public enum StringUtil {
     PRINT_WINNING_STATISTICS("당첨 통계\n"),
     PRINT_WINNING_DETAILS("%s (%s원) - %s개\n"),
     PRINT_ROI("총 수익률은 %s%입니다.\n"),
-    PRINT_ERR_PAY_AMOUNT_INVALID_UNIT_INTERVER("[ERROR] 1000원 단위로 떨어지는 금액을 입력해주세요.\n"),
+    PRINT_ERR_PAY_AMOUNT_INVALID_UNIT_INTERVER(String.format("[ERROR] %d원 단위로 떨어지는 금액을 입력해주세요.\n", PAY_AMOUNT_UNIT.getValue())),
     PRINT_ERR_PAY_AMOUNT_NOT_DIGIT("[ERROR] 입력할 금액으로 숫자를 입력해주세요.\n"),
-    PRINT_ERR_WINNING_NUMBER_NOT_DIGIT("[ERROR] 숫자로만 구성된 당첨 번호를 입력해주세요.\n");
+    PRINT_ERR_WINNING_NUMBER_NOT_DIGIT("[ERROR] 숫자로만 구성된 당첨 번호를 입력해주세요.\n"),
+    PRINT_ERR_WINNING_NUMBER_INVALID_RANGE(String.format("[ERROR] %d와 %d사이의 숫자를 입력해주세요.\n",
+            LOTTO_NUMBER_START_INCLUSIVE.getValue(),
+            LOTTO_NUMBER_END_INCLUSIVE.getValue()
+    )),
+    PRINT_ERR_WINNING_NUMBER_INVALID_COUNT(String.format("[ERROR] %d개로 구성된 번호들을 입력해주세요.\n", LOTTO_NUMBER_COUNT.getValue())),
+    PRINT_ERR_WINNING_NUMBER_DUPLICATE(String.format("중복되지 않은 %d개의 숫자를 입력해주세요.\n", LOTTO_NUMBER_COUNT.getValue()));
 
     private String message;
 

@@ -15,7 +15,14 @@ public class WinningNumberController {
     public void handle() {
 
         ioManager.printWiningNumberInputGuide();
-        List<Integer> winningNumber = ioManager.readWinningNumber();
 
+        try {
+            List<Integer> winningNumber = ioManager.readWinningNumber();
+            lottoManager.setWinningNumber(winningNumber);
+        } catch (IllegalArgumentException e ) {
+            ioManager.printExceptionMessage(e.getMessage());
+            String className = this.getClass().getName();
+            appManager.handleInvalidInput(className);
+        }
     }
 }

@@ -25,6 +25,8 @@ public class OutputView {
     }
 
     public void printLottoResult(WinningLottoStorage winningLottoStorage) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
         for (Map.Entry<Rank, String> ranks : rankPrinter.entrySet()) {
             Rank rank = ranks.getKey();
             int numberOfItems = getLottoResultByRank(rank, winningLottoStorage);
@@ -51,6 +53,6 @@ public class OutputView {
     }
 
     public void printNumberOfPurchases(int purchaseCount) {
-        System.out.println(purchaseCount + "개를 구매했습니다.");
+        System.out.println("\n" + purchaseCount + "개를 구매했습니다.");
     }
 }

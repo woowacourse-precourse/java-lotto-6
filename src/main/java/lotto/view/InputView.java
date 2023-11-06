@@ -19,7 +19,7 @@ public class InputView {
     }
 
     public List<Integer> insertWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
 
         try {
             return StringUtil.StringToList(Console.readLine().trim());
@@ -30,7 +30,7 @@ public class InputView {
     }
 
     public int insertBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
 
         try {
             return StringUtil.stringToInt(Console.readLine().trim());

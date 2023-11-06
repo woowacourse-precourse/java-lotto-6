@@ -14,22 +14,18 @@ import static lotto.view.OutputViewMessage.*;
 public class OutputView {
 
     private static final Integer INIT_BUILDER_SIZE = 0;
+    private static final DecimalFormat formatter = new DecimalFormat(PATTERN_FOR_DECIMAL_FORMAT.getPattern());;
+    private static final StringBuilder outputBuilder = new StringBuilder();
 
-    private final DecimalFormat formatter;
-    private final StringBuilder outputBuilder;
-    public OutputView() {
-        formatter = new DecimalFormat(PATTERN_FOR_DECIMAL_FORMAT.getPattern());
-        outputBuilder = new StringBuilder();
-    }
 
-    public void printPurchasedLottos(Lottos lottos) {
+    public static void printPurchasedLottos(Lottos lottos) {
         initOutputBuilder();
         generatePurchasedLottosOutputBuilder(lottos);
         printOutputBuilder();
 
     }
 
-    private void generatePurchasedLottosOutputBuilder(Lottos lottos) {
+    private static void generatePurchasedLottosOutputBuilder(Lottos lottos) {
         outputBuilder.append(ENTER.getUnit())
                 .append(String.format(PURCHASED_LOTTOS_MESSAGE_FORMAT.getMessage(), lottos.getCount()))
                 .append(ENTER.getUnit());
@@ -40,14 +36,14 @@ public class OutputView {
         }
     }
 
-    public void printStaticResult(Prizes prizes, Cash cash) {
+    public static void printStaticResult(Prizes prizes, Cash cash) {
         initOutputBuilder();
         generateStaticResultOutputBuilder(prizes);
         generateTotalBenefitOutputBuilder(prizes, cash);
         printOutputBuilder();
     }
 
-    private void generateStaticResultOutputBuilder(Prizes prizes) {
+    private static void generateStaticResultOutputBuilder(Prizes prizes) {
         outputBuilder.append(WINNING_STATIC_MESSAGE.getMessage());
         for (Prize prize : Prize.values()) {
             generateRankingResultOutputBuilder(prize,
@@ -56,7 +52,7 @@ public class OutputView {
         }
     }
 
-    private void generateRankingResultOutputBuilder(Prize prize, Integer countOfPrize) {
+    private static void generateRankingResultOutputBuilder(Prize prize, Integer countOfPrize) {
         if (prize.isBonusNumber()) {
             generateSecondPlaceResultOutputBuilder(prize, countOfPrize);
         } else if (!prize.isBonusNumber() && prize != Prize.LAST_PLACE) {
@@ -65,37 +61,37 @@ public class OutputView {
 
     }
 
-    private void generateSecondPlaceResultOutputBuilder(Prize prize, Integer countOfPrize) {
+    private static void generateSecondPlaceResultOutputBuilder(Prize prize, Integer countOfPrize) {
         outputBuilder.append(String.format(SECOND_PLACE_RESULT_MESSAGE_FORMAT.getMessage(),
                 prize.getCountOfMatchedNumber(),
                 formatter.format(prize.getReward()),
                 countOfPrize));
     }
 
-    private void generateOtherPlaceResultOutputBuilder(Prize prize, Integer countOfPrize) {
+    private static void generateOtherPlaceResultOutputBuilder(Prize prize, Integer countOfPrize) {
         outputBuilder.append(String.format(OTHER_PLACE_RESULT_MESSAGE_FORMAT.getMessage(),
                 prize.getCountOfMatchedNumber(),
                 formatter.format(prize.getReward()),
                 countOfPrize));
     }
 
-    private void generateTotalBenefitOutputBuilder(Prizes prizes, Cash cash) {
+    private static void generateTotalBenefitOutputBuilder(Prizes prizes, Cash cash) {
         outputBuilder.append(String.format(TOTAL_BENEFIT_MESSAGE_FORMAT.getMessage(), prizes.getRoundedTotalBenefit(cash.getDepositAmount())));
     }
 
-    public void printErrorMessage(Exception e) {
+    public static void printErrorMessage(Exception e) {
         initOutputBuilder();
         outputBuilder.append(e.getMessage())
                      .append(ENTER.getUnit());
         printOutputBuilder();
     }
 
-    private void printOutputBuilder() {
+    private static void printOutputBuilder() {
         System.out.print(outputBuilder);
     }
 
 
-    private void initOutputBuilder() {
+    private static void initOutputBuilder() {
         outputBuilder.setLength(INIT_BUILDER_SIZE);
     }
 }

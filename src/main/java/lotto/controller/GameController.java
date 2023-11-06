@@ -10,17 +10,13 @@ import java.util.List;
 
 public class GameController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
     private final NumberGenerator numberGenerator;
 
     public GameController(
-            InputView inputView,
-            OutputView outputView,
-            NumberGenerator numberGenerator) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.numberGenerator = numberGenerator;
+            NumberGenerator numberGeneratorImp) {
+        this.numberGenerator = numberGeneratorImp;
     }
 
     public void play() {

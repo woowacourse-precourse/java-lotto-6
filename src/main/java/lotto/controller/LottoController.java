@@ -31,6 +31,7 @@ public class LottoController {
         String purchaseAmount = readPurchaseAmount();
         makeLottoByPurchaseAmount(purchaseAmount);
         printLottoNumbers(getLottoNumbers());
+        makeWinningLotto(readWinningLotto(), readBonusNumber());
     }
 
     private String readPurchaseAmount() {
@@ -47,5 +48,17 @@ public class LottoController {
 
     private String getLottoNumbers() {
         return lottoService.getLottoNumbers();
+    }
+
+    private String readWinningLotto() {
+        return inputView.readWinningLotto();
+    }
+
+    private String readBonusNumber() {
+        return inputView.readBonusNumber();
+    }
+
+    private void makeWinningLotto(String winningLotto, String bonusNumber) {
+        lottoService.makeWinningLotto(winningLotto, bonusNumber);
     }
 }

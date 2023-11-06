@@ -1,6 +1,5 @@
 package lotto.model.lotto;
 
-import static lotto.exception.ExceptionMessage.LOTTO_MONEY_OUT_OF_RANGE;
 import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_COUNT_ERROR;
 import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.exception.ExceptionMessage.WINNING_NUMBER_DUPLICATION;

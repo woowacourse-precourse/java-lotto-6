@@ -35,6 +35,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 로또_번호_정렬() {
+        Lotto lotto = new Lotto(List.of(4,5,3,6,2,1));
+        assertEquals(lotto.toString(), "[1, 2, 3, 4, 5, 6]");
+    }
+
     @Nested
     class 로또_개수_비교 {
         private static AnswerLotto answerLotto;

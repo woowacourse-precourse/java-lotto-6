@@ -8,8 +8,10 @@ import lotto.view.OutputView;
 
 import java.util.Map;
 
+import static lotto.utility.RetryLogic.*;
+
 public class GameController {
-    
+
     int amount; //로또 구입 총액
     int count; //로또 발행 개수
 
@@ -26,8 +28,8 @@ public class GameController {
     }
 
     private void winningLotto() {
-        winningLotto.setWinningLotto(inputView.printWinningNumber());
-        winningLotto.setBonusNumber(validator.validNumber(inputView.printBonusNumber()));
+        retryCount(() -> winningLotto.setWinningLotto(inputView.printWinningNumber()));
+        retryCount(() -> winningLotto.setBonusNumber(validator.validNumber(inputView.printBonusNumber())));
 
         winningStatistics();
     }
@@ -50,13 +52,8 @@ public class GameController {
 
     private void init() {
         LottoStore.getInstance().getLotto().clear();
-        amount = validator.validNumber(inputView.printPurchaseAmount());
+        retryCount(() -> amount = validator.validNumber(inputView.printPurchaseAmount()));
         count = amount / 1000;
         outputView.printPurchase(count);
     }
-
-    private void inputRetry() {
-
-    }
-
 }

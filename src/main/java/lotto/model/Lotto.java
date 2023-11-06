@@ -27,4 +27,15 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+    private static int countMatchingNumbers(List<Integer> winnerNumbers, List<Integer> ticketNumbers) {
+        Set<Integer> uniqueWinnerNumbers = new HashSet<>(winnerNumbers);
+        Set<Integer> uniqueTicketNumbers = new HashSet<>(ticketNumbers);
+        uniqueTicketNumbers.retainAll(uniqueWinnerNumbers);
+
+        return uniqueTicketNumbers.size();
+    }
+
+    public boolean hasBonusNumber() {
+        return numbers.contains(bonusNumber);
+    }
 }

@@ -19,4 +19,10 @@ public class InputValidation {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 입력값은 빈칸이 될 수 없습니다.");
         }
     }
+
+    public static void validateDisiblePrice(int input) {
+        if (input%1000 != 0) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 구입 금액은 1000으로 나누어 떨어져야 합니다.");
+        }
+    }
 }

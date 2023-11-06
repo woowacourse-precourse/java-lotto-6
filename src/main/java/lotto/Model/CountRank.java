@@ -16,7 +16,6 @@ public class CountRank {
                 {
                     count++;
                 }
-
                 if(count == 5){
                     if (Arrays.asList(myLotto.get(i).toString().replace(" ", "").replace("[", "").
                             replace("]", "").split(",")).contains(bonus)){
@@ -24,8 +23,6 @@ public class CountRank {
                     }
                 }
             }
-
-            System.out.println(myLotto.get(i) + " " + count);
             countList.add(count);
         }
         return countList;

@@ -1,7 +1,10 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.View.View;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {

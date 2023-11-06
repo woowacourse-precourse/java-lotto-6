@@ -2,13 +2,13 @@ package lotto.validator;
 
 import lotto.exception.ExceptionMessage;
 
-public class LottoQuantityValidator {
+public class PurchaseLottoValidator {
 
     private static final int LOTTO_PRICE = 1000;
     private static final int MAXIMUM_PRICE = 100000;
 
 
-    private LottoQuantityValidator() {
+    private PurchaseLottoValidator() {
         throw new AssertionError();
     }
 

@@ -12,7 +12,9 @@ public class Input {
     public List<Integer> input(InputType inputtype){
         String inputStr = Utils.input();
         List<Integer> inputResult = new ArrayList<>();
-        inputTypeSelect(inputStr, inputtype);
+        while ((inputResult = inputTypeSelect(inputStr, inputtype)) != null){
+            System.out.println();
+        }
         return inputResult;
     }
 

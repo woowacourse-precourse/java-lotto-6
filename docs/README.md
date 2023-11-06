@@ -49,3 +49,4 @@
 
 ### 구현 목록
 - [ ] InputUtil 객체
+- [x] RandomUtil 객체

@@ -3,11 +3,11 @@ package lotto.model;
 import java.util.List;
 
 public class WinningLotto {
-    private final List<Integer> lottos;
+    private final List<Integer> lotto;
     private final int bonus;
 
-    public WinningLotto(List<Integer> lottos, int bonus) {
-        this.lottos = lottos;
+    public WinningLotto(List<Integer> lotto, int bonus) {
+        this.lotto = lotto;
         this.bonus = bonus;
     }
 
@@ -15,7 +15,7 @@ public class WinningLotto {
         return bonus;
     }
 
-    public List<Integer> getLottos() {
-        return lottos;
+    public List<Integer> getLotto() {
+        return lotto;
     }
 }

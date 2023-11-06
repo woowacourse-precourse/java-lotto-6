@@ -28,7 +28,7 @@ class LottoControllerTest {
         // then
         assertThatThrownBy(inputView::requestInteger)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("구입 금액은 정수로 주어져야 합니다.");
+                .hasMessageContaining("정수를 입력해야 합니다.");
 
         Console.close();
     }
@@ -45,7 +45,24 @@ class LottoControllerTest {
 
         assertThatThrownBy(inputView::requestIntegers)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호는 정수로 주어져야 합니다.");
+                .hasMessageContaining("쉼표(,)로 구분된 정수를 입력해야 합니다.");
+
+        Console.close();
+    }
+
+    @DisplayName("숫자가 아닌 보너스 번호")
+    @Test
+    void requestBonusNumber() {
+        InputView inputView = InputView.getInstance();
+        String input = "0.5";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        assertThatThrownBy(inputView::requestInteger)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정수를 입력해야 합니다.");
 
         Console.close();
     }

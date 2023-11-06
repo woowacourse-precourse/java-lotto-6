@@ -19,6 +19,15 @@ public class RankService {
         winningCount = new int[Config.RANK_LOTTO];
     }
 
+    public int[] calculateLottoRanks() {
+        for (Lotto lotto : user.getLottos()) {
+            LottoRank rank = calculateLottoRank(lotto);
+            if (rank != null) {
+                winningCount[rank.getRank()] += 1;
+            }
+        }
+        return winningCount;
+    }
 
     public LottoRank calculateLottoRank(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();

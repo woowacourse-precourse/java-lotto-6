@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class WinningNumberTest {
+class WinningTicketTest {
 
     @DisplayName("당첨 번호에 보너스 번호와 중복된 번호가 있으면 예외 발생")
     @ParameterizedTest
@@ -19,7 +19,7 @@ class WinningNumberTest {
     void createWinningNumberByDuplicatedNumbers(Lotto winningLotto, LottoNumber bonusNumber) {
 
         Assertions.assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningNumber(winningLotto, bonusNumber));
+                .isThrownBy(() -> new WinningTicket(winningLotto, bonusNumber));
     }
 
     public static Stream<Arguments> createWinningNumberByDuplicatedNumbers() {
@@ -35,10 +35,10 @@ class WinningNumberTest {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = new LottoNumber(7);
 
-        WinningNumber winningNumber = new WinningNumber(winningLotto, bonusNumber);
+        WinningTicket winningTicket = new WinningTicket(winningLotto, bonusNumber);
 
 
-        assertThat(winningNumber.getWinningLotto()).isEqualTo(new Lotto(List.of(1,2,3,4,5,6)));
-        assertThat(winningNumber.getBonusNumber()).isEqualTo(new LottoNumber(7));
+        assertThat(winningTicket.getWinningLotto()).isEqualTo(new Lotto(List.of(1,2,3,4,5,6)));
+        assertThat(winningTicket.getBonusNumber()).isEqualTo(new LottoNumber(7));
     }
 }

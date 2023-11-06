@@ -15,9 +15,9 @@ class RankTest {
     @DisplayName("당첨 번호와 로또로 등수를 계산할 수 있다")
     @ParameterizedTest
     @MethodSource
-    void getRankByLottoAndWinningNumber(Lotto lotto, WinningNumber winningNumber, Rank expected) {
+    void getRankByLottoAndWinningNumber(Lotto lotto, WinningTicket winningTicket, Rank expected) {
 
-        Rank actual = Rank.of(lotto, winningNumber);
+        Rank actual = Rank.of(lotto, winningTicket);
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -63,8 +63,8 @@ class RankTest {
         return new Lotto(Arrays.asList(nums));
     }
 
-    private static WinningNumber createWinningNumber(int bonusNumber, Integer... nums) {
-        return new WinningNumber(createLotto(nums), new LottoNumber(bonusNumber));
+    private static WinningTicket createWinningNumber(int bonusNumber, Integer... nums) {
+        return new WinningTicket(createLotto(nums), new LottoNumber(bonusNumber));
     }
 
     private static EnumMap<Rank, Integer> createRankToCount(Rank... ranks) {

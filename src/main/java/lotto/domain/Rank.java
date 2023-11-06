@@ -21,9 +21,9 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public static Rank of(Lotto lotto, WinningNumber winningNumber) {
-        int matchCount = lotto.match(winningNumber.getWinningLotto());
-        boolean hasBonusNumber = lotto.has(winningNumber.getBonusNumber());
+    public static Rank of(Lotto lotto, WinningTicket winningTicket) {
+        int matchCount = lotto.match(winningTicket.getWinningLotto());
+        boolean hasBonusNumber = lotto.has(winningTicket.getBonusNumber());
         return Rank.of(matchCount, hasBonusNumber);
     }
 

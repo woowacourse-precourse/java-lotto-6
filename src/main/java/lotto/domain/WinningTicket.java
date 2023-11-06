@@ -1,10 +1,10 @@
 package lotto.domain;
 
-public class WinningNumber {
+public class WinningTicket {
     private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
 
-    public WinningNumber(Lotto winningLotto, LottoNumber bonusNumber) {
+    public WinningTicket(Lotto winningLotto, LottoNumber bonusNumber) {
         validate(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;

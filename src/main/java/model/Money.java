@@ -1,6 +1,6 @@
 package model;
 
-public class User {
+public class Money {
 
     private static final int MIN_MONEY_RANGE = 1000;
     private static final int MAX_MONEY_RANGE = 1000000000;
@@ -8,7 +8,7 @@ public class User {
 
     private int money;
 
-    public User (String money){
+    public Money(String money){
         this.money = validateMoney(money);
     }
 

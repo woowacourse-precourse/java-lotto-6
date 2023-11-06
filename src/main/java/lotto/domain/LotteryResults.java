@@ -24,10 +24,11 @@ public class LotteryResults {
         results.put(ranking, oldValue + matches);
     }
 
-    public void applyResults(LotteryResults others) {
+    public LotteryResults applyResults(LotteryResults others) {
         for (LotteryRanking ranking : others.results.keySet()) {
             apply(ranking, others.results.get(ranking));
         }
+        return this;
     }
 
     public long getTotalAmount() {

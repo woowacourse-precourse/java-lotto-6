@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class LotteryResultsCalculator {
 
     private final LotteryOperator operator;
@@ -8,12 +10,18 @@ public class LotteryResultsCalculator {
         this.operator = operator;
     }
 
-    public long calculate(LotteryReceipt receipt) {
+    public LotteryResults getTotalResults(LotteryReceipt receipt) {
         LotteryResults results = LotteryResults.emptyResults();
         for (PurchasedLottery lottery : receipt) {
             results.applyResults(operator.getResult(lottery));
         }
-        return results.getTotalAmount();
+        return results;
     }
 
+    public LotteryResults getTotalResults(List<LotteryReceipt> receipts) {
+        return receipts.stream()
+                .map(receipt -> getTotalResults(receipt))
+                .reduce((r1, r2) -> r1.applyResults(r2))
+                .get();
+    }
 }

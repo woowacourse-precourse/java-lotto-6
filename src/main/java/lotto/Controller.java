@@ -1,12 +1,11 @@
 package lotto;
 
-import static lotto.resource.TextResourceProvider.OUTPUT_LOTTERY_RESULT_TEXT;
-
 import java.util.List;
+import lotto.domain.LotteryOperator;
 import lotto.domain.LotteryReceipt;
+import lotto.domain.LotteryResults;
 import lotto.domain.LotteryResultsCalculator;
 import lotto.domain.LotteryRetailer;
-import lotto.domain.LotteryOperator;
 import lotto.domain.LottoRandom;
 import lotto.domain.User;
 
@@ -42,10 +41,11 @@ public class Controller {
 
     public void calculateEarningRate() {
         List<LotteryReceipt> receipts = user.getReceipts();
+        LotteryResults results = calculator.getTotalResults(receipts);
+        long resultAmount = results.getTotalAmount();
         long purchaseAmount = calculatePurchaseAmount(receipts);
-        long resultAmount = calculateResultAmount(receipts);
         double earningRate = resultAmount / purchaseAmount * 100;
-        System.out.println(OUTPUT_LOTTERY_RESULT_TEXT);
+        out.printResults(results, earningRate);
     }
 
     private long calculatePurchaseAmount(List<LotteryReceipt> receipts) {
@@ -54,10 +54,5 @@ public class Controller {
                 .sum();
     }
 
-    private long calculateResultAmount(List<LotteryReceipt> receipts) {
-        return receipts.stream()
-                .mapToLong(calculator::calculate)
-                .sum();
-    }
 
 }

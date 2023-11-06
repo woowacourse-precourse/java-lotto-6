@@ -137,7 +137,7 @@ public class InputViewTest {
             String input = "3,4";
 
             @Test
-            void 보너스_번호_길이가_2개_이상일_경우() {
+            void 보너스_번호가_2개_이상일_경우() {
                 assertThatThrownBy(() -> {
                     String[] inputSplitComa = input.split(",");
                     if (inputSplitComa.length > 1) {

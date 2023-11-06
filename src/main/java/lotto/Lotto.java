@@ -37,6 +37,9 @@ public class Lotto {
             checkSet.add(number);
         }
     }
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
 
     public void printNumbers() {
         System.out.println(numbers);

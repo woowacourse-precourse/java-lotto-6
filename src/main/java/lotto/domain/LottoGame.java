@@ -4,9 +4,9 @@ import java.util.List;
 
 public class LottoGame {
 
-    private final TicketDispenser ticketDispenser;
+    private final TicketDispenser<Lotto> ticketDispenser;
 
-    public LottoGame(TicketDispenser ticketDispenser) {
+    public LottoGame(TicketDispenser<Lotto> ticketDispenser) {
         this.ticketDispenser = ticketDispenser;
     }
 

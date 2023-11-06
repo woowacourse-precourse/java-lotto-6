@@ -3,11 +3,9 @@ package lotto.model;
 public class Money {
     private static final int LOTTO_PRICE = 1000;
     private int money;
-    private int lottoCount;
 
     public Money(String money) {
         this.money = validate(money);
-        this.lottoCount = this.money / LOTTO_PRICE;
     }
 
     private int validate(String input) {
@@ -24,5 +22,9 @@ public class Money {
             throw new IllegalArgumentException("[ERROR] 로또 가격은 1000원입니다. 1000원 단위로 입력해주세요.");
         }
         return money;
+    }
+
+    public int calculateLottoCount() {
+        return this.money / LOTTO_PRICE;
     }
 }

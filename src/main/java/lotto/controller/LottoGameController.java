@@ -18,7 +18,13 @@ public class LottoGameController {
 
     public void run() {
         enterMoney();
+        makeLotto();
     }
+
+    private void makeLotto() {
+        String lotto = lottoGameService.makeLotto();
+    }
+
     private void enterMoney() {
         printMessage(Message.ASK_MONEY.toString());
         String money = inputView.inputMoney();

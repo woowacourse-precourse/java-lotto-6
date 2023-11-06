@@ -29,4 +29,18 @@ public class ResultService {
     public boolean compareBonus(Lotto lotto, int bonus) {
         return lotto.getNumbers().contains(bonus);
     }
+
+    public ResultType finalResult(int check, boolean bonus) {
+        if(check==6)
+            return ResultType.SIX;
+        if(check==5&&bonus==true)
+            return ResultType.FIVEBONUS;
+        if(check==5)
+            return ResultType.FIVE;
+        if(check==4)
+            return ResultType.FOUR;
+        if(check==3)
+            return ResultType.THREE;
+        return ResultType.NOTHING;
+    }
 }

@@ -52,8 +52,9 @@ public class Application {
     }
 
     private static void printPurchasedLottos(LottoTicket ticket) {
-        System.out.println(ticket.getLottoNumbers().size() + "개를 구매했습니다.");
-        for (Lotto lotto : ticket.getLottoNumbers()) {
+        List<Lotto> lottos = ticket.getLottoNumbers();
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
     }

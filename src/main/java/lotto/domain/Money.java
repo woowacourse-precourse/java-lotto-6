@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.ExceptionMessage;
 import lotto.constant.LottoConfig;
 
 public class Money {
@@ -14,13 +15,13 @@ public class Money {
 
     private void validatePositive(int money) {
         if (money <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.NOT_POSITIVE_MESSAGE);
         }
     }
 
     private void validateUnit(int money) {
         if (money % LottoConfig.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.NOT_UNIT_NUMBER_MESSAGE);
         }
     }
 

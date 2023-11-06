@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.ExceptionMessage;
 import lotto.constant.LottoConfig;
 import lotto.constant.LottoRank;
 
@@ -16,14 +17,14 @@ public class Lotto {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != LottoConfig.LOTTO_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.LENGTH_ERROR_MESSAGE);
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if(set.size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATION_MESSAGE);
         }
     }
 

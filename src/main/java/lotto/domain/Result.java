@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.ExceptionMessage;
+
 public class Result {
 
     private final WinningNumbers winningNumbers;
@@ -13,7 +15,7 @@ public class Result {
 
     private void validateOverlap(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_OVERLAPPED_MESSAGE);
         }
     }
 

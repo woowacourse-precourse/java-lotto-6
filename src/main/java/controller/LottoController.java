@@ -1,9 +1,15 @@
 package controller;
 
+import controller.validator.WinningNumberValidator;
+
 import domain.Lotto;
 import domain.LottoNumberGenerator;
 import domain.Price;
+import domain.WinningLotto;
 import domain.repository.LottoRepository;
+
+import java.util.List;
+
 import view.InputView;
 import view.OutputView;
 
@@ -12,6 +18,8 @@ public class LottoController {
     private Price price;
     private LottoRepository lottoRepository = new LottoRepository();
     private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+    private WinningNumberValidator winningNumberValidator = new WinningNumberValidator();
+    private WinningLotto winningLotto = new WinningLotto();
 
     public void run() {
         initPriceByUserInput();
@@ -20,7 +28,15 @@ public class LottoController {
         showLottoTicket();
     }
 
-    private void get
+    private List<Integer> initWinningNumber() {
+        try {
+            String input = InputView.enterWinningNumbers();
+            List<Integer> winningNumber = winningNumberValidator.checkWinningNumberValidation(input);
+            return winningNumber;
+        } catch (IllegalArgumentException e) {
+            return initWinningNumber();
+        }
+    }
 
     private void showLottoTicket() {
         for(Lotto lotto : lottoRepository.getAllLotto()) {

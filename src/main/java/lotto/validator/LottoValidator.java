@@ -13,19 +13,24 @@ import lotto.exception.lotto.LottoSizeException;
 
 public class LottoValidator {
 
-    public static void validateSize(List<Integer> numbers) {
+    public static void validateLotto(List<Integer> numbers){
+        validateSize(numbers);
+        validateRange(numbers);
+        validateDuplicate(numbers);
+    }
+    private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new LottoSizeException();
         }
     }
 
-    public static void validateDuplicate(List<Integer> numbers) {
+    private static void validateDuplicate(List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
             throw new LottoDuplicateException();
         }
     }
 
-    public static void validateRange(List<Integer> numbers) {
+    private static void validateRange(List<Integer> numbers) {
         if (outOfRange(numbers)) {
             throw new LottoOutOfRangeException();
         }

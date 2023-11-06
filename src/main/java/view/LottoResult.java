@@ -4,10 +4,11 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Lotto;
 
 public class LottoResult {
 
-    private List<Integer> lottoResultNumber;
+    private Lotto lottoResultNumber;
 
     private int bonusNumber;
 
@@ -34,15 +35,16 @@ public class LottoResult {
     }
 
     public List<Integer> getLottoResultNumber() {
-        return lottoResultNumber;
+        return lottoResultNumber.getNumbers();
     }
 
     private void setLottoResultNumber(String[] lottoResult) {
-        this.lottoResultNumber = new ArrayList<>();
+        List<Integer> lottoResultNumber = new ArrayList<>();
         for (String lottoResults : lottoResult) {
             int number = Integer.parseInt(lottoResults.trim());
             lottoResultNumber.add(number);
         }
+        this.lottoResultNumber = new Lotto(lottoResultNumber);
     }
 
     private String inputBonusResultNumber() {

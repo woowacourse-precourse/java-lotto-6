@@ -36,7 +36,7 @@ public class UserLottoDTOTest {
     void 로또_패턴이_아닌_경우_예외(String inputLotto) {
         assertThatThrownBy(() -> new UserLottoDTO(inputLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("숫자를 입력하지");
+                .hasMessageContaining("로또 번호는 (,) 로");
     }
 
     @ParameterizedTest(name = "인자 : {0}")

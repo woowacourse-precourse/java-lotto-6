@@ -21,8 +21,8 @@ public class RankTest {
             "5, true,  SECOND",
             "6, false, FIRST",
     })
-    void 순위_검증_테스트(int equalCount, boolean hasBonus, Rank expected) {
-        Rank rank = Rank.of(equalCount,hasBonus);
+    void valueOf(int equalCount, boolean hasBonus, Rank expected) {
+        Rank rank = Rank.valueOf(equalCount,hasBonus);
         assertThat(rank).isEqualTo(expected);
     }
 }

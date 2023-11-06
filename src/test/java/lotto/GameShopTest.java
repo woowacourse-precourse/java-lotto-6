@@ -52,4 +52,13 @@ class GameShopTest {
         Assertions.assertEquals(Prize.SECOND, prize);
     }
 
+    @DisplayName("로또 6,7등 당첨")
+    @Test
+    void prizeNone() {
+        Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 3, 4, 5, 6, 8)));
+        gameShop.startLottoGame(new WinningLotto(new ArrayList<>(List.of(11, 12, 13, 14, 15, 16)), 6));
+        Prize prize = gameShop.getResult(lotto);
+        Assertions.assertEquals(Prize.NONE, prize);
+    }
+
 }

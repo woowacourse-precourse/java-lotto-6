@@ -9,6 +9,7 @@ public class OutputView {
 
     private static final String PURCHASE_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
+    private static final String LOTTO_STATISTICS_MESSAGE = "\n당첨 통계\n---";
 
     public void print(List<Lotto> lottoTickets) {
         printCountOf(lottoTickets);
@@ -20,7 +21,8 @@ public class OutputView {
     }
 
     public void printResult(LottoResult lottoResult) {
-        System.out.println(lottoResult.toString());
+        System.out.println(LOTTO_STATISTICS_MESSAGE);
+        System.out.print(lottoResult.toString());
     }
 
     public void printProfit(Profit profit) {

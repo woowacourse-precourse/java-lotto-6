@@ -12,7 +12,7 @@ public enum PrintMessage {
         this.message = message;
     }
 
-    public String getMessage() {
-        return message;
+    public void printBuyLottoCountMessage() {
+        System.out.println(message);
     }
 }

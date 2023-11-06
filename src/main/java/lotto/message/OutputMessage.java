@@ -10,7 +10,7 @@ public enum OutputMessage {
     MATCHES_5_ADDITION_BONUS_NUMBER_FORMAT("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
     MATCHES_6_FORMAT("6개 일치 (2,000,000,000원) - %d개"),
 
-    TOTAL_RETURN("총 수익률은 %.1f%입니다."),
+    TOTAL_RETURN("총 수익률은 %.1f%%입니다."),
     ;
 
 

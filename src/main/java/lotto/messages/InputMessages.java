@@ -1,4 +1,4 @@
-package lotto.configuration;
+package lotto.messages;
 
 public enum InputMessages {
     PURCHASE_AMOUNT_MESSAGE("구입금액을 입력해 주세요."),

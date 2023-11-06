@@ -1,7 +1,6 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Arrays;
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +36,7 @@ class LottoTest {
 
     @DisplayName("isContain 함수가 잘 동작하는 지 확이")
     @Test
-    void test_isContain() {
+    void testIsContain() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertTrue(lotto.isContain(1));
@@ -50,12 +49,23 @@ class LottoTest {
 
     @DisplayName("getNumber 정상 작동 확인")
     @Test
-    void test_getNumber() {
+    void testGetNumber() {
         List<Integer> inputNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(inputNumbers);
 
         List<Integer> resultNumbers = lotto.getNumbers();
 
         assertEquals(inputNumbers, resultNumbers);
+    }
+
+    @DisplayName("로또 번호 정렬 확인")
+    @Test
+    void sortedLottoNumber() {
+        List<Integer> numbers = List.of(6, 5, 4, 3, 2, 1);
+        List<Integer> expectedLotto = List.of(1, 2, 3, 4, 5, 6);
+
+        Lotto autualLotto = new Lotto(numbers);
+
+        assertEquals(autualLotto.getNumbers(), expectedLotto);
     }
 }

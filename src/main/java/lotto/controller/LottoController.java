@@ -6,7 +6,11 @@ import lotto.view.LottoView;
 
 public class LottoController {
     private PurchaseController purchaseController = new PurchaseController();
+    private LottoView lottoView = new LottoView();
+
+    private int ticketNumber;
     public void startLotto(){
-        purchaseController.processPurchaseAmount();
+        ticketNumber = purchaseController.runPurchaseAmount();
+        lottoView.outputPurchaseAmountView(ticketNumber);
     }
 }

@@ -39,4 +39,14 @@ public class InputViewTest {
         assertThat(e.getMessage()).isEqualTo("[ERROR] 각각 다른 숫자를 입력해야 합니다.");
     }
 
+    @Test
+    void 입력된_당첨_번호가_숫자가_아닌_경우(){
+        //given
+        String winningNumber = "일이삼사오육";
+        //when
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new WinningNumberValidator(winningNumber));
+        //then
+        assertThat(e.getMessage()).isEqualTo("[ERROR] 당첨 번호는 숫자를 입력해야 합니다.");
+    }
+
 }

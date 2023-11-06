@@ -7,5 +7,6 @@ public class Application {
         // TODO: 프로그램 구현
         LottoService lottoService = new LottoService();
         lottoService.purchaseLotto();
+        lottoService.createWinningLotto();
     }
 }

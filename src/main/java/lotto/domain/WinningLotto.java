@@ -6,12 +6,12 @@ public class WinningLotto {
     final Lotto lotto;
     final int bonusNumber;
     public WinningLotto(Lotto lotto, int bonusNumber) {
-        validateBonusNumber(bonusNumber);
+        validateBonusNumber(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(Lotto lotto, int bonusNumber) {
         if (lotto.hasNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 당첨 번호와 중복될 수 없습니다.");
         }

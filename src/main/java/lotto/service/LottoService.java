@@ -13,6 +13,7 @@ public class LottoService {
     InputView inputView;
     OutputView outputView;
     Seller seller;
+
     public LottoService() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
@@ -37,11 +38,36 @@ public class LottoService {
     }
 
     public WinningLotto createWinningLotto() {
-        List<Integer> winningLottoNumbers = inputView.requestWinningLottoNumbers();
-        Lotto lotto = new Lotto(winningLottoNumbers);
-        Integer bonusNumber = inputView.requestBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+        Lotto lotto = getWinningLottoOnlyNumbers();
+        return getWinningLotto(lotto);
+    }
 
-        return winningLotto;
+    private WinningLotto getWinningLotto(Lotto lotto) {
+        try {
+            Integer bonusNumber = getBonusNumber();
+            return new WinningLotto(lotto, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningLotto(lotto);
+        }
+    }
+
+    private Lotto getWinningLottoOnlyNumbers() {
+        try {
+            List<Integer> winningLottoNumbers = inputView.requestWinningLottoNumbers();
+            return new Lotto(winningLottoNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningLottoOnlyNumbers();
+        }
+    }
+
+    private int getBonusNumber() {
+        try {
+            return inputView.requestBonusNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
+        }
     }
 }

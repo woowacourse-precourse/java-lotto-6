@@ -1,12 +1,14 @@
 package lotto.view;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class OutputViewTest {
     OutputView outputView = new OutputView();
 
     @Test
+    @DisplayName("구매 안내 출력 테스트")
     void 로또_구매_금액() {
         // given
 
@@ -18,6 +20,7 @@ public class OutputViewTest {
     }
 
     @Test
+    @DisplayName("로또 구매 개수 출력 테스트")
     void 몇개_구매_했는지_출력() {
         // given
 

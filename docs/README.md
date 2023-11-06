@@ -65,6 +65,6 @@ MVC패턴으로 작성한다.
     - 사용자가 잘못 입력한 경우 `IllegalArgumentException` 예외를 발생시킨다.
       - [ ✅ ] `private` 빈값으로 입력한 경우
       - [ ✅ ] `private` 콤마나 스페이스가 포함된 경우
-      - [ ✅ ] `private` 문자를 입력한 경우
+      - [ ✅ ] `private` 문자가 포함된 경우
       - [ ✅ ] `private` 1과 45사이의 숫자가 아닌 경우
       - [ ✅ ] `private` 당첨번호에 숫자가 있는 경우

@@ -7,30 +7,35 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MoneyConverterTest {
     MoneyConverter moneyConverter;
+
     @Test
     void invalidPatternCheck1() {
         assertThrows(IllegalArgumentException.class, () -> {
             moneyConverter = new MoneyConverter("1001");
         });
     }
+
     @Test
     void invalidPatternCheck2() {
         assertThrows(IllegalArgumentException.class, () -> {
             moneyConverter = new MoneyConverter("100");
         });
     }
+
     @Test
     void invalidPatternCheck3() {
         assertThrows(IllegalArgumentException.class, () -> {
             moneyConverter = new MoneyConverter("0000");
         });
     }
+
     @Test
     void invalidPatternCheck4() {
         assertThrows(IllegalArgumentException.class, () -> {
             moneyConverter = new MoneyConverter("a00b");
         });
     }
+
     @Test
     void validPatternCheck() {
         moneyConverter = new MoneyConverter("1000");
@@ -46,11 +51,11 @@ class MoneyConverterTest {
             try {
                 moneyConverter = new MoneyConverter("fail");
                 status = Status.SUCCESS;
-            }catch (IllegalArgumentException ignored){ }
-            finally {
+            } catch (IllegalArgumentException ignored) {
+            } finally {
                 attempt++;
             }
-            if(attempt==3){
+            if (attempt == 3) {
                 break;
             }
         }

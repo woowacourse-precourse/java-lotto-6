@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoProfitCalculatorTest {
     @Test
-    public void totalProfitTest(){
+    public void totalProfitTest() {
         Map<Integer, Integer> test = new HashMap<>();
 
         IntStream.rangeClosed(3, 4).forEach(value -> test.put(value, 1));

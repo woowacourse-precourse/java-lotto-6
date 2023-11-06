@@ -58,7 +58,7 @@ public class GameController {
         outputView.printLotto(lottoGenerator.getMyLotto());
     }
 
-    public void setWinLottoNumbers(){
+    public void setWinLottoNumbers() {
         Status status = Status.FAIL;
 
         while (status == Status.FAIL) {
@@ -71,7 +71,7 @@ public class GameController {
         }
     }
 
-    public void setLottoBonusNumber(){
+    public void setLottoBonusNumber() {
         Status status = Status.FAIL;
 
         while (status == Status.FAIL) {
@@ -84,7 +84,7 @@ public class GameController {
         }
     }
 
-    public void setLottoCountCalculator(){
+    public void setLottoCountCalculator() {
         lottoCountCalculator = new LottoCountCalculator(
                 lottoGenerator.getMyLotto(),
                 lottoWinNumbers.getLottoWinNumbers(),
@@ -92,13 +92,13 @@ public class GameController {
         );
     }
 
-    public void setLottoProfitCalculator(){
+    public void setLottoProfitCalculator() {
         lottoProfitCalculator = new LottoProfitCalculator(
                 lottoCountCalculator.getLottoResult(),
                 moneyConverter.getChance());
     }
 
-    public void winResultPrint(){
+    public void winResultPrint() {
         outputView.printResult(lottoCountCalculator.getLottoResult(), lottoProfitCalculator.getTotalProfitPercentile());
     }
 }

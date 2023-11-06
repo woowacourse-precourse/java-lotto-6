@@ -47,6 +47,27 @@ class LottosTest {
         // then
         assertThat(result).containsAllEntriesOf(numberByRank);
     }
+
+    @DisplayName("오름차순으로 정렬된 로또 구매 내역을 반환한다.")
+    @Test
+    void getOrderedListTest() {
+        // given
+        Lottos lottos = new Lottos(new TestFixedNumbers());
+        List<List<Integer>> expected = List.of(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 45),
+                List.of(1, 2, 3, 4, 5, 8)
+        );
+
+        // when
+        lottos.generate(3);
+        List<List<Integer>> orderedList = lottos.getOrderedList();
+
+        // then
+        assertThat(orderedList)
+                .hasSize(expected.size())
+                .containsAll(expected);
+    }
 }
 
 class TestFixedNumbers implements NumberPicker {
@@ -56,19 +77,19 @@ class TestFixedNumbers implements NumberPicker {
     public List<Integer> pick() {
         count++;
         if (count % 5 == 0) {
-            return List.of(1, 2, 3, 4, 5, count + 6);
+            return List.of(4, 1, count + 6, 5, 2, 3);
         }
         if (count % 5 == 1) {
-            return List.of(1, 2, 3, 4, 5, 45);
+            return List.of(4, 1, 45, 5, 2, 3);
         }
         if (count % 5 == 2) {
-            return List.of(1, 2, 3, 4, 5, count + 6);
+            return List.of(4, 1, count + 6, 5, 2, 3);
         }
         if (count % 5 == 3) {
-            return List.of(1, 2, 3, 4, count + 5, count + 6);
+            return List.of(4, 1, count + 6, count + 5, 2, 3);
         }
         if (count % 5 == 4) {
-            return List.of(1, 2, 3, count + 4, count + 5, count + 6);
+            return List.of(count + 4, 1, count + 6, count + 5, 2, 3);
         }
 
         return List.of(40, 41, 42, 43, 44, 45);

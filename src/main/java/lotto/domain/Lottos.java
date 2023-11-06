@@ -38,6 +38,12 @@ public class Lottos {
         return numberByRank;
     }
 
+    public List<List<Integer>> getOrderedList() {
+        return lottos.stream()
+                .map(Lotto::getSortedNumbers)
+                .toList();
+    }
+
     private Lotto createLotto() {
         return new Lotto(numberPicker.pick());
     }

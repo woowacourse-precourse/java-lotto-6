@@ -3,19 +3,17 @@ package lotto.constant;
 import java.util.stream.Stream;
 
 public enum LottoRank {
-    OUT_RANK(6, 0, -1),
-    THREE_MATCH(5, 5000, 3),
-    FOUR_MATCH(4, 50000, 4),
-    FIVE_MATCH(3, 1500000, 5),
-    FIVE_AND_BONUS_MATCH(2, 30000000, 5),
-    SIX_MATCH(1, 2000000000, 6);
+    OUT_RANK(0, -1),
+    THREE_MATCH(5000, 3),
+    FOUR_MATCH(50000, 4),
+    FIVE_MATCH(1500000, 5),
+    FIVE_AND_BONUS_MATCH( 30000000, 5),
+    SIX_MATCH(2000000000, 6);
 
-    private final int rank;
     private final int prizeMoney;
     private final int matchedNumberCount;
 
-    LottoRank(int rank, int prizeMoney, int matchedNumberCount) {
-        this.rank = rank;
+    LottoRank(int prizeMoney, int matchedNumberCount) {
         this.prizeMoney = prizeMoney;
         this.matchedNumberCount = matchedNumberCount;
     }
@@ -41,10 +39,6 @@ public enum LottoRank {
 
     public int getPrizeMoney() {
         return prizeMoney;
-    }
-
-    public int getRank() {
-        return rank;
     }
 
     public int getMatchedNumberCount() {

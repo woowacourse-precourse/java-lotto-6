@@ -2,17 +2,20 @@ package lotto.service;
 
 import lotto.model.Lotto;
 import lotto.model.LottoTicket;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoService {
 
     private LottoTicket lottoTicket;
     private List<Lotto> lottos;
+
     public LottoService() {
         this.lottos = new ArrayList<>();
     }
@@ -36,6 +39,7 @@ public class LottoService {
         this.lottos.addAll(generatedLottos);
         return generatedLottos;
     }
+
     public List<Lotto> purchaseLottoTickets() {
         return this.lottos;
     }

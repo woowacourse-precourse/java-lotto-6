@@ -5,7 +5,7 @@ public class BonusNumber {
     private static final String ERROR_NULL_OR_EMPTY_INPUT = "입력값이 없거나 공백입니다.";
     private static final String ERROR_INPUT_NUMBER_NOT_IN_RANGE = "1-45 사이의 값을 입력해 주세요.";
     private static final String ERROR_DUPLICATED_WITH_WINNING_NUMBER = "보너스 숫자는 당첨번호와 중복될 수 없습니다.";
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public BonusNumber(String bonusNumberString, WinningNumbers winningNumbers) {
         validateNotNullOrEmpty(bonusNumberString);

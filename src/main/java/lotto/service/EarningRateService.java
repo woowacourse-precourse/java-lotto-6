@@ -14,7 +14,7 @@ public class EarningRateService {
 
     private int calculateEarnings(EnumMap<LottoPrize, Integer> winCount) {
         return winCount.entrySet().stream()
-                .mapToInt(e -> e.getValue() * (int)e.getKey().getPrize())
+                .mapToInt(e -> e.getValue() * (int) e.getKey().getPrize())
                 .sum();
     }
 

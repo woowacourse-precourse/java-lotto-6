@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.model.LottoPrize;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Set;
@@ -33,6 +34,7 @@ public class NumberMatchingService {
         boolean bonusMatch = yourNumbers.contains(bonusNumber) && matchCount == 5;
         return determinePrize(matchCount, bonusMatch);
     }
+
     private LottoPrize determinePrize(int matchCount, boolean bonusMatch) {
         if (bonusMatch) {
             return LottoPrize.FIVE_AND_BONUS_MATCH;

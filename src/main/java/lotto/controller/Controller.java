@@ -7,13 +7,12 @@ import lotto.service.EarningRateService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Controller {
     LottoService lottoService;
-//    List<Lotto> purchasedLottos;
 
     private static final String ERROR = "[ERROR] ";
 
@@ -49,7 +48,6 @@ public class Controller {
 
     private void lottoGameSetting() {
         List<Lotto> purchasedLottos = lottoService.generateLottoTickets();
-//        this.purchasedLottos = lottoService.generateLottoTickets();
         OutputView.displayLottoNumber(purchasedLottos);
     }
 
@@ -83,8 +81,13 @@ public class Controller {
         NumberMatchingService numberMatchingService = new NumberMatchingService();
         List<Lotto> purchasedLottos = lottoService.purchaseLottoTickets();
 
+        List<List<Integer>> lottoNumbersList = new ArrayList<>();
+        for (Lotto lotto : purchasedLottos) {
+            lottoNumbersList.add(lotto.getNumbers());
+        }
+
         EnumMap<LottoPrize, Integer> winCount = numberMatchingService.calculateResults(
-                purchasedLottos.stream().map(Lotto::getNumbers).collect(Collectors.toList()),
+                lottoNumbersList,
                 winningNumbers.getWinningNumbers(),
                 bonusNumber.getBonusNumber()
         );

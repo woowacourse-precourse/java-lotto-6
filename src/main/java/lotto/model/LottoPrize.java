@@ -14,6 +14,7 @@ public enum LottoPrize {
         this.matchCount = matchCount;
         this.prize = prize;
     }
+
     public String getDescription() {
         return switch (this) {
             case THREE_MATCH -> "3개 일치";
@@ -21,16 +22,16 @@ public enum LottoPrize {
             case FIVE_MATCH -> "5개 일치";
             case FIVE_AND_BONUS_MATCH -> "5개 일치, 보너스 볼 일치";
             case SIX_MATCH -> "6개 일치";
-            default -> "";
         };
     }
+
     public static LottoPrize valueOf(int matchCount) {
         for (LottoPrize prize : values()) {
             if (prize.getMatchCount() == matchCount) {
                 return prize;
             }
         }
-        return null; // 일치하는 값이 없는 경우 null 반환
+        return null;
     }
 
 

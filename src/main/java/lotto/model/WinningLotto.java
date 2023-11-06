@@ -27,4 +27,16 @@ public enum WinningLotto {
                 .findFirst()
                 .orElse(ZERO);
     }
+
+    public boolean isBonus() {
+        return this == BONUS;
+    }
+
+    public int getAmounts() {
+        return amounts;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
 }

@@ -8,4 +8,16 @@ public class WinningLottos {
     public WinningLottos(List<WinningLotto> winningLottos) {
         this.winningLottos = winningLottos;
     }
+
+    public int getTotalAmounts() {
+        return winningLottos.stream()
+                .mapToInt(WinningLotto::getAmounts)
+                .sum();
+    }
+
+    public long getWinningLottoCount(WinningLotto winningLotto) {
+        return winningLottos.stream()
+                .filter(lotto -> lotto == winningLotto)
+                .count();
+    }
 }

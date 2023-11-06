@@ -14,7 +14,7 @@ import java.util.List;
 public class LottoService {
 
     private static final int LOTTO_PRICE = 1000;
-    private static final int LOTTO_STAT_NUMBER = 1;
+    private static final int LOTTO_START_NUMBER = 1;
     private static final int LOTTO_END_NUMBER = 45;
     private static final int LOTTO_COUNT = 6;
 
@@ -43,7 +43,7 @@ public class LottoService {
     }
 
     private List<Lotto> issueLottoTicket(int amount) {
-        LottoMachine lottoMachine = new LottoMachine(LOTTO_STAT_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT);
+        LottoMachine lottoMachine = new LottoMachine(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT);
         List<Lotto> lottoList = lottoMachine.getLottoList(LOTTO_PRICE, amount);
         OutputViewService.outputEa(lottoList.size());
         OutputViewService.outputLottoList(lottoList);
@@ -53,7 +53,7 @@ public class LottoService {
     private Lotto getWinnigNumbers() {
         OutputViewService.outputWinnigNumbers();
         try {
-            return InputViewService.inputWinnigNumbers(LOTTO_STAT_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT);
+            return InputViewService.inputWinnigNumbers(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT);
         } catch (IllegalArgumentException e) {
             OutputViewService.outPutErrorMessage(e);
             return getWinnigNumbers();
@@ -63,7 +63,7 @@ public class LottoService {
     private int getBonusNumber(List<Integer> numbers) {
         OutputViewService.outputBonusNumber();
         try {
-            return InputViewService.inputBonusNumber(numbers, LOTTO_STAT_NUMBER, LOTTO_END_NUMBER);
+            return InputViewService.inputBonusNumber(numbers, LOTTO_START_NUMBER, LOTTO_END_NUMBER);
         } catch (IllegalArgumentException e) {
             OutputViewService.outPutErrorMessage(e);
             return getBonusNumber(numbers);

@@ -72,7 +72,7 @@ public class InputViewService {
 
     private static void containValidation(int number, List<Integer> numbers) {
         if (Validator.isContainNumber(numbers, number)) {
-            throw new IllegalArgumentException(ERROR_DUPLICATE_BOUNUS_NUMBER.getLottoMessage());
+            throw new IllegalArgumentException(ERROR_DUPLICATE_BONUS_NUMBER.getLottoMessage());
         }
     }
 

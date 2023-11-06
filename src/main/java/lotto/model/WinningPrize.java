@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.constant.BonusStatus;
-
 import java.util.Arrays;
 import java.util.Optional;
 

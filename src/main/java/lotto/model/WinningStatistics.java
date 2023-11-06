@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.constant.BonusStatus;
 import lotto.constant.Constants;
 
 import java.util.*;

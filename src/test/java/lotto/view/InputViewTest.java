@@ -47,6 +47,13 @@ class InputViewTest {
     }
 
     @Test
+    @DisplayName("당첨 숫자 입력의 공백을 제거한다.")
+    void getWinningNumbersWithBlanks() {
+        setInput("1, 2, 3, 4, 5, 6");
+        assertThat(InputView.getWinningNumbers().size()).isEqualTo(6);
+    }
+
+    @Test
     @DisplayName("당첨 숫자는 정수만 입력할 수 있다.")
     void getWinningNumbersWithNotInteger() {
         setInput("1,2,3,4,5,육");

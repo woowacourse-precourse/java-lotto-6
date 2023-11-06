@@ -6,7 +6,9 @@ public enum ExceptionMessage {
     INVALID_LOTTO_NUMBER_COUNT("로또 번호의 개수는 %d개야 합니다."),
     DUPLICATED_LOTTO_NUMBER("로또 번호는 중복이 없어야 합니다."),
     NOT_NATURAL_NUMBER("구입 금액은 자연수여야 합니다."),
-    NOT_DIVIDE_UNIT("구입 금액은 %d 단위로 입력되어야 합니다.");
+    NOT_DIVIDE_UNIT("구입 금액은 %d 단위로 입력되어야 합니다."),
+    DUPLICATE_WINNING_NUMBERS_AND_BONUS_NUMBER("당첨 번호의 값과 보너스 번호의 값 간의 중복이 없어야 합니다.");
+
 
     private static final String START = "[ERROR] ";
     private final String message;

@@ -1,5 +1,6 @@
 package lotto.io;
 
+import lotto.domain.Money;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

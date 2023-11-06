@@ -13,11 +13,9 @@ public class RandomNumberGenerator {
         while(true){
             nums = Randoms.pickUniqueNumbersInRange(start, end, count);
             List<Integer> copyNums = new ArrayList<>();
-            if(nums.stream().allMatch(num->
-                !copyNums.contains(num) && copyNums.add(num)
-            ))
-                break;
 
+            if(nums.stream().allMatch(num-> !copyNums.contains(num) && copyNums.add(num)))
+                break;
         }
        return nums;
     }

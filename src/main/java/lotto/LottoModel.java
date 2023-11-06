@@ -5,6 +5,8 @@ public class LottoModel {
     private int lottoPrice;
     private Lotto winningLotto;
     private ArrayList<Lotto> boughtLottos;
+    private int bonusNumber;
+    private int[] lottoRank = new int[5];
 
     public LottoModel() {
         lottoPrice = LottoControl.inputLottoPrice();
@@ -14,7 +16,10 @@ public class LottoModel {
         LottoView.printGeneratedLottos(boughtLottos);
 
         winningLotto = LottoControl.inputWinningNumbers();
-        LottoControl.inputBonusNumber(winningLotto);
+        bonusNumber = LottoControl.inputBonusNumber(winningLotto);
+
+        checkLottoRank();
+        LottoView.printRankInfo(lottoRank);
     }
 
     private ArrayList<Lotto> generateLottos(int lottoPrice) {
@@ -28,4 +33,36 @@ public class LottoModel {
 
         return generatedLottos;
     }
+
+    private void checkLottoRank() {
+        for(Lotto boughtLotto : boughtLottos) {
+            if(checkWonNumber(boughtLotto) == 6) {
+                lottoRank[0]++;
+            } else if(checkWonNumber(boughtLotto) == 5 && checkBonusNumber(boughtLotto)) {
+                lottoRank[1]++;
+            } else if(checkWonNumber(boughtLotto) == 5) {
+                lottoRank[2]++;
+            } else if(checkWonNumber(boughtLotto) == 4) {
+                lottoRank[3]++;
+            } else if(checkWonNumber(boughtLotto) == 3) {
+                lottoRank[4]++;
+            }
+        }
+    }
+
+    private int checkWonNumber(Lotto boughtLotto) {
+        int wonNumber = 0;
+        for(int number : boughtLotto.getNumbers()) {
+            if(winningLotto.getNumbers().contains(number)) {
+                wonNumber++;
+            }
+        }
+
+        return wonNumber;
+    }
+
+    private boolean checkBonusNumber(Lotto boughtLotto) {
+        return boughtLotto.getNumbers().contains(bonusNumber);
+    }
 }
+

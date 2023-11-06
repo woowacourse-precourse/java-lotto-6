@@ -9,7 +9,15 @@ public class Bonus {
 
     private final int bonusNumber;
 
-    public Bonus(String number, Lotto winningLotto) {
-        bonusNumber = 1;
+    public Bonus(String bonusNumber, Lotto winningLotto) {
+        this.bonusNumber = convertToInteger(bonusNumber);
+    }
+
+    private int convertToInteger(String bonusNumber) {
+        try {
+            return Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_INTEGER_EXCEPTION_MESSAGE);
+        }
     }
 }

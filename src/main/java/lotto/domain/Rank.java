@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.function.Function;
 
 public enum Rank {
+    NONE(0, false, "", reward -> reward),
     FIFTH(3, false, "3개 일치 (5,000원) - ", reward -> reward + 5000L),
     FOURTH(4, false, "4개 일치 (50,000원) - ", reward -> reward + 50_000L),
     THIRD(5, false, "5개 일치 (1,500,000원) - ", reward -> reward + 1_500_000L),
@@ -21,12 +23,15 @@ public enum Rank {
         this.calc = calc;
     }
 
-    public int getMatchNumbers() {
-        return matchNumbers;
+    public static Rank getPrize(int cnt, boolean bonus) {
+        return Arrays.stream(Rank.values())
+                .filter(prize -> prize.hasPrizeCode(cnt, bonus))
+                .findAny()
+                .orElse(NONE);
     }
 
-    public boolean getMatchBonus() {
-        return matchBonus;
+    private boolean hasPrizeCode(int cnt, boolean bonus) {
+        return matchNumbers == cnt && matchBonus == bonus;
     }
 
     public String getMessage() {

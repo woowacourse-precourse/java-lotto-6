@@ -43,22 +43,14 @@ public class LottoGame {
         for (Lotto lotto : buyer.getLottos()) {
             int cnt = LottoUtils.matchLotto(lotto.getNumbers(), winningLotto.getNumbers());
             boolean bonusMatch = LottoUtils.matchBonus(cnt, lotto, winningLotto.getBonus());
-            countResult(cnt, bonusMatch);
+            calcPrize(cnt, bonusMatch);
         }
     }
 
-    private void countResult(int cnt, boolean bonusMatch) {
-        for (Rank rank : Rank.values()) {
-            if (!isCorrect(rank, cnt, bonusMatch)) {
-                continue;
-            }
-            reward = rank.calculateReward(reward);
-            result.put(rank, result.get(rank) + 1);
-        }
-    }
-
-    private boolean isCorrect(Rank rank, int num, boolean bonus) {
-        return rank.getMatchNumbers() == num && rank.getMatchBonus() == bonus;
+    private void calcPrize(int cnt, boolean bonus) {
+        Rank rank = Rank.getPrize(cnt, bonus);
+        result.put(rank, result.get(rank) + 1);
+        reward = rank.calculateReward(reward);
     }
 
     private void initResult() {

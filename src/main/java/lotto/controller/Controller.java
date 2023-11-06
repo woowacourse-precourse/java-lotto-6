@@ -21,9 +21,17 @@ public class Controller {
     }
 
     private int getUserPrice() {
-        view.printRequestPriceMessage();
-        String inputPrice = readInput();
-        InputValidator.checkPriceInput(inputPrice);
+        String inputPrice;
+        while (true) {
+            view.printRequestPriceMessage();
+            inputPrice = readInput();
+            try {
+                InputValidator.checkPriceInput(inputPrice);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return StringUtils.parseNumberOfCount(inputPrice);
     }
 

@@ -32,11 +32,13 @@
 - 구매한 로또의 번호를 배열 형식으로 출력
 - 당첨 통계 출력
 
-### ✔ InputHandler
+### ✔ Input
 
 - `Console`의 `readline()`함수를 이용하여 로또 구입금액 입력 받기
 - `Console`의 `readline()`함수를 이용하여 당첨 번호를 입력 받기
 - `Console`의 `readline()`함수를 이용하여 보너스 점수를 입력 받기
+
+- [x] 오류가 발생하면 그 시점부터 다시 입력 받는 처리
 
 ### ✔ Validator
 

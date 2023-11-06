@@ -17,7 +17,7 @@ public class InputValidator {
         checkIntegerInputAndThrowException(input);
     }
 
-    private static void checkIntegerInputAndThrowException(String input) {
+    private static void checkIntegerInputAndThrowException(String input) throws IllegalArgumentException {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -25,13 +25,13 @@ public class InputValidator {
         }
     }
 
-    private static void checkEmptyAndThrowException(String input) {
+    private static void checkEmptyAndThrowException(String input) throws IllegalArgumentException {
         if (input.isEmpty()) {
             throw new EmptyInputException(ExceptionMessage.EMPTY_INPUT_ERROR.getMessage());
         }
     }
 
-    private static void checkSpaceAndThrowException(String input) {
+    private static void checkSpaceAndThrowException(String input) throws IllegalArgumentException {
         if (input.contains(EMPTY_SPACE)) {
             throw new EmptySpaceIncludeException(ExceptionMessage.EMPTY_SPACE_INCLUDE_ERROR.getMessage());
         }

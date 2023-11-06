@@ -13,7 +13,7 @@ public class LottoBuyer {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public void purchaseLotto(Lotto lotto){
+    public void purchaseLotto(Lotto lotto) {
         purchaseLottos.add(lotto);
     }
 

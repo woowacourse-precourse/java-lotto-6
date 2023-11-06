@@ -93,11 +93,11 @@ public class PlayLotto {
     public void getBonusNumber(){
         try{
             System.out.println("보너스 번호를 입력해 주세요.");
-            bonusNumber = new BonusNumber(readLine());
+            bonusNumber = new BonusNumber(readLine(), lottoNumbers);
             System.out.println();
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            getLottoNumber();
+            getBonusNumber();
         }
     }
 }

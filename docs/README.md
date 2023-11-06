@@ -46,4 +46,4 @@
 
 - [x] MVC pattern 적용해보기
     - [x] input, output 분리하여 작성
-- [ ] lottos 일급 콜렉션 적용하여 분리하기
+- [x] lottos 일급 콜렉션 적용하여 분리하기

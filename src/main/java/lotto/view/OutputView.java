@@ -1,10 +1,9 @@
 package lotto.view;
 
-import java.util.List;
 import java.util.Map;
 import lotto.constant.LottoGrade;
 import lotto.constant.Prize;
-import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.model.MoneyToBuy;
 
 public class OutputView {
@@ -13,8 +12,8 @@ public class OutputView {
         System.out.printf(OutputMessage.BUY_LOTTO_RESULT.getMessage(), number);
     }
 
-    public void printLottos(List<Lotto> lottos) {
-        lottos.forEach(lotto -> System.out.println(lotto));
+    public void printLottos(Lottos lottos) {
+        System.out.println(lottos);
     }
 
     public void printPrizeResults(Map<LottoGrade, Integer> grades) {

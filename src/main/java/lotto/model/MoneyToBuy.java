@@ -21,7 +21,7 @@ public class MoneyToBuy {
         }
     }
 
-    public Integer getLottosSize() {
+    public Integer getLottosNumber() {
         return value / costOfLotto;
     }
 }

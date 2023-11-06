@@ -3,6 +3,7 @@ package lotto.models;
 import lotto.utils.RandomNumberGenerator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoManager {
@@ -23,8 +24,12 @@ public class LottoManager {
         return lottos;
     }
 
-    public void getLottoResult() {
-
+    public LottoResult getLottoResult(WinningNumber winningNumber) {
+        LottoResult lottoResult = new LottoResult(lottoAmount);
+        for (Lotto lotto : lottos) {
+            lottoResult.addLottoResult(lotto.calcRank(winningNumber));
+        }
+        return lottoResult;
     }
 
 }

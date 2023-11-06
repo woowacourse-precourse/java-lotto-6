@@ -20,6 +20,8 @@ public class LottoGame {
 
         WinningNumber winningNumber = InputView.inputWinningNumber();
 
+
+
     }
 
 }

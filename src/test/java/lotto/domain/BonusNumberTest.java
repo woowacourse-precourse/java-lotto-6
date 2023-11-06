@@ -4,18 +4,18 @@ import static org.assertj.core.api.Assertions.*;
 
 import lotto.enums.ExceptionMessages;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BonusNumberTest {
 
-    private Lotto lotto;
+    private static Lotto lotto;
 
-    @BeforeEach
-    public void init(){
+    @BeforeAll
+    public static void init(){
         final String numbers = "1,2,3,4,5,6";
-        this.lotto = new Lotto(numbers);
+        lotto = new Lotto(numbers);
     }
 
     @Test

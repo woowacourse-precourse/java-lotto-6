@@ -1,16 +1,15 @@
 package lotto.view;
 
-import java.util.Collection;
 import java.util.List;
-import lotto.Rank;
-import lotto.service.ConsoleOutDTO;
+import lotto.service.LottosDTO;
+import lotto.service.ResultDTO;
 
 public class OutputView {
-    public void printNumberOfLotto(int numberOfLottos) {
+    private void printNumberOfLotto(int numberOfLottos) {
         System.out.println(numberOfLottos + "개를 구매했습니다.");
     }
 
-    public void printLottoNumbers(List<List<Integer>> lottos) {
+    private void printLottoNumbers(List<List<Integer>> lottos) {
         lottos.forEach(x -> {
                     System.out.println("[" + String.join(",", x.toString()) + "]");
                 });
@@ -25,10 +24,13 @@ public class OutputView {
         System.out.println("총 수익률은 " + profitRateToPrint + "입니다.");
     }
 
-    public void printResult(ConsoleOutDTO consoleOutDTO) {
-        printNumberOfLotto(consoleOutDTO.getTotalBought());
-        printLottoNumbers(consoleOutDTO.getLottos());
-        printStatistic(consoleOutDTO.getResult());
-        printProfitRate(consoleOutDTO.getProfitRate());
+    public void printBoughtLottos(int numberOfLottos, List<List<Integer>> lottos) {
+        printNumberOfLotto(numberOfLottos);
+        printLottoNumbers(lottos);
+    }
+
+    public void printResult(ResultDTO resultDTO) {
+        printStatistic(resultDTO.getResult());
+        printProfitRate(resultDTO.getProfitRate());
     }
 }

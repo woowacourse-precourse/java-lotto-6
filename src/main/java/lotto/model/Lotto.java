@@ -32,4 +32,20 @@ public class Lotto {
             }
         }
     }
+
+    public Integer countMatchesNumber(Lotto targetLotto) {
+        Integer count = 0;
+
+        for (Integer number : numbers) {
+            if (targetLotto.isMatch(number)) {
+                ++count;
+            }
+        }
+
+        return count;
+    }
+
+    public Boolean isMatch(Integer number) {
+        return numbers.contains(number);
+    }
 }

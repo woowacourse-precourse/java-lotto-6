@@ -10,4 +10,15 @@ public class WinningLotto{
         this.lotto = lotto;
         this.bonus = bonus;
     }
+
+    public MatchCounterDTO countMatchesWholeNumber(Lotto targetLotto) {
+        Integer countMatchesLotto = lotto.countMatchesNumber(targetLotto);
+        Integer countMatchesBonus = 0;
+
+        if (countMatchesLotto == 5) {
+            countMatchesBonus = bonus.countMatchesBonus(targetLotto);
+        }
+
+        return new MatchCounterDTO(countMatchesLotto, countMatchesBonus);
+    }
 }

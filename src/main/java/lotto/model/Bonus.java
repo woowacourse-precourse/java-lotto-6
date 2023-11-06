@@ -14,4 +14,14 @@ public class Bonus {
             throw new IllegalArgumentException(); // 에러문 추가
         }
     }
+
+    public Integer countMatchesBonus(Lotto targetLotto) {
+        Integer count = 0;
+
+        if (targetLotto.isMatch(bonusNumber)) {
+            ++count;
+        }
+
+        return count;
+    }
 }

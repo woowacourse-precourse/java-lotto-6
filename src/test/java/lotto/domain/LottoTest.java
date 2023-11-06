@@ -64,7 +64,7 @@ class LottoTest {
         Assertions.assertThatThrownBy(() -> new Lotto(errorLottoNumbers))
                 .isInstanceOf(LottoException.class)
                 .hasMessage("""
-                        [ERROR] 1부터 45 사이의 중복되지 않는 숫자 6개를 입력해주세요.
+                        [ERROR] 1부터 45 사이의 중복되지 않는 숫자 6개를 입력해 주세요.
                         양식: "1,7,13,24,42,45"
                         """);
     }

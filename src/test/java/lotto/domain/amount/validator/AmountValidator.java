@@ -1,6 +1,5 @@
 package lotto.domain.amount.validator;
 
-import lotto.constant.errorMessage.ExceptionStatus;
 import lotto.constant.errorMessage.amount.AmountExceptionStatus;
 import lotto.constant.errorMessage.amount.InvalidAmountException;
 
@@ -16,12 +15,12 @@ public class AmountValidator {
     }
 
     private void validateAmountIsPositive(final int amount) {
-        if (isPositive(amount)) {
+        if (!isPositive(amount)) {
             throw new InvalidAmountException(AmountExceptionStatus.AMOUNT_IS_NOT_POSITIVE);
         }
     }
 
     private boolean isPositive(final int amount) {
-        return amount <= 0;
+        return amount > 0;
     }
 }

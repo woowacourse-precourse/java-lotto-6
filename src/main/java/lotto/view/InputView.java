@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.validation.InputValidation;
 
@@ -15,19 +16,20 @@ public class InputView {
         return LottoService.amountPurchaseDivide(purchaseInput);
     }
 
-    public static List<Integer> inputWinningNum() {
+    public static Lotto inputWinningNum() {
         String input = inputNotBlank();
         List<Integer> winNumberList = InputValidation.validateInputWinningNumber(input);
         InputValidation.validateNoDuplicates(winNumberList);
         InputValidation.validateNumberRange(winNumberList);
         InputValidation.validateSixNumbers(winNumberList);
-        return winNumberList;
+        return new Lotto(winNumberList);
     }
 
-    public static int inputBonusNum() {
+    public static int inputBonusNum(Lotto winningNumbers) {
         String input = inputNotBlank();
         InputValidation.validateInputString(input);
-        int bonusNumber = InputValidation.validateBonusNumberRange(input);
+        int bonusNumber = InputValidation.validateBonusNumberRange(winningNumbers, Integer.parseInt(input));
+
         return bonusNumber;
     }
 

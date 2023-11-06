@@ -19,62 +19,62 @@ public class Lotto {
     
     private final List<Integer> numbers;
     
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = sorted(numbers);
     }
     
-    public boolean contains(Integer number) {
+    public boolean contains(final Integer number) {
         return numbers.stream()
                 .anyMatch(isEqual(number));
     }
     
-    public long countMatchingWinningNumbers(Lotto anotherLotto) {
+    public long countMatchingWinningNumbers(final Lotto anotherLotto) {
         return numbers.stream()
                 .filter(anotherLotto::contains)
                 .count();
     }
     
-    private List<Integer> sorted(List<Integer> numbers) {
+    private List<Integer> sorted(final List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .collect(toList());
     }
     
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
     }
     
-    private void validateRange(List<Integer> numbers) {
+    private void validateRange(final List<Integer> numbers) {
         if (numberOutOfRange(numbers)) {
             throw LottoGameException.from(LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
     
-    private boolean numberOutOfRange(List<Integer> numbers) {
+    private boolean numberOutOfRange(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(this::isNumberOutOfRange);
     }
     
-    private boolean isNumberOutOfRange(int number) {
+    private boolean isNumberOutOfRange(final int number) {
         return number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER;
     }
     
-    private void validateDuplicate(List<Integer> numbers) {
+    private void validateDuplicate(final List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
     
-    private boolean hasDuplicate(List<Integer> numbers) {
+    private boolean hasDuplicate(final List<Integer> numbers) {
         return numbers.stream()
                 .distinct()
                 .count() != VALIDATE_LOTTO_SIZE;
     }
     
-    private void validateSize(List<Integer> numbers) {
+    private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != VALIDATE_LOTTO_SIZE) {
             throw LottoGameException.from(WINNING_NUMBERS_SIZE_ERROR);
         }

@@ -19,7 +19,7 @@ public class Lotteries {
         return new Lotteries(result);
     }
     
-    private static List<Lotto> createLotteries(Payment payment) {
+    private static List<Lotto> createLotteries(final Payment payment) {
         return IntStream.range(ZERO, payment.receiveIssuedLottoCount())
                 .mapToObj(index -> new Lotto(pickUniqueNumbersInRange()))
                 .toList();

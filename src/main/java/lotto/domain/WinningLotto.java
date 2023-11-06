@@ -13,7 +13,7 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final Integer bonusNumber;
     
-    private WinningLotto(Lotto winningLotto, Integer bonusNumber) {
+    private WinningLotto(final Lotto winningLotto, final Integer bonusNumber) {
         validate(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
@@ -23,7 +23,7 @@ public class WinningLotto {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
     
-    public long countMatchingNumbers(Lotto lotto) {
+    public long countMatchingNumbers(final Lotto lotto) {
         long result = countMatchingWinningNumbers(lotto);
         if (containsBonusNumber(lotto)) {
             result += INCREASE_NUMBER;
@@ -31,7 +31,7 @@ public class WinningLotto {
         return result;
     }
     
-    public boolean containsBonusNumber(Lotto lotto) {
+    public boolean containsBonusNumber(final Lotto lotto) {
         return lotto.contains(bonusNumber);
     }
     

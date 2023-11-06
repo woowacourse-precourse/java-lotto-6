@@ -36,27 +36,27 @@ public class Converter {
         }
     }
     
-    private static void validateStringWithSeparator(String input) {
+    private static void validateStringWithSeparator(final String input) {
         if (hasStartSeparator(input) || hasEndSeparator(input)) {
             throw LottoGameException.from(HAS_BOTH_ENDS_SEPARATOR);
         }
     }
     
-    private static boolean hasEndSeparator(String input) {
+    private static boolean hasEndSeparator(final String input) {
         return input.endsWith(WINNING_NUMBERS_SEPARATOR);
     }
     
-    private static boolean hasStartSeparator(String input) {
+    private static boolean hasStartSeparator(final String input) {
         return input.startsWith(WINNING_NUMBERS_SEPARATOR);
     }
     
-    private static void validateContainWhiteSpace(String input) {
+    private static void validateContainWhiteSpace(final String input) {
         if (hasWhiteSpace(input)) {
             throw LottoGameException.from(EMPTY_INPUT_ERROR);
         }
     }
     
-    private static boolean hasWhiteSpace(String input) {
+    private static boolean hasWhiteSpace(final String input) {
         return input.chars()
                 .anyMatch(Character::isWhitespace);
     }

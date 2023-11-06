@@ -31,23 +31,23 @@ public class Payment {
         validateCurrencyDivision(amount);
     }
     
-    private void validateCurrencyDivision(int amount) {
+    private void validateCurrencyDivision(final int amount) {
         if (notValidateCurrencyDivision(amount)) {
             throw LottoGameException.from(PURCHASE_AMOUNT_ERROR);
         }
     }
     
-    private boolean notValidateCurrencyDivision(int amount) {
+    private boolean notValidateCurrencyDivision(final int amount) {
         return amount % LOTTO_PRICE_UNIT != ZERO;
     }
     
-    private void validateRange(int amount) {
+    private void validateRange(final int amount) {
         if (isSmallerThanMinimumPayment(amount)) {
             throw LottoGameException.from(MINIMUM_PAYMENT_ERROR);
         }
     }
     
-    private boolean isSmallerThanMinimumPayment(int amount) {
+    private boolean isSmallerThanMinimumPayment(final int amount) {
         return amount < LOTTO_PRICE_UNIT;
     }
 }

@@ -41,15 +41,15 @@ public class Lotto {
 
     public int getWinningRank(List<Integer> winningNumbers, int bonusNumber) {
         Map<String, Integer> matchingResult = matchUserNumberWithWinningNumbers(winningNumbers, bonusNumber);
-        if (matchingResult.get("matchingWinningNumbers")==6){
+        if (matchingResult.get("matchingWinningNumbers") == 6) {
             return 1;
         }
-        if (matchingResult.get("matchingWinningNumbers")==5){
-            if (matchingResult.get("matchingBonusNumbers")==1){
+        if (matchingResult.get("matchingWinningNumbers") == 5) {
+            if (matchingResult.get("matchingBonusNumbers") == 1) {
                 return 2;
             }
             return 3;
         }
-       return 8-matchingResult.get("matchingWinningNumbers");
+        return 8 - matchingResult.get("matchingWinningNumbers");
     }
 }

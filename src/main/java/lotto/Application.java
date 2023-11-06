@@ -19,7 +19,6 @@ public class Application {
         int bonusNumber = SystemIO.requestBonusNumber();
 
         //추첨 진행
-        Map<WinningRank,Integer> winningRankResult = new HashMap<>();
         for (List<Integer> value : lotteryNumbers.values()) {
             Lotto lotto = new Lotto(value);
             lotto.getWinningRank(winningNumbers, bonusNumber);

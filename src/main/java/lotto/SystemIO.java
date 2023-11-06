@@ -37,9 +37,9 @@ public class SystemIO {
     }
 
     private static int readBonusNumber() {
-        try{
+        try {
             return Integer.parseInt(readLine());
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalStateException();
         }
     }

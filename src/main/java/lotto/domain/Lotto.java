@@ -10,7 +10,7 @@ public class Lotto {
         this.numbers = new ArrayList<>(numbers);
     }
 
-    public static Lotto of(List<LottoNumber> numbers) {
+    public static Lotto from(List<LottoNumber> numbers) {
         validateLottoNumber(numbers);
         return new Lotto(numbers);
     }

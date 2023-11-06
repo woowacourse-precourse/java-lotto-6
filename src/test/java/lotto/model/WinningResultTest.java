@@ -4,6 +4,11 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class WinningResultTest {
 
@@ -39,5 +44,28 @@ class WinningResultTest {
         winningResult.addRanking(ranking);
 
         Assertions.assertThat(winningResult.getWinningResult().get(ranking)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("winningResult map에 담긴 총 금액을 반환하는 메서드의 작동을 확인한다")
+    void getTotalPrize() {
+        /**
+         * given : winningresult에 LottoRanking을 담는다.
+         * when : getTotalPrize()를 호출한다.
+         * then : 계산 결과와 예상된 결과와 같아야 한다.
+         */
+        final Map<LottoRanking, Integer> winningResult = new HashMap<>();
+        winningResult.put(LottoRanking.MATCH_FOUR, 1);
+        winningResult.put(LottoRanking.MATCH_FIVE, 1);
+        winningResult.put(LottoRanking.MATCH_FIVE_BONUS, 1);
+
+        double actualTotalPrize = winningResult.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        double expectedTotalPrize = LottoRanking.MATCH_FOUR.getPrize()
+                + LottoRanking.MATCH_FIVE.getPrize()
+                + LottoRanking.MATCH_FIVE_BONUS.getPrize();
+
+        assertEquals(expectedTotalPrize, actualTotalPrize);
     }
 }

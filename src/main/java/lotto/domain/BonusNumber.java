@@ -9,10 +9,14 @@ import java.util.List;
 public class BonusNumber {
     private final Integer value;
 
-    public BonusNumber(Integer bonusNumber, Lotto lotto) {
+    private BonusNumber(Integer bonusNumber, Lotto lotto) {
         validateContainLotto(bonusNumber, lotto);
         validateLottoRange(bonusNumber);
         this.value = bonusNumber;
+    }
+
+    public static BonusNumber of(Integer bonusNumber, Lotto lotto) {
+        return new BonusNumber(bonusNumber, lotto);
     }
 
     private void validateContainLotto(Integer bonusNumber, Lotto lotto) {

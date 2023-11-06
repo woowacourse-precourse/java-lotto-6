@@ -18,4 +18,9 @@ public enum LottoResult {
         this.matchCount = matchCount;
         this.price = price;
     }
+
+    public boolean check(int matchCount, boolean bonusMatch) {
+        return this.matchCount == matchCount;
+    }
+
 }

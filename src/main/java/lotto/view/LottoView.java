@@ -19,8 +19,6 @@ public class LottoView {
         }
     }
 
-
-    // TODO : 예외처리 부분 구현 / model이나 controller에서 처리하도록 수정
     public List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요. (쉼표로 구분)");
         String input = Console.readLine();
@@ -30,7 +28,6 @@ public class LottoView {
                 .collect(Collectors.toList());
         return winningNumbers;
     }
-
 
     public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");

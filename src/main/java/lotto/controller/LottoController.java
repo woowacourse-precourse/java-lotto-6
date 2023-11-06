@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.view.LottoView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -30,9 +31,17 @@ public class LottoController {
         }
     }
 
-    public void runMachine() {
-        // TODO : lottoView 구현 반영.
-        Lotto lotto = lottoMachine.generateLotto();
+    public void runMachine(int purchaseAmount) {
+        int lottoCount = purchaseAmount / 1000;
+        System.out.println(lottoCount + "개를 구매했습니다.");
+
+        List<Lotto> purchasedLottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; ++i) {
+            Lotto lotto = lottoMachine.generateLotto();
+            purchasedLottos.add(lotto);
+            System.out.println(lotto.getNumbers());
+        }
+        // TODO: 당첨 번호 입력받기, 당첨 결과 계산 및 출력 등의 로직을 추가할 예정.
     }
 
     private void validatePurchaseAmount(int money) {
@@ -40,6 +49,5 @@ public class LottoController {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위의 정수여야 합니다.");
         }
     }
-
 
 }

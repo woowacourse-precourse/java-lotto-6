@@ -2,6 +2,7 @@ package domain;
 
 public class PurchaseAmount {
 	private final int amount;
+	private final int lottoPurchaseCount;
 
 	public PurchaseAmount(String amount) {
 		validateIsDigit(amount);
@@ -9,10 +10,19 @@ public class PurchaseAmount {
 		validateIsPositive(convertedAmount);
 		validateIsThousandUnit(convertedAmount);
 		this.amount = convertedAmount;
+		this.lottoPurchaseCount = calculateLottoPurchaseCount(convertedAmount);
 	}
 
 	public int getAmount() {
 		return amount;
+	}
+
+	public int getLottoPurchaseCount() {
+		return lottoPurchaseCount;
+	}
+
+	private int calculateLottoPurchaseCount(int amount) {
+		return amount / 1000;
 	}
 
 	private int convertStringToInt(String amount) {

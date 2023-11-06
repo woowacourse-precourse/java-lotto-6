@@ -2,6 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -36,5 +37,20 @@ class PurchaseAmountTest {
 		// when & then
 		assertThatThrownBy(() -> new PurchaseAmount(input))
 				.isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@DisplayName("구매 금액에 따라 로또가 몇개인지 체크")
+	@Test
+	public void LottoPurchaseCountForGivenPurchaseAmount() {
+		//given
+		String input = "3000";
+		int excepted = 3;
+
+		// when
+		PurchaseAmount purchaseAmount = new PurchaseAmount(input);
+		int lottoPurchaseCount = purchaseAmount.getLottoPurchaseCount();
+
+		//then
+		Assertions.assertThat(lottoPurchaseCount).isEqualTo(excepted);
 	}
 }

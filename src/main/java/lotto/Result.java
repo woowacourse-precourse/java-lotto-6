@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
@@ -35,5 +36,11 @@ public class Result {
         stringJoiner.add(String.format("%s개", result.get(rank)));
 
         return stringJoiner.toString();
+    }
+
+    public List<String> getAllRankStatistics() {
+        return Arrays.stream(Rank.values())
+                .map(this::getRankStatistics)
+                .toList();
     }
 }

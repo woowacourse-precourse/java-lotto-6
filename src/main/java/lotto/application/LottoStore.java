@@ -12,8 +12,8 @@ public class LottoStore {
         this.lottoMachine = lottoMachine;
     }
 
-    public List<Lotto> issueLottoByAuto(LottoAmount lottoAmount) {
-        int quantity = lottoAmount.getLottoQuantity();
+    public List<Lotto> issueLottoByAuto(final LottoAmount lottoAmount) {
+        final int quantity = lottoAmount.getLottoQuantity();
         return IntStream.range(0, quantity)
                 .mapToObj(i -> lottoMachine.createLottoByAuto())
                 .toList();

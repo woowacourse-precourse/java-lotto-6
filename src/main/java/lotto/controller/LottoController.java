@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Buyer;
 import lotto.model.Lotto;
+import lotto.model.LottoGame;
 import lotto.utils.Utils;
 import lotto.validation.Validator;
 import lotto.view.NumberSettingView;
@@ -17,10 +18,12 @@ import static lotto.constant.SystemData.MIN_IN_LOTTO_NUMBER;
 
 public class LottoController {
     private Buyer buyer;
+    private LottoGame lottoGame;
 
     public void run() {
         initBuyer();
         showPurchaseStatus();
+        drawLottoNumbers();
     }
 
     private void initBuyer() {
@@ -32,6 +35,13 @@ public class LottoController {
     public void showPurchaseStatus() {
         printPurchasedTicketCount();
         printLottoTicketNumbers();
+    }
+
+    public void drawLottoNumbers() {
+        lottoGame = new LottoGame(
+                getWinningNumbers(),
+                getBonusNumber()
+        );
     }
 
     /* 구입금액 입력 */
@@ -82,18 +92,20 @@ public class LottoController {
 
     /* 로또 6자리 숫자 출력 */
     public void printLottoTicketNumbers() {
-        for(List<Integer> numbers : buyer.getLottoTicketNumbers())
+        for (List<Integer> numbers : buyer.getLottoTicketNumbers())
             System.out.println(numbers);
     }
 
-    public void getInputWinningNumbers() {
-        //TODO: 당첨번호 입력
+    /* 당첨 번호 6자리 입력 */
+    public int[] getWinningNumbers() {
         NumberSettingView.printInputWinningNumbers();
-        int[] winningNumbers = Utils.stringToIntArray(Console.readLine());
+        return Utils.stringToIntArray(Console.readLine());
     }
 
-    public void getInputBonusNumber() {
-        //TODO: 보너스번호 입력
+    /* 보너스 번호 1자리 입력 */
+    public int getBonusNumber() {
+        NumberSettingView.printInputBonusNumber();
+        return Utils.stringToInt(Console.readLine());
     }
 
     public void showWinningResult() {

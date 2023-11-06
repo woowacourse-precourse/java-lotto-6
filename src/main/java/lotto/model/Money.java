@@ -3,14 +3,12 @@ package lotto.model;
 import java.util.Objects;
 import lotto.util.ErrorCode;
 
-public class Money {
+public record Money(Integer money) {
     private static final Integer UNIT = 1000;
-    private final Integer money;
 
-    public Money(Integer money) {
+    public Money {
         validatePositive(money);
         validateDivisible(money);
-        this.money = money;
     }
 
     private static void validatePositive(Integer money) {
@@ -23,10 +21,6 @@ public class Money {
         if (money % UNIT != 0) {
             throw new IllegalArgumentException(ErrorCode.PURCHASE_NOT_DIVISIBLE.getMessage());
         }
-    }
-
-    public Integer getMoney() {
-        return money;
     }
 
     public Integer numberOfPurchaseAvailable() {
@@ -42,10 +36,5 @@ public class Money {
             return false;
         }
         return Objects.equals(this.money, ((Money) o).money);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(money);
     }
 }

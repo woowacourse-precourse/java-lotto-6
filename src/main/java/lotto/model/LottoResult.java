@@ -31,7 +31,7 @@ public class LottoResult {
         for (var rank : result.entrySet()) {
             totalProfit += rank.getKey().getPrize() * rank.getValue();
         }
-        return (double) totalProfit / money.getMoney() * PERCENT;
+        return (double) totalProfit / money.money() * PERCENT;
     }
 
     @Override

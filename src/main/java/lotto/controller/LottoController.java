@@ -25,10 +25,10 @@ public class LottoController {
         List<Lotto> userLottos = createLotto(ticketCount);
         OutputView.printUserLottos(userLottos);
         WinningNumbers winningNumbers = getValidWinningNumbersInput();
-        BonusNumber bonusNumber = getValidBonusNumberInput();
+        BonusNumber bonusNumber = getValidBonusNumberInput(winningNumbers);
         calculateRankCount(userLottos, winningNumbers, bonusNumber);
         OutputView.printRankCount(rankCount);
-        int totalPrize = Calculator.calculateTotalPrize(); // 당첨금액 총합
+        int totalPrize = Calculator.calculateTotalPrize(rankCount); // 당첨금액 총합
         double earningRate = Calculator.calculateEarningRate(totalPrize, money);
         OutputView.printEarningRate(earningRate);
     }
@@ -84,11 +84,12 @@ public class LottoController {
         return winningNumbers;
     }
 
-    private BonusNumber getValidBonusNumberInput() {
+    private BonusNumber getValidBonusNumberInput(WinningNumbers winningNumbers) {
         BonusNumber bonusNumber = null;
         while (bonusNumber == null) {
             try {
-                bonusNumber = new BonusNumber(InputView.getBonusNumberInput());
+                int bonusNumberInput = InputView.getBonusNumberInput();
+                bonusNumber = new BonusNumber(bonusNumberInput, winningNumbers.getWinningNumbers());
             } catch (IllegalArgumentException e) {
                 OutputView.printException(e);
             }

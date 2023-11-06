@@ -48,6 +48,15 @@ class WinningNumberValidatorTest extends NsTest {
         assertThat(output()).isEqualTo(ErrorMessage.OUT_OF_LOTTO_NUMBER_RANGE.getErrorMessage());
     }
 
+    @DisplayName("당첨 번호에 중복된 번호 입력 시 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,2,3,4,5","7,7,7,7,7,7"})
+    void winningNumberContainDuplicateNumber(String input) {
+        assertThatThrownBy(() -> winningNumberValidator.checkWinningNumberValidation(input))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(output()).isEqualTo(ErrorMessage.LOTTO_CONTAIN_DULPICATE_NUMBER.getErrorMessage());
+    }
+
     @Override
     public void runMain(){
     }

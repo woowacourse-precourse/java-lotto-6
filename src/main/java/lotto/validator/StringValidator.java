@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.validator;
 
 import java.util.List;
 
@@ -28,4 +28,6 @@ public class StringValidator {
             throw new IllegalArgumentException("로또 구입 금액을 입력하세요.");
         }
     }
+
+
 }

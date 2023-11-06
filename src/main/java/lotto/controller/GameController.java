@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import net.bytebuddy.dynamic.scaffold.inline.DecoratingDynamicTypeBuilder;
 
 import java.util.List;
 import java.util.Map;

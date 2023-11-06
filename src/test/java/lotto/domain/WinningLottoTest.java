@@ -22,7 +22,7 @@ class WinningLottoTest {
     void createWinningLottoByNotNumber() {
         assertThatThrownBy(() -> new WinningLotto(List.of("199388020895830204", "테스트", "111", "403", "3", "9")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 공백 없이 1~45까지의 숫자를 입력해주세요.");
     }
 
     @DisplayName("로또 번호의 숫자가 45보다 크면 안 된다.")
@@ -30,7 +30,7 @@ class WinningLottoTest {
     void createWinningLottoByOverNumberRange() {
         assertThatThrownBy(() -> new WinningLotto(List.of("1", "4", "44", "56", "43", "23")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 공백 없이 1~45까지의 숫자를 입력해주세요.");
     }
 
     @DisplayName("로또 번호의 숫자가 1보다 작으면 안 된다.")
@@ -38,7 +38,7 @@ class WinningLottoTest {
     void createWinningLottoByUnderNumberRange() {
         assertThatThrownBy(() -> new WinningLotto(List.of("1", "2", "-6", "30", "29", "32")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 공백 없이 1~45까지의 숫자를 입력해주세요.");
     }
 
     @DisplayName("로또 번호의 개수가 6개가 아니면 예외가 발생한다.")

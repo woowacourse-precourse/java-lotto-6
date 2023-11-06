@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.Map;
 import lotto.domain.wrapper.PurchaseAmount;
+import lotto.utils.LottoConstant;
+import lotto.utils.LottoConstantValue;
 import lotto.utils.Prize;
 
 public class PrizeReception {
@@ -12,7 +14,7 @@ public class PrizeReception {
     }
 
     public int getPrizeCount(Prize prize) {
-        return lottosResult.get(prize);
+        return lottosResult.getOrDefault(prize, LottoConstantValue.DEFAULT_COUNT.get());
     }
 
     public double getProfitRate(PurchaseAmount purchaseAmount) {

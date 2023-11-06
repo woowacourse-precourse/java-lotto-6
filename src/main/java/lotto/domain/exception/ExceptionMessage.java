@@ -1,6 +1,6 @@
 package lotto.domain.exception;
 
-import lotto.constant.LottoConstant;
+import lotto.domain.constant.LottoConstant;
 
 public class ExceptionMessage {
 

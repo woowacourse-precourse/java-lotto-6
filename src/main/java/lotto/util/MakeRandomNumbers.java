@@ -8,9 +8,8 @@ import java.util.stream.Collectors;
 public class MakeRandomNumbers {
     public static List<Integer> getRandomNumbers(){
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        randomNumbers.stream()
+        return randomNumbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
-        return randomNumbers;
     }
 }

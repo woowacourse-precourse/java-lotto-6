@@ -12,12 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoMachine {
-    /**
-     * 입력 갯수 만큼 로또 번호 생성
-     *
-     * @param quantity
-     * @return
-     */
+
     public List<Lotto> getPurchaseLottoes(int quantity) {
         List<Lotto> lottoes = IntStream
                 .range(0, quantity)
@@ -27,11 +22,6 @@ public class LottoMachine {
         return lottoes;
     }
 
-    /**
-     * 자동 로또 번호 생성
-     *
-     * @return
-     */
     private List<Integer> automaticallyGenerateLottoNumbers() {
         List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(MIN_RANGE.getConfig(), MAX_RANGE.getConfig(),
                 LOTTO_SIZE.getConfig());
@@ -39,11 +29,6 @@ public class LottoMachine {
         return lottoNumbersSort(lottoNumber);
     }
 
-    /**
-     * 로또 번호 오름 차순 정렬
-     *
-     * @param lottoNumber
-     */
     private List<Integer> lottoNumbersSort(List<Integer> lottoNumber) {
         List<Integer> sortedLottoNumber = new ArrayList<>(lottoNumber);
 

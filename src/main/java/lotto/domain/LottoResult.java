@@ -26,9 +26,6 @@ public class LottoResult {
         getLottoWinningResults();
     }
 
-    /**
-     * 로또 당첨 결과 분석
-     */
     private void getLottoWinningResults() {
         for (LottoPrize lottoResult : lottoResults) {
             prizeCounting(lottoResult);
@@ -37,11 +34,6 @@ public class LottoResult {
         profitRateCalculation();
     }
 
-    /**
-     * 당첨 등수별 횟수 증가
-     *
-     * @param lottoResult
-     */
     private void prizeCounting(LottoPrize lottoResult) {
         if (lottoResult.equals(LottoPrize.FIRST_PRIZE)) {
             firstPrize++;
@@ -60,9 +52,6 @@ public class LottoResult {
         }
     }
 
-    /**
-     * 수익률 계산 ( 소수점 2자리 반올림 )
-     */
     private void profitRateCalculation() {
         BigDecimal rate = new BigDecimal(((double) totalPrize / consumerAmount) * 100.0);
         profitRate = rate.setScale(decimalPlace, RoundingMode.HALF_UP);

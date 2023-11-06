@@ -17,24 +17,12 @@ public class WinLotto {
         this.bonus = bonus;
     }
 
-    /**
-     * 당첨 로또 번호에 보너스 번호 중복 확인
-     *
-     * @param winLotto
-     * @param bonus
-     */
     private void containsNumberCheck(Lotto winLotto, int bonus) {
         if (winLotto.isContainsNumber(bonus)) {
             throw LottoException.of(ERROR_LOTTO_CONTAINS_BONUS);
         }
     }
 
-    /**
-     * 로또 당첨 번호와 보너스 번호 비교
-     *
-     * @param otherLotto
-     * @return long
-     */
     public LottoPrize lottoComparison(Lotto otherLotto) {
         int rank = (int) winLotto.lottoNumberComparison(otherLotto);
 

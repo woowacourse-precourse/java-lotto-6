@@ -25,22 +25,12 @@ public class Lotto {
         NumberRangeCheck(numbers);
     }
 
-    /**
-     * 로또 번호 갯수 확인
-     *
-     * @param numbers
-     */
     private void NumberSizeCheck(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getConfig()) {
             throw LottoException.of(ERROR_LOTTO_NUMBER_SIZE);
         }
     }
 
-    /**
-     * 로또 번호 중복 확인
-     *
-     * @param numbers
-     */
     private void DuplicateNumberCheck(List<Integer> numbers) {
         long count = numbers
                 .stream()
@@ -52,11 +42,6 @@ public class Lotto {
         }
     }
 
-    /**
-     * 로또 번호 범위 확인
-     *
-     * @param numbers
-     */
     private void NumberRangeCheck(List<Integer> numbers) {
         boolean overRangeResult = numbers
                 .stream()
@@ -67,22 +52,10 @@ public class Lotto {
         }
     }
 
-    /**
-     * 로또 번호에 입력 값 존재 여부 확인
-     *
-     * @param number
-     * @return boolean
-     */
     public boolean isContainsNumber(int number) {
         return numbers.contains(number);
     }
 
-    /**
-     * 로또 번호 비교
-     *
-     * @param otherLotto
-     * @return long
-     */
     public long lottoNumberComparison(Lotto otherLotto) {
         List<Integer> otherNumbers = otherLotto.getNumbers();
         return numbers

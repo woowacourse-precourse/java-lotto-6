@@ -33,12 +33,11 @@ public class LottoService {
         return LottoMapper.mapFrom(lottoTickets);
     }
 
-    public DrawingResultDto calculateDrawingResult(WinningCombinationDto winningNumbers) {
-        WinningCombination winningLotto = LottoMapper.mapFrom(winningNumbers);
-        List<Lotto> purchasedLottos = lottoRepository.findAll();
-        Lottos totalLottoTickets = Lottos.from(purchasedLottos);
-        DrawingResult drawingResult = drawingMachine.draw(winningLotto, totalLottoTickets);
+    public DrawingResultDto calculateDrawingResult(WinningCombinationDto winningCombinationDto) {
+        WinningCombination winningCombination = LottoMapper.mapFrom(winningCombinationDto);
+        List<Lotto> purchasedLottoTickets = lottoRepository.findAll();
+        Lottos totalLottoTickets = Lottos.from(purchasedLottoTickets);
+        DrawingResult drawingResult = drawingMachine.draw(winningCombination, totalLottoTickets);
         return LottoMapper.mapFrom(drawingResult);
     }
-
 }

@@ -49,7 +49,7 @@ public class Validator {
         }
     }
 
-    public void validateDuplicateNumber(List<String> inputNumbers) {
+    public static void validateDuplicateNumber(List<?> inputNumbers) {
         boolean hasDuplicates = inputNumbers.stream()
                 .distinct()
                 .count() < inputNumbers.size();

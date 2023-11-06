@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.domain.Lotto;
 import lotto.enums.ErrorMessages;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +30,14 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    private Lotto lotto;
+    @DisplayName("로또 생성")
+    @BeforeEach
+    @Test
+    void createLotto() {
+        lotto = new Lotto(List.of(1,2,3,4,5,6));
+    }
+
     @DisplayName("로또 번호의 숫자 범위에 1~45 이외의 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByInvalidRangeNumber() {
@@ -43,15 +52,35 @@ class LottoTest {
     @DisplayName("로또객체 문자열로 가져오기")
     @Test
     void getLottoToString() {
-        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
-        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).toHash()).contains("lotto.domain.Lotto@");
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        assertThat(lotto.toHash()).contains("lotto.domain.Lotto@");
     }
 
     @DisplayName("로또 객체 가져오기")
     @Test
     void getLotto() {
-        assertThat(new Lotto(List.of(1,2,3,4,5,6)).getLottoNumbers().stream()
+        assertThat(lotto.getLottoNumbers().stream()
                 .mapToInt(LottoNumber::getNumber)
         ).isEqualTo(List.of(1,2,3,4,5,6));
+    }
+
+    @DisplayName("다른 로또번호와 비교 로직 테스트")
+    @Test
+    public void countMatchedNumbersLogicTest() {
+        Lotto otherLotto = new Lotto("1,2,3,4,5,6");
+        int count = lotto.getLottoNumbers().stream()
+                .filter(otherLotto::contains)
+                .map(lottoNumber -> 1)
+                .reduce(0, Integer::sum);
+
+        assertThat(count).isEqualTo(6);
+    }
+
+    @DisplayName("다른 로또번호와 구현 테스트")
+    @Test
+    public void countMatchedNumbers() {
+        Lotto winningLotto = new Lotto("1,2,3,4,5,6");
+        int count = lotto.countMatchedNumbers(winningLotto);
+        assertThat(count).isEqualTo(6);
     }
 }

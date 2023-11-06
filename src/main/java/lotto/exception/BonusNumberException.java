@@ -21,8 +21,9 @@ public class BonusNumberException {
         }
     }
 
-    public void isRightRange(int input) {
-        if(input < BONUS_NUMBER_START || input > BONUS_NUMBER_FINISH){
+    public void isRightRange(String input) {
+        int bonusNum = Integer.parseInt(input);
+        if(bonusNum < BONUS_NUMBER_START || bonusNum > BONUS_NUMBER_FINISH){
             throw new IllegalArgumentException(IS_RIGHT_RANGE_MESSAGE);
         }
     }
@@ -33,7 +34,8 @@ public class BonusNumberException {
         }
     }
 
-    public void isDuplicateWithWinnerNum(int bonusNum, List<Integer> winnerNum) {
+    public void isDuplicateWithWinnerNum(String bonusNumber, List<Integer> winnerNum) {
+        int bonusNum = Integer.parseInt(bonusNumber);
         if(winnerNum.stream().anyMatch(i -> i == bonusNum)){
             throw new IllegalArgumentException(IS_DUPLICATE_MESSAGE);
         }

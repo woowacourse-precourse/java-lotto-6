@@ -46,7 +46,7 @@ class LottoTest {
         Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
         Lotto lotto2 = new Lotto(List.of(1,2,3,10,11,12));
 
-        Assertions.assertThat(lotto1.sameNumberCount(lotto2)).isEqualTo(3);
+        Assertions.assertThat(lotto1.countSameNumber(lotto2)).isEqualTo(3);
     }
     // 아래에 추가 테스트 작성 가능
 }

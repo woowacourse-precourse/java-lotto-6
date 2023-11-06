@@ -28,9 +28,10 @@ public class LottoController {
         inputView.requestPurchasePrice();
         Price price = user.requestPurchasePrice();
 
-        // 로또 발행
+        // 로또 발행하고 출력
         UserLottos userLottos = user.generateAllLottos(price);
-
+        outputView.printNumberOfPurchase(userLottos.getLottos().size());
+        outputView.printAllLottoNumbersList(userLottos);
     }
 
     private void getWinningNumbers() {

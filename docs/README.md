@@ -22,4 +22,19 @@
 
 ---
 
+## 🦄 MVC
+### Controller (데이터의 흐름 제어)
+- Game: 전체적인 게임 진행
+
+### Domain (처리 및 반환, 데이터와 행위)
+- Lotto: (Validator) 숫자 유효성 검사
+- LottoCashier: 금액 입력 받는 곳
+- RandomNumbersGenerator: 금액만큼 로또(랜덤) 발행하는 곳
+- Referee: 번호 비교하여 당첨 내역 만들기
+- Grade: 몇등인지
+- ​profitRate: 수익률 연산
+
+### View (Domain이 처리한 리턴 값 받아서 사용)
+- InputView (입력 받는 곳) : 로또 구입 금액 - 당첨번호 - 보너스 번호
+- OutputView (출력 하는 곳) : 발행한 로또 수량 및 번호 - 당첨내역 - 수익률
 

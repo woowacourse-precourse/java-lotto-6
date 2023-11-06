@@ -18,11 +18,11 @@ public class Lotto {
         }
     }
 
-    public List<LottoNumber> getNumbers() {
-        return numbers.numbers();
+    public LottoNumbers getNumbers() {
+        return numbers;
     }
 
-    public List<LottoNumber> getSortedNumbers() {
-        return numbers.getSortedNumbers();
+    public LottoNumbers getSortedNumbers() {
+        return new LottoNumbers(numbers.getSortedNumbers());
     }
 }

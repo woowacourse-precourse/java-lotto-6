@@ -1,11 +1,6 @@
 package lotto.model;
 
 import static lotto.util.Utils.parseInt;
-import static lotto.util.Utils.splitByComma;
-
-import java.util.ArrayList;
-import java.util.List;
-import lotto.view.OutputView;
 
 public class LottoAmount {
     private static final String MONEY_NEGATIVE_ERROR_MESSAGE = "[ERROR] 구입 금액은 양수여야 합니다.";

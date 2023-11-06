@@ -9,7 +9,7 @@ import lotto.util.Utils;
 import lotto.util.Validator;
 import org.junit.jupiter.api.Test;
 
-public class ControllerTest {
+public class ValidatorTest {
 
     @Test
     void validateLottoNumber_로또번호_쉼표로_나뉘어서_저장_안되면_예외반환() {

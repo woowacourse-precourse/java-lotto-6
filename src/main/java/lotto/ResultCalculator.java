@@ -33,4 +33,10 @@ public class ResultCalculator {
         }
         return PrizeGrade.NO_PRIZE;
     }
+
+    private int countMatchingNumbers(Lotto lotto, Lotto winningLotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(number -> winningLotto.getNumbers().contains(number))
+                .count();
+    }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class OutputView {
     public void printErrorMessage(Exception exception) {
+        print(exception.getMessage());
     }
 
     public void printLottoReceipt(LottoReceiptDto lottoReceipt) {

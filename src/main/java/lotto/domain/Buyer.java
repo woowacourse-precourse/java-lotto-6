@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import lotto.dto.Lotto;
-import lotto.dto.Ranking;
-import lotto.enums.Rank;
+import lotto.enums.RankStandard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,14 +12,14 @@ public class Buyer {
     private int numberOfLotto;
     private double rateOfReturn;
     private List<Lotto> lottos = new ArrayList<>();
-    private Map<Integer, Ranking> rankingAccumulator = new HashMap<>();
+    private Map<Integer, LotteryRankInfo> rankingAccumulator = new HashMap<>();
 
     public Buyer() {
-        rankingAccumulator.put(5, new Ranking(Rank.Fifth));
-        rankingAccumulator.put(4, new Ranking(Rank.Fourth));
-        rankingAccumulator.put(3, new Ranking(Rank.Third));
-        rankingAccumulator.put(2, new Ranking(Rank.Second));
-        rankingAccumulator.put(1, new Ranking(Rank.First));
+        rankingAccumulator.put(5, new LotteryRankInfo(RankStandard.Fifth));
+        rankingAccumulator.put(4, new LotteryRankInfo(RankStandard.Fourth));
+        rankingAccumulator.put(3, new LotteryRankInfo(RankStandard.Third));
+        rankingAccumulator.put(2, new LotteryRankInfo(RankStandard.Second));
+        rankingAccumulator.put(1, new LotteryRankInfo(RankStandard.First));
     }
 
     public int getDesiredPurchaseAmount() {
@@ -52,7 +50,7 @@ public class Buyer {
         return lottos;
     }
 
-    public Map<Integer, Ranking> getRankingAccumulator() {
+    public Map<Integer, LotteryRankInfo> getRankingAccumulator() {
         return rankingAccumulator;
     }
 }

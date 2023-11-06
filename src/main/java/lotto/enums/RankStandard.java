@@ -1,6 +1,6 @@
 package lotto.enums;
 
-public enum Rank {
+public enum RankStandard {
     First(1, 6, 0, 2000000000),
     Second(2, 5, 1, 30000000),
     Third(3, 5, 0, 1500000),
@@ -12,7 +12,7 @@ public enum Rank {
     int matchedBonusNumberAmount;
     int rewardMoney;
 
-    Rank(int rank, int matchedWinningNumberAmount, int matchedBonusNumberAmount, int rewardMoney) {
+    RankStandard(int rank, int matchedWinningNumberAmount, int matchedBonusNumberAmount, int rewardMoney) {
         this.rank = rank;
         this.matchedWinningNumberAmount = matchedWinningNumberAmount;
         this.matchedBonusNumberAmount = matchedBonusNumberAmount;

@@ -1,7 +1,7 @@
 package lotto.repository;
 
 import lotto.domain.Buyer;
-import lotto.domain.LotteryWinningNumbers;
+import lotto.dto.LotteryWinningNumbers;
 
 public class LottoRepository {
     private static final LottoRepository singleton = new LottoRepository();

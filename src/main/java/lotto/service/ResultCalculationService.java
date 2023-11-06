@@ -1,10 +1,10 @@
 package lotto.service;
 
 import lotto.domain.Buyer;
-import lotto.domain.LotteryWinningNumbers;
-import lotto.dto.Lotto;
+import lotto.dto.LotteryWinningNumbers;
+import lotto.domain.Lotto;
 import lotto.enums.NumberType;
-import lotto.dto.Ranking;
+import lotto.domain.LotteryRankInfo;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -14,7 +14,7 @@ import static lotto.enums.GuideMessage.*;
 public class ResultCalculationService {
     public void makeWinningResult(Buyer buyer, LotteryWinningNumbers lotteryWinningNumbers) {
         int bonusNumber = lotteryWinningNumbers.getBonusNumber();
-        Map<Integer, Ranking> rankingAccumulator = buyer.getRankingAccumulator();
+        Map<Integer, LotteryRankInfo> rankingAccumulator = buyer.getRankingAccumulator();
         List<Lotto> lottos = buyer.getLottos();
         List<Integer> lottoWinningNumbers = lotteryWinningNumbers.getWinningNumbers();
         List<Pair> winningAndBonusNumbers = sortWinningPlusBonusNumbers(lottoWinningNumbers, bonusNumber);
@@ -38,7 +38,7 @@ public class ResultCalculationService {
     }
 
     //죄송합니다... 15줄 제한 요구를 지킬 방법이 생각이 나지 않습니다....
-    private void checkRankingOfLotto(Map<Integer, Ranking> rankingAccumulator, List<Integer> lottoNumbers, List<Pair> winningAndBonusNumbers) {
+    private void checkRankingOfLotto(Map<Integer, LotteryRankInfo> rankingAccumulator, List<Integer> lottoNumbers, List<Pair> winningAndBonusNumbers) {
         int correctWinningNumber = 0;
         int correctBonusNumber = 0;
         int currentPositionOfWinningAndBonusNumbers = 0;
@@ -73,18 +73,18 @@ public class ResultCalculationService {
             rankingAccumulator.get(ranking).increaseNumberOfWins();
     }
 
-    private int calculateRanking(Map<Integer, Ranking> rankingAccumulator, int correctWinningNumber, int correctBonusNumber) {
-        for (Ranking ranking : rankingAccumulator.values()) {
-            if (correctWinningNumber == ranking.getMatchedWinningNumberAmount() &&
-                    correctBonusNumber == ranking.getMatchedBonusNumberAmount())
-                return ranking.getRank();
+    private int calculateRanking(Map<Integer, LotteryRankInfo> rankingAccumulator, int correctWinningNumber, int correctBonusNumber) {
+        for (LotteryRankInfo lotteryRankInfo : rankingAccumulator.values()) {
+            if (correctWinningNumber == lotteryRankInfo.getMatchedWinningNumberAmount() &&
+                    correctBonusNumber == lotteryRankInfo.getMatchedBonusNumberAmount())
+                return lotteryRankInfo.getRank();
         }
         return 0;
     }
 
     public void calculateRateOfReturn(Buyer buyer) {
         int desiredPurchaseAmount = buyer.getDesiredPurchaseAmount();
-        Map<Integer, Ranking> rankingAccumulator = buyer.getRankingAccumulator();
+        Map<Integer, LotteryRankInfo> rankingAccumulator = buyer.getRankingAccumulator();
         double totalMoney = 0;
 
         for (int i = 1; i <= 5; i++) {
@@ -95,7 +95,7 @@ public class ResultCalculationService {
     }
 
     public List<String> printWinningResult(Buyer buyer) {
-        Map<Integer, Ranking> rankingAccumulator = buyer.getRankingAccumulator();
+        Map<Integer, LotteryRankInfo> rankingAccumulator = buyer.getRankingAccumulator();
         double rateOfReturn = buyer.getRateOfReturn();
         List<String> messages = new ArrayList<>();
 
@@ -113,16 +113,16 @@ public class ResultCalculationService {
         return messages;
     }
 
-    private void makeWinningResultMessages(Map<Integer, Ranking> rankingAccumulator, int i, DecimalFormat decimalFormat, List<String> messages) {
-        Ranking ranking = rankingAccumulator.get(i);
-        String formattedAmount = decimalFormat.format(ranking.getRewardMoney());
+    private void makeWinningResultMessages(Map<Integer, LotteryRankInfo> rankingAccumulator, int i, DecimalFormat decimalFormat, List<String> messages) {
+        LotteryRankInfo lotteryRankInfo = rankingAccumulator.get(i);
+        String formattedAmount = decimalFormat.format(lotteryRankInfo.getRewardMoney());
         String additionalMessage = INFORM_BONUS_NUMBER_CORRECT_MESSAGE.getMessage();
 
-        if (ranking.getMatchedBonusNumberAmount() == 0)
+        if (lotteryRankInfo.getMatchedBonusNumberAmount() == 0)
             additionalMessage = "";
 
         messages.add(String.format(INFORM_RANK_AND_WINNING_COUNT_MESSAGE.getMessage(),
-                ranking.getMatchedWinningNumberAmount(), additionalMessage, formattedAmount, ranking.getNumberOfWins()));
+                lotteryRankInfo.getMatchedWinningNumberAmount(), additionalMessage, formattedAmount, lotteryRankInfo.getNumberOfWins()));
     }
 
     private class Pair {

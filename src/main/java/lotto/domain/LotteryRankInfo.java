@@ -1,19 +1,19 @@
-package lotto.dto;
+package lotto.domain;
 
-import lotto.enums.Rank;
+import lotto.enums.RankStandard;
 
-public class Ranking {
+public class LotteryRankInfo {
     private final int rank;
     private final int matchedWinningNumberAmount;
     private final int matchedBonusNumberAmount;
     private final int rewardMoney;
     private int numberOfWins = 0;
 
-    public Ranking(Rank rank) {
-        this.rank = rank.getRank();
-        this.matchedWinningNumberAmount = rank.getMatchedWinningNumberAmount();
-        this.matchedBonusNumberAmount = rank.getMatchedBonusNumberAmount();
-        this.rewardMoney = rank.getRewardMoney();
+    public LotteryRankInfo(RankStandard rankStandard) {
+        this.rank = rankStandard.getRank();
+        this.matchedWinningNumberAmount = rankStandard.getMatchedWinningNumberAmount();
+        this.matchedBonusNumberAmount = rankStandard.getMatchedBonusNumberAmount();
+        this.rewardMoney = rankStandard.getRewardMoney();
     }
 
     public void increaseNumberOfWins() {

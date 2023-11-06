@@ -2,9 +2,9 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Buyer;
-import lotto.domain.LotteryWinningNumbers;
-import lotto.dto.Lotto;
-import lotto.dto.Ranking;
+import lotto.dto.LotteryWinningNumbers;
+import lotto.domain.Lotto;
+import lotto.domain.LotteryRankInfo;
 import lotto.repository.LottoRepository;
 import lotto.validator.Validations;
 import lotto.view.ErrorView;
@@ -76,7 +76,7 @@ public class LottteryService {
 
     public List<String> printWinningResult() {
         Buyer buyer = repository.getBuyer();
-        Map<Integer, Ranking> rankingAccumulator = buyer.getRankingAccumulator();
+        Map<Integer, LotteryRankInfo> rankingAccumulator = buyer.getRankingAccumulator();
 
         LotteryWinningNumbers lotteryWinningNumbers = repository.getLotteryWinningNumbers();;
 

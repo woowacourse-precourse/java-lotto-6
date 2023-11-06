@@ -5,7 +5,7 @@ import static lotto.domain.LottoPrice.LOTTO_UNIT_PRICE;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-import lotto.domain.LottoConsumer;
+import lotto.domain.Lottos;
 import lotto.service.LottoIssueService;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
@@ -22,7 +22,7 @@ public class LottoIssueController {
         this.output = new OutputView();
     }
 
-    public LottoConsumer issueLottos(int money) {
+    public Lottos issueLottos(int money) {
         validateMoney(money);
         int issueCount = calculateIssueCount(money);
         return issueService.issueLottos(issueCount);

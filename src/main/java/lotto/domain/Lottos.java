@@ -3,10 +3,10 @@ package lotto.domain;
 import java.util.List;
 import java.util.Map;
 
-public class LottoConsumer {
+public class Lottos {
     private final List<Lotto> issuedLottos;
 
-    public LottoConsumer(List<Lotto> issuedLottos) {
+    public Lottos(List<Lotto> issuedLottos) {
         this.issuedLottos = issuedLottos;
     }
 

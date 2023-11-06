@@ -4,18 +4,18 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoConsumer;
+import lotto.domain.Lottos;
 import lotto.util.ErrorMessages;
 
 public class LottoIssueService {
 
-    public LottoConsumer issueLottos(int issueCount) {
+    public Lottos issueLottos(int issueCount) {
         validateIssueCount(issueCount);
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < issueCount; i++) {
             lottos.add(new Lotto(getLottoNumbers()));
         }
-        return new LottoConsumer(lottos);
+        return new Lottos(lottos);
     }
 
     private void validateIssueCount(int issueCount) {

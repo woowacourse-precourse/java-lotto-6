@@ -12,7 +12,7 @@ class LottoPurchaseAmountExceptionTest {
     @DisplayName("구입 금액이 1,000으로 나누어 떨어지지 않으면 예외 처리")
     void checkLottoPurchaseAmountDivideThousand(){
         // given
-        String input = "2500";
+        int input = 2500;
 
         //then
         assertThatThrownBy(() -> new LottoPurchaseAmountException().isDivideThousand(input)).isInstanceOf(

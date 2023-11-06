@@ -18,6 +18,7 @@ public class LottoController {
            isRestart = inputValidator.validateInputPrice(inputPrice);
         } catch (IllegalArgumentException error){
             System.out.println(error.getMessage());
+            start();
             return;
         }
         nextPriceCheck(isRestart, Integer.parseInt(inputPrice));
@@ -28,9 +29,7 @@ public class LottoController {
             start();
             return;
         }
-        //받은 금액만큼 로또를 발행하기 (개수)
         int lottoCount = outputView.outputPublishLotto(inputPrice);
-        // 받은 금액만큼 로또 랜덤 발행하기
         outputView.outputRandomNumberLotto(lottoCount);
     }
 }

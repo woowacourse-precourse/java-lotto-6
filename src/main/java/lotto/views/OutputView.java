@@ -1,6 +1,5 @@
 package lotto.views;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.common.message.OutputMessage;
 import lotto.domain.Lotto;
@@ -34,14 +33,16 @@ public class OutputView {
         }
         outputLottoResult(lottoResult);
     }
-    // 로또 리스트를 보여줌
-    public void outputLottoResult(List<Lotto> lottoResult){
-        lottoResult.stream().map(lotto -> {
-            System.out.println(lotto.getNumbers());
-            return null;
-        }).toList();
 
+    //중복확인
+    //
+
+    public void outputLottoResult(List<Lotto> lottoResult){
+        lottoResult.forEach(lotto -> {
+            System.out.println(lotto.getNumbers());
+        });
     }
+
     // 로또에 중복이 없는지 체크
 //    public boolean isLottoUnique(Lotto lotto) {
 //        for (Lotto existingLotto : lottos) {

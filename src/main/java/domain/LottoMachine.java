@@ -1,9 +1,18 @@
 package domain;
 
-public class LottoMachine {
-    private int price;
+import java.util.List;
+import lotto.Lotto;
 
-    public LottoMachine(int price) {
-        this.price = price;
+public class LottoMachine {
+    private int spend;
+    private List<Lotto> lottoTickets;
+
+    public LottoMachine(int spend, List<Lotto> lottoTickets) {
+        this.spend = spend;
+        this.lottoTickets = lottoTickets;
+    }
+
+    public int getSpend() {
+        return spend;
     }
 }

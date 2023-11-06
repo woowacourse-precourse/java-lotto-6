@@ -66,9 +66,9 @@ public class PrizeResultTest {
         assertThat(PrizeResult.calculateProfitRate(moneySpent, Map.of(
                 Prize.FIRST_PLACE, 1L,
                 Prize.SECOND_PLACE, 1L,
-                Prize.FOURTH_PLACE, 1L,
-                Prize.FIFTH_PLACE, 1L,
+                Prize.FOURTH_PLACE, 0L,
+                Prize.FIFTH_PLACE, 0L,
                 Prize.NO_PRIZE, 3L
-        ))).isEqualTo(290006.9);
+        ))).isEqualTo(29000000.0);
     }
 }

@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 public class CalculatorTest {
     Calculator calculator = new Calculator();
+
     @ParameterizedTest
     @EnumSource(
             value = Rank.class,
@@ -22,7 +23,7 @@ public class CalculatorTest {
         int pay = 1000;
 
         //when
-        double value = calculator.calculateRateOfReturn(map, pay);
+        double value = Calculator.calculateRateOfReturn(map, pay);
 
         //then
         assertThat(value).isEqualTo(givenRank.reward * 100 / pay);
@@ -37,7 +38,7 @@ public class CalculatorTest {
         int pay = 3000;
 
         //when
-        double value = calculator.calculateRateOfReturn(map, pay);
+        double value = Calculator.calculateRateOfReturn(map, pay);
 
         //then
         long sum = (Rank.FIFTH.reward * 2) + (Rank.SECOND.reward);

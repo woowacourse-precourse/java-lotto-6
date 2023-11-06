@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
 import lotto.domain.Rank;

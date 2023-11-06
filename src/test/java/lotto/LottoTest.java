@@ -1,19 +1,16 @@
 package lotto;
 
-import java.util.Arrays;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -38,7 +35,7 @@ class LottoTest {
 
     @Test
     @DisplayName("1등은 모든 숫자가 맞아야 한다.")
-    void 등수확인_1등(){
+    void 등수확인_1등() {
         //given
         Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         int bonus = 7;
@@ -52,9 +49,9 @@ class LottoTest {
 
     @Test
     @DisplayName("2등은 5개의 숫자와 보너스 숫자가 맞아야한다.")
-    void 등수확인_2등(){
+    void 등수확인_2등() {
         //given
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         int bonus = 7;
 
         //when
@@ -66,9 +63,9 @@ class LottoTest {
 
     @Test
     @DisplayName("3등은 5개의 숫자가 맞아야한다. 보너스는 틀려야한다.")
-    void 등수확인_3등(){
+    void 등수확인_3등() {
         //given
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,10));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
         int bonus = 7;
 
         //when
@@ -77,12 +74,13 @@ class LottoTest {
         //then
         Assertions.assertThat(rank).isEqualTo(Rank.THIRD);
     }
+
     @Test
     @DisplayName("4등은 4개의 숫자가 맞아야한다. 보너스는 무시한다.")
-    void 등수확인_4등(){
+    void 등수확인_4등() {
         //given
-        Lotto lotto1 = new Lotto(List.of(1,2,3,4,12,13));
-        Lotto lotto2 = new Lotto(List.of(1,2,3,4,7,11));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 12, 13));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 7, 11));
         int bonus = 7;
 
         //when
@@ -93,12 +91,13 @@ class LottoTest {
         Assertions.assertThat(rank1).isEqualTo(Rank.FORTH);
         Assertions.assertThat(rank2).isEqualTo(Rank.FORTH);
     }
+
     @Test
     @DisplayName("5등은 3개의 숫자가 맞아야한다. 보너스는 무시한다.")
-    void 등수확인_5등(){
+    void 등수확인_5등() {
         //given
-        Lotto lotto1 = new Lotto(List.of(1,2,3,11,12,13));
-        Lotto lotto2 = new Lotto(List.of(1,2,3,7,11,12));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 11, 12, 13));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 7, 11, 12));
         int bonus = 7;
 
         //when
@@ -113,7 +112,7 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("failSource")
     @DisplayName("0~2개는 FAIL에 매치된다. 보너스는 무시된다.")
-    void 등수확인_무효(List<Integer> list){
+    void 등수확인_무효(List<Integer> list) {
         //given
         Lotto lotto = new Lotto(list);
         int bonus = 7;
@@ -127,9 +126,9 @@ class LottoTest {
 
     private static Stream<List<Integer>> failSource() {
         return Stream.of(
-                List.of(1,2,14,11,12,13),
-                List.of(1,2,7,14,11,12),
-                List.of(1,25,7,14,11,12),
-                List.of(33,25,7,14,11,12));
+                List.of(1, 2, 14, 11, 12, 13),
+                List.of(1, 2, 7, 14, 11, 12),
+                List.of(1, 25, 7, 14, 11, 12),
+                List.of(33, 25, 7, 14, 11, 12));
     }
 }

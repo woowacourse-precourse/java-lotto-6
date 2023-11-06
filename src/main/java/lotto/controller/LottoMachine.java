@@ -8,6 +8,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
 import lotto.domain.Rank;
 import lotto.service.Calculator;
+import lotto.service.LottoNumberGenerator;
 import lotto.service.LottoShop;
 import lotto.view.LottoView;
 
@@ -15,6 +16,7 @@ public class LottoMachine {
     LottoView lottoView = new LottoView();
     PriceInputHandler priceInputHandler = new PriceInputHandler();
     TargetNumberHandler targetNumberHandler = new TargetNumberHandler();
+    LottoShop lottoShop = new LottoShop(new LottoNumberGenerator());
 
     public void run() {
         LottoBuyer buyer = buyLotto();
@@ -24,7 +26,7 @@ public class LottoMachine {
 
     private LottoBuyer buyLotto() {
         int amount = priceInputHandler.dividePaymentIntoLottoPrice();
-        List<Lotto> lottoTickets = LottoShop.sell(amount);
+        List<Lotto> lottoTickets = lottoShop.sell(amount);
         lottoView.printLotto(lottoTickets);
 
         return new LottoBuyer(lottoTickets);

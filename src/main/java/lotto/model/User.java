@@ -11,4 +11,13 @@ public class User {
         this.amount = amount;
         this.lottos = lottos;
     }
+
+    public int getUserAmount(){
+        return this.amount;
+    }
+
+    public List<Lotto> getUserLottos(){
+        return this.lottos;
+    }
+
 }

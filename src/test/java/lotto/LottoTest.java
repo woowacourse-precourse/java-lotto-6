@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.constant.LottoErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,5 +25,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    void 구입금액_입력테스트() {
+        Amount amount = new Amount(8000);
+        assertThat(8000).isEqualTo(amount.getAmount());
+        assertThat(8).isEqualTo(amount.getCount());
+    }
+
+    @Test
+    void 구입금액_예외처리_테스트() {
+        assertThatThrownBy(() -> new Amount(8800))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(PURCHASE_AMOUNT_ERROR_MESSAGE);
+    }
 }

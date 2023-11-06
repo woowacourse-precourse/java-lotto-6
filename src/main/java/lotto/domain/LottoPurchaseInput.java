@@ -2,8 +2,11 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
+import java.util.List;
+import lotto.Lotto;
 import lotto.message.ErrorMessage;
 import lotto.message.OutputMessage;
+import lotto.utils.LottoUtil;
 import lotto.utils.Util;
 
 public class LottoPurchaseInput {
@@ -11,6 +14,7 @@ public class LottoPurchaseInput {
         try {
             OutputMessage.ASK_PURCHASE_AMOUNT.printMessage();
             String input = Console.readLine().trim();
+
             validate(input);
             Util.validateNumber(input);
             return new BigDecimal(input);
@@ -21,6 +25,21 @@ public class LottoPurchaseInput {
     }
 
     public static void validate(String input) {
+    public static List<Integer> inputWinningNumbers() {
+        try {
+            OutputMessage.ASK_WINNING_LOTTO_NUMBER.printMessage();
+            String input = Console.readLine().trim();
+
+            validate(input);
+            List<Integer> winningNumbers = Util.convertToIntegerList(input, ",");
+            Lotto.validate(winningNumbers);
+
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
         if (input.contains(" ")) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_CONTAINS_WHITE_CHAR.getMessage());
         }

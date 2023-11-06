@@ -21,9 +21,14 @@ public class InputValidation {
         }
     }
     // 숫자 사이의 공백, null
-    private void isNullOrBlank(String number) {
-        if (Objects.isNull(number) || number.isBlank()) {
+    public void isNullOrBlank(String number) {
+        if (Objects.isNull(number) || number.isBlank() || numberWhiteSpace(number)) {
             throw new IllegalArgumentException("빈 값을 입력할 수 없습니다.");
         }
+    }
+
+    // 숫자 + 스페이스
+    public boolean numberWhiteSpace(String number) {
+        return !number.replaceAll(" ","").equals(number);
     }
 }

@@ -134,30 +134,31 @@ class ExceptionTest {
 
     @Test
     void 로또번호_범위_테스트() {
-        List<Integer> numbers1 = Arrays.asList(1,2,3,4,5,6);
-        List<Integer> numbers2 = Arrays.asList(1,2,3,4,5,45);
-        List<Integer> numbers3 = Arrays.asList(1,10,20,30,40,45);
-        List<Integer> numbers4 = Arrays.asList(0,2,3,4,5,6);
-        List<Integer> numbers5 = Arrays.asList(1,2,3,4,5,46);
-        List<Integer> numbers6 = Arrays.asList(1,2,3,-1,5,6);
+        int number1 = 30;
+        int number2 = 45;
+        int number3 = 1;
+        int number4 = 46;
+        int number5 = 0;
+        int number6 = -1;
+
 
         Assertions.assertDoesNotThrow(() -> {
-            Exception.checkRangeLottoNumber(numbers1);
+            Exception.checkRangeLottoNumber(number1);
         });
         Assertions.assertDoesNotThrow(() -> {
-            Exception.checkRangeLottoNumber(numbers2);
+            Exception.checkRangeLottoNumber(number2);
         });
         Assertions.assertDoesNotThrow(() -> {
-            Exception.checkRangeLottoNumber(numbers3);
+            Exception.checkRangeLottoNumber(number3);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Exception.checkRangeLottoNumber(numbers4);
+            Exception.checkRangeLottoNumber(number4);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Exception.checkRangeLottoNumber(numbers5);
+            Exception.checkRangeLottoNumber(number5);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Exception.checkRangeLottoNumber(numbers6);
+            Exception.checkRangeLottoNumber(number6);
         });
     }
 }

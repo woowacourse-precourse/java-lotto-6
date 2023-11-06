@@ -5,12 +5,18 @@ import java.util.List;
 import lotto.Lotto;
 
 public class LottoTickets {
+    private int money;
     private int ticketCount;
     private List<Lotto> Tickets = new ArrayList<>();
 
     public LottoTickets(int money) {
         ticketCount = TicketCount(money);
         makeLottoTickets();
+        this.money = money;
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     public int getTicketCount() {

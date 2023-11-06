@@ -24,6 +24,10 @@ public class OutputView {
         }
     }
 
+    public static void printEarningRate(String earningRate) {
+        System.out.println(earningRate);
+    }
+
     public static void numbersLotto() {
         System.out.println(OutputEnum.NUMBERS_LOTTO.get());
     }

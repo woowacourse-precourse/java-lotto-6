@@ -33,6 +33,7 @@ public class Draw {
                 String input = Console.readLine();
                 bonusNum = toInt(input);
                 isWithinRange(bonusNum);
+                isDuplicate(winningLotto, bonusNum);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -44,6 +45,12 @@ public class Draw {
     void isWithinRange(int num) {
         if (!(num >= lottoRangeFirstNum && num <= lottoRangeLastNum)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1~45입니다.");
+        }
+    }
+
+    void isDuplicate(Lotto lotto, int bonusNumber) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 입력한 로또 번호와 중복될 수 없습니다.");
         }
     }
 

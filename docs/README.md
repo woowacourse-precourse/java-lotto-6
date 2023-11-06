@@ -178,10 +178,18 @@
 - [x] 총 수익률을 저장한다.
 - [x] 총 수익률을 반환한다.
 
-## Parser
+## util
+
+### Parser
 
 - [x] 문자열을 숫자로 변환한다.
 - [x] 문자열을 쉼표(,)로 구분하여 숫자로 변환한다.
+
+## Controller
+
+### LottoController
+
+- [x] 구입 금액을 입력받는다.
 
 ## validation
 

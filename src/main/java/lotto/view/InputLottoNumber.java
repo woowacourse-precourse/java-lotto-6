@@ -15,8 +15,8 @@ import java.util.regex.Pattern;
 public class InputLottoNumber {
 
     private static final String INPUT_LOTTO_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final int MIN_NUMBER=1;
-    private static final int MAX_NUMBER=45;
+    private static final int MIN=1;
+    private static final int MAX=45;
     private static final int SIZE=6;
 
 
@@ -67,7 +67,7 @@ public class InputLottoNumber {
     }
 
     private boolean checkNumberRange(int number) {
-        if (number >= MIN_NUMBER && number <= MAX_NUMBER) {
+        if (number >= MIN && number <= MAX) {
             return true;
         }
         return false;

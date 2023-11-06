@@ -1,18 +1,26 @@
 package lotto.model;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import lotto.config.WinningResultConfig;
 
 public class WinningResult {
-    private final ConcurrentHashMap<List<Integer>, Winning> winningResults = new ConcurrentHashMap<List<Integer>, Winning>();
+    private final Map<WinningResultConfig, List<Result>> winningResults = new LinkedHashMap<WinningResultConfig, List<Result>>(){
+        {
+            winningResults.put(WinningResultConfig.THREE, List.of());
+            winningResults.put(WinningResultConfig.FOUR, List.of());
+            winningResults.put(WinningResultConfig.FIVE, List.of());
+            winningResults.put(WinningResultConfig.FIVE_AND_BONUS, List.of());
+            winningResults.put(WinningResultConfig.SIX, List.of());
+        }
+    };
 
-    public WinningResult(List<List<Integer>> userNumbers, List<Long> equalCounts) {
-        for (List<Integer> userNumber : userNumbers) {
-            winningResults.put(userNumber, new Winning(equalCounts.get(userNumbers.indexOf(userNumber))));
+    public void addResult(List<Result> results) {
+        for (Result result : results) {
+            winningResults.get(WinningResultConfig.compareResult(result.getEqualCount(), result.getBonus())).add(result);
         }
     }
 
-    public ConcurrentHashMap<List<Integer>, Winning> getWinngResult() {
-        return new ConcurrentHashMap<>(winningResults);
+    public  Map<WinningResultConfig, List<Result>> getWinningResults() {
+        return new LinkedHashMap<>(winningResults);
     }
 }

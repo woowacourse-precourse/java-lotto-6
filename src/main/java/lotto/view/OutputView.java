@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.Message.ViewMessage;
+import lotto.config.WinningResultConfig;
 
 import java.util.List;
 
@@ -32,17 +33,16 @@ public class OutputView {
     public void printLineSymbol() {
         System.out.println(ViewMessage.PRINT_LINE_SYMBOL.getMessage());
     }
-/*
-    public void printWinningResult() {
-        System.out.println(String.format(ViewMessage.PRINT_EQUAL_NUMBER_COUNT_FORM.getMessage(),) +
-                String.format(ViewMessage.PRINT_REVENUE_FORM.getMessage(),) +
-                String.format(ViewMessage.PRINT_EQUAL_LOTTO_COUNT_FORM.getMessage(),));
+
+    public void printWinningResult(WinningResultConfig winningResultConfig, Integer count) {
+        System.out.println(
+                String.format(ViewMessage.PRINT_EQUAL_NUMBER_WINNING_STATUS_FORM.getMessage(),
+                        winningResultConfig.getResultStatus(), winningResultConfig.getRevenueStatus()) +
+                String.format(ViewMessage.PRINT_EQUAL_LOTTO_COUNT_FORM.getMessage(), count)
+        );
     }
 
-    public void printTotalRevenue() {
-        System.out.println(ViewMessage.PRINT_REVENUE_FORM.getMessage());
+    public void printTotalRevenue(double revenue) {
+        System.out.println(String.format(ViewMessage.PRINT_TOTAL_REVENUE_RATE.getMessage(), revenue));
     }
-
- */
-
 }

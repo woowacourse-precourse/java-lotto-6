@@ -1,12 +1,15 @@
 package lotto.controller;
 
-import lotto.model.BonusLotto;
-import lotto.model.Lotto;
-import lotto.model.UserLotto;
+import lotto.config.WinningResultConfig;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.service.LottoService;
-import lotto.model.Amount;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static lotto.Message.ErrorMessage.VALUE_IS_NOT_CONVERT_INTEGER;
 
@@ -18,6 +21,8 @@ public class LottoController {
     private Lotto lotto;
     private BonusLotto bonusLotto;
     private LottoService lottoService;
+    private Map<WinningResultConfig, Integer> lottoResults;
+    private Revenue revenue;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -31,8 +36,8 @@ public class LottoController {
             runPrintUserLottoNumbers();
             runInputWinningNumbers();
             runInputBonusNumber();
-
-            //총 수익률 출력
+            runPrintWinningResult();
+            runPrintTotalRevenue();
         } catch (NumberFormatException e) {
             throw new NumberFormatException(VALUE_IS_NOT_CONVERT_INTEGER.getMessage());
         }
@@ -67,8 +72,21 @@ public class LottoController {
         outputView.printLineSymbol();
 
         lottoService = new LottoService(userLotto.getUserNumbers(), lotto.getNumbers(), bonusLotto.getBonusNumber());
-        lottoService.compareLottoNumber();
-        //outputView.printWinningResult();
+        lottoResults = lottoService.findWinningResult();
+
+        for (Map.Entry<WinningResultConfig, Integer> lottoResult : lottoResults.entrySet()) {
+            outputView.printWinningResult(lottoResult.getKey(),lottoResult.getValue());
+        }
     }
 
+    private void runPrintTotalRevenue() {
+
+        List<Integer> rawRevenue = new ArrayList<>();
+
+        for (Map.Entry<WinningResultConfig, Integer> entry : lottoResults.entrySet()) {
+            rawRevenue.add(entry.getKey().getRevenueStatus(), entry.getValue());
+        }
+
+        outputView.printTotalRevenue(new Revenue(rawRevenue, amount.getAmount()).getRevenue());
+    }
 }

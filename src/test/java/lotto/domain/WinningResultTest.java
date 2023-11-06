@@ -15,12 +15,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class WinningResultTest {
 
     private WinningResult winningResult;
+
     @BeforeEach
     @Test
     void initWinningResult() {
         assertRandomUniqueNumbersInRangeTest(() -> {
             winningResult = new WinningResult(new LottoTickets(5), new WinningLotto(new Lotto("1,2,3,4,5,6"), new LottoNumber("7")));
-        }, List.of(1,2,3,4,5,6), List.of(1,2,3,4,5,7), List.of(1,2,3,4,5,8),List.of(1,2,3,4,8,7), List.of(1,2,3,14,15,18));
+        }, List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 7), List.of(1, 2, 3, 4, 5, 8), List.of(1, 2, 3, 4, 8, 7), List.of(1, 2, 3, 14, 15, 18));
     }
 
     @Test
@@ -32,7 +33,7 @@ class WinningResultTest {
         map.put("4", map.getOrDefault("4", 0) + 1);
         map.put("5", map.getOrDefault("5", 0) + 1);
 
-        for(String key : map.keySet()) {
+        for (String key : map.keySet()) {
             System.out.println(key + " : " + map.get(key));
         }
     }
@@ -45,5 +46,37 @@ class WinningResultTest {
         assertThat(winningResult.getCount(Rank.THIRD)).isEqualTo(1);
         assertThat(winningResult.getCount(Rank.FOURTH)).isEqualTo(1);
         assertThat(winningResult.getCount(Rank.FIFTH)).isEqualTo(1);
+    }
+
+    @DisplayName("총 당첨 금액 계산하기 테스트")
+    @Test
+    void calculateTotalAmountLogicTest() {
+        int totalAmount = 0;
+        for (Rank rank : winningResult.getWinningResult().keySet()) {
+            totalAmount += winningResult.getCount(rank) * rank.getWinningAmount();
+        }
+
+        assertThat(totalAmount)
+                .isEqualTo(
+                        Rank.FIRST.getWinningAmount()
+                                + Rank.SECOND.getWinningAmount()
+                                + Rank.THIRD.getWinningAmount()
+                                + Rank.FOURTH.getWinningAmount()
+                                + Rank.FIFTH.getWinningAmount()
+                );
+
+        int totalAmount2 = winningResult.getWinningResult().keySet()
+                .stream()
+                .map(rank -> winningResult.getCount(rank) * rank.getWinningAmount())
+                .reduce(0, (a, c) -> a + c);
+
+        assertThat(totalAmount2)
+                .isEqualTo(
+                        Rank.FIRST.getWinningAmount()
+                                + Rank.SECOND.getWinningAmount()
+                                + Rank.THIRD.getWinningAmount()
+                                + Rank.FOURTH.getWinningAmount()
+                                + Rank.FIFTH.getWinningAmount()
+                );
     }
 }

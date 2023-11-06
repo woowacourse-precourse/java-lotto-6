@@ -1,5 +1,6 @@
 package lotto.domain;
 
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,5 +13,16 @@ public class LottoFactory {
         return new Lotto(randomNumbers);
     }
 
+    public static List<Lotto> generateLotto(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for(int i =0; i< count; i++) {
+            lottos.add(generateLotto());
+        }
+        return lottos;
+    }
+
+    public static Lotties generateLotties(int count) {
+        return new Lotties(generateLotto(count));
+    }
 }
 

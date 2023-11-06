@@ -11,23 +11,18 @@ public class Lotties {
         this.lotties = lotties;
     }
 
-    public static Lotties generateLottos(int lottoCnt) {
-        List<Lotto> lottoies = new ArrayList<>();
-        for (int i = 0; i < lottoCnt; i++) {
-            Lotto lotto = LottoFactory.generateLotto();
-            lottoies.add(lotto);
-        }
-        return new Lotties(lottoies);
+    public List<Lotto> getLotties() {
+        return Collections.unmodifiableList(lotties);
     }
 
-    public List<List<Integer>> getLotties() {
+    public List<List<Integer>> getLottiesNumbers() {
         List<List<Integer>> lottos = new ArrayList<>();
         for (Lotto lotto : lotties) {
             lottos.add(lotto.getNumbers());
         }
         return Collections.unmodifiableList(lottos);
     }
-
 }
+
 
 

@@ -20,12 +20,11 @@ public class InputController {
     }
 
     public int inputPurchasePrice() {
-        int price = 0;
+        int price;
+        inputView.showPurchasePriceMessage();
         while (true) {
-            inputView.showPurchasePriceMessage();
             try {
                 price = convertInputData(Console.readLine());
-                price = Unit.calculateLottoTicketCanPurchase(price);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -48,8 +47,8 @@ public class InputController {
 
     public int checkBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber;
+        inputView.showInputBonusNumberMessage();
         while (true) {
-            inputView.showInputBonusNumberMessage();
             try {
                 bonusNumber = inputBonusNumber(winningNumbers);
                 break;

@@ -26,7 +26,8 @@ public class GameController {
 
     public void play() {
         int purchasePrice = inputController.inputPurchasePrice();
-        List<Lotto> playerNumbers = generateLottoNumbers(purchasePrice);
+        int purchaseLottoNumber = Unit.calculateLottoTicketCanPurchase(purchasePrice);
+        List<Lotto> playerNumbers = generateLottoNumbers(purchaseLottoNumber);
         WinningLotto winningLotto = generateWinningLotto();
 
         ComparatorRequest comparatorRequest = new ComparatorRequest(winningLotto, playerNumbers);

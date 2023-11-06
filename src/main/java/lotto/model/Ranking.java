@@ -40,4 +40,8 @@ public enum Ranking {
     public int getReward() {
         return reward;
     }
+
+    public Integer getMatchCount() {
+        return matchCount;
+    }
 }

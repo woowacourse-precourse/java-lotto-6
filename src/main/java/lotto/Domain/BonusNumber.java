@@ -10,6 +10,8 @@ public class BonusNumber {
 
     public  BonusNumber(int bonusNumber, List<Integer> winningNumbers){
         this.bonusNumber = bonusNumber;
+        checkNumberRange(bonusNumber);
+        checkDuplicateInWinningNumbers(winningNumbers);
     }
 
     private void checkNumberRange(int bonusNumber) {
@@ -22,5 +24,9 @@ public class BonusNumber {
         if (winningNumbers.contains(bonusNumber)){
             throw ExceptionMessage.IN_WINNING_NUMBERS.throwexception();
         }
+    }
+
+    public int getBonusNumber(){
+        return bonusNumber;
     }
 }

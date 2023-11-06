@@ -170,13 +170,13 @@ class InputViewTest {
         InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
         System.setIn(inputStream);
 
-        //List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
-        assertThat(InputView.readBonusNumber()).isEqualTo(Integer.parseInt(inputPurchaseAmount));
+        assertThat(InputView.readBonusNumber(winningNumbers)).isEqualTo(Integer.parseInt(inputPurchaseAmount));
     }
 
-    /*@Test
-    void 보너스번호_문자입력_테스트() {
+    @Test
+    void 보너스번호_문자입력_예외테스트() {
         String inputPurchaseAmount = "a";
         InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
         System.setIn(inputStream);
@@ -184,6 +184,83 @@ class InputViewTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         assertThatThrownBy(() -> InputView.readBonusNumber(winningNumbers)).isInstanceOf(IllegalArgumentException.class);
-    }*/
+    }
+
+    @Test
+    void 보너스번호_범위_테스트1() {
+        String inputPurchaseAmount = "1";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        List<Integer> winningNumbers = Arrays.asList(2, 3, 4, 5, 6, 7);
+
+        assertThat(InputView.readBonusNumber(winningNumbers)).isEqualTo(Integer.parseInt(inputPurchaseAmount));
+    }
+
+    @Test
+    void 보너스번호_범위_테스트2() {
+        String inputPurchaseAmount = "45";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        assertThat(InputView.readBonusNumber(winningNumbers)).isEqualTo(Integer.parseInt(inputPurchaseAmount));
+    }
+
+    @Test
+    void 보너스번호_범위_예외테스트1() {
+        String inputPurchaseAmount = "0";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> InputView.readBonusNumber(winningNumbers)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스번호_범위_예외테스트2() {
+        String inputPurchaseAmount = "-1";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> InputView.readBonusNumber(winningNumbers)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스번호_범위_예외테스트3() {
+        String inputPurchaseAmount = "46";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> InputView.readBonusNumber(winningNumbers)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스번호_중복_예외테스트1() {
+        String inputPurchaseAmount = "1";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> InputView.readBonusNumber(winningNumbers)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스번호_중복_예외테스트2() {
+        String inputPurchaseAmount = "14";
+        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        System.setIn(inputStream);
+
+        List<Integer> winningNumbers = Arrays.asList(11,12,13,14,15,16);
+
+        assertThatThrownBy(() -> InputView.readBonusNumber(winningNumbers)).isInstanceOf(IllegalArgumentException.class);
+    }
 
 }

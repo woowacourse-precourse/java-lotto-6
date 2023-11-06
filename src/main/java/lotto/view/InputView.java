@@ -41,12 +41,13 @@ public class InputView {
         InputValidation.checkWinningNumbersDuplication(input);
     }
 
-    public static int readBonusNumber() {
+    public static int readBonusNumber(List<Integer> winningNumbers) {
         String input = Console.readLine();
 
         // validation 추가 예정
-        //InputValidation.checkBonusConvertNumber(input);
-
+        InputValidation.checkBonusConvertNumber(input);
+        InputValidation.checkBonusNumberRange(input);
+        InputValidation.checkBonusNumberDuplication(winningNumbers, input);
 
         return Integer.parseInt(input);
     }
@@ -102,13 +103,13 @@ public class InputView {
         private static void checkWinningNumbersRange(String input) {
             String[] checkDatas = input.split(",");
             for (String checkNumber : checkDatas) {
-                if (!isWinningNumberRange(checkNumber)) {
+                if (!isLottoNumberRange(checkNumber)) {
                     throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45까지 가능합니다.");
                 }
             }
         }
 
-        private static boolean isWinningNumberRange(String input) {
+        private static boolean isLottoNumberRange(String input) {
             int checkNumber = Integer.parseInt(input);
 
             return checkNumber >= 1 && checkNumber <= 45;
@@ -123,21 +124,43 @@ public class InputView {
 
         private static boolean isDuplicate(String[] checkDatas) {
             Set<Integer> set = new HashSet<>();
+            int count = 0;
             for (String checkData : checkDatas) {
+                count++;
                 set.add(Integer.parseInt(checkData));
             }
 
-            return set.size() == 6;
+            return set.size() == count;
         }
 
-        /*private static void checkBonusConvertNumber(String input) {
+        private static void checkBonusConvertNumber(String input) {
             if (!isInteger(input)) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
             }
-        }*/
+        }
 
+        private static void checkBonusNumberRange(String input) {
+            if (!isLottoNumberRange(input)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45까지 가능합니다.");
+            }
+        }
 
+        private static void checkBonusNumberDuplication(List<Integer> winningList, String bonusNumber) {
+            String[] checkDatas = convertCheckDatas(winningList, bonusNumber);
 
+            if (!isDuplicate(checkDatas)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+        }
 
+        private static String[] convertCheckDatas(List<Integer> winningList, String bonusNumber) {
+            StringBuilder sb = new StringBuilder();
+            for (Integer integer : winningList) {
+                sb.append(integer).append(",");
+            }
+            sb.append(bonusNumber);
+
+            return sb.toString().split(",");
+        }
     }
 }

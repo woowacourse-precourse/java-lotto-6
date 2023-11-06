@@ -1,6 +1,5 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningLottoStorage;
 
@@ -40,5 +39,9 @@ public class OutputView {
 
     private int getLottoResultByRank(Rank rank, WinningLottoStorage winningLottoStorage) {
         return winningLottoStorage.getRank(rank);
+    }
+
+    public void printPurchasedLotto(String lottoNumbers) {
+        System.out.println(lottoNumbers);
     }
 }

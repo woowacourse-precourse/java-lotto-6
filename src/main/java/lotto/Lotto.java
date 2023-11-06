@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -47,7 +48,7 @@ public class Lotto {
                 return new Lotto(numbers);
         }
 
-        public int numOfMatches(List<Integer> winningNumbers) {
+        public int numOfMatches(Set<Integer> winningNumbers) {
                 int matches = 0;
                 for (int number : numbers) {
                         if(winningNumbers.contains(number)) {

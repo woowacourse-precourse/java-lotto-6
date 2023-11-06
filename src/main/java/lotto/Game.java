@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+
+    private final List<Lotto> lottos;
+    private final List<Integer> prizes;
+    private final List<Integer> checkCount;
     private int AMOUNT;
     private int COUNT_LOTTO;
     private String PRIZE;
@@ -16,14 +20,14 @@ public class Game {
     private int BONUS_NUMBER;
     private InputView inputView;
     private OutputView outputView;
-    private final List<Lotto> lottos;
-    private List<Integer> prizes;
+    private int CHECK_PRIZE;
 
     public Game() {
         inputView = new InputView();
         outputView = new OutputView();
         lottos = new ArrayList<>();
         prizes = new ArrayList<>();
+        checkCount = new ArrayList<>();
     }
 
     public void run(){
@@ -39,14 +43,16 @@ public class Game {
         PRIZE = prizeNumberInput(); //당첨 번호 입력
         changePrizeNumber(PRIZE);   //당첨 번호 변환
 
+        checkPrize(lottos, checkCount); //당첨 개수 확인
+
         inputView.bonusNumberView();
         PAST_BONUS_NUMBER = bonusNumberInput(); //보너스 번호 입력
         BONUS_NUMBER = changeBonusNumber(PAST_BONUS_NUMBER);    //보너스 번호 변환
 
         outputView.winningStatistics(); //당첨 통계 출력
         //수익률 구현해야 함
-        
-        outputView.yieldRateOfReturn();
+
+        //outputView.yieldRateOfReturn();
 
     }
 
@@ -93,4 +99,23 @@ public class Game {
 
         return Integer.parseInt(PAST_BONUS_NUMBER);
     }
+
+    public void checkPrize(List<Lotto> lottos, List<Integer> checkCount){
+        for (Lotto lotto : lottos) {
+            prizeNumber(lotto, checkCount);
+        }
+    }
+
+    public void prizeNumber(Lotto lotto, List<Integer> checkCount){
+        List<Integer> numbers = lotto.getNumbers();
+        int count = 0;
+        CHECK_PRIZE = 0;
+        for (int number : numbers) {
+            if(prizes.get(count++) == number){
+                CHECK_PRIZE++;
+            }
+        }
+        checkCount.add(CHECK_PRIZE);
+    }
+
 }

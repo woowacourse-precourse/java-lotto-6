@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     public void winningStatistics(){
-        System.out.println(WINNING_STATISTICS);
+        System.out.println("\n" + WINNING_STATISTICS);
         System.out.println(LINE);
 
         System.out.print(THREE);

@@ -4,6 +4,7 @@ import static lotto.Util.Constants.LOTTO_PRICE_UNIT;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Domain.BonusNumber;
 import lotto.Domain.Lotto;
 import lotto.Domain.User;
 import lotto.Domain.WinningLotto;
@@ -17,6 +18,12 @@ public class LottoService {
         List<Lotto> lottos = publishLotto(count);
         user = new User(money,lottos);
         return lottos;
+    }
+
+    public void createWinningLotto(List<Integer> winningNumbers, int bonusNum) {
+        Lotto winningLotto = new Lotto(winningNumbers);
+        BonusNumber bonusNumber = new BonusNumber(bonusNum);
+        this.winningLotto = new WinningLotto(winningLotto,bonusNumber);
     }
 
     private int countNumberOfPurchase(int money) {

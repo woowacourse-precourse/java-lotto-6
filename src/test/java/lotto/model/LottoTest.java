@@ -16,14 +16,14 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -31,7 +31,7 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("provideNumbersForValidate")
     void 로또_번호_검증(List<Integer> numbers) {
-        assertThatThrownBy(() -> new Lotto(numbers))
+        assertThatThrownBy(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -48,7 +48,7 @@ class LottoTest {
     void 로또_번호_오름차순_정렬() {
         // given
         List<Integer> numbers = List.of(5, 41, 7, 33, 25, 18);
-        Lotto lotto = new Lotto(numbers);
+        Lotto lotto = Lotto.from(numbers);
 
         // when
         List<Integer> sortedNumbers = lotto.getSortedNumbers();
@@ -62,7 +62,7 @@ class LottoTest {
     @CsvSource({"2, true", "7, false"})
     void 특정_번호_포함_여부_확인(int number, boolean expectedResult) {
         // given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
 
         // when
         boolean result = lotto.hasNumber(number);
@@ -75,8 +75,8 @@ class LottoTest {
     @Test
     void 당첨_번호에_속하는_로또_번호_개수_카운트() {
         // given
-        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
-        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto userLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 8));
+        Lotto winningNumber = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
 
         // when
         int count = userLotto.countMatchedNumber(winningNumber);

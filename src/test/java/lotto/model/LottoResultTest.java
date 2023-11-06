@@ -18,7 +18,7 @@ public class LottoResultTest {
     @BeforeEach
     public void setUp() {
         user = User.from(3000);
-        Lotto numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto numbers = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         winningNumber = WinningNumber.from(numbers, bonusNumber);
         lottoResult = new LottoResult(user, winningNumber);
@@ -30,9 +30,9 @@ public class LottoResultTest {
     void 당첨_결과_산출(int expectedCount, Rank rank) {
         // given
         List<Lotto> purchasedLottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-                new Lotto(List.of(18, 1, 20, 2, 22, 3))
+                Lotto.from(List.of(1, 2, 3, 4, 5, 6)),
+                Lotto.from(List.of(1, 2, 3, 4, 5, 7)),
+                Lotto.from(List.of(18, 1, 20, 2, 22, 3))
         );
 
         // when
@@ -47,9 +47,9 @@ public class LottoResultTest {
     void 수익률_산출() {
         // given
         List<Lotto> purchasedLottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 8)),
-                new Lotto(List.of(10, 21, 31, 41, 35, 37)),
-                new Lotto(List.of(18, 31, 20, 32, 22, 33))
+                Lotto.from(List.of(1, 2, 3, 4, 5, 8)),
+                Lotto.from(List.of(10, 21, 31, 41, 35, 37)),
+                Lotto.from(List.of(18, 31, 20, 32, 22, 33))
         );
         lottoResult.getLottoResult(purchasedLottos, winningNumber);
 

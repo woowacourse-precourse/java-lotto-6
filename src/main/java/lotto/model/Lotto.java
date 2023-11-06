@@ -8,33 +8,37 @@ import java.util.stream.Collectors;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validateNumberSize(numbers);
-        validateDuplicatedNumber(numbers);
-        validateLottoRange(numbers);
+    private Lotto(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
-    private void validateNumberSize(List<Integer> numbers) {
+    public static Lotto from(List<Integer> numbers) {
+        validateNumberSize(numbers);
+        validateDuplicatedNumber(numbers);
+        validateLottoRange(numbers);
+        return new Lotto(numbers);
+    }
+
+    private static void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_SIZE.getMessage());
         }
     }
 
-    private void validateDuplicatedNumber(List<Integer> numbers) {
+    private static void validateDuplicatedNumber(List<Integer> numbers) {
         long numberCount = numbers.stream().distinct().count();
         if (numberCount != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATED_NUMBER.getMessage());
         }
     }
 
-    private void validateLottoRange(List<Integer> numbers) {
+    private static void validateLottoRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             validateNumberRange(number);
         }
     }
 
-    private void validateNumberRange(int number) {
+    private static void validateNumberRange(int number) {
         if (number < Constants.MIN_LOTTO_NUMBER || number > Constants.MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_NUMBER_RANGE.getMessage());
         }

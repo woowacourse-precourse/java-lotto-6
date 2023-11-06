@@ -28,7 +28,7 @@ public class User {
 
     private Lotto generateLottoNumber() {
         List<Integer> numbers = Util.generateRandomNumber();
-        return new Lotto(numbers);
+        return Lotto.from(numbers);
     }
 
     public int getPurchaseAmount() {

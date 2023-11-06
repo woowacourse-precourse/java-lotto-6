@@ -13,7 +13,7 @@ public class WinningNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 46, 0})
     void 보너스_번호_입력값_검증(int bonusNumber) {
-        Lotto numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto numbers = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
 
         assertThatThrownBy(() -> WinningNumber.from(numbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);

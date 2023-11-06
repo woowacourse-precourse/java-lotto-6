@@ -46,7 +46,7 @@ public class LottoController {
         try {
             String[] inputNumbers = InputView.inputWinningNumbers();
             List<Integer> numbers = Util.stringToIntegerList(inputNumbers);
-            return new Lotto(numbers);
+            return Lotto.from(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningNumber();

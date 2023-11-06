@@ -21,11 +21,11 @@ class LottoProfitCalculatorTest {
         winningCountPerLottoPrize.put(LottoPrize.THIRD_PRIZE, 0L);
         winningCountPerLottoPrize.put(LottoPrize.FOURTH_PRIZE, 0L);
         winningCountPerLottoPrize.put(LottoPrize.FIFTH_PRIZE, 1L);
-        Integer purchaseMoney = 8000;
+        Integer purchasedLottoCount = 8;
 
         //when
         Double lottoProfitPercentage =
-                LottoProfitCalculator.findLottoProfitPercentage(winningCountPerLottoPrize, purchaseMoney);
+                LottoProfitCalculator.findLottoProfitPercentage(winningCountPerLottoPrize, purchasedLottoCount);
 
         //then
         assertThat(lottoProfitPercentage).isEqualTo(62.5);

@@ -38,7 +38,7 @@ public class Budget {
     }
 
     public double calculateReturnRate(Map<Rank, Integer> rankCount) {
-        int money = 0;
+        long money = 0;
         for (Rank rank : Rank.values()) {
             money += rank.getPrizeAmount() * rankCount.getOrDefault(rank, 0);
         }

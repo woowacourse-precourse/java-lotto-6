@@ -10,11 +10,22 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int getMatchCount(List<Integer> winningNumbers) {
+        boolean[] checkBox = makeCheckBox();
+        return (int)winningNumbers.stream()
+                .filter(number -> checkBox[number])
+                .count();
+    }
+
+    private boolean[] makeCheckBox() {
+        boolean[] checkBox = new boolean[46];
+        numbers.forEach(number -> checkBox[number] = true);
+        return checkBox;
+    }
+    
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
-
-    // TODO: 추가 기능 구현
 }

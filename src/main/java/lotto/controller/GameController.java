@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoAnalyzer;
 import lotto.domain.LottoVendingMachine;
+import lotto.domain.WinningStatistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,9 +25,11 @@ public class GameController {
         List<Integer> winningNumbers = InputView.inputWinningNumbers();
         LottoAnalyzer lottoAnalyzer = inputBonusNumber(winningNumbers);
 
-        lottoAnalyzer.analyzeLotto(lottoVendingMachine.getLottos());
-        OutputView.printFinalResult(lottoAnalyzer.getWinningStatistics());
-        OutputView.printTotalProfitRate(lottoAnalyzer.getWinningStatistics(), purchaseAmount);
+        WinningStatistics winningStatistics = new WinningStatistics(lottoAnalyzer);
+        winningStatistics.analyzeLotto(lottoVendingMachine.getLottos());
+
+        OutputView.printFinalResult(winningStatistics.getWinningStatistics());
+        OutputView.printTotalProfitRate(winningStatistics.getWinningStatistics(), purchaseAmount);
     }
 
     private static LottoAnalyzer inputBonusNumber(List<Integer> winningNumbers) {

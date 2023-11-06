@@ -17,4 +17,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainException.ERROR.getMessage());
     }
+
+    @Test
+    void 중복되는_숫자를_입력한_경우_예외를_던진다() {
+        List<Integer> numbers = List.of(1, 1, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DomainException.ERROR.getMessage());
+    }
 }

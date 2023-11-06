@@ -5,6 +5,8 @@ public class UserInputMessage {
     public static final String REQUEST_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     public static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     public static final String LOTTO_TICKETS_PURCHASED_MESSAGE = "%d개를 구매했습니다.";
+    public static final String LOTTO_RESULTS_MESSAGE = "당첨 내역";
+    public static final String DIVIDER = "---";
 
     private UserInputMessage() {
     }

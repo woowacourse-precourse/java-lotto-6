@@ -105,4 +105,10 @@ public class LottoController {
             totalEarnings += LottoResult.getWinningAmount(matchCount, isMatchBonusNumber);
         }
     }
+
+    public void printOutWinningResult() {
+        System.out.println(LOTTO_RESULTS_MESSAGE);
+        System.out.println(DIVIDER);
+        
+    }
 }

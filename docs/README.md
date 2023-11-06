@@ -14,8 +14,9 @@
     * 로또 번호 출력 : InputView.viewNumber()
       * 이렇게 받은 리스트를 돌면서 한 줄의 당첨 번호들을 출력.
     * 로또 당첨 번호 입력 : InputView.insertLottoNum()
-      * validateLottoNum() : 
-        * 1부터 45사이의 숫자인지 검증
+      * validateLottoNum() :
+        * oneToFourFive() : 1부터 45사이의 숫자인지 검증
+        * isExisted() : 중복 된 수인지 검증.
       * numToList() : 
         * 입력한 당첨번호 String을 리스트로 변환해줌.
 

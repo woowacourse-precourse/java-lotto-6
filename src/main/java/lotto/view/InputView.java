@@ -67,8 +67,24 @@ public class InputView {
     }
 
     public static void validateLottoNum(String readLine) {
-//        Set<Integer> set = new HashSet<>();
+        Set<String> set = new HashSet<>();
         String[] split = readLine.split(",");
+        oneToFourFive(split);
+        isExisted(set, split);
+    }
+
+    public static void isExisted(Set<String> set, String[] split) {
+        for (String s : split) {
+            if (set.contains(s)) {
+                System.out.println("[ERROR] 로또 번호는 중복 되면 안됩니다.");
+                throw new InputLottoException();
+            }
+            set.add(s);
+        }
+    }
+
+
+    public static void oneToFourFive(String[] split) {
         for (String s : split) {
             if (Integer.parseInt(s) < 1 || Integer.parseInt(s) > 45) {
                 System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");

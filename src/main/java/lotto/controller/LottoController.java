@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
 import lotto.io.Input;
 import lotto.io.Output;
@@ -72,6 +73,7 @@ public class LottoController {
             System.out.println(e.getMessage());
             bonusNumber = generateBonusNumber(winningNumbers);
         }
+        Console.close();
         return bonusNumber;
     }
 }

@@ -18,11 +18,11 @@ public class LottoTicketsDto {
         return new LottoTicketsDto(lottoTickets);
     }
 
-    public List<String> getFormattedLottoTickets() {
+    public List<List<String>> getFormattedLottoTickets() {
         return lottoTickets.getLottoTickets().stream()
                 .map(lotto -> lotto.getNumbers().stream()
                         .map(Object::toString)
-                        .collect(Collectors.joining(", ")))
+                        .collect(Collectors.toList()))
                 .collect(Collectors.toList());
     }
 }

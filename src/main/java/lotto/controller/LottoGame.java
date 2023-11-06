@@ -14,7 +14,6 @@ import java.util.List;
 public class LottoGame {
     private final int THOUSAND = 1000;
     private final OutputView outputView = new OutputView();
-    private final Input input = new Input();
     private final InputMoneyView inputMoneyView = new InputMoneyView();
     private final List<Lotto> totalLotto = new ArrayList<>();
 
@@ -33,7 +32,7 @@ public class LottoGame {
 
     private WinningNumbers makeWinningNumbers() {
         outputView.winningNumbers();
-        return WinningNumbers.from(input.readNumbers());
+        return WinningNumbers.from();
     }
 
 

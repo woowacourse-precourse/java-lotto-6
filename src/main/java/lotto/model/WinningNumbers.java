@@ -1,25 +1,61 @@
 package lotto.model;
 
+import lotto.view.Input;
+
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningNumbers {
+    private static final int WINNING_NUMBERS_LIMIT = 6;
+    private static final Input input = new Input();
     private List<Integer> winningNumbers;
     WinningNumbers(List<Integer> winningNumbers){
-        validateSize(winningNumbers);
         this.winningNumbers = winningNumbers;   
     }
 
-    private void validateSize(List<Integer> winningNumbers) {
+    public static WinningNumbers from(){
+        while(true){
+            try {
+                String numbers = input.readNumbers();
+                List<Integer> number = Arrays.stream(numbers.split(","))
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+
+                if(check(number)){
+                    return new WinningNumbers(number);
+                }
+            }   catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 잘못된 당첨 번호 입니다.");
+            }
+        }
     }
 
-    public static WinningNumbers from(String numbers){
-        List<Integer> number = Arrays.stream(numbers.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+    private static boolean check(List<Integer> number) {
+        if (checkSize(number) && checkValid(number) && checkDuplicate(number)) {
+            return true;
+        }
+        throw new IllegalArgumentException();
+    }
 
-        return new WinningNumbers(number);
+    private static boolean checkDuplicate(List<Integer> number) {
+        HashSet<Integer> set = new HashSet<>(number);
+        return set.size() == WINNING_NUMBERS_LIMIT;
+    }
+
+    private static boolean checkValid(List<Integer> number) {
+        for (Integer integer : number) {
+            if (integer < 1 || integer > 45) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean checkSize(List<Integer> number) {
+        return number.size() == WINNING_NUMBERS_LIMIT;
     }
 
     public boolean add(int number){

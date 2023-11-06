@@ -52,6 +52,10 @@ public enum LottoRank {
         return bonusNumberMatched || !bonusNumberMatchNeeded;
     }
 
+    public int getTotalWinPrice(int rankCount) {
+        return rankCount * winPrice;
+    }
+
     public static LottoRank getLottoRank(int matchCount, boolean bonusNumberMatched) {
         return Arrays.stream(values())
                 .filter(lottoRank -> lottoRank.isMatchCountSatisfied(matchCount))

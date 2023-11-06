@@ -20,7 +20,7 @@ public class LottoDraw {
 
     public void lottoDraw() {
         getValidPurchaseAmount();
-        createLottos(money / PRICE_PER_TICKET);
+        lottos = createLottos(money / PRICE_PER_TICKET);
         OutputUtils.printNumberOfPurchaseMessage(lottos.getNumber());
         OutputUtils.printPurchaseLottos(lottos.getLottos());
         getValidWinningNumbers();
@@ -41,11 +41,11 @@ public class LottoDraw {
         System.out.println();
     }
 
-    public void createLottos(int number) {
+    public Lottos createLottos(int number) {
         List<Lotto> newLottos = IntStream.range(0, number)
                 .mapToObj(i -> new Lotto(RandomNumber.createRandomLottoNumber()))
                 .collect(toList());
-        lottos = new Lottos(newLottos);
+        return new Lottos(newLottos);
     }
 
     public void getValidWinningNumbers() {

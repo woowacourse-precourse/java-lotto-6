@@ -20,6 +20,7 @@ public class LottoManager {
     Hashtable<Integer, Integer> moneyHash;
     LottoBuyer lottoBuyer;
     List<Integer> winningNumbers;
+    ErrorMessages errorType;
 
 
     public LottoManager(LottoBuyer buyer) {
@@ -163,13 +164,15 @@ public class LottoManager {
     private void validateBonusOverlapWinning(List<String> number) {
         int comparingBonusNumber = number.stream().mapToInt(Integer::parseInt).toArray()[0];
         if (winningNumbers.contains(comparingBonusNumber)) {
-            throw new IllegalArgumentException();
+            errorType = ErrorMessages.BONUS_INCLUDED_WINNINGS;
+            throw new IllegalArgumentException(errorType.getDescription());
         }
     }
 
     private void validateBonusNumberSize(List<String> number) {
         if (number.size() != LottoManagerConsts.REQUIRED_BONUS_NUMBER_COUNT.getConst()) {
-            throw new IllegalArgumentException();
+            errorType = ErrorMessages.BONUS_INCORRECT_SIZE;
+            throw new IllegalArgumentException(errorType.getDescription());
         }
     }
 
@@ -185,7 +188,8 @@ public class LottoManager {
             try {
                 Integer.parseInt(value);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException();
+                errorType = ErrorMessages.INPUT_IS_NOT_NUMBER;
+                throw new IllegalArgumentException(errorType.getDescription());
             }
         }
     }
@@ -194,7 +198,8 @@ public class LottoManager {
         List<Integer> convertedNumbers = stringNumbers.stream().map(Integer::parseInt).toList();
         for (Integer num : convertedNumbers) {
             if ((num < 1) || (num > 45)) {
-                throw new IllegalArgumentException();
+                errorType = ErrorMessages.NUMBER_IS_INCORRECT_RANGE;
+                throw new IllegalArgumentException(errorType.getDescription());
             }
         }
     }
@@ -202,7 +207,8 @@ public class LottoManager {
     private void validateNumberSize(List<String> stringNumbers) {
         List<Integer> convertedNumbers = stringNumbers.stream().map(Integer::parseInt).toList();
         if (convertedNumbers.size() != LottoManagerConsts.REQUIRED_NUMBER_COUNT.getConst()) {
-            throw new IllegalArgumentException();
+            errorType = ErrorMessages.NUMBER_INCORRECT_SIZE;
+            throw new IllegalArgumentException(errorType.getDescription());
         }
     }
 
@@ -211,7 +217,8 @@ public class LottoManager {
         Set<Integer> numberSet = new HashSet<>(convertedNumbers);
 
         if (numberSet.size() != convertedNumbers.size()) {
-            throw new IllegalArgumentException();
+            errorType = ErrorMessages.NUMBER_DUPLICATED;
+            throw new IllegalArgumentException(errorType.getDescription());
         }
     }
 }

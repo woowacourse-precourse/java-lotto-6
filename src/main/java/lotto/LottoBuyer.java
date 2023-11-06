@@ -10,6 +10,7 @@ public class LottoBuyer {
     private int purchaseAmount;
     private int purchaseLottoCount;
     private ArrayList<Lotto> myLottos;
+    ErrorMessages errorType;
 
     public LottoBuyer() {
         this.purchaseAmount = 0;
@@ -18,7 +19,7 @@ public class LottoBuyer {
     }
 
     public void inputPurchaseAmount() {
-        System.out.println(REQUEST_INPUT_MESSAGE);
+        System.out.print(REQUEST_INPUT_MESSAGE);
         buyLotto(Console.readLine());
     }
 
@@ -31,11 +32,13 @@ public class LottoBuyer {
         try {
             resultAmount = Integer.parseInt(inputAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            errorType = ErrorMessages.INPUT_IS_NOT_NUMBER;
+            throw new IllegalArgumentException(errorType.getDescription());
         }
 
-        if ((resultAmount % 1000) != 0 || (resultAmount < 0)) {
-            throw new IllegalArgumentException();
+        if ((resultAmount % LOTTO_PURCHASE_UNIT) != 0 || (resultAmount < 0)) {
+            errorType = ErrorMessages.INPUT_NOT_UNIT_MONEY;
+            throw new IllegalArgumentException(errorType.getDescription());
         }
 
         return resultAmount;

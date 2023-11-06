@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    ErrorMessages errorType;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -17,11 +18,13 @@ public class Lotto {
         Set<Integer> numbersSet = new HashSet<>(numbers);
 
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            errorType = ErrorMessages.NUMBER_INCORRECT_SIZE;
+            throw new IllegalArgumentException(errorType.getDescription());
         }
 
         if (numbers.size() != numbersSet.size()) {
-            throw new IllegalArgumentException();
+            errorType = ErrorMessages.NUMBER_DUPLICATED;
+            throw new IllegalArgumentException(errorType.getDescription());
         }
     }
 

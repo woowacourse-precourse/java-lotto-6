@@ -65,4 +65,16 @@ class GlobalValidatorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> validateBonusNumber(winningNumber, bonusNumber));
     }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복인지 테스트")
+    void bonusNumberDuplicateTest() {
+        //given
+        List<Integer> winningNumber = List.of(1,2,3,4,5,6);
+        String bonusNumber = "3";
+
+        // when, then
+        assertThrows(IllegalArgumentException.class,
+                () -> validateBonusNumber(winningNumber, bonusNumber));
+    }
 }

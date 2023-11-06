@@ -6,7 +6,10 @@ import lotto.repository.LottoRepository;
 import java.util.List;
 
 public class Input {
-    InputValidate inputValidate = new InputValidate(new LottoRepository());
+    InputValidate inputValidate;
+    public Input(InputValidate inputValidate) {
+        this.inputValidate = inputValidate;
+    }
     public int getLottoCount(){
         return inputValidate.lottoCountValidate(Console.readLine());
     }

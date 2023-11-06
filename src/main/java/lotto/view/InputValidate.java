@@ -1,6 +1,5 @@
 package lotto.view;
 
-import lotto.repository.LottoRepository;
 import lotto.repository.Repository;
 
 import java.util.ArrayList;

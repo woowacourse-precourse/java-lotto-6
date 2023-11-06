@@ -10,6 +10,11 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    public static final long FIRST_PRIZE_AMOUNT = 2000000000L; // 1등 상금 (예: 20억 원)
+    public static final long SECOND_PRIZE_AMOUNT = 30000000L;  // 2등 상금 (예: 3천만 원)
+    public static final long THIRD_PRIZE_AMOUNT = 1500000L;    // 3등 상금 (예: 150만 원)
+    public static final long FOURTH_PRIZE_AMOUNT = 50000L;     // 4등 상금 (예: 5만 원)
+    public static final long FIFTH_PRIZE_AMOUNT = 5000L;       // 5등 상금 (예: 5천 원)
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -23,32 +28,26 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public int LottoResults(List<Integer> winningNumber, int bonusNumber) {
+    public long LottoResults(List<Integer> winningNumber, int bonusNumber) {
         List<Integer> tempWinningNumber = new ArrayList<>(winningNumber);
         tempWinningNumber.retainAll(numbers);
         int matchedNumbers = tempWinningNumber.size();
         if (matchedNumbers == 3) {
-            return 5000;
+            return  FIFTH_PRIZE_AMOUNT;
         }
         if (matchedNumbers == 4) {
-            return 50000;
+            return FOURTH_PRIZE_AMOUNT;
         }
         if (matchedNumbers == 5 && numbers.contains(bonusNumber)) {
-            return 30000000;
+            return THIRD_PRIZE_AMOUNT;
         }
         if (matchedNumbers == 5) {
-            return 1500000;
+            return SECOND_PRIZE_AMOUNT;
         }
         if (matchedNumbers == 6) {
-            return 2000000000;
+            return FIRST_PRIZE_AMOUNT;
         }
         return 0;
     }
-
-//  3개 일치 (5,000원) - 1개
-//  4개 일치 (50,000원) - 0개
-//  5개 일치 (1,500,000원) - 0개
-//  5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-//  6개 일치 (2,000,000,000원) - 0개
 
 }

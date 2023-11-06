@@ -8,8 +8,8 @@
   - [x] 예외) 당첨 번호의 수가 6개가 아니면 예외 처리 - validate()
   - [x] 예외) 보너스 번호의 수가 1개가 아니면 예외 처리 - validateBonnusNumber()
 - [x] 구매 번호와 담첨 번호 비교해 - Lotto#LottoResults()
-  - [ ]당첨 내역 출력하고  - Lotto#printResults()
-  - [ ]수익률을 출력 - Lotto#rateOfReturn()
+  - [x] 당첨 내역 출력하고  - LottoReporter#lottoReport()
+  - [x] 수익률을 출력 - LottoReporter#rateOfReturn()
 
 
 - 로또 번호의 숫자 범위는 1~45까지이다.

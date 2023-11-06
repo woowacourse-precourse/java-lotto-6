@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.constant.OutputText.ENTER_PURCHASE_AMOUNT;
+import static lotto.constant.OutputText.ENTER_WINNING_NUMBERS;
 
 import lotto.constant.OutputText;
 import lotto.dto.LottosInfo;
@@ -11,9 +12,18 @@ public class OutputView {
         printOutputText(ENTER_PURCHASE_AMOUNT);
     }
 
+    public void printEnterWinningNumbers() {
+        printOutputText(ENTER_WINNING_NUMBERS);
+    }
+
     public void printLottosInfo(LottosInfo lottoInfos) {
         printText(lottoInfos.getLottoCountText());
         lottoInfos.numbers().forEach(this::printText);
+        printSpace();
+    }
+
+    private void printSpace() {
+        System.out.println();
     }
 
     private void printText(String text) {

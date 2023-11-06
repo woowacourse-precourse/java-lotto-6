@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.generator.RandomUniqueListGenerator;
+import lotto.model.Lotto;
 import lotto.model.LottoOwner;
 import lotto.model.Lottos;
 import lotto.model.PurchasePrice;
@@ -17,5 +18,7 @@ public class LottoController {
         Lottos lottos = Lottos.of(purchasePrice, new RandomUniqueListGenerator());
         LottoOwner lottoOwner = LottoOwner.of(purchasePrice, lottos);
         outputView.printLottosInfo(lottoOwner.getLottoInfo());
+        outputView.printEnterWinningNumbers();
+        Lotto winningLotto = Lotto.from(inputView.getWinningNumbers());
     }
 }

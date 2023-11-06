@@ -30,7 +30,7 @@ public class GameController {
 
     private void winningLotto() {
         retryCount(() -> winningLotto.setWinningLotto(inputView.printWinningNumber()));
-        retryCount(() -> winningLotto.setBonusNumber(validator.validNumber(inputView.printBonusNumber())));
+        retryCount(() -> winningLotto.setBonusNumber(validator.validBonus(inputView.printBonusNumber())));
 
         winningStatistics();
     }
@@ -52,8 +52,10 @@ public class GameController {
 
     private void init() {
         LottoStore.getInstance().getLotto().clear();
-        retryCount(() -> amount = validator.validNumber(inputView.printPurchaseAmount()));
+        retryCount(() -> amount = validator.validPurchase(inputView.printPurchaseAmount()));
         count = amount / LOTTO_PRICE;
         outputView.printPurchase(count);
     }
+
+
 }

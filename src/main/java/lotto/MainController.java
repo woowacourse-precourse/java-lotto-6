@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.message.ViewMessage;
@@ -9,27 +8,25 @@ import lotto.view.OutputView;
 
 public class MainController {
     public static void run() {
-        List<Lotto> lottoList = purchaseLottos();
-
+        LottoPurchaseInfo lottoInfo = purchaseLottos();
+        OutputView.printLottoPurchaseInfo(lottoInfo);
         AnswerLotto answerLotto = initAnswerLotto();
 
-//
-//        OutputView.printResult(answerLotto.getResult(lottos));
     }
 
-    private static List<Lotto> purchaseLottos() {
-        Wallet wallet = new Wallet(InputView.readInteger(ViewMessage.INPUT_PURCHASE_MONEY));
-        List<Lotto> lottoList = new ArrayList<>();
-        while (wallet.canPurchaseLotto()) {
-            List<Integer> pickedNumbers = Randoms.pickUniqueNumbersInRange(
-                    LottoOption.LOTTO_START_INCLUSIVE,
-                    LottoOption.LOTTO_END_INCLUSIVE,
-                    LottoOption.LOTTO_SIZE);
-            Lotto newLotto = new Lotto(pickedNumbers);
-            OutputView.printLotto(newLotto);
-            lottoList.add(newLotto);
+    private static LottoPurchaseInfo purchaseLottos() {
+        try {
+            Wallet wallet = new Wallet(InputView.readInteger(ViewMessage.INPUT_PURCHASE_MONEY));
+            List<Lotto> lottoList = new ArrayList<>();
+            while (wallet.canPurchaseLotto()) {
+                Lotto newLotto = Lotto.createRandomLotto(wallet);
+                lottoList.add(newLotto);
+            }
+            return new LottoPurchaseInfo(lottoList, lottoList.size());
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return purchaseLottos();
         }
-        return lottoList;
     }
 
     private static AnswerLotto initAnswerLotto() {

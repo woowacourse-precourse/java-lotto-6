@@ -1,14 +1,17 @@
 package lotto.view;
 
-import java.util.stream.Collectors;
-import lotto.Lotto;
+import lotto.LottoPurchaseInfo;
 
 public class OutputView {
-    public static void printLotto(Lotto lotto) {
-        String listString = lotto.getNumbers()
-                .stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", "));
-        System.out.println("[" + listString + "]");
+
+    public static void printLottoPurchaseInfo(LottoPurchaseInfo lottoPurchaseInfo) {
+        System.out.println(lottoPurchaseInfo.getCount() + "개를 구매했습니다.");
+        System.out.println(lottoPurchaseInfo.getLottosNumber());
+    }
+
+
+
+    public static void printException(IllegalArgumentException e) {
+        System.out.println("[ERROR] : " + e.getMessage());
     }
 }

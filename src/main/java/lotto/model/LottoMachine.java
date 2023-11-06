@@ -38,4 +38,8 @@ public class LottoMachine {
                 .mapToObj(i -> lottoFactory.createLotto())
                 .forEach(lottoTickets::addLotto);
     }
+
+    public LottoTickets getLottoTickets() {
+        return this.lottoTickets;
+    }
 }

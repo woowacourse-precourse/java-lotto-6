@@ -12,7 +12,8 @@ public enum ErrorMessage {
     NOT_POSITIVE_INTEGER_INPUT_MESSAGE("[ERROR] 양의 정수를 입력해 주세요."),
     NOT_CORRECT_INPUT_MESSAGE("[ERROR] 1, 2, 3, 4, 5, 6과 같은 형식으로 정수를 입력해 주세요."),
     OUT_OF_RANGE_NUMBER_MESSAGE("[ERROR] 로또 번호는 " + MIN_NUMBER.getValue() + "부터 "
-            + MAX_NUMBER.getValue() + "사이의 숫자여야 합니다.");
+            + MAX_NUMBER.getValue() + "사이의 숫자여야 합니다."),
+    DUPLICATED_NUMBER_MESSAGE("[ERROR] 당첨 번호와 중복된 숫자입니다.");
 
     private final String message;
 

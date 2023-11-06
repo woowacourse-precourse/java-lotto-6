@@ -25,7 +25,7 @@ class CustomerTest {
 
     @DisplayName("입력한 금액이 1000원 단위가 아닐경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"900", "999"})
+    @ValueSource(strings = {"1010", "9100"})
     void occur1000UnitException(String buyPrice) {
         assertThatThrownBy(() -> Customer.create(buyPrice)).isInstanceOf(
             IllegalArgumentException.class);

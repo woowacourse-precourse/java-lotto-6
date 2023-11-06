@@ -40,7 +40,7 @@ class ConvertorTest {
     @DisplayName("입력받은 문자를 ,로 분할하여 반환할 수 있다.")
     @ParameterizedTest
     @MethodSource("numberProvider")
-    void convertToIntegerList(String input, int count, List<Integer> answer) {
+    void toIntegerList(String input, int count, List<Integer> answer) {
         // given
         // when
         List<Integer> integers = Convertor.toIntegerList(input);

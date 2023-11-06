@@ -21,7 +21,7 @@ public class LottoAmount {
         return lottoAmount;
     }
 
-    private static int validateMoneyIsValid(String input) {
+    public static int validateMoneyIsValid(String input) {
         int number = parseInt(input);
         validateMoneyIsPositive(number);
         validateMoneyDivideBy1000(number);

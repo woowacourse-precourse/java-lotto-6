@@ -26,16 +26,32 @@ public class UserInput {
 
     public static List<Integer> getWinningNumbers() {
         while (true) {
-            System.out.println("당첨 번호를 입력해 주세요.");
-            String input = Console.readLine();
-            String[] numberStrings = input.split(",");
-            List<Integer> numbers = new ArrayList<>();
-            for (String numberString : numberStrings) {
-                numberString = numberString.trim();
-                int number = Integer.parseInt(numberString);
-                numbers.add(number);
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                String[] numberStrings = input.split(",");
+                List<Integer> numbers = new ArrayList<>();
+                for (String numberString : numberStrings) {
+                    numberString = numberString.trim();
+                    int number = Integer.parseInt(numberString);
+                    numbers.add(number);
+                }
+                validateNumbers(numbers);
+                return numbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-            return numbers;
+        }
+    }
+
+    private static void validateNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         }
     }
 }

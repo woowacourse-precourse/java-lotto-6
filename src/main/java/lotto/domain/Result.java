@@ -3,11 +3,18 @@ package lotto.domain;
 public class Result {
 
     private final WinningNumbers winningNumbers;
-    private final WinningNumber bonusNumber;
+    private final BonusNumber bonusNumber;
 
-    public Result(WinningNumbers winningNumbers, WinningNumber bonusNumber) {
+    public Result(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        validateWinningNumbersContainBonusNumber(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateWinningNumbersContainBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public boolean winningNumbersContain(int number) {

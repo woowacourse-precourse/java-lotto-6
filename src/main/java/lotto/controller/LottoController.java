@@ -56,28 +56,19 @@ public class LottoController {
     }
 
     private Result getResult() {
-
-        ResultBuilder resultBuilder = new ResultBuilder();
-
-        loop(() -> getWinningNumbers(resultBuilder));
+        WinningNumbers winningNumbers = loop(this::getWinningNumbers);
         outputView.newline();
-        loop(() -> getBonusNumber(resultBuilder));
-
-        return resultBuilder.build();
-
+        return loop(() -> new Result(winningNumbers, loop(this::getBonusNumber)));
     }
 
-    private ResultBuilder getWinningNumbers(ResultBuilder resultBuilder) {
+    private WinningNumbers getWinningNumbers() {
         outputView.printGetWinningNumbers();
-        resultBuilder.setWinningNumbers(WinningNumbers.createWinningNumbers(inputView.getNumbers()));
-        return resultBuilder;
+        return WinningNumbers.createWinningNumbers(inputView.getNumbers());
     }
 
-    private ResultBuilder getBonusNumber(ResultBuilder resultBuilder) {
+    private BonusNumber getBonusNumber() {
         outputView.printGetBonusNumber();
-        BonusNumber bonusNumber = new BonusNumber(inputView.getNumber());
-        resultBuilder.setBonusNumber(bonusNumber);
-        return resultBuilder;
+        return new BonusNumber(inputView.getNumber());
     }
 
 }

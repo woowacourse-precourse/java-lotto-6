@@ -9,8 +9,8 @@ import java.util.Set;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoHost {
-	static Lotto winningNumberLotto;
-	static int bonusNumber;
+	Lotto winningNumberLotto;
+	int bonusNumber;
 
 	LottoHost() {
 
@@ -37,7 +37,7 @@ public class LottoHost {
 	}
 
 	List<Integer> compareLottoNumber(List<Lotto> lottoList) {
-		List<Integer> resultList = Arrays.asList(0, 0, 0, 0, 0);
+		List<Integer> resultList = Arrays.asList(0, 0, 0, 0, 0, 0);
 		for(Lotto lotto : lottoList) {
 			resultList.set(getRank(countSameNumber(lotto)),
 				resultList.get(getRank(countSameNumber(lotto))) + 1);
@@ -75,6 +75,6 @@ public class LottoHost {
 		if(cnt%10 == 3) {
 			return 0;
 		}
-		return -1;
+		return 5;
 	}
 }

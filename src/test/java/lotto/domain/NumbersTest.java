@@ -53,12 +53,12 @@ class NumbersTest {
 
         //when
         List<Number> numberValues = numbers.getValues();
-        List<String> numbersAsc = numberValues.stream()
+        List<Integer> numbersAsc = numberValues.stream()
                 .map(Number::getValue)
                 .toList();
 
         //then
-        assertThat(numbersAsc).isEqualTo(List.of("8", "22", "23", "41", "42", "43"));
+        assertThat(numbersAsc).isEqualTo(List.of(8, 22, 23, 41, 42, 43));
     }
 
 }

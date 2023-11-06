@@ -26,7 +26,7 @@ public class ValidateLottoNumberFormat {
         Arrays.stream(value)
                 .forEach(v -> {
                     if (v.isBlank()) {
-                      throw new InvalidBlankNumberException();
+                        throw new InvalidBlankNumberException();
                     }
                 });
     }

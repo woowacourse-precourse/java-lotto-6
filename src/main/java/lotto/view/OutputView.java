@@ -1,9 +1,6 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.ResultBuilder;
-import lotto.validation.ValidateNumberFormat;
-import lotto.validation.ValidateThousandWonFormat;
 
 import java.util.List;
 
@@ -16,6 +13,7 @@ public class OutputView {
     public void readBuyLottoMessage(int quantity) {
         System.out.println(quantity + BUY_LOTTO_MESSAGE);
     }
+
     public void readWinningLottoMessage() {
         System.out.println(WINNING_LOTTO_MESSAGE);
     }
@@ -32,7 +30,7 @@ public class OutputView {
     }
 
     public void readEarningRate(int inputMoney, long totalEarnings) {
-        double percent = (double)totalEarnings/(double) inputMoney *100.0;
-        System.out.println(FRONT_EARNING_RATE_MESSAGE+String.format("%.1f",percent)+BACK_EARNING_RATE_MESSAGE);
+        double percent = (double) totalEarnings / (double) inputMoney * 100.0;
+        System.out.println(FRONT_EARNING_RATE_MESSAGE + String.format("%.1f", percent) + BACK_EARNING_RATE_MESSAGE);
     }
 }

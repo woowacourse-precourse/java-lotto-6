@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ResultBuilder {
@@ -17,7 +15,7 @@ public class ResultBuilder {
     }
 
     public String resultBuild(int[] result) {
-        List<String> messages = List.of(FIFTH_PRIZE_MESSAGE,FOURTH_PRIZE_MESSAGE,THIRD_PRIZE_MESSAGE,SECOND_PRIZE_MESSAGE,FIRST_PRIZE_MESSAGE);
+        List<String> messages = List.of(FIFTH_PRIZE_MESSAGE, FOURTH_PRIZE_MESSAGE, THIRD_PRIZE_MESSAGE, SECOND_PRIZE_MESSAGE, FIRST_PRIZE_MESSAGE);
         StringBuilder stringBuilder = new StringBuilder();
         for (int index = 0; index < result.length; index++) {
             stringBuilder.append(messages.get(index))

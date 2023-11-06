@@ -61,7 +61,7 @@ public class LottoGame {
             long correct = lotto.getNumbers().stream()
                     .filter(number -> winningNumber.getNumbers().contains(number))
                     .count();
-            prizeRanks.add(getRank(correct,lotto));
+            prizeRanks.add(getRank(correct, lotto));
         }
     }
 
@@ -69,10 +69,10 @@ public class LottoGame {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    private Prize getRank(long correct,Lotto lotto) {
+    private Prize getRank(long correct, Lotto lotto) {
         Prize prize = Arrays.stream(Prize.values())
                 .filter(p ->
-                    p.getMatched() == correct
+                        p.getMatched() == correct
                 )
                 .findAny()
                 .orElse(Prize.EMPTY);

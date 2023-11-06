@@ -17,7 +17,7 @@ public class LottoController {
 
     public void start() {
         int money = inputMoney();
-        int quantity = money/1000;
+        int quantity = money / 1000;
         buyLotto(quantity);
         String[] winningNumber = getWinningNumber();
         getBonusNumber(winningNumber);
@@ -27,7 +27,7 @@ public class LottoController {
     }
 
     private void getEarningRate(int inputMoney) {
-        outputView.readEarningRate(inputMoney,lottoGame.getTotalEarnings());
+        outputView.readEarningRate(inputMoney, lottoGame.getTotalEarnings());
     }
 
     private void getLottoResult() {

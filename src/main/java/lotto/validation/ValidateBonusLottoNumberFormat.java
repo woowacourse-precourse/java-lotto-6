@@ -1,9 +1,7 @@
 package lotto.validation;
 
-import lotto.exception.InvalidBlankNumberException;
 import lotto.exception.InvalidDuplicatedNumberException;
 import lotto.exception.InvalidLottoNumberException;
-import lotto.exception.InvalidLottoNumberSizeException;
 
 import java.util.Arrays;
 

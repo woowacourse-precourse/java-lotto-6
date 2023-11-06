@@ -35,6 +35,6 @@ public class Result {
     }
 
     public int[] getResult() {
-        return new int[]{fifthPrize,fourthPrize,thirdPrize,secondPrize,firstPrize};
+        return new int[]{fifthPrize, fourthPrize, thirdPrize, secondPrize, firstPrize};
     }
 }

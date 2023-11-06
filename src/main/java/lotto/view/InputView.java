@@ -1,13 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.InvalidNumberFormatException;
 import lotto.validation.ValidateBonusLottoNumberFormat;
 import lotto.validation.ValidateLottoNumberFormat;
 import lotto.validation.ValidateNumberFormat;
 import lotto.validation.ValidateThousandWonFormat;
 
-import java.util.List;
 
 public class InputView {
     private static final String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
@@ -68,7 +66,7 @@ public class InputView {
         while (true) {
             inputBonusWinningNumber = Console.readLine();
             try {
-                validateInputBonusWinningNumber(inputBonusWinningNumber,existingNumbers);
+                validateInputBonusWinningNumber(inputBonusWinningNumber, existingNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

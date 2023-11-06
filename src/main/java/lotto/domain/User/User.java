@@ -23,6 +23,7 @@ public class User {
         printLotties();
         //validate
         winningNumber.setWinningNumbers();
+        winningNumber.setBonusNumber();
     }
 
     private void inputLottoAmount() {

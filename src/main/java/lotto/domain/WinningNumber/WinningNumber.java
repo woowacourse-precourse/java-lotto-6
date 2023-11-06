@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class WinningNumber {
     private List<Integer> winningNumbers= new ArrayList<>();
+    private int bonusNumber;
 
     public void setWinningNumbers() {
         System.out.println();
@@ -22,22 +23,24 @@ public class WinningNumber {
         }
     }
 
-    private void printWinningNumbers() {
-        for (int i = 0; i < 5; i++) {
-            System.out.printf(winningNumbers.get(i) + ",");
-        }
-        System.out.printf(winningNumbers.get(5).toString());
+    public void setBonusNumber() {
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        inputBonusNumber();
     }
 
-    public void parseWinningNumbers(List<String> winningNumbers) {
-        for (int i = 0; i < 6; i++) {
-            this.winningNumbers.add(Integer.parseInt(winningNumbers.get(i)));
-        }
+    private void inputBonusNumber() {
+        String bonusNumberInput = Console.readLine();
+        //validate
+        this.bonusNumber = Integer.parseInt(bonusNumberInput);
     }
-
 
     public List<Integer> getWinningNumbers() {
         return this.winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
     }
 
 }

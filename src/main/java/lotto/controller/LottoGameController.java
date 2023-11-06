@@ -39,8 +39,8 @@ public class LottoGameController {
         initMoney();
         generateLotto();
         printLottos();
-        initWinningNumbers();
-        initBonusNumber();
+        initWinningNumbers(inputView.inputWinningNumbers());
+        initBonusNumber(inputView.inputBonusNumber());
         calculateGameResult();
         printGameResult();
         printProfit();
@@ -56,33 +56,33 @@ public class LottoGameController {
         }
     }
 
+    public void initWinningNumbers(String input) {
+        try {
+            winningNumbersBitSet = new Lotto(input).toBitSet();
+        }
+        catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            initWinningNumbers(inputView.inputWinningNumbers());
+        }
+    }
+
+    public void initBonusNumber(String input) {
+        try {
+            bonusNumber = new BonusNumber(input, bonusNumberValidator);
+            bonusNumber.validateDuplicatedWithWinning(winningNumbersBitSet);
+        }
+        catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            initBonusNumber(inputView.inputBonusNumber());
+        }
+    }
+
     void generateLotto() {
         lottos = new Lottos(lottoGenerator.generate(purchase.getLottoCount()));
     }
 
     void printLottos() {
         outputView.printLottos(lottos);
-    }
-
-    void initWinningNumbers() {
-        try {
-            winningNumbersBitSet = new Lotto(inputView.inputWinningNumbers()).toBitSet();
-        }
-        catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            initWinningNumbers();
-        }
-    }
-
-    void initBonusNumber() {
-        try {
-            bonusNumber = new BonusNumber(inputView.inputBonusNumber(), bonusNumberValidator);
-            bonusNumber.validateDuplicatedWithWinning(winningNumbersBitSet);
-        }
-        catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            initBonusNumber();
-        }
     }
 
     void calculateGameResult() {
@@ -97,4 +97,7 @@ public class LottoGameController {
         outputView.printProfit(lottos.getProfit(purchase.getMoney()));
     }
 
+    public BitSet getWinningNumbersBitSet() {
+        return winningNumbersBitSet;
+    }
 }

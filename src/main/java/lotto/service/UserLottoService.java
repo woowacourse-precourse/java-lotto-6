@@ -1,19 +1,23 @@
 package lotto.service;
 
-import java.util.List;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.User;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
+
 public class UserLottoService {
-    public static List<Lotto> UserTickets;
+    public List<Lotto> UserTickets;
     public static User user;
     public static User lottoSetting(int amount) {
-        generateLottoTickets(amount);
-        return user = new User(amount, UserTickets);
+
+        List<Lotto> userTickets = generateLottoTickets(amount);
+        return user = new User(amount, userTickets);
     }
     private static List<Lotto> generateLottoTickets(int amount) {
+        List<Lotto> UserTickets = new ArrayList<>();
         for (int i = 0 ; i< amount ; i++) {
             UserTickets.add(generateLottoNumbers());
         }

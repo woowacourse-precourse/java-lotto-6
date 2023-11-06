@@ -19,6 +19,11 @@ public class Parser {
                 .collect(Collectors.toList());
     }
 
+    public static List<String> parseToStrings(String input) {
+        String strings = removeSpacesBetweenCommas(input);
+        return List.of(strings.split(COMMA));
+    }
+
     public static String removeSpacesBetweenCommas(String input) {
         return input.replaceAll(COMMA_WITH_SPACES_REGEX, COMMA);
     }

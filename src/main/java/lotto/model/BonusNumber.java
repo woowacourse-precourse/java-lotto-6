@@ -4,11 +4,15 @@ import lotto.constant.ErrorMessage;
 import lotto.constant.NumberRange;
 
 public class BonusNumber {
-    int bonusNumber;
+    private final int bonusNumber;
 
     BonusNumber(int bonusNumber) {
         isInRange(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public static BonusNumber makeBonusNumber(int bonusNumber) {
+        return new BonusNumber(bonusNumber);
     }
 
     public int getBonusNumber() {

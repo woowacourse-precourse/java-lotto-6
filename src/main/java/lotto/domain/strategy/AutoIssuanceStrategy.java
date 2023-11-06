@@ -5,7 +5,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
-public class AutoIssueStrategy implements IssuableStrategy {
+public class AutoIssuanceStrategy implements IssuableStrategy {
 
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;

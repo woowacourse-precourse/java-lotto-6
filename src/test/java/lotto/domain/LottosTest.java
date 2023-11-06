@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import lotto.domain.strategy.AutoIssueStrategy;
+import lotto.domain.strategy.AutoIssuanceStrategy;
 
 class LottosTest {
 
@@ -22,7 +22,7 @@ class LottosTest {
     @DisplayName("로또 여러 개 생성")
     void givenTotalCount_whenCreateLottos_thenReturn(int totalCount) {
         // when
-        Lottos lottos = new Lottos(totalCount, new AutoIssueStrategy());
+        Lottos lottos = new Lottos(totalCount, new AutoIssuanceStrategy());
 
         // then
         assertThat(lottos.count()).isEqualTo(totalCount);

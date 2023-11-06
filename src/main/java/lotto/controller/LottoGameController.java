@@ -7,7 +7,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Payment;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
-import lotto.domain.strategy.AutoIssueStrategy;
+import lotto.domain.strategy.AutoIssuanceStrategy;
 import lotto.domain.strategy.ManualIssuanceStrategy;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -36,7 +36,7 @@ public class LottoGameController {
     }
 
     private Lottos issueLottosByAuto(final int totalCount) {
-        return new Lottos(totalCount, new AutoIssueStrategy());
+        return new Lottos(totalCount, new AutoIssuanceStrategy());
     }
 
     private void printPurchaseHistory(final Payment payment, final Lottos lottos) {

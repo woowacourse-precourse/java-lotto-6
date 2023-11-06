@@ -16,7 +16,7 @@ class IssuableStrategyTest {
     @DisplayName("로또 자동 발행 전략: 자동으로 숫자를 생성해 로또 발행 성공")
     void givenAutoIssueStrategy_whenIssue_thenNoException() {
         // given
-        IssuableStrategy autoIssueStrategy = new AutoIssueStrategy();
+        IssuableStrategy autoIssueStrategy = new AutoIssuanceStrategy();
 
         // when & then
         assertThatNoException()

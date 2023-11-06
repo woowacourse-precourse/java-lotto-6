@@ -1,26 +1,22 @@
 package lotto.domain;
 
+import java.util.List;
+
 public enum LottoValue {
-    THREE(3, "5,000원"),
-    FOUR(4, "50,000원"),
-    FIVE(5, "1,500,000원"),
-    FIVE_BONUS(5, "30,000,000원"),
-    SIX(6, "2,000,000,000원");
+    THREE(3, 5000, "3개 일치 (5000원)"),
+    FOUR(4, 50000, "4개 일치 (50,000원)"),
+    FIVE(5, 1500000, "5개 일치 (1,500,000원)"),
+    FIVE_BONUS(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    SIX(6, 2000000000, "6개 일치 (2,000,000,000원)");
 
     private final int count;
-    private final String winningMoney;
+    private final int winningMoney;
+    private final String result;
 
-    LottoValue(int count, String winningMoney) {
+    LottoValue(int count, int winningMoney, String result) {
         this.count = count;
         this.winningMoney = winningMoney;
-    }
-
-    public int getCount() {
-        return this.count;
-    }
-
-    public String getWinningMoney() {
-        return this.winningMoney;
+        this.result = result;
     }
 
     public static LottoValue getLottoValue(int count) {
@@ -30,6 +26,12 @@ public enum LottoValue {
             }
         }
         return null;
+    }
+
+    public static void printResult(List<LottoValue> tmp){
+        for (LottoValue lottoValue : LottoValue.values()) {
+            System.out.println(lottoValue.result + " - " + tmp.stream().filter(a -> a.name().equals(lottoValue.name())).count() + "개");
+        }
     }
 
 }

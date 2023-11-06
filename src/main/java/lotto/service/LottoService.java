@@ -36,8 +36,9 @@ public class LottoService {
         if (lottos.size() != lottoCount) {
             throw new IllegalStateException();
         }
+        List<Integer> winningNum;
         while (true) {
-            List<Integer> winningNum = new ArrayList<>();
+            winningNum = new ArrayList<>();
             System.out.println("당첨 번호를 입력해 주세요.");
 
             //TODO 메세지 출력 부분을 IllegalArgumentException 발생 후 처리로 변경
@@ -56,6 +57,20 @@ public class LottoService {
                 break;
             }
             System.out.println("[ERROR] 로또 번호는 숫자 6개여야 합니다.");
+        }
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNum;
+        while (true) {
+            //TODO 메세지 출력 부분을 IllegalArgumentException 발생 후 처리로 변경
+            try {
+                bonusNum = Integer.parseInt(Console.readLine());
+                if (!winningNum.contains(bonusNum)) {
+                    break;
+                }
+                    System.out.println("[ERROR] 보너스 번호는 당첨 번호 6개 외의 숫자만 입력 가능합니다.");
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 1~45 사이의 숫자만 입력 가능합니다.");
+            }
         }
     }
 }

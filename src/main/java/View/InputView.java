@@ -44,14 +44,12 @@ public class InputView {
         validateNotEndWithDelimiter(winningNumbers);
         winningNumber.forEach(this::validateInputIsNumeric);
         winningNumber.forEach(this::validateInputIsPositiveNumber);
-        winningNumber.forEach(this::validateInputInRange);
     }
 
     public void validateBonusNumber(String bonusNumber) {
         validateNotBlank(bonusNumber);
         validateInputIsNumeric(bonusNumber);
         validateInputIsPositiveNumber(bonusNumber);
-        validateInputInRange(bonusNumber);
     }
 
     private void validateNotBlank(String input) {
@@ -91,13 +89,6 @@ public class InputView {
     private void validateNotEndWithDelimiter(String input) {
         if (input.endsWith(",")) {
             throw new IllegalArgumentException("[ERROR] 구분자(,)로 끝날 수 없습니다.");
-        }
-    }
-
-    private void validateInputInRange(String input) {
-        int number = Integer.parseInt(input);
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해 주세요.");
         }
     }
 

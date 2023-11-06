@@ -14,6 +14,9 @@ public class Application {
         while (!numberCheck) {
             String payment = lottoUtil.getUserInput();
             numberCheck = lottoUtil.validateNumber(payment);
+            if(numberCheck) {
+                numberCheck = lottoUtil.validateThousand(payment);
+            }
         }
 
     }

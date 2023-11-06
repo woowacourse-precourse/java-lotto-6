@@ -44,4 +44,20 @@ public class LottoResult {
         }
     }
 
+    public void printStatistics() {
+        matchCounts.forEach((matchCount, count) -> {
+            if (prizeMap.containsKey(matchCount) && count > 0) {
+                printMatchStatistics(matchCount, count);
+            }
+        });
+    }
+
+    private void printMatchStatistics(int matchCount, int count) {
+        System.out.printf("%d개 일치 (%s원) - %d개\n", matchCount, formatPrizeMoney(prizeMap.get(matchCount)), count);
+    }
+
+    private String formatPrizeMoney(long prizeMoney) {
+        return String.format("%,d", prizeMoney);
+    }
+
 }

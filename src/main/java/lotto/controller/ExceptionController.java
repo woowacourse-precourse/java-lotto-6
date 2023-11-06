@@ -25,12 +25,13 @@ public class ExceptionController {
         return winningNumbers;
     }
 
+    /*
     public static int checkExceptionBonus(List<Integer> numbers, String tmpBonusNumber) {
         int bonus = convertBonusNumber(tmpBonusNumber);
         checkRange(bonus);
         checkDuplicate(numbers, bonus);
         return bonus;
-    }
+    }*/
 
     public static void checkWinningNumbersLength(List<Integer> winningNumbers) {
         if (winningNumbers.size() != size) {
@@ -44,6 +45,7 @@ public class ExceptionController {
             checkRange(number);
         }
     }
+
     public static void checkRange(int num) throws IllegalArgumentException{
         if ((num < start) || (num > end)) {
             outOfBoundExceptionMessage();

@@ -30,9 +30,9 @@ public class Number {
     }
 
 
-    public void checkDuplicate(List<Integer> numbers, int bonus) throws IllegalArgumentException{
+    public void checkDuplicate(List<Integer> numbers, BonusNumber bonus) throws IllegalArgumentException{
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.contains(bonus)) {
+        if (uniqueNumbers.contains(bonus.getBonusNumber())) {
             duplicatedBonusNumber();
             throw new IllegalArgumentException();
         }

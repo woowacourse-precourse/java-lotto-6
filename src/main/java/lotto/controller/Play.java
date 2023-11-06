@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.Number;
 import lotto.model.Price;
 
 import java.util.*;
@@ -9,11 +10,9 @@ import java.util.*;
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.Statistic.*;
-import static lotto.controller.ExceptionController.checkExceptionBonus;
 import static lotto.controller.ExceptionController.checkExceptionWinningNumber;
 import static lotto.controller.lotteryController.*;
 import static lotto.controller.winningController.*;
-import static lotto.view.ErrorMessage.notDigitExceptionMessage;
 import static lotto.view.Message.*;
 import static lotto.view.Print.*;
 
@@ -83,7 +82,7 @@ public class Play {
             String tmpBonusNumber = inputBonusNumber();
             try {
                 bonus = new BonusNumber(convertBonusNumber(tmpBonusNumber));
-                checkExceptionBonus(numbers,tmpBonusNumber);
+                bonus.checkDuplicate(numbers, bonus);
             } catch (IllegalArgumentException e) {
                 //System.out.println("[ERROR]");
             }

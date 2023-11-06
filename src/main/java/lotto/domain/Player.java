@@ -67,9 +67,13 @@ public class Player {
 
     private void validateWinningNumbersValue(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
-            if (winningNumber < Lotto.MINIMUM_NUMBER || winningNumber > Lotto.MINIMUM_NUMBER) {
-                throw new IllegalArgumentException();
-            }
+            validateNumberValue(winningNumber);
+        }
+    }
+
+    private void validateNumberValue(Integer number) {
+        if (number < Lotto.MINIMUM_NUMBER || number > Lotto.MINIMUM_NUMBER) {
+            throw new IllegalArgumentException();
         }
     }
 
@@ -88,14 +92,8 @@ public class Player {
     }
 
     private void validateBonusNumber(Integer bonusNumber) {
-        validateBonusNumberValue(bonusNumber);
+        validateNumberValue(bonusNumber);
         validateBonusNumberDuplicatedWithWinningNumbers(bonusNumber);
-    }
-
-    private void validateBonusNumberValue(Integer bonusNumber) {
-        if (bonusNumber < Lotto.MINIMUM_NUMBER || bonusNumber > Lotto.MINIMUM_NUMBER) {
-            throw new IllegalArgumentException();
-        }
     }
 
     private void validateBonusNumberDuplicatedWithWinningNumbers(Integer bonusNumber) {

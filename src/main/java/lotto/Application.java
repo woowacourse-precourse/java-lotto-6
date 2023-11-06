@@ -42,10 +42,22 @@ public class Application {
         String[] separatedInput = input.split(",");
 
         for (String item : separatedInput) {
-            int number = Integer.parseInt(item);
+            int number = validateWinningNumber(item);
             numbers.add(number);
         }
 
         return numbers;
+    }
+
+    static int validateWinningNumber(String item) {
+        int number = 0;
+        try {
+            number = Integer.parseInt(item);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 당첨 번호로 숫자 외의 값을 입력했습니다.");
+            askWinningNumber();
+        }
+
+        return number;
     }
 }

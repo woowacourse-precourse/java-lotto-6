@@ -48,6 +48,14 @@ public enum LottosConstants {
         return matchNumber == FIVE_MATCH_BONUS.getMatchNumber()&& prizeMoney == FIVE_MATCH_BONUS.getPrizeMoney();
     }
 
+    public static List<LottosConstants> getValues() {
+        List<LottosConstants> winningHistoryValues = Stream.of(LottosConstants.values())
+                .filter(rankType -> rankType.getMatchNumber() >= 3)
+                .collect(Collectors.toList());
+        Collections.reverse(winningHistoryValues);
+        return winningHistoryValues;
+    }
+
     public int getMatchNumber() {
         return this.matchNumber;
     }

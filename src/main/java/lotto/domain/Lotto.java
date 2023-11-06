@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.SystemConstant.NUMBER_COUNT;
+
 import java.util.List;
 
 public class Lotto {
@@ -11,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
     }

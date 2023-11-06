@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.SystemConstant.MONEY_UNIT;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.utils.RandomUtil;
@@ -11,7 +13,7 @@ public class PlayerLotto {
 
     public PlayerLotto(int price) {
         this.purchasesPrice = price;
-        this.lottoAmount = price / 1000;
+        this.lottoAmount = price / MONEY_UNIT;
         this.playerLottos = createPlayerLottos();
     }
 

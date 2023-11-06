@@ -1,5 +1,6 @@
 package lotto.model.number;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public record LottoNumbers(List<LottoNumber> numbers) {
@@ -17,8 +18,11 @@ public record LottoNumbers(List<LottoNumber> numbers) {
         return numbers.size();
     }
 
+    public List<LottoNumber> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
     public List<LottoNumber> getSortedNumbers() {
-        return numbers.stream().sorted().toList();
+        return new ArrayList<>(numbers.stream().sorted().toList());
     }
 
     public boolean hasDuplicate() {

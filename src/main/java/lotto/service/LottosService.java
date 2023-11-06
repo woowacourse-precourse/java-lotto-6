@@ -5,6 +5,7 @@ import static lotto.domain.constant.LottoConstant.MIN_NUMBER;
 import static lotto.domain.constant.LottoConstant.NUMBER_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
@@ -29,6 +30,9 @@ public class LottosService {
     }
 
     private List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber(), NUMBER_COUNT.getNumber());
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber(),
+                NUMBER_COUNT.getNumber());
+        Collections.sort(numbers);
+        return numbers;
     }
 }

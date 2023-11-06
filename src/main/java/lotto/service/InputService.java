@@ -1,5 +1,7 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,12 +45,13 @@ public class InputService {
     }
 
 
-    public static int readBonusNumber() {
+    public static int readBonusNumber(Lotto winningLotto) {
         String input = readLine();
         validateNumberType(input);
 
         int bonusNumber = parseInt(input);
         validateBonusNumInRange(bonusNumber);
+        validateBonusNumDuplicate(bonusNumber, winningLotto);
 
         return bonusNumber;
     }

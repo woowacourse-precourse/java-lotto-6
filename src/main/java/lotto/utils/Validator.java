@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import lotto.domain.Lotto;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,10 +17,12 @@ public class Validator {
         validateNumberInRange(numbers);
     }
 
+
     public static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE)
             throw new IllegalArgumentException();
     }
+
 
     public static void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
@@ -27,6 +31,7 @@ public class Validator {
             if (!uniqueNumbers.add(n))
                 throw new IllegalArgumentException();
     }
+
 
     public static void validateNumberInRange(List<Integer> numbers) {
         if (numbers.stream()
@@ -42,6 +47,7 @@ public class Validator {
                 throw new IllegalArgumentException();
     }
 
+
     public static void validateNumberType(String input) {
         try {
             parseLong(input);
@@ -50,8 +56,15 @@ public class Validator {
         }
     }
 
+
     public static void validateBonusNumInRange(int bonusNum) {
         if (bonusNum < LOTTO_NUMBER_START || bonusNum > LOTTO_NUMBER_END)
+            throw new IllegalArgumentException();
+    }
+
+
+    public static void validateBonusNumDuplicate(int bonusNum, Lotto winningLotto) {
+        if (winningLotto.getNumbers().contains(bonusNum))
             throw new IllegalArgumentException();
     }
 }

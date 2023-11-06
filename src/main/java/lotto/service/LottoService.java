@@ -22,7 +22,7 @@ public class LottoService {
         Lotto winningLotto = generateWinningLotto();
 
         // 보너스 번호 입력
-        int bonusNum = generateBonusNum();
+        int bonusNum = generateBonusNum(winningLotto);
 
         // 당첨 통계
         generateResult(randomLottos, winningLotto, bonusNum);
@@ -45,13 +45,13 @@ public class LottoService {
     private static Lotto generateWinningLotto() {
         printWinningNumInputForm();
 
-        return new Lotto(readWinningNumbers());
+        return Lotto.create(readWinningNumbers());
     }
 
-    private static int generateBonusNum() {
+    private static int generateBonusNum(Lotto winningLotto) {
         printBonusNumInputForm();
 
-        return readBonusNumber();
+        return readBonusNumber(winningLotto);
     }
 
 

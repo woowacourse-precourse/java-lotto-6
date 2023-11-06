@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.domain.Money;
+import lotto.execption.DuplicateBonusNumberException;
+import lotto.execption.InputMoneyParseIntException;
+import lotto.execption.LottoNumberRangeException;
 
 public class InputView {
     public Money inputMoney() {
@@ -18,7 +21,7 @@ public class InputView {
             int money = Integer.parseInt(input);
             return new Money(money);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값을 입력하였습니다.");
+            throw new InputMoneyParseIntException();
         }
     }
 
@@ -42,14 +45,14 @@ public class InputView {
 
     private void validateDuplicate(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 보너스 번호를 입력하였습니다.");
+            throw new DuplicateBonusNumberException();
         }
     }
 
 
     private void validateRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
+            throw new LottoNumberRangeException();
         }
     }
 

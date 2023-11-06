@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.execption.MoneyException;
+
 public class Money {
     private final int money;
 
@@ -10,7 +12,7 @@ public class Money {
 
     private void validateMoney(int money) {
         if (money <= 0 || money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액을 잘못입력했습니다.");
+            throw new MoneyException();
         }
     }
 

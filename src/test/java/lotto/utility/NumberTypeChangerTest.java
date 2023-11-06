@@ -15,6 +15,6 @@ public class NumberTypeChangerTest {
 
         assertThrows(IllegalArgumentException.class, () -> NumberTypeChanger.changeNumberType("abc"));
 
-        assertThrows(IllegalArgumentException.class, () -> NumberTypeChanger.changeNumberType("1000000000000"));
+        assertThrows(IllegalArgumentException.class, () -> NumberTypeChanger.changeNumberType("2147483648"));
     }
 }

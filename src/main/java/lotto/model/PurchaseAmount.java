@@ -1,11 +1,11 @@
 package lotto.model;
 
-public class PurchaseAmount {
-    private int purchaseAmount;
+public record PurchaseAmount(
+        int purchaseAmount
+) {
 
-    public PurchaseAmount(int purchaseAmount) {
+    public PurchaseAmount {
         validate(purchaseAmount);
-        this.purchaseAmount = purchaseAmount;
     }
 
     private void validate(int input) {
@@ -30,7 +30,8 @@ public class PurchaseAmount {
         return purchaseAmount / 1000;
     }
 
-    public PrizePercentage calculatePrizePercentage(long prize) {
+    public PrizePercentage calculatePrizePercentage(Result result) {
+        long prize = result.calculatePrize();
         return new PrizePercentage((double) prize / purchaseAmount * 100);
     }
 }

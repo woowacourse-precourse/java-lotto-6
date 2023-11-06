@@ -18,10 +18,12 @@ public class LottoController {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         Lottos lottos = purchaseLottos(purchaseAmount);
         OutputView.printLottoNumbers(lottos);
+
         WinningLotto winningLotto = createWinningLotto();
         Result result = lottos.compareLottos(winningLotto);
-        OutputView.printResult(result.getResult());
-        PrizePercentage prizePercentage = calculatePrizePercentage(result.calculatePrize(), purchaseAmount);
+        OutputView.printResult(result);
+
+        PrizePercentage prizePercentage = purchaseAmount.calculatePrizePercentage(result);
         OutputView.printProfitPercentage(prizePercentage.getPrizePercentage());
     }
 
@@ -76,9 +78,5 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private PrizePercentage calculatePrizePercentage(long prize, PurchaseAmount purchaseAmount) {
-        return purchaseAmount.calculatePrizePercentage(prize);
     }
 }

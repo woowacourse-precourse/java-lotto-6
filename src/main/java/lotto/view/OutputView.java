@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.model.Lottos;
+import lotto.model.Result;
 
 public class OutputView {
     public static void printLottoNumbers(Lottos lottos) {
@@ -8,10 +9,10 @@ public class OutputView {
         System.out.println(lottos.getLottosNumbers());
     }
 
-    public static void printResult(String result) {
+    public static void printResult(Result result) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(result);
+        System.out.println(result.getResult());
     }
 
     public static void printProfitPercentage(String result) {

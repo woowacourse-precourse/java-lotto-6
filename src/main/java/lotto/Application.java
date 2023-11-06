@@ -8,8 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Application {
 
 	private static Integer money;
-	private static List<Integer> winningNumberList;
-	private static Integer bonusNumber;
+	private static LotteryCommission lotteryCommission;
 	private static List<Lotto> lottoList = new ArrayList<>();
 	private static LottoResult[] resultCheckList = {
 			LottoResult.THREE,
@@ -22,7 +21,7 @@ public class Application {
 	public static void main(String[] args) {
 		setMoney();
 		setLottoList();
-		setWinningNumberList();
+		generateLotteryCommision();
 		setBonusNumber();
 		printResult();
 	}
@@ -41,42 +40,19 @@ public class Application {
 		}
 	}
 
-	public static void setWinningNumberList() {
+	public static void generateLotteryCommision() {
 		try {
 			System.out.println("당첨 번호를 입력해 주세요.");
-			// winningNumberList = readNumberList(Constants.WINNING_NUMBER_LENGTH);
-			winningNumberList = ConsoleReader.readNumberList();
-
-			if (winningNumberList.size() != Constants.WINNING_NUMBER_LENGTH) {
-				winningNumberList = null;
-				throw new IllegalArgumentException("[ERROR] " + Constants.WINNING_NUMBER_LENGTH + "개를 입력해야 합니다!");
-			}
-
-			for (Integer number : winningNumberList) {
-				if (number < Constants.LOTTO_MIN_NUMBER || number > Constants.LOTTO_MAX_NUMBER) {
-					winningNumberList = null;
-					throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
-				}
-
-				if (winningNumberList.stream().distinct().toList().size() < Constants.WINNING_NUMBER_LENGTH) {
-					winningNumberList = null;
-					throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다!");
-				}
-			}
+			lotteryCommission = new LotteryCommission(ConsoleReader.readNumberList());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			setWinningNumberList();
 		}
 	}
 
 	public static void setBonusNumber() {
 		try {
 			System.out.println("보너스 번호를 입력해 주세요.");
-			bonusNumber = ConsoleReader.readNumber();
-
-			if (bonusNumber < Constants.LOTTO_MIN_NUMBER || bonusNumber > Constants.LOTTO_MAX_NUMBER) {
-				throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
-			}
+			lotteryCommission.setBonusNumber(ConsoleReader.readNumber());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			setBonusNumber();
@@ -98,7 +74,7 @@ public class Application {
 		System.out.println("당첨 통계");
 		System.out.println("---");
 		for (Lotto lotto : lottoList) {
-			lotto.setResult(winningNumberList, bonusNumber);
+			lotto.setResult(lotteryCommission.getWinningNumbers(), lotteryCommission.getBonusNumber());
 		}
 
 		for (LottoResult result : resultCheckList) {

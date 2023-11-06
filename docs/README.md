@@ -33,3 +33,8 @@
 - [x] 상수 분리하기: Contants 클래스 사용
 - [ ] User 클래스 구현하기
 - [x] ConsoleReder 구현하기
+    - readNumber
+    - readNumberList
+- [x] LotteryCommission 구현하기
+    - winningNumbers
+    - bonusNumber

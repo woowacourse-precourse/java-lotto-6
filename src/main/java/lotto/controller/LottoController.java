@@ -36,7 +36,7 @@ public class LottoController {
         outputView.printTotalResult(lottoResult, returnRate);
     }
 
-    public int getValidBuyingCost(InputView inputView) {
+    private int getValidBuyingCost(InputView inputView) {
         BuyingCost buyingCost = new BuyingCost();
         int validCost;
         while (true) {
@@ -49,7 +49,7 @@ public class LottoController {
         }
         return validCost;
     }
-    public Lotto getValidWinningNum(InputView inputView) {
+    private Lotto getValidWinningNum(InputView inputView) {
         WinningNumbers winningNum = new WinningNumbers();
         Lotto result;
         while (true) {
@@ -63,7 +63,7 @@ public class LottoController {
         }
         return result;
     }
-    public int getValidBonusNum(InputView inputview, Lotto lotto) {
+    private int getValidBonusNum(InputView inputview, Lotto lotto) {
         BonusNum bonusNum = new BonusNum();
         int validBonusNum;
         while (true) {
@@ -85,7 +85,7 @@ public class LottoController {
     public Map<LottoRanks, Integer> compareLotto(List<List<Integer>> purchased, Lotto winningNum, int bonusNum) {
         Comparing nextPhase = new Comparing(winningNum, bonusNum);
         nextPhase.compareAllToWinningNum(purchased);
-        return nextPhase.getWinningResult(purchased.size());
+        return nextPhase.getComparingResult(purchased.size());
     }
 
     public Double getReturnRate(Map<LottoRanks,Integer> enumMap, int cost) {

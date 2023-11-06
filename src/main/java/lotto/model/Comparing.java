@@ -43,7 +43,7 @@ public class Comparing {
     private void setEachComparingResult(int index, List<Integer> eachLotto) {
         int sameCount = countSameNumber(eachLotto, lotto.getWinningNumbers());
         sameNumCount.set(index, sameCount);
-        secondOrNot.set(index, isSecond(sameCount, eachLotto));
+        secondOrNot.set(index, isLottoRankSecond(sameCount, eachLotto));
     }
 
     public int countSameNumber(List<Integer> eachLotto, List<Integer> winningNum) {
@@ -56,11 +56,11 @@ public class Comparing {
         return sameCount;
     }
 
-    public boolean isSecond(int sameCount, List<Integer> eachLotto) {
+    public boolean isLottoRankSecond(int sameCount, List<Integer> eachLotto) {
         return sameCount == FIVE_SAME_NUM && eachLotto.contains(bonusNum);
     }
 
-    public Map<LottoRanks, Integer> getWinningResult(int quantity) {
+    public Map<LottoRanks, Integer> getComparingResult(int quantity) {
         Map<LottoRanks, Integer> result = LottoRanks.getEnumMap();
         for (int i = START_INDEX; i < quantity; i++) {
             LottoRanks key = LottoRanks.findRank(sameNumCount.get(i), secondOrNot.get(i));

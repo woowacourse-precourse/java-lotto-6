@@ -20,6 +20,17 @@ public class Converter {
         return Integer.parseInt(value);
     }
 
+    public List<Integer> convertLotto(String value){
+        value = value.replaceAll(SPACE, NULL);
+        String[] toLotto = value.split(KOMA, SPLIT_LIMIT);
+        for (String lotto : toLotto){
+            checkEmpty(lotto);
+            checkType(lotto);
+            checkValueOverflow(lotto);
+        }
+        return stringToLotto(toLotto);
+    }
+
     public int convertBonusNumber(String value){
         value = value.replaceAll(SPACE, NULL);
         checkEmpty(value);

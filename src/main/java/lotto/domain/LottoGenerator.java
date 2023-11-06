@@ -9,11 +9,12 @@ import java.util.List;
 public class LottoGenerator {
     // Randoms.를 사용해서 서로다른 6개의 로또를 생성한다
 
-    public void lottoGenerateWinningLotto(int gameAmount) {
-        List<Lotto> candWinningLotto = new ArrayList<>;
+    public List<Lotto> lottoGenerateWinningLotto(int gameAmount) {
+        List<Lotto> candWinningLotto = new ArrayList<>();
         for (int i= 0; i < gameAmount; i++) {
             candWinningLotto.add(generateLottoNumber());
         }
+        return candWinningLotto;
     }
 
     public Lotto generateLottoNumber() {

@@ -1,5 +1,5 @@
 package lotto.model.validator;
 
-public class amountOfLottoValidator {
+public class AmountOfLottoValidatorImpl {
 
 }

@@ -32,7 +32,6 @@ public class ValidateException {
         }
     }
 
-    // TODO: 11/6/23 당첨금액 , 제외
     public static void includeStringExceptionComma(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_EXCEPTION_COMMA_REGEX);
         Matcher matcher = pattern.matcher(strLine);
@@ -85,7 +84,6 @@ public class ValidateException {
         }
     }
 
-    // TODO: 11/6/23 추가.
     public static boolean containsNonNumericCharacter(String input) {
         for (char c : input.toCharArray()) {
             if (!Character.isDigit(c) && c != '-' && !Character.isWhitespace(c)) {
@@ -95,7 +93,7 @@ public class ValidateException {
         return false;
     }
 
-    // 유저
+    // ================== 유저 ==================
     public static boolean isMultipleOf1000(int amount) {
         if (amount % 1000 == 0) {
             return true;
@@ -110,7 +108,7 @@ public class ValidateException {
         return false;
     }
 
-    //    // 로또 진행자.
+    // ================== 로또 진행자 ==================
     public static boolean hasDuplicateEachNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
 

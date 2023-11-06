@@ -71,12 +71,12 @@ public class Application {
                                 total += status.getPrizeMoney() * count;
                                 if (status == WinningStatus.FIVE_PLUS_BONUS) {
                                         // 5개 일치 + 보너스 볼의 경우는 특별하게 처리
-                                        System.out.printf("%d개 일치, 보너스 볼 일치 (%s원)- %d개\n", status.getMatchCount(),
+                                        System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", status.getMatchCount(),
                                                             String.format("%,d", status.getPrizeMoney()), count);
                                 }
 
                                 if (status == WinningStatus.THREE_MATCHES || status == WinningStatus.FOUR_MATCHES || status == WinningStatus.FIVE_MATCHES) {
-                                    System.out.printf("%d개 일치 (%s원)- %d개\n", status.getMatchCount(),
+                                    System.out.printf("%d개 일치 (%s원) - %d개\n", status.getMatchCount(),
                                                         String.format("%,d", status.getPrizeMoney()), count);
                                 }
                             }

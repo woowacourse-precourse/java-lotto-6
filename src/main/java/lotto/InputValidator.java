@@ -5,8 +5,13 @@ import java.util.regex.Pattern;
 public class InputValidator {
 	public void isComposedOfNumbers(String cost) throws IllegalArgumentException {
 		if (!Pattern.matches("^[0-9]+$", cost)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(ErrorCode.NOT_COMPOSED_OF_NUMBERS.getErrorMessage());
 		}
 	}
 
+	public void isMultiplesOfThousand(Long cost) throws IllegalArgumentException {
+		if (cost % 1000 != 0) {
+			throw new IllegalArgumentException(ErrorCode.NOT_DIVISIBLE_BY_THOUSAND.getErrorMessage());
+		}
+	}
 }

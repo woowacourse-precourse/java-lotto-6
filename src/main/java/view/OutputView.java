@@ -7,8 +7,12 @@ public class OutputView {
         System.out.print(INPUT_PURCHASE_AMOUNT.get());
     }
 
-    public void buyLottoes() {
-        System.out.print(BUY_LOTTOES.get());
+    public void buyLottoes(int count) {
+        System.out.print(BUY_LOTTOES.get(count));
+    }
+
+    public void lottoTickets(List<LottoTicketDto> lottoTicketDtoes) {
+
     }
 
     public void inputWinningNumber() {

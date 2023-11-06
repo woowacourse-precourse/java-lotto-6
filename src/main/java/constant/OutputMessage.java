@@ -22,4 +22,11 @@ public enum OutputMessage {
     public String get() {
         return message;
     }
+
+    public String get(int count) {
+        if (message.equals(BUY_LOTTOES.message)) {
+            return String.format(message, count);
+        }
+        return message;
+    }
 }

@@ -13,7 +13,7 @@ public class LottoGame {
         System.out.println("구입금액을 입력해주세요.");
         int amount = Integer.parseInt(Console.readLine().strip());
         int buy = amount/1000;
-        System.out.println(buy+"개를 구매했습니다.");
+        System.out.println("\n"+buy+"개를 구매했습니다.");
         return buy;
     }
 
@@ -28,7 +28,7 @@ public class LottoGame {
 
     // 당첨 번호
     public Lotto inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<Integer> numbers = Arrays.stream((input.split(","))).map(Integer::valueOf).toList();
         Lotto lotto = new Lotto(numbers);
@@ -38,7 +38,7 @@ public class LottoGame {
 
     // 보너스 번호 입력
     public int inputBonusNumber(){
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonus = Integer.parseInt(Console.readLine().strip());
 
         return bonus;
@@ -102,7 +102,7 @@ public class LottoGame {
 
     // 당첨 통계
     public static void winningStats(int[] winningList) {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         for (Prize prize : Prize.values()) {
             int count = winningList[prize.ordinal()];
             System.out.printf("%s - %d\n", prize.getDescription(), count);

@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.constant.LottoRank;
+import lotto.constant.LottoRanking;
 import lotto.domain.Lotto;
 import lotto.domain.dto.LottoAnswer;
 import org.junit.jupiter.api.Test;
@@ -23,9 +23,9 @@ public class LottoControllerTest {
                 List.of(2, 3, 4, 5, 6, 9)
         );
 
-        LottoRank result = LottoController.calculateLottoRank(inputAnswer, inputLotto);
+        LottoRanking result = LottoController.calculateLottoRank(inputAnswer, inputLotto);
 
-        assertEquals(LottoRank.SECOND, result);
+        assertEquals(LottoRanking.SECOND, result);
     }
 
     @Test
@@ -48,19 +48,19 @@ public class LottoControllerTest {
                 List.of(10, 11, 12, 1, 2, 3)
         ));
 
-        Map<LottoRank, Integer> result = LottoController.calculateLottoResult(inputAnswer, inputLottos);
+        Map<LottoRanking, Integer> result = LottoController.calculateLottoResult(inputAnswer, inputLottos);
 
-        assertEquals(1, result.get(LottoRank.FIRST));
-        assertEquals(1, result.get(LottoRank.SECOND));
-        assertEquals(2, result.get(LottoRank.FIFTH));
+        assertEquals(1, result.get(LottoRanking.FIRST));
+        assertEquals(1, result.get(LottoRanking.SECOND));
+        assertEquals(2, result.get(LottoRanking.FIFTH));
     }
 
     @Test
     void calculateTotalPrize_테스트() {
-        Map<LottoRank, Integer> input = new HashMap<>();
-        input.put(LottoRank.SECOND, 1);
-        input.put(LottoRank.FIFTH, 5);
-        int expected = LottoRank.SECOND.getPrize() + LottoRank.FIFTH.getPrize() * 5;
+        Map<LottoRanking, Integer> input = new HashMap<>();
+        input.put(LottoRanking.SECOND, 1);
+        input.put(LottoRanking.FIFTH, 5);
+        int expected = LottoRanking.SECOND.getPrize() + LottoRanking.FIFTH.getPrize() * 5;
 
         int result = LottoController.calculateTotalPrize(input);
 

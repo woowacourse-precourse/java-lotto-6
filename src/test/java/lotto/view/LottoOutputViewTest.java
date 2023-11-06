@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.constant.LottoRank;
+import lotto.constant.LottoRanking;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -64,12 +64,12 @@ public class LottoOutputViewTest {
 
     @Test
     void printLottoResult_테스트() {
-        Map<LottoRank, Integer> input = new HashMap<>();
-        input.put(LottoRank.FIRST, 0);
-        input.put(LottoRank.SECOND, 1);
-        input.put(LottoRank.THIRD, 2);
-        input.put(LottoRank.FOURTH, 3);
-        input.put(LottoRank.FIFTH, 4);
+        Map<LottoRanking, Integer> input = new HashMap<>();
+        input.put(LottoRanking.FIRST, 0);
+        input.put(LottoRanking.SECOND, 1);
+        input.put(LottoRanking.THIRD, 2);
+        input.put(LottoRanking.FOURTH, 3);
+        input.put(LottoRanking.FIFTH, 4);
 
         outputView.printLottoResult(input);
         assertThat(capture.toString()).contains(

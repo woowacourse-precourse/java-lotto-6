@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum LottoRank {
+public enum LottoRanking {
     FIRST(6, false, 2000000000, "6개 일치"),
     SECOND(5, true, 30000000, "5개 일치, 보너스 볼 일치"),
     THIRD(5, false, 1500000, "5개 일치"),
@@ -14,7 +14,7 @@ public enum LottoRank {
     private final int prize;
     private final String description;
 
-    LottoRank(int matchCount, boolean hasBonus, int prize, String description) {
+    LottoRanking(int matchCount, boolean hasBonus, int prize, String description) {
         this.matchCount = matchCount;
         this.hasBonus = hasBonus;
         this.prize = prize;
@@ -37,17 +37,17 @@ public enum LottoRank {
         return description;
     }
 
-    public static LottoRank getLottoMatchByCount(int matchCount, boolean hasBonus) {
-        for (LottoRank rank : LottoRank.values()) {
+    public static LottoRanking findRanking(int matchCount, boolean hasBonus) {
+        for (LottoRanking rank : LottoRanking.values()) {
             if (rank.getMatchCount() == matchCount && rank.isHasBonus() == hasBonus) {
                 return rank;
             }
         }
-        for (LottoRank rank : LottoRank.values()) {
+        for (LottoRanking rank : LottoRanking.values()) {
             if (rank.getMatchCount() == matchCount) {
                 return rank;
             }
         }
-        return LottoRank.OUT_OF_RANK;
+        return LottoRanking.OUT_OF_RANK;
     }
 }

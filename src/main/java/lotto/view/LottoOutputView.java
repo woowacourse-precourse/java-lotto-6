@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.constant.LottoRank;
+import lotto.constant.LottoRanking;
 import lotto.domain.Lotto;
 
 import java.text.DecimalFormat;
@@ -29,13 +29,13 @@ public class LottoOutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void printLottoResult(Map<LottoRank, Integer> result) {
+    public void printLottoResult(Map<LottoRanking, Integer> result) {
         DecimalFormat prizeFormat = new DecimalFormat(MONEY_FORMAT);
-        LottoRank[] ranks = {LottoRank.FIFTH, LottoRank.FOURTH, LottoRank.THIRD, LottoRank.SECOND, LottoRank.FIRST};
+        LottoRanking[] ranks = {LottoRanking.FIFTH, LottoRanking.FOURTH, LottoRanking.THIRD, LottoRanking.SECOND, LottoRanking.FIRST};
 
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (LottoRank rank : ranks) {
+        for (LottoRanking rank : ranks) {
             System.out.printf("%s (%s) - %d개\n", rank.getDescription(), prizeFormat.format(rank.getPrize()), result.get(rank));
         }
     }

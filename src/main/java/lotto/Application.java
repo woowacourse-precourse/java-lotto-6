@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.constant.ExceptionMessage;
-import lotto.constant.LottoRank;
+import lotto.constant.LottoRanking;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
@@ -17,13 +17,10 @@ import java.util.Map;
 import static lotto.constant.LottoConstant.*;
 
 public class Application {
-    private static LottoInputView inputView;
-    private static LottoOutputView outputView;
-
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        inputView = new LottoInputView();
-        outputView = new LottoOutputView();
+        LottoInputView inputView = new LottoInputView();
+        LottoOutputView outputView = new LottoOutputView();
 
         int userPaid;
         while (true) {
@@ -73,7 +70,7 @@ public class Application {
 
         LottoAnswer answer = new LottoAnswer(winningLotto, bonus);
 
-        Map<LottoRank, Integer> lottoResult = LottoController.calculateLottoResult(answer, userLottos);
+        Map<LottoRanking, Integer> lottoResult = LottoController.calculateLottoResult(answer, userLottos);
         outputView.printLottoResult(lottoResult);
 
         int totalPrize = LottoController.calculateTotalPrize(lottoResult);

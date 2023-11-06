@@ -26,6 +26,7 @@ public class LottoGameController {
     private void buyLotto() {
         try {
             // 구입 금액 입력
+            outputView.printPurchaseInput();
             Money money = new Money(Console.readLine());
             Player player = Player.of(money, LottoStore.of(new RandomNumberGenerator()));
             // 로또 구매

@@ -6,8 +6,12 @@ import lotto.controller.dto.response.PurchaseHistoryDto;
 
 public class OutputView {
 
+    private static final String PURCHASE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String QUANTITY_OUTPUT_MESSAGE = "개를 구매했습니다.";
 
+    public void printPurchaseInput() {
+        System.out.println(PURCHASE_INPUT_MESSAGE);
+    }
     public void printPurchaseHistory(PurchaseHistoryDto purchaseHistoryDto) {
         printCount(purchaseHistoryDto);
         List<List<Integer>> lottoNumbers = purchaseHistoryDto.getLottoNumbers();

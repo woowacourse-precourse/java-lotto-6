@@ -14,6 +14,9 @@ public class LottoGenerator {
     }
 
     public static LottoGenerator from(int amount) {
+        if (amount < 1000) {
+            throw new IllegalArgumentException();
+        }
         if (amount%1000 != 0) {
             throw new IllegalArgumentException();
         }

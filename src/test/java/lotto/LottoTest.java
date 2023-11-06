@@ -65,4 +65,11 @@ class LottoTest {
 
         assertThat(ranks[1].getAmount()).isEqualTo(1);
     }
+
+    @DisplayName("생성된 로또 넘버가 오름 차순으로 정렬 되는지 테스트")
+    @Test
+    void testGenerateLottoNumbers() {
+        List<Integer> lottoNumbers = lottoService.generateLottoNumbers();
+        assertThat(lottoNumbers).isSorted();
+    }
 }

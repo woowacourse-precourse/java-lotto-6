@@ -6,7 +6,7 @@ import lotto.model.Lotto;
 
 public class LottoStore {
 
-    private static final int ROTTO_PRICE = 1000;
+    private static final int LOTTO_PRICE = 1000;
     private NumberGenerator numberGenerator;
 
     public LottoStore(NumberGenerator numberGenerator) {
@@ -30,7 +30,7 @@ public class LottoStore {
 
     public int calculateLottoNumberByMoney(int money) {
 //        validate(money);
-        return money / ROTTO_PRICE;
+        return money / LOTTO_PRICE;
     }
 
 

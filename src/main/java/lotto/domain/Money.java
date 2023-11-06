@@ -22,6 +22,10 @@ public class Money {
         validateDivisibleByLottoPrice(money);
     }
 
+    public long calculatePurchasableLottosCount() {
+        return money / LOTTO_PRICE;
+    }
+
     private void validateMinimumPurchaseMoney(long money) {
         if (notPurchasable(money)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_HEADER + ERROR_NOT_PURCHASABLE);

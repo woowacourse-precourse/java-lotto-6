@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,5 +36,12 @@ class LottoTest {
     void createLottoWithOverRangeNumber(){
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 50, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또의 toString 메소드 반환값은 numbers 리스트의 값들을 쉼표로 구분한 문자열이여야 한다.")
+    @Test
+    void convertLottoToString(){
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Assertions.assertThat(lotto.toString()).isEqualTo("1, 2, 3, 4, 5, 6");
     }
 }

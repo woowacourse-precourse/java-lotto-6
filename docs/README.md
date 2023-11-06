@@ -24,4 +24,7 @@
       * 보너스 번호 입력
       * validateBonusNum() : 
         * 1에서 45사이의 수인지와 중복된 수인지 검증.
+    * 로또 번호 체크 : OutputView.winningLotto()
+      * checkLotto()
+        * 반복문 돌면서 배열에 등수별로 당첨 갯수 저장.
 

@@ -3,7 +3,9 @@ package lotto;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoMoney;
+import lotto.domain.Prize;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
@@ -21,5 +23,7 @@ public class LottoController {
         InputView.viewNumber(lottoMoney);   // 로또 번호 출력
         Lotto lotto = InputView.insertLottoNum();   // 로또 당첨 번호 입력
         InputView.insertBonusNum(lotto);    // 로또 보너스 번호 입력
+        OutputView.winningLotto(lotto.getNumbers(), lottoMoney.getNumbers());  // 로또 당첨 여부 확인
+
     }
 }

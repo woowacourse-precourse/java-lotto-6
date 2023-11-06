@@ -1,8 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import lotto.Constants.ErrorMessage;
 import lotto.Constants.IntConstants;
 
@@ -11,9 +11,9 @@ public class Player {
     private final Lotto sixLottoNumber;
 
     public Player(Lotto sixLottoNumber, int bonusNumber) {
+        validator();
         this.bonusNumber = bonusNumber;
         this.sixLottoNumber = sixLottoNumber;
-        validator();
     }
 
     public Lotto getSixNumbers() {
@@ -48,7 +48,7 @@ public class Player {
     }
 
     private void isDuplicated(List<Integer> sixNumbers) {
-        Set<Integer> integerSet = sixNumbers.stream().collect(Collectors.toSet());
+        Set<Integer> integerSet = new HashSet<>(sixNumbers);
         if (integerSet.size() != IntConstants.LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATED_NUMBER_MESSAGE.getMessage());
         }

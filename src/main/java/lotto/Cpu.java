@@ -6,8 +6,8 @@ import lotto.Constants.ErrorMessage;
 import lotto.Constants.IntConstants;
 
 public class Cpu {
-    private List<Lotto> sixLottoNumbers;
-    private int tickets;
+    private final List<Lotto> sixLottoNumbers;
+    private final int tickets;
 
     public Cpu(int money) {
         validTickets(money);

@@ -7,6 +7,10 @@ import lotto.Constants.OutputConstants;
 
 public class OutputView {
 
+    private OutputView() {
+
+    }
+
     public static void printBuyTickets(int tickets) {
         String resultString = String.format(OutputConstants.TOTAL_LOTTO_TICKETS.getMessage(), tickets);
         System.out.println(resultString);

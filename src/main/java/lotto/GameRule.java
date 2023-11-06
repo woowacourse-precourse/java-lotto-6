@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.LottoCounter.countElement;
+import static lotto.LottoCounter.getResultList;
 import static lotto.Utils.calculatePercentage;
 
 import java.util.ArrayList;
@@ -8,8 +10,6 @@ import lotto.Constants.PrizeMoney;
 
 public class GameRule {
 
-    LottoCounter lottoCounter = new LottoCounter();
-
     public List<Integer> calculateResult(Cpu cpuLottos, Player playerLotto) {
         List<Integer> resultList = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         List<Lotto> cpuSixNumbers = cpuLottos.getSixLottoNumbers();
@@ -17,8 +17,8 @@ public class GameRule {
         for (int index = 0; index < cpuLottos.getTickets(); index++) {
             Lotto cpuSixNumber = cpuSixNumbers.get(index);
             Lotto playerNumber = playerLotto.getSixNumbers();
-            int result = lottoCounter.countElement(cpuSixNumber.getNumbers(), playerNumber.getNumbers());
-            lottoCounter.getResultList(resultList, result, cpuSixNumber, playerLotto);
+            int result = countElement(cpuSixNumber.getNumbers(), playerNumber.getNumbers());
+            getResultList(resultList, result, cpuSixNumber, playerLotto);
         }
         return resultList;
     }

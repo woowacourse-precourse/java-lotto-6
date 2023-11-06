@@ -2,25 +2,17 @@ package lotto;
 
 import lotto.Constants.ErrorMessage;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class InputViewValidatorTest {
-
-    private InputValidator inputValidator;
-
-    @BeforeEach
-    void setInputValidator() {
-        inputValidator = new InputValidator();
-    }
-
+    
     @Test
     @DisplayName("입력값이 숫자인지 확인합니다.")
     void checkNumber() {
         String testNumber = "k";
 
-        Assertions.assertThatThrownBy(() -> inputValidator.checkInputDigit(testNumber))
+        Assertions.assertThatThrownBy(() -> InputValidator.checkInputDigit(testNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_NUMBER_MESSAGE.getMessage());
     }
@@ -30,7 +22,7 @@ public class InputViewValidatorTest {
     void checkBlack() {
         String testNumber = " ";
 
-        Assertions.assertThatThrownBy(() -> inputValidator.checkInputBlank(testNumber))
+        Assertions.assertThatThrownBy(() -> InputValidator.checkInputBlank(testNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_BLANK_MESSAGE.getMessage());
     }
@@ -40,7 +32,7 @@ public class InputViewValidatorTest {
     void checkEmpty() {
         String testNumber = "";
 
-        Assertions.assertThatThrownBy(() -> inputValidator.checkInputEmpty(testNumber))
+        Assertions.assertThatThrownBy(() -> InputValidator.checkInputEmpty(testNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_EMPTY_MESSGAE.getMessage());
     }

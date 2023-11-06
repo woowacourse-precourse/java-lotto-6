@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.InputValidator.checkInputBlank;
+import static lotto.InputValidator.checkInputDigit;
+import static lotto.InputValidator.checkInputEmpty;
 import static lotto.Utils.splitWithComma;
 import static lotto.Utils.stringToInteger;
 
@@ -9,17 +12,15 @@ import lotto.Constants.InputConstants;
 
 public class InputView {
 
-    private final InputValidator inputValidator;
-
-    public InputView(InputValidator inputValidator) {
-        this.inputValidator = inputValidator;
-    }
-
     public static void printInsertMoney() {
         System.out.println(InputConstants.ENTER_MONEY.getMessage());
     }
 
-    public int insertMoney() {
+    private InputView() {
+
+    }
+
+    public static int insertMoney() {
         String money = Console.readLine();
         validateMoney(money);
         return Integer.parseInt(money);
@@ -29,7 +30,7 @@ public class InputView {
         System.out.println(InputConstants.ENTER_LOTTO_NUMBERS.getMessage());
     }
 
-    public ArrayList<Integer> insertLottoNumbers() {
+    public static ArrayList<Integer> insertLottoNumbers() {
         String input = Console.readLine();
         validateLottoNumber(input);
         ArrayList<String> inputList = splitWithComma(input);
@@ -41,32 +42,32 @@ public class InputView {
         System.out.println(InputConstants.ENTER_BONUS_NUMBER.getMessage());
     }
 
-    public int insertBonusNumber() {
+    public static int insertBonusNumber() {
         String bonusNumber = Console.readLine();
         validateBonusNumber(bonusNumber);
         return Integer.parseInt(bonusNumber);
     }
 
-    private void validateNumber(ArrayList<String> inputList) {
+    private static void validateNumber(ArrayList<String> inputList) {
         for (String s : inputList) {
-            inputValidator.checkInputDigit(s);
+            checkInputDigit(s);
         }
     }
 
-    private void validateMoney(String input) {
-        inputValidator.checkInputEmpty(input);
-        inputValidator.checkInputBlank(input);
-        inputValidator.checkInputDigit(input);
+    private static void validateMoney(String input) {
+        checkInputEmpty(input);
+        checkInputBlank(input);
+        checkInputDigit(input);
     }
 
-    private void validateLottoNumber(String input) {
-        inputValidator.checkInputEmpty(input);
-        inputValidator.checkInputBlank(input);
+    private static void validateLottoNumber(String input) {
+        checkInputEmpty(input);
+        checkInputBlank(input);
     }
 
-    private void validateBonusNumber(String input) {
-        inputValidator.checkInputEmpty(input);
-        inputValidator.checkInputBlank(input);
-        inputValidator.checkInputDigit(input);
+    private static void validateBonusNumber(String input) {
+        checkInputEmpty(input);
+        checkInputBlank(input);
+        checkInputDigit(input);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.dto;
 
 import java.math.BigDecimal;
+import lotto.utils.Util;
 
 public class LottoPurchaseInfo {
     private final BigDecimal purchaseAmount;
@@ -10,7 +11,8 @@ public class LottoPurchaseInfo {
     public LottoPurchaseInfo(BigDecimal purchaseAmount, BigDecimal lottoPrice) {
         this.purchaseAmount = purchaseAmount;
         this.lottoPrice = lottoPrice;
-        numberOfLottoPurchased = purchaseAmount.divide(lottoPrice, BigDecimal.ROUND_DOWN);
+        Util.validateMultiplesOf(purchaseAmount, lottoPrice);
+        numberOfLottoPurchased = Util.getHowManyTimes(purchaseAmount, lottoPrice);
     }
 
     public BigDecimal getPurchaseAmount() {

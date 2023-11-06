@@ -49,7 +49,7 @@ public abstract class Validation {
     }
 
     void checkDivideByThousand(String money) {
-        if (Integer.parseInt(money) % PURCHASE_UNIT.getNumber() != ZERO.getNumber()) {
+        if (Integer.parseInt(money) <= ZERO.getNumber() || Integer.parseInt(money) % PURCHASE_UNIT.getNumber() != ZERO.getNumber()) {
             throw new IllegalArgumentException(NOT_PURCHASE_UNIT.getMessage());
         }
     }

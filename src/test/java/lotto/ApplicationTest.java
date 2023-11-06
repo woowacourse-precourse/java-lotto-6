@@ -51,7 +51,7 @@ class ApplicationTest extends NsTest {
     void 로또_입력문자_예외_처리() {
         assertSimpleTest(() -> {
             assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("1000j","1,2,3,4,5,a"))
+                assertThatThrownBy(() -> runException("1000","1,2,3,4,5,a","7"))
                     .isInstanceOf(IllegalArgumentException.class));
         assertThat(output()).contains(ERROR_MESSAGE);
         });
@@ -61,7 +61,7 @@ class ApplicationTest extends NsTest {
     void 로또_숫자_범위_예외_처리() {
         assertSimpleTest(() -> {
             assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("1000j","1,2,3,4,5,55"))
+                assertThatThrownBy(() -> runException("1000","1,2,3,4,5,55"))
                     .isInstanceOf(IllegalArgumentException.class));
         assertThat(output()).contains(ERROR_MESSAGE);
         });

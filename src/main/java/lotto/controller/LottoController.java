@@ -78,5 +78,6 @@ public class LottoController {
     private void calculateEarningRate(WinningResult winningResult, LottoAmount amount) {
         double totalPrize = winningResult.getTotalPrize();
         EarningRate earningRate = new EarningRate(totalPrize, amount);
+        OutputView.printEarningRate(earningRate.getEarningRate());
     }
 }

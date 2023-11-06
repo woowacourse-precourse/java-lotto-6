@@ -14,7 +14,59 @@ public class InputView {
         return readLine();
     }
 
-    public int inputPurchaseAmount(String inputStr) {
+    OutputView outputView = new OutputView();
+
+    public int inputPurchaseAmount() {
+        int purchaseAmount = 0;
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
+            outputView.printInputPurchaseAmount();
+            String inputStr = readLine();
+            try {
+                purchaseAmount = validatePurchaseAmount(inputStr);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return purchaseAmount;
+    }
+
+
+    public void inputPrizeNumber() {
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
+            outputView.printInputPrizeNumber();
+            String inputStr = readLine();
+            try {
+                validatePrizeNumber(inputStr);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int inputBonusNumber() {
+        int bonusNumber = 0;
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
+            outputView.printInputBonusNumber();
+            String inputStr = readLine();
+            try {
+                bonusNumber = validateBonusNumber(inputStr);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    private int validatePurchaseAmount(String inputStr) {
         if (!inputStr.matches("^\\d+$")) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로만 구성됩니다.");
         }
@@ -31,7 +83,7 @@ public class InputView {
         return purchaseAmount;
     }
 
-    public void inputPrizeNumber(String inputStr) {
+    public void validatePrizeNumber(String inputStr) {
         if (!inputStr.matches("^\\d+(,\\d+)*$")) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로 구성되고 쉼표(,)로 구분됩니다.");
         }
@@ -57,7 +109,7 @@ public class InputView {
         this.prizeNumber = prizeNumberTemp;
     }
 
-    public int inputBonusNumber(String inputStr) {
+    public int validateBonusNumber(String inputStr) {
         if (!inputStr.matches("^\\d+$")) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로만 구성됩니다.");
         }

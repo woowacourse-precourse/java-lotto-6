@@ -23,6 +23,19 @@ class ApplicationTest extends NsTest {
         Prize.FOUR.setCount(0);
         Prize.THREE.setCount(0);
     }
+
+
+
+
+    @Test
+    void 당첨번호_숫자_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000" , "a,2,3,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
     @Test
     void 구입금액_0_불가_테스트() {
         assertSimpleTest(() -> {

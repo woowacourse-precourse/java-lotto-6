@@ -5,12 +5,10 @@ import java.util.List;
 public class Aggregator {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
-    private final WinningResult winningResult;
 
-    public Aggregator(List<Integer> winningNumbers, int bonusNumber, WinningResult winningResult) {
+    public Aggregator(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        this.winningResult = winningResult;
     }
 
     public List<Integer> result(List<Lotto> lottos) {
@@ -24,7 +22,7 @@ public class Aggregator {
                 .stream()
                 .filter(winningNumbers::contains)
                 .count();
-        return winningResult.determineCountByBonus(count, isBonusHit(lotto));
+        return WinningResult.determineRankByBonus(count, isBonusHit(lotto));
     }
 
     private boolean isBonusHit(Lotto lotto) {

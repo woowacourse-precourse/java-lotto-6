@@ -1,11 +1,12 @@
 package lotto.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class WinningResult {
+public final class WinningResult {
 
     private final Map<Integer, Long> winningResult;
 
@@ -16,13 +17,13 @@ public class WinningResult {
     }
 
     public Map<Integer, Long> getWinningResult() {
-        return winningResult;
+        return new HashMap<>(winningResult);
     }
 
-    public int determineCountByBonus(int count, boolean isBonusHit) {
-        if (count == Rule.SECOND_RANK.value() && isBonusHit)
+    public static int determineRankByBonus(int rank, boolean isBonusHit) {
+        if (rank == Rule.THIRD_RANK.value() && isBonusHit)
             return Rule.SECOND_RANK.value();
-        return count;
+        return rank;
     }
 
     /**

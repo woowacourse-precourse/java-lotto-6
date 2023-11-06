@@ -1,6 +1,7 @@
 package lotto.validation;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,31 +12,32 @@ public class WinningNumberValidator {
     private static final int WINNING_NUMBERS_COUNT = 6;
 
     public static void validateWinningNumbers(String winningNumbers) {
-        Set<Integer> numbersSet = parseToIntSet(winningNumbers);
-        validateNoDuplicates(numbersSet);
-        validateSixNumbers(numbersSet);
-        validateAllNumbersInRange(numbersSet);
+        List<Integer> numbersList = parseToIntList(winningNumbers);
+        validateNoDuplicates(numbersList);
+        validateSixNumbers(numbersList);
+        validateAllNumbersInRange(new LinkedHashSet<>(numbersList));
     }
 
 
-    private static Set<Integer> parseToIntSet(String winningNumbers) {
+    private static List<Integer> parseToIntList(String winningNumbers) {
         try {
             return Stream.of(winningNumbers.split(","))
                     .map(String::trim)
                     .map(Integer::parseInt)
-                    .collect(Collectors.toCollection(LinkedHashSet::new));
+                    .collect(Collectors.toList());
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.", exception);
         }
     }
 
-    private static void validateNoDuplicates(Set<Integer> numbers) {
-        if (numbers.size() < WINNING_NUMBERS_COUNT) {
+    private static void validateNoDuplicates(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new LinkedHashSet<>(numbers);
+        if (uniqueNumbers.size() < numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
         }
     }
 
-    private static void validateSixNumbers(Set<Integer> numbers) {
+    private static void validateSixNumbers(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_COUNT) {
             throw new IllegalArgumentException("[ERROR] 정확히 6개의 숫자를 입력해야 합니다.");
         }

@@ -17,7 +17,14 @@ public class WinningNumberValidatorTest {
         assertTrue(exception.getMessage().contains("중복된 숫자가 있습니다."));
     }
 
-    // 실패테스트.
+    @Test
+    void 입력값에_중복된_숫자가_있을_경우_중복된_숫자_예외를_던진다_2() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                WinningNumberValidator.validateWinningNumbers("1,2,2,3,4,5,5")
+        );
+        assertTrue(exception.getMessage().contains("중복된 숫자가 있습니다."));
+    }
+
     @Test
     void 입력값에_숫자가_6개가_아닐_경우_6개의_숫자_예외를_던진다() {
         Exception exception = assertThrows(IllegalArgumentException.class, () ->

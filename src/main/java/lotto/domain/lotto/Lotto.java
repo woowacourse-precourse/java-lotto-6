@@ -50,12 +50,25 @@ public class Lotto {
                 != numbers.size();
     }
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+    public int calculateMatchCount(Lotto otherLotto) {
+        int result = 0;
+        for (int number : numbers) {
+            if(otherLotto.hasSameNumber(number)) {
+               result++;
+            }
+        }
+        return result;
     }
-
+    //todo : 메서드명 생각해보기
+    private boolean hasSameNumber(int number) {
+        return numbers.contains(number);
+    }
     public boolean hasSameNumber(BonusNumber bonusNumber) {
         return numbers.stream()
                 .anyMatch(bonusNumber::hasSameNumber);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

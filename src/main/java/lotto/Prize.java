@@ -22,6 +22,11 @@ public enum Prize {
         this.information = information;
     }
 
+    public static void startPrizeStatistics(List<Long> matchWinningNumber, List<Long> matchBonusNumber, int purchase) {
+        countPrizeHistory(matchWinningNumber, matchBonusNumber);
+        printWinningStatistics();
+        earningRateCalculator(matchWinningNumber, matchBonusNumber, purchase);
+    }
 
     public static Prize matchPrize(long matchWinningNumber, long matchBonusNumber) {
         if (matchWinningNumber == Prize.BONUS.count) {

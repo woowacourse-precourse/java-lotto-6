@@ -1,13 +1,13 @@
 package lotto;
 
 import lotto.controller.LottoGameController;
-import lotto.handler.UIHandler;
+import lotto.handler.UiHandler;
 import lotto.validator.Validator;
 
 public class Application {
     public static void main(String[] args) {
         Validator validator = new Validator();
-        UIHandler uiHandler = new UIHandler(validator);
+        UiHandler uiHandler = new UiHandler(validator);
         LottoGameController lottoGameController = new LottoGameController(uiHandler);
         lottoGameController.run();
     }

@@ -3,14 +3,14 @@ package lotto.controller;
 import lotto.domain.Customer;
 import lotto.domain.Target;
 import lotto.domain.WinningChecker;
-import lotto.handler.UIHandler;
+import lotto.handler.UiHandler;
 
 import java.util.List;
 
 public class LottoGameController {
-    private final UIHandler uiHandler;
+    private final UiHandler uiHandler;
 
-    public LottoGameController(UIHandler uiHandler) {
+    public LottoGameController(UiHandler uiHandler) {
         this.uiHandler = uiHandler;
     }
 

@@ -13,10 +13,10 @@ import java.util.List;
 
 import static lotto.message.GuideMessage.*;
 
-public class UIHandler {
+public class UiHandler {
     private final Validator validator;
 
-    public UIHandler(Validator validator) {
+    public UiHandler(Validator validator) {
         this.validator = validator;
     }
 

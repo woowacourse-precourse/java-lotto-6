@@ -10,30 +10,50 @@ public class Application {
         Lotteries lotteries = new Lotteries(purchaseAmount);
         Output.printIssuedLotto(lotteries.getLotteries());
         Lotto winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber(winningNumbers);
+    }
+
+    private static int inputBonusNumber(Lotto winningNumbers) {
+        while (true) {
+            int bonusNumber;
+            try {
+                String input = Input.inputBonusNumber();
+                bonusNumber = LottoNumber.validateLottoNumber(input);
+                winningNumbers.isBonusNumberDuplicate(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return bonusNumber;
+        }
     }
 
     private static Lotto inputWinningNumbers() {
-        Lotto lotto = null;
-        try {
-            String input = Input.inputWinningNumbers();
-            List<Integer> winningNumbers = LottoNumber.validateLottoNumbers(input.split(","));
-            lotto = new Lotto(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputWinningNumbers();
+        while (true) {
+            Lotto lotto;
+            try {
+                String input = Input.inputWinningNumbers();
+                List<Integer> winningNumbers = LottoNumber.validateLottoNumbers(input.split(","));
+                lotto = new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return lotto;
         }
-        return lotto;
     }
 
     private static int inputPurchaseAmount() {
-        LottoPurchaseAmount lottoPurchaseAmount = new LottoPurchaseAmount();
-        try {
-            String input = Input.inputPurchaseAmount();
-            lottoPurchaseAmount = new LottoPurchaseAmount(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputPurchaseAmount();
+        while (true) {
+            LottoPurchaseAmount lottoPurchaseAmount;
+            try {
+                String input = Input.inputPurchaseAmount();
+                lottoPurchaseAmount = new LottoPurchaseAmount(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return lottoPurchaseAmount.getPurchaseAmount();
         }
-        return lottoPurchaseAmount.getPurchaseAmount();
     }
 }

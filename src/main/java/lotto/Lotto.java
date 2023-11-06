@@ -26,4 +26,10 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    public void isBonusNumberDuplicate(int bonusNumber) {
+        if (this.numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(LottoException.DUPLICATE_LOTTO_NUMBERS);
+        }
+    }
 }

@@ -9,9 +9,6 @@ public class LottoPurchaseAmount {
 
     private int purchaseAmount;
 
-    public LottoPurchaseAmount() {
-    }
-
     public LottoPurchaseAmount(String purchaseAmount) {
         this.purchaseAmount = validate(purchaseAmount);
     }

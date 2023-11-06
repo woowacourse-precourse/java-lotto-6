@@ -83,10 +83,7 @@ public class LotteryService {
 
     public List<String> printWinningResult() {
         Buyer buyer = repository.getBuyer();
-        Map<Integer, LotteryRankInfo> rankingAccumulator = buyer.getRankingAccumulator();
-
         LotteryWinningNumbers lotteryWinningNumbers = repository.getLotteryWinningNumbers();
-        ;
 
         resultCalculationService.makeWinningResult(buyer, lotteryWinningNumbers);
 

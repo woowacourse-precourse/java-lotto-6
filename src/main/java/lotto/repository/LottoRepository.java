@@ -22,4 +22,12 @@ public class LottoRepository {
     public LotteryWinningNumbers getLotteryWinningNumbers() {
         return lotteryWinningNumbers;
     }
+
+    public void initBuyer() {
+        buyer = new Buyer();
+    }
+
+    public void initLotteryWinningNumbers() {
+        lotteryWinningNumbers = new LotteryWinningNumbers();
+    }
 }

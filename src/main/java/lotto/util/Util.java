@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Util {
@@ -27,5 +28,9 @@ public class Util {
 
     public static String removeSpaceAll(String numbers) {
         return numbers.replaceAll(String.valueOf(REGEX_BLANK), DIGIT_NONE);
+    }
+
+    public static boolean isEqual(int numA, int numB) {
+        return Objects.equals(numA, numB);
     }
 }

@@ -44,13 +44,9 @@ public class LottoValidator implements Validatable {
 
     private void checkNumberDuplicate(List<Integer> numbers, int index, int present) {
         for (int i = index + 1; i < numbers.size(); i++) {
-            if (isEqual(present, numbers.get(i))) {
+            if (Util.isEqual(present, numbers.get(i))) {
                 throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_WINNING_NUMBER.getMessage());
             }
         }
-    }
-
-    private boolean isEqual(int present, int after) {
-        return present == after;
     }
 }

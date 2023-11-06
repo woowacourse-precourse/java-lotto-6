@@ -27,13 +27,9 @@ public class BonusNumberValidator implements Validatable {
     private void validateDuplicateWithWinningNumber(int number) {
         List<Integer> winnings = WinningLottoRepository.findWinningNumbers();
         for (Integer winning : winnings) {
-            if (isEqual(number, winning)) {
+            if (Util.isEqual(number, winning)) {
                 throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
             }
         }
-    }
-
-    private boolean isEqual(int bonus, int winning) {
-        return bonus == winning;
     }
 }

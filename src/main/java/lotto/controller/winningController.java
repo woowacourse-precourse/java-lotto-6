@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import static lotto.controller.Rank.getRank;
 
 public class winningController {
 
-    public static HashMap<Rank, Integer> createResult(List<Lotto> lottery, List<Integer> winningNumbers, int bonus) {
+    public static HashMap<Rank, Integer> createResult(List<Lotto> lottery, List<Integer> winningNumbers, BonusNumber bonus) {
         HashMap<Rank, Integer> result = new HashMap<>();
         for (Lotto lotto : lottery) {
             int resultCount = compareLottoAndWinningNumber(lotto.getLotto(), winningNumbers);
@@ -20,7 +21,7 @@ public class winningController {
                 continue;
             }
             if (resultRank.getCorrectNum() == 5) {
-                resultRank = checkIfSecondOrThird(lotto, bonus);
+                resultRank = checkIfSecondOrThird(lotto, bonus.getBonusNumber());
             }
             result.put(resultRank, result.getOrDefault(resultRank, 0)+1);
         }

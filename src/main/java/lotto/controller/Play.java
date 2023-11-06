@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Price;
 
@@ -22,7 +23,7 @@ public class Play {
     private static int count;
     private static HashMap<Rank, Integer> result;
     private static List<Lotto> lottery;
-    private static int bonus;
+    private static BonusNumber bonus;
     private static List<Integer> winningNumbers;
 
     public Play() {
@@ -41,7 +42,7 @@ public class Play {
 
     public static void inputWinning() {
         winningNumbers = createWinningNumber();
-        bonus = createBonusNumber(winningNumbers);
+        createBonusNumber(winningNumbers);
     }
 
     public static void winningResult() {
@@ -75,13 +76,14 @@ public class Play {
         }
     }
 
-    public static int createBonusNumber(List<Integer> numbers) {
+    public static void createBonusNumber(List<Integer> numbers) {
         System.out.println();
         while(true) {
+            messageAboutUserBonusNumber();
+            String tmpBonusNumber = inputBonusNumber();
             try {
-                messageAboutUserBonusNumber();
-                String tmpBonusNumber = inputBonusNumber();
-                return checkExceptionBonus(numbers,tmpBonusNumber);
+                bonus = new BonusNumber(convertBonusNumber(tmpBonusNumber));
+                checkExceptionBonus(numbers,tmpBonusNumber);
             } catch (IllegalArgumentException e) {
                 //System.out.println("[ERROR]");
             }

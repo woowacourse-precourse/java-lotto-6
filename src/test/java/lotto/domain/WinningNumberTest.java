@@ -34,4 +34,18 @@ public class WinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
     }
+
+    @DisplayName("당첨 번호에 1에서 45 사이의 숫자보다 큰 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createWinningNumberByOverRange() {
+        // given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 46);
+        int bonusNumber = 6;
+        // when
+
+        // then
+        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
+    }
 }

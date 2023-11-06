@@ -14,11 +14,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) throws IllegalArgumentException{
+            checkNumbersLength(numbers);
+            checkNumberRange(numbers);
+            checkDuplicates(numbers);
+    }
+
+    private void checkNumbersLength(List<Integer> numbers){
         if (numbers.size() != 6) {
             throw ExceptionMessage.SIX_NUMBER.throwexception();
         }
     }
-
     private void checkNumberRange(List<Integer> numbers) {
         if (!numbers.stream().allMatch(number -> number >= MIN_NUMBER && number <= MAX_NUMBER)) {
             throw ExceptionMessage.INTPUT_NUMBER_LENGTH.throwexception();

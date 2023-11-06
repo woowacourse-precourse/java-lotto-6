@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,14 +56,8 @@ public class Lotto {
 
     @Override
     public String toString() {
-        StringJoiner lottoPrintFormat = new StringJoiner(
-                LottoConstant.DELIMITER.getLottoStringWithSpace(),
-                LottoConstant.OPENING_BRACKET.get(),
-                LottoConstant.CLOSING_BRACKET.get());
-        lottoNumbers.stream()
-                .sorted()
-                .map(LottoNumber::toString)
-                .forEach(lottoPrintFormat::add);
-        return lottoPrintFormat.toString();
+        List<LottoNumber> sortedLottoNumbers = new ArrayList<>(lottoNumbers);
+        Collections.sort(sortedLottoNumbers);
+        return sortedLottoNumbers.toString();
     }
 }

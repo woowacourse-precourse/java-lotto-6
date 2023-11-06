@@ -3,9 +3,7 @@ package lotto.utils;
 public enum LottoConstant {
     SPACE(" "),
     NEW_LINE("\n"),
-    DELIMITER(","),
-    OPENING_BRACKET("["),
-    CLOSING_BRACKET("]");
+    DELIMITER(",");
 
     private final String lottoConstant;
 
@@ -15,9 +13,5 @@ public enum LottoConstant {
 
     public String get() {
         return lottoConstant;
-    }
-
-    public String getWithSpace() {
-        return lottoConstant + SPACE.get();
     }
 }

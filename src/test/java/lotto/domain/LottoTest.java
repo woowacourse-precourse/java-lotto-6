@@ -38,7 +38,6 @@ class LottoTest {
     @DisplayName("isContain 함수가 잘 동작하는 지 확이")
     @Test
     void test_isContain() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertTrue(lotto.isContain(1));

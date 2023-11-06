@@ -8,7 +8,7 @@ public class LottoValidator {
     private static final int MAX_LOTTO_SIZE = 6;
     private static final int MIN = 1;
     private static final int MAX = 45;
-    private static final String SIZE_EXCEPTION = "[ERROR] 로또 번호는 6개입니다.";
+    private static final String SIZE_EXCEPTION = "[ERROR] 로또 번호의 개수는 6개 입니다.";
     private static final String DUPLICATE_EXCEPTION = "[ERROR] 로또 번호는 서로 다른 6개의 숫자입니다.";
     private static final String OUT_OF_RANGE_EXCEPTION = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
 

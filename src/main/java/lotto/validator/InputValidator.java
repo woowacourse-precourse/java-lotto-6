@@ -11,8 +11,8 @@ public class InputValidator {
         }
     }
 
-    public void validateDivisionComma(String winningNumbers) {
-        if (InputPattern.isNotDivisionComma(winningNumbers)) {
+    public void validateDivisionComma(String lotto) {
+        if (InputPattern.isNotDivisionComma(lotto)) {
             throw new NotDivisionCommaException();
         }
     }

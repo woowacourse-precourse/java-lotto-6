@@ -34,7 +34,7 @@ public class LottoController {
 
     private void inputWinningLotto() {
         outputView.printWinningNumbers();
-        Lotto lotto = ioManager.inputWinningNumbers();
+        Lotto lotto = ioManager.inputLotto();
 
         outputView.printBonusNumber();
         BonusNumber bonusNumber = ioManager.inputBonusNumber(lotto);

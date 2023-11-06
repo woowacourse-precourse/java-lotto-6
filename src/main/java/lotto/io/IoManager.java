@@ -26,10 +26,10 @@ public class IoManager {
         });
     }
 
-    public Lotto inputWinningNumbers() {
+    public Lotto inputLotto() {
         return read(() -> {
-            String winningNumbers = inputView.inputWinningNumbers();
-            return inputMapper.toLotto(winningNumbers);
+            String lotto = inputView.inputLotto();
+            return inputMapper.toLotto(lotto);
         });
     }
 

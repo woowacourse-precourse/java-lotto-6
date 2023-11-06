@@ -17,10 +17,10 @@ public class InputView {
         return purchasePrice;
     }
 
-    public String inputWinningNumbers() {
-        String winningNumbers = Console.readLine();
-        inputValidator.validateDivisionComma(winningNumbers);
-        return winningNumbers;
+    public String inputLotto() {
+        String lotto = Console.readLine();
+        inputValidator.validateDivisionComma(lotto);
+        return lotto;
     }
 
     public String inputBonusNumber() {

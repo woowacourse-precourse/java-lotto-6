@@ -36,8 +36,8 @@ public class Lotto {
                 .count();
     }
 
-    private static boolean isInRange(Integer num) {
-        return num >= LottoRule.START_NUMBER && num <= LottoRule.END_NUMBER;
+    private static boolean isInRange(Integer number) {
+        return number >= LottoRule.START_NUMBER && number <= LottoRule.END_NUMBER;
     }
 
     private void validateLottoDuplicate(List<Integer> numbers) {

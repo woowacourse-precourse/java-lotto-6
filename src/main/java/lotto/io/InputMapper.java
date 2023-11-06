@@ -9,13 +9,15 @@ import java.util.List;
 
 public class InputMapper {
 
+    private static final String DIVISION = ",";
+
     public PurchasePrice toPurchasePrice(String lottoPurchasePrice) {
         Integer purchasePrice = Integer.parseInt(lottoPurchasePrice);
         return new PurchasePrice(purchasePrice);
     }
 
-    public Lotto toLotto(String winningNumbers) {
-        List<Integer> wingingNumbers = Arrays.stream(winningNumbers.split(","))
+    public Lotto toLotto(String lotto) {
+        List<Integer> wingingNumbers = Arrays.stream(lotto.split(DIVISION))
                 .map(Integer::parseInt)
                 .toList();
         return new Lotto(wingingNumbers);

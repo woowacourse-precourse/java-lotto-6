@@ -17,9 +17,9 @@ public enum InputPattern {
         return !pattern.matcher(purchasePrice).matches();
     }
 
-    public static boolean isNotDivisionComma(String winningNumbers) {
+    public static boolean isNotDivisionComma(String lotto) {
         Pattern pattern = DIVISION_COMMA_PATTERN.pattern;
-        return !pattern.matcher(winningNumbers).matches();
+        return !pattern.matcher(lotto).matches();
     }
 
 }

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.HashMap;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,8 +30,9 @@ public class LottosTest {
                 new LottoNumber(5), new LottoNumber(7)));
         Lottos lottos = new Lottos(List.of(lotto1, lotto2));
 
-        assertThat(lottos.chargeResult(new WinnerLotto(lotto1, new LottoNumber(7)))).hasSize(2)
-                .containsKeys(Rank.SIX, Rank.FIVE_BONUS)
-                .containsValue(1);
+        assertThat(lottos.chargeResult(new WinnerLotto(lotto1, new LottoNumber(7))))
+                .hasSize(2)
+                .contains(Rank.SIX, Rank.FIVE_BONUS);
+
     }
 }

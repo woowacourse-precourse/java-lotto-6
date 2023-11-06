@@ -22,14 +22,14 @@ class LottoConstraintTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,3,45})
+    @ValueSource(ints = {1, 3, 45})
     @DisplayName("범위 검증 성공")
     void inRangesSuccess(Integer target) {
         assertThat(LottoConstraint.inRange(target)).isTrue();
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0,46,47})
+    @ValueSource(ints = {0, 46, 47})
     @DisplayName("범위 검증 실패")
     void inRangeFail(Integer target) {
         assertThat(LottoConstraint.inRange(target)).isFalse();

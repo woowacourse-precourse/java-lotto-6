@@ -15,9 +15,9 @@ public class BuyPrice {
     }
 
     // Creating instance method for factory pattern
-    public static int from(String price) {
+    public static BuyPrice from(String price) {
         validateNumericString(price);
-        return Integer.getInteger(price);
+        return new BuyPrice(Integer.parseInt(price));
     }
 
     private static void validateNumericString(String price) throws IllegalArgumentException {

@@ -32,7 +32,6 @@ class ConvertorTest {
 
     @BeforeEach
     void setUp() {
-        Convertor convertor = new Convertor();
-        this.convertor = convertor;
+        convertor = new Convertor();
     }
 }

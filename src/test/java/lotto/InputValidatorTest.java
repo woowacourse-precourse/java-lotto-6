@@ -91,4 +91,32 @@ class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateWinningNumbers(test))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    void 보너스_번호_입력_시_null_또는_공백인_경우_예외_발생(String test) {
+        assertThatThrownBy(() -> inputValidator.validateBonusNumber(test))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"one","?","1one"})
+    void 보너스_번호_입력_시_숫자가_아닌_문자가_포함된_경우_예외_발생(String test) {
+        assertThatThrownBy(() -> inputValidator.validateBonusNumber(test))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1111111111111111111111"})
+    void 보너스_번호_입력_시_자료형을_초과하는_경우_예외_발생(String test) {
+        assertThatThrownBy(() -> inputValidator.validateBonusNumber(test))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0","46"})
+    void 보너스_번호_숫자가_1부터_45_사이가_아닌_경우_예외_발생(String test) {
+        assertThatThrownBy(() -> inputValidator.validateBonusNumber(test))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

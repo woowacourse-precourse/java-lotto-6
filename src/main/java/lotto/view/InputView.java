@@ -14,7 +14,7 @@ public class InputView {
 
     public List<Integer> inputWinningNumbers() {
         String input = Console.readLine();
-        return StringToIntConversion(input);
+        return validateWinningNumbers(input);
     }
 
     public int inputBonusNumber() {
@@ -25,6 +25,10 @@ public class InputView {
 
     public static void validateAmount(String input) {
         validateStringToNumericConversion(input);
+    }
+
+    public static List<Integer> validateWinningNumbers(String input) {
+        return StringToIntConversion(input);
     }
 
     public static void validateBonusNumber(String input) {
@@ -39,7 +43,7 @@ public class InputView {
         }
     }
 
-    private List<Integer> StringToIntConversion(String input) {
+    private static List<Integer> StringToIntConversion(String input) {
         String[] stringWinningNumber = input.split(",");
         List<Integer> intWinningNumber = new ArrayList<>();
 

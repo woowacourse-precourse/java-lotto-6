@@ -21,7 +21,7 @@ public enum Rank {
         this.isMatch = isMatch;
     }
 
-    public static Rank getPrize(int number, boolean isBonusContain) {
+    public static Rank findRank(int number, boolean isBonusContain) {
         return Arrays.stream(values())
                 .filter(rank -> rank.isMatch.test(number, isBonusContain))
                 .findAny()

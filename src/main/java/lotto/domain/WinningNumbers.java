@@ -26,6 +26,7 @@ public class WinningNumbers {
     }
 
     public int getBonusNumber() {
+        validateWinningNumbersWith(bonusNumber);
         return bonusNumber;
     }
 

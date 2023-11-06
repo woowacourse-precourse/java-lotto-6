@@ -2,18 +2,14 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constants.Error;
 import lotto.constants.Rank;
 import lotto.domain.Lotto;
 import lotto.service.ResultService;
+import lotto.userInterface.ErrorMessageViewer;
 import lotto.userInterface.InputViewer;
 import lotto.userInterface.OutputViewer;
 
 public class LottoGame {
-    private static final Error INVALID_AMOUNT = Error.INVALID_AMOUNT;
-    private static final Error INVALID_FIRST_RANK_NUMBERS = Error.INVALID_FIRST_RANK_NUMBERS;
-    private static final Error INVALID_BONUS_NUMBER = Error.INVALID_BONUS_NUMBER;
-
     private ResultService resultService;
     private List<Lotto> userLotteries;
 
@@ -51,7 +47,7 @@ public class LottoGame {
                 resultService.setAmount(userInput);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(INVALID_AMOUNT.getMessage());
+                ErrorMessageViewer.printInvalidAmount();
             }
         }
     }
@@ -74,7 +70,7 @@ public class LottoGame {
                 resultService.setFirstRankNumbers(userInput);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(INVALID_FIRST_RANK_NUMBERS.getMessage());
+                ErrorMessageViewer.printInvalidFirstRankNumbers();
             }
         }
     }
@@ -86,7 +82,7 @@ public class LottoGame {
                 resultService.setBonusNumber(userInput);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(INVALID_BONUS_NUMBER.getMessage());
+                ErrorMessageViewer.printInvalidBonusNumber();
             }
         }
     }
@@ -100,7 +96,11 @@ public class LottoGame {
     private void printResults() {
         OutputViewer.printPrefaceOfResult();
         printLottoScoresByRank();
-        OutputViewer.printLastMessageWith(resultService.getProfitRatio());
+        try {
+            OutputViewer.printLastMessageWith(resultService.getProfitRatio());
+        } catch (ArithmeticException e) {
+            ErrorMessageViewer.printNoAmount();
+        }
     }
 
     private void printLottoScoresByRank() {

@@ -33,8 +33,8 @@ public class Lotto {
 
     }
 
-    public long matchCount(Lotto lotto){
-        return numbers.stream()
+    public int matchCount(Lotto lotto){
+        return (int) numbers.stream()
                 .filter(lotto::hasNumber)
                 .count();
     }

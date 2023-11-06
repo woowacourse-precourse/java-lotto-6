@@ -32,7 +32,7 @@ class LottoTest {
     @DisplayName("다른 로또와 일치하는 번호의 개수를 구할 수 있다.")
     @ParameterizedTest
     @MethodSource("matchData")
-    void matchCount(Lotto lotto, Lotto targetLotto, long count) {
+    void matchCount(Lotto lotto, Lotto targetLotto, int count) {
         assertThat(lotto.matchCount(targetLotto)).isEqualTo(count);
     }
 
@@ -45,13 +45,13 @@ class LottoTest {
 
     static Stream<Arguments> matchData() {
         return Stream.of(
-                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6L),
-                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 7)), 5L),
-                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 8, 7)), 4L),
-                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 8, 23, 24)), 3L),
-                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 22, 12, 33, 23)), 2L),
-                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 23, 32, 12, 34, 35)), 1L),
-                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(17, 23, 32, 12, 34, 35)), 0L)
+                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6),
+                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 7)), 5),
+                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 8, 7)), 4),
+                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 8, 23, 24)), 3),
+                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 22, 12, 33, 23)), 2),
+                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 23, 32, 12, 34, 35)), 1),
+                arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(17, 23, 32, 12, 34, 35)), 0)
         );
     }
 

@@ -7,6 +7,7 @@ import java.text.NumberFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static lotto.ErrorMessage.*;
 import static lotto.LottoConstants.*;
 
 public class Game {
@@ -14,9 +15,7 @@ public class Game {
 
     private long money;
 
-    private Lotto winningNumbers;
-    private int bonus;
-
+    private WinningNumbers winningNumbers;
     private final List<Lotto> tickets = new ArrayList<>();
 
     public void play() {
@@ -35,7 +34,7 @@ public class Game {
         try {
             money = Long.parseLong(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(NUMBER_PARSING_ERROR_MESSAGE);
         }
         System.out.println();
 
@@ -47,7 +46,7 @@ public class Game {
     private void validateMoney(long money) {
         if (money % LOTTO_PRICE != 0) {
             String lottoPrice = NumberFormat.getInstance().format(LOTTO_PRICE);
-            throw new IllegalArgumentException("[ERROR] " + lottoPrice + "원 단위로 입력해주세요.");
+            throw new IllegalArgumentException(LOTTO_PRICE_ERROR_MESSAGE);
         }
     }
 
@@ -89,8 +88,7 @@ public class Game {
     private void validateWinningNumbers(List<Integer> numbers) {
         boolean outOfBound = numbers.stream().anyMatch(number -> number < LOTTO_MIN || number > LOTTO_MAX);
         if (outOfBound) {
-            String message = "[ERROR] 로또 번호는 " + LOTTO_MIN + "부터 " + LOTTO_MAX + " 사이의 숫자여야 합니다.";
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(LOTTO_OUT_OF_RANGE_MESSAGE);
         }
     }
 
@@ -99,7 +97,7 @@ public class Game {
         try {
             bonus = Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(NUMBER_PARSING_ERROR_MESSAGE);
         }
 
         validateBonus(bonus);
@@ -110,7 +108,7 @@ public class Game {
 
     private void validateBonus(int bonus) {
         if (winningNumbers.contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_AND_BONUS_DUPLICATED_MESSAGE);
         }
     }
 }

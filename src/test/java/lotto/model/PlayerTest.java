@@ -95,7 +95,7 @@ public class PlayerTest {
             Long prize = lottoPrize.getPrize();
             expectedSum += prize * count;
         }
-        String expected = String.format("%.1f", (double) expectedSum / budget * 100.0);
+        String expected = String.format("%.1f", (double) expectedSum / 8000 * 100.0);
 
         // when
         player.calculateWinningLottoWithMine(winningLotto);

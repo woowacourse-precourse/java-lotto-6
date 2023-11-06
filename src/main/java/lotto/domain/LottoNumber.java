@@ -11,12 +11,12 @@ public class LottoNumber {
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
 
-    private static List<Integer> lottoNumberList;
+    private static List<Integer> lottoNumbers;
 
     public List<Integer> setLottoNumber() {
-        lottoNumberList = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT_LOTTO_NUMBER);
-        lottoNumberList = new ArrayList<>(lottoNumberList);
-        Collections.sort(lottoNumberList);
-        return lottoNumberList;
+        lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT_LOTTO_NUMBER);
+        lottoNumbers = new ArrayList<>(lottoNumbers);
+        Collections.sort(lottoNumbers);
+        return lottoNumbers;
     }
 }

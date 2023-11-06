@@ -7,9 +7,9 @@ public enum OutputMessage {
 
     PURCHASE_MESSAGE("%d개를 구매했습니다."),
     WINNING_STATISTICS_MESSAGE("당첨 통계\n---"),
-    WINNING_MESSAGE("%d개 일치 (%s원) - %d개"),
-    WINNING_BONUS_MESSAGE("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
-    RESULT_MESSAGE("총 수익률은 %f입니다.");
+    WINNING_MESSAGE("%d개 일치 (%s) - %d개"),
+    WINNING_BONUS_MESSAGE("%d개 일치, 보너스 볼 일치 (%s) - %d개"),
+    RESULT_MESSAGE("총 수익률은 %.1f%%입니다.");
 
 
     private final String message;
@@ -21,4 +21,5 @@ public enum OutputMessage {
     public String getMessage() {
         return message;
     }
+
 }

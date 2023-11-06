@@ -1,13 +1,10 @@
 package lotto.config;
 
-import static lotto.config.GameTextConfig.LOTTO_NUMBER_SEPARATOR;
-
 public enum GameNumberConfig {
     LOTTO_RANGE_MIN(1),
     LOTTO_RANGE_MAX(45),
     LOTTO_PRICE(1000),
-    LOTTO_NUMBER_COUNT(6),
-    BONUS_NUMBER_COUNT(1);
+    LOTTO_NUMBER_COUNT(6);
 
     private final int number;
 

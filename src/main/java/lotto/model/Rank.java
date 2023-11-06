@@ -25,19 +25,19 @@ public enum Rank {
     }
 
     private static Rank getRank(int matchCount, boolean isBonusMatch) {
-        if (matchCount == 6) {
+        if (matchCount == FIRST.matchCount) {
             return FIRST;
         }
-        if (matchCount == 5 && isBonusMatch) {
+        if (matchCount == SECOND.getMatchCount() && isBonusMatch) {
             return SECOND;
         }
-        if (matchCount == 5) {
+        if (matchCount == THIRD.matchCount) {
             return THIRD;
         }
-        if (matchCount == 4) {
+        if (matchCount == FOURTH.matchCount) {
             return FOURTH;
         }
-        if (matchCount == 3) {
+        if (matchCount == FIFTH.matchCount) {
             return FIFTH;
         }
         return MISS;

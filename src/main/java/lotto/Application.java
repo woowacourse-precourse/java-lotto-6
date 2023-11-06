@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 public class Application {
     public static void main(String[] args) {
         Money money = inputMoney();
-        int count = money.getLottoCount();
+        money.printLottoCount();
 
         LottoNumbers lottoNumbers = new LottoNumbers();
-        LottoList lottoList = new LottoList(lottoNumbers.makeLottoList(count));
+        LottoList lottoList = new LottoList(lottoNumbers.makeLottoList(money.getLottoCount()));
         lottoList.printLottoList();
 
         Lotto input_lotto = inputLotto();
@@ -43,7 +43,7 @@ public class Application {
 
     public static Lotto inputLotto() {
         while (true) {
-            System.out.println("당첨 번호를 입력해 주세요.");
+            System.out.println("\n당첨 번호를 입력해 주세요.");
             String input = Console.readLine();
             try {
                 List<String> input_lotto = List.of(input.split(","));
@@ -63,7 +63,7 @@ public class Application {
 
     public static BonusLotto inputBonusLotto(Lotto lotto) {
         while (true) {
-            System.out.println("보너스 번호를 입력해 주세요.");
+            System.out.println("\n보너스 번호를 입력해 주세요.");
             String input = Console.readLine();
             try {
                 Integer bonus = Integer.parseInt(input);

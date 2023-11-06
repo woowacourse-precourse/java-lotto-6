@@ -10,6 +10,10 @@ public class LottoPurchase {
     }
 
     private void validatePurchaseAmount(long purchaseAmount) {
+        if (purchaseAmount <= 0) {
+            throw new IllegalArgumentException("로또 구입 금액은 양수여야 합니다.");
+        }
+
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("로또 구입 금액은 " +
                     LottoConstant.LOTTO_TICKET_PRICE +

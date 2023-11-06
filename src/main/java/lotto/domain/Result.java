@@ -27,7 +27,7 @@ public enum Result {
         return Arrays.stream(values())
                 .filter(result -> matchCount == result.match)
                 .findFirst()
-                .orElseThrow();
+                .orElse(null);
     }
 
     public static Long sumOfRewards(List<Result> results) {

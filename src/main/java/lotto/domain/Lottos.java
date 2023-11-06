@@ -15,7 +15,8 @@ public final class Lottos {
     List<Result> calculateResult(Lotto winningNumber, BonusNumber bonusNumber) {
         List<Result> results = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            results.add(lotto.countMatch(winningNumber, bonusNumber));
+            Result result = lotto.countMatch(winningNumber, bonusNumber);
+            if(result != null) results.add(result);
         }
         return results;
     }

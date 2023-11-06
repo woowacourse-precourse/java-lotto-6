@@ -49,7 +49,7 @@ public class Lotto {
     }
 
     Result countMatch(Lotto target, BonusNumber bonus) {
-        Integer count = 0;
+        int count = 0;
         boolean isBonusMatched = false;
         for (Integer number : numbers) {
             if (target.contains(number)) count++;

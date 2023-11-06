@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
+
+import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,8 +11,9 @@ public class GameController {
 
     public void play() {
         OutputView.printGameStartMessage();
-        int purchaseInput = InputView.inputPurchaseAmount();
-        lottoPurchaseNum(purchaseInput);
+        int lottoNumber = InputView.inputPurchaseAmount();
+        lottoPurchaseNum(lottoNumber);
+        OutputView.printLottoWinningStatistics();
     }
 
     private void lottoPurchaseNum(int lottoNum) {
@@ -25,13 +28,13 @@ public class GameController {
     }
 
     public static void lottoInputWinningNum() {
-        InputView.inputWinningNum();
-        lottoPrintBonusNumber();
+        Lotto winningNumbers = InputView.inputWinningNum();
+        lottoPrintBonusNumber(winningNumbers);
     }
 
-    public static void lottoPrintBonusNumber() {
+    public static void lottoPrintBonusNumber(Lotto winningNumbers) {
         OutputView.printLottoBonusNumber();
-        InputView.inputBonusNum();
+        int bonusNumber = InputView.inputBonusNum(winningNumbers);
         winningStatistics();
     }
 

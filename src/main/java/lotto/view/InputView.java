@@ -11,14 +11,19 @@ public class InputView {
         return convertToInt(buyPrice);
     }
 
-    public static int convertToInt(String buyPrice) {
-        return Integer.parseInt(buyPrice);
-    }
-
     public List<Integer> insertWinningNumber() {
         String winningNumber = Console.readLine();
         new WinningNumberValidator(winningNumber);
         return convertToList(winningNumber);
+    }
+
+    public int insertBonusNumber() {
+        String bonusNumber = Console.readLine();
+        return convertToInt(bonusNumber);
+    }
+
+    public static int convertToInt(String buyPrice) {
+        return Integer.parseInt(buyPrice);
     }
 
     private List<Integer> convertToList(String winningNumber) {

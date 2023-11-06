@@ -15,11 +15,6 @@ public class LottoNumberGeneratorTest {
     @DisplayName("숫자 생성기가 1~45 사이 정수 6개를 생성하는지 확인한다.")
     @Test
     public void createNumbers_test() {
-        // given
-
-        // when
-
-        // then
         assertThat(LottoNumberGenerator.createNumbers()).hasSize(SIZE)
                 .allMatch(number -> number >= START && number <= END);
     }

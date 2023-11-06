@@ -33,5 +33,6 @@ public class Game {
         List<Lotto> listLotto = getListLotto(money.val);
 
         printListLotto(listLotto);
+        Winning winning = new Winning();
     }
 }

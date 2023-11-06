@@ -1,11 +1,18 @@
 package Output;
 
+import Money.Winning;
 import lotto.BuyLotto;
 import lotto.Lotto;
 
+import javax.swing.*;
 import java.util.List;
 
 public class Output {
+    private static Winning one = Winning.one;
+    private static Winning two = Winning.two;
+    private static Winning three = Winning.three;
+    private static Winning four = Winning.four;
+    private static Winning five = Winning.five;
     private static BuyLotto buylotto = new BuyLotto();
 
     public void buyMoneyAsk() {
@@ -32,6 +39,14 @@ public class Output {
         System.out.println("---");
     }
 
+    public void StatisPrint(List<Integer> rank){
+        correctStatisPrint();
+        System.out.println(five.getMessage()+rank.get(0)+"개");
+        System.out.println(four.getMessage()+rank.get(1)+"개");
+        System.out.println(three.getMessage()+rank.get(2)+"개");
+        System.out.println(two.getMessage()+rank.get(3)+"개");
+        System.out.println(one.getMessage()+rank.get(4)+"개");
+    }
     public String lottoBuyPaperPrint(List<Integer> paper) {
         String result = "[";
         for (int i = 0; i < paper.size(); i++) {

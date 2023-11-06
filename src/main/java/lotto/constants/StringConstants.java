@@ -9,7 +9,8 @@ public enum StringConstants {
     WINNING_RESULT_SEPARATOR("---"),
     MATCH_RESULT_MESSAGE("%d개 일치 (%,d원) - %d개"),
     MATCH_RESULT_WITH_BONUS_MESSAGE("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
-    MATCH_RESULT_PROFIT_RATE("총 수익률은 %.1f%%입니다")
+    MATCH_RESULT_PROFIT_RATE("총 수익률은 %.1f%%입니다"),
+    ERROR_FORMAT_MESSAGE("[ERROR] %s"),
     ;
 
     final String message;

@@ -205,4 +205,5 @@ class LottoHandlerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
     }
+        List<Lotto> lottos = new ArrayList<>();
 }

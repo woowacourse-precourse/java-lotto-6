@@ -2,7 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserInput {
     public static int getPurchaseAmount() {
@@ -53,5 +55,19 @@ public class UserInput {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
+        if (hasDuplicate(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+        }
+    }
+
+    private static boolean hasDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!uniqueNumbers.add(number)) {
+                // If the set's add method returns false, it means the number is already in the set, hence a duplicate.
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -10,6 +10,7 @@ import static lotto.view.ErrorMessage.*;
 
 public class ExceptionController {
 
+    /*
     public static BonusNumber checkBonusNumberException(List<Integer> numbers, int bonus) throws IllegalArgumentException {
         try {
             checkNumberException(bonus);
@@ -18,7 +19,7 @@ public class ExceptionController {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException();
         }
-    }
+    }*/
 
     public static WinningNumber checkWinningNumberException(List<Integer> winningNumbers) throws IllegalArgumentException {
         try {
@@ -40,6 +41,7 @@ public class ExceptionController {
         }
     }
 
+    /*
     public static void checkBonusDuplicateException(List<Integer> numbers, int bonus) throws IllegalArgumentException {
         try {
             Number.checkDuplicate(numbers, bonus);
@@ -47,7 +49,7 @@ public class ExceptionController {
             duplicatedBonusNumber();
             throw new IllegalArgumentException();
         }
-    }
+    }*/
 
     private static void checkNumberLengthException(List<Integer> numbers) throws IllegalArgumentException {
         try {

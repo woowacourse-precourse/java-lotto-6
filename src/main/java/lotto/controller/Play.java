@@ -4,6 +4,7 @@ import lotto.model.*;
 
 import java.util.*;
 
+import static lotto.exception.BonusNumberException.checkBonusNumberException;
 import static lotto.exception.ExceptionController.*;
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;

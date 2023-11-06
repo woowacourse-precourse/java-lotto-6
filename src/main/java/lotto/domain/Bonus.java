@@ -11,4 +11,9 @@ public class Bonus {
     public int getNum() {
         return this.num;
     }
+
+    private void validate(int num, Lotto winningLotto) {
+        if (winningLotto.getNumbers().contains(num))
+            throw new IllegalArgumentException();
+    }
 }

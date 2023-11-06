@@ -16,6 +16,19 @@ public class LottoResult {
             matchCounts.put(i, 0);
         }
     }
+    
+    public Map<Integer, Integer> getWinningResult() {
+        Map<Integer, Integer> winningResult = new HashMap<>();
+        for (int i = 3; i <= MAX_MATCH_COUNT; i++) {
+            winningResult.put(i, matchCounts.getOrDefault(i, 0));
+        }
+        // 보너스 볼을 고려한 2등의 경우를 계산합니다.
+        int secondPrizeWinners = matchCounts.getOrDefault(5, 0);
+        winningResult.put(5, secondPrizeWinners); // 5개 맞고 보너스 볼 안 맞은 경우 3등으로 처리.
+        winningResult.put(2, matchCounts.getOrDefault(MAX_MATCH_COUNT, 0)); // 5개 맞고 보너스 볼 맞은 경우 2등으로 처리.
+
+        return winningResult;
+    }
 
     private Map<Integer, Long> initializePrizeMap() {
         Map<Integer, Long> prizeMap = new HashMap<>();

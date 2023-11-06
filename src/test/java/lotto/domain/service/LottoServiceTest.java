@@ -2,6 +2,8 @@ package lotto.domain.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -21,7 +23,7 @@ class LottoServiceTest {
     @DisplayName("로또를 구매할 수 있다.")
     @Test
     void purchaseByAmount() {
-        List<Lotto> lottos = new LottoService().purchase(new PurchaseAmount(10000));
+        List<Lotto> lottos = new LottoService().purchase(new PurchaseAmount(new BigInteger("10000")));
 
         assertThat(lottos).size().isEqualTo(10);
     }
@@ -29,12 +31,16 @@ class LottoServiceTest {
     @DisplayName("수익률을 구할 수 있다.")
     @ParameterizedTest
     @MethodSource
-    void getWinningResult(List<Lotto> lottos, WinningNumber winningNumber, long expected) {
+    void getWinningResult(List<Lotto> lottos,
+                          WinningNumber winningNumber,
+                          PurchaseAmount purchaseAmount,
+                          BigDecimal expected) {
+
         LottoService lottoService = new LottoService();
 
-        Result winningResult = lottoService.getWinningResult(lottos, winningNumber);
+        Result winningResult = lottoService.getWinningResult(lottos, winningNumber, purchaseAmount);
 
-        assertThat(winningResult.getRateOfReturn()).isEqualTo(expected);
+        assertThat(winningResult.getRateOfReturn().compareTo(expected)).isZero();
     }
 
     public static Stream<Arguments> getWinningResult() {
@@ -45,7 +51,8 @@ class LottoServiceTest {
                                 createLotto(1, 2, 3, 10, 11, 12)
                         ),
                         createWinningNumber(7, 1, 2, 3, 4, 5, 6),
-                        500),
+                        new PurchaseAmount(new BigInteger("2000")),
+                        new BigDecimal("500")),
                 Arguments.of(
                         List.of(
                                 createLotto(1, 2, 3, 10, 11, 12),
@@ -60,7 +67,8 @@ class LottoServiceTest {
                                 createLotto(10, 11, 12, 13, 14, 15)
                         ),
                         createWinningNumber(7, 1, 2, 3, 4, 5, 6),
-                        50)
+                        new PurchaseAmount(new BigInteger("10000")),
+                        new BigDecimal("50"))
         );
     }
 

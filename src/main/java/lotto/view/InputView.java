@@ -1,15 +1,24 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
 
-    public int inputPurchaseAmount() {
+    public BigInteger inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        return parseInt(input);
+        return getBigInteger(input);
+    }
+
+    private BigInteger getBigInteger(String input) {
+        try {
+            return new BigInteger(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
     }
 
     public List<Integer> inputWinningNumbers() {

@@ -1,5 +1,8 @@
 package lotto.domain.service;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -12,10 +15,10 @@ import lotto.utils.RandomNumberGenerator;
 
 public class LottoService {
 
-    public Result getWinningResult(List<Lotto> lottos, WinningNumber winningNumber) {
+    public Result getWinningResult(List<Lotto> lottos, WinningNumber winningNumber, PurchaseAmount purchaseAmount) {
         EnumMap<Rank, Integer> rankToCount = getRankToCount(lottos, winningNumber);
         long totalPrize = Rank.getTotalPrize(rankToCount);
-        double rateOfReturn = getRateOfReturn(totalPrize, lottos.size());
+        BigDecimal rateOfReturn = getRateOfReturn(totalPrize, purchaseAmount);
         return new Result(rankToCount, rateOfReturn);
     }
 
@@ -32,15 +35,18 @@ public class LottoService {
         return rankToInteger;
     }
 
-    private double getRateOfReturn(long totalPrize, int quantity) {
-        return ((double) totalPrize / ((long) PurchaseAmount.unit * quantity)) * 100;
+    private BigDecimal getRateOfReturn(long totalPrize, PurchaseAmount purchaseAmount) {
+        return BigDecimal.valueOf(totalPrize)
+                .multiply(new BigDecimal("100"))
+                .divide(new BigDecimal(purchaseAmount.getAmount()), 1, RoundingMode.HALF_UP);
     }
 
     public List<Lotto> purchase(PurchaseAmount purchaseAmount) {
-
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < purchaseAmount.getQuantity(); i++) {
+        BigInteger quantity = purchaseAmount.getQuantity();
+        while (quantity.compareTo(BigInteger.ZERO) > 0) {
             lottos.add(new Lotto(RandomNumberGenerator.generateUniqueNumbersInRange(1, 45, 6)));
+            quantity = quantity.subtract(BigInteger.ONE);
         }
         return lottos;
     }

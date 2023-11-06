@@ -1,13 +1,14 @@
 package lotto.domain.dto;
 
+import java.math.BigDecimal;
 import java.util.EnumMap;
 import lotto.domain.Rank;
 
 public class Result {
     private final EnumMap<Rank, Integer> rankToCount;
-    private final double rateOfReturn;
+    private final BigDecimal rateOfReturn;
 
-    public Result(EnumMap<Rank, Integer> rankToCount, double rateOfReturn) {
+    public Result(EnumMap<Rank, Integer> rankToCount, BigDecimal rateOfReturn) {
         this.rankToCount = rankToCount;
         this.rateOfReturn = rateOfReturn;
     }
@@ -16,7 +17,7 @@ public class Result {
         return rankToCount;
     }
 
-    public double getRateOfReturn() {
+    public BigDecimal getRateOfReturn() {
         return rateOfReturn;
     }
 }

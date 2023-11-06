@@ -30,7 +30,7 @@ public class LottoController {
         LottoNumber bonusNumber = new LottoNumber(inputView.inputBonusNumber());
         WinningNumber winningNumber = new WinningNumber(winningLotto, bonusNumber);
 
-        Result winningResult = lottoService.getWinningResult(purchasedLottos, winningNumber);
+        Result winningResult = lottoService.getWinningResult(purchasedLottos, winningNumber, purchaseAmount);
         outputView.printWinningResult(winningResult);
     }
 }

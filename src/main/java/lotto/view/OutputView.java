@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -30,7 +31,7 @@ public class OutputView {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         EnumMap<Rank, Integer> rankToCount = winningResult.getRankToCount();
-        double rateOfReturn = winningResult.getRateOfReturn();
+        BigDecimal rateOfReturn = winningResult.getRateOfReturn();
 
         StringBuilder sb = new StringBuilder();
         for (Entry<Rank, Integer> rankIntegerEntry : rankToCount.entrySet()) {
@@ -49,7 +50,7 @@ public class OutputView {
             sb.append(value).append("개\n");
         }
 
-        sb.append("총 수익률은 ").append(String.format("%.1f", rateOfReturn)).append("%입니다.");
+        sb.append("총 수익률은 ").append(rateOfReturn.toPlainString()).append("%입니다.");
         System.out.println(sb);
     }
 }

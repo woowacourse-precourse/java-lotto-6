@@ -6,9 +6,13 @@ public class MoneyManagement {
     private static final int ZERO = 0;
     private static final String NUMERIC_PATTERN = "\\d+";
 
-    public MoneyManagement(final String userInput) {
+    private MoneyManagement(final String userInput) {
         validate(userInput);
         quantity = toInt(userInput) / LOTTO_AMOUNT ;
+    }
+
+    public static MoneyManagement from(final String userInput) {
+        return new MoneyManagement(userInput);
     }
 
     private void validate(final String userInput) {

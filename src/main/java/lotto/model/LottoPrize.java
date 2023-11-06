@@ -31,7 +31,14 @@ public enum LottoPrize {
     }
 
     private static boolean hasPrize(final LottoPrize prize, final LottoMatchResult result) {
-        return prize.matchCount == result.matchCount() && prize.hasBonus == result.hasBonus();
+        if (prize.equals(PRIZE_2)) {
+            return isPrize2(result);
+        }
+        return prize.matchCount == result.matchCount();
+    }
+
+    private static boolean isPrize2(final LottoMatchResult result) {
+        return PRIZE_2.hasBonus == result.hasBonus() && PRIZE_2.matchCount == result.matchCount();
     }
 
     public int getAmount() {

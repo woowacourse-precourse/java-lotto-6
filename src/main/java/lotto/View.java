@@ -11,9 +11,7 @@ public class View {
     void printPurchasedLottoAmount(int number){
 
         String askInputMoney= "개를 구매했습니다.";
-//        List<Integer> lottoNumbers = lotto.getNumbers();
-//        int number = lotto.getNumbers().size();
-//
+
         System.out.println("\n"+number+askInputMoney);
     }
 

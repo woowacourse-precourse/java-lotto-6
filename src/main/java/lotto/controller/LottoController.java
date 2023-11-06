@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoService;
 import lotto.domain.Lottos;
@@ -18,6 +19,7 @@ public class LottoController {
         Lotto lotto = new Lotto(numberCandidateStrings.toNumberList());
 
         NumberCandidateString bonusNumber = new NumberCandidateString(InputView.receiveBonusNumber());
+        BonusNumber number = new BonusNumber(bonusNumber.getNumber());
     }
 
     private LottoService initLottoService() {

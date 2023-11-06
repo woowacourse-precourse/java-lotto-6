@@ -28,5 +28,4 @@ public class Lotto {
 			ErrorOperation.COLLECTION_SIZE_ERROR.apply();
 		}
 	}
-	// TODO: 추가 기능 구현
 }

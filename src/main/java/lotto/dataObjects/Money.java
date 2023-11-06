@@ -12,14 +12,14 @@ public class Money {
 		this.purchaseMoney = purchaseMoney;
 	}
 
-	private void validateMinimum(int parsePrice) {
-		if (parsePrice < 1000) {
+	private void validateMinimum(int purchaseMoney) {
+		if (purchaseMoney < 1000) {
 			ErrorOperation.MINIMUM_ERROR.apply();
 		}
 	}
 
-	private void validateRest(int parsePrice) {
-		if (parsePrice % 1000 != 0) {
+	private void validateRest(int purchaseMoney) {
+		if (purchaseMoney % 1000 != 0) {
 			ErrorOperation.UNIT_ERROR.apply();
 		}
 	}

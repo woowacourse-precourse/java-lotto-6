@@ -9,8 +9,9 @@ import lotto.enumContainer.LottoRange;
 public class LottoValidatorImpl implements LottoValidator {
 
 	private final ParserFromString parser;
+
 	public LottoValidatorImpl() {
-		parser = new ParserFromStringImpl();
+		this.parser = new ParserFromStringImpl();
 	}
 
 	@Override
@@ -54,8 +55,8 @@ public class LottoValidatorImpl implements LottoValidator {
 	}
 
 	private void validateIsDigit(String lottoPrice) {
-		for (int i = 0; i < lottoPrice.length(); i++) {
-			char digit = parser.toCharacterParser(lottoPrice, i);
+		for (int order = 0; order < lottoPrice.length(); order++) {
+			char digit = parser.toCharacterParser(lottoPrice, order);
 			if (!Character.isDigit(digit)) {
 				ErrorOperation.DIGIT_ERROR.apply();
 			}

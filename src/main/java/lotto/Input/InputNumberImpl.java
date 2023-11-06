@@ -5,14 +5,15 @@ import java.util.StringTokenizer;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.LottoValidator;
+import lotto.utils.LottoValidatorImpl;
 
 public class InputNumberImpl implements InputNumber {
 
 	private final LottoValidator validator;
 	private StringTokenizer numberSplitter;
 
-	public InputNumberImpl(LottoValidator validator) {
-		this.validator = validator;
+	public InputNumberImpl() {
+		this.validator = new LottoValidatorImpl();
 	}
 
 	@Override
@@ -32,7 +33,5 @@ public class InputNumberImpl implements InputNumber {
 		String bonusNumber = Console.readLine();
 		return validator.validateBonusNumber(bonusNumber);
 	}
-
-
 
 }

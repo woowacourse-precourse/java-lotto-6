@@ -1,5 +1,7 @@
 package lotto.enumContainer;
 
+import lotto.Input.InputNumber;
+
 public enum ErrorOperation {
 
 	DIGIT_ERROR("[ERROR] 1이상의 숫자만 입력할 수 있습니다."),
@@ -13,13 +15,13 @@ public enum ErrorOperation {
 	DUPLICATE_ERROR("[ERROR] 중복된 숫자는 입력할 수 없습니다.");
 
 	private String message;
-	private
+
 	ErrorOperation(String message) {
 		this.message = message;
 	}
 
 	public void apply() {
-		throw new IllegalArgumentException(this.message);
-		//재입력 메소드 구현
+		System.err.println(this.message);
+		throw new IllegalArgumentException();
 	}
 }

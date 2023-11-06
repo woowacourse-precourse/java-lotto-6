@@ -8,28 +8,50 @@ import lotto.Input.InputNumberImpl;
 import lotto.dataObjects.Bonus;
 import lotto.dataObjects.Lotto;
 import lotto.dataObjects.Money;
-import lotto.utils.LottoValidator;
-import lotto.utils.LottoValidatorImpl;
 
 public class LottoProcessImpl implements LottoProcess {
 
 	private final InputNumber inputNumber;
+	private Money money;
+	private Lotto lotto;
+	private Bonus bonus;
 
 	public LottoProcessImpl() {
-		LottoValidator validator = new LottoValidatorImpl();
-		this.inputNumber = new InputNumberImpl(validator);
+		this.inputNumber = new InputNumberImpl();
 	}
 
 	@Override
 	public void playGame() {
-		int lottoPrice = inputNumber.inputPurchasePrice();
-		Money money = new Money(lottoPrice);
+		inputPrice();
+		inputWinningNumbers();
+		inputBonusNumber();
+	}
 
-		List<Integer> lottoNumbers = new ArrayList<>();
-		inputNumber.inputWinningNumbers(lottoNumbers);
-		Lotto winningLottoNumbers = new Lotto(lottoNumbers);
+	private void inputPrice() {
+		try {
+			int lottoPrice = inputNumber.inputPurchasePrice();
+			money = new Money(lottoPrice);
+		} catch (IllegalArgumentException e) {
+			inputPrice();
+		}
+	}
 
-		int bonusNumber = inputNumber.inputBonusNumber();
-		Bonus bonus = new Bonus(bonusNumber);
+	private void inputWinningNumbers() {
+		try {
+			List<Integer> lottoNumbers = new ArrayList<>();
+			inputNumber.inputWinningNumbers(lottoNumbers);
+			lotto = new Lotto(lottoNumbers);
+		} catch (IllegalArgumentException e) {
+			inputWinningNumbers();
+		}
+	}
+
+	private void inputBonusNumber() {
+		try {
+			int bonusNumber = inputNumber.inputBonusNumber();
+			bonus = new Bonus(bonusNumber);
+		} catch (IllegalArgumentException e) {
+			inputBonusNumber();
+		}
 	}
 }

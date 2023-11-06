@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.domain.Amount;
 import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static lotto.constant.LottoErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

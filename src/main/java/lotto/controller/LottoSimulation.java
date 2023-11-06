@@ -28,6 +28,7 @@ public class LottoSimulation {
         readBonusNumber(winningNumber);
         Result result = new Result(makeCheckerList(lottos, winningNumber));
         outputView.printWinningStatistics(result);
+        outputView.printEarningRate(result.getEarningRate(amount.getAmount()));
     }
 
     private Amount readPurchaseAmount() {

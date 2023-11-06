@@ -24,9 +24,13 @@ public class LottoOutputView {
         printMessage(DIVIDE_LINE);
         printMessage(String.format(CORRECT_MESSAGE, FIFTH, FIFTH_PRIZE, result.getResults().get(FIFTH_INDEX)));
         printMessage(String.format(CORRECT_MESSAGE, FOURTH, FOURTH_PRIZE, result.getResults().get(FOURTH_INDEX)));
-        printMessage(String.format(CORRECT_MESSAGE, THIRD, THIRD_PRIZE, result.getResults().get(THRID_INDEX)));
+        printMessage(String.format(CORRECT_MESSAGE, THIRD, THIRD_PRIZE, result.getResults().get(THIRD_INDEX)));
         printMessage(String.format(CORRECT_WITH_BONUS, SECOND, SECOND_PRIZE, result.getResults().get(SECOND_INDEX)));
         printMessage(String.format(CORRECT_MESSAGE, FIRST, FISRT_PRIZE, result.getResults().get(FIRST_INDEX)));
+    }
+
+    public void printEarningRate(double earningRate) {
+        printMessage(String.format(EARNING_RATE, earningRate));
     }
 
     public void printMessage(String text) {

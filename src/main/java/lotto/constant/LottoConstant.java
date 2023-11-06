@@ -14,7 +14,12 @@ public class LottoConstant {
     public static final int FIFTH = 3;
     public static final int FIRST_INDEX = 4;
     public static final int SECOND_INDEX = 3;
-    public static final int THRID_INDEX = 2;
+    public static final int THIRD_INDEX = 2;
     public static final int FOURTH_INDEX = 1;
     public static final int FIFTH_INDEX = 0;
+    public static final long FIRST_PRIZE_LONG = 20000000000L;
+    public static final int SECOND_PRIZE_INTEGER = 30000000;
+    public static final int THIRD_PRIZE_INTEGER = 1500000;
+    public static final int FOURTH_PRIZE_INTEGER = 50000;
+    public static final int FIFTH_PRIZE_INTEGER = 5000;
 }

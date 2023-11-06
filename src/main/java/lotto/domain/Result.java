@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.constant.LottoConstant.*;
+import static lotto.constant.LottoMessage.*;
 
 public class Result {
     List<Integer> results = new ArrayList<>();
@@ -23,7 +24,7 @@ public class Result {
     }
 
     private int getFifth(List<Checker> checkers) {
-        int count = 0;
+        int count = ZERO;
         for (Checker checker : checkers) {
             if (checker.getCount() == FIFTH) {
                 count++;
@@ -33,7 +34,7 @@ public class Result {
     }
 
     private int getFourth(List<Checker> checkers) {
-        int count = 0;
+        int count = ZERO;
         for (Checker checker : checkers) {
             if (checker.getCount() == FOURTH) {
                 count++;
@@ -43,7 +44,7 @@ public class Result {
     }
 
     private int getThird(List<Checker> checkers) {
-        int count = 0;
+        int count = ZERO;
         for (Checker checker : checkers) {
             if (checker.getCount() == THIRD) {
                 count++;
@@ -53,7 +54,7 @@ public class Result {
     }
 
     private int getSecond(List<Checker> checkers) {
-        int count = 0;
+        int count = ZERO;
         for (Checker checker : checkers) {
             if (checker.getCount() == SECOND && checker.isBonus()) {
                 count++;
@@ -63,13 +64,42 @@ public class Result {
     }
 
     private int getFirst(List<Checker> checkers) {
-        int count = 0;
+        int count = ZERO;
         for (Checker checker : checkers) {
             if (checker.getCount() == FIRST) {
                 count++;
             }
         }
         return count;
+    }
+
+    public double getEarningRate(int amount) {
+        double earningRate = (double) (getSumOfPrize(results) * 100) / amount * 10;
+        return (double) Math.round(earningRate) / 10;
+    }
+
+    private long getSumOfPrize(List<Integer> results) {
+        long sum = ZERO;
+        for (int i = FIFTH_INDEX; i <= FIRST_INDEX; i++) {
+            if (i == FIFTH_INDEX) {
+                sum += (long) results.get(i) * FIFTH_PRIZE_INTEGER;
+                continue;
+            }
+            if (i == FOURTH_INDEX) {
+                sum += results.get(i) * FOURTH_PRIZE_INTEGER;
+                continue;
+            }
+            if (i == THIRD_INDEX) {
+                sum += results.get(i) * THIRD_PRIZE_INTEGER;
+                continue;
+            }
+            if (i == SECOND_INDEX) {
+                sum += results.get(i) * SECOND_PRIZE_INTEGER;
+                continue;
+            }
+            sum += results.get(i) * FIRST_PRIZE_LONG;
+        }
+        return sum;
     }
 
     public List<Integer> getResults() {

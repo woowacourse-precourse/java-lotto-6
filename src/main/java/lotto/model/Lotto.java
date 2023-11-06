@@ -32,6 +32,10 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 import lotto.model.BonusNumber;
 import lotto.model.Constants;
 import lotto.model.Lotto;
-import lotto.model.WinningLotto;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchasePriceValidator;
 import lotto.validator.LottoValidator;
@@ -35,14 +34,7 @@ public class InputView {
         return purchasePrice;
     }
 
-    public WinningLotto getWinningLotto() {
-        Lotto lotto = getLotto();
-        BonusNumber bonusNumber = getBonusNumber();
-
-        return new WinningLotto(lotto, bonusNumber);
-    }
-
-    private Lotto getLotto() {
+    public Lotto getLotto() {
         while (true) {
             try {
                 return new Lotto(requestLotto());
@@ -64,22 +56,25 @@ public class InputView {
                 .toList();
     }
 
-    private BonusNumber getBonusNumber() {
+    public BonusNumber getBonusNumber(Lotto lotto) {
         while (true) {
             try {
-                return new BonusNumber(requestBonusNumber());
+                return new BonusNumber(requestBonusNumber(lotto));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private int requestBonusNumber() {
+    private int requestBonusNumber(Lotto lotto) {
         System.out.println(InputMessage.REQUEST_BONUS_NUMBER.getMessage());
         String inputNumber = Console.readLine();
         bonusNumberValidator.validate(inputNumber);
+
+        int bonusNumber = Integer.parseInt(inputNumber);
+        bonusNumberValidator.validateDuplicated(bonusNumber, lotto);
         System.out.println();
 
-        return Integer.parseInt(inputNumber);
+        return bonusNumber;
     }
 }

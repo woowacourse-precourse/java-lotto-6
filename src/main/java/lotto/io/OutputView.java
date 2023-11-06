@@ -8,6 +8,10 @@ import lotto.model.PrizeRank;
 
 public class OutputView {
 
+    private static final String STATISTICS_TITLE = "당첨 통계";
+    private static final String LINE_SEPARATOR = "---";
+    private static final String WINNING_MESSAGE_FORMAT = "%s - %d개";
+
     public void displayLottosCnt(int cnt) {
         displayEmptyLine();
         System.out.println(cnt + "개를 구매했습니다.");
@@ -21,13 +25,14 @@ public class OutputView {
 
     public void displayWinningResult(Map<PrizeRank, Integer> result) {
         displayEmptyLine();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(STATISTICS_TITLE);
+        System.out.println(LINE_SEPARATOR);
         for (Entry<PrizeRank, Integer> entry : result.entrySet()) {
             if (entry.getKey().equals(PrizeRank.NOPE)) {
                 continue;
             }
-            System.out.println(PrizeRank.getMsg(entry.getKey()) + " - " + entry.getValue() + "개");
+            String message = PrizeRank.getMsg(entry.getKey());
+            System.out.printf((WINNING_MESSAGE_FORMAT) + "%n", message, entry.getValue());
         }
     }
 

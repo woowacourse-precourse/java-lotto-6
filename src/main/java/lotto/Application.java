@@ -18,8 +18,24 @@ public class Application {
         }
          */
 
-        // 1. 로또 구입 금액 1000원 단위로 입력 받기
+        // 입력 1. 로또 구입 금액 1000원 단위로 입력 받기
         int purchaseAmount = Integer.parseInt(Console.readLine());
+
+        // -1000원으로 안 나누어지면 예외처리
+        try {
+            if(purchaseAmount % 1000 != 0){
+                throw new IllegalArgumentException();
+            }
+        } catch (RuntimeException e) {
+            throw new IllegalArgumentException();
+        }
+
+        // 게임 1. 구입금액에 따른 로또 구매 개수 구하기
+        int lottoCount = purchaseAmount / 1000;
+
+
+
+        // 입력 2. 쉼표 기준으로 구분해서 당첨 번호 입력 받기
 
 
 

@@ -1,10 +1,6 @@
 package lotto.domain;
 
-import static lotto.constants.Boolean.FALSE;
-import static lotto.constants.Boolean.TRUE;
-
 import java.util.List;
-
 
 public class User {
 

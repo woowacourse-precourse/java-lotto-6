@@ -27,9 +27,9 @@ public class InputView {
     }
 
     public void validateFirstCharacter(String input) {
-        char lastCharacter = getFirstCharacter(input);
+        char firstCharacter = getFirstCharacter(input);
 
-        if (!Character.isDigit(lastCharacter)) {
+        if (!Character.isDigit(firstCharacter)) {
             throw new IllegalArgumentException(START_OF_SENTENCE_CHARACTER);
         }
     }

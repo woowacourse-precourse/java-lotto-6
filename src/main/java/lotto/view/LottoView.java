@@ -22,6 +22,7 @@ public class LottoView {
         printLottoNumberMessage(ASK_Lotto_NUMBER);
         String input = Console.readLine();
         validate(input);
+        printSpace();
         return parseNumbers(input);
     }
 
@@ -76,6 +77,9 @@ public class LottoView {
         if (matcher.find()) {
             throw new IllegalArgumentException(CONTAIN_BLANK.getMessage());
         }
+    }
+    private void printSpace(){
+        System.out.println();
     }
 
 }

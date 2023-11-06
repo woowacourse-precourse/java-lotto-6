@@ -1,10 +1,17 @@
 package lotto.controller;
 
+import static lotto.constant.OutputMessage.DIVIDING_LINE;
+import static lotto.constant.OutputMessage.PROFIT;
+import static lotto.constant.OutputMessage.WIN_STATISTICS;
+import static lotto.constant.PurchaseMessage.BUY_RECEIPT;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.constant.OutputMessage;
+import lotto.constant.PurchaseMessage;
 import lotto.constant.WinPriceMessage;
 import lotto.domain.BonusNumber;
 import lotto.domain.ComPareNumber;
@@ -36,10 +43,17 @@ public class Game {
     public void start() {
         int money = purchaseView.requestMoney();
         ticket = new Ticket(money);
+        printReceipt(ticket.getTicket());
 
         addAllRandomNumbers();
-        calculateNumber();
 
+        List<ComPareNumber> compareNumbers = calculateCompareNumbers();
+        long totalMoneySum = calculateTotalMoneySum(compareNumbers);
+        List<Integer> totalWinCount = calculateTotalWinCounts(compareNumbers);
+
+        printStatistic();
+        printTotalResults(totalWinCount);
+        printProfit(totalMoneySum, money);
     }
 
     private void addAllRandomNumbers() {
@@ -48,15 +62,20 @@ public class Game {
             AllRandomNumbers.add(randomNumbers);
             randomNumberView.printRandomNumber(randomNumbers);
         }
+        randomNumberView.printSpace();
 
     }
 
-    private void calculateNumber() {
+    private List<ComPareNumber> calculateCompareNumbers() {
         List<Integer> numbers = lottoView.numbers();
         int bonusNumber = bonusNumberView.bonusNumber();
-        List<ComPareNumber> compareNumbers = generateCompareNumbers(numbers, bonusNumber);
-        List<Integer> totalWinCount = calculateTotalWinCounts(compareNumbers);
-        printTotalResults(totalWinCount);
+        return generateCompareNumbers(numbers, bonusNumber);
+    }
+
+    private long calculateTotalMoneySum(List<ComPareNumber> compareNumbers) {
+        return compareNumbers.stream()
+                .mapToLong(ComPareNumber::getMoneySum)
+                .sum();
     }
 
 
@@ -90,6 +109,31 @@ public class Game {
     private void printTotalResults(List<Integer> totalWinCount) {
         winPriceView.printAllWinPrices(totalWinCount);
     }
+
+    private double calculateProfit(long moneySum, int money) {
+        double profit = (double) moneySum / money;
+        return Math.round(profit * 1000.0) / 1000.0;
+    }
+
+    private void printProfit(long moneySum, int money) {
+        double profitRate = calculateProfit(moneySum, money) * 100;
+        String profitMessage = String.format(OutputMessage.PROFIT.getOutputMessage(),
+                String.format("%.1f", profitRate));
+        System.out.println(profitMessage);
+    }
+
+    private void printReceipt(int ticket) {
+        String printReceiptMessage = String.format(BUY_RECEIPT.getMessage(),
+                String.format("%s", ticket));
+        System.out.println();
+        System.out.println(printReceiptMessage);
+    }
+
+    private void printStatistic() {
+        System.out.println(WIN_STATISTICS.getOutputMessage());
+        System.out.println(DIVIDING_LINE.getOutputMessage());
+    }
+
 
 }
 

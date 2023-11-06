@@ -5,13 +5,12 @@ import static lotto.constant.WinPriceMessage.*;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.constant.WinPriceMessage;
 
 public class ComPareNumber {
     private List<Integer> numbers;
     private List<Integer> randomNumbers;
     private int bonusNumber;
-    private int moneySum;
+    private long moneySum;
     private List<Integer> winCount;
 
     public ComPareNumber(List<Integer> numbers, List<Integer> randomNumbers, int bonusNumber){
@@ -85,7 +84,7 @@ public class ComPareNumber {
         return numbers.contains(bonusNumber);
     }
 
-    public int getMoneySum() {
+    public long getMoneySum() {
         return moneySum;
     }
 

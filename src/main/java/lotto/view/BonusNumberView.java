@@ -15,6 +15,7 @@ public class BonusNumberView {
         String input = inputBonusNumber();
         validateBonusNumber(input);
         int number = conversion(input);
+        printSpace();
         return number;
     }
 
@@ -47,6 +48,10 @@ public class BonusNumberView {
     private int conversion(String input) {
         int num = Integer.parseInt(input);
         return num;
+    }
+
+    private void printSpace() {
+        System.out.println();
     }
 
 }

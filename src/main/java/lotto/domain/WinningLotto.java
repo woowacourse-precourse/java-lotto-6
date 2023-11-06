@@ -21,20 +21,10 @@ public class WinningLotto {
      * 5등 : 3개 0
      * */
     public Rank match(Lotto lotto) {
-        // TODO : 라인을 더 줄일 수 있도록 고민
-        int matchCount = 0;
-        boolean containsBonus = false;
-        for (LottoNumber winningNumber : winningLotto.getLottoNumbers()) {
-            if (lotto.contains(winningNumber)) {
-                matchCount++;
-            }
-            if (lotto.contains(bonusNumber)) {
-                containsBonus = true;
-            }
-        }
-        return Rank.match(matchCount, containsBonus);
+        int matchCount = lotto.countMatchedNumbers(winningLotto);
+        boolean isContainBonus = lotto.contains(bonusNumber);
+        return Rank.match(matchCount, isContainBonus);
     }
-
 
     private void validate(Lotto winningLotto, LottoNumber bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {

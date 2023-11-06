@@ -3,6 +3,7 @@ package lotto.application;
 import static lotto.enums.LottoConfig.LOTTO_PRICE;
 import static lotto.fixture.LottoFixture.lottoFixture;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -29,4 +30,17 @@ class LottoStoreTest {
         assertThat(lottos).hasSize(amount / LOTTO_PRICE.getValue());
     }
 
+    @Test
+    void 당첨_로또를_발행한다() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lottoFixture = lottoFixture(numbers);
+        doReturn(lottoFixture).when(lottoMachine).createLottoByManual(any());
+
+        // when
+        Lotto lotto = lottoStore.issueWinningLotto(numbers);
+
+        // then
+        assertThat(lotto).isEqualTo(lottoFixture);
+    }
 }

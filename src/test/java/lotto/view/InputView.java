@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.constant.errorMessage.amount.AmountExceptionStatus;
 import lotto.constant.errorMessage.amount.NotNumericAmountException;
+import lotto.constant.errorMessage.amount.NullAmountException;
 import lotto.view.reader.Reader;
 
 public class InputView {
@@ -21,9 +22,17 @@ public class InputView {
 
     private int convertToNumber(String input) {
         try {
-            return Integer.parseInt(input.trim());
+            return Integer.parseInt(checkAmountIsNull(input));
         } catch (NumberFormatException e) {
             throw new NotNumericAmountException(AmountExceptionStatus.AMOUNT_IS_NOT_NUMERIC);
+        }
+    }
+
+    private String checkAmountIsNull(String input) {
+        try {
+            return input.trim();
+        } catch (NullPointerException e) {
+            throw new NullAmountException(AmountExceptionStatus.AMOUNT_IS_NULL);
         }
     }
 }

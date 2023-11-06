@@ -18,11 +18,13 @@
 
 - 사용자의 입력을 파싱하는 클래스입니다.
 - 숫자로 변환하는 과정에서 오류가 발생할 시 **IllegalArgumentException**이 발생합니다.
+    - 오류 메시지는 **ErrorMessage**에 지정된 static 문자열 사용
 
 ### InputValidator
 
 - 파싱된 입력을 검증하는 검증 클래스입니다.
 - 검증 오류가 발생할 시 **IllegalArgumentException**이 발생합니다.
+    - 오류 메시지는 ErrorMessage에 지정된 static 문자열 사용
 
 ## 모델
 

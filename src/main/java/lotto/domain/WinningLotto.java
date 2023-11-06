@@ -36,4 +36,8 @@ public class WinningLotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public boolean isContain(int number) {
+        return winningLotto.isContain(number);
+    }
 }

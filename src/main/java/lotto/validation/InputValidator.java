@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.util.message.ErrorMessage;
 
 public class InputValidator {
 
     private static final int MINIMUM_PRICE = 1000;
     private static final String DELIMITER = ",";
+    private static final int LOTTO_RANGE_START = 1;
+    private static final int LOTTO_RANGE_END = 45;
 
     public int validateInputPrice(String inputPrice) {
         int price;
@@ -62,10 +65,10 @@ public class InputValidator {
     }
 
     private void checkNumberRange(int bonusNumber) {
-        if (bonusNumber >= 1 && bonusNumber <= 45) {
+        if (bonusNumber >= LOTTO_RANGE_START && bonusNumber <= LOTTO_RANGE_END) {
             return;
         }
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_RANGE_START || bonusNumber > LOTTO_RANGE_END) {
             throw new IllegalArgumentException();
         }
     }

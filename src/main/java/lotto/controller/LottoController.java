@@ -1,39 +1,40 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.domain.lotto.LottoTicket;
+import lotto.domain.lotto.WinnerLotto;
 import lotto.service.LottoService;
+import lotto.service.LottoWinnerService;
 import lotto.view.InputView;
 
 public class LottoController {
 
-    InputView inputView = new InputView();
-    LottoService lottoService = new LottoService();
+    private final InputView inputView = new InputView();
+    private final LottoService lottoService = new LottoService();
+    private final LottoWinnerService lottoWinnerService = new LottoWinnerService();
+    private LottoTicket lottoTicket = new LottoTicket();
+    private WinnerLotto winnerLotto;
 
     public void buyLotto() {
         int price;
         int lottoAmount;
-        List<Lotto> lottoTicket;
 
         price = inputView.getLottoPrice();
         lottoAmount = lottoService.getLottoAmount(price);
         lottoTicket = lottoService.exchangeLotto(lottoAmount);
-
-
     }
 
     public void setLottoWinner() {
-        List<Integer> winnerLotto = new ArrayList<>();
+        List<Integer> winnerNumber;
         int bonusNumber;
 
-        winnerLotto = inputView.getWinnerLotto();
+        winnerNumber = inputView.getWinnerLotto();
         bonusNumber = inputView.getBonusNumber();
-
+        winnerLotto = new WinnerLotto(winnerNumber, bonusNumber);
 
     }
 
     public void endLotto() {
-
+        lottoWinnerService.checkWinner(lottoTicket, winnerLotto);
     }
 }

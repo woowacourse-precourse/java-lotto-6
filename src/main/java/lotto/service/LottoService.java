@@ -1,8 +1,7 @@
 package lotto.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import lotto.domain.Lotto;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoTicket;
 import lotto.util.generator.LottoNumberGenerator;
 
 public class LottoService {
@@ -17,11 +16,11 @@ public class LottoService {
         return lottoAmount;
     }
 
-    public List<Lotto> exchangeLotto(int lottoAmount) {
-        List<Lotto> lottoTicket = new ArrayList<>();
+    public LottoTicket exchangeLotto(int lottoAmount) {
+        LottoTicket lottoTicket = new LottoTicket();
         for (int ticket = 0; ticket < lottoAmount; ticket++) {
-            List<Integer> lotto = lottoGenerator.generate();
-            lottoTicket.add(new Lotto(lotto));
+            Lotto lotto = new Lotto(lottoGenerator.generate());
+            lottoTicket.addLotto(lotto);
         }
 
         return lottoTicket;

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -38,21 +39,39 @@ class WinningNumbersTest {
         //given
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
         winningNumbers.setBonusNumber(new BonusNumber("7"));
-        Lotto firstPrize = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto secondPrize = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        Lotto thirdPrize = new Lotto(List.of(1, 2, 3, 4, 5, 8));
-        Lotto fourthPrize = new Lotto(List.of(1, 2, 3, 4, 8, 9));
-        Lotto fifthPrize = new Lotto(List.of(1, 2, 3, 8, 9, 10));
-        List<Lotto> lottoTickets = List.of(firstPrize, secondPrize, thirdPrize, fourthPrize, fifthPrize);
+        List<Lotto> lottoTickets = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 8)),
+                new Lotto(List.of(1, 2, 3, 4, 8, 9)),
+                new Lotto(List.of(1, 2, 3, 8, 9, 10))
+        );
+        Map<LottoRank, Integer> expectedPrizeBreakdown = Map.of(
+                LottoRank.FIRST_PRIZE, 1,
+                LottoRank.SECOND_PRIZE, 1,
+                LottoRank.THIRD_PRIZE, 1,
+                LottoRank.FOURTH_PRIZE, 1,
+                LottoRank.FIFTH_PRIZE, 1
+        );
 
         //when
         LottoPrizeBreakdown result = winningNumbers.createLottoPrizeBreakdown(lottoTickets);
 
         //then
-        assertThat(result.getReport()).containsEntry(LottoRank.FIRST_PRIZE, 1);
-        assertThat(result.getReport()).containsEntry(LottoRank.SECOND_PRIZE, 1);
-        assertThat(result.getReport()).containsEntry(LottoRank.THIRD_PRIZE, 1);
-        assertThat(result.getReport()).containsEntry(LottoRank.FOURTH_PRIZE, 1);
-        assertThat(result.getReport()).containsEntry(LottoRank.FIFTH_PRIZE, 1);
+        expectedPrizeBreakdown.forEach((rank, winCount) -> {
+            assertThat(result.getReport()).containsEntry(rank, winCount);
+        });
+    }
+
+    @DisplayName("보너스 번호가 없는 상태에서 당첨내역을 생성하면 예외가 발생한다.")
+    @Test
+    void throwsExceptionWhenNotExistsBonusNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Lotto> lottoTickets = List.of(lotto);
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+
+        assertThatThrownBy(() -> winningNumbers.createLottoPrizeBreakdown(lottoTickets))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("[ERROR]");
     }
 }

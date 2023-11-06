@@ -21,9 +21,9 @@ public class InputValidate {
             parseInt(input);
         } catch (NumberFormatException e) {
             if (input.length() != input.replace(" ", "").length()){
-                throw new IllegalArgumentException("공백이 입력되었습니다. 다시 입력하세요");
+                throw new IllegalArgumentException("[ERROR] 공백이 입력되었습니다. 다시 입력해주세요.");
             }
-            throw new IllegalArgumentException("숫자가 아닌 값이 입력되었습니다. 다시 입력하세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다. 다시 입력해주세요.");
         }
         return input;
     }

@@ -20,6 +20,19 @@ public class ProcessLotto {
         LottoCalculator lottoCalculator = new LottoCalculator();
         outputView.askPurchaseAmount();
         int cost = inputValidate.validateNumber(inputView.getLine());
+        boolean success = false;
+        while (!success){
+            try{
+                amountProcessing.isDivided(cost);
+                success = true;
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                outputView.askPurchaseAmount();
+                cost = inputValidate.validateNumber(inputView.getLine());
+            }
+        }
+
         int count = amountProcessing.getLottoCount(cost);
         outputView.printNumberPurchase(count);
 
@@ -31,10 +44,30 @@ public class ProcessLotto {
             outputView.printGeneratedNums(generateNums);
             lottos.add(lotto);
         }
+        success = false;
+        List<Integer> winningNums = new ArrayList<>();
         outputView.askWinningNums();
-        List<Integer> winningNums = inputValidate.validateWinningNums(inputView.getLine());
+        while (!success){
+            try{
+                winningNums = inputValidate.validateWinningNums(inputView.getLine());
+                success = true;
+            }
+            catch (IllegalArgumentException e){
+                outputView.askWinningNums();
+            }
+        }
+
+        success = false;
         outputView.askBonusNum();
-        int bonusNum = inputValidate.validateNumber(inputView.getLine());
+        int bonusNum = 0;
+        while (!success){
+            try{
+                bonusNum = inputValidate.validateNumber(inputView.getLine());
+                success = false;
+            }catch (IllegalArgumentException e){
+                outputView.askBonusNum();
+            }
+        }
 
 
         outputView.printWinningStatistics();
@@ -55,7 +88,10 @@ public class ProcessLotto {
                 continue;
             }
             cnt = lottoCalculator.checkMatch(nums.getNumbers(), winningNums);
-            countMap.put(cnt, countMap.get(cnt)+1);
+            if (cnt > 2){
+                countMap.put(cnt, countMap.get(cnt)+1);
+            }
+
         }
 
         outputView.print3Matchs(countMap.get(3));

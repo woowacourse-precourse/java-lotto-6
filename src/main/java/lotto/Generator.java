@@ -9,6 +9,6 @@ public class Generator {
     }
 
     public List<Integer> generate6Nums(){
-        return Randoms.pickUniqueNumbersInRange(0, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

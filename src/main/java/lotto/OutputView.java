@@ -9,7 +9,7 @@ public class OutputView {
     }
 
     public void printNumberPurchase(int cnt){
-        System.out.println(cnt+"개를 구매했습니다.");
+        System.out.println("\n"+cnt+"개를 구매했습니다.");
     }
 
     public void printGeneratedNums(List<Integer> nums){
@@ -17,15 +17,15 @@ public class OutputView {
     }
 
     public void askWinningNums(){
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
     public void askBonusNum(){
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     public void printWinningStatistics(){
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
     }
 

@@ -3,10 +3,10 @@ package lotto.domain.wrapper;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.utils.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import lotto.utils.ErrorMessage;
 
 class LottoNumberTest {
     @DisplayName("1~45 사이의 로또 번호를 생성했을 때, 같은 번호를 가지면 같은 객체로 판단 가능한지 테스트")

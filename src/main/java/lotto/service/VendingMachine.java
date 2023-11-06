@@ -15,6 +15,7 @@ public class VendingMachine {
     public VendingMachine(PurchaseAmount purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
     }
+
     public Lottos getLottos() {
         int lottoCount = purchaseAmount.getAvailableLottoCount();
         List<Lotto> lottos = new ArrayList<>();
@@ -27,9 +28,9 @@ public class VendingMachine {
 
     private Lotto createLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
-                    LottoConstantValue.MIN_LOTTO_NUMBER.get(),
-                    LottoConstantValue.MAX_LOTTO_NUMBER.get(),
-                    LottoConstantValue.LOTTO_NUMBERS_LENGTH.get());
+                LottoConstantValue.MIN_LOTTO_NUMBER.get(),
+                LottoConstantValue.MAX_LOTTO_NUMBER.get(),
+                LottoConstantValue.LOTTO_NUMBERS_LENGTH.get());
         return new Lotto(randomNumbers);
     }
 }

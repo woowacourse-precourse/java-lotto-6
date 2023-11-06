@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.Map;
 import lotto.domain.wrapper.PurchaseAmount;
-import lotto.utils.LottoConstant;
 import lotto.utils.LottoConstantValue;
 import lotto.utils.Prize;
 

@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.wrapper.BonusNumber;
-import lotto.domain.wrapper.LottoNumber;
 import lotto.utils.LottoConstant;
 import lotto.utils.Prize;
 import org.junit.jupiter.api.DisplayName;

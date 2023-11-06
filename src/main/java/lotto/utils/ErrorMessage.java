@@ -29,6 +29,7 @@ public enum ErrorMessage {
     public String getWithFormatAndPrefix(int number) {
         return PREFIX.get() + String.format(message, number);
     }
+
     public String getWithFormatAndPrefix(int minNumber, int maxNumber) {
         return PREFIX.get() + String.format(message, minNumber, maxNumber);
     }

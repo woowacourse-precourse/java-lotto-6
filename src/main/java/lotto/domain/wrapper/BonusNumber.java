@@ -3,7 +3,7 @@ package lotto.domain.wrapper;
 import lotto.domain.Lotto;
 import lotto.utils.ErrorMessage;
 
-public class BonusNumber extends LottoNumber{
+public class BonusNumber extends LottoNumber {
     public BonusNumber(int bonusNumber, Lotto winningLotto) {
         super(bonusNumber);
         validateBonusLottoNumber(bonusNumber, winningLotto);

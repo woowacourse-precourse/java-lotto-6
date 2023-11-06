@@ -3,16 +3,10 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.wrapper.LottoNumber;
-import lotto.utils.LottoConstant;
-import lotto.utils.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 // domain 패키지 밑에 있는 것이 자연스럽지만 LottoTest의 패키지 이동에 대한 설명이 없으므로 그대로 두었습니다.
 class LottoTest {

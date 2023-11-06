@@ -4,7 +4,7 @@ import java.util.Objects;
 import lotto.utils.ErrorMessage;
 import lotto.utils.LottoConstantValue;
 
-public class LottoNumber implements Comparable<LottoNumber>{
+public class LottoNumber implements Comparable<LottoNumber> {
     private final int lottoNumber;
 
     public LottoNumber(int lottoNumber) {

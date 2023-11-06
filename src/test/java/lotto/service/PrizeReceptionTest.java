@@ -3,12 +3,8 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
 import lotto.domain.PrizeReception;
-import lotto.domain.wrapper.BonusNumber;
 import lotto.domain.wrapper.PurchaseAmount;
 import lotto.utils.Prize;
 import org.junit.jupiter.api.DisplayName;

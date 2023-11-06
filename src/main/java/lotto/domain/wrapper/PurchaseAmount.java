@@ -1,7 +1,7 @@
 package lotto.domain.wrapper;
 
-import lotto.utils.LottoConstantValue;
 import lotto.utils.ErrorMessage;
+import lotto.utils.LottoConstantValue;
 
 public class PurchaseAmount {
     private static final int NO_MONEY = 0;

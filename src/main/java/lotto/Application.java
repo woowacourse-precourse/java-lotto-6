@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -24,7 +25,10 @@ public class Application {
         for (int i = 0; i < purchaseCount; i++) {
             lottoList.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
-        //TODO : lottoList에 저장되는 번호들을 오름차순 정렬하기
+
+        for (int i = 0; i < lottoList.size(); i++) {
+            Collections.sort(lottoList.get(i).getNumbers());
+        }
 
         for (int i = 0; i < lottoList.size(); i++) {
             System.out.println(lottoList.get(i).toString());

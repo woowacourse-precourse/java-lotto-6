@@ -88,3 +88,39 @@
 * 당첨 통계를 저장 / 조회한다.
 
 ## 📝 설계
+
+* DDD Layered Architecture로 구현하고, 패턴에 매몰되기보단 도메인 중심의 설계에 초점을 맞출 것.
+
+### ▶️ Presentation Layer
+
+* Console을 통해 사용자와 상호작용한다.
+* 사용자의 입력을 받아 Application Layer에 전달한다.
+* Application Layer로부터 전달받은 결과를 출력한다.
+
+#### LottoController
+
+### 🎮 Application Layer
+
+* Presentation Layer로부터 전달받은 요청을 처리한다.
+* Domain Layer와 Repository Layer에 요청을 전달한다.
+
+#### LottoService
+
+### 💡 Domain Layer
+
+* Application Layer로부터 전달받은 요청을 처리한다.
+* Repository Layer에 요청을 전달한다.
+
+#### Lotto
+
+#### Ticket
+
+#### DrawResult
+
+### 📁 Repository Layer
+
+* Domain Class의 인스턴스가 여기에 저장된다.
+
+#### TicketRepository
+
+#### DrawResultRepository

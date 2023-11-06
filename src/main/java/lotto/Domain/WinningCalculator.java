@@ -55,4 +55,8 @@ public class WinningCalculator {
     private String totalprizeMoneyToString(double amount){
         return String.format("%.1f", amount);
     }
+
+    public HashMap<LottosConstants, Integer> getWinningCount(){
+        return winningCount;
+    }
 }

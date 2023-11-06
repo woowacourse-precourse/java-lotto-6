@@ -15,8 +15,9 @@ public class LottoException {
         validateNumbersPermittedRange(numbers);
     }
 
-    public void validateBonusNumber(List<Integer> inputNumbers, int bonusNumber) {
-
+    public void validateBonusNumber(List<Integer> inputNumbers, int inputBonusNumber) {
+        validateBonusNumberPermittedRange(inputBonusNumber);
+        validateDuplicatedBonusNumber(inputNumbers, inputBonusNumber);
     }
 
     // lotto numbers

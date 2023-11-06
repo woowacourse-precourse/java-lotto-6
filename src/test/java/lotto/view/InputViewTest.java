@@ -21,19 +21,19 @@ class InputViewTest {
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideValuesForNotNumericException")
     @DisplayName("숫자 이외의 값은 입력할 수 없다.")
-    void purchaseAmountNotNumericExceptionTest(final String input) {
+    void amountNotNumericExceptionTest(final String input) {
         customReader.initInput(input);
-        assertThatThrownBy(inputView::readPurchaseAmount)
+        assertThatThrownBy(inputView::readAmount)
                 .isInstanceOf(NumberFormatException.class)
-                .hasMessageContaining(AmountExceptionStatus.PURCHASE_AMOUNT_IS_NOT_NUMERIC.getMessage());
+                .hasMessageContaining(AmountExceptionStatus.AMOUNT_IS_NOT_NUMERIC.getMessage());
     }
 
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideValuesForNormalInput")
     @DisplayName("로또 구입 금액 입력 테스트")
-    void readPurchaseAmountTest(final String input, final int expected) {
+    void readAmountTest(final String input, final int expected) {
         customReader.initInput(input);
-        final int amount = inputView.readPurchaseAmount();
+        final int amount = inputView.readAmount();
         assertThat(amount).isEqualTo(expected);
     }
 }

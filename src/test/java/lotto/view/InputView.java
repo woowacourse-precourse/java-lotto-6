@@ -6,7 +6,7 @@ import lotto.view.reader.Reader;
 
 public class InputView {
 
-    private static final String PRINT_READ_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String PRINT_READ_AMOUNT = "구입금액을 입력해 주세요.";
 
     private final Reader reader;
 
@@ -14,8 +14,8 @@ public class InputView {
         this.reader = reader;
     }
 
-    public int readPurchaseAmount() {
-        System.out.println(PRINT_READ_PURCHASE_AMOUNT);
+    public int readAmount() {
+        System.out.println(PRINT_READ_AMOUNT);
         return convertToNumber(reader.readLine());
     }
 
@@ -23,7 +23,7 @@ public class InputView {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new NotNumericAmountException(AmountExceptionStatus.PURCHASE_AMOUNT_IS_NOT_NUMERIC);
+            throw new NotNumericAmountException(AmountExceptionStatus.AMOUNT_IS_NOT_NUMERIC);
         }
     }
 }

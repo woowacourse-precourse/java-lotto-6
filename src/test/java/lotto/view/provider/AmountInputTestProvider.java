@@ -3,7 +3,7 @@ package lotto.view.provider;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.provider.Arguments;
 
-public class PurchaseAmountInputTestProvider {
+public class AmountInputTestProvider {
 
     public static Stream<Arguments> provideValuesForNormalInput() {
         return Stream.of(

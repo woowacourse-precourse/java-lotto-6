@@ -4,7 +4,7 @@ import lotto.constant.errorMessage.ExceptionStatus;
 
 public class NotNumericAmountException extends NumberFormatException {
 
-    public NotNumericAmountException(ExceptionStatus errorMessagesStatus) {
-        super(errorMessagesStatus.getMessage());
+    public NotNumericAmountException(ExceptionStatus exceptionStatus) {
+        super(exceptionStatus.getMessage());
     }
 }

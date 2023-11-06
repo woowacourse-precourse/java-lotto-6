@@ -15,36 +15,33 @@ public class InputController {
     private BonusNum bonusNum;
 
     public int inputMoney(){
-        while(true){
-            try{
-                money = new Money(InputView.inputMoney());
-                OutputView.printBlank();
-                return money.getLottoTickets();
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
+        try{
+            money = new Money(InputView.inputMoney());
+            OutputView.printBlank();
+            return money.getLottoTickets();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputMoney();
         }
     }
 
     public List<Integer> inputWinningNum(){
-        while(true){
-            try{
-                winningNum = new WinningNum(InputView.inputWinningNum());
-                return winningNum.getWinningNum();
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
+        try{
+            winningNum = new WinningNum(InputView.inputWinningNum());
+            return winningNum.getWinningNum();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputWinningNum();
         }
     }
 
     public int inputBonusNum(){
-        while(true){
-            try {
-                bonusNum = new BonusNum(InputView.inputBonusNum(), winningNum.getWinningNum());
-                return bonusNum.getBonusNum();
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
+        try {
+            bonusNum = new BonusNum(InputView.inputBonusNum(), winningNum.getWinningNum());
+            return bonusNum.getBonusNum();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputBonusNum();
         }
     }
 }

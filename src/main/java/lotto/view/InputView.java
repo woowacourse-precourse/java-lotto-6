@@ -13,14 +13,13 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNum(){
-        while(true){
-            String input = Console.readLine();
-            try{
-                WinningNumValidator winningNumValidator = new WinningNumValidator(input);
-                return parseStirngToInt(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        String input = Console.readLine();
+        try{
+            WinningNumValidator winningNumValidator = new WinningNumValidator(input);
+            return parseStirngToInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNum();
         }
     }
 

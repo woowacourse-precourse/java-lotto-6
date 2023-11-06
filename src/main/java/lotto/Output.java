@@ -67,10 +67,11 @@ public class Output {
     public static void printRateOfReturn(Customer customer) {
 
         double reward = 0;
-        reward += fifth * 5000;
-        reward += fourth * 50000;
-        reward += third * 1_500_000;
-        reward += first * 2_000_000_000;
+        reward += fifth * Prize.FIFTH.getPrizeAmount();
+        reward += fourth * Prize.FOURTH.getPrizeAmount();
+        reward += third * Prize.THIRD.getPrizeAmount();
+        reward += second * Prize.SECOND.getPrizeAmount();
+        reward += first * Prize.FIRST.getPrizeAmount();
 
         double rate = customer.calculateRateOfReturn(reward);
 

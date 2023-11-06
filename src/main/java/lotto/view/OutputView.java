@@ -10,5 +10,6 @@ public class OutputView {
 
     public void printUserLotto(UserLotto userLotto) {
         System.out.println(userLotto);
+        System.out.println();
     }
 }

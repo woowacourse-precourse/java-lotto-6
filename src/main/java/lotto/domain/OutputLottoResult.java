@@ -3,21 +3,18 @@ package lotto.domain;
 import java.util.List;
 
 public class OutputLottoResult {
-    private int match3;
-    private int match4;
-    private int match5;
-    private int match5AndBonus;
-    private int match6;
+    private int match3 = 0;
+    private int match4 = 0;
+    private int match5 = 0;
+    private int match5AndBonus = 0;
+    private int match6 = 0;
+
+    private int totalReturnCash = 0;
 
     public OutputLottoResult(List<LottoResult> lottoResults) {
         for (LottoResult lottoResult : lottoResults) {
             int returnCash = lottoResult.getReturnCash();
-
-//            3개 일치 (5,000원) - 1개
-//            4개 일치 (50,000원) - 0개
-//            5개 일치 (1,500,000원) - 0개
-//            5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-//            6개 일치 (2,000,000,000원) - 0개
+            totalReturnCash += returnCash;
 
             switch (returnCash) {
                 case 5000:
@@ -32,11 +29,15 @@ public class OutputLottoResult {
                 case 30000000:
                     match5AndBonus++;
                     break;
-                case 200000000:
+                case 2000000000:
                     match6++;
                     break;
             }
         }
+    }
+
+    public int getTotalReturn() {
+        return totalReturnCash;
     }
 
     public int getMatch3() {

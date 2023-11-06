@@ -48,4 +48,20 @@ class LottoTest {
                         .collect(Collectors.toList())
         )).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호에 공백을 입력하면 예외가 발생한다.")
+    @Test
+    void createLottoCorrentBlank() {
+        assertThatThrownBy(() -> new Lotto(
+                List.of(1, 2, 3, 4, 5, " ")
+                        .stream()
+                        .map(o -> {
+                            if (o instanceof String) {
+                                return Integer.parseInt((String) o);
+                            }
+                            return (Integer) o;
+                        })
+                        .collect(Collectors.toList())
+        )).isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import lotto.exception.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoException.NOT_SIX_NUMBERS.getExceptionMessage());
         }
     }
 

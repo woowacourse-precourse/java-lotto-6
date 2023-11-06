@@ -10,6 +10,7 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
@@ -23,6 +24,7 @@ public class LottoController {
 
     public void startLotto() {
         Long money = inputPurchaseAmount();
+        HashMap<String, Long> scoreBored = produceStatisticsLottoScore(money);
     }
 
     private Long inputPurchaseAmount() {
@@ -33,16 +35,16 @@ public class LottoController {
     }
 
     private List<List<Integer>> buyLotto(Long money) {
-        PrintMessage.BUY_LOTTO_COUNT.printMessage(money/ONE_THOUSAND);
-        List<List<Integer>> myLotto = lottoService.generateRandomLottoNumbers(money/ONE_THOUSAND);
-        for (int i = 0; i < money/ONE_THOUSAND; i++) {
+        PrintMessage.BUY_LOTTO_COUNT.printMessage(money / ONE_THOUSAND);
+        List<List<Integer>> myLotto = lottoService.generateRandomLottoNumbers(money / ONE_THOUSAND);
+        for (int i = 0; i < money / ONE_THOUSAND; i++) {
             OutputView.lottoNumbersResult(myLotto.get(i));
         }
 
         return myLotto;
     }
 
-    private List<Integer> inputWinningLottoNumber(Long money) {
+    private List<Integer> inputWinningLottoNumber() {
         OutputView.inputViewWinningNumber();
         Lotto lotto = new Lotto(lottoService.convertToLottoIntegerList(InputView.input()));
         return lotto.getLotto();
@@ -52,5 +54,11 @@ public class LottoController {
         OutputView.inputViewBonusNumber();
         BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(InputView.input()));
         return bonusNumber.getBonusNumber();
+    }
+
+    private HashMap<String, Long> produceStatisticsLottoScore(Long money) {
+        List<Integer> winningLotto = inputWinningLottoNumber();
+        Integer bonusNumber = inputBonusNumber();
+        return lottoService.getResultScoreBoard(buyLotto(money), winningLotto, bonusNumber);
     }
 }

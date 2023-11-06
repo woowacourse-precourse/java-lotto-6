@@ -8,13 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.utils.constants.OutputConstants.LOTTO_PRICE;
+import static lotto.view.ServiceConstants.*;
 
 public class LottoResultService {
-
-    private static final int INITIAL_COUNT = 0;
-    private static final int INCREMENT = 1;
-    private static final double PERCENTAGE = 100.0;
-
     public List<LottoResult> countMatchingNumbers(PurchasedLotto purchasedLotto, WinningLotto winningLotto) {
         List<LottoResult> lottoResults = new ArrayList<>();
 

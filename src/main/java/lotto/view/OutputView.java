@@ -38,6 +38,10 @@ public class OutputView {
                 + Message.OUTPUT_LOTTO_RESULT_COUNT.message, count);
     }
 
+    public void outputProfitRate(double profitRate) {
+        System.out.printf(Message.OUTPUT_PROFIT_RATE_BY_PERCENT.message, profitRate);
+    }
+
     private String formatter(List<Integer> numbers) {
         return numbers.stream()
                 .map(String::valueOf)
@@ -48,7 +52,8 @@ public class OutputView {
         OUTPUT_COMPLETE_BUY_LOTTO("\n%s개를 구매했습니다.\n"),
         OUTPUT_LOTTO_NUMBERS("[%s]\n"),
         OUTPUT_LOTTO_RESULTS("\n당첨 통계\n---\n"),
-        OUTPUT_LOTTO_RESULT_COUNT(" - %d개\n");
+        OUTPUT_LOTTO_RESULT_COUNT(" - %d개\n"),
+        OUTPUT_PROFIT_RATE_BY_PERCENT("총 수익률은 %s%%입니다.");
 
         private final String message;
 

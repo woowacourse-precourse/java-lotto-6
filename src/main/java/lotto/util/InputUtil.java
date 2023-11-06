@@ -1,6 +1,8 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
 
 public class InputUtil {
 
@@ -35,12 +37,12 @@ public class InputUtil {
     }
 
     //로또 당첨번호 입력 메소드
-    public int inputWinningNumbers() {
-        String moneyInput = "";
+    public List<Integer> inputWinningNumbers() {
+        String winningNumbersInput = "";
         do {
-            moneyInput = Console.readLine();
-        } while (!validateWinningNumbers(moneyInput));
-        return Integer.parseInt(moneyInput);
+            winningNumbersInput = Console.readLine();
+        } while (!validateWinningNumbers(winningNumbersInput));
+        return convertToList(winningNumbersInput);
     }
 
     private boolean validateWinningNumbers(String moneyInput) {
@@ -55,11 +57,11 @@ public class InputUtil {
 
     //로또 보너스 당첨번호 입력 메소드
     public int inputBonusNumber() {
-        String moneyInput = "";
+        String bonusNumbersInput = "";
         do {
-            moneyInput = Console.readLine();
-        } while (!validateBonusNumber(moneyInput));
-        return Integer.parseInt(moneyInput);
+            bonusNumbersInput = Console.readLine();
+        } while (!validateBonusNumber(bonusNumbersInput));
+        return Integer.parseInt(bonusNumbersInput);
     }
 
     private boolean validateBonusNumber(String moneyInput) {
@@ -72,5 +74,10 @@ public class InputUtil {
         }
     }
 
-
+    private List<Integer> convertToList(String lottoNumberInput) {
+        List<String> stringNumbers = Arrays.stream(lottoNumberInput.split(",")).toList();
+        return stringNumbers.stream()
+                .map(Integer::parseInt)
+                .toList();
+    }
 }

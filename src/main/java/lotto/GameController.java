@@ -1,7 +1,6 @@
 package lotto;
 
-import static lotto.InputController.getValidInput;
-import static lotto.InputView.printBonusNumber;
+import static lotto.InputView.printInsertBonusNumber;
 import static lotto.InputView.printInsertLottoNumbers;
 import static lotto.InputView.printInsertMoney;
 
@@ -14,33 +13,27 @@ public class GameController {
 
 
     public void runGame() {
-        printInsertMoney();
-        Cpu cpu = insertMoneyControl();
+        Cpu cpu = getUserValidMoney();
         int tickets = cpu.getTickets();
         int money = tickets * IntConstants.UNIT_BILL.getValue();
-        OutputView.printBuyTickets(tickets);
-        OutputView.printLottoNumbers(cpu, tickets);
 
-        printInsertLottoNumbers();
-        Lotto playerLottoNumbers = insertLottoNumbersControl();
+        printTicketsAndLotto(cpu, tickets);
 
-        printBonusNumber();
+        Lotto playerLottoNumbers = getUserValidLottoNumber();
 
-        Player playerLotto = insertBonusNumberControl(playerLottoNumbers);
+        Player playerLotto = getUserValidBonusNumber(playerLottoNumbers);
 
         List<Integer> gameResult = gameRule.calculateResult(cpu, playerLotto);
         String totalProfit = gameRule.calculateProfit(money, gameResult);
 
-        OutputView.printResultMessage();
-        OutputView.printContourLine();
-        OutputView.printLottoResult(gameResult);
-        OutputView.printTotalProfit(totalProfit);
+        printAllResult(gameResult, totalProfit);
     }
 
-    public Cpu insertMoneyControl() {
+    private Cpu getUserValidMoney() {
         while (true) {
             try {
-                int money = getValidInput(() -> InputView.insertMoney());
+                printInsertMoney();
+                int money = InputView.insertMoney();
                 Cpu cpu = new Cpu(money);
                 return cpu;
             } catch (IllegalArgumentException e) {
@@ -49,10 +42,11 @@ public class GameController {
         }
     }
 
-    public Lotto insertLottoNumbersControl() {
+    private Lotto getUserValidLottoNumber() {
         while (true) {
             try {
-                List<Integer> playerLottoNumbers = getValidInput(() -> InputView.insertLottoNumbers());
+                printInsertLottoNumbers();
+                List<Integer> playerLottoNumbers = InputView.insertLottoNumbers();
                 Lotto playerLotto = new Lotto(playerLottoNumbers);
                 return playerLotto;
             } catch (IllegalArgumentException e) {
@@ -61,15 +55,28 @@ public class GameController {
         }
     }
 
-    public Player insertBonusNumberControl(Lotto playerLotto) {
+    private Player getUserValidBonusNumber(Lotto playerLotto) {
         while (true) {
             try {
-                int playerBonusNumber = getValidInput(() -> InputView.insertBonusNumber());
+                printInsertBonusNumber();
+                int playerBonusNumber = InputView.insertBonusNumber();
                 return new Player(playerLotto, playerBonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void printAllResult(List<Integer> gameResult, String totalProfit) {
+        OutputView.printResultMessage();
+        OutputView.printContourLine();
+        OutputView.printLottoResult(gameResult);
+        OutputView.printTotalProfit(totalProfit);
+    }
+
+    private void printTicketsAndLotto(Cpu cpu, int tickets) {
+        OutputView.printBuyTickets(tickets);
+        OutputView.printLottoNumbers(cpu, tickets);
     }
 }
 

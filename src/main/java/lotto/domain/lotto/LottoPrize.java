@@ -15,16 +15,16 @@ public enum LottoPrize {
 
     private final static Map<Map.Entry<Integer, Boolean>, LottoPrize> prizeClassifier = new HashMap<>();
 
+    private final int matchCount;
+    private final int reward;
+    private final String ruleDescription;
+    private final boolean isBonusIncluded;
+
     static {
         for (LottoPrize prize : LottoPrize.values()) {
             prizeClassifier.put(new AbstractMap.SimpleEntry<>(prize.matchCount, prize.isBonusIncluded), prize);
         }
     }
-
-    private final int matchCount;
-    private final int reward;
-    private final String ruleDescription;
-    private final boolean isBonusIncluded;
 
     LottoPrize(int matchCount, int reward, String ruleDescription, boolean isBonusIncluded) {
         this.matchCount = matchCount;

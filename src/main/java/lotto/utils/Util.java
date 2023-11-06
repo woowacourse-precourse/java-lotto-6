@@ -3,6 +3,7 @@ package lotto.utils;
 import static lotto.message.ErrorMessage.AMOUNT_IS_NOT_IN_THOUSAND_WON_UNITS;
 
 import java.math.BigDecimal;
+import lotto.message.ErrorMessage;
 
 public class Util {
 
@@ -14,6 +15,14 @@ public class Util {
     public static void validateMultiplesOf(BigDecimal num, BigDecimal factor) {
         if (num.remainder(factor).compareTo(BigDecimal.ZERO) != 0) {
             throw new IllegalArgumentException(AMOUNT_IS_NOT_IN_THOUSAND_WON_UNITS.getMessage());
+        }
+    }
+
+    public static void validateNumber(String input) {
+        try {
+            new BigDecimal(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NOT_NUMBER.getMessage());
         }
     }
 }

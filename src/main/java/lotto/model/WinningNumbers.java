@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,11 +15,19 @@ public class WinningNumbers {
 
     public int countMatchNumbers(Lotto lotto) {
         Set<Integer> winningNumbersSet = new HashSet<>(numbers);
-        int matchCount = (int) lotto.getNumbers().stream()
+        int matchCount = calculateMatchCount(lotto, winningNumbersSet);
+        return adjustMatchCount(matchCount, lotto);
+    }
+
+    private int calculateMatchCount(Lotto lotto, Set<Integer> winningNumbersSet) {
+        return (int) lotto.getNumbers().stream()
                 .filter(winningNumbersSet::contains)
                 .count();
+    }
+
+    private int adjustMatchCount(int matchCount, Lotto lotto) {
         if (matchCount == numbers.size() && lotto.contains(bonusNumber)) {
-            matchCount = numbers.size() - 1;
+            return numbers.size() - 1;
         }
         return matchCount;
     }
@@ -27,5 +35,4 @@ public class WinningNumbers {
     public boolean hasBonusNumber(Lotto lotto) {
         return lotto.contains(bonusNumber);
     }
-
 }

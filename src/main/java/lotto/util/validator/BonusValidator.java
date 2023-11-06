@@ -9,15 +9,15 @@ import lotto.util.ExceptionMessage;
 public class BonusValidator {
 
     public boolean validation(String input, Lotto winnerLottoOnlyNumbers) {
-        if (validationIsNumeric(input)){
+        if (validationIsNumeric(input)) {
             System.out.println(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
             return false;
         }
-        if (validationIsDuplicate(input,winnerLottoOnlyNumbers)){
+        if (validationIsDuplicate(input, winnerLottoOnlyNumbers)) {
             System.out.println(ExceptionMessage.INVALID_BONUS_IS_CONTAIN_NUMBERS.getMessage());
             return false;
         }
-        if (validationRange(input)){
+        if (validationRange(input)) {
             System.out.println(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
             return false;
         }

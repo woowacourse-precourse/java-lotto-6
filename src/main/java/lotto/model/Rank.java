@@ -13,7 +13,7 @@ public enum Rank {
     private final int count;
     private final boolean bonus;
     private final long prize;
-    private final BiFunction<Integer, Boolean, Boolean> calculateRank ;
+    private final BiFunction<Integer, Boolean, Boolean> calculateRank;
 
     Rank(int count, boolean bonus, long prize, BiFunction<Integer, Boolean, Boolean> calculateRank) {
         this.count = count;
@@ -26,9 +26,10 @@ public enum Rank {
         return calculateRank.apply(count, bonus);
     }
 
-    public long getPrize(){
+    public long getPrize() {
         return this.prize;
     }
+
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();

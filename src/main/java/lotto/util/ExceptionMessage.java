@@ -7,9 +7,7 @@ public enum ExceptionMessage {
     INVALID_INPUT_RANGE("1 ~ 45 사이 숫자만 입력이 가능합니다."),
     INVALID_INPUT_DUPLICATE("중복된 숫자는 허용하지 않습니다."),
     INVALID_INPUT_HAS_BLAMK("공백이 포함되어 있습니다."),
-    INVALID_BONUS_IS_CONTAIN_NUMBERS("보너스 번호가 당첨 번호에 포함되어 있습니다.")
-    ;
-
+    INVALID_BONUS_IS_CONTAIN_NUMBERS("보너스 번호가 당첨 번호에 포함되어 있습니다.");
 
 
     public static final String BASE_MESSAGE = "[ERROR] %s";

@@ -4,7 +4,6 @@ import static lotto.util.Constant.END_NUMBER;
 import static lotto.util.Constant.LOTTO_LENGTH;
 import static lotto.util.Constant.START_NUMBER;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.util.ExceptionMessage;
@@ -21,10 +20,10 @@ public class Lotto {
         if (validateLength(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_LENGTH.getMessage());
         }
-        if (validateDuplicate(numbers)){
+        if (validateDuplicate(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_DUPLICATE.getMessage());
         }
-        if (validateRange(numbers)){
+        if (validateRange(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
         }
     }
@@ -34,7 +33,7 @@ public class Lotto {
     }
 
     private boolean validateDuplicate(List<Integer> numbers) {
-        return  numbers.stream()
+        return numbers.stream()
                 .distinct()
                 .collect(Collectors.toList())
                 .size() != LOTTO_LENGTH;
@@ -44,14 +43,16 @@ public class Lotto {
         return numbers.size() != LOTTO_LENGTH;
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
+
     public boolean contains(int number) {
         return numbers.contains(number);
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return numbers.toString();
     }
 }

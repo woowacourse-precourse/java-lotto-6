@@ -6,10 +6,11 @@ public class WinnerLotto {
     Lotto WinnerLotto;
     int bonus;
 
-    public WinnerLotto(Lotto winnerLotto,int bonus){
+    public WinnerLotto(Lotto winnerLotto, int bonus) {
         this.WinnerLotto = winnerLotto;
         this.bonus = bonus;
     }
+
     public Rank compare(Lotto lotto) {
         int count = getMatchCount(lotto);
         boolean bonus = lotto.contains(this.bonus);

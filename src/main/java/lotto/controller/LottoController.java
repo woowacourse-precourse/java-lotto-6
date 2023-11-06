@@ -42,9 +42,9 @@ public class LottoController {
 
     private int getBonusNumber(Lotto winnerLottoOnlyNumbers) {
         String input;
-        do{
+        do {
             input = inputView.readBonusNumber();
-        }while(!bonusValidator.validation(input,winnerLottoOnlyNumbers));
+        } while (!bonusValidator.validation(input, winnerLottoOnlyNumbers));
         return numericConverter.convert(input);
     }
 
@@ -52,7 +52,7 @@ public class LottoController {
         String input;
         do {
             input = inputView.readWinnerLottoNumbers();
-        }while (!winnerLottoValidator.validation(input));
+        } while (!winnerLottoValidator.validation(input));
         return new Lotto(numericListConverter.convert(input));
     }
 

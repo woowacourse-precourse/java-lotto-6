@@ -12,11 +12,11 @@ public class OutputView {
     private final String PROFIT_START_MESSEGE = "총 수익률은 %.1f";
     private final String PROFIT_END_MESSEGE = "%입니다.";
 
-    public void printAmount(int amount){
-        System.out.println(String.format(AMOUNT_MESSAGE,amount));
+    public void printAmount(int amount) {
+        System.out.println(String.format(AMOUNT_MESSAGE, amount));
     }
 
-    public void printLottoInformation(List<Lotto> lottos){
+    public void printLottoInformation(List<Lotto> lottos) {
         lottos.forEach(System.out::println);
         System.out.println();
     }
@@ -29,6 +29,6 @@ public class OutputView {
     }
 
     public void printProfitRate(double profit) {
-        System.out.println(String.format(PROFIT_START_MESSEGE, profit)+PROFIT_END_MESSEGE);
+        System.out.println(String.format(PROFIT_START_MESSEGE, profit) + PROFIT_END_MESSEGE);
     }
 }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NumericListConverter implements Converter<String, List<Integer>>{
+public class NumericListConverter implements Converter<String, List<Integer>> {
     @Override
     public List<Integer> convert(String target) {
         List<String> inputs = Arrays.stream(target.split(",")).toList();

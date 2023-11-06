@@ -19,7 +19,7 @@ public class WinnerLottoValidator extends Validator {
             System.out.println(ExceptionMessage.INVALID_INPUT_LENGTH.getMessage());
             return false;
         }
-        if (validationHasDuplicate(input)){
+        if (validationHasDuplicate(input)) {
             System.out.println(ExceptionMessage.INVALID_INPUT_DUPLICATE.getMessage());
             return false;
         }

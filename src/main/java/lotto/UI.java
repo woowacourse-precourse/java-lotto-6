@@ -2,7 +2,9 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -28,10 +30,14 @@ public class UI {
 
     private static void printLotto(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
-        numbers.sort(Comparator.naturalOrder());
+        List unmodifiableNumbers = Collections.unmodifiableList(numbers);
+        List newNumbers = new ArrayList(unmodifiableNumbers);
+        Collections.sort(newNumbers);
+        newNumbers.sort(Comparator.naturalOrder());
+
         System.out.print("[");
         for (int i = 0; i < Lotto.size; i++) {
-            System.out.print(numbers.get(i));
+            System.out.print(newNumbers.get(i));
             if (i < Lotto.size - 1) {
                 System.out.print(", ");
             }

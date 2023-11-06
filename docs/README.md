@@ -46,7 +46,11 @@ Lotto Game Program
   
     **UserLotto Class** // 사용자가 입력한 로또 번호 및 보너스 번호까지 저장하는 클래스
     ```agsl
-
+    - addBonusNumber    // 보너스번호를 사용자 로또에 추가한다.
+    - validate          // 사용자 로또의 유효성 검사
+    - duplicationCheck  // 로또의 유효성 검사를 위한 중복체크
+    - bonusNumberValidate   // 보너스번호가 6개의 당첨번호와 중복되는지 확인
+    - getNumbers        // 보너스번호를 List형태로 받는다.
     ```
 
 - ### *View*
@@ -70,6 +74,7 @@ Lotto Game Program
     ```agsl
     - moneyException    // 금액 입력에 대한 예외처리
     - numbersException  // 당첨번호 입력에 대한 예외처리
+    - bonusNumberException // 입력된 보너스번호의 예외처리
     ```
   
     **LottoGeneratorController Class** // 로또 번호를 생성한다.
@@ -82,6 +87,7 @@ Lotto Game Program
     - lottoStart    // 로또 게임 시작
     - lottoCheck    // 몇개의 로또가 맞았는지 체크해주는 메소드
     - getRevenue    // 수익률 계산
+    - countEqualNumber  // 사용자 로또와 발행된 로또중 하나를 비교하여 몇개의 수가 일치하는지 반환
     ```
 
 ----

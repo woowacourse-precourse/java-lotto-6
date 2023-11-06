@@ -24,7 +24,7 @@ public class View {
         System.out.println();
     }
 
-    public static <T> T inputHandler(Message message, Function<String, T> func) {
+    private static <T> T inputHandler(Message message, Function<String, T> func) {
         while (true) {
             try {
                 printMessage(message);
@@ -44,7 +44,8 @@ public class View {
             if (!Checker.is1k(result)) {
                 throw LottoException.of(lotto.exception.Message.MONEY_REMAINDER);
             }
-            return result;
+            printNewLine();
+            return result /~ GameSetting.TICKET_PRICE.getValue();
         });
     }
 

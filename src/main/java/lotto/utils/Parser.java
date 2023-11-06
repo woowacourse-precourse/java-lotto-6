@@ -4,7 +4,6 @@ import lotto.exception.LottoException;
 import lotto.exception.Message;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 public class Parser {

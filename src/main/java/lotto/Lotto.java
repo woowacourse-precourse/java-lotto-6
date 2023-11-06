@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,11 @@ public class Lotto {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_ERROR);
         }
+    }
+
+    public static Lotto makeRandomNumbersForLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
     }
 
 

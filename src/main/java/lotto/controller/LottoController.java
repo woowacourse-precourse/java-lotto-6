@@ -4,6 +4,7 @@ import lotto.domain.PurchaseAmount;
 import lotto.domain.PurchasedLottos;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -22,6 +23,9 @@ public class LottoController {
             PurchaseAmount purchaseAmount = new PurchaseAmount(inputAmount);
 
             PurchasedLottos purchasedLottos = lottoService.getPurchasedLottos(purchaseAmount);
+
+            OutputView.printPurchaseLottoCounts(purchaseAmount);
+            OutputView.printRandomLottoNumbers(purchasedLottos);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             purchaseLotto();

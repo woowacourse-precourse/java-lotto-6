@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -24,5 +25,18 @@ public class Application {
             allTickets[i] = numbers;
             System.out.println(numbers);
         }
+
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        String a = Console.readLine();
+        String[] winningNumbers = a.split(",");
+
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 0; i < winningNumbers.length; i++) {
+            int x = Integer.parseInt(winningNumbers[i]);
+            if (!numbers.contains(x)) {
+                numbers.add(x);
+            }
+        }
+        Lotto lotto = new Lotto(numbers);
     }
 }

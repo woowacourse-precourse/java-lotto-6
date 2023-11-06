@@ -3,22 +3,36 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Objects;
 import lotto.constant.Message;
+import lotto.domain.PurchasePrice;
 import lotto.exception.LottoExceptionMessage;
 
 public class InputView {
-    public int inputPrice() {
-        Integer validPrice = null;
+    public PurchasePrice inputPurchasePrice() {
+        PurchasePrice purchasePrice = null;
 
-        while (isNotValidPrice(validPrice)) {
+        while (isNotValidPurchasePrice(purchasePrice)) {
             System.out.println(Message.INPUT_PRICE.getMessage());
             String inputPrice = Console.readLine().trim();
-            validPrice = parseValidPrice(inputPrice);
+            Integer validPrice = parseValidPrice(inputPrice);
+
+            purchasePrice = createPurchasePrice(validPrice);
         }
-        return validPrice;
+        return purchasePrice;
     }
 
-    private boolean isNotValidPrice(Integer validPrice) {
-        return Objects.isNull(validPrice);
+    private PurchasePrice createPurchasePrice(Integer validPrice) {
+        if (isValidPrice(validPrice)) {
+            return PurchasePrice.from(validPrice);
+        }
+        return null;
+    }
+
+    private boolean isNotValidPurchasePrice(PurchasePrice purchasePrice) {
+        return Objects.isNull(purchasePrice);
+    }
+
+    private boolean isValidPrice(Integer validPrice) {
+        return !Objects.isNull(validPrice);
     }
 
     private Integer parseValidPrice(String inputPrice) {

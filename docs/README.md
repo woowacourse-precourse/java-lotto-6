@@ -30,8 +30,8 @@
 | ✔ | 구입 금액이 유효하지 않으면 `IllegalArgumentException` 예외 처리                             |
 | ✔ | 사용자가 구입한 로또 수량 문구 출력                                                         |
 |  | 수량만큼 발행된 로또 번호들을 오름차순 정렬하여 출력                                                 |
-|  | 사용자에게 당첨 번호를 입력받음                                                            |
-|  | 입력받은 형식이 유효하지 않으면 `IllegalArgumentException` 예외 처리                           |
+| ✔ | 사용자에게 당첨 번호를 입력받음                                                            |
+| ✔ | 입력받은 형식이 유효하지 않으면 `IllegalArgumentException` 예외 처리                           |
 | ✔ | 사용자에게 보너스 번호를 입력받음                                                           |
 | ✔ | 유효한 숫자가 아닌 경우 `IllegalArgumentException` 예외 처리                               |
 |  | 당첨 통계 문구 출력                                                                  |

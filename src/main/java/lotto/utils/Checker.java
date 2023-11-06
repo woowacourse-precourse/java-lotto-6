@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import lotto.domain.GameSetting;
 import lotto.exception.LottoException;
 import lotto.exception.Message;
 
@@ -14,7 +15,7 @@ public class Checker {
     }
 
     public static boolean is1k(Integer number) {
-        return number % 1000 == 0;
+        return number % GameSetting.TICKET_PRICE.getValue() == 0;
     }
 
     public static void validateUnique(List<Integer> numbers) {

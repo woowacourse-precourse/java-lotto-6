@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.GameSetting;
 import lotto.exception.LottoException;
 import lotto.utils.Checker;
 import lotto.utils.Parser;
@@ -51,8 +52,8 @@ public class View {
         return inputHandler(Message.REQUEST_NUMBERS, input -> {
             List<Integer> result = Parser.parseStringToIntList(input);
             Checker.validateUnique(result);
-            Checker.validateSize(result, 6);
-            Checker.validateRange(result, 1, 45);
+            Checker.validateSize(result, GameSetting.TICKET_SIZE.getValue());
+            Checker.validateRange(result, GameSetting.START_NUMBER.getValue(), GameSetting.END_NUMBER.getValue());
             return result;
         });
     }
@@ -61,7 +62,8 @@ public class View {
         return inputHandler(Message.REQUEST_NUMBER_BONUS, input -> {
             Integer result = Parser.parseStringToInt(input);
 
-            if (!Checker.isValidateRange(result, 1, 45)) {
+            if (!Checker.isValidateRange(
+                    result, GameSetting.START_NUMBER.getValue(), GameSetting.END_NUMBER.getValue())) {
                 throw LottoException.of(lotto.exception.Message.MONEY_RANGE);
             }
 

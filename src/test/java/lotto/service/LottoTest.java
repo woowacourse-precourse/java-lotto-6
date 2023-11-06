@@ -24,30 +24,32 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("generateRangeData")
     @DisplayName("당첨 번호 범위 테스트! 1-45 사이")
-    void rangeCheckTest(List<Integer> rangeNumbers){
-        Assertions.assertThatThrownBy(()-> rangeCheck(rangeNumbers)).isInstanceOf(IllegalArgumentException.class)
+    void rangeCheckTest(List<Integer> rangeNumbers) {
+        Assertions.assertThatThrownBy(() -> rangeCheck(rangeNumbers))
+            .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(WINNUMBER_RANGE.getMessage());
     }
 
     static Stream<Arguments> generateRangeData() {
         return Stream.of(
-            Arguments.of(Arrays.asList(1, 2, 3,46,47,48)),
-            Arguments.of(Arrays.asList(-1, 0, 1,2,3,4))
+            Arguments.of(Arrays.asList(1, 2, 3, 46, 47, 48)),
+            Arguments.of(Arrays.asList(-1, 0, 1, 2, 3, 4))
         );
     }
 
     @ParameterizedTest
     @MethodSource("generateDuplicateData")
     @DisplayName("당첨 번호 내부에 중복된 숫자가 있는지 테스트!")
-    void duplicateTest(List<Integer> duplicateNumbers){
-        Assertions.assertThatThrownBy(() -> duplicate(duplicateNumbers)).isInstanceOf(IllegalArgumentException.class)
+    void duplicateTest(List<Integer> duplicateNumbers) {
+        Assertions.assertThatThrownBy(() -> duplicate(duplicateNumbers))
+            .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(WINNUMBER_NO_DUPLICATE_LENGTH.getMessage());
     }
 
     static Stream<Arguments> generateDuplicateData() {
         return Stream.of(
-            Arguments.of(Arrays.asList(1, 2, 2,3,4,5)),
-            Arguments.of(Arrays.asList(1, 2, 3,3,4,5))
+            Arguments.of(Arrays.asList(1, 2, 2, 3, 4, 5)),
+            Arguments.of(Arrays.asList(1, 2, 3, 3, 4, 5))
         );
     }
 
@@ -55,19 +57,18 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("generateLengthData")
     @DisplayName("당첨 번호 내부에 중복된 숫자가 있는지 테스트!")
-    void lengthTest(List<Integer> lengthNumbers){
-        Assertions.assertThatThrownBy(() -> lengthCheck(lengthNumbers)).isInstanceOf(IllegalArgumentException.class)
+    void lengthTest(List<Integer> lengthNumbers) {
+        Assertions.assertThatThrownBy(() -> lengthCheck(lengthNumbers))
+            .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(WINNUMBER_LENGTH.getMessage());
     }
 
     static Stream<Arguments> generateLengthData() {
         return Stream.of(
-            Arguments.of(Arrays.asList(1, 2, 2,3,4,5,7)),
-            Arguments.of(Arrays.asList(1, 2, 3,3,4))
+            Arguments.of(Arrays.asList(1, 2, 2, 3, 4, 5, 7)),
+            Arguments.of(Arrays.asList(1, 2, 3, 3, 4))
         );
     }
-
-
 
 
     private void rangeCheck(List<Integer> numbers) {

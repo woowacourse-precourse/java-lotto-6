@@ -12,16 +12,16 @@ class YieldServiceTest {
     YieldService yieldService;
 
     @BeforeEach
-    void init(){
-        yieldService=new YieldService();
+    void init() {
+        yieldService = new YieldService();
     }
 
     @Test
     @DisplayName("수익률 계산 로직 테스트!")
     void calculateYieldTest() {
         //given
-        Long result=5000L;
-        Long money=8000L;
+        Long result = 5000L;
+        Long money = 8000L;
 
         //when
         double calculateResult = yieldService.calculateYield(result, money);

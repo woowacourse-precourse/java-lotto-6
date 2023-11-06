@@ -21,9 +21,8 @@ class InputMoneyServiceTest {
     Validator validator;
 
 
-
     @BeforeEach
-    void init(){
+    void init() {
         inputMoneyService = new InputMoneyService();
         validator = new Validator();
     }
@@ -57,7 +56,6 @@ class InputMoneyServiceTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(MONEY_UNIT_NUMBER.getMessage());
     }
-
 
 
 }

@@ -19,10 +19,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 class RecordServiceTest {
 
 
-
-
     @BeforeEach
-    void init(){
+    void init() {
         for (Result value : Result.values()) {
             value.init();
         }
@@ -31,13 +29,13 @@ class RecordServiceTest {
 
     @Test
     @DisplayName("일반적인 저장의 경우 보너스 경우를 제거한 경우!")
-    void recordResultTest(){
+    void recordResultTest() {
         //given
         List<LottoTicket> lottoTickets = new ArrayList<>();
-        lottoTickets.add(new LottoTicket(List.of(1,2,3,4,5,6), 3, false));
-        lottoTickets.add(new LottoTicket(List.of(3,4,5,6,7,8), 4, false));
-        lottoTickets.add(new LottoTicket(List.of(1,2,3,4,5,6), 5, false));
-        lottoTickets.add(new LottoTicket(List.of(1,2,3,4,5,6), 6, false));
+        lottoTickets.add(new LottoTicket(List.of(1, 2, 3, 4, 5, 6), 3, false));
+        lottoTickets.add(new LottoTicket(List.of(3, 4, 5, 6, 7, 8), 4, false));
+        lottoTickets.add(new LottoTicket(List.of(1, 2, 3, 4, 5, 6), 5, false));
+        lottoTickets.add(new LottoTicket(List.of(1, 2, 3, 4, 5, 6), 6, false));
         //when
         recordResult(lottoTickets);
         //then
@@ -50,11 +48,11 @@ class RecordServiceTest {
 
     @Test
     @DisplayName("보너스 번호가 생길 경우에 대한 테스트!")
-    void recordBonusResultTest(){
+    void recordBonusResultTest() {
         //given
         List<LottoTicket> bonusTickets = new ArrayList<>();
-        bonusTickets.add(new LottoTicket(List.of(1,2,3,4,5,6), 5, true));
-        bonusTickets.add(new LottoTicket(List.of(3,4,5,6,7,8), 5, true));
+        bonusTickets.add(new LottoTicket(List.of(1, 2, 3, 4, 5, 6), 5, true));
+        bonusTickets.add(new LottoTicket(List.of(3, 4, 5, 6, 7, 8), 5, true));
         //when
         recordResult(bonusTickets);
         //then
@@ -63,11 +61,8 @@ class RecordServiceTest {
     }
 
 
+    static class LottoTicket {
 
-
-
-
-    static class LottoTicket{
         private final List<Integer> numbers;
         private int sameCount;
 
@@ -107,8 +102,9 @@ class RecordServiceTest {
             Result.SECOND.addCount();
             return;
         }
-        if (isNoBonus(lottoTicket, value))
+        if (isNoBonus(lottoTicket, value)) {
             value.addCount();
+        }
     }
 
     private boolean isNoBonus(LottoTicket lottoTicket, Result value) {

@@ -43,31 +43,26 @@ class InputBonusNumberServiceTest {
     @ValueSource(ints = {-1, 46, 0})
     @DisplayName("보너스 번호의 숫자가 범위를 벗어난 경우!")
     void validateBonusNumberRange(int convertedBonusNumber) {
-        Assertions.assertThatThrownBy(() -> validator.validateBonusNumberRange(convertedBonusNumber))
+        Assertions.assertThatThrownBy(
+                () -> validator.validateBonusNumberRange(convertedBonusNumber))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(BONUS_NUMBER_RIGHT_RANGE.getMessage());
     }
 
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3,4,5,6})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
     @DisplayName("보너스 번호의 숫자 당첨 번호 숫자 내부에 들어있는 경우!")
     void validateBonusNumberInWinNumbers(int convertedBonusNumber) {
         //given
-        List<Integer> lottoWinNumbers = List.of(1,2,3,4,5,6);
+        List<Integer> lottoWinNumbers = List.of(1, 2, 3, 4, 5, 6);
         //then
-        Assertions.assertThatThrownBy(() -> validator.validateIsBonusNumberInWinnerNumber(lottoWinNumbers, convertedBonusNumber))
+        Assertions.assertThatThrownBy(
+                () -> validator.validateIsBonusNumberInWinnerNumber(lottoWinNumbers,
+                    convertedBonusNumber))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(BONUS_NUMBER_NOT_NUPLICATED_WINNUMBER.getMessage());
     }
-
-
-
-
-
-
-
-
 
 
 }

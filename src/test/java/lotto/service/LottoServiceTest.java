@@ -11,20 +11,17 @@ import org.junit.jupiter.api.Test;
 class LottoServiceTest {
 
 
-
-
-
     @Test
     @DisplayName("현재 로또 티켓이 당첨 번호를 가지고 있나?")
-    void nowLottoTicketHasWinNumbersTest(){
+    void nowLottoTicketHasWinNumbersTest() {
         //given
-        LottoTicket lottoTicket = new LottoTicket(List.of(1,2,3,4,5,6),0,false);
-        LottoTicket lottoTicketSecond = new LottoTicket(List.of(3,4,5,6,7,8),0,false);
-        List<Integer> winNumbers = List.of(1,2,3,4,5,6);
+        LottoTicket lottoTicket = new LottoTicket(List.of(1, 2, 3, 4, 5, 6), 0, false);
+        LottoTicket lottoTicketSecond = new LottoTicket(List.of(3, 4, 5, 6, 7, 8), 0, false);
+        List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
 
         //when
         nowLottoTicketHasWinNumber(lottoTicket, winNumbers);
-        nowLottoTicketHasWinNumber(lottoTicketSecond,winNumbers);
+        nowLottoTicketHasWinNumber(lottoTicketSecond, winNumbers);
 
         //then
         Assertions.assertThat(lottoTicket.getSameCount()).isEqualTo(6);
@@ -34,10 +31,10 @@ class LottoServiceTest {
 
     @Test
     @DisplayName("현재 로또 티켓이 5개 (2,3 등인 상황) 에서 보너스 번호 처리 하는 법 테스트")
-    void nowLottoTicketHasBonusNumber(){
+    void nowLottoTicketHasBonusNumber() {
         //given
-        LottoTicket lottoTicket = new LottoTicket(List.of(1,2,3,4,5,6),5,false);
-        LottoTicket lottoTicketSecond = new LottoTicket(List.of(1,2,4,5,6,7),5,false);
+        LottoTicket lottoTicket = new LottoTicket(List.of(1, 2, 3, 4, 5, 6), 5, false);
+        LottoTicket lottoTicketSecond = new LottoTicket(List.of(1, 2, 4, 5, 6, 7), 5, false);
         int bonusNumber = 3;
 
         //when
@@ -50,8 +47,8 @@ class LottoServiceTest {
     }
 
 
+    static class LottoTicket {
 
-    static class LottoTicket{
         private final List<Integer> numbers;
 
         private int sameCount;
@@ -102,7 +99,7 @@ class LottoServiceTest {
 
 
     private void nowLottoTicketHasBonusNumber(LottoTicket lottoTicket, Integer bonusNumber
-        ) {
+    ) {
         if (lottoTicket.getSameCount() == SAME_COUNT_FIVE.getNumber() && lottoTicket.getNumbers()
             .contains(bonusNumber)) {
             lottoTicket.hasBonus();

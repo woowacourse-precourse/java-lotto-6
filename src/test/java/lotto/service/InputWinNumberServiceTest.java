@@ -19,8 +19,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 class InputWinNumberServiceTest {
 
     Validator validator;
+
     @BeforeEach
-    void init(){
+    void init() {
         validator = new Validator();
     }
 
@@ -33,12 +34,11 @@ class InputWinNumberServiceTest {
         List<String> splitedInputWinNumbers = List.of(
             inputWinNumbers.split(COMMA.getDelimiter()));
 
-        Assertions.assertThatThrownBy(() -> validator.validateRightCommaCount(inputWinNumbers, splitedInputWinNumbers))
+        Assertions.assertThatThrownBy(
+                () -> validator.validateRightCommaCount(inputWinNumbers, splitedInputWinNumbers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(WINNUMBER_COMMA_DELIMITER.getMessage());
     }
-
-
 
 
     @ParameterizedTest
@@ -50,21 +50,11 @@ class InputWinNumberServiceTest {
             inputWinNumbers.split(COMMA.getDelimiter()));
         System.out.println(splitedInputWinNumbers);
 
-        Assertions.assertThatThrownBy(() -> validator.validateWinnumberOnlyNumber(splitedInputWinNumbers))
+        Assertions.assertThatThrownBy(
+                () -> validator.validateWinnumberOnlyNumber(splitedInputWinNumbers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(WINNUMBER_ONLY_NUMBER.getMessage());
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

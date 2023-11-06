@@ -23,11 +23,11 @@ public class InputData {
 	
 	public static List<Integer> winningNumber(){
 		List<Integer> winningNumber = new ArrayList<>();
-		String inputData = "";
 		boolean isValidInput = false;
 		while(!isValidInput) {
 			try {
-				inputData = Console.readLine();
+				String inputData = Console.readLine();
+				Validate.validateFormat(inputData);
 				Validate.validSixNumberInput(inputData);
 			} catch (Exception e) {
 				// TODO: handle exception

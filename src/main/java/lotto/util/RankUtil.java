@@ -3,7 +3,7 @@ package lotto.util;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.lotto.Rank;
+import lotto.domain.Rank;
 
 public class RankUtil {
     private RankUtil() {

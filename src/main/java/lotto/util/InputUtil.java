@@ -1,12 +1,12 @@
-package lotto.input;
+package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
-import lotto.validator.ListValidator;
-import lotto.validator.MoneyValidator;
-import lotto.validator.StringValidator;
+import lotto.util.validator.ListValidator;
+import lotto.util.validator.MoneyValidator;
+import lotto.util.validator.StringValidator;
 
 public class InputUtil {
     private InputUtil() {

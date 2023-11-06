@@ -1,6 +1,6 @@
-package lotto.validator;
+package lotto.util.validator;
 
-import lotto.Constant;
+import lotto.domain.Constant;
 
 public class MoneyValidator {
     private static final int LOTTO_PRICE = Constant.LOTTO_PRICE;

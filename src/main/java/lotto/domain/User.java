@@ -1,10 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.lotto.Draw;
-import lotto.lotto.Lotto;
-import lotto.lotto.Rank;
 import lotto.util.RandomNumber;
 import lotto.util.RankUtil;
 

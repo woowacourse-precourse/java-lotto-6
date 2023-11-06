@@ -1,8 +1,9 @@
 package lotto;
 
 import java.util.List;
-import lotto.input.InputUtil;
-import lotto.lotto.Draw;
+import lotto.util.InputUtil;
+import lotto.domain.Draw;
+import lotto.domain.User;
 
 public class Application {
     public static void main(String[] args) {

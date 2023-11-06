@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -58,6 +59,42 @@ class ApplicationTest extends NsTest {
     void 구입_금액이_1000원_단위_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 숫자가 아닌 경우 예외 처리한다.")
+    @Test
+    void 당첨_번호_숫자_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "a,b,c,d,e,f");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 6개 이상 입력된 경우 예외 처리한다.")
+    @Test
+    void 당첨_번호_숫자_입력_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("중복 입력된 숫자가 있는 경우 예외 처리한다.")
+    @Test
+    void 중복_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 숫자 입력 시에 중복 입력된 숫자가 있는 경우 예외 처리한다.")
+    @Test
+    void 중복_입력_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

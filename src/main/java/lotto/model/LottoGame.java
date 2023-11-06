@@ -61,32 +61,43 @@ public class LottoGame {
 
     public void calculationResult(DrawResult drawResult) {
         for (Lotto lotto : user.issuanceLotto()) {
-            int i = countMatch(lotto, drawResult);
-            if (i == 3) {
-                updateMatch(Match.THREE_MATCH.getMessage());
-            } else if (i == 4) {
-                updateMatch(Match.FOUR_MATCH.getMessage());
-            } else if (i == 5) {
-                updateMatch(Match.FIVE_MATCH.getMessage());
-            } else if (i == 6) {
-                updateMatch(Match.SIX_MATCH.getMessage());
-            } else if (countMatch(lotto, drawResult) == 5 && lotto.getNumbers().contains(drawResult.bonusNumber())) {
-                updateMatch(Match.BONUS_MATCH.getMessage());
-            }
+            updateMatch(countMatch(lotto, drawResult), lotto, drawResult);
         }
-        rateOfReturn = calculationRateOfReturn();
+        calculationRateOfReturn();
     }
 
-    public Double calculationRateOfReturn() {
+    public void calculationRateOfReturn() {
         double result = 0;
         for (Match match : Match.values()) {
             result += matchs.get(match.getMessage()) * match.getPrize();
         }
         result = Math.round(result / user.issuanceLotto().size() * 10.0);
-        return result / 100.0;
+        this.rateOfReturn = result / 100.0;
     }
 
-    public void updateMatch(String message) {
+    public void updateMatch(int matchNumber, Lotto lotto, DrawResult drawResult) {
+        if (matchNumber == 3) {
+            updateMatchCount(Match.THREE_MATCH.getMessage());
+        }
+        if (matchNumber == 4) {
+            updateMatchCount(Match.FOUR_MATCH.getMessage());
+        }
+        if (matchNumber == 5) {
+            updateMatchCount(Match.FIVE_MATCH.getMessage());
+        }
+        if (matchNumber == 6) {
+            updateMatchCount(Match.SIX_MATCH.getMessage());
+        }
+        updateBonusCount(matchNumber, lotto, drawResult);
+    }
+
+    public void updateBonusCount(int matchNumber, Lotto lotto, DrawResult drawResult) {
+        if (matchNumber == 5 && lotto.getNumbers().contains(drawResult.bonusNumber())) {
+            updateMatchCount(Match.BONUS_MATCH.getMessage());
+        }
+    }
+
+    public void updateMatchCount(String message) {
         matchs.put(message, matchs.get(message) + 1);
     }
 

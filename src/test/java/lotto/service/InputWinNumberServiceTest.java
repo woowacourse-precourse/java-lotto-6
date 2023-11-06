@@ -24,18 +24,6 @@ class InputWinNumberServiceTest {
         validator = new Validator();
     }
 
-    @Test
-    void checkRightWinnerNumbers() {
-
-
-//        List<String> splitedInputWinNumbers = List.of(
-//            inputWinnerNumbers.split(COMMA.getDelimiter()));
-//        validator.validateRightCommaCount(inputWinnerNumbers, splitedInputWinNumbers);
-//        validator.validateWinnumberOnlyNumber(splitedInputWinNumbers);
-//        winNumbers = splitedInputWinNumbers.stream().map(Integer::parseInt)
-//            .collect(Collectors.toList());
-    }
-
 
     @ParameterizedTest
     @ValueSource(strings = {",,,", "1,2,3,"})

@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.constant.Message.PURCHASE_AMOUNT_MESSAGE;
 import static lotto.constant.Message.PURCHASE_AMOUNT_PROMPT;
+import static lotto.constant.Message.WINNING_NUMBER_PROMPT;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.Message;
@@ -54,5 +55,11 @@ public class LottoView implements View {
                 .forEach(lottoDto ->
                         println(lottoDto.getLottoNumbers())
                 );
+    }
+
+    @Override
+    public String askWinningNumber() {
+        printMessage(WINNING_NUMBER_PROMPT);
+        return Console.readLine();
     }
 }

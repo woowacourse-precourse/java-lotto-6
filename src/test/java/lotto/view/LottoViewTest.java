@@ -54,4 +54,13 @@ class LottoViewTest extends UiTest {
         assertThat(getSystemOutput())
                 .contains("[1, 2, 3, 4, 5, 6]");
     }
+
+    @Test
+    public void askWinningNumber() {
+        input("1,2,3,4,5");
+
+        String inputAmount = lottoView.askWinningNumber();
+
+        assertThat(inputAmount).isEqualTo("1,2,3,4,5");
+    }
 }

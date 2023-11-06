@@ -18,4 +18,6 @@ public interface View {
     void printPurchaseQuantity(LottoPurchaseDto lottoPurchaseDto);
 
     void printLottoNumbers(LottosDto lottosDto);
+
+    String askWinningNumber();
 }

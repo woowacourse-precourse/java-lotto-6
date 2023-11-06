@@ -9,16 +9,19 @@ import lotto.domain.Money;
 
 public final class LottosGenerator implements Generator<Lottos> {
 
-	private static final LottoNumberGenerator LOTTO_NUMBER_GENERATOR = new LottoNumberGenerator();
-
+	private final LottoNumberGenerator lottoNumberGenerator;
 	private Money money;
 
+	public LottosGenerator() {
+		this.lottoNumberGenerator = new LottoNumberGenerator();
+	}
+
 	@Override
-	public Lottos generate(){
-		List<Lotto> lottos = Stream.generate(LOTTO_NUMBER_GENERATOR::generate).limit(money.getBuyedCount())
-				.map(this::toLotto)
-				.toList();
-		
+	public Lottos generate() {
+		List<Lotto> lottos = Stream.generate(lottoNumberGenerator::generate)
+				.limit(money.getBuyedCount())
+				.map(this::toLotto).toList();
+
 		return new Lottos(lottos);
 	}
 

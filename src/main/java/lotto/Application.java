@@ -5,10 +5,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.io.ObjectOutput;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Application {
 
@@ -20,6 +17,7 @@ public class Application {
     private static final OutputView outputView = new OutputView();
     private static final RandomLotto random = new RandomLotto();
     private static final Intersection intersection = new Intersection();
+    private static final HashMap<Integer, Integer> result = new HashMap<>();
 
     public static void purchaseCount(String purchasingAmount) {
         try {
@@ -71,12 +69,52 @@ public class Application {
         }
     }
 
+    public static void intersectionNum() {
+        List<Integer> intersectionCheck  = intersection.bonusNum(bonusNum, lottoNum);
+        List<Integer> intersectionCount = intersection.winNum(winNum, lottoNum);
+        for (int i = 0; i < 6; i++) {
+            result.put(i,0);
+        }
+        for (int i = 0; i<intersectionCount.size(); i++) {
+            lottoResult(intersectionCount.get(i), intersectionCheck.get(i));
+        }
+    }
+
+    public static void lottoResult(int count, int choice) {
+        if (count == 3) {
+            int num = result.get(4);
+            num++;
+            result.put(4,num);
+        }
+        if (count == 4) {
+            int num = result.get(3);
+            num++;
+            result.put(3,num);
+        }
+        if (count == 5 && choice == 1) {
+            int num = result.get(1);
+            num++;
+            result.put(1,num);
+        }
+        if (count == 5 && choice == 0) {
+            int num = result.get(2);
+            num++;
+            result.put(2,num);
+        }
+        if (count == 6) {
+            int num = result.get(0);
+            num++;
+            result.put(0,num);
+        }
+    }
+
     public static void main(String[] args) {
         purchaseCount(inputView.purchaseAmount());
         outputView.purchasePieces(purchasePieces);
         randomRepeat();
         winLottoNum(convertNum(inputView.winNum()));
         bonusNum(winNum, Integer.parseInt(inputView.bonusNum()));
-        System.out.println(intersection.winNum(winNum, lottoNum));
+        intersectionNum();
+        System.out.println(result);
     }
 }

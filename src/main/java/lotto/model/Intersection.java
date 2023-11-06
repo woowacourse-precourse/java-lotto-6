@@ -16,10 +16,16 @@ public class Intersection {
         return intersectionCount;
     }
 
-    public boolean bonusNum(int bonusNum, List<Set> lottoNum) {
-        if (lottoNum.contains(bonusNum)) {
-            return true;
+    public List bonusNum(int bonusNum, List<Set> lottoNum) {
+        List<Integer> intersectionBonus = new ArrayList<>();
+        for (Set intersectionCheck : lottoNum){
+            if (intersectionCheck.contains(bonusNum)){
+                intersectionBonus.add(1);
+            }
+            if (!intersectionCheck.contains(bonusNum)){
+                intersectionBonus.add(0);
+            }
         }
-        return false;
+        return intersectionBonus;
     }
 }

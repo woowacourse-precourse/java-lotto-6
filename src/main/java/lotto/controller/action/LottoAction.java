@@ -4,7 +4,7 @@ import lotto.domain.service.LottoService;
 import lotto.ui.input.InputView;
 import lotto.ui.output.OutputView;
 
-import static lotto.controller.constant.ErrorConst.INPUT_NOT_LONG;
+import static lotto.controller.util.Conversion.makeLong;
 
 public class LottoAction {
 
@@ -24,14 +24,6 @@ public class LottoAction {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return true;
-        }
-    }
-
-    private long makeLong(String price) {
-        try {
-            return Long.parseLong(price);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_NOT_LONG, e);
         }
     }
 

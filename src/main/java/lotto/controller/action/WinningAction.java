@@ -6,11 +6,10 @@ import lotto.domain.service.LottoService;
 import lotto.ui.input.InputView;
 import lotto.ui.output.OutputView;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static lotto.controller.constant.ErrorConst.INPUT_NOT_INT;
+import static lotto.controller.util.Conversion.makeInt;
+import static lotto.controller.util.Conversion.makeIntegerList;
 
 public class WinningAction {
 
@@ -53,26 +52,6 @@ public class WinningAction {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return true;
-        }
-    }
-
-    private List<Integer> makeIntegerList(String input) {
-        try {
-            String[] inputSplit = input.split(",");
-            return Arrays.stream(inputSplit)
-                    .mapToInt(Integer::parseInt)
-                    .boxed()
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_NOT_INT, e);
-        }
-    }
-
-    private int makeInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_NOT_INT, e);
         }
     }
 

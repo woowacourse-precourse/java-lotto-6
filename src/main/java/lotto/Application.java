@@ -18,12 +18,13 @@ public class Application {
     final static int lottolength = 6;
     final static int lotteryWinningRank = 6;
     final static int coinStandard = 1000;
-    final static int[] lottoRankMoney = {5000,50000,1500000,30000000,2000000000,0};
+    final static int[] lottoRankMoney = {0, 2000000000, 30000000, 1500000, 50000, 5000};
     static int inputCoin;
     static int bonusNumber;
     static int totalLottoMoney;
     static List<Integer> inputWinningLotto = new ArrayList<>();
     static List<List<Integer>> lottoTotal = new ArrayList<>();
+    // myWinningLotto = {미당첨, 1등, 2등, 3등, 4등, 5등}
     static List<Integer> myWinningLotto = new ArrayList<>();
     
 
@@ -103,16 +104,16 @@ public class Application {
     public static int CheckLottoRank(int lottoResult){
         System.out.println(lottoResult);
         if (lottoResult == 6)
-            return 4;
-        if (lottoResult == 15)
-            return 3;
-        if (lottoResult == 5)
-            return 2;
-        if (lottoResult == 4 || lottoResult == 14)
             return 1;
+        if (lottoResult == 15)
+            return 2;
+        if (lottoResult == 5)
+            return 3;
+        if (lottoResult == 4 || lottoResult == 14)
+            return 4;
         if (lottoResult == 3 || lottoResult == 13)
-            return 0;
-        return 5;
+            return 5;
+        return 0;
     }
 
     public static void MyLottoCheck(Lotto lotto){

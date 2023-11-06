@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 public class State {
     private final Map<Grade,Integer> gradeState;
-
     public State (){
         this.gradeState = Stream.of(
                 new AbstractMap.SimpleEntry<>(Grade.FIRST, 0),
@@ -22,7 +21,6 @@ public class State {
         Integer currentState = gradeState.get(grade);
         gradeState.put(grade, currentState  + 1);
     }
-
     public Map<Grade, Integer> getGradeState(){
         return gradeState;
     }

@@ -14,13 +14,12 @@ public class Asset {
             throw new IllegalArgumentException("wrong money input");
         }
     }
-
     public void increaseIncome(Grade grade){
         income += grade.getPrize();
     }
-
     public Float getRate(){
-        return income / money * 100;
+        if (money == 0) return 0F;
+        return (income / money) * 100;
     }
     public Float getMoney(){
         return money;

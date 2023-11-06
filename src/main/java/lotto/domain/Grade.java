@@ -18,9 +18,13 @@ public enum Grade {
 
     public static Grade judge(Integer matchNum, Boolean bonus){
         if(matchNum == 6) return FIRST;
+
         if(matchNum == 5 && bonus) return SECOND;
+
         if(matchNum == 5) return THIRD;
+
         if(matchNum == 4) return FOURTH;
+
         if(matchNum == 3) return FIFTH;
 
         return NOTHING;

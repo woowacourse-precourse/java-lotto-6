@@ -12,7 +12,9 @@ public class Execute {
     public static Asset asset;
     public static void start(){
         asset = Input.askMoney();
+
         Lotto winningNum = Input.askWinningNum();
+
         Integer bonusNum = Input.askBonusNum();
 
         List<Lotto> lottoTickets = LottoMachine.buyLotto(asset.getMoney());

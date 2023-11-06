@@ -41,7 +41,8 @@ public class LottoGame {
 
         for (int i = 0; i < lottoPaper; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto lotto = new Lotto(numbers);
+            List<Integer> sortNumbers = new ArrayList<>(numbers);
+            Lotto lotto = new Lotto(sortNumbers);
             totalLotto.add(lotto);
 
         }

@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -24,5 +25,14 @@ public class LottoNumberTest {
         LottoNumber other = new LottoNumber(number);
 
         assertThat(one).isEqualTo(other);
+    }
+
+    @DisplayName("compareTo() 확인")
+    @Test
+    void 비교_기능() {
+        LottoNumber one = new LottoNumber(1);
+        LottoNumber two = new LottoNumber(2);
+
+        assertThat(one.compareTo(two)).isEqualTo(-1);
     }
 }

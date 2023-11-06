@@ -1,5 +1,6 @@
 package controller;
 
+import domain.PurchaseAmount;
 import view.InputView;
 
 /**
@@ -25,10 +26,10 @@ public class LottoController {
     }
 
     private void purchaseLotto(){
-        setPurchaseAmount();
+        PurchaseAmount purchaseAmount = setPurchaseAmount();
     }
 
-    private void setPurchaseAmount(){
-        InputView.enterAmount();
+    private PurchaseAmount setPurchaseAmount(){
+        return new PurchaseAmount(InputView.enterAmount());
     }
 }

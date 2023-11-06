@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class StringUtilsTest {
 
     @Test
-    @DisplayName("countOccurrences 메서드가 문자열에서 특정 문자열(1글자)이 몇 번 등장하는지 정확하게 반환한다.")
+    @DisplayName("기능29 테스트 : countOccurrences 메서드가 문자열에서 특정 문자열(1글자)이 몇 번 등장하는지 정확하게 반환한다.")
     void countOccurrencesCountTargetStringWhenTargetStringLengthIsOne() {
         String testString = "AABABC";
 
@@ -20,7 +20,7 @@ class StringUtilsTest {
     }
 
     @Test
-    @DisplayName("countOccurrences 메서드가 문자열에서 특정 문자열(2글자)이 몇 번 등장하는지 정확하게 반환한다.")
+    @DisplayName("기능29 테스트 : countOccurrences 메서드가 문자열에서 특정 문자열(2글자)이 몇 번 등장하는지 정확하게 반환한다.")
     void countOccurrencesCountTargetStringWhenTargetStringLengthIsTwo() {
         String testString = "AABABC";
 
@@ -32,7 +32,7 @@ class StringUtilsTest {
     }
 
     @Test
-    @DisplayName("countOccurrences 메서드가 문자열에서 특정 문자열(3글자)이 몇 번 등장하는지 정확하게 반환한다.")
+    @DisplayName("기능29 테스트 : countOccurrences 메서드가 문자열에서 특정 문자열(3글자)이 몇 번 등장하는지 정확하게 반환한다.")
     void countOccurrencesCountTargetStringWhenTargetStringLengthIsThree() {
         String testString = "AABABC";
 
@@ -44,7 +44,7 @@ class StringUtilsTest {
     }
 
     @Test
-    @DisplayName("countOccurrences 메서드로 대상 문자열에 존재하지 않은 문자열 검색 시 0을 반환한다.")
+    @DisplayName("기능29 테스트 : countOccurrences 메서드로 대상 문자열에 존재하지 않은 문자열 검색 시 0을 반환한다.")
     void countOccurrencesReturnZeroWhenTargetStringDoNotExistInTestString() {
         String testString = "AABABC";
 

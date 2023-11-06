@@ -27,8 +27,7 @@ public class Lotto {
     public static List<List<Integer>> getManyLotto(int count) {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = START_INDEX; i < count; i++) {
-            List<Integer> randomNum = Randoms.pickUniqueNumbersInRange(1,45,6);
-            result.add(getSingleLotto(randomNum));
+            result.add(getSingleLotto(getRandomNum()));
         }
         return result;
     }
@@ -36,5 +35,8 @@ public class Lotto {
         List<Integer> oneLotto = new ArrayList<>(randomNum);
         Collections.sort(oneLotto);
         return oneLotto;
+    }
+    private static List<Integer> getRandomNum() {
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
     }
 }

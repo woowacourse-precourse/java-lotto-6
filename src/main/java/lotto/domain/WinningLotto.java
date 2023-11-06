@@ -25,4 +25,12 @@ public class WinningLotto {
             throw new IllegalArgumentException(NOT_CORRECT_NUMBER_RANGE_ERROR_MESSAGE);
         }
     }
+
+    public Rank match(Lotto lotto) {
+        int matchCount = (int) lotto.getLottoNumbers().stream()
+            .filter(number -> this.lotto.getLottoNumbers().contains(number))
+            .count();
+        boolean matchBonus = lotto.getLottoNumbers().contains(bonusNumber);
+        return Rank.valueOf(matchCount, matchBonus);
+    }
 }

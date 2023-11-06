@@ -34,8 +34,9 @@ public class InputView {
     private WinningLotto requestSixNumbers() {
         try {
             System.out.println(OutputMessage.REQUEST_WINNING_NUMBERS.getMessage());
-            String winningLottoNumbers = Console.readLine();
-            return new WinningLotto(convertStringToList(winningLottoNumbers));
+            String inputString = Console.readLine();
+            String[] winningLottoNumbers = inputString.split(",");
+            return new WinningLotto(convertStringArrToList(winningLottoNumbers));
         } catch (IllegalArgumentException e) {
             this.printError(e);
             requestSixNumbers();
@@ -55,9 +56,9 @@ public class InputView {
         return null;
     }
 
-    private List<Integer> convertStringToList(String string) {
+    private List<Integer> convertStringArrToList(String[] string) {
         List<Integer> list = new ArrayList<>();
-        Arrays.stream(string.split(",")).toList().forEach(str -> {
+        Arrays.stream(string).toList().forEach(str -> {
             list.add(Integer.parseInt(str));
         });
 

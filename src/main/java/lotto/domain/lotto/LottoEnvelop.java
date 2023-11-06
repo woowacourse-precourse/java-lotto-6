@@ -20,17 +20,27 @@ public class LottoEnvelop {
 
     public StringBuilder giveInformation() {
         int sizeLottoEnvelop = lottoEnvelops.size();
+
+        StringBuilder information = getInformation(sizeLottoEnvelop);
+
+        return information;
+    }
+
+    private StringBuilder getInformation(int sizeLottoEnvelop) {
+        Lotto lotto;
+        StringBuilder lottoInformation;
         StringBuilder information = new StringBuilder();
-        Lotto lotto = null;
-        StringBuilder lottoInformation = null;
 
         for (int i = 0; i < sizeLottoEnvelop; i++) {
-            lotto = lottoEnvelops.get(i);
+            lotto = getLotto(i);
             lottoInformation = lotto.giveInformation();
             information.append(lottoInformation + "\n");
         }
-
         return information;
+    }
+
+    private Lotto getLotto(int i) {
+        return lottoEnvelops.get(i);
     }
 
     public Lotto takeLotto(Integer index) {

@@ -18,7 +18,6 @@ public class Application {
         WinningLotto winningLotto = new WinningLotto(numbers, inputManager.requestBonus(numbers));
         LottoResultChecker lottoResultChecker = new LottoResultChecker(winningLotto);
         List<Result> results = lottoResultChecker.getResults(lottos);
-
         outputManager.printResults(results);
     }
 }

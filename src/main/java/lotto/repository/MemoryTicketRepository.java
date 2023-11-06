@@ -21,21 +21,6 @@ public class MemoryTicketRepository implements TicketRepository {
     }
 
     @Override
-    public Optional<Ticket> findById(Long id) {
-        return Optional.ofNullable(memory.get(id));
-    }
-
-    @Override
-    public Optional<Ticket> findByNumbers(Lotto numbers) {
-        for (Ticket ticket : memory.values()) {
-            if (ticket.getNumbers().equals(numbers)) {
-                return Optional.of(ticket);
-            }
-        }
-        return Optional.empty();
-    }
-
-    @Override
     public List<Ticket> findAll() {
         return new ArrayList<>(memory.values());
     }

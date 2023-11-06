@@ -9,10 +9,6 @@ public interface TicketRepository {
 
     Ticket purchase(Ticket ticket);
 
-    Optional<Ticket> findById(Long id);
-
-    Optional<Ticket> findByNumbers(Lotto numbers);
-
     List<Ticket> findAll();
 
 }

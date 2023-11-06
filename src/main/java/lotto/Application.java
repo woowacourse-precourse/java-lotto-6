@@ -1,14 +1,16 @@
 package lotto;
 
 import lotto.controller.LottoManager;
-import lotto.service.TicketSevice;
+import lotto.repository.MemoryTicketRepository;
+import lotto.service.TicketService;
 
 public class Application {
 
     public static void main(String[] args) {
 
-        TicketSevice ticketSevice = new TicketSevice();
-        LottoManager lottoManager = new LottoManager(ticketSevice);
+        MemoryTicketRepository repository = new MemoryTicketRepository();
+        TicketService sevice = new TicketService(repository);
+        LottoManager lottoManager = new LottoManager(sevice);
         lottoManager.run();
 
     }

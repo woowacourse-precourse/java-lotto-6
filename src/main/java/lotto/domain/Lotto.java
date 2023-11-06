@@ -60,8 +60,8 @@ public class Lotto {
     private void NumberRangeCheck(List<Integer> numbers) {
         boolean overRangeResult = numbers
                 .stream()
-                .anyMatch(num -> num <= MIN_RANGE.getConfig() || num > MAX_RANGE.getConfig());
-        
+                .anyMatch(num -> num < MIN_RANGE.getConfig() || num > MAX_RANGE.getConfig());
+
         if (overRangeResult) {
             throw LottoException.of(ERROR_LOTTO_NUMBER_RANGE_OVER);
         }

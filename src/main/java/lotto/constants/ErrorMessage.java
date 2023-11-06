@@ -16,15 +16,15 @@ public enum ErrorMessage {
     ERROR_NON_NUMBER_TYPE_INPUT("숫자 타입의 값이 입력되지 않았습니다."),
 
     // 로또 번호 에러
-    ERROR_LOTTO_NUMBER_SIZE("로또 번호가 " + LOTTO_SIZE + "자리가 아닙니다."),
+    ERROR_LOTTO_NUMBER_SIZE("로또 번호가 " + LOTTO_SIZE.getConfig() + "자리가 아닙니다."),
     ERROR_LOTTO_NUMBER_DUPLICATE("중복된 로또 번호가 존재합니다."),
     ERROR_LOTTO_NUMBER_RANGE_OVER(
-            "로또 번호의 범위를 벗어났습니다. ( " + MIN_RANGE + " ~ " + MAX_RANGE + " )"),
+            "로또 번호의 범위를 벗어났습니다. ( " + MIN_RANGE.getConfig() + " ~ " + MAX_RANGE.getConfig() + " )"),
 
     // 구매 금액 에러
-    ERROR_LESS_THAN_MIN_AMOUNT("구매 금액이 최소 구매 금액(" + MIN_PRICE + "원)보다 미만입니다."),
-    ERROR_GREATER_THAN_MAX_AMOUNT("구매 금액이 최대 구매 금액(" + MAX_PRICE + "원)보다 초과 되었습니다."),
-    ERROR_DIVIDE_BY_AMOUNT("구매 금액이 " + MIN_PRICE + "원으로 나누어 떨어지지 않습니다."),
+    ERROR_LESS_THAN_MIN_AMOUNT("구매 금액이 최소 구매 금액(" + MIN_PRICE.getConfig() + "원)보다 미만입니다."),
+    ERROR_GREATER_THAN_MAX_AMOUNT("구매 금액이 최대 구매 금액(" + MAX_PRICE.getConfig() + "원)보다 초과 되었습니다."),
+    ERROR_DIVIDE_BY_AMOUNT("구매 금액이 " + MIN_PRICE.getConfig() + "원으로 나누어 떨어지지 않습니다."),
     ERROR_QUANTITY_NON_EQUALS("구매 요청 수량이 구매 수량과 일치하지 않습니다."),
 
     // 당첨 로또 번호 에러

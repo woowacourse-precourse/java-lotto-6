@@ -14,7 +14,7 @@ import lotto.exception.ConsumerException;
 
 public class Consumer {
 
-    private static final int AMOUNT = MIN_PRICE.getConfig();
+    private static final int MIN_AMOUNT = MIN_PRICE.getConfig();
     private static final int MAX_AMOUNT = MAX_PRICE.getConfig();
 
     private List<Lotto> lottoes = new ArrayList<>();
@@ -37,7 +37,7 @@ public class Consumer {
      * @param buyAmount
      */
     private static void buyAmountLessThanMinAmount(int buyAmount) {
-        if (AMOUNT > buyAmount) {
+        if (MIN_AMOUNT > buyAmount) {
             throw ConsumerException.of(ERROR_LESS_THAN_MIN_AMOUNT);
         }
     }
@@ -59,7 +59,7 @@ public class Consumer {
      * @param buyAmount
      */
     private static void buyAmountDivideByAmount(int buyAmount) {
-        if (buyAmount % AMOUNT != 0) {
+        if (buyAmount % MIN_AMOUNT != 0) {
             throw ConsumerException.of(ERROR_DIVIDE_BY_AMOUNT);
         }
     }
@@ -78,7 +78,7 @@ public class Consumer {
      * @return
      */
     public int getBuyAvailableQuantity() {
-        return buyAmount / AMOUNT;
+        return buyAmount / MIN_AMOUNT;
     }
 
     /**

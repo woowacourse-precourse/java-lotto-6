@@ -33,11 +33,10 @@
 ### 로또 당첨 :: 당첨 번호 저장 / 당첨 판단 / 이익률 통계
 - LotteryAnswerController : 로또 당첨 진행
 
-- LotteryAnswerNumberService : 로또 당첨번호 
-- LotteryAnswerNumber : {여러개의 로또 당첨번호},{보너스번호}를 가지고 있는 일급 컬렉션 객체
-- LotteryAnswerNumberDTO : 로또 당첨번호 / 보너스번호 DTO
-- LotteryAnswerNumberValidator : 로또 당첨번호 / 보너스번호 검증
-- LotteryAnswerNumberMapper : 로또 당첨번호 / 보너스번호 매핑
+- LotteryAnswerService : 로또 당첨번호 처리
+- LottoAnswer : {여러개의 로또 당첨번호},{보너스번호}를 가지고 있는 일급 컬렉션 객체
+- LottoAnswerValidator : 로또 당첨번호 / 보너스번호 검증
+- LottoAnswerMapper : 로또 당첨번호 / 보너스번호 매핑
 
 - LotteryAnswerCheckService : 로또 당첨 판단
 - WinningPolicy : 당첨 정책
@@ -61,7 +60,7 @@
    - [x] 중복되지 않는 6개의 숫자
    - [x] 숫자의 범위는 1~45 사이
 - [x] 발행받은 모든 티켓들을 포맷에 맞추어 출력한다.
-- [ ] 당첨번호 입력뷰를 출력한다.
+- [x] 당첨번호 입력뷰를 출력한다.
 - [ ] 당첨번호를 입력받는다.
 - [ ] 당첨번호 입력에 대한 예외 검증을 처리한다.
 - [ ] 당첨번호를 파싱한다.

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    protected final List<Integer> numbers;
+    private final List<Integer> numbers;
     public static final int MAX_NUMBERS = 6;
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 45;
@@ -35,5 +35,9 @@ public class Lotto {
     protected void validate(List<Integer> numbers) {
         checkLength(numbers);
         isInRange(numbers);
+    }
+
+    protected List<Integer> getNumbers() {
+        return numbers;
     }
 }

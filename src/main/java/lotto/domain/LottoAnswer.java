@@ -6,12 +6,12 @@ public class LottoAnswer extends Lotto {
 
     public LottoAnswer(String input) {
         parseInteger(input);
-        validate(numbers);
+        validate(getNumbers());
     }
 
     public LottoAnswer(String input, int bonusNumber) {
         parseInteger(input);
-        validate(numbers);
+        validate(getNumbers());
         this.bonusNumber = new BonusNumber(bonusNumber);
     }
 
@@ -21,7 +21,7 @@ public class LottoAnswer extends Lotto {
         for (String part : parts) {
             try {
                 int num = Integer.parseInt(part);
-                numbers.add(num);
+                getNumbers().add(num);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("올바른 당첨 번호를 입력해주세요.");
             }

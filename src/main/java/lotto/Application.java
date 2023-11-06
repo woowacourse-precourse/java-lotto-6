@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class money_for_lotto{
@@ -37,7 +39,27 @@ class money_for_lotto{
     public static int repeatTime(int realNumber){
         return realNumber/1000;
     }
+}
 
+class random_lotto{
+    static final List<List<Integer>> totalLotto = new ArrayList<>();
+
+    public static List<List<Integer>> print_lotto(int repeatTime){
+        save_lotto(repeatTime);
+        for(int i = 0; i<repeatTime; i++){
+            System.out.println(totalLotto.get(i));
+        }
+        return totalLotto;
+    }
+
+    public static void save_lotto(int repeatTime){
+        for(int i = 0; i<repeatTime; i++){
+            totalLotto.add(pick_lotto());
+        }
+    }
+    public static List<Integer> pick_lotto(){
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
 }
 
 public class Application {
@@ -47,6 +69,8 @@ public class Application {
         int realMoney = money_for_lotto.realMoney(inputMoney);
         int repeatTime = money_for_lotto.repeatTime(realMoney);
 
+        System.out.println("\n" + repeatTime + "개를 구매했습니다.");
+        List<List<Integer>> totalLotto = random_lotto.print_lotto(repeatTime);
 
     }
 }

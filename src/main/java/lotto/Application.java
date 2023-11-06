@@ -39,14 +39,21 @@ public class Application {
 
         // 3. 당험 번호 입력받기
         List<Integer> winningNumbers;
+        Lotto inputWinningLotto;
         while(true){
             try{
-                winningNumbers = inputWinningNumbers();
+//                winningNumbers = inputWinningNumbers();
+                // 3-1. 당첨 번호를 입력받음
+                // 3-2. 입력받은 당첨 번호를 쉼표(,) 기준으로 구분함
+                String[] inputNumbers = Console.readLine().split(",");
+                winningNumbers = parseInputNumbers(inputNumbers); // 사용자 입력을 List<Integer>로 변환
+                inputWinningLotto = new Lotto(winningNumbers);
                 break;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
+
 
         // 4. 보너스 번호 입력받기
         int bonusNumber = 0;
@@ -67,7 +74,7 @@ public class Application {
         int[] matchCountInfo = new int[LottoRank.values().length];
         for(int i=0; i<lottoCount; i++){
             // 5-1. 구매한 로또 번호와 당첨 번호 비교
-            int matchCount = compareLottoNumbers(lottoList.get(i).lottoNumbers(), winningNumbers);
+            int matchCount = compareLottoNumbers(lottoList.get(i).lottoNumbers(), inputWinningLotto);
             // 5-2. 보너스 번호 비교
             boolean matchBonusNumber = compareBonusNumber(lottoList.get(i).lottoNumbers(), bonusNumber);
 
@@ -171,9 +178,9 @@ public class Application {
     }
 
     // 5-1. 구매한 로또 번호와 당첨 번호 비교
-    public static int compareLottoNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers){
+    public static int compareLottoNumbers(List<Integer> lottoNumbers, Lotto inputWinningLotto){
         int matchCount = 0;
-        for(int number : winningNumbers){
+        for(int number : inputWinningLotto.lottoNumbers()){
             if(lottoNumbers.contains(number)){
                 matchCount++;
             }

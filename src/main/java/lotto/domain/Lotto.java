@@ -1,18 +1,16 @@
 package lotto.domain;
 
+import static lotto.enums.Constants.*;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.enums.ExceptionMessage;
+import lotto.enums.ExceptionMessages;
 import lotto.utils.RemoveSpace;
 
 public class Lotto {
-
-    private static final int LOTTO_NUMBER_SIZE = 6;
-    private final int MIN_INCLUSIVE = 1;
-    private final int MAX_INCLUSIVE = 45;
 
     private final List<Integer> numbers;
 
@@ -28,23 +26,23 @@ public class Lotto {
 
     private void validate(final String numbers) {
         if(isEmpty(numbers)){
-            ExceptionMessage.LOTTO_IS_EMPTY.throwException();
+            ExceptionMessages.LOTTO_IS_EMPTY.throwException();
         }
 
         if(!isDigit(numbers)){
-            ExceptionMessage.LOTTO_IS_NOT_NUMER.throwException();
+            ExceptionMessages.LOTTO_IS_NOT_NUMER.throwException();
         }
 
         if(!isSixNumbers(numbers)){
-            ExceptionMessage.LOTTO_SIZE_IS_OVER_SIX.throwException();
+            ExceptionMessages.LOTTO_SIZE_IS_OVER_SIX.throwException();
         }
 
         if(!isBetweenOneAndFortyFive(numbers)){
-            ExceptionMessage.LOTTO_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.throwException();
+            ExceptionMessages.LOTTO_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.throwException();
         }
 
         if(isDuplicatedNumber(numbers)){
-            ExceptionMessage.LOTTO_IS_DUPLICATED.throwException();
+            ExceptionMessages.LOTTO_IS_DUPLICATED.throwException();
         }
     }
 
@@ -61,11 +59,11 @@ public class Lotto {
     }
 
     private boolean isSixNumbers(final String numbers){
-        return numbers.split(",").length == LOTTO_NUMBER_SIZE;
+        return numbers.split(",").length == LOTTO_NUMBER_SIZE.getValue();
     }
 
     private boolean isBetweenOneAndFortyFive(final String numbers){
-        return Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).allMatch(number -> number >= MIN_INCLUSIVE && number <= MAX_INCLUSIVE);
+        return Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).allMatch(number -> number >= MIN_INCLUSIVE.getValue() && number <= MAX_INCLUSIVE.getValue());
     }
 
     private boolean isDuplicatedNumber(final String numbers){

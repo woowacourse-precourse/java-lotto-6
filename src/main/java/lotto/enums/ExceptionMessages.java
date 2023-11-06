@@ -1,6 +1,6 @@
 package lotto.enums;
 
-public enum ExceptionMessage {
+public enum ExceptionMessages {
 
     PURCHASE_MONEY_IS_NOT_DIVIDENED_BY_ONE_THOUSAND("구입 금액은 1,000 단위여야합니다."),
     PURCHASE_MONEY_IS_EMPTY_VALUE("아무런 값도 입력되지 않았습니다. 1,000단위의 숫자값을 입력해야합니다."),
@@ -20,7 +20,7 @@ public enum ExceptionMessage {
     private final String message;
 
 
-    ExceptionMessage(String message){
+    ExceptionMessages(String message){
         this.message = ERROR_TAG + message;
     }
 

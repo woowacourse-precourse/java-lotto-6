@@ -1,12 +1,10 @@
 package lotto.domain;
 
-import lotto.enums.ExceptionMessage;
+import static lotto.enums.Constants.*;
+import lotto.enums.ExceptionMessages;
 import lotto.utils.RemoveSpace;
 
 public class BonusNumber {
-
-    private final int MIN_INCLUSIVE = 1;
-    private final int MAX_INCLUSIVE = 45;
 
     private final int value;
 
@@ -22,19 +20,19 @@ public class BonusNumber {
 
     private void validate(String number, Lotto lotto){
         if(isEmpty(number)){
-            ExceptionMessage.BONUS_NUMBER_IS_EMPTY.throwException();
+            ExceptionMessages.BONUS_NUMBER_IS_EMPTY.throwException();
         }
 
         if(!isDigit(number)){
-            ExceptionMessage.BONUS_NUMBER_IS_NOT_NUMBER.throwException();
+            ExceptionMessages.BONUS_NUMBER_IS_NOT_NUMBER.throwException();
         }
 
         if(!isBetweenOneAndFortyFive(number)){
-            ExceptionMessage.BONUS_NUMBER_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.throwException();
+            ExceptionMessages.BONUS_NUMBER_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.throwException();
         }
 
         if(isDuplicatedWinningLottoNumber(lotto,number)){
-            ExceptionMessage.BONUS_NUMBER_IS_DUPLICATED_WINNING_NUMBER.throwException();
+            ExceptionMessages.BONUS_NUMBER_IS_DUPLICATED_WINNING_NUMBER.throwException();
         }
     }
 
@@ -47,7 +45,7 @@ public class BonusNumber {
     }
 
     private boolean isBetweenOneAndFortyFive(String number){
-        return Integer.parseInt(number) >= MIN_INCLUSIVE && Integer.parseInt(number) <= MAX_INCLUSIVE;
+        return Integer.parseInt(number) >= MIN_INCLUSIVE.getValue() && Integer.parseInt(number) <= MAX_INCLUSIVE.getValue();
     }
 
     private boolean isDuplicatedWinningLottoNumber(Lotto winningLotto, String number){

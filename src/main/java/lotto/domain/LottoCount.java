@@ -1,8 +1,8 @@
 package lotto.domain;
 
-public class LottoCount {
+import static lotto.enums.Constants.*;
 
-    private static final int ONE_LOTTO_TICKET_PRICE = 1000;
+public class LottoCount {
 
     private int value;
 
@@ -15,6 +15,6 @@ public class LottoCount {
     }
 
     private int convertLottoCount(int purchaseMoney){
-        return purchaseMoney / ONE_LOTTO_TICKET_PRICE;
+        return purchaseMoney / ONE_LOTTO_TICKET_PRICE.getValue();
     }
 }

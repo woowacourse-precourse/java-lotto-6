@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.enums.Constants.*;
+
 import java.util.List;
 
 public class WinningDetails {
@@ -46,24 +48,24 @@ public class WinningDetails {
     }
 
     private void checkMatchNumbersPerLotto(int matchNumbers){
-        if(matchNumbers == 3 && !bonusMatch){
-            rank[5]++;
+        if(matchNumbers == RANK_FIVE_NUMBER_MATCHES.getValue() && !bonusMatch){
+            rank[RANK_FIVE.getValue()]++;
         }
 
-        if(matchNumbers == 4 && !bonusMatch){
-            rank[4]++;
+        if(matchNumbers == RANK_FOUR_NUMBER_MATCHES.getValue() && !bonusMatch){
+            rank[RANK_FOUR.getValue()]++;
         }
 
-        if(matchNumbers == 5 && !bonusMatch){
-            rank[3]++;
+        if(matchNumbers == RANK_THREE_NUMBER_MATCHES.getValue() && !bonusMatch){
+            rank[RANK_THREE.getValue()]++;
         }
 
-        if(matchNumbers == 5 && bonusMatch){
-            rank[2]++;
+        if(matchNumbers == RANK_TWO_NUMBER_MATCHES.getValue() && bonusMatch){
+            rank[RANK_TWO.getValue()]++;
         }
 
-        if(matchNumbers == 6){
-            rank[1]++;
+        if(matchNumbers == RANK_ONE_NUMBER_MATCHES.getValue()){
+            rank[RANK_ONE.getValue()]++;
         }
     }
 

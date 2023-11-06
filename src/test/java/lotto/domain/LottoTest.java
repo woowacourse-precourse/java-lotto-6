@@ -1,8 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.enums.ExceptionMessage;
-import lotto.domain.Lotto;
+import lotto.enums.ExceptionMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +30,7 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto("1,2,3,4,5,6,7"))
-                .hasMessage(ExceptionMessage.LOTTO_SIZE_IS_OVER_SIX.getMessage());
+                .hasMessage(ExceptionMessages.LOTTO_SIZE_IS_OVER_SIX.getMessage());
     }
 
     @Test
@@ -40,7 +39,7 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto("1,2,3,4,5,5"))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto("1,2,3,4,5,5"))
-                .hasMessage(ExceptionMessage.LOTTO_IS_DUPLICATED.getMessage());
+                .hasMessage(ExceptionMessages.LOTTO_IS_DUPLICATED.getMessage());
     }
 
     @Test
@@ -52,7 +51,7 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto(numbers))
-                .hasMessage(ExceptionMessage.LOTTO_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.getMessage());
+                .hasMessage(ExceptionMessages.LOTTO_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.getMessage());
     }
 
     @Test
@@ -64,7 +63,7 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto(numbers))
-                .hasMessage(ExceptionMessage.LOTTO_IS_NOT_NUMER.getMessage());
+                .hasMessage(ExceptionMessages.LOTTO_IS_NOT_NUMER.getMessage());
     }
 
     @Test
@@ -76,6 +75,6 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto(numbers))
-                .hasMessage(ExceptionMessage.LOTTO_IS_EMPTY.getMessage());
+                .hasMessage(ExceptionMessages.LOTTO_IS_EMPTY.getMessage());
     }
 }

@@ -2,9 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import lotto.enums.ExceptionMessage;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
+import lotto.enums.ExceptionMessages;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -55,7 +53,7 @@ public class BonusNumberTest {
         //when, then
         assertThatThrownBy(() -> new BonusNumber(number,lotto)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new BonusNumber(number,lotto)).hasMessage(
-                ExceptionMessage.BONUS_NUMBER_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.getMessage());
+                ExceptionMessages.BONUS_NUMBER_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.getMessage());
     }
 
     @Test
@@ -67,7 +65,7 @@ public class BonusNumberTest {
         //when, then
         assertThatThrownBy(() -> new BonusNumber(number,lotto)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new BonusNumber(number,lotto)).hasMessage(
-                ExceptionMessage.BONUS_NUMBER_IS_EMPTY.getMessage());
+                ExceptionMessages.BONUS_NUMBER_IS_EMPTY.getMessage());
     }
 
     @Test
@@ -79,6 +77,6 @@ public class BonusNumberTest {
         //when, then
         assertThatThrownBy(() -> new BonusNumber(number,lotto)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new BonusNumber(number,lotto)).hasMessage(
-                ExceptionMessage.BONUS_NUMBER_IS_NOT_NUMBER.getMessage());
+                ExceptionMessages.BONUS_NUMBER_IS_NOT_NUMBER.getMessage());
     }
 }

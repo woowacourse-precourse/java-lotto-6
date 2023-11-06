@@ -1,11 +1,12 @@
 package lotto.domain;
 
+import static lotto.enums.Constants.*;
 import static lotto.enums.Prize.*;
 
 import java.util.List;
+import lotto.enums.Constants;
 
 public class Profit {
-
 
     private final int[] rank;
     private final List<Integer> rankMoney;
@@ -19,7 +20,7 @@ public class Profit {
 
     public float getTotalEarningRate(int purchaseMoney){
         setTotalWinningMoney();
-        return (float) totalProfitMoney/purchaseMoney*100;
+        return (float) totalProfitMoney/purchaseMoney*PROFIT_PERCENT.getValue();
     }
 
     private int setTotalWinningMoney(){

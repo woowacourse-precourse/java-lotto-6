@@ -3,8 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.enums.ExceptionMessage;
-import lotto.domain.PurchaseMoney;
+import lotto.enums.ExceptionMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +32,7 @@ public class PurchaseMoneyTest {
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .hasMessage(ExceptionMessage.PURCHASE_MONEY_IS_NOT_NUMBER.getMessage());
+                .hasMessage(ExceptionMessages.PURCHASE_MONEY_IS_NOT_NUMBER.getMessage());
     }
 
     @Test
@@ -46,7 +45,7 @@ public class PurchaseMoneyTest {
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .hasMessage(ExceptionMessage.PURCHASE_MONEY_IS_NOT_DIVIDENED_BY_ONE_THOUSAND.getMessage());
+                .hasMessage(ExceptionMessages.PURCHASE_MONEY_IS_NOT_DIVIDENED_BY_ONE_THOUSAND.getMessage());
 
     }
 
@@ -60,7 +59,7 @@ public class PurchaseMoneyTest {
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .hasMessage(ExceptionMessage.PURCHASE_MONEY_IS_EMPTY_VALUE.getMessage());
+                .hasMessage(ExceptionMessages.PURCHASE_MONEY_IS_EMPTY_VALUE.getMessage());
     }
 
     @Test
@@ -74,7 +73,7 @@ public class PurchaseMoneyTest {
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .hasMessage(ExceptionMessage.PURCHASE_MONEY_IS_EMPTY_VALUE.getMessage());
+                .hasMessage(ExceptionMessages.PURCHASE_MONEY_IS_EMPTY_VALUE.getMessage());
     }
 
     @Test
@@ -88,7 +87,7 @@ public class PurchaseMoneyTest {
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .hasMessage(ExceptionMessage.PURCHASE_MONEY_IS_EMPTY_VALUE.getMessage());
+                .hasMessage(ExceptionMessages.PURCHASE_MONEY_IS_EMPTY_VALUE.getMessage());
     }
 
     @Test
@@ -102,7 +101,7 @@ public class PurchaseMoneyTest {
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .hasMessage(ExceptionMessage.PURCHASE_MONEY_IS_NOT_NUMBER.getMessage());
+                .hasMessage(ExceptionMessages.PURCHASE_MONEY_IS_NOT_NUMBER.getMessage());
     }
 
     @Test
@@ -116,7 +115,7 @@ public class PurchaseMoneyTest {
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .hasMessage(ExceptionMessage.PURCHASE_MONEY_IS_NOT_OVER_ONE_THOUSAND.getMessage());
+                .hasMessage(ExceptionMessages.PURCHASE_MONEY_IS_NOT_OVER_ONE_THOUSAND.getMessage());
     }
 
     @Test
@@ -129,6 +128,6 @@ public class PurchaseMoneyTest {
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .hasMessage(ExceptionMessage.PURCHASE_MONEY_IS_NOT_OVER_ONE_THOUSAND.getMessage());
+                .hasMessage(ExceptionMessages.PURCHASE_MONEY_IS_NOT_OVER_ONE_THOUSAND.getMessage());
     }
 }

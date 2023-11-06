@@ -1,12 +1,11 @@
 package lotto.domain;
 
-import static lotto.enums.ExceptionMessage.*;
+import static lotto.enums.ExceptionMessages.*;
 
+import lotto.enums.Constants;
 import lotto.utils.RemoveSpace;
 
 public class PurchaseMoney {
-
-    private static final int ONE_THOUSAND = 1000;
 
     private int value;
 
@@ -58,11 +57,11 @@ public class PurchaseMoney {
 
     private boolean isDividedByOneThousand(final String money){
 
-        return Integer.valueOf(money) % ONE_THOUSAND == 0;
+        return Integer.valueOf(money) % Constants.ONE_LOTTO_TICKET_PRICE.getValue() == 0;
     }
 
     private boolean isLessThanOneThousand(String money){
 
-        return Integer.valueOf(money) < ONE_THOUSAND;
+        return Integer.valueOf(money) < Constants.ONE_LOTTO_TICKET_PRICE.getValue();
     }
 }

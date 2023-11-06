@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
 import lotto.model.Lottos;
 import lotto.model.PrizePercentage;
 import lotto.model.PurchaseAmount;
@@ -42,8 +42,7 @@ public class LottoController {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < purchaseAmount.divideByThousand(); i++) {
-            List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto lotto = new Lotto(new ArrayList<>(lottoNumber));
+            Lotto lotto = LottoGenerator.createLotto();
             lottos.add(lotto);
         }
 

@@ -6,12 +6,11 @@ import java.util.Map;
 import lotto.domain.LottoOption;
 import lotto.domain.Lottos;
 import lotto.domain.Rank;
-import lotto.domain.WinningLotto;
 import lotto.message.ViewMessage;
 
 public class OutputView {
 
-    private static NumberFormat format = new DecimalFormat("#,###.##");
+    private static NumberFormat format = new DecimalFormat("#,###.0");
 
     public static void printLottos(Lottos lottoPurchaseInfo) {
         System.out.println(lottoPurchaseInfo.getCount() + "개를 구매했습니다.");

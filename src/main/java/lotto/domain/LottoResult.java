@@ -27,4 +27,8 @@ public class LottoResult {
     public long getTotalWinningMoney() {
         return totalWinningMoney;
     }
+
+    private boolean checkLottoWinner(int number) {
+        return winningCount.containsKey(number);
+    }
 }

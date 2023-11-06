@@ -20,6 +20,10 @@ public class LottoTickets {
         return new WinningResult(winningRanks);
     }
 
+    public Integer getSize() {
+        return lottos.size();
+    }
+
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }

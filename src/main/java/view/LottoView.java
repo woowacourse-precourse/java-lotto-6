@@ -2,6 +2,7 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import domain.Lottos;
+import java.util.Collections;
 import java.util.List;
 import view.constant.ConstantMessage;
 
@@ -33,16 +34,16 @@ public class LottoView {
         printlnConstantMessage(ConstantMessage.WINNING_RESULT);
         printlnConstantMessage(ConstantMessage.THREE_DASH);
     }
-    public static void printLottoResults(List<Integer> lottoResult){
-        for(int i=0; i<lottoResult.size(); i++){
+    public static void printLottoResults(int[] lottoResult){
+        for(int i=0; i<lottoResult.length; i++){
             printConstantMessage(ConstantMessage.getLottoResult(i));
-            System.out.printf(lottoResult.get(i).toString());
+            System.out.printf(String.valueOf(lottoResult[i]));
             printlnConstantMessage(ConstantMessage.EA);
         }
     }
     public static void printTotalReturn(double totalReturn){
         printConstantMessage(ConstantMessage.TOTAL_RETURN);
-        System.out.print(totalReturn);
+        System.out.printf("%.1f",totalReturn*100);
         printlnConstantMessage(ConstantMessage.IPNIDA);
     }
 

@@ -1,20 +1,30 @@
 package lotto.domain.userpick;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
 
     public void validateSeparatedLottoNumbers(String[] separatedLottoNumbers) {
-
         if (separatedLottoNumbers.length != 6) {
             throw new IllegalArgumentException("[ERROR] 쉼표(,)를 기준으로 6개의 당첨 번호를 입력해주세요");
         }
 
+        Set<Integer> uniqueNumbers = new HashSet<>();
+
         for (String separatedLottoNumber : separatedLottoNumbers) {
             int parsedLottoNumber = Integer.parseInt(separatedLottoNumber);
+
+            if (uniqueNumbers.contains(parsedLottoNumber)) {
+                throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 있습니다.");
+            }
+
             validateRange(parsedLottoNumber);
+            uniqueNumbers.add(parsedLottoNumber);
         }
     }
+
 
     public void validateBonusNumber(String bonusNumber, List<Integer> parsedLottoNumbers) {
         int bonus = Integer.parseInt(bonusNumber);

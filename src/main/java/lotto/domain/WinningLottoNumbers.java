@@ -27,5 +27,10 @@ public class WinningLottoNumbers {
     private int convertBonus(String bonus) {
         return Integer.parseInt(bonus);
     }
+    // 당첨번호 validate
+    public void validateWinningNumbers(String numbers) {
+        inputValidation.isNumber(numbers);
+        inputValidation.isNumbersDivied6NumbersWithComma(numbers);
+    }
 
 }

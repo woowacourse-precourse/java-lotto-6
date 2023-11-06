@@ -54,7 +54,6 @@ public class EnumRanking {
             if (randomLotto.contains(player.getBonusNumber())) {
                 return Ranking.SECOND;
             }
-
             return Ranking.THIRD;
         }
 

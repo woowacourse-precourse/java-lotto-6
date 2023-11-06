@@ -1,17 +1,17 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class Input {
     public int getPurchaseAmount() {
+        Output.printPurchaseAmountMessage();
         return Integer.parseInt(Console.readLine());
     }
 
     public List<Integer> getWinningNumbers() {
+        Output.printWinningNumberMessage();
         String inputNumbers = Console.readLine();
 
         return Arrays.stream(inputNumbers.split(","))
@@ -20,7 +20,8 @@ public class Input {
                 .toList();
     }
 
-    public int getBonusNumber(){
+    public int getBonusNumber() {
+        Output.printBonusNumberMessage();
         return Integer.parseInt(Console.readLine());
     }
 }

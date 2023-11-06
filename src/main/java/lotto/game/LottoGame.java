@@ -20,8 +20,10 @@ public class LottoGame {
         this.output = output;
     }
 
+
     public void run() {
         Lottos lottos = new Lottos();
+
         // TODO : 리팩토링 필요
         int purchaseAmount;
         while (true) {
@@ -54,7 +56,7 @@ public class LottoGame {
         }
 
         lottoGameView.announceWinningStatistics(
-                purchaseAmount,
+                lottos.getPurchaseAmount(),
                 winningLotto.matchNumbers(buyLottos));
     }
 

@@ -1,17 +1,17 @@
 package lotto;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
     private static final int NUMBER_LOW_BOUND = 1;
     private static final int NUMBER_HIGH_BOUND = 45;
     private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
     private static final String OUT_OF_RANGE_MESSAGE = "숫자가 아닌 값이 입력되었습니다.";
 
-    private final int lottoNumber;
+    private final int number;
 
 
     public LottoNumber(long number) {
         validate(number);
-        lottoNumber = (int) number;
+        this.number = (int) number;
     }
 
     private void validate(long nubmer) {
@@ -28,6 +28,11 @@ public class LottoNumber {
     public boolean equals(Object object) {
         LottoNumber others = (LottoNumber) object;
 
-        return lottoNumber == others.lottoNumber;
+        return number == others.number;
+    }
+
+    @Override
+    public int compareTo(LottoNumber other) {
+        return Integer.compare(number, other.number);
     }
 }

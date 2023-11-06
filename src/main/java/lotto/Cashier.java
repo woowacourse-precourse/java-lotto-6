@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.List;
 
 public class Cashier {
@@ -10,11 +11,9 @@ public class Cashier {
 
         LottoMachine lottoMachine = new LottoMachine();
         lottoMachine.createLottoEnvelope(calculateLottoPrice(money));
-
         System.out.println(calculateLottoPrice(money) + "개를 구매했습니다.");
-
-
     }
+
     public Integer calculateLottoPrice(Integer money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException();
@@ -22,11 +21,17 @@ public class Cashier {
         return money / 1000;
     }
 
-    public Integer getWinningNumbers(List<Integer> winningNumbers) {
-
+    public List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> result = Arrays.stream(Console.readLine().split(","))
+                .map(Integer::valueOf)
+                .toList();
+        if (result.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+        return result;
     }
 
-    public Integer getBonusNumber(Integer bonusNumber) {
-
+    public Integer getBonusNumber() {
     }
 }

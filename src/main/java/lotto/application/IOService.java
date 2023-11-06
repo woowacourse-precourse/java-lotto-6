@@ -64,6 +64,8 @@ public class IOService {
 
     public WinningNumber scanWinningNumber(){
         List<Integer> prizeNumbers = scanPrizeNumbers();
+
+        prizeNumbers = prizeNumbers.stream().sorted().toList();
         WinningNumber winningNumber = new WinningNumber(prizeNumbers);
 
         int bonusNumber = scanBonusNumber(prizeNumbers);

@@ -5,7 +5,13 @@ import lotto.domain.lotto.strategy.PickNumbersStrategy;
 
 public class LottoGenerator {
 
-    public Lotto generate(PickNumbersStrategy pickNumbersStrategy) {
+    private final PickNumbersStrategy pickNumbersStrategy;
+
+    public LottoGenerator(PickNumbersStrategy pickNumbersStrategy) {
+        this.pickNumbersStrategy = pickNumbersStrategy;
+    }
+
+    public Lotto generate() {
         int minNumber = LottoConfig.MIN_NUMBER.getValue();
         int maxNumber = LottoConfig.MAX_NUMBER.getValue();
         int count = LottoConfig.NUMBERS_COUNT.getValue();

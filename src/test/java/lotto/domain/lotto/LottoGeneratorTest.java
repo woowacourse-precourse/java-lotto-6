@@ -12,11 +12,11 @@ public class LottoGeneratorTest {
     @Test
     void generateLottoWithPickRandomNumbersStrategy() {
         // given
-        LottoGenerator lottoGenerator = new LottoGenerator();
         PickNumbersStrategy pickNumbersStrategy = new PickRandomNumbersStrategy();
+        LottoGenerator lottoGenerator = new LottoGenerator(pickNumbersStrategy);
 
         // when & then
-        Assertions.assertThatCode(() -> lottoGenerator.generate(pickNumbersStrategy))
+        Assertions.assertThatCode(lottoGenerator::generate)
                 .doesNotThrowAnyException();
     }
 

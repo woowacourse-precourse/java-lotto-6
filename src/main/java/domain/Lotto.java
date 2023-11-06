@@ -20,9 +20,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumbersCount(numbers);
+        validateDuplicateNumbers(numbers);
+        validateRange(numbers);
+    }
+
+    private static void validateNumbersCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ExceptionMessage.INCORRECT_COUNT_OF_WINNING_NUMBERS.get());
         }
+    }
+
+    private static void validateDuplicateNumbers(List<Integer> numbers) {
         int uniqueNumberSize = numbers.stream()
                 .distinct()
                 .toList()
@@ -30,6 +39,9 @@ public class Lotto {
         if (uniqueNumberSize != numbers.size()) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_WINNING_NUMBERS.get());
         }
+    }
+
+    private static void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number > ConstantNumber.MAXIMUM_WINNING_NUMBER.get() ||
                     number < ConstantNumber.MINIMUM_WINNING_NUMBER.get()) {

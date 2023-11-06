@@ -34,7 +34,7 @@ IDE에서 실행
    1. 로또 번호 정하기
       1. 1~45사이의 숫자
       2. 중복 값 없음
-      3. 6개 + 보너스 1개
+      3. 6개
 2. 당첨 확인
    1. 등수 판별 
    2. 당첨금 합계
@@ -52,12 +52,16 @@ IDE에서 실행
       2. 1개
       3. 중복 값 없음
 
+
 ---
 ## 프로젝트 구조
 
 ```bash
 ├── domain
 │   ├── Lotto.java
+│   ├── LottoDraw.java
+│   ├── InputManager.java
+│   ├── InputDataAdapter.java
 │   └──  LottoVendingMachine.java
 │
 ├── constants

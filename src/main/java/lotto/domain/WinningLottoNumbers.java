@@ -32,5 +32,15 @@ public class WinningLottoNumbers {
         inputValidation.isNumber(numbers);
         inputValidation.isNumbersDivied6NumbersWithComma(numbers);
     }
+    // 보너스번호 validate
+    public void validateBonusNumber(String bonus) {
+        inputValidation.isNumber(bonus);
+        inputValidation.isNullOrBlank(bonus);
+        validateDuplicate(Integer.parseInt(bonus));
+    }
+    // 당첨번호와의 중복 체크
+    public void validateDuplicate(int bonus) {
+        winningLotto.getNumbers().contains(bonus);
+    }
 
 }

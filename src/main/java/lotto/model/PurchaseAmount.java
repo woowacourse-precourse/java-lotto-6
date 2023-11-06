@@ -19,13 +19,13 @@ public record PurchaseAmount(
 
     private void validateIsAboveMinimumAmount(int input) {
         if (input < 1000) {
-            throw new IllegalArgumentException(UNDER_MINIMUM_PURCHASE_AMOUNT_ERROR);
+            throw new IllegalArgumentException(UNDER_MINIMUM_PURCHASE_AMOUNT_ERROR.getValue());
         }
     }
 
     private void validateIsDivisible(int input) {
         if (input % 1000 != 0) {
-            throw new IllegalArgumentException(NON_DIVISIBLE_BY_THOUSAND);
+            throw new IllegalArgumentException(NON_DIVISIBLE_BY_THOUSAND.getValue());
         }
     }
 

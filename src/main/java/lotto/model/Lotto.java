@@ -28,7 +28,7 @@ public class Lotto {
 
     private void validateHasSixSize(List<Integer> input) {
         if (input.size() != LOTTO_NUMBER_SIZE.getNumber()) {
-            throw new IllegalArgumentException(UNAVAILABLE_LENGTH_ERROR_MESSAGE);
+            throw new IllegalArgumentException(UNAVAILABLE_LENGTH_ERROR_MESSAGE.getValue());
         }
     }
 
@@ -39,13 +39,13 @@ public class Lotto {
                 .count();
 
         if (inputSize != uniqueInputSize) {
-            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE.getValue());
         }
     }
 
     private void validateInRange(int input) {
         if (input < MIN_NUMBER.getNumber() || input > MAX_NUMBER.getNumber()) {
-            throw new IllegalArgumentException(OUT_OF_RANGE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(OUT_OF_RANGE_ERROR_MESSAGE.getValue());
         }
     }
 

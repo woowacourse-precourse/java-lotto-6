@@ -8,7 +8,7 @@ public record BonusNumber(
 
     public void validateIsDuplicate(Lotto winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE.getValue());
         }
     }
 }

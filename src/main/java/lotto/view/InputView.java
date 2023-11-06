@@ -44,7 +44,7 @@ public class InputView {
 
     private static void validateIsNumeric(String input) {
         if (!input.chars().allMatch(Character::isDigit) || input.isBlank()) {
-            throw new IllegalArgumentException(NON_NUMERIC_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NON_NUMERIC_ERROR_MESSAGE.getValue());
         }
     }
 }

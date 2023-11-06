@@ -1,16 +1,22 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.LottoBoard;
+import lotto.model.LottoGame;
+import lotto.view.Viewer;
 
 public class InputController {
-    private LottoBoard lottoBoard;
+    private LottoGame LottoGame;
+    private Viewer viewer = new Viewer();
+    private Integer money;
 
     public void startGame() {
-        System.out.println("구입금액을 입력해 주세요.");
-        Integer money = Integer.parseInt(Console.readLine());
+        viewer.printArgs("구입금액을 입력해 주세요.");
+        money = Integer.parseInt(Console.readLine());
         System.out.println();
-
-        lottoBoard = new LottoBoard(money);
     }
+
+    public Integer getMoney() {
+        return money;
+    }
+
 }

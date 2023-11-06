@@ -33,7 +33,6 @@ public class LottoBoard {
     }
 
     private void validate(Integer money) {
-        // TODO: 금액 예외 처리
         if (money < PRICE) throw new IllegalArgumentException("1000원 이상 입력해주세요.");
         else if (money % PRICE != 0) throw new IllegalArgumentException("1000단위로 입력해주세요.");
     }

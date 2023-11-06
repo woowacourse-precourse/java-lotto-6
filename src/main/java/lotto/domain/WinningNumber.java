@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constants.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.PatternSyntaxException;
@@ -20,7 +22,7 @@ public class WinningNumber {
         try {
             return inputValue.split(",");
         } catch (PatternSyntaxException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NOT_A_VALID_FORMAT.getMessage());
         }
     }
 
@@ -35,14 +37,14 @@ public class WinningNumber {
 
     private void validateOnlyNumber(String content) {
         if(!content.matches("[0-9]+")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NOT_NUMBER.getMessage());
         }
     }
 
     private int validateBetweenMinNumberAndMaxNumber(String content) {
         int result = Integer.parseInt(content);
         if(result < 0 || 45 < result) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NOT_INTERVAL_VALUE.getMessage());
         }
         return result;
     }

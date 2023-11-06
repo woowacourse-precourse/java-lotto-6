@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constants.ErrorMessage;
 import lotto.service.LottoService;
 
 import java.util.ArrayList;
@@ -23,14 +24,14 @@ public class Lottos {
         try {
             Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NOT_NUMBER.getMessage());
         }
     }
 
     private int validateDivisibilityByLottoPrice(String purchaseAmount) {
         int purchaseResult = Integer.parseInt(purchaseAmount);
         if(purchaseResult % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_CANT_DIVIDED_BY_LOTTO_PRICE.getMessage());
         }
         return purchaseResult / 1000;
     }

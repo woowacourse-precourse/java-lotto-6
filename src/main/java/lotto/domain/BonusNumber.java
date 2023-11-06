@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constants.ErrorMessage;
+
 public class BonusNumber {
     int bonusNumber;
 
@@ -15,14 +17,14 @@ public class BonusNumber {
 
     private void validateOnlyNumber(String content) {
         if(!content.matches("[0-9]+")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NOT_NUMBER.getMessage());
         }
     }
 
     private int validateBetweenMinNumberAndMaxNumber(String content) {
         int result = Integer.parseInt(content);
         if(result < 0 || 45 < result) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NOT_INTERVAL_VALUE.getMessage());
         }
         return result;
     }

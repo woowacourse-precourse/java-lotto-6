@@ -19,4 +19,12 @@ public enum OutputViewMessage {
     public String getMessage() {
         return message;
     }
+
+    public String getMessage(int number) {
+        return String.format(message, number);
+    }
+
+    public String getMessage(float number) {
+        return String.format(message, number);
+    }
 }

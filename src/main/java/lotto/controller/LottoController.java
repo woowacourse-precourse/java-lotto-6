@@ -29,10 +29,8 @@ public class LottoController {
 
         // 입력
         WinningCombinationDto winningNumbers = inputView.inputWinningNumbers();
-        //BonusNumberDto bonusNumber = getBonusNumberFromUserInput();
         // 실행
-        //DrawingResultDto result = service.findPrize(winningNumbers, bonusNumber);
-        DrawingResultDto result = service.findPrize(winningNumbers);
+        DrawingResultDto result = service.calculateDrawingResult(winningNumbers);
         // 출력
         outputView.printResult(result);
     }

@@ -23,9 +23,12 @@ public class Validator {
         checkLottoNumberDuplicate(winningNumber);
     }
 
-    public static void checkBonusNumber(Integer bonusNumber) throws IllegalArgumentException{
+    public static void checkBonusNumber(List<Integer> winningNumber, Integer bonusNumber) throws IllegalArgumentException{
         checkLottoNumberRange(bonusNumber);
+        checkLottoNumberDuplicate(winningNumber, bonusNumber);
     }
+
+
     private static void checkWinningNumberSize(List<Integer> winningNumber) throws IllegalArgumentException{
         if(winningNumber.size() != 6){
             throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 6개가 아닙니다.");
@@ -52,6 +55,12 @@ public class Validator {
         Long lottoNumberCount = lottoNumber.stream().distinct().count();
         if(lottoNumberCount != lottoNumber.size()){
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
+        }
+    }
+
+    private static void checkLottoNumberDuplicate(List<Integer> winningNumber, Integer bonusNumber) throws  IllegalArgumentException{
+        if(winningNumber.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 입력된 보너스 번호가 당첨 번호에 포함됩니다.");
         }
     }
 

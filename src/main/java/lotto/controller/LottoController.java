@@ -40,7 +40,7 @@ public class LottoController {
 
         while(true){
             try{
-                bonusNumber = new BonusNumber(InputView.inputBonusNumber());
+                bonusNumber = new BonusNumber(winningNumber.getWinningNumber(),InputView.inputBonusNumber());
                 break;
             } catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());

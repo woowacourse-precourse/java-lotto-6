@@ -45,4 +45,6 @@ public class LottoStoreManager {
     public void lottoMachine() {
         this.lottoTicketCount = (int) divide(Double.parseDouble(inputAmount), LOTTO_PRICE);
     }
+
+
 }

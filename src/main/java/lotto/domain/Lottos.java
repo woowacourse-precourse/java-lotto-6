@@ -32,4 +32,11 @@ public class Lottos {
                 .forEach(rank -> result.put(rank, 0));
         return result;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        lottos.forEach(lotto -> stringBuilder.append(lotto.toString()).append("\n"));
+        return stringBuilder.toString();
+    }
 }

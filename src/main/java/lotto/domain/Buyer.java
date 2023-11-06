@@ -18,4 +18,9 @@ public class Buyer {
     public Map<LottoRank, Integer> confirmLotto(WinningLotto winningLotto) {
         return lottos.winningLottoCompareLottos(winningLotto);
     }
+
+    @Override
+    public String toString() {
+        return lottos.toString();
+    }
 }

@@ -50,4 +50,9 @@ public class Lotto {
     public int matchCount(Lotto winningLotto) {
         return (int) this.numbers.stream().filter(winningLotto::contains).count();
     }
+
+    @Override
+    public String toString() {
+        return this.numbers.toString();
+    }
 }

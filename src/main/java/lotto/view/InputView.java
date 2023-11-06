@@ -13,6 +13,7 @@ public class InputView {
             try {
                 InputValidator.validateBlank(inputAmount);
                 InputValidator.validateNumber(inputAmount);
+                System.out.println();
                 return Double.parseDouble(inputAmount);
             } catch (IllegalArgumentException e) {
                 System.out.println();

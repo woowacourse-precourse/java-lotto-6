@@ -7,6 +7,7 @@ public enum OutputMessage {
     OPEN_PARENTHESIS("("),
     CLOSE_PARENTHESIS(")"),
 
+    PURCHASE_RESULT("%s개를 구매했습니다."),
     WINNING_STATISTICS("당첨 통계\n---"),
     SAME("%s개 일치"),
     BONUS("보너스 볼 일치"),

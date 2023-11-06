@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.domain;
 
 import lotto.Lotto;
 

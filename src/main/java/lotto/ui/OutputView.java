@@ -34,7 +34,7 @@ public class OutputView {
     }
 
     public void showResultStatistics(ResultStatics resultStatics) {
-        Map<LottoPrizeStatus, Integer> resultMap = resultStatics.getResultMap();
+        Map<LottoPrizeStatus, Integer> resultMap = resultStatics.getPrizeResult();
         double earningRate = resultStatics.getEarningRate();
         System.out.println("당첨 통계");
         System.out.println("---");

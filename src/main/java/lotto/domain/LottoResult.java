@@ -1,17 +1,14 @@
 package lotto.domain;
 
-import static lotto.domain.LottoPrizeStatus.getSatisfiedContainsStatus;
+import java.util.*;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import lotto.util.ErrorMessages;
 
 public class LottoResult {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
+    private static final int ADD_COUNT = 1;
     public LottoResult(Lotto winningLotto, int bonusNumber) {
         validateBonusNumber(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
@@ -19,34 +16,38 @@ public class LottoResult {
     }
 
     private void validateBonusNumber(Lotto winningLotto, int bonusNumber) {
-        if (containDuplicateNumber(winningLotto, bonusNumber)) {
+        if (isContainDuplicateNumber(winningLotto, bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_BONUS_NUMBER_ERROR.getMessage());
         }
     }
 
-    private boolean containDuplicateNumber(Lotto winningLotto, int bonusNumber) {
+    private boolean isContainDuplicateNumber(Lotto winningLotto, int bonusNumber) {
         return winningLotto.getNumbers()
                 .contains(bonusNumber);
     }
 
-    public Map<LottoPrizeStatus, Integer> mappingLottoResult(List<Lotto> issuedLottos) {
-        Map<LottoPrizeStatus, Integer> resultMap = getResultMap();
+    public Map<LottoPrizeStatus, Integer> mappingPrizeResult(List<Lotto> issuedLottos) {
+        Map<LottoPrizeStatus, Integer> prizeResult = getPrizeResult();
+        calculatePrizeResult(prizeResult, issuedLottos);
+        return prizeResult;
+    }
+
+    private void calculatePrizeResult(Map<LottoPrizeStatus, Integer> prizeResult, List<Lotto> issuedLottos) {
         for (Lotto issuedLotto : issuedLottos) {
             int matchCount = winningLotto.calculateMatchCount(issuedLotto);
-            boolean isContainBonusNum = checkContainBonusNumber(issuedLotto);
-            LottoPrizeStatus lottoStatus = getSatisfiedContainsStatus(matchCount, isContainBonusNum);
-            if (lottoStatus != null) {
-                resultMap.put(lottoStatus, resultMap.get(lottoStatus) + 1);
+            boolean isContainBonusNumber = checkContainBonusNumber(issuedLotto);
+            LottoPrizeStatus status = LottoPrizeStatus.getSatisfiedContainsStatus(matchCount, isContainBonusNumber);
+            if (status != null) {
+                prizeResult.put(status, prizeResult.get(status) + ADD_COUNT);
             }
         }
-        return resultMap;
     }
 
     private boolean checkContainBonusNumber(Lotto issuedLotto) {
         return issuedLotto.getNumbers().contains(bonusNumber);
     }
 
-    private Map<LottoPrizeStatus, Integer> getResultMap() {
+    private Map<LottoPrizeStatus, Integer> getPrizeResult() {
         final Map<LottoPrizeStatus, Integer> resultMap = new HashMap<>();
         Arrays.stream(LottoPrizeStatus.values())
                 .forEach((status) -> resultMap.put(status, 0));

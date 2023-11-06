@@ -10,9 +10,9 @@ public class LottoConsumer {
     }
 
     public ResultStatics calculateResult(LottoResult lottoResult) {
-        Map<LottoPrizeStatus, Integer> resultMap = lottoResult.mappingLottoResult(issuedLottos);
+        Map<LottoPrizeStatus, Integer> prizeResult = lottoResult.mappingPrizeResult(issuedLottos);
         int issueCount = issuedLottos.size();
-        return new ResultStatics(resultMap, issueCount);
+        return new ResultStatics(prizeResult, issueCount);
     }
 
     public List<Lotto> getIssuedLottos() {

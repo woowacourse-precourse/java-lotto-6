@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import static lotto.domain.LottoPrice.UNIT_PRICE;
+import static lotto.domain.LottoPrice.LOTTO_UNIT_PRICE;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -36,7 +36,7 @@ public class LottoIssueController {
     }
 
     private int getIssueCount(final int money) {
-        return money / UNIT_PRICE;
+        return money / LOTTO_UNIT_PRICE;
     }
 
     private void validateMoney(final int money) {
@@ -50,6 +50,6 @@ public class LottoIssueController {
     }
 
     private boolean hasChange(final int validMoney) {
-        return validMoney % UNIT_PRICE != 0;
+        return validMoney % LOTTO_UNIT_PRICE != 0;
     }
 }

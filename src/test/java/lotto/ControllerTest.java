@@ -4,19 +4,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.util.Utils;
-import lotto.model.LottoMoneyValidator;
+import lotto.util.Validator;
 import org.junit.jupiter.api.Test;
 
 public class ControllerTest {
 
     @Test
     void validateMoneyIsPositive_구입금액_음수면_예외반환() {
-        assertThatThrownBy(() -> LottoMoneyValidator.validateMoneyIsPositive(-10000)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.validateMoneyIsPositive(-10000)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void validateMoneyDivideBy1000_구입금액_1000으로_안나눠지면_예외반환() {
-        assertThatThrownBy(() -> LottoMoneyValidator.validateMoneyDivideBy1000(13555)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.validateMoneyDivideBy1000(13555)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

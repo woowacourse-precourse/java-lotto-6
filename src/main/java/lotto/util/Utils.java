@@ -1,7 +1,5 @@
 package lotto.util;
 
-import lotto.model.LottoMoneyValidator;
-
 public class Utils {
     private static final String NULL_ERROR_MESSAGE = "[ERROR] 입력값이 null 일 수 없습니다.";
     private static final String BLANK_ERROR_MESSAGE = "[ERROR] 입력값은 빈 값일 수 없습니다.";

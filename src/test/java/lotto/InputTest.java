@@ -19,10 +19,11 @@ public class InputTest {
         // 정상적인 경우 테스트
         assertThat(input.purchaseAmountInput("11000"))
                 .isEqualTo(new ArrayList<>(Arrays.asList(11000)));
-        assertThat(input.purchaseAmountInput("1123400"))
+        assertThat(input.purchaseAmountInput("11234000"))
                 .isEqualTo(new ArrayList<>(Arrays.asList(11234000)));
 
-        // 비정상인 경우 테스트
+        // 비정상적인 경우 테스트
+        // 문자열에 숫자를 제외한 다른 문자가 있을 경우
         assertThatThrownBy(() -> input.purchaseAmountInput("!110000"))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> input.purchaseAmountInput("+110000"))
@@ -30,6 +31,12 @@ public class InputTest {
         assertThatThrownBy(() -> input.purchaseAmountInput("-110000"))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> input.purchaseAmountInput("110000@"))
+                .isInstanceOf(IllegalArgumentException.class);
+        // 문자열이 비어있는 경우
+        assertThatThrownBy(() -> input.purchaseAmountInput(""))
+                .isInstanceOf(IllegalArgumentException.class);
+        // 구매 금액이 1000으로 나누어 떨어지지 않는 경우
+        assertThatThrownBy(() -> input.purchaseAmountInput("1234"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

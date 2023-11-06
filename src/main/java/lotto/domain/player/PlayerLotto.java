@@ -4,13 +4,13 @@ import lotto.domain.player.lotto.Lotto;
 
 public class PlayerLotto {
 
-    private Lotto lottoNubmers;
+    private Lotto lotto;
     private BonusNumber bonusNumber;
 
     private PurchaseAmount purchaseAmount;
 
-    public PlayerLotto(Lotto lottoNubmers, BonusNumber bonusNumber, PurchaseAmount purchaseAmount) {
-        this.lottoNubmers = lottoNubmers;
+    public PlayerLotto(Lotto lotto, BonusNumber bonusNumber, PurchaseAmount purchaseAmount) {
+        this.lotto = lotto;
         this.bonusNumber = bonusNumber;
         this.purchaseAmount = purchaseAmount;
     }

@@ -17,10 +17,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateLottoSize(numbers);
         validateDuplicateNumber(numbers);
-        this.numbers = toLottoNumbers(numbers);
+        this.numbers = convertToLottoNumbers(numbers);
     }
 
-    private List<LottoNumber> toLottoNumbers(List<Integer> numbers) {
+    private List<LottoNumber> convertToLottoNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());

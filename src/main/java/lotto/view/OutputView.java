@@ -38,4 +38,8 @@ public class OutputView {
     private static String getWinningResultMessage(int count) {
         return ViewMessage.OUTPUT_PURCHASED_LOTTOS.getPurchasedLottosMessage(count);
     }
+
+    public static void printProfit(double profit) {
+        System.out.println(ViewMessage.getProfitMessage(profit));
+    }
 }

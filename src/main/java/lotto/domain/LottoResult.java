@@ -17,4 +17,10 @@ public record LottoResult(
                 .sorted(Map.Entry.comparingByKey(Comparator.comparingInt(Rank::ordinal).reversed()))
                 .collect(Collectors.toList());
     }
+
+    public long getTotalPrizeMoney() {
+        return result.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getWinningMoney() * entry.getValue())
+                .sum();
+    }
 }

@@ -29,13 +29,17 @@ public class Input {
 
     public static Integer InputNumber() {
         String inputStringLine = Console.readLine().trim();
-// TODO: 11/6/23
+
+        validateInputNumber(inputStringLine);
+
+        return Utii.parseInteger(inputStringLine);
+    }
+
+    private static void validateInputNumber(String inputStringLine) {
         ValidateException.containsNonNumericCharacter(inputStringLine);
         ValidateException.includeBlank(inputStringLine);
         ValidateException.blankCheck(inputStringLine);
         ValidateException.negative(inputStringLine);
         ValidateException.zeroNum(inputStringLine);
-
-        return Utii.parseInteger(inputStringLine);
     }
 }

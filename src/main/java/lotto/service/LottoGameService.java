@@ -27,6 +27,9 @@ public class LottoGameService {
         this.lottoGenerator = lottoGenerator;
     }
 
+    /**
+     * 메서드 호출 전 createLottoWinningNumber 메서드와 createLottoBonusNumber 메서드가 호출되어야 합니다.
+     */
     public LottoWinningResult calculateLottoWinningResult() {
         Map<LottoPrize, Integer> prizeCountMap = new HashMap<>();
         for (Lotto lottoTicket : lottoTickets) {
@@ -45,6 +48,9 @@ public class LottoGameService {
         lottoWinningNumber = new LottoWinningNumber(lottoWinningNumberCreateRequest.getNumbers());
     }
 
+    /**
+     * 메서드 호출 전 createLottoWinningNumber 메서드가 호출되어야 합니다.
+     */
     public void createLottoBonusNumber(LottoBonusNumberCreateRequest lottoBonusNumberCreateRequest) {
         lottoBonusNumber = new LottoBonusNumber(lottoWinningNumber, lottoBonusNumberCreateRequest.getBonusNumber());
     }

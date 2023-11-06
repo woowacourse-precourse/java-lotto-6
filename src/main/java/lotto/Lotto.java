@@ -20,15 +20,29 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        try{
+            if (numbers.size() != 6) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리 이어야 합니다.");
+            }
         }
+        catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 당첨 번호는 6자리 이어야 합니다.");
+            e.printStackTrace();
+        }
+
     }
 
     private void validateDuplicated_1(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            validateDuplicated_2(numbers, i);
+        try{
+            for (int i = 0; i < numbers.size(); i++) {
+                validateDuplicated_2(numbers, i);
+            }
         }
+        catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 로또 번호는 중복되지 않아야합니다.");
+            e.printStackTrace();
+        }
+
     }
 
     private void validateDuplicated_2(List<Integer> numbers, int count) {
@@ -55,36 +69,17 @@ public class Lotto {
             result = validatePrice(price);
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자 형식이 아닙니다.");
-
+            e.printStackTrace();
             return inputYourMoney();
 
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 금액은 1,000원 단위 이어야 합니다.");
-
+            e.printStackTrace();
             return inputYourMoney();
         }
 
         return result;
     }
-
-//    protected static int StringToInt(String str) {
-//        List<Character> zeroToNine = new ArrayList<>(Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
-//        StringBuilder result = new StringBuilder();
-//        for (int i = 0; i < str.length(); i++) {
-//            char chr = str.charAt(i);
-//            if (zeroToNine.contains(chr)) {
-//                result.append(chr);
-//            }
-//
-//            if (!zeroToNine.contains(chr)) {
-//                throw new NumberFormatException("[ERROR] 숫자 형식이 아닙니다.");
-//            }
-//        }
-//
-//
-//        return Integer.parseInt(result.toString());
-//    }
-
 
     private static int validatePrice(int price) {
 

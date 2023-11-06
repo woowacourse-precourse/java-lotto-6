@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -155,7 +156,23 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByDuplicatedNumber(){
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE + " 로또 번호는 중복되지 않아야합니다.");
+        });
+    }
 
+    @DisplayName("당첨 번호가 6자리가 아닐경우 예외가 발생한다.")
+    @Test
+    void isWinningNumberSix(){
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE + " 당첨 번호는 6자리 이어야 합니다.");
+        });
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

@@ -19,7 +19,11 @@ public class WinningResult {
         return winningResult;
     }
 
-
+    public int determineCountByBonus(int count, boolean isBonusHit) {
+        if (count == Rule.SECOND_RANK.value() && isBonusHit)
+            return Rule.SECOND_RANK.value();
+        return count;
+    }
 
     /**
      * 당첨 통계

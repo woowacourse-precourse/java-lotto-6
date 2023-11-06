@@ -14,6 +14,12 @@ public class LottoNumbersException {
         }
     }
 
+    public static void validateBonusNumber(List<Integer> wins, Integer bonus) {
+        wins.add(bonus);
+        duplicateNumber(wins);
+        numberNotInRange(bonus);
+    }
+
     public static void notSixNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 가지고 있지 않습니다.");

@@ -6,6 +6,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.Lotto.lottoRangeFirstNum;
+import static lotto.Lotto.lottoRangeLastNum;
+
 public class Draw {
 
     public Lotto enterWinningLottoNums() {
@@ -21,6 +24,27 @@ public class Draw {
             }
         }
         return winningLotto;
+    }
+
+    public int enterBonusNum(Lotto winningLotto) {
+        int bonusNum;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                bonusNum = toInt(input);
+                isWithinRange(bonusNum);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNum;
+    }
+
+    void isWithinRange(int num) {
+        if (!(num >= lottoRangeFirstNum && num <= lottoRangeLastNum)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1~45입니다.");
+        }
     }
 
     public List<Integer> getWinningLottoNumsList() {

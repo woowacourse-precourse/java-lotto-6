@@ -2,6 +2,7 @@ package lotto.money;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -29,5 +30,17 @@ class MoneyTest {
     void getMoneyBelowMinimum(String money) {
         Assertions.assertThatThrownBy(() -> new Money(money))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("전체 상금으로 수익률을 계산한다.")
+    @Test
+    void calculateProfit() {
+        Money money = new Money("10000");
+        Integer totalPrice = 12055;
+
+        Double profit = money.calculateProfit(totalPrice);
+
+        Assertions.assertThat(profit).isEqualTo(120.6);
+
     }
 }

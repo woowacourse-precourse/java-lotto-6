@@ -1,10 +1,9 @@
 package lotto.controller;
 
-import lotto.converter.Converter;
-import lotto.converter.StringToIntegerListConverter;
 import lotto.domain.*;
 import lotto.dto.LottoDto;
 import lotto.service.StatisticsService;
+import lotto.utils.Converter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -27,8 +26,8 @@ public class MainController {
         List<Lotto> userLottos = repeatTemplate(this::buyLottos);
         showUserLottos(userLottos);
 
-        LottoResult lottoResult = checkLottoResultOf(userLottos);
-        showLottoResult(lottoResult, userLottos);
+        WinningLotto winningLotto = repeatTemplate(this::initializeWinningLotto);
+        showLottoResult(winningLotto, userLottos);
     }
 
     private List<Lotto> buyLottos() {
@@ -46,12 +45,6 @@ public class MainController {
                 .toList();
     }
 
-    private LottoResult checkLottoResultOf(List<Lotto> userLottos) {
-        WinningLotto winningLotto = repeatTemplate(this::initializeWinningLotto);
-
-        return statisticsService.checkLottoResult(winningLotto, userLottos);
-    }
-
     private WinningLotto initializeWinningLotto() {
         Lotto lotto = repeatTemplate(this::generateLotto);
         BonusNumber bonusNumber = repeatTemplate(this::generateBonusNumber);
@@ -60,33 +53,21 @@ public class MainController {
     }
 
     private Lotto generateLotto() {
-        Converter<String, List<Integer>> converter = new StringToIntegerListConverter();
-
         String winningNumbers = inputView.inputWinningNumbers();
-        List<Integer> numbers = converter.convert(winningNumbers);
+        List<Integer> numbers = Converter.toIntegerList(winningNumbers);
 
         return new Lotto(numbers);
     }
 
     private BonusNumber generateBonusNumber() {
-        int inputBonusNumber = inputView.inputBonusNumber();
-        return new BonusNumber(inputBonusNumber);
+        return new BonusNumber(inputView.inputBonusNumber());
     }
 
-    private void showLottoResult(LottoResult lottoResult, List<Lotto> userLottos) {
-        showWinningStatistics(lottoResult);
-        showRateOrReturn(lottoResult, userLottos);
-    }
+    private void showLottoResult(WinningLotto winningLotto, List<Lotto> userLottos) {
+        Map<LottoRanking, Integer> result = statisticsService.checkLottoResult(winningLotto, userLottos);
+        double rateOfReturn = statisticsService.calculateRateOfReturn(result, userLottos);
 
-    private void showWinningStatistics(LottoResult lottoResult) {
-        Map<LottoRanking, Integer> result = lottoResult.getResult();
-        List<LottoRanking> lottoRankingOutputOrder = LottoRanking.findOrder();
-
-        outputView.printWinningStatistics(result, lottoRankingOutputOrder);
-    }
-
-    private void showRateOrReturn(LottoResult lottoResult, List<Lotto> userLottos) {
-        double rateOfReturn = statisticsService.calculateRateOfReturn(lottoResult, userLottos);
+        outputView.printWinningStatistics(result, LottoRanking.findOrder());
         outputView.printRateOfResult(rateOfReturn);
     }
 

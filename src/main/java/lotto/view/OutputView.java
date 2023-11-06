@@ -39,19 +39,20 @@ public class OutputView {
         System.out.println(numbersMessageBuilder);
     }
 
-    private void printStartWinningStatisticsMessage() {
-        newLine();
-        System.out.println(WINNING_STATISTICS_MESSAGE);
-    }
-
     public void printWinningStatistics(Map<LottoRanking, Integer> result, List<LottoRanking> lottoRankingOutputOrder) {
         printStartWinningStatisticsMessage();
         printWinningStatisticsMessage(result, lottoRankingOutputOrder);
     }
 
-    private void printWinningStatisticsMessage(Map<LottoRanking, Integer> result, List<LottoRanking> lottoRankingOutputOrder) {
-        List<String> messages = MessageGenerator.generateStatisticsMessages(result, lottoRankingOutputOrder);
+    private void printStartWinningStatisticsMessage() {
+        newLine();
+        System.out.println(WINNING_STATISTICS_MESSAGE);
+    }
 
+    private void printWinningStatisticsMessage(
+            Map<LottoRanking, Integer> result, List<LottoRanking> lottoRankingOutputOrder) {
+
+        List<String> messages = MessageGenerator.generateStatisticsMessages(result, lottoRankingOutputOrder);
         System.out.println(String.join(NEWLINE, messages));
     }
 

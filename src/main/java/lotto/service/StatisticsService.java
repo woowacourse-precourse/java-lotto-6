@@ -2,15 +2,17 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoRanking;
-import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
 import lotto.repository.PrizeMoneyRepository;
 import lotto.utils.Constants;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 public class StatisticsService {
+    private static final int INITIAL_COUNT = 0;
+    private static final int INCREASING_VALUE = 1;
     private static final int HUNDRED = 100;
 
     private final PrizeMoneyRepository prizeMoneyRepository;
@@ -19,28 +21,22 @@ public class StatisticsService {
         this.prizeMoneyRepository = prizeMoneyRepository;
     }
 
-    public LottoResult checkLottoResult(WinningLotto winningLotto, List<Lotto> userLottos) {
-        LottoResult lottoResult = new LottoResult();
+    public Map<LottoRanking, Integer> checkLottoResult(WinningLotto winningLotto, List<Lotto> userLottos) {
+        Map<LottoRanking, Integer> result = new EnumMap<>(LottoRanking.class);
 
         for (Lotto userLotto : userLottos) {
             LottoRanking ranking = winningLotto.compare(userLotto);
-            lottoResult.record(ranking);
+            result.put(ranking, result.getOrDefault(ranking, INITIAL_COUNT) + INCREASING_VALUE);
         }
 
-        return lottoResult;
+        return result;
     }
 
-    public double calculateRateOfReturn(LottoResult lottoResult, List<Lotto> userLottos) {
-        double totalPrizeMoney = calculateTotalPrizeMoney(lottoResult);
+    public double calculateRateOfReturn(Map<LottoRanking, Integer> result, List<Lotto> userLottos) {
+        double totalPrizeMoney = calculateTotalPrizeMoney(result);
         int totalPurchaseAmount = calculateTotalPurchaseAmount(userLottos);
 
         return totalPrizeMoney / totalPurchaseAmount * HUNDRED;
-    }
-
-    private double calculateTotalPrizeMoney(LottoResult lottoResult) {
-        Map<LottoRanking, Integer> result = lottoResult.getResult();
-
-        return calculateTotalPrizeMoney(result);
     }
 
     private double calculateTotalPrizeMoney(Map<LottoRanking, Integer> result) {

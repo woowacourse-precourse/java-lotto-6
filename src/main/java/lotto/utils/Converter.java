@@ -1,13 +1,12 @@
-package lotto.converter;
+package lotto.utils;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class StringToIntegerListConverter implements Converter<String, List<Integer>> {
+public class Converter {
     private static final String DELIMITER = ",";
 
-    @Override
-    public List<Integer> convert(String source) {
+    public static List<Integer> toIntegerList(String source) {
         return Arrays.stream(source.split(DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)

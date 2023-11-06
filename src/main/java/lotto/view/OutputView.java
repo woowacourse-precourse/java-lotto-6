@@ -1,6 +1,9 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
 import lotto.service.LottoService;
+
+import java.util.List;
 
 public class OutputView {
 
@@ -19,9 +22,11 @@ public class OutputView {
         System.out.println();
     }
 
-    public void outputIssuingLotteryTicket() {
-        int lotteryTicketCount = lottoService.getLotteryTicketCount();
+    public void outputIssuingLotteryTicket(List<Lotto> lottos, int lotteryTicketCount) {
         System.out.println(lotteryTicketCount + OUTPUT_PURCHASE_COUNT_SENTENCE);
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 
     public void outputWinningNumbers() {

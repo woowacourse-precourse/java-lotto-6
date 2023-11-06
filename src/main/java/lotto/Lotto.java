@@ -14,7 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6 || new HashSet<>(numbers).size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("");
         }
         for(int number : numbers){
             if(number < 1 || number > 45){

@@ -7,8 +7,15 @@ public class WinningNumber extends Lotto {
 
     public WinningNumber(List<Integer> winningNumbers, int bonusNumber) {
         super(winningNumbers);
+        validateBonusNumberRange(bonusNumber);
         validateBonusNumber(winningNumbers, bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateBonusNumberRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자만 가능합니다.");
+        }
     }
 
     private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {

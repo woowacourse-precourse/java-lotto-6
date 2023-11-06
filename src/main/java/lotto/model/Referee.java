@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.constant.GradeConstant;
 
 public class Referee {
@@ -25,8 +24,7 @@ public class Referee {
                             .count();
                     boolean hitBonus = playerLotto.contains(bonusNumber);
                     return getGrade(hit, hitBonus);
-                })
-                .collect(Collectors.toList());
+                }).toList();
     }
 
     private GradeConstant getGrade(int hit, boolean hitBonus) {

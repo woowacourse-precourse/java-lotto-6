@@ -40,6 +40,7 @@ public class InputView {
 
     public int readBonusNumber() {
         while (true) {
+            System.out.println();
             System.out.println(BONUS_NUMBER_MESSAGE);
             try {
                 final String inputBonusNumber = Console.readLine();
@@ -53,6 +54,7 @@ public class InputView {
 
     public List<Integer> readWinningNumbers() {
         while (true) {
+            System.out.println();
             System.out.println(WINNING_NUMBER_MESSAGE);
             try {
                 final String inputWinningNumber = Console.readLine();

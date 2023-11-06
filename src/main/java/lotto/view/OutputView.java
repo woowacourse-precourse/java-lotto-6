@@ -8,10 +8,11 @@ import lotto.dto.LottoResultDto;
 import lotto.model.LottoGrade;
 
 public class OutputView {
-    private static final String LOTTO_FORMAT = "%d개를 구매했습니다.";
-    private static final String BASE_GRADE_FORMAT = "%s개 일치 (%s)원 - %d개";
-    private static final String SECOND_GRADE_FORMAT = "5개 일치, 보너스 볼 일치 (%s)원 - %d개";
-    private static final String RETURN_ON_INVESTMENT_FORMAT = "총 수익률은 %.2f%%입니다.";
+    private static final String LOTTO_FORMAT = "%d개를 구매했습니다.\n";
+    private static final String RESULT_MESSAGE = "당첨 통계\n---";
+    private static final String BASE_GRADE_FORMAT = "%s개 일치 (%s원) - %d개";
+    private static final String SECOND_GRADE_FORMAT = "5개 일치, 보너스 볼 일치 (%s원) - %d개";
+    private static final String RETURN_ON_INVESTMENT_FORMAT = "총 수익률은 %.1f%%입니다.";
     private final DecimalFormat formatter = new DecimalFormat("###,###");
 
     private OutputView() {
@@ -22,6 +23,7 @@ public class OutputView {
     }
 
     public void printLottos(final List<LottoDto> lottos) {
+        System.out.println();
         System.out.printf(LOTTO_FORMAT, lottos.size());
         for (final LottoDto lotto : lottos) {
             System.out.println(lotto.numbers());
@@ -29,6 +31,8 @@ public class OutputView {
     }
 
     public void printResult(final List<LottoResultDto> lottoResults) {
+        System.out.println();
+        System.out.println(RESULT_MESSAGE);
         for (final LottoResultDto lottoResult : lottoResults) {
             final String formattedResult = generateResultFormat(lottoResult);
             System.out.println(formattedResult);

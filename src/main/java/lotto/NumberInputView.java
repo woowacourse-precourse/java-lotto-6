@@ -15,7 +15,7 @@ public class NumberInputView {
 
     public NumberInputView() {
         validate();
-//        sortingNumbers();
+        sortingNumbers();
     }
 
     public List<Integer> getValidNumbers() {
@@ -66,5 +66,8 @@ public class NumberInputView {
         if (hasDuplicates) {
             throw new IllegalArgumentException("[ERROR] : 중복된 숫자가 존재합니다.");
         }
+    }
+
+    private void sortingNumbers() {
     }
 }

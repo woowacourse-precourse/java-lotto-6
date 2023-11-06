@@ -1,8 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.List;
-import java.util.stream.LongStream;
 import lotto.io.ConsoleManager;
 
 public class LottoBuyer {
@@ -18,6 +15,10 @@ public class LottoBuyer {
     protected long payLotto() {
         return consoleManager.inputPurchasePrice()
                 .getValue();
+    }
+
+    protected long getLottoCount(final long price) {
+        return price / PRICE_UNIT;
     }
 
 }

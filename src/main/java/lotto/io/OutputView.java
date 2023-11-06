@@ -39,6 +39,7 @@ public class OutputView {
     }
 
     public void printBonusNumber() {
+        printNextLine();
         System.out.println(ProgressMessage.INPUT_BONUS_NUMBER_MESSAGE);
     }
 

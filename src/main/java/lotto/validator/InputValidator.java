@@ -26,4 +26,15 @@ public class InputValidator {
         }
     }
 
+    private boolean hasNotOnlyNumberAndDelimiterComma(String numbers) {
+        String numbersInputRegex = "([0-9]+,)+[0-9]+";
+
+        return !numbers.matches(numbersInputRegex);
+    }
+
+    public void checkOnlyNumberAndDelimiterCommaContain(String numbers) {
+        if(hasNotOnlyNumberAndDelimiterComma(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력은 숫자와 ,로만 이루어 져야 합니다.");
+        }
+    }
 }

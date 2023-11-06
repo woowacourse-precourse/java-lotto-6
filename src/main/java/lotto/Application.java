@@ -13,5 +13,7 @@ public class Application {
             List<Integer> balls = lotto.showBallNumber();
             System.out.println(balls.toString());
         }
+
+        System.out.println(buyLotto.inputNumbers().toString());
     }
 }

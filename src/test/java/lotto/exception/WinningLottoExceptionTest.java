@@ -29,6 +29,14 @@ public class WinningLottoExceptionTest {
 
     }
 
+    @DisplayName("로또 번호들의 갯수가 6개가 아닌 경우 경우 예외처리")
+    @Test
+    void wrongLottoNumbersLengthExceptionTest() {
+
+        Assertions.assertThatThrownBy(
+                          () -> new WinningLotto(List.of("1", "2", "3", "4", "5", "6", "8"), "9"))
+                  .isInstanceOf(IllegalArgumentException.class);
+    }
 
 
 }

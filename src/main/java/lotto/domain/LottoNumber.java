@@ -17,4 +17,8 @@ public class LottoNumber {
             throw LOTTO_NUMBER_RANGE.getException(START_INCLUSIVE, END_INCLUSIVE);
         }
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

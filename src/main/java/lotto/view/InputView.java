@@ -9,21 +9,21 @@ public class InputView {
     }
 
     public static String inputPurchasePrice() {
-        String input = AddNewLineAfterReadLine();
-        InputValidator.validatePurchasePrice(input);
-        return input;
+        String purchasePrice = AddNewLineAfterReadLine();
+        InputValidator.validatePurchasePrice(purchasePrice);
+        return purchasePrice;
     }
 
     public static String inputWinningNumber() {
-        String input = AddNewLineAfterReadLine();
-        InputValidator.validateWinningNumber(input);
-        return input;
+        String winningNumber = AddNewLineAfterReadLine();
+        InputValidator.validateWinningNumber(winningNumber);
+        return winningNumber;
     }
 
     public static String inputBonusNumber() {
-        String input = AddNewLineAfterReadLine();
-        InputValidator.validateBonusNumber(input);
-        return input;
+        String bonusNumber = AddNewLineAfterReadLine();
+        InputValidator.validateBonusNumber(bonusNumber);
+        return bonusNumber;
     }
 
     private static String AddNewLineAfterReadLine() {

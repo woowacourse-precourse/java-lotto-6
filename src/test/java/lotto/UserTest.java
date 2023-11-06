@@ -10,10 +10,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 import org.junit.jupiter.api.Test;
 
-class LottoGameControllerTest {
-
-    LottoGameController controller = new LottoGameController();
-
+class UserTest {
 
     @Test
     void 금액_입력_1000단위_확인() throws IOException {

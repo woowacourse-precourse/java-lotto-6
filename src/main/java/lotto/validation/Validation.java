@@ -47,5 +47,11 @@ public class Validation {
 			throw new IllegalArgumentException();
 		}
 	}
+	
+	public void validateBuyableAmount(int max, int paid) {
+		if ( max < paid ) {
+			throw new IllegalArgumentException();
+		}
+	}
 
 }

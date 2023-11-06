@@ -10,6 +10,8 @@ public class Service {
 	private static final int LOTTO_START_INCLUSIVE = 1;
 	private static final int LOTTO_END_INCLUSIVE = 45;
 	private static final int LOTTO_SIZE = 6;
+	private static final int LOTTO_PRICE = 1_000;
+	private static final int BUYABLE_MAX_AMOUNT = 100_000;
 	
 	public Lotto generateLotto() {
 		List<Integer> numbers = Utils.generateUniqueNumberListInRange(LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE, LOTTO_SIZE);

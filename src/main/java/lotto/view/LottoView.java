@@ -10,19 +10,15 @@ public class LottoView {
     public LottoView() {
 
     }
-    // TODO : 검증 단계는 model이나 controller에서 처리하도록 수정
     public int inputMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
         try {
-            System.out.println("구입금액을 입력해 주세요.");
-            int money = Integer.parseInt(Console.readLine());
-            if (money < 1000 || money % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위의 정수여야 합니다.");
-            }
-            return money;
+            return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액으로 숫자를 입력해야 합니다.");
         }
     }
+
 
     // TODO: 예외처리 부분 구현 / model이나 controller에서 처리하도록 수정
     public List<Integer> inputWinningNumbers() {

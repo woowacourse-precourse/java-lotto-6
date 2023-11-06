@@ -59,7 +59,7 @@ public class LottoGame {
 
     public int numberComparison(Lotto draw, Lotto win) {
         int count = 0;
-        for(Integer number : win){
+        for(Integer number : win.getNumbers()){
             if (draw.contains(number)) {
                count++;
             }

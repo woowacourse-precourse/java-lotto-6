@@ -18,4 +18,13 @@ class ConversionTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(MUST_INTEGER.getError());
     }
+
+    @DisplayName("구분자가 쉼표(,)가 아니거나, 숫자가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1.2.3.4.5.6", "1/2/3/4/5/6", "1-2-3-4-5-6", "a,b,c,d,e,f"}, delimiter = '|')
+    public void stringToListTest(String input) {
+        Assertions.assertThatThrownBy(() -> Conversion.stringToList(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(MUST_INTEGER.getError());
+    }
 }

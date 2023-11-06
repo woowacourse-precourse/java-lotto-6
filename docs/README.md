@@ -27,7 +27,8 @@
 
 ### Grader.class
 
-* [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 통계와 수익률을 계산한다. - compareLottoWinningLotto()
+* [ ] 사용자가 구매한 로또들의 번호와 당첨 번호를 비교하여 통계와 수익률을 계산한다. - compareLottoWinningLotto()
+* [ ] 로또 번호와 당첨 번호를 비교하여 결과를 반환한다. - compareNumber()
 * [ ] 당첨 내역을 출력한다. - printResult()
 * [ ] 수익률을 출력한다. 소수점 둘째 자리에서 반올림한다. - printEarningRate()
 

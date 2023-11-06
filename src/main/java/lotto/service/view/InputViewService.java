@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import static lotto.common.ErrorMessageType.*;
 
 /**
- * @Class : 로또 관리 UI 서비스 클래스
+ * @Class : 로또 관리 UI 입력 클래스
  */
 public class InputViewService {
 

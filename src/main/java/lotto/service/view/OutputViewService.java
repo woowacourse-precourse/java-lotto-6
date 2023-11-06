@@ -9,7 +9,7 @@ import java.util.List;
 import static lotto.common.MessageType.*;
 
 /**
- * @Class : 로또 관리 UI 서비스 클래스
+ * @Class : 로또 관리 UI 출력 클래스
  */
 public class OutputViewService {
 

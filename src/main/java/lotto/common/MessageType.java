@@ -3,7 +3,7 @@ package lotto.common;
 import java.text.DecimalFormat;
 
 /**
- * @Enum : 출력 메시지 타입
+ * @Enum : 출력 메시지 타입 열거형
  */
 public enum MessageType {
 

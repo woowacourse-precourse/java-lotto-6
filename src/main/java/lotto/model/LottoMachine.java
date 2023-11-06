@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * @Class : 로또 관리 기계 클래스
+ * @Class : 로또 발급 관리 기계 클래스
  */
 public class LottoMachine {
 

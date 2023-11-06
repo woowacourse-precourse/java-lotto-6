@@ -2,6 +2,9 @@ package lotto.model;
 
 import java.util.List;
 
+/**
+ * @Class : 로또 클래스
+ */
 public class Lotto {
     private final List<Integer> numbers;
 

@@ -3,13 +3,16 @@ package lotto.common;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @Class : 유효성 검사 공통 클래스
+ */
 public class Validator {
 
     public static boolean isMultipleOfNumber(int value, int unit) {
         return value % unit == 0;
     }
 
-    public static boolean isDuplicateValue(List<Integer> targetList){
+    public static boolean isDuplicateValue(List<Integer> targetList) {
         List<Integer> distinctList = targetList.stream().distinct().collect(Collectors.toList());
         return targetList.size() != distinctList.size();
     }

@@ -1,7 +1,7 @@
 package lotto.common;
 
 /**
- * @Enum : 에러 메시지 타입
+ * @Enum : 에러 메시지 타입 열거형
  */
 public enum ErrorMessageType {
     ERROR_NON_NUMERIC_INPUT("옳바른 숫자여야 합니다."),

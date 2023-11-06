@@ -9,7 +9,7 @@ import java.math.RoundingMode;
 import java.util.List;
 
 /**
- * @Class : 로또 관리 서비스 클래스
+ * @Class : 로또 서비스 클래스
  */
 public class LottoService {
 

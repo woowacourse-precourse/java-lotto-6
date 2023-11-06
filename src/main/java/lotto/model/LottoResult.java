@@ -1,5 +1,8 @@
 package lotto.model;
 
+/**
+ *  @Class  : 로또 당첨 결과 개수 클래스
+ */
 public class LottoResult {
 
     private final LottoRank lottoRank;

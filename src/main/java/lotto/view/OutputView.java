@@ -40,7 +40,13 @@ public class OutputView {
         newLine();
     }
 
-    private static void newLine() {
+    public static void printErrorMessage(Exception error) {
+        newLine();
+        System.out.println(error.getMessage());
+        newLine();
+    }
+
+    public static void newLine() {
         System.out.println();
     }
 }

@@ -34,6 +34,6 @@ public class OutputView {
     }
 
     public static void printProfit(double computeProfit) {
-        System.out.printf(LOTTO_PROFIT_OUTPUT_MESSAGE.getMessage(computeProfit));
+        System.out.println(LOTTO_PROFIT_OUTPUT_MESSAGE.getMessage(computeProfit));
     }
 }

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Amount;
+import lotto.domain.BonusNumber;
 import lotto.domain.WinningNumber;
 import lotto.message.ExceptionMessage;
 
@@ -36,14 +37,17 @@ public class InputView {
         return winningNumber;
     }
 
-    public int inputBonusNumber(){
-        try {
-            String input = Console.readLine();
-
-            return Integer.parseInt(input);
-        }catch (NumberFormatException e) {
-            System.out.println(ExceptionMessage.INVALID_BONUS_TYPE.getMessage());
-            throw new IllegalArgumentException();
+    public BonusNumber inputBonusNumber(WinningNumber winningNumber){
+        BonusNumber bonusNumber = null;
+        while (bonusNumber == null){
+            try {
+                String input = Console.readLine();
+                bonusNumber = new BonusNumber(winningNumber, input);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
+
+        return bonusNumber;
     }
 }

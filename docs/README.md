@@ -29,13 +29,13 @@
 
 ## **뷰 (View)**
 
-- [ ]  InputView
+- [x]  InputView
     - [x]  금액 입력 (**`inputAmount`**)
         - [x]  입력값 예외처리 후 다시입력
     - [x]  당첨번호 입력 (**`inputPrizeNumber`**)
         - [x]  입력값 예외처리 후 다시입력
-    - [ ]  보너스 번호 입력 (**`inputBonusNumber`**)
-        - [ ]  입력값 예외처리 후 다시입력
+    - [x]  보너스 번호 입력 (**`inputBonusNumber`**)
+        - [x]  입력값 예외처리 후 다시입력
 - [x]  OutputView
     - [x]  금액입력 안내 메세지(`**printAmountInputMessage**`)
     - [x]  로또 구매 안내 메세지(`**printBuyLottoMessage`)**

@@ -17,6 +17,8 @@ public class LottoPurchaseInput {
 
             validate(input);
             Util.validateNumber(input);
+            LottoUtil.validatePurchaseAmount(new BigDecimal(input), Lotto.PRICE);
+
             return new BigDecimal(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -57,6 +59,7 @@ public class LottoPurchaseInput {
         }
     }
 
+    private static void validate(String input) {
         if (input.contains(" ")) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_CONTAINS_WHITE_CHAR.getMessage());
         }

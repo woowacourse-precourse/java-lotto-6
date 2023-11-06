@@ -12,7 +12,7 @@ public class WinningLotto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return numbers.stream().sorted().toList();
     }
 
     public int getBonus() {

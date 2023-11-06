@@ -12,7 +12,7 @@ public class Bonus {
     private final int number;
 
     public Bonus(Lotto winningLotto, String number) {
-        this.number = convertToInteger(number);
+        this.number = convertToInteger(number.strip());
         validate(winningLotto, this.number);
     }
 

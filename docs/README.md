@@ -14,11 +14,11 @@
   - [x] 입력 문자열을 쉼표 기준으로 분리
   - [x] 당첨 번호가 정수가 아닌 경우 IllegalArgumentException 발생
   - [x] 입력받은 당첨 번호가 유효한 로또 번호인지 검증
-- [ ] 보너스 번호 입력
-  - [ ] 입력의 시작과 끝에 공백이 있는 경우 공백 제거
-  - [ ] 입력받은 문자열이 정수 형식이 아닌 경우 IllegalArgumentException 발생
-  - [ ] 입력받은 정수가 1 이상 45 이하의 범위를 벗어나는 경우 IllegalArgumentException 발생
-  - [ ] 입력받은 정수가 당첨 번호에 포함된 경우 IllegalArgumentException 발생
+- [x] 보너스 번호 입력
+  - [x] 입력의 시작과 끝에 공백이 있는 경우 공백 제거
+  - [x] 보너스 번호가 정수가 아닌 경우 IllegalArgumentException 발생
+  - [x] 보너스 번호가 1 이상 45 이하의 범위를 벗어나는 경우 IllegalArgumentException 발생
+  - [x] 보너스 번호가 당첨 번호에 포함된 경우 IllegalArgumentException 발생
 - [ ] 각 로또에 대하여 당첨 여부 확인
   - [ ] 로또에 당첨 번호가 몇 개 포함되었는지 확인
   - [ ] 로또에 보너스 번호가 포함되었는지 확인

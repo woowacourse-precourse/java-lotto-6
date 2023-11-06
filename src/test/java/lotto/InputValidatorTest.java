@@ -56,4 +56,39 @@ class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateAmount(test))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    void 당첨_번호_입력_시_null_또는_공백인_경우_예외_발생(String test) {
+        assertThatThrownBy(() -> inputValidator.validateWinningNumbers(test))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1?2?3?4?5?6","one,two"})
+    void 당첨_번호_입력_시_숫자_또는_쉼표_외_문자가_입력된_경우_예외_발생(String test) {
+        assertThatThrownBy(() -> inputValidator.validateWinningNumbers(test))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1","1,2,3,4,5","1,2,3,4,5,6,7"})
+    void 당첨_번호_입력_시_숫자가_6개가_아닌_경우_예외_발생(String test) {
+        assertThatThrownBy(() -> inputValidator.validateWinningNumbers(test))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1111111111111111111111"})
+    void 당첨_번호_입력_시_자료형을_초과하는_경우_예외_발생(String test) {
+        assertThatThrownBy(() -> inputValidator.validateWinningNumbers(test))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0,1,2,3,4,5","1,2,3,4,5,46"})
+    void 당첨_번호_숫자가_1부터_45_사이가_아닌_경우_예외_발생(String test) {
+        assertThatThrownBy(() -> inputValidator.validateWinningNumbers(test))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

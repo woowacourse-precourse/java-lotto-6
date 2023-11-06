@@ -13,8 +13,8 @@ public class OutputView {
             보너스 번호를 입력해 주세요.""";
     private final String TOTAL = "\n당첨 통계\n" + "---";
     private final String ORIGINAL_RESULT = "%d개 일치 (%,d원) - %d개";
-    private final String BONUS_RESULT = "%d개 일치 보너스 볼 일치 (%d원) - %d개";
-    private final String RATE = "총 수익률은 %.2f입니다.";
+    private final String BONUS_RESULT = "%d개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
+    private final String RATE = "총 수익률은 %,.1f%%입니다.";
 
     public void inputMoney() {
         System.out.println(INPUT_MONEY);
@@ -52,8 +52,8 @@ public class OutputView {
         System.out.println(rateResult);
     }
 
-    public void printBonus(int prize, int matchingNumbers, int third) {
-        String result = String.format(BONUS_RESULT, matchingNumbers, prize, third);
+    public void printBonus(int matchingNumbers, int third) {
+        String result = String.format(BONUS_RESULT, matchingNumbers, third);
         System.out.println(result);
     }
 }

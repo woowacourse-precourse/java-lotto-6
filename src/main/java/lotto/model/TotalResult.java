@@ -25,7 +25,7 @@ public class TotalResult {
         outputView.printResult(LottoWin.THREE.getPrize(), LottoWin.THREE.getMatchingNumbers(), third);
         outputView.printResult(LottoWin.FOUR.getPrize(), LottoWin.FOUR.getMatchingNumbers(), fourth);
         outputView.printResult(LottoWin.FIVE.getPrize(), LottoWin.FIVE.getMatchingNumbers(), fifth);
-        outputView.printBonus(LottoWin.BONUS.getPrize(), LottoWin.BONUS.getMatchingNumbers(), sixthBonus);
+        outputView.printBonus(LottoWin.BONUS.getMatchingNumbers(), sixthBonus);
         outputView.printResult(LottoWin.SIX.getPrize(), LottoWin.SIX.getMatchingNumbers(), sixth);
 
         return totalMoney();
@@ -34,18 +34,18 @@ public class TotalResult {
     private int totalMoney() {
         int sum = 0;
 
-        sum += LottoWin.THREE.getMatchingNumbers() * third;
-        sum += LottoWin.FOUR.getMatchingNumbers() * fourth;
-        sum += LottoWin.FIVE.getMatchingNumbers() * fifth;
-        sum += LottoWin.BONUS.getMatchingNumbers() * sixthBonus;
-        sum += LottoWin.SIX.getMatchingNumbers() * sixth;
+        sum += LottoWin.THREE.getPrize() * third;
+        sum += LottoWin.FOUR.getPrize() * fourth;
+        sum += LottoWin.FIVE.getPrize() * fifth;
+        sum += LottoWin.BONUS.getPrize() * sixthBonus;
+        sum += LottoWin.SIX.getPrize() * sixth;
 
         return sum;
     }
 
 
     private void totalRate(int initMoney, int sum) {
-        double result = (double)initMoney / sum;
+        double result = (double)sum / initMoney;
         result = Math.round(result * 100.0) / 100.0;
 
         outputView.printRate(result);
@@ -63,15 +63,15 @@ public class TotalResult {
     }
 
     private void count(int correct, int bonus) {
-        if (correct == LottoWin.THREE.getPrize()) {
+        if (correct == LottoWin.THREE.getMatchingNumbers()) {
             third++;
-        } else if (correct == LottoWin.FOUR.getPrize()) {
+        } else if (correct == LottoWin.FOUR.getMatchingNumbers()) {
             fourth++;
-        } else if (correct == LottoWin.FIVE.getPrize() && bonus == 1) {
+        } else if (correct == LottoWin.FIVE.getMatchingNumbers() && bonus == 1) {
             sixthBonus++;
-        } else if (correct == LottoWin.FIVE.getPrize()) {
+        } else if (correct == LottoWin.FIVE.getMatchingNumbers()) {
             fifth++;
-        } else if (correct == LottoWin.SIX.getPrize()) {
+        } else if (correct == LottoWin.SIX.getMatchingNumbers()) {
             sixth++;
         }
     }

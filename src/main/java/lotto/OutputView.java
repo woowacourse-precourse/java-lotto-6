@@ -16,4 +16,9 @@ public class OutputView {
     void outputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
+    
+    void outputStartWinningStatistics() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
 }

@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+import lotto.constants.ErrorMessage;
 import lotto.constants.LottoConstants;
 
 public class Lotto {
@@ -19,7 +19,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LottoConstants.LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 %d개여야 한다."
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE.getMessage()
                     .formatted(LottoConstants.LOTTO_NUMBERS_SIZE));
         }
     }
@@ -30,7 +30,7 @@ public class Lotto {
                         LottoConstants.MIN_LOTTO_NUMBER <= number && number <= LottoConstants.MAX_LOTTO_NUMBER)
                 .count();
         if (numbers.size() != numbersSizeWithValidRange) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 %d이상 %d이하여야 한다."
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_RANGE.getMessage()
                     .formatted(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER));
         }
     }
@@ -38,7 +38,7 @@ public class Lotto {
     private void validateDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (distinctNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 달라야 한다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }
 

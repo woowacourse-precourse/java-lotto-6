@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.constants.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,7 @@ class WinningNumbersTest {
         // when, then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 6, 7), 1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 %d개여야 한다."
+                .hasMessageContaining(ErrorMessage.INVALID_WINNING_NUMBERS_SIZE.getMessage()
                         .formatted(WINNING_NUMBERS_SIZE));
     }
 
@@ -53,7 +54,7 @@ class WinningNumbersTest {
         // when, then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3), 1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 %d개여야 한다."
+                .hasMessageContaining(ErrorMessage.INVALID_WINNING_NUMBERS_SIZE.getMessage()
                         .formatted(WINNING_NUMBERS_SIZE));
     }
 
@@ -63,7 +64,7 @@ class WinningNumbersTest {
         // when, then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 5), 1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 서로 달라야 한다.");
+                .hasMessageContaining(ErrorMessage.DUPLICATED_WINNING_NUMBER.getMessage());
     }
 
     @DisplayName("당첨 번호 중에서 1보다 작은 번호가 존재하면 예외가 발생한다.")
@@ -72,7 +73,7 @@ class WinningNumbersTest {
         // when, then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 0), 1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 %d이상 %d이하여야 한다."
+                .hasMessageContaining(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage()
                         .formatted(MIN_NUMBER, MAX_NUMBER));
     }
 
@@ -82,7 +83,7 @@ class WinningNumbersTest {
         // when, then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 66), 1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 %d이상 %d이하여야 한다."
+                .hasMessageContaining(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage()
                         .formatted(MIN_NUMBER, MAX_NUMBER));
     }
 
@@ -92,7 +93,7 @@ class WinningNumbersTest {
         // when, then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 %d이상 %d이하여야 한다."
+                .hasMessageContaining(ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage()
                         .formatted(MIN_NUMBER, MAX_NUMBER));
     }
 
@@ -102,7 +103,7 @@ class WinningNumbersTest {
         // when, then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 77))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 %d이상 %d이하여야 한다."
+                .hasMessageContaining(ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage()
                         .formatted(MIN_NUMBER, MAX_NUMBER));
     }
 }

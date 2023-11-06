@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constants.ErrorMessage;
 import lotto.constants.LottoConstants;
 
 public class PurchaseAmount {
@@ -17,13 +18,13 @@ public class PurchaseAmount {
 
     private void validateUnit(int amount) {
         if (amount % LottoConstants.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
         }
     }
 
     private void validateRange(int amount) {
         if (amount < MIN_PURCHASE_AMOUNT || amount > MAX_PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 %,d원 이상 %,d원 이하여야 합니다."
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getMessage()
                     .formatted(MIN_PURCHASE_AMOUNT, MAX_PURCHASE_AMOUNT));
         }
     }

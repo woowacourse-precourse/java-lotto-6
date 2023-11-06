@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constants.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ class PurchaseAmountTest {
         // when, then
         Assertions.assertThatThrownBy(() -> new PurchaseAmount(1200))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위어야 합니다.");
+                .hasMessageContaining(ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
     }
 
     @DisplayName("구입 금액이 최솟값보다 작으면 예외가 발생한다.")
@@ -24,7 +25,7 @@ class PurchaseAmountTest {
         // when, then
         Assertions.assertThatThrownBy(() -> new PurchaseAmount(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 %,d원 이상 %,d원 이하여야 합니다."
+                .hasMessageContaining(ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getMessage()
                         .formatted(MIN_PURCHASE_AMOUNT, MAX_PURCHASE_AMOUNT));
     }
 
@@ -34,7 +35,7 @@ class PurchaseAmountTest {
         // when, then
         Assertions.assertThatThrownBy(() -> new PurchaseAmount(1000000))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 %,d원 이상 %,d원 이하여야 합니다."
+                .hasMessageContaining(ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getMessage()
                         .formatted(MIN_PURCHASE_AMOUNT, MAX_PURCHASE_AMOUNT));
     }
 

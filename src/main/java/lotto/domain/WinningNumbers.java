@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constants.ErrorMessage;
 
 public class WinningNumbers {
 
@@ -25,7 +26,7 @@ public class WinningNumbers {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 %d개여야 한다."
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_SIZE.getMessage()
                     .formatted(WINNING_NUMBERS_SIZE));
         }
     }
@@ -35,7 +36,7 @@ public class WinningNumbers {
                 .filter(number -> (MIN_NUMBER <= number && number <= MAX_NUMBER))
                 .count();
         if (numbers.size() != numbersSizeWithValidRange) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 %d이상 %d이하여야 한다."
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage()
                     .formatted(MIN_NUMBER, MAX_NUMBER));
         }
     }
@@ -43,13 +44,13 @@ public class WinningNumbers {
     private void validateDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (distinctNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 달라야 한다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WINNING_NUMBER.getMessage());
         }
     }
 
     private void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 %d이상 %d이하여야 한다."
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage()
                     .formatted(MIN_NUMBER, MAX_NUMBER));
         }
     }

@@ -1,12 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constants.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-
-    private static final String INVALID_INTEGER_INPUT = "[ERROR] 정수만 입력 가능합니다.";
 
     private InputView() {
     }
@@ -18,7 +17,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_INTEGER_INPUT);
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
         }
     }
 
@@ -29,7 +28,7 @@ public class InputView {
         try {
             return toList(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_INTEGER_INPUT);
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
         }
     }
 
@@ -40,7 +39,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_INTEGER_INPUT);
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
         }
     }
 
@@ -50,7 +49,7 @@ public class InputView {
 
     private static void validateContainsBlank(String input) {
         if (input.contains(" ")) {
-            throw new IllegalArgumentException("[ERROR] 공백이 포함되어 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.CONTAINS_BLANK_INPUT.getMessage());
         }
     }
 

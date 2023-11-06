@@ -4,15 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
-
+import lotto.constants.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputViewTest {
-
-    private static final String INVALID_INTEGER_INPUT = "[ERROR] 정수만 입력 가능합니다.";
 
     @AfterEach
     void closeConsole() {
@@ -41,7 +39,7 @@ class InputViewTest {
         // when, then
         Assertions.assertThatThrownBy(InputView::readPurchaseAmount)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(INVALID_INTEGER_INPUT);
+                .hasMessageContaining(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
     }
 
     @DisplayName("당첨 번호를 성공적으로 입력 받으면, 각 번호를 원소로 가지는 리스트를 반환한다.")
@@ -66,7 +64,7 @@ class InputViewTest {
         // when
         Assertions.assertThatThrownBy(InputView::readWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(INVALID_INTEGER_INPUT);
+                .hasMessageContaining(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
     }
 
     @DisplayName("보너스 번호를 성공적으로 입력 받으면, 그 값을 정수형으로 반환한다.")
@@ -91,7 +89,7 @@ class InputViewTest {
         // when, then
         Assertions.assertThatThrownBy(InputView::readBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(INVALID_INTEGER_INPUT);
+                .hasMessageContaining(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
     }
 
     @DisplayName("값 입력 시 공백이 포함되어 있으면 예외가 발생한다.")
@@ -103,7 +101,7 @@ class InputViewTest {
         // when, then
         Assertions.assertThatThrownBy(InputView::readBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 공백이 포함되어 있습니다.");
+                .hasMessageContaining(ErrorMessage.CONTAINS_BLANK_INPUT.getMessage());
     }
 
     InputStream createUserInput(String input) {

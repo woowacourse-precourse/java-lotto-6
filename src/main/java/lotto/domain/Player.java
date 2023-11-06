@@ -13,7 +13,7 @@ public class Player {
         this.amount = amount;
     }
 
-    public ArrayList<Lotto> generateLottos() {
+    public ArrayList<Lotto> generateLotteries() {
         int size = convertToUnit();
         for (int i = 0; i < size; i++) {
             lotteries.add(Lotto.makeLotto());

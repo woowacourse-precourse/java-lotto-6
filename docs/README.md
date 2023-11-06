@@ -11,9 +11,9 @@
 | WinningNumber        | 한개의 당첨 번호를 검증하고 저장하는 도메인 클래스                |
 | BonusNumber          | 보너스 번호를 검증하고 저장하는 도메인 클래스                   |
 | WinningNumbers       | 당첨 숫자와 보너스 번호를 저장하는 도메인 클래스                 |
-| WinningStatistics    | 당첨 통계를 제공하는 도메인 클래스                         |
+| Profit               | 수익을 저장하는 도메인 클래스                            |
 | WinningDetails       | 당첨 내역을 제공하는 도메인 클래스                         |
-| WinningYield         | 수익률을 저장하는 클래스                               |
+| WinningYield         | 수익률을 저장하는 도메인 클래스                           |
 | WinningCalculator    | 당첨 통계를 계산하는 클래스                             |
 | InputView            | 사용자 입력 UI 를 관리하는 클래스                        |
 | OutputView           | 입력에 대한 결과를 출력하는 UI를 관리하는 클래스                |

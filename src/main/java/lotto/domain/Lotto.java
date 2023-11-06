@@ -16,5 +16,21 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public int length(){
+        return numbers.size();
+    }
+
+    public int get(int i){
+        return numbers.get(i);
+    }
+
+    public boolean contains(int i) {
+        return numbers.contains(i);
+    }
+
 }

@@ -25,4 +25,12 @@ public class User {
             throw new IllegalArgumentException("로또 숫자는 중복될 수 없습니다.");
         }
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

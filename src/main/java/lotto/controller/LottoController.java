@@ -9,6 +9,7 @@ import lotto.generator.NumberGenerator;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.User;
+import lotto.model.WinningLottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,6 +32,7 @@ public class LottoController {
         outputView.printLottos(LottosResult.from(lottos));
 
         User user = createUser();
+        WinningLottos winningLottos = new WinningLottos(lottos.getWinningLottos(user));
     }
 
     private int getLottoCount(int amounts) {

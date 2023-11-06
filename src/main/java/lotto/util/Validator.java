@@ -6,11 +6,11 @@ import static lotto.domain.LottoRule.PRICE;
 import static lotto.domain.LottoRule.SIZE;
 import static lotto.util.ErrorMessage.INPUT_BONUS_DUPLICATE;
 import static lotto.util.ErrorMessage.INPUT_DUPLICATE_NUMBER;
+import static lotto.util.ErrorMessage.INPUT_INVALID_NUMBER;
 import static lotto.util.ErrorMessage.INPUT_NOT_IN_RANGE;
 import static lotto.util.ErrorMessage.INPUT_NOT_NUMBER;
 import static lotto.util.ErrorMessage.INPUT_NOT_THOUSAND_UNIT;
 import static lotto.util.ErrorMessage.INPUT_OUT_OF_SIZE;
-import static lotto.util.ErrorMessage.INPUT_TOO_MUCH_MONEY;
 
 import java.util.Arrays;
 import lotto.domain.Lotto;
@@ -19,8 +19,8 @@ public class Validator {
 
     public void validateMoney(final String money) {
         validateNumber(money);
+        validateNumberSize(money);
         validateThousandUnit(Integer.parseInt(money));
-        validateAmount(Long.parseLong(money));
     }
 
     private void validateNumber(final String number) {
@@ -30,15 +30,17 @@ public class Validator {
         }
     }
 
-    private void validateThousandUnit(final int money) {
-        if (money <= 0 || money % PRICE.getValue() != 0) {
-            throw new IllegalArgumentException(INPUT_NOT_THOUSAND_UNIT.getMessage());
+    private void validateNumberSize(final String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (Exception exception) {
+            throw new IllegalArgumentException(INPUT_INVALID_NUMBER.getMessage());
         }
     }
 
-    private void validateAmount(final Long money) {
-        if (money > 2000000000) {
-            throw new IllegalArgumentException(INPUT_TOO_MUCH_MONEY.getMessage());
+    private void validateThousandUnit(final int money) {
+        if (money <= 0 || money % PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(INPUT_NOT_THOUSAND_UNIT.getMessage());
         }
     }
 
@@ -51,6 +53,7 @@ public class Validator {
 
     private void validateOneNumber(final String number) {
         validateNumber(number);
+        validateNumberSize(number);
         validateNumberInRange(Integer.parseInt(number));
     }
 
@@ -74,6 +77,7 @@ public class Validator {
 
     public void validateBonusNumber(Lotto lotto, String number) {
         validateNumber(number);
+        validateNumberSize(number);
         validateNumberInRange(Integer.parseInt(number));
         validateBonusDuplicate(lotto, Integer.parseInt(number));
     }

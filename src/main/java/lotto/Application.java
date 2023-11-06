@@ -10,6 +10,8 @@ public class Application {
             controller.run();
         } catch(IllegalArgumentException e){
             ErrorLogger.log(e);
+        } catch(Exception e){
+            ErrorLogger.exceptionLog(e);
         }
 
     }

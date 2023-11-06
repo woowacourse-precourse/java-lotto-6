@@ -21,7 +21,10 @@ public class LottoGame {
         Lotto winningLotteryNumbers = new Lotto(Input.askTheWinningLotteryNumbers());
         int bonusNumber = Input.askBonusNumber();
         WinningLotto winningLotto = new WinningLotto(winningLotteryNumbers, bonusNumber);
+        WinStats winStats = new WinStats(user.checkResult(winningLotto));
 
+        Output.printWinStats(winStats);
+        Output.printEarningsRate(winStats.calculateEarningsRate());
 
     }
 

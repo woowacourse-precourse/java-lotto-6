@@ -41,9 +41,20 @@ public class GameController {
         try {
             String result = input.inputWinningLotto();
             WinningLotto lotto = new WinningLotto(List.of(result.split(",")));
+            plusBonusNumber(lotto);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             createWinningLotto();
+        }
+    }
+
+    private void plusBonusNumber(WinningLotto lotto) {
+        try {
+            String number = input.inputBonusNumber();
+            lotto.plusBonusNumber(List.of(number));
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            plusBonusNumber(lotto);
         }
     }
 }

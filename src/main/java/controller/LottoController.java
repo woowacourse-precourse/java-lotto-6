@@ -1,5 +1,6 @@
 package controller;
 
+import controller.validator.BonusNumberValidator;
 import controller.validator.WinningNumberValidator;
 
 import domain.Lotto;
@@ -19,6 +20,7 @@ public class LottoController {
     private LottoRepository lottoRepository = new LottoRepository();
     private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
     private WinningNumberValidator winningNumberValidator = new WinningNumberValidator();
+    private BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
     private WinningLotto winningLotto = new WinningLotto();
 
     public void run() {
@@ -27,6 +29,17 @@ public class LottoController {
         createLotto();
         showLottoTicket();
         initWinningNumber();
+        initBonusNumber();
+    }
+
+    private void initBonusNumber() {
+        try{
+            String input = InputView.enterBonusNumbers();
+            int bonusNumber = bonusNumberValidator.checkBonusNumberValidation(input);
+            winningLotto.setBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            initBonusNumber();
+        }
     }
 
     private void initWinningNumber() {

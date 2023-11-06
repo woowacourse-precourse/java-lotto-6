@@ -41,8 +41,17 @@ class LottoGeneratorTest {
 
     @DisplayName("입력된 당첨 번호가 로또 번호 범위를 벗어날 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"0,1,2,3,4,5","100" ,"41,42,43,44,45,46"})
+    @ValueSource(strings = {"0,1,2,3,4,5", "100", "41,42,43,44,45,46"})
     void createWinningLottoByNotRange(String lottoNumber) {
+
+        assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력된 당첨 번호앞에 0이 있을 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"01,2,3,4,5,6", "010", "1,2,03,04,005,00006"})
+    void createWinningLottoByFirstNumberZero(String lottoNumber) {
 
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);

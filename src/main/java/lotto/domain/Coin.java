@@ -7,11 +7,17 @@ public class Coin {
     private final int coin;
 
     public Coin(int coin) {
+        validate(coin);
         this.coin = coin;
     }
 
     public int getLottoPaper() {
         return coin / 1000;
+    }
+
+    public void validate(int coin) {
+        zeroMoreThaCoin(coin);
+        thousandCheck(coin);
     }
 
     public void zeroMoreThaCoin(int coin) {

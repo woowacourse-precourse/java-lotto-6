@@ -15,6 +15,4 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-
 }

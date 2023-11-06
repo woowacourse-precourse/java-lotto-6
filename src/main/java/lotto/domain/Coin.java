@@ -11,10 +11,6 @@ public class Coin {
         this.coin = coin;
     }
 
-    public int getLottoPaper() {
-        return coin / 1000;
-    }
-
     public void validate(int coin) {
         zeroMoreThaCoin(coin);
         thousandCheck(coin);

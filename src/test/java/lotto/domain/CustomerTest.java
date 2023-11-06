@@ -13,7 +13,7 @@ class CustomerTest {
 
     @BeforeEach
     void init() {
-        this.customer = new Customer("10000");
+        this.customer = new Customer("3000");
     }
 
     @DisplayName("글자를 입력하거나 터무니 없는 값을 입력하면 예외가 발생한다.")
@@ -53,7 +53,7 @@ class CustomerTest {
     void possibleBuyLottoByCashInHand() {
         int result = customer.calculateLottoNum();
 
-        assertThat(result).isEqualTo(10);
+        assertThat(result).isEqualTo(3);
     }
 
     @DisplayName("구매 가능한 갯수만큼 실제로 로또를 구매한다.")
@@ -63,7 +63,7 @@ class CustomerTest {
 
         List<Lotto> allLotto = customer.getAllLotto();
 
-        assertThat(allLotto.size()).isEqualTo(10);
+        assertThat(allLotto.size()).isEqualTo(3);
     }
 
     @DisplayName("보유한 로또 번호들을 출력 요구 사항에 맞춘 문자열로 바꾸어 리스트로 반환한다.")
@@ -73,6 +73,14 @@ class CustomerTest {
 
         List<String> texts = customer.getLottoTexts();
 
-        assertThat(texts.size()).isEqualTo(10);
+        assertThat(texts.size()).isEqualTo(3);
+    }
+
+    @DisplayName("최종 수익률을 계산해 반환한다.")
+    @Test
+    void getRevenueRatio() {
+        Double result = customer.calculateRevenueRaio(10000.0);
+
+        assertThat(result).isEqualTo(333.3);
     }
 }

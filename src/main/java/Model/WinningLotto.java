@@ -4,6 +4,9 @@ import java.util.List;
 
 public class WinningLotto extends Lotto {
 
+    private static final int MIN_BONUS_NUMBER_LENGTH = 1;
+    private static final int MAX_BONUS_NUMBER_LENGTH = 2;
+
     int bonusNumber;
 
     public WinningLotto(String WinningNumbers, String bonusNumber) {
@@ -21,7 +24,7 @@ public class WinningLotto extends Lotto {
     }
 
     void validateBonusNumberLength(String bonusNumber) {
-        if (bonusNumber.length() != 1) {
+        if (bonusNumber.length() > MAX_BONUS_NUMBER_LENGTH || bonusNumber.length() < MIN_BONUS_NUMBER_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

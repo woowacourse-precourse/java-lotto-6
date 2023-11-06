@@ -24,6 +24,8 @@ public class LottoGameController {
         setWinningNumbersList();
         setBonusNumber();
         updateWinningCount();
+        printWinningStatistics();
+        printProfitRatio();
     }
 
     void inputLottoPurchaseAmount() {
@@ -66,5 +68,14 @@ public class LottoGameController {
                     lottoGameService.determineWinningRank(purchasedLottoNumber, winningNumbersList, bonusNumber)
             );
         }
+    }
+
+    public void printWinningStatistics() {
+        outputView.printWinningStatistics(lottoGameService.getLottoRakingMap());
+    }
+
+    public void printProfitRatio() {
+        outputView.printProfitRatio(lottoGameService.calculateProfitRate(
+                purchaseAmount, lottoGameService.getLottoRakingMap()));
     }
 }

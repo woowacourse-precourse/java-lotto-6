@@ -2,11 +2,11 @@ package lotto.valid;
 
 import static lotto.consts.ErrorMsgConst.ERROR_WINNUMBER_DUPLICATE_SIZE;
 import static lotto.consts.ErrorMsgConst.ERROR_WINNUMBER_SIZE;
-import static lotto.consts.ErrorMsgConst.ERROR_WINNUMBER_SPLIT_ONLY_NUMBER;
 import static lotto.consts.ErrorMsgConst.ERROR_WINNUMBER_VALUE_RANGE;
 import static lotto.consts.LottoConst.LOTTO_MAX_NUMBER;
 import static lotto.consts.LottoConst.LOTTO_MIN_NUMBER;
 import static lotto.consts.LottoConst.LOTTO_SIZE;
+import static lotto.valid.CommonValid.validOnlyNumber;
 
 import java.util.List;
 import lotto.util.ConvertStr;
@@ -30,9 +30,7 @@ public class WinNumberValid {
     private static void validOnlyNum(List<String> nums) {
         String reg = "^[0-9]*$";
         for (String number : nums) {
-            if (!number.matches(reg)) {
-                throw new IllegalArgumentException(ERROR_WINNUMBER_SPLIT_ONLY_NUMBER);
-            }
+            validOnlyNumber(number);
         }
     }
 

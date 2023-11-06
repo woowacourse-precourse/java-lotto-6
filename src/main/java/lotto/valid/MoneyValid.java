@@ -2,8 +2,8 @@ package lotto.valid;
 
 import static lotto.consts.ErrorMsgConst.ERROR_MONEY_DIVIDE;
 import static lotto.consts.ErrorMsgConst.ERROR_MONEY_MIN_VALUE;
-import static lotto.consts.ErrorMsgConst.ERROR_MONEY_ONLY_NUMBER;
 import static lotto.consts.LottoConst.LOTTO_PRICE;
+import static lotto.valid.CommonValid.validOnlyNumber;
 
 public class MoneyValid {
 
@@ -12,14 +12,6 @@ public class MoneyValid {
         validMinMoney(money);
         validDividing(money);
         return money;
-    }
-
-    private static int validOnlyNumber(String input) {
-        String reg = "^[0-9]*$";
-        if (!input.matches(reg)) {
-            throw new IllegalArgumentException(ERROR_MONEY_ONLY_NUMBER);
-        }
-        return Integer.parseInt(input);
     }
 
     private static void validDividing(int money) {

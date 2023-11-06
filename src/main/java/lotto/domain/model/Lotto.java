@@ -35,10 +35,6 @@ public class Lotto {
         return sortedNumbers;
     }
 
-    protected List<Integer> getNumbers() {
-        return this.numbers;
-    }
-
     public void showNumbers() {
         System.out.println(this.numbers);
     }

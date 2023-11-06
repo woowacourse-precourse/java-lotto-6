@@ -14,8 +14,4 @@ public class LottoContainer {
     public List<Lotto> getLottos() {
         return this.lottos;
     }
-
-    public int countLottos() {
-        return lottos.size();
-    }
 }

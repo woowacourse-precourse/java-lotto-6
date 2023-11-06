@@ -20,4 +20,18 @@ public class WinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호의 개수가 6개가 아닙니다.");
     }
+
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createWinningNumberByDuplicated() {
+        // given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 5);
+        int bonusNumber = 6;
+        // when
+
+        // then
+        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+    }
 }

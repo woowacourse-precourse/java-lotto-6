@@ -18,8 +18,10 @@
 6. ~~쉼표로 분리된 숫자 Integer로 변환 후 list에 담기~~
 6. ~~Lotto클래스로 당첨번호 6자리인지 확인 - Model - Lotto - validate~~
 7. ~~로또 중복 번호 확인 기능 - Model - Lotto - duplicateCheck~~
+8. ~~당첨 번호 유효범위 검증 - Model - Lotto - rangeCheck~~
 7. ~~보너스 번호 입력 - View - inputView - bonusNum~~
-8. 보너스 번호 검증 - Model - Bonus - validate
+8. 보너스 번호 1자리 검증 - Model - Bonus - validate
+9. 보너스 번호 유효범위 검증 - Model - Bonus - rangeCheck
 9. 당첨번호랑 로또번호 비교하기 Set교집합 - Model - Lotto - winNumIntersection
 10. 당첨번호랑 보너스번호 비교하기 list contain - Model - Lotto - bonusNumIntersection
 11. 당첨 통계 계산 - Model - Result - statistics

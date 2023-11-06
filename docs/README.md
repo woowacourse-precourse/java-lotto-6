@@ -263,6 +263,28 @@ public class Lotto {
 ## 📮 필요기능 구현
 ####  검색의 도움 없이 내가 구현 할 수 있는 방법으로 구현을 해 보았습니다.
 
+### 메인 메서드
+````
+public static void main(String[] args) {
+    String inputPurchaseAmount = inputPurchaseAmount();
+    int purchaseAmount = inputPurchaseAmountValidation(inputPurchaseAmount);
+    int lottoQuantity = lottoQuantity(purchaseAmount);
+
+    List<Lotto> lottos = createLottos(lottoQuantity);
+    purchaseLottoNumbersDisplay(lottos);
+
+    String inputWinningNumber = inputWinningNumber();
+    String[] inputWinningNumberSplit = inputWinningNumberSplit(inputWinningNumber);
+    List<Integer> winningNumber = inputWinningNumberValidation(inputWinningNumberSplit);
+
+    String inputBonusNumber = inputBonusNumber();
+    int inputBonusNumberValidation = inputBonusNumberValidation(inputBonusNumber);
+    int bonusNumber = inputBonusNumberRangeValidation(inputBonusNumberValidation);
+
+    lottoWinningResult(lottos,winningNumber,bonusNumber);
+}
+````
+
 ### 1. inputPurchaseAmount()
 ````
  public static String inputPurchaseAmount(){

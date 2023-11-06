@@ -46,7 +46,7 @@ class MessageResolverTest {
     void testProfitRateMessageResolve() {
         MessageResolver messageResolver = new MessageResolver();
         String message = messageResolver.resolveProfitRateMessage(95.5);
-        assertThat(message).isEqualTo("총 수익률은 95.5%입니다");
+        assertThat(message).isEqualTo("총 수익률은 95.5%입니다.");
     }
 
     private Lotto createLotto(List<Integer> numbers) {

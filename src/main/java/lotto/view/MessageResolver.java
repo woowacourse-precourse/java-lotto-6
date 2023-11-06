@@ -44,7 +44,7 @@ public class MessageResolver {
     }
 
     public String resolveProfitRateMessage(double profitRate) {
-        return String.format("총 수익률은 %.1f%%입니다", profitRate);
+        return String.format("총 수익률은 %.1f%%입니다.", profitRate);
     }
 
     private String formatPrize(long prize) {

@@ -23,6 +23,20 @@ public class InputService {
         }
     }
 
+    public static Integer bonusNumber(){
+        while(true){
+            View.requestBonusNumber();
+            String input = readLine();
+            try{
+                validateTrim(input);
+                validateNumber(input);
+                return Integer.parseInt(input);
+            }catch (IllegalArgumentException e){
+                continue;
+            }
+        }
+    }
+
     public static List<Integer> winningNumbers(){
         while(true){
             View.requestWinningNumber();

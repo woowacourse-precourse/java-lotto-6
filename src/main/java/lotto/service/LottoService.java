@@ -39,9 +39,7 @@ public class LottoService {
     public WinningLottoRepository createWinningNumber(){
 
         Lotto lotto = new Lotto(InputService.winningNumbers());
-
-        View.requestBonusNumber();
-        BonusNumber bonusNumber = BonusNumber.from(InputService.number());
+        BonusNumber bonusNumber = BonusNumber.from(InputService.bonusNumber());
 
         return WinningLottoRepository.of(lotto, bonusNumber);
     }

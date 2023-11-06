@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.validator.InputLottoWinningNumbersValidator;
+import lotto.validator.LottoWinningNumberValidator;
 
 public class InputProcessor {
     private static final int LOTTO_PRICE = 1000;
@@ -19,6 +20,7 @@ public class InputProcessor {
     String[] numberStrings = input.split(",");
     List<String> WinningNumbers = Arrays.asList(numberStrings);
     InputLottoWinningNumbersValidator.isEmptyString(WinningNumbers);
+    LottoWinningNumberValidator.isValueInRange(WinningNumbers);
     return WinningNumbers;
   }
 

@@ -12,6 +12,7 @@ public class InputView {
     public static final String PERMIT_ONLY_NUMBER = "[ERROR] 정수 외에는 입력받을 수 없습니다.";
     public static final String NO_PERMIT_BLANK = "[ERROR] 공백은 입력될 수 없습니다.";
     public static final String NO_PERMIT_INPUT_LESS_ZERO = "[ERROR] 0 이하의 값은 입력받을 수 없습니다.";
+    public static final String INDEX_OUT_OF_INPUT_LENGTH = "[ERROR] index 가 문자열의 범위를 벗어났습니다.";
 
     public int askPrice() {
         printHowManyPurchase();
@@ -36,7 +37,7 @@ public class InputView {
         if (index >= 0 && index < input.length()) {
             return input.charAt(index);
         }
-        throw new IndexOutOfBoundsException("[ERROR] index 가 문자열의 범위를 벗어났습니다.");
+        throw new IndexOutOfBoundsException(INDEX_OUT_OF_INPUT_LENGTH);
     }
 
     private void printWinningNumber() {

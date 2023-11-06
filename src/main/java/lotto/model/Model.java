@@ -7,9 +7,15 @@ import java.util.List;
 
 public class Model {
     private final List<List<Integer>> listOfBuyLotto;
+    private int bonusNumber;
 
     public Model() {
+        this.bonusNumber = 0;
         this.listOfBuyLotto = new ArrayList<>();
+    }
+
+    public void storeBonusNumber(int bonusNumber){
+        this.bonusNumber = bonusNumber;
     }
 
     public void storeLottoTicket(int lottoCount){

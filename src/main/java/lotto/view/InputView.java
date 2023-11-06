@@ -22,9 +22,7 @@ public class InputView {
 
     private void inputLottoWinningNumber() {
         inputWinningNumberList();
-        Integer bonusNumber = inputBonusNumber();
-        // todo: 보너스 넘버 추가 저장 필요
-//        lotto.setBonusNumber(bonusNumber);
+        inputController.storeBonusNumber(inputBonusNumber());
     }
 
     private void inputWinningNumberList() {

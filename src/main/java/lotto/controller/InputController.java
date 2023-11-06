@@ -25,6 +25,10 @@ public class InputController {
         return Arrays.stream(inputLottoNumber.split(",")).map(this::checkValidNumberFormat).collect(Collectors.toList());
     }
 
+    public void storeBonusNumber(int bonusNumber){
+        model.storeBonusNumber(bonusNumber);
+    }
+
     public void storeLottoTicket(int lottoCount){
         model.storeLottoTicket(lottoCount);
     }

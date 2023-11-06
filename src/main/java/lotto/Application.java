@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import org.assertj.core.util.Arrays;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,16 +64,18 @@ class random_lotto{
 
 class winning_number{
 
-    public static void splitInput(String input){
+    public static List<Integer> splitInput(String input){
         String[] winningNumbers = input.split(",");
-        changeAllAsInt(winningNumbers);
-
+        return changeAllAsInt(winningNumbers);
     }
 
-    public static void changeAllAsInt(String[] numbers){
-        for(int i = 0; i<numbers.length; i++){
-            checkIntOrNot(numbers[i]);
+    public static List<Integer> changeAllAsInt(String[] numbers){
+        List<Integer> splitedWinNumber = new ArrayList<>();
+        for (String number : numbers) {
+            checkIntOrNot(number);
+            splitedWinNumber.add(changeAsInt(number));
         }
+        return splitedWinNumber;
     }
 
     public static void checkIntOrNot(String number){
@@ -85,8 +86,8 @@ class winning_number{
         }
     }
 
-    public static void changeAsInt(String strNumber){
-
+    public static int changeAsInt(String strNumber){
+        return Integer.parseInt(strNumber);
     }
 }
 
@@ -102,7 +103,7 @@ public class Application {
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String winningNumber = Console.readLine();
-        winning_number.splitInput(winningNumber);
+        List<Integer> realWinNumber = winning_number.splitInput(winningNumber);
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();

@@ -52,11 +52,8 @@ public class Lotto {
     public boolean checkContainBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
-    @Override
-    public String toString() {
-        return numbers.stream()
-                .sorted()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", ", "[",  "]"));
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

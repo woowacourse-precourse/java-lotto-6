@@ -3,6 +3,8 @@ package lotto.ui;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import lotto.domain.Lotto;
 import lotto.domain.LottoPrizeStatus;
 import lotto.domain.ResultStatics;
@@ -15,9 +17,14 @@ public class OutputView {
 
     public void showLottosNumber(List<Lotto> lottos) {
         int issueCount = lottos.size();
-        System.out.println(issueCount + "개를 구매했습니다.");
+        System.out.printf("%d 개를 구매했습니다.\n", issueCount);
         for (int i = 0; i < issueCount; i++) {
-            System.out.println(lottos.get(i));
+            String lottoNumber = lottos.get(i)
+                    .getNumbers()
+                    .stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(",", "[", "]"));
+            System.out.println(lottoNumber);
         }
     }
 

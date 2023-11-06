@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.LottoConsumer;
 import lotto.domain.ResultStatics;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
@@ -19,21 +20,21 @@ public class TotalLottoController {
         this.inputView = new InputView();
     }
 
-    public List<Lotto> issueLottos() {
-        List<Lotto> issueLottos = null;
-        while (issueLottos == null) {
+    public LottoConsumer issueLottos() {
+        LottoConsumer issueLottoConsumer = null;
+        while (issueLottoConsumer == null) {
             try {
                 int money = inputView.inputMoney();
-                issueLottos = issueController.issueLottos(money);
+                issueLottoConsumer = issueController.issueLottos(money);
             } catch (IllegalArgumentException e) {
                 outputView.showErrorReason(e.getMessage());
             }
         }
-        return issueLottos;
+        return issueLottoConsumer;
     }
 
-    public void showLottoNumbers(List<Lotto> lottos) {
-        outputView.showLottosNumber(lottos);
+    public void showLottoNumbers(LottoConsumer lottoConsumer) {
+        outputView.showLottosNumber(lottoConsumer.getIssuedLottos());
     }
 
     public LottoResult issueLottoResult() {

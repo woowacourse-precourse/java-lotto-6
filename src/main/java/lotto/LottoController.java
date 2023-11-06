@@ -8,6 +8,7 @@ public class LottoController {
     private static final String LOTTO_BUY_COUNT = Message.LOTTO_BUY_COUNT.getValue();
     private static final String CRLF = Message.CRLF.getValue();
     private static final String INPUT_WINNER_NUMBERS = Message.INPUT_WINNER_NUMBERS.getValue();
+    private static final String INPUT_BONUS_NUMBER = Message.INPUT_BONUS_NUMBER.getValue();
 
     private static final Wallet wallet = new Wallet();
     private static final LottoView view = new LottoView();
@@ -49,7 +50,8 @@ public class LottoController {
 
         try {
             List<Integer> numbers = view.inputNumbers(INPUT_WINNER_NUMBERS);
-            winnerNumbers = new WinnerNumbers(numbers);
+            int bonusNumber = view.inputNumber(INPUT_BONUS_NUMBER);
+            winnerNumbers = new WinnerNumbers(numbers, bonusNumber);
 
         } catch (Exception e) {
             view.printMessage(e.getMessage());

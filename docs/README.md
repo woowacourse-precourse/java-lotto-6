@@ -19,3 +19,40 @@
 
 
 
+`### 3) 일치 조건 계산하고 출력하기 
+`
+5+b 의 경우는 인덱스 6에 
+6 개가 다 일치하는 경우는 인덱스 7에 배정
+
+
+### 4) 입력 조건 예외 처리
+
+
+#### 5) 수익률 기능 추가
+
+수익률 오버플로우
+
+
+```agsl
+// 아래 코드는 이미 당첨 통계를 계산한 코드를 가정하여 작성되었습니다.
+        // 수익 계산
+        // 전체 상금
+        double totalPrize = calculateTotalPrize(matchCounts, prizeMoney);
+        // 전체 구매 비용
+        double totalCost = matchCounts[0] * 1000; // 1장당 1000원
+        // 수익률 계산
+        double profitRate = ((totalPrize - totalCost) / totalCost) * 100.0;
+        profitRate = Math.round(profitRate * 10) / 10.0; // 소수점 둘째 자리에서 반올림
+
+        System.out.println("총 수익률은 " + profitRate + "% 입니다.");
+
+
+// 총 수익 계산하는 메서드
+    private static double calculateTotalPrize(int[] matchCounts, int[] prizeMoney) {
+        double totalPrize = 0;
+        for (int i = 3; i < matchCounts.length; i++) {
+            totalPrize += matchCounts[i] * prizeMoney[i];
+        }
+        return totalPrize;
+    }
+```

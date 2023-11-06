@@ -3,12 +3,15 @@ package lotto.utils;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 public class Output {
     public static void printLottery(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
+        List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
+        Collections.sort(numbers);
 
         StringBuilder builder = new StringBuilder("[");
         for (int i = 0; i < numbers.size(); i++) {

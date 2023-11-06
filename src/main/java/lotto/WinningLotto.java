@@ -7,20 +7,27 @@ import lotto.constant.Constant;
 
 public class WinningLotto {
 
-    private final List<Integer> winningNumbers = new ArrayList<>();
-    private int bonusNumber;
+    private final List<Integer> winningNumbers;
+    private final int bonusNumber;
 
     public WinningLotto() {
-        for (String number : Console.readLine().split(",")) {
-            int numbers = Integer.parseInt(number);
-            this.winningNumbers.add(numbers);
-        }
-        setBonusNumber();
+        this.winningNumbers = initializeWinningNumbers();
+        this.bonusNumber = initializeBonusNumber();
     }
 
-    private void setBonusNumber() {
+    private List<Integer> initializeWinningNumbers() {
+        List<Integer> inputNumbers = new ArrayList<>();
+
+        for (String number : Console.readLine().split(",")) {
+            inputNumbers.add(Integer.parseInt(number));
+        }
+
+        return inputNumbers;
+    }
+
+    private int initializeBonusNumber() {
         System.out.println(Constant.bonusNumber);
-        this.bonusNumber = Integer.parseInt(Console.readLine());
+        return Integer.parseInt(Console.readLine());
     }
 
     public List<Integer> getWinningNumbers() {

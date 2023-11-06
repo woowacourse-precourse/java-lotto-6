@@ -65,7 +65,7 @@ public class LottoProgram {
     private void validateInteger(String input) {
         // 숫자가 아닌 경우 예외 발생
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException(Error.LOTTO_PURCHASE_AMOUNT_UNIT_ERROR.getMessage());
+            throw new IllegalArgumentException(Error.LOTTO_PURCHASE_AMOUNT_ERROR.getMessage());
         }
     }
 }

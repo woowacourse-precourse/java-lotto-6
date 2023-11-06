@@ -1,15 +1,17 @@
 package lotto.view;
 
+import lotto.utils.Constants;
+
 public class InputView {
     public void printPurchaseMoneyMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(Constants.REQUEST_INPUT_PURCHASE_MONEY_MESSAGE);
     }
 
     public void printWinningNumbersMessage() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        System.out.println(Constants.REQUEST_INPUT_WINNING_NUMBER_MESSAGE);
     }
 
     public void printWinningBonusNumberMessage() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println(Constants.REQUEST_INPUT_BONUS_NUMBER_MESSAGE);
     }
 }

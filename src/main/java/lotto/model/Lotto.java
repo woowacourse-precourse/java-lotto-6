@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.utils.Constants;
+import lotto.utils.ErrorConstants;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,7 +24,7 @@ public class Lotto {
         final List<String> numbers = this.numbers.stream()
                 .map(Object::toString)
                 .toList();
-        return "[" + String.join(", ", numbers) + "]";
+        return Constants.START_BRACKET + String.join(", ", numbers) + Constants.END_BRACKET;
     }
 
     public List<Integer> getNumbers() {
@@ -30,23 +32,23 @@ public class Lotto {
     }
 
     private void validateNumbersSize(final List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호의 개수는 6개이어야 합니다.");
+        if (numbers.size() != Constants.LOTTO_SIZE) {
+            throw new IllegalArgumentException(ErrorConstants.LOTTO_SIZE);
         }
     }
 
     private void validateDuplicateNumber(final List<Integer> numbers) {
         final Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorConstants.LOTTO_NUMBER_DUPLICATE);
         }
     }
 
     private void validateNumbersBoundary(final List<Integer> numbers) {
         final boolean isBoundary = numbers.stream()
-                .anyMatch(number -> number < 1 || number > 45);
+                .anyMatch(number -> number < Constants.MIN_GENERATE_VALUE || number > Constants.MAX_GENERATE_VALUE);
         if (isBoundary) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자입니다.");
+            throw new IllegalArgumentException(ErrorConstants.LOTTO_NUMBER_BOUNDARY);
         }
     }
 }

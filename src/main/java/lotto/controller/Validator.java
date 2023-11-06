@@ -3,6 +3,8 @@ package lotto.controller;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.utils.Constants;
+import lotto.utils.ErrorConstants;
 
 public class Validator {
     public boolean validateMoneyInput(final String input) {
@@ -46,27 +48,27 @@ public class Validator {
     }
 
     private void validateZeroMoney(final int money) {
-        if (money == 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 0원일 수 없습니다. 다시 입력하세요.");
+        if (money == Constants.ZERO_MONEY) {
+            throw new IllegalArgumentException(ErrorConstants.ZERO_MONEY);
         }
     }
 
     private void validateNotThousandUnit(final int money) {
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위입니다. 다시 입력하세요.");
+        if (money % Constants.DIVIDE_UNIT != Constants.MOD) {
+            throw new IllegalArgumentException(ErrorConstants.THOUSAND_UNIT);
         }
     }
 
     private void validateNumbersSize(final List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호의 개수는 6개이어야 합니다. 다시 입력하세요.");
+        if (winningNumbers.size() != Constants.LOTTO_SIZE) {
+            throw new IllegalArgumentException(ErrorConstants.NUMBER_SIZE);
         }
     }
 
     private void validateDuplicateNumber(final List<Integer> winningNumbers) {
         final Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
-        if (winningNumbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다. 다시 입력하세요.");
+        if (uniqueNumbers.size() != Constants.LOTTO_SIZE) {
+            throw new IllegalArgumentException(ErrorConstants.DUPLICATE_NUMBER);
         }
     }
 
@@ -76,25 +78,25 @@ public class Validator {
 
     private void validateBlankInput(final String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력은 공백이어선 안됩니다. 다시 입력하세요.");
+            throw new IllegalArgumentException(ErrorConstants.INPUT_BLANK);
         }
     }
 
     private void validateNumberFormat(final String input) {
-        if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자이어야 합니다. 다시 입력하세요.");
+        if (!input.matches(Constants.BONUS_NUMBER_INPUT_REGEX)) {
+            throw new IllegalArgumentException(ErrorConstants.NUMBER_FORMAT);
         }
     }
 
     private void validateDuplicateBonusNumber(final List<Integer> winningNumbers, final int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다. 다시 입력하세요.");
+            throw new IllegalArgumentException(ErrorConstants.DUPLICATE_NUMBER);
         }
     }
 
     private void validateNumberBoundary(final int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자입니다. 다시 입력하세요.");
+        if (bonusNumber < Constants.MIN_GENERATE_VALUE || bonusNumber > Constants.MAX_GENERATE_VALUE) {
+            throw new IllegalArgumentException(ErrorConstants.NUMBER_BOUNDARY);
         }
     }
 }

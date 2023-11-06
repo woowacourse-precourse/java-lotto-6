@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.utils.Constants;
 
 public class LottoManager {
     private final int money;
@@ -28,13 +29,13 @@ public class LottoManager {
     }
 
     public void createLottos() {
-        for (int i = 0; i < money / 1000; i++) {
+        for (int i = 0; i < money / Constants.DIVIDE_UNIT; i++) {
             final Lotto lotto = new Lotto(generateLottoNumbers());
             lottos.add(lotto);
         }
     }
 
     private List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(Constants.MIN_GENERATE_VALUE, Constants.MAX_GENERATE_VALUE, Constants.LOTTO_SIZE);
     }
 }

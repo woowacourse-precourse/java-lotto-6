@@ -1,14 +1,15 @@
 package lotto.model;
 
 import java.util.function.BiFunction;
+import lotto.utils.Constants;
 
 public enum Prize {
-    _FIFTH(3, false, 5_000,"3개 일치 (5,000원)", (count, isBonus) -> count == 3),
-    _FOURTH(4, false, 50_000, "4개 일치 (50,000원)", (count, isBonus) -> count == 4),
-    _THIRD(5, false, 1_500_5000, "5개 일치 (1,500,000원)", (count, isBonus) -> count == 5 && !isBonus),
-    _SECOND(5, true, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)", (count, isBonus) -> count == 5 && isBonus),
-    _FIRST(6, false, 2_000_000_000, "6개 일치 (2,000,000,000원)", (count, isBonus) -> count == 6),
-    _NONE(0, false, 0, "", (count, bonus) -> count <= 2);
+    FIFTH(Constants.CORRECT_THREE, false, Constants.PRIZE_FIFTH_MONEY, Constants.PRIZE_FIFTH_MESSAGE, (count, isBonus) -> count == Constants.CORRECT_THREE),
+    FOURTH(Constants.CORRECT_FOUR, false, Constants.PRIZE_FOURTH_MONEY, Constants.PRIZE_FORTH_MESSAGE, (count, isBonus) -> count == Constants.CORRECT_FOUR),
+    THIRD(Constants.CORRECT_FIVE, false, Constants.PRIZE_THIRD_MONEY, Constants.PRIZE_THIRD_MESSAGE, (count, isBonus) -> count == Constants.CORRECT_FIVE && !isBonus),
+    SECOND(Constants.CORRECT_FIVE, true, Constants.PRIZE_SECOND_MONEY, Constants.PRIZE_SECOND_MESSAGE, (count, isBonus) -> count == Constants.CORRECT_FIVE && isBonus),
+    FIRST(Constants.CORRECT_SIX, false, Constants.PRIZE_FIRST_MONEY, Constants.PRIZE_FIRST_MESSAGE, (count, isBonus) -> count == Constants.CORRECT_SIX),
+    NONE(Constants.LESS_CORRECT_THREE, false, Constants.PRIZE_NONE_MONEY, Constants.PRIZE_NONE_MESSAGE, (count, bonus) -> count <= Constants.LESS_CORRECT_THREE);
 
     private final int count;
     private final boolean isBonus;

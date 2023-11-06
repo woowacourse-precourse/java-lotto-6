@@ -14,11 +14,13 @@ public class LottoController {
     private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
     public void run() {
-        getPriceByUserInput();
+        initPriceByUserInput();
         printNumOfLotto(price.numOfLotto());
         createLotto();
         showLottoTicket();
     }
+
+    private void get
 
     private void showLottoTicket() {
         for(Lotto lotto : lottoRepository.getAllLotto()) {
@@ -37,12 +39,12 @@ public class LottoController {
         OutputView.printNumOfLotto(number);
     }
 
-    private void getPriceByUserInput() {
+    private void initPriceByUserInput() {
         try {
             String input = InputView.enterPrice();
             price = new Price(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {
-            getPriceByUserInput();
+            initPriceByUserInput();
         }
     }
 }

@@ -12,10 +12,12 @@ public class LottoNumRandomGenerator {
     private static final int AMOUNT=6;
 
     public List<Integer> setRandomNum(){
-        return Randoms.pickUniqueNumbersInRange(MIN, MAX, AMOUNT);
+        List<Integer> result=sortRandomNum(Randoms.pickUniqueNumbersInRange(MIN, MAX, AMOUNT));
+        return result;
     }
 
-    public void sortRandomNum(List<Integer> randomNum){
+    private List<Integer> sortRandomNum(List<Integer> randomNum){
         Collections.sort(randomNum);
+        return randomNum;
     }
 }

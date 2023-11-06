@@ -11,7 +11,6 @@ public class LottoNumRandomGeneratorTest {
         LottoNumRandomGenerator lottoNumRandomGenerator = new LottoNumRandomGenerator();
 
         List<Integer> numbers = lottoNumRandomGenerator.setRandomNum();
-        lottoNumRandomGenerator.sortRandomNum(numbers);
 
         for(int data:numbers){
             System.out.print(data+" ");

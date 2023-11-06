@@ -5,17 +5,19 @@ import static lotto.constants.ErrorMessages.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class WinNumberValidate {
 
-    public static int[] validateWinNumber(String winNumber) {
+    public static List<Integer> validateWinNumber(String winNumber) {
         validateWinNumberIsEmpty(winNumber);
         String[] winNumbers = splitWinNumber(winNumber);
         validateWinNumberLength(winNumbers);
         int[] winIntNumbers = validateWinNumberIsNumber(winNumbers);
         validateWinNumberIsRange(winIntNumbers);
         validateWinNumberIsNotDuplicate(winIntNumbers);
-        return winIntNumbers;
+        return Arrays.asList(winIntNumbers[0], winIntNumbers[1], winIntNumbers[2], winIntNumbers[3], winIntNumbers[4],
+                winIntNumbers[5]);
     }
 
     public static void validateWinNumberIsEmpty(String winNumber) {

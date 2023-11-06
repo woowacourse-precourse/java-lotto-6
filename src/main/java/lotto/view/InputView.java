@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import lotto.Lotto;
 import lotto.validate.BuyMoneyValidate;
 import lotto.validate.WinNumberValidate;
 
@@ -12,9 +13,9 @@ public class InputView {
         return BuyMoneyValidate.validateBuyMoney(buyMoney);
     }
 
-    public static int[] getWinNumber() {
+    public static Lotto getWinNumber() {
         String winNumber = Console.readLine();
-        return WinNumberValidate.validateWinNumber(winNumber);
+        return new Lotto(WinNumberValidate.validateWinNumber(winNumber));
     }
 
     public static int getBonusNumber() {

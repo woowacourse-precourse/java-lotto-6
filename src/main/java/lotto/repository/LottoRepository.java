@@ -7,6 +7,7 @@ import java.util.List;
 
 public class LottoRepository implements Repository{
     private Lotto answerLotto;
+    private int countLotto;
     private int bonusNumber;
     private final List<Lotto> lottoNumbers = new ArrayList<>();
 
@@ -16,6 +17,10 @@ public class LottoRepository implements Repository{
     }
     @Override
     public void setAnswerLotto(Lotto answerLotto){this.answerLotto = answerLotto; }
+    @Override
+    public int getCountLotto(){return countLotto;}
+    @Override
+    public void setCountLotto(int countLotto){this.countLotto = countLotto;}
     @Override
     public void saveBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;

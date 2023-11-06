@@ -6,6 +6,9 @@ import lotto.view.Input;
 import lotto.view.Output;
 
 public class LottoService {
+    private boolean isUseFulLottoCount = true;
+    private boolean isUseFulAnswerLotto = true;
+    private boolean isUseFulBonusNumber = true;
     Output output;
     Input input;
     Repository repository;
@@ -19,6 +22,12 @@ public class LottoService {
 
     public void game(){
         output.printPurchaseAmount();
-        input.getLottoCount();
+        do {
+            repository.setCountLotto(input.getLottoCount());
+            if(repository.getCountLotto() != 0){
+                isUseFulLottoCount = false;
+            }
+        }while(isUseFulLottoCount);
+        
     }
 }

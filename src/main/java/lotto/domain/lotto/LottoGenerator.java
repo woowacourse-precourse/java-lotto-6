@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 
 public class LottoGenerator {
@@ -9,6 +10,12 @@ public class LottoGenerator {
 
     public LottoGenerator(PickNumbersStrategy pickNumbersStrategy) {
         this.pickNumbersStrategy = pickNumbersStrategy;
+    }
+
+    public List<Lotto> generateByCount(int count) {
+        return Stream.generate(this::generate)
+                .limit(count)
+                .toList();
     }
 
     public Lotto generate() {

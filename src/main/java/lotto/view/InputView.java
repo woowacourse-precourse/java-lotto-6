@@ -3,14 +3,18 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.model.BonusNumber;
 import lotto.model.Constants;
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchasePriceValidator;
 import lotto.validator.LottoValidator;
 
 public class InputView {
-    private static final PurchasePriceValidator purcharPriceValidator = new PurchasePriceValidator();
-    private static final LottoValidator LOTTO_VALIDATOR = new LottoValidator();
+    private final PurchasePriceValidator purcharPriceValidator = new PurchasePriceValidator();
+    private final LottoValidator lottoValidator = new LottoValidator();
+    private final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
 
     public int getPurchasePrice() {
         while (true) {
@@ -33,8 +37,11 @@ public class InputView {
         return purchasePrice;
     }
 
-    public void getWinningLotto() {
+    public WinningLotto getWinningLotto() {
         Lotto lotto = getLotto();
+        BonusNumber bonusNumber = getBonusNumber();
+
+        return new WinningLotto(lotto, bonusNumber);
     }
 
     private Lotto getLotto() {
@@ -50,11 +57,31 @@ public class InputView {
     private List<Integer> requestLotto() {
         System.out.println(InputMessage.REQUEST_WINNING_NUMBER.getMessage());
         String inputNumbers = Console.readLine();
-        LOTTO_VALIDATOR.validate(inputNumbers);
+        lottoValidator.validate(inputNumbers);
         System.out.println();
 
+        inputNumbers = inputNumbers.replace(" ","");
         return Stream.of(inputNumbers.split(Constants.NUMBER_SEPARATOR))
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private BonusNumber getBonusNumber(){
+        while (true) {
+            try {
+                return new BonusNumber(requestBonusNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int requestBonusNumber(){
+        System.out.println(InputMessage.REQUEST_BONUS_NUMBER.getMessage());
+        String inputNumber = Console.readLine();
+        bonusNumberValidator.validate(inputNumber);
+        System.out.println();
+
+        return Integer.parseInt(inputNumber);
     }
 }

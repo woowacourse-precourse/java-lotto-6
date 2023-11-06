@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Constants;
 import lotto.model.UserLotto;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,7 +23,8 @@ public class LottoController {
         UserLotto userLotto = new UserLotto(lottoCount);
         outputView.printUserLotto(userLotto);
 
-        inputView.getWinningLotto();
+        WinningLotto winningLotto = inputView.getWinningLotto();
+        System.out.println();
     }
 
     private int countLotto(int purchasePrice) {

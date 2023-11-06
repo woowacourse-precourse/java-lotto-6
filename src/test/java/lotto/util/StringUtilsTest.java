@@ -12,4 +12,9 @@ public class StringUtilsTest {
         List<String> splitNumbers = StringUtils.splitByCommaAndTrim("1 ,  2  ,3,4 ,25,  5");
         assertEquals(List.of("1", "2", "3", "4", "25", "5"), splitNumbers);
     }
+
+    @Test
+    void String_to_Int_테스트() {
+        assertEquals(5000, StringUtils.stringToInt("5,000"));
+    }
 }

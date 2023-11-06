@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.service.exception.HandleIllegalArgumentException;
-import lotto.service.exception.HandleNumberFormattingException;
+import lotto.service.exception.IllegalArgumentExceptionHandler;
+import lotto.service.exception.NumberFormattingExceptionHandler;
 import lotto.service.exception.InputErrorMessage;
 
 public class WinningNumberService {
@@ -23,7 +23,7 @@ public class WinningNumberService {
             winningNumber = convertStringListToInt(inputNumber);
             verifyRange(winningNumber);
             verifyDuplication(winningNumber);
-        } catch (HandleNumberFormattingException | HandleIllegalArgumentException e){
+        } catch (NumberFormattingExceptionHandler | IllegalArgumentExceptionHandler e){
             System.out.println(e.getMessage());
             return null;
         }
@@ -35,7 +35,7 @@ public class WinningNumberService {
         try{
             bonusNumber = buyingLottoService.convertStringtoInt(inputNumber);
             verifyRange(bonusNumber);
-        }catch (HandleNumberFormattingException | HandleIllegalArgumentException e){
+        }catch (NumberFormattingExceptionHandler | IllegalArgumentExceptionHandler e){
             System.out.println(e.getMessage());
             return -1;
         }
@@ -49,7 +49,7 @@ public class WinningNumberService {
     }
     private void verifyNumberSize(List<String> winningNumber) {
         if (winningNumber.size() != 6) {
-            throw new HandleIllegalArgumentException(InputErrorMessage.WRONG_NUMBER_SIZE);
+            throw new IllegalArgumentExceptionHandler(InputErrorMessage.WRONG_NUMBER_SIZE);
         }
     }
     private void verifyNumberFormat(List<String> winningNumber){
@@ -58,7 +58,7 @@ public class WinningNumberService {
                 Integer.parseInt(number);
             }
         }catch(NumberFormatException e){
-            throw new HandleNumberFormattingException(InputErrorMessage.INVALID_NUMBER);
+            throw new NumberFormattingExceptionHandler(InputErrorMessage.INVALID_NUMBER);
         }
     }
     private List convertStringListToInt(List<String> numbers){
@@ -72,20 +72,20 @@ public class WinningNumberService {
     private void verifyRange(List<Integer> winningNumber){
         for(int x : winningNumber){
             if(x<1 || x>45){
-                throw new HandleIllegalArgumentException(InputErrorMessage.WRONG_NUMBER_RANGE);
+                throw new IllegalArgumentExceptionHandler(InputErrorMessage.WRONG_NUMBER_RANGE);
             }
         }
     }
     private void verifyRange(int bonusNumber){
         if(bonusNumber<1 || bonusNumber>45){
-            throw new HandleIllegalArgumentException(InputErrorMessage.WRONG_NUMBER_RANGE);
+            throw new IllegalArgumentExceptionHandler(InputErrorMessage.WRONG_NUMBER_RANGE);
         }
     }
     private void verifyDuplication(List<Integer> winningNumber){
         Set<Integer> checkDuplication = new HashSet<>();
         for(int number : winningNumber){
             if(checkDuplication.contains(number)){
-                throw new HandleIllegalArgumentException(InputErrorMessage.DUPLICATE_NUMBER);
+                throw new IllegalArgumentExceptionHandler(InputErrorMessage.DUPLICATE_NUMBER);
             }
             checkDuplication.add(number);
         }

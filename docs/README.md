@@ -87,11 +87,11 @@
     - [X] 구입 금액 입출력
     - [X] 당첨 번호 입출력
     - [X] 보너스 번호 입출력
-- [ ] Controller
-    -[ ] LottoGameController
-        - [ ] LottoTickets 생성
-        - [ ] WinningLotto 생성
-        - [ ] WinningLotto, LottoTickets 사용하여 Result 계산
+- [X] Controller
+    -[X] LottoGameController
+        - [X] LottoTickets 생성
+        - [X] WinningLotto 생성
+        - [X] WinningLotto, LottoTickets 사용하여 Result 계산
 - [X] 에러 메세지 Enum
 - [ ] Application
     - [ ] LottoGameController 호출

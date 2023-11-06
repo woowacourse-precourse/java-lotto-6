@@ -36,11 +36,4 @@ public class LottoTicket {
     public List<Lotto> getLottoTicket() {
         return new ArrayList<>(this.lottoTicket);
     }
-
-    @Override
-    public String toString() {
-        return "LottoTicket{" +
-                "lottoTicket=" + lottoTicket +
-                '}';
-    }
 }

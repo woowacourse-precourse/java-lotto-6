@@ -43,4 +43,8 @@ public class LottoGameService {
                 .filter(purchasedLotto::contains)
                 .count();
     }
+
+    public boolean isContainBonusNumber(List<Integer> purchasedLotto, int bonusNumber) {
+        return purchasedLotto.contains(bonusNumber);
+    }
 }

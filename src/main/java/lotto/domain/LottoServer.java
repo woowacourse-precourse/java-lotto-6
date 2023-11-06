@@ -29,4 +29,10 @@ public final class LottoServer {
             }
         }
     }
+
+    private void showGeneratedLottos(Integer numberOfLottos, List<List<Integer>> generatedLottos) {
+        outputPort.printNumberOfLottos(numberOfLottos);
+        outputPort.printCreatedLottos(generatedLottos);
+    }
+
 }

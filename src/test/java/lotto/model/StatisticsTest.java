@@ -49,7 +49,7 @@ public class StatisticsTest {
     @DisplayName("주어진 로또에 대한 총 당첨 금액을 구한다.")
     @ParameterizedTest
     @MethodSource("generateLottoTickets")
-    void givenPurchaseAmount_Then_TotalAmountReturns(
+    void givenLottoTickets_Then_TotalAmountReturns(
             final List<Lotto> lottoTickets
     ) {
         final Statistics statistics = new Statistics(winningNumber, lottoTickets);

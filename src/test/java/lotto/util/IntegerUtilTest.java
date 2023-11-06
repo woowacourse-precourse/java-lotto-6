@@ -45,5 +45,15 @@ public class IntegerUtilTest {
         assertFalse(result);
     }
 
+    @Test
+    public void 문자의_앞뒤공백제거후_정수로변환() {
+        // Given
+        String input = " 1000 ";
 
+        // When
+        int result = IntegerUtil.trimAndParseInt(input);
+
+        // Then
+        assertThat(result).isEqualTo(1000);
+    }
 }

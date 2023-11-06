@@ -38,6 +38,7 @@ public class Lottos {
     public List<Lotto> make(Randoms lottosRandoms) {
         int ticketAmount = getTicketAmount();
 
+        // TODO : 동일한 로또 생성되는 경우 예외처리 필요함
         purchaseLottos = IntStream.range(0, ticketAmount)
                 .mapToObj(i -> Lotto.make(lottosRandoms))
                 .toList();

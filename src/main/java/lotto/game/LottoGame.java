@@ -1,5 +1,6 @@
 package lotto.game;
 
+import java.util.List;
 import lotto.collaboration.lottos.Lottos;
 import lotto.io.lottos.LottosRandoms;
 import lotto.io.views.LottoGameView;
@@ -29,6 +30,8 @@ public class LottoGame {
         }
 
         lottoGameView.showPurchaseLottos(lottos.make(lottosRandoms));
+
+        List<Integer> numbers = lottoGameView.askWinningNumbers();
     }
 
 }

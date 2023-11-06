@@ -9,7 +9,7 @@ public class ExceptionMessage {
         System.out.println(NUMBER_ALREADY_EXIST);
     }
 
-    public static void typeExcetpion() {
+    public static void typeException() {
         System.out.println(INPUT_TYPE_ERROR);
     }
 

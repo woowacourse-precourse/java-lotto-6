@@ -86,6 +86,17 @@ public class ExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호 중복 검사")
+    @Test
+    public void validateDuplicateNumInWinningNumTest() throws Exception {
+        // given
+        ArrayList<Integer> winningNum = new ArrayList<>(List.of(1, 2, 3, 4, 6, 6));
+
+        // when, then
+        assertThatThrownBy(() -> inputView.validateDuplicateNumInWinningNum(winningNum))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     /**
      * 보너스 숫자 관련
      */

@@ -1,12 +1,13 @@
 package lotto;
 
 import lotto.Constants.ErrorMessage;
+import lotto.Validator.InputValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class InputViewValidatorTest {
-    
+
     @Test
     @DisplayName("입력값이 숫자인지 확인합니다.")
     void checkNumber() {

@@ -1,11 +1,17 @@
-package lotto;
+package lotto.Controller;
 
-import static lotto.InputView.printInsertBonusNumber;
-import static lotto.InputView.printInsertLottoNumbers;
-import static lotto.InputView.printInsertMoney;
+import static lotto.View.InputView.printInsertBonusNumber;
+import static lotto.View.InputView.printInsertLottoNumbers;
+import static lotto.View.InputView.printInsertMoney;
 
 import java.util.List;
 import lotto.Constants.IntConstants;
+import lotto.Model.Cpu;
+import lotto.Model.GameRule;
+import lotto.Model.Lotto;
+import lotto.Model.Player;
+import lotto.View.InputView;
+import lotto.View.OutputView;
 
 public class GameController {
 

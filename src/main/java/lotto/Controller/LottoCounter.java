@@ -1,9 +1,14 @@
-package lotto;
+package lotto.Controller;
 
 import java.util.List;
 import lotto.Constants.IntConstants;
+import lotto.Model.Lotto;
+import lotto.Model.Player;
 
 public class LottoCounter {
+    private LottoCounter() {
+
+    }
 
     public static void getResultList(List<Integer> resultList, int result, Lotto cpuSixNumber, Player playerLotto) {
         hitThree(resultList, result);

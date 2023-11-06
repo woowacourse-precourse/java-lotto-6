@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Validator;
 
 import lotto.Constants.ErrorMessage;
 

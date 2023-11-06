@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Utils {
+    private Utils() {
+    }
+
     public static List<Integer> getSortedList(List<Integer> inputList) {
         return inputList.stream()
                 .sorted()

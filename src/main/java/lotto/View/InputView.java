@@ -1,10 +1,10 @@
-package lotto;
+package lotto.View;
 
-import static lotto.InputValidator.checkInputBlank;
-import static lotto.InputValidator.checkInputDigit;
-import static lotto.InputValidator.checkInputEmpty;
-import static lotto.Utils.splitWithComma;
-import static lotto.Utils.stringToInteger;
+import static lotto.Utils.Utils.splitWithComma;
+import static lotto.Utils.Utils.stringToInteger;
+import static lotto.Validator.InputValidator.checkInputBlank;
+import static lotto.Validator.InputValidator.checkInputDigit;
+import static lotto.Validator.InputValidator.checkInputEmpty;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;

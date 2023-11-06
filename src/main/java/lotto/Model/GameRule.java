@@ -1,11 +1,12 @@
-package lotto;
+package lotto.Model;
 
-import static lotto.LottoCounter.countElement;
-import static lotto.LottoCounter.getResultList;
-import static lotto.Utils.calculatePercentage;
+import static lotto.Controller.LottoCounter.countElement;
+import static lotto.Controller.LottoCounter.getResultList;
+import static lotto.Utils.Utils.calculatePercentage;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Constants.IntConstants;
 import lotto.Constants.PrizeMoney;
 
 public class GameRule {
@@ -24,7 +25,7 @@ public class GameRule {
     }
 
     public String calculateProfit(int inputMoney, List<Integer> gameResult) {
-        int income = 0; // 초기 수익.
+        int income = IntConstants.INITIAL_INCOME.getValue();
         PrizeMoney[] prizeMonies = PrizeMoney.values();
         for (int index = 0; index < gameResult.size(); index++) {
             income += gameResult.get(index) * prizeMonies[index].getMoney();

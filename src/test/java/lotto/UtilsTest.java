@@ -1,8 +1,8 @@
 package lotto;
 
-import static lotto.Utils.getSortedList;
-import static lotto.Utils.splitWithComma;
-import static lotto.Utils.stringToInteger;
+import static lotto.Utils.Utils.getSortedList;
+import static lotto.Utils.Utils.splitWithComma;
+import static lotto.Utils.Utils.stringToInteger;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;

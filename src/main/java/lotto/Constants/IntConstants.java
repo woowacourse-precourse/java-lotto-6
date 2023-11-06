@@ -13,7 +13,8 @@ public enum IntConstants {
     SECOND_INDEX(1),
     THIRD_INDEX(2),
     FORTH_INDEX(3),
-    FIFTH_INDEX(4);
+    FIFTH_INDEX(4),
+    INITIAL_INCOME(0);
 
 
     int value;

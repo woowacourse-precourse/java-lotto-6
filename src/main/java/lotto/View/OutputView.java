@@ -1,9 +1,11 @@
-package lotto;
+package lotto.View;
 
-import static lotto.Utils.getSortedList;
+import static lotto.Utils.Utils.getSortedList;
 
 import java.util.List;
 import lotto.Constants.OutputConstants;
+import lotto.Model.Cpu;
+import lotto.Model.Lotto;
 
 public class OutputView {
 

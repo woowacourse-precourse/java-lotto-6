@@ -14,7 +14,7 @@ public class InputValidator {
 
     private static void validateCorrectRange(String purchaseAmount) {
         try {
-            int amount = Integer.parseInt(purchaseAmount);
+            Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] : 가능한 정수 범위를 초과했습니다.");
         }

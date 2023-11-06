@@ -2,9 +2,9 @@ package lotto;
 
 public class BuyingController {
 
-    AppManager appManager = new AppManager();
-    LottoManager lottoManager = new LottoManager();
-    IOManager ioManager = new IOManager();
+    private final AppManager appManager = new AppManager();
+    private final LottoManager lottoManager = LottoManager.getInstance();
+    private final IOManager ioManager = new IOManager();
 
     public void handle() {
 
@@ -16,7 +16,7 @@ public class BuyingController {
             lottoManager.setLottoTicketCount(lottoTicketsCount);
             ioManager.printLottoTicketCount(lottoManager.getLottoTicketCount());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            ioManager.printExceptionMessage(e.getMessage());
             String className = this.getClass().getName();
             appManager.handleInvalidInput(className);
         }

@@ -2,7 +2,9 @@ package lotto;
 
 public enum IntegerUtil {
 
-    PAY_AMOUNT_UNIT(1000);
+    PAY_AMOUNT_UNIT(1000),
+    LOTTO_NUMBER_COUNT(6),
+    BUNUS_NUMBER_COUNT(1);
 
     private int value;
 

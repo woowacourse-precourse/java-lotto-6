@@ -5,5 +5,8 @@ public class Application {
         // TODO: 프로그램 구현
         BuyingController buyingController = new BuyingController();
         buyingController.handle();
+
+        LottoNumberAddController lottoNumberAddController = new LottoNumberAddController();
+        lottoNumberAddController.handle();
     }
 }

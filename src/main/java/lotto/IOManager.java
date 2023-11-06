@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 import static lotto.StringUtil.*;
 
 public class IOManager {
@@ -16,5 +18,15 @@ public class IOManager {
 
     public void printLottoTicketCount(int lottoTicketCount) {
         System.out.printf(PRINT_LOTTO_COUNT.getMessage(), lottoTicketCount);
+    }
+
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
+    }
+
+    public void printLottoList(List<Lotto> lottoList) {
+        for (Lotto lotto : lottoList) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 }

@@ -3,6 +3,9 @@ package lotto.domain;
 import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_DUPLICATE;
 import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_RANGE_OVER;
 import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_SIZE;
+import static lotto.constants.LottoConfiguration.LOTTO_SIZE;
+import static lotto.constants.LottoConfiguration.MAX_RANGE;
+import static lotto.constants.LottoConfiguration.MIN_RANGE;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +31,7 @@ public class Lotto {
      * @param numbers
      */
     private void NumberSizeCheck(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.getConfig()) {
             throw LottoException.of(ERROR_LOTTO_NUMBER_SIZE);
         }
     }
@@ -55,7 +58,10 @@ public class Lotto {
      * @param numbers
      */
     private void NumberRangeCheck(List<Integer> numbers) {
-        boolean overRangeResult = numbers.stream().anyMatch(num -> num <= 0 || num > 45);
+        boolean overRangeResult = numbers
+                .stream()
+                .anyMatch(num -> num <= MIN_RANGE.getConfig() || num > MAX_RANGE.getConfig());
+        
         if (overRangeResult) {
             throw LottoException.of(ERROR_LOTTO_NUMBER_RANGE_OVER);
         }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constants.ErrorMessage.ERROR_LOTTO_CONTAINS_BONUS;
+import static lotto.constants.LottoConfiguration.SECOND_PRIZE_COUNT;
 
 import lotto.constants.LottoPrize;
 import lotto.exception.LottoException;
@@ -38,7 +39,7 @@ public class WinLotto {
         int rank = (int) winLotto.lottoNumberComparison(otherLotto);
 
         // 2등 케이스 확인
-        if (rank == 5 && otherLotto.isContainsNumber(bonus)) {
+        if (rank == SECOND_PRIZE_COUNT.getConfig() && otherLotto.isContainsNumber(bonus)) {
             return LottoPrize.SECOND_PRIZE;
         }
 

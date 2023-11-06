@@ -9,6 +9,7 @@ public class LottoResult {
 
     private final List<LottoPrize> lottoResults;
     private final int consumerAmount;
+    private final int decimalPlace = 2;
     private int totalPrize;
     private BigDecimal profitRate;
     private int firstPrize;
@@ -27,9 +28,9 @@ public class LottoResult {
      * 로또 당첨 결과 분석
      */
     private void getLottoWinningResults() {
-        for (LottoPrize lottoReult : lottoResults) {
-            prizeCounting(lottoReult);
-            totalPrize += lottoReult.getWinningPrize();
+        for (LottoPrize lottoResult : lottoResults) {
+            prizeCounting(lottoResult);
+            totalPrize += lottoResult.getWinningPrize();
         }
         profitRateCalculation();
     }
@@ -62,7 +63,7 @@ public class LottoResult {
      */
     private void profitRateCalculation() {
         BigDecimal rate = new BigDecimal(((double) totalPrize / consumerAmount) * 100.0);
-        profitRate = rate.setScale(2, RoundingMode.HALF_UP);
+        profitRate = rate.setScale(decimalPlace, RoundingMode.HALF_UP);
     }
 
     public List<Integer> getLottoWinningCounts() {

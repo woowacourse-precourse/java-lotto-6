@@ -4,6 +4,8 @@ import static lotto.constants.ErrorMessage.ERROR_DIVIDE_BY_AMOUNT;
 import static lotto.constants.ErrorMessage.ERROR_GREATER_THAN_MAX_AMOUNT;
 import static lotto.constants.ErrorMessage.ERROR_LESS_THAN_MIN_AMOUNT;
 import static lotto.constants.ErrorMessage.ERROR_QUANTITY_NON_EQUALS;
+import static lotto.constants.LottoConfiguration.MAX_PRICE;
+import static lotto.constants.LottoConfiguration.MIN_PRICE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,8 +14,8 @@ import lotto.exception.ConsumerException;
 
 public class Consumer {
 
-    private static final int AMOUNT = 1000;
-    private static final int MAX_AMOUNT = 100000;
+    private static final int AMOUNT = MIN_PRICE.getConfig();
+    private static final int MAX_AMOUNT = MAX_PRICE.getConfig();
 
     private List<Lotto> lottoes = new ArrayList<>();
     private final int buyAmount;

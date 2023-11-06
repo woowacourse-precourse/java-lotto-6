@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConfiguration.MIN_PRICE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.constants.LottoConfiguration;
 import lotto.constants.LottoPrize;
 
 public class LottoMachine {
@@ -49,7 +52,8 @@ public class LottoMachine {
      * @return
      */
     private List<Integer> createLottoNumber() {
-        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(MIN_PRICE.getConfig(),
+                LottoConfiguration.MAX_RANGE.getConfig(), LottoConfiguration.LOTTO_SIZE.getConfig());
 
         return lottoSort(lottoNumber);
     }

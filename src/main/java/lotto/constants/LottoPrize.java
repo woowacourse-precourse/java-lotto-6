@@ -16,10 +16,6 @@ public enum LottoPrize {
         this.winningPrize = winningPrize;
     }
 
-    public int getMatchedNumbers() {
-        return matchedNumbers;
-    }
-
     public int getWinningPrize() {
         return winningPrize;
     }

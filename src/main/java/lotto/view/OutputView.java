@@ -34,6 +34,6 @@ public class OutputView {
     }
 
     public static void printTotalRateOfReturn(double rateOfReturn) {
-        System.out.println(TOTAL_RATE_OF_RETURN_MESSAGE + rateOfReturn + FINISH_MESSAGE);
+        System.out.println(TOTAL_RATE_OF_RETURN_MESSAGE + String.format("%.1f",rateOfReturn) + FINISH_MESSAGE);
     }
 }

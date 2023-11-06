@@ -24,6 +24,6 @@ public class OutputViewTest {
     @Test
     @DisplayName("수익률을 출력한다.")
     void printTotalRateOfReturn() {
-        OutputView.printTotalRateOfReturn(62.5);
+        OutputView.printTotalRateOfReturn(62.55);
     }
 }

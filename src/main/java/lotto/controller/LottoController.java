@@ -1,15 +1,14 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumberGenerator;
-import lotto.domain.Player;
-import lotto.domain.Result;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private static Player player;
@@ -21,6 +20,7 @@ public class LottoController {
     public void run() {
         getLotto();
         setWinning();
+        lottoResult(lottoList, result, lottoCount);
     }
 
     public void getLotto() {
@@ -73,6 +73,32 @@ public class LottoController {
         lotto = lottoNumberGenerator.setLottoNumber();
         System.out.println(lotto);
         return new Lotto(lotto);
+    }
+
+    private void lottoResult(List<Lotto> lottoList, Result winningLotto, int amount) {
+        Map<Ranking, Integer> result = setResult();
+        Ranking rank;
+
+        OutputView.printResult();
+        for (int i = 0; i < lottoList.size(); i++) {
+            rank = winningLotto.match(lottoList.get(i));
+            result.put(rank, result.get(rank) + 1);
+        }
+        printResult(result);
+    }
+
+    private void printResult(Map<Ranking, Integer> result) {
+        for (int i = Ranking.values().length - 1; i >= 0; i --) {
+            Ranking.values()[i].printMessage(result.get(Ranking.values()[i]));
+        }
+    }
+
+    private Map<Ranking, Integer> setResult() {
+        Map<Ranking, Integer> result = new LinkedHashMap<>();
+        for (Ranking rank : Ranking.values()) {
+            result.put(rank, 0);
+        }
+        return result;
     }
 
 }

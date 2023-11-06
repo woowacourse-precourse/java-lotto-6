@@ -9,4 +9,10 @@ public class Result {
         this.bonusNum = bonusNum;
     }
 
+    public Ranking match(Lotto playerNumber) {
+        int countOfMatch = playerNumber.countMatch(lotto);
+        boolean bonusCheck = playerNumber.containNumber(bonusNum);
+        return Ranking.valueOf(countOfMatch, bonusCheck);
+    }
+
 }

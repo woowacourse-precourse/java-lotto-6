@@ -22,6 +22,4 @@ public class LottoNumberGenerator {
         return lottoNumberList;
     }
 
-
-
 }

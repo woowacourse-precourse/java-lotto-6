@@ -18,11 +18,13 @@ public class InputView {
     }
 
     public static List<Integer> inputLottoNumber() {
+        System.out.println();
         System.out.println(INPUT_LOTTO_NUMBER);
         return numberList(Console.readLine());
     }
 
     public static int inputBonusNumber() {
+        System.out.println();
         System.out.println(INPUT_BONUS_NUMBER);
         return Integer.parseInt(Console.readLine());
     }

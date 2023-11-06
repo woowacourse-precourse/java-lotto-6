@@ -49,4 +49,18 @@ class LottoTest {
         assertThatThrownBy(() -> InputView.validateLottoNum("1,2,3,4,5,48"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("중복된 보너스 당첨 번호를 입력한 경우")
+    @Test
+    void duplicatedBonusNum() {
+        assertThatThrownBy(() -> InputView.validateBonusNum("4", new Lotto(List.of(1, 2, 3, 4, 5, 6))))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("범위에 벗어난 보너스 당첨 번호를 입력한 경우")
+    @Test
+    void notBetweenBonusNum() {
+        assertThatThrownBy(() -> InputView.validateBonusNum("48", new Lotto(List.of(1, 2, 3, 4, 5, 6))))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

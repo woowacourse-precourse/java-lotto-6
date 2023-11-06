@@ -39,4 +39,9 @@
 * 잘못된 당첨 번호를 입력한 경우
   * validateLottoNumBetween() : 
     * 1에서 45가 아닌 당첨 번호를 입력한 경우
+* 잘못된 보너스 번호를 입력한 경우
+  * duplicatedBonusNum() : 
+    * 이미 존재하는 중복된 보너스 번호를 입력한 경우
+  * notBetweenBonusNum() : 
+    * 1에서 45사이의 수가 아닌 보너스 번호를 입력한 경우
 

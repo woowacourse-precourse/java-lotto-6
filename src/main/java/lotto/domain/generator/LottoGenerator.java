@@ -14,6 +14,6 @@ public class LottoGenerator {
     }
 
     public static Lotto generateLotto() {
-        return new Lotto(LottoNumbersGenerator.generateLottoNumbers());
+        return Lotto.from(LottoNumbersGenerator.generateLottoNumbers());
     }
 }

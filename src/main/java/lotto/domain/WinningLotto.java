@@ -34,7 +34,7 @@ public class WinningLotto {
         validateRange(bonusNumber);
 
         validateDup(lottoNumbers, bonusNumber);
-        return new WinningLotto(new Lotto(lottoNumbers), bonusNumber);
+        return new WinningLotto(Lotto.from(lottoNumbers), bonusNumber);
     }
 
     public Lotto getWinningLotto() {

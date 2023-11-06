@@ -17,8 +17,8 @@ class LottoTest {
     void calculateMatchCountTest() {
         List<Integer> numbers1 = List.of(1,2,3,4,5,6);
         List<Integer> numbers2 = List.of(2,3,4,5,6,7);
-        Lotto lotto = new Lotto(numbers1);
-        Lotto otherLotto = new Lotto(numbers2);
+        Lotto lotto = Lotto.from(numbers1);
+        Lotto otherLotto = Lotto.from(numbers2);
 
         assertThat(lotto.calculateMatchCount(otherLotto)).isEqualTo(5);
     }
@@ -26,14 +26,14 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

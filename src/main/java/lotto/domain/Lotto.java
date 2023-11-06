@@ -11,10 +11,14 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
+        this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicatedNumber(numbers);
-        this.numbers = numbers;
+        return new Lotto(numbers);
     }
 
     public int calculateMatchCount(Lotto otherLotto) {

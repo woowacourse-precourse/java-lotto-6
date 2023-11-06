@@ -18,8 +18,8 @@ public class PrizeResultTest {
 
     @BeforeEach
     void initLottos() {
-        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto2 = new Lotto(List.of(6, 7, 8, 9, 10, 11));
+        Lotto lotto1 = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = Lotto.from(List.of(6, 7, 8, 9, 10, 11));
         this.lottos = Lottos.createByInput(List.of(lotto1, lotto2));
     }
 

@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Inputter {
 
@@ -23,6 +26,11 @@ public class Inputter {
         won = parseInt(Console.readLine());
         validatePurchase(won);
         return won;
+    }
+
+    public List<Integer> lottoNumbers() {
+        return Arrays.stream(Console.readLine().split(","))
+                .mapToInt(this::parseInt).boxed().collect(Collectors.toList());
     }
 
     private void validatePurchase(int won) {

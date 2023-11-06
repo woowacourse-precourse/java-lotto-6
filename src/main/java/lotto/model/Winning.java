@@ -14,4 +14,8 @@ public enum Winning {
     Winning(int money) {
         this.money = money;
     }
+
+    public int calculateMoney(int count) {
+        return money * count;
+    }
 }

@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.PlayerLotto;
+import lotto.domain.RankingCounter;
 import lotto.domain.Unit;
 import lotto.domain.WinningLotto;
 import lotto.dto.ComparatorRequest;
@@ -16,12 +17,14 @@ public class GameController {
     private final OutputView outputView;
     private final InputController inputController;
     private final LottoCalculator lottoCalculator;
+    private final RankingCounter rankingCounter;
 
     public GameController() {
+        this.rankingCounter = new RankingCounter();
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.inputController = new InputController();
-        this.lottoCalculator = new LottoCalculator();
+        this.lottoCalculator = new LottoCalculator(rankingCounter);
     }
 
     public void play() {
@@ -32,7 +35,7 @@ public class GameController {
 
         ComparatorRequest comparatorRequest = new ComparatorRequest(winningLotto, playerNumbers);
         lottoCalculator.compareLotto(comparatorRequest);
-        outputView.showResult();
+        outputView.showResult(rankingCounter);
         outputView.showPayOff(lottoCalculator.calculatePayOff(purchasePrice));
     }
 

@@ -5,6 +5,8 @@ import lotto.domain.Lotto;
 import lotto.domain.Ranking;
 
 import java.util.List;
+import lotto.domain.RankingCounter;
+import lotto.service.LottoCalculator;
 
 public class OutputView {
 
@@ -20,16 +22,17 @@ public class OutputView {
         System.out.println("");
     }
 
-    public void showResult() {
+    public void showResult(RankingCounter rankingCounter) {
         List<Ranking> rankings = Arrays.stream(Ranking.values()).toList();
         System.out.println("");
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Ranking ranking : rankings) {
-            System.out.println(ranking.getMessage() + " - " + ranking.getCount() + "개");
+            System.out.println(ranking.getMessage() + " - " + rankingCounter.getCount(ranking) + "개");
         }
     }
-    public void showPayOff(double payOff){
+
+    public void showPayOff(double payOff) {
         System.out.println("총 수익률은 " + payOff + "%입니다.");
     }
 }

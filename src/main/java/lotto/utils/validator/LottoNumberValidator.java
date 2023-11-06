@@ -2,6 +2,7 @@ package lotto.utils.validator;
 
 import static lotto.constant.ExceptionMessage.NO_DUPLICATE_ERROR_MESSAGE;
 import static lotto.constant.ExceptionMessage.OUT_OF_RANGE_ERROR_MESSAGE;
+import static lotto.constant.LottoConstant.LOTTO_LENGTH;
 import static lotto.constant.LottoConstant.MAX_NUMBER;
 import static lotto.constant.LottoConstant.MIN_NUMBER;
 
@@ -31,7 +32,7 @@ public class LottoNumberValidator {
     }
 
     private static boolean isDuplicateNumbers(List<Integer> winningNumber) {
-        return new HashSet<>(winningNumber).size() < 6;
+        return new HashSet<>(winningNumber).size() < LOTTO_LENGTH;
     }
 
     private static boolean isOutOfRange(int number) {

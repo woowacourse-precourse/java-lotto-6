@@ -9,7 +9,10 @@ import lotto.domain.LottoResult;
 import lotto.domain.RandomLottoMachine;
 import lotto.domain.WinningLotto;
 import lotto.exception.BelowMinimumPurchasePriceException;
+import lotto.exception.InvalidBonusNumberException;
+import lotto.exception.InvalidBonusNumberFormatException;
 import lotto.exception.InvalidLottoException;
+import lotto.exception.InvalidLottoNumberFormatException;
 import lotto.exception.InvalidPurchasePriceFormatException;
 import lotto.exception.NonMultipleOfPriceUnitException;
 import lotto.util.WinningLottoConverter;
@@ -32,15 +35,37 @@ public class Application {
 
     private WinningLotto getWinningLottoWithBonusNumber() {
         WinningLotto winningLotto = getWinningLotto();
-        return null;
+        addBonusNumberToWinningNumber(winningLotto);
+        return winningLotto;
+    }
+
+    private void addBonusNumberToWinningNumber(WinningLotto winningLotto) {
+        while (true) {
+            try {
+                Integer bonusNumber = getBonusNumber();
+                winningLotto.addBonusNumber(bonusNumber);
+                return;
+            } catch (InvalidBonusNumberException exception) {
+                printErrorMessage(exception);
+            }
+        }
+    }
+
+    private Integer getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumberInput = readAndSkipLine();
+        try {
+            return Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException exception) {
+            throw new InvalidBonusNumberFormatException(bonusNumberInput);
+        }
     }
 
     private WinningLotto getWinningLotto() {
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
-                String winningLottoNumbers = Console.readLine();
-                System.out.println();
+                String winningLottoNumbers = readAndSkipLine();
                 WinningLottoValidator.validate(winningLottoNumbers);
                 return WinningLottoConverter.convertToWinningLotto(winningLottoNumbers);
             } catch (InvalidLottoException invalidLottoException) {
@@ -69,8 +94,7 @@ public class Application {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
-                String purchasePrice = Console.readLine();
-                System.out.println();
+                String purchasePrice = readAndSkipLine();
                 checkValidPurchasePrice(purchasePrice);
 
                 return Integer.parseInt(purchasePrice);
@@ -105,5 +129,12 @@ public class Application {
 
     private void printLottoResult(LottoResult lottoResult) {
         System.out.println(lottoResult.getLottoResult() + Message.NEW_LINE);
+    }
+
+    private static String readAndSkipLine() {
+        String input = Console.readLine();
+        System.out.println();
+
+        return input;
     }
 }

@@ -1,8 +1,8 @@
 package lotto.utils;
 
 public enum ExceptionMessage {
-    NUMBER("[ERROR] 숫자만 입력해주세요. 구매금액을 입력해 주세요."),
-    THOUSAND("[ERROR] 천원 단위로 입력하세요.");
+    NUMBER("[ERROR] 숫자만 입력해주세요. 다시 구매금액을 입력해 주세요."),
+    THOUSAND("[ERROR] 천원 단위로 입력하세요. 다시 구매금액을 입력해 주세요.");
 
     private String value;
 

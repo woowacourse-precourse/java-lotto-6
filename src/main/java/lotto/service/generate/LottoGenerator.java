@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.dto.input.GetLottoCountDto;
-import lotto.dto.lottogenerator.GetGeneratedLottosDto;
+import lotto.dto.generate.GetGeneratedLottosDto;
 
 public class LottoGenerator implements Generator{
     private static final int ZERO = 0;

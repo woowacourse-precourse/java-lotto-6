@@ -1,9 +1,11 @@
 package lotto.service.output;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.dto.domain.lottos.GetLottosDto;
-import lotto.dto.lottogenerator.GetGeneratedLottosDto;
+import lotto.dto.generate.GetGeneratedLottosDto;
 
 public class OutputView implements Output{
     private static final int ZERO = 0;
@@ -31,10 +33,19 @@ public class OutputView implements Output{
     }
 
     private static void printNumbersIteration(Lotto lotto) {
+        sortBeforeIteration(lotto);
+        printNumbersIterationAfterSort(lotto);
+    }
+
+    private static void printNumbersIterationAfterSort(Lotto lotto) {
         for(int count = ZERO; count < lotto.lotto().size(); count++){
             System.out.printf("%d", lotto.lotto().get(count));
             checkLastNumber(lotto, count);
         }
+    }
+
+    private static void sortBeforeIteration(Lotto lotto) {
+        Collections.sort(lotto.lotto());
     }
 
     private static void checkLastNumber(Lotto lotto, int count) {

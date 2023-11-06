@@ -1,8 +1,10 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.utils.Utils;
 import lotto.validation.Validation;
@@ -15,6 +17,24 @@ public class Service {
 	private static final int LOTTO_SIZE = 6;
 	private static final int LOTTO_PRICE = 1_000;
 	private static final int BUYABLE_MAX_AMOUNT = 100_000;
+	
+	Buyer buyer;
+	
+	public void initBuyer() {
+		buyer = new Buyer(getInputAmount());
+	}
+	
+	public void buyOneLotto() {
+		Lotto lotto = generateLotto();
+		buyer.buyLotto(lotto);
+	}
+	
+	public void buyLotteries() {
+		int count = buyer.getPurchaseAmount() / LOTTO_PRICE;
+		for (int i = 0; i < count; i++) {
+			buyOneLotto();
+		}
+	}
 	
 	public Lotto generateLotto() {
 		List<Integer> numbers = Utils.generateUniqueNumberListInRange(LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE, LOTTO_SIZE);
@@ -50,5 +70,7 @@ public class Service {
 		Validation.validateNumberNotInList(winningNumbers, bonusNumber);
 		return bonusNumber;
 	}
+	
+	
 
 }

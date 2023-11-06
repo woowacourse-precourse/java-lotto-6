@@ -28,4 +28,5 @@ public class Utils {
 				.map(Integer::valueOf)
 				.collect(Collectors.toList());
 	}
+
 }

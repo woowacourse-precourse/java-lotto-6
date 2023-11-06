@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import lotto.domain.Lotto;
 import lotto.utils.constants.ExceptionMessage;
+import lotto.utils.constants.LottoNumConstant;
 
 public class InputValidation {
 
@@ -18,7 +19,7 @@ public class InputValidation {
     }
 
     public static int validateInputPurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount < 1000 || purchaseAmount % 1000 != 0) {
+        if (purchaseAmount < LottoNumConstant.LOTTO_AMOUNT_PURCHASE.getNumber() || purchaseAmount % LottoNumConstant.LOTTO_AMOUNT_PURCHASE.getNumber() != LottoNumConstant.ZERO.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessage.PURCHASE_AMOUNT_NOT_THOUSAND.getMessage());
         }
         return purchaseAmount;
@@ -42,7 +43,7 @@ public class InputValidation {
     }
 
     public static void validateMinimumSize(List<String> numberStrings) {
-        if (numberStrings.size() < 6) {
+        if (numberStrings.size() < LottoNumConstant.LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_LOTTO_NUMBER.getMessage());
         }
     }
@@ -64,23 +65,15 @@ public class InputValidation {
     }
 
     public static void validateNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+        if (numbers.stream().anyMatch(num -> num < LottoNumConstant.LOTTO_MIN_NUM.getNumber() || num > LottoNumConstant.LOTTO_MAX_NUM.getNumber())) {
             throw new IllegalArgumentException(ExceptionMessage.WINNIG_LOTTO_INCLUDED_VALUE_NUMBER.getMessage());
         }
     }
 
     public static void validateSixNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoNumConstant.LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessage.WINNIG_LOTTO_SIX_VALUE_NUMBER.getMessage());
         }
-    }
-
-    public static int validateBonusNumberRange(String number) {
-        int bonusNum = Integer.parseInt(number);
-        if (bonusNum < 1 || bonusNum > 45) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNIG_LOTTO_INCLUDED_VALUE_NUMBER.getMessage());
-        }
-        return bonusNum;
     }
 
     public static List<Integer> validateDuplicateBonusNumber(List<Integer> numberList) {
@@ -92,7 +85,7 @@ public class InputValidation {
     }
 
     public static int validateBonusNumberRange(Lotto winningNumbers, int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LottoNumConstant.LOTTO_MIN_NUM.getNumber() || bonusNumber > LottoNumConstant.LOTTO_MAX_NUM.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessage.WINNIG_LOTTO_INCLUDED_VALUE_NUMBER.getMessage());
         }
 
@@ -100,7 +93,6 @@ public class InputValidation {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_LOTTO_NUM_DUPLICATED_BONUSNUM.getMessage());
         }
-
         return bonusNumber;
     }
 }

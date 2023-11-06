@@ -1,6 +1,6 @@
 package lotto.utils.converter;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Converter {
@@ -11,8 +11,12 @@ public class Converter {
     }
 
     public static List<Integer> convertStringToList(String input) {
-        return Arrays.stream(input.split(COMMA))
-                .map(Integer::parseInt)
-                .toList();
+        List<Integer> convertedInput = new ArrayList<>();
+
+        for (String splitedInput : input.split(COMMA)) {
+            convertedInput.add(Integer.parseInt(splitedInput));
+        }
+
+        return convertedInput;
     }
 }

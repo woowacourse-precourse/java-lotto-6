@@ -57,6 +57,19 @@ public class LottoController {
         return purchasedLottos;
     }
 
+    private Lotto getWinningLotto() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = lottoView.inputWinningNumbers();
+                return new Lotto(winningNumbers);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다. 다시 시도해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 잘못된 입력입니다. 다시 시도해주세요.");
+            }
+        }
+    }
+
     public void runMachine(int purchaseAmount) {
         int lottoCount = purchaseAmount / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");

@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
+
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -11,10 +14,26 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (incorrectLottoSize(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또번호는 6개여야 합니다.");
+        }
+        if (isOverlapLottoNumber(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 중복된 로또번호가 있습니다.");
         }
     }
+
+    private boolean incorrectLottoSize(List<Integer> numbers) {
+        return numbers.size() != LOTTO_SIZE;
+    }
+
+    private boolean isOverlapLottoNumber(List<Integer> numbers) {
+        HashSet<Integer> lottoNums = new HashSet<>();
+        for (int num : numbers) {
+            lottoNums.add(num);
+        }
+        return lottoNums.size() != LOTTO_SIZE;
+    }
+
 
     public boolean containLottoNumber(int num) {
         return numbers.contains(num);

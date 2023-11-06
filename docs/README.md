@@ -56,8 +56,12 @@
 - `NumberService`
 
 ### NumberService
+- `PurchaseAmount`
 - `AllLottoNumbers`
 - `AllWinningNumbers`
+
+### PurchaseAmount
+- int
 
 ### AllLottoNumbers
 - List\<Lotto>

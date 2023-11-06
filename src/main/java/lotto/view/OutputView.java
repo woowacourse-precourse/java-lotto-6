@@ -9,8 +9,8 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void printLottoAmountMessage(int lottoAmount) {
-
+    public void printLottoAmount(int lottoAmount) {
+        System.out.printf("%d개를 구매했습니다.", lottoAmount);
     }
 
     public void printUserLottos(List<Integer> userLotto) {

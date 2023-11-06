@@ -15,6 +15,7 @@ import lotto.view.View;
 public class LottoService {
     private final BuyLottoRepository buyLottoRepo = new BuyLottoRepository();
     public BuyLottoRepository quickPick(int purchaseCount){
+
         while(purchaseCount>0){
             Lotto lotto = new Lotto(createRandomNumbers());
             buyLottoRepo.add(lotto);
@@ -38,8 +39,8 @@ public class LottoService {
 
     public WinningLottoRepository createWinningNumber(){
 
-        Lotto lotto = new Lotto(InputService.winningNumbers());
-        BonusNumber bonusNumber = BonusNumber.from(InputService.bonusNumber());
+        Lotto lotto = new Lotto(Input.winningNumbers());
+        BonusNumber bonusNumber = BonusNumber.from(Input.bonusNumber());
 
         return WinningLottoRepository.of(lotto, bonusNumber);
     }

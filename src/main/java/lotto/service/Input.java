@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.view.View;
 
-public class InputService {
+public class Input {
 
     public static Integer number(){
         while(true){

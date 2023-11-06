@@ -20,4 +20,20 @@ public class WinningTest {
         Assertions.assertThat(allValues.length).isEqualTo(count);
 
     }
+
+    @DisplayName("수익 계산해 보기")
+    @Test
+    void checkTotalMoney() {
+        //given
+        int count = 3;
+
+        //when
+        Winning winning = Winning.FIFTH;
+
+        //then
+        Assertions.assertThat(winning.calculateMoney(count)).isEqualTo(15000);
+
+    }
+
+
 }

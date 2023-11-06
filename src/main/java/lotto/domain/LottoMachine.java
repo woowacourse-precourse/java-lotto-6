@@ -12,17 +12,17 @@ public class LottoMachine {
         money = new Money(inputMoney);
     }
 
-    public Lotto makeLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
-        return new Lotto(numbers);
-    }
-
     public LottoBundle makeLottoBundle() {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < money.toLottoAmount(); i++) {
             lottos.add(makeLotto());
         }
         return new LottoBundle(lottos);
+    }
+
+    private Lotto makeLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 }

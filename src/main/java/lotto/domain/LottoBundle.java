@@ -9,4 +9,7 @@ public class LottoBundle {
         this.bundle = lottos;
     }
 
+    public List<Lotto> getBundle() {
+        return bundle;
+    }
 }

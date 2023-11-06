@@ -1,7 +1,10 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.model.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,7 +19,8 @@ public class LottoController {
         while (checkInitPurchaseQuantity) {
             initPurchaseQuantity(); // 구매 수량 초기화
         }
-        outputPurchaseQuantity();
+        outputPurchaseQuantity(); // 구매 수량 출력
+        makeLottos(); // 로또 생성
     }
 
     public void initPurchaseQuantity() {
@@ -42,6 +46,19 @@ public class LottoController {
 
     public void outputPurchaseQuantity() {
         OutputView.printPurchaseQuantity(purchaseQuantity);
+    }
+
+    public void makeLottos(){
+        Lotto lotto;
+        for(int i=0; i<purchaseQuantity; i++){
+            List<Integer> randomNumbers = generateRandomNumber();
+            lotto=new Lotto(randomNumbers);
+            lotto.printLottoNumbers();
+        }
+    }
+    public List<Integer> generateRandomNumber(){
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 24, 6);
+        return numbers;
     }
 
     public void validateInputMoney(String input) {

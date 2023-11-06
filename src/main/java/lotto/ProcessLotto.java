@@ -55,8 +55,14 @@ public class ProcessLotto {
             }
             cnt = lottoCalculator.checkMatch(nums.getNumbers(), winningNums);
             countMap.put(cnt, countMap.get(cnt)+1);
-
         }
+
+        outputView.print3Matchs(countMap.get(3));
+        outputView.print4Matchs(countMap.get(4));
+        outputView.print5Matchs(countMap.get(5));
+        outputView.print5MatchsWithBonus(countMap.get(55));
+        outputView.print6Matchs(countMap.get(6));
+
 
     }
 

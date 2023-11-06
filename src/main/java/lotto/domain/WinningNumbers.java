@@ -17,7 +17,7 @@ public class WinningNumbers {
         }
     }
 
-    public Rank announceRanking(Lotto lotto) {
+    public Rank announceRank(Lotto lotto) {
         int matchingNumberCounts = lotto.compareLottoWithWinningNumber(this.winningNumber);
         boolean hasBonusNumber = lotto.contains(this.bonusNumber);
         return Rank.of(matchingNumberCounts, hasBonusNumber);

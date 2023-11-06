@@ -18,7 +18,7 @@ public class LottoStore {
     }
 
     public List<Rank> getRanks(WinningNumbers winningNumbers) {
-        return lottoes.stream().map(winningNumbers::announceRanking).toList();
+        return lottoes.stream().map(winningNumbers::announceRank).toList();
     }
 
     private Lotto publishLotto() {

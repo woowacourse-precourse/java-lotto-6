@@ -12,12 +12,14 @@ public class Application {
         
         lotto_purchase_amount = inputLottoPurchase();
         lottos = lottoIssuance(lotto_purchase_amount / 1000);
-        
-        System.out.println(Integer.toString(lotto_purchase_amount/1000) + "개를 구매했습니다.");
+        printLottos(lottos, lotto_purchase_amount);
+    }
+
+    static void printLottos(List<Lotto> lottos, int lotto_purchase_amount){
+        System.out.println("\n" + Integer.toString(lotto_purchase_amount/1000) + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
-        
     }
 
     static int inputLottoPurchase(){

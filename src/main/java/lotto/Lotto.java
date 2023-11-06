@@ -3,7 +3,7 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 
-import static lotto.LottoDetailConstant.*;
+import static lotto.LottoDetailNumberConstant.*;
 
 public class Lotto {
     private final List<Integer> numbers;

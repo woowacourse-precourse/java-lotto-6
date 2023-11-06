@@ -7,18 +7,19 @@ import java.util.List;
 public class Lottos {
     private List<Lotto> lottos;
 
-    public Lottos() {
-        this.lottos = new ArrayList<>();
+    public Lottos(int count) {
+        this.lottos = createLottos(count);
     }
 
-    public List<Lotto> createLottos(int count) {
-        for (int i = 0; i < count; i++) {
-            addLotto(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
+    public List<Lotto> getLottos() {
         return lottos;
     }
 
-    private void addLotto(Lotto lotto) {
-        lottos.add(lotto);
+    private List<Lotto> createLottos(int count) {
+        List<Lotto> randomLottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            randomLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return randomLottos;
     }
 }

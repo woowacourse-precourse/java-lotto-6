@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.domain.enums.Constant.LOTTO_NUMBER_LENGTH;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -32,6 +33,10 @@ public class Lotto {
 
     private boolean hasDuplicateNumber(final List<Integer> numbers) {
         return (new HashSet<>(numbers).size() != numbers.size());
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
 }

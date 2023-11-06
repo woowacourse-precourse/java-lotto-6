@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.BonusNumber;
 import lotto.domain.UserAmount;
 import lotto.domain.WinningBundle;
 import lotto.domain.WinningNumber;
@@ -13,6 +14,7 @@ public class InputView {
 
     private static final String INPUT_PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_BUNDLE_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_BUNDLE_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     public static UserAmount getUserAmount() {
         String input = input(INPUT_PURCHASE_PRICE_MESSAGE);
@@ -37,6 +39,18 @@ public class InputView {
         } catch (RuntimeException ex) {
             OutputView.printError(ex.getMessage());
             return getWinningBundle();
+        }
+
+    }
+
+    public static BonusNumber getBonusNumber() {
+        String input = input(INPUT_BONUS_BUNDLE_MESSAGE);
+
+        try {
+            return BonusNumber.from(input);
+        } catch (RuntimeException ex) {
+            OutputView.printError(ex.getMessage());
+            return getBonusNumber();
         }
 
     }

@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.LottoNumberCreator;
-import lotto.model.Lottos;
-import lotto.model.UserAmount;
+import lotto.model.*;
 import lotto.validation.ValidationUtils;
 import lotto.view.LottoView;
 
@@ -34,12 +31,14 @@ public class LottoController {
         lottoView.printLottoNumbers(lottos);
 
         // 당첨 번호 입력 받기
-        String winningNumber = lottoView.inputWinningNumber();
-        isValid = validationUtils.validateWinningNumber(winningNumber);
+        String userInput1 = lottoView.inputWinningNumber();
+        isValid = validationUtils.validateWinningNumber(userInput1);
         while(!isValid) {
-            winningNumber = lottoView.inputWinningNumber();
-            isValid = validationUtils.validateWinningNumber(winningNumber);
+            userInput1 = lottoView.inputWinningNumber();
+            isValid = validationUtils.validateWinningNumber(userInput1);
         }
+
+        WinningNumber winningNumber = new WinningNumber(lottoNumberCreator.stringToList(userInput1));
 
         // 보너스 번호 입력 받기
         String bonusNumber = lottoView.inputBonusNumber();
@@ -47,9 +46,8 @@ public class LottoController {
         while(!isValid) {
             bonusNumber = lottoView.inputBonusNumber();
             isValid = validationUtils.validateBonusNumber(bonusNumber);
-        }
 
-        // 당첨 번호와 겹치는 번호가 없는지 확인 필요
+        }
 
 
 

@@ -7,7 +7,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -94,8 +97,31 @@ class LottoGameServiceTest {
         assertThat(lottoQuantity).isEqualTo(14);
     }
 
+    @Test
+    void lottoWinningResultCalculation() {
+        List<Lotto> lottos = new ArrayList<>();
+        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        lottos.add(lotto);
 
-//    @Test
+        List<Integer> winningNumber = new ArrayList<>(Arrays.asList(4,5,6,7,8,9));
+
+        int bonusNumber = 10;
+        Map<String, String> result = lottoGameService.lottoWinningResultCalculation(lottos,winningNumber,bonusNumber);
+
+        assertThat(result).hasSize(6)
+                .contains(
+                        entry("총 수익률","500.0"),
+                        entry("3개일치","1"),
+                        entry("4개일치","0"),
+                        entry("5개일치","0"),
+                        entry("5개일치_보너스일치","0"),
+                        entry("6개일치","0")
+                )
+        ;
+
+    }
+
+    //    @Test
 //    @DisplayName("입력받은 값이 숫자인지 검증한다.")
 //    void isDigit_정상케이스() {
 //        String input = "14000";

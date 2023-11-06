@@ -16,10 +16,6 @@ public class InputService implements Service {
         this.lottoInputView = (LottoInputView) lottoInputView;
     }
 
-//    public static InputService getInstance(View lottoInputView) {
-//        return new InputService(lottoInputView);
-//    }
-
     public Integer getInputMoney() {
         lottoInputView.requestMoney();
         return getValidMoney().sendInputData();

@@ -13,7 +13,7 @@ public class PublishLottoService implements Service {
 
     public PublishedLottos getPublishedLottos(Integer money) {
         PublishedLottos publishedLottos = PublishedLottos.getInstance(money);
-        lottoOutputView.printPublishedLottos(publishedLottos.getCount(), publishedLottos.toString());
+        lottoOutputView.printPublishedLotto(publishedLottos.getCount(), publishedLottos.toString());
         return publishedLottos;
     }
 }

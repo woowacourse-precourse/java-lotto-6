@@ -1,21 +1,20 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.constant.LottoConstant;
 import lotto.view.exception.LottoInputException;
 import lotto.view.message.LottoInputExceptionMessage;
 
 public class WinningLottoNumbers {
-    private List<LottoNumber> winningLottoNumbers;
+    private final List<LottoNumber> winningLottoNumbers;
 
-    private WinningLottoNumbers(List<String> winningLottoNumbers) {
-        this.winningLottoNumbers = new ArrayList<>();
+    private WinningLottoNumbers(List<LottoNumber> winningLottoNumbers) {
+        this.winningLottoNumbers = winningLottoNumbers;
     }
 
     public static WinningLottoNumbers from(final List<String> numbers) {
         validate(numbers);
-        return new WinningLottoNumbers(numbers);
+        return new WinningLottoNumbers(generateWinningLottoNumbers(numbers));
     }
 
     private static void validate(final List<String> numbers) {
@@ -31,7 +30,7 @@ public class WinningLottoNumbers {
 
     private static void throwExceptionIfNotNumeric(String number) {
         try {
-            Integer.parseInt(number);
+            Long.parseLong(number);
         } catch (NumberFormatException e) {
             throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBER_IS_NOT_NUMERIC_TYPE);
         }
@@ -47,5 +46,12 @@ public class WinningLottoNumbers {
         return numbers.stream()
                 .distinct()
                 .count() < LottoConstant.LOTTO_ITEM_COUNT.getValue();
+    }
+
+    private static List<LottoNumber> generateWinningLottoNumbers(final List<String> numbers) {
+        return numbers.stream()
+                .map(Long::valueOf)
+                .map(LottoNumber::of)
+                .toList();
     }
 }

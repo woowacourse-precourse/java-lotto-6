@@ -1,20 +1,21 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumbers;
+import lotto.domain.LottoBuyer;
+import lotto.domain.LottoNumberGenerator;
 import lotto.domain.Lottos;
-import lotto.domain.RandomLottoNumbers;
+import lotto.domain.RandomLottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameMachine {
 
-    private final LottoNumbers lottoNumbers;
+    private final LottoNumberGenerator lottoNumberGenerator;
     private final InputView inputView;
     private final OutputView outputView;
 
     public GameMachine() {
-        this.lottoNumbers = new RandomLottoNumbers();
+        this.lottoNumberGenerator = new RandomLottoNumberGenerator();
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
@@ -28,8 +29,9 @@ public class GameMachine {
         Lotto winningNumbers = inputView.getWinningNumbers();
         int bonusNumber = inputView.getBonusNumber(winningNumbers);
 
-        lottos.compareWithWinningNumbers(winningNumbers, bonusNumber);
-        printWinningStateReturnRate(inputPrice);
+        LottoBuyer lottoBuyer = new LottoBuyer();
+        lottos.compareWithWinningNumbers(lottoBuyer, winningNumbers, bonusNumber);
+        printWinningStateReturnRate(lottoBuyer, inputPrice);
     }
 
     private int getCount(int inputPrice) {
@@ -38,15 +40,15 @@ public class GameMachine {
 
     private Lottos printLottoNumbers(int count) {
         outputView.lottoPurchaseCountMessage(count);
-        Lottos lottos = new Lottos(count, lottoNumbers);
+        Lottos lottos = new Lottos(count, lottoNumberGenerator);
         outputView.lottoNumbersMessage(lottos);
 
         return lottos;
     }
 
-    private void printWinningStateReturnRate(int inputPrice) {
-        outputView.winningHistoryMessage();
-        outputView.TotalReturnRateMessage(inputPrice);
+    private void printWinningStateReturnRate(LottoBuyer lottoBuyer, int inputPrice) {
+        outputView.winningHistoryMessage(lottoBuyer);
+        outputView.TotalReturnRateMessage(lottoBuyer, inputPrice);
     }
 
 }

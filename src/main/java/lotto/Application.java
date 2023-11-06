@@ -21,6 +21,7 @@ public class Application {
         List<Boolean> compare_bonus_lotto = lottoList.compareBonusLotto(bonus_lotto);
 
         Result result = new Result(compare_lotto, compare_bonus_lotto);
+        result.printResult();
     }
 
     public static Money inputMoney() {

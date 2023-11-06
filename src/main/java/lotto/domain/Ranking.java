@@ -3,8 +3,8 @@ package lotto.domain;
 public enum Ranking {
 
     FIRST(6, 0, 2000000000),
-    SECOND(5, 0, 30000000),
-    THIRD(5, 1, 1500000),
+    SECOND(5, 1, 30000000),
+    THIRD(5, 0, 1500000),
     FOURTH(4, 0, 50000),
     FIFTH(3, 0, 5000);
 

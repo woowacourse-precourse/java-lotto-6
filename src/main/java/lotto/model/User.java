@@ -26,33 +26,6 @@ public class User {
         }
     }
 
-    // 가격 만큼 로또 장 수 발행
-    public UserLottos generateAllLottos(Price price) {
-        int totalLottoCnt = price.getPrice() / LottoValue.PRICE_PER_PIECE.getValue(); // 사용자가 구매한 로또 장 수
-
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < totalLottoCnt; i++) {
-            Lotto lotto = generateLotto();
-            lottos.add(lotto);
-        }
-
-        return new UserLottos(lottos);
-    }
-
-    // 로또 한 장 발행
-    private Lotto generateLotto() {
-        int startRange = LottoValue.MIN_VALUE.getValue();
-        int endRange = LottoValue.MAX_VALUE.getValue();
-        int cnt = LottoValue.WINNING_NUMBER_CNT.getValue();
-
-        return new Lotto(pickRandNums(startRange, endRange, cnt));
-    }
-
-    private List<Integer> pickRandNums(int start, int end, int cnt) {
-        return Randoms.pickUniqueNumbersInRange(start, end, cnt);
-
-    }
-
     // 당첨 번호 입력 받기
     public Lotto requestWinningNums() {
         while (true) {

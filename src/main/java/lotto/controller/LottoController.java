@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.model.LottoGame;
 import lotto.model.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,17 +10,19 @@ public class LottoController {
     InputView inputView;
     OutputView outputView;
     User user;
+    LottoGame lottoGame;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.user = new User();
+        this.lottoGame = new LottoGame();
     }
 
     public void run() {
-        issueLotto();
-        getWinningNumbers();
-        printLottoResult();
+        UserLottos userLottos = issueLotto();
+        LottoWinning lottoWinning = getWinningNumbers();
+        printLottoResult(userLottos, lottoWinning);
     }
 
     private UserLottos issueLotto() {
@@ -28,7 +31,7 @@ public class LottoController {
         Price price = user.requestPurchasePrice();
 
         // 로또 발행 하고 출력
-        UserLottos userLottos = user.generateAllLottos(price);
+        UserLottos userLottos = lottoGame.generateAllLottos(price);
         outputView.printNumberOfPurchase(userLottos.getLottos().size());
         outputView.printAllLottoNumbersList(userLottos);
 
@@ -47,7 +50,6 @@ public class LottoController {
         return lottoWinning;
     }
 
-    private void printLottoResult() {
-
+    private void printLottoResult(UserLottos userLottos, LottoWinning lottoWinning) {
     }
 }

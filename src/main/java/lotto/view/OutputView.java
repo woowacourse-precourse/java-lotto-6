@@ -76,4 +76,8 @@ public class OutputView {
 			stringBuilder.append(message).append(NEW_LINE);
 		}
 	}
+
+	public static void printExceptionMessage(String message) {
+		System.out.println(message);
+	}
 }

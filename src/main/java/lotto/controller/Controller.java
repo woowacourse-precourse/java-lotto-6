@@ -25,38 +25,57 @@ public class Controller {
 	}
 
 	private void purchaseLotto() {
-		OutputView.askPurchaseAmount();
+		try {
+			OutputView.askPurchaseAmount();
 
-		String money = InputView.getUserInput();
+			String money = InputView.getUserInput();
 
-		PurchaseAmount purchaseAmount = new PurchaseAmount(money);
+			PurchaseAmount purchaseAmount = new PurchaseAmount(money);
 
-		lottoPlayer = lottoMachine.purchaseLotto(purchaseAmount);
+			lottoPlayer = lottoMachine.purchaseLotto(purchaseAmount);
 
-		OutputView.printPlayerLottos(lottoPlayer);
+			OutputView.printPlayerLottos(lottoPlayer);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			purchaseLotto();
+		}
 	}
 
 	private void createWinningLotto() {
-		WinningNumbers winningNumbers = createWinningNumbers();
-		BonusNumber bonusNumber = createBonusNumber();
+		try {
+			WinningNumbers winningNumbers = createWinningNumbers();
+			BonusNumber bonusNumber = createBonusNumber();
 
-		winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+			winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+		} catch (IllegalArgumentException e) {
+			OutputView.printExceptionMessage(e.getMessage());
+			createWinningLotto();
+		}
 	}
 
 	private BonusNumber createBonusNumber() {
-		OutputView.askBonusNumber();
+		try {
+			OutputView.askBonusNumber();
+			String number = InputView.getUserInput();
 
-		String number = InputView.getUserInput();
-
-		return new BonusNumber(number);
+			return new BonusNumber(number);
+		} catch (IllegalArgumentException e) {
+			OutputView.printExceptionMessage(e.getMessage());
+			return createBonusNumber();
+		}
 	}
 
 	private WinningNumbers createWinningNumbers() {
-		OutputView.askWinningNumbers();
+		try {
+			OutputView.askWinningNumbers();
 
-		String numbers = InputView.getUserInput();
+			String numbers = InputView.getUserInput();
 
-		return new WinningNumbers(numbers);
+			return new WinningNumbers(numbers);
+		} catch (IllegalArgumentException e) {
+			OutputView.printExceptionMessage(e.getMessage());
+			return createWinningNumbers();
+		}
 	}
 
 	private void printResult() {

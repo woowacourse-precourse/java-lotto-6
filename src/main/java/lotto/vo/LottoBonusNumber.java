@@ -6,10 +6,10 @@ import lotto.exception.LottoException;
 
 import java.util.Objects;
 
-public final class BonusNumber {
+public final class LottoBonusNumber {
     private final LottoNumber value;
 
-    public BonusNumber(Integer value) throws LottoException {
+    public LottoBonusNumber(Integer value) throws LottoException {
         validate(value);
         this.value = new LottoNumber(value);
     }
@@ -36,7 +36,7 @@ public final class BonusNumber {
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
-        BonusNumber other = (BonusNumber) obj;
+        LottoBonusNumber other = (LottoBonusNumber) obj;
         return value == other.value;
     }
 

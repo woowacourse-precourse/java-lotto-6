@@ -3,7 +3,7 @@ package lotto.service;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.LottoWinningRanking;
-import lotto.domain.LottoWinningSet;
+import lotto.vo.LottoWinningSet;
 import lotto.vo.LottoNumber;
 
 import java.util.EnumMap;
@@ -41,7 +41,7 @@ public class LottoWinningRankingService {
     }
 
     private boolean hasBonusNumber(Lotto lotto, LottoWinningSet lottoWinningSet) {
-        return lotto.containsBonusNumber(lottoWinningSet.bonusNumber());
+        return lotto.containsBonusNumber(lottoWinningSet.lottoBonusNumber());
     }
 
     private LottoWinningRanking calculateRanking(int matchedNumberCount, boolean needsBonusNumber) {

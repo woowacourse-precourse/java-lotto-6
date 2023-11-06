@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.LottoException;
-import lotto.vo.BonusNumber;
+import lotto.vo.LottoBonusNumber;
 import lotto.vo.LottoNumber;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -72,17 +72,17 @@ class LottoTest {
     @Test
     @DisplayName("보너스 번호가 현재 로또 번호와 겹치는지 검증한다. 만약 겹치면 LottoException 를 뱉는다.")
     public void validateAndThrowIfBonusNumberExistsTest() throws LottoException {
-        BonusNumber bonusNumber = new BonusNumber(6);
+        LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(6);
 
-        assertThrows(LottoException.class, () -> lotto.validateAndThrowIfBonusNumberExists(bonusNumber));
+        assertThrows(LottoException.class, () -> lotto.validateAndThrowIfBonusNumberExists(lottoBonusNumber));
     }
 
     @Test
     @DisplayName("보너스 번호가 현재 로또 번호와 겹치는지 검사한다. 같으면 ture 반환한다.")
     void containsBonusNumberFalseTest() {
-        BonusNumber bonusNumber = new BonusNumber(6);
+        LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(6);
 
-        Assertions.assertThat(lotto.containsBonusNumber(bonusNumber)).isTrue();
+        Assertions.assertThat(lotto.containsBonusNumber(lottoBonusNumber)).isTrue();
     }
 
 
@@ -90,9 +90,9 @@ class LottoTest {
     @ValueSource(ints = {8, 24, 45})
     @DisplayName("보너스 번호가 현재 로또 번호와 겹치는지 검사한다. 다르면 false 를 반환한다.")
     void containsBonusNumberTrueTest(int number) {
-        BonusNumber bonusNumber = new BonusNumber(number);
+        LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(number);
 
-        Assertions.assertThat(lotto.containsBonusNumber(bonusNumber)).isFalse();
+        Assertions.assertThat(lotto.containsBonusNumber(lottoBonusNumber)).isFalse();
     }
 
     @Test

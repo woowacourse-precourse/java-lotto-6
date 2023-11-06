@@ -3,17 +3,17 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.LottoWinningRanking;
-import lotto.domain.LottoWinningSet;
+import lotto.vo.LottoWinningSet;
 import lotto.exception.LottoException;
 import lotto.exception.LottoStoreException;
 import lotto.service.LottoProfitService;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoWinningRankingService;
-import lotto.service.LottoWinningSetService;
+import lotto.service.LottoWinningService;
 import lotto.validation.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.vo.BonusNumber;
+import lotto.vo.LottoBonusNumber;
 
 import java.util.EnumMap;
 
@@ -21,15 +21,15 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoPurchaseService lottoPurchaseService;
-    private final LottoWinningSetService lottoWinningSetService;
+    private final LottoWinningService lottoWinningService;
     private final LottoWinningRankingService lottoWinningRankingService;
     private final LottoProfitService lottoProfitService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoPurchaseService lottoPurchaseService, LottoWinningSetService lottoWinningSetService, LottoWinningRankingService lottoWinningRankingService, LottoProfitService lottoProfitService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoPurchaseService lottoPurchaseService, LottoWinningService lottoWinningService, LottoWinningRankingService lottoWinningRankingService, LottoProfitService lottoProfitService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoPurchaseService = lottoPurchaseService;
-        this.lottoWinningSetService = lottoWinningSetService;
+        this.lottoWinningService = lottoWinningService;
         this.lottoWinningRankingService = lottoWinningRankingService;
         this.lottoProfitService = lottoProfitService;
     }
@@ -41,9 +41,9 @@ public class LottoController {
         displayUserLottos(userLottos);
 
         Lotto winningLotto = processLottoWinningNumbersPickTransaction();
-        BonusNumber bonusNumber = processLottoBonusNumberTransaction(winningLotto);
+        LottoBonusNumber lottoBonusNumber = processLottoBonusNumberTransaction(winningLotto);
 
-        EnumMap<LottoWinningRanking, Integer> winningRankingCountMap = processWinningRankingCalculationTransaction(userLottos, winningLotto, bonusNumber);
+        EnumMap<LottoWinningRanking, Integer> winningRankingCountMap = processWinningRankingCalculationTransaction(userLottos, winningLotto, lottoBonusNumber);
         displayWinningRankingCount(winningRankingCountMap);
 
         double profit = processUserProfitCalculationTransaction(userLottos, winningRankingCountMap);
@@ -98,30 +98,30 @@ public class LottoController {
     private Lotto getLottoWinningNumbers() throws LottoException {
         String input = inputView.inputWinningNumbers();
         Validator.validatedWinningNumbersFormat(input);
-        return lottoWinningSetService.pickWinningNumbers(input);
+        return lottoWinningService.pickWinningNumbers(input);
     }
 
-    private BonusNumber processLottoBonusNumberTransaction(Lotto lotto) {
+    private LottoBonusNumber processLottoBonusNumberTransaction(Lotto lotto) {
         while (true) {
             try {
                 outputView.requestBonusNumber();
-                BonusNumber bonusNumber = getBonusNumber();
-                lotto.validateAndThrowIfBonusNumberExists(bonusNumber);
-                return bonusNumber;
+                LottoBonusNumber lottoBonusNumber = getBonusNumber();
+                lotto.validateAndThrowIfBonusNumberExists(lottoBonusNumber);
+                return lottoBonusNumber;
             } catch (LottoException exception) {
                 outputView.displayErrorMessage(exception.getMessage());
             }
         }
     }
 
-    private BonusNumber getBonusNumber() throws LottoException {
+    private LottoBonusNumber getBonusNumber() throws LottoException {
         String input = inputView.inputBonusNumber();
         Validator.validateBonusNumberNumeric(input);
-        return lottoWinningSetService.pickBonusNumber(input);
+        return lottoWinningService.pickBonusNumber(input);
     }
 
-    private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction(Lottos userLottos, Lotto winningLotto, BonusNumber bonusNumber) {
-        LottoWinningSet lottoWinningSet = new LottoWinningSet(winningLotto, bonusNumber);
+    private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction(Lottos userLottos, Lotto winningLotto, LottoBonusNumber lottoBonusNumber) {
+        LottoWinningSet lottoWinningSet = new LottoWinningSet(winningLotto, lottoBonusNumber);
         return lottoWinningRankingService.countWinningRankings(userLottos, lottoWinningSet);
     }
 

@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lotto.constant.LottoConstants;
 import lotto.exception.LottoException;
-import lotto.vo.BonusNumber;
+import lotto.vo.LottoBonusNumber;
 import lotto.vo.LottoNumber;
 
 import java.util.*;
@@ -25,8 +25,8 @@ public class Lotto {
         }
     }
 
-    public void validateAndThrowIfBonusNumberExists(BonusNumber bonusNumber) throws LottoException {
-        if (containsBonusNumber(bonusNumber)) {
+    public void validateAndThrowIfBonusNumberExists(LottoBonusNumber lottoBonusNumber) throws LottoException {
+        if (containsBonusNumber(lottoBonusNumber)) {
             throw new LottoException(LottoException.ErrorMessage.ALREADY_CONTAINS_BONUS_NUMBER.getMessage());
         }
     }
@@ -35,8 +35,8 @@ public class Lotto {
         return lottoNumbers;
     }
 
-    public boolean containsBonusNumber(BonusNumber bonusNumber) {
-        return lottoNumbers.contains(bonusNumber.value());
+    public boolean containsBonusNumber(LottoBonusNumber lottoBonusNumber) {
+        return lottoNumbers.contains(lottoBonusNumber.value());
     }
 
     @Override

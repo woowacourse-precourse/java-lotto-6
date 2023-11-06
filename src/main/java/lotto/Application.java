@@ -7,32 +7,26 @@ import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
-        int money = inputMoney();
+        Money money = inputMoney();
         Lotto input_lotto = inputLotto();
         BonusLotto bonus_lotto = inputBonusLotto(input_lotto);
     }
 
-    public static Integer inputMoney() {
+    public static Money inputMoney() {
         while (true) {
             System.out.println("구입금액을 입력해 주세요");
             String input = Console.readLine();
             try {
-                int money = Integer.parseInt(input);
+                int input_money = Integer.parseInt(input);
                 try {
-                    checkMoneyUnit(money);
+                    Money money = new Money(input_money);
                     return money;
                 } catch (IllegalArgumentException e) {
-                    System.out.println("[ERROR] 구입 금액은 1000원 단위로 이루어져야 합니다.");
+                    System.out.println(e.getMessage());
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 구입 금액은 정수로만 이루어져야 합니다.");
             }
-        }
-    }
-
-    public static void checkMoneyUnit(int money) {
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException();
         }
     }
 

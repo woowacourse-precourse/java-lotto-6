@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
-class InputViewWinningNumbersTest {
+class InputViewWinningLottoNumbersTest {
     private InputView inputView = new InputView();
 
     void setUp(String input) {
@@ -33,8 +33,8 @@ class InputViewWinningNumbersTest {
     @DisplayName("InputWinningNumbers에서 숫자를 넣지 않았을 경우 예외출력 확인")
     @Test
     void testInputWinningNumbersNotNumber(){
-        String expectedWinningNumbers = "aaa";
-        setUp("aaaa");
+        String expectedWinningNumbers = "1,2,3,aaa";
+        setUp(expectedWinningNumbers);
 
         assertThatThrownBy(inputView::InputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)

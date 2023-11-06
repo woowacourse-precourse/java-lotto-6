@@ -32,4 +32,11 @@ public class WinningLotto {
             throw new IllegalArgumentException(INVALID_DISTINCT_ERROR_MESSAGE);
         }
     }
+
+    public LottoRank matcheLotto(Lotto lotto) {
+        int matchingNumbers = lotto.matchNumbers(winningLotto);
+        boolean isContainBonusBall = lotto.contains(bonusBall);
+
+        return LottoRank.calculate(matchingNumbers, isContainBonusBall);
+    }
 }

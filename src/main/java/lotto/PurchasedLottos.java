@@ -30,4 +30,10 @@ public class PurchasedLottos {
                 .map(lotto -> lotto.getLottoNumberStrings())
                 .collect(Collectors.toList());
     }
+
+    public List<LottoRank> matchLottos(WinningLotto winningLotto) {
+        return purchasedLottos.stream()
+                .map(purchasedLotto -> winningLotto.matcheLotto(purchasedLotto))
+                .collect(Collectors.toList());
+    }
 }

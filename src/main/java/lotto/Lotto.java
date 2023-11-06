@@ -52,6 +52,12 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
+    public int matchNumbers(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lottoNumber -> lotto.contains(lottoNumber))
+                .count();
+    }
+
     public boolean contains(LottoNumber bonusBall) {
         return numbers.contains(bonusBall);
     }

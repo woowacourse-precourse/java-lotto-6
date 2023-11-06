@@ -10,7 +10,9 @@ public enum ErrorMessage {
     BONUS_NUMBER_DOESNT_ENTER("[ERROR] 보너스 번호가 입력되지 않았습니다. 금액을 다시 입력해 주세요."),
     LOTTO_MUST_CONTAIN_SIX_NUMBERS("[ERROR] 로또 번호는 6개여야 합니다."),
     LOTTO_CONTAIN_DULPICATE_NUMBER("[ERROR] 로또 번호는 중복되지 않아야 합니다. 중복되지 않은 숫자를 입력해 주세요."),
-    WINNING_NUMER_AND_BONUS_NUMBER_ARE_SAME("[ERROR] 보너스 번호는 당첨 번호와 중복 되지 않아야 합니다. 중복되지 않은 숫자를 입력해 주세요."),
+    LOTTO_MUST_BE_COMPOSED_OF_NUMBER("[ERROR] 로또 번호는 숫자만 가능합니다. 숫자만 입력해 주세요."),
+    INCORRECT_WINNING_NUMBER_FORMAT("[ERROR] 올바르지 않은 입력 형식입니다. 당첨 번호는 숫자를 쉼표(,)로 구분해서 입력해 주세요."),
+    WINNING_NUMBER_AND_BONUS_NUMBER_ARE_SAME("[ERROR] 보너스 번호는 당첨 번호와 중복 되지 않아야 합니다. 중복되지 않은 숫자를 입력해 주세요."),
     OUT_OF_LOTTO_NUMBER_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
 
     private final String errorMessage;

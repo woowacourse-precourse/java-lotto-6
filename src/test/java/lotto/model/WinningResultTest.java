@@ -13,10 +13,10 @@ public class WinningResultTest {
     void WinningResult_5등_2명_4등_1명_인경우() {
         List<Integer> drawResult = List.of(3, 3, 4, 1, 2);
         WinningResult winningResult = new WinningResult(drawResult);
-        Map<Integer, Long> rank = new HashMap<>();
+        Map<String, Long> rank = new HashMap<>();
 
-        rank.put(Rule.FIFTH_RANK.value(), Long.valueOf(2));
-        rank.put(Rule.FOURTH_RANK.value(), Long.valueOf(1));
+        rank.put("5th", Long.valueOf(2));
+        rank.put("4th", Long.valueOf(1));
 
         Assertions.assertThat(winningResult.getWinningResult()).isEqualTo(rank);
     }
@@ -34,10 +34,10 @@ public class WinningResultTest {
         List<Integer> drawResult = List.of(3, 3, 4, 1, 2);
         WinningResult winningResult = new WinningResult(drawResult);
 
-        Map<Integer, Long> result = winningResult.getWinningResult();
-        result.put(3, Long.valueOf(3));
+        Map<String, Long> result = winningResult.getWinningResult();
+        result.put("5th", Long.valueOf(3));
 
-        Assertions.assertThat(winningResult.getWinningResult().get(3)).isEqualTo(2);
+        Assertions.assertThat(winningResult.getWinningResult().get("5th")).isEqualTo(2);
     }
 
     @Test

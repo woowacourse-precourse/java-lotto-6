@@ -4,19 +4,19 @@ import lotto.ErrorMessages;
 
 import java.util.List;
 
-public class AssetManager {
+public class Buyer {
     private static final int ZERO = 0;
     private final Integer budget;
-    private int lottoNum;
+    private int lottoCount;
     private List<Lotto> lottos;
 
-    public AssetManager(int budget) {
+    public Buyer(int budget) {
         validateBudget(budget);
         this.budget = budget;
     }
 
     private void countLottoNum() {
-        this.lottoNum = this.budget / Rule.LOTTO_PRICE.value();
+        this.lottoCount = this.budget / Rule.LOTTO_PRICE.value();
     }
 
     private void validateBudget(int budget) throws IllegalArgumentException {
@@ -33,7 +33,7 @@ public class AssetManager {
         DrawMachine drawMachine = new DrawMachine();
 
         countLottoNum();
-        for (int i = 0; i < this.lottoNum; i++) {
+        for (int i = 0; i < this.lottoCount; i++) {
             this.lottos.add(new Lotto(drawMachine.pickLottoNumbers()));
         }
     }

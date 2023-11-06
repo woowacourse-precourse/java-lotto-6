@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-public class Bonus {
+public class BonusNumber {
     private static final String NOT_INTEGER_EXCEPTION_MESSAGE = "로또 번호는 정수여야 합니다.";
     private static final String OUT_OF_RANGE_EXCEPTION_MESSAGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String DUPLICATE_NUMBERS_EXCEPTION_MESSAGE = "로또 번호는 서로 다른 수여야 합니다.";
@@ -11,9 +11,9 @@ public class Bonus {
 
     private final int number;
 
-    public Bonus(Lotto winningLotto, String number) {
+    public BonusNumber(Lotto winningLotto, String number) {
         this.number = convertToInteger(number.strip());
-        validate(winningLotto, this.number);
+        validate(winningLotto.getNumbers(), this.number);
     }
 
     private int convertToInteger(String number) {
@@ -24,10 +24,10 @@ public class Bonus {
         }
     }
 
-    private void validate(Lotto winningLotto, int number) {
+    private void validate(List<Integer> numbers, int number) {
         if (!isInLottoRange(number)) {
             throw new IllegalArgumentException(OUT_OF_RANGE_EXCEPTION_MESSAGE);
-        } else if (isContainedInNumbers(winningLotto.getNumbers(), number)) {
+        } else if (isContainedInNumbers(numbers, number)) {
             throw new IllegalArgumentException(DUPLICATE_NUMBERS_EXCEPTION_MESSAGE);
         }
     }

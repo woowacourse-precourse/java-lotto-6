@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Amount;
-import lotto.domain.Bonus;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottosPurchased;
 import lotto.view.InputView;
@@ -15,7 +15,7 @@ public class GameController {
     private Amount amount;
     private LottosPurchased lottosPurchased;
     private Lotto winningLotto;
-    private Bonus bonusNumber;
+    private BonusNumber bonusNumber;
 
     public void playGame() {
         repeatInputAmount();
@@ -56,7 +56,7 @@ public class GameController {
     private void repeatInputBonusNumber() {
         while (true) {
             try {
-                bonusNumber = new Bonus(winningLotto, inputView.inputBonusNumber());
+                bonusNumber = new BonusNumber(winningLotto, inputView.inputBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());

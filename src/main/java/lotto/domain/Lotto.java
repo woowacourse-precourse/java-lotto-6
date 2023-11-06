@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 import lotto.utility.LottoErrorMessage;
 
-// 입력하는 당첨 번호 6개
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -20,14 +19,12 @@ public class Lotto {
         return numbers;
     }
 
-    // 입력값이 6개인지
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LottoErrorMessage.WRONG_SIZE_ERROR.getMessage());
         }
     }
 
-    // 중복 요소가 있는지
     private void validateDuplicates(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
@@ -35,7 +32,6 @@ public class Lotto {
         }
     }
 
-    // 각 요소가 1부터 45까지인
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45) {

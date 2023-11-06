@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.service.LottoNumberGenerator;
 
-// 이거 출력하는 건 view로 옮겨야 되겠는데?
 public class PurchaseListPrinter {
     private static List<List<Integer>> purchaseList = new ArrayList<>();
 

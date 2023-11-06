@@ -10,14 +10,11 @@ public class NumberTypeChangerTest {
     @DisplayName("구입 금액에 숫자를 입력한다.")
     @Test
     void testValidateNumber() {
-        // 유효한 구입금액
         assertDoesNotThrow(() -> NumberTypeChanger.changeNumberType("1000"));
         assertDoesNotThrow(() -> NumberTypeChanger.changeNumberType("5000"));
 
-        // 문자열인 경우 예외 발생
         assertThrows(IllegalArgumentException.class, () -> NumberTypeChanger.changeNumberType("abc"));
 
-        // int 범위를 벗어나서 NumberFormatException을 일으키는 경우 예외 발생
         assertThrows(IllegalArgumentException.class, () -> NumberTypeChanger.changeNumberType("1000000000000"));
     }
 }

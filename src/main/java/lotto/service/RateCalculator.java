@@ -6,7 +6,6 @@ import java.util.Locale;
 import lotto.utility.PrizeUnit;
 
 public class RateCalculator {
-    // 당첨금 계산기
     public static int calculateWinnings(List<Integer> resultList) {
         int totalWinnings = 0;
         for (int i = 0; i < resultList.size(); i++) {
@@ -15,7 +14,6 @@ public class RateCalculator {
         return totalWinnings;
     }
 
-    // 수익률 계산기
     public static double calculateRate(int purchaseAmount, List<Integer> resultList) {
         double profitPercentage = (double) calculateWinnings(resultList) / purchaseAmount * 100;
         return Math.round(profitPercentage * 10.0) / 10.0;

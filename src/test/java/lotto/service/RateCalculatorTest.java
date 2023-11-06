@@ -24,7 +24,7 @@ public class RateCalculatorTest {
         double expectedRate = ((double) RateCalculator.calculateWinnings(resultList) / purchaseAmount) * 100;
         double actualRate = RateCalculator.calculateRate(purchaseAmount, resultList);
 
-        assertEquals(expectedRate, actualRate, 0.1); // 두 값이 0.1 이내의 오차를 가지면 테스트를 통과합니다.
+        assertEquals(expectedRate, actualRate, 0.1);
     }
 }
 

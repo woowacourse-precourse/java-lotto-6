@@ -34,7 +34,6 @@ public class LottoController {
         OutputValue.guideRate((RateCalculator.converseRate(purchaseAmount, comparer.getResultList())));
     }
 
-    // 구입 금액 입력
     public int getInputPurchase() {
         while (true) {
             try {
@@ -48,7 +47,6 @@ public class LottoController {
         }
     }
 
-    // 당첨 번호 입력
     public List<Integer> getInputLotto() {
         while(true) {
             try {
@@ -63,7 +61,6 @@ public class LottoController {
         }
     }
 
-    // 보너스 번호 입력
     public int getInputBonus() {
         while (true) {
             try {

@@ -60,7 +60,7 @@ public class LottoService {
     }
 
     private boolean isBonus(Lotto purchasedTicket, WinningLotto winningLotto) {
-        LottoNumber bonusNumber = winningLotto.getBonusNumber();
+        LottoNumber bonusNumber = winningLotto.getBonus();
         return purchasedTicket.getNumbers().contains(bonusNumber);
     }
 

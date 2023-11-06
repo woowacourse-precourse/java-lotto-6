@@ -23,13 +23,16 @@ public class Lotto {
     }
 
     public Lotto(String number) {
-        List<Integer> numbers = Arrays.stream(number.split(SEPARATOR_REGEX.getMessage()))
-                .map(Integer::parseInt)
-                .toList();
+        List<Integer> numbers = splitToList(number);
         validate(numbers);
         this.numbers = sortByAscent(numbers);
     }
 
+    private List<Integer> splitToList(String number) {
+        return Arrays.stream(number.split(SEPARATOR_REGEX.getMessage()))
+                .map(Integer::parseInt)
+                .toList();
+    }
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);

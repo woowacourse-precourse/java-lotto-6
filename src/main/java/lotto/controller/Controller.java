@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class Controller {
     LottoService lottoService;
-    List<Lotto> purchasedLottos;
+//    List<Lotto> purchasedLottos;
 
     private static final String ERROR = "[ERROR] ";
 
@@ -48,8 +48,9 @@ public class Controller {
     }
 
     private void lottoGameSetting() {
-        this.purchasedLottos = lottoService.generateLottoTickets();
-        OutputView.displayLottoNumber(this.purchasedLottos);
+        List<Lotto> purchasedLottos = lottoService.generateLottoTickets();
+//        this.purchasedLottos = lottoService.generateLottoTickets();
+        OutputView.displayLottoNumber(purchasedLottos);
     }
 
     private WinningNumbers winningNumberSetting() {
@@ -80,9 +81,10 @@ public class Controller {
 
     private void showWinningResults(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         NumberMatchingService numberMatchingService = new NumberMatchingService();
+        List<Lotto> purchasedLottos = lottoService.purchaseLottoTickets();
 
         EnumMap<LottoPrize, Integer> winCount = numberMatchingService.calculateResults(
-                this.purchasedLottos.stream().map(Lotto::getNumbers).collect(Collectors.toList()),
+                purchasedLottos.stream().map(Lotto::getNumbers).collect(Collectors.toList()),
                 winningNumbers.getWinningNumbers(),
                 bonusNumber.getBonusNumber()
         );

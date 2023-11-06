@@ -13,6 +13,9 @@ public class LottoService {
 
     private LottoTicket lottoTicket;
     private List<Lotto> lottos;
+    public LottoService() {
+        this.lottos = new ArrayList<>();
+    }
 
     public void createLottoTicket(String moneyInput) {
         this.lottoTicket = new LottoTicket(moneyInput);
@@ -27,7 +30,9 @@ public class LottoService {
         int lottoCount = getTicketCount();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers();
-            generatedLottos.add(new Lotto(lottoNumbers));
+            Lotto newLotto = new Lotto(lottoNumbers);
+            generatedLottos.add(newLotto);
+            this.lottos.add(newLotto);
         }
         return generatedLottos;
     }

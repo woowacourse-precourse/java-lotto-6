@@ -4,10 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static lotto.view.constant.ErrorMessage.INPUT_INVALID_FORMAT;
+import static lotto.view.constant.ErrorMessage.INPUT_IS_NOT_BLANK;
 import static lotto.view.constant.viewMessage.*;
 
 public class InputView {
@@ -37,13 +38,13 @@ public class InputView {
 
     private static void validateBlank(String input) {
         if (input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 공백은 입력될 수 없습니다.");
+            throw new IllegalArgumentException(INPUT_IS_NOT_BLANK);
         }
     }
 
     private static void validateComma(String input) {
         if (!COMMAPATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException("[ERROR] 올바른 형식으로 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_INVALID_FORMAT);
         }
     }
 
@@ -51,7 +52,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 형식으로 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_INVALID_FORMAT);
         }
     }
 
@@ -59,7 +60,7 @@ public class InputView {
         try {
             return Integer.valueOf(input);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 형식으로 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_INVALID_FORMAT);
         }
     }
 

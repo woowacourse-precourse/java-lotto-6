@@ -13,7 +13,7 @@ public class WinLottoNums {
     }
 
     public Boolean isSameNumOfIndex(Integer target, Integer indexOfSpecial) {
-        int lottoNumber = winLottoNums.get(indexOfSpecial);
+        Integer lottoNumber = winLottoNums.get(indexOfSpecial);
 
         if (isSame(target, lottoNumber)) {
             return true;

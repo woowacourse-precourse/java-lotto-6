@@ -50,7 +50,7 @@ public class LottoEnvelop {
         information.append(lottoInformation + NEW_LINE);
     }
 
-    private Lotto getLotto(int index) {
+    private Lotto getLotto(Integer index) {
         return lottoEnvelop.get(index);
     }
 

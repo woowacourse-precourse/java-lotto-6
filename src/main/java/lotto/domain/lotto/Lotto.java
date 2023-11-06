@@ -51,8 +51,8 @@ public class Lotto {
         return informationOfNumbers;
     }
 
-    private StringBuilder getInformation(int sizeNumbers, List<Integer> organizeNumbers) {
-        int num = 0;
+    private StringBuilder getInformation(Integer sizeNumbers, List<Integer> organizeNumbers) {
+        Integer num = 0;
         StringBuilder informationOfNumbers = new StringBuilder();
 
         appendStringBuild(informationOfNumbers, START_APPEND_STING);
@@ -70,7 +70,7 @@ public class Lotto {
         return informationOfNumbers;
     }
 
-    private boolean isAppendCondition(int sizeNumbers, int i) {
+    private boolean isAppendCondition(Integer sizeNumbers, Integer i) {
         return i != (sizeNumbers - 1);
     }
 
@@ -82,7 +82,7 @@ public class Lotto {
         return numbers.get(index);
     }
 
-    private Integer getNum(List<Integer> organizeLotto, int i) {
+    private Integer getNum(List<Integer> organizeLotto, Integer i) {
         return organizeLotto.get(i);
     }
 }

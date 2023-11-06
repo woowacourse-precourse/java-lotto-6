@@ -32,7 +32,7 @@ public class ResultTest {
             put(LottoRank.LOSE, 5);
         }});
 
-        Assertions.assertThat(result.totalBuyLottoAmount()).isEqualTo(8);
+        Assertions.assertThat(result.totalBuyLottoAmount()).isEqualTo(8000);
     }
 
     static Stream<Arguments> resultWinningLottoAndProceeds() {

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.constants.LottoRank;
+import lotto.domain.constants.LottoRule;
 
 import java.util.Map;
 
@@ -19,6 +20,9 @@ public class Result {
     }
 
     public double totalBuyLottoAmount() {
-        return 0;
+        return result.values()
+                .stream()
+                .mapToDouble(amount -> amount * LottoRule.PRICE.getValue())
+                .sum();
     }
 }

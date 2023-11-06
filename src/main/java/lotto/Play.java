@@ -11,6 +11,7 @@ public class Play {
         System.out.println("구입금액을 입력해 주세요.");
         String boughtAmount = Console.readLine();
         numberOfTicket = checkBoughtAmount(boughtAmount);
+        MakeLottoCard lottoCard = new MakeLottoCard(numberOfTicket);
     }
     public int giveNumberOfTicket(String boughtAmount){
         int boughtAmountInt = Integer.parseInt(boughtAmount);
@@ -22,6 +23,4 @@ public class Play {
         checkThousands(boughtAmount);
         return giveNumberOfTicket(boughtAmount);
     }
-
-
 }

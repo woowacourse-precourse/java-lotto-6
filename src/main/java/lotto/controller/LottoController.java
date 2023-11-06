@@ -24,25 +24,28 @@ public class LottoController {
     private final LottoPrintController lottoPrintController = new LottoPrintController();
     private final LottoTicketCreator ticketCreator = new LottoTicketCreator();
     private final LottoWinningNumberController winningNumberController = new LottoWinningNumberController();
+    private final LottoMatchingData matchingData = new LottoMatchingData();
+
     private final LottoBonusWinningNumberInput bonusNumberInput = new LottoBonusWinningNumberInput();
     private final LottoRankChecker rankChecker = new LottoRankChecker();
     private final LottoWinningStatisticsController statisticsController = new LottoWinningStatisticsController();
-    private final LottoReturnsCalculator returnsCalculator = new LottoReturnsCalculator(1000);
+    private final LottoReturnsCalculator returnsCalculator = new LottoReturnsCalculator(1000);  // 로또 티켓 가격이 1000으로 가정
     private final LottoReturnsOutput returnsOutput = new LottoReturnsOutput();
     private final LottoReturnsController returnsController = new LottoReturnsController(returnsCalculator, returnsOutput);
-
+    private int purchaseAmount;
 
     public void start() {
-        int purchaseAmount = purchaseController.getPurchaseAmount();
+        purchaseAmount = purchaseController.getPurchaseAmount();
         List<Lotto> lotto = ticketCreator.createLottoTickets(purchaseAmount);
         lottoPrintController.handleLottoDisplay(lotto);
         List<Integer> winningNumbers = winningNumberController.getWinningNumbers();
         int bonusNumber = bonusNumberInput.requestBonusNumber();
-        LottoMatchingData matchingData = new LottoMatchingData();
         matchingData.matchLottoToWinningNumbers(lotto, winningNumbers, bonusNumber);
+    }
+
+    public void result() {
         Map<LottoRank, Integer> rankResult = rankChecker.determineRank(matchingData);
         statisticsController.displayStatistics(rankResult);
         returnsController.displayReturnRate(rankResult, purchaseAmount);
-        Runtime.getRuntime().exit(0);
     }
 }

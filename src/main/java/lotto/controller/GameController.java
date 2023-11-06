@@ -28,8 +28,7 @@ public class GameController {
         WinningStatistics winningStatistics = new WinningStatistics(lottoAnalyzer);
         winningStatistics.analyzeLotto(lottoVendingMachine.getLottos());
 
-        OutputView.printFinalResult(winningStatistics.getWinningStatistics());
-        OutputView.printTotalProfitRate(winningStatistics.getWinningStatistics(), purchaseAmount);
+        OutputView.printFinalResult(winningStatistics.getWinningStatistics(), purchaseAmount);
     }
 
     private static LottoAnalyzer inputBonusNumber(List<Integer> winningNumbers) {

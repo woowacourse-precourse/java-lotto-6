@@ -24,8 +24,11 @@ public class OutputView {
         System.out.println(purchasedLottoTickets.toString());
     }
 
-    public static void printFinalResult(Map<LottoRank, Integer> winningStatistics) {
+    public static void printFinalResult(Map<LottoRank, Integer> winningStatistics, int purchaseAmount) {
+        System.out.println(ResultMessage.LOTTO_WINNING_STATISTICS);
+        System.out.println(ResultMessage.THREE_HYPHENS);
         printWinningStatistics(winningStatistics);
+        printTotalProfitRate(winningStatistics, purchaseAmount);
     }
 
     public static void printTotalProfitRate(Map<LottoRank, Integer> winningStatistics, int purchaseAmount) {
@@ -38,8 +41,6 @@ public class OutputView {
     }
 
     public static void printWinningStatistics(Map<LottoRank, Integer> winningStatistics) {
-        System.out.println(ResultMessage.LOTTO_WINNING_STATISTICS);
-        System.out.println(ResultMessage.THREE_HYPHENS);
         List<LottoRank> lottoRanks = getWinningStatsFormat();
         StringBuilder winningStatisticsResult = new StringBuilder();
         for (LottoRank lottoRank : lottoRanks) {

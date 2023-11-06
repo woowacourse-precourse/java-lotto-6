@@ -30,6 +30,10 @@ public class ResultService {
         return lotto.getNumbers().contains(bonus);
     }
 
+    public double calculateProfit(int purchase, int win) {
+        return Double.valueOf((double) win/purchase*100);
+    }
+
     public ResultType finalResult(int check, boolean bonus) {
         if(check==6)
             return ResultType.SIX;

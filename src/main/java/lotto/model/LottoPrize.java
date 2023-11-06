@@ -1,24 +1,22 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 public enum LottoPrize {
 
-    FIFTH_PRIZE(3, 5000, false),
-    FOURTH_PRIZE(4, 50000, false),
-    THIRD_PRIZE(5, 1500000, false),
-    SECOND_PRIZE(5, 30000000, true),
-    FIRST_PRIZE(6, 2000000000, false);
+    FIFTH_PRIZE(3, 5000),
+    FOURTH_PRIZE(4, 50000),
+    THIRD_PRIZE(5, 1500000),
+    SECOND_PRIZE(5, 30000000),
+    FIRST_PRIZE(6, 2000000000);
 
     private final Integer matchedNumberCount;
     private final Integer prizeMoney;
-    private final Boolean isBonusNumberMatch;
 
-    LottoPrize(Integer matchedNumberCount, Integer prizeMoney, Boolean isBonusNumberMatch) {
+    LottoPrize(Integer matchedNumberCount, Integer prizeMoney) {
         this.matchedNumberCount = matchedNumberCount;
         this.prizeMoney = prizeMoney;
-        this.isBonusNumberMatch = isBonusNumberMatch;
     }
 
     public static LottoPrize valueOf(Boolean hasBonusNumber, Integer countMatchNumber) {
@@ -30,13 +28,10 @@ public enum LottoPrize {
             return THIRD_PRIZE;
         }
 
-        for (LottoPrize lottoPrize : LottoPrize.values()) {
-            if (Objects.equals(countMatchNumber, lottoPrize.matchedNumberCount)) {
-                return lottoPrize;
-            }
-        }
-
-        throw new NoSuchElementException("[ERROR] 보너스 넘버와 로또에 맞는 등수가 없습니다.");
+        return Arrays.stream(values())
+                .filter(lottoPrize -> lottoPrize.getMatchedNumberCount().equals(countMatchNumber))
+                .findAny()
+                .orElseThrow(() -> new NoSuchElementException("[ERROR] 보너스 넘버와 로또에 맞는 등수가 없습니다."));
     }
 
     public Integer getPrizeMoney() {
@@ -51,10 +46,16 @@ public enum LottoPrize {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(matchedNumberCount).append("개 일치");
-        if (isBonusNumberMatch && matchedNumberCount == 5) {
+        if (checkSecondPrize()) {
             stringBuilder.append(", 보너스 볼 일치");
         }
         stringBuilder.append(" (").append(String.format("%,d", prizeMoney)).append("원)");
         return stringBuilder.toString();
+    }
+
+
+    private boolean checkSecondPrize() {
+        return prizeMoney.equals(LottoPrize.SECOND_PRIZE.getPrizeMoney())
+                && matchedNumberCount.equals(LottoPrize.SECOND_PRIZE.matchedNumberCount);
     }
 }

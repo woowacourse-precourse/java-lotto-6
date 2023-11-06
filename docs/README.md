@@ -42,8 +42,9 @@
 
 ## 기능 추출
 - [x] 랜덤 숫자 생성하기 RandomNumberGenerator#generateRandomNumber()
-- [] 구입 금액 입력받기(UI) insertMoney()
-- [] 당첨 번호 입력받기, 보너스 번호 입력받기(UI) inputWinnerNumber(), inputBonusNumner()
+- [x] 사용자 입력 UserInput
+  - [x] 구입 금액 입력받기(UI) insertMoney()
+  - [x] 당첨 번호 입력받기, 보너스 번호 입력받기(UI) inputWinnerNumbers(), inputBonusNumber()
 - [] 발행한 로또 출력하기(UI) printMyLottoNumbers()
 - [] 당첨자 Winner
   - [] 당첨자 계산하기 checkLottoNumbers()

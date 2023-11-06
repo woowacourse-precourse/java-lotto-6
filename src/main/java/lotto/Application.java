@@ -1,12 +1,10 @@
 package lotto;
 
-import controller.LottoController;
-import view.OutputView;
+import view.InputView;
 
 public class Application {
     public static void main(String[] args) {
 
-        LottoController lottoController = new LottoController();
-
+        System.out.println(InputView.inputWinningNumbers());
     }
 }

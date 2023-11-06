@@ -11,6 +11,13 @@ public class InputView {
         return price;
     }
 
+    public static String inputWinningNumbers() {
+        String message = InputMessages.WINNING_NUMBER_MESSAGE.getMessage();
+        System.out.println(message);
+        String winningNumbers = input();
+        return winningNumbers;
+    }
+
     public static String input() {
         return Console.readLine();
     }

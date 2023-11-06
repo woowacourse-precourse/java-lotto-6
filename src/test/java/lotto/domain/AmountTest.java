@@ -15,4 +15,12 @@ public class AmountTest {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @DisplayName("구입금액이 음수일 경우 예외 발생")
+    @ValueSource(ints = {-1})
+    void buyAmountNegativeNumber(int amount) {
+        assertThatThrownBy(() -> new Amount(amount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -10,7 +10,6 @@ public class UserPick {
     Validator validator = new Validator();
 
     public List<Integer> userLottoNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> parsedLottoNumbers = pickLottoNumbers();
         System.out.println();
 
@@ -18,7 +17,6 @@ public class UserPick {
     }
 
     public Integer userBonusNumber(List<Integer> userLottoNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
         Integer parsedBonusNumber = pickBonusNumber(userLottoNumbers);
         System.out.println();
 
@@ -27,6 +25,7 @@ public class UserPick {
 
     public List<Integer> pickLottoNumbers() {
         while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
             String lottoNumbers = Console.readLine();
             String[] separatedLottoNumbers = lottoNumbers.split(",");
             try {
@@ -35,25 +34,23 @@ public class UserPick {
                 System.out.println();
                 return parsedLottoNumbers;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 쉼표(,)를 기준으로 6개의 당첨 번호를 입력해주세요");
+                System.out.println("[ERROR] 쉼표(,)를 기준으로 1 이상 45 이하의 서로 다른 6개의 당첨 번호를 입력해주세요");
             }
         }
     }
 
     public Integer pickBonusNumber(List<Integer> parsedLottoNumbers) {
-        Integer parsedBonusNumber;
         while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
             String bonusNumber = Console.readLine();
             try {
                 validator.validateBonusNumber(bonusNumber, parsedLottoNumbers);
-                parsedBonusNumber = parseBonusNumber(bonusNumber);
-                break;
+                Integer parsedBonusNumber = parseBonusNumber(bonusNumber);
+                return parsedBonusNumber;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 보너스 번호는 당첨 번호와 겹칠 수 없습니다.");
+                System.out.println("[ERROR] 당첨 번호와 겹치지 않는 1 이상 45 이하의 수를 입력해주세요.");
             }
         }
-
-        return parsedBonusNumber;
     }
 
     public List<Integer> parseLottoNumbers(String[] separatedLottoNumbers) {

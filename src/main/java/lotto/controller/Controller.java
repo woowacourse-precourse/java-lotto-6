@@ -33,10 +33,11 @@ public class Controller {
         Lotto winningNum = requestPlayerWinningInput();
         int bonusNum = requestPlayerBonusInput();
 
-        calculateResult(randomLottery, winningNum, bonusNum);
+        Map<Rank, Integer> result = calculateResult(randomLottery, winningNum, bonusNum);
+        ResultMessage.printResult(result, amount);
     }
 
-    private void calculateResult(List<Lotto> randomLottery, Lotto winningNum,int bonusNum){
+    private Map<Rank,Integer> calculateResult(List<Lotto> randomLottery, Lotto winningNum,int bonusNum){
         Map<Rank, Integer> result = setRankCount();
         Rank rank;
 
@@ -44,6 +45,8 @@ public class Controller {
             rank=Rank.decideRank(lotto.compareLottoWithWinning(winningNum),lotto.containNum(bonusNum));
             result.put(rank,result.get(rank)+1);
         }
+
+        return result;
     }
 
     private Map<Rank,Integer> setRankCount(){

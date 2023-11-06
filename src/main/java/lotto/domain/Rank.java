@@ -28,5 +28,14 @@ public enum Rank {
         }
         return NOTHING;
     }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
+
+    public static String getWinningMesaage(Rank rank) {
+        return rank.winningMessage;
+    }
+    //TODO : RANK TEST
 }
 

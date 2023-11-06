@@ -13,6 +13,10 @@ public class Amount {
         return count;
     }
 
+    public int getTotal(){
+        return total;
+    }
+
     private int calculateCount(int total,int ticketPrice) {
         return total/ticketPrice;
     }

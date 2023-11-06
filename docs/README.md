@@ -34,22 +34,20 @@
     구입한 로또중에 당첨된 로또만 저장하는 기능
     총 수익률을 계산하는 기능 (수익률은 소수점 둘째 자리에서 반올림)
 
-    UserLottoNumbers (Lotto Class 상속)
+    UserLotto (Lotto Class 상속)
         당첨번호를 저장해둔다
         로또번호 관련 예외처리 기능
 
 ### DongHangLottery
     정답 번호를 초기화하는 기능
     예외처리기능
-        [ERROR] 정답번호에 1 ~ 45 사이의 숫자가 들어오지 않은 경우
-        [ERROR] 정답번호에 중복된 숫자가 들어온 경우
-        [ERROR] 당첨번호가 6개가 아닌경우 쉼표를 기준으로 구분
         [ERROR] 보너스 번호가 1개가 아닌경우
     당첨된 등수 계산하는 기능 (1등 ~ 5등)
     
-    WinningLottoNumbers (Lotto Calss 상속)
+    WinningLotto (Lotto Calss 상속)
         당첨번호와 보너스번호를 저장해둔다
-        로또번호 관련 예외처리 기능
+        보너스번호 관련 예외처리 기능
+            [ERROR] 보너스 번호에 1 ~ 45 사이의 숫자가 들어오지 않은 경우 [기능구현완료] [테스트 구현완료]
         
 
 ### Lotto

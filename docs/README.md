@@ -51,15 +51,15 @@ Lotto
 * Lotto
   - 로또 객체 생성
   - 로또의 길이가 6인지 유효성 검사를 진행한다.
-* CreateLottoList
+* LottoListMaker
   - 입력 받은 구입금액을 1000으로 나누어 구매할 로또 갯수를 구한다.
   - 구매할 로또 갯수에 맞게 로또를 생성한다.
-* CreateLotto
+* LottoMaker
   - random값을 가져와서 한 줄의 로또 번호를 생성한다.
-* CheckLotto
+* LottoChecker
   - 입력받은 당첨 번호와 보너스 번호를 받아온다.
   - 각 로또마다 몇 개 일치하는지 체크한 뒤, 그 데이터를 반환한다.
-* CalculatePrize
+* PrizeCalculator
   - 일치한 숫자의 갯수를 확인하고, 일치 정보를 반환한다.
   - 일치 정보를 확인하고, 상금을 계산한다.
   - 총 상금을 합산하고 구입금액과 비교하여 총 수익률을 계산한다.

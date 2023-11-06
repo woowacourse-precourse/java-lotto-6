@@ -18,7 +18,6 @@ public class Price {
 
     private static void checkZeroPrice(int price) throws IllegalArgumentException{
         if (price < minPrice) {
-            priceZeroException();
             throw new IllegalArgumentException();
         }
     }

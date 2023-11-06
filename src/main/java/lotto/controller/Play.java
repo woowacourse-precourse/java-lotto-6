@@ -5,6 +5,7 @@ import lotto.model.Number;
 
 import java.util.*;
 
+import static lotto.controller.ExceptionController.*;
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.Statistic.*;
@@ -52,7 +53,8 @@ public class Play {
             messageAboutPrice();
             String tmpPrice = inputPrice();
             try {
-                price = new Price(convertPrice(tmpPrice));
+                price = checkPriceException(tmpPrice);
+                //price = new Price(convertPrice(tmpPrice));
                 break;
             } catch (IllegalArgumentException e) {
                 //notDigitExceptionMessage();

@@ -16,7 +16,7 @@ class PurchasePriceTest {
     @Test
     @DisplayName("구매 금액이 1000 단위가 아니라면 에러가 발생한다.")
     void When_PurchasePriceIsNotThousandUnit_Then_Error() {
-        assertThatThrownBy(() -> new PurchasePrice(1009))
+        assertThatThrownBy(() -> PurchasePrice.from(1009))
                 .isInstanceOf(NotThousandUnitException.class)
                 .hasMessageContaining(error);
     }
@@ -24,7 +24,7 @@ class PurchasePriceTest {
     @Test
     @DisplayName("구매 금액이 1000단위라면 정상적이다.")
     void When_PurchasePriceIsThousandUnit_Then_Correct() {
-        assertThatCode(() -> new PurchasePrice(5000))
+        assertThatCode(() -> PurchasePrice.from(5000))
                 .doesNotThrowAnyException();
     }
 }

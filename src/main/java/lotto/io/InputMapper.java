@@ -13,18 +13,18 @@ public class InputMapper {
 
     public PurchasePrice toPurchasePrice(String lottoPurchasePrice) {
         Integer purchasePrice = Integer.parseInt(lottoPurchasePrice);
-        return new PurchasePrice(purchasePrice);
+        return PurchasePrice.from(purchasePrice);
     }
 
     public Lotto toLotto(String lotto) {
         List<Integer> wingingNumbers = Arrays.stream(lotto.split(DIVISION))
                 .map(Integer::parseInt)
                 .toList();
-        return new Lotto(wingingNumbers);
+        return Lotto.from(wingingNumbers);
     }
 
     public BonusNumber toBonusNumber(String bonusNumber, Lotto lotto) {
         Integer bonus = Integer.parseInt(bonusNumber);
-        return new BonusNumber(bonus, lotto);
+        return BonusNumber.of(bonus, lotto);
     }
 }

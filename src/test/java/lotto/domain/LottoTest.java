@@ -16,10 +16,16 @@ class LottoTest {
 
     private static final String error = ErrorMessage.ERROR_TAG.toString();
 
+    static Stream<List<Integer>> winningNumbersSource() {
+        return Stream.of(List.of(0, 2, 3, 99, 5, 6), List.of(55, 56, 57, 58, 59, 60));
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7);
+
+        assertThatThrownBy(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(error);
     }
@@ -28,7 +34,8 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+        assertThatThrownBy(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(error);
     }
@@ -37,12 +44,8 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("winningNumbersSource")
     void When_SaveWinningNumbers_Then_(List<Integer> value) {
-        assertThatThrownBy(() -> new Lotto(value))
+        assertThatThrownBy(() -> Lotto.from(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(error);
-    }
-
-    static Stream<List<Integer>> winningNumbersSource() {
-        return Stream.of(List.of(0,2,3,99,5,6), List.of(55,56,57,58,59,60));
     }
 }

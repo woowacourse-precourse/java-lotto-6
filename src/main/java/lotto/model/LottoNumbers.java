@@ -5,14 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.global.ErrorCode;
-import lotto.global.constant.LottoNumber;
-import lotto.model.exception.LottoTicketNumberException;
+import lotto.model.exception.LottoNumbersException;
 
-public class LottoTicket {
+public class LottoNumbers {
 
     private final List<Integer> lottoNumbers;
 
-    public LottoTicket(List<Integer> lottoNumbers) {
+    public LottoNumbers(List<Integer> lottoNumbers) {
         validate(lottoNumbers);
         Collections.sort(lottoNumbers);
         this.lottoNumbers = lottoNumbers;
@@ -29,19 +28,18 @@ public class LottoTicket {
     }
 
     private void checkLottoNumberWithinTheRange(int lottoNumber){
-        if(lottoNumber < LottoNumber.MIN_LOTTO_NUMBER || lottoNumber > LottoNumber.MAX_LOTTO_NUMBER){
-            throw new LottoTicketNumberException(ErrorCode.LOTTO_NUMBER_OUT_OF_RANGE);
+        if(lottoNumber < lotto.global.constant.LottoNumber.MIN_LOTTO_NUMBER || lottoNumber > lotto.global.constant.LottoNumber.MAX_LOTTO_NUMBER){
+            throw new LottoNumbersException(ErrorCode.LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
     private void checkLottoNumbersCount(List<Integer> lottoNumbers){
-        if(lottoNumbers.size() != LottoNumber.LOTTO_NUMBER_COUNT){
-            throw new LottoTicketNumberException(ErrorCode.LOTTO_NUMBER_COUNT_INCORRECT);
+        if(lottoNumbers.size() != lotto.global.constant.LottoNumber.LOTTO_NUMBER_COUNT){
+            throw new LottoNumbersException(ErrorCode.LOTTO_NUMBER_COUNT_INCORRECT);
         }
     }
     private void checkLottoNumbersDuplicate(Map<Integer, Boolean> useLottoNumber, int number){
         if(useLottoNumber.containsKey(number)){
-            throw new LottoTicketNumberException(ErrorCode.LOTTO_NUMBER_DUPLICATED);
+            throw new LottoNumbersException(ErrorCode.LOTTO_NUMBER_DUPLICATED);
         }
     }
-
 }

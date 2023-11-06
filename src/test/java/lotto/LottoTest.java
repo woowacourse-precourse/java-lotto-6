@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -23,7 +24,6 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -66,20 +66,8 @@ class LottoTest {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         // then 1
-        assertThat(lottoNumbers.get(0)).isGreaterThan(0);
-        assertThat(lottoNumbers.get(1)).isGreaterThan(0);
-        assertThat(lottoNumbers.get(2)).isGreaterThan(0);
-        assertThat(lottoNumbers.get(3)).isGreaterThan(0);
-        assertThat(lottoNumbers.get(4)).isGreaterThan(0);
-        assertThat(lottoNumbers.get(5)).isGreaterThan(0);
-
-        // then 2
-        assertThat(lottoNumbers.get(0)).isLessThan(46);
-        assertThat(lottoNumbers.get(1)).isLessThan(46);
-        assertThat(lottoNumbers.get(2)).isLessThan(46);
-        assertThat(lottoNumbers.get(3)).isLessThan(46);
-        assertThat(lottoNumbers.get(4)).isLessThan(46);
-        assertThat(lottoNumbers.get(5)).isLessThan(46);
+        Stream<Integer> stream = lottoNumbers.stream();
+        assertThat(stream.allMatch(num -> num > 0 && num < 46)).isTrue();
     }
 
     @DisplayName("당첨 번호와 일치하는 숫자의 갯수를 반환한다.")

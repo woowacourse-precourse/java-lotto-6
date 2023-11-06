@@ -27,16 +27,16 @@ public class LottoTargetNumResults {
         return false;
     }
 
-    private Boolean isContainWinLottoNums(Integer targetNum, int index) {
-        return winLottoNums.isSameNumOfIndex(targetNum, index);
-    }
-
     public Boolean isSameBonusNum(Integer targetNum, Integer indexOfSpecial) {
         if (isSameBonusNumber(indexOfSpecial)) {
             return bonusLottoNum.isSame(targetNum);
         }
 
         return false;
+    }
+
+    private Boolean isContainWinLottoNums(Integer targetNum, int index) {
+        return winLottoNums.isSameNumOfIndex(targetNum, index);
     }
 
     private boolean isSameBonusNumber(Integer indexOfSpecial) {

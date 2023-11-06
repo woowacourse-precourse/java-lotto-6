@@ -13,9 +13,12 @@ public class Application {
         LottoInputController lottoInputController = new LottoInputController(new ProxyInputView());
         LottoOutputController lottoOutputController = new LottoOutputController();
 
+        //1,2번 로직 묶어서 하나의 컨트롤러로 만들기
+        //1 
         LottoGameInfo lottoGameInfo = lottoInputController.createLottoGame();
         lottoOutputController.printBuyLottos(lottoGameInfo);
 
+        //2
         LottoResult lottoResult = lottoInputController.requestLottoResult();
         lottoOutputController.resultMessage(lottoGameInfo,lottoResult);
     }

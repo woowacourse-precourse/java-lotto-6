@@ -66,38 +66,38 @@ class LottoRankTest {
         return List.of(
                 DynamicTest.dynamicTest("1등은 2,000,000,000원", () -> {
                     //when
-                    long calculate = LottoRank.FIRST.calculate(1);
+                    long calculate = LottoRank.FIRST.calculatePrize(1);
                     //then
                     assertEquals(calculate, 2000000000);
 
                 }),
                 DynamicTest.dynamicTest("2등은 30,000,000원", () -> {
                     //when
-                    long calculate = LottoRank.SECOND.calculate(1);
+                    long calculate = LottoRank.SECOND.calculatePrize(1);
                     //then
                     assertEquals(calculate, 30000000);
                 }),
                 DynamicTest.dynamicTest("3등은 1,500,000원", () -> {
                     //when
-                    long calculate = LottoRank.THIRD.calculate(1);
+                    long calculate = LottoRank.THIRD.calculatePrize(1);
                     //then
                     assertEquals(calculate, 1500000);
                 }),
                 DynamicTest.dynamicTest("4등은 50,000원", () -> {
                     //when
-                    long calculate = LottoRank.FOURTH.calculate(1);
+                    long calculate = LottoRank.FOURTH.calculatePrize(1);
                     //then
                     assertEquals(calculate, 50000);
                 }),
                 DynamicTest.dynamicTest("5등은 5,000원.", () -> {
                     //when
-                    long calculate = LottoRank.FIFTH.calculate(1);
+                    long calculate = LottoRank.FIFTH.calculatePrize(1);
                     //then
                     assertEquals(calculate, 5000);
                 }),
                 DynamicTest.dynamicTest("순위가 존재하지 않으면 0원", () -> {
                     //when
-                    long calculate = LottoRank.NO_RANK.calculate(1);
+                    long calculate = LottoRank.NO_RANK.calculatePrize(1);
                     //then
                     assertEquals(calculate, 0);
                 })

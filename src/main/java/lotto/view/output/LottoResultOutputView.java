@@ -2,6 +2,7 @@ package lotto.view.output;
 
 import lotto.domain.lotto.LottoRank;
 
+import java.io.PrintStream;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,15 +24,28 @@ public class LottoResultOutputView {
     public void printLottoAllMatch(Map<LottoRank, Long> lottoRankCountMap) {
         Set<LottoRank> lottoRanks = lottoRankCountMap.keySet();
         lottoRanks.stream()
-                .forEach(lottoRank -> lottoRank.printRankMessage(lottoRankCountMap.get(lottoRank)));
+                .forEach(lottoRank -> printLottoMatchCount(lottoRankCountMap, lottoRank));
+    }
+
+    private PrintStream printLottoMatchCount(Map<LottoRank, Long> lottoRankCountMap, LottoRank lottoRank) {
+        return System.out.printf(lottoRank.printRankMessage(), getRankCount(lottoRankCountMap, lottoRank));
+    }
+
+    private Long getRankCount(Map<LottoRank, Long> lottoRankCountMap, LottoRank lottoRank) {
+        return lottoRankCountMap.get(lottoRank);
     }
 
     public void printTotalProfitRate(long amount, Map<LottoRank, Long> lottoRankCountMap) {
         Set<LottoRank> lottoRanks = lottoRankCountMap.keySet();
         long totalAmount = lottoRanks.stream()
-                .mapToLong(lottoRank -> lottoRank.calculate(lottoRankCountMap.get(lottoRank)))
+                .mapToLong(lottoRank -> lottoRank.calculatePrize(getRankCount(lottoRankCountMap, lottoRank)))
                 .sum();
-        System.out.printf(TOTAL_PROFIT_FORMAT, ((double)totalAmount / amount) * PERCENTAGE);
+
+        System.out.printf(TOTAL_PROFIT_FORMAT, calculatePercentage(amount, totalAmount));
+    }
+
+    private double calculatePercentage(long amount, long totalAmount) {
+        return ((double) totalAmount / amount) * PERCENTAGE;
     }
 
 }

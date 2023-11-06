@@ -86,4 +86,8 @@ public class LottoView {
 			throw new IllegalStateException();
 		}
 	}
+
+	public static void printMatchMessage(String message, int matchNumber) {
+		System.out.println(message + matchNumber + "개");
+	}
 }

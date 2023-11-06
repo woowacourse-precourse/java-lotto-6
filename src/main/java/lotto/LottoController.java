@@ -1,7 +1,10 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
@@ -47,42 +50,59 @@ public class LottoController {
 
 	public void getWinNumbers() {
 		String[] numbers = LottoView.getWinLotto();
-		winNumbers = this.setWinNumbers(numbers);
-		bonusNumber = this.getBonusNumber();
-		System.out.println(winNumbers);
-		System.out.println(bonusNumber);
+		winNumbers = setWinNumbers(numbers);
+		bonusNumber = getBonusNumber();
+//		System.out.println(winNumbers);
+//		System.out.println(bonusNumber);
 	}
 
 	public int getBonusNumber() {
 		int bonusNumber = LottoView.getBonusNumber();
-		return  bonusNumber;
+		return bonusNumber;
 	}
 
-	public void matchNumbers() {
-		List<Integer> matchList = new ArrayList<>();
+	public Map<Ranking, Integer> setResult() {
+		Map<Ranking, Integer> result = new LinkedHashMap<>();
+
+		for (Ranking rank : Ranking.values()) {
+			result.put(rank, 0);
+		}
+		return result;
+	}
+
+	public Map<Ranking, Integer> matchRank() {
+		Map<Ranking, Integer> result = setResult();
 		for (List<Integer> innerList : createdLottos) {
 			int count = 0;
-			for (int i = 0; i < winNumbers.size() - 1; i++) {
-				int num = winNumbers.get(i);
+			for (int num : winNumbers) {
 				if (innerList.contains(num)) {
 					count++;
 				}
 			}
-			matchList.add(count);
+			Ranking rank = Ranking.valueOf(count, containBonusNumber(innerList)); // 일치하는 숫자 수와 보너스 숫자 매칭 여부에 따른 등 반환
+			result.put(rank, result.get(rank) + 1); // 결과에 값 넣어주기
 		}
-		for (int count : matchList) {
-			System.out.println(count);
-		}
-//		return matchList;
+		return result;
 	}
 
-	// matchNumber -> 사용자가 구매한 로또와 사용자가 입력한 당첨번호가 일치하는지 확인
-	// bonusNumber -> 사용자가 입력한 보너스 번호가 일치하는지 확인
-//			return Ranking.valueOf(matchNumber, bonusNumber)
+	public void printResult() {
+		Map<Ranking, Integer> result = matchRank();
+		System.out.printf("%n당첨 통계%n");
+		System.out.println("---");
+		for (int i = Ranking.values().length - 1; i >= 0; i--) {
+			Ranking.values()[i].printMessage(result.get(Ranking.values()[i]));
+		}
+	}
+
+	public boolean containBonusNumber(List<Integer> numbers) {
+		return numbers.contains(bonusNumber);
+	}
+
 	public void processGame() {
-		int count = this.getCount();
+		int count = getCount();
 		this.createRandomLotto(count);
 		this.getWinNumbers();
-		this.matchNumbers();
+		this.matchRank();
+		this.printResult();
 	}
 }

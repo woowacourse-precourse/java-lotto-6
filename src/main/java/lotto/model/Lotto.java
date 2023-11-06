@@ -6,11 +6,15 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final Integer LOTTO_MIN_NUMBER = 1;
+    private static final Integer LOTTO_MAX_NUMBER = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateNotDuplicated(numbers);
+        validateNumbersInRange(numbers);
         this.numbers = numbers;
     }
 
@@ -21,9 +25,19 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void validateNotDuplicated(List<Integer> numbers) throws IllegalArgumentException {
+    private void validateNotDuplicated(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() < numbers.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateNumbersInRange(List<Integer> numbers) {
+        numbers.forEach(this::validateNumberInRange);
+    }
+
+    private void validateNumberInRange(Integer number) {
+        if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException();
         }
     }

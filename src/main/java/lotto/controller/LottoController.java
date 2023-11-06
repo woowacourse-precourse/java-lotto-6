@@ -14,6 +14,6 @@ public class LottoController {
         outputView.printInputPurchaseAmountMessage();
         Money money = inputView.readPurchaseAmount();
         lottoService.buyLotto(money);
-
+        outputView.printPurchasedLottoCount(money.convertMoneyToCount());
     }
 }

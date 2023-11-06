@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.message.ExceptionMessage;
 
 public class Money {
+    private static final int LOTTO_PRICE = 1000;
     private final int value;
 
     public Money(int value) {
@@ -16,7 +17,7 @@ public class Money {
         }
     }
 
-    public int getValue() {
-        return value;
+    public int convertMoneyToCount() {
+        return value / LOTTO_PRICE;
     }
 }

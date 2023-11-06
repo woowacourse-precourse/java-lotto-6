@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -10,11 +11,41 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers){
+        this.validateLength(numbers);
+        this.validateIntegerRange(numbers);
+        this.validateNotDuplicated(numbers);
+    }
+
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateIntegerRange(List<Integer> numbers){
+        boolean isInvalidRange = numbers.stream()
+                .anyMatch(number -> number > 45 || number <= 0);
+        if (isInvalidRange){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateNotDuplicated(List<Integer> numbers) {
+        long distinctCount = numbers.stream().distinct().count();
+        if (numbers.size() != distinctCount){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+    public long compare(Lotto lotto) {
+        List<Integer> compareNumbers = lotto.getNumbers();
+        return this.numbers.stream()
+                .filter(compareNumbers::contains)
+                .count();
+    }
 }

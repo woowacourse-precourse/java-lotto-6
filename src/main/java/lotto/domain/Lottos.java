@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lottos {
 
@@ -13,9 +12,13 @@ public class Lottos {
     }
 
     public LottosDTO toLottosDTO() {
-        return new LottosDTO(lottos.stream()
-                .map(Lotto::getLotto)
-                .collect(Collectors.toList()));
+        List<List<Integer>> lottosDTO = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            lottosDTO.add(lotto.toDTO());
+        }
+
+        return new LottosDTO(lottosDTO);
     }
 
     public List<LottoResults> calculateAllOfLottoResult(WinningNumbers winningNumbers) {

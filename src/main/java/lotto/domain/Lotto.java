@@ -19,7 +19,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getLotto() {
+    public List<Integer> toDTO() {
         return Collections.unmodifiableList(numbers);
     }
 

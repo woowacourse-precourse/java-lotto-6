@@ -23,5 +23,7 @@ public class WinStatistics {
                 );
     }
 
-
+    public EnumMap<Ranking, Integer> getStatistics() {
+        return statistics;
+    }
 }

@@ -21,6 +21,7 @@ public class Handling {
     }
 
     public static List<String> split(String lotto) {
+        Validator.checkComma(lotto);
         return Arrays.asList(lotto.split(COMMA.getMessage()));
     }
 }

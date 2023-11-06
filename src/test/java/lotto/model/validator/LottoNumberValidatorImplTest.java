@@ -1,9 +1,10 @@
 package lotto.model.validator;
 
+import static lotto.util.ExceptionMessage.BIGGER_THAN_MAX_LOTTO_NUMBER;
 import static lotto.util.ExceptionMessage.BLANK_LOTTO_NUMBER;
 import static lotto.util.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.util.ExceptionMessage.INVALID_NUMBER_OF_LOTTO_NUMBER;
-import static lotto.util.ExceptionMessage.INVALID_RANGE_OF_LOTTO_NUMBER;
+import static lotto.util.ExceptionMessage.SMALLER_THAN_MIN_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
@@ -13,8 +14,8 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.w3c.dom.ls.LSInput;
 
 class LottoNumberValidatorImplTest {
     LottoNumberValidatorImpl lottoNumberValidator;
@@ -106,20 +107,20 @@ class LottoNumberValidatorImplTest {
 
     @ParameterizedTest
     @MethodSource("convertedOutOfRangeLottoNumber")
-    @DisplayName("1 ~ 45 내의 숫자가 아니라면 IllegalArgumentException을 반환한다.")
-    void lottoNumberIsOutOfRangeTest(List<Integer> lottoNumbers) {
+    @DisplayName("1 미만의 숫자라면 IllegalArgumentException을 반환한다.")
+    void lottoNumberIsOutOfRangeTest(List<Integer> lottoNumbers, String expectedExceptionMessage) {
         // given
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> lottoNumberValidator.checkInRangeOfLottoNumbers(lottoNumbers))
-                .withMessage(INVALID_RANGE_OF_LOTTO_NUMBER.getMessage());
+                .withMessage(expectedExceptionMessage);
     }
 
-    static Stream<List> convertedOutOfRangeLottoNumber() {
+    static Stream<Arguments> convertedOutOfRangeLottoNumber() {
         return Stream.of(
-                Arrays.asList(-1, 2, 3, 4, 5, 6),
-                Arrays.asList(1, 2, 0, 4, 5, 6),
-                Arrays.asList(4, 15, 7, 23, 29, 46)
+                Arguments.of(Arrays.asList(-1, 2, 3, 4, 5, 6), SMALLER_THAN_MIN_LOTTO_NUMBER.getMessage()),
+                Arguments.of(Arrays.asList(1, 2, 0, 4, 5, 6), SMALLER_THAN_MIN_LOTTO_NUMBER.getMessage()),
+                Arguments.of(Arrays.asList(4, 15, 7, 23, 29, 46), BIGGER_THAN_MAX_LOTTO_NUMBER.getMessage())
         );
     }
 

@@ -33,5 +33,14 @@ public class Lotto {
         ListValidator.checkDuplicate(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public Rank confirmRank(List<Integer> winningNumbers, int bonusNumber) {
+        winningNumbers.retainAll(this.numbers);
+        String winningNumberCount = String.valueOf(winningNumbers.size());
+
+        Rank result = Rank.valueOfLabel(winningNumberCount);
+        if(result == Rank.THIRD && this.numbers.contains(bonusNumber)) {
+            result = Rank.SECOND;
+        }
+        return result;
+    }
 }

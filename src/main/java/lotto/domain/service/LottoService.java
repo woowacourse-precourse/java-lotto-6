@@ -8,6 +8,8 @@ import lotto.domain.model.Winning;
 import lotto.domain.util.NumberGenerator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
@@ -26,13 +28,15 @@ public class LottoService {
     private final List<Lotto> lottoStorage = new ArrayList<>();
     private Winning winning;
 
-    private final Map<Rank, Integer> winningDetails
-            = Map.of(
-            FIRST, 0,
-            SECOND, 0,
-            THIRD, 0,
-            FORTH, 0,
-            FIFTH, 0);
+    private final Map<Rank, Integer> winningDetails = new LinkedHashMap<>();
+
+    {
+        winningDetails.put(FIRST, 0);
+        winningDetails.put(SECOND, 0);
+        winningDetails.put(THIRD, 0);
+        winningDetails.put(FORTH, 0);
+        winningDetails.put(FIFTH, 0);
+    }
 
     public void buyLotteries(long price) {
         validate(price);
@@ -81,7 +85,7 @@ public class LottoService {
         Rank rank = getCorrectRank(correctResult);
         if (rank != null) {
             int current = winningDetails.get(rank);
-            winningDetails.put(rank, current++);
+            winningDetails.put(rank, ++current);
         }
     }
 

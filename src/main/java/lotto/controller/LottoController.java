@@ -3,6 +3,7 @@ package lotto.controller;
 import static lotto.view.constant.InputMessage.GET_BONUS_NUMBER_MESSAGE;
 import static lotto.view.constant.InputMessage.GET_PURCHASE_AMOUNT_MESSAGE;
 import static lotto.view.constant.InputMessage.GET_WINNING_NUMBERS_MESSAGE;
+import static lotto.view.constant.OutputMessage.NEWLINE;
 
 import lotto.domain.LottoPurchase;
 import lotto.domain.Lottos;
@@ -46,7 +47,7 @@ public class LottoController {
     }
 
     public String getBonusNumber(String winningNumbers) {
-        OutputView.printMessage(GET_BONUS_NUMBER_MESSAGE.getMessage());
+        OutputView.printMessage(NEWLINE.getMessage() + GET_BONUS_NUMBER_MESSAGE.getMessage());
         return inputView.readBonusNumber(winningNumbers);
     }
 

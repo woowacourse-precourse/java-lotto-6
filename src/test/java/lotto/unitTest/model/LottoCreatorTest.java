@@ -25,7 +25,7 @@ class LottoCreatorTest {
     @Test
     void LottoMaker가_생성한_당첨로또에는_입력된_숫자들이_들어있다() {
         String inputWinningNumbers = "1,2,3,4,5,6";
-        List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.value()))
+        List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.getValue()))
                 .map(Integer::parseInt)
                 .toList();
 
@@ -39,7 +39,7 @@ class LottoCreatorTest {
     @ValueSource(strings = {"1,", "1,2,3,4,5,6,7"})
     @ParameterizedTest
     void 당첨로또의_숫자_개수가_6개가_아니면_예외를_발생시킨다(String inputWinningNumbers) {
-        List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.value()))
+        List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.getValue()))
                 .map(Integer::parseInt)
                 .toList();
 
@@ -50,7 +50,7 @@ class LottoCreatorTest {
     @Test
     void 당첨로또에_중복된_숫자가_있으면_예외를_발생시킨다() {
         String inputWinningNumbers = "1,1,2,3,4,5";
-        List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.value()))
+        List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.getValue()))
                 .map(Integer::parseInt)
                 .toList();
 

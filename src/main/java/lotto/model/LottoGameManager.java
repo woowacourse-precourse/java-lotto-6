@@ -54,7 +54,7 @@ public class LottoGameManager {
     }
 
     private List<String> splitWinningNumbers(String userInputWinningNumbers) {
-        return List.of(userInputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.value()));
+        return List.of(userInputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.getValue()));
     }
 
     //입력받은 보너스 번호 검증하고 파싱하는 메서드

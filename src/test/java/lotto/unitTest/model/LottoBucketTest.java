@@ -18,16 +18,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockedStatic;
 
 class LottoBucketTest {
-    private static MockedStatic<LottoCreator> lottoCreatorMockedStatic;
+    private static MockedStatic<LottoCreator> lottoCreator;
 
     @BeforeAll
-    public static void beforeAll() {
-        lottoCreatorMockedStatic = mockStatic(LottoCreator.class);
+    public static void setLottoCreator() {
+        lottoCreator = mockStatic(LottoCreator.class);
     }
 
     @AfterAll
-    public static void afterAll() {
-        lottoCreatorMockedStatic.close();
+    public static void closeLottoCreator() {
+        lottoCreator.close();
     }
 
     @ValueSource(ints = {1, 10})

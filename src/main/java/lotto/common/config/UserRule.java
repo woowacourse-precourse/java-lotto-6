@@ -9,7 +9,7 @@ public enum UserRule {
         this.value = value;
     }
 
-    public String value() {
+    public String getValue() {
         return value;
     }
 }

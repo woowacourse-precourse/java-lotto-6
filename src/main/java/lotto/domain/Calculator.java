@@ -35,7 +35,9 @@ public class Calculator {
     }
 
     public static double calculateRateOfReturn(int returnTotalCash, int cash) {
-        double ret = returnTotalCash / cash;
-        return (double) Math.round((ret * 100) / 100);
+        double ret = (double) returnTotalCash / cash;  // ret = 0.625 -> 62.5로 바뀌어야하니까,
+        ret = ret * 100; // 백분율화 62.5 만약 62.56이면 -> 62.6, 62.54면 -> 62.5
+        ret = Math.round(ret * 10) / 10.0;
+        return ret;
     }
 }

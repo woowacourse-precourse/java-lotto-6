@@ -60,11 +60,20 @@ public class LottoService {
 
     public double calculateProfitRate() {
         double totalPrizeAmount = ZERO;
+
         for (LottoRank lottoRank: winningRankCount.keySet()) {
             totalPrizeAmount += lottoRank.getPrizeMoney() * winningRankCount.get(lottoRank);
         }
+
         int  purchaseQuantity= userLottos.size();
-        return (totalPrizeAmount / (purchaseQuantity * LOTTO_PRICE)) * PERCENTAGE;
+        double profitRate = (totalPrizeAmount / (purchaseQuantity * LOTTO_PRICE)) * PERCENTAGE;
+        return calculateRoundedProfitRate(profitRate);
     }
 
+    /**
+     *  수익률을 소수점 둘째 자리에서 반올림하는 메서드
+     */
+    private double calculateRoundedProfitRate(double profitRate) {
+        return Math.round(profitRate * ROUNDING_PRECISION) / ROUNDING_PRECISION ;
+    }
 }

@@ -10,4 +10,5 @@ public class LottoConstants {
     public static final int SECOND_OR_THIRD_MATCHING_COUNT = 5;
     public static final int PERCENTAGE = 100;
     public static final int MIN_MATCHING_COUNT = 3;
+    public static final double ROUNDING_PRECISION = 10.0;
 }

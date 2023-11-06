@@ -1,6 +1,6 @@
 package lotto.model.converter;
 
-import static lotto.util.ExceptionMessage.INVALID_LONG_TYPE;
+import static lotto.util.ExceptionMessage.INVALID_TYPE;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
@@ -34,7 +34,7 @@ class LongConverterTest {
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> longConverter.toType(input))
-                .withMessage(INVALID_LONG_TYPE.getMessage());
+                .withMessage(INVALID_TYPE.getMessage());
     }
 
     @ParameterizedTest
@@ -45,6 +45,6 @@ class LongConverterTest {
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> longConverter.toType(input))
-                .withMessage(INVALID_LONG_TYPE.getMessage());
+                .withMessage(INVALID_TYPE.getMessage());
     }
 }

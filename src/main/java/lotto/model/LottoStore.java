@@ -7,8 +7,8 @@ public class LottoStore {
     private int lottoCount;
     private Lottos lottos = new Lottos();
 
-    public LottoStore(int money) {
-        this.lottoCount = money / 1000;
+    public LottoStore(int lottoCount) {
+        this.lottoCount = lottoCount;
     }
 
     public Lottos buyLotto() {

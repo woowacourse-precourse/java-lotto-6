@@ -43,6 +43,8 @@ public class Game {
         PAST_BONUS_NUMBER = bonusNumberInput(); //보너스 번호 입력
         BONUS_NUMBER = changeBonusNumber(PAST_BONUS_NUMBER);    //보너스 번호 변환
 
+        outputView.winningStatistics();
+
     }
 
     public int purchaseAmountInput(){

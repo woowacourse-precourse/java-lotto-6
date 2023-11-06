@@ -3,9 +3,9 @@ package lotto.util;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.model.Rank;
+import lotto.model.RankResult;
 
 public class LottoUtil {
     private static final String MATCH_COUNT_FORMAT = "%d개 일치 (%s원) - %d개\n";
@@ -28,10 +28,10 @@ public class LottoUtil {
                 .collect(Collectors.joining(", ")) + "]";
     }
 
-    public static String convertResultToDisplayFormat(Map<Rank, Integer> result) {
+    public static String convertResultToDisplayFormat(RankResult result) {
         StringBuilder sb = new StringBuilder();
         for (Rank rank : Rank.values()) {
-            int count = result.getOrDefault(rank, 0);
+            int count = result.getCountByRank(rank);
             if (rank.equals(Rank.NO_RANK)) {
                 continue;
             }

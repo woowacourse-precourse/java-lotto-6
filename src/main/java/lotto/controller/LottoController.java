@@ -1,28 +1,26 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.model.BonusNumber;
 import lotto.model.Calculator;
 import lotto.model.Lotto;
 import lotto.model.PurchaseAmount;
-import lotto.model.Rank;
+import lotto.model.RankResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private Lotto winnerLotto;
     private List<Lotto> userLottos;
-    private Map<Rank, Integer> result;
+    private RankResult rankResult;
     private Calculator calculator;
     private PurchaseAmount purchaseAmount;
     private BonusNumber bonusNumber;
 
     public LottoController() {
         this.userLottos = new ArrayList<>();
-        this.result = new HashMap<>();
+        this.rankResult = new RankResult();
     }
 
     public void run() {
@@ -81,12 +79,12 @@ public class LottoController {
 
     private void generateResult() {
         calculator = new Calculator(winnerLotto, userLottos, bonusNumber.getBonusNumber());
-        result = calculator.calculateResult();
+        rankResult.add(calculator.countRank());
     }
 
     private void displayResult() {
-        float rateOfReturn = calculator.calculateRateOfReturn(result);
-        OutputView.displayResult(result, rateOfReturn);
+        float rateOfReturn = calculator.calculateRateOfReturn(rankResult);
+        OutputView.displayResult(rankResult, rateOfReturn);
     }
 
 }

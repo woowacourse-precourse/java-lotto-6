@@ -1,9 +1,8 @@
 package lotto.view;
 
 import java.util.List;
-import java.util.Map;
 import lotto.model.Lotto;
-import lotto.model.Rank;
+import lotto.model.RankResult;
 import lotto.util.LottoUtil;
 
 public class OutputView {
@@ -19,8 +18,8 @@ public class OutputView {
         });
     }
 
-    public static void displayResult(Map<Rank, Integer> result, float rateOfReturn) {
-        System.out.print(RESULT_HEADER + LottoUtil.convertResultToDisplayFormat(result));
+    public static void displayResult(RankResult rankResult, float rateOfReturn) {
+        System.out.print(RESULT_HEADER + LottoUtil.convertResultToDisplayFormat(rankResult));
         System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 }

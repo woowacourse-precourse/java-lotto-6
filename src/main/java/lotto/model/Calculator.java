@@ -20,19 +20,19 @@ public class Calculator {
         this.bonusNumber = bonusNumber;
     }
 
-    public Map<Rank, Integer> calculateResult() {
-        Map<Rank, Integer> calculateResult = new HashMap<>();
+    public Map<Rank, Integer> countRank() {
+        Map<Rank, Integer> countResult = new HashMap<>();
         for (Lotto userLotto : userLottos) {
             Rank rank = Rank.decideRank(winnerLotto.countMatchingNumber(userLotto), userLotto.contains(bonusNumber));
-            calculateResult.put(rank, calculateResult.getOrDefault(rank, NO_COUNT) + COUNT_ONE);
+            countResult.put(rank, countResult.getOrDefault(rank, NO_COUNT) + COUNT_ONE);
         }
-        return calculateResult;
+        return countResult;
     }
 
-    public float calculateRateOfReturn(Map<Rank, Integer> result) {
+    public float calculateRateOfReturn(RankResult rankResult) {
         long totalPrize = 0;
         for (Rank rank : Rank.values()) {
-            totalPrize += result.getOrDefault(rank, 0) * rank.getPrize();
+            totalPrize += rankResult.getCountByRank(rank) * rank.getPrize();
         }
         return (float) totalPrize / userLottos.size() / Constants.LOTTO_PRICE * PERCENTAGE;
     }

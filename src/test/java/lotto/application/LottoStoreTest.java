@@ -2,14 +2,18 @@ package lotto.application;
 
 import static lotto.enums.LottoConfig.LOTTO_PRICE;
 import static lotto.fixture.LottoFixture.lottoFixture;
+import static lotto.fixture.LottoFixture.lottoNumberFixture;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAmount;
+import lotto.domain.LottoNumber;
+import lotto.dto.WinningLotto;
 import org.junit.jupiter.api.Test;
 
 class LottoStoreTest {
@@ -32,16 +36,20 @@ class LottoStoreTest {
     }
 
     @Test
-    void 당첨_로또를_발행한다() {
+    void 당첨_로또와_보너스_번호를_발행한다() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         Lotto lottoFixture = lottoFixture(numbers);
         doReturn(lottoFixture).when(lottoMachine).createLotto(any());
+        int bonusNumber = 7;
+        LottoNumber bonusFixture = lottoNumberFixture(bonusNumber);
+        doReturn(bonusFixture).when(lottoMachine).createLottoNumber(anyInt());
 
         // when
-        Lotto lotto = lottoStore.issueWinningLotto(numbers);
+        WinningLotto winningLotto = lottoStore.issueWinningLotto(numbers, bonusNumber);
 
         // then
-        assertThat(lotto).isEqualTo(lottoFixture);
+        assertThat(winningLotto.lotto()).isEqualTo(lottoFixture);
+        assertThat(winningLotto.bonus()).isEqualTo(bonusFixture);
     }
 }

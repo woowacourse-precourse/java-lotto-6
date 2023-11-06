@@ -14,28 +14,28 @@ import lotto.dto.ResultResponse;
 public class Prize {
     private final Map<Integer, Integer> prizeResult;
 
-    private Prize(final List<Integer> answerNumbers, final List<List<Integer>> allLotto, final int bonusNumber) {
-        this.prizeResult = createPrize(answerNumbers, allLotto, bonusNumber);
+    private Prize(final List<List<Integer>> allLotto, final List<Integer> answerNumbers, final int bonusNumber) {
+        this.prizeResult = createPrize(allLotto, answerNumbers, bonusNumber);
     }
 
-    public static Prize create(List<Integer> answerNumbers, List<List<Integer>> allLotto, int bonusNumber) {
-        return new Prize(answerNumbers, allLotto, bonusNumber);
+    public static Prize create(final List<List<Integer>> allLotto, final List<Integer> answerNumbers, int bonusNumber) {
+        return new Prize(allLotto, answerNumbers, bonusNumber);
     }
 
 
-    public Map<Integer, Integer> createPrize(List<Integer> answerNumbers, List<List<Integer>> allLotto,
-                                            int bonusNumber) {
+    public Map<Integer, Integer> createPrize(final List<List<Integer>> allLotto, List<Integer> answerNumbers,
+                                             final int bonusNumber) {
         Map<Integer, Integer> result = new LinkedHashMap<>();
         initMap(result);
         for (List<Integer> lottoNumbers : allLotto) {
-            int matchingNumbers = countMatchingNumbers(answerNumbers, lottoNumbers);
+            int matchingNumbers = countMatchingNumbers(lottoNumbers, answerNumbers);
             boolean hasBonusNumber = hasBonusNumber(lottoNumbers, bonusNumber);
             determinePrize(result, matchingNumbers, hasBonusNumber);
         }
         return result;
     }
 
-    private void initMap(Map<Integer, Integer> result) {
+    private void initMap(final Map<Integer, Integer> result) {
         result.put(THREE.getNumberOfMatches(), 0);
         result.put(FOUR.getNumberOfMatches(), 0);
         result.put(FIVE.getNumberOfMatches(), 0);
@@ -43,7 +43,7 @@ public class Prize {
         result.put(SIX.getNumberOfMatches(), 0);
     }
 
-    private int countMatchingNumbers(List<Integer> answerNumbers, List<Integer> lottoNumbers) {
+    private int countMatchingNumbers(final List<Integer> lottoNumbers, final List<Integer> answerNumbers) {
         return (int) lottoNumbers.stream().filter(answerNumbers::contains).count();
     }
 

@@ -28,7 +28,7 @@ class PrizeTest {
         int bonusNumber = 9;
 
         //when
-        Prize prize = Prize.create(answerNumbers, allLotto, bonusNumber);
+        Prize prize = Prize.create(allLotto, answerNumbers, bonusNumber);
         ResultResponse resultResponse = prize.generateResultResponse();
         Map<Integer, Integer> prizeResult = resultResponse.getResponse();
 

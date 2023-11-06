@@ -1,20 +1,46 @@
 package service;
 
+import static utils.PrintUtils.errorPrint;
+import static utils.PrintUtils.print;
+import static utils.PrintUtils.printf;
+
 import camp.nextstep.edu.missionutils.Console;
-import constants.ErrorCodeConstant;
 import constants.LottoGameMessage;
+import domain.Lotto;
+import domain.LottoGame;
 import domain.UserLotto;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class LottoGameService {
     private UserLotto userLotto;
+    private LottoGame lottoGame = new LottoGame();
 
-    public void purchasedLotto(){
+    public void runLottoGame(){
         print(LottoGameMessage.PURCHASE_AMOUNT.toString());
+        purchaseLotto();
 
+        printf(LottoGameMessage.PURCHASED_COUNT.toString(), userLotto.getLottoCount());
+        List<Lotto> lottoList = getLottoList(userLotto.getLottoCount());
+        for(Lotto lotto : lottoList){
+            print(lotto.toString());
+        }
+    }
+    public List<Lotto> getLottoList(int lottoCount){
+        List<Lotto> lottoList = new ArrayList<>();
+        IntStream.range(0, lottoCount)
+                .forEach(i -> {
+                    List<Integer> lottoNumbers = lottoGame.createLottoNumbers();
+                    lottoList.add(new Lotto(lottoNumbers));
+                });
+        return lottoList;
+    }
+
+    public void purchaseLotto(){
         boolean isAmount = false;
         while(!isAmount){
-            String purchasedAmount = readInput();
-           isAmount = isGetUserLotto(purchasedAmount);
+            isAmount = isGetUserLotto(readInput());
         }
     }
 
@@ -28,12 +54,6 @@ public class LottoGameService {
         return true;
     }
 
-    private void print(String message){
-        System.out.println(message);
-    }
-    private void errorPrint(String message){
-        System.out.println(ErrorCodeConstant.DEFAULT_ERROR + message);
-    }
     private String readInput(){
         return Console.readLine();
     }

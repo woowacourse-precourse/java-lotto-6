@@ -5,6 +5,7 @@ import validators.AmountValidator;
 public class UserLotto {
 
     private int amount;
+    private int lottoCount;
 
     private Lotto lottoNumber;
 
@@ -12,8 +13,13 @@ public class UserLotto {
 
     public UserLotto (String purchasedAmount) throws IllegalArgumentException{
         if(AmountValidator.isVerifyAmount(purchasedAmount)) {
-            this.amount = Integer.parseInt(purchasedAmount);
+            int amount = Integer.parseInt(purchasedAmount);
+            this.amount = amount;
+            this.lottoCount = amount/1000;
         }
     }
 
+    public int getLottoCount() {
+        return lottoCount;
+    }
 }

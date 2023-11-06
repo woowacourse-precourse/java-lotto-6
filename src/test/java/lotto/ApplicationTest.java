@@ -61,6 +61,20 @@ class ApplicationTest extends NsTest {
         Assertions.assertEquals(123, money_for_lotto.realMoney(test));
     }
 
+    @Test
+    void 숫자가_아닌_초기입력예외(){
+        String test = "숫자가 아님";
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> money_for_lotto.moneyIsNumber(test));
+    }
+
+    @Test
+    void 공백_초기입력예외(){
+        String test = " ";
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> money_for_lotto.moneyIsNumber(test));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

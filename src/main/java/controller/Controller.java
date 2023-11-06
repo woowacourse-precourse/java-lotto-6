@@ -15,7 +15,8 @@ public class Controller {
         String lottoNumbers = InputView.inputWinningNumbers();
         String[] separatedWinningNumbers = Utils.splitInputByComma(lottoNumbers);
         List<Integer> winningNumbers = Utils.convertToIntegerList(separatedWinningNumbers);
-        new WinningNumbers(winningNumbers);
+        int bonusNumber = InputView.inputBonusNumber();
+        new WinningNumbers(winningNumbers, bonusNumber);
     }
 
     private void setupLottoMachine() {

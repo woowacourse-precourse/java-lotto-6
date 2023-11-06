@@ -25,7 +25,7 @@ public class WinningLotto {
             stringInputValidate(input);
             inputNumbers = parseNumbers(input);
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.err.println(illegalArgumentException.getMessage());
+            System.out.println(illegalArgumentException.getMessage());
             return initializeWinningNumbers();
         }
 
@@ -49,7 +49,7 @@ public class WinningLotto {
         try {
             bonusNumberValidate(input, this.winningNumbers);
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.err.println(illegalArgumentException.getMessage());
+            System.out.println(illegalArgumentException.getMessage());
             return initializeBonusNumber();
         }
 

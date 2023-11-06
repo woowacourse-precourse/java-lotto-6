@@ -18,6 +18,7 @@ public class WinLottoNums {
         if (isSame(target, lottoNumber)) {
             return true;
         }
+        
         return false;
     }
 

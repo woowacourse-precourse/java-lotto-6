@@ -123,4 +123,18 @@ class LottoGeneratorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력된 보너스 번호가 로또 번호 범위를 벗어날 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"0","46","100"})
+    void createBonusNumberByNotRange(String bonusNumber) {
+
+        // given
+        Lotto winningLotto = LottoGenerator.createWinningLotto("1,2,3,4,5,6");
+
+        // when, then
+        assertThatThrownBy(() -> LottoGenerator.createBonusNumber(winningLotto, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }

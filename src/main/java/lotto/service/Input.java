@@ -18,7 +18,7 @@ public class Input {
                 validateNumber(input);
                 return Integer.parseInt(input);
             }catch (IllegalArgumentException e){
-                continue;
+                System.out.print(e.getMessage());
             }
         }
     }
@@ -32,7 +32,7 @@ public class Input {
                 validateNumber(input);
                 return Integer.parseInt(input);
             }catch (IllegalArgumentException e){
-                continue;
+                System.out.print(e.getMessage());
             }
         }
     }
@@ -47,7 +47,7 @@ public class Input {
                 validateNumber(inputs);
                 return Arrays.stream(inputs).map(Integer::parseInt).toList();
             } catch (IllegalArgumentException e) {
-                continue;
+                System.out.print(e.getMessage());
             }
         }
     }
@@ -56,7 +56,6 @@ public class Input {
         try{
             Integer.parseInt(input);
         }catch (Exception e){
-            System.out.println(INVALID_NUMBER_FORMAT.getMessage());
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
         }
     }
@@ -66,14 +65,12 @@ public class Input {
                 Integer.parseInt(input);
             }
         }catch (Exception e){
-            System.out.println(INVALID_NUMBER_FORMAT.getMessage());
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
         }
     }
     private static void validateTrim(String input) {
         String trimInput = input.replaceAll(" ","");
         if(input.length() != trimInput.length()){
-            System.out.println(CONTAIN_SPACE.getMessage());
             throw new IllegalArgumentException(CONTAIN_SPACE.getMessage());
         }
     }
@@ -81,7 +78,6 @@ public class Input {
     private static void validateTrim(String[] input) {
         for (String s : input) {
             if(s.isBlank()){
-                System.out.println(CONTAIN_SPACE.getMessage());
                 throw new IllegalArgumentException(CONTAIN_SPACE.getMessage());
             }
         }

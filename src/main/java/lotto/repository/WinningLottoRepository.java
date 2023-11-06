@@ -11,7 +11,7 @@ public class WinningLottoRepository {
 
     private WinningLottoRepository(Lotto lotto, BonusNumber bonusNumber) {
         this.lotto = lotto;
-        validateBonusNumInLotto(lotto,bonusNumber);
+        //validateBonusNumInLotto(lotto,bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -19,12 +19,12 @@ public class WinningLottoRepository {
         return new WinningLottoRepository(lotto,bonusNumber);
     }
 
-    private void validateBonusNumInLotto(Lotto lotto, BonusNumber bonusNumber) {
-        int bonusNum = bonusNumber.getNumber();
-        if(lotto.has(bonusNum)){
-            throw new IllegalArgumentException(DUPLICATE_NUM.getMessage());
-        }
-    }
+//    private void validateBonusNumInLotto(Lotto lotto, BonusNumber bonusNumber) {
+//        int bonusNum = bonusNumber.getNumber();
+//        if(lotto.has(bonusNum)){
+//            throw new IllegalArgumentException(DUPLICATE_NUM.getMessage());
+//        }
+//    }
 
     public int countMatchingNumber(Lotto buyLotto) {
         return lotto.matching(buyLotto);

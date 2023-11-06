@@ -1,7 +1,7 @@
 package lotto.settings;
 
 public enum Announcement {
-    REQUEST_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
+    REQUEST_PURCHASE_AMOUNT("\n구입금액을 입력해 주세요."),
     PURCHASE_NUMBER("\n%d개를 구매했습니다."),
     REQUEST_LOTTO_WINNING_NUMBERS("\n\n당첨 번호를 입력해 주세요."),
     REQUEST_LOTTO_BONUS_NUMBERS("\n보너스 번호를 입력해 주세요."),

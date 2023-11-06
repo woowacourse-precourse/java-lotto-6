@@ -23,7 +23,7 @@ public class InputView {
     }
 
     public static List<Integer> inputWinNumber() {
-        String[] nums = Console.readLine().split(",");
+        String[] nums = Console.readLine().replace(" ", "").split(",");
         List<Integer> winNumber = Arrays.stream(nums).map(number -> Integer.parseInt(number)).collect(Collectors.toList());
 
         return winNumber;

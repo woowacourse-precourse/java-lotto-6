@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class LottoService {
 
@@ -22,7 +21,8 @@ public class LottoService {
     }
 
     private static List<Integer> generateSixNumbers(){
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> sixNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new ArrayList<>(sixNumbers);
     }
 
     private static Lotto generateLotto(){

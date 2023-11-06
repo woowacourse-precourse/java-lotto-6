@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final String IS_NOT_SIX_LENGTH_ERROR_MESSAGE = "[ERROR] 당첨 숫자는 6자리여야 합니다.";
     private static final String IS_NOT_OVERLAP_SIX_VALIDATOR_ERROR_MESSAGE = "[ERROR] 6개의 숫자에 중복된 로또 번호가 존재합니다.";
     private final List<Integer> numbers;
 
@@ -35,7 +36,7 @@ public class Lotto {
 
     private void validateNumbersLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(IS_NOT_SIX_LENGTH_ERROR_MESSAGE);
         }
     }
 

@@ -72,10 +72,12 @@ public class Lotto {
     }
 
     public boolean contains(Ball bonusNumber) {
-        return numbers.contains(bonusNumber.get());
+        return getToIntegerList().contains(bonusNumber.get());
     }
 
-    public List<Ball> get() {
-        return numbers;
+    public List<Integer> getToIntegerList() {
+        return numbers.stream()
+                .map(Ball::get)
+                .toList();
     }
 }

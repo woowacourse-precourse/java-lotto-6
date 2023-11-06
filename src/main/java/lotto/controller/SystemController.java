@@ -1,9 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.Ball;
-import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.domain.PurchasedLottos;
+import lotto.domain.WinningNumbersWithBonus;
 import lotto.domain.WinningStats;
 import lotto.view.OutputView;
 
@@ -23,7 +22,7 @@ public class SystemController {
     public WinningStats getWinningStats() {
         PurchasedLottos purchasedLottos = PurchasedLottos.from(purchasedAmount);
         OutputView.printPurchasedLottos(purchasedLottos);
-        return WinningStats.of(purchasedLottos, Lotto.createWinningNumbers(), Ball.createManual());
+        return WinningStats.of(purchasedLottos, WinningNumbersWithBonus.createManual());
     }
 
     public void showResult() {

@@ -8,31 +8,29 @@ import lotto.system.SystemConstant;
 public class WinningStats {
     private final List<WinningStat> winningCountByRank;
 
-    private final List<WinningStat> temporalWinngCount = IntStream.range(SystemConstant.WINNING_STATS_START.getValue(),
-                    SystemConstant.WINNING_STATS_SIZE.getValue())
-            .mapToObj(WinningStat::create)
-            .toList();
-    // TODO 2023-11-06 7:33 하나로 줄이던가 final 떼기
+    private WinningStats(PurchasedLottos purchasedLottos, WinningNumbersWithBonus winningNumbersWithBonus) {
+        winningCountByRank = IntStream.range(SystemConstant.WINNING_STATS_START.getValue(),
+                        SystemConstant.WINNING_STATS_SIZE.getValue())
+                .mapToObj(WinningStat::create)
+                .toList();
 
-    private WinningStats(PurchasedLottos purchasedLottos, Lotto winningNumbers, Ball bonusNumber) {
-        countWinningCountByRank(purchasedLottos, winningNumbers, bonusNumber);
-        winningCountByRank = temporalWinngCount;
-        // TODO 2023-11-06 04:04 파라미터 개수 줄이기 (winningNumbers와 bonusNumber를 합친 객체를 만들어서 받는다.)
+        countWinningCountByRank(purchasedLottos, winningNumbersWithBonus);
     }
 
-    public static WinningStats of(PurchasedLottos purchasedLottos, Lotto winningNumbers, Ball bonusNumber) {
-        return new WinningStats(purchasedLottos, winningNumbers, bonusNumber);
+    public static WinningStats of(PurchasedLottos purchasedLottos, WinningNumbersWithBonus winningNumbersWithBonus) {
+        return new WinningStats(purchasedLottos, winningNumbersWithBonus);
     }
 
     private void countWinningCountByRank(PurchasedLottos purchasedLottos,
-                                         Lotto winningNumbers, Ball bonusNumber) {
+                                         WinningNumbersWithBonus winningNumbersWithBonus) {
         purchasedLottos.stream()
-                .forEach(i -> checkRank(i.countMatchingNumbers(winningNumbers), i.contains(bonusNumber)));
+                .map(i -> MatchResult.of(i, winningNumbersWithBonus))
+                .forEach(this::checkRank);
     }
 
-    private void checkRank(int matchingNumbers, boolean hasBonusNumber) {
-        temporalWinngCount.stream()
-                .filter(i -> i.isThis(matchingNumbers, hasBonusNumber))
+    private void checkRank(MatchResult matchResult) {
+        winningCountByRank.stream()
+                .filter(i -> i.isThis(matchResult))
                 .findFirst()
                 .ifPresent(WinningStat::adder);
     }

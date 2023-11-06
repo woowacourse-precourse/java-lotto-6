@@ -1,6 +1,6 @@
 package lotto.util;
 
-import static lotto.util.ExceptionMessage.INVALID_INPUT_NUMERIC;
+import static lotto.domain.exception.InputException.INVALID_INPUT_NUMERIC;
 
 import java.util.regex.Pattern;
 

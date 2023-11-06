@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.util.Constants.LOTTO_ONE_GAME_PRICE;
-import static lotto.util.ExceptionMessage.INVALID_UNIT_OF_BUDGET;
+import static lotto.domain.exception.BudgetException.INVALID_UNIT_OF_BUDGET;
 
 public class Budget {
     private final int budget;

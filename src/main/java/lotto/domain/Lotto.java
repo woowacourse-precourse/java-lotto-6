@@ -1,9 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.exception.LottoException.DUPLICATED_LOTTO_NUMBER;
 import static lotto.util.Constants.LOTTO_NUMBERS_SIZE;
-import static lotto.util.ExceptionMessage.INVALID_LOTTO_SIZE;
+import static lotto.domain.exception.LottoException.INVALID_LOTTO_SIZE;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +21,6 @@ public class Lotto {
         validateSize(numbers);
         validateRange(numbers);
         validateDuplication(numbers);
-        Collections.sort(numbers);
     }
 
     private static void validateSize(List<Integer> numbers) {
@@ -36,7 +35,7 @@ public class Lotto {
 
     private static void validateDuplication(List<Integer> numbers) {
         if (hasDuplicateNumbers(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }
 
@@ -48,5 +47,13 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    public List<Integer> getNumbers() {
+        return this.numbers;
     }
 }

@@ -33,10 +33,6 @@ public class Lotto {
         }
     }
 
-    public List<Integer> sortLottoByASCE(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
-    }
 
 }
 

@@ -3,11 +3,16 @@ package lotto.service;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
+import lotto.utility.PrizeUnit;
 
 public class RateCalculator {
     // 당첨금 계산기
     public static int calculateWinnings(List<Integer> resultList) {
-        return 5000 * resultList.get(0) + 50000 * resultList.get(1) + 1500000 * resultList.get(2) + 30000000 * resultList.get(3) + 2000000000 * resultList.get(4);
+        int totalWinnings = 0;
+        for (int i = 0; i < resultList.size(); i++) {
+            totalWinnings += resultList.get(i) * PrizeUnit.values()[i].getPrizeUnitAmount();
+        }
+        return totalWinnings;
     }
 
     // 수익률 계산기

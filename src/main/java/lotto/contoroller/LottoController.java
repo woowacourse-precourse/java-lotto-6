@@ -35,7 +35,7 @@ public class LottoController {
     }
 
     // 구입 금액 입력
-    private int getInputPurchase() {
+    public int getInputPurchase() {
         while (true) {
             try {
                 String input = InputValue.inputPurchase();
@@ -49,7 +49,7 @@ public class LottoController {
     }
 
     // 당첨 번호 입력
-    private List<Integer> getInputLotto() {
+    public List<Integer> getInputLotto() {
         while(true) {
             try {
                 String input = InputValue.inputWinningNumbers();
@@ -64,7 +64,7 @@ public class LottoController {
     }
 
     // 보너스 번호 입력
-    private int getInputBonus() {
+    public int getInputBonus() {
         while (true) {
             try {
                 String input = InputValue.inputBonusNumber();

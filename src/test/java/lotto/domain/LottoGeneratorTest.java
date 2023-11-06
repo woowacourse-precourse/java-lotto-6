@@ -66,6 +66,13 @@ class LottoGeneratorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력된 당첨 번호가 중복될 때, 예외 처리")
+    @Test
+    void createWinningLottoByDuplication() {
+
+        assertThatThrownBy(() -> LottoGenerator.createWinningLotto("1,1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("보너스 번호를 입력 받아 보너스 번호 생성")
     @Test

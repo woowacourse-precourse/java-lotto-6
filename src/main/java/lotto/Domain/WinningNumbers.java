@@ -26,11 +26,11 @@ public class WinningNumbers {
     }
 
     private void validateNumber(String bonusNum) {
-       Pattern pattern = Pattern.compile("\\d+");
-       Matcher matcher = pattern.matcher(bonusNum);
-       if (!matcher.matches()) {
-           throw new IllegalArgumentException(NOT_NUMBER_MESSAGE);
-       }
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(bonusNum);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException(NOT_NUMBER_MESSAGE);
+        }
     }
 
     private void validateNumberRange(int bonusNumber) throws IllegalArgumentException {
@@ -51,7 +51,7 @@ public class WinningNumbers {
 
         for (Lotto lotto : lottos) {
             int sameNumbers = winnigNumbers.countSameNumbers(lotto);
-            boolean isBonus = isBonusNumber(sameNumbers,lotto);
+            boolean isBonus = isBonusNumber(sameNumbers, lotto);
             Rank rank = Rank.getRank(sameNumbers, isBonus);
             rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
         }

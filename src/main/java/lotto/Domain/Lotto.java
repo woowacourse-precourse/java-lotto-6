@@ -40,7 +40,7 @@ public class Lotto {
     }
 
     public int countSameNumbers(Lotto lotto) {
-        return (int)lotto.numbers.stream()
+        return (int) lotto.numbers.stream()
             .filter(numbers::contains)
             .count();
     }

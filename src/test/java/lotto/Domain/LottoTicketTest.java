@@ -28,7 +28,6 @@ public class LottoTicketTest {
         assertEquals(3, lottosNumbers.size());
 
         for (String lottoNumbers : lottosNumbers) {
-            System.out.println(lottoNumbers);
             assertTrue(lottoNumbers.matches("\\[\\d+, \\d+, \\d+, \\d+, \\d+, \\d+\\]"));
         }
     }

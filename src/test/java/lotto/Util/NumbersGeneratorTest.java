@@ -45,8 +45,8 @@ public class NumbersGeneratorTest {
     }
 
     private boolean checkAcendingOrder(List<Integer> numbers) {
-        return IntStream.range(1,numbers.size())
-                .allMatch(i -> numbers.get(i - 1) <= numbers.get(i));
+        return IntStream.range(1, numbers.size())
+            .allMatch(i -> numbers.get(i - 1) <= numbers.get(i));
     }
 
     private boolean checkUnique(List<Integer> numbers) {

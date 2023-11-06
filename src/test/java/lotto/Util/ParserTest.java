@@ -38,14 +38,14 @@ public class ParserTest {
         String duplicatedInput = "1,1,2,3,4,5";
 
         assertThatThrownBy(() -> Parser.convertStringToNumbers(duplicatedInput)).isInstanceOf(
-        IllegalArgumentException.class).hasMessage(Parser.DUPLICATE_MESSAGE);
+            IllegalArgumentException.class).hasMessage(Parser.DUPLICATE_MESSAGE);
     }
 
     @Test
     @DisplayName("입력된 숫자를 리스트로 반환하는지 테스트")
     public void convertTest() {
         String input = "1,12,23,34,40,45";
-        List<Integer> expectedResult = List.of(1,12,23,34,40,45);
+        List<Integer> expectedResult = List.of(1, 12, 23, 34, 40, 45);
 
         assertThat(Parser.convertStringToNumbers(input)).isEqualTo(expectedResult);
     }

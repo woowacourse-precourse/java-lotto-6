@@ -37,14 +37,14 @@ public class WinningNumbersTest {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), "7");
         List<Lotto> lottoTicket = buyLottoTicket();
 
-        Map<Rank,Integer> rankCount = winningNumbers.getRankCount(lottoTicket);
+        Map<Rank, Integer> rankCount = winningNumbers.getRankCount(lottoTicket);
 
-        assertEquals(rankCount.get(Rank.FIRST),1);
-        assertEquals(rankCount.get(Rank.SECOND),1);
-        assertEquals(rankCount.get(Rank.THIRD),1);
-        assertEquals(rankCount.get(Rank.FOURTH),1);
-        assertEquals(rankCount.get(Rank.FIFTH),1);
-        assertEquals(rankCount.get(Rank.LOSE),3);
+        assertEquals(rankCount.get(Rank.FIRST), 1);
+        assertEquals(rankCount.get(Rank.SECOND), 1);
+        assertEquals(rankCount.get(Rank.THIRD), 1);
+        assertEquals(rankCount.get(Rank.FOURTH), 1);
+        assertEquals(rankCount.get(Rank.FIFTH), 1);
+        assertEquals(rankCount.get(Rank.LOSE), 3);
     }
 
     private static List<Lotto> buyLottoTicket() {

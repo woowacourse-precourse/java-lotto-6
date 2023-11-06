@@ -15,7 +15,7 @@ public class BudgetTest {
     @Test
     @DisplayName("금액 객체생성 예외 테스트")
     public void exceptionTest() {
-        String[] invalidInputs = {"900","1950", "문자열1", "", null};
+        String[] invalidInputs = {"900", "1950", "문자열1", "", null};
 
         for (String invalidInput : invalidInputs) {
             assertThatThrownBy(() -> new Budget(invalidInput)).isInstanceOf(
@@ -37,7 +37,7 @@ public class BudgetTest {
     @DisplayName("수익률 계산 테스트")
     public void calculateReturnRateTest() {
         Budget budget = new Budget("9000");
-        Map<Rank,Integer> rankCount = new HashMap<>();
+        Map<Rank, Integer> rankCount = new HashMap<>();
         rankCount.put(Rank.FIFTH, 1);
         double expectedReturnRate = 55.6;
 

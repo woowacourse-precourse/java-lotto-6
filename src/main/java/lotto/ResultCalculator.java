@@ -13,22 +13,23 @@ public class ResultCalculator {
         this.result = result;
     }
     private PrizeGrade compare(Lotto lotto, Lotto winningLotto, Bonus bonus) {
-        int matches = countMatchingNumbers(lotto, winningLotto);
+        int matchCount = countMatchingNumbers(lotto, winningLotto);
         boolean bonusMatch = matchWithBonus(lotto, bonus);
 
-        if (matches == PrizeGrade.FIRST.getMatchCount()) {
+        int number = LOTTO_SIZE;
+        if (matchCount == number--) {
             return PrizeGrade.FIRST;
         }
-        if (matches == PrizeGrade.SECOND.getMatchCount() && bonusMatch) {
+        if (matchCount == number-- && bonusMatch) {
             return PrizeGrade.SECOND;
         }
-        if (matches == PrizeGrade.THIRD.getMatchCount()) {
+        if (matchCount == number) {
             return PrizeGrade.THIRD;
         }
-        if (matches == PrizeGrade.FOURTH.getMatchCount()) {
+        if (matchCount == number--) {
             return PrizeGrade.FOURTH;
         }
-        if (matches == PrizeGrade.FIFTH.getMatchCount()) {
+        if (matchCount == number--) {
             return PrizeGrade.FIFTH;
         }
         return PrizeGrade.NO_PRIZE;

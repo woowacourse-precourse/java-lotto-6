@@ -11,10 +11,10 @@ public class BonusNumberGenerator {
         int bonusNumber = drawBonusNumber();
 
         try {
-            winningNumber.validateAlreadyHaveNumber(bonusNumber);
-             BonusNumber validateBonusNumber = new BonusNumber(bonusNumber);
+            winningNumber.validateBonusNumber(bonusNumber);
+             BonusNumber validatedBonusNumber = new BonusNumber(bonusNumber);
 
-            return validateBonusNumber;
+            return validatedBonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 

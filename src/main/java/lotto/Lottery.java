@@ -8,7 +8,7 @@ public class Lottery {
     private final int[] Lottery_result;
     private final float returnRate;
 
-    public Lottery(Lotto winLotto, int bonus, UserLotto user, int money) {
+    public Lottery(UserLotto user, int money, Lotto winLotto, int bonus) {
         this.Lottery_result = lottery(winLotto, bonus, user);
         this.returnRate = calRerutnRate(money);
     }

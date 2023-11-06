@@ -10,10 +10,9 @@ public class Application {
 
         money = input.Money();
         user = new UserLotto(money / 1000);
-        user.showUser();
         winLotto = input.WinLotto();
         bonus = input.Bonus(winLotto);
-        LT = new Lottery(winLotto, bonus, user, money);
+        LT = new Lottery(user, money, winLotto, bonus);
         LT.showResult();
     }
 }

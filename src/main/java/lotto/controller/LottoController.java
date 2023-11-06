@@ -28,5 +28,6 @@ public class LottoController {
 
         winningResult = new WinningResult(lotto, bonus, playerLottos);
 
+        outputView.printWinningResult(winningResult);
     }
 }

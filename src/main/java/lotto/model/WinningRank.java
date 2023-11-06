@@ -35,4 +35,7 @@ public enum WinningRank {
         return reward;
     }
 
+    public String getMessage() {
+        return message;
+    }
 }

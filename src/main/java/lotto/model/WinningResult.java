@@ -46,4 +46,8 @@ public class WinningResult {
     public int getTotalRevenue() {
         return totalRevenue;
     }
+
+    public Map<WinningRank, Integer> getWinningResult() {
+        return winningResult;
+    }
 }

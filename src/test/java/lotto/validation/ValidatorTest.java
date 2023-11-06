@@ -2,8 +2,11 @@ package lotto.validation;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,6 +35,13 @@ class ValidatorTest {
     @ParameterizedTest
     void numberRangeExceptionTest(int value) {
         Assertions.assertThatThrownBy(() -> validator.checkRange(value))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 로또 배열이 총 6개가 아니라면 예외를 발생시킨다.")
+    @Test
+    void numberRangeExceptionTest() {
+        Assertions.assertThatThrownBy(() -> validator.validNumbers(Arrays.asList("1", "2", "3", "4", "5")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

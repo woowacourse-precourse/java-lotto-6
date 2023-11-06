@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,13 +15,17 @@ public class LottoController {
     private int purchaseQuantity;
     private boolean checkInitPurchaseQuantity = true;
 
+    private Lottos lottos;
+
 
     public void start() {
         while (checkInitPurchaseQuantity) {
             initPurchaseQuantity(); // 구매 수량 초기화
         }
+        System.out.println();
         outputPurchaseQuantity(); // 구매 수량 출력
         makeLottos(); // 로또 생성
+        printLotto(); // 생성한 로또 출력
     }
 
     public void initPurchaseQuantity() {
@@ -50,11 +55,16 @@ public class LottoController {
 
     public void makeLottos(){
         Lotto lotto;
+        lottos=new Lottos();
         for(int i=0; i<purchaseQuantity; i++){
             List<Integer> randomNumbers = generateRandomNumber();
             lotto=new Lotto(randomNumbers);
-            lotto.printLottoNumbers();
+            lottos.addLotto(lotto);
         }
+    }
+
+    public void printLotto(){
+        lottos.printLottosNumbers();
     }
     public List<Integer> generateRandomNumber(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 24, 6);

@@ -45,7 +45,7 @@ class LottoSystemTest extends MethodSourceTest {
         lottoSystem.generateWinningLotto(numbers);
 
         // when
-        List<Integer> winningLottoNumbers = winningLotto.numbers();
+        List<Integer> winningLottoNumbers = winningLotto.getNumbers();
 
         // then
         assertThat(winningLottoNumbers).isNotEmpty();
@@ -61,7 +61,7 @@ class LottoSystemTest extends MethodSourceTest {
         lottoSystem.inputBonusNumber(number);
 
         // when
-        int bonusNumber = winningLotto.bonusNumber();
+        int bonusNumber = winningLotto.getBonusNumber();
 
         // then
         assertThat(bonusNumber).isEqualTo(number);

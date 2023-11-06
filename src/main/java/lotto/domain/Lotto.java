@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.dto.LottoNumbers;
 import lotto.validator.LottoValidator;
 
 import java.util.List;
@@ -25,8 +24,8 @@ public class Lotto {
         LottoValidator.validateLottoNumbersRange(numbers);
     }
 
-    public LottoNumbers getNumbers() {
-        return new LottoNumbers(numbers);
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     @Override

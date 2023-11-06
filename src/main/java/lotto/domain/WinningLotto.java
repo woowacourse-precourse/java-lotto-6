@@ -7,11 +7,11 @@ public class WinningLotto {
     private Lotto lotto;
     private int bonusNumber;
 
-    public List<Integer> numbers() {
-        return lotto.getNumbers().numbers();
+    public List<Integer> getNumbers() {
+        return lotto.getNumbers();
     }
 
-    public int bonusNumber() {
+    public int getBonusNumber() {
         return bonusNumber;
     }
 

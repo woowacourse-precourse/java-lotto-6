@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Buyer;
 import lotto.domain.LottoSystem;
 import lotto.domain.WinningLotto;
+import lotto.dto.WinningResult;
 import lotto.dto.PurchasedLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,6 +18,7 @@ public class LottoController {
         buyLotto();
         generateWinningLotto();
         inputBonusNumber();
+        printWinningStatistics();
     }
 
     private void buyLotto() {
@@ -52,5 +54,9 @@ public class LottoController {
                 exception.printStackTrace(System.out);
             }
         } while (true);
+    }
+
+    private void printWinningStatistics() {
+        WinningResult winningResult = lottoSystem.getWinningResult();
     }
 }

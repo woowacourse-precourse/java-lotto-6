@@ -24,13 +24,12 @@ class LottosTest {
         expectedWinningResult.put(WinningRank.THIRD, 1);
         expectedWinningResult.put(WinningRank.FOURTH, 1);
         expectedWinningResult.put(WinningRank.FIFTH, 1);
-        WinningResult otherWinningResult = new WinningResult(expectedWinningResult);
-        
+        expectedWinningResult.put(WinningRank.EMPTY, 0);
         //when
         WinningResult winningResult = getWinningResult();
 
         // then
-        Assertions.assertThat(winningResult).isEqualTo(otherWinningResult);
+        Assertions.assertThat(winningResult.getResult()).isEqualTo(expectedWinningResult);
     }
 
     private static WinningResult getWinningResult() {

@@ -4,13 +4,10 @@ import static lotto.enums.ErrorMassage.INVALID_AMOUNT_UNIT;
 import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
 import static lotto.enums.LottoConfig.LOTTO_PRICE;
 
-public class LottoAmount {
-    private int amount;
-
-    public LottoAmount(final int amount) {
+public record LottoAmount(int amount) {
+    public LottoAmount {
         validateLottoPrice(amount);
         validateAmountUnit(amount);
-        this.amount = amount;
     }
 
     private void validateLottoPrice(final int amount) {

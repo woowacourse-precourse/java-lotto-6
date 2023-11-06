@@ -4,15 +4,13 @@ import static lotto.enums.ErrorMassage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.enums.ErrorMassage.INVALID_LOTTO_COUNT;
 import static lotto.enums.LottoConfig.LOTTO_COUNT;
 
+import java.util.Collections;
 import java.util.List;
 
-public class Lotto {
-    private final List<LottoNumber> numbers;
-
-    public Lotto(final List<LottoNumber> numbers) {
+public record Lotto(List<LottoNumber> numbers) {
+    public Lotto {
         validateSize(numbers);
         validateDuplicatedNumber(numbers);
-        this.numbers = numbers;
     }
 
     private void validateSize(final List<LottoNumber> numbers) {
@@ -28,6 +26,10 @@ public class Lotto {
         if (distinctCount != LOTTO_COUNT.getValue()) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMassage());
         }
+    }
+
+    public List<LottoNumber> numbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     public boolean contains(final LottoNumber lottoNumber) {

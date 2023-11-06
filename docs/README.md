@@ -77,13 +77,21 @@
         <td>사용자의 출력을 처리하는 view 클래스입니다.</td>
     </tr>
     <tr>
-        <td rowspan="2">utils</td>
+        <td rowspan="4">utils</td>
         <td>ErrorMessage</td>
         <td>에러 메시지를 담고있는 Enum입니다.</td>
     </tr>
     <tr>
         <td>GameMessage</td>
         <td>게임에서 사용되는 메시지들을 담고있는 Enum입니다.</td>
+    </tr>
+    <tr>
+        <td>GameNumber</td>
+        <td>게임에서 사용되는 숫자들을 담고있는 Enum입니다.</td>
+    </tr>
+    <tr>
+        <td>Match</td>
+        <td>로또 매치 상수들을 담고있는 Enum입니다.</td>
     </tr>
     <tr>
         <td colspan="2">Application</td>

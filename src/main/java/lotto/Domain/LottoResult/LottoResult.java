@@ -25,7 +25,7 @@ public class LottoResult {
         return new LottoResult();
     }
     public void IncreaseWinningCount(Integer rank) {
-        lottoResult.get(rank).IncreaseWinningCount();
+        lottoResult.get(rank).increaseWinningCount();
     }
 
     public List<Prize> findAllPrize() {

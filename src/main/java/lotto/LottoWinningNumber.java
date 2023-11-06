@@ -3,11 +3,11 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoWinningNumberCreate {
+public class LottoWinningNumber {
 
     private List<Integer> numbers;
 
-    public LottoWinningNumberCreate(List<Integer> numbers) {
+    public LottoWinningNumber(List<Integer> numbers) {
         this.numbers = new ArrayList<>();
 
         validateNumbersSize(numbers);

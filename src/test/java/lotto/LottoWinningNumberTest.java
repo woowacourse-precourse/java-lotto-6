@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class LottoWinningNumberCreateTest {
+class LottoWinningNumberTest {
 
     @Test
     public void 로또_번호로_LottoWinningNumberCreate_를_생성할_수_있다() throws Exception {
@@ -20,7 +20,7 @@ class LottoWinningNumberCreateTest {
         // when
         // then
         assertThatCode(() -> {
-            new LottoWinningNumberCreate(numbers);
+            new LottoWinningNumber(numbers);
         }).doesNotThrowAnyException();
     }
 
@@ -32,7 +32,7 @@ class LottoWinningNumberCreateTest {
         // when
         // then
         assertThatThrownBy(() -> {
-            new LottoWinningNumberCreate(numbers);
+            new LottoWinningNumber(numbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,7 +44,7 @@ class LottoWinningNumberCreateTest {
         // when
         // then
         assertThatThrownBy(() -> {
-            new LottoWinningNumberCreate(numbers);
+            new LottoWinningNumber(numbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -56,7 +56,7 @@ class LottoWinningNumberCreateTest {
         // when
         // then
         assertThatThrownBy(() -> {
-            new LottoWinningNumberCreate(numbers);
+            new LottoWinningNumber(numbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -4,14 +4,14 @@ public class LottoBonusNumber {
 
     private int bonusNumber;
 
-    public LottoBonusNumber(LottoWinningNumberCreate lottoWinningNumberCreate, int bonusNumber) {
-        validateDuplicate(lottoWinningNumberCreate, bonusNumber);
+    public LottoBonusNumber(LottoWinningNumber lottoWinningNumber, int bonusNumber) {
+        validateDuplicate(lottoWinningNumber, bonusNumber);
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateDuplicate(LottoWinningNumberCreate lottoWinningNumberCreate, int bonusNumber) {
-        if (lottoWinningNumberCreate.containsNumber(bonusNumber)) {
+    private void validateDuplicate(LottoWinningNumber lottoWinningNumber, int bonusNumber) {
+        if (lottoWinningNumber.containsNumber(bonusNumber)) {
             throw new IllegalArgumentException("당첨 번호에 존재하는 번호로 보너스 번호를 입력할 수 없습니다.");
         }
     }

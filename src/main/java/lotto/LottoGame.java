@@ -31,11 +31,11 @@ public class LottoGame {
         List<Lotto> lottoTickets = lottoPurchase.purchase(lottoGenerator);
         lottoGameView.printPurchasedTickets(lottoTickets);
 
-        LottoWinningNumberCreate lottoWinningNumberCreate = null;
+        LottoWinningNumber lottoWinningNumber = null;
         while (true) {
             try {
                 LottoWinningNumberCreateRequest lottoWinningNumberCreateRequest = lottoGameView.inputLottoWinningNumberCreateRequest();
-                lottoWinningNumberCreate = new LottoWinningNumberCreate(
+                lottoWinningNumber = new LottoWinningNumber(
                         lottoWinningNumberCreateRequest.getNumbers());
                 break;
             } catch (IllegalArgumentException e) {
@@ -47,7 +47,7 @@ public class LottoGame {
         while (true) {
             try {
                 LottoBonusNumberCreateRequest lottoBonusNumberCreateRequest = lottoGameView.inputLottoBonusNumberCreateRequest();
-                lottoBonusNumber = new LottoBonusNumber(lottoWinningNumberCreate,
+                lottoBonusNumber = new LottoBonusNumber(lottoWinningNumber,
                         lottoBonusNumberCreateRequest.getBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {

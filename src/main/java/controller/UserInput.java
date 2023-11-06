@@ -1,6 +1,7 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import model.Lotto;
 import model.Purchase;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class UserInput {
             validateNumber(number);
             prizeNumbers.add(number);
         }
+        Lotto.duplicateCheck(prizeNumbers);
         if(prizeNumbers.size() != 6){
             throw new IllegalArgumentException("[ERRPR] 로또 번호는 6개 입력해야 합니다.");
         }

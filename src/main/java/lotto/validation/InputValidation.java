@@ -46,7 +46,7 @@ public class InputValidation {
 
     public void validationLottoWinningBonusNumber(String bonusNumber, List<Integer> lottoWinningNumbers) {
         isEmptyValidation(bonusNumber);
-        isNumberRangeValidation(bonusNumber);
+        changeInteger(bonusNumber);
         checkNumberRange(bonusNumber);
         checkWinningNumbersDuplication(lottoWinningNumbers, bonusNumber);
     }

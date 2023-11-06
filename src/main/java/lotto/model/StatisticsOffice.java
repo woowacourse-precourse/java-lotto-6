@@ -25,5 +25,20 @@ public class StatisticsOffice {
         return new StatisticsOffice(new Lotto(winningLotto), new LottoNumber(bonusNumber));
     }
 
+    public Map<Rank, Integer> convertToRank(List<Lotto> lottoTicket) {
+        Map<Rank, Integer> winningStatus = new HashMap<>();
+        for (Lotto lotto : lottoTicket) {
+            recordRank(winningStatus, lotto);
+        }
+        return winningStatus;
+    }
+
+    private void recordRank(Map<Rank, Integer> winningStatus, Lotto lotto) {
+        int matchCont = winningLotto.matchCount(lotto);
+        Rank rank = Rank.calculate(matchCont, lotto.hasNumber(bonusNumber));
+        winningStatus.merge(rank, 1, Integer::sum);
+    }
+
+
 
 }

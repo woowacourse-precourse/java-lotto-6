@@ -2,11 +2,18 @@ package lotto.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class StatisticsOfficeTest {
 
@@ -27,5 +34,29 @@ class StatisticsOfficeTest {
         assertThatThrownBy(() -> StatisticsOffice.registerWinningLotto(winningLotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
+
+
+    @DisplayName("로또 번호와 당첨 번호를 비교하여 당첨 내역을 알 수 있다.")
+    @ParameterizedTest
+    @MethodSource("rankStatusData")
+    void convertToRank(List<Lotto> lottoTicket, Map<Rank, Integer> rankStatus){
+        StatisticsOffice statisticsOffice = StatisticsOffice.registerWinningLotto(List.of(1,2,3,4,5,6), 7);
+        assertThat(statisticsOffice.convertToRank(lottoTicket)).isEqualTo(rankStatus);
+    }
+
+    static Stream<Arguments> rankStatusData() {
+        return Stream.of(
+                arguments(List.of(new Lotto(List.of(1,2,3,4,5,6)),
+                        new Lotto(List.of(1,2,3,4,5,7)),
+                        new Lotto(List.of(1,2,3,4,5,13)),
+                        new Lotto(List.of(1,2,3,5,7,12)),
+                        new Lotto(List.of(1,12,17,23,28,34))),
+                        Map.of(Rank.FIRST_PLACE, 1,
+                                Rank.SECOND_PLACE, 1,
+                                Rank.THIRD_PLACE, 1,
+                                Rank.FOURTH_PLACE, 1,
+                                Rank.LAST_PLACE, 1)));
+    }
+
 
 }

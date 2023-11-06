@@ -33,7 +33,7 @@ class BonusNumberTest {
         assertThatCode(() -> bonusNumber.inputBonusNumber("7", winningNumbers)).doesNotThrowAnyException();
         assertThatThrownBy(() -> bonusNumber.inputBonusNumber(input, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 올바르지 않은 보너스 번호 입력 양식입니다.");
+                .hasMessageContaining("[ERROR] 숫자만 입력 가능합니다.");
     }
 
     @ParameterizedTest
@@ -50,6 +50,6 @@ class BonusNumberTest {
         assertThatCode(() -> bonusNumber.inputBonusNumber("7", winningNumbers)).doesNotThrowAnyException();
         assertThatThrownBy(() -> bonusNumber.inputBonusNumber("1", winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호와 다른 번호를 입력해주세요.");
+                .hasMessageContaining("[ERROR] 중복된 번호가 존재합니다. 다른 번호를 입력해주세요.");
     }
 }

@@ -24,7 +24,7 @@ class WinningNumberTest {
         assertThatCode(() -> winningNumber.inputWinningNumber("1,2,3,4,5,6")).doesNotThrowAnyException();
         assertThatThrownBy(() -> winningNumber.inputWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 올바르지 않은 당첨 번호 입력 양식입니다.");
+                .hasMessageContaining("[ERROR] 숫자만 입력 가능합니다.");
     }
 
     @ParameterizedTest
@@ -41,6 +41,6 @@ class WinningNumberTest {
         assertThatCode(() -> winningNumber.inputWinningNumber("1,2,3,4,5,6")).doesNotThrowAnyException();
         assertThatThrownBy(() -> winningNumber.inputWinningNumber("1,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 중복되지 않은 숫자를 입력해주세요.");
+                .hasMessageContaining("[ERROR] 중복된 번호가 존재합니다. 다른 번호를 입력해주세요.");
     }
 }

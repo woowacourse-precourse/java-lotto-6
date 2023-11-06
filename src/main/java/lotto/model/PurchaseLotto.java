@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.regex.Pattern;
+import lotto.util.ErrorMessage;
 
 public class PurchaseLotto {
 
@@ -22,19 +23,19 @@ public class PurchaseLotto {
 
     private static void validateAmountUnit(int money) {
         if (money % AMOUNT_UNIT > 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_UNIT.getMessage());
         }
     }
 
     private static void validateMinimumAmount(int money) {
         if (money < MINIMUM_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 최소 구매 금액은 1,000원 입니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MINIMUM_AMOUNT.getMessage());
         }
     }
 
     private static void validateNumber(String money) {
         if (!moneyPattern.matcher(money).matches()) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMERIC.getMessage());
         }
     }
 

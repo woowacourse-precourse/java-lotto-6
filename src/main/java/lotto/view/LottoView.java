@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.model.WinningResult;
 import lotto.model.LottoNumberGenerator;
 

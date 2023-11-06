@@ -8,7 +8,7 @@ public class LottoNumber {
         this.lottoNumber = lottoNumber;
     }
 
-    public static LottoNumber from(Integer lottoNumber) {
+    public static LottoNumber create(Integer lottoNumber) {
         validateLottoNumber(lottoNumber);
         return new LottoNumber(lottoNumber);
     }

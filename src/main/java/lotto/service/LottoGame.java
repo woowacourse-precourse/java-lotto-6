@@ -37,14 +37,7 @@ public class LottoGame {
 
         for(Lotto userLotto : lottos) {
             int rankValue = winningLotto.matchSameNumberNum(userLotto);
-            if(winResult.isOverTwo(rankValue)) {
-                if(winResult.isFiveSame(rankValue)) {
-                    if(winningLotto.isBonusNumContain(userLotto)) {
-                        rankValue = 7;
-                    }
-                }
-                winResult.increaseWinResultValue(rankValue);
-            }
+            changeWinResultByRankValue(winningLotto, userLotto, rankValue);
         }
 
         for(WinnerRank winnerRank : WinnerRank.values()){
@@ -54,5 +47,34 @@ public class LottoGame {
 
         double profit = new Profit().calculateProfitRate(purchasePrice, winResult);
         outputView.printProfit(profit);
+    }
+
+    private int changeRankValueByBonusNum(WinningLotto winningLotto, Lotto userLotto) {
+        int rankValue = 5;
+
+        if(winningLotto.isBonusNumContain(userLotto)) {
+            rankValue = 7;
+        }
+
+        return rankValue;
+    }
+
+    private void increaseWinResultValueByRankValue(int rankValue) {
+        winResult.increaseWinResultValue(rankValue);
+    }
+
+
+    private void changeWinResultByRankValue(WinningLotto winningLotto, Lotto userLotto, int rankValue) {
+        if(winResult.isOverTwo(rankValue)) {
+            rankValue = checkSameNumberCountFiveAndContainBonusNumber(winningLotto, userLotto, rankValue);
+            increaseWinResultValueByRankValue(rankValue);
+        }
+    }
+
+    private int checkSameNumberCountFiveAndContainBonusNumber(WinningLotto winningLotto, Lotto userLotto, int rankValue) {
+        if(winResult.isFiveSame(rankValue)) {
+            return changeRankValueByBonusNum(winningLotto, userLotto);
+        }
+        return rankValue;
     }
 }

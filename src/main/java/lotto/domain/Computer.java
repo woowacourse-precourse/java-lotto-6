@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Computer {
@@ -24,7 +23,4 @@ public class Computer {
         return lotto.contains(bonus);
     }
 
-    public void save() {
-
-    }
 }

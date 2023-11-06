@@ -12,8 +12,8 @@
 - [x] 사용자의 로또 번호가 당첨인지 확인한다. -Computer#checkWinning()
 - [x] 보너스 번호가 포함되는지 확인한다. -Computer#checkBonus()
   - [x] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다. -#Comparator#compare()
-- [] 비교한 값에 따라 당첨 내역을 저장한다.
-  - [] 당첨은 1등부터 5등까지 있다.
+- [x] 비교한 값에 따라 당첨 내역을 저장한다. -ResultRepository#save()
+  - [x] 당첨은 1등부터 5등까지 있다.
 - [] 당첨 내역에 따른 수익률을 계산한다.
 - [] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 

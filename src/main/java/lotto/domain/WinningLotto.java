@@ -2,7 +2,7 @@ package lotto.domain;
 
 public record WinningLotto(Lotto numbers, int bonusNumber) {
 
-    public boolean hasBonusNumber(int count, Lotto playerNumbers) {
-        return count == Ranking.THIRD.getRank() && playerNumbers.getNumbers().contains(bonusNumber);
+    public boolean hasBonusNumber(int rank, Lotto playerNumbers) {
+        return Ranking.THIRD.isThirdRank(rank) && playerNumbers.getNumbers().contains(bonusNumber);
     }
 }

@@ -46,6 +46,10 @@ public enum Ranking {
         count--;
     }
 
+    public boolean isThirdRank(int rank) {
+        return rank == THIRD.rank;
+    }
+
     public static void changeCountWhenHasBonusNumber() {
         Ranking.SECOND.increaseCount();
         Ranking.THIRD.decreaseCount();
@@ -57,9 +61,5 @@ public enum Ranking {
 
     public int getCount() {
         return count;
-    }
-
-    public int getRank(){
-        return rank;
     }
 }

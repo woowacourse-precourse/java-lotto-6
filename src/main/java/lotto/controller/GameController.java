@@ -43,5 +43,6 @@ public class GameController {
         outputView.printLottoNumbers(lottos);
         profit.setProfit(gameResult);
         profit.setProfitRate(money);
+        outputView.printProfitRate(profit.getProfitRate());
     }
 }

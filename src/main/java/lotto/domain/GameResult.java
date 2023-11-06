@@ -16,10 +16,23 @@ public class GameResult {
 
     public boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
         for (int i = 0; i < 6; i++) {
-            if (lotto.getNumbers().get(i) == bonusNumber.getBonusNumber())
+            if (lotto.getNumbers().get(i) == bonusNumber.getBonusNumber()) {
                 return true;
+            }
         }
         return false;
+    }
+
+    public int getRankCounts(Ranking ranking) {
+        int rankCount = 0;
+
+        for (int i = 0; i < rankings.size(); i++) {
+            if (rankings.get(i) == ranking) {
+                rankCount++;
+            }
+        }
+
+        return rankCount;
     }
 
     public List<Ranking> getRankings() {

@@ -64,9 +64,15 @@ public class PlayLottoGame {
 
 
     private int inputUserAmount(){
-        String userInput = inputView.inputPurchaseAmount();
-        int amount = isValidPurchaseAmount(userInput);
-        return amount;
+        while (true){
+            try {
+                String userInput = inputView.inputPurchaseAmount();
+                int amount = isValidPurchaseAmount(userInput);
+                return amount;
+            }catch (IllegalArgumentException e){
+                return inputUserAmount();
+            }
+        }
     }
 
     private void showPurchaseResult(){

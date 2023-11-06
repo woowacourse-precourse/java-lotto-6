@@ -8,11 +8,8 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         PlayLottoGame playLottoGame = new PlayLottoGame();
-        try {
-            playLottoGame.runLottoGame();
-        }catch (Exception e){
-            System.out.println("[ERROR] 프로그램을 종료합니다.");
-        }
+        playLottoGame.runLottoGame();
+
 
     }
 }

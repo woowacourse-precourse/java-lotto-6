@@ -24,7 +24,6 @@ public class LottoController {
             OutputView.printLottosValue(responseDtos);
             Lotto userLotto = getUserLottoNumber();
             int userBonusNumber = getUserBonusNumber();
-
             List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos,
                     userBonusNumber);
             List<ResultResponseDto> dtos = lottoService.convertToDto(results);

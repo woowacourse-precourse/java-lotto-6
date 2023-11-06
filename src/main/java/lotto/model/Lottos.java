@@ -11,4 +11,13 @@ public class Lottos {
     public List<LottoInfo> getLottos(){
         return lottoInfos;
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (LottoInfo lottoINfo : lottoInfos) {
+            sb.append(lottoINfo.getLotto().toString());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }

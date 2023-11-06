@@ -97,4 +97,18 @@ public class WinningNumberMakerTest {
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
+	@DisplayName("보너스 번호가 당첨 번호와 중복될 경우 오류가 발생하는지 확인")
+	@Test
+	void bonusNumberOverlapWinningNumber(){
+		//given
+		String inputWinningNumber = "1,2,3,4,5,6";
+		WinningNumberMaker.make(inputWinningNumber);
+		String inputBonusNumber = "5";
+
+		//when, then
+		assertThatThrownBy(() -> WinningNumberMaker.makeBonusNumber(inputBonusNumber))
+			.isInstanceOf(IllegalArgumentException.class);
+
+	}
+
 }

@@ -12,4 +12,6 @@ public class BonusTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () ->new Bonus(99));
         assertEquals(exception.getMessage(), "보너스 숫자가 1에서 45사이의 수가 아닙니다.");
     }
+
+
 }

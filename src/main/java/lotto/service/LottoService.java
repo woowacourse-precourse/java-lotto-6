@@ -36,6 +36,7 @@ public class LottoService {
     public List<LottoResult> returnLottoResult(UserLotto userLotto, Lottos generatedLottos) {
         Lotto lotto = userLotto.getLotto();
         int bonusNumber = userLotto.getBonusNumber();
+
         List<LottoResult> lottoResults = new ArrayList<>();
         for (int i = 0; i < generatedLottos.size(); i++) {
             Lotto tempLotto = generatedLottos.get(i);
@@ -45,6 +46,7 @@ public class LottoService {
         }
         return lottoResults;
     }
+
 
 
     private boolean isHasBonus(int bonusNumber, int count, Lotto lotto) {

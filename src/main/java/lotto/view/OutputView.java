@@ -2,23 +2,19 @@ package lotto.view;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.controller.dto.LottoResponseDto;
 import lotto.controller.dto.LottoResponseDtos;
 import lotto.controller.dto.ResultResponseDto;
 
 public class OutputView {
 
-    public static final String INPUT_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
-    public static final String PURCHASED_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
-    public static final String INPUT_LOTTO_MESSAGE = "당첨 번호를 입력해 주세요.";
-    public static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-
     public static void printInputPrice() {
-        System.out.println(INPUT_PURCHASE_MESSAGE);
+        System.out.println(OutputMessage.INPUT_PURCHASE_MESSAGE);
     }
 
     public static void printPurchaseLotto(int lottoCount) {
-        System.out.println(lottoCount + PURCHASED_LOTTO_COUNT_MESSAGE);
+        System.out.println(lottoCount + OutputMessage.PURCHASED_LOTTO_COUNT_MESSAGE);
     }
 
     public static void printLottosValue(LottoResponseDtos lottoResponseDtos) {
@@ -29,49 +25,42 @@ public class OutputView {
     }
 
     public static void printLottoResult(List<ResultResponseDto> resultResponseDtos) {
-        System.out.println("당첨 통계\n---");
+        System.out.println(OutputMessage.WINNING_STATICS_MESSAGE);
         for (ResultResponseDto dto : resultResponseDtos) {
             printLottoResultEachRanking(dto);
         }
     }
 
     private static void printLottoResultEachRanking(ResultResponseDto resultResponseDto) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(resultResponseDto.getSameNumberCount()).append("개 일치");
-        if (resultResponseDto.isHasBonus()) {
-            stringBuilder.append(", 보너스 볼 일치");
-        }
-        stringBuilder.append(" (").append(resultResponseDto.getWinnerPriceFormatted()).append("원").append(")")
-                .append(" - ").append(resultResponseDto.getTotalCount()).append("개");
+        String message = String.format(OutputMessage.CORRECT_SAME_NUMBER_MESSAGE, resultResponseDto.getSameNumberCount());
 
-        System.out.println(stringBuilder.toString());
+        if (resultResponseDto.isHasBonus()) {
+            message += OutputMessage.BONUS_BALL_COUNT_MESSAGE;
+        }
+
+        message += String.format(OutputMessage.RATE_MESSAGE_FORMAT,
+                resultResponseDto.getWinnerPriceFormatted(), resultResponseDto.getTotalCount());
+
+        System.out.println(message);
     }
 
     private static void printLottoValue(LottoResponseDto responseLottoDto) {
         List<Integer> lottoNumbers = responseLottoDto.getLottoNumber();
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[");
-        for (int i = 0; i < lottoNumbers.size(); i++) {
-            stringBuilder.append(lottoNumbers.get(i));
-            if (i < lottoNumbers.size() - 1) {
-                stringBuilder.append(", ");
-            }
-        }
-        stringBuilder.append("]");
-        System.out.println(stringBuilder.toString());
+        String joinedNumbers = lottoNumbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
+        System.out.println(joinedNumbers);
     }
 
     public static void printGetInputNumber() {
-        System.out.println(INPUT_LOTTO_MESSAGE);
+        System.out.println(OutputMessage.INPUT_LOTTO_MESSAGE);
     }
 
     public static void printGetBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        System.out.println(OutputMessage.INPUT_BONUS_NUMBER_MESSAGE);
     }
 
     public static void printEarningRate(double earningRate) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("총 수익률은 ").append(earningRate).append("%입니다.");
-        System.out.println(sb.toString());
+        System.out.printf(OutputMessage.EARNING_RATE_MESSAGE, earningRate);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.*;
+import lotto.exception.CommonException;
 import lotto.util.GenerateLottoNumberUtil;
 import lotto.util.WiningResultUtil;
 import lotto.view.InputView;
@@ -53,6 +54,7 @@ public class InputService {
     }
     public void bonusNumber(){
         bonusNumber = new BonusNumber(inputView.inputBonusNumber());
+        CommonException.commonException(winningNumber.getWinningNumber(),bonusNumber.getNumber());
     }
 
     public void winning() {

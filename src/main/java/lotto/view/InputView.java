@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.WinningNumber;
 
 public class InputView {
     private static final String INPUT_PURCHASE_COST = "구입금액을 입력해 주세요.";

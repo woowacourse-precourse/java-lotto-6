@@ -5,19 +5,23 @@ public class BonusNumber {
     private final int number;
 
     public BonusNumber(String number) {
-        int safeNumber = validate(number);
-        this.number = safeNumber;
+        validateNumber(number);
+        validateRange(number);
+        this.number = Integer.parseInt(number);
     }
 
-    private static int validate(String number) {
+    private static void validateNumber(String number){
+        try {
+            int num = Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자가 아닙니다.");
+        }
+    }
 
-        // 입력값이 숫자인지
-
-        // 입력값이 0이하거나 45초과일 경우
-
-        // 보너스 번호가 사용자 선택 번호와 중복일 경우
-
-        return Integer.parseInt(number);
+    private static void validateRange(String number) {
+            if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
     }
 
     public int getNumber() {

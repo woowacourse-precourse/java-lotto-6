@@ -4,6 +4,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
+import lotto.domain.lotto.opened.LottoOpened;
+import lotto.domain.lotto.opened.LottosOpened;
 
 /**
  * 사용자가 구매한 모든 로또를 담는 일급 컬렉션입니다.
@@ -45,5 +47,12 @@ public final class Lottos {
 
     public boolean isNotEmpty() {
         return !lottos.isEmpty();
+    }
+
+    public LottosOpened toOpened() {
+        final List<LottoOpened> lottoOpeneds = lottos.stream()
+                .map(Lotto::toOpened)
+                .toList();
+        return new LottosOpened(lottoOpeneds);
     }
 }

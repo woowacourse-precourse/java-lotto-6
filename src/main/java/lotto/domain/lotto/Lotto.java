@@ -1,7 +1,10 @@
 package lotto.domain.lotto;
 
 import static lotto.domain.lotto.LottoErrorMessage.DUPLICATION_ERROR;
+import static lotto.domain.lotto.LottoErrorMessage.INVALID_RANGE_ERROR;
 import static lotto.domain.lotto.LottoErrorMessage.SIZE_ERROR;
+import static lotto.domain.lotto.LottoNumberConfig.MAXIMUM_RANGE;
+import static lotto.domain.lotto.LottoNumberConfig.MINIMUM_RANGE;
 import static lotto.domain.lotto.LottoNumberConfig.NUMBER_COUNT;
 
 import java.util.List;
@@ -21,6 +24,9 @@ public class Lotto {
         if(validateDuplication(numbers)) {
             throw new IllegalArgumentException(DUPLICATION_ERROR.getMessage());
         }
+        if(validateRange(numbers)) {
+            throw new IllegalArgumentException(INVALID_RANGE_ERROR.getMessage());
+        }
     }
 
     private boolean validateSize(List<Integer> numbers) {
@@ -31,6 +37,14 @@ public class Lotto {
         return (numbers.stream()
                 .distinct()
                 .count() != NUMBER_COUNT.getValue());
+    }
+
+    private boolean validateRange(List<Integer> numbers) {
+        return !numbers.stream()
+                .filter(number -> number < MINIMUM_RANGE.getValue() ||
+                        number > MAXIMUM_RANGE.getValue())
+                .toList()
+                .isEmpty();
     }
 
 

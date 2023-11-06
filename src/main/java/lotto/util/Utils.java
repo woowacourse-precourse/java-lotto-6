@@ -1,9 +1,16 @@
 package lotto.util;
 
+import java.util.List;
+
 public class Utils {
     private static final String NULL_ERROR_MESSAGE = "[ERROR] 입력값이 null 일 수 없습니다.";
     private static final String BLANK_ERROR_MESSAGE = "[ERROR] 입력값은 빈 값일 수 없습니다.";
     private static final String NUMBER_ERROR_MESSAGE = "[ERROR] 입력값은 숫자여야 합니다.";
+
+    public static List<String> splitByComma(String input) {
+        validateHasInput(input);
+        return List.of(input.split(","));
+    }
 
     public static int parseInt(String input) {
         validateStringIsNumber(input);

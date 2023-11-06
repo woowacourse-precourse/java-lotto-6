@@ -69,9 +69,8 @@ public class OutputView {
         });
     }
 
-    public static void notifyTotalRateOfReturn(int consumption, int reception) {
-        float rateOfReturn = ((float) reception * 100) / (float) consumption;
-        System.out.println(TOTAL_RATE_OF_RETURN.formatted(rateOfReturn));
+    public static void notifyTotalRateOfReturn(float totalRateOfReturn) {
+        System.out.println(TOTAL_RATE_OF_RETURN.formatted(totalRateOfReturn));
     }
 
     private static String generatePrizeMessage(Prize prize, int winningCount) {

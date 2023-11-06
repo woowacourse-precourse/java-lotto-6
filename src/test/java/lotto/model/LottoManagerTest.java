@@ -4,7 +4,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class LottoManagerTest {
@@ -28,5 +31,16 @@ public class LottoManagerTest {
                 .chars()
                 .filter(c -> c == '[')
                 .count(), 5);
+    }
+
+    @Test
+    void 정답_로또_보관_테스트() {
+        LottoManager lottoManager = new LottoManager(1000);
+        Lotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertAll(
+                () -> assertTrue(lottoManager.registerAnswerLotto(answerLotto)),
+                () -> assertFalse(lottoManager.registerAnswerLotto(lotto))
+        );
     }
 }

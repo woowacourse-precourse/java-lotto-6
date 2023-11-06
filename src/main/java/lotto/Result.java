@@ -29,18 +29,18 @@ public class Result {
         return rank.getRankReward(result.get(rank));
     }
 
-    public String getRankStatistics(Rank rank) {
+    public List<String> getAllRankStatistics() {
+        return Arrays.stream(Rank.values())
+                .map(this::getRankStatistics)
+                .toList();
+    }
+
+    private String getRankStatistics(Rank rank) {
         StringJoiner stringJoiner = new StringJoiner(" ");
         stringJoiner.add(rank.getRankMessage());
         stringJoiner.add("-");
         stringJoiner.add(String.format("%s개", result.get(rank)));
 
         return stringJoiner.toString();
-    }
-
-    public List<String> getAllRankStatistics() {
-        return Arrays.stream(Rank.values())
-                .map(this::getRankStatistics)
-                .toList();
     }
 }

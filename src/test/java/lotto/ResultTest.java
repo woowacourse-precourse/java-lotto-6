@@ -2,6 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,12 +27,20 @@ public class ResultTest {
     void 당첨_통계_반환기능() {
         //given
         Result result = new Result();
-        Rank first = Rank.FIRST;
+        List<String> expected = new ArrayList<>(List.of(
+                "3개 일치 (5,000원) - 0개",
+                "4개 일치 (50,000원) - 0개",
+                "5개 일치 (1,500,000원) - 0개",
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                "6개 일치 (2,000,000,000원) - 0개"
+        ));
 
         //when
-        result.addRank(first);
+        List<String> messageResult = result.getAllRankStatistics();
 
         //then
-        assertThat(result.getRankStatistics(first)).isEqualTo("6개 일치 (2,000,000,000원) - 1개");
+        for (int index = 0; index < expected.size(); index++) {
+            assertThat(messageResult.get(index)).isEqualTo(expected.get(index));
+        }
     }
 }

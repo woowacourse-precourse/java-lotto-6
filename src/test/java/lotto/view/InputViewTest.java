@@ -24,7 +24,7 @@ public class InputViewTest {
     @DisplayName("당첨 번호 입력 테스트 - 정상데이터 - 성공")
     void askAnswerLottoNumbersTest() {
         System.setIn(createUserInput("1, 2, 3, 4, 5, 6"));
-        String userInput = inputView.askPaymentAmount();
+        String userInput = inputView.askAnswerLottoNumbers();
         assertThat(userInput).isEqualTo("1, 2, 3, 4, 5, 6");
     }
 

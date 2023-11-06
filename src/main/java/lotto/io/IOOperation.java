@@ -51,4 +51,24 @@ public class IOOperation {
         }
         return winningNumbers;
     }
+
+    public static Integer getBonusNumber(List<Integer> winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        Integer bonusNumber;
+
+        while (true) {
+            try {
+                bonusNumber = Integer.parseInt(Console.readLine());
+                Checker.bonusInRange(bonusNumber);
+                Checker.winningAndBonusNotDuplicated(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+
+                continue;
+            }
+            break;
+        }
+
+        return bonusNumber;
+    }
 }

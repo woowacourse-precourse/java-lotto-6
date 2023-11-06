@@ -18,6 +18,16 @@ public class WinningLottoExceptionTest {
 
     }
 
+    @DisplayName("당첨 번호들 중에 보너스 번호와 동일한 숫자가 있는 경우 예외처리")
+    @Test
+    void BonusNumberDuplicationTest() {
+
+        Assertions.assertThatThrownBy(
+                          () -> new WinningLotto(List.of("1", "2", "3", "4", "5", "6"), "1"))
+                  .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
 
 
 }

@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.enums.LottoPrize;
@@ -10,7 +10,7 @@ public class LottoResult {
     private final Map<LottoPrize, Integer> result;
 
     public LottoResult() {
-        this.result = new HashMap<>();
+        this.result = new EnumMap<>(LottoPrize.class);
          Arrays.stream(LottoPrize.values())
                  .forEach(lottoPrize -> result.put(lottoPrize, 0));
     }

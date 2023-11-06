@@ -22,7 +22,7 @@ public class IOOperationTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 5);
 
         assertThatThrownBy(() -> {
-            IOOperation.winningNumberNotDuplicated(winningNumbers);
+            IOOperation.winningNotDuplicated(winningNumbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -37,7 +37,7 @@ public class IOOperationTest {
         Integer bonusNumber = 50;
 
         assertThatThrownBy(() -> {
-            IOOperation.winningNumberInRange(winningNumbers, bonusNumber);
+            IOOperation.numbersInRange(winningNumbers, bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

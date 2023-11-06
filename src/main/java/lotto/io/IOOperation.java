@@ -1,5 +1,8 @@
 package lotto.io;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.common.Lotto;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,7 +17,7 @@ public class IOOperation {
         }
     }
 
-    public static void winningNumberNotDuplicated(List<Integer> winningNumbers) {
+    public static void winningNotDuplicated(List<Integer> winningNumbers) {
         HashMap<Integer, Boolean> duplication = new HashMap<>();
 
         for (Integer winningNumber : winningNumbers) {
@@ -30,7 +33,7 @@ public class IOOperation {
         return price / UNIT;
     }
 
-    private static Boolean inRange(Integer number) {
+    public static Boolean inRange(Integer number) {
         if (MINIMUM_RANGE <= number && number <= MAXIMUM_RANGE) {
             return true;
         }
@@ -38,7 +41,7 @@ public class IOOperation {
         return false;
     }
 
-    public static void winningNumberInRange(List<Integer> winningNumbers, Integer bonusNumber) {
+    public static void numbersInRange(List<Integer> winningNumbers, Integer bonusNumber) {
         for (Integer winningNumber : winningNumbers) {
             if (!inRange(winningNumber)) {
                 throw new IllegalArgumentException();

@@ -26,4 +26,9 @@ public class Lotto {
     public static List<Integer> generateLotto() {
         return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, COUNT);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

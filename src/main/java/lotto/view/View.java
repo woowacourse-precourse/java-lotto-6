@@ -14,7 +14,7 @@ public class View {
         add("6개 일치 (2,000,000,000원) - ");
     }};
 
-    public void priceInputGuideMsg() {
+    public void moneyInputGuideMsg() {
         System.out.println(Messages.PRICE_INPUT_GUIDE.getMsg());
     }
 

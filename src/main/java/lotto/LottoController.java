@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -14,6 +16,8 @@ public class LottoController {
     public void play() {
         settingBuyMoney();
         settingLottoNumber();
+        settingWinningNumber();
+        settingBonusNumber();
     }
 
     private void settingBuyMoney() {
@@ -27,6 +31,14 @@ public class LottoController {
         outputView.printLottoNumbers(lottoService.getLottoNumberStore());
     }
 
+    private void settingWinningNumber() {
+        lottoService.settingWinningNumber(inputPlayerWinningNumber());
+    }
+
+    private void settingBonusNumber() {
+        lottoService.settingBonusNumber(inputPlayerBonusNumber());
+    }
+
     private int inputPlayerBuyMoney() {
         try {
             outputView.printRequestInputBuyMoney();
@@ -35,6 +47,28 @@ public class LottoController {
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             return inputPlayerBuyMoney();
+        }
+    }
+
+    private List<Integer> inputPlayerWinningNumber() {
+        try {
+            outputView.printRequestInputWinningNumber();
+            String readLottoWinningNumber = inputView.readLottoWinningNumber();
+            return lottoService.createWinningNumber(readLottoWinningNumber);
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+            return inputPlayerWinningNumber();
+        }
+    }
+
+    private int inputPlayerBonusNumber() {
+        try {
+            outputView.printRequestInputBonusNumber();
+            String readLottoBonusNumber = inputView.readLottoBonusNumber();
+            return lottoService.createBonusNumber(readLottoBonusNumber);
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+            return inputPlayerBonusNumber();
         }
     }
 }

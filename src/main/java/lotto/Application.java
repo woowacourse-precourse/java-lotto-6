@@ -28,7 +28,12 @@ public class Application {
     public static void runPurchaseAmountPart() {
         final String purchaseAmountMessage = "구입금액을 입력해 주세요.";
         Output.message(purchaseAmountMessage);
-        purchaseAmount = Input.purchaseAmount();
+        try {
+            purchaseAmount = Input.purchaseAmount();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            Output.message(illegalArgumentException.getMessage());
+            runPurchaseAmountPart();
+        }
     }
 
     public static void runCalculateIssuePart() {

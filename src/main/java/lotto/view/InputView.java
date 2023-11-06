@@ -45,7 +45,7 @@ public class InputView {
             return input;
         }
         catch (NoSuchElementException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.BLANK_INPUT.getMessage());
         }
     }
 

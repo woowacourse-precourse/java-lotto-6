@@ -73,11 +73,11 @@ public class LottoService {
     }
 
 
-    public boolean validateUserBonusNum(Lotto winningNum, String bonusNum){
+    public int validateUserBonusNum(Lotto winningNum, String bonusNum){
         if(validateNum(bonusNum) && !winningNum.getNumbers().contains(Integer.parseInt(bonusNum))){ //숫자인지 확인
-           return true; //????
+           return Integer.parseInt(bonusNum);
         }
-        return false;
+        throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복된 번호는 입력할 수 없습니다.");
     }
 
     public boolean validateNum(String inputNum){ //숫자 하나 확인

@@ -33,6 +33,8 @@ public class LottoController {
             Lotto userWinningNum = runInputWinningNum();
             Integer bonusNum = runInputBonusNum(userWinningNum);
 
+            System.out.println(userWinningNum.getNumbers());
+            System.out.println(bonusNum);
 
             //TODO 구매 로또랑 유저 번호랑 매칭 작업
 
@@ -64,9 +66,7 @@ public class LottoController {
 
     public int runInputBonusNum(Lotto winningNum){
         String inputBonusNum = InputView.inputBonusNum();
-        if(lottoService.validateUserBonusNum(winningNum, inputBonusNum))
-            return Integer.parseInt(inputBonusNum);
-        return 0;
+        return lottoService.validateUserBonusNum(winningNum, inputBonusNum);
     }
 
     //TODO 서비스 코드 실행

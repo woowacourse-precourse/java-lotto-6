@@ -1,5 +1,8 @@
 package lotto.Util;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.Constants.ExceptionMessage;
 
 public class Converter {
@@ -10,6 +13,14 @@ public class Converter {
     private static final String KOMA = ",";
 
     public int convertAmount(String value){
+        value = value.replaceAll(SPACE, NULL);
+        checkEmpty(value);
+        checkType(value);
+        checkValueOverflow(value);
+        return Integer.parseInt(value);
+    }
+
+    public int convertBonusNumber(String value){
         value = value.replaceAll(SPACE, NULL);
         checkEmpty(value);
         checkType(value);
@@ -34,5 +45,12 @@ public class Converter {
         if (max > MAX_VALUE){
             throw ExceptionMessage.NUMBER_OVERFLOW.throwexception();
         }
+    }
+
+    private List<Integer> stringToLotto(String[] toLotto){
+        return Arrays.stream(toLotto)
+                .map(Integer::parseInt)
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

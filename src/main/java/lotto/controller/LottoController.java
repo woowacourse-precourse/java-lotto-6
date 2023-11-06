@@ -22,12 +22,16 @@ public class LottoController {
 
     private void buyLotto() {
         setAmount();
-        this.buyer = new Buyer(new Lottos(IntStream
+        this.buyer = new Buyer(getBuyerLottos());
+        OutputView.purchaseLottos(buyer);
+    }
+
+    private Lottos getBuyerLottos() {
+        return new Lottos(IntStream
                 .range(0, this.amount.buyCount())
                 .mapToObj(i -> new Lotto(lottoNumberGenerator.pickUniqueNumbers()))
                 .toList()
-        ));
-        OutputView.purchaseLottos(buyer);
+        );
     }
 
     private void setAmount() {
@@ -48,6 +52,11 @@ public class LottoController {
 
     private void setWinningLotto() {
         Lotto winningLotto = InputView.getWinningLotto();
+        BonusNumber bonusNumber = getBonusNumberAndContainsCheck(winningLotto);
+        this.winningLotto = new WinningLotto(winningLotto, bonusNumber);
+    }
+
+    private BonusNumber getBonusNumberAndContainsCheck(Lotto winningLotto) {
         BonusNumber bonusNumber;
         while (true) {
             try {
@@ -55,8 +64,7 @@ public class LottoController {
                 if (bonusNumber.contains(winningLotto)) {
                     throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.BONUS_DUPLICATE.getValue());
                 }
-                this.winningLotto = new WinningLotto(winningLotto, bonusNumber);
-                return;
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println();

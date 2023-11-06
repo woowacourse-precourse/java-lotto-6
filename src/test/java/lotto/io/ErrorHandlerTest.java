@@ -22,12 +22,21 @@ class ErrorHandlerTest {
     void checkThousands() {
         assertThrows(IllegalArgumentException.class, () -> errorHandler.checkThousands("1001"));
     }
+
     @Test
     void validateRepeat() {
-        assertThrows(IllegalArgumentException.class, () -> errorHandler.validateRepeat(List.of(1,2,3,4,5,6,6)));
-    }@Test
-    void validateRange() {
-        assertThrows(IllegalArgumentException.class, () -> errorHandler.validateRange(List.of(1,2,3,4,5,6,56)));
+        assertThrows(IllegalArgumentException.class, () -> errorHandler.validateRepeat(List.of(1, 2, 3, 4, 5, 6, 6)));
     }
+
+    @Test
+    void validateRange() {
+        assertThrows(IllegalArgumentException.class, () -> errorHandler.validateRange(List.of(1, 2, 3, 4, 5, 6, 56)));
+    }
+
+    @Test
+    void checkSize() {
+        assertThrows(IllegalArgumentException.class, () -> errorHandler.checkSize(List.of("1","2","3","4","5","6")));
+    }
+
 
 }

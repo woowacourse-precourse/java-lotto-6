@@ -39,4 +39,10 @@ public class ErrorHandler {
             }
         }
     }
+
+    public static void checkSize(List<String> jackpotStrings) {
+        if (jackpotStrings.size() != 7) {
+            throw new IllegalArgumentException("Error! 입력한 번호가 부족합니다.");
+        }
+    }
 }

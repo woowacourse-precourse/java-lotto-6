@@ -90,7 +90,6 @@
 
         - [x] ```
       List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-      ```
 
 
 - [x] 로또 진행자 클래스 LottoHost

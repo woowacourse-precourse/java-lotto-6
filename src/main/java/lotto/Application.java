@@ -37,7 +37,8 @@ public class Application {
 
     private void printWinningResult(LottoWinningResult lottoWinningResult) {
         System.out.println("당첨 통계\n---");
-        System.out.println(lottoWinningResult.getLottoRankMessages());
+        System.out.print(lottoWinningResult.getLottoRankMessages());
+        System.out.printf("총 수익률은 %.1f%%입니다.", lottoWinningResult.calculateWinningRate());
     }
 
     private WinningLotto getWinningLottoWithBonusNumber() {

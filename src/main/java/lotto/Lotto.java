@@ -13,9 +13,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-
+        removeDuplication(numbers);
         checkSizeOfLotto(numbers);
         numbers.stream().forEach(number -> checkRangeOfLottoNumber(number));
+    }
+
+    private static void removeDuplication(List<Integer> numbers) {
+        numbers.stream().distinct().collect(Collectors.toList());
     }
 
     private static void checkSizeOfLotto(List<Integer> numbers) {

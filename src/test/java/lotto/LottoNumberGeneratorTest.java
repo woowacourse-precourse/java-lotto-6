@@ -31,7 +31,7 @@ public class LottoNumberGeneratorTest {
         List<Lotto> generatedLotto = lottos.getLottos();
 
         for (Lotto lotto : generatedLotto) {
-            System.out.println("생성된 로또 번호: " + lotto.toString());
+            System.out.println("생성된 로또 번호: " + lotto.getNumbers());
         }
     }
 
@@ -41,7 +41,7 @@ public class LottoNumberGeneratorTest {
         List<Integer> numbers = List.of(33, 26, 39, 12, 4, 16);
         Lotto lotto = new Lotto(numbers);
         List<Integer> expected = List.of(4, 12, 16, 26, 33, 39);
-        assertThat(lotto.toString()).isEqualTo(expected.toString());
+        assertThat(lotto.getNumbers()).isEqualTo(expected);
 
     }
 }

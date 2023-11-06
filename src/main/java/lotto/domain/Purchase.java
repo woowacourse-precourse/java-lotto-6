@@ -3,18 +3,18 @@ package lotto.domain;
 import lotto.constants.GameInfo;
 import lotto.validator.impl.MoneyValidator;
 
-public class Money {
-    private int money;
-    private int lottoCount;
+public class Purchase {
+    private final int money;
+    private final int lottoCount;
 
-    public Money(String money) {
-        validate(money);
+    public Purchase(String money, MoneyValidator moneyValidator) {
+        validate(money, moneyValidator);
         this.money = Integer.parseInt(money);
         this.lottoCount = buyLotto();
     }
 
-    void validate(String money) {
-        new MoneyValidator().validate(money);
+    void validate(String money, MoneyValidator moneyValidator) {
+        moneyValidator.validate(money);
     }
 
     public int getMoney() {

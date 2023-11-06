@@ -43,5 +43,7 @@ public class Lottos {
             .sum();
     }
 
-
+    public double getProfit(double money) {
+        return getPrizeMoney() / money * 100;
+    }
 }

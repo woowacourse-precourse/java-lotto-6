@@ -4,8 +4,11 @@ import java.util.BitSet;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.util.generator.impl.LottoGenerator;
+import lotto.domain.Purchase;
+import lotto.util.LottoGenerator;
+import lotto.validator.impl.BonusNumberValidator;
+import lotto.validator.impl.LottoValidator;
+import lotto.validator.impl.MoneyValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.impl.InputViewImpl;
@@ -16,22 +19,27 @@ public class LottoGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoGenerator lottoGenerator;
+    private final BonusNumberValidator bonusNumberValidator;
+    private final MoneyValidator moneyValidator;
+
     private Lottos lottos;
-    private Lotto winningNumbers;
     private BitSet winningNumbersBitSet;
     private BonusNumber bonusNumber;
-    private Money money;
+    private Purchase purchase;
 
     public LottoGameController() {
         this.inputView = new InputViewImpl();
         this.outputView = new OutputViewImpl();
         this.lottoGenerator = new LottoGenerator();
+        this.bonusNumberValidator = new BonusNumberValidator();
+        this.moneyValidator = new MoneyValidator();
     }
 
     public void run() {
         initMoney();
         generateLotto();
-        inputWinningNumbers();
+        printLottos();
+        initWinningNumbers();
         initBonusNumber();
         calculateGameResult();
         printGameResult();
@@ -40,7 +48,7 @@ public class LottoGameController {
 
     void initMoney() {
         try {
-            money = new Money(inputView.inputMoney());
+            purchase = new Purchase(inputView.inputMoney(), moneyValidator);
         }
         catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
@@ -49,28 +57,27 @@ public class LottoGameController {
     }
 
     void generateLotto() {
-        lottos = new Lottos(lottoGenerator.generate(money.getLottoCount()));
-        printLottos();
+        lottos = new Lottos(lottoGenerator.generate(purchase.getLottoCount()));
     }
 
     void printLottos() {
         outputView.printLottos(lottos);
     }
 
-    void inputWinningNumbers() {
+    void initWinningNumbers() {
         try {
-            winningNumbers = new Lotto(inputView.inputWinningNumbers());
-            winningNumbersBitSet = winningNumbers.toBitSet();
+            winningNumbersBitSet = new Lotto(inputView.inputWinningNumbers()).toBitSet();
         }
         catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            inputWinningNumbers();
+            initWinningNumbers();
         }
     }
 
     void initBonusNumber() {
         try {
-            bonusNumber = new BonusNumber(inputView.inputBonusNumber(), winningNumbersBitSet);
+            bonusNumber = new BonusNumber(inputView.inputBonusNumber(), bonusNumberValidator);
+            bonusNumber.validateDuplicatedWithWinning(winningNumbersBitSet);
         }
         catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
@@ -87,13 +94,7 @@ public class LottoGameController {
     }
 
     void printProfit() {
-        outputView.printProfit(getProfit());
-    }
-
-    double getProfit() {
-        double prizeMoney = lottos.getPrizeMoney();
-        long money = this.money.getMoney();
-        return prizeMoney / money * 100;
+        outputView.printProfit(lottos.getProfit(purchase.getMoney()));
     }
 
 }

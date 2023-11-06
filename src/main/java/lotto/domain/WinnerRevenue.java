@@ -43,4 +43,10 @@ public class WinnerRevenue {
 
         return rateOfRevenue;
     }
+
+    public RevenueDto generateRevenueDto(int userPrice) {
+        double rateOfRevenue = calculateRateOfRevenue(userPrice);
+        return RevenueDto.from(rateOfRevenue);
+    }
+
 }

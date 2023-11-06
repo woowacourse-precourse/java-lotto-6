@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.RevenueDto;
 import lotto.domain.WinningTier;
 import lotto.view.OutputView;
 import org.assertj.core.api.Assertions;
@@ -48,5 +49,13 @@ public class OutputViewTest {
                 "6개 일치 (2,000,000,000원) - 2개\n";
 
         Assertions.assertThat(output.toString()).isEqualTo(winningTierResultMessage);
+    }
+
+    @Test
+    void 수익률을_출력하는_기능_검증() {
+        RevenueDto revenueDto = RevenueDto.from(62.5);
+        outputView.printWinningRevenue(revenueDto);
+
+        Assertions.assertThat(output.toString()).isEqualTo("총 수익률은 62.5%입니다.");
     }
 }

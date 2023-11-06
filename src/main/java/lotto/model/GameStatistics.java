@@ -1,4 +1,6 @@
-package lotto;
+package lotto.model;
+
+import lotto.constants.Rank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +26,4 @@ public class GameStatistics {
         this.rankList = new ArrayList<>();
     }
 
-    public void fillMatchingNumberCountList(
-            List<Lotto> lottoList,
-            List<Integer> winningNumbers,
-            List<Integer> matchingNumberCountList) {
-        for (Lotto lotto : lottoList) {
-            int countTemp = 0;
-            List<Integer> lottoNumbers = lotto.getNumbers();
-            for (Integer lottoNumber : lottoNumbers) {
-                countTemp += Controller.countMatchingNumbersByLotteryNumber(winningNumbers, lottoNumber);
-            }
-            matchingNumberCountList.add(countTemp);
-        }
-    }
 }

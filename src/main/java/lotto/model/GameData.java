@@ -1,22 +1,12 @@
-package lotto;
+package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameData {
-    private Integer budget;
-    private Integer LotteriesCount;
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
     private List<Lotto> lottoList;
-
-    public Integer getLotteriesCount() {
-        return LotteriesCount;
-    }
-
-    public void setLotteriesCount(Integer lotteriesCount) {
-        LotteriesCount = lotteriesCount;
-    }
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;

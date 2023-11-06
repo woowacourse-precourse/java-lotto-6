@@ -27,6 +27,7 @@ public class NumberInputView {
         integrating(input);
         try {
             validateLength();
+            validateNumerics();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             validate();
@@ -43,5 +44,16 @@ public class NumberInputView {
         if (numbers.size() != COLUMN) {
             throw new IllegalArgumentException("[ERROR] : 6자리 숫자를 입력해주세요.");
         }
+    }
+
+    private void validateNumerics() {
+        numbers.stream().filter(str -> !isDigit(str)).forEach(str -> {
+            throw new IllegalArgumentException("[ERROR] : 숫자를 입력해주세요.");
+        });
+    }
+
+    private boolean isDigit(String str) {
+        int value = Integer.parseInt(str);
+        return INPUT_DIGIT_FIRST <= value && value <= INPUT_DIGIT_LAST;
     }
 }

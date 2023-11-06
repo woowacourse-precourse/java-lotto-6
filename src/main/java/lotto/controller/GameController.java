@@ -30,9 +30,12 @@ public class GameController {
         createLotto.setAmount(money);
         createLotto.multipleLotto();
         lottos = createLotto.getLottos();
+        outputView.printLottoNumbers(lottos);
 
         winningNumbers = userInput.askWinningNumber();
         winningLotto = new Lotto(winningNumbers.getWinningNumbers());
+
+        outputView.printBlankLine();
         bonusNumber = userInput.askBonusNumber();
 
         for (int i = 0; i < createLotto.getAmount(); i++) {
@@ -40,7 +43,7 @@ public class GameController {
             gameResult.setRankingNumbers(winningLotto, lottos.get(i), hasBonusNumber);
         }
 
-        outputView.printLottoNumbers(lottos);
+        outputView.printGameResult(gameResult);
         profit.setProfit(gameResult);
         profit.setProfitRate(money);
         outputView.printProfitRate(profit.getProfitRate());

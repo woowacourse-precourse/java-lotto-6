@@ -20,19 +20,18 @@ public class OutputView {
     public final String OUTPUT_PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
 
 
-
-
     public void printLottoNumbers(List<Lotto> lottos) {
         System.out.printf(OUTPUT_LOTTO_NUMBERS, lottos.size());
         for (Lotto lotto : lottos) {
             printNumbers(lotto.getNumbers());
         }
+        printBlankLine();
     }
 
     public void printNumbers(List<Integer> numbers) {
         System.out.print(OUTPUT_START_NUMBERS + numbers.get(0));
         for (int i = 1; i < 6; i++) {
-            System.out.println(OUTPUT_SPLIT_STRING + numbers.get(i));
+            System.out.print(OUTPUT_SPLIT_STRING + numbers.get(i));
         }
         System.out.println(OUTPUT_FINISH_NUMBERS);
     }
@@ -48,5 +47,9 @@ public class OutputView {
 
     public void printProfitRate(float profitRate) {
         System.out.printf(OUTPUT_PROFIT_RATE, profitRate);
+    }
+
+    public void printBlankLine() {
+        System.out.println();
     }
 }

@@ -10,8 +10,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class WinningLottoTest {
     private WinningLotto winningLotto;
@@ -38,7 +39,7 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("당첨 번호 중 보너스 번호와 일치하는 숫자가 존재합니다.");
     }
-    
+
     @ParameterizedTest
     @MethodSource("userLottoAndLottoRanking")
     @DisplayName("1장의 로또와 당첨 번호를 비교하여 결과를 알 수 있다.")

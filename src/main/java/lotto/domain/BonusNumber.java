@@ -3,7 +3,8 @@ package lotto.domain;
 import java.util.List;
 import java.util.Objects;
 
-import static lotto.utils.Constants.*;
+import static lotto.utils.Constants.MAXIMUM_LOTTO_NUMBER;
+import static lotto.utils.Constants.MINIMUM_LOTTO_NUMBER;
 
 public class BonusNumber {
     private static final String OUT_OF_RANGE_NUMBER_EXCEPTION_FORMAT = "보너스 번호는 %d부터 %d 사이의 숫자여야 합니다.";
@@ -22,7 +23,7 @@ public class BonusNumber {
         }
     }
 
-    private static boolean isOutOfRange(int bonusNumber) {
+    private boolean isOutOfRange(int bonusNumber) {
         return bonusNumber < MINIMUM_LOTTO_NUMBER || bonusNumber > MAXIMUM_LOTTO_NUMBER;
     }
 

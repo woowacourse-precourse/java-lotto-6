@@ -1,6 +1,9 @@
 package lotto.service;
 
-import lotto.domain.*;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRanking;
+import lotto.domain.WinningLotto;
 import lotto.repository.PrizeMoneyRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +12,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
 class StatisticsServiceTest {
     private StatisticsService statisticsService;
@@ -33,7 +37,7 @@ class StatisticsServiceTest {
                 entry(LottoRanking.NOTHING, 7)
         );
     }
-    
+
     @Test
     @DisplayName("사용자가 구매한 로또 번호의 결과를 통해 수익률을 계산할 수 있다.")
     void calculateRateOfReturn() {

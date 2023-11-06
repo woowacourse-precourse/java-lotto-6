@@ -26,7 +26,6 @@ public class GameManager {
     public void gameStart() {
         publishLottoTickets();
         generateLottoWinningNumbers();
-        generateLottoBonusNumber();
     }
 
     private void publishLottoTickets() {
@@ -45,7 +44,9 @@ public class GameManager {
             String inputString = inputView.readWinningNumbers();
             List<String> splitInputString = Arrays.asList(inputString.split(","));
             List<Integer> winningNumbers = parseToIntegerList(splitInputString);
+
             lottoWinningNumbers = new LottoWinningNumbers(winningNumbers);
+            generateLottoBonusNumber(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             generateLottoWinningNumbers();
@@ -62,13 +63,13 @@ public class GameManager {
         }
     }
 
-    private void generateLottoBonusNumber() {
+    private void generateLottoBonusNumber(List<Integer> winningNumbers) {
         try {
             String inputString = inputView.readBonusNumber();
-            bonusNumber = new LottoBonusNumber(parseToInt(inputString));
+            bonusNumber = new LottoBonusNumber(parseToInt(inputString), winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            generateLottoBonusNumber();
+            generateLottoBonusNumber(winningNumbers);
         }
     }
 

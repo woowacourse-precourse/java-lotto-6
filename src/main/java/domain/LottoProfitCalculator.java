@@ -51,7 +51,8 @@ public class LottoProfitCalculator {
 
         setProfitRate(prizeAmounts
                 .divide(BigDecimal.valueOf(purchaseAmount))
-                .multiply(BigDecimal.valueOf(100)));
+                .multiply(BigDecimal.valueOf(100))
+                .stripTrailingZeros());
     }
 
     public String getProfitRate() {

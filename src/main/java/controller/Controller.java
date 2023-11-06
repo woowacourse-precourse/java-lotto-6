@@ -121,6 +121,7 @@ public class Controller {
 
     private String checkLottoValidation(String input) {
         try {
+            validator.checkNotNumber(input);
             new Lotto(parser.parseLottoNumberToInt(input)); //parser
             return input;
         } catch (IllegalArgumentException e) {

@@ -15,7 +15,6 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validator.checkLottoInput(numbers);
         changeIntegerToString(numbers);
     }
 
@@ -24,6 +23,7 @@ public class Lotto {
                 .collect(Collectors.joining(","));
         System.out.println(numberString);
         validator.checkLottoStringInput(numberString);
+        validator.checkLottoInput(numbers);
     }
 
     // TODO: 추가 기능 구현

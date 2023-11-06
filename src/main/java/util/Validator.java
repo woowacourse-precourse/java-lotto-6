@@ -4,10 +4,11 @@ import repository.LottoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Validator {
     Parser parser = new Parser();
-    LottoRepository lottoRepository = new LottoRepository();
     private static int[] having_lotto = new int[7];
 
     public void checkMoneyInput(String input) {
@@ -55,6 +56,13 @@ public class Validator {
         int check_num = parser.parseNumber(each_num);
         if(check_num > 45 || check_num < 0)
             throw new IllegalArgumentException("[ERROR] 값의 범위는 1부터 45까지 입니다.");
+    }
+
+    public void checkNotNumber(String input) {
+        Pattern pattern = Pattern.compile("[^,0-9]+");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find())
+            throw new IllegalArgumentException("[ERROR] 문자가 입력되면 안 됩니다.");
     }
 
     private void checkEachSpace(List<String> userlottoList) {
@@ -132,6 +140,7 @@ public class Validator {
 
     private void checkEqual(String lotto1, String lotto2) {
         if(lotto1.equals(lotto2)) {
+            having_lotto = null;
             throwDuplicateException();
         }
     }
@@ -141,7 +150,6 @@ public class Validator {
     }
 
     private void throwDuplicateException() {
-        having_lotto = null;
         throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
     }
 

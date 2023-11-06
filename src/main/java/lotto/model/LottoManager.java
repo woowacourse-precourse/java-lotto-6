@@ -19,9 +19,8 @@ public class LottoManager {
     }
 
     public void ticket() {
-        while (token.canTicket()) {
+        while (token.canTicket(lottos.size())) {
             lottos.add(new Lotto(pickNumbers()));
-            token.ticket();
         }
     }
 
@@ -31,6 +30,14 @@ public class LottoManager {
         }
         this.answerLotto = (AnswerLotto) lotto;
         return true;
+    }
+
+    public EarningRate calEarningRate() {
+        return new EarningRate(token.amount(), lottos.stream()
+                .map(lotto -> answerLotto.contains(lotto))
+                .map(Score::getPrize)
+                .reduce(Integer::sum)
+                .get());
     }
 
     @Override

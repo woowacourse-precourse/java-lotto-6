@@ -6,7 +6,7 @@ public class Token {
     private static final int ZERO = 0;
     private static final String WRONG_AMOUNT = "[ERROR] 구입금액은 1,000원 단위만 가능합니다.";
     private static final String ALERT_MIN_AMOUNT = "[ERROR] 최소 구입금액은 1,000원입니다.";
-    private int count;
+    private final int count;
 
     public Token(int amount) {
         validate(amount);
@@ -31,11 +31,11 @@ public class Token {
         return amount % UNIT_AMOUNT != ZERO;
     }
 
-    public boolean canTicket() {
-        return count > ZERO;
+    public boolean canTicket(int count) {
+        return this.count > count;
     }
 
-    public void ticket() {
-        count--;
+    public int amount() {
+        return this.count * UNIT_AMOUNT;
     }
 }

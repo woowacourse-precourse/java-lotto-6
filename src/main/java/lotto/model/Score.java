@@ -4,17 +4,19 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 public enum Score {
-    First(6),
-    Second(15),
-    Third(5),
-    Fourth(4),
-    Fifth(3),
-    Nothing(0);
+    First(6, 2000000000),
+    Second(15, 30000000),
+    Third(5, 1500000),
+    Fourth(4, 50000),
+    Fifth(3, 5000),
+    Nothing(0, 0);
 
     private final int point;
+    private final int prize;
 
-    Score(int point) {
+    Score(int point, int prize) {
         this.point = point;
+        this.prize = prize;
     }
 
     public static Score from(int point) {
@@ -33,5 +35,9 @@ public enum Score {
 
     private boolean isThird() {
         return this == Third;
+    }
+
+    public int getPrize() {
+        return this.prize;
     }
 }

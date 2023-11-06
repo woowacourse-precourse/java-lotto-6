@@ -1,20 +1,19 @@
 package lotto.domain;
 
 import lotto.dto.BonusResponse;
-import lotto.parser.Parser;
 
 public class Bonus {
     private final int bonusNumber;
 
-    private Bonus(final String input) {
-        this.bonusNumber = Parser.parseBonusNumber(input);
+    private Bonus(final int input) {
+        this.bonusNumber = input;
     }
 
-    public static Bonus create(final String input) {
+    public static Bonus create(final int input) {
         return new Bonus(input);
     }
 
-    public BonusResponse bonusResponse() {
+    public BonusResponse generateBonusResponse() {
         return new BonusResponse(bonusNumber);
     }
 }

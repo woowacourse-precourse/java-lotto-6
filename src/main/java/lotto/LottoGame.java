@@ -25,6 +25,7 @@ public class LottoGame {
 
     public void startGame() {
         ExceptionResolver.resolveProcess(LottoGame::buyLottos, this);
+        printBuyingResults();
         ExceptionResolver.resolveProcess(LottoGame::inputWinningLotto, this);
         printWinningResult();
     }
@@ -32,7 +33,6 @@ public class LottoGame {
     private void buyLottos() {
         int price = inputBuyingPrice();
         lottoMachine.buyLottos(RandomLottoNumberGenerator.getSupplier(), price);
-        printBuyingResults();
     }
 
     private int inputBuyingPrice() {

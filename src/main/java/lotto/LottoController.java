@@ -49,20 +49,45 @@ public class LottoController {
 
     void inputWinnerNumber() {
 
-        try {
-            List<Integer> numbers = view.inputNumbers(INPUT_WINNER_NUMBERS);
-            view.printMessage(CRLF);
-            WinnerNumbers.validateNumbers(numbers);
+        boolean exceptionOccurrenceStatus = true;
 
-            int bonusNumber = view.inputNumber(INPUT_BONUS_NUMBER);
-            winnerNumbers = new WinnerNumbers(numbers, bonusNumber);
+        while (exceptionOccurrenceStatus) {
+            try {
+                List<Integer> numbers = view.inputNumbers(INPUT_WINNER_NUMBERS);
+                view.printMessage(CRLF);
+                WinnerNumbers.validateNumbers(numbers);
 
-        } catch (Exception e) {
-            view.printMessage(e.getMessage());
-            inputWinnerNumber();
-            return;
+                inputBonusNumber(numbers);
+
+                exceptionOccurrenceStatus = false;
+
+            } catch (Exception e) {
+                view.printMessage(e.getMessage());
+                exceptionOccurrenceStatus = true;
+            }
         }
 
         view.printMessage(CRLF);
+    }
+
+    private int inputBonusNumber(List<Integer> numbers) {
+
+        int bonusNumber = 0;
+
+        boolean exceptionOccurrenceStatus = true;
+
+        while (exceptionOccurrenceStatus) {
+            try {
+                bonusNumber = view.inputNumber(INPUT_BONUS_NUMBER);
+                winnerNumbers = new WinnerNumbers(numbers, bonusNumber);
+                exceptionOccurrenceStatus = false;
+
+            } catch (Exception e) {
+                view.printMessage(e.getMessage());
+                exceptionOccurrenceStatus = true;
+            }
+        }
+
+        return bonusNumber;
     }
 }

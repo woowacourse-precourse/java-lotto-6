@@ -11,7 +11,6 @@ BonusNumber {
     {
         int bonusNumberInt = validateIsNumeric(bonusNumber);
         validateIsNumberInRange(bonusNumberInt);
-        //로또 번호랑 겹치는지 확인하는 validation 필요
         this.bonusNumber = bonusNumberInt;
     }
 

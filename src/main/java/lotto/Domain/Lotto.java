@@ -17,6 +17,7 @@ public class Lotto {
     private static final String LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 중복된 로또 번호를 입력했습니다.";
     private static final String LOTTO_NUMBER_IS_NOT_NUMERIC_ERROR_MESSAGE = "[ERROR] 로또 번호는 숫자여야 합니다.";
     private static final String LOTTO_NUMBER_COUNT_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개 입니다.";
+    private static final String BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 보너스 번호는 로또 번호와 중복되면 안됩니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -84,4 +85,10 @@ public class Lotto {
         }
     }
 
+    public static void validateBonusNumberDuplicate(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            System.out.println(BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE);
+            throw new IllegalArgumentException();
+        }
+    }
 }

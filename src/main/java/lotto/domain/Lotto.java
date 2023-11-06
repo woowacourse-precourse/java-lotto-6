@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoValue;
 

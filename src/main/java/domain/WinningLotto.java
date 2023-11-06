@@ -2,6 +2,7 @@ package domain;
 
 import util.ErrorMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinningLotto {
@@ -9,7 +10,8 @@ public class WinningLotto {
     private int bonusNumber;
 
     public void setWinningNumber(List<Integer> numbers) {
-        this.winningNumber = new Lotto(numbers);
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+        this.winningNumber = new Lotto(mutableNumbers);
     }
 
     public void setBonusNumber(int number) {

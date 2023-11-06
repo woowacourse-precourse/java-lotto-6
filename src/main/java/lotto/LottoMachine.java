@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,6 +38,17 @@ public class LottoMachine {
         if (remainder > 0) {
             throw new IllegalArgumentException("[ERROR] 1000으로 나눠 떨어지지 않습니다.");
         }
+    }
+
+    public List<Lotto> giveLottoBundle() {
+        List<Lotto> lottoBundle = new ArrayList<Lotto>();
+
+        for (int i = 0; i < lottoCount; i++) {
+            Lotto processingLotto = new Lotto(generateLottoNumbers());
+            lottoBundle.add(processingLotto);
+        }
+
+        return lottoBundle;
     }
 
     List<Integer> generateLottoNumbers() {

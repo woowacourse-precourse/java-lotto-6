@@ -1,7 +1,6 @@
 package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.Lotto;
 
 public class GeneratedLottoNumber {
     private static final int START_INCLUSIVE = 1;

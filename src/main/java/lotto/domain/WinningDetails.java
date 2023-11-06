@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import java.util.List;
 
@@ -70,6 +70,7 @@ public class WinningDetails {
     private void checkBonusMatch(List<Integer> numbers){
         if(numbers.contains(bonusNumber)){
             bonusMatch = true;
+            return;
         }
         bonusMatch = false;
     }

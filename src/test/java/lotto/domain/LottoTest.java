@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 import lotto.enums.ExceptionMessage;
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

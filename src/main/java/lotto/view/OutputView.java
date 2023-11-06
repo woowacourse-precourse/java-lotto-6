@@ -3,8 +3,8 @@ package lotto.view;
 import static lotto.enums.Prize.*;
 
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.WinningDetails;
+import lotto.domain.Lotto;
+import lotto.domain.WinningDetails;
 
 public class OutputView {
     private static final String PURCHASE_LOTTO = "%d개를 구매했습니다.\n";

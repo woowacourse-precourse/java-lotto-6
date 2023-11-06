@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import lotto.enums.ExceptionMessage;
 import lotto.utils.RemoveSpace;

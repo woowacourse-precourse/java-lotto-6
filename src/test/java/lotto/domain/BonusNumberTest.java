@@ -1,10 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
 import lotto.enums.ExceptionMessage;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

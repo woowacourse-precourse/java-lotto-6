@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 
 public class LottoBuyer {
+    final String REQUEST_INPUT_MESSAGE = "구입 금액을 입력해 주세요.\n";
+    final String PRINT_MY_LOTTOS = "%d개를 구매했습니다.\n";
     final int LOTTO_PURCHASE_UNIT = 1000;
     private int purchaseAmount;
     private int purchaseLottoCount;
@@ -16,7 +18,7 @@ public class LottoBuyer {
     }
 
     public void inputPurchaseAmount() {
-        System.out.println("구입 금액을 입력해 주세요.");
+        System.out.println(REQUEST_INPUT_MESSAGE);
         buyLotto(Console.readLine());
     }
 
@@ -56,7 +58,7 @@ public class LottoBuyer {
     }
 
     public void printMyLottos() {
-        System.out.printf("%d개를 구매했습니다.\n", calculatePublishCount());
+        System.out.printf(PRINT_MY_LOTTOS, calculatePublishCount());
 
         for (Lotto lotto : myLottos) {
             System.out.println(lotto.getNumbers());

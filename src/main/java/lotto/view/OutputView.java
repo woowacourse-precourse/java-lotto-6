@@ -27,7 +27,7 @@ public class OutputView {
         results.forEach(this::printResult);
     }
 
-    private void printResult(ResultDto result) {
+    private void printResult(final ResultDto result) {
         System.out.printf(LOTTO_RESULT_FORMAT,
                 result.sameNumberCount(),
                 getBonus(result),

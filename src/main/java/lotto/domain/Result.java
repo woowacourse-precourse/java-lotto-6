@@ -17,7 +17,7 @@ public class Result {
         this.rankCount = rankCount;
     }
 
-    public static Result of(final Map<Rank, Long> rankCount) {
+    public static Result from(final Map<Rank, Long> rankCount) {
         return new Result(rankCount);
     }
 

@@ -14,7 +14,7 @@ public class Money {
         this.money = money;
     }
 
-    public static Money of(final int money) {
+    public static Money from(final int money) {
         validateMoney(money);
         return new Money(money);
     }
@@ -29,7 +29,7 @@ public class Money {
         }
     }
 
-    private static boolean isNotEnough(int money) {
+    private static boolean isNotEnough(final int money) {
         return money < MONEY_UNIT.getValue();
     }
 

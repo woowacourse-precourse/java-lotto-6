@@ -29,7 +29,7 @@ public class LottoFactory {
     }
 
     public Result calculateResult(final AnswerLotto answerLotto) {
-        return Result.of(lottos.stream()
+        return Result.from(lottos.stream()
                 .collect(Collectors.toMap(answerLotto::getRank,
                         value -> 1L,
                         Long::sum,

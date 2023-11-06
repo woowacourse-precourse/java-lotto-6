@@ -28,7 +28,7 @@ public class LottoController {
         final AnswerLotto answerLotto = createAnswerLotto(createMainLotto());
         final Result result = lottoFactory.calculateResult(answerLotto);
 
-        outputView.printResults(ResultsDto.of(result));
+        outputView.printResults(ResultsDto.from(result));
         outputView.printRateOfReturn(result.calculateRateToReturn());
 
         inputView.close();
@@ -37,7 +37,7 @@ public class LottoController {
     private Money createMoney() {
         while (true) {
             try {
-                return Money.of(Convertor.toInt(inputView.enterMoney()));
+                return Money.from(Convertor.toInt(inputView.enterMoney()));
             } catch (IllegalArgumentException illegalArgumentException) {
                 outputView.printError(illegalArgumentException.getMessage());
             }

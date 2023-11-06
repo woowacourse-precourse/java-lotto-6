@@ -6,7 +6,7 @@ import lotto.domain.Result;
 
 public record ResultsDto(List<ResultDto> resultsDto) {
 
-    public static ResultsDto of(final Result result) {
+    public static ResultsDto from(final Result result) {
         return new ResultsDto(result.getRankCount()
                 .entrySet()
                 .stream()

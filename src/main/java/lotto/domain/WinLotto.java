@@ -20,4 +20,9 @@ public class WinLotto {
         }
     }
 
+    public Rank calculateRank(Lotto lotto) {
+        int matchCount = numbers.countMatchedNumber(lotto);
+        boolean matchBonus = lotto.contains(bonus);
+        return Rank.valueOf(matchCount, matchBonus);
+    }
 }

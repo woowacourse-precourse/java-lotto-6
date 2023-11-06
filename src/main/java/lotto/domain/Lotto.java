@@ -40,15 +40,21 @@ public class Lotto {
         }
     }
 
+    public boolean contains(LottoNumber number) {
+        return numbers.contains(number);
+    }
+
+    public int countMatchedNumber(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
     @Override
     public String toString() {
         String numbersString = numbers.stream()
                 .map(LottoNumber::toString)
                 .collect(Collectors.joining(", "));
         return String.format("[%s]", numbersString);
-    }
-
-    public boolean contains(LottoNumber bonus) {
-        return numbers.contains(bonus);
     }
 }

@@ -2,6 +2,7 @@ package lotto.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Domain.BonusNumber;
 import lotto.Domain.LottoPurchaseAmount;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoGenerator;
@@ -12,14 +13,12 @@ import lotto.View.OutputView;
 public class LottoGame {
 
     public LottoGame() {}
-
-/*    private static List<Lotto> lottoList;
-    private static List<Integer> winningNumbers;
-    private static int bonusNumber;*/
-
     private static LottoPurchaseAmount lottoPurchaseAmount;
-    private static List<Integer> lotto = new ArrayList<>();
-    private static List<Lotto> lottoList = new ArrayList<>();
+    private static List<Lotto> lottoList;
+    private static List<Integer> winningLottoNumbers;
+    private static int bonusNumber;
+
+
 
     public void LottoGameRun() {
 
@@ -28,6 +27,9 @@ public class LottoGame {
 
         OutputView.printLottoAmount(lottoPurchaseCount);
         OutputView.printPurchasedLottoList(lottoList);
+
+        winningLottoNumbers = parseLottoNumbers(InputView.inputLottoNumbers());
+        bonusNumber = inputBonusNumber();
 
 
     }
@@ -71,5 +73,19 @@ public class LottoGame {
 
         return lottoNumbers;
     }
+
+    private static int inputBonusNumber()
+    {
+        try{
+            bonusNumber = new BonusNumber(InputView.inputBonusNumber());
+            return bonusNumber;
+        }
+        catch(IllegalArgumentException e){
+            return inputBonusNumber();
+        }
+    }
+
+
+
 
 }

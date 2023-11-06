@@ -1,7 +1,7 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Domain.BonusNumberValidator;
+import lotto.Domain.BonusNumber;
 
 public class InputView {
     private final static String INPUT_LOTTO_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -25,16 +25,10 @@ public class InputView {
     }
 
 
-    public static int inputBonusNumber() {
+    public static String inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        String input = Console.readLine();
+        String bonusNumberInput = Console.readLine();
 
-        BonusNumberValidator.validateIsNumeric(input);
-        int bonusNumber = Integer.parseInt(input);
-
-        BonusNumberValidator.validateIsNumberInRange(bonusNumber);
-
-        return bonusNumber;
+        return bonusNumberInput;
     }
-
 }

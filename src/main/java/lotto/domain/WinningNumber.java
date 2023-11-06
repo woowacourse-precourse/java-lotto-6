@@ -23,4 +23,8 @@ public class WinningNumber {
         return this.number == number;
     }
 
+    public boolean is(WinningNumber winningNumber) {
+        return this.number == winningNumber.number;
+    }
+
 }

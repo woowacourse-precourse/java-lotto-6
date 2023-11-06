@@ -40,4 +40,8 @@ public class WinningNumbers {
         return winningNumbers.stream().anyMatch(winningNumber -> winningNumber.is(number));
     }
 
+    public boolean contains(BonusNumber bonusNumber) {
+        return winningNumbers.stream().anyMatch(bonusNumber::is);
+    }
+
 }

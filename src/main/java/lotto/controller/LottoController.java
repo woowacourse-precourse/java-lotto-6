@@ -33,7 +33,7 @@ public class LottoController {
         while (true) {
             try {
                 int purchaseAmount = InputProcessor.processPurchaseAmount();
-                return new PurchasedLottos(purchaseAmount, new RandomLottosGenerator());
+                return new PurchasedLottos(purchaseAmount, new RandomLottosGenerator(purchaseAmount));
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

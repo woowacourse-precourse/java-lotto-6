@@ -9,8 +9,14 @@ import lotto.domain.Lotto;
 
 public class RandomLottosGenerator implements LottsGenerator {
 
+    private final int purchaseAmount;
+
+    public RandomLottosGenerator(int purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
+    }
+
     @Override
-    public List<Lotto> generateLottos(int purchaseAmount) {
+    public List<Lotto> generateLottos() {
         int purchasedLottoCount = purchaseAmount / Values.LOTTO_PURCHASE_UNIT;
         return IntStream.range(0, purchasedLottoCount)
                 .mapToObj(i -> new Lotto(generateNumbers()))

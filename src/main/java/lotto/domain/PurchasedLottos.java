@@ -12,7 +12,7 @@ public class PurchasedLottos {
 
     public PurchasedLottos(int purchaseAmount, LottsGenerator lottsGenerator) {
         validate(purchaseAmount);
-        this.lottos = lottsGenerator.generateLottos(purchaseAmount);
+        this.lottos = lottsGenerator.generateLottos();
     }
 
     public void validate(int purchaseAmount) {
@@ -37,6 +37,10 @@ public class PurchasedLottos {
 
     private boolean isNotMultipleOfLottoPurchaseUnit(int purchaseAmount) {
         return Values.LOTTO_PURCHASE_UNIT != 0 && purchaseAmount % Values.LOTTO_PURCHASE_UNIT != 0;
+    }
+
+    public double calculateTotalInvestment() {
+        return (double) lottos.size() * Values.LOTTO_PURCHASE_UNIT;
     }
 
     @Override

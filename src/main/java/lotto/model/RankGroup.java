@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public enum RankGroup {
     FIRST(false, 6, 0, 2000000000, RankTemplate.FIRST),
-    SECOND(true, 6, 0, 30000000, RankTemplate.SECOND),
+    SECOND(true, 5, 0, 30000000, RankTemplate.SECOND),
     THIRD(false,5, 0, 1500000, RankTemplate.THIRD),
     FOURTH(false,4, 0, 50000, RankTemplate.FOURTH),
     FIFTH(false, 3, 0, 5000, RankTemplate.FIFTH)

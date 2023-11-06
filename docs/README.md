@@ -14,7 +14,6 @@
 - strArr => IntList로 변환하는 기능
 
 ### 3. 보너스 번호 입력 받기
-- 1~45 사이 숫자 아니면 IllegalArgumentException 예외처리
 
 ### 예외처리
 - IllegalArgumentException 발생시키기

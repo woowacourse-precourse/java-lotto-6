@@ -107,5 +107,9 @@ public class Application {
         }
 
 
+        //입력 3. 보너스 번호 입력 받기
+        System.out.println(Message.GetBonusNumber.getValue());
+        int bonusNumber = Integer.parseInt(readLine());
+
     }
 }

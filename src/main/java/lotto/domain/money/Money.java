@@ -1,5 +1,7 @@
 package lotto.domain.money;
 
+import static lotto.domain.constant.DomainConstant.HUNDRED;
+
 import java.text.DecimalFormat;
 import lotto.domain.constant.DomainConstant;
 
@@ -26,6 +28,10 @@ public record Money(long amount) {
 
     public boolean cantDividedBy(final Money other) {
         return amount % other.amount() != DomainConstant.ZERO;
+    }
+
+    public double getPercentageOf(Money other) {
+        return ((double)amount / other.amount()) * HUNDRED;
     }
 
     @Override

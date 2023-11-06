@@ -15,6 +15,10 @@ public class Payment {
         this.money = money;
     }
 
+    public int numberLottoTicketsCanBuy() {
+        return money / MIN_PAYMENT.get();
+    }
+
     private void validate(int money) {
         if (isLessThan1000(money)) {
             throwException(PAYMENT_LESS_THAN_1000.get());

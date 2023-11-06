@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import lotto.domain.exception.DuplicatedLottoNumberException;
+import lotto.domain.exception.IllegalLottoNumberException;
+import lotto.domain.exception.IllegalLottoSizeException;
+
 import java.util.List;
 
 public class Lotto {
@@ -29,19 +33,19 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalLottoSizeException();
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> !isOnRange(number))) {
-            throw new IllegalArgumentException();
+            throw new IllegalLottoNumberException();
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException();
+            throw new DuplicatedLottoNumberException();
         }
     }
 

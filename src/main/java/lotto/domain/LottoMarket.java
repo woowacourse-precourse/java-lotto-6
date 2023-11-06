@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.exception.IllegalLottoPriceException;
+
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -26,13 +28,13 @@ public class LottoMarket {
 
     private void validateRange(int lottoBoughtPrice) {
         if (lottoBoughtPrice < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalLottoPriceException();
         }
     }
 
     private void validateNoRecharge(int lottoBoughtPrice) {
         if (lottoBoughtPrice % lottoPrice != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalLottoPriceException();
         }
     }
 

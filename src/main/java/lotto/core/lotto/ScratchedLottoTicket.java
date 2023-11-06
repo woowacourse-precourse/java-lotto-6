@@ -24,13 +24,4 @@ public class ScratchedLottoTicket {
     public WinningChartEnum getWinningChartEnum() {
         return winningChartEnum;
     }
-
-    @Override
-    public String toString() {
-        return "ScratchedLottoTicket{" +
-                "lottoTicket=" + lottoTicket +
-                ", matchCount=" + matchCount +
-                ", winningChartEnum=" + winningChartEnum +
-                '}';
-    }
 }

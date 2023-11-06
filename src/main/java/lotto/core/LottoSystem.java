@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import lotto.core.calculator.MoneyCalculator;
 import lotto.core.exception.LottoApplicationException;
 import lotto.core.iomanangers.ExceptionOutputManager;
@@ -33,69 +35,48 @@ public class LottoSystem {
     }
 
     public void process() {
-        outputManager.printPurchaseAmountAsk();
-        Integer amountToQuantity = inputForAmount();
-        outputManager.printQuantityAnnounce(amountToQuantity);
-        List<LottoTicket> lottoTickets = saveLottoTickets(amountToQuantity);
+        try {
+            outputManager.printPurchaseAmountAsk();
+            Integer amountToQuantity = chooseAmount();
+            outputManager.printQuantityAnnounce(amountToQuantity);
+            List<LottoTicket> lottoTickets = saveLottoTickets(amountToQuantity);
 
-        outputManager.printWinningNumberAsk();
-        WinningNumbers winningNumbers = chooseWinningNumber();
+            outputManager.printWinningNumberAsk();
+            WinningNumbers winningNumbers = chooseWinningNumber();
 
-        outputManager.printBonusNumberAsk();
-        BonusNumber bonusNumber = chooseBonusNumber();
+            outputManager.printBonusNumberAsk();
+            BonusNumber bonusNumber = chooseBonusNumber();
 
-        ScratchedLottoTicketList scratchedLottoTicketList = ticketScratcher.scratchAllTickets(winningNumbers,
-                bonusNumber, lottoTickets);
-        outputManager.printWinningChartAnnounce(scratchedLottoTicketList);
+            ScratchedLottoTicketList scratchedLottoTicketList = ticketScratcher.scratchAllTickets(winningNumbers,
+                    bonusNumber, lottoTickets);
+            outputManager.printWinningChartAnnounce(scratchedLottoTicketList);
 
-        BigDecimal rateOfReturn = calculate(amountToQuantity, scratchedLottoTicketList);
-        outputManager.printRateOfReturn(rateOfReturn);
-        this.close();
+            BigDecimal rateOfReturn = calculate(amountToQuantity, scratchedLottoTicketList);
+            outputManager.printRateOfReturn(rateOfReturn);
+        } finally {
+            this.close();
+        }
     }
 
-    private Integer inputForAmount() {
-        while (true) {
-            try {
-                String purchaseAmount = this.readLine();
-                return numberGenerator.createAmountToQuantity(purchaseAmount);
-            } catch (LottoApplicationException e) {
-                exceptionOutputManager.printException(e);
-            }
-        }
+    private Integer chooseAmount() {
+        return this.getInputAndCatchException(numberGenerator::createAmountToQuantity,
+                exceptionOutputManager::printException);
     }
 
     private BigDecimal calculate(Integer amountToQuantity, ScratchedLottoTicketList scratchedLottoTicketList) {
-        while (true) {
-            try {
-                moneyCalculator.calculate(scratchedLottoTicketList, amountToQuantity);
-                return moneyCalculator.getRateOfReturn();
-            } catch (LottoApplicationException e) {
-                exceptionOutputManager.printException(e);
-            }
-        }
+        moneyCalculator.calculate(scratchedLottoTicketList, amountToQuantity);
+        return moneyCalculator.getRateOfReturn();
     }
 
     private BonusNumber chooseBonusNumber() {
-        while (true) {
-            try {
-                String unprocessedBonusNumber = this.readLine();
-                Integer bonusNumberFromConsole = numberGenerator.createBonusNumberFromConsole(unprocessedBonusNumber);
-                return new BonusNumber(bonusNumberFromConsole);
-            } catch (LottoApplicationException e) {
-                exceptionOutputManager.printException(e);
-            }
-        }
+        Integer bonusNumberFormConsole = this.getInputAndCatchException(numberGenerator::createBonusNumberFromConsole,
+                exceptionOutputManager::printException);
+        return new BonusNumber(bonusNumberFormConsole);
     }
 
     private WinningNumbers chooseWinningNumber() {
-        while (true) {
-            try {
-                String unprocessedWinningNumbers = this.readLine();
-                return numberGenerator.createWinningNumbersFromConsole(unprocessedWinningNumbers);
-            } catch (LottoApplicationException e) {
-                exceptionOutputManager.printException(e);
-            }
-        }
+        return this.getInputAndCatchException(numberGenerator::createWinningNumbersFromConsole,
+                exceptionOutputManager::printException);
     }
 
     private List<LottoTicket> saveLottoTickets(Integer amountToQuantity) {
@@ -115,5 +96,17 @@ public class LottoSystem {
 
     private void close() {
         Console.close();
+    }
+
+    private <T> T getInputAndCatchException(Function<String, T> processor,
+                                            Consumer<LottoApplicationException> exceptionHandler) {
+        while (true) {
+            try {
+                String input = this.readLine();
+                return processor.apply(input);
+            } catch (LottoApplicationException e) {
+                exceptionHandler.accept(e);
+            }
+        }
     }
 }

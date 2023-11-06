@@ -11,17 +11,26 @@ import lotto.WinningNumbers;
 public class InputView {
 
     public int askPurchaseAmount() {
-        printInputMoneyMessage();
-        String purchaseAmount = Console.readLine();
-        validatePurchaseAmount(purchaseAmount);
+        boolean isNotCorrectInput = true;
+        while(isNotCorrectInput) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String purchaseAmount = Console.readLine();
+            isNotCorrectInput = validatePurchaseAmount(purchaseAmount);
+        }
         return Integer.parseInt(Console.readLine());
     }
 
-    public void validatePurchaseAmount(String purchaseAmount) {
-        validateNotBlank(purchaseAmount);
-        validateInputIsNumeric(purchaseAmount);
-        validateInputIsPositiveNumber(purchaseAmount);
-        validateInputIsMultipleOfThousand(purchaseAmount);
+    public boolean validatePurchaseAmount(String purchaseAmount) {
+        try {
+            validateNotBlank(purchaseAmount);
+            validateInputIsNumeric(purchaseAmount);
+            validateInputIsPositiveNumber(purchaseAmount);
+            validateInputIsMultipleOfThousand(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
     }
 
     public WinningNumbers askWinningNumbers() {
@@ -52,7 +61,7 @@ public class InputView {
         validateInputIsPositiveNumber(bonusNumber);
     }
 
-    private void validateNotBlank(String input) {
+    private void validateNotBlank(String input) throws IllegalArgumentException {
         if (input == null || input.isBlank() || containsWhitespace(input)) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
         }
@@ -64,7 +73,7 @@ public class InputView {
         return matcher.find();
     }
 
-    private void validateInputIsNumeric(String input) {
+    private void validateInputIsNumeric(String input) throws IllegalArgumentException {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -72,14 +81,14 @@ public class InputView {
         }
     }
 
-    private void validateInputIsPositiveNumber(String input) {
+    private void validateInputIsPositiveNumber(String input) throws IllegalArgumentException {
         int purchaseAmount = Integer.parseInt(input);
-        if (purchaseAmount < 0) {
+        if (purchaseAmount < 1) {
             throw new IllegalArgumentException("[ERROR] 0 이상의 숫자를 입력해 주세요.");
         }
     }
 
-    private void validateInputIsMultipleOfThousand(String input) {
+    private void validateInputIsMultipleOfThousand(String input) throws IllegalArgumentException{
         int purchaseAmount = Integer.parseInt(input);
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000 단위로 입력해 주세요.");
@@ -90,13 +99,5 @@ public class InputView {
         if (input.endsWith(",")) {
             throw new IllegalArgumentException("[ERROR] 구분자(,)로 끝날 수 없습니다.");
         }
-    }
-
-    private void printInputMoneyMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
-    }
-
-    public void printResultMessage() {
-        System.out.println("당첨 통계");
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class LottoRank {
 
-    public int isRank(Lotto lotto, Lotto compare, int bonusNum) {
+    public static int isRank(Lotto lotto, Lotto compare, int bonusNum) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         List<Integer> compareNumbers = compare.getNumbers();
         int matchingCount = countMatchingNumbers(lottoNumbers, compareNumbers);
@@ -33,14 +33,14 @@ public class LottoRank {
         return -1;
     }
 
-    private int countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> compareNumbers) {
+    private static int countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> compareNumbers) {
         long count = lottoNumbers.stream()
                 .filter(compareNumbers::contains)
                 .count();
         return (int) count;
     }
 
-    private boolean isHasNum(List<Integer> compareNumbers, int bonusNum) {
+    private static boolean isHasNum(List<Integer> compareNumbers, int bonusNum) {
         boolean hasNum = compareNumbers.stream().anyMatch(n -> n == bonusNum);
         return hasNum;
     }

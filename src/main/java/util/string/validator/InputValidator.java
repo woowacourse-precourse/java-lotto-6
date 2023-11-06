@@ -1,8 +1,6 @@
 package util.string.validator;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.exception.DuplicatedLottoNumberException;
 import lotto.exception.EmptyInputException;
 import lotto.exception.EmptySpaceIncludeException;
@@ -32,7 +30,6 @@ public class InputValidator {
         checkLastIndexAndThrowException(input);
         List<Integer> numbers = StringUtils.parseLottoNumber(input);
         checkLottoLengthAndThrowException(numbers);
-        checkLottoNumberDuplicatedAndThrowException(numbers);
         checkLottoNumberRangeAndThrowException(numbers);
     }
 
@@ -64,14 +61,6 @@ public class InputValidator {
             if (x > LOTTO_NUMBER_MAX_RANGE || x < LOTTO_NUMBER_MIN_RANGE) {
                 throw new OutOfNumberRangeException();
             }
-        }
-    }
-
-    private static void checkLottoNumberDuplicatedAndThrowException(List<Integer> numbers)
-            throws IllegalArgumentException {
-        Set<Integer> set = new HashSet<>(numbers);
-        if (set.size() != numbers.size()) {
-            throw new DuplicatedLottoNumberException();
         }
     }
 

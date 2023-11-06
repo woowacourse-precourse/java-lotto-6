@@ -46,48 +46,53 @@ public class Controller {
 
     private int getInputBonusNumber(List<Integer> numbers) {
         String inputNumber;
+
         while (true) {
             view.printRequestBonusNumber();
             inputNumber = readInput();
             try {
                 InputValidator.checkBonusInput(inputNumber, numbers);
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
             }
         }
+
         return StringUtils.parseStringToInt(inputNumber);
     }
 
     private int getUserInputPrice() {
         String inputPrice;
+
         while (true) {
             view.printRequestPriceMessage();
             inputPrice = readInput();
             try {
                 InputValidator.checkPriceInput(inputPrice);
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
             }
         }
+
         return StringUtils.parseStringToInt(inputPrice);
     }
 
     private List<Integer> getWinningLottonumbers() {
         String inputWinningLotto;
+
         while (true) {
             view.printRequestWinningNumbers();
             inputWinningLotto = readInput();
             try {
                 InputValidator.checkWinningLottoInput(inputWinningLotto);
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
             }
         }
-        return StringUtils.parseLottoNumber(inputWinningLotto);
 
+        return StringUtils.parseLottoNumber(inputWinningLotto);
     }
 
     private String readInput() {

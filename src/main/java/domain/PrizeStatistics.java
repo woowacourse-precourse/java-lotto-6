@@ -1,36 +1,38 @@
 package domain;
 
-public class PrizeDescribe {
-    private static PrizeDescribe instance;
-    private int fifthPrize = 0;
-    private int fourthPrize = 0;
-    private int thirdPrize = 0;
-    private int secondPrize = 0;
-    private int firstPrize = 0;
+public class PrizeStatistics {
+    private static final int ADD_PRIZE = 1;
+    private static PrizeStatistics instance;
+    private int fifthPrize = 0, fourthPrize = 0, thirdPrize = 0, secondPrize = 0, firstPrize = 0;
 
-    private PrizeDescribe() {}
+    private PrizeStatistics() {
+    }
 
-    public static PrizeDescribe getInstance() {
+    public static PrizeStatistics getInstance() {
         if (instance == null) {
-            instance = new PrizeDescribe();
+            instance = new PrizeStatistics();
         }
         return instance;
     }
 
     public void winFifthPrize() {
-        this.fifthPrize += 1;
+        this.fifthPrize += ADD_PRIZE;
     }
+
     public void winFourthPrize() {
-        this.fourthPrize += 1;
+        this.fourthPrize += ADD_PRIZE;
     }
+
     public void winThirdPrize() {
-        this.thirdPrize += 1;
+        this.thirdPrize += ADD_PRIZE;
     }
+
     public void winSecondPrize() {
-        this.secondPrize += 1;
+        this.secondPrize += ADD_PRIZE;
     }
+
     public void winFirstPrize() {
-        this.firstPrize += 1;
+        this.firstPrize += ADD_PRIZE;
     }
 
     public int getFifthPrize() {

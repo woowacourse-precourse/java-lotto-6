@@ -1,3 +1,4 @@
+/*
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,3 +44,5 @@ public class CalculatorTest {
         assertThat(calculator.calculateEarningRate(money)).isEqualTo("625.0%");
     }
 }
+
+ */

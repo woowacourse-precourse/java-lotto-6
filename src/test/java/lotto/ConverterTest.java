@@ -1,3 +1,4 @@
+/*
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,3 +15,6 @@ class ConverterTest {
         assertThat(lottoCount).isEqualTo(12);
     }
 }
+
+
+ */

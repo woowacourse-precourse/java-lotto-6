@@ -22,6 +22,15 @@ public class LottoTest {
                 () -> Assertions.assertThrows(IllegalArgumentException.class,
                         () -> new Lotto(List.of(8, 21, 23, 41, 42)))
         );
+    }
 
+    @DisplayName("불변 Collection을 반환한다.")
+    @Test
+    void getLotto(){
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+
+        List<Integer> copyLotto = lotto.getNumbers();
+
+        Assertions.assertThrows(UnsupportedOperationException.class, ()-> copyLotto.add(1));
     }
 }

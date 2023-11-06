@@ -9,4 +9,9 @@ public class LottoSystem {
 
     private List<LottoNumber> winningLottoNumbers;
     private Player player;
+
+    public LottoSystem(List<LottoNumber> winningLottoNumbers, Player player) {
+        this.winningLottoNumbers = winningLottoNumbers;
+        this.player = player;
+    }
 }

@@ -1,8 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.service.LottoPurchaseManager;
-import lotto.service.LottoResultGenerator;
+import lotto.service.GameManager;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,8 +10,7 @@ import java.util.Map;
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
-    private LottoPurchaseManager lottoPurchaseManager;
-    private LottoResultGenerator lottoResultGenerator;
+    private GameManager gameManager;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -20,21 +18,22 @@ public class GameController {
     }
 
     public void run() {
-        initializeLottoPurchaseManager();
-        displayPurchasedLottos();
-        initializeLottoResultGenerator();
+        initializeGameManager();
+        printPurchasedLottos();
+        processResult();
         printResult();
     }
 
-    private void initializeLottoPurchaseManager() {
+    private void initializeGameManager() {
         LottoPurchaseAmount lottoPurchaseAmount = readPurchaseAmountFromUser();
-        lottoPurchaseManager = LottoPurchaseManager.create(lottoPurchaseAmount);
+        gameManager = GameManager.create(lottoPurchaseAmount);
     }
 
     private LottoPurchaseAmount readPurchaseAmountFromUser() {
+        inputView.printAskPurchaseAmount();
         while (true) {
             try {
-                String purchaseAmountInput = inputView.printAskPurchaseAmount();
+                String purchaseAmountInput = inputView.readInputFromUser();
                 return LottoPurchaseAmount.create(purchaseAmountInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -42,41 +41,34 @@ public class GameController {
         }
     }
 
-    private void displayPurchasedLottos() {
-        printPurchasedLottos(lottoPurchaseManager.getLottos());
-    }
-
-    private void initializeLottoResultGenerator() {
-        WinningLotto winningLotto = createWinningLotto();
-        lottoResultGenerator = LottoResultGenerator.create(winningLotto, lottoPurchaseManager.getPurchaseAmount());
-    }
-
-    private void printResult() {
-        Map<PrizeCondition, Long> prizeResult = lottoResultGenerator.generatePrizeResult(lottoPurchaseManager.getLottos());
-        double profit = lottoResultGenerator.generateProfit();
-        outputView.printResult(prizeResult, profit);
-    }
-
-    private void printPurchasedLottos(Lottos lottos) {
+    private void printPurchasedLottos() {
+        Lottos lottos = gameManager.providePurchasedLottos();
         outputView.printLottos(lottos);
     }
 
+    private void processResult() {
+        WinningLotto winningLotto = createWinningLotto();
+        gameManager.processResult(winningLotto);
+    }
+
     private WinningLotto createWinningLotto() {
-        WinningNumbers winningNumbers = createWinningNumbers();
+        WinningNumbers winningNumbers = readWinningNumbersFromUser();
+        inputView.printAskBonusNumber();
         while (true) {
             try {
-                BonusNumber bonusNumber = createBonusNumber();
-                return WinningLotto.create(winningNumbers, bonusNumber);
+                String bonusNumberInput = inputView.readInputFromUser();
+                return WinningLotto.create(winningNumbers, bonusNumberInput);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
-    private WinningNumbers createWinningNumbers() {
+    private WinningNumbers readWinningNumbersFromUser() {
+        inputView.printAskWinningNumbers();
         while (true) {
             try {
-                String winningNumbersInput = inputView.printAskWinningNumbers();
+                String winningNumbersInput = inputView.readInputFromUser();
                 return WinningNumbers.create(winningNumbersInput);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -84,14 +76,9 @@ public class GameController {
         }
     }
 
-    private BonusNumber createBonusNumber() {
-        while (true) {
-            try {
-                String bonusNumberInput = inputView.printAskBonusNumber();
-                return BonusNumber.create(bonusNumberInput);
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
+    private void printResult() {
+        Map<PrizeCondition, Long> prizeResult = gameManager.providePrizeResult();
+        double profit = gameManager.provideProfit();
+        outputView.printResult(prizeResult, profit);
     }
 }

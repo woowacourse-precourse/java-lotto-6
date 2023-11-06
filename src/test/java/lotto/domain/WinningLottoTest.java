@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningLottoTest {
     WinningNumbers winningNumbers;
-    BonusNumber bonusNumber;
     WinningLotto winningLotto;
 
     @DisplayName("당첨번호에 보너스넘버가 중복되지 않으면 정상 처리된다.")
@@ -16,7 +15,7 @@ class WinningLottoTest {
     void create() {
         // given
         winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
-        bonusNumber = BonusNumber.create("7");
+        String bonusNumber = "7";
 
         //when
         winningLotto = WinningLotto.create(winningNumbers, bonusNumber);
@@ -30,7 +29,7 @@ class WinningLottoTest {
     void cannotCreate_duplicate() {
         // given
         winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
-        bonusNumber = BonusNumber.create("1");
+        String bonusNumber = "1";
 
         // when, then
         assertThatThrownBy(() -> WinningLotto.create(winningNumbers, bonusNumber))

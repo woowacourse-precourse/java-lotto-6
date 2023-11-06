@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LottoResultGeneratorTest {
     LottoPurchaseAmount purchaseAmount;
     WinningNumbers winningNumbers;
-    BonusNumber bonusNumber;
     WinningLotto winningLotto;
     LottoResultGenerator lottoResultGenerator;
     Lottos lottos;
@@ -29,7 +28,7 @@ class LottoResultGeneratorTest {
         List<Integer> numbers3 = Arrays.asList(1, 2, 3, 5, 7, 8);
 
         winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
-        bonusNumber = BonusNumber.create("7");
+        String bonusNumber = "8";
         winningLotto = WinningLotto.create(winningNumbers, bonusNumber);
 
         lottoResultGenerator = LottoResultGenerator.create(winningLotto, purchaseAmount);

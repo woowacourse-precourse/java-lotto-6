@@ -35,8 +35,8 @@ class LottosTest {
     void providePrizeConditions() {
         //given
         WinningNumbers winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
-        BonusNumber bonusNumber = BonusNumber.create("8");
-        WinningLotto winningLotto = WinningLotto.create(winningNumbers, bonusNumber);
+        String bonusNumberInput = "8";
+        WinningLotto winningLotto = WinningLotto.create(winningNumbers, bonusNumberInput);
 
         // when
         List<PrizeCondition> prizeConditions = lottos.providePrizeConditions(winningLotto);

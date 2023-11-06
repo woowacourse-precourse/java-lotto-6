@@ -12,7 +12,8 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto create(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public static WinningLotto create(WinningNumbers winningNumbers, String number) {
+        BonusNumber bonusNumber = BonusNumber.create(number);
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 

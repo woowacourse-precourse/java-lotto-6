@@ -1,6 +1,9 @@
 package lotto;
 
-import lotto.domain.*;
+import lotto.domain.Lotto;
+import lotto.domain.PrizeCondition;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -49,7 +52,7 @@ class LottoTest {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         WinningNumbers winningNumbers = WinningNumbers.create("1,2,3,4,5,7");
-        BonusNumber bonusNumber = BonusNumber.create("8");
+        String bonusNumber = "3";
         WinningLotto winningLotto = WinningLotto.create(winningNumbers, bonusNumber);
 
         // when, then

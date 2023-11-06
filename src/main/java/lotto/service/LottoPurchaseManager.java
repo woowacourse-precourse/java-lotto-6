@@ -8,9 +8,9 @@ import static lotto.constants.LottoConstants.LOTTO_PRICE;
 
 public class LottoPurchaseManager {
     private final LottoPurchaseAmount purchaseAmount;
-    private Lottos lottos;
+    private final Lottos lottos;
 
-    public LottoPurchaseManager(LottoPurchaseAmount lottoPurchaseAmount) {
+    private LottoPurchaseManager(LottoPurchaseAmount lottoPurchaseAmount) {
         this.purchaseAmount = lottoPurchaseAmount;
         lottos = createLottos();
     }

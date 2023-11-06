@@ -141,3 +141,9 @@ public class Lotto {
         - 숫자가 아닐 경우
         - 공백이거나 빈 칸일 경우
 
+### LottoList
+
+- Lotto 리스트를 저장한다.
+- LottoList를 생성하는 기능
+  - 무작위 로또 번호를 생성하여 Lotto에 저장한다.
+

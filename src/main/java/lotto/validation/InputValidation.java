@@ -44,6 +44,10 @@ public class InputValidation {
         }
     }
 
+    public void validationLottoWinningBonusNumber(String bonusNumber, List<Integer> lottoWinningNumbers) {
+        isEmptyValidation(bonusNumber);
+    }
+
     private void isEmptyValidation(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ERROR + IS_NULL_MESSAGE);

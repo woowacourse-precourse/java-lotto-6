@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.model.LottoResultModel;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -66,8 +67,8 @@ public class LottoGameController {
     }
 
     private void lottoWinningResult(){
-        Map<String, String> lottoWinningResult = lottoGameService.lottoWinningResultCalculation(lotto, winningNumber, bonusNumber);
-        outputView.lottoResultDisplay(lottoWinningResult);
+        LottoResultModel lottoResultModel = lottoGameService.lottoWinningResultCalculation(lotto, winningNumber, bonusNumber);
+        outputView.lottoResultDisplay(lottoResultModel);
     }
 
 }

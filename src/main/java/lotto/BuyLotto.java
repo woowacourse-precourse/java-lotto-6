@@ -14,9 +14,9 @@ public class BuyLotto {
             exceptionHandling(m);
             lottoCount = Integer.parseInt(m) / 1000;
             System.out.println();
-            System.out.println(lottoCount + "개를 구매 했습니다.");
+            System.out.printf("%d개를 구매 했습니다.", lottoCount);
         } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
             buy();
         }
         return lottoCount;
@@ -24,12 +24,12 @@ public class BuyLotto {
 
     public void exceptionHandling(String money) {
         if (!money.matches("\\d+")) {
-            throw new IllegalArgumentException("[Error] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
 
         int buy = Integer.parseInt(money);
         if (buy % 1000 != 0 || buy < 1000) {
-            throw new IllegalArgumentException("[Error] 로또는 1000원 단위로 구매 할 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구매 할 수 있습니다.");
         }
     }
 

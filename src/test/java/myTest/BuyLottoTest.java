@@ -3,7 +3,10 @@ package myTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import java.util.List;
 import lotto.BuyLotto;
+import lotto.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +24,7 @@ class BuyLottoTest {
         String money = "10000원";
         assertThatThrownBy(() -> buyLotto.exceptionHandling(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[Error] 숫자만 입력 가능합니다.");
+                .hasMessage("[ERROR] 숫자만 입력 가능합니다.");
     }
 
     @Test
@@ -29,6 +32,8 @@ class BuyLottoTest {
         String money = "5500";
         assertThatThrownBy(() -> buyLotto.exceptionHandling(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[Error] 로또는 1000원 단위로 구매 할 수 있습니다.");
+                .hasMessage("[ERROR] 로또는 1000원 단위로 구매 할 수 있습니다.");
     }
+
+
 }

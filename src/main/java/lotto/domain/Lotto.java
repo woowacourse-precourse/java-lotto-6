@@ -12,6 +12,7 @@ public class Lotto {
     private static final int RANGE_START = LottoConfig.RANGE_START.value();
     private static final int RANGE_END = LottoConfig.RANGE_END.value();
     private static final int FILTER_CONDITION = 0;
+    private static final int DEFAULT_MATCH = 0;
 
     private final List<Integer> numbers;
 
@@ -35,7 +36,7 @@ public class Lotto {
     }
 
     private WinningPrize compareWithLotto(Lotto target) {
-        int match = 0;
+        int match = DEFAULT_MATCH;
         for (int number : target.numbers) {
             if (checkDuplicates(number)) {
                 match++;

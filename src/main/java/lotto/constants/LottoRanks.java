@@ -31,9 +31,9 @@ public enum LottoRanks {
         return winnings;
     }
 
-    public static LottoRanks findRank(int sameNumber, boolean sameBonus) {
+    public static LottoRanks findRank(int sameNumber, boolean isSecond) {
         for (LottoRanks lottoRanks : LottoRanks.values()) {
-            if (lottoRanks.sameNumber == sameNumber && lottoRanks.isSecond == sameBonus) {
+            if (lottoRanks.sameNumber == sameNumber && lottoRanks.isSecond == isSecond) {
                 return lottoRanks;
             }
         }

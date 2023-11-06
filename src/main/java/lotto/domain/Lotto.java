@@ -46,4 +46,10 @@ public class Lotto {
         }
         return false;
     }
+
+    public int countSameNumber(Lotto other) {
+        return (int)numbers.stream()
+                .filter(other.numbers::contains)
+                .count();
+    }
 }

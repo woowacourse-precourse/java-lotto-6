@@ -15,7 +15,7 @@ public class Lotto {
     private final List<LottoNumber> lottoNumbers;
 
     public Lotto(List<Integer> numbers) throws LottoException {
-        // TreeSet : 로또 번호 오름차순 자동 정렬
+        // TreeSet : 로또 번호 오름차순 정렬 (Comparable<LottoNumber> 구현)
         Set<LottoNumber> uniqueNumbers = numbers.stream()
                 .map(LottoNumber::new).collect(Collectors.toCollection(TreeSet::new));
         validate(new ArrayList<>(uniqueNumbers));

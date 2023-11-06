@@ -24,10 +24,10 @@
 ## 로또 규칙 구현을 위한 기능 목록
 
 ### Lotto 클래스에서 제공하는 기능
-- [ ] 제공 받은 숫자들 중 로또 숫자와 일치하는 갯수 반환하기
-- [ ] 제공 받은 숫자가 로또 숫자에 포함되는지 반환하기
-- [ ] 로또 숫자 규칙에 맞는 숫자들을 생성
-  - [ ] `camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange`을 사용한다.
+- [x] 제공 받은 숫자들 중 로또 숫자와 일치하는 갯수 반환하기
+- [x] 제공 받은 숫자가 로또 숫자에 포함되는지 반환하기
+- [x] 로또 숫자 규칙에 맞는 숫자들을 생성
+  - [x] `camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange`을 사용한다.
 
 ### LottoWinning 클래스에서 제공하는 기능
 - [ ] 당첨 번호와 일치하는 수, 보너스 숫자 당첨 여부로부터 몇 등에 당첨 되었는지 판단 

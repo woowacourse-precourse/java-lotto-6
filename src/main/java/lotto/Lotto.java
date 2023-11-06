@@ -36,4 +36,7 @@ public class Lotto {
         }
         return countNumberMatching;
     }
+
+    @Override
+    public String toString() {return numbers.toString();}
 }

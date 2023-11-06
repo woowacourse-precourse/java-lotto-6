@@ -31,12 +31,6 @@ public class LottoTargetNumResults {
         return winLottoNums.isSame(targetNum, index);
     }
 
-    /**
-     * 보너스 번호가 같은지 확인
-     *
-     * @param targetNum
-     * @return
-     */
     public Boolean isSameBonusNum(Integer targetNum, Integer indexOfSpecial) {
         if (isSameBonusNumber(indexOfSpecial)) {
             return bonusLottoNum.isSame(targetNum);

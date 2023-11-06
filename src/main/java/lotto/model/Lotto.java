@@ -3,6 +3,9 @@ package lotto.model;
 import java.util.List;
 
 public class Lotto {
+    private final String OPEN_BRACKET = "[";
+    private final String CLOSE_BRACKET = "]";
+    private final String DELIMITER = ", ";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -23,6 +26,10 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return OPEN_BRACKET
+                + String.join(DELIMITER, numbers.stream().map(String::valueOf).toList())
+                + CLOSE_BRACKET;
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 
 import java.util.List;
 
@@ -10,12 +11,12 @@ public class WinNumber {
             try {
                 String input = Console.readLine();
                 String[] number = input.split(",");
-                ErrorInput errorInput = new ErrorInput();
-                List<Integer> winnum = errorInput.win_range(number);
+                List<Integer> winnum = Lotto.win_range(number);
                 return winnum;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+
         }
     }
 }

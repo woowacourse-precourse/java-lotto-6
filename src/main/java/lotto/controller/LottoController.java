@@ -24,11 +24,8 @@ public class LottoController {
         runReadPurchaseLotto();
         runWritePurchaseLotto();
         runReadWinningNum();
+        runReadBonusNum();
 
-
-        while (readBonusNum()) {
-        }
-        OutputViews.endOfSection();
 
         writeMatchesNumResult();
 //        System.out.println(reciveAmount);
@@ -87,6 +84,12 @@ public class LottoController {
             return true;
         }
         return false;
+    }
+
+    public void runReadBonusNum() {
+        while (readBonusNum()) {
+        }
+        OutputViews.endOfSection();
     }
 
     public boolean readBonusNum() {

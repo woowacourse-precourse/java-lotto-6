@@ -9,13 +9,7 @@ import java.util.stream.Collectors;
 
 public class Game {
     public Lottos createLottos(int buyAmount) {
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < buyAmount / 1000; i++) {
-            lottos.add(new Lotto(Generator.createNumbers()));
-        }
-
-        return new Lottos(lottos);
+        return Lottos.from(buyAmount);
     }
 
     public int[] createResult(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {

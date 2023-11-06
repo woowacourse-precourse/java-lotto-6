@@ -5,6 +5,7 @@ import java.util.List;
 public class Lotto {
     public static final int MAX_LOTTO_NUMBER = 45;
     public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int LOTTO_NUMBER_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -14,14 +15,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        vaildateLengthOfNumber(numbers);
-        validateDuplicatedNumber(numbers);
+        validateNotNullNumber(numbers);
         vaildateOutOfRangeNumber(numbers);
+        validateDuplicatedNumber(numbers);
+        vaildateLengthOfNumber(numbers);
+    }
+
+    private void validateNotNullNumber(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new IllegalArgumentException("[ERROR] " + LOTTO_NUMBER_SIZE + "개의 로또번호를 입력해주세요");
+        }
     }
 
     private void vaildateLengthOfNumber(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 로또번호를 입력해주세요");
+            throw new IllegalArgumentException("[ERROR] " + LOTTO_NUMBER_SIZE + "개의 로또번호를 입력해주세요");
         }
     }
 

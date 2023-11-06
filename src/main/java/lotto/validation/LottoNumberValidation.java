@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoNumberValidation {
-    ErrorMessage error;
     public void validateDuplicateLottoNumbers(Lotto lotto) {
         Set<Integer> numbers = new HashSet<>();
         List<Integer> lottoNumbers = lotto.getLottoNumbers();
@@ -18,7 +17,7 @@ public class LottoNumberValidation {
         }
 
         if (lottoNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(error.DUPLICATE_LOTTO_NUMBER_CONSTRAINT_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER_CONSTRAINT_MESSAGE.getMessage());
         }
     }
 }

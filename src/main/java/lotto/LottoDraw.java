@@ -1,16 +1,12 @@
 package lotto;
 
-import lotto.constant.BonusString;
-import lotto.constant.DrawMessage;
-import lotto.constant.LottoRank;
-import lotto.constant.NumberUtil;
+import lotto.constant.*;
 import lotto.domain.*;
 import lotto.service.PrintUtil;
 
 import java.util.*;
 
 public class LottoDraw {
-    private final List<String> lottoPlacePrice = new ArrayList<>(Arrays.asList("5000", "50000", "1500000", "30000000", "2000000000"));
     private final String hasBonus = BonusString.BONUS.getBonus();
     private final String noBonus = BonusString.NOBONUS.getBonus();
     Map<Integer, Map<String, Integer>> lottoPrizeSummary;
@@ -77,12 +73,12 @@ public class LottoDraw {
     public void printLottoResults() {
         printUtil.printWinnerStatistics();
         result = new StringBuilder();
-        for(int index = 0; index < LottoRank.values().length; index++) {
+        for (int index = 0; index < LottoRank.values().length; index++) {
             result.append("\n");
             LottoRank lottoRank = LottoRank.values()[index];
             String message = DrawMessage.NO_BONUS_WINNING_RESULT_MESSAGE.getMessage();
 
-            if(lottoRank.getBonus().equals(hasBonus)){
+            if (lottoRank.getBonus().equals(hasBonus)) {
                 message = DrawMessage.BONUS_WINNING_RESULT_MESSAGE.getMessage();
             }
             sumUpResultsHasBonus(lottoRank, index, message);
@@ -90,13 +86,13 @@ public class LottoDraw {
         System.out.println(result);
     }
 
-    public void sumUpResultsHasBonus(LottoRank lottoRank, int lottoPlacePriceIdx, String message) {
+    public void sumUpResultsHasBonus(LottoRank lottoRank, int prizeIdx, String message) {
         int winCount = lottoRank.getWinningCount();
         String bonusCheck = lottoRank.getWinningCount() + lottoRank.getBonus();
-
+        Prize prize = Prize.values()[prizeIdx];
         result.append(String.format(message,
                 lottoRank.getWinningCount(),
-                lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","),
+                prize.getPrize().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","),
                 lottoPrizeSummary.get(winCount).get(bonusCheck)));
     }
 
@@ -110,7 +106,7 @@ public class LottoDraw {
     }
 
     public void printTotalProfit(Map<String, Integer> summary, int lottoPurchaseAmount) {
-        String totalProfit = lottoStatistics.calculateTotalProfit(summary, lottoPlacePrice, lottoPurchaseAmount);
+        String totalProfit = lottoStatistics.calculateTotalProfit(summary, lottoPurchaseAmount);
         printUtil.printProfit(totalProfit);
     }
 }

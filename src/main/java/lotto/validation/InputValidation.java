@@ -113,7 +113,7 @@ public class InputValidation {
 
     public void validateCheckRangeOfWinnerNumberInput(String[] input) {
         try {
-            for(String number : input) {
+            for (String number : input) {
                 Integer.parseInt(number);
             }
         } catch (IllegalArgumentException illegalArgumentException) {

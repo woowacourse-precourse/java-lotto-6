@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.constant.BonusString;
 import lotto.constant.NumberUtil;
+import lotto.constant.Prize;
 
 import java.util.List;
 import java.util.Map;
@@ -32,18 +33,15 @@ public class LottoStatistics {
         return BonusString.NOBONUS.getBonus();
     }
 
-    public String calculateTotalProfit(
-            Map<String, Integer> summary,
-            List<String> lottoPlacePrize,
-            int lottoPurchaseAmount)
-    {
+    public String calculateTotalProfit(Map<String, Integer> summary, int lottoPurchaseAmount) {
         double profit = 0;
 
-        int lottoPlacePrizeIdx = 0;
+        int prizeIdx = 0;
         for (Map.Entry<String, Integer> entry : summary.entrySet()) {
-            int lottoPrize = Integer.parseInt(lottoPlacePrize.get(lottoPlacePrizeIdx));
+            Prize prize = Prize.values()[prizeIdx];
+            int lottoPrize = Integer.parseInt(prize.getPrize());
             profit += entry.getValue() * lottoPrize;
-            lottoPlacePrizeIdx++;
+            prizeIdx++;
         }
         return String.format("%.1f", calculateProfit(profit, lottoPurchaseAmount));
     }

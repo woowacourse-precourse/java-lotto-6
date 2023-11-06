@@ -12,6 +12,7 @@ public class PrintUtil {
     public void printNumberOfLotto(int number) {
         System.out.printf(DrawMessage.PURCHASE_COUNT_MESSAGE.getMessage(), number);
     }
+
     public void printLottoNumbers(StringBuilder output) {
         System.out.println(output);
     }

@@ -15,7 +15,7 @@ public class LottoPrize {
         for (LottoRank lottoRank : LottoRank.values()) {
             int winCount = lottoRank.getWinningCount();
 
-            if(winCount == bonusKey) continue;
+            if (winCount == bonusKey) continue;
             lottoPrize.put(winCount, bonusValue(winCount, lottoRank.getBonus()));
         }
         lottoPrize.put(bonusKey, doubleValue());
@@ -24,8 +24,8 @@ public class LottoPrize {
 
     public Map<String, Integer> doubleValue() {
         Map<String, Integer> doubleMap = new HashMap<>();
-        doubleMap.put(LottoRank.SECOND.getWinningCount()+LottoRank.SECOND.getBonus(), 0);
-        doubleMap.put(LottoRank.THIRD.getWinningCount()+LottoRank.THIRD.getBonus(), 0);
+        doubleMap.put(LottoRank.SECOND.getWinningCount() + LottoRank.SECOND.getBonus(), 0);
+        doubleMap.put(LottoRank.THIRD.getWinningCount() + LottoRank.THIRD.getBonus(), 0);
 
         return doubleMap;
     }

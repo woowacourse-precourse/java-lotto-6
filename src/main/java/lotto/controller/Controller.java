@@ -4,21 +4,24 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Controller {
-    private List<Lotto> lottoTickets;
+//    private List<Lotto> lottoTickets;
     public void run() {
         /**
          * 돈 입력 받기 x
          * 돈 만큼 로또 발행하기 x
-         *
+         * 생성된 로또 출력하기
          */
-        purchaseLotto(inputMoneyFromUser());
-
+        int money = inputMoneyFromUser();
+        List<Lotto> lottoTickets = purchaseLotto(money);
+//        purchaseLotto(inputMoneyFromUser());
+        printLottoNumbers(lottoTickets);
     }
 
     private int inputMoneyFromUser() {
@@ -31,9 +34,11 @@ public class Controller {
         }
     }
 
-    private void purchaseLotto(int money) {
+    private List<Lotto> purchaseLotto(int money) {
         int purchasableLotto = money / 1000;
-        lottoTickets = new ArrayList<Lotto>();
+        OutputView.purchaseLottoMessage(purchasableLotto);
+        OutputView.LineBreakMessage();
+        List<Lotto> lottoTickets = new ArrayList<Lotto>();
 
         for (int i = 0; i < purchasableLotto; i++) {
             List<Integer> randomLottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -41,5 +46,10 @@ public class Controller {
             Lotto lotto = new Lotto(randomLottoNumber);
             lottoTickets.add(lotto);
         }
+        return lottoTickets;
+    }
+
+    private void printLottoNumbers(List<Lotto> lottoTickets) {
+        OutputView.LottoNumberMessage(lottoTickets);
     }
 }

@@ -21,4 +21,12 @@ public class lottoPlayer {
     public void addMoney(int additionalMoney) {
         money += additionalMoney;
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public int getMoney() {
+        return money;
+    }
 }

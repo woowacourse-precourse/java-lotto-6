@@ -15,20 +15,14 @@ import lotto.domain.constants.WinningGrade;
 public class LottoRanks {
 
     private final Map<WinningGrade, Long> lottoRanks;
-    private final long totalPrice;
 
     private LottoRanks(List<WinningGrade> winningGrades) {
         Map<WinningGrade, Long> result = generateLottoRanks(winningGrades);
         this.lottoRanks = unmodifiableMap(result);
-        this.totalPrice = generateTotalPrice(result);
     }
 
     public static LottoRanks from(List<WinningGrade> winningGrades) {
         return new LottoRanks(winningGrades);
-    }
-
-    public double receiveProfitability(Payment payment) {
-        return payment.calculateProfitability(totalPrice);
     }
 
     public RankingResult generateLottoRanksResult() {
@@ -40,13 +34,6 @@ public class LottoRanks {
                 ));
 
         return RankingResult.from(result);
-    }
-
-    private long generateTotalPrice(Map<WinningGrade, Long> result) {
-        return result.values()
-                .stream()
-                .mapToLong(Long::longValue)
-                .sum();
     }
 
     private Map<WinningGrade, Long> generateLottoRanks(List<WinningGrade> winningGrades) {

@@ -9,10 +9,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class BonusNumValidatorTest {
 
     private static final String ERROR = "[ERROR]";
-    private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해주세요.";
-    private static final String RANGE_OVER_MESSAGE = "1~45사이의 번호를 입력해주세요.";
-    private static final String NULL_ERROR_MESSAGE = "보너스 번호를 입력해주세요.";
-    private static final String DUPLICATE_ERROR_MESSAGE = "당첨 숫자들과 다른 숫자를 입력해주세요.";
+    private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해 주세요.";
+    private static final String RANGE_OVER_MESSAGE = "1~45사이의 번호를 입력해 주세요.";
+    private static final String NULL_ERROR_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String DUPLICATE_ERROR_MESSAGE = "당첨 숫자들과 다른 숫자를 입력해 주세요.";
     private BonusNumValidator bonusNumValidator;
 
     @Test

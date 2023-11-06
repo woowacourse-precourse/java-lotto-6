@@ -10,15 +10,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class InputValidatorTest {
 
     private String ERROR = "[ERROR]";
-    private static final String NULL_ERROR_MESSAGE = "금액을 입력해주세요.";
-    private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해주세요.";
-    private static final String BLANK_ERROR_MESSAGE = "공백 없이 입력해주세요.";
-    private static final String DIVISION_ERROR_MESSAGE = "1,000 단위로 입력해주세요.";
+    private static final String NULL_ERROR_MESSAGE = "금액을 입력해 주세요.";
+    private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해 주세요.";
+    private static final String BLANK_ERROR_MESSAGE = "공백 없이 입력해 주세요.";
+    private static final String DIVISION_ERROR_MESSAGE = "1,000 단위로 입력해 주세요.";
     private static final String DUPLICATE_ERROR_MESSAGE = "중복된 숫자를 적으면 안 됩니다.";
-    private static final String NOT_BLANK_ERROR_MESSAGE = "당첨 번호를 입력해주세요.";
-    private static final String SIZE_OVER_MESSAGE = "6개의 번호를 입력해주세요.";
-    private static final String RANGE_OVER_MESSAGE = "1~45사이의 번호를 입력해주세요.";
-    private static final String UNDER_1000_MESSAGE = "1,000 이상으로 입력해주세요.";
+    private static final String NOT_BLANK_ERROR_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String SIZE_OVER_MESSAGE = "6개의 번호를 입력해 주세요.";
+    private static final String RANGE_OVER_MESSAGE = "1~45사이의 번호를 입력해 주세요.";
+    private static final String UNDER_1000_MESSAGE = "1,000 이상으로 입력해 주세요.";
     private MoneyValidator inputMoneyValidator;
     private WinningNumValidator winningNumValidator;
 

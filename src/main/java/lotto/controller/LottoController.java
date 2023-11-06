@@ -4,18 +4,16 @@ package lotto.controller;
 import lotto.View.ErrorMessageView;
 import lotto.View.InputView;
 import lotto.View.OutputView;
-import lotto.model.BonusNumber;
-import lotto.model.LottoAmount;
-import lotto.model.LottoTickets;
-import lotto.model.WinningNumber;
+import lotto.model.*;
 
 public class LottoController {
 
     public void start() {
         LottoAmount amount = inputAmount();
-        buyLotto(amount);
+        LottoTickets lottoNum = buyLotto(amount);
         WinningNumber winningNum = inputWinningNumber();
-        inputBonusNumber(winningNum);
+        BonusNumber bonusNum = inputBonusNumber(winningNum);
+        calculateWinningResult(lottoNum, winningNum, bonusNum);
     }
 
     private LottoAmount inputAmount() {
@@ -28,11 +26,12 @@ public class LottoController {
         }
     }
 
-    private void buyLotto(LottoAmount amount) {
+    private LottoTickets buyLotto(LottoAmount amount) {
         amount.getLottoCount();
         LottoTickets lottoTickets = new LottoTickets(amount.getLottoCount());
         OutputView.printLottoCount(amount.getLottoCount());
         OutputView.printLottoTickets(lottoTickets);
+        return lottoTickets;
     }
 
     private WinningNumber inputWinningNumber() {
@@ -49,6 +48,7 @@ public class LottoController {
         try {
             String bonusNum = InputView.inputBonusNumber();
             BonusNumber bonusNumber = new BonusNumber(bonusNum);
+            validateDuplicatedNumber(winningNum, bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             ErrorMessageView.printErrorWrongNumberRange();
@@ -60,5 +60,16 @@ public class LottoController {
         if (winningNum.getWinningNumbers().contains(bonusNumber.getBonusNumber())) {
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
+    }
+
+    private WinningResult calculateWinningResult(LottoTickets tickets, WinningNumber winningNum, BonusNumber bonusNumber) {
+        WinningResult winningResult = new WinningResult();
+        for (Lotto lotto : tickets.getTickets()) {
+            int matchCount = lotto.getMatchCount(winningNum);
+            boolean hasBonus = lotto.hasBonus(bonusNumber);
+            LottoRanking ranking = LottoRanking.determineRanking(matchCount, hasBonus);
+            winningResult.addRanking(ranking);
+        }
+        return winningResult;
     }
 }

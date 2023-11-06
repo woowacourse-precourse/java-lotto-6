@@ -5,6 +5,7 @@ import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.configuration.BonusCount;
 import lotto.configuration.ScoreBoard;
+import lotto.configuration.WinningLevel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -75,6 +76,33 @@ public class LottoService {
         }
 
         return scoreBoard;
+    }
+
+    public HashMap<String, Long> getStatisticsLottoScore(List<List<Integer>> myLotto, List<Integer> lotto) {
+        HashMap<String, Long> scoreBoard = generateResultScoreBoard();
+        for (int i = 0; i < myLotto.size(); i++) {
+            countMatchingWinningNumbers(myLotto.get(i),lotto);
+        }
+
+    }
+
+    public Long calculateLottoScore(Integer matchingWinningNumber, Integer matchingBonusNumber) {
+        if ((matchingWinningNumber == 6 && matchingBonusNumber == 1) || (matchingWinningNumber == 6 && matchingBonusNumber == 0)) {
+            return WinningLevel.FIRST_PLACE.getReward();
+        }
+        if (matchingWinningNumber == 5 && matchingBonusNumber == 1) {
+            return WinningLevel.SECOND_PLACE.getReward();
+        }
+        if ((matchingWinningNumber == 5 && matchingBonusNumber == 0) || (matchingWinningNumber == 4 && matchingBonusNumber == 1)) {
+            return WinningLevel.THIRD_PLACE.getReward();
+        }
+        if ((matchingWinningNumber == 4 && matchingBonusNumber == 0) || (matchingWinningNumber == 3 && matchingBonusNumber == 1)) {
+            return WinningLevel.FOURTH_PLACE.getReward();
+        }
+        if ((matchingWinningNumber == 3 && matchingBonusNumber == 0) || (matchingWinningNumber == 2 && matchingBonusNumber == 1)) {
+            return WinningLevel.FIFTH_PLACE.getReward();
+        }
+        return WinningLevel.FALSE_PLACE.getReward();
     }
 
 }

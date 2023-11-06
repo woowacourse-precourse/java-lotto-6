@@ -38,7 +38,7 @@ public enum Rank {
                 return type.index;
             }
         }
-        throw new IllegalArgumentException(NO_INDEX_CONTAINING_THIS_CONDITIONS);
+        return 0; //Dont care
     }
 
     public static int getPrizeFromIndex(int index) {

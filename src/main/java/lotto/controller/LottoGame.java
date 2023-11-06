@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.constants.GameNumberConstants;
+import lotto.constants.Rank;
 import lotto.domain.*;
 import lotto.dto.LottoTicketsDTO;
 import lotto.dto.WinningStatisticsDTO;
@@ -12,10 +14,12 @@ import static lotto.utility.GameUtility.*;
 import static lotto.validator.Validator.validateBonusNumberForm;
 import static lotto.validator.Validator.validateWinningNumberForm;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoGame {
+    private static final String BONUS_BALL_MATCH = ", 보너스 볼 일치";
 
     private LottoGame() {
     }
@@ -29,7 +33,7 @@ public class LottoGame {
         customer.setWinningResult(calculateCustomerWinningResult(customer));
         customer.setEarnedMoney(calculateEarnedMoney(customer));
         double rateOfReturn = calculateRateOfReturn(customer.getEarnedMoney(), customer.getPayment());
-        OutputView.printWinningStatistics(new WinningStatisticsDTO(customer.getWinningResult(), rateOfReturn));
+        OutputView.printWinningStatistics(makeWinningStatisticsDTO(customer.getWinningResult(), rateOfReturn));
         endGame();
     }
 
@@ -96,6 +100,31 @@ public class LottoGame {
             bonusNumber = getBonusNumberAndValidate();
         }
         return bonusNumber;
+    }
+
+    public static WinningStatisticsDTO makeWinningStatisticsDTO(WinningResult winningResult, double rateOfReturn) {
+        String[][] winningStatisticsStrings = new String[GameNumberConstants.NUMBER_OF_WINNING_PRIZE.getValue() + 1][4];
+
+        for (int index = 1; index <= GameNumberConstants.NUMBER_OF_WINNING_PRIZE.getValue(); index++) {
+            winningStatisticsStrings[index] = new String[]{
+                    Integer.toString(Rank.getNumberOfMatchesRequiredFromIndex(index)),
+                    checkBonusBallString(Rank.getHasBonusNumberFromIndex(index)),
+                    addCommaToNumbers(Rank.getPrizeFromIndex(index)),
+                    Integer.toString(winningResult.getNumberOfPrizeFromIndex(index))};
+        }
+        return new WinningStatisticsDTO(winningStatisticsStrings, rateOfReturn);
+    }
+
+    public static String checkBonusBallString(int hasBonusNumber) {
+        if (hasBonusNumber == 1) {
+            return BONUS_BALL_MATCH;
+        }
+        return "";
+    }
+
+    public static String addCommaToNumbers(int amount) {
+        DecimalFormat df = new DecimalFormat("###,###");
+        return df.format(amount);
     }
 
     private static void endGame() {

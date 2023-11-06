@@ -2,10 +2,10 @@ package lotto.dto;
 
 import lotto.domain.WinningResult;
 
-public record WinningStatisticsDTO(WinningResult lottoResult, double rateOfReturn) {
+public record WinningStatisticsDTO(String[][] winningStatisticsStrings, double rateOfReturn) {
     @Override
-    public WinningResult lottoResult() {
-        return lottoResult;
+    public String[][] winningStatisticsStrings() {
+        return winningStatisticsStrings;
     }
 
     @Override

@@ -6,7 +6,6 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningResult;
 import lotto.domain.WinningAndBonusNumber;
 import lotto.domain.Customer;
-
 import java.util.*;
 
 public class GameUtility {
@@ -56,6 +55,4 @@ public class GameUtility {
         }
         return winningPrize;
     }
-
-
 }

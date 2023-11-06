@@ -14,6 +14,11 @@ public enum LottoPrizeMoney {
         this.correctCount = correctCount;
         this.prizeMoney = prizeMoney;
     }
+    public String getCorrectCount() {
+        return correctCount;
+    }
 
-
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
 }

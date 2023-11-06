@@ -89,7 +89,7 @@ public class Controller {
 
     public static boolean validateUserInputNumberIsDuplicate(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
-            if (Validator.isNumberDuplicate(winningNumber, winningNumbers)) {
+            if (Validator.isWinningNumberDuplicate(winningNumber, winningNumbers)) {
                 return true;
             }
         }

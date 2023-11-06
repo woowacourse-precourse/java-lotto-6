@@ -8,17 +8,20 @@ public class Controller {
     private GameModel gameModel;
 
     public void playingGame(){
-        initGame();
         startGame();
+        proceedGame();
     }
 
-    private void initGame(){
+    public Controller(){
         gameModel = new GameModel();
     }
     private void startGame(){
         Output.printEnterPurchaseMount();
         Integer playerInsert = Input.insertInteger();
-        gameModel.lottoIssuance(playerInsert);
+        gameModel.initGameModel(playerInsert);
+    }
 
+    private void proceedGame(){
+        gameModel.lottoIssuance();
     }
 }

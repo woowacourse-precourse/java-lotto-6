@@ -1,6 +1,7 @@
 package lotto.Model;
 
 import java.util.List;
+import lotto.Model.VO.LottoData;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,5 +17,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public LottoData getData(){
+        return new LottoData(numbers);
+    }
 }

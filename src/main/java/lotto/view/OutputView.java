@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.constant.OutputText.ENTER_BONUS_NUMBER;
 import static lotto.constant.OutputText.ENTER_PURCHASE_AMOUNT;
 import static lotto.constant.OutputText.ENTER_WINNING_NUMBERS;
+import static lotto.constant.OutputText.WINNING_STATISTICS;
 
 import lotto.constant.OutputText;
 import lotto.dto.LottosInfo;
@@ -18,8 +19,14 @@ public class OutputView {
     }
 
     public void printEnterBonusNumber() {
+        printSpace();
         printOutputText(ENTER_BONUS_NUMBER);
     }
+
+    public void printWinnerStatistics() {
+        printSpace();
+        printOutputText(WINNING_STATISTICS);
+}
 
     public void printLottosInfo(LottosInfo lottoInfos) {
         printText(lottoInfos.getLottoCountText());

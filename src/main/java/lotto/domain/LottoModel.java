@@ -59,7 +59,9 @@ public class LottoModel {
     }
 
     public List<Integer> generateNewLotto() {
-        List<Integer> generated = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> generated = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(generated);
         return generated;
     }
 
@@ -97,7 +99,6 @@ public class LottoModel {
         try {
             for (int i = 0; i < numOfLotto; i++) {
                 randNums = generateNewLotto();
-                Collections.sort(randNums);
                 publishedLottos.add(new Lotto(randNums));
             }
         } catch (IllegalArgumentException e) {

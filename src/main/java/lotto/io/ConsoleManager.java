@@ -8,6 +8,10 @@ public class ConsoleManager {
         Console.close();
     }
 
+    public void printError(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
     public long inputPurchasePrice() {
         System.out.println("구입금액을 입력해 주세요.");
 

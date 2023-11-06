@@ -3,7 +3,7 @@ package lotto.constant;
 public enum Error {
 
     IS_BRANK("공백은 입력할 수 없습니다"),
-    ABLE_NATURAL_NUMBER("자연수만 입력 가능합니다"),
+    ABLE_NUMBER("숫자만 입력 가능합니다"),
     DUPLICATED_NUMBER("중복된 숫자가 입력되었습니다."),
     DUPLICATED_BONUS_NUMBER("당첨 번호에 해당하지 않는 보너스 번호를 입력해야 합니다"),
     MINIMUM_PAYMENT("구입 비용은 1,000원 이상이어야 합니다"),

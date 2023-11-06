@@ -19,7 +19,7 @@ public class Input {
 
     public String inputFromUser() {
         String input = checkBlank();
-        validNaturalNumber(input);
+        validNumber(input);
 
         return input;
     }
@@ -34,7 +34,7 @@ public class Input {
         return value;
     }
 
-    private void validNaturalNumber(String input) {
+    private void validNumber(String input) {
         boolean isNatural = input.chars()
                 .allMatch(Character::isDigit);
 

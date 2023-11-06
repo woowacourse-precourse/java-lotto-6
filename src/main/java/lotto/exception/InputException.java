@@ -18,6 +18,6 @@ public class InputException {
     }
 
     public void isNotNaturalNumber() {
-        throw new IllegalArgumentException(Error.ABLE_NATURAL_NUMBER.getMessage());
+        throw new IllegalArgumentException(Error.ABLE_NUMBER.getMessage());
     }
 }

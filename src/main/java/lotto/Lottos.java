@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -20,8 +21,10 @@ public class Lottos {
         int issueCount = countNumberOfLottoIssue(money);
         List<Lotto> numberOfLotto = new ArrayList<Lotto>(issueCount);
         for (int count = 0; count < issueCount; count++) {
-            numberOfLotto.add(new Lotto(Randoms.pickUniqueNumbersInRange(
-                    LOTTO_MINIMAL_NUMBER, LOTTO_MAXIMUM_NUMBER,NUMBER_OF_UNIQUE_NUMBERS)));
+            List<Integer> radomNumbers = Randoms.pickUniqueNumbersInRange(
+                    LOTTO_MINIMAL_NUMBER, LOTTO_MAXIMUM_NUMBER,NUMBER_OF_UNIQUE_NUMBERS);
+            Collections.sort(radomNumbers);
+            numberOfLotto.add(new Lotto(radomNumbers));
         }
         return new Lottos(numberOfLotto);
     }

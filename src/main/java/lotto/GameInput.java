@@ -5,6 +5,7 @@ import static lotto.LottoSettingValue.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GameInput {
@@ -31,7 +32,9 @@ public class GameInput {
             System.out.println(illegalArgumentException.getMessage());
             return null;
         }
-        return new Lotto(convertCommaStringToListInt(commaWinnigNumbers));
+        List<Integer> winningNumbers = convertCommaStringToListInt(commaWinnigNumbers);
+        Collections.sort(winningNumbers);
+        return new Lotto(winningNumbers);
     }
 
     public static List<Integer> convertCommaStringToListInt(String commaString){

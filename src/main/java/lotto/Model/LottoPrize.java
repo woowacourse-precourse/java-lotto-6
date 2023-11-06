@@ -47,10 +47,4 @@ public enum LottoPrize {
         }
         return LottoPrize.FAIL; // 미당첨
     }
-
-    public void printMessage(int count) {
-        if (this != FAIL) {
-            OuputView.printDescription(description);
-        }
-    }
 }

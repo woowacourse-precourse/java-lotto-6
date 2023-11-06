@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,7 +36,4 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public List<Integer> getRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER, NUMBERS_SIZE);
-    }
 }

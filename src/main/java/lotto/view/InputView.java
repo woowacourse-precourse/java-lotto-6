@@ -22,8 +22,10 @@ public class InputView {
         return numberList(Console.readLine());
     }
 
-    
-
+    public static int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER);
+        return conventToInt(Console.readLine());
+    }
 
     public static List<Integer> numberList(String winningNumber) {
         String[] result = winningNumber.split(",");

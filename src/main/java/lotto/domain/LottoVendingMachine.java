@@ -7,14 +7,13 @@ import java.util.List;
 
 public class LottoVendingMachine {
     private final List<Lotto> lottos;
-    private int lottoTicketNumber;
 
     public LottoVendingMachine() {
         lottos = new ArrayList<>();
     }
 
     public void purchaseLotto(int amount) {
-        lottoTicketNumber = amount / 1000;
+        int lottoTicketNumber = amount / 1000;
         for (int i = 0; i < lottoTicketNumber; i++) {
             List<Integer> numbers = getRandomNumbers();
             Lotto lotto = new Lotto(numbers);
@@ -26,11 +25,11 @@ public class LottoVendingMachine {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    public int getLottoTicketNumber() {
-        return lottoTicketNumber;
-    }
-
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public int getLottoTicketNumber() {
+        return lottos.size();
     }
 }

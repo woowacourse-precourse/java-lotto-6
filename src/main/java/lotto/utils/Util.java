@@ -35,4 +35,10 @@ public class Util {
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NOT_NUMBER.getMessage());
         }
     }
+
+    public static List<Integer> convertToIntegerList(String input, String delimiter) {
+        String[] inputArr = input.split(delimiter);
+        List<Integer> integerList = Arrays.stream(inputArr).map(Integer::parseInt).toList();
+        return integerList;
+    }
 }

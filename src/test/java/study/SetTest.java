@@ -1,11 +1,13 @@
 package study;
 
-import static  org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
@@ -41,6 +43,15 @@ public class SetTest {
         target.add(3);
 
         assertThat(target.contains(checkNumber)).isTrue();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,3:true", "true,4,5:false"}, delimiter = ':')
+    @DisplayName("','를 기준으로 분리가능한 데이터 기준")
+    public void test3(String input, Integer expected){
+        Set<Integer> actualValue = new HashSet<>();
+
+
     }
 
 }

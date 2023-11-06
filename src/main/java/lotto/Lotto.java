@@ -1,5 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -19,4 +23,12 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public void printLotto(){
+        System.out.print("[");
+        for (int i = 0; i < LOTTO_SIZE; i++) {
+            System.out.print(numbers.get(i));
+            if(i!=LOTTO_SIZE-1) System.out.print(", ");
+        }
+        System.out.println("]");
+    }
 }

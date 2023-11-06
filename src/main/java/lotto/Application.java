@@ -6,5 +6,8 @@ public class Application {
         // TODO: 프로그램 구현
         PurchaseAmount purchaseAmount = new PurchaseAmount();
         int lottoNumber = purchaseAmount.input();
+        LottoFactory factory = new LottoFactory(lottoNumber);
+        factory.createLottos();
+
     }
 }

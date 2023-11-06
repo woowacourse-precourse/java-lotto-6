@@ -1,6 +1,6 @@
 package lotto.dto;
 
-public class LottoResponseDTO {
+public class CountScoreResponseDTO {
     private int firstPlace;
     private int secondPlace;
     private int thirdPlace;
@@ -8,7 +8,7 @@ public class LottoResponseDTO {
     private int fifthPlace;
     private double rateOfReturn;
 
-    public LottoResponseDTO(){
+    public CountScoreResponseDTO(){
         this.firstPlace = 0;
         this.secondPlace = 0;
         this.thirdPlace = 0;

@@ -22,9 +22,13 @@ public class Lottos {
     }
 
     private static List<Lotto> generateLottos(Integer count) {
-        return Stream.generate(() ->
-                        new Lotto(RandomNumberGenerator.generateUniqueNumbers()))
+        return  Stream.generate(Lottos::generateLottoNumbers)
+                .map(Lotto::new)
                 .limit(count)
                 .toList();
+    }
+
+    private static List<LottoNumber> generateLottoNumbers(){
+        return RandomNumberGenerator.generateUniqueNumbers().stream().map(LottoNumber::new).toList();
     }
 }

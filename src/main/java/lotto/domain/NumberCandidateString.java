@@ -10,8 +10,8 @@ public class NumberCandidateString {
         this.numericString = numericString.trim();
     }
 
-    public Integer getNumber(){
-        return Integer.parseInt(numericString);
+    public LottoNumber toLottoNumber(){
+        return new LottoNumber(Integer.parseInt(numericString));
     }
 
     private static void validateBlink(String numericString) {

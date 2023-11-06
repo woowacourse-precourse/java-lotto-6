@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.LottoNumber;
 import lotto.domain.NumberCandidateString;
 
 public class NumberCandidateStrings {
@@ -19,7 +20,7 @@ public class NumberCandidateStrings {
         return new NumberCandidateStrings(numberCandidateStrings);
     }
 
-    public List<Integer> toNumberList(){
-        return numberCandidateStrings.stream().map(NumberCandidateString::getNumber).toList();
+    public List<LottoNumber> toNumberList(){
+        return numberCandidateStrings.stream().map(NumberCandidateString::toLottoNumber).toList();
     }
 }

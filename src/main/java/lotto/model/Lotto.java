@@ -3,11 +3,14 @@ package lotto.model; //패키지 변경은 가능
 import java.util.List;
 
 public class Lotto { //번호들이 범위 내에 있는지, 중복되지 않는지 검증
+
     private final List<Integer> numbers; //접근제어자 변경 불가능
-                                         //필드(인스턴스 변수) 추가 불가능
+
+    //필드(인스턴스 변수) 추가 불가능
     public Lotto(List<Integer> numbers) { //생성자에 추가 기능 구현 가능
         validate(numbers);
-        hasDuplicate(numbers);
+        checkDuplicate(numbers);
+        checkElementsInRange(numbers);
         this.numbers = numbers;
     }
 
@@ -18,9 +21,15 @@ public class Lotto { //번호들이 범위 내에 있는지, 중복되지 않는
     }
 
     // TODO: 추가 기능 구현
-    private void hasDuplicate(List<Integer> numbers) {
-        if(numbers.size() != numbers.stream().distinct().count()) {
+    private void checkDuplicate(List<Integer> numbers) { //중복 체크
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkElementsInRange(List<Integer> numbers) { //범위 체크
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+                throw new IllegalArgumentException();
         }
     }
 

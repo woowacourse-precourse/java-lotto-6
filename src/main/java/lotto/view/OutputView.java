@@ -46,9 +46,9 @@ public class OutputView {
     private static String createResultMessage(LottoRank rank, int count) {
         String resultMessage = "";
         if (rank == LottoRank.FIVE_MATCH_WITH_BONUS) {
-            return resultMessage = String.format("%d개 일치, 보너스 볼 일치 (%s원)- %d개", rank.getMatchCount(), winningMoneyFormat(rank.getWinningMoney()), count);
+            return resultMessage = String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", rank.getMatchCount(), winningMoneyFormat(rank.getWinningMoney()), count);
         }
-        resultMessage = String.format("%d개 일치 (%s원)- %d개", rank.getMatchCount(), winningMoneyFormat(rank.getWinningMoney()), count);
+        resultMessage = String.format("%d개 일치 (%s원) - %d개", rank.getMatchCount(), winningMoneyFormat(rank.getWinningMoney()), count);
         return resultMessage;
     }
 

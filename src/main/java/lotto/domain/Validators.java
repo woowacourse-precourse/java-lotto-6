@@ -2,7 +2,7 @@ package lotto.domain;
 
 
 public class Validators {
-    private final int TICKET_UNIT = 1000;
+    private static final int TICKET_UNIT = 1000;
 
     public static boolean validate(String inputMoney) {
         try {
@@ -26,7 +26,7 @@ public class Validators {
     }
 
     private static void validateMoneyIsLottoAffordable(int money) {
-        if (money % 1000 > 0) {
+        if (money % TICKET_UNIT > 0) {
             throw new IllegalArgumentException();
         }
     }

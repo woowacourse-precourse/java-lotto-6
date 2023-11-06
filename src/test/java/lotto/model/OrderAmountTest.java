@@ -13,4 +13,12 @@ class OrderAmountTest {
         int orderAmount = order.amountOfLotto();
         assertThat(orderAmount).isEqualTo(8);
     }
+
+    @Test
+    @DisplayName("로또 수익률 계산")
+    void calculateProfit(){
+        OrderAmount order = new OrderAmount(8000);
+        LottoResults results = new LottoResults( 0, 0, 0, 0, 1);
+        assertThat(order.calculateProfit(results)).isEqualTo(62.5);
+    }
 }

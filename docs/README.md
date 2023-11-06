@@ -13,6 +13,8 @@
 
 2. domain
     - [x] : 입력 받은 로또 구입 금액이 1,000원 단위인지 확인한다. Validate#checkInputPrice()
+      - [x] : 입력 받은 값이 숫자인지 확인한다.
+      - [x] : 입력 받은 값이 1000에 나누어 떨어지는지 확인한다.
     - [x] : 입력 받은 로또 금액에 맞는 로또 수량을 발행한다.BuyLotto#buyLotto()
     - [x] : 중복되지 않는 숫자 6개를 뽑는다. Numbers#creatRandomNumbers()
     - [x] : 발행한 로또와 입력 받은 당첨 번호를 비교한다.Lotto#compareLottoToWinnerNumber()

@@ -15,7 +15,7 @@ public class Validate {
 
     // InputPrice
     public long validateInputPrice(String input) {
-        long result;
+        long result = -1;
         try {
             result = Long.parseLong(input);
             if (!canDivide(result)) {
@@ -34,7 +34,7 @@ public class Validate {
     }
 
     private boolean canDivide(long input) {
-        if (input % LottoController.CURRENCY_UNIT != 0 || input == 0) {
+        if (input % LottoController.CURRENCY_UNIT != 0 || input < LottoController.CURRENCY_UNIT) {
             throw new IllegalArgumentException();
         }
 

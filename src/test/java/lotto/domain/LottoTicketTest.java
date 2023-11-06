@@ -22,7 +22,7 @@ class LottoTicketTest {
         List<Lotto> lottoTicket = List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(2, 3, 4, 5, 10, 20)));
 
-        List<String> issuedLottoTicket = new LottoTicket(lottoTicket).getLottoTicket();
+        List<String> issuedLottoTicket = new LottoTicket(lottoTicket).printLottoTicket();
 
         assertThat(issuedLottoTicket).isEqualTo(
                 new ArrayList<>(Arrays.asList("[1, 2, 3, 4, 5, 6]", "[2, 3, 4, 5, 10, 20]")));

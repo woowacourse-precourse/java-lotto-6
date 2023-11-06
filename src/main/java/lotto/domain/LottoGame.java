@@ -24,4 +24,8 @@ public class LottoGame {
         }
     }
 
+    public Lotto createWinningLotto(List<Integer> numbers) {
+        return ticketDispenser.createWinningTicket(() -> numbers);
+    }
+
 }

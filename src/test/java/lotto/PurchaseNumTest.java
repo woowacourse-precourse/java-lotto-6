@@ -34,7 +34,14 @@ class PurchaseNumTest{
     void 구매_가격_정상작동_테스트(){
         int expectedResult = 1000;
         PurchaseAmount purchaseAmount = new PurchaseAmount("1000");
-        assertEquals(expectedResult, purchaseAmount.getAmout());
+        assertEquals(expectedResult, purchaseAmount.getAmount());
+    }
+    @DisplayName("구매 가격이 정상일 경우 올바른 구매 개수를 return 한다.")
+    @Test
+    void 구매_개수_정상작동_테스트(){
+        int expectedResult = 7;
+        PurchaseAmount purchaseAmount = new PurchaseAmount("7000");
+        assertEquals(expectedResult, purchaseAmount.getTicketNum());
     }
 
     // 아래에 추가 테스트 작성 가능

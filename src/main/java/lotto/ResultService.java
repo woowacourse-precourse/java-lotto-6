@@ -33,17 +33,8 @@ public class ResultService {
         }
     }
 
-    public static double calculateRateOfReturn(int purchaseAmount, HashMap<Integer, Integer> results) {
-        double sum = getSum(results);
-        return (sum / purchaseAmount) * 100;
-    }
-
-    private static double getSum(HashMap<Integer, Integer> results) {
-        double sum = 0.0;
-        for (int caseNumber : results.keySet()) {
-            sum += WinnigCase.getByCaseNumber(caseNumber).getReward() * results.get(caseNumber);
-        }
-        return sum;
+    public static double calculateRateOfReturn() {
+        return 1.0;
     }
 
 

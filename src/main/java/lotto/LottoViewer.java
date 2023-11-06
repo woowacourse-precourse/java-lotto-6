@@ -17,14 +17,14 @@ public class LottoViewer {
                 .collect(Collectors.toList());
     }
 
-    int getMoney(){
-        System.out.println("구매 금액을 입력해 주세요.");
+    int getBonus(){
+        System.out.println("보너스 번호를 입력해 주세요.");
         String tmp = Console.readLine();
         return Integer.parseInt(tmp);
     }
 
-    int getBonus(){
-        System.out.println("보너스 번호를 입력해 주세요.");
+    int getMoney(){
+        System.out.println("구매 금액을 입력해 주세요.");
         String tmp = Console.readLine();
         return Integer.parseInt(tmp);
     }

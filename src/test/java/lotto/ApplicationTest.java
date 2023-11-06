@@ -62,6 +62,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_유저의_돈입력_공백포함_검사() {
+        assertSimpleTest(() -> {
+            runException("100 0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

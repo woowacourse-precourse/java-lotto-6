@@ -7,6 +7,7 @@ import lotto.domain.RandomNumberGenerator;
 import lotto.domain.WinningNumber;
 import lotto.view.BonusNumberInputView;
 import lotto.view.LottoPurchaseInputView;
+import lotto.view.OutputView;
 import lotto.view.WinningNumbersInputView;
 
 public class GameController {
@@ -20,6 +21,7 @@ public class GameController {
 
         WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
         List<Lotto> lottos = getLottos(purchaseAmount);
+        OutputView.printLottos(lottos);
     }
 
     private List<Lotto> getLottos(int purchaseAmount) {

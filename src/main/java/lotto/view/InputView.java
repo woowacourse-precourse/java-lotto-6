@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Cash;
 import lotto.domain.WinnerLotto;
+import lotto.parser.Parser;
 import lotto.validator.InputValidator;
 
 import java.util.Arrays;
@@ -16,8 +17,7 @@ public class InputView {
     public Cash InputCash() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = getInput();
-        InputValidator.validateNumber(input);
-        Integer cash = Integer.parseInt(input);
+        Integer cash = Parser.parseInt(input);
         return new Cash(cash);
     }
 
@@ -25,27 +25,15 @@ public class InputView {
     public List<Integer> inputWinnerNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = getInput();
-        List<String> splitInput = splitByComma(input);
-        InputValidator.validateInputNumbersFormat(splitInput);
-        return splitInput.stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        List<String> numberDummy = Parser.parseNumberDummy(input);
+        InputValidator.validateInputNumbersFormat(numberDummy);
+        return Parser.parseNumbers(numberDummy);
     }
 
     public Integer inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = getInput();
-        InputValidator.validateNumber(input);
-        System.out.println();
-        return Integer.parseInt(input);
-    }
-
-
-
-    private List<String> splitByComma(String input) {
-        return Arrays.stream(input
-                        .split(COMMA.getUnit()))
-                        .toList();
+        return Parser.parseInt(input);
     }
 
 

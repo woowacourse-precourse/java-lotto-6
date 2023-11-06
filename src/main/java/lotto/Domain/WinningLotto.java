@@ -4,17 +4,16 @@ import java.util.List;
 import lotto.Domain.Validator.WinningLottoValidator;
 
 public class WinningLotto {
-    private final List<Integer> winningNumbers;
-    private final int bonusNumber;
+    private final Lotto winningLotto;
+    private final BonusNumber bonusNumber;
 
-    public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        validate(winningNumbers, bonusNumber);
-        this.winningNumbers = winningNumbers;
+    public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+        validate(winningLotto, bonusNumber);
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(List<Integer> winningNumbers, int bonusNumber) {
-        WinningLottoValidator.validateWinningNumbers(winningNumbers);
-        WinningLottoValidator.validateBonusNumber(winningNumbers,bonusNumber);
+    private void validate(Lotto winningLotto, BonusNumber bonusNumber) {
+        WinningLottoValidator.doValidate(winningLotto, bonusNumber);
     }
 }

@@ -19,7 +19,7 @@ public class RateOfReturn {
         benefit += ticketResult.get("4th") * 50000;
         benefit += ticketResult.get("5th") * 5000;
 
-        double result = benefit / PurchaseAmount.lottoQuantity * 1000 * 100;
+        double result = benefit / (PurchaseAmount.lottoQuantity * 1000) * 100;
 
         return String.format("%.1f", result);
     }

@@ -9,8 +9,10 @@ public enum ErrorMessage {
             ConstantNum.LOTTO_NUMBER_MAX + " 이하가 아닙니다."),
     NOT_ENOUGH_LOTTO_NUMBERS("[ERROR] 주어진 당첨 번호의 개수는 " +
             ConstantNum.LOTTO_NUMBER_CNT.getNum() +
-            "가 아닙니다.")
-    ;
+            "가 아닙니다."),
+    NOT_ENOUGH_BONUS("[ERROR] 주어진 보너스 번호의 개수는 " +
+            ConstantNum.LOTTO_BONUS_NUMBER_CNT.getNum() +
+            "가 아닙니다.");
 
     private String message;
 

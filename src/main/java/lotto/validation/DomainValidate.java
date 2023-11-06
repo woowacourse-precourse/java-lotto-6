@@ -20,4 +20,10 @@ public class DomainValidate {
             throw new IllegalArgumentException(ErrorMessage.NOT_ENOUGH_LOTTO_NUMBERS.getMessage());
         }
     }
+
+    public static void validateNumberOfBonus(List<Integer> bonus) {
+        if (bonus.size() != ConstantNum.LOTTO_BONUS_NUMBER_CNT.getNum()) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_ENOUGH_BONUS.getMessage());
+        }
+    }
 }

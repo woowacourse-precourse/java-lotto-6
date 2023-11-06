@@ -1,23 +1,41 @@
 package lotto.view;
 
-import lotto.constant.ErrorMessage;
 import lotto.constant.InformationMessage;
+import lotto.dto.LottoDto;
 import lotto.dto.LottoReceiptDto;
 import lotto.dto.LottoResultDto;
+import java.util.List;
 
 public class OutputView {
-    public void printErrorMessage(ErrorMessage errorMessage) {
+    public void printErrorMessage(Exception exception) {
     }
 
-    public void printInformationMessage(InformationMessage informationMessage) {
+    public void printLottoReceipt(LottoReceiptDto lottoReceipt) {
+        print(String.format(
+                InformationMessage.PURCHASE_LOTTO_COUNT_FORMAT.getMessage(),
+                lottoReceipt.purchaseCount()
+        ));
+        printLottos(lottoReceipt.lottos());
     }
 
-    public void printLottoReceipt(LottoReceiptDto lottoReceiptDto) {
+    private void printLottos(List<LottoDto> lottos) {
+        for (LottoDto lotto : lottos) {
+            printLotto(lotto);
+        }
+    }
+
+    private void printLotto(LottoDto lotto) {
+        print(lotto.numbers().toString());
     }
 
     public void printLottoResult(LottoResultDto lottoResultDto) {
     }
 
-    public void printMessage(String message) {
+    public void printNewLine() {
+        print("");
+    }
+
+    public void print(String message) {
+        System.out.println(message);
     }
 }

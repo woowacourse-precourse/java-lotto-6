@@ -81,4 +81,34 @@ class WinningNumberTest {
         assertThat(winningNumber.getWinningNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
         assertThat(winningNumber.getWinningNumbers()).hasSize(6);
     }
+
+    @Test
+    @DisplayName("로또 번호가 당첨 번호에 포함되어 있다면 True를 반환한다.")
+    void isContainLottoNumber_true() {
+        /**
+         * given : 당첨 번호 1,2,3,4,5,6과 로또 번호 1이 주어진다.
+         * when : WinningNumber 객체를 생성한다.
+         * then : 1이 포함되어 있기 때문에 True를 반환한다.
+         */
+        int number= 1;
+
+        WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
+
+        assertThat(winningNumber.isContainLottoNumber(number)).isTrue();
+    }
+
+    @Test
+    @DisplayName("로또 번호가 당첨 번호에 포함되어 있지 않다면 False를 반환한다.")
+    void isContainLottoNumber_false() {
+        /**
+         * given : 당첨 번호 1,2,3,4,5,6과 로또 번호 7이 주어진다.
+         * when : WinningNumber 객체를 생성한다.
+         * then : 7이 포함되어 있지 않기 때문에 False를 반환한다.
+         */
+        int number= 7;
+
+        WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
+
+        assertThat(winningNumber.isContainLottoNumber(number)).isFalse();
+    }
 }

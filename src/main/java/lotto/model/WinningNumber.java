@@ -27,6 +27,10 @@ public class WinningNumber {
         return winningNumbers;
     }
 
+    public boolean isContainLottoNumber(int number) {
+        return winningNumbers.contains(number);
+    }
+
     private void validateWinningNumbers(String[] winningNumInput) {
         validateWinningNumSize(winningNumInput);
         validateWinningNumRange(winningNumInput);

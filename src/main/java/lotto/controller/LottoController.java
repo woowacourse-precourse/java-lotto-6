@@ -18,13 +18,26 @@ public class LottoController {
     }
 
     public void run() {
-        purchaseLotto();
+        runUntilNoException(createPurchaseLottoRunnable());
     }
 
-    private void purchaseLotto() {
-        outputView.printInformationMessage(InformationMessage.GUIDE_INPUT_PURCHASE_AMOUNT);
-        long amount = inputView.readIntLine();
-        LottoReceiptDto lottoReceipt = lottoService.getLottoReceipt(amount);
-        outputView.printLottoReceipt(lottoReceipt);
+    private void runUntilNoException(Runnable runnable) {
+        while (true) {
+            try {
+                runnable.run();
+                break;
+            } catch (IllegalArgumentException clientException)  {
+                outputView.printErrorMessage(clientException);
+            }
+        }
+    }
+
+    private Runnable createPurchaseLottoRunnable() {
+        return () -> {
+            outputView.printInformationMessage(InformationMessage.GUIDE_INPUT_PURCHASE_AMOUNT);
+            long amount = inputView.readIntLine();
+            LottoReceiptDto lottoReceipt = lottoService.getLottoReceipt(amount);
+            outputView.printLottoReceipt(lottoReceipt);
+        };
     }
 }

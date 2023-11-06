@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LottoController {
 
-    private User user;
+    private static User user;
 
     public void start(){
         OutputView.printRequestPurchaseAmount();

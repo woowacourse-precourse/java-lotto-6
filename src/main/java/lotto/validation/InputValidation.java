@@ -4,11 +4,10 @@ package lotto.validation;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.Lotto;
 import lotto.constants.ExceptionMessages;
 
 public class InputValidation {
-
-    private final Set<String> set = new HashSet<>();
 
     public void validatePurchaseAmountInput(String input) {
         isExist(input);
@@ -18,22 +17,23 @@ public class InputValidation {
 
     public void validateWinningNumbersInput(List<String> input) {
 
+        Set<String> set = new HashSet<>();
+
         isNumbersExist(input);
         for (String item : input) {
             isDigit(item);
-            isDuplicateNumber(item);
             isWithinLottoRange(item);
+            isDuplicateNumber(set, item);
         }
-        isValidLottoNumbersLength();
+        isValidLottoNumbersLength(input);
 
     }
 
-    public void validateBonusNumberInput(String input) {
+    public void validateBonusNumberInput(List<String> lotto, String input) {
         isExist(input);
         isDigit(input);
         isWithinLottoRange(input);
-        isBonusNumberInWinningNumbers(input);
-
+        isBonusNumberInWinningNumbers(lotto, input);
     }
 
     public void isExist(String input) {
@@ -62,7 +62,7 @@ public class InputValidation {
         }
     }
 
-    public void isDuplicateNumber(String input) {
+    public void isDuplicateNumber(Set<String> set, String input) {
         if (!set.add(input)) {
             throw new IllegalArgumentException(
                 ExceptionMessages.DUPLICATE_LOTTO_NUMBERS.getMessage());
@@ -76,15 +76,15 @@ public class InputValidation {
         }
     }
 
-    public void isValidLottoNumbersLength() {
-        if (set.size() != 6) {
+    public void isValidLottoNumbersLength(List<String> input) {
+        if (input.size() != 6) {
             throw new IllegalArgumentException(
                 ExceptionMessages.INVALID_LOTTO_NUMBERS_LENGTH.getMessage());
         }
     }
 
-    public void isBonusNumberInWinningNumbers(String input) {
-        if (set.contains(input)) {
+    public void isBonusNumberInWinningNumbers(List<String> inputLottoNumbers, String inputBonusNumber) {
+        if (inputLottoNumbers.contains(inputBonusNumber)) {
             throw new IllegalArgumentException(
                 ExceptionMessages.DUPLICATE_LOTTO_BONUS.getMessage());
         }

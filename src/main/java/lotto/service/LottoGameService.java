@@ -47,7 +47,6 @@ public class LottoGameService {
     }
 
     public LottoResultModel lottoWinningResultCalculation(List<Lotto> lotto , List<Integer> winningNumber, int bonusNumber){
-        LottoResultModel lottoResultModel = new LottoResultModel();
 
         int totalWinningAmount = 0;
         String totalReturnRate;
@@ -88,12 +87,14 @@ public class LottoGameService {
         }
         totalReturnRate = String.valueOf((totalWinningAmount/totalLottoPurchase)*100);
 
-        lottoResultModel.setTotalReturnRate(totalReturnRate);
-        lottoResultModel.setThreeMatch(String.valueOf(threeMatches));
-        lottoResultModel.setFourMatch(String.valueOf(fourMatches));
-        lottoResultModel.setFiveMatch(String.valueOf(fiveMatches));
-        lottoResultModel.setFiveBonusMatch(String.valueOf(fiveBonusMatches));
-        lottoResultModel.setSixMatch(String.valueOf(sixMatches));
+        LottoResultModel lottoResultModel = new LottoResultModel(
+                totalReturnRate,
+                String.valueOf(threeMatches),
+                String.valueOf(fourMatches),
+                String.valueOf(fiveMatches),
+                String.valueOf(fiveBonusMatches),
+                String.valueOf(sixMatches)
+        );
 
         return lottoResultModel;
     }

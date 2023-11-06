@@ -9,27 +9,12 @@ public class LottoResultModel {
     private String fiveBonusMatch;
     private String sixMatch;
 
-    public void setTotalReturnRate(String totalReturnRate) {
+    public LottoResultModel(String totalReturnRate, String threeMatch, String fourMatch, String fiveMatch, String fiveBonusMatch, String sixMatch) {
         this.totalReturnRate = totalReturnRate;
-    }
-
-    public void setThreeMatch(String threeMatch) {
         this.threeMatch = threeMatch;
-    }
-
-    public void setFourMatch(String fourMatch) {
         this.fourMatch = fourMatch;
-    }
-
-    public void setFiveMatch(String fiveMatch) {
         this.fiveMatch = fiveMatch;
-    }
-
-    public void setFiveBonusMatch(String fiveBonusMatch) {
         this.fiveBonusMatch = fiveBonusMatch;
-    }
-
-    public void setSixMatch(String sixMatch) {
         this.sixMatch = sixMatch;
     }
 

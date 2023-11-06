@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final int SUM_SIZE = 12;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -25,4 +27,13 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public int compareWithSelected(List<Integer> selectedLottos) {
+        int count = 0;
+        List<Integer> sum = new ArrayList<>(numbers);
+        sum.addAll(selectedLottos);
+        HashSet<Integer> nonDuplicate = new HashSet<>(sum);
+        count = SUM_SIZE - nonDuplicate.size();
+
+        return count;
+    }
 }

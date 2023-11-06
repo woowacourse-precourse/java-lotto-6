@@ -3,7 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class AutoLottoGenerator implements LottoNumberGenerateStrategy {
+public class AutoLottoNumberGenerator implements LottoNumberGenerateStrategy {
 
     @Override
     public List<Integer> createLotto() {

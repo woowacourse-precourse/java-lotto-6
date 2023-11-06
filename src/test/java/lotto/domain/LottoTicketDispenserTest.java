@@ -12,7 +12,7 @@ class LottoTicketDispenserTest {
 
     @BeforeEach
     void setUp() {
-        this.lottoTicketDispenser = new LottoTicketDispenser(new AutoLottoGenerator());
+        this.lottoTicketDispenser = new LottoTicketDispenser(new AutoLottoNumberGenerator());
     }
 
     @Test

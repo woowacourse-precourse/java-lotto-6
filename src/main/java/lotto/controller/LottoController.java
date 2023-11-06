@@ -6,8 +6,10 @@ import static lotto.view.constant.InputMessage.GET_WINNING_NUMBERS_MESSAGE;
 import static lotto.view.constant.OutputMessage.NEWLINE;
 
 import lotto.domain.LottoPurchase;
+import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
 import lotto.service.LottoPurchaseService;
+import lotto.service.LottoWinningNumbersService;
 import lotto.service.LottosService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,12 +20,14 @@ public class LottoController {
     private final OutputView outputView;
     private final LottoPurchaseService lottoPurchaseService;
     private final LottosService lottosService;
+    private final LottoWinningNumbersService winningNumbersService;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.lottoPurchaseService = new LottoPurchaseService();
         this.lottosService = new LottosService();
+        this.winningNumbersService = new LottoWinningNumbersService();
     }
 
     public void play() {
@@ -34,6 +38,8 @@ public class LottoController {
 
         String winningNumbers = getWinningNumbers();
         String bonusNumber = getBonusNumber(winningNumbers);
+        LottoWinningNumbers lottoWinningNumbers = winningNumbersService.createLottoWinningNumbers(winningNumbers,
+                bonusNumber);
     }
 
     public String getPurchaseAmount() {

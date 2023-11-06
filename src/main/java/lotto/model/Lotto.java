@@ -30,6 +30,10 @@ public class Lotto {
                 .toList();
     }
 
+    public boolean isDuplicateNumber(final int number) {
+        return numbers.contains(number);
+    }
+
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }

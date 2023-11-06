@@ -23,4 +23,12 @@ public class User {
     public static List<Lotto> getLottoList() {
         return User.lottoList;
     }
+
+    public static int getConsumedMoney() {
+        return User.consumedMoney;
+    }
+
+    public static int getReceivedMoney() {
+        return User.receivedMoney;
+    }
 }

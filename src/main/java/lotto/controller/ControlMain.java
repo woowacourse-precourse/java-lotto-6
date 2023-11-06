@@ -71,7 +71,7 @@ public class ControlMain {
         return choiceLottoNumbers;
     }
 
-    public void equalsNumber(List<List<Integer>> mainLotto, List<Integer> lottoNumber, Player player) {
+    public static void equalsNumber(List<List<Integer>> mainLotto, List<Integer> lottoNumber, Player player) {
         for (int i = 0; i < mainLotto.size(); i++) {
             int cnt = getLottoNumTotal(mainLotto.get(i), lottoNumber);
             player.updateMatchCountAndTotal(EnumRanking.Ranking.matchPoint(cnt, mainLotto.get(i), player));
@@ -81,7 +81,7 @@ public class ControlMain {
     }
 
 
-    public int getLottoNumTotal(List<Integer> randomLotto, List<Integer> lottoNumber) {
+    public static int getLottoNumTotal(List<Integer> randomLotto, List<Integer> lottoNumber) {
         int cnt = 0;
         for (int i = 0; i < lottoNumber.size(); i++) {
             if (randomLotto.contains(lottoNumber.get(i))) {

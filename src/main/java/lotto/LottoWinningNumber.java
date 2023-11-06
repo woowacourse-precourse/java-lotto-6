@@ -5,13 +5,13 @@ import java.util.List;
 public class LottoWinningNumber {
 
     private List<Integer> winningNumbers;
-    private int bounsNumber;
+    private int bonusNumber;
 
-    public LottoWinningNumber(List<Integer> winningNumbers, int bounsNumber) {
+    public LottoWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
         validate(winningNumbers);
-        validateBonusNumber(bounsNumber);
+        validateBonusNumber(bonusNumber);
         this.winningNumbers = winningNumbers;
-        this.bounsNumber = bounsNumber;
+        this.bonusNumber = bonusNumber;
     }
 
     private void validate(List<Integer> winningNumbers) {
@@ -19,8 +19,8 @@ public class LottoWinningNumber {
             throw new IllegalArgumentException();
         }
     }
-    private void validateBonusNumber(int bounsNumber) {
-        if (bounsNumber < 1 || bounsNumber > 45) {
+    private void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("Bonus number must be between 1 and 45.");
         }
     }
@@ -29,7 +29,7 @@ public class LottoWinningNumber {
         return winningNumbers;
     }
 
-    public int getBounsNumber() {
-        return bounsNumber;
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

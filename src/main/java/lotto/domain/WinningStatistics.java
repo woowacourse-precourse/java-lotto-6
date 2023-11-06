@@ -7,9 +7,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.constant.ConstantValue.MIN_WINNING_MATCH_COUNT;
+
 public class WinningStatistics {
 
-    private Map<Prize, Integer> statistics;
+    private final Map<Prize, Integer> statistics;
 
     public WinningStatistics() {
         statistics = new LinkedHashMap<>();
@@ -30,10 +32,10 @@ public class WinningStatistics {
         }
     }
 
-    public String calculateRateOfReturn(Integer purchaseAmount){
+    public String calculateRateOfReturn(Integer purchaseAmount) {
         Integer reward = calculateTotalReward();
         return String.format(
-                ResponseMessage.RATE_OF_BENEFIT_MESSAGE, (double) reward/purchaseAmount * 100);
+                ResponseMessage.RATE_OF_BENEFIT_MESSAGE, (double) reward / purchaseAmount * 100);
     }
 
     private Integer calculateTotalReward() {
@@ -45,10 +47,10 @@ public class WinningStatistics {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder statisticsFormat = new StringBuilder();
         for (Prize prize : statistics.keySet()) {
-            if (prize.getMatchCount() >= 3){
+            if (prize.getMatchCount() >= MIN_WINNING_MATCH_COUNT) {
                 statisticsFormat.append(
                         String.format(
                                 ResponseMessage.FORMATTED_RESULT_MESSAGE,
@@ -62,7 +64,7 @@ public class WinningStatistics {
         return statisticsFormat.toString();
     }
 
-    private String adjustToFormat(int number){
+    private String adjustToFormat(int number) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         return formatter.format(number);
     }

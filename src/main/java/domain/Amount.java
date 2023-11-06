@@ -2,14 +2,17 @@ package domain;
 
 import static util.ErrorMessage.CANT_DIVIDE_AMOUNT;
 import static util.ErrorMessage.NOT_POSITIVE_AMOUNT;
+import static util.ProgressMessage.OUTPUT_TICKET_COUNT;
 import static view.InputView.inputLottoPurchaseAmount;
 
 public class Amount{
     private final int amount;
+    private final int count;
     private final int LOTTO_TICKET_PRICE = 1000;
     public Amount(int amount){
         validate(amount);
         this.amount = amount;
+        this.count = amount/LOTTO_TICKET_PRICE;
     }
 
     private void validate(int amount) {
@@ -40,6 +43,9 @@ public class Amount{
             return false;
         }
         return true;
+    }
+    public void outputLottoPurchaseAmount(){
+        System.out.println(count + OUTPUT_TICKET_COUNT.getProgressMessage());
     }
 }
 

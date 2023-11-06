@@ -18,4 +18,8 @@ public class LottoStore {
                 .mapToObj(i -> lottoMachine.createLottoByAuto())
                 .toList();
     }
+
+    public Lotto issueWinningLotto(final List<Integer> numbers) {
+        return lottoMachine.createLottoByManual(numbers);
+    }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class Generator {
     //상수(static final) 또는 클래스 변수
@@ -55,9 +56,8 @@ public class Generator {
         }
     }
 
-    public List<Integer> generateRandomNumbers() {
-        // 6개의 랜덤숫자 생성
-        // 중복검사(조건문)
-        return numbers;
+    private List<Integer> generateRandomNumbers() {
+        List<Integer> randomNumbers = pickUniqueNumbersInRange(1, 45, 6);
+        return randomNumbers;
     }
 }

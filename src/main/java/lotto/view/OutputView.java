@@ -20,4 +20,8 @@ public class OutputView {
             System.out.println(Arrays.toString(lottoNumber));
         }
     }
+
+    public static void printRequestWinnerNumberMessage(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

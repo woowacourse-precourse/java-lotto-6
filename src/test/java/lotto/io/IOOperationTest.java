@@ -27,6 +27,16 @@ public class IOOperationTest {
     }
 
     @Test
+    void 당첨_번호들과_보너스_번호_중복_발견_시_예외_리턴() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Integer bonusNumber = 5;
+
+        assertThatThrownBy(() -> {
+            IOOperation.winningAndBonusNotDuplicated(winningNumbers, bonusNumber);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 금액_입력_시_로또_개수_리턴() {
         assertThat(IOOperation.numberOfLotto(12000)).isEqualTo(12);
     }

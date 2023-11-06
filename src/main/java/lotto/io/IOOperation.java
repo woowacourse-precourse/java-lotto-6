@@ -1,8 +1,5 @@
 package lotto.io;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.common.Lotto;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,11 +26,19 @@ public class IOOperation {
         }
     }
 
+    public static void winningAndBonusNotDuplicated(List<Integer> winningNumbers, Integer bonusNumber) {
+        winningNumbers.forEach((value) -> {
+            if (bonusNumber == value) {
+                throw new IllegalArgumentException();
+            }
+        });
+    }
+
     public static Integer numberOfLotto(Integer price) {
         return price / UNIT;
     }
 
-    public static Boolean inRange(Integer number) {
+    private static Boolean inRange(Integer number) {
         if (MINIMUM_RANGE <= number && number <= MAXIMUM_RANGE) {
             return true;
         }

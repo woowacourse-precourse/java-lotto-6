@@ -84,10 +84,8 @@ public class GameController {
 
 
     private void comparePurchasedLottosWithWinnerLotto() {
-        List<Prize> result = lottos.compareAllLottoWithWinnerLotto(
-                winnerLotto.getWinnerNumbers(),
-                winnerLotto.getBonusNumber());
-         prizes = lottos.createPrizes(result);
+        prizes = lottos.createPrizes(winnerLotto.getWinnerNumbers(),
+                                    winnerLotto.getBonusNumber());
     }
 
 

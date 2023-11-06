@@ -14,6 +14,17 @@ public class Lottos {
         this.count = lottos.size();
     }
 
+    public Prizes createPrizes(List<Integer> winnerNumbers, Integer bonusNumber) {
+        List<Prize> prizes = compareAllLottoWithWinnerLotto(winnerNumbers, bonusNumber);
+        return new Prizes(prizes);
+    }
+    private List<Prize> compareAllLottoWithWinnerLotto(List<Integer> winnerNumbers, Integer bonusNumber) {
+        return lottos.stream()
+                .map(lotto -> lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber))
+                .collect(Collectors.toList());
+    }
+
+
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }
@@ -22,14 +33,5 @@ public class Lottos {
         return count;
     }
 
-    public List<Prize> compareAllLottoWithWinnerLotto(List<Integer> winnerNumbers, Integer bonusNumber) {
-        return lottos.stream()
-                .map(lotto -> lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber))
-                .collect(Collectors.toList());
-    }
-
-    public Prizes createPrizes(List<Prize> prizes) {
-        return new Prizes(prizes);
-    }
 
 }

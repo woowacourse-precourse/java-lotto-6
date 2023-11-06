@@ -22,6 +22,10 @@ public enum LottosConstants {
         this.prizeMoney = prizeMoney;
     }
 
+    private boolean isPrizeRank(int matchNumber){
+        return this.matchNumber == matchNumber;
+    }
+
     public int getMatchNumber() {
         return this.matchNumber;
     }

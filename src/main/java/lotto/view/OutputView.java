@@ -17,6 +17,10 @@ public class OutputView {
         System.out.println(String.format(LOTTO_AMOUNT_MESSAGE, lottoAmount));
     }
 
+    public void showErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public void showLottoNumbers(List<String> lottoNumbers) {
         lottoNumbers.stream().forEach(System.out::println);
     }

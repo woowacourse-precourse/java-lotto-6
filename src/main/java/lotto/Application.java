@@ -1,11 +1,11 @@
 package lotto;
 
-import domain.LottoService;
+import domain.LottoGame;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        LottoService lottoService = new LottoService();
-        lottoService.buyLotto();
+        LottoGame lottoGame = new LottoGame();
+        lottoGame.playLottoGame();
     }
 }

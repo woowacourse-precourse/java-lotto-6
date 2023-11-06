@@ -16,6 +16,8 @@ public class LottoController {
         BigDecimal payment = settlePayment();
         List<Lotto> lotteries = lottoService.generateLotteries(payment);
         communicator.printLotteriesBought(lotteries);
+
+        Lotto jackpotLotto = confirmJackpotLotto();
     }
 
     private BigDecimal settlePayment() {
@@ -32,6 +34,24 @@ public class LottoController {
         } catch (IllegalArgumentException exception) {
             communicator.printException(exception);
             return BigDecimal.ZERO;
+        }
+    }
+
+    private Lotto confirmJackpotLotto() {
+        Lotto jackpotLotto = null;
+        while (jackpotLotto == null) {
+            String jackpotNumbers = communicator.instructJackpotNumbers();
+            jackpotLotto = decideJackpotLotto(jackpotNumbers);
+        }
+        return jackpotLotto;
+    }
+
+    private Lotto decideJackpotLotto(String jackpotNumbers) {
+        try {
+            return lottoService.generateJackpot(jackpotNumbers);
+        } catch (IllegalArgumentException exception) {
+            communicator.printException(exception);
+            return null;
         }
     }
 }

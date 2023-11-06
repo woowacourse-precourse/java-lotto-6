@@ -40,6 +40,25 @@ class LottoControllerTest {
     }
 
     @Test
+    @DisplayName("로또 구입 시 IllegalArgumentException이 발생하면 에러 메시지를 출력하고 구입 금액을 다시 입력받는다.")
+    void test_Run_ReceivePaymentAgain() {
+        //given
+        String input = "0\n1000\n1,2,3,4,5,6";
+        setIn(input);
+        setOut();
+
+        //when
+        lottoController.run();
+        String output = output();
+
+        assertThat(output).contains(
+                "구입금액을 입력해주세요.",
+                "0보다 큰 금액을 입력해주세요.",
+                "구입금액을 입력해주세요."
+        );
+    }
+
+    @Test
     @DisplayName("로또 구입 후 생성된 로또들을 출력한다.")
     void test_Run_PrintLotteriesBought() {
         //given
@@ -98,6 +117,26 @@ class LottoControllerTest {
                 },
                 List.of(1, 2, 3, 4, 5, 6),
                 List.of(10, 15, 20, 25, 30, 35)
+        );
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력 시 IllegalArgumentException이 발생하면 에러 메시지를 출력하고 당첨 번호를 다시 입력받는다.")
+    void test_Run_ReceiveJackpotNumberAgain() {
+        //given
+        String input = "1000\n1,2,3,4,5,0\n1,2,3,4,5,6";
+        setIn(input);
+        setOut();
+
+        //when
+        lottoController.run();
+        String output = output();
+
+        //then
+        assertThat(output).contains(
+                "당첨 번호를 입력해주세요.",
+                "1~45 사이의 숫자를 입력해주세요.",
+                "당첨 번호를 입력해주세요."
         );
     }
 

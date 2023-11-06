@@ -27,4 +27,14 @@ public class Lotto {
     private void sort(){
         Collections.sort(numbers);
     }
+
+    @Override
+    public String toString() {
+        String lottoPaper = "[";
+        for (int number : numbers){
+            lottoPaper = lottoPaper + ", " + number;
+        }
+        lottoPaper += "]";
+        return lottoPaper;
+    }
 }

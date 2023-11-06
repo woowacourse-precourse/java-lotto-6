@@ -5,8 +5,12 @@ import java.util.List;
 
 public class User {
 
-    private final int payed;
-    private final List<Lotto> lottos;
+    int payed;
+    List<Lotto> lottos;
+
+    public User(){
+        payed = getMoney();
+    }
 
 
     private int getMoney(){
@@ -26,7 +30,13 @@ public class User {
         for (int i = 0; i < (payed / 1000); i++){
             Lotto lotto = new Lotto(lotteryMachine.draw());
             lottos.add(lotto);
+        }
+    }
 
+    public void printLotto(){
+        System.out.println( payed/1000 + "개를 구매했습니다.");
+        for (Lotto lotto : lottos){
+            System.out.println(lotto.toString());
         }
     }
 

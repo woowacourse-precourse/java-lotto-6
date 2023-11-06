@@ -38,14 +38,38 @@ public class LottoController {
     }
 
     private WinningLotto winningInput() {
-        outputView.inputWinningNumbersMessage();
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
-
-        outputView.inputBonusNumberMessage();
-        Integer bonusNumber = inputView.inputBonusNumber();
+        List<Integer> winningNumbers = inputWinningNumbers();
+        Integer bonusNumber = inputBonusNumber();
 
         return new WinningLotto(winningNumbers, new BonusNumber(bonusNumber));
     }
+
+    private List<Integer> inputWinningNumbers() {
+        List<Integer> winningNumbers = null;
+        while (winningNumbers == null) {
+            try {
+                outputView.inputWinningNumbersMessage();
+                winningNumbers = inputView.inputWinningNumbers();
+            } catch (Exception e) {
+                System.out.println((e.getMessage()));
+            }
+        }
+        return winningNumbers;
+    }
+
+    private Integer inputBonusNumber() {
+        Integer bonusNumber = null;
+        while (bonusNumber == null) {
+            try {
+                outputView.inputBonusNumberMessage();
+                bonusNumber = inputView.inputBonusNumber();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
 
     private PurchasedLotto purchaseLottoByLottoCount(Integer lottoCount) {
         PurchasedLotto purchasedLotto = new PurchasedLotto();

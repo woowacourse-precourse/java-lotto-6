@@ -44,8 +44,6 @@ public class InputView {
             String inputWinningNumbers = getInput();
             try {
                 List<Integer> winningNumbers = convertInputToList(inputWinningNumbers);
-                validateWinningNumbers(winningNumbers);
-
                 return winningNumbers;
             } catch (DuplicateInputException e) {
                 System.out.println(e.getMessage());
@@ -57,10 +55,6 @@ public class InputView {
 
     private String getInput() {
         return Console.readLine();
-    }
-
-    private void validateWinningNumbers(List<Integer> winningNumbers) {
-        inputValidator.validateWinningNumbers(winningNumbers);
     }
 
     private List<Integer> convertInputToList(String inputWinningNumbers) {

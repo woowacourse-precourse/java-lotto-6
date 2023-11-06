@@ -1,13 +1,9 @@
 package lotto.view;
 
-import lotto.exception.DuplicateInputException;
 import lotto.exception.InvalidInputException;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static lotto.utils.constants.InputConstants.*;
+import static lotto.utils.constants.InputConstants.INVALID_INPUT_MESSAGE;
+import static lotto.utils.constants.InputConstants.NUMERIC;
 
 public class InputValidator {
     public void validateInputMoney(String inputMoney) {
@@ -18,17 +14,6 @@ public class InputValidator {
 
     private boolean isNumeric(String inputMoney) {
         return inputMoney.matches(NUMERIC);
-    }
-
-    public void validateWinningNumbers(List<Integer> winningNumbers) {
-        if (isDuplicate(winningNumbers)) {
-            throw new DuplicateInputException();
-        }
-    }
-
-    private boolean isDuplicate(List<Integer> winningNumbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
-        return uniqueNumbers.size() < winningNumbers.size();
     }
 
     public void validateBonusNumber(String bonusNumber) {

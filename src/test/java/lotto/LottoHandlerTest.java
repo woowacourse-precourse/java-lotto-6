@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -90,6 +92,19 @@ class LottoHandlerTest {
         // given
         String receivedWinningLotto = "1,2,3,4,5,6";
         
+        // when
+        Lotto winningLotto = lottoHandler.receiveWinningLotto(receivedWinningLotto);
+
+        // then
+        assertThat(winningLotto.equals(new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isTrue();
+    }
+
+    @DisplayName("당첨 번호를 입력 받아 오름차순으로 정렬하여 Lotto 객체로 반환한다.")
+    @Test
+    void receiveWinningLottoOrderByNumbersAsc() {
+        // given
+        String receivedWinningLotto = "6,5,4,3,2,1";
+
         // when
         Lotto winningLotto = lottoHandler.receiveWinningLotto(receivedWinningLotto);
 

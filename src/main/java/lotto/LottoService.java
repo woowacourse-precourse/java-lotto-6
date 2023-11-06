@@ -30,9 +30,12 @@ public class LottoService {
 		return lottos;
 	}
 
-	public List<Integer> checkNumbers(String inputNumbers) throws IllegalArgumentException{
+	public List<Integer> checkNumbers(String inputNumbers) throws IllegalArgumentException {
 		String[] numbers = inputNumbers.split(",");
 		validator.isThisSizeSix(numbers);
+		for (int i = 0; i < numbers.length; i++) {
+			validator.isComposedOfNumbers(numbers[i]);
+		}
 		return null;
 	}
 }

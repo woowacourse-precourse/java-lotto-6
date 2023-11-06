@@ -14,12 +14,12 @@ public class PurchaseAmount {
     }
 
     private void validatePurchaseAmount(String amount) {
-        if (!isDigit(amount)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
+        if (isBlankOrEmpty(amount)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_EMPTY_OR_BLANK);
         }
 
-        if (!isBlankOrEmpty(amount)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EMPTY_OR_BLANK);
+        if (!isDigit(amount)) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
         }
 
         if (isZeroOrMinus(amount)) {

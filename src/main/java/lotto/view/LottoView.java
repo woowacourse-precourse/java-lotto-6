@@ -6,6 +6,9 @@ import lotto.model.PurchaseAmount;
 import lotto.model.Result;
 import lotto.model.value.Matching;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class LottoView {
@@ -22,7 +25,7 @@ public class LottoView {
     }
 
     private void printLotto(Lotto lotto) {
-        System.out.print("[" + String.join(",", lotto.getNumbersForString()) + "]");
+        System.out.println("[" + String.join(", ", lotto.getNumbersForString()) + "]");
     }
 
     public void printInputWinningNumber() {
@@ -37,9 +40,11 @@ public class LottoView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        result.getResult().forEach((matching, count) ->
-            System.out.println(getStatisticsFormat(matching, count))
-        );
+        Map<Matching, Integer> map = result.getResult();
+
+        Arrays.stream(Matching.values()).sorted(Comparator.comparingInt(Matching::getMoney))
+                .forEach(matching -> System.out.println(getStatisticsFormat(matching, map.get(matching))));
+
         System.out.println("총 수익률은 " + result.getRate(purchaseAmount) + "%입니다.");
     }
 

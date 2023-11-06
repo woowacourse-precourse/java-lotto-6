@@ -23,7 +23,7 @@ public class Result {
     public double getRate(PurchaseAmount purchaseAmount) {
         int total = calculateTotalAmount();
 
-        rate = (double) purchaseAmount.getAmount() / total * 100;
+        rate = (double) total / purchaseAmount.getAmount() * 100;
         return rate;
     }
 
@@ -33,7 +33,9 @@ public class Result {
             return;
         }
 
-        increaseCount(Matching.of(String.valueOf(count)));
+        if (isCountThreeOrMore(count)) {
+            increaseCount(Matching.of(String.valueOf(count)));
+        }
     }
 
     private int calculateTotalAmount() {
@@ -49,6 +51,10 @@ public class Result {
 
     private boolean isCountFive(int count) {
         return count == 5;
+    }
+
+    private boolean isCountThreeOrMore(int count) {
+        return count >= 3;
     }
 
     private boolean DoBonusPointsMatch(Lotto lotto, WinningNumber winningNumber) {

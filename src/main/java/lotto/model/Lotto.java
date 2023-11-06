@@ -11,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sort();
     }
 
     private void validate(List<Integer> numbers) {
@@ -19,8 +20,11 @@ public class Lotto {
         }
     }
 
-
     public int match(int winnerNumber){
         return Collections.binarySearch(numbers, winnerNumber);
+    }
+
+    private void sort(){
+        Collections.sort(numbers);
     }
 }

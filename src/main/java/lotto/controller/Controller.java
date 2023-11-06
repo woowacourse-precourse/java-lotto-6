@@ -20,6 +20,21 @@ public class Controller {
     public void play() {
         int userPrice = getUserInputPrice();
         List<Integer> winningLottonumbers = getWinningLottonumbers();
+        int bonus = getInputBonusNumber();
+    }
+
+    private int getInputBonusNumber() {
+        String inputNumber;
+        while (true) {
+            view.printRequestBonusNumber();
+            inputNumber = readInput();
+            try {
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return StringUtils.parseStringToInt(inputNumber);
     }
 
     private int getUserInputPrice() {
@@ -34,7 +49,7 @@ public class Controller {
                 System.out.println(e.getMessage());
             }
         }
-        return StringUtils.parseNumberOfCount(inputPrice);
+        return StringUtils.parseStringToInt(inputPrice);
     }
 
     private List<Integer> getWinningLottonumbers() {

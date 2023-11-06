@@ -10,7 +10,7 @@ public class StringUtils {
     private StringUtils() {
     }
 
-    public static int parseNumberOfCount(String input) {
+    public static int parseStringToInt(String input) {
         return Integer.parseInt(input);
     }
 

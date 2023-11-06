@@ -11,9 +11,17 @@ public class Output {
     private static int fourth = 0;
     private static int fifth = 0;
 
+    private static final int LOTTOPRICE = 1000;
+    private static final int FIRSTNUM = 6;
+    private static final int SECONDNUM = 5;
+    private static final int THIRDNUM = 5;
+    private static final int FOURTHNUM = 4;
+    private static final int FIFTHNUM = 3;
+    private static final int BONUSNNUM = 1;
+
     public static void printbuyLottos(int wallet) {
 
-        wallet /= 1000;
+        wallet /= LOTTOPRICE;
         System.out.println(wallet + "개를 구매했습니다.");
     }
 
@@ -35,19 +43,19 @@ public class Output {
 
     public static void countRank(int correctCount, int correctBonus) {
 
-        if (correctCount == 3) {
+        if (correctCount == FIFTHNUM) {
 
             fifth++;
-        } else if (correctCount == 4) {
+        } else if (correctCount == FOURTHNUM) {
 
             fourth++;
-        } else if (correctCount == 5) {
+        } else if (correctCount == THIRDNUM) {
 
             third++;
-        } else if (correctCount == 5 && correctBonus == 1) {
+        } else if (correctCount == SECONDNUM && correctBonus == BONUSNNUM) {
 
             second++;
-        } else if (correctCount == 6) {
+        } else if (correctCount == FIRSTNUM) {
 
             first++;
         }

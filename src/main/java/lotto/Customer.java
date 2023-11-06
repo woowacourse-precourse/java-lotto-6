@@ -9,9 +9,11 @@ public class Customer {
     private int wallet;
     private List<Lotto> lottos = new ArrayList<>();
     private final int LOTTOPRICE = 1000;
+    private final int ISDIVISIBLE = 0;
     private final int LOTTOCOUNT = 6;
     private final int MINRANGE = 1;
     private final int MAXRANGE = 45;
+    private final int PERCENT = 100;
 
     public Customer(String wallet) {
 
@@ -34,7 +36,7 @@ public class Customer {
 
     private void validateWalletIsDivisible(int wallet) {
 
-        if (wallet % 1000 != 0) {
+        if (wallet % LOTTOPRICE != ISDIVISIBLE) {
 
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
@@ -78,6 +80,6 @@ public class Customer {
 
     public double calculateRateOfReturn(double reward) {
 
-        return reward / wallet * 100;
+        return reward / wallet * PERCENT;
     }
 }

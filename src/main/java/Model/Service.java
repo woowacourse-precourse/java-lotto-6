@@ -64,6 +64,21 @@ public class Service {
                 .collect(Collectors.toList());
     }
 
+    private int getMyWinning(int winningNumber) {
+        if(winningNumber == 1) {
+            return Winnings.FIRST_PLACE.getValue();
+        } else if(winningNumber == 2) {
+            return Winnings.SECOND_PLACE.getValue();
+        } else if(winningNumber == 3) {
+            return Winnings.THIRD_PLACE.getValue();
+        } else if(winningNumber == 4) {
+            return Winnings.FOURTH_PLACE.getValue();
+        } else if(winningNumber == 5) {
+            return Winnings.FIFTH_PLACE.getValue();
+        }
+        throw new IllegalArgumentException("잘못된 값이 들어감");
+    }
+
     public double calculateRevenueRate() {
     }
 }

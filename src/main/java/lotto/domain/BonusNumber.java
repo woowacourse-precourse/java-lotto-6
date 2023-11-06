@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.Objects;
-
 public class BonusNumber {
     private static final String RANGE_ERROR_MESSAGE = "[ERROR] 1 ~ 45 범위의 숫자만 입력 가능합니다.";
 
@@ -12,21 +10,8 @@ public class BonusNumber {
         this.number = number;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        BonusNumber that = (BonusNumber) o;
-        return number == that.number;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(number);
+    public boolean isEqual(int number) {
+        return this.number == number;
     }
 
     private void validateRange(int number) {

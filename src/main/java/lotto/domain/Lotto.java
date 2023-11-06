@@ -24,6 +24,33 @@ public class Lotto {
                 .toList();
     }
 
+    //@todo: refactoring
+    public int judge(Lotto winningLotto, BonusNumber bonusNumber) {
+        HashSet<Integer> judgementer = new HashSet<>();
+        judgementer.addAll(numbers);
+        judgementer.addAll(winningLotto.getSortedNumbers());
+
+        int result = LOTTO_SIZE * 2 - judgementer.size();
+
+        if (result == 6) {
+            return 1;
+        }
+        if (result == 5) {
+            if (numbers.stream().anyMatch(bonusNumber::isEqual)) {
+                return 2;
+            }
+            return 3;
+        }
+        if (result == 4) {
+            return 4;
+        }
+        if (result == 3) {
+            return 5;
+        }
+
+        return result;
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(SIZE_ERROR_MESSAGE);

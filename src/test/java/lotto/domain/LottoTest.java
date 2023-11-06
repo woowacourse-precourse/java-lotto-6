@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -59,5 +61,43 @@ class LottoTest {
 
         // then
         assertThat(lotto.getSortedNumbers()).isEqualTo(sortedNumbers);
+    }
+
+    @DisplayName("등수를 계산한다")
+    @ParameterizedTest
+    @MethodSource("getWinningLottos")
+    void judgeTest(Map<Integer, List<Integer>> WinningLottos) {
+        // given
+        NumberPicker picker = () -> List.of(1, 2, 3, 4, 5, 6);
+        NumberPicker winningPicker = () -> null;
+        int rank = -1;
+        int bonusNumber = -1;
+
+        for (Entry<Integer, List<Integer>> pair : WinningLottos.entrySet()) {
+            List<Integer> value = pair.getValue();
+
+            rank = pair.getKey();
+            bonusNumber = value.get(value.size() - 1);
+            winningPicker = () -> value.subList(0, 6);
+        }
+
+        Lotto lotto = new Lotto(picker.pick());
+        Lotto winningLotto = new Lotto(winningPicker.pick());
+
+        // when
+        int result = lotto.judge(winningLotto, new BonusNumber(bonusNumber));
+
+        // then
+        assertThat(result).isEqualTo(rank);
+    }
+
+    static Stream<Map<Integer, List<Integer>>> getWinningLottos() {
+        return Stream.of(
+                Map.of(1, List.of(1, 2, 3, 4, 5, 6, 45)),
+                Map.of(2, List.of(1, 2, 3, 4, 5, 44, 6)),
+                Map.of(3, List.of(1, 2, 3, 4, 5, 44, 45)),
+                Map.of(4, List.of(1, 2, 3, 4, 43, 44, 45)),
+                Map.of(5, List.of(1, 2, 3, 42, 43, 44, 45))
+        );
     }
 }

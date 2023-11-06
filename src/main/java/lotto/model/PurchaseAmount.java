@@ -9,6 +9,7 @@ public class PurchaseAmount {
 
     public PurchaseAmount(int amount) {
         validate(amount);
+        this.amount = amount;
     }
 
     public int buyLotto(int lottoPrice) {
@@ -17,7 +18,7 @@ public class PurchaseAmount {
 
         amount -= totalPrice;
         displayPurchasedLottoQuantity(lottoCount);
-        
+
         return lottoCount;
     }
 

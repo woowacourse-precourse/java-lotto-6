@@ -23,19 +23,22 @@ public enum LottoRank {
             if (rank.matchCount == matchCount && (!rank.bonusMatch || bonusMatch)) {
                 return rank;
             }
+            if (matchCount < 3) {
+                return NONE;
+            }
         }
         return NONE;
     }
 
-    public boolean isBonusMatch(){
+    public boolean isBonusMatch() {
         return bonusMatch;
     }
 
-    public int getMatchCount(){
+    public int getMatchCount() {
         return matchCount;
     }
 
-    public int getPrize(){
+    public int getPrize() {
         return prize;
     }
 }

@@ -28,5 +28,10 @@ public class LottoController {
     public Result createResult(Jackpot jackpot, List<Lotto> lottos, Purchase purchase) {
         return new Result(jackpot, lottos, purchase);
     }
+
+    // 로또 당첨 계산
+    public void calculateWinningRanks(Result result) {
+        result.calculateWinningRanks();
+    }
     
 }

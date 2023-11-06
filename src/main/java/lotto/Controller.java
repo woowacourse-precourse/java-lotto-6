@@ -5,9 +5,8 @@ import lotto.domain.LotteryOperator;
 import lotto.domain.LotteryReceipt;
 import lotto.domain.LotteryResults;
 import lotto.domain.LotteryResultsCalculator;
-import lotto.domain.LotteryRetailer;
-import lotto.domain.LottoRandom;
 import lotto.domain.User;
+import lotto.service.PurchaseLotteryService;
 
 public class Controller {
     private InputInterface in;
@@ -15,21 +14,21 @@ public class Controller {
     private LotteryOperator operator;
     private LotteryResultsCalculator calculator;
     private User user;
+    private PurchaseLotteryService purchaseLotteryService;
 
     Controller(InputInterface in, OutputInterface out, LotteryOperator operator, User user,
-               LotteryResultsCalculator calculator) {
+               LotteryResultsCalculator calculator, PurchaseLotteryService purchaseLotteryService) {
         this.in = in;
         this.out = out;
         this.operator = operator;
         this.user = user;
         this.calculator = calculator;
+        this.purchaseLotteryService = purchaseLotteryService;
     }
 
     public void purchaseLotteries() {
         long purchasedAmount = in.getPurchasedAmount();
-        LotteryRetailer retailer = new LotteryRetailer(new LottoRandom());
-        LotteryReceipt receipt = retailer.purchase(operator, purchasedAmount);
-        user.takeReceipt(receipt);
+        LotteryReceipt receipt = purchaseLotteryService.purchaseLotteries(user,purchasedAmount);
         out.printReceipt(receipt);
     }
 

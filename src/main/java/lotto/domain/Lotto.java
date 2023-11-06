@@ -16,7 +16,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    
+
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {

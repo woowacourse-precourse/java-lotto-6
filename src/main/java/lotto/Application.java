@@ -8,6 +8,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Price;
 import lotto.domain.Ranks;
+import lotto.validate.LottoNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,9 +22,7 @@ public class Application {
         OutputView.printPurchaseResult(purchasePrice.numberLotteryAvailablePurchase());
         OutputView.printLotteryNumber(lottery);
 
-        String stringWinningNumber = InputView.winningNumber();
-        // todo 메서드 위치 변경 필요
-        validateWinningNumber(stringWinningNumber);
+        String stringWinningNumber = getWinningNumber();
 
         // todo 메서드 분리 필요
         List<LottoNumber> winningNumber = Arrays.stream(stringWinningNumber.split(","))
@@ -37,25 +36,22 @@ public class Application {
         OutputView.printRateOfReturn(ranks.calWinningPrice(), purchasePrice);
     }
 
-    private static void validateWinningNumber(String winningNumber) {
-        String[] split = winningNumber.split(",");
-        validateLength(split);
-        validateType(split);
+    private static String getWinningNumber() {
+        String stringWinningNumber = InputView.winningNumber();
+        validateWinningNumber(stringWinningNumber);
+        return stringWinningNumber;
     }
 
-    private static void validateType(String[] split) {
+    private static void validateWinningNumber(String stringWinningNumber) {
+        boolean isRestart = true;
         try {
-            for (String s : split) {
-                Integer.valueOf(s);
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("로또 금액은 숫자만 입력 가능합니다2.");
+            isRestart = LottoNumberValidator.validateWinningNumber(stringWinningNumber);
+        } catch (IllegalArgumentException e) {
+            OutputView.printCustomMessage(e.getMessage());
+        }
+        if (isRestart) {
+            getWinningNumber();
         }
     }
 
-    private static void validateLength(String[] split) {
-        if (split.length != 6) {
-            throw new IllegalArgumentException("당첩 번호는 6개의 숫자로 입력되어야 합니다.");
-        }
-    }
 }

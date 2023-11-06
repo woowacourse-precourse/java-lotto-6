@@ -33,4 +33,8 @@ public class OutputView {
     public static void printPurchaseResult(Integer numOfLotto) {
         System.out.println(String.format("%s개를 구매했습니다.", numOfLotto));
     }
+
+    public static void printCustomMessage(String message) {
+        System.out.println(message);
+    }
 }

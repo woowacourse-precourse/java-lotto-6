@@ -205,5 +205,24 @@ class LottoHandlerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
     }
+
+    @DisplayName("발행한 로또와 당첨 로또를 비교하여 당첨 결과를 리턴한다.")
+    @Test
+    void calculateWinningResult(){
+        //given
         List<Lotto> lottos = new ArrayList<>();
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(6, 12, 23, 34, 35, 45));
+        lottos.add(lotto1);
+        lottos.add(lotto2);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 45;
+
+        //when
+        Map<WinningKind, Integer> winningKinds = lottoHandler.calculateWinningResult(lottos, winningLotto, bonusNumber);
+
+        //then
+        assertThat(winningKinds.get(WinningKind.FIRST)).isEqualTo(1);
+    }
+
 }

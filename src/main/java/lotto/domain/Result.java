@@ -11,7 +11,10 @@ public class Result {
         this.result = result;
     }
 
-    public int proceeds() {
-        return 0;
+    public double proceeds() {
+        return result.entrySet()
+                .stream()
+                .mapToDouble(result -> result.getKey().getWinningAmount() * result.getValue())
+                .sum();
     }
 }

@@ -42,7 +42,7 @@ public class LottoController {
         EnumMap<Rank, Integer> rank = new EnumMap<>(Rank.class);
         EnumSet.allOf(Rank.class).forEach(grade -> rank.put(grade, 0));
         for (Lotto lottoTicket : lottoTickets.getLottoTickets()) {
-            int matchCount = winningLotto.calculateMatchCount(lottoTicket);
+            int matchCount = winningLotto.getMatchCount(lottoTicket);
             Rank currentRank = Rank.findRankByMatchCount(matchCount, winningLotto.hasBonusNumber(lottoTicket));
             rank.put(currentRank, rank.get(currentRank) + 1);
         }

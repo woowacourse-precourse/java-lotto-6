@@ -1,7 +1,7 @@
 package lotto.helper;
 
 import java.util.List;
-import lotto.util.NumberGenerator;
+import lotto.model.NumberGenerator;
 
 public class StubNumberGenerator implements NumberGenerator {
 

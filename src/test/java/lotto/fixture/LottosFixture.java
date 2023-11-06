@@ -3,7 +3,7 @@ package lotto.fixture;
 import java.util.List;
 import lotto.helper.StubNumberGenerator;
 import lotto.model.Lottos;
-import lotto.util.NumberGenerator;
+import lotto.model.NumberGenerator;
 
 public class LottosFixture {
 

@@ -3,7 +3,6 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.util.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;

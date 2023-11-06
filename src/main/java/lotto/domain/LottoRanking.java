@@ -21,21 +21,15 @@ public enum LottoRanking {
     }
 
     public static LottoRanking of(int numberOfMatches, boolean hasBonusNumber) {
-        boolean finalHasBonusNumber = isFinalHasBonusNumber(numberOfMatches, hasBonusNumber);
-
-        return findRanking(numberOfMatches, finalHasBonusNumber);
-    }
-
-    private static boolean isFinalHasBonusNumber(int numberOfMatches, boolean hasBonusNumber) {
         if (numberOfMatches != VALUE_TO_DETERMINE_SECOND_OR_THIRD) {
-            return false;
+            return findRanking(numberOfMatches, false);
         }
-        return hasBonusNumber;
+        return findRanking(numberOfMatches, hasBonusNumber);
     }
 
-    private static LottoRanking findRanking(int numberOfMatches, boolean finalHasBonusNumber) {
+    private static LottoRanking findRanking(int numberOfMatches, boolean hasBonusNumber) {
         return Arrays.stream(values())
-                .filter(lottoRanking -> lottoRanking.isMatch(numberOfMatches, finalHasBonusNumber))
+                .filter(lottoRanking -> lottoRanking.isMatch(numberOfMatches, hasBonusNumber))
                 .findFirst()
                 .orElse(NOTHING);
     }

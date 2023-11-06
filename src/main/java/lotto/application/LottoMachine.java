@@ -8,6 +8,7 @@ public class LottoMachine {
     public Lotto createLotto(final List<Integer> numbers) {
         return new Lotto(numbers.stream()
                 .map(this::createLottoNumber)
+                .sorted()
                 .toList()
         );
     }

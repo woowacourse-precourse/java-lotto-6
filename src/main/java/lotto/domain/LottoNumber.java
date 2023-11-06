@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
     private static final Map<Integer, LottoNumber> LOTTO_NUMBER_CACHE = new HashMap<>();
 
     static {
@@ -47,5 +47,10 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return number;
+    }
+
+    @Override
+    public int compareTo(final LottoNumber lottoNumber) {
+        return Integer.compare(this.number, lottoNumber.number);
     }
 }

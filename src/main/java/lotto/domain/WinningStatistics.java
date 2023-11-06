@@ -5,21 +5,23 @@ import java.util.List;
 
 public enum WinningStatistics {
 
-    FIRST(List.of(6L), false),
-    SECOND(List.of(5L), true),
-    THIRD(List.of(5L), false),
-    FOUR(List.of(4L), false),
-    FIFTH(List.of(3L), false),
-    RETIER(List.of(0L, 1L, 2L), false),
-    NONE(List.of(), false);
+    FIRST(List.of(6L), false, 1),
+    SECOND(List.of(5L), true, 2),
+    THIRD(List.of(5L), false, 3),
+    FOUR(List.of(4L), false, 4),
+    FIFTH(List.of(3L), false, 5),
+    RETIER(List.of(0L, 1L, 2L), false, 6),
+    NONE(List.of(), false, 0);
 
 
     private List<Long> winningTier;
     private boolean correctBonusFlag;
+    private int rank;
 
-    WinningStatistics(List<Long> winningTier, boolean correctBonusFlag) {
+    WinningStatistics(List<Long> winningTier, boolean correctBonusFlag, int rank) {
         this.winningTier = winningTier;
         this.correctBonusFlag = correctBonusFlag;
+        this.rank = rank;
     }
 
     public static WinningStatistics confirm(long correctWinningCount, boolean correctBonusCount) {
@@ -40,4 +42,7 @@ public enum WinningStatistics {
         return this.correctBonusFlag == correctBonusCount;
     }
 
+    public int getRank() {
+        return this.rank;
+    }
 }

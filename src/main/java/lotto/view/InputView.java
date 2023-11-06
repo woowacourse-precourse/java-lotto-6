@@ -12,4 +12,9 @@ public class InputView {
 
     private static List<Integer> winningNumberList;
 
+    public static String inputPlayerAmount() {
+        System.out.println(INPUT_LOTTO_AMOUNT);
+        return Console.readLine();
+    }
+
 }

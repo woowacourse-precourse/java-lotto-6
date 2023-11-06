@@ -11,7 +11,6 @@ public class Cashier {
 
         LottoMachine lottoMachine = new LottoMachine();
         LottoEnvelope lottoEnvelope = lottoMachine.createLottoEnvelope(calculateLottoPrice(money));
-        System.out.println(calculateLottoPrice(money) + "개를 구매했습니다.");
 
         return lottoEnvelope;
     }

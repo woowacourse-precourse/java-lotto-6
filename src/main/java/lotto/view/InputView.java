@@ -11,10 +11,13 @@ public class InputView {
     private static final String NUMBER_OF_INPUT_CNT_ERROR ="[ERROR] 로또 숫자만큼 다시 입력해주세요!";
 
     private static final String INPUT_WINNING_NUMBERS ="당첨 번호를 입력해주세요.";
+    private static final String INPUT_BONUS_NUMBER ="보너스 번호를 입력해주세요.";
+
     private static List<Integer> winningNumbers;
     private static final String RANGE_ERROR="[ERROR] 옳지 않은 범위의 숫자를 입력하셨습니다.";
     private static final int MAX_LOTTO_NUM=45;
     private static final int LOTTO_NUM=6;
+
 
     public static int inputPlayerAmount(){
         System.out.println(INPUT_LOTTO_AMOUNT);
@@ -67,6 +70,13 @@ public class InputView {
         }
     }
 
+    public static int inputBonusNumber(){
+        System.out.println(INPUT_BONUS_NUMBER);
+        String input= Console.readLine();
+        int num=checkNumber(input);
+        checkRange(num);
+        return num;
+    }
 
 
 }

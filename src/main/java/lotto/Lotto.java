@@ -35,4 +35,10 @@ public class Lotto {
 
     }
 
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber){
+        if(numbers.contains(bonusNumber)){
+            throw new IllegalArgumentException(OVERLAP_NUM_ERROR);
+        }
+    }
+
 }

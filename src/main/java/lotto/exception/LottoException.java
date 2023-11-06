@@ -3,7 +3,8 @@ package lotto.exception;
 public enum LottoException {
 
     NOT_SIX_NUMBERS("로또 번호는 6개여야 합니다."),
-    NOT_DUPLICATE("로또 번호는 중복되지 않아야 합니다.");
+    NOT_DUPLICATE("로또 번호는 중복되지 않아야 합니다."),
+    NOT_NEGATIVE_NUM("구입 금액은 음수가 아니어야 합니다.");
 
     private final String exceptionMessage;
 

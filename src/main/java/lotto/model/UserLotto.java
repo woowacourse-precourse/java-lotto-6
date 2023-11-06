@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.LottoException;
 
 public class UserLotto {
 
@@ -15,6 +16,7 @@ public class UserLotto {
     }
 
     private void moneyToCount(int money) {
+        validateNegativeMoney(money);
         this.lottoCount = money / 1000;
     }
 
@@ -37,5 +39,12 @@ public class UserLotto {
             }
         }
         return new Lotto(numbers);
+    }
+
+    private void validateNegativeMoney(int money) {
+        if(money < 0) {
+            throw new IllegalArgumentException(LottoException.NOT_NEGATIVE_NUM.getExceptionMessage());
+        }
+
     }
 }

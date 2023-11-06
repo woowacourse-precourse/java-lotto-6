@@ -27,7 +27,6 @@ public class Application {
         // 구입 로또 출력 처리
         PrintOutput.printCountOfLotto(lottoCount);
         PrintOutput.printLottos(lottos);
-    }
 
         // 로또 당첨 번호 입력 처리
         PrintOutput.printNoticeMessage(NoticeMessage.WINNING_NUMBERS);
@@ -39,6 +38,18 @@ public class Application {
         while (isBonusNumberSameWithWinningNumbers(winningLotto, bonusNumber)) {
             bonusNumber = UserInput.getBonusNumber();
         }
+
+        // TODO: 당첨 통계 계산
+
+
+        // TODO: 당첨 통계 출력
+        // PrintOutput.printNoticeMessage(NoticeMessage.WINNING_RESULT);
+        // PrintOutput.printNoticeMessage(NoticeMessage.STRAIGHT_LINE);
+
+        // TODO: 수익률 계산 처리
+
+        // TODO: 수익률 출력 처리
+
     }
 
     public static List<Integer> makeLottoNumbers() {

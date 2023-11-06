@@ -13,6 +13,10 @@ public class Bonus {
         this.number = number;
     }
 
+    public int get() {
+        return number;
+    }
+
     private void validate(int number) {
         if (!isBetween1to45(number)) {
             throwException(BONUS_WRONG_RANGE_ERROR_MESSAGE.get());
@@ -26,6 +30,4 @@ public class Bonus {
     private void throwException(String errorMessage) {
         throw new IllegalArgumentException(errorMessage);
     }
-
-
 }

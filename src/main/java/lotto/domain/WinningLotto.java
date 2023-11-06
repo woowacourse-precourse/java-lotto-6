@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.stream.Collectors;
+
 public class WinningLotto {
     private final Lotto NUMBERS;
     private final int BONUS_NUMBER;
@@ -21,5 +23,15 @@ public class WinningLotto {
         if(lottoNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[Error] 로또 번호에 보너스 번호와 중복된 번호가 존재합니다.");
         }
+    }
+
+    public int lottoNumbersMatch(Lotto lottoNumbers) {
+        int matchCount = NUMBERS.getNumbers().stream()
+                .filter(it -> lottoNumbers.getNumbers().contains(it))
+                .collect(Collectors.toList()).size();
+        if(matchCount < 3) {
+            return 0;
+        }
+        return matchCount;
     }
 }

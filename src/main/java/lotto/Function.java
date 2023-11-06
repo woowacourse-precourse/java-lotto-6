@@ -1,5 +1,9 @@
 package lotto;
 
+import java.util.ArrayList;
+
+import org.assertj.core.util.Arrays;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class Function {
@@ -7,6 +11,7 @@ public class Function {
 	protected int inputMoney() {
 		String inputMoney="";
 		boolean check= true;
+		System.out.println("구입금액을 입력해 주세요.");
 		while(check) {
 			try {
 				inputMoney= Console.readLine();
@@ -16,9 +21,7 @@ public class Function {
 				System.out.print(e.getMessage());
 			}
 		}
-		int money= Integer.parseInt(inputMoney);
-
-		return money;
+		return Integer.parseInt(inputMoney);
 	}
 	
 	private boolean validateMoney(String money) {
@@ -26,7 +29,7 @@ public class Function {
 		String RECEX="[0-9]+";
 			if(!money.matches(RECEX)) {
 				check= true;
-				throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
+				throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
 			}
 			if(Integer.parseInt(money)%1000!= 0) {
 				check= true;
@@ -34,4 +37,50 @@ public class Function {
 			}
 		return check;
 	}
+	
+	protected ArrayList<Integer> inputWinningNumber(){
+		boolean check= true;
+		String[] inputWinningValue= new String[6];
+		System.out.println("당첨 번호를 입력해 주세요.");
+		while(check) {
+			try {
+				inputWinningValue= Console.readLine().split(",");
+				check= validateWinningNumber(inputWinningValue);
+				break;
+			}catch(IllegalArgumentException e) {
+				System.out.print(e.getMessage());
+			}
+		}		
+		ArrayList<Integer> winningNumbers= new ArrayList<Integer>();
+		winningNumbers= conversionToInt(inputWinningValue);
+		return winningNumbers;
+	}
+	
+	private ArrayList<Integer> conversionToInt(String[] list) {
+		ArrayList<Integer> winningNumbers= new ArrayList<Integer>();
+		for(int i= 0; i<list.length; i++) {
+			winningNumbers.add(Integer.parseInt(list[i]));
+		}
+		return winningNumbers;
+	}
+	
+	private boolean validateWinningNumber(String[] winningNum) {
+		boolean check= false;
+		for(int i= 0; i<winningNum.length; i++) {
+			if(winningNum[i].getClass()!= String.class) {
+				check= true;
+				throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+			}
+			if(winningNum.length>6) {
+				check= true;
+				throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입해 주세요.");
+			}
+			if(Integer.parseInt(winningNum[i])<0 || Integer.parseInt(winningNum[i])>45) {
+				check= true;
+				throw new IllegalArgumentException("[ERROR] 1에서 45사이의 숫자를 입력해 주세요.");
+			}
+		}
+		return check;
+	}
+	
 }

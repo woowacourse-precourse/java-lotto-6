@@ -7,7 +7,6 @@ import java.util.List;
 public final class Utils {
 
     public static int stringToInteger(String input) {
-        Validation.validateStringToInteger(input);
         return Integer.parseInt(input);
     }
 

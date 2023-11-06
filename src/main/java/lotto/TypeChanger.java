@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TypeChanger {
     private static TypeChanger typeChanger;
@@ -22,13 +23,13 @@ public class TypeChanger {
     }
 
     public int from(String number) {
+        ValidateNumber.isNumber(number);
         return Integer.parseInt(number);
     }
 
     public List<Integer> from(List<String> numbers) {
         return numbers.stream()
-                .mapToInt(Integer::parseInt)
-                .boxed()
-                .toList();
+                .map(this::from)
+                .collect(Collectors.toList());
     }
 }

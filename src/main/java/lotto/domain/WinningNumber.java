@@ -23,4 +23,13 @@ public class WinningNumber extends Lotto {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.");
         }
     }
+
+    @Override
+    public int match(List<Integer> lottoNumbers) {
+        return super.match(lottoNumbers);
+    }
+
+    public boolean containBonusNumber(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(bonusNumber);
+    }
 }

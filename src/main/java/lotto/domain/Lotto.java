@@ -33,6 +33,20 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
         }
     }
+    
+    public int match(List<Integer> lottoNumbers) {
+        return (int) numbers.stream()
+                .filter(lottoNumbers::contains)
+                .count();
+    }
+
+    public final int match(WinningNumber winningNumber) {
+        return winningNumber.match(numbers);
+    }
+
+    public final boolean hasBonusNumber(WinningNumber winningNumber) {
+        return winningNumber.containBonusNumber(numbers);
+    }
 
     @Override
     public String toString() {

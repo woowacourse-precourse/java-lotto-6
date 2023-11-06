@@ -11,6 +11,7 @@ public enum ErrorMessage {
     NOT_INDIVISIBLE_PRICE(Constants.PRICE_PER_PIECE + "원 단위로 입력해 주세요."),
     NOT_IN_NUMBER_RANGE("로또 번호는 " + Constants.MIN_VALUE + "부터 " + Constants.MAX_VALUE + " 사이의 숫자여야 합니다."),
     DUPLICATE_NUM("중복된 값이 있습니다."),
+    DUPLICATE_BONUS_NUM("보너스 값이 중복된 값입니다."),
     WINNING_CNT(Constants.WINNING_NUMBER_CNT + "개의 값을 입력해 주세요.");
 
     // enum에서 상수 사용하기 위한 중첩 클래스

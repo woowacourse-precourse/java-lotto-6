@@ -9,7 +9,9 @@ import lotto.domain.result.WinningResult;
 
 public class Lottos {
 
-    private List<Lotto> lottos;
+    public static final int DEFAULT_VALUE = 0;
+    public static final int PLUS_VALUE = 1;
+    private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
@@ -19,7 +21,8 @@ public class Lottos {
         Map<WinningRank, Integer> winningResult = initWinningResult();
         for (Lotto lotto : lottos) {
             WinningRank winningRank = winningLotto.findWinningRank(lotto);
-            winningResult.put(winningRank, winningResult.getOrDefault(winningRank, 0) + 1);
+            winningResult.put(winningRank,
+                    winningResult.getOrDefault(winningRank, DEFAULT_VALUE) + PLUS_VALUE);
         }
         return new WinningResult(winningResult);
     }
@@ -27,7 +30,7 @@ public class Lottos {
     private Map<WinningRank, Integer> initWinningResult() {
         Map<WinningRank, Integer> winningResult = new EnumMap<>(WinningRank.class);
         for (WinningRank winningRank : WinningRank.values()) {
-            winningResult.put(winningRank, 0);
+            winningResult.put(winningRank, DEFAULT_VALUE);
         }
         return winningResult;
     }

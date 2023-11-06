@@ -1,11 +1,12 @@
 package lotto.domain.lotto;
 
+import lotto.domain.message.ErrorMessage;
 import lotto.domain.result.WinningRank;
 
 public class WinningLotto {
 
-    private Lotto lotto;
-    private BonusNumber bonusNumber;
+    private final Lotto lotto;
+    private final BonusNumber bonusNumber;
 
     public WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
         validate(lotto, bonusNumber);
@@ -15,7 +16,8 @@ public class WinningLotto {
 
     private void validate(Lotto lotto, BonusNumber bonusNumber) {
         if (lotto.hasSameNumber(bonusNumber)) {
-            throw new IllegalArgumentException("ERROR");
+            throw new IllegalArgumentException(
+                    ErrorMessage.DUPLICATION_EXCEPTION_MESSAGE.getMessage());
         }
     }
 

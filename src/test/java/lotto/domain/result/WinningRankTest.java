@@ -16,7 +16,8 @@ class WinningRankTest {
     @ParameterizedTest(name = "일치하는 숫자가 {0}이고 보너스번호가 {1}일때 결과는 {2}")
     @DisplayName("적절한 WinningRank를 찾는 기능")
     @MethodSource("argumentsFindWinningRank")
-    void 일치_되는_숫자와_보너스번호_일치_여부에_따른_당첨_결과(int matchCount, boolean hasBonusNumber, WinningRank winningRank) {
+    void 일치_되는_숫자와_보너스번호_일치_여부에_따른_당첨_결과(int matchCount, boolean hasBonusNumber,
+            WinningRank winningRank) {
         //when
         WinningRank findWinningRank = WinningRank.findWinningRank(matchCount, hasBonusNumber);
 

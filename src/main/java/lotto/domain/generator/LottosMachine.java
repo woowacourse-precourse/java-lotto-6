@@ -8,6 +8,7 @@ import lotto.domain.lotto.Lottos;
 
 public class LottosMachine {
 
+    public static final int START_INCLUSIVE = 0;
     private final LottoGenerator lottoGenerator;
 
     public LottosMachine(LottoGenerator lottoGenerator) {
@@ -16,7 +17,7 @@ public class LottosMachine {
 
     public Lottos buy(LottoMoney lottoMoney) {
         int count = lottoMoney.calculatePurchasableCount();
-        List<Lotto> lottos = IntStream.range(0, count)
+        List<Lotto> lottos = IntStream.range(START_INCLUSIVE, count)
                 .mapToObj(i -> lottoGenerator.create())
                 .toList();
 

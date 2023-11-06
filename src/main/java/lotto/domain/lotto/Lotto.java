@@ -2,6 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.message.ErrorMessage;
 
 public class Lotto {
 
@@ -19,27 +20,31 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+
+        if (numbers.size() != LottoRule.LOTTO_NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.NUMBERS_SIZE_EXCEPTION_MESSAGE.getMessage());
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         if (isOutOfRange(numbers)) {
             throw new IllegalArgumentException(
-                    "[ERROR] 로또 번호는 1부터 45 사이여야합니다.");
+                    ErrorMessage.NUMBER_RANGE_EXCEPTION_MESSAGE.getMessage());
         }
 
     }
 
     private boolean isOutOfRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number < 1 || number > 45);
+                .anyMatch(number -> number < LottoRule.LOTTO_MIN_NUMBER_INCLUSION.getValue()
+                        || number > LottoRule.LOTTO_MAX_NUMBER_INCLUSION.getValue());
     }
 
     private void validateDuplication(List<Integer> numbers) {
         if (hasDistinctNumberIn(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 중복되었습니다.");
+            throw new IllegalArgumentException(
+                    ErrorMessage.DUPLICATION_EXCEPTION_MESSAGE.getMessage());
         }
     }
 

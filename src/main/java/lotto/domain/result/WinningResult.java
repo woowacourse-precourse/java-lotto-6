@@ -8,6 +8,7 @@ import lotto.domain.lotto.LottoMoney;
 
 public class WinningResult {
 
+    public static final int MIN_COUNT_INCLUSION = 1;
     private final Map<WinningRank, Integer> winningResult;
 
     public WinningResult(Map<WinningRank, Integer> winningResult) {
@@ -22,14 +23,13 @@ public class WinningResult {
     private float calculateWinningMoney() {
         float result = 0L;
         for (WinningRank winningRank : winningResult.keySet()) {
-            if (winningResult.get(winningRank) >= 1) {
+            if (winningResult.get(winningRank) >= MIN_COUNT_INCLUSION) {
                 result += winningRank.getMoney();
             }
         }
         return result;
     }
 
-    //todo : 불변 테스트
     public Map<WinningRank, Integer> getResult() {
         return Collections.unmodifiableMap(winningResult);
     }

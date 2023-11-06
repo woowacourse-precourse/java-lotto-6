@@ -10,9 +10,9 @@ public enum WinningRank {
     FIRST(6, false, 2000000000),
     EMPTY(-1, false, 0);
 
-    private int count;
-    private boolean bonusNumber;
-    private int money;
+    private final int count;
+    private final boolean bonusNumber;
+    private final int money;
 
     WinningRank(int count, boolean bonusNumber, int money) {
         this.count = count;

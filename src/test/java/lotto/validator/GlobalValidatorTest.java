@@ -42,4 +42,15 @@ class GlobalValidatorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> validateWinningNumber(winningNumber));
     }
+
+    @Test
+    @DisplayName("당첨 번호 중복인지 테스트")
+    void winningNumberDuplicateTest() {
+        //given
+        List<String> winningNumber = List.of("1,2,3,4,6,6");
+
+        // when, then
+        assertThrows(IllegalArgumentException.class,
+                () -> validateWinningNumber(winningNumber));
+    }
 }

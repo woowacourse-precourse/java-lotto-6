@@ -31,13 +31,13 @@ class InputValidatorTest {
     @DisplayName("가격을 11000으로 입력")
     void 가격_11000_입력() {
         int result = InputValidator.validateLottoPriceInput("11000");
-        assertThat(result).isEqualTo(11);
+        assertThat(result).isEqualTo(11000);
     }
 
     @Test
     @DisplayName("5개의 숫자 입력")
     void _5개_숫자_입력() {
-        assertThatThrownBy(() -> InputValidator.validateLottoPriceInput("1,2,3,4,5"))
+        assertThatThrownBy(() -> InputValidator.validateLottoNumberInput("1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_SIZE_ERROR_MESSAGE.getErrorMessage());
     }
@@ -45,7 +45,7 @@ class InputValidatorTest {
     @Test
     @DisplayName("6개 숫자 입력, 그 중 46입력")
     void _6개_숫자_입력_46_입력() {
-        assertThatThrownBy(() -> InputValidator.validateLottoPriceInput("1,2,3,4,5,46"))
+        assertThatThrownBy(() -> InputValidator.validateLottoNumberInput("1,2,3,4,5,46"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_INPUT_ERROR_MESSAGE.getErrorMessage());
     }

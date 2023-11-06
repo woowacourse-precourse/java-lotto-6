@@ -2,9 +2,11 @@ package lotto.domain;
 
 import lotto.constants.ErrorMessage;
 import lotto.constants.LottoRule;
+import lotto.domain.winningNumber.BonusNumber;
+import lotto.domain.winningNumber.FinalWinningNumber;
+import lotto.domain.winningNumber.WinningNumber;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -12,25 +14,31 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = sortList(numbers);
+        this.numbers =numbers;
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicateNumbers(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LottoRule.LOTTO_NUMBER_COUNT.getNumber()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_NUMBER.getMessage());
         }
     }
 
-    private List<Integer> sortList(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return Collections.unmodifiableList(numbers);
+    private void validateDuplicateNumbers(List<Integer> numbers) {
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATE_NUMBER.getMessage());
+        }
     }
 
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public LottoRank compareLottoNumberWithFianlWinningNumber(FinalWinningNumber finalWinningNumber) {
+    public LottoRank compareLottoNumberWithFinalWinningNumber(FinalWinningNumber finalWinningNumber) {
         List<Integer> comparisonResult = Arrays.asList(0, 0);
         for(int number : numbers) {
             if(isDuplicateLottoNumberAndWinningNumber(number, finalWinningNumber.winningNumber())) {

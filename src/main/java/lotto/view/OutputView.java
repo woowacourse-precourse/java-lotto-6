@@ -11,6 +11,10 @@ public class OutputView {
     private static final String LEFT_LOTTO_BRACKET = "[";
     private static final String RIGHT_LOTTO_BRACKET = "]";
 
+    public static void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public static void printLottosByAmount(List<List<Integer>> lottos) {
         for(List<Integer> lotto: lottos) {
             printLottoByAmount(lotto);

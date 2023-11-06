@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.model.BonusNumber;
 import lotto.model.PurchaseAmount;
 import lotto.model.User;
 import lotto.model.WinningLotto;
@@ -10,7 +9,6 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private User user;
-    private BonusNumber bonusNumber;
 
     public void startGame() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();

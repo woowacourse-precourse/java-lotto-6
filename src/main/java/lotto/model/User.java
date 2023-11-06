@@ -12,14 +12,13 @@ public class User {
 
     private User(int numberOfLotto) {
         lottos = new ArrayList<>();
+        setResult();
 
         for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(new ArrayList<>(lottoNumber));
             lottos.add(lotto);
         }
-
-        setResult();
     }
 
     private void setResult() {

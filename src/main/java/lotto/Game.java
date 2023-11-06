@@ -29,6 +29,9 @@ public class Game {
         outputView.purchasesNumberView(COUNT_LOTTO);
         createLotto(COUNT_LOTTO);    //로또 생성
         outputView.lottosView(lottos);  //로또 출력
+        inputView.prizeNumber();
+
+        
     }
 
     public int purchaseAmountInput(){

@@ -29,4 +29,22 @@ public class Lotto {
         return "[" + result.toString() + "]";
     }
 
+    public Integer compareWithWinNumbers(List<Integer> winNumbers, Integer bonusNumber) {
+        int label = 0;
+
+        for (Integer n : numbers) {
+            if (winNumbers.contains(n)) {
+                label++;
+            }
+        }
+        if (label == 5) {
+            if (numbers.contains(bonusNumber)) {
+                label = 7;
+            }
+        }
+
+        return label;
+    }
+
+
 }

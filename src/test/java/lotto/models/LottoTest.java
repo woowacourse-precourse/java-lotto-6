@@ -1,4 +1,4 @@
-package lotto;
+package lotto.models;
 
 import lotto.models.Lotto;
 import lotto.models.LottoGrade;

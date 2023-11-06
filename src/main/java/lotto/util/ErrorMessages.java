@@ -10,9 +10,13 @@ public enum ErrorMessages {
     BONUS_NUMBER_IS_NOT_AN_INTEGER(ERROR_MESSAGE_COMMON_PREFIX + " 보너스 번호는 정수여야 합니다."),
     BONUS_NUMBER_NOT_IN_PROPER_RANGE(ERROR_MESSAGE_COMMON_PREFIX + " 보너스 번호의 범위는 1~45입니다.");
 
-    String message;
+    private String message;
 
     ErrorMessages(String message) {
         this.message = message;
+    }
+
+    public String get() {
+        return this.message;
     }
 }

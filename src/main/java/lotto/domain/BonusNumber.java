@@ -11,18 +11,13 @@ public class BonusNumber {
         this.number = number;
     }
 
-    public static BonusNumber from(String input) {
-        return new BonusNumber(Convertor.convertStringToInt(input));
+    public static BonusNumber ofNotDuplicatedWithWinningNumber(String input, WinningNumber winningNumber) {
+        int bonusNumber = Convertor.convertStringToInt(input);
+        BonusNumberValidator.validateNotContainedInWinningNumber(bonusNumber, winningNumber);
+        return new BonusNumber(bonusNumber);
     }
 
     public boolean isEqual(int otherNumber) {
         return number == otherNumber;
-    }
-
-    public boolean isExistAt(WinningNumber winningNumber) {
-        if (winningNumber.isContains(number)) {
-            return true;
-        }
-        return false;
     }
 }

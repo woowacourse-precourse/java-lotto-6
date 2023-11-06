@@ -1,6 +1,5 @@
 package lotto.validation;
 
-import lotto.domain.BonusNumber;
 import lotto.domain.WinningNumber;
 import lotto.enums.ErrorMessage;
 
@@ -17,8 +16,8 @@ public class BonusNumberValidator {
         }
     }
 
-    public static void validateExistAt(BonusNumber bonusNumber, WinningNumber winningNumber) {
-        if (bonusNumber.isExistAt(winningNumber)) {
+    public static void validateNotContainedInWinningNumber(int number, WinningNumber winningNumber) {
+        if (winningNumber.isContains(number)) {
             throw new IllegalArgumentException(ErrorMessage.EXIST_IN_WINNING_NUMBER.getMessage());
         }
     }

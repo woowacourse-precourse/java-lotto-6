@@ -2,10 +2,8 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constants.Rank;
 import lotto.domain.Comparator;
 import lotto.domain.Convertor;
-import lotto.domain.Judge;
 import lotto.domain.Lotto;
 import lotto.domain.Number;
 import lotto.domain.SameNumber;
@@ -16,15 +14,19 @@ public class Game {
     private static final int THOUSAND_UNIT = 1000;
 
     public void start() {
-        int purchaseAmount = InputView.askPurchaseAmount();
-        int purchaseQuantity = purchaseAmount / THOUSAND_UNIT;
-        List<Lotto> lottos = issueLottos(purchaseQuantity);
-        OutputView.printPurchaseResult(lottos);
-        Lotto winnerNumbers = createWinnerNumbers();
-        int bonusNumber = createBonusNumber();
-        List<SameNumber> sameNumbers = createSameNumbers(lottos, winnerNumbers, bonusNumber);
-        Judge judge = new Judge();
-        List<Rank> ranks = judge.createRanks(sameNumbers);
+        try {
+            int purchaseAmount = InputView.askPurchaseAmount();
+            int purchaseQuantity = purchaseAmount / THOUSAND_UNIT;
+            List<Lotto> lottos = issueLottos(purchaseQuantity);
+            OutputView.printPurchaseResult(lottos);
+            Lotto winnerNumbers = createWinnerNumbers();
+            int bonusNumber = createBonusNumber();
+            List<SameNumber> sameNumbers = createSameNumbers(lottos, winnerNumbers, bonusNumber);
+            OutputView.printWinnerResult(sameNumbers, purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            start();
+        }
     }
 
     private List<Lotto> issueLottos(int purchaseQuantity) {

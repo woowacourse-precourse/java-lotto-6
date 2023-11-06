@@ -25,7 +25,7 @@ public class OutputView {
         }
     }
 
-    public static void printWinnerResult(List<SameNumber> sameNumbers) {
+    public static void printWinnerResult(List<SameNumber> sameNumbers, int purchaseAmount) {
         OutputView.sameNumbers = sameNumbers;
         System.out.println();
         System.out.println(WINNER_RESULT.getMessage());
@@ -34,6 +34,19 @@ public class OutputView {
         System.out.println(THIRD.getMessage() + countThird() + UNIT);
         System.out.println(SECOND.getMessage() + countSecond() + UNIT);
         System.out.println(FIRST.getMessage() + countFirst() + UNIT);
+        System.out.println("총 수익률은 " + calculateProfitRate(purchaseAmount) + "%입니다.");
+    }
+
+    private static int calculateProfit() {
+        return countFirst() * FIRST.getPrize()
+                + countSecond() * SECOND.getPrize()
+                + countThird() * THIRD.getPrize()
+                + countFourth() * FOURTH.getPrize()
+                + countFifth() * FIFTH.getPrize();
+    }
+
+    private static double calculateProfitRate(int purchaseAmount) {
+        return calculateProfit() * 100.0 / purchaseAmount;
     }
 
     private static int countFirst() {

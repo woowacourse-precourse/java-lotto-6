@@ -4,7 +4,6 @@ import static lotto.constants.ExceptionMessage.IS_DUPLICATED;
 import static lotto.constants.ExceptionMessage.IS_INSUFFICIENT;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -13,7 +12,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicated(numbers);
-        Collections.sort(numbers);
+        numbers.stream().sorted();
         this.numbers = numbers;
     }
 

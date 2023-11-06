@@ -28,4 +28,8 @@ public class LottoMachine {
                 .toList()
         );
     }
+
+    public LottoNumber createBonusNumber(final int bonus) {
+        return LottoNumber.from(bonus);
+    }
 }

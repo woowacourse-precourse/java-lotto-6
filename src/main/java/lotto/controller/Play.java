@@ -53,7 +53,7 @@ public class Play {
             messageAboutPrice();
             String tmpPrice = inputPrice();
             try {
-                price = checkPriceException(tmpPrice);
+                price = checkPriceException(convertDigit(tmpPrice));
                 break;
             } catch (IllegalArgumentException e) {
                 //notDigitExceptionMessage();
@@ -66,7 +66,7 @@ public class Play {
             messageAboutUserLottoNumber();
             String tmpWinningNumbers = inputWinningNumbers();
             try {
-                winningNumbers = new WinningNumber(convertWinningNumber(tmpWinningNumbers));
+                winningNumbers = checkWinningNumberException(convertWinningNumber(tmpWinningNumbers));
                 break;
             } catch (IllegalArgumentException e) {
                 //notDigitExceptionMessage();
@@ -80,7 +80,7 @@ public class Play {
             messageAboutUserBonusNumber();
             String tmpBonusNumber = inputBonusNumber();
             try {
-                bonus =  checkBonusNumberException(numbers, tmpBonusNumber);
+                bonus =  checkBonusNumberException(numbers, convertDigit(tmpBonusNumber));
                 break;
             } catch (IllegalArgumentException e) {
                 //System.out.println("[ERROR]");

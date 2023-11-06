@@ -8,7 +8,6 @@ public class Price {
     private static final int minPrice = 1000;
 
     public Price(int price) {
-        checkZeroPrice(price);
         this.price = price;
     }
 
@@ -16,7 +15,7 @@ public class Price {
         return price;
     }
 
-    private static void checkZeroPrice(int price) throws IllegalArgumentException{
+    public static void checkZeroPrice(int price) throws IllegalArgumentException{
         if (price < minPrice) {
             throw new IllegalArgumentException();
         }

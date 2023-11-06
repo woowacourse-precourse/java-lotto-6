@@ -3,52 +3,55 @@ package lotto.controller;
 import lotto.model.BonusNumber;
 import lotto.model.Number;
 import lotto.model.Price;
+import lotto.model.WinningNumber;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.prefs.PreferenceChangeEvent;
 
-import static lotto.controller.InputConverter.convertPrice;
 import static lotto.view.ErrorMessage.*;
 
 public class ExceptionController {
-
-    public static Price checkPriceException(String inputPrice) throws IllegalArgumentException{
+    public static Price checkPriceException(int price) throws IllegalArgumentException{
         try {
-            int price = checkDigitException(inputPrice);
-            return checkRightPrice(price);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private static Price checkRightPrice(int price) throws IllegalArgumentException{
-        try {
+            checkZeroPriceException(price);
             return new Price(price);
         } catch (IllegalArgumentException e) {
-            priceZeroException();
             throw new IllegalArgumentException();
         }
     }
 
-
-    public static BonusNumber checkBonusNumberException(List<Integer> numbers, String tmpBonus) throws IllegalArgumentException {
+    public static BonusNumber checkBonusNumberException(List<Integer> numbers, int bonus) throws IllegalArgumentException {
         try {
-            int bonus = checkDigitException(tmpBonus);
             checkNumberException(bonus);
-            checkDuplicateException(numbers, bonus);
+            checkBonusDuplicateException(numbers, bonus);
             return new BonusNumber(bonus);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static int checkDigitException(String inputNum) throws IllegalArgumentException {
+    public static WinningNumber checkWinningNumberException(List<Integer> winningNumbers) throws IllegalArgumentException {
         try {
-            return convertPrice(inputNum);
+            checkRangeRotate(winningNumbers);
+            checkNumberLengthException(winningNumbers);
+            checkDuplicate(winningNumbers);
+            return new WinningNumber(winningNumbers);
         } catch (IllegalArgumentException e) {
-            notDigitExceptionMessage();
+            throw e;
+        }
+    }
+
+    private static void checkZeroPriceException(int price) throws IllegalArgumentException{
+        try {
+            Price.checkZeroPrice(price);
+        } catch (IllegalArgumentException e) {
+            priceZeroException();
             throw new IllegalArgumentException();
         }
     }
+
     public static void checkNumberException(int num) throws IllegalArgumentException {
         try {
             Number.checkRange(num);
@@ -58,12 +61,36 @@ public class ExceptionController {
         }
     }
 
-    public static void checkDuplicateException(List<Integer> numbers, int bonus) throws IllegalArgumentException {
+    public static void checkBonusDuplicateException(List<Integer> numbers, int bonus) throws IllegalArgumentException {
         try {
             Number.checkDuplicate(numbers, bonus);
         } catch (IllegalArgumentException e) {
             duplicatedBonusNumber();
             throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkNumberLengthException(List<Integer> numbers) throws IllegalArgumentException {
+        try {
+            WinningNumber.checkNumberLength(numbers);
+        } catch (IllegalArgumentException e) {
+            notEnoughLengthOfWinningNumbersExceptionMessage();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkDuplicate(List<Integer> numbers) throws IllegalArgumentException{
+        try {
+            WinningNumber.checkDuplicate(numbers);
+        } catch (IllegalArgumentException e) {
+            duplicatedWinningNumbers();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkRangeRotate(List<Integer> winningNumbers) {
+        for (int number : winningNumbers) {
+            Number.checkRange(number);
         }
     }
 }

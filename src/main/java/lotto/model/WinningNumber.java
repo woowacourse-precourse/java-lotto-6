@@ -11,29 +11,18 @@ public class WinningNumber extends Number{
     private static final int size = 6;
 
     public WinningNumber(List<Integer> winningNumbers) {
-        checkNumberLength(winningNumbers);
-        checkRangeRotate(winningNumbers);
-        checkDuplicate(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
-    private void checkRangeRotate(List<Integer> winningNumbers) {
-        for (int number : winningNumbers) {
-            checkRange(number);
-        }
-    }
-
-    private void checkDuplicate(List<Integer> numbers) throws IllegalArgumentException{
+    public static void checkDuplicate(List<Integer> numbers) throws IllegalArgumentException{
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
-            duplicatedWinningNumbers();
             throw new IllegalArgumentException();
         }
     }
 
-    private void checkNumberLength(List<Integer> numbers) throws IllegalArgumentException {
+    public static void checkNumberLength(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != size) {
-            notEnoughLengthOfWinningNumbersExceptionMessage();
             throw new IllegalArgumentException();
         }
     }

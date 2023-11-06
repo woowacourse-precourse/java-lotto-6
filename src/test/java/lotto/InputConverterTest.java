@@ -16,7 +16,7 @@ public class InputConverterTest {
     @Test
     void convertPriceTest() {
         String inputPrice = "1000";
-        int price = convertPrice(inputPrice);
+        int price = convertDigit(inputPrice);
         Assertions.assertThat(price).isEqualTo(1000);
     }
 
@@ -42,7 +42,7 @@ public class InputConverterTest {
     void convertBonusNumberTest() {
         String inputBonusNumber = "1";
 
-        int bonusNumber = convertBonusNumber(inputBonusNumber);
+        int bonusNumber = convertDigit(inputBonusNumber);
 
         Assertions.assertThat(bonusNumber).isEqualTo(1);
     }
@@ -51,7 +51,7 @@ public class InputConverterTest {
     @Test
     void checkDigitPriceTest() {
         String inputPrice = "a";
-        assertThatThrownBy(() -> checkDigit(inputPrice))
+        assertThatThrownBy(() -> convertDigit(inputPrice))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -59,7 +59,7 @@ public class InputConverterTest {
     @Test
     void checkDigitWinningTest() {
         String inputWinningNumbers = "111a11";
-        assertThatThrownBy(() -> checkDigit(inputWinningNumbers))
+        assertThatThrownBy(() -> convertDigit(inputWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -67,7 +67,7 @@ public class InputConverterTest {
     @Test
     void checkDigitBonusTest() {
         String inputNBonusNumbers = "a";
-        assertThatThrownBy(() -> checkDigit(inputNBonusNumbers))
+        assertThatThrownBy(() -> convertDigit(inputNBonusNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

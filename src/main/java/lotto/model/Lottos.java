@@ -1,31 +1,20 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
-
-import static lotto.model.constant.LottoConfig.*;
 
 public class Lottos {
     private final List<Lotto> lottos;
 
-    public Lottos() {
-        this.lottos = new ArrayList<>();
+    private Lottos(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
-    public void addLotto(Integer lottoCount) {
-        IntStream.range(ZERO, lottoCount)
-                .forEach(count -> lottos.add(new Lotto(lottoGenerator())));
+    public static Lottos of(List<Lotto> lottos) {
+        return new Lottos(lottos);
     }
 
     public List<Lotto> getLottos() {
-        return this.lottos;
+        return List.copyOf(lottos);
     }
 
-
-    private static List<Integer> lottoGenerator() {
-        return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER,MAXIMUM_LOTTO_NUMBER,LOTTO_SIZE);
-    }
 }

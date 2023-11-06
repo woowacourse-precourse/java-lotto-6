@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.enums.ExceptionMessage;
+import lotto.utils.RemoveSpace;
 
 public class BonusNumber {
 
@@ -10,7 +11,7 @@ public class BonusNumber {
     private final int value;
 
     public BonusNumber(String number, final Lotto lotto){
-        number = number.replace(" ","");
+        number = RemoveSpace.getValue(number);
         validate(number,lotto);
         value = Integer.parseInt(number);
     }

@@ -2,6 +2,8 @@ package lotto.model;
 
 import static lotto.enums.ExceptionMessage.*;
 
+import lotto.utils.RemoveSpace;
+
 public class PurchaseMoney {
 
     private static final int ONE_THOUSAND = 1000;
@@ -10,7 +12,7 @@ public class PurchaseMoney {
 
     public PurchaseMoney(String money){
         validate(money);
-        money = money.replaceAll(" ","");
+        money = RemoveSpace.getValue(money);
         this.value = Integer.valueOf(money);
     }
 

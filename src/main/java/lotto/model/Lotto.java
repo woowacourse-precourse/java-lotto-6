@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.enums.ExceptionMessage;
+import lotto.utils.RemoveSpace;
 
 public class Lotto {
 
@@ -16,7 +17,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(String numbers) {
-        numbers = numbers.replaceAll(" ","");
+        numbers = RemoveSpace.getValue(numbers);
         validate(numbers);
         this.numbers = makeNumbers(numbers);
     }

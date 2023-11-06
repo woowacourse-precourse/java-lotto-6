@@ -13,15 +13,18 @@ public class GameManager {
         OutputManager outputManager = new OutputManager();
         InputManager inputManager = new InputManager();
 
+        //구입 금액
         String buyingAmount = getBuyingAmount(inputManager, outputManager);
-        Ticket ticket = buyTicket(buyingAmount, outputManager);
-        List<List<Integer>> ticketNumbers = ticket.getTicketNumbers();
+        List<List<Integer>> ticketNumbers = buyTicket(buyingAmount, outputManager);
 
         Winning winning = getWinningNumbers(inputManager, outputManager);
-        Bonus bonus = getBonusNumber(inputManager, outputManager);
-
         List<Integer> winningNumbers = winning.getWinningNumbers();
+
         Lotto lotto = new Lotto(winningNumbers);
+
+        lotto.matchNumbers(ticketNumbers);
+
+        Bonus bonus = getBonusNumber(inputManager, outputManager);
 
     }
 
@@ -30,12 +33,13 @@ public class GameManager {
         return inputManager.getUserInput();
     }
 
-    private Ticket buyTicket(String buyingAmount, OutputManager outputManager){
+    private List<List<Integer>> buyTicket(String buyingAmount, OutputManager outputManager){
         Ticket ticket = new Ticket(buyingAmount);
         int ticketCount = ticket.getTicketCount();
         outputManager.printTicketCount(ticketCount);
-        outputManager.printRandomNumber(ticket.getTicketNumbers());
-        return ticket;
+        List<List<Integer>> ticketNumbers = ticket.getTicketNumbers();
+        outputManager.printRandomNumber(ticketNumbers);
+        return ticketNumbers;
     }
 
     private Winning getWinningNumbers(InputManager inputManager, OutputManager outputManager){

@@ -1,7 +1,7 @@
 package lotto.view;
 
+import lotto.domain.LottoRanking;
 import lotto.dto.LottoDto;
-import lotto.dto.LottoResultDto;
 
 import java.util.List;
 import java.util.Map;
@@ -13,12 +13,6 @@ public class OutputView {
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계" + NEWLINE + "---";
     private static final String RATE_OF_RETURN_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s";
-
-    private final MessageGenerator messageGenerator;
-
-    public OutputView(MessageGenerator messageGenerator) {
-        this.messageGenerator = messageGenerator;
-    }
 
     public void printLottos(List<LottoDto> lottos) {
         newLine();
@@ -45,18 +39,18 @@ public class OutputView {
         System.out.println(numbersMessageBuilder);
     }
 
-    public void printWinningStatistics(LottoResultDto lottoResultDto, List<String> lottoRankingOutputOrder) {
-        printStartWinningStatisticsMessage();
-        printWinningStatisticsMessage(lottoResultDto.getResult(), lottoRankingOutputOrder);
-    }
-
     private void printStartWinningStatisticsMessage() {
         newLine();
         System.out.println(WINNING_STATISTICS_MESSAGE);
     }
 
-    private void printWinningStatisticsMessage(Map<String, Integer> result, List<String> lottoRankingOutputOrder) {
-        List<String> messages = messageGenerator.generateStatisticsMessages(result, lottoRankingOutputOrder);
+    public void printWinningStatistics(Map<LottoRanking, Integer> result, List<LottoRanking> lottoRankingOutputOrder) {
+        printStartWinningStatisticsMessage();
+        printWinningStatisticsMessage(result, lottoRankingOutputOrder);
+    }
+
+    private void printWinningStatisticsMessage(Map<LottoRanking, Integer> result, List<LottoRanking> lottoRankingOutputOrder) {
+        List<String> messages = MessageGenerator.generateStatisticsMessages(result, lottoRankingOutputOrder);
 
         System.out.println(String.join(NEWLINE, messages));
     }

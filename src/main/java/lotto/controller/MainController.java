@@ -1,16 +1,15 @@
 package lotto.controller;
 
-import lotto.converter.LottoRankingToStringConverter;
+import lotto.converter.Converter;
 import lotto.converter.StringToIntegerListConverter;
 import lotto.domain.*;
 import lotto.dto.LottoDto;
-import lotto.dto.LottoResultDto;
 import lotto.service.StatisticsService;
-import lotto.converter.Converter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class MainController {
@@ -62,7 +61,7 @@ public class MainController {
 
     private Lotto generateLotto() {
         Converter<String, List<Integer>> converter = new StringToIntegerListConverter();
-        
+
         String winningNumbers = inputView.inputWinningNumbers();
         List<Integer> numbers = converter.convert(winningNumbers);
 
@@ -80,17 +79,10 @@ public class MainController {
     }
 
     private void showWinningStatistics(LottoResult lottoResult) {
-        LottoResultDto lottoResultDto = new LottoResultDto(lottoResult.getResult());
-        List<String> lottoRankingOutputOrder = fixOutputOrderOfLottoRankings();
+        Map<LottoRanking, Integer> result = lottoResult.getResult();
+        List<LottoRanking> lottoRankingOutputOrder = LottoRanking.findOrder();
 
-        outputView.printWinningStatistics(lottoResultDto, lottoRankingOutputOrder);
-    }
-
-    private List<String> fixOutputOrderOfLottoRankings() {
-        Converter<List<LottoRanking>, List<String>> converter = new LottoRankingToStringConverter();
-
-        List<LottoRanking> lottoRankings = LottoRanking.findOrder();
-        return converter.convert(lottoRankings);
+        outputView.printWinningStatistics(result, lottoRankingOutputOrder);
     }
 
     private void showRateOrReturn(LottoResult lottoResult, List<Lotto> userLottos) {

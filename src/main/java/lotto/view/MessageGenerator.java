@@ -14,9 +14,10 @@ public class MessageGenerator {
     private static final String STATISTICS_MESSAGE_FORMAT = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_STATISTICS_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String PRIZE_MONEY_PATTERN = "###,###";
+
     private static final int INITIAL_COUNT = 0;
 
-    private static Map<String, Function<Integer, String>> generator = new HashMap<>();
+    private static Map<LottoRanking, Function<Integer, String>> generator = new HashMap<>();
 
     static {
         addMessageFormatOf(FIRST);
@@ -27,10 +28,10 @@ public class MessageGenerator {
     }
 
     private static void addMessageFormatOf(LottoRanking lottoRanking) {
-        generator.put(lottoRanking.name(), count -> getFormat(lottoRanking, count));
+        generator.put(lottoRanking, count -> generateMessageFormatOf(lottoRanking, count));
     }
 
-    private static String getFormat(LottoRanking lottoRanking, Integer count) {
+    private static String generateMessageFormatOf(LottoRanking lottoRanking, Integer count) {
         int numberOfMatches = lottoRanking.getNumberOfMatches();
         String prizeMoneyMessage = generatePrizeMoneyMessage(lottoRanking);
 
@@ -45,13 +46,15 @@ public class MessageGenerator {
         return decimalFormat.format(lottoRanking.getPrizeMoney());
     }
 
-    public List<String> generateStatisticsMessages(Map<String, Integer> result, List<String> lottoRankingOutputOrder) {
-        return lottoRankingOutputOrder.stream()
+    public static List<String> generateStatisticsMessages(
+            Map<LottoRanking, Integer> result, List<LottoRanking> outputOrder) {
+
+        return outputOrder.stream()
                 .map(lottoRanking -> generateStatisticsMessage(result, lottoRanking))
                 .toList();
     }
 
-    private String generateStatisticsMessage(Map<String, Integer> result, String lottoRanking) {
+    private static String generateStatisticsMessage(Map<LottoRanking, Integer> result, LottoRanking lottoRanking) {
         int count = result.getOrDefault(lottoRanking, INITIAL_COUNT);
 
         return generator.get(lottoRanking).apply(count);

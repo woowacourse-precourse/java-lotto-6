@@ -23,7 +23,7 @@ public class SoldLotto {
 
     public List<LottoRanking> checkLottoResults(WinningLotto winningLotto) {
         return lottoTickets.stream()
-                .map((lottoTicket) -> winningLotto.checkLottoResult(lottoTicket))
+                .map(winningLotto::checkLottoResult)
                 .toList();
     }
 }

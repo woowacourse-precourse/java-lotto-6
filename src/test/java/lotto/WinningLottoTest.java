@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@DisplayName("로또 당첨 결과 확인 기능")
+@DisplayName("한 로또 당첨 결과 확인 기능")
 public class WinningLottoTest {
 
     @ParameterizedTest

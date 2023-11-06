@@ -7,7 +7,7 @@ import static lotto.domain.purchase.lottocount.CashPolicy.PRICE_PER_LOTTO;
 import java.util.regex.Pattern;
 import lotto.domain.exception.ExceptionFormat;
 
-public class CashValidator {
+public final class CashValidator {
     public static void validateCashInput(String cashInput) throws IllegalArgumentException {
         if (!Pattern.matches(CASH_REGEX, cashInput)) {
             throw new IllegalArgumentException(ExceptionFormat.formatException("1 이상의 정수만 입력해주세요."));

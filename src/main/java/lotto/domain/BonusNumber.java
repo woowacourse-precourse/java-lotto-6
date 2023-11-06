@@ -1,12 +1,11 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoRule;
 import lotto.constant.WinningGrade;
 
 public final class BonusNumber {
 
-    private static final int MIN_BONUS_NUMBER = 1;
-    private static final int MAX_BONUS_NUMBER = 45;
     private final Integer value;
 
     public BonusNumber(final Integer value) {
@@ -15,7 +14,7 @@ public final class BonusNumber {
     }
 
     private void validate(final Integer value) {
-        if (MIN_BONUS_NUMBER > value || MAX_BONUS_NUMBER < value) {
+        if (LottoRule.MIN_NUMBER.toValue() > value || LottoRule.MAX_NUMBER.toValue() < value) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.toValue());
         }
     }

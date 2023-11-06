@@ -7,10 +7,13 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        checkLottoValidation(numbers);
+        this.numbers = sortLottoNumberByAscendingOrder(numbers);
+    }
+
+    private void checkLottoValidation(List<Integer> numbers) {
         validate(numbers);
         isLottoContainDuplicateNumber(numbers);
-        numbers.sort(Comparator.naturalOrder());
-        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -24,6 +27,11 @@ public class Lotto {
         if(check.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private List<Integer> sortLottoNumberByAscendingOrder(List<Integer> numbers) {
+        numbers.sort(Comparator.naturalOrder());
+        return numbers;
     }
 
     public List<Integer> getNumbers() {

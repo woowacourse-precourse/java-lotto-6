@@ -16,4 +16,16 @@ public class PrizeResult {
     public Integer getPrizeCount(Prize prize) {
         return prizeResult.get(prize);
     }
+
+    private void updatePrizeCount(Prize prize) {
+        prizeResult.put(prize, prizeResult.get(prize) + 1);
+    }
+
+    public void calcPrizeResult(WinningLotto winningLotto, Lottos lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
+            Prize prize = Prize.getPrize(lotto.getMatchLottoNumber(winningLotto),
+                    lotto.isContain(winningLotto.getBonusNumber()));
+            updatePrizeCount(prize);
+        }
+    }
 }

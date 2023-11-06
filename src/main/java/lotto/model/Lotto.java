@@ -8,7 +8,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateCount(numbers);
         validateDuplicate(numbers);
-        validateEachNumber(numbers);
+        validateRange(numbers);
 
         this.numbers = numbers;
     }
@@ -25,7 +25,7 @@ public class Lotto {
         }
     }
 
-    private void validateEachNumber(List<Integer> numbers) {
+    private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < START_RANGE_OF_NUMBER || END_RANGE_OF_NUMBER < number) { // 상수 enum 추가
                 throw new IllegalArgumentException(); // 에러문 추가

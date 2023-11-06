@@ -36,11 +36,10 @@ public class InputTest {
         InputStream inputStream = setConsole(expect);
         System.setIn(inputStream);
 
+        // then
         Assertions.assertThatThrownBy(() -> {
                     Input.getAmount();
                 })
                 .isInstanceOf(IllegalArgumentException.class);
-
-        //then
     }
 }

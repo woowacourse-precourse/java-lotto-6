@@ -10,6 +10,7 @@ import lotto.model.domain.Ranking;
 public class OutputView {
 
     public void printPurchases(int ticketCount) {
+        System.out.println();
         System.out.println(ticketCount + "개를 구매했습니다.");
     }
 

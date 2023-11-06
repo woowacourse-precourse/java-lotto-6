@@ -3,7 +3,10 @@ package Except;
 import Input.Input;
 import Message.Message;
 
+import java.util.List;
+
 public class Except {
+    private static Message numberIncorrect = Message.numberIncorrectFormat;
     private static Message outOfRange = Message.moneyOutOfRange;
     private static Message invalidFormat = Message.moneyInvalidFormat;
     private static final String INTEGER_REGEX = "^-?\\d+$";
@@ -32,6 +35,20 @@ public class Except {
             result = money;
         } catch (IllegalArgumentException iae) {
             System.out.println(invalidFormat.getMessage());
+        }
+        return result;
+    }
+
+    public String numberLengthCheck(String number) {
+        String result = number;
+        try {
+            result = result.replaceAll("\\s", "");
+            if (result.length() != number.length()) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException iae) {
+            result = "";
+            System.out.println(numberIncorrect.getMessage());
         }
         return result;
     }

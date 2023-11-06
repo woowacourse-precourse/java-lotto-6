@@ -20,13 +20,12 @@ public class LottoService {
     public void buyLotto(int purchaseAmount){
         int lottoCount = purchaseAmount / LottoConfig.LOTTO_BUYING_UNIT.getValue();
 
-        List<Lotto> lottos = Stream
+        List<Lotto> myLotto = Stream
                 .generate(lottoGenerator::generate)
                 .limit(lottoCount)
-                .sorted()
                 .toList();
 
-        lottoRepository.save(lottos);
+        lottoRepository.save(myLotto);
     }
 
     public void saveWinningNumbers(List<Integer> winningNumbers, int bonusNumber){
@@ -80,7 +79,7 @@ public class LottoService {
     }
 
     private double getReturnRate(int winningAmount, int originalAmount){
-        return Math.round(winningAmount / originalAmount * 100);
+        return winningAmount / originalAmount * 100.0;
     }
 
     private int getSameCount(Lotto lotto, LottoWinning lottoWinning){

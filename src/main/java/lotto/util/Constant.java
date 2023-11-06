@@ -7,7 +7,7 @@ public class Constant {
     public static final int AMOUNT_ONE_LOTTO = 1000;
 
     public static final String SPLIT_UNIT = ",";
-    public static final String PURCHASE_NOTICE = "%s개를 구매했습니다.";
+    public static final String PURCHASE_NOTICE = "\n%s개를 구매했습니다.";
     public static final String LOTTO_NOTICE = "[%d, %d, %d, %d, %d, %d]";
     public static final String LOTTO_3_MATCH = "3개 일치 (5,000원) - %d개";
     public static final String LOTTO_4_MATCH = "4개 일치 (50,000원) - %d개";

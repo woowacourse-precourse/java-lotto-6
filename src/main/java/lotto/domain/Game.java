@@ -118,7 +118,7 @@ public class Game {
 
     private static void calculateLottoReturns() {
         int totalPrizeMoney = calculateTotalPrizeMoney();
-        lottoReturns = totalPrizeMoney / player.getPurchaseAmount() * 100.0f;
+        lottoReturns = (float) totalPrizeMoney / player.getPurchaseAmount() * 100.0f;
     }
 
     private static Integer calculateTotalPrizeMoney() {

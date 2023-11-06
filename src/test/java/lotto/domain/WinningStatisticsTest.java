@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,6 +10,15 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class WinningStatisticsTest {
+
+    @Test
+    @DisplayName("of 메서드는 올바른 WinningStatistics 객체를 반환한다.")
+    void of_Method_Return_Correct_WinningStatistics_Object() {
+        int matchCount = 6;
+        int bonusCount = 0;
+
+        assertThat(WinningStatistics.of(matchCount, bonusCount)).isInstanceOf(WinningStatistics.class);
+    }
 
     @Nested
     @DisplayName("맞은 개수와 보너스 개수를 비교하여 등수를 반환한다.")

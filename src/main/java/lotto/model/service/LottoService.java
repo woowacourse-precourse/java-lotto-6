@@ -2,8 +2,8 @@ package lotto.model.service;
 
 import java.util.List;
 import lotto.model.domain.Lotto;
-import lotto.model.domain.LottoResult;
-import lotto.model.domain.WinningNumber;
+import lotto.model.dto.LottoResult;
+import lotto.model.dto.WinningNumber;
 
 public class LottoService {
 

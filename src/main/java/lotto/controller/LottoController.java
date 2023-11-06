@@ -4,8 +4,8 @@ import java.util.List;
 import lotto.controller.util.parser.InputParser;
 import lotto.controller.util.validator.InputValidator;
 import lotto.model.domain.Lotto;
-import lotto.model.domain.LottoResult;
-import lotto.model.domain.WinningNumber;
+import lotto.model.dto.LottoResult;
+import lotto.model.dto.WinningNumber;
 import lotto.model.service.LottoService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
@@ -28,10 +28,11 @@ public class LottoController {
 
     public void startLotto() {
         int money = getMoney();
+
         List<Lotto> lottos = lottoService.purchaseLotto(money);
         outputView.printLottos(lottos);
 
-        WinningNumber winningNumber = makeWinningNumber();
+        WinningNumber winningNumber = getWinningNumber();
         LottoResult lottoResult = lottoService.findWinningLottos(lottos, winningNumber);
         outputView.printLottoResult(lottoResult, money);
     }
@@ -48,10 +49,10 @@ public class LottoController {
         }
     }
 
-    private WinningNumber makeWinningNumber() {
+    private WinningNumber getWinningNumber() {
         List<Integer> drawNumbers = getDrawNumbers();
 
-        Integer bonusNumber = getBonusNumber();
+        Integer bonusNumber = getBonusNumber(drawNumbers);
 
         return new WinningNumber(drawNumbers, bonusNumber);
     }
@@ -68,11 +69,11 @@ public class LottoController {
         }
     }
 
-    private Integer getBonusNumber() {
+    private Integer getBonusNumber(List<Integer> drawNumbers) {
         while (true) {
             try {
                 Integer bonusNumber = inputParser.parseBonusNumber(inputView.getBonusNumber());
-                inputValidator.validateBonusNumber(bonusNumber);
+                inputValidator.validateBonusNumber(bonusNumber, drawNumbers);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());

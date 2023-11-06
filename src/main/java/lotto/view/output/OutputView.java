@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoRank;
-import lotto.model.domain.LottoResult;
+import lotto.model.dto.LottoResult;
 
 public class OutputView {
 

@@ -14,7 +14,7 @@ public class BonusNumberValidator {
     private void isBonusNumberInRange(String bonusNumber) {
         int number = Integer.parseInt(bonusNumber);
         if (number < MIN_BONUS_NUMBER || MAX_BONUS_NUMBER < number) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_NOT_IN_RANGE_MESSAGE);
+            throw new IllegalArgumentException(BONUS_NUMBER_NOT_IN_RANGE_MESSAGE);
         }
     }
 
@@ -22,7 +22,7 @@ public class BonusNumberValidator {
         try {
             Integer.parseInt(bonusNUmber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMBER_IS_NOT_NUMERIC_MESSAGE);
+            throw new IllegalArgumentException(BONUS_NUMBER_IS_NOT_NUMERIC_MESSAGE);
         }
     }
 }

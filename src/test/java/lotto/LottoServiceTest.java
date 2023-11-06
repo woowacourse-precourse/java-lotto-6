@@ -39,4 +39,23 @@ class LottoServiceTest {
         }
     }
 
+    @Test
+    @DisplayName("로또 한장의 번호와 당첨 숫자를 비교 후 몇개가 일치하는지 반환")
+    void compareNumbers() {
+        LottoService lottoService = new LottoService();
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int i = lottoService.compareNumbers(lotto, new int[]{1, 2, 3, 4, 5, 6});
+        System.out.println("i = " + i);
+        // todo assert 추가
+    }
+
+    @Test
+    @DisplayName("일치하는 수를 넣으면 그에 맞는 등수를 추가")
+    void addLottoWinner() {
+        LottoService lottoService = new LottoService();
+        lottoService.addLottoWinner(4);
+        // todo assert 추가
+    }
+
+
 }

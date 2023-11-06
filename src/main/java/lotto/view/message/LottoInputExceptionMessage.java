@@ -19,7 +19,9 @@ public enum LottoInputExceptionMessage {
             OutputConstant.ERROR_WARNING + "입력된 당첨번호가" + InputConstant.COMMA_SYMBOL + "("
                     + InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER + ")로 끝납니다." + OutputConstant.NEW_LINE),
     WINNING_LOTTO_NUMBER_IS_NOT_NUMERIC_TYPE(
-            OutputConstant.ERROR_WARNING + "당첨번호가 숫자 형식의 입력이 아닙니다." + OutputConstant.NEW_LINE);
+            OutputConstant.ERROR_WARNING + "당첨번호가 숫자 형식의 입력이 아닙니다." + OutputConstant.NEW_LINE),
+    WINNING_LOTTO_NUMBERS_ARE_DUPLICATED(
+            OutputConstant.ERROR_WARNING + "당첨번호 입력값 중 중복된 값이 존재합니다." + OutputConstant.NEW_LINE);
 
     private final String message;
 

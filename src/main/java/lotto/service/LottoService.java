@@ -16,4 +16,8 @@ public class LottoService {
     public List<Lotto> findLottos() {
         return lottoBuyer.getLottos();
     }
+
+    public void setWiningNumbersAndBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        winningNumbers.addBonusNumber(bonusNumber);
+    }
 }

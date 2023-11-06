@@ -36,4 +36,19 @@ public class WinningNumbers {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_6_LENGTH_OF_WINNING.toString());
         }
     }
+
+    public void addBonusNumber(BonusNumber bonusNumber) {
+        validateWinningNumbersContainsBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validateWinningNumbersContainsBonusNumber(BonusNumber bonusNumber) {
+        if (bonusNumberAlreadyIncluded(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_DUPLICATED_WITH_WINNING.toString());
+        }
+    }
+
+    private boolean bonusNumberAlreadyIncluded(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getNumber());
+    }
 }

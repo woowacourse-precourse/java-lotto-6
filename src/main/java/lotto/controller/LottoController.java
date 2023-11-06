@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Money;
 import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
@@ -29,5 +30,6 @@ public class LottoController {
         WinningNumbers winningNumbers = inputView.readWinningNumbers();
         outputView.printInputBonusNumberMessage();
         BonusNumber bonusNumber = inputView.readBonusNumber();
+        lottoService.setWiningNumbersAndBonusNumber(winningNumbers, bonusNumber);
     }
 }

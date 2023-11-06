@@ -52,5 +52,6 @@ public class LottoController {
         for(Lotto lotto : user.getLottos()) {
             result.compare(lotto.getNumbers(), winningNumber.getWinningNumber(), bonusNumber.getBonusNumber());
         }
+        OutputView.printResult(result);
     }
 }

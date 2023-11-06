@@ -1,8 +1,11 @@
 package lotto.view;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.Result;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class OutputView {
 
@@ -27,5 +30,15 @@ public class OutputView {
 
     public static void printRequestBonusNumberMessage(){
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public static void printResult(Result result){
+        Set<Rank> ranks = result.getResult().keySet();
+        for(Rank rank : ranks){
+            if(rank.getCount() > 0){
+                System.out.println(rank.getMessage() + " - " + result.getResult().get(rank) + "개");
+            }
+        }
+
     }
 }

@@ -37,4 +37,9 @@ public class Converter {
         return numbers;
     }
 
+    public static String deleteSpace(String input){
+        String replaceValue = input.replace(" ", "");
+        return replaceValue;
+    }
+
 }

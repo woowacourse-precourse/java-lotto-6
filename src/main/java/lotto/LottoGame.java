@@ -11,10 +11,15 @@ import lotto.domain.WinningNumbers;
 
 public class LottoGame {
 
-    InputController inputController = new InputController();
-    OutputController outputController = new OutputController();
+    InputController inputController;
+    OutputController outputController;
+    MainController mainController;
 
-    MainController mainController = new MainController();
+        public LottoGame() {
+            this.inputController = new InputController();
+            this.outputController = new OutputController();
+            this.mainController = new MainController();
+        }
 
     public void run() {
         int ticketQuantity = inputController.settingTicketQuantity();

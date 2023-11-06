@@ -47,6 +47,7 @@ public class InputController {
     private Lotto tryGetMainNumbers(Lotto winningLotto) {
         try {
             String inputWinningNumbers = InputView.getWinningNumbers();
+            inputWinningNumbers = Converter.deleteSpace(inputWinningNumbers);
             WinningNumbersValidator.validateMainNumbers(inputWinningNumbers);
             winningLotto = Converter.stringToLotto(inputWinningNumbers);
         } catch (IllegalArgumentException exception) {
@@ -66,6 +67,7 @@ public class InputController {
     private WinningNumbers tryGetBonusNumber(Lotto winningLotto, WinningNumbers winningNumbers) {
         try {
             String inputBonusNumber = InputView.getBonusNumber();
+            inputBonusNumber = Converter.deleteSpace(inputBonusNumber);
             WinningNumbersValidator.validateBonusNumber(inputBonusNumber);
             int bonusNumber = Integer.parseInt(inputBonusNumber);
             winningNumbers = new WinningNumbers(winningLotto, bonusNumber);

@@ -35,7 +35,7 @@ public class InputPriceValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw LottoException.of(ErrorMessage.INVALID_NUMBER);
+            throw LottoException.of(ErrorMessage.INVALID_PRICE_TYPE);
         }
     }
     public static void validatePrice(final String input) {

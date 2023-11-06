@@ -9,6 +9,7 @@ public class User {
 
     private long purchaseAmount;
     private List<Integer> numbers;
+    private long bonusNumber;
 
     public void setPurchaseAmount(String purchaseAmount) throws Exception {
         try {
@@ -32,6 +33,17 @@ public class User {
             validateSize(numbers.size());
             validateDuplication(numbers);
             this.numbers = numbers;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public void setBonusNumber(String number) throws Exception {
+        try {
+            validateLong(number);
+            int checkNumber = Integer.parseInt(number);
+            validateRange(checkNumber);
+            this.bonusNumber = checkNumber;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

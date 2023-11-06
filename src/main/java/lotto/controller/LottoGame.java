@@ -27,6 +27,20 @@ public class LottoGame {
         purchaseAmount();
         makeLotto();
         winningNumber();
+        bonusNumber();
+    }
+
+    private void bonusNumber() {
+        outputView.bonusNumber();
+        while (true) {
+            String input = inputView.readLine();
+            try {
+                user.setBonusNumber(input);
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void winningNumber() {

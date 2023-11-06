@@ -4,6 +4,7 @@ import static lotto.view.message.SystemMessage.INPUT_BONUS;
 import static lotto.view.message.SystemMessage.INPUT_PURCHASE_AMOUNT;
 import static lotto.view.message.SystemMessage.INPUT_WINNING_LOTTO;
 import static lotto.view.message.SystemMessage.OUTPUT_PURCHASE_AMOUNT;
+import static lotto.view.message.SystemMessage.OUTPUT_RATE_OF_RETURN;
 import static lotto.view.message.SystemMessage.OUTPUT_RESULT;
 
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class GameController {
         Referee referee = new Referee();
         referee.compare(lottoController.getLottos(), win.getWinningLotto(), win.getBonus());
         printResult(referee);
-        makeRateOfReturn(referee, purchaseAmount);
+        printRateOfReturn(referee, purchaseAmount);
     }
 
     private static int readPurchaseAmount() {
@@ -60,8 +61,13 @@ public class GameController {
         }
     }
 
-    private float makeRateOfReturn(Referee referee, int purchaseAmount) {
+    private void printRateOfReturn(Referee referee, int purchaseAmount) {
         HashMap<Integer, Integer> result = referee.getResult();
+        OutputView.printMessage(
+                String.format(OUTPUT_RATE_OF_RETURN.getMessage(), makeRateOfReturn(result, purchaseAmount)));
+    }
+
+    private float makeRateOfReturn(HashMap<Integer, Integer> result, int purchaseAmount) {
         return (makeTotalReturn(result) / purchaseAmount) * 100;
     }
 

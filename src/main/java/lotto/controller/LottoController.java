@@ -18,5 +18,10 @@ public class LottoController {
     public List<Lotto> generateLottoTicket(int purchaseCount) {
         return Lotto.purchaseLottos(purchaseCount);
     }
+
+    // 로또 당첨번호 생성
+    public Jackpot createWinningNumbers(String winningNumbers, String bonusNumber) {
+        return new Jackpot(winningNumbers, bonusNumber);
+    }
     
 }

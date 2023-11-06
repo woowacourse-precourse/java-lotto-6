@@ -118,9 +118,7 @@ public class LottoApplication {
     }
 
     private double calculateWinningProfit(int receivedAmount, long totalWinningAmount) {
-        double percent = 0.0;
-        percent = Math.round(totalWinningAmount / (double) receivedAmount * 1000.0) / 10.0;
-        return percent;
+        return Math.round(totalWinningAmount / (double) receivedAmount * 1000.0) / 10.0;
     }
 
 //    private BigDecimal calculateTotalWinningAmount(int[] rankingCounter) {

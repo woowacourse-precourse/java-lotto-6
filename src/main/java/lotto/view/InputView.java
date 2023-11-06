@@ -9,6 +9,7 @@ public class InputView {
     private static final String INPUT_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static List<Integer> intWinningNumber = new ArrayList<>();
     public static long inputAmount() {
         System.out.println(INPUT_AMOUNT);
         String input = Console.readLine();
@@ -51,8 +52,6 @@ public class InputView {
 
     private static List<Integer> StringToIntConversion(String input) {
         String[] stringWinningNumber = input.split(",");
-        List<Integer> intWinningNumber = new ArrayList<>();
-
         for (String number : stringWinningNumber) {
             validateStringToNumericConversion(number.trim());
             intWinningNumber.add(Integer.parseInt(number));

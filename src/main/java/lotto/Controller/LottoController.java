@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import lotto.domian.BoughtLotto;
+import lotto.domian.Lotto;
 import lotto.domian.LottoAmount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -11,6 +12,9 @@ import java.util.List;
 public class LottoController {
 
     private List<List<Integer>> boughtLottos = new ArrayList<>();
+    private Lotto lotto;
+    private List<Integer> numbers;
+    private int bonusNuber;
     public void run() {
         start();
     }
@@ -20,6 +24,7 @@ public class LottoController {
         OutputView.printLottoAmount(lottoAmount);
 
         printBoughtLotto(lottoAmount);
+        printWinningAndBonusNumber();
     }
 
     private long inputLottoAmount() {
@@ -36,5 +41,12 @@ public class LottoController {
         for (List<Integer> lotto : boughtLottos) {
             System.out.println(lotto);
         }
+    }
+
+    private void printWinningAndBonusNumber() {
+        System.out.println();
+        numbers = InputView.inputWinningNumbers();
+        System.out.println();
+        bonusNuber = InputView.inputBonusNumber();
     }
 }

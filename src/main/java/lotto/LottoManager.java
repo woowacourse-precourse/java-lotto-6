@@ -21,6 +21,9 @@ public class LottoManager {
 
         List<Lotto> lottos = lottoBuyer.purchaseLottos(lottoCount);
         consoleManager.printLotto(lottos);
+
+        Lotto winningLotto = consoleManager.inputWinningLottoNumbers();
+
     }
 
 }

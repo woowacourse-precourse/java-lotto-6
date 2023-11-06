@@ -1,10 +1,12 @@
 package lotto;
 
+import static lotto.error.ErrorMessage.NOT_DIGIT_LOTTO_NUMBERS;
 import static lotto.error.ErrorMessage.NOT_IN_BOUND_LOTTO_NUMBERS;
 import static lotto.error.ErrorMessage.NOT_SIX_LOTTO_NUMBERS;
 import static lotto.error.ErrorMessage.NOT_UNIQUE_LOTTO_NUMBERS;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +26,23 @@ public class Lotto {
         validateNumbersBound(numbers);
 
         this.numbers = sort(numbers);
+    }
+
+    public Lotto(final String numberText) {
+        try {
+            List<Integer> winningNumbers = Arrays.stream(numberText.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .toList();
+
+            validateNumbersCount(winningNumbers);
+            validateUniqueNumbers(winningNumbers);
+            validateNumbersBound(winningNumbers);
+
+            this.numbers = sort(winningNumbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_DIGIT_LOTTO_NUMBERS.getMessage());
+        }
     }
 
     public static int getLottoLowerBound() {

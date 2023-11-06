@@ -6,8 +6,6 @@ import static lotto.error.ErrorMessage.NOT_UNIQUE_LOTTO_NUMBERS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,4 +61,19 @@ class LottoTest {
         // Then
         assertThat(result.getNumbers()).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("당첨 번호로 로또 번호를 만든다.")
+    void createWinningLotto_NotSixSize() {
+        // Given
+        String inputWinningNumbers = "1, 4, 15, 43, 22, 35";
+        List<Integer> winningNumbers = List.of(1, 4, 15, 22, 35, 43);
+
+        // When
+        Lotto result = new Lotto(inputWinningNumbers);
+
+        // Then
+        assertThat(result.getNumbers()).isEqualTo(winningNumbers);
+    }
+
 }

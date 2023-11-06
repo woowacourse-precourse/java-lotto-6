@@ -35,4 +35,17 @@ public class ConsoleManager {
     public void printLotto(List<Lotto> lottos) {
         lottos.forEach(System.out::println);
     }
+
+    public Lotto inputWinningLottoNumbers() {
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String inputWinningNumbers = Console.readLine();
+
+            try {
+                return new Lotto(inputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                this.printError(e);
+            }
+        }
+    }
 }

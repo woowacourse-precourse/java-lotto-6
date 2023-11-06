@@ -4,7 +4,6 @@ import static lotto.utils.Constants.ERROR_MESSAGE;
 import static lotto.utils.Constants.WINNING_NUMBER_DUPLICATE_ERROR;
 import static lotto.utils.Constants.WINNING_NUMBER_ERROR;
 import static lotto.utils.Constants.WINNING_NUMBER_PATTERN;
-import static lotto.utils.Constants.WINNING_NUMBER_RANGE;
 import static lotto.utils.Constants.WINNING_NUMBER_RANGE_ERROR;
 import static lotto.utils.Constants.WINNING_NUMBER_STRING_ERROR;
 import static lotto.utils.Constants.WINNING_NUMBER_STRING_PATTERN;
@@ -48,9 +47,10 @@ public class WinningNumberValidator {
 
     private void isCorrectRange() {
         numbers.stream()
-                .filter(numbers -> !WINNING_NUMBER_RANGE.matcher(numbers).find())
+                .map(Integer::parseInt)
+                .filter(number -> number < 1 || number > 45)
                 .findAny()
-                .ifPresent(s -> {
+                .ifPresent(number -> {
                     throw new IllegalArgumentException(ERROR_MESSAGE + WINNING_NUMBER_RANGE_ERROR);
                 });
     }

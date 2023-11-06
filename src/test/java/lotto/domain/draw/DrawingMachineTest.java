@@ -36,7 +36,7 @@ class DrawingMachineTest {
         EnumMap<LottoRank, Integer> expectedResult = initializeExpectedResult();
         expectedResult.put(LottoRank.FIRST, 1);
         expectedResult.put(LottoRank.SECOND, 1);
-        expectedResult.put(LottoRank.THIRD, 1);
+        expectedResult.put(LottoRank.THIRD, 2);
 
         // when
         PrizeStatistics prizeStatistics = drawingMachine.draw(winningCombination, totalLottoTickets);
@@ -49,7 +49,8 @@ class DrawingMachineTest {
         Lotto lotto1 = Lotto.from(List.of(1, 2, 3, 4, 5, 6)); // 1등
         Lotto lotto2 = Lotto.from(List.of(1, 2, 3, 4, 5, 7)); // 2등
         Lotto lotto3 = Lotto.from(List.of(1, 2, 3, 4, 5, 8)); // 3등
-        return List.of(lotto1, lotto2, lotto3);
+        Lotto lotto4 = Lotto.from(List.of(1, 2, 3, 4, 5, 9)); // 3등
+        return List.of(lotto1, lotto2, lotto3, lotto4);
     }
 
     private Lottos createLottos() {

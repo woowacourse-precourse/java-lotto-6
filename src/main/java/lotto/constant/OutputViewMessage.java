@@ -2,7 +2,7 @@ package lotto.constant;
 
 public class OutputViewMessage {
 
-    public static final String CURRENT_BOUGHT_LOTTO_MESSAGE = "개를 구매했습니다.";
+    public static final String CURRENT_BOUGHT_LOTTO_MESSAGE = "%d개를 구매했습니다.\n";
     public static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
     public static final String FIFTH_RANK_MESSAGE = "3개 일치 (5,000원) - %d개\n";
     public static final String FOURTH_RANK_MESSAGE = "4개 일치 (50,000원) - %d개\n";

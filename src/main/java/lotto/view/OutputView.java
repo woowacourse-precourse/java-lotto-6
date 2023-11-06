@@ -26,7 +26,7 @@ public class OutputView {
 
     public static void displayAllLottos(LottosDTO lottosDTO) {
         List<List<Integer>> lottos = lottosDTO.getLottos();
-        System.out.println(lottos.size() + CURRENT_BOUGHT_LOTTO_MESSAGE);
+        System.out.printf(CURRENT_BOUGHT_LOTTO_MESSAGE, lottos.size());
         for (List<Integer> lotto : lottos) {
             ArrayList<Integer> copyLotto = new ArrayList<>(lotto);
             copyLotto.sort(Comparator.naturalOrder());

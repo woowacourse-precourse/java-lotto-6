@@ -50,7 +50,7 @@ public class User {
         return statistic.show();
     }
 
-    public StringBuilder giveRateResult() {
+    public StringBuilder showRateResult() {
         totalWinMoney = statistic.getTotalWinMoney();
 
         return rateResult.giveRateResult(useMoney, totalWinMoney);

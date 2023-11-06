@@ -9,14 +9,13 @@ import lotto.domain.dto.LottoNumberCompareResult;
 public class LottoStorage {
 
     private final WinningLotto winningLotto;
-    private final Integer totalPrice;
 
 
-    public LottoStorage(final WinningLotto winningLotto, final Integer totalPrice) {
-        validate(totalPrice);
+    public LottoStorage(final WinningLotto winningLotto) {
+
 
         this.winningLotto = winningLotto;
-        this.totalPrice = totalPrice;
+
     }
 
     public LottoNumberCompareResult compareToWinningLottoNumber(List<Integer> automaticLottoNumber) {
@@ -33,13 +32,5 @@ public class LottoStorage {
         return LottoNumberCompareResult.of(matchingCount, bonusIncluded);
     }
 
-    public Integer getTicketCount() {
-        return this.totalPrice / Constant.LOTTO_TICKET_PRICE;
-    }
 
-    private void validate(final Integer totalPrice) {
-        if (totalPrice % Constant.LOTTO_TICKET_PRICE > 0) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_PURCHASE_AMOUNT_INVALID_ERROR.getMessage());
-        }
-    }
 }

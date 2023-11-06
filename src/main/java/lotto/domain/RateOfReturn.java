@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RateOfReturn {
-
+    private static final int NONE = 0;
     private final double rateOfReturn;
 
     public RateOfReturn(List<LottoPrize> allLottoPrizes) {
@@ -28,7 +28,11 @@ public class RateOfReturn {
     }
 
     public double roundRateOfReturn(Long income, int count) {
-        return Math.round(income / count * 10) / 10;
+        if (count != NONE) {
+            return Math.round(income / count * 1000 * 10) / 10;
+        }
+
+        return NONE;
     }
 
     public double getRateOfReturn() {

@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import lotto.io.LottoIoManager;
+import lotto.io.InputView;
+import lotto.io.OutputView;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.Lottos;
@@ -10,10 +11,13 @@ import lotto.model.WinningLottoWithBonus;
 
 public class LottoController {
 
-    private final LottoIoManager ioManager;
+    private final InputView inputView;
 
-    public LottoController(LottoIoManager ioManager) {
-        this.ioManager = ioManager;
+    private final OutputView outputView;
+
+    public LottoController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -26,8 +30,8 @@ public class LottoController {
         WinningCalculator winningCalculator = new WinningCalculator(lottoMachine.getLottos(),
                 inputWinningLottoWithBonus());
 
-        ioManager.displayWinningResult(winningCalculator.calculate());
-        ioManager.displayProfitRate(winningCalculator.getProfitRate());
+        outputView.displayWinningResult(winningCalculator.calculate());
+        outputView.displayProfitRate(winningCalculator.getProfitRate());
     }
 
     private WinningLottoWithBonus inputWinningLottoWithBonus() {
@@ -44,7 +48,7 @@ public class LottoController {
 
     private Lotto inputLotto() {
         try {
-            return new Lotto(ioManager.inputLotto());
+            return new Lotto(inputView.inputLotto());
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
         }
@@ -53,7 +57,7 @@ public class LottoController {
 
     private int inputBonus() {
         try {
-            return ioManager.inputBonus();
+            return inputView.inputBonus();
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
         }
@@ -62,13 +66,13 @@ public class LottoController {
 
     private void displayLottos(LottoMachine lottoMachine) {
         Lottos lottos = lottoMachine.getLottos();
-        ioManager.displayLottosCnt(lottos.getLottos().size());
-        ioManager.displayLottos(lottos);
+        outputView.displayLottosCnt(lottos.getLottos().size());
+        outputView.displayLottos(lottos);
     }
 
     private Money inputMoney() {
         try {
-            return new Money(ioManager.inputMoney());
+            return new Money(inputView.inputMoney());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

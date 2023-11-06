@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.LottoPurchaseInfo;
+import lotto.domain.LottoPurchaseInfo;
 
 public class OutputView {
 

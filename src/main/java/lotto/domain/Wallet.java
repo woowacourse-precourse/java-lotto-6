@@ -1,5 +1,6 @@
-package lotto;
+package lotto.domain;
 
+import lotto.domain.LottoOption;
 import lotto.message.ExceptionMessage;
 
 // TODO 지갑과 로또가 너무 연관있는 것 같음

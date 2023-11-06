@@ -9,28 +9,26 @@ import lotto.util.CommonInputValidator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class InputView {
-    private static final Money MONEY_ERROR_CODE = null;
-    private static final Lotto SIX_NUMBERS_ERROR_CODE = null;
-    private static final Bonus BONUS_NUMBER_ERROR_CODE = null;
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String SIX_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public Money inputMoney(){
+    public Optional<Money> inputMoney(){
         System.out.println(MONEY_INPUT_MESSAGE);
         String input = Console.readLine();
         try{
             CommonInputValidator.isNumericValidator(input);
             Integer amount = Integer.parseInt(input);
-            return new Money(amount);
+            return Optional.of(new Money(amount));
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return MONEY_ERROR_CODE;
+            return Optional.empty();
         }
     }
-    public Lotto inputSixNumbers(){
+    public Optional<Lotto> inputSixNumbers(){
         System.out.println(SIX_NUMBERS_INPUT_MESSAGE);
         String input = Console.readLine();
         List<Integer> numbers = new ArrayList<>();
@@ -42,14 +40,14 @@ public class InputView {
                 CommonInputValidator.isInRangeValidator(number);
                 numbers.add(number);
             }
-            return new Lotto(numbers);
+            return Optional.of(new Lotto(numbers));
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return SIX_NUMBERS_ERROR_CODE;
+            return Optional.empty();
         }
     }
 
-    public Bonus inputBonusNumber(Lotto lotto){
+    public Optional<Bonus> inputBonusNumber(Lotto lotto){
         System.out.println(BONUS_INPUT_MESSAGE);
         String input = Console.readLine();
         try{
@@ -57,10 +55,10 @@ public class InputView {
             Integer number = Integer.parseInt(input);
             CommonInputValidator.isInRangeValidator(number);
             List<Integer> numbers = lotto.getNumbers();
-            return new Bonus(numbers, number);
+            return Optional.of(new Bonus(numbers, number));
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return BONUS_NUMBER_ERROR_CODE;
+            return Optional.empty();
         }
     }
 

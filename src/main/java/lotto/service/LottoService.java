@@ -8,11 +8,18 @@ import lotto.util.MatchType;
 public interface LottoService {
 
     /**
-     * 구입 금액 입력 받는 함수 1,000단위 예외 처리 필요
+     * 구입 금액 입력 받는 함수
+     *
+     * @return : 구입 금액
+     */
+    int inputPurchaseAmount();
+
+    /**
+     * 로또 개수 반환하는 함수
      *
      * @return : 로또 구입 개수
      */
-    int calculatePurchaseCount();
+    int calculatePurchaseCount(int purchaseAmount);
 
     /**
      * 랜덤 로또 값 생성해서 반환
@@ -59,5 +66,5 @@ public interface LottoService {
      * @param earnings : 수익
      * @return : 수익률
      */
-    double calculateReturnRate(int earnings);
+    double calculateReturnRate(int purchaseAmount, int earnings);
 }

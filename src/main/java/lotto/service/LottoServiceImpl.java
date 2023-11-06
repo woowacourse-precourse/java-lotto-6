@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,24 +23,35 @@ public class LottoServiceImpl implements LottoService {
     /**
      * 구입 금액 입력 받는 함수
      *
-     * @return : 로또 구입 개수
+     * @return : 구입 금액
      */
     @Override
-    public int calculatePurchaseCount() {
+    public int inputPurchaseAmount() {
 
         while (true) {
             try {
                 String purchaseAmountText = Console.readLine();
 
-                int amount = stringToInt(purchaseAmountText);
+                int purchaseAmount = stringToInt(purchaseAmountText);
 
-                validatePurchaseAmount(amount);
+                validatePurchaseAmount(purchaseAmount);
 
-                return calculateLottoCount(amount);
+                return purchaseAmount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    /**
+     * 로또 개수 반환하는 함수
+     *
+     * @return : 로또 구입 개수
+     */
+    @Override
+    public int calculatePurchaseCount(int purchaseAmount) {
+
+        return calculateLottoCount(purchaseAmount);
     }
 
     /**
@@ -147,7 +159,7 @@ public class LottoServiceImpl implements LottoService {
      * @return : 수익률
      */
     @Override
-    public double calculateReturnRate(int earnings) {
+    public double calculateReturnRate(int purchaseAmount, int earnings) {
         return 0;
     }
 

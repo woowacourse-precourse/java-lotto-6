@@ -19,10 +19,6 @@ public class OutputView {
         }
     }
 
-    private static void print(String message) {
-        System.out.println(message);
-    }
-
     public static void renderingResult(ResultDto resultDto) {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         print("당첨 통계");
@@ -36,5 +32,13 @@ public class OutputView {
             print(String.format(patten,rank.getCount(),decimalFormat.format(rank.getMoney().getMoney()),resultDto.findCount(rank)));
         }
         print(String.format("총 수익률은 %.1f%%입니다.",resultDto.getProfitRate()));
+    }
+
+    public static void renderingError(String message) {
+        print("[ERROR] "+message);
+    }
+
+    private static void print(String message) {
+        System.out.println(message);
     }
 }

@@ -1,7 +1,7 @@
 package view;
 
 public enum OutputMessages {
-    TOTAL_PURCHASED_QUANTITY("%d개를 구매했습니다.");
+    TOTAL_PURCHASED_QUANTITY("\n%d개를 구매했습니다.");
 
     private String message;
 

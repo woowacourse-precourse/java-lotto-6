@@ -27,9 +27,8 @@ public class UserInput {
             prizeNumbers.add(number);
         }
         Lotto.duplicateCheck(prizeNumbers);
-        if(prizeNumbers.size() != 6){
-            throw new IllegalArgumentException("[ERRPR] 로또 번호는 6개 입력해야 합니다.");
-        }
+        Lotto.validate(prizeNumbers);
+
         return prizeNumbers;
     }
     public static int bonusNumber(){

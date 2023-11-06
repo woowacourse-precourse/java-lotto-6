@@ -1,11 +1,9 @@
 package lotto;
 
 import controller.LottoGenerator;
+import controller.PrizeChecker;
 import controller.UserInput;
-import model.Lotto;
-import model.Lottos;
-import model.PrizeNumber;
-import model.Purchase;
+import model.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,6 +15,8 @@ public class Application {
         Purchase purchase = new Purchase();
         Lottos lottos = new Lottos();
         PrizeNumber prizeNumber = new PrizeNumber();
+        PrizeChecker prizeChecker = new PrizeChecker();
+        Ranking ranking = new Ranking();
 
 
         purchase.Number(UserInput.purchasePrice());
@@ -31,6 +31,9 @@ public class Application {
         System.out.println(prizeNumber.getPrizeNumber());
         prizeNumber.initBonusNumber(UserInput.bonusNumber());
         System.out.println(prizeNumber.getBonousNumber());
+        ranking = prizeChecker.checkRank(lottos,prizeNumber);
+        System.out.println(ranking.getWinningDetails());
+
     }
 
 

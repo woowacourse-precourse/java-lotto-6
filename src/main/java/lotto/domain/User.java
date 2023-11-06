@@ -20,5 +20,7 @@ public class User {
         User.receivedMoney = receivedMoney;
     }
 
-    
+    public static List<Lotto> getLottoList() {
+        return User.lottoList;
+    }
 }

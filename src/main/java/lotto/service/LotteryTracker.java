@@ -14,8 +14,11 @@ public class LotteryTracker {
     }
 
     public static LotteryTracker create(){
+        //등수별 출력결과 저장하는 곳
         PrintsPerRank.create();
+        //등수별 상금 저장하는 곳
         PrizesPerRank.create();
+        //등수별 로또수를 저장하는 곳
         LottoNumbersPerRank.create();
         return new LotteryTracker();
     }

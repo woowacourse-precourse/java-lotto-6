@@ -8,16 +8,15 @@ import lotto.view.View;
 
 public class ResultService {
     private final LotteryTracker lotteryTracker = LotteryTracker.create();
-    //등수별 로또가 몇개인지 저장
-    public void perLottoTotalCount(BuyLottoRepository buyLottos, WinningLottoRepository winningLotto){
+
+    public void checkLottoNumbers(BuyLottoRepository buyLottos, WinningLottoRepository winningLotto){
         View.winningStatistics();
 
-        // 로또추적기: 산 로또의 번호가 당첨 번호와 몇개 맞는 지 판단하고 그에 따른 등수 매김
+        // 로또추적기: 산 로또의 번호가 당첨 번호와 몇개 맞는 지 판단하고 등수 당 몇개인지 확인
         lotteryTracker.matching(buyLottos,winningLotto);
         lotteryTracker.printResultByRank();
     }
 
-    //총 수익률을 계산
     public void calculateRateOfReturn(int purchaseCount){
         double totalBuyLottos = purchaseCount * (PER_lOTTO_PRICE.getNumber());
         double totalRevenue = lotteryTracker.calculateTotalRevenue();

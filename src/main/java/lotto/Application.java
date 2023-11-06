@@ -1,11 +1,13 @@
 package lotto;
 
 import View.InputView;
+import View.OuputView;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
+        OuputView outputView = new OuputView();
         inputView.printInputMoneyMessage();
         int money;
         try {
@@ -20,7 +22,9 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 1000 단위로 입력해 주세요.");
         }
 
-        LottoGenerator.generate(money);
+        Lottos lottos = new Lottos();
+        lottos.buy(money);
+        //outputView.printUserLottoNumbers(lottos.getLottos());
 
     }
 }

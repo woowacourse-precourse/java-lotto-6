@@ -6,6 +6,8 @@ import java.util.List;
 public final class LottoOutputView {
     private final static String PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private final static String LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다.";
+    private final static String WINNING_LOTTO_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.";
+
     private LottoOutputView() {
     }
 
@@ -23,6 +25,10 @@ public final class LottoOutputView {
             number.sort(Comparator.naturalOrder());
             System.out.println(number);
         }
+    }
+
+    public static void printWinningLottoNumbersMessage() {
+        System.out.println(WINNING_LOTTO_NUMBER_MESSAGE);
     }
 
 }

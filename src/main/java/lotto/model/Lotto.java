@@ -1,12 +1,13 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
 public class Lotto {
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         sizeCheck(numbers);
+        rangeCheck(numbers);
         duplicationCheck(numbers);
         this.numbers = numbers;
     }
@@ -18,7 +19,7 @@ public class Lotto {
     }
 
     public void rangeCheck(List<Integer> numbers){
-        for (int num; numbers) { // 1~45 사이의 숫자인지 체크
+        for (int num : numbers) { // 1~45 사이의 숫자인지 체크
             if (num < 1 || 45 < num) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }

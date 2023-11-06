@@ -21,6 +21,7 @@ public class LottoMachine {
         result.printLottoNumber(lottoNumbers);
         drawWinningNumber();
         drawBonusNumber();
+        getWinningStatistics();
     }
 
     public void buyLotto() {
@@ -68,12 +69,33 @@ public class LottoMachine {
 
     public void drawBonusNumber() {
         System.out.println("\n" + Message.BONUS_INPUT.getMessage());
-        while (true){
+        while (true) {
             try {
                 user.inputBonusNumber();
                 break;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void getWinningStatistics() {
+        System.out.println("\n" + Message.WINNING_STATISTICS.getMessage());
+        System.out.println("---");
+        compareLottoTicket();
+    }
+
+    public void compareLottoTicket(){
+        for(Lotto lotto : lottoNumbers){
+            compareNumber(lotto.getNumbers(), user.getWinningNumber().getNumbers());
+        }
+    }
+
+    public void compareNumber(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers){
+        int count = 0;
+        for(int number : lottoNumbers){
+            if(winningLottoNumbers.contains(number)){
+                count++;
             }
         }
     }

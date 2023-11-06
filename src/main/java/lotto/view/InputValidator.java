@@ -4,7 +4,7 @@ import java.util.List;
 
 public class InputValidator {
 
-    private static final String CHARACTER_ERROR_MESSAGE = "[ERROR] 문자를 입력할 수 없습니다.";
+    private static final String CHARACTER_ERROR_MESSAGE = "문자를 입력할 수 없습니다.";
 
     private InputValidator() {
     }
@@ -18,18 +18,18 @@ public class InputValidator {
     }
 
     public int validateNumber(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(CHARACTER_ERROR_MESSAGE);
-        }
+        return convertStringToInt(input);
     }
 
     public List<Integer> validateNumbers(List<String> input) {
+        return input.stream()
+                .map(this::convertStringToInt)
+                .toList();
+    }
+
+    private int convertStringToInt(String input) {
         try {
-            return input.stream()
-                    .map(Integer::parseInt)
-                    .toList();
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(CHARACTER_ERROR_MESSAGE);
         }

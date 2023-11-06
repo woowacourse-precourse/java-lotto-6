@@ -14,4 +14,8 @@ public interface OutputView {
     default void print(Object printMessage) {
         System.out.println(printMessage);
     }
+
+    default void printErrorMessage(String message) {
+        System.out.println("[ERROR] " + message);
+    }
 }

@@ -3,32 +3,32 @@ package lotto.domain;
 import java.util.List;
 import lotto.exception.ExceptionMessage;
 
-public class WinningNumber {
-    private static final int WINNING_NUMBER_SIZE = 6;
+public class WinningNumbers {
+    private static final int WINNING_NUMBERS_SIZE = 6;
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
 
-    private final List<Integer> winningNumber;
+    private final List<Integer> winningNumbers;
     private int bonusNumber;
 
-    public WinningNumber(List<Integer> winningNumber) {
-        validateWinningNumber(winningNumber);
-        this.winningNumber = sorted(winningNumber);
+    public WinningNumbers(List<Integer> winningNumbers) {
+        validateWinningNumber(winningNumbers);
+        this.winningNumbers = sorted(winningNumbers);
     }
 
     private List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream().sorted().toList();
     }
 
-    private void validateWinningNumber(List<Integer> winningNumber) {
-        validateSize(winningNumber);
-        validateDuplicate(winningNumber);
-        winningNumber.forEach(this::validateRange);
+    private void validateWinningNumber(List<Integer> winningNumbers) {
+        validateSize(winningNumbers);
+        validateDuplicate(winningNumbers);
+        winningNumbers.forEach(this::validateRange);
     }
 
-    private void validateSize(List<Integer> winningNumber) {
+    private void validateSize(List<Integer> winningNumbers) {
 
-        if (winningNumber.size() != WINNING_NUMBER_SIZE) {
+        if (winningNumbers.size() != WINNING_NUMBERS_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_SIZE_EXCEPTION.getMessage());
         }
     }
@@ -58,13 +58,13 @@ public class WinningNumber {
     }
 
     private void validateDuplicateBonusNumber(int bonusNumber) {
-        if (winningNumber.contains(bonusNumber)) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 
     public List<Integer> getWinningNumber() {
-        return winningNumber;
+        return winningNumbers;
     }
 
     public int getBonusNumber() {

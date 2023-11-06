@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
-import lotto.domain.WinningNumber;
+import lotto.domain.WinningNumbers;
 import lotto.domain.WinningResult;
-import lotto.domain.factory.LottosFactory;
+import lotto.util.NumbersGenerator;
 import lotto.view.ExceptionView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -12,28 +12,30 @@ public class LottoController {
     private final InputView inputView;
     private final ExceptionView exceptionView;
     private final OutputView outputView;
+    private final NumbersGenerator numbersGenerator;
 
-    public LottoController(InputView inputView, ExceptionView exceptionView, OutputView outputView) {
+    public LottoController(InputView inputView, ExceptionView exceptionView,
+                           OutputView outputView, NumbersGenerator numbersGenerator) {
         this.inputView = inputView;
         this.exceptionView = exceptionView;
         this.outputView = outputView;
+        this.numbersGenerator = numbersGenerator;
     }
 
     public void lottoRun() {
         Lottos lottos = buyLotto();
-        WinningNumber winningNumber = decideWinningNumber();
-        decideBonusNumber(winningNumber);
-        WinningResult winningResult = calculateWinning(lottos, winningNumber);
+        WinningNumbers winningNumbers = decideWinningNumbers();
+        decideBonusNumber(winningNumbers);
+        WinningResult winningResult = new WinningResult(lottos, winningNumbers);
         outputView.printWinningStatics(winningResult);
-        outputView.printRate(winningResult.calculateRate(lottos));
+        outputView.printEarningRate(winningResult.calculateEarningRate(lottos));
 
     }
 
     private Lottos buyLotto() {
-        LottosFactory lottosFactory = new LottosFactory();
         while (true) {
             try {
-                Lottos lottos = lottosFactory.createLottos(inputView.inputMoney());
+                Lottos lottos = new Lottos(inputView.inputMoney(), numbersGenerator);
                 outputView.printLottos(lottos);
                 return lottos;
             } catch (IllegalArgumentException e) {
@@ -42,30 +44,24 @@ public class LottoController {
         }
     }
 
-    private WinningNumber decideWinningNumber() {
+    private WinningNumbers decideWinningNumbers() {
         while (true) {
             try {
-                return new WinningNumber(inputView.inputWinningNumber());
+                return new WinningNumbers(inputView.inputWinningNumber());
             } catch (IllegalArgumentException e) {
                 exceptionView.printException(e.getMessage());
             }
         }
     }
 
-    private void decideBonusNumber(WinningNumber winningNumber) {
+    private void decideBonusNumber(WinningNumbers winningNumbers) {
         while (true) {
             try {
-                winningNumber.setBonusNumber(inputView.inputBonusNumber());
+                winningNumbers.setBonusNumber(inputView.inputBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
                 exceptionView.printException(e.getMessage());
             }
         }
-    }
-
-    private WinningResult calculateWinning(Lottos lottos, WinningNumber winningNumber) {
-        WinningResult winningResult = new WinningResult();
-        winningResult.calculateWinning(lottos, winningNumber);
-        return winningResult;
     }
 }

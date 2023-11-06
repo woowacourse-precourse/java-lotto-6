@@ -49,7 +49,7 @@ public class OutputView {
         return integerDecFormat.format(prize);
     }
 
-    public void printRate(float rate) {
+    public void printEarningRate(float rate) {
         System.out.println(formatRate(rate));
     }
 

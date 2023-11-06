@@ -154,6 +154,11 @@ public class Application {
         System.out.println(totalLottoMoney);
     }
 
+    public static void RateOnReturn(){
+        double rate = Math.round((double)totalLottoMoney/(inputCoin*coinStandard)*1000)/10.0;
+        System.out.println("총 수익률은 "+String.format("%.1f",rate)+"%입니다.");        
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         GetCoin();
@@ -169,5 +174,6 @@ public class Application {
         System.out.println(myWinningLotto);
 
         SumLottoResult();
+        RateOnReturn();
     }
 }

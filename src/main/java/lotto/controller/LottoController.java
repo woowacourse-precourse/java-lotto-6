@@ -5,7 +5,7 @@ import lotto.model.Logics;
 import lotto.model.Lotto;
 import lotto.model.Errors;
 import lotto.view.OutputView;
-import lotto.model.StringAndReulst;
+
 import java.util.ArrayList;
 import java.util.List;
 

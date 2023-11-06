@@ -1,20 +1,25 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.List;
-import lotto.view.OutputView;
+import lotto.model.Errors;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLength(numbers);
         validateDuplicate(numbers);
+        validateNumberRange(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateNumberRange (List<Integer> numbers) {
+        for(int num : numbers) {
+            Errors.isWrongRange(num);
+        }
+    }
+
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }

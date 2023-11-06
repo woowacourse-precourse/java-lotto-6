@@ -8,6 +8,7 @@ public class Logics {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
+    //List<Integer>는 그냥 출력을 해도된다.
     public static StringBuilder ListToString (List<Integer> numbers) {
         StringBuilder result = new StringBuilder("[");
         for(int i = 0; i < numbers.size(); i++) {

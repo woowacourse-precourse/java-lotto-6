@@ -17,7 +17,7 @@ public class OutputView {
     }
 
     public static void printIsInteger () {
-        System.out.println("[ERROR] 숫자 형태의 값이여야 합니다.");
+        System.out.println("[ERROR] 숫자 형태의 값 또는 int 범위 안의 수여야 합니다.");
     }
 
     public static void printIsWrongMoney () {
@@ -28,8 +28,8 @@ public class OutputView {
         System.out.println("[ERROR] 1000원 이상의 금액이여야 합니다.");
     }
 
-    public static void printIsUnique () {
-        System.out.println("[ERROR] 고유한 값들 이여야 합니다.");
+    public static void printIsOverInt () {
+        System.out.println("[ERROR] int형태의 숫자여야 합니다.");
     }
 
     public static void printIsWrongRange () {

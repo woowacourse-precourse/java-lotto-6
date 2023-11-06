@@ -1,8 +1,10 @@
 package lotto;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static lotto.UI.*;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoGame {
     private final List<Lotto> lottos;
@@ -10,14 +12,23 @@ public class LottoGame {
     private int bonusNumber;
 
     public LottoGame() {
-        int money = UI.getMoney();
+        int money = getMoney();
         this.lottos = publishLottos(money);
-        this.winningNumber = UI.getWinningNumber();
-        this.bonusNumber = UI.getBonusNumber();
+        this.winningNumber = getWinningNumber();
+        this.bonusNumber = getBonusNumber();
         checkLottos();
     }
 
     private List<Lotto> publishLottos(int money){
+        int amount = money / 1000;
+        for (int i = 0; i < amount; i++){
+            Lotto lotto = new Lotto(pickUniqueNumbers());
+            lottos.add(lotto);
+        }
+        return null;
+    }
+
+    private List<Integer> pickUniqueNumbers(){
         return null;
     }
 

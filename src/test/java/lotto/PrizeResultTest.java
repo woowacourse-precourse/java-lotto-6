@@ -8,35 +8,114 @@ import lotto.domain.Lottos;
 import lotto.domain.Prize;
 import lotto.domain.PrizeResult;
 import lotto.domain.WinningLotto;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PrizeResultTest {
-    PrizeResult prizeResult;
+    Lottos lottos;
 
     @BeforeEach
-    void initPrizeResult() {
+    void initLottos() {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
-        Lottos lottos = new Lottos(List.of(lotto1, lotto2));
-        WinningLotto winningLotto = WinningLotto.of("1,2,3,4,5,7", "8");
-        prizeResult = new PrizeResult(lottos, winningLotto);
+        Lotto lotto2 = new Lotto(List.of(6,7,8,9,10,11));
+        this.lottos = new Lottos(List.of(lotto1, lotto2));
     }
 
-    @DisplayName("결과 계산 테스트")
+    @DisplayName("3개가 일치하는 경우 테스트")
     @Test
-    void calculatePrizeTest() {
+    void fifthTest() {
+        WinningLotto winningLotto = WinningLotto.of("1,2,3,30,31,32", "33");
+
+        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(1);
+
+        assertThat(prizeResult.getPrizeMoney()).isEqualTo(5000);
+    }
+
+    @DisplayName("4개가 일치하는 경우 테스트")
+    @Test
+    void fourthTest() {
+        WinningLotto winningLotto = WinningLotto.of("1,2,3,4,30,31", "32");
+
+        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(1);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(0);
+
+        assertThat(prizeResult.getPrizeMoney()).isEqualTo(50000);
+    }
+
+    @DisplayName("5개가 일치하는 경우 테스트")
+    @Test
+    void thirdTest() {
+        WinningLotto winningLotto = WinningLotto.of("1,2,3,4,5,30", "31");
+
+        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+
         assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
         assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
         assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(1);
         assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
         assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(0);
+
+        assertThat(prizeResult.getPrizeMoney()).isEqualTo(1500000);
     }
 
-    @DisplayName("총 상금 계산 테스트")
+    @DisplayName("5개가 일치하고 보너스 볼까지 일치하는 경우 테스트")
     @Test
-    void getPrizeMoneyTest() {
-        assertThat(prizeResult.getPrizeMoney()).isEqualTo(1500000);
+    void secondTest() {
+        WinningLotto winningLotto = WinningLotto.of("1,2,3,4,5,30", "6");
+
+        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(1);
+        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(0);
+
+        assertThat(prizeResult.getPrizeMoney()).isEqualTo(30000000);
+    }
+
+    @DisplayName("6개가 일치하는 경우 테스트")
+    @Test
+    void firstTest() {
+        WinningLotto winningLotto = WinningLotto.of("1,2,3,4,5,6", "30");
+
+        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(1);
+        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(0);
+
+        assertThat(prizeResult.getPrizeMoney()).isEqualTo(2000000000);
+    }
+
+    @DisplayName("여러 개의 상을 받은 경우 상금 계산 테스트")
+    @Test
+    void prizeMoneyTest() {
+        WinningLotto winningLotto = WinningLotto.of("1,2,3,7,8,9", "30");
+
+        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(2);
+
+        assertThat(prizeResult.getPrizeMoney()).isEqualTo(10000);
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 class LottoTicketsTest {
 
-    @DisplayName("LottoTickets의 모든 lotto의 WinningRank를 모은 WinningResult를 생성")
+    @DisplayName("LottoTickets의 모든 lotto의 WinningRank를 결정하여 각각 등수별 개수를 계산한다.")
     @Test
     void calculateWinningRanks() {
         //given
@@ -22,10 +22,11 @@ class LottoTicketsTest {
         LottoTickets lottoTickets = new LottoTickets(List.of(lotto1, lotto2, lotto3));
 
         //when
-        WinningResult winningResult = lottoTickets.calculateWinningRanks(new WinningRankCalculator(), lottoWinningNumbers);
+        WinningTicketCounts winningTicketCounts = lottoTickets.calculateWinningRanks(new WinningRankCalculator(), lottoWinningNumbers);
 
         //then
-        assertThat(winningResult.getTotalResult())
-                .isEqualTo(List.of(WinningRank.FIRST, WinningRank.SECOND, WinningRank.THIRD));
+        assertThat(winningTicketCounts.getCount(WinningRank.FIRST)).isEqualTo(1);
+        assertThat(winningTicketCounts.getCount(WinningRank.SECOND)).isEqualTo(1);
+        assertThat(winningTicketCounts.getCount(WinningRank.THIRD)).isEqualTo(1);
     }
 }

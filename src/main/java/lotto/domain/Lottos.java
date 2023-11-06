@@ -42,7 +42,7 @@ public class Lottos {
         calculateWinningStatistics(winningNumbers, bonusNumber);
         OutputUtils.printResultAnnouncementMessage();
         winningStatics = calculateWinningStatistics(winningNumbers, bonusNumber);
-        totalPrize = calculateTotalPrize();
+        totalPrize = calculateTotalPrize(winningStatics);
         printResult();
     }
 
@@ -56,8 +56,8 @@ public class Lottos {
         return statics;
     }
 
-    public int calculateTotalPrize() {
-        return winningStatics.entrySet().stream()
+    public int calculateTotalPrize(Map<Ranking, Integer> statics) {
+        return statics.entrySet().stream()
                 .map(r -> StringUtils.StringToInt(r.getKey().getPrize()) * r.getValue())
                 .reduce(0, Integer::sum);
     }

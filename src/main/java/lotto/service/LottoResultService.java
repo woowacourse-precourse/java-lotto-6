@@ -75,14 +75,11 @@ public class LottoResultService {
     }
 
     public void showProfitRate(int payMoney) {
-        int profit = 0;
-        List<Rank> ranks = new ArrayList<>(lottoResults.keySet().stream().toList());
+        double profit = lottoResults.entrySet().stream()
+                .mapToDouble(rank -> rank.getValue() * rank.getKey().getPrize())
+                .sum();
 
-        for (Rank rank : ranks) {
-            profit += (lottoResults.get(rank) * rank.getPrize());
-        }
-
-        double profitRate = profit / (double) payMoney * 100;
+        double profitRate = profit / payMoney * 100;
 
         DecimalFormat decimalFormat = new DecimalFormat("#.#");
         System.out.println("총 수익률은 " + decimalFormat.format(profitRate) + "%입니다.");

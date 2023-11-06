@@ -13,8 +13,6 @@ class ProfitTest {
     List<Integer> prizeCounts1 = List.of(0, 0, 0, 1, 0);
     List<Integer> prizeCounts2 = List.of(1, 0, 0, 0, 0);
 
-    Integer quantity = 8;
-
     int totalPrize1 = 30000000;
     int totalPrize2 = 5000;
 

@@ -19,4 +19,12 @@ public class ErrorMessage {
     public static void priceZeroException() {
         System.out.println(error + " 로또는 한 장에 천원입니다. 한 장이라도 사주세요!");
     }
+
+    public static void duplicatedBonusNumber() {
+        System.out.println(error + " 당첨 번호와 보너스 번호가 중복되면 안 됩니다.");
+    }
+
+    public static void duplicatedWinningNumbers() {
+        System.out.println(error + " 당첨 번호들은 중복되면 안 됩니다.");
+    }
 }

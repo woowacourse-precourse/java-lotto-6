@@ -22,4 +22,16 @@ public class MoneyExceptionTest {
 
 
     }
+
+    @DisplayName("금액이 자연수가 아니면 예외처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "-1", "-1000", "-2000"})
+    void NegativeMoneyUnitException(String input) {
+
+
+        Assertions.assertThatThrownBy(() -> Money.of(input))
+                  .isInstanceOf(IllegalArgumentException.class);
+
+
+    }
 }

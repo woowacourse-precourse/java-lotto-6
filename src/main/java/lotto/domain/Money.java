@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.exception.NotNaturalMoneyException;
 import lotto.exception.WrongMoneyUnitException;
 
 public class Money {
@@ -9,6 +10,7 @@ public class Money {
 
     private Money(Long money) {
         checkDividedByCurrency(money);
+        checkNaturalWith(money);
         this.money = money;
     }
 
@@ -28,6 +30,12 @@ public class Money {
     private static void checkDividedByCurrency(long money) {
         if (money%CURRENCY != 0) {
             throw  new WrongMoneyUnitException();
+        }
+    }
+
+    private static void checkNaturalWith(long money) {
+        if (money <= 0) {
+            throw new NotNaturalMoneyException();
         }
     }
 

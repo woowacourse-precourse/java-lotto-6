@@ -9,6 +9,7 @@ public class Controller {
 
     private final Service service;
     static int bonusNum;
+    static Lotto lotto;
 
     public Controller() {
         this.service = new Service();
@@ -25,11 +26,13 @@ public class Controller {
         }
     }
 
-    public Lotto drawLottoWinningNumber() {
+    public void drawLottoWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] split = Console.readLine().split(",");
         System.out.println("보너스 번호를 입력해 주세요");
         bonusNum = Integer.parseInt(Console.readLine());
-        return service.saveWinningNumbers(split);
+        lotto = service.saveWinningNumbers(split);
     }
+
+
 }

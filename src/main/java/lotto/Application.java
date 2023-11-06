@@ -4,6 +4,9 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import lotto.enums.NoticeMessage;
+import lotto.enums.PrizeMoney;
 
 public class Application {
 
@@ -32,23 +35,24 @@ public class Application {
         Lotto winningLotto = new Lotto(UserInput.getWinningNumbers());
 
         // 보너스 번호 입력 처리
+        System.out.println();
         PrintOutput.printNoticeMessage(NoticeMessage.BONUS_NUMBER);
         int bonusNumber = UserInput.getBonusNumber();
         while (isBonusNumberSameWithWinningNumbers(winningLotto, bonusNumber)) {
             bonusNumber = UserInput.getBonusNumber();
         }
 
-        // TODO: 당첨 통계 계산
+        // Map<n, n등인 로또 수>
+        Map<Integer, Integer> winningRanks = lottos.countMatches(winningLotto, bonusNumber);
 
+        System.out.println();
+        PrintOutput.printNoticeMessage(NoticeMessage.WINNING_RESULT);
+        PrintOutput.printNoticeMessage(NoticeMessage.STRAIGHT_LINE);
+        PrintOutput.printLottosRank(winningRanks);
 
-        // TODO: 당첨 통계 출력
-        // PrintOutput.printNoticeMessage(NoticeMessage.WINNING_RESULT);
-        // PrintOutput.printNoticeMessage(NoticeMessage.STRAIGHT_LINE);
+        double rateOfReturn = calculateRateOfReturn(winningRanks, money);
 
-        // TODO: 수익률 계산 처리
-
-        // TODO: 수익률 출력 처리
-
+        PrintOutput.printRateOfReturn(rateOfReturn);
     }
 
     public static List<Integer> makeLottoNumbers() {
@@ -57,5 +61,16 @@ public class Application {
 
     private static boolean isBonusNumberSameWithWinningNumbers(Lotto winningNumbers, int bonusNumber) {
         return winningNumbers.contains(bonusNumber);
+    }
+
+    private static double calculateRateOfReturn(Map<Integer, Integer> winningRanks, int buyMoney) {
+        long sumOfPrizeMoney = 0;
+        sumOfPrizeMoney += winningRanks.get(1) * PrizeMoney.FIRST.getPrizeMoney();
+        sumOfPrizeMoney += winningRanks.get(2) * PrizeMoney.SECOND.getPrizeMoney();
+        sumOfPrizeMoney += winningRanks.get(3) * PrizeMoney.THIRD.getPrizeMoney();
+        sumOfPrizeMoney += winningRanks.get(4) * PrizeMoney.FOURTH.getPrizeMoney();
+        sumOfPrizeMoney += winningRanks.get(5) * PrizeMoney.FIFTH.getPrizeMoney();
+
+        return (double) sumOfPrizeMoney / buyMoney;
     }
 }

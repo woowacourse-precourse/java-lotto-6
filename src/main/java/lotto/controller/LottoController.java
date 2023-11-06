@@ -7,8 +7,9 @@ import lotto.model.Lottos;
 import lotto.model.NumberGenerator;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoController {
     public static final int lottoPrice = 1000;
@@ -20,47 +21,42 @@ public class LottoController {
     }
 
     public void start() {
-
-        // 구입할 금액 입력받기
         int purchaseAmount = InputView.inputPurchaseAmount();
 
-
-        // 금액만큼 로또 생성
         Lottos userLottos = purchaseLottos(purchaseAmount);
-
-
-                // 구매한 로또 정렬해서 출력
         OutputView.printPurchaseLottos(userLottos.toDtos());
 
+        Lotto winningNumbers = inputWinningNumber();
 
-        // 당첨번호 입력받기
-        Lotto winningNumbers = new Lotto(InputView.inputWinningNumber());
+        BonusNumber bonusNumber = inputBonusNumber();
 
-
-        // 보너스 번호 입력받기
-        BonusNumber bonusNumber = new BonusNumber(InputView.inputBonusNumber());
-
-
-        // 담청 결과 구하기
         List<LottoResult> results = userLottos.getLottoWinningResult(winningNumbers, bonusNumber);
-
-
-        // 당첨 통계 출력하기
         OutputView.printLottoResult(results);
 
-        // 총 수익률 계산
         double totalEarningsRate = calculateTotalEarningsRate(results, purchaseAmount);
-
-        // 총 수익률 계산
         OutputView.printTotalEarningsRate(totalEarningsRate);
     }
 
+    private Lotto inputWinningNumber() {
+        return new Lotto(InputView.inputWinningNumber());
+    }
+
+    private BonusNumber inputBonusNumber() {
+        return new BonusNumber(InputView.inputBonusNumber());
+    }
+
     private Lottos purchaseLottos(int purchaseAmount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < purchaseAmount/lottoPrice; i++) {
-            lottos.add(new Lotto(lottoGenerator.generateNumbers()));
-        }
+        int purchasableLottoCount = purchaseAmount / lottoPrice;
+
+        List<Lotto> lottos = IntStream.range(0, purchasableLottoCount)
+                .mapToObj(i -> purchaseLotto())
+                .collect(Collectors.toList());
+
         return new Lottos(lottos);
+    }
+
+    private Lotto purchaseLotto() {
+        return new Lotto(lottoGenerator.generateNumbers());
     }
 
     private double calculateTotalEarningsRate(List<LottoResult> results, int purchaseAmount) {

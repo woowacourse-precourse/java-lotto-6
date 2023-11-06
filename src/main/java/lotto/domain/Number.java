@@ -1,9 +1,5 @@
 package lotto.domain;
 
-import java.util.Objects;
-import lotto.view.InputValidator;
-import lotto.view.InputView;
-
 public class Number {
 
     private final int value;
@@ -14,10 +10,6 @@ public class Number {
 
     public static Number from(final int value) {
         return new Number(value);
-    }
-
-    public int getValue() {
-        return value;
     }
 
     @Override

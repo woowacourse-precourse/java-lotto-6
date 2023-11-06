@@ -13,7 +13,6 @@ public class WinningLotto {
         this.bonusNumber = inputBonusNumber;
     }
 
-
     private void validateDuplicated(Lotto lotto, Number bonusNumber) {
         boolean contains = lotto.contains(bonusNumber);
         if (contains) {
@@ -21,11 +20,4 @@ public class WinningLotto {
         }
     }
 
-    public Lotto getLotto() {
-        return lotto;
-    }
-
-    public Number getBonusNumber() {
-        return bonusNumber;
-    }
 }

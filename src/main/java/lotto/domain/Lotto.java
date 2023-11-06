@@ -1,10 +1,8 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.view.InputValidator;
 
 public class Lotto {
     private final List<Number> numbers;
@@ -71,13 +69,4 @@ public class Lotto {
         }
     }
 
-    private static List<Integer> toIntegerList(List<String> stringList) {
-        return stringList.stream()
-                .map(Integer::parseInt)
-                .toList();
-    }
-
-    public List<Number> getNumbers() {
-        return numbers;
-    }
 }

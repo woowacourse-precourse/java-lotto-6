@@ -1,12 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 import tool.Convert;
 import validation.IntegerValidator;
+import validation.ListValidator;
 import validation.StringValidator;
 
 public class Input {
@@ -22,5 +20,14 @@ public class Input {
     winningNumbers.sort(Comparator.naturalOrder());
 
     return winningNumbers;
+  }
+
+  public static int inputBonusNumber(String input, List<Integer> winningNumbers) {
+    int bonusNumber = StringValidator.checkIntegerType(input);
+    IntegerValidator.checkRange(bonusNumber, Const.LOTTO_BEGIN, Const.LOTTO_END);
+    winningNumbers.add(bonusNumber);
+    ListValidator.checkDuplicate(winningNumbers);
+
+    return bonusNumber;
   }
 }

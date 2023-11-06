@@ -5,7 +5,11 @@ import lotto.view.InputCoin;
 
 public class Application {
     public static void main(String[] args) {
-        LottoController lottoController = new LottoController();
-        lottoController.startLottoRoulette();
+        try {
+            LottoController lottoController = new LottoController();
+            lottoController.startLottoRoulette();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

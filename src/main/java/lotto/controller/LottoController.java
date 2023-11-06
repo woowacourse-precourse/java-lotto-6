@@ -4,7 +4,8 @@ import lotto.domain.*;
 import lotto.view.*;
 
 import java.util.List;
-import java.util.Random;
+
+import static lotto.view.OutputResultState.printResultState;
 
 public class LottoController {
     private final InputCoin inputCoin;
@@ -26,7 +27,7 @@ public class LottoController {
         RankResult rankResult = new RankResult();
         calculateLottoResult(rankResult, wonLotto, lottos);
         Rate rate = getRate(coin, rankResult);
-
+        printResultState(rankResult, rate);
     }
 
     private Coin getCoin() {

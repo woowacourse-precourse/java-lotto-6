@@ -30,4 +30,10 @@ public class LottoNumberValidator extends Validator{
             throw new IllegalArgumentException(ErrorMessage.LOTTONUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
         }
     }
+
+    public static void validateDuplicatedNumber(List<Integer> numbers, int number){
+        if(numbers.contains(number)){
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_MESSAGE.getMessage());
+        }
+    }
 }

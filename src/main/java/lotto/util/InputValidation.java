@@ -38,4 +38,10 @@ public class InputValidation {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
+
+    public static void validateNumberDuplicated(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 중복될 수 없습니다");
+        }
+    }
 }

@@ -52,4 +52,12 @@ public class OutputView {
                 .filter(lottoRank -> lottoRank != LottoRank.MISS)
                 .toList();
     }
+
+    public static void printInputMessage(String message) {
+        System.out.println(message);
+    }
+
+    public static void printExceptionMessage(String message) {
+        System.out.println(message);
+    }
 }

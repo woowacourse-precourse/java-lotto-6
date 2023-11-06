@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.ConsoleMessage;
 import lotto.util.Validator;
 
 import java.util.List;
@@ -8,30 +9,30 @@ import java.util.List;
 public class InputView {
     public static int inputPurchaseAmount() {
         try {
-            System.out.println("구입금액을 입력해 주세요.");
+            OutputView.printInputMessage(ConsoleMessage.INPUT_PURCHASE_AMOUNT);
             return Validator.isValidPurchaseAmount(Console.readLine());
         } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
+            OutputView.printExceptionMessage(ex.getMessage());
             return inputPurchaseAmount();
         }
     }
 
     public static List<Integer> inputWinningNumbers() {
         try {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
+            OutputView.printInputMessage(ConsoleMessage.INPUT_WINNING_NUMBERS);
             return Validator.isValidWinningNumbers(Console.readLine());
         } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
+            OutputView.printExceptionMessage(ex.getMessage());
             return inputWinningNumbers();
         }
     }
 
     public static int inputBonusNumber() {
         try {
-            System.out.println("\n보너스 번호를 입력해 주세요.");
+            OutputView.printInputMessage(ConsoleMessage.INPUT_BONUS_NUMBER);
             return Validator.isValidBonusNumber(Console.readLine());
         } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
+            OutputView.printExceptionMessage(ex.getMessage());
             return inputBonusNumber();
         }
     }

@@ -8,6 +8,7 @@ public class BonusNumberValidator {
 
     public static void validateBonusNumber(List<Integer> winNumbers, String input) throws IllegalArgumentException {
         validateBonusNumberNotNumber(input);
+        validateBonusNumberFirstZero(input);
 
         Integer bonusNumber = Integer.parseInt(input);
         validateBonusNumberOutOfRange(bonusNumber);
@@ -17,6 +18,12 @@ public class BonusNumberValidator {
     private static void validateBonusNumberNotNumber(String input) throws IllegalArgumentException {
         if (!ValidationUtil.isNumber(input)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private static void validateBonusNumberFirstZero(String input) throws IllegalArgumentException {
+        if (input.charAt(0) == '0') {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자 첫 입력을 0으로 시작할 수 없습니다.");
         }
     }
 

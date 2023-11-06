@@ -57,4 +57,17 @@ class LottoServiceTest {
         assertThatCode(() -> lottoService.generateLotto())
                 .doesNotThrowAnyException();
     }
+
+    @Test
+    @DisplayName("기능8 테스트 : generateLottoList 메서드가 지정된 개수만큼 Lotto 객체를 담은 리스트를 반환한다.")
+    void generateLottoListMakeLottoAsManyAsCount() {
+        // given
+        int count = 5;
+
+        // when
+        List<Lotto> lottoList = lottoService.generateLottoList(5);
+
+        // then
+        assertThat(lottoList).hasSize(count);
+    }
 }

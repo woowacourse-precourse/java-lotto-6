@@ -11,4 +11,10 @@ public class YieldRateTest {
         YieldRate yieldRate = new YieldRate(3000, 6000);
         assertThat(yieldRate.getYieldRate()).isEqualTo(200.0);
     }
+
+    @Test
+    void 수익률_반올림_테스트() {
+        YieldRate yieldRate = new YieldRate(8000, 5000);
+        assertThat(yieldRate.getYieldRate()).isEqualTo(62.5);
+    }
 }

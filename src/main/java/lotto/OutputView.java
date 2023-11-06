@@ -9,7 +9,7 @@ import java.util.List;
 
 class OutputView {
 
-    private static final String PRINT_ISSUANCE_RESULT_SIZE_FORMAT = "%n%d개를 구매했습니다.%n";
+    private static final String PRINT_ISSUANCE_RESULT_SIZE_FORMAT = "%d개를 구매했습니다.%n";
     private static final String PRINT_EACH_PRIZE_RESULT_FORMAT = "%s (%s) - %d개%n";
     private static final String PRINT_EARNING_RATE_FORMAT = "총 수익률은 %s%%입니다.";
     private static final String PRINT_ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
@@ -30,14 +30,14 @@ class OutputView {
         issuanceResult.forEach(System.out::println);
     }
 
-    private static void printPadding() {
-        System.out.println();
-    }
-
     public static void printStatistics(EnumMap<LottoPrize, Integer> statistics) {
         printPadding();
         printStatisticsHeader();
         printPrizeResultAll(statistics);
+    }
+
+    private static void printPadding() {
+        System.out.println();
     }
 
     private static void printStatisticsHeader() {

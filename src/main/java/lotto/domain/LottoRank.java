@@ -28,7 +28,15 @@ public enum LottoRank {
                 .orElseThrow();
     }
 
+    public int getRightCnt() {
+        return rightCnt;
+    }
+
     public long getWinningAmount() {
         return winningAmount;
+    }
+
+    public String getAmountStr() {
+        return amountStr;
     }
 }

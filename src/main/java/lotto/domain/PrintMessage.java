@@ -15,4 +15,8 @@ public class PrintMessage {
     public static final String NOT_DUPLICATION = "[ERROR] 중복되지 않는 번호로 입력해주세요.";
     public static final String ONLY_SIX_NUMBER = "[ERROR] 당첨 번호는 6개여야 합니다.";
     public static final String PRINT_NUMBER_OF_PURCHASES = "개를 구매했습니다.";
+    public static final String PRINT_WINNING_STATISTICS = "\n당첨 통계\n---";
+    public static final String PRINT_SECOND_RANK = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    public static final String PRINT_RANK = "%d개 일치 (%s원) - %d개\n";
+    public static final String PRINT_YIELD = "총 수익률은 %.1f%%입니다.";
 }

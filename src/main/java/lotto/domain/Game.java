@@ -1,23 +1,19 @@
 package lotto.domain;
 
 import static common.ErrorCode.NOT_NUMBER_STRING;
-import static lotto.view.InputView.inputLottoAmount;
+import static lotto.view.InputView.inputLottoPurchaseAmount;
 
 import common.exception.InvalidArgumentException;
 
 public class Game {
 
-    public static void main(String[] args) {
-        new Game();
-    }
-
-    private final Amount amount;
+    private final LottoPurchaseAmount amount;
 
     public Game() {
         this.amount = createAmount();
     }
 
-    private Amount createAmount() {
+    private LottoPurchaseAmount createAmount() {
         try {
             return createAmountFromUser();
         } catch (IllegalArgumentException e) {
@@ -26,10 +22,10 @@ public class Game {
         }
     }
 
-    private Amount createAmountFromUser() {
-        String input = inputLottoAmount();
+    private LottoPurchaseAmount createAmountFromUser() {
+        String input = inputLottoPurchaseAmount();
         int amount = parseInt(input);
-        return new Amount(amount);
+        return new LottoPurchaseAmount(amount);
     }
 
     private int parseInt(String input) {

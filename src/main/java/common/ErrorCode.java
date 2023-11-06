@@ -5,7 +5,7 @@ public enum ErrorCode {
     // Common
     NOT_NUMBER_STRING("숫자를 입력해 주세요."),
 
-    // Amount
+    // LottoPurchaseAmount
     AMOUNT_LESS_THAN_MINIMUM("1,000원 이상의 로또 구입 금액을 입력해 주세요."),
     AMOUNT_INVALID_UNIT("로또 구입 금액은 1,000원 단위로 입력해 주세요."),
 

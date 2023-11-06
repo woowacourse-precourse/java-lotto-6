@@ -5,14 +5,14 @@ import static common.ErrorCode.AMOUNT_LESS_THAN_MINIMUM;
 
 import common.exception.InvalidArgumentException;
 
-public class Amount {
+public class LottoPurchaseAmount {
 
     private static final int MINIMUM_MONEY = 1000;
     private static final int UNIT_AMOUNT = 1000;
     private static final int REST_AMOUNT = 0;
     private final int amount;
 
-    public Amount(int amount) {
+    public LottoPurchaseAmount(int amount) {
         validateAmount(amount);
         this.amount = amount;
     }

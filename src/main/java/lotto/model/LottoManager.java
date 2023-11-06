@@ -14,4 +14,8 @@ public class LottoManager {
         final int purchaseQuantity = amount / AMOUNT_UNIT;
         return lottoMachine.createLotto(purchaseQuantity);
     }
+
+    public Lotto createWinningLottoTicket(final List<Integer> numbers) {
+        return lottoMachine.createWinningLotto(numbers);
+    }
 }

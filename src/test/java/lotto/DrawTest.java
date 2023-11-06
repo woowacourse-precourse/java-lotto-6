@@ -76,4 +76,10 @@ public class DrawTest extends Draw{
         //then
         assertThat(lottos.size()).isEqualTo(14);
     }
+
+    @Test
+    void 보너스번호가_범위_밖이면_예외_발생() {
+        assertThatThrownBy(() -> isWithinRange(46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

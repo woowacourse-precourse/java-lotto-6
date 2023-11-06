@@ -7,26 +7,16 @@ public class WinningNumberProvider {
     private static final int WINNING_START_NUMBER = 1;
     private static final int WINNING_END_NUMBER = 45;
 
-    public WinningNumber getWinningNumber(String winningNumberInput, String bonusInput) {
-        List<Integer> winningNumber = parseWinningNumber(winningNumberInput);
-        int bonus = parseValidNumber(bonusInput);
-        validateBonus(winningNumber, bonus);
-
-        return new WinningNumber(winningNumber, bonus);
-    }
-
-    private List<Integer> parseWinningNumber(String input) {
-        String[] splitInputs = input.split(",");
+    public List<Integer> getWinningNumber(String winningNumberInput) {
+        String[] splitInputs = winningNumberInput.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
 
         for (String splitInput : splitInputs) {
             int winningNumber = parseValidNumber(splitInput);
-            if (winningNumbers.contains(winningNumber)) {
-                throw new IllegalArgumentException("error");
-            }
-
+            validateDuplication(winningNumbers, winningNumber);
             winningNumbers.add(winningNumber);
         }
+        validateSize(winningNumbers);
 
         return winningNumbers;
     }
@@ -39,8 +29,8 @@ public class WinningNumberProvider {
         return parseInput;
     }
 
-    private void validateBonus(List<Integer> winningNumber, int bonus) {
-        if (winningNumber.contains(bonus)) {
+    private void validateDuplication(List<Integer> winningNumbers, int winningNumber) {
+        if (winningNumbers.contains(winningNumber)) {
             throw new IllegalArgumentException("error");
         }
     }
@@ -53,6 +43,12 @@ public class WinningNumberProvider {
 
     private void validateRange(int input) {
         if (WINNING_START_NUMBER > input || input > WINNING_END_NUMBER) {
+            throw new IllegalArgumentException("error");
+        }
+    }
+
+    private void validateSize(List<Integer> winningNumber) {
+        if (winningNumber.size() != 6) {
             throw new IllegalArgumentException("error");
         }
     }

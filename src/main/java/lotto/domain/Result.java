@@ -17,7 +17,7 @@ public class Result {
     }
 
     public void countRank(int rank) {
-        ranks.set(rank - 1, ranks.get(rank - 1) + 1);
+        ranks.set(rank, ranks.get(rank) + 1);
     }
 
     public void addIncome(int income){

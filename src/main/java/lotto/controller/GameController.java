@@ -17,9 +17,9 @@ public class GameController {
 
     public GameController() {
         this.lottoMachine = new LottoMachine();
-        this.calculator = new Calculator();
         this.lottos = new Lottos();
         this.purchaseAmount = new PurchaseAmount(InputView.inputPurchaseAmount());
+        this.calculator = new Calculator(purchaseAmount);
         coin = Parser.parseAmountToCoin(purchaseAmount);
         OutputView.printNumberOfLottoPurchase(coin);
 
@@ -40,5 +40,6 @@ public class GameController {
                 bonusNumber.getBonusNumber());
 
         OutputView.printResult(result);
+        OutputView.printIncomeRate(calculator, result);
     }
 }

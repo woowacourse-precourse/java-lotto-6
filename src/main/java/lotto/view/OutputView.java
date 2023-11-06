@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.controller.dto.response.PurchaseHistoryDto;
+import lotto.controller.dto.PurchaseHistoryDto;
 
 public class OutputView {
 

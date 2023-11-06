@@ -1,4 +1,4 @@
-package lotto.controller.dto.response;
+package lotto.controller.dto;
 
 import java.util.List;
 

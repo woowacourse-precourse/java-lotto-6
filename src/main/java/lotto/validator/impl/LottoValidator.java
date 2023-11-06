@@ -33,7 +33,7 @@ public class LottoValidator implements Validator<String> {
     private void isNumberAndInRange(List<String> data) {
         for (String number : data) {
             if (!isNumber(number)) {
-                throwException(ErrorMessages.INPUT_LOTTO_SIZE);
+                throwException(ErrorMessages.INPUT_LOTTO_NUMERIC);
             }
             if (!isInRange(number)) {
                 throwException(ErrorMessages.INPUT_LOTTO_RANGE);

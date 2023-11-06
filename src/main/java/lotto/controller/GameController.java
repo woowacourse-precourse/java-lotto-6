@@ -29,8 +29,9 @@ public class GameController {
     private boolean isInvalidPurchaseAmount(String input) {
         try {
             ValidationUtils.validatePurchaseAmountNumber(input);
-            int number = GameUtils.convertStringToInt(input);
-            ValidationUtils.validatePurchaseAmountPositive(number);
+            int amount = GameUtils.convertStringToInt(input);
+            ValidationUtils.validatePurchaseAmountPositive(amount);
+            ValidationUtils.validatePurchaseAmountDivisible(amount);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             return true;

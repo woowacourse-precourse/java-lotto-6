@@ -51,14 +51,27 @@ public class ValidationUtilsTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, -1, -1000})
-    public void 입력값이_양수가_아닌_경우_예외테스트(int input) {
+    public void 금액이_양수가_아닌_경우_예외테스트(int amount) {
         //given
-        final int notPositiveNumber = input;
+        final int notPositiveNumber = amount;
 
         //when
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ValidationUtils.validatePurchaseAmountPositive(notPositiveNumber));
 
         //then
         assertThat(exception.getMessage()).isEqualTo(ValidationUtils.PURCHASE_AMOUNT_NOT_POSITIVE_EXCEPTION);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 100, 500, 999, 1001})
+    public void 금액이_로또_가격으로_나누어_떨어지지_않는_경우_예외테스트(int amount) {
+        //given
+        final int notDivisibleNumber = amount;
+
+        //when
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ValidationUtils.validatePurchaseAmountDivisible(notDivisibleNumber));
+
+        //then
+        assertThat(exception.getMessage()).isEqualTo(ValidationUtils.PURCHASE_AMOUNT_NOT_DIVISIBLE_EXCEPTION);
     }
 }

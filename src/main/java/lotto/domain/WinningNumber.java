@@ -60,4 +60,8 @@ public class WinningNumber {
 
         return winningNumber;
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
 }

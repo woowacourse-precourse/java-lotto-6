@@ -12,7 +12,7 @@ public class LottoMachine {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
-    public int calculateLottoQuantity(int amount) {
+    private int calculateLottoQuantity(int amount) {
         return amount / LOTTO_PRICE;
     }
 

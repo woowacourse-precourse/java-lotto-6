@@ -64,4 +64,15 @@ class LottoTest {
                         .collect(Collectors.toList())
         )).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("추첨자가 로또 번호를 입력한다.")
+    @Test
+    void LottoNumbersCorrentTest() {
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        List<Integer> getNumbers = lotto.getLottoNumbers();
+
+        assertThat(lotto.getLottoNumbers()).isEqualTo(getNumbers);
+    }
 }

@@ -16,14 +16,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] ");
+            throw new IllegalArgumentException("[ERROR] 잘못된 로또 번호가 생성되었습니다.");
         }
     }
 
     // TODO: 추가 기능 구현
 
     //number가 private으로 접근이 제어되었기 때문에, getter 메소드 구현
-    private List<Integer> getLottoNumbers() {
+    public List<Integer> getLottoNumbers() {
         return numbers;
     }
 

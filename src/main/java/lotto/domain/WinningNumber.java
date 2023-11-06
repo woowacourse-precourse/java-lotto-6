@@ -6,6 +6,7 @@ import java.util.Set;
 import lotto.exception.DuplicateNumberException;
 
 public class WinningNumber {
+
     private final List<Integer> numbers;
     private final int bonusNumber;
 
@@ -33,4 +34,11 @@ public class WinningNumber {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

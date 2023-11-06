@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class MessageGenerator {
     private static final String STATISTICS_MESSAGE_FORMAT = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_STATISTICS_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    private static final String PRIZE_MONEY_PATTERN = "###,###";
+    private static final String PRIZE_MONEY_FORMAT_PATTERN = "###,###";
 
     private static final int INITIAL_COUNT = 0;
 
@@ -41,7 +41,7 @@ public class MessageGenerator {
     }
 
     private static String generatePrizeMoneyMessage(LottoRanking lottoRanking) {
-        DecimalFormat decimalFormat = new DecimalFormat(PRIZE_MONEY_PATTERN);
+        DecimalFormat decimalFormat = new DecimalFormat(PRIZE_MONEY_FORMAT_PATTERN);
         return decimalFormat.format(lottoRanking.getPrizeMoney());
     }
 

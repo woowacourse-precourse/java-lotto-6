@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoResultDto;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
@@ -10,8 +11,9 @@ public class OutputView {
 
     private static final String NUMBER_OF_LOTTOS_MESSAGE_FORMAT = "%d개를 구매했습니다." + NEWLINE;
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계" + NEWLINE + "---";
-    private static final String RATE_OF_RETURN_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final String RATE_OF_RETURN_MESSAGE_FORMAT = "총 수익률은 %s%%입니다.";
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s" + NEWLINE;
+    private static final String RATE_OF_RETURN_FORMAT_PATTERN = "###,###.0";
 
     public void printLottos(List<LottoDto> lottos) {
         newLine();
@@ -40,7 +42,7 @@ public class OutputView {
 
     public void printLottoResult(LottoResultDto lottoResult, double rateOfReturn) {
         printWinningStatistics(lottoResult);
-        printRateOfResult(rateOfReturn);
+        printRateOfReturn(rateOfReturn);
     }
 
     private void printWinningStatistics(LottoResultDto lottoResult) {
@@ -49,8 +51,13 @@ public class OutputView {
         System.out.println(MessageGenerator.generateStatisticsMessage(lottoResult.result()));
     }
 
-    public void printRateOfResult(double rateOfReturn) {
-        System.out.printf(RATE_OF_RETURN_MESSAGE_FORMAT, rateOfReturn);
+    private void printRateOfReturn(double rateOfReturn) {
+        System.out.printf(RATE_OF_RETURN_MESSAGE_FORMAT, generateRateOfReturnMessage(rateOfReturn));
+    }
+
+    private String generateRateOfReturnMessage(double rateOfReturn) {
+        DecimalFormat decimalFormat = new DecimalFormat(RATE_OF_RETURN_FORMAT_PATTERN);
+        return decimalFormat.format(rateOfReturn);
     }
 
     public void printErrorMessage(String errorMessage) {

@@ -14,8 +14,8 @@ class LottoResultCheckerTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        LottoResultChecker lottoResultChecker = new LottoResultChecker(lotto, winningLotto);
-        Result result = lottoResultChecker.check();
+        LottoResultChecker lottoResultChecker = new LottoResultChecker(winningLotto);
+        Result result = lottoResultChecker.check(lotto);
 
         assertThat(result).isEqualTo(Result.SECOND_PRIZE);
     }

@@ -12,7 +12,6 @@ public class ValidateMoney {
         throw new IllegalArgumentException("[ERROR] 천보다 큰 금액을 입력해주세요.");
     }
 
-
     public static ThrowingCallable isUnitFollowed(int money) {
         if (money % 1000 == 0) {
             return null;
@@ -20,7 +19,7 @@ public class ValidateMoney {
         throw new IllegalArgumentException("[ERROR] 금액은 천원 단위로 입력 해주세요.");
     }
 
-    public static ThrowingCallable isNumberInRange(int money) {
+    public static ThrowingCallable isMoneyInRange(int money) {
         if (money < MAX_VALUE) {
             return null;
         }

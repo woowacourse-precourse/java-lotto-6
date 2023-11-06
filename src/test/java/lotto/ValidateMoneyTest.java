@@ -17,7 +17,7 @@ public class ValidateMoneyTest {
 
     @Test
     void 너무_큰_값() {
-        assertThatThrownBy(() -> ValidateMoney.isNumberInRange(1000001)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidateMoney.isMoneyInRange(1000001)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }

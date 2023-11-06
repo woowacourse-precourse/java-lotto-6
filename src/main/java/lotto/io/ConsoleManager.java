@@ -9,7 +9,10 @@ public class ConsoleManager {
     }
 
     public long inputPurchasePrice() {
+        System.out.println("구입금액을 입력해 주세요.");
+
         String inputPrice = Console.readLine();
+
         try {
             long price = Long.parseLong(inputPrice);
 

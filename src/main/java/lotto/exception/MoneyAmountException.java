@@ -1,6 +1,5 @@
 package lotto.exception;
 
-import lotto.io.MoneyReader;
 
 public class NumberException {
     public static void money_reader(int input) {

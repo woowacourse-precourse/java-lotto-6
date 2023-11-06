@@ -14,7 +14,6 @@ public class PurchaseNumValidator {
         }
 
         public void isMultipleOf1000() {
-                // 입력한 구입금액이 1000단위인지 확인
                 if (Integer.parseInt(PURCHASE_STRING) % 1000 != 0) {
                         throw new IllegalArgumentException(Constants.PURCHASE_UNIT_ERROR);
                 }

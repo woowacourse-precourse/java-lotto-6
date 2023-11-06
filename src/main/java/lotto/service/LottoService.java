@@ -44,7 +44,7 @@ public class LottoService {
 	}
 
 	public double calculateTotalReturn(int money, int priceSum) {
-		return lottoCalculator.calculateTotalReturn(money, priceSum);
+		return lottoCalculator.calculateRate(money, priceSum);
 	}
 
 	public String getWinningStatisticsMessage(Lottos lottos, AnswerLotto answerLotto) {

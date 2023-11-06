@@ -23,7 +23,7 @@ public final class LottoCalculator implements Calculator<Integer, EnumMap<LottoR
 	}
 
 	@Override
-	public Double calculateTotalReturn(Integer money, Integer priceSum) {
+	public Double calculateRate(Integer money, Integer priceSum) {
 		return (double) priceSum / (double) money * 100;
 	}
 }

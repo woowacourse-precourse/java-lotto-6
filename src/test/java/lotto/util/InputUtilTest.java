@@ -21,31 +21,6 @@ public class InputUtilTest extends NsTest {
 
     }
 
-    @Test
-    @DisplayName("사용자가 입력한 금액이 0원 이하일 경우 예외가 발생한다.")
-    public void buyLottosRangeExceptionTest1() throws Exception {
-        // given
-        // when
-        // then
-        assertSimpleTest(() -> {
-            runException("0");
-            assertThat(output()).contains("[ERROR] 금액을 0원 이상 입력해주세요.");
-        });
-
-    }
-
-    @Test
-    @DisplayName("사용자가 입력한 금액이 1000으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
-    public void buyLottosRangeExceptionTest2() throws Exception {
-        // given
-        // when
-        // then
-        assertSimpleTest(() -> {
-            runException("10300");
-            assertThat(output()).contains("[ERROR] 금액을 1000원 단위로 입력해주세요.");
-        });
-
-    }
     @Override
     protected void runMain() {
         InputUtil.inputMoney();

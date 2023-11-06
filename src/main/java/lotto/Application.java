@@ -79,7 +79,8 @@ public class Application {
 
 
         //당첨 통계 출력
-
+        System.out.println("당첨 통계");
+        System.out.println("---");
 
 
 

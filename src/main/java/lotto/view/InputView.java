@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constraints.ErrorMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +13,15 @@ public class InputView {
     public static int readPayMoney() {
         System.out.println(ViewMessage.INPUT_MONEY.getMessage());
         String input = Console.readLine();
+        validateNumberFormat(input);
         System.out.println();
         return Integer.parseInt(input);
+    }
+
+    private static void validateNumberFormat(String input) {
+        if (!input.matches("^[0-9]*$")) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
+        }
     }
 
     public static List<Integer> readWinningNumbers() {

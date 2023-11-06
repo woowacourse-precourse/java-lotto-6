@@ -20,7 +20,6 @@ public class LottoHost {
         return winNumbers;
     }
 
-
     public Integer pickBonusNumber() {
         Integer tempBonusNumber = inputBonusNumber();
 
@@ -32,8 +31,6 @@ public class LottoHost {
 
     public LottoTargetNumResults giveLottoTargetNumResults() {
         return Config.lottoTargetNumResults(winNumbers, bonusNumber);
-
-
     }
 
     private void validateInputWinNumbers(List<Integer> tempWinNumbers) {
@@ -54,5 +51,4 @@ public class LottoHost {
     private List<Integer> inputWinNumbers() {
         return Input.InputNumbers();
     }
-
 }

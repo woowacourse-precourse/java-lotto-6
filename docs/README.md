@@ -94,8 +94,6 @@
 
 - 숫자가 아닌 값 입력 시: `IllegalArgumentException` 처리
 - 범위를 벗어나는 번호 입력 시: `NumberFormatException` 처리
-- 중복 번호 입력 시: `DuplicateNumberException` 처리
-- 6개가 아닌 다른 개수의 번호 입력 시: `InvalidNumberCountException` 처리
 
 ## 📈 진행 상태
 

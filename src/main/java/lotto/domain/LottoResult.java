@@ -13,6 +13,21 @@ public class LottoResult {
         }
     }
 
+    public String calculateProfitRate(String inputPrice) {
+        double totalPrize = 0;
+        double userPrice = Double.parseDouble(inputPrice);
+
+        for (Rank rank : result.keySet()) {
+            totalPrize += rank.getWinningAmount() * result.get(rank);
+        }
+
+        double profitRate = (totalPrize / userPrice) * 100;
+
+        profitRate = Math.round(profitRate * 100) / 100.0;
+
+        return String.format("%.1f", profitRate);
+    }
+
     private Rank checkRank(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {
         int matchCount = (int) lotto.getNumbers().stream()
                 .filter(winningNumber::contains)

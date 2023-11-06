@@ -11,6 +11,10 @@ public final class SixNumberGenerator {
     }
 
     public static List<Integer> run() {
-        return Randoms.pickUniqueNumbersInRange(RegularConstant.START_OF_NUMBER_RANGE, RegularConstant.END_OF_NUMBER_RANGE, RegularConstant.COUNT_OF_NUMBERS_CAN_HAVE);
+        return Randoms.pickUniqueNumbersInRange(
+                RegularConstant.START_OF_NUMBER_RANGE,
+                RegularConstant.END_OF_NUMBER_RANGE,
+                RegularConstant.COUNT_OF_NUMBERS_CAN_HAVE
+        );
     }
 }

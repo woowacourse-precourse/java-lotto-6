@@ -13,7 +13,7 @@ public final class OutputView {
 
     public static void showCountOfLotto(int countOfLotto) {
         String format = OutputMessage.OUTPUT_COUNT_OF_LOTTO_FORMAT.getMessage();
-        System.out.println(String.format(format, countOfLotto));
+        System.out.printf((format) + "%n", countOfLotto);
     }
 
     public static void showLotteries(Lotteries lotteries) {
@@ -23,14 +23,14 @@ public final class OutputView {
 
     public static void showStatics(Map<String, Integer> statistics) {
         System.out.println(OutputMessage.WINNING_STATISTICS.getMessage());
-        System.out.println(String.format(OutputMessage.MATCHES_3_FORMAT.getMessage(), statistics.get(RankConstant.FIFTH)));
-        System.out.println(String.format(OutputMessage.MATCHES_4_FORMAT.getMessage(), statistics.get(RankConstant.FOURTH)));
-        System.out.println(String.format(OutputMessage.MATCHES_5_FORMAT.getMessage(), statistics.get(RankConstant.THIRD)));
-        System.out.println(String.format(OutputMessage.MATCHES_5_ADDITION_BONUS_NUMBER_FORMAT.getMessage(), statistics.get(RankConstant.SECOND)));
-        System.out.println(String.format(OutputMessage.MATCHES_6_FORMAT.getMessage(), statistics.get(RankConstant.FIRST)));
+        System.out.printf((OutputMessage.MATCHES_3_FORMAT.getMessage()) + "%n", statistics.get(RankConstant.FIFTH));
+        System.out.printf((OutputMessage.MATCHES_4_FORMAT.getMessage()) + "%n", statistics.get(RankConstant.FOURTH));
+        System.out.printf((OutputMessage.MATCHES_5_FORMAT.getMessage()) + "%n", statistics.get(RankConstant.THIRD));
+        System.out.printf((OutputMessage.MATCHES_5_ADDITION_BONUS_NUMBER_FORMAT.getMessage()) + "%n", statistics.get(RankConstant.SECOND));
+        System.out.printf((OutputMessage.MATCHES_6_FORMAT.getMessage()) + "%n", statistics.get(RankConstant.FIRST));
     }
 
     public static void showTotalReturn(double totalReturn) {
-        System.out.println(String.format(OutputMessage.TOTAL_RETURN.getMessage(), totalReturn));
+        System.out.printf((OutputMessage.TOTAL_RETURN.getMessage()) + "%n", totalReturn);
     }
 }

@@ -24,7 +24,7 @@ public final class Validator {
     public static int validateNumericInput(String inputValue) {
         Matcher matcher = PatternConstant.NUMBER_PATTERN.matcher(inputValue);
 
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_NUMERIC_VALUE.getMessage());
         }
 
@@ -58,25 +58,26 @@ public final class Validator {
     public static String[] hasCommasWithoutSurroundingValues(String valuesSeparatedByCommas) {
         Matcher matcher = PatternConstant.HAS_COMMAS_WITHOUT_SURROUNDING_VALUES_PATTERNS.matcher(valuesSeparatedByCommas);
 
-        if (matcher.find()) throw new IllegalArgumentException(ErrorMessage.ERROR_CONTAIN_CONSECUTIVE_COMMAS.getMessage());
+        if (matcher.find())
+            throw new IllegalArgumentException(ErrorMessage.ERROR_CONTAIN_CONSECUTIVE_COMMAS.getMessage());
 
         return valuesSeparatedByCommas.split(RegularConstant.DELIMITER);
     }
 
     public static void validateCountOfValues(String[] splitValues) {
-        if(splitValues.length != 6){
+        if (splitValues.length != 6) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
         }
     }
 
     public static void validateCountOfNumbers(List<Integer> numbers) {
-        if(numbers.size() != 6){
+        if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
         }
     }
 
     public static int validateNumberInRange(int num) {
-        if(num > 45 || num < 1){
+        if (num > 45 || num < 1) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_OF_RANGES.getMessage());
         }
 

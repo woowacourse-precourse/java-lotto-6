@@ -14,7 +14,7 @@ public class Lotto {
         validate(numbers);
         Validator.validateDuplicateNumbers(numbers);
 
-        for (int num: numbers) {
+        for (int num : numbers) {
             Validator.validateNumberInRange(num);
         }
 

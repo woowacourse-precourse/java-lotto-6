@@ -1,5 +1,8 @@
 package Validate;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -79,10 +82,25 @@ public class ValidateException {
         }
     }
 
+    // 유저
     public static boolean isMultipleOf1000(int amount) {
         if (amount % 1000 == 0) {
             return true;
         }
         throw new IllegalArgumentException("[ERROR] 돈은 1000원 단위 입니다.");
+    }
+
+
+    // 로또 진행자.
+    public static boolean hasDuplicateEachNumbers(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>();
+
+        for (Integer num : numbers) {
+            if (!set.add(num)) {
+                throw new IllegalArgumentException("[ERROR] 당청 번호 각각은 중복이 되면 안 됩니다.");
+            }
+        }
+
+        return false;
     }
 }

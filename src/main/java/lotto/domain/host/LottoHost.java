@@ -1,5 +1,6 @@
 package lotto.domain.host;
 
+import Validate.ValidateException;
 import lotto.config.Config;
 import lotto.domain.num.LottoTargetNumResults;
 import lotto.utill.Input;
@@ -13,9 +14,11 @@ public class LottoHost {
 
     public List<Integer> pickWinNumbers() {
         // TODO: 11/5/23 입력 체크.
-        winNumbers = Input.InputNumbers();
+        List<Integer> tempWinNumbers = Input.InputNumbers();
 
+        ValidateException.hasDuplicateEachNumbers(tempWinNumbers);
 
+        winNumbers = tempWinNumbers;
         return winNumbers;
     }
 

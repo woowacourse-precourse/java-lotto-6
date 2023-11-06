@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.*;
 import lotto.view.*;
 import lotto.model.*;
 import lotto.exception.*;
@@ -11,16 +12,25 @@ public class LottoController {
         while (true) {
             price = LottoView.inputPurchaseAmount();
             if (Lotto.validateInputPurchaseAmount(price)) {
-                break; // 유효한 금액이 입력되면 반복문 종료
+                // 유효한 금액이 입력되면 반복문 종료
+                break;
             }
 
             try {
-                Exceptions.exceptionInputPurchaseAmount(); // 예외 발생 및 에러 메시지 출력
+                // 예외 발생
+                Exceptions.exceptionInputPurchaseAmount();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage()); // 예외 메시지 출력
+                // 예외 메시지 출력
+                System.out.println(e.getMessage());
             }
         }
         return price;
+    }
+
+    public void processCreateLotto(int price){
+        // 구매한 개수 및 로또번호 리스트 출력
+        List<Lotto> lottoList = Lotto.createLottoList(price);
+        LottoView.printPurchaseResult(lottoList);
     }
 
 }

@@ -8,8 +8,7 @@ public class Application {
 
         LottoController lottoController = new LottoController();
         int price = lottoController.processInputPurchaseAmount();
-        System.out.println(price);
-
+        lottoController.processCreateLotto(price);
 
     }
 }

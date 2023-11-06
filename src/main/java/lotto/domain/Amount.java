@@ -40,4 +40,8 @@ public class Amount {
             );
         }
     }
+
+    public int buyCount() {
+        return this.amount / LottoRule.PRICE.getValue();
+    }
 }

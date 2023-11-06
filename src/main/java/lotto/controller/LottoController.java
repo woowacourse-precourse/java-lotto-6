@@ -66,7 +66,7 @@ public class LottoController {
             outputView.print(InformationMessage.GUIDE_INPUT_BONUS_NUMBER.getMessage());
             int bonusNumber = inputView.readIntLine();
 
-            lottoService.generateWinningLotto(bonusNumber);
+            lottoService.drawBonusNumber(bonusNumber);
             outputView.printNewLine();
         };
     }

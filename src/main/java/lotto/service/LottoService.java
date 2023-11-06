@@ -53,7 +53,7 @@ public class LottoService {
         winningLotto = new WinningLotto(winningLottoNumbers);
     }
 
-    public void generateWinningLotto(int bonusNumber) {
+    public void drawBonusNumber(int bonusNumber) {
         winningLotto.setBonusNumber(bonusNumber);
     }
 

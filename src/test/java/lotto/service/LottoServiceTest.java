@@ -31,7 +31,7 @@ class LottoServiceTest {
         long payment = LottoConstraint.PRICE_PER_LOTTO.getValue();
         lottoService.getLottoReceipt(payment);
         lottoService.drawLottoWithoutBonusNumber(TestConstant.normalNumbers);
-        lottoService.generateWinningLotto(45);
+        lottoService.drawBonusNumber(45);
 
         LottoResultDto lottoResultDto = lottoService.getLottoResult();
         int firstRankCount = lottoResultDto.result().get(Rank.SIX_MATCH);

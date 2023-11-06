@@ -9,8 +9,8 @@ public class PurchaseAmount {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public int getPurchasedLottoCount(){
-        return purchaseAmount/ Constant.LOTTO_PRICE;
+    public int getPurchasedLottoCount() {
+        return purchaseAmount / Constant.LOTTO_PRICE;
     }
 
     public int getAmount() {

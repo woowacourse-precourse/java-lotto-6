@@ -28,17 +28,17 @@ public class InputValidator {
         Iterator<String> iterator = winningNumbers.iterator();
         while (iterator.hasNext()) {
             String next = iterator.next();
-            if (!next.matches("\\d+") || !(Integer.parseInt(next) > 0) || !(Integer.parseInt(next) < 46)){
+            if (!next.matches("\\d+") || !(Integer.parseInt(next) > 0) || !(Integer.parseInt(next) < 46)) {
                 throw new IllegalArgumentException(Error.PLEASE_ENTER_ONLY_NUMBERS_FROM_1_TO_45);
             }
         }
     }
 
     public static void checkBonusNumber(String input, WinningNumbers winningNumbers) {
-        if (!input.matches("\\d+") || !(Integer.parseInt(input) > 0) || !(Integer.parseInt(input) < 46)){
+        if (!input.matches("\\d+") || !(Integer.parseInt(input) > 0) || !(Integer.parseInt(input) < 46)) {
             throw new IllegalArgumentException(Error.PLEASE_ENTER_ONLY_NUMBERS_FROM_1_TO_45);
         }
-        if(winningNumbers.getWinningNumbers().contains(Integer.parseInt(input))){
+        if (winningNumbers.getWinningNumbers().contains(Integer.parseInt(input))) {
             throw new IllegalArgumentException(Error.ALREADY_EXISTING_WINNING_NUMBER);
         }
     }

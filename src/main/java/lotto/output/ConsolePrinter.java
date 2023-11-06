@@ -19,7 +19,7 @@ public class ConsolePrinter {
 
     public static void printPurchasedLottoCount(PurchaseAmount purchaseAmount) {
         System.out.println();
-        System.out.println(String.format(Message.PURCHASED_LOTTO_COUNT,purchaseAmount.getPurchasedLottoCount()));
+        System.out.println(String.format(Message.PURCHASED_LOTTO_COUNT, purchaseAmount.getPurchasedLottoCount()));
     }
 
     public static void printLottoNumbers(LottoRepository lottoRepository) {
@@ -45,15 +45,15 @@ public class ConsolePrinter {
         Map<Rank, Integer> result = lottoResult.get();
         System.out.println();
         System.out.println(Message.WINNING_STATISTICS);
-        System.out.println(String.format(Rank.FIFTH.getMessage(),result.get(Rank.FIFTH)));
-        System.out.println(String.format(Rank.FOURTH.getMessage(),result.get(Rank.FOURTH)));
-        System.out.println(String.format(Rank.THIRD.getMessage(),result.get(Rank.THIRD)));
-        System.out.println(String.format(Rank.SECOND.getMessage(),result.get(Rank.SECOND)));
-        System.out.println(String.format(Rank.FIRST.getMessage(),result.get(Rank.FIRST)));
+        System.out.println(String.format(Rank.FIFTH.getMessage(), result.get(Rank.FIFTH)));
+        System.out.println(String.format(Rank.FOURTH.getMessage(), result.get(Rank.FOURTH)));
+        System.out.println(String.format(Rank.THIRD.getMessage(), result.get(Rank.THIRD)));
+        System.out.println(String.format(Rank.SECOND.getMessage(), result.get(Rank.SECOND)));
+        System.out.println(String.format(Rank.FIRST.getMessage(), result.get(Rank.FIRST)));
 
     }
 
     public static void printRateOfReturn(double rateOfReturn) {
-        System.out.println(String.format(Message.RATE_OF_RETURN,rateOfReturn));
+        System.out.println(String.format(Message.RATE_OF_RETURN, rateOfReturn));
     }
 }

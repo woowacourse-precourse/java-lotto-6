@@ -51,7 +51,7 @@ public class InputManager {
         while (true) {
             try {
                 input = Console.readLine();
-                InputValidator.checkBonusNumber(input,winningNumbers);
+                InputValidator.checkBonusNumber(input, winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

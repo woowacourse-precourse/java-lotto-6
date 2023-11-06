@@ -38,8 +38,7 @@ public class Service {
     private static void updateLottoResult(Map<Rank, Integer> result, int winningCount, boolean hasBonusNumber) {
 
         if (winningCount == Rank.FIRST.getNumberOfMatch()) result.put(Rank.FIRST, result.get(Rank.FIRST) + 1);
-        if (winningCount == Rank.SECOND.getNumberOfMatch() && hasBonusNumber)
-            result.put(Rank.SECOND, result.get(Rank.SECOND) + 1);
+        if (winningCount == Rank.SECOND.getNumberOfMatch() && hasBonusNumber) result.put(Rank.SECOND, result.get(Rank.SECOND) + 1);
         if (winningCount == Rank.THIRD.getNumberOfMatch()) result.put(Rank.THIRD, result.get(Rank.THIRD) + 1);
         if (winningCount == Rank.FOURTH.getNumberOfMatch()) result.put(Rank.FOURTH, result.get(Rank.FOURTH) + 1);
         if (winningCount == Rank.FIFTH.getNumberOfMatch()) result.put(Rank.FIFTH, result.get(Rank.FIFTH) + 1);

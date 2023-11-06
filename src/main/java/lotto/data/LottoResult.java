@@ -5,7 +5,7 @@ import lotto.constant.Rank;
 import java.util.Map;
 
 public class LottoResult {
-    Map<Rank,Integer> lottoResult;
+    Map<Rank, Integer> lottoResult;
 
     public LottoResult(Map<Rank, Integer> lottoResult) {
         this.lottoResult = lottoResult;

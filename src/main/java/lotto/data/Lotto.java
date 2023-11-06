@@ -18,7 +18,7 @@ public class Lotto {
         }
         //추가 구현
         Set<Integer> unduplicatedNumbers = new HashSet<>(numbers);
-        if(unduplicatedNumbers.size()!=6){
+        if (unduplicatedNumbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
@@ -30,9 +30,9 @@ public class Lotto {
     }
 
     public int countMatchNumbers(WinningNumbers winningNumbers) {
-        int count=0;
-        for(int i=0;i<numbers.size();i++){
-            if(winningNumbers.getWinningNumbers().contains(numbers.get(i))){
+        int count = 0;
+        for (int i = 0; i < numbers.size(); i++) {
+            if (winningNumbers.getWinningNumbers().contains(numbers.get(i))) {
                 count++;
             }
         }
@@ -40,7 +40,7 @@ public class Lotto {
     }
 
     public boolean isMatchBonusNumber(BonusNumber bonusNumber) {
-        if(numbers.contains(bonusNumber.get())){
+        if (numbers.contains(bonusNumber.get())) {
             return true;
         }
         return false;

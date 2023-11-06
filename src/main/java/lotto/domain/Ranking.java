@@ -3,10 +3,13 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotto.validator.Lotto;
+
 public class Ranking {
 
 	public static List<Rank> correct(String winningNumbers, String bonusNumber, List<List<Integer>> lottoTickets) {
 		List<Integer> winningNums = changeNumbers(winningNumbers);
+		Lotto lotto = new Lotto(winningNums);
 		List<Integer> matchNumber = numberMatch(winningNums, lottoTickets);
 		return determineRanks(matchNumber, bonusNumber, lottoTickets, winningNums);
 
@@ -64,4 +67,5 @@ public class Ranking {
 		}
 		return matchNumbers;
 	}
+
 }

@@ -1,5 +1,9 @@
 package lotto.game;
 
+import lotto.game.result.AfterLoopResult;
+import lotto.game.result.BeforeLoopResult;
+import lotto.game.result.GameLoopResult;
+
 public interface Game {
     default void awake() {
     }

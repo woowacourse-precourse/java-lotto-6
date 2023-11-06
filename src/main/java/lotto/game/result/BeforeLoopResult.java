@@ -1,4 +1,4 @@
-package lotto.game;
+package lotto.game.result;
 
 public enum BeforeLoopResult {
     GAME_READY,

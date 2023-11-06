@@ -1,4 +1,4 @@
-package lotto.exceptions;
+package lotto.game.exceptions;
 
 public class GameNullPointerException extends NullPointerException{
 }

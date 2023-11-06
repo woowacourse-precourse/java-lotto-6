@@ -1,6 +1,9 @@
 package lotto.game;
 
-import lotto.exceptions.GameNullPointerException;
+import lotto.game.exceptions.GameNullPointerException;
+import lotto.game.result.AfterLoopResult;
+import lotto.game.result.BeforeLoopResult;
+import lotto.game.result.GameLoopResult;
 
 public class GameManager {
     private final Game game;

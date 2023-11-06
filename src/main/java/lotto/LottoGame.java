@@ -1,13 +1,15 @@
 package lotto;
 
-import lotto.game.AfterLoopResult;
-import lotto.game.BeforeLoopResult;
+import lotto.game.result.AfterLoopResult;
+import lotto.game.result.BeforeLoopResult;
 import lotto.game.Game;
-import lotto.game.GameLoopResult;
+import lotto.game.result.GameLoopResult;
+import lotto.io.Output;
 
 public class LottoGame implements Game {
     @Override
     public BeforeLoopResult beforeLoop() {
+
         return BeforeLoopResult.GAME_READY;
     }
 

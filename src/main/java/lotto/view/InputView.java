@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.WinningNumber;
 import lotto.message.ExceptionMessage;
 
 public class InputView {
@@ -17,20 +18,18 @@ public class InputView {
         }
     }
 
-    public List<Integer> inputPrizeNumber(){
-        try {
-            String input = Console.readLine();
-            String[] numbersStr = input.split(",");
-            List<Integer> winningNumber = new ArrayList<>();
-            for (String numberStr : numbersStr) {
-                winningNumber.add(Integer.parseInt(numberStr.trim())); // trim()은 공백을 제거합니다.
+    public WinningNumber inputPrizeNumber(){
+        WinningNumber winningNumber = null;
+        while(winningNumber == null){
+            try {
+                String input = Console.readLine();
+                winningNumber =new WinningNumber(input);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
-
-            return winningNumber;
-        }catch (NumberFormatException e) {
-            System.out.println(ExceptionMessage.INVALID_WINNING_TYPE.getMessage());
-            throw new IllegalArgumentException();
         }
+
+        return winningNumber;
     }
 
     public int inputBonusNumber(){

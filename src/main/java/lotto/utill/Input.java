@@ -29,7 +29,7 @@ public class Input {
         String inputStringLine = Console.readLine().trim();
 // TODO: 11/6/23
         ValidateException.containsNonNumericCharacter(inputStringLine);
-        ValidateException.negative(inputStringLine);
+//        ValidateException.negative(inputStringLine);
 //        ValidateException.zeroNum(inputStringLine);
 
         return Utii.parseInteger(inputStringLine);

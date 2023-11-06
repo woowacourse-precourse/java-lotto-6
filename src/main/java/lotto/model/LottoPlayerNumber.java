@@ -22,7 +22,7 @@ public class LottoPlayerNumber {
     private List<Integer> generateLottoNumber() {
         Set<Integer> lottoPlayerNumber = new HashSet<>();
 
-        while (lottoPlayerNumber.size() <= LOTTO_NUMBER_COUNT) {
+        while (lottoPlayerNumber.size() < LOTTO_NUMBER_COUNT) {
             lottoPlayerNumber.add(Randoms.pickNumberInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX));
         }
         return sortLottoNumber(lottoPlayerNumber);

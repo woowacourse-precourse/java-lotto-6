@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import lotto.constant.LottoConstant;
-import lotto.exception.ExceptionMessage;
+import lotto.domain.exception.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;

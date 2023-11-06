@@ -1,8 +1,8 @@
 package lotto;
 
 import lotto.controller.LottoGameController;
-import lotto.exception.InfiniteRetryExceptionHandlingStrategy;
 import lotto.generator.RandomLottoGenerator;
+import lotto.handler.InfiniteRetryExceptionHandler;
 import lotto.service.LottoGameService;
 import lotto.view.LottoGameConsoleView;
 
@@ -11,7 +11,7 @@ public class Application {
         LottoGameController lottoGameController = new LottoGameController(
                 new LottoGameService(new RandomLottoGenerator()),
                 new LottoGameConsoleView(),
-                new InfiniteRetryExceptionHandlingStrategy());
+                new InfiniteRetryExceptionHandler());
         lottoGameController.run();
     }
 }

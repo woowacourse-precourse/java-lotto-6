@@ -2,7 +2,7 @@ package lotto.view.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.exception.ExceptionMessage;
+import lotto.view.exception.ExceptionMessage;
 
 public class LottoWinningNumberCreateRequest {
 
@@ -20,7 +20,7 @@ public class LottoWinningNumberCreateRequest {
         }
     }
 
-    private static int validateAndParseNumber(String stringNumber) {
+    private static int validateAndParseNumber(String stringNumber) throws IllegalArgumentException {
         int number;
         try {
             number = Integer.parseInt(stringNumber);

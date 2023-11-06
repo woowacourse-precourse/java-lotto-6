@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.function.Function;
 
-public interface ExceptionHandlingStrategy {
+public interface ExceptionHandler {
 
     Object applyFunction(LottoGameView lottoGameView, Function<LottoGameView, Object> function);
 }

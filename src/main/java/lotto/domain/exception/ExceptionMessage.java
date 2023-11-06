@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.domain.exception;
 
 import lotto.constant.LottoConstant;
 
@@ -7,8 +7,6 @@ public class ExceptionMessage {
     private ExceptionMessage() {
     }
 
-    public static final String INVALID_LOTTO_NUMBER_FORMAT =
-            "번호는 숫자여야 합니다.";
     public static final String LOTTO_NUMBER_OUT_OF_BOUND =
             "번호는 " + LottoConstant.LOTTO_START_NUMBER + " 이상, "
                     + LottoConstant.LOTTO_END_NUMBER + " 이하여야 합니다.";

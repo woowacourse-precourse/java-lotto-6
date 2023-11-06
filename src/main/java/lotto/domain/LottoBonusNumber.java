@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.constant.LottoConstant;
-import lotto.exception.ExceptionMessage;
+import lotto.domain.exception.ExceptionMessage;
 
 public class LottoBonusNumber {
 

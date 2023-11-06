@@ -16,13 +16,13 @@ import lotto.view.dto.LottoWinningStatistics;
 public class LottoGameController {
     private final LottoGameService lottoGameService;
     private final LottoGameView lottoGameView;
-    private final ExceptionHandlingStrategy exceptionHandlingStrategy;
+    private final ExceptionHandler exceptionHandler;
 
     public LottoGameController(LottoGameService lottoGameService, LottoGameView lottoGameView,
-                               ExceptionHandlingStrategy exceptionHandlingStrategy) {
+                               ExceptionHandler exceptionHandler) {
         this.lottoGameService = lottoGameService;
         this.lottoGameView = lottoGameView;
-        this.exceptionHandlingStrategy = exceptionHandlingStrategy;
+        this.exceptionHandler = exceptionHandler;
     }
 
     public void run() {
@@ -53,7 +53,7 @@ public class LottoGameController {
     }
 
     private LottoBonusNumber createLottoBonusNumber(LottoWinningNumber lottoWinningNumber) {
-        return (LottoBonusNumber) exceptionHandlingStrategy.applyFunction(lottoGameView,
+        return (LottoBonusNumber) exceptionHandler.applyFunction(lottoGameView,
                 view -> {
                     LottoBonusNumberCreateRequest lottoBonusNumberCreateRequest =
                             view.inputLottoBonusNumberCreateRequest();
@@ -63,7 +63,7 @@ public class LottoGameController {
     }
 
     private LottoWinningNumber createLottoWinningNumber() {
-        return (LottoWinningNumber) exceptionHandlingStrategy.applyFunction(lottoGameView,
+        return (LottoWinningNumber) exceptionHandler.applyFunction(lottoGameView,
                 view -> {
                     LottoWinningNumberCreateRequest lottoWinningNumberCreateRequest =
                             view.inputLottoWinningNumberCreateRequest();
@@ -73,7 +73,7 @@ public class LottoGameController {
 
 
     private LottoPurchase purchaseLotto() {
-        return (LottoPurchase) exceptionHandlingStrategy.applyFunction(lottoGameView,
+        return (LottoPurchase) exceptionHandler.applyFunction(lottoGameView,
                 view -> {
                     LottoPurchaseRequest lottoPurchaseRequest = view.inputPurchaseRequest();
                     return new LottoPurchase(lottoPurchaseRequest.getPurchaseAmount());

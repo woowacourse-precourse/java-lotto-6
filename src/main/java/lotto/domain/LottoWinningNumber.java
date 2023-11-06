@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoConstant;
-import lotto.exception.ExceptionMessage;
+import lotto.domain.exception.ExceptionMessage;
 
 public class LottoWinningNumber {
 

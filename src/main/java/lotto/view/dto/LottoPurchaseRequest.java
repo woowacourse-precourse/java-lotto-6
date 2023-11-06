@@ -1,6 +1,7 @@
 package lotto.view.dto;
 
-import lotto.exception.ExceptionMessage;
+
+import lotto.view.exception.ExceptionMessage;
 
 public class LottoPurchaseRequest {
 

@@ -1,10 +1,10 @@
-package lotto.exception;
+package lotto.handler;
 
 import java.util.function.Function;
-import lotto.controller.ExceptionHandlingStrategy;
+import lotto.controller.ExceptionHandler;
 import lotto.controller.LottoGameView;
 
-public class InfiniteRetryExceptionHandlingStrategy implements ExceptionHandlingStrategy {
+public class InfiniteRetryExceptionHandler implements ExceptionHandler {
 
     @Override
     public Object applyFunction(LottoGameView lottoGameView, Function<LottoGameView, Object> function) {

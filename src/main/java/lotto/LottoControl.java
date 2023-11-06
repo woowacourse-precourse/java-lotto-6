@@ -4,6 +4,7 @@ import static java.lang.Integer.parseInt;
 
 public class LottoControl {
     public static int inputLottoPrice() {
+        LottoView.signalInputLottoPrice();
         String boughtLottoPrice = Console.readLine();
         inputLottoPriceErrorCheck(parseInt(boughtLottoPrice));
 
@@ -19,6 +20,7 @@ public class LottoControl {
     }
 
     public static Lotto inputWinningNumbers() {
+        LottoView.signalInputWinningNumbers();
         String[] winningNumbers = Console.readLine().split(",");
 
         inputWinningNumbersErrorCheck(winningNumbers);
@@ -45,6 +47,8 @@ public class LottoControl {
     }
 
     public static int inputBonusNumber(Lotto winningNumbers) {
+        LottoView.signalInputBonusNumber();
+
         int bonusNumber = parseInt(Console.readLine());
 
         inputBonusNumberErrorCheck(bonusNumber, winningNumbers);

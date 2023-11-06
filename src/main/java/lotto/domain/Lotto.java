@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.domain.ErrorMessage.*;
+import static lotto.utils.CalculationUtils.hasDuplicates;
 import static lotto.utils.CalculationUtils.isNumberInRange;
 
 import java.util.List;
@@ -22,6 +23,10 @@ public class Lotto {
             if (!isNumberInRange(number, 1, 45)) {
                 throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
             }
+        }
+
+        if (hasDuplicates(numbers)) {
+            throw new IllegalArgumentException(LOTTO_COMBINATION_DO_NOT_HAVE_DUPLICATES.getErrorMessage());
         }
     }
 }

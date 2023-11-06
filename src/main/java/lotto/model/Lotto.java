@@ -1,8 +1,16 @@
 package lotto.model;
 
 import static java.util.Arrays.stream;
+import static lotto.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.ErrorMessage.ERROR_MESSAGE;
+import static lotto.ErrorMessage.OVER_LOTTO_BOUNDARY;
+import static lotto.ErrorMessage.OVER_LOTTO_SIZE;
+import static lotto.configuration.LottoConfiguration.LOTTO_BOUNDARY_END_NUMBER;
+import static lotto.configuration.LottoConfiguration.LOTTO_BOUNDARY_START_NUMBER;
+import static lotto.configuration.LottoConfiguration.LOTTO_SIZE;
 
 import java.util.List;
+import lotto.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,8 +27,8 @@ public class Lotto {
     }
 
     private void validateOverSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[Error] 로또 번호의 개수가 6개가 넘어갔습니다.");
+        if (numbers.size() != LOTTO_SIZE.get()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE.getMessage()+OVER_LOTTO_SIZE.getMessage());
         }
     }
 
@@ -29,14 +37,14 @@ public class Lotto {
                 .distinct()
                 .count();
         if (distinctListSize != numbers.size()) {
-            throw new IllegalArgumentException("[Error] 로또 번호가 중복 됐습니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE.getMessage()+DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
     private void validateInRange(List<Integer> numbers) {
         numbers.forEach(number -> {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[Error] 범위 밖의 로또 번호가 포함되었습니다.");
+            if (number < LOTTO_BOUNDARY_START_NUMBER.get() || number > LOTTO_BOUNDARY_END_NUMBER.get()) {
+                throw new IllegalArgumentException(ERROR_MESSAGE.getMessage()+OVER_LOTTO_BOUNDARY.getMessage());
             }
         });
     }

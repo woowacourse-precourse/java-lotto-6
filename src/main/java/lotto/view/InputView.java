@@ -25,6 +25,7 @@ public class InputView {
     OutputView.printInputBonusNumberMessage();
     String bonusNumber = Console.readLine();
     BonusNumberValidator.isValueInRange(bonusNumber);
+    BonusNumberValidator.isAllIntegersValid(bonusNumber);
     return Integer.parseInt(bonusNumber);
   }
 }

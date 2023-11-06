@@ -1,35 +1,39 @@
 package lotto.view.inputview;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
-import lotto.view.outputview.OutputView;
+import lotto.domain.lotto.WinningNumbers;
 
 public class InputView {
-    private static final Map<String, String> inputMessages = new HashMap<>();
 
-    static {
-        inputMessages.put("purchasePrice", "구입금액을 입력해 주세요.");
-        inputMessages.put("winningNumbers", "\n당첨 번호를 입력해 주세요.");
-        inputMessages.put("bonusNumber", "\n보너스 번호를 입력해 주세요.");
-    } // 클래스 처음 로딩 시 실행되는 초기화
-
-    public static Object inputValue(String key, Function<String, Object> numberCreateFunction) {
+    public static Object inputValue(InputValueType inputValueType) {
         while (true) {
             try {
-                System.out.println(getInputMessage(key));
+                System.out.println(inputValueType.getMessage());
+
+                Function<String, Object> createFunction = inputValueType.getCreateFunction();
                 String input = Console.readLine();
 
-                return numberCreateFunction.apply(input);
+                return createFunction.apply(input);
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e.getMessage());
             }
         }
     }
 
-    private static String getInputMessage(String key) {
-        return inputMessages.get(key);
+    public static Object inputValue(InputValueType inputValueType, WinningNumbers winningNumbers) {
+        while (true) {
+            try {
+                System.out.println(inputValueType.getMessage());
+
+                Function<String, Object> createFunction = inputValueType.getCreateFunction(winningNumbers);
+                String input = Console.readLine();
+
+                return createFunction.apply(input);
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private static void printErrorMessage(String errorMessage) {

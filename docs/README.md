@@ -132,9 +132,13 @@
 <td colspan="3" align="center">👀View</td>
 </tr>
 <tr>
-<td>inputview</td>
+<td rowspan="2">inputview</td>
 <td>InputView</td>
-<td>사용자 입력값을 받기위한 메시지의 관리와 입력값을 받는 메서드들에 대한 공통처리.</td>
+<td>사용자 입력값을 받기 위한 출력과 입력의 공통처리를 담당하는 클래스.</td>
+</tr>
+<tr>
+<td>InputValueType</td>
+<td>사용자 입력값을 받기위한 메시지와 입력값 객체 생성 메서드들의 관리를 담당하는 Enum 클래스.</td>
 </tr>
 <tr>
 <td rowspan="4">outputview</td>
@@ -154,4 +158,3 @@
 <td>포맷에 맞추어 로또 결과 출력을 담당하는 클래스. </td>
 </tr>
 </table>
-

@@ -41,8 +41,8 @@ public class BonusNumber {
         }
     }
 
-    private static boolean isContained(String bonusNumber, WinningNumbers winningNumbers) {
-        return winningNumbers.getNumbers().contains(Integer.parseInt(bonusNumber));
+    private boolean isContained(String bonusNumber, WinningNumbers winningNumbers) {
+        return winningNumbers.getNumbers().contains(parseBonusNum(bonusNumber));
     }
 
     private int parseBonusNum(String bonusNumber) {

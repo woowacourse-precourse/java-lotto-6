@@ -8,6 +8,7 @@ import lotto.domain.lotto.PurchasePrice;
 import lotto.domain.lotto.WinningNumbers;
 import lotto.service.LottoChecker;
 import lotto.view.inputview.InputView;
+import lotto.view.inputview.InputValueType;
 import lotto.view.outputview.OutputView;
 
 public class LottoController {
@@ -42,17 +43,14 @@ public class LottoController {
     }
 
     private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
-        return (BonusNumber) InputView.inputValue("bonusNumber",
-                inputBonusNum -> BonusNumber.create(inputBonusNum, winningNumbers));
+        return (BonusNumber) InputView.inputValue(InputValueType.BONUS_NUMBER, winningNumbers);
     }
 
     private WinningNumbers getWinningNumbers() {
-        return (WinningNumbers) InputView.inputValue("winningNumbers",
-                WinningNumbers::create);
+        return (WinningNumbers) InputView.inputValue(InputValueType.WINNING_NUMBERS);
     }
 
     private PurchasePrice getPurchasePrice() {
-        return (PurchasePrice) InputView.inputValue("purchasePrice",
-                PurchasePrice::create);
+        return (PurchasePrice) InputView.inputValue(InputValueType.PURCHASE_PRICE);
     }
 }

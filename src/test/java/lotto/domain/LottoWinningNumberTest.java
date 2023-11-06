@@ -39,6 +39,18 @@ class LottoWinningNumberTest {
     }
 
     @Test
+    public void 로또_번호_갯수가_중복되면_LottoWinningNumberCreate_를_생성_시_예외가_발생한다() throws Exception {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+
+        // when
+        // then
+        assertThatThrownBy(() -> {
+            new LottoWinningNumber(numbers);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     public void 범위_초과의_로또_번호로_LottoWinningNumberCreate_를_생성_시_예외가_발생한다() throws Exception {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, LottoConstant.LOTTO_END_NUMBER + 1);

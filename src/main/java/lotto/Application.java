@@ -115,6 +115,14 @@ public class Application {
                 System.out.println("6 개 일치 " + prizeNames[i] + " - " + count + "개");
             }
         }
+
+        // 수익 계산
+        double totalPrize = calculateTotalPrize(matchCounts, prizeMoney);
+        double totalCost = matchCounts[0] * 1000; // 1장당 1000원
+        double profitRate = ((totalPrize - totalCost) / totalCost) * 100.0;
+        profitRate = Math.round(profitRate * 10) / 10.0; // 소수점 둘째 자리에서 반올림
+
+        System.out.println("총 수익률은 " + profitRate + "% 입니다.");
     }
 
 
@@ -147,6 +155,14 @@ public class Application {
             return 7; // 인덱스 7번에 배정
         }
         return matchCount;
+    }
+
+    private static double calculateTotalPrize(int[] matchCounts, int[] prizeMoney) {
+        double totalPrize = 0;
+        for (int i = 3; i < matchCounts.length; i++) {
+            totalPrize += matchCounts[i] * prizeMoney[i];
+        }
+        return totalPrize;
     }
 }
 

@@ -10,15 +10,19 @@ public enum ConstantMessage {
 
     WINNING_RESULT("당첨 통계"),
     THREE_DASH("---"),
-
-    THREE_MATCHES("3개 일치 ("+ THREE_MATCHES_MONEY.getMoney() + "원) - "),
-    FOUR_MATCHES("4개 일치 ("+ FOUR_MATCHES_MONEY.getMoney() +") - "),
-    FIVE_MATCHES("5개 일치 ("+ FIVE_MATCHES_MONEY.getMoney() +") - "),
-    FIVE_BONUS_MATCHES("5개 일치, 보너스 볼 일치 ("+ FIVE_BONUS_MATCHES_MONEY.getMoney() +") - "),
-    SIX_MATCHES("6개 일치 ("+ SIX_MATCHES_MONEY.getMoney() +") - "),
+    THREE_MATCHES_MONEY("5,000"),
+    FOUR_MATCHES_MONEY("50,000"),
+    FIVE_MATCHES_MONEY("1,500,000"),
+    FIVE_BONUS_MATCHES_MONEY("30,000,000"),
+    SIX_MATCHES_MONEY("2,000,000,000"),
+    THREE_MATCHES("3개 일치 ("+ THREE_MATCHES_MONEY.getMessage() + "원) - "),
+    FOUR_MATCHES("4개 일치 ("+ FOUR_MATCHES_MONEY.getMessage() +"원) - "),
+    FIVE_MATCHES("5개 일치 ("+ FIVE_MATCHES_MONEY.getMessage() +"원) - "),
+    FIVE_BONUS_MATCHES("5개 일치, 보너스 볼 일치 ("+ FIVE_BONUS_MATCHES_MONEY.getMessage() +"원) - "),
+    SIX_MATCHES("6개 일치 ("+ SIX_MATCHES_MONEY.getMessage() +"원) - "),
     EA("개"),
     TOTAL_RETURN("총 수익률은 "),
-    IPNIDA("입니다.");
+    IPNIDA("%입니다.");
 
 
     private final String message;

@@ -3,6 +3,14 @@
 - [ ] 로또 게임 기능을 시작한다
     - LottoGame.start()
     - LottoGame.isGaming : 게임 중임을 나타내는 boolean 변수
+- [x] 로또 구입 금액을 입력한다. 잘못 입력할시 다시 입력하도록 한다.
+    - LottoGame.money: 구입한 총 금액
+    - LottoGame.inputMoney() : 로또를 위해 돈 넣기
+- [x] 로또 구입 금액을 입력 받는다. 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
+    - LottoGame.validateThousandWonUnits() : 입력값이 천원 단위인지 검증
+- [ ] 금액만큼 로또 티켓을 발행한다. 로또 1장의 가격은 1,000원이다.
+    - LottoGame.lottoTickets<Lotto> : 구입된 로또 티켓 리스트(로또 객체)
+    - LottoGame.generateLottoTickets() : 입력된 금액에 따라 로또 티켓 발행하기
 - [ ] 로또 번호의 숫자 범위는 1~45까지이다, 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
     - LottoGame.winningNumbers : 당첨 번호
     - LottoGame.pickWinningNumbers() : 당첨 번호 뽑기
@@ -22,11 +30,6 @@
     ```
     - LottoGame.getLottoRank() : 숫자를 입력받아 등수를 판별
     - LottoGame.getMoneyForRank() : 등수를 입력받아 당첨금액을 반환
-- [ ] 로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 로또를 발행해야 한다.
-- [ ] 로또 1장의 가격은 1,000원이다.
-    - LottoGame.lottoTickets<Lotto>
-    - LottoGame.inputMoney() : 로또를 위해 돈 넣기
-    - LottoGame.generateLottoTickets() : 입력된 금액에 따라 로또 티켓 발행하기
 - [ ] 당첨 번호와 보너스 번호를 입력받는다.
     - Lotto.inputNumbers()
     - Lotto.inputBonusNumber()
@@ -40,8 +43,6 @@
     Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
     ```
     - Lotto.validate() : LottoGame이 아닌 Lotto 객체가 입력받을때 직접 검증하고 출력
-- [ ] 로또 구입 금액을 입력 받는다. 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
-    - LottoGame.validateThousandWonUnits() : 입력값이 천원 단위인지 검증
 - [ ] Enum을 사용하여 문자열, 숫자등의 값은 상수로 관리
     - Constant Enum 생성
 

@@ -11,7 +11,6 @@ public class Lotto {
     }
 
     private void inputNumbers() {
-
     }
 
     private void inputBonusNumber() {

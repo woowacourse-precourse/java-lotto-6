@@ -2,9 +2,9 @@ package lotto.validator;
 
 import lotto.exception.ExceptionMessage;
 
-public class PurchaseLottoValidator {
+import static lotto.domain.LottoStore.LOTTO_PRICE;
 
-    private static final int LOTTO_PRICE = 1000;
+public class PurchaseLottoValidator {
     private static final int MAXIMUM_PRICE = 100000;
 
 

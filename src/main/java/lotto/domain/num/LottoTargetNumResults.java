@@ -8,8 +8,6 @@ import java.util.List;
 public class LottoTargetNumResults {
     // TODO: 11/6/23 상수 관리 
     private static final Integer BONUS_INDEX_NUM = 6;
-    private static final Integer START_PICK_NUM_INDEX = 0;
-    private static final Integer END_PICK_NUM_INDEX = 5;
     private static final Integer SIZE_WIN_NUMBERS = 6;
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
@@ -49,11 +47,6 @@ public class LottoTargetNumResults {
 
     private boolean isSameBonusNumber(Integer indexOfSpecial) {
         return Utii.isSameInt(indexOfSpecial, BONUS_INDEX_NUM);
-    }
-
-    private boolean isContainScopeOfWinNums(Integer indexOfSpecial) {
-        return indexOfSpecial >= START_PICK_NUM_INDEX
-                && indexOfSpecial <= END_PICK_NUM_INDEX;
     }
 
 }

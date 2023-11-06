@@ -23,7 +23,7 @@ public class LottoResult {
 
     public double calculateProfitRate(Payment payment) {
         long totalPrizeMoney = calculateTotalPrizeMoney();
-        return (double) totalPrizeMoney / payment.getAmount();
+        return (double) totalPrizeMoney / payment.getAmount() * 100;
     }
 
     private long calculateTotalPrizeMoney() {

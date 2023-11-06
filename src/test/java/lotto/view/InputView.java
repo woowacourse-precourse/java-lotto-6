@@ -20,7 +20,7 @@ public class InputView {
         return convertToNumber(reader.readLine());
     }
 
-    private int convertToNumber(String input) {
+    private int convertToNumber(final String input) {
         try {
             return Integer.parseInt(checkAmountIsNull(input));
         } catch (NumberFormatException e) {
@@ -28,7 +28,7 @@ public class InputView {
         }
     }
 
-    private String checkAmountIsNull(String input) {
+    private String checkAmountIsNull(final String input) {
         try {
             return input.trim();
         } catch (NullPointerException e) {

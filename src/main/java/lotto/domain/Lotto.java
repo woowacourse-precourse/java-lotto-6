@@ -57,7 +57,7 @@ public class Lotto {
         }
     }
 
-    public void lottoResultSearch(List<List<Integer>> allLotto) {
-        LottoResult.countResult(allLotto, numbers);
+    public void lottoResultSearch(List<List<Integer>> allLotto, int bonusNum) {
+        LottoResult.countResult(allLotto, numbers, bonusNum);
     }
 }

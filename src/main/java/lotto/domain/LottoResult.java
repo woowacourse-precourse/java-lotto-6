@@ -21,17 +21,18 @@ public enum LottoResult {
         this.numOfMatches = numOfMatches;
     }
 
-    public static void countResult(List<List<Integer>> allLotto, List<Integer> numbers) {
+    public static void countResult(List<List<Integer>> allLotto, List<Integer> numbers, int bonusNum) {
         LottoResult[] lottoResultValues = LottoResult.values();
         for (List<Integer> eachLotto:allLotto) {
             int cntCorrNum = eachCount(eachLotto, numbers);
             if (cntCorrNum < 3) {
                 continue;
             }
-            if (cntCorrNum == 5) {
-
+            if (cntCorrNum == 4) {
+                cntCorrNum += isBonusNumInLotto(bonusNum, numbers);
             }
-            System.out.println(lottoResultValues[cntCorrNum - 3]);
+            LottoResult lottoResultSaveName = lottoResultValues[cntCorrNum - 3];
+            lottoResultSaveName.numOfMatches += 1;
         }
     }
 
@@ -47,6 +48,13 @@ public enum LottoResult {
         if (numbers.contains(eachNum)) {
             return 1;
         }
+        return 0;
+    }
+
+    public static int isBonusNumInLotto(int bonusNum, List<Integer> numbers) {
+        if (isInLotto(bonusNum, numbers) == 1) {
+            return 2;
+        };
         return 0;
     }
 

@@ -31,7 +31,7 @@ public class LottoController {
         }
         OutputViews.endOfSection();
 
-        lotto.lottoResultSearch(allLotto);
+        lotto.lottoResultSearch(allLotto, bonusNumInput);
     }
 
     public boolean readPurchaseLotto() {

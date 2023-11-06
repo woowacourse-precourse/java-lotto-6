@@ -1,2 +1,23 @@
-package lotto.utils;public class ValidateCheck {
+package lotto.utils;
+
+import lotto.enums.Constants;
+
+import java.util.List;
+
+public class ValidateCheck {
+    public static void numberCountValidate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void numberDupulicationValidate(List<Integer> numbers) {
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static boolean inputAmountValidate(int amount){
+        return amount%Constants.LOTTO_PRICE.getNumber()==0;
+    }
 }

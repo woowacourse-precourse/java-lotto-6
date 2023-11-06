@@ -33,4 +33,8 @@ public class LottoPurchase {
 
         return lottoTickets;
     }
+
+    public long getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

@@ -48,4 +48,14 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public int countMatches(Lotto lotto) {
+        return (int) getNumbers().stream()
+                .filter(number -> lotto.getNumbers().contains(number))
+                .count();
+    }
+
+    public boolean matchWithBonus(Bonus bonus) {
+        return getNumbers().contains(bonus.getNumber());
+    }
 }

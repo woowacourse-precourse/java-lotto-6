@@ -149,7 +149,16 @@ public class LottoServiceImpl implements LottoService {
      */
     @Override
     public int computeEarnings(Map<MatchType, Integer> winningStatistics) {
-        return 0;
+
+        int earnings = 0;
+
+        for (MatchType matchType : winningStatistics.keySet()) {
+            int prizeMoney = matchType.getPrizeMoney();
+            Integer count = winningStatistics.get(matchType);
+            earnings += prizeMoney * count;
+        }
+
+        return earnings;
     }
 
     /**

@@ -4,7 +4,6 @@ import lotto.domain.constants.LottoConstraint;
 import lotto.domain.lottery.BonusNumber;
 import lotto.domain.lottery.Lotto;
 import lotto.domain.lottery.Lottos;
-import lotto.domain.lottery.WinningLotto;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -26,7 +25,7 @@ public class Computer {
     }
 
     public void checkWinningLotto(Lottos purchasedLotto
-            , WinningLotto winningLotto
+            , Lotto winningLotto
             , BonusNumber bonusNumber
             , Map<Integer, Integer> winningStats) {
 
@@ -49,7 +48,7 @@ public class Computer {
     }
 
 
-    private int countMatchedNumbers(Lotto lotto, WinningLotto winningLotto) {
+    private int countMatchedNumbers(Lotto lotto, Lotto winningLotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         List<Integer> winningNumbers = winningLotto.getNumbers();
 

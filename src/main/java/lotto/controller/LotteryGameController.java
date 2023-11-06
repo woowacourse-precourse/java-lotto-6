@@ -26,7 +26,7 @@ public class LotteryGameController {
 
     private int lottoAmount;
     private final Lottos purchasedLotto = new Lottos();
-    private WinningLotto winningLotto;
+    private Lotto winningLotto;
     private BonusNumber bonusNumber;
 
     public void run() {
@@ -74,7 +74,7 @@ public class LotteryGameController {
     private void requestWinningNumber() {
         OutputView.requestWinningNumberMessage();
 
-        winningLotto = new WinningLotto(inputWinningNumber());
+        winningLotto = new Lotto(inputWinningNumber());
     }
 
     private List<Integer> inputWinningNumber() {

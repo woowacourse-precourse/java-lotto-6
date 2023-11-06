@@ -3,6 +3,7 @@ package lotto.domain.host;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.Config;
 import lotto.domain.num.LottoTargetNumResults;
+import lotto.utill.Utii;
 
 public class LottoHost {
     private String winNumbers;
@@ -10,14 +11,22 @@ public class LottoHost {
 
     public String pickWinNumbers() {
         // TODO: 11/5/23 입력 체크.
-        winNumbers = Console.readLine();
+        winNumbers = Utii.InputStringLine();
+
+
         return winNumbers;
     }
 
     public String pickBonusNumber() {
         // TODO: 11/5/23 입력 체크.
-        bonusNumbers = Console.readLine();
+        bonusNumbers = inputBonusNumbers();
         return bonusNumbers;
+    }
+
+    private String inputBonusNumbers() {
+        String inputBonusNumber = Console.readLine();
+
+        return inputBonusNumber;
     }
 
 
@@ -25,23 +34,4 @@ public class LottoHost {
         return Config.lottoTargetNumResults(winNumbers, bonusNumbers);
     }
 
-    /**
-     * 중복되는 번호가 있는지 확인한다.
-     *
-     * @return
-     */
-    // TODO: 11/5/23 삭제 
-//    public Boolean checkDuplicateWinNum(String targetNum) {
-//        Boolean isSame = false;
-//        Integer target = Integer.valueOf(targetNum);
-//
-//        for (int indexOfSpecial = 0; indexOfSpecial < 7; indexOfSpecial++) {
-//            isSame = lottoNumResults.isSame(target, indexOfSpecial);
-//            if (isSame) {
-//                return true;
-//            }
-//        }
-//
-//        return false;
-//    }
 }

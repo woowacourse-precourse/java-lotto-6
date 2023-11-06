@@ -55,7 +55,6 @@ public class Process {
         return lottoHost.pickWinNumbers();
     }
 
-    // TODO: 11/5/23  로또 진행자가 보너스 번호를 입력한다.
     public String pickBonusNumber() {
         return lottoHost.pickBonusNumber();
     }

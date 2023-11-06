@@ -2,7 +2,6 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.enums.Constants;
-import lotto.enums.Messages;
 import lotto.utils.Split;
 import lotto.utils.ValidateCheck;
 
@@ -10,13 +9,9 @@ import java.util.List;
 
 public class InputView {
     public static int intputAmount(String input){
-        if(!ValidateCheck.pureIntegerCheck(input)){
-            throw new IllegalArgumentException(Messages.PURE_INTEGER_ERROR_MESSAGE.getMessage());
-        }
+        ValidateCheck.pureIntegerCheck(input);
         int amount = Integer.parseInt(input);
-        if(!ValidateCheck.inputAmountValidate(amount)){
-            throw new IllegalArgumentException(Messages.PRICE_DEVIDE_ERROR_MESSAGE.getMessage());
-        }
+        ValidateCheck.inputAmountValidate(amount)
         return amount/Constants.LOTTO_PRICE.getNumber();
     }
 
@@ -32,4 +27,5 @@ public class InputView {
         ValidateCheck.numbersRangeValidate(winNumbers);
         return winNumbers;
     }
+
 }

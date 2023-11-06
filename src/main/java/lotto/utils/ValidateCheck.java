@@ -26,16 +26,17 @@ public class ValidateCheck {
         }
     }
 
-    public static boolean pureIntegerCheck(String number){
+    public static void pureIntegerCheck(String number){
         try {
             int convertNumber = Integer.parseInt(number);
         } catch (NumberFormatException e){
-            return false;
+            throw new IllegalArgumentException(Messages.PURE_INTEGER_ERROR_MESSAGE.getMessage());
         }
-        return true;
     }
 
-    public static boolean inputAmountValidate(int amount){
-        return amount%Constants.LOTTO_PRICE.getNumber()==0;
+    public static void inputAmountValidate(int amount){
+        if (amount%Constants.LOTTO_PRICE.getNumber()!=0){
+            throw new IllegalArgumentException(Messages.PRICE_DEVIDE_ERROR_MESSAGE.getMessage());
+        }
     }
 }

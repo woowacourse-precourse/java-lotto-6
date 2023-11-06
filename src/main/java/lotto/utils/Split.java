@@ -10,9 +10,7 @@ public class Split {
         String[] inputNumbers = input.split(",");
         List<Integer> numbers = new ArrayList<>();
         for(String number : inputNumbers){
-            if(!ValidateCheck.pureIntegerCheck(number)){
-                throw new IllegalArgumentException(Messages.NUMBER_RANGE_ERROR_MESSAGE.getMessage());
-            }
+            ValidateCheck.pureIntegerCheck(number);
             numbers.add(Integer.parseInt(number));
         }
         return numbers;

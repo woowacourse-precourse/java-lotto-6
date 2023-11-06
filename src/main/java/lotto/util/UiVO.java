@@ -18,7 +18,7 @@ public class UiVO {
     private static final String BOUGHT_LOTTO_CNT = "개를 구매했습니다.";
     private static final String WINNING_NUMBER_INPUT_TEXT = "\n당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_TEXT = "\n보너스 번호를 입력해 주세요.";
-    private static final String WINNING_STATISTICS = "당첨 통계\n---";
+    private static final String WINNING_STATISTICS = "\n당첨 통계\n---\n";
     private static final String MATCHES_FORMAT = "%s개 일치 (%s원) - %d개\n";
     private static final String TOTAL_RETURN_FORMAT = "총 수익률은 %f입니다.";
 
@@ -50,6 +50,14 @@ public class UiVO {
         return LOTTO_NUMBER_EXCEPTION;
     }
 
+    public static String getMatchesFormat() {
+        return MATCHES_FORMAT;
+    }
+
+    public static String getWinningStatistics() {
+        return WINNING_STATISTICS;
+    }
+
     public static void printPurchaseAmountInputText() {
         System.out.println(PURCHASE_AMOUNT_INPUT_TEXT);
         ;
@@ -70,31 +78,19 @@ public class UiVO {
     public static void printLottos(List<Lotto> lottos) {
 
         for (Lotto lotto : lottos) {
-            printLottoNumbers(lotto);
+            lotto.printMyLottoNumbers();
         }
-    }
-
-    private static void printLottoNumbers(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
-
-        StringBuilder sb = new StringBuilder("[");
-        for (Integer number : numbers) {
-            sb.append(number + ", ");
-        }
-
-        sb.deleteCharAt(sb.length() - 2);
-        sb.append("]");
-
-        System.out.println(sb.toString());
     }
 
     public static void printWinningStatistics(Map<MatchType, Integer> winningStatistics) {
-        System.out.println(new StringBuilder(WINNING_STATISTICS)
-                .append(String.format(MATCHES_FORMAT, "3", "5,000", winningStatistics.get(MatchType.THREE)))
-                .append(String.format(MATCHES_FORMAT, "4", "50,000", winningStatistics.get(MatchType.FOUR)))
-                .append(String.format(MATCHES_FORMAT, "5", "1,500,000", winningStatistics.get(MatchType.FIVE)))
-                .append(String.format(MATCHES_FORMAT, "5", "30,000,000", winningStatistics.get(MatchType.FIVE_BONUS)))
-                .append(String.format(MATCHES_FORMAT, "6", "2,000,000,000", winningStatistics.get(MatchType.SIX))));
+        StringBuilder sb = new StringBuilder(UiVO.getWinningStatistics());
+        for (MatchType matchType : MatchType.values()) {
+            sb.append(String.format(UiVO.getMatchesFormat(),
+                    matchType.getSameNumbersCount(),
+                    matchType.getPrizeMoney(),
+                    winningStatistics.getOrDefault(matchType, 0)));
+        }
+        System.out.println(sb);
     }
 
     public static void printTotalReturn(double totalReturn) {

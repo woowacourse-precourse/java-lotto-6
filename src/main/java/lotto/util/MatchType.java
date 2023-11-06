@@ -21,21 +21,22 @@ public enum MatchType {
         this.prizeMoney = prizeMoney;
     }
 
+    public int getSameNumbersCount() {
+        return sameNumbersCount;
+    }
+
+    public boolean isBonusNumberIncluded() {
+        return bonusNumberIncluded;
+    }
+
+    public String getPrizeMoney() {
+        return prizeMoney;
+    }
+
     public static Optional<MatchType> valueOf(int sameNumbersCount, boolean bonusNumberIncluded) {
         return Arrays.stream(MatchType.values())
                 .filter(matchType -> matchType.sameNumbersCount == sameNumbersCount
                         && matchType.bonusNumberIncluded == bonusNumberIncluded)
                 .findFirst();
-    }
-
-    public static void printWinningStatistics(Map<MatchType, Integer> winningStatistics) {
-        StringBuilder sb = new StringBuilder(UiVO.getWinningStatistics());
-        for (MatchType matchType : MatchType.values()) {
-            sb.append(String.format(UiVO.getMatchesFormat(),
-                    matchType.sameNumbersCount,
-                    matchType.prizeMoney,
-                    winningStatistics.getOrDefault(matchType, 0)));
-        }
-        System.out.println(sb);
     }
 }

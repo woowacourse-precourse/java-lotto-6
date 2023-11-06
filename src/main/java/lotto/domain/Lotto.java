@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.util.LottoVO;
 import lotto.util.UiVO;
 
@@ -33,8 +34,15 @@ public class Lotto {
         }
     }
 
+    public void printMyLottoNumbers() {
+
+        List<String> lottoNumberText = this.numbers.stream().map(String::valueOf).collect(Collectors.toList());
+        String lottoNumbers = String.join(", ", lottoNumberText);
+        System.out.println("[" + lottoNumbers + "]");
+    }
+
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return Collections.unmodifiableList(this.numbers);
     }
 
     public int countSameNumbers(List<Integer> winningNumbers) {

@@ -26,7 +26,7 @@ public class Money {
     }
 
     public String getProfit(int prizeMoney) {
-        return String.format(RATE_FORMAT, (double) prizeMoney / amount);
+        return String.format(RATE_FORMAT, (double) prizeMoney / amount * 100.0);
     }
 
     private static void validateType(String inputAmount) {

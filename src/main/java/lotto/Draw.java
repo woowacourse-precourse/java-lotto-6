@@ -30,6 +30,7 @@ public class Draw {
         int bonusNum;
         while (true) {
             try {
+                printBonusNumEnterGuideStatement();
                 String input = Console.readLine();
                 bonusNum = toInt(input);
                 isWithinRange(bonusNum);
@@ -86,6 +87,10 @@ public class Draw {
 
     private void printWinningLottoNumsEnterGuideStatement() {
         System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    private void printBonusNumEnterGuideStatement() {
+        System.out.println("보너스 번호를 입력해 주세요.");
     }
 
     public List<Lotto> issueLottos(int num) {

@@ -31,11 +31,11 @@ public class OutputView {
         System.out.println(Constants.SEPERATOR_LINE);
         for (Rank rank : Rank.values()) {
             if (rank == Rank.MATCH_5_BONUS) {
-                System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개 ", rank.getPrize(), rankCount.getOrDefault(rank, 0));
+                System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개%n", rank.getPrize(), rankCount.getOrDefault(rank, 0));
                 continue;
             }
             if (rank != Rank.MATCH_5_BONUS) {
-                System.out.printf("%d개 일치 (%,d원) - %d개 ", rank.getCountOfMatch(), rank.getPrize(),
+                System.out.printf("%d개 일치 (%,d원) - %d개%n", rank.getCountOfMatch(), rank.getPrize(),
                         rankCount.getOrDefault(rank, 0));
             }
         }

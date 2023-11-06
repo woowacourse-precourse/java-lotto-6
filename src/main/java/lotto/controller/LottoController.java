@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.*;
+import lotto.utils.Retry;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,8 +17,8 @@ public class LottoController {
     }
 
     public void run() {
-        LottoTicket lottoTicket = buyLottoTicket();
-        WinLotto winLotto = registerWinLotto();
+        LottoTicket lottoTicket = Retry.retryOnException(() -> buyLottoTicket());
+        WinLotto winLotto = Retry.retryOnException(() -> registerWinLotto());
         calculateWinStatistics(lottoTicket, winLotto);
     }
 
@@ -30,8 +31,8 @@ public class LottoController {
     }
 
     private WinLotto registerWinLotto() {
-        Lotto lotto = new Lotto(inputView.inputWinNumbers());
-        LottoNumber bonusNumber = new LottoNumber(inputView.inputBonusNumber());
+        Lotto lotto = Retry.retryOnException(() -> new Lotto(inputView.inputWinNumbers()));
+        LottoNumber bonusNumber = Retry.retryOnException(() -> new LottoNumber(inputView.inputBonusNumber()));
         return new WinLotto(lotto, bonusNumber);
     }
 

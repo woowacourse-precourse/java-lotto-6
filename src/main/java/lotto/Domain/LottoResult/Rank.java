@@ -8,13 +8,13 @@ public enum Rank {
     FIFTH(5),
     MISS(0);
 
-    private Integer rank;
+    private int rank;
 
-    Rank(Integer rank) {
+    Rank(int rank) {
         this.rank = rank;
     }
 
-    public Integer getRank() {
+    public int getRank() {
         return rank;
     }
 }

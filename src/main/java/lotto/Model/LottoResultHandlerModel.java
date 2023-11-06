@@ -19,14 +19,16 @@ public class LottoResultHandlerModel {
         lottoResult = new LottoResult();
         this.winningLotto = winningLotto;
         this.lottoGroup = lottoGroup;
+        checkAllWinning();
     }
 
     public void checkAllWinning() {
         for (int i = 0; i < lottoGroup.findLottoNumbersSize(); i++) {
             Lotto lottoByIndex = lottoGroup.findLottoByIndex(i);
             Integer matchCount = checkWinning(winningLotto.getLotto(), lottoByIndex);
-            Integer prize = convertRank(matchCount, checkBonusNumber(lottoByIndex));
-            lottoResult.addPrizeCount(prize);
+            Integer rank = convertRank(matchCount, checkBonusNumber(lottoByIndex));
+            if (rank != MISS.getRank())
+                lottoResult.addPrizeCount(rank);
         }
     }
 

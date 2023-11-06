@@ -1,4 +1,4 @@
-package lotto.exception.lottoamount;
+package lotto.exception.lottoamountexception;
 
 public class NotDivisibleByThousandException extends LottoAmountInputException {
     public NotDivisibleByThousandException() {

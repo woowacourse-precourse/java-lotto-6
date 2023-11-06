@@ -1,4 +1,4 @@
-package lotto.exception.lottoamount;
+package lotto.exception.lottoamountexception;
 
 public class BelowMinimumAmountException extends LottoAmountInputException {
     public BelowMinimumAmountException() {

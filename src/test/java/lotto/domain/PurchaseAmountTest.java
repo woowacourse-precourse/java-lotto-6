@@ -12,8 +12,8 @@ public class PurchaseAmountTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"500O", "500X", "X5000"})
-    @DisplayName("구입 금액에 숫자 이외의 값이 입력된 경우")
-    public void purchaseMoneyNumberFormatTest(String money){
+    @DisplayName("구입 금액에 숫자 이외의 값이 입력된 경우에 대한 예외 테스트")
+    public void purchaseMoneyNumberFormatExceptionTest(String money){
         //given
 
         //when
@@ -25,8 +25,8 @@ public class PurchaseAmountTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-50000, 0 , -1000})
-    @DisplayName("구입 금액이 0원 이하일(0장보다 덜 구매하는) 경우")
-    public void ifMoneyIsLessThanZeroTest(int money){
+    @DisplayName("구입 금액이 0원 이하일(0장보다 덜 구매하는) 경우에 대한 예외 테스트")
+    public void ifMoneyIsLessThanZeroExceptionTest(int money){
         //given
 
         //when
@@ -38,8 +38,8 @@ public class PurchaseAmountTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1001, 1010, 5009})
-    @DisplayName("구입 금액을 1000원 단위로 입력하지 않은 경우")
-    public void purchaseMoneyDivideTest(int money){
+    @DisplayName("구입 금액을 1000원 단위로 입력하지 않은 경우에 대한 예외 테스트")
+    public void purchaseMoneyDivideExceptionTest(int money){
         //given
 
         //when

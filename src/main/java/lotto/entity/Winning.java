@@ -12,7 +12,7 @@ import static lotto.property.LottoProperty.*;
 import static lotto.property.ValidationProperty.*;
 import static lotto.validation.ValidationForm.*;
 
-public class Winning extends FiledMapper {
+public class Winning{
     private final List<Integer> winningNumbers;
 
     public Winning (String inputWinningNumbers,String winningBonusNumber){

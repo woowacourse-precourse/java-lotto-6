@@ -22,6 +22,10 @@ public enum PrizeGrade {
         return this.matchCount;
     }
 
+    public void addLottoCount() {
+        this.lottoCount++;
+    }
+
     public String getInfo() {
         return String.format("%d개 일치%s (%d원) - %d개", this.matchCount, this.additionalMessage + this.prizeMoney, this.lottoCount);
     }

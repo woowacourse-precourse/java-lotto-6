@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.LottoConstants;
 import lotto.domain.Lotto;
 import lotto.validator.InputValidator;
 
@@ -26,7 +27,7 @@ public class InputController {
         } catch (IllegalArgumentException e) {
             inputAmountType();
         }
-        return amount;
+        return amount / LottoConstants.UNIT;
     }
 
     public Lotto inputLottoNumber() {
@@ -40,7 +41,6 @@ public class InputController {
         } catch (IllegalArgumentException e) {
             inputLottoNumber();
         }
-
         return new Lotto(lottoNumbers);
     }
 }

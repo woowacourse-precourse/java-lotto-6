@@ -11,6 +11,7 @@ public class LottoResult {
 	private static int fiveCorrect = 0;
 	private static int fiveBonusCorrect = 0;
 	private static int sixCorrect = 0;
+	private static double earningRate;
 	
 	public static void lottoCompare(List<LottoNumber> lottoList) {
 		List<LottoNumber> lottoCompare = lottoList;
@@ -47,11 +48,9 @@ public class LottoResult {
 	}
 	
 	public static void earningRateCaculator() {
-		
-//		enum Prize {
-//			prize1, prize2, prize3, prize4, prize5
-//		}
-		
+		Double purchaseAmount = Double.valueOf(Application.purchaseAmount);
+		double earning = (5000 * threeCorrect) + (50000 * fourCorrect) + (1500000 * fiveCorrect) + (30000000 * fiveBonusCorrect) + (2000000000 * sixCorrect); 
+		earningRate = earning / purchaseAmount * 100;
 	}
 	
 	public static void sumResult(int count) {
@@ -70,6 +69,8 @@ public class LottoResult {
 	}
 	
 	public static void resultPrint() {
+		earningRateCaculator();
+		
 		System.out.println("당첨 통계");
 		System.out.println("---");
 		System.out.println("3개 일치 (5,000원) - " + threeCorrect + "개");
@@ -77,6 +78,6 @@ public class LottoResult {
 		System.out.println("5개 일치 (1,500,000원) - " + fiveCorrect + "개");
 		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveBonusCorrect + "개");
 		System.out.println("6개 일치 (2,000,000,000원) - " + sixCorrect + "개");
-		System.out.println("총 수익률은 " + sixCorrect + "입니다.");	
+		System.out.println("총 수익률은 " + String.format("%.1f",earningRate) + "%입니다.");	
 	}
 }

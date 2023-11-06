@@ -119,8 +119,10 @@ public class LottoGameService {
     public static void calculateTotalRateOfReturn() {
         int consumedMoney = User.getConsumedMoney();
         int receivedMoney = User.getReceivedMoney();
-
-        float totalRateOfReturn = (float) receivedMoney * 100 / (float) consumedMoney;
+        float totalRateOfReturn = 0;
+        if (consumedMoney != 0) {
+            totalRateOfReturn = (float) receivedMoney * 100 / (float) consumedMoney;
+        }
 
         OutputView.notifyTotalRateOfReturn(totalRateOfReturn);
     }

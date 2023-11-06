@@ -12,8 +12,7 @@ public class Constants {
     public static final String WINNING_NUMBER_ERROR = "당첨 번호는 숫자를 입력해야 합니다.";
     public static final Pattern BUY_PRICE_PATTERN = Pattern.compile("^[0-9]*$");
     public static final Pattern WINNING_NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
-    public static final Pattern WINNING_NUMBER_RANGE = Pattern.compile("^[0-9]|[1-3][0-9]|4[0-5]*$");
     public static final Pattern WINNING_NUMBER_STRING_PATTERN = Pattern.compile(
-            "^[a-zA-Z0-9!@#$%^&*()_+]+(,[a-zA-Z0-9!@#$%^&*()_+]+){5}$");
+            "^[가-힣a-zA-Z0-9!@#$%^&*()_+]+(,[가-힣a-zA-Z0-9!@#$%^&*()_+]+){5}$");
 
 }

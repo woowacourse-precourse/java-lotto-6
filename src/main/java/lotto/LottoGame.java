@@ -29,7 +29,9 @@ public class LottoGame {
     }
 
     private List<Integer> pickUniqueNumbers(){
-        return null;
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers.sort(Comparator.naturalOrder());
+        return numbers;
     }
 
     private void checkLottos(){

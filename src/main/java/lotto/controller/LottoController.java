@@ -1,29 +1,29 @@
 package lotto.controller;
 
-import lotto.model.*;
-import lotto.view.InputView;
+import lotto.model.BonusNumber;
+import lotto.model.Deposit;
+import lotto.model.LottoTicket;
+import lotto.model.WinningNumbers;
 
-import java.util.List;
-
-import static lotto.view.InputView.*;
-import static lotto.view.OutputView.printLottoTicket;
-import static lotto.view.OutputView.printPurchaseAmount;
+import static lotto.controller.LottoDrawingMachine.drawBonusNumber;
+import static lotto.controller.LottoDrawingMachine.drawWinningNumbers;
+import static lotto.view.InputView.askPurchaseAmount;
+import static lotto.view.InputView.askUntilGetValidAnswer;
+import static lotto.view.OutputView.*;
 
 public class LottoController {
     public void run() {
         Deposit deposit = makeDeposit();
         LottoTicket lottoTicket = purchaseLottoTicket(deposit);
-        LottoReader lottoReader = drawLotto();
-        List<Integer> read = lottoReader.read(lottoTicket);
-        for (Integer i : read) {
-            System.out.println(i);
-        }
+        WinningNumbers winningNumbers = drawWinningNumbers();
+        BonusNumber bonusNumber = drawBonusNumber();
+        printDrawingStatistic();
     }
 
     public Deposit makeDeposit() {
         return (Deposit) askUntilGetValidAnswer(
                 () -> {
-                    String purchaseAmount = InputView.askPurchaseAmount();
+                    String purchaseAmount = askPurchaseAmount();
                     return new Deposit(purchaseAmount);
                 }
         );
@@ -33,31 +33,7 @@ public class LottoController {
         Integer purchaseAmount = deposit.calculateBuyableLottoAmount();
         LottoTicket lottoTicket = LottoTicketMachine.issue(purchaseAmount);
         printPurchaseAmount(purchaseAmount);
-        printLottoTicket(lottoTicket);
+        printLottoTicket(lottoTicket.toString());
         return lottoTicket;
-    }
-
-    public LottoReader drawLotto() {
-        WinningNumbers winningNumbers = drawWinningNumbers();
-        BonusNumber bonusNumber = drawBonusNumber();
-        return new LottoReader(winningNumbers, bonusNumber);
-    }
-
-    private WinningNumbers drawWinningNumbers() {
-        return (WinningNumbers) askUntilGetValidAnswer(
-                () -> {
-                    String winningNumber = askWinningNumber();
-                    return new WinningNumbers(winningNumber);
-                }
-        );
-    }
-
-    private BonusNumber drawBonusNumber() {
-        return (BonusNumber) askUntilGetValidAnswer(
-                () -> {
-                    String bonusNumber = askBonusNumberMessage();
-                    return new BonusNumber(bonusNumber);
-                }
-        );
     }
 }

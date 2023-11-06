@@ -1,10 +1,8 @@
 package lotto;
 
-import controller.LottoGenerator;
-import controller.PrizeChecker;
-import controller.UserInput;
-import controller.YieldCalculator;
+import controller.*;
 import model.*;
+import view.Input;
 
 public class Application {
     public static void main(String[] args) {
@@ -19,28 +17,27 @@ public class Application {
         PrizeChecker prizeChecker = new PrizeChecker();
         Ranking ranking = new Ranking();
 
+        Message.start();
         purchase.Number(UserInput.purchasePrice());
-        System.out.println(purchase.getPurchaseCount());
 
+        Message.printCount(purchase.getPurchaseCount());
         lottos.initLottos(LottoGenerator.createLottos(purchase.getPurchaseCount()));
-        for(Lotto l : lottos.getLottos()){
-            System.out.println(l);
-        }
-        System.out.println(lottos.getLottos().size());
+        Message.printLotto(lottos);
 
+        Message.printPrize();
         prizeNumber.initPrizeNumber(UserInput.prizeNumber());
-        System.out.println(prizeNumber.getPrizeNumber());
 
+        Message.printBonus();
         prizeNumber.initBonusNumber(UserInput.bonusNumber());
-        System.out.println(prizeNumber.getBonousNumber());
+
+        Message.printOuttro();
 
         ranking = prizeChecker.checkRank(lottos,prizeNumber);
-        System.out.println(ranking.getWinningDetails());
+        int total = YieldCalculator.totalPrize(ranking);
+        ranking.calculateResult();
+        ranking.printResult();
 
-        System.out.println(YieldCalculator.totalPrize(ranking)); //당첨 총액
-
-        System.out.println(YieldCalculator.yieldcalculate(YieldCalculator.totalPrize(ranking),purchase.getPurchasePrice()));
-
+        YieldCalculator.yieldcalculate(total,purchase.getPurchasePrice());
     }
 
 

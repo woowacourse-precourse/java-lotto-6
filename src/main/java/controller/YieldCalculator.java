@@ -7,7 +7,6 @@ import java.util.List;
 
 public class YieldCalculator {
 
-
     public static int totalPrize(Ranking ranking){
         int sum = 0;
         for(int prizeRank : ranking.getWinningDetails()){
@@ -33,6 +32,7 @@ public class YieldCalculator {
         double yield = (double) total / purchase;
         yield *= 100;
         yield = (double) Math.round(yield*10)/10;
+        System.out.println("총 수익률은 "+ yield +"%입니다.");
         return yield;
     }
 }

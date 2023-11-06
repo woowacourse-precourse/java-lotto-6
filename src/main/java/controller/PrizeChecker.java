@@ -22,7 +22,4 @@ public class PrizeChecker {
         return count;
     }
 
-    private void calculateYield(){
-
-    }
 }

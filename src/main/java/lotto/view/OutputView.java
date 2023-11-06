@@ -5,6 +5,7 @@ import lotto.model.LottoPrize;
 
 import java.util.EnumMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -17,9 +18,12 @@ public class OutputView {
         System.out.println(ticketCount + TICKET_COUNT_MESSAGE);
     }
 
-    public static void displayLottoNumber(List<Lotto> lottos) {
+    public static void displayLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+            List<Integer> sortedLottoNumbers = lotto.getNumbers().stream()
+                    .sorted()
+                    .collect(Collectors.toList());
+            System.out.println(sortedLottoNumbers);
         }
     }
 

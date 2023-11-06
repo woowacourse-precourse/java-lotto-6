@@ -48,7 +48,7 @@ public class Controller {
 
     private void lottoGameSetting() {
         List<Lotto> purchasedLottos = lottoService.generateLottoTickets();
-        OutputView.displayLottoNumber(purchasedLottos);
+        OutputView.displayLottoNumbers(purchasedLottos);
     }
 
     private WinningNumbers winningNumberSetting() {

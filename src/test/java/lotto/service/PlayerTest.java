@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+// 도메인 로직의 테스트
 public class PlayerTest {
     LottoGenerator lottoGenerator;
     LottoMachine lottoMachine;

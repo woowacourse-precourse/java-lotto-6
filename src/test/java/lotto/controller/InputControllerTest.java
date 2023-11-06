@@ -20,7 +20,7 @@ public class InputControllerTest {
         InputView inputView = new InputView();
         inputController = new InputController(inputView, inputValidator);
     }
-
+    
     @DisplayName("사용자 입력(String 타입)을 구입 금액 값(int)으로 변환하는 기능 테스트.")
     @ParameterizedTest
     @CsvSource(value = {"1000:1000", "6000:6000", "110000:110000"}, delimiter = ':')

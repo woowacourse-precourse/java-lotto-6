@@ -37,6 +37,6 @@ public class LottoOneSet {
 
     private List<Integer> sortRandomNumber(List<Integer> number){
         Collections.sort(number);
-        return numbers;
+        return number;
     }
 }

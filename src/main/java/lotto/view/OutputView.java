@@ -3,6 +3,8 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.util.ConsoleMessage;
+import lotto.util.Constants;
+import lotto.util.ResultMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +19,7 @@ public class OutputView {
         StringBuilder purchasedLottoTickets = new StringBuilder();
         for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
-            purchasedLottoTickets.append('\n').append(numbers.toString());
+            purchasedLottoTickets.append(ResultMessage.NEWLINE).append(numbers.toString());
         }
         System.out.println(purchasedLottoTickets.toString());
     }
@@ -32,12 +34,12 @@ public class OutputView {
         for (LottoRank lottoRank : lottoRanks) {
             TotalProfit += (long) lottoRank.getWinningPrize() * winningStatistics.getOrDefault(lottoRank, 0);
         }
-        System.out.printf("총 수익률은 %.1f%%입니다.", ((double) TotalProfit / purchaseAmount * 100.0));
+        System.out.printf(ResultMessage.TOTAL_PROFIT_FORMAT, ((double) TotalProfit / purchaseAmount * Constants.ONE_HUNDRED));
     }
 
     public static void printWinningStatistics(Map<LottoRank, Integer> winningStatistics) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(ResultMessage.LOTTO_WINNING_STATISTICS);
+        System.out.println(ResultMessage.THREE_HYPHENS);
         List<LottoRank> lottoRanks = getWinningStatsFormat();
         StringBuilder winningStatisticsResult = new StringBuilder();
         for (LottoRank lottoRank : lottoRanks) {

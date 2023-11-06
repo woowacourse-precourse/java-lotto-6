@@ -45,7 +45,7 @@
   - [x] 로또 번호 중 보너스 번호 유무를 확인하여 반환한다.
   - 유효성 검증
     - [x] 로또가 6자리가 아니라면 IllegalArgumentException을 발생시킨다.
-    - [ ] 로또 번호가 중복된다면 IllegalArgumentException을 발생시킨다.
+    - [x] 로또 번호가 중복된다면 IllegalArgumentException을 발생시킨다.
 - LottoAmount: 로또 구매 금액을 추상화한 클래스
   - [x] 로또 구매 갯수를 반환한다.
   - 유효성 검증

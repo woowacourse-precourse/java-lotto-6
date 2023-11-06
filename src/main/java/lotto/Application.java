@@ -50,4 +50,7 @@ class Game {
         }
     }
 
+    public void inputBonusNumber(){
+        this.numbers.add(Integer.parseInt(Console.readLine()));
+    }
 }

@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Process {
@@ -32,7 +33,10 @@ public class Process {
         return lottoNumbers;
     }
 
-
+    //각 로또 번호들 오름차순으로 정리
+    public void sortLottoNumbers(List<Integer> lottoNumbers){
+        Collections.sort(lottoNumbers);
+    }
 
 
 //    Lotto lotto = new Lotto(lottoNumbers);

@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.domain.LottoCollector;
 import lotto.service.LottoPublishService;
 import lotto.utils.ExceptionMessage;
@@ -24,5 +26,17 @@ public class LottoController {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
         }
+    }
+
+    public void createWinnerLotto(String winningNumber, String bonusNumber) {
+        separateWinningNumber(winningNumber);
+    }
+
+    private List<Integer> separateWinningNumber(String winningNumber) {
+        String[] separatedWinningNumbers = winningNumber.split(",");
+
+        return Arrays.stream(separatedWinningNumbers)
+                .map(this::validatePurchaseAmountType)
+                .toList();
     }
 }

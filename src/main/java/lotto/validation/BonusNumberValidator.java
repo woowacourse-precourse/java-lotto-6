@@ -12,6 +12,12 @@ public class BonusNumberValidator {
         }
     }
 
+    private static void validateNumberInRange(int number) {
+        if (number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 숫자는 " + MINIMUM_NUMBER + "에서 " + MAXIMUM_NUMBER + " 사이어야 합니다: " + number);
+        }
+    }
+
 
 
 }

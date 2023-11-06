@@ -3,9 +3,9 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import lotto.model.Lotto;
-import lotto.model.Money;
-import lotto.model.WinningLotto;
+import lotto.domain.Lotto;
+import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

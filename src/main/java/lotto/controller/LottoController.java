@@ -1,12 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.model.Judgement;
-import lotto.model.Lottos;
-import lotto.model.Money;
-import lotto.model.WinningLotto;
+import lotto.domain.Judgement;
+import lotto.domain.Lottos;
+import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.util.WinningLottoGenerator;
-import lotto.validator.NumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

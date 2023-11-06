@@ -1,8 +1,8 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 
 import static lotto.constant.Constant.COUNT;
 

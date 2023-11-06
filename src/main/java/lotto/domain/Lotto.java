@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import java.util.List;
 import static lotto.validator.LottoNumberValidator.validate_MIN_SIZE;

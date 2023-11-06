@@ -5,14 +5,20 @@ public class LottoPurchaseAmountException {
     private static final String IS_NUMBER_MESSAGE = "구매 금액은 숫자를 입력해주셔야 합니다.";
     private static final String IS_BLANK_MESSAGE = "구매 금액을 공백으로 입력하셨습니다.";
 
+    public LottoPurchaseAmountException(String input) {
+        isDivideThousand(input);
+        isNumber(input);
+        isBlank(input);
+    }
 
-    public void isDivideThousand(int input) {
-        if(input % 1000 != 0) {
+    private void isDivideThousand(String input) {
+        int purchaseAmount = Integer.parseInt(input);
+        if(purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(CAN_DIVIDE_THOUSAND_MESSAGE);
         }
     }
 
-    public void isNumber(String input) {
+    private void isNumber(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e){
@@ -21,7 +27,7 @@ public class LottoPurchaseAmountException {
 
     }
 
-    public void isBlank(String input) {
+    private void isBlank(String input) {
         if(input.trim().isEmpty()){
             throw new IllegalArgumentException(IS_BLANK_MESSAGE);
         }

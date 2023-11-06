@@ -7,7 +7,7 @@ public class OutputView {
     private static final int LOTTO_SIZE = 6;
 
     public void printPurchaseAmount(long purchaseAmount) {
-        System.out.println(purchaseAmount + "개를 구매했습니다.");
+        System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
     }
 
     public void purchaseAmount() {
@@ -34,10 +34,10 @@ public class OutputView {
     }
 
     public void winnerNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
     public void bonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 }

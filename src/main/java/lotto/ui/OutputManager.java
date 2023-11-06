@@ -25,7 +25,7 @@ public class OutputManager {
 
     public void printReturns(List<Result> results) {
         int totalAmount = results.size() * 1000;
-        int totalPrize = results.stream().mapToInt(Result::prize).sum();
+        long totalPrize = results.stream().mapToLong(Result::getPrize).sum();
 
         double returns = (double) totalPrize / totalAmount * 100;
 
@@ -39,7 +39,7 @@ public class OutputManager {
         for (Result result : prizes) {
             String match = result.getMatchingNumbers() + "개 일치";
             if (result==SECOND_PRIZE) match += ", 보너스 볼 일치" ;
-            String prize = " (" + String.format("%,d", result.prize()) + "원) - ";
+            String prize = " (" + String.format("%,d", result.getPrize()) + "원) - ";
             String matchingNum = results.stream().filter(r-> r==result).count() + "개";
 
             System.out.println(match + prize + matchingNum);

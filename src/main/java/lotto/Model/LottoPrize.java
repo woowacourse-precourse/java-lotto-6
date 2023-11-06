@@ -1,6 +1,7 @@
 package lotto.Model;
 
 import java.util.List;
+import lotto.View.OuputView;
 
 enum LottoPrize {
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)"),
@@ -47,7 +48,8 @@ enum LottoPrize {
     }
     public  void printMessage(int count){
         if (this != FAIL){
-            System.out.println(description);
+            //System.out.println(description);
+            OuputView.printDescription(description);
         }
     }
 }

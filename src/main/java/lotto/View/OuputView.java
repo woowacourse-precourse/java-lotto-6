@@ -17,5 +17,8 @@ public class OuputView {
     public static void printProfit(double profit){
         System.out.printf(printProfit, profit);
     }
+    public static void printDescription(String description){
+        System.out.println(description);
+    }
 }
 

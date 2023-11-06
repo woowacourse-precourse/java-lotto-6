@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.ErrorMessage;
 import lotto.validator.PurchaseAmountValidator;
+import lotto.validator.WinningNumberValidator;
 
 public class InputView {
     private static final String LOTTO_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
@@ -31,9 +32,10 @@ public class InputView {
         new PurchaseAmountValidator().validate(purchaseAmount);
     }
 
-    public String readWinningLotto() {
+    public String readWinningLotto() throws IllegalArgumentException {
         System.out.println(WINNING_LOTTO_MESSAGE);
         String winningLotto = Console.readLine();
+        new WinningNumberValidator().validate(winningLotto);
         return winningLotto;
     }
 

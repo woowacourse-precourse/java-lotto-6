@@ -24,19 +24,38 @@ public class LottoController {
     }
 
     public void run() {
-        lottoStart();
+        generateLottoUsePurchaseAmount();
+        printLottoNumbers(getLottoNumbers());
+        getWinningLotto();
+        getBonusNumber();
     }
 
-    private void lottoStart() {
+    private void generateLottoUsePurchaseAmount() {
         try {
             int purchaseAmount = readPurchaseAmount();
             makeLottoByPurchaseAmount(purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            lottoStart();
+            generateLottoUsePurchaseAmount();
         }
-        printLottoNumbers(getLottoNumbers());
-        makeWinningLotto(readWinningLotto(), readBonusNumber());
+    }
+
+    private void getWinningLotto() {
+        try {
+            readWinningLotto();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getWinningLotto();
+        }
+    }
+
+    private void getBonusNumber() {
+        try {
+            readBonusNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readWinningLotto();
+        }
     }
 
     private int readPurchaseAmount() throws IllegalArgumentException{
@@ -55,11 +74,11 @@ public class LottoController {
         return lottoService.getLottoNumbers();
     }
 
-    private String readWinningLotto() {
+    private String readWinningLotto() throws IllegalArgumentException {
         return inputView.readWinningLotto();
     }
 
-    private String readBonusNumber() {
+    private String readBonusNumber() throws IllegalArgumentException {
         return inputView.readBonusNumber();
     }
 

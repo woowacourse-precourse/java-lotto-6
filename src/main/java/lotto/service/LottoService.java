@@ -28,6 +28,7 @@ public class LottoService {
         return instance;
     }
 
+    // Refactoring
     public void makeLottoByPurchaseAmount(int purchaseAmount) throws IllegalArgumentException{
         // 1. ClientInform 만들기
         clientInform = ClientInform.getInstance(purchaseAmount);

@@ -1,13 +1,15 @@
 package lotto.model;
 
+import lotto.validator.WinningNumberValidator;
+
 import java.util.List;
 
-public class WinningLotto extends Lotto {
+public class WinningLotto {
+    private List<Integer> winningNumbers;
     private BonusNumber bonusNumber;
 
-    private WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        // 여기서 List의 size가 6이 아니면 유효성검사 실패
-        super(winningNumbers);
+    private WinningLotto(List<Integer> winningNumbers, int bonusNumber) throws IllegalArgumentException {
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = BonusNumber.getInstance(bonusNumber);
     }
 

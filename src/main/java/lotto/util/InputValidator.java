@@ -37,7 +37,7 @@ public class InputValidator {
     }
 
     private static void validateLottoNumberSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Lotto.LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_SIZE.getMessage());
         }
     }

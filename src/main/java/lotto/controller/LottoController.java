@@ -4,12 +4,14 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.model.User;
 import lotto.service.LottoService;
+import lotto.service.RankService;
 import lotto.view.PrintView;
 
 
 public class LottoController {
 
     LottoService lottoService;
+    RankService rankService;
 
 
     public LottoController() {
@@ -21,6 +23,7 @@ public class LottoController {
         List<Integer> winningNumbers = getInputWinningNumbers();
         int bonusNum = getInputBonusNumber();
 
+        processingRank(user, winningNumbers, bonusNum);
     }
 
 
@@ -67,6 +70,13 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public void processingRank(User user, List<Integer> winningNumbers, int bonusNum) {
+        rankService = new RankService(user, winningNumbers, bonusNum);
+
+        int[] winningCount = rankService.calculateLottoRanks();
+        PrintView.printWinningResult(winningCount);
     }
 
 

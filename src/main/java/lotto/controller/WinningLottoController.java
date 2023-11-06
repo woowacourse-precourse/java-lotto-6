@@ -23,12 +23,12 @@ public class WinningLottoController {
         }
     }
     
-    private WinningLotto receiveWinningLottoWithBonusNumber(Lotto winningNumbers) {
+    private WinningLotto receiveWinningLottoWithBonusNumber(final Lotto winningNumbers) {
         printEnterBonusNumber();
         return repeatUntilReceiveWinningLotto(winningNumbers);
     }
     
-    private WinningLotto repeatUntilReceiveWinningLotto(Lotto winningNumbers) {
+    private WinningLotto repeatUntilReceiveWinningLotto(final Lotto winningNumbers) {
         try {
             final Integer bonusNumber = repeatUntilReceiveBonusNumber();
             return WinningLotto.of(winningNumbers, bonusNumber);

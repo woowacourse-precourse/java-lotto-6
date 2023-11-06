@@ -8,21 +8,21 @@ public class MatchingResult {
     private final MatchingCount matchingCount;
     private final boolean bonusMatching;
 
-    private MatchingResult(Lotto lotto, WinningLotto winningLotto) {
+    private MatchingResult(final Lotto lotto, final WinningLotto winningLotto) {
         long count = winningLotto.countMatchingNumbers(lotto);
         this.matchingCount = MatchingCount.from(count);
         this.bonusMatching = winningLotto.containsBonusNumber(lotto);
     }
 
-    public static MatchingResult of(Lotto lotto, WinningLotto winningLotto) {
+    public static MatchingResult of(final Lotto lotto, final WinningLotto winningLotto) {
         return new MatchingResult(lotto, winningLotto);
     }
 
-    public boolean isBonusMatching(UnaryOperator<Boolean> matchingBonus) {
+    public boolean isBonusMatching(final UnaryOperator<Boolean> matchingBonus) {
         return matchingBonus.apply(bonusMatching);
     }
 
-    public boolean isSameMatchingCount(MatchingCount matchingCount) {
+    public boolean isSameMatchingCount(final MatchingCount matchingCount) {
         return this.matchingCount == matchingCount;
     }
 }

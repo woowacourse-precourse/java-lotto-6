@@ -56,7 +56,7 @@ public class Payment {
         return amount < LOTTO_PRICE_UNIT;
     }
 
-    public BigDecimal calculateProfitability(long totalPrice) {
+    public BigDecimal calculateProfitability(final long totalPrice) {
         if (totalPrice == ZERO) {
             return BIG_DECIMAL_ZERO;
         }

@@ -19,7 +19,7 @@ public class OutputView {
         println(ENTER_PURCHASE_AMOUNT.getMessage());
     }
 
-    public static void printLotteriesInfo(List<String> lotteries) {
+    public static void printLotteriesInfo(final List<String> lotteries) {
         printNewLine();
         println(format(SUCCESS_PURCHASE_LOTTO.getMessage(), lotteries.size()));
         for (String lottery : lotteries) {
@@ -38,7 +38,7 @@ public class OutputView {
         println(ENTER_BONUS_NUMBER.getMessage());
     }
 
-    public static void printResultsSummary(RankingResult rankingResult) {
+    public static void printResultsSummary(final RankingResult rankingResult) {
         printNewLine();
         println(RESULTS_SUMMARY.getMessage());
         println(RESULT_SUMMARY_SEPARATOR);
@@ -48,11 +48,11 @@ public class OutputView {
         }
     }
 
-    public static void printResultsProfitability(BigDecimal profitability) {
+    public static void printResultsProfitability(final BigDecimal profitability) {
         println(format(TOTAL_RETURN.getMessage(), profitability.toPlainString()));
     }
 
-    public static void printErrorMessage(IllegalArgumentException exception) {
+    public static void printErrorMessage(final IllegalArgumentException exception) {
         System.out.println(exception.getMessage());
     }
 

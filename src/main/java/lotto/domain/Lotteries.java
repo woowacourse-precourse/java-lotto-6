@@ -14,7 +14,7 @@ public class Lotteries {
         this.lotteries = lotteries;
     }
     
-    public static Lotteries from(Payment payment) {
+    public static Lotteries from(final Payment payment) {
         List<Lotto> result = createLotteries(payment);
         return new Lotteries(result);
     }
@@ -31,7 +31,7 @@ public class Lotteries {
                 .toList();
     }
 
-    public MatchingResults generateGameResult(WinningLotto winningLotto) {
+    public MatchingResults generateGameResult(final WinningLotto winningLotto) {
         List<MatchingResult> results = lotteries.stream()
                 .map(lotto -> MatchingResult.of(lotto, winningLotto))
                 .toList();

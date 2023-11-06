@@ -7,11 +7,11 @@ public class MatchingResults {
 
     private final List<MatchingResult> results;
 
-    private MatchingResults(List<MatchingResult> results) {
+    private MatchingResults(final List<MatchingResult> results) {
         this.results = results;
     }
 
-    public static MatchingResults from(List<MatchingResult> results) {
+    public static MatchingResults from(final List<MatchingResult> results) {
         return new MatchingResults(results);
     }
 

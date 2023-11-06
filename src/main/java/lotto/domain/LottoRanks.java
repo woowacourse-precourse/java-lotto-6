@@ -16,12 +16,12 @@ public class LottoRanks {
 
     private final Map<WinningGrade, Long> lottoRanks;
 
-    private LottoRanks(List<WinningGrade> winningGrades) {
+    private LottoRanks(final List<WinningGrade> winningGrades) {
         Map<WinningGrade, Long> result = generateLottoRanks(winningGrades);
         this.lottoRanks = unmodifiableMap(result);
     }
 
-    public static LottoRanks from(List<WinningGrade> winningGrades) {
+    public static LottoRanks from(final List<WinningGrade> winningGrades) {
         return new LottoRanks(winningGrades);
     }
 
@@ -36,7 +36,7 @@ public class LottoRanks {
         return RankingResult.from(result);
     }
 
-    private Map<WinningGrade, Long> generateLottoRanks(List<WinningGrade> winningGrades) {
+    private Map<WinningGrade, Long> generateLottoRanks(final List<WinningGrade> winningGrades) {
         Map<WinningGrade, Long> result = new EnumMap<>(WinningGrade.class);
         return winningGrades.stream()
                 .collect(toMap(
@@ -47,7 +47,7 @@ public class LottoRanks {
                 ));
     }
 
-    private Long receiveLottoRank(Map<WinningGrade, Long> result, WinningGrade winningGrade) {
+    private Long receiveLottoRank(final Map<WinningGrade, Long> result, final WinningGrade winningGrade) {
         return result.getOrDefault(winningGrade, LONG_TYPE_ZERO);
     }
 }

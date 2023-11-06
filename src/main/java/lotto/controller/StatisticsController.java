@@ -15,7 +15,7 @@ import lotto.domain.enums.WinningGrade;
 
 public class StatisticsController {
 
-    public void receiveGameResult(Payment payment, Lotteries lotteries, WinningLotto winningLotto) {
+    public void receiveGameResult(final Payment payment, final Lotteries lotteries, final WinningLotto winningLotto) {
         MatchingResults gameResults = lotteries.generateGameResult(winningLotto);
         List<WinningGrade> winningGrades = gameResults.receiveLottoRanks();
         LottoRanks lottoRanks = LottoRanks.from(winningGrades);

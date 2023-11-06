@@ -35,14 +35,21 @@ public class LottoController {
         }
     }
 
-    public Lotto setUPWinningMain() {
+    public void setUpWinning() {
+        Lotto main = setUPWinningMain();
+        Bonus bonus = setUPWinningBonus();
+
+        service.generateWinning(main, bonus);
+    }
+
+    private Lotto setUPWinningMain() {
         String input = InputView.input();
 
         List<Integer> winningMain = makeIntegerList(input);
         return new Lotto(winningMain);
     }
 
-    public Bonus setUPWinningBonus() {
+    private Bonus setUPWinningBonus() {
         String input = InputView.input();
 
         int winningBonus = makeInt(input);

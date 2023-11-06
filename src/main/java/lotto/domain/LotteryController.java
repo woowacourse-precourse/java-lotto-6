@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.domain.answer.LotteryAnswerController;
 import lotto.domain.io.InputView;
+import lotto.domain.io.OutputView;
 import lotto.domain.purchase.LotteryPurchaseController;
 
 public final class LotteryController {
@@ -12,6 +13,8 @@ public final class LotteryController {
         // 티켓 개수 구하기
         InputView.getCash();
         Lottos lottos = lotteryPurchaseController.purchase();
+        String lottosStatus = lottos.toString();
+        OutputView.printLottos(lottosStatus);
 
         // 개수만큼 구매하기 -> lottos
 

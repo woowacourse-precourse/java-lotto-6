@@ -12,9 +12,9 @@ public class LotteryPurchaseController {
     public Lottos purchase() {
         // 티켓 개수 구하기
         String cashInput = Console.readLine();
-        Integer ticketCount = lotteryCountService.getLottoCount(cashInput);
+        Integer lottoTicketCount = lotteryCountService.getLottoTicketCount(cashInput);
 
         // 개수만큼 티켓 발행
-        return new Lottos();
+        return lotteryIssueService.issueLottoAmountOf(lottoTicketCount);
     }
 }

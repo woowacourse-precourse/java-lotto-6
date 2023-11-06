@@ -38,7 +38,7 @@ public class OutputView {
     }
 
     public static void printPrice(String result, String price, int count) {
-        System.out.println(String.format("%s(%s) - %d개", result, price, count));
+        System.out.println(String.format("%s(%s원) - %d개", result, price, count));
     }
 
     public static void printResult() {

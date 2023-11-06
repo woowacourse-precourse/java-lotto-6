@@ -29,6 +29,6 @@ public class LottoPurchase {
             total = total.add(result.get(key).multiply(prize));
         }
 
-        return total.divide(purchaseInfo.getPurchaseAmount()).floatValue();
+        return total.divide(purchaseInfo.getPurchaseAmount()).floatValue() * 100;
     }
 }

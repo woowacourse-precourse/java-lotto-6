@@ -1,6 +1,8 @@
 package lotto.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
+import java.util.List;
 import lotto.Lotto;
 
 public class LottoGenerator {

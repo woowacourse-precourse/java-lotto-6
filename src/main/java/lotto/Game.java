@@ -2,6 +2,9 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
     Game() {
 
@@ -27,16 +30,20 @@ public class Game {
             throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
         }
 
+        List<Integer> nums = new ArrayList<>();
         try {
             for (String num : winningNum) {
                 int number = Integer.parseInt(num);
                 if (number < 1 || number > 45) {
                     throw new IllegalArgumentException("각 번호는 1~45사이 값이여야 합니다.");
                 }
+                if (nums.contains(number)) {
+                    throw new IllegalArgumentException("중복된 번호가 존재합니다.");
+                }
+                nums.add(number);
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("입력값은 숫자여야합니다.");
         }
-
     }
 }

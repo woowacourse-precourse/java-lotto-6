@@ -51,4 +51,13 @@ public class CheckerTest {
             Checker.bonusInRange(bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 당첨_번호_6개_아닐_시_예외_리턴() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5);
+
+        assertThatThrownBy(() -> {
+            Checker.winningSix(winningNumbers);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

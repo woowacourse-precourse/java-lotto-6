@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Checker {
+    private static final Integer WINNING_COUNT = 6;
     private static final Integer UNIT = 1000;
     private static final Integer MINIMUM_RANGE = 1;
     private static final Integer MAXIMUM_RANGE = 45;
@@ -11,6 +12,12 @@ public class Checker {
     public static void priceCorrect(Integer price) {
         if (price % UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 합니다.");
+        }
+    }
+
+    public static void winningSix(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != WINNING_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
 

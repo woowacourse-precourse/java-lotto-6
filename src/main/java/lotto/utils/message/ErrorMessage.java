@@ -9,4 +9,5 @@ public class ErrorMessage {
     public static final String DUPLICATED_NUMBER = ERROR_MESSAGE + "번호에 중복된 숫자가 존재합니다.";
     public static final String INVALID_NUMBER_RANGE = ERROR_MESSAGE + "번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final String INVALID_SPLIT_DELIMITER = ERROR_MESSAGE + "쉼표(,)를 기준으로 구분해야 합니다.";
+    public static final String DUPLICATED_BONUS_NUMBER = ERROR_MESSAGE + "당첨 번호에 보너스 번호와 중복되는 숫자가 존재합니다.";
 }

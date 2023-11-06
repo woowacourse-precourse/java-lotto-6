@@ -38,6 +38,6 @@ public class LottoController {
 
     private void getWinningNumber() {
         String numbers = inputView.getWinningNumber();
-        WinningNumber winningNumber = new WinningNumber(numbers);
+//        WinningNumber winningNumber = new WinningNumber(numbers);
     }
 }

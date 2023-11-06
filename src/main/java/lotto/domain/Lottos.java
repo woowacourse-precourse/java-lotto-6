@@ -7,7 +7,7 @@ import lotto.dto.LottoResponseDtos;
 import lotto.dto.LottoResponseDtos.LottoResponseDto;
 
 public class Lottos {
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;

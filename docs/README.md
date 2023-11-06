@@ -18,13 +18,32 @@
 
 - 사용자의 입력을 파싱하는 클래스입니다.
 - 숫자로 변환하는 과정에서 오류가 발생할 시 **IllegalArgumentException**이 발생합니다.
-    - 오류 메시지는 **ErrorMessage**에 지정된 static 문자열 사용
+    - 오류 메시지는 **ErrorMessage**에 지정된 static 문자열 사용합니다.
 
 ### InputValidator
 
 - 파싱된 입력을 검증하는 검증 클래스입니다.
 - 검증 오류가 발생할 시 **IllegalArgumentException**이 발생합니다.
     - 오류 메시지는 ErrorMessage에 지정된 static 문자열 사용
+
+#### 검증 목록
+
+오류 메시지는 **ErrorMessage**에 지정된 static 문자열 사용합니다.
+
+1. 구매금액 검증(`validateMoney` 메소드)
+
+- 로또 가격보다 입력한 돈이 적은지 확인합니다. 만약 그렇다면 `IllegalArgumentException`을 발생시킵니다.
+- 입력한 돈이 로또 가격으로 나누어 떨어지는지 확인합니다. 만약 나누어 떨어지지 않는다면 `IllegalArgumentException`을 발생시킵니다.
+
+2. 당첨 번호 검증(`validateWinningNumbers` 메소드)
+
+- 당첨 번호의 길이가 올바른지 확인합니다. 만약 길이가 올바르지 않다면 `IllegalArgumentException`을 발생시킵니다.
+- 당첨 번호가 중복되는지 확인합니다. 만약 중복된다면 `IllegalArgumentException`을 발생시킵니다.
+- 각 당첨 번호가 범위 내에 있는지 확인합니다. 만약 범위를 벗어난다면 `IllegalArgumentException`을 발생시킵니다.
+
+3. 보너스 번호 검증(`validateBonusNumber` 메소드)
+
+- 보너스 번호가 범위 내에 있는지 확인합니다. 만약 범위를 벗어난다면 `IllegalArgumentException`을 발생시킵니다.
 
 ## 모델
 
@@ -33,7 +52,8 @@
 
 ### Lotto
 
-- 로또 번호가 저장되는 클래스, 생성자 호출 시에 로또 번호가 6개 존재하는지 검증합니다.
+- 로또 번호가 저장되는 클래스
+- 생성자 호출 시에 로또 번호가 6개 존재하고 중복되지 않는지 검증합니다.
 
 ### WinningNumber
 

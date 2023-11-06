@@ -28,7 +28,7 @@ public enum LottoGrade {
         if (matchBonus) {
             sb.append(", 보너스 볼 일치");
         }
-        sb.append("(").append(prizeMoney).append("원)");
+        sb.append(" (").append(String.format("%,d", prizeMoney)).append("원)");
         return sb.toString();
     }
 

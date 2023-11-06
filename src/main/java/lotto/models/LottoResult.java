@@ -32,19 +32,19 @@ public class LottoResult {
 
         content.append("총 수익률은 ")
                 .append(calcProfitRate())
-                .append("입니다.");
+                .append("%입니다.");
 
         return content.toString();
     }
 
     private double calcProfitRate() {
         double initialMoney = lottoAmount * 1000;
-
         double totalPrizeMoney = 0;
+
         for (LottoGrade lottoGrade : LottoGrade.values()) {
             totalPrizeMoney += lottoGrade.getPrizeMoney() * lottoResult.getOrDefault(lottoGrade, 0);
         }
 
-        return Math.round(totalPrizeMoney / initialMoney * 100) / 100.0;
+        return Math.round(totalPrizeMoney / initialMoney * 100 * 100) / 100.0;
     }
 }

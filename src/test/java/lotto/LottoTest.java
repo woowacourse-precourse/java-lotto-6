@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -31,5 +32,15 @@ class LottoTest {
         Application application = new Application();
         assertThatCode(() -> application.createLotto())
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("구매 금액에 해당하는 만큼 로또를 발행한다.")
+    @Test
+    void createLottosByPurchaseAmount() {
+        int purchaseAmount = 8000;
+
+        List<Lotto> lottos = Application.createLottos(purchaseAmount);
+
+        assertThat(lottos.size()).isEqualTo(purchaseAmount / LottoNumbers.PURCHASE_AMOUNT_UNIT);
     }
 }

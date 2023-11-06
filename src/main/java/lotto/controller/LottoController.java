@@ -6,12 +6,19 @@ import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoResult;
 import lotto.model.WinningLotto;
+import lotto.validator.BonusNumberInputValidator;
+import lotto.validator.MoneyInputValidator;
+import lotto.validator.WinningNumbersInputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
+    InputView inputView = new InputView(
+            new MoneyInputValidator(),
+            new WinningNumbersInputValidator(),
+            new BonusNumberInputValidator()
+    );
     LottoGenerator lottoGenerator = new LottoGenerator();
 
     public void run() {

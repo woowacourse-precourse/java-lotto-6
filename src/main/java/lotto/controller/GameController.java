@@ -1,19 +1,24 @@
 package lotto.controller;
 
 import lotto.domain.Amount;
+import lotto.domain.Lotto;
 import lotto.domain.LottosPurchased;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class GameController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private Amount amount;
     private LottosPurchased lottosPurchased;
+    private Lotto winningLotto;
 
     public void playGame() {
         repeatInputAmount();
         purchaseLottos();
+        repeatInputWinningNumbers();
     }
 
     private void repeatInputAmount() {
@@ -34,7 +39,15 @@ public class GameController {
     }
 
     private void repeatInputWinningNumbers() {
-        //
+        while (true) {
+            try {
+                List<Integer> winningNumbers = WinningNumbersConverter.convertToIntegerList(inputView.inputWinningNumbers());
+                winningLotto = new Lotto(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 
     private void repeatInputBonusNumber() {

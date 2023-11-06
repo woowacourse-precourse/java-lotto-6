@@ -1,6 +1,8 @@
 package lotto.model;
 
 import static lotto.utils.Constants.ERROR_MESSAGE;
+import static lotto.utils.Constants.MAX_NUMBER;
+import static lotto.utils.Constants.MIN_NUMBER;
 import static lotto.utils.Constants.WINNING_NUMBER_DUPLICATE_ERROR;
 import static lotto.utils.Constants.WINNING_NUMBER_ERROR;
 import static lotto.utils.Constants.WINNING_NUMBER_PATTERN;
@@ -48,7 +50,7 @@ public class WinningNumberValidator {
     private void isCorrectRange() {
         numbers.stream()
                 .map(Integer::parseInt)
-                .filter(number -> number < 1 || number > 45)
+                .filter(number -> number < MIN_NUMBER || number > MAX_NUMBER)
                 .findAny()
                 .ifPresent(number -> {
                     throw new IllegalArgumentException(ERROR_MESSAGE + WINNING_NUMBER_RANGE_ERROR);

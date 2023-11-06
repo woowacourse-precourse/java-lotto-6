@@ -16,37 +16,6 @@ public class InputUI {
         this.cost = INIT_NUM;
     }
 
-    public int getCost() {
-        return cost;
-    }
-
-    public int getNumofLotto() {
-        return cost / 1000;
-    }
-
-    public List<Integer> getWinningNums() {
-        List<Integer> copiedWinningNums = new ArrayList<>();
-        copiedWinningNums.addAll(winningNums);
-        return copiedWinningNums;
-    }
-
-    public int getBonusNum() {
-        return bonusNum;
-    }
-
-    public void purchase() {
-        while (true) {
-            try {
-                System.out.println("구입금액을 입력해 주세요.");
-                String tempCost = Console.readLine();
-                cost = checkValidPurchase(tempCost);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
     public void bonusBall() {
         while (true) {
             try {
@@ -60,17 +29,27 @@ public class InputUI {
         }
     }
 
-    public void winnings() {
-        while(true){
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String inputWinnings = Console.readLine();
-                String[] parsedWinnings = inputWinnings.split(",");
-                winningNums = checkValidWinnings(parsedWinnings);
-                break;
-            } catch (IllegalArgumentException e) {
-                throw e;
+    public void checkExceptionWinning(int winning) {
+        if (winning < 0 || winning > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public void checkLengthWinning(String[] parsedWinnings) {
+        if (parsedWinnings.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
+        }
+    }
+
+    public int checkValidBonusNum(String tempBonus) {
+        try {
+            int bonusNum = Integer.parseInt(tempBonus);
+            if (bonusNum >= 1 && bonusNum <= 45) {
+                return bonusNum;
             }
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
         }
     }
 
@@ -89,19 +68,6 @@ public class InputUI {
         }
     }
 
-    public int checkValidBonusNum(String tempBonus) {
-        try {
-            int bonusNum = Integer.parseInt(tempBonus);
-            if (bonusNum >= 1 && bonusNum <= 45) {
-                return bonusNum;
-            }
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
-        }
-    }
-
-
     public List<Integer> checkValidWinnings(String[] parsedWinnings) {
         try {
             List<Integer> winningNum = new ArrayList<>();
@@ -119,15 +85,49 @@ public class InputUI {
         }
     }
 
-    public void checkLengthWinning(String[] parsedWinnings) {
-        if (parsedWinnings.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
+    public int getCost() {
+        return cost;
+    }
+
+    public int getBonusNum() {
+        return bonusNum;
+    }
+
+    public int getNumofLotto() {
+        return cost / 1000;
+    }
+
+    public List<Integer> getWinningNums() {
+        List<Integer> copiedWinningNums = new ArrayList<>();
+        copiedWinningNums.addAll(winningNums);
+        return copiedWinningNums;
+    }
+
+    public void purchase() {
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String tempCost = Console.readLine();
+                cost = checkValidPurchase(tempCost);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
-    public void checkExceptionWinning(int winning) {
-        if (winning < 0 || winning > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+    public void winnings() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String inputWinnings = Console.readLine();
+                String[] parsedWinnings = inputWinnings.split(",");
+                winningNums = checkValidWinnings(parsedWinnings);
+                break;
+            } catch (IllegalArgumentException e) {
+                throw e;
+            }
         }
     }
 

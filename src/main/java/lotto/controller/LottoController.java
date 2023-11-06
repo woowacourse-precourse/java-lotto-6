@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
+import lotto.model.LottoResult;
 import lotto.view.LottoView;
 import lotto.model.WinningLotto;
 
@@ -73,7 +74,12 @@ public class LottoController {
         }
     }
     private void checkResults(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
-        // TODO: 당첨 결과를 계산하고 출력하는 로직을 구현해야 함.
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.calculateResults(purchasedLottos, winningLotto.getLotto(), winningLotto.getBonusNumber());
+
+        lottoResult.printStatistics();
+        double yield = lottoResult.calculateYield(1000); // 로또 한 장의 가격을 인자로 전달합니다.
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
     }
 
 }

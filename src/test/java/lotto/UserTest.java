@@ -28,4 +28,19 @@ class UserTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 음수_값은_입력이_불가() throws IOException {
+        String wrongInputMoney = "-1230030";
+
+        InputStream in = new ByteArrayInputStream(wrongInputMoney.getBytes());
+        System.setIn(in);
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer tk = new StringTokenizer(br.readLine());
+        int money = Integer.parseInt(tk.nextToken());
+
+        assertThatThrownBy(() -> new User(money))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

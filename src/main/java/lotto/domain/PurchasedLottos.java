@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.constants.Messages;
 import lotto.constants.Values;
 import lotto.utils.generator.LottsGenerator;
@@ -41,16 +40,6 @@ public class PurchasedLottos {
 
     public double calculateTotalInvestment() {
         return (double) lottos.size() * Values.LOTTO_PURCHASE_UNIT;
-    }
-
-    @Override
-    public String toString() {
-        String purchaseMessage = String.format(Messages.PURCHASE_MESSAGE, lottos.size());
-        String lottosString = lottos.stream()
-                .map(Lotto::toString)
-                .collect(Collectors.joining());
-
-        return purchaseMessage + lottosString;
     }
 
     public List<Lotto> getLottos() {

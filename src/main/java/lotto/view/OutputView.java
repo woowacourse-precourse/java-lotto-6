@@ -1,6 +1,8 @@
 package lotto.view;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constants.Messages;
 import java.text.DecimalFormat;
 import lotto.constants.Values;
@@ -21,8 +23,19 @@ public class OutputView {
         System.out.println(Messages.PROMPT_BONUS_NUMBER);
     }
 
-    public static void printPurchaseLottoResult(String result) {
-        System.out.println(result);
+    public static void printPurchaseLottoResult(List<List<Integer>> purchasedLottos) {
+        System.out.println(String.format(Messages.PURCHASE_MESSAGE, purchasedLottos.size()));
+        purchasedLottos.stream()
+                .map(lottoNumbers -> formatLottoNumbers(lottoNumbers))
+                .forEach(lottoMessage -> System.out.println(
+                        String.format(Messages.LOTTO_NUMBERS_MESSAGE, lottoMessage)));
+    }
+
+    private static String formatLottoNumbers(List<Integer> lottoNumbers) {
+        return lottoNumbers.stream()
+                .sorted()
+                .map(Object::toString)
+                .collect(Collectors.joining(Values.LOTTO_NUMBER_SEPARATOR));
     }
 
     public static void printWinningStatistics(WinningStatistics winningStatistics) {

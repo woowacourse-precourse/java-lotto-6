@@ -42,4 +42,12 @@ class UiTest {
         ));
         Assertions.assertThat(outputStreamCaptor.toString().trim()).isEqualToIgnoringNewLines(expectMessage);
     }
+
+    @Test
+    void 로또입력을_유도하는_문장을_출력한다() {
+        final String expectMessage = "당첨 번호를 입력해 주세요.";
+        Ui ui = new Ui();
+        ui.printReadLottoNumber();
+        Assertions.assertThat(outputStreamCaptor.toString().trim()).isEqualToIgnoringNewLines(expectMessage);
+    }
 }

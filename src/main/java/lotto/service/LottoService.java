@@ -1,8 +1,8 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
+import lotto.utils.RandomNumberGenerator;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,14 +11,19 @@ import static lotto.constants.LottoConstants.*;
 
 public class LottoService {
 
+    private final RandomNumberGenerator randomNumberGenerator;
     private final List<Lotto> userLottos = new ArrayList<>();
     private List<Integer> winningNumbers = new ArrayList<>();
     private HashMap<LottoRank, Integer> winningRankCount = new HashMap<>();
     private int bonusNumber;
 
+    public LottoService(RandomNumberGenerator randomNumberGenerator) {
+        this.randomNumberGenerator = randomNumberGenerator;
+    }
+
     public List<Lotto> purchase (int purchaseQuantity) {
         for (int i = ZERO; i < purchaseQuantity; i++) {
-            List<Integer> lottoNumbers = generateUniqueRandomLottoNumbers();
+            List<Integer> lottoNumbers = randomNumberGenerator.uniqueNumbers();
             Lotto lotto = generateLotto(lottoNumbers);
             userLottos.add(lotto);
         }
@@ -51,10 +56,6 @@ public class LottoService {
         int  purchaseQuantity = getPurchaseQuantity();
         double profitRate = getProfitRate((double) totalPrizeAmount, purchaseQuantity);
         return calculateRoundedProfitRate(profitRate);
-    }
-
-    private List<Integer> generateUniqueRandomLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT);
     }
 
     private Lotto generateLotto(List<Integer> lottoNumbers) {

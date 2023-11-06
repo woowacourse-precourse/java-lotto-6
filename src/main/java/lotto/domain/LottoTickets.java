@@ -5,14 +5,7 @@ import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.List;
 
-public class LottoTickets {
-    private final PurchaseAmount purchaseAmount;
-    private final List<Lotto> lottos;
-
-    public LottoTickets(List<Lotto> lottoTickets, PurchaseAmount purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
-        this.lottos = lottoTickets;
-    }
+public record LottoTickets(List<Lotto> lottos, PurchaseAmount purchaseAmount) {
 
     public EnumMap<Rank, Integer> getRankResult(WinningTicket winningTicket) {
         EnumMap<Rank, Integer> rankResult = initRankResult();
@@ -37,10 +30,6 @@ public class LottoTickets {
     public BigDecimal getRateOfReturn(long totalPrize) {
         return new BigDecimal(totalPrize)
                 .multiply(new BigDecimal("100"))
-                .divide(new BigDecimal(purchaseAmount.getAmount()), 1, RoundingMode.HALF_UP);
-    }
-
-    public List<Lotto> getLottos() {
-        return lottos;
+                .divide(new BigDecimal(purchaseAmount.amount()), 1, RoundingMode.HALF_UP);
     }
 }

@@ -1,12 +1,10 @@
 package lotto.domain;
 
-public class PurchaseAmount {
+public record PurchaseAmount(long amount) {
     public static final int unit = 1000;
-    private long amount;
 
-    public PurchaseAmount(long amount) {
+    public PurchaseAmount {
         validate(amount);
-        this.amount = amount;
     }
 
     private void validate(long amount) {
@@ -28,9 +26,5 @@ public class PurchaseAmount {
 
     public long getQuantity(int lottoPrice) {
         return amount / lottoPrice;
-    }
-
-    public long getAmount() {
-        return amount;
     }
 }

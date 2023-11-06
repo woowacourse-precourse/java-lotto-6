@@ -24,7 +24,7 @@ class LottoNumberTest {
 
         LottoNumber lottoNumber = new LottoNumber(number);
 
-        int actual = lottoNumber.getNumber();
+        int actual = lottoNumber.number();
         assertThat(actual).isEqualTo(number);
     }
 }

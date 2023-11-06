@@ -45,7 +45,7 @@ public class OutputView {
     }
 
     private static void appendStatistics(Result winningResult, StringBuilder message) {
-        for (Entry<Rank, Integer> rankIntegerEntry : winningResult.getRankToCount().entrySet()) {
+        for (Entry<Rank, Integer> rankIntegerEntry : winningResult.rankResult().entrySet()) {
             message.append(rankIntegerEntry.getKey().getMatchCount()).append(MATCH_COUNT);
 
             if (rankIntegerEntry.getKey().hasBonus()) {
@@ -59,7 +59,7 @@ public class OutputView {
     }
 
     private void appendRateOfReturn(Result winningResult, StringBuilder message) {
-        BigDecimal rateOfReturn = winningResult.getRateOfReturn();
+        BigDecimal rateOfReturn = winningResult.rateOfReturn();
         message.append(String.format(RATE_OF_RETURN, rateOfReturn.toPlainString()));
     }
 }

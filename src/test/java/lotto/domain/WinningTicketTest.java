@@ -38,7 +38,7 @@ class WinningTicketTest {
         WinningTicket winningTicket = new WinningTicket(winningLotto, bonusNumber);
 
 
-        assertThat(winningTicket.getWinningLotto()).isEqualTo(new Lotto(List.of(1,2,3,4,5,6)));
-        assertThat(winningTicket.getBonusNumber()).isEqualTo(new LottoNumber(7));
+        assertThat(winningTicket.winningLotto()).isEqualTo(new Lotto(List.of(1,2,3,4,5,6)));
+        assertThat(winningTicket.bonusNumber()).isEqualTo(new LottoNumber(7));
     }
 }

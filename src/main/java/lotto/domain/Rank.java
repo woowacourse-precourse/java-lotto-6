@@ -41,8 +41,8 @@ public enum Rank {
     }
 
     public static Rank of(Lotto lotto, WinningTicket winningTicket) {
-        int matchCount = lotto.match(winningTicket.getWinningLotto());
-        boolean hasBonusNumber = lotto.has(winningTicket.getBonusNumber());
+        int matchCount = lotto.match(winningTicket.winningLotto());
+        boolean hasBonusNumber = lotto.has(winningTicket.bonusNumber());
         return Rank.of(matchCount, hasBonusNumber);
     }
 

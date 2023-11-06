@@ -1,17 +1,14 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constants.LottoConfig;
 
 import java.util.List;
 
 public class RandomLottoNumberGenerator implements LottoNumberGenerator {
 
-    private static final int lottoNumbersSize = 6;
-    private static final int lottoNumberMin = 1;
-    private static final int lottoNumberMax = 45;
-
     @Override
     public List<Integer> create() {
-        return Randoms.pickUniqueNumbersInRange(lottoNumberMin, lottoNumberMax, lottoNumbersSize);
+        return Randoms.pickUniqueNumbersInRange(LottoConfig.LOTTO_NUMBER_MIN, LottoConfig.LOTTO_NUMBER_MAX, LottoConfig.LOTTO_NUMBERS_SIZE);
     }
 }

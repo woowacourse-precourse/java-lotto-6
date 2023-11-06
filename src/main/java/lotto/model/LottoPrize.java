@@ -6,12 +6,12 @@ import lotto.model.result.LottoMatchResult;
 
 public enum LottoPrize {
 
-    PRIZE_1(6, false, 2_000_000_000),
-    PRIZE_2(5, true, 30_000_000),
-    PRIZE_3(5, false, 1_500_000),
-    PRIZE_4(4, false, 50_000),
+    NO_PRIZE(0, false, 0),
     PRIZE_5(3, false, 5_000),
-    NO_PRIZE(0, false, 0);
+    PRIZE_4(4, false, 50_000),
+    PRIZE_3(5, false, 1_500_000),
+    PRIZE_2(5, true, 30_000_000),
+    PRIZE_1(6, false, 2_000_000_000);
 
     private final int matchCount;
     private final boolean hasBonus;
@@ -31,14 +31,18 @@ public enum LottoPrize {
     }
 
     private static boolean hasPrize(final LottoPrize prize, final LottoMatchResult result) {
-        if (prize.equals(PRIZE_2)) {
-            return isPrize2(result);
+        if (prize.equals(PRIZE_3)) {
+            return isPrize3(result);
         }
         return prize.matchCount == result.matchCount();
     }
 
-    private static boolean isPrize2(final LottoMatchResult result) {
-        return PRIZE_2.hasBonus == result.hasBonus() && PRIZE_2.matchCount == result.matchCount();
+    private static boolean isPrize3(final LottoMatchResult result) {
+        return PRIZE_3.hasBonus == result.hasBonus() && PRIZE_3.matchCount == result.matchCount();
+    }
+
+    public int getMatchCount() {
+        return matchCount;
     }
 
     public int getAmount() {

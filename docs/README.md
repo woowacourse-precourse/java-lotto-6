@@ -31,7 +31,20 @@
 - [ ] Service 단을 추가하여 Controller는 입력처리와 응답에만 집중하도록 한다.
 
 ## 집중했던 것은 🤔💭
-### 1. 함수(또는 메서드)가 한 가지 일만 하가도록 최대한 작게 만들어라.
+### 1. 함수(성또는 메서드)가 한 가지 일만 하가도록 최대한 작게 만들어라.
+- `2주차 공통 피드백` 내용대로, 함수가 한 가지 기능을 하는지 확인하는 기준이 필요했다. 👀
+  - 한 개의 함수가 한 가지 기능만 하더라도 결국 통합하는 과정에서 여러가지 함수를 호출하는 함수가 생긴다.
+  - 이러한 함수를 여러 가지 일을 한다고 구분하지 않고, '여러 작은 함수를 호출하여 큰 한 가지 기능을 담당하는 함수'라고 해석한다.
+  - 🤜🏻 즉, **큰 기능을 작게 쪼개어** 함수를 작성한 후, **작은 함수 여러개를 호출해 '큰 기능을 구현하는 함수'를 생성**하는 방식으로 설계한다.
+    ```java
+    /* 구매자 초기화 */
+    /* (1)구매 금액을 입력받아 (2)로또를 구매하고 (3)구매자에 대한 정보를 설정한다. */ 
+    private void initBuyer() { 
+        int purchaseAmount = getPurchaseAmount(); // (1) 구매금액 입력
+        ArrayList<Lotto> lottoTickets = buyLottoTickets(purchaseAmount); // (2) 로또 구매
+        buyer = new Buyer(purchaseAmount, lottoTickets); // (3) 구매자 객체 생성
+    }
+    ```
 
 ### 2. 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
 
@@ -40,8 +53,22 @@
 ### 4. Java Enum을 적용한다.
 
 ### 5. Lotto 클래스를 활용한다.
+- Lotto 클래스는 '로또 티켓' 개념으로 활용하였다.
+- Buyer 모델의 클래스 변수로 사용하여, '사용자가 구매하여 소지'하는 의미로 풀어냈다.
+
 
 ### 6. 값을 하드 코딩하지 않는다.
+- 지난 과제까지 계속해서 했던 하드코딩을 이번에는 안 했다! 🧚‍
+- 로또 구매 금액 단위, 로또 숫자 범위, 당첨금과 기준 등 고정적인 값을 모두 상수로 정의했다.
+- constant 패키지에 상수를 모두 정의하여 구분하였다.
+```java
+// constant 패키지 내용 중 일부
+public static final int PURCHASE_AMOUNT_UNIT = 1000;
+public static final int MIN_IN_LOTTO_NUMBER = 1;
+public static final int MAX_IN_LOTTO_NUMBER = 45;
+public static final int NUMBER_OF_WINNING_NUMBER = 6;
+public static final int NUMBER_OF_BONUS_NUMBER = 1;
+```
 
 ### 7. 변수 이름에 자료형은 사용하지 않는다.
 

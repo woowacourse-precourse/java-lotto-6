@@ -35,7 +35,10 @@ public class LottoService {
         lottoWinningRepository.save(lottoWinning);
     }
 
-    public LottoStatistics calcLotto(List<Lotto> myLotto, LottoWinning lottoWinning){
+    public LottoStatistics calcLotto(){
+        List<Lotto> myLotto = lottoRepository.getMyLotto();
+        LottoWinning lottoWinning = lottoWinningRepository.getLottoWinning();
+
         int firstCount = 0;
         int secondCount = 0;
         int thirdCount = 0;
@@ -70,6 +73,10 @@ public class LottoService {
         LottoStatistics lottoStatistics = new LottoStatistics(firstCount, secondCount, thirdCount, fourthCount, fifthCount, returnRate);
 
         return lottoStatistics;
+    }
+
+    public List<Lotto> getMyLotto(){
+        return lottoRepository.getMyLotto();
     }
 
     private double getReturnRate(int winningAmount, int originalAmount){

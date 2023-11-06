@@ -16,7 +16,7 @@ public class Application {
         //당첨 번호 입력
         SystemIO.requestWinningNumber();
         List<Integer> winningNumbers = SystemIO.readWinningNumbers();
-        Map<Long, List> lotteryNumbers = buyTickets.getLotteryNumbers();
+        Map<Long, List<Integer>> lotteryNumbers = buyTickets.getLotteryNumbers();
 
         Lotto lotto = new Lotto(winningNumbers);
         Map<String, Long> matchResult = lotto.matchUserNumberWithWinningNumbers(lotteryNumbers);

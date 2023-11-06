@@ -18,7 +18,7 @@ public class Lotto {
         }
     }
 
-    public Map<String, Long> matchUserNumberWithWinningNumbers(Map<Long, List> lotteryNumbers) {
+    public Map<String, Long> matchUserNumberWithWinningNumbers(Map<Long, List<Integer>> lotteryNumbers) {
         Map<String, Long> matchResult = new HashMap<>();
         return matchResult;
     }

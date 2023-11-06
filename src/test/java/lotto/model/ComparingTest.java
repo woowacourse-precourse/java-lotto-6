@@ -48,8 +48,9 @@ class ComparingTest {
     }
     private static Stream<Arguments> sampleEachLottoAndBoolean() { // 발행받은 로또 개수 & 2등당첨 여부
         return Stream.of(
+                Arguments.of(List.of(3, 18, 20, 30, 39, 40), false),
                 Arguments.of(List.of(5, 19, 22, 41, 42, 43), false),
-                Arguments.of(List.of(6, 20, 23, 41, 42, 43), false),
+                Arguments.of(List.of(6, 20, 23, 30, 42, 43), false),
                 Arguments.of(List.of(7, 21, 23, 41, 42, 43), false),
                 Arguments.of(List.of(8, 21, 23, 30, 41, 42), true),
                 Arguments.of(List.of(8, 21, 23, 41, 42, 43), false)

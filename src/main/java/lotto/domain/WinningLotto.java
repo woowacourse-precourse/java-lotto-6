@@ -41,6 +41,6 @@ public class WinningLotto {
     }
 
     private boolean isMatchBonusNumber(List<Integer> inputLotto) {
-        return bonusNumber == inputLotto.get(BONUS_NUMBER_INDEX);
+        return inputLotto.contains(bonusNumber);
     }
 }

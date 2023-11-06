@@ -43,4 +43,13 @@ class GameShopTest {
         Assertions.assertEquals(Prize.FIRST, prize);
     }
 
+    @DisplayName("로또 2등 당첨")
+    @Test
+    void prizeSecond() {
+        Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 3, 4, 5, 6, 8)));
+        gameShop.startLottoGame(new WinningLotto(new ArrayList<>(List.of(1, 3, 4, 5, 8, 9)), 6));
+        Prize prize = gameShop.getResult(lotto);
+        Assertions.assertEquals(Prize.SECOND, prize);
+    }
+
 }

@@ -30,7 +30,9 @@ public class PlayLotto {
 
     public void getMoney(){
         try{
+            System.out.println("구입 금액을 입력해주세요.");
             money = new Money(readLine());
+            System.out.println();
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             getMoney();
@@ -39,10 +41,17 @@ public class PlayLotto {
 
     public void makeLotto(){
         lottoCnt = Integer.parseInt(money.amount) / 1000;
+        System.out.println(lottoCnt + "개를 구매했습니다.");
 
         for (int i=0; i<lottoCnt; i++){
             userLottoNumbers.add(getGeneratedRandomNumbers());
         }
+
+        for (List<Integer> userLottoNumber : userLottoNumbers){
+            System.out.println(userLottoNumber);
+        }
+
+        System.out.println();
     }
 
     public List<Integer> getGeneratedRandomNumbers(){
@@ -61,15 +70,17 @@ public class PlayLotto {
 
     public void getNumber(){
         try{
+            System.out.println("당첨 번호를 입력해 주세요.");
             inputLottoNumbers = readLine().split(",");
             changeInputFormat();
             lotto = new Lotto(lottoNumbers);
+            System.out.println();
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             getNumber();
         }
     }
-    
+
     public void changeInputFormat(){
         lottoNumbers = new ArrayList<>();
         for (String s : inputLottoNumbers){

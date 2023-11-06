@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.LottoWinner;
 
 public class Input {
 
@@ -11,23 +12,45 @@ public class Input {
 
 	public static int purchaseAmount() {
 		System.out.println("구입금액을 입력해 주세요.");
-		return toInteger(Console.readLine());
+		try {
+			return toInteger(Console.readLine());
+		} catch (Exception e) {
+			Output.exception(e);
+		}
+		return purchaseAmount();
 	}
 
 	public static List<Integer> winningNumbers() {
 		System.out.println("당첨 번호를 입력해 주세요.");
-		return toIntegerList(Console.readLine());
+		try {
+			return toIntegerList(Console.readLine());
+		} catch (Exception e) {
+			Output.exception(e);
+		}
+		return winningNumbers();
 	}
 
 	public static int bonusNumber() {
 		System.out.println("보너스 번호를 입력해 주세요.");
-		return toInteger(Console.readLine());
+		try {
+			return toInteger(Console.readLine());
+		} catch (IllegalArgumentException e) {
+			Output.exception(e);
+		}
+		return bonusNumber();
 	}
 
 	private static List<Integer> toIntegerList(String str) {
-		return Arrays.stream(str.split(COMMA_DELIMITER))
+		if (str == null) {
+			throw new IllegalArgumentException("올바른 입력이 아닙니다.");
+		}
+		List<Integer> integers = Arrays.stream(str.split(COMMA_DELIMITER))
 			.map(Input::toInteger)
 			.toList();
+		if (integers.size() != LottoWinner.SIZE) {
+			throw new IllegalArgumentException("입력된 당첨 번호의 개수가 올바르지 않습니다.");
+		}
+		return integers;
 	}
 
 	private static int toInteger(String str) {

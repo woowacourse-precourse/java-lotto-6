@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.Map;
 
@@ -40,7 +40,7 @@ public enum Rank {
 
     public static int calculateTotalPrize(Map<Rank, Integer> resultCount) {
         int totalPrize = 0;
-        for (Rank rank : Rank.values()) {
+        for (Rank rank : values()) {
             totalPrize += rank.getPrize() * resultCount.get(rank);
         }
         return totalPrize;

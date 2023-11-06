@@ -20,13 +20,10 @@ public enum LottoRank {
     }
 
     public static LottoRank of(int count, boolean hasbonusNumber) {
-        if (count == 5 && hasbonusNumber == true) {
+        if (count == 5 && hasbonusNumber) {
             return SECOND;
         }
-        return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank.count == count)
-                .findAny()
-                .orElse(NOTHING);
+        return Arrays.stream(LottoRank.values()).filter(rank -> rank.count == count).findAny().orElse(NOTHING);
     }
 
     public int getPrice() {

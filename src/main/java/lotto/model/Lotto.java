@@ -1,9 +1,13 @@
 package lotto.model;
 
-import java.util.List;
+import static lotto.model.constant.ErrorMessage.LOTTO_NUMBER_INVALID_SIZE;
+import static lotto.model.constant.ErrorMessage.NUMBER_DUPLICATED;
+import static lotto.model.constant.ErrorMessage.NUMBER_INVALID_RANGE;
+import static lotto.model.constant.LottoConfig.LOTTO_SIZE;
+import static lotto.model.constant.LottoConfig.MAXIMUM_LOTTO_NUMBER;
+import static lotto.model.constant.LottoConfig.MINIMUM_LOTTO_NUMBER;
 
-import static lotto.model.constant.ErrorMessage.*;
-import static lotto.model.constant.LottoConfig.*;
+import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,13 +24,23 @@ public class Lotto {
     }
 
     public int sameNumberCounter(WinningNumbers winningNumbers) {
-        return (int) numbers.stream()
-                .filter(winningNumbers::hasNumberInWinningNumbers)
-                .count();
+        return (int) numbers.stream().filter(winningNumbers::hasNumberInWinningNumbers).count();
     }
 
     public boolean hasNumber(Integer number) {
         return this.numbers.contains(number);
+    }
+
+    private static boolean isCorrectSize(List<Integer> numbers) {
+        return numbers.size() != LOTTO_SIZE;
+    }
+
+    private static boolean hasDuplicated(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
+    }
+
+    private static boolean isValidRange(List<Integer> numbers) {
+        return numbers.stream().anyMatch(number -> number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER);
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
@@ -45,18 +59,6 @@ public class Lotto {
         if (isValidRange(numbers)) {
             throw new IllegalArgumentException(NUMBER_INVALID_RANGE);
         }
-    }
-
-    private static boolean isCorrectSize(List<Integer> numbers) {
-        return numbers.size() != LOTTO_SIZE;
-    }
-
-    private static boolean hasDuplicated(List<Integer> numbers) {
-        return numbers.size() != numbers.stream().distinct().count();
-    }
-
-    private static boolean isValidRange(List<Integer> numbers) {
-        return numbers.stream().anyMatch(number -> number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER);
     }
 
     @Override

@@ -1,12 +1,15 @@
 package lotto.controller;
 
-import lotto.model.*;
+import java.util.ArrayList;
+import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoMoney;
+import lotto.model.LottoResult;
+import lotto.model.LottoStorage;
+import lotto.model.WinningNumbers;
 import lotto.util.NumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LottoController {
 
@@ -31,6 +34,23 @@ public class LottoController {
 
         LottoResult lottoResult = LottoResult.of(lottoStore, winningNumbers);
         outputView.outputLottoResult(lottoResult, lottoMoney.getMoney());
+    }
+
+    private static List<Lotto> purchaseLottoByMoney(LottoMoney lottoMoney) {
+        try {
+            return addLottoAsCanBuy(lottoMoney);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return purchaseLottoByMoney(lottoMoney);
+        }
+    }
+
+    private static List<Lotto> addLottoAsCanBuy(LottoMoney lottoMoney) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoMoney.availableLottoCount(); i++) {
+            lottos.add(Lotto.from(NumbersGenerator.lottoNumbersGenerator()));
+        }
+        return lottos;
     }
 
     private WinningNumbers winningNumbers(Lotto winningNumber, Integer bonusNumber) {
@@ -58,23 +78,6 @@ public class LottoController {
             System.out.println(e.getMessage());
             return inputBonusNumber();
         }
-    }
-
-    private static List<Lotto> purchaseLottoByMoney(LottoMoney lottoMoney) {
-        try {
-            return addLottoAsCanBuy(lottoMoney);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return purchaseLottoByMoney(lottoMoney);
-        }
-    }
-
-    private static List<Lotto> addLottoAsCanBuy(LottoMoney lottoMoney) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoMoney.availableLottoCount(); i++) {
-            lottos.add(Lotto.from(NumbersGenerator.lottoNumbersGenerator()));
-        }
-        return lottos;
     }
 
     private LottoMoney inputLottoMoney() {

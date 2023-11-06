@@ -7,8 +7,8 @@ import static lotto.model.constant.LottoConfig.MINIMUM_LOTTO_NUMBER;
 
 public class WinningNumbers {
 
-    private Lotto winningNumbers;
-    private Integer bonusNumber;
+    private final Lotto winningNumbers;
+    private final Integer bonusNumber;
 
     private WinningNumbers(Lotto lotto, Integer bonusNumber) {
         validateNumberRange(bonusNumber);

@@ -22,6 +22,10 @@ public class LottoMoney {
         return this.money;
     }
 
+    private static boolean isOverMinimum(int money) {
+        return money < LOTTO_AMOUNT;
+    }
+
     private void validateOverZero(int money) {
         if (isOverMinimum(money)) {
             throw new IllegalArgumentException(MONEY_INVALID_MINIMUM_AMOUNT);
@@ -32,9 +36,5 @@ public class LottoMoney {
         if (money % LOTTO_AMOUNT != 0) {
             throw new IllegalArgumentException(MONEY_INVALID_AMOUNT_UNIT);
         }
-    }
-
-    private static boolean isOverMinimum(int money) {
-        return money < LOTTO_AMOUNT;
     }
 }

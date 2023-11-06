@@ -1,15 +1,16 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
+import static lotto.view.constant.ErrorMessage.INPUT_INVALID_FORMAT;
+import static lotto.view.constant.ErrorMessage.INPUT_IS_NOT_BLANK;
+import static lotto.view.constant.ViewMessage.INPUT_BONUS_NUMBER;
+import static lotto.view.constant.ViewMessage.INPUT_PURCHASE_AMOUNT;
+import static lotto.view.constant.ViewMessage.INPUT_WINNING_NUMBER;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import static lotto.view.constant.ErrorMessage.INPUT_INVALID_FORMAT;
-import static lotto.view.constant.ErrorMessage.INPUT_IS_NOT_BLANK;
-import static lotto.view.constant.ViewMessage.*;
 
 public class InputView {
 
@@ -65,8 +66,6 @@ public class InputView {
     }
 
     private static List<Integer> separateNumbers(String input) {
-        return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        return Arrays.stream(input.split(",")).map(Integer::parseInt).collect(Collectors.toList());
     }
 }

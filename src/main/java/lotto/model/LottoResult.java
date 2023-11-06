@@ -9,13 +9,14 @@ public class LottoResult {
 
     private LottoResult(LottoStorage lottoStorage, WinningNumbers winningNumbers) {
         for (Lotto lotto : lottoStorage.getLottoStorage()) {
-            LottoRank lottoRank = LottoRank.of(lotto.sameNumberCounter(winningNumbers), lotto.hasNumber(winningNumbers.getBonusNumber()));
+            LottoRank lottoRank = LottoRank.of(lotto.sameNumberCounter(winningNumbers),
+                    lotto.hasNumber(winningNumbers.getBonusNumber()));
             result.merge(lottoRank, 1, Integer::sum);
         }
     }
 
     public static LottoResult of(LottoStorage lottoStorage, WinningNumbers winningNumbers) {
-        return new LottoResult(lottoStorage,winningNumbers);
+        return new LottoResult(lottoStorage, winningNumbers);
     }
 
     public long calculatePriceSum() {

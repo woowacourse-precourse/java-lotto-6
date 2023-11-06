@@ -1,16 +1,15 @@
-package lotto.domain.calculator;
+package lotto.model.calculator;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class RateOfReturn {
+public class YieldCalculator {
     private static int totalPurchaseAmount;
     private static int totalProfitAmount;
     private static double rateOfReturn;
     private static Map<String, Integer> prizeMoney = new HashMap<>();
 
-    public RateOfReturn(int totalPurchaseAmount, Map<String, Integer> prize) {
+    public YieldCalculator(int totalPurchaseAmount, Map<String, Integer> prize) {
         putPrizeMoney();
         int sumPrize = 0;
         sumPrize += prize.get("first") * prizeMoney.get("first");

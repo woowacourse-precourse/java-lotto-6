@@ -1,4 +1,4 @@
-package lotto.domain.user;
+package lotto.model.player;
 
 import java.util.List;
 

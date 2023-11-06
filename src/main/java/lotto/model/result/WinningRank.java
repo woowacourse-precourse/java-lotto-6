@@ -1,9 +1,9 @@
-package lotto.domain.result;
+package lotto.model.result;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class WonRecord {
+public class WinningRank {
     private static Map<String, Integer> prizeCount = new HashMap<>();
     private static int firstPrizeCount = 0;
     private static int secondPrizeCount = 0;

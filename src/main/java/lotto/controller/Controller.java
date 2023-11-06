@@ -4,15 +4,15 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.user.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.user.Purchase;
-import lotto.domain.calculator.RateOfReturn;
-import lotto.domain.calculator.WinCalculator;
-import lotto.domain.user.WinningNumber;
-import lotto.domain.result.WonRecord;
-import lotto.io.LottoInputView;
-import lotto.io.LottoOutputView;
+import lotto.model.player.BonusNumber;
+import lotto.model.Lotto;
+import lotto.model.player.BuyLotto;
+import lotto.model.calculator.YieldCalculator;
+import lotto.model.calculator.CheckWinning;
+import lotto.model.player.WinningNumber;
+import lotto.model.result.WinningRank;
+import lotto.view.LottoInputView;
+import lotto.view.LottoOutputView;
 
 public class Controller {
     private final LottoInputView inputView = new LottoInputView();
@@ -32,17 +32,17 @@ public class Controller {
     }
 
     private Integer purchaseManager() {
-        Purchase purchase = null;
+        BuyLotto buyLotto = null;
         boolean ispurchased = false;
         while(!ispurchased) {
             try {
-                purchase = new Purchase(inputView.readPurchaseAmount());
+                buyLotto = new BuyLotto(inputView.readPurchaseAmount());
                 ispurchased = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return purchase.getLottoPurchase();
+        return buyLotto.getLottoPurchase();
     }
 
     private void printLottoManager(int purchase) {
@@ -83,21 +83,21 @@ public class Controller {
     }
 
     private Map<String, Integer> wonCalculatorManager(List<Integer> winningNumber, int bonusNumber) {
-        WinCalculator winCalculator
-                = new WinCalculator(winningNumber, bonusNumber);
-        WonRecord wonRecord = new WonRecord();
+        CheckWinning checkWinning
+                = new CheckWinning(winningNumber, bonusNumber);
+        WinningRank winningRank = new WinningRank();
         for(Lotto lotto : lottoPurchaseNumbers) {
-            wonRecordManager(wonRecord, winCalculator.calculate(lotto.getNumbers()));
+            wonRecordManager(winningRank, checkWinning.calculate(lotto.getNumbers()));
         }
-        return wonRecord.getAllPrizeCount();
+        return winningRank.getAllPrizeCount();
     }
 
-    private void wonRecordManager(WonRecord wonRecord, Map<String, Integer> result) {
-        wonRecord.recorder(result);
+    private void wonRecordManager(WinningRank winningRank, Map<String, Integer> result) {
+        winningRank.recorder(result);
     }
 
     private void rateOfReturnManager(int purchase, Map<String, Integer> allPrizeCount) {
-        RateOfReturn rateOfReturn = new RateOfReturn(purchase, allPrizeCount);
-        outputView.printRateOfReturn(rateOfReturn.getRateOfReturn());
+        YieldCalculator yieldCalculator = new YieldCalculator(purchase, allPrizeCount);
+        outputView.printRateOfReturn(yieldCalculator.getRateOfReturn());
     }
 }

@@ -1,14 +1,13 @@
-package lotto.domain.calculator;
+package lotto.model.calculator;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class WinCalculator {
+public class CheckWinning {
     private static List<Integer> winningNumber;
     private static Integer bonusNumber;
 
-    public WinCalculator(List<Integer> winningNumber, Integer bonusNumber) {
+    public CheckWinning(List<Integer> winningNumber, Integer bonusNumber) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
     }

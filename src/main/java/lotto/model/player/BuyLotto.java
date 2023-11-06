@@ -1,9 +1,9 @@
-package lotto.domain.user;
+package lotto.model.player;
 
-public class Purchase {
+public class BuyLotto {
     private static int purchaseAmount;
 
-    public Purchase(String amount) {
+    public BuyLotto(String amount) {
         validate(amount);
         purchaseAmount = Integer.parseInt(amount);
     }

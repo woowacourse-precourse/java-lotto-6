@@ -1,12 +1,12 @@
 package lotto;
 
 import java.util.Arrays;
-import lotto.domain.user.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.user.Purchase;
-import lotto.domain.calculator.WinCalculator;
-import lotto.domain.user.WinningNumber;
-import lotto.domain.result.WonRecord;
+import lotto.model.player.BonusNumber;
+import lotto.model.Lotto;
+import lotto.model.player.BuyLotto;
+import lotto.model.calculator.CheckWinning;
+import lotto.model.player.WinningNumber;
+import lotto.model.result.WinningRank;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"500a", "천 원", "1장"})
     void createPurchaseAmountByNaN(String amount) {
-        assertThatThrownBy(() -> new Purchase(amount))
+        assertThatThrownBy(() -> new BuyLotto(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -48,7 +48,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"500", "1900", "1000.4", "-1000.4"})
     void createPurchaseAmountIndivisibleBy1000(String amount) {
-        assertThatThrownBy(() -> new Purchase(amount))
+        assertThatThrownBy(() -> new BuyLotto(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 1,000원으로 나누어 떨어져야 합니다.");
     }
@@ -57,7 +57,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1000", "-4000"})
     void createPurchaseAmountByNonPositiveInteger(String amount) {
-        assertThatThrownBy(() -> new Purchase(amount))
+        assertThatThrownBy(() -> new BuyLotto(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 최소 구입 금액은 1,000원입니다.");
     }
@@ -103,12 +103,12 @@ class LottoTest {
         List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
-        WonRecord wonRecord = new WonRecord();
+        CheckWinning checkWinning = new CheckWinning(winningNumber, bonusNumber);
+        WinningRank winningRank = new WinningRank();
 
-        wonRecord.recorder(winCalculator.calculate(purchaseNumber));
+        winningRank.recorder(checkWinning.calculate(purchaseNumber));
 
-        assertThat(wonRecord.getFirstPrizeCount()).isEqualTo(1);
+        assertThat(winningRank.getFirstPrizeCount()).isEqualTo(1);
     }
 
     @DisplayName("당첨 번호와 발행 번호가 5개 일치하고 보너스 번호가 일치하면 2등 count가 올라간다.")
@@ -117,12 +117,12 @@ class LottoTest {
         List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 7);
         List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
-        WonRecord wonRecord = new WonRecord();
+        CheckWinning checkWinning = new CheckWinning(winningNumber, bonusNumber);
+        WinningRank winningRank = new WinningRank();
 
-        wonRecord.recorder(winCalculator.calculate(purchaseNumber));
+        winningRank.recorder(checkWinning.calculate(purchaseNumber));
 
-        assertThat(wonRecord.getSecondPrizeCount()).isEqualTo(1);
+        assertThat(winningRank.getSecondPrizeCount()).isEqualTo(1);
     }
 
     @DisplayName("당첨 번호와 발행 번호가 5개 일치하고 보너스 번호가 불일치하면 3등 count가 올라간다.")
@@ -131,11 +131,11 @@ class LottoTest {
         List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 8);
         List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
-        WonRecord wonRecord = new WonRecord();
+        CheckWinning checkWinning = new CheckWinning(winningNumber, bonusNumber);
+        WinningRank winningRank = new WinningRank();
 
-        wonRecord.recorder(winCalculator.calculate(purchaseNumber));
+        winningRank.recorder(checkWinning.calculate(purchaseNumber));
 
-        assertThat(wonRecord.getThirdPrizeCount()).isEqualTo(1);
+        assertThat(winningRank.getThirdPrizeCount()).isEqualTo(1);
     }
 }

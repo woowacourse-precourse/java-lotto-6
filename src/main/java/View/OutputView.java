@@ -17,7 +17,7 @@ public class OutputView {
     }
 
     public static void promptWinStatistics() {
-        System.out.println("\n당청 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
     }
 
@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     public static void printReturnOfRate(double returnRate) {
-        System.out.printf("총 수익률은 %.2f입니다\n", returnRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", returnRate);
     }
 
     public static void printPurchaseAmount(int count) {
@@ -35,7 +35,7 @@ public class OutputView {
 
     public static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.toString());
+            System.out.println(lotto);
         }
     }
 

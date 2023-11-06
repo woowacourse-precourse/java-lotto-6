@@ -30,29 +30,32 @@ public enum LottoResult {
         return prize;
     }
 
-    public static LottoResult compareLottoNums(List<Integer> userLottoNums, WinningLotto winningLotto) {
-        int equalLottoCnt = countEqualLotto(userLottoNums, winningLotto);
-        int equalBonusCnt = countEqualBonus(userLottoNums, winningLotto);
+    public static LottoResult compareLottoNums(List<Integer> LottoNums, WinningLotto winningLotto) {
+        int equalLottoCnt = countEqualLotto(LottoNums, winningLotto);
+        int equalBonusCnt = countEqualBonus(LottoNums, winningLotto);
         return findCorrectLottoResult(equalLottoCnt, equalBonusCnt);
     }
 
-    private static int countEqualBonus(List<Integer> userLottoNums, WinningLotto winningLotto) {
-        return (int) userLottoNums.stream()
+    private static int countEqualBonus(List<Integer> LottoNums, WinningLotto winningLotto) {
+        return (int) LottoNums.stream()
                 .filter(userLottoNum -> userLottoNum.equals(winningLotto.getBonus()))
                 .count();
     }
 
-    private static int countEqualLotto(List<Integer> userLottoNums, WinningLotto winningLotto) {
-        return (int) userLottoNums.stream()
+    private static int countEqualLotto(List<Integer> LottoNums, WinningLotto winningLotto) {
+        return (int) LottoNums.stream()
                 .filter(winningLotto.getLottoNums()::contains)
                 .count();
     }
 
     private static LottoResult findCorrectLottoResult(int equalLottoCnt, int equalBonusCnt) {
-        return Stream.of(LottoResult.values())
-                .filter(result -> result.winningCnt == equalLottoCnt)
-                .filter(result -> result.bonusCnt == equalBonusCnt)
-                .findFirst()
-                .orElse(null);
+        LottoResult findLottoResult = null;
+
+        for (LottoResult lottoResult : LottoResult.values()) {
+            if (lottoResult.winningCnt != equalLottoCnt) { continue; }
+            if (lottoResult.winningCnt == 5 && lottoResult.bonusCnt != equalBonusCnt) { continue; }
+            findLottoResult = lottoResult;
+        }
+        return findLottoResult;
     }
 }

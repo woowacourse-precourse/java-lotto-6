@@ -10,14 +10,20 @@ import lotto.util.LottoNumberValidator;
 public class Lotto {
     private final List<Integer> numbers;
 
+    public Lotto() {
+        List<Integer> numbers = LottoNumberGenerator.generate();
+
+        validate(numbers);
+        this.numbers = numbers;
+    }
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
     public static Lotto from() {
-        List<Integer> numbers = LottoNumberGenerator.generate();
-        return new Lotto(numbers);
+        return new Lotto();
     }
 
     public List<Integer> getNumbers() {

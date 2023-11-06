@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.common.Money;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -58,5 +59,29 @@ class MapperTest {
         assertThatThrownBy(() -> Mapper.mapToLotto("a,b,c"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("숫자를 쉼표로 분리한 형식으로 입력해주세요. ex) 1,2,3,4,5,6");
+    }
+
+    @DisplayName("입력이 주어지면, 로또 번호 객체로 변환할 수 있다.")
+    @Test
+    void mapToLottoNumber() {
+        LottoNumber lottoNumber = Mapper.mapToLottoNumber("23");
+
+        assertThat(lottoNumber).isEqualTo(LottoNumber.from(23));
+    }
+
+    @DisplayName("알 수 없는 문자열의 경우, 로또 번호 객체로 변환할 수 없다.")
+    @Test
+    void checkInputNonNullForLottoNumber() {
+        assertThatThrownBy(() -> Mapper.mapToLottoNumber(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("알 수 없는 입력입니다.");
+    }
+
+    @DisplayName("숫자 형식이 아닌 경우, 로또 번호 객체로 변환할 수 없다.")
+    @Test
+    void numberFormatForLottoNumber() {
+        assertThatThrownBy(() -> Mapper.mapToLottoNumber("123kk"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("숫자 형식으로 입력해주세요.");
     }
 }

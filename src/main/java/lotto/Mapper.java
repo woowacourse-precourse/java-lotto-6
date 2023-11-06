@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.common.Money;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +42,20 @@ class Mapper {
                     .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_NUMBERS_FORMAT_MESSAGE);
+        }
+    }
+
+    public static LottoNumber mapToLottoNumber(String input) {
+        checkInputNonNull(input);
+
+        return LottoNumber.from(parseInt(input));
+    }
+
+    private static Integer parseInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT_MESSAGE);
         }
     }
 

@@ -4,12 +4,10 @@ import lotto.domain.common.Money;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoFactory;
 import lotto.domain.lotto.LottoMachine;
+import lotto.domain.lotto.LottoNumber;
 import lotto.domain.player.Player;
 
 /**
- * 당첨 번호를 입력해 주세요.
- * 1,2,3,4,5,6
- * <p>
  * 보너스 번호를 입력해 주세요.
  * 7
  * <p>
@@ -35,6 +33,7 @@ class Controller {
         OutputView.printIssuanceResult(player.showLotto());
 
         Lotto answerLotto = requestAnswerLotto();
+        LottoNumber bonus = requestBonus();
     }
 
     private Player createPlayer() {
@@ -45,7 +44,11 @@ class Controller {
         return Mapper.mapToMoney(InputView.readPlayerMoney());
     }
 
-    private static Lotto requestAnswerLotto() {
+    private Lotto requestAnswerLotto() {
         return Mapper.mapToLotto(InputView.readAnswerLotto());
+    }
+
+    private LottoNumber requestBonus() {
+        return Mapper.mapToLottoNumber(InputView.readBonus());
     }
 }

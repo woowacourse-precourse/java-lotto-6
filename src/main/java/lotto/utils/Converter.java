@@ -1,9 +1,9 @@
 package lotto.utils;
 
 import static java.lang.Integer.parseInt;
-import static lotto.exception.ExceptionMessage.EMPTY_INPUT_ERROR;
-import static lotto.exception.ExceptionMessage.HAS_BOTH_ENDS_SEPARATOR;
 import static lotto.exception.ExceptionMessage.INVALID_NUMBER_ERROR;
+import static lotto.validator.InputValidator.validateContainWhiteSpace;
+import static lotto.validator.InputValidator.validateStringWithSeparator;
 import static lotto.view.SeparatorConstant.WINNING_NUMBERS_SEPARATOR;
 
 import java.util.Arrays;
@@ -34,30 +34,5 @@ public class Converter {
         } catch (NumberFormatException exception) {
             throw LottoGameException.of(INVALID_NUMBER_ERROR, exception);
         }
-    }
-    
-    private static void validateStringWithSeparator(final String input) {
-        if (hasStartSeparator(input) || hasEndSeparator(input)) {
-            throw LottoGameException.from(HAS_BOTH_ENDS_SEPARATOR);
-        }
-    }
-    
-    private static boolean hasEndSeparator(final String input) {
-        return input.endsWith(WINNING_NUMBERS_SEPARATOR);
-    }
-    
-    private static boolean hasStartSeparator(final String input) {
-        return input.startsWith(WINNING_NUMBERS_SEPARATOR);
-    }
-    
-    private static void validateContainWhiteSpace(final String input) {
-        if (hasWhiteSpace(input)) {
-            throw LottoGameException.from(EMPTY_INPUT_ERROR);
-        }
-    }
-    
-    private static boolean hasWhiteSpace(final String input) {
-        return input.chars()
-                .anyMatch(Character::isWhitespace);
     }
 }

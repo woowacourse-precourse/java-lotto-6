@@ -69,5 +69,9 @@ public class NumberInputView {
     }
 
     private void sortingNumbers() {
+        validNumbers = numbers.stream()
+                .map(Integer::parseInt)
+                .sorted()
+                .toList();
     }
 }

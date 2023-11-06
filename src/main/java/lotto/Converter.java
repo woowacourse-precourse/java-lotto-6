@@ -3,6 +3,7 @@ package lotto;
 import java.util.Arrays;
 import java.util.List;
 import lotto.constant.ExceptionMessage;
+import lotto.view.OutputHandler;
 
 public class Converter {
 
@@ -10,6 +11,7 @@ public class Converter {
         try {
             return Long.parseLong(paymentPrice);
         } catch (NumberFormatException e) {
+            OutputHandler.requireInteger();
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_INTEGER);
         }
     }
@@ -22,6 +24,7 @@ public class Converter {
                     .toList();
             return winningNumbers;
         } catch (Exception e) {
+            OutputHandler.requireFiveCommas();
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_FIVE_COMMAS);
         }
     }
@@ -30,7 +33,8 @@ public class Converter {
         try {
             return Integer.parseInt(numberInput);
         } catch (Exception e) {
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_INTEGER);
+            OutputHandler.requireRightRangeNumber();
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER);
         }
     }
 }

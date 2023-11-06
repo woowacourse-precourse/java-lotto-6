@@ -6,26 +6,38 @@ import java.util.List;
 
 public class Numbers {
 
-    private List<Integer> luckyNumbers;
-    private int bonusNumber;
+    private final List<Integer> winningNumbers;
+    private final int bonusNumber;
 
-    public List<Integer> getLuckyNumbers() {
-        return luckyNumbers;
+    public Numbers(List<Integer> winningNumbers, int bonusNumber) {
+        validateWinningNumber(winningNumbers);
+        checkDuplicationWinningNumber(winningNumbers);
+        this.winningNumbers = winningNumbers;
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
-    public void setLuckyNumbers(List<Integer> numbers) {
-        this.luckyNumbers = numbers;
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 
     public int getBonusNumber() {
         return bonusNumber;
     }
-    public void setBonusNumber(int bonusNumber) {
-        validateBonusNumber(bonusNumber);
-        this.bonusNumber = bonusNumber;
+
+    void validateWinningNumber(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+    void checkDuplicationWinningNumber(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    private void validateBonusNumber(int bonusNumber) {
-        if (getLuckyNumbers().contains(bonusNumber)) {
+    void validateBonusNumber(int bonusNumber) {
+        if (this.winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER.getDescription());
         }
     }

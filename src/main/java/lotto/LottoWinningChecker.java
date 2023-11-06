@@ -3,10 +3,6 @@ package lotto;
 import java.util.List;
 
 public class LottoWinningChecker {
-    private static final int FIFTH_PRIZE_MATCHING_COUNT = 3;
-    private static final int FOURTH_PRIZE_MATCHING_COUNT = 4;
-    private static final int THIRD_PRIZE_MATCHING_COUNT = 5;
-
     private final List<LottoNumber> lottoResult;
     private final LottoNumber bonusNumber;
 
@@ -51,27 +47,10 @@ public class LottoWinningChecker {
         return matchCount;
     }
 
-    private LottoResult matchBonusNumber(Lotto lotto) {
-        if (lotto.containLottoNumber(bonusNumber)) {
-            return LottoResult.SECOND_PRIZE;
-        }
-        return LottoResult.THIRD_PRIZE;
-    }
-
     public LottoResult check(Lotto lotto) {
         int matchCount = matchCount(lotto);
-        if (matchCount < FIFTH_PRIZE_MATCHING_COUNT) {
-            return LottoResult.NOTING;
-        }
-        if (matchCount == FIFTH_PRIZE_MATCHING_COUNT) {
-            return LottoResult.FIFTH_PRIZE;
-        }
-        if (matchCount == FOURTH_PRIZE_MATCHING_COUNT) {
-            return LottoResult.FOURTH_PRIZE;
-        }
-        if (matchCount == THIRD_PRIZE_MATCHING_COUNT) {
-            return matchBonusNumber(lotto);
-        }
-        return LottoResult.FIRST_PRIZE;
+        boolean containBonusNumber = lotto.containLottoNumber(bonusNumber);
+
+        return LottoRule.of(matchCount, containBonusNumber);
     }
 }

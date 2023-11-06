@@ -1,5 +1,7 @@
 package lotto;
 
+import java.text.NumberFormat;
+
 public enum LottoResult {
     NOTING(0L),
     FIFTH_PRIZE(5000L),
@@ -14,7 +16,13 @@ public enum LottoResult {
         this.price = price;
     }
 
-    public long getPrice(){
+    public long getPrice() {
         return price;
+    }
+
+    @Override
+    public String toString() {
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        return "(" + numberFormat.format(price) + "원 )";
     }
 }

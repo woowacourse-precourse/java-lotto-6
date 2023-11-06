@@ -15,7 +15,7 @@ public class Lotto {
     private final List<Integer> numbers;
     private StringBuilder lottoBuilder;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validateLength(numbers);
         validateEachNumberRange(numbers);
         validateDuplicatedNumber(numbers);
@@ -23,13 +23,13 @@ public class Lotto {
         this.lottoBuilder = new StringBuilder();
     }
 
-    private void validateLength(List<Integer> numbers) {
+    private void validateLength(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH.getSetting()) {
             throw new IllegalArgumentException(WRONG_LOTTO_LENGTH.getMessage());
         }
     }
 
-    private void validateEachNumberRange(List<Integer> numbers) {
+    private void validateEachNumberRange(final List<Integer> numbers) {
         if (numbers.stream()
                 .anyMatch(number ->
                                 !(RANGE_START_NUMBER.getSetting() <= number && number <= RANGE_END_NUMBER.getSetting())
@@ -39,7 +39,7 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicatedNumber(List<Integer> numbers) {
+    private void validateDuplicatedNumber(final List<Integer> numbers) {
         if (numbers.stream()
                    .collect(
                            Collectors.toSet()
@@ -51,14 +51,14 @@ public class Lotto {
     }
 
 
-    public Prize compareWithWinnerLotto(List<Integer> winnerNumbers, Integer bonusNumber) {
-        Integer countOfMatchedNumber = compareWithWinnerNumbers(winnerNumbers);
-        Boolean isBonusNumber = compareWithBonusNumber(bonusNumber);
+    public Prize compareWithWinnerLotto(final List<Integer> winnerNumbers, final Integer bonusNumber) {
+        final Integer countOfMatchedNumber = compareWithWinnerNumbers(winnerNumbers);
+        final Boolean isBonusNumber = compareWithBonusNumber(bonusNumber);
         return Prize.of(countOfMatchedNumber, isBonusNumber);
     }
 
 
-    private Integer compareWithWinnerNumbers(List<Integer> winnerNumbers) {
+    private Integer compareWithWinnerNumbers(final List<Integer> winnerNumbers) {
         return Math.toIntExact(numbers.stream()
                 .filter(
                         number -> winnerNumbers.contains(number)
@@ -66,7 +66,7 @@ public class Lotto {
                 .count());
     }
 
-    private Boolean compareWithBonusNumber(Integer bonusNumber) {
+    private Boolean compareWithBonusNumber(final Integer bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 

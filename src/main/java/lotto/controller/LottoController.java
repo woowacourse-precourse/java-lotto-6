@@ -1,6 +1,10 @@
 package lotto.controller;
 
+import lotto.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.view.SystemInput;
+
+import java.util.List;
 
 public class LottoController {
     // 금액을 입력받는다
@@ -25,5 +29,7 @@ public class LottoController {
         String purchaseAmount = SystemInput.readMoney();
         int money = Integer.parseInt(purchaseAmount);
         int gameAmount = money / 1000;
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        List<Lotto> winlottos = lottoGenerator.lottoGenerateWinningLotto(gameAmount);
     }
 }

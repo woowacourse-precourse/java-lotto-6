@@ -33,14 +33,18 @@ public class Judgment {
         Integer numOfLotto = 0;
 
         for (int i = 0; i < SIZE_LOTTO_NUMBERS; i++) {
-            numOfLotto = lotto.getNumber(i);
+            numOfLotto = getLottoNumber(lotto, i);
 
-            if (lottoTargetNumResults.isSameBonusNum(numOfLotto, BONUS_NUM_INDEX)) {
+            if (isSameBonusNumber(numOfLotto)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    private Boolean isSameBonusNumber(Integer numOfLotto) {
+        return lottoTargetNumResults.isSameBonusNum(numOfLotto, BONUS_NUM_INDEX);
     }
 
     private Integer getLottoNumber(Lotto lotto, int i) {

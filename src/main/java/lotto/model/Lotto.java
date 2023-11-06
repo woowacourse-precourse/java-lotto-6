@@ -16,5 +16,9 @@ public class Lotto {
         }
     }
 
+    public static boolean validateInputPurchaseAmount(int price) {
+        return (price >= 1000 && price % 1000 == 0);
+    }
+
     // TODO: 추가 기능 구현
 }

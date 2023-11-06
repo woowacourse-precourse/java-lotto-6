@@ -9,6 +9,8 @@ import lotto.constant.Prize;
 
 public class SummaryMaker {
 
+	private static final int LOTTO_PRIZE = 1000;
+
 	private Map<String, Integer> summary;
 
 	public void summarizeHit(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
@@ -34,7 +36,9 @@ public class SummaryMaker {
 
 	}
 
-	public double calculateYield(int purchaseAmount) {
+	public double calculateYield(int purchaseTime) {
+
+		int purchaseAmount = purchaseTime + LOTTO_PRIZE;
 
 		long winPirze = 0;
 

@@ -9,18 +9,14 @@ public class Money {
     public Money(String money){
         validate(money);
         this.money = money;
-        moneyToLottoTicket();
     }
 
     private void validate(String input) {
         MoneyValidator validator = new MoneyValidator(input);
     }
 
-    public int moneyToLottoTicket(){
-        return this.lottoTickets=Integer.parseInt(money)/1000;
+    public int getMoney(){
+        return Integer.parseInt(money);
     }
 
-    public int getLottoTickets(){
-        return lottoTickets;
-    }
 }

@@ -7,6 +7,9 @@ import lotto.domain.lotto.exception.DuplicateBonusNumberException;
 import lotto.domain.lotto.exception.DuplicateLottoNumberException;
 import lotto.domain.lotto.exception.InvalidLottoLengthException;
 
+/**
+ * Lotto 생성 시, 비즈니스 요구 사항 검증에 사용됩니다.
+ */
 public final class LottoValidator {
 
     private LottoValidator() {
@@ -31,6 +34,11 @@ public final class LottoValidator {
         }
     }
 
+    /**
+     * 로또 번호 중복이 있는지 검사하고,
+     * <p>
+     * 보너스 번호가 로또 번호와 충돌하는지 검사합니다.
+     */
     public static void validateDuplicationWithBonusNumber(
             final List<Integer> numbers,
             final int bonusNumber
@@ -39,6 +47,9 @@ public final class LottoValidator {
         validateDuplication(numbers);
     }
 
+    /**
+     * 보너스 번호가 로또 번호와 충돌하는지 검사합니다.
+     */
     private static void validateBonusNumberDuplication(
             final List<Integer> numbers,
             final int bonusNumber

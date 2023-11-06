@@ -32,4 +32,8 @@ public class OutputView {
     public void winningNumbers(){
         System.out.println(INPUT_LOTTO_NUMBERS);
     }
+    public void printResult(){
+        System.out.println(TOTAL);
+    }
+
 }

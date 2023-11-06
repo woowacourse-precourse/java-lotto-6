@@ -10,7 +10,7 @@ public class BonusNumber {
         while(true){
             try{
                 String bonusBall = Console.readLine();
-                if(checkValid(bonusBall)){
+                if(checkValid(bonusBall) && checkDuplicate(winningNumbers, bonusBall)){
                     winningNumbers.add(stoi(bonusBall));
                     break;
                 }
@@ -18,6 +18,17 @@ public class BonusNumber {
                 System.out.println("[ERROR] 다시 입력하세요");
             }
         }
+    }
+
+    private boolean checkDuplicate(WinningNumbers winningNumbers, String bonusBall) {
+        String[] parts = winningNumbers.toString().replaceAll("[^0-9,]", "").split(",");
+
+        for (String part : parts) {
+            if (stoi(part) == stoi(bonusBall)) {
+                throw new IllegalArgumentException();
+            }
+        }
+        return true;
     }
 
     private boolean checkValid(String bonusBall) {

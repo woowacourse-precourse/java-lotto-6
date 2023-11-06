@@ -41,6 +41,7 @@ class User {
 class Game {
     public List<Integer> numbers;
     public String inputPrice;
+    public int rank;
 
     public void inputLottoNumbers(){
         String[] inputNumbers;
@@ -52,5 +53,18 @@ class Game {
 
     public void inputBonusNumber(){
         this.numbers.add(Integer.parseInt(Console.readLine()));
+    }
+
+    public void compareNumbers(List<Integer> user, List<Integer> lotto){
+
+    }
+    public int compareLotto(List<Integer> user, List<Integer> lotto){
+        this.rank = 0;
+        for(Integer userNumber : user) {
+            if(lotto.contains(userNumber)){
+                this.rank++;
+            }
+        }
+        return rank;
     }
 }

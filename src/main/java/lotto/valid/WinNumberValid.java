@@ -14,8 +14,7 @@ import lotto.util.ConvertStr;
 public class WinNumberValid {
 
     public static List<Integer> validWinNumber(String input) {
-        List<String> nums = ConvertStr.splitByComma(input);
-        validOnlyNum(nums);
+        List<String> nums = validOnlyNum(input);
         List<Integer> intNums = ConvertStr.strsToIntegers(nums);
         validLottoNums(intNums);
         return intNums;
@@ -27,11 +26,13 @@ public class WinNumberValid {
         validWinNumberValue(intNums);
     }
 
-    private static void validOnlyNum(List<String> nums) {
+    private static List<String> validOnlyNum(String input) {
+        List<String> nums = ConvertStr.splitByComma(input);
         String reg = "^[0-9]*$";
         for (String number : nums) {
             validOnlyNumber(number);
         }
+        return nums;
     }
 
     private static void validWinNumberSize(List<Integer> intNums) {

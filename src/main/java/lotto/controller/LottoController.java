@@ -13,9 +13,9 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void run() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(readPurchaseAmount());
+        PurchaseAmount purchaseAmount = createPurchaseAmount();
 
-        Lottos lottos = new Lottos(purchaseAmount);
+        Lottos lottos = createLottos(purchaseAmount);
         lottos.displayLottos();
 
         WinningLotto winningLotto = readWinningLotto();
@@ -25,20 +25,46 @@ public class LottoController {
         winningResult.displayProfitRate();
     }
 
+    private Lottos createLottos(PurchaseAmount purchaseAmount) {
+        return new Lottos(purchaseAmount);
+    }
+
+    private PurchaseAmount createPurchaseAmount() {
+        do {
+            try {
+                return new PurchaseAmount(readPurchaseAmount());
+            } catch (IllegalArgumentException e) {
+                OutputView.printNewLine();
+                OutputView.printExceptionMessage(e.getMessage());
+            }
+        } while (true);
+    }
+
     private WinningLotto readWinningLotto() {
         return new WinningLotto(readWinningNumber(), readBonusNumber());
     }
 
     private BonusNumber readBonusNumber() {
-        OutputView.printNewLine();
-        int bonusNumber = Parser.parseToInt(InputView.readBonusNumber());
-        
-        return new BonusNumber(bonusNumber);
+        do {
+            try {
+                OutputView.printNewLine();
+                int bonusNumber = Parser.parseToInt(InputView.readBonusNumber());
+                return new BonusNumber(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                OutputView.printExceptionMessage(e.getMessage());
+            }
+        } while (true);
     }
 
     private WinningNumber readWinningNumber() {
-        String winningNumber = InputView.readWinningNumbers();
-        return new WinningNumber(Parser.parseToIntListWithComma(winningNumber));
+        do {
+            try {
+                String winningNumber = InputView.readWinningNumbers();
+                return new WinningNumber(Parser.parseToIntListWithComma(winningNumber));
+            } catch (IllegalArgumentException e) {
+                OutputView.printExceptionMessage(e.getMessage());
+            }
+        } while (true);
     }
 
     private int readPurchaseAmount() {

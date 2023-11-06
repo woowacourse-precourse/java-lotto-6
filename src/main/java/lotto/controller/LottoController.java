@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.LottoPurchaseDto;
 import lotto.service.LotteryService;
 import lotto.service.Service;
 import lotto.view.View;
@@ -19,7 +20,8 @@ public class LottoController {
 
     public void run() {
         String inputPurchaseAmount = view.askPurchaseAmount();
-        service.buyLottery(inputPurchaseAmount);
+        LottoPurchaseDto lottoPurchaseDto = service.buyLottery(inputPurchaseAmount);
+        view.printPurchaseQuantity(lottoPurchaseDto);
         view.close();
     }
 }

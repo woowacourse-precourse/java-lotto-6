@@ -1,5 +1,7 @@
 package lotto.service;
 
+import lotto.dto.LottoPurchaseDto;
+
 public interface Service {
-    void buyLottery(final String inputPurchaseAmount);
+    LottoPurchaseDto buyLottery(final String inputPurchaseAmount);
 }

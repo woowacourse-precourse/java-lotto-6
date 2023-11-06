@@ -2,13 +2,13 @@ package lotto.constant;
 
 import java.math.BigDecimal;
 
-public enum AmountConstraint {
+public enum Amount {
     MAXIMUM_PURCHASE_AMOUNT(BigDecimal.valueOf(100000L)),
     THOUSAND(BigDecimal.valueOf(1000));
 
     private final BigDecimal amount;
 
-    AmountConstraint(BigDecimal number) {
+    Amount(BigDecimal number) {
         this.amount = number;
     }
 

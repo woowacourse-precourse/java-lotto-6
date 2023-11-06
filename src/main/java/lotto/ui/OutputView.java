@@ -2,7 +2,7 @@ package lotto.ui;
 
 import static java.util.stream.Collectors.joining;
 
-import lotto.PurchasedLottoState;
+import lotto.state.PurchasedLottoState;
 
 public final class OutputView extends ConsoleWriter {
     public void print(PurchasedLottoState purchasedLottoState) {

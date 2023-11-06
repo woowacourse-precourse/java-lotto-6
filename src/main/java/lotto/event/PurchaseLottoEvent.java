@@ -1,11 +1,11 @@
 package lotto.event;
 
 import java.util.stream.Collectors;
-import lotto.PurchasedLottoState;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.event.EventListener.ParameterAndReturnEvent;
 import lotto.repository.LottoRepository;
+import lotto.state.PurchasedLottoState;
 
 public record PurchaseLottoEvent(LottoRepository lottoRepository) implements ParameterAndReturnEvent<Integer, PurchasedLottoState> {
     @Override

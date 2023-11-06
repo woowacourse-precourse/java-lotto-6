@@ -22,7 +22,4 @@ public class LottoGeneratorTest {
         // then
         assertThat(lottos.size()).isEqualTo(3);
     }
-
-
-
 }

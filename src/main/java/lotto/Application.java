@@ -14,10 +14,22 @@ public class Application {
             String input = Console.readLine();
             try {
                 int money = Integer.parseInt(input);
-                return money;
+                try {
+                    checkMoney(money);
+                    return money;
+                } catch (IllegalArgumentException e) {
+                    System.out.println("[ERROR] 구입 금액은 1000원 단위로 이루어져야 합니다.");
+                }
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 구입 금액은 정수로만 이루어져야 합니다.");
             }
         }
+    }
+
+    public static void checkMoney(int money) {
+        if (money % 1000 == 0) {
+            return;
+        }
+        throw new IllegalArgumentException();
     }
 }

@@ -24,6 +24,15 @@ public enum LottoPrize {
             default -> "";
         };
     }
+    public static LottoPrize valueOf(int matchCount) {
+        for (LottoPrize prize : values()) {
+            if (prize.getMatchCount() == matchCount) {
+                return prize;
+            }
+        }
+        return null; // 일치하는 값이 없는 경우 null 반환
+    }
+
 
     public int getMatchCount() {
         return matchCount;

@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    private static final String ERROR_MESSAGE = "[ERROR]";
+//    private static final String ERROR_MESSAGE = "[ERROR]";
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         startLotto();
     }
 
@@ -18,21 +17,27 @@ public class Application {
     }
 
     public static List<Integer> getLottoNumbers(){
-        List<Integer> numbers = new ArrayList<>();
         while (true){
             try{
                 String[] StringLottoNumber = Console.readLine().split(",");
-                convertValidatedLottoNumber(StringLottoNumber, numbers);
-                break;
+                return convertValidatedLottoNumber(StringLottoNumber);
             }  catch (IllegalArgumentException e){
-                System.out.println(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                System.out.println(Message.ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    public static List<Integer> convertValidatedLottoNumber(String[] stringLottoNumber){
+        List<Integer> numbers = new ArrayList<>();
+        for (String number: stringLottoNumber) {
+            try{
+                numbers.add(Integer.parseInt(number));
+            } catch (Exception e){
+                e.printStackTrace();
+                throw new IllegalArgumentException();
             }
         }
         return numbers;
-    }
-
-    public static void convertValidatedLottoNumber(String[] stringLottoNumber, List<Integer> numbers){
-
     }
 
 

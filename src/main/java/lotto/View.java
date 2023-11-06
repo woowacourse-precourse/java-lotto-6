@@ -7,4 +7,18 @@ public class View {
         String askInputMoney= "구입금액을 입력해 주세요.";
         System.out.println(askInputMoney);
     }
+
+    void printPurchasedLottoAmount(int number){
+
+        String askInputMoney= "개를 구매했습니다.";
+//        List<Integer> lottoNumbers = lotto.getNumbers();
+//        int number = lotto.getNumbers().size();
+//
+        System.out.println("\n"+number+askInputMoney);
+    }
+
+    void printPurchasedLottoNumbers(Lotto lotto){
+
+        System.out.println(lotto.getNumbers());
+    }
 }

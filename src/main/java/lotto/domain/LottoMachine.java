@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -31,13 +31,13 @@ public class LottoMachine {
         return new Lotto(randomNumbers);
     }
 
-    public int countCorrespond(Lotto lotto, List<Integer> winningNumber) {
+    private int countCorrespond(Lotto lotto, List<Integer> winningNumber) {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumber::contains)
                 .count();
     }
 
-    public WinningGrade findGrade(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {
+    private WinningGrade findGrade(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {
         int countCorrespond = countCorrespond(lotto, winningNumber);
         if (countCorrespond > 2) {
             return WinningGrade.findWinningGrade(countCorrespond, containBonusNumber(lotto, bonusNumber));
@@ -45,7 +45,7 @@ public class LottoMachine {
         return null;
     }
 
-    public boolean containBonusNumber(Lotto lotto, int bonusNumber) {
+    private boolean containBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
@@ -61,7 +61,7 @@ public class LottoMachine {
         return map;
     }
 
-    public Map<WinningGrade, Integer> initializeResultMap() {
+    private Map<WinningGrade, Integer> initializeResultMap() {
         Map<WinningGrade, Integer> map = new HashMap<>();
         map.put(WinningGrade.FIFTH_PRIZE,0);
         map.put(WinningGrade.FOURTH_PRIZE,0);
@@ -71,7 +71,7 @@ public class LottoMachine {
         return map;
     }
 
-    public WinningGrade[] winningGradeSortByRank() {
+    private WinningGrade[] winningGradeSortByRank() {
         WinningGrade[] values = WinningGrade.values();
         Arrays.sort(values, Comparator.comparingInt(WinningGrade::getRank).reversed());
 
@@ -93,14 +93,14 @@ public class LottoMachine {
 
     }
 
-    public String mapResultToString(WinningGrade winningGrade, int value) {
+    private String mapResultToString(WinningGrade winningGrade, int value) {
         StringBuilder sb = new StringBuilder();
         sb.append(winningGrade.getMessage()).append(value).append("개");
 
         return sb.toString();
     }
 
-    public long calculationTotalIncome(Map<WinningGrade,Integer> resultMap) {
+    private long calculationTotalIncome(Map<WinningGrade,Integer> resultMap) {
         long totalIncom = 0;
         for (WinningGrade winningGrade : resultMap.keySet()) {
             totalIncom += ((long) winningGrade.getPrizeMoney() * resultMap.get(winningGrade));
@@ -109,7 +109,7 @@ public class LottoMachine {
         return totalIncom;
     }
 
-    public double calculationYields(int wantBuyAmount, long totalIncome) {
+    private double calculationYields(int wantBuyAmount, long totalIncome) {
         double yields = (double) totalIncome / (double) wantBuyAmount;
         return (double) Math.round(yields * 1000) / 10;
     }

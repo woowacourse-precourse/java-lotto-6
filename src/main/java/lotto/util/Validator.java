@@ -9,7 +9,7 @@ import lotto.message.ValidateErrorMessage;
 
 public class Validator {
     public int validate(int payment){
-        if (payment % GameConstant.PAYMENT_UNIT != 0) {
+        if (payment % GameConstant.PAYMENT_UNIT != 0 || payment < 1000) {
             throw new IllegalArgumentException(ValidateErrorMessage.PAYMENT_ERROR.getMessage());
         }
         return payment;

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Rank {
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)"),
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
@@ -37,8 +40,15 @@ public enum Rank {
         return FIRST;
     }
 
-    public int getMatchCount() {
-        return matchCount;
+    public static Map<Rank, Integer> createNewSheet() {
+        return new HashMap<>(Map.of(
+                FIRST, 0,
+                SECOND, 0,
+                THIRD, 0,
+                FOURTH, 0,
+                FIFTH, 0,
+                NO_RANK, 0
+        ));
     }
 
     public int getPrize() {

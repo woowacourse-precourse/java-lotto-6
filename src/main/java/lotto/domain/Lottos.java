@@ -1,28 +1,26 @@
 package lotto.domain;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LottoPurchaseInfo {
-    private final List<Lotto> lottos;
+public class Lottos {
+    private final List<Lotto> lottoItems;
     private int count;
 
-    public LottoPurchaseInfo(List<Lotto> lottos, int count) {
-        this.lottos = lottos;
+    public Lottos(List<Lotto> lottos, int count) {
+        this.lottoItems = lottos;
         this.count = count;
     }
 
 
     public String getLottosNumber() {
-        return lottos.stream()
+        return lottoItems.stream()
                 .map(Lotto::toString)
                 .collect(Collectors.joining("\n"));
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
+    public List<Lotto> getLottoItems() {
+        return lottoItems;
     }
 
     public int getCount() {

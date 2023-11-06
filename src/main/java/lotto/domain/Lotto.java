@@ -16,7 +16,7 @@ public class Lotto {
         this.numbers = orderedNumbers;
     }
 
-    public static Lotto createRandomLotto(Wallet wallet) {
+    public static Lotto createRandomLotto(Money wallet) {
         wallet.payLotto();
         List<Integer> pickedNumbers = Randoms.pickUniqueNumbersInRange(
                 LottoOption.LOTTO_START_INCLUSIVE,

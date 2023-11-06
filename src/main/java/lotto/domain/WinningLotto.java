@@ -1,19 +1,13 @@
 package lotto.domain;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.message.ExceptionMessage;
 
 public record WinningLotto(Lotto lotto, BonusNumber bonus) {
     public WinningLotto {
-        validate(lotto, bonus.number());
+        validateDuplicate(lotto, bonus.number());
     }
-
-    private void validate(Lotto lotto, int bonus) {
-        validateDuplicate(lotto, bonus);
-    }
-
 
     private void validateDuplicate(Lotto lotto, int bonus) {
         if (lotto.hasNumber(bonus)) {
@@ -22,20 +16,18 @@ public record WinningLotto(Lotto lotto, BonusNumber bonus) {
     }
 
     public Map<Rank, Integer> calculateResult(List<Lotto> lottos) {
-        Map<Rank, Integer> result = new HashMap<>();
-        result.put(Rank.NO_RANK, 0);
-        result.put(Rank.FIFTH, 0);
-        result.put(Rank.FOURTH, 0);
-        result.put(Rank.THIRD, 0);
-        result.put(Rank.SECOND, 0);
-        result.put(Rank.FIRST, 0);
+        Map<Rank, Integer> resultSheet = Rank.createNewSheet();
         lottos.stream()
-                .map(this::match)
-                .forEach(rank -> result.put(rank, result.get(rank) + 1));
-        return result;
+                .map(this::calculateLottoRank)
+                .forEach(rank -> addCountByRank(resultSheet, rank));
+        return resultSheet;
     }
 
-    public Rank match(Lotto userLotto) {
+    private Integer addCountByRank(Map<Rank, Integer> resultSheet, Rank rank) {
+        return resultSheet.put(rank, resultSheet.get(rank) + 1);
+    }
+
+    public Rank calculateLottoRank(Lotto userLotto) {
         int matchCount = lotto.getMatchCount(userLotto);
         boolean matchBonus = userLotto.hasNumber(bonus.number());
         if (matchBonus) {

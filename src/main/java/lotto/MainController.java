@@ -5,34 +5,38 @@ import java.util.List;
 import lotto.domain.WinningLotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPurchaseInfo;
-import lotto.domain.Wallet;
+import lotto.domain.Lottos;
+import lotto.domain.Money;
 import lotto.message.ViewMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class MainController {
     public static void run() {
-        LottoPurchaseInfo lottoInfo = purchaseLottos();
-        OutputView.printLottoPurchaseInfo(lottoInfo);
+        Lottos purchasedLotto = initLottos();
+        OutputView.printLottos(purchasedLotto);
         WinningLotto answerLotto = initAnswerLotto();
-        OutputView.printResult(answerLotto, lottoInfo);
+        OutputView.printResult(answerLotto, purchasedLotto);
     }
 
-
-    private static LottoPurchaseInfo purchaseLottos() {
+    private static Lottos initLottos() {
         try {
-            Wallet wallet = new Wallet(InputView.readInteger(ViewMessage.INPUT_PURCHASE_MONEY));
-            List<Lotto> lottoList = new ArrayList<>();
-            while (wallet.canPurchaseLotto()) {
-                Lotto newLotto = Lotto.createRandomLotto(wallet);
-                lottoList.add(newLotto);
-            }
-            return new LottoPurchaseInfo(lottoList, lottoList.size());
+            Money money = new Money(InputView.readInteger(ViewMessage.INPUT_PURCHASE_MONEY));
+            List<Lotto> lottoItems = purchaseLotto(money);
+            return new Lottos(lottoItems, lottoItems.size());
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            return purchaseLottos();
+            return initLottos();
         }
+    }
+
+    private static List<Lotto> purchaseLotto(Money wallet) {
+        List<Lotto> lottoItems = new ArrayList<>();
+        while (wallet.canPurchaseLotto()) {
+            Lotto newLotto = Lotto.createRandomLotto(wallet);
+            lottoItems.add(newLotto);
+        }
+        return lottoItems;
     }
 
     private static WinningLotto initAnswerLotto() {

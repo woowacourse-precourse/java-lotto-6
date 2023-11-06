@@ -21,7 +21,7 @@ public class CalculateRankTest {
     @ParameterizedTest
     @MethodSource("calculateRankProvider")
     void calculateRankTest(Lotto trialLotto, Rank targetRank) {
-        Assertions.assertThat(answerLotto.match(trialLotto))
+        Assertions.assertThat(answerLotto.calculateLottoRank(trialLotto))
                 .isEqualTo(targetRank);
     }
 
@@ -41,7 +41,7 @@ public class CalculateRankTest {
     @ParameterizedTest
     @MethodSource("calculateNoRankProvider")
     void calculateNoRankTest(Lotto trialLotto, Rank targetRank) {
-        Assertions.assertThat(answerLotto.match(trialLotto))
+        Assertions.assertThat(answerLotto.calculateLottoRank(trialLotto))
                 .isEqualTo(targetRank);
 
     }

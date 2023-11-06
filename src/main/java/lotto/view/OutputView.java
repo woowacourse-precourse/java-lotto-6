@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Map;
 import lotto.domain.LottoOption;
-import lotto.domain.LottoPurchaseInfo;
+import lotto.domain.Lottos;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.message.ViewMessage;
@@ -13,7 +13,7 @@ public class OutputView {
 
     private static NumberFormat format = new DecimalFormat("#,###.##");
 
-    public static void printLottoPurchaseInfo(LottoPurchaseInfo lottoPurchaseInfo) {
+    public static void printLottos(Lottos lottoPurchaseInfo) {
         System.out.println(lottoPurchaseInfo.getCount() + "개를 구매했습니다.");
         System.out.println(lottoPurchaseInfo.getLottosNumber());
     }
@@ -22,9 +22,9 @@ public class OutputView {
         System.out.println("[ERROR] : " + e.getMessage());
     }
 
-    public static void printResult(WinningLotto answerLotto, LottoPurchaseInfo lottoInfo) {
+    public static void printResult(WinningLotto answerLotto, Lottos lottoInfo) {
         printResultHeader();
-        Map<Rank, Integer> rankIntegerMap = answerLotto.calculateResult(lottoInfo.getLottos());
+        Map<Rank, Integer> rankIntegerMap = answerLotto.calculateResult(lottoInfo.getLottoItems());
         printByRank(Rank.FIFTH, rankIntegerMap.get(Rank.FIFTH));
         printByRank(Rank.FOURTH, rankIntegerMap.get(Rank.FOURTH));
         printByRank(Rank.THIRD, rankIntegerMap.get(Rank.THIRD));

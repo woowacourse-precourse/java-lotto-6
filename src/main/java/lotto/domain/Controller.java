@@ -5,6 +5,7 @@ import static java.util.Collections.sort;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Purchase;
 import lotto.model.WinningNumbers;
@@ -18,7 +19,13 @@ public class Controller {
         View view = new View();
         view.inputPurchaseAmount();
 
-        inputAmountLogic(view);
+        String inputPurchaseAmount = view.input();
+        while (!processPurchaseAmountData(inputPurchaseAmount)) {
+            processErrorResult();
+            inputPurchaseAmount = view.input();
+            processPurchaseAmountData(inputPurchaseAmount);
+        }
+
         System.out.println();
         view.displayPurchaseQuantityMessage(Purchase.getPurchaseCount());
 
@@ -29,7 +36,12 @@ public class Controller {
         view.inputWinningNumbers();
 
         // 당첨 번호 입력 ~ 검증 ~ 저장
-        inputNumberLogic(view);
+        String inputWinningNumbers = view.input();
+        while (!processWinningNumbersData(inputWinningNumbers)) {
+            processErrorResult();
+            inputWinningNumbers = view.input();
+            processWinningNumbersData(inputWinningNumbers);
+        }
 
         // 보너스 번호 입력
         System.out.println();
@@ -57,8 +69,7 @@ public class Controller {
 
     public List<Object> generateLottoNumbersList(List<Lotto> lottoNumbers) {
         List<Object> numbers = new ArrayList<>();
-        for (int i = 0; i < lottoNumbers.size(); i++) {
-            Lotto lotto = lottoNumbers.get(i);
+        for (Lotto lotto : lottoNumbers) {
             numbers.add(lotto.getLottoNumbers());
         }
         return numbers;
@@ -88,11 +99,10 @@ public class Controller {
     }
 
     // 최소 검증 로직
-    public boolean validateInput(String input) {
+    public void validateInput(String input) {
         if (!isEmpty(input) && isNotNumeric(input)) {
             throw new IllegalArgumentException();
         }
-        return true;
     }
 
     // 당첨 번호 모델에 넘기기 전 자료형 변환
@@ -107,62 +117,33 @@ public class Controller {
         return inputWinningNumbers;
     }
 
-    public String processErrorResult() {
-        return "[ERROR] 잘못 입력하셨습니다. 다시 입력해주세요.";
+    public void processErrorResult() {
+        System.out.println("[ERROR] 잘못 입력하셨습니다. 다시 입력해주세요.");
     }
 
-
-    public void inputNumberLogic(View view) {
-        //당첨 번호 입력
-        String input = view.input();
-        //최소 검증 로직 수행 후 모델에 넘김
-        preprocessDataWithErrorHandling(input, view);
-
-        processDataWithErrorHandling(input, view);
-
-    }
-
-    public void preprocessDataWithErrorHandling(String input, View view) {
+    public boolean processWinningNumbersData(String input) {
         try {
             validateInput(input);
-        } catch (IllegalArgumentException e) {
-            processErrorResult();
-            inputNumberLogic(view);
-        }
-    }
-
-    public void processDataWithErrorHandling(String input, View view) {
-        try {
             new WinningNumbers(performTypeConversion(input));
         } catch (IllegalArgumentException e) {
-            processErrorResult();
-            inputNumberLogic(view);
+            return false;
         }
+        return true;
     }
 
-    public void inputAmountLogic(View view) {
-        //당첨 번호 입력
-        String input = view.input();
-        //최소 검증 로직 수행 후 모델에 넘김
-        preprocessAmountDataWithErrorHandling(input, view);
-        processAmountDataWithErrorHandling(input, view);
-    }
-
-    public void preprocessAmountDataWithErrorHandling(String input, View view) {
+    public boolean processPurchaseAmountData(String input) {
         try {
             validateInput(input);
+            new Purchase(Integer.parseInt((input)));
         } catch (IllegalArgumentException e) {
-            processErrorResult();
-            inputAmountLogic(view);
+            return false;
+        }
+        return true;
+    }
+
+        try {
+        } catch (IllegalArgumentException e) {
         }
     }
 
-    public void processAmountDataWithErrorHandling(String input, View view) {
-        try {
-            new Purchase(Integer.parseInt((input)));
-        } catch (IllegalArgumentException e) {
-            processErrorResult();
-            inputAmountLogic(view);
-        }
-    }
 }

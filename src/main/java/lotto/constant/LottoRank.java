@@ -1,11 +1,11 @@
 package lotto.constant;
 
 public enum LottoRank {
-    FIRST(6, "NoBonus"),
-    SECOND(5, "Bonus"),
-    THIRD(5, "NoBonus"),
+    FIFTH(3, "NoBonus"),
     FORTH(4, "NoBonus"),
-    FIFTH(3, "NoBonus");
+    THIRD(5, "NoBonus"),
+    SECOND(5, "Bonus"),
+    FIRST(6, "NoBonus");
 
     private final int winningCount;
     private final String bonus;

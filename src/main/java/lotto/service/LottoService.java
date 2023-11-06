@@ -7,20 +7,26 @@ import lotto.domain.LottoRank;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static lotto.constants.LottoConstants.*;
+
 public class LottoService {
 
     private final List<Lotto> userLottos = new ArrayList<>();
     private List<Integer> winningNumbers = new ArrayList<>();
-    private int bonusNumber = 0;
+    private int bonusNumber = ZERO;
     private HashMap<LottoRank, Integer> winningRankCount = new HashMap<>();
 
-    public List<Lotto> purchase (int purchaseQuantity) {
-        for (int i = 0; i < purchaseQuantity; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public List<Lotto> purchase (int quantity) {
+        for (int i = ZERO; i < quantity; i++) {
+            List<Integer> lottoNumbers = generateUniqueRandomLottoNumbers();
             Lotto lotto = new Lotto(sortAscendingOrder(lottoNumbers));
             userLottos.add(lotto);
         }
         return userLottos;
+    }
+
+    private List<Integer> generateUniqueRandomLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT);
     }
 
     public void initWinningNumbers(String[] winningNumbers) {
@@ -44,27 +50,21 @@ public class LottoService {
         for (Lotto userLotto : userLottos) {
             int matchingCount = userLotto.checkMatchingNumbers(winningNumbers);
             boolean hasBonusNumber = userLotto.hasBonusNumber(bonusNumber);
-            if (matchingCount >= 3) {
+            if (matchingCount >= MIN_MATCHING_COUNT) {
                 LottoRank lottoRank = LottoRank.findRank(matchingCount,hasBonusNumber);
-                winningRankCount.put(lottoRank, winningRankCount.getOrDefault(lottoRank, 0) + 1);
+                winningRankCount.put(lottoRank, winningRankCount.getOrDefault(lottoRank, ZERO) + ONE);
             }
         }
         return winningRankCount;
     }
 
-    private double calculateTotalPrizeAmount() {
-        double totalPrizeAmount = 0;
+    public double calculateProfitRate() {
+        double totalPrizeAmount = ZERO;
         for (LottoRank lottoRank: winningRankCount.keySet()) {
             totalPrizeAmount += lottoRank.getPrizeMoney() * winningRankCount.get(lottoRank);
         }
-        return totalPrizeAmount;
+        int  purchaseQuantity= userLottos.size();
+        return (totalPrizeAmount / (purchaseQuantity * LOTTO_PRICE)) * PERCENTAGE;
     }
 
-    public double getProfitRate() {
-        double totalPrizeAmount = 0;
-        for (LottoRank lottoRank: winningRankCount.keySet()) {
-            totalPrizeAmount += lottoRank.getPrizeMoney() * winningRankCount.get(lottoRank);
-        }
-        return (totalPrizeAmount / (userLottos.size() * 1000)) * 100;
-    }
 }

@@ -2,6 +2,9 @@ package lotto.domain;
 
 import java.util.Arrays;
 
+import static lotto.constants.ErrorMessageConstants.NO_MATCHING_RANK;
+import static lotto.constants.LottoConstants.SECOND_OR_THIRD_MATCHING_COUNT;
+
 public enum LottoRank {
 
     FIFTH(3,5_000 ,"5,000"),
@@ -21,7 +24,7 @@ public enum LottoRank {
     }
 
     public static LottoRank findRank(int matchingCount, boolean hasBonusNumber) {
-        if (matchingCount == 5) {
+        if (matchingCount == SECOND_OR_THIRD_MATCHING_COUNT) {
             if (hasBonusNumber) {
                 return SECOND;
             }
@@ -30,7 +33,7 @@ public enum LottoRank {
         return Arrays.stream(LottoRank.values())
                 .filter(rank -> rank.getRankMatchCount() == matchingCount)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("맞힌 개수와 일치하는 Rank가 없습니다"));
+                .orElseThrow(() -> new IllegalArgumentException(NO_MATCHING_RANK));
     }
 
     public int getRankMatchCount() {

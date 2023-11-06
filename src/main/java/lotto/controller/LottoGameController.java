@@ -6,9 +6,10 @@ import lotto.service.LottoService;
 import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
 import java.util.HashMap;
 import java.util.List;
+
+import static lotto.constants.LottoConstants.*;
 
 public class LottoGameController {
 
@@ -27,15 +28,15 @@ public class LottoGameController {
     private void lottoPurchase() {
         String inputPurchaseAmount = getValidInputPurchaseAmount();
         int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
-        int purchaseQuantity = purchaseAmount / 1000;
-        List<Lotto> userLottos = lottoService.purchase(purchaseQuantity);
-        OutputView.quantityAndLottoNumbers(userLottos);
+        int quantity = purchaseAmount / LOTTO_PRICE;
+        List<Lotto> userLottos = lottoService.purchase(quantity);
+        OutputView.purchaseQuantityAndLottoNumbers(userLottos);
     }
 
     private String getValidInputPurchaseAmount() {
         while (true) {
-            String inputPurchaseAmount = InputView.purchaseAmount();
             try {
+                String inputPurchaseAmount = InputView.purchaseAmount();
                 Validator.purchaseAmount(inputPurchaseAmount);
                 return inputPurchaseAmount;
             } catch (IllegalArgumentException e) {
@@ -79,7 +80,7 @@ public class LottoGameController {
 
     private void printLottoResults() {
         HashMap<LottoRank, Integer> winningRankCount = lottoService.checkLottoResult();
-        double profitRate = lottoService.getProfitRate();
+        double profitRate = lottoService.calculateProfitRate();
         OutputView.winningResult(winningRankCount,profitRate);
     }
 }

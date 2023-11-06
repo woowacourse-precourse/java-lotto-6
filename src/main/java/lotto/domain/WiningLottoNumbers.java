@@ -11,7 +11,15 @@ public class WiningLottoNumbers {
         this.winingLotto = winingLotto;
         this.bonus = bonus;
     }
-    
+
+    public int countWining(Lotto lotto) {
+        int result = 0;
+        if (hasBonusNumberInLotto(lotto, this.bonus)) {
+            result += 1;
+        }
+        result += winingLotto.countMatching(lotto);
+        return result;
+    }
 
     private void validate(Lotto lotto, Bonus bonus) {
         if (hasBonusNumberInLotto(lotto, bonus)) {

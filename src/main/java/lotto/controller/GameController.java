@@ -17,18 +17,29 @@ public class GameController {
     }
 
     public void play() {
+        int purchaseAmount = processLottoPurchase();
+        LottoAnalyzer lottoAnalyzer = processLottoAnalysis();
+        processLottoResult(lottoAnalyzer, purchaseAmount);
+    }
+
+    private void processLottoResult(LottoAnalyzer lottoAnalyzer, int purchaseAmount) {
+        WinningStatistics winningStatistics = new WinningStatistics(lottoAnalyzer);
+        winningStatistics.analyzeLotto(lottoVendingMachine.getLottos());
+        OutputView.printFinalResult(winningStatistics.getWinningStatistics(), purchaseAmount);
+    }
+
+    private static LottoAnalyzer processLottoAnalysis() {
+        List<Integer> winningNumbers = InputView.inputWinningNumbers();
+        LottoAnalyzer lottoAnalyzer = inputBonusNumber(winningNumbers);
+        return lottoAnalyzer;
+    }
+
+    private int processLottoPurchase() {
         int purchaseAmount = InputView.inputPurchaseAmount();
         lottoVendingMachine.purchaseLotto(purchaseAmount);
         OutputView.printLottoTicketNumber(lottoVendingMachine.getLottoTicketNumber());
         OutputView.printPurchasedLottoTickets(lottoVendingMachine.getLottos());
-
-        List<Integer> winningNumbers = InputView.inputWinningNumbers();
-        LottoAnalyzer lottoAnalyzer = inputBonusNumber(winningNumbers);
-
-        WinningStatistics winningStatistics = new WinningStatistics(lottoAnalyzer);
-        winningStatistics.analyzeLotto(lottoVendingMachine.getLottos());
-
-        OutputView.printFinalResult(winningStatistics.getWinningStatistics(), purchaseAmount);
+        return purchaseAmount;
     }
 
     private static LottoAnalyzer inputBonusNumber(List<Integer> winningNumbers) {

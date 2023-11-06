@@ -39,7 +39,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    private void validate(List<Integer> numbers) {
+    public static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LOTTO_IS_NOT_SIX_DIGITS.getMessage());
         }
@@ -47,7 +47,7 @@ public class Lotto {
         validateDuplication(numbers);
     }
 
-    private void validateDuplication(List<Integer> numbers) {
+    private static void validateDuplication(List<Integer> numbers) {
         boolean[] visited = new boolean[46];
         numbers.forEach((num) -> {
             if (visited[num]) {

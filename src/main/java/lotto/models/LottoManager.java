@@ -26,7 +26,8 @@ public class LottoManager {
     public LottoResult calcLottoResult(WinNumber winNumber) {
         LottoResult lottoResult = new LottoResult(lottoAmount);
         for (Lotto lotto : lottos) {
-            lottoResult.addLottoResult(lotto.calcRank(winNumber));
+            LottoGrade lottoGrade = lotto.calcRank(winNumber);
+            lottoResult.addLottoResult(lottoGrade);
         }
         return lottoResult;
     }

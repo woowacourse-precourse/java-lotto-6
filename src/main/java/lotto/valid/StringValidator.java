@@ -23,8 +23,6 @@ public class StringValidator extends Validator {
     }
 
     public static int bonusNumberValidate(String stringBonusNumber) {
-        int bonusNumber = convertToInteger(stringBonusNumber);
-        validatePositive(bonusNumber);
-        return bonusNumber;
+        return convertToInteger(stringBonusNumber);
     }
 }

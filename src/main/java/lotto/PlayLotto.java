@@ -16,6 +16,7 @@ public class PlayLotto {
 
     Money money;
     Lotto lotto;
+    BonusNumber bonusNumber;
     String[] inputLottoNumbers;
     List<List<Integer>> userLottoNumbers = new ArrayList<>();
     List<Integer> lottoNumbers;
@@ -26,6 +27,7 @@ public class PlayLotto {
         getMoney();
         makeLotto();
         getLottoNumber();
+        getBonusNumber();
     }
 
     public void getMoney(){
@@ -85,6 +87,17 @@ public class PlayLotto {
         lottoNumbers = new ArrayList<>();
         for (String s : inputLottoNumbers){
             lottoNumbers.add(Integer.parseInt(s));
+        }
+    }
+
+    public void getBonusNumber(){
+        try{
+            System.out.println("보너스 번호를 입력해 주세요.");
+            bonusNumber = new BonusNumber(readLine());
+            System.out.println();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            getLottoNumber();
         }
     }
 }

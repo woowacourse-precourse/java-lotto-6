@@ -10,8 +10,8 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printErrorMessage(String value) {
-        print(ERROR_MESSAGE_PREFIX + value);
+    public void print(Exception error) {
+        print(ERROR_MESSAGE_PREFIX + error.getMessage());
     }
 
 }

@@ -48,7 +48,7 @@ public class LottoController {
             purchaseCash = new Cash(inputView.inputNumber());
             lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());
         } catch (IllegalArgumentException e) {
-            outputView.print(e.getMessage());
+            outputView.print(e);
             inputPurchaseCash();
         }
     }
@@ -72,7 +72,7 @@ public class LottoController {
         try {
             return inputView.inputNumbers();
         } catch (IllegalArgumentException e) {
-            outputView.print(e.getMessage());
+            outputView.print(e);
             return inputWinningNumbers();
         }
     }
@@ -82,7 +82,7 @@ public class LottoController {
         try {
             return inputView.inputNumber();
         } catch (IllegalArgumentException e) {
-            outputView.print(e.getMessage());
+            outputView.print(e);
             return inputBonusNumber();
         }
     }

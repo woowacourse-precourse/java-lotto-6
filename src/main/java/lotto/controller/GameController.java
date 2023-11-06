@@ -22,7 +22,7 @@ public class GameController {
         Lottos lottos = buy(payment);
         List<Integer> numbers = getLuckyNumbers();
         int bonusNumber = getBonusNumber(numbers);
-        GameResultResponse response = lottos.match(numbers, bonusNumber, payment);
+        outputView.printResult(lottos.match(numbers, bonusNumber, payment));
     }
 
     private Lottos buy(int payment) {

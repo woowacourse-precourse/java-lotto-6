@@ -19,6 +19,16 @@ public class LottoResult {
         }
     }
 
+    public double getEarningRate(long money) {
+        return ((double) sumPrize() / money) * 100;
+    }
+
+    private long sumPrize() {
+        return lottoResult.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().calculate(entry.getValue()))
+                .sum();
+    }
+
     public Map<LottoRank, Integer> getLottoResult() {
         return lottoResult;
     }

@@ -1,9 +1,10 @@
 package lotto.domain.enums;
 
-import java.util.Arrays;
-import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
+
+import java.util.Arrays;
+import java.util.List;
 
 public enum LottoRank {
     NONE(0, 0, false, "꽝"),
@@ -47,6 +48,10 @@ public enum LottoRank {
                 .filter(lottoRank -> lottoRank.matchBonus == matchBonusResult)
                 .findAny()
                 .orElse(NONE);
+    }
+
+    public long calculate(int count) {
+        return (long) prize * count;
     }
 
     public int getPrize() {

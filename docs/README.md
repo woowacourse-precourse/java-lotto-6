@@ -43,6 +43,11 @@
     - [ ]  수익률의 범위는 0% ~ 2,000,000%이다. 해당 범위 내인지 확인한다. 범위 밖이면 IllegalArgumentException을 반환한다.
 10. 수익률을 출력한다.
 
-
-
 ## 테스트 목표
+1. 로또 구입 금액 테스트
+    - [ ]   올바른 입력일 시 어떠한 Exception도 감지되지 않는다.
+    - [ ]   숫자가 아닐 경우 IllegalArgumentException을 반환한다.
+    - [ ]   integer의 범위를 초과할 경우 IllegalArgumentException을 반환한다.
+    - [ ]   음수를 입력할 경우 IllegalArgumentException을 반환한다.
+    - [ ]   로또 구입 금액이 로또 금액 (현재 기준 1,000원)으로 나누어 떨어진다면 어떠한 Exception도 감지되지 않는다.
+    - [ ]   로또 구입 금액이 로또 금액 (현재 기준 1,000원)으로 나누어 떨어지지 않는다면 IllegalArgumentException을 반환한다.

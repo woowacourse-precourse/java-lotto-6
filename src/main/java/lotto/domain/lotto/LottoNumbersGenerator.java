@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.dto.LottoNumbersDTO;
@@ -25,6 +26,7 @@ public class LottoNumbersGenerator {
 
     public LottoNumbersDTO generate() {
         List<Integer> numbers = pickNumbersStrategy.pickNumbers(MIN_NUMBER, MAX_NUMBER, NUMBERS_COUNT);
+        Collections.sort(numbers);
         return new LottoNumbersDTO(numbers);
     }
 

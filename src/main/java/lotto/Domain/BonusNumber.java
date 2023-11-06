@@ -11,4 +11,10 @@ public class BonusNumber {
     public  BonusNumber(int bonusNumber, List<Integer> winningNumbers){
         this.bonusNumber = bonusNumber;
     }
+
+    private void checkNumberRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw ExceptionMessage.INTPUT_NUMBER_LENGTH.throwexception();
+        }
+    }
 }

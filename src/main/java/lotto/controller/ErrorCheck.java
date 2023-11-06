@@ -24,7 +24,7 @@ public class ErrorCheck {
         }
     }
 
-    public static void isDuplicationErrorcheck(String choice, List<Integer> numbers) throws IllegalArgumentException {
+    public static void isDuplicationErrorCheck(String choice, List<Integer> numbers) throws IllegalArgumentException {
         Integer bonusNum = Integer.parseInt(choice);
         if (numbers.contains(bonusNum)) {
             throw new IllegalArgumentException(ErrorMessage.isDuplication());
@@ -32,7 +32,7 @@ public class ErrorCheck {
 
     }
 
-    public static void isvalidateMaxAndMinNum(String choice) {
+    public static void isValidateMaxAndMinNum(String choice) {
         Integer bonusNum = Integer.parseInt(choice);
         if (1 > bonusNum || bonusNum > 45) {
             throw new IllegalArgumentException(ErrorMessage.isMaxAndMinValue());

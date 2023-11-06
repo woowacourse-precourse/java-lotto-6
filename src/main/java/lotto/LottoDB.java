@@ -74,9 +74,9 @@ public class LottoDB {
         this.lottoTotalWinningRate = totalWinningRate;
     }
 
-    public ArrayList<Integer> getOneLottoNumbers(int startindex) {
+    public ArrayList<Integer> getOneLottoNumbers(int startIndex) {
         ArrayList<Integer> lottoNumbers = new ArrayList<>();
-        for (int index = startindex; index < startindex + 6; index++) {
+        for (int index = startIndex; index < startIndex + 6; index++) {
             lottoNumbers.add(userLottoNumbers.get(index));
         }
         return lottoNumbers;

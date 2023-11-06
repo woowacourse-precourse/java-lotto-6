@@ -85,7 +85,7 @@ public class LottoController {
                 String bonusNumberString = readLineFromUser();
                 int bonusNumber = convertStringToInteger(bonusNumberString);
                 checkWinningNumbersInRange(bonusNumber);
-                lotto.checkDuplicateforBonusNumber(bonusNumber);
+                lotto.checkDuplicateForBonusNumber(bonusNumber);
                 lottoDB.setLottoBonusNumber(bonusNumber);
                 pass = false;
             } catch (IllegalArgumentException e) {

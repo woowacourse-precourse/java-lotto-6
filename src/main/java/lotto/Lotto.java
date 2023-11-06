@@ -25,8 +25,10 @@ public class Lotto {
         System.out.println(numbers);
     }
 
-    public boolean checkDuplicateforBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    public void checkDuplicateForBonusNumber(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] : 입력된 보너스 번호가 기존 당첨 번호와 중복됩니다.");
+        }
     }
 
     public int checkWinning(ArrayList<Integer> lottoNumbers, int bonusNumber) {
@@ -36,7 +38,7 @@ public class Lotto {
                 correct += 1;
             }
         }
-        if (correct == 5 && numbers.contains(bonusNumber)) {
+        if (correct == 5 && lottoNumbers.contains(bonusNumber)) {
             correct = 7;
         }
         return correct;

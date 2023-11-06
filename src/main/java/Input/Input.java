@@ -38,12 +38,13 @@ public class Input {
         return result;
     }
 
-    public int bonusNumber() {
+    public int bonusNumber(List<Integer> answer_number) {
         int result;
         do {
             output.bonusNumberAsk();
             String bonus_string = readLine();
             result = except.bonusCheck(bonus_string);
+            result = except.duplicateCheck(answer_number, result);
         } while (result < 1);
         return result;
     }

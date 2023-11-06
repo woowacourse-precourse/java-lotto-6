@@ -8,13 +8,14 @@ import lotto.Lotto;
 public class RandomLottoNumber {
 
     private static final int MIN=1;
-    private static final int MAX=1;
-    private static final int COUNT=1;
-    private Lotto generateRandomLottoNumbers() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN, MAX, COUNT));
+    private static final int MAX=45;
+    private static final int COUNT=6;
+    public Lotto generateRandomLottoNumbers() {
+        List<Integer> integers = Randoms.pickUniqueNumbersInRange(MIN, MAX, COUNT);
+        return new Lotto(integers);
     }
 
-    private List<Lotto> generateTotalLottoNumbers(int count) {
+    public List<Lotto> generateTotalLottoNumbers(int count) {
         List<Lotto> totalLotoNumber = new ArrayList<>();
 
         while (totalLotoNumber.size() < count) {

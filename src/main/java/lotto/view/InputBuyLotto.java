@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.DivideThousand;
+import lotto.exception.DivideThousandException;
 import lotto.exception.ZeroException;
 
 import java.util.regex.Pattern;
@@ -28,7 +28,7 @@ public class InputBuyLotto {
 
     private int getTicket(int money) {
         validateZero(money);
-        validateDivideThousand(money);
+        validateDivideThousand(money);증
 
         return money / THOUSAND;
     }
@@ -41,7 +41,7 @@ public class InputBuyLotto {
 
     private void validateDivideThousand(int money) {
         if (money % THOUSAND != 0) {
-            throw new DivideThousand();
+            throw new DivideThousandException();
         }
     }
 

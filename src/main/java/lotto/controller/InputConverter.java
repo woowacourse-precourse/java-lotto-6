@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import static lotto.controller.ExceptionController.checkExceptionPrice;
 import static lotto.view.ErrorMessage.notDigitExceptionMessage;
 
 public class InputConverter {

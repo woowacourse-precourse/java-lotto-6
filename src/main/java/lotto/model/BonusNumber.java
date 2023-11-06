@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class BonusNumber extends Number {
-    private int bonusNumber;
+    private final int bonusNumber;
     public BonusNumber(int bonusNumber) {
         checkRange(bonusNumber);
         this.bonusNumber = bonusNumber;

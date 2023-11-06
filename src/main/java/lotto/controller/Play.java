@@ -1,16 +1,13 @@
 package lotto.controller;
 
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
+import lotto.model.*;
 import lotto.model.Number;
-import lotto.model.Price;
 
 import java.util.*;
 
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.Statistic.*;
-import static lotto.controller.ExceptionController.checkExceptionWinningNumber;
 import static lotto.controller.lotteryController.*;
 import static lotto.controller.winningController.*;
 import static lotto.view.Message.*;
@@ -23,7 +20,7 @@ public class Play {
     private static HashMap<Rank, Integer> result;
     private static List<Lotto> lottery;
     private static BonusNumber bonus;
-    private static List<Integer> winningNumbers;
+    private static WinningNumber winningNumbers;
 
     public Play() {
         boughtLotto();
@@ -40,13 +37,13 @@ public class Play {
     }
 
     public static void inputWinning() {
-        winningNumbers = createWinningNumber();
-        createBonusNumber(winningNumbers);
+        createWinningNumber();
+        createBonusNumber(winningNumbers.getWinningNumbers());
     }
 
     public static void winningResult() {
         messageAboutWinningStatistic();
-        result = createResult(lottery, winningNumbers, bonus);
+        result = createResult(lottery, winningNumbers.getWinningNumbers(), bonus);
         calResultPlay();
     }
 
@@ -63,12 +60,13 @@ public class Play {
         }
     }
 
-    public static List<Integer> createWinningNumber() {
+    public static void createWinningNumber() {
         while(true) {
+            messageAboutUserLottoNumber();
+            String tmpWinningNumbers = inputWinningNumbers();
             try {
-                messageAboutUserLottoNumber();
-                String tmpWinningNumbers = inputWinningNumbers();
-                return checkExceptionWinningNumber(tmpWinningNumbers);
+                winningNumbers = new WinningNumber(convertWinningNumber(tmpWinningNumbers));
+                break;
             } catch (IllegalArgumentException e) {
                 //notDigitExceptionMessage();
             }
@@ -83,6 +81,7 @@ public class Play {
             try {
                 bonus = new BonusNumber(convertBonusNumber(tmpBonusNumber));
                 bonus.checkDuplicate(numbers, bonus);
+                break;
             } catch (IllegalArgumentException e) {
                 //System.out.println("[ERROR]");
             }

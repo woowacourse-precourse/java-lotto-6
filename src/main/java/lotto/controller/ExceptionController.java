@@ -8,6 +8,7 @@ import static lotto.controller.InputConverter.*;
 import static lotto.view.ErrorMessage.*;
 
 public class ExceptionController {
+
     private static final int start = 1;
     private static final int end = 45;
 
@@ -25,13 +26,13 @@ public class ExceptionController {
         return winningNumbers;
     }
 
-    /*
+
     public static int checkExceptionBonus(List<Integer> numbers, String tmpBonusNumber) {
         int bonus = convertBonusNumber(tmpBonusNumber);
         checkRange(bonus);
         checkDuplicate(numbers, bonus);
         return bonus;
-    }*/
+    }
 
     public static void checkWinningNumbersLength(List<Integer> winningNumbers) {
         if (winningNumbers.size() != size) {
@@ -39,7 +40,6 @@ public class ExceptionController {
             throw new IllegalArgumentException();
         }
     }
-
     public static void rotateWinningNumbers(List<Integer> winningNumbers) throws IllegalArgumentException {
         for (int number : winningNumbers) {
             checkRange(number);

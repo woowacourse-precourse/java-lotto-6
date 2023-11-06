@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Exception.LottoNumbersException;
 
 public class Application {
     public static void main(String[] args) {
@@ -18,6 +19,9 @@ public class Application {
         checkLottoBundle(lottoBundle);
         System.out.println();
 
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winNumbers = numbersSeparator(Console.readLine());
+        LottoNumbersException.validatLottoNumbers(winNumbers);
 
     }
 

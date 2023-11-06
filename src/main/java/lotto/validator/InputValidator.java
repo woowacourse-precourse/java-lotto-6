@@ -3,6 +3,7 @@ package lotto.validator;
 import static lotto.constant.ErrorMessageConstant.LOTTO_NUMBER_INPUT_ERROR_MESSAGE;
 import static lotto.constant.ErrorMessageConstant.LOTTO_NUMBER_SIZE_ERROR_MESSAGE;
 import static lotto.constant.ErrorMessageConstant.LOTTO_PRICE_INPUT_ERROR_MESSAGE;
+import static lotto.constant.SystemConstant.NUMBER_COUNT;
 import static lotto.constant.SystemConstant.NUMBER_PATTERN;
 import static lotto.constant.SystemConstant.PRICE_PATTERN;
 
@@ -31,7 +32,7 @@ public class InputValidator {
     }
 
     private static void validateInputNumberCount(List<String> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
+        if (lottoNumbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUMBER_SIZE_ERROR_MESSAGE.getErrorMessage());
         }
     }

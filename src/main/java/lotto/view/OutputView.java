@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println(lottos);
     }
 
-    public void printGetWinningNumbersMessage() {
+    public void printGetWinningLottoMessage() {
         System.out.println();
         System.out.println(PrintingMessage.GET_WINNING_NUMBERS_MESSAGE.get());
     }
@@ -37,5 +37,9 @@ public class OutputView {
 
     public void printProfitRate(double profitRate) {
         System.out.println(PrintingMessage.PROFIT_MESSAGE.getWithFormat(profitRate));
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }

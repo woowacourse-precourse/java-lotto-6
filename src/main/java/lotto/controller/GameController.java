@@ -1,10 +1,10 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottosManager;
-import lotto.domain.wrapper.LottoNumber;
+import lotto.domain.wrapper.BonusNumber;
 import lotto.domain.wrapper.PurchaseAmount;
+import lotto.service.ConsoleInputParser;
 import lotto.service.PrizeChecker;
 import lotto.service.VendingMachine;
 import lotto.domain.PrizeReception;
@@ -14,23 +14,39 @@ import lotto.view.OutputView;
 
 public class GameController {
     InputView inputView = new InputView();
+    ConsoleInputParser consoleInputParser = new ConsoleInputParser();
     OutputView outputView = new OutputView();
 
     public void play() {
-        PurchaseAmount purchaseAmount = getPurchaseAmout();
+        PurchaseAmount purchaseAmount = getValidPurchaseAmount();
         LottosManager plyerLottosManager = buyLottos(purchaseAmount);
         printLottos(plyerLottosManager);
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber(winningNumbers);
-        PrizeChecker prizeChecker = new PrizeChecker(new Lotto(winningNumbers), new LottoNumber(bonusNumber));
+        Lotto winningLotto = getValidWinningLotto();
+        BonusNumber bonusNumber = getValidBonusNumber(winningLotto);
+        PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
         PrizeReception prizeReception = plyerLottosManager.getPrizeReception(prizeChecker);
         printPrizeResults(prizeReception);
         printPrizeProfit(prizeReception, purchaseAmount);
     }
 
-    private PurchaseAmount getPurchaseAmout() {
+    private PurchaseAmount getValidPurchaseAmount() {
+        boolean isCorrectInput = false;
+        PurchaseAmount purchaseAmount = null;
+        while (!isCorrectInput) {
+            try {
+                purchaseAmount = getPurchaseAmount();
+                isCorrectInput = true;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printErrorMessage(illegalArgumentException.getMessage());
+            }
+        }
+        return purchaseAmount;
+    }
+
+    private PurchaseAmount getPurchaseAmount() {
         outputView.printGetPurchaseAmountMessage();
-        return new PurchaseAmount(inputView.getPurchaseAmount());
+        String input = inputView.getInputFromConsole();
+        return consoleInputParser.toPurchaseAmount(input);
     }
 
     private LottosManager buyLottos(PurchaseAmount purchaseAmount) {
@@ -43,14 +59,44 @@ public class GameController {
         outputView.printLottos(playerLottosManager.toString());
     }
 
-    private List<Integer> getWinningNumbers() {
-        outputView.printGetWinningNumbersMessage();
-        return inputView.getWinningNumbers();
+    private Lotto getValidWinningLotto() {
+        boolean isCorrectInput = false;
+        Lotto winningLotto = null;
+        while (!isCorrectInput) {
+            try {
+                winningLotto = getWinningLotto();
+                isCorrectInput = true;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printErrorMessage(illegalArgumentException.getMessage());
+            }
+        }
+        return winningLotto;
     }
 
-    private int getBonusNumber(List<Integer> winningNumbers) {
+    private Lotto getWinningLotto() {
+        outputView.printGetWinningLottoMessage();
+        String input = inputView.getInputFromConsole();
+        return consoleInputParser.toLotto(input);
+    }
+
+    private BonusNumber getValidBonusNumber(Lotto winningLotto) {
+        boolean isCorrectInput = false;
+        BonusNumber bonusNumber = null;
+        while (!isCorrectInput) {
+            try {
+                bonusNumber = getBonusNumber(winningLotto);
+                isCorrectInput = true;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printErrorMessage(illegalArgumentException.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    private BonusNumber getBonusNumber(Lotto winningLotto) {
         outputView.printGetBonusNumberMessage();
-        return inputView.getBonusNumber(winningNumbers);
+        String input = inputView.getInputFromConsole();
+        return consoleInputParser.toBounsNumber(input, winningLotto);
     }
 
     private void printPrizeResults(PrizeReception prizeReception) {

@@ -23,6 +23,10 @@ public class WinningCalculator {
         totalPrizeMoney = 0;
     }
 
+    private void plusTotalPrizeMoney(LottosConstants prizeType){
+        totalPrizeMoney += prizeType.getPrizeMoney();
+    }
+
     private boolean calculateBonus(List<Integer> winningNumber, int bonusNumber){
         return winningNumber.contains(bonusNumber);
     }

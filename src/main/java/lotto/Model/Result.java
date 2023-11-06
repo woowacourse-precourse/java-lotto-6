@@ -5,7 +5,7 @@ import lotto.View.OuputView;
 
 public class Result {
     public static void printResults(List<Integer> countWinnings) {
-        OuputView.resultPrint();
+        OuputView.printResultStr();
         for (LottoPrize prize : LottoPrize.values()) {
             if (prize != LottoPrize.FAIL) {
                 int prizeCount = countWinnings.get(prize.ordinal());

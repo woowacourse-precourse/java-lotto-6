@@ -43,6 +43,16 @@ public class WinningNumberTest {
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 
+    @ParameterizedTest(name = "입력 번호 : {0}")
+    @MethodSource("generateLongLengthWinningNumber")
+    @DisplayName("최대 길이가 넘어가는 입력이 들어오면 예외가 발생한다.")
+    void 당첨번호_최대_길이_초과_예외_테스트(List<Integer> winningNumber) {
+        //when, then
+        Assertions.assertThatThrownBy(() -> new WinningNumber(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("6자리");
+    }
+
     static Stream<Arguments> generateWinningNumber() {
         return Stream.of(
                 Arguments.of(List.of(1, 1, 2, 3, 4, 5)),
@@ -55,6 +65,13 @@ public class WinningNumberTest {
                 Arguments.of(List.of(1, 2, 46, 47, 49, 51)),
                 Arguments.of(List.of(1, 2, 122, 133, 124, 55)),
                 Arguments.of(List.of(1, 3, 53, 73, 84, 95)));
+    }
+
+    static Stream<Arguments> generateLongLengthWinningNumber() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7, 8)),
+                Arguments.of(List.of(1, 2, 5, 6, 7, 8, 9, 10, 11)),
+                Arguments.of(List.of(1, 3, 4, 5, 6, 7, 8, 9)));
     }
 
     static Stream<Arguments> generateLottoAndWinningNumber() {

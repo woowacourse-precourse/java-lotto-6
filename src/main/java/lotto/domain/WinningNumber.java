@@ -14,6 +14,7 @@ public class WinningNumber {
     public WinningNumber(List<Integer> winningNumber) {
         validateDuplicateNumbers(winningNumber);
         validateOutOfRange(winningNumber);
+        validateLottoLength(winningNumber);
         this.winningNumber = winningNumber;
     }
 

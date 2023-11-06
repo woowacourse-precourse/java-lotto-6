@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoResult;
 import lotto.domain.User;
+import lotto.domain.WinningLottoNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,7 +22,8 @@ public class LottoController {
 
     public void run() {
         User user = buyLottoTicket();
-        LottoResult lottoResult = calculateLottoResult(user);
+        WinningLottoNumbers winningLottoNumbers = getWinningLottoNumbers();
+        LottoResult lottoResult = calculateLottoResult(user, winningLottoNumbers);
         calculateReturnRate(user, lottoResult);
     }
 
@@ -32,10 +34,14 @@ public class LottoController {
         return user;
     }
 
-    public LottoResult calculateLottoResult(User user) {
+    public WinningLottoNumbers getWinningLottoNumbers() {
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
         int bonusNumber = inputView.inputBonusNumber();
-        LottoResult lottoResult = lottoService.calculateLottoResult(user, winningNumbers, bonusNumber);
+        return lottoService.getWinningLottoNumbers(winningNumbers, bonusNumber);
+    }
+
+    public LottoResult calculateLottoResult(User user, WinningLottoNumbers winningLottoNumbers) {
+        LottoResult lottoResult = lottoService.calculateLottoResult(user, winningLottoNumbers);
         outputView.printLottoResult(lottoResult.getLottoResult());
         return lottoResult;
     }

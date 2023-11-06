@@ -19,8 +19,8 @@ class WinningResultTest {
     @Test
     void initWinningResult() {
         assertRandomUniqueNumbersInRangeTest(() -> {
-            winningResult = new WinningResult(new LottoTickets(1), new WinningLotto(new Lotto("1,2,3,4,5,6"), new LottoNumber("10")));
-        }, List.of(1,2,3,4,5,6));
+            winningResult = new WinningResult(new LottoTickets(5), new WinningLotto(new Lotto("1,2,3,4,5,6"), new LottoNumber("7")));
+        }, List.of(1,2,3,4,5,6), List.of(1,2,3,4,5,7), List.of(1,2,3,4,5,8),List.of(1,2,3,4,8,7), List.of(1,2,3,14,15,18));
     }
 
     @Test
@@ -41,9 +41,9 @@ class WinningResultTest {
     @Test
     void getCount() {
         assertThat(winningResult.getCount(Rank.FIRST)).isEqualTo(1);
-        assertThat(winningResult.getCount(Rank.SECOND)).isEqualTo(0);
-        assertThat(winningResult.getCount(Rank.THIRD)).isEqualTo(0);
-        assertThat(winningResult.getCount(Rank.FOURTH)).isEqualTo(0);
-        assertThat(winningResult.getCount(Rank.FIFTH)).isEqualTo(0);
+        assertThat(winningResult.getCount(Rank.SECOND)).isEqualTo(1);
+        assertThat(winningResult.getCount(Rank.THIRD)).isEqualTo(1);
+        assertThat(winningResult.getCount(Rank.FOURTH)).isEqualTo(1);
+        assertThat(winningResult.getCount(Rank.FIFTH)).isEqualTo(1);
     }
 }

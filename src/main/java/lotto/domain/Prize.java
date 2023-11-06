@@ -34,6 +34,10 @@ public enum Prize {
                 .orElse(null);
     }
 
+    public String getPrint() {
+        return String.format(PRINT_FORMAT, label, money);
+    }
+
     public int getMoney() {
         return money;
     }

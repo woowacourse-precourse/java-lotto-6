@@ -3,8 +3,12 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class PrizeResult {
+    private static final String RESULT_FORMAT = "%s - %d개";
+
     EnumMap<Prize, Integer> prizeCount = new EnumMap<>(Prize.class);
 
     public PrizeResult(Lottos lottos, WinningLotto winningLotto) {
@@ -17,6 +21,13 @@ public class PrizeResult {
 
     public EnumMap<Prize, Integer> getPrizeCount() {
         return prizeCount;
+    }
+
+    public List<String> getResults() {
+        return prizeCount.entrySet().stream()
+                .map(entry
+                        -> String.format(RESULT_FORMAT, entry.getKey().getPrint(), entry.getValue()))
+                .collect(Collectors.toList());
     }
 
     public int getPrizeMoney() {

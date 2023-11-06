@@ -24,6 +24,13 @@ public enum LottoResult {
     }
 
     public static LottoResult valueOf(int matchCount, boolean bonusMatch) {
+        if (matchCount == 5 && bonusMatch) {
+            return FIVE_WITH_BONUS;
+        }
+
+        if (matchCount < LottoResult.THREE.matchCount && matchCount >= LottoResult.NONE.matchCount)
+            return NONE;
+
         return Arrays.stream(values())
                 .filter(lottoResult -> lottoResult.check(matchCount, bonusMatch))
                 .findAny()

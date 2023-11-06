@@ -10,9 +10,7 @@ public class InputView {
 
     public String readAmount(){
         System.out.println(INPUT_AMOUNT_MESSAGE);
-        String input = Console.readLine();
-        new AmountValidator().validation(input);
-        return input;
+        return Console.readLine();
     }
     public String readWinnerLottoNumbers(){
         System.out.println(INPUT_WINNER_LOTTO_MESSAGE);

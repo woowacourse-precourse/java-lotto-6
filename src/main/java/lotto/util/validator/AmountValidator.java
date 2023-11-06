@@ -1,17 +1,28 @@
 package lotto.util.validator;
 
+import lotto.util.ExceptionMessage;
+
 public class AmountValidator extends Validator{
     @Override
-    public void validation(String input) {
-        validationNumeric(input);
-
+    public boolean validation(String input) {
+        if(validationNumeric(input)){
+            System.out.println(ExceptionMessage.INVALID_NOT_NATURAL_NUMBER.getMessage());
+            return false;
+        }
+        if(validationDivideThousand(input)){
+            System.out.println(ExceptionMessage.INVALID_NOT_NATURAL_NUMBER.getMessage());
+            return false;
+        }
+        return true;
     }
 
+    private boolean validationDivideThousand(String input) {
+        int amount = Integer.parseInt(input);
+        return amount % 1000 != 0;
+    }
 
-    private void validationNumeric(String input) {
+    private boolean validationNumeric(String input) {
         String regex = "^[0-9]*$";
-        if (!input.matches(regex)) {
-            throw new IllegalArgumentException();
-        }
+        return !input.matches(regex);
     }
 }

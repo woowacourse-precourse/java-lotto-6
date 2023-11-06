@@ -12,6 +12,7 @@ import lotto.model.Result;
 import lotto.model.WinnerLotto;
 import lotto.util.converter.NumericConverter;
 import lotto.util.converter.NumericListConverter;
+import lotto.util.validator.AmountValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,9 +23,11 @@ public class LottoController {
     private final NumericConverter numericConverter = new NumericConverter();
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final AmountValidator amountValidator = new AmountValidator();
 
     public void run() {
         int amount = getAmount();
+        outputView.printAmount(amount);
         Lottos lottos = new Lottos(buyLotto(amount));
         WinnerLotto winnerLotto = new WinnerLotto(getWinnerLotto(), getBonusNumber());
         Result result = new Result(lottos.calculateResult(winnerLotto));
@@ -43,9 +46,12 @@ public class LottoController {
     }
 
     private int getAmount() {
-        String input = inputView.readAmount();
-        int amount = numericConverter.convert(input) / LOTTO_PRICE;
-        outputView.printAmount(amount);
+        String input;
+        int amount;
+        do {
+            input = inputView.readAmount();
+        } while (!amountValidator.validation(input));
+        amount = numericConverter.convert(input) / LOTTO_PRICE;
         return amount;
     }
 

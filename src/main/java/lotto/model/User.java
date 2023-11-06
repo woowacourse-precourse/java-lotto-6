@@ -10,6 +10,11 @@ public class User {
     private final List<List<Integer>> purchasedLottoNumbers;
     private List<Integer> rankCount;
     private final int RANK_NUMBER = 6;
+    private final int FIRST_PLACE = 1;
+    private final int SECOND_PLACE = 2;
+    private final int THIRD_PLACE = 3;
+    private final int FOURTH_PLACE = 4;
+    private final int FIFTH_PLACE = 5;
 
     public User(int payment) {
         validatePayment(payment);
@@ -45,16 +50,16 @@ public class User {
     }
 
     public void increaseRankCount(int rank) {
-        if (rank == 5) {
-            this.rankCount.set(5, this.rankCount.get(5) + 1);
-        } else if (rank == 4) {
-            this.rankCount.set(4, this.rankCount.get(4) + 1);
-        } else if (rank == 3) {
-            this.rankCount.set(3, this.rankCount.get(3) + 1);
-        } else if (rank == 2) {
-            this.rankCount.set(2, this.rankCount.get(2) + 1);
-        } else if (rank == 1) {
-            this.rankCount.set(1, this.rankCount.get(1) + 1);
+        if (rank == FIFTH_PLACE) {
+            this.rankCount.set(FIFTH_PLACE, this.rankCount.get(FIFTH_PLACE) + 1);
+        } else if (rank == FOURTH_PLACE) {
+            this.rankCount.set(FOURTH_PLACE, this.rankCount.get(FOURTH_PLACE) + 1);
+        } else if (rank == THIRD_PLACE) {
+            this.rankCount.set(THIRD_PLACE, this.rankCount.get(THIRD_PLACE) + 1);
+        } else if (rank == SECOND_PLACE) {
+            this.rankCount.set(SECOND_PLACE, this.rankCount.get(SECOND_PLACE) + 1);
+        } else if (rank == FIRST_PLACE) {
+            this.rankCount.set(FIRST_PLACE, this.rankCount.get(FIRST_PLACE) + 1);
         }
     }
 

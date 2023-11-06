@@ -41,6 +41,17 @@ class InputBonusNumberServiceTest {
     }
 
 
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 46, 0})
+    @DisplayName("보너스 번호의 숫자가 범위를 벗어난 경우!")
+    void validateBonusNumberRange(int convertedBonusNumber) {
+        Assertions.assertThatThrownBy(() -> validator.validateBonusNumberRange(convertedBonusNumber))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR]");
+    }
+
+
+
 
 
 

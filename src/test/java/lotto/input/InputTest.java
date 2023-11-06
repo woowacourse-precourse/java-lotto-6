@@ -2,13 +2,16 @@ package lotto.input;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static lotto.exception.ExceptionMessage.NOT_NUMBER_EXCEPTION_MESSAGE;
 import static lotto.exception.ExceptionMessage.NULL_POINTER_EXCEPTION_MESSAGE;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import lotto.exception.LottoApplicationException;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
 
@@ -32,6 +35,16 @@ public class InputTest {
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining(NULL_POINTER_EXCEPTION_MESSAGE.getMessage());
     }
+    @ParameterizedTest
+    @ValueSource(strings = {"1a2b3c,.2.,3 c"})
+    @DisplayName("입력에 숫자외 문자가 들어갈 경우")
+    public void 숫자_외_문자_입력_테스트(String input) {
+        assertThatThrownBy(() -> inputValidator.validateNumber(input))
+                .isInstanceOf(LottoApplicationException.class)
+                .hasMessageContaining(NOT_NUMBER_EXCEPTION_MESSAGE.getMessage());
+    }
+
+
 
 
 }

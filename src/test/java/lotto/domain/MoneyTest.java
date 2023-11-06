@@ -24,7 +24,7 @@ class MoneyTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구매 금액앞에 0이 포함될 때, 예외 처리")
+    @DisplayName("구매 금액 앞에 0이 포함될 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"01000", "00300"})
     void createMoneyByFirstNumberZero(String userInput) {
@@ -39,5 +39,4 @@ class MoneyTest {
         assertThatThrownBy(() -> new Money(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }

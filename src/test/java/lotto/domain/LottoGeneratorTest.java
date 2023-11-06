@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -25,12 +26,25 @@ class LottoGeneratorTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when, then
-        assertThat(LottoGenerator.createWinningLotto("1,2,3,4,5,6").getNumbers()).isEqualTo(lotto.getNumbers());
-
+        assertThat(LottoGenerator.createWinningLotto("1,2,3,4,5,6").getNumbers())
+                .isEqualTo(lotto.getNumbers());
     }
+
+    @DisplayName("입력된 당첨 번호가 숫자가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"a,b,c,d,e,f", "abc", "1,2,3,4,5,a1"})
+    void createWinningLottoByNotNumber(String lottoNumber) {
+
+        assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+
+
     @DisplayName("보너스 번호를 입력 받아 보너스 번호 생성")
     @Test
-    void createBonusNumber(){
+    void createBonusNumber() {
 
         // given
         Lotto winningLotto = LottoGenerator.createWinningLotto("1,2,3,4,5,6");

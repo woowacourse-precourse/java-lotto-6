@@ -82,4 +82,17 @@ public class LottoServiceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 구입 금액은 1000원 단위로 가능합니다.");
     }
+
+    @DisplayName("로또 구입 금액이 0원 이하이면 예외를 발생한다.")
+    @Test
+    void purchaseLottoTicketsShouldThrowExceptionWhenAmountIsZeroAndUnder() {
+        // given
+        final int PURCHASE_AMOUNT = 0;
+        // when
+        LottoService lottoService = new LottoService();
+        // then
+        assertThatThrownBy(() -> lottoService.purchaseLottoTickets(PURCHASE_AMOUNT))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 구입 금액은 1000원 단위로 가능합니다.");
+    }
 }

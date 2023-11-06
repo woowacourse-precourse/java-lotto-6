@@ -13,10 +13,14 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
+    }
+
+    private void validate(List<Integer> numbers) {
         validateLength(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
-        this.numbers = numbers;
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -34,7 +38,7 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != NUMBER_COUNT) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
         }
     }

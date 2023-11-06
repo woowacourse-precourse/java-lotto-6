@@ -2,7 +2,6 @@ package lotto;
 
 import static lotto.OutputView.*;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public class LottoService {
     private Bonus bonus;
     private List<List<Integer>> myLottos;
     private List<Integer> correctLotto;
-    private int prizeMoney;
+    private int myPrizeMoney;
 
     public void setAmount(String amount) {
         this.amount = new Amount(amount);
@@ -29,6 +28,7 @@ public class LottoService {
         this.bonus = new Bonus(lotto.getNumbers(), Bonus);
     }
 
+    // 구매한 로또의 수만큼 로또번호를 셋팅한다
     public void setMyLotto() {
 
         myLottos = new ArrayList<>();
@@ -41,7 +41,7 @@ public class LottoService {
         printMyLottos(myLottos);
     }
 
-
+    // 구매한 로또들을 전부 비교해서 몇개씩 맞았는지 구한다
     public List<Integer> resultLotto() {
 
         correctLotto = new ArrayList<>();
@@ -54,14 +54,17 @@ public class LottoService {
 
     }
 
+    // 구매하는 로또의 개수
     public int numberOfPurchase() {
         return amount.getAmount() / 1000;
     }
 
+    // 로또를 구매하는데 사용한 금액만으로 수익률을 계산한다
     public float rateReturn() {
-        return prizeMoney / (float) amount.getAmount();
+        return myPrizeMoney / (float) numberOfPurchase();
     }
 
+    // 로또 하나를 비교하는 함수
     private int compareLotto(List<Integer> myLotto) {
 
         int matchCount = 0;
@@ -70,15 +73,16 @@ public class LottoService {
         }
 
         if (matchCount == 4 && compareOnce(myLotto, bonus.getBonus()) == 1) {
-            prizeMoney += PRIZE_MONEY[7];
+            myPrizeMoney += PRIZE_MONEY[7];
             return 7;
         }
 
-        prizeMoney += PRIZE_MONEY[matchCount];
+        myPrizeMoney += PRIZE_MONEY[matchCount];
         return matchCount;
 
     }
 
+    // 로또에서 번호 하나를 비교하는 함수
     private int compareOnce(List<Integer> lotto, int number) {
         if (lotto.contains(number)) {
             return 1;

@@ -9,8 +9,6 @@ import static lotto.OutputView.printResult;
 import static lotto.OutputView.printStats;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,17 +33,29 @@ public class LottoController {
 
     private void requestAmount() {
         printAmount();
-        lottoService.setAmount(Console.readLine());
+        try {
+            lottoService.setAmount(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            requestAmount();
+        }
     }
 
     private void requestLotto() {
         printNumbers();
-        lottoService.setLotto(Console.readLine());
+        try {
+            lottoService.setLotto(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            requestLotto();
+        }
     }
 
     private void requestBonus() {
         printBonus();
-        lottoService.setBonus(Console.readLine());
+        try {
+            lottoService.setBonus(Console.readLine());
+        }catch (IllegalArgumentException e) {
+            requestBonus();
+        }
     }
 
     private void requestMyLotto() {

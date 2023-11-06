@@ -8,7 +8,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(String numbers) {
-        this.numbers = numbersValidator(numbers);
+        this.numbers = lottoValidator(numbers);
     }
 
     public List<Integer> getNumbers() {

@@ -15,7 +15,7 @@ public class InputValidator {
 
     }
 
-    public static List<Integer> numbersValidator(String numbers) {
+    public static List<Integer> lottoValidator(String numbers) {
 
         numbers = numbers.replace(" ", "");
         List<String> eachNumbers = List.of(numbers.split(","));
@@ -45,19 +45,22 @@ public class InputValidator {
 
     private static void validLen(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            System.out.println("[ERROR] 로또 번호는 6개 입니다.");
             throw new IllegalArgumentException();
         }
     }
 
     private static void validOverlap(List<Integer> numbers, int num) {
         if (numbers.contains(num)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자 입니다. : " + num);
+            System.out.println("[ERROR] 중복된 숫자 입니다. : " + num);
+            throw new IllegalArgumentException();
         }
     }
 
     private static void validRange(int num) {
         if (num < 1 || num > 45) {
-            throw new IllegalArgumentException("[ERROR] 범위를 벗어난 숫자입니다. : " + num);
+            System.out.println("[ERROR] 범위를 벗어난 숫자입니다. : " + num);
+            throw new IllegalArgumentException();
         }
     }
 
@@ -66,14 +69,16 @@ public class InputValidator {
         try {
             number = Integer.parseInt(num);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다. : " + num);
+            System.out.println("[ERROR] 잘못된 입력입니다. : " + num);
+            throw new IllegalArgumentException();
         }
         return number;
     }
 
     private static void negativeNumber(int num) {
         if (num < 0) {
-            throw new IllegalArgumentException("[ERROR] 음수를 입력받았습니다. : " + num);
+            System.out.println("[ERROR] 음수를 입력받았습니다. : " + num);
+            throw new IllegalArgumentException();
         }
     }
 

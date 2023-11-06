@@ -19,7 +19,7 @@ public class PrizeResultTest {
     void initLottos() {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(6,7,8,9,10,11));
-        this.lottos = new Lottos(List.of(lotto1, lotto2));
+        this.lottos = Lottos.createByInput(List.of(lotto1, lotto2));
     }
 
     @DisplayName("3개가 일치하는 경우 테스트")

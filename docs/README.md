@@ -51,6 +51,7 @@
 - 사용자가 잘못된 값을 입력하면 `IllegalArgumentException`를 발생시킬 수 있다.
     - "[ERROR]"로 시작하는 에러 메시지를 출력하고 그 부분부터 다시 입력받을 수 있다.
     - Exception으로 동일하게 에러를 처리하지 않고, `IllegalArgumentException`, `IllegalStateException` 등 과 같이 명확한 유형을 처리할 수 있다.
+    - ex) [ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.
 
 ## 주의 사항
 - 사용자가 로또 번호를 맞추는 것이 아니라 당첨 번호를 정하는 방식이다.

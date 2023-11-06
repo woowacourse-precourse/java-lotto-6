@@ -11,9 +11,10 @@ public class LottoController {
 
     public void run() {
         inputBuyLottoTickets();
-        createLottoTickets();
+        createUserLottoNumbers();
         inputWinnerLottoTicket();
         inputBonusNumber();
+        processPrizeCalculation();
     }
 
     public void inputBuyLottoTickets() {
@@ -49,8 +50,8 @@ public class LottoController {
         }
     }
 
-    public void createLottoTickets() {
-        List<List<Integer>> userLottoNumbers = this.lottoService.setLottoNumbers();
+    public void createUserLottoNumbers() {
+        List<List<Integer>> userLottoNumbers = this.lottoService.getUserLottoNumbers();
         printTicketsCount(userLottoNumbers.size());
 
         for (List<Integer> userLotto : userLottoNumbers) {
@@ -76,5 +77,9 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public void processPrizeCalculation() {
+        this.lottoService.calculatePrize();
     }
 }

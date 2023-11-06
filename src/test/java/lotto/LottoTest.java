@@ -4,8 +4,10 @@ import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,4 +27,11 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @DisplayName("로또 번호 오름차순 정렬")
+    @Test
+    void lottoNumbersSort() {
+        Lotto lotto = new Lotto(List.of(5, 3, 4, 1, 6, 2));
+        assertThat(lotto.getNumbers()).containsExactly(1,2,3,4,5,6);
+    }
 }

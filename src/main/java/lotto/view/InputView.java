@@ -38,4 +38,19 @@ public class InputView {
                 .map(InputView::parseNumber)
                 .toList();
     }
+
+    public static int inputExcludingSpecifiedNumbers(String inputMessage, List<Integer> excludingNumbers) {
+        printInputMessage(inputMessage);
+        int inputNumber = parseNumber(Console.readLine());
+
+        checkExcludingNumber(inputNumber, excludingNumbers);
+
+        return inputNumber;
+    }
+
+    private static void checkExcludingNumber(int inputNumber, List<Integer> excludingNumbers) {
+        if (excludingNumbers.contains(inputNumber)) {
+            throw new IllegalArgumentException("입력할 수 없는 값입니다.");
+        }
+    }
 }

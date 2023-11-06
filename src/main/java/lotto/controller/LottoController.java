@@ -26,7 +26,8 @@ public class LottoController {
         Lottos lottos = buyLotto();
         WinningNumbers winningNumbers = decideWinningNumbers();
         decideBonusNumber(winningNumbers);
-        WinningResult winningResult = new WinningResult(lottos, winningNumbers);
+        WinningResult winningResult = new WinningResult();
+        winningResult.calculateWinning(lottos, winningNumbers);
         outputView.printWinningStatics(winningResult);
         outputView.printEarningRate(winningResult.calculateEarningRate(lottos));
 

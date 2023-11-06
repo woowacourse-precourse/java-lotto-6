@@ -10,15 +10,14 @@ public class WinningResult {
 
     private final Map<Rank, Integer> winningResult;
 
-    public WinningResult(Lottos lottos, WinningNumbers winningNumbers) {
+    public WinningResult() {
         this.winningResult = new EnumMap<>(Rank.class);
-        calculateWinning(lottos, winningNumbers);
 
         Arrays.stream(Rank.values())
                 .forEach(rank -> winningResult.put(rank, 0));
     }
 
-    private void calculateWinning(Lottos lottos, WinningNumbers winningNumbers) {
+    public void calculateWinning(Lottos lottos, WinningNumbers winningNumbers) {
         for (Lotto lotto : lottos.getLottos()) {
             Rank from = Rank.from(lotto.calculateMatchCount(winningNumbers.getWinningNumber()),
                     lotto.isContain(winningNumbers.getBonusNumber()));

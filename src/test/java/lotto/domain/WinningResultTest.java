@@ -29,7 +29,8 @@ public class WinningResultTest {
     @Test
     void calculateWinningFirstTest() {
         //given
-        WinningResult winningResult = new WinningResult(lottos, firstWinningNumbers);
+        WinningResult winningResult = new WinningResult();
+        winningResult.calculateWinning(lottos, firstWinningNumbers);
 
         //when
         int firstCount = winningResult.getWinningCount(Rank.FIRST);
@@ -42,7 +43,8 @@ public class WinningResultTest {
     @Test
     void calculateWinningSecondTest() {
         //given
-        WinningResult winningResult = new WinningResult(lottos, secondWinningNumbers);
+        WinningResult winningResult = new WinningResult();
+        winningResult.calculateWinning(lottos, secondWinningNumbers);
 
         //when
         int secondCount = winningResult.getWinningCount(Rank.SECOND);
@@ -51,14 +53,18 @@ public class WinningResultTest {
         assertEquals(1, secondCount);
     }
 
-    @DisplayName("당첨에 따른 수익률을 계산한다")
+    @DisplayName("당첨에 따른 수익률을 계산함")
     @Test
     void calculateEarningRateTest() {
         //given
-        WinningResult winningResult = new WinningResult(lottos, secondWinningNumbers);
+        WinningResult winningResult = new WinningResult();
+        winningResult.calculateWinning(lottos, firstWinningNumbers);
 
         //when
-        winningResult.calculateEarningRate(lottos);
+        float earningRate = winningResult.calculateEarningRate(lottos);
+
+        //then
+        assertEquals(200000000, earningRate);
     }
 
 }

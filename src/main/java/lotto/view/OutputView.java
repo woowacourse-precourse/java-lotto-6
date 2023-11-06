@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.constant.RankCategory;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
+import lotto.model.ProfitRate;
 import lotto.model.collections.LottoBundle;
 
 import java.text.DecimalFormat;
@@ -43,7 +44,7 @@ public class OutputView {
         printMessage(DIVISION_LINE.getMessage());
     }
 
-    public static void printLottoResult(LottoResult lottoResult) {
+    public static void printLottoResult(LottoResult lottoResult, ProfitRate profitRate) {
         StringBuilder sb = new StringBuilder();
         for (RankCategory rankCategory : RankCategory.values()) {
             if (rankCategory == RankCategory.NONE) {
@@ -66,6 +67,9 @@ public class OutputView {
                     .append(count)
                     .append("개\n");
         }
+        sb.append("총 수익률은 ")
+                .append(String.format("%.1f", profitRate.getRate()))
+                .append("%입니다.");
         printMessage(sb.toString());
     }
 

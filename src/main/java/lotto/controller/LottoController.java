@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.BonusNumber;
 import lotto.model.LottoResult;
+import lotto.model.ProfitRate;
 import lotto.model.WinningNumbers;
 import lotto.model.collections.LottoBundle;
 import lotto.model.collections.LottoPurchaseAmount;
@@ -42,6 +43,7 @@ public class LottoController {
 
         OutputView.printResultMessage();
         LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle,winningNumbers,bonusNumber);
-        OutputView.printLottoResult(lottoResult);
+        ProfitRate profitRate = lottoResultService.calculateProfitRate(lottoResult,purchaseAmount);
+        OutputView.printLottoResult(lottoResult, profitRate);
     }
 }

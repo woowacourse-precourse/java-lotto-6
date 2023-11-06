@@ -22,6 +22,7 @@ public class LottoController {
         UserLotto userLotto = new UserLotto(lottoCount);
         outputView.printUserLotto(userLotto);
 
+        inputView.getWinningLotto();
     }
 
     private int countLotto(int purchasePrice) {

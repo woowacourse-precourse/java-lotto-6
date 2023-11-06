@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.constant.ExceptionConstant;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,4 +26,19 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 45를 초과할 경우 예외가 발생한다.")
+    @Test
+    void createLottoOverMaxNum() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionConstant.LOTTO_NUMBER_SIZE.getMessage());
+    }
+
+    @DisplayName("로또 번호가 1 미만일 경우 예외가 발생한다.")
+    @Test
+    void createLottoDownMinNum() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionConstant.LOTTO_NUMBER_SIZE.getMessage());
+    }
 }

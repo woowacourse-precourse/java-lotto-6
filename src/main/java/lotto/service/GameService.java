@@ -31,10 +31,6 @@ public class GameService {
         lotteries = Lotteries.from(purchaseAmount.calculateNumberOfLotteries());
     }
 
-    public void createLotteriestest(int test) {
-        lotteries = Lotteries.from(test);
-    }
-
     public List<Lotto> printLottoNumbers() {
         return lotteries.getLotteries();
     }

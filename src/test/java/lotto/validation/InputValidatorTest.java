@@ -4,12 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import lotto.constant.ExceptionConstant;
-import lotto.constant.StringConstant;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -59,7 +54,7 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5"})
-    void 입력값이_정수가예외발생(String userInput) {
+    void 입력값이_정수면_정상작동(String userInput) {
         assertThatCode(() -> inputValidator.validateUserInput(userInput.replaceAll(",", "")))
                 .doesNotThrowAnyException();
     }

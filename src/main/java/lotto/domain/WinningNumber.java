@@ -12,10 +12,8 @@ public class WinningNumber extends Validation {
     }
 
     private List<Integer> validateWinningNumber(List<String> numbers) {
-        for (String number : numbers) {
-            checkValidInteger(number);
-            checkNumberRange(number);
-        }
+        numbers.forEach(this::checkValidInteger);
+        numbers.forEach(this::checkNumberRange);
 
         List<Integer> numbersInteger = Util.convertToIntegerList(numbers);
         checkNumbersLength(numbersInteger);

@@ -41,4 +41,14 @@ class LottoPurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_MULTIPLES_OF_ONE_THOUSAND.getMessage());
     }
+
+    @Test
+    public void getLottoPurchaseQuantity() {
+        String inputPurchaseAmount = "5000";
+        LottoPurchaseAmount amount = LottoPurchaseAmount.from(inputPurchaseAmount);
+        amount.getLottoPurchaseQuantity();
+
+        assertThat(amount.getLottoPurchaseQuantity())
+                .isEqualTo(new LottoPurchaseQuantity(5));
+    }
 }

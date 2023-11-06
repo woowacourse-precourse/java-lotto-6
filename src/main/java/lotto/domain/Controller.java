@@ -47,6 +47,13 @@ public class Controller {
         System.out.println();
         view.inputBonusNumber();
 
+        String inputBonusNumber = view.input();
+        while(!processBonusNumberData(inputBonusNumber)){
+            processErrorResult();
+            inputBonusNumber = view.input();
+            processBonusNumberData(inputBonusNumber);
+        }
+        
     }
 
 
@@ -141,9 +148,14 @@ public class Controller {
         return true;
     }
 
+    public boolean processBonusNumberData(String input) {
         try {
+            validateInput(input);
+            new BonusNumber(Integer.parseInt((input)));
         } catch (IllegalArgumentException e) {
+            return false;
         }
+        return true;
     }
 
 }

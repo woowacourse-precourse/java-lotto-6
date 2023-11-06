@@ -16,4 +16,10 @@ public class LottoPurchase {
         PurchaseAmountValidation.divisibleThousand(amount);
         return Integer.parseInt(amount) / Constants.DIVISION_VALUE;
     }
+    public static LottoPurchase createUserLottery (List<Integer> randomNumbers) {
+        return new LottoPurchase(randomNumbers);
+    }
+    public List<Integer> getUserLottery() {
+        return this.userLotto;
+    }
 }

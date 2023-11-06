@@ -7,23 +7,20 @@ import java.util.Map;
 public class GameReturnRateCalculator {
     private static final int DECIMAL_SCALE_BASE = 1;
 
-    public static BigDecimal getReturnRate(Map<Rank, Integer> rankIntegerMap, BigDecimal buyPrice) {
-        BigDecimal totalReturn = getLottoTotalPrizePrice(rankIntegerMap);
+    public static BigDecimal getReturnRate(Map<Rank, Integer> rankingCountResult, BigDecimal buyPrice) {
+        BigDecimal totalReturn = getLottoTotalPrizePrice(rankingCountResult);
         return getPercentPrize(buyPrice, totalReturn);
     }
 
-    /**
-     * 수익률 계산 기능
-     */
-    private static BigDecimal getLottoTotalPrizePrice(Map<Rank, Integer> rankIntegerMap) {
+    private static BigDecimal getLottoTotalPrizePrice(Map<Rank, Integer> rankingCountResult) {
         BigDecimal lottoPrizePrice = BigDecimal.ZERO;
 
-        for (Rank rank : rankIntegerMap.keySet()) {
+        for (Rank rank : rankingCountResult.keySet()) {
             if (rank == Rank.UNRANK) {
                 continue;
             }
 
-            BigDecimal count = BigDecimal.valueOf(rankIntegerMap.get(rank));
+            BigDecimal count = BigDecimal.valueOf(rankingCountResult.get(rank));
             BigDecimal prizePrice = BigDecimal.valueOf(rank.getPrize());
 
             lottoPrizePrice = lottoPrizePrice.add(prizePrice.multiply(count));

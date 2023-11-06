@@ -17,7 +17,7 @@ class LottoGeneratorTest {
         int lottoCount = 10;
 
         // when
-        List<Lotto> resultList = LottoGenerator.generateLottoList(BigDecimal.valueOf(lottoCount));
+        List<Lotto> resultList = LottoGenerator.generateLottoes(BigDecimal.valueOf(lottoCount));
 
         // then
         Assertions.assertThat(resultList.size()).isEqualTo(lottoCount);
@@ -31,7 +31,7 @@ class LottoGeneratorTest {
         long lottoCount = (long) Integer.MAX_VALUE + 1L;
 
         // when
-        List<Lotto> resultList = LottoGenerator.generateLottoList(BigDecimal.valueOf(lottoCount));
+        List<Lotto> resultList = LottoGenerator.generateLottoes(BigDecimal.valueOf(lottoCount));
 
         // then
         Assertions.assertThat(resultList.size()).isEqualTo(lottoCount);

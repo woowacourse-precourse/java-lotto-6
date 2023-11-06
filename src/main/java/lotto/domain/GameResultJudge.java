@@ -8,31 +8,27 @@ import lotto.vo.WinLotto;
 
 public class GameResultJudge {
 
-    /**
-     * 전체 로또들 당첨 결과 보기
-     */
-    public static Map<Rank, Integer> judge(WinLotto winLotto, List<Lotto> lottos) {
-        Map<Rank, Integer> rankCountMap = getRankCountMap();
+    public static Map<Rank, Integer> judge(WinLotto winLotto, List<Lotto> lottoes) {
+        Map<Rank, Integer> rankingCountResult = initRankingCountResult();
 
-        for (Lotto lotto : lottos) {
-            // 몇등인지 계산한다.
+        for (Lotto lotto : lottoes) {
             Rank rank = calculateRank(winLotto, lotto);
-            rankCountMap.put(rank, rankCountMap.getOrDefault(rank, 0) + 1);
+            rankingCountResult.put(rank, rankingCountResult.getOrDefault(rank, 0) + 1);
         }
 
-        return rankCountMap;
+        return rankingCountResult;
     }
 
-    private static Map<Rank, Integer> getRankCountMap() {
-        Map<Rank, Integer> rankCountMap = new LinkedHashMap<>();
+    private static Map<Rank, Integer> initRankingCountResult() {
+        Map<Rank, Integer> rankingCountResult = new LinkedHashMap<>();
 
-        rankCountMap.put(Rank.RANK_5, 0);
-        rankCountMap.put(Rank.RANK_4, 0);
-        rankCountMap.put(Rank.RANK_3, 0);
-        rankCountMap.put(Rank.RANK_2, 0);
-        rankCountMap.put(Rank.RANK_1, 0);
+        rankingCountResult.put(Rank.RANK_5, 0);
+        rankingCountResult.put(Rank.RANK_4, 0);
+        rankingCountResult.put(Rank.RANK_3, 0);
+        rankingCountResult.put(Rank.RANK_2, 0);
+        rankingCountResult.put(Rank.RANK_1, 0);
 
-        return rankCountMap;
+        return rankingCountResult;
     }
 
     private static Rank calculateRank(WinLotto winLotto, Lotto lotto) {
@@ -43,8 +39,8 @@ public class GameResultJudge {
     }
 
     private static boolean isMatchBonus(Lotto lotto, int bonus) {
-        List<Integer> list = lotto.getNumbers();
-        return list.contains(bonus);
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        return lottoNumbers.contains(bonus);
     }
 
     private static int countMatch(Lotto lotto, WinLotto winLotto) {

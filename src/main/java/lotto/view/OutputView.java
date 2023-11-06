@@ -16,9 +16,9 @@ public class OutputView {
     private static final String RESULT_LOTTO_NUMBERS_DELIMETER = ", ";
     private static final String RESULT_LOTTO_PRIZE_SEPERATOR = "---";
 
-    public static void printLottos(List<Lotto> lottos) {
-        printLottoCount(lottos.size());
-        for (Lotto lotto : lottos) {
+    public static void printLottoes(List<Lotto> lottoes) {
+        printLottoCount(lottoes.size());
+        for (Lotto lotto : lottoes) {
             printCurrentLottoList(lotto);
         }
     }
@@ -37,16 +37,16 @@ public class OutputView {
         System.out.println("[" + lottoNumbers + "]");
     }
 
-    public static void printResultLottoPrize(Map<Rank, Integer> rankIntegerMap) {
+    public static void printResultLottoPrize(Map<Rank, Integer> rankingConutResult) {
         System.out.println(RESULT_LOTTO_PRIZE_MESSAGE);
         System.out.println(RESULT_LOTTO_PRIZE_SEPERATOR);
 
-        for (Rank rank : rankIntegerMap.keySet()) {
+        for (Rank rank : rankingConutResult.keySet()) {
             if (rank == Rank.UNRANK) {
                 continue;
             }
 
-            int count = rankIntegerMap.get(rank);
+            int count = rankingConutResult.get(rank);
             System.out.print(rank.getOutputMessage());
             System.out.printf(RESULT_LOTTO_PRIZE_MATCH_COUNT_MESSAGE, count);
         }

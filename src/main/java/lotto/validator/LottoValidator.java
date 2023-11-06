@@ -17,11 +17,11 @@ public class LottoValidator {
     }
 
     private static void validateLottoNumbersDuplicate(List<Integer> numbers) {
-        List<Integer> disticedNumbers = numbers.stream()
+        List<Integer> distinctNumbers = numbers.stream()
                 .distinct()
                 .toList();
 
-        if (disticedNumbers.size() != numbers.size()) {
+        if (distinctNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }

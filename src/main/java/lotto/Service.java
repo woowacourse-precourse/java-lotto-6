@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Service {
-
+    static int[] result;
     private final User user;
     public Service() {
         this.user = new User();
@@ -35,10 +35,16 @@ public class Service {
 
     public int[] findWinner(Lotto lotto, int bonusNum) {
         List<List<Integer>> userNums = user.getLottoNum();
-        int[] result = new int[8];
+        result = new int[8];
         for (List<Integer> userNun : userNums) {
             result[lotto.checkSameNum(userNun, bonusNum)]++;
         }
         return result;
+    }
+
+    public double findRateOfReturn() {
+        return result[3] * 5000 + result[4] * 50000 + result[5] * 1500000
+                + result[7] * 30000000 + result[6] * 2000000000;
+
     }
 }

@@ -7,5 +7,6 @@ public class Application {
         controller.buyingLotto();
         controller.drawLottoWinningNumber();
         controller.lotteryForWinners();
+        controller.findRateOfReturn();
     }
 }

@@ -12,6 +12,7 @@ public class Controller {
     private final Service service;
     static int bonusNum;
     static Lotto lotto;
+    static int amount;
 
     public Controller() {
         this.service = new Service();
@@ -20,7 +21,7 @@ public class Controller {
     public void buyingLotto() {
         System.out.println("구입금액을 입력해 주세요.");
         int price = Integer.parseInt(Console.readLine());
-        int amount= price/1000;
+        amount= price/1000;
         System.out.println("\n"+amount+"개를 구매했습니다.");
         List<List<Integer>> lottoNum = service.lottoDraw(amount);
         for (List<Integer> num : lottoNum) {
@@ -45,5 +46,10 @@ public class Controller {
         System.out.println("5개 일치 "+ PrizeM.THREE.getValue()+" - "+winner[5]+"개");
         System.out.println("5개 일치, 보너스 볼 일치 "+ PrizeM.TWO.getValue()+" - "+winner[7]+"개");
         System.out.println("6개 일치 "+ PrizeM.ONE.getValue()+" - "+winner[6]+"개");
+    }
+
+    public void findRateOfReturn() {
+        double rateOfReturn = service.findRateOfReturn();
+        System.out.printf("총 수익률은 %.1f%%입니다." ,rateOfReturn/(amount*10));
     }
 }

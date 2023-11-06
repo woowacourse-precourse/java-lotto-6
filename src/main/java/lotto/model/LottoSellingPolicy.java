@@ -1,9 +1,12 @@
 package lotto.model;
 
-public class LottoSellingPolicy {
-    private static final int LOTTO_PRICE = 1000;
+import java.math.BigDecimal;
 
-    public int calcuateLottoCount(final int purchasingMoney) {
-        return purchasingMoney / LOTTO_PRICE;
+public class LottoSellingPolicy {
+    public static final BigDecimal LOTTO_PRICE = new BigDecimal(1000);
+
+    public int calcuateLottoCount(final BigDecimal purchasingMoney) {
+        BigDecimal left = purchasingMoney.divide(LOTTO_PRICE);
+        return left.intValue();
     }
 }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.utils.InputException;
+
 import java.util.List;
 
 public class Lotto {
@@ -11,9 +13,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        InputException.checkSize(numbers);
+        InputException.isDuplication(numbers);
     }
 
     public List<Integer> getNumbers() {

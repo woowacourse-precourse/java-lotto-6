@@ -14,11 +14,10 @@ public class LotterySystem {
     private lotto.ErrorMessages ErrorMessages = new ErrorMessages();
     private static int ticketCnt = 0;
     private InputSystem InputSystem = new InputSystem();
-    private lotto.model.Draw Draw = new Draw();
+    private Perform Perform = new Perform();
 
     private List<Draw> tickets = new ArrayList<>();
     private List<Integer> lotto = new ArrayList<>();
-
     private int bonus = 0;
 
 
@@ -42,7 +41,10 @@ public class LotterySystem {
         lotto = InputSystem.getNumbers();
     }
     public void bonus() {
-        bonus = InputSystem.getBonus();
+        bonus = InputSystem.getBonus(lotto);
+    }
+    public void perform() {
+        Perform.checknumbers(tickets, lotto, bonus);
     }
 
 }

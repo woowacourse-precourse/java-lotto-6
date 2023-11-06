@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private int bonus;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -21,16 +20,7 @@ public class Lotto {
         for (int num : numbers) set.add(num);
         return set.size();
     }
-    public void Bonus(int number) {
-        this.bonus = number;
-    }
     public List<Integer> getLotto() {
         return numbers;
     }
-    private int getBonus() {
-        return bonus;
-    }
-
-
-
 }

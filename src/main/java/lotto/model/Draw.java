@@ -8,8 +8,6 @@ import java.util.List;
 public class Draw {
 
     private List<Integer> drawed =  new ArrayList<>();
-    public Draw() {
-    }
     public Draw(List<Integer> ticket) {
         this.drawed = ticket;
     }
@@ -18,9 +16,17 @@ public class Draw {
         return ""+drawed;
     }
     // 방법이 생각안나서 임시로 만듦 => 리팩토링 꼭 해야됨
-    public List<Integer> returnprint() {
-        List<Integer> output = new ArrayList<>();
-        for (int i : drawed) output.add(i);
-        return output;
+    public int returnprint(List<Integer> numbers, int bonus) {
+        int match = 0;
+        for (int i : drawed) {
+            match += isMatch(numbers, i);
+        }
+        if (drawed.contains(bonus)) match += 1;
+        return match;
+    }
+    public int isMatch(List<Integer> numbers, int number) {
+        if (numbers.contains(number)) return 1;
+        return 0;
     }
 }
+

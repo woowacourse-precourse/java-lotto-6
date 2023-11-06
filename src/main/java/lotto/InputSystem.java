@@ -1,11 +1,9 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.Draw;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputSystem {
     private final String ENTER_PRICE = "구입금액을 입력해 주세요.";
@@ -40,8 +38,13 @@ public class InputSystem {
         Lotto l = new Lotto(numbers);
         return l.getLotto();
     }
-    public int getBonus() {
-        return isNumberValid(enter(ENTER_BONUS));
+    public int getBonus(List<Integer> lotto) {
+        return isDuplicate(lotto, isNumberValid(enter(ENTER_BONUS)));
+    }
+    public int isDuplicate(List<Integer> lotto, int bonus) {
+        if (lotto.contains(bonus))
+            throw new IllegalArgumentException();
+        return bonus;
     }
     public int isNumberValid(String number) {
         if (isInteger(number) && isRangeValid(number))

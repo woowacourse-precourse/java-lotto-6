@@ -7,7 +7,7 @@ import lotto.policy.LottoNumbersGenerator;
 import lotto.util.ListUtil;
 import lotto.util.StringUtil;
 
-public class Validator {
+public class LottoValidator {
     public static void validatePurchaseAmount(Amount purchaseAmount) {
         if (purchaseAmount.lessThan(Amount.DEFAULT_PURCHASE_AMOUNT)) {
             LottoException.PURCHASE_AMOUNT_OUT_OF_RANGE.throwing();

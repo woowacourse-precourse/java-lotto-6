@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.List;
-import lotto.validator.Validator;
+import lotto.validator.LottoValidator;
 
 public class WinningLotto extends Lotto {
     private final int bonusNumber;
@@ -13,7 +13,7 @@ public class WinningLotto extends Lotto {
     }
 
     private void validate(List<Integer> numbers, int bonusNumber) {
-        Validator.validateBonusNumber(bonusNumber, numbers);
+        LottoValidator.validateBonusNumber(bonusNumber, numbers);
     }
 
     public LottoRanking checkLottoResult(Lotto lotto) {

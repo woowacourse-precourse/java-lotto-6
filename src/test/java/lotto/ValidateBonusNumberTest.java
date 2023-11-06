@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import java.util.List;
 import lotto.manager.LottoException;
-import lotto.validator.Validator;
+import lotto.validator.LottoValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,7 +18,7 @@ public class ValidateBonusNumberTest {
     @ValueSource(ints = {7, 9, 22, 35, 45})
     @DisplayName("[정상처리] 보너스 번호를 검증합니다.")
     void 보너스번호_검증_정상처리() {
-        assertThatCode(() -> Validator.validateBonusNumber(7, WINNING_LOTTO_NUMBERS))
+        assertThatCode(() -> LottoValidator.validateBonusNumber(7, WINNING_LOTTO_NUMBERS))
                 .doesNotThrowAnyException();
     }
 
@@ -27,7 +27,7 @@ public class ValidateBonusNumberTest {
     @DisplayName("[예외처리] 보너스 번호가 1~45가 아니면 예외가 발생한다.")
     void 보너스번호_검증_범위초과_예외처리(int bonusNumber) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Validator.validateBonusNumber(bonusNumber, WINNING_LOTTO_NUMBERS))
+                .isThrownBy(() -> LottoValidator.validateBonusNumber(bonusNumber, WINNING_LOTTO_NUMBERS))
                 .withMessageContaining(LottoException.LOTTO_NUMBER_OUT_OF_RANGE.getErrorMessage());
     }
 
@@ -36,7 +36,7 @@ public class ValidateBonusNumberTest {
     @DisplayName("[예외처리] 보너스 번호가 당첨번호에 존재하면 예외가 발생한다.")
     void 보너스번호_검증_중복_예외처리(int bonusNumber) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Validator.validateBonusNumber(bonusNumber, WINNING_LOTTO_NUMBERS))
+                .isThrownBy(() -> LottoValidator.validateBonusNumber(bonusNumber, WINNING_LOTTO_NUMBERS))
                 .withMessageContaining(LottoException.BONUS_NUMBER_IN_WINNING_NUMBERS.getErrorMessage());
     }
 }

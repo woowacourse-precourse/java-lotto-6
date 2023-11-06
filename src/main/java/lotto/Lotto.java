@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.List;
-import lotto.validator.Validator;
+import lotto.validator.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,7 +12,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        Validator.validateLottoNumber(numbers);
+        LottoValidator.validateLottoNumber(numbers);
     }
 
     @Override

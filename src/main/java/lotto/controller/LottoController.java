@@ -35,45 +35,53 @@ public class LottoController {
     }
 
     private void getLottoTickets() {
-        try {
-            String input = inputView.requestPurchaseMoney();
-            lottos = Lottos.purchase(input);
-            printLottoTicketQuantity();
-        } catch (LottoException e) {
-            outputView.printErrorMessage(e);
-            getLottoTickets();
+        while (true) {
+            try {
+                String input = inputView.requestPurchaseMoney();
+                lottos = Lottos.purchase(input);
+                printLottoQuantity();
+                return;
+            } catch (LottoException e) {
+                outputView.printErrorMessage(e);
+            }
         }
     }
 
     private void getWinningNumber() {
-        try {
-            String input = inputView.requestWinningNumber();
-            winningNumber = WinningNumber.create(input);
-        } catch (LottoException e) {
-            outputView.printErrorMessage(e);
-            getWinningNumber();
+        while (true) {
+            try {
+                String input = inputView.requestWinningNumber();
+                winningNumber = WinningNumber.create(input);
+                return;
+            } catch (LottoException e) {
+                outputView.printErrorMessage(e);
+            }
         }
     }
 
     private void getBonusNumber() {
-        try {
-            String input = inputView.requestBonusNumber();
-            winningNumber.createBonusNumber(input);
-        } catch (LottoException e) {
-            outputView.printErrorMessage(e);
-            getBonusNumber();
+        while (true) {
+            try {
+                String input = inputView.requestBonusNumber();
+                winningNumber.createBonusNumber(input);
+                return;
+            } catch (LottoException e) {
+                outputView.printErrorMessage(e);
+            }
         }
     }
 
-    private void printLottoTicketQuantity() {
-        try {
-            outputView.printDynamicMessage(
-                    NOTICE_PURCHASE_QUANTITY,
-                    lottos.getLottoQuantity()
-            );
-        } catch (LottoException e) {
-            outputView.printErrorMessage(e);
-            getLottoTickets();
+    private void printLottoQuantity() {
+        while (true) {
+            try {
+                outputView.printDynamicMessage(
+                        NOTICE_PURCHASE_QUANTITY,
+                        lottos.getLottoQuantity()
+                );
+                return;
+            } catch (LottoException e) {
+                outputView.printErrorMessage(e);
+            }
         }
     }
 

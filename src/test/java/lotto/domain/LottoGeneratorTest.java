@@ -39,6 +39,15 @@ class LottoGeneratorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력된 당첨 번호가 양수가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"0,1,2,3,4,5", "-1,2,3,4,5,6", "1.5,2,3,4,5,6"})
+    void createWinningLottoByNotPositiveNumber(String lottoNumber) {
+
+        assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("입력된 당첨 번호가 로또 번호 범위를 벗어날 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"0,1,2,3,4,5", "100", "41,42,43,44,45,46"})
@@ -87,4 +96,6 @@ class LottoGeneratorTest {
         // then
         assertThat(bonusNumber).isEqualTo(7);
     }
+
+
 }

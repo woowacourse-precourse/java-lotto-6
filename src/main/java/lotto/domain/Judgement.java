@@ -3,7 +3,9 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.List;
+
 import static lotto.constant.Constant.RANK_MONEY;
+
 public class Judgement {
     private static final int MIN_WINNING_NUMBER = 3;
     private static final int DEFAULT_COUNT = 0;
@@ -18,7 +20,7 @@ public class Judgement {
 
     private int checkWinningNumberCount(List<Integer> compare_lotto, List<Integer> winning_lotto) {
         int count = DEFAULT_COUNT;
-        for (int i=0;i<compare_lotto.size();i++) {
+        for (int i = 0; i < compare_lotto.size(); i++) {
             count += compareNumber(compare_lotto.get(i), winning_lotto);
             count = checkFirstRank(i, count);
         }
@@ -58,20 +60,24 @@ public class Judgement {
     private void judgeLottoRank(List<Integer> rank, int count) {
         if (count > 6) {
             rank.set(4, rank.get(4) + 1);
-        } else if (count == 6) {
+        }
+        if (count == 6) {
             rank.set(3, rank.get(3) + 1);
-        } else if (count == 5) {
+        }
+        if (count == 5) {
             rank.set(2, rank.get(2) + 1);
-        } else if (count == 4) {
+        }
+        if (count == 4) {
             rank.set(1, rank.get(1) + 1);
-        } else if (count == 3) {
+        }
+        if (count == 3) {
             rank.set(0, rank.get(0) + 1);
         }
     }
 
-    public float calculateEarningRate(List<Integer> ranks, Money money){
+    public float calculateEarningRate(List<Integer> ranks, Money money) {
         float earningRate = 0;
-        for(int i=0;i<5;i++){
+        for (int i = 0; i < 5; i++) {
             earningRate += RANK_MONEY[i] * ranks.get(i);
         }
         earningRate = earningRate / money.getMoney() * 100;

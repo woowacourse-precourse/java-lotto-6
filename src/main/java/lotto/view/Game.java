@@ -16,6 +16,7 @@ public class Game {
             saveBonusNumbers();
 
             printPurchaseHistory();
+            printWinningInfo();
 
         }catch (Exception e){
 
@@ -72,5 +73,10 @@ public class Game {
 
         System.out.println(gameController.getPurchaseAmount());
         System.out.println(gameController.getPurchaseLottos());
+    }
+
+    private void printWinningInfo() {
+
+        System.out.println(gameController.getWinningInfo());
     }
 }

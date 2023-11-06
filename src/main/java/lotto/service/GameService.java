@@ -3,8 +3,10 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.Message;
 import lotto.domain.Buyer;
+import lotto.domain.GameResult;
 import lotto.domain.Lotto;
-import lotto.domain.WinningNumbers;
+import lotto.domain.WinningInfo;
+import lotto.dto.GameResultDTO;
 import lotto.dto.LottoDTO;
 
 import java.util.ArrayList;
@@ -19,9 +21,8 @@ public class GameService {
     private final int METHOD_SAVE_WINNING_NUMBERS = 2;
     private final int METHOD_SAVE_BONUS_NUMBER = 3;
     private final String REGEXP_PATTERN_NO_NUMBER = "^[\\d]*$";
-
     private final Buyer buyer = new Buyer();
-    private final WinningNumbers winningNumbers = new WinningNumbers();
+    private final WinningInfo winningInfo = new WinningInfo();
 
     public void purchaseLotto(String input) {
 
@@ -54,10 +55,10 @@ public class GameService {
 
         validateInput(input, METHOD_SAVE_WINNING_NUMBERS);
 
-        List<Integer> numbers = Arrays.stream(input.split(","))
+        List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt).toList();
 
-        winningNumbers.saveWinningNumbers(numbers);
+        winningInfo.saveWinningNumbers(winningNumbers);
     }
 
     public void saveBonusNumber(String input) {
@@ -65,7 +66,7 @@ public class GameService {
         validateInput(input, METHOD_SAVE_BONUS_NUMBER);
 
         int bonusNumber = Integer.parseInt(input);
-        winningNumbers.saveBonusNumber(bonusNumber);
+        winningInfo.saveBonusNumber(bonusNumber);
     }
 
     public int getPurchaseAmount() {
@@ -78,6 +79,19 @@ public class GameService {
         List<Lotto> lottos = buyer.getLottos();
 
         return domainToDto(lottos);
+    }
+
+    public GameResultDTO getGameResult() {
+
+        GameResult gameResult = new GameResult(winningInfo);
+
+        List<Lotto> lottos = buyer.getLottos();
+
+        gameResult.matchPurchasedLottos(lottos);
+
+        GameResultDTO gameResultDTO = new GameResultDTO(gameResult.getPrize());
+
+        return gameResultDTO;
     }
 
     private List<Integer> createNumbers() {

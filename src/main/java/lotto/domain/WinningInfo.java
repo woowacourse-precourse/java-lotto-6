@@ -6,18 +6,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningNumbers {
+public class WinningInfo {
 
-    private List<Integer> numbers;
+    private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    public void saveWinningNumbers(List<Integer> numbers) {
+    public void saveWinningNumbers(List<Integer> winningNumbers) {
 
-        validateSize(numbers);
-        validateRange(numbers);
-        validateDuplication(numbers);
+        validateSize(winningNumbers);
+        validateRange(winningNumbers);
+        validateDuplication(winningNumbers);
 
-        this.numbers = numbers;
+        this.winningNumbers = winningNumbers;
     }
 
     public void saveBonusNumber(int bonusNumber){
@@ -26,17 +26,17 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private void validateSize(List<Integer> winningNumbers) {
 
-        if (numbers.size() != 6){
+        if (winningNumbers.size() != 6){
 
             throw new IllegalArgumentException(Message.WINNING_NUMBERS_SIZE_ERROR_MESSAGE.name());
         }
     }
 
-    private void validateRange(List<Integer> numbers) {
+    private void validateRange(List<Integer> winningNumbers) {
 
-        for(int number : numbers){
+        for(int number : winningNumbers){
 
             if(number < 1 || number > 45) {
 
@@ -45,9 +45,9 @@ public class WinningNumbers {
         }
     }
 
-    private void validateDuplication(List<Integer> numbers) {
+    private void validateDuplication(List<Integer> winningNumbers) {
 
-        Set<Integer> set = new HashSet<>(numbers);
+        Set<Integer> set = new HashSet<>(winningNumbers);
 
         if(set.size() != 6) {
 
@@ -57,7 +57,7 @@ public class WinningNumbers {
 
     private void checkDuplicateBonusNumber(int bonusNumber){
 
-        List<Integer> numbers = getNumbers();
+        List<Integer> numbers = getWinningNumbers();
 
         for(int num : numbers){
 
@@ -68,9 +68,9 @@ public class WinningNumbers {
         }
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getWinningNumbers(){
 
-        return numbers;
+        return winningNumbers;
     }
 
     public int getBonusNumber(){

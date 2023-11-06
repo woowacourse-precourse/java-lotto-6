@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.constant.Message;
+import lotto.dto.GameResultDTO;
 import lotto.dto.LottoDTO;
 import lotto.service.GameService;
 
@@ -47,6 +48,17 @@ public class GameController {
 
             result.append(dto.toString()).append("\n");
         }
+
+        return result.toString();
+    }
+
+    public String getWinningInfo() {
+
+        StringBuilder result = new StringBuilder();
+
+        GameResultDTO gameResultDTO = gameService.getGameResult();
+
+        result.append(gameResultDTO.toString());
 
         return result.toString();
     }

@@ -21,12 +21,12 @@ public class LottoDTO {
 
         Collections.sort(numbers);
 
-        this.firstNumber = numbers.get(0);
-        this.secondNumber = numbers.get(1);
-        this.thirdNumber = numbers.get(2);
-        this.forthNumber = numbers.get(3);
-        this.fifthNumber = numbers.get(4);
-        this.sixthNumber = numbers.get(5);
+        firstNumber = numbers.get(0);
+        secondNumber = numbers.get(1);
+        thirdNumber = numbers.get(2);
+        forthNumber = numbers.get(3);
+        fifthNumber = numbers.get(4);
+        sixthNumber = numbers.get(5);
     }
 
     @Override

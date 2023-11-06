@@ -3,8 +3,9 @@ package lotto.sevice;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.domain.Buyer;
+import lotto.domain.GameResult;
 import lotto.domain.Lotto;
-import lotto.domain.WinningNumbers;
+import lotto.domain.WinningInfo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameServiceTest extends NsTest{
@@ -23,7 +22,7 @@ public class GameServiceTest extends NsTest{
     private static int NUMBER_END_RANGE = 45;
 
     private final Buyer buyer = new Buyer();
-    private final WinningNumbers winningNumbers = new WinningNumbers();
+    private final WinningInfo winningInfo = new WinningInfo();
     @DisplayName("구매 금액 입력이 제대로 이루어졌는지 확인")
     @Test
     void savePurchaseAmountTest() {
@@ -87,20 +86,42 @@ public class GameServiceTest extends NsTest{
         List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt).toList();
 
-        winningNumbers.saveWinningNumbers(numbers);
+        winningInfo.saveWinningNumbers(numbers);
 
         int bonusNumber = 7;
 
-        winningNumbers.saveBonusNumber(bonusNumber);
+        winningInfo.saveBonusNumber(bonusNumber);
 
-        List<Integer> numbersTest = winningNumbers.getNumbers();
+        List<Integer> numbersTest = winningInfo.getWinningNumbers();
 
         for(int num : numbersTest){
 
             System.out.print(num+" ");
         }
 
-        System.out.println(winningNumbers.getBonusNumber());
+        System.out.println(winningInfo.getBonusNumber());
+    }
+    @DisplayName("당첨 내역이 제대로 만들어 지는지 확인")
+    @Test
+    public void getGameResultTest() {
+
+        winningInfo.saveWinningNumbers(List.of(1,2,3,4,5,6));
+
+        winningInfo.saveBonusNumber(7);
+
+        GameResult gameResult = new GameResult(winningInfo);
+
+        buyer.saveNumbers(List.of(1,2,3,4,5,6));
+        buyer.saveNumbers(List.of(1,2,3,4,5,7));
+        buyer.saveNumbers(List.of(1,2,3,4,5,8));
+        buyer.saveNumbers(List.of(1,2,3,4,9,10));
+        buyer.saveNumbers(List.of(1,2,3,10,15,16));
+
+        List<Lotto> lottos = buyer.getLottos();
+
+        gameResult.matchPurchasedLottos(lottos);
+
+        System.out.println(gameResult.getPrize());
     }
 
     @Override

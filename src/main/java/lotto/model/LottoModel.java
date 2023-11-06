@@ -6,6 +6,7 @@ import lotto.domain.LottoMatch;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoModel {
     private final static int START_NUMBER = 1;
@@ -27,6 +28,15 @@ public class LottoModel {
                 .sorted()
                 .collect(Collectors.toList());
         return new Lotto(numbers);
+    }
+
+    public List<LottoMatch> getLottoMatches(final List<Lotto> lottos, final List<Integer> winningNumbers, final int bonusNumber) {
+        List<LottoMatch> lottoMatches = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            LottoMatch lottoMatch = lotto.compareWinningNumbers(winningNumbers, bonusNumber);
+            lottoMatches.add(lottoMatch);
+        }
+        return lottoMatches;
     }
 
 }

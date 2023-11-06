@@ -19,6 +19,20 @@ public class Lotto {
         }
     }
 
+    public LottoMatch compareWinningNumbers(final List<Integer> winningNumbers, final int bonusNumber) {
+        int count = 0;
+        boolean isBonus = false;
+
+        if (numbers.contains(bonusNumber)) {
+            count++;
+            isBonus = true;
+        }
+
+        for (int winingNumber : winningNumbers) {
+            if (numbers.contains(winingNumber)) count++;
+        }
+        return LottoMatch.getLottoMatch(count, isBonus);
+    }
 
     @Override
     public String toString() {

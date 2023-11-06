@@ -1,5 +1,7 @@
 package lotto.constants;
 
+import java.util.Arrays;
+
 public enum WinningCriteria {
     FIFTH(3, 5000, false),
     FOURTH(4, 50000, false),
@@ -18,13 +20,12 @@ public enum WinningCriteria {
         this.isBonus = isBonus;
     }
 
-    public static WinningCriteria getRating(final int matchCount, final boolean isBonus) {
-        for (WinningCriteria winningCriteria : WinningCriteria.values()) {
-            if (matchCount == winningCriteria.matchingCount && isBonus == winningCriteria.isBonus) {
-                return winningCriteria;
-            }
-        }
-        return LOSE;
+    public static WinningCriteria getRating(final int matchingCount, final boolean isBonus) {
+        return Arrays.stream(WinningCriteria.values())
+                .filter(winningCriteria -> matchingCount == winningCriteria.matchingCount
+                        && isBonus == winningCriteria.isBonus)
+                .findFirst()
+                .orElse(LOSE);
     }
 
     public int getMatchingCount() {

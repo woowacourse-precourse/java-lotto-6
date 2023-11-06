@@ -25,6 +25,20 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호에 1보다 작은 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 45보다 큰 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByUpRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(46, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호는 저장될 때 정렬된다.")
     @Test
     void checkLottoSort() {

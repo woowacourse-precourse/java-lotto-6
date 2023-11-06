@@ -37,7 +37,7 @@ public class InputUtils {
         return Integer.parseInt(number);
     }
 
-    private static void validateInputMoney(String money) {
+    public static void validateInputMoney(String money) {
         if (isNull(money)) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }

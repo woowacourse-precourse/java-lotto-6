@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.text.DecimalFormat;
 import lotto.constants.Values;
 
 public class ProfitCalculator {
@@ -12,15 +11,7 @@ public class ProfitCalculator {
         this.totalInvestment = purchasedLottos.calculateTotalInvestment();
     }
 
-    public String getProfitPercentage() {
-        double profitRate = calculateProfitRate();
-        DecimalFormat decimalFormat = new DecimalFormat(Values.PROFIT_DECIMAL_FORMAT);
-        String formattedPercentage = decimalFormat.format(profitRate);
-        formattedPercentage += Values.PROFIT_SYMBOL;
-        return formattedPercentage;
-    }
-
-    private double calculateProfitRate() {
+    public double calculateProfitRate() {
         double totalWinnings = winningStatistics.calculateTotalPrizeAmount();
         double profitRate = (totalWinnings / totalInvestment) * Values.PERCENTAGE_FACTOR;
         profitRate = Math.round(profitRate * Values.PERCENTAGE_FACTOR) / Values.PERCENTAGE_FACTOR;

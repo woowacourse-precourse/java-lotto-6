@@ -25,7 +25,7 @@ public class LottoController {
         WinningStatistics winningStatistics = getWinningStatistics(purchasedLottos, winningLotto);
 
         String winningResult = winningStatistics.toString();
-        String profitPercentage = getProfit(winningStatistics, purchasedLottos);
+        double profitPercentage = getProfit(winningStatistics, purchasedLottos);
         OutputView.printResult(winningResult, profitPercentage);
     }
 
@@ -70,8 +70,8 @@ public class LottoController {
         return winningStatisticsCalculator.calculateWinningStatistics();
     }
 
-    private String getProfit(WinningStatistics winningStatistics, PurchasedLottos purchasedLottos) {
+    private double getProfit(WinningStatistics winningStatistics, PurchasedLottos purchasedLottos) {
         ProfitCalculator profitCalculator = new ProfitCalculator(winningStatistics, purchasedLottos);
-        return profitCalculator.getProfitPercentage();
+        return profitCalculator.calculateProfitRate();
     }
 }

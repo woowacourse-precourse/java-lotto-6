@@ -1,6 +1,8 @@
 package lotto.view;
 
 import lotto.constants.Messages;
+import java.text.DecimalFormat;
+import lotto.constants.Values;
 
 public class OutputView {
 
@@ -20,9 +22,16 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printResult(String winningResult, String profitPercentage) {
+    public static void printResult(String winningResult, double profitPercentage) {
         System.out.println(winningResult);
-        System.out.println(String.format(Messages.TOTAL_PROFIT_MESSAGE, profitPercentage));
+        System.out.println(String.format(Messages.TOTAL_PROFIT_MESSAGE, getProfitPercentage(profitPercentage)));
+    }
+
+    public static String getProfitPercentage(double profitRate) {
+        DecimalFormat decimalFormat = new DecimalFormat(Values.PROFIT_DECIMAL_FORMAT);
+        String formattedPercentage = decimalFormat.format(profitRate);
+        formattedPercentage += Values.PROFIT_SYMBOL;
+        return formattedPercentage;
     }
 
     public static void printErrorMessage(String errorMessage) {

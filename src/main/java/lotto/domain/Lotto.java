@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.validator.NumbersDuplicationValidator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -33,5 +36,10 @@ public class Lotto {
     public boolean hasBonusNumber(BonusNumber bonusNumber) {
         return numbers.stream()
                 .anyMatch(bonusNumber::isMatchedWithBonusNumber);
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+        NumbersDuplicationValidator numbersDuplicationValidator = new NumbersDuplicationValidator();
+        numbersDuplicationValidator.validate(numbers);
     }
 }

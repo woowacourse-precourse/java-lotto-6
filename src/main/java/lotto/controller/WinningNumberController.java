@@ -4,7 +4,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.WinningNumbers;
 import lotto.util.Parser;
 import lotto.validator.NumberOfRangeValidator;
-import lotto.validator.WinningNumbersDuplicationValidator;
+import lotto.validator.NumbersDuplicationValidator;
 import lotto.validator.OnlyNumberValidator;
 import lotto.validator.WinningNumbersCountValidator;
 
@@ -53,8 +53,8 @@ public class WinningNumberController {
     }
 
     private void validateWinningNumbersDuplication(List<Integer> inputNumbers) {
-        WinningNumbersDuplicationValidator winningNumbersDuplicationValidator = new WinningNumbersDuplicationValidator();
-        winningNumbersDuplicationValidator.validate(inputNumbers);
+        NumbersDuplicationValidator numbersDuplicationValidator = new NumbersDuplicationValidator();
+        numbersDuplicationValidator.validate(inputNumbers);
     }
 
     private void validateBonusNumberDuplication(WinningNumbers winningNumbers, int inputNumber) {

@@ -3,13 +3,17 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.data.Lotto;
 import lotto.data.UserLotto;
+import lotto.validator.LottoValidator;
 import lotto.validator.MoneyValidator;
 
 public class LottoService {
     private List<UserLotto> userLottos;
+    private Lotto lotto;
+    private int bonusNumber;
     private int spendMoney;
     private int lottoCnt;
 
@@ -20,6 +24,8 @@ public class LottoService {
     public void start() {
         getSpendMoney();
         getUserLottos(lottoCnt);
+        getLottoNumber();
+        getBonusNumber();
     }
 
     private void getSpendMoney() {
@@ -45,5 +51,21 @@ public class LottoService {
     private Lotto getRandomLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);
+    }
+
+    private void getLottoNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] lottoNumbers = Console.readLine().split(",");
+        LottoValidator.validateNumbers(lottoNumbers);
+        List<Integer> numbers = Arrays.stream(lottoNumbers).map(Integer::parseInt).toList();
+        lotto = new Lotto(numbers);
+        System.out.println();
+    }
+
+    private void getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonus = Console.readLine();
+        LottoValidator.validateBonusNumber(lotto.getNumbers(), bonus);
+        bonusNumber = Integer.parseInt(bonus);
     }
 }

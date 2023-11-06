@@ -20,17 +20,20 @@ public class Application {
 
 
         purchase.Number(UserInput.purchasePrice());
-        System.out.println(purchase.getPurchaseNumber());
+        System.out.println(purchase.getPurchaseCount());
 
-        lottos.initLottos(LottoGenerator.createLottos(purchase.getPurchaseNumber()));
+        lottos.initLottos(LottoGenerator.createLottos(purchase.getPurchaseCount()));
         for(Lotto l : lottos.getLottos()){
             System.out.println(l);
         }
         System.out.println(lottos.getLottos().size());
+
         prizeNumber.initPrizeNumber(UserInput.prizeNumber());
         System.out.println(prizeNumber.getPrizeNumber());
+
         prizeNumber.initBonusNumber(UserInput.bonusNumber());
         System.out.println(prizeNumber.getBonousNumber());
+
         ranking = prizeChecker.checkRank(lottos,prizeNumber);
         System.out.println(ranking.getWinningDetails());
 

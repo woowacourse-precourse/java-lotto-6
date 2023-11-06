@@ -26,9 +26,9 @@ public class LottoComputer {
 		for (int i = 0; i < Application.ticketNumber; i++) {
 			// 로또 티켓 각 장마다 인스턴스 생성
 			int lottoIndex = 0;
-			LottoNumber tmpObj = new LottoNumber(lottoIndex, numberMaker());
+			LottoNumber lottoInstance = new LottoNumber(lottoIndex, numberMaker());
 			lottoIndex++;
-			lottoList.add(tmpObj);				
+			lottoList.add(lottoInstance);				
 		}
 		
 		return lottoList;

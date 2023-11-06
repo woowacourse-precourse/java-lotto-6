@@ -73,12 +73,7 @@ public class Judgement {
         System.out.println("---");
         for (int i = MIN_CORRECT_AMOUNT; i <= MAX_CORRECT_AMOUNT; i++) {
             if (i == MAX_CORRECT_AMOUNT) {
-                System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_RESULT), CORRECT_FIVE);
-                System.out.print(OutputMessage.OUTPUT_MESSAGE_BONUS);
-                System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_MONEY),
-                        numbers.putCommaInNumber(reward.get(CORRECT_FIVE_WITH_BONUS)),
-                        amountReward.get(reward.get(CORRECT_FIVE_WITH_BONUS)));
-                System.out.println("");
+                outputBonusResult(numbers);
             }
 
             System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_RESULT), i);
@@ -87,6 +82,15 @@ public class Judgement {
                     amountReward.get(reward.get(i)));
             System.out.println("");
         }
+    }
+
+    private void outputBonusResult(Numbers numbers) {
+        System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_RESULT), CORRECT_FIVE);
+        System.out.print(OutputMessage.OUTPUT_MESSAGE_BONUS);
+        System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_MONEY),
+                numbers.putCommaInNumber(reward.get(CORRECT_FIVE_WITH_BONUS)),
+                amountReward.get(reward.get(CORRECT_FIVE_WITH_BONUS)));
+        System.out.println("");
     }
 
 }

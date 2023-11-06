@@ -1,14 +1,13 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Application;
 import lotto.Lotto;
+import lotto.controller.LottoController;
 
 public class BuyLotto {
     public List<Lotto> buyLotto(long inputPrice) {
-        final int HOW_MANY_BUY_LOTTO = (int)(inputPrice / Application.CURRENCY_UNIT);
+        final int HOW_MANY_BUY_LOTTO = (int)(inputPrice / LottoController.CURRENCY_UNIT);
         List<Lotto> lotto = new ArrayList<>();
         Numbers numbers = new Numbers();
 

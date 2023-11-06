@@ -3,8 +3,8 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.Application;
 import lotto.constants.ErrorMessage;
+import lotto.controller.LottoController;
 
 public class Validate {
     private final int MAX_NUMBER = 45;
@@ -34,11 +34,11 @@ public class Validate {
     }
 
     private boolean canDivide(long input) {
-        if (input % Application.CURRENCY_UNIT != 0 || input == 0) {
+        if (input % LottoController.CURRENCY_UNIT != 0 || input == 0) {
             throw new IllegalArgumentException();
         }
 
-        if (input % Application.CURRENCY_UNIT == 0) {
+        if (input % LottoController.CURRENCY_UNIT == 0) {
             return true;
         }
 
@@ -130,12 +130,12 @@ public class Validate {
     private int checkRangeOfNumber(int number) {
         int result = number;
 
-        if (number >= MIN_NUMBER && number <= MAX_NUMBER) {
-            return result;
-        }
-
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_CORRECT_RANGE_OF_NUMBER.toString());
+        }
+
+        if (number >= MIN_NUMBER && number <= MAX_NUMBER) {
+            return result;
         }
 
         return MAKE_ERROR_NUMBER;

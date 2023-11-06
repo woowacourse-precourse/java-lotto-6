@@ -4,22 +4,34 @@ import java.util.List;
 import lotto.Lotto;
 import lotto.domain.BuyLotto;
 import lotto.domain.Judgement;
+import lotto.domain.Numbers;
 import lotto.domain.Validate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    public static final int CURRENCY_UNIT = 1000;
     private final int ERROR_NUMBER = -1;
     private final int MIN_PRICE = 1000;
-    private static int correctThree = 0;
-    private static int correctFour = 0;
-    private static int correctFive = 0;
-    private static int correctFiveWithBonus = 0;
-    private static int correctSix = 0;
+    private final long INPUT_PRICE;
+    private final List<Lotto> MY_LOTTOS;
+    private final List<Integer> WINNER_NUMBERS;
+    private final int BONUS_NUMBER;
+    private static long totalReward = 0;
+
     Validate validate = new Validate();
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    public long inputBuyLottoPrice() {
+
+    public LottoController() {
+        this.INPUT_PRICE = inputBuyLottoPrice();
+        this.MY_LOTTOS = buyLottos(INPUT_PRICE);
+        outputView.outputLottosNumbers(MY_LOTTOS);
+        this.WINNER_NUMBERS = inputWinnerNumbers();
+        this.BONUS_NUMBER = inputBonusNumbers();
+    }
+
+    private long inputBuyLottoPrice() {
         long price = 0;
         String inputPrice = inputView.inputMessageHowMuchPrice();
         while (true) {
@@ -35,7 +47,7 @@ public class LottoController {
         return price;
     }
 
-    public List<Integer> inputWinnerNumbers() {
+    private List<Integer> inputWinnerNumbers() {
         List<Integer> result;
         String inputNumbers = inputView.inputMessageWinnerNumbers();
         while (true) {
@@ -51,11 +63,11 @@ public class LottoController {
         return result;
     }
 
-    public int bonusNumbers(List<Integer> list) {
+    private int inputBonusNumbers() {
         int result = 0;
         String inputNumber = inputView.inputMessageBonusNumber();
         while (true) {
-            result = validate.validateBonusNumber(inputNumber, list);
+            result = validate.validateBonusNumber(inputNumber, WINNER_NUMBERS);
 
             if (result > ERROR_NUMBER) {
                 break;
@@ -67,16 +79,31 @@ public class LottoController {
         return result;
     }
 
-    public List<Lotto> buyLottos(long inputPrice) {
+    private List<Lotto> buyLottos(long inputPrice) {
         BuyLotto buyLotto = new BuyLotto();
         return buyLotto.buyLotto(inputPrice);
     }
 
-    public void outputLottosNumber(List<Lotto> lottos) {
-        outputView.outputLottosNumbers(lottos);
+    /**
+     * 실제 호출하는 메서드
+     */
+    public void calcReward() {
+        Judgement judgement = new Judgement();
+        for (Lotto lotto : MY_LOTTOS) {
+            int correct = lotto.compareLottoToWinnerNumbers(WINNER_NUMBERS, BONUS_NUMBER);
+
+            if (correct > 2) {
+                judgement.setCorrectNumber(correct);
+                totalReward += judgement.getReward(correct);
+            }
+        }
+
+        outputView.outputTotalResult(judgement);
     }
 
-    public void outputTotalResult(Judgement judgement) {
-        outputView.outputTotalResult(judgement);
+    public void outputTotalReward() {
+        Numbers numbers = new Numbers();
+        double ratioOfReturn = numbers.rateOfReturn(totalReward, INPUT_PRICE);
+        outputView.outputTotalResult(ratioOfReturn);
     }
 }

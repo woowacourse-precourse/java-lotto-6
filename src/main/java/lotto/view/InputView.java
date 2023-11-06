@@ -13,7 +13,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static String requestWinningNumber() {
+    public static String requestWinningNumbers() {
         ConstantMessage.printConstantMessage(REQUEST_WINNING_NUMBERS);
         return Console.readLine();
     }

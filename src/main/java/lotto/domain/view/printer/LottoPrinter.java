@@ -8,6 +8,10 @@ public class LottoPrinter {
     private static final String PURCHASED_SIZE_PRINT_MESSAGE = "개를 구매했습니다.";
     private static final String LEFT_SQUARE_BRACKETS = "[";
     private static final String RIGHT_SQUARE_BRACKETS = "]";
+    private static final String SEPARATOR = ", ";
+
+    private LottoPrinter() {
+    }
 
     public static void printPurchased(List<Lotto> lottos) {
         System.out.println(lottos.size() + PURCHASED_SIZE_PRINT_MESSAGE);
@@ -23,6 +27,6 @@ public class LottoPrinter {
         return lotto.getSortedAscending()
                 .stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(SEPARATOR));
     }
 }

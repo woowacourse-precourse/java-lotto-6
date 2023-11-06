@@ -6,6 +6,9 @@ import lotto.domain.view.inputer.manager.InputManager;
 import lotto.domain.view.printer.InputPrinter;
 
 public class Inputer {
+    private Inputer() {
+    }
+
     public static Integer inputPurchaseAmount() {
         while (true) {
             try {

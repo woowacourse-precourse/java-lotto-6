@@ -8,6 +8,9 @@ import lotto.domain.util.validator.InputValidator;
 public class InputManager {
     private static final String COMMA = ",";
 
+    private InputManager() {
+    }
+
     public static String getReadLineWithTrim() {
         String userInput = Console.readLine();
         System.out.println();

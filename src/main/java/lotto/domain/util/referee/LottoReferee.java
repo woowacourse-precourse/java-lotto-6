@@ -6,6 +6,9 @@ import lotto.domain.entity.Score;
 import lotto.domain.entity.lotto.WinningLotto;
 
 public class LottoReferee {
+    private LottoReferee() {
+    }
+
     public static ScoreConfig determineRank(Lotto lotto, WinningLotto winningLotto) {
         Score score = new Score();
 

@@ -6,39 +6,59 @@ import lotto.domain.entity.Order;
 import lotto.domain.entity.lotto.Lotto;
 import lotto.domain.entity.lotto.WinningLotto;
 import lotto.domain.service.LottoCreateService;
-import lotto.domain.service.LottoScoreService;
+import lotto.domain.service.LottoScoreUpdateService;
 import lotto.domain.service.OrderCreateService;
-import lotto.domain.service.StatisticsModifyService;
+import lotto.domain.service.StatisticsUpdateService;
 import lotto.domain.view.inputer.Inputer;
 import lotto.domain.view.printer.LottoPrinter;
 import lotto.domain.view.printer.LottoStatisticsPrinter;
 
 public class LottoController {
     private final LottoCreateService lottoCreateService;
-    private final LottoScoreService lottoScoreService;
+    private final LottoScoreUpdateService lottoScoreUpdateService;
     private final OrderCreateService orderCreateService;
-    private final StatisticsModifyService statisticsModifyService;
+    private final StatisticsUpdateService statisticsUpdateService;
 
     public LottoController() {
         this.lottoCreateService = new LottoCreateService();
-        this.lottoScoreService = new LottoScoreService();
+        this.lottoScoreUpdateService = new LottoScoreUpdateService();
         this.orderCreateService = new OrderCreateService();
-        this.statisticsModifyService = new StatisticsModifyService();
+        this.statisticsUpdateService = new StatisticsUpdateService();
     }
 
     public void run() {
+        Order order = purchaseLotto();
+        List<Lotto> purchaseLottos = createLottoByPurchasedAmount(order);
+        WinningLotto winningLotto = createWinningLotto();
+        findLottoResult(order, purchaseLottos, winningLotto);
+        printResult(order);
+    }
+
+    private Order purchaseLotto() {
         Integer amount = Inputer.inputPurchaseAmount();
         Order order = orderCreateService.create(amount);
+        return order;
+    }
 
+    private List<Lotto> createLottoByPurchasedAmount(Order order) {
         List<Lotto> purchaseLottos = lottoCreateService.purchaseLottos(order);
         LottoPrinter.printPurchased(purchaseLottos);
+        return purchaseLottos;
+    }
 
+    private WinningLotto createWinningLotto() {
         List<Integer> winningNumbers = Inputer.inputWinningNumbers();
         Integer bonusNumber = Inputer.inputBonusNumber();
         WinningLotto winningLotto = lottoCreateService.createWinningLotto(winningNumbers, bonusNumber);
+        return winningLotto;
+    }
 
-        List<ScoreConfig> score = lottoScoreService.getScore(purchaseLottos, winningLotto);
-        statisticsModifyService.countWinningPoint(order, score);
+    private void findLottoResult(Order order, List<Lotto> purchaseLottos, WinningLotto winningLotto) {
+        List<ScoreConfig> score = lottoScoreUpdateService.update(purchaseLottos, winningLotto);
+        statisticsUpdateService.countWinningPoint(order, score);
+    }
+
+    private static void printResult(Order order) {
         LottoStatisticsPrinter.printStatistics(order);
         LottoStatisticsPrinter.printRateOfReturn(order);
     }

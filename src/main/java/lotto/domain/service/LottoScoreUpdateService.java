@@ -7,8 +7,8 @@ import lotto.domain.entity.lotto.Lotto;
 import lotto.domain.entity.lotto.WinningLotto;
 import lotto.domain.util.referee.LottoReferee;
 
-public class LottoScoreService {
-    public List<ScoreConfig> getScore(List<Lotto> lottos, WinningLotto winningLotto) {
+public class LottoScoreUpdateService {
+    public List<ScoreConfig> update(List<Lotto> lottos, WinningLotto winningLotto) {
         List<ScoreConfig> scores = new ArrayList<>();
 
         for (Lotto lotto : lottos) {

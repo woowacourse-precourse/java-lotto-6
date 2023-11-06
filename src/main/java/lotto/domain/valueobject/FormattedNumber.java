@@ -1,6 +1,7 @@
 package lotto.domain.valueobject;
 
 public class FormattedNumber {
+    private final static String FORMAT = "%,d";
     private final int number;
 
     public FormattedNumber(int number) {
@@ -8,6 +9,6 @@ public class FormattedNumber {
     }
 
     public String getThousandsSeparator() {
-        return String.format("%,d", number);
+        return String.format(FORMAT, number);
     }
 }

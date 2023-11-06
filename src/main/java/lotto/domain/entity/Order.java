@@ -2,6 +2,7 @@ package lotto.domain.entity;
 
 import lotto.domain.config.PropertyConfig;
 import lotto.domain.util.validator.PropertyValidator;
+import lotto.domain.valueobject.Statistics;
 
 public class Order {
     private static final int PRICE_PER_LOTTO = PropertyConfig.PRICE_PER_LOTTO.getValue();

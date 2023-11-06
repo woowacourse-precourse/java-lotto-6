@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class NumberTest {
 
@@ -16,17 +18,12 @@ class NumberTest {
 
     assertThat(number1).isEqualTo(number2);
   }
-
-  @Test
+  @ParameterizedTest
+  @ValueSource(ints = {0, 46})
   @DisplayName("1~45 범위의 수를 제외하면 예외를 발생시킨다.")
-  void testNumberInRange() {
-    int exceptionNumber = 0;
-    int exceptionNumber2 = 46;
-
+  void testNumberInRange(int exceptionNumber) {
     assertThatThrownBy(() -> new Number(exceptionNumber))
         .isInstanceOf(IllegalArgumentException.class);
-
-    assertThatThrownBy(() -> new Number(exceptionNumber2))
-        .isInstanceOf(IllegalArgumentException.class);
   }
+
 }

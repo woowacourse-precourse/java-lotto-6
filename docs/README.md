@@ -53,6 +53,39 @@
     - getLottoAmount를 반환하는 함수
 
 
+#### WinningLotto 객체
+당첨 로또의 번호 정보룰 가지는 객체입니다.
+- lotto 변수
+  - Lotto의 형태, 당첨 로또를 저장
+- bonusNumber 변수
+  - int의 형태, 보너스 숫자를 저장
+
+
+- validate 함수
+  - 로또와 보너스 숫자의 중복 여부 확인
+- matchLotto 함수
+  - 플레이어 로또와 당첨 로또를 비교해 등수를 알려주는 함수
+
+
+#### LottoResult 객체
+로또의 등수를 저장하는 ENUM 객체입니다.
+- count 변수
+  - int의 형태, 맞춘 번호의 개수 저장
+- bonus 변수
+  - boolean의 형태, 보너스 번호 맞춘 여부 저장
+- winningAmount 변수
+  - int의 형태, 당첨 금액을 저장
+- message 변수
+  - String의 형태, 담청 메시지를 저장
+
+
+- valueOf 함수
+  - 맞춘 수와 보너스 여부로 등수 판별 후 알맞은 LottoResult 객체 반환
+- getMessage 함수
+  - 메시지를 반환하는 함수
+- getWinningAmount 함수
+  - winningAmount 반환하는 함수
+
 ### 구현 목록
 - [ ] InputUtil 객체
 - [x] RandomUtil 객체

@@ -3,8 +3,11 @@ package lotto.domain;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoStoreTest {
 
@@ -18,5 +21,15 @@ class LottoStoreTest {
         Assertions.assertEquals(count, lottoList.size());
     }
 
+
+    @Test
+    @DisplayName("구입금액에 해당하는 만큼 로또를 발행한다.")
+    void testCalculateLottoTicketCount() {
+        int input = 2000;
+        int LottoCounts = lottoStore.calculateLottoTicketCount(input);
+
+        Assertions.assertEquals(2, LottoCounts);
+
+    }
 
 }

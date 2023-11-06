@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import static lotto.Exception.ExceptionMessage.*;
+import static lotto.utils.Constance.LOTTO_MAX_NUMBER;
+import static lotto.utils.Constance.LOTTO_MIN_NUMBER;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,6 +15,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateLottoLength(numbers);
         validateDuplicationNumber(numbers);
+        validateNumberRange(numbers);
         this.numbers = numbers;
     }
 
@@ -39,6 +42,15 @@ public class Lotto {
     private void validateDuplicationNumber(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATION_LOTTO_NUMBER.getExceptionMessage());
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers){
+        boolean isInvalid = numbers.stream()
+                .anyMatch(i -> i < LOTTO_MIN_NUMBER.getValue() || i > LOTTO_MAX_NUMBER.getValue());
+
+        if(isInvalid){
+            throw new IllegalArgumentException(RANGE_ERROR.getExceptionMessage());
         }
     }
 

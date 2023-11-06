@@ -23,7 +23,7 @@ public class InputView {
 
     public static List<Integer> inputWinningNumbers(){
         try {
-            System.out.println(INPUT_WINNING_NUMBERS);
+            System.out.println("\n"+INPUT_WINNING_NUMBERS);
             return Arrays.stream((Console.readLine().split(",")))
                     .map(Integer::parseInt).toList();
         }catch (IllegalArgumentException e){
@@ -34,7 +34,7 @@ public class InputView {
 
     public static int inputBonusNumber(){
         try {
-            System.out.println(INPUT_BONUS_NUMBER);
+            System.out.println("\n"+INPUT_BONUS_NUMBER);
             return Integer.parseInt(Console.readLine());
         }catch (IllegalArgumentException e){
             System.out.println("\n" + TYPE_ERROR.getExceptionMessage());

@@ -12,9 +12,6 @@ public class Player {
         this.money = money;
     }
 
-    public List<Lotto> getLottoTickets() {
-        return lottoTickets;
-    }
 
     public List<LottoRank> checkLottoTickets(WinningNumber winningNumber) {
         return lottoTickets.stream()

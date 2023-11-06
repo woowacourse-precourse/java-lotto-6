@@ -2,13 +2,15 @@ package lotto.controller;
 
 import static lotto.util.Conversion.stringToInt;
 import static lotto.util.Conversion.stringToList;
+import static lotto.util.message.Guide.PURCHASE_AMOUNT;
+import static lotto.util.message.Guide.WINNING_NUMBER;
+import static lotto.view.InputView.input;
 
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
 import lotto.model.WinningLotto;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
@@ -25,7 +27,7 @@ public class LottoController {
 
     private void payMoney() {
         try {
-            int money = stringToInt(InputView.purchase());
+            int money = stringToInt(input(PURCHASE_AMOUNT.getMessage()));
             purchase = new Purchase(money);
         } catch (IllegalArgumentException exception) {
             OutputView.error(exception.getMessage());
@@ -43,7 +45,7 @@ public class LottoController {
     }
 
     private void winningLotto() {
-        String winningNumber = InputView.winningLotto();
+        String winningNumber = input(WINNING_NUMBER.getMessage());
 
         try {
 

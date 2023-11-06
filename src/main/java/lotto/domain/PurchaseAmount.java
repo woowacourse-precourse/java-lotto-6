@@ -13,8 +13,8 @@ public class PurchaseAmount {
 
     }
 
-    public int getAmout(){
-        return amount;
+    public int getTicketNum(){
+        return amount / 1000;
     }
 
     public void validateUnderThousand(int input){

@@ -1,10 +1,8 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.LottoService;
 import lotto.domain.Lottos;
 import lotto.view.GameView;
-import org.assertj.core.api.ListAssert;
 
 public class GameController {
 
@@ -17,16 +15,23 @@ public class GameController {
     }
 
     public void run(){
-        int lottoPurchaseAmount = getLottoPurchaseAmount(view.inputLottoPurchaseAmount());
-        Lottos lottos = model.issueLottos(lottoPurchaseAmount);
-
+        int lottoPurchaseCount = getLottoPurchaseCount(view.inputLottoPurchaseAmount());
+        model.issueLottos(lottoPurchaseCount);
+        printLottos(lottoPurchaseCount, model.findAllLottos());
     }
 
-    private int getLottoPurchaseAmount(String input) {
+    private int getLottoPurchaseCount(String input) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(input)/1000;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자를 입력해야 합니다.");
         }
     }
+
+    private void printLottos(int lottoPurchaseCount, Lottos lottos) {
+        view.printLottoCount(lottoPurchaseCount);
+        lottos.getLottos()
+                .forEach(lotto -> view.printLottoNumbers(lotto.getNumbers()));
+    }
+
 }

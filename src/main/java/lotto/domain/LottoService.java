@@ -18,26 +18,36 @@ public class LottoService {
         this.lottoRepository = lottoRepository;
     }
 
-    public Lottos issueLottos(int number) {
+    public Lottos findAllLottos(){
+        return lottoRepository.findAll();
+    }
+
+    public void issueLottos(int number) {
         List<Lotto> tempLottos = new ArrayList<>(number);
 
         for (int i = 0; i < number; i++) {
-            tempLottos.add(new Lotto(createRandomNumberList()));
+            tempLottos.add(new Lotto(createSortedRandomNumberList()));
         }
-        return new Lottos(new ArrayList<>(tempLottos));
+
+        lottoRepository.saveAll(new Lottos(new ArrayList<>(tempLottos)));
     }
 
-    private List<Integer> createRandomNumberList(){
+    private List<Integer> createSortedRandomNumberList(){
         Set<Integer> numberSet = new HashSet<>();
 
         while (numberSet.size()<6){
             numberSet.add(getRandomNumber());
         }
-        return new ArrayList<>(numberSet);
+        return sortNumberList(new ArrayList<>(numberSet));
     }
 
     private int getRandomNumber() {
         return pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+    }
+
+    private List<Integer> sortNumberList(List<Integer> numberList){
+        Collections.sort(numberList);
+        return numberList;
     }
 
     public void checkWinningNumbers(){

@@ -82,3 +82,7 @@ CustomizedException클래스 winningNumbersSizeMoreOrLess메소드
 ``````````````````````````
 InputView클래스 storeWinningNumbersArraysToList메소드
 ```````````````````````````````
+12. 당첨숫자들을 리스트로 옮기고 6개를 입력이 안되면 오류가 나도록 기능 추가
+``````````````````````````
+InputView클래스 getWinningNumbers메소드
+```````````````````````````````

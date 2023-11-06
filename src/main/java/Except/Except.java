@@ -97,18 +97,25 @@ public class Except {
         return result;
     }
 
+    public List<Integer> numberSizeCheck(String number) {
+        String[] check_size = number.split(",");
+        List<Integer> result = new ArrayList<>();
+        try {
+            if (check_size.length != 6) {
+                throw new IllegalArgumentException();
+            }
+            result = numberAllCheckNumber(number);
+        } catch (IllegalArgumentException iae) {
+            System.out.println(numberIncorrectLength.getMessage());
+        }
+        return result;
+    }
+
     public List<Integer> numberCheckAll(String number) {
         List<Integer> result = new ArrayList<>();
         String length_check = numberLengthCheck(number);
         if (!length_check.equals("")) {
-            result = numberAllCheckNumber(length_check);
-        }
-        try {
-            if (result.size() != 6) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException iae) {
-            System.out.println(numberIncorrectLength.getMessage());
+            result = numberSizeCheck(length_check);
         }
         return result;
     }

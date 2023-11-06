@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-
-import static lotto.domain.LottoRanking.*;
+import java.util.stream.Collectors;
 
 public class MessageGenerator {
     private static final String STATISTICS_MESSAGE_FORMAT = "%d개 일치 (%s원) - %d개";
@@ -20,11 +19,11 @@ public class MessageGenerator {
     private static Map<LottoRanking, Function<Integer, String>> generator = new HashMap<>();
 
     static {
-        addMessageFormatOf(FIRST);
-        addMessageFormatOf(SECOND);
-        addMessageFormatOf(THIRD);
-        addMessageFormatOf(FOURTH);
-        addMessageFormatOf(FIFTH);
+        addMessageFormatOf(LottoRanking.FIRST);
+        addMessageFormatOf(LottoRanking.SECOND);
+        addMessageFormatOf(LottoRanking.THIRD);
+        addMessageFormatOf(LottoRanking.FOURTH);
+        addMessageFormatOf(LottoRanking.FIFTH);
     }
 
     private static void addMessageFormatOf(LottoRanking lottoRanking) {
@@ -46,15 +45,15 @@ public class MessageGenerator {
         return decimalFormat.format(lottoRanking.getPrizeMoney());
     }
 
-    public static List<String> generateStatisticsMessages(
-            Map<LottoRanking, Integer> result, List<LottoRanking> outputOrder) {
+    public static String generateStatisticsMessage(Map<LottoRanking, Integer> result) {
+        List<LottoRanking> outputOrder = LottoRanking.findOrder();
 
         return outputOrder.stream()
-                .map(lottoRanking -> generateStatisticsMessage(result, lottoRanking))
-                .toList();
+                .map(lottoRanking -> generateMessage(result, lottoRanking))
+                .collect(Collectors.joining(OutputView.NEWLINE));
     }
 
-    private static String generateStatisticsMessage(Map<LottoRanking, Integer> result, LottoRanking lottoRanking) {
+    private static String generateMessage(Map<LottoRanking, Integer> result, LottoRanking lottoRanking) {
         int count = result.getOrDefault(lottoRanking, INITIAL_COUNT);
 
         return generator.get(lottoRanking).apply(count);

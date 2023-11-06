@@ -67,8 +67,7 @@ public class MainController {
         Map<LottoRanking, Integer> result = statisticsService.checkLottoResult(winningLotto, userLottos);
         double rateOfReturn = statisticsService.calculateRateOfReturn(result, userLottos);
 
-        outputView.printWinningStatistics(result, LottoRanking.findOrder());
-        outputView.printRateOfResult(rateOfReturn);
+        outputView.printLottoResult(result, rateOfReturn);
     }
 
     private <T> T repeatTemplate(Supplier<T> inputReader) {

@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.Rank;
 import lotto.domain.WinningLottoStorage;
+import lotto.utils.StringUtil;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -43,5 +44,9 @@ public class OutputView {
 
     public void printPurchasedLotto(String lottoNumbers) {
         System.out.println(lottoNumbers);
+    }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.println(StringUtil.doubleToString(rateOfReturn));
     }
 }

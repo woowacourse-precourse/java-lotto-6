@@ -20,10 +20,10 @@ public class LottoSeller {
     }
 
     public void makeLottoEnvelope(Integer money) {
-        Integer numberLotto = (money / PRICE_LOTTO);
+        Integer countLotto = (money / PRICE_LOTTO);
         Lotto lotto = null;
 
-        for (int index = 0; index < numberLotto; index++) {
+        for (int index = 0; index < countLotto; index++) {
             lotto = Config.lotto();
             lottoEnvelop.add(lotto);
         }

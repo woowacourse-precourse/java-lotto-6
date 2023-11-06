@@ -46,12 +46,12 @@ class LottoTest {
                 .hasMessage("알 수 없는 로또와 매치할 수 없습니다.");
     }
 
-    @DisplayName("로또 번호의 개수가 6개가 넘어갈 수 없다.")
+    @DisplayName("로또 번호의 개수는 6개이다.")
     @Test
     void checkNumbersSize() {
         assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("로또 번호의 개수는 최대 6개입니다.");
+                .hasMessage("로또 번호의 개수는 6개입니다.");
     }
 
     @DisplayName("로또 번호에 중복된 숫자를 포함할 수 없다.")

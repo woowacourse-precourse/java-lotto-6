@@ -7,8 +7,8 @@ public class Controller {
         Money money = getMoney();
         Lottos lottos = getLottos(money.getTicket());
 
-        System.out.println(money.getTicket());
-        lottos.getLottos().forEach(System.out::println);
+        OutputView.printBuyLotto(money);
+        OutputView.printLottos(lottos);
     }
 
     private String inputMoney() {

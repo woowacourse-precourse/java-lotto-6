@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.global.ErrorMessage;
 
@@ -16,6 +17,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
+        }
+        Set<Integer> uniqueNumbers = Set.copyOf(numbers);
+        if(uniqueNumbers.size() != numbers.size()){
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
         }
     }

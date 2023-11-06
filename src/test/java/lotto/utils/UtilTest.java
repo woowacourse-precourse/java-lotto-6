@@ -2,7 +2,6 @@ package lotto.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.utils.Util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;

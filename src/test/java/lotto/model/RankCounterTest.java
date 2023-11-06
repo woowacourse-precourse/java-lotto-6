@@ -1,11 +1,9 @@
 package lotto.model;
 
-import lotto.model.Rank;
-import lotto.model.RankCounter;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RankCounterTest {
 

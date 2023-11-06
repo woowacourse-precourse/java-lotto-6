@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.error.ErrorMessage;
 
 public class OutputView {
@@ -32,5 +34,15 @@ public class OutputView {
 
     public void printErrorMessage(ErrorMessage errorMessage) {
         System.out.println(ERROR_STARTING_MESSAGE + errorMessage.getMessage());
+    }
+
+    public void printLottoNumber(List<Integer> numbers) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            stringBuilder.append(numbers.get(i) + ", ");
+        }
+        stringBuilder.append(numbers.get(numbers.size()-1) + "]");
+        System.out.println(stringBuilder.toString());
     }
 }

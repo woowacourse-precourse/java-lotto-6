@@ -17,28 +17,12 @@ public class Input {
         return resultNumbers;
     }
 
-    private static void validateInputNumbers(String inputStringLine) {
-        ValidateException.includeStringExceptionComma(inputStringLine);
-        ValidateException.blankCheck(inputStringLine);
-        ValidateException.includeBlank(inputStringLine);
-        ValidateException.commaStartAndEnd(inputStringLine);
-        ValidateException.hasConsecutiveEmptyValues(inputStringLine);
-    }
-
     public static Integer InputNumber() {
         String inputStringLine = Console.readLine().trim();
 
         validateInputNumber(inputStringLine);
 
         return Utii.parseInteger(inputStringLine);
-    }
-
-    private static void validateInputNumber(String inputStringLine) {
-        ValidateException.containsNonNumericCharacter(inputStringLine);
-        ValidateException.includeBlank(inputStringLine);
-        ValidateException.blankCheck(inputStringLine);
-        ValidateException.negative(inputStringLine);
-        ValidateException.zeroNum(inputStringLine);
     }
 
     private static List<Integer> makeListFromSplitComma(String inputStringLine) {
@@ -49,5 +33,21 @@ public class Input {
         resultNumbers = Utii.makeListFromArr(arr);
 
         return resultNumbers;
+    }
+
+    private static void validateInputNumbers(String inputStringLine) {
+        ValidateException.includeStringExceptionComma(inputStringLine);
+        ValidateException.blankCheck(inputStringLine);
+        ValidateException.includeBlank(inputStringLine);
+        ValidateException.commaStartAndEnd(inputStringLine);
+        ValidateException.hasConsecutiveEmptyValues(inputStringLine);
+    }
+
+    private static void validateInputNumber(String inputStringLine) {
+        ValidateException.containsNonNumericCharacter(inputStringLine);
+        ValidateException.includeBlank(inputStringLine);
+        ValidateException.blankCheck(inputStringLine);
+        ValidateException.negative(inputStringLine);
+        ValidateException.zeroNum(inputStringLine);
     }
 }

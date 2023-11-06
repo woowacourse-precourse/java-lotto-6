@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public enum LottoResult {
     FIFTH(3, 0,"3개 일치", 5000),
@@ -30,26 +31,28 @@ public enum LottoResult {
     }
 
     public static LottoResult compareLottoNums(List<Integer> userLottoNums, WinningLotto winningLotto) {
-        int equalLottoCnt = 0;
-        int equalBonusCnt = 0;
-        for (int userLottoNum : userLottoNums) {
-            if (winningLotto.getLotto().getNumbers().contains(userLottoNum)) {
-                equalLottoCnt++;
-            }
-        }
-        if (userLottoNums.contains(winningLotto.getBonus())) {
-            equalBonusCnt++;
-        }
+        int equalLottoCnt = countEqualLotto(userLottoNums, winningLotto);
+        int equalBonusCnt = countEqualBonus(userLottoNums, winningLotto);
         return findCorrectLottoResult(equalLottoCnt, equalBonusCnt);
     }
 
+    private static int countEqualBonus(List<Integer> userLottoNums, WinningLotto winningLotto) {
+        return (int) userLottoNums.stream()
+                .filter(userLottoNum -> userLottoNum.equals(winningLotto.getBonus()))
+                .count();
+    }
+
+    private static int countEqualLotto(List<Integer> userLottoNums, WinningLotto winningLotto) {
+        return (int) userLottoNums.stream()
+                .filter(winningLotto.getLottoNums()::contains)
+                .count();
+    }
+
     private static LottoResult findCorrectLottoResult(int equalLottoCnt, int equalBonusCnt) {
-        LottoResult findResult = null;
-        for (LottoResult lottoResult : LottoResult.values()) {
-            if (lottoResult.winningCnt == equalLottoCnt && lottoResult.bonusCnt == equalBonusCnt) {
-                findResult = lottoResult;
-            }
-        }
-        return findResult;
+        return Stream.of(LottoResult.values())
+                .filter(result -> result.winningCnt == equalLottoCnt)
+                .filter(result -> result.bonusCnt == equalBonusCnt)
+                .findFirst()
+                .orElse(null);
     }
 }

@@ -24,7 +24,7 @@ public class NumberGenerator {
         return buycount;
     }
 
-    public List<Integer> createRandomNumbers(){
+    public List<Integer> createRandomNumber(){
         List<Integer> lotto = new ArrayList<>();
         while (lotto.size() < 6) {
             int randomNumber = Randoms.pickNumberInRange(1, 45);

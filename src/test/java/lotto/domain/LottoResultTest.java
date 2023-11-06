@@ -25,6 +25,7 @@ class LottoResultTest {
             assertThat(lottoResult.state.get(prize)).isEqualTo(0);
         }
     }
+
     @DisplayName("수익률 계산")
     @Test
     void calculateEarningsRate() {

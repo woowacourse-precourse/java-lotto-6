@@ -38,8 +38,13 @@ public class BonusNumber {
     }
 
     private void checkNumberRange(String number) {
-        if (Integer.parseInt(number) < MINIMUM_LOTTO_NUMBER.getNumber() || Integer.parseInt(number) > MAXIMUM_LOTTO_NUMBER.getNumber()) {
+        if (Integer.parseInt(number) < MINIMUM_LOTTO_NUMBER.getNumber()
+                || Integer.parseInt(number) > MAXIMUM_LOTTO_NUMBER.getNumber()) {
             throw new IllegalArgumentException(INVALID_RANGE_BONUS_NUMBER.getMessage());
         }
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

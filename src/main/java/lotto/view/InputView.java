@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.InputMismatchException;
 
 public class InputView {
     public static String getInput(String type){
@@ -11,7 +12,7 @@ public class InputView {
                     Integer.parseInt(input_text);
                 }
                 catch (NumberFormatException ex){
-                    throw new NumberFormatException("[ERROR] 잘못된 타입을 입력하셨습니다.");
+                    throw new InputMismatchException("[ERROR] 잘못된 타입을 입력하셨습니다.");
                 }
             case "text":
             default:

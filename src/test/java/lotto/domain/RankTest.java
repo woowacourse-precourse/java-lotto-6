@@ -3,30 +3,24 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class WinningStatisticTest {
-    @DisplayName("매칭된 숫자 개수에 맞는 상금을 반환.")
+class RankTest {
+    @DisplayName("매칭된 숫자 개수에 맞는 랭크 반환.")
     @Test
-    void calculatePrice() {
-        List<WinningStatistic> statistics = new ArrayList<>();
-        assertThat(WinningStatistic.calculatePrize(6, true)).isEqualTo(2_000_000_000);
+    void getRankByMatchingNumbersAndBonus() {
+        assertThat(Rank.getRankByMatchingNumbersAndBonus(6, true)).isEqualTo(Rank.FIRST);
     }
 
-    @DisplayName("매칭 개수가 5개이고 보너스 넘버가 포함되어 있을 때 2등 상금 반환.")
+    @DisplayName("매칭 개수가 5개이고 보너스 넘버가 포함되어 있을 때 2등 랭크 반환.")
     @Test
-    void calculatePriceByFiveWithBonusNumber() {
-        assertThat(WinningStatistic.calculatePrize(5, true)).isEqualTo(30_000_000);
+    void getRankByNumberFiveAndBonus() {
+        assertThat(Rank.getRankByMatchingNumbersAndBonus(5, true)).isEqualTo(Rank.SECOND);
     }
 
-    @DisplayName("매칭된 숫자 개수에 맞는 상금을 반환.")
+    @DisplayName("매칭 개수가 3-6에 해당하는 정수가 아니면 무당첨 랭크 반환.")
     @Test
-    void calculatePriceByOutOfRangeMatchingNumber() {
-        assertThatThrownBy(() -> WinningStatistic.calculatePrize(2, false))
-                .isInstanceOf(IllegalArgumentException.class);
+    void getRankByOutOfRangeMatchingNumber() {
+        assertThat(Rank.getRankByMatchingNumbersAndBonus(2, true)).isEqualTo(Rank.NONE);
     }
 }

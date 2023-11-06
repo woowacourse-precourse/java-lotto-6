@@ -10,6 +10,8 @@ import java.util.List;
 
 public class Converter {
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,###");
+    private static final int TEN = 10;
+    private static final int DECIMAL_POINT = 1;
 
     private Converter() {
     }
@@ -33,5 +35,10 @@ public class Converter {
 
     public static String convertNumberWithComma(int number) {
         return DECIMAL_FORMAT.format(number);
+    }
+
+    public static String convertToStringWithRound(double value) {
+        double rounder = Math.pow(TEN, DECIMAL_POINT);
+        return String.valueOf(Math.round(value * rounder) / rounder);
     }
 }

@@ -32,7 +32,9 @@ public class LottoController {
         WinningLotto winningLotto = this.getWinningLotto();
         WinningResult winningResult = lottoTicket.match(winningLotto);
         outputView.printWinningResult(winningResult);
-        outputView.printYield(winningResult.calculateYield(amount));
+
+        double yield = winningResult.calculateYield(amount);
+        outputView.printYield(Converter.convertToStringWithRound(yield));
     }
 
     private Amount getAmount() {

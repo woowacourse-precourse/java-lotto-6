@@ -1,10 +1,7 @@
 package lotto.user;
 
 import java.util.List;
-import lotto.bank.Bank;
-import lotto.number.LottoNumber;
-import lotto.pay.Lotto;
-import lotto.pay.LottoService;
+import lotto.lotto.Lotto;
 
 public class User {
 

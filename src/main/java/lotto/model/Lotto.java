@@ -16,12 +16,12 @@ public class Lotto {
         InputValidator.checkLotto(numbers);
     }
 
-    public void showLotto() {
-        System.out.println(numbers);
-    }
-
     public void validateBonusNumber(String bonus) {
         InputValidator.checkBonusNumber(numbers, bonus);
+    }
+
+    public void showLotto() {
+        System.out.println(numbers);
     }
 
     public int countMatchingNumber(Lotto userLotto) {

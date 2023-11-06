@@ -29,21 +29,31 @@ class LottoGameServiceTest {
     }
 
     @Test
+    @DisplayName("당첨번호를 생성한다.")
+    void createWinningNumber() {
+        String winningNumber = "1,2,3,4,5,6";
+        List<Integer> result = lottoGameService.createWinningNumber(winningNumber);
+
+        assertThat(result).hasSize(6)
+                .containsExactly(1,2,3,4,5,6);
+    }
+
+    @Test
     @DisplayName("입력받은 값이 숫자인지 검증한다.")
-    void inputPurchaseAmountValidation_정상케이스() {
+    void isDigit_정상케이스() {
         String input = "14000";
 
-        int inputPurchaseAmountValidation = lottoGameService.inputPurchaseAmountValidation(input);
-        assertThat(inputPurchaseAmountValidation).isEqualTo(14000);
+        Boolean result = lottoGameService.isDigit(input);
 
+        assertThat(result).isTrue();
     }
 
     @Test
     @DisplayName("입력받은 값이 숫자가 아닌지 검증한다.")
-    void inputPurchaseAmountValidation_예외케이스() {
+    void isDigit_예외케이스() {
         String input = "만사천원";
 
-        assertThatThrownBy(() -> lottoGameService.inputPurchaseAmountValidation(input))
+        assertThatThrownBy(() -> lottoGameService.isDigit(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoException.INPUT_NOT_DiGIT.getMessage());
 
@@ -52,16 +62,36 @@ class LottoGameServiceTest {
     @Test
     @DisplayName("입력받은 값이 1,000원 단위 인지 검증한다.")
     void isThousandUnits_정상케이스() {
-        boolean thousandUnits = lottoGameService.isThousandUnits(14000);
-        assertThat(thousandUnits).isTrue();
+        String input = "14000";
+        boolean result = lottoGameService.isThousandUnits(input);
+        assertThat(result).isTrue();
     }
 
     @Test
     @DisplayName("입력받은 값이 1,000원 단위 인지 검증한다.")
     void isThousandUnits_예외케이스() {
-      assertThatThrownBy(() -> lottoGameService.isThousandUnits(14200))
+        String input = "14200";
+        assertThatThrownBy(() -> lottoGameService.isThousandUnits(input))
               .isInstanceOf(IllegalArgumentException.class)
               .hasMessageContaining(LottoException.INPUT_NOT_THOUSAND_UNITS.getMessage());
+    }
+
+    @Test
+    @DisplayName("입력받은 구매금액을 검증한다.")
+    void inputPurchaseAmountValidation_정상케이스() {
+        String input = "14000";
+        boolean result = lottoGameService.inputPurchaseAmountValidation(input);
+
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    @DisplayName("입력받은 구매금액을 검증한다.")
+    void inputPurchaseAmountValidation_예외케이스() {
+        String input = "14200";
+        boolean result = lottoGameService.inputPurchaseAmountValidation(input);
+
+        assertThat(result).isFalse();
     }
 
     @Test
@@ -86,55 +116,68 @@ class LottoGameServiceTest {
                 .hasMessageContaining(LottoException.INPUT_NOT_SPLIT.getMessage());
     }
 
-
     @Test
-    @DisplayName("입력받은 당첨번호가 숫자인지 검증한다.")
-    void inputWinningNumberValidation_정상케이스() {
+    void isWinningNumberDigit_정상케이스() {
         String[] inputWinningNumberSplit = {"1","2","3","4","5","6"};
-        List<Integer> winningNumber= lottoGameService.inputWinningNumberValidation(inputWinningNumberSplit);
-        assertThat(winningNumber).contains(1,2,3,4,5,6);
+        boolean result = lottoGameService.isWinningNumberDigit(inputWinningNumberSplit);
+
+        assertThat(result).isTrue();
     }
 
     @Test
-    @DisplayName("입력받은 당첨번호가 숫자가 아니면 예외를 발생한다.")
-    void inputWinningNumberValidation_예외케이스() {
-        String[] inputWinningNumberSplit = {"일","이","삼","가","오","육"};
-        assertThatThrownBy(() -> lottoGameService.inputWinningNumberValidation(inputWinningNumberSplit))
+    void isWinningNumberDigit_예외케이스() {
+        String[] inputWinningNumberSplit = {"일","2","삼","4","오","6"};
+        assertThatThrownBy(() -> lottoGameService.isWinningNumberDigit(inputWinningNumberSplit))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoException.INPUT_NOT_DiGIT.getMessage());
     }
+
+    @Test
+    void inputWinningNumberValidation_정상케이스() {
+        String input = "1,2,3,4,5,6";
+        boolean result = lottoGameService.inputWinningNumberValidation(input);
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    void inputWinningNumberValidation_예외케이스() {
+        String input = "1,이,34,오,6";
+        boolean result = lottoGameService.inputWinningNumberValidation(input);
+        assertThat(result).isFalse();
+    }
+
 
     @Test
     @DisplayName("입력받은 보너스번호가 숫자인지 검증한다.")
     void inputBonusNumberValidation_정상케이스() {
         String input = "5";
-        int bonusNumber = lottoGameService.inputBonusNumberValidation(input);
-        assertThat(bonusNumber).isEqualTo(5);
+        boolean result = lottoGameService.inputBonusNumberValidation(input);
+        assertThat(result).isTrue();
     }
 
     @Test
-    @DisplayName("입력받은 보너스번호가 숫자가 아닌면 예외를 발생한다.")
+    @DisplayName("입력받은 보너스번호가 숫자인지 검증한다.")
     void inputBonusNumberValidation_예외케이스() {
-        String input = "오";
-        assertThatThrownBy(() -> lottoGameService.inputBonusNumberValidation(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoException.INPUT_NOT_DiGIT.getMessage());
+        String input = "46";
+        boolean result = lottoGameService.inputBonusNumberValidation(input);
+        assertThat(result).isFalse();
     }
+
 
     @Test
     @DisplayName("입력받은 보너스번호가가 1~45 범위인지 검증한다.")
-    void inputBonusNumberRangeValidation_정상케이스() {
+    void isRange_정상케이스() {
         int input = 45;
-        int rangeValidation = lottoGameService.inputBonusNumberRangeValidation(input);
+        boolean result = lottoGameService.isRange(input, 1, 45);
 
-        assertThat(rangeValidation).isEqualTo(input);
+        assertThat(result).isTrue();
     }
 
     @Test
     @DisplayName("입력받은 보너스번호가가 1~45 범위인지 검증한다.")
     void inputBonusNumberRangeValidation_예외케이스() {
         int input = 46;
-        assertThatThrownBy(() -> lottoGameService.inputBonusNumberRangeValidation(input))
+        assertThatThrownBy(() -> lottoGameService.isRange(input,1,45))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoException.INPUT_NOT_RANGE.getMessage());
     }

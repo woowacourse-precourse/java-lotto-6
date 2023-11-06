@@ -13,4 +13,9 @@ public class InputView {
         System.out.println(Message.INPUT_WINNING_NUMBER);
         return Console.readLine();
     }
+
+    public String getBonusNumber() {
+        System.out.println(Message.INPUT_BONUS_NUMBER);
+        return Console.readLine();
+    }
 }

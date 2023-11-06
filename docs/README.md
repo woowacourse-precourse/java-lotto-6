@@ -44,7 +44,7 @@
 - [x] `1 3`에러, `1, 3`은 양쪽 공백 제거하는 함수 사용해서 그대로 진행하자
   - 에러메세지도 숫자 중간에 공백이 들어갔다고 변경하기
 - [x] 겹치는 validate 함수들 정리하자
-- [ ] Process 메소드 분리
+- [x] Process 메소드 분리
     - [x] askCost
     - [x] askWinningNums
     - [x] askBonus

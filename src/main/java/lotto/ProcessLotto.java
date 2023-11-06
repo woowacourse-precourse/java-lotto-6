@@ -15,10 +15,9 @@ public class ProcessLotto {
 
     public void drawLotto(ValidateTools validateTools){
         InputValidate inputValidate = new InputValidate(validateTools);
-        AmountProcessing amountProcessing = new AmountProcessing();
 
         int cost = askCost(inputValidate, 0);
-        int count = amountProcessing.getLottoCount(cost);
+        int count = new AmountProcessing().getLottoCount(cost);
         outputView.printNumberPurchase(count);
 
         List<Lotto> lottos = generateLottos(count, new Generator());
@@ -26,10 +25,9 @@ public class ProcessLotto {
         int bonus = askBonus(inputValidate, winningNums, 0);
         outputView.printWinningStatistics();
 
-        StaisticsResult staisticsResult = new StaisticsResult();
-        staisticsResult.updateResult(new CalculateLotto(), lottos, winningNums, bonus);
-        staisticsResult.printStatistics(outputView, new CalculateLotto(), cost);
+        statistics(lottos, winningNums, bonus, cost);
     }
+
 
     private int askCost(InputValidate inputValidate, int cost){
         boolean success = false;
@@ -45,6 +43,7 @@ public class ProcessLotto {
         }
         return cost;
     }
+
 
     private List<Integer> askWinningNums(InputValidate inputValidate, List<Integer> winningNums){
         boolean success = false;
@@ -62,6 +61,7 @@ public class ProcessLotto {
         return winningNums;
     }
 
+
     private int askBonus(InputValidate inputValidate, List<Integer> winningNums, int bonus){
         boolean success = false;
         while (!success){
@@ -76,6 +76,7 @@ public class ProcessLotto {
         return bonus;
     }
 
+
     private List<Lotto> generateLottos(int count, Generator generator){
         List<Lotto> lottos = new ArrayList<>();
         while (count > 0){
@@ -89,5 +90,9 @@ public class ProcessLotto {
     }
 
 
-
+    private void statistics(List<Lotto> lottos, List<Integer> winningNums, int bonus, int cost){
+        StaisticsResult staisticsResult = new StaisticsResult();
+        staisticsResult.updateResult(new CalculateLotto(), lottos, winningNums, bonus);
+        staisticsResult.printStatistics(outputView, new CalculateLotto(), cost);
+    }
 }

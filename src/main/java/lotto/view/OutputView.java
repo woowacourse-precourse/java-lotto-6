@@ -1,5 +1,9 @@
 package lotto.view;
 
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+
 public class OutputView {
 
     public void askAmount() {
@@ -16,6 +20,12 @@ public class OutputView {
 
     public void askBonusNum() {
         print("보너스 번호를 입력해주세요.");
+    }
+
+    public void showLottoList(final Lottos lottos) {
+        List<Lotto> lottoList = lottos.getLottos();
+        System.out.println();
+        lottoList.forEach(System.out::println);
     }
 
     public void showResults() {

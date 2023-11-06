@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Number> numbers;
@@ -39,4 +40,12 @@ public class Lotto {
         List<Integer> sortLottos = sortNumber(intLottos);
         return new Lotto(sortLottos);
     }
+
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .map(Number::toString)
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
+
 }

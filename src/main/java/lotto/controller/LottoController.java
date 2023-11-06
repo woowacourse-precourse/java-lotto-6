@@ -18,6 +18,7 @@ public class LottoController {
     public void start() {
         int quantity = amount();
         Lottos buyLottos = buyLotto(quantity);
+        outputView.showLottoList(buyLottos);
     }
 
     public int amount() {

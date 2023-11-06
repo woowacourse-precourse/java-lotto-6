@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.WinNumber;
 import lotto.utils.GameRules;
 
 import java.util.Arrays;
@@ -19,6 +20,7 @@ public class InputView {
     private static final String INVALID_WIN_NUMBER_DUPLICATION_ERROR_MESSAGE = "[ERROR] 중복된 번호가 존재합니다.";
     private static final String INVALID_WIN_NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 1~45 범위 내 번호를 입력해주세요.";
     private static final String INVALID_NUMBER_COUNT_ERROR_MESSAGE = "[ERROR] 6개의 숫자를 입력해주세요.";
+    private static final String INVALID_BONUS_NUMBER_DUPLICATION_ERROR_MESSAGE = "[ERROR] 당첨 번호와 중복됩니다.";
     private static final String NUMBER_SPLITTER = ",";
 
     public static int inputMoney() {
@@ -30,8 +32,8 @@ public class InputView {
             return money;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputMoney();
         }
+        return inputMoney();
     }
 
     private static int validateMoneyNumber(String inputMoneyAmount) {
@@ -48,7 +50,20 @@ public class InputView {
         }
     }
 
-    public static List<Integer> inputWinNumbers() {
+    public static WinNumber inputWinNumbers() {
+        try {
+            List<Integer> win = inputWinNumber();
+            int bonus = inputBonusNumber();
+            validateDuplicationWithBonusNumber(win, bonus);
+            WinNumber winNumber = WinNumber.from(win, bonus);
+            return winNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinNumbers();
+        }
+    }
+
+    private static List<Integer> inputWinNumber() {
         try {
             System.out.println(INPUT_WIN_NUMBER_MESSAGE);
             String inputWinNumbers = Console.readLine();
@@ -59,7 +74,7 @@ public class InputView {
             return winNumbers;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputWinNumbers();
+            return inputWinNumber();
         }
     }
 
@@ -68,7 +83,7 @@ public class InputView {
             return Arrays.stream(inputWinNumbers.split(NUMBER_SPLITTER))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-        } catch (IllegalArgumentException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_INPUT_NUMBER_ERROR_MESSAGE);
         }
     }
@@ -92,7 +107,7 @@ public class InputView {
         }
     }
 
-    public static int inputBonusNumber() {
+    private static int inputBonusNumber() {
         try {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
             String inputBonusNumber = Console.readLine();
@@ -116,6 +131,12 @@ public class InputView {
     private static void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < GameRules.START_RANGE.getValue() || bonusNumber > GameRules.END_RANGE.getValue()) {
             throw new IllegalArgumentException(INVALID_WIN_NUMBER_RANGE_ERROR_MESSAGE);
+        }
+    }
+
+    private static void validateDuplicationWithBonusNumber(List<Integer> pickNumbers, int bonusNumber) {
+        if (pickNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_DUPLICATION_ERROR_MESSAGE);
         }
     }
 }

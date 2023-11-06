@@ -33,6 +33,12 @@ public class InputValidation {
         }
     }
 
+    public static void validateLottoNumbers(List<Integer> numbers) {
+        validateNumberLength(numbers);
+        validateNumberDuplicated(numbers);
+        validateNumberRange(numbers);
+    }
+
     public static void validateNumberLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");

@@ -29,19 +29,14 @@ public class ApplicationContext {
 
     private void lottoProcess() {
         inputProcess();
-        lottoDrawer.compareWinning();
         outputProcess();
     }
 
     private static void inputProcess() {
-        OutputMessage.print(MessageType.INPUT_BUY_START);
         lottoBuyer.gernerateTicket();
-
-        OutputMessage.print(MessageType.INPUT_START_WIN_NUMBER);
         lottoDrawer.inputLotto();
-
-        OutputMessage.print(MessageType.INPUT_START_BONUS);
         lottoDrawer.inputBonus();
+        lottoDrawer.inputWinRecord();
     }
 
     private static void outputProcess() {

@@ -1,52 +1,55 @@
 package lotto.model;
 
-import java.util.List;
+import lotto.domain.Bonus;
+import lotto.domain.Lotto;
+import lotto.domain.Tickets;
+import lotto.domain.Wallet;
+import lotto.domain.WinRecord;
 
 public class DataModel {
-    private int wallet;
-    private List<List<Integer>> tickets;
-    private List<Integer> lotto;
-    private int bonus;
-    private List<Integer> winRecord;
+    private Tickets tickets;
+    private Wallet wallet;
+    private Lotto lotto;
+    private Bonus bonus;
+    private WinRecord winRecord;
 
-    public void saveWallet(int wallet) {
-        this.wallet = wallet;
-    }
-
-    public void saveTicktet(List<List<Integer>> tickets) {
+    public void saveTicktet(Tickets tickets) {
         this.tickets = tickets;
     }
 
-    public void saveLotto(List<Integer> lotto) {
+    public void saveWallet(Wallet wallet) {
+        this.wallet = wallet;
+    }
+
+    public void saveLotto(Lotto lotto) {
         this.lotto = lotto;
     }
 
-    public void saveBonus(int bonus) {
+    public void saveBonus(Bonus bonus) {
         this.bonus = bonus;
     }
 
-    public void saveWinRecord(List<Integer> winRecord) {
+    public void saveWinRecord(WinRecord winRecord) {
         this.winRecord = winRecord;
     }
 
-    public int findWallet() {
-        return this.wallet;
-    }
-
-    public List<List<Integer>> findTickets() {
+    public Tickets findTickets() {
         return this.tickets;
     }
 
-    public List<Integer> findLotto() {
+    public Lotto findLotto() {
         return this.lotto;
     }
 
-    public int findBonus() {
+    public Bonus findBonus() {
         return this.bonus;
     }
 
-    public List<Integer> findWinRecord() {
+    public WinRecord findWinRecord() {
         return this.winRecord;
     }
 
+    public Wallet findWallet() {
+        return this.wallet;
+    }
 }

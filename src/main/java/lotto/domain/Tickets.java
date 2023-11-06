@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import static lotto.ApplicationContext.getDataModel;
+import static lotto.domain.constant.LottoConstant.MATCH_ALL_SEVEN_COUNT;
+import static lotto.domain.constant.LottoConstant.MATCH_ALL_SIX_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -8,37 +10,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.constant.LottoConstant;
-import lotto.exception.ExceptionType;
-import lotto.exception.InputException;
 import lotto.output.MessageType;
 import lotto.output.OutputMessage;
 
 public class Tickets {
-    private final int wallet;
-    private int ticketCount;
     private List<List<Integer>> tickets = new ArrayList<>();
+    private final Wallet wallet;
 
-    public Tickets(int wallet) {
-        validate(wallet);
+    public Tickets(Wallet wallet) {
         this.wallet = wallet;
-        this.ticketCount = wallet / LottoConstant.PRICE_PER_TICKET;
-
-        OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, this.wallet);
-        OutputMessage.printf(MessageType.INPUT_BUY_END, this.ticketCount);
-    }
-
-    private void validate(int wallet) {
-        if (isGenerate(wallet)) {
-            throw new InputException(ExceptionType.ERROR_TICKETS_GENERATE);
-        }
-    }
-
-    private boolean isGenerate(int wallet) {
-        return wallet % LottoConstant.PRICE_PER_TICKET > 0;
     }
 
     public void generate() {
-        this.tickets = IntStream.range(0, this.ticketCount)
+        this.tickets = IntStream.range(0, wallet.ticketCount())
                 .mapToObj(i -> randomNumbers())
                 .map(this::ascendingNumber)
                 .peek(ticket -> OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, ticket))
@@ -58,11 +42,27 @@ public class Tickets {
         return sortedNumbers;
     }
 
-    public void saveWallet() {
-        getDataModel().saveWallet(this.wallet);
+    public void save() {
+        getDataModel().saveTicktet(this);
     }
 
-    public void saveTickets() {
-        getDataModel().saveTicktet(this.tickets);
+    public List<Integer> matchNumber(Lotto lotto, Bonus bonus) {
+        return tickets.stream()
+                .map(ticket -> {
+                    int lottoCount = lotto.sameTicket(ticket);
+                    int bonusCount = bonus.sameTicket(ticket);
+                    return matchAllCount(lottoCount, bonusCount);
+                })
+                .collect(Collectors.toList());
+    }
+
+    private int matchAllCount(int lottoCount, int bonusCount) {
+        int sumCount = lottoCount + bonusCount;
+
+        if (sumCount == MATCH_ALL_SIX_COUNT && lottoCount == 6) {
+            sumCount = MATCH_ALL_SEVEN_COUNT;
+        }
+
+        return sumCount;
     }
 }

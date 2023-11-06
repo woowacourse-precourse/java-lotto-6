@@ -54,7 +54,13 @@ public class Lotto {
         return LottoConstant.LOTTO_START_NUMBER > number;
     }
 
+    public int sameTicket(List<Integer> ticket) {
+        return (int) ticket.stream()
+                .filter(this.numbers::contains)
+                .count();
+    }
+
     public void save() {
-        getDataModel().saveLotto(this.numbers);
+        getDataModel().saveLotto(this);
     }
 }

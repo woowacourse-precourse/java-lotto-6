@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.ApplicationContext.getDataModel;
 
+import java.util.List;
 import lotto.domain.constant.LottoConstant;
 import lotto.exception.ExceptionType;
 import lotto.exception.InputException;
@@ -19,16 +20,26 @@ public class Bonus {
     }
 
     private void validate(int number) {
-        if (islottoRange(number)) {
+        if (isLottoRange(number)) {
             throw new InputException(ExceptionType.ERROR_LOTTO_RANGE);
         }
     }
 
-    private boolean islottoRange(int number) {
+    private boolean isLottoRange(int number) {
         return LottoConstant.LOTTO_START_NUMBER > number || LottoConstant.LOTTO_END_NUMBER < number;
     }
 
+    public int sameTicket(List<Integer> ticket) {
+        int bonusCount = 0;
+
+        if (ticket.contains(this.number)) {
+            bonusCount = 1;
+        }
+
+        return bonusCount;
+    }
+
     public void save(){
-        getDataModel().saveBonus(this.number);
+        getDataModel().saveBonus(this);
     }
 }

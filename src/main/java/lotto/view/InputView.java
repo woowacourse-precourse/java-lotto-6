@@ -13,18 +13,13 @@ public class InputView {
     private static final LottoValidator LOTTO_VALIDATOR = new LottoValidator();
 
     public int getPurchasePrice() {
-        String purchasePrice = "";
-
         while (true) {
             try {
-                purchasePrice = requestPurchasePrice();
-                break;
+                return Integer.parseInt(requestPurchasePrice());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        return Integer.parseInt(purchasePrice);
     }
 
     private String requestPurchasePrice() {

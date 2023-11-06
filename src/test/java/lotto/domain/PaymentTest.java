@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.ErrorMessage.PAYMENT_LESS_THAN_1000;
 import static lotto.ErrorMessage.PAYMENT_MORE_THAN_100000;
 import static lotto.ErrorMessage.PAYMENT_NOT_DIVISIBLE_BY_1000;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -32,5 +33,16 @@ public class PaymentTest {
         assertThatThrownBy(() -> new Payment(34300))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PAYMENT_NOT_DIVISIBLE_BY_1000.get());
+    }
+
+    @Test
+    @DisplayName("구매가능한 로또갯수를 리턴한다.")
+    void testNumberLottoTicketsCanBuy() {
+        Payment payment = new Payment(45000);
+
+        int result = payment.numberLottoTicketsCanBuy();
+        int expected = 45;
+
+        assertThat(result).isEqualTo(expected);
     }
 }

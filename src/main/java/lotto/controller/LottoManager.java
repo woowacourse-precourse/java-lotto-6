@@ -18,10 +18,13 @@ public class LottoManager {
     public void startLottoApplication() {
         Customer customer = new Customer();
         customer.buyLotto(receiveMoney());
+
         OutPutView.printLottoCount(customer.getLottoCount());
         OutPutView.printLottos(customer.getLottosString());
         WinLotto winLotto = issueWinLotto();
 
+        customer.matchLotto(winLotto);
+        
     }
 
 

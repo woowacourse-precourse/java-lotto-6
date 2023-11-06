@@ -16,7 +16,7 @@ public class OutPutView {
     }
 
     public static void printLottoCount(int lottoCount) {
-        println("\n"+lottoCount+PURCHASED_LOTTO.getMessage());
+        println("\n" + lottoCount + PURCHASED_LOTTO.getMessage());
     }
 
     public static void printLottos(String lottos) {
@@ -24,11 +24,15 @@ public class OutPutView {
     }
 
     public static void printEnterWinNumber() {
-        println("\n"+INSERT_WIN_NUMBER.getMessage());
+        println("\n" + INSERT_WIN_NUMBER.getMessage());
     }
-
 
     public static void printBonusNumber() {
-        println("\n"+INSERT_BONUS_NUMBER.getMessage());
+        println("\n" + INSERT_BONUS_NUMBER.getMessage());
     }
+
+    public static void printMatchResult(String matchResult) {
+        println("\n당첨 통계\n" + "---\n" + matchResult);
+    }
+
 }

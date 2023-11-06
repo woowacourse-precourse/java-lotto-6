@@ -24,13 +24,9 @@ public class LottoGame {
 
         inputBonusNumber(winningLotto);
 
-        for (Lotto userLotto : lottos) {
-            int rankValue = winningLotto.matchSameNumberNum(userLotto);
-            changeWinResultByRankValue(winningLotto, userLotto, rankValue);
-        }
+        countWinRank(lottos, winningLotto);
 
         printWinResult();
-
         printProfit(purchasePrice);
     }
 
@@ -64,6 +60,14 @@ public class LottoGame {
     private void inputBonusNumber(WinningLotto winningLotto) {
         outputView.printBonusNumbersInputGuide();
         winningLotto.setBonusLottoNum(inputView.inputBonusNumber());
+    }
+ 
+
+    private void countWinRank(List<Lotto> lottos, WinningLotto winningLotto) {
+        for (Lotto userLotto : lottos) {
+            int rankValue = winningLotto.matchSameNumberNum(userLotto);
+            changeWinResultByRankValue(winningLotto, userLotto, rankValue);
+        }
     }
 
     private void changeWinResultByRankValue(WinningLotto winningLotto, Lotto userLotto, int rankValue) {

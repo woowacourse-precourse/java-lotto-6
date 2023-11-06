@@ -13,5 +13,7 @@ public class Game {
         int purchaseCount = getLottoCount(purchaseAmount);
 
         UserLotto userLotto = new UserLotto(purchaseCount);
+        List<Lotto> userLottoNumbers = userLotto.getUserLottos();
+        printCompletePurchase(purchaseCount, userLottoNumbers);
     }
 }

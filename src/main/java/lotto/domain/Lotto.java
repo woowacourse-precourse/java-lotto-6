@@ -10,7 +10,11 @@ public class Lotto {
     static final String LOTTO_NUMBER_LENGTH_INVALID_MESSAGE = "발행한 로또 번호는 6자리 숫자여야 합니다.";
     static final String LOTTO_NUMBER_RANGE_INVALID_MESSAGE = "발행한 로또 번호는 1~45의 숫자여야 합니다.";
     static final String LOTTO_NUMBER_DUPLICATE_INVALID_MESSAGE = "발행한 로또 번호는 중복이 있으면 안됩니다.";
+
+    static final int PRICE_PER_LOTTO = 1000;
+
     private static final int LOTTO_SIX_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

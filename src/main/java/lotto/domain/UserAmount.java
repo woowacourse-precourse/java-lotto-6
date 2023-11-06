@@ -21,6 +21,10 @@ public class UserAmount {
         return new UserAmount(amount);
     }
 
+    public int calculateIssueAbleCount() {
+       return this.userAmount / Lotto.PRICE_PER_LOTTO;
+    }
+
     private static void validateNumeric(String userAmount) {
         try {
             Integer.parseInt(userAmount);

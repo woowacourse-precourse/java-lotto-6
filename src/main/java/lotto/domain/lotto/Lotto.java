@@ -59,13 +59,17 @@ public class Lotto {
             num = getNum(organizeNumbers, i);
             informationOfNumbers.append(num);
 
-            if (i != sizeNumbers - 1) {
+            if (isAppendCondition(sizeNumbers, i)) {
                 appendStringBuild(informationOfNumbers, MIDDLE_APPEND_COMMA_BLANK);
             }
         }
         appendStringBuild(informationOfNumbers, END_APPEND_COMMA_BLANK);
 
         return informationOfNumbers;
+    }
+
+    private boolean isAppendCondition(int sizeNumbers, int i) {
+        return i != sizeNumbers - 1;
     }
 
     private void appendStringBuild(StringBuilder informationOfNumbers, String string) {

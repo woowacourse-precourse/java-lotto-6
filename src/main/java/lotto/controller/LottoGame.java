@@ -30,7 +30,8 @@ public class LottoGame {
         int bonusNumber = inputView.getBonusNumber(winningNumbers);
 
         lottoPlayer.checkLottoResult(winningNumbers, bonusNumber);
+        double rateOfReturn = lottoPlayer.getRateOfReturn();
 
-        outputView.printLottoResult(lottoPlayer.getLottoResult());
+        outputView.printLottoResult(lottoPlayer.getLottoResult(), rateOfReturn);
     }
 }

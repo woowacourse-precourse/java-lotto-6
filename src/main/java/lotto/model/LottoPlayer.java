@@ -74,9 +74,17 @@ public class LottoPlayer {
     }
 
     // 수익률 계산
-//    public double getRateOfReturn(){
-//
-//    }
+    public double getRateOfReturn() {
+        return (double) getReturn() / purchaseAmount * 100;
+    }
+
+    public int getReturn() {
+        int returnPrice = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            returnPrice += rank.getPrize() * result.get(rank);
+        }
+        return returnPrice;
+    }
 
     // 당첨 통계 글자 생성
     public String getLottoResult() {

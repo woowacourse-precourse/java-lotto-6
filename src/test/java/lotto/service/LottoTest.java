@@ -25,6 +25,15 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
+
+
+
+
+
+
+
+
+
     @ParameterizedTest
     @MethodSource("generateRangeData")
     @DisplayName("당첨 번호 범위 테스트! 1-45 사이")
@@ -40,8 +49,20 @@ class LottoTest {
         );
     }
 
+    @ParameterizedTest
+    @MethodSource("generateDuplicateData")
+    @DisplayName("당첨 번호 내부에 중복된 숫자가 있는지 테스트!")
+    void duplicateTest(List<Integer> duplicateNumbers){
+        Assertions.assertThatThrownBy(() -> duplicate(duplicateNumbers)).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(WINNUMBER_NO_DUPLICATE_LENGTH.getMessage());
+    }
 
-
+    static Stream<Arguments> generateDuplicateData() {
+        return Stream.of(
+            Arguments.of(Arrays.asList(1, 2, 2,3,4,5)),
+            Arguments.of(Arrays.asList(1, 2, 3,3,4,5))
+        );
+    }
 
 
 

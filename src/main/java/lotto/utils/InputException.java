@@ -37,4 +37,8 @@ public class InputException {
             throw new IllegalArgumentException(PrintMessage.NOT_DUPLICATION);
     }
 
+    public static void checkSize(List<Integer> list) {
+        if (list.size() != 6)
+            throw new IllegalArgumentException(PrintMessage.ONLY_SIX_NUMBER);
+    }
 }

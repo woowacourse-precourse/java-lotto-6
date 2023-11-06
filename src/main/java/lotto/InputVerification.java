@@ -16,17 +16,14 @@ public class InputVerification {
             return true;
         }
 
-        throw new IllegalArgumentException("[ERROR]" + number + "는 1~45 사이의 수가 아닙니다.");
+        throw new IllegalArgumentException("[ERROR] 1~45 사이의 수가 아닙니다.");
     }
 
     public boolean isNumbersInRange(List<Integer> numbers) {
         boolean isValid = true;
 
         for (Integer number : numbers) {
-            try {
-                isValid = isNumberInRange(number);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            if (!isNumberInRange(number)) {
                 return false;
             }
         }

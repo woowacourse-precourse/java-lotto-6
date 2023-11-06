@@ -2,8 +2,10 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import lotto.domain.BonusNumber;
 import lotto.domain.Calculator;
 import lotto.domain.Lotto;
@@ -53,10 +55,23 @@ public class LottoController {
     private List<Lotto> createLotto(int ticketCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            Lotto lotto = new Lotto(numberGenerator.createRandomLottoNumbers());
+            Lotto lotto = createUniqueLotto();
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    private Lotto createUniqueLotto() {
+        List<Integer> lottoNumbers = numberGenerator.createRandomLottoNumbers();
+        while (hasDuplicates(lottoNumbers)) {
+            lottoNumbers = numberGenerator.createRandomLottoNumbers();
+        }
+        return new Lotto(lottoNumbers);
+    }
+
+    private boolean hasDuplicates(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        return uniqueNumbers.size() != numbers.size();
     }
 
     private WinningNumbers getValidWinningNumbersInput() {

@@ -38,6 +38,30 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("당첨 숫자는 정수만 입력할 수 있다.")
+    void getWinningNumbersWithNotInteger() {
+        setInput("1,2,3,4,5,육");
+        assertThatThrownBy(() -> InputView.getWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("콤마는 연속으로 입력할 수 없다.")
+    void getWinningNumbersWithDuplicatedComma() {
+        setInput("1,2,3,,4,5,6");
+        assertThatThrownBy(() -> InputView.getWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("입력은 콤마로 끝낼 수 없다.")
+    void getWinningNumbersWithFinalComma() {
+        setInput("1,2,3,4,5,6,");
+        assertThatThrownBy(() -> InputView.getWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     private void setInput(String input) {
         final byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));

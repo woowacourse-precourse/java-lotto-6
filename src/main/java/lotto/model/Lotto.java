@@ -37,6 +37,23 @@ public class Lotto {
         }
     }
 
+    public Ranking compareWinLotto(WinLotto winLotto) {
+        List<LottoNumber> winNumbers = winLotto.getLotto().getNumbers();
+        int matchCount = checkNumberMatchCount(winNumbers);
+        boolean bonusMatch = isMatchBonusNumber(winLotto.getBonusNumber());
+        return Ranking.of(matchCount, bonusMatch);
+    }
+
+    private boolean isMatchBonusNumber(LottoNumber bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    private int checkNumberMatchCount(List<LottoNumber> winNumbers) {
+        return (int) winNumbers.stream()
+                .filter(numbers::contains)
+                .count();
+    }
+
     public List<Integer> getNumberValues() {
         return numbers.stream()
                 .map(LottoNumber::getNumber)

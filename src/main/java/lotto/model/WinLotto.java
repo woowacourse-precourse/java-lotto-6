@@ -19,4 +19,12 @@ public class WinLotto {
             throw new IllegalArgumentException(ALREADY_CONTAIN_BONUS_NUMBER_IN_NUMBERS_ERROR);
         }
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public LottoNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }

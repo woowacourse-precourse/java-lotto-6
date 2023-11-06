@@ -29,7 +29,7 @@ public class AnswerLotto {
     private void validateLength(List<Integer> numbers) {
         if (checkLength(numbers)) {
             throw new IllegalArgumentException(
-                    String.format(ErrorMessage.ANSWER_LOTTO_LENGTH_ERROR.getMessage(),
+                    String.format(ErrorMessage.LOTTO_LENGTH_ERROR.getMessage(),
                             NumberType.LOTTO_LENGTH.getValue()));
         }
     }
@@ -40,7 +40,7 @@ public class AnswerLotto {
 
     private void validateDuplicateMember(List<Integer> numbers) {
         if (checkHasDuplicateMember(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.ANSWER_LOTTO_HAS_DUPLICATE_NUMBER_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_HAS_DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
 
@@ -52,7 +52,7 @@ public class AnswerLotto {
 
     private void validateAllNumberInRange(List<Integer> numbers) {
         if (!checkAllNumberInRange(numbers)) {
-            throw new IllegalArgumentException(String.format(ErrorMessage.ANSWER_LOTTO_NOT_IN_RANGE_ERROR.getMessage(),
+            throw new IllegalArgumentException(String.format(ErrorMessage.LOTTO_NOT_IN_RANGE_ERROR.getMessage(),
                     NumberType.MIN_LOTTO_NUMBER.getValue(), NumberType.MAX_LOTTO_NUMBER.getValue()));
         }
     }

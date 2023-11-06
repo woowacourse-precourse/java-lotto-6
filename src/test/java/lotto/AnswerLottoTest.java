@@ -18,7 +18,7 @@ class AnswerLottoTest {
         //When & Then
         assertThatThrownBy(() -> new AnswerLotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ANSWER_LOTTO_HAS_DUPLICATE_NUMBER_ERROR.getMessage());
+                .hasMessage(ErrorMessage.LOTTO_HAS_DUPLICATE_NUMBER_ERROR.getMessage());
     }
 
     @Test
@@ -29,7 +29,7 @@ class AnswerLottoTest {
         //When & Then
         assertThatThrownBy(() -> new AnswerLotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(String.format(ErrorMessage.ANSWER_LOTTO_NOT_IN_RANGE_ERROR.getMessage(),
+                .hasMessage(String.format(ErrorMessage.LOTTO_NOT_IN_RANGE_ERROR.getMessage(),
                         NumberType.MIN_LOTTO_NUMBER.getValue(), NumberType.MAX_LOTTO_NUMBER.getValue()));
     }
 
@@ -41,7 +41,7 @@ class AnswerLottoTest {
         //When & Then
         assertThatThrownBy(() -> new AnswerLotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(String.format(ErrorMessage.ANSWER_LOTTO_LENGTH_ERROR.getMessage(),
+                .hasMessage(String.format(ErrorMessage.LOTTO_LENGTH_ERROR.getMessage(),
                         NumberType.LOTTO_LENGTH.getValue()));
     }
 }

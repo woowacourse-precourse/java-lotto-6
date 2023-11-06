@@ -1,5 +1,6 @@
 package lotto;
 
+import constants.ErrorMessage;
 import constants.NumberType;
 import java.util.List;
 
@@ -19,7 +20,9 @@ public class Lotto {
 
     private void validateLength(List<Integer> numbers) {
         if (checkLength(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.LOTTO_LENGTH_ERROR.getMessage(),
+                            NumberType.LOTTO_LENGTH.getValue()));
         }
     }
 
@@ -29,7 +32,7 @@ public class Lotto {
 
     private void validateDuplicateMember(List<Integer> numbers) {
         if (checkHasDuplicateMember(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_HAS_DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
 
@@ -41,7 +44,8 @@ public class Lotto {
 
     private void validateAllNumberInRange(List<Integer> numbers) {
         if (!checkAllNumberInRange(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format(ErrorMessage.LOTTO_NOT_IN_RANGE_ERROR.getMessage(),
+                    NumberType.MIN_LOTTO_NUMBER.getValue(), NumberType.MAX_LOTTO_NUMBER.getValue()));
         }
     }
 

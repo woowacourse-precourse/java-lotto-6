@@ -34,4 +34,17 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int countMatchingNumber(Lotto answer) {
+        int count = 0;
+
+        for (int number : this.numbers) {
+            if (answer.isNumberIn(number)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+
 }

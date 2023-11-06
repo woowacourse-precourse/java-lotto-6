@@ -6,11 +6,11 @@ import lotto.utils.StringConvertor;
 public class Money {
 
     private static final int LOTTO_PRICE = 1000;
-    private final String money;
+    private final int money;
 
     public Money(String money) {
         validate(money);
-        this.money = money;
+        this.money = StringConvertor.stringToInt(money);
     }
 
     private void validate(String money) {
@@ -18,7 +18,10 @@ public class Money {
     }
 
     public int calNumberOfLotto() {
-        return StringConvertor.stringToInt(money) / LOTTO_PRICE;
+        return money / LOTTO_PRICE;
     }
 
+    public int getMoney() {
+        return money;
+    }
 }

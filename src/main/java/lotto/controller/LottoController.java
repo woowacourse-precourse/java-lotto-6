@@ -12,5 +12,6 @@ public class LottoController {
 
     public void run() {
         ConsoleOutput.displayUserInputPrompt();
+        inputView.getUserPurchaseAmount();
     }
 }

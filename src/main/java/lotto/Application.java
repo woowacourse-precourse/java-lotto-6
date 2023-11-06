@@ -9,6 +9,7 @@ public class Application {
     public static void main(String[] args) {
         int money = inputMoney();
         List<Integer> lotto = inputLotto();
+        int bonus_lotto = inputBonusLotto(lotto);
     }
 
     public static Integer inputMoney() {
@@ -89,6 +90,35 @@ public class Application {
 
     public static void checkWinningLottoDuplicate(List<Integer> lotto) {
         if (lotto.size() != removeLottoDuplicateSize(lotto)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static Integer inputBonusLotto(List<Integer> lotto) {
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            try {
+                Integer bonus_lotto = Integer.parseInt(input);
+                try {
+                    checkLottoRange(bonus_lotto);
+                    try {
+                        checkBonusLottoDuplicate(lotto, bonus_lotto);
+                        return bonus_lotto;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("[ERROR] 보너스 로또는 중복되지 않은 수여야 합니다.");
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("[ERROR] 보너스 로또는 1에서 45 사이 정수여야 합니다.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 보너스 로또는 정수여야 합니다.");
+            }
+        }
+    }
+
+    public static void checkBonusLottoDuplicate(List<Integer> lotto, int bonus_lotto) {
+        if (lotto.contains(bonus_lotto)) {
             throw new IllegalArgumentException();
         }
     }

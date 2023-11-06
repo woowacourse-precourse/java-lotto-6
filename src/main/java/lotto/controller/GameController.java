@@ -75,7 +75,7 @@ public class GameController {
     }
 
     private void resultRevenueRatio(Double sum) {
-        Double result = customer.calculateRevenueRatio(sum);
+        String result = customer.calculateRevenueRatio(sum);
         output.printRevenueRatio(result);
     }
 }

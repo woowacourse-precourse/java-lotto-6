@@ -1,11 +1,13 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import static lotto.exception.InputMoneyException.*;
 import static lotto.util.GenerateRandomList.*;
+import static lotto.util.MessageConstant.*;
 import static lotto.util.NumberConstant.*;
 
 public class Customer {
@@ -31,9 +33,10 @@ public class Customer {
         return this.MONEY / MONEY_STANDARD;
     }
 
-    public Double calculateRevenueRatio(double winningSum) {
+    public String calculateRevenueRatio(double winningSum) {
         double result = winningSum / MONEY * MULTIPLY_STANDARD;
-        return Math.round(result) / DIVIDE_STANDARD;
+        DecimalFormat standard = new DecimalFormat(DECIMAL_FORMAT);
+        return standard.format(result);
     }
 
     public List<String> getLottoTexts() {

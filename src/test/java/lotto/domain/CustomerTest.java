@@ -79,8 +79,8 @@ class CustomerTest {
     @DisplayName("최종 수익률을 계산해 반환한다.")
     @Test
     void getRevenueRatio() {
-        Double result = customer.calculateRevenueRatio(10000.0);
+        String result = customer.calculateRevenueRatio(10000.0);
 
-        assertThat(result).isEqualTo(333.3);
+        assertThat(result).isEqualTo("333.3");
     }
 }

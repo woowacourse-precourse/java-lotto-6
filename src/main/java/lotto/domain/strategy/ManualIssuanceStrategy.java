@@ -15,10 +15,10 @@ public class ManualIssuanceStrategy implements IssuableStrategy {
 
     @Override
     public Lotto issue() {
-        return new Lotto(converToIntegerList());
+        return new Lotto(convertToSortedNumbers());
     }
 
-    private List<Integer> converToIntegerList() {
+    private List<Integer> convertToSortedNumbers() {
         return Arrays.stream(this.numbers.split(","))
                 .map(Integer::parseInt)
                 .sorted()

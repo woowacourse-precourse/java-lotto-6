@@ -36,6 +36,7 @@ public class InputView {
         String numbers = Console.readLine();
 
         return Stream.of(numbers.split(","))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 

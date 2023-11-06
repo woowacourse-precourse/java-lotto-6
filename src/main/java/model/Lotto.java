@@ -11,6 +11,11 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public void validate(List<Integer> numbers){
         NumbersValidation.isOverLength(numbers);
         NumbersValidation.isUnderLength(numbers);
@@ -18,6 +23,4 @@ public class Lotto {
         numbers.stream().forEach(number-> NumberValidation.isOverMaxNumber(number));
         numbers.stream().forEach(number-> NumberValidation.isUnderMinNumber(number));
     }
-
-    // TODO: 추가 기능 구현
 }

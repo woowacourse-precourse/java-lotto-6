@@ -16,4 +16,8 @@ public class LottoRepository {
     public int getSize() {
         return lottos.size();
     }
+
+    public LottoPrize getWinningLotto(LottoWinningNumbers lottoWinningNumbers){
+        return new LottoPrize(lottoWinningNumbers,lottos);
+    }
 }

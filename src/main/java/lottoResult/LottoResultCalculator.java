@@ -13,27 +13,29 @@ public class LottoResultCalculator {
     public int fourSuccess = NUMBER_INITIALIZATION;
     public int threeSuccess = NUMBER_INITIALIZATION;
 
-    public void Calculator(List<List<Integer>> userLottoNumbers, List<Integer> winningNumberList,
-                           int bonusNumber) {
+    public void Calculator(List<List<Integer>> userLottoNumbers, List<Integer> winningNumberList, int bonusNumber) {
         for (List<Integer> userNumbers : userLottoNumbers) {
             int score = calculateScore(userNumbers, winningNumberList);
             int bonusScore = calculateBonusScore(userNumbers, bonusNumber);
+            updateResult(score, bonusScore);
+        }
+    }
 
-            if (score == LottoRank.FIFTH_RANK.getMatchCount()) {
-                threeSuccess++;
-            }
-            if (score == LottoRank.FOURTH_RANK.getMatchCount()) {
-                fourSuccess++;
-            }
-            if (score == LottoRank.THIRD_RANK.getMatchCount()) {
-                fiveSuccess++;
-            }
-            if (score == LottoRank.SECOND_RANK.getMatchCount() && bonusScore == Number.BONUS_CRITERIA) {
-                fiveAndBonusSuccess++;
-            }
-            if (score == LottoRank.FIRST_RANK.getMatchCount()) {
-                sixSuccess++;
-            }
+    private void updateResult(int score, int bonusScore) {
+        if (score == LottoRank.FIFTH_RANK.getMatchCount()) {
+            threeSuccess++;
+        }
+        if (score == LottoRank.FOURTH_RANK.getMatchCount()) {
+            fourSuccess++;
+        }
+        if (score == LottoRank.THIRD_RANK.getMatchCount()) {
+            fiveSuccess++;
+        }
+        if (score == LottoRank.SECOND_RANK.getMatchCount() && bonusScore == Number.BONUS_CRITERIA) {
+            fiveAndBonusSuccess++;
+        }
+        if (score == LottoRank.FIRST_RANK.getMatchCount()) {
+            sixSuccess++;
         }
     }
 

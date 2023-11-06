@@ -1,9 +1,12 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.EnumList.ConstantLotto;
 import lotto.Input.Input;
+import lotto.Output.Output;
 
 public class LottoGame {
     private static List<List<Integer>> randomLotto;
@@ -12,22 +15,24 @@ public class LottoGame {
     private static Lotto lotto;
     private static ResultLotto resultLotto;
     private static Input input;
+    private static Output output;
     private static Money money;
     private static final int WON = 1000;
 
     public void Game() {
         input = new Input();
+        output = new Output();
         startGame();
     }
 
     private void startGame() {
-        loop();
+        validateLoop();
         resultLotto = new ResultLotto(lotto.lottoNumber(), bonusNumber.bonusNumber());
         resultLotto.printResult(randomLotto);
-        System.out.print("총 수익률은 " + rateOfReturn(resultLotto.resultOfMoney()) + "%입니다.");
+        output.printRateOfReturn(rateOfReturn(resultLotto.resultOfMoney()));
     }
 
-    private void loop() {
+    private void validateLoop() {
         loopInsertMoney();
         createRandomLotto(money.currentMoney() / WON);
         printRandomLotto();
@@ -77,8 +82,7 @@ public class LottoGame {
         randomLotto = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            RandomLotto createLottoNumbers = new RandomLotto();
-            randomLotto.add(createLottoNumbers.randomLotto());
+            randomLotto.add(randomLotto());
         }
     }
 
@@ -86,11 +90,14 @@ public class LottoGame {
         for (List<Integer> lottoNumber : randomLotto) {
             System.out.println(Arrays.toString(lottoNumber.toArray()));
         }
-
         input.lineBreaking();
     }
 
     private double rateOfReturn(long earnMoney) {
         return Math.round(((double) earnMoney / money.currentMoney()) * 1000.0) / 10.0;
+    }
+
+    private List<Integer> randomLotto() {
+        return Randoms.pickUniqueNumbersInRange(ConstantLotto.MIN_NUMBER.value(),ConstantLotto.MAX_NUMBER.value(), ConstantLotto.LOTTO_SIZE.value());
     }
 }

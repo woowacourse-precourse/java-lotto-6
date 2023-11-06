@@ -20,7 +20,7 @@ class LottoIssueServiceTest {
     @Test
     @DisplayName
             ("0개 발급 요청시에는 ERROR 처리")
-    void 로또_티켓_0개_발급_테스트() {
+    void 로또_티켓_0개_발급_예외_테스트() {
         int lottoCount = 0;
         assertThatThrownBy(() -> LottoIssueService.createLottoTicket(lottoCount))
                 .isInstanceOf(IllegalArgumentException.class);

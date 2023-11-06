@@ -14,7 +14,7 @@ public class PlayLotto {
 
     public PlayLotto(Set<Integer> prizeNumbers, int bonusNumber) {
         this.prizeNumbers = prizeNumbers;
-        validateBonusNuber(bonusNumber);
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
         lottoResult.put(Rank.FIFTH, 0);
         lottoResult.put(Rank.FOURTH, 0);
@@ -52,7 +52,7 @@ public class PlayLotto {
         lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
     }
 
-    private void validateBonusNuber(int bonusNumber) {
+    private void validateBonusNumber(int bonusNumber) {
         Lotto.validateSingleNumberRange(bonusNumber);
         if (prizeNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 당첨번호와 중복 값으로 설정할 수 없습니다.");

@@ -67,7 +67,7 @@ public class LottoController {
     private String getValidBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                String userBonusNumber = String.valueOf(inputView.getBonusNumber(winningNumbers));
+                String userBonusNumber = String.valueOf(inputView.getBonusNumber());
                 new WinningLotto(new Lotto(winningNumbers), userBonusNumber);
                 return userBonusNumber;
             } catch (IllegalArgumentException e) {

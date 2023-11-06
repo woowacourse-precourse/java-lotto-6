@@ -1,23 +1,20 @@
 package lotto.domain;
 
+import static lotto.domain.constants.LottoConfig.LOTTO_COUNT;
+
 import lotto.validator.BuyerPurchaseAmountValidator;
 
 public class Buyer {
-    private int purchaseAmount;
-    private int ticketAmount;
-    private LottoTickets lottoTickets;
+    private final int purchaseAmount;
 
-    private Buyer(int purchaseAmount) {
+    private Buyer(String purchaseAmount) {
         new BuyerPurchaseAmountValidator().validate(purchaseAmount);
-        this.purchaseAmount = purchaseAmount;
-        this.ticketAmount = purchaseAmount / 1000;
+        this.purchaseAmount = Integer.valueOf(purchaseAmount);
+        LOTTO_COUNT.setValue(this.purchaseAmount / 1000);
     }
 
-    public static Buyer createBuyer(int purchaseAmount) {
+    public static Buyer createBuyer(String purchaseAmount) {
         return new Buyer(purchaseAmount);
     }
 
-    public int getTicketAmount() {
-        return ticketAmount;
-    }
 }

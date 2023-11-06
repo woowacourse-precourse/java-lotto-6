@@ -12,6 +12,13 @@ import java.util.stream.Stream;
 public class LottoNumberGeneratorTest {
 
     @ParameterizedTest
+    @DisplayName("생성된 로또의 사이즈가 6이어야 한다.")
+    @MethodSource("createLottoNumber")
+    void lottoSize(List<Integer> lotto) {
+        Assertions.assertThat(lotto.size()).isEqualTo(6);
+    }
+
+    @ParameterizedTest
     @DisplayName("생성된 로또가 중복 숫자가 없어야 된다.")
     @MethodSource("createLottoNumber")
     void duplicateLotto(List<Integer> lotto) {

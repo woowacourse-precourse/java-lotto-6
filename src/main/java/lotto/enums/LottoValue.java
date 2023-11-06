@@ -6,7 +6,7 @@ public enum LottoValue {
     NUMBER_COUNT(6),
     PRICE_PER_LOTTO(1000),
     PURCHASE_LIMIT_PRICE(100_000),
-    PERCENTAGE(100);
+    FIVE_MATCH(5);
 
 
     private final int value;

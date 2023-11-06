@@ -44,7 +44,7 @@ public enum Rank {
     }
 
     private static boolean isSecondPlace(int matchCount, boolean matchBonus) {
-        if (matchCount == 5 && matchBonus) {
+        if (matchCount == LottoValue.FIVE_MATCH.getValue() && matchBonus) {
             return true;
         }
         return false;

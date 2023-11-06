@@ -22,6 +22,10 @@ public class LottoView {
         }
         return new Lotto(winningLottoNumber);
     }
+    public int inputBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.\n");
+        return Integer.parseInt(Console.readLine());
+    }
     public void showLottos(LottoRepository lottoRepository){
         List<Lotto> lottos = lottoRepository.getLottos();
         lottos.forEach(lotto->System.out.println(Arrays.toString(lotto.getNumbers().toArray())));

@@ -5,10 +5,10 @@ import lotto.constant.LottoConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-import lotto.domain.WinningNumber;
+import lotto.domain.WinningNumbers;
 
 public class LottoService {
-    public LottoResult getLottoResult(List<Lotto> lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public LottoResult getLottoResult(List<Lotto> lottos, WinningNumbers winningNumber, BonusNumber bonusNumber) {
         LottoResult lottoResult = new LottoResult();
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);
@@ -22,7 +22,7 @@ public class LottoService {
 
     public float getRevenue(LottoResult lottoResult) {
         float revenue = 0;
-        for (int rank = LottoConstant.FIRST_RANK; rank <= LottoConstant.LAST_RANK; rank++) {
+        for (int rank = LottoConstant.FIRST_RANK; rank <= LottoConstant.FIFTH_RANK; rank++) {
             if (lottoResult.contains(rank)) {
                 int rankCount = lottoResult.get(rank);
                 revenue += calculateRevenue(rank) * rankCount;
@@ -33,15 +33,15 @@ public class LottoService {
 
     private int calculateRevenue(int rank) {
         int revenue = 0;
-        if (rank == 1) {
+        if (rank == LottoConstant.FIRST_RANK) {
             revenue += LottoConstant.FIRST_PRIZE;
-        } else if (rank == 2) {
+        } else if (rank == LottoConstant.SECOND_RANK) {
             revenue += LottoConstant.SECOND_PRIZE;
-        } else if (rank == 3) {
+        } else if (rank == LottoConstant.THIRD_RANK) {
             revenue += LottoConstant.THIRD_PRIZE;
-        } else if (rank == 4) {
+        } else if (rank == LottoConstant.FOURTH_RANK) {
             revenue += LottoConstant.FOURTH_PRIZE;
-        } else if (rank == 5) {
+        } else if (rank == LottoConstant.FIFTH_RANK) {
             revenue += LottoConstant.FIFTH_PRIZE;
         }
         return revenue;
@@ -49,17 +49,17 @@ public class LottoService {
 
     private int getRank(int matchCount, boolean isBonus) {
         if (matchCount == 6) {
-            return 1;
+            return LottoConstant.FIRST_RANK;
         } else if (matchCount == 5 && isBonus) {
-            return 2;
+            return LottoConstant.SECOND_RANK;
         } else if (matchCount == 5) {
-            return 3;
+            return LottoConstant.THIRD_RANK;
         } else if (matchCount == 4) {
-            return 4;
+            return LottoConstant.FOURTH_RANK;
         } else if (matchCount == 3) {
-            return 5;
+            return LottoConstant.FIFTH_RANK;
         }
-        return 0;
+        return LottoConstant.NO_RANK;
     }
 
     private boolean isBonusMatch(Lotto lotto, BonusNumber bonusNumber) {
@@ -69,7 +69,7 @@ public class LottoService {
         return false;
     }
 
-    private int calculateMatch(Lotto lotto, WinningNumber winningNumber) {
+    private int calculateMatch(Lotto lotto, WinningNumbers winningNumber) {
         int matchCount = 0;
         for (int i = 0; i < LottoConstant.LOTTO_LENGTH; i++) {
             int number = winningNumber.get(i);

@@ -5,7 +5,7 @@ import lotto.constant.LottoConstant;
 public class BonusNumber {
     private int number;
 
-    public BonusNumber(int number, WinningNumber winningNumber) {
+    public BonusNumber(int number, WinningNumbers winningNumber) {
         rangeValidate(number);
         duplicationValidate(number, winningNumber);
         this.number = number;
@@ -21,7 +21,7 @@ public class BonusNumber {
         }
     }
 
-    private void duplicationValidate(int number, WinningNumber winningNumber) {
+    private void duplicationValidate(int number, WinningNumbers winningNumber) {
         for (int i = 0; i < LottoConstant.LOTTO_LENGTH; i++) {
             if (number == winningNumber.get(i)) {
                 throw new IllegalArgumentException();

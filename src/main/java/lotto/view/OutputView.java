@@ -1,16 +1,17 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.constant.LottoConstant;
 import lotto.error.ErrorMessage;
 
 public class OutputView {
     private static String LOTTO_PURCHASE_AMOUNT_INPUT_MESSAGE = "구매금액을 입력해 주세요.";
-    private static String LOTTO_PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";
+    private static String LOTTO_PURCHASE_COUNT_MESSAGE = "%d개를 구매했습니다.";
     private static String WINNING_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static String RESULT_STARTING_MESSAGE = "당첨 통계\n---";
-    private static String ERROR_STARTING_MESSAGE = "[ERROR] ";
-    private static String FIRST_RANK_MESSAGE = "6개 일치 (2,000,000,000원) - %s개";
+    private static String ERROR_STARTING_MESSAGE = "[ERROR] %s";
+    private static String FIRST_RANK_MESSAGE = "6개 일치 (2,000,000,000원) - %d개";
     private static String SECOND_RANK_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
     private static String THIRD_RANK_MESSAGE = "5개 일치 (1,500,000원) - %d개";
     private static String FOURTH_RANK_MESSAGE = "4개 일치 (50,000원) - %d개";
@@ -22,8 +23,7 @@ public class OutputView {
     }
 
     public void printPurchaseCountMessage(int number) {
-        System.out.print(number);
-        System.out.println(LOTTO_PURCHASE_COUNT_MESSAGE);
+        System.out.println(String.format(LOTTO_PURCHASE_COUNT_MESSAGE, number));
     }
 
     public void printWinningNumberInputMessage() {
@@ -39,17 +39,11 @@ public class OutputView {
     }
 
     public void printErrorMessage(ErrorMessage errorMessage) {
-        System.out.println(ERROR_STARTING_MESSAGE + errorMessage.getMessage());
+        System.out.println(String.format(ERROR_STARTING_MESSAGE, errorMessage.getMessage()));
     }
 
     public void printLottoNumber(List<Integer> numbers) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[");
-        for (int i = 0; i < numbers.size() - 1; i++) {
-            stringBuilder.append(numbers.get(i) + ", ");
-        }
-        stringBuilder.append(numbers.get(numbers.size() - 1) + "]");
-        System.out.println(stringBuilder.toString());
+        System.out.println(numbers.toString());
     }
 
     public void println() {
@@ -57,19 +51,19 @@ public class OutputView {
     }
 
     public void printLottoResult(int rankCount, int rank) {
-        if (rank == 5) {
+        if (rank == LottoConstant.FIFTH_RANK) {
             System.out.println(String.format(FIFTH_RANK_MESSAGE, rankCount));
         }
-        if (rank == 4) {
+        if (rank == LottoConstant.FOURTH_RANK) {
             System.out.println(String.format(FOURTH_RANK_MESSAGE, rankCount));
         }
-        if (rank == 3) {
+        if (rank == LottoConstant.THIRD_RANK) {
             System.out.println(String.format(THIRD_RANK_MESSAGE, rankCount));
         }
-        if (rank == 2) {
+        if (rank == LottoConstant.SECOND_RANK) {
             System.out.println(String.format(SECOND_RANK_MESSAGE, rankCount));
         }
-        if (rank == 1) {
+        if (rank == LottoConstant.FIRST_RANK) {
             System.out.println(String.format(FIRST_RANK_MESSAGE, rankCount));
         }
     }

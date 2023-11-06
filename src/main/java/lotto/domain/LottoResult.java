@@ -27,7 +27,7 @@ public class LottoResult {
     }
 
     private void init() {
-        for (int rank = LottoConstant.FIRST_RANK; rank <= LottoConstant.LAST_RANK; rank++) {
+        for (int rank = LottoConstant.FIRST_RANK; rank <= LottoConstant.FIFTH_RANK; rank++) {
             ranks.put(rank, 0);
         }
     }

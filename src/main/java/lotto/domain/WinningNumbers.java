@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Set;
 import lotto.constant.LottoConstant;
 
-public class WinningNumber {
+public class WinningNumbers {
     private List<Integer> numbers;
 
-    public WinningNumber(List<Integer> numbers) {
+    public WinningNumbers(List<Integer> numbers) {
         lengthValidate(numbers);
         duplicationValidate(numbers);
         rangeValidate(numbers);

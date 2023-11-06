@@ -8,7 +8,7 @@ import lotto.constant.LottoConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-import lotto.domain.WinningNumber;
+import lotto.domain.WinningNumbers;
 import lotto.error.ErrorMessage;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -35,11 +35,11 @@ public class LottoController {
         }
 
         outputView.println();
-        WinningNumber winningNumber = getWinningNumber();
+        WinningNumbers winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
         LottoResult lottoResult = lottoService.getLottoResult(lottos, winningNumber, bonusNumber);
 
-         float revenue = lottoService.getRevenue(lottoResult);
+        float revenue = lottoService.getRevenue(lottoResult);
 
 
         outputView.printResultStringMessage();
@@ -97,12 +97,12 @@ public class LottoController {
         }
     }
 
-    private WinningNumber getWinningNumber() {
+    private WinningNumbers getWinningNumber() {
         while (true) {
             try {
                 outputView.printWinningNumberInputMessage();
                 List<Integer> numbers = inputView.getNumbers();
-                WinningNumber winningNumber = new WinningNumber(numbers);
+                WinningNumbers winningNumber = new WinningNumbers(numbers);
                 outputView.println();
                 return winningNumber;
             } catch (IllegalArgumentException e) {
@@ -111,7 +111,7 @@ public class LottoController {
         }
     }
 
-    private BonusNumber getBonusNumber(WinningNumber winningNumber) {
+    private BonusNumber getBonusNumber(WinningNumbers winningNumber) {
         while (true) {
             try {
                 outputView.printBonusNumberInputMessage();

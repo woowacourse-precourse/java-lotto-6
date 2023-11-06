@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import lotto.constants.Messages;
 import java.text.DecimalFormat;
 import lotto.constants.Values;

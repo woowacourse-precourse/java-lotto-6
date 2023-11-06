@@ -1,4 +1,4 @@
-package lotto.input;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;

@@ -7,12 +7,14 @@ import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.domain.Profit;
 import lotto.domain.WinningNumber;
-import lotto.input.UserInput;
+import lotto.view.OutputView;
+import lotto.view.UserInput;
 
 import java.util.List;
 
 public class GameController {
     private final UserInput userInput = new UserInput();
+    private final OutputView outputView = new OutputView();
     private final CreateLotto createLotto = new CreateLotto();
     private final GameResult gameResult = new GameResult();
     private final Profit profit = new Profit();
@@ -38,6 +40,7 @@ public class GameController {
             gameResult.setRankingNumbers(winningLotto, lottos.get(i), hasBonusNumber);
         }
 
+        outputView.printLottoNumbers(lottos);
         profit.setProfit(gameResult);
         profit.setProfitRate(money);
     }

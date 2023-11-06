@@ -14,7 +14,14 @@ public class InputPurchasePriceService {
     }
 
     public PurchasePrice inputPurchasePrice() {
-        outputView.printInputPurchasePrice();
-        return new PurchasePrice(inputView.inputPurchasePrice());
+        while (true) {
+            try {
+                outputView.printInputPurchasePrice();
+                return new PurchasePrice(inputView.inputPurchasePrice());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 }

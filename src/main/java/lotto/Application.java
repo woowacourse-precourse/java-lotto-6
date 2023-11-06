@@ -25,6 +25,11 @@ public class Application {
         // 로또 발급
         List<Lotto> lottos = lottoController.generateLottoTicket(purchaseCount);
         outputView.printLottos(lottos);
+
+        // 당첨 및 보너스 번호 생성
+        String winningNumbers = inputView.inputWinningNumbers();
+        String bonusNumber = inputView.inputBonusNumber();
+        Jackpot jackpot = lottoController.createWinningNumbers(winningNumbers, bonusNumber);
         
     }
 }

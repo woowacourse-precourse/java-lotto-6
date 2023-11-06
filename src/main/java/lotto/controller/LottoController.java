@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Constants;
+import lotto.model.UserLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,6 +18,10 @@ public class LottoController {
         int purchasePrice = inputView.getPurchasePrice();
         int lottoCount = countLotto(purchasePrice);
         outputView.printPurchaseResult(lottoCount);
+
+        UserLotto userLotto = new UserLotto(lottoCount);
+        outputView.printUserLotto(userLotto);
+
     }
 
     private int countLotto(int purchasePrice) {

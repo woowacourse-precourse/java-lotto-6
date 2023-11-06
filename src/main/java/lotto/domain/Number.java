@@ -8,11 +8,7 @@ public class Number {
         this.value = value;
     }
 
-    public Integer getCurValue() {
+    public Integer getValue() {
         return value;
-    }
-
-    public String getValue() {
-        return String.valueOf(value);
     }
 }

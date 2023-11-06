@@ -14,14 +14,14 @@ public class Numbers {
 
     public Long getMatchCount(List<Integer> winningLottos) {
         return values.stream()
-                .map(Number::getCurValue)
+                .map(Number::getValue)
                 .filter(winningLottos::contains)
                 .count();
     }
 
     public Boolean isMatchBonusNumber(BonusNumber bonusNumber) {
         return values.stream()
-                .map(Number::getCurValue)
+                .map(Number::getValue)
                 .anyMatch(bonusNumber::isMatchBonusNumber);
     }
 

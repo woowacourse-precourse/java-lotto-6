@@ -19,7 +19,7 @@ public class LottoFixture {
                 .toList();
     }
 
-    private static LottoNumber lottoNumberFixture(int number) {
+    public static LottoNumber lottoNumberFixture(int number) {
         return LottoNumber.from(number);
     }
 }

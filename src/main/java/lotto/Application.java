@@ -17,13 +17,14 @@ public class Application {
     final static int lottoMax = 45;
     final static int lottolength = 6;
     final static int lotteryWinningRank = 6;
-    final static int coinStandard = 1000; 
+    final static int coinStandard = 1000;
+    final static int[] lottoRankMoney = {5000,50000,1500000,30000000,2000000000,0};
     static int inputCoin;
     static int bonusNumber;
     static int totalLottoMoney;
     static List<Integer> inputWinningLotto = new ArrayList<>();
     static List<List<Integer>> lottoTotal = new ArrayList<>();
-    static List<Integer> lottoWinnings = new ArrayList<>();
+    static List<Integer> myWinningLotto = new ArrayList<>();
     
 
     public static void CoinValidate(int inputCoin){
@@ -120,13 +121,25 @@ public class Application {
         for (List<Integer> mylotto: lottoTotal){
             lottoResult = lotto.LottoCheck(mylotto, bonusNumber, inputWinningLotto);
             rank = CheckLottoRank(lottoResult);
-            lottoWinnings.set(rank, lottoWinnings.get(rank)+1) ;
+            myWinningLotto.set(rank, myWinningLotto.get(rank)+1) ;
         }
     }
 
     public static void LotteryWinningInit(){
         for(int i=0; i<lotteryWinningRank; i++)
-            lottoWinnings.add(0);
+            myWinningLotto.add(0);
+    }
+
+    public static int GetMoney(int rank, int lottoWinCount){
+        System.out.println(lottoRankMoney[rank] +" "+ lottoWinCount);
+        return lottoRankMoney[rank] * lottoWinCount;
+    }
+
+    public static void SumLottoResult(){
+        for(int i=0; i<lotteryWinningRank-1; i++){
+            totalLottoMoney += GetMoney(i, myWinningLotto.get(i));
+        }
+        System.out.println(totalLottoMoney);
     }
 
     public static void main(String[] args) {
@@ -141,7 +154,8 @@ public class Application {
 
         LotteryWinningInit();
         MyLottoCheck(lotto);
-        System.out.println(lottoWinnings);
+        System.out.println(myWinningLotto);
 
+        SumLottoResult();
     }
 }

@@ -9,7 +9,6 @@ public class NumberPicker {
 
     private List<Integer> winningNumbers = new ArrayList<>();
 
-    private int bonusNumber;
 
     // 중복되지 않는 6개의 숫자를 뽑는다.
     private void stringToNumbers(String input) {
@@ -57,19 +56,19 @@ public class NumberPicker {
     }
 
 
-    //  보너스 번호 1개를 뽑는다.
+    //  보너스 번호 1개를 뽑아 winningNumbers에 저장
     private void pickBonusNumber(String input) {
         checkIsBonusNumber(input);
-        this.bonusNumber = Integer.parseInt(input);
-        checkIsDuplicate(this.bonusNumber, this.winningNumbers);
-        checkLottoNumberRange(this.bonusNumber);
+        int bonusNumber = Integer.parseInt(input);
+        winningNumbers.add(bonusNumber);
+        checkIsDuplicate(winningNumbers);
+        checkLottoNumberRange(bonusNumber);
+
     }
 
-    public void checkIsDuplicate(int bonusNumber, List<Integer> winningNumbers) {
+    public void checkIsDuplicate(List<Integer> winningNumbers) {
         Set<Integer> selectedNumbers = new HashSet<>(winningNumbers);
-        System.out.println(selectedNumbers);
-        selectedNumbers.add(bonusNumber);
-        if (selectedNumbers.size() != 7) {
+        if (selectedNumbers.size() == 6) {
             throw new IllegalArgumentException("[ERROR] 중복되는 값은 입력할 수 없습니다.");
         }
     }
@@ -87,6 +86,8 @@ public class NumberPicker {
             throw new IllegalArgumentException("[ERROR] 숫자 이외의 값은 입력할 수 없습니다.");
         }
     }
+
+
 
 
 }

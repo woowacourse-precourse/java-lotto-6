@@ -58,12 +58,11 @@ class NumberPickerTest {
                 .hasMessageContaining("[ERROR] 1~45 사이의 값을 선택하세요.");
     }
 
-    @DisplayName("숫자 6개와 중복인 값이 있는 경우")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
-    void isValidBonusNumberTest(int num) {
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        assertThatThrownBy(() -> numberPicker.checkIsDuplicate(num, winningNumbers))
+    @DisplayName("보너스 1개가 숫자 6개와 중복인 값이 있는 경우")
+    @Test
+    void isValidBonusNumberTest() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 6);
+        assertThatThrownBy(() -> numberPicker.checkIsDuplicate(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 중복되는 값은 입력할 수 없습니다.");
     }

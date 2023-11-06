@@ -6,7 +6,8 @@ public class PrizeNumber {
     private static PrizeNumber instance;
     private List<Integer> prizeNumber;
 
-    private PrizeNumber() {}
+    private PrizeNumber() {
+    }
 
     public static PrizeNumber getInstance() {
         if (instance == null) {

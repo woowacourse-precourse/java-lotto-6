@@ -7,7 +7,8 @@ public class LottoBundle {
     private static LottoBundle instance;
     private List<Lotto> lottoBundle = new ArrayList<>();
 
-    private LottoBundle() {}
+    private LottoBundle() {
+    }
 
     public static LottoBundle getInstance() {
         if (instance == null) {

@@ -4,7 +4,8 @@ public class PurchaseAmount {
     private static PurchaseAmount instance;
     private int purchaseAmount;
 
-    private PurchaseAmount() {}
+    private PurchaseAmount() {
+    }
 
     public static PurchaseAmount getInstance() {
         if (instance == null) {

@@ -30,7 +30,8 @@ public class Calculator {
             prizeDescribe.winThirdPrize();
         }
 
-        if (matchedNumberCount == HitNumber.HIT_FIVE_NUMBER.getHitNumber() && isLottoNumberContainBonusNumber(lottoNumber, bonusNumber)) {
+        if (matchedNumberCount == HitNumber.HIT_FIVE_NUMBER.getHitNumber() && isLottoNumberContainBonusNumber(
+                lottoNumber, bonusNumber)) {
             prizeDescribe.winSecondPrize();
         }
 

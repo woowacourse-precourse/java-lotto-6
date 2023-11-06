@@ -4,7 +4,8 @@ public class BonusNumber {
     private static BonusNumber instance;
     private int bonusNumber;
 
-    private BonusNumber() {}
+    private BonusNumber() {
+    }
 
     public static BonusNumber getInstance() {
         if (instance == null) {

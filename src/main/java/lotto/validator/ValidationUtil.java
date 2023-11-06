@@ -12,4 +12,8 @@ public class ValidationUtil {
 
         return str.chars().allMatch(Character::isDigit);
     }
+
+    public static boolean isInputFirstZero(String str) {
+        return str.charAt(0) == '0';
+    }
 }

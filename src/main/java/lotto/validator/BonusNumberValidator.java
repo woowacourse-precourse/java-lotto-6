@@ -22,7 +22,7 @@ public class BonusNumberValidator {
     }
 
     private static void validateBonusNumberFirstZero(String input) throws IllegalArgumentException {
-        if (input.charAt(0) == '0') {
+        if (ValidationUtil.isInputFirstZero(input)) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자 첫 입력을 0으로 시작할 수 없습니다.");
         }
     }

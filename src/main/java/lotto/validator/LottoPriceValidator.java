@@ -8,13 +8,19 @@ public class LottoPriceValidator {
 
     public static void validate(String input) {
         validateLottoPriceNotNumber(input);
-        validateLottoPriceNotDivided(input);
         validateLottoPriceFirstZero(input);
+        validateLottoPriceNotDivided(input);
     }
 
     private static void validateLottoPriceNotNumber(String input) throws IllegalArgumentException {
         if (!ValidationUtil.isNumber(input)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private static void validateLottoPriceFirstZero(String input) throws IllegalArgumentException {
+        if (ValidationUtil.isInputFirstZero(input)) {
+            throw new IllegalArgumentException("[ERROR] 0으로 시작하는 값을 입력하면 안됩니다.");
         }
     }
 
@@ -24,12 +30,5 @@ public class LottoPriceValidator {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 작성되어야 합니다.");
         }
     }
-
-    private static void validateLottoPriceFirstZero(String input) throws IllegalArgumentException {
-        if (input.charAt(0) == '0') {
-            throw new IllegalArgumentException("[ERROR] 0으로 시작하는 값을 입력하면 안됩니다.");
-        }
-    }
-
 }
 

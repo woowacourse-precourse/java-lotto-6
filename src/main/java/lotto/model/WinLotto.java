@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utils.ErrorMessage;
+
 import java.util.List;
 
 public class WinLotto {
@@ -16,7 +18,7 @@ public class WinLotto {
 
     private static void validateDuplicateBonusNumber(List<LottoNumber> winNumbers, LottoNumber bonusNumber) {
         if (winNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ALREADY_CONTAIN_BONUS_NUMBER_IN_NUMBERS_ERROR);
+            throw new ErrorMessage(ALREADY_CONTAIN_BONUS_NUMBER_IN_NUMBERS_ERROR);
         }
     }
 

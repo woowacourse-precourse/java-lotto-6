@@ -1,23 +1,28 @@
 package lotto.service;
 
-import static lotto.settings.LottoSettings.LOTTO_NUMBER_SIZE;
-import static lotto.settings.WinningAmount.*;
+import static lotto.settings.WinningAmount.FIFTH;
+import static lotto.settings.WinningAmount.FIRST;
+import static lotto.settings.WinningAmount.FOURTH;
+import static lotto.settings.WinningAmount.SECOND;
+import static lotto.settings.WinningAmount.THIRD;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.repository.BuyLottoRepository;
 import lotto.repository.RankingRepository;
 import lotto.repository.WinningLottoRepository;
+import lotto.settings.WinningAmount;
 import lotto.view.View;
 
 public class LotteryTracker {
-    List<List<Integer>> result = new ArrayList<>();
+
+    Map<Integer, Integer> numberPerRank = new HashMap<>();
 
     private LotteryTracker() {
-        int size = LOTTO_NUMBER_SIZE.getNumber(); // 복권숫자 크기:6
-        for(int i = 0; i<= size; i++){
-            result.add(new ArrayList<>());
+        int size = WinningAmount.size(); // 몇등까지 있는지
+        for(int i = 1; i<= size; i++){
+            numberPerRank.put(i,0);
         }
     }
 
@@ -26,8 +31,8 @@ public class LotteryTracker {
         return new LotteryTracker();
     }
 
-    public int countLottoIn(int index){
-        return result.get(index).size();
+    public int countLottoIn(int rank){
+        return numberPerRank.get(rank);
     }
 
     public void matching(BuyLottoRepository buyLottos, WinningLottoRepository winningLotto) {
@@ -36,13 +41,12 @@ public class LotteryTracker {
 
         for (Lotto buyLotto : buyLottos.getLotto()) {
             correctNum = winningLotto.countMatchingNumber(buyLotto);
-            matchingNumber(correctNum,buyLotto,bonusNum);
+            increaseNumberPerRank(correctNum,buyLotto,bonusNum);
         }
     }
-
-    public void matchingNumber(int cnt, Lotto buyLotto, int bonusNum){
+    public void increaseNumberPerRank(int cnt, Lotto buyLotto, int bonusNum){
         int rank = buyLotto.findRank(cnt, bonusNum);
-        result.get(rank).add(cnt);
+        numberPerRank.merge(rank, 1, Integer::sum);
     }
 
     public void printResult() {
@@ -57,19 +61,19 @@ public class LotteryTracker {
         int totalRevenue =0;
         for(int rank=5; rank>0;rank--){
             if(rank==5){
-                totalRevenue += result.get(rank).size()*FIFTH.getIntPrize();
+                totalRevenue += numberPerRank.get(rank) * FIFTH.getIntPrize();
             }
             else if(rank==4){
-                totalRevenue += result.get(rank).size()*FOURTH.getIntPrize();
+                totalRevenue += numberPerRank.get(rank)*FOURTH.getIntPrize();
             }
             else if(rank==3){
-                totalRevenue += result.get(rank).size()*THIRD.getIntPrize();
+                totalRevenue +=  numberPerRank.get(rank)*THIRD.getIntPrize();
             }
             else if(rank==2){
-                totalRevenue += result.get(rank).size()*SECOND.getIntPrize();
+                totalRevenue +=  numberPerRank.get(rank)*SECOND.getIntPrize();
             }
             else if(rank==1){
-                totalRevenue += result.get(rank).size()*FIRST.getIntPrize();
+                totalRevenue +=  numberPerRank.get(rank)*FIRST.getIntPrize();
             }
         }
         return totalRevenue;

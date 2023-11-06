@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.model.Errors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -26,11 +25,7 @@ public class Lotto {
     }
 
     private void validateDuplicate (List<Integer> numbers) {
-        for(int i = 0; i < numbers.size(); i++) {
-            if(isContain(numbers, numbers.get(i), i+1)) {
-                throw new IllegalArgumentException();
-            }
-        }
+        Errors.isDuplicate(numbers,0);
     }
 
     // TODO: 추가 기능 구현

@@ -1,7 +1,5 @@
 package lotto.view;
 
-import java.util.List;
-
 public class OutputView {
     public static void printBuyNumbers (int number) {
         System.out.println(number+"개를 구매했습니다.");
@@ -28,16 +26,8 @@ public class OutputView {
         System.out.println("[ERROR] 1000원 이상의 금액이여야 합니다.");
     }
 
-    public static void printIsOverInt () {
-        System.out.println("[ERROR] int형태의 숫자여야 합니다.");
-    }
-
     public static void printIsWrongRange () {
         System.out.println("[ERROR] 1 ~ 45 사이의 숫자여야 합니다.");
-    }
-
-    public static void printIsWrongLength () {
-        System.out.println("[ERROR] 6개의 숫자를 입력해야 합니다.");
     }
 
     public static void printIsDuplicate () {

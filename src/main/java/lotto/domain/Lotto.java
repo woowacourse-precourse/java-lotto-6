@@ -17,8 +17,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getLotto(){
-        return numbers;
+    public int countMatches(List<Integer> winnerNumbers) {
+        return (int) numbers.stream()
+                .filter(winnerNumbers::contains)
+                .count();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     private void validate(List<Integer> numbers) {

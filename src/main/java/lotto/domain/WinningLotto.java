@@ -2,8 +2,6 @@ package lotto.domain;
 
 import lotto.enums.LottoNumbers;
 
-import java.util.List;
-
 public class WinningLotto {
     private final Lotto lotto;
     private final int bonusNumber;
@@ -27,8 +25,8 @@ public class WinningLotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return lotto.getNumbers();
+    public Lotto getLotto() {
+        return lotto;
     }
 
     public int getBonusNumber() {

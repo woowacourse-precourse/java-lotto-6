@@ -10,9 +10,8 @@ public class Application {
             Game game = new Game();
             game.loadLottoMachine();
             game.joinPlayer();
-            game.issueLotto();
-            game.drawWinningLotto();
-            game.findResult();
+            game.promptWinningLotto();
+            game.calculateResult();
         } finally {
             Reader.close();
         }

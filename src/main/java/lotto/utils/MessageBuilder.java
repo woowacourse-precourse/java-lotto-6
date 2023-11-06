@@ -2,6 +2,7 @@ package lotto.utils;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.Lottos;
 import lotto.domain.Player;
 import lotto.enums.Ranking;
 
@@ -20,9 +21,9 @@ public class MessageBuilder {
     }
 
     public static String build(Player player) {
-        List<Lotto> lottos = player.getLottos();
+        Lottos lottos = player.getLottos();
 
-        StringBuilder result = new StringBuilder(String.valueOf(lottos.size()))
+        StringBuilder result = new StringBuilder(String.valueOf(lottos.getSize()))
                 .append("개를 구매했습니다.")
                 .append(System.lineSeparator());
 

@@ -1,33 +1,19 @@
 package lotto.domain;
 
-import java.util.*;
-
 public class Player {
-    private int money;
-    private List<Lotto> lottos;
+    private final Money money;
+    private final Lottos lottos;
 
-    public Player(int money) {
-        validate(money);
+    public Player(Money money, Lottos lottos) {
         this.money = money;
-
-        lottos = new ArrayList<>();
+        this.lottos = lottos;
     }
 
-    private void validate(int money) {
-        if (money % LottoMachine.getLottoPrice() != 0 || money < 0) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public int getMoney() {
+    public Money getMoney() {
         return money;
     }
 
-    public List<Lotto> getLottos() {
-        return List.copyOf(lottos);
-    }
-
-    public void addLottos(List<Lotto> issuedLottos) {
-        lottos.addAll(issuedLottos);
+    public Lottos getLottos() {
+        return lottos;
     }
 }

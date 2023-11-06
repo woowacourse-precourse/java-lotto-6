@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.enums.LottoNumbers;
+import lotto.utils.StateChecker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int findCorrects(List<Integer> winningNumbers) {
+    public int findCorrects(Lotto winningNumbers) {
         return (int) numbers.stream().filter(winningNumbers::contains).count();
     }
 }

@@ -7,15 +7,15 @@ import java.math.RoundingMode;
 import java.util.Map;
 
 public class LottoResult {
-    private Map<Ranking, Integer> rankingCounts;
+    private final Map<Ranking, Integer> rankingCounts;
 
     public LottoResult(Map<Ranking, Integer> rankingCounts) {
         this.rankingCounts = rankingCounts;
     }
 
-    public BigDecimal calculatePrizeRate(int money, int scale, RoundingMode roundingMode) {
+    public BigDecimal calculatePrizeRate(Money money, int scale, RoundingMode roundingMode) {
         BigDecimal totalPrize = calculateTotalPrize();
-        BigDecimal spent = BigDecimal.valueOf(money);
+        BigDecimal spent = BigDecimal.valueOf(money.getAmount());
         BigDecimal prizeRate = totalPrize.divide(spent, 10, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100))
                 .setScale(scale, roundingMode);

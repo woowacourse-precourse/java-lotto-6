@@ -12,20 +12,20 @@ public class LottoMachine {
         return LOTTO_PRICE;
     }
 
-    public List<Lotto> issueLottos(int money) {
-        int size = money / LOTTO_PRICE;
+    public Lottos issueLottos(Money money) {
+        int size = money.getAmount() / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             lottos.add(new Lotto(RandomGenerator.generate()));
         }
-        return List.copyOf(lottos);
+        return new Lottos(List.copyOf(lottos));
     }
 
-    public Map<Ranking, Integer> rank(List<Lotto> lottos, WinningLotto winningLotto) {
+    public Map<Ranking, Integer> rank(Lottos lottos, WinningLotto winningLotto) {
         Map<Ranking, Integer> rankingCounts = new EnumMap<>(Ranking.class);
         Arrays.stream(Ranking.values()).forEach(key -> rankingCounts.put(key, 0));
 
-        List<Integer> winningNumbers = winningLotto.getNumbers();
+        Lotto winningNumbers = winningLotto.getLotto();
         int bonusNumber = winningLotto.getBonusNumber();
 
         for (Lotto lotto : lottos) {

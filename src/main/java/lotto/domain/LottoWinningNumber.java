@@ -9,7 +9,7 @@ public class LottoWinningNumber {
     private static final int START_NUMBER_IN_RANGE = 1;
     private static final int END_NUMBER_IN_RANGE = 45;
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public LottoWinningNumber(List<Integer> numbers) {
         validateNumbers(numbers);

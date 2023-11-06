@@ -26,11 +26,6 @@ class LottoTest {
     @DisplayName("입력한 로또 번호와 발행한 로또 번호가 틀린지 체크하는 테스트.")
     @Test
     void isMatch_test() {
-        // given
-
-        // when
-
-        // then
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6))
                 .countMatch(List.of(1, 2, 3, 4, 5, 6))
         ).isEqualTo(6);

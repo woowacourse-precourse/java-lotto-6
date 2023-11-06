@@ -46,6 +46,7 @@
 - [x] 겹치는 validate 함수들 정리하자
 - [ ] Process 메소드 분리
     - [x] askCost
+    - [x] askWinningNums
 - [ ] string을 enum으로 관리하자
 - [ ] n개 일치, 가격: enum으로 상수로 관리하자
 - [ ] countMap 클래스로 만들자

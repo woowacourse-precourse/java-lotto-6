@@ -13,7 +13,7 @@ public class ProcessLotto {
         this.outputView = outputView;
     }
 
-    public int askCost(InputValidate inputValidate){
+    private int askCost(InputValidate inputValidate){
         int cost = 0;
         boolean success = false;
         while (!success){
@@ -27,6 +27,22 @@ public class ProcessLotto {
             }
         }
         return cost;
+    }
+
+    private List<Integer> askWinningNums(InputValidate inputValidate, List<Integer> winningNums){
+        boolean success = false;
+        while (!success){
+            try{
+                outputView.askWinningNums();
+                winningNums = inputValidate.validateWinningNums(inputView.getLine());
+                new Lotto(winningNums);
+                success = true;
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningNums;
     }
 
     public void drawLotto(ValidateTools validateTools){
@@ -47,22 +63,10 @@ public class ProcessLotto {
             outputView.printGeneratedNums(generateNums);
             lottos.add(lotto);
         }
-        boolean success = false;
-        outputView.askWinningNums();
-        List<Integer> winningNums = new ArrayList<>();
-        while (!success){
-            try{
-                winningNums = inputValidate.validateWinningNums(inputView.getLine());
-                new Lotto(winningNums);
-                success = true;
-            }
-            catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-                outputView.askWinningNums();
-            }
-        }
 
-        success = false;
+        List<Integer> winningNums = askWinningNums(inputValidate, new ArrayList<>());
+
+        boolean success = false;
         outputView.askBonusNum();
         int bonusNum = 0;
         while (!success){

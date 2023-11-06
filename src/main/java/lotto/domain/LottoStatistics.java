@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.BonusString;
+
 import java.util.List;
 import java.util.Map;
 
@@ -21,9 +23,9 @@ public class LottoStatistics {
     public String compareLottoNumbersWithBonusNumber(Lotto lottoNumbers, int bonusNumber) {
         List<Integer> numbers = lottoNumbers.getLottoNumbers();
         if (numbers.contains(bonusNumber)) {
-            return "Bonus";
+            return BonusString.BONUS.getBonus();
         }
-        return "NoBonus";
+        return BonusString.NOBONUS.getBonus();
     }
 
     public String calculateTotalProfit(Map<String, Integer> summary, List<String> lottoPlacePrize, int lottoPurchaseAmount) {

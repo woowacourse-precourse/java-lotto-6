@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.constant.BonusString;
 import lotto.constant.DrawMessage;
 import lotto.constant.LottoRank;
 import lotto.domain.*;
@@ -9,7 +10,8 @@ import java.util.*;
 
 public class LottoDraw {
     private final List<String> lottoPlacePrice = new ArrayList<>(Arrays.asList("5000", "50000", "1500000", "30000000", "2000000000"));
-
+    private String hasBonus = BonusString.BONUS.getBonus();
+    private String noBonus = BonusString.NOBONUS.getBonus();
     Map<Integer, Map<String, Integer>> lottoPrizeSummary;
     StringBuilder result;
 
@@ -34,8 +36,7 @@ public class LottoDraw {
     }
 
     public Lotto[] pickLottoNumbers() {
-        int numberOfLotto = getPurchaseAmount() / 1000;
-        return lottoNumbers.pickLottoNumbers(numberOfLotto);
+        return lottoNumbers.pickLottoNumbers(getPurchaseAmount());
     }
 
     public Lotto pickWinnerNumbers() {
@@ -66,7 +67,7 @@ public class LottoDraw {
     }
 
     public void implementCount(Map<String, Integer> summary, int winCount, String checkBonus) {
-        if (winCount != 5) checkBonus = "NoBonus";
+        if (winCount != 5) checkBonus = hasBonus;
 
         String getKey = winCount + checkBonus;
         summary.put(getKey, summary.getOrDefault(getKey, 0) + 1);

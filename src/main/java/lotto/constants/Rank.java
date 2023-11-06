@@ -1,6 +1,7 @@
 package lotto.constants;
 
 public enum Rank {
+    //hasBonusNumber의 1은 true, 0은 don't care, -1은 false
     FIRST_PLACE_CONDITION(1,6, 0,2000000000),
     SECOND_PLACE_CONDITION(2,5, 1,30000000),
     THIRD_PLACE_CONDITION(3,5, -1,1500000),

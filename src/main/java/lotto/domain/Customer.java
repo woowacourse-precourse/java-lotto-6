@@ -6,9 +6,9 @@ public class Customer {
 
     private List<Lotto> lottoTickets;
     private Payment payment;
-    private int winningPrize = 0;
+    private int earnedMoney = 0;
 
-    private LottoResult lottoResult = null;
+    private WinningResult winningResult = null;
 
     public Customer(Payment payment, List<Lotto> lottoTickets) {
         this.payment = payment;
@@ -23,20 +23,20 @@ public class Customer {
         return payment.getPayment();
     }
 
-    public void setLottoResult(LottoResult lottoResult) {
-        this.lottoResult = lottoResult;
+    public void setWinningResult(WinningResult winningResult) {
+        this.winningResult = winningResult;
     }
 
-    public LottoResult getLottoResult() {
-        return lottoResult;
+    public WinningResult getWinningResult() {
+        return winningResult;
     }
 
-    public int getWinningPrize() {
-        return winningPrize;
+    public int getEarnedMoney() {
+        return earnedMoney;
     }
 
-    public void setWinningPrize(int winningPrize) {
-        this.winningPrize = winningPrize;
+    public void setEarnedMoney(int earnedMoney) {
+        this.earnedMoney = earnedMoney;
     }
 
 }

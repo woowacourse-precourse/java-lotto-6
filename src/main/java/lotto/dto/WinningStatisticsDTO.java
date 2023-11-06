@@ -1,10 +1,10 @@
 package lotto.dto;
 
-import lotto.domain.LottoResult;
+import lotto.domain.WinningResult;
 
-public record WinningStatisticsDTO(LottoResult lottoResult, double rateOfReturn) {
+public record WinningStatisticsDTO(WinningResult lottoResult, double rateOfReturn) {
     @Override
-    public LottoResult lottoResult() {
+    public WinningResult lottoResult() {
         return lottoResult;
     }
 

@@ -3,7 +3,7 @@ package lotto.view;
 import lotto.constants.GameNumberConstants;
 import lotto.constants.Rank;
 import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
+import lotto.domain.WinningResult;
 import lotto.dto.LottoTicketsDTO;
 import lotto.dto.WinningStatisticsDTO;
 
@@ -16,8 +16,8 @@ public class OutputView {
     private static final String BOUGHT_N = "%d개를 구매했습니다.";
     private static final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    private static final String N_MATCHES = "%d개 일치 %s(%s원) - %d개";
-    private static final String BONUS_BALL_MATCH = "보너스 볼 일치 ";
+    private static final String N_MATCHES = "%d개 일치%s (%s원) - %d개";
+    private static final String BONUS_BALL_MATCH = ", 보너스 볼 일치";
     private static final String WINNING_STATISTICS = "당첨 통계\n---";
     private static final String TOTAL_RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
 
@@ -50,7 +50,7 @@ public class OutputView {
     public static void printWinningStatistics(WinningStatisticsDTO winningStatisticsDTO) {
         System.out.println("");
         System.out.println(WINNING_STATISTICS);
-        LottoResult lottoResult = winningStatisticsDTO.lottoResult();
+        WinningResult lottoResult = winningStatisticsDTO.lottoResult();
         for (int index = GameNumberConstants.NUMBER_OF_WINNING_PRIZE.getValue(); index >= 1; index--) {
             String bonusBallMatch = "";
             if (Rank.getHasBonusNumberFromIndex(index) == 1) {

@@ -3,12 +3,13 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.dto.LottoTicketsDTO;
 import lotto.dto.WinningStatisticsDTO;
-import lotto.utility.GameUtility;
+import lotto.utility.LottoMachine;
 import lotto.validator.LottoNumberValidator;
 import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import static camp.nextstep.edu.missionutils.Console.close;
+import static lotto.utility.GameUtility.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,16 +21,14 @@ public class LottoGame {
 
     public static void run() {
         Payment payment = getPaymentAndValidate();
-        List<Lotto> tickets = GameUtility.buyTickets(payment.getPayment());
+        List<Lotto> tickets = LottoMachine.generateTickets(payment.getPayment());
         Customer customer = new Customer(payment, tickets);
         printCustomerTickets(customer);
-        WinningNumber winningNumber = getWinningNumberAndValidate();
-        BonusNumber bonusNumber = getBonusNumberAndValidate();
-        ResultNumber.create(winningNumber, bonusNumber);
-        customer.setLottoResult(GameUtility.getUserLottoResult(customer));
-        customer.setWinningPrize(GameUtility.calculateWinningPrize(customer));
-        double rateOfReturn = GameUtility.calculateRateOfReturn(customer.getWinningPrize(), customer.getPayment());
-        OutputView.printWinningStatistics(new WinningStatisticsDTO(customer.getLottoResult(), rateOfReturn));
+        makeWinningAndBonusNumber();
+        customer.setWinningResult(calculateCustomerWinningResult(customer));
+        customer.setEarnedMoney(calculateEarnedMoney(customer));
+        double rateOfReturn = calculateRateOfReturn(customer.getEarnedMoney(), customer.getPayment());
+        OutputView.printWinningStatistics(new WinningStatisticsDTO(customer.getWinningResult(), rateOfReturn));
         endGame();
     }
 
@@ -53,6 +52,12 @@ public class LottoGame {
                 customer.getLottoTickets().size(),
                 customer.getLottoTickets())
         );
+    }
+
+    private static WinningAndBonusNumber makeWinningAndBonusNumber() {
+        WinningNumber winningNumber = getWinningNumberAndValidate();
+        BonusNumber bonusNumber = getBonusNumberAndValidate();
+        return WinningAndBonusNumber.create(winningNumber, bonusNumber);
     }
 
     private static WinningNumber getWinningNumberAndValidate() {

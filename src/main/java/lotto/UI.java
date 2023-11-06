@@ -7,13 +7,24 @@ import static lotto.Validation.*;
 
 public class UI {
     public static int getMoney() {
-        System.out.print(GET_MONEY_MSG);
-        String input = Console.readLine();
-        return validateMoney(input);
+        while (true) {
+            try{
+                System.out.println(GET_MONEY_MSG);
+                String input = Console.readLine();
+                validateMoney(input);
+                return Integer.parseInt(input);
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static void printLottos(int amount, List<Lotto> lottos){
-
+        System.out.println();
+        System.out.println(Integer.toString(amount) + LOTTO_AMOUNT_MSG);
+        for (Lotto lotto : lottos){
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public static List<Integer> getWinningNumber(){

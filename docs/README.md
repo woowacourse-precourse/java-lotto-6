@@ -13,7 +13,7 @@
   - [x] 구입 금액으로 통해 발행해야하는 로또 개수를 확인한다. - LottoGame.publishLottos()
   - [x] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다. - LottoGame.pickUniqueNumbers()
   - [x] 로또 번호는 오름차순으로 정렬하여 로또 객체에 저장한다. - LottoGame.pickUniqueNumbers()
-  - [ ] 발행한 로또 수량 및 번호를 출력한다.
+  - [x] 발행한 로또 수량 및 번호를 출력한다. - UI.printLottos()
 - [ ] 당첨 번호와 보너스 번호를 입력받는다.
   - [ ] 당첨 번호를 입력받는다. 
     - [ ] "당첨 번호를 입력해 주세요."를 출력한다.

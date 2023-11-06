@@ -79,4 +79,17 @@ class WinningResultTest {
                                 + Rank.FIFTH.getWinningAmount()
                 );
     }
+
+    @DisplayName("총 당첨 금액 계산하기 테스트")
+    @Test
+    void calculateTotalAmount() {
+        assertThat(winningResult.calculateTotalAmount())
+                .isEqualTo(
+                        Rank.FIRST.getWinningAmount()
+                                + Rank.SECOND.getWinningAmount()
+                                + Rank.THIRD.getWinningAmount()
+                                + Rank.FOURTH.getWinningAmount()
+                                + Rank.FIFTH.getWinningAmount()
+                );
+    }
 }

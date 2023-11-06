@@ -27,7 +27,9 @@ public class WinningResult {
     }
 
     public int calculateTotalAmount() {
-        return 0;
+        return winningResult.keySet().stream()
+                .map(rank -> getCount(rank) * rank.getWinningAmount())
+                .reduce(0, (a, c) -> a + c);
     }
 
     public Map<Rank, Integer> getWinningResult() {

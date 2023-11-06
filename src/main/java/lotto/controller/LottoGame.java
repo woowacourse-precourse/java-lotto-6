@@ -1,25 +1,23 @@
 package lotto.controller;
 
-import static lotto.service.Buyer.buyLottoTickets;
-import static lotto.service.Validator.validateDividedBy1000Won;
-import static lotto.service.Validator.validateLess1000Won;
-import static lotto.service.Validator.validateNumber;
+import static lotto.service.Buyer.calculateLottoTickets;
 import static lotto.view.IO.checkLottoTickets;
 import static lotto.view.IO.requestPerchaseAmount;
 import static lotto.view.constants.Front.CHECK_LOTTO_TICKETS;
-import static lotto.view.constants.Front.REQUEST_PERCHASE_AMOUNT;
+import static lotto.view.constants.Front.REQUEST_PURCHASE_AMOUNT;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.PurchaseAmount;
-import lotto.view.IO;
-import lotto.view.constants.Front;
+import lotto.service.Buyer;
 
 public class LottoGame {
     public static void lottoGameStart(){
-        requestPerchaseAmount(REQUEST_PERCHASE_AMOUNT);
+        requestPerchaseAmount(REQUEST_PURCHASE_AMOUNT);
         PurchaseAmount purchaseAmount = inputPurchaseAmount();
-        int lottoTicketCount = buyLottoTickets(purchaseAmount);
+        Buyer buyer = Buyer.getInstance();
+        int lottoTicketCount = buyer.calculateLottoTickets(purchaseAmount);
         checkLottoTickets(lottoTicketCount,CHECK_LOTTO_TICKETS);
+        buyer.buyLottoTickets(lottoTicketCount);
     }
 
     private static PurchaseAmount inputPurchaseAmount(){
@@ -32,6 +30,5 @@ public class LottoGame {
                 System.out.println(e.getMessage());
             }
         }
-
     }
 }

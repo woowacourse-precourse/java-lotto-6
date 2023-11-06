@@ -22,6 +22,10 @@ public class WinLotto {
         }
     }
 
+    public List<LottoNumber> getWinNumbers() {
+        return lotto.getNumbers();
+    }
+
     public Lotto getLotto() {
         return lotto;
     }

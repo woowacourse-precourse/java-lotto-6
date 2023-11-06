@@ -40,7 +40,7 @@ public class Lotto {
     }
 
     public Ranking compareWinLotto(WinLotto winLotto) {
-        List<LottoNumber> winNumbers = winLotto.getLotto().getNumbers();
+        List<LottoNumber> winNumbers = winLotto.getWinNumbers();
         int matchCount = checkNumberMatchCount(winNumbers);
         boolean bonusMatch = isMatchBonusNumber(winLotto.getBonusNumber());
         return Ranking.of(matchCount, bonusMatch);

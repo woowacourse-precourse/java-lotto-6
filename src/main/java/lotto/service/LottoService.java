@@ -4,14 +4,15 @@ import lotto.controller.dto.input.BuyLottosDto;
 import lotto.controller.dto.input.DrawLottosDto;
 import lotto.controller.dto.output.LottosBuyingResult;
 import lotto.controller.dto.output.LottosDrawingResult;
+import lotto.domain.lotto.LottoDrawingData;
 import lotto.domain.lotto.LottoDrawingMachine;
 import lotto.domain.lotto.LottoStore;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.WinningLotto;
 import lotto.domain.money.Wallet;
+import lotto.mapper.LottoFromDtoMapper;
 import lotto.mapper.LottoToDtoMapper;
 import lotto.mapper.WalletMapper;
-import lotto.mapper.dtoToLottoMapper;
 import lotto.repository.LottoRepository;
 
 /**
@@ -69,10 +70,11 @@ public final class LottoService {
      * 로또 추첨에 대한 입력 Dto를 받아서 추첨 로직을 처리하고, 응답을 Dto로 변환 및 반환
      */
     public LottosDrawingResult drawLottos(final DrawLottosDto dto) {
-        final WinningLotto winningLotto = dtoToLottoMapper.mapFrom(dto);
+        final WinningLotto winningLotto = LottoFromDtoMapper.mapFrom(dto);
         final LottoDrawingMachine lottoDrawingMachine = new LottoDrawingMachine(winningLotto);
         final Lottos lottos = new Lottos(lottoRepository.findAll());
 
-        return lottoDrawingMachine.draw(lottos);
+        final LottoDrawingData lottoDrawingData = lottoDrawingMachine.draw(lottos);
+        return lottoDrawingData.toLottoDrawingResult();
     }
 }

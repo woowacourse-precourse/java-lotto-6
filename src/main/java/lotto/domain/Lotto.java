@@ -29,8 +29,8 @@ public class Lotto {
 
     public static void checkLottoNumber(String lottoNumber) {
         Validator.checkNumber(lottoNumber);
-        Validator.checkZero(lottoNumber);
         Validator.checkRange(Integer.parseInt(lottoNumber));
+        Validator.checkZero(lottoNumber);
     }
 
     private void checkSize(List<Integer> numbers) {

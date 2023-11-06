@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -34,4 +36,15 @@ class LottoTest {
         assertThatThrownBy(() ->lotto.checkInclusion(6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
+    @DisplayName("로또 번호의 각 번호를 검증")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "01", "0","46"})
+    void checkLottoNumber(String lottoNumber){
+        assertThatThrownBy(()->Lotto.checkLottoNumber(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }

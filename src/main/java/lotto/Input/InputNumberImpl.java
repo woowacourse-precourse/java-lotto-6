@@ -17,9 +17,9 @@ public class InputNumberImpl implements InputNumber {
 	}
 
 	@Override
-	public int inputPurchasePrice() {
+	public void inputPurchasePrice() {
 		String price = Console.readLine();
-		return validator.validatePrice(price);
+		validator.validatePrice(price);
 	}
 
 	@Override
@@ -27,5 +27,13 @@ public class InputNumberImpl implements InputNumber {
 		numberSplitter = new StringTokenizer(Console.readLine(), ",");
 		validator.validateWinningNumber(numberSplitter, lotto);
 	}
+
+	@Override
+	public void inputBonusNumber() {
+		String bonusNumber = Console.readLine();
+		validator.validateBonusNumber(bonusNumber);
+	}
+
+
 
 }

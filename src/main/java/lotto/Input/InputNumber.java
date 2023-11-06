@@ -6,8 +6,10 @@ import lotto.Lotto;
 
 public interface InputNumber {
 
-	int inputPurchasePrice();
-	
+	void inputPurchasePrice();
+
 	void inputWinningNumbers(Lotto lotto);
+
+	void inputBonusNumber();
 
 }

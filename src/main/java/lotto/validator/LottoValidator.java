@@ -6,7 +6,9 @@ import lotto.Lotto;
 
 public interface LottoValidator {
 
-	int validatePrice(String price);
+	void validatePrice(String price);
 
 	void validateWinningNumber(StringTokenizer numberSplitter, Lotto lotto);
+
+	void validateBonusNumber(String bonusNumber);
 }

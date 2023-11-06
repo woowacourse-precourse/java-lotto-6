@@ -16,12 +16,11 @@ public class LottoValidatorImpl implements LottoValidator {
 	}
 
 	@Override
-	public int validatePrice(String lottoPrice) {
+	public void validatePrice(String lottoPrice) {
 		validateEmptyString(lottoPrice);
 		validateIsDigit(lottoPrice);
 		int parsePrice = validateRange(lottoPrice);
 		validateRest(parsePrice);
-		return parsePrice;
 	}
 
 	@Override
@@ -33,6 +32,12 @@ public class LottoValidatorImpl implements LottoValidator {
 			int parseNumber = validatelottoRange(lottoNumber);
 			lotto.pushIntoCollection(parseNumber);
 		}
+	}
+
+	@Override
+	public void validateBonusNumber(String bonusNumber) {
+		validateIsDigit(bonusNumber);
+		int parseNumber = validatelottoRange(bonusNumber);
 	}
 
 	private int validatelottoRange(String lottoNumber) {

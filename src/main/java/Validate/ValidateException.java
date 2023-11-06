@@ -75,7 +75,7 @@ public class ValidateException {
         Integer inputNum = Integer.valueOf(strLine);
 
         if (inputNum == ZERO_NUM) {
-            throw new IllegalArgumentException("0은 입력할수 없습니다.");
+            throw new NumberFormatException("0은 입력할수 없습니다.");
         }
     }
 }

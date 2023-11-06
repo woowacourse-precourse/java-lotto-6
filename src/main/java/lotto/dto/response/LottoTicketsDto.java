@@ -25,4 +25,12 @@ public class LottoTicketsDto {
                         .collect(Collectors.toList()))
                 .collect(Collectors.toList());
     }
+
+    public Lottos getLottoTickets() {
+        return lottoTickets;
+    }
+
+    public int getLottoTicketCount() {
+        return lottoTickets.getLottoTickets().size();
+    }
 }

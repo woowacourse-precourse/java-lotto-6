@@ -21,7 +21,7 @@ public enum LottoResult {
     public static LottoResult findRank(int matchCount, boolean hasBonus) {
         return Arrays.stream(values())
                 .filter(result -> result.matchCount == matchCount)
-                .filter(result -> matchCount != 5 || hasBonus || result != THIRD)
+                .filter(result -> matchCount != 5 || !hasBonus || result != THIRD)
                 .findFirst()
                 .orElse(null);
     }

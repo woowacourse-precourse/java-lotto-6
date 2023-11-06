@@ -12,16 +12,10 @@ public class InputView {
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String COMMA = ",";
 
-    public int inputBuyingCost() {
-        InvalidInput invalidInput = new InvalidInput();
-        String cost;
+    public String inputBuyingCost() {
+        System.out.println(INPUT_BUYING_COST_MESSAGE);
 
-        do {
-            System.out.println(INPUT_BUYING_COST_MESSAGE);
-            cost = readLine();
-        } while (invalidInput.notIntegerValueException(cost));
-
-        return Integer.parseInt(cost);
+        return readLine();
     }
 
     public List<String> inputWinningNumbers(){

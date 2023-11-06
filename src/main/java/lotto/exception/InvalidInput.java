@@ -24,16 +24,6 @@ public class InvalidInput {
         return false;
     }
 
-    public boolean duplicateNumberException(List<Integer> numbers, int bonusNumber) {
-        message = ExceptionMessage.DUPLICATE_BONUSE_NUMBER.getMessage();
-
-        if (numbers.contains(bonusNumber)) {
-            System.out.println(message);
-            return false;
-        }
-        return true;
-    }
-
     public boolean outOfRangeException(List<Integer> numbers) {
         message = ExceptionMessage.OUT_OF_RANGE.getMessage();
 

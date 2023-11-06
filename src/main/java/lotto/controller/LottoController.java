@@ -15,6 +15,7 @@ public class LottoController {
     public void run() {
         buy();
         setWinning();
+        compare();
     }
 
     private void buy() {
@@ -31,5 +32,9 @@ public class LottoController {
         outputView.printInputBonusNumberMessage();
         BonusNumber bonusNumber = inputView.readBonusNumber();
         lottoService.setWiningNumbersAndBonusNumber(winningNumbers, bonusNumber);
+    }
+
+    private void compare() {
+        outputView.printWinningStatisticsMessage();
     }
 }

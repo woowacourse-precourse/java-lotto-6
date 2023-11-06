@@ -33,4 +33,9 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printWinningStatisticsMessage() {
+        printNewLine();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
 }

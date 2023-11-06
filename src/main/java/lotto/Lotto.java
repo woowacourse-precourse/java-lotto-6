@@ -10,11 +10,16 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        sort(numbers);
+        this.numbers = List.copyOf(numbers);
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(this.numbers);
+        return this.numbers;
+    }
+
+    private void sort(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {

@@ -24,7 +24,14 @@ class ApplicationTest extends NsTest {
         Prize.THREE.setCount(0);
     }
 
+    @Test
+    void 보너스번호_공백문자_체크(){
+        assertSimpleTest(() -> {
+            runException("1000" , "1,2,3,4,5,6" , " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
 
+    }
     @Test
     void 보너스번호_숫자_체크(){
         assertSimpleTest(() -> {

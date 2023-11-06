@@ -16,6 +16,10 @@ public class Player {
         this.purchaseAmount = purchaseAmount;
     }
 
+    public int getPurchasedLottoCount() {
+        return purchaseAmount.calculatePurchasedLottoCount();
+    }
+
     public Lotto getLotto() {
         return lotto;
     }

@@ -2,13 +2,12 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class LottoMachine {
-    private final LottoPrice lottoPrice;
+    private final Price lottoPrice;
     private LottoCreateStrategy lottoCreateStrategy;
 
-    public LottoMachine(LottoPrice lottoPrice, LottoCreateStrategy lottoCreateStrategy ) {
+    public LottoMachine(Price lottoPrice, LottoCreateStrategy lottoCreateStrategy ) {
         this.lottoPrice = lottoPrice;
         this.lottoCreateStrategy = lottoCreateStrategy;
     }

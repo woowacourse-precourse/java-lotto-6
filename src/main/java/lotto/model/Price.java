@@ -1,12 +1,12 @@
 package lotto.model;
 
-public enum LottoPrice {
-    CURRENT(1000, "[ERROR] 구입 금액은 1,000원 단위로 이루어 져야 합니다.");
+public enum Price {
+    LOTTO(1000, "[ERROR] 구입 금액은 1,000원 단위로 이루어 져야 합니다.");
 
     private final int amount;
     private final String exceptionMessage;
 
-    LottoPrice(int amount, String exceptionMessage) {
+    Price(int amount, String exceptionMessage) {
         this.amount = amount;
         this.exceptionMessage = exceptionMessage;
     }

@@ -17,4 +17,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void validateNum(int num) {
+        if(num < 0 || num > 45) {
+            throw new IllegalArgumentException("[Error] 1부터 45사이 숫자만 입력하세요.");
+        }
+    }
 }

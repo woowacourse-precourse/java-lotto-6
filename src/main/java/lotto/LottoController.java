@@ -14,7 +14,7 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = inputView.inputPurchaseAmount();
+        PurchaseAmount purchaseAmount = new PurchaseAmount(inputView.inputPurchaseAmount());
         List<Lotto> purchasedLottos = lottoService.purchase(purchaseAmount);
         outputView.printPurchasedLottos(purchasedLottos);
 

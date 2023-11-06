@@ -27,14 +27,13 @@ public class LottoService {
     }
 
     private double getRateOfReturn(long totalPrize, int quantity) {
-        return ((double) totalPrize / ((long) PurchaseQuantity.unit * quantity)) * 100;
+        return ((double) totalPrize / ((long) PurchaseAmount.unit * quantity)) * 100;
     }
 
-    public List<Lotto> purchase(int purchaseAmount) {
-        PurchaseQuantity purchaseQuantity = new PurchaseQuantity(purchaseAmount);
+    public List<Lotto> purchase(PurchaseAmount purchaseAmount) {
 
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < purchaseQuantity.getQuantity(); i++) {
+        for (int i = 0; i < purchaseAmount.getQuantity(); i++) {
             lottos.add(new Lotto(RandomNumberGenerator.generateUniqueNumbersInRange(1, 45, 6)));
         }
         return lottos;

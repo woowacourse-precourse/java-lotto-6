@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class PurchaseQuantityTest {
+class PurchaseAmountTest {
 
     @DisplayName("구입 금액이 0원이면 예외가 발생한다")
     @Test
@@ -14,7 +14,7 @@ class PurchaseQuantityTest {
         int purchaseAmount = 0;
 
         Assertions.assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PurchaseQuantity(purchaseAmount));
+                .isThrownBy(() -> new PurchaseAmount(purchaseAmount));
     }
 
     @DisplayName("구입 금액이 단위로 나누어 떨어지지 않으면 예외가 발생한다")
@@ -23,7 +23,7 @@ class PurchaseQuantityTest {
     void createPurchaseAmountByNotDivisibleAmount(int purchaseAmount) {
 
         Assertions.assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PurchaseQuantity(purchaseAmount));
+                .isThrownBy(() -> new PurchaseAmount(purchaseAmount));
     }
 
     @DisplayName("구매 수량을 생성할 수 있다")
@@ -31,9 +31,9 @@ class PurchaseQuantityTest {
     @ValueSource(ints = {1000, 2000, 100000})
     void createPurchaseAmount(int purchaseAmount) {
 
-        PurchaseQuantity createdPurchaseQuantity = new PurchaseQuantity(purchaseAmount);
+        PurchaseAmount createdPurchaseAmount = new PurchaseAmount(purchaseAmount);
 
-        int actual = createdPurchaseQuantity.getQuantity();
+        int actual = createdPurchaseAmount.getQuantity();
         Assertions.assertThat(actual).isEqualTo(purchaseAmount / 1000); // TODO: 상수 클래스 만들 때, 1000 변경하기
     }
 }

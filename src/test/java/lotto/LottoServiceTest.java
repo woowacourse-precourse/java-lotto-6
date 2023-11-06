@@ -1,6 +1,5 @@
 package lotto;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
@@ -17,7 +16,7 @@ class LottoServiceTest {
     @DisplayName("로또를 구매할 수 있다.")
     @Test
     void purchaseByAmount() {
-        List<Lotto> lottos = new LottoService().purchase(10000);
+        List<Lotto> lottos = new LottoService().purchase(new PurchaseAmount(10000));
 
         assertThat(lottos).size().isEqualTo(10);
     }

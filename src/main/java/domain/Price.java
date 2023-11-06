@@ -1,14 +1,14 @@
 package domain;
 
-import domain.validator.PriceUnitValidator;
+import domain.validator.PriceValidator;
 import util.ConstantOfLotto;
 
 public class Price {
 
     private int price;
-    private final PriceUnitValidator priceUnitValidator = new PriceUnitValidator();
+    private final PriceValidator priceUnitValidator = new PriceValidator();
     public Price(int price) {
-        priceUnitValidator.checkPriceUnit(price);
+        priceUnitValidator.checkPriceValidation(price);
         this.price = price;
     }
 

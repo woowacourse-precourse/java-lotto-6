@@ -2,12 +2,12 @@ package lotto.converter;
 
 import java.text.DecimalFormat;
 
-public final class NumberFormatConverter {
+public final class PrintFormatConverter {
 
     private static final String REWARD_PATTERN = "#,###원";
     private static final String YIELD_PATTERN = "#,##0.0";
 
-    private NumberFormatConverter() {
+    private PrintFormatConverter() {
     }
 
     public static String convertToRewardFormat(final int reward) {

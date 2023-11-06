@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class NumberFormatConverterTest {
+class PrintFormatConverterTest {
 
     @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
     @CsvSource(value = {
@@ -16,7 +16,7 @@ class NumberFormatConverterTest {
     @DisplayName("숫자 형식 변환기: 당첨 금액을 출력 형식에 맞게 변환")
     void givenReward_whenConvertToRewardFormat_thenReturnFormattedReward(int reward, String expected) {
         // when
-        String result = NumberFormatConverter.convertToRewardFormat(reward);
+        String result = PrintFormatConverter.convertToRewardFormat(reward);
 
         // then
         assertEquals(expected, result);
@@ -27,7 +27,7 @@ class NumberFormatConverterTest {
     @DisplayName("숫자 형식 변환기: 총 수익률을 출력 형식에 맞게 변환")
     void givenYield_whenConvertToYieldFormat_thenReturnFormattedYield(double yield, String expected) {
         // when
-        String result = NumberFormatConverter.convertToYieldFormat(yield);
+        String result = PrintFormatConverter.convertToYieldFormat(yield);
 
         // then
         assertEquals(expected, result);

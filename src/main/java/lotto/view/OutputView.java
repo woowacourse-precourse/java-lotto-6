@@ -4,7 +4,7 @@ import java.util.EnumMap;
 
 import lotto.domain.Rank;
 import lotto.dto.LottoNumbersDto;
-import lotto.converter.NumberFormatConverter;
+import lotto.converter.PrintFormatConverter;
 
 public final class OutputView {
 
@@ -75,11 +75,11 @@ public final class OutputView {
     }
 
     private static String applyRewardFormat(final Rank rank) {
-        return NumberFormatConverter.convertToRewardFormat(rank.reward());
+        return PrintFormatConverter.convertToRewardFormat(rank.reward());
     }
 
     public static void printTotalYield(final double yield) {
-        String formattedYield = NumberFormatConverter.convertToYieldFormat(yield);
+        String formattedYield = PrintFormatConverter.convertToYieldFormat(yield);
         System.out.printf(TOTAL_YIELD_GUIDE, formattedYield);
     }
 

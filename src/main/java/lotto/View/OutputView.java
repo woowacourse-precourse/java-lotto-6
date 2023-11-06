@@ -22,7 +22,7 @@ public class OutputView {
         });
     }
 
-    // 기능목록 5번 문구 출력ㄴ
+    // 기능목록 5번 문구 출력
     public void requestWinningNumbersForDrawer() {
         println("\n당첨 번호를 입력해 주세요.");
     }
@@ -31,7 +31,7 @@ public class OutputView {
         println("\n보너스 번호를 입력해 주세요.");
     }
 
-    public void printWinningResult(Map<LottoRankingInfo, Integer> countWinngNumbers) {
+    public void printWinningResult(Map<LottoRankingInfo, Integer> countWinngNumbers) { // 기능목록 10번 출력
         println("\n당첨 통계");
         println("---");
         println("3개 일치 (5,000원) - " + countWinngNumbers.getOrDefault(LottoRankingInfo.THREE_MATCH, 0) + "개");

@@ -1,6 +1,8 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Exception.PlayerBuyingPayException;
+import lotto.Util.InputNumberParser;
 
 public class InputView {
     public int buyingPayConsole() {

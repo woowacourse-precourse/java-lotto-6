@@ -1,5 +1,7 @@
 package lotto.io;
 
+import lotto.domain.dto.Statistics;
+
 import java.util.List;
 
 public interface OutputPort {
@@ -9,5 +11,5 @@ public interface OutputPort {
     void printCreatedLottos(List<List<Integer>> lottos);
     void printInputWinningNumbers();
     void printInputBonusNumber();
-    void printStatistics(double statistics);
+    void printStatistics(Statistics statistics);
 }

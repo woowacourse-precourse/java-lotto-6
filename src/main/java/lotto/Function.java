@@ -129,4 +129,31 @@ public class Function {
 		}	
 		return publishedNumbers;
 	}
+	
+	protected int[] matchNumbers(ArrayList<Integer>[] numbers, ArrayList<Integer> winningNumber, int bonusNumber) {
+		int[] matched= new int[7];
+		for(ArrayList<Integer> num:numbers) {
+			int count= eachMatchedNum(num, winningNumber);
+			if(count==5) {
+				count=bonusMatch(num, bonusNumber, count );
+			}
+			matched[count]+=1;
+		}
+		return matched;
+	}
+	private int eachMatchedNum(ArrayList<Integer> number,  ArrayList<Integer> winningNumber) {
+		int count= 0;
+		for(Integer num : winningNumber) {
+			if(number.contains(num)) {
+				count+=1;
+			}
+		}
+		return count;
+	}
+	private int bonusMatch(ArrayList<Integer> number, int bonusNumber, int count) {
+		if(number.equals(bonusNumber)) {
+			count= 7;
+		}
+		return count;
+	}
 }

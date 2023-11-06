@@ -31,9 +31,4 @@ public class RandomLottoGeneratorTest {
         // then
         System.out.println(numbers.toString());
     }
-
-
-
-
-
 }

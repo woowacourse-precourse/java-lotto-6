@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.utils.LottoValidator;
-import lotto.utils.LottoValidatorImpl;
+import lotto.utils.CommonValidator;
+import lotto.utils.CommonValidatorImpl;
 
 public class InputNumberImpl implements InputNumber {
 
-	private final LottoValidator validator;
+	private final CommonValidator validator;
 	private StringTokenizer numberSplitter;
 
 	public InputNumberImpl() {
-		this.validator = new LottoValidatorImpl();
+		this.validator = new CommonValidatorImpl();
 	}
 
 	@Override

@@ -6,11 +6,11 @@ import java.util.StringTokenizer;
 import lotto.enumContainer.ErrorOperation;
 import lotto.enumContainer.LottoRange;
 
-public class LottoValidatorImpl implements LottoValidator {
+public class CommonValidatorImpl implements CommonValidator {
 
 	private final ParserFromString parser;
 
-	public LottoValidatorImpl() {
+	public CommonValidatorImpl() {
 		this.parser = new ParserFromStringImpl();
 	}
 

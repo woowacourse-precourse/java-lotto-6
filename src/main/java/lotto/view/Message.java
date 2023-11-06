@@ -17,11 +17,11 @@ public enum Message {
         this.content = message;
     }
 
-    public void print() {
-        System.out.println(content);
+    public String getMessage() {
+        return content;
     }
 
-    public void print(Object... args) {
-        System.out.printf(content + "\n", args);
+    public String getMessage(Object... args) {
+        return String.format(content, args);
     }
 }

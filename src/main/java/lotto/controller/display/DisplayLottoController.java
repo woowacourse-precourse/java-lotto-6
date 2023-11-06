@@ -2,7 +2,6 @@ package lotto.controller.display;
 
 import lotto.domain.UserMoney;
 import lotto.repository.LottoRepository;
-import lotto.service.LottoService;
 import lotto.view.LottoScreen;
 
 public class DisplayLottoController implements DisplayController {
@@ -19,8 +18,6 @@ public class DisplayLottoController implements DisplayController {
 
     @Override
     public void process() {
-        // UserMoney가 필요하다
-        LottoService.generateRandomLotto(userMoney, lottoRepository);
         lottoScreen.displayGeneratedLotto(userMoney, lottoRepository);
     }
 }

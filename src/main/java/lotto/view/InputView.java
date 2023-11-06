@@ -9,4 +9,16 @@ public class InputView {
         String money = Console.readLine();
         return money.trim();
     }
+
+    public String readSelectedNumbers() {
+        System.out.println(RequestMessage.WINNING.getMessage());
+        String numbers = Console.readLine();
+        return numbers.trim();
+    }
+
+    public String readSelectedBonus() {
+        System.out.println(RequestMessage.WINNING.getMessage());
+        String bonus = Console.readLine();
+        return bonus.trim();
+    }
 }

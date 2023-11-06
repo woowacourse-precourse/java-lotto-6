@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.constant.InformationMessage;
 import lotto.dto.LottoReceiptDto;
+import lotto.dto.LottoResultDto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,8 +21,11 @@ public class LottoController {
 
     public void run() {
         runUntilNoException(createPurchaseLottoRunnable());
+
         runUntilNoException(createDrawLottoWithoutBonusNumberRunnable());
         runUntilNoException(createDrawBonusNumberRunnable());
+
+        runUntilNoException(createAnnounceLottoResultRunnable());
     }
 
     private void runUntilNoException(Runnable runnable) {
@@ -40,6 +44,7 @@ public class LottoController {
             outputView.print(InformationMessage.GUIDE_INPUT_PURCHASE_AMOUNT.getMessage());
             long amount = inputView.readLongLine();
             outputView.printNewLine();
+
             LottoReceiptDto lottoReceipt = lottoService.getLottoReceipt(amount);
             outputView.printLottoReceipt(lottoReceipt);
             outputView.printNewLine();
@@ -50,6 +55,7 @@ public class LottoController {
         return () -> {
             outputView.print(InformationMessage.GUIDE_INPUT_WINNING_LOTTO_NUMBER.getMessage());
             List<Integer> numbers = inputView.readMultipleIntLine();
+
             lottoService.drawLottoWithoutBonusNumber(numbers);
             outputView.printNewLine();
         };
@@ -59,8 +65,19 @@ public class LottoController {
         return () -> {
             outputView.print(InformationMessage.GUIDE_INPUT_BONUS_NUMBER.getMessage());
             int bonusNumber = inputView.readIntLine();
+
             lottoService.generateWinningLotto(bonusNumber);
             outputView.printNewLine();
+        };
+    }
+
+    private Runnable createAnnounceLottoResultRunnable() {
+        return () -> {
+            LottoResultDto lottoResult = lottoService.getLottoResult();
+
+            outputView.print(InformationMessage.WINNING_STATISTICS.getMessage());
+            outputView.print(InformationMessage.SEPARATOR_LINE.getMessage());
+            outputView.printLottoResult(lottoResult);
         };
     }
 }

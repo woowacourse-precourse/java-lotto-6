@@ -12,7 +12,7 @@ public class LottoInputView implements View {
         System.out.println("\n당첨 번호를 입력해 주세요.\n");
     }
 
-    public void requestBonusNUmber() {
+    public void requestBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.\n");
     }
 }

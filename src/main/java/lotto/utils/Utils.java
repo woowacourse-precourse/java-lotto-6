@@ -9,10 +9,9 @@ import java.util.stream.Stream;
 public class Utils {
     public static int stringToInt(String str) {
         try {
-            return Integer.parseInt(str);
+            return Integer.parseInt(str.trim());
         } catch (NumberFormatException e) {
-            System.out.println(ErrorMessage.NUMBER_FORMAT_ERROR);
-            return stringToInt(Console.readLine());
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR);
         }
     }
 
@@ -22,8 +21,7 @@ public class Utils {
                     .mapToInt(Integer::parseInt)
                     .toArray();
         } catch (NumberFormatException e) {
-            System.out.println(ErrorMessage.NUMBER_FORMAT_ERROR);
-            return stringToIntArray(Console.readLine());
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR);
         }
     }
 }

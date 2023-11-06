@@ -7,8 +7,6 @@ import lotto.validation.Validator;
 import lotto.view.NumberSettingView;
 import lotto.view.PurchaseView;
 
-import java.util.Arrays;
-
 public class LottoController {
     private Buyer buyer;
 
@@ -21,26 +19,19 @@ public class LottoController {
         buyer = new Buyer(purchaseAmount);
     }
 
-    /* 구입금액 입력 프로세스 */
+    /* 구입금액 입력 */
     private int getPurchaseAmount() {
         PurchaseView.printInputPurchaseAmount();
-        return inputPurchaseAmount();
-    }
-
-    /* 구입금액 입력 */
-    private int inputPurchaseAmount() {
-        int purchaseAmount = Utils.stringToInt(Console.readLine());
 
         try {
+            int purchaseAmount = Utils.stringToInt(Console.readLine());
             Validator.checkInputPriceValidation(purchaseAmount);
+            return purchaseAmount;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputPurchaseAmount();
+            return getPurchaseAmount();
         }
-
-        return purchaseAmount;
     }
-
 
 
     public void purchaseLotto() {

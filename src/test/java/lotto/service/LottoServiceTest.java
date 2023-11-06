@@ -141,4 +141,18 @@ class LottoServiceTest {
         assertThat(unrankedPlace3).isEqualTo(Prize.UNRANKED);
         assertThat(unrankedPlace3.getMoney()).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("총 수익률 구하기")
+    void getRateOfReturn() {
+        // given
+        System.setIn(new ByteArrayInputStream("8000".getBytes()));
+        List<Prize> prizes = List.of(Prize.FIFTH_PLACE);
+
+        // when
+        double rateOfReturn = lottoService.getRateOfReturn(prizes);
+
+        // then
+        assertThat(rateOfReturn).isEqualTo(62.5);
+    }
 }

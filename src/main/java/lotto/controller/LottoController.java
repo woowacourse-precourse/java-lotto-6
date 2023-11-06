@@ -1,10 +1,10 @@
 package lotto.controller;
 
+import lotto.domain.GenerateLotto;
 import lotto.domain.LottoJudge;
 import lotto.domain.wrapper.*;
 import lotto.handler.InputHandler;
 import lotto.handler.OutputHandler;
-import lotto.service.LottoService;
 
 import java.util.List;
 
@@ -12,12 +12,10 @@ public class LottoController {
 
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
-    private final LottoService lottoService;
 
-    public LottoController(InputHandler inputHandler, OutputHandler outputHandler, LottoService lottoService) {
+    public LottoController(InputHandler inputHandler, OutputHandler outputHandler) {
         this.inputHandler = inputHandler;
         this.outputHandler = outputHandler;
-        this.lottoService = lottoService;
     }
 
     public void run() {
@@ -48,7 +46,8 @@ public class LottoController {
     }
 
     private BuyLottos buyLotto(Money money) {
-        List<Lotto> buyLottos = lottoService.generateBuyLottos(money);
+        GenerateLotto generateLotto = GenerateLotto.create(money);
+        List<Lotto> buyLottos = generateLotto.getBuyLottos();
         outputHandler.printBuyLottoList(buyLottos);
 
         return BuyLottos.create(buyLottos);

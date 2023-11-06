@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoEnvelop {
+    private static final String NEW_LINE = "\n";
     private List<Lotto> lottoEnvelop;
 
     public LottoEnvelop() {
@@ -36,7 +37,7 @@ public class LottoEnvelop {
             lottoInformation = getLottoInformation(lotto);
             appendLottoInformation(lottoInformation, information);
         }
-        
+
         return information;
     }
 
@@ -45,7 +46,7 @@ public class LottoEnvelop {
     }
 
     private void appendLottoInformation(StringBuilder lottoInformation, StringBuilder information) {
-        information.append(lottoInformation + "\n");
+        information.append(lottoInformation + NEW_LINE);
     }
 
     private Lotto getLotto(int i) {

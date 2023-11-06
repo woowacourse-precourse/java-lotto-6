@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LottoLogicTest extends NsTest{
+public class LottoLogicTest extends NsTest {
 
     @Override
     protected void runMain() {
@@ -18,16 +18,18 @@ public class LottoLogicTest extends NsTest{
 
     @Test
     @DisplayName("지불금액 1000원 단위 에러처리")
-    void provideIllegalInteger(){
+    void provideIllegalInteger() {
         runException("5001");
         assertThat(output()).contains("[ERROR] 지불 금액은 1000원 단위여야 합니다.");
     }
+
     @Test
     @DisplayName("지불금액 음수 에러처리")
     void provideNegativeInteger() {
         runException("-5000");
         assertThat(output()).contains("[ERROR] 지불 금액은 0 보다 커야 합니다.");
     }
+
     @Test
     @DisplayName("지불금액 문자 에러처리")
     void provideCharacter() {

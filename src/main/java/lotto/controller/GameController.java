@@ -14,6 +14,7 @@ public class GameController {
         Purchase purchase = createPurchase();
         printLottoAmount(purchase);
         PlayerLottos playerLottos = new PlayerLottos(purchase.getLottoAmount());
+        printPlayerLottosInfo(playerLottos);
 
         Lotto winningLotto = createWinningLotto();
         Bonus bonus = createBonus(winningLotto);
@@ -22,6 +23,13 @@ public class GameController {
     private void printLottoAmount(Purchase purchase) {
         int lottoAmount = purchase.getLottoAmount();
         OutputView.printLottoAmount(lottoAmount);
+    }
+
+    private void printPlayerLottosInfo(PlayerLottos playerLottos) {
+        List<Lotto> lottos = playerLottos.getLottos();
+        lottos.stream()
+                .map(Lotto::getNumbers)
+                .forEach(OutputView::printLottoNumbers);
     }
 
     private Purchase createPurchase() {

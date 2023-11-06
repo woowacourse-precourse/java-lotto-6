@@ -23,4 +23,12 @@ public class LottoGenerator {
         return lotto.getNumbers();
     }
 
+    // 로또 구입 개수만큼 생성
+    public void gernatePurchaseLotto() {
+        int quantity = purchase.getQuantity();
+        while (quantity-- < 0) {
+            generateNumber();
+            lottoStorage.addLotto(generateNumber());
+        }
+    }
 }

@@ -3,9 +3,10 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.domain.Lotto;
-import lotto.service.LottoManager;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
+import lotto.dto.IssuedLottoDetails;
+import lotto.service.LottoManager;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,10 +21,7 @@ public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = repeatReadForInvalid(this::getPurchaseAmount);
         List<Lotto> issuedLottos = lottoManager.issueLotto(purchaseAmount);
-        List<String> lottos = issuedLottos.stream()
-                .map(Lotto::toString)
-                .toList();
-        OutputView.printIssuedLottoDetails(lottos);
+        OutputView.printIssuedLottoDetails(IssuedLottoDetails.createIssuedLottoDetails(issuedLottos));
 
         WinningNumbers winningNumbers = repeatReadForInvalid(this::getWinningNumbers);
         lottoManager.addRankToWinningDetails(issuedLottos, winningNumbers);

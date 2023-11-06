@@ -2,12 +2,9 @@ package lotto.model.number;
 
 import java.util.List;
 
-public class LottoNumbers {
-    private final List<LottoNumber> numbers;
-
-    public LottoNumbers(List<LottoNumber> numbers) {
+public record LottoNumbers(List<LottoNumber> numbers) {
+    public LottoNumbers {
         validate(numbers);
-        this.numbers = numbers;
     }
 
     private void validate(List<LottoNumber> numbers) {
@@ -20,11 +17,7 @@ public class LottoNumbers {
         return numbers.size();
     }
 
-    public List<LottoNumber> getNumbers() {
-        return numbers;
-    }
-
-    public void sort() {
-        numbers.sort(LottoNumber::compareTo);
+    public List<LottoNumber> getSortedNumbers() {
+        return numbers.stream().sorted().toList();
     }
 }

@@ -3,8 +3,8 @@ package lotto.domain;
 import java.util.List;
 
 public class Draw {
-    private List<Integer> winningNumbers;
-    private int bonusNumber;
+    private final List<Integer> winningNumbers;
+    private final int bonusNumber;
 
     public Draw(List<Integer> winningNumbers, int bonusNumber) {
         validate(winningNumbers, bonusNumber);
@@ -12,8 +12,8 @@ public class Draw {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Rank> doDraw(List<Lotto> lottoList) {
-        return lottoList.stream()
+    public List<Rank> doDraw(List<Lotto> lottos) {
+        return lottos.stream()
                 .map(lotto -> lotto.match(winningNumbers, bonusNumber)).toList();
     }
 

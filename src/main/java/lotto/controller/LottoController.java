@@ -21,11 +21,11 @@ public class LottoController {
     }
 
     public void run() {
-        Money money = inputMoney();
+        LottoMachine lottoMachine = new LottoMachine();
 
-        LottoMachine lottoMachine = new LottoMachine(money);
+        lottoMachine.buyLottos(inputMoney());
 
-        displayLottos(lottoMachine);
+        displayLottos(lottoMachine.getLottos());
 
         WinningCalculator winningCalculator = new WinningCalculator(lottoMachine.getLottos(),
                 inputWinningLottoWithBonus());
@@ -64,8 +64,7 @@ public class LottoController {
         return inputBonus();
     }
 
-    private void displayLottos(LottoMachine lottoMachine) {
-        Lottos lottos = lottoMachine.getLottos();
+    private void displayLottos(Lottos lottos) {
         outputView.displayLottosCnt(lottos.getLottos().size());
         outputView.displayLottos(lottos);
     }

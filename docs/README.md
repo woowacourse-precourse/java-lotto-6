@@ -16,91 +16,140 @@
 
 1. 로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 로또를 발행해야 한다.
 2. 로또 1장의 가격은 1,000원이다.
-3. 당첨 번호와 보너스 번호를 입력받는다. 
+3. 당첨 번호와 보너스 번호를 입력받는다.
 4. 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
 
 ## 기능 목록
 
-### InputView
-- [x] 로또 구입 금액을 입력한다.
-  - [x] 구입 금액은 1,000원 단위다.
-- [x] 당첨 번호를 입력한다.
-  - [x] 번호는 쉼표(,)를 기준으로 구분한다.
-- [x] 보너스 번호를 입력한다.
-  - [x] 당첨 번호에 포함되지 않고 1 ~ 45 사이의 숫자이다.
+### LottoController
 
-### InputValidator
-- [x] 숫자를 입력했는지 검증한다.
-- [x] 쉼표를 기준으로 입력하였는지 검증한다.
-
-### InputMapper 
-- [x] 로또 구입 금액을 입력 받으면 LottoPurchasePrice 객체를 반환한다.
-- [x] 당첨 번호를 입력 받으면 Lotto 객체를 반환한다.
-- [ ] 보너스 번호를 입력 받으면 BonusNumber 객체를 반환한다.
-
-### InputManager
-- [x] Controller 로부터 로또 구입 금액 입력 요청을 관리한다.
-- [x] 사용자가 잘못된 값을 입력할 경우 그 부분부터 다시 입력한다.
-
-### OutputView
-- [x] 구입한 로또들을 형식에 맞게 출력한다.
-
-### LottoPurchasePrice
-- [x] 로또 구입 금액을 저장한다.
-  - [x] 로또 구입 금액은 1000원 단위어야 한다.
+- [x] 로또 게임을 시작한다.
+    - [x] 로또를 구매한다.
+    - [x] 당첨 로또를 입력한다.
+    - [x] 당첨 통계 결과를 확인한다.
 
 ### BonusNumber
-- [x] 보너스 번호를 저장한다.
 
-### Lotto 
+- [x] 보너스 번호를 저장한다.
+    - [x] 당첨 로또 번호에 포함되어 있는지 검증한다.
+    - [x] 로또 번호 범위(1~45)에 포함되어 있는지 검증한다.
+
+### Lotto
+
 - [x] 당첨 로또 번호를 저장한다.
+    - [x] 로또 번호가 6개의 숫자인지 검증한다.
+    - [x] 로또 번호 범위(1~45)에 포함되어 있는지 검증한다.
+    - [x] 로또 번호를 중복하여 저장되는지 검증한다.
+
+### LottoPurchasePrice
+
+- [x] 로또 구입 금액을 저장한다.
+    - [x] 로또 구입 금액은 1000원 단위어야 한다.
+    - [x] 로또 구입 개수를 반환한다.
 
 ### Lottos
+
 - [x] 로또 구입 금액 만큼 생성된 로또들을 저장한다.
 
-### Numbers
-- [x] 생성된 각 로또를 저장한다.
-  - [x] 각 로또들은 오름차순으로 정렬한다.
+### LottoStatistics
+
+- [x] 로또의 통계 내역을 저장한다.
+- [x] 수익률을 계산한다.
+- [x] 총 당첨 금액을 계산한다.
 
 ### Number
+
 - [x] 로또의 번호를 저장한다.
 
+### Numbers
+
+- [x] 생성된 각 로또를 저장한다.
+    - [x] 각 로또들은 오름차순으로 정렬한다.
+    - [x] 당첨 로또 번호와 몇 개가 일치하는지 반환한다.
+    - [x] 보너스 번호가 일치하는지 판별한다.
+
+### WinningLotto
+
+- [x] 당첨 로또 + 보너스 번호로 구성된다.
+    - [x] 당첨 로또를 반환한다.
+    - [x] 보너스 번호를 반환한다.
+
 ### LottosResultFormatter
+
 - [x] 생성된 로또들을 출력 형태에 맞게 전달해준다.
+-
 
-### LottoStatistics
-- [ ] 로또의 통계 내역을 저장한다.
-- [ ] 수익률을 계산한다.
+### LottoStatisticsResultFormatter
 
-### LottoStatisticsResultDto
-- [ ] 로또 통계 내역을 출력 형태에 맞게 전달해준다.
-
-### LottoController
-- [ ] 로또 게임을 시작한다.
+- [x] 로또 통계 내역을 출력 형태에 맞게 전달해준다.
+-
 
 ### LottoFactory
+
 - [x] 로또 게임 객체들의 의존성을 주입시켜준다.
+- [x] 싱글톤 패턴으로 LottoFactory 객체를 생성한다.
+
+### InputManager
+
+- [x] 로또 구입 금액 입력 요청을 관리한다.
+- [x] 당첨 로또 번호 입력 요청을 관리한다.
+- [x] 보너스 번호 입력 요청을 관리한다.
+- [x] 사용자가 잘못된 값을 입력할 경우 그 부분부터 다시 입력한다.
+
+### InputMapper
+
+- [x] 로또 구입 금액을 입력 받으면 LottoPurchasePrice 객체를 반환한다.
+- [x] 당첨 번호를 입력 받으면 Lotto 객체를 반환한다.
+- [x] 보너스 번호를 입력 받으면 BonusNumber 객체를 반환한다.
+
+### InputView
+
+- [x] 로또 구입 금액을 입력한다.
+    - [x] 구입 금액은 1,000원 단위다.
+- [x] 당첨 번호를 입력한다.
+    - [x] 번호는 쉼표(,)를 기준으로 구분한다.
+- [x] 보너스 번호를 입력한다.
+    - [x] 당첨 번호에 포함되지 않고 1 ~ 45 사이의 숫자이다.
+
+### OutputView
+
+- [x] 구입한 로또들을 형식에 맞게 출력한다.
+
+### InputValidator
+
+- [x] 숫자를 입력했는지 검증한다.
+- [x] 쉼표를 기준으로 입력하였는지 검증한다.
 
 ## 유틸 목록
 
 ### LottoRandomNumber
+
 - [x] 1 ~ 45 사이의 랜덤된 숫자 6개를 생성한다.
 
 ## 상수 목록
 
 ### ErrorMessage
+
 - [x] 에러 메시지 상수
 
-### ProgressMessage
-- [x] 게임 진행 메시지 상수
-
 ### InputPattern
+
 - [x] 정규식 패턴 상수
 
 ### LottoRule
+
 - [x] 로또 게임 규칙 값 상수
 
+### ProgressMessage
+
+- [x] 게임 진행 메시지 상수
+
 ### WinningFactor
+
+- [x] 당첨 로또 조건 일ㅌ 상수
+
+### WinningFactor
+
 - [ ] 당첨 기준에 따른 금액 상수
 
 ## 예외 목록
@@ -108,20 +157,18 @@
 - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
-
-- NotNumericException
-  - [x] 숫자를 입력하지 않을 경우 예외가 발생한다.
-- NotThousandUnitException
-  - [x] 로또 구입 금액을 1000단위로 입력하지 않을 경우 예외가 발생한다.
-- NotDivisionCommaException
-  - [x] 당첨 번호를 쉼표로 구분하지 않을 경우 예외가 발생한다.
-- LottoNumberDuplicateException
-  - [x] 당첨 로또가 중복되어 입력될 경우 예외가 발생한다.
-- LottoNumberRangeException
-  - [x] 당첨 로또의 범위가 1~45 가 아닐 경우 예외가 발생한다.
-- LottoNumberSizeException
-  - [x] 당첨 로또의 크기가 6이 아닐 경우 예외가 발생한다.
 - BonusNumberContainLottoException
-  - [x] 보너스 번호가 로또 번호에 포함될 경우 예외가 발생한다.
-
-- [ ] 보너스 번호를 숫자가 아닌 다른 문자로 입력하면 예외
+    - [x] 보너스 번호가 로또 번호에 포함될 경우 예외가 발생한다.
+- LottoNumberDuplicateException
+    - [x] 당첨 로또가 중복되어 입력될 경우 예외가 발생한다.
+- LottoNumberRangeException
+    - [x] 당첨 로또의 범위가 1~45 가 아닐 경우 예외가 발생한다.
+- LottoNumberSizeException
+    - [x] 당첨 로또의 크기가 6이 아닐 경우 예외가 발생한다.
+-
+    - NotDivisionCommaException
+- [x] 당첨 번호를 쉼표로 구분하지 않을 경우 예외가 발생한다.
+- NotNumericException
+    - [x] 숫자를 입력하지 않을 경우 예외가 발생한다.
+- NotThousandUnitException
+    - [x] 로또 구입 금액을 1000단위로 입력하지 않을 경우 예외가 발생한다.

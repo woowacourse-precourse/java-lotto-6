@@ -18,12 +18,13 @@ public class InputTest {
     @DisplayName("사용자가 구입 금액을 정확하게 입력한다")
     public void rightAmountInput(){
         //given
-        String expect = "8000";
-        InputStream inputStream = setConsole(expect);
+        String console = "8000";
+        InputStream inputStream = setConsole(console);
         System.setIn(inputStream);
 
         // then
-        String actual = Input.getAmount();
+        int expect = 8000;
+        int actual = Input.getAmount();
         Assertions.assertThat(expect).isEqualTo(actual);
     }
 
@@ -31,13 +32,14 @@ public class InputTest {
     @DisplayName("구입 금액 유효 검사 정상 동작하는지 테스트")
     public void testAmountValid() {
         //given
-        String expect = "800";
+        String expect = "123";
         InputStream inputStream = setConsole(expect);
         System.setIn(inputStream);
 
-        String amount = Input.getAmount();
-        //when
-        Assertions.assertThatIllegalArgumentException();
+        Assertions.assertThatThrownBy(() -> {
+                    Input.getAmount();
+                })
+                .isInstanceOf(IllegalArgumentException.class);
 
         //then
     }

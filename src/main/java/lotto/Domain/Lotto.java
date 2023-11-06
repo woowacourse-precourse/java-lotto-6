@@ -24,4 +24,10 @@ public class Lotto {
             throw ExceptionMessage.INTPUT_NUMBER_LENGTH.throwexception();
         }
     }
+
+    private static void checkDuplicates(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw ExceptionMessage.INPUT_DUPLICATE.throwexception();
+        }
+    }
 }

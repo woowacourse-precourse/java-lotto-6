@@ -23,6 +23,7 @@ public class LottoController {
         Money money = requestMoney();
         List<Lotto> randomLotto = makeRandomLotto(money);
         printGeneratedLotto(randomLotto);
+        Lotto winningLotto = requestWinningLotto();
         /*
         구입금액_입력받기(); --> inputView에서 받고, dto로 전달
         로또번호추출();
@@ -58,6 +59,17 @@ public class LottoController {
         outputView.printMessage(Message.RESULT_MONEY, lotto.size());
         for (Lotto obj : lotto) {
             outputView.printObject(LottoDto.from(obj));
+        }
+    }
+
+    Lotto requestWinningLotto() {
+        outputView.printMessage(Message.REQUEST_WINNING_NUMBERS);
+        while (true) {
+            try {
+                return LottoGenerator.generateAnswerLotto(inputView.requestIntegers());
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
         }
     }
 }

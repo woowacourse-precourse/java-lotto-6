@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import java.util.stream.Stream;
 import lotto.util.ErrorCode;
 
 public class InputView {
@@ -19,6 +21,16 @@ public class InputView {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorCode.PURCHASE_NOT_INTEGER.getMessage());
+        }
+    }
+
+    public List<Integer> requestIntegers() {
+        try {
+            return Stream.of(Console.readLine().split(","))
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NOT_INTEGER.getMessage());
         }
     }
 }

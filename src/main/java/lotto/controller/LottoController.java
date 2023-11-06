@@ -15,9 +15,12 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LottoController(final InputView inputView, final OutputView outputView) {
+    private final InputValidator inputValidator;
+
+    public LottoController(InputView inputView, OutputView outputView, InputValidator inputValidator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.inputValidator = inputValidator;
     }
 
     public void start() {
@@ -51,9 +54,9 @@ public class LottoController {
     }
 
     public Lotto createWinningNumberList(String inputList) {
-        List<String> stringList = InputValidator.toStringList(inputList);
-        InputValidator.validateDigit(stringList);
-        List<Integer> integerList = InputValidator.toIntegerList(stringList);
+        List<String> stringList = inputValidator.toStringList(inputList);
+        inputValidator.validateDigit(stringList);
+        List<Integer> integerList = inputValidator.toIntegerList(stringList);
         return new Lotto(integerList);
     }
 
@@ -64,7 +67,7 @@ public class LottoController {
     }
 
     public Number createWinningBonusNumber(String userInput) {
-        int userNumber = InputValidator.toInt(userInput);
+        int userNumber = inputValidator.toInt(userInput);
         return Number.from(userNumber);
     }
 

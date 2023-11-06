@@ -78,7 +78,7 @@ public class LottoController {
     }
 
     private void generateResult() {
-        calculator = new Calculator(winnerLotto, userLottos, bonusNumber.getBonusNumber());
+        calculator = new Calculator(winnerLotto, userLottos, bonusNumber);
         rankResult.add(calculator.countRank());
     }
 

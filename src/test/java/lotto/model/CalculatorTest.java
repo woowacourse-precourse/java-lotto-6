@@ -20,7 +20,7 @@ public class CalculatorTest {
         Lotto noRankLotto = new Lotto(Arrays.asList(5, 6, 7, 8, 9, 10));
         Lotto firstRankLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         List<Lotto> userLottos = new ArrayList<>(Arrays.asList(noRankLotto, firstRankLotto));
-        int bonusNumber = 7;
+        BonusNumber bonusNumber = new BonusNumber(winnerLotto, 7);
         calculator = new Calculator(winnerLotto, userLottos, bonusNumber);
         rankResult = new RankResult();
         rankResult.add(calculator.countRank());

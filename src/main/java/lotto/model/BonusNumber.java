@@ -10,8 +10,8 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean isPartOf(Lotto userLotto) {
+        return userLotto.contains(bonusNumber);
     }
 
 }

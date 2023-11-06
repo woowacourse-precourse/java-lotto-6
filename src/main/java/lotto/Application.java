@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.global.constant.LottoConstant.LOTTO_PRICE;
+
 import lotto.domain.lotto.LottoGame;
 import lotto.domain.lotto.LottoMachine;
 import lotto.view.InputView;
@@ -11,7 +13,7 @@ public class Application {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView(outputView);
 
-        LottoGame lottoGame = new LottoGame(inputView, outputView, new LottoMachine());
+        LottoGame lottoGame = new LottoGame(inputView, outputView, new LottoMachine(LOTTO_PRICE));
         lottoGame.run();
     }
 }

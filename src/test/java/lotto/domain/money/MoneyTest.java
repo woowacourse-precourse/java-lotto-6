@@ -21,13 +21,4 @@ public class MoneyTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] ");
     }
-
-    @ParameterizedTest
-    @ValueSource(ints = {1001, 1234, 104051})
-    void 금액이_1000원_단위로_나누어_떨어지지_않으면_예외_발생(int amount) {
-        Assertions.assertThatThrownBy(() -> new Money(amount))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] ");
-    }
-
 }

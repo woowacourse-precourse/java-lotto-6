@@ -11,6 +11,7 @@ public class InputView {
         //문장 출력
         System.out.print(ProcessMessage.PLEASE_INPUT_BUDGET.getMessage());
         String budget = Console.readLine();
+        Console.close();
         //유효성 검사
         inputValidator.validateInputBudgetIsNumber(budget);
         return budget;
@@ -19,6 +20,7 @@ public class InputView {
     public String InputWinningNumbers(){
         System.out.print(ProcessMessage.PLEASE_INPUT_WINNING_NUMBERS.getMessage());
         String winningNumbers = Console.readLine();
+        Console.close();
         //유효성 검사
         inputValidator.validateInputWinningNumbers(winningNumbers);
         return winningNumbers;

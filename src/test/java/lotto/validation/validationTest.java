@@ -47,5 +47,14 @@ public class validationTest {
                 .hasMessageContaining(ErrorMessage.INPUT_NUMBER_OVER_RANGE_ERROR.getMessage());
     }
 
+    @Test
+    @DisplayName("당첨번호 입력시 중복된 번호가 존재할 경우 예외를 발생시킨다.")
+    void 당첨번호_중복_테스트() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 3, 4, 5);
+        assertThatThrownBy(() -> validateService.validateInputWinningNumbersAll(winningNumbers)).isInstanceOf(
+                        IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INPUT_DUPLICATE_NUMBER_ERROR.getMessage());
+    }
+
 
 }

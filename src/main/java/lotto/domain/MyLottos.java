@@ -12,6 +12,9 @@ public class MyLottos {
                 .mapToObj(i -> Lotto.createLotto())
                 .collect(Collectors.toList());
     }
+    public MyLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
 
     public List<Lotto> getLottos() {
         return lottos;

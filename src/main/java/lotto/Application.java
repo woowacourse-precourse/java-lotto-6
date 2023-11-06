@@ -21,6 +21,11 @@ public class Application {
 
         }
 
+        User.InputLottoNumber();
+        User.InputBonusNumber();
+
+
+
 
 
     }

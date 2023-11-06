@@ -10,7 +10,6 @@ public class Money {
 
         System.out.println("구입 금액을 입력해 주세요.");
         String input = Console.readLine();
-        Console.close();
         money = Integer.parseInt(input);
 
     }

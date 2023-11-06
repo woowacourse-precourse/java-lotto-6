@@ -1,5 +1,6 @@
 package lotto.domain.Lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -9,6 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        sortNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -21,5 +23,9 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return this.numbers;
+    }
+
+    private void sortNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 }

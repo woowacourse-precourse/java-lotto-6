@@ -62,11 +62,17 @@ public class IOService {
         return Long.parseLong(purchaseAmount);
     }
 
-//    public WinningNumber scanWinningNumber(){
-//
-//    }
+    public WinningNumber scanWinningNumber(){
+        List<Integer> prizeNumbers = scanPrizeNumbers();
+        WinningNumber winningNumber = new WinningNumber(prizeNumbers);
 
-    public List<Integer> scanPrizeNumbers() {
+        int bonusNumber = scanBonusNumber(prizeNumbers);
+        winningNumber.setBonusNumber(bonusNumber);
+
+        return winningNumber;
+    }
+
+    private List<Integer> scanPrizeNumbers() {
         boolean success = true;
 
         String prizeNumbers;
@@ -79,7 +85,7 @@ public class IOService {
         return Arrays.stream(prizeNumbers.split(",")).map(s -> Integer.parseInt(s)).toList();
     }
 
-    public int scanBonusNumber(List<Integer> prizeNumbers){
+    private int scanBonusNumber(List<Integer> prizeNumbers){
         boolean success = true;
 
         String bonusNumber;

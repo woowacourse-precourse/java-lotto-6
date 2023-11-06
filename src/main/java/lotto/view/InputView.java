@@ -16,7 +16,8 @@ public class InputView {
     public static String readWinningNumbers() {
         LottoMessage message = LottoMessage.WINNING_NUMBERS_INPUT_MESSAGE;
         System.out.println(message.getMessage());
-        return Console.readLine();
+
+        return validateDelimiterWithComma(Console.readLine());
     }
 
     public static String readBonusNumber() {
@@ -24,6 +25,12 @@ public class InputView {
         System.out.println(message.getMessage());
 
         return validateNumericInput(Console.readLine());
+    }
+
+    private static String validateDelimiterWithComma(String input) {
+        InputValidator.validateDelimiterWithComma(input);
+
+        return input;
     }
 
     private static String validateNumericInput(String input) {

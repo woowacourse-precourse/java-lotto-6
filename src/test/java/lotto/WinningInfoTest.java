@@ -22,16 +22,14 @@ class WinningInfoTest {
         list.add(new LottoNumberRecord(List.of(8, 21, 23, 41, 42, 43)));
         list.add(new LottoNumberRecord(List.of(9, 21, 23, 41, 42, 43)));
         list.add(new LottoNumberRecord(List.of(10, 21, 23, 41, 42, 43)));
-        assertSimpleTest(() -> {
-            assertThat(
-                    new WinningInfo(list, new WinningNumber("8, 21, 23, 41, 42, 43", "44"))
-                            .getRankMap()
-            ).containsOnly(
-                    entry(Rank.FIRST_PLACE, 1),
-                    entry(Rank.SECOND_PLACE, 0),
-                    entry(Rank.THIRD_PLACE, 2),
-                    entry(Rank.FOURTH_PLACE, 0),
-                    entry(Rank.FIFTH_PLACE, 0));
-        });
+        assertSimpleTest(() -> assertThat(
+                new WinningInfo(list, new WinningNumber("8, 21, 23, 41, 42, 43", "44"))
+                        .getRankMap()
+        ).containsOnly(
+                entry(Rank.FIRST_PLACE, 1),
+                entry(Rank.SECOND_PLACE, 0),
+                entry(Rank.THIRD_PLACE, 2),
+                entry(Rank.FOURTH_PLACE, 0),
+                entry(Rank.FIFTH_PLACE, 0)));
     }
 }

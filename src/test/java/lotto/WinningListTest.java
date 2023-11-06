@@ -22,15 +22,13 @@ class WinningListTest {
         list.add(new LottoNumberRecord(List.of(10, 21, 23, 41, 42, 43)));
         WinningInfo winningInfo = new WinningInfo(list,
                 new WinningNumber("8, 21, 23, 41, 42, 43", "44"));
-        assertSimpleTest(() -> {
-            assertThat(
-                    new WinningList(winningInfo).printWinningListString()
-            ).contains("3개 일치 (5,000원) - 0개",
-                    "4개 일치 (50,000원) - 0개",
-                    "5개 일치 (1,500,000원) - 2개",
-                    "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                    "6개 일치 (2,000,000,000원) - 1개");
-        });
+        assertSimpleTest(() -> assertThat(
+                new WinningList(winningInfo).printWinningListString()
+        ).contains("3개 일치 (5,000원) - 0개",
+                "4개 일치 (50,000원) - 0개",
+                "5개 일치 (1,500,000원) - 2개",
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                "6개 일치 (2,000,000,000원) - 1개"));
     }
 
     @Test
@@ -41,10 +39,8 @@ class WinningListTest {
         list.add(new LottoNumberRecord(List.of(10, 21, 23, 41, 42, 43)));
         WinningInfo winningInfo = new WinningInfo(list,
                 new WinningNumber("8, 21, 23, 41, 42, 43", "44"));
-        assertSimpleTest(() -> {
-            assertThat(
-                    new WinningList(winningInfo).calculateProfitRate(new AmountRecord(3000)).printProfitRate()
-            ).contains("66766666.7%");
-        });
+        assertSimpleTest(() -> assertThat(
+                new WinningList(winningInfo).calculateProfitRate(new AmountRecord(3000)).printProfitRate()
+        ).contains("66766666.7%"));
     }
 }

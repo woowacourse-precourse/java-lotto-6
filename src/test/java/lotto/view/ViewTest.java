@@ -31,7 +31,7 @@ public class ViewTest {
     }
 
     @Test
-    public void 구매한_로또_번호_출력_테스트() {
+    public void 구매한_로또_번호_출력() {
         //given
         IssuedLottoDto lotto1 = new IssuedLottoDto(Arrays.stream(new int[]{1, 3, 5, 7, 9, 11})
                 .boxed()
@@ -49,7 +49,7 @@ public class ViewTest {
     }
 
     @Test
-    public void 구매한_로또_통계_출력_테스트() {
+    public void 구매한_로또_통계_출력() {
         //given
         WinningStatisticsDto winningDto = new WinningStatisticsDto(1, 1, 0,
                 1, 2, 67.86);

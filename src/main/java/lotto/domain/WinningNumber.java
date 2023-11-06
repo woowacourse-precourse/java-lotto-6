@@ -1,11 +1,11 @@
 package lotto.domain;
 
 public enum WinningNumber {
-    FIRST(6, 2000000000), // 1등
-    SECOND(7, 30000000), // 2등
-    THIRD(5, 1500000), // 3등
-    FOURTH(4, 50000), // 4등
-    FIFTH(3, 5000), // 5등
+    FIRST(6, 2_000_000_000), // 1등
+    SECOND(7, 30_000_000), // 2등
+    THIRD(5, 1_500_000), // 3등
+    FOURTH(4, 50_000), // 4등
+    FIFTH(3, 5_000), // 5등
     MISS(0, 0);
 
     private static final int WINNING_MIN_COUNT = 3;

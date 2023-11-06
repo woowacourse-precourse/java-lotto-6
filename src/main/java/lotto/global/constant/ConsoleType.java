@@ -26,7 +26,7 @@ public enum ConsoleType {
         return comment;
     }
 
-    public String getComment(Long input) {
+    public String getComment(Integer input) {
         return String.format(comment, input);
     }
 

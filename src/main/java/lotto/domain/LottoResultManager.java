@@ -5,7 +5,7 @@ import lotto.global.constant.WinningType;
 
 public class LottoResultManager {
 
-    private static final long COUNT = 1;
+    private static final int COUNT = 1;
 
     private final LottoResults lottoResults;
     private final LottoStatistics lottoStatistics;
@@ -20,7 +20,7 @@ public class LottoResultManager {
             lottoResult.calculateResult(winningLotto);
             WinningType key = lottoResult.getWinning();
             lottoStatistics.getStatistics()
-                    .put(key, lottoStatistics.getStatistics().getOrDefault(key, 0L) + COUNT);
+                    .put(key, lottoStatistics.getStatistics().getOrDefault(key, 0) + COUNT);
         }
     }
 

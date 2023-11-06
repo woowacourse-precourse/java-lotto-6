@@ -13,8 +13,8 @@ public class LottoResult {
 
     public void calculateResult(WinningLotto winningLotto) {
         int matchCount = calculateMatchCount(winningLotto);
-        boolean isBonusMatch = resolveBonusMatch(winningLotto);
-        winningType = WinningType.findByMatchCount(matchCount, isBonusMatch);
+        boolean isBonusMatch = resolveBonusMatch(matchCount, winningLotto);
+        winningType = WinningType.findByCondition(matchCount, isBonusMatch);
     }
 
     private int calculateMatchCount(WinningLotto winningLotto) {
@@ -27,7 +27,10 @@ public class LottoResult {
         return matchCount;
     }
 
-    private boolean resolveBonusMatch(WinningLotto winningLotto) {
+    private boolean resolveBonusMatch(int matchCount, WinningLotto winningLotto) {
+        if (matchCount != WinningType.SECOND.getMatchCount()) {
+            return false;
+        }
         return lottoNumbers.getNumbers().contains(winningLotto.getBonusNumber());
     }
 

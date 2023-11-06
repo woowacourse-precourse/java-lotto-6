@@ -6,22 +6,25 @@ import lotto.global.constant.WinningType;
 
 public class LottoStatistics {
 
-    private final Map<WinningType, Long> statistics;
+    private final Map<WinningType, Integer> statistics;
 
-    public LottoStatistics(Map<WinningType, Long> statistics) {
+    public LottoStatistics(Map<WinningType, Integer> statistics) {
         this.statistics = statistics;
         Arrays.stream(WinningType.values())
-                .forEach(winningType -> statistics.put(winningType, 0L));
+                .forEach(winningType -> statistics.put(winningType, 0));
     }
 
-    public Map<WinningType, Long> getStatistics() {
+    public Map<WinningType, Integer> getStatistics() {
         return statistics;
     }
 
     public Long getTotalWinningMoney() {
-        return statistics.values()
+        return statistics.entrySet()
                 .stream()
-                .reduce(0L, Long::sum);
+                .reduce(
+                        0L,
+                        (sum, entry) -> sum + (entry.getKey().getRevenue() * entry.getValue()),
+                        Long::sum
+                );
     }
-
 }

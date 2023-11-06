@@ -1,6 +1,7 @@
 package lotto.domain.controller;
 
-import static lotto.global.constant.LottoNumberType.*;
+import static java.lang.Math.round;
+import static lotto.global.constant.LottoNumberType.LOTTO_AMOUNT_UNIT;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -14,6 +15,9 @@ import lotto.global.view.OutputView;
 
 public class LottoController {
 
+    private static final int PERCENTAGE_VALUE = 100;
+    private static final double MULTIPLIER = 10.0;
+
     private final ClientService clientService;
     private final LottoService lottoService;
     private final NumbersGenerator numbersGenerator;
@@ -26,11 +30,14 @@ public class LottoController {
 
     public void run() {
         long purchaseAmount = getPurchaseAmount();
-        LottoResultManager lottoResultManager = lottoService.generateLottoNumbers(numbersGenerator, purchaseAmount / 1000);
+        LottoResultManager lottoResultManager = lottoService.generateLottoNumbers(numbersGenerator,
+                purchaseAmount / LOTTO_AMOUNT_UNIT.getValue());
         OutputView.outputLottoNumbers(lottoResultManager.getLottoResults());
         WinningLotto winningLotto = getWinningLotto();
         lottoResultManager.calculateResult(winningLotto);
-        OutputView.outputStatistics(Math.round(lottoResultManager.getTotalRevenue()/(double)purchaseAmount * 1000) / 10.0, lottoResultManager);
+        OutputView.outputStatistics(
+                round(lottoResultManager.getTotalRevenue() / (double) purchaseAmount * PERCENTAGE_VALUE * MULTIPLIER)
+                        / MULTIPLIER, lottoResultManager);
     }
 
     private WinningLotto getWinningLotto() {
@@ -53,7 +60,8 @@ public class LottoController {
         OutputView.commonOutputLine(ConsoleType.INPUT_PURCHASE_AMOUNT.getComment());
         long purchaseAmount = clientService.getPurchaseAmount();
         OutputView.commonOutputLine(ConsoleType.EMPTY.getComment());
-        OutputView.commonOutputLine(ConsoleType.OUTPUT_PURCHASE.getComment(String.valueOf(purchaseAmount / LOTTO_AMOUNT_UNIT.getValue())));
+        OutputView.commonOutputLine(
+                ConsoleType.OUTPUT_PURCHASE.getComment(String.valueOf(purchaseAmount / LOTTO_AMOUNT_UNIT.getValue())));
         return purchaseAmount;
     }
 }

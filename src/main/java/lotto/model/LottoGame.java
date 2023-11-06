@@ -16,7 +16,7 @@ public class LottoGame {
         this.lottoTickets = lottoTickets;
     }
 
-    public WinningDetails getResults() {
+    public WinningDetails play() {
         final Map<LottoRank, Long> frequencies = calculateRankFrequencies();
         final WinningDetails winningDetails = new WinningDetails();
 

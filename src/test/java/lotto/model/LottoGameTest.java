@@ -23,7 +23,7 @@ public class LottoGameTest {
     ) {
         // when
         final LottoGame lottoGame = new LottoGame(winningNumber, lottoTickets);
-        final WinningDetails winningDetails = lottoGame.getResults();
+        final WinningDetails winningDetails = lottoGame.play();
         final List<WinningSummary> summaries = winningDetails.getResults();
 
         // then
@@ -54,7 +54,7 @@ public class LottoGameTest {
             final List<Lotto> lottoTickets
     ) {
         final LottoGame lottoGame = new LottoGame(winningNumber, lottoTickets);
-        final WinningDetails winningDetails = lottoGame.getResults();
+        final WinningDetails winningDetails = lottoGame.play();
         final BigDecimal totalAmount = winningDetails.sumUpWinningAmount();
         assertThat(totalAmount).isEqualByComparingTo(BigDecimal.valueOf(2_000_010_000L));
     }

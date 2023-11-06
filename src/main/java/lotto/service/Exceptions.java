@@ -14,7 +14,7 @@ public class Exceptions {
         }
     }
 
-    public void isInvalidNumberOfBonusNumber(String bonus){
+    public void isInvalidNumberOfBonusNumber(String bonus){ // try catch vs if ?
         try {
             int bonusNumber = Integer.parseInt(bonus);
             if(bonusNumber <= 1 || bonusNumber >= 45){
@@ -22,6 +22,12 @@ public class Exceptions {
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("유효하지 않은 숫자 형식입니다.");
+        }
+    }
+
+    public void isInvalidNullNumber(String number) {
+        if(number.contains(" ") || number.contains(",,")) {
+            throw new IllegalArgumentException("이름은 공백이거나 null값이 될 수 없습니다.");
         }
     }
 }

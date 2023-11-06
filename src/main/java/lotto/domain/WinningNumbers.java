@@ -2,9 +2,12 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import lotto.util.ErrorMessage;
 
-public class WinningNumbers extends Lotto{
+public class WinningNumbers extends Lotto {
 
     private BonusNumber bonusNumber;
 
@@ -47,5 +50,46 @@ public class WinningNumbers extends Lotto{
         if (this.containsNumber(bonusNumber.number())) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_UNIQUE.getMessage());
         }
+    }
+
+    /**
+     * WinningNumbers 객체 생성 후 setBonusNumber() 로 보너스 숫자를 설정 설정하기 전에 bonusNumber를 호출하는 것을 방지하기 위한 유효성 검사
+     */
+    private void validateBonusNumberInitialized() {
+        if (bonusNumber == null) {
+            throw new IllegalStateException(ErrorMessage.BONUS_NUMBER_NOT_SET.getMessage());
+        }
+    }
+
+    public LottoPrizeBreakdown createLottoPrizeBreakdown(List<Lotto> lottoTickets) {
+        Map<LottoRank, Integer> prizeDetails = initPrizeDetails();
+        for (Lotto lotto : lottoTickets) {
+            int matchCount = getWinningNumberMatchCount(lotto);
+            boolean matchBonus = isMatchBonus(lotto);
+            updatePrizeDetail(matchCount, matchBonus, prizeDetails);
+        }
+
+        return new LottoPrizeBreakdown(prizeDetails);
+    }
+
+    private Map<LottoRank, Integer> initPrizeDetails() {
+        return Arrays.stream(LottoRank.values())
+                .collect(Collectors.toMap(Function.identity(), rank -> 0));
+    }
+
+    private void updatePrizeDetail(int matchCount, boolean matchBonus, Map<LottoRank, Integer> prizeDetails) {
+        LottoRank.find(matchCount, matchBonus)
+                .ifPresent(rank -> prizeDetails.merge(rank, 1, Integer::sum));
+    }
+
+    private boolean isMatchBonus(Lotto lotto) {
+        validateBonusNumberInitialized();
+        return lotto.containsNumber(bonusNumber.number());
+    }
+
+    private int getWinningNumberMatchCount(Lotto lotto) {
+        return (int) getNumbers().stream()
+                .filter(lotto::containsNumber)
+                .count();
     }
 }

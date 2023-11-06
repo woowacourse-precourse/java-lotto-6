@@ -14,7 +14,8 @@ public enum ErrorMessage {
     INVALID_AMOUNT_LESS_THAN_MINIMUM("[ERROR] 구입 금액은 최소 1000원부터 가능합니다."),
     INVALID_INPUT_BONUS_NUMBER("[ERROR] 유효하지 않은 보너스 번호입니다."),
     INVALID_BONUS_NUMBER_IN_RANGE("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다."),
-    BONUS_NUMBER_UNIQUE("[ERROR] 보너스 번호는 중복될 수 없습니다.");
+    BONUS_NUMBER_UNIQUE("[ERROR] 보너스 번호는 중복될 수 없습니다."),
+    BONUS_NUMBER_NOT_SET("[ERROR] 보너스 번호가 설정되지 않았습니다.");
 
     private final String message;
 

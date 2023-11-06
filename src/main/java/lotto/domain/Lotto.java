@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.util.ErrorMessage;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -39,7 +40,7 @@ public class Lotto {
         return numbers.stream()
                 .allMatch(number ->
                         number >= LottoNumberRule.MIN.number() &&
-                        number <= LottoNumberRule.MAX.number()
+                                number <= LottoNumberRule.MAX.number()
                 );
     }
 
@@ -63,8 +64,12 @@ public class Lotto {
         return ErrorMessage.LOTTO_NUMBER_UNIQUE.getMessage();
     }
 
-    public boolean containsNumber(int number) {
+    protected boolean containsNumber(int number) {
         return this.numbers.contains(number);
+    }
+
+    protected List<Integer> getNumbers() {
+        return Collections.unmodifiableList(this.numbers);
     }
 
     @Override

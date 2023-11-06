@@ -1,24 +1,37 @@
 package lotto.service;
 
-import java.util.HashSet;
-import java.util.Set;
+import static lotto.domain.LottoRule.LOTTO_LENGTH;
+import static lotto.domain.LottoRule.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoRule.MIN_LOTTO_NUMBER;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.LottoRule;
 
 public class LottoGeneratorService {
 
-    private final LottoNumberGeneratorService lottoNumberGeneratorService;
+    public Lotto generateLotto() {
 
-    public LottoGeneratorService(LottoNumberGeneratorService lottoNumberGeneratorService) {
-        this.lottoNumberGeneratorService = lottoNumberGeneratorService;
+        List<Integer> numbers = generateUniqueNumbers();
+        List<LottoNumber> lottoNumbers = mapToLottoNumbers(numbers);
+        return createLotto(lottoNumbers);
     }
 
-    public Lotto generateLotto() {
-        Set<LottoNumber> uniqueLottoNumbers = new HashSet<>();
-        while (uniqueLottoNumbers.size() < LottoRule.LOTTO_LENGTH.getValue()) {
-            uniqueLottoNumbers.add(lottoNumberGeneratorService.generate());
-        }
-        return Lotto.from(uniqueLottoNumbers.stream().toList());
+    private Lotto createLotto(List<LottoNumber> lottoNumbers) {
+        return Lotto.from(lottoNumbers);
+    }
+
+    private List<LottoNumber> mapToLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::from)
+                .toList();
+    }
+
+    private List<Integer> generateUniqueNumbers() {
+        return Randoms.pickUniqueNumbersInRange(
+                MIN_LOTTO_NUMBER.getValue(),
+                MAX_LOTTO_NUMBER.getValue(),
+                LOTTO_LENGTH.getValue());
     }
 }

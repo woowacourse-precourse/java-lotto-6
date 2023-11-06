@@ -25,4 +25,11 @@ public class LottoController {
         return new WinningNumber(answer);
     }
 
+    private WinningNumber receiveBonusNumber(WinningNumber winningNumber) {
+        lottoView.printInputBonusNumber();
+        String answer = Console.readLine();
+        winningNumber.setBonusNumber(answer);
+        return winningNumber;
+    }
+
 }

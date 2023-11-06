@@ -20,7 +20,7 @@ public class LottoController {
         Lotto lotto = createWinningNumber();
         LottoBonus lottoBonus = createBonusNumber(lotto);
         HashMap<Integer, List<Integer>> compareLottoNumResult = compareLottoNumber(lottoGenerate, lotto, lottoBonus);
-        printResult(checkPrizeByLotto(compareLottoNumResult));
+        printResult(checkPrizeByLotto(compareLottoNumResult), lottoCost.getCost());
     }
 
     private LottoCost createLottoCost() {
@@ -107,13 +107,40 @@ public class LottoController {
         }
     }
 
-    private void printResult(HashMap<String, Integer> countByPrize) {
+    private void printResult(HashMap<String, Integer> countByPrize, int lottoCost) {
         System.out.println(output.printResultMessage());
         printFifthPrizeCount(countByPrize);
         printFourthPrizeCount(countByPrize);
         printThirdPrizeCount(countByPrize);
         printSecondPrizeCount(countByPrize);
         printFirstPrizeCount(countByPrize);
+        printReturnRate(countByPrize, lottoCost);
+    }
+
+    private void printReturnRate(HashMap<String, Integer> countByPrize, int lottoCost) {
+        System.out.printf(output.printReturnRate(), getReturnRate(countByPrize, lottoCost));
+    }
+
+    private float getReturnRate(HashMap<String, Integer> countByPrize, int lottoCost) {
+        int totalFirstReward = rewardToNumber(Config.FIRST_PRIZE_REWARD)
+                * countByPrize.get(Config.FIRST_PRIZE_REWARD);
+        int totalSecondReward = rewardToNumber(Config.SECOND_PRIZE_REWARD)
+                * countByPrize.get(Config.SECOND_PRIZE_REWARD);
+        int totalThirdReward = rewardToNumber(Config.THIRD_PRIZE_REWARD)
+                * countByPrize.get(Config.THIRD_PRIZE_REWARD);
+        int totalFourthReward = rewardToNumber(Config.FIFTH_PRIZE_REWARD)
+                * countByPrize.get(Config.FOURTH_PRIZE_REWARD);
+        int totalFifthReward = rewardToNumber(Config.FIFTH_PRIZE_REWARD)
+                * countByPrize.get(Config.FIFTH_PRIZE_REWARD);
+
+        int totalReward = totalFirstReward + totalSecondReward + totalThirdReward
+                + totalFourthReward + totalFifthReward;
+
+        return (float) totalReward / lottoCost * Config.PERCENTAGE;
+    }
+
+    private int rewardToNumber(String reward) {
+        return Integer.parseInt(reward.replace(Config.THOUSANDS_SEPARATOR, ""));
     }
 
     private void printFirstPrizeCount(HashMap<String, Integer> countByPrize) {

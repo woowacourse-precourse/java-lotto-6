@@ -1,46 +1,69 @@
 package lotto.controller;
 
+import lotto.Dto.ErrorDto;
 import lotto.domain.Lotto;
-import lotto.domain.LottoComputer;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+
 public class LottoService {
 
-    InputView inputView;
-    OutputView outputView;
-
+    private final InputView inputView;
+    private final OutputView outputView;
+    private LottoGenerator lottoGenerator;
+    private Integer userMoney;
     private Lottos myLottos;
-    private Lotto luckyLotto;
-    private int myBonusNumber;
+    private Integer myBonusNumber;
+    private Lotto winnerLotto;
 
     public LottoService(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoGenerator = new LottoGenerator();
     }
 
     public void run() {
-        outputView.askMoney();
-        LottoGenerator lottoGenerator = new LottoGenerator(inputView.readMoney());
+        handleUserMoney();
 
-        myLottos = lottoGenerator.wishMeLuck();
-        outputView.showLottoTickets();
-
-        handleUserNumber();
-
-        LottoComputer lottoComputer = new LottoComputer(luckyLotto, myBonusNumber);
-        outputView.showResult(lottoComputer.simulate());
+        myLottos = lottoGenerator.generateMyTickets();
+        outputView.showMyTickets();
+//
+//        handleWinnerNumber();
+//        handleBonusNumber();
+//
+//        LottoComputer lottoComputer = new LottoComputer(winnerLotto, myBonusNumber); // myLottos use DTO
+//        outputView.showResult(lottoComputer.simulate());
     }
 
-    private void handleUserNumber() {
-        outputView.askLuckyNumber();
-        luckyLotto = inputView.readLuckyNumber();
-
+    private void handleBonusNumber() {
         outputView.askBonusNumber();
-        myBonusNumber = inputView.readBonusNumber();
+        inputView.readBonusNumber();
     }
 
+    private void handleWinnerNumber() {
+        outputView.askWinnerNumber();
+        inputView.readWinnerNumber();
+    }
 
+    private void handleUserMoney() {
+        outputView.askMoney();
+        ErrorDto errorDto = new ErrorDto(false, "");
+        String money = "";
+        handleOnlyDigitCase(errorDto, money);
+//        Exception(inputView,OutputView,)
+    }
+
+    private void handleOnlyDigitCase(ErrorDto errorDto, String money) {
+        while (true) {
+            try {
+                money = inputView.readMoney();
+                lottoGenerator.checkInputFormat(money);
+                break;
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
 }

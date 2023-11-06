@@ -26,4 +26,10 @@ public class LottoMachine {
 
         return numbers;
     }
+
+    public void printLotto(List<Lotto> lottos) {
+        for (Lotto list : lottos) { //랜덤으로 생성된 로또 출력
+            System.out.println(list.getNumbers());
+        }
+    }
 }

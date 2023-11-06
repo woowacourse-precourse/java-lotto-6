@@ -1,24 +1,24 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoResultChecker {
-    private final Lotto lotto;
     private final WinningLotto winningLotto;
 
-    public LottoResultChecker(Lotto lotto, WinningLotto winningLotto) {
-        this.lotto = lotto;
+    public LottoResultChecker(WinningLotto winningLotto) {
         this.winningLotto = winningLotto;
     }
 
-    public Result check() {
+    public Result check(Lotto lotto) {
 
         int matchingNumbers = (int) lotto.getNumbers().stream()
                 .filter(winningLotto.getNumbers()::contains)
                 .distinct()
                 .count();
 
-        boolean bonus = false;
-        if (lotto.getNumbers().contains(winningLotto.getBonus())) bonus = true;
+        boolean bonus = lotto.getNumbers().contains(winningLotto.getBonus());
 
         return Result.from(matchingNumbers, bonus);
     }
+
 }

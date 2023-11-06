@@ -55,7 +55,7 @@ public class LotteryGame {
             }
         } while (inputFail);
 
-        return price.orElseThrow(() -> new IllegalStateException("복권 가격을 정할 수 없습니다."));
+        return price.orElseThrow(() -> new RuntimeException("복권 가격을 정할 수 없습니다."));
     }
 
     private LuckyTicket makeLuckyTicket() {

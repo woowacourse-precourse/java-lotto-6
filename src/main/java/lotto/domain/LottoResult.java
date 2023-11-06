@@ -18,9 +18,7 @@ public class LottoResult {
     }
 
     public Map<LottoRank, Integer> getResult() {
-        HashMap<LottoRank, Integer> copiedResult = new HashMap<>(result);
-        copiedResult.remove(LottoRank.OUT_RANK);
-        return copiedResult;
+        return new HashMap<>(result);
     }
 
     public double calculateProfitRate(Payment payment) {

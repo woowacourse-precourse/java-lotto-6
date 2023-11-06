@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.model.Bonus;
 import lotto.domain.model.Lotto;
 import lotto.domain.service.LottoService;
 import lotto.ui.input.InputView;
@@ -41,6 +42,13 @@ public class LottoController {
         return new Lotto(winningMain);
     }
 
+    public Bonus setUPWinningBonus() {
+        String input = InputView.input();
+
+        int winningBonus = makeInt(input);
+        return new Bonus(winningBonus);
+    }
+
     private long makeLong(String price) {
         try {
             return Long.parseLong(price);
@@ -56,6 +64,14 @@ public class LottoController {
                     .mapToInt(Integer::parseInt)
                     .boxed()
                     .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INPUT_NOT_INT, e);
+        }
+    }
+
+    private int makeInt(String input) {
+        try {
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INPUT_NOT_INT, e);
         }

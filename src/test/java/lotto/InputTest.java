@@ -48,24 +48,24 @@ public class InputTest {
         // 정상적인 경우 테스트
         assertThat(input.bonusNumberInput("11"))
                 .isEqualTo(new ArrayList<>(Arrays.asList(11)));
-        assertThat(input.purchaseAmountInput("45"))
+        assertThat(input.bonusNumberInput("45"))
                 .isEqualTo(new ArrayList<>(Arrays.asList(45)));
 
         // 비정상적인 경우 테스트
         // 문자열에 숫자를 제외한 다른 문자가 있을 경우
-        assertThatThrownBy(() -> input.purchaseAmountInput("!1"))
+        assertThatThrownBy(() -> input.bonusNumberInput("!1"))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> input.purchaseAmountInput("1#"))
+        assertThatThrownBy(() -> input.bonusNumberInput("1#"))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> input.purchaseAmountInput("-23"))
+        assertThatThrownBy(() -> input.bonusNumberInput("-23"))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> input.purchaseAmountInput("+5"))
+        assertThatThrownBy(() -> input.bonusNumberInput("+5"))
                 .isInstanceOf(IllegalArgumentException.class);
         // 문자열이 비어있는 경우
-        assertThatThrownBy(() -> input.purchaseAmountInput(""))
+        assertThatThrownBy(() -> input.bonusNumberInput(""))
                 .isInstanceOf(IllegalArgumentException.class);
         // 보너스 번호가 1 ~ 45 사이가 아닐 경우
-        assertThatThrownBy(() -> input.purchaseAmountInput("1234"))
+        assertThatThrownBy(() -> input.bonusNumberInput("1234"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

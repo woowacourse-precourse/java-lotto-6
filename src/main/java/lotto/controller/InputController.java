@@ -43,4 +43,16 @@ public class InputController {
         }
         return new Lotto(lottoNumbers);
     }
+
+    public int inputLottoBonusNumber() {
+        String input = Console.readLine();
+        try {
+            inputValidator.validateInputType(input);
+            List<Integer> inputBonus = Arrays.asList(Integer.parseInt(input));
+            inputValidator.validateLottoNumberRange(inputBonus);
+        } catch (IllegalArgumentException e) {
+            inputLottoBonusNumber();
+        }
+        return Integer.parseInt(input);
+    }
 }

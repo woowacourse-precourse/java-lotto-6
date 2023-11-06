@@ -12,10 +12,17 @@ public class WinningNumbers {
         InputView.showAskWinningNumbers();
         String inputWinningNumbers = Console.readLine();
         List<String> isSplitWinningNumbers = Arrays.asList(inputWinningNumbers.split(","));
+        checkInputValidation(inputWinningNumbers, isSplitWinningNumbers);
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number : isSplitWinningNumbers) {
             winningNumbers.add(Integer.parseInt(number));
         }
         return winningNumbers;
+    }
+
+    private void checkInputValidation(String inputWinningNumbers, List<String> isSplitWinningNumbers) {
+        InputValidator.isNullOrIsEmpty(inputWinningNumbers);
+        InputValidator.includeSymbolExceptComma(inputWinningNumbers);
+        InputValidator.isNotDigit(isSplitWinningNumbers);
     }
 }

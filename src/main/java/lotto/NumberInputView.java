@@ -26,7 +26,7 @@ public class NumberInputView {
         String input = Console.readLine();
         integrating(input);
         try {
-//            validateLength();
+            validateLength();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             validate();
@@ -37,5 +37,11 @@ public class NumberInputView {
         this.numbers = Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList());
+    }
+
+    private void validateLength() {
+        if (numbers.size() != COLUMN) {
+            throw new IllegalArgumentException("[ERROR] : 6자리 숫자를 입력해주세요.");
+        }
     }
 }

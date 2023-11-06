@@ -51,7 +51,7 @@ public class Lotto {
     }
 
     private StringBuilder getInformation(int sizeNumbers, List<Integer> organizeNumbers) {
-        int num;
+        int num = 0;
         StringBuilder informationOfNumbers = new StringBuilder();
 
         appendStringBuild(informationOfNumbers, START_APPEND_STING);

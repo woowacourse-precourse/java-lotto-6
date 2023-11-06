@@ -98,4 +98,46 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.WINNING_NUMBERS_DUPLICATION.getMessage());
     }
+
+    @DisplayName("보너스 번호를 입력할 때 숫자가 아닌 값이 포함되어 있으면 예외가 발생한다.")
+    @Test
+    void setBonusNumberByNonNumericalValue() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        BonusNumber bonusNumber = new BonusNumber();
+        String playerInput = "A";
+        WinningNumberController winningNumberController = new WinningNumberController();
+
+        assertThatThrownBy(() -> winningNumberController.setInputToBonusNumber(winningNumbers, bonusNumber, playerInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.NOT_NUMBER.getMessage());
+    }
+
+    @DisplayName("보너스 번호가 1 ~ 45의 범위를 벗어날 경우 예외가 발생한다.")
+    @Test
+    void setBonusNumberByOutOfRangeNumber() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        BonusNumber bonusNumber = new BonusNumber();
+        String playerInput = "100";
+        WinningNumberController winningNumberController = new WinningNumberController();
+
+        assertThatThrownBy(() -> winningNumberController.setInputToBonusNumber(winningNumbers, bonusNumber, playerInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.NUMBER_OUT_OF_RANGE.getMessage());
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 경우 예외가 발생한다.")
+    @Test
+    void setBonusNumberByDuplicateNumber() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        winningNumbers.setWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+
+        BonusNumber bonusNumber = new BonusNumber();
+        String playerInput = "1";
+        WinningNumberController winningNumberController = new WinningNumberController();
+
+        assertThatThrownBy(() -> winningNumberController.setInputToBonusNumber(winningNumbers, bonusNumber, playerInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.BONUS_NUMBER_DUPLICATION_WITH_WINNING_NUMBERS.getMessage());
+    }
+
 }

@@ -40,6 +40,9 @@ public class Validation {
     }
 
     private static void validateNumberCount(List<String> input){
+        if (input.size() != 6){
+            throw new IllegalArgumentException(INPUT_WINNING_NUMBER_COUNT_EXCEPTION_MSG);
+        }
     }
 
     private static List<Integer> validateIntegers(List<String> input){

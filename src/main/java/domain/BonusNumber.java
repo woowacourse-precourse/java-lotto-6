@@ -37,7 +37,7 @@ public class BonusNumber {
 	}
 
 	private void validateWinningLottoNumberDuplicate(int bonusNumber, Lotto lotto) {
-		if (isWinningLottoNumberDuplicate(bonusNumber, lotto)) {
+		if (!isWinningLottoNumberDuplicate(bonusNumber, lotto)) {
 			throw new IllegalArgumentException("[ERROR] 당첨 번호에 없는 번호를 입력해주세요");
 		}
 	}

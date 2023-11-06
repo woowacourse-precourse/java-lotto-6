@@ -36,7 +36,7 @@ class BonusNumberTest {
 	@Test
 	public void BonusNumberInWinningNumbers() {
 		//given
-		String input = "7";
+		String input = "1";
 
 		// when & then
 		assertThatThrownBy(() -> new BonusNumber(input, winnigLotto))

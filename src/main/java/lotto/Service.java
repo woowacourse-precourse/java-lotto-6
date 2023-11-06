@@ -19,8 +19,10 @@ public class Service {
 
     public List<List<Integer>> lottoDraw(int amount) {
         for (int i = 0; i < amount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                    .stream()
+                    .sorted()
+                    .collect(Collectors.toList());
             user.add(numbers);
         }
         return user.getLottoNum();

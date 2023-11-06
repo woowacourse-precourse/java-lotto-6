@@ -70,6 +70,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 그릇된_형식_테스트(){
+        List<String> 형식에러리스트 = List.of("1","2","a","b","5","8");
+        assertThatThrownBy(() ->
+                Validator.validateLottoNumLimit(형식에러리스트))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 
 }

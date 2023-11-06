@@ -50,6 +50,19 @@ public class Validator {
             throw new IllegalArgumentException("숫자와 쉼표를 입력하세요");
         }
     }
+    public static void validateBonusNumLimit(String bonusNum){
+        if(Integer.parseInt(bonusNum) < 1 || Integer.parseInt(bonusNum) >45){
+                throw new IllegalArgumentException("1~45의 숫자만 입력 가능합니다.");
+        }
+    }
+
+    public static void validateBonusNumChange(String bonusNum){
+        try{
+            Integer.parseInt(bonusNum);
+        }catch (Exception e){
+            throw new IllegalArgumentException("숫자를 입력하세요");
+        }
+    }
 
 
 

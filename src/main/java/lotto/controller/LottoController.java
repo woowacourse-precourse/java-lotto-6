@@ -35,7 +35,12 @@ public class LottoController {
         Validator.validateLottoIsNum(selectedNumbers);
         Validator.validateLottoNumLimit(selectedNumbers);
         System.out.println(selectedNumbers);
+    }
 
+    public static void inputBonusNumber(){
+        InputView.requestBonusNumber();
+        String bonusNum = Console.readLine();
+        Validator.validateBonusNumChange(bonusNum);
     }
 
     public static void lottoCount(String amount){

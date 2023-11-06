@@ -11,6 +11,7 @@ public class Application {
             System.out.println(e.getMessage());
         }
         LottoController.inputSelectedNumbers();
+        LottoController.inputBonusNumber();
 
     }
 }

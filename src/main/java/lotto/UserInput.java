@@ -70,4 +70,14 @@ public class UserInput {
         }
         return false;
     }
+
+    public static int getBonusNumber() {
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            input = input.trim();
+            int bonusNumber = Integer.parseInt(input);
+            return bonusNumber;
+        }
+    }
 }

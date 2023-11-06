@@ -79,7 +79,6 @@ public class Controller {
 
         for (int i = 0; i < money / Constant.LOTTO_PRICE; i++) {
             Lotto lotto = new Lotto(LottoService.makeRandomLottoNumber());
-            lotto.sortNumbers();
             lottos.put(lotto, Rank.NONE);
         }
 

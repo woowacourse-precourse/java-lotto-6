@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
 import lotto.model.User;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class UserOutput {
@@ -28,7 +30,9 @@ public class UserOutput {
         ConsolePrintNewLine("");
         ConsolePrintNewLine(user.getNumber() + Message.OUTPUT_BOUGHT_NUMBER);
         for (Lotto lotto : user.getLottos().keySet()) {
-            ConsolePrintNewLine(lotto.toString());
+            List<Integer> copy_lotto = new ArrayList<>(List.copyOf(lotto.getNumbers()));
+            Collections.sort(copy_lotto);
+            ConsolePrintNewLine(copy_lotto.toString());
         }
         ConsolePrintNewLine("");
     }

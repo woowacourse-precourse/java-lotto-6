@@ -1,9 +1,6 @@
 package lotto.model;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,14 +22,5 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    @Override
-    public String toString(){
-        return String.join(", ", String.valueOf(numbers));
-    }
-
-    public void sortNumbers(){
-        numbers.sort(Comparator.naturalOrder());
     }
 }

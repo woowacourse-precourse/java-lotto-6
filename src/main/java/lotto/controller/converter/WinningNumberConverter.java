@@ -1,11 +1,10 @@
-package lotto.controller;
+package lotto.controller.converter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.GameConstants;
+import lotto.utils.GameConstants;
 
 public class WinningNumberConverter implements Converter<Map<Integer, Integer>> {
     @Override
@@ -13,7 +12,6 @@ public class WinningNumberConverter implements Converter<Map<Integer, Integer>> 
         String[] splitWinningNumbers = WinningNumbers.split(GameConstants.SEPARATOR);
 
         List<Integer> numericWinningNumbers = getNumericWinningNumbers(splitWinningNumbers);
-        Collections.sort(numericWinningNumbers);
 
         return getSequencedWinningNumbers(numericWinningNumbers);
     }

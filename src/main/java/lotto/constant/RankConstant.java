@@ -20,4 +20,8 @@ public final class RankConstant {
     /** 3개 번호 일치 */
     public static final String FIFTH = "FIFTH";
     public static final int FIFTH_WINNINGS = 5_000;
+
+
+    /** 해당 없음 */
+    public static final String NONE = "NONE";
 }

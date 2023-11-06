@@ -3,8 +3,6 @@ package lotto.Controller;
 import lotto.Domain.Lotto;
 import lotto.View.LottoView;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,15 +25,10 @@ public class LottoController {
     private List<Lotto> generateTickets(int ticketCount) {
         List<Lotto> purchasedTickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            Lotto lotto = generateRandomLotto();
-            purchasedTickets.add(lotto);
+            Lotto randomLotto = Lotto.generateRandomLotto();
+            purchasedTickets.add(randomLotto);
         }
         return purchasedTickets;
-    }
-
-    private Lotto generateRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(randomNumbers);
     }
 
     private List<Integer> getWinningNumbersFromUser() {
@@ -68,7 +61,7 @@ public class LottoController {
     private List<String> calculatePrizes(List<Lotto> purchasedTickets, List<Integer> winningNumbers) {
         List<String> results = new ArrayList<>();
         for (Lotto lotto : purchasedTickets) {
-            int matchingNumbers = countMatchingNumbers(lotto, winningNumbers);
+            int matchingNumbers = countMatchingNumbers(lotto.getNumbers(), winningNumbers);
             boolean hasBonusNumber = lotto.getNumbers().contains(winningNumbers.get(6));
             String result = calculatePrize(matchingNumbers, hasBonusNumber);
             results.add(result);
@@ -76,9 +69,9 @@ public class LottoController {
         return results;
     }
 
-    private int countMatchingNumbers(Lotto lotto, List<Integer> winningNumbers) {
+    private int countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int count = 0;
-        for (int number : lotto.getNumbers()) {
+        for (int number : lottoNumbers) {
             if (winningNumbers.contains(number)) {
                 count++;
             }
@@ -103,5 +96,4 @@ public class LottoController {
         }
         return result;
     }
-
 }

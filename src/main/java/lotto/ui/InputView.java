@@ -15,6 +15,8 @@ public final class InputView extends ConsoleWriter {
     }
 
     public List<Integer> readAnswerNumber() {
+        this.newLine();
+        this.println("당첨 번호를 입력해 주세요.");
         return Arrays.stream(Console.readLine().split(",")).map(splitStr -> {
             try {
                 return Integer.parseInt(splitStr);
@@ -22,5 +24,15 @@ public final class InputView extends ConsoleWriter {
                 throw new IllegalArgumentException();
             }
         }).toList();
+    }
+
+    public int readBonusNumber() {
+        this.newLine();
+        this.println("보너스 번호를 입력해 주세요.");
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException();
+        }
     }
 }

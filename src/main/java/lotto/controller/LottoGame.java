@@ -34,6 +34,7 @@ public class LottoGame {
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
+        outputView.printLotto(lottos);
     }
 
     private void purchaseAmount() {

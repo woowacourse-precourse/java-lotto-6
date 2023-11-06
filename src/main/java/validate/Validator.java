@@ -1,7 +1,9 @@
 package validate;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public abstract class Validator {
@@ -14,6 +16,22 @@ public abstract class Validator {
             throw new IllegalStateException("[ERROR] 로또 번호의 숫자는 중복될 수 없습니다..");
         }
 
+    }
+    public static int[] validateWinningNumber(String[] winningLottoNumber) {
+        int[] numbers = Arrays.stream(winningLottoNumber)
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        Arrays.sort(numbers);
+
+        Set<Integer> winningNumbers = new HashSet<>();
+        for (int number : numbers) {
+            boolean isAdded = winningNumbers.add(number);
+            if (!isAdded) { //set에 추가 되지 않았다면 중복이 있는것.
+                throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 서로 중복될 수 없습니다.");
+            }
+        }
+        return numbers;
     }
 
     public static void isInvalidPriceUnit(int userInputPrice) {

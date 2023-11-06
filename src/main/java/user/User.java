@@ -8,10 +8,10 @@ public class User {
     private int[] winningLottoNumber;
     private static final int DIVISION_NUM_FOR_TICKET = 1000;
 
-    public User(int lottoTicketPrice, int bonusNumber, String[] winningLottoNumber) {
+    public User(int lottoTicketPrice, int bonusNumber, int[] winningLottoNumber) {
         this.lottoTicketPrice = lottoTicketPrice;
         this.bonusNumber = bonusNumber;
-        setWinningNumbers(winningLottoNumber);
+        this.winningLottoNumber = winningLottoNumber;
     }
 
     public void setLottoTicketPrice(int lottoTicketPrice) {
@@ -20,21 +20,19 @@ public class User {
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
-    public void setWinningNumbers(String[] winningLottoNumber) {
-        this.winningLottoNumber = Arrays.stream(winningLottoNumber)
-                .mapToInt(Integer::parseInt)
-                .toArray();
+    public void setWinningNumbers(int[] winningLottoNumber) {
+        this.winningLottoNumber = winningLottoNumber;
     }
 
     public int inputLottoTicketPrice() {
-        return lottoTicketPrice / DIVISION_NUM_FOR_TICKET;
+        return this.lottoTicketPrice / DIVISION_NUM_FOR_TICKET;
     }
 
-    public int inputBonusNumber() {
-        return bonusNumber;
+    public int getInputBonusNumber() {
+        return this.bonusNumber;
     }
 
     public int[] getInputWinningLottoNumber() {
-        return winningLottoNumber;
+        return this.winningLottoNumber;
     }
 }

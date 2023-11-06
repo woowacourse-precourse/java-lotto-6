@@ -52,8 +52,9 @@ public class Application {
                     System.out.println("\n당첨 통계");
                     System.out.println("---");
                     Map<WinningStatus, Integer> results = new TreeMap<>();
+                    // Enum을 통해 아래의 prizes는 쓸모 없어짐
                     // 3개 일치 (5,000원), 4개 일치 (50,000원), 5개 일치 (1,500,000원), 5개 일치, 보너스 볼 일치 (30,000,000원), 6개 일치 (2,000,000,000원)
-                    int[] prizes = {0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000};
+                    // int[] prizes = {0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000};
 
                     lottos.forEach(lotto -> {
                             int matchCount = lotto.numOfMatches(winningNumbers);

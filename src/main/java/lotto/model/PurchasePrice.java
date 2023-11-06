@@ -1,11 +1,14 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class PurchasePrice {
 
     private final int PIECE_OF_LOTTO;
     private static final int LOTTO_PRICE_EACH = 1000;
 
     public PurchasePrice(String priceFromUser){
+
         isNotDigits(priceFromUser);
         isUnder1000(priceFromUser);
         isNotDivisibleBy1000(priceFromUser);
@@ -22,9 +25,14 @@ public class PurchasePrice {
         }
     }
     private void isNotDigits(String purchasePrice) throws IllegalArgumentException{
-        if(!purchasePrice.matches("^[0-9]+$")){
-            throw new IllegalArgumentException("[ERROR] 올바른 금액을 입력해주세요.");
+        try{
+            if(purchasePrice.matches("[^0-9]")){
+                throw new IllegalArgumentException("[ERROR] 올바른 금액을 입력해주세요.");
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
+
     }
     private void isNotDivisibleBy1000(String purchasePrice) throws IllegalArgumentException{
         if(Integer.parseInt(purchasePrice) % 1000 != 0){

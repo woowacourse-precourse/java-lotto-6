@@ -2,7 +2,7 @@ package lotto.model;
 
 public class BonusNumber {
     private static final String SPECIAL_REGEX = "[!@#$%^&*()_+=\\[\\]{};':,\"\\\\|.<>/?-]";
-    private static final String NUMERIC_REGEX = "[1-9]+";
+    private static final String NUMERIC_REGEX = "^[0-9]+$";
 
     private final String BONUS_NUMBER;
     private final int PURCHASE_PRICE;

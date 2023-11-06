@@ -23,26 +23,38 @@ public class LottoControl {
 
 
     public LottoControl(){
-        setPriceFromUser();
-        purchasePrice = new PurchasePrice(PRICE_FROM_USER);
+        setPurchasePrice();
+
+
+
         printLottoAmount();
+
         generateLottoNumbers = new GenerateLottoNumbers(PIECE_OF_LOTTO);
         printAllLottos();
+
         lottoWinNumbers = new LottoWinNumbers(InputView.getWinNumberFromUserInput());
         WIN_NUMBERS = lottoWinNumbers.getLottoWinNumbers();
+
         BonusNumber bonusNumber = new BonusNumber(InputView.getBonusNumberFromUserInput());
         BONUS_NUMBER = bonusNumber.getBonusNumber();
+
         MatchedNumbers matchedNumbers = new MatchedNumbers(ALL_LOTTOS,WIN_NUMBERS);
-        mappingMatchedLottos(ALL_LOTTOS,BONUS_NUMBER);
+        mappingMatchedLottos();
         fiveWithBonusFinder(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST());
+        OutputView.printLottoStates(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST());
+        OutputView.printTotalReturn(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST(),String.valueOf(PIECE_OF_LOTTO * 1000));
 
 
 
     }
-    private void mappingMatchedLottos(ArrayList<List<String>> allLottos, String bonusNumber){
+    private void setLottoWinNumbers(){
+
+    }
+
+    private void mappingMatchedLottos(){
         BONUS_FLAG = new boolean[PIECE_OF_LOTTO];
-        for(int index = 0; index < allLottos.size(); index++){
-            if(allLottos.get(index).contains(bonusNumber)){
+        for(int index = 0; index < ALL_LOTTOS.size(); index++){
+            if(ALL_LOTTOS.get(index).contains(BONUS_NUMBER)){
                 BONUS_FLAG[index] = true;
             }
         }
@@ -50,12 +62,20 @@ public class LottoControl {
     private void fiveWithBonusFinder(ArrayList<String> matchedCountList){
         for(String count : matchedCountList){
             if(count.equals("5") && BONUS_FLAG[matchedCountList.indexOf(count)]){
-                matchedCountList.set(matchedCountList.indexOf(count),"5/wB");
+                matchedCountList.set(matchedCountList.indexOf(count),"5wB");
             }
         }
     }
 
-    private void setPriceFromUser(){
+    private void setPurchasePrice(){
+        try{
+            getPriceFromUser();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            setPurchasePrice();
+        }
+    }
+    private void getPriceFromUser(){
         PRICE_FROM_USER = InputView.getPriceFromUserInput();
     }
     private void setPieceOfLotto(){

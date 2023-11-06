@@ -12,7 +12,7 @@ public class Money {
     }
 
     public int toLottoAmount() {
-        return Integer.valueOf(money) % 1000;
+        return Integer.valueOf(money) / 1000;
     }
 
 }

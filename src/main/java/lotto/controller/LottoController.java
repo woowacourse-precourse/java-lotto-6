@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.LottoDto;
+import lotto.dto.ResultDto;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoResult;
@@ -83,6 +84,6 @@ public class LottoController {
 
     void printStatistics(LottoResult result) {
         outputView.printMessage(Message.STATISTICS_HEADER);
-        outputView.printObject(result);
+        outputView.printObject(ResultDto.from(result));
     }
 }

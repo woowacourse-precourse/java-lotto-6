@@ -5,7 +5,7 @@ public class ErrorMessages {
     private static final String ERROR = "[ERROR] ";
     public static final String TYPE_MISS_MATCHING = ERROR + "Type miss matching";
 
-    //== Lotto Number ERROR ==// LOTTO
+    //== Lotto Number ERROR ==//
     public static final String LOTTO_NUMBER_SIZE = ERROR + "6개의 숫자를 골라주세요.";
     public static final String LOTTO_NUMBER_DUPLICATION = ERROR + "중복되지 않는 숫자를 골라주세요.";
     public static final String LOTTO_NUMBER_RANGE = ERROR + "1 ~ 45 사이의 숫자를 골라주세요.";

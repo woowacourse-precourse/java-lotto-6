@@ -5,7 +5,9 @@ public class PurchaseAmount {
 
 	public PurchaseAmount(String amount) {
 		validateIsDigit(amount);
-		this.amount = convertStringToInt(amount);
+		int convertedAmount = convertStringToInt(amount);
+		validateIsPositive(convertedAmount);
+		this.amount = convertedAmount;
 	}
 
 	public int getAmount() {
@@ -26,4 +28,11 @@ public class PurchaseAmount {
 		return amount.chars()
 				.allMatch(Character::isDigit);
 	}
+
+	private void validateIsPositive(int amount) {
+		if (!(amount > 0)) {
+			throw new IllegalArgumentException("[ERROR] 0을 초과한 금액을 입력을 입력하세요");
+		}
+	}
+
 }

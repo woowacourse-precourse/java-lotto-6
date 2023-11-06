@@ -3,11 +3,11 @@ package lotto.controller;
 import lotto.model.GoalNumbers;
 import lotto.model.Investor;
 import lotto.model.Lotto;
+import lotto.model.LottoCompany;
 import lotto.model.LottoNumber;
 import lotto.model.Shop;
 import lotto.model.dto.LottoResponse;
 import lotto.model.dto.PrizeResult;
-import lotto.service.LottoCompanyService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 import java.util.List;
@@ -31,8 +31,8 @@ public class LottoController {
         outputView.printBoughtLottoSize(lottos.size());
         printLottoValues(lottos);
 
-        LottoCompanyService lottoCompanyService = initLottoCompanyService(lottos);
-        List<PrizeResult> prizeResults = lottoCompanyService.evaluateLottos();
+        LottoCompany lottoCompany = initLottoCompany();
+        List<PrizeResult> prizeResults = lottoCompany.evaluateLottos(lottos);
         addPrizeMoney(investor, prizeResults);
 
         outputView.alertResult();
@@ -56,12 +56,12 @@ public class LottoController {
         outputView.printEachLottoNumbers(lottoResponses);
     }
 
-    public LottoCompanyService initLottoCompanyService(final List<Lotto> lottos) {
+    public LottoCompany initLottoCompany() {
         GoalNumbers goalNumbers = initGoalNumbers();
 
-        return createInstance(LottoCompanyService.class, () -> {
+        return createInstance(LottoCompany.class, () -> {
             LottoNumber bonusNumber = initBonusNumber();
-            return LottoCompanyService.of(goalNumbers, bonusNumber, lottos);
+            return LottoCompany.of(goalNumbers, bonusNumber);
         });
     }
 

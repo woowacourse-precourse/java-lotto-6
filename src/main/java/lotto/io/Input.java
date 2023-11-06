@@ -15,13 +15,8 @@ public class Input {
         return Console.readLine();
     }
 
-    public List<Integer> getWinningNumbers() {
-        List<String> userInput = Arrays.asList(Console.readLine().split(Constants.COMMA));
-        inputValidator.validateWinningNumbers(userInput);
-
-        return userInput.stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+    public List<String> getWinningNumbers() {
+        return Arrays.asList(Console.readLine().split(Constants.COMMA));
     }
 
     public int getBonusNumber() {

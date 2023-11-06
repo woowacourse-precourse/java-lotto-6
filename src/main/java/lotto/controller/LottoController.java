@@ -5,7 +5,9 @@ import lotto.domain.*;
 import lotto.io.Input;
 import lotto.io.Output;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoController {
 
@@ -55,9 +57,12 @@ public class LottoController {
 
     private List<Integer> generateWinningNumbers() {
         List<Integer> winningNumbers;
+        WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
         try {
             output.printInputWinningNumbersMessage();
-            winningNumbers = input.getWinningNumbers();
+            List<String> userInput = input.getWinningNumbers();
+            winningNumbersValidator.validateWinningNumbers(userInput);
+            winningNumbers = userInput.stream().map(Integer::parseInt).collect(Collectors.toList());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winningNumbers = generateWinningNumbers();

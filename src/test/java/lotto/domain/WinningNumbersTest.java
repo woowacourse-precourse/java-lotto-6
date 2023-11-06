@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.controller.WinningNumbersValidator;
 import lotto.io.Input;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +13,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -20,12 +23,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class WinningNumbersTest {
 
     private WinningNumbers winningNumbers;
-    private Input input;
+    private WinningNumbersValidator winningNumbersValidator;
 
     @BeforeEach
     void setUp() {
         winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
-        input = new Input();
+        winningNumbersValidator = new WinningNumbersValidator();
     }
 
     @AfterEach
@@ -57,12 +60,12 @@ class WinningNumbersTest {
     @ValueSource(strings = {" ,2,3,4,5,6", " 1,2,3,4,5,6", "1 ,2,3,4,5,6"})
     void noBlankTest(String userInput) {
         //given
-        System.setIn(makeUserInput(userInput));
+        List<String> userInputForTest = Arrays.stream(userInput.split(",")).collect(Collectors.toList());
 
         //when
 
         //then
-        assertThatThrownBy(() -> new WinningNumbers(input.getWinningNumbers()))
+        assertThatThrownBy(() -> winningNumbersValidator.validateWinningNumbers(userInputForTest))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -71,12 +74,12 @@ class WinningNumbersTest {
     @ValueSource(strings = {"-1,2,3,4,5,6", "1a,2,3,4,5,6", "a1,2,3,4,5,6"})
     void onlyNumbersTest(String userInput) {
         //given
-        System.setIn(makeUserInput(userInput));
+        List<String> userInputForTest = Arrays.stream(userInput.split(",")).collect(Collectors.toList());
 
         //when
 
         //then
-        assertThatThrownBy(() -> new WinningNumbers(input.getWinningNumbers()))
+        assertThatThrownBy(() -> winningNumbersValidator.validateWinningNumbers(userInputForTest))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -85,12 +88,12 @@ class WinningNumbersTest {
     @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3,4,5", "1,2,3"})
     void numbersSizeSixTest(String userInput) {
         //given
-        System.setIn(makeUserInput(userInput));
+        List<String> userInputForTest = Arrays.stream(userInput.split(",")).collect(Collectors.toList());
 
         //when
 
         //then
-        assertThatThrownBy(() -> new WinningNumbers(input.getWinningNumbers()))
+        assertThatThrownBy(() -> winningNumbersValidator.validateWinningNumbers(userInputForTest))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -99,12 +102,12 @@ class WinningNumbersTest {
     @ValueSource(strings = {"0,1,2,3,4,5", "1,2,3,4,5,46"})
     void numberRangeTest(String userInput) {
         //given
-        System.setIn(makeUserInput(userInput));
+        List<String> userInputForTest = Arrays.stream(userInput.split(",")).collect(Collectors.toList());
 
         //when
 
         //then
-        assertThatThrownBy(() -> new WinningNumbers(input.getWinningNumbers()))
+        assertThatThrownBy(() -> winningNumbersValidator.validateWinningNumbers(userInputForTest))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -113,12 +116,12 @@ class WinningNumbersTest {
     @ValueSource(strings = {"1,2,3,4,5,5", "1,1,2,3,4,5"})
     void duplicatedNumberTest(String userInput) {
         //given
-        System.setIn(makeUserInput(userInput));
+        List<String> userInputForTest = Arrays.stream(userInput.split(",")).collect(Collectors.toList());
 
         //when
 
         //then
-        assertThatThrownBy(() -> new WinningNumbers(input.getWinningNumbers()))
+        assertThatThrownBy(() -> winningNumbersValidator.validateWinningNumbers(userInputForTest))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

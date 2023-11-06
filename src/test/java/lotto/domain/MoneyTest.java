@@ -10,9 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class MoneyTest {
@@ -60,7 +57,7 @@ public class MoneyTest {
     @ValueSource(strings = {"-1", "a", "abc", " 1", "1 "})
     void validateOnlyNumberTest(String userInput) {
         //given
-        System.setIn(makeUserInput(userInput));
+
         //when
 
         //then
@@ -73,7 +70,7 @@ public class MoneyTest {
     @ValueSource(strings = {"100", "250", "999"})
     void validateAboveOrEqualThousandTest(String userInput) {
         //given
-        System.setIn(makeUserInput(userInput));
+
         //when
 
         //then
@@ -86,16 +83,11 @@ public class MoneyTest {
     @ValueSource(strings = {"1240", "5500", "99999"})
     void validateDivisibleByThousandTest(String userInput) {
         //given
-        System.setIn(makeUserInput(userInput));
+
         //when
 
         //then
         assertThatThrownBy(() -> userAmountValidator.validateUserAmout(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("테스트코드용 유저입력 메소드")
-    InputStream makeUserInput(String userInput) {
-        return new ByteArrayInputStream(userInput.getBytes());
     }
 }

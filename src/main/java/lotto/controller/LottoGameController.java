@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.application.LottoService;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.WinningInfo;
@@ -21,12 +22,14 @@ public class LottoGameController {
         int input = InputView.readPayMoney();
         Lottos lottos = lottoService.purchaseLottos(Money.of(input));
         OutputView.printMyLotto(lottos);
-        readWinningInfo();
+        WinningInfo winningInfo = readWinningInfo();
+        LottoResult lottoResult = lottoService.calculateLottoResult(lottos, winningInfo);
+        OutputView.printWinningStatistics(lottoResult);
     }
 
-    private void readWinningInfo() {
+    private WinningInfo readWinningInfo() {
         List<Integer> winningNumbers = InputView.readWinningNumbers();
         int bonusNumber = InputView.readBonusNumber();
-        WinningInfo winningInfo = WinningInfo.from(winningNumbers, bonusNumber);
+        return WinningInfo.from(winningNumbers, bonusNumber);
     }
 }

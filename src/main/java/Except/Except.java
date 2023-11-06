@@ -13,7 +13,7 @@ public class Except {
     private static Message numberIncorrect = Message.numberIncorrect;
     private static Message outOfRange = Message.moneyOutOfRange;
     private static Message invalidFormat = Message.moneyInvalidFormat;
-    private static final String INTEGER_REGEX = "^-?\\d+$";
+    private static final String INTEGER_REGEX = "^\\d+(,\\d+)*$";
 
     public int outOfRangeMoney(String money) {
         int result = outOfRange.getCode();

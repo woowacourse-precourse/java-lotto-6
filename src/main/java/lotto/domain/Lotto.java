@@ -1,12 +1,10 @@
 package lotto.domain;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private static final String WRONG_SIZE_EXCEPTION_MESSAGE = "로또 번호는 6개의 정수여야 합니다.";
+    private static final String NOT_INTEGER_EXCEPTION_MESSAGE = "로또 번호는 정수여야 합니다.";
     private static final String OUT_OF_RANGE_EXCEPTION_MESSAGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String DUPLICATE_NUMBERS_EXCEPTION_MESSAGE = "로또 번호는 서로 다른 수여야 합니다.";
     private static final int LOTTO_RANGE_BEGIN_NUMBER = 1;
@@ -51,5 +49,19 @@ public class Lotto {
     private boolean hasDuplicateNumbers(final List<Integer> numbers) {
         Set<Integer> numbersUnique = new HashSet<>(numbers);
         return numbersUnique.size() != numbers.size();
+    }
+
+    public static List<Integer> convertToIntegers(String numbers) {
+        List<String> numbersSplit = Arrays.asList(numbers.split(","));
+        List<Integer> numbersConverted = new ArrayList<>();
+
+        for (String number : numbersSplit) {
+            try {
+                numbersConverted.add(Integer.parseInt(number.strip()));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(NOT_INTEGER_EXCEPTION_MESSAGE);
+            }
+        }
+        return numbersConverted;
     }
 }

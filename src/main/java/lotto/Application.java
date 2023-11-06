@@ -8,5 +8,7 @@ public class Application {
 
         controller.inputAmountOfLotto();
 
+        controller.buyLotto();
+
     }
 }

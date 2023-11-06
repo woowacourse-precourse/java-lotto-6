@@ -17,12 +17,16 @@ public class Wallet {
         return balance;
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     void addBalance(int money) {
         validateNumber(money);
         this.balance = money;
     }
 
-    void buyLotto() {
+    void buyAllLotto() {
 
         while (this.balance > 0) {
             List<Integer> numbers = getLottoNumbers();

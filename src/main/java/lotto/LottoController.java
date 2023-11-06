@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoController {
 
     private static final Wallet wallet = new Wallet();
@@ -20,7 +22,21 @@ public class LottoController {
             return;
         }
 
-        System.out.println(wallet.getBalance());
+        view.printMessage("");
+    }
 
+    void buyLotto() {
+
+        wallet.buyAllLotto();
+
+        List<Lotto> lottos = wallet.getLottos();
+
+        view.printMessage(lottos.size() + "개를 구매했습니다.");
+
+        for (Lotto lotto : lottos) {
+            view.printMessage(lotto.getNumbers().toString());
+        }
+
+        view.printMessage("");
     }
 }

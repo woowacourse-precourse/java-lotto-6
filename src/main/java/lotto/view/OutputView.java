@@ -15,13 +15,14 @@ public class OutputView {
     }
 
     public void printLottoList(LottoList lottoList) {
+        printPurchasedResult(lottoList.getLottoList().size());
         lottoList.getLottoList()
                 .forEach(lotto -> System.out.println(lotto.getNumbers()));
         System.out.println();
     }
 
     public void printTotalResult(List<String> result, float revenue) {
-
+        printResultMessage();
         result.forEach(System.out::println);
         printTotalRevenue(revenue);
     }

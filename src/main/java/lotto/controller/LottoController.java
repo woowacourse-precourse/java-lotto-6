@@ -50,26 +50,6 @@ public class LottoController {
         displayProfit(profit);
     }
 
-    private void displayProfit(double profit) {
-        outputView.responseProfit(profit);
-    }
-
-    private double processUserProfitCalculationTransaction(Lottos userLottos, EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
-        return lottoProfitService.calculateProfit(winningRankingCountMap, userLottos.getSize());
-    }
-
-    private Lottos processLottoPurchaseTransaction() {
-        while (true) {
-            try {
-                outputView.requestPurchaseAmount();
-                int userPurchaseAmount = getUserPurchaseAmount();
-                return lottoPurchaseService.purchaseAutoLottos(userPurchaseAmount);
-            } catch (LottoException | LottoStoreException exception) {
-                outputView.displayErrorMessage(exception.getMessage());
-            }
-        }
-    }
-
     private int getUserPurchaseAmount() {
         String userPurchaseAmount = inputView.inputPurchaseAmount();
         Validator.validateLottoAmountNumeric(userPurchaseAmount);
@@ -128,5 +108,25 @@ public class LottoController {
     private void displayWinningRankingCount(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         outputView.responseWinningStatisticsHeader();
         outputView.responseWinningStatisticsBody(winningRankingCountMap);
+    }
+
+    private void displayProfit(double profit) {
+        outputView.responseProfit(profit);
+    }
+
+    private double processUserProfitCalculationTransaction(Lottos userLottos, EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
+        return lottoProfitService.calculateProfit(winningRankingCountMap, userLottos.getSize());
+    }
+
+    private Lottos processLottoPurchaseTransaction() {
+        while (true) {
+            try {
+                outputView.requestPurchaseAmount();
+                int userPurchaseAmount = getUserPurchaseAmount();
+                return lottoPurchaseService.purchaseAutoLottos(userPurchaseAmount);
+            } catch (LottoException | LottoStoreException exception) {
+                outputView.displayErrorMessage(exception.getMessage());
+            }
+        }
     }
 }

@@ -14,12 +14,18 @@
 
    2-1. lottoAdmin : 당첨번호 및 보너스 번호 입력받아 저장(생성자)
 
-   2-2. checkLottos(Player) : player가 보유한 로또 확인 후 등수 return (int[]) 
+   2-2. checkLottos(Player) : player가 보유한 로또 확인 후 등수 return (lottoRank) 
 
    2-3. payPrizeMoney(Player) : player에게 당첨금 지급
 
    
 
-3. lottoApp
+3. lottoRank(enum)
 
-   3-1. playGame : 전체 게임 진행
+   3-1. 로또 등수 표기 및 당첨금 확인
+
+   
+
+4. lottoApp
+
+   4-1. playGame : 전체 게임 진행

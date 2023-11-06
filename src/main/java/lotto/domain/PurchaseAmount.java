@@ -6,8 +6,12 @@ public class PurchaseAmount {
 
     private Integer purchaseAmount;
 
-    public PurchaseAmount(Integer purchaseAmount) {
+    private PurchaseAmount(Integer purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
+    }
+
+    public static PurchaseAmount create(String purchaseAmount) {
+
     }
 
     private static void validatePurchaseAmountDigit(String purchaseAmount) {

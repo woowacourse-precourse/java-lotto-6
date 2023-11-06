@@ -28,7 +28,9 @@ public class LottoController {
         BonusNumber bonusNumber = getValidBonusNumberInput();
         calculateRankCount(userLottos, winningNumbers, bonusNumber);
         OutputView.printRankCount(rankCount);
-        long totalPrize = Calculator.calculateTotalPrize(); // 당첨금액 총합
+        int totalPrize = Calculator.calculateTotalPrize(); // 당첨금액 총합
+        double earningRate = Calculator.calculateEarningRate(totalPrize, money);
+        OutputView.printEarningRate(earningRate);
     }
 
     private Money getValidMoneyInput() {

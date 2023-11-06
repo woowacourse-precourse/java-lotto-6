@@ -1,17 +1,12 @@
 package lotto.views;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import lotto.controller.dto.CreateUserDto;
-import lotto.domain.WinningNumbers;
 import lotto.global.ErrorMessage;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

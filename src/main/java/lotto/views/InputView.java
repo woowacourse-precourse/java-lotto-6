@@ -1,8 +1,12 @@
 package lotto.views;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.global.ErrorMessage;
 import lotto.global.Utils;
 
@@ -18,22 +22,37 @@ public class InputView {
         return Long.parseLong(input);
     }
 
-    public Set<Integer> getOriginalWinningNumbers() {
-        System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
-        String[] input = Console.readLine().split(",");
-        if(input.length != 6) {
+
+    Set<Integer> validateWinningNumbers(List<Integer> inputWinningNumbers){
+        if(inputWinningNumbers.size() != 6){
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
         }
+        Set<Integer> uniqueWinningNumbers = inputWinningNumbers.stream().collect(Collectors.toSet());
+        // 중복 제거 후 개수 비교
+        if(inputWinningNumbers.size() != uniqueWinningNumbers.size()){
+            throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
+        }
+        for (Integer originalWinningNumber : uniqueWinningNumbers) {
+            validateLottoRange(originalWinningNumber);
+        }
+        return uniqueWinningNumbers;
+    }
 
-        Set<Integer> originalWinningNumbers = new HashSet<>();
-        for (int i = 0; i < input.length; i++) {
-            String number = input[i];
-            Utils.checkNumber(number);
+    public Set<Integer> getOriginalWinningNumbers() {
+        System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
+        String input = Console.readLine();
+        if(!Utils.WINNING_NUMBER_CHECK_PATTERN.matcher(input).matches()){
+            throw new IllegalArgumentException(ErrorMessage.NOT_MET_WINNING_NUMBER_REGEX.getMessage());
+        }
+        String[] inputNumbers = input.split(",");
+
+        List<Integer> originalWinningNumbers = new ArrayList<>();
+        for (int i = 0; i < inputNumbers.length; i++) {
+            String number = inputNumbers[i];
             originalWinningNumbers.add(Integer.parseInt(number));
         }
 
-        validateWinningNumbers(originalWinningNumbers);
-        return originalWinningNumbers;
+        return validateWinningNumbers(originalWinningNumbers);
     }
 
     public int getBonusNumber(Set<Integer> originalWinningNumbers) {
@@ -47,14 +66,6 @@ public class InputView {
         return bonusNumber;
     }
 
-    void validateWinningNumbers(Set<Integer> originalWinningNumbers){
-        if(originalWinningNumbers.size() != 6){
-            throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
-        }
-        for (Integer originalWinningNumber : originalWinningNumbers) {
-            validateLottoRange(originalWinningNumber);
-        }
-    }
 
     void validateBonusNumber(Set<Integer> originalWinningNumbers, int bonusNumber) {
         validateLottoRange(bonusNumber);

@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 public class Utils {
     public static final Pattern NUMBER_CHECK_PATTERN = Pattern.compile("^[0-9]+$");
+    public static final Pattern WINNING_NUMBER_CHECK_PATTERN = Pattern.compile("^[0-9,]+$");
     public static final NumberFormat NUMBER_FORMAT_US = NumberFormat.getNumberInstance(Locale.US);
     public static final String SECOND_DECIMAL_PLACE_FORMAT = "%.1f";
 

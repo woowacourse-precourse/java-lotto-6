@@ -7,14 +7,14 @@ import lotto.domain.Numbers;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LottoResultFormatter {
+public class PlayerLottosFormatter {
     private static final String NEXT_LINE = "\n";
     private static final String DELIMITER_COMMA = ", ";
     private static final String LEFT_BRACKET = "[";
     private static final String RIGHT_BRACKET = "]";
     private final List<Numbers> resultLottos;
 
-    public LottoResultFormatter(List<Numbers> resultLottos) {
+    public PlayerLottosFormatter(List<Numbers> resultLottos) {
         this.resultLottos = resultLottos;
     }
 
@@ -31,6 +31,7 @@ public class LottoResultFormatter {
     private String getFormattedValues(Numbers numbers) {
         return numbers.getValues().stream()
                 .map(Number::getValue)
+                .map(String::valueOf)
                 .collect(Collectors.joining(DELIMITER_COMMA, LEFT_BRACKET, RIGHT_BRACKET));
     }
 }

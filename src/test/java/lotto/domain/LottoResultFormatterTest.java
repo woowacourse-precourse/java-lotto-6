@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.dto.LottoResultFormatter;
+import lotto.dto.PlayerLottosFormatter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -18,7 +18,7 @@ class LottoResultFormatterTest {
     @DisplayName("로또 결과에 따라 출력 형태를 얻는다.")
     void Given_CreateLottoResultFormatter_When_toResultLottoMessage_Then_EqualType(List<Numbers> values) {
         //given
-        LottoResultFormatter lottoResultFormatter = new LottoResultFormatter(values);
+        PlayerLottosFormatter lottoResultFormatter = new PlayerLottosFormatter(values);
 
         //when
         String resultLottoMessage = lottoResultFormatter.toResultLottoMessage();

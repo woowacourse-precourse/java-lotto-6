@@ -4,7 +4,7 @@ import lotto.domain.LottoStatistics;
 import lotto.domain.PlayerLottoNumbers;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
-import lotto.dto.LottoResultFormatter;
+import lotto.dto.PlayerLottosFormatter;
 import lotto.dto.LottoStatisticsResultFormatter;
 
 public class LottoService {
@@ -19,12 +19,12 @@ public class LottoService {
         this.lottoStatistics = lottoStatistics;
     }
 
-    public void saveLottos(PurchasePrice lottoPurchasePrice) {
-        playerLottoNumbers.saveLottos(lottoPurchasePrice);
+    public void saveLottos(PurchasePrice purchasePrice) {
+        playerLottoNumbers.saveLottos(purchasePrice);
     }
 
-    public LottoResultFormatter getPlayerLottoNumbers() {
-        return new LottoResultFormatter(playerLottoNumbers.getLottoValues());
+    public PlayerLottosFormatter getPlayerLottoNumbers() {
+        return new PlayerLottosFormatter(playerLottoNumbers.getLottoValues());
     }
 
     public void saveWinningLotto(WinningLotto winningLotto) {

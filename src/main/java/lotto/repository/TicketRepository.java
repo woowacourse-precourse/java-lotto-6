@@ -1,14 +1,15 @@
 package lotto.repository;
 
 import java.util.List;
-import java.util.Optional;
-import lotto.domain.Lotto;
 import lotto.domain.Ticket;
+import lotto.domain.WinningTicket;
 
 public interface TicketRepository {
 
     Ticket purchase(Ticket ticket);
 
     List<Ticket> findAll();
+
+    WinningTicket announcement(WinningTicket winningTicket);
 
 }

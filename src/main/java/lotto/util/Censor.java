@@ -29,6 +29,11 @@ public class Censor {
         return input;
     }
 
+    public static String validateWinningNumbers(String input) {
+        // TODO: 당첨번호 입력값 검증
+        return input;
+    }
+
     private static void validateCommonInput(String input) {
         if (input == null) {
             throw new IllegalArgumentException(INPUT_SPACE_ERROR.getContent());

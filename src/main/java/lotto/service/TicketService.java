@@ -2,8 +2,12 @@ package lotto.service;
 
 import static lotto.util.constant.GameRule.TICKET_PRICE;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Ticket;
+import lotto.domain.WinningTicket;
 import lotto.repository.MemoryTicketRepository;
 import lotto.util.AutomaticGenerator;
 import lotto.util.Censor;
@@ -26,6 +30,21 @@ public class TicketService {
         Ticket ticket = new Ticket();
         ticket.setTicket(new Lotto(AutomaticGenerator.generateLottoNumbers()));
         return memoryTicketRepository.purchase(ticket);
+    }
+
+    public WinningTicket announcementNumber(String input) {
+        List<Integer> numbers = getWinningNumbers(Censor.validateWinningNumbers(input));
+        WinningTicket ticket = new WinningTicket();
+        ticket.setNumbers(new Lotto(numbers));
+        return memoryTicketRepository.announcement(ticket);
+    }
+
+    private List<Integer> getWinningNumbers(String input) {
+        String[] numberStrings = input.split(",");
+        return Arrays.stream(numberStrings)
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
 }

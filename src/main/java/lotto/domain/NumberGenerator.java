@@ -12,7 +12,8 @@ public class NumberGenerator {
 
     public List<Integer> createRandomLottoNumbers() {
         List<Integer> numbers = createRandomNumbersInRange(
-                Constants.LOTTO_MIN_NUMBER, Constants.LOTTO_MAX_NUMBER, Constants.LOTTO_NUMBER_COUNTS);
+                Constants.LOTTO_MIN_NUMBER, Constants.LOTTO_MAX_NUMBER,
+                Constants.LOTTO_NUMBER_COUNTS);
         sortNumbers(numbers);
         return numbers;
     }

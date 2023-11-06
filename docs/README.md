@@ -71,9 +71,17 @@
 
 - [x] 당첨 등수와 상금을 표현하는 Enum 생성 constant ~ Rank
 
-- [x] 당첨 등수를 **계산**하는 기능 domain ~ Statistics
+- [x] 당첨 등수를 **계산**하는 기능 domain ~ Ranking
 
-  - [x] 몇 등인지 **계산**하는 기능 + 보너스 볼 - Statistics#matchLotto();
+  - [x] 몇 등인지 **계산**하는 기능 + 보너스 볼 - Ranking#matchLotto();
+
+    - [x] 당첨 번호와 로또 번호를 **비교**하는 기능 - Ranking#matchNumber();
+
+    - [x] 보너스 번호와 로또 번호를 **비교**하는 기능 - Ranking#matchBonusNumber();
+
+      - [x] 보너스 번호를 포함하고 있는지 **확인**하는 기능 - Ranking#isContainBonusNumber();
+
+  - [x] 당첨된 로또의 개수를 **증가**하는 기능 - Ranking#updateRankCounts(); 
 
 - [x] 당첨 통계를 **출력**하는 기능
 

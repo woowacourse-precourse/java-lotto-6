@@ -14,8 +14,10 @@ import lotto.view.WinningLottoInput;
 
 public class Controller {
 
+    public static int tickets;
+
     public static void Run() {
-        int tickets = BuyLottoInput.buyLottoInput();
+        tickets = BuyLottoInput.buyLottoInput();
         Lottos lottos = LottosOutput.lottosOutput(tickets);
         winners(lottos);
     }
@@ -30,7 +32,7 @@ public class Controller {
     public static void ranks(Winnings winnigs, Lottos lottos) {
         Ranking ranking = new Ranking();
         ranking.rewardRanking(winnigs, lottos);
-        RankingOutput.rankingOutput(ranking);
+        RankingOutput.rankingOutput(ranking, tickets);
     }
 
 }

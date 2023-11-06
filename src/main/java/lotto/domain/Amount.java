@@ -16,6 +16,14 @@ public class Amount {
         this.numberOfLottos = calculateNumberOfLottos(this.amount);
     }
 
+    public int getAmount() {
+        return this.amount;
+    }
+
+    public int getNumberOfLottos() {
+        return this.numberOfLottos;
+    }
+
     private int convertToInteger(String amount) {
         try {
             return Integer.parseInt(amount);

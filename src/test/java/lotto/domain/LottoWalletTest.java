@@ -27,4 +27,11 @@ class LottoWalletTest {
         assertEquals(550.0, lottoWallet.calculateProfitRate());
     }
 
+    @DisplayName("0원으로 수익률 계산 시 예외 발생 테스트")
+    @Test
+    void testCalculateProfitRateWithZeroPaidAmount() {
+        LottoWallet emptyWallet = new LottoWallet(0);
+
+        assertThrows(ArithmeticException.class, emptyWallet::calculateProfitRate);
+    }
 }

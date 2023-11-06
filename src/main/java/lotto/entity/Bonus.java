@@ -1,5 +1,8 @@
 package lotto.entity;
 
+import lotto.entity.mapper.FiledMapper;
+import lotto.property.MethodProperty;
+
 import static lotto.property.ValidationProperty.BONUS;
 import static lotto.validation.ValidationForm.verifyFormatForInputValue;
 
@@ -18,5 +21,9 @@ public class Bonus {
 
     private void validate(String bonusNumber) {
         verifyFormatForInputValue(BONUS, bonusNumber);
+    }
+
+    public Integer getBonusNumber() {
+        return (Integer) FiledMapper.getFieldValue(this, MethodProperty.BONUS_NUMBER);
     }
 }

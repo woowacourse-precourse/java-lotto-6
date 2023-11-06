@@ -43,6 +43,8 @@ public class WinningLottoView {
             validateDuplicate(Convertor.convertStringToList(input), COUNT_NO_BONUS);
         } catch (Exception exception) {
             exception.printStackTrace();
+            System.out.println(exception.getMessage());
+            System.out.println();
             return false;
         }
         return true;

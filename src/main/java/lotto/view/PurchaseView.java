@@ -9,7 +9,7 @@ public class PurchaseView {
     private static final String R_NUMBER = "^[0-9]*$";
     public static int lotto() {
         String input;
-
+        System.out.println();
         do {
             System.out.println(MachineMessage.MACHINE_MESSAGE_BUY.getMessage());
             input = Console.readLine().trim();
@@ -23,6 +23,8 @@ public class PurchaseView {
             validateAmount(input);
         } catch (Exception exception) {
             exception.printStackTrace();
+            System.out.println(exception.getMessage());
+            System.out.println();
             return false;
         }
         return true;

@@ -8,6 +8,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
 	public static final int WINNING_NUMBER_LENGTH = 6;
+	public static final int LOTTO_MIN_NUMBER = 1;
+	public static final int LOTTO_MAX_NUMBER = 45;
 
 	private static Integer money;
 	private static List<Integer> winningNumberList;
@@ -101,7 +103,7 @@ public class Application {
 		Integer lottoCount = money / 1000;
 		System.out.println(lottoCount + "개를 구매했습니다.");
 		for (int i = 0; i < lottoCount; i++) {
-			Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+			Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, WINNING_NUMBER_LENGTH));
 			System.out.println(lotto);
 			lottoList.add(lotto);
 		}

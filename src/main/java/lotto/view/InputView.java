@@ -6,7 +6,8 @@ import static lotto.util.Parser.stringToInt;
 
 public class InputView {
 
-    public void requestMoney() {
+    public int requestMoney() {
         System.out.println("구입금액을 입력해 주세요");
+        return stringToInt(Console.readLine());
     }
 }

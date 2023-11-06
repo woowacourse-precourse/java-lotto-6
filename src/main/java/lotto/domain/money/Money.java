@@ -2,6 +2,8 @@ package lotto.domain.money;
 
 public class Money {
 
+    private static final int ZERO = 0;
+
     private int value;
 
     private Money(int value) {
@@ -9,7 +11,14 @@ public class Money {
     }
 
     public static Money valueOf(int value) {
+        validatePositive(value);
         return new Money(value);
+    }
+
+    private static void validatePositive(int value) {
+        if (value < ZERO) {
+            throw new IllegalArgumentException("금액은 음수일 수 없습니다.");
+        }
     }
 
     public int getValue() {
@@ -22,15 +31,15 @@ public class Money {
     }
 
     private void payValidate(Money price) {
-        if (!canPay(price)) {
+        if (price.value > this.value) {
             throw new IllegalArgumentException(
-                String.format("잔액 %d원 으로는 %d원의 물건을 구매하실 수 없습니다."
-                    , this.value, price.value)
+                String.format("잔액 %d원 으로는 %d원의 로또를 구매하실 수 없습니다."
+                    ,this.value, price.value)
             );
         }
     }
 
-    public boolean canPay(Money price) {
-        return this.value - price.value >= 0;
+    public boolean isRemain() {
+        return value > ZERO;
     }
 }

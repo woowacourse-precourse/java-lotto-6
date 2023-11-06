@@ -3,6 +3,7 @@ package lotto.service;
 import static lotto.constant.Delimiter.COMMA;
 import static lotto.constant.ErrorMessage.MONEY_ONLY_NUMBER;
 import static lotto.constant.ErrorMessage.WINNUMBER_COMMA_DELIMITER;
+import static lotto.constant.ErrorMessage.WINNUMBER_ONLY_NUMBER;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -47,6 +48,23 @@ class InputWinNumberServiceTest {
         Assertions.assertThatThrownBy(() -> validator.validateRightCommaCount(inputWinNumbers, splitedInputWinNumbers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(WINNUMBER_COMMA_DELIMITER.getMessage());
+    }
+
+
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {",as,,", ",2,,@#"})
+    @DisplayName("당첨 번호 입력에 올바르게 처리가 되었는지 -> 문자, 공백 포함!")
+    void validateWinnumberOnlyNumber(String inputWinNumbers) {
+        //given
+        List<String> splitedInputWinNumbers = List.of(
+            inputWinNumbers.split(COMMA.getDelimiter()));
+        System.out.println(splitedInputWinNumbers);
+
+        Assertions.assertThatThrownBy(() -> validator.validateWinnumberOnlyNumber(splitedInputWinNumbers))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(WINNUMBER_ONLY_NUMBER.getMessage());
     }
 
 

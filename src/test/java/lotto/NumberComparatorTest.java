@@ -17,8 +17,9 @@ public class NumberComparatorTest {
     void checkMatchingNumbers() {
         Lotto purchasedLotto = new Lotto(List.of(4, 7, 18, 19, 35, 42));
         Lotto winningLotto = new Lotto(List.of(4, 10, 19, 26, 35, 38));
-
-        LottoNumberComparator numberComparator = new LottoNumberComparator(List.of(purchasedLotto), winningLotto);
+        int bonusNumber = 1;
+        LottoNumberComparator numberComparator = new LottoNumberComparator(List.of(purchasedLotto), winningLotto,
+                bonusNumber);
         int matchCount = numberComparator.calculateMatchingNumbers(purchasedLotto);
 
         assertThat(matchCount).isEqualTo(3);
@@ -31,17 +32,18 @@ public class NumberComparatorTest {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Lotto> purchasedLottos = List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등
-                new Lotto(List.of(1, 2, 3, 4, 44, 45)), // 4등
-                new Lotto(List.of(1, 2, 3, 43, 44, 45))  // 5등
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 2등
+                new Lotto(List.of(1, 2, 3, 4, 44, 45))  // 4등
         );
-        LottoNumberComparator comparator = new LottoNumberComparator(purchasedLottos, winningLotto);
+        int bonusNumber = 7;
+        LottoNumberComparator comparator = new LottoNumberComparator(purchasedLottos, winningLotto, bonusNumber);
 
         EnumMap<LottoPrize, Integer> expectedPrizeCount = new EnumMap<>(LottoPrize.class);
         expectedPrizeCount.put(LottoPrize.FIRST, 1);
-        expectedPrizeCount.put(LottoPrize.SECOND, 0);
+        expectedPrizeCount.put(LottoPrize.SECOND, 1);
         expectedPrizeCount.put(LottoPrize.THIRD, 0);
         expectedPrizeCount.put(LottoPrize.FOURTH, 1);
-        expectedPrizeCount.put(LottoPrize.FIFTH, 1);
+        expectedPrizeCount.put(LottoPrize.FIFTH, 0);
 
         assertThat(comparator.getPrizeCount()).isEqualTo(expectedPrizeCount);
     }

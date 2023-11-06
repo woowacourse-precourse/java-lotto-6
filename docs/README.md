@@ -67,10 +67,13 @@
     - [x]  랜덤 로또 번호는 서로 중복되지 않는다.
     - [x]  랜덤 로또 번호는 오름차순 정렬되어 반환된다.
 4. 로또 번호 입력 테스트
-    - [ ]  `,`로 구분 된 6개의 숫자가 입력된다면 어떠한 Exception도 감지되지 않는다.
-    - [ ]  빈 문자가 들어오는 경우 IllegalArgumentException을 반환한다.
+    - [ ]  입력 문자가 6개라면 어떠한 Exception도 감지되지 않는다.
     - [ ]  입력 문자가 6개가 아닐 경우 IllegalArgumentException을 반환한다.
+    - [ ]  빈 문자가 들어오지 않을 경우 어떠한 Exception도 감지되지 않는다.
+    - [ ]  빈 문자가 들어오는 경우 IllegalArgumentException을 반환한다.
+    - [ ]  입력 문자가 숫자일 경우 어떠한 Exception도 감지되지 않는다.
     - [ ]  입력 문자가 숫자가 아닐 경우 IllegalArgumentException을 반환한다.
-    - [ ]  입력 문자가 1 ~ 45내의 중복되지 않는 숫자라면 어떠한 Exception도 감지되지 않는다.
+    - [ ]  입력 문자가 1 ~ 45내의 숫자라면 어떠한 Exception도 감지되지 않는다.
     - [ ]  입력 문자가 1 ~ 45내가 아니라면 IllegalArgumentException을 반환한다.
+    - [ ]  입력 문자가 중복되지 않을 경우 어떠한 Exception도 감지되지 않는다.
     - [ ]  입력 문자가 중복될 경우 IllegalArgumentException을 반환한다.

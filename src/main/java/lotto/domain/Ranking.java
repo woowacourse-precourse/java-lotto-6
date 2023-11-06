@@ -14,11 +14,9 @@ public enum Ranking {
     private final String message;
     private final int money;
 
-
     Ranking(int rank, String message, int money) {
         this.rank = rank;
         this.message = message;
-
         this.money = money;
     }
 

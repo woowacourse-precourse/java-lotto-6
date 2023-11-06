@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.game.ErrorMessage;
+import lotto.exception.ErrorMessage;
 
 public class PriceValidator extends Validator{
     private final static int PURCHASE_COST = 1000;

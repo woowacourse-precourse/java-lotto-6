@@ -3,7 +3,7 @@ package lotto.validator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.game.ErrorMessage;
+import lotto.exception.ErrorMessage;
 
 public class LottoNumberValidator extends Validator{
     private final static int LOTTO_NUMBER_COUNT = 6;

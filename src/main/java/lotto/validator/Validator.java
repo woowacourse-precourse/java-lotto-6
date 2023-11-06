@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.game.ErrorMessage;
+import lotto.exception.ErrorMessage;
 public class Validator {
     public static boolean isInteger(String inputMessage) {
         try{

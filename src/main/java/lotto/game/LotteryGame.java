@@ -13,20 +13,17 @@ import lotto.validator.PriceValidator;
 public class LotteryGame {
     private List<Lotto> lottoList;
     private WinNumber winNumber;
-    private InputHandler inputHandler = new InputHandler();
-    private OutputHandler outputHandler = new OutputHandler();
-    private final String ERROR = "[ERROR]";
-    private final String REQUEST_PRICE = "구입금액을 입력해 주세요.";
-    private final String REQUEST_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private final InputHandler inputHandler = new InputHandler();
+    private final OutputHandler outputHandler = new OutputHandler();
 
     public void run() {
 
     }
 
     private void init() {
-        outputHandler.print(REQUEST_PRICE);
+        outputHandler.print(Messasge.REQUEST_PRICE);
         lottoList = getLottoList(getPrice());
-        outputHandler.print(REQUEST_NUMBERS);
+        outputHandler.print(Messasge.REQUEST_NUMBERS);
         winNumber = getWinNumber();
     }
 
@@ -43,7 +40,7 @@ public class LotteryGame {
 
                 return price;
             } catch (IllegalArgumentException e) {
-                outputHandler.print(ERROR+e.getMessage());
+                outputHandler.print(Messasge.ERROR + e.getMessage());
             }
         }
     }
@@ -57,12 +54,12 @@ public class LotteryGame {
         return Arrays.asList(lottos);
     }
 
-    private WinNumber getWinNumber(){
-        while (true){
-            try{
+    private WinNumber getWinNumber() {
+        while (true) {
+            try {
                 List<Integer> numbers = getLottoNumbers();
                 return new WinNumber(numbers, getBonusNumber(numbers));
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputHandler.print(e.getMessage());
             }
         }
@@ -73,18 +70,19 @@ public class LotteryGame {
             try {
                 String[] inputNumbers = inputHandler.readLine().split(",");
                 Integer[] numbers = new Integer[inputNumbers.length];
-                for (String number : inputNumbers){
+                for (String number : inputNumbers) {
                     LottoNumberValidator.isInteger(number);
                 }
-
+                // 출력 위치 변경 필요
+                outputHandler.print(Messasge.REQUEST_BONUS_NUMBER);
                 return Arrays.asList(numbers);
             } catch (IllegalArgumentException e) {
-                outputHandler.print(ERROR+e.getMessage());
+                outputHandler.print(Messasge.ERROR + e.getMessage());
             }
         }
     }
 
-    public int getBonusNumber(List<Integer> numbers){
+    public int getBonusNumber(List<Integer> numbers) {
         while (true) {
             try {
                 String inputNumber = inputHandler.readLine();
@@ -93,7 +91,7 @@ public class LotteryGame {
                 LottoNumberValidator.validateDuplicatedNumber(numbers, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
-                outputHandler.print(ERROR+e.getMessage());
+                outputHandler.print(Messasge.ERROR + e.getMessage());
             }
         }
     }

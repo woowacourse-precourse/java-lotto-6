@@ -1,4 +1,4 @@
-package lotto.game;
+package lotto.exception;
 
 public enum ErrorMessage {
     NOT_INTEGER_MESSAGE("숫자만 입력 가능합니다."),

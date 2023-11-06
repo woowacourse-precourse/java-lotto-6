@@ -23,10 +23,10 @@ public class StartLottoTest {
 
     @DisplayName("구입 금액이 숫자 형식이 아니라면 예외가 발생한다.")
     @Test
-    void create() {
+    void checkPurchasePriceNotNumberFormat() {
         assertThatThrownBy(() -> {
             String input = "10dkfk";
-            test.inputPurchasePrice(input);
+            test.checkPurchasePrice(input);
         }).isInstanceOf(NumberFormatException.class);
     }
 }

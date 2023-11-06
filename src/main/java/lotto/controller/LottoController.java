@@ -70,13 +70,17 @@ public class LottoController {
         while (true) {
             try {
                 int bonusNumber = InputView.readBonusNumber();
-                if (winningNumbers.contains(bonusNumber)) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호과 중복되지 않는 숫자를 입력해야 합니다.");
-                }
+                validateIsDuplicate(winningNumbers, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void validateIsDuplicate(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호과 중복되지 않는 숫자를 입력해야 합니다.");
         }
     }
 }

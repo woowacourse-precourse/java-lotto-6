@@ -10,9 +10,8 @@ import static lotto.Lotto.LOTTO_SIZE;
 import static lotto.LottoFactory.*;
 
 public class WinningNumbersSetter {
-
-    List<Integer> winning;
-    StringTokenizer st;
+    private List<Integer> winning;
+    private int bonus;
 
     public List<Integer> setWinning(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -24,7 +23,7 @@ public class WinningNumbersSetter {
             System.out.println(e.getMessage());
             setWinning();
         }
-
+        setBonus(winning);
         return winning;
     }
 
@@ -57,16 +56,32 @@ public class WinningNumbersSetter {
 
     private List<Integer> validateString(String input) {
         List<Integer> inputNumbers = new ArrayList<>();
+        StringTokenizer st = new StringTokenizer(input, ",");
         try {
-            st = new StringTokenizer(input, ",");
             while(st.hasMoreTokens()) {
                 inputNumbers.add(Integer.parseInt(st.nextToken()));
             }
         } catch (NullPointerException e){
             throw new IllegalArgumentException(WINNING_NUMBERS_IS_NULL.message());
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException(WINNING_NUMBERS_IS_STRING.message());
+            throw new IllegalArgumentException(NUMBER_IS_STRING.message());
         }
         return inputNumbers;
+    }
+
+    public void setBonus(List<Integer> winning){
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        String input = readLine();
+        try{
+            bonus = Integer.parseInt(input);
+            if(winning.contains(bonus)){
+                throw new IllegalArgumentException(BONUS_DUPLICATE_WINNING_NUMBERS.message());
+            }
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(NUMBER_IS_STRING.message());
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            setBonus(winning);
+        }
     }
 }

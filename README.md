@@ -38,4 +38,4 @@
 5. 당첨 번호에 중복되는 숫자가 있는 경우 : `WINNIG_NUMBERS_DUPLICATE`
 
 ## 💠 보너스 번호 예외처리
-1. 보너스 번호가 당첨 숫자와 중복될 경우
+1. 보너스 번호가 당첨 숫자와 중복될 경우 : `BONUS_DUPLICATE_WINNING_NUMBERS`

@@ -6,11 +6,15 @@ public class Calculator {
     private static final int LOTTO_LENGTH = 6;
 
     private final Result result;
-    private final Payment purchaseAmount;
+    private final Payment payment;
 
-    public Calculator(Payment purchaseAmount){
+    private Calculator(Payment payment){
         this.result = new Result();
-        this.purchaseAmount = purchaseAmount;
+        this.payment = payment;
+    }
+
+    public static Calculator create(Payment payment){
+        return new Calculator(payment);
     }
 
     public Result calculateResult(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
@@ -60,6 +64,6 @@ public class Calculator {
     }
 
     public double calculateIncomeRate(Result result){
-        return (result.getIncome() / purchaseAmount.getAmount()) * 100;
+        return (result.getIncome() / payment.getPayment()) * 100;
     }
 }

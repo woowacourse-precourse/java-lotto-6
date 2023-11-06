@@ -42,6 +42,7 @@ public class Pick {
         while (true) {
             try {
                 bonusNumber = Integer.parseInt(Console.readLine());
+                raiseNumberRangeException();
                 break;
             } catch(IllegalArgumentException e) {
                 System.out.println("[ERROR] 올바른 숫자를 입력해야 합니다.");
@@ -58,6 +59,12 @@ public class Pick {
 
     private static void raiseInvalidNumbersException() {
         if (luckyNumber.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void raiseNumberRangeException() {
+        if (bonusNumber > 45 || bonusNumber < 1) {
             throw new IllegalArgumentException();
         }
     }

@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Exception.DUPLICATE_WINNING_NUMBER;
 import static lotto.Exception.INVALID_WINNING_NUMBER_RANGE;
 import static lotto.Exception.WINNING_NUMBERS_SIZE_SHOULD_BE_SIX;
 
@@ -14,6 +15,7 @@ public class WinningNumbers {
     public WinningNumbers(List<Integer> numbers) {
         validateNumberSize(numbers);
         numbers.forEach(this::validateNumberRange);
+        validateNumberDuplication(numbers);
 
         this.numbers = numbers;
     }
@@ -27,6 +29,16 @@ public class WinningNumbers {
     private void validateNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void validateNumberDuplication(List<Integer> numbers) {
+        long numberSize = numbers.stream()
+                .distinct()
+                .count();
+
+        if (numberSize != WINNING_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
 }

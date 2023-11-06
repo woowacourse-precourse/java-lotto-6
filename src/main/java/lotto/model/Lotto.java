@@ -8,7 +8,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
-        validateNumbersSizeIs6(numbers);
+        validateNumbersSize(numbers);
         validateDuplicateNumbers(numbers);
         validateRangeNumbers(numbers);
         this.numbers = numbers;
@@ -28,8 +28,8 @@ public class Lotto {
         return this.numbers.contains(number);
     }
 
-    private void validateNumbersSizeIs6(List<Integer> numbers) {
-        if (IsSizeSix(numbers)) {
+    private void validateNumbersSize(List<Integer> numbers) {
+        if (isCorrectSize(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호의 개수는 6개만 가능합니다.");
         }
     }
@@ -46,7 +46,7 @@ public class Lotto {
         }
     }
 
-    private static boolean IsSizeSix(List<Integer> numbers) {
+    private static boolean isCorrectSize(List<Integer> numbers) {
         return numbers.size() != LOTTO_SIZE;
     }
 
@@ -55,8 +55,7 @@ public class Lotto {
     }
 
     private static boolean isValidRange(List<Integer> numbers) {
-        return numbers.stream().anyMatch(number -> number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER
-        );
+        return numbers.stream().anyMatch(number -> number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER);
     }
 
     @Override

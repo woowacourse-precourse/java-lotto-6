@@ -19,4 +19,8 @@ public class Lottos {
         }
         return sj.toString();
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

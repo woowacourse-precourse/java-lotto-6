@@ -32,4 +32,13 @@ public class Winnings {
             throw new IllegalArgumentException();
         }
     }
+
+    public int getBonus() {
+        return bonus;
+    }
+
+    public List<Integer> getWins() {
+        return wins.getNumbers();
+    }
+
 }

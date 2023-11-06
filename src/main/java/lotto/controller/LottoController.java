@@ -37,16 +37,16 @@ public class LottoController {
     }
 
     private long checkLottoResult(Lottos lottos, WinningLotto winningLotto) {
-        Map<LottoResult, Integer> lottoResult = lottoService.getLottoResult(lottos, winningLotto);
-        OutputView.printLottoResult(lottoResult);
-        return lottoService.sumTotalLottoPrize(lottoResult);
+        Map<LottoResult, Integer> resultStorage = lottoService.getLottoResult(lottos, winningLotto);
+        OutputView.printLottoResult(resultStorage);
+        return lottoService.sumTotalLottoPrize(resultStorage);
     }
 
     private WinningLotto pickWinningLotto() {
-        Lotto lottoAnswer = getLottoAnswer();
+        Lotto answerLotto = getAnswerLotto();
         while(true) {
             try {
-                return new WinningLotto(lottoAnswer, getBonusNumber());
+                return new WinningLotto(answerLotto, getBonusNumber());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -59,7 +59,7 @@ public class LottoController {
         return lottos;
     }
 
-    private Lotto getLottoAnswer() {
+    private Lotto getAnswerLotto() {
         while (true) {
             try {
                 return new Lotto(inputLottoNumber());

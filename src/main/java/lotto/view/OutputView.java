@@ -29,11 +29,11 @@ public class OutputView {
         System.out.println(formattedString);
     }
 
-    public static void printLottoResult(Map<LottoResult, Integer> lottoResult) {
+    public static void printLottoResult(Map<LottoResult, Integer> resultStorage) {
         printResultStartMessage();
 
         for (LottoResult lottoResultValue : LottoResult.values()) {
-            printEachLottoResult(lottoResultValue, lottoResult.get(lottoResultValue));
+            printEachLottoResult(lottoResultValue, resultStorage.get(lottoResultValue));
         }
     }
 

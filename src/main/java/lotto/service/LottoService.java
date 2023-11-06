@@ -14,27 +14,27 @@ public class LottoService {
 
     public Map<LottoResult, Integer> getLottoResult(Lottos lottos, WinningLotto winningLotto) {
 
-        Map<LottoResult, Integer> lottoResult = lottoResultInitialize();
+        Map<LottoResult, Integer> resultStorage = resultStorageInitialize();
         for (Lotto lotto : lottos.getLottos()) {
             int correctCount = checkLotto(lotto, winningLotto.getAnswerLotto());
-            boolean hasBonus = checkBonus(lotto, winningLotto.getBonusNumber());
+            boolean hasBonus = checkBonusNumber(lotto, winningLotto.getBonusNumber());
             LottoResult rank = LottoResult.findRank(correctCount, hasBonus);
             if(rank != null) {
-                lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
+                resultStorage.put(rank, resultStorage.getOrDefault(rank, 0) + 1);
             }
         }
-        return lottoResult;
+        return resultStorage;
     }
 
-    private Map<LottoResult, Integer> lottoResultInitialize() {
-        Map<LottoResult, Integer> lottoResult = new HashMap<>();
+    private Map<LottoResult, Integer> resultStorageInitialize() {
+        Map<LottoResult, Integer> resultStorage = new HashMap<>();
         for(LottoResult result : LottoResult.values()){
-            lottoResult.put(result, 0);
+            resultStorage.put(result, 0);
         }
-        return lottoResult;
+        return resultStorage;
     }
 
-    private boolean checkBonus(Lotto lotto, int bonusNumber) {
+    private boolean checkBonusNumber(Lotto lotto, int bonusNumber) {
         List<Integer> myLottoNumbers = lotto.getNumbers();
         return myLottoNumbers.contains(bonusNumber);
     }
@@ -58,10 +58,10 @@ public class LottoService {
         return lottos;
     }
 
-    public long sumTotalLottoPrize(Map<LottoResult, Integer> lottoResult) {
+    public long sumTotalLottoPrize(Map<LottoResult, Integer> resultStorage) {
         long totalPrize = 0;
-        for (LottoResult result : lottoResult.keySet()) {
-            totalPrize += calculatePrize(result.getPrize(), lottoResult.get(result));
+        for (LottoResult result : resultStorage.keySet()) {
+            totalPrize += calculatePrize(result.getPrize(), resultStorage.get(result));
         }
         return totalPrize;
     }

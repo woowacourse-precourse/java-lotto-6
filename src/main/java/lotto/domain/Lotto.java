@@ -29,7 +29,7 @@ public class Lotto {
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        List<Integer> a = numbers.stream().filter(h -> h < 0 || h > 45).toList();
+        List<Integer> a = numbers.stream().filter(h -> h < 1 || h > 45).toList();
         if (!a.isEmpty()) {
             throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
@@ -68,23 +68,29 @@ public class Lotto {
         }
     }
 
+    public boolean contain(int number) {
+        return numbers.contains(number);
+    }
+
 
     private void validateToLotto(List<String> numbers) {
         try {
             for (String number : numbers) {
                 Integer.parseInt(number);
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
 
         }
     }
+
 
     public Lotto toLotto(String number) {
         if (number == null) {
             throw new IllegalArgumentException();
         }
         List<String> numbers = new ArrayList<>(Arrays.asList(number.split(",")));
+        System.err.println(numbers);
         validateToLotto(numbers);
 
         try {

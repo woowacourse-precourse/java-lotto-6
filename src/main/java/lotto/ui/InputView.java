@@ -28,6 +28,7 @@ public class InputView {
     private String scanInput() {
         String input = Console.readLine();
         inputValidator.validate(input);
+        System.out.println();
         return input;
     }
 }

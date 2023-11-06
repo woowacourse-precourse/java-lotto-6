@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.Comparator;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -12,5 +16,14 @@ public class Application {
         System.out.print("발행한 로또 수량 : ");
         int lottoTickets = purchaseAmount / 1000;
         System.out.println(lottoTickets);
+
+        //로또 발행
+        List[] allTickets = new List[lottoTickets];
+        for (int i = 0; i < lottoTickets; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            numbers.sort(Comparator.naturalOrder());
+            allTickets[i] = numbers;
+            System.out.println(numbers);
+        }
     }
 }

@@ -67,7 +67,7 @@ public class LottoController {
         return inputView.requestWinningLottoFromUser();
     }
 
-    private void addBonusNumber(WinningLotto winningLotto, int bonus_number) {
+    private void addBonusNumber(WinningLotto winningLotto, String bonus_number) {
         try {
             winningLotto.addBonusNumber(bonus_number);
         } catch (IllegalArgumentException e) {
@@ -77,17 +77,7 @@ public class LottoController {
         }
     }
 
-    private int getBonusNumber() {
-        try {
-            String BonusNumberFromUser = requestBonusNumberFromUser();
-            return NumberValidator.validate(BonusNumberFromUser);
-        } catch (IllegalArgumentException e) {
-            outputView.displayERRORMESSAGE(e.getMessage());
-            return getBonusNumber();
-        }
-    }
-
-    private String requestBonusNumberFromUser() {
+    private String getBonusNumber() {
         outputView.displayRequestBonusNumber();
         return inputView.requestBonusNumberFromUser();
     }

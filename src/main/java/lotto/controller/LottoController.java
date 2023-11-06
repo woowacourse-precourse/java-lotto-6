@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
-
 /*
 - [ ] 로또 구입 금액을 입력받는 기능
     - [v] "구입금액을 입력해 주세요." 메시지를 출력하는 기능
@@ -36,7 +34,7 @@ public class LottoController {
         if(!isPriceLowerThanMax(lottoPrices)) {
             throw new IllegalArgumentException("최대 구입 가능 금액은 " + MAX_LOTTO_PRICES + "원 입니다.");
         }
-        if(!isPositiveNumber(lottoPrices)) {
+        if(!isPriceBiggerThanMin(lottoPrices)) {
             throw new IllegalArgumentException("최소 구입 가능 금액은 " + MIN_LOTTO_PRICES + "원 입니다.");
         }
         if(!isPriceModZero(lottoPrices)) {
@@ -55,8 +53,8 @@ public class LottoController {
     public boolean isPriceLowerThanMax(int confirmInteger) {
         return confirmInteger < MAX_LOTTO_PRICES;
     }
-    public boolean isPositiveNumber(int confirmInteger) {
-        return confirmInteger > 0;
+    public boolean isPriceBiggerThanMin(int confirmInteger) {
+        return confirmInteger >= MIN_LOTTO_PRICES;
     }
     public boolean isPriceModZero(int confirmInteger) {
         return confirmInteger % MOD_VALUE == 0;

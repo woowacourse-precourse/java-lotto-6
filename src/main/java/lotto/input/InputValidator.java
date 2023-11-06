@@ -18,12 +18,20 @@ public class InputValidator {
     }
 
     public void validateWinningNumbers(List<Integer> winningNumbers) {
+        checkWinningNumbersHasSix(winningNumbers);
+
         for (Integer winningNumber : winningNumbers) {
             if (!IntegerUtil.checkNumberInRange(winningNumber, 1, 45)) {
                 throw new InvalidInputException(OUT_OF_RANGE.getMessage(), winningNumber);
             }
         }
         checkWinningNumberIsDuplicate(winningNumbers);
+    }
+
+    private void checkWinningNumbersHasSix(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new InvalidInputException(WINNING_NUMBERS_NOT_SIX.getMessage(), winningNumbers);
+        }
     }
 
     private void checkWinningNumberIsDuplicate(List<Integer> winningNumbers) {

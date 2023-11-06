@@ -8,7 +8,6 @@ import java.util.List;
 
 public class InputHandler {
     public static String purchasePrice() {
-        System.out.println(PrintMessages.INPUT_PRICE);
         String priceInput;
 
         while (true) {
@@ -24,7 +23,6 @@ public class InputHandler {
     }
 
     public static String winningNumber() {
-        System.out.println(PrintMessages.INPUT_WINNING_NUMBER);
         String winnigNumberInput;
 
         while (true) {
@@ -40,7 +38,6 @@ public class InputHandler {
     }
 
     public static String bonusNumber(List<String> winningNumbers) {
-        System.out.println(PrintMessages.INPUT_BONUS_NUMBER);
         String bonusNumberInput;
 
         while (true) {

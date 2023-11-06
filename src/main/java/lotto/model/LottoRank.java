@@ -18,12 +18,32 @@ public enum LottoRank {
         this.reward = reward;
     }
 
-    public int getCorrectCount() {
-        return correctCount;
+    public static LottoRank findRank(int correct, boolean hasBonus) {
+        if (correct == 6) {
+            return FIRST_PLACE;
+        }
+
+        if (correct == 5 && hasBonus) {
+            return SECOND_PLACE;
+        }
+
+        if (correct == 5) {
+            return THIRD_PLACE;
+        }
+
+        if (correct == 4) {
+            return FOURTH_PLACE;
+        }
+
+        if (correct == 3) {
+            return FIFTH_PLACE;
+        }
+
+        return NO_LUCK;
     }
 
-    public boolean hasBonus() {
-        return bonus;
+    public int getCorrectCount() {
+        return correctCount;
     }
 
     public int getReward() {

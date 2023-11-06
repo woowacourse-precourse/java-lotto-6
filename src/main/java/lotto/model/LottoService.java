@@ -39,4 +39,31 @@ public class LottoService {
         Collections.sort(numbers);
     }
 
+    public LottoResult findWinningLottos(List<Lotto> lottos, WinningNumber winningNumber) {
+        LottoResult lottoResult = new LottoResult();
+
+        for (Lotto lotto : lottos) {
+            lottoResult.addResult(checkLotto(lotto, winningNumber));
+        }
+
+        return lottoResult;
+    }
+
+    private LottoRank checkLotto(Lotto lotto, WinningNumber winningNumber) {
+        int correct = 0;
+        boolean hasBonus = false;
+
+        for (Integer number : winningNumber.getNumbers()) {
+            if (lotto.containsNumber(number)) {
+                correct++;
+            }
+        }
+
+        if (lotto.containsNumber(winningNumber.getBonusNumber())) {
+            hasBonus = true;
+        }
+
+        return LottoRank.findRank(correct, hasBonus);
+    }
+
 }

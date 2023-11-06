@@ -16,8 +16,6 @@ public class CheckValidateInput {
 		return Integer.parseInt(money);
 	}
 
-
-
 	private boolean isUnits1000(int money) {
 		return (money % 1000) == 0;
 	}
@@ -28,20 +26,20 @@ public class CheckValidateInput {
 
 	public int bonusNumber(String bonusNumber, List<Integer> lotto) {
 
-		if(!isInteger(bonusNumber))
+		if (!isInteger(bonusNumber))
 			throw new IllegalArgumentException();
-		if(!inRangeBonusNumber(Integer.parseInt(bonusNumber)))
+		if (!inRangeBonusNumber(Integer.parseInt(bonusNumber)))
 			throw new IllegalArgumentException();
-		if(numberInLotto(Integer.parseInt(bonusNumber), lotto))
+		if (numberInLotto(Integer.parseInt(bonusNumber), lotto))
 			throw new IllegalArgumentException();
-		
+
 		return Integer.parseInt(bonusNumber);
 	}
-	
+
 	private boolean numberInLotto(int bonusNumber, List<Integer> lotto) {
 		return lotto.contains(bonusNumber);
 	}
-	
+
 	private boolean inRangeBonusNumber(int bonusNumber) {
 		return (bonusNumber > 0) && (bonusNumber <= 45);
 	}

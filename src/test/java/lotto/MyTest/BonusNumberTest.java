@@ -20,18 +20,22 @@ class BonusNumberTest {
     @DisplayName("당첨번호와 중복된 번호를 입력하면 예외가 발생한다. ")
     @Test
     public void testIllegalArgumentExceptionWithBonus6() {
+        // Arrange
         int bonus = 6;
-
+        // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new BonusNumber(bonus, winningNumbers));
+        // Assert
         assertTrue(exception.getMessage().contains("[ERROR]"));
     }
 
     @DisplayName("범위를 벗어난 번호를 입력하면 예외가 발생한다. ")
     @Test
     public void testIllegalArgumentExceptionWithBonus47() {
+        // Arrange
         int bonus = 47;
-
+        // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new BonusNumber(bonus, winningNumbers));
+        // Act & Assert
         assertTrue(exception.getMessage().contains("[ERROR]"));
     }
 

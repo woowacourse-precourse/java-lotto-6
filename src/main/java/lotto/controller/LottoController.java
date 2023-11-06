@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -14,11 +16,12 @@ public class LottoController {
     private LottoController() {
     }
 
-    private final LottoService racingCarService = LottoService.getInstance();
+    private final LottoService lottoService = LottoService.getInstance();
 
     public void run() {
         OutputView.PrintBuyPrice();
         int buyAmount = InputView.getBuyAmount();
         OutputView.PrintBuyAmount(buyAmount);
+        List<Lotto> userLottos = lottoService.getLottoNumbers(buyAmount);
     }
 }

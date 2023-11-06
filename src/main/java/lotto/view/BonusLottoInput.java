@@ -10,20 +10,21 @@ public class BonusLottoInput {
     private static final int MAX = 45;
     private static final String BONUS_LOTTO_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static int bonusLottoInput() {
+    public static int bonusLottoInput(List<Integer> wins) {
         System.out.println(BONUS_LOTTO_MESSAGE);
         String number = UserInput.userInput();
-        int num = validateBonus(number);
+        int num = validateBonus(number, wins);
         return num;
     }
 
-    public static int validateBonus(String number) {
+    public static int validateBonus(String number, List<Integer> wins) {
         try {
             int num = validateInt(number);
             validateRange(num);
+            validateDup(num, wins);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + System.lineSeparator());
-            return bonusLottoInput();
+            return bonusLottoInput(wins);
         }
         return Integer.parseInt(number);
     }
@@ -40,6 +41,12 @@ public class BonusLottoInput {
     public static void validateRange(int num) {
         if (num < MIN || num > MAX) {
             BonusNumException.BonusRangeException();
+        }
+    }
+
+    public static void validateDup(int num, List<Integer> wins) {
+        if (wins.contains(num)) {
+            BonusNumException.BonusDupException();
         }
     }
 

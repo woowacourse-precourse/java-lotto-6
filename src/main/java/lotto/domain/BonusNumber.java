@@ -24,6 +24,10 @@ public class BonusNumber implements Comparable<Integer> {
         }
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     @Override
     public int compareTo(Integer o) {
         return this.bonusNumber - o;

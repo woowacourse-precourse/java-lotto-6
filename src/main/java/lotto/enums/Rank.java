@@ -10,22 +10,22 @@ public enum Rank {
     SECOND_PLACE(5, "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", 30000000),
     FIRST_PLACE(6, "6개 일치 (2,000,000,000원) - %d개\n", 2000000000);
 
-    private final int winningCount;
+    private final int requiredMatches;
     private final String matchInfo;
-    private final int price;
+    private final int prize;
 
-    Rank(int winningCount, String matchInfo, int price) {
-        this.winningCount = winningCount;
+    Rank(int requiredMatches, String matchInfo, int prize) {
+        this.requiredMatches = requiredMatches;
         this.matchInfo = matchInfo;
-        this.price = price;
+        this.prize = prize;
     }
 
     public String getMatchInfo() {
         return matchInfo;
     }
 
-    public int getPrice() {
-        return price;
+    public int getPrize() {
+        return prize;
     }
 
     public static Rank findRank(int matchCount, boolean matchBonus) {
@@ -33,7 +33,7 @@ public enum Rank {
             return SECOND_PLACE;
         }
         return Arrays.stream(Rank.values())
-                .filter(rank -> rank.winningCount == matchCount)
+                .filter(rank -> rank.requiredMatches == matchCount)
                 .findAny()
                 .orElse(MISS);
     }

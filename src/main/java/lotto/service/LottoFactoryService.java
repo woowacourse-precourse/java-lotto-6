@@ -1,12 +1,14 @@
-package lotto.domain;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 
-public class LottoFactory {
+public class LottoFactoryService {
 
     private static final int LOTTO_SIZE = 6;
     private static final int MIN_LOTTO_NUMBER = 1;

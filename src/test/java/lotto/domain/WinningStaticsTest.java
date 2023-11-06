@@ -32,6 +32,7 @@ public class WinningStaticsTest {
     }
 
     @DisplayName("당첨 등수들이 잘 저장되었는지 테스트")
+    @Test
     void ranksStoreTest() {
         WinningStatistics winningStatistics = WinningStatistics.from(winningRanks);
 
@@ -43,6 +44,8 @@ public class WinningStaticsTest {
 
 
     }
+
+
 
 
 

@@ -12,7 +12,7 @@ public class PrintUtil {
     private static final String WINNING_RESULT_MESSAGE = "당첨 통계";
     private static final String LINE = "---";
     private static final String FIFTH_PRIZE_MESSAGE = "3개 일치 (5,000원) - %d개\n";
-    private static final String FOURTH_PRIZE_MESSAGE = "4개 일치 (50,00원) - %d개\n";
+    private static final String FOURTH_PRIZE_MESSAGE = "4개 일치 (50,000원) - %d개\n";
     private static final String THIRD_PRIZE_MESSAGE = "5개 일치 (1,500,000원) - %d개\n";
     private static final String SECOND_PRIZE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String FIRST_PRIZE_MESSAGE = "6개 일치 (2,000,000,000원) - %d개\n";

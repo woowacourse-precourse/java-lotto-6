@@ -13,4 +13,8 @@ public class PurchaseAmount {
         validateDividedBy1000Won(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
+
+    public String getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

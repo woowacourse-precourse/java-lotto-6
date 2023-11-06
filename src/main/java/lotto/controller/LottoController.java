@@ -26,9 +26,7 @@ public class LottoController {
         List<Lotto> issuedLottos = lottoManager.issueLotto(purchaseAmount);
         OutputView.printIssuedLottoDetails(IssuedLottoDetails.createIssuedLottoDetails(issuedLottos));
 
-        WinningNumbers winningNumbers = repeatReadForInvalid(this::getWinningNumbers);
-        BonusNumber bonusNumber = repeatReadForInvalid(this::getBonusNumber);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = getWinningLotto();
         lottoManager.addRankToWinningDetails(issuedLottos, winningLotto);
         OutputView.printWinningDetails(lottoManager.getWinningDetailsToString());
 
@@ -41,9 +39,15 @@ public class LottoController {
         return new PurchaseAmount(purchaseAmount);
     }
 
+    private WinningLotto getWinningLotto() {
+        WinningNumbers winningNumbers = repeatReadForInvalid(this::getWinningNumbers);
+        BonusNumber bonusNumber = repeatReadForInvalid(this::getBonusNumber);
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
     private WinningNumbers getWinningNumbers() {
         List<Integer> winningNumbers =
-                Converter.convertToIntegerListWithDelimiter(InputView.readWinningNumbers(), ",");
+                Converter.convertToIntegerList(InputView.readWinningNumbers());
         return new WinningNumbers(winningNumbers);
     }
 

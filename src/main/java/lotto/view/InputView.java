@@ -28,12 +28,12 @@ public class InputView {
         }
     }
 
-    public static String readWinningNumbers() {
+    public static String[] readWinningNumbers() {
         printInputGuideMessage("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         validateNumbersRegex(input);
         validateContainsBlank(input);
-        return input;
+        return input.split(",");
     }
 
     private static void validateNumbersRegex(String input) {

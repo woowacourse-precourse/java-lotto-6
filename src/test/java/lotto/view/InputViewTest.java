@@ -51,7 +51,7 @@ class InputViewTest {
 
         // when
         List<Integer> winningNumbers =
-                Converter.convertToIntegerListWithDelimiter(InputView.readWinningNumbers(), ",");
+                Converter.convertToIntegerList(InputView.readWinningNumbers());
 
         // then
         Assertions.assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
@@ -65,7 +65,7 @@ class InputViewTest {
 
         // when
         Assertions.assertThatThrownBy(() ->
-                        Converter.convertToIntegerListWithDelimiter(InputView.readWinningNumbers(), ","))
+                        Converter.convertToIntegerList(InputView.readWinningNumbers()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_REGEX_INPUT.getMessage());
     }

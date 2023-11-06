@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.constants.ErrorMessage;
 
-public class Converter<T> {
+public class Converter {
 
     private Converter() {
     }
@@ -17,9 +17,10 @@ public class Converter<T> {
         }
     }
 
-    public static <T> List<Integer> convertToIntegerListWithDelimiter(T t, String delimiter) {
+    public static <T> List<Integer> convertToIntegerList(T[] t) {
         try {
-            return Arrays.stream(String.valueOf(t).split(delimiter))
+            return Arrays.stream(t)
+                    .map(String::valueOf)
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {

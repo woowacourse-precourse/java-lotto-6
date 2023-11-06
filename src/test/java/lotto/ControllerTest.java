@@ -10,6 +10,11 @@ import org.junit.jupiter.api.Test;
 public class ControllerTest {
 
     @Test
+    void validateBonusNumber_보너스번호_숫자아니면_예외반환() {
+        assertThatThrownBy(() -> Validator.validateBonusNumber("aaa")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void validateMoneyIsPositive_구입금액_음수면_예외반환() {
         assertThatThrownBy(() -> Validator.validateMoneyIsPositive(-10000)).isInstanceOf(IllegalArgumentException.class);
     }

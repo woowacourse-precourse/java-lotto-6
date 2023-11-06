@@ -7,8 +7,8 @@ import static lotto.enums.ErrorMassage.NOT_SEPARATE_BY_DELIMITER;
 import java.util.Arrays;
 import java.util.List;
 
-public class StringUtil {
-    private StringUtil() {
+public class Converter {
+    private Converter() {
     }
 
     public static int convertToInt(final String input) {
@@ -24,7 +24,7 @@ public class StringUtil {
             throw new IllegalArgumentException(NOT_SEPARATE_BY_DELIMITER.getMassage());
         }
         return Arrays.stream(input.split(COMMA.getValue()))
-                .map(StringUtil::convertToInt)
+                .map(Converter::convertToInt)
                 .toList();
     }
 }

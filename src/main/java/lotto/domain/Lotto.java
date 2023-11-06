@@ -21,4 +21,9 @@ public class Lotto {
     private boolean hasDuplicates(List<Integer> numbers) {
         return numbers.stream().distinct().count() != numbers.size();
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

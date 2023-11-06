@@ -10,6 +10,16 @@ import org.junit.jupiter.api.Test;
 public class ControllerTest {
 
     @Test
+    void validateMoneyIsPositive_구입금액_음수면_예외반환() {
+        assertThatThrownBy(() -> LottoMoneyValidator.validateMoneyIsPositive("-10000")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateMoneyDivideBy1000_구입금액_1000으로_안나눠지면_예외반환() {
+        assertThatThrownBy(() -> LottoMoneyValidator.validateMoneyDivideBy1000("13555")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void parseInt_숫자반환_테스트() {
         assertThat(Utils.parseInt("123")).isEqualTo(123);
     }

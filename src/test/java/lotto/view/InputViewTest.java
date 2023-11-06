@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.AppConfig;
+import lotto.constant.errorMessage.amount.AmountExceptionStatus;
 import lotto.view.reader.CustomReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +24,8 @@ class InputViewTest {
     void purchaseAmountNotNumericExceptionTest(final String input) {
         customReader.initInput(input);
         assertThatThrownBy(inputView::readPurchaseAmount)
-                .isInstanceOf(NumberFormatException.class);
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessageContaining(AmountExceptionStatus.PURCHASE_AMOUNT_IS_NOT_NUMERIC.getMessage());
     }
 
     @ParameterizedTest

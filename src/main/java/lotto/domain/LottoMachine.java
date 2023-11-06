@@ -34,6 +34,7 @@ public class LottoMachine {
             Ranking ranking = findRanking(corrects, bonus);
             rankingCounts.put(ranking, rankingCounts.get(ranking) + 1);
         }
+
         return rankingCounts;
     }
 
@@ -45,7 +46,8 @@ public class LottoMachine {
                 && Ranking.SECOND.getCorrects() == corrects) {
             return Ranking.SECOND;
         }
-        if (Ranking.THIRD.getCorrects() == corrects) {
+        if (Ranking.THIRD.isBonus() == bonus
+                && Ranking.THIRD.getCorrects() == corrects) {
             return Ranking.THIRD;
         }
         if (Ranking.FORTH.getCorrects() == corrects) {
@@ -56,6 +58,4 @@ public class LottoMachine {
         }
         return Ranking.BLANK;
     }
-
-
 }

@@ -1,5 +1,8 @@
 package lotto.utils;
 
+import lotto.domain.Player;
+import lotto.domain.LottoResult;
+
 public class Messages {
     private Messages() {
 
@@ -35,5 +38,13 @@ public class Messages {
 
     public static void print(String string) {
         System.out.println(string);
+    }
+
+    public static void print(Player player) {
+        System.out.println(player);
+    }
+
+    public static void print(LottoResult resultMaker) {
+        System.out.println(resultMaker);
     }
 }

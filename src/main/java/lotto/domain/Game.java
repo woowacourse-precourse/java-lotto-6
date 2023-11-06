@@ -37,7 +37,7 @@ public class Game {
 
         List<Lotto> issuedLottos = lottoMachine.issueLottos(player.getMoney());
         player.addLottos(issuedLottos);
-        Messages.print(player.issuedLottos());
+        Messages.print(player);
     }
 
     public void drawWinningLotto() {
@@ -76,11 +76,8 @@ public class Game {
         checkWinningLottoDraw();
 
         Map<Ranking, Integer> rankingCounts = lottoMachine.rank(player.getLottos(), winningLotto);
-        ResultMaker resultMaker = new ResultMaker(rankingCounts, player.getMoney());
-
-        player.setRankingCounts(rankingCounts);
-        player.findStatistics();
-        Messages.print(player.lottoResults());
+        LottoResult lottoResult = new LottoResult(rankingCounts, player.getMoney());
+        Messages.print(lottoResult);
     }
 
     private int inputMoney() {

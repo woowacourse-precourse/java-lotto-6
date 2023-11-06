@@ -28,4 +28,27 @@ public class LottoResult {
             lottoInfo.isMatchBonus(this.bonusNumber);
         }
     }
+    public void matchingCount(Integer number,boolean isBonus) {
+        for(LottoInfo lottoInfo : lottos.getLottos()) {
+            if(Objects.equals(lottoInfo.getMatchCount(), number)) {
+                if(number == 3) {
+                    this.countOf3 = this.countOf3 + 1;
+                }
+                else if(number == 4) {
+                    this.countOf4 = this.countOf4 + 1;
+                }
+                else if(number == 5) {
+                    this.countOf5 = this.countOf5 + 1;
+                }
+                else if(number == 6) {
+                    if (isBonus) {
+                        this.countOf5AndBonus = this.countOf5AndBonus + 1;
+                    }
+                    else {
+                        this.countOf6 = this.countOf6 + 1;
+                    }
+                }
+            }
+        }
+    }
 }

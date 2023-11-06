@@ -13,7 +13,7 @@ class AmountTest {
 
     @ParameterizedTest
     @ValueSource(ints = {100020, 20200, 80030, 150300, 30002})
-    @DisplayName("구입 금액은 1000 단위로 나누어 떨어져야 한다.")
+    @DisplayName("1000 단위로 나누어 떨어지지 않는 구입 금액은 입력될 수 없다.")
     void amountIsNotDivisibleTest(final int amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(InvalidAmountException.class)

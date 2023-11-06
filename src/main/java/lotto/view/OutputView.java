@@ -46,7 +46,8 @@ public class OutputView {
     }
     
     public static void printReturnOnInvestment(double roi){
-    	System.out.println("총 수익률은 "+roi+"%입니다.");
+        System.out.println("총 수익률은 "+ String.format("%.2f", roi) +"%입니다.");
     }
+
     
 }

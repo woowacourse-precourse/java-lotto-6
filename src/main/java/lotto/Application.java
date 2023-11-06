@@ -17,7 +17,7 @@ public class Application {
         try {
             // 사용자로부터 구입 금액을 입력받음
             int purchaseAmount = readPurchaseAmount();
-            // 구입 금액을 토대로 로또 번호를 생성
+            // 사용자의 구입 금액 토대로 로또 번호 생성
             List<Lotto> lottos = generateLottos(purchaseAmount);
             printLottos(lottos);
 
@@ -34,21 +34,19 @@ public class Application {
         }
     }
     private static int readPurchaseAmount() {
-        // 무한 루프를 통해 사용자에게 올바른 구입 금액을 입력받음
+        // 사용자에게 올바른 구입 금액을 입력받음
         while (true) {
-            // 사용자에게 구입 금액을 입력하라는 메시지를 출력
             System.out.print("구입 금액을 입력해 주세요.");
-            // 사용자의 입력값을 문자열로 읽어옴
             String input = Console.readLine();
 
             try {
-                // 입력값을 정수로 변환하고 검증을 수행하는 메소드를 호출
+                // 입력값을 검증을 수행
                 int purchaseAmount = parseAndValidateInput(input);
                 // 검증이 통과된 구입 금액을 반환
                 return purchaseAmount;
             } catch (NumberFormatException e) {
                 // 숫자로 변환할 수 없는 입력값이 들어온 경우 에러 메시지를 출력
-                System.out.println("[ERROR] 올바른 숫자를 입력하세요.");
+                System.out.println("[ERROR] 구입금액은 숫자만 가능합니다.");
             } catch (IllegalArgumentException e) {
                 // 구입 금액이 1,000원 단위가 아닌 경우 에러 메시지를 출력
                 System.out.println(e.getMessage());
@@ -57,26 +55,23 @@ public class Application {
     }
 
     private static int parseAndValidateInput(String input) {
-        // 입력값을 정수로 변환
         int purchaseAmount = Integer.parseInt(input);
-        // 입력값이 1,000원 단위인지 검증합니다.
+        // 입력값이 1,000원 단위인지 검증
         if (purchaseAmount % 1000 != 0) {
-            // 1,000원 단위가 아닌 경우 예외를 발생시킴
+            // 1,000원 단위가 아닌 경우 예외를 발생
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위어야 합니다.");
         }
-        // 검증이 통과된 구입 금액을 반환
         return purchaseAmount;
     }
 
 
-    // 구입 금액을 토대로 로또 번호를 생성하는 함수
+    // 구입 금액을 토대로 로또 번호를 생성
     private static List<Lotto> generateLottos(int purchaseAmount) {
         int numberOfLotto = purchaseAmount / 1000;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            // 생성된 숫자로 Lotto 객체 생성
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
@@ -84,13 +79,9 @@ public class Application {
         return lottos;
     }
 
-    // 로또 번호를 출력하는 함수
+    // 랜덤 생성 된 로또 번호를 출력
     private static void printLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
-//        lottos.forEach(lotto -> {
-//            lotto.getNumbers().sort(Comparator.naturalOrder()); // 번호를 오름차순으로 정렬
-//            System.out.println("[" + lotto.getNumbers() + "]");
-//        });
 
         lottos.forEach(lotto -> {
             List<Integer> numberList = new ArrayList<>(lotto.getNumbers());
@@ -99,26 +90,22 @@ public class Application {
         });
     }
 
-    // 당첨 번호를 입력받아 Lotto 객체로 반환하는 함수
     private static Lotto readWinningLotto() {
         while (true) {
             try {
                 System.out.print("당첨 번호를 입력해 주세요. ");
                 String[] winningNumbersStr = Console.readLine().split(",");
 
-                // 입력값이 6개가 아닌 경우 에러 메시지 출력
                 if (winningNumbersStr.length != 6) {
                     throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 숫자를 입력해야 합니다.");
                 }
 
                 List<Integer> winningNumbers = parseNumbers(winningNumbersStr);
 
-                // 숫자가 1부터 45까지의 범위를 벗어난 경우 에러 메시지 출력
                 if (winningNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
                     throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45까지의 숫자로 입력해야 합니다.");
                 }
 
-                // 중복된 숫자가 있는 경우 에러 메시지 출력
                 if (winningNumbers.stream().distinct().count() != 6) {
                     throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
                 }
@@ -130,7 +117,7 @@ public class Application {
         }
     }
 
-    // 문자열 배열을 정수 리스트로 변환하는 함수
+    // 문자열 배열을 정수 리스트로 변환
     private static List<Integer> parseNumbers(String[] numbersStr) {
         return List.of(numbersStr).stream()
                 .map(String::trim)
@@ -150,12 +137,11 @@ public class Application {
         return Integer.parseInt(input);
     }
 
-    // 보너스 번호를 입력받는 함수
     private static int readBonusNumber(Lotto winningNumber) {
         while (true) {
             try {
                 int bonusNumber = readBonusNumberUI();
-                // 숫자가 1부터 45까지의 범위를 벗어난 경우 에러 메시지 출력
+
                 if (bonusNumber < 1 || bonusNumber > 45)
                     throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45까지의 숫자로 입력해야 합니다.");
 
@@ -174,25 +160,9 @@ public class Application {
         }
     }
 
-
-    // 로또 번호와 당첨 번호, 보너스 번호를 받아 상금을 계산
     public class LottoUtils {
-//            public static int calculatePrize(Lotto userLotto, Lotto winningLotto, int bonusNumber) {
-//                // 사용자 로또 번호와 당첨 번호 중 일치하는 번호의 개수를 세는 메서드
-//                int matchedNumbers = countMatchedNumbers(userLotto, winningLotto);
-//                // 사용자 로또 번호에 보너스 번호가 있는지 여부를 판단
-//                boolean hasBonusNumber = userLotto.containsNumber(bonusNumber);
-//
-//                if (matchedNumbers == 6) return 2_000_000_000; // 1등
-//                if (matchedNumbers == 5 && hasBonusNumber) return 30_000_000; // 2등
-//                if (matchedNumbers == 5) return 1_500_000; // 3등
-//                if (matchedNumbers == 4) return 50_000; // 4등
-//                if (matchedNumbers == 3) return 5_000; // 5등
-//
-//                return 0; // 꽝
-//            }
 
-        // 총 상금과 구매 금액을 받아 수익률을 계산
+        // 총 상금과 구매 금액을 받아 수익률 계산
         public static double calculateProfitRate(int purchaseAmount, int totalPrize) {
             return ((double) totalPrize / purchaseAmount) * 100;
         }
@@ -210,11 +180,9 @@ public class Application {
         }
     }
 
-    // 총 상금을 계산하는 함수
+    // 총 상금 계산
     private static int calculateTotalPrize(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
-//        return lottos.stream()
-//                .mapToInt(lotto -> LottoUtils.calculatePrize(lotto, winningLotto, bonusNumber))
-//                .sum(); }
+
         return lottos.stream()
                 .mapToInt(lotto -> {
                     int matchedNumbers = LottoUtils.countMatchedNumbers(lotto, winningLotto);
@@ -265,8 +233,6 @@ public class Application {
     private static void printPrize(int sameCount, int[] prizeCounts, int matchedNumbers, String prizeName, int prizeAmount) {
         int count = prizeCounts[matchedNumbers];
         int prizePerThousand = prizeAmount / 1_000;
-//        System.out.println(count + "개 일치 (" + prizeName + "): " + prizePerThousand + "원 - " + count + "개");
-//       System.out.println(count + "개 일치" + "(" + prizePerThousand + ")" +  "원 - " + count + "개");
         if (matchedNumbers == 1) {
             System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count + "개");
             return;
@@ -280,12 +246,9 @@ public class Application {
         return numberFormat.format(number);
     }
 
-    // 결과를 출력하는 함수
+    // 최종 결과 출력
     private static void printResult(int totalPrize, int purchaseAmount, List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
-        // 총 수익률을 계산하고 출력
         double profitRate = LottoUtils.calculateProfitRate(purchaseAmount, totalPrize);
-
-        // 당첨 통계를 출력
         printWinningStatistics(lottos, winningLotto, bonusNumber);
         System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
     }

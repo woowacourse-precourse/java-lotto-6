@@ -11,4 +11,8 @@ public class ConverterUtil {
                 .collect(Collectors.toList());
 
     }
+    public static Integer convertStringToInt(String str){
+        return Integer.parseInt(str);
+    }
+
 }

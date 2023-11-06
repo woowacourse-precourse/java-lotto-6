@@ -3,16 +3,16 @@ package lotto.domain.validation;
 import static lotto.domain.constant.LottoConstant.LOTTO_PURCHASE_UNIT;
 import static lotto.domain.constant.LottoConstant.MAX_LOTTO_PURCHASE_COUNT;
 import static lotto.domain.constant.LottoConstant.MIN_LOTTO_PURCHASE_COUNT;
-import static lotto.domain.validation.DefaultValidationMessage.*;
 
 import java.util.NoSuchElementException;
 import lotto.util.StringUtils;
 
 public class MemberValidationHandler {
-    public static final String INVALID_LOTTO_PURCHASE_UNIT_MESSAGE = ERROR.getMessage() + " 1,000원 단위로 구입금액을 입력해주세요.";
-    public static final String INVALID_RANGE_LOTTO_PURCHASE_COUNT_MESSAGE = ERROR.getMessage() + " 최소 1장 최대 100장까지 구매 가능합니다.";
-    public static final String INVALID_LOTTO_PURCHASE_AMOUNT_MESSAGE = ERROR.getMessage() + " 구입금액에 숫자가 아닌 문자가 있습니다.";
-    public static final String INVALID_LOTTO_PURCHASE_AMOUNT_EMPTY_MESSAGE = ERROR.getMessage() + " 구입금액을 입력해주세요.";
+    private static final int LOTTO_PURCHASE_AMOUNT_THRESHOLD = 0;
+    public static final String INVALID_LOTTO_PURCHASE_UNIT_MESSAGE = "1,000원 단위로 구입금액을 입력해주세요.";
+    public static final String INVALID_RANGE_LOTTO_PURCHASE_COUNT_MESSAGE = "최소 1장 최대 100장까지 구매 가능합니다.";
+    public static final String INVALID_LOTTO_PURCHASE_AMOUNT_MESSAGE = "구입금액에 숫자가 아닌 문자가 있습니다.";
+    public static final String INVALID_LOTTO_PURCHASE_AMOUNT_EMPTY_MESSAGE = "구입금액을 입력해주세요.";
 
     private MemberValidationHandler() {
     }
@@ -46,11 +46,11 @@ public class MemberValidationHandler {
     }
 
     private static boolean isValidLottoPurchaseAmountUnit(int lottoPurchaseAmount) {
-        return Math.floorMod(lottoPurchaseAmount, LOTTO_PURCHASE_UNIT) == Number.ZERO.getNumberToInteger();
+        return Math.floorMod(lottoPurchaseAmount, LOTTO_PURCHASE_UNIT) == LOTTO_PURCHASE_AMOUNT_THRESHOLD;
     }
 
     private static boolean isLottoPurchaseAmountZero(int lottoPurchaseAmount) {
-        return lottoPurchaseAmount == Number.ZERO.getNumberToInteger();
+        return lottoPurchaseAmount == LOTTO_PURCHASE_AMOUNT_THRESHOLD;
     }
 
     private static boolean isValidMaxLottoCount(int lottoPurchaseAmount) {

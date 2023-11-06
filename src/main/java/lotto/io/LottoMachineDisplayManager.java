@@ -1,5 +1,15 @@
 package lotto.io;
 
+import static lotto.domain.constant.LottoMachineConstant.BLANK;
+import static lotto.domain.constant.LottoMachineConstant.COMMA;
+import static lotto.domain.constant.LottoMachineConstant.END_BRACKET;
+import static lotto.domain.constant.LottoMachineConstant.END_SMALL_BRACKET;
+import static lotto.domain.constant.LottoMachineConstant.HYPHEN;
+import static lotto.domain.constant.LottoMachineConstant.NEW_LINE;
+import static lotto.domain.constant.LottoMachineConstant.START_BRACKET;
+import static lotto.domain.constant.LottoMachineConstant.START_SMALL_BRACKET;
+import static lotto.domain.constant.LottoMachineConstant.WON;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,15 +18,6 @@ import lotto.domain.LottoRank;
 import lotto.util.StringUtils;
 
 public class LottoMachineDisplayManager {
-    private static final String START_BRACKET = "[";
-    private static final String END_BRACKET = "]";
-    private static final String START_SMALL_BRACKET = "(";
-    private static final String END_SMALL_BRACKET = ")";
-    private static final String HYPHEN = "-";
-    private static final String BLANK = " ";
-    private static final String NEW_LINE = "\n";
-    private static final String COMMA = ",";
-    private static final String WON = "원";
     private static final String PROMPT_PURCHASE_LOTTO_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String PROMPT_WINNING_LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String PROMPT_BONUS_LOTTO_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
@@ -76,8 +77,8 @@ public class LottoMachineDisplayManager {
         int matchLottoNumber = lottoRank.getMatchLottoNumber();
         String prizeMoney = StringUtils.convertToMoneyFormat(lottoRank.getPrizeMoney());
 
-        String headMessage = getHeadMessage(matchLottoNumber);
-        String tailMessage = getTailMessage(prizeWinningCount, prizeMoney);
+        String headMessage = getLottoStatisticsHeadMessage(matchLottoNumber);
+        String tailMessage = getLottoStatisticsTailMessage(prizeWinningCount, prizeMoney);
 
         if(lottoRank.equals(LottoRank.SECOND_PRIZE)) {
             return headMessage
@@ -90,7 +91,7 @@ public class LottoMachineDisplayManager {
         return headMessage + tailMessage;
     }
 
-    private static String getTailMessage(int prizeWinningCount, String prizeMoney) {
+    private static String getLottoStatisticsTailMessage(int prizeWinningCount, String prizeMoney) {
         return BLANK
                 + START_SMALL_BRACKET + prizeMoney + WON + END_SMALL_BRACKET
                 + BLANK
@@ -99,7 +100,7 @@ public class LottoMachineDisplayManager {
                 + prizeWinningCount + LOTTO_COUNT_UNIT_MESSAGE;
     }
 
-    private static String getHeadMessage(int matchLottoNumber) {
+    private static String getLottoStatisticsHeadMessage(int matchLottoNumber) {
         return matchLottoNumber + MATCHED_LOTTO_MESSAGE;
     }
 

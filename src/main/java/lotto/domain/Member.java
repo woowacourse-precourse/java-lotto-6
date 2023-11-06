@@ -19,6 +19,7 @@ public class Member {
     private void validationLottoPurchaseAmount(String lottoPurchaseAmount) {
         MemberValidationHandler.validationHasText(lottoPurchaseAmount);
         MemberValidationHandler.validationNumeric(lottoPurchaseAmount);
+
         int convertLottoPurchaseAmount = Integer.parseInt(lottoPurchaseAmount);
         MemberValidationHandler.validationLottoPurchaseAmountUnit(convertLottoPurchaseAmount);
         MemberValidationHandler.validationRangeLottoCount(convertLottoPurchaseAmount);

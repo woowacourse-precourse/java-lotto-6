@@ -16,7 +16,7 @@ public class LottoMachineExceptionHandler {
                 return operation.get();
             } catch (Exception e) {
                 count++;
-                System.out.println(e.getMessage());
+                System.out.println(ERROR + e.getMessage());
             }
         }
 
@@ -30,7 +30,7 @@ public class LottoMachineExceptionHandler {
                 return operation.get();
             } catch (Exception e) {
                 count++;
-                System.out.println(e.getMessage());
+                System.out.println(ERROR + e.getMessage());
             }
         }
 

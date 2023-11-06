@@ -27,7 +27,7 @@ class LottoValidationHandlerTest {
         // when // then
         assertThatThrownBy(() -> LottoValidationHandler.validationNumbersSize(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoValidationHandler.INVALID_LOTTO_NUMBERS_SIZE);
+                .hasMessage(LottoValidationHandler.INVALID_LOTTO_NUMBERS_SIZE_MESSAGE);
     }
 
     @Test
@@ -39,7 +39,7 @@ class LottoValidationHandlerTest {
         // when // then
         assertThatThrownBy(() -> LottoValidationHandler.validationNumbersSize(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoValidationHandler.INVALID_LOTTO_NUMBERS_SIZE);
+                .hasMessage(LottoValidationHandler.INVALID_LOTTO_NUMBERS_SIZE_MESSAGE);
     }
 
     @Test
@@ -61,7 +61,7 @@ class LottoValidationHandlerTest {
         // when // then
         assertThatThrownBy(() -> LottoValidationHandler.validateDuplicatedNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoValidationHandler.INVALID_DUPLICATED_LOTTO_NUMBERS);
+                .hasMessage(LottoValidationHandler.INVALID_DUPLICATED_LOTTO_NUMBERS_MESSAGE);
     }
 
     @Test
@@ -83,6 +83,6 @@ class LottoValidationHandlerTest {
         // when // then
         assertThatThrownBy(() -> LottoValidationHandler.validationNumbersRange(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoValidationHandler.INVALID_LOTTO_NUMBERS_RANGE);
+                .hasMessage(LottoValidationHandler.INVALID_LOTTO_NUMBERS_RANGE_MESSAGE);
     }
 }

@@ -1,7 +1,5 @@
 package lotto.domain.validation;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -47,7 +45,7 @@ class LottoMachineValidationHandlerTest {
         // given // when // then
         assertThatThrownBy(() -> LottoMachineValidationHandler.validationAllNumeric(bonusNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoMachineValidationHandler.INVALID_LOTTO_WINNING_NUMBER);
+                .hasMessage(LottoMachineValidationHandler.INVALID_LOTTO_WINNING_NUMBER_MESSAGE);
     }
 
     private static Stream<List<String>> invalidBonusNumbers() {
@@ -74,7 +72,7 @@ class LottoMachineValidationHandlerTest {
         // given // when // then
         assertThatThrownBy(() -> LottoMachineValidationHandler.validationNumeric(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoMachineValidationHandler.INVALID_LOTTO_BONUS_NUMBER);
+                .hasMessage(LottoMachineValidationHandler.INVALID_LOTTO_BONUS_NUMBER_MESSAGE);
     }
 
     @ParameterizedTest
@@ -92,6 +90,6 @@ class LottoMachineValidationHandlerTest {
         // given // when // then
         assertThatThrownBy(() -> LottoMachineValidationHandler.validationNumbersRange(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoMachineValidationHandler.INVALID_LOTTO_BONUS_NUMBER_RANGE);
+                .hasMessage(LottoMachineValidationHandler.INVALID_LOTTO_BONUS_NUMBER_RANGE_MESSAGE);
     }
 }

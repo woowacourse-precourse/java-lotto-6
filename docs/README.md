@@ -49,6 +49,11 @@
 - RegisterBonusNumberComponent
 - WinningStaticsComponent
 
+### InitializeLottoStoreComponent
+
+- 로또 상점 초기화 컴포넌트
+- [ ] 로또 상점을 초기화 이벤트를 실행시킴
+
 ### PurchaseLottoComponent
 
 - 로또 구매 컴포넌트

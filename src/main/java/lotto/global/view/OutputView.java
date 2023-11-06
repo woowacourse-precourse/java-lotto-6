@@ -19,12 +19,16 @@ public class OutputView {
 
     public static void outputStatistics(double rateOfReturn, LottoResultManager lottoResultManager) {
         System.out.println(ConsoleType.OUTPUT_STATISTICS.getComment());
-        System.out.println(ConsoleType.THREE_MATCH.getComment(lottoResultManager.getStatistics().get(WinningType.FIFTH)));
-        System.out.println(ConsoleType.FOUR_MATCH.getComment(lottoResultManager.getStatistics().get(WinningType.FOURTH)));
-        System.out.println(ConsoleType.FIVE_MATCH.getComment(lottoResultManager.getStatistics().get(WinningType.THIRD)));
-        System.out.println(ConsoleType.FIVE_AND_BONUS_MATCH.getComment(lottoResultManager.getStatistics().get(
-                WinningType.SECOND)));
-        System.out.println(ConsoleType.ALL_MATCH.getComment(lottoResultManager.getStatistics().get(WinningType.FIRST)));
+        System.out.println(ConsoleType.THREE_MATCH.getComment(
+                lottoResultManager.getStatistics().getStatistics().get(WinningType.FIFTH)));
+        System.out.println(ConsoleType.FOUR_MATCH.getComment(
+                lottoResultManager.getStatistics().getStatistics().get(WinningType.FOURTH)));
+        System.out.println(ConsoleType.FIVE_MATCH.getComment(
+                lottoResultManager.getStatistics().getStatistics().get(WinningType.THIRD)));
+        System.out.println(ConsoleType.FIVE_AND_BONUS_MATCH.getComment(
+                lottoResultManager.getStatistics().getStatistics().get(WinningType.SECOND)));
+        System.out.println(ConsoleType.ALL_MATCH.getComment(
+                lottoResultManager.getStatistics().getStatistics().get(WinningType.FIRST)));
         System.out.println(ConsoleType.OUTPUT_RATE_OF_RETURN.getComment(rateOfReturn + PERCENT));
     }
 

@@ -1,16 +1,14 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.Map;
 import lotto.global.constant.WinningType;
 
 public class LottoResultManager {
 
-    private static final int COUNT = 1;
+    private static final long COUNT = 1;
 
     private final LottoResults lottoResults;
     private final LottoStatistics lottoStatistics;
-    private long totalRevenue;
 
     public LottoResultManager(LottoResults lottoResults, LottoStatistics lottoStatistics) {
         this.lottoResults = lottoResults;
@@ -22,8 +20,7 @@ public class LottoResultManager {
             lottoResult.calculateResult(winningLotto);
             WinningType key = lottoResult.getWinning();
             lottoStatistics.getStatistics()
-                    .put(key, lottoStatistics.getStatistics().getOrDefault(key, 0) + COUNT);
-            totalRevenue += lottoResult.getWinning().getRevenue();
+                    .put(key, lottoStatistics.getStatistics().getOrDefault(key, 0L) + COUNT);
         }
     }
 
@@ -31,11 +28,7 @@ public class LottoResultManager {
         return lottoResults.getLottoResults();
     }
 
-    public Map<WinningType, Integer> getStatistics() {
-        return lottoStatistics.getStatistics();
-    }
-
-    public long getTotalRevenue() {
-        return totalRevenue;
+    public LottoStatistics getStatistics() {
+        return lottoStatistics;
     }
 }

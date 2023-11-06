@@ -1,10 +1,8 @@
 package lotto.controller;
 
+import lotto.dto.LottoDto;
 import lotto.model.Game;
-import lotto.model.Lotto;
-import lotto.model.Player;
 import lotto.service.GameService;
-import lotto.util.NumberFactory;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -14,40 +12,37 @@ import java.util.List;
 public class GameController {
     private final OutputView outputView;
     private final InputView inputView;
-    private final NumberFactory numberFactory;
     private final GameService gameService;
 
-    public GameController(OutputView outputView, InputView inputView, NumberFactory numberFactory, GameService gameService) {
+    public GameController(OutputView outputView, InputView inputView, GameService gameService) {
         this.outputView = outputView;
         this.inputView = inputView;
-        this.numberFactory = numberFactory;
         this.gameService = gameService;
     }
 
     public void startGame() {
         int cost = inputView.getCost();
 
-        Player player = new Player(cost);
         Game game = new Game(cost);
-        outputView.printPurchaseResult(player.getLottoCount());
 
-        for(int lotto = 0; lotto < player.getLottoCount(); lotto++) {
-            List<Integer> generatedLotto = numberFactory.getNumbers();
-            player.buyLotto(generatedLotto);
-            outputView.printLotto(generatedLotto);
+        outputView.printLottoQuantity(game.getLottoQuantity());
+
+        gameService.purchaseLotto(game);
+
+        for(LottoDto dto : game.getLottoNumbers()) {
+            outputView.printPurchasedLotto(dto.getLottoNumber());
         }
+        outputView.printNewLine();
 
         List<Integer> winnerNumber = inputView.getWinnerNumber();
+        outputView.printNewLine();
+
         int bonusNumber = inputView.getBonusNumber(winnerNumber);
+        outputView.printNewLine();
 
-        for(Lotto lotto : player.getLotto()) {
-            int count = gameService.getMatchedLottoNumber(lotto, winnerNumber);
-            boolean bonusResult = gameService.getBonusResult(lotto, bonusNumber);
+        gameService.getLottoResult(game, winnerNumber, bonusNumber);
 
-            game.addPrize(count, bonusResult);
-        }
-
-        outputView.printGameResult(game);
-        outputView.printGameInterestRate(game.getPrize() / cost * 100);
+        outputView.printGameResults(game.getResultInfo());
+        outputView.printGameProfit(game.getGameProfit());
     }
 }

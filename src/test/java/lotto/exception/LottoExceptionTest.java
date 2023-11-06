@@ -24,4 +24,11 @@ public class LottoExceptionTest {
                 lottoException.validateLottoNumbersLength(numbers), "[ERROR] 로또 번호는 6개이어야 합니다");
 
     }
+
+    @Test
+    void 로또번호_범위_벗어난_입력() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 60);
+        assertThrows(IllegalArgumentException.class, () ->
+                lottoException.validateNumbersPermittedRange(numbers), "[ERROR] 로또 번호의 범위는 1~45 사이여야 합니다");
+    }
 }

@@ -15,11 +15,11 @@ import lotto.vo.BonusNumber;
 import lotto.vo.BuyAmount;
 import lotto.vo.TicketCount;
 
-public class LottoGameController {
+public class LottoController {
 
     private final View view;
 
-    public LottoGameController(View view) {
+    public LottoController(View view) {
         this.view = view;
     }
 

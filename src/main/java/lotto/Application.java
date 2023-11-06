@@ -1,14 +1,14 @@
 package lotto;
 
-import lotto.controller.LottoGameController;
+import lotto.controller.LottoController;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.View;
 
 public class Application {
     public static void main(String[] args) {
-        LottoGameController lottoGameController = new LottoGameController(
+        LottoController lottoController = new LottoController(
                 new View(new InputView(), new OutputView()));
-        lottoGameController.run();
+        lottoController.run();
     }
 }

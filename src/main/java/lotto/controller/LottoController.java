@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.application.LottoMachine;
+import lotto.application.LottoStore;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAmount;
 import lotto.domain.LottoNumber;
@@ -28,7 +29,7 @@ public class LottoController {
         LottoAmount lottoAmount = this.getLottoAmount();
         LottoTicket lottoTicket = this.buyLottoTicket(lottoAmount);
         outputView.printLottoTicket(lottoTicket);
-        WinningLotto winningLotto = new WinningLotto(this.getLotto(), this.getBonus());
+        WinningLotto winningLotto = this.getWinningLotto();
         WinningResult winningResult = lottoTicket.match(winningLotto);
         outputView.printWinningResult(winningResult);
         outputView.printYield(winningResult.calculateYield(lottoAmount));
@@ -50,6 +51,18 @@ public class LottoController {
         while (true) {
             try {
                 return lottoMachine.createLottoTicketByAuto(lottoAmount.getLottoQuantity());
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private WinningLotto getWinningLotto() {
+        Lotto lotto = getLotto();
+        while (true) {
+            try {
+                LottoNumber bonus = getBonus();
+                return new WinningLotto(lotto, bonus);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }

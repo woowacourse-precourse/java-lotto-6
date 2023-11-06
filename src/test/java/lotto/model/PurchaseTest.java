@@ -9,6 +9,16 @@ import org.junit.jupiter.api.Test;
 public class PurchaseTest {
 
     @Test
+    void 구입_금액_입력이_비어있는지_검증_실패_테스트() {
+        String input = "";
+        String expectedErrorMessage = InputValidator.ERROR_EMPTY_INPUT_MESSAGE;
+
+        assertThatThrownBy(() -> InputValidator.validateEmpty(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(expectedErrorMessage);
+    }
+
+    @Test
     void 구입_금액_입력이_숫자인지_검증_성공_테스트() {
         String input = "1242";
         int expectedResult = 1242;
@@ -24,6 +34,16 @@ public class PurchaseTest {
         String expectedErrorMessage = InputValidator.ERROR_NOT_NUMBER_MESSAGE;
 
         assertThatThrownBy(() -> InputValidator.validateNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(expectedErrorMessage);
+    }
+
+    @Test
+    void 구입_금액_입력_0일때_실패_테스트() {
+        int purchaseMoney = 0;
+        String expectedErrorMessage = Purchase.ERROR_NOT_BIGGER_THAN_ZERO;
+
+        assertThatThrownBy(() -> new Purchase(purchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedErrorMessage);
     }

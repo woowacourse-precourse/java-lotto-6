@@ -13,6 +13,7 @@ public class User {
 
     public int inputWantBuyAmount(String wantBuyAmount) {
         int wantBuyAmountToInt = validateIsNumber(wantBuyAmount);
+        validateWantBuyAmountRange(wantBuyAmountToInt);
         validateWantBuyAmount(wantBuyAmountToInt);
 
         return wantBuyAmountToInt;
@@ -48,6 +49,13 @@ public class User {
             OutputView.printMessage(ErrorMessage.WANT_BUY_AMOUNT_EXCEPTION.getMessage());
             throw new IllegalArgumentException(ErrorMessage.WANT_BUY_AMOUNT_EXCEPTION.getMessage());
         }
+    }
+
+    private void validateWantBuyAmountRange(int wantBuyAmount) {
+        if (wantBuyAmount > 100000) {
+            throw new IllegalArgumentException(ErrorMessage.WANT_BUY_AMOUNT_OVER_EXCEPTION.getMessage());
+        }
+
     }
 
     private void validateWinningNumberLength(String winningNumber) {

@@ -12,7 +12,7 @@ public class PrizeResult {
 
     private final Map<Prize, Long> prizeResult;
 
-    public PrizeResult(Lottos lottos, WinnerLotto winnerLotto) {
+    public PrizeResult(final Lottos lottos, final WinnerLotto winnerLotto) {
         this.prizeResult = processPrizeResult(calculatePrizeResult(lottos, winnerLotto));
     }
 

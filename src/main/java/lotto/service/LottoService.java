@@ -4,9 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.configuration.BonusCount;
+import lotto.configuration.ScoreBoard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,6 +66,15 @@ public class LottoService {
             return BonusCount.PLUS_ONE.getWeight();
         }
         return BonusCount.PLUS_ZERO.getWeight();
+    }
+
+    public HashMap<String, Long> generateResultScoreBoard() {
+        HashMap<String, Long> scoreBoard = new HashMap<>();
+        for (ScoreBoard score : ScoreBoard.values()) {
+            scoreBoard.put(score.getKey(), score.getValue());
+        }
+
+        return scoreBoard;
     }
 
 }

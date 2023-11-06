@@ -28,6 +28,14 @@ public class InputViewTest {
         assertThat(userInput).isEqualTo("1, 2, 3, 4, 5, 6");
     }
 
+    @Test
+    @DisplayName("보너스 번호 입력 테스트 - 정상데이터 - 성공")
+    void askBonusNumberTest() {
+        System.setIn(createUserInput("1"));
+        String userInput = inputView.askBonusNumber();
+        assertThat(userInput).isEqualTo("1");
+    }
+
     private static InputStream createUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }

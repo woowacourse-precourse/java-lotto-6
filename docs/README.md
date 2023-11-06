@@ -47,16 +47,17 @@
 ## 기능 요구 사항
 
 ### 정상 상황
+- [x] 로또 번호를 **발행**하는 기능 - pickUniqueNumbersInRange() < 제공 라이브러리 >
 
 - [x] 로또 구입 금액을 **입력**하는 기능 - domain ~ Purchase
 
-  - [x] 로또 번호를 **발행**하는 기능 - pickUniqueNumbersInRange() < 제공 라이브러리 >
+  - [x] 로또 구입 금액을 입력하는 기능 - Purchase#initializeAmount();
 
-  - [x] 로또를 **구입**하는 기능 - Purchase#purchaseLotto();
+  - [x] 로또를 **구입**하는 기능 - Purchase#initializePurchasedLotto();
 
   - [x] 로또 수량을 **출력**하는 기능 - Purchase#getAmount();
 
-  - [x] 로또 번호를 **출력**하는 기능 - Purchase#printPurchasedLotto(); , Lotto#getLottoNumber();
+  - [x] 로또 번호를 **출력**하는 기능 - Purchase#printPurchasedLotto(); , Lotto#printLottoNumber();
 
   - [ ] 로또 구입 금액이 올바른지 **판단**하는 기능
 
@@ -64,7 +65,7 @@
 
   - [ ] 당첨 번호가 올바른지 **판단**하는 기능
 
-- [x] 보너스 번호를 **입력**하는 기능 WinningLotto#setBonusNumber();
+- [x] 보너스 번호를 **입력**하는 기능 WinningLotto#initializeBonusNumber();
 
   - [ ] 보너스 번호가 올바른지 **판단**하는 기능
 

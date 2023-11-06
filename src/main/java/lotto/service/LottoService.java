@@ -1,6 +1,5 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyPrice;
 import lotto.repository.LottoRepository;

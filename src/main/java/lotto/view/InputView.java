@@ -44,11 +44,11 @@ public class InputView {
         return lastCharacter;
     }
 
-    public void printWinningNumber() {
+    private void printWinningNumber() {
         System.out.println(ASK_WINNING_NUMBER_MESSAGE);
     }
 
-    public void printBonusWinningNumber() {
+    private void printBonusWinningNumber() {
         System.out.println(ASK_BONUS_WINNING_NUMBER_MESSAGE);
     }
 
@@ -56,7 +56,7 @@ public class InputView {
         System.out.println(ASK_PURCHASE_MESSAGE);
     }
 
-    public int validateInteger(String input) {
+    private int validateInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
@@ -65,13 +65,13 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public void validateBlankAndEmptyInteger(String input) {
+    private void validateBlankAndEmptyInteger(String input) {
         if (input.isBlank() || input.isEmpty() || input.contains(" ")) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력될 수 없습니다.");
         }
     }
 
-    public int validateNegativeIntegerAndZero(int input) {
+    private int validateNegativeIntegerAndZero(int input) {
         if (input <= 0) {
             throw new IllegalArgumentException("[ERROR] 0 이하의 값은 입력받을 수 없습니다.");
         }

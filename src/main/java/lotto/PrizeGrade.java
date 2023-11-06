@@ -1,21 +1,31 @@
 package lotto;
 
 public enum PrizeGrade {
-    FIRST(2000000000),
-    SECOND(30000000),
-    THIRD(1500000),
-    FOURTH(50000),
-    FIFTH(5000),
-    NO_PRIZE(0);
+    FIRST(FIRST_MATCH_COUNT, FIRST_PRIZE_MONEY, EMPTY),
+    SECOND(SECOND_MATCH_COUNT, SECOND_PRIZE_MONEY, BONUS_MATCH),
+    THIRD(THIRD_MATCH_COUNT, THIRD_PRIZE_MONEY, EMPTY),
+    FOURTH(FOURTH_MATCH_COUNT, FOURTH_PRIZE_MONEY, EMPTY),
+    FIFTH(FIFTH_MATCH_COUNT, FIFTH_PRIZE_MONEY, EMPTY);
 
+    private final int matchCount;
     private final int prizeMoney;
+    private final String additionalMessage;
+    private int lottoCount;
 
-    PrizeGrade(int prizeMoney) {
+    PrizeGrade(int matchCount, int prizeMoney, String additionalMessage) {
+        this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
+        this.additionalMessage = additionalMessage;
+    }
+
+    public String getInfo() {
+        return String.format("%d개 일치%s (%d원) - %d개", this.matchCount, this.additionalMessage + this.prizeMoney, this.lottoCount);
     }
 
     public int getPrizeMoney() {
-        return this.prizeMoney;
+        return this.prizeMoney * this.lottoCount;
     }
+
+
 
 }

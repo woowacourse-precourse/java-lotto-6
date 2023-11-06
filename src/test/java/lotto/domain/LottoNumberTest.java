@@ -13,7 +13,7 @@ class LottoNumberTest {
     @DisplayName("로또 번호 입력 값이 빈 값 또는 숫자가 아닌 경우에 대한 예외 검증")
     @ValueSource(strings = {"", "kyj", "5j"})
     @ParameterizedTest
-    void LottoNumber1(String input){
+    void notNumber(String input){
         //given, when
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()-> new LottoNumber(input));
 

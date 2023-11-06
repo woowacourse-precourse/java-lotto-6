@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResultWinners {
-    Map<Rank,Integer> lottoResultWinner;
+    private Map<Rank,Integer> lottoResultWinner;
 
     public LottoResultWinners(){
         this.lottoResultWinner = new HashMap<>();

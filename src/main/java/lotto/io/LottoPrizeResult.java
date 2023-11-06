@@ -40,7 +40,7 @@ public enum LottoPrizeResult {
             }
         }
         return null;
-    }
+    }int 커밋용도로_임시생성 = 1;
     public int getPrizeMoney(){
         return prizeMoney;
     }

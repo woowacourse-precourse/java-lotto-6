@@ -5,6 +5,7 @@ import lotto.model.*;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class LottoGame {
@@ -18,7 +19,7 @@ public class LottoGame {
     public void run() {
         int initMoney = inputMoney.save();
         int bonusNumber = 0;
-        countLotto(initMoney /THOUSAND);
+        countLotto(initMoney / THOUSAND);
         WinningNumbers winningNumbers = makeWinningNumbers();
         bonusNumber = addBonusNumber(winningNumbers);
         totalResult.print(initMoney, totalLotto, winningNumbers, bonusNumber);
@@ -38,13 +39,18 @@ public class LottoGame {
     private void countLotto(int lottoPaper) {
         outputView.count(lottoPaper);
 
-        for(int i=0; i<lottoPaper; i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+        for (int i = 0; i < lottoPaper; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             totalLotto.add(lotto);
-        }
 
+        }
         outputView.printTotalLotto(totalLotto);
+    }
+
+    private boolean checkNumbers(List<Integer> numbers) {
+        HashSet<Integer> set = new HashSet<>(numbers);
+        return set.size() == 6;
     }
 }
 

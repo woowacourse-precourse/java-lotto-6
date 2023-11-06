@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -8,7 +9,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -16,10 +16,19 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if (hasDuplicate(numbers)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    private boolean hasDuplicate(List<Integer> numbers) {
+        HashSet<Integer> set = new HashSet<>(numbers);
+        return set.size() < numbers.size();
     }
 
     @Override

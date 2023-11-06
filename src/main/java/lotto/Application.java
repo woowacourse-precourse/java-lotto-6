@@ -16,7 +16,7 @@ public class Application {
         int numberOfLottos = calculateNumberOfLottos(userPurchaseAmount);
         List<Lotto> purchasedLottos = getPurchasedLottos(numberOfLottos);
         List<Integer> winningNumber = getWinningNumber();
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(winningNumber);
         calculateResults(purchasedLottos, winningNumber, bonusNumber);
         double roundedReturn = lottoResult.getRoundedReturn(userPurchaseAmount, lottoResult);
 
@@ -65,9 +65,20 @@ public class Application {
         return winningNumber;
     }
 
-    private static int getBonusNumber() {
+    private static int getBonusNumber(List<Integer> winningNumber) {
         printOut.inputBonusNumber();
-        return inputHandler.getInputNumber();
+        int bonusNumber = 0;
+        boolean validInputNumber = false;
+        while (!validInputNumber) {
+            try {
+                bonusNumber = inputHandler.getInputNumber();
+                validation.bonusNumberCheck(winningNumber, bonusNumber);
+                validInputNumber = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
     }
 
     private static void calculateResults(List<Lotto> purchasedLottos, List<Integer> winningNumber, int bonusNumber) {

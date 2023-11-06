@@ -122,7 +122,7 @@ public class LottoHandler {
     }
 
     private void validBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_LAST_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
         }
     }

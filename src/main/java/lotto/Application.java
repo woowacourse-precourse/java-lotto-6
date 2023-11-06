@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.ui.GetPurchaseUI;
+import lotto.ui.PrintLottoUI;
 
 public class Application {
     private static Purchase getPurchaseAmount(GetPurchaseUI getPurchaseUI) {

@@ -1,8 +1,9 @@
-package lotto;
+package lotto.ui;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.List;
+import lotto.Constants;
 
 public class PrintLottoUI {
 

@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.ErrorMessage.HAS_DUPLICATION_ERROR_MESSAGE;
-import static lotto.ErrorMessage.WRONG_RANGE_ERROR_MESSAGE;
-import static lotto.ErrorMessage.WRONG_SIZE_ERROR_MESSAGE;
+import static lotto.ErrorMessage.LOTTO_HAS_DUPLICATION_ERROR_MESSAGE;
+import static lotto.ErrorMessage.LOTTO_WRONG_RANGE_ERROR_MESSAGE;
+import static lotto.ErrorMessage.LOTTO_WRONG_SIZE_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -16,7 +16,7 @@ class LottoTest {
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(WRONG_SIZE_ERROR_MESSAGE.get());
+                .hasMessage(LOTTO_WRONG_SIZE_ERROR_MESSAGE.get());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -25,7 +25,7 @@ class LottoTest {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(HAS_DUPLICATION_ERROR_MESSAGE.get());
+                .hasMessage(LOTTO_HAS_DUPLICATION_ERROR_MESSAGE.get());
     }
 
     @Test
@@ -33,7 +33,7 @@ class LottoTest {
     void createLottoByLessThan1Number() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 5, 7, 8, 15)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(WRONG_RANGE_ERROR_MESSAGE.get());
+                .hasMessage(LOTTO_WRONG_RANGE_ERROR_MESSAGE.get());
     }
 
     @Test
@@ -41,7 +41,7 @@ class LottoTest {
     void createLottoByGreaterThan45Number() {
         assertThatThrownBy(() -> new Lotto(List.of(46, 2, 5, 7, 8, 15)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(WRONG_RANGE_ERROR_MESSAGE.get());
+                .hasMessage(LOTTO_WRONG_RANGE_ERROR_MESSAGE.get());
     }
 
     @Test

@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.ErrorMessage.HAS_DUPLICATION_ERROR_MESSAGE;
-import static lotto.ErrorMessage.WRONG_RANGE_ERROR_MESSAGE;
-import static lotto.ErrorMessage.WRONG_SIZE_ERROR_MESSAGE;
+import static lotto.ErrorMessage.LOTTO_HAS_DUPLICATION_ERROR_MESSAGE;
+import static lotto.ErrorMessage.LOTTO_WRONG_RANGE_ERROR_MESSAGE;
+import static lotto.ErrorMessage.LOTTO_WRONG_SIZE_ERROR_MESSAGE;
 import static lotto.LottoConstance.LOTTO_SIZE;
 import static lotto.LottoConstance.MAX_NUMBER_LOTTO_RANGE;
 import static lotto.LottoConstance.MIN_NUMBER_LOTTO_RANGE;
@@ -25,11 +25,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (!isLottoSize(numbers)) {
-            throwException(WRONG_SIZE_ERROR_MESSAGE.get());
+            throwException(LOTTO_WRONG_SIZE_ERROR_MESSAGE.get());
         } else if (!isBetween1to45(numbers)) {
-            throwException(WRONG_RANGE_ERROR_MESSAGE.get());
+            throwException(LOTTO_WRONG_RANGE_ERROR_MESSAGE.get());
         } else if (hasDuplication(numbers)) {
-            throwException(HAS_DUPLICATION_ERROR_MESSAGE.get());
+            throwException(LOTTO_HAS_DUPLICATION_ERROR_MESSAGE.get());
         }
     }
 

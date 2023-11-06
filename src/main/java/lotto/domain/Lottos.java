@@ -8,9 +8,12 @@ import java.util.*;
 public class Lottos {
     int numberOfLottos;
     List<Lotto> lottos = new ArrayList<>();
+    HashMap<LottoRank, Integer> rankCount;
+
     public Lottos(String purchaseAmount) {
         numberOfLottos = validatePurchaseAmount(purchaseAmount);
         initEachLotto();
+        initRankCount();
     }
 
     private int validatePurchaseAmount(String purchaseAmount) {
@@ -53,7 +56,7 @@ public class Lottos {
     }
 
     public HashMap<LottoRank, Integer> getLottosResult(FinalWinningNumber finalWinningNumber) {
-        HashMap<LottoRank, Integer> rankCount = initRankCount();
+//        HashMap<LottoRank, Integer> rankCount = initRankCount();
         for (Lotto lotto : lottos) {
             LottoRank lottoRank = lotto.compareLottoNumberWithFianlWinningNumber(finalWinningNumber);
             rankCount.put(lottoRank, rankCount.get(lottoRank) + 1);
@@ -62,11 +65,18 @@ public class Lottos {
         return rankCount;
     }
 
-    private HashMap<LottoRank, Integer> initRankCount() {
-        HashMap<LottoRank, Integer> rankCount = new LinkedHashMap<>();
+    private void initRankCount() {
+        rankCount = new LinkedHashMap<>();
         for(LottoRank lottoRank : LottoRank.values()) {
             rankCount.put(lottoRank, 0);
         }
-        return rankCount;
+    }
+
+    public double calculateTotalRateOfReturn() {
+        double totalSum = 0;
+        for(LottoRank lottoRank : rankCount.keySet()) {
+            totalSum += lottoRank.getValue() * rankCount.get(lottoRank);
+        }
+        return totalSum / (numberOfLottos * 1000) * 100;
     }
 }

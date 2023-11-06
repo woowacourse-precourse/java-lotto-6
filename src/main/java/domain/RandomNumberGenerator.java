@@ -11,7 +11,7 @@ public class RandomNumberGenerator {
         return randomNumber;
     }
 
-    public List<Integer> mergeSort(List<Integer> list) {
+    private List<Integer> mergeSort(List<Integer> list) {
         if (list.size() <= 1) {
             return list;
         }
@@ -30,7 +30,8 @@ public class RandomNumberGenerator {
         while (leftIndex < left.size() && rightIndex < right.size()) {
             if (left.get(leftIndex) < right.get(rightIndex)) {
                 merged.add(left.get(leftIndex++));
-            } else {
+            }
+            else if (left.get(leftIndex) >= right.get(rightIndex)){
                 merged.add(right.get(rightIndex++));
             }
         }

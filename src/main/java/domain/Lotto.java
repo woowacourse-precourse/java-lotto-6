@@ -7,25 +7,25 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        validateDuplicated(numbers);
-        validateExceeded(numbers);
+        validateLottoOverSize(numbers);
+        validateLottoNumberIsDuplicated(numbers);
+        validateEachLottoNumberExceededSize(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateLottoOverSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateDuplicated(List<Integer> numbers) {
+    private void validateLottoNumberIsDuplicated(List<Integer> numbers) {
         if (new HashSet(numbers).size() < numbers.size()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateExceeded(List<Integer> numbers) {
+    private void validateEachLottoNumberExceededSize(List<Integer> numbers) {
         for (int number : numbers) {
             if (number > 45) {
                 throw new IllegalArgumentException();

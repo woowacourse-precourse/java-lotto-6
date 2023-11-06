@@ -14,4 +14,10 @@ public class Converter {
             throw ExceptionMessage.INPUT_EMPTY.throwexception();
         }
     }
+
+    private void checkType(String amount){
+        if (amount.matches(".*\\D.*")){
+            throw ExceptionMessage.INPUT_TYPE.throwexception();
+        }
+    }
 }

@@ -45,7 +45,7 @@ public class LottoStatistics {
         return rank.toString() + String.format(" - %d개", count);
     }
 
-    public int getIncome() {
+    public int calculateIncome() {
         return statistics.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();

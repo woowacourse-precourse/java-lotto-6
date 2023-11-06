@@ -25,7 +25,7 @@ public class LottoController {
         Result result = requestResult();
 
         LottoStatistics lottoStatistics = lottoPack.calculate(result);
-        IncomeRate incomeRate = new IncomeRate(money.getPrice(), lottoStatistics.getIncome());
+        IncomeRate incomeRate = new IncomeRate(money.getPrice(), lottoStatistics.calculateIncome());
 
         outputView.printResult(lottoStatistics);
         outputView.printIncomeRate(incomeRate);

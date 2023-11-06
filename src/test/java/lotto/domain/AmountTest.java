@@ -16,7 +16,7 @@ public class AmountTest {
     @ParameterizedTest
     @DisplayName("구입금액이 최소 금액보다 모자라다면 예외 발생")
     @ValueSource(ints = {500})
-    void buyAmountIsNotEnough(int amount) {
+    void buyAmountIsNotEnough(double amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -24,15 +24,15 @@ public class AmountTest {
     @ParameterizedTest
     @DisplayName("구입금액이 음수일 경우 예외 발생")
     @ValueSource(ints = {-1})
-    void buyAmountNegativeNumber(int amount) {
+    void buyAmountNegativeNumber(double amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @DisplayName("구입금액이 나누어 떨어지지 않을 경우 예외 발생")
-    @ValueSource(ints = {1050})
-    void buyAmountDivide(int amount) {
+    @ValueSource(doubles = {1050.1})
+    void buyAmountDivide(double amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -40,7 +40,7 @@ public class AmountTest {
     @ParameterizedTest(name = "구매금액 : {0}, 결과 : {1}")
     @DisplayName("구입금액에 따른 발행 로또 갯수 테스트")
     @MethodSource("lottoCount")
-    void calculateLottoCount(int amount, int result) {
+    void calculateLottoCount(double amount, int result) {
         assertThat(new Amount(amount).buyCount()).isEqualTo(result);
     }
 

@@ -1,7 +1,6 @@
 package lotto.views;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -12,7 +11,6 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.service.LottoService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

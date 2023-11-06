@@ -61,28 +61,32 @@ class InputViewTest {
         inputBuilder.append("46");
         inputBuilder.append("\n");
 
-        // (8) getBonusNumber_보너스_번호가_45_초과인_경우
+        // (8) 입력_당첨_번호가_6개_초과_인_경우
         inputBuilder.append("1,2,3,4,5,6,7");
         inputBuilder.append("\n");
 
-        // (9) getBonusNumber_보너스_번호가_45_초과인_경우
+        // (9) getOriginalWinningNumbers_입력_당첨_번호가_6개_미만_인_경우
         inputBuilder.append("1,2,3,4,5");
         inputBuilder.append("\n");
 
-        // (10) getBonusNumber_보너스_번호가_45_초과인_경우
+        // (10) getOriginalWinningNumbers_입력_당첨_번호가_7개_인데_중복_제거_시_6개_인_경우
         inputBuilder.append("1,2,3,4,5,6,6");
         inputBuilder.append("\n");
 
-        // (11) getBonusNumber_보너스_번호가_45_초과인_경우
+        // (11) getOriginalWinningNumbers_입력_당첨_번호가_6개_인데_중복_제거_시_6개가_아닌_경우
         inputBuilder.append("1,2,3,4,5,5");
         inputBuilder.append("\n");
 
-        // (12) getBonusNumber_보너스_번호가_45_초과인_경우
+        // (12) getOriginalWinningNumbers_입력_당첨_번호_중_하나_라도_1_미만_인_경우
         inputBuilder.append("1,2,3,0,5,6");
         inputBuilder.append("\n");
 
-        // (13) getBonusNumber_보너스_번호가_45_초과인_경우
+        // (13) 입력_당첨_번호_중_하나_라도_45_초과_인_경우
         inputBuilder.append("1,2,3,46,6,7");
+        inputBuilder.append("\n");
+
+        // (14) getOriginalWinningNumbers_입력_당첨_번호가_쉼표_숫자_외의_입력_인_경우
+        inputBuilder.append("1.2.3,5,7,9");
         inputBuilder.append("\n");
 
         InputStream testInput = new ByteArrayInputStream(inputBuilder.toString().getBytes());
@@ -300,5 +304,17 @@ class InputViewTest {
         assertThatThrownBy(() -> inputView.getOriginalWinningNumbers())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_MET_LOTTO_NUMBERS_RANGE.getMessage());
+    }
+
+    @Test
+    @Order(14)
+    void getOriginalWinningNumbers_입력_당첨_번호가_쉼표_숫자_외의_입력_인_경우() {
+        //given
+        String inputNumbers = "1.2.3,5,7,9";
+        //when
+        //then
+        assertThatThrownBy(() -> inputView.getOriginalWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.NOT_MET_WINNING_NUMBER_REGEX.getMessage());
     }
 }

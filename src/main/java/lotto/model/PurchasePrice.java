@@ -33,4 +33,9 @@ public class PurchasePrice {
     public long getQuotient() {
         return amount / LOTTO_PRICE;
     }
+
+    public double calculateRateOfReturn(final long sum) {
+        double result = ((double) sum / amount) * 100;
+        return Math.round(result * 100) / 100.0;
+    }
 }

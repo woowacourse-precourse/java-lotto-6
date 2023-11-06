@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Objects;
 import lotto.constant.LottoRanking;
 import lotto.dto.LottosInfo;
+import lotto.dto.RateOfReturn;
 import lotto.dto.WinningStatistics;
 import lotto.generator.IntegerListGenerator;
 
@@ -51,5 +52,16 @@ public class LottoOwner {
             }
         });
         return new WinningStatistics(lottoResults);
+    }
+
+    public RateOfReturn convertResultToRateOfReturn() {
+        return new RateOfReturn(purchasePrice.calculateRateOfReturn(calculateSum()));
+    }
+
+    private long calculateSum() {
+        return lottoResults.keySet().stream()
+                .map(lottoRanking -> lottoRanking.getPrize() * lottoResults.get(lottoRanking))
+                .mapToLong(Long::longValue)
+                .sum();
     }
 }

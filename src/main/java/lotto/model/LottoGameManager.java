@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.dto.RateOfReturn;
 import lotto.dto.WinningStatistics;
 
 public class LottoGameManager {
@@ -17,5 +18,9 @@ public class LottoGameManager {
 
     public WinningStatistics getWinningStatistics() {
         return lottoOwner.matchLottosWithWinningLotto(winningLotto);
+    }
+
+    public RateOfReturn getRateOfReturn() {
+        return lottoOwner.convertResultToRateOfReturn();
     }
 }

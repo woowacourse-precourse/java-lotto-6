@@ -9,7 +9,7 @@ public class WinNumber {
     private final Set<Integer> numbers;
     private final int bonusNumber;
 
-    public WinNumber(List<Integer> numbers, int bonusNumber){
+    public WinNumber(List<Integer> numbers, int bonusNumber) {
         validate(numbers, bonusNumber);
         this.numbers = new HashSet<>(numbers);
         this.bonusNumber = bonusNumber;
@@ -19,11 +19,11 @@ public class WinNumber {
         return this.numbers;
     }
 
-    public int getBonusNumber(){
+    public int getBonusNumber() {
         return this.bonusNumber;
     }
 
-    private void validate(List<Integer> numbers, int bonusNumber){
+    private void validate(List<Integer> numbers, int bonusNumber) {
         LottoNumberValidator.hasDuplicateNumbers(numbers);
         LottoNumberValidator.validateLottoNumbersRange(numbers);
         LottoNumberValidator.validateSingleNumberRange(bonusNumber);

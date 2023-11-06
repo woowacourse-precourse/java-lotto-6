@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.game.Rank;
 import lotto.validator.LottoNumberValidator;
 
@@ -11,8 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().collect(Collectors.toList());
     }
 
     private void validate(List<Integer> numbers) {
@@ -23,14 +22,15 @@ public class Lotto {
     public Rank getRank(WinNumber winNumber) {
         int count = getSameNumberCount(winNumber.getNumbers());
         boolean bonus = isBonus(winNumber.getBonusNumber(), count);
-        for (Rank rank : Rank.values()){
-            if(rank.getCount()==count && rank.isBonus()==bonus){
+        for (Rank rank : Rank.values()) {
+            if (rank.getCount() == count && rank.isBonus() == bonus) {
                 return rank;
             }
         }
         return Rank.NONE;
     }
-    private int getSameNumberCount(Set<Integer> winNumbers){
+
+    private int getSameNumberCount(Set<Integer> winNumbers) {
         int count = 0;
         for (Integer number : numbers) {
             if (winNumbers.contains(number)) {
@@ -40,10 +40,10 @@ public class Lotto {
         return count;
     }
 
-    private boolean isBonus(int bonusNumber, int count){
+    private boolean isBonus(int bonusNumber, int count) {
         boolean bonus = false;
         for (Integer number : numbers) {
-            if(number==bonusNumber && count==5){
+            if (number == bonusNumber && count == 5) {
                 bonus = true;
             }
         }
@@ -51,7 +51,7 @@ public class Lotto {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return numbers.toString();
     }
 }

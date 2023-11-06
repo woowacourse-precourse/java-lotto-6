@@ -14,29 +14,19 @@ public class Buyer {
         return Integer.parseInt(money);
     }
 
-    public boolean validatePurchaseAmount(int money) {
-        return money % 1000 == 0;
-    }
+
 
     public int getLottoPurchaseAmount() {
         int money = takeLottoPurchaseAmountFromBuyer();
-        if (validatePurchaseAmount(money)) {
+        if (validator.validatePurchaseAmount(money)) {
             return money;
         }
-        throw new IllegalArgumentException("천원단위로 입력해주세요.");
+        throw new IllegalArgumentException("[ERROR] 천원단위로 입력해주세요.");
     }
 
     public List<Integer> getLottoNumber() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
-
-//    public int getBonusNumber(List<Integer> LottoNumbers) {
-//        int bonusNumber;
-//        do {
-//            bonusNumber = Randoms.pickNumberInRange(1, 45);
-//        } while (LottoNumbers.contains(bonusNumber));
-//        return bonusNumber;
-//    }
 
     public List<List<Integer>> generateLottoNumbers() {
         int money = getLottoPurchaseAmount();
@@ -54,6 +44,9 @@ public class Buyer {
     public List<Integer> getWinningNumber() {
         System.out.println("당첨번호를 입력해주세요.");
         String winningNumberString = Console.readLine();
+        if (!validator.validateWinningNumber(winningNumberString)) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다.");
+        }
         // 입력받은 문자열을 쉼표로 분할하여 스트림 생성
         List<Integer> winningNumbers = Arrays.stream(winningNumberString.split(","))
                 .map(String::trim) // 공백 제거

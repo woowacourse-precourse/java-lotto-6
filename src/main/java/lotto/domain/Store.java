@@ -1,13 +1,13 @@
 package lotto.domain;
 
-public class Price {
+public class Store {
 
     private static final int MAX_INPUT= 2_100_000_000;
     private static final int LOTTO_PRICE = 1_000;
 
     private final int price;
 
-    public Price(int price) {
+    public Store(int price) {
         validate(price);
         this.price = price;
     }

@@ -4,8 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
 
+    private final InputValidator inputValidator = new InputValidator();
+
     public String readMoney() {
-        return read();
+        return inputValidator.validateNumberFormat(read());
     }
 
     public String readWinningNumbers() {
@@ -13,7 +15,7 @@ public class Input {
     }
 
     public String readBonusNumber() {
-        return read();
+        return inputValidator.validateNumberFormat(read());
     }
 
     private String read() {

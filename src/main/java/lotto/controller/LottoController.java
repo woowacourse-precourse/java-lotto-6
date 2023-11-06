@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 public class LottoController {
 
     private static final int LOTTO_PRICE = 1000;
-    private static final String NUMBER_FORMAT_EXCEPTION = "숫자가 아닙니다.";
 
     private final Output output = new Output();
     private final Input input = new Input();
@@ -96,11 +95,7 @@ public class LottoController {
     }
 
     private int toInt(String number) {
-        try {
-            return Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION);
-        }
+        return Integer.parseInt(number);
     }
 
     private Lotto makeLotto() {

@@ -2,9 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.Bonus;
+import lotto.model.GameResult;
 import lotto.model.Lotto;
 import lotto.model.PlayerLottos;
 import lotto.model.Purchase;
+import lotto.model.Referee;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,6 +20,11 @@ public class GameController {
 
         Lotto winningLotto = createWinningLotto();
         Bonus bonus = createBonus(winningLotto);
+
+        Referee referee = new Referee(playerLottos.getLottos(), winningLotto, bonus.number());
+        GameResult gameResult = new GameResult(referee.getGrades(), purchase.getPurchaseMoney());
+
+        printProfitRate(gameResult.getProfitRate());
     }
 
     private void printLottoAmount(Purchase purchase) {
@@ -75,5 +82,9 @@ public class GameController {
 
     private int getBonusNumber() {
         return InputView.getBonusNumber();
+    }
+
+    private void printProfitRate(double profitRate) {
+        OutputView.printProfitRate(profitRate);
     }
 }

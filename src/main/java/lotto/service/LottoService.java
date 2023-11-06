@@ -11,28 +11,44 @@ public class LottoService {
     private int money;
 
     public void userInputMoney(String userInput) {
-        int money = MoneyValidator.validate(userInput);
+        try {
+            int money = MoneyValidator.validate(userInput);
 
-        dto.setMoney(money);
+            dto.setMoney(money);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     public void userInputNumbers(String userInput) {
-        UserNumbersValidator.preValidate(userInput);
-        List<Integer> numbers = UserNumbersUtils.convert(userInput);
-        UserNumbersValidator.postValidate(numbers);
-        List<Integer> sortedNumbers = UserNumbersUtils.sort(numbers);
+        try {
+            UserNumbersValidator.preValidate(userInput);
+            List<Integer> numbers = UserNumbersUtils.convert(userInput);
+            UserNumbersValidator.postValidate(numbers);
+            List<Integer> sortedNumbers = UserNumbersUtils.sort(numbers);
 
-        dto.setNumbers(sortedNumbers);
+            dto.setNumbers(sortedNumbers);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     public void userInputBonus(String userInput) {
-        int bonus = BonusValidator.validate(userInput);
+        try {
+            int bonus = BonusValidator.validate(userInput);
 
-        dto.setBonus(bonus);
+            dto.setBonus(bonus);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     public void makeLuckyNumbers() {
-        dto.setLuckyNumbers();
+        try {
+            dto.setLuckyNumbers();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     public int getTicketCount() {

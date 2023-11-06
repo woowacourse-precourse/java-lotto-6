@@ -22,8 +22,13 @@ public class LottoController {
     }
 
     private void userInputMoney() {
-        OutputView.buyLottoTicket();
-        lotto.userInputMoney(InputView.userInput());
+        try {
+            OutputView.buyLottoTicket();
+            lotto.userInputMoney(InputView.userInput());
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e.getMessage());
+            userInputMoney();
+        }
     }
 
     private void printLottoCount() {
@@ -31,8 +36,13 @@ public class LottoController {
     }
 
     private void userInputLottoNumbers() {
-        OutputView.numbersLotto();
-        lotto.userInputNumbers(InputView.userInput());
+        try {
+            OutputView.numbersLotto();
+            lotto.userInputNumbers(InputView.userInput());
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e.getMessage());
+            userInputLottoNumbers();
+        }
     }
 
     private void printLottoTicket() {
@@ -49,8 +59,13 @@ public class LottoController {
     }
 
     private void userInputBonusNumber() {
-        OutputView.bonusLotto();
-        lotto.userInputBonus(InputView.userInput());
+        try {
+            OutputView.bonusLotto();
+            lotto.userInputBonus(InputView.userInput());
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e.getMessage());
+            userInputBonusNumber();
+        }
     }
 
     private void printResult() {
@@ -70,6 +85,12 @@ public class LottoController {
     }
 
     private void makeLuckyNumbers() {
-        lotto.makeLuckyNumbers();
+        try {
+            lotto.makeLuckyNumbers();
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e.getMessage());
+            userInputBonusNumber();
+            makeLuckyNumbers();
+        }
     }
 }

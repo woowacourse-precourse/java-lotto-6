@@ -39,7 +39,11 @@ public class Dto {
     }
 
     public void setLuckyNumbers() {
-        luckyNumbers = new LuckyNumbers(bonus, numbers);
+        try {
+            luckyNumbers = new LuckyNumbers(bonus, numbers);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     public void makeWinningStatistics() {

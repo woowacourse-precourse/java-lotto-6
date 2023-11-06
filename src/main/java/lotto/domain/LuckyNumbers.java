@@ -8,9 +8,13 @@ public class LuckyNumbers {
     private List<Integer> winningNumbers;
 
     public LuckyNumbers(int bonusNumber, List<Integer> winningNumbers) {
-        duplicateValidate(bonusNumber, winningNumbers);
-        this.bonusNumber = bonusNumber;
-        this.winningNumbers = winningNumbers;
+        try {
+            duplicateValidate(bonusNumber, winningNumbers);
+            this.bonusNumber = bonusNumber;
+            this.winningNumbers = winningNumbers;
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     private void duplicateValidate(int bonusNumber, List<Integer> winningNumbers) {

@@ -107,7 +107,6 @@ public class ControlMain {
         ErrorCheck.isSpaceValue(price);
         ErrorCheck.isDigitErrorCheck(price);
         ErrorCheck.priceErrorCheck(price);
-
     }
 
     public List<Integer> choiceLottoNumTry() {

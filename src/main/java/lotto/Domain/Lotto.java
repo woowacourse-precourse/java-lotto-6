@@ -1,6 +1,9 @@
 package lotto.Domain;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 import lotto.Domain.Validator.LottoValidator;
 
 public class Lotto {
@@ -22,6 +25,7 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        List<Integer> sortedNumbers = numbers.stream().sorted().collect(Collectors.toList());
+        return sortedNumbers.toString().replaceAll(" ","");
     }
 }

@@ -22,7 +22,7 @@ class MoneyTest {
 
                 //then
                 assertThat(result).isNotNull();
-                assertThat(result.getAmount()).isEqualTo(BigDecimal.valueOf(2000));
+                assertThat(result.amount()).isEqualTo(BigDecimal.valueOf(2000));
         }
 
         @DisplayName("성공: Money 는 빼기 연산을 수행한다.")
@@ -38,7 +38,7 @@ class MoneyTest {
 
                 //then
                 assertThat(result).isNotNull();
-                assertThat(result.getAmount()).isEqualTo(BigDecimal.ZERO);
+                assertThat(result.amount()).isEqualTo(BigDecimal.ZERO);
         }
 
         @DisplayName("예외: Money 는 잔액이 부족한 경우 예외를 발생한다.")

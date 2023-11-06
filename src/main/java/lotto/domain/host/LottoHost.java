@@ -15,7 +15,7 @@ public class LottoHost {
         List<Integer> tempWinNumbers = inputWinNumbers();
         // TODO: 11/6/23
         ValidateException.hasDuplicateEachNumbers(tempWinNumbers);
-//        ValidateException.isWinNumbersCountSix(tempWinNumbers);
+        ValidateException.isWinNumbersCountSix(tempWinNumbers);
 //        ValidateException.checkRangeWinNumbers(tempWinNumbers);
 
         winNumbers = tempWinNumbers;

@@ -138,14 +138,14 @@ public class ValidateException {
         return false;
     }
 
-//    public static boolean isWinNumbersCountSix(List<Integer> numbers) {
-//        Integer sizeNumbers = numbers.size();
-//        if (Utii.isSameInt(sizeNumbers, SIZE_WIN_NUMBERS_HOST)) {
-//            return true;
-//        }
-//
-//        throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입니다.");
-//    }
+    public static boolean isWinNumbersCountSix(List<Integer> numbers) {
+        Integer sizeNumbers = numbers.size();
+        if (Utii.isSameInt(sizeNumbers, SIZE_WIN_NUMBERS_HOST)) {
+            return true;
+        }
+
+        throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입니다.");
+    }
 //
 //    public static boolean checkRangeWinNumbers(List<Integer> numbers) {
 //        for (int num : numbers) {

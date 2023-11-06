@@ -20,11 +20,11 @@
     - [X] 로또 1장의 가격은 1,000원이다.
     - [X] 숫자 이외의 값을 입력할 경우 `IllegalArgumentException` 으로 예외 처리한다.
     - [X] 1,000원으로 나누어 떨어지지 않는 경우 `IllegalArgumentException` 으로 예외 처리한다.
-- [ ] 당첨 번호를 입력 받는다.
-    - [ ] 번호는 쉼표(,)를 기준으로 구분한다.
-    - [ ] 입력한 번호가 6개가 아닌 경우 `IllegalArgumentException` 으로 예외처리 한다.
-    - [ ] 사용자가 입력한 당첨 번호가 숫자가 아닌경우 `IllegalArgumentException` 으로 예외처리 한다.
-    - [ ] 사용자가 입력한 당첨 번호가 1~45의 숫자가 아닌 경우 `IllegalArgumentException` 으로 예외처리 한다.
+- [X] 당첨 번호를 입력 받는다.
+    - [X] 번호는 쉼표(,)를 기준으로 구분한다.
+    - [X] 입력한 번호가 6개가 아닌 경우 `IllegalArgumentException` 으로 예외처리 한다.
+    - [X] 사용자가 입력한 당첨 번호가 숫자가 아닌경우 `IllegalArgumentException` 으로 예외처리 한다.
+    - [X] 사용자가 입력한 당첨 번호가 1~45의 숫자가 아닌 경우 `IllegalArgumentException` 으로 예외처리 한다.
 - [ ] 보너스 번호를 입력받는다.
     - [ ] 입력한 값이 숫자가 아닐 경우 `IllegalArgumentException` 으로 예외처리 한다.
     - [ ] 입력한 값이 1~45의 숫자가 아닐 경우 `IllegalArgumentExcption` 으로 예외처리 한다.

@@ -1,8 +1,6 @@
-package lotto.View;
+package lotto.view;
 
-import static lotto.Enums.OutputMessage.*;
-
-import java.util.List;
+import static lotto.enums.OutputMessage.*;
 
 public class OutputView {
     public void promptForPurchaseAmount() {

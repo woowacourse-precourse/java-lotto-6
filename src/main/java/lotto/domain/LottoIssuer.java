@@ -1,10 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constants.LottoConstants;
-
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.LottoConstants;
 
 public class LottoIssuer {
 

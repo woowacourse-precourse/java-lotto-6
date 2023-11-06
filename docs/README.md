@@ -6,10 +6,6 @@
 
 ### LottoIssuer
 - [x] 구입 금액만큼 로또를 발행한다. `List<Lotto> issue(PurchaseAmount purchaseAmount)`
-  - 로또 번호는 1~45 사이의 서로 다른 랜덤한 숫자 6개로 구성되어 있다.
-
-### Lotto
-- [x] 생성 시 로또 번호를 오름차순 정렬한다.
 
 ### WinningNumbers
 - [x] 로또 번호와 자신의 숫자를 비교해서 나온 당첨 등수를 반환한다. `Rank determineRank(Lotto)`

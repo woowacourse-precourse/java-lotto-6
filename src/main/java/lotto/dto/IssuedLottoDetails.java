@@ -1,7 +1,6 @@
 package lotto.dto;
 
 import java.util.List;
-
 import lotto.domain.Lotto;
 
 public class IssuedLottoDetails {

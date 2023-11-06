@@ -90,3 +90,7 @@ InputView클래스 getWinningNumbers메소드
 ``````````````````````````
 CustomizedException클래스 winningNumbersNotRange메소드
 ```````````````````````````````
+14. 당첨 숫자에 동일한 숫자를 넣으면 오류를 일으키는 기능 추가
+``````````````````````````
+CustomizedException클래스 winningNumberHasSameNumber
+```````````````````````````````

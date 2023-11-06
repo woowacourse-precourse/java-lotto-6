@@ -31,6 +31,11 @@ public class CustomizedException {
         }
     }
 
-
+    public static void winningNumberHasSameNumber(List<Integer> winningNumbers){
+        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
+        if(uniqueNumbers.size()<winningNumbers.size()){
+            throw new IllegalArgumentException(ERROR_MESSAGE_INIT+"중복된 수가 있습니다.");
+        }
+    }
 
 }

@@ -20,6 +20,11 @@ public class Judge {
     }
 
     public static boolean compareBonusNumber(Lotto lottoWinningNumbers, LottoBonus lottoBonus) {
-        
+        List<Integer> winningNumbers = lottoWinningNumbers.getNumbers();
+        int bonusNumber = lottoBonus.getNumber();
+        if (winningNumbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
     }
 }

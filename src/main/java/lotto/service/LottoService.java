@@ -1,9 +1,11 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
-
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.domain.Ranking.*;
 
+
+import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,32 @@ public class LottoService {
         List<Integer> list = pickUniqueNumbersInRange(1, 45, 6);
         list.sort(null);
         return list;
+    }
+
+    public Ranking calculateRanking(Lotto target, Lotto answer, int bonusNumber) {
+        int count = target.countMatchingNumber(answer);
+
+        if (count == 3) {
+            return FIFTH;
+        }
+
+        if (count == 4) {
+            return FORTH;
+        }
+
+        if (count == 5 && !target.isNumberIn(bonusNumber)) {
+            return THIRD;
+        }
+
+        if (count == 5 && target.isNumberIn(bonusNumber)) {
+            return SECOND;
+        }
+
+        if (count == 6) {
+            return FIRST;
+        }
+
+        return SIXTH;
     }
 
 }

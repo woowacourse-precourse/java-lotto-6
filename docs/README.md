@@ -55,11 +55,12 @@ ________
 - `LottoController` 클래스 `run`메서드를 통해 게임 진행 - <b>게임시작 </b>
     - [x] `createLottoGenerate` 메서드를 통해 `LottoDto` 참조값 생성
 
-
+- `LottoService` 클래스
+    - [x] `createwinningNumbers` 중복 제거 및 당첨 번호 입력 기능
+    - [x] `createBonusNumber` 보너스 번호 입력 기능
 - `InpputView` 클래스 -<b> 입력</b>
     - [x] 로또를 구매하기 위한 사용자 입력 기능
-    - [] 당첨 번호 입력 가눙
-    - [] 보너스 번호 입력 기능
+    - [x] 입력 공통 메시지 메서드 추가
 
 ### 출력
 

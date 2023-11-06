@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import static lotto.enums.Constants.*;
+import static lotto.enums.Prize.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class WinningDetails {
@@ -9,20 +10,26 @@ public class WinningDetails {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    private int[] rank;
+    private final HashMap<Integer,Integer> rank;
     private boolean bonusMatch;
 
     public WinningDetails(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        rank = new int[6];
-
+        this.rank = new HashMap<>();
+        initRank();
         checkWinningCount();
     }
 
-    public int[] getRank(){
+    public HashMap<Integer,Integer> getRank(){
         return rank;
+    }
+
+    private void initRank(){
+        for (int i = FIRST_RANK.getRank(); i <= FIFTH_RANK.getRank(); i++) {
+            rank.put(i,0);
+        }
     }
 
     private void checkWinningCount(){
@@ -48,24 +55,24 @@ public class WinningDetails {
     }
 
     private void checkMatchNumbersPerLotto(int matchNumbers){
-        if(matchNumbers == RANK_FIVE_NUMBER_MATCHES.getValue() && !bonusMatch){
-            rank[RANK_FIVE.getValue()]++;
+        if(matchNumbers == FIFTH_RANK.getMatchNumbers() && !bonusMatch){
+            rank.put(FIFTH_RANK.getRank(), rank.get(FIFTH_RANK.getRank())+1);
         }
 
-        if(matchNumbers == RANK_FOUR_NUMBER_MATCHES.getValue() && !bonusMatch){
-            rank[RANK_FOUR.getValue()]++;
+        if(matchNumbers == FOURTH_RANK.getMatchNumbers() && !bonusMatch){
+            rank.put(FOURTH_RANK.getRank(), rank.get(FOURTH_RANK.getRank())+1);
         }
 
-        if(matchNumbers == RANK_THREE_NUMBER_MATCHES.getValue() && !bonusMatch){
-            rank[RANK_THREE.getValue()]++;
+        if(matchNumbers == THIRD_RANK.getMatchNumbers() && !bonusMatch){
+            rank.put(THIRD_RANK.getRank(), rank.get(THIRD_RANK.getRank())+1);
         }
 
-        if(matchNumbers == RANK_TWO_NUMBER_MATCHES.getValue() && bonusMatch){
-            rank[RANK_TWO.getValue()]++;
+        if(matchNumbers == SECOND_RANK.getMatchNumbers() && bonusMatch){
+            rank.put(SECOND_RANK.getRank(), rank.get(SECOND_RANK.getRank())+1);
         }
 
-        if(matchNumbers == RANK_ONE_NUMBER_MATCHES.getValue()){
-            rank[RANK_ONE.getValue()]++;
+        if(matchNumbers == FIRST_RANK.getMatchNumbers()){
+            rank.put(FIRST_RANK.getRank(), rank.get(FIRST_RANK.getRank())+1);
         }
     }
 

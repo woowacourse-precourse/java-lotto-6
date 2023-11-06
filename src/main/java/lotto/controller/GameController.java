@@ -25,11 +25,15 @@ public class GameController {
     }
 
     private void initializeLottoPurchaseManager() {
+        LottoPurchaseAmount lottoPurchaseAmount = readPurchaseAmountFromUser();
+        lottoPurchaseManager = LottoPurchaseManager.create(lottoPurchaseAmount);
+    }
+
+    private LottoPurchaseAmount readPurchaseAmountFromUser() {
         while (true) {
             try {
                 String purchaseAmountInput = inputView.printAskPurchaseAmount();
-                lottoPurchaseManager = LottoPurchaseManager.create(purchaseAmountInput);
-                break;
+                return LottoPurchaseAmount.create(purchaseAmountInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -42,7 +46,7 @@ public class GameController {
 
     private void initializeLottoResultGenerator() {
         WinningLotto winningLotto = createWinningLotto();
-        lottoResultGenerator = LottoResultGenerator.create(winningLotto, lottoPurchaseManager.getInputMoney());
+        lottoResultGenerator = LottoResultGenerator.create(winningLotto, lottoPurchaseManager.getPurchaseAmount());
     }
 
     private void printResult() {

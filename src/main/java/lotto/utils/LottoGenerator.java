@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static lotto.constants.LottoNumberConstants.*;
+import static lotto.constants.LottoConstants.*;
 
 public class LottoGenerator {
     public static Lottos generateLottos(long quantity) {

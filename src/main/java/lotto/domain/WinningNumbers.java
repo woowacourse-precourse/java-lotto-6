@@ -1,22 +1,35 @@
 package lotto.domain;
 
 import lotto.exception.ErrorMessage;
-import lotto.validator.LottoNumberValidator;
+import lotto.validator.LottoValidator;
 import org.junit.platform.commons.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class WinningNumbers {
+public class WinningNumbers extends Lotto {
     private static final String NUMBERS_DELIMITER = ",";
+
     private final List<Integer> numbers;
 
-    private WinningNumbers(String input) {
-        this.numbers = validate(input);
+    private WinningNumbers(List<Integer> numbers) {
+        super(numbers);
+        this.numbers = numbers;
     }
 
-    public static WinningNumbers create(String winningNumbersInput) {
-        return new WinningNumbers(winningNumbersInput);
+    public static WinningNumbers create(String input) {
+        List<Integer> validInput = validate(input);
+        return new WinningNumbers(validInput);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    private static List<Integer> validate(String input) {
+        validateBlank(input);
+        validateStartsOrEndsWithDelimiter(input);
+        return parseWinningNumbersInput(input);
     }
 
     private static void validateBlank(String input) {
@@ -31,29 +44,16 @@ public class WinningNumbers {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return List.copyOf(numbers);
-    }
-
-    private List<Integer> validate(String input) {
-        validateBlank(input);
-        validateStartsOrEndsWithDelimiter(input);
-        List<Integer> numbers = parseWinningNumbersInput(input);
-        LottoNumberValidator.validateDuplicate(numbers);
-        LottoNumberValidator.validateSize(numbers);
-        return numbers;
-    }
-
-    private List<Integer> parseWinningNumbersInput(String input) {
+    private static List<Integer> parseWinningNumbersInput(String input) {
         return Arrays.stream(input.split(NUMBERS_DELIMITER))
-                .map(this::safeParseInt)
+                .map(WinningNumbers::safeParseInt)
                 .toList();
     }
 
-    private Integer safeParseInt(String input) {
+    private static Integer safeParseInt(String input) {
         try {
             int number = Integer.parseInt(input);
-            LottoNumberValidator.validateRange(number);
+            LottoValidator.validateRange(number);
             return number;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_NOT_NUMERIC.getMessage());

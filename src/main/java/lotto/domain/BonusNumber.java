@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.validator.LottoNumberValidator;
+import lotto.validator.LottoValidator;
 
 public class BonusNumber {
     private final int number;
@@ -14,8 +14,8 @@ public class BonusNumber {
     }
 
     private int validate(String input) {
-        int number = LottoNumberValidator.validateNumeric(input);
-        LottoNumberValidator.validateRange(number);
+        int number = LottoValidator.validateNumeric(input);
+        LottoValidator.validateRange(number);
         return number;
     }
 

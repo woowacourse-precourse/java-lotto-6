@@ -3,9 +3,15 @@
 ---
 
 ## Model
+
 - ### Lotto `Lotto.java`
   - [ ] 번호 오름차순 정렬
   - [ ] 번호 반환
+
+- ### PrizingLotto `PrizingLotto.java`
+  - 당첨 번호
+  - Lotto 클래스 상속
+  - [ ] 순위 계산
 
 ## View
 - [ ] 구입 금액 입력 문구 출력

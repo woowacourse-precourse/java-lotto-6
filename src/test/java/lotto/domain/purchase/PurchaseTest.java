@@ -27,29 +27,16 @@ class PurchaseTest {
         Assertions.assertEquals(5, lottoQuantity);
     }
 
-    @DisplayName("올바른 금액 투입 시 while문을 잘 탈출하는지 확인한다.")
-    @Test
-    void repeatPurchasingTest() {
-        // Given
-        Purchase purchase = new Purchase();
-
-        // When
-        String validPrice = "8000";
-
-        // Then
-        Assertions.assertDoesNotThrow(() -> purchase.repeatPurchasing(validPrice));
-    }
-
-    @DisplayName("가격에 대한 유효성 검증을 테스트한다.")
+    @DisplayName("지불한 금액에 대한 유효성 검증을 테스트한다.")
     @Test
     void validatePriceTest() {
         // Given
         Purchase purchase = new Purchase();
 
         // When
-        String validPrice = "2000";
-        String invalidPrice = "1234";
-        String zeroPrice = "0";
+        int validPrice = 2000;
+        int invalidPrice = 1234;
+        int zeroPrice = 0;
 
         // Then
         Assertions.assertDoesNotThrow(() -> purchase.validatePrice(validPrice));

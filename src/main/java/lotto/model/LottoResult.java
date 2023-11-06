@@ -2,13 +2,18 @@ package lotto.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
-public class LottoResultCounter {
+public class LottoResult {
     private static final int ONE_COUNT = 1;
     private final Map<WinningInfo, Integer> resultCount;
 
-    public LottoResultCounter() {
-        this.resultCount = new HashMap<>();
+    private LottoResult(Map<WinningInfo, Integer> resultCount) {
+        this.resultCount = resultCount;
+    }
+
+    public static LottoResult of(){
+        return new LottoResult(new HashMap<>());
     }
 
 
@@ -24,5 +29,7 @@ public class LottoResultCounter {
         Integer count = resultCount.get(winningInfo);
         resultCount.put(winningInfo, count + ONE_COUNT);
     }
+
+
 
 }

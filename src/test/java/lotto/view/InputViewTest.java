@@ -151,4 +151,67 @@ class InputViewTest {
             System.out.println(inputView.winningNumber());
         }
     }
+
+    @Nested
+    @DisplayName("보너스 번호 입력 테스트")
+    class BonusNumber extends NsTest {
+        private final String SUCCESSFUL_BONUS_NUMBER = "13";
+        private final List<Integer> WINNING_NUMBERS = List.of(1, 4, 6, 10, 25, 33);
+
+        @Test
+        @DisplayName("정상 입력")
+        void success() {
+            assertSimpleTest(() -> {
+                run(SUCCESSFUL_BONUS_NUMBER);
+                assertThat(output()).isEqualTo(SUCCESSFUL_BONUS_NUMBER);
+            });
+        }
+
+        @Nested
+        @DisplayName("예외 테스트")
+        class ExceptionTest {
+            private final String INVALID_TYPE_BONUS_NUMBER = "3a";
+            private final String INVALID_RANGE_BONUS_NUMBER = "49";
+            private final String DUPLICATION_BONUS_NUMBER = "25";
+
+            @Test
+            @DisplayName("숫자가 아닌 입력 테스트")
+            void invalidTypeTest() {
+                assertSimpleTest(
+                        () -> {
+                            run(INVALID_TYPE_BONUS_NUMBER, SUCCESSFUL_BONUS_NUMBER);
+                            assertThat(output()).contains(DIGIT_EXCEPTION.getMessage());
+                        }
+                );
+            }
+
+            @Test
+            @DisplayName("1부터 45 사이가 아닌 번호 입력 테스트")
+            void invalidRangeTest() {
+                assertSimpleTest(
+                        () -> {
+                            run(INVALID_RANGE_BONUS_NUMBER, SUCCESSFUL_BONUS_NUMBER);
+                            assertThat(output()).contains(NUMBER_IN_RANGE_EXCEPTION.getMessage());
+                        }
+                );
+            }
+
+            @Test
+            @DisplayName("중복되는 번호 입력 테스트")
+            void duplicationTest() {
+                assertSimpleTest(
+                        () -> {
+                            run(DUPLICATION_BONUS_NUMBER, SUCCESSFUL_BONUS_NUMBER);
+                            assertThat(output()).contains(DUPLICATION_EXCEPTION.getMessage());
+                        }
+                );
+            }
+        }
+
+        @Override
+        protected void runMain() {
+            InputView inputView = new InputView();
+            System.out.println(inputView.bonusNumber(WINNING_NUMBERS));
+        }
+    }
 }

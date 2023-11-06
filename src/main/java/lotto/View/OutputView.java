@@ -22,6 +22,7 @@ public class OutputView {
         });
     }
 
+    // 기능목록 5번 문구 출력ㄴ
     public void requestWinningNumbersForDrawer() {
         println("\n당첨 번호를 입력해 주세요.");
     }

@@ -20,15 +20,15 @@ class PrizesTest {
     @ParameterizedTest()
     @MethodSource("countTotalPriceSuccessDummy")
     void countTotalPriceSuccessTest(Prizes prizes, Double expected) {
-        Double totalPrice = prizes.countTotalPrice();
-        assertEquals(expected, totalPrice);
+        Double totalReward= prizes.getTotalReward();
+        assertEquals(expected, totalReward);
     }
 
     @DisplayName("수익률 계산 성공 테스트")
     @ParameterizedTest()
     @MethodSource("calculateBenefitSuccessDummy")
-    void calculateBenefitSuccessTest(Prizes prizes, Integer totalSeed, Double expected) {
-        Double result = prizes.calculateBenefit(totalSeed);
+    void calculateBenefitSuccessTest(Prizes prizes, Integer totalSpendAmount, Double expected) {
+        Double result = prizes.getTotalBenefit(totalSpendAmount);
         assertEquals(expected, result);
     }
 

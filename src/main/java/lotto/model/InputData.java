@@ -20,6 +20,11 @@ public class InputData {
 		}
 		return inputData;
 	}
+	private static List<Integer> parseIntegers(String str){
+		List<Integer> numberList = new ArrayList<>();
+		for(String num : str.split(",")) numberList.add(Integer.parseInt(num));
+		return numberList;
+	}
 	
 	public static List<Integer> winningNumber(){
 		List<Integer> winningNumber = new ArrayList<>();
@@ -28,12 +33,14 @@ public class InputData {
 			try {
 				String inputData = Console.readLine();
 				Validate.validateFormat(inputData);
+				Validate.numberInRange(inputData);
 				Validate.validSixNumberInput(inputData);
-			} catch (Exception e) {
-				// TODO: handle exception
+				winningNumber = parseIntegers(inputData);
+				isValidInput = true;
+			} catch (IllegalArgumentException error) {
+				System.out.println(error.getMessage());
 			}
 		}
-		
 		return winningNumber;
 	}
 	

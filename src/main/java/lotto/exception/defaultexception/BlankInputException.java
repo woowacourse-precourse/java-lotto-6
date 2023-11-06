@@ -1,8 +1,6 @@
-package lotto.exception;
+package lotto.exception.defaultexception;
 
-import lotto.exception.lottoamount.LottoAmountInputException;
-
-public class BlankInputException extends LottoDefualtException {
+public class BlankInputException extends LottoDefaultException {
     public BlankInputException() {
         super("[ERROR] 입력값이 비어있습니다.");
     }

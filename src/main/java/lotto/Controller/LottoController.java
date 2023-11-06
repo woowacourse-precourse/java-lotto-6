@@ -13,7 +13,6 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private LottoResultHandlerModel lottoResultHandlerModel;
 
     private LottoController() {
         inputView = InputViewImpl.of();
@@ -28,7 +27,7 @@ public class LottoController {
         Money money = getMoney();
         LottoGroup lottoGroup = getLottoGroup(money);
         WinningLotto winningLotto = getWinningLotto();
-        lottoResultHandlerModel = LottoResultHandlerModel.of(winningLotto, lottoGroup);
+        LottoResultHandlerModel lottoResultHandlerModel = LottoResultHandlerModel.of(winningLotto, lottoGroup);
 
         outputView.printLottoResult(lottoResultHandlerModel.getLottoResult());
         outputView.printProfitRate(lottoResultHandlerModel.findProfitRate());

@@ -9,9 +9,16 @@ public class Validator {
     }
 
     public static void isPurchaseAmountValid(String input) {
+        isInputEmpty(input);
         isNumeric(input);
         int purchaseAmount = Integer.parseInt(input);
         isDividedByLottoPrice(purchaseAmount);
+    }
+
+    public static void isInputEmpty(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(NO_INPUT_ERROR);
+        }
     }
 
     public static void isDividedByLottoPrice(int money) {
@@ -21,7 +28,10 @@ public class Validator {
     }
 
     public static void isNumeric(String input) {
-        for (int i = 0; i < input.length(); i++) {
+        if (!(input.charAt(0) >= '1' && input.charAt(0) <= '9')) {
+            throw new IllegalArgumentException(INVALID_FORMAT_ERROR);
+        }
+        for (int i = 1; i < input.length(); i++) {
             if (!(input.charAt(i) >= '0' && input.charAt(i) <= '9')) {
                 throw new IllegalArgumentException(INVALID_FORMAT_ERROR);
             }

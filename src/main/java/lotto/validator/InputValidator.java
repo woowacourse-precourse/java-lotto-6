@@ -25,7 +25,6 @@ public class InputValidator {
 
         validateInteger(bonusNumberInput);
         int bonusNumber = Integer.parseInt(bonusNumberInput);
-        validatePositiveInteger(bonusNumber);
         validateInRange(bonusNumber);
 
         validateBonusNumberNotDuplicate(winningNumberInput, bonusNumber);
@@ -96,4 +95,5 @@ public class InputValidator {
             throw new IllegalArgumentException("번호가 범위를 벗어났습니다.");
         }
     }
+
 }

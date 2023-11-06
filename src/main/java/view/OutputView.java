@@ -18,8 +18,8 @@ import java.util.List;
 public class OutputView {
     private static String OUTPUT_PURCHASE_AMOUNT_MESSAGE = "개를 구매했습니다.\n";
 
-    public static String printNumberOfLottosPurchased(int numberOfLottosPurchased){
-        return numberOfLottosPurchased + OUTPUT_PURCHASE_AMOUNT_MESSAGE;
+    public static void printNumberOfLottosPurchased(int numberOfLottosPurchased){
+        System.out.println(numberOfLottosPurchased + OUTPUT_PURCHASE_AMOUNT_MESSAGE);
     }
 
     public static void printLottos(List<Lotto> lottos){

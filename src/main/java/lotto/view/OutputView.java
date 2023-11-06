@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.Lottos;
+import lotto.domain.Lotto;
 import lotto.domain.User;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public class OutputView {
 
     public void printPurchaseLotto(User user) {
         printPurchaseLottoAmount(user.getMoney());
-        printLottoNumbers(user.getLottoNumbers());
+        printLottoNumbers(user.getLottos());
         System.out.println();
     }
 
@@ -19,9 +19,9 @@ public class OutputView {
         System.out.println(money / 1000 + BUY_LOTTO_AMOUNT_MESSAGE);
     }
 
-    private void printLottoNumbers(List<Lottos> lottos) {
-        for (Lottos lotto : lottos) {
-            System.out.println(lotto.purchaseLottoNumber());
+    private void printLottoNumbers(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getLottoNumbers());
         }
     }
 }

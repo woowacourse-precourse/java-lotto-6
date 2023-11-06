@@ -2,15 +2,19 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Computer {
 
     private Lotto lotto;
 
-    public void drawRandomNumber(User user, Lottos lottos) {
-        int money = user.getMoney();
-        for (int drawLotto = 0; drawLotto < money / 1000; drawLotto++) {
+    public List<Lotto> drawRandomNumber(int money) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int drawAttempt = 0;  drawAttempt < money / 1000; drawAttempt++) {
             lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            lottos.collectLottoNumbers(user, lotto);
+            lottos.add(lotto.getPuschaseLotto());
         }
+        return lottos;
     }
 }

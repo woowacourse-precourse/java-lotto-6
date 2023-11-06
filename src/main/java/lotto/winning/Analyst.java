@@ -47,23 +47,20 @@ public class Analyst {
     }
 
     private Prize determinePrizeRank(int winningMatchCount, int bonusMatchCount) {
-        switch (winningMatchCount) {
-            case 6:
-                return FIRST;
-            case 5:
-                if (bonusMatchCount > 0) {
-                    return SECOND;
-                }
-                if (bonusMatchCount == 0) {
-                    return THIRD;
-                }
-            case 4:
-                return FOURTH;
-            case 3:
-                return FIFTH;
-            default:
-                return null;
-        }
+        Prize rank = null;
+
+        if (winningMatchCount == 6)
+            rank = FIRST;
+        if (winningMatchCount == 5 && bonusMatchCount > 0)
+            rank = SECOND;
+        if (winningMatchCount == 5 && bonusMatchCount == 0)
+            rank = THIRD;
+        if (winningMatchCount == 4)
+            rank = FOURTH;
+        if (winningMatchCount == 3)
+            rank = FIFTH;
+
+        return rank;
     }
 
     private HashMap<Prize, HashMap<Tally, Integer>> createDefaultPrizes() {

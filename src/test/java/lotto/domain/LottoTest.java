@@ -44,4 +44,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainException.ERROR.getMessage());
     }
+
+    @Test
+    void 로또가_요구사항에_맞는_숫자로_이루어진_경우_예외를_던지지_않는다() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertDoesNotThrow(() -> new Lotto(numbers));
+    }
 }

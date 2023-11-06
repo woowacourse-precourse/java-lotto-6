@@ -24,7 +24,7 @@ public class Lotto {
 
     private void validate(List<LottoNumber> lottoNumbers) throws LottoException {
         if (lottoNumbers.size() != LottoConstants.LOTTO_SIZE.getValue()) {
-            throw new LottoException(LottoException.ErrorMessage.RANGE_BONUS_NUMBER.getMessage());
+            throw new LottoException(LottoException.ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
         }
     }
 

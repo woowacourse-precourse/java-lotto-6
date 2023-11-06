@@ -16,11 +16,11 @@ public final class LottoNumber implements Comparable<LottoNumber> {
 
     private void validate(Integer value) throws LottoException {
         if (value < LottoConstants.LOTTO_MIN_NUMBER.getValue()) {
-            throw new LottoException(LottoException.ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
+            throw new LottoException(LottoException.ErrorMessage.RANGE_LOTTO_NUMBER.getMessage());
         }
 
         if (value > LottoConstants.LOTTO_MAX_NUMBER.getValue()) {
-            throw new LottoException(LottoException.ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
+            throw new LottoException(LottoException.ErrorMessage.RANGE_LOTTO_NUMBER.getMessage());
         }
     }
 

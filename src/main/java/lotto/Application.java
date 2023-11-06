@@ -10,7 +10,6 @@ import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +46,7 @@ public class Application {
             try {
                 outputView.printAnswerInputRequest();
                 String input = inputView.getLottoWinningNumbers();
-                List<Integer> numbers = validateIntegers(Arrays.asList(input.split(",")));
+                List<Integer> numbers = validateLottoIntegers(input);
                 winningLotto = new Lotto(numbers);
                 break;
             } catch (IllegalArgumentException e) {
@@ -78,13 +77,15 @@ public class Application {
         outputView.printProfit(userPaid, totalPrize);
     }
 
-    public static List<Integer> validateIntegers(List<String> input) {
+    public static List<Integer> validateLottoIntegers(String input) {
+        String[] numberStrings = input.split(",");
         List<Integer> integers = new ArrayList<>();
-        if (!LottoUtil.isIntegers(input)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER);
-        }
-        for (String s : input) {
-            integers.add(Integer.parseInt(s));
+
+        for (String numberString : numberStrings) {
+            if (!LottoUtil.isInteger(numberString)) {
+                throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER);
+            }
+            integers.add(Integer.parseInt(numberString));
         }
         return integers;
     }

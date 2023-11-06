@@ -1,9 +1,13 @@
 package domain;
 
+import static service.RandomNumber.getRandomNumber;
 import static util.ErrorMessage.CANT_DIVIDE_AMOUNT;
 import static util.ErrorMessage.NOT_POSITIVE_AMOUNT;
 import static util.ProgressMessage.OUTPUT_TICKET_COUNT;
 import static view.InputView.inputLottoPurchaseAmount;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Amount{
     private final int amount;
@@ -46,6 +50,14 @@ public class Amount{
     }
     public void outputLottoPurchaseAmount(){
         System.out.println(count + OUTPUT_TICKET_COUNT.getProgressMessage());
+    }
+
+    public Lottos buyLotto() {
+        List<Lotto> lottos = new ArrayList<>();
+        for(int i=0;i<count;i++) {
+            lottos.add(getRandomNumber());
+        }
+        return new Lottos(lottos);
     }
 }
 

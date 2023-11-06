@@ -44,7 +44,7 @@ public class GameController {
     private void repeatInputWinningNumbers() {
         while (true) {
             try {
-                List<Integer> winningNumbers = WinningNumbersConverter.convertToIntegerList(inputView.inputWinningNumbers());
+                List<Integer> winningNumbers = WinningNumbersConverter.convert(inputView.inputWinningNumbers());
                 winningLotto = new Lotto(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {

@@ -7,7 +7,7 @@ import java.util.List;
 public class WinningNumbersConverter {
     private static final String NOT_INTEGER_EXCEPTION_MESSAGE = "로또 번호는 정수여야 합니다.";
 
-    public static List<Integer> convertToIntegerList(String numbers) {
+    public static List<Integer> convert(String numbers) {
         List<String> numbersSplit = Arrays.asList(numbers.split(","));
         List<Integer> numbersConverted = new ArrayList<>();
 

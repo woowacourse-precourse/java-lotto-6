@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Exception.PlayerBuyingPayException;

@@ -22,7 +22,7 @@ public class OutputView {
         }
     }
 
-    public static void winningStatistics(Map<Integer, Integer> winningRank, double rateOfReturn) {
+    public static void winningStatistics(List winningRank, double rateOfReturn) {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println(FIFTH_RANK + " - " + winningRank.get(5) + "개");

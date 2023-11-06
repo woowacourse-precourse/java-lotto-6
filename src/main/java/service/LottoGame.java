@@ -1,8 +1,8 @@
 package service;
 
+import domain.Lotto;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
 
 public class LottoGame {
     public List<Lotto> generateLottoTickets(int lottoTicketCount, List<Integer> lottoNumbers) {

@@ -1,14 +1,22 @@
 package controller;
 
 import domain.LottoMachine;
+import domain.WinningNumbers;
 import java.util.List;
-import lotto.Lotto;
+import domain.Lotto;
 import service.LottoGame;
 import utils.Utils;
 import view.InputView;
 
 public class Controller {
-    private LottoGame lottoGame = new LottoGame();
+    private final LottoGame lottoGame = new LottoGame();
+
+    private void setupWinningNumbers() {
+        String lottoNumbers = InputView.inputWinningNumbers();
+        String[] separatedWinningNumbers = Utils.splitInputByComma(lottoNumbers);
+        List<Integer> winningNumbers = Utils.convertToIntegerList(separatedWinningNumbers);
+        new WinningNumbers(winningNumbers);
+    }
 
     private void setupLottoMachine() {
         int spend = InputView.inputSpend();

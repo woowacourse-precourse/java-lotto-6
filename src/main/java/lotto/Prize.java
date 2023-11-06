@@ -16,13 +16,17 @@ public enum Prize {
 
     private static List<String> prizeHistory = new ArrayList<>();
 
+
     Prize(int count, int amount, String information) {
         this.count = count;
         this.amount = amount;
         this.information = information;
     }
 
-    public static void startPrizeStatistics(List<Long> matchWinningNumber, List<Long> matchBonusNumber, int purchase) {
+    public static void startPrizeStatistics(int purchase) {
+        List<Long> matchWinningNumber = WinningNumber.getMatchWinningNumber();
+        List<Long> matchBonusNumber = WinningNumber.getMatchBonusNumber();
+
         countPrizeHistory(matchWinningNumber, matchBonusNumber);
         printWinningStatistics();
         earningRateCalculator(matchWinningNumber, matchBonusNumber, purchase);
@@ -30,7 +34,7 @@ public enum Prize {
 
     public static Prize matchPrize(long matchWinningNumber, long matchBonusNumber) {
         if (matchWinningNumber == Prize.BONUS.count) {
-            bonusNumber(matchBonusNumber);
+            return bonusNumber(matchBonusNumber);
         }
         for (Prize prize : Prize.values()) {
             if (prize.count == matchWinningNumber) {

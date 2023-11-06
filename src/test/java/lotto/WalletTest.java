@@ -44,6 +44,20 @@ public class WalletTest {
         wallet.addBalance(testMoney);
 
         assertThat(wallet.getBalance()).isEqualTo(testMoney);
+    }
 
+    @Test
+    @DisplayName("buyAllLotto 값 검증 테스트")
+    void validate_buyAllLotto() {
+
+        Wallet wallet = new Wallet();
+
+        int testMoney = 10_000;
+        wallet.addBalance(testMoney);
+
+        wallet.buyAllLotto();
+
+        assertThat(wallet.getBalance()).isEqualTo(0);
+        assertThat(wallet.getLottos().size()).isEqualTo(10);
     }
 }

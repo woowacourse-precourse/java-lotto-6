@@ -8,14 +8,23 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
 	int getPrice() {
-		System.out.println("구입금액을 입력해 주세요.");
-		int price = Integer.parseInt(Console.readLine());
-		validatePrice(price);
+		int price = 0;
+		while(true) {
+			try {
+				System.out.println("구입금액을 입력해 주세요.");
+				String input = Console.readLine();
+				price = validatePrice(input);
+				break;
+			} catch(IllegalArgumentException e) {
+				System.out.println("[ERROR] 구입금액은 숫자만 입력 해주시기 바랍니다.");
+			}
+		}
 		return price;
 	}
 
-	void validatePrice(int price) {
-
+	int validatePrice(String input) {
+		int price = Integer.parseInt(input);
+		return price;
 	}
 
 	String getLottoNumber() {

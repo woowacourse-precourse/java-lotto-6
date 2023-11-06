@@ -75,7 +75,6 @@ public class ProgramManager {
 		List<Integer> resultList = compareLotte(lottoHost, customer);
 		// 결과 출력
 		outputView.printResult(resultList);
-
 		// 수익률 계산 출력
 		outputView.printRate(calcRate(resultList, customer));
 	}

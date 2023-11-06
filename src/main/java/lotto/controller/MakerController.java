@@ -51,8 +51,8 @@ public class MakerController {
 		try {
 			NumbersValidation.validateSeparator(inputWinningNumber);
 			WinningNumberMaker.make(inputWinningNumber);
-
 			return false;
+
 		} catch (IllegalArgumentException illegalArgumentException) {
 			return true;
 		}
@@ -65,14 +65,15 @@ public class MakerController {
 		do {
 			inputBonusNumber = inputMachine.inputBonusNumber();
 			errorSign = hasBonusNumberError(inputBonusNumber);
+
 		} while (errorSign);
 
 		return WinningNumberMaker.makeBonusNumber(inputBonusNumber);
 	}
 
 	private boolean hasBonusNumberError(String inputBonusNumber) {
-		try {
 
+		try {
 			WinningNumberMaker.makeBonusNumber(inputBonusNumber);
 			return false;
 

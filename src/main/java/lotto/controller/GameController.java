@@ -33,7 +33,6 @@ public class GameController {
 
 		winningNumber = makerController.makeCorrectWinningNumber();
 		bonusNumber = makerController.makeCorrectBonusNumber();
-
 	}
 
 	private void operateSummary() {

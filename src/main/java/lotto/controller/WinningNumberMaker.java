@@ -13,7 +13,6 @@ public class WinningNumberMaker {
 	private static List<Integer> winningNumber;
 
 	public static List<Integer> make(String inputNumber) {
-
 		winningNumber = new ArrayList<>();
 
 		winningNumber = Arrays.stream(inputNumber.split(NumbersOption.SEPARATOR))
@@ -25,7 +24,6 @@ public class WinningNumberMaker {
 			.toList();
 
 		NumbersValidation.validateSize(winningNumber);
-
 		return winningNumber;
 	}
 

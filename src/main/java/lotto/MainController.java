@@ -30,15 +30,29 @@ public class MainController {
     }
 
     private static AnswerLotto initAnswerLotto() {
+        Lotto answerLotto = initLotto();
+        BonusNumber bonus = initBonus();
+        return new AnswerLotto(answerLotto, bonus);
+    }
+
+    private static Lotto initLotto() {
         try {
             String lottoNumberString = InputView.readString(ViewMessage.INPUT_ANSWER_LOTTO);
             List<String> strings = Utils.splitStringToList(lottoNumberString, ",");
             Lotto answerLotto = new Lotto(Utils.convertListStringToListInteger(strings));
-            int bonus = InputView.readInteger(ViewMessage.INPUT_BONUS_NUMBER);
-            return new AnswerLotto(answerLotto, bonus);
+            return answerLotto;
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            return initAnswerLotto();
+            return initLotto();
+        }
+    }
+
+    private static BonusNumber initBonus() {
+        try {
+            return new BonusNumber(InputView.readInteger(ViewMessage.INPUT_BONUS_NUMBER));
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return initBonus();
         }
     }
 }

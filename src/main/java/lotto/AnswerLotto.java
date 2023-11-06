@@ -2,22 +2,15 @@ package lotto;
 
 import lotto.message.ExceptionMessage;
 
-public record AnswerLotto(Lotto lotto, int bonus) {
+public record AnswerLotto(Lotto lotto, BonusNumber bonus) {
     public AnswerLotto {
-        validate(lotto, bonus);
+        validate(lotto, bonus.number());
     }
 
     private void validate(Lotto lotto, int bonus) {
-        validateBonusInRange(bonus);
         validateDuplicate(lotto, bonus);
     }
 
-    private void validateBonusInRange(int bonus) {
-        if (bonus < LottoOption.LOTTO_START_INCLUSIVE ||
-                bonus > LottoOption.LOTTO_END_INCLUSIVE) {
-            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER);
-        }
-    }
 
     private void validateDuplicate(Lotto lotto, int bonus) {
         if (lotto.hasNumber(bonus)) {
@@ -27,7 +20,7 @@ public record AnswerLotto(Lotto lotto, int bonus) {
 
     public Rank calculateRank(Lotto userLotto) {
         int matchCount = lotto.getMatchCount(userLotto);
-        boolean matchBonus = userLotto.hasNumber(bonus);
+        boolean matchBonus = userLotto.hasNumber(bonus.number());
         if (matchBonus) {
             matchCount += 1;
         }

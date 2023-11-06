@@ -14,20 +14,20 @@ public class InputView {
         this.outputView = outputView;
     }
 
-    public void requestPaidAmount() {
-        request(PAID_AMOUNT_REQUEST_PROMPT);
+    public String requestPaidAmount() {
+        return request(PAID_AMOUNT_REQUEST_PROMPT);
     }
 
-    public void requestWinningNumbers() {
-        request(WINNING_NUMBERS_REQUEST_PROMPT);
+    public String requestWinningNumbers() {
+        return request(WINNING_NUMBERS_REQUEST_PROMPT);
     }
 
-    public void requestBonusNumber() {
-        request(BONUS_NUMBER_REQUEST_PROMPT);
+    public String requestBonusNumber() {
+        return request(BONUS_NUMBER_REQUEST_PROMPT);
     }
 
-    private void request(String requestPrompt) {
+    private String request(String requestPrompt) {
         outputView.print(requestPrompt);
-        Console.readLine();
+        return Console.readLine();
     }
 }

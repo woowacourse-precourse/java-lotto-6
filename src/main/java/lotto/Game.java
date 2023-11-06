@@ -45,5 +45,12 @@ public class Game {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("입력값은 정수여야합니다.");
         }
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        try {
+            int bonusNum = Integer.parseInt(readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력값은 정수여야합니다.");
+        }
     }
 }

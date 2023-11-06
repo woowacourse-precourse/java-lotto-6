@@ -22,6 +22,7 @@ public class LottoPlayerTest {
     @ValueSource(ints = {3245, 100, 98200,37002})
     void 금액이_천원단위가_아닌_경우_예외처리(Integer cache) {
         Assertions.assertThatThrownBy(() -> new LottoPlayer(cache))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 입력 금액은 1000원 단위로 입력되어야 합니다.");;
     }
 }

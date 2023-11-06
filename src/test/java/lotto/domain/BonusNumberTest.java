@@ -22,13 +22,12 @@ public class BonusNumberTest {
 
     @ParameterizedTest(name = "로또번호 : {0}, 보너스번호 : {1}")
     @MethodSource("lottoNumberAndBonusNumber")
-    @DisplayName("보너스 번호가 당첨 로또 번호에 포함된다면 예외 발생")
+    @DisplayName("보너스 번호가 당첨 로또 번호에 포함된다면 true")
     void bonusNumberContains(List<Integer> lottoNumber, int bonus) {
         Lotto lotto = new Lotto(lottoNumber);
         BonusNumber bonusNumber = new BonusNumber(bonus);
 
-        Assertions.assertThatThrownBy(() -> bonusNumber.containsLotto(lotto))
-                .isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThat(bonusNumber.contains(lotto)).isTrue();
     }
 
     static Stream<Arguments> lottoNumberAndBonusNumber() {

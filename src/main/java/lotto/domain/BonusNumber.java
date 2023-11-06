@@ -18,7 +18,7 @@ public class BonusNumber {
         }
     }
 
-    public void containsLotto(Lotto lotto) {
-        lotto.contains(this.bonusNumber);
+    public boolean contains(Lotto lotto) {
+        return lotto.contains(this.bonusNumber);
     }
 }

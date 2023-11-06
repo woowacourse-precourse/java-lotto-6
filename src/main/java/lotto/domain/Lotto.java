@@ -40,9 +40,7 @@ public class Lotto {
         }
     }
 
-    public void contains(int number) {
-        if (this.numbers.contains(number)) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE.getValue());
-        }
+    public boolean contains(int number) {
+        return this.numbers.contains(number);
     }
 }

@@ -1,6 +1,8 @@
 package lotto.Controller;
 
+import java.util.ArrayList;
 import lotto.Model.GameModel;
+import lotto.Model.VO.LottoData;
 import lotto.View.Input;
 import lotto.View.Output;
 
@@ -15,6 +17,7 @@ public class Controller {
     public Controller(){
         gameModel = new GameModel();
     }
+
     private void startGame(){
         Output.printEnterPurchaseMount();
         Integer playerInsert = Input.insertInteger();
@@ -23,5 +26,7 @@ public class Controller {
 
     private void proceedGame(){
         gameModel.lottoIssuance();
+        ArrayList<LottoData> playerLottos = gameModel.transferPlayerLottoDatas();
+        Output.printLottos(playerLottos);
     }
 }

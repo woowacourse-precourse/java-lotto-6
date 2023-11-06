@@ -73,4 +73,9 @@ public class Validator {
                 }
         );
     }
+
+    public void validateBonusNumber(String input) {
+        validateNotEmptyAndArabicNumber(input);
+        validateNumberInRange(input);
+    }
 }

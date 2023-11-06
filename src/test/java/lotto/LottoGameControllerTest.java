@@ -19,9 +19,38 @@ class LottoGameControllerTest {
         assertThat(purchasePreprocessor.isInvalid("1234")).isTrue();
         assertThat(purchasePreprocessor.isInvalid("-1234")).isTrue();
         assertThat(purchasePreprocessor.isInvalid("0")).isTrue();
+
         assertThat(purchasePreprocessor.isInvalid("1000")).isFalse();
     }
 
+    @DisplayName("로또 당첨 번호가 6개의 숫자가 아니면 true를 반환한다.")
+    @Test
+    void isInvalidWinningNumsSizeTest() {
+        // size test
+        assertThat(winningNumsPreprocessor.isInvalid("1,2,3,4,5")).isTrue();
+        assertThat(winningNumsPreprocessor.isInvalid("1,2,3,4,5,6,7")).isTrue();
+    }
 
+    @DisplayName("로또 당첨 번호가 1~45사이의 숫자가 아니면 true를 반환한다.")
+    @Test
+    void isInvalidWinningNumsRangeTest() {
+        // range test
+        assertThat(winningNumsPreprocessor.isInvalid("0,2,3,4,5,5")).isTrue();
+        assertThat(winningNumsPreprocessor.isInvalid("1,2,3,4,5,46")).isTrue();
+    }
 
+    @DisplayName("로또 당첨 번호 중 중복이 있으면 true를 반환한다.")
+    @Test
+    void isDuplicatedWinningNumsTest() {
+        // duplication test
+        assertThat(winningNumsPreprocessor.isInvalid("1,2,3,4,5,5")).isTrue();
+    }
+
+    @DisplayName("로또 당첨 번호가 유효하다면 flase를 반환한다.")
+    @Test
+    private void isValidWinningNumsTest() {
+        // 정상 입력
+        assertThat(winningNumsPreprocessor.isInvalid("1,2,3,4,5,6")).isFalse();
+        assertThat(winningNumsPreprocessor.isInvalid("1, 2, 3, 4, 5, 6")).isFalse();
+    }
 }

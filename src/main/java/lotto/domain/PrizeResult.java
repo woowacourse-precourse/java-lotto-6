@@ -12,6 +12,9 @@ public class PrizeResult {
 
     private PrizeResult() {
         this.prizeCounts = new EnumMap<>(Prize.class);
+
+        Arrays.stream(Prize.values())
+                    .forEach(prize -> prizeCounts.put(prize, 0));
     }
 
     public static PrizeResult of(Lottos lottos, WinningLotto winningLotto) {
@@ -24,10 +27,6 @@ public class PrizeResult {
 
         return prizeResult;
     }
-    
-    public EnumMap<Prize, Integer> getPrizeCounts() {
-        return prizeCounts;
-    }
 
     public List<String> getResults() {
         return prizeCounts.entrySet().stream()
@@ -38,7 +37,7 @@ public class PrizeResult {
 
     public int getPrizeMoney() {
         return prizeCounts.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getMoney() * entry.getValue())
+                .mapToInt(entry -> entry.getKey().getMoneyByCount(entry.getValue()))
                 .sum();
     }
 

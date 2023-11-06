@@ -38,7 +38,7 @@ public enum Prize {
         return String.format(PRINT_FORMAT, label, money);
     }
 
-    public int getMoney() {
-        return money;
+    public int getMoneyByCount(int count) {
+        return money * count;
     }
 }

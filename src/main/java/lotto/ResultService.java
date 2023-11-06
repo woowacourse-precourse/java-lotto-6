@@ -45,6 +45,16 @@ public class ResultService {
         System.out.println(sortedResult);
     }
 
+    public static HashMap<Integer, Integer> saveWinningResults(
+            List<Lotto> resultsOfLottoIssuance, Lotto lotto, int bonusNumber) {
+        HashMap<Integer, Integer> winningResults = new HashMap<>();
+        makeInitialSettings(winningResults);
+        for (Lotto resultOfLottoIssuance : resultsOfLottoIssuance) {
+            saveWinningResult(lotto, bonusNumber, resultOfLottoIssuance, winningResults);
+        }
+        return winningResults;
+    }
+
     public static HashMap<Integer, Integer> saveWinningResult(
             Lotto lotto, int bonusNumber, Lotto resultOfLottoIssuance, HashMap<Integer, Integer> winningResults) {
         int duplicationNumbers = resultOfLottoIssuance.getDuplicationNumbers(lotto, resultOfLottoIssuance);

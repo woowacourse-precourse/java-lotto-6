@@ -16,5 +16,9 @@ public class Lottos {
 		return this.lottos;
 	}
 	
+	public int getSize() {
+		return lottos.size();
+	}
+	
 }
 

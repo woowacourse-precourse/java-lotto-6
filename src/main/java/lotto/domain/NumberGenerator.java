@@ -6,6 +6,10 @@ import java.util.List;
 
 public class NumberGenerator {
 
+    public static final int START_NUMBER = 1;
+    public static final int END_NUMBER = 45;
+    public static final int COUNT = 6;
+
     private NumberGenerator() {
     }
 
@@ -18,6 +22,6 @@ public class NumberGenerator {
     }
 
     public List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LottoInfo.START_NUMBER, LottoInfo.END_NUMBER, LottoInfo.COUNT);
+        return Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, COUNT);
     }
 }

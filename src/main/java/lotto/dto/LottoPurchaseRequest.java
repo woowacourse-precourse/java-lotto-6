@@ -8,7 +8,7 @@ public class LottoPurchaseRequest {
         try {
             this.purchaseAmount = Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("로또 구입 금액은 숫자여야 합니다.");
         }
     }
 

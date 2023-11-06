@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
+import lotto.model.LottoService;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +32,7 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    
     @DisplayName("로또 객체의 numbers 인스터스 변수에 Randoms배열을 할당할 떄, 중복이 있는지.")
     @Test
     void checkLottoNumbersUniqueSix() {
@@ -40,7 +43,13 @@ class LottoTest {
     	
     }
     
-    
+    @DisplayName("1000단위당 한개씩 있는 로또 객체 리스트 생성 테스트")
+    @Test
+    void shouldCreateOneLottoPerThousandUnits() {
+    	int testThousand = 6100;
+    	List<Lotto> lotto_list = LottoService.createObjectPerThousandUnits(testThousand);
+    	assertEquals(6, lotto_list.size(),"6100을 넣고, 1000단위이기 떄문에 list의 사이즈는 6이어야 합니다.");
+    }
 
     
 }

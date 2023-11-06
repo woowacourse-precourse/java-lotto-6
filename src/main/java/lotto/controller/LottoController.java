@@ -39,13 +39,7 @@ public class LottoController {
         Integer bonusNumber = inputBonusNumber(lottoWinNumbers);
         Long result = lottoService.calculateMoney(lottoTickets, lottoWinNumbers, bonusNumber);
         outputView.printResult();
-        outputView.printYield(calculateYield(result, money));
-    }
-
-    private static double calculateYield(Long result, Long money) {
-        double v = result.doubleValue();
-        double yield = v / money * PERCENT.getNumber();
-        return yield;
+        outputView.printYield(lottoService.calculateYield(result, money));
     }
 
     private Integer inputBonusNumber(List<Integer> lottoWinNumbers) {

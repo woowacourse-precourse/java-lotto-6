@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.constant.NumberConstant.PERCENT;
 import static lotto.constant.NumberConstant.SAME_COUNT_FIVE;
 import static lotto.constant.NumberConstant.ZERO;
 
@@ -12,6 +13,7 @@ public class LottoService {
 
 
     private final RecordService recordService = new RecordService();
+    private final YieldService yieldService = new YieldService();
 
     public Long calculateMoney(List<LottoTicket> lottoTickets, List<Integer> lottoWinNumbers,
         Integer bonusNumber) {
@@ -23,6 +25,10 @@ public class LottoService {
         }
         recordService.recordResult(lottoTickets);
         return calculateFinalMoney();
+    }
+
+    public double calculateYield(Long result, Long money) {
+        return yieldService.calculateYield(result,money);
     }
 
     private long calculateFinalMoney() {

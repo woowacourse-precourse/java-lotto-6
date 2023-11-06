@@ -37,12 +37,19 @@ public class LottoInputValidatorTest {
     @DisplayName("입력한 당첨 번호가 6개가 아닌 경우 IllegalArgumentException 으로 예외처리 한다.")
     @Test
     void testInvalidWinningNumbersByLottoPerNumbers() {
-        List<Integer> invalidWinningNumbers = new ArrayList<>();
-        int number = LottoConstants.LOTTO_START_NUMBER.getConstant();
-        for (int i = 0; i < LottoConstants.LOTTO_PER_NUMBERS.getConstant() + 1; i++) {
-            invalidWinningNumbers.add(number);
-            number++;
-        }
+        int startNumber = LottoConstants.LOTTO_START_NUMBER.getConstant();
+        List<Integer> invalidWinningNumbers = createWinningNumbers(startNumber);
+        invalidWinningNumbers.remove(0);
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> LottoInputValidator.WinningNumbersIsValid(invalidWinningNumbers));
+    }
+
+    @DisplayName("입력한 당첨 번호 중 중복이 있으면 IllegalArgumentException 으로 예외처리 한다.")
+    @Test
+    void testInvalidWinningNumbersByHasDuplicate() {
+        int startNumber = LottoConstants.LOTTO_START_NUMBER.getConstant();
+        List<Integer> invalidWinningNumbers = createWinningNumbers(startNumber);
+        invalidWinningNumbers.set(1, startNumber);
         assertThatIllegalArgumentException().isThrownBy(
                 () -> LottoInputValidator.WinningNumbersIsValid(invalidWinningNumbers));
     }
@@ -50,12 +57,9 @@ public class LottoInputValidatorTest {
     @DisplayName("입력한 당첨 번호가 지정된 범위에 없는 번호일 경우 IllegalArgumentException 으로 예외처리 한다.")
     @Test
     void testInvalidWinningNumbersByLottoNumbers() {
-        List<Integer> invalidWinningNumbers = new ArrayList<>();
-        int number = LottoConstants.LOTTO_START_NUMBER.getConstant();
-        for (int i = 0; i < LottoConstants.LOTTO_PER_NUMBERS.getConstant() + 1; i++) {
-            invalidWinningNumbers.add(number);
-            number--;
-        }
+        int startNumber = LottoConstants.LOTTO_START_NUMBER.getConstant();
+        List<Integer> invalidWinningNumbers = createWinningNumbers(startNumber);
+        invalidWinningNumbers.set(0, startNumber - 1);
         assertThatIllegalArgumentException().isThrownBy(() ->
                 LottoInputValidator.WinningNumbersIsValid(invalidWinningNumbers)
         );
@@ -65,7 +69,10 @@ public class LottoInputValidatorTest {
     @Test
     void testValidBonusNumber() {
         int startNumber = LottoConstants.LOTTO_START_NUMBER.getConstant();
-        LottoInputValidator.bonusNumberIsValid(createWinningNumbers(startNumber), startNumber + 1);
+        LottoInputValidator.bonusNumberIsValid(
+                createWinningNumbers(startNumber),
+                LottoConstants.LOTTO_END_NUMBER.getConstant()
+        );
     }
 
     @DisplayName("보너스 번호가 당첨 번호와 중복된다면 IllegalArgumentException 으로 예외처리 한다.")

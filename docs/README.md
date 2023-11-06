@@ -22,12 +22,12 @@
     - [X] 1,000원으로 나누어 떨어지지 않는 경우 `IllegalArgumentException` 으로 예외 처리한다.
 - [X] 발행한 로또 수량 및 번호를 출력한다.
     - [X] 로또 번호는 오름차순으로 정렬하여 보여준다.
-- [ ] 당첨 번호를 입력 받는다.
+- [X] 당첨 번호를 입력 받는다.
     - [X] 번호는 쉼표(,)를 기준으로 구분한다.
     - [X] 입력한 번호가 6개가 아닌 경우 `IllegalArgumentException` 으로 예외처리 한다.
     - [X] 사용자가 입력한 당첨 번호가 숫자가 아닌경우 `IllegalArgumentException` 으로 예외처리 한다.
     - [X] 사용자가 입력한 당첨 번호가 1~45의 숫자가 아닌 경우 `IllegalArgumentException` 으로 예외처리 한다.
-    - [ ] 사용자가 입력한 당첨 번호가 6개 중 중복된 숫자가 있는 경우 `IllegalArgumentException` 으로 예외처리 한다.
+    - [X] 사용자가 입력한 당첨 번호가 6개 중 중복된 숫자가 있는 경우 `IllegalArgumentException` 으로 예외처리 한다.
 - [X] 보너스 번호를 입력받는다.
     - [X] 입력한 값이 숫자가 아닐 경우 `IllegalArgumentException` 으로 예외처리 한다.
     - [X] 입력한 값이 1~45의 숫자가 아닐 경우 `IllegalArgumentExcption` 으로 예외처리 한다.

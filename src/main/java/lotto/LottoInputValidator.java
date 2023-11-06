@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LottoInputValidator {
     public static void purchasePriceIsValid(int purchasePrice) {
@@ -15,6 +17,11 @@ public class LottoInputValidator {
         if (winningNumbers.size() != LottoConstants.LOTTO_PER_NUMBERS.getConstant()) {
             throw new IllegalArgumentException(
                     LottoErrorMessageConstants.WINNING_NUMBER_INVALID_NUMBER_ERROR_MESSAGE.getMessage()
+            );
+        }
+        if (isDuplicate(winningNumbers)) {
+            throw new IllegalArgumentException(
+                    LottoErrorMessageConstants.WINNING_NUMBER_DUPLICATE_INPUT_ERROR_MESSAGE.getMessage()
             );
         }
         for (int winningNumber : winningNumbers) {
@@ -42,5 +49,10 @@ public class LottoInputValidator {
     private static boolean isNotNumberInLottoBoundary(int number) {
         return LottoConstants.LOTTO_START_NUMBER.getConstant() > number
                 || number > LottoConstants.LOTTO_END_NUMBER.getConstant();
+    }
+
+    private static boolean isDuplicate(List<Integer> numbers) {
+        Set<Integer> notDuplicateNumbers = new HashSet<>(numbers);
+        return notDuplicateNumbers.size() != LottoConstants.LOTTO_PER_NUMBERS.getConstant();
     }
 }

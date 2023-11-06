@@ -1,6 +1,8 @@
 package lotto;
 
 public enum LottoErrorMessageConstants {
+    LOTTO_INVALID_SIZE("[ERROR] 로또의 숫자는 " + LottoConstants.LOTTO_PER_NUMBERS.getConstant() + "개 입력되어야 합니다."),
+    LOTTO_HAS_DUPLICATE_NUMBER("[ERROR] 로또의 숫자는 중복이 없어야 합니다."),
     PURCHASE_PRICE_NOT_INDIVISIBLE_PRICE_ERROR_MESSAGE("[ERROR] 로또 구입금액은 " + LottoConstants.LOTTO_PRICE
             + "원에 나누어 떨어져야 합니다."),
     INPUT_NOT_NUMBER_ERROR_MESSAGE("[ERROR] 해당 입력은 숫자여야 합니다."),

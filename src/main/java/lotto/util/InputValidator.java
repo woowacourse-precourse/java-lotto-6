@@ -5,6 +5,7 @@ import lotto.constant.ConstantValue;
 import java.util.List;
 
 import static lotto.constant.ConstantValue.LOTTO_NUMBERS_SIZE;
+import static lotto.message.ExceptionMessage.*;
 
 public class InputValidator {
     public static Integer validatePurchaseAmount(String playerInput) {
@@ -20,23 +21,23 @@ public class InputValidator {
         return bonusNumber;
     }
 
-    private static Integer validateIsInteger(String playerInput){
+    private static Integer validateIsInteger(String playerInput) {
         try {
             return Integer.parseInt(playerInput);
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INPUT_NOT_INTEGER);
         }
     }
 
-    private static void validateDivisible(Integer purchaseAmount){
-        if(purchaseAmount % ConstantValue.LOTTO_PRICE != 0){
-            throw new IllegalArgumentException();
+    private static void validateDivisible(Integer purchaseAmount) {
+        if (purchaseAmount % ConstantValue.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(INPUT_NOT_DIVISIBLE);
         }
     }
 
-    private static void validateIsPositive(Integer value){
-        if (value <= 0){
-            throw new IllegalArgumentException();
+    private static void validateIsPositive(Integer value) {
+        if (value <= 0) {
+            throw new IllegalArgumentException(INPUT_NOT_POSITIVE);
         }
     }
 
@@ -48,23 +49,23 @@ public class InputValidator {
     }
 
     private static void validateWinningNumbersSize(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != LOTTO_NUMBERS_SIZE){
-            throw new IllegalArgumentException();
+        if (winningNumbers.size() != LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(NUMBER_SIZE_NOT_MATCH);
         }
     }
 
-    private static List<Integer> validateIsIntegers(String playerInput){
+    private static List<Integer> validateIsIntegers(String playerInput) {
         try {
             List<String> splitPlayerInput = List.of(playerInput.split(","));
             return splitPlayerInput.stream()
                     .map(Integer::parseInt)
                     .toList();
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INPUT_NOT_INTEGER);
         }
     }
 
-    private static void validateIsPositive(List<Integer> values){
+    private static void validateIsPositive(List<Integer> values) {
         for (Integer value : values) {
             validateIsPositive(value);
         }

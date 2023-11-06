@@ -5,16 +5,16 @@ import lotto.utils.ErrorMessage;
 import lotto.utils.LottoConstantValue;
 
 public class LottoNumber implements Comparable<LottoNumber>{
-    private int number;
+    private final int lottoNumber;
 
-    public LottoNumber(int number) {
-        validate(number);
-        this.number = number;
+    public LottoNumber(int lottoNumber) {
+        validate(lottoNumber);
+        this.lottoNumber = lottoNumber;
     }
 
-    private void validate(int number) {
-        if (number < LottoConstantValue.MIN_LOTTO_NUMBER.get()
-                || number > LottoConstantValue.MAX_LOTTO_NUMBER.get()) {
+    private void validate(int lottoNumber) {
+        if (lottoNumber < LottoConstantValue.MIN_LOTTO_NUMBER.get()
+                || lottoNumber > LottoConstantValue.MAX_LOTTO_NUMBER.get()) {
             throw new IllegalArgumentException(
                     ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getWithFormatAndPrefix(
                             LottoConstantValue.MIN_LOTTO_NUMBER.get(), LottoConstantValue.MAX_LOTTO_NUMBER.get()));
@@ -30,21 +30,21 @@ public class LottoNumber implements Comparable<LottoNumber>{
             return false;
         }
         LottoNumber that = (LottoNumber) object;
-        return number == that.number;
+        return lottoNumber == that.lottoNumber;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(number);
+        return Objects.hash(lottoNumber);
     }
 
     @Override
     public String toString() {
-        return String.valueOf(number);
+        return String.valueOf(lottoNumber);
     }
 
     @Override
     public int compareTo(LottoNumber otherLottoNumber) {
-        return Integer.compare(number, otherLottoNumber.number);
+        return Integer.compare(lottoNumber, otherLottoNumber.lottoNumber);
     }
 }

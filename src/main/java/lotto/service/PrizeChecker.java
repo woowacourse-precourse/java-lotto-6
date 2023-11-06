@@ -6,8 +6,8 @@ import lotto.utils.ErrorMessage;
 import lotto.utils.Prize;
 
 public class PrizeChecker {
-    Lotto winningLotto;
-    LottoNumber bonusNumber;
+    private final Lotto winningLotto;
+    private final LottoNumber bonusNumber;
 
     public PrizeChecker(Lotto winningLotto, LottoNumber bonusNumber) {
         validateBonusNumber(winningLotto, bonusNumber);

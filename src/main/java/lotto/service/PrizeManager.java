@@ -5,7 +5,7 @@ import lotto.domain.wrapper.PurchaseAmout;
 import lotto.utils.Prize;
 
 public class PrizeManager {
-    Map<Prize, Integer> prizesCount;
+    private final Map<Prize, Integer> prizesCount;
 
     public PrizeManager(Map<Prize, Integer> prizesCount) {
         this.prizesCount = prizesCount;

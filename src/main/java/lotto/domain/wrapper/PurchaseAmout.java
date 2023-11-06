@@ -5,7 +5,7 @@ import lotto.utils.ErrorMessage;
 
 public class PurchaseAmout {
     private static final int NO_MONEY = 0;
-    private int purchaseAmout;
+    private final int purchaseAmout;
 
     public PurchaseAmout(int purchaseAmout) {
         validate(purchaseAmout);

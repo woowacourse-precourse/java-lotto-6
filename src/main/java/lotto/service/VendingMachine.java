@@ -10,7 +10,7 @@ import lotto.utils.LottoConstantValue;
 
 public class VendingMachine {
     private static final int START_COUNT = 0;
-    private PurchaseAmout purchaseAmout;
+    private final PurchaseAmout purchaseAmout;
 
     public VendingMachine(PurchaseAmout purchaseAmount) {
         this.purchaseAmout = purchaseAmount;

@@ -10,7 +10,7 @@ import lotto.utils.LottoConstantValue;
 import lotto.utils.Prize;
 
 public class Lottos {
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;

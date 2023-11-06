@@ -25,6 +25,15 @@ public class NumberGenerator {
         return buycount;
     }
 
+    public List<List<Integer>> createLottoNumbers(int buycount){
+        System.out.println("\n"+buycount+"개를 구매했습니다.");
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
+        for (int i = 0 ; i < buycount ; i++){
+            lottoNumbers.add(createRandomNumber());
+        }
+        return lottoNumbers;
+    }
+
     public List<Integer> createRandomNumber(){
         List<Integer> lotto = new ArrayList<>();
         while (lotto.size() < 6) {

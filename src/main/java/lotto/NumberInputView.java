@@ -28,6 +28,7 @@ public class NumberInputView {
         try {
             validateLength();
             validateNumerics();
+            validationDuplicate();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             validate();
@@ -55,5 +56,15 @@ public class NumberInputView {
     private boolean isDigit(String str) {
         int value = Integer.parseInt(str);
         return INPUT_DIGIT_FIRST <= value && value <= INPUT_DIGIT_LAST;
+    }
+
+    private void validationDuplicate() {
+        boolean hasDuplicates = numbers.stream()
+                .map(Integer::parseInt)
+                .distinct()
+                .count() < numbers.size();
+        if (hasDuplicates) {
+            throw new IllegalArgumentException("[ERROR] : 중복된 숫자가 존재합니다.");
+        }
     }
 }

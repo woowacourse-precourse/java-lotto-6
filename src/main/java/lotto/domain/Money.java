@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.constants.LottoConstants;
 
 public class Money {
+
     private static int money;
 
     private Money(int money) {
@@ -21,6 +22,10 @@ public class Money {
         if (isInMinMoney(money)) {
             throw new IllegalArgumentException(String.format("[ERROR] 로또 최소 구입 금액은 %d원 입니다.", LottoConstants.PRICE));
         }
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     private static boolean isDividedByPrice(int money) {

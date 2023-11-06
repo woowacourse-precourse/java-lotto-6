@@ -17,6 +17,7 @@ public class UserLotto {
 
     private void moneyToCount(int money) {
         validateNegativeMoney(money);
+        validateMoneyUnit(money);
         this.lottoCount = money / 1000;
     }
 
@@ -24,7 +25,7 @@ public class UserLotto {
         lottos = new ArrayList<>();
         Lotto newLotto;
 
-        for(int i = 0; i < lottoCount; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             newLotto = publishLotto();
             lottos.add(newLotto);
         }
@@ -42,9 +43,14 @@ public class UserLotto {
     }
 
     private void validateNegativeMoney(int money) {
-        if(money < 0) {
+        if (money < 0) {
             throw new IllegalArgumentException(LottoException.NOT_NEGATIVE_NUM.getExceptionMessage());
         }
+    }
 
+    private void validateMoneyUnit(int money) {
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException(LottoException.INVALID_MONEY_UNIT.getExceptionMessage());
+        }
     }
 }

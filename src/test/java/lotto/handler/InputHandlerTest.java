@@ -5,14 +5,13 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import lotto.message.ErrorMessage;
-import lotto.message.SystemMessage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static lotto.message.ErrorMessage.INVALID_COUNT_FORMAT;
+import static lotto.message.ErrorMessage.INVALID_PURCHASE_AMOUNT;
 import static lotto.message.SystemMessage.INPUT_PURCHASE_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,37 +20,65 @@ class InputHandlerTest {
     private OutputStream captor;
 
     @BeforeEach
-    protected final void init() {
+    public void init() {
         standardOut = System.out;
         captor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(captor));
     }
 
     @AfterEach
-    protected final void printOutput() {
+    public void printOutput() {
         System.setOut(standardOut);
         System.out.println(output());
     }
 
     @Test
-    @DisplayName("유효하지 않은 입력 시 반복 메시지를 표시하고 유효한 입력을 반환")
+    @DisplayName("유효하지 않은 입력 시 반복적으로 입력 메시지를 표시하고 유효한 입력을 반환")
     void testSetLottoPurchasePriceWithInvalidInput() {
         // given
         int retryCount = 3;
+        int answerNum = 2000;
+        String answer = "2000";
         String inputMessage = INPUT_PURCHASE_PRICE.getMessage();
-        String repeatMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
+        String InvalidCountFormatMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
                 + INVALID_COUNT_FORMAT.getMessage() + "\n";
 
         // when
-        run("qwe", "asd", "zxc", "123");
+        run("qwe", "asd", "zxc", answer);
         int lottoPurchasePrice = InputHandler.setLottoPurchasePrice();
 
         // then
         assertThat(output()).isEqualTo(
-                repeatMessage.repeat(retryCount) +
+                InvalidCountFormatMessage.repeat(retryCount) +
                         inputMessage
         );
-        assertThat(lottoPurchasePrice).isEqualTo(123);
+        assertThat(lottoPurchasePrice).isEqualTo(answerNum);
+    }
+
+    @Test
+    @DisplayName("유효하지 않은 입력 시 반복적으로 입력 메시지를 표시하고 유효한 입력을 반환2")
+    void testSetLottoPurchasePriceWithInvalidInput2() {
+        // given
+        int answerNum = 2000;
+        String answer = "2000";
+        String inputMessage = INPUT_PURCHASE_PRICE.getMessage();
+        String InvalidCountFormatMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
+                + INVALID_COUNT_FORMAT.getMessage() + "\n";
+        String InvalidPurchaseAmountMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
+                + INVALID_PURCHASE_AMOUNT.getMessage() + "\n";
+
+
+        // when
+        run("qwe", "123", answer);
+        int lottoPurchasePrice = InputHandler.setLottoPurchasePrice();
+
+        // then
+        assertThat(output()).isEqualTo(
+                InvalidCountFormatMessage +
+                        InvalidPurchaseAmountMessage +
+                        inputMessage
+        );
+        assertThat(lottoPurchasePrice).isEqualTo(answerNum);
     }
 
     private String output() {

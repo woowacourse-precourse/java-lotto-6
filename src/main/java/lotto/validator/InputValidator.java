@@ -2,6 +2,7 @@ package lotto.validator;
 
 import static lotto.message.ErrorMessage.INVALID_PURCHASE_AMOUNT;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.ParseIntException;
 import lotto.exception.UserInputException;
 import lotto.util.InputUtil;
@@ -23,6 +24,5 @@ public class InputValidator {
             throw new UserInputException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
-
 
 }

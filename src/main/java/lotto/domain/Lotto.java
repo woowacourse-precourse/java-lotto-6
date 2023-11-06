@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.util.Constants;
 import lotto.util.ExceptionMessage;
 
 import java.util.HashSet;
@@ -28,7 +29,7 @@ public class Lotto {
 
     private static void isInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (!(number >= 1 && number <= 45)) {
+            if (!(number >= Constants.MIN && number <= Constants.MAX)) {
                 throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE);
             }
         }
@@ -42,7 +43,7 @@ public class Lotto {
     }
 
     private static void isSixSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_SIX_SIZE);
         }
     }

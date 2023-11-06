@@ -3,6 +3,7 @@ package Except;
 import Input.Input;
 import Message.Message;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Except {
@@ -54,7 +55,8 @@ public class Except {
         }
         return result;
     }
-    public int numberCheckNumber(String number){
+
+    public int numberCheckNumber(String number) {
         int result = numberIncorrect.getCode();
         try {
             if (!number.matches(INTEGER_REGEX)) {
@@ -66,15 +68,29 @@ public class Except {
         }
         return result;
     }
-    public int numberRangeNumber(int number){
+
+    public int numberRangeNumber(int number) {
         int result = numberOutOfRange.getCode();
         try {
-            if(number<1||number>45){
+            if (number < 1 || number > 45) {
                 throw new IllegalArgumentException();
             }
             result = number;
         } catch (IllegalArgumentException iae) {
             System.out.println(numberOutOfRange.getMessage());
+        }
+        return result;
+    }
+
+    public List<Integer> numberAllCheckNumber(String number) {
+        String[] check_number = number.split(",");
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < check_number.length; i++) {
+            int checking = numberCheckNumber(check_number[i]);
+            checking = numberRangeNumber(checking);
+            if (checking < 0) {
+                break;
+            }
         }
         return result;
     }

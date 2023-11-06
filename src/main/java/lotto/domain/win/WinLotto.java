@@ -1,10 +1,11 @@
 package lotto.domain.win;
 
+import static lotto.Option.GameOption.LOTTO_NUMBER_LENGTH;
+
 import lotto.domain.Lotto;
 import lotto.validator.WinLottoValidator;
 
 public class WinLotto {
-    public static final int LOTTO_NUMBER_LENGTH = 6;
     private final Lotto lotto;
 
     private final Bonus bonus;
@@ -17,7 +18,7 @@ public class WinLotto {
 
     public int isEqual(Lotto lotto) {
         int equalCount = 0;
-        for (int i = 0; i < LOTTO_NUMBER_LENGTH; i++) {
+        for (int i = 0; i < LOTTO_NUMBER_LENGTH.getNumber(); i++) {
             if (this.lotto.getLotto().contains(lotto.getLotto().get(i))) {
                 equalCount++;
             }

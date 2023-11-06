@@ -1,6 +1,7 @@
 package lotto.Option;
 
 public enum GameOption {
+    LOTTO_NUMBER_LENGTH(6),
     LOTTO_PRICE(1000),
     LOTTO_MAX_NUMBER(45),
     LOTTO_MIN_NUMBER(1),

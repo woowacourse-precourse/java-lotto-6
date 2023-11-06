@@ -12,10 +12,10 @@ import org.junit.jupiter.api.Test;
 
 public class WinningDetailsTest {
 
-    List<Lotto> lottos;
+    private static List<Lotto> lottos;
 
     @BeforeAll
-    public void init(){
+    public static void init(){
         lottos = List.of(
                 new Lotto("1,2,3,4,5,6"),
                 new Lotto("7,8,9,10,11,12"),

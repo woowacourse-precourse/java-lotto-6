@@ -22,7 +22,7 @@ public record BonusNumber(int number) {
 
     private void validateNumberInRange(int bonusNumber) {
         if (bonusNumber < LottoNumberRule.MIN.number()
-            || bonusNumber > LottoNumberRule.MAX.number()) {
+                || bonusNumber > LottoNumberRule.MAX.number()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_IN_RANGE.getMessage());
         }
     }

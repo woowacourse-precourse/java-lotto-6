@@ -8,7 +8,7 @@ public class Customer {
     private final static Integer MIN_MONEY = 1000;
     private final static Integer ZERO = 0;
     private final Integer buyPrice;
-    private final Map<Integer, List<Integer>> lottoNumbers = new LinkedHashMap<>();
+    private  Map<Integer, List<Integer>> lottoNumbers = new LinkedHashMap<>();
     private Integer winPrice = 0;
 
     private Customer(Integer buyPrice,Integer winPrice) {
@@ -24,8 +24,8 @@ public class Customer {
         return new Customer(price, 0);
     }
 
-    public void putLottoNumber(int key, List<Integer> value) {
-        lottoNumbers.put(key, value);
+    public void putLottoNumber(Map<Integer, List<Integer>> lottoNumbers) {
+        this.lottoNumbers = lottoNumbers;
     }
 
     public Map<Integer, List<Integer>> getLottoNumbers() {

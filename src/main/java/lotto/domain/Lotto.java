@@ -23,6 +23,10 @@ public class Lotto {
                 .anyMatch(lottoNumber -> lottoNumber.getNumber() == number.getNumber());
     }
 
+    public List<LottoNumber> getNumbers(){
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         validateCount(numbers);
         validateDuplicate(numbers);

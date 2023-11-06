@@ -17,7 +17,7 @@ public class ValidationUtilsTest {
         final String nullString = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ValidationUtils.validatePurchaseAmount(nullString));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ValidationUtils.validatePurchaseAmountNumber(nullString));
 
         //then
         assertThat(exception.getMessage()).isEqualTo(ValidationUtils.PURCHASE_AMOUNT_NOT_NUMBER_EXCEPTION);
@@ -30,7 +30,7 @@ public class ValidationUtilsTest {
         final String emptyString = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ValidationUtils.validatePurchaseAmount(emptyString));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ValidationUtils.validatePurchaseAmountNumber(emptyString));
 
         //then
         assertThat(exception.getMessage()).isEqualTo(ValidationUtils.PURCHASE_AMOUNT_NOT_NUMBER_EXCEPTION);
@@ -43,9 +43,22 @@ public class ValidationUtilsTest {
         final String notNumberString = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ValidationUtils.validatePurchaseAmount(notNumberString));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ValidationUtils.validatePurchaseAmountNumber(notNumberString));
 
         //then
         assertThat(exception.getMessage()).isEqualTo(ValidationUtils.PURCHASE_AMOUNT_NOT_NUMBER_EXCEPTION);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -1000})
+    public void 입력값이_양수가_아닌_경우_예외테스트(int input) {
+        //given
+        final int notPositiveNumber = input;
+
+        //when
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ValidationUtils.validatePurchaseAmountPositive(notPositiveNumber));
+
+        //then
+        assertThat(exception.getMessage()).isEqualTo(ValidationUtils.PURCHASE_AMOUNT_NOT_POSITIVE_EXCEPTION);
     }
 }

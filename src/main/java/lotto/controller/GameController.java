@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.GameUtils;
 import lotto.ValidationUtils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -27,7 +28,9 @@ public class GameController {
 
     private boolean isInvalidPurchaseAmount(String input) {
         try {
-            ValidationUtils.validatePurchaseAmount(input);
+            ValidationUtils.validatePurchaseAmountNumber(input);
+            int number = GameUtils.convertStringToInt(input);
+            ValidationUtils.validatePurchaseAmountPositive(number);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             return true;

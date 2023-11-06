@@ -3,8 +3,10 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import model.Grader;
 import model.Lotto;
 import model.WinningLotto;
+import view.PrintResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +16,15 @@ public class Store {
   public void start() {
     int money = inputMoney();
     List<Lotto> lottos = giveLotto(money);
-   
+    WinningLotto winningLotto = inputWinningLotto();
 
+    Grader grader = new Grader();
+    List<Integer> winningDetails = grader.compareLottoWinningLotto(lottos, winningLotto);
+    double earningRatio = grader.calculateEarningRatio(money, winningDetails);
 
-
+    PrintResult printResult = new PrintResult();
+    printResult.winningDetailPrint(winningDetails);
+    printResult.earningRatioPrint(earningRatio);
   }
 
 

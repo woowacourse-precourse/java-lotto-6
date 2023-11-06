@@ -47,6 +47,7 @@ public class InputValidation {
     public void validationLottoWinningBonusNumber(String bonusNumber, List<Integer> lottoWinningNumbers) {
         isEmptyValidation(bonusNumber);
         isNumberRangeValidation(bonusNumber);
+        checkNumberRange(bonusNumber);
     }
 
     private void isEmptyValidation(String input) {

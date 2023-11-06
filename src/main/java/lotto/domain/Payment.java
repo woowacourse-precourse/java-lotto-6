@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.utils.ErrorMessage.IS_LOWER_THAN_PRICE;
 import static lotto.utils.ErrorMessage.IS_NOT_DIVIDED_INTO;
 
 public class Payment {
@@ -12,6 +13,9 @@ public class Payment {
     }
 
     private void checkValidate(int payment) {
+        if(isLowerThanPrice(payment)) {
+            throw new IllegalArgumentException(IS_LOWER_THAN_PRICE.getMessage().formatted(LOTTO_PRICE));
+        }
         if(isNotDividedBy(payment)) {
             throw new IllegalArgumentException(IS_NOT_DIVIDED_INTO.getMessage().formatted(LOTTO_PRICE));
         }
@@ -27,5 +31,9 @@ public class Payment {
 
     private boolean isNotDividedBy(int payment) {
         return payment % LOTTO_PRICE != 0;
+    }
+
+    private boolean isLowerThanPrice(int payment) {
+        return payment < LOTTO_PRICE;
     }
 }

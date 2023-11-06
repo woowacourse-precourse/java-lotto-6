@@ -10,14 +10,29 @@ public final class Validation {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(list);
         if (list.size() != nonDuplicateNumbers.size()) {
             //Message 출력
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException();
         }
     }
 
     public static void validateSize(List<Integer> list, int length) {
         if (list.size() != length) {
             //Message 출력
-            throw new IllegalArgumentException("로또 번호는 6개가 필요합니다.");
+            throw new IllegalArgumentException();
         }
     }
+
+    public static void validateNumberListInRange(List<Integer> list, int max, int min) {
+        for (int number : list) {
+            validateNumberInRange(number, max, min);
+        }
+    }
+
+    private static void validateNumberInRange(int number, int max, int min) {
+        if (number < max || number > min) {
+            //message 출력
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }

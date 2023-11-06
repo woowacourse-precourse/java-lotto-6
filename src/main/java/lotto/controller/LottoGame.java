@@ -4,12 +4,13 @@ import lotto.domain.*;
 import lotto.dto.LottoTicketsDTO;
 import lotto.dto.WinningStatisticsDTO;
 import lotto.utility.LottoMachine;
-import lotto.validator.LottoNumberValidator;
 import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import static camp.nextstep.edu.missionutils.Console.close;
 import static lotto.utility.GameUtility.*;
+import static lotto.validator.Validator.validateBonusNumberForm;
+import static lotto.validator.Validator.validateWinningNumberForm;
 
 import java.util.Arrays;
 import java.util.List;
@@ -66,10 +67,8 @@ public class LottoGame {
         try {
             OutputView.printInputWinningNumber();
             winningNumberString = InputView.receiveUserInput();
-            Validator.checkWinningNumberForm(winningNumberString);
-            Validator.areAllPrimeNumber(List.of(winningNumberString.split(",")));
+            validateWinningNumberForm(winningNumberString);
             winningNumber = new WinningNumber(stringToIntList(winningNumberString));
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winningNumber = getWinningNumberAndValidate();
@@ -90,9 +89,8 @@ public class LottoGame {
         try {
             OutputView.printInputBonusNumber();
             numberString = InputView.receiveUserInput();
-            LottoNumberValidator.validateBonusNumber(numberString);
+            validateBonusNumberForm(numberString);
             bonusNumber = new BonusNumber(Integer.parseInt(numberString));
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             bonusNumber = getBonusNumberAndValidate();

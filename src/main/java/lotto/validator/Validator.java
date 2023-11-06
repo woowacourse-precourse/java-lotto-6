@@ -9,8 +9,16 @@ public class Validator {
     private static final String INPUT_IS_NOT_IN_UNITS_OF_LOTTO_PRICE = "[ERROR] 입력이 %d원 단위가 아닙니다.";
     private static final String WINNING_NUMBER_FORM_IS_WRONG = "[ERROR] 당첨 번호의 형식이 잘 못 됐습니다.";
 
-
     private Validator() {
+    }
+
+    public static void validateWinningNumberForm(String winningNumber) {
+        Validator.checkWinningNumberForm(winningNumber);
+        Validator.areAllPrimeNumber(List.of(winningNumber.split(",")));
+    }
+
+    public static void validateBonusNumberForm(String bonusNumber) {
+        Validator.isPrimeNumber(bonusNumber);
     }
 
 

@@ -8,12 +8,7 @@ import static lotto.constants.GameNumberConstants.*;
 public class LottoNumberValidator {
     private static final String LOTTO_INPUT_SHOULD_BE_N = "[ERROR] 복권 번호는 %d개 입력해야합니다.";
     private static final String SHOULD_NOT_DUPLICATE = "[ERROR] 복권 번호는 중복되면 안됩니다.";
-    private static final String SHOULD_BE_IN_LOTTO_NUMBER_RANGE = "[ERROR] 복권 번호는 %d이상 %d이하이어야 합니다";
-
-
-    public static void validateBonusNumber(String bonusNumber) {
-        Validator.isPrimeNumber(bonusNumber);
-    }
+    private static final String SHOULD_BE_IN_LOTTO_NUMBER_RANGE = "[ERROR] 복권 번호는 %d이상 %d이하 이어야 합니다.";
 
 
     public static void validateLottoSize(List<Integer> numbers) {

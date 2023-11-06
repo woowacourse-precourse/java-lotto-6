@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class ResultService {
@@ -46,7 +47,6 @@ public class ResultService {
         return sum;
     }
 
-
     public static List<Lotto> getResultsOfLottoIssuance(int purchaseNumber) {
         List<Lotto> resultsOfLottoIssuance = new ArrayList<>();
         for (int i = 1; i <= purchaseNumber; i++) {
@@ -69,7 +69,7 @@ public class ResultService {
     public static HashMap<Integer, Integer> saveWinningResults(
             List<Lotto> resultsOfLottoIssuance, Lotto lotto, int bonusNumber) {
         HashMap<Integer, Integer> winningResults = new HashMap<>();
-        makeInitialSettings(winningResults);
+        winningResults = makeInitialSettings(winningResults);
         for (Lotto resultOfLottoIssuance : resultsOfLottoIssuance) {
             saveWinningResult(lotto, bonusNumber, resultOfLottoIssuance, winningResults);
         }
@@ -90,8 +90,15 @@ public class ResultService {
             winningResults.put(FIVE_AND_BONUS_CASE_NUMBER, winningResults.get(FIVE_AND_BONUS_CASE_NUMBER) + 1);
             return winningResults;
         }
-        winningResults.put(duplicationNumbers, winningResults.get(duplicationNumbers) + 1);
+        if (isWinnigCase(duplicationNumbers)) {
+            winningResults.put(duplicationNumbers, winningResults.get(duplicationNumbers) + 1);
+            return winningResults;
+        }
         return winningResults;
+    }
+
+    private static boolean isWinnigCase(int duplicationNumbers) {
+        return duplicationNumbers >= THREE_CASE_NUMBER;
     }
 
     private static boolean isBonusCase(int duplicationNumbers, boolean bonusCheck) {
@@ -99,7 +106,7 @@ public class ResultService {
     }
 
 
-    public static void makeInitialSettings(HashMap<Integer, Integer> winningResults) {
+    public static HashMap<Integer, Integer> makeInitialSettings(HashMap<Integer, Integer> winningResults) {
         for (int i = 1; i <= WINNING_CASE_NUMBER; i++) {
             winningResults.put(THREE_CASE_NUMBER, 0);
             winningResults.put(FOUR_CASE_NUMBER, 0);
@@ -107,6 +114,6 @@ public class ResultService {
             winningResults.put(FIVE_AND_BONUS_CASE_NUMBER, 0);
             winningResults.put(SIX_CASE_NUMBER, 0);
         }
+        return winningResults;
     }
-
 }

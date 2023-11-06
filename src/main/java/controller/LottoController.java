@@ -23,7 +23,10 @@ public class LottoController {
     }
 
     public void drawLotto() {
-
+        outputView.inputWinningNumber();
+        lottoMapper.setWinningNumber(inputView.winningNumbers());
+        outputView.inputBonusNumber();
+        lottoMapper.setBonusNumber(inputView.bonusNumber());
     }
 
     public void printWinningStatistics() {

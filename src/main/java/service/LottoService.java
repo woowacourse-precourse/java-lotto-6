@@ -18,4 +18,12 @@ public class LottoService {
     public List<Lotto> getTickets() {
         return player.getTickets();
     }
+
+    public void setWinningNumber(List<Integer> winningNumbers) {
+        winningLotto.setWinningNumber(winningNumbers);
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        winningLotto.setBonusNumber(bonusNumber);
+    }
 }

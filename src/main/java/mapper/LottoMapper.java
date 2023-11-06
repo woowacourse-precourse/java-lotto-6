@@ -30,4 +30,12 @@ public class LottoMapper {
                 )
                 .toList();
     }
+
+    public void setWinningNumber(List<Integer> winningNumbers) {
+        lottoService.setWinningNumber(winningNumbers);
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        lottoService.setBonusNumber(bonusNumber);
+    }
 }

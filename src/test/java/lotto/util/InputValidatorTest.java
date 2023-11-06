@@ -2,6 +2,8 @@ package lotto.util;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -47,6 +49,27 @@ class InputValidatorTest {
     }
 
     @Test
+    void parseValidatedNumbers는_쉼표를_기준으로_숫자를_변환해서_리스트에_저장한다() {
+        String numbersMessage = "1,2,3,4,5,6";
+        assertThat(inputValidator.parseValidatedNumbers(numbersMessage))
+                .isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
+    }
+
+    @Test
+    void parseValidatedNumbers는_공백도_제거해서_숫자만을_리스트에_저장한다() {
+        String numbersMessage = "     1       ,      2     ,      3      ,      4      ,    5   ,    6";
+        assertThat(inputValidator.parseValidatedNumbers(numbersMessage))
+                .isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
+    }
+
+    @Test
+    void parseValidatedNumbers는_쉼표_사이의_공백을_입력받을_경우_IllegalArgumentException_발생() {
+        String numbersMessage = "1,,3,4,5,6";
+        assertThatThrownBy(() -> inputValidator.parseValidatedNumbers(numbersMessage))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 검증_실패시_오류코드를_포함한_에러_메시지_발생() {
         String notNumberString = "숫자가 아니다.";
         assertThatThrownBy(() -> inputValidator.parseValidatedInt(notNumberString))
@@ -57,10 +80,14 @@ class InputValidatorTest {
                 .hasMessageContaining(ERROR_CODE);
 
         assertThatThrownBy(() -> inputValidator.parseValidatedInt(null))
-                .isInstanceOf(IllegalArgumentException.class);
+                .hasMessageContaining(ERROR_CODE);
 
         String blank = "";
         assertThatThrownBy(() -> inputValidator.parseValidatedInt(blank))
-                .isInstanceOf(IllegalArgumentException.class);
+                .hasMessageContaining(ERROR_CODE);
+
+        String numbersMessage = "1,,3,4,5,6";
+        assertThatThrownBy(() -> inputValidator.parseValidatedNumbers(numbersMessage))
+                .hasMessageContaining(ERROR_CODE);
     }
 }

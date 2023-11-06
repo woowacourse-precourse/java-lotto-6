@@ -31,8 +31,10 @@ public class InputValidator extends Validator {
     public List<Integer> parseValidatedNumbers(String numbersMessage) {
         List<Integer> validatedNumbers = new ArrayList<>();
         Arrays.stream(numbersMessage.split(NUMBER_SPLITTER))
+                .map(String::trim)
                 .mapToInt(this::parseValidatedInt)
                 .forEach(validatedNumbers::add);
+
         return validatedNumbers;
     }
 }

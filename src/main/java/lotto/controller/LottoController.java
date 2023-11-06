@@ -59,6 +59,12 @@ public class LottoController {
         }
     }
 
+    public void provideRateOfReturn() {
+        double rateOfReturn = service.calculateReturn();
+
+        OutputView.printRateOfReturn(rateOfReturn);
+    }
+
     private Lotto setUPWinningMain() {
         String input = InputView.input();
 

@@ -1,6 +1,6 @@
 package lotto.util;
 
-public class Validator {
+public class MoneyValidator {
     private static final long MAX_MONEY = (long) 2E9;
     private static final int MIN_SIZE = 4;
     private static final int MAX_SIZE = 10;

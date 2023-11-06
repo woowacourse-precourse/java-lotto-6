@@ -108,22 +108,22 @@ public class LottoController {
         }
     }
 
-    private void printResult(HashMap<Integer, Integer> countByPrize) {
+    private void printResult(HashMap<String, Integer> countByPrize) {
         System.out.println(output.printResultMessage());
         printFirstPrizeCount(countByPrize);
     }
 
-    private void printFirstPrizeCount(HashMap<Integer, Integer> countByPrize) {
+    private void printFirstPrizeCount(HashMap<String, Integer> countByPrize) {
         System.out.printf(output.printCompareLottoNumberResultExceptSecondPrize(),
                 Config.FIRST_PRIZE_WINNING_NUMBER_MATCH, Config.FIRST_PRIZE_REWARD,
-                countByPrize.get(Config.FIRST_PRIZE_WINNING_NUMBER_MATCH));
+                countByPrize.get(Config.FIRST_PRIZE_REWARD));
     }
 
     //이 아래는 추후 LottoService 클래스로 이동(일부 메서드 접근 제어자 수정 필요)
-    private HashMap<Integer, Integer> checkPrizeByLotto(HashMap<Integer, List<Integer>> compareLottoNumbers) {
-        HashMap<Integer, Integer> countByPrize = new HashMap<>();
+    private HashMap<String, Integer> checkPrizeByLotto(HashMap<Integer, List<Integer>> compareLottoNumbers) {
+        HashMap<String, Integer> countByPrize = new HashMap<>();
 
-        countByPrize.put(Config.FIRST_PRIZE_WINNING_NUMBER_MATCH,
+        countByPrize.put(Config.FIRST_PRIZE_REWARD,
                 countByMatchNumber(compareLottoNumbers, Config.FIRST_PRIZE_WINNING_NUMBER_MATCH));
         //countByPrize.put(countByMatchNumber(compareLottoNumbers, Config.FIFTH_PRIZE_WINNING_NUMBER_MATCH));
 
@@ -136,7 +136,25 @@ public class LottoController {
         for (int key : compareLottoNumbers.keySet()) {
             List<Integer> compareNumbersResult = compareLottoNumbers.get(key);
 
-            if (compareNumbersResult.get(Config.INDEX_OF_MATCH_WINNING_NUMBER) == countMatchWinning) { count++; }
+            if (compareNumbersResult.get(Config.INDEX_OF_MATCH_WINNING_NUMBER) == countMatchWinning) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private int countByMatchNumber(HashMap<Integer, List<Integer>> compareLottoNumbers,
+                                   int countMatchWinning, int countMatchBonus) {
+        int count = 0;
+
+        for (int key : compareLottoNumbers.keySet()) {
+            List<Integer> compareNumbersResult = compareLottoNumbers.get(key);
+
+            if (compareNumbersResult.get(Config.INDEX_OF_MATCH_WINNING_NUMBER) == countMatchWinning
+                    && compareNumbersResult.get(Config.INDEX_OF_MATCH_BONUS_NUMBER) == countMatchBonus) {
+                count++;
+            }
         }
 
         return count;

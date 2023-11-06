@@ -29,23 +29,12 @@ public class LottoService {
         List<Lotto> generatedLottos = new ArrayList<>();
         int lottoCount = getTicketCount();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = generateLottoNumbers();
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto newLotto = new Lotto(lottoNumbers);
             generatedLottos.add(newLotto);
-            this.lottos.add(newLotto);
         }
+        this.lottos.addAll(generatedLottos);
         return generatedLottos;
-    }
-
-    private List<Integer> generateLottoNumbers() {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        while (uniqueNumbers.size() < 6) {
-            int number = Randoms.pickNumberInRange(1, 45);
-            uniqueNumbers.add(number);
-        }
-        List<Integer> lottoNumbers = new ArrayList<>(uniqueNumbers);
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
     }
     public List<Lotto> purchaseLottoTickets() {
         return this.lottos;

@@ -48,8 +48,10 @@ public class WinnerNumberException {
     }
 
     public void isComma(String winnerNum) {
-        if(!winnerNum.contains(",")){
-            throw new IllegalArgumentException(IS_COMMA_MESSAGE);
+        for (char c : winnerNum.toCharArray()) {
+            if (!(Character.isLetterOrDigit(c) || c == ',')) {
+                throw new IllegalArgumentException(IS_COMMA_MESSAGE);
+            }
         }
     }
 }

@@ -4,9 +4,9 @@
 
 ### 사용자 입력 검증 기능 (예외처리)
 - [x] 로또 구입 금액이 1,000원 단위가 아닐 경우 예외를 처리한다. - invalidLottoPurchaseAmount()
-- [ ] 로또 번호는 1~45 범위 내의 숫자만 가능하다. - validateLottoNumberRange()
-- [ ] 로또 발행 시, 중복되지 않는 6개의 숫자를 선택한다 - uniqueLottoNumbers()
-- [ ] 당첨 번호는 중복되지 않는 6개의 숫자와 추가로 1개의 보너스 번호를 선택한다. - winningNumbersAndBonusNumber()
+- [x] 로또 번호는 1~45 범위 내의 숫자만 가능하다. - validateLottoNumberRange()
+- [x] 로또 발행 시, 중복되지 않는 6개의 숫자를 선택한다 - validateLottoNumbersDuplication()
+- [ ] 당첨 번호는 중복되지 않는 6개의 숫자와 추가로 1개의 보너스 번호를 선택한다. - validateWinningNumbersAndBonusNumber()
 ### 조건
 - 예외가 발생하면 "[ERROR]"로 시작하는 에러 메시지를 출력하고, 해당 부분의 입력을 다시 받는다.
 

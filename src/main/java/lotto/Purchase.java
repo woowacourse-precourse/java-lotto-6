@@ -3,19 +3,19 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Purchase {
 
-    public void process(){
-
+    public List<List<Integer>> process(){
         System.out.println("구입금액을 입력해주세요.");
         int money = Integer.parseInt(Console.readLine());
 
         int lottoCount = checkLottoCount(money);
 
-        printLotto(lottoCount);
+        return printLotto(lottoCount);
     }
 
     public int checkLottoCount(int money){
@@ -27,12 +27,17 @@ public class Purchase {
         return lottoCount;
     }
 
-    public void printLotto(int lottoCount){
+    public List<List<Integer>> printLotto(int lottoCount){
+        List<Integer> lottoNumber = null;
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
         while (lottoCount > 0){
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(lottoNumbers);
-            System.out.println(lottoNumbers);
+            lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(lottoNumber);
+            System.out.println(lottoNumber);
             lottoCount--;
+            lottoNumbers.add(lottoNumber);
         }
+
+        return lottoNumbers;
     }
 }

@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        inputRangeValidate(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +17,42 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void inputRangeValidate(List<Integer> numbers){
+        for (int number:numbers) {
+            if(number<1 || number>45){
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public PRIZE SCORE(List<Integer> winNumbers, int bonus){
+        int matchCount=0;
+        boolean bonusMatch=false;
+
+        for (int number:numbers) {
+            if(bonus==number){
+                bonusMatch=true;
+            }
+            if(winNumbers.contains(number)){
+                matchCount++;
+            }
+        }
+
+        if(matchCount<3){
+            return PRIZE.FAIL;
+        }
+        if(matchCount==3){
+            return PRIZE.FIFTH;
+        }
+        if(matchCount==4){
+            return PRIZE.FORTH;
+        }
+        if(matchCount==5){
+            if(bonusMatch){
+                return PRIZE.SECOND;
+            }
+            return PRIZE.THIRD;
+        }
+        return PRIZE.FIRST;
+    }
 }

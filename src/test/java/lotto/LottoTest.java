@@ -83,4 +83,19 @@ class LottoTest {
         // then
         assertThat(result).isEqualTo(2_093_075_000);
     }
+
+    @DisplayName("수익률 계산하는 함수 테스트")
+    @Test
+    void calculateReturnRate_테스트() {
+
+        // given
+        int purchaseAmount = 100_000_000;
+        int earnings = 15_000;
+
+        // when
+        double result = lottoService.calculateReturnRate(purchaseAmount, earnings);
+
+        // then
+        assertThat(result).isEqualTo(0.015);
+    }
 }

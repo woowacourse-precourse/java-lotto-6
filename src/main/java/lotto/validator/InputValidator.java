@@ -1,9 +1,10 @@
 package lotto.validator;
 
-import lotto.ExceptionMessages;
+import lotto.domain.Lotto;
+import lotto.service.OutputService;
 
 import java.util.HashSet;
-import java.util.function.BiPredicate;
+import java.util.List;
 
 import static lotto.ExceptionMessages.*;
 
@@ -16,6 +17,13 @@ public class InputValidator {
 
         if (set.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(NOT_VALIDATED_WINNING_NUMBER_SIZE.getMessage());
+        }
+    }
+
+    public static void validateWinningNumberRange(HashSet<Integer> set) {
+
+        for (Integer number : set) {
+            validateNumberRange(number);
         }
     }
 
@@ -40,10 +48,18 @@ public class InputValidator {
         throw new IllegalArgumentException(NOT_VALIDATED_PURCHASE_AMOUNT.getMessage());
     }
 
-    public static void validateBonusNumberRange(Integer bonusNumber) {
+    public static void validateNumberRange(Integer number) {
 
-        if (bonusNumber > 45 || bonusNumber < 0) {
+        if (number > 45 || number < 0) {
             throw new IllegalArgumentException(NOT_VALIDATED_RANGE.getMessage());
+        }
+    }
+
+    public static void validateDuplicateBonusNumber(HashSet<Integer> winningNumbers, Integer bonusNumber) {
+
+        if (winningNumbers.contains(bonusNumber)) {
+
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
 }

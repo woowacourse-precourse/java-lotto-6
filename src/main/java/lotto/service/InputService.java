@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import static lotto.CommonMessages.*;
 import static lotto.validator.InputValidator.*;
-import static lotto.validator.InputValidator.validateBonusNumberRange;
 import static lotto.validator.InputValidator.validateToInteger;
 
 
@@ -42,7 +41,7 @@ public class InputService {
 
             addWinningNumber(winningNumbers, inputNumbers);
             validateWinningNumberSize(winningNumbers);
-
+            validateWinningNumberRange(winningNumbers);
             return winningNumbers;
         } catch (IllegalArgumentException e) {
 
@@ -53,11 +52,11 @@ public class InputService {
 
     private static void addWinningNumber(HashSet<Integer> winningNumbers, String[] inputNumbers) {
         for (String number : inputNumbers) {
-            winningNumbers.add(validateToInteger(number));
+            winningNumbers.add(validateToInteger(number.trim()));
         }
     }
 
-    public Integer getBonusNumber() {
+    public Integer getBonusNumber(HashSet<Integer> winningNumbers) {
 
         System.out.println();
         System.out.println(BONUS_NUMBER_INPUT.getMessage());
@@ -66,12 +65,13 @@ public class InputService {
 
             String input = Console.readLine();
             Integer bonusNumber = validateToInteger(input);
-            validateBonusNumberRange(bonusNumber);
+            validateNumberRange(bonusNumber);
+            validateDuplicateBonusNumber(winningNumbers, bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
 
             outputService.printError(e);
-            return getBonusNumber();
+            return getBonusNumber(winningNumbers);
         }
     }
 }

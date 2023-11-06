@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -19,6 +18,8 @@ public class WinningResult {
     public Map<Integer, Long> getWinningResult() {
         return winningResult;
     }
+
+
 
     /**
      * 당첨 통계

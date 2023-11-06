@@ -1,4 +1,4 @@
-package lotto.enums;
+package lotto.core.enums;
 
 import static lotto.core.enums.WinningChartEnum.FIVE_MATCH;
 import static lotto.core.enums.WinningChartEnum.FIVE_AND_BONUS_MATCH;

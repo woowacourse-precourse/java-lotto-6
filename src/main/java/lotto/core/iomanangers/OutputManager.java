@@ -21,7 +21,7 @@ public class OutputManager {
     }
 
     public void printOneLottoTicketAnnounce(LottoTicket lottoTicket){
-        List<Integer> lotto = lottoTicket.numbers();
+        List<Integer> lotto = lottoTicket.getNumbers();
         System.out.println(lotto);
     }
 
@@ -39,17 +39,25 @@ public class OutputManager {
         this.printWinningChart(scratchedLottoTicketList);
     }
     public  void printWinningChart(ScratchedLottoTicketList scratchedLottoTicketList){
+        OutputManager.findCount findCount = getFindCount(scratchedLottoTicketList);
+        System.out.println(THREE_MATCH.getDescription() +" - " + findCount.threeMatchCount() +"개");
+        System.out.println(FOUR_MATCH.getDescription() +" - " + findCount.fourMatchCount() +"개");
+        System.out.println(FIVE_MATCH.getDescription() +" - " + findCount.fiveMatchCount() +"개");
+        System.out.println(FIVE_AND_BONUS_MATCH.getDescription() +" - " + findCount.fiveAndBonusMatchCount() +"개");
+        System.out.println(SIX_MATCH.getDescription() +" - " + findCount.sixMatchCount() +"개");
+    }
+
+    private static findCount getFindCount(ScratchedLottoTicketList scratchedLottoTicketList) {
         Integer threeMatchCount = scratchedLottoTicketList.getThreeMatchCount();
         Integer fourMatchCount = scratchedLottoTicketList.getFourMatchCount();
         Integer fiveMatchCount = scratchedLottoTicketList.getFiveMatchCount();
         Integer fiveAndBonusMatchCount = scratchedLottoTicketList.getFiveAndBonusMatchCount();
         Integer sixMatchCount = scratchedLottoTicketList.getSixMatchCount();
+        return new findCount(threeMatchCount, fourMatchCount, fiveMatchCount, fiveAndBonusMatchCount,
+                sixMatchCount);
+    }
 
-        System.out.println(THREE_MATCH.getDescription() +" - " + threeMatchCount +"개");
-        System.out.println(FOUR_MATCH.getDescription() +" - " + fourMatchCount +"개");
-        System.out.println(FIVE_MATCH.getDescription() +" - " + fiveMatchCount +"개");
-        System.out.println(FIVE_AND_BONUS_MATCH.getDescription() +" - " + fiveAndBonusMatchCount +"개");
-        System.out.println(SIX_MATCH.getDescription() +" - " + sixMatchCount +"개");
+    private record findCount(Integer threeMatchCount, Integer fourMatchCount, Integer fiveMatchCount, Integer fiveAndBonusMatchCount, Integer sixMatchCount) {
     }
 
     public void printRateOfReturn(BigDecimal rateOfReturn){

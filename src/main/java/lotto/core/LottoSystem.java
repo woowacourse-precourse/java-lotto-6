@@ -32,10 +32,9 @@ public class LottoSystem {
         this.exceptionOutputManager = exceptionOutputManager;
     }
 
-    public void run() {
+    public void process() {
         outputManager.printPurchaseAmountAsk();
         Integer amountToQuantity = inputForAmount();
-
         outputManager.printQuantityAnnounce(amountToQuantity);
         List<LottoTicket> lottoTickets = saveLottoTickets(amountToQuantity);
 
@@ -92,9 +91,7 @@ public class LottoSystem {
         while (true) {
             try {
                 String unprocessedWinningNumbers = this.readLine();
-                List<Integer> winningNumbersFromConsole = numberGenerator.createWinningNumbersFromConsole(
-                        unprocessedWinningNumbers);
-                return new WinningNumbers(winningNumbersFromConsole);
+                return numberGenerator.createWinningNumbersFromConsole(unprocessedWinningNumbers);
             } catch (LottoApplicationException e) {
                 exceptionOutputManager.printException(e);
             }
@@ -102,20 +99,14 @@ public class LottoSystem {
     }
 
     private List<LottoTicket> saveLottoTickets(Integer amountToQuantity) {
-        while (true) {
-            try {
-                List<LottoTicket> lottoTickets = new ArrayList<>();
-                for (int i = 0; i < amountToQuantity; i++) {
-                    List<Integer> randomUniqueNumber = numberGenerator.createRandomUniqueNumber();
-                    LottoTicket lottoTicket = new LottoTicket(randomUniqueNumber);
-                    outputManager.printOneLottoTicketAnnounce(lottoTicket);
-                    lottoTickets.add(lottoTicket);
-                }
-                return lottoTickets;
-            } catch (LottoApplicationException e) {
-                exceptionOutputManager.printException(e);
-            }
+        List<LottoTicket> lottoTickets = new ArrayList<>();
+        for (int i = 0; i < amountToQuantity; i++) {
+            List<Integer> randomUniqueNumber = numberGenerator.createRandomUniqueNumber();
+            LottoTicket lottoTicket = new LottoTicket(randomUniqueNumber);
+            outputManager.printOneLottoTicketAnnounce(lottoTicket);
+            lottoTickets.add(lottoTicket);
         }
+        return lottoTickets;
     }
 
     private String readLine() {

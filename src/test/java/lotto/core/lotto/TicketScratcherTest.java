@@ -1,4 +1,4 @@
-package lotto.lotto;
+package lotto.core.lotto;
 
 import static lotto.core.enums.AmountEnum.MIN_VALUE;
 import static lotto.core.enums.AmountEnum.ZERO_VALUE;
@@ -27,8 +27,8 @@ class TicketScratcherTest {
     private final static List<Integer> LOSING_NUMBERS = Arrays.asList(45,44,43,42,41,40);
     private final static LottoTicket lottoTicketWithFiveMatch =new LottoTicket(LOTTO_NUMBER_FIVE_MATCH);
     private final static LottoTicket lottoTicketWithFourMatch =new LottoTicket(LOTTO_NUMBER_FOUR_MATCH);
-    private final static WinningNumbers winningNumbers = new WinningNumbers(WINNING_NUMBERS);
-    private final static WinningNumbers losingNumbers = new WinningNumbers(LOSING_NUMBERS);
+    private final static WinningNumbers winningNumbers = new WinningNumbers(new LottoTicket(WINNING_NUMBERS));
+    private final static WinningNumbers losingNumbers = new WinningNumbers(new LottoTicket(LOSING_NUMBERS));
     private final static BonusNumber loseBonusNumber = new BonusNumber(23);
     private final static BonusNumber winBonusNumber = new BonusNumber(15);
     @DisplayName("금액을 입력하면 최소금액 단위로 나누어 갯수를 반환한다.")

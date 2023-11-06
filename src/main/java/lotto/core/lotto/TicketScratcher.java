@@ -11,8 +11,8 @@ public class TicketScratcher {
     }
 
     public ScratchedLottoTicket scratchTicket(WinningNumbers winningNumbers, BonusNumber bonusNumber, LottoTicket lottoTicket){
-        List<Integer> findWinningNumbers = winningNumbers.winningNumbers();
-        List<Integer> findLottoNumbers = lottoTicket.numbers();
+        List<Integer> findWinningNumbers = winningNumbers.getNumbers();
+        List<Integer> findLottoNumbers = lottoTicket.getNumbers();
         int winningPoint = (int)findLottoNumbers.stream().filter(findWinningNumbers::contains).count();
         boolean bonusStatus = findLottoNumbers.contains(bonusNumber.number()) && winningPoint == FIVE_MATCH;
         return new ScratchedLottoTicket(lottoTicket,winningPoint,bonusStatus);

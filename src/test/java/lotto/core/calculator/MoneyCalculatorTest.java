@@ -1,4 +1,4 @@
-package lotto.calculator;
+package lotto.core.calculator;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -25,7 +25,7 @@ class MoneyCalculatorTest {
     private final static LottoTicket lottoTicketWithFourMatch1 = new LottoTicket(LOTTO_NUMBER_FOUR_MATCH);
     private final static LottoTicket lottoTicketWithFourMatch2 = new LottoTicket(LOTTO_NUMBER_FOUR_MATCH);
     private final static LottoTicket lottoTicketWithFourMatch3 = new LottoTicket(LOTTO_NUMBER_FOUR_MATCH);
-    private final static WinningNumbers winningNumbers = new WinningNumbers(WINNING_NUMBERS);
+    private final static WinningNumbers winningNumbers = new WinningNumbers(new LottoTicket(WINNING_NUMBERS));
     private final static BonusNumber winBonusNumber = new BonusNumber(15);
 
     @DisplayName("총 수익률을 반환한다.")

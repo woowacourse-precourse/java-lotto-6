@@ -1,4 +1,4 @@
-package lotto.numbergenerator;
+package lotto.core.numbergenerator;
 
 import static lotto.core.enums.AmountEnum.MIN_VALUE;
 import static lotto.core.enums.LottoNumberEnum.*;
@@ -12,7 +12,8 @@ import lotto.core.exception.IllegalAmountException;
 import lotto.core.exception.IllegalOverValueException;
 import lotto.core.exception.IllegalNullTypeException;
 import lotto.core.exception.IllegalNumberTypeException;
-import lotto.core.numbergenerator.NumberGenerator;
+import lotto.core.exception.IllegalRangeException;
+import lotto.core.lotto.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +31,7 @@ class NumberGeneratorTest {
     private static final String NUMBERS_CONTAIN_SPECIAL_TEXT = "10#00";
     private static final String BONUS_NUMBER = "7";
     private static final String BONUS_NUMBER_OVER = "46";
+    private static final String OVER_VALUE = "99999999999999999999";
 
     @DisplayName("범위가 1부터 45, 사이즈가 6인 리스트를 랜덤으로 반환한다.")
     @Test
@@ -41,16 +43,17 @@ class NumberGeneratorTest {
                 .filter(number -> number < START_VALUE.getValue() || number > END_VALUE.getValue()).toList();
         assertThat(exceptionNumbers).isEmpty();
     }
-    @DisplayName("문자열을 로또형식에 맞게 숫자리스트로 변환한다.")
+    @DisplayName("문자열을 로또형식에 맞게 숫자리스트로 변환하고,검증을 위해 LottoTicket 으로 감산 후 WinningNumbers 로 감싼다.")
     @Test
-    void createLottoNumbersFromConsole() {
-        List<Integer> numbersFromConsole = numberGenerator.createWinningNumbersFromConsole(NORMAL_LOTTO_NUMBER);
+    void createWinningNumbersFromConsole() {
+        WinningNumbers winningNumbersFromConsole = numberGenerator.createWinningNumbersFromConsole(NORMAL_LOTTO_NUMBER);
+        List<Integer> numbersFromConsole = winningNumbersFromConsole.getNumbers();
         assertThat(numbersFromConsole.size()).isEqualTo(SIZE.getValue());
     }
 
-    @DisplayName("입력된 문자열이 숫자가 아니면 예외를 발생한다.")
+    @DisplayName("입력된 쉼표(,)로 구분된 숫자가 아니면 예외가 발생한다.")
     @Test
-    void createLottoNumbersFromConsoleException() {
+    void createWinningNumbersFromConsoleExceptionForType() {
         assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_TEXT))
                 .isInstanceOf(IllegalNumberTypeException.class);
         assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_SPACE))
@@ -61,6 +64,14 @@ class NumberGeneratorTest {
         assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(null))
                 .isInstanceOf(IllegalNullTypeException.class);
     }
+
+    @DisplayName("Integer 보다 값이 크다면 예외가 발생한다.")
+    @Test
+    //TODO:필
+    void createWinningNumbersFromConsoleExceptionForRange() {
+        assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(OVER_VALUE))
+                .isInstanceOf(IllegalRangeException.class);
+    }
     @DisplayName("최소금액이 1000인 금액을 수량으로 환산한다.")
     @Test
     void createAmountToQuantity() {
@@ -68,18 +79,18 @@ class NumberGeneratorTest {
         assertThat(amountToQuantity).isEqualTo(Integer.parseInt(NORMAL_AMOUNT)/ MIN_VALUE.getAmount());
     }
 
-    @DisplayName("단위 금액이 1000원 이하라면 예외를 발생한다.")
+    @DisplayName("단위 금액이 1000원 이하라면 예외가 발생한다.")
     @Test
-    void createAmountFromConsoleRangeException() {
+    void createAmountToQuantityExceptionForMinimumAmount() {
         assertThatThrownBy(() -> numberGenerator.createAmountToQuantity(UNDER_MIN_VALUE))
                 .isInstanceOf(IllegalAmountException.class);
         assertThatThrownBy(()->numberGenerator.createAmountToQuantity(MIXED_VALUE))
                 .isInstanceOf(IllegalAmountException.class);
     }
 
-    @DisplayName("입력된 문자열이 숫자가 아니면 예외를 발생한다.")
+    @DisplayName("입력된 문자열이 숫자가 아니면 예외가 발생한다.")
     @Test
-    void createAmountFromConsoleTypeException() {
+    void createAmountToQuantityExceptionForType() {
         assertThatThrownBy(()->numberGenerator.createAmountToQuantity(NUMBERS_CONTAIN_TEXT))
                 .isInstanceOf(IllegalNumberTypeException.class);
         assertThatThrownBy(()->numberGenerator.createAmountToQuantity(NUMBERS_CONTAIN_SPACE))

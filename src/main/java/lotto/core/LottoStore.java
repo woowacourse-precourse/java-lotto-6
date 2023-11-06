@@ -1,6 +1,5 @@
 package lotto.core;
 
-import lotto.core.LottoSystem;
 import lotto.core.calculator.MoneyCalculator;
 import lotto.core.iomanangers.ExceptionOutputManager;
 import lotto.core.iomanangers.OutputManager;
@@ -22,6 +21,6 @@ public class LottoStore {
     }
 
     public void start(){
-        lottoSystem.run();
+        lottoSystem.process();
     }
 }

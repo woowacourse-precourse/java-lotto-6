@@ -11,9 +11,12 @@ import lotto.core.exception.IllegalDuplicateException;
 import lotto.core.exception.IllegalLottoRangeException;
 import lotto.core.exception.IllegalLottoSizeException;
 
-public record LottoTicket(List<Integer> numbers) {
-    public LottoTicket {
+public class LottoTicket {
+    private final List<Integer> numbers;
+
+    public LottoTicket(List<Integer> numbers) {
         validate(numbers);
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -45,8 +48,7 @@ public record LottoTicket(List<Integer> numbers) {
         }
     }
 
-    @Override
-    public List<Integer> numbers() {
+    public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }
 

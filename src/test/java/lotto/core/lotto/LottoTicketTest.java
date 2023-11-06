@@ -1,4 +1,4 @@
-package lotto.lotto;
+package lotto.core.lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
@@ -11,6 +11,12 @@ class LottoTicketTest {
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new LottoTicket(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("로또 번호의 개수가 6개 미만이라면 예외가 발생한다.")
+    @Test
+    void createLottoByLowerSize() {
+        assertThatThrownBy(() -> new LottoTicket(List.of(1)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

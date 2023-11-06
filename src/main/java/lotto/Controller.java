@@ -28,6 +28,7 @@ public class Controller {
         checkLotto(inputNumber);
         Lotto winningNumber = new Lotto(inputNumber);
 
+        output.notifyBonusNumbers();
         int bonusNumber = input.getBonusNumber();
         checkBonusNumber(inputNumber, bonusNumber);
 

@@ -7,6 +7,7 @@ public class Output {
     static final String INFORM_GET_PURCHASE_AMOUNT = "구입 금액을 입력해 주세요.";
     static final String INFORM_BUY_LOTTO_COUNT = "%d개를 구매했습니다.";
     static final String INFORM_GET_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    static final String INFORM_GET_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     static final String INFORM_WINNING_STATISTICS = "당첨 통계";
     static final String INFORM_PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
     static final String DIVIDE_LINE = "---";
@@ -43,6 +44,10 @@ public class Output {
 
     public void notifyWinningNumbers() {
         System.out.println(INFORM_GET_WINNING_NUMBER);
+    }
+
+    public void notifyBonusNumbers() {
+        System.out.println(INFORM_GET_BONUS_NUMBER);
     }
 
     public void notifyWinningDetails(List<Integer> result) {

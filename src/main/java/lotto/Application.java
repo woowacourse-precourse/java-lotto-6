@@ -50,7 +50,6 @@ public class Application {
 
     public static List<Integer> RandomLottoNumber() {
         List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(lottoMin, lottoMax, lottolength);
-        Collections.sort(randomNumber);
         return randomNumber;
     }
 
@@ -144,7 +143,7 @@ public class Application {
         if (rank == 3)
             System.out.println("5개 일치 (1,500,000원) - " + lottoWinCount + "개");
         if (rank == 4)
-            System.out.println("4개 일치 (5,0000원) - " + lottoWinCount + "개");
+            System.out.println("4개 일치 (50,000원) - " + lottoWinCount + "개");
         if (rank == 5)
             System.out.println("3개 일치 (5,000원) - " + lottoWinCount + "개");
 

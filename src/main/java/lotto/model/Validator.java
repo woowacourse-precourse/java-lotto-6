@@ -19,4 +19,10 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public void isAnswerNumeric(String number) {
+        if (!number.matches(REGULAR_NUMBER)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

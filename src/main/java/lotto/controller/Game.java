@@ -26,6 +26,7 @@ public class Game {
     public void start() {
         Integer lottoCount = buyLotto();
         List<Lotto> lottos = generateLottos(lottoCount);
+        Lotto answer = generateAnswer();
     }
 
     private Integer buyLotto() {
@@ -74,5 +75,31 @@ public class Game {
         String[] lottoNumbers = lotto.stringLotto();
 
         message.printLotto(lottoNumbers);
+    }
+
+    private Lotto generateAnswer() {
+        return new Lotto(generateNumbers());
+    }
+
+    private List<Integer> generateNumbers() {
+        String[] numbers = inputNumbers();
+
+        return stringToNumbers(numbers);
+    }
+
+    private String[] inputNumbers() {
+        String numbers = message.inputString();
+
+        return numbers.split(",");
+    }
+
+    private List<Integer> stringToNumbers(String[] numbers) {
+        List<Integer> result = new ArrayList<>();
+
+        for (String number : numbers) {
+            validator.isAnswerNumeric(number);
+            result.add(Integer.parseInt(number));
+        }
+        return result;
     }
 }

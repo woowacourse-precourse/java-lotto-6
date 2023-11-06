@@ -26,4 +26,8 @@ public class Message {
         System.out.print(String.join(DELIMITER, lottoString));
         System.out.println(RIGHT_BRACKET);
     }
+
+    public String inputString() {
+        return Console.readLine();
+    }
 }

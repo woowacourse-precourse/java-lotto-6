@@ -66,4 +66,16 @@ class HandlingTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("변환하는 값이 로또 번호 범위가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"0,1,2,3,4,5", "46,45,44,43,42,41", "-1,2,3,4,5,6"})
+    void parseNumbersByNotRange(String userInput) {
+        // given
+        List<String> lotto = Handling.split(userInput);
+
+        // when, then
+        assertThatThrownBy(() -> Handling.parseNumbers(lotto))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

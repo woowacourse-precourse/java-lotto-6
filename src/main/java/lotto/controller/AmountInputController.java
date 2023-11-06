@@ -3,8 +3,7 @@ package lotto.controller;
 import lotto.domain.vo.TotalAmount;
 import lotto.util.parser.InputParser;
 import lotto.util.validator.InputValidator;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.facade.AmountViewFacade;
 
 public class AmountInputController implements InputController<TotalAmount> {
     private final InputParser<Integer> parser;
@@ -17,35 +16,14 @@ public class AmountInputController implements InputController<TotalAmount> {
 
     @Override
     public TotalAmount inputValid() {
+        String input = AmountViewFacade.ask();
         while (true) {
             try {
-                String input = readInput();
-                Integer amount = parseInput(input);
-                validateAmount(amount);
-                return createTotalAmount(amount);
+                int amount =  parser.parse(input);
+                return TotalAmount.of(amount, validator);
             } catch (IllegalArgumentException e) {
-                displayError(e.getMessage());
+                input = AmountViewFacade.errorAndAsk(e.getMessage());
             }
         }
-    }
-
-    private String readInput() {
-        return InputView.readAmount();
-    }
-
-    private Integer parseInput(String input) {
-        return parser.parse(input);
-    }
-
-    private void validateAmount(Integer amount) {
-        validator.validate(amount);
-    }
-
-    private TotalAmount createTotalAmount(Integer amount) {
-        return TotalAmount.from(amount);
-    }
-
-    private void displayError(String message) {
-        OutputView.printError(message);
     }
 }

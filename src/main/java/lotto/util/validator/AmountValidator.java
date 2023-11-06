@@ -12,6 +12,7 @@ public class AmountValidator implements InputValidator<Integer> {
         validateIsMultipleOfThousand(amount);
     }
 
+
     private void validateIsPositive(Integer amount) {
         if (amount < A_LOTTO_PRICE) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_SMALL_THAN_THOUSAND);

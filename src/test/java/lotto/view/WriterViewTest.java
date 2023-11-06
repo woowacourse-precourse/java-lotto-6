@@ -25,7 +25,7 @@ class WriterViewTest {
         // when then
         Assertions.assertThatThrownBy(inputView::enterMoney)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.NOT_POSITIVE_INTEGER.getMessage());
+                .hasMessage(ErrorMessage.NOT_INTEGER.getMessage());
     }
 
     @DisplayName("입력받은 문자를 ,로 분할하여 반환할 수 있다.")

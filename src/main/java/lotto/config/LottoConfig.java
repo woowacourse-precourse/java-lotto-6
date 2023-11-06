@@ -2,6 +2,7 @@ package lotto.config;
 
 import lotto.controller.LottoController;
 import lotto.domain.LottoFactory;
+import lotto.domain.Money;
 import lotto.domain.RandomNumberGenerator;
 import lotto.view.ConsoleWriter;
 import lotto.view.InputView;
@@ -21,7 +22,7 @@ public class LottoConfig {
         return new OutputView();
     }
 
-    public static LottoFactory getLottoFactory(final int money) {
+    public static LottoFactory getLottoFactory(final Money money) {
         return LottoFactory.of(new RandomNumberGenerator(), money);
     }
 }

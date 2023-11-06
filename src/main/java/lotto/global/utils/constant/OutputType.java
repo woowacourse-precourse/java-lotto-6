@@ -13,7 +13,7 @@ public enum OutputType {
     OUTPUT_WINNING_STATISTICS_2("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     OUTPUT_WINNING_STATISTICS_1("6개 일치 (2,000,000,000원) - "),
     OUTPUT_RESULT_1("총 수익률은 "),
-    OUTPUT_RESULT_2("입니다."),
+    OUTPUT_RESULT_2("%입니다."),
 
     OUTPUT_COUNT("개"),
     EMPTY(""),

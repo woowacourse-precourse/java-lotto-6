@@ -57,4 +57,8 @@ public class Validation {
         }
         return null;
     }
+
+    public static void validateBonusNumber(String input) throws IllegalArgumentException{
+
+    }
 }

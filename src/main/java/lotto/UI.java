@@ -41,7 +41,17 @@ public class UI {
     }
 
     public static int getBonusNumber(){
-        return 0;
+        System.out.println();
+        while (true) {
+            try{
+                System.out.println(GET_BONUS_NUMBER_MSG);
+                String input = Console.readLine();
+                validateBonusNumber(input);
+                return Integer.parseInt(input);
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }

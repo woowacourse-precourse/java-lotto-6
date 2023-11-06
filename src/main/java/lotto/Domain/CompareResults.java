@@ -11,9 +11,9 @@ public class CompareResults {
 
         for (Lotto lotto : lottoList) {
             int matchingCount = countMatchingNumber(lotto, winningNumbers);
-            boolean bonusMatch = lotto.contains(bonusNumber);
+            boolean bonusBall = lotto.contains(bonusNumber);
 
-            matchingCounts = totalMatchingCounts(matchingCounts, matchingCount, bonusMatch);
+            matchingCounts = totalMatchingCounts(matchingCounts, matchingCount, bonusBall);
         }
 
         return matchingCounts;
@@ -29,13 +29,31 @@ public class CompareResults {
         return count;
     }
 
-    private static int[] totalMatchingCounts(int[] matchingCounts, int matchingCount, boolean bonusMatch) {
-        if (matchingCount >= 0 && matchingCount < 6) {
-            matchingCounts[matchingCount]++;
+    private static boolean bonusMatching(List<Integer> winningNumbers, boolean bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            return true;
         }
-        if (bonusMatch) {
-            matchingCounts[7]++;
-        }
+
+        return false;
+    }
+
+    public static int[] totalMatchingCounts(int[] matchingCounts, int matchingCount, boolean bonusMatch) {
+        if (bonusMatch == true)
+            if(matchingCount == 5)
+            {
+                matchingCounts[7]++;
+            }
+
+        else if (bonusMatch == false)
+            {
+                for(int i = 0; i <= 6; i++)
+                {
+                    if(matchingCounts[i] == matchingCount)
+                    {
+                        matchingCounts[i]++;
+                    }
+                }
+            }
         return matchingCounts;
     }
 

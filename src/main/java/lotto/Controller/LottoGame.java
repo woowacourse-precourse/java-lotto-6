@@ -2,8 +2,7 @@ package lotto.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import lotto.Domain.CountLottoAmount;
+import lotto.Domain.LottoPurchaseAmount;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoGenerator;
 import lotto.Domain.CompareResults;
@@ -16,30 +15,26 @@ public class LottoGame {
     private static List<Integer> winningNumbers;
     private static int bonusNumber;
 
-    public static void LottoGameRun()
-    {
-        int purchaseAmount = CountLottoAmount.countLottoQuantity();
+    public static void LottoGameRun() {
+        int purchaseAmount = LottoPurchaseAmount.countLottoQuantity();
         lottoList = makeLottoList(purchaseAmount);
-
-        winningNumbers = parseLottoNumbers(InputView.inputLottoNumbers());
-
-        bonusNumber = InputView.inputBonusNumber();
 
         OutputView.printLottoAmount(purchaseAmount);
         OutputView.printPurchasedLottoList(lottoList);
 
+        winningNumbers = parseLottoNumbers(InputView.inputLottoNumbers());
+        bonusNumber = InputView.inputBonusNumber();
+
         int[] matchingCounts = CompareResults.compareLottoResults(lottoList, winningNumbers, bonusNumber);
 
-        OutputView.printMatchingCounts(matchingCounts);
+        long totalPrizeAmount = CompareResults.calculatePrizeAmount(matchingCounts);
+/*        double profitRate = CompareResults.calculateProfitRate(totalPrizeAmount, purchaseAmount);*/
 
-/*       long totalPrizeAmount = CompareResults.calculatePrizeAmount(matchingCounts);
-        double profitRate = CompareResults.calculateProfitRate(totalPrizeAmount, purchaseAmount);
-
-        OutputView.printProfitRate(profitRate);*/
-
-
+        OutputView.printMatchingCounts(matchingCounts, purchaseAmount *1000);
+/*        OutputView.printProfitRate(profitRate);*/
 
     }
+
     private static List<Lotto> makeLottoList(int purchaseAmount) {
         // 발행할 개수만큼 로또 리스트 만들어줌
         lottoList = new ArrayList<>();
@@ -60,7 +55,8 @@ public class LottoGame {
 
     private static List<Integer> parseLottoNumbers(String input) {
 
-        List<Integer> lottoNumbers =  new ArrayList<>();;
+        List<Integer> lottoNumbers = new ArrayList<>();
+        ;
 
         String[] eachLottoNumbers = input.split(",");
 

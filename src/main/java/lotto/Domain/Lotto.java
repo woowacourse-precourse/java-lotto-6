@@ -39,6 +39,7 @@ public class Lotto {
     public static void validateIsNumberInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+                System.out.println(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
                 throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
             }
         }
@@ -49,6 +50,7 @@ public class Lotto {
 
         for (Integer number : numbers) {
             if (existingNumbers.contains(number)) {
+                System.out.println(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
                 throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
             }
             existingNumbers.add(number);
@@ -60,6 +62,7 @@ public class Lotto {
             try {
                 Integer.parseInt(number.toString());
             } catch (NumberFormatException e) {
+                System.out.println(LOTTO_NUMBER_IS_NOT_NUMERIC_ERROR_MESSAGE);
                 throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_NUMERIC_ERROR_MESSAGE);
             }
         }

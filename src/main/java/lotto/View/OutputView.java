@@ -1,11 +1,7 @@
 package lotto.View;
 
-import static lotto.Domain.CountLottoAmount.countLottoQuantity;
-
-import java.util.ArrayList;
 import java.util.List;
 import lotto.Domain.Lotto;
-import lotto.Domain.LottoGenerator;
 
 public class OutputView {
 
@@ -28,7 +24,7 @@ public class OutputView {
         }
     }
 
-    public static void printMatchingCounts(int[] matchCounts) {
+/*    public static void printMatchingCounts(int[] matchCounts) {
         System.out.println(WINNING_RESULT_MESSAGE);
         System.out.println(LINE_MESSAGE);
 
@@ -39,30 +35,24 @@ public class OutputView {
             String prizeDescription = getPrizeDescription(i, hasBonus);
             System.out.println(prizeDescription + " - " + matchCount + "개");
         }
+    }*/
+
+   public static void printMatchingCounts (int[] winningConunts, int totalPurchasAmount) {
+        System.out.println("당첨 통계\n---");
+
+        System.out.printf("3개 일치 (5,000원) - %d개\n" , winningConunts[3]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n" , winningConunts[4]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n" , winningConunts[5]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" , winningConunts[7]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n" , winningConunts[6]);
+        System.out.printf("총 수익률은 %.1f",
+                (float)(winningConunts[3]*5000+winningConunts[4]*50000+winningConunts[5]*1500000+winningConunts[7]*30000000+winningConunts[6]*2000000000)/totalPurchasAmount);
+        System.out.print("%입니다.");
     }
-
-    private static String getPrizeDescription(int matchingCount, boolean hasBonus) {
-        String prizeDescription = "";
-
-        if (matchingCount == 3) {
-            prizeDescription = "3개 일치 (5,000원)";
-        } else if (matchingCount == 4) {
-            prizeDescription = "4개 일치 (50,000원)";
-        } else if (matchingCount == 5) {
-            prizeDescription = "5개 일치 (1,500,000원)";
-        } else if (matchingCount == 5 && hasBonus) {
-            prizeDescription = "5개 일치, 보너스 볼 일치 (30,000,000원)";
-        } else if (matchingCount == 6) {
-            prizeDescription = "6개 일치 (2,000,000,000원)";
-        }
-        return prizeDescription;
-    }
-
+/*
     public static void printProfitRate(double profitRate) {
         System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
-    }
-
-
+    }*/
 }
 
 

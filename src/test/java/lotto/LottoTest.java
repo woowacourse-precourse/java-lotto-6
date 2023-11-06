@@ -1,16 +1,14 @@
 package lotto;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.LottoService;
-
-import java.util.ArrayList;
-import java.util.HashSet;
+import lotto.view.OutputView;
 import java.util.List;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -51,6 +49,11 @@ class LottoTest {
     	assertEquals(6, lotto_list.size(),"6100을 넣고, 1000단위이기 떄문에 list의 사이즈는 6이어야 합니다.");
     }
 
-   
+    @DisplayName("로또 숫자들(원소들) 텍스트 출력 확인")
+    @Test
+    void testPlayerLottoNumbersDisplayCorrectly() {
+    	List<Lotto> lotto_list = LottoService.createObjectPerThousandUnits(5000);
+    	OutputView.printPlayerLottos(lotto_list);
+    }
     
 }

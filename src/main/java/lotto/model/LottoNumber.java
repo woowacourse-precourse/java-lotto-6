@@ -2,22 +2,13 @@ package lotto.model;
 
 import java.util.List;
 
-public record LottoNumber(int number) {
-
-    public LottoNumber(int number) {
-        this.number = number;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
+public record LottoNumber(List<Integer> numbers) {
     public int calculateMatchingCount(List<Integer> winningNumbers) {
-        return (int) winningNumbers.stream().filter(num -> num == number).count();
+        return (int) winningNumbers.stream().filter(numbers::contains).count();
     }
 
     public boolean hasBonusNumber(int bonusNumber) {
-        return number == bonusNumber;
+        return numbers.contains(bonusNumber);
     }
 
     public int calculateMatchingCountWithWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
@@ -25,3 +16,4 @@ public record LottoNumber(int number) {
         return (matchingCount == 5 && hasBonusNumber(bonusNumber)) ? 6 : matchingCount;
     }
 }
+

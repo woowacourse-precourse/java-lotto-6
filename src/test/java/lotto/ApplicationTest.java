@@ -79,10 +79,8 @@ class ApplicationTest extends NsTest {
     @DisplayName("랜덤 로또 번호가 정상적으로 생성되는지 확인한다.")
     @Test
     void createLottoNumTest() {
-        // Arrange (준비)
-        int moneyValue = 5000; // 1000으로 나누어 떨어지는 금액
+        int moneyValue = 5000;
 
-        // Act (실행)
         List<List<Integer>> lottoNums = Application.createLottoNum(moneyValue);
 
         for (List<Integer> lottoNum : lottoNums) {
@@ -90,6 +88,15 @@ class ApplicationTest extends NsTest {
             assertTrue(lottoNum.stream().allMatch(num -> num >= 1 && num <= 45));
             assertEquals(6, lottoNum.stream().distinct().count());
         }
+    }
+
+    @DisplayName("입력한 당첨 번호가 숫자로 이루어지지 않으면 예외가 발생한다.")
+    @Test
+    void lottoNotNum() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Override

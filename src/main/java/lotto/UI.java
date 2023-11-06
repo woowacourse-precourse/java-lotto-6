@@ -20,4 +20,10 @@ public class UI {
         }
         System.out.println();
     }
+
+    public static String inputWinningNum(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNum = Console.readLine();
+        return winningNum;
+    }
 }

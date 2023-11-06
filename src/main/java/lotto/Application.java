@@ -5,9 +5,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 
 public class Application {
+    private static List<Integer> winningNumbers = new ArrayList<>();
+
     public static void main(String[] args) {
         int moneyValue = inputMoney();
         List<List<Integer>> lottoNum = createLottoNum(moneyValue);
+        inputWinningNumbers();
     }
 
     public static int inputMoney() {
@@ -39,6 +42,31 @@ public class Application {
         return lottoNum;
     }
 
+    public static void inputWinningNumbers() {
+        String[] separateWinningNum = new String[6];
+        try {
+            String winningNum = UI.inputWinningNum();
+            separateWinningNum = winningNum.split(",");
+
+            if (!isValidWinningNum(separateWinningNum)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
+            }
+            separateWinningNumbers(separateWinningNum);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputWinningNumbers();
+        }
+    }
+
+    public static void separateWinningNumbers(String[] separateWinningNum) {
+        winningNumbers = new ArrayList<>();
+        for (int i = 0; i < separateWinningNum.length; i++) {
+            winningNumbers.add(Integer.parseInt(separateWinningNum[i]));
+        }
+
+        Lotto lotto = new Lotto(winningNumbers);
+    }
+
     public static boolean isValidMoney(String money) {
         for (int i = 0; i < money.length(); i++) {
             if (!Character.isDigit(money.charAt(i))) {
@@ -52,4 +80,12 @@ public class Application {
         return true;
     }
 
+    public static boolean isValidWinningNum(String[] separateWinningNum) {
+        for (int i = 0; i < separateWinningNum.length; i++) {
+            if (!Character.isDigit(separateWinningNum[i].charAt(0))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

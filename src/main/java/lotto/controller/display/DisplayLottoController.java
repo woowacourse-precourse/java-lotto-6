@@ -21,6 +21,6 @@ public class DisplayLottoController implements DisplayController {
     public void process() {
         // UserMoney가 필요하다
         LottoService.generateRandomLotto(userMoney, lottoRepository);
-        lottoScreen.displayGeneratedLotto(lottoRepository);
+        lottoScreen.displayGeneratedLotto(userMoney, lottoRepository);
     }
 }

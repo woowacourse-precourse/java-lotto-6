@@ -27,6 +27,10 @@ public class OutputView {
         System.out.println(PAYMENT_GUIDE);
     }
 
+    public static void printErrorMessage(final String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public static void printPurchasedLottoCount(Payment payment) {
         System.out.printf(addLineSeparator(PURCHASED_LOTTO_COUNT_GUIDE), payment.calculatePurchasedLottoCount());
     }
@@ -55,7 +59,8 @@ public class OutputView {
             String reward = decimalFormat.format(rank.reward());
             int rankingCount = entry.getValue();
             if (rank.equals(Rank.SECOND)) {
-                System.out.printf(addLineSeparatorInSuffix(SECOND_RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);
+                System.out.printf(addLineSeparatorInSuffix(SECOND_RANK_RESULT_GUIDE), matchingCount, reward,
+                        rankingCount);
                 continue;
             }
             System.out.printf(addLineSeparatorInSuffix(RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);

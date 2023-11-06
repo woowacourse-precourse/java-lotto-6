@@ -34,7 +34,7 @@ public class LottoGameController {
         try {
             return new Payment(InputView.readInput());
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
+            OutputView.printErrorMessage(illegalArgumentException.getMessage());
             return getPayment();
         }
     }
@@ -52,7 +52,7 @@ public class LottoGameController {
         try {
             return new WinningLotto(winningLotto, getBonusNumber());
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
+            OutputView.printErrorMessage(illegalArgumentException.getMessage());
             return issueWinningLottoByManual(winningLotto);
         }
     }
@@ -63,7 +63,7 @@ public class LottoGameController {
             String winningLottoNumbers = InputView.readInput();
             return issueLottoByManual(winningLottoNumbers);
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
+            OutputView.printErrorMessage(illegalArgumentException.getMessage());
             return getWinningLotto();
         }
     }

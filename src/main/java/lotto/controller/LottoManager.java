@@ -1,12 +1,10 @@
 package lotto.controller;
 import lotto.model.User;
-import lotto.utility.Rank;
 import lotto.view.UserView;
 
 public class LottoManager {
     private UserView userView;
     private User user;
-    private Rank rank;
     public LottoManager() {
         userView = new UserView();
         user = new User();
@@ -34,7 +32,4 @@ public class LottoManager {
         user.calculateEarningRate();
         userView.printEarningRate(user);
     }
-
-
-
 }

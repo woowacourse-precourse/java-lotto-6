@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import lotto.dto.LottoPurchaseRequest;
+import lotto.dto.LottoWinningNumberCreateRequest;
 
 public class LottoGame {
 
@@ -28,5 +29,16 @@ public class LottoGame {
 
         List<Lotto> lottoTickets = lottoPurchase.purchase(lottoGenerator);
         lottoGameView.printPurchasedTickets(lottoTickets);
+
+        while (true) {
+            try {
+                LottoWinningNumberCreateRequest lottoWinningNumberCreateRequest = lottoGameView.inputLottoWinningNumberCreateRequest();
+                LottoWinningNumberCreate lottoWinningNumberCreate = new LottoWinningNumberCreate(
+                        lottoWinningNumberCreateRequest.getNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                lottoGameView.printException(e);
+            }
+        }
     }
 }

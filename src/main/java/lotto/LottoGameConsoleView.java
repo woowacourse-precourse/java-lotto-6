@@ -32,7 +32,9 @@ public class LottoGameConsoleView implements LottoGameView {
 
     @Override
     public LottoWinningNumberCreateRequest inputLottoWinningNumberCreateRequest() {
-        return null;
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return new LottoWinningNumberCreateRequest(Console.readLine());
     }
 
     @Override

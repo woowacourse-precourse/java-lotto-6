@@ -6,6 +6,7 @@ import lotto.utill.Utii;
 import java.util.List;
 
 public class LottoTargetNumResults {
+    // TODO: 11/6/23 상수 관리 
     private static final Integer BONUS_INDEX_NUM = 6;
     private static final Integer START_PICK_NUM_INDEX = 0;
     private static final Integer END_PICK_NUM_INDEX = 5;

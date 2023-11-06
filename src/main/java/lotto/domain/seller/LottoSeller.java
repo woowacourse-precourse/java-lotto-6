@@ -8,6 +8,7 @@ import lotto.domain.lotto.LottoEnvelop;
  * 로또 판매자 클래스
  */
 public class LottoSeller {
+    // TODO: 11/6/23 상수 관리
     private static final Integer PRICE_LOTTO = 1000;
     private LottoEnvelop lottoEnvelop;
 

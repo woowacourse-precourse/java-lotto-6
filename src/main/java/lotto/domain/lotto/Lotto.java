@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import java.util.*;
 
 public class Lotto {
+    // TODO: 11/6/23 상수 관리
     private static final String START_APPEND_STING = "[";
     private static final String MIDDLE_APPEND_COMMA_BLANK = ", ";
     private static final String END_APPEND_COMMA_BLANK = "]";

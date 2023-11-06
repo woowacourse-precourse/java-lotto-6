@@ -7,6 +7,7 @@ import lotto.domain.num.LottoTargetNumResults;
  * 사용자의 당첨 판단 클래스.
  */
 public class Judgment {
+    // TODO: 11/6/23 상수 관리 
     private static final Integer SIZE_LOTTO = 6;
     private static final Integer BONUS_NUM_INDEX = 6;
     private LottoTargetNumResults lottoTargetNumResults;

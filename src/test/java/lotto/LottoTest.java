@@ -38,6 +38,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호에 입력된 값이 숫자가 아닌 경우 예외가 발생한다.")
+    @Test
+    void createBonusNumberByType() {
+        ParseUtils parseUtils = new ParseUtils();
+        assertThatThrownBy(() -> parseUtils.parseStringToInt("가"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("보너스 번호가 로또 번호와 겹칠 경우 예외가 발생한다.")
     @Test
     void createBonusNumberByDuplicate() {
@@ -70,6 +78,7 @@ class LottoTest {
         int payMoney = 10000;
         lottoService.setBuyLotto(payMoney);
 
-        Assertions.assertEquals(payMoney/ Value.LOTTO_TICKET_PRICE, lottoService.getUserLottos().size());
+        Assertions.assertEquals(payMoney/ Value.LOTTO_TICKET_PRICE, lottoService.getBuyLottos().size());
     }
+
 }

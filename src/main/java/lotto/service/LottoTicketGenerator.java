@@ -16,4 +16,16 @@ public class LottoTicketGenerator {
         }
         return lottoTickets;
     }
+
+    private List<Integer> generateLottoNumbers() {
+        List<Integer> lottoNumbers = new ArrayList<>();
+
+        while (lottoNumbers.size() < 6) {
+            int lottoNumber = Randoms.pickNumberInRange(1, 45);
+            if (!lottoNumbers.contains(lottoNumber)) {
+                lottoNumbers.add(lottoNumber);
+            }
+        }
+        return lottoNumbers;
+    }
 }

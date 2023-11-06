@@ -13,7 +13,7 @@ public class LottosMaker {
 		RandomNumberCreator randomNumberCreator = new RandomNumberCreator();
 
 		for (int i = 0; i < purchaseTime; i++) {
-			List<Integer> randomNumbers = randomNumberCreator.create();
+			List<Integer> randomNumbers = new ArrayList<>(randomNumberCreator.create());
 			Lotto lotto = new Lotto(randomNumbers);
 			lottos.add(lotto);
 		}

@@ -58,3 +58,7 @@ Outputview클래스 calculateLottoCount메소드
 ``````````````````````````
 Customized클래스 NotDivisibleByThousandException메소드
 ```````````````````````````````
+6. 무작위로 정해진 로또리스트의 숫자들을 나열하여 보여주는 기능 추가
+``````````````````````````
+Lotto클래스 getNumbers메소드
+```````````````````````````````

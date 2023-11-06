@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
@@ -38,6 +39,23 @@ class LottoServiceTest {
         List<Integer> lotteryTicketNumbers = lottoService.issueLotteryTicket();
         System.out.println("lotteryTicketNumbers = " + lotteryTicketNumbers.toString());
         assertThat(lotteryTicketNumbers).isSorted();
+    }
+
+    @Test
+    @DisplayName("구입 금액만큼 발행하기")
+    void issueLotteryTicketAll() {
+        // given
+        System.setIn(new ByteArrayInputStream("5000".getBytes()));
+
+        // when
+        lottoService.issueLotteryTicketAll();
+
+        // then
+        List<Lotto> lottos = lottoService.buyer.getLottos();
+        for (Lotto lotto : lottos) {
+            System.out.println("lotto = " + lotto);
+        }
+        assertThat(lottos.size()).isEqualTo(5);
     }
 
     @Test

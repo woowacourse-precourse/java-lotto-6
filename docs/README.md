@@ -81,21 +81,14 @@
     - sameNumberCounter: 같은 숫자 개수 반환 기능
     - hasNumber: 숫자가 포함 되는지 판단 기능
   - LottoResult
-    - calculateRank: 등수 계산 기능
-    - calculatePriceSum: 누적 당첨 금액 계산 기능
-  - Lottos
-    - addLotto: 로또 구매 기능
+    - calculatePrice: 누적 상금 계산 기능
+    - getRankCount: 당첨 횟수 확인 기능
+  - Lottos : 로또들을 보관하는 기능
   - Money
     - availableLottoCount: 구매 가능 로또 개수 계산 기능
-  - Purchase
-    - purchase: 돈 투입 기능
   - WinningNumbers
-    - calculate: 등수 계산 기능
-  - PriceMoney
-    - getRank: 맞춘 개수, 보너스 번호 맞춤 여부를 입력 받아 등수 생성 기능
-- dto
-  - PurchaseResult: 로또 목록과 구매 개수 전달 객체
-  - WinningResult: 로또 등수와 수익률 전달 객체
+    - hasNumber: 같은 숫자 개수 반환 기능
+  - PriceMoney: 상금 관련 Enum
 - view
   - constant
     - viewMessage: 입,출력 뷰 메세지 관리 클래스

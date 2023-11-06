@@ -7,7 +7,7 @@ import static lotto.constant.LottoConstant.MIN_NUMBER;
 
 import java.util.List;
 
-public class LottoNumberGenerator implements NumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public List<Integer> generateNumber() {

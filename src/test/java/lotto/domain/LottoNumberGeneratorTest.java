@@ -11,7 +11,7 @@ public class LottoNumberGeneratorTest {
     @DisplayName("생성되는 로또 번호의 길이는 6이어야 한다.")
     void 로또_번호_크기_테스트() {
         //given, when
-        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+        RandomNumberGenerator lottoNumberGenerator = new RandomNumberGenerator();
         List<Integer> lottoNumbers = lottoNumberGenerator.generateNumber();
 
         //then

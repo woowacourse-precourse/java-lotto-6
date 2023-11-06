@@ -1,28 +1,25 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.BuyAmount;
-import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.domain.LottoResults;
 import lotto.domain.LottoResultsDTO;
 import lotto.domain.Lottos;
-import lotto.domain.NumberGenerator;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final NumberGenerator lottoNumberGenerator;
+    private final LottoGenerator lottoGenerator;
     private Lottos lottos;
     private WinningNumbers winningNumbers;
-    private BuyAmount buyAmount;
 
-    public LottoController(NumberGenerator generator) {
-        this.lottoNumberGenerator = generator;
+    public LottoController(LottoGenerator lottoGenerator) {
+        this.lottoGenerator = lottoGenerator;
     }
 
     public void run() {
@@ -33,8 +30,8 @@ public class LottoController {
 
     private void buyLotto() {
         long inputBuyAmount = InputView.getBuyAmountFromInput();
-        buyAmount = new BuyAmount(inputBuyAmount);
-        lottos = createLottosFromAmount();
+        BuyAmount buyAmount = new BuyAmount(inputBuyAmount);
+        lottos = new Lottos(lottoGenerator.generateLottos(buyAmount.getAbleToBuyCount()));
         OutputView.displayAllLottos(lottos.toLottosDTO());
     }
 
@@ -58,15 +55,6 @@ public class LottoController {
         }
         long winningAmount = calculateTotalWinningAmount(lottoStatistics);
         return new LottoResultsDTO(lottoStatistics, winningAmount, lottoResults.size());
-    }
-
-    private Lottos createLottosFromAmount() {
-        List<Lotto> lottoNumbers = new ArrayList<>();
-        for (int i = 0; i < buyAmount.getAbleToBuyCount(); i++) {
-            Lotto lotto = new Lotto(lottoNumberGenerator.generateNumber());
-            lottoNumbers.add(lotto);
-        }
-        return new Lottos(lottoNumbers);
     }
 
     private long calculateTotalWinningAmount(Map<LottoResults, Integer> lottoStatistics) {

@@ -13,13 +13,19 @@ public class Lotto {
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
-        List<LottoNumber> lottoNumbers = numbers.stream().sorted().map(LottoNumber::new).collect(Collectors.toList());
+        List<LottoNumber> lottoNumbers = numbers.stream()
+                .sorted()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
         validate(lottoNumbers);
         this.numbers = lottoNumbers;
     }
 
     public Lotto(String stringNumbers) {
-        List<LottoNumber> lottoNumbers = Arrays.stream(stringNumbers.split(SEPARATOR)).map(LottoNumber::new).toList();
+        List<LottoNumber> lottoNumbers = Arrays.stream(stringNumbers.split(SEPARATOR))
+                .sorted()
+                .map(LottoNumber::new)
+                .toList();
         validate(lottoNumbers);
         this.numbers = lottoNumbers;
     }
@@ -33,9 +39,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     public boolean contains(LottoNumber lottoNumber) {
         return this.numbers.stream().anyMatch(number -> number.getNumber() == lottoNumber.getNumber());
+    }
+
+    public int countMatchedNumbers(Lotto winningLotto) {
+        return numbers.stream()
+                .filter(winningLotto::contains)
+                .map(lottoNumber -> 1)
+                .reduce(0, Integer::sum);
     }
 
     public List<LottoNumber> getLottoNumbers() {

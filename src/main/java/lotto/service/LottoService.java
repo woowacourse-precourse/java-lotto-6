@@ -51,12 +51,12 @@ public class LottoService {
 		Set<Entry<LottoRank, Integer>> lottoRankCounter = countLottoRank(lottos, answerLotto).entrySet();
 
 		for (Map.Entry<LottoRank, Integer> entry : lottoRankCounter) {
-			LottoRank key = entry.getKey();
-			int value = entry.getValue();
-			boolean isBonusNumber = key.getisBonusNumber();
+			LottoRank lottoRank = entry.getKey();
+			int number = entry.getValue();
+			boolean isBonusNumber = lottoRank.getisBonusNumber();
 
-			if (key != LottoRank.NOTHING) {
-				strJoiner.add(getFormattedMessage(isBonusNumber, key, value));
+			if (lottoRank != LottoRank.NOTHING) {
+				strJoiner.add(getFormattedMessage(isBonusNumber, lottoRank, number));
 			}
 		}
 		return strJoiner.toString();
@@ -74,7 +74,7 @@ public class LottoService {
 
 	private String getFormattedMessage(boolean isBonusNumber, LottoRank rank, int count) {
 		WinningStatisticsMessage message = filterMessage(isBonusNumber);
-		return message.getForMatMessage(rank.getMatchedNumCount(), rank.getPrice(), count);
+		return message.getFormattedMessage(rank.getMatchedNumCount(), rank.getPrice(), count);
 	}
 
 	private WinningStatisticsMessage filterMessage(boolean isBonusNumber) {

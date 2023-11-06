@@ -29,7 +29,7 @@ public class Lotto {
 
 	private void validateSize(List<Integer> numbers) {
 		if (numbers.size() != LOTTO_SIZE) {
-			throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR.getForMatMessage(LOTTO_SIZE));
+			throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR.getFormattedMessage(LOTTO_SIZE));
 		}
 	}
 
@@ -42,7 +42,7 @@ public class Lotto {
 	private void validateNumberOutOfRange(List<Integer> numbers) {
 		if (numbers.stream().anyMatch(this::isNumberOutOfRange)) {
 			throw new IllegalArgumentException(
-					ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getForMatMessage(MIN_NUMBER, MAX_NUMBER));
+					ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getFormattedMessage(MIN_NUMBER, MAX_NUMBER));
 		}
 	}
 

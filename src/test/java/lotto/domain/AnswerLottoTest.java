@@ -17,7 +17,7 @@ public class AnswerLottoTest {
     void createAnswerLottoNumbersByOverSize() {
         assertThatThrownBy(() -> new AnswerLotto(List.of(1, 2, 3, 4, 5, 6, 7), 8))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.LOTTO_SIZE_ERROR.getForMatMessage(Lotto.LOTTO_SIZE));
+                .hasMessageContaining(ErrorMessage.LOTTO_SIZE_ERROR.getFormattedMessage(Lotto.LOTTO_SIZE));
     }
     
     @DisplayName("당첨로또 번호의 개수가 LOTTO_SIZE라면 정상적으로 작동한다.")
@@ -30,7 +30,6 @@ public class AnswerLottoTest {
     @DisplayName("당첨로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createAnswerLottoNumbersByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new AnswerLotto(List.of(1, 2, 3, 4, 5, 5), 6))
                 .isInstanceOf(IllegalArgumentException.class)
         		.hasMessageContaining(ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
@@ -46,12 +45,11 @@ public class AnswerLottoTest {
     @DisplayName("당첨로또 번호의 범위가 MIN_NUMBER ~ MAX_NUMBER가 아니라면 예외가 발생한다.")
     @Test
     void createAnswerLottoByNumberOutOfRange() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성	
         assertThatThrownBy(() -> new AnswerLotto(List.of(0, 45, 3, 4, 6, 5), 7))
                 .isInstanceOf(IllegalArgumentException.class)
         		.hasMessageContaining(
         				ErrorMessage.LOTTO_NUMBER_RANGE_ERROR
-        						.getForMatMessage(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER));
+        						.getFormattedMessage(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER));
     }
     
     @DisplayName("당첨로또 번호의 범위가 MIN_NUMBER ~ MAX_NUMBER라면 정상적으로 작동한다.")
@@ -81,7 +79,7 @@ public class AnswerLottoTest {
 		        .isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining(
 						ErrorMessage.LOTTO_NUMBER_RANGE_ERROR
-								.getForMatMessage(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER));
+								.getFormattedMessage(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER));
     }
 	
 	@DisplayName("보너스 번호의 범위가 MIN_NUMBER ~ MAX_NUMBER라면 정상적으로 작동한다.")

@@ -19,7 +19,7 @@ public class OutputView {
 	}
 
 	public void printBuyedLottoNumberMessage(int buyedCount) {
-		printer.printLine(NEWLINE + ProgressMessage.BUYED_LOTTO_NUMBER.getForMatMessage(buyedCount));
+		printer.printLine(NEWLINE + ProgressMessage.BUYED_LOTTO_NUMBER.getFormattedMessage(buyedCount));
 	}
 
 	public void printLottoNumbers(String message) {
@@ -43,7 +43,7 @@ public class OutputView {
 	}
 
 	public void printTotalReturn(double totalReturn) {
-		printer.printLine(WinningStatisticsMessage.TOTAL_RETURN.getForMatMessage(totalReturn));
+		printer.printLine(WinningStatisticsMessage.TOTAL_RETURN.getFormattedMessage(totalReturn));
 	}
 	
 	public void printErrorMessage(Exception exception) {

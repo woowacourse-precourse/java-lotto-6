@@ -28,7 +28,7 @@ public class AnswerLotto extends Lotto {
 	private void validateBonusNumberOutOfRange(int number) {
 		if (isNumberOutOfRange(number)) {
 			throw new IllegalArgumentException(
-					ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getForMatMessage(MIN_NUMBER, MAX_NUMBER));
+					ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getFormattedMessage(MIN_NUMBER, MAX_NUMBER));
 		}
 	}
 	

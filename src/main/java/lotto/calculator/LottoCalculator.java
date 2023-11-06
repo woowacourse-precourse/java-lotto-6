@@ -12,10 +12,10 @@ public final class LottoCalculator implements Calculator<Integer, EnumMap<LottoR
 		int priceSum = 0;
 
 		for (Map.Entry<LottoRank, Integer> entry : lottoRanks.entrySet()) {
-			LottoRank key = entry.getKey();
-			int value = entry.getValue();
+			LottoRank lottoRank = entry.getKey();
+			int number = entry.getValue();
 
-			priceSum += key.getPrice() * value;
+			priceSum += lottoRank.getPrice() * number;
 
 		}
 

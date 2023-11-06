@@ -23,7 +23,7 @@ public record Money(int money) {
 
 	private void validateMoneyUnit(int money) {
 		if (money % UNIT != 0) {
-			throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_ERROR.getForMatMessage(UNIT));
+			throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_ERROR.getFormattedMessage(UNIT));
 		}
 	}
 

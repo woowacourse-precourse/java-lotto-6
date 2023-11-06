@@ -67,7 +67,7 @@ public enum LottoRank {
 
 	public static EnumMap<LottoRank, Integer> initializeLottoRankCounter() {
 		EnumMap<LottoRank, Integer> lottRankCounter = new EnumMap<>(LottoRank.class);
-		Arrays.stream(LottoRank.values()).forEach(value -> lottRankCounter.put(value, 0));
+		Arrays.stream(LottoRank.values()).forEach(lottoRank -> lottRankCounter.put(lottoRank, 0));
 		return lottRankCounter;
 	}
 

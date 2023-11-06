@@ -3,6 +3,8 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,5 +39,13 @@ class ValidateTest {
     void numericInputTest() {
         assertDoesNotThrow(() -> Validate.numericInput("123456"));
         assertThrows(IllegalArgumentException.class, () -> Validate.numericInput("1234a6"));
+    }
+    
+    
+    @Test
+    @DisplayName("보너스번호와 당첨번호가 중복 오류 검증")
+    void bonusNumberUniquenessTest() {
+    	List<Integer> winningNumber = List.of(1,2,3,4,5,6);
+        assertThrows(IllegalArgumentException.class, () -> Validate.bonusNumberUniqueness(winningNumber, 6));
     }
 }

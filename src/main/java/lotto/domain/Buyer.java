@@ -2,8 +2,10 @@ package lotto.domain;
 
 import lotto.validation.Validation;
 
-public class Buyer {
+import java.util.ArrayList;
 
+public class Buyer {
+    private final ArrayList<Lotto> purchasedLotteries = new ArrayList<>();
     public static final int UNIT = 1000;
     public static final int MIN_AMOUNT = 1000;
     private int purchaseAmount;
@@ -18,6 +20,15 @@ public class Buyer {
         Validation.validateAmountUnit(purchaseAmount, UNIT);
     }
 
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 
+    public ArrayList<Lotto> getPurchasedLotteries() {
+        return purchasedLotteries;
+    }
 
+    public void buyLotto(Lotto lotto) {
+        purchasedLotteries.add(lotto);
+    }
 }

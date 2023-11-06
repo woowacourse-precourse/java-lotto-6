@@ -20,4 +20,8 @@ public class Lotto {
         Validation.validateSize(lottoNumbers, LOTTO_NUMBERS_SIZE);
         Validation.validateNumberListInRange(lottoNumbers, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
     }
+
+    public List<Integer> getLottoNumbers() {
+        return lottoNumbers;
+    }
 }

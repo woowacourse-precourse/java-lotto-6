@@ -13,9 +13,13 @@ public class WinLotto {
     private final int MAXRANGE = 45;
     private final int MINRANGE = 1;
 
-    public WinLotto(String winNums, String bonusNumber) {
+    public WinLotto(String winNums) {
 
         this.numbers = changeNumbers(winNums);
+    }
+
+    public void setBonusNumber(String bonusNumber) {
+
         this.bonusNumber = validateBonusNum(bonusNumber);
     }
 

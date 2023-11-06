@@ -29,8 +29,19 @@ public class LottoGameStarter {
             try {
 
                 winNums = Input.winNumberInput();
+                winLotto = new WinLotto(winNums);
+                break;
+            } catch (IllegalArgumentException e) {
+
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+
+            try {
                 bonusNum = Input.bonusNumberInput();
-                winLotto = new WinLotto(winNums, bonusNum);
+                winLotto.setBonusNumber(bonusNum);
                 break;
             } catch (IllegalArgumentException e) {
 

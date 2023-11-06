@@ -1,32 +1,11 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class LottoAnswer {
-    public final List<Integer> numbers = new ArrayList<>();
-    private static final int MAX_NUMBERS = 6;
-    private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 45;
+public class LottoAnswer extends Lotto {
 
     public LottoAnswer(String input) {
         parseInteger(input);
-        checkLength();
-        isInRange();
-    }
-
-    private void isInRange() {
-        for (int num : numbers) {
-            if (num < MIN_VALUE || num > MAX_VALUE) {
-                throw new IllegalArgumentException("로또 번호는 1에서 45 사이의 숫자여야 합니다.");
-            }
-        }
-    }
-
-    private void checkLength() {
-        if (numbers.size() != MAX_NUMBERS) {
-            throw new IllegalArgumentException("로또 번호는 6개 입력해야 합니다.");
-        }
+        validate(numbers);
     }
 
     private void parseInteger(String input) {

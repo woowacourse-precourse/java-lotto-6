@@ -31,6 +31,7 @@ public class InputConverter {
         isOnlyNumber(input);
         return Integer.parseInt(input);
     }
+
     private void isOnlyNumber(String bonusNumber) {
         if (!bonusNumber.matches("^[0-9]*$")) {
             throw new IllegalArgumentException();

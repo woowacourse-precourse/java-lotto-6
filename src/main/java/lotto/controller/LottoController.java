@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import lotto.constant.LottoConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;

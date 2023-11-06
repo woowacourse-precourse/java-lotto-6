@@ -43,11 +43,13 @@ public class LottoService {
         return purchaseAmount.getAmount() / LottoConstant.LOTTO_PRICE;
     }
 
-    private int calculateMatch(Lotto lotto, WinningNumbers winningNumber) {
+    private int calculateMatch(Lotto lotto, WinningNumbers winningNumbers) {
+        List<Integer> lottoWinningNumbers = winningNumbers.getNumbers();
+        List<Integer> lottoNumbers = lotto.getNumbers();
         int matchCount = 0;
         for (int i = 0; i < LottoConstant.LOTTO_LENGTH; i++) {
-            int number = winningNumber.get(i);
-            if (lotto.contains(number)) {
+            int number = lottoWinningNumbers.get(i);
+            if (lottoNumbers.contains(number)) {
                 matchCount++;
             }
         }
@@ -55,7 +57,8 @@ public class LottoService {
     }
 
     private boolean isBonusMatch(Lotto lotto, BonusNumber bonusNumber) {
-        if (lotto.contains(bonusNumber.get())) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        if (lottoNumbers.contains(bonusNumber.get())) {
             return true;
         }
         return false;

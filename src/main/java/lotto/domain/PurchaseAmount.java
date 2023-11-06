@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.LottoConstant;
+
 public class PurchaseAmount {
     private int amount;
 
@@ -13,7 +15,7 @@ public class PurchaseAmount {
     }
 
     private void validate(int amount) {
-        if (amount < 1000 || amount % 1000 != 0) {
+        if (amount < LottoConstant.LOTTO_PRICE || amount % LottoConstant.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException();
         }
     }

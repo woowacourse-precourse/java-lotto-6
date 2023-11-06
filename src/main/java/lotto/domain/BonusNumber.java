@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.constant.LottoConstant;
 
 public class BonusNumber {
@@ -21,9 +22,10 @@ public class BonusNumber {
         }
     }
 
-    private void duplicationValidate(int number, WinningNumbers winningNumber) {
+    private void duplicationValidate(int number, WinningNumbers winningNumbers) {
+        List<Integer> lottoWinningNumbers = winningNumbers.getNumbers();
         for (int i = 0; i < LottoConstant.LOTTO_LENGTH; i++) {
-            if (number == winningNumber.get(i)) {
+            if (number == lottoWinningNumbers.get(i)) {
                 throw new IllegalArgumentException();
             }
         }

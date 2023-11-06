@@ -12,15 +12,16 @@
         - one bonus number
         - make_random_number()
             - 1~45****
-  - "당첨 번호를 입력해 주세요."
-    - correct 6 numbers
-      - throw exception if not within 1~45
-      - throw exception if there are duplicates
-      - split by ',' and remove all spaces
-  - "보너스 번호를 입력해 주세요."
-    - bonus number
-      - throw exception if not within 1~45
-      - throw exception if non-integer
+  - [x] jackpot number + bonus number
+    - "당첨 번호를 입력해 주세요." (JackPotNumber)
+      - correct 6 numbers
+        - throw exception if not within 1~45
+        - throw exception if there are duplicates
+        - split by ',' and remove all spaces
+    - "보너스 번호를 입력해 주세요."
+      - bonus number
+        - throw exception if not within 1~45
+        - throw exception if non-integer
 
   - Profit Percentage
     - round to the second place

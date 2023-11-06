@@ -24,7 +24,7 @@
 4. 당첨 번호를 입력받는다.
     - [x]  delimiter (현재 기준 ',') 기준으로 입력 받은 당첨 번호를 구분한다.
     - [x]  6개로 구분되지 않는다면 IllegalArgumentException을 반환한다.
-    - [ ]  숫자가 아니라면 IllegalArgumentException을 반환한다.
+    - [x]  숫자가 아니라면 IllegalArgumentException을 반환한다.
     - [x]  입력 받은 당첨 번호가 로또 번호 숫자 범위 (현재 기준 1 ~ 45) 내인지 확인한다. 범위 밖이라면 IllegalArgumentException을 반환한다.
     - [x]  입력 받은 당첨 번호가 중복되지 않는지 확인한다. 중복된다면 IllegalArgumentException을 반환한다.
 5. 보너스 번호를 입력받는다.
@@ -71,8 +71,8 @@
     - [x]  입력 문자가 6개가 아닐 경우 IllegalArgumentException을 반환한다.
     - [x]  빈 문자가 들어오지 않을 경우 어떠한 Exception도 감지되지 않는다.
     - [x]  빈 문자가 들어오는 경우 IllegalArgumentException을 반환한다.
-    - [ ]  입력 문자가 숫자일 경우 어떠한 Exception도 감지되지 않는다.
-    - [ ]  입력 문자가 숫자가 아닐 경우 IllegalArgumentException을 반환한다.
+    - [x]  입력 문자가 숫자일 경우 어떠한 Exception도 감지되지 않는다.
+    - [x]  입력 문자가 숫자가 아닐 경우 IllegalArgumentException을 반환한다.
     - [x]  입력 문자가 1 ~ 45내의 숫자라면 어떠한 Exception도 감지되지 않는다.
     - [x]  입력 문자가 1 ~ 45내가 아니라면 IllegalArgumentException을 반환한다.
     - [x]  입력 문자가 중복되지 않을 경우 어떠한 Exception도 감지되지 않는다.

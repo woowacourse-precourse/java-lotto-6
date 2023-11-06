@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
 	public static final int WINNING_NUMBER_LENGTH = 6;
@@ -11,9 +12,11 @@ public class Application {
 	private static Integer money;
 	private static List<Integer> winningNumberList;
 	private static Integer bonusNumber;
+	private static List<Lotto> lottoList = new ArrayList<>();
 
 	public static void main(String[] args) {
 		setMoney();
+		setLottoList();
 		setWinningNumberList();
 		setBonusNumber();
 	}
@@ -85,5 +88,15 @@ public class Application {
 			throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다!");
 		}
 		return numberList;
+	}
+
+	public static void setLottoList() {
+		Integer lottoCount = money / 1000;
+		System.out.println(lottoCount + "개를 구매했습니다.");
+		for (int i = 0; i < lottoCount; i++) {
+			Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+			System.out.println(lotto);
+			lottoList.add(lotto);
+		}
 	}
 }

@@ -5,6 +5,8 @@ import static lotto.constants.LottoConstants.LENGTH;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.exception.LottoNumbersDuplicationException;
+import lotto.exception.WrongLottoLengthException;
 
 public class Lotto {
 
@@ -12,16 +14,32 @@ public class Lotto {
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
+
+        validate(numbers);
+
         List<LottoNumber> lottoNumbers = numbers.stream()
                                                 .map(number -> LottoNumber.of(number))
                                                 .toList();
-        validate(lottoNumbers);
+
         this.numbers = new ArrayList<>(lottoNumbers);
     }
 
-    private void validate(List<LottoNumber> numbers) {
-        if (numbers.size() != LENGTH) {
-            throw new IllegalArgumentException();
+    private void validate(List<Integer> numbers) {
+        checkDuplication(numbers);
+    }
+
+    private void checkDuplication(List<Integer> lotto) {
+        List<Integer> distinctList = lotto.stream()
+                                                .distinct()
+                                                .toList();
+        if (distinctList.size() != lotto.size()) {
+            throw new LottoNumbersDuplicationException();
+        }
+    }
+
+    private void checkLength(List<Integer> lotto) {
+        if (lotto.size() != LENGTH) {
+            throw new WrongLottoLengthException();
         }
     }
 

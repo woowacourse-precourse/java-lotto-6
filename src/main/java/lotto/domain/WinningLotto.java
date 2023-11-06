@@ -4,7 +4,7 @@ import static lotto.constants.LottoConstants.LENGTH;
 
 import java.util.List;
 import lotto.exception.BonusNumberDuplicationException;
-import lotto.exception.WinningLottoNumbersDuplicationException;
+import lotto.exception.LottoNumbersDuplicationException;
 import lotto.exception.WrongLottoLengthException;
 
 public class WinningLotto {
@@ -40,7 +40,7 @@ public class WinningLotto {
                                                 .distinct()
                                                 .toList();
         if (distinctList.size() != winningLotto.size()) {
-            throw new WinningLottoNumbersDuplicationException();
+            throw new LottoNumbersDuplicationException();
         }
     }
 

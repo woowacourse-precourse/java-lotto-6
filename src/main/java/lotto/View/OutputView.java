@@ -3,7 +3,8 @@ package lotto.View;
 import lotto.Enum.Prize;
 import lotto.Lotto;
 
-import java.util.Map;
+import java.text.MessageFormat;
+import java.util.*;
 
 public class OutputView {
 
@@ -18,14 +19,16 @@ public class OutputView {
     }
 
     public void LottoGameResult(Map<Prize, Integer> winResult) {
+        Set<Prize> prizes = winResult.keySet();
+
         System.out.println("당첨 통계\n---");
-        for (Prize key : winResult.keySet()) {
-            System.out.println(key.getTag() + " - " + winResult.get(key) + "개");
+        for (Prize key : prizes) {
+            System.out.println(MessageFormat.format("{0} - {1}개", key.getTag(), winResult.get(key)));
         }
     }
 
     public void totalRating(String rate) {
-        System.out.println("총 수익률은 " + rate + "%입니다");
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 
 

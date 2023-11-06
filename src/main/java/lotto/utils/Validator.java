@@ -8,6 +8,7 @@ import java.util.Set;
 
 import static java.lang.Long.parseLong;
 import static lotto.domain.constant.NumberConstant.*;
+import static lotto.domain.constant.StringConstant.*;
 
 public class Validator {
     // Lotto DOMAIN
@@ -20,7 +21,7 @@ public class Validator {
 
     public static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_SIZE_ERROR);
     }
 
 
@@ -29,14 +30,14 @@ public class Validator {
 
         for (Integer n : numbers)
             if (!uniqueNumbers.add(n))
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_DUPLICATE_ERROR);
     }
 
 
     public static void validateNumberInRange(List<Integer> numbers) {
         if (numbers.stream()
                 .anyMatch(n -> n < LOTTO_NUMBER_START || n > LOTTO_NUMBER_END))
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_IN_RANGE_ERROR);
     }
 
 
@@ -44,7 +45,7 @@ public class Validator {
     public static void validateExpenseValue(String input) {
         for (int i = 1; i < 4; i++)
             if (input.charAt(input.length() - i) != '0')
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_EXPENSE_VALUER_ERROR);
     }
 
 
@@ -52,19 +53,19 @@ public class Validator {
         try {
             parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_NUM_TYPE_ERROR);
         }
     }
 
 
     public static void validateBonusNumInRange(int bonusNum) {
         if (bonusNum < LOTTO_NUMBER_START || bonusNum > LOTTO_NUMBER_END)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_IN_RANGE_ERROR);
     }
 
 
     public static void validateBonusNumDuplicate(int bonusNum, Lotto winningLotto) {
         if (winningLotto.getNumbers().contains(bonusNum))
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_BONUSNUM_DUPLICATE_ERROR);
     }
 }

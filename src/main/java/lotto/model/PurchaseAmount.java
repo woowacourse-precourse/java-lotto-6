@@ -30,7 +30,7 @@ public class PurchaseAmount {
         return purchaseAmount / 1000;
     }
 
-    public String calculateProfitPercentage(long prize) {
-        return String.format("%.1f", (double) prize / purchaseAmount * 100) + "%";
+    public PrizePercentage calculatePrizePercentage(long prize) {
+        return new PrizePercentage((double) prize / purchaseAmount * 100);
     }
 }

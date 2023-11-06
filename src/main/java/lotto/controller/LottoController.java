@@ -5,15 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.PrizePercentage;
 import lotto.model.PurchaseAmount;
 import lotto.model.Result;
-import lotto.model.User;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private User user;
 
     public void startGame() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
@@ -22,7 +21,8 @@ public class LottoController {
         WinningLotto winningLotto = createWinningLotto();
         Result result = lottos.compareLottos(winningLotto);
         OutputView.printResult(result.getResult());
-        OutputView.printProfitPercentage(user.calculateProfitPercentage(purchaseAmount));
+        PrizePercentage prizePercentage = calculatePrizePercentage(result.calculatePrize(), purchaseAmount);
+        OutputView.printProfitPercentage(prizePercentage.getPrizePercentage());
     }
 
     private PurchaseAmount readPurchaseAmount() {
@@ -76,5 +76,9 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private PrizePercentage calculatePrizePercentage(long prize, PurchaseAmount purchaseAmount) {
+        return purchaseAmount.calculatePrizePercentage(prize);
     }
 }

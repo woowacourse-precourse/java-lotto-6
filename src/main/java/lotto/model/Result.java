@@ -32,4 +32,14 @@ public class Result {
 
         return output.toString();
     }
+
+    public long calculatePrize() {
+        long prize = 0;
+
+        for (Rank rank : result.keySet()) {
+            prize += result.get(rank) * rank.getPrize();
+        }
+
+        return prize;
+    }
 }

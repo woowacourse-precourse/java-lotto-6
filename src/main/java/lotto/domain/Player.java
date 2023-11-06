@@ -26,15 +26,16 @@ public class Player {
         initialLotteryResult();
     }
 
+    public static Player of(PurchasePrice purchasePrice, List<Lotto> lottos) {
+        return new Player(purchasePrice, lottos);
+    }
+
     private void initialLotteryResult() {
         Arrays.stream(LotteryResult.values())
                 .filter(LotteryResult::isWinning)
                 .forEach(lotteryResult -> lotteryResults.put(lotteryResult, INIT_WINNING_COUNT));
     }
 
-    public static Player of(PurchasePrice purchasePrice, List<Lotto> lottos) {
-        return new Player(purchasePrice, lottos);
-    }
 
     public void addLotteryResult(List<LotteryResult> lotteryResults) {
         lotteryResults.forEach((lotteryResult) -> {

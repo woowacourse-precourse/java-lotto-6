@@ -15,14 +15,10 @@ import lotto.view.Output;
 
 public class LottoController {
 
-    //주입 방법을 다시 생각해보기
-    //생성자 주입, 필드로 지정해주기
     private final Output output;
     private final Input input;
     private final LottoService lottoService;
 
-
-    //정적 팩토리 메서드를 사용해야하나
     public LottoController(Output output, Input input, LottoService lottoService) {
         this.output = output;
         this.input = input;
@@ -30,14 +26,14 @@ public class LottoController {
     }
 
     public void run() {
-        Player player = start();    //가독성이 나쁘지는 않을까? start를 통해서 player가 생성된다는 의미가 전달되나?
+        Player player = settingPlayer();
         output.purchasedLotts(player);
-        play(player);
+        playGame(player);
         output.winningResult(player.getLotteryResults());
         output.rateOfRevenue(player.findRateOfRevenue());
     }
 
-    private Player start() {
+    private Player settingPlayer() {
         output.requestPurchasePrice();
         PurchasePrice purchasePrice = createPurchasePrice();
         output.purchaseCount(purchasePrice);
@@ -53,28 +49,25 @@ public class LottoController {
         }
     }
 
-    private void play(Player player) {
+    private void playGame(Player player) {
         LotteryNumbers lotteryNumbers = createLotteryNumbers();
         lottoService.checkLotteryNumbers(player, lotteryNumbers);
     }
 
-    /*
-     *   이 부분으로 밑에까지 다시 한번 확인해보기
-     * */
     private LotteryNumbers createLotteryNumbers() {
         output.requestWinningNumbers();
         Lotto winningLotto = createWinningLotto();
         output.requestBonusNumber();
-        int bonusNumber = tryCreateBonusNumber(winningLotto);
+        int bonusNumber = createBonusNumber(winningLotto);
         return LotteryNumbers.of(winningLotto, bonusNumber);
     }
 
-    private int tryCreateBonusNumber(Lotto winningLotto) {
-        int bonusNumber = createBonusNumber();
+    private int createBonusNumber(Lotto winningLotto) {
+        int bonusNumber = inputBonusNumber();
         try {
             LotteryNumbers.of(winningLotto, bonusNumber);
         } catch (IllegalArgumentException e) {
-            return tryCreateBonusNumber(winningLotto);
+            return createBonusNumber(winningLotto);
         }
         return bonusNumber;
     }
@@ -87,13 +80,11 @@ public class LottoController {
         }
     }
 
-    private int createBonusNumber() {
+    private int inputBonusNumber() {
         try {
             return Integer.parseInt(input.bonusNumber());
         } catch (IllegalArgumentException e) {
-            return createBonusNumber();
+            return inputBonusNumber();
         }
     }
-
-
 }

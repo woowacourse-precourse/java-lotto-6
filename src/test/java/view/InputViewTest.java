@@ -17,11 +17,11 @@ class InputViewTest {
         Console.close();
     }
 
-    @DisplayName("구매 금액 입력이 잘 되고 int형으로 반환되는지 검사")
+    @DisplayName("구매 금액 입력이 잘 되는지 검사")
     @Test
     void readPrice() {
         System.setIn(createUserInput("123"));
-        Assertions.assertThat(InputView.enterPrice()).isEqualTo(123);
+        Assertions.assertThat(InputView.enterPrice()).isEqualTo("123");
     }
 
     @DisplayName("로또 당첨 번호 입력이 잘 되는지 검사")

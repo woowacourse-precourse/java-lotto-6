@@ -2,6 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
+import lotto.model.User;
+
 import java.util.List;
 
 public class UserOutput {
@@ -22,22 +24,22 @@ public class UserOutput {
         ConsolePrintNewLine(Message.INPUT_BONUS_NUMBER);
     }
 
-    public static void ConsolePrintBoughtResult(int number, List<Lotto> lottos) {
+    public static void ConsolePrintBoughtResult(User user) {
         ConsolePrintNewLine("");
-        ConsolePrintNewLine(number + Message.OUTPUT_BOUGHT_NUMBER);
-        for (Lotto lotto : lottos) {
+        ConsolePrintNewLine(user.getNumber() + Message.OUTPUT_BOUGHT_NUMBER);
+        for (Lotto lotto : user.getLottos().keySet()) {
             ConsolePrintNewLine(lotto.toString());
         }
         ConsolePrintNewLine("");
     }
 
-    public static void ConsolePrintStatistics(String rank, List<Integer> number) {
+    public static void ConsolePrintStatistics(List<Integer> number) {
         ConsolePrintStatInfo();
-        ConsolePrintNewLine(Message.OUTPUT_STATICS_FIFTH + number.get(4));
-        ConsolePrintNewLine(Message.OUTPUT_STATICS_FOURTH + number.get(3));
-        ConsolePrintNewLine(Message.OUTPUT_STATICS_THIRD + number.get(2));
-        ConsolePrintNewLine(Message.OUTPUT_STATICS_SECOND + number.get(1));
-        ConsolePrintNewLine(Message.OUTPUT_STATICS_FIRST + number.get(0));
+        ConsolePrintNewLine(Message.OUTPUT_STATICS_FIFTH + number.get(0) + Message.OUTPUT_STATICS_BACK);
+        ConsolePrintNewLine(Message.OUTPUT_STATICS_FOURTH + number.get(1) + Message.OUTPUT_STATICS_BACK);
+        ConsolePrintNewLine(Message.OUTPUT_STATICS_THIRD + number.get(2) + Message.OUTPUT_STATICS_BACK);
+        ConsolePrintNewLine(Message.OUTPUT_STATICS_SECOND + number.get(3) + Message.OUTPUT_STATICS_BACK);
+        ConsolePrintNewLine(Message.OUTPUT_STATICS_FIRST + number.get(4) + Message.OUTPUT_STATICS_BACK);
     }
 
     private static void ConsolePrintStatInfo() {

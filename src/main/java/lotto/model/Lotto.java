@@ -24,6 +24,6 @@ public class Lotto {
 
     @Override
     public String toString(){
-        return "[" + String.join(", ", String.valueOf(numbers)) + "]";
+        return String.join(", ", String.valueOf(numbers));
     }
 }

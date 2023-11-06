@@ -5,13 +5,13 @@ import lotto.model.Lotto;
 import lotto.model.Rank;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class StaticsService {
     public static List<Integer> getWinningStatics(HashMap<Lotto, Rank> lottos){
-        List<Integer> ranking = new ArrayList<>(5);
-
+        List<Integer> ranking = new ArrayList<>(Arrays.asList(0,0,0,0,0));
         for(Rank rank : lottos.values()){
             countWinning(ranking, rank);
         }

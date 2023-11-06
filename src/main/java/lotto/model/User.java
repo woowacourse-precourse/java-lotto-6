@@ -18,4 +18,8 @@ public class User {
     public HashMap<Lotto, Rank> getLottos() {
         return lottos;
     }
+
+    public int getNumber(){
+        return money / Constant.LOTTO_PRICE;
+    }
 }

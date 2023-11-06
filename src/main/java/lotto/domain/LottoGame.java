@@ -13,6 +13,7 @@ public class LottoGame {
     LottoMachine lottoMachine = new LottoMachine();
 
     public void doLottoGame() {
+
         Money money = getMoney();
         List<Lotto> lottoBundle = lottoMachine.buyLotto(money);
 
@@ -20,13 +21,17 @@ public class LottoGame {
 
         WinLotto winLotto = getWinLotto();
 
+        LottoResult lottoResult = new LottoResult(lottoBundle, winLotto);
+        Double earningRatio = lottoResult.calculateEarningRatio(money);
+
+        printLottoResult(lottoResult, earningRatio);
 
     }
 
-    private WinLotto getWinLotto() {
-        List<Integer> winLottoNumbers = inputView.getWinLottoNumbers();
-        Integer winLottoBonus = inputView.getWinLottoBonus();
-        return new WinLotto(winLottoNumbers, winLottoBonus);
+    private Money getMoney() {
+        outputView.print(OutputMessage.GET_PURCHASE_MONEY);
+        Integer amount = inputView.getMoney();
+        return new Money(amount); // todo:예외처리
     }
 
     private void printIssuedLotto(List<Lotto> lottoBundle) {
@@ -34,11 +39,18 @@ public class LottoGame {
         outputView.printLottoBundle(lottoBundle);
     }
 
-    private Money getMoney() {
-        outputView.print(OutputMessage.GET_PURCHASE_MONEY);
-        Money money = inputView.getMoney();
-        return money;
+    private WinLotto getWinLotto() {
+        outputView.print(OutputMessage.GET_WIN_NUMBERS);
+        List<Integer> winLottoNumbers = inputView.getWinLottoNumbers();
+
+        outputView.print(OutputMessage.GET_BONUS_NUMBER);
+        Integer winLottoBonus = inputView.getWinLottoBonus();
+
+        return new WinLotto(winLottoNumbers, winLottoBonus); // todo:예외처리
     }
 
+    private void printLottoResult(LottoResult lottoResult, Double earningRatio) {
+        outputView.printLottoResult(lottoResult, earningRatio);
+    }
 
 }

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,8 +9,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+        Collections.sort(mutableNumbers);
+        this.numbers = mutableNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -36,6 +38,4 @@ public class Lotto {
     public String toString() {
         return String.valueOf(numbers);
     }
-
-    // TODO: 추가 기능 구현
 }

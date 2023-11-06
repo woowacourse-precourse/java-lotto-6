@@ -29,6 +29,6 @@ public class Lotto {
     @Override
     public String toString() {
         List<Integer> sortedNumbers = numbers.stream().sorted().collect(Collectors.toList());
-        return sortedNumbers.toString().replaceAll(" ","");
+        return sortedNumbers.toString();
     }
 }

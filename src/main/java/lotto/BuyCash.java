@@ -33,4 +33,8 @@ public class BuyCash {
     public long getLottoAmount() {
         return buyCash / BUY_UNIT;
     }
+
+    public double getTotalProfitRate(long totalProfit) {
+        return (double) totalProfit / buyCash * 100;
+    }
 }

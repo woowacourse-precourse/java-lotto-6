@@ -17,17 +17,28 @@ public class RandomGenerator {
 
     public static List<Integer> generate() {
         List<Integer> randoms = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT);
-        validate(randoms);
+
+        validateSize(randoms);
+        validateDuplicate(randoms);
+        validateNumbers(randoms);
+
         return randoms;
     }
 
-    private static void validate(List<Integer> randoms) {
-        if (randoms.size() != LOTTO_COUNT
-                || randoms.size() != randoms.stream().distinct().count()) {
+    private static void validateSize(List<Integer> randoms) {
+        if (randoms.size() != LOTTO_COUNT) {
             throw new IllegalStateException();
         }
+    }
 
-        for (Integer random : randoms) {
+    private static void validateDuplicate(List<Integer> randoms) {
+        if (randoms.size() != randoms.stream().distinct().count()) {
+            throw new IllegalStateException();
+        }
+    }
+
+    private static void validateNumbers(List<Integer> randoms) {
+        for(int random : randoms) {
             if (!LottoNumbers.contains(random)) {
                 throw new IllegalStateException();
             }

@@ -30,20 +30,4 @@ public class Player {
     public void addLottos(List<Lotto> issuedLottos) {
         lottos.addAll(issuedLottos);
     }
-
-
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder(String.valueOf(lottos.size()))
-                .append("개를 구매했습니다.")
-                .append(System.lineSeparator());
-
-        for (Lotto lotto : lottos) {
-            List<Integer> lottoNumbers = lotto.getNumbers();
-            Collections.sort(lottoNumbers);
-            result.append(lottoNumbers).append(System.lineSeparator());
-        }
-
-        return result.toString();
-    }
 }

@@ -9,14 +9,20 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(Lotto lotto, int bonusNumber) {
+        validateBonusNumber(bonusNumber);
+        validateDuplicate(bonusNumber, lotto);
         this.lotto = lotto;
-        validate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(int bonusNumber) {
-        if (!LottoNumbers.contains(bonusNumber)
-                || lotto.contains(bonusNumber)) {
+    private void validateBonusNumber(int bonusNumber) {
+        if (!LottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplicate(int bonusNumber, Lotto lotto) {
+        if (lotto.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }

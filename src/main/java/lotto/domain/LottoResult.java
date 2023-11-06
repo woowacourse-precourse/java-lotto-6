@@ -7,42 +7,35 @@ import java.math.RoundingMode;
 import java.util.Map;
 
 public class LottoResult {
-    private long totalPrize;
-    private BigDecimal prizeRate;
     private Map<Ranking, Integer> rankingCounts;
 
-    public LottoResult(Map<Ranking, Integer> rankingCount, int money) {
-        this.rankingCounts = rankingCount;
-        findTotalPrize();
-        findPrizeRate(money);
+    public LottoResult(Map<Ranking, Integer> rankingCounts) {
+        this.rankingCounts = rankingCounts;
     }
 
-    private void findTotalPrize() {
-        for (Ranking ranking : rankingCounts.keySet()) {
-            totalPrize += (long) ranking.getPrize() * rankingCounts.get(ranking);
-        }
-    }
-
-    private void findPrizeRate(int money) {
-        BigDecimal prize = BigDecimal.valueOf(totalPrize);
+    public BigDecimal calculatePrizeRate(int money, int scale, RoundingMode roundingMode) {
+        BigDecimal totalPrize = calculateTotalPrize();
         BigDecimal spent = BigDecimal.valueOf(money);
-        prizeRate = prize.divide(spent, 10, RoundingMode.HALF_UP)
+        BigDecimal prizeRate = totalPrize.divide(spent, 10, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100))
-                .setScale(1, RoundingMode.HALF_UP);
+                .setScale(scale, roundingMode);
+        return prizeRate;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder("당첨 통계").append(System.lineSeparator())
-                .append("---").append(System.lineSeparator());
+    private BigDecimal calculateTotalPrize() {
+        BigDecimal totalPrize = BigDecimal.ZERO;
 
-        Ranking[] values = Ranking.values();
-        for (int i = 1; i < values.length; i++) {
-            result.append(values[i].getResult()).append(rankingCounts.get(values[i])).append("개").append(System.lineSeparator());
+        for (Map.Entry<Ranking, Integer> entry : rankingCounts.entrySet()) {
+            BigDecimal rankingPrize = BigDecimal.valueOf(entry.getKey().getPrize())
+                    .multiply(BigDecimal.valueOf(entry.getValue()));
+
+            totalPrize = totalPrize.add(rankingPrize);
         }
 
-        result.append("총 수익률은 ").append(prizeRate.toPlainString()).append("%입니다.");
+        return totalPrize;
+    }
 
-        return result.toString();
+    public Map<Ranking, Integer> getRankingCounts() {
+        return Map.copyOf(rankingCounts);
     }
 }

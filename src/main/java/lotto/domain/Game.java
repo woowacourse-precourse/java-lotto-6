@@ -1,7 +1,8 @@
 package lotto.domain;
 
 import lotto.enums.Ranking;
-import lotto.utils.Messages;
+import lotto.utils.MessageBuilder;
+import lotto.utils.Writer;
 import lotto.utils.Reader;
 
 import java.util.List;
@@ -20,12 +21,12 @@ public class Game {
         try {
             checkMachineLoad();
 
-            Messages.inputMoney();
+            Writer.promptMoney();
             player = new Player(Reader.readInteger());
-            Messages.newLine();
+            Writer.newLine();
         } catch (IllegalArgumentException e) {
-            Messages.inputMoneyError();
-            Messages.newLine();
+            Writer.invalidMoneyError();
+            Writer.newLine();
             joinPlayer();
         }
     }
@@ -36,7 +37,7 @@ public class Game {
 
         List<Lotto> issuedLottos = lottoMachine.issueLottos(player.getMoney());
         player.addLottos(issuedLottos);
-        Messages.print(player);
+        Writer.print(MessageBuilder.build(player));
     }
 
     public void drawWinningLotto() {
@@ -44,27 +45,27 @@ public class Game {
             checkMachineLoad();
             checkPlayerJoin();
 
-            Messages.inputWinningNumbers();
+            Writer.promptWinningNumbers();
             List<Integer> winningNumbers = Reader.readIntegerList(",", -1);
             Lotto lotto = new Lotto(winningNumbers);
-            Messages.newLine();
+            Writer.newLine();
             drawBonusNumber(lotto);
         } catch (IllegalArgumentException e) {
-            Messages.inputWinningNumbersError();
-            Messages.newLine();
+            Writer.invalidWinningNumbersError();
+            Writer.newLine();
             drawWinningLotto();
         }
     }
 
     private void drawBonusNumber(Lotto lotto) {
         try {
-            Messages.inputBonusNumber();
+            Writer.promptBonusNumber();
             int bonusNumber = Reader.readInteger();
             winningLotto = new WinningLotto(lotto, bonusNumber);
-            Messages.newLine();
+            Writer.newLine();
         } catch (IllegalArgumentException e) {
-            Messages.inputBonusNumberError();
-            Messages.newLine();
+            Writer.invalidBonusNumberError();
+            Writer.newLine();
             drawBonusNumber(lotto);
         }
     }
@@ -75,8 +76,8 @@ public class Game {
         checkWinningLottoDraw();
 
         Map<Ranking, Integer> rankingCounts = lottoMachine.rank(player.getLottos(), winningLotto);
-        LottoResult lottoResult = new LottoResult(rankingCounts, player.getMoney());
-        Messages.print(lottoResult);
+        LottoResult lottoResult = new LottoResult(rankingCounts);
+        Writer.print(MessageBuilder.build(player, lottoResult));
     }
 
     private void checkMachineLoad() {

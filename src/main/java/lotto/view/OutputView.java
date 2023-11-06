@@ -23,10 +23,14 @@ public class OutputView {
     }
 
     public static void printAllLotto(List<List<Integer>> allLotto) {
-        allLotto.stream().map(list -> list.stream().map(Object::toString)
-                        .collect(Collectors.joining(DELIMITER.getSymbol() + " ", PREFIX.getSymbol(), SUFFIX.getSymbol())))
-                .forEach(System.out::println);
+        allLotto.forEach(lottoNumbers -> {
+            String eachLotto = lottoNumbers.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(DELIMITER.getSymbol() + " ", PREFIX.getSymbol(), SUFFIX.getSymbol()));
+            println(eachLotto);
+        });
     }
+
 
     public static void printPrizeResult(Map<Integer, Integer> prizeResult) {
         println(String.format(PRIZE_RESULT_FORMAT, SEPARATOR.getSymbol()));

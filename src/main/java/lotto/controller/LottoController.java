@@ -44,7 +44,7 @@ public class LottoController {
                 isContinue = false;
                 return lottoCount;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                output.message(e.getMessage());
             }
         }
         return null;
@@ -55,44 +55,25 @@ public class LottoController {
     }
 
     private Lotto setLotto() {
-        boolean isContinue = true;
-        while (isContinue) {
-            try {
-                Lotto lotto = new Lotto(input.winLottoNumbers());
-                isContinue = false;
-                return lotto;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return null;
+        return new Lotto(input.winLottoNumbers());
+
     }
 
     private Bonus setBonus() {
-        boolean isContinue = true;
-        while (isContinue) {
-            try {
-                Bonus bonus = new Bonus(input.bonusNumber());
-                isContinue = false;
-                return bonus;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return null;
+        return new Bonus(input.bonusNumber());
     }
 
     private WinLotto setWinLotto() {
         boolean isContinue = true;
         while (isContinue) {
-            Lotto lotto = setLotto();
-            Bonus bonus = setBonus();
             try {
+                Lotto lotto = setLotto();
+                Bonus bonus = setBonus();
                 WinLotto winLotto = new WinLotto(lotto, bonus);
                 isContinue = false;
                 return winLotto;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                output.message(e.getMessage());
             }
         }
         return null;

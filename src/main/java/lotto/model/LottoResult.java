@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class LottoResult {
 
-    private final Map<PriceMoney, Integer> result = new HashMap<>();
+    private final Map<LottoRank, Integer> result = new HashMap<>();
 
     private LottoResult(LottoStorage lottoStorage, WinningNumbers winningNumbers) {
         for (Lotto lotto : lottoStorage.getLottoStorage()) {
-            PriceMoney priceMoney = PriceMoney.of(lotto.sameNumberCounter(winningNumbers), lotto.hasNumber(winningNumbers.getBonusNumber()));
-            result.merge(priceMoney, 1, Integer::sum);
+            LottoRank lottoRank = LottoRank.of(lotto.sameNumberCounter(winningNumbers), lotto.hasNumber(winningNumbers.getBonusNumber()));
+            result.merge(lottoRank, 1, Integer::sum);
         }
     }
     // of -> from
@@ -20,16 +20,16 @@ public class LottoResult {
 
     public long calculatePrice() {
         long prize = 0L;
-        for (PriceMoney priceMoney : result.keySet()) {
-            prize += (long) result.get(priceMoney) * priceMoney.getPrice();
+        for (LottoRank lottoRank : result.keySet()) {
+            prize += (long) result.get(lottoRank) * lottoRank.getPrice();
         }
         return prize;
     }
 
-    public int getRankCount(PriceMoney priceMoney) {
-        if (result.get(priceMoney) == null) {
+    public int getRankCount(LottoRank lottoRank) {
+        if (result.get(lottoRank) == null) {
             return 0;
         }
-        return result.get(priceMoney);
+        return result.get(lottoRank);
     }
 }

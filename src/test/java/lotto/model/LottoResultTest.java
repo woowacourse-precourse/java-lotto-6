@@ -37,7 +37,7 @@ class LottoResultTest {
         WinningNumbers winningNumber = WinningNumbers.of(Lotto.from(winningNumbers), bonusNumber);
         // when
         LottoResult lottoResult = LottoResult.of(lottoStorage, winningNumber);
-        int count = lottoResult.getRankCount(PriceMoney.FIFTH);
+        int count = lottoResult.getRankCount(LottoRank.FIFTH);
         // then
         Assertions.assertThat(count).isEqualTo(2);
     }

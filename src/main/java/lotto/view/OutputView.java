@@ -3,7 +3,7 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.LottoStorage;
-import lotto.model.PriceMoney;
+import lotto.model.LottoRank;
 
 import static lotto.view.constant.viewMessage.*;
 
@@ -21,11 +21,11 @@ public class OutputView {
 
         System.out.printf(
                 OUTPUT_WINNING_STATISTICS_RESULT
-                , result.getRankCount(PriceMoney.FIFTH)
-                , result.getRankCount(PriceMoney.FOURTH)
-                , result.getRankCount(PriceMoney.THIRD)
-                , result.getRankCount(PriceMoney.SECOND)
-                , result.getRankCount(PriceMoney.FIRST)
+                , result.getRankCount(LottoRank.FIFTH)
+                , result.getRankCount(LottoRank.FOURTH)
+                , result.getRankCount(LottoRank.THIRD)
+                , result.getRankCount(LottoRank.SECOND)
+                , result.getRankCount(LottoRank.FIRST)
         );
         System.out.printf(OUTPUT_RATE_OF_RETURN,
                 (float) result.calculatePrice() * 100 / money);

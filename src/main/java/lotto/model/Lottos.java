@@ -12,4 +12,8 @@ public class Lottos {
     public static Lottos assemble(List<Lotto> lottos) {
         return new Lottos(lottos);
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

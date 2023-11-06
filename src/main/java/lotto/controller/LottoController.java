@@ -11,17 +11,21 @@ import lotto.util.generator.LottoNumberGenerator;
 import lotto.util.generator.NumberGenerator;
 import lotto.util.mapper.DtoModelMapper;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public LottoController(InputView inputView) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
         PurchaseAmount purchaseAmount = getValidPurchaseAmount();
         Lottos lottos = issueLottos(new LottoNumberGenerator(), purchaseAmount.calculateLottoCount());
+        printLottosIssued(lottos);
     }
 
     private PurchaseAmount getValidPurchaseAmount() {
@@ -38,5 +42,9 @@ public class LottoController {
         return Stream.generate(() -> Lotto.issue(numberGenerator.generate()))
                 .limit(lottoCount)
                 .collect(collectingAndThen(toList(), Lottos::assemble));
+    }
+
+    private void printLottosIssued(Lottos lottos) {
+        outputView.printLottosIssued(DtoModelMapper.LottosToDto(lottos));
     }
 }

@@ -1,26 +1,18 @@
 package lotto.service;
 
-import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.repository.BuyLottoRepository;
-import lotto.repository.RankingRepository;
 import lotto.repository.WinningLottoRepository;
 import lotto.view.View;
 
 public class ResultService {
-    public static void play(BuyLottoRepository buyLottoRepo, WinningLottoRepository winningLottoRepo){
+    //등수별 로또가 몇개인지 저장
+    public static void perLottoTotalCount(BuyLottoRepository buyLottoRepo, WinningLottoRepository winningLottoRepo){
         View.winningStatistics();
-        int bonusNum = winningLottoRepo.getBonusNumber();
 
-        // 몇개맞았는지 저장
-        LotteryTracker lotteryTracker = new LotteryTracker();
-        lotteryTracker.create();
-
-        int cnt =0;
-        for (Lotto buyLotto : buyLottoRepo.getLottos()) {
-            cnt = winningLottoRepo.countMatchingNumber(buyLotto);
-            lotteryTracker.matchingNumber(cnt,buyLotto,bonusNum);
-        }
+        // 로또추적기: 산 로또의 번호가 당첨 번호와 몇개 맞는 지 판단하고 그에 따른 등수 매김
+        LotteryTracker lotteryTracker = LotteryTracker.create();
+        lotteryTracker.matching(buyLottoRepo,winningLottoRepo);
         lotteryTracker.printResult();
     }
 

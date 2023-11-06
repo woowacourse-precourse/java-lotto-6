@@ -18,7 +18,7 @@ public class LottoController {
         BuyLottoRepository buyLottoRepo = lottoService.quickPick(purchaseCount);
         WinningLottoRepository winningLottoRepo = lottoService.createWinningNumber();
 
-        ResultService.play(buyLottoRepo, winningLottoRepo);
+        ResultService.perLottoTotalCount(buyLottoRepo, winningLottoRepo);
     }
 
     private PurchaseAmount createPurchaseAmount() {

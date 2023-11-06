@@ -23,17 +23,6 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-    public String listToString(){
-        String[] array = numbers.stream()
-                                .map(String::valueOf)
-                                .toArray(String[]::new);
-        return String.join(", ", array);
-    }
-
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if(number<1 || number>45){
@@ -46,6 +35,17 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(INVALID_COUNT.getMessage());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public String listToString(){
+        String[] array = numbers.stream()
+                                .map(String::valueOf)
+                                .toArray(String[]::new);
+        return String.join(", ", array);
     }
 
     public int matching(Lotto buyLotto) {

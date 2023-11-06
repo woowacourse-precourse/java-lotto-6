@@ -5,23 +5,36 @@ import static lotto.settings.LottoSettings.LOTTO_NUMBER_SIZE;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.repository.BuyLottoRepository;
 import lotto.repository.RankingRepository;
+import lotto.repository.WinningLottoRepository;
 import lotto.view.View;
 
 public class LotteryTracker {
-    List<List<Integer>> result = new ArrayList<>();
+    static List<List<Integer>> result = new ArrayList<>();
 
-    public void create(){
+    public static LotteryTracker create(){
         RankingRepository.create();
 
         int size = LOTTO_NUMBER_SIZE.getNumber(); // 복권숫자 크기:6
         for(int i = 0; i<= size; i++){
             result.add(new ArrayList<>());
         }
+        return new LotteryTracker();
     }
 
     public int countLottoIn(int index){
         return result.get(index).size();
+    }
+
+    public void matching(BuyLottoRepository buyLottoRepo, WinningLottoRepository winningLottoRepo) {
+        int correctNum =0;
+        int bonusNum = winningLottoRepo.getBonusNumber();
+
+        for (Lotto buyLotto : buyLottoRepo.getLottos()) {
+            correctNum = winningLottoRepo.countMatchingNumber(buyLotto);
+            matchingNumber(correctNum,buyLotto,bonusNum);
+        }
     }
 
     public void matchingNumber(int cnt, Lotto buyLotto, int bonusNum){

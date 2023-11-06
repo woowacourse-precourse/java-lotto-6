@@ -17,6 +17,15 @@ public class LottoNumbers {
         this.lottoNumbers = lottoNumbers;
     }
 
+    public boolean isContainNumber(int number) {
+        for (int lottoNumber : lottoNumbers) {
+            if (lottoNumber == number) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void validate(List<Integer> lottoNumbers){
         Map<Integer, Boolean> useLottoNumber = new HashMap<>();
         for (int lottoNumber : lottoNumbers) {

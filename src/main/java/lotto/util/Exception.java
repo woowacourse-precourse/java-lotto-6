@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoNumberRange;
-import lotto.enums.Message;
 
 public class Exception {
     public static int checkInvalidNumber(String input) {

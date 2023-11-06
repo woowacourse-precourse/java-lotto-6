@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.enums.ErrorMessage;
 import lotto.enums.LottoNumberRange;
 import lotto.util.Exception;
 
@@ -15,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoNumberRange.MIN_SELECT_COUNT.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_COUNT_MISMATCH.getMessage());
         }
     }
 

@@ -36,6 +36,7 @@ public class LottoMachine {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println();
     }
 
     public void drawLottoNumber() {
@@ -67,6 +68,7 @@ public class LottoMachine {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println();
     }
 
     public void drawBonusNumber() {
@@ -79,6 +81,7 @@ public class LottoMachine {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println();
     }
 
     public void getWinningStatistics() {

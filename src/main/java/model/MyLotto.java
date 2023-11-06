@@ -19,13 +19,11 @@ public class MyLotto {
 
     private void validate(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("1000원 단위가 아닌 값을 입력되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 1000원 단위가 아닌 값을 입력되었습니다.");
         }
     }
 
     public List<Lotto> getMyLotto() {
         return Collections.unmodifiableList(this.myLotto);
     }
-
-
 }

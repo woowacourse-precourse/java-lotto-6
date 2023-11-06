@@ -15,7 +15,12 @@ public class FrontController {
     }
 
     private MyLotto buyLotto() {
-        int purchaseAmount = InputView.askPurchaseAmount();
-        return new MyLotto(purchaseAmount);
+        while (true) {
+            try {
+                return new MyLotto(InputView.askPurchaseAmount());
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
     }
 }

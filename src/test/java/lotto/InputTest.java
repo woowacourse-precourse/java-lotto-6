@@ -14,8 +14,7 @@ public class InputTest {
     void createLottoByOverSize() {
         System.setIn(createUserInput("2000r"));
         assertThatThrownBy(InputView::askPurchaseAmount)
-                .isInstanceOf(
-                        NumberFormatException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     InputStream createUserInput(String input) {

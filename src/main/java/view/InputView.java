@@ -11,6 +11,10 @@ public class InputView {
     }
 
     public static int validateNumber(String input) {
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException("[ERROR] 입력된 값이 숫자가 아닙니다.");
+        }
     }
 }

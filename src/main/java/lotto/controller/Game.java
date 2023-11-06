@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constants.ExceptionMessage.IS_DUPLICATE_BONUS_NUMBER;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Comparator;
@@ -21,7 +23,7 @@ public class Game {
     public void start() {
         createPurchaseAmount();
         int purchaseQuantity = purchaseAmount / THOUSAND_UNIT;
-        lottos = issueLottos(purchaseQuantity);
+        issueLottos(purchaseQuantity);
         OutputView.printPurchaseResult(lottos);
         createWinningLotto();
         createBonusNumber();
@@ -41,13 +43,13 @@ public class Game {
         }
     }
 
-    private List<Lotto> issueLottos(int purchaseQuantity) {
+    private void issueLottos(int purchaseQuantity) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchaseQuantity; i++) {
             Lotto lotto = new Lotto(Lotto.issueLotto());
             lottos.add(lotto);
         }
-        return lottos;
+        this.lottos = lottos;
     }
 
     private void createWinningLotto() {
@@ -81,7 +83,7 @@ public class Game {
 
     private void validateDuplicated() {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(IS_DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 

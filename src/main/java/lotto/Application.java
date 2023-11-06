@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.ui.GetPurchaseUI;
 import lotto.ui.GetWinningNumbersUI;
 import lotto.ui.PrintLottoUI;
+import lotto.ui.PrintWinningResultUI;
 
 public class Application {
     private static Purchase getPurchaseAmount(GetPurchaseUI getPurchaseUI) {
@@ -44,7 +45,7 @@ public class Application {
             throw new IllegalArgumentException();
         }
 
-        if(bonusNumber >= 1 && bonusNumber <= 45) {
+        if (bonusNumber >= 1 && bonusNumber <= 45) {
             return bonusNumber;
         }
 
@@ -54,7 +55,7 @@ public class Application {
     private static void isValidBonusNumber(Lotto winningLotto, Integer bonusNumber) {
         List<Integer> winningNumbers = winningLotto.getLotto();
 
-        if(winningNumbers.contains(bonusNumber)) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }
@@ -64,6 +65,7 @@ public class Application {
         GetPurchaseUI getPurchaseUI = new GetPurchaseUI();
         PrintLottoUI printLottoUI = new PrintLottoUI();
         GetWinningNumbersUI winningNumbersUI = new GetWinningNumbersUI();
+        PrintWinningResultUI winningResultUI = new PrintWinningResultUI();
 
         Purchase purchase;
 
@@ -73,6 +75,8 @@ public class Application {
 
         Lotto winningLotto;
         int bonusNumber;
+
+        List<Integer> matchingResult;
 
         while (true) {
             try {
@@ -93,8 +97,6 @@ public class Application {
             printLottoUI.printLotto(lottos.get(i).getLotto());
         }
 
-
-
         while (true) {
             try {
                 winningLotto = getWinningNumbers(winningNumbersUI);
@@ -113,5 +115,11 @@ public class Application {
                 System.out.println(Constants.ERROR_NOT_VALID_BONUS_NUMBER);
             }
         }
+
+
+        Result result = new Result();
+        matchingResult = result.calculateResult(lottos,winningLotto, bonusNumber);
+
+        winningResultUI.printWinningResultUI(matchingResult);
     }
 }

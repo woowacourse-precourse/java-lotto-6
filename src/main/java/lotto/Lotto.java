@@ -29,6 +29,22 @@ public class Lotto {
         return numbers.size() != deletedRepeatingNumbers.size();
     }
 
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        int matchingNumbersCount = 0;
+
+        for (int i = 0; i<Constants.LOTTO_NUMBER_COUNT;i++) {
+            if(winningNumbers.contains(this.numbers.get(i))) {
+                matchingNumbersCount ++;
+            }
+        }
+
+        return matchingNumbersCount;
+    }
+
+    public boolean hasBonusNumber(Integer bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     public List<Integer> getLotto() {
         return this.numbers;
     }

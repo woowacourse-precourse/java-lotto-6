@@ -12,4 +12,10 @@ public class Constants {
     public static final int LOTTO_NUMBER_COUNT = 6;
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
+    public static final String PRIZE_RESULT = "당첨 통계";
+    public static final String PRIZE_MATCH_3 = "3개 일치 (5,000원) - ";
+    public static final String PRIZE_MATCH_4 = "4개 일치 (50,000원) - ";
+    public static final String PRIZE_MATCH_5 = "5개 일치 (1,500,000원) - ";
+    public static final String PRIZE_MATCH_5_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    public static final String PRIZE_MATCH_6 = "6개 일치 (2,000,000,000원) - ";
 }

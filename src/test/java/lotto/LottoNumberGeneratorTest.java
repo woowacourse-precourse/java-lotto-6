@@ -16,12 +16,11 @@ public class LottoNumberGeneratorTest {
     @Test
     public void createNumbers_test() {
         // given
-        List<Integer> numbers = LottoNumberGenerator.createNumbers();
 
         // when
 
         // then
-        assertThat(numbers).hasSize(SIZE)
+        assertThat(LottoNumberGenerator.createNumbers()).hasSize(SIZE)
                 .allMatch(number -> number >= START && number <= END);
     }
 }

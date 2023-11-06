@@ -20,4 +20,16 @@ class LottoMatchResultTest {
         assertThatThrownBy(()->LottoMatchResult.fromMatchedCount(-1, false)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(()->LottoMatchResult.fromMatchedCount(7, false)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void testToString() {
+        LottoMatchResult result1 = LottoMatchResult.MATCHED_4;
+        assertThat(result1.toString()).isEqualTo("4개 일치 (50,000원)");
+
+        LottoMatchResult result2 = LottoMatchResult.MATCHED_3;
+        assertThat(result2.toString()).isEqualTo("3개 일치 (5,000원)");
+
+        LottoMatchResult result3 = LottoMatchResult.MATCHED_5_WITH_BONUS;
+        assertThat(result3.toString()).isEqualTo("5개 일치, 보너스 볼 일치 (30,000,000원)");
+    }
 }

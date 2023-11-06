@@ -50,6 +50,6 @@ public enum LottoMatchResult {
     @Override
     public String toString() {
         DecimalFormat priceFormat = new DecimalFormat("###,###");
-        return name + " (" + priceFormat.format(reward) + ",원)";
+        return name + " (" + priceFormat.format(reward) + "원)";
     }
 }

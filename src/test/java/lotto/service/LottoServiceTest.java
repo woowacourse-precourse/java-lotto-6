@@ -59,7 +59,7 @@ public class LottoServiceTest {
         int price = 1000;
         int bonus = 11;
         List<Lotto> lottos = lottoService.issueNewLotto(price);
-        Lotto winningLotto = new Lotto(List.of(1, 3, 5, 30, 40, 50));
+        Lotto winningLotto = new Lotto(List.of(1, 3, 5, 30, 40, 25));
         //when
         WinningStatisticsDto winningStatistics = lottoService.getWinningStatistics(lottos, winningLotto, bonus);
         //then

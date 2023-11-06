@@ -24,11 +24,25 @@ public class Controller {
         int userPrice = getUserInputPrice();
         List<Lotto> lottos = issueLotto(userPrice);
 
-        Lotto winningLotto = new Lotto(getWinningLottonumbers());
-        int bonus = getInputBonusNumber(winningLotto.getNumbers());
+        Lotto winningLotto = getWinningLotto(getWinningLottonumbers());
+        int bonusNumber = getInputBonusNumber(winningLotto.getNumbers());
 
-        WinningStatisticsDto result = lottoService.getWinningStatistics(lottos, winningLotto, bonus);
+        WinningStatisticsDto result = lottoService.getWinningStatistics(lottos, winningLotto, bonusNumber);
         view.printWinningStatistics(result);
+    }
+
+    private Lotto getWinningLotto(List<Integer> winningLottonumbers) {
+        Lotto winningLotto;
+        while (true) {
+            try {
+                winningLotto = new Lotto(winningLottonumbers);
+                break;
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+                winningLottonumbers = getWinningLottonumbers();
+            }
+        }
+        return winningLotto;
     }
 
     private List<Lotto> issueLotto(int userPrice) {
@@ -45,36 +59,33 @@ public class Controller {
     }
 
     private int getInputBonusNumber(List<Integer> numbers) {
-        String inputNumber;
-
+        String inputBonusNumber;
         while (true) {
             view.printRequestBonusNumber();
-            inputNumber = readInput();
+            inputBonusNumber = readInput();
             try {
-                InputValidator.checkBonusInput(inputNumber, numbers);
+                InputValidator.checkBonusInput(inputBonusNumber, numbers);
                 break;
             } catch (IllegalArgumentException error) {
                 System.out.println(error.getMessage());
             }
         }
-
-        return StringUtils.parseStringToInt(inputNumber);
+        return StringUtils.parseStringToInt(inputBonusNumber);
     }
 
     private int getUserInputPrice() {
         String inputPrice;
-
         while (true) {
             view.printRequestPriceMessage();
             inputPrice = readInput();
             try {
                 InputValidator.checkPriceInput(inputPrice);
+                lottoService.getNumberOfLottoToBeIssued(StringUtils.parseStringToInt(inputPrice));
                 break;
             } catch (IllegalArgumentException error) {
                 System.out.println(error.getMessage());
             }
         }
-
         return StringUtils.parseStringToInt(inputPrice);
     }
 

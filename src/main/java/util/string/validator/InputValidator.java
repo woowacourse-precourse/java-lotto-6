@@ -12,7 +12,6 @@ import util.string.StringUtils;
 public class InputValidator {
     private static final String EMPTY_SPACE = " ";
     private static final int LOTTO_DIGIT_RESTRICTIONS = 6;
-
     private static final int LOTTO_NUMBER_MIN_RANGE = 1;
     private static final int LOTTO_NUMBER_MAX_RANGE = 45;
 
@@ -30,7 +29,6 @@ public class InputValidator {
         checkLastIndexAndThrowException(input);
         List<Integer> numbers = StringUtils.parseLottoNumber(input);
         checkLottoLengthAndThrowException(numbers);
-        checkLottoNumberRangeAndThrowException(numbers);
     }
 
     public static void checkBonusInput(String input, List<Integer> numbers)
@@ -53,14 +51,6 @@ public class InputValidator {
         int x = StringUtils.parseStringToInt(input);
         if (x > LOTTO_NUMBER_MAX_RANGE || x < LOTTO_NUMBER_MIN_RANGE) {
             throw new OutOfNumberRangeException();
-        }
-    }
-
-    private static void checkLottoNumberRangeAndThrowException(List<Integer> numbers) throws IllegalArgumentException {
-        for (int x : numbers) {
-            if (x > LOTTO_NUMBER_MAX_RANGE || x < LOTTO_NUMBER_MIN_RANGE) {
-                throw new OutOfNumberRangeException();
-            }
         }
     }
 

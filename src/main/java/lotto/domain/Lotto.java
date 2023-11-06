@@ -1,9 +1,7 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import lotto.exception.DuplicatedLottoNumberException;
+import util.string.validator.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,11 +12,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        checkLottoNumberDuplicatedAndThrowException(numbers);
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-
+        LottoValidator.checkLottoNumberDuplicatedAndThrowException(numbers);
+        LottoValidator.checkLottoNumberRangeAndThrowException(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -29,11 +27,4 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    private void checkLottoNumberDuplicatedAndThrowException(List<Integer> numbers)
-            throws IllegalArgumentException {
-        Set<Integer> set = new HashSet<>(numbers);
-        if (set.size() != numbers.size()) {
-            throw new DuplicatedLottoNumberException();
-        }
-    }
 }

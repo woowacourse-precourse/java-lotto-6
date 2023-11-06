@@ -9,11 +9,15 @@ import lotto.model.LottoAnswer;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.Rank;
+import lotto.view.Output;
 import lotto.view.input.BonusNumberInput;
 import lotto.view.input.Input;
 import lotto.view.input.LottoAnswerInput;
 
 public class LottoManager {
+
+    private final static String INSTRUCTION_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private final static String ERROR_MESSAGE_LOTTO_CONTAINS_BONUS = "보너스 번호가 로또 번호에 포함되어 있습니다.";
 
     private final static String DELIMITER = ",";
 
@@ -47,14 +51,15 @@ public class LottoManager {
     private BonusNumber readBonusNumber(Lotto answer) {
         Input input = new BonusNumberInput();
         BonusNumber bonusNumber;
+        Output.printMessage(INSTRUCTION_MESSAGE);
         while (true) {
             try {
                 String numberInput = input.readLine();
                 bonusNumber = new BonusNumber(Integer.parseInt(numberInput));
                 bonusNumberValidation(answer, bonusNumber);
                 break;
-            } catch (IllegalArgumentException ignore) {
-
+            } catch (IllegalArgumentException errorMessage) {
+                Output.printErrorMessage(errorMessage.getMessage());
             }
         }
         return bonusNumber;
@@ -62,7 +67,7 @@ public class LottoManager {
 
     private void bonusNumberValidation(Lotto answer, BonusNumber bonusNumber) {
         if (answer.isContainBonusNumber(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_CONTAINS_BONUS);
         }
     }
 

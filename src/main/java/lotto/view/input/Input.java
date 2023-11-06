@@ -1,6 +1,7 @@
 package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.Output;
 
 public abstract class Input {
 
@@ -12,8 +13,8 @@ public abstract class Input {
                 input = Console.readLine();
                 validate(input);
                 break;
-            } catch (IllegalArgumentException ignored) {
-
+            } catch (IllegalArgumentException exception) {
+                Output.printErrorMessage(exception.getMessage());
             }
         }
 

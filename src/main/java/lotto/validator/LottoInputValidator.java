@@ -7,6 +7,9 @@ import java.util.Set;
 
 public class LottoInputValidator implements InputValidator {
 
+    private final static String ERROR_CONTAINS_DUPLICATE_NUMBER = "중복된 숫자가 포함되어 있습니다.";
+    private final static String ERROR_LENGTH_IS_NOT_SIX = "번호의 길이는 6이어야 합니다.";
+
     private final static String DELIMITER = ",";
     private final static int NUMBERS_LENGTH = 6;
 
@@ -17,8 +20,8 @@ public class LottoInputValidator implements InputValidator {
     public void validate(String input) {
         setInputStrings(input);
         throwIfContainsInvalidNumber();
-        throwIfContainsDuplicateNumber();
         throwIfLengthIsNotSix();
+        throwIfContainsDuplicateNumber();
     }
 
     private void setInputStrings(String input) {
@@ -33,14 +36,14 @@ public class LottoInputValidator implements InputValidator {
 
     private void throwIfLengthIsNotSix() {
         if (inputStrings.size() != NUMBERS_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_LENGTH_IS_NOT_SIX);
         }
     }
 
     private void throwIfContainsDuplicateNumber() {
         Set<String> duplicateChecker = new HashSet<>(inputStrings);
         if (duplicateChecker.size() != NUMBERS_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_CONTAINS_DUPLICATE_NUMBER);
         }
     }
 }

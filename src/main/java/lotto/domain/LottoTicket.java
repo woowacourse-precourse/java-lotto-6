@@ -18,4 +18,8 @@ public class LottoTicket {
         }
     }
 
+    @Override
+    public String toString() {
+        return lotto.toString();
+    }
 }

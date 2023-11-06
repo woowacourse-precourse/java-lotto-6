@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.view.Messages.AMOUNT_OF_TICKET_MESSAGE;
+
 import lotto.domain.LottoTicket;
 import lotto.domain.LottoTickets;
 import lotto.domain.Store;
@@ -19,8 +21,14 @@ public class LottoController {
     }
 
     public void run() {
-        int budget = readBudget();
-        LottoTickets lottoTickets = store.sellLottoTickets(budget);
+        budget = readBudget();
+        lottoTickets = store.sellLottoTickets(budget);
+        printLottoTickets();
+    }
+
+    private void printLottoTickets() {
+        OutputView.println(lottoTickets.getSizeOfLottoTickets() + AMOUNT_OF_TICKET_MESSAGE);
+        OutputView.println(lottoTickets.toString());
     }
 
     private int readBudget() throws IllegalArgumentException {

@@ -1,9 +1,14 @@
 package lotto.domain;
 
+import static lotto.view.Messages.CLOSE_BRACKET;
+import static lotto.view.Messages.COMMA_WITH_SPACE;
+import static lotto.view.Messages.OPEN_BRACKET;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -46,5 +51,18 @@ public class Lotto {
         if (minNumber < LOWER_BOUND_OF_NUMBER || maxNumber > UPPER_BOUND_OF_NUMBER) {
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public String toString() {
+        String result = String.join(COMMA_WITH_SPACE, converToStringList());
+        return OPEN_BRACKET + result + CLOSE_BRACKET;
+    }
+
+    public List<String> converToStringList() {
+        return numbers.stream()
+                .sorted()
+                .map(number -> Integer.toString(number))
+                .collect(Collectors.toList());
     }
 }

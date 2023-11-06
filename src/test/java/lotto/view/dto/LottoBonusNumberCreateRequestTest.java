@@ -1,6 +1,5 @@
-package lotto.dto;
+package lotto.view.dto;
 
-import lotto.view.dto.LottoBonusNumberCreateRequest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;

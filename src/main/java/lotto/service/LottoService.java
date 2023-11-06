@@ -21,10 +21,8 @@ import lotto.domain.PurchasePrice;
 
 public class LottoService {
 
-
     public List<Lotto> purchaseLottos(PurchasePrice purchasePrice) {
         List<Lotto> lottos = new ArrayList<>();
-        //굳이 보여줘야할까 밑에 내용
         int purchaseCount = purchasePrice.calculatePurchaseCount();
         for (int i = 0; i < purchaseCount; i++) {
             Lotto lotto = purchaseLotto();
@@ -39,8 +37,7 @@ public class LottoService {
         return new Lotto(lottoNumbers);
     }
 
-
-    public void checkLotteryNumbers(Player player, LotteryNumbers lotteryNumbers) {
+    public void checkWinningResult(Player player, LotteryNumbers lotteryNumbers) {
         List<Lotto> lottos = player.getLottos();
         List<LotteryResult> lotteryResults = lottos.stream()
                 .map((lotto -> compareLotteryNumbers(lotto, lotteryNumbers)))

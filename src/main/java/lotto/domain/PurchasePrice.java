@@ -17,12 +17,12 @@ public class PurchasePrice {
         return new PurchasePrice(value);
     }
 
+    public int calculatePurchaseCount() {
+        return price / LOTTO_PRICE;
+    }
 
     public int getPrice() {
         return price;
     }
 
-    public int calculatePurchaseCount() {
-        return price / LOTTO_PRICE;
-    }
 }

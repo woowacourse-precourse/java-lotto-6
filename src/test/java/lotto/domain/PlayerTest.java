@@ -34,7 +34,7 @@ public class PlayerTest {
         //given
         LotteryNumbers lotteryNumbers = LotteryNumbers.of(winngingLotto, bonusNumber);
         //when
-        lottoService.checkLotteryNumbers(player, lotteryNumbers);
+        lottoService.checkWinningResult(player, lotteryNumbers);
         double result = player.findRateOfRevenue();
         //then
         assertThat(result).isEqualTo(expectResult);

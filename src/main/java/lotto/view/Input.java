@@ -40,8 +40,6 @@ public class Input {
     }
 
     private String defaultReadLine() {
-        String input = Console.readLine();
-        new Output();
-        return input;
+        return Console.readLine();
     }
 }

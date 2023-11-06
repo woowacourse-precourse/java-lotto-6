@@ -51,7 +51,7 @@ public class LottoController {
 
     private void playGame(Player player) {
         LotteryNumbers lotteryNumbers = createLotteryNumbers();
-        lottoService.checkLotteryNumbers(player, lotteryNumbers);
+        lottoService.checkWinningResult(player, lotteryNumbers);
     }
 
     private LotteryNumbers createLotteryNumbers() {

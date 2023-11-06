@@ -40,7 +40,7 @@ public class LottoServiceTest {
         //given
         LotteryNumbers lotteryNumbers = LotteryNumbers.of(winngingLotto, bonusNumber);
         //when
-        lottoService.checkLotteryNumbers(player, lotteryNumbers);
+        lottoService.checkWinningResult(player, lotteryNumbers);
         Map<LotteryResult, Integer> lotteryResults = player.getLotteryResults();
         Integer resultCount = lotteryResults.get(expectResult);
         //then

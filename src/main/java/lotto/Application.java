@@ -11,16 +11,49 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        // 구매 금액 입력
+        try {
+            int cash = getPurchaseAmount(); // 구매 금액 입력 : 입력한 현금 금액 ex) 14000
+            int numberOfLotto = calculateNumberOfLotto(cash); // 구매한 로또 개수 출력
+            System.out.println(numberOfLotto + "개를 구매했습니다.");
+
+            // Lotto 클래스 타형 인스턴스를 보관할 lottoes 배열 생성
+            List<Lotto> lottos = buyLottos(numberOfLotto);
+
+            // 구매한 로또 번호 출력
+            for (Lotto lotto : lottos) {
+                System.out.println(lotto.getNumbers());
+            }
+
+            List<Integer> winningNumbers = getWinningNumbers(); // 당첨 번호 입력
+            System.out.println();
+            int bonus = getBonusNumber(); // 보너스 점수 입력
+
+            int[] matchCounts = checkMatchingCounts(lottos, winningNumbers, bonus);
+
+            printWinningStats(matchCounts);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
+    }
+
+
+    private static int getPurchaseAmount() {
         System.out.println("구매금액을 입력해 주세요.");
-        String Input = Console.readLine();
-        int cash = parseInt(Input); // 입력한 현금 금액 ex) 14000
+        String input = Console.readLine();
+        return parseInt(input);
+    }
 
-        // 구매한 로또 개수 출력
-        int numberOfLotto = CalcCash(cash);
-        System.out.println(numberOfLotto + "개를 구매했습니다.");
+    private static int calculateNumberOfLotto(int cash) { // 입력한 금액을 로또로 환산
+        if (cash < 1000) {
+            throw new IllegalArgumentException("로또는 1000원 이상부터 구매 가능합니다.");
+        }
+        if (cash % 1000 != 0) {
+            throw new IllegalArgumentException("로또는 천 원 단위로만 구매 가능합니다.");
+        }
+        return cash / 1000;
+    }
 
-        // Lotto 클래스 타형 인스턴스를 보관할 lottoes 배열 생성
+    private static List<Lotto> buyLottos(int numberOfLotto) {
         List<Lotto> lottos = new ArrayList<>();
 
         //구매한 로또 개수만큼 숫자 뽑아내기
@@ -31,46 +64,43 @@ public class Application {
             Collections.sort(numbers); // 로또 번호를 오름차순으로 정렬
             lottos.add(lotto); // lottoes 배열에 개별 lotto 들을 추가
         }
+        return lottos;
+    }
 
-        // 구매한 로또 번호 출력
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
-
-        // 당첨 번호 입력
+    // 당첨 번호 입력
+    private static List<Integer> getWinningNumbers() {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningInput = Console.readLine();
-        String[] winningNumbersStr = winningInput.split(",");
+        return parseNumbers(winningInput);
+    }
 
-        List<Integer> winningNumbers = new ArrayList<>();
-        for (String number : winningNumbersStr) {
-            winningNumbers.add(Integer.parseInt(number.trim()));
-        }
-        System.out.println();
-
-        // 보너스 번호 입력
+    // 보너스 번호 입력
+    private static int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusInput = Console.readLine();
-        int bonus = parseInt(bonusInput);
+        return parseInt(bonusInput);
+    }
 
-
-        // 일치 조건 찾기
-        int[] prizeMoney = {0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000}; // 각 등수별 상금 (0, 1, 2, 3, 4, 5, 5+b, 6) - 5+b 는 인덱스 6, 6은 7번 인덱스
+    // 일치 조건 찾기
+    private static int[] checkMatchingCounts(List<Lotto> lottos, List<Integer> winningNumbers, int bonus) {
         int[] matchCounts = new int[8]; // 일치하는 숫자 개수를 담는 배열
-
         for (Lotto lotto : lottos) {
             int matchCount = countMatchingNumbers(lotto.getNumbers(), winningNumbers); //당첨 번호와 몇개가 일치하는 지. ex) 5개가 일치한다.
             boolean hasBonus = lotto.getNumbers().contains(bonus); //보너스 숫자를 포함하는지 ex) 보너스 점수도 맞다
             matchCounts[getMatchIndex(matchCount, hasBonus)]++; // ex) 5개가 일치하므로 6번 인덱스에 +1
-
         }
+        return matchCounts;
+    }
 
+    // 일치 조건 출력
+    private static void printWinningStats(int[] matchCounts) {
         // 결과 출력
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        int[] prizeMoney = {0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000}; // 각 등수별 상금 (0, 1, 2, 3, 4, 5, 5+b, 6) - 5+b 는 인덱스 6, 6은 7번 인덱스
         String[] prizeNames = {"", "", "", "(5,000원)", "(50,000원)", "(1,500,000원)", "(30,000,000원)", "(2,000,000,000원)"}; // 0, 1, 2, 3, 4, 5, 5+b, 6
 
         for (int i = 3; i < matchCounts.length; i++) {
@@ -80,7 +110,6 @@ public class Application {
             }
             if (i == 6) { //5개가 일치하고, 보너스볼이 일치
                 System.out.println("5 개 일치, 보너스 볼 일치 " + prizeNames[i] + " - " + count + "개");
-                continue;
             }
             if (i == 7) { //6개가 모두 맞을 경우
                 System.out.println("6 개 일치 " + prizeNames[i] + " - " + count + "개");
@@ -88,12 +117,14 @@ public class Application {
         }
     }
 
-    private static int CalcCash(int cash) {  // 입력한 금액을 로또로 환산
-        int numberOfLotto = 0;
-        if (cash % 1000 == 0) {
-            numberOfLotto = cash / 1000;
+
+    private static List<Integer> parseNumbers(String input) {
+        String[] numbersStr = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : numbersStr) {
+            numbers.add(parseInt(number.trim()));
         }
-        return numberOfLotto;
+        return numbers;
     }
 
     // 일치하는 번호 개수를 계산하는 메서드

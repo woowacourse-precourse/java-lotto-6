@@ -25,16 +25,21 @@
 6 개가 다 일치하는 경우는 인덱스 7에 배정
 
 
-### 4) 입력 조건 예외 처리
+### 4) **입**력 조건 예외 처리
 
 
+### 5) 중간 리팩토링
+- CalcCash -> calculateNuimberOfLotto
+- 금액 입력 받기 -> getPurchaseAmount 메서드로 만들기
+- 당첨 번호, 보너스 번호 입력 메서드로 만들기 : getWinningNumbers, getBonusNumber
+- 일치 조건 찾기와, 및 출력 분리
+- 
 #### 5) 수익률 기능 추가
 
 수익률 오버플로우
 
 
 ```agsl
-// 아래 코드는 이미 당첨 통계를 계산한 코드를 가정하여 작성되었습니다.
         // 수익 계산
         // 전체 상금
         double totalPrize = calculateTotalPrize(matchCounts, prizeMoney);
@@ -47,7 +52,7 @@
         System.out.println("총 수익률은 " + profitRate + "% 입니다.");
 
 
-// 총 수익 계산하는 메서드
+    // 총 수익 계산하는 메서드
     private static double calculateTotalPrize(int[] matchCounts, int[] prizeMoney) {
         double totalPrize = 0;
         for (int i = 3; i < matchCounts.length; i++) {

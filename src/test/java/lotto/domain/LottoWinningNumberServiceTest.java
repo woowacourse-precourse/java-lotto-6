@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-class LottoWinningNumberTest {
+class LottoWinningNumberServiceTest {
     @Test
     void 당첨_번호_생성_테스트() {
         LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);

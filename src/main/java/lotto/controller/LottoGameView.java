@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.controller.dto.LottoBonusNumberCreateRequest;
-import lotto.controller.dto.LottoPurchaseRequest;
-import lotto.controller.dto.LottoResponse;
-import lotto.controller.dto.LottoWinningNumberCreateRequest;
-import lotto.controller.dto.LottoWinningStatistics;
+import lotto.view.dto.LottoBonusNumberCreateRequest;
+import lotto.view.dto.LottoPurchaseRequest;
+import lotto.view.dto.LottoResponse;
+import lotto.view.dto.LottoWinningNumberCreateRequest;
+import lotto.view.dto.LottoWinningStatistics;
 
 public interface LottoGameView {
     LottoPurchaseRequest inputPurchaseRequest();

@@ -1,4 +1,4 @@
-package lotto.controller.dto;
+package lotto.view.dto;
 
 import lotto.exception.ExceptionMessage;
 

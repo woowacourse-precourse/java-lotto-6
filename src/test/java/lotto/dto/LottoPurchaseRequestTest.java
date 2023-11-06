@@ -1,7 +1,7 @@
 package lotto.dto;
 
 
-import lotto.controller.dto.LottoPurchaseRequest;
+import lotto.view.dto.LottoPurchaseRequest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;

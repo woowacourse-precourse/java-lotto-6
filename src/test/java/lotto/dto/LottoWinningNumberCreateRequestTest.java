@@ -3,7 +3,7 @@ package lotto.dto;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.controller.dto.LottoWinningNumberCreateRequest;
+import lotto.view.dto.LottoWinningNumberCreateRequest;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;

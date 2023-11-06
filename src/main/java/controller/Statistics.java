@@ -20,7 +20,6 @@ public class Statistics {
 		//this.winning_nums=winning_nums;
 		this.bonus=bonus;
 		this.lotto=lotto;
-		//System.out.println("당첨 통계\n---");
 		//getStatistics();
 	}
 	
@@ -40,18 +39,19 @@ public class Statistics {
 	}*/
 	
 	public int [] compareNumbers() {	
-		int [] arr=new int[CORRECT_CNT];
+		int [] mathcing_types=new int[CORRECT_CNT];
+		
 		for(List<Integer> nums:lottery_list) {
 			int cnt=countMatchingNums(nums);
 			boolean lucky=luckyThough(nums);
-			arr=classifyWinningTypes(cnt, lucky);
+			mathcing_types=classifyWinningTypes(cnt, lucky);
 		}
-		return arr;
+		return mathcing_types;
 	}
 	
 	public double getRateOfReturn(int winnings) {
 		double rate=winnings*100.0/(lottery_list.size()*UNIT_PRICE);
-		//System.out.println("총 수익률은 "+String.format("%,.1f", rate)+"%입니다.");
+		
 		return rate;
 	}
 	

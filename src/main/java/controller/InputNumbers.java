@@ -11,11 +11,11 @@ public class InputNumbers {
 
 	private Lotto lotto;
 	
-    public Lotto select_numbers() {
+    public Lotto select_numbers(String input) {
     	//List<Integer> numbers;
     	while(true) {
     		try {
-    			convert_lotto_numbers();
+    			convert_lotto_numbers(input);
 	    		break;
     		} catch(IllegalArgumentException e) {
     			warning(e);
@@ -25,8 +25,8 @@ public class InputNumbers {
     	return lotto;
     }
     
-    private void convert_lotto_numbers() {
-    	String selected=Console.readLine();
+    public void convert_lotto_numbers(String selected) {
+    	//String selected=Console.readLine();
 		List<Integer> numbers=convertToList(selected);
 		lotto=new Lotto(numbers);
     }
@@ -36,11 +36,11 @@ public class InputNumbers {
 		e.printStackTrace();
     }
     
-    public int select_bonus() {
+    public int select_bonus(String input) {
     	int bonus;
     	while(true) {
     		try {
-	    		bonus=convert_bonus_number();
+	    		bonus=convert_bonus_number(input);
 	    		break;
     		} catch(IllegalArgumentException e) {
     			warning(e);
@@ -49,8 +49,8 @@ public class InputNumbers {
     	return bonus;
     }
     
-    private int convert_bonus_number() {
-    	String bonusStr=Console.readLine();
+    private int convert_bonus_number(String bonusStr) {
+    	//String bonusStr=Console.readLine();
 		int bonus=naN(bonusStr);
 		lotto.valueOutOfBoundary(bonus);
 		
@@ -89,7 +89,7 @@ public class InputNumbers {
     	return input;
     }
     
-    private List<Integer> convertToList(String selected) {
+    public List<Integer> convertToList(String selected) {
     	selected=flexibleAcceptance(selected);
     	String [] splitStrs=selected.split(",");
     	

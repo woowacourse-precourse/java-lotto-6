@@ -11,9 +11,6 @@ import static model.Data.*;
 
 public class RunGame {
 	
-	private final InputMoney money_in=new InputMoney();
-	private final InputNumbers numbers_in=new InputNumbers();
-	
 	private static int lotto_count;
 	private static List<List<Integer>> lottery_list=new ArrayList<List<Integer>>();
 	//private static List<Integer> winning_nums;
@@ -30,14 +27,11 @@ public class RunGame {
 		purchaseGuide();
 		issueGuide();
 		numbersGuide();
-	}*/
-	
-	public void purchaseGuide() {
-		//System.out.println("구입금액을 입력해 주세요.");
-		
-		lotto_count=money_in.purchase_lotto()/UNIT_PRICE;
-		//System.out.println("\n"+lotto_count+"개를 구매했습니다.");
 	}
+	
+	private void purchaseGuide() {
+		lotto_count=money_in.purchase_lotto()/UNIT_PRICE;
+	}*/
 	
 	public List<List<Integer>> issueGuide(int lotto_count) {		
 		for(int i=0;i<lotto_count;i++) {
@@ -51,14 +45,15 @@ public class RunGame {
 		//Collections.sort(numbers);
 		
 		lottery_list.add(numbers);
-		//System.out.println(numbers);
 	}
 	
-	public void numbersGuide() {
+	/*public void numbersGuide() {
 		System.out.println("당첨 번호를 입력해 주세요.");
-		lotto=numbers_in.select_numbers();
+		String num_input=Console.readLine();
+		lotto=numbers_in.select_numbers(num_input);
 		
 		System.out.println("\n보너스 번호를 입력해 주세요.");
-		bonus=numbers_in.select_bonus();
-	}
+		String bonus_input=Console.readLine();
+		bonus=numbers_in.select_bonus(bonus_input);
+	}*/
 }

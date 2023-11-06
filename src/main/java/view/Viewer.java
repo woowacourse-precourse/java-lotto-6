@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Console;
 import controller.InputMoney;
 import controller.InputNumbers;
 import controller.RunGame;
@@ -49,10 +50,12 @@ public class Viewer {
 	
 	private void numbersGuide() {
 		announcer.winning_num_guidance();
-		lotto=numbers_in.select_numbers();
+		String num_input=Console.readLine();
+		lotto=numbers_in.select_numbers(num_input);
 		
 		announcer.bonus_guidance();
-		bonus=numbers_in.select_bonus();
+		String bonus_input=Console.readLine();
+		bonus=numbers_in.select_bonus(bonus_input);
 		
 		stat=new Statistics(lottery_list, bonus, lotto);
 	}

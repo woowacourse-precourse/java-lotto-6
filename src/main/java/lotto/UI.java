@@ -12,6 +12,10 @@ public class UI {
         return validateMoney(input);
     }
 
+    public static void printLottos(int amount, List<Lotto> lottos){
+
+    }
+
     public static List<Integer> getWinningNumber(){
         return null;
     }

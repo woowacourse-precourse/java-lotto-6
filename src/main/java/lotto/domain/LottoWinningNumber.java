@@ -15,8 +15,7 @@ public class LottoWinningNumber {
         validateNumbersSize(numbers);
         validateDuplicateNumbers(numbers);
 
-        for (int i = 0; i < numbers.size(); ++i) {
-            int number = numbers.get(i);
+        for (int number : numbers) {
             validNumber(number);
             this.numbers.add(number);
         }
@@ -47,10 +46,6 @@ public class LottoWinningNumber {
     }
 
     public boolean containsNumber(int number) {
-        if (numbers.contains(number)) {
-            return true;
-        }
-
-        return false;
+        return numbers.contains(number);
     }
 }

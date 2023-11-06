@@ -6,6 +6,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.validation.AmountValidator;
 import lotto.util.validation.LottoNumberValidator;
+import lotto.util.validation.WinningLottoValidator;
 
 public class InputView {
     private static final String DELIMITER = ",";
@@ -38,18 +39,25 @@ public class InputView {
         validator.validate(inputAmount);
     }
 
-    public int readBonusNumber() {
+    public int readBonusNumber(final List<Integer> winningNumbers) {
         while (true) {
             System.out.println();
             System.out.println(BONUS_NUMBER_MESSAGE);
             try {
                 final String inputBonusNumber = Console.readLine();
                 validateLottoNumber(inputBonusNumber);
-                return Integer.parseInt(inputBonusNumber);
+                final int bonusNumber = Integer.parseInt(inputBonusNumber);
+                validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
             } catch (final IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    private void validateBonusNumber(final int bonusNumber, final List<Integer> winningNumbers) {
+        final WinningLottoValidator validator = new WinningLottoValidator(bonusNumber);
+        validator.validate(winningNumbers);
     }
 
     public List<Integer> readWinningNumbers() {

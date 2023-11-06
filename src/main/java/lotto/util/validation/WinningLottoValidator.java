@@ -2,9 +2,9 @@ package lotto.util.validation;
 
 import static lotto.exception.ExceptionMessage.DUPLICATE_BONUS_NUMBER;
 
-import lotto.model.Lotto;
+import java.util.List;
 
-public class WinningLottoValidator extends AbstractValidator<Lotto> {
+public class WinningLottoValidator extends AbstractValidator<List<Integer>> {
     private final int bonusNumber;
 
     public WinningLottoValidator(final int bonusNumber) {
@@ -12,13 +12,13 @@ public class WinningLottoValidator extends AbstractValidator<Lotto> {
     }
 
     @Override
-    public void validate(final Lotto winningLottoTicket) {
-        validateNotNull(winningLottoTicket);
-        validateDuplicateLottoNumber(winningLottoTicket);
+    public void validate(final List<Integer> winningNumbers) {
+        validateNotNull(winningNumbers);
+        validateDuplicateLottoNumber(winningNumbers);
     }
 
-    private void validateDuplicateLottoNumber(final Lotto winningLottoTicket) {
-        if (winningLottoTicket.isContainsNumber(bonusNumber)) {
+    private void validateDuplicateLottoNumber(final List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.format());
         }
     }

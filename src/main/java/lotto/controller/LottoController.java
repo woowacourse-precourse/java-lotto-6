@@ -37,7 +37,7 @@ public class LottoController {
 
     private LottoResult announceWinningLotto() {
         final List<Integer> inputWinningNumbers = inputView.readWinningNumbers();
-        final int inputBonusNumber = inputView.readBonusNumber();
+        final int inputBonusNumber = inputView.readBonusNumber(inputWinningNumbers);
         return new LottoResult(inputWinningNumbers, inputBonusNumber, lottoManager);
     }
 

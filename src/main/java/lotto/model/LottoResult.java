@@ -9,9 +9,9 @@ public class LottoResult {
     private final Lotto winningLottoTicket;
     private final int bonusNumber;
 
-    public LottoResult(final List<Integer> numbers, final int inputBonusNumber, final LottoManager lottoManager) {
+    public LottoResult(final List<Integer> numbers, final int bonusNumber, final LottoManager lottoManager) {
         winningLottoTicket = lottoManager.createWinningLottoTicket(numbers);
-        bonusNumber = lottoManager.createBonusNumber(winningLottoTicket, inputBonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public LottoGrade calculateGrade(final Lotto lottoTicket) {

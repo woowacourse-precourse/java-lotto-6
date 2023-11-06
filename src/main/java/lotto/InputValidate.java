@@ -11,4 +11,10 @@ public class InputValidate {
         }
         return true;
     }
+
+    public int changeInt(String s){
+        return parseInt(s);
+    }
+
+
 }

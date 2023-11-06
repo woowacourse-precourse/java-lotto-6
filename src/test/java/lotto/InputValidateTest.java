@@ -14,4 +14,10 @@ public class InputValidateTest {
         assertThrows(IllegalArgumentException.class, () -> inputValidate.isThereGap(""));
         assertEquals(true, inputValidate.isThereGap("1"));
     }
+
+    @Test
+    void String이_int로_리턴되는지_확인(){
+        InputValidate inputValidate = new InputValidate();
+        assertEquals(8000, inputValidate.changeInt("8000"));
+    }
 }

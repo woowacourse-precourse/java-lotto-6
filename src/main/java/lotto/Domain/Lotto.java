@@ -35,4 +35,8 @@ public class Lotto {
             throw ExceptionMessage.INPUT_DUPLICATE.throwexception();
         }
     }
+
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
 }

@@ -52,7 +52,7 @@ public class Lotteries {
                 + statistics.get(RankConstant.FOURTH) * RankConstant.FOURTH_WINNINGS
                 + statistics.get(RankConstant.FIFTH) * RankConstant.FIFTH_WINNINGS;
 
-        double profitPercentage = (totalReturn / (double) inputMoney) * 100;
+        double profitPercentage = (totalReturn / (double) inputMoney) * RegularConstant.PERCENT;
 
         return roundToTwoDecimalPlaces(profitPercentage);
     }

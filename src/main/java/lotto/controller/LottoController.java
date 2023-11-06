@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import java.util.List;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoTicket;
 import lotto.view.InputView;
@@ -17,11 +18,18 @@ public class LottoController {
 
     public void play() {
         setUp();
-        LottoGame lottoGame = LottoGame.init(inputView.inputWinnerNumbers(), inputView.inputBonusNumber());
+        Lotto lotto = new Lotto(inputView.inputWinnerNumbers());
+        BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
+        LottoGame lottoGame = LottoGame.by(lotto, bonusNumber);
     }
 
     private void setUp() {
-        LottoTicket lottoTicket = LottoTicket.create(inputView.inputBudget());
-        outputView.printTicket(lottoTicket);
+        try {
+            LottoTicket lottoTicket = LottoTicket.create(inputView.inputBudget());
+            outputView.printTicket(lottoTicket);
+        } catch (IllegalArgumentException exception) {
+            inputView.printExceptionMessage(exception);
+            setUp();
+        }
     }
 }

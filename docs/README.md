@@ -6,7 +6,7 @@
 
 ## 기능 구현 목표
 ### Flow
-![Flow.png](Flow.png)
+![FlowDiagram.png](FlowDiagram.png)
 
 ### 세부 기능
 0. 모든 에러는 `[ERROR]`로 시작한다.

@@ -31,6 +31,16 @@ public class ResultCalculationSystem {
         }
     }
 
+    private List<Pair> initAndSortWinningAndBonusNumbers(List<Integer> lottoWinningNumbers, int bonusNumber) {
+        List<Pair> winningAndBonusNumbers = new ArrayList<>();
+        lottoWinningNumbers
+                .iterator()
+                .forEachRemaining(number -> winningAndBonusNumbers.add(new Pair(number, NumberType.WINNING_NUMBER)));
+        winningAndBonusNumbers.add(new Pair(bonusNumber, NumberType.BONUS_NUMBER));
+        winningAndBonusNumbers.sort((o1, o2) -> o1.getNumber() - o2.getNumber());
+        return winningAndBonusNumbers;
+    }
+
     //죄송합니다... 15줄 제한 요구를 지킬 방법이 생각이 나지 않습니다....
     private void checkRankingOfLotto(List<Integer> lottoNumbers, List<Pair> winningAndBonusNumbers) {
         int correctWinningNumber = 0;
@@ -59,16 +69,6 @@ public class ResultCalculationSystem {
         int ranking = calculateRanking(correctWinningNumber, correctBonusNumber);
         if (ranking != 0)
             rankingAccumulator.get(ranking).increaseNumberOfWins();
-    }
-
-    private List<Pair> initAndSortWinningAndBonusNumbers(List<Integer> lottoWinningNumbers, int bonusNumber) {
-        List<Pair> winningAndBonusNumbers = new ArrayList<>();
-        lottoWinningNumbers
-                .iterator()
-                .forEachRemaining(number -> winningAndBonusNumbers.add(new Pair(number, NumberType.WINNING_NUMBER)));
-        winningAndBonusNumbers.add(new Pair(bonusNumber, NumberType.BONUS_NUMBER));
-        winningAndBonusNumbers.sort((o1, o2) -> o1.getNumber() - o2.getNumber());
-        return winningAndBonusNumbers;
     }
 
     private int calculateRanking(int correctWinningNumber, int correctBonusNumber) {

@@ -4,23 +4,21 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.Lotto;
 import lotto.message.ErrorMessage;
-import lotto.message.InputGuideMessage;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static lotto.message.InputGuideMessage.*;
 
 public class Application {
+    static ResultCalculationSystem resultCalculationSystem = new ResultCalculationSystem();
     static final String REGEX_FOR_INPUT_LOTTO_PAYMENT = "^[0-9]+$";
     static final String REGEX_FOR_LOTTO_NUMBER_RANGE = "^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^[4]{1}[0-5]{1}$";
 
     static List<Lotto> lottos = new ArrayList<>();
-    static ResultCalculationSystem resultCalculationSystem = new ResultCalculationSystem();
 
     public static void main(String[] args) {
         System.out.println(PLEASE_ENTER_LOTTO_PAYMENT_MESSAGE.getMessage());
@@ -36,8 +34,7 @@ public class Application {
         createNewLottos(numberOfLotto);
 
         System.out.printf(INFORM_HOW_MANY_LOTTOS_WERE_PURCHASED_MESSAGE.getMessage(), numberOfLotto);
-        for (Lotto lotto : lottos)
-            lotto.printNumber();
+        printLottos();
 
         resultCalculationSystem.makeWinningResult(lottos, lottoWinningNumbers, bonusNumber);
         resultCalculationSystem.calculateRateOfReturn(desiredPurchaseAmount);
@@ -53,8 +50,14 @@ public class Application {
                 lottos.add(new Lotto(lottoNumbers));
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.INVALID_LOTTO_NUMBERS_COUNT_ERROR.getMessage());
+                i--;
             }
         }
+    }
+
+    private static void printLottos() {
+        for (Lotto lotto : lottos)
+            lotto.printNumber();
     }
 
     private static int validateEnteredLottoPayment() {

@@ -15,9 +15,15 @@ public class LottoController {
         // 구입 금액 입력
         OutputView.printRequestPurchaseAmount();
         InputView.readLine();
+
         // 로또 구매 결과 출력
+        OutputView.printResponsePurchaseAmount(1);
+
         // 당첨 번호 입력
+
         // 보너스 번호 입력
+
+
         // 당첨 통계 출력
     }
 

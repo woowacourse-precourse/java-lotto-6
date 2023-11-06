@@ -34,7 +34,7 @@ class LottoMoneyTest {
         LottoMoney lottoMoney = new LottoMoney(money);
 
         //when
-        int count = lottoMoney.calculatePurchasableCount(1000);
+        int count = lottoMoney.calculatePurchasableCount();
 
         //then
         Assertions.assertThat(count).isEqualTo(expected);

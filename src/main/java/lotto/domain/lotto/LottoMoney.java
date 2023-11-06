@@ -15,7 +15,11 @@ public class LottoMoney {
         }
     }
 
-    public int calculatePurchasableCount(int prizePerLotto) {
-        return money / prizePerLotto;
+    public int calculatePurchasableCount() {
+        return money / 1000;
+    }
+
+    public float calculateProfitRate(float winningMoney) {
+        return (winningMoney / money) * 100;
     }
 }

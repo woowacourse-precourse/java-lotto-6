@@ -15,7 +15,7 @@ public class LottosMachine {
     }
 
     public Lottos buy(LottoMoney lottoMoney) {
-        int count = lottoMoney.calculatePurchasableCount(1000);
+        int count = lottoMoney.calculatePurchasableCount();
         List<Lotto> lottos = IntStream.range(0, count)
                 .mapToObj(i -> lottoGenerator.create())
                 .toList();

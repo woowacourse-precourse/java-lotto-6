@@ -1,8 +1,7 @@
 package lotto.domain;
 
 import static lotto.domain.ErrorMessage.*;
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ import java.util.List;
 class LottoTest {
 
     @Test
-    @DisplayName("기능1,2 테스트 : 입력된 숫자 리스트에 이상이 없으면 로또가 하나 정상적으로 발행된다.")
+    @DisplayName("기능01,02 테스트 : 입력된 숫자 리스트에 이상이 없으면 로또가 하나 정상적으로 발행된다.")
     void createLottoByNormalArgument(){
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
@@ -22,7 +21,7 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("기능3 테스트 : 숫자 리스트에 들어있는 숫자의 개수가 6개가 아니면 IllegalArgumentException이 발생한다.")
+    @DisplayName("기능03 테스트 : 숫자 리스트에 들어있는 숫자의 개수가 6개가 아니면 IllegalArgumentException이 발생한다.")
     void createLottoByOversize(){
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 6, 7);
@@ -34,7 +33,7 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("기능4 테스트 : 숫자 리스트에 1~45 범위에 있지 않은 숫자가 있다면 예외가 발생한다.")
+    @DisplayName("기능04 테스트 : 숫자 리스트에 1~45 범위에 있지 않은 숫자가 있다면 예외가 발생한다.")
     void createLottoByWrongRangeNumber(){
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 46);
@@ -46,7 +45,7 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("기능5 테스트 : 숫자 리스트에 중복된 숫자가 있다면 예외가 발생한다.")
+    @DisplayName("기능05 테스트 : 숫자 리스트에 중복된 숫자가 있다면 예외가 발생한다.")
     void createLottoByDuplicatedNumber(){
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 5);
@@ -58,4 +57,32 @@ class LottoTest {
     }
 
 
+    @Test
+    @DisplayName("기능06 테스트 : isBonusNumberIn 메서드는 보너스 숫자가 해당 로또 조합에 있으면 true를 반환한다.")
+    void isBonusNumberInShouldReturnTrueWhenBonusNumberInThisLotto() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        int bonusNumber = 6;
+
+        // when
+        boolean result = lotto.isBonusNumberIn(bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("기능06 테스트 : isBonusNumberIn 메서드는 보너스 숫자가 해당 로또 조합에 있지 않으면 false를 반환한다.")
+    void isBonusNumberInShouldReturnTrueWhenBonusNumberNotInThisLotto() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        // when
+        boolean result = lotto.isBonusNumberIn(bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(false);
+    }
 }

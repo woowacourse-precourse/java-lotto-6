@@ -16,7 +16,7 @@ public class Lotto {
             "로또 번호는 " + LOTTO_MIN + "부터 " + LOTTO_MAX + " 사이의 숫자여야 합니다.";
     public static final String DUPLICATE_NUMBER_ERROR = "로또 번호는 중복되지 않아야 합니다.";
 
-    protected final List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -58,7 +58,7 @@ public class Lotto {
     public LottoDTO toLottoDTO() {
         final List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
-        return LottoDTO.of(new Lotto(sortedNumbers));
+        return LottoDTO.of(sortedNumbers);
     }
 
 

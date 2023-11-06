@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import lotto.domain.AnswerLotto;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
@@ -39,7 +40,8 @@ public class LottoServiceTest {
 	}
 
 	static Stream<Arguments> createCheckLottoPriceSumMethodParameter() {
-		AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+		Lotto answerLottoNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+		AnswerLotto answerLotto = new AnswerLotto(answerLottoNumbers, new BonusNumber(answerLottoNumbers, 7));
 		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
 				new Lotto(List.of(1, 2, 3, 4, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
 		
@@ -57,7 +59,8 @@ public class LottoServiceTest {
 	}
 	
 	static Stream<Arguments> createCheckTotalReturnMethodParameter() {
-		AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+		Lotto answerLottoNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+		AnswerLotto answerLotto = new AnswerLotto(answerLottoNumbers, new BonusNumber(answerLottoNumbers, 7));
 		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
 				new Lotto(List.of(1, 2, 10, 11, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
 		
@@ -74,7 +77,8 @@ public class LottoServiceTest {
 	}
 
 	static Stream<Arguments> createCheckWinningStatisticsMessageMethodParameter() {
-		AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+		Lotto answerLottoNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+		AnswerLotto answerLotto = new AnswerLotto(answerLottoNumbers, new BonusNumber(answerLottoNumbers, 7));
 		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
 				new Lotto(List.of(1, 2, 3, 4, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
 		

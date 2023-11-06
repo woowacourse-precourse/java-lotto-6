@@ -1,6 +1,7 @@
 package lotto;
-
+import java.util.*;
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +16,12 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+    public void numberPrint(){
+        System.out.println(numbers);
+    }
 
+    public List<Integer> returnNumbers() {
+        return numbers;
+    }
     // TODO: 추가 기능 구현
 }

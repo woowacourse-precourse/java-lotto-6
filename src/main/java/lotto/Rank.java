@@ -22,10 +22,10 @@ public enum Rank {
     }
 
     public String getMessage(int count) {
-        if (this.name().equals(SECOND)) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%s) - %d개", this.getCount(), this.getPrintablePrizeMoney(), count);
+        if (this.name().equals("SECOND")) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", this.getCount(), this.getPrintablePrizeMoney(), count);
         }
-        return String.format("%d개 일치 (%s) - %d개", this.getCount(), this.getPrintablePrizeMoney(), count);
+        return String.format("%d개 일치 (%s원) - %d개", this.getCount(), this.getPrintablePrizeMoney(), count);
     }
 
     public static Rank of(int correctCount, boolean correctBonusNumber) {
@@ -40,9 +40,7 @@ public enum Rank {
     }
 
     public static boolean determinSecond(int correctCount, boolean correctBonusNumber) {
-        if (correctCount == SECOND.getCount() && correctBonusNumber) {
-            return true;
-        }
+        return correctCount == SECOND.getCount() && correctBonusNumber;
     }
 
     public int getCount() {

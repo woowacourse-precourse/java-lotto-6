@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 //TODO : 각 메서드에 대한 예외 처리 및 재입력 구현
 public class InputVIew {
     private static final String INPUT_TICKETS_AMOUNT = "구입금액을 입력해 주세요.";

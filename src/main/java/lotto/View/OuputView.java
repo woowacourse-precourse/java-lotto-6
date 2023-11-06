@@ -6,4 +6,9 @@ public class OuputView {
     public static void printNumOfTicket(int num) {
         System.out.printf((printTickets) + "%n", num);
     }
+    public static void resultPrint() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
 }
+

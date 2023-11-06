@@ -10,7 +10,6 @@ enum LottoPrize {
     FIFTH(3, 5_000, "3개 일치 (5,000원)"),
     FAIL(0,0,"");
 
-
     private final int matchingNumbers;
     private final int prize;
     private final String description;
@@ -51,6 +50,4 @@ enum LottoPrize {
             System.out.println(description);
         }
     }
-
-
 }

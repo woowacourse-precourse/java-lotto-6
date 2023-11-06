@@ -17,15 +17,12 @@ public class LottoGameController {
     private  BonusNumber bonusNumber;
 
     public void initializeGame() {
-        // 로또 수, 랜덤 패, 당첨 패 셋팅
-        //int inputTicketAmount = InputVIew.inputTicketsAmount();
         ticketsAmount = new TicketsAmount(InputVIew.inputTicketsAmount());
         OuputView.printNumOfTicket(ticketsAmount.getTickets());
         List<List<Integer>> randomLottos = RandomLottos.SetRandomLottos(ticketsAmount.getTickets()); // 랜덤패
         RandomLottos.printLottoNumbers(randomLottos);
         lotto = new Lotto(InputVIew.inputWinningNumbers());
         List<Integer> winningNumbers = lotto.getNumbers();// 당첨패
-        //int bonus = InputVIew.inputBonusNumber();
         bonusNumber = new BonusNumber(InputVIew.inputBonusNumber(),winningNumbers);
         start(randomLottos);
     }

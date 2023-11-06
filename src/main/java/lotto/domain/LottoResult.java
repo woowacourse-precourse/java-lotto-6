@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.HashMap;
 
 public enum LottoResult {
     matches3(3, "3개 일치 (5,000원) - ", 5000, 0),
@@ -21,16 +22,14 @@ public enum LottoResult {
         this.numOfMatches = numOfMatches;
     }
 
-    public String getMatchesMess() {
-        return matchesMess;
+    public HashMap<String, Integer> getMatchesMessAndNum() {
+        HashMap<String, Integer> messAndNum = new HashMap<>();
+        messAndNum.put(matchesMess, numOfMatches);
+        return messAndNum;
     }
 
     public int getAmount() {
         return amount;
-    }
-
-    public int getNumOfMatches() {
-        return numOfMatches;
     }
 
     public static void countResult(List<List<Integer>> allLotto, List<Integer> numbers, int bonusNum) {

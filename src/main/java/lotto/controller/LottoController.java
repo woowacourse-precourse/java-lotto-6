@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import lotto.domain.LottoResult;
 import lotto.views.InputViews;
 import lotto.views.OutputViews;
 import lotto.domain.Lotto;
@@ -32,6 +33,10 @@ public class LottoController {
         OutputViews.endOfSection();
 
         lotto.lottoResultSearch(allLotto, bonusNumInput);
+        for (LottoResult lottoResultName: LottoResult.values()) {
+            lottoResultName.getMatchesMessAndNum();
+            lottoResultName.getAmount();
+        }
     }
 
     public boolean readPurchaseLotto() {

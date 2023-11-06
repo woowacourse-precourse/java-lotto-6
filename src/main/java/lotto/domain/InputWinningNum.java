@@ -1,9 +1,5 @@
 package lotto.domain;
 
-import lotto.views.Exceptions;
-
-import java.util.List;
-
 public class InputWinningNum {
 
     public static void inputWinningNumNotInt(String winningNum) {

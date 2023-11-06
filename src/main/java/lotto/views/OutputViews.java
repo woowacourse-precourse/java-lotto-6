@@ -2,7 +2,6 @@ package lotto.views;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
 
 public class OutputViews {
     static final String NUM_OF_PURCHASE_LOTTO = "개를 구매했습니다.";

@@ -1,16 +1,13 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.HashMap;
 
 import lotto.domain.LottoResult;
 import lotto.views.InputViews;
 import lotto.views.OutputViews;
 import lotto.domain.Lotto;
 import lotto.domain.MakeLottos;
-import lotto.domain.InputWinningNum;
 
 public class LottoController {
     int purchaseAmount;
@@ -62,7 +59,7 @@ public class LottoController {
     }
 
     public void runReadWinningNum() {
-        while (readWinningNum()){
+        while (readWinningNum()) {
         }
         OutputViews.endOfSection();
     }
@@ -112,7 +109,7 @@ public class LottoController {
     public void writeMatchesNumResult() {
         lotto.lottoResultSearch(allLotto, bonusNumInput);
         OutputViews.startWriteStat();
-        for (LottoResult lottoResultName: LottoResult.values()) {
+        for (LottoResult lottoResultName : LottoResult.values()) {
             String stsMess = lottoResultName.getMatchesMess();
             int matchNum = lottoResultName.getNumOfMatches();
             OutputViews.wrtieResultStatistic(stsMess, matchNum);
@@ -122,7 +119,7 @@ public class LottoController {
     }
 
     public void writeReturnPer() {
-        double per = (double) reciveAmount/purchaseAmount * 100;
+        double per = (double) reciveAmount / purchaseAmount * 100;
         OutputViews.wrtieResultRate(per);
     }
 }

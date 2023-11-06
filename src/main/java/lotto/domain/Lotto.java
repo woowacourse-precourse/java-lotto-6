@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 import lotto.views.Exceptions;
-import lotto.domain.LottoResult;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,7 +24,7 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicate (List<Integer> numbers) {
+    private void validateDuplicate(List<Integer> numbers) {
         if (!Objects.equals(numbers.size(), new HashSet<>(numbers).size())) {
             Exceptions.exceptionNotSameSet();
             throw new IllegalArgumentException();
@@ -33,7 +32,7 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        for (var i=0; i<numbers.size(); i++) {
+        for (var i = 0; i < numbers.size(); i++) {
             if (numbers.get(i) < 1 || numbers.get(i) > 45) {
                 Exceptions.exceptionNotRange();
                 throw new IllegalArgumentException();

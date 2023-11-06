@@ -6,11 +6,11 @@ import static lotto.domain.LottoRank.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoRank;
+import lotto.domain.LottoResult;
 import lotto.domain.LottoStore;
 import lotto.domain.PurchaseCount;
 import lotto.domain.WinningNumber;
@@ -32,11 +32,11 @@ public class LottoGameController {
 
     public void run() {
         LottoGame lottoGame = initLottoGame();
-        Map<LottoRank, Integer> lottoResult = lottoGameService.play(lottoGame);
+        LottoResult lottoResult = lottoGameService.play(lottoGame);
         printLottoResult(lottoResult);
     }
 
-    private void printLottoResult(Map<LottoRank, Integer> lottoResult) {
+    private void printLottoResult(LottoResult lottoResult) {
         outputView.output(WINNING_RESULT.getMessage());
         Arrays.stream(LottoRank.values())
                 .filter(rank -> rank.getCount() > 0)
@@ -46,14 +46,14 @@ public class LottoGameController {
                 });
     }
 
-    private static String getResultMessage(Map<LottoRank, Integer> lottoResult, LottoRank rank) {
+    private static String getResultMessage(LottoResult lottoResult, LottoRank rank) {
         int count = rank.getCount();
         String message = format(RANK_RESULT.getMessage(), count);
         if (rank == FIVE_BONUS) {
             message += format(BONUS_RESULT.getMessage());
         }
         String winningAmount = rank.getWinningAmount();
-        int numberOfMatches = lottoResult.getOrDefault(rank, 0);
+        int numberOfMatches = lottoResult.getCountByRank(rank);
         message += format(COUNT_RESULT.getMessage(), winningAmount, numberOfMatches);
         return message;
     }

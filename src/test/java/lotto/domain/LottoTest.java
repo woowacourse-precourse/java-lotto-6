@@ -42,6 +42,22 @@ class LottoTest {
     }
 
     @Test
+    @DisplayName("lotto 는 불변하고, 다른 Lotto 와 내부 값(로또 번호들)이 같으면 동등하다")
+    void lotto_동등성_비교() {
+        Lotto newLotto = new Lotto(Arrays.asList(6, 5, 3, 4, 2, 1));
+
+        Assertions.assertThat(newLotto).isEqualTo(lotto);
+    }
+
+    @Test
+    @DisplayName("lotto 는 불변하고, 다른 Lotto 와 내부 값(로또 번호들)이 같아도 동일하지 않다.")
+    void lotto_동일성_비교() {
+        Lotto newLotto = new Lotto(Arrays.asList(6, 5, 3, 4, 2, 1));
+
+        Assertions.assertThat(newLotto).isNotSameAs(lotto);
+    }
+
+    @Test
     @DisplayName("로또 숫자 개수가 6개가 아니면 LottoException 를 뱉는다.")
     void validateTest() {
         List<Integer> errorLottoNumbers = Arrays.asList(1, 2, 3, 4, 5);

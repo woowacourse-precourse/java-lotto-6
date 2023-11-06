@@ -29,7 +29,11 @@ public class Lotto {
         }
     }
 
-    public List<Integer> lottoNumbers() {
+    public Lotto getPuschaseLotto() {
+        return this;
+    }
+
+    public List<Integer> getLottoNumbers(){
         return numbers;
     }
 

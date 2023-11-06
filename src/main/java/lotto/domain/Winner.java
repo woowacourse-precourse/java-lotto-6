@@ -11,6 +11,6 @@ public class Winner {
     }
 
     public List<Integer> noticeLottoWinningNumbers() {
-        return lotto.lottoNumbers();
+        return lotto.getLottoNumbers();
     }
 }

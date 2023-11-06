@@ -33,7 +33,7 @@ public class LottoController {
 
     private LottoWin getWinningLotto() {
         InputView.getWinningNumber();
-
+        
     }
 }
 

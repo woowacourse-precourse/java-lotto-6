@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.utils.numbergenerators.RandomNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
 
 
 public class LottoController {
@@ -20,6 +22,8 @@ public class LottoController {
 
     public void processLotto() {
         PurchaseAmount purchaseAmount = payOnAmount();
+        buyLotto(purchaseAmount.getPurchaseAmount());
+
     }
 
     private PurchaseAmount payOnAmount() {
@@ -28,6 +32,19 @@ public class LottoController {
         } catch (IllegalArgumentException purchaseAmountError) {
             System.out.println(purchaseAmountError.getMessage());
             return payOnAmount();
+        }
+    }
+
+    private void buyLotto(int purchaseAmount) {
+        purchasedLotto = getPurchasedLotto(purchaseAmount);
+    }
+
+    private PurchasedLotto getPurchasedLotto(int purchaseAmount) {
+        try {
+            return PurchasedLotto.of(purchaseAmount, RandomNumberGenerator.getInstance());
+        } catch (IllegalArgumentException purchasedLottoError) {
+            System.out.println(purchasedLottoError.getMessage());
+            return getPurchasedLotto(purchaseAmount);
         }
     }
 }

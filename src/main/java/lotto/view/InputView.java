@@ -1,12 +1,12 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.Exception.INVALID_BONUS_NUMBER_INPUT_TYPE;
 import static lotto.Exception.INVALID_WINNING_NUMBERS_INPUT_TYPE;
 import static lotto.Exception.ONLY_NUMERIC_INPUT_FOR_MONEY;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class InputView {
     private final String WINNING_NUMBERS_DELIMITER = ",";
@@ -40,6 +40,14 @@ public class InputView {
                     .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_INPUT_TYPE.getMessage());
+        }
+    }
+
+    public int inputBonusNumber() {
+        try {
+            return Integer.parseInt(readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_INPUT_TYPE.getMessage());
         }
     }
 }

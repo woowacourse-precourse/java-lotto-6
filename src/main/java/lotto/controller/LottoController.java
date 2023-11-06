@@ -56,7 +56,18 @@ public class LottoController {
         for (LottoResults result : lottoResults) {
             lottoStatistics.put(result, lottoStatistics.getOrDefault(result, 0) + 1);
         }
-        return new LottoResultsDTO(lottoStatistics, lottoResults.size());
+        long winningAmount = calculateTotalWinningAmount(lottoStatistics);
+        return new LottoResultsDTO(lottoStatistics, winningAmount, lottoResults.size());
+    }
+
+    private long calculateTotalWinningAmount(Map<LottoResults, Integer> lottoStatistics) {
+        long totalAmount = 0;
+        for (LottoResults lottoResults : LottoResults.values()) {
+            long winningAmount = lottoResults.getWinningAmount();
+            int rankCount = lottoStatistics.getOrDefault(lottoResults, 0);
+            totalAmount += winningAmount * rankCount;
+        }
+        return totalAmount;
     }
 
     private Lottos createLottosFromAmount() {

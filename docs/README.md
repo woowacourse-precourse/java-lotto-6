@@ -18,6 +18,7 @@
     - [x]  [Exception] 최대 로또 숫자 값 보다 크면 예외 발생
     - [x]  [Exception] 공백 입력 시 예외 발생
     - [x]  [Exception] 문자 입력 시 예외 발생
+    - [x]  [Exception] 6자리가 아니면 예외 발생
 - [x]  보너스 번호 입력 기능
     - [x]  [Exception] 당첨 번호와 중복된 입력 시 예외 발생
     - [x]  [Exception] 최소 로또 숫자 값 보다 작으면 예외 발생

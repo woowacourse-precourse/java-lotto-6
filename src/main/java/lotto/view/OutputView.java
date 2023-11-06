@@ -9,7 +9,6 @@ import static lotto.constant.OutputViewMessage.SECOND_RANK_MESSAGE;
 import static lotto.constant.OutputViewMessage.THIRD_RANK_MESSAGE;
 import static lotto.constant.OutputViewMessage.TOTAL_RATE_OF_RETURN_MESSAGE;
 import static lotto.constant.OutputViewMessage.WINNING_STATISTICS_MESSAGE;
-import static lotto.utils.calculator.Calculator.calculateWinningAmount;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -42,8 +41,7 @@ public class OutputView {
 
     public static void displayRateOfReturn(LottoResultsDTO lottoResultsDTO) {
         long buyLottoAmount = lottoResultsDTO.getLottoCount() * 1000L;
-        double rateOfReturn =
-                (double) calculateWinningAmount(lottoResultsDTO.getResult()) / buyLottoAmount;
+        double rateOfReturn = (double) lottoResultsDTO.getWinningAmount() / buyLottoAmount;
         System.out.printf(TOTAL_RATE_OF_RETURN_MESSAGE, rateOfReturn * 100);
     }
 

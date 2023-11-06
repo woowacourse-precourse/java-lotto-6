@@ -17,7 +17,8 @@ public class LottoApplication {
     private static int LOTTO_PRICE = 1000;
     private int[] matchingNumbersCounter;
     private boolean bonusMatch;
-    private static final BigDecimal[] WINNING_AMOUNT_BY_RANKING = {BigDecimal.valueOf(0), BigDecimal.valueOf(2000000000), BigDecimal.valueOf(30000000), BigDecimal.valueOf(1500000), BigDecimal.valueOf(50000), BigDecimal.valueOf(5000)};
+//    private static final BigDecimal[] WINNING_AMOUNT_BY_RANKING = {BigDecimal.valueOf(0), BigDecimal.valueOf(2000000000), BigDecimal.valueOf(30000000), BigDecimal.valueOf(1500000), BigDecimal.valueOf(50000), BigDecimal.valueOf(5000)};
+    private static final long[] WINNING_AMOUNT_BY_RANKING = {0L, 2000000000L, 30000000L, 1500000L, 50000L, 5000L};
 
     void execute() {
         try {
@@ -40,8 +41,7 @@ public class LottoApplication {
             int[] rankingCounter = getRankingCounter(results);
             Output.printWinningStatistic(rankingCounter);
 
-            BigDecimal totalWinningAmount = calculateTotalWinningAmount(rankingCounter);
-            BigDecimal totalProfit = calculateWinningProfit(BigDecimal.valueOf(receivedAmount), totalWinningAmount);
+            double totalProfit = calculateWinningProfit(receivedAmount, calculateTotalWinningAmount(rankingCounter));
             Output.printTotalProfit(String.valueOf(totalProfit));
         } catch (IllegalArgumentException iae) {
             Output.printErrorMessage(iae.getMessage());
@@ -53,7 +53,7 @@ public class LottoApplication {
         int receivedAmount;
 
         try {
-            receivedAmount = Integer.parseInt(Input.readReceivedAmount());
+            receivedAmount = Integer.parseInt(Input.readReceivedAmount().trim());
             validateReceivedAmount(receivedAmount);
         } catch (NumberFormatException nfe) { // 정수값 입력하지 않았을 경우
             throw new IllegalArgumentException("구입 금액은 1,000원 단위입니다.");
@@ -117,20 +117,36 @@ public class LottoApplication {
         return rankingCounter;
     }
 
-    private BigDecimal calculateTotalWinningAmount(int[] rankingCounter) {
-        BigDecimal totalWinningAmount = BigDecimal.ZERO;
+    private long calculateTotalWinningAmount(int[] rankingCounter) {
+        long totalWinningAmount = 0L;
 
         for (int i = 1; i < rankingCounter.length; i++) {
-            totalWinningAmount = totalWinningAmount.add(BigDecimal.valueOf(rankingCounter[i]).multiply(WINNING_AMOUNT_BY_RANKING[i]));
+            totalWinningAmount += (long) rankingCounter[i] * WINNING_AMOUNT_BY_RANKING[i];
         }
 
         return totalWinningAmount;
     }
 
-    private BigDecimal calculateWinningProfit(BigDecimal receivedAmount, BigDecimal totalWinningAmount) {
-        BigDecimal percent = new BigDecimal(0);
-        percent = totalWinningAmount.divide(receivedAmount, 3, RoundingMode.HALF_UP);
-        percent = percent.multiply(BigDecimal.valueOf(100), new MathContext(3, RoundingMode.HALF_UP));
+    private double calculateWinningProfit(int receivedAmount, long totalWinningAmount) {
+        double percent = 0.0;
+        percent = Math.round(totalWinningAmount / (double) receivedAmount * 1000.0) / 10.0;
         return percent;
     }
+
+//    private BigDecimal calculateTotalWinningAmount(int[] rankingCounter) {
+//        BigDecimal totalWinningAmount = BigDecimal.ZERO;
+//
+//        for (int i = 1; i < rankingCounter.length; i++) {
+//            totalWinningAmount = totalWinningAmount.add(BigDecimal.valueOf(rankingCounter[i]).multiply(WINNING_AMOUNT_BY_RANKING[i]));
+//        }
+//
+//        return totalWinningAmount;
+//    }
+//
+//    private BigDecimal calculateWinningProfit(BigDecimal receivedAmount, BigDecimal totalWinningAmount) {
+//        BigDecimal percent = new BigDecimal(0);
+//        percent = totalWinningAmount.divide(receivedAmount, 3, RoundingMode.HALF_UP);
+//        percent = percent.multiply(BigDecimal.valueOf(100), new MathContext(3, RoundingMode.HALF_UP));
+//        return percent;
+//    }
 }

@@ -50,6 +50,7 @@ public class Application {
 
     public static List<Integer> RandomLottoNumber() {
         List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(lottoMin, lottoMax, lottolength);
+        Collections.sort(randomNumber);
         return randomNumber;
     }
 
@@ -94,12 +95,7 @@ public class Application {
         System.out.println();
     }
 
-    public static void DuplicateCheck(){
-        Set<Integer> lottoNumbers = new HashSet<>(inputWinningLotto);
-        if(lottoNumbers.size() != inputWinningLotto.size()){
-            System.out.println("[ERROR] 당첨 번호에 중복된 숫자는 허용하지 않습니다.");
-            throw new IllegalArgumentException();
-        }
+    public static void BonusNumberDuplicateCheck(){
         if (inputWinningLotto.contains(bonusNumber)){
             System.out.println("[ERROR] 당첨 번호에 중복된 숫자는 허용하지 않습니다.");
             throw new IllegalArgumentException();
@@ -169,13 +165,12 @@ public class Application {
         GetLottos();
         WinningLottoInput();
         BonusNumberInput();
-        DuplicateCheck();
+        BonusNumberDuplicateCheck();
 
         Lotto lotto = new Lotto(inputWinningLotto);
-
+        
         LotteryWinningInit();
         MyLottoCheck(lotto);
-
         SumLottoResult();
         RateOnReturn();
     }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static common.ErrorCode.BONUS_NUMBER_ALREADY_REGISTERED;
+import static common.ErrorCode.WINNING_NUMBERS_CONTAIN_BONUS_NUMBER;
 import static common.ErrorCode.WINNING_NUMBERS_DUPLICATED;
 import static common.ErrorCode.WINNING_NUMBERS_INVALID_SIZE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,5 +60,36 @@ class WinningNumbersTest {
 
         // then
         assertThat(result).isNotNull();
+    }
+
+    @Test
+    void 보너스_번호가_등록된_상태에서_등록_예외() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        WinningNumbers winningNumbers = new WinningNumbers(numbers);
+
+        WinningNumber winningNumber = new WinningNumber(7);
+        winningNumbers.addBonus(winningNumber);
+
+        // when
+        // then
+        assertThatThrownBy(() -> winningNumbers.addBonus(winningNumber))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage(BONUS_NUMBER_ALREADY_REGISTERED.getMessage());
+    }
+
+    @Test
+    void 당첨_번호와_중복되는_보너스_번호_예외() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        WinningNumbers winningNumbers = new WinningNumbers(numbers);
+
+        WinningNumber winningNumber = new WinningNumber(1);
+
+        // when
+        // then
+        assertThatThrownBy(() -> winningNumbers.addBonus(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(WINNING_NUMBERS_CONTAIN_BONUS_NUMBER.getMessage());
     }
 }

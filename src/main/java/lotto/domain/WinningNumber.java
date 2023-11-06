@@ -3,6 +3,7 @@ package lotto.domain;
 import static common.ErrorCode.WINNING_NUMBER_INVALID_RANGE;
 
 import common.exception.InvalidArgumentException;
+import java.util.Objects;
 
 public class WinningNumber {
 
@@ -23,5 +24,22 @@ public class WinningNumber {
 
     private boolean isValidRange(int number) {
         return number >= MIN_NUMBER && number <= MAX_NUMBER;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        WinningNumber that = (WinningNumber) o;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }

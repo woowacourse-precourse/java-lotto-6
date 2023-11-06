@@ -123,4 +123,19 @@ class LottoTest {
         // then
         assertThat(lotto.match(winningNumber)).isEqualTo(6);
     }
+
+    @DisplayName("로또 번호와 당첨 번호가 5개 일치하고 보너스 번호가 일치하는지 확인한다.")
+    @Test
+    void matchByFiveNumbersAndBonusNumber() {
+        // given
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 45);
+        int bonusNumber = 6;
+        // when
+        Lotto lotto = new Lotto(lottoNumbers);
+        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
+        // then
+        assertThat(lotto.match(winningNumber)).isEqualTo(5);
+        assertThat(lotto.hasBonusNumber(winningNumber)).isTrue();
+    }
 }

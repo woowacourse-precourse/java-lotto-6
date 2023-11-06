@@ -80,5 +80,5 @@
 - [x] 당첨 통계 내역 전체를 사용자에게 보여준다. `provideWinningDetails()`
 - [x] 수익률을 소수점 둘째 자리에서 반올림한다. `provideRateOfReturn()`
 
-- [ ] 예외 상황이 생기면 해당 부분부터 다시 입력받는다.
+- [x] 예외 상황이 생기면 해당 부분부터 다시 입력받는다. `LottoAction`, `WinningAction`
   - [미션 진행 계획-입력값 처리](#3-입력값-처리) 참고

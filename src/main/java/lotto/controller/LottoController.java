@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.controller.action.LottoAction;
+import lotto.controller.action.WinningAction;
 import lotto.domain.constant.Rank;
 import lotto.domain.model.Bonus;
 import lotto.domain.model.Lotto;
@@ -23,12 +25,11 @@ public class LottoController {
 
     private final LottoService service = new LottoService();
 
-    public void purchaseLotteries() {
-        OutputView.printMessage(PURCHASE_REQUEST);
-        String input = InputView.input();
+    private final LottoAction lottoAction = new LottoAction();
+    private final WinningAction winningAction = new WinningAction();
 
-        long price = makeLong(input);
-        service.buyLotteries(price);
+    public void purchaseLotteries() {
+        lottoAction.process(PURCHASE_REQUEST, service);
     }
 
     public void provideLotteriesDetails() {
@@ -41,10 +42,8 @@ public class LottoController {
     }
 
     public void setUpWinning() {
-        Lotto main = setUPWinningMain();
-        Bonus bonus = setUPWinningBonus();
-
-        service.generateWinning(main, bonus);
+        winningAction.processWinningMain(WINNING_MAIN_REQUEST);
+        winningAction.processWinningComplete(WINNING_BONUS_REQUEST, service);
     }
 
     public void provideWinningDetails() {
@@ -66,49 +65,4 @@ public class LottoController {
 
         OutputView.printRateOfReturn(rateOfReturn);
     }
-
-    private Lotto setUPWinningMain() {
-        OutputView.printMessage(WINNING_MAIN_REQUEST);
-        String input = InputView.input();
-
-        List<Integer> winningMain = makeIntegerList(input);
-        return new Lotto(winningMain);
-    }
-
-    private Bonus setUPWinningBonus() {
-        OutputView.printMessage(WINNING_BONUS_REQUEST);
-        String input = InputView.input();
-
-        int winningBonus = makeInt(input);
-        return new Bonus(winningBonus);
-    }
-
-    private long makeLong(String price) {
-        try {
-            return Long.parseLong(price);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_NOT_LONG, e);
-        }
-    }
-
-    private List<Integer> makeIntegerList(String input) {
-        try {
-            String[] inputSplit = input.split(",");
-            return Arrays.stream(inputSplit)
-                    .mapToInt(Integer::parseInt)
-                    .boxed()
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_NOT_INT, e);
-        }
-    }
-
-    private int makeInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_NOT_INT, e);
-        }
-    }
-
 }

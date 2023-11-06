@@ -13,17 +13,18 @@ public class Input {
     public String getCost(){
         System.out.println(PRINT_COST);
         String input = "";
+
         try{
             input = Console.readLine();
             if(!Pattern.matches("^[0-9]*$",input)){
-                System.out.println("input  --    "     + input);
                 throw new IllegalArgumentException("[ERROR] Cost should have only number.");
             }
             return input;
         } catch (IllegalArgumentException e){
-            System.out.println("Cost should have only number!!!!!\n");
+            System.out.println(e.getMessage());
             return getCost();
         }
+
     }
 
     public String getWinningNumber(){
@@ -39,12 +40,11 @@ public class Input {
         try{
             input = Console.readLine();
             if(!Pattern.matches("^[0-9]*$",input)){
-                System.out.println("input  --    "     + input);
                 throw new IllegalArgumentException("[ERROR] Bonus number should have only number.");
             }
             return input;
         } catch (IllegalArgumentException e){
-            System.out.println("Bonus number should have only number!!!!!\n");
+            System.out.println(e.getMessage());
             return getCost();
         }
     }
@@ -55,7 +55,7 @@ public class Input {
                 throw new IllegalArgumentException("[ERROR] Cost should have only number.");
             }
         } catch (IllegalArgumentException e){
-            System.out.println("Cost should have only number.");
+            System.out.println(e.getMessage());
             getCost();
         }
     }
@@ -66,8 +66,7 @@ public class Input {
                 throw new IllegalArgumentException("[ERROR] Cost should be divided by 1000.");
             }
         } catch (IllegalArgumentException e){
-            System.out.println("Cost should be divided by 1000.");
-            //getCost();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -77,10 +76,9 @@ public class Input {
                 throw new IllegalArgumentException("[ERROR] There are another symbols other than number and comma.");
             }
         } catch (IllegalArgumentException e){
-            System.out.println("There are another symbols other than number and comma.");
+            System.out.println(e.getMessage());
             getWinningNumber();
         }
-
     }
 
     private int stringToInt(String input){

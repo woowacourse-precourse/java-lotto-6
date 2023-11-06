@@ -16,12 +16,10 @@ public class Judge {
 
         for (Lotto lotto : lottos.getLottos()){
             int matchingNumber = checkMatchingNumbers(winningNumber, lotto);
-
             boolean bonus = false;
             if(matchingNumber == 5){
                 bonus = checkBonus(player.getBonusNumber(),lotto);
             }
-
             addReward(result, matchingNumber, bonus);
         }
 
@@ -40,7 +38,6 @@ public class Judge {
         int result = 0;
         List<Integer> a = player.getNumbers();
         List<Integer> b = computer.getNumbers();
-
         result = (int) a.stream().filter(o -> b.stream()
                 .anyMatch(Predicate.isEqual(o))).count();
 

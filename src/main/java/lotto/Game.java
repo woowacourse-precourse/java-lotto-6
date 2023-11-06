@@ -32,7 +32,6 @@ public class Game {
 
     private int getLottoQuantity(){
         String string = input.getCost();
-
         int cost = stringToInt(string);
         try {
             if(!(cost%1000 ==0)){
@@ -40,7 +39,7 @@ public class Game {
             }
             return cost/1000;
         } catch (IllegalArgumentException e) {
-            System.out.println("Cost should be divided by 1000.");
+            System.out.println(e.getMessage());
             return getLottoQuantity();
         }
     }
@@ -52,6 +51,7 @@ public class Game {
             validateDuplicate(numbers);
             return new Lotto(numbers);
         } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
             getWinningNumbers();
             return getWinningNumbers();
         }
@@ -63,6 +63,7 @@ public class Game {
             validateBonusNumber(number);
             return number;
         } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
             getBonusNumber();
             return getBonusNumber();
         }

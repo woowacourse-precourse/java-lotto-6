@@ -24,10 +24,10 @@ public class Lottos {
 
     private List<Integer> generateRandomNumbers(){
         try {
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
-            Collections.sort(numbers);
-            validateNumbers(numbers);
-            return numbers;
+            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+            Collections.sort(randomNumbers);
+            validateNumbers(randomNumbers);
+            return randomNumbers;
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return generateRandomNumbers();

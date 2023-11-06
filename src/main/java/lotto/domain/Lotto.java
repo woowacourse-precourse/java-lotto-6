@@ -14,6 +14,14 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        for(int number : numbers){
+            if(!(number>=1 && number<=45)){
+                throw new IllegalArgumentException("[ERROR] Winning number should be between 1 and 45.");
+            }
+        }
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException("[ERROR] Numbers shouldn't be duplicated.");
+        }
     }
 
     // TODO: 추가 기능 구현

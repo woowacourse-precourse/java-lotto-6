@@ -4,13 +4,11 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Result;
 
-import java.util.List;
-
 public class Output {
     public void showNumberOfLotto(int number){
         System.out.println("\n" + number+"개를 구매했습니다.");
-
     }
+
     public void showLottoNumbers(Lottos lottos){
         for(Lotto lotto : lottos.getLottos()){
             System.out.println(lotto.getNumbers());

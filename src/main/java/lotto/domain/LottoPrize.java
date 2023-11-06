@@ -11,7 +11,7 @@ public enum LottoPrize {
     FIRST_PRIZE(2_000_000_000L, 6, 0),
     NONE(0L, 0, 0);
 
-    private static final DecimalFormat df = new DecimalFormat("###,###");
+    private static final DecimalFormat DECIMAL_FORMATTER = new DecimalFormat("###,###");
     private final long winningAmount;
     private final int numNumberMatches;
     private final int numBonusNumberMatches;
@@ -39,7 +39,7 @@ public enum LottoPrize {
         if (this.numBonusNumberMatches != 0) {
             sb.append(", 보너스 볼 일치");
         }
-        sb.append(" (").append(df.format(winningAmount)).append("원) - ");
+        sb.append(" (").append(DECIMAL_FORMATTER.format(winningAmount)).append("원) - ");
         return sb.toString();
     }
 }

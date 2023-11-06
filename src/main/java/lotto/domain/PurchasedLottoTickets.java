@@ -15,4 +15,8 @@ public class PurchasedLottoTickets {
     public String toString() {
         return String.join("", lottoTickets.toString());
     }
+
+    public int size() {
+        return lottoTickets.size();
+    }
 }

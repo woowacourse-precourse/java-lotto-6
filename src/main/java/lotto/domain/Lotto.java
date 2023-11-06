@@ -21,7 +21,7 @@ public class Lotto {
         }
         Set<Integer> uniqueNumbers = Set.copyOf(numbers);
         if(uniqueNumbers.size() != numbers.size()){
-            throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
+            throw new IllegalStateException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
         }
     }
 

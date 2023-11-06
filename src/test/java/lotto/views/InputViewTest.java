@@ -278,7 +278,7 @@ class InputViewTest {
         //when
         //then
         assertThatThrownBy(() -> inputView.getOriginalWinningNumbers())
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(IllegalStateException.class)
                 .hasMessage(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
     }
 

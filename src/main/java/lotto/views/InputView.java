@@ -30,7 +30,7 @@ public class InputView {
         Set<Integer> uniqueWinningNumbers = inputWinningNumbers.stream().collect(Collectors.toSet());
         // 중복 제거 후 개수 비교
         if(inputWinningNumbers.size() != uniqueWinningNumbers.size()){
-            throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
+            throw new IllegalStateException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
         }
         for (Integer originalWinningNumber : uniqueWinningNumbers) {
             validateLottoRange(originalWinningNumber);

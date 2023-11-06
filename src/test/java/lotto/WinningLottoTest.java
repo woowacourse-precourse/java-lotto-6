@@ -1,8 +1,11 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,11 +29,24 @@ public class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("보너스 번호가 null인 경우 예외가 발생한다..")
+    @DisplayName("보너스 번호가 null인 경우 예외가 발생한다.")
     @ParameterizedTest
     @NullSource
     void createWinningLottoByNullOrEmptyBonusNumber(Integer bonusNumber) {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스번호가 정상적으로 들어온 경우.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 45})
+    void createLottoByNormal(int bonusNumber) throws NoSuchFieldException, IllegalAccessException {
+        Lotto winningLotto = new WinningLotto(List.of(2, 3, 4, 5, 6, 7), bonusNumber);
+
+        Field privateField = WinningLotto.class.getDeclaredField("bonusNumber");
+        privateField.setAccessible(true);
+        Integer lottoPrivateBonusNumbers = (Integer) privateField.get(winningLotto);
+
+        assertEquals(lottoPrivateBonusNumbers, bonusNumber);
     }
 }

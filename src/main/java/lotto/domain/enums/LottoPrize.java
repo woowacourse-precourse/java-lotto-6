@@ -4,20 +4,22 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public enum LottoPrize {
-    FIRST(1, 2_000_000_000, 6),
-    SECOND(2, 30_000_000, 5),
-    THIRD(3, 1_500_000, 5),
-    FOURTH(4, 50_000, 4),
-    FIFTH(5, 5_000, 3),
-    NONE(0, 0, 0);
+    FIRST(1, 2000_000_000, "2,000,000,000원", 6),
+    SECOND(2, 30_000_000, "30,000,000원", 5),
+    THIRD(3, 1_500_000, "1,500,000원", 5),
+    FOURTH(4, 50_000, "50,000원", 4),
+    FIFTH(5, 5_000, "5,000원",  3),
+    NONE(0, 0, "0원",  0);
 
-    private final int rank;
-    private final int prizeMoney;
-    private final int matchCount;
+    public final int rank;
+    public final int prizeMoney;
+    public final String prizeMoneyForPrint;
+    public final int matchCount;
 
-    LottoPrize(int rank, int prizeMoney, int matchCount) {
+    LottoPrize(int rank, int prizeMoney, String prizeMoneyForPrint, int matchCount) {
         this.rank = rank;
         this.prizeMoney = prizeMoney;
+        this.prizeMoneyForPrint = prizeMoneyForPrint;
         this.matchCount = matchCount;
     }
 

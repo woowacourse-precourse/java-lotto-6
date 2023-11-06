@@ -27,12 +27,14 @@ public class Lotto {
 
     public static Lotto makeAutoLottoTicket() {
         List<Integer> lottoTicket = Randoms.pickUniqueNumbersInRange(LOWER_BOUND_NUMBER, UPPER_BOUND_NUMBER, LOTTO_SIZE);
-        sortLottoNumbers(lottoTicket);
-        return new Lotto(lottoTicket);
+        List<Integer> sortedLottoNumbers = sortLottoNumbers(lottoTicket);
+        return new Lotto(sortedLottoNumbers);
     }
 
-    public static void sortLottoNumbers(List<Integer> lottoTicket) {
-        Collections.sort(lottoTicket);
+    public static List<Integer> sortLottoNumbers(List<Integer> lottoTicket) {
+        List<Integer> sortedLottoNumbers = new ArrayList<>(lottoTicket);
+        Collections.sort(sortedLottoNumbers);
+        return sortedLottoNumbers;
     }
 
     public static List<Lotto> getAutoLottoTickets(LottoCount lottoCount) {

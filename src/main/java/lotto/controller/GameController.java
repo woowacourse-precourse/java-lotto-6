@@ -18,12 +18,11 @@ public class GameController {
         outputView.displayLottoTickets(lottoCount, autoLottoTickets);
 
         Lotto winningLotto = getWinningLotto();
+        System.out.println();
         BonusNumber bonusNumber = getBonusNumber(winningLotto);
         List<LottoPrize> allLottoPrizes = winningLotto.getAllLottoPrizes(autoLottoTickets, bonusNumber);
 
-        for (LottoPrize allLottoPrize : allLottoPrizes) {
-            System.out.println(allLottoPrize);
-        }
+        outputView.displayLottoResults(allLottoPrizes);
     }
 
     public PurchaseAmount getPurchaseAmount() {

@@ -6,11 +6,8 @@ import lotto.util.Validator;
 
 public class LottoGameController {
 
-    public Lottos purchaseLotto(long buyCash) {
-        LottoService service = new LottoService();
-        long buyAmount = service.getLottoAmount(buyCash);
-
-        List<Lotto> lottos = LottoGenerator.INSTANCE.generate((int) buyAmount);
+    public Lottos purchaseLotto(BuyCash buyCash) {
+        List<Lotto> lottos = LottoGenerator.INSTANCE.generate(buyCash.getLottoAmount());
 
         return new Lottos(lottos);
     }

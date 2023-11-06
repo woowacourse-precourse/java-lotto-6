@@ -28,7 +28,7 @@ public class LottoGameControllerTest extends NsTest {
     @Test
     void 로또_구매_결과_반환() {
         //given
-        long buyCash = 5000;
+        long cash = 5000;
         long buyAmountExpected = 5;
 
         List<Lotto> expectedLottos = new ArrayList<>();
@@ -40,6 +40,7 @@ public class LottoGameControllerTest extends NsTest {
 
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
+                    BuyCash buyCash = new BuyCash(cash);
                     Lottos lottos = controller.purchaseLotto(buyCash);
                     assertThat(lottos.getLottoAmount()).isEqualTo(buyAmountExpected);
 

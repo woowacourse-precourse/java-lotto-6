@@ -2,13 +2,13 @@ package lotto.Input;
 
 import java.util.List;
 
-import lotto.Lotto;
+import lotto.dataObjects.Lotto;
 
 public interface InputNumber {
 
-	void inputPurchasePrice();
+	int inputPurchasePrice();
 
-	void inputWinningNumbers(Lotto lotto);
+	List<Integer> inputWinningNumbers(List<Integer> lottoNumbers);
 
 	void inputBonusNumber();
 

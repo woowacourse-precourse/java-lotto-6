@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
 import lotto.validator.LottoValidator;
 
 public class InputNumberImpl implements InputNumber {
@@ -17,15 +16,15 @@ public class InputNumberImpl implements InputNumber {
 	}
 
 	@Override
-	public void inputPurchasePrice() {
+	public int inputPurchasePrice() {
 		String price = Console.readLine();
-		validator.validatePrice(price);
+		return validator.validatePrice(price);
 	}
 
 	@Override
-	public void inputWinningNumbers(Lotto lotto) {
+	public List<Integer> inputWinningNumbers(List<Integer> lottoNumbers) {
 		numberSplitter = new StringTokenizer(Console.readLine(), ",");
-		validator.validateWinningNumber(numberSplitter, lotto);
+		return validator.validateWinningNumber(numberSplitter, lottoNumbers);
 	}
 
 	@Override

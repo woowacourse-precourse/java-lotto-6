@@ -1,8 +1,8 @@
 package lotto.validator;
 
+import java.util.List;
 import java.util.StringTokenizer;
 
-import lotto.Lotto;
 import lotto.enumContainer.ErrorOperation;
 import lotto.enumContainer.LottoRange;
 import lotto.utils.ParserFromString;
@@ -16,32 +16,38 @@ public class LottoValidatorImpl implements LottoValidator {
 	}
 
 	@Override
-	public void validatePrice(String lottoPrice) {
+	public int validatePrice(String lottoPrice) {
 		validateEmptyString(lottoPrice);
 		validateIsDigit(lottoPrice);
 		int parsePrice = validateRange(lottoPrice);
+
+		//해당 객체로 이동
+		validateMinimum(parsePrice);
 		validateRest(parsePrice);
+		return parsePrice;
+
 	}
 
 	@Override
-	public void validateWinningNumber(StringTokenizer numberSplitter, Lotto lotto) {
-		validateCountOfTokens(numberSplitter.countTokens());
-		for (int i = 0; i < numberSplitter.countTokens(); i++) {
+	public List<Integer> validateWinningNumber(StringTokenizer numberSplitter, List<Integer> lottoNumbers) {
+		while(numberSplitter.hasMoreTokens()) {
 			String lottoNumber = numberSplitter.nextToken();
 			validateIsDigit(lottoNumber);
-			int parseNumber = validatelottoRange(lottoNumber);
-			lotto.pushIntoCollection(parseNumber);
+			int parseNumber = validateLottoRange(lottoNumber);
+			//중복확인
+			lottoNumbers.add(parseNumber);
 		}
+		return lottoNumbers;
 	}
 
 	@Override
 	public void validateBonusNumber(String bonusNumber) {
 		validateIsDigit(bonusNumber);
-		int parseNumber = validatelottoRange(bonusNumber);
+		int parseNumber = validateLottoRange(bonusNumber);
 	}
 
-	private int validatelottoRange(String lottoNumber) {
-		int parseNumber = parser.toIntPaser(lottoNumber);
+	private int validateLottoRange(String lottoNumber) {
+		int parseNumber = validateRange(lottoNumber);
 		if (parseNumber < LottoRange.START.range()) {
 			ErrorOperation.UNDER_ERROR.apply();
 		}
@@ -49,12 +55,6 @@ public class LottoValidatorImpl implements LottoValidator {
 			ErrorOperation.OVER_ERROR.apply();
 		}
 		return parseNumber;
-	}
-
-	private void validateCountOfTokens(int numberOfTokens) {
-		if (numberOfTokens != 6) {
-			ErrorOperation.TOKEN_NUMBER_ERROR.apply();
-		}
 	}
 
 	private void validateEmptyString(String lottoPrice) {
@@ -79,14 +79,13 @@ public class LottoValidatorImpl implements LottoValidator {
 		} catch (NumberFormatException e) {
 			ErrorOperation.RANGE_ERROR.apply();
 		}
-		return validateMinimum(parsePrice);
+		return parsePrice;
 	}
 
-	private int validateMinimum(int parsePrice) {
+	private void validateMinimum(int parsePrice) {
 		if (parsePrice < 1000) {
 			ErrorOperation.MINIMUM_ERROR.apply();
 		}
-		return parsePrice;
 	}
 
 	private void validateRest(int parsePrice) {

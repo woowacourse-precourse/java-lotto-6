@@ -1,14 +1,13 @@
 package lotto.validator;
 
+import java.util.List;
 import java.util.StringTokenizer;
-
-import lotto.Lotto;
 
 public interface LottoValidator {
 
-	void validatePrice(String price);
+	int validatePrice(String price);
 
-	void validateWinningNumber(StringTokenizer numberSplitter, Lotto lotto);
+	List<Integer> validateWinningNumber(StringTokenizer numberSplitter, List<Integer> lotto);
 
 	void validateBonusNumber(String bonusNumber);
 }

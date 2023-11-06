@@ -106,6 +106,7 @@
 - [ ] ~~LottoNumberMatcher에서 바로 EnumMap 업데이트~~
   -> Matcher-Manager 너무 의존성이 높아질 거 같다.
 - [ ] 출력 데이터 수익률, 랭킹 출력 부분 나누기
+- [ ] ERROR 메시지 Output에서 선언하고 가져오기
 
 ---
 

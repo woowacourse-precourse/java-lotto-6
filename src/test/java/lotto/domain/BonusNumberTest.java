@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BonusNumberTest {
     @DisplayName("보너스넘버는 1이상 45 이하의 숫자여야 한다.")
@@ -25,7 +26,7 @@ class BonusNumberTest {
 
     @ParameterizedTest(name = "[{index}] 보너스 넘버가 ''{0}'' 이면 예외 발생한다.")
     @ValueSource(strings = {"", "we", "47", "0", "-1"})
-    //when, then
+        //when, then
     void cannotCreateBonusNumber(String element) {
         assertThatThrownBy(() -> BonusNumber.create(element))
                 .isInstanceOf(IllegalArgumentException.class);

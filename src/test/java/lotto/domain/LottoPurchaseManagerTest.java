@@ -1,8 +1,9 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoPurchaseManagerTest {
     @DisplayName("LottoPurchaseManager 생성 테스트")
@@ -14,6 +15,7 @@ public class LottoPurchaseManagerTest {
         LottoPurchaseManager lottoPurchaseManager = LottoPurchaseManager.create(lottoPurchaseAmount);
 
         //when, then
-        Assertions.assertThat(lottoPurchaseManager.getLottos().getLottos()).isNotNull();
+        assertThat(lottoPurchaseManager.getLottos().getLottos()).isNotNull();
+        assertThat(lottoPurchaseManager.getPurchaseAmount().getAmount()).isEqualTo(lottoPurchaseAmount.getAmount());
     }
 }

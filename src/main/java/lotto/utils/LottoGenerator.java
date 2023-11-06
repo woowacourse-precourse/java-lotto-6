@@ -7,16 +7,16 @@ import lotto.domain.Lottos;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static lotto.constants.LottoConstants.*;
 
 public class LottoGenerator {
     public static Lottos generateLottos(long quantity) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < quantity; i++) {
-            Lotto lotto = generateLotto();
-            lottos.add(lotto);
-        }
+        List<Lotto> lottos = IntStream.iterate(0, i -> i < quantity, i -> i + 1)
+                .mapToObj(i -> generateLotto())
+                .collect(Collectors.toList());
         return Lottos.create(lottos);
     }
 

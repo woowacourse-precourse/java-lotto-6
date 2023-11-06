@@ -26,7 +26,7 @@ class LottoGeneratorTest {
 
     @DisplayName("구입 금액만큼 로또를 생성한다")
     @Test
-    void generateLotto() {
+    void generateCorrectNumbersOfLottos() {
         int amount = 5000;
 
         LottoGenerator lottoGenerator = LottoGenerator.from(amount);

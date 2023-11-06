@@ -6,8 +6,8 @@ public class Validator {
     private static final Pattern ARABIC_NUMBER_PATTERN = Pattern.compile("^[0-9]?$");
 
     private enum ExceptionMessage {
-        EMPTY_VALUE_NOT_ALLOWED("빈 값을 입력할 수 없습니다."),
-        INVALID_ARABIC_NUMBER("아라비아 숫자만 입력할 수 있습니다."),
+        EMPTY_VALUE_NOT_ALLOWED("[ERROR] 빈 값을 입력할 수 없습니다."),
+        INVALID_ARABIC_NUMBER("[ERROR] 아라비아 숫자만 입력할 수 있습니다."),
         NOT_DIVISIBLE_BY_1000("[ERROR] 1,000원 단위로만 입력할 수 있습니다.");
         private final String message;
 

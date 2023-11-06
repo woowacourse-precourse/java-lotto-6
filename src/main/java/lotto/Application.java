@@ -12,16 +12,15 @@ public class Application {
         //티켓 구매
         String purchaseAmount = SystemIO.requestPurchaseAmount();
         BuyTickets buyTickets = new BuyTickets(purchaseAmount);
-
         //당첨 번호 입력
         List<Integer> winningNumbers = SystemIO.requestWinningNumber();
         Map<Long, List<Integer>> lotteryNumbers = buyTickets.getLotteryNumbers();
         int bonusNumber = SystemIO.requestBonusNumber();
-
         //추첨 진행
+        Calculations calculations = new Calculations();
         for (List<Integer> value : lotteryNumbers.values()) {
             Lotto lotto = new Lotto(value);
-            lotto.getWinningRank(winningNumbers, bonusNumber);
+            calculations.tallyWinnings(lotto.getWinningRank(winningNumbers, bonusNumber));
         }
     }
 }

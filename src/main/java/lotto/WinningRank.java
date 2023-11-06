@@ -5,7 +5,8 @@ public enum WinningRank {
     SECOND_WINNING("5개 일치, 보너스 볼 일치", "30,000,000"),
     THIRD_WINNING("5개 일치", "1,500,000"),
     FOURTH_WINNING("4개 일치", "50,000"),
-    FIFTH_WINNING("3개 일치", "5,000");
+    FIFTH_WINNING("3개 일치", "5,000"),
+    NO_LUCK("꽝", "0");
     private final String conditionsForWinning;
     private final String lotteryWinningAmount;
 

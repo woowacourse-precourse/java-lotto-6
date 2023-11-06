@@ -30,10 +30,10 @@ public class PlayerTest {
         lottoShop = new LottoShop(lottoMachine);
     }
 
-    // 로또 구매 테스트
-    @DisplayName("player가 로또를 구매한다. 구매한 로또가 테스트에서 설계한 로또 목록와 다르면 테스트에 실패한다.")
+    // 로또 구입 테스트
+    @DisplayName("player가 로또를 구입한다. 구입한 로또가 테스트에서 설계한 로또 목록와 다르면 테스트에 실패한다.")
     @Test
-    void buyLottoTickets_테스트() {
+    void 로또_구입_테스트() {
         // given
         Player player = new Player();
         int budget = 8000;
@@ -55,11 +55,11 @@ public class PlayerTest {
         Player player = new Player();
         int budget = 8000;
         player.setBudget(budget);
-        // 로또 8000원 어치(8개) 구매
+        // 로또 8000원 어치(8개) 구입
         player.buyLottoTickets(lottoShop);
         // 고정된 당첨 번호
         WinningLotto winningLotto = LottoNotRandomGenerator.winningLotto;
-        // 기대되는 당첨 통계
+        // 예상되는 당첨 통계
         Map<LottoPrize, Integer> expected = new HashMap<>() {{
             put(LottoPrize.FIRST, 1);   // 1등 1개
             put(LottoPrize.SECOND, 0);   // 2등 0개
@@ -84,7 +84,7 @@ public class PlayerTest {
         Player player = new Player();
         int budget = 8000;
         player.setBudget(budget);
-        // 로또 8000원 어치(8개) 구매
+        // 로또 8000원 어치(8개) 구입
         player.buyLottoTickets(lottoShop);
         // 고정된 당첨 번호
         WinningLotto winningLotto = LottoNotRandomGenerator.winningLotto;

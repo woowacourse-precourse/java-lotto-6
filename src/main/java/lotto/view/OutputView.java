@@ -8,11 +8,13 @@ import static lotto.util.NumberConstant.*;
 
 public class OutputView {
     public void printLottoNumAndNumbers(int num, List<String> texts) {
+        System.out.println();
         System.out.printf(LOTTO_NUM_OUTPUT, num);
         texts.forEach(System.out::println);
     }
 
     public void printLottoResult(Map<Integer, Integer> countResult) {
+        System.out.println();
         System.out.println(LOTTO_RESULT);
         System.out.println(DELIMITER);
         System.out.printf(FIFTH_OUTPUT, countResult.getOrDefault(FIFTH_NUM_KEY, 0));

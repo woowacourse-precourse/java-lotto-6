@@ -21,7 +21,7 @@ class CustomerTest {
     void createCustomerByNotNumber() {
         assertThatThrownBy(() -> new Customer("테스트"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 최소 1000원부터 최대 100,000원까지의 금액을 입력해주세요.");
+                .hasMessage("[ERROR] 쉼표 없이 최소 1000원부터 최대 100,000원까지의 금액을 입력해주세요.");
     }
 
     @DisplayName("로또 구매 금액이 100,000원을 넘어선 안 된다.")
@@ -29,7 +29,7 @@ class CustomerTest {
     void createCustomerByOverRange() {
         assertThatThrownBy(() -> new Customer("106000"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 최소 1000원부터 최대 100,000원까지의 금액을 입력해주세요.");
+                .hasMessage("[ERROR] 쉼표 없이 최소 1000원부터 최대 100,000원까지의 금액을 입력해주세요.");
     }
 
     @DisplayName("로또 구매 금액이 1000원보다 적어선 안 된다.")
@@ -37,7 +37,7 @@ class CustomerTest {
     void createCustomerByUnderRange() {
         assertThatThrownBy(() -> new Customer("200"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 최소 1000원부터 최대 100,000원까지의 금액을 입력해주세요.");
+                .hasMessage("[ERROR] 쉼표 없이 최소 1000원부터 최대 100,000원까지의 금액을 입력해주세요.");
     }
 
     @DisplayName("로또 구매 금액은 1000원 단위가 아니면 안 된다.")

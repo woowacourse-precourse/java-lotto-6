@@ -24,7 +24,14 @@ public enum Rank {
     public static Rank valueOf(int matchCount, boolean isBonus) {
         return Arrays.stream(values())
                 .filter(rank -> rank.matchCount == matchCount && rank.isBonus == isBonus)
-                .findFirst()
-                .orElse(MISS);
+                .findFirst().orElse(MISS);
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getWinningMoney() {
+        return winningMoney;
     }
 }

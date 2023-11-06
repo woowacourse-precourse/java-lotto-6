@@ -45,18 +45,4 @@ public class Lotto {
             }
         }
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Lotto) {
-            Lotto lotto = (Lotto) obj;
-            return numbers.equals(lotto.numbers);
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(numbers);
-    }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -44,10 +45,6 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     public int compareToAnswerLotto(Lotto answerLotto) {
         return (int)numbers.stream()
                 .filter(number -> answerLotto.getNumbers().contains(number))
@@ -59,5 +56,9 @@ public class Lotto {
                 .filter(number -> number == bonusNumber)
                 .findFirst()
                 .isPresent();
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

@@ -7,10 +7,7 @@ import lotto.domain.WinningResult;
 import lotto.dto.LottoDto;
 import lotto.dto.WinningResultDto;
 
-import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
 public class LottoService {
 
@@ -38,12 +35,7 @@ public class LottoService {
     }
 
     public WinningResultDto getWinningResultDto() {
-        Map<Ranking, Integer> rankingCount = winningResult.getRankingCount();
-
-        Map<Ranking, Integer> rankingCount2 = new EnumMap<>(Ranking.class);
-        Arrays.stream(Ranking.values())
-                .forEach(ranking -> rankingCount2.put(ranking, rankingCount.get(ranking)));
-
-        return new WinningResultDto(rankingCount2, winningResult.getReturnRate());
+        winningResult.getRankingCount();
+        return new WinningResultDto(winningResult);
     }
 }

@@ -1,16 +1,11 @@
 package lotto.view;
 
-import lotto.domain.Ranking;
 import lotto.dto.LottoDto;
 import lotto.dto.WinningResultDto;
-import org.w3c.dom.ls.LSOutput;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
-
-    private static String USER_LOTTO_MESSAGE = "개를 구매했습니다.";
 
     private ConsoleOutputView() {
     }
@@ -25,16 +20,21 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printUserLotto(List<LottoDto> lottoDtos) {
-        print(lottoDtos.size() + USER_LOTTO_MESSAGE);
+        print(OutputMessage.getUserLottoCountMessage(lottoDtos.size()));
         lottoDtos.stream()
                 .forEach(lottoDto -> print(lottoDto.getNumbers()));
     }
 
     @Override
     public void printWinningResult(WinningResultDto winningResultDto) {
-        Arrays.stream(Ranking.values())
-                .forEach(ranking -> System.out.print(ranking.getMatchCount() + "개 일치 (" + ranking.getReward() + "원) - " + winningResultDto.getRankingCount(ranking) + "개\n"));
+        print(OutputMessage.getWinningResultStartMessage());
 
-        System.out.println("총 수익률은 " + winningResultDto.getReturnRate() + "%입니다.");
+        winningResultDto.getRankingDtos().stream()
+                .forEach(rankingDto -> {
+                    if (rankingDto.getRankingNumber().equals("FAIL")) return;
+                    print(OutputMessage.getWinningResultMessage(rankingDto));
+                });
+
+        print(OutputMessage.getRateOfReturnMessage(winningResultDto));
     }
 }

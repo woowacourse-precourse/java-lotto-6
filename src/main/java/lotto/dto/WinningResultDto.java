@@ -1,21 +1,27 @@
 package lotto.dto;
 
 import lotto.domain.Ranking;
+import lotto.domain.WinningResult;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class WinningResultDto {
 
-    private Map<Ranking, Integer> rankingCount;
+    private List<RankingDto> rankingDtos;
     private double returnRate;
 
-    public WinningResultDto(Map<Ranking, Integer> rankingCount, double returnRate) {
-        this.rankingCount = rankingCount;
-        this.returnRate = returnRate;
+    public WinningResultDto(WinningResult winningResult) {
+        Map<Ranking, Integer> rankingCount = winningResult.getRankingCount();
+        rankingDtos = Arrays.stream(Ranking.values())
+                .map(ranking -> new RankingDto(ranking, rankingCount.get(ranking)))
+                .toList();
+        this.returnRate = winningResult.getReturnRate();
     }
 
-    public int getRankingCount(Ranking ranking) {
-        return rankingCount.get(ranking);
+    public List<RankingDto> getRankingDtos() {
+        return rankingDtos;
     }
 
     public double getReturnRate() {

@@ -1,6 +1,6 @@
 package lotto;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.InvalidSizeException;
@@ -14,7 +14,7 @@ public class RandomNumberGeneratorTest {
     @Test
     void generateNumbersOutOfRange() {
         //given
-        NumberGenerator randomNumberGenerator = new RandomNumberGenerator(45,65);
+        NumberGenerator randomNumberGenerator = new RandomNumberGenerator(45, 65);
 
         // when then
         assertThatThrownBy(randomNumberGenerator::generate)

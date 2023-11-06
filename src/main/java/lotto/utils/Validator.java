@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import java.util.List;
+
 public class Validator {
 
     public static void checkAmount(Integer purchaseAmount) throws IllegalArgumentException{
@@ -14,4 +16,15 @@ public class Validator {
         }
         return inputValue;
     }
+
+    public static void checkWinningNumber(List<Integer> winningNumber){
+        checkWinningNumberSize(winningNumber);
+    }
+    private static void checkWinningNumberSize(List<Integer> winningNumber){
+        if(winningNumber.size() != 6){
+            throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 6개가 아닙니다.");
+        }
+    }
+
+
 }

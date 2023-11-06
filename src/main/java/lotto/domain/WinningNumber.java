@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.utils.Validator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,6 +10,7 @@ public class WinningNumber {
 
     private List<Integer> winningNumber;
     public WinningNumber(String winningNumber){
+        Validator.checkWinningNumber(parseInteger(winningNumber));
         this.winningNumber = parseInteger(winningNumber);
     }
 

@@ -15,4 +15,15 @@ public class Lottos {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder message = new StringBuilder();
+
+        for(Lotto lotto : lottos){
+            message.append(lotto);
+            message.append("\n");
+        }
+
+        return message.toString();
+    }
 }

@@ -4,19 +4,21 @@ import camp.nextstep.edu.missionutils.Console;
 
 public abstract class Input {
 
-    protected boolean isInvalidInput = true;
+    private final static String INITIALIZE = "";
 
     public String readLine() {
-        String input = "";
-        while (isInvalidInput) {
+        String input;
+
+        while (true) {
             try {
                 input = Console.readLine();
                 validate(input);
-                isInvalidInput = false;
+                break;
             } catch (IllegalArgumentException ignored) {
 
             }
         }
+
         return input;
     }
 

@@ -44,12 +44,12 @@ public class OutputView {
         printText(rateOfReturn.toString());
     }
 
-    private void printSpace() {
-        System.out.println();
+    public void printText(String text) {
+        System.out.println(text);
     }
 
-    private void printText(String text) {
-        System.out.println(text);
+    private void printSpace() {
+        System.out.println();
     }
 
     private void printOutputText(OutputText outputText) {

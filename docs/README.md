@@ -62,18 +62,28 @@
 - correctMoney
 # Game
     로또 진행을 관리해주는 클래스
-- askMoney
+- *askMoney
 - askNumber
 - askBonus
 - printCorrect
 # Exception
     예외 처리를 해주는 클래스
 - *outOfRangeMoney
-- sameNumberCheck
-- incorrectFormatNumber
+- *numberLengthCheck
+- *numberCheckNumber
+- *numberRangeNumber
+- *numberAllCheckNumber
 - *incorrectFormatMoney
+- *numberCheckAll
+- *numberSizeCheck
+- bonusCheck
 
 # Message
 - Message
 - getCode
+- getMessage
+
+# Winning
+- Winning
+- getRank
 - getMessage

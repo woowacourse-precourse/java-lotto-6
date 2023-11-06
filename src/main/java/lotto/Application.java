@@ -11,8 +11,11 @@ public class Application {
 
         outputView.printLottoPurchaseComment();
         String inputMoney = inputView.inputLottoPurchaseAmount();
+        outputView.printLineSeparator();
 
         Buyer buyer = new Buyer(inputMoney);
+        outputView.printLottoCountMessage(buyer.getLottoCount());
+        buyer.printLottos();
 
         inputView.close();
     }

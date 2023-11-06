@@ -10,4 +10,12 @@ public class Buyer {
         this.money = new Money(inputMoney);
         lottos = LottoStore.buyLotto(money);
     }
+
+    public void printLottos() {
+        lottos.forEach(lotto -> System.out.println(lotto.getLottoPrintMessage()));
+    }
+
+    public int getLottoCount() {
+        return lottos.size();
+    }
 }

@@ -43,4 +43,16 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public String getLottoPrintMessage() {
+        StringBuilder messageBuilder = new StringBuilder();
+        messageBuilder.append("[");
+
+        List<String> numbersToString = numbers.stream().map(String::valueOf).toList();
+        messageBuilder.append(String.join(", ", numbersToString));
+
+        messageBuilder.append("]");
+
+        return messageBuilder.toString();
+    }
 }

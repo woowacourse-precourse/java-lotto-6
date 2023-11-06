@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,13 +7,17 @@ public class LottoResult {
     private final Map<Rank, Integer> resultCount;
     private final WinningNumbers winningNumbers;
 
-
     public LottoResult(WinningNumbers winningNumbers) {
         this.winningNumbers = winningNumbers;
-        resultCount = new HashMap<>();
+        resultCount = initializeResultCount();
+    }
+
+    private Map<Rank, Integer> initializeResultCount() {
+        Map<Rank, Integer> count = new HashMap<>();
         for (Rank rank : Rank.values()) {
-            resultCount.put(rank, 0);
+            count.put(rank, 0);
         }
+        return count;
     }
 
     public void addResult(int matchCount, boolean hasBonusNumber) {
@@ -28,15 +32,10 @@ public class LottoResult {
     public double calculateWinningRate(int purchaseAmount) {
         int totalPrize = Rank.calculateTotalPrize(resultCount);
         int profit = totalPrize - purchaseAmount;
+        return calculateWinningRate(profit < 0 ? totalPrize : profit, purchaseAmount);
+    }
 
-        double winningRate;
-
-        if (profit < 0) {
-            winningRate = ((double) totalPrize / purchaseAmount) * 100;
-        } else {
-            winningRate = ((double) profit / purchaseAmount) * 100;
-        }
-
-        return Math.round(winningRate * 10) / 10.0;
+    private double calculateWinningRate(int numerator, int denominator) {
+        return Math.round(((double) numerator / denominator) * 1000) / 10.0;
     }
 }

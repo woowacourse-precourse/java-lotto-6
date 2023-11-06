@@ -1,14 +1,28 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+    	System.out.println("구입금액을 입력해 주세요.");
+    	int number = purchase();
+    	
     }
     
-    public static int purchase() {
-    	// 구입 금액 입력받기
-    	// 1000의 배수가 아니면 예외처리
-    	return 0; //발행할 로또 개수 반환
+    public static int purchase() throws IllegalArgumentException {
+    	int input;
+    	while(true) {
+    		try {
+    			input = Integer.parseInt(Console.readLine());
+    			if(input % 1000 != 0) {
+    			throw new IllegalArgumentException();
+    			}
+    			break;
+    		}catch(IllegalArgumentException e) {
+    			System.out.println("[ERROR] 구입 금액은 1,000원의 배수여야 합니다.");
+    		}
+    	}
+    	return input/1000; //발행할 로또 개수 반환
     }
     
     public static int inputNumbers() {

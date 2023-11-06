@@ -6,7 +6,6 @@ import static lotto.constant.ErrorMessage.WINNUMBER_RANGE;
 import static lotto.constant.NumberConstant.LAST_LOTTO_NUMBER;
 import static lotto.constant.NumberConstant.NUMBERS_LENGTH;
 import static lotto.constant.NumberConstant.START_LOTTO_NUMBER;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,25 +13,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
-import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
-
-
-
-
-
-
-
-
 
     @ParameterizedTest
     @MethodSource("generateRangeData")
@@ -65,6 +52,22 @@ class LottoTest {
     }
 
 
+    @ParameterizedTest
+    @MethodSource("generateLengthData")
+    @DisplayName("당첨 번호 내부에 중복된 숫자가 있는지 테스트!")
+    void lengthTest(List<Integer> lengthNumbers){
+        Assertions.assertThatThrownBy(() -> lengthCheck(lengthNumbers)).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(WINNUMBER_LENGTH.getMessage());
+    }
+
+    static Stream<Arguments> generateLengthData() {
+        return Stream.of(
+            Arguments.of(Arrays.asList(1, 2, 2,3,4,5,7)),
+            Arguments.of(Arrays.asList(1, 2, 3,3,4))
+        );
+    }
+
+
 
 
     private void rangeCheck(List<Integer> numbers) {
@@ -88,7 +91,7 @@ class LottoTest {
         }
     }
 
-    private void validate(List<Integer> numbers) {
+    private void lengthCheck(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_LENGTH.getNumber()) {
             throw new IllegalArgumentException(WINNUMBER_LENGTH.getMessage());
         }

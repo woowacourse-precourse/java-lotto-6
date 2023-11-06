@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 
 public class WinStatistics {
@@ -18,12 +20,15 @@ public class WinStatistics {
     }
 
     private static EnumMap<Ranking, Integer> createStatistics(List<Ranking> rankings) {
-        return rankings.stream()
-                .collect(
-                        () -> new EnumMap<>(Ranking.class),
-                        (map, ranking) -> map.put(ranking, map.getOrDefault(ranking, 0) + 1),
-                        EnumMap::putAll
-                );
+        EnumMap<Ranking, Integer> result = initResult();
+        rankings.forEach(ranking -> result.merge(ranking, 1, Integer::sum));
+        return result;
+    }
+
+    private static EnumMap<Ranking, Integer> initResult() {
+        EnumMap<Ranking, Integer> result = new EnumMap<>(Ranking.class);
+        Arrays.stream(Ranking.values()).forEach(rank -> result.put(rank, 0));
+        return result;
     }
 
     public double calculateProfit() {

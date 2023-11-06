@@ -10,7 +10,6 @@ public class LottoResultChecker {
     List<Integer> winningNumbers; // 당첨번호
     int bonusNumber; // 당첨 보너스 번호
     List<Integer> userLottoNumbers; // 사용자가 구매한 번호
-    int rank; // 등수
     int reward; // 상금
     String returnRatio; // 수익률
 
@@ -20,13 +19,18 @@ public class LottoResultChecker {
         this.bonusNumber = bonusNumber;
     }
 
+    public void checkLottoResult() {
+        reward = calculateReward(countMatchNumbers());
+        returnRatio = calculateReturnRation() + ""; // 수익률을 계산 후 문자열로 변환
+    }
+
     public double countMatchNumbers() {
         List<Integer> matchNumbers = winningNumbers.stream()
                 .filter(old -> userLottoNumbers.stream()
                         .anyMatch(Predicate.isEqual(old)))
                 .toList();
         // 일치하는 개수가 6개인데 보너스 번호가 있는 경우 -> 2등
-        if(matchNumbers.size() == Rank.FIRST_PLACE.getMatchNumberCount() && hasBonusNumber(matchNumbers))
+        if (matchNumbers.size() == Rank.FIRST_PLACE.getMatchNumberCount() && hasBonusNumber(matchNumbers))
             return Rank.SECOND_PLACE.getMatchNumberCount();
         return matchNumbers.size();
     }
@@ -44,7 +48,7 @@ public class LottoResultChecker {
         return Rank.NONE.getReward(); // 매치되는 숫자 개수가 0인 경우
     }
 
-    public double calculateReturnRation(){
+    public double calculateReturnRation() {
         // 계산한 수익률을 소수점 둘째 자리에서 반올림하여 리턴
         return Math.round((reward / ONE_LOTTO_PRICE) * 100.0) / 100.0;
     }

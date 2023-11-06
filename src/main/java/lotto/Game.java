@@ -58,6 +58,6 @@ public class Game {
         System.out.printf("5개 일치, 보너스 볼 일치 (%s) - %d개\n",PRIZE.SECOND,results.get(1));
         System.out.printf("6개 일치 (%s) - %d개\n",PRIZE.FIRST,results.get(0));
 
-        System.out.printf("총 수익률은 %.1f%s입니다.",earn/money,"%");
+        System.out.printf("총 수익률은 %,.1f%s입니다.",earn/money,"%");
     }
 }

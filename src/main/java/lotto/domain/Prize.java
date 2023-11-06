@@ -1,12 +1,12 @@
 package lotto.domain;
 
-import static lotto.condition.Rank.FIFTH;
-import static lotto.condition.Rank.FIRST;
-import static lotto.condition.Rank.FOURTH;
-import static lotto.condition.Rank.SECOND;
-import static lotto.condition.Rank.THIRD;
+import static lotto.condition.Reward.FIVE;
+import static lotto.condition.Reward.FIVE_AND_BONUS;
+import static lotto.condition.Reward.FOUR;
+import static lotto.condition.Reward.SIX;
+import static lotto.condition.Reward.THREE;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.dto.ResultResponse;
@@ -25,7 +25,7 @@ public class Prize {
 
     public Map<Integer, Integer> createPrize(List<Integer> answerNumbers, List<List<Integer>> allLotto,
                                             int bonusNumber) {
-        Map<Integer, Integer> result = new HashMap<>();
+        Map<Integer, Integer> result = new LinkedHashMap<>();
         initMap(result);
         for (List<Integer> lottoNumbers : allLotto) {
             int matchingNumbers = countMatchingNumbers(answerNumbers, lottoNumbers);
@@ -36,11 +36,11 @@ public class Prize {
     }
 
     private void initMap(Map<Integer, Integer> result) {
-        result.put(FIFTH.getNumberOfMatches(), 0);
-        result.put(FOURTH.getNumberOfMatches(), 0);
-        result.put(THIRD.getNumberOfMatches(), 0);
-        result.put(SECOND.getNumberOfMatches(), 0);
-        result.put(FIRST.getNumberOfMatches(), 0);
+        result.put(THREE.getNumberOfMatches(), 0);
+        result.put(FOUR.getNumberOfMatches(), 0);
+        result.put(FIVE.getNumberOfMatches(), 0);
+        result.put(FIVE_AND_BONUS.getNumberOfMatches(), 0);
+        result.put(SIX.getNumberOfMatches(), 0);
     }
 
     private int countMatchingNumbers(List<Integer> answerNumbers, List<Integer> lottoNumbers) {
@@ -62,31 +62,31 @@ public class Prize {
 
     private void addFifthRank(Map<Integer, Integer> result, int matchingNumbers) {
         if (matchingNumbers == 3) {
-            result.put(FIFTH.getNumberOfMatches(), result.get(FIFTH.getNumberOfMatches()) + 1);
+            result.put(THREE.getNumberOfMatches(), result.get(THREE.getNumberOfMatches()) + 1);
         }
     }
 
     private void addFourthRank(Map<Integer, Integer> result, int matchingNumbers) {
         if (matchingNumbers == 4) {
-            result.put(FOURTH.getNumberOfMatches(), result.get(FOURTH.getNumberOfMatches()) + 1);
+            result.put(FOUR.getNumberOfMatches(), result.get(FOUR.getNumberOfMatches()) + 1);
         }
     }
 
     private void addThirdRank(Map<Integer, Integer> result, int matchingNumbers, boolean hasBonusNumber) {
         if (matchingNumbers == 5 && !hasBonusNumber) {
-            result.put(THIRD.getNumberOfMatches(), result.get(THIRD.getNumberOfMatches()) + 1);
+            result.put(FIVE.getNumberOfMatches(), result.get(FIVE.getNumberOfMatches()) + 1);
         }
     }
 
     private void addSecondRank(Map<Integer, Integer> result, int matchingNumbers, boolean hasBonusNumber) {
         if (matchingNumbers == 5 && hasBonusNumber) {
-            result.put(SECOND.getNumberOfMatches(), result.get(SECOND.getNumberOfMatches()) + 1);
+            result.put(FIVE_AND_BONUS.getNumberOfMatches(), result.get(FIVE_AND_BONUS.getNumberOfMatches()) + 1);
         }
     }
 
     private void addFirstRank(Map<Integer, Integer> result, int matchingNumbers) {
         if (matchingNumbers == 6) {
-            result.put(FIRST.getNumberOfMatches(), result.get(FIRST.getNumberOfMatches()) + 1);
+            result.put(SIX.getNumberOfMatches(), result.get(SIX.getNumberOfMatches()) + 1);
         }
     }
 

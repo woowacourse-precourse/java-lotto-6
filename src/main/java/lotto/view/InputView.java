@@ -10,8 +10,8 @@ public class InputView {
     private static final String ASK_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String ASK_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-    public int inputPurchaseAmount() {
+    public String inputPurchaseAmount() {
         System.out.println(ASK_PURCHASE_AMOUNT);
-        return Integer.parseInt(readLine());
+        return readLine();
     }
 }

@@ -12,6 +12,10 @@ public class Result {
         this.result = result;
     }
 
+    public double calculateLottoRateOfReturn() {
+        return 0;
+    }
+
     public double proceeds() {
         return result.entrySet()
                 .stream()

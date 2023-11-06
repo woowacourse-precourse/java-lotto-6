@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.constants.LottoRank;
+import lotto.domain.constants.LottoRule;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,28 @@ public class ResultTest {
         }});
 
         Assertions.assertThat(result.totalBuyLottoAmount()).isEqualTo(8000);
+    }
+
+    @DisplayName("로또 수익률 계산")
+    @Test
+    public void calculateLottoRateOfReturn() {
+        int lottoCount = 8;
+        double buyLottoAmount = lottoCount * LottoRule.PRICE.getValue();
+        Map<LottoRank, Integer> ranks = new HashMap<>(){{
+            put(LottoRank.FIRST, 0);
+            put(LottoRank.SECOND, 0);
+            put(LottoRank.THIRD, 0);
+            put(LottoRank.FOURTH, 0);
+            put(LottoRank.FIFTH, 1);
+            put(LottoRank.LOSE, 7);
+        }};
+        double totalWinningAmount = ranks.entrySet()
+                .stream()
+                .mapToDouble(result -> result.getKey().getWinningAmount() * result.getValue())
+                .sum();
+        Result result = new Result(ranks);
+
+        Assertions.assertThat(result.calculateLottoRateOfReturn()).isEqualTo((totalWinningAmount / buyLottoAmount) * 100);
     }
 
     static Stream<Arguments> resultWinningLottoAndProceeds() {

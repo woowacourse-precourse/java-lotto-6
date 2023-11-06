@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +32,12 @@ public class LottoMachine {
 
     public void start() {
         List<Lotto> lottos;
+        OutputView outputView = new OutputView();
 
         purchaseLotto();
         lottos = createLottos();
+
+        outputView.showLottoCount(lottoCount);
+        outputView.showLottos(lottos);
     }
 }

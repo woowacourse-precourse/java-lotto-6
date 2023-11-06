@@ -63,5 +63,12 @@ public enum Prize {
         }
     }
 
+    public static void printWinningStatistics() {
+        for (Prize prize : Prize.values()) {
+            long count = prizeHistory.stream().filter(p -> p.equals(prize.name())).count();
+            System.out.println(prize.information + " - " + count + "개");
+        }
+    }
+
 }
 

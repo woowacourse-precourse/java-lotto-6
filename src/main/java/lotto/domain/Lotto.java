@@ -7,10 +7,13 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
+
+    private static int bonusnum;
 
     private static final int MIN = 1;
     private static final int MAX = 45;
@@ -19,6 +22,7 @@ public class Lotto {
         validate(numbers);
         between_number(numbers);
         Find_Duplicates(numbers);
+
         this.numbers = numbers;
     }
 
@@ -46,5 +50,19 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public void bonusNum(String bonusNum){
+        String pattern = "^[0-9]*$";
+        boolean result = Pattern.matches(pattern, bonusNum);
+        if(result == false){
+            throw new IllegalArgumentException();
+        }
+        bonusnum = Integer.parseInt(bonusNum);
+        System.out.println(bonusNum);
+    }
+
+
+
+
 
 }

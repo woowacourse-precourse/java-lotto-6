@@ -24,6 +24,7 @@ public class Application {
         PrintView.Output_Lotto_Buy(Buy_Ticket);
         Print_Lotto(Buy_Ticket);
         Input_winning_num();
+        Guessing_lotto();
     }
     public static int Input_Lotto_Buy(){
         inputAmount = new InputAmount(PrintView.Input_Lotto_Buy());
@@ -37,7 +38,6 @@ public class Application {
             System.out.println(printlotto);
         }
     }
-
     public static void Input_winning_num(){
        String Input_winning = PrintView.Input_Winning_Number();
        refinedWinning.Input_Winning(Input_winning);
@@ -45,7 +45,8 @@ public class Application {
 
     public static void Guessing_lotto(){
         lotto = new Lotto(refinedWinning.change_winning());
-
+        String bonusnum = PrintView.Input_Bonus_Number();
+        lotto.bonusNum(bonusnum);
     }
 
 }

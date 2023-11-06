@@ -9,7 +9,7 @@ import static lotto.view.ErrorMessage.notDigitExceptionMessage;
 
 public class InputConverter {
     public static int convertPrice(String inputPrice) {
-        return checkExceptionPrice(inputPrice);
+        return checkDigit(inputPrice);
     }
 
     public static List<Integer> convertWinningNumber(String inputWinningNumber) {

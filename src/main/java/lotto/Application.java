@@ -10,5 +10,7 @@ public class Application {
 
         controller.buyLotto();
 
+        controller.inputWinnerNumber();
+
     }
 }

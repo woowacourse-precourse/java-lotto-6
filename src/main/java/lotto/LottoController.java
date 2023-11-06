@@ -7,9 +7,11 @@ public class LottoController {
     private static final String INPUT_BUY_AMOUNT = Message.INPUT_BUY_AMOUNT.getValue();
     private static final String LOTTO_BUY_COUNT = Message.LOTTO_BUY_COUNT.getValue();
     private static final String CRLF = Message.CRLF.getValue();
+    private static final String INPUT_WINNER_NUMBERS = Message.INPUT_WINNER_NUMBERS.getValue();
 
     private static final Wallet wallet = new Wallet();
     private static final LottoView view = new LottoView();
+    private static WinnerNumbers winnerNumbers;
 
 
     void inputAmountOfLotto() {
@@ -38,6 +40,21 @@ public class LottoController {
 
         for (Lotto lotto : lottos) {
             view.printMessage(lotto.getNumbers().toString());
+        }
+
+        view.printMessage(CRLF);
+    }
+
+    void inputWinnerNumber() {
+
+        try {
+            List<Integer> numbers = view.inputNumbers(INPUT_WINNER_NUMBERS);
+            winnerNumbers = new WinnerNumbers(numbers);
+
+        } catch (Exception e) {
+            view.printMessage(e.getMessage());
+            inputWinnerNumber();
+            return;
         }
 
         view.printMessage(CRLF);

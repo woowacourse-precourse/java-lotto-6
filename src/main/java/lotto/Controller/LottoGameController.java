@@ -28,7 +28,7 @@ public class LottoGameController {
 
     public void start(List<List<Integer>> randomLottos) {
         List<Integer> countWinnings = LottoMatch.countMatchingNumbers(randomLottos, lotto.getNumbers(), bonusNumber.getBonus());
-        Result.printResults(countWinnings);
+        Result.resultOfGame(countWinnings);
         CalculateProfits.calculate(countWinnings, ticketsAmount.getTicketsPrice());
     }
 }

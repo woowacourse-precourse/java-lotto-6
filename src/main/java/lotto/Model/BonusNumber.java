@@ -1,7 +1,5 @@
 package lotto.Model;
 
-import static lotto.Model.LottoRangeStorage.MIN_NUM;
-
 import java.util.List;
 import lotto.View.ExceptionMessage;
 import lotto.Controller.InputController;

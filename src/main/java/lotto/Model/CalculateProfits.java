@@ -11,10 +11,6 @@ public class CalculateProfits {
             profit += prizeCount * prize.getPrize();
         }
         double profitPercentage = (profit / investment) * 100;
-        OuputView.printProfit(roundToTwoDecimalPlaces(profitPercentage));
-    }
-
-    private static double roundToTwoDecimalPlaces(double value) {
-        return Math.round(value * 100.0) / 100.0;
+        OuputView.printProfit(profitPercentage);
     }
 }

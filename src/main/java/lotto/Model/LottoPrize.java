@@ -1,6 +1,5 @@
 package lotto.Model;
 
-import java.util.List;
 import lotto.View.OuputView;
 
 enum LottoPrize {
@@ -24,7 +23,6 @@ enum LottoPrize {
     public int getMatchingNumbers() {
         return matchingNumbers;
     }
-
     public int getPrize() {
         return prize;
     }

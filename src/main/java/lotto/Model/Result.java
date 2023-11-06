@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.View.OuputView;
 
 public class Result {
-    public static void printResults(List<Integer> countWinnings) {
+    public static void resultOfGame(List<Integer> countWinnings) {
         OuputView.printResultStr();
         for (LottoPrize prize : LottoPrize.values()) {
             if (prize != LottoPrize.FAIL) {
@@ -13,5 +13,4 @@ public class Result {
             }
         }
     }
-
 }

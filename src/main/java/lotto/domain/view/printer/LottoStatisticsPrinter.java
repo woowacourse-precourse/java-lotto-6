@@ -11,7 +11,7 @@ import lotto.domain.valueobject.Statistics;
 public class LottoStatisticsPrinter {
     private static final String WINNING_STATISTICS_PRINT_MESSAGE = "당첨 통계";
     private static final String BASE_LINE = "---";
-    private static final String WINNING_POINT_PRINT_MESSAGE = "%d개 일치%s (%s원) - %d개\n";
+    private static final String WINNING_POINT_PRINT_MESSAGE = "%d개 일치%s (%s원) - %d개";
     private static final String BONUS_SUFFIX = ", 보너스 볼 일치";
     private static final String NULL_SUFFIX = "";
     private static final String RATE_OF_RETURN_PRINT_MESSAGE = "총 수익률은 %.1f%%입니다.";
@@ -40,10 +40,10 @@ public class LottoStatisticsPrinter {
         if (score.isBonusMatch()) {
             suffix = BONUS_SUFFIX;
         }
-        System.out.printf(WINNING_POINT_PRINT_MESSAGE, matchCount, suffix, reward, winningNumber);
+        System.out.println(String.format(WINNING_POINT_PRINT_MESSAGE, matchCount, suffix, reward, winningNumber));
     }
 
     public static void printRateOfReturn(Order order) {
-        System.out.printf(RATE_OF_RETURN_PRINT_MESSAGE, order.getRateOfReturn());
+        System.out.println(String.format(RATE_OF_RETURN_PRINT_MESSAGE, order.getRateOfReturn()));
     }
 }

@@ -11,6 +11,10 @@ public class PurchaseMoney {
     this.purchaseMoney = purchaseMoney;
   }
 
+  public int getPurchaseAmount() {
+    return purchaseMoney / DIVIDE_MONEY;
+  }
+
   private void validateAmount(int purchaseMoney) {
     if (isDivisible(purchaseMoney)) {
       throw new IllegalArgumentException();

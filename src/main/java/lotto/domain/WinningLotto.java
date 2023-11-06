@@ -37,10 +37,10 @@ public class WinningLotto {
         }
     }
 
-    public rank calculateRank(Lotto comparedLotto) {
+    public Rank calculateRank(Lotto comparedLotto) {
         int matchedNumberCount = lotto.countMatchedNumber(comparedLotto);
         boolean bonusNumberMatched = comparedLotto.containNumber(bonusNumber);
 
-        return rank.findByMatchedNumberCountAndBonusNumberMatched(matchedNumberCount, bonusNumberMatched);
+        return Rank.findByMatchedNumberCountAndBonusNumberMatched(matchedNumberCount, bonusNumberMatched);
     }
 }

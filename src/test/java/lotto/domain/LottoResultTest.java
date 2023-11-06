@@ -14,10 +14,10 @@ class LottoResultTest {
     @DisplayName("당첨 등수의 개수를 증가시킨다.")
     @Test
     void increaseLottoRankCount() {
-        lottoResult.increaseLottoRankCount(rank.THREE_MATCH);
-        Map<rank, Integer> result = lottoResult.getResult();
+        lottoResult.increaseLottoRankCount(Rank.THREE_MATCH);
+        Map<Rank, Integer> result = lottoResult.getResult();
 
-        int rankCount = result.get(rank.THREE_MATCH);
+        int rankCount = result.get(Rank.THREE_MATCH);
 
         assertThat(rankCount).isEqualTo(1);
     }
@@ -26,11 +26,11 @@ class LottoResultTest {
     @Test
     void calculateProfitRate() {
         Payment payment = new Payment(LottoConstraint.PRICE_PER_LOTTO.getValue());
-        lottoResult.increaseLottoRankCount(rank.THREE_MATCH);
+        lottoResult.increaseLottoRankCount(Rank.THREE_MATCH);
         double profitRate = lottoResult.calculateProfitRate(payment);
 
         assertThat(profitRate).isEqualTo(
-        (double) rank.THREE_MATCH.getPrizeMoney()
+        (double) Rank.THREE_MATCH.getPrizeMoney()
                 / LottoConstraint.PRICE_PER_LOTTO.getValue()
                 * 100
         );
@@ -41,13 +41,13 @@ class LottoResultTest {
     void calculateProfitRateWhenBigNumber() {
         Payment payment = new Payment(LottoConstraint.PRICE_PER_LOTTO.getValue());
         for (int i = 0; i < LottoConstraint.MAX_PURCHASE_QUANTITY.getValue(); i++) {
-            lottoResult.increaseLottoRankCount(rank.SIX_MATCH);
+            lottoResult.increaseLottoRankCount(Rank.SIX_MATCH);
         }
 
         double profitRate = lottoResult.calculateProfitRate(payment);
 
         assertThat(profitRate).isEqualTo(
-        (double) rank.SIX_MATCH.getPrizeMoney()
+        (double) Rank.SIX_MATCH.getPrizeMoney()
                 * LottoConstraint.MAX_PURCHASE_QUANTITY.getValue()
                 / LottoConstraint.PRICE_PER_LOTTO.getValue()
                 * 100

@@ -55,7 +55,7 @@ class WinningLottoTest {
         init(TestConstant.normalNumbers);
         winningLotto.setBonusNumber(45);
 
-        rank rank = winningLotto.calculateRank(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
 
         assertThat(rank).isEqualTo(rank.SIX_MATCH);
     }
@@ -66,7 +66,7 @@ class WinningLottoTest {
         init(List.of(1, 2, 3, 4, 5, 44));
         winningLotto.setBonusNumber(6);
 
-        rank rank = winningLotto.calculateRank(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
 
         assertThat(rank).isEqualTo(rank.FIVE_AND_BONUS_MATCH);
     }
@@ -77,7 +77,7 @@ class WinningLottoTest {
         init(List.of(1, 2, 3, 4, 5, 45));
         winningLotto.setBonusNumber(40);
 
-        rank rank = winningLotto.calculateRank(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
 
         assertThat(rank).isEqualTo(rank.FIVE_MATCH);
     }
@@ -88,7 +88,7 @@ class WinningLottoTest {
         init(List.of(1, 2, 3, 4, 43, 44));
         winningLotto.setBonusNumber(45);
 
-        rank rank = winningLotto.calculateRank(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
 
         assertThat(rank).isEqualTo(rank.FOUR_MATCH);
     }
@@ -99,7 +99,7 @@ class WinningLottoTest {
         init(List.of(1, 2, 3, 42, 43, 44));
         winningLotto.setBonusNumber(45);
 
-        rank rank = winningLotto.calculateRank(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
 
         assertThat(rank).isEqualTo(rank.THREE_MATCH);
     }
@@ -113,13 +113,13 @@ class WinningLottoTest {
         Lotto oneMatchedLotto = new Lotto(List.of(1, 41, 42, 43, 44, 45));
         Lotto twoMatchedLotto = new Lotto(List.of(1, 2, 42, 43, 44, 45));
 
-        rank rank1 = winningLotto.calculateRank(noMatchedLotto);
-        rank rank2 = winningLotto.calculateRank(oneMatchedLotto);
-        rank rank3 = winningLotto.calculateRank(twoMatchedLotto);
+        Rank rank1 = winningLotto.calculateRank(noMatchedLotto);
+        Rank rank2 = winningLotto.calculateRank(oneMatchedLotto);
+        Rank rank3 = winningLotto.calculateRank(twoMatchedLotto);
 
-        assertThat(rank1).isEqualTo(rank.OUT_RANK);
-        assertThat(rank2).isEqualTo(rank.OUT_RANK);
-        assertThat(rank3).isEqualTo(rank.OUT_RANK);
+        assertThat(rank1).isEqualTo(Rank.OUT_RANK);
+        assertThat(rank2).isEqualTo(Rank.OUT_RANK);
+        assertThat(rank3).isEqualTo(Rank.OUT_RANK);
     }
 
     private void init(List<Integer> numbers) {

@@ -5,18 +5,18 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class LottoResult {
-    private final Map<rank, Integer> result = new LinkedHashMap<>();
+    private final Map<Rank, Integer> result = new LinkedHashMap<>();
 
     public LottoResult() {
-        Stream.of(rank.values()).forEach(rank -> result.put(rank, 0));
+        Stream.of(Rank.values()).forEach(rank -> result.put(rank, 0));
     }
 
-    public void increaseLottoRankCount(rank rank) {
+    public void increaseLottoRankCount(Rank rank) {
         int currentCount = result.get(rank);
         result.replace(rank, currentCount + 1);
     }
 
-    public Map<rank, Integer> getResult() {
+    public Map<Rank, Integer> getResult() {
         return new LinkedHashMap<>(result);
     }
 
@@ -28,7 +28,7 @@ public class LottoResult {
     private long calculateTotalPrizeMoney() {
         long totalPrizeMoney = 0;
 
-        for (rank rank : result.keySet()) {
+        for (Rank rank : result.keySet()) {
             int count = result.get(rank);
             totalPrizeMoney += (long) rank.getPrizeMoney() * count;
         }

@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.TestConstant;
 import lotto.constant.LottoConstraint;
-import lotto.domain.rank;
+import lotto.domain.Rank;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoReceiptDto;
 import lotto.dto.LottoResultDto;
@@ -34,8 +34,8 @@ class LottoServiceTest {
         lottoService.generateWinningLotto(45);
 
         LottoResultDto lottoResultDto = lottoService.getLottoResult();
-        int firstRankCount = lottoResultDto.result().get(rank.SIX_MATCH);
-        int secondRankCount = lottoResultDto.result().get(rank.FIVE_AND_BONUS_MATCH);
+        int firstRankCount = lottoResultDto.result().get(Rank.SIX_MATCH);
+        int secondRankCount = lottoResultDto.result().get(Rank.FIVE_AND_BONUS_MATCH);
         double profitRate = lottoResultDto.profitRate();
 
         assertThat(firstRankCount).isEqualTo(1);

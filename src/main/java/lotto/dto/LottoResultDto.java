@@ -1,12 +1,12 @@
 package lotto.dto;
 
-import lotto.domain.rank;
+import lotto.domain.Rank;
 import java.util.Map;
 
-public record LottoResultDto(double profitRate, Map<rank, Integer> result) {
-    public LottoResultDto(double profitRate, Map<rank, Integer> result) {
+public record LottoResultDto(double profitRate, Map<Rank, Integer> result) {
+    public LottoResultDto(double profitRate, Map<Rank, Integer> result) {
         this.profitRate = profitRate;
-        result.remove(rank.OUT_RANK);
+        result.remove(Rank.OUT_RANK);
         this.result = result;
     }
 }

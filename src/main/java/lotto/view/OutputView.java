@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.constant.InformationMessage;
-import lotto.domain.rank;
+import lotto.domain.Rank;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoReceiptDto;
 import lotto.dto.LottoResultDto;
@@ -36,15 +36,15 @@ public class OutputView {
         printProfitRate(lottoResult.profitRate());
     }
 
-    private void printResult(Map<rank, Integer> result) {
-        for (rank rank : result.keySet()) {
+    private void printResult(Map<Rank, Integer> result) {
+        for (Rank rank : result.keySet()) {
             printRank(rank, result.get(rank));
         }
     }
 
-    private void printRank(rank rank, int count) {
+    private void printRank(Rank rank, int count) {
         String format = InformationMessage.GENERAL_RANK_RESULT_FORMAT.getMessage();
-        if(rank.equals(lotto.domain.rank.FIVE_AND_BONUS_MATCH)) {
+        if(rank.equals(Rank.FIVE_AND_BONUS_MATCH)) {
             format = InformationMessage.SECOND_RANK_RESULT_FORMAT.getMessage();
         }
 

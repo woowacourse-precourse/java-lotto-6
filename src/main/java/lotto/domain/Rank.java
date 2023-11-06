@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.stream.Stream;
 
-public enum rank {
+public enum Rank {
     OUT_RANK(0, -1),
     THREE_MATCH(5000, 3),
     FOUR_MATCH(50000, 4),
@@ -13,12 +13,12 @@ public enum rank {
     private final int prizeMoney;
     private final int matchedNumberCount;
 
-    rank(int prizeMoney, int matchedNumberCount) {
+    Rank(int prizeMoney, int matchedNumberCount) {
         this.prizeMoney = prizeMoney;
         this.matchedNumberCount = matchedNumberCount;
     }
 
-    public static rank findByMatchedNumberCountAndBonusNumberMatched(
+    public static Rank findByMatchedNumberCountAndBonusNumberMatched(
             int matchedNumberCount, boolean bonusNumberMatched
     ) {
         if (matchedNumberCount == 5) {
@@ -30,7 +30,7 @@ public enum rank {
                 .orElse(OUT_RANK);
     }
 
-    private static rank decideRankSecondOrThird(boolean matchedBonusNumber) {
+    private static Rank decideRankSecondOrThird(boolean matchedBonusNumber) {
         if (matchedBonusNumber) {
             return FIVE_AND_BONUS_MATCH;
         }

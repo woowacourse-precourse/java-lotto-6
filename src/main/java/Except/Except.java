@@ -122,7 +122,8 @@ public class Except {
         }
         return result;
     }
-    public int bonusCheck(String number){
+
+    public int bonusCheck(String number) {
         int result = -1;
         String length_check = numberLengthCheck(number);
         if (!length_check.equals("")) {

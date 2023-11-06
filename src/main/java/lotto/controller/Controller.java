@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
+import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,8 +21,9 @@ public class Controller {
          */
         int money = inputMoneyFromUser();
         List<Lotto> lottoTickets = purchaseLotto(money);
-//        purchaseLotto(inputMoneyFromUser());
         printLottoNumbers(lottoTickets);
+        WinningNumber winningNumber = inputWinnigNumberFromUser();
+
     }
 
     private int inputMoneyFromUser() {
@@ -51,5 +53,18 @@ public class Controller {
 
     private void printLottoNumbers(List<Lotto> lottoTickets) {
         OutputView.lottoNumberMessage(lottoTickets);
+    }
+
+//    private void
+    private WinningNumber inputWinnigNumberFromUser() {
+        try {
+            Lotto lotto = new Lotto(InputView.inputLottoNumber());
+            int inputBonusNumber = InputView.inputBonusNumber();
+            WinningNumber winningNumber = new WinningNumber(lotto.getNumbers(), inputBonusNumber);
+            return winningNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinnigNumberFromUser();
+        }
     }
 }

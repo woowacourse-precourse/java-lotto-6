@@ -1,4 +1,4 @@
-package lotto.constants.message;
+package lotto.constant.message;
 
 public class SettingMessage {
     public static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";

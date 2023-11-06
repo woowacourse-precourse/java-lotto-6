@@ -1,4 +1,4 @@
-package lotto.constants.message;
+package lotto.constant.message;
 
 public class ErrorMessage {
     private static final String prefix = "[Error] ";

@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.constant;
 
 import lotto.model.WinningCondition;
 

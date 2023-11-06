@@ -1,8 +1,6 @@
 package lotto.model;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -29,7 +27,8 @@ public class Lotto {
     private List<LottoNumber> convertToLottoNumbers(List<Integer> numbers){
         return numbers.stream()
                 .map(LottoNumber::new)
-                .sorted().toList();
+                .sorted(Comparator.comparing(LottoNumber::getNumber))
+                .toList();
 
     }
 
@@ -43,4 +42,7 @@ public class Lotto {
         return numbers.contains(lottoNumber);
     }
 
+    public List<LottoNumber> getLottoNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
 }

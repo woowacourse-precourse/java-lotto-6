@@ -1,15 +1,11 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.io.LottoPrizeResult;
 import lotto.model.dto.BuyInfo;
 import lotto.model.dto.Lotto;
 import lotto.model.dto.LottoBonus;
 import lotto.model.vo.SeasonLottoResultVO;
-import lotto.service.domain.lotto.LottoIoService;
 import lotto.view.LottoResultPrint;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -17,23 +13,6 @@ public class Application {
     public static void main(String[] args) {
 
        LottoResultPrint lottoResultPrint = new LottoResultPrint();
-/*
-        lottoResultPrint.addResult(3,false);
-        lottoResultPrint.addResult(4,false);
-        lottoResultPrint.addResult(4,false);
-        lottoResultPrint.addResult(5,false);
-
-        lottoResultPrint.lottoResultPrint();*/
-        //3개 일치 ( 5,000원 ) - 1개
-        //4개 일치 ( 50,000월 ) - 2개
-        //5개 일치 ( 1,500,000원 ) - 1개
-        //5개 일치, 보너스 볼 일치 ( 30,000,000원 ) - 0개
-        //6개 일치 ( 2,000,000,000원 ) - 0개
-
-
-
-
-
 
         BuyInfo buyPriceInfo = new BuyInfo();
         buyPriceInfo = lottoController.buyInfo(buyPriceInfo);
@@ -44,6 +23,9 @@ public class Application {
                                                     .createAutoLottoBuyChoice(buyPriceInfo
                                                     .getBuyNumber());
 
+        // 번호들 출력되는 구문
+        lottoController.showAutoLottoTicks(buyNumber,autoLottoTicket);
+
         // 유저 인풋 받아서 둘 다 리스트에 숑 넣기 - 코드 재활용하기
     /*    Lotto lottoMasterNumber = new Lotto();
         LottoBonus lottoMasterBonusNumber = new LottoBonus();*/
@@ -51,15 +33,15 @@ public class Application {
         //유저가 입력받은 값을 받아서 Lotto에 저장하는 구문
         Lotto userLottoNumbers = lottoController
                                 .userInputMasterLottoNumbers();
-        LottoBonus userLottoBonusNumber;
+
 
         //유저 보너스 번호 입력하는 구간
         LottoBonus lottoBonus = lottoController
                                 .userInputMasterLottoBonusNumber(userLottoNumbers);
-        // 번호들 출력되는 구문
-        lottoController.showAutoLottoTicks(buyNumber,autoLottoTicket);
+
 
         // 당첨 통계 나오는 구간
+        System.out.println("당첨 통계");
         System.out.println("---");
 
         // 통계 이넘부터 구현하면 됨
@@ -68,23 +50,33 @@ public class Application {
 
         for (SeasonLottoResultVO ticket : autoLottoTicket){
             int matchPoint = 0;
-            boolean bonusMatch = false;
-
+            System.out.println(ticket.getAutoLottoNumber());
+            System.out.println(ticket.getAutoBonusNumber());
             for(int number : ticket.getAutoLottoNumber()){
                 if(userLottoNumbers.getNumbers().contains(number)){
-                    //일치하는 것 디버깅
-                    System.out.println(userLottoNumbers.getNumbers().contains(number));
                     matchPoint++;
-                    System.out.println(matchPoint);
                 }
             }
-            if (lottoBonus.getNumber().contains(ticket.getAutoBonusNumber())){
-                bonusMatch = true;
-            }
+            boolean bonusMatch = false;
+
+            bonusMatch = ticket.getAutoLottoNumber().contains(lottoBonus.getNumber().get(0));
+
+            System.out.println(bonusMatch);
             lottoResultPrint.addResult(matchPoint,bonusMatch);
         }
-
         lottoResultPrint.lottoResultPrint();
+
+        // 총 수익률 계산하기
+
+        // 투자 금액
+        System.out.println(buyPriceInfo.getBuyWon());
+        try {
+            System.out.println(lottoResultPrint.resultTotalPrize());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        // 당첨금
 
 
 

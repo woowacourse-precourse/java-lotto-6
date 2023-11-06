@@ -4,6 +4,7 @@ import static lotto.validator.Error.NOT_NUMERIC_INPUT;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -72,4 +73,35 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.INVALID_PAYMENT.message());
     }
+
+    @DisplayName("당첨 번호 검증")
+    @Test
+    void winningNumbers() {
+        assertDoesNotThrow(() -> Validator.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 45)));
+    }
+
+    @DisplayName("당첨 번호 검증_6개가 아닌 경우")
+    @Test
+    void winningNumbers_invalidSize() {
+        Assertions.assertThatThrownBy(() -> Validator.validateWinningNumbers(List.of(1, 2, 3, 4)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.INVALID_NUM_WINNING_NUMBER.message());
+    }
+
+    @DisplayName("당첨 번호 검증_범위를 벗어난 경우")
+    @Test
+    void winningNumbers_invalidRange() {
+        Assertions.assertThatThrownBy(() -> Validator.validateWinningNumbers(List.of(1, 2, 3, 4, 45, 50)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.INVALID_RANGE_WINNING_NUMBER.message());
+    }
+
+    @DisplayName("당첨 번호 검증_중복 번호")
+    @Test
+    void winningNumbers_Duplicated() {
+        Assertions.assertThatThrownBy(() -> Validator.validateWinningNumbers(List.of(1, 2, 3, 4, 45, 45)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.DUPLICATED_WINNING_NUMBER.message());
+    }
+
 }

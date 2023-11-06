@@ -3,6 +3,8 @@ package lotto.validator;
 import static lotto.view.ViewConstant.NUMBER_PATTERN;
 import static lotto.view.ViewConstant.WINNING_NUMBER_PATTERN;
 
+import java.util.HashSet;
+import java.util.List;
 import lotto.LottoRule;
 
 public class Validator {
@@ -42,6 +44,38 @@ public class Validator {
 
     private static boolean hasNoRemainder(int dividend, int divider) {
         return (dividend % divider) == 0;
+    }
+
+    public static void validateWinningNumbers(List<Integer> winningNumbers) {
+        validateWinningNumbersSize(winningNumbers);
+        validateWinningNumbersInRange(winningNumbers);
+        validateWinningNumbersNotDuplicated(winningNumbers);
+    }
+
+    private static void validateWinningNumbersNotDuplicated(List<Integer> winningNumbers) {
+        HashSet<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
+        if (uniqueNumbers.size() == winningNumbers.size()) {
+            return;
+        }
+        throw new IllegalArgumentException(Error.DUPLICATED_WINNING_NUMBER.message());
+    }
+
+    private static void validateWinningNumbersInRange(List<Integer> winningNumbers) {
+        if (winningNumbers.stream().allMatch(Validator::inRange)) {
+            return;
+        }
+        throw new IllegalArgumentException(Error.INVALID_RANGE_WINNING_NUMBER.message());
+    }
+
+    private static boolean inRange(int value) {
+        return LottoRule.LOTTO_NUMBER_START.value() <= value && value <= LottoRule.LOTTO_NUMBER_END.value();
+    }
+
+    private static void validateWinningNumbersSize(List<Integer> winningNumbers) {
+        if (winningNumbers.size() == LottoRule.LOTTO_NUMBER_COUNT.value()) {
+            return;
+        }
+        throw new IllegalArgumentException(Error.INVALID_NUM_WINNING_NUMBER.message());
     }
 
 }

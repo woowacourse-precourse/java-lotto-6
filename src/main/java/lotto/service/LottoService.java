@@ -42,6 +42,7 @@ public class LottoService {
         // 올바르게 입력할 때까지 계속 입력받습니다.
         Lotto winningLotto = inputWinningNumber();
         BonusNumber bonusNumber = inputBonusNumber(winningLotto);
+
         return WinningLottoRepository.of(winningLotto, bonusNumber);
     }
 
@@ -58,19 +59,10 @@ public class LottoService {
     private BonusNumber inputBonusNumber(Lotto winningLotto) {
         while(true){
             try {
-                BonusNumber bonusNumber = BonusNumber.from(Input.bonusNumber());
-                validateBonusNumInLotto(winningLotto,bonusNumber);
-                return bonusNumber;
+                return BonusNumber.from(winningLotto, Input.bonusNumber());
             }catch (IllegalArgumentException e){
                 System.out.print(e.getMessage());
             }
-        }
-    }
-
-    private void validateBonusNumInLotto(Lotto lotto, BonusNumber bonusNumber) {
-        int bonusNum = bonusNumber.getNumber();
-        if(lotto.has(bonusNum)){
-            throw new IllegalArgumentException(DUPLICATE_NUM.getMessage());
         }
     }
 }

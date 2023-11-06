@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.settings.ErrorMessage.DUPLICATE_NUM;
 import static lotto.settings.ErrorMessage.INVALID_RANGE;
 
 public class BonusNumber {
@@ -10,8 +11,9 @@ public class BonusNumber {
         this.number = number;
     }
 
-    public static BonusNumber from(int number){
+    public static BonusNumber from(Lotto winningLotto, int number){
         validateRange(number);
+        validateBonusNumInLotto(winningLotto,number);
         return new BonusNumber(number);
     }
 
@@ -21,6 +23,11 @@ public class BonusNumber {
         }
     }
 
+    private static void validateBonusNumInLotto(Lotto lotto, int bonusNumber) {
+        if(lotto.has(bonusNumber)){
+            throw new IllegalArgumentException(DUPLICATE_NUM.getMessage());
+        }
+    }
     public int getNumber() {
         return number;
     }

@@ -71,3 +71,10 @@
 
 ## WinningLotto
 > ### 로또 당첨 번호
+
+## LottoController
+> ### OutputView와 InputView를 주입받아 생성
+> ### 
+
+## MoneyManagement
+> ### 로또 구매 금액을 관리

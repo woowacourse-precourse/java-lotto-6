@@ -14,6 +14,7 @@ public class Amount {
     public void validate(final int amount) {
         validateAmountNegativeNumber(amount);
         validateAmountEnough(amount);
+        validateAmountDivide(amount);
     }
 
     public void validateAmountNegativeNumber(final int amount) {
@@ -26,6 +27,15 @@ public class Amount {
         if (amount < LottoRule.PRICE.getValue()) {
             throw new IllegalArgumentException(
                     String.format(ErrorMessage.PURCHASE_AMOUNT_IS_NOT_ENOUGH.getValue(),
+                            LottoRule.PRICE.getValue())
+            );
+        }
+    }
+
+    public void validateAmountDivide(final int amount) {
+        if (amount % LottoRule.PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.PURCHASE_AMOUNT_IS_NOT_THOUSAND_UNITS.getValue(),
                             LottoRule.PRICE.getValue())
             );
         }

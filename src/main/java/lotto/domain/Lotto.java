@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.validator.LottoValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,29 +14,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        LottoValidator lottoValidator = new LottoValidator();
+
+        lottoValidator.checkSize(numbers);
+        lottoValidator.checkRange(numbers);
+        lottoValidator.checkDuplicateWinningNumbers(numbers);
     }
 
-    private boolean isInteger() {
-        return true;
-    }
-
-    private void checkInteger() {
-
-    }
-
-    private boolean isInRange() {
-        return true;
-    }
-
-    private void checkRange() {
-
-    }
-
-    private boolean isDuplicateWinningNumbers(){
-        return true;
+    public List<Integer> getLotto() {
+        return numbers;
     }
 
     public int matchSameNumberNum(Lotto lotto) {

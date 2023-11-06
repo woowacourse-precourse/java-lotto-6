@@ -21,6 +21,7 @@ public class InputValidator {
         validateNull(input);
         validateIsNumberSeparatedByComma(input);
         validateSeparator(input);
+        validateContainsBlank(input);
     }
 
     public static void validateBonusNumber(String input) {
@@ -53,5 +54,16 @@ public class InputValidator {
         if (!input.contains(COMMA)) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_COMMA.getMessage());
         }
+    }
+
+    private static void validateContainsBlank(String input) {
+        String[] numbers = Convertor.splitByComma(input);
+        if (isContainsBlank(numbers)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_CONTAINS_BLANK.getMessage());
+        }
+    }
+
+    private static boolean isContainsBlank(String[] numbers) {
+        return Arrays.stream(numbers).anyMatch(String::isBlank);
     }
 }

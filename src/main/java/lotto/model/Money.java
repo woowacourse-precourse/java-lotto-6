@@ -3,6 +3,7 @@ package lotto.model;
 import lotto.exception.ExceptionManager;
 
 public class Money {
+
     private final int money;
 
     public Money(int money) {
@@ -16,7 +17,8 @@ public class Money {
 
     private void validate(int money) {
         if (money % 1000 != 0) {
-            ExceptionManager.throwIllegalArgumentExceptionWithMsg("1,000원 단위로 입력해야 합니다.");
+            throw ExceptionManager.BEGIN_ERROR.createIllegalArgumentException(
+                    "1,000원 단위로 입력해야 합니다.");
         }
     }
 }

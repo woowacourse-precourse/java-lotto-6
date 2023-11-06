@@ -1,10 +1,16 @@
 package lotto.exception;
 
-public class ExceptionManager {
+public enum ExceptionManager {
 
-    private static final String ERROR_BEGIN = "[ERROR] ";
+    BEGIN_ERROR("[ERROR] ");
 
-    public static void throwIllegalArgumentExceptionWithMsg(String mag) {
-        throw new IllegalArgumentException(ERROR_BEGIN + mag);
+    private final String beginMsg;
+
+    ExceptionManager(String beginMsg) {
+        this.beginMsg = beginMsg;
+    }
+
+    public IllegalArgumentException createIllegalArgumentException(String detailMag) {
+        return new IllegalArgumentException(beginMsg + detailMag);
     }
 }

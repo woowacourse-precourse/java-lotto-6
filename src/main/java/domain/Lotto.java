@@ -13,10 +13,12 @@ public class Lotto {
 	}
 
 	public Lotto(String numbers) {
-		List<String> convertedNumbers = convertStringToList(removeSpacesBetweenNumbersAndCommas(numbers));
-		validateIsDigit(convertedNumbers);
-		validateIsSixLength(convertedNumbers);
-		this.numbers = convertStringListToIntegerList(convertedNumbers);
+		List<String> parsedNumbers = convertStringToList(removeSpacesBetweenNumbersAndCommas(numbers));
+		validateIsDigit(parsedNumbers);
+		validateIsSixLength(parsedNumbers);
+		List<Integer> validatedAndParsedNumbers = convertStringListToIntegerList(parsedNumbers);
+		validateIsBetweenLottoRange(validatedAndParsedNumbers);
+		this.numbers = validatedAndParsedNumbers;
 	}
 
 	private List<Integer> convertStringListToIntegerList(List<String> numbers) {
@@ -64,5 +66,16 @@ public class Lotto {
 		if (numbers.size() != numbers.stream().distinct().count()) {
 			throw new IllegalArgumentException("[ERROR] 서로 다른 숫자를 입력하세요");
 		}
+	}
+
+	private void validateIsBetweenLottoRange(List<Integer> numbers) {
+		if (!isBetweenLottoRange(numbers)) {
+			throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자로 입력하세요");
+		}
+	}
+
+	private boolean isBetweenLottoRange(List<Integer> numbers) {
+		return numbers.stream()
+				.allMatch(number -> 1 <= number && number <= 45);
 	}
 }

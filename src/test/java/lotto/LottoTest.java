@@ -61,4 +61,15 @@ class LottoTest {
 		assertThatThrownBy(() -> new Lotto(input))
 				.isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@DisplayName("모든 값이 1~45 사이의 값이 아니라면 예외 발생")
+	@Test
+	public void checkOutOfRangeNumbers() {
+		//given
+		String input = "1,2,3,4,44,48";
+
+		// when & then
+		assertThatThrownBy(() -> new Lotto(input))
+				.isInstanceOf(IllegalArgumentException.class);
+	}
 }

@@ -17,4 +17,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
         }
     }
+
+    public boolean contained(Lotto lotto) {
+        return lotto.contains(number);
+    }
 }

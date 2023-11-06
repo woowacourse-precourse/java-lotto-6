@@ -12,19 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("한 로또 당첨 결과 확인 기능")
 public class WinningLottoTest {
-
-    @ParameterizedTest
-    @MethodSource("countMatchingNumbersData")
-    @DisplayName("로또 하나와 당첨 로또를 비교한다.")
-    void 로또_당첨로또_비교_정상처리(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonus, long matchCount) {
-        Lotto lotto = new Lotto(lottoNumbers);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
-        long countMatchingNumbers = lotto.countMatchingNumbers(winningLotto);
-
-        Assertions.assertThat(countMatchingNumbers).isEqualTo(matchCount);
-    }
-
-    static Stream<Arguments> countMatchingNumbersData() {
+    private static Stream<Arguments> countMatchingNumbersData() {
         return Stream.of(
                 Arguments.of(
                         Arrays.asList(1, 2, 3, 4, 5, 6),
@@ -39,6 +27,34 @@ public class WinningLottoTest {
                         Arrays.asList(1, 2, 3, 4, 5, 6),
                         Arrays.asList(39, 40, 41, 42, 43, 44), 45, 0)
         );
+    }
+
+    private static Stream<Arguments> checkLottoResultData() {
+        return Stream.of(
+                Arguments.of(
+                        Arrays.asList(1, 2, 3, 4, 5, 6),
+                        Arrays.asList(1, 2, 3, 4, 5, 6), 7, LottoRanking.FIRST_PRIZE),
+                Arguments.of(
+                        Arrays.asList(1, 2, 3, 4, 5, 6),
+                        Arrays.asList(1, 2, 3, 4, 5, 45), 6, LottoRanking.SECOND_PRIZE),
+                Arguments.of(
+                        Arrays.asList(1, 2, 3, 4, 5, 6),
+                        Arrays.asList(1, 2, 3, 4, 5, 44), 45, LottoRanking.THIRD_PRIZE),
+                Arguments.of(
+                        Arrays.asList(1, 2, 3, 4, 5, 6),
+                        Arrays.asList(39, 40, 41, 42, 43, 44), 45, LottoRanking.DID_NOT_WIN)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("countMatchingNumbersData")
+    @DisplayName("로또 하나와 당첨 로또를 비교한다.")
+    void 로또_당첨로또_비교_정상처리(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonus, long matchCount) {
+        Lotto lotto = new Lotto(lottoNumbers);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
+        long countMatchingNumbers = lotto.countMatchingNumbers(winningLotto);
+
+        Assertions.assertThat(countMatchingNumbers).isEqualTo(matchCount);
     }
 
     @ParameterizedTest
@@ -68,22 +84,5 @@ public class WinningLottoTest {
         LottoRanking lottoResult = winningLotto.checkLottoResult(lotto);
 
         Assertions.assertThat(lottoResult).isEqualTo(lottoRanking);
-    }
-
-    static Stream<Arguments> checkLottoResultData() {
-        return Stream.of(
-                Arguments.of(
-                        Arrays.asList(1, 2, 3, 4, 5, 6),
-                        Arrays.asList(1, 2, 3, 4, 5, 6), 7, LottoRanking.FIRST_PRIZE),
-                Arguments.of(
-                        Arrays.asList(1, 2, 3, 4, 5, 6),
-                        Arrays.asList(1, 2, 3, 4, 5, 45), 6, LottoRanking.SECOND_PRIZE),
-                Arguments.of(
-                        Arrays.asList(1, 2, 3, 4, 5, 6),
-                        Arrays.asList(1, 2, 3, 4, 5, 44), 45, LottoRanking.THIRD_PRIZE),
-                Arguments.of(
-                        Arrays.asList(1, 2, 3, 4, 5, 6),
-                        Arrays.asList(39, 40, 41, 42, 43, 44), 45, LottoRanking.DID_NOT_WIN)
-        );
     }
 }

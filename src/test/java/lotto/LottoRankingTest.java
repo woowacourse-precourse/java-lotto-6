@@ -10,15 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayName("등수 결과로 총 당첨된 금액을 계산할 수 있다.")
 public class LottoRankingTest {
-    @ParameterizedTest
-    @MethodSource("getTotalPrizeMoneyData")
-    @DisplayName("등수 리스트를 받아 당첨 금액으로 계산한다.")
-    void 당첨금액계산_정상처리(List<LottoRanking> lottoRankings, Amount totalPrizeMoney) {
-        Amount resultTotalPrizeMoney = LottoRanking.getTotalPrizeMoney(lottoRankings);
-        Assertions.assertThat(resultTotalPrizeMoney).isEqualTo(totalPrizeMoney);
-    }
-
-    static Stream<Arguments> getTotalPrizeMoneyData() {
+    private static Stream<Arguments> getTotalPrizeMoneyData() {
         return Stream.of(
                 Arguments.of(
                         List.of(LottoRanking.FIFTH_PRIZE,
@@ -33,5 +25,13 @@ public class LottoRankingTest {
                                 LottoRanking.THIRD_PRIZE),
                         new Amount("31550000"))
         );
+    }
+
+    @ParameterizedTest
+    @MethodSource("getTotalPrizeMoneyData")
+    @DisplayName("등수 리스트를 받아 당첨 금액으로 계산한다.")
+    void 당첨금액계산_정상처리(List<LottoRanking> lottoRankings, Amount totalPrizeMoney) {
+        Amount resultTotalPrizeMoney = LottoRanking.getTotalPrizeMoney(lottoRankings);
+        Assertions.assertThat(resultTotalPrizeMoney).isEqualTo(totalPrizeMoney);
     }
 }

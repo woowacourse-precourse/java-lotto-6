@@ -36,7 +36,7 @@ public class Utii {
         String inputStringLine = Console.readLine().trim();
 
         ValidateException.blankCheck(inputStringLine);
-        
+        ValidateException.includeBlank(inputStringLine);
 
         return Integer.valueOf(inputStringLine);
     }

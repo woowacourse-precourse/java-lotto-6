@@ -11,17 +11,24 @@ import java.util.List;
 
 public class LottoController {
     private Integer lottoTicketNumber;
+    private final LottoBundle lottoBundle;
     public LottoController(){
         this.lottoTicketNumber = 0;
+        this.lottoBundle = new LottoBundle();
     }
 
-    public void buyLotto(){
+    public void lottoProgram(){
+        buyLotto();
+        handleLottoBundle();
+    }
+
+    private void buyLotto(){
         while(true){
             try{
                 String money = InputView.inputString(ViewMessage.InputUserPrice.getMessage());
                 Purchase purchasePrice = new Purchase(money);
                 lottoTicketNumber = purchasePrice.getlottoTicketNumber();
-                OutputView.outputView("/n" + lottoTicketNumber + ViewMessage.OutputPurchasesNumber.getMessage());
+                OutputView.outputView("\n" + lottoTicketNumber + ViewMessage.OutputPurchasesNumber.getMessage());
                 break;
             } catch(IllegalArgumentException e){
                 OutputView.errorView(ViewMessage.ErrorInvaildPrice.getMessage());
@@ -29,7 +36,10 @@ public class LottoController {
         }
     }
 
-    private void setLottoBundle(){
-        LottoBundle lottoBundle = new LottoBundle(lottoTicketNumber);
+    private void handleLottoBundle(){
+        lottoBundle.makeLottoBundle(lottoTicketNumber);
+        for(int num = 0; num < lottoTicketNumber; num ++){
+            OutputView.outputView(lottoBundle.getLottoBundle(num).toString());
+        }
     }
 }

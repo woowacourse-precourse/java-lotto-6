@@ -6,18 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoBundle {
-    private List<Lotto> lottoBundle;
-    private final Integer lottoTicketNumber;
+    private final List<Lotto> lottoBundle;
 
-    public LottoBundle(Integer lottoNumber){
+
+    public LottoBundle(){
         this.lottoBundle = new ArrayList<>();
-        this.lottoTicketNumber = lottoNumber;
     }
 
-    public void makeLottoBundle(){
+    public void makeLottoBundle(int lottoTicketNumber){
         for(int num = 0; num < lottoTicketNumber; num ++){
             Lotto lotto = new Lotto(MakeRandomNumbers.getRandomNumbers());
             lottoBundle.add(lotto);
         }
+    }
+
+    public List<Integer> getLottoBundle(int num){
+        return lottoBundle.get(num).getLottoNumber();
     }
 }

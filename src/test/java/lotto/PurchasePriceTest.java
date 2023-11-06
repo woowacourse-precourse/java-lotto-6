@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 public class PurchasePriceTest {
 
-
     @DisplayName("구입 금액을 생성한다.")
     @Test
     public void purchaseNumber() {
@@ -17,15 +16,14 @@ public class PurchasePriceTest {
         assertThat(purchasePrice.getPrice()).isEqualTo(price);
     }
 
-
     @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다.")
     @Test
     public void purchaseNumberUnit() {
         assertThatThrownBy(
-            () -> {
-                int price = 3200;
-                PurchasePrice purchasePrice = new PurchasePrice(price);
-            }
+                () -> {
+                    int price = 3200;
+                    PurchasePrice purchasePrice = new PurchasePrice(price);
+                }
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -33,10 +31,20 @@ public class PurchasePriceTest {
     @Test
     public void purchaseNumberUnder1000() {
         assertThatThrownBy(
-            () -> {
-                int price = 300;
-                PurchasePrice purchasePrice = new PurchasePrice(price);
-            }
+                () -> {
+                    int price = 300;
+                    PurchasePrice purchasePrice = new PurchasePrice(price);
+                }
         ).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("수익률을 계산한다.")
+    @Test
+    public void calculateProfit() {
+        PurchasePrice purchasePrice = new PurchasePrice(8000);
+        float profit = purchasePrice.calculateProfit(8000);
+
+        String formattedResult = String.format("%.1f", profit);
+        assertThat(formattedResult).isEqualTo("100.0");
     }
 }

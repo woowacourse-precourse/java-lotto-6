@@ -16,6 +16,10 @@ public class PurchasePrice {
         this.price = price;
     }
 
+    public float calculateProfit(int earnMoney) {
+        return (price - (price - earnMoney)) / (float) price * 100;
+    }
+
     public int getPurchaseCount() {
         return price / LOTTO_PRICE_UNIT;
     }

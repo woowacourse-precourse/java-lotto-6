@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +21,6 @@ public class Application {
         printPurchaseNumber(purchaseNumbers);
 
         WinningNumber winningNumber = inputWinningNumber();
-        printWinningNumber(winningNumber);
 
         int earnMoney = 0;
         int RANK_1_cnt = 0;
@@ -59,13 +59,14 @@ public class Application {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치" + "(" + Rank.RANK_5.getPrice() + "원)" + " - " + RANK_5_cnt + "개");
-        System.out.println("4개 일치" + "(" + Rank.RANK_4.getPrice() + "원)" + " - " + RANK_4_cnt + "개");
-        System.out.println("5개 일치" + "(" + Rank.RANK_3.getPrice() + "원)" + " - " + RANK_3_cnt + "개");
-        System.out.println("5개 일치, 보너스 볼 일치" + "(" + Rank.RANK_2.getPrice() + "원)" + " - " + RANK_2_cnt + "개");
-        System.out.println("6개 일치" + "(" + Rank.RANK_1.getPrice() + "원)" + " - " + RANK_1_cnt + "개");
 
-        System.out.println("소비한 돈 : " + purchasePrice.getPrice() + " 소득 : " + earnMoney);
+        DecimalFormat df = new DecimalFormat("###,###");
+        System.out.println("3개 일치 (" + df.format(Rank.RANK_5.getPrice()) + "원)" + " - " + RANK_5_cnt + "개");
+        System.out.println("4개 일치 (" + df.format(Rank.RANK_4.getPrice()) + "원)" + " - " + RANK_4_cnt + "개");
+        System.out.println("5개 일치 (" + df.format(Rank.RANK_3.getPrice()) + "원)" + " - " + RANK_3_cnt + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + df.format(Rank.RANK_2.getPrice()) + "원)" + " - " + RANK_2_cnt + "개");
+        System.out.println("6개 일치 (" + df.format(Rank.RANK_1.getPrice()) + "원)" + " - " + RANK_1_cnt + "개");
+        System.out.println("총 수익률은 "+ purchasePrice.calculateProfit(earnMoney) + "%입니다.");
     }
 
     public static Rank calculate(PurchaseNumber purchaseNumber, WinningNumber winningNumber) {
@@ -102,12 +103,6 @@ public class Application {
     private static void printPurchaseCount(int purchaseCount) {
         System.out.println();
         System.out.println(purchaseCount + "개를 구매했습니다.");
-    }
-
-    private static void printWinningNumber(WinningNumber winningNumber) {
-        for (LottoNumber lottoNumber : winningNumber.getNumbers()) {
-            System.out.print(lottoNumber.getNumber() + ",");
-        }
     }
 
     private static List<PurchaseNumber> getPurchaseNumbers(int purchaseCount) {

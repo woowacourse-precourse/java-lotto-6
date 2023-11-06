@@ -24,15 +24,16 @@ public class LottoController {
         Lottos lottoStore = Lottos.of(lottos);
         outputView.outputPurchaseLottos(lottoStore, money.availableLottoCount());
 
-        List<Integer> winningNumber = inputWinningNumber();
+        Lotto winningNumber = inputWinningNumber();
         Integer bonusNumber = inputBonusNumber();
+
         WinningNumbers winningNumbers = winningNumbers(winningNumber, bonusNumber);
 
         LottoResult lottoResult = LottoResult.of(lottoStore, winningNumbers);
         outputView.outputWinningResult(lottoResult, money.getMoney());
     }
 
-    private WinningNumbers winningNumbers(List<Integer> winningNumber, Integer bonusNumber) {
+    private WinningNumbers winningNumbers(Lotto winningNumber, Integer bonusNumber) {
         try {
             return WinningNumbers.from(winningNumber, bonusNumber);
         } catch (IllegalArgumentException e) {
@@ -41,9 +42,9 @@ public class LottoController {
         }
     }
 
-    private List<Integer> inputWinningNumber() {
+    private Lotto inputWinningNumber() {
         try {
-            return inputView.inputWinningNumbers();
+            return Lotto.from(inputView.inputWinningNumbers());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningNumber();
@@ -52,8 +53,7 @@ public class LottoController {
 
     private Integer inputBonusNumber() {
         try {
-            Integer input = inputView.inputBonusNumber();
-            return input;
+            return inputView.inputBonusNumber();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBonusNumber();
@@ -62,8 +62,7 @@ public class LottoController {
 
     private static List<Lotto> purchaseLottos(Money money) {
         try {
-            List<Lotto> lottos = addLottoByMoney(money);
-            return lottos;
+            return addLottoByMoney(money);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return purchaseLottos(money);
@@ -73,7 +72,7 @@ public class LottoController {
     private static List<Lotto> addLottoByMoney(Money money) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < money.availableLottoCount(); i++) {
-            lottos.add(new Lotto(LottoGenerator.lottoGenerator()));
+            lottos.add(Lotto.from(LottoGenerator.lottoGenerator()));
         }
         return lottos;
     }

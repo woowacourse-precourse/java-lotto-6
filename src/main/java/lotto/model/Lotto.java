@@ -7,11 +7,15 @@ import static lotto.model.constant.LottoConfig.*;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validateNumbersSizeIs6(numbers);
         validateDuplicateNumbers(numbers);
         validateRangeNumbers(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     public int sameNumberCounter(WinningNumbers winningNumbers) {

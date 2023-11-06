@@ -1,6 +1,7 @@
 package lotto.game;
 
 import java.util.List;
+import lotto.collaboration.lottos.Lotto;
 import lotto.collaboration.lottos.Lottos;
 import lotto.collaboration.lottos.WinningLotto;
 import lotto.io.lottos.LottosRandoms;
@@ -26,17 +27,30 @@ public class LottoGame {
                 lottos.purchase(purchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
 
-        lottoGameView.showPurchaseLottos(lottos.make(lottosRandoms));
+        List<Lotto> buyLottos = lottos.make(lottosRandoms);
+        lottoGameView.showPurchaseLottos(buyLottos);
 
         // TODO : winningNumbers와 bonusNumber는 아무리 봐도 하나의 타입이다.. 두 행동을 하나로 묶는 리팩토링을 수행하면 좋겠다.
-        List<Integer> winningNumbers = lottoGameView.askWinningNumbers();
-        int bonusNumber = lottoGameView.askBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        
+        List<Integer> winningNumbers;
+        int bonusNumber;
+        // TODO : 위쪽 while-true문과 마찬가지로 리팩토링 필요
+        WinningLotto winningLotto;
+        while (true) {
+            try {
+                winningNumbers = lottoGameView.askWinningNumbers();
+                bonusNumber = lottoGameView.askBonusNumber();
+                winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+
+        winningLotto.match(buyLottos);
     }
 
 }

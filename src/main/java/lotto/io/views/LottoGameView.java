@@ -21,12 +21,15 @@ public class LottoGameView {
     }
 
     public void showPurchaseLottos(List<Lotto> purchaseLottos) {
+        Output.consoleLine();
+        Output.consoleLine(purchaseLottos.size() + "개를 구매했습니다.");
         for (Lotto purchaseLotto : purchaseLottos) {
             Output.consoleLine(purchaseLotto);
         }
     }
 
     public List<Integer> askWinningNumbers() {
+        Output.consoleLine();
         Output.consoleLine("당첨 번호를 입력해 주세요");
         while (true) {
             try {
@@ -64,6 +67,7 @@ public class LottoGameView {
     }
 
     public int askBonusNumber() {
+        Output.consoleLine();
         Output.consoleLine("보너스 번호를 입력해 주세요.");
         while (true) {
             try {

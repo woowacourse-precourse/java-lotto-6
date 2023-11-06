@@ -44,4 +44,25 @@ class LottoTest {
         assertThatThrownBy(() -> new WinningLotto("1,8,3,0,11,37","42"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 보너스 숫자의 길이가 2를 초과하면 예외가 발생한다.")
+    @Test
+    void createLottoByOverBonusNumberLength() {
+        assertThatThrownBy(() -> new WinningLotto("1,8,3,24,11,37","123"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 보너스 숫자가 1 이상 45 이하의 범위를 벗어나면 예외가 발생한다 - 1 미만")
+    @Test
+    void createLottoIncludesBonusNumberUnderRange() {
+        assertThatThrownBy(() -> new WinningLotto("1,8,3,24,11,37","0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 보너스 숫자가 1 이상 45 이하의 범위를 벗어나면 예외가 발생한다 - 45 초과")
+    @Test
+    void createLottoIncludesBonusNumberOverRange() {
+        assertThatThrownBy(() -> new WinningLotto("1,8,3,24,11,37","46"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

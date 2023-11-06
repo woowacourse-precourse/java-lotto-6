@@ -148,4 +148,28 @@ class ResultServiceTest {
         assertThat(winningResults.get(ResultService.SIX_CASE_NUMBER)).isEqualTo(1);
     }
 
+    @DisplayName("구매한 로또 2개의 일치 여부 저장이 잘 되는지 테스트한다.")
+    @Test
+    void saveWinningResultsTest() {
+        // given
+        int bonusNumber = 2;
+        Lotto lotto = new Lotto(List.of(15, 8, 6, 7, 3, 9));
+        Lotto resultOfLottoIssuance1 = new Lotto(List.of(15, 8, 6, 7, 3, 9));
+        Lotto resultOfLottoIssuance2 = new Lotto(List.of(15, 8, 6, 7, 3, 1));
+        HashMap<Integer, Integer> winningResults = new HashMap<>();
+        List<Lotto> resultsOfLottoIssuance = new ArrayList<>();
+        resultsOfLottoIssuance.add(resultOfLottoIssuance1);
+        resultsOfLottoIssuance.add(resultOfLottoIssuance2);
+
+        // when
+        winningResults = ResultService.saveWinningResults(resultsOfLottoIssuance, lotto, bonusNumber);
+
+        // then
+        assertThat(winningResults.get(ResultService.FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(ResultService.THREE_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(ResultService.FOUR_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(ResultService.FIVE_CASE_NUMBER)).isEqualTo(1);
+        assertThat(winningResults.get(ResultService.SIX_CASE_NUMBER)).isEqualTo(1);
+    }
+
 }

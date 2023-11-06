@@ -1,11 +1,13 @@
 package lotto.validator;
 
-import static lotto.exception.ErrorMessage.DUPLICATE_NUMBER;
+import static lotto.exception.ErrorMessage.DUPLICATE_BONUS_NUMBER;
+import static lotto.exception.ErrorMessage.DUPLICATE_WINNING_NUMBERS;
 import static lotto.exception.ErrorMessage.OUTSIDE_RANGE;
 import static lotto.exception.ErrorMessage.UNFIT_UNIT;
 import static lotto.exception.ErrorMessage.WRONG_SIZE;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.exception.LottoException;
 
 public class Validator {
@@ -29,7 +31,13 @@ public class Validator {
 
     public static void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LOTTO_SIZE) {
-            throw LottoException.of(DUPLICATE_NUMBER);
+            throw LottoException.of(DUPLICATE_WINNING_NUMBERS);
+        }
+    }
+
+    public static void validateUnique(int number, Lotto numbers) {
+        if (numbers.getNumbers().contains(number)) {
+            throw LottoException.of(DUPLICATE_BONUS_NUMBER);
         }
     }
 

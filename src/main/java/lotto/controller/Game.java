@@ -22,7 +22,7 @@ public class Game {
 
         // 보너스 번호
         String bonusNumber = InputView.requestBonusNumber();
-        int bonusLotto = Parser.parseBonusNumber(bonusNumber);
+        int bonusLotto = Parser.parseBonusNumber(bonusNumber, winnigLotto);
 
 
     }

@@ -34,6 +34,9 @@ public class ViewConstant {
     }
 
     public static class OutputViewConstant {
+        public static final String AMOUNT = "amount";
+        public static final String WINNING_NUMBER = "winning number";
+        public static final String BONUS_NUMBER = "bonus number";
         public static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
         public static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
         public static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
@@ -41,7 +44,12 @@ public class ViewConstant {
         public static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.";
         public static final String STATUS = "당첨 통계";
         public static final String THREE_DASH = "---";
+        public static final String THREE_MATCHED = "3개 일치 (5,000원) - %d개";
+        public static final String FOUR_MATCHED = "4개 일치 (50,000원) - %d개";
+        public static final String FIVE_MATCHED = "5개 일치 (1,500,000원) - %d개 ";
+        public static final String FIVE_AND_BONUS_MATCHED = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
+        public static final String SIX_MATCHED = "6개 일치 (2,000,000,000원) - %d개";
         public static final String NEW_LINE = System.getProperty("line.separator");
-        public static final int HUNDRED = 100;
+        public static final int START_INDEX = 0;
     }
 }

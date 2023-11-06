@@ -3,6 +3,7 @@ package lotto.domain.constant;
 public class DomainConstant {
     public static final long LOTTO_PRICE = 1000L;
     public static final long ZERO = 0L;
+    public static final int HUNDRED = 100;
     public static final int MIN_RANGE = 1;
     public static final int MAX_RANGE = 45;
     public static final int THREE = 3;

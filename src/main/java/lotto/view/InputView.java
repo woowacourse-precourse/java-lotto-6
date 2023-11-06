@@ -1,13 +1,6 @@
 package lotto.view;
 
 import static lotto.view.constant.ViewConstant.InputViewConstant.COMMA;
-import static lotto.view.constant.ViewConstant.InputViewConstant.MAX_RANGE;
-import static lotto.view.constant.ViewConstant.InputViewConstant.MIN_RANGE;
-import static lotto.view.constant.ViewConstant.InputViewConstant.NUMBERS_COUNT;
-import static lotto.view.constant.ViewConstant.InputViewConstant.NUMBERS_FORMAT_REGEX;
-import static lotto.view.constant.ViewConstant.InputViewConstant.NUMBER_REGEX;
-import static lotto.view.constant.ViewConstant.InputViewConstant.LOTTO_PRICE;
-import static lotto.view.constant.ViewConstant.InputViewConstant.ZERO;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.DUPLICATED_BONUS_NUMBER;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.NOT_CONTAINS_ONLY_NUMBER;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.NOT_EXIST_INPUT_ERROR;
@@ -17,6 +10,13 @@ import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessa
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.OVER_RANGE;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.UNDER_THOUSAND_AMOUNT;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.WINNING_NUMBERS_INVALID_FORMAT;
+import static lotto.view.constant.ViewConstant.InputViewConstant.LOTTO_PRICE;
+import static lotto.view.constant.ViewConstant.InputViewConstant.MAX_RANGE;
+import static lotto.view.constant.ViewConstant.InputViewConstant.MIN_RANGE;
+import static lotto.view.constant.ViewConstant.InputViewConstant.NUMBERS_COUNT;
+import static lotto.view.constant.ViewConstant.InputViewConstant.NUMBERS_FORMAT_REGEX;
+import static lotto.view.constant.ViewConstant.InputViewConstant.NUMBER_REGEX;
+import static lotto.view.constant.ViewConstant.InputViewConstant.ZERO;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;

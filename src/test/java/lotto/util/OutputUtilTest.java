@@ -2,12 +2,10 @@ package lotto.util;
 
 import static lotto.message.SystemMessage.OUTPUT_PURCHASE_LOTTO_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import lotto.message.SystemMessage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -36,14 +34,17 @@ class OutputUtilTest {
     void testOutputLottoAmount() {
         //given
         int amount = 5;
-        String printedString = String.format(
-                OUTPUT_PURCHASE_LOTTO_AMOUNT.getMessage()
-                , amount);
+
         //when
         OutputUtil.outputLottoAmount(amount);
 
+        //then
+        String expectedOutput = String.format(
+                OUTPUT_PURCHASE_LOTTO_AMOUNT.getMessage()
+                , amount);
+
         assertThat(output()).isEqualTo(
-                printedString
+                expectedOutput
         );
     }
 

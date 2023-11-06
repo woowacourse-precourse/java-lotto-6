@@ -39,15 +39,16 @@ class InputHandlerTest {
         int retryCount = 3;
         int answerNum = 2000;
         String answer = "2000";
-        String inputMessage = INPUT_PURCHASE_PRICE.getMessage();
-        String InvalidCountFormatMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
-                + INVALID_COUNT_FORMAT.getMessage() + "\n";
 
         // when
         run("qwe", "asd", "zxc", answer);
         int lottoPurchasePrice = InputHandler.setLottoPurchasePrice();
 
         // then
+        String inputMessage = INPUT_PURCHASE_PRICE.getMessage();
+        String InvalidCountFormatMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
+                + INVALID_COUNT_FORMAT.getMessage() + "\n";
+
         assertThat(output()).isEqualTo(
                 InvalidCountFormatMessage.repeat(retryCount) +
                         inputMessage
@@ -61,18 +62,18 @@ class InputHandlerTest {
         // given
         int answerNum = 2000;
         String answer = "2000";
-        String inputMessage = INPUT_PURCHASE_PRICE.getMessage();
-        String InvalidCountFormatMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
-                + INVALID_COUNT_FORMAT.getMessage() + "\n";
-        String InvalidPurchaseAmountMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
-                + INVALID_PURCHASE_AMOUNT.getMessage() + "\n";
-
 
         // when
         run("qwe", "123", answer);
         int lottoPurchasePrice = InputHandler.setLottoPurchasePrice();
 
         // then
+        String inputMessage = INPUT_PURCHASE_PRICE.getMessage();
+        String InvalidCountFormatMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
+                + INVALID_COUNT_FORMAT.getMessage() + "\n";
+        String InvalidPurchaseAmountMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
+                + INVALID_PURCHASE_AMOUNT.getMessage() + "\n";
+
         assertThat(output()).isEqualTo(
                 InvalidCountFormatMessage +
                         InvalidPurchaseAmountMessage +

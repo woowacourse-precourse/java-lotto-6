@@ -19,7 +19,13 @@ public class InputController {
         winningNumbers = new ArrayList<>();
         bonusNumber = 0;
     }
-
+    public static void validate (Runnable validation) {
+        try {
+            validation.run();
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
+    }
     public static void inputMoney() {
         String stringMoney = readLine();
         try {
@@ -41,41 +47,32 @@ public class InputController {
             winningNumbers.add(Integer.parseInt(numberString));
         }
 
-        // validator.checkWinningNumBlank(numberStrings);
         try {
-            validator.checkWinningNumRangeOver();
+            validateWinningNumbers(numberStrings);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
             inputWinningNumbers();
         }
-        try {
-            validator.checkWinningNumDuplication();
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            inputWinningNumbers();
-        }
-        try {
-            validator.checkWinningNumAmount();
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            inputWinningNumbers();
-        }
+    }
+    public static void validateWinningNumbers(String[] numberStrings) {
+        validate(()-> validator.checkWinningNumRangeOver());
+        validate(()-> validator.checkWinningNumDuplication());
+        validate(()-> validator.checkWinningNumAmount());
+        validate(()-> validator.checkWinningNumBlank(numberStrings));
     }
     public static void inputBonusNumber() {
         String userInputBonusNumbers = readLine();
         bonusNumber = Integer.parseInt(userInputBonusNumbers);
 
         try {
-            validator.checkBonusNumDuplication();
+            validateBonusNumber();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
             inputBonusNumber();
         }
-        try {
-            validator.checkBonusNumRangeOver();
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            inputBonusNumber();
-        }
+    }
+    public static void validateBonusNumber() {
+        validate(()-> validator.checkBonusNumDuplication());
+        validate(()-> validator.checkBonusNumRangeOver());
     }
 }

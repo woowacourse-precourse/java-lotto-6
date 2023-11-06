@@ -19,7 +19,6 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
 
-        // 예외 처리
         List<Integer> checking = new ArrayList<>();
         checking = numbers.stream().distinct().collect(Collectors.toList());
 

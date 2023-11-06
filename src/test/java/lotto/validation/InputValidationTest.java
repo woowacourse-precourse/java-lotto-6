@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 class InputValidationTest {
 
     InputValidation inputValidation = new InputValidation();
@@ -49,7 +51,7 @@ class InputValidationTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1","1,2","1,2,3","1,2,3,4","1,2,3,4,5","1,2,3,4,5,6,7","1,2,3,4,5,6,7,8,9,10"})
+    @ValueSource(strings = {"1", "1,2", "1,2,3", "1,2,3,4", "1,2,3,4,5", "1,2,3,4,5,6,7", "1,2,3,4,5,6,7,8,9,10"})
     public void 당첨번호_사이즈_검사(String input) {
         //then (기능 작동 후 결과)
         Assertions.assertThrows(IllegalArgumentException.class, () ->
@@ -57,7 +59,7 @@ class InputValidationTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,123","1,2,3,4,46,6","0,1,2,3,4,5", "21,25,43,44,45,152421"})
+    @ValueSource(strings = {"1,2,3,4,5,123", "1,2,3,4,46,6", "0,1,2,3,4,5", "21,25,43,44,45,152421"})
     public void 당첨번호_숫자범위_검사(String input) {
         //then (기능 작동 후 결과)
         Assertions.assertThrows(IllegalArgumentException.class, () ->
@@ -65,10 +67,21 @@ class InputValidationTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,1","11,14,16,16,11","2,3,2,2,2", "31,31,31,31,31,31"})
+    @ValueSource(strings = {"1,2,3,4,5,1", "11,14,16,16,11", "2,3,2,2,2", "31,31,31,31,31,31"})
     public void 당첨번호_중복_검사(String input) {
         //then (기능 작동 후 결과)
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 inputValidation.validationLottoWinningNumber(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "34", "45", "27,5"})
+    public void 보너스_번호_중복_검사(String input) {
+        //given (주어진 값)
+        List<Integer> winningNumbers = List.of(1, 2, 34, 27, 45, 5);
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                inputValidation.validationLottoWinningBonusNumber(input, winningNumbers));
     }
 }

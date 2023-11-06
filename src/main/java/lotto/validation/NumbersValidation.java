@@ -7,8 +7,6 @@ import lotto.output.ErrorPrinter;
 
 public class NumbersValidation {
 
-	private static final String SEPARATOR = ",";
-
 	public static void validateOnlyNumber(String inputNumber) {
 
 		if (!isNumber(inputNumber)) {
@@ -43,11 +41,10 @@ public class NumbersValidation {
 
 	public static void validateSeparator(String inputNumber) {
 
-		if (!inputNumber.contains(SEPARATOR)) {
+		if (!inputNumber.contains(NumbersOption.SEPARATOR)) {
 			ErrorPrinter.printSeparatorError();
 			throw new IllegalArgumentException();
 		}
-
 	}
 
 }

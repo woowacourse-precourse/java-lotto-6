@@ -1,5 +1,7 @@
 package lotto.domain.controller;
 
+import static lotto.global.constant.LottoNumberType.*;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResultManager;
@@ -51,7 +53,7 @@ public class LottoController {
         OutputView.commonOutputLine(ConsoleType.INPUT_PURCHASE_AMOUNT.getComment());
         long purchaseAmount = clientService.getPurchaseAmount();
         OutputView.commonOutputLine(ConsoleType.EMPTY.getComment());
-        OutputView.commonOutputLine(ConsoleType.OUTPUT_PURCHASE.getComment(String.valueOf(purchaseAmount / 1000)));
+        OutputView.commonOutputLine(ConsoleType.OUTPUT_PURCHASE.getComment(String.valueOf(purchaseAmount / LOTTO_AMOUNT_UNIT.getValue())));
         return purchaseAmount;
     }
 }

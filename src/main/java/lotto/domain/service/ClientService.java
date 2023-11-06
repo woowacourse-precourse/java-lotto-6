@@ -1,5 +1,7 @@
 package lotto.domain.service;
 
+import static lotto.global.constant.LottoNumberType.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -11,9 +13,6 @@ import lotto.global.view.OutputView;
 public class ClientService {
 
     private static final String SPLITTER = ",";
-    private static final int UNIT = 1000;
-    private static final int MIN_RANGE_OF_WINNING_NUMBER = 1;
-    private static final int MAX_RANGE_OF_WINNING_NUMBER = 45;
 
     public long getPurchaseAmount() {
         try {
@@ -62,7 +61,7 @@ public class ClientService {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LENGTH_OF_LOTTO.getValue()) {
             throw new IllegalArgumentException();
         }
     }
@@ -75,7 +74,7 @@ public class ClientService {
     }
 
     private void validateNumberRange(Integer winningNumber) {
-        if (!(winningNumber >= MIN_RANGE_OF_WINNING_NUMBER && winningNumber <= MAX_RANGE_OF_WINNING_NUMBER)) {
+        if (!(winningNumber >= MIN_RANGE_OF_LOTTO.getValue() && winningNumber <= MAX_RANGE_OF_LOTTO.getValue())) {
             throw new IllegalArgumentException(ConsoleType.EXCEPTION.getComment());
         }
     }
@@ -87,7 +86,7 @@ public class ClientService {
     }
 
     private boolean isNotValidUnit(long purchaseAmount) {
-        return purchaseAmount % UNIT != 0;
+        return purchaseAmount % LOTTO_AMOUNT_UNIT.getValue() != 0;
     }
 
     private boolean isNotValidAmountRange(long purchaseAmount) {

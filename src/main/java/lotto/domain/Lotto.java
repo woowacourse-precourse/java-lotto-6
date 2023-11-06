@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.global.constant.LottoNumberType.*;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -15,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LENGTH_OF_LOTTO.getValue()) {
             throw new IllegalArgumentException(ConsoleType.EXCEPTION.getComment());
         }
         numbers.forEach(this::validateNumberRange);
@@ -29,7 +31,7 @@ public class Lotto {
     }
 
     private void validateNumberRange(Integer number) {
-        if (!(number >= 1 && number <= 45)) {
+        if (!(number >= MIN_RANGE_OF_LOTTO.getValue() && number <= MAX_RANGE_OF_LOTTO.getValue())) {
             throw new IllegalArgumentException(ConsoleType.EXCEPTION.getComment());
         }
     }

@@ -1,14 +1,11 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.dto.LottoDto;
 import lotto.model.Lotto;
-import lotto.model.LottoComparator;
 import lotto.model.LottoGenerator;
-import lotto.model.LottoRank;
+import lotto.model.LottoResult;
 import lotto.model.LottoWithBonus;
 import lotto.model.Money;
 import lotto.util.Message;
@@ -24,18 +21,14 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    /*
-    TODO
-    결과계산하기();
-    출력하기(outputView);
-     */
     public void start() {
         Money money = requestMoney();
         List<Lotto> randomLotto = makeRandomLotto(money);
         printGeneratedLotto(randomLotto);
         Lotto winningLotto = requestWinningLotto();
         LottoWithBonus winningLottoWithBonus = requestBonusNumberOf(winningLotto);
-        Map<LottoRank, Integer> allResult = compareLotto(winningLottoWithBonus, randomLotto);
+        LottoResult result = new LottoResult(winningLottoWithBonus, randomLotto, money);
+        printStatistics(result);
     }
 
     Money requestMoney() {
@@ -88,15 +81,8 @@ public class LottoController {
         }
     }
 
-    Map<LottoRank, Integer> compareLotto(LottoWithBonus answer, List<Lotto> randomLotto) {
-        Map<LottoRank, Integer> allResult = new LinkedHashMap<>();
-        for (LottoRank init : LottoRank.values()) {
-            allResult.put(init, 0);
-        }
-        for (Lotto lotto : randomLotto) {
-            LottoRank result = LottoComparator.getPlace(answer, lotto);
-            allResult.put(result, allResult.get(result) + 1);
-        }
-        return allResult;
+    void printStatistics(LottoResult result) {
+        outputView.printMessage(Message.STATISTICS_HEADER);
+        outputView.printObject(result);
     }
 }

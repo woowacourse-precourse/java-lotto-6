@@ -13,7 +13,9 @@ public class InputView {
 
     public long getPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT);
-        return Long.parseLong(Console.readLine());
+        long purchaseAmount = Long.parseLong(Console.readLine());
+        System.out.println();
+        return purchaseAmount;
     }
 
     public String getWinningNumbers() {

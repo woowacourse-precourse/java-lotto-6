@@ -12,7 +12,6 @@ public class OutputManager {
         System.out.println(lottos.size() + "개를 구매했습니다.");
 
         lottos.stream().map(Lotto::getNumbers)
-                .sorted()
                 .forEach(System.out::println);
     }
 
@@ -21,7 +20,7 @@ public class OutputManager {
         printReturns(results);
     }
 
-    private void printReturns(List<Result> results) {
+    public void printReturns(List<Result> results) {
         int totalAmount = results.size() * 1000;
         int totalPrize = results.stream().mapToInt(Result::prize).sum();
 

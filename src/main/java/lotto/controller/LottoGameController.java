@@ -31,7 +31,8 @@ public class LottoGameController {
         LottoStore lottoStore = initLottoStore(purchaseCount);
         WinningNumber winningNumber = initWinningNumber();
         BonusNumber bonusNumber = initBonusNumber(winningNumber);
-        new LottoGame(lottoStore, winningNumber, bonusNumber);
+        LottoGame lottoGame = new LottoGame(lottoStore, winningNumber, bonusNumber);
+        lottoGameService.play(lottoGame);
     }
 
     private BonusNumber initBonusNumber(WinningNumber winningNumber) {

@@ -20,4 +20,10 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    public int countWin(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
 }

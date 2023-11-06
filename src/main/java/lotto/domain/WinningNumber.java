@@ -67,4 +67,8 @@ public class WinningNumber {
             throw new IllegalArgumentException(NOT_UNIQUE.getMessage());
         }
     }
+
+    public int countWin(Lotto lotto) {
+        return lotto.countWin(numbers);
+    }
 }

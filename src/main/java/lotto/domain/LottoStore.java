@@ -8,4 +8,10 @@ public class LottoStore {
     public LottoStore(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
+    public List<Integer> play(WinningNumber winningNumber) {
+        return lottos.stream()
+                .map(winningNumber::countWin)
+                .toList();
+    }
 }

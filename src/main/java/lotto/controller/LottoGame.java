@@ -27,38 +27,12 @@ public class LottoGame {
         OutputView.printPlayerLotto(playerLottos);
         lotto = InputView.LoopInputSixNumbers();
         bonus = InputView.LoopInputBonusNumber(lotto);
-        result = new Result(getResults(), money);
+        result = new Result(LottoResult.getResults(lotto, playerLottos, bonus), money);
         // 게임 종료
         end();
     }
 
     private void end(){
 
-    }
-
-    private Map<LottoRanking, Integer> getResults(){
-        Map<LottoRanking, Integer> results = new HashMap<>();
-        initializeResultMap(results);
-        for(Lotto playerLotto : playerLottos){
-            Integer countAboutLotto = getCountAboutLotto(lotto, playerLotto);
-            Boolean isMatchBonus = getIsMatchBonus(lotto, bonus);
-            LottoRanking ranking = LottoRanking.getRanking(countAboutLotto, isMatchBonus);
-            results.put(ranking, results.get(ranking)+1);
-        }
-        return results;
-    }
-
-    private void initializeResultMap(Map<LottoRanking, Integer> results){
-        for(LottoRanking ranking : LottoRanking.values()){
-            results.put(ranking, 0);
-        }
-    }
-
-    private Integer getCountAboutLotto(Lotto winningLotto, Lotto playerLotto){
-        return winningLotto.countMatchedOtherLotto(playerLotto);
-    }
-
-    private Boolean getIsMatchBonus(Lotto winningLotto, Bonus bonus){
-        return winningLotto.isContainBonus(bonus);
     }
 }

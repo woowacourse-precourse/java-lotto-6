@@ -16,8 +16,7 @@ public class Lotto {
     }
 
     public static Lotto from(List<Integer> numbers) {
-        validateSize(numbers);
-        validateDuplicatedNumber(numbers);
+        validate(numbers);
         return new Lotto(numbers);
     }
 
@@ -33,6 +32,11 @@ public class Lotto {
 
     public List<Integer> getNumber() {
         return numbers;
+    }
+
+    private static void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicatedNumber(numbers);
     }
 
     private static void validateSize(List<Integer> numbers) {

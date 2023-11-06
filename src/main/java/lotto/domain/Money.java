@@ -14,11 +14,8 @@ public class Money {
     }
 
     public static Money from(String inputAmount) {
-        validateType(inputAmount);
-        int amount = Integer.parseInt(inputAmount);
-        validateRange(amount);
-        validateDivideByLottoPrice(amount);
-        return new Money(amount);
+        validate(inputAmount);
+        return new Money(Integer.parseInt(inputAmount));
     }
 
     public int getLottoCount() {
@@ -27,6 +24,12 @@ public class Money {
 
     public String getProfit(int prizeMoney) {
         return String.format(RATE_FORMAT, (double) prizeMoney / amount * 100.0);
+    }
+
+    private static void validate(String inputAmount) {
+        validateType(inputAmount);
+        validateRange(Integer.parseInt(inputAmount));
+        validateDivideByLottoPrice(Integer.parseInt(inputAmount));
     }
 
     private static void validateType(String inputAmount) {

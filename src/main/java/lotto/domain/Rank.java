@@ -26,7 +26,7 @@ public enum Rank {
 
     public static Rank valueOf(Integer count, boolean checkBonusNumber) {
         for(Rank rank : Rank.values()){
-            if(rank.getCount() == count || rank.checkBonusNumber == checkBonusNumber){
+            if(rank.getCount() == count && rank.checkBonusNumber == checkBonusNumber){
                 return rank;
             }
         }

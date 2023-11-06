@@ -25,5 +25,7 @@ public class LottoGame {
 
         outputView.askForWinningNumbers();
         List<Integer> winningNumbers = inputView.getWinningNumbers();
+
+        outputView.askForBonusNumber();
     }
 }

@@ -24,6 +24,12 @@ public class Application {
     	return lottoRandomList;
     }
     
+    public static void printLottoList(List<Lotto> lottoList) {
+    	for (Lotto lotto : lottoList) {
+    		System.out.println(lotto.toString());
+    	}
+    }
+    
     public static void printResult(List<Integer> lottoNum) {
     	System.out.println("당첨 통계");
     	System.out.println("---");

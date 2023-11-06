@@ -1,6 +1,13 @@
 package lotto.lotto;
 
+import static lotto.error.message.InvalidStateErrorMessage.LOTTO_NUMBERS_COUNT_NOT_SIX;
+import static lotto.error.message.InvalidStateErrorMessage.LOTTO_NUMBERS_DUPLICATE;
+import static lotto.error.message.InvalidStateErrorMessage.LOTTO_NUMBERS_OUT_OF_RANGE;
+
+import java.util.HashSet;
 import java.util.List;
+import lotto.error.exception.InvalidStateException;
+import lotto.util.IntegerUtil;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,10 +18,28 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        checkNumbersCount(numbers);
+        checkDuplicateNumbers(numbers);
+        checkNumbersRange(numbers);
+    }
+
+    private void checkNumbersCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalStateException();
+            throw new InvalidStateException(LOTTO_NUMBERS_COUNT_NOT_SIX.getMessage(), numbers);
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void checkDuplicateNumbers(List<Integer> numbers) {
+        if (new HashSet<>(numbers).size() != 6) {
+            throw new InvalidStateException(LOTTO_NUMBERS_DUPLICATE.getMessage(), numbers);
+        }
+    }
+
+    private void checkNumbersRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (!IntegerUtil.checkNumberInRange(number, 1, 45)) {
+                throw new InvalidStateException(LOTTO_NUMBERS_OUT_OF_RANGE.getMessage(), numbers);
+            }
+        }
+    }
 }

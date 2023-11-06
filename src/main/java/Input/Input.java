@@ -5,6 +5,7 @@ import Output.Output;
 import lotto.BuyLotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -33,6 +34,7 @@ public class Input {
             String number_string = readLine();
             result = except.numberCheckAll(number_string);
         } while (result.size() != 6);
+        Collections.sort(result);
         return result;
     }
 

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoComputer;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
 import lotto.view.InputView;
@@ -12,6 +13,7 @@ public class LottoService {
     private final InputView inputView;
     private final OutputView outputView;
     private LottoGenerator lottoGenerator;
+    private LottoComputer lottoComputer;
     private Integer userMoney;
     private Lottos myLottos;
     private Integer myBonusNumber;
@@ -20,29 +22,46 @@ public class LottoService {
     public LottoService(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        lottoComputer = new LottoComputer();
     }
 
     public void run() {
         handleUserMoney();
 
         myLottos = lottoGenerator.generateMyTickets();
-        outputView.showMyTickets(myLottos.toDto());
+//        outputView.showMyTickets(myLottos.toDto());
 
-//        handleWinnerNumber();
-//        handleBonusNumber();
-//
-//        LottoComputer lottoComputer = new LottoComputer(winnerLotto, myBonusNumber); // myLottos use DTO
-//        outputView.showResult(lottoComputer.simulate());
-    }
+        handleWinnerNumber();
+        handleBonusNumber();
 
-    private void handleBonusNumber() {
-        outputView.askBonusNumber();
-        inputView.readBonusNumber();
+        lottoComputer.config(myLottos);
+        outputView.showResult(lottoComputer.simulate());
     }
 
     private void handleWinnerNumber() {
         outputView.askWinnerNumber();
-        inputView.readWinnerNumber();
+        while (true) {
+            try {
+                winnerLotto = new Lotto().toLotto(inputView.readWinnerNumber());
+                lottoComputer.config(winnerLotto);
+                break;
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+
+    }
+
+    private void handleBonusNumber() {
+        outputView.askBonusNumber();
+        while (true) {
+            try {
+                lottoComputer.config(inputView.readBonusNumber());
+                break;
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }
 
     private void handleUserMoney() {

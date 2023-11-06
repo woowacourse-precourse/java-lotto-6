@@ -4,16 +4,16 @@ import lotto.exception.LottoNumberException;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class PurchaseAmount {
+public class LottoPurchase {
     private int purchaseAmount;
     private LottoNumberException lottoNumberException;
 
-    public PurchaseAmount( ) {
+    public LottoPurchase( ) {
         lottoNumberException = new LottoNumberException();
         purchaseAmount = 0;
     }
 
-    public void input() {
+    public void inputAmount() {
         String userInput = readLine();
 
         purchaseAmount = Integer.parseInt(userInput);

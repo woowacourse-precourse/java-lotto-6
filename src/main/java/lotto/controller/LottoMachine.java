@@ -4,16 +4,16 @@ import lotto.view.InputView;
 
 public class LottoMachine {
     private InputView inputView;
-    private PurchaseAmount userInput;
+    private LottoPurchase lottoPurchase;
 
     public LottoMachine() {
         inputView = new InputView();
-        userInput = new PurchaseAmount();
+        lottoPurchase = new LottoPurchase();
     }
 
     private void inputPurchaseAmount () {
-        inputView.showLottoAmountInputForm();
-        userInput.inputPurchaseAmount();
+        inputView.showAmountInputForm();
+        lottoPurchase.inputAmount();
     }
 
     public void start(){

@@ -18,7 +18,16 @@ public class WinningNumberValidator {
         checkNumberOfWinningNumber(parsedInput);
         List<Integer> winningNumber = changeStringToInt(parsedInput);
         checkRangeOfWinningNumber(winningNumber);
+        checkDuplicateNumber(winningNumber);
         return winningNumber;
+    }
+
+    private void checkDuplicateNumber(List<Integer> winningNumber) {
+        List<Integer>distinctNumber = winningNumber.stream().distinct().toList();
+        if(distinctNumber.size() != winningNumber.size()) {
+            System.out.println(ErrorMessage.LOTTO_CONTAIN_DULPICATE_NUMBER.getErrorMessage());
+            throw new IllegalArgumentException();
+        }
     }
 
     private void checkRangeOfWinningNumber(List<Integer> winningNumber) {

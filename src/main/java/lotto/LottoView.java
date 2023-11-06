@@ -39,9 +39,9 @@ public class LottoView {
         int[] ranks = lottoRepository.getRanks();
         System.out.println("당첨 통계");
         System.out.println("---");
-        for(int i=4;i<=0;i--){
-            System.out.println(RANK_MESSAGE[i]+ranks[i]+"개");
+        for(int i=4;i>=0;i--){
+            System.out.println(RANK_MESSAGE[4-i]+ranks[i]+"개");
         }
-        System.out.printf("총 수익률은 %f%%입니다.\n",lottoRepository.getProfitRate()*100);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n",lottoRepository.getProfitRate()*100);
     }
 }

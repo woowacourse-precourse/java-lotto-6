@@ -1,10 +1,11 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoRepository {
-    private List<Lotto> lottos;
+    private List<Lotto> lottos=new ArrayList<>();
     private int[] ranks = new int[6];
     private Lotto winningLotto;
     private int bonusNum;
@@ -36,9 +37,7 @@ public class LottoRepository {
     }
 
     public void addLotto(List<Lotto> lottos) {
-        for (int i = 0; i < lottos.size(); i++) {
-            lottos.add(lottos.get(i));
-        }
+        this.lottos.addAll(lottos);
     }
 
     private boolean calculateRank(Lotto lotto) {

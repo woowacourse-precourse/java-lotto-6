@@ -12,6 +12,7 @@ public class LottoGame {
         LottoGameService.figureOutLottoGame();
 
         LottoGameService.calculateTotalRateOfReturn();
-        
+
+        LottoGameService.endLottoGame();
     }
 }

@@ -6,6 +6,7 @@ import static lotto.constant.Prize.FOURTH;
 import static lotto.constant.Prize.SECOND;
 import static lotto.constant.Prize.THIRD;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import java.util.List;
 import lotto.Lotto;
@@ -122,5 +123,9 @@ public class LottoGameService {
         float totalRateOfReturn = (float) receivedMoney * 100 / (float) consumedMoney;
 
         OutputView.notifyTotalRateOfReturn(totalRateOfReturn);
+    }
+
+    public static void endLottoGame() {
+        Console.close();
     }
 }

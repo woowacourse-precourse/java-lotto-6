@@ -4,17 +4,14 @@ import lotto.model.Lotto;
 import lotto.model.LottoTicket;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoService {
 
     private LottoTicket lottoTicket;
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public LottoService() {
         this.lottos = new ArrayList<>();

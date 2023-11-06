@@ -20,6 +20,6 @@ public record LottoTicket(List<Lotto> lottoTicket) {
     public WinningResult match(final WinningLotto winningLotto) {
         return lottoTicket.stream()
                 .map(lotto -> lotto.match(winningLotto.lotto(), winningLotto.bonus()))
-                .collect(collectingAndThen(toMap(p -> p, p -> 1, Integer::sum), WinningResult::new));
+                .collect(collectingAndThen(toMap(prize -> prize, prize -> 1, Integer::sum), WinningResult::new));
     }
 }

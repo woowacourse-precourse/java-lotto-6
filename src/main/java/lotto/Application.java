@@ -71,18 +71,15 @@ public class Application {
         }
     }
 
-    public static Boolean checkLottoRange(int lotto_number) {
-        if (lotto_number > 0 && lotto_number < 46) {
-            return true;
+    public static void checkLottoRange(int lotto_number) {
+        if (lotto_number < 0 || lotto_number > 45) {
+            throw new IllegalArgumentException();
         }
-        return false;
     }
 
     public static void checkWinningLottoRange(List<Integer> lotto) {
         for (int i : lotto) {
-            if (!checkLottoRange(i)) {
-                throw new IllegalArgumentException();
-            }
+            checkLottoRange(i);
         }
     }
 

@@ -17,6 +17,11 @@
       * validateLottoNum() :
         * oneToFourFive() : 1부터 45사이의 숫자인지 검증
         * isExisted() : 중복 된 수인지 검증.
+          * Lotto 클래스에 작성
       * numToList() : 
         * 입력한 당첨번호 String을 리스트로 변환해줌.
+    * 로또 보너스 번호 입력 : InputView.insertBonusNum()
+      * 보너스 번호 입력
+      * validateBonusNum() : 
+        * 1에서 45사이의 수인지와 중복된 수인지 검증.
 

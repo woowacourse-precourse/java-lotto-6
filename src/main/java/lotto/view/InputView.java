@@ -57,6 +57,33 @@ public class InputView {
         }
     }
 
+    public static void insertBonusNum(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String readLine = Console.readLine();
+            try {
+                validateBonusNum(readLine, lotto);
+                int num = Integer.parseInt(readLine);
+                numbers.add(num);
+                return;
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+        }
+    }
+
+    public static void validateBonusNum(String s, Lotto lotto) {
+        if (Integer.parseInt(s) < 1 || Integer.parseInt(s) > 45) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new InputLottoException();
+        }
+        if (lotto.getNumbers().contains(Integer.parseInt(s))) {
+            System.out.println("[ERROR] 로또 번호는 중복 되면 안됩니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static List<Integer> numToList(String readLine) {
         List<Integer> list = new ArrayList<>();
         Set<Integer> set = new HashSet<>();
@@ -71,8 +98,6 @@ public class InputView {
         String[] split = readLine.split(",");
         oneToFourFive(split);
     }
-
-
 
     public static void oneToFourFive(String[] split) {
         for (String s : split) {

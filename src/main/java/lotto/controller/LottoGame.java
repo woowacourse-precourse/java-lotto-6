@@ -6,8 +6,8 @@ import lotto.domain.Money;
 
 public class LottoGame {
     private Money money;
-    private Lotto winningLotto;
-    private Bonus winningBonus;
+    private Lotto lotto; // 당첨 번호
+    private Bonus bonus; // 보너스 번호
 
     public void run(){
         start();
@@ -15,12 +15,12 @@ public class LottoGame {
     }
 
     private void start(){
-        while(true){
 
-        }
     }
 
     private void end(){
 
     }
+
+
 }

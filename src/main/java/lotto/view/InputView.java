@@ -11,12 +11,41 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+
+
 public class InputView {
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String SIX_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static Optional<Money> inputMoney(){
+    public static Money LoopInputMoney(){
+        while(true){
+            Optional<Money> inputMoney = inputMoney();
+            if(inputMoney.isPresent()){
+                return inputMoney.get();
+            }
+        }
+    }
+
+    public static Lotto LoopInputSixNumbers(){
+        while(true){
+            Optional<Lotto> inputLotto = inputSixNumbers();
+            if(inputLotto.isPresent()){
+                return inputLotto.get();
+            }
+        }
+    }
+
+    public static Bonus LoopInputBonusNumber(Lotto lotto){
+        while(true){
+            Optional<Bonus> inputBonus = inputBonusNumber(lotto);
+            if(inputBonus.isPresent()){
+                return inputBonus.get();
+            }
+        }
+    }
+
+    private static Optional<Money> inputMoney(){
         System.out.println(MONEY_INPUT_MESSAGE);
         String input = Console.readLine();
         try{
@@ -28,7 +57,7 @@ public class InputView {
             return Optional.empty();
         }
     }
-    public static Optional<Lotto> inputSixNumbers(){
+    private static Optional<Lotto> inputSixNumbers(){
         System.out.println(SIX_NUMBERS_INPUT_MESSAGE);
         String input = Console.readLine();
         List<Integer> numbers = new ArrayList<>();
@@ -47,7 +76,7 @@ public class InputView {
         }
     }
 
-    public static Optional<Bonus> inputBonusNumber(Lotto lotto){
+    private static Optional<Bonus> inputBonusNumber(Lotto lotto){
         System.out.println(BONUS_INPUT_MESSAGE);
         String input = Console.readLine();
         try{

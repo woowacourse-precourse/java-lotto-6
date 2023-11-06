@@ -24,4 +24,10 @@ public class LottoNumberValidator extends Validator{
             }
         }
     }
+
+    public static void validateSingleNumberRange(int number){
+        if(!validateNumberRange(number, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)){
+            throw new IllegalArgumentException(ErrorMessage.LOTTONUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
+        }
+    }
 }

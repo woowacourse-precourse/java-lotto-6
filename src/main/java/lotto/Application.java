@@ -9,10 +9,18 @@ public class Application {
     public static void main(String[] args) {
         int lotto_purchase_amount;
         List<Lotto> lottos;
+        List<Integer> winning_numbers;
+        int bonus_number;
         
         lotto_purchase_amount = inputLottoPurchase();
         lottos = lottoIssuance(lotto_purchase_amount / 1000);
         printLottos(lottos, lotto_purchase_amount);
+        winning_numbers = inputWinningNumbers();
+    }
+
+    static List<Integer> inputWinningNumbers(){
+        List<Integer> winning_numbers = new ArrayList<Integer>();
+        return winning_numbers;
     }
 
     static void printLottos(List<Lotto> lottos, int lotto_purchase_amount){

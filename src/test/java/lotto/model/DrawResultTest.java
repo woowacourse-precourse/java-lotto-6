@@ -13,11 +13,17 @@ class DrawResultTest {
 
     private List<Integer> numbers;
 
+    private List<Integer> duplicationNumbers;
+
     @BeforeEach
     void setUp() {
         numbers = new ArrayList<>();
         for (int i = 1; i < 7; i++) {
             numbers.add(i);
+        }
+        duplicationNumbers = new ArrayList<>();
+        for (int i = 38; i < 46; i++) {
+            duplicationNumbers.add(i);
         }
     }
 
@@ -40,10 +46,6 @@ class DrawResultTest {
     @Test
     @DisplayName("DrawResult 생성자 검증")
     void DrawResult() {
-        List<Integer> duplicationNumbers = new ArrayList<>();
-        for (int i = 38; i < 46; i++) {
-            duplicationNumbers.add(i);
-        }
         assertThrows(IllegalArgumentException.class, () -> new DrawResult(new Lotto(numbers), -1));
         assertThrows(IllegalArgumentException.class, () -> new DrawResult(new Lotto(duplicationNumbers), 45));
     }

@@ -20,5 +20,7 @@ public class LottoController {
         outputView.printLottosInfo(lottoOwner.getLottoInfo());
         outputView.printEnterWinningNumbers();
         Lotto winningLotto = Lotto.from(inputView.getWinningNumbers());
+        outputView.printEnterBonusNumber();
+        int bonusNumber = inputView.getBonusNumber();
     }
 }

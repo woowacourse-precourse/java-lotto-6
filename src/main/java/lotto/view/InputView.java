@@ -29,6 +29,13 @@ public class InputView {
         return convertInputIntoNumbersFormat(splitInput);
     }
 
+    public int getBonusNumber() {
+        String input = readLine();
+        validateInputBlank(input);
+        validateInputDigit(input);
+        return convertInputIntoNumberFormat(input);
+    }
+
     public void close() {
         Console.close();
     }
@@ -46,6 +53,13 @@ public class InputView {
         }
     }
 
+    private void validateNumbersInput(String[] splitInput) {
+        for (String number : splitInput) {
+            validateInputBlank(number);
+            validateInputDigit(number);
+        }
+    }
+
     private Long convertInputToPurchasePriceFormat(String input) {
         try {
             return Long.parseLong(input);
@@ -54,17 +68,14 @@ public class InputView {
         }
     }
 
-    private void validateNumbersInput(String[] splitInput) {
-        for (String number : splitInput) {
-            validateInputBlank(number);
-            validateInputDigit(number);
-        }
-    }
-
     private List<Integer> convertInputIntoNumbersFormat(String[] splitInput) {
         return Arrays.stream(splitInput)
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private int convertInputIntoNumberFormat(String input) {
+        return Integer.parseInt(input);
     }
 
     private String readLine() {

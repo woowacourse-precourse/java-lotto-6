@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.constant.OutputText.ENTER_BONUS_NUMBER;
 import static lotto.constant.OutputText.ENTER_PURCHASE_AMOUNT;
 import static lotto.constant.OutputText.ENTER_WINNING_NUMBERS;
 
@@ -14,6 +15,10 @@ public class OutputView {
 
     public void printEnterWinningNumbers() {
         printOutputText(ENTER_WINNING_NUMBERS);
+    }
+
+    public void printEnterBonusNumber() {
+        printOutputText(ENTER_BONUS_NUMBER);
     }
 
     public void printLottosInfo(LottosInfo lottoInfos) {

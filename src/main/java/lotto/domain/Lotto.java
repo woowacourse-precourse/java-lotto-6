@@ -1,20 +1,44 @@
 package lotto.domain;
 
+import lotto.exception.ExceptionMessage;
+
 import java.util.List;
 
+import static lotto.exception.ExceptionMessage.LOTTO_NUMBERS_DUPLICATED;
+
+
 public class Lotto {
-    private final List<Integer> numbers;
+    public static final int LOTTO_NUMBERS_LENGTH = 6;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        validateNumbersLength(numbers);
+        validateDuplicatedNumber(numbers);
+        this.numbers = getSortedNumbers(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private static long getDistinctLength(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .count();
+    }
+
+    private List<LottoNumber> getSortedNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .map(LottoNumber::new)
+                .toList();
+    }
+
+    private void validateNumbersLength(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_LENGTH) {
+            throw ExceptionMessage.LOTTO_NUMBERS_LENGTH.getException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        if (getDistinctLength(numbers) != LOTTO_NUMBERS_LENGTH) {
+            throw LOTTO_NUMBERS_DUPLICATED.getException();
+        }
+    }
 }

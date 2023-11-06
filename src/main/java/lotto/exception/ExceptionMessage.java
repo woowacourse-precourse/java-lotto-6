@@ -5,7 +5,10 @@ public enum ExceptionMessage {
     INPUT_NUMBER_FORMAT("[ERROR] 숫자만 입력해주세요.\n"),
     INVALID_PRICE_RANGE("[ERROR] 최소 %d원, 최대 %d원까지 구매 가능합니다.\n"),
     NON_DIVISIBLE_AMOUNT("[ERROR] 금액이 나누어 떨어지지 않습니다.\n"),
-    NEGATIVE_AMOUNT("[ERROR]금액은 음수가 될 수 없습니다.\n");
+    NEGATIVE_AMOUNT("[ERROR] 금액은 음수가 될 수 없습니다.\n"),
+    LOTTO_NUMBERS_LENGTH("[ERROR] 로또는 6개의 번호로 구성되어야 합니다.\n"),
+    LOTTO_NUMBERS_DUPLICATED("[ERROR] 중복된 번호가 존재합니다.\n"),
+    LOTTO_NUMBER_RANGE("[ERROR] %d와 %d사이의 숫자만 번호로 등록 가능 합니다.\n");
     private final String message;
 
     ExceptionMessage(String message) {

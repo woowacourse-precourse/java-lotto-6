@@ -1,23 +1,28 @@
 package lotto.domain;
 
 import lotto.Lotto;
+import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
 import java.util.List;
 
 public class LottoController {
     private int lottoAmount;
+    private int bonusNumber;
     private List<Lotto> myLotto;
-    private List<Integer> prizeLotto;
+    private List<Integer> prizeNumbers;
 
     public void startGame() {
         setMyLotto();
         printMyLotto();
-        // 당첨 통계 출력
+        setPrizeLotto();
+        setLottoResult();
+        printLottoResult();
     }
 
     private void setMyLotto() {
         UserInput userInput = new UserInput();
+        InputView.readCost();
         userInput.setAmount();
         lottoAmount = userInput.getAmount();
         LottoGenerator lottogenerator = new LottoGenerator(lottoAmount);
@@ -30,7 +35,11 @@ public class LottoController {
 
     private void setPrizeLotto() {
         UserInput userInput = new UserInput();
-        userInput.setPrizeLotto();
-        prizeLotto = userInput.getPrizeLotto();
+        InputView.readNumbers();
+        userInput.setPrizeNumbers();
+        InputView.readBonusNumber();
+        userInput.setBonusNumber();
+        this.prizeNumbers = userInput.getPrizeNumbers();
+        this.bonusNumber = userInput.getBonusNumber();
     }
 }

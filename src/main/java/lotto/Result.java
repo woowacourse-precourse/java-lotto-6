@@ -62,6 +62,7 @@ public class Result {
         System.out.println("5개 일치 (1,500,000원) - " + count5Match());
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count5MatchWithBonus());
         System.out.println("6개 일치 (2,000,000,000원) - " + count6Match());
-        System.out.println("총 수익률은 " + rateOfReturn + "입니다.\n");
+        System.out.printf("총 수익률은 %,.1f".formatted(rateOfReturn));
+        System.out.println("%입니다.");
     }
 }

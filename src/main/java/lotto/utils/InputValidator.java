@@ -39,7 +39,7 @@ public class InputValidator {
         checkIsBlank(bonusNumber);
         checkIsNumber(bonusNumber);
         checkRange(bonusNumber);
-        checkBonusNumberInLotto(lotto, Integer.parseInt(bonusNumber));
+        checkBonusNumberInLotto(lotto, StringConvertor.stringToInt(bonusNumber));
     }
 
     private static void checkIsNumber(String input) {

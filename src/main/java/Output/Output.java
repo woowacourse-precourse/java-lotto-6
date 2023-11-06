@@ -47,7 +47,15 @@ public class Output {
         System.out.println(two.getMessage() + rank.get(3) + "개");
         System.out.println(one.getMessage() + rank.get(4) + "개");
     }
-
+    public long totalMoney(List<Integer> rank){
+        long result = 0;
+        result += (five.getRank() * rank.get(0));
+        result += (four.getRank() * rank.get(1));
+        result += (three.getRank() * rank.get(2));
+        result += (two.getRank() * rank.get(3));
+        result += (one.getRank() * rank.get(4));
+        return result;
+    }
     public String lottoBuyPaperPrint(List<Integer> paper) {
         String result = "[";
         for (int i = 0; i < paper.size(); i++) {

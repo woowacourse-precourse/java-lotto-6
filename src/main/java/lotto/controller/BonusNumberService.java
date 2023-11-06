@@ -13,6 +13,7 @@ public class BonusNumberService {
                 int number = InputBonusNumberView.inputBonusNumber();
                 return new BonusNumber(lotto, number);
             } catch (IllegalArgumentException e) {
+                OutputView.printNewLine();
                 OutputView.printMessage(e.getMessage());
             }
         } while (true);

@@ -25,10 +25,14 @@ public class BonusNumber {
         }
     }
 
-    private static void checkRange(int number) {
+    private void checkRange(int number) {
         if (number > LOTTO_RANGE_MAX.getNumber() || number < LOTTO_RANGE_MIN.getNumber()) {
             throw new IllegalArgumentException(VALIDATE_RANGE.getMessage());
         }
+    }
+
+    public int getNumber() {
+        return number;
     }
 
 }

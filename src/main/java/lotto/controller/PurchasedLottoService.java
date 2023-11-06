@@ -13,8 +13,8 @@ import lotto.view.OutputView;
 
 public class PurchasedLottoService {
 
-    public PurchasedLotto createPurchasedLotto() {
-        int lottoCount = calculatePurchasedLottoCount(inputPurchasePrice());
+    public PurchasedLotto createPurchasedLotto(int inputPurchasePrice) {
+        int lottoCount = calculatePurchasedLottoCount(inputPurchasePrice);
 
         List<Lotto> lotto = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
@@ -27,7 +27,7 @@ public class PurchasedLottoService {
         return purchasedLotto;
     }
 
-    private int inputPurchasePrice() {
+    public int inputPurchasePrice() {
         do {
             try {
                 return InputPurchasePriceView.inputPurchasePrice();
@@ -53,7 +53,7 @@ public class PurchasedLottoService {
     }
 
     private void printPurchasedLotto(PurchasedLotto purchasedLotto) {
-        purchasedLotto.getLotto()
+        purchasedLotto.getLottos()
                 .forEach(lotto -> OutputView.printNumbers(lotto.getLotto()));
         OutputView.printNewLine();
     }

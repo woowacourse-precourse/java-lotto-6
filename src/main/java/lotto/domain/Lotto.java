@@ -8,6 +8,7 @@ import static lotto.exception.ErrorMessage.VALIDATE_LOTTO_SIZE;
 import static lotto.exception.ErrorMessage.VALIDATE_RANGE;
 
 import java.util.List;
+import lotto.config.GamePrizeConfig;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -52,5 +53,26 @@ public class Lotto {
 
     public boolean doesContain(int number) {
         return numbers.contains(number);
+    }
+
+    public int compareWinningNumber(Lotto winningLotto, BonusNumber bonusNumber) {
+        int count = (int) (winningLotto.getLotto()
+                .stream()
+                .filter(this::doesContain)
+                .count());
+        boolean containBonus = doesContain(bonusNumber.getNumber());
+
+        return comparePrizeConfig(count, containBonus);
+    }
+
+    private int comparePrizeConfig(int count, boolean containBonus) {
+        int winningIndex = 0;
+        for (GamePrizeConfig prize : GamePrizeConfig.values()) {
+            if (prize.getCorrectCount() == count && prize.getCheckBonus() == containBonus) {
+                return winningIndex;
+            }
+            winningIndex++;
+        }
+        return winningIndex;
     }
 }

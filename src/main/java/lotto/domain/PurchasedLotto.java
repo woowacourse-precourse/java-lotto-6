@@ -3,13 +3,19 @@ package lotto.domain;
 import java.util.List;
 
 public class PurchasedLotto {
-    private final List<Lotto> lotto;
+    private final List<Lotto> lottos;
 
-    public PurchasedLotto(List<Lotto> lotto) {
-        this.lotto = lotto;
+    public PurchasedLotto(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
-    public List<Lotto> getLotto() {
-        return lotto;
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public List<Integer> getWinningResult(Lotto winningLotto, BonusNumber number) {
+        return lottos.stream()
+                .map(lotto -> lotto.compareWinningNumber(winningLotto, number))
+                .toList();
     }
 }

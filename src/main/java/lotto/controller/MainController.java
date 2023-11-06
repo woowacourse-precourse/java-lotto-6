@@ -24,13 +24,13 @@ public class MainController {
         LottoAmount lottoAmount = new LottoAmount(inputMoney);
         outputView.printLottoAmount(lottoAmount);
 
-        // 수량만큼 로또 생성 후 로또번호 출력
-        for (int i = 0; i < lottoAmount.getLottoAmount(); i++) {
-            generateLotto();
-        }
+//        // 수량만큼 로또 생성 후 로또번호 출력
+//        for (int i = 0; i < lottoAmount.getLottoAmount(); i++) {
+//            generateLotto();
+//        }
 
         // 당첨번호 입력
-//        String inputLotto = inputView.readLottoNumber();
+//        String lottoNumber = inputView.readLottoNumber();
 
         // 보너스번호 입력
 //        String inputBonus = inputView.readBonusNumber();
@@ -41,13 +41,19 @@ public class MainController {
         // 수익률 출력
     }
 
-    private void generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Lotto lotto = new Lotto(numbers);
-        printLotto(lotto.getLottoNumber());
-    }
+//    private void makeLottoNumber(String lottoNumber) {
+//        // "1,2,3,4,5,6" -> [1,2,3,4,5,6]
+//        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+//
+//    }
 
-    private void printLotto(List<Integer> numbers) {
-        outputView.printLottoNumber(numbers);
-    }
+//    private void generateLotto() {
+//        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+//        Lotto lotto = new Lotto(numbers);
+//        printLotto(lotto.getLottoNumber());
+//    }
+//
+//    private void printLotto(List<Integer> numbers) {
+//        outputView.printLottoNumber(numbers);
+//    }
 }

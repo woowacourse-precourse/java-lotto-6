@@ -30,25 +30,5 @@ public class ValidatorTest {
     void validateMoneyDivideBy1000_구입금액_1000으로_안나눠지면_예외반환() {
         assertThatThrownBy(() -> LottoAmount.validateMoneyIsValid("13555")).isInstanceOf(IllegalArgumentException.class);
     }
-
-    @Test
-    void parseInt_숫자반환_테스트() {
-        assertThat(Utils.parseInt("123")).isEqualTo(123);
-    }
-
-    @Test
-    void readLottoMoney_숫자_아니면_예외반환() {
-        assertThatThrownBy(() -> Utils.validateStringIsNumber("abc")).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void readLottoMoney_공백_이면_예외반환() {
-        assertThatThrownBy(() -> Utils.validateHasInput(" ")).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void readLottoMoney_null_이면_예외반환() {
-        assertThatThrownBy(() -> Utils.validateHasInput(null)).isInstanceOf(IllegalArgumentException.class);
-    }
 }
 

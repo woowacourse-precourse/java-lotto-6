@@ -54,7 +54,7 @@ public class InputView {
         List<Integer> intWinningNumber = new ArrayList<>();
 
         for (String number : stringWinningNumber) {
-            validateStringToNumericConversion(number);
+            validateStringToNumericConversion(number.trim());
             intWinningNumber.add(Integer.parseInt(number));
         }
         return intWinningNumber;

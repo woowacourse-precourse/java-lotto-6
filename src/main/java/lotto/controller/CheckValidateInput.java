@@ -1,6 +1,9 @@
 package lotto.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CheckValidateInput {
 
@@ -44,6 +47,30 @@ public class CheckValidateInput {
 		return (bonusNumber > 0) && (bonusNumber <= 45);
 	}
 
+	public List<Integer> winningNumber(String numbers){
+		
+		if(isNumbersInteger(separated(numbers)))
+			throw new IllegalArgumentException();
+		
+		List<Integer> winnings = Arrays.stream(separated(numbers))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+		
+		return winnings;
+	}
+	
+	private String[] separated(String numbers) {
+		return numbers.split(",");
+	}
+	
+	private boolean isNumbersInteger(String[] numbers) {
+		for(String number : numbers) {
+			if(!isInteger(number))
+				return false;
+		}
+		return true;
+	}
+	
 	private boolean isInteger(String number) {
 		try {
 			Integer.parseInt(number);

@@ -18,7 +18,7 @@ public class LottoController {
         List<Lotto> tickets = buyLotto();
         showTickets(tickets);
         Lotto userLotto = getUserLotto();
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(userLotto);
     }
 
     private List<Lotto> buyLotto() {
@@ -49,12 +49,20 @@ public class LottoController {
         }
     }
 
-    private int getBonusNumber() {
+    private int getBonusNumber(Lotto userLotto) {
         try {
-            return inputView.inputBonusNumber();
+            int bonusNumber = inputView.inputBonusNumber();
+            validateBonusNumber(userLotto, bonusNumber);
+            return bonusNumber;
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(userLotto);
+        }
+    }
+
+    private void validateBonusNumber(Lotto userLotto, int bonusNumber) {
+        if (userLotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException("번호가 모두 달라야 합니다");
         }
     }
 }

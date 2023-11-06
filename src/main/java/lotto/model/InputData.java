@@ -11,8 +11,8 @@ public class InputData {
 		while(!isValidInput) {
 			try {
 				inputData = Integer.parseInt(Console.readLine());
-				Validate.isMinimumAmount(inputData);//최소금액검사
-				Validate.isThousandMultiple(inputData);//1000단위인지
+				Validate.minimumAmount(inputData);//최소금액검사
+				Validate.thousandMultiple(inputData);//1000단위인지
 				isValidInput = true;
 			} catch (IllegalArgumentException error) {
 				System.out.println(error.getMessage());
@@ -28,7 +28,7 @@ public class InputData {
 		while(!isValidInput) {
 			try {
 				inputData = Console.readLine();
-				Validate.isValidSixNumberInput(inputData);
+				Validate.validSixNumberInput(inputData);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

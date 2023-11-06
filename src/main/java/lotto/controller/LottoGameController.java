@@ -6,6 +6,7 @@ import lotto.model.LottoStore;
 import lotto.model.vo.Money;
 import lotto.model.Player;
 import lotto.model.RandomNumberGenerateStrategy;
+import lotto.model.vo.WinNumber;
 import lotto.view.ErrorView;
 import lotto.view.OutputView;
 
@@ -23,21 +24,26 @@ public class LottoGameController {
         buyLotto();
     }
 
-    private void buyLotto() {
+    private Player buyLotto() {
+        Player player = null;
         try {
             // 구입 금액 입력
             outputView.printPurchaseInput();
             Money money = new Money(input());
-            Player player = Player.of(money);
+            player = Player.of(money);
             // 로또 구매
             player.buyLotto(LottoStore.of(new RandomNumberGenerateStrategy()));
             // 로또 번호 반환 및 출력
             PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(player.getEA(), player.getHistory());
             outputView.printPurchaseHistory(dto);
+        } catch (NumberFormatException e) {
+            errorView.printErrorMessage("숫자 형식이 아닙니다.");
+            buyLotto();
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
             buyLotto();
         }
+        return player;
     }
 
     private String input() {

@@ -6,15 +6,8 @@ public class Money {
     private int won;
 
     public Money(String input) {
-        isNumeric(input);
         int money = parseInt(input);
         this.won = money;
-    }
-
-    private void isNumeric(String money) {
-        if (!money.matches("[0-9]+")) {
-            throw new IllegalArgumentException("숫자 형식이 아닙니다.");
-        }
     }
 
     private int parseInt(String money) {

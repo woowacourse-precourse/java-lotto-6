@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum Prize {
 	FIFTH("3개 일치", 5000),

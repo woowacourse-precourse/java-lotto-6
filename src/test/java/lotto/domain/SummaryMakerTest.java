@@ -13,7 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import lotto.Lotto;
-import lotto.Prize;
+import lotto.constant.Prize;
 
 public class SummaryMakerTest {
 

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import lotto.Lotto;
-import lotto.Prize;
+import lotto.constant.Prize;
 
 public class SummaryMaker {
 

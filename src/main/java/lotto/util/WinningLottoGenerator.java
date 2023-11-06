@@ -3,7 +3,7 @@ package lotto.util;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.validator.NumberValidator;
-import lotto.validator.WinningLottoNumberValidator;
+import lotto.validator.LottoNumberValidator;
 
 import static lotto.constant.Constant.COMMA_DELIMITER;
 
@@ -16,7 +16,7 @@ public class WinningLottoGenerator {
             int change_integer_number = NumberValidator.validate(number);
             numbers.add(change_integer_number);
         }
-        WinningLottoNumberValidator.validate_MIN_SIZE(numbers);
+        LottoNumberValidator.validate_MIN_SIZE(numbers);
         return numbers;
     }
 }

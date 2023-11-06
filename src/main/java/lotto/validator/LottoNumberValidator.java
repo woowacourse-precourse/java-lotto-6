@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningLottoNumberValidator {
+public class LottoNumberValidator {
     private static final int MIN_SIZE = 6;
     private static final int MAX_SIZE = 7;
     private static final String ERROR = "[ERROR] 로또 당첨 번호는 ";
@@ -13,7 +13,7 @@ public class WinningLottoNumberValidator {
     private static final String ERROR_MAX_SIZE = ERROR + "6개, 보너스 번호는 1개 입니다.";
     private static final String ERROR_DUPLICATION = ERROR + "겹치도록 숫자를 입력할 수 없습니다.";
 
-    private WinningLottoNumberValidator() {};
+    private LottoNumberValidator() {};
 
     public static void validate_MIN_SIZE(List<Integer> input) {
         validateBlankException(input);

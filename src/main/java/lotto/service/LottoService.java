@@ -12,6 +12,9 @@ public class LottoService {
     private final RandomUtils randomUtils = new RandomUtils();
     private final List<Lotto> buyLottos = new ArrayList<>();
 
+    public List<Lotto> getBuyLottos() {
+        return buyLottos;
+    }
 
     public void setBuyLotto(int payMoney) {
         validatePaidAmount(payMoney);
@@ -30,10 +33,6 @@ public class LottoService {
         if ((payMoney % Value.LOTTO_TICKET_PRICE) != 0) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public List<Lotto> getUserLottos() {
-        return buyLottos;
     }
 
     public void showBuyLottos() {

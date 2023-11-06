@@ -24,8 +24,8 @@ public class LottoResultService {
         this.winningLotto = winningLotto;
     }
 
-    public void showRank(List<Lotto> userLottos) {
-        calculateLottoResult(userLottos);
+    public void showRank(List<Lotto> buyLottos) {
+        setRank(buyLottos);
 
         System.out.println(Message.PAY_MONEY_REQUEST_MESSAGE);
         Set<Rank> ranks = lottoResults.keySet();
@@ -35,32 +35,32 @@ public class LottoResultService {
         }
     }
 
-    public void calculateLottoResult(List<Lotto> userLottos) {
-        userLottos.forEach(userLotto -> {
-            Rank rank = compareUserLottoAndWinningLotto(userLotto.getNumbers());
+    private void setRank(List<Lotto> buyLottos) {
+        buyLottos.forEach(buyLotto -> {
+            Rank rank = calculateRank(buyLotto.getNumbers());
+
             if (lottoResults.containsKey(rank)) {
                 lottoResults.put(rank, lottoResults.get(rank) + 1);
             }
         });
     }
 
-    private Rank compareUserLottoAndWinningLotto(List<Integer> userLottoNumbers) {
+    private Rank calculateRank(List<Integer> buyLottosNumbers) {
+        int count = countEqualLottoNumbers(buyLottosNumbers);
 
-        int count = getSameNumberCount(userLottoNumbers);
-
-        if (count == 5 && isContainBonusNumber(userLottoNumbers)) {
+        if (count == 5 && isContainBonusNumber(buyLottosNumbers)) {
             return Rank.SECOND;
         }
 
         return Rank.values()[count];
     }
 
-    private int getSameNumberCount(List<Integer> userLottoNumbers) {
+    private int countEqualLottoNumbers(List<Integer> buyLottosNumbers) {
         List<Integer> winningLottoNumbers = winningLotto.getNumbers();
-
         int count = 0;
-        for (int userLottoNumber : userLottoNumbers) {
-            if (winningLottoNumbers.contains(userLottoNumber)) {
+
+        for (int winningNumber : winningLottoNumbers) {
+            if (buyLottosNumbers.contains(winningNumber)) {
                 count++;
             }
         }
@@ -68,13 +68,13 @@ public class LottoResultService {
         return count;
     }
 
-    private boolean isContainBonusNumber(List<Integer> userLottoNumbers) {
-        int winningLottoBonusNumber = winningLotto.getBonusNumber();
+    private boolean isContainBonusNumber(List<Integer> buyLottosNumbers) {
+        int winningBonusNumber = winningLotto.getBonusNumber();
 
-        return userLottoNumbers.contains(winningLottoBonusNumber);
+        return buyLottosNumbers.contains(winningBonusNumber);
     }
 
-    public void showProfitRate(int amount) {
+    public void showProfitRate(int payMoney) {
         int profit = 0;
         List<Rank> ranks = new ArrayList<>(lottoResults.keySet().stream().toList());
 
@@ -82,7 +82,7 @@ public class LottoResultService {
             profit += (lottoResults.get(rank) * rank.getPrize());
         }
 
-        double profitRate = profit / (double) amount * 100;
+        double profitRate = profit / (double) payMoney * 100;
 
         DecimalFormat decimalFormat = new DecimalFormat("#.#");
         System.out.println("총 수익률은 " + decimalFormat.format(profitRate) + "%입니다.");

@@ -39,16 +39,28 @@ public class Controller {
     }
 
     private void createWinningLotto() {
-        WinningLotto winningLotto = inputService.inputWinningLotto();
-        lottoResultService.setWinningLotto(winningLotto);
+        while (true) {
+            try {
+                List<Integer> winningLottoNumbers = inputService.inputWinningLottoNumbers();
+                WinningLotto winningLotto = new WinningLotto(winningLottoNumbers);
+
+                lottoResultService.setWinningLotto(winningLotto);
+                int winningBonusNumber = inputService.inputWinningBonusNumber(winningLotto);
+
+                winningLotto.setBonusNumber(winningBonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessage.WINNING_NUMBER_FORMAT);
+            }
+        }
     }
 
     private void showResult() {
-        List<Lotto> userLottos = lottoService.getUserLottos();
+        List<Lotto> buyLottos = lottoService.getBuyLottos();
 
-        lottoResultService.showRank(userLottos);
+        lottoResultService.showRank(buyLottos);
 
-        int amount = userLottos.size() * Value.LOTTO_TICKET_PRICE;
-        lottoResultService.showProfitRate(amount);
+        int payMoney = buyLottos.size() * Value.LOTTO_TICKET_PRICE;
+        lottoResultService.showProfitRate(payMoney);
     }
 }

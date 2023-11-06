@@ -22,52 +22,19 @@ public class InputService {
         return parseUtils.parseStringToInt(payMoney);
     }
 
-    private void amountValidate(int amount) {
-        if (amount < Value.LOTTO_TICKET_PRICE) {
-            throw new IllegalArgumentException();
-        }
-
-        if ((amount % Value.LOTTO_TICKET_PRICE) != 0) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public WinningLotto inputWinningLotto() {
-        WinningLotto winningLotto = inputWinningLottoNumbers();
-        inputBonusNumber(winningLotto);
-
-        return winningLotto;
-    }
-
-    private WinningLotto inputWinningLottoNumbers() {
+    public List<Integer> inputWinningLottoNumbers() {
         System.out.println(Message.WINNING_NUMBER_REQUEST_MESSAGE);
 
-        while (true) {
-            try {
-                String inputWinningNumbers = Console.readLine();
-                List<Integer> winningLottoNumbers = parseUtils.parseStringToIntegerList(inputWinningNumbers);
+        String inputWinningLottoNumbers = Console.readLine();
+        return parseUtils.parseStringToIntegerList(inputWinningLottoNumbers);
 
-                return new WinningLotto(winningLottoNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.WINNING_NUMBER_FORMAT.getMessage());
-            }
-        }
     }
 
-    private void inputBonusNumber(WinningLotto winningLotto) {
+    public int inputWinningBonusNumber(WinningLotto winningLotto) {
         System.out.println(Message.BONUS_NUMBER_REQUEST_MESSAGE);
 
-        while (true) {
-            try {
-                String inputBonusNumber = Console.readLine();
-                int bonusNumber = parseUtils.parseStringToInt(inputBonusNumber);
-                winningLotto.setBonusNumber(bonusNumber);
-
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.BONUS_NUMBER_FORMAT.getMessage());
-            }
-        }
+        String winningBonusNumber = Console.readLine();
+        return parseUtils.parseStringToInt(winningBonusNumber);
     }
 
 }

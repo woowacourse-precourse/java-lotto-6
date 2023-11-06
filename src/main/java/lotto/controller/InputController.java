@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.converter.StringToInteger;
+import lotto.converter.Converter;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.PurchaseAmount;
@@ -13,10 +13,10 @@ import java.util.List;
 
 public class InputController {
 
-    private final StringToInteger integerConverter;
+    private final Converter<String, Integer> converter;
 
-    public InputController(StringToInteger integerConverter) {
-        this.integerConverter = integerConverter;
+    public InputController(Converter<String, Integer> converter) {
+        this.converter = converter;
     }
 
     public PurchaseAmount getPurchaseAmount(InputView inputView, OutputView outputView) {
@@ -30,7 +30,7 @@ public class InputController {
     }
 
     private PurchaseAmount readPurchaseAmount(InputView inputView) {
-        Integer number = integerConverter.convert(inputView.readPurchaseAmount());
+        Integer number = converter.convert(inputView.readPurchaseAmount());
         return PurchaseAmount.of(number);
     }
 
@@ -58,7 +58,7 @@ public class InputController {
 
     private Lotto readWinningNumbers(InputView inputView) {
         List<Integer> numbers = Arrays.stream(inputView.readWinningNumbers().split(","))
-                .map(integerConverter::convert)
+                .map(converter::convert)
                 .toList();
         return new Lotto(numbers);
     }
@@ -74,7 +74,7 @@ public class InputController {
     }
 
     private Bonus readBonusNumber(InputView inputView) {
-        Integer number = integerConverter.convert(inputView.readBonusNumber());
+        Integer number = converter.convert(inputView.readBonusNumber());
         return new Bonus(number);
     }
 }

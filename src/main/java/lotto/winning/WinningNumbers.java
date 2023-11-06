@@ -58,8 +58,8 @@ public class WinningNumbers implements Askable<List<Integer>> {
     }
 
     private final Predicate<List<Integer>> isCorrectRange = input ->
-            input.stream().mapToInt(Integer::intValue).min().getAsInt() >= MINIMUM.getNumber() &&
-                    input.stream().mapToInt(Integer::intValue).max().getAsInt() <= MAXIMUM.getNumber();
+            input.stream().mapToInt(Integer::intValue).min().orElse(Integer.MIN_VALUE) >= MINIMUM.getNumber() &&
+                    input.stream().mapToInt(Integer::intValue).max().orElse(Integer.MAX_VALUE) <= MAXIMUM.getNumber();
 
     private final Predicate<List<Integer>> isNoDuplicate = input ->
             input.stream().distinct().count() == input.size();

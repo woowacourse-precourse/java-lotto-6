@@ -46,11 +46,8 @@ public class LottoService {
         return lottoResults;
     }
 
+
     private boolean isHasBonus(int bonusNumber, int count, Lotto lotto) {
-        boolean hasBonus = false;
-        if (count == 5) {
-            hasBonus = lotto.isContain(bonusNumber);
-        }
-        return hasBonus;
+        return lotto.isContain(bonusNumber) && count == 5;
     }
 }

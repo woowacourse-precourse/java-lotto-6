@@ -20,11 +20,11 @@ public class OutputView {
     }
 
     public void renderLottoTicketsCountText() {
-        System.out.println(lottoTicketsText);
+        System.out.println(lottoTicketsCountText);
     }
 
     public void renderLottoTicketsText() {
-        System.out.println(lottoTicketsCountText);
+        System.out.println(lottoTicketsText);
     }
 
     public void renderWinningStatisticsText() {

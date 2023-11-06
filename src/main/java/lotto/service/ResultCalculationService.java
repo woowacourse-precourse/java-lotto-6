@@ -13,12 +13,11 @@ import static lotto.enums.GuideMessage.*;
 
 public class ResultCalculationService {
     public void makeWinningResult(Buyer buyer, LotteryWinningNumbers lotteryWinningNumbers) {
+        int bonusNumber = lotteryWinningNumbers.getBonusNumber();
         Map<Integer, Ranking> rankingAccumulator = buyer.getRankingAccumulator();
         List<Lotto> lottos = buyer.getLottos();
         List<Integer> lottoWinningNumbers = lotteryWinningNumbers.getWinningNumbers();
-        int bonusNumber = lotteryWinningNumbers.getBonusNumber();
-
-        List<Pair> winningAndBonusNumbers = SortWinningPlusBonusNumbers(lottoWinningNumbers, bonusNumber);
+        List<Pair> winningAndBonusNumbers = sortWinningPlusBonusNumbers(lottoWinningNumbers, bonusNumber);
 
         for (int i = 0; i < lottos.size(); i++) {
             List<Integer> lottoNumbers = lottos.get(i).getNumbers();
@@ -26,13 +25,15 @@ public class ResultCalculationService {
         }
     }
 
-    private List<Pair> SortWinningPlusBonusNumbers(List<Integer> lottoWinningNumbers, int bonusNumber) {
+    private List<Pair> sortWinningPlusBonusNumbers(List<Integer> lottoWinningNumbers, int bonusNumber) {
         List<Pair> winningAndBonusNumbers = new ArrayList<>();
+
         lottoWinningNumbers
                 .iterator()
                 .forEachRemaining(number -> winningAndBonusNumbers.add(new Pair(number, NumberType.WINNING_NUMBER)));
         winningAndBonusNumbers.add(new Pair(bonusNumber, NumberType.BONUS_NUMBER));
         winningAndBonusNumbers.sort((o1, o2) -> o1.getNumber() - o2.getNumber());
+
         return winningAndBonusNumbers;
     }
 
@@ -84,8 +85,8 @@ public class ResultCalculationService {
     public void calculateRateOfReturn(Buyer buyer) {
         int desiredPurchaseAmount = buyer.getDesiredPurchaseAmount();
         Map<Integer, Ranking> rankingAccumulator = buyer.getRankingAccumulator();
-
         double totalMoney = 0;
+
         for (int i = 1; i <= 5; i++) {
             totalMoney = (double) rankingAccumulator.get(i).getRewardMoney() * rankingAccumulator.get(i).getNumberOfWins();
         }

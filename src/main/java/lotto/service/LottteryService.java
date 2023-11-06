@@ -38,6 +38,7 @@ public class LottteryService {
         for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottoNumbers.sort(Comparator.naturalOrder());
+
             try {
                 lottos.add(new Lotto(lottoNumbers));
             } catch (IllegalArgumentException e) {
@@ -49,13 +50,14 @@ public class LottteryService {
 
     public void saveLottoNumbers(String input) {
         List<Integer> lottoWinningNumbers = validations.validateEnteredLottoNumbers(input);
-        
         LotteryWinningNumbers lotteryWinningNumbers = repository.getLotteryWinningNumbers();
+
         lotteryWinningNumbers.setWinningNumbers(lottoWinningNumbers);
     }
 
     public void saveBonusNumber(String input) {
         List<Integer> winningNumbers = repository.getLotteryWinningNumbers().getWinningNumbers();
+
         validations.validateEnteredBonusNumber(winningNumbers, input);
     }
 
@@ -67,6 +69,7 @@ public class LottteryService {
 
     public void printLottos() {
         List<Lotto> lottos = repository.getBuyer().getLottos();
+
         for(Lotto lotto : lottos)
             lotto.printNumber();
     }
@@ -81,9 +84,6 @@ public class LottteryService {
 
         resultCalculationService.calculateRateOfReturn(buyer);
 
-
-        List<String> messages = resultCalculationService.printWinningResult(buyer);
-
-        return messages;
+        return resultCalculationService.printWinningResult(buyer);
     }
 }

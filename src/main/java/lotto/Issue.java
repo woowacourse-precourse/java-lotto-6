@@ -13,7 +13,16 @@ public class Issue {
 
     static void inputCash() {
         System.out.println("구입금액을 입력해 주세요.");
-        initialCash = Integer.parseInt(Console.readLine());
+
+        while (true) {
+            try {
+                initialCash = Integer.parseInt(Console.readLine());
+                break;
+            } catch(IllegalArgumentException e) {
+                System.out.println("[ERROR] 올바른 숫자를 입력해야 합니다.");
+            }
+        }
+
         lottoQuantity = initialCash / 1000;
         System.out.println();
     }

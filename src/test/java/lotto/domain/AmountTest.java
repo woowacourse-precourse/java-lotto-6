@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,5 +23,14 @@ class AmountTest {
     void Amount_Constructor_When_Less_Than_1000(int price) {
         assertThatThrownBy(() -> new Amount(price))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("getLottoCount 메서드는 구입금액에 맞는 로또 발행 개수를 리턴한다.")
+    @ValueSource(ints = {1000, 2000, 3000})
+    void getLottoCount_Method_Return_Lotto_Count(int price) {
+        Amount amount = new Amount(price);
+
+        assertEquals(amount.getLottoCount(), price / 1000);
     }
 }

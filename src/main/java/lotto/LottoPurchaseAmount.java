@@ -35,7 +35,7 @@ public class LottoPurchaseAmount {
         }
     }
 
-    private int validateInt(String input) {
+    public static int validateInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

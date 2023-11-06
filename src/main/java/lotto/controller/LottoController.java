@@ -31,7 +31,7 @@ public class LottoController {
         outputView.printBoughtLottoSize(lottos.size());
         printLottoValues(lottos);
 
-        LottoCompanyService lottoCompanyService = createLottoCompanyService(lottos);
+        LottoCompanyService lottoCompanyService = initLottoCompanyService(lottos);
         List<PrizeResult> prizeResults = lottoCompanyService.evaluateLottos();
         addPrizeMoney(investor, prizeResults);
 
@@ -49,26 +49,23 @@ public class LottoController {
     }
 
     private void printLottoValues(final List<Lotto> lottos) {
-        List<LottoResponse> lottoResponses = convertLottoResponses(lottos);
+        List<LottoResponse> lottoResponses = lottos.stream()
+                .map(lotto -> LottoResponse.from(lotto.getNumbers()))
+                .toList();
+
         outputView.printEachLottoNumbers(lottoResponses);
     }
 
-    private List<LottoResponse> convertLottoResponses(final List<Lotto> lottos) {
-        return lottos.stream()
-                .map(lotto -> LottoResponse.from(lotto.getNumbers()))
-                .toList();
-    }
+    public LottoCompanyService initLottoCompanyService(final List<Lotto> lottos) {
+        GoalNumbers goalNumbers = initGoalNumbers();
 
-    public LottoCompanyService createLottoCompanyService(final List<Lotto> lottos) {
         return createInstance(LottoCompanyService.class, () -> {
-            GoalNumbers goalNumbers = createGoalNumbers();
-            LottoNumber bonusNumber = createBonusNumber();
-
+            LottoNumber bonusNumber = initBonusNumber();
             return LottoCompanyService.of(goalNumbers, bonusNumber, lottos);
         });
     }
 
-    private GoalNumbers createGoalNumbers() {
+    private GoalNumbers initGoalNumbers() {
         return createInstance(GoalNumbers.class, () -> {
             outputView.askGoalNumbers();
             String goalNumbersInput = inputView.readLine();
@@ -76,7 +73,7 @@ public class LottoController {
         });
     }
 
-    private LottoNumber createBonusNumber() {
+    private LottoNumber initBonusNumber() {
         return createInstance(LottoNumber.class, () -> {
             outputView.askBonusNumber();
             String bonusNumberInput = inputView.readLine();

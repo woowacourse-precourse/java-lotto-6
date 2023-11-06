@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.PrizesConstant;
 import org.mockito.junit.MockitoTestRule;
 
 import java.util.Arrays;
@@ -8,8 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static lotto.constant.PrizesConstant.*;
+
 public class Prizes {
 
+    private static final Integer INIT_PRIZE_COUNT = 0;
     private final Map<Prize, Integer> prizes;
 
     public Prizes(List<Prize> prizes) {
@@ -20,7 +24,7 @@ public class Prizes {
 
     private void initPrizes() {
         for (Prize prize : Prize.values()) {
-            prizes.put(prize, 0);
+            prizes.put(prize, INIT_PRIZE_COUNT);
         }
     }
 
@@ -37,7 +41,7 @@ public class Prizes {
 
 
     private Double getTotalReward() {
-        Double totalReward = 0.0;
+        Double totalReward = INIT_REWARD.getSetting();
         for (Prize prize : prizes.keySet()) {
             Integer currentCount = prizes.get(prize);
             totalReward += prize.getReward() * currentCount;
@@ -48,12 +52,12 @@ public class Prizes {
 
     public Double getTotalBenefit(Integer totalSpendAmount) {
         Double totalReward = getTotalReward();
-        if (totalReward == 0.0) {
-            return 0.0;
+        if (totalReward == INIT_REWARD.getSetting()) {
+            return NO_BENEFIT.getSetting();
         }
 
-        Double totalBenefit = (totalReward / totalSpendAmount) * 100.0;
-        return Math.round(totalBenefit * 100.0) / 100.0;
+        Double totalBenefit = (totalReward / totalSpendAmount) * PERCENTAGE_INDICATOR.getSetting();
+        return Math.round(totalBenefit * ROUND_INDICATOR.getSetting()) / ROUND_INDICATOR.getSetting();
     }
 
 }

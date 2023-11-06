@@ -11,7 +11,7 @@ public class Application {
     public Application() {
         Model model = new Model();
         this.inputView = new InputView(model);
-        this.outputView = new OutputView(model, inputView.returnLotto());
+        this.outputView = new OutputView(model);
     }
 
     public static void main(String[] args) {

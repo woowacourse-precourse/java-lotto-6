@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.Lotto;
 import lotto.controller.InputController;
 import lotto.model.Model;
 
@@ -9,7 +8,6 @@ import java.util.List;
 
 public class InputView {
     private final InputController inputController;
-    private Lotto lotto;
     public InputView(Model model) {
         this.inputController = new InputController(model);
     }
@@ -32,8 +30,8 @@ public class InputView {
             String inputLottoNumber = Console.readLine();
             list = inputController.createWinningLottoList(inputLottoNumber);
             inputController.checkRangeLottoNumber(list);
-            lotto = new Lotto(list);
-        }while (lotto.againInputList());
+            inputController.storeLotto(list);
+        }while (inputController.getLotto().againInputList());
     }
 
     private Integer inputBonusNumber() {
@@ -55,9 +53,5 @@ public class InputView {
         String input = Console.readLine();
         int number = inputController.checkValidNumberFormat(input);
         return inputController.checkNotThousandAndNegative(number);
-    }
-
-    public Lotto returnLotto(){
-        return lotto;
     }
 }

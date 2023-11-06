@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Exception;
+import lotto.model.Lotto;
 import lotto.model.Model;
 
 import java.util.Arrays;
@@ -17,7 +18,9 @@ public class InputController {
     }
 
     public int cashToLottoCount(int cash){
-        return cash / 1000;
+        int ticket = cash / 1000;
+        model.storeTicketCount(ticket);
+        return ticket;
     }
 
     public List<Integer> createWinningLottoList(String inputLottoNumber) {
@@ -30,6 +33,10 @@ public class InputController {
 
     public void storeLottoTicket(int lottoCount){
         model.storeLottoTicket(lottoCount);
+    }
+
+    public void storeLotto(List<Integer> numbers){
+        model.storeLotto(numbers);
     }
 
     public void showLottoTicket() {
@@ -72,5 +79,9 @@ public class InputController {
             int returnNum = checkValidNumberFormat(Console.readLine());
             return checkNotThousandAndNegative(returnNum);
         }
+    }
+
+    public Lotto getLotto(){
+        return model.getLotto();
     }
 }

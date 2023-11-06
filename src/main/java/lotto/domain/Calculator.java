@@ -1,11 +1,11 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.Grade.FIFTH;
-import static lotto.Grade.FIRST;
-import static lotto.Grade.FOURTH;
-import static lotto.Grade.NONE;
-import static lotto.Grade.SECOND;
-import static lotto.Grade.THIRD;
+import static lotto.domain.Grade.FIFTH;
+import static lotto.domain.Grade.FIRST;
+import static lotto.domain.Grade.FOURTH;
+import static lotto.domain.Grade.NONE;
+import static lotto.domain.Grade.SECOND;
+import static lotto.domain.Grade.THIRD;
 
 import java.util.List;
 import java.util.function.Predicate;

@@ -1,6 +1,10 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.BroadCastingStation;
+import lotto.domain.Lotto;
+import lotto.domain.LottoDrawResult;
+import lotto.domain.Store;
 
 public class Program {
     private List<Lotto> consumerLottos = null;

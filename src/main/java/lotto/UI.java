@@ -10,6 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.Calculator;
+import lotto.domain.Grade;
+import lotto.domain.Lotto;
+import lotto.domain.LottoDrawResult;
 
 public class UI {
     public static Integer inputMoney() {

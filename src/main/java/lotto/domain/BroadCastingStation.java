@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class BroadCastingStation {
     public static LottoDrawResult drawLotto(Lotto lotto, Integer bonus) {

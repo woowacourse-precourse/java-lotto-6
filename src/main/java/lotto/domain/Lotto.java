@@ -39,8 +39,6 @@ public class Lotto {
 
     // Integer 리스트를 LottoNumber 리스트로 변환
     private List<LottoNumber> changeIntToLottoNumber(List<Integer> numbers) {
-        return numbers.stream().map(e -> new LottoNumber(e)).collect(Collectors.toList());
+        return numbers.stream().map(LottoNumber::new).collect(Collectors.toList());
     }
-
-
 }

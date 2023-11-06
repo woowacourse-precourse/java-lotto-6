@@ -1,4 +1,4 @@
-package lotto;
+package lotto.lotto;
 
 public class BonusNumber {
 

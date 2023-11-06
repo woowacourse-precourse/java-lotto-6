@@ -1,4 +1,6 @@
-package lotto;
+package lotto.lotto;
+
+import lotto.WinningLottoCounter;
 
 import java.util.List;
 

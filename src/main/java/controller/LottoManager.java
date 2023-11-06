@@ -21,7 +21,7 @@ public class LottoManager {
         List<Integer> winningStaticsResult;
         double totalReturn;
         outputView.printLottoPriceInputNotify();
-        payment = Integer.parseInt(inputView.lottoPriceInput());
+        payment = inputView.lottoPriceInput();
         lottoCount = validation.lottoPurchaseNumber(payment);
         outputView.printLottoNumberNotify(lottoCount);
 
@@ -33,7 +33,7 @@ public class LottoManager {
         String winningNumberString = inputView.lottoWinningNumberInput();
         winningNumbers = transform.winningNumberToList(winningNumberString);
         outputView.printBonusNumberInputNotify();
-        bonusNumber = Integer.parseInt(inputView.bonusNumberInput());
+        bonusNumber = inputView.bonusNumberInput();
         validation.inputFinalValue(winningNumbers, bonusNumber);
         winningStaticsResult = validation.winningStatics(fullLottoValue);
         outputView.printWinningStatics(winningStaticsResult);

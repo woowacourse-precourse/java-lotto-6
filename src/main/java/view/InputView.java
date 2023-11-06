@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     UserInputException userInputException = new UserInputException();
 
-    public String lottoPriceInput() {
+    public int lottoPriceInput() {
         int input = 0;
         while (input == 0) {
             try {
@@ -15,7 +15,7 @@ public class InputView {
                 System.out.println("[ERROR] 로또 구입시 천원 단위의 숫자가 입력되어야 합니다.");
             }
         }
-        return Console.readLine();
+        return input;
     }
 
     public String lottoWinningNumberInput() {
@@ -31,7 +31,16 @@ public class InputView {
         return input;
     }
 
-    public String bonusNumberInput() {
-        return Console.readLine();
+    public int bonusNumberInput() {
+        int input = 0;
+        while (input == 0){
+            try {
+                input = Integer.parseInt(Console.readLine());
+                userInputException.bonusNumberValidate(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 보너스 번호는 1~45 내의 숫자입니다.");
+            }
+        }
+        return input;
     }
 }

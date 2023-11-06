@@ -29,5 +29,11 @@ public class UserInputException {
         }
     }
 
+    public void bonusNumberValidate(int bonusNumber) {
+        if(bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 
 }

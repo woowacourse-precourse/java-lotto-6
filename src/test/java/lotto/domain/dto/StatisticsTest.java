@@ -19,4 +19,17 @@ class StatisticsTest {
 
         assertEquals(statisticsA, statisticsB);
     }
+
+    @Test
+    void statistics_내부_필드가_동일하다면_Hash_자료구조에서도_객체로_인식한다() {
+        Set<Statistics> set = new HashSet<>();
+        List<Result> results = List.of(Result.FIVE_MATCH, Result.SIX_MATCH);
+        Statistics statisticsA = new Statistics(results, 50.0);
+        Statistics statisticsB = new Statistics(results, 50.0);
+
+        set.add(statisticsA);
+        set.add(statisticsB);
+
+        assertEquals(1, set.size());
+    }
 }

@@ -14,6 +14,7 @@ public class RequestMessage {
     }
 
     public static void requestBonusNum() {
+        System.out.println();
         System.out.println(BONUS_NUM);
     }
 

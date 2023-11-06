@@ -25,4 +25,14 @@ public class Util {
         HashSet<Integer> distinctNumbers = new HashSet<>(numbers);
         return distinctNumbers.size() != numbers.size();
     }
+
+    public static boolean isEmptyOrBlank(String string) {
+        if (string.isBlank()) {
+            return true;
+        }
+        if (string.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
 }

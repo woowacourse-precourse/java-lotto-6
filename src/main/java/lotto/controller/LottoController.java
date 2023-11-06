@@ -8,6 +8,7 @@ import lotto.dto.LottosResult;
 import lotto.generator.NumberGenerator;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -28,6 +29,8 @@ public class LottoController {
 
         Lottos lottos = generateLottos(lottoCount);
         outputView.printLottos(LottosResult.from(lottos));
+
+        User user = createUser();
     }
 
     private int getLottoCount(int amounts) {
@@ -40,5 +43,18 @@ public class LottoController {
             lottos.add(generateLotto(numberGenerator));
         }
         return new Lottos(lottos);
+    }
+
+    private User createUser() {
+        while (true) {
+            try {
+                List<Integer> numbers = inputView.inputWinningNumbers();
+                Lotto lotto = new Lotto(numbers);
+                int bonusNumber = inputView.inputBonusNumber();
+                return new User(lotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

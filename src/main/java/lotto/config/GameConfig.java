@@ -3,9 +3,11 @@ package lotto.config;
 import lotto.controller.GameController;
 import lotto.controller.InputController;
 import lotto.domain.Player;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoGenerator;
 import lotto.service.PlayerService;
 import lotto.service.WinningLottoCalculator;
+import lotto.service.WinningNumberGenerator;
 
 public class GameConfig {
 
@@ -13,15 +15,19 @@ public class GameConfig {
 
     public static GameController getGameController() {
         PlayerService playerService = getPlayerService();
+        WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
         int lottoCount = getLottoCount();
 
-        return new GameController(playerService, lottoCount);
+        return new GameController(playerService, winningNumberGenerator, lottoCount);
     }
 
     private static PlayerService getPlayerService() {
         Player player = new Player();
         LottoGenerator lottoGenerator = new LottoGenerator();
+        WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
+        WinningNumbers winningNumbers = winningNumberGenerator.generate();
         WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
+
 
         return new PlayerService(player, lottoGenerator, winningLottoCalculator);
     }

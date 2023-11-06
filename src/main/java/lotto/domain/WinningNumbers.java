@@ -14,6 +14,14 @@ public class WinningNumbers {
         this.BONUS_NUMBER = bonusNumber;
     }
 
+    public int calculateWinningNumber(Lotto lotto){
+        return lotto.getCorrectNumberCount(numbers);
+    }
+
+    public int calculateBonusNumber(Lotto lotto){
+        return lotto.getCorrectNumberCount(BONUS_NUMBER);
+    }
+
     private void validate(List<Integer> numbers) {
         validateNumberCount(numbers);
         validateDuplicate(numbers);

@@ -45,4 +45,20 @@ class InputViewTest {
         assertThat(inputWinningNumbers).isEqualTo(correctAnswer);
         assertThat(inputWinningNumbers).isNotEqualTo(wrongAnswer);
     }
+
+    @Test
+    @DisplayName("보너스 번호를 입력받는다.")
+    void inputBonusNumber() {
+        // given
+        System.setIn(new ByteArrayInputStream("31".getBytes()));
+        int correctAnswer = 31;
+        int wrongAnswer = 41;
+
+        // when
+        int bonusNumber = inputView.inputBonusNumber();
+
+        // then
+        assertThat(bonusNumber).isEqualTo(correctAnswer);
+        assertThat(bonusNumber).isNotEqualTo(wrongAnswer);
+    }
 }

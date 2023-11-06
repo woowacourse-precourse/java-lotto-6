@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -10,6 +11,15 @@ public class Lotto {
         validateNumberRange(numbers);
         validateDuplicationNumber(numbers);
         this.numbers = numbers;
+        sortNumbers();
+    }
+
+    public void sortNumbers() {
+        Collections.sort(this.numbers);
+    }
+
+    public String getLotto() {
+        return numbers.toString();
     }
 
     private void validateLottoSize(List<Integer> numbers) {
@@ -31,10 +41,4 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자만 포함되어야 합니다.");
         });
     }
-
-    public String getLotto() {
-        return numbers.toString();
-    }
-
-    // TODO: 추가 기능 구현
 }

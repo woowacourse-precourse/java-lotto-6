@@ -58,8 +58,15 @@ public class Application {
                 winningNumbers = Arrays.stream(winningNumberInput.split(","))
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
+
                 if (winningNumbers.size() != 6) {
                     throw new IllegalArgumentException("[ERROR] 6개의 숫자만 입력해야 됩니다.(당첨 번호)");
+                }
+
+                int max = Collections.max(winningNumbers);
+                int min = Collections.min(winningNumbers);
+                if (max > 45 || min < 1) {
+                    throw new IllegalArgumentException("[ERROR] 1-45 내에 숫자만 입력해야 됩니다.(당첨 번호)");
                 }
 
                 long countDistinctElements = winningNumbers.stream().distinct().count();
@@ -67,6 +74,7 @@ public class Application {
                 if (hasDuplicate) {
                     throw new IllegalArgumentException("[ERROR] 중복 입력된 숫자가 있습니다.(당첨 번호)");
                 }
+
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자가 아닙니다.(당첨 번호)");
@@ -80,6 +88,11 @@ public class Application {
                 System.out.println('\n' + "보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(readLine());
                 winningNumbers.add(bonusNumber);
+
+                if (bonusNumber > 45 || bonusNumber < 1) {
+                    throw new IllegalArgumentException("[ERROR] 1-45 내에 숫자만 입력해야 됩니다.(보너스 번호)");
+                }
+
                 long countDistinctElements = winningNumbers.stream().distinct().count();
                 boolean hasDuplicate = countDistinctElements != 7;
                 if (hasDuplicate) {
@@ -93,10 +106,9 @@ public class Application {
             }
         }
 
-        LottoWinChecker winChecker;
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);
-            winChecker = new LottoWinChecker(lotto, winningNumbers);
+            LottoWinChecker winChecker = new LottoWinChecker(lotto, winningNumbers);
         }
 
         System.out.println('\n' + "당첨 통계");

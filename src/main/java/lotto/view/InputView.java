@@ -17,4 +17,29 @@ public class InputView {
         return Console.readLine();
     }
 
+    public static List<Integer> inputLottoWinningNum() {
+        System.out.println(INPUT_LOTTO_WINNING);
+        return numberList(Console.readLine());
+    }
+
+    
+
+
+    public static List<Integer> numberList(String winningNumber) {
+        String[] result = winningNumber.split(",");
+        winningNumberList = new ArrayList<>();
+        for (int i = 0; i < result.length; i++) {
+            winningNumberList.add(conventToInt(result[i]));
+        }
+        return winningNumberList;
+    }
+
+    public static int conventToInt(String inputNumber) {
+        try {
+            return Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

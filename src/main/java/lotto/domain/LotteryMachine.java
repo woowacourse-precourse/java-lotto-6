@@ -31,7 +31,6 @@ public class LotteryMachine {
             .toList();
     }
 
-
     private int makeBonusNumber(List<Integer> luckyNumbers) {
         System.out.println("보너스 번호를 입력해주세요.");
         String number = Console.readLine();

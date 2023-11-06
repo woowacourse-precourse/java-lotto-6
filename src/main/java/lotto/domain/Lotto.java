@@ -49,7 +49,7 @@ public class Lotto {
             .map(String::valueOf)
             .toList();
         sb.append("[");
-        sb.append(String.join(",", numberStrings));
+        sb.append(String.join(", ", numberStrings));
         sb.append("]");
 
         return sb.toString();

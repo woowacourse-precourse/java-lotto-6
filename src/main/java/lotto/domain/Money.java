@@ -9,6 +9,8 @@ public class Money {
         this.amount = amount;
     }
 
+    public int getLottoPrice() { return LOTTO_PRICE; }
+
     public int getAmount() {
         return amount;
     }

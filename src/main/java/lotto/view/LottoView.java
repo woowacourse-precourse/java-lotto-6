@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨 번호, 보너스 번호 입력 요청, 당첨 통계 및 결과 메세지 출력, 에러 메세지 출력
 
@@ -26,6 +28,11 @@ public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨
     public static String readBonusNumber() {
         System.out.println(BONUS_NUMBER_PROMPT);
         return Console.readLine();
+    }
+
+    public static void writeLottoTickets(Integer purchaseAmount, List<ArrayList<Integer>> lottoTickets) {
+        System.out.println(String.format(LOTTO_PURCHASE_MESSAGE, purchaseAmount));
+        lottoTickets.forEach(System.out::println);
     }
 
 }

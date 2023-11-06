@@ -2,14 +2,14 @@ package lotto.domain;
 
 public class Money {
 
-    int money;
+    private final int money;
 
     public Money(int money) {
         validate(money);
         this.money = money;
     }
 
-    public int get() {
+    public int getCount() {
         return money/1000;
     }
 

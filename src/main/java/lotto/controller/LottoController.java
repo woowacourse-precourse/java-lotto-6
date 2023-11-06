@@ -13,9 +13,15 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private final ResultDetails resultDetails = new ResultDetails();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final ResultDetails resultDetails;
+
+    public LottoController(InputView inputView, OutputView outputView, ResultDetails resultDetails) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.resultDetails = resultDetails;
+    }
 
     public void play() {
         int purchaseAmount = generateValidMoney();

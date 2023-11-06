@@ -10,9 +10,15 @@ import lotto.view.PrintMessage;
 
 public class InputLotto {
     public static Lotto setInputLotto() {
-        PrintMessage.printWinnigLotto();
-        Lotto lotto = new Lotto(setLotto());
-        return lotto;
+        try {
+            PrintMessage.printWinnigLotto();
+            Lotto lotto = new Lotto(setLotto());
+            return lotto;
+        } catch (IllegalArgumentException e) {
+            ErrorMessage.printErrorMessage(e);
+            return setInputLotto();
+        }
+
     }
 
     public static List<Integer> setLotto() {

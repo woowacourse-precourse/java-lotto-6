@@ -1,8 +1,10 @@
 package lotto.domain;
 
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
+import lotto.view.ErrorMessage;
 
 public class Lotto {
 
@@ -24,9 +26,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_LENGTH);
         }
     }
 
     // TODO: 추가 기능 구현
+    
 }

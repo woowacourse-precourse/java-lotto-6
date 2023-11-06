@@ -13,6 +13,7 @@ public class Game {
         inputLottoPurchaseAmount();
         issueLottos();
         printLottos();
+        inputLottoWinningNumbers();
     }
 
     private static void inputLottoPurchaseAmount() {
@@ -46,6 +47,20 @@ public class Game {
 
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
+        }
+    }
+
+    private static void inputLottoWinningNumbers() {
+        while (true) {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            String input = Console.readLine();
+
+            try {
+                player.setWinningNumbers(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 로또 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         }
     }
 }

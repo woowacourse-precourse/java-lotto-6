@@ -3,10 +3,12 @@ package lotto.controller;
 import static lotto.controller.UserInputMessage.*;
 import static lotto.util.RandomNumberGenerator.generateRandomNumbers;
 import static lotto.util.WinningNumbersMaker.makeWinningNumbers;
+import static lotto.util.EarningsCalculator.calculateEarningsRate;
 import static lotto.validator.Validator.isBonusNumberDuplicate;
 import static lotto.validator.Validator.isBonusNumberValid;
 import static lotto.validator.Validator.isPurchaseAmountValid;
 import static lotto.validator.Validator.isWinningNumberValid;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoBonus;
 import lotto.domain.Judge;
 import lotto.domain.LottoResult;
+
 
 public class LottoController {
     public static final int LOTTO_PRICE = 1000;
@@ -109,6 +112,7 @@ public class LottoController {
     public void printOutWinningResult() {
         System.out.println(LOTTO_RESULTS_MESSAGE);
         System.out.println(DIVIDER);
-        
+        String earningsRate = calculateEarningsRate(totalEarnings, purchaseAmount);
+
     }
 }

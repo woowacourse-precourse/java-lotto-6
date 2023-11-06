@@ -11,6 +11,7 @@ public class Game {
     private static final Map<Lotto, Float> lottos = new HashMap<Lotto, Float>();
     private static Float lottoReturns;
 
+
     public static void play() {
         inputLottoPurchaseAmount();
         issueLottos();
@@ -19,6 +20,7 @@ public class Game {
         inputLottoBonusNumber();
         confirmLottoWin();
         calculateLottoReturns();
+        printLottoWinAndLottoReturns();
     }
 
     private static void inputLottoPurchaseAmount() {
@@ -127,5 +129,16 @@ public class Game {
         }
 
         return totalPrizeMoney;
+    }
+
+    private static void printLottoWinAndLottoReturns() {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+
+        for (LottoRanking lottoRanking : LottoRanking.values()) {
+            System.out.println(lottoRanking.getResult());
+        }
+
+        System.out.println("총 수익률은 " + String.format("%.1f", lottoReturns) + "%입니다.");
     }
 }

@@ -9,8 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoApplication {
-    private final static int LOTTO_PRICE = 1000;
-
     void execute() {
         try {
             int receivedAmount = getReceivedAmount();
@@ -55,7 +53,7 @@ public class LottoApplication {
     }
 
     private void validateReceivedAmount(int receivedAmount) {
-        if ((receivedAmount <= 0) && !(receivedAmount % LOTTO_PRICE == 0)) {
+        if ((receivedAmount <= 0) && !(receivedAmount % Lotto.PRICE == 0)) {
             throw new IllegalArgumentException("구입 금액은 1,000원 단위입니다.");
         }
     }
@@ -86,7 +84,7 @@ public class LottoApplication {
     }
 
     private int getNumberOfLotto(int receivedAmount) {
-        return receivedAmount / LOTTO_PRICE;
+        return receivedAmount / Lotto.PRICE;
     }
 
     private List<Result> compareTicketAndLottos(Ticket ticket, List<Lotto> lottos) {

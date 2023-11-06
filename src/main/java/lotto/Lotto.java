@@ -6,7 +6,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private static final int NUMBER_COUNTER = 6;
+    static final int PRICE = 1000;
+    private static final int NUMBER_COUNTER = 6; // 로또 번호 최대 개수
     static final int START_NUMBER = 1;
     static final int END_NUMBER = 45;
     private final List<Integer> numbers;

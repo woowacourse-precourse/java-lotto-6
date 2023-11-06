@@ -1,5 +1,7 @@
 package lotto.io;
 
+import java.util.Map;
+
 public enum LottoPrizeResult {
     // 맞춘 숫자, 보너스여부, 스트링 포멧 문구
     THREE_MATCH
@@ -39,4 +41,8 @@ public enum LottoPrizeResult {
         }
         return null;
     }
+    public int getPrizeMoney(){
+        return prizeMoney;
+    }
+
 }

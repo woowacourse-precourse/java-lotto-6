@@ -22,5 +22,12 @@ public class LottoResultPrint {
     public Map<LottoPrizeResult, Integer> getResultMap(){
         return resultMap;
     }
+    public long resultTotalPrize(){
+        long totalPrize = 0;
+        for (Map.Entry<LottoPrizeResult, Integer> entry : resultMap.entrySet()){
+            totalPrize += (long) entry.getKey().getPrizeMoney() *entry.getValue();
+        }
+        return totalPrize;
+    }
 
 }

@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.List;
 
 public class Purchase<T> {
-    private static final int PURCHASE_MONEY_UNIT = 1_000;
+    public static final int PURCHASE_MONEY_UNIT = 1_000;
     private static final String PURCHASE_MONEY_NOT_NUMBER = "[ERROR] 구입 금액은 숫자여야 합니다.";
     private static final String PURCHASE_MONEY_MINIMUM_LIMIT = "[ERROR] 구입 금액은 1000원 이상이어야 합니다.";
     private static final String PURCHASE_MONEY_UNIT_LIMIT = "[ERROR] 구입 금액은 1000원 단위여야 합니다.";

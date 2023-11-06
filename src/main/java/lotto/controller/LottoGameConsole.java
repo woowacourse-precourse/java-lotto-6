@@ -18,7 +18,7 @@ public class LottoGameConsole {
         purchaseLotto();
 
         int purchaseMoney = purchase.getMoney();
-        int purchaseCount = purchaseMoney / 1000;
+        int purchaseCount = purchaseMoney / Purchase.PURCHASE_MONEY_UNIT;
 
         outputView.printLottoCount(purchaseCount);
         purchase.purchaseItems(generateLotto(purchaseCount));
@@ -31,7 +31,7 @@ public class LottoGameConsole {
         Prize prize = prizeEvaluator.evaluate(winningNumbers, purchase.getItems());
 
         outputView.printPrizeResult(prize);
-        outputView.printPrizeRate(prize.prizeMoney() / (double) purchaseMoney * 100);
+        outputView.printPrizeRate(calculatePrizeRate(prize.prizeMoney()));
     }
 
     private void purchaseLotto() {
@@ -73,5 +73,9 @@ public class LottoGameConsole {
         }
 
         return lottos;
+    }
+
+    private double calculatePrizeRate(int prizeMoney) {
+        return prizeMoney / (double) purchase.getMoney() * 100;
     }
 }

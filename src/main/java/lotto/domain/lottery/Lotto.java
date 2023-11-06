@@ -28,13 +28,9 @@ public class Lotto extends NumberChecker {
                 .count();
     }
 
-    public boolean isBonusNumberMatching(final Prize prize) {
+    public boolean hasBonusNumber(final Prize prize) {
         return numbers.stream()
                 .anyMatch(prize::isBonusNumber);
-    }
-
-    public boolean isAlreadyContainBonusNumber(final int number) {
-        return numbers.contains(number);
     }
 
     public boolean hasNumber(int number) {

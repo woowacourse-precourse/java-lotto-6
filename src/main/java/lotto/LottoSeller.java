@@ -10,8 +10,15 @@ public class LottoSeller {
     private final LottoMachine lottoMachine = new LottoMachine();
     private Money money;
     private List<Lotto> createdLotto;
-    
-    public Money receiveMoneyFromPlayer() {
+
+    public void buyLotto() {
+        money = receiveMoneyFromPlayer();
+        printLottoCount(money);
+        createdLotto = getLottos(money);
+        printLottos();
+    }
+
+    private Money receiveMoneyFromPlayer() {
         while (true) {
             try {
                 return new Money(inputView.inputMoney());
@@ -25,8 +32,8 @@ public class LottoSeller {
         outputView.printLottoCount(money);
     }
 
-    private List<Lotto> getLottos(int lottoCount) {
-        return lottoMachine.createLottos(lottoCount);
+    private List<Lotto> getLottos(Money money) {
+        return lottoMachine.createLottos(money.getLottoCount());
     }
 
     private void printLottos() {

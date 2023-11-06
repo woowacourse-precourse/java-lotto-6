@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.view.InputView;
@@ -11,6 +12,7 @@ import java.util.List;
 public class LottoService {
 
     InputView inputView = new InputView();
+    Buyer buyer = new Buyer();
 
     public int getLotteryTicketCount() {
         return inputView.inputPurchasePrice() / 1000;
@@ -19,7 +21,18 @@ public class LottoService {
     public List<Integer> issueLotteryTicket() {
         List<Integer> lotteryTicketNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(lotteryTicketNumbers);
+
+        Lotto lotto = new Lotto(lotteryTicketNumbers);
+        buyer.addLotto(lotto);
+
         return lotteryTicketNumbers;
+    }
+
+    public void issueLotteryTicketAll() {
+        int lotteryTicketCount = getLotteryTicketCount();
+        while(lotteryTicketCount-- > 0) {
+            issueLotteryTicket();
+        }
     }
 
     public int getMatchingNumbers(List<Integer> lotteryNumbers, List<Integer> winningNumbers) {
@@ -80,5 +93,9 @@ public class LottoService {
             return 1;
         }
         return 0;
+    }
+
+    public Buyer getBuyer() {
+        return buyer;
     }
 }

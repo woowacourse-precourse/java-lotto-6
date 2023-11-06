@@ -6,6 +6,7 @@ import lotto.domain.dto.LottoNumbers;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,5 +53,17 @@ public class LottoControllerTest {
         assertEquals(1, result.get(LottoRank.FIRST));
         assertEquals(1, result.get(LottoRank.SECOND));
         assertEquals(2, result.get(LottoRank.FIFTH));
+    }
+
+    @Test
+    void calculateTotalPrize_테스트() {
+        Map<LottoRank, Integer> input = new HashMap<>();
+        input.put(LottoRank.SECOND, 1);
+        input.put(LottoRank.FIFTH, 5);
+        int expected = LottoRank.SECOND.getPrize() + LottoRank.FIFTH.getPrize() * 5;
+
+        int result = LottoController.calculateTotalPrize(input);
+
+        assertEquals(expected, result);
     }
 }

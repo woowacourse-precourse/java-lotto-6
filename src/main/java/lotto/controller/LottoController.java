@@ -36,4 +36,12 @@ public class LottoController {
 
         return LottoRank.getLottoMatchByCount(matchCount, hasBonus);
     }
+
+    public static int calculateTotalPrize(Map<LottoRank, Integer> rankCount) {
+        int sum = 0;
+        for (LottoRank rank : rankCount.keySet()) {
+            sum += rank.getPrize() * rankCount.get(rank);
+        }
+        return sum;
+    }
 }

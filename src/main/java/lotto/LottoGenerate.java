@@ -23,7 +23,8 @@ public class LottoGenerate {
     }
 
     private List<Integer> createRandomLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(Config.MIN_LOTTO_NUMBER,
+                Config.MAX_LOTTO_NUMBER, Config.SIZE_OF_LOTTO);
         Collections.sort(lottoNumbers);
 
         return lottoNumbers;

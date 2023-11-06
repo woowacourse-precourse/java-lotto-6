@@ -27,4 +27,19 @@ public class BuyerTest {
         assertThat(result1).isInstanceOf(IllegalArgumentException.class);
         assertThat(result2).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력된 금액이 1000원 보다 작을 때 예외를 발생시킨다.")
+    @Test
+    void 입력금액이_1000원보다_작을_때_테스트() {
+        //given
+        int case1 = 100;
+
+        //when
+        Throwable result1 = catchThrowable(() -> {
+            new Buyer(case1);
+        });
+
+        //then
+        assertThat(result1).isInstanceOf(IllegalArgumentException.class);
+    }
 }

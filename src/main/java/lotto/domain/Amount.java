@@ -7,21 +7,14 @@ public class Amount {
     private static final int LOTTO_PRICE = 1000;
 
     private final int amount;
-    private final int numberOfLottos;
 
     public Amount(String amount) {
-        amount = amount.strip();
-        this.amount = convertToInteger(amount);
+        this.amount = convertToInteger(amount.strip());
         validate(this.amount);
-        this.numberOfLottos = calculateNumberOfLottos(this.amount);
     }
 
     public int getAmount() {
         return this.amount;
-    }
-
-    public int getNumberOfLottos() {
-        return this.numberOfLottos;
     }
 
     private int convertToInteger(String amount) {
@@ -38,9 +31,5 @@ public class Amount {
         } else if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(NOT_DIVIDED_BY_PRICE_EXCEPTION_MESSAGE);
         }
-    }
-
-    private int calculateNumberOfLottos(final int amount) {
-        return amount / LOTTO_PRICE;
     }
 }

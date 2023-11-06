@@ -8,6 +8,7 @@ public class OutputView {
 
     public void purchaseLottoNumbersDisplay(List<Lotto> lottos){
         int lottoQuantity = lottos.size();
+        System.out.println("");
         System.out.println(lottoQuantity+"개를 구매했습니다.");
         for (int quantity = 1 ; quantity <= lottoQuantity ; quantity++){
             lottos.get(quantity-1).lottoNumberDisplay();
@@ -57,6 +58,7 @@ public class OutputView {
         totalReturnRate = (totalWinningAmount/totalLottoPurchase)*100;
         String totalRate = String.format("%.1f",totalReturnRate);
 
+        System.out.println("");
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + threeMatches+"개");

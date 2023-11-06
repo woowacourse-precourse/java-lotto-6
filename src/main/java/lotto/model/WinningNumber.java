@@ -19,4 +19,15 @@ public class WinningNumber {
             throw new IllegalArgumentException();
         }
     }
+
+    public LottoRank compare(final Lotto lotto) {
+        final MatchingType matchingType = getMatchingType(lotto);
+        return LottoRank.of(matchingType);
+    }
+
+    private MatchingType getMatchingType(final Lotto lotto) {
+        final MatchCount matchCount = winningLotto.findMatchCount(lotto);
+        final BonusStatus bonusStatus = bonusNumber.existOn(lotto);
+        return MatchingType.find(matchCount, bonusStatus);
+    }
 }

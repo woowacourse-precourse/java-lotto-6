@@ -38,17 +38,17 @@ public class LottoUtil {
 
     // 당첨금 정산
     public static int[] countWinLotto(WinningLotto winningLotto, UserLottoVO userLottoVO) {
-        int[] winCountArr = new int[COUNT_ARR_SIZE];
+        int[] rankCount = new int[COUNT_ARR_SIZE];
         for (Lotto lotto : userLottoVO.getLottoList()) {
-            winCountArr[winningLotto.countWinNumber(lotto)]++;
+            rankCount[winningLotto.countWinNumber(lotto)]++;
         }
-        return winCountArr;
+        return rankCount;
     }
 
-    public static Double calculateRate(int[] winCountArr, int pay) {
+    public static Double calculateRate(int[] rankCount, int pay) {
         double sum = DEFAULT_SUM;
         for (CountMessage count : CountMessage.values()) {
-            sum += count.getPrice() * winCountArr[count.getCount()];
+            sum += count.getPrice() * rankCount[count.getCount()];
         }
         return sum / pay * PERCENT;
     }

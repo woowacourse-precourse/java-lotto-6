@@ -39,8 +39,8 @@ public class LottoService {
         return countWinLotto(winningLotto, userLottoVO);
     }
 
-    public Double findRate(int[] winLottoArr) {
-        return calculateRate(winLottoArr, userLottoVO.getPay());
+    public Double findRate(int[] rankCount) {
+        return calculateRate(rankCount, userLottoVO.getPay());
     }
 
 }

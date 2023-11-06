@@ -14,8 +14,15 @@ public class LottoGameView {
 
     public int inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
-        String input = Console.readLine();
-        validatePurchaseAmount(input);
+        String input = "";
+        input = Console.readLine();
+        try {
+            validatePurchaseAmount(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputPurchaseAmount();
+        }
+
         return Integer.parseInt(input);
     }
 
@@ -44,7 +51,14 @@ public class LottoGameView {
         System.out.println();
         System.out.println(INPUT_BONUS_NUMBERS);
         String bonus = Console.readLine();
-        return new WinningNumbers(numbers, bonus);
+        WinningNumbers winningNumbers = null;
+        try {
+            winningNumbers = new WinningNumbers(numbers, bonus);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputWinningNumbers();
+        }
+        return winningNumbers;
     }
 
     public void printResult(List<Prize> result) {

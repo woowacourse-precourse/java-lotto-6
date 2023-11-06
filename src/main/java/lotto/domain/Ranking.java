@@ -6,7 +6,8 @@ public enum Ranking {
     SECOND(5, 1, 30000000),
     THIRD(5, 0, 1500000),
     FOURTH(4, 0, 50000),
-    FIFTH(3, 0, 5000);
+    FIFTH(3, 0, 5000),
+    NON_RANKING(0, 0, 0);
 
     private final Integer matchNumbers;
     private final Integer matchBonus;
@@ -26,7 +27,7 @@ public enum Ranking {
                 return ranking;
             }
         }
-        return null;
+        return Ranking.NON_RANKING;
     }
 
     public Integer getMatchNumbers() {

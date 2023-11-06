@@ -38,7 +38,6 @@ public class LottoResult {
 
     private long getTotalPrizeAmount() {
         return results.entrySet().stream()
-                .filter(entry -> entry.getKey() != null)
                 .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
     }

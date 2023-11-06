@@ -31,6 +31,10 @@ public class Player {
         }
     }
 
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
     public int getPurchaseLottoCount() {
         return purchaseAmount / Lotto.LOTTO_PRICE;
     }
@@ -89,6 +93,10 @@ public class Player {
         }
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
     public void setBonusNumber(String input) {
         int bonusNumber = toInteger(input);
         validateBonusNumber(bonusNumber);
@@ -104,5 +112,9 @@ public class Player {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

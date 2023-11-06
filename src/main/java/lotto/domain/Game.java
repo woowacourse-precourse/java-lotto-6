@@ -8,7 +8,8 @@ import java.util.Map;
 
 public class Game {
     private static final Player player = new Player();
-    private static final Map<Lotto, Integer> lottos = new HashMap<Lotto, Integer>();
+    private static final Map<Lotto, Float> lottos = new HashMap<Lotto, Float>();
+    private static Float lottoReturns;
 
     public static void play() {
         inputLottoPurchaseAmount();
@@ -16,6 +17,8 @@ public class Game {
         printLottos();
         inputLottoWinningNumbers();
         inputLottoBonusNumber();
+        confirmLottoWin();
+        calculateLottoReturns();
     }
 
     private static void inputLottoPurchaseAmount() {
@@ -36,7 +39,7 @@ public class Game {
         int lottoCount = player.getPurchaseLottoCount();
 
         for (int i = 0; i < lottoCount; i++) {
-            lottos.put(new Lotto(getRandomNumbers()), 0);
+            lottos.put(new Lotto(getRandomNumbers()), 0.0f);
         }
     }
 
@@ -80,5 +83,43 @@ public class Game {
                 System.out.println("[ERROR] 로또 보너스 번호는 1부터 45 사이의 숫자이며, 당첨 번호에 포함되지 않아야 합니다.");
             }
         }
+    }
+
+    private static void confirmLottoWin() {
+        for (Lotto lotto : lottos.keySet()) {
+            compareWinningNumbers(lotto);
+            compareBonusNumber(lotto);
+        }
+    }
+
+    private static void compareWinningNumbers(Lotto lotto) {
+        for (int winningNumber : player.getWinningNumbers()) {
+            if (lotto.containNumber(winningNumber)) {
+                lottos.replace(lotto, lottos.get(lotto) + 1.0f);
+            }
+        }
+    }
+
+    private static void compareBonusNumber(Lotto lotto) {
+        if (lotto.containNumber(player.getBonusNumber())) {
+            lottos.replace(lotto, lottos.get(lotto) + 0.5f);
+        }
+    }
+
+    private static void calculateLottoReturns() {
+        int totalPrizeMoney = calculateTotalPrizeMoney();
+        lottoReturns = totalPrizeMoney / player.getPurchaseAmount() * 100.0f;
+    }
+
+    private static Integer calculateTotalPrizeMoney() {
+        int totalPrizeMoney = 0;
+
+        for (Float score : lottos.values()) {
+            if (score >= 3.0f) {
+                totalPrizeMoney += LottoRanking.valueOfScore(score).getPrizeMoney();
+            }
+        }
+
+        return totalPrizeMoney;
     }
 }

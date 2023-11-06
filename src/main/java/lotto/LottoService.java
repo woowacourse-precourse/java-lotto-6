@@ -23,9 +23,16 @@ public class LottoService {
      */
     public List<Integer> generateLottoWinningNumbers(String winningNumbers) {
         String[] winningNumber = winningNumbers.split(",");
-        return Arrays.stream(winningNumber)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        List<Integer> lottoWinningNumbers = new ArrayList<>();
+        try {
+            lottoWinningNumbers = Arrays.stream(winningNumber)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 입력값이 숫자가 아닙니다.");
+            System.exit(0);
+        }
+        return lottoWinningNumbers;
     }
 
     /**

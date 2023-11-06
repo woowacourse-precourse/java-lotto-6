@@ -27,14 +27,19 @@ public class LottoController {
             lottos[i] = new Lotto(lottoService.generateLottoNumbers());
             lottoRanks[i] = new LottoRank(lottos[i]);
         }
+
+        System.out.println();
         lottoView.printPurchasedLottoNumbers(lottos);
 
         // 당첨 번호, 보너스 번호 입력
+        System.out.println();
         winningNumbers = lottoService.generateLottoWinningNumbers(lottoView.inputWinningNumber());
+        System.out.println();
         bonusNumber = lottoView.inputBonusNumber();
 
         // 당첨 통계 조사
         Rank[] ranks = lottoService.calculateWinningDetails(lottoRanks, winningNumbers, bonusNumber);
+        System.out.println();
         lottoView.printWinningInformation(ranks);
 
         // 수익률 계산

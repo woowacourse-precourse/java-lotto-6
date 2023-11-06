@@ -6,12 +6,18 @@ import java.util.Locale;
 
 public class LottoView {
 
-    ErrorHandler errorHandler = new ErrorHandler();
     public int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요");
-        String amount = Console.readLine();
-        errorHandler.checkIfNumber(amount);
-        return Integer.parseInt(amount);
+        String num = Console.readLine();
+        int amount = 0;
+        try {
+            amount = Integer.parseInt(num);
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + num + "는 숫자가 아닙니다.");
+            System.exit(0);
+        }
+        return amount;
     }
 
     public void printPurchasedLottoNumbers(Lotto[] lottos) {
@@ -28,9 +34,16 @@ public class LottoView {
 
     public Integer inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요");
-        String nums = Console.readLine();
-        errorHandler.checkIfNumber(nums);
-        return Integer.parseInt(nums);
+        String num = Console.readLine();
+        int bonusNum = 0;
+        try {
+            bonusNum = Integer.parseInt(num);
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + num + "는 숫자가 아닙니다.");
+            System.exit(0);
+        }
+        return bonusNum;
     }
 
     public void printWinningInformation(Rank[] ranks) {

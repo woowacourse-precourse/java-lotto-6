@@ -36,6 +36,11 @@ public enum LottoResult {
         return this != NO_MATCHING;
     }
 
+    public BigDecimal getTotalPrice(int count) {
+        return this.price
+                .multiply(new BigDecimal(count));
+    }
+
     private boolean isMatching(long count) {
         return matchingNumber == count;
     }

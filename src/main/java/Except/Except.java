@@ -13,6 +13,7 @@ public class Except {
     private static Message numberIncorrect = Message.numberIncorrect;
     private static Message outOfRange = Message.moneyOutOfRange;
     private static Message invalidFormat = Message.moneyInvalidFormat;
+    private static Message duplicate = Message.numberDuplicate;
     private static final String INTEGER_REGEX = "^\\d+(,\\d+)*$";
     private static final String MONEY_REGEX = "^\\d+$";
 
@@ -130,6 +131,30 @@ public class Except {
             result = numberCheckNumber(number);
             if (result > 0) {
                 result = numberRangeNumber(result);
+            }
+        }
+        return result;
+    }
+
+    public int duplicateCheckOne(int answer, int bonus) {
+        int result = bonus;
+        try {
+            if (answer == bonus) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException iae) {
+            result = -1;
+            System.out.println(duplicate.getMessage());
+        }
+        return result;
+    }
+
+    public int duplicateCheck(List<Integer> answer_number, int bonus) {
+        int result = bonus;
+        for (int i = 0; i < answer_number.size(); i++) {
+            if (duplicateCheckOne(answer_number.get(i), bonus) != bonus) {
+                result = -1;
+                break;
             }
         }
         return result;

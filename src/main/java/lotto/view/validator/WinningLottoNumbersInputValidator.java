@@ -13,6 +13,7 @@ public class WinningLottoNumbersInputValidator {
         containsDelimiter(winningLottoNumbers);
         containsSixNumbers(winningLottoNumbers);
         isEachNumberNotEmpty(winningLottoNumbers);
+        isNotEndWithDelimiter(winningLottoNumbers);
     }
 
     private void isNotEmpty(String winningLottoNumbers){
@@ -47,6 +48,12 @@ public class WinningLottoNumbersInputValidator {
     private boolean isMoreThanOneNumberEmpty(String[] numbers){
         return Arrays.stream(numbers)
                 .anyMatch(String::isEmpty);
+    }
+
+    private void isNotEndWithDelimiter(String winningLottoNumbers){
+        if(winningLottoNumbers.endsWith(InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER)){
+            throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBERS_ENDS_WITH_DELIMITER);
+        }
     }
 
 

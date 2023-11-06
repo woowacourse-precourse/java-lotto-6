@@ -5,8 +5,8 @@ import static lotto.constants.ConstantValues.*;
 public class LottoChecker {
     public static int checkLotto(Lotto lotto, Lotto winLotto) {
         int count = 0;
-        for (int i = 0; i < LOTTO_LENGTH.getValue(); i++) {
-            if (lotto.getLotto().get(i) == winLotto.getLotto().get(i)) {
+        for (int number : lotto.getNumbers()) {
+            if (winLotto.getNumbers().contains(number)) {
                 count++;
             }
         }

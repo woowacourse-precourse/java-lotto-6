@@ -22,4 +22,7 @@ public class LottoResultCalculator {
     }
 
 
+    private int countMatches(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        return (int) lottoNumbers.stream().filter(winningNumbers::contains).count();
+    }
 }

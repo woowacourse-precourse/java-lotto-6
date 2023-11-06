@@ -23,7 +23,7 @@ public class InputUtils {
 
     public static List<Integer> getWinningNumbers() {
         String input = Console.readLine();
-        if (isNull(input)) {
+        if (isEmpty(input)) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }
         List<String> numbers = StringUtils.splitByCommaAndTrim(input);
@@ -38,7 +38,7 @@ public class InputUtils {
     }
 
     public static void validateInputMoney(String money) {
-        if (isNull(money)) {
+        if (isEmpty(money)) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }
         if (!isNumeric(money)) {
@@ -71,7 +71,7 @@ public class InputUtils {
     }
 
     private static void validateInputBonusNumber(String number, List<Integer> winningNumbers) {
-        if (isNull(number)) {
+        if (isEmpty(number)) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }
         if (!isNumeric(number)) {
@@ -89,7 +89,7 @@ public class InputUtils {
         return number.matches("\\d+");
     }
 
-    private static boolean isNull(String input) {
+    private static boolean isEmpty(String input) {
         return input == null || input.isEmpty();
     }
 

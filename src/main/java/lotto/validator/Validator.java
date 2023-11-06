@@ -43,6 +43,11 @@ public class Validator {
     public static void isWinningNumberValid(String input) {
         isInputEmpty(input);
         isInputFormatValid(input);
+
+        String[] separatedInput = input.split(",");
+        for (int i = 0; i < separatedInput.length; i++) {
+            isNumeric(separatedInput[i]);
+        }
     }
 
     public static void isInputFormatValid(String input) {

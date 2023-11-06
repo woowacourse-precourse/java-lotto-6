@@ -1,8 +1,10 @@
 package lotto.util;
 
+import lotto.configure.InputConfiguration;
 import lotto.configure.LottoConfiguration;
 import lotto.configure.ErrorMessages;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -43,7 +45,7 @@ public class Validator {
      * @param numToValidate 검증할 정수.
      * @throws IllegalArgumentException numToValidate가 1000의 배수가 아닐 경우 발생한다.
      */
-    public static void checkIfIsMultipleOfThousand(int numToValidate) throws IllegalArgumentException {
+    public static void checkIfMultipleOfThousand(int numToValidate) throws IllegalArgumentException {
         if (!isMultipleOfThousand(numToValidate)) {
             throw new IllegalArgumentException(ErrorMessages.PURCHASE_NUMBER_IS_NOT_MULTIPLE_OF_1000.get());
         }
@@ -51,6 +53,17 @@ public class Validator {
 
     private static boolean isMultipleOfThousand(int num) {
         return num % 1000 == 0;
+    }
+
+    /**
+     * 당첨 번호의 사용자 입력이 오직 정수와 InputConfiugraion에 정의된 demlimiter로만 이루어졌는지 검증한다.
+     * @param winningNumbersInput 검증할 사용자 입력 문자열.
+     * @throws IllegalArgumentException winningNumbersInput이 공백이나 미리 지정된 delimiter나 정수가 아닌 문자를 포함할
+     *                                  경우 발생한다.
+     */
+    public static void checkIfWinningNumbersAreInteger(String winningNumbersInput) throws IllegalArgumentException {
+        Arrays.asList(winningNumbersInput.split(InputConfiguration.DELIMITER_TO_PARSE_INPUT_OF_WINNING_NUMBER))
+                .forEach(Validator::checkIfInteger);
     }
 
     /**

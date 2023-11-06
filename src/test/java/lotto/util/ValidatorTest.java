@@ -100,7 +100,7 @@ class ValidatorTest {
 
         for (int testCase : testCases) {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfIsMultipleOfThousand(testCase))
+                    .isThrownBy(() -> Validator.checkIfMultipleOfThousand(testCase))
                     .withMessageContaining(ErrorMessages.PURCHASE_NUMBER_IS_NOT_MULTIPLE_OF_1000.get());
         }
     }
@@ -112,8 +112,57 @@ class ValidatorTest {
         };
 
         for (int testCase : testCases) {
-            assertThatNoException().isThrownBy(() -> Validator.checkIfIsMultipleOfThousand(testCase));
+            assertThatNoException().isThrownBy(() -> Validator.checkIfMultipleOfThousand(testCase));
         }
+    }
+
+    @Test
+    void testCheckIfWinningNumbersAreInteger_containsNonNumbers() {
+        String[] testCases = {
+                "1 ,2,3,4,5",
+                "13,45,5!,78,90",
+                "61,a4,56,3",
+                ",1,2,3,4",
+                ",561,251,-35,51,"
+        };
+
+        for (String testCase : testCases) {
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> Validator.checkIfWinningNumbersAreInteger(testCase))
+                    .withMessageContaining(ErrorMessages.NOT_AN_INTEGER.get());
+        }
+    }
+
+    @Test
+    void testCheckIfWinningNumbersAreInteger_containsRealNumbers() {
+        String[] testCases = {
+                "1,2,3.14,4,5",
+                "13.5,45.3,5.61.291,78.44,90.1524",
+                "61,a4,56.5,3"
+        };
+
+        for (String testCase : testCases) {
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> Validator.checkIfWinningNumbersAreInteger(testCase))
+                    .withMessageContaining(ErrorMessages.NOT_AN_INTEGER.get());
+        }
+    }
+
+    @Test
+    void testCheckIfWinningNumbersAreInteger_containsOnlyIntegers_noException() {
+        String[] testCases = {
+                "1,2,3,4,5",
+                "0,1,2,3,4",
+                "13",
+                "0",
+                "5,6,7,8",
+                "10,13,15,17,19,",
+                "156,253,124,-325,"
+        };
+
+        for (String testCase : testCases) {
+            assertThatNoException().isThrownBy(() -> Validator.checkIfWinningNumbersAreInteger(testCase));
+        };
     }
 
     @Test

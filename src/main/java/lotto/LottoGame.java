@@ -23,14 +23,9 @@ public class LottoGame {
         getPurchaseInput();
         showPurchasedLottoCount();
 
-//        issueLotteries();
-//        printLotteries();
-//
-//        getWinningNumberInput();
-//        getBonusNumberInput();
-//
-//        judgeResult();
-//        showResult();
+        issueLotteries();
+        printLotteries();
+
     }
 
     private void getPurchaseInput() {
@@ -51,6 +46,29 @@ public class LottoGame {
         System.out.println(lottoCount + PURCHASE_CONFIRMATION_MESSAGE);
     }
 
+    private void issueLotteries() {
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> numbers = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT)
+            );
+            try {
+                Collections.sort(numbers);
+                Lotto lotto = new Lotto(numbers);
+                lotteries.add(lotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                issueLotteries();
+            }
+        }
+    }
+
+    private void printLotteries() {
+        for (Lotto lotto : lotteries) {
+            lotto.printNumbers();
+        }
+        System.out.println();
+    }
+
     private void validateMoney(String input) {
         if (!input.matches(regExp)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "구입 금액은 양의 정수로 입력 가능합니다.");
@@ -63,5 +81,4 @@ public class LottoGame {
             throw new IllegalArgumentException(ERROR_MESSAGE + "구입 금액은 " + PRICE + "원 단위여야 합니다.");
         }
     }
-
 }

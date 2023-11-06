@@ -22,6 +22,7 @@ public class PurchaseAmount {
     private static final String COMMA = ",";
     private static final String NULL = "";
     private final int amount;
+    private final int numberOfLottoPurchased;
 
     public int getAmount(){
         return amount;
@@ -30,7 +31,7 @@ public class PurchaseAmount {
         amount = removeSeparatorChar(amount);
         validate(amount);
         this.amount = convertStringToInt(amount);
-
+        this.numberOfLottoPurchased = calculateNumberOfLottoPurchasesByAmount(this.amount);
     }
 
     private String removeSeparatorChar(String amount){
@@ -70,5 +71,9 @@ public class PurchaseAmount {
         if(convertStringToInt(amount) % ONE_THOUSAND != ZERO){
             ExceptionMessage.PURCHASE_AMOUNT_IS_NOT_THOUSAND_UNITS.throwException();
         }
+    }
+
+    private int calculateNumberOfLottoPurchasesByAmount(int amount){
+        return amount / ONE_THOUSAND;
     }
 }

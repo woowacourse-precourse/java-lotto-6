@@ -12,7 +12,7 @@ public class Judgement {
 
     public void checkLottoNumber(Lottos lottos, WinningLotto winningLotto) {
         for (Lotto compare_lotto : lottos.getLottos()) {
-            int count = DEFAULT_COUNT;
+            int count;
             count = checkWinningNumberCount(compare_lotto.getNumbers(), winningLotto.getWinning_number());
             checkAddLottoCount(lottos, count);
         }

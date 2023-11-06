@@ -20,6 +20,7 @@ public class Output {
     private static final String LOTTO_RESULT_THIRD_PRIZE = "5개 일치 (1,500,000원) - %d개";
     private static final String LOTTO_RESULT_SECOND_PRIZE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
     private static final String LOTTO_RESULT_FIRST_PRIZE = "6개 일치 (2,000,000,000원) - %d개";
+    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %,.1f%%입니다.";
     private static final int DEFAULT_SCORE = 0;
     private static final String ERROR_PREFIX = "[ERROR] ";
 
@@ -44,6 +45,11 @@ public class Output {
     }
 
     public static void printLottoResult(Score score) {
+        printLottoScore(score);
+        printProfitRate(score.getProfitRate());
+    }
+
+    private static void printLottoScore(Score score) {
         System.out.println();
         System.out.println(LOTTO_RESULT_STATUS);
         System.out.println(LOTTO_RESULT_LINE);
@@ -65,5 +71,9 @@ public class Output {
 
     public static void printErrorMessage(String errorMessage) {
         System.out.println(ERROR_PREFIX + errorMessage);
+    }
+
+    private static void printProfitRate(double profitRate) {
+        System.out.println(String.format(PROFIT_RATE_FORMAT, profitRate));
     }
 }

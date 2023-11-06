@@ -29,4 +29,8 @@ public class Amount {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해야합니다.");
         }
     }
+
+    public int getAmount() {
+        return this.amount;
+    }
 }

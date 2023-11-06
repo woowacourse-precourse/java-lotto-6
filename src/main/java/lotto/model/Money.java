@@ -22,7 +22,7 @@ public class Money {
     }
 
     public void validateUnit(int money){
-        if(!(money % 1000 == 0)){
+        if(!(money % TICKET_PRICE == 0)){
             throw new IllegalArgumentException();
         }
     }

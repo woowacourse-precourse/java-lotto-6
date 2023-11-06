@@ -2,7 +2,11 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.LottoList;
+import lotto.model.PurchaseAmount;
+import lotto.model.Result;
+import lotto.model.value.Matching;
 
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class LottoView {
@@ -28,6 +32,22 @@ public class LottoView {
 
     public void printInputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public void printResult(Result result, PurchaseAmount purchaseAmount) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        Map<Matching, Integer> map = result.getResult();
+        map.forEach((matching, count) -> {
+            System.out.println(String.format(
+                    "%s (%s) - %d개",
+                    matching.getMatchingNumber(),
+                    matching.getPrizeMoney(),
+                    count
+            ));
+        });
+        System.out.println("총 수익률은 " + result.getRate(purchaseAmount) + "%입니다.");
     }
 
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import static lotto.OutputView.printRequestMoney;
 import static lotto.OutputView.printWinningNumber;
 import static lotto.OutputView.printBlankLine;
+import static lotto.OutputView.printBonusNumber;
 
 public class InputView {
     private static List<Integer> winningLotto;
@@ -28,8 +29,17 @@ public class InputView {
         return validateResult(inputResult);
     }
 
+    public static Integer getBonusNumber() {
+        printBonusNumber();
+        String inputBonus = Console.readLine();
+        printBlankLine();
+
+        validateBlank(inputBonus);
+        return validateNumeric(inputBonus);
+    }
+
     private static int validateMoney(String inputMoney) {
-        return validateMoneyNumeric(inputMoney);
+        return validateNumeric(inputMoney);
     }
 
     private static void validateBlank(String inputMoney) {
@@ -38,14 +48,14 @@ public class InputView {
         }
     }
 
-    private static int validateMoneyNumeric(String inputMoney) {
-        int amount;
+    private static int validateNumeric(String inputNumber) {
+        int number;
         try {
-            amount = Integer.parseInt(inputMoney);
+            number = Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
             throw new NumberFormatException();
         }
-        return amount;
+        return number;
     }
 
     private static List<Integer> validateResult(String inputWinningNumber) {

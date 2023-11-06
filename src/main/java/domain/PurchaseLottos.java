@@ -17,6 +17,10 @@ import java.util.List;
 public class PurchaseLottos {
 
     private final List<Lotto> purchaseLottos;
+
+    public List<Lotto> getPurchaseLottos(){
+        return purchaseLottos;
+    }
     public PurchaseLottos(int numberOfLottosPurchased){
         this.purchaseLottos = generateLottoNumbersPurchase(numberOfLottosPurchased);
     }

@@ -9,8 +9,9 @@ import lotto.domain.lotto.LottoStore;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.WinningLotto;
 import lotto.domain.money.Wallet;
-import lotto.mapper.LottoMapper;
+import lotto.mapper.LottoToDtoMapper;
 import lotto.mapper.WalletMapper;
+import lotto.mapper.dtoToLottoMapper;
 import lotto.repository.LottoRepository;
 
 /**
@@ -58,17 +59,17 @@ public final class LottoService {
     public LottosBuyingResult buyLottos(final BuyLottosDto dto) {
         final Wallet wallet = WalletMapper.mapFrom(dto);
         final Lottos boughtLottos = lottoStore.buyUntilOutOfMoney(wallet);
-        final Lottos copiedLottos = boughtLottos.clone();
+        final Lottos clonedLottos = boughtLottos.clone();
         lottoRepository.saveAll(boughtLottos);
 
-        return LottoMapper.mapFrom(copiedLottos);
+        return LottoToDtoMapper.mapFrom(clonedLottos);
     }
 
     /**
      * 로또 추첨에 대한 입력 Dto를 받아서 추첨 로직을 처리하고, 응답을 Dto로 변환 및 반환
      */
     public LottosDrawingResult drawLottos(final DrawLottosDto dto) {
-        final WinningLotto winningLotto = LottoMapper.mapFrom(dto);
+        final WinningLotto winningLotto = dtoToLottoMapper.mapFrom(dto);
         final LottoDrawingMachine lottoDrawingMachine = new LottoDrawingMachine(winningLotto);
         final Lottos lottos = new Lottos(lottoRepository.findAll());
 

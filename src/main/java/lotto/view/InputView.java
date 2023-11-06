@@ -36,7 +36,7 @@ public final class InputView {
      * 위 요구 사항을 지키기 위해 실패 시, 재귀 호출로 재입력
      */
     public BuyLottosDto inputBuyLottosDto() {
-        writer.write(new InputMoneyComponent().render());
+        new InputMoneyComponent().renderTo(writer);
         try {
             return BuyLottosDto.from(readLine());
         } catch (final IllegalArgumentException e) {

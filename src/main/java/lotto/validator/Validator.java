@@ -32,4 +32,13 @@ public class Validator {
         List<Integer> winningNumbers = Util.splitAndParseToIntList(numbers);
         validateLottoNumber(winningNumbers);
     }
+
+    public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (!Util.isInRange(bonusNumber, LottoNumbersGenerator.MIN_NUMBER, LottoNumbersGenerator.MAX_NUMBER)) {
+            Exception.LOTTO_NUMBER_OUT_OF_RANGE.throwing();
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            Exception.BONUS_NUMBER_IN_WINNING_NUMBERS.throwing();
+        }
+    }
 }

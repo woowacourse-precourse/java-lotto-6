@@ -16,11 +16,15 @@ public class Util {
         }
     }
 
-    public static boolean isWithinRange(List<Integer> numbers, int minNumber, int maxNumber) {
+    public static boolean isWithinRange(List<Integer> numbers, int startInclusive, int endInclusive) {
         long inRangeCount = numbers.stream()
-                .filter((number) -> minNumber <= number && number <= maxNumber)
+                .filter((number) -> isInRange(number, startInclusive, endInclusive))
                 .count();
         return inRangeCount == numbers.size();
+    }
+
+    public static boolean isInRange(int number, int startInclusive, int endInclusive) {
+        return startInclusive <= number && number <= endInclusive;
     }
 
     public static boolean hasDuplicates(List<Integer> numbers) {

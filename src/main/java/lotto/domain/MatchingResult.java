@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.function.UnaryOperator;
-import lotto.domain.constants.MatchingCount;
+import lotto.domain.enums.MatchingCount;
 
 public class MatchingResult {
 

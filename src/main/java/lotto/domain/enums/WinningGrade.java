@@ -1,20 +1,20 @@
-package lotto.domain.constants;
+package lotto.domain.enums;
 
-import static lotto.domain.constants.MatchingCount.FIVE;
-import static lotto.domain.constants.MatchingCount.FOUR;
-import static lotto.domain.constants.MatchingCount.ONE;
-import static lotto.domain.constants.MatchingCount.SIX;
-import static lotto.domain.constants.MatchingCount.THREE;
-import static lotto.domain.constants.MatchingCount.TWO;
-import static lotto.domain.constants.MatchingCount.ZERO;
-import static lotto.domain.constants.WinningPrize.CORRECT_FIVE_NUMBERS_PRICE;
-import static lotto.domain.constants.WinningPrize.CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER_PRICE;
-import static lotto.domain.constants.WinningPrize.CORRECT_FOUR_NUMBERS_PRICE;
-import static lotto.domain.constants.WinningPrize.CORRECT_ONE_NUMBER_PRICE;
-import static lotto.domain.constants.WinningPrize.CORRECT_SIX_NUMBERS_PRICE;
-import static lotto.domain.constants.WinningPrize.CORRECT_THREE_NUMBERS_PRICE;
-import static lotto.domain.constants.WinningPrize.CORRECT_TWO_NUMBERS_PRICE;
-import static lotto.domain.constants.WinningPrize.CORRECT_ZERO_NUMBER_PRICE;
+import static lotto.domain.enums.MatchingCount.FIVE;
+import static lotto.domain.enums.MatchingCount.FOUR;
+import static lotto.domain.enums.MatchingCount.ONE;
+import static lotto.domain.enums.MatchingCount.SIX;
+import static lotto.domain.enums.MatchingCount.THREE;
+import static lotto.domain.enums.MatchingCount.TWO;
+import static lotto.domain.enums.MatchingCount.ZERO;
+import static lotto.domain.enums.WinningPrize.CORRECT_FIVE_NUMBERS_PRICE;
+import static lotto.domain.enums.WinningPrize.CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER_PRICE;
+import static lotto.domain.enums.WinningPrize.CORRECT_FOUR_NUMBERS_PRICE;
+import static lotto.domain.enums.WinningPrize.CORRECT_ONE_NUMBER_PRICE;
+import static lotto.domain.enums.WinningPrize.CORRECT_SIX_NUMBERS_PRICE;
+import static lotto.domain.enums.WinningPrize.CORRECT_THREE_NUMBERS_PRICE;
+import static lotto.domain.enums.WinningPrize.CORRECT_TWO_NUMBERS_PRICE;
+import static lotto.domain.enums.WinningPrize.CORRECT_ZERO_NUMBER_PRICE;
 import static lotto.exception.ExceptionMessage.SYSTEM_ERROR;
 
 import java.util.Arrays;

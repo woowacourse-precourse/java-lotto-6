@@ -1,15 +1,15 @@
 package lotto.domain;
 
 import static java.lang.String.format;
-import static lotto.view.ConsoleMessage.LOTTO_NUMBER_MATCH;
-import static lotto.view.ConsoleMessage.LOTTO_NUMBER_MATCH_WITH_BONUS_NUMBER;
+import static lotto.domain.enums.ConsoleMessage.LOTTO_NUMBER_MATCH;
+import static lotto.domain.enums.ConsoleMessage.LOTTO_NUMBER_MATCH_WITH_BONUS_NUMBER;
 import static lotto.domain.constants.SeparatorConstant.DECIMAL_FORMAT;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.constants.WinningGrade;
+import lotto.domain.enums.WinningGrade;
 
 public class RankingResult {
 

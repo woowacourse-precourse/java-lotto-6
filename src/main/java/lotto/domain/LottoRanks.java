@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.constants.WinningGrade;
+import lotto.domain.enums.WinningGrade;
 
 public class LottoRanks {
 

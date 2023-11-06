@@ -11,7 +11,7 @@ import lotto.domain.MatchingResults;
 import lotto.domain.Payment;
 import lotto.domain.RankingResult;
 import lotto.domain.WinningLotto;
-import lotto.domain.constants.WinningGrade;
+import lotto.domain.enums.WinningGrade;
 
 public class StatisticsController {
 

@@ -1,4 +1,4 @@
-package lotto.domain.constants;
+package lotto.domain.enums;
 
 import static lotto.exception.ExceptionMessage.SYSTEM_ERROR;
 

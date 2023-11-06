@@ -1,4 +1,4 @@
-package lotto.domain.constants;
+package lotto.domain.enums;
 
 public enum WinningPrize {
 

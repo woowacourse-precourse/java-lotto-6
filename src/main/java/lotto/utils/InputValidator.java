@@ -29,6 +29,10 @@ public class InputValidator {
         return castingStringToIntegerList(preprocessedInput);
     }
 
+    public Integer convertInputToBonusNumber(String preprocessedInput) {
+        return castingStringToInteger(preprocessedInput);
+    }
+
     private int castStringToInt(String preprocessedInput) {
         return Integer.parseInt(preprocessedInput);
     }
@@ -44,11 +48,22 @@ public class InputValidator {
         return convertedInput;
     }
 
+    private Integer castingStringToInteger(String preprocessedInput) {
+        if (isNotOneElement(preprocessedInput)) {
+            ExceptionMessages.WRONG_AMOUNT_BONUS_NUMBERS.throwException();
+        }
+        return Integer.parseInt(preprocessedInput);
+    }
+
     private boolean isNotEnoughSeparators(String preprocessedInput) {
         int separatorCount = (int) preprocessedInput.chars()
                 .filter(inputString -> inputString == LOTTO_NUMBER_SEPARATOR)
                 .count();
         return separatorCount != NUMBER_OF_SEPARATOR;
+    }
+
+    private boolean isNotOneElement(String preprocessedInput) {
+        return preprocessedInput.contains(String.valueOf(LOTTO_NUMBER_SEPARATOR));
     }
 
     private boolean isNull(String userInput) {

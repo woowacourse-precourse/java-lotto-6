@@ -11,7 +11,7 @@ public class Input {
         LottoCostValidator lottoCostValidator = new LottoCostValidator();
 
         while(true){
-            System.out.println("구입 금액을 입력해 주세요");
+            Output.printPurchaseCostRequestMessage();
             inputData = reanLineValidateNull();
             if(lottoCostValidator.validate(inputData))
                 break;

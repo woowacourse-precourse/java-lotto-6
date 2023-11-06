@@ -17,6 +17,7 @@ public class Lotto {
         }
         List<Integer> copyNums = new ArrayList<>();
 
+        // 중복 예외 처리
         if(!numbers.stream().allMatch(num-> !copyNums.contains(num) && copyNums.add(num))){
             throw new IllegalArgumentException();
         }

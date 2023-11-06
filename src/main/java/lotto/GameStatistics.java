@@ -5,19 +5,15 @@ import java.util.List;
 
 public class GameStatistics {
 
-    private List<Integer> sameNumberCountList;
+    private List<Integer> matchingNumberCountList;
     private List<Rank> rankList;
-    private Integer winningPrizeByRank;
-    private Double budgetPrizeRatio;
-    private Integer totalPrize;
-    public static final Integer BONUS_CONDITION_NUMBER = 5;
 
     public void generateMatchingNumberCountList() {
-        this.sameNumberCountList = new ArrayList<>();
+        this.matchingNumberCountList = new ArrayList<>();
     }
 
-    public List<Integer> getSameNumberCountList() {
-        return sameNumberCountList;
+    public List<Integer> getMatchingNumberCountList() {
+        return matchingNumberCountList;
     }
 
     public List<Rank> getRankList() {
@@ -26,5 +22,19 @@ public class GameStatistics {
 
     public void generateRankList() {
         this.rankList = new ArrayList<>();
+    }
+
+    public void fillMatchingNumberCountList(
+            List<Lotto> lottoList,
+            List<Integer> winningNumbers,
+            List<Integer> matchingNumberCountList) {
+        for (Lotto lotto : lottoList) {
+            int countTemp = 0;
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            for (Integer lottoNumber : lottoNumbers) {
+                countTemp += Controller.countMatchingNumbersByLotteryNumber(winningNumbers, lottoNumber);
+            }
+            matchingNumberCountList.add(countTemp);
+        }
     }
 }

@@ -26,7 +26,7 @@ public class Lotto {
      * @param numbers : 숫자 리스트
      * @return : 정렬된 숫자 리스트
      */
-    private static List<Integer> sortNumbers(List<Integer> numbers) {
+    private List<Integer> sortNumbers(List<Integer> numbers) {
         List<Integer> sorted = new ArrayList<>(numbers);
         sorted.sort(Comparator.naturalOrder());
         return sorted;

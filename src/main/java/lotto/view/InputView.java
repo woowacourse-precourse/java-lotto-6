@@ -50,7 +50,7 @@ public class InputView {
      * @throws NumberFormatException : 숫자로 변환 실패한 경우
      */
     public int askNumber() throws NumberFormatException {
-        int number = 0;
+        int number;
 
         try {
             String input = Console.readLine();

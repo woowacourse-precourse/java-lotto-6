@@ -1,6 +1,7 @@
 package lotto.util;
 
 import static lotto.enums.ErrorMassage.INVALID_NUMBER;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
@@ -15,5 +16,17 @@ class StringUtilTest {
         assertThatThrownBy(() -> StringUtil.convertToInt(input))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_NUMBER.getMassage());
+    }
+
+    @Test
+    void 문자열을_숫자로_변환한다() {
+        // given
+        String input = "1";
+
+        // when
+        int result = StringUtil.convertToInt(input);
+
+        // then
+        assertThat(result).isEqualTo(1);
     }
 }

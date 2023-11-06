@@ -28,7 +28,7 @@ public class LottoControllerDecorator extends LottoController {
         do {
             try {
                 money = super.getMoney();
-            } catch (MoneyException e) {
+            } catch (MoneyException | CommonValidationException e) {
                 System.err.println(e.getMessage());
             }
         } while (money == null);

@@ -13,6 +13,10 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public static WinningLotto of(List<Integer> numbers, Integer bonusNumber) {
+        return new WinningLotto(numbers, bonusNumber);
+    }
+    
     public List<Integer> getWinningLottoNumbers() {
         return this.getNumbers();
     }

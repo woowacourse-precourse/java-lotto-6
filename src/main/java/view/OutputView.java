@@ -1,8 +1,7 @@
 package view;
 
-import domain.PrizeDescribe;
+import domain.PrizeStatistics;
 import java.util.List;
-import domain.Calculator;
 import domain.Lotto;
 
 public class OutputView {
@@ -16,7 +15,7 @@ public class OutputView {
         }
     }
 
-    public void printPrizeDescribe(PrizeDescribe prizeDescribe) {
+    public void printPrizeDescribe(PrizeStatistics prizeDescribe) {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + prizeDescribe.getFifthPrize() + "개");

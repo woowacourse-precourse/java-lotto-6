@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.global.constant.LottoRankAndPrize;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,24 +12,32 @@ public class LottoResult {
 
     private static final int NONE = 0;
 
-    private static Map<Integer, Integer> totalRanks;
+    private Map<LottoRankAndPrize, Integer> totalRanks;
     private final int lottoPurchasePrice;
-    private final int totalPrizeAmount;
+    private int totalPrize = NONE;
 
-    public LottoResult(int lottoPurchasePrice, int totalPrizeAmount) {
-        totalRanks = new HashMap<>();
-        for(int i = FIRST_RANK; i <= FIFTH_RANK; i++){
-            totalRanks.put(i, NONE);
-        }
+    public LottoResult(int lottoPurchasePrice) {
+        this.totalRanks = new HashMap<>();
         this.lottoPurchasePrice = lottoPurchasePrice;
-        this.totalPrizeAmount = totalPrizeAmount;
+    }
+
+    public void accumulateLottoResult(LottoRankAndPrize lottoRankAndPrize){
+        if(totalRanks.containsKey(lottoRankAndPrize)){
+            totalRanks.put(lottoRankAndPrize, totalRanks.get(lottoRankAndPrize) + 1);
+            return;
+        }
+        totalRanks.put(lottoRankAndPrize, 1);
     }
 
     public int getLottoPurchasePrice() {
         return lottoPurchasePrice;
     }
 
+    public int calculateTotalPrize(){
+        return 0;
+    }
+
     public int getTotalPrizeAmount() {
-        return totalPrizeAmount;
+        return totalPrize;
     }
 }

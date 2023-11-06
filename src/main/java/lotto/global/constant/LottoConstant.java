@@ -8,15 +8,16 @@ public class LottoConstant {
     public static final int LOTTO_NUMBER_COUNT = 6;
 
 //    당첨 관련 상수
-    public static final int FIRST_PRIZE_AMOUNT = 2000000000;
-    public static final int SECOND_PRIZE_AMOUNT = 30000000;
-    public static final int THIRD_PRIZE_AMOUNT = 1500000;
-    public static final int FOURTH_PRIZE_AMOUNT = 50000;
-    public static final int FIFTH_PRIZE_AMOUNT = 5000;
+    public static final int FIRST_PRIZE = 2_000_000_000;
+    public static final int SECOND_PRIZE = 30_000_000;
+    public static final int THIRD_PRIZE = 1_500_000;
+    public static final int FOURTH_PRIZE = 50_000;
+    public static final int FIFTH_PRIZE = 5_000;
 
-    public static final int FIRST_RANK = 1;
-    public static final int SECOND_RANK = 2;
-    public static final int THIRD_RANK = 3;
-    public static final int FOURTH_RANK = 4;
-    public static final int FIFTH_RANK = 5;
+    public static final int FIRST_RANK_LOTTO_MATCHED = 6;
+    public static final int SECOND_RANK_LOTTO_MATCHED = 6;
+    public static final int THIRD_RANK_LOTTO_MATCHED = 5;
+    public static final int FOURTH_RANK_LOTTO_MATCHED = 4;
+    public static final int FIFTH_RANK_LOTTO_MATCHED = 3;
+
 }

@@ -12,8 +12,7 @@ public enum OutputMessage {
     OUTPUT_LOTTO_3RD_PLACE("5개 일치 (1,500,000원) - "),
     OUTPUT_LOTTO_2ND_PLACE("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     OUTPUT_LOTTO_1ST_PLACE("6개 일치 (2,000,000,000원) - "),
-    FRONT_OF_FINAL_OUTPUT("총 수익률은 "),
-    BACK_OF_FINAL_OUTPUT("%입니다.");
+    FINAL_OUTPUT("총 수익률은 %.2f%%입니다.");
 
 
     private final String message;

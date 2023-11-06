@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.constant.Number;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,8 +11,10 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != Number.LOTTO_LENGTH_LIMIT.getMessage()) {
-            throw new IllegalArgumentException();
+        try {
+
+        } catch (IllegalArgumentException e) {
+
         }
     }
 

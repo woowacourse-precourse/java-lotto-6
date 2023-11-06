@@ -36,7 +36,22 @@ public class InputValidator {
         checkLottoNumberRangeAndThrowException(numbers);
     }
 
-    private static void checkLottoNumberRangeAndThrowException(List<Integer> numbers) {
+    public static void checkBonusInput(String input) throws IllegalArgumentException {
+        checkEmptyAndThrowException(input);
+        checkSpaceAndThrowException(input);
+        checkIntegerInputAndThrowException(input);
+        checkBonusNumberRangeAndThrowException(input);
+
+    }
+
+    private static void checkBonusNumberRangeAndThrowException(String input) throws IllegalArgumentException {
+        int x = StringUtils.parseStringToInt(input);
+        if (x > LOTTO_NUMBER_MAX_RANGE || x < LOTTO_NUMBER_MIN_RANGE) {
+            throw new OutOfNumberRangeException();
+        }
+    }
+
+    private static void checkLottoNumberRangeAndThrowException(List<Integer> numbers) throws IllegalArgumentException {
         for (int x : numbers) {
             if (x > LOTTO_NUMBER_MAX_RANGE || x < LOTTO_NUMBER_MIN_RANGE) {
                 throw new OutOfNumberRangeException();
@@ -44,20 +59,21 @@ public class InputValidator {
         }
     }
 
-    private static void checkLottoNumberDuplicatedAndThrowException(List<Integer> carNameList) {
+    private static void checkLottoNumberDuplicatedAndThrowException(List<Integer> carNameList)
+            throws IllegalArgumentException {
         Set<Integer> set = new HashSet<>(carNameList);
         if (set.size() != carNameList.size()) {
             throw new DuplicatedLottoNumberException();
         }
     }
 
-    private static void checkLottoLengthAndThrowException(List<Integer> carNameList) {
+    private static void checkLottoLengthAndThrowException(List<Integer> carNameList) throws IllegalArgumentException {
         if (LOTTO_DIGIT_RESTRICTIONS != carNameList.size()) {
             throw new OutOfLengthException();
         }
     }
 
-    private static void checkLastIndexAndThrowException(String input) {
+    private static void checkLastIndexAndThrowException(String input) throws IllegalArgumentException {
         if (input.lastIndexOf(",") == input.length() - 1) {
             throw new OutOfLengthException();
         }

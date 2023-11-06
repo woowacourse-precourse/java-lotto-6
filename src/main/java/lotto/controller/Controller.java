@@ -29,6 +29,7 @@ public class Controller {
             view.printRequestBonusNumber();
             inputNumber = readInput();
             try {
+                InputValidator.checkBonusInput(inputNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

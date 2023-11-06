@@ -29,7 +29,7 @@ public class InputView {
         }
     }
 
-    public WinningCombinationDto inputWinningNumbers() {
+    public WinningCombinationDto inputWinningCombination() {
         try {
             WinningCombinationBuilder builder = WinningCombinationBuilder.builder();
             inputWinningNumbers(builder);
@@ -37,7 +37,7 @@ public class InputView {
             return builder.build();
         } catch (IllegalArgumentException e) {
             writer.writeLine(Writer.ERROR_PREFIX + e.getMessage());
-            return inputWinningNumbers();
+            return inputWinningCombination();
         }
     }
 
@@ -56,14 +56,14 @@ public class InputView {
     }
 
     public WinningCombinationBuilder inputBonusNumber(WinningCombinationBuilder builder) {
-        writer.writeLine("보너스 번호를 입력해 주세요.");
+        writer.writeLine(Writer.NEW_LINE + "보너스 번호를 입력해 주세요.");
         try {
             String input = reader.readLine();
             InputValidator.verifyNonEmptyInput(input);
             InputValidator.verifyNumericString(input);
             builder.withBonusNumber(input);
         } catch (IllegalArgumentException e) {
-            writer.writeLine("[ERROR] " + e.getMessage());
+            writer.writeLine(Writer.ERROR_PREFIX + e.getMessage());
             return inputBonusNumber(builder);
         }
         return builder;

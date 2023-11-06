@@ -1,9 +1,10 @@
 package lotto.model.lotto;
 
-import static lotto.constants.Error.DUPLICATE_INVALID;
-import static lotto.constants.Error.RANGE_INVALID;
-import static lotto.constants.Rule.MAX_LOTTO;
-import static lotto.constants.Rule.MIN_LOTTO;
+import static lotto.utils.Validator.validateLottoDuplicates;
+import static lotto.utils.Validator.validateLottoRange;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Winning {
     private final Lotto lotto;
@@ -20,24 +21,10 @@ public class Winning {
     }
 
     private static void validate(Lotto lotto, int bonus) {
-        validateRange(bonus);
-        validateDuplicate(lotto, bonus);
-    }
-
-    private static void validateDuplicate(Lotto lotto, int bonus) {
-        if (lotto.isMatchNumber(bonus)) {
-            throw new IllegalArgumentException(DUPLICATE_INVALID.getMessage());
-        }
-    }
-
-    private static void validateRange(int bonus) {
-        if (!isValidNumber(bonus)) {
-            throw new IllegalArgumentException(RANGE_INVALID.getMessage());
-        }
-    }
-
-    private static boolean isValidNumber(int bonus) {
-        return bonus >= MIN_LOTTO.getValue() && bonus <= MAX_LOTTO.getValue();
+        validateLottoRange(bonus);
+        List<Integer> copyLottoList = new ArrayList<>(lotto.getNumbers());
+        copyLottoList.add(bonus);
+        validateLottoDuplicates(copyLottoList);
     }
 
     public Lotto getLotto() {

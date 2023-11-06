@@ -1,9 +1,10 @@
 package lotto.model.lotto;
 
+import static lotto.utils.Generator.generateSortedLottoNumbers;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.utils.Generator;
 
 public class Player {
     private final PlayerAmount playerAmount;
@@ -21,7 +22,7 @@ public class Player {
 
     private static List<Lotto> purchaseLotto(int amount) {
         return IntStream.range(0, amount)
-                .mapToObj(i -> new Lotto(Generator.generateLottoNumbers()))
+                .mapToObj(i -> new Lotto(generateSortedLottoNumbers()))
                 .collect(Collectors.toList());
     }
 

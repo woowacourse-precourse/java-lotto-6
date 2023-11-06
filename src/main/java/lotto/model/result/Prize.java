@@ -22,14 +22,18 @@ public enum Prize {
         this.message = message;
     }
 
-    public String formatMessage(int value) {
-        return String.format(message, value);
-    }
-
     public static Prize valueOf(int count, boolean isBonus) {
-        if (count == 5 && isBonus) {
+        if (isSecond(count, isBonus)) {
             return SECOND;
         }
+        return findPrizeByCount(count);
+    }
+
+    private static boolean isSecond(int count, boolean isBonus) {
+        return count == 5 && isBonus;
+    }
+
+    private static Prize findPrizeByCount(int count) {
         return Arrays.stream(Prize.values())
                 .filter(rank -> rank.isMatch(count))
                 .findFirst()
@@ -50,4 +54,7 @@ public enum Prize {
         return prizeMoney;
     }
 
+    public String formatMessage(int value) {
+        return String.format(message, value);
+    }
 }

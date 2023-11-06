@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Generator {
-    public static List<Integer> generateLottoNumbers() {
+    public static List<Integer> generateSortedLottoNumbers() {
         return generateRandomNumbers().stream().sorted().collect(Collectors.toList());
     }
 

@@ -1,8 +1,8 @@
 package lotto.model.lotto;
 
-import static lotto.constants.Error.DIVIDE_INVALID;
-import static lotto.constants.Error.MINIMUM_INVALID;
 import static lotto.constants.Rule.MIN_MONEY;
+import static lotto.utils.Validator.validateDivisibleAmount;
+import static lotto.utils.Validator.validateMinimumAmount;
 
 public class PlayerAmount {
     private final int amount;
@@ -13,27 +13,15 @@ public class PlayerAmount {
 
     public static PlayerAmount getInstance(int money) {
         validate(money);
-        return new PlayerAmount(calculateAmount(money));
+        return new PlayerAmount(calculateMoneyToAmount(money));
     }
 
     private static void validate(int money) {
-        validateMinimum(money);
-        validateDivide(money);
+        validateMinimumAmount(money);
+        validateDivisibleAmount(money);
     }
 
-    private static void validateMinimum(int money) {
-        if (money < MIN_MONEY.getValue()) {
-            throw new IllegalArgumentException(MINIMUM_INVALID.getMessage());
-        }
-    }
-
-    private static void validateDivide(int money) {
-        if (money % MIN_MONEY.getValue() != 0) {
-            throw new IllegalArgumentException(DIVIDE_INVALID.getMessage());
-        }
-    }
-
-    private static int calculateAmount(int money) {
+    private static int calculateMoneyToAmount(int money) {
         return money / MIN_MONEY.getValue();
     }
 

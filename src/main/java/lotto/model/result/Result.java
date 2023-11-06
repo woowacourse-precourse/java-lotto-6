@@ -31,15 +31,17 @@ public class Result {
     }
 
     public double calculatePrizeMoney() {
-        double total = 0;
-        for (Prize prize : prizeResult.keySet()) {
-            total += prize.getPrizeMoney() * prizeResult.get(prize);
-        }
-        return total;
+        return prizeResult.entrySet()
+                .stream()
+                .mapToDouble(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
     }
 
     public double calculatePrizeProfit(int amount) {
-        int money = amount * MIN_MONEY.getValue();
-        return (calculatePrizeMoney() / money) * 100;
+        return (calculatePrizeMoney() / calculateMoneyFromAmount(amount)) * 100;
+    }
+
+    private int calculateMoneyFromAmount(int amount) {
+        return amount * MIN_MONEY.getValue();
     }
 }

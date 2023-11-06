@@ -14,7 +14,7 @@ class GeneratorTest {
 
     @BeforeEach
     void setUp() {
-        lottoNumbers = Generator.generateLottoNumbers();
+        lottoNumbers = Generator.generateSortedLottoNumbers();
     }
 
     @Test

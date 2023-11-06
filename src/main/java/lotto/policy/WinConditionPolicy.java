@@ -12,8 +12,7 @@ public enum WinConditionPolicy {
     private final int reward;
     private final String outputMessage;
 
-
-    private WinConditionPolicy(int winNumberCount, int bonusNumberCount, int reward, String outputMessage) {
+    WinConditionPolicy(int winNumberCount, int bonusNumberCount, int reward, String outputMessage) {
         this.winNumberCount = winNumberCount;
         this.bonusNumberCount = bonusNumberCount;
         this.reward = reward;

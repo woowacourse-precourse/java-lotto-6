@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -13,7 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
-        sortNumbers(numbers);
+        numbers = sortNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -34,7 +35,9 @@ public class Lotto {
         }
     }
 
-    private void sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+        Collections.sort(mutableNumbers);
+        return mutableNumbers;
     }
 }

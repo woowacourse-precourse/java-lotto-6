@@ -14,14 +14,93 @@ public class LottoGameController {
     LottoGame lottoGame;
     Scanner sc = new Scanner(System.in);
 
-
-
     public void start(){
 
         setUser();
         setLotto();
         setLottoGame();
 
+        checkWinner();
+
+        view.printWinStat(lottoGame,user);
+
+    }
+
+    private void checkWinner() {
+
+        for(Lotto lotto: lottos){
+
+            int winNumber=0;
+            int winBonus=0;
+            List<Integer> numbers = lotto.getNumbers();
+            List<Integer> winningNumbers = lottoGame.getWinningNumbers();
+            int bonus = lottoGame.getBonusNumber();
+
+            winNumber = getWinNumber(winNumber, winBonus, numbers, winningNumbers, bonus);
+
+            setRank(winNumber, bonus);
+
+        }
+    }
+
+    private void setRank(int winNumber, int bonus) {
+
+        if(winNumber == 6){
+
+            lottoGame.addRank(WinningConditionPrize.FIRST);
+            user.addWinningAmount(WinningConditionPrize.FIRST.getPrize());
+
+            return;
+        }
+
+        if(winNumber == 5&& bonus == 1){
+
+            lottoGame.addRank(WinningConditionPrize.SECOND);
+            user.addWinningAmount(WinningConditionPrize.SECOND.getPrize());
+
+
+            return;
+        }
+
+        if(winNumber == 5){
+
+            lottoGame.addRank(WinningConditionPrize.THIRD);
+            user.addWinningAmount(WinningConditionPrize.THIRD.getPrize());
+
+
+            return;
+        }
+
+        if(winNumber == 4){
+
+            lottoGame.addRank(WinningConditionPrize.FOURTH);
+            user.addWinningAmount(WinningConditionPrize.FOURTH.getPrize());
+
+            return;
+        }
+
+        if(winNumber == 3){
+
+            lottoGame.addRank(WinningConditionPrize.FIFTH);
+            user.addWinningAmount(WinningConditionPrize.FIFTH.getPrize());
+
+        }
+    }
+
+    private int getWinNumber(int winNumber, int winBonus, List<Integer> numbers, List<Integer> winningNumbers,
+                             int bonus) {
+        for (int number: winningNumbers){
+
+            if(numbers.contains(number)){
+
+                winNumber++;
+            }
+            if (numbers.contains(bonus)){
+
+                winBonus++;
+            }
+        }
+        return winNumber;
     }
 
     private void setLottoGame() {

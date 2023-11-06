@@ -15,21 +15,51 @@ public class Application {
         Validate validate = new Validate();
         Input input = new Input(new InputGenerator(), validate);
 
-        System.out.println("구입금액을 입력해 주세요.");
-        int money = input.inputLottoMoney();
-        System.out.println();
+        final String ERROR_MESSAGE = "[ERROR]";
 
-        LottoShop lottoShop = new LottoShop(new LottoGenerator(), new Validate());
-        List<Lotto> lottos = lottoShop.buyLotto(money);
-        System.out.println();
+        int money = 0;
+        List<Lotto> lottos;
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                money = input.inputLottoMoney();
+                System.out.println();
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        Lotto winningLotto = new Lotto(input.inputWinningNumber());
-        System.out.println();
+                LottoShop lottoShop = new LottoShop(new LottoGenerator(), new Validate());
+                lottos = lottoShop.buyLotto(money);
+                System.out.println();
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = input.bonusNumber();
-        System.out.println();
+                break;
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ERROR_MESSAGE + " " + ex.getMessage());
+            }
+        }
+
+        Lotto winningLotto;
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                winningLotto = new Lotto(input.inputWinningNumber());
+                System.out.println();
+
+                break;
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ERROR_MESSAGE + " " + ex.getMessage());
+            }
+        }
+
+        int bonusNumber;
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                bonusNumber = input.bonusNumber();
+                System.out.println();
+
+                break;
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ERROR_MESSAGE + " " + ex.getMessage());
+            }
+        }
 
         // 로또의 당첨 갯수 계산
         LottoResult lottoResult = new LottoResult();

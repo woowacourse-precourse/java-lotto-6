@@ -20,7 +20,7 @@ public class Input {
 
         // Integer 자료형 인지 검증
         validate.validateInteger(input);
-        
+
         // 양의 값인지 검증
         int money = Integer.parseInt(input);
         validate.validatePositiveNumber(money);
@@ -28,9 +28,10 @@ public class Input {
         return money;
     }
 
+
     public List<Integer> inputWinningNumber() {
         List<Integer> winningNumber = new ArrayList<>();
-        for(String inputNumber: inputGenerator.readLine().split(",", -1)) {
+        for (String inputNumber : inputGenerator.readLine().split(",", -1)) {
             // Integer 자료형 인지 검증
             validate.validateInteger(inputNumber);
 

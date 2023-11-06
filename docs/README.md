@@ -91,6 +91,8 @@
 ## 📝 MVC 구조 설계
 
 ### Model
+- Purchase
+  - 구매금액을 필드로 갖는 객체
 - Jackpot
   - 당첨번호 List와 보너스번호를 갖는 객체
 - Result

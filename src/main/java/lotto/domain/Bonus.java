@@ -3,7 +3,8 @@ package lotto.domain;
 public class Bonus {
     private int num;
 
-    public Bonus(int num) {
+    public Bonus(int num, Lotto winningLotto) {
+        validate(num, winningLotto);
         this.num = num;
     }
 

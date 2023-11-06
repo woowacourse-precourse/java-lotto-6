@@ -15,7 +15,7 @@ public class LottoController {
         OutputView.printLotto(player.getLottos());
 
         Lotto winningLotto = InputView.inputWinningLotto();
-        Bonus bonus = InputView.inputBonus();
+        Bonus bonus = InputView.inputBonus(winningLotto);
 
         List<LottoResult> lottoResults = Comparator.compare(player.getLottos(), winningLotto, bonus);
         OutputLottoResult outputLottoResult = new OutputLottoResult(lottoResults);

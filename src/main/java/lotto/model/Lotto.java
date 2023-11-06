@@ -49,22 +49,15 @@ public class Lotto {
         return new Lotto(randomNumbers);
     }
 
-    public static boolean validateInputWinningNumber(String winningNumber){
+    public static void validateInputWinningNumber(String winningNumber){
         String[] numberStrings = winningNumber.split(",");
 
-        for (String numStr : numberStrings) {
-            try {
-                int num = Integer.parseInt(numStr);
-                if (num < 1 || num > 45) {
-                    return false; // 1부터 45 사이의 숫자가 아니면 유효하지 않음
-                }
-            } catch (NumberFormatException e) {
-                return false; // 숫자로 변환할 수 없는 문자열이면 유효하지 않음
+        for (String eachNumberStr : numberStrings) {
+            int eachNumber=Integer.parseInt(eachNumberStr);
+            if(eachNumber<1||eachNumber>45){
+                throw Exceptions.exceptionWinningNumber();
             }
         }
-
-        // 유효한 조건을 모두 통과하면 유효한 입력
-        return true;
     }
 
 }

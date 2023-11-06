@@ -29,4 +29,19 @@ public class LottoController {
         LottoView.printPurchaseResult(lottoList);
     }
 
+    public void processInputWinningNumber(){
+        String inputWinningNumber;
+        while (true) {
+            inputWinningNumber=LottoView.inputWinningNumber();
+            try {
+                // 입력 당첨 번호가 유효하면 종료
+                Lotto.validateInputWinningNumber(inputWinningNumber);
+                break; //
+            } catch (IllegalArgumentException e) {
+                // 예외 메시지 출력
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
 }

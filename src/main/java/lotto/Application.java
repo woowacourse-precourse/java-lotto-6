@@ -9,6 +9,6 @@ public class Application {
         LottoController lottoController = new LottoController();
         int price = lottoController.processInputPurchaseAmount();
         lottoController.processCreateLotto(price);
-
+        lottoController.processInputWinningNumber();
     }
 }

@@ -9,5 +9,10 @@ public class Exceptions {
         return new IllegalArgumentException("[ERROR] 로또의 번호가 6개가 아닙니다.");
     }
 
+    public static IllegalArgumentException exceptionWinningNumber() {
+        return new IllegalArgumentException("[ERROR] 1~45의 숫자를 입력하세요.");
+    }
+
+
 
 }

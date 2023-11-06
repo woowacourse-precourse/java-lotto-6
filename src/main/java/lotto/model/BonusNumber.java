@@ -3,11 +3,15 @@ package lotto.model;
 import java.util.List;
 
 public class BonusNumber {
-    private final int bonusNumber;
+    private static int bonusNumber;
 
     public BonusNumber(int bonusNumber) {
         validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
+        BonusNumber.bonusNumber = bonusNumber;
+    }
+
+    public static int getBonusNumber() {
+        return bonusNumber;
     }
 
     private void validate(int bonusNumber) {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.MatchingCounts;
 import lotto.model.Purchase;
 import lotto.model.WinningNumbers;
 import lotto.view.View;
@@ -30,7 +31,8 @@ public class Controller {
         view.displayPurchaseQuantityMessage(Purchase.getPurchaseCount());
 
         // 로또 번호 출력
-        displayLottoNumbers(generateLottoNumbersList(generateLottoTickets(Purchase.getPurchaseCount())));
+        List<Object> lottoNumbers = generateLottoNumbersList(generateLottoTickets(Purchase.getPurchaseCount()));
+        displayLottoNumbers(lottoNumbers);
 
         System.out.println();
         view.inputWinningNumbers();
@@ -48,14 +50,49 @@ public class Controller {
         view.inputBonusNumber();
 
         String inputBonusNumber = view.input();
-        while(!processBonusNumberData(inputBonusNumber)){
+        while (!processBonusNumberData(inputBonusNumber)) {
             processErrorResult();
             inputBonusNumber = view.input();
             processBonusNumberData(inputBonusNumber);
         }
-        
+
+        MatchingCounts matchingCounts = new MatchingCounts();
+        calculateWinningLottoResults(lottoNumbers, WinningNumbers.getWinningNumbers(), matchingCounts);
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        view.printMatchingCounts(matchingCounts);
     }
 
+    public void calculateWinningLottoResults(List<Object> lottoNumbers, List<Integer> winningNumbers,
+                                             MatchingCounts matchingCounts) {
+        for (Object numbers : lottoNumbers) {
+            countMatchingNumbers((List<Integer>) numbers, winningNumbers, matchingCounts);
+        }
+    }
+
+    private void countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers,
+                                      MatchingCounts matchingCounts) {
+        int count = 0;
+        int bonus = 0;
+
+        for (int number : lottoNumbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+
+        if (count >= 3) {
+            if (count == 5) {
+                for (int number : lottoNumbers) {
+                    if (number == BonusNumber.getBonusNumber()) {
+                        bonus++;
+                    }
+                }
+                matchingCounts.displayWinningInfo(count, bonus);
+            }
+        }
+    }
 
     // 로또 번호 랜덤 뽑기
     public List<Integer> generateLottoNumbers() {
@@ -81,6 +118,7 @@ public class Controller {
         }
         return numbers;
     }
+
 
     // 로또 번호 출력
     public void displayLottoNumbers(List<Object> numbers) {

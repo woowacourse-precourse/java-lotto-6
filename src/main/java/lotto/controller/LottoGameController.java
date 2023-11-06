@@ -77,7 +77,7 @@ public class LottoGameController {
         }
     }
 
-    void generateLotto() {
+    public void generateLotto() {
         lottos = new Lottos(lottoGenerator.generate(purchase.getLottoCount()));
     }
 
@@ -99,5 +99,9 @@ public class LottoGameController {
 
     public BitSet getWinningNumbersBitSet() {
         return winningNumbersBitSet;
+    }
+
+    public Lottos getLottos() {
+        return lottos;
     }
 }

@@ -114,12 +114,11 @@ public class LottoController {
 
     private void receivePrize(int rank) {
         if(rank != INT_NULL){
-            user.plusPrizeCount(rank);
+            user.winningTheLotto(rank);
         }
     }
 
     private void printRateOfReturn() {
-        user.calcRateOfReturn();
         OutputView.printPrizeStatistics(user.getPrizeCounts());
         OutputView.printRateOfReturn(user.getRateOfReturn());
     }

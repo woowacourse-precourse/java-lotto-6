@@ -63,4 +63,14 @@ class LottoTest {
     void containsBonusNumber(String testName, Lotto lotto, int bonusNumber, boolean result) {
         assertThat(lotto.containsBonusNumber(bonusNumber)).isEqualTo(result);
     }
+
+    @DisplayName("로또 번호를 Integer List 를 문자열로 반환한다.")
+    @Test
+    void numbersToString() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when, then
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }

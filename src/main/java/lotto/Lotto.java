@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private final int LOTTO_LENGTH = 6;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
@@ -23,14 +24,14 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateDuplicateNumber(List<Integer> numbers){
 		Set<Integer> duplicated = new HashSet<>(numbers);
-        if (duplicated.size() != 6){
+        if (duplicated.size() != LOTTO_LENGTH){
             throw new IllegalArgumentException();
         }
     }

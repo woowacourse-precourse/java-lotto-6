@@ -3,11 +3,19 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.function.Function;
 import lotto.constant.LottoMessage;
+import lotto.dto.PurchaseAmountRequest;
 
 public class LottoView {
 
-    public void readPurchaseAmount() {
+    private final InputMapper inputMapper;
+
+    public LottoView(InputMapper inputMapper) {
+        this.inputMapper = inputMapper;
+    }
+
+    public PurchaseAmountRequest readPurchaseAmount() {
         write(LottoMessage.getPurchaseAmountInputMessage());
+        return readUntilValidInput(inputMapper::inputToPurchaseAmountRequest);
     }
 
     private void write(String output) {

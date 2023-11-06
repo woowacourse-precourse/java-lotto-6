@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.PurchaseAmountRequest;
 import lotto.view.LottoView;
 
 public class LottoController {
@@ -11,6 +12,6 @@ public class LottoController {
     }
 
     public void run() {
-        view.readPurchaseAmount();
+        PurchaseAmountRequest purchaseAmountRequest = view.readPurchaseAmount();
     }
 }

@@ -1,12 +1,15 @@
 package lotto.controller;
 
 import lotto.domain.Amount;
+import lotto.domain.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
+
 public class LottoController {
 
-    private  Amount amount;
+    private Amount amount;
 
     public void run() {
         getLottoMoney();
@@ -20,7 +23,12 @@ public class LottoController {
     }
 
     private void printLottoList() {
-        OutputView.printPurchaseCount(amount.getCount());
+        int count = amount.getCount();
+        OutputView.printPurchaseCount(count);
+        LottoService lottoService = new LottoService(new ArrayList<>());
+        for(int i = 0; i  < count; i++){
+            OutputView.printPurchaseLottoList(lottoService.createLottoList());
+        }
     }
 
 

@@ -1,25 +1,19 @@
 package lotto.domain;
-
-import lotto.util.LottoGenerator;
-import lotto.util.LottoNumberGenerator;
+import lotto.validator.LottoValidator;
 
 import java.util.List;
 
 public class Lotto{
 
-    private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        LottoValidator.validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] ");
-        }
-    }
     public List<Integer> getNumbers() {
-        return numbers;
+        return List.copyOf(numbers);
     }
+
+
 }

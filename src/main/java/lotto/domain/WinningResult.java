@@ -16,9 +16,7 @@ public class WinningResult {
     }
 
     private void putMatchCount(List<LottoRank> ranks) {
-        for (LottoRank rank : ranks) {
-            winningResult.put(rank, winningResult.getOrDefault(rank, 0) + 1);
-        }
+        ranks.forEach(rank -> winningResult.put(rank, winningResult.getOrDefault(rank, 0) + 1));
     }
 
     private void calculateProfitRate(int money) {

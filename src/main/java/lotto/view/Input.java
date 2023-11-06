@@ -34,7 +34,7 @@ public class Input {
 		if (isNumeric(str)) {
 			return Integer.parseInt(str);
 		}
-		throw new IllegalArgumentException("[Error] 숫자로 변환할 수 없습니다.");
+		throw new IllegalArgumentException("숫자로 변환할 수 없습니다.");
 	}
 
 	private static boolean isNumeric(String str) {

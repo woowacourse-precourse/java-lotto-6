@@ -6,7 +6,7 @@ public class LottoNumber {
 
 	public static final int MAX_NUMBER = 45;
 	public static final int MIN_NUMBER = 1;
-	public static final String WRONG_RANGE_NUMBER_MESSAGE = "[ERROR] 잘못된 로또 번호입니다.";
+	public static final String WRONG_RANGE_NUMBER_MESSAGE = "잘못된 로또 번호입니다.";
 	private final int number;
 
 	private LottoNumber(int number) {

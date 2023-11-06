@@ -65,6 +65,18 @@ public class Application {
     static int askBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
-        return Integer.parseInt(input);
+        return validateBonusNumber(input);
+    }
+
+    static int validateBonusNumber(String input) {
+        int bonusNumber = 0;
+        try {
+            bonusNumber = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 보너스 번호로 숫자 외의 값을 입력했습니다.");
+            askBonusNumber();
+        }
+
+        return bonusNumber;
     }
 }

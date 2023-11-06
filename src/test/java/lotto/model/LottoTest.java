@@ -41,4 +41,13 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
+
+    @Test
+    @Order(5)
+    @DisplayName("로또를 수정할 경우 예외가 발생한다.")
+    void modifyLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThatThrownBy(() -> lotto.getNumbers().add(7))
+                .isInstanceOf(UnsupportedOperationException.class);
+    }
 }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class BonusNumber {
     WinningNumber winningNumbers;
     //상수(static final) 또는 클래스 변수
@@ -8,10 +10,13 @@ public class BonusNumber {
     //인스턴스 변수
 
     //생성자
-    public BonusNumber(String bonusNumberInput) {
-        Integer bonusNumber = Integer.parseInt(bonusNumberInput);
+    public BonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        String bonusNumberInput = readLine();
+
+        int result = Integer.parseInt(bonusNumberInput);
         compareWinningAndBonus();
-        this.BONUS_NUMBER = bonusNumber;
+        this.BONUS_NUMBER = result;
     }
 
     //메서드

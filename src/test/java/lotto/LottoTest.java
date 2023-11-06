@@ -30,6 +30,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호가 1~45의 중복없는 6개의 숫자일 경우 정상작동.")
+    @Test
+    void createLottoByValidNumbers() {
+        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6))).isNotNull();
+    }
+
     @DisplayName("로또 번호와 숫자를 비교하여 해당 숫자가 포함되어 있는지 확인한다.")
     @Test
     void contains() {

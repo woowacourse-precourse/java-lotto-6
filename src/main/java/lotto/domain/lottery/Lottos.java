@@ -18,7 +18,7 @@ public class Lottos {
     }
 
     // Static Factory Method
-    public static Lottos create(final Buyer buyer) {
+    public static Lottos from(final Buyer buyer) {
         return new Lottos(buyer);
     }
 

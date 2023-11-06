@@ -7,11 +7,11 @@ import lotto.view.output.PurchaseWriter;
 
 public class PurchaseController {
     private PurchaseController() {
-        
+
     }
 
     public static Lottos purchase(final Buyer buyer) {
-        Lottos lottos = Lottos.create(buyer);
+        Lottos lottos = Lottos.form(buyer);
 
         LottoNumberResponses lottoResponses =
                 LottoNumberResponses.build(buyer, lottos);

@@ -16,9 +16,13 @@ public class InputView {
         }
     }
 
-
     public String playerLottoNumbersConsole() {
         String lottoNumbers = Console.readLine();
         return lottoNumbers;
+    }
+
+    public String playerBonusNumberConsole() {
+        String bonusNumber = Console.readLine();
+        return bonusNumber;
     }
 }

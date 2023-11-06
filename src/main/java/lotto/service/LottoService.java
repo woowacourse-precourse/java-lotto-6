@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Prize;
 import lotto.view.InputView;
 
 import java.util.Collections;
@@ -30,14 +31,36 @@ public class LottoService {
     }
 
     public boolean isMatchingBonusNumber(List<Integer> lotteryNumbers, int bonusNumber) {
-        if(lotteryNumbers.contains(bonusNumber)) {
+        if (lotteryNumbers.contains(bonusNumber)) {
             return true;
         }
         return false;
     }
 
-    public void getRateOfReturn() {
+    public Prize getPrize(List<Integer> lotteryNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        int matchingNumbers = getMatchingNumbers(lotteryNumbers, winningNumbers);
+        boolean isMatchingBonusNumber = isMatchingBonusNumber(lotteryNumbers, bonusNumber);
 
+        if (matchingNumbers == 6) {
+            return Prize.FIRST_PLACE;
+        }
+        if (matchingNumbers == 5 && isMatchingBonusNumber) {
+            return Prize.SECOND_PLACE;
+        }
+        if(matchingNumbers == 5) {
+            return Prize.THIRD_PLACE;
+        }
+        if(matchingNumbers == 4) {
+            return Prize.FOURTH_PLACE;
+        }
+        if(matchingNumbers == 3) {
+            return Prize.FIFTH_PLACE;
+        }
+
+        return Prize.UNRANKED;
+    }
+
+    public void getRateOfReturn() {
     }
 
     private int findNumbers(List<Integer> winningNumbers, Integer lotteryNumber) {

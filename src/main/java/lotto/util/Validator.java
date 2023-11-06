@@ -11,6 +11,7 @@ public class Validator {
 
     public static boolean verifyPurchaseAmount(String input) {
         try {
+            verifyEmptyOrBlank(input);
             int integerInput = Integer.parseInt(input);
             verifyAboveThousand(integerInput);
             verifyDivisibilityByThousand(Integer.parseInt(input));
@@ -25,7 +26,7 @@ public class Validator {
 
     public static boolean verifyWinNumber(String input) {
         try {
-            verifyEmptyOrBlankExist(InputParser.parseStringList(input));
+            verifyEmptyOrBlank(InputParser.parseStringList(input));
             InputParser.parseIntegerList(input);
             new Lotto(InputParser.parseIntegerList(input));
             return true;
@@ -39,7 +40,7 @@ public class Validator {
 
     public static boolean verifyBonusNumber(Lotto winNumber, String input) {
         try {
-            verifyEmptyOrBlankExist(input);
+            verifyEmptyOrBlank(input);
             int integerInput = Integer.parseInt(input);
             verifyDuplicateWithWinNumber(winNumber, integerInput);
             verifyNumericRange(integerInput);
@@ -52,6 +53,18 @@ public class Validator {
         return false;
     }
 
+    private static void verifyEmptyOrBlank(String input) {
+        if (input.equals(EMPTY) || input.equals(SPACE)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EMPTY_OR_BLANK.getMessage());
+        }
+    }
+
+    private static void verifyEmptyOrBlank(List<String> input) {
+        if (input.contains(EMPTY) || input.contains(SPACE)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EMPTY_OR_BLANK.getMessage());
+        }
+    }
+
     private static void verifyAboveThousand(int input) {
         if (input < LottoPolicy.LOTTO_AMOUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_UNDER_THOUSAND.getMessage());
@@ -61,18 +74,6 @@ public class Validator {
     private static void verifyDivisibilityByThousand(int input) {
         if (input % LottoPolicy.LOTTO_AMOUNT.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.INDIVISIBLE_PURCHASE_AMOUNT.getMessage());
-        }
-    }
-
-    private static void verifyEmptyOrBlankExist(List<String> input) {
-        if (input.contains(EMPTY) || input.contains(SPACE)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_EMPTY_OR_BLANK.getMessage());
-        }
-    }
-
-    private static void verifyEmptyOrBlankExist(String input) {
-        if (input.equals(EMPTY) || input.equals(SPACE)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_EMPTY_OR_BLANK.getMessage());
         }
     }
 

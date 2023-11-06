@@ -8,6 +8,7 @@ public class WinningNumbers {
     private Integer bonusNumber;
 
     private WinningNumbers(Lotto lotto, Integer bonusNumber) {
+        validateNumberRange(bonusNumber);
         validateDuplicateNumber(lotto, bonusNumber);
         this.winningNumbers = lotto;
         this.bonusNumber = bonusNumber;
@@ -28,6 +29,12 @@ public class WinningNumbers {
     private void validateDuplicateNumber(Lotto lotto, Integer bonusNumber) {
         if (lotto.hasNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호의 숫자는 입력할 수 없습니다.");
+        }
+    }
+
+    private void validateNumberRange(Integer bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 숫자 범위는 입력될 수 없습니다.");
         }
     }
 }

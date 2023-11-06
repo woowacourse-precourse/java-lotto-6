@@ -5,7 +5,7 @@ import java.util.*;
 public class Lotto {
     private static final String START_APPEND_STING = "[";
     private static final String MIDDLE_APPEND_COMMA_BLANK = ", ";
-    private static final String END_APPEND_COMMA_BLANK = ", ";
+    private static final String END_APPEND_COMMA_BLANK = "]";
 
     // TODO: 추가 기능 구현
     private final List<Integer> numbers;
@@ -69,7 +69,7 @@ public class Lotto {
     }
 
     private boolean isAppendCondition(int sizeNumbers, int i) {
-        return i != sizeNumbers - 1;
+        return i != (sizeNumbers - 1);
     }
 
     private void appendStringBuild(StringBuilder informationOfNumbers, String string) {

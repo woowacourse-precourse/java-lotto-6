@@ -18,7 +18,9 @@ class WinningLottoTest {
         String inputBonusNumber = "7";
 
         // when
-        WinningLotto winningLotto = WinningLotto.of(inputWinningNumbers, inputBonusNumber);
+        WinningLotto winningLotto = WinningLotto.of();
+        winningLotto.setLotto(inputWinningNumbers);
+        winningLotto.setBonusNumber(inputBonusNumber);
 
         // then
         assertEquals(List.of(1,2,3,4,5,6), winningLotto.getLotto().getNumbers());
@@ -31,11 +33,13 @@ class WinningLottoTest {
         // given
         String inputWinningNumbers = "1,2,3,4,5,6";
         String inputBonusNumber = "6";
+        WinningLotto winningLotto = WinningLotto.of();
+        winningLotto.setLotto(inputWinningNumbers);
 
         // when
 
         // then
-        assertThrows(LottoException.class, () -> WinningLotto.of(inputWinningNumbers, inputBonusNumber));
+        assertThrows(LottoException.class, () -> winningLotto.setBonusNumber(inputBonusNumber));
     }
 
     @DisplayName("WinningLotto 객체 생성 테스트 - 로또 번호에 중복 되어 있는 경우")
@@ -44,10 +48,11 @@ class WinningLottoTest {
         // given
         String inputWinningNumbers = "1,2,3,4,5,5";
         String inputBonusNumber = "6";
+        WinningLotto winningLotto = WinningLotto.of();
 
         // when
 
         // then
-        assertThrows(LottoException.class, () -> WinningLotto.of(inputWinningNumbers, inputBonusNumber));
+        assertThrows(LottoException.class, () -> winningLotto.setLotto(inputWinningNumbers));
     }
 }

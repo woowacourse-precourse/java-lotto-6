@@ -41,10 +41,23 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        String inputWinningNumber = inputView.inputWinningNumber();
-        String inputBonusNumber = inputView.inputBonusNumber();
-        return WinningLotto.of(inputWinningNumber, inputBonusNumber);
+        WinningLotto winningLotto = WinningLotto.of();
+        createWinningLotto(winningLotto);
+        createWinningBonusNumber(winningLotto);
+        return winningLotto;
     }
+
+    private void createWinningBonusNumber(WinningLotto winningLotto) {
+        String inputBonusNumber = inputView.inputBonusNumber();
+        winningLotto.setBonusNumber(inputBonusNumber);
+    }
+
+    private void createWinningLotto(WinningLotto winningLotto) {
+        String inputWinningNumber = inputView.inputWinningNumber();
+        winningLotto.setLotto(inputWinningNumber);
+    }
+
+
 
     private LottoGroup getLottoGroup(Money money) {
         LottoGroup lottoGroup = LottoGroup.from(money);

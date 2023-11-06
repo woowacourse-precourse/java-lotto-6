@@ -18,18 +18,11 @@ public class WinningLotto {
     private Lotto lotto;
     private BonusNumber bonusNumber;
 
-    private WinningLotto(String inputWinningNumbers, String inputBonusNumber) {
-        List<String> dividedByDelimiter = divideByDelimiter(inputWinningNumbers);
-        List<Integer> winningNumbers = generateWinningNumbers(dividedByDelimiter);
-        BonusNumber number = BonusNumber.from(inputBonusNumber);
-        isBonusNumberInWinningNumbers(winningNumbers, number);
-
-        this.lotto = Lotto.from(winningNumbers);
-        this.bonusNumber = number;
+    private WinningLotto() {
     }
 
-    public static WinningLotto of(String inputWinningNumbers, String inputBonusNumber) {
-        return new WinningLotto(inputWinningNumbers, inputBonusNumber);
+    public static WinningLotto of(){
+        return new WinningLotto();
     }
 
     public Lotto getLotto() {
@@ -38,6 +31,20 @@ public class WinningLotto {
 
     public BonusNumber getBonusNumber() {
         return bonusNumber;
+    }
+
+    public void setLotto(String inputWinningNumbers) {
+        List<String> dividedByDelimiter = divideByDelimiter(inputWinningNumbers);
+        List<Integer> winningNumbers = generateWinningNumbers(dividedByDelimiter);
+
+        this.lotto = Lotto.from(winningNumbers);
+    }
+
+    public void setBonusNumber(String inputBonusNumber) {
+        BonusNumber number = BonusNumber.from(inputBonusNumber);
+        isBonusNumberInWinningNumbers(lotto.getNumbers(), number);
+
+        this.bonusNumber = number;
     }
 
     private List<String> divideByDelimiter(String inputWinningNumbers) {

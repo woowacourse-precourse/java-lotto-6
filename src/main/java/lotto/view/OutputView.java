@@ -4,7 +4,7 @@ import static java.lang.String.format;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constants.LottoPrize;
+import lotto.model.LottoPrize;
 import lotto.model.Lotto;
 import lotto.model.UserLotteries;
 

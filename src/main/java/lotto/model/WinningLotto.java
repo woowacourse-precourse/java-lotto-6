@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.constants.LottoPrize;
-
 public class WinningLotto {
 
     private final Lotto lotto;

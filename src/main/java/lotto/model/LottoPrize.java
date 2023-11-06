@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.model;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;

@@ -7,12 +7,12 @@ import lotto.validation.PurchaseAmountValidator;
 
 public class InputView {
 
-    private final PurchaseAmountValidator purchaseAmountValidator;
-    private final LottoNumberValidator lottoNumberValidator;
-
     private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입 금액을 입력해주세요.";
     private static final String INPUT_DRAWN_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBERS_MESSAGE = "보너스 번호를 입력해 주세요.";
+
+    private final PurchaseAmountValidator purchaseAmountValidator;
+    private final LottoNumberValidator lottoNumberValidator;
 
     public InputView() {
         this.purchaseAmountValidator = new PurchaseAmountValidator();

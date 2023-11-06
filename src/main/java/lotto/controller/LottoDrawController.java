@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constants.LottoPrize;
+import lotto.model.LottoPrize;
 import lotto.factory.LottoFactory;
 import lotto.factory.UserLotteriesFactory;
 import lotto.factory.WinningLottoFactory;

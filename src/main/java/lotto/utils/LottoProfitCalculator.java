@@ -1,7 +1,7 @@
 package lotto.utils;
 
 import java.util.Map;
-import lotto.constants.LottoPrize;
+import lotto.model.LottoPrize;
 
 public class LottoProfitCalculator {
 

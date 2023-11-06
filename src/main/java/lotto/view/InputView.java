@@ -1,31 +1,49 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.model.SystemConstant.DataType.INTEGER;
+import static lotto.model.SystemConstant.DataType.INTEGER_LIST;
+import static lotto.model.SystemConstant.DataType.LONG;
 import static lotto.view.ErrorMessage.NOT_LIST;
 import static lotto.view.ErrorMessage.NOT_NUMBER;
 
+import lotto.model.SystemConstant.DataType;
+
 public class InputView {
-    // 구입가격 입력관련
-    public static String inputLongData() {
+    public static String inputData(DataType type) {
         String input = readLine();
-        validateParseLong(input);
+        validateData(input, type);
         return input;
     }
 
-    private static void validateParseLong(String input) {
+    private static void validateData(String input, DataType type) {
+        if (type == INTEGER || type == LONG) {
+            validateParseNumber(input, type);
+        }
+        if (type == INTEGER_LIST) {
+            validateConvertIntegerList(input);
+        }
+    }
+
+    // 구매 금액, 보너스 관련
+    private static void validateParseNumber(String input, DataType type) {
         try {
-            Long.parseLong(input);
+            convertStringToNumber(input, type);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
     }
 
-    // 당첨 번호 입력 관련
-    public static String inputIntegerListData() {
-        String input = readLine();
-        validateConvertIntegerList(input);
-        return input;
+    private static void convertStringToNumber(String input, DataType type) {
+        if (type == INTEGER) {
+            Integer.parseInt(input);
+        }
+        if (type == LONG) {
+            Long.parseLong(input);
+        }
     }
+
+    // 당첨 번호 입력 관련
 
     private static void validateConvertIntegerList(String input) {
         validateFormat(input);
@@ -36,31 +54,11 @@ public class InputView {
         if (input.charAt(0) == ',' || input.charAt(input.length() - 1) == ',') {
             throw new IllegalArgumentException(NOT_LIST.getMessage());
         }
-
     }
 
     private static void validateElementIsInteger(String input) {
         for (String element : input.split(",")) {
-            try {
-                Integer.parseInt(element);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(NOT_LIST.getMessage());
-            }
-        }
-    }
-
-    // 보너스 번호 입력관련
-    public static String inputIntegerData() {
-        String input = readLine();
-        validateParseInteger(input);
-        return input;
-    }
-
-    private static void validateParseInteger(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
+            validateParseNumber(element, INTEGER);
         }
     }
 }

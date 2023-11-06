@@ -5,6 +5,9 @@ import static lotto.model.Rank.FIRST;
 import static lotto.model.Rank.FOURTH;
 import static lotto.model.Rank.SECOND;
 import static lotto.model.Rank.THIRD;
+import static lotto.model.SystemConstant.DataType.INTEGER;
+import static lotto.model.SystemConstant.DataType.INTEGER_LIST;
+import static lotto.model.SystemConstant.DataType.LONG;
 import static lotto.model.SystemConstant.MAX_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.MIN_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.NUM_OF_NUMBERS;
@@ -38,7 +41,7 @@ public class UnifiedController {
         boolean valid = false;
         while (!valid) {
             try {
-                Register.money = new Money(Long.parseLong(InputView.inputLongData()));
+                Register.money = new Money(Long.parseLong(InputView.inputData(LONG)));
                 valid = true;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);
@@ -65,7 +68,7 @@ public class UnifiedController {
         boolean valid = false;
         while (!valid) {
             try {
-                Register.firstPrizeLotto = new Lotto(covertElementStringToInteger(InputView.inputIntegerListData()));
+                Register.firstPrizeLotto = new Lotto(covertElementStringToInteger(InputView.inputData(INTEGER_LIST)));
                 valid = true;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);
@@ -87,7 +90,7 @@ public class UnifiedController {
         while (!valid) {
             try {
                 Set<Integer> firstPrizeNumbers = new HashSet<>(Register.firstPrizeLotto.getNumbers());
-                Register.bonus = new Bonus(Integer.parseInt(InputView.inputIntegerData()), firstPrizeNumbers);
+                Register.bonus = new Bonus(Integer.parseInt(InputView.inputData(INTEGER)), firstPrizeNumbers);
                 valid = true;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);

@@ -49,4 +49,11 @@ public class Lotto {
                 .distinct()
                 .count();
     }
+
+    public List<Integer> getSortedNumbers() {
+        return this.numbers
+                .stream()
+                .sorted()
+                .toList();
+    }
 }

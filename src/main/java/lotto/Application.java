@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import java.lang.Math;
 import java.text.DecimalFormat;
 

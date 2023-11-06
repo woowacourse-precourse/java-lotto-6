@@ -31,17 +31,15 @@ public class LottoGame {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<Integer> numbers = Arrays.stream((input.split(","))).map(Integer::valueOf).toList();
-        Lotto lotto = new Lotto(numbers);
 
-        return lotto;
+        return new Lotto(numbers);
     }
 
     // 보너스 번호 입력
     public int inputBonusNumber(){
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        int bonus = Integer.parseInt(Console.readLine().strip());
 
-        return bonus;
+        return Integer.parseInt(Console.readLine().strip());
     }
 
     // 당첨 번호 비교

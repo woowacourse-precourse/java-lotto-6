@@ -35,4 +35,14 @@ public class Input {
         } while (result.size() != 6);
         return result;
     }
+
+    public int bonusNumber() {
+        int result;
+        do {
+            output.bonusNumberAsk();
+            String bonus_string = readLine();
+            result = except.bonusCheck(bonus_string);
+        } while (result < 1);
+        return result;
+    }
 }

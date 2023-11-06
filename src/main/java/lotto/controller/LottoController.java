@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,7 +8,7 @@ import java.util.List;
 
 public class LottoController {
     public void run() {
-        Money money = getMoney();
+        Money money = getInputMoney();
         Lottos lottos = getLottos(money.getTicket());
 
         OutputView.printBuyLotto(money);
@@ -23,18 +22,9 @@ public class LottoController {
         OutputView.printResult(rankResult, rate);
     }
 
-    private String inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
-    }
-
-    private int convertMoney(String input) {
-        return Integer.parseInt(input);
-    }
-
-    private Money getMoney() {
-        int money = convertMoney(inputMoney());
-        return new Money(money);
+    private Money getInputMoney() {
+        InputView inputView = new InputView();
+        return inputView.getInputMoney();
     }
 
     private Lottos getLottos(int ticket) {

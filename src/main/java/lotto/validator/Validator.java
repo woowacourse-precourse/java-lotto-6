@@ -58,5 +58,9 @@ public class Validator {
         }
     }
 
+    public static void isBonusNumberValid(String input) {
+        isInputEmpty(input);
+        isNumeric(input);
+    }
 
 }

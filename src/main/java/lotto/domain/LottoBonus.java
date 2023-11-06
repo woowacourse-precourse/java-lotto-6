@@ -17,5 +17,5 @@ public class LottoBonus {
             throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE_ERROR);
         }
     }
-    
+
 }

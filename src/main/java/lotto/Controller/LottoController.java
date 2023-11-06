@@ -8,6 +8,7 @@ import static lotto.validator.Validator.isWinningNumberValid;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.LottoBonus;
 
 public class LottoController {
     public static final int LOTTO_PRICE = 1000;
@@ -47,7 +48,11 @@ public class LottoController {
         }
     }
 
-    public int requestBonusNumber() {
+    public LottoBonus requestBonusNumber() {
+        try{
+            System.out.println(REQUEST_BONUS_NUMBER);
+            String userInput = Console.readLine();
 
+        }
     }
 }

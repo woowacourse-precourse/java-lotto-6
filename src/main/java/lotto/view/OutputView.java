@@ -4,8 +4,8 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import lotto.dto.LottoResult;
 import lotto.dto.LottosResult;
-import lotto.dto.Result;
-import lotto.dto.Results;
+import lotto.dto.TotalResult;
+import lotto.dto.TotalResults;
 
 public class OutputView {
     private static final String PRINT_LOTTO_MESSAGE = "%d개를 구매했습니다.";
@@ -21,28 +21,28 @@ public class OutputView {
         }
     }
 
-    public void printResults(Results results) {
+    public void printResults(TotalResults totalResults) {
         System.out.println(PRINT_RESULTS_MESSAGE);
-        for (Result result : results.results()) {
-            if (result.isBonus()) {
-                printBonusResult(result);
+        for (TotalResult totalResult : totalResults.totalResults()) {
+            if (totalResult.isBonus()) {
+                printBonusResult(totalResult);
                 continue;
             }
-            printResult(result);
+            printResult(totalResult);
         }
-        System.out.println(PRINT_RATE_OF_RETURN_MESSAGE.formatted(results.rateOfReturn()));
+        System.out.println(PRINT_RATE_OF_RETURN_MESSAGE.formatted(totalResults.rateOfReturn()));
     }
 
-    private void printBonusResult(Result result) {
-        String formattedAmounts = getFormattedAmounts(result.amounts());
-        System.out.println(PRINT_BONUS_RESULT_MESSAGE.formatted(result.matchCount(), formattedAmounts,
-                result.winningLottoCount()));
+    private void printBonusResult(TotalResult totalResult) {
+        String formattedAmounts = getFormattedAmounts(totalResult.amounts());
+        System.out.println(PRINT_BONUS_RESULT_MESSAGE.formatted(totalResult.matchCount(), formattedAmounts,
+                totalResult.winningLottoCount()));
     }
 
-    private void printResult(Result result) {
-        String formattedAmounts = getFormattedAmounts(result.amounts());
-        System.out.println(PRINT_RESULT_MESSAGE.formatted(result.matchCount(), formattedAmounts,
-                result.winningLottoCount()));
+    private void printResult(TotalResult totalResult) {
+        String formattedAmounts = getFormattedAmounts(totalResult.amounts());
+        System.out.println(PRINT_RESULT_MESSAGE.formatted(totalResult.matchCount(), formattedAmounts,
+                totalResult.winningLottoCount()));
     }
 
     private String getFormattedAmounts(int amounts) {

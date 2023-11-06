@@ -5,7 +5,7 @@ import static lotto.model.Lotto.generateLotto;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.LottosResult;
-import lotto.dto.Results;
+import lotto.dto.TotalResults;
 import lotto.generator.NumberGenerator;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
@@ -34,7 +34,7 @@ public class LottoController {
 
         User user = createUser();
         WinningLottos winningLottos = new WinningLottos(lottos.getWinningLottos(user));
-        outputView.printResults(Results.of(winningLottos, getRateOfReturn(amounts, winningLottos)));
+        outputView.printResults(TotalResults.of(winningLottos, getRateOfReturn(amounts, winningLottos)));
     }
 
     private int getLottoCount(int amounts) {

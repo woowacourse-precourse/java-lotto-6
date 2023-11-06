@@ -23,6 +23,10 @@ public class Censor {
     }
 
     public static String commonValid(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException(INPUT_SPACE_ERROR.getContent());
+        }
+
         if (input.isBlank()) {
             throw new IllegalArgumentException(INPUT_SPACE_ERROR.getContent());
         }

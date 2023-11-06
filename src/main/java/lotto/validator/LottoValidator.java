@@ -23,7 +23,10 @@ public class LottoValidator{
     }
 
     private static void validateDuplicate(List<Integer> numbers){
-       if (numbers.stream().count() != LOTTO_SIZE) {
+        long duplicateCount = numbers.stream()
+                .distinct()
+                .count();
+       if (duplicateCount != LOTTO_SIZE) {
            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복 숫자가 존재합니다.");
        }
     }

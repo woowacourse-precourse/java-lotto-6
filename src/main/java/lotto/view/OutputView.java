@@ -8,6 +8,7 @@ public class OutputView {
 
     private static final String PURCHASE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String QUANTITY_OUTPUT_MESSAGE = "개를 구매했습니다.";
+    private static final String WIN_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     public void printPurchaseInput() {
         System.out.println(PURCHASE_INPUT_MESSAGE);
@@ -36,5 +37,9 @@ public class OutputView {
         return lottoNumber.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
+    }
+
+    public void printWinNumberInput() {
+        System.out.println(WIN_NUMBER_INPUT_MESSAGE);
     }
 }

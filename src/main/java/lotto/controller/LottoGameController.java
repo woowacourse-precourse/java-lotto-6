@@ -21,7 +21,23 @@ public class LottoGameController {
     }
 
     public void run() {
-        buyLotto();
+        Player player = buyLotto();
+        setWinNumber();
+    }
+
+    private void setWinNumber() {
+        try {
+            outputView.printWinNumberInput();
+            WinNumber winNumber = WinNumber.of(input());
+            winNumber.getWinNumber().stream()
+                    .forEach((num) -> System.out.print(num + " "));
+        } catch (NumberFormatException e) {
+            errorView.printErrorMessage("숫자 형식이 아닙니다.");
+            setWinNumber();
+        } catch (IllegalArgumentException e) {
+            errorView.printErrorMessage(e.getMessage());
+            buyLotto();
+        }
     }
 
     private Player buyLotto() {

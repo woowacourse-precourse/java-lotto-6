@@ -40,6 +40,7 @@ public enum Ranking {
     @Override
     public String toString() {
         if (rank == 2) return String.format(Constants.PRINT_SECOND_PLACE, matchCount, prize);
+
         return String.format(Constants.PRINT_RANKING, matchCount, prize);
     }
 }

@@ -1,7 +1,6 @@
 package lotto.utils;
 
-import static lotto.utils.CalculationUtils.hasDuplicates;
-import static lotto.utils.CalculationUtils.isNumberInRange;
+import static lotto.utils.CalculationUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
@@ -71,6 +70,34 @@ class CalculationUtilsTest {
 
         // then
         assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("기능32 테스트 : isDivisible 메서드는 목표숫자가 나누어 떨어지면 true를 반환한다.")
+    void isDivisibleShouldReturnTrueWhenDivisible() {
+        // given
+        int target = 1000;
+        int divisor = 1000;
+
+        // when
+        boolean result = isDivisible(target, divisor);
+
+        // then
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("기능32 테스트 : isDivisible 메서드는 목표숫자가 나누어 떨어지지 않으면 false를 반환한다.")
+    void isDivisibleShouldReturnTrueWhenUnDivisible() {
+        // given
+        int target = 1001;
+        int divisor = 1000;
+
+        // when
+        boolean result = isDivisible(target, divisor);
+
+        // then
+        assertThat(result).isEqualTo(false);
     }
 
 }

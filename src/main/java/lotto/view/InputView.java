@@ -65,8 +65,15 @@ public class InputView {
 
     public String inputBonusWinningNumber(String[] existingNumbers) {
         String inputBonusWinningNumber;
-        inputBonusWinningNumber = Console.readLine();
-        validateInputBonusWinningNumber(inputBonusWinningNumber,existingNumbers);
+        while (true) {
+            inputBonusWinningNumber = Console.readLine();
+            try {
+                validateInputBonusWinningNumber(inputBonusWinningNumber,existingNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return inputBonusWinningNumber;
     }
 

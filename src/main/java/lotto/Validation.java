@@ -25,6 +25,8 @@ public class Validation {
     }
 
     private static void validateDivideBy1000(int money){
-
+        if (money % 1000 != 0){
+            throw new IllegalArgumentException(INPUT_NOT_DIVIDE_EXCEPTION_MSG);
+        }
     }
 }

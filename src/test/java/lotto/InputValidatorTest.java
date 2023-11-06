@@ -3,14 +3,21 @@ package lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.controller.InputValidator;
 import lotto.util.ErrorConstants;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputValidatorTest {
     List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+    @AfterEach
+    void restoreSystemIn() {
+        Console.close();
+    }
 
     @Test
     @DisplayName("구입 금액이 숫자가 아닐 때 예외를 던진다")

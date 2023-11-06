@@ -11,6 +11,9 @@ public enum ErrorCode {
 
     // LottoNumber
     LOTTO_NUMBER_INVALID_RANGE("당첨 번호는 1 이상 45 이하의 숫자를 입력해 주세요."),
+
+    // WinningNumbers
+    WINNING_NUMBERS_INVALID_SIZE("당첨 번호는 6개의 숫자를 입력해 주세요."),
     ;
 
     private static final String PREFIX_ERROR_MESSAGE = "[ERROR] ";

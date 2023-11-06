@@ -25,7 +25,8 @@ public class CalculateLottoTest {
     @Test
     void 수익률_계산_확인(){
         assertEquals(62.5, calculateLotto.roi(5000, 8000));
-        assertEquals(285.71, calculateLotto.roi(20000, 7000));
+        assertEquals(285.7, calculateLotto.roi(20000, 7000));
+        assertEquals(28571428.6, calculateLotto.roi(2_000_000_000, 7000));
     }
 
     @Test
@@ -46,5 +47,14 @@ public class CalculateLottoTest {
                 55,0
         );
         assertEquals(1_510_000, calculateLotto.getProfit(matchMap2));
+
+        Map<Integer, Integer> matchMap3 = Map.of(
+                3,0,
+                4,0,
+                5,0,
+                6,1,
+                55,0
+        );
+        assertEquals(2_000_000_000, calculateLotto.getProfit(matchMap3));
     }
 }

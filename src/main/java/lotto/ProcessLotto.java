@@ -28,7 +28,7 @@ public class ProcessLotto {
                 success = true;
             }
             catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage()+"\n");
                 outputView.askPurchaseAmount();
             }
         }
@@ -84,17 +84,15 @@ public class ProcessLotto {
         countMap.put(6, 0);
         
         // TODO: 클래스 만들기
-        int cnt = 0;
         for (Lotto nums: lottos){
             if (calculateLotto.checkBonus(nums.getNumbers(), winningNums, bonusNum)){
                 countMap.put(55, countMap.get(55)+1);
                 continue;
             }
-            cnt = calculateLotto.checkMatch(nums.getNumbers(), winningNums);
+            int cnt = calculateLotto.checkMatch(nums.getNumbers(), winningNums);
             if (cnt > 2){
                 countMap.put(cnt, countMap.get(cnt)+1);
             }
-
         }
 
         outputView.print3Matchs(countMap.get(3));

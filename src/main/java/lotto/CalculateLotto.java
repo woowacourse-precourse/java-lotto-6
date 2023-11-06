@@ -19,7 +19,7 @@ public class CalculateLotto {
 
     public double roi(double investment, double current){
         double result = investment/current * 100;
-        return Math.round(result*100)/100.0;
+        return Math.round(result*10)/10.0;
     }
 
     public int getProfit(Map<Integer, Integer> matchMap){

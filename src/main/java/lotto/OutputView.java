@@ -1,5 +1,6 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,7 +51,8 @@ public class OutputView {
     }
 
     public void printProfit(double profit){
-        System.out.println("총 수익률은 "+profit+"%입니다.");
+        BigDecimal bigDecimal = new BigDecimal(Double.parseDouble(Double.toString(profit)));
+        System.out.println("총 수익률은 "+String.format("%,.1f", bigDecimal)+"%입니다.");
     }
 
 }

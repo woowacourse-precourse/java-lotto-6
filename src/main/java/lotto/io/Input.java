@@ -23,4 +23,12 @@ public class Input {
         InputValidator.validateWinningNumbers(winningNumbers);
         return winningNumbers;
     }
+
+    public static int bonusNumber() {
+        String input = Console.readLine();
+        InputValidator.validateInteger(input);
+        int bonusNumber = Integer.parseInt(input);
+        InputValidator.validateLottoNumberRange(bonusNumber);
+        return bonusNumber;
+    }
 }

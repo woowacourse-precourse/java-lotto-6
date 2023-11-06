@@ -60,17 +60,13 @@ public class ValidateException {
 //
 //        throw new NumberFormatException("[ERROR] 처음 또는 끝이 ',' 입니다.");
 //    }
-//
-//    public static void hasConsecutiveEmptyValues(String strLine) {
-//        String[] parts = strLine.split(",");
-//        boolean hasEmpty = false;
-//
-//        for (int i = 0; i < parts.length - 1; i++) {
-//            if (parts[i].isEmpty() && parts[i + 1].isEmpty()) {
-//                throw new NumberFormatException("[ERROR] ',,' 쉼표 사이에 숫자가 없습니다.");
-//            }
-//        }
-//    }
+
+    public static void hasConsecutiveEmptyValues(String strLine) {
+        if (strLine.contains(",,")) {
+            throw new IllegalArgumentException("[ERROR] 문자열 \",,\" 사이에 숫자가 없습니다.");
+        }
+    }
+
 
     public static Boolean blankCheck(String strLine) {
         if (!strLine.equals(NOTING_STRING)) {

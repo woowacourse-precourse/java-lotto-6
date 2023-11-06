@@ -75,7 +75,7 @@ public class LottoGame {
     }
 
     public Double getEarningRate(Integer money,Integer sumOfPrizeMoney) {
-        Double earningRate = Double.valueOf(sumOfPrizeMoney/money) * 100;
+        Double earningRate = Double.valueOf(sumOfPrizeMoney)  / Double.valueOf(money)  * 100;
         return Double.valueOf(Math.round(earningRate * 10)) / 10;
     }
 }

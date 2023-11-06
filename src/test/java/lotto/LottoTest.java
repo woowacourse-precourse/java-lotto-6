@@ -24,6 +24,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest(name = "로또 번호 : {0}")
+    @ArgumentsSource(LottoNumberRangeNotMatchArgumentsProvider.class)
+    @DisplayName("로또 번호는 1 ~ 45 사이가 아니라면 예외가 발생한다.")
+    void createLottoByNotMatchNumberRange(final List<Integer> numbers) {
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {

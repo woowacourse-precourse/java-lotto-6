@@ -13,10 +13,11 @@ public class LottoStore {
         this.numberGenerator = numberGenerator;
     }
 
-    public List<Lotto> purchaseLottoNumbers(int money) {
+    public List<Lotto> receiveLottoNumbers(int money) {
         int quantity = calculateLottoNumberByMoney(money);
         return createLottoNumbers(quantity);
     }
+
     public List<Lotto> createLottoNumbers(int quantity) {
         List<Lotto> lottos = new ArrayList<>();
         int lottoCount = 0;

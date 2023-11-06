@@ -16,6 +16,10 @@ public class OutputMessage {
         System.out.println(numbers);
     }
 
+    public static void showYield(double yield) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", yield);
+    }
+
     public static void showLottoResult(Map<Rank, Integer> resultRank) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
@@ -23,6 +27,6 @@ public class OutputMessage {
         System.out.printf("4개 일치 (50,000원) - %d개\n", resultRank.get(Rank.FORTH));
         System.out.printf("5개 일치 (1,500,000원) - %d개\n", resultRank.get(Rank.THIRD));
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", resultRank.get(Rank.SECOND));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개", resultRank.get(Rank.FIRST));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", resultRank.get(Rank.FIRST));
     }
 }

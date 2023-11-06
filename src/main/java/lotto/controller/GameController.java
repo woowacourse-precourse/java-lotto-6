@@ -31,6 +31,7 @@ public class GameController {
     private void gameResult() {
         Service.resultLotteries(buyer, gameNumbers);
         OutputMessage.showLottoResult(buyer.getResultRank());
+        OutputMessage.showYield(Service.getYield(buyer));
     }
 
     private int getInputPurchaseAmount() {

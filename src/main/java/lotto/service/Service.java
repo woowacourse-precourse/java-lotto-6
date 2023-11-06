@@ -15,6 +15,7 @@ public class Service {
     private static final int EXCEPT_NO_RANK = 3;
     private static final int ZERO = 0;
     private static final int ONE = 1;
+    private static final int HUNDRED = 100;
     private static final int PURCHASE_AMOUNT_UNIT = 1000;
 
     private Service() {
@@ -27,6 +28,28 @@ public class Service {
         }
     }
 
+    public static void resultLotteries(Buyer buyer, GameNumbers gameNumbers) {
+        Map<Rank, Integer> result = buyer.getResultRank();
+        for (Lotto lotto : buyer.getPurchasedLotto()) {
+            Rank rank = decideRank(gameNumbers, lotto);
+            if (rank != null) {
+                result.put(rank, result.getOrDefault(rank, ZERO) + ONE);
+            }
+        }
+    }
+
+    public static double getYield(Buyer buyer) {
+        return (double) getTotalPrize(buyer.getResultRank()) / buyer.getPurchaseAmount() * HUNDRED;
+    }
+
+    private static int getTotalPrize(Map<Rank, Integer> resultRank) {
+        int totalPrize = ZERO;
+        for (Rank rank : resultRank.keySet()) {
+            totalPrize += rank.getPrize() * resultRank.get(rank);
+        }
+        return totalPrize;
+    }
+
     private static void buyOneLotto(Buyer buyer) {
         Lotto lotto = createLottoNumber();
         buyer.buyLotto(lotto);
@@ -36,14 +59,6 @@ public class Service {
         List<Integer> numbers = Util.sortListAscending(Util.createRandomNumberList(Service.LOTTO_FIRST_NUMBER,
                 Service.LOTTO_LAST_NUMBER, Service.LOTTO_SIZE));
         return new Lotto(numbers);
-    }
-
-    public static void resultLotteries(Buyer buyer, GameNumbers gameNumbers) {
-        Map<Rank, Integer> result = buyer.getResultRank();
-        for (Lotto lotto : buyer.getPurchasedLotto()) {
-            Rank rank = decideRank(gameNumbers, lotto);
-            result.put(rank, result.getOrDefault(rank, ZERO) + ONE);
-        }
     }
 
     private static Rank decideRank(GameNumbers gameNumbers, Lotto lotto) {

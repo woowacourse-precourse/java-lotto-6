@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class MoneyTest {
 
     @Test
-    @DisplayName("money 나누기 1000원 한 값을 quantity로 반환한다")
+    @DisplayName("money 나누기 1000원 한 값을 quantity로 반환한다.")
     void getQuantityTest() {
         //given
         Money money = new Money(1000);

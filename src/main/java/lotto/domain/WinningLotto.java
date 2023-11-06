@@ -10,6 +10,10 @@ public class WinningLotto {
         winningLotto = makeWinningLotto();
     }
 
+    public WinningLotto(Lotto lotto){
+        winningLotto = lotto;
+    }
+
     public boolean contains(int number) {
         return winningLotto.contains(number);
     }

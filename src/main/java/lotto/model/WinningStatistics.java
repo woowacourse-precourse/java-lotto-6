@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -67,8 +68,9 @@ public class WinningStatistics {
     }
 
     private String profitRateToString() {
-        double roundedProfitRate = Math.round(profitRate) / 10.0;
-
+        String pattern = "#.##";
+        DecimalFormat profitRateFormat = new DecimalFormat(pattern);
+        String roundedProfitRate = profitRateFormat.format(profitRate);
         return "총 수익률은 " + roundedProfitRate + "%입니다. ";
     }
 

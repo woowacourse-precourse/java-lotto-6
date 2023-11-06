@@ -1,7 +1,9 @@
-package lotto;
+package lotto.model;
 
 import static lotto.config.RuleConfig.BASE_LOTTO_PRICE;
 import static lotto.config.RuleConfig.MAX_LOTTO_COUNT;
+
+import lotto.utils.ErrorMessages;
 
 
 public class LottoPurchaseManager {

@@ -1,7 +1,6 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.Messages;
+import lotto.utils.Messages;
 import lotto.utils.Printer;
 import lotto.utils.Reader;
 

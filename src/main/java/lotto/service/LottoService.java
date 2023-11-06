@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.RankGroup.increaseResult;
+import static lotto.model.RankGroup.increaseResult;
 import static lotto.config.RuleConfig.BASE_LOTTO_PRICE;
 import static lotto.config.RuleConfig.MAX_LOTTO_NUM;
 import static lotto.config.RuleConfig.MIN_LOTTO_NUM;
@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import lotto.Lotto;
-import lotto.RankGroup;
-import lotto.WinningLotto;
+import lotto.model.Lotto;
+import lotto.model.RankGroup;
+import lotto.model.WinningLotto;
 
 public class LottoService {
     public List<Lotto> myLotto = new ArrayList<>();

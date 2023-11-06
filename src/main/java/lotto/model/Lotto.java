@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.utils.ErrorMessages;
 
 public class Lotto {
     private final List<Integer> numbers;

@@ -2,8 +2,8 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import lotto.Lotto;
-import lotto.RankGroup;
+import lotto.model.Lotto;
+import lotto.model.RankGroup;
 import lotto.utils.Printer;
 
 public class OutputView {

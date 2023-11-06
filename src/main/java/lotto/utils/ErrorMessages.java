@@ -1,4 +1,4 @@
-package lotto;
+package lotto.utils;
 
 import static lotto.config.RuleConfig.BASE_LOTTO_PRICE;
 

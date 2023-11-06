@@ -1,8 +1,8 @@
 package lotto.controller;
 
 
-import lotto.LottoPurchaseManager;
-import lotto.Messages;
+import lotto.model.LottoPurchaseManager;
+import lotto.utils.Messages;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum RankTemplate {
     FIRST("6개 일치"),

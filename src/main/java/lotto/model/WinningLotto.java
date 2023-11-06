@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static lotto.config.RuleConfig.DELIMETER;
 import static lotto.config.RuleConfig.MAX_LOTTO_NUM;
@@ -6,6 +6,7 @@ import static lotto.config.RuleConfig.MIN_LOTTO_NUM;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.utils.ErrorMessages;
 
 public class WinningLotto {
     private static WinningLotto instance;

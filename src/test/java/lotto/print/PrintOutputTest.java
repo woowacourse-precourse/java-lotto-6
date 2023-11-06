@@ -6,10 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.print.PrintOutput.printRandomLottosNumbers;
-
 class PrintOutputTest {
-
+    PrintOutput printOutput = new PrintOutput();
     @Test
     void printRandomLottosNumbersTest() {
         List<Lotto> lottos = new ArrayList<>();
@@ -20,6 +18,6 @@ class PrintOutputTest {
         lottos.add(lotto2);
         lottos.add(lotto3);
 
-        printRandomLottosNumbers(lottos);
+        printOutput.printRandomLottosNumbers(lottos);
     }
 }

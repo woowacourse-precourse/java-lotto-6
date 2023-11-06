@@ -6,6 +6,8 @@ import java.util.Set;
 import lotto.util.SortedRandomNumberGenerator;
 
 public class WinningLotto {
+    public static final String INVALID_RANGE_MESSAGE = String.format("로또 번호의 숫자 범위는 %d~%d까지입니다.", SortedRandomNumberGenerator.START_RANGE, SortedRandomNumberGenerator.END_RANGE);
+    public static final String DUPLICATE_NUMBER_MESSAGE = "숫자가 중복되지 않아야 합니다.";
     private final Lotto winningNumber;
     private int bonusNumber;
 
@@ -27,7 +29,7 @@ public class WinningLotto {
         return bonusNumber;
     }
 
-    public void validateWinningNumber(List<Integer> winningNumber) {
+    public static void validateWinningNumber(List<Integer> winningNumber) {
         for (int number : winningNumber) {
             validateNumberRange(number);
         }
@@ -39,22 +41,22 @@ public class WinningLotto {
         validateDuplicate(bonusNumber);
     }
 
-    private void validateNumberRange(int number) {
+    private static void validateNumberRange(int number) {
         if (number < SortedRandomNumberGenerator.START_RANGE || number > SortedRandomNumberGenerator.END_RANGE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_RANGE_MESSAGE);
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
+    private static void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() < numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_MESSAGE);
         }
     }
 
     private void validateDuplicate(int number) {
         if (winningNumber.contains(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_MESSAGE);
         }
     }
 }

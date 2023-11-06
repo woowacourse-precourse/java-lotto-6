@@ -17,7 +17,7 @@ public class UI {
 			System.out.println();
 			return lottoService.getNumberOfLottoTickets(cost);
 		} catch (IllegalArgumentException e) {
-			System.out.println(ErrorCode.IS_NOT_COMPOSED_OF_NUMBERS.getErrorMessage());
+			System.out.println(e.getMessage());
 			return inputMoney();
 		}
 	}

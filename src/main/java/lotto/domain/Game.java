@@ -1,23 +1,25 @@
 package lotto.domain;
 
-import lotto.controller.Prompter;
+import lotto.controller.Prompt;
 import lotto.view.Message;
 import lotto.enums.Ranking;
 import lotto.utils.StateChecker;
 
+import java.util.Arrays;
 import java.util.Map;
+import java.util.Objects;
 
 public class Game {
     private final Message message;
-    private final Prompter prompter;
+    private final Prompt prompter;
     private final LottoMachine lottoMachine;
     private Player player;
     private WinningLotto winningLotto;
     private LottoResult lottoResult;
 
-    public Game(Message message, Prompter prompter) {
+    public Game(Message message, Prompt prompt) {
         this.message = message;
-        this.prompter = prompter;
+        this.prompter = prompt;
         this.lottoMachine = new LottoMachine();
     }
 

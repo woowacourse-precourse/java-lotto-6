@@ -4,24 +4,25 @@ import lotto.domain.Lotto;
 import lotto.view.Message;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
-import lotto.utils.Reader;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class Prompter {
-    private static final String REGEX = ",";
-    private static final int NO_LIMIT = -1;
+public class Prompt {
+    private final Reader reader;
+    private final Parser parser;
     private final Message message;
 
-    public Prompter(Message message) {
+    public Prompt(Reader reader, Parser parser, Message message) {
+        this.reader = reader;
+        this.parser = parser;
         this.message = message;
     }
 
     public Money promptMoney() {
         try {
             message.promptMoney();
-            Money money = new Money(readInteger());
+            String input = reader.readLine().strip();
+            Money money = new Money(parser.integer(input));
             message.newLine();
             return money;
         } catch (IllegalArgumentException e) {
@@ -34,7 +35,8 @@ public class Prompter {
     public WinningLotto promptWinningLotto() {
         try {
             message.promptWinningNumbers();
-            List<Integer> winningNumbers = readIntegerList(REGEX, NO_LIMIT);
+            String input = reader.readLine().strip();
+            List<Integer> winningNumbers = parser.integerList(input);
             Lotto lotto = new Lotto(winningNumbers);
             message.newLine();
             return promptBonusNumber(lotto);
@@ -48,7 +50,8 @@ public class Prompter {
     private WinningLotto promptBonusNumber(Lotto lotto) {
         try {
             message.promptBonusNumber();
-            int bonusNumber = readInteger();
+            String input = reader.readLine().strip();
+            int bonusNumber = parser.integer(input);
             WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
             message.newLine();
             return winningLotto;
@@ -57,21 +60,5 @@ public class Prompter {
             message.newLine();
             return promptBonusNumber(lotto);
         }
-    }
-
-    private int readInteger() {
-        String input = Reader.readLine().strip();
-        return Integer.parseInt(input);
-    }
-
-    private List<Integer> readIntegerList(String regex, int limit) {
-        String input = Reader.readLine();
-
-        List<Integer> numbers = Arrays.stream(input.split(regex, limit))
-                .map(String::strip)
-                .map(Integer::parseInt)
-                .toList();
-
-        return numbers;
     }
 }

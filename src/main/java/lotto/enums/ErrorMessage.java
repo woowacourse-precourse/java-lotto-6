@@ -1,4 +1,4 @@
-package lotto.message;
+package lotto.enums;
 
 public enum ErrorMessage {
     INVALID_AMOUNT_ERROR("[ERROR] 올바른 금액을 입력해주세요."),

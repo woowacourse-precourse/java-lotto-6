@@ -1,6 +1,5 @@
 package lotto.dto;
 
-import lotto.dto.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

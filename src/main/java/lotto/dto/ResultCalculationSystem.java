@@ -1,14 +1,13 @@
-package lotto;
+package lotto.dto;
 
 import lotto.dto.Lotto;
-import lotto.dto.NumberType;
+import lotto.enums.NumberType;
 import lotto.dto.Ranking;
-import lotto.message.InputGuideMessage;
 
 import java.text.DecimalFormat;
 import java.util.*;
 
-import static lotto.message.InputGuideMessage.*;
+import static lotto.enums.InputGuideMessage.*;
 
 public class ResultCalculationSystem {
     private Map<Integer, Ranking> rankingAccumulator = new HashMap<>();

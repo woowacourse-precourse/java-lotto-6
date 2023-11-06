@@ -12,12 +12,12 @@ public class InputView {
 
     public static int readPurchaseAmount() {
         String input = Console.readLine();
-        purchaseAmountValidation(input);
+        checkPurchaseAmountInput(input);
 
         return Integer.parseInt(input);
     }
 
-    private static void purchaseAmountValidation(String input) {
+    private static void checkPurchaseAmountInput(String input) {
         InputValidation.checkConvertNumber(input);
         InputValidation.checkDivideThousand(input);
         InputValidation.checkMaxRangeNumber(input);
@@ -67,6 +67,7 @@ public class InputView {
                 throw new IllegalArgumentException("[ERROR] 구매 금액은 100,000원을 넘을 수 없습니다. (100장 까지 구매 가능)");
             }
         }
+
 
     }
 }

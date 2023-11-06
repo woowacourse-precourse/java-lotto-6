@@ -25,6 +25,7 @@ public class LottoMachine {
         drawBonusNumber();
         getWinningStatistics();
         result.printWinningStatistics(winningCount);
+        result.printTotalProfit();
     }
 
     public void buyLotto() {

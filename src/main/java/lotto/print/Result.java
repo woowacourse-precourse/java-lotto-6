@@ -10,6 +10,7 @@ import lotto.util.User;
 
 public class Result {
     User user = new User();
+    int totalPrize = 0;
 
     public void printLottoNumber(List<Lotto> lottoNumbers) {
         System.out.print(user.getManyLottoTicket());
@@ -36,6 +37,7 @@ public class Result {
             rankCount = getRankCount(rank, winningCount);
             LottoRank lottoRank = findLottoRank(rank);
             printWinningResult(lottoRank, rankCount);
+            addTotalPrize(lottoRank.getPrize(), rankCount);
         }
     }
 
@@ -68,5 +70,17 @@ public class Result {
     public String formatNumber(int number) {
         String prize = String.format("%,d", number);
         return prize;
+    }
+
+    public void addTotalPrize(int prize, int rankCount){
+        totalPrize += prize * rankCount;
+    }
+
+    public void printTotalProfit(){
+        System.out.println("총 수익률은 " + getTotalProfit() + "%입니다.");
+    }
+
+    public String getTotalProfit() {
+        return String.format("%.1f", (double) totalPrize / user.getPaymentAmount());
     }
 }

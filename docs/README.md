@@ -27,7 +27,7 @@
 * 4등 : FIFTY_THOUSAND
 * 5등 : FIFTY_HUNDRED
 
-# Buyer
+# Purchaser
 각 등수에 맞는 로또 Map으로 갖고 있기
 
 # Lotto

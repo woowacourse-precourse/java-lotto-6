@@ -25,7 +25,8 @@ IDE에서 실행
 2. 당첨 번호 입력
    1. 쉼표(,)를 기준으로 6자리 입력
 3. 보너스 번호 입력
-    
+   1. 숫자 1개 입력
+
 
 ## 기능 목록
 
@@ -64,14 +65,32 @@ IDE에서 실행
 │   │   │   ├── CashManager.java
 │   │   │   ├── LottoCashManager.java 
 │   │   ├── lotto
-│   │   │   ├── Lotto.java
-│   │   │   ├── AutoLottoGenerator.java
+│   │       ├── Lotto.java
+│   │       ├── AutoLottoGenerator.java
 │   │       ├── LottoGenerator.java
-│   ├── InputOutput
-│   │   ├──  InputDataAdapter.java
-│   │   ├──  InputManager.java
-│
+│   │     
+│   ├── inputOutput
+│   │   ├──  input
+│   │   │   ├──  inputDataAdapter.java
+│   │   │   ├──  inputLotto.java
+│   │   │   ├──  inputLottoDraw.java
+│   │   ├──  output
+│   │       ├──  LottoOutput.java
+│   │       ├──  WinningOutput.java
+│   │     
+│   ├── lottoDrawMachine
+│   │   ├── LottoDrawMachine.java
+│   │   ├──  lottoDraw
+│   │       ├──  LottoDraw.java
+│   │       ├──  LottoDrawGenerator.java
+│   │     
+│   ├── winningManager
+│       ├── WinningManager.java
+│       ├── WinningCheck.java
+│       ├── RateOfReturn.java
+│        
 ├── constants
-    └──  LottoConstants
+    ├── InputOutputConstants.java
+    └── LottoConstants.java
 ``` 
 

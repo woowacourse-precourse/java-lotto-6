@@ -11,6 +11,7 @@ public class InputView {
     }
 
     public String inputWinningLotto() {
+        System.out.println();
         System.out.println(LOTTO_INPUT);
         return Console.readLine();
     }

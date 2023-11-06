@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Customer;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -33,5 +34,16 @@ public class GameController {
         List<String> texts = customer.getLottoTexts();
 
         output.printLottoNumAndNumbers(num, texts);
+        createWinningLotto();
+    }
+
+    private void createWinningLotto() {
+        try {
+            String result = input.inputWinningLotto();
+            WinningLotto lotto = new WinningLotto(List.of(result.split(",")));
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            createWinningLotto();
+        }
     }
 }

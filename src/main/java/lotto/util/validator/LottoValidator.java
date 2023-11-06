@@ -1,7 +1,7 @@
 package lotto.util.validator;
 
 import java.util.List;
-import lotto.util.enums.LottoNumberRange;
+import lotto.util.enumerator.LottoNumberRange;
 import lotto.util.ExceptionMessage;
 import lotto.util.Util;
 

@@ -3,7 +3,7 @@ package lotto.domain.repository;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.LottoResult;
-import lotto.util.enums.LottoRank;
+import lotto.util.enumerator.LottoRank;
 
 public class LottoResultRepository {
     private static final int DEFAULT = 0;

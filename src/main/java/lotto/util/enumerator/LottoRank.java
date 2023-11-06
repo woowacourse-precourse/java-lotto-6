@@ -1,4 +1,4 @@
-package lotto.util.enums;
+package lotto.util.enumerator;
 
 public enum LottoRank {
     FIRST("6개 일치 (2,000,000,000원)"),

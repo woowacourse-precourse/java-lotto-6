@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
-import lotto.util.enums.LottoRank;
+import lotto.util.enumerator.LottoRank;
 
 public class OutputView {
     private static final String DIGIT_COMMA_WITH_BLANK = ", ";

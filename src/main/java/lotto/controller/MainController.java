@@ -9,7 +9,7 @@ import lotto.domain.repository.BonusNumberRepository;
 import lotto.domain.repository.LottoResultRepository;
 import lotto.domain.repository.WinningLottoRepository;
 import lotto.domain.service.LottoResultService;
-import lotto.util.enums.LottoRank;
+import lotto.util.enumerator.LottoRank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -40,6 +40,7 @@ public class MainController {
             List<LottoRank> ranks = LottoResultRepository.findLottoRankResults();
             outputView.outputLottoResults(ranks);
         }
+        // outputView.outputProfitRate();
     }
 
     private void inputWinningNumbers() {

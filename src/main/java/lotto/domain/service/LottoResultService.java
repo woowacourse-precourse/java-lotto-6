@@ -6,7 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.repository.BonusNumberRepository;
 import lotto.domain.repository.LottoRepository;
 import lotto.util.Util;
-import lotto.util.enums.LottoRank;
+import lotto.util.enumerator.LottoRank;
 
 public class LottoResultService {
     private static final int MATCH_THREE = 3;

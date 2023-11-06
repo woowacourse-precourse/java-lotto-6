@@ -1,4 +1,4 @@
-package lotto.util.enums;
+package lotto.util.enumerator;
 
 public enum LottoNumberRange {
     MIN_LOTTO_NUMBER(1),

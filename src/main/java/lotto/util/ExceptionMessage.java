@@ -13,7 +13,7 @@ public enum ExceptionMessage {
     BIGGER_THAN_MAX(MAXIMUM_PRICE.getPrice() + "원 이하의 로또 구입 금액을 입력해주세요."),
     NOT_DIVIDE_BY_LOTTO_PRICE(LOTTO_PRICE.getPrice() + "원 단위의 금액을 입력해주세요."),
 
-    INVALID_LONG_TYPE("올바른 형식의 숫자를 입력해주세요."),
+    INVALID_TYPE("올바른 형식의 숫자를 입력해주세요."),
 
     BLANK_LOTTO_NUMBER("공백이 아닌 문자를 입력해주세요."),
     INVALID_NUMBER_OF_LOTTO_NUMBER(COUNT_OF_LOTTO_NUMBER.getDetails() + "개의 번호를 입력해주세요."),

@@ -34,6 +34,12 @@ public class InputManager {
                 System.out.println(e.getMessage());
             }
         }
+        List<Integer> winningNumbers = getIntegers(input);
+
+        return new WinningNumbers(winningNumbers);
+    }
+
+    private static List<Integer> getIntegers(String input) {
         String[] split = input.split(",");
 
         List<Integer> winningNumbers = new ArrayList<>();
@@ -41,8 +47,7 @@ public class InputManager {
         for (int i = 0; i < split.length; i++) {
             winningNumbers.add(Integer.parseInt(split[i]));
         }
-
-        return new WinningNumbers(winningNumbers);
+        return winningNumbers;
     }
 
 

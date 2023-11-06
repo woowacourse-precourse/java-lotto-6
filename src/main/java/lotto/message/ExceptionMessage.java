@@ -1,6 +1,7 @@
 package lotto.message;
 
 public enum ExceptionMessage {
+    INPUT_EMPTY_STRING_MESSAGE("값을 입력해야 합니다."),
     INPUT_ZERO_OR_LESS_MESSAGE("0보다 크거나 같은 숫자를 입력해야 합니다."),
     INPUT_NOT_MULTIPLE_OF_UNIT_MESSAGE("%d의 배수를 입력해야 합니다."),
 

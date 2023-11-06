@@ -42,6 +42,10 @@ public class Utii {
         ValidateException.includeSpecialString(inputStringLine);
         ValidateException.zeroNum(inputStringLine);
 
+        return parseInteger(inputStringLine);
+    }
+
+    private static Integer parseInteger(String inputStringLine) {
         return Integer.valueOf(inputStringLine);
     }
 

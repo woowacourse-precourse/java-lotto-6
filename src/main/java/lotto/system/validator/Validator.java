@@ -44,7 +44,7 @@ public class Validator {
     public void validateNumberInRange(String input) {
         int number = Integer.parseInt(input);
         if (number < MIN_LOTTO_NUMBER && number > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(Validator.ExceptionMessage.NUMBER_OUT_OF_RANGE.message);
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_OUT_OF_RANGE.message);
         }
     }
 

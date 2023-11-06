@@ -1,10 +1,12 @@
 package lotto.VIew;
 
+import static lotto.Message.OutputViewMessage.EARNING_RATE;
 import static lotto.Message.OutputViewMessage.PURCHASED_LOTTO_COUNT;
 import static lotto.Message.OutputViewMessage.RESULT_WITHOUT_BONUS;
 import static lotto.Message.OutputViewMessage.RESULT_WITH_BONUS;
 import static lotto.Message.OutputViewMessage.WINNING_STATS;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.Domain.LottoGroup;
 import lotto.Domain.LottoResult.LottoResult;
@@ -31,6 +33,7 @@ public class OutputViewImpl implements OutputView {
     public void printLottoResult(LottoResult lottoResult) {
         System.out.println(WINNING_STATS.getMessage());
         List<Prize> allPrize = lottoResult.findAllPrize();
+        Collections.reverse(allPrize);
         for (Prize prize : allPrize) {
             if (prize.getAward() == 30000000) {
                 resultWithBonus(prize);
@@ -51,6 +54,6 @@ public class OutputViewImpl implements OutputView {
 
     @Override
     public void printProfitRate(float profitRate) {
-
+        System.out.println(EARNING_RATE.getMessage(profitRate));
     }
 }

@@ -22,6 +22,10 @@ public class LottoResultHandlerModel {
         checkAllWinning();
     }
 
+    public LottoResult getLottoResult() {
+        return lottoResult;
+    }
+
     public void checkAllWinning() {
         for (int i = 0; i < lottoGroup.findLottoNumbersSize(); i++) {
             Lotto lottoByIndex = lottoGroup.findLottoByIndex(i);

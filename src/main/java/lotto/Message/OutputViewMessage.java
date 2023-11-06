@@ -21,6 +21,10 @@ public enum OutputViewMessage {
         return String.format(message, numberCount, award, prizeCount);
     }
 
+    public String getMessage(int number) {
+        return String.format(message, number);
+    }
+
     public String getMessage(float number) {
         return String.format(message, number);
     }

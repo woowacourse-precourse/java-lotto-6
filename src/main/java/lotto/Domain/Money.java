@@ -12,7 +12,7 @@ public class Money {
 
     Integer money;
 
-    private Money(String inputMoney) {
+    public Money(String inputMoney) {
         hasBlank(inputMoney);
         isInteger(inputMoney);
         this.money = ConvertStringToInteger(inputMoney);

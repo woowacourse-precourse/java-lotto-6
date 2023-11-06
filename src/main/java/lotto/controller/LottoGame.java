@@ -21,5 +21,6 @@ public class LottoGame {
         lottoPlayer.buyLottos();
 
         outputView.answerForPurchase(lottoPlayer.getLottoTicketCount(), lottoPlayer.getLottoNumbers());
+        outputView.askForWinningNumbers();
     }
 }

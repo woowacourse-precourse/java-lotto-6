@@ -8,24 +8,25 @@
 - MVC 패턴 구조로 Model, Controller, View 패키지로 설계.
 - record로 구현한 DTO를 활용하여 Model과 View의 의존성 분리.
 - ENUM으로 예외 메시지, 로또 상수, 순위 상수 구현.
-- 인터페이스 NumberGenerator, Writer를 사용하여 의존성 분리.
-- LottoConfig를 활용하여 의존관계 관리 객체 생성.
+- 인터페이스 NumberGenerator 를 사용하여 의존성 분리.
+
 
 ## 패키지 구조
 ```markdown
 lotto
 ├── Application.java
-├── config
-│   └── LottoConfig.java
 ├── constant
 │   ├── LottoConstant.java
 │   └── Rank.java
 ├── controller
 │   └── LottoController.java
+├── convertor
+│   └── Convertor.java
 ├── domain
 │   ├── AnswerLotto.java
 │   ├── Lotto.java
 │   ├── LottoFactory.java
+│   ├── Money.java
 │   ├── NumberGenerator.java
 │   ├── RandomNumberGenerator.java
 │   └── Result.java
@@ -34,12 +35,11 @@ lotto
 │   └── ResultsDto.java
 ├── exception
 │   ├── ErrorMessage.java
+│   ├── InvalidTypeException.java
 │   └── LottoException.java
 └── view
-    ├── ConsoleWriter.java
-    ├── InputView.java
-    ├── OutputView.java
-    └── Writer.java
+├── InputView.java
+└── OutputView.java
 ```
 
 ## 세부 기능 목록
@@ -68,16 +68,18 @@ lotto
 - [x] 수익률 계산
 - [x] 전체 수익 계산
 - [x] 구입 금액 계산
-- #### Rank
+- #### AnswerLotto
 - [x] 등수 계산
 ### View
 - #### InputView
 - [x] 로또 구입 금액 입력 받기
-- [x] 입력값 숫자 검증
 - [x] 당첨 번호 입력받기
-- [x] 당첨 번호 split
 - [x] 보너스 번호 입력받기
 - #### OutputView
 - [x] 로또 갯수 만큼 로또 번호 출력
 - [x] 당첨 내역 결과 출력
 - [x] 수익률 출력
+#### Convertor
+- [x] 문자를 숫자로 변환
+- [x] 문자 숫자인지 검증
+- [x] 문자를 숫자 리스트로 파싱

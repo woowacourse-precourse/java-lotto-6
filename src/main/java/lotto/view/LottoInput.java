@@ -16,7 +16,6 @@ public class LottoInput {
         List<String> parsedInput = Arrays.stream(input.split(",")).map(String::trim).toList();
         InputValidator.lottoNumbersEmptyCheck(parsedInput);
         parsedInput.forEach(InputValidator::isInputValid);
-
         return parsedInput;
     }
 }

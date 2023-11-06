@@ -3,6 +3,8 @@ package lotto.domain;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoValue;
 
+import java.util.Objects;
+
 /**
  * 로또 번호 하나 값을 포장한 클래스
  */
@@ -71,5 +73,21 @@ public class LottoNumber {
     @Override
     public String toString() {
         return String.valueOf(this.number);
+    }
+
+    // LottoNumber 객체 값 비교 위해 재정의
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LottoNumber lottoNumber = (LottoNumber) o;
+        return number == lottoNumber.number;
+    }
+
+    // 동일한 number 가지는 객체는 동일한 해시코드 값 가지게 됨
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }

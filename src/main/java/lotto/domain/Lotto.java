@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.Controller;
-import lotto.ui.Output;
 
 import java.util.ArrayList;
 import java.util.Collections;

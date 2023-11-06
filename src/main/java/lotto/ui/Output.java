@@ -1,7 +1,5 @@
 package lotto.ui;
 
-import lotto.domain.Lotto;
-
 import java.util.List;
 
 public class Output {

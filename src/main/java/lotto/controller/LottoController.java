@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
 import lotto.domain.LottoBuyPrice;
+import lotto.dto.LottoNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,7 +20,7 @@ public class LottoController {
 
     public void run() {
         LottoBuyPrice lottoBuyPrice = inputLottoBuyPrice();
-        List<Lotto> lottos = lottoService.buyLotto(lottoBuyPrice);
+        List<LottoNumbers> lottoNumbers = lottoService.buyLotto(lottoBuyPrice);
     }
 
     private LottoBuyPrice inputLottoBuyPrice() {

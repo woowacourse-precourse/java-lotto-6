@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyPrice;
+import lotto.dto.LottoNumbers;
 import lotto.repository.LottoRepository;
 import lotto.util.RandomNumberUtil;
 
@@ -20,11 +21,17 @@ public class LottoService {
         this.lottoRepository = lottoRepository;
     }
 
-    public List<Lotto> buyLotto(LottoBuyPrice lottoBuyPrice) {
-        List<Lotto> lottos = new ArrayList<>();
+    public List<LottoNumbers> buyLotto(LottoBuyPrice lottoBuyPrice) {
         int availableLottoBuyCount = lottoBuyPrice.getAvailableLottoBuyCount();
+        List<Lotto> createdLottos = createAndSaveLotto(availableLottoBuyCount);
 
-        for (int i = 0; i < availableLottoBuyCount; i++) {
+        return convertLottoToLottoNumbers(createdLottos);
+    }
+
+    private List<Lotto> createAndSaveLotto(int createCount) {
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < createCount; i++) {
             List<Integer> numbers = RandomNumberUtil.generateAndSortUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_COUNT);
             lottos.add(new Lotto(numbers));
         }
@@ -32,5 +39,11 @@ public class LottoService {
         lottoRepository.saveAll(lottos);
 
         return lottos;
+    }
+
+    private List<LottoNumbers> convertLottoToLottoNumbers(List<Lotto> lottos) {
+        return lottos.stream()
+                .map(lotto -> new LottoNumbers(lotto.getNumbers()))
+                .toList();
     }
 }

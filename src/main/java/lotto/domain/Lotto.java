@@ -28,4 +28,8 @@ public class Lotto {
         return Set.copyOf(numbers)
                 .size() == ALLOWED_NUMBER_SIZE;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

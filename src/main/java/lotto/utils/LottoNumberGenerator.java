@@ -2,7 +2,6 @@ package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoNumberGenerator {
@@ -19,13 +18,6 @@ public class LottoNumberGenerator {
     }
 
     public static List<Integer> pickLottoNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() < NUMBER_OF_LOTTO_NUMBERS) {
-            int randomNumber = Randoms.pickNumberInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER);
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber);
-            }
-        }
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER, NUMBER_OF_LOTTO_NUMBERS);
     }
 }

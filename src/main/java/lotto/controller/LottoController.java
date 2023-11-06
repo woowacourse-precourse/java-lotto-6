@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.dto.LottoDto;
-import lotto.dto.WinningResultDto;
 import lotto.service.LottoService;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
@@ -32,8 +31,8 @@ public class LottoController {
     }
 
     private void buyLottos() {
-        String input = inputView.getPurchasePrice();
-        int purchasePrice = inputValidator.validateNumber(input);
+        String inputPurchasePrice = inputView.askPurchasePrice();
+        int purchasePrice = inputValidator.validateNumber(inputPurchasePrice);
         lottoService.buyLottos(purchasePrice);
     }
 
@@ -43,14 +42,20 @@ public class LottoController {
     }
 
     private void drawLotto() {
-        String inputViewWinningNumbers = inputView.getWinningNumbers();
-        List<String> splitInput = Arrays.stream(inputViewWinningNumbers.split(",")).toList();
-        List<Integer> winningNumbers = inputValidator.validateNumbers(splitInput);
-
-        String inputBonusNumber = inputView.getBonusNumber();
-        int bonusNumber = inputValidator.validateNumber(inputBonusNumber);
-
+        List<Integer> winningNumbers = drawWinningNumbers();
+        int bonusNumber = drawBonusNumber();
         lottoService.drawLotto(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> drawWinningNumbers() {
+        String inputWinningNumbers = inputView.askWinningNumbers();
+        List<String> splitWinningNumbers = Arrays.stream(inputWinningNumbers.split(",")).toList();
+        return inputValidator.validateNumbers(splitWinningNumbers);
+    }
+
+    private int drawBonusNumber() {
+        String inputBonusNumber = inputView.askBonusNumber();
+        return inputValidator.validateNumber(inputBonusNumber);
     }
 
     private void calculateWinningResult() {
@@ -58,7 +63,6 @@ public class LottoController {
     }
 
     private void announceWinningResult() {
-        WinningResultDto winningResultDto = lottoService.getWinningResultDto();
-        outputView.printWinningResult(winningResultDto);
+        outputView.printWinningResult(lottoService.getWinningResultDto());
     }
 }

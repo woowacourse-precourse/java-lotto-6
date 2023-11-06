@@ -22,4 +22,11 @@ public class Winner {
     private int changeInteger(String lottoWinningBonus) {
         return Integer.parseInt(lottoWinningBonus);
     }
+
+    public void compareWithUserLottoAndWinningLotto(User user) {
+        List<Lotto> userLottos = user.getLottos();
+        for (Lotto userLotto : userLottos) {
+            int sameNumberCount = checkUserLottoNumberCount(userLotto);
+        }
+    }
 }

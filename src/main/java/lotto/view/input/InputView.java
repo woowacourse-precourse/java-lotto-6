@@ -10,7 +10,7 @@ public abstract class InputView {
 
     protected void getInput(Prompt message) {
         status = Status.GOT_NOTHING;
-        while (status != Status.GOT_MESSAGE) {
+        while (status.getStatus()) {
             getInputStatus(message);
         }
     }

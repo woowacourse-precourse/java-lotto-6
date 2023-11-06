@@ -9,6 +9,7 @@ public class LottoPriceValidator {
     public static void validate(String input) {
         validateLottoPriceNotNumber(input);
         validateLottoPriceFirstZero(input);
+        validateLottoPriceNegativeNumber(input);
         validateLottoPriceNotDivided(input);
     }
 
@@ -20,7 +21,13 @@ public class LottoPriceValidator {
 
     private static void validateLottoPriceFirstZero(String input) throws IllegalArgumentException {
         if (ValidationUtil.isInputFirstZero(input)) {
-            throw new IllegalArgumentException("[ERROR] 0으로 시작하는 값을 입력하면 안됩니다.");
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 0으로 시작하는 값을 입력하면 안됩니다.");
+        }
+    }
+
+    private static void validateLottoPriceNegativeNumber(String input) throws IllegalArgumentException {
+        if (input.charAt(0) == '-') {
+            throw new IllegalArgumentException("[ERROR] 구매 금엑은 음수로 입력하면 안됩니다.");
         }
     }
 

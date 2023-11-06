@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -13,6 +14,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+    enum Word{
+        STRING("숫자가 아님"), SPACE(" "), STRNUM1("123");
+
+        private String word;
+
+        private Word(String word){
+            this.word = word;
+        }
+
+        public String getWord(){
+            return word;
+        }
+    }
 
     @Test
     void 기능_테스트() {
@@ -81,16 +95,16 @@ class ApplicationTest extends NsTest {
         int test1 = 0;
         int test2 = -100;
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> {money_for_lotto.moneyIsOver0(test1);});
+                () -> money_for_lotto.moneyIsOver0(test1));
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> {money_for_lotto.moneyIsOver0(test2);});
+                () -> money_for_lotto.moneyIsOver0(test2));
     }
 
     @Test
     void 천의_배수_입력확인(){
         int test = 123;
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> {money_for_lotto.multipleOfThousand(test);});
+                () -> money_for_lotto.multipleOfThousand(test));
     }
 
     @Test
@@ -103,6 +117,13 @@ class ApplicationTest extends NsTest {
     void 복권_개수_확인_테스트(){
         int test = 8;
         assertThat(random_lotto.print_lotto(test)).hasSize(8);
+    }
+
+    @Test
+    void 문자배열_정수리스트화_테스트(){
+        String test = "4,5,9";
+        List<Integer> expected = Arrays.asList(4,5,9);
+        Assertions.assertEquals(expected,winning_number.splitInput(test));
     }
 
     @Override

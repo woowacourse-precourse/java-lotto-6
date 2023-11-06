@@ -36,7 +36,7 @@ public class Lotto {
                 .count();
     }
 
-    private static boolean isInRange(Integer number) {
+    private static Boolean isInRange(Integer number) {
         return number >= LottoRule.START_NUMBER && number <= LottoRule.END_NUMBER;
     }
 

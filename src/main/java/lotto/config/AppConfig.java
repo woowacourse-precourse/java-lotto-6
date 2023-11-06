@@ -3,6 +3,11 @@ package lotto.config;
 import lotto.adapter.IoAdapter;
 import lotto.adapter.impl.StandardIoAdapter;
 import lotto.game.Game;
+import lotto.game.controller.MoneyController;
+import lotto.game.controller.PrintController;
+import lotto.game.controller.StatisticsController;
+import lotto.game.controller.WalletController;
+import lotto.game.controller.WinningLottoController;
 import lotto.game.impl.LottoGame;
 import lotto.service.JudgeService;
 import lotto.service.LottoProduceService;
@@ -35,7 +40,28 @@ public class AppConfig {
         return new JudgeServiceImpl();
     }
 
+    public MoneyController moneyController() {
+        return new MoneyController(ioAdapter(), validateService());
+    }
+
+    public PrintController printController() {
+        return new PrintController(ioAdapter());
+    }
+
+    public StatisticsController statisticsController() {
+        return new StatisticsController(judgeService());
+    }
+
+    public WalletController walletController() {
+        return new WalletController(lottoProduceService());
+    }
+
+    public WinningLottoController winningLottoController() {
+        return new WinningLottoController(ioAdapter(), validateService());
+    }
+
     public Game game() {
-        return new LottoGame(ioAdapter(), lottoProduceService(), validateService(), judgeService());
+        return new LottoGame(moneyController(), winningLottoController(), statisticsController(), printController(),
+                walletController());
     }
 }

@@ -4,8 +4,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.dto.calculate.GetLottoResultDto;
 import lotto.dto.domain.lottos.GetLottosDto;
 import lotto.dto.generate.GetGeneratedLottosDto;
+import lotto.util.message.Printer;
 
 public class OutputView implements Output{
     private static final int ZERO = 0;
@@ -15,9 +17,19 @@ public class OutputView implements Output{
         printLottoNumbers(new GetLottosDto(getGeneratedLottosDto.getLottos()).getLottos());
     }
 
+    @Override
+    public void printLottoResult(GetLottoResultDto getLottoResultDto) {
+        Printer.printThreeHit(getLottoResultDto.getThreeHit());
+        Printer.printFourHit(getLottoResultDto.getFourHit());
+        Printer.printFiveHit(getLottoResultDto.getFiveHit());
+        Printer.printFiveWithBonusHit(getLottoResultDto.getFiveHitWithBounus());
+        Printer.printSixHit(getLottoResultDto.getSixHit());
+    }
+
     private static void printLottoNumbers(List<Lotto> lottos) {
-        System.out.printf("%d개를 구매했습니다.\n", lottos.size());
+        Printer.printCount(lottos.size());
         printLottoNumbersIteration(lottos);
+        Printer.changeLine();
     }
 
     private static void printLottoNumbersIteration(List<Lotto> lottos) {
@@ -27,9 +39,9 @@ public class OutputView implements Output{
     }
 
     private static void printOneLineNumbers(Lotto lotto) {
-        System.out.print("[");
+        Printer.printOpen();
         printNumbersIteration(lotto);
-        System.out.print("]\n");
+        Printer.printClose();
     }
 
     private static void printNumbersIteration(Lotto lotto) {
@@ -39,7 +51,7 @@ public class OutputView implements Output{
 
     private static void printNumbersIterationAfterSort(Lotto lotto) {
         for(int count = ZERO; count < lotto.lotto().size(); count++){
-            System.out.printf("%d", lotto.lotto().get(count));
+            Printer.printLottoNumber(lotto.lotto().get(count));
             checkLastNumber(lotto, count);
         }
     }
@@ -50,7 +62,7 @@ public class OutputView implements Output{
 
     private static void checkLastNumber(Lotto lotto, int count) {
         if(isNotLastNumber(lotto, count)){
-            System.out.print(", ");
+            Printer.printComma();
         }
     }
 

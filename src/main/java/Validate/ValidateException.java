@@ -67,7 +67,7 @@ public class ValidateException {
     public static void negative(String strLine) {
         Integer inputNum = Integer.valueOf(strLine);
         if (inputNum < POSITIVE_CONDITION_ZERO) {
-            throw new NumberFormatException("입력된 값은 양수가 아닙니다.");
+            throw new NumberFormatException("[ERROR] 입력된 값은 양수가 아닙니다.");
         }
     }
 
@@ -75,7 +75,8 @@ public class ValidateException {
         Integer inputNum = Integer.valueOf(strLine);
 
         if (inputNum == ZERO_NUM) {
-            throw new NumberFormatException("0은 입력할수 없습니다.");
+            throw new NumberFormatException("[ERROR] 0은 입력할수 없습니다.");
         }
     }
+
 }

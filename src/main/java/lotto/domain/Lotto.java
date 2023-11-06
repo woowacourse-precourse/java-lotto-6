@@ -33,10 +33,6 @@ public class Lotto {
                 .anyMatch(winnerLotto::matchesBonusNumber);
     }
 
-    private boolean contains(Integer number) {
-        return numbers.contains(number);
-    }
-
     private void validateLotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);

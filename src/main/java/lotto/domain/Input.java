@@ -6,42 +6,76 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Input {
+    private static List<Integer> numbers;
+    private static int bonusNumber;
+    private static int money;
+
+    public static List<Integer> getNumbers() {
+        return numbers;
+    }
 
     public static List<Integer> inputLottoMessage() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        return inputLottoNumber();
+        while (true) {
+            numbers = inputLottoNumber();
+            try {
+                Lotto lotto = new Lotto(numbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return numbers;
     }
 
     private static List<Integer> inputLottoNumber() {
         String input = Console.readLine();
         String[] input_list = input.split(",");
-        List<Integer> numbers = new ArrayList<>();
+        List<Integer> number_list = new ArrayList<>();
 
         try {
-            for (int i = 0; i < 6; i++) {
-                int number = Integer.parseInt(input_list[i].trim());
-                numbers.add(number);
+            for (String s : input_list) {
+                int number = Integer.parseInt(s.trim());
+                number_list.add(number);
             }
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 당첨 번호는 숫자로 입력해주세요.");
         }
-        return numbers;
+        return number_list;
     }
 
-    public static int inputBonusNumberMessage() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        return inputBonusNumber();
+    public static int getBonusNumber(){
+        return bonusNumber;
+    }
+
+    public static void inputBonusNumberMessage() {
+        while (true){
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            try {
+                int bonusnumber = inputBonusNumber();
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static int inputBonusNumber() {
-        int bonusNumber = 0;
+        bonusNumber = 0;
         String input = Console.readLine().trim();
         try {
             bonusNumber = Integer.parseInt(input);
+            BonusNumber bonus = new BonusNumber(bonusNumber, numbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해주세요");
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 보너스 번호는 숫자로 입력해주세요");
+            throw e;
         }
         return bonusNumber;
+    }
+
+    public static int getMoney() {
+        return money;
     }
 
     public static int inputMoneyMessage() {
@@ -50,13 +84,20 @@ public class Input {
     }
 
     private static int inputMoney() {
-        int money = 0;
-        String input = Console.readLine().trim();
-        try {
-            money = Integer.parseInt(input);
-            checkMoneyDivided(money);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 구입 금액은 숫자로 입력해야합니다.");
+        money = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            String input = Console.readLine().trim();
+            try {
+                money = Integer.parseInt(input);
+                checkMoneyDivided(money);
+                validInput = true;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 구입 금액은 숫자로 입력해야합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
         return money;
     }

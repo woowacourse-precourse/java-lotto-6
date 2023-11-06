@@ -5,16 +5,21 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
-    public static void checkLottoBundle(List<List<Integer>> IssuedLotto, List<Integer> numbers, int bonusNumber) {
+    public static Map<LottoPrize, Integer> getPrizeCounts(List<List<java.lang.Integer>> lottoBundle, List<java.lang.Integer> numbers, int bonusNumber) {
         Map<LottoPrize, Integer> prizeCounts = initializePrizeCounts();
 
-        for (List<Integer> oneLotto : IssuedLotto) {
+        for (List<Integer> oneLotto : lottoBundle) {
             int matchedNumbers = countMatchedNumbers(oneLotto, numbers);
             boolean hasBonusNumber = oneLotto.contains(bonusNumber);
             LottoPrize prize = decidePrize(matchedNumbers, hasBonusNumber);
 
             updatePrizeCounts(prizeCounts, prize);
         }
+        return prizeCounts;
+    }
+
+    public static void checkLottoBundle(List<List<Integer>> lottoBundle, List<Integer> numbers, int bonusNumber) {
+        Map<LottoPrize, Integer> prizeCounts = getPrizeCounts(lottoBundle, numbers,bonusNumber);
         showResults(prizeCounts);
     }
 
@@ -75,12 +80,19 @@ public class LottoResult {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         for (LottoPrize prize : LottoPrize.values()) {
-            int count = prizeCounts.get(prize);
-            String bonusDescription = prize.getMatchedNumbers() + "개 일치";
-            if (prize == LottoPrize.matchFiveBonus) {
-                bonusDescription += ", 보너스 볼 일치";
+            if (prize != LottoPrize.matchZero) {
+                printPrize(prize, prizeCounts.get(prize));
             }
-            System.out.println("(" + prize.getPrize() + "원) - " + count + "개");
+
         }
+    }
+
+    private static void printPrize(LottoPrize prize, int count) {
+        String bonusDescription = prize.getMatchedNumbers() + "개 일치";
+        if (prize == LottoPrize.matchFiveBonus) {
+            bonusDescription += ", 보너스 볼 일치";
+        }
+        String formattedPrize = String.format("%,d", prize.getPrize());
+        System.out.println(bonusDescription + " (" + formattedPrize + "원) - " + count + "개");
     }
 }

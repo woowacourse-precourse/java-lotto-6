@@ -7,31 +7,35 @@ import java.util.Collections;
 import java.util.List;
 
 public class IssuedLotto {
-    private final List<List<Integer>> IssuedLotto = new ArrayList<>();
+
+    private List<List<Integer>> lottoBundle;
 
     private int countLotto() {
-        int money = Input.inputMoneyMessage();
-        return money % 1000;
+        int money = Input.getMoney();
+        return money / 1000;
     }
 
-    private List<List<Integer>> makeLottoBundle() {
-        int count = countLotto();
+    private List<List<Integer>> makeLottoBundle(int count) {
+        lottoBundle = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1,45,6);
-            Collections.sort(lotto);
+            //Collections.sort(lotto);
             List<Integer> oneLotto = new ArrayList<>(lotto);
-            IssuedLotto.add(oneLotto);
+            lottoBundle.add(oneLotto);
         }
-        return IssuedLotto;
+        return lottoBundle;
     }
 
-    public List<List<Integer>> lottoTickets() {
-        return makeLottoBundle();
-    }
-
-    public void showLottoTickets() {
+    public List<List<Integer>> showLottoTickets() {
         int count = countLotto();
+        lottoBundle = makeLottoBundle(count);
+        lottoBundle.forEach(Collections::sort);
+        //List<List<Integer>> lottoTickets = makeLottoBundle(count);
         System.out.println("\n" + count + "개를 구매했습니다.");
-        System.out.println(IssuedLotto);
+        return lottoBundle;
+    }
+
+    public List<List<Integer>> getLottoBundle() {
+        return lottoBundle;
     }
 }

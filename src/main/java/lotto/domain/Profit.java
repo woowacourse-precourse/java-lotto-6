@@ -10,7 +10,7 @@ public class Profit {
 
         DecimalFormat decimalFormat = new DecimalFormat("#,###.#%");
         String formattedProfitRate = decimalFormat.format(profitRate / 100.0);
-        System.out.printf("총 수익률은 %s 입니다.", formattedProfitRate);
+        System.out.printf("총 수익률은 %s입니다.", formattedProfitRate);
     }
 
     private static int calculateTotalPrize(Map<LottoPrize, Integer> prizeCounts) {

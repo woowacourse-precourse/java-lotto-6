@@ -7,9 +7,9 @@ public class BonusNumber {
     private final int bonusNumber;
 
     public BonusNumber(int bonusNumber, List<Integer> numbers) {
+        this.bonusNumber = bonusNumber;
         duplicate(numbers);
         exceed(bonusNumber);
-        this.bonusNumber = bonusNumber;
     }
 
     private void duplicate(List<Integer> numbers) {

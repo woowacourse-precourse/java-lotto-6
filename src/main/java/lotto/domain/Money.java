@@ -40,4 +40,8 @@ public class Money {
     private boolean isNotMatchScale(final int amount) {
         return amount % SCALE != SCALE_STANDARD;
     }
+
+    public int calculateLottoPurchaseCount() {
+        return amount / SCALE;
+    }
 }

@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.LottoAmount;
 import lotto.domain.LottoNumbers;
+import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -49,6 +50,30 @@ class LottoTest {
         List<Integer> lottoTest= lottoNumbers.setLottoNumbers();
         assertEquals(lottoTest.size(), 6);
 
+    }
+
+    @Test
+    void 당첨번호_음수_test(){
+        assertThrows(IllegalArgumentException.class, ()-> {
+            String inputNumbers="-1,2,3,4,5,6";
+            InputView.inputWinningNumbers(inputNumbers);
+        });
+    }
+
+    @Test
+    void 당첨번호_범위_test(){
+        assertThrows(IllegalArgumentException.class, ()-> {
+            String inputNumbers="1,2,3,4,5,46";
+            InputView.inputWinningNumbers(inputNumbers);
+        });
+    }
+
+    @Test
+    void 중복번호_test(){
+        assertThrows(IllegalArgumentException.class, ()-> {
+            List<Integer> lottonum= List.of(1,2,3,4,5,5);
+            Lotto newlotto =new Lotto(lottonum);
+        });
     }
 
 }

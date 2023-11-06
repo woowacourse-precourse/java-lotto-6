@@ -22,14 +22,17 @@ public class InputView {
         return Integer.parseInt(inputAmount);
     }
 
-    public static List<Integer> inputWinningNumbers(){
+    public static List<Integer> inputWinningNumbers(String inputNumbers){
         System.out.println(INPUT_WINNING_NUMBERS);
-        return  convertToList(Console.readLine());
+        return convertToList(inputNumbers);
+//        return  convertToList(Console.readLine());
+
     }
 
     private static List<Integer> convertToList(String inputNumbers){
         String [] result= inputNumbers.split(",");
         winningNumbers= new ArrayList<>();
+
         for(int i=0; i<result.length; i++){
             int num=checkNumber(result[i]);
             checkRange(num);

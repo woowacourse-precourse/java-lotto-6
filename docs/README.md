@@ -93,8 +93,8 @@
         - [X] WinningLotto 생성
         - [X] WinningLotto, LottoTickets 사용하여 Result 계산
 - [X] 에러 메세지 Enum
-- [ ] Application
-    - [ ] LottoGameController 호출
+- [X] Application
+    - [X] LottoGameController 호출
 
 ### 우테코 요구사항
 - Java Enum 사용

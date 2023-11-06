@@ -43,4 +43,17 @@ class LottoBuyPriceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 로또 구입 금액입니다.");
     }
+
+    @DisplayName("구입 가능한 로또의 개수를 반환한다.")
+    @Test
+    void Given_LottoBuyPrice_When_GetAvailableLottoBuyCount_Then_ReturnAvailableLottoBuyCount() throws Exception {
+        // Given
+        LottoBuyPrice lottoBuyPrice = new LottoBuyPrice(5000);
+
+        // When
+        int availableLottoBuyCount = lottoBuyPrice.getAvailableLottoBuyCount();
+
+        // Then
+        assertThat(availableLottoBuyCount).isEqualTo(5);
+    }
 }

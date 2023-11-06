@@ -43,4 +43,8 @@ public class GameService {
     public Map<Integer, Integer> printGameResult() {
         return lottoResult.getResultMap();
     }
+
+    public double printEarningRate() {
+        return lottoResult.calculateEarningRate(purchaseAmount.getTotalPrice());
+    }
 }

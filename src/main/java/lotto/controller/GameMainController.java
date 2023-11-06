@@ -39,5 +39,6 @@ public class GameMainController {
 
     private void stopGame() {
         outputView.printGameResult(gameService.printGameResult());
+        outputView.printEarningRate(gameService.printEarningRate());
     }
 }

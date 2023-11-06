@@ -66,7 +66,7 @@ public class LottoResult {
             return 0;
         }
 
-        return (double) totalEarning / (double) purchaseAmount;
+        return (double) totalEarning / (double) purchaseAmount * 100;
     }
 
     private int calculateTotalEarning() {

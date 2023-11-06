@@ -41,4 +41,8 @@ public class PurchaseAmount {
     public int calculateAmountOfLotteries() {
         return totalPrice / NumberConstant.LOTTO_PRICE.getNumber();
     }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
 }

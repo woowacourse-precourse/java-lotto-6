@@ -28,4 +28,9 @@ class OutputViewTest {
     void printPurchaseAmount() {
         outputView.printPurchaseAmount(3);
     }
+
+    @Test
+    void printEarningRate() {
+        outputView.printEarningRate(62.5);
+    }
 }

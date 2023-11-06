@@ -20,4 +20,8 @@ public class OutputView {
     public void printGameResult(Map<Integer, Integer> lottoResult) {
         System.out.println(OutputConstant.WINNING_STATS.getMessage());
     }
+
+    public void printEarningRate(double printEarningRate) {
+        System.out.printf(OutputConstant.TOTAL_EARNING_RATE.getMessage(), printEarningRate);
+    }
 }

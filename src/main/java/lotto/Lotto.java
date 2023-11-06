@@ -1,5 +1,7 @@
 package lotto;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
@@ -36,7 +38,21 @@ public class Lotto {
         return money;
     }
 
+    public List<Integer> inputAnswer(){
+        List<Integer> answerNum = new ArrayList<>();
+        String answerStr = Console.readLine();
+        String[] answer = answerStr.split(",");
 
+        try{
+            for(String numStr: answer){
+                answerNum.add(Integer.parseInt(numStr));
+            }
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+
+        return answerNum;
+    }
 
 
 

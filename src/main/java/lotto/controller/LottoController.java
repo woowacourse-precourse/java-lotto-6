@@ -3,9 +3,8 @@ package lotto.controller;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lotto.domain.Lotto;
-import lotto.domain.LottoGame;
 import lotto.domain.LottoIssuer;
+import lotto.domain.Lottos;
 import lotto.domain.WinningNumber;
 import lotto.message.Error;
 import lotto.message.LottoResult;
@@ -20,18 +19,13 @@ public class LottoController {
     private final LottoIssuer lottoIssuer = new LottoIssuer();
 
     public void play() {
-        List<Lotto> lottos = getLottos();
+        Lottos lottos = getLottos();
         WinningNumber winningNumber = getWinningNumber();
         final int bonusNumber = getBonusNumber(winningNumber);
-        LottoGame lottoGame = new LottoGame(lottos, winningNumber, bonusNumber);
 
-        Map<LottoResult, Integer> result = lottoGame.getResult();
-        double yieldRate = getYieldRate(result, lottos.size());
+        Map<LottoResult, Integer> result = lottos.getResult(winningNumber, bonusNumber);
+        double yieldRate = getYieldRate(result, lottos.getPurchaseQuantity());
         OutputView.printGameResult(result, yieldRate);
-    }
-
-    private void printLottos(List<Lotto> lottos) {
-        OutputView.printIssueResults(lottos);
     }
 
     private double getYieldRate(Map<LottoResult, Integer> result, int purchaseQuantity) {
@@ -81,11 +75,11 @@ public class LottoController {
         }
     }
 
-    private List<Lotto> getLottos() {
+    private Lottos getLottos() {
         System.out.println();
         try {
-            List<Lotto> lottos = lottoIssuer.buy(InputView.getPrice());
-            printLottos(lottos);
+            Lottos lottos = lottoIssuer.buy(InputView.getPrice());
+            OutputView.printIssueResults(lottos);
             System.out.println();
             return lottos;
         } catch (IllegalArgumentException e) {

@@ -14,7 +14,7 @@ public class LottoIssuer {
     private static final int maximumLottoNum = 45;
     private static final int lottoNumbersCount = 6;
 
-    public List<Lotto> buy(int price) {
+    public Lottos buy(int price) {
         if (!hasCorrectUnit(price)) {
             throw new IllegalArgumentException(Error.INVALID_PRICE_VALUE.getMessage());
         }
@@ -24,7 +24,7 @@ public class LottoIssuer {
         System.out.println();
         int quantity = calculateQuantity(price);
         List<Lotto> lottos = issueLottos(quantity);
-        return lottos;
+        return new Lottos(lottos);
     }
 
     private boolean hasCorrectUnit(int price) {

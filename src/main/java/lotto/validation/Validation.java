@@ -23,5 +23,11 @@ public class Validation {
 			throw new IllegalArgumentException();
 		}
 	}
+	
+	public static void validateNaturalNumber(String input) {
+		if (input.matches("\\d+")) {
+			throw new IllegalArgumentException();
+		}
+	}
 
 }

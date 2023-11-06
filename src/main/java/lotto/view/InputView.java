@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.domain.LottoValue.LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +11,7 @@ import lotto.domain.Lotto;
 
 public class InputView {
 
+    public static final String LOTTO_PRICE_PER_THOUSAND = "[ERROR] 로또 금액은 1000원 단위로 판매할 수 있습니다.";
     private static final String ASK_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String ASK_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String ASK_BONUS_WINNING_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
@@ -19,12 +22,12 @@ public class InputView {
     public static final String NO_PERMIT_INPUT_LESS_ZERO = "[ERROR] 0 이하의 값은 입력받을 수 없습니다.";
     public static final String INDEX_OUT_OF_INPUT_LENGTH = "[ERROR] index 가 문자열의 범위를 벗어났습니다.";
 
-    public Integer askPrice() {
+    public int askPrice() {
         try {
             printHowManyPurchase();
             String input = Console.readLine();
             validateBlankAndEmptyInteger(input);
-            return validateNegativeIntegerAndZero(validateInteger(input));
+            return validInputMoney(validateNegativeIntegerAndZero(validateInteger(input)));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askPrice();
@@ -101,5 +104,12 @@ public class InputView {
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private int validInputMoney(int money) {
+        if (money % LOTTO_PRICE != 0 || money <= 0) {
+            throw new IllegalArgumentException(LOTTO_PRICE_PER_THOUSAND);
+        }
+        return money;
     }
 }

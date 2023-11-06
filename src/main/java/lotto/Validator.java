@@ -42,5 +42,9 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR]");
     }
 
-
+    // ','를 기준으로 분리한 배열의 크기가 6인지 검증
+    public static void checkValidSize(String input) {
+        if (Arrays.asList(input.split(",")).size() != 6)
+            throw new IllegalArgumentException("[ERROR]");
+    }
 }

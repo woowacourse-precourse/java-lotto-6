@@ -13,4 +13,11 @@ public class CalculateUtilTest {
         double percentage = CalculateUtil.calculatePercentage(12, 100);
         assertThat(percentage).isEqualTo(12);
     }
+
+    @DisplayName("소수 원하는 자리수 반올림")
+    @Test
+    void round(){
+        double number = CalculateUtil.round(11.555, 2);
+        assertThat(number).isEqualTo(11.6);
+    }
 }

@@ -67,4 +67,8 @@ public class LottoGameService {
                         rank.getPrizeMoney() * lottoRakingMap.get(rank))
                 .sum() / purchaseAmount * 100;
     }
+
+    public EnumMap<LottoRank, Integer> getLottoRakingMap() {
+        return lottoRakingMap;
+    }
 }

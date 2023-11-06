@@ -38,7 +38,7 @@ public class ResultMessage {
 
     private static void printDrawResult(Map<Rank,Integer> result){
         for (int count = 0; count < Rank.values().length - 1; count++) {
-            System.out.print(Rank.getWinningMesaage(Rank.values()[count]));
+            System.out.print(Rank.values()[count].getWinningMesaage());
             System.out.println(result.get(Rank.values()[count])+"개");
         }
     }

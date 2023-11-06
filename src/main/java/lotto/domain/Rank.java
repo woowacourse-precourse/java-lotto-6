@@ -33,8 +33,8 @@ public enum Rank {
         return prizeAmount;
     }
 
-    public static String getWinningMesaage(Rank rank) {
-        return rank.winningMessage;
+    public String getWinningMesaage() {
+        return winningMessage;
     }
     //TODO : RANK TEST
 }

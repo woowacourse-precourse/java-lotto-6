@@ -9,7 +9,6 @@ import lotto.utils.Parser;
 import lotto.view.RequestMessage;
 import lotto.view.ResultMessage;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

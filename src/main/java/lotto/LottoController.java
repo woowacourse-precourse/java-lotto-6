@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.constant.LottoInformation.LOTTO_PRICE;
+import static lotto.constant.message.ErrorMessage.HAS_REMAINDER;
 import static lotto.constant.message.InputMessage.INPUT_BONUS_NUMBER;
 import static lotto.constant.message.InputMessage.INPUT_MONEY;
 import static lotto.constant.message.InputMessage.INPUT_WINNING_NUMBER;
@@ -36,11 +38,19 @@ public class LottoController {
     private int getPurchase() {
         while (true) {
             try {
-                String stringMoney = inputView.requestInputValue(INPUT_MONEY); // 입력
-                return converter.convertInteger(stringMoney);
+                String stringMoney = inputView.requestInputValue(INPUT_MONEY);
+                int money = converter.convertInteger(stringMoney);
+                validatePurchaseAmount(money);
+                return money;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void validatePurchaseAmount(int money) {
+        if (money % LOTTO_PRICE != 0 || money <= 0) {
+            throw new IllegalArgumentException(HAS_REMAINDER.getMessage());
         }
     }
 

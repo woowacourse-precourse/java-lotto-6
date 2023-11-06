@@ -4,7 +4,6 @@ import static lotto.constant.LottoInformation.LOTTO_PRICE;
 import static lotto.constant.LottoInformation.MAX_NUMBER;
 import static lotto.constant.LottoInformation.MIN_NUMBER;
 import static lotto.constant.LottoInformation.NUMBER_COUNT;
-import static lotto.constant.message.ErrorMessage.HAS_REMAINDER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -13,10 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoSeller {
-    private int sellCount;
+    private final int sellCount;
 
-    public void checkRemainder(int money) throws IllegalArgumentException {
-        validateMultiplesOfPrice(money);
+    public LottoSeller(int money) throws IllegalArgumentException {
         this.sellCount = money / LOTTO_PRICE;
     }
 
@@ -31,15 +29,5 @@ public class LottoSeller {
             lottoTickets.add(new Lotto(numbers));
         }
         return Collections.unmodifiableList(lottoTickets);
-    }
-
-    private void validateMultiplesOfPrice(int money) {
-        if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(HAS_REMAINDER.getMessage());
-        }
-    }
-
-    public int getSellCount() {
-        return sellCount;
     }
 }

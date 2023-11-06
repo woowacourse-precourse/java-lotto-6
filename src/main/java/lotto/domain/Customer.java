@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static lotto.constant.message.ErrorMessage.NOT_MONEY;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -11,17 +9,10 @@ import lotto.constant.Prize;
 
 public class Customer {
     private List<Lotto> lotteryTicket;
-    private int money;
+    private final int money;
 
-    public void scanPocket(int money) throws IllegalArgumentException {
-        validateEmptyMoney(money);
+    public Customer(int money) throws IllegalArgumentException {
         this.money = money;
-    }
-
-    private void validateEmptyMoney(int money) {
-        if (money == 0) {
-            throw new IllegalArgumentException(NOT_MONEY.getMessage());
-        }
     }
 
     public Map<Prize, Integer> checkWinningResult(WinningNumbers winningNumbers) {

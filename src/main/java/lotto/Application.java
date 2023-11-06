@@ -3,11 +3,11 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+
 
 public class Application {
     public static void main(String[] args) {
@@ -58,6 +58,7 @@ public class Application {
 
         for(int quantity = 1; quantity <= lottoQuantity ; quantity++){
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(lottoNumbers);
             Lotto lotto = new Lotto(lottoNumbers);
             lottos.add(lotto);
         }

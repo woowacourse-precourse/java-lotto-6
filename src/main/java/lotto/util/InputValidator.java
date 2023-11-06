@@ -6,13 +6,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.enums.ErrorMessages;
+import lotto.enums.GlobalConstant;
 
 public class InputValidator {
-    private static final int DIVIDE_NUMBER = 1000;
     private static final int REMAINDER_CRITERION = 0;
-    private static final int NUMBER_AMOUNT = 6;
-    private static final int NUMBER_MIN = 1;
-    private static final int NUMBER_MAX = 45;
     private static final String regEx = "^[0-9]*$";
     private static final String SEPARATOR = ",";
 
@@ -74,7 +71,7 @@ public class InputValidator {
     // 로또 구입 금액에 대한 검증 사항 시작
     private void validatePriceDivideBy1000(String input) {
         int price = Integer.parseInt(input);
-        if (price % DIVIDE_NUMBER != REMAINDER_CRITERION) {
+        if (price % GlobalConstant.DIVIDE_NUMBER.getValue() != REMAINDER_CRITERION) {
             throw new IllegalArgumentException(ErrorMessages.INPUT_DIVIDE_EXCEPTION_MSG.getMsg());
         }
     }
@@ -82,7 +79,7 @@ public class InputValidator {
 
     // 당첨 번호와 보너스 번호에 대한 공통 검증 사항 시작
     private void validateNumberInRange(int number) {
-        if (number < NUMBER_MIN || number > NUMBER_MAX) {
+        if (number < GlobalConstant.NUMBER_MIN.getValue() || number > GlobalConstant.NUMBER_MAX.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.NUMBER_RANGE_EXCEPTION_MSG.getMsg());
         }
     }
@@ -96,7 +93,7 @@ public class InputValidator {
     }
 
     private void validateAnswerCount(int numberCount) {
-        if (numberCount != NUMBER_AMOUNT) {
+        if (numberCount != GlobalConstant.NUMBER_AMOUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.ANSWER_AMOUNT_EXCEPTION_MSG.getMsg());
         }
     }
@@ -109,7 +106,7 @@ public class InputValidator {
     }
 
     private void validateDuplicatedNumber(Set<String> duplicateRemovedAnswer) {
-        if (duplicateRemovedAnswer.size() != NUMBER_AMOUNT) {
+        if (duplicateRemovedAnswer.size() != GlobalConstant.NUMBER_AMOUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.ANSWER_DUPLICATED_EXCEPTION_MSG.getMsg());
         }
     }

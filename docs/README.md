@@ -46,3 +46,17 @@
 1. PrizeResult 이 맡은 역할이 너무 많고 코드가 길다. 정리 요망
 2. TestCase 추가
 3. 좀 더 가독성있는 이름 생각해보기
+
+### 3번째 구현 
+1. PrizeResult toString() 부분을 PrizeResultFormatter로 분리
+2. TestCase 
+   * MoneyTest : Money 예외 처리 테스트 추가 
+   * WinningLottoTest : 당첨 번호와 보너스 번호에 대한 예외 처리 테스트 추가
+   * PrizeTest : Prize 값을 잘 전달하는 지 테스트 
+3. 가독성 있는 이름으로 바꾸고 하드코딩 및 컨벤션 확인
+
+---
+### 계속 확인해야 할 것
+1. 함수가 한 가지 일을 하고 있는 지 
+2. 가독성 확인 및 컨벤션 지키기
+

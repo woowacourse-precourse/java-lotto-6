@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.model.GameResult;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.LottosResult;
 import lotto.model.Money;
 import lotto.model.User;
 import lotto.view.OutputView;
@@ -25,12 +25,12 @@ public class GameController {
         Lottos userLottos = generateUserLottos(ticketAmount);
         outputView.showUserLottoMessage(userLottos);
     }
-    public int buyLottos() {
+    public Money buyLottos() {
         outputView.showInputMoneyMessage();
         int givenMoney = inputController.getMoney();
-        this.ticketAmount = Money.countMoney(givenMoney);
+        this.ticketAmount = Money.getTicketAmount(givenMoney);
         outputView.showLottoAmountMessage(this.ticketAmount);
-        return givenMoney;
+        return new Money(givenMoney);
     }
 
     private Lottos generateUserLottos(int ticketAmount) {
@@ -52,8 +52,9 @@ public class GameController {
 
     private void showWinnerPrice() {
         outputView.showResultHeadMessage();
-        GameResult gameResult = user.matchLottos(answer, bonusNumber);
-        outputView.showGameResult(gameResult);
-
+        LottosResult gameResult = user.matchUp(answer, bonusNumber);
+        outputView.showBallCountResult(gameResult);
+        outputView.showProfit(gameResult);
     }
+
 }

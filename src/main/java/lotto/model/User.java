@@ -3,21 +3,21 @@ package lotto.model;
 import java.util.List;
 
 public class User {
-    private Lottos lottos;
-    private final int money ;
-    public User(int givenMoney) {
+    private Lottos lottos = new Lottos();
+    private final Money money ;
+    public User(Money givenMoney) {
         this.money = givenMoney;
     }
 
     public Lottos buyLottos(int ticketAmount) {
-        this.lottos = Lottos.generateLottos(ticketAmount);
-        return lottos;
+        List<Lotto> returnLottos = lottos.buyLottoByTicketAmount(ticketAmount);
+        this.lottos = new Lottos(returnLottos);
+        return this.lottos;
     }
 
-    public GameResult matchLottos(Lotto answer, int bonusNumber) {
-        List<LottoResult> results = lottos.matchLottos(answer,bonusNumber);
-        GameResult gameResult = new GameResult(results);
-        gameResult.countProfitable(money);
-        return gameResult;
+    public LottosResult matchUp(Lotto answer, int bonusNumber) {
+        LottosResult results = lottos.matchUp(answer,bonusNumber);
+        results.countProfitable(money);
+        return results;
     }
 }

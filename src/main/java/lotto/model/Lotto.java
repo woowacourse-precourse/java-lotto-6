@@ -1,10 +1,8 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,36 +11,34 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-
+    public static Lotto newInstance(){
+        List<Integer> numbers =Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
+    }
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
-        Set numberSet = new HashSet(numbers);
-        if(numbers.size() != numberSet.size()){
-            throw new IllegalArgumentException("[ERROR]");
-        }
-    }
-    public static Lotto generateLottoByRandom(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return  new Lotto(numbers);
+        LottoValidator lottoValidator = new LottoValidator();
+        lottoValidator.validateLotto(numbers);
     }
 
-    public LottoResult matchUp(Lotto answer, int bonusNumber) {
-        int countBall = 0 ;
-        for(Integer number : numbers){
-            if(answer.countBall(number)){
-                countBall++;
-            }
-        }
-        if(countBall == 5 && answer.countBall(bonusNumber)) {
-                countBall = 7;
-        }
-        return LottoResult.single(countBall);
+    public LottoResult matchUp(Lotto givenLotto) {
+        int countBall = (int)numbers.stream()
+                .filter(givenLotto::haveSameBall)
+                .count();
+        return LottoResult.getResultByNumberOfBall(countBall);
     }
 
-    private boolean countBall(Integer number) {
-        return this.numbers.contains(number) ;
+    public LottoResult matchUp(Lotto answerLotto, Integer bonusNumber) {
+        LottoResult result = this.matchUp(answerLotto);
+        if (wonFiveBonusNumber(result, bonusNumber)) return LottoResult.FIVE_PLUS_BONUS;
+        return result;
+    }
+
+    private boolean haveSameBall(Integer number) {
+        return this.numbers.contains(number);
+    }
+
+    private boolean wonFiveBonusNumber(LottoResult result, Integer bonusNumber) {
+        return result.equals(LottoResult.FIVE_MATCHES) && haveSameBall(bonusNumber);
     }
 
     public List<Integer> getNumbersForMessage() {

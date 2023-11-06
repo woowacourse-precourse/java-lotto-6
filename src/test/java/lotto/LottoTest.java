@@ -24,38 +24,62 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("유효한 로또 번호를 가진 로또가 정상적으로 생성된다.")
+
+    @DisplayName("로또 번호에 중복된 숫자의 범위가 아니면 예외가 발생한다. : under")
     @Test
-    void createLottoWithValidNumbers() {
-        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
-        Lotto lotto = new Lotto(validNumbers);
-        assertThat(lotto).isInstanceOf(Lotto.class);
+    void createLottoByRangeOverNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 80)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("로또 번호에 중복된 숫자의 범위가 아니면 예외가 발생한다. : over")
+    @Test
+    void createLottoByRangeUnderNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, -1)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("로또 번호 끼리 비교를 한다. : 6")
+    @Test
+    void compareLottoWithGivenLottoSix() {
+        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.SIX_MATCHES);
+    }
+    @DisplayName("로또 번호 끼리 비교를 한다. : 5")
+    @Test
+    void compareLottoWithGivenLottoFive() {
+        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.FIVE_MATCHES);
+    }
+    @DisplayName("로또 번호 끼리 비교를 한다. : 4")
+    @Test
+    void compareLottoWithGivenLottoFour() {
+        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 8, 7));
+        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.FOUR_MATCHES);
+    }
+    @DisplayName("로또 번호 끼리 비교를 한다. : 3")
+    @Test
+    void compareLottoWithGivenLottoThree() {
+        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 7, 12, 9));
+        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.THREE_MATCHES);
+    }
+    @DisplayName("로또 번호 끼리 비교를 한다. : 2")
+    @Test
+    void compareLottoWithGivenLottoUnder() {
+        Lotto userLotto =  new Lotto(List.of(1, 2, 7, 8, 9, 10));
+        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.UNDER_THREE);
+    }
+    @DisplayName("로또 번호랑 보너스 번호를 비교를 한다. : 5개 일치인 경우")
+    @Test
+    void compareLottoWithGivenLottoFiveBonus() {
+        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 10));
+        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Integer bonusNumber = 10;
+        assertThat(userLotto.matchUp(answerLotto,bonusNumber)).isEqualTo(LottoResult.FIVE_PLUS_BONUS);
     }
 
-    @DisplayName("로또 번호가 전혀 매치되지 않을 때 결과 테스트")
-    @Test
-    void matchNoNumbers() {
-        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningLotto = new Lotto(List.of(7, 8, 9, 10, 11, 12));
-        LottoResult result = userLotto.matchUp(winningLotto, 13);
-        assertThat(result).isEqualTo(LottoResult.single(0));
-    }
 
-    @DisplayName("로또 번호 일부가 매치될 때 결과 테스트")
-    @Test
-    void matchSomeNumbers() {
-        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 10, 11, 12));
-        LottoResult result = userLotto.matchUp(winningLotto, 13);
-        assertThat(result).isEqualTo(LottoResult.single(3));
-    }
-
-    @DisplayName("보너스 번호를 포함해 로또 번호가 전부 매치될 때 결과 테스트")
-    @Test
-    void matchAllNumbersIncludingBonus() {
-        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        LottoResult result = userLotto.matchUp(winningLotto, 7);
-        assertThat(result).isEqualTo(LottoResult.single(7));
-    }
 }

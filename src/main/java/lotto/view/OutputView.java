@@ -2,10 +2,10 @@ package lotto.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.GameResult;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.Lottos;
+import lotto.model.LottosResult;
 
 public class OutputView {
     public static void showErrorMessage(String e){
@@ -42,13 +42,20 @@ public class OutputView {
         System.out.println("---");
     }
 
-    public void showGameResult(GameResult gameResult) {
+    public void showBallCountResult(LottosResult lottosResult) {
         StringBuilder sb = new StringBuilder();
         for (LottoResult result : LottoResult.values()) {
-            if(!result.equals(LottoResult.NOTHING_MATCHES))
-                sb.append(result.getMessage()).append(" - ").append(gameResult.getResultCounts().getOrDefault(result,0)).append("개\n");
+            if (!result.equals(LottoResult.UNDER_THREE)) {
+                sb.append(result.getMessage()).append(" - ")
+                        .append(lottosResult.getResultCounts().getOrDefault(result, 0)).append("개\n");
+            }
         }
-        sb.append("총 수익률은 ").append(String.format("%.1f", gameResult.getTotalProfit())).append("%입니다.");
-        System.out.println(sb.toString());
+        System.out.println(sb);
+    }
+
+    public void showProfit(LottosResult lottosResult) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("총 수익률은 ").append(String.format("%.1f", lottosResult.getTotalProfit())).append("%입니다.");
+        System.out.println(sb);
     }
 }

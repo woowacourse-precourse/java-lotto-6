@@ -2,28 +2,26 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Lottos {
-    private List<Lotto> lottos;
+    public List<Lotto> lottos;
+    public Lottos(){
 
+    }
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
-
-    public static Lottos generateLottos(int ticketAmount) {
-        List<Lotto>  arr = new ArrayList<>();
-        for(int i = 0 ;i<ticketAmount ; i++){
-            arr.add(Lotto.generateLottoByRandom());
-        }
-        return new Lottos(List.copyOf(arr));
+    public List<Lotto> buyLottoByTicketAmount(Integer ticketAmount) {
+        List<Lotto> arr = new ArrayList<>();
+        IntStream.range(0,ticketAmount).forEach(i->arr.add(Lotto.newInstance()));
+        this.lottos = List.copyOf(arr);
+        return this.lottos;
     }
 
-    public List<LottoResult> matchLottos(Lotto answer, int bonusNumber) {
-        List<LottoResult> arr = new ArrayList<>();
-        for(Lotto userLotto : lottos) {
-            arr.add(userLotto.matchUp(answer,bonusNumber));
-        }
-        return arr;
+    public LottosResult matchUp(Lotto answerLotto, int bonusNumber) {
+        List<LottoResult> arr =this.lottos.stream().map(i->i.matchUp(answerLotto,bonusNumber)).toList();
+        return new LottosResult(arr);
     }
 
     public List<Lotto> getLottosForMessage() {

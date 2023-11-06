@@ -64,4 +64,14 @@ public class validationTest {
                         IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_INCORRECT_NUMBER_COUNT_ERROR.getMessage());
     }
+
+    @Test
+    @DisplayName("보너스번호 입력시 1~45 범위의 숫자가 아닐경우 예외를 발생시킨다.")
+    void 보너스번호_범위_테스트() {
+        int bonusNumber = 51;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 6, 4, 5, 8);
+        assertThatThrownBy(() -> validateService.validateBonusNumber(bonusNumber,winningNumbers)).isInstanceOf(
+                        IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INPUT_NUMBER_OVER_RANGE_ERROR.getMessage());
+    }
 }

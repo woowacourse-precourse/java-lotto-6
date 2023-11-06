@@ -7,11 +7,9 @@ public class LottoPurchaseAmountException {
     private static final String IS_NUMBER_MESSAGE = "구매 금액은 숫자를 입력해주셔야 합니다.";
     private static final String IS_BLANK_MESSAGE = "구매 금액을 공백으로 입력하셨습니다.";
 
-    private Converter converter = new Converter();
 
-    public void isDivideThousand(String input) {
-        int purchaseAmount = converter.stringToInteger(input);
-        if(purchaseAmount % 1000 != 0) {
+    public void isDivideThousand(int input) {
+        if(input % 1000 != 0) {
             throw new IllegalArgumentException(CAN_DIVIDE_THOUSAND_MESSAGE);
         }
     }

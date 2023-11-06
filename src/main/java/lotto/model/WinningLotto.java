@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.dto.MatchCounterDTO;
 
 public class WinningLotto{
     private final Lotto lotto;

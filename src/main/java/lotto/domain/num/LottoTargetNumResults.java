@@ -28,7 +28,7 @@ public class LottoTargetNumResults {
     }
 
     private Boolean isContainWinLottoNums(Integer targetNum, int index) {
-        return winLottoNums.isSame(targetNum, index);
+        return winLottoNums.isSameNumOfIndex(targetNum, index);
     }
 
     public Boolean isSameBonusNum(Integer targetNum, Integer indexOfSpecial) {

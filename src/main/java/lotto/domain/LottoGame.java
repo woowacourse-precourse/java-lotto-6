@@ -53,6 +53,16 @@ public class LottoGame {
 
     }
 
+    private void buyLottoBundle(int purchaseAmount, List<Lotto> lottoBundle) {
+        int temp = purchaseAmount;
+        while (temp != 0) {
+            temp -= 1000;
+            List<Integer> numbers = new ArrayList<>(generateNumbers());
+            Collections.sort(numbers);
+            lottoBundle.add(new Lotto(numbers));
+        }
+    }
+
     private List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }

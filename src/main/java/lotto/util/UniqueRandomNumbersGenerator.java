@@ -3,15 +3,20 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static lotto.constant.LottoConstant.RANGE_START_NUMBER;
+import static lotto.constant.LottoConstant.RANGE_END_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_LENGTH;
+
 
 public class UniqueRandomNumbersGenerator implements NumberGenerator {
-    private static final Integer LOTTO_LENGTH = 6;
-    private static final Integer RANGE_START_NUMBER = 1;
-    private static final Integer RANGE_END_NUMBER = 45;
+
     @Override
     public List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(RANGE_START_NUMBER, RANGE_END_NUMBER, LOTTO_LENGTH);
+        return Randoms.pickUniqueNumbersInRange(RANGE_START_NUMBER.getSetting(),
+                                                RANGE_END_NUMBER.getSetting(),
+                                                LOTTO_LENGTH.getSetting()
+        );
     }
 
 }

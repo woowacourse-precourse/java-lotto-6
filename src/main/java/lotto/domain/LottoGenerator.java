@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LottoGenerator {
 
-    NumberGenerator numberGenerator;
+    private final NumberGenerator numberGenerator;
 
     public LottoGenerator(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;

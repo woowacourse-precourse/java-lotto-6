@@ -23,6 +23,16 @@ public class Application {
         List<Integer> winNumbers = numbersSeparator(Console.readLine());
         LottoNumbersException.validatLottoNumbers(winNumbers);
 
+        System.out.println("보너스 번호를 입력해 주세요.");
+        Integer bonusNumber = Integer.parseInt(Console.readLine());
+        List<Integer> winAndBonusNumbers = winNumbers;
+        winAndBonusNumbers.add(bonusNumber);
+        LottoNumbersException.duplicateNumber(winAndBonusNumbers);
+        for (Integer number : winAndBonusNumbers) {
+            LottoNumbersException.numberNotInRange(number);
+        }
+
+
     }
 
     static void checkLottoBundle(List<Lotto> lottoBundle) {

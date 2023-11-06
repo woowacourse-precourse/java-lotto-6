@@ -1,9 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -148,7 +146,7 @@ public class LottoServiceImpl implements LottoService {
      * @return : 수익
      */
     @Override
-    public int computeEarnings(Map<MatchType, Integer> winningStatistics) {
+    public int calculateEarnings(Map<MatchType, Integer> winningStatistics) {
 
         int earnings = 0;
 
@@ -169,7 +167,7 @@ public class LottoServiceImpl implements LottoService {
      */
     @Override
     public double calculateReturnRate(int purchaseAmount, int earnings) {
-        return (double) purchaseAmount / earnings;
+        return ((double) earnings / purchaseAmount) * 100;
     }
 
     private int stringToInt(String str) {

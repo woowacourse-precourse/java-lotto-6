@@ -23,7 +23,7 @@ public class LottoServiceTest {
         lottoService = new LottoService(null, winningStatistics);
     }
 
-    @DisplayName("총당첨 금액과 구입 금액으로 총수익률을 계산하고, 소수점 둘째 자리에서 반올림한다.")
+    @DisplayName("총 당첨 금액과 구입 금액으로 총 수익률을 계산하고, 소수점 둘째 자리에서 반올림한다.")
     @Test
     void calculateTotalYield() {
         int inputAmount = 7000;

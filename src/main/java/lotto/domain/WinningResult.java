@@ -32,10 +32,10 @@ public class WinningResult {
     }
 
     private double calculateReturnRate(int purchasePrice) {
-        double totalReward = (double) Arrays.stream(Ranking.values())
+        double totalReward = Arrays.stream(Ranking.values())
                 .mapToInt(ranking -> rankingCount.get(ranking) * ranking.getReward())
                 .sum();
-        return Math.round(((totalReward / purchasePrice * 100) * 10) / 10.0);
+        return (totalReward / purchasePrice) * 100;
     }
 
     public Map<Ranking, Integer> getRankingCount() {

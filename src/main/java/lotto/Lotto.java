@@ -1,16 +1,17 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.NumberConverter.convertNumberToLottoNumber;
 
 public class Lotto {
     public static final int MAX_NUMBER_OF_NUMBERS = 6;
-    private final List<LottoNumber> lottoNumbers = new ArrayList<>();
+    private final List<LottoNumber> lottoNumbers;
 
     public Lotto(List<Integer> numbers) {
         validateNumbersSize(numbers);
         validateDuplicateNumbers(numbers);
-        createLottoNumbers(numbers);
+        this.lottoNumbers = convertNumberToLottoNumber(numbers);
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
@@ -24,12 +25,6 @@ public class Lotto {
                 .distinct()
                 .count();
         if (count != MAX_NUMBER_OF_NUMBERS) throw new IllegalArgumentException();
-    }
-
-    private void createLottoNumbers(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            this.lottoNumbers.add(new LottoNumber(number));
-        }
     }
 
 }

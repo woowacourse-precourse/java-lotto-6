@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.util.Util;
+
 import java.util.List;
 
 public class Lotto {
@@ -19,16 +21,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public boolean isMatchBonusNumber(int number) {
-        return this.numbers.contains(number);
-    }
-
     public boolean isDuplicateNumber(List<Integer> numbers) {
-        return numbers.size() != numbers.stream().distinct().count();
+        return numbers.size() != Util.distinctListSize(numbers);
     }
 }

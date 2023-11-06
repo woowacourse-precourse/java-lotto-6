@@ -1,7 +1,13 @@
 package lotto;
 
+import lotto.Exceptions.ManageExceptions;
+import lotto.view.Input;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Input input = new Input();
+        ManageExceptions manageExceptions = new ManageExceptions();
+
+        input.getBonusNum();
     }
 }

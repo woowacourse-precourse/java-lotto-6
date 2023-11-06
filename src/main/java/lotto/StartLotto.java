@@ -65,8 +65,9 @@ public class StartLotto {
     public void inputPurchasePriceForClient() {
         boolean errorOccurred;
         do {
+            String purchasePrice = Console.readLine();
             try {
-                inputPurchasePrice();
+                inputPurchasePrice(purchasePrice);
                 errorOccurred = false;
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e);
@@ -75,9 +76,7 @@ public class StartLotto {
         } while (errorOccurred);
     }
 
-    private void inputPurchasePrice() {
-        String purchasePrice = Console.readLine();
-
+    public void inputPurchasePrice(String purchasePrice) {
         // String -> Integer로 변환한다.
         int purchaseNumber = changeStringToInteger(purchasePrice);
         // 1000원 단위인지 확인한다.

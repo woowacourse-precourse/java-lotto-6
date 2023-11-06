@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum WinningPrize {
     FIRST(6, 2_000_000_000),
     SECOND(5, 30_000_000),
@@ -16,24 +18,15 @@ public enum WinningPrize {
     }
 
     public static Integer calculatePrize(Integer matchingNumbers, boolean hasBonusNumber) {
-        if (validateMatchingNumbers(matchingNumbers)) {
-            throw new IllegalArgumentException();
-        }
 
         if (matchingNumbers == 5 && hasBonusNumber) {
             return SECOND.prizeAmount;
         }
 
-        for (WinningPrize prize : WinningPrize.values()) {
-            if (prize.matchingNumbers == matchingNumbers && hasBonusNumber) {
-                return prize.prizeAmount;
-            }
-        }
-
-        return 0;
-    }
-
-    private static boolean validateMatchingNumbers(Integer matchingNumbers) {
-        return matchingNumbers < 3 || matchingNumbers > 6;
+        return Arrays.stream(WinningPrize.values())
+                .filter(prize -> prize.matchingNumbers.equals(matchingNumbers))
+                .findFirst()
+                .map(prize -> prize.prizeAmount)
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

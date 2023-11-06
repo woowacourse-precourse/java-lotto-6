@@ -10,15 +10,15 @@ public class LottoManager {
     private Generator generator;
     private int lottoCount;
 
-    private LottoManager(Generator generator) {
+    private LottoManager(final Generator generator) {
         this.generator = generator;
     }
 
-    public static LottoManager from(Generator generator) {
+    public static LottoManager from(final Generator generator) {
         return new LottoManager(generator);
     }
 
-    public void buyAutoLottos(int lottoCount) {
+    public void buyAutoLottos(final int lottoCount) {
         autoLottos = AutoLottos.from();
         this.lottoCount = lottoCount;
         autoLottos.createAutoLottos(lottoCount, generator);
@@ -32,7 +32,7 @@ public class LottoManager {
         return lottoCount;
     }
 
-    public void createWinning(WinningLotto winnings, Bonus bonusNumber) {
+    public void createWinning(final WinningLotto winnings, final Bonus bonusNumber) {
         winningLotto = winnings;
         bonus = bonusNumber;
     }
@@ -45,7 +45,7 @@ public class LottoManager {
         return bonus.getBonus();
     }
 
-    public List<Integer> totalMatchNumber(List<MatchNumber> matchs) {
+    public List<Integer> totalMatchNumber(final List<MatchNumber> matchs) {
         List<Integer> count = new ArrayList<>();
         for (MatchNumber match : MatchNumber.getMembers()) {
             count.add(countMatchNumber(matchs, match));
@@ -61,13 +61,13 @@ public class LottoManager {
         return matchs;
     }
 
-    private MatchNumber matchNumber(Lotto given) {
+    private MatchNumber matchNumber(final Lotto given) {
         int matchCount = Lotto.matchCount(given, winningLotto.getLotto());
         boolean bonusMatch = Bonus.isSameNumber(given, bonus);
         return MatchNumber.findByMatchCountAndBonus(matchCount, bonusMatch);
     }
 
-    private static int countMatchNumber(List<MatchNumber> matcheNumbers, MatchNumber match) {
+    private static int countMatchNumber(final List<MatchNumber> matcheNumbers, final MatchNumber match) {
         return (int) matcheNumbers.stream().filter(m -> m.getMatchNumber() == match.getMatchNumber()).count();
     }
 

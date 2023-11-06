@@ -1,11 +1,15 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoGameController {
 
     private int purchaseAmount;
     private int purchaseCount;
     private String winningNumbers;
-    private String bonusNumber;
+    private List<Integer> winningNumbersList;
+    private int bonusNumber;
+
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     LottoGameService lottoGameService = new LottoGameService();
@@ -16,14 +20,17 @@ public class LottoGameController {
         printPurchaseQuantity();
         generateLottoNumbers();
         printPurchasedLottoNumbers();
+        setWinningNumbers();
+        setWinningNumbersList();
+        setBonusNumber();
     }
 
     void inputLottoPurchaseAmount() {
-        this.purchaseAmount = Integer.parseInt(inputView.inputPurchaseAmount());
+        purchaseAmount = Integer.parseInt(inputView.inputPurchaseAmount());
     }
 
     void setLottoPurchaseCount() {
-        this.purchaseCount = lottoGameService.getLottoPurchaseCount(purchaseAmount);
+        purchaseCount = lottoGameService.getLottoTicketCount(purchaseAmount);
     }
 
     public void printPurchaseQuantity() {
@@ -39,11 +46,16 @@ public class LottoGameController {
     public void printPurchasedLottoNumbers() {
         outputView.printPurchasedLottoNumbers(lottoGameService.getPurchasedLottoNumbers());
     }
+
     public void setWinningNumbers() {
-        this.winningNumbers = inputView.inputWinningNumbers();
+        winningNumbers = inputView.inputWinningNumbers();
+    }
+
+    public void setWinningNumbersList() {
+        winningNumbersList = lottoGameService.convertWinningNumbersToCollection(winningNumbers);
     }
 
     public void setBonusNumber() {
-        this.bonusNumber = inputView.inputBonusNumber();
+        bonusNumber = Integer.parseInt(inputView.inputBonusNumber());
     }
 }

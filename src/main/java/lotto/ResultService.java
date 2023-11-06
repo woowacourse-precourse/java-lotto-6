@@ -78,7 +78,7 @@ public class ResultService {
     }
 
 
-    private static void makeInitialSettings(HashMap<Integer, Integer> winningResults) {
+    public static void makeInitialSettings(HashMap<Integer, Integer> winningResults) {
         for (int i = 1; i <= WINNING_CASE_NUMBER; i++) {
             winningResults.put(THREE_CASE_NUMBER, 0);
             winningResults.put(FOUR_CASE_NUMBER, 0);

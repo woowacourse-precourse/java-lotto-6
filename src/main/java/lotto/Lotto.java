@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -57,8 +58,8 @@ public class Lotto {
     }
 
     public int getDuplicationNumbers(Lotto lotto, Lotto resultOfLottoIssuance) {
-        List<Integer> realLotto = lotto.getNumbers(lotto);
-        List<Integer> boughtLotto = resultOfLottoIssuance.getNumbers(resultOfLottoIssuance);
+        List<Integer> realLotto = new ArrayList<>(lotto.getNumbers(lotto));
+        List<Integer> boughtLotto = new ArrayList<>(resultOfLottoIssuance.getNumbers(resultOfLottoIssuance));
         boughtLotto.retainAll(realLotto);
         if (boughtLotto.isEmpty()) {
             return 0;

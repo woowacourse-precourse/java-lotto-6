@@ -37,4 +37,34 @@ public class LottoValidation {
 
     }
 
+    public void validatorBonusOnlyNumber(String bonus) {
+
+        if (!bonus.matches("[0-9]+")) {
+            ErrorThrower.throwIllegalArgumentException(BONUS_ONLY_NUMBER_ERROR.getMessage());
+        }
+
+    }
+
+    public void validatorBonusExceedRange(String bonus) {
+
+        int bonusNumber = Integer.parseInt(bonus);
+
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            ErrorThrower.throwIllegalArgumentException(BONUS_EXCEED_RANGE_ERROR.getMessage());
+        }
+
+    }
+
+    public void validatorBonusDistinct(String bonus, List<Integer> winningNumber) {
+
+        int bonusNumber = Integer.parseInt(bonus);
+
+        for (int number : winningNumber) {
+            if (number == bonusNumber) {
+                ErrorThrower.throwIllegalArgumentException(BONUS_DISTINCT_WINNING_NUMBER_ERROR.getMessage());
+            }
+        }
+
+    }
+
 }

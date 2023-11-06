@@ -7,17 +7,17 @@ import static lotto.config.ErrorMessage.PURCHASE_ONLY_NUMBER_ERROR;
 
 public class LottoPurchaseValidation {
 
-    public void validatorPurchaseOnlyNumber(String input) {
+    public void validatorPurchaseOnlyNumber(String purchase) {
 
-        if (!input.matches("[0-9]+")) {
+        if (!purchase.matches("[0-9]+")) {
             ErrorThrower.throwIllegalArgumentException(PURCHASE_ONLY_NUMBER_ERROR.getMessage());
         }
 
     }
 
-    public void validatorNotDivided(String input) {
+    public void validatorNotDivided(String purchase) {
 
-        int purchaseAmount = Integer.parseInt(input);
+        int purchaseAmount = Integer.parseInt(purchase);
 
         if (purchaseAmount % 1000 != 0) {
             ErrorThrower.throwIllegalArgumentException(NOT_THOUSAND_DIVIDED_ERROR.getMessage());

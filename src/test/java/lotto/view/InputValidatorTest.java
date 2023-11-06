@@ -30,4 +30,12 @@ public class InputValidatorTest {
                 .validateWinNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"한글", "0.1"})
+    void 보너스_번호를_입력받을때_정수로_변환할_수_없는_경우_예외가_발생한다(String bonusNumber) {
+        assertThatThrownBy(() -> InputValidator
+                .validateBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

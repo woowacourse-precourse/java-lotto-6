@@ -4,8 +4,13 @@ public class BonusNumber {
 
     private Integer bonusNumber;
 
-    public BonusNumber(Integer bonusNumber) {
+    private BonusNumber(Integer bonusNumber) {
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public static BonusNumber create(Integer bonusNumber) {
+        return new BonusNumber(bonusNumber);
     }
 
     private static void validateBonusNumber(Integer bonusNumber) {

@@ -21,4 +21,8 @@ public class OutputView {
         System.out.printf(SECOND_OUTPUT, countResult.getOrDefault(SECOND_NUM_KEY, 0));
         System.out.printf(FIRST_OUTPUT, countResult.getOrDefault(FIRST_NUM_KEY, 0));
     }
+
+    public void printRevenueRatio(Double revenueRatio) {
+        System.out.printf(REVENUE_RATIO_OUTPUT, revenueRatio);
+    }
 }

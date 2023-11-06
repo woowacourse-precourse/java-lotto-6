@@ -28,6 +28,7 @@ class LottoTest {
 
     // 아래에 추가 테스트 작성 가능
 
+    @DisplayName("쉼표 사이에 당첨 번호가 공백일 경우 예외가 발생한다.")
     @Test
     void 당첨_번호_숫자_공백_실패_테스트() {
         String input = "1,2,,3,4,5";
@@ -38,6 +39,7 @@ class LottoTest {
                 .hasMessage(expectedErrorMessage);
     }
 
+    @DisplayName("당첨 번호 중 숫자가 아닌 입력이 있을 경우 예외가 발생한다.")
     @Test
     void 당첨_번호_숫자_아님_실패_테스트() {
         String input = "2,3,a,5,-,1";
@@ -48,6 +50,7 @@ class LottoTest {
                 .hasMessage(expectedErrorMessage);
     }
 
+    @DisplayName("당첨 번호가 6개가 아닐 경우 예외가 발생한다.")
     @Test
     void 당첨_번호_숫자_개수_실패_테스트() {
         String input = "1,2,3,4,5";
@@ -60,6 +63,7 @@ class LottoTest {
                 .hasMessage(expectedErrorMessage);
     }
 
+    @DisplayName("당첨 번호 중 1과 45사이의 숫자가 아닐 경우 예외가 발생한다.")
     @Test
     void 당첨_번호_숫자_범위_실패_테스트() {
         String input = "140,1,2,3,4,5";
@@ -72,6 +76,7 @@ class LottoTest {
                 .hasMessage(expectedErrorMessage);
     }
 
+    @DisplayName("당첨 번호 중 중복된 숫자가 존재할 경우 예외가 발생한다.")
     @Test
     void 당첨_번호_숫자_중복_실패_테스트() {
         String input = "1,1,2,3,4,5";
@@ -84,6 +89,7 @@ class LottoTest {
                 .hasMessage(expectedErrorMessage);
     }
 
+    @DisplayName("당첨 번호가 문제 조건에 알맞게 입력된 경우 테스트가 성공한다.")
     @Test
     void 당첨_번호_숫자_성공_테스트() {
         String input = "1,2,3,4,5,6";

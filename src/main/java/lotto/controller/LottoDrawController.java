@@ -10,6 +10,7 @@ import lotto.model.LottoNumbersGenerator;
 import lotto.utils.LottoProfitCalculator;
 import lotto.model.UserLotteries;
 import lotto.model.WinningLotto;
+import lotto.utils.UsersPrizeLottoCounter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -37,7 +38,7 @@ public class LottoDrawController {
         showUserLottoDetails(countOfPurchasedLotto, userLotteries);
         WinningLotto winningLotto = createWinningLotto();
 
-        Map<LottoPrize, Long> winningCountPerLottoPrize = userLotteries.findWinningCount(winningLotto);
+        Map<LottoPrize, Long> winningCountPerLottoPrize = UsersPrizeLottoCounter.countPrizeLotto(winningLotto, userLotteries);
         Double lottoProfitPercentage =
                 LottoProfitCalculator.findLottoProfitPercentage(winningCountPerLottoPrize, purchaseAmount);
 

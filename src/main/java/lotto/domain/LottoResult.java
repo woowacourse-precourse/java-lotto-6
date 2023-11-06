@@ -45,6 +45,22 @@ public class LottoResult {
         return totalPrize;
     }
 
+    public float calculateProfitPercentage(){
+        if(totalPrize == NONE){
+            return NONE;
+        }
+        float profit = (float) calculateProfit();
+        return Math.round((profit * 100) / lottoPurchasePrice);
+    }
+
+    public int calculateProfit(){
+        int profit = totalPrize - lottoPurchasePrice;
+        if(profit < NONE){
+            return NONE;
+        }
+        return profit;
+    }
+
     public int getTotalPrizeAmount() {
         return totalPrize;
     }

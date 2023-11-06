@@ -7,7 +7,9 @@ import static lotto.constants.LottoConstants.LOTTO_NUMBER_OVER_MAX;
 import static lotto.constants.LottoConstants.LOTTO_SIZE_MAX_LENGTH;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.text.DecimalFormat;
 import java.util.List;
+import lotto.constants.LottoMsg;
 import lotto.exception.ErrorMsg;
 import lotto.exception.UserInputException;
 
@@ -22,5 +24,11 @@ public class LottoUtils {
 
     public static List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_LENGTH, LOTTO_NUMBER_OVER_MAX, LOTTO_SIZE_MAX_LENGTH);
+    }
+
+    public static void rateFormat(double rateNumber) {
+        double decimalPoint = rateNumber;
+        DecimalFormat decimalFormat = new DecimalFormat("#.0%");
+        System.out.println(String.format(LottoMsg.LOTTO_LATE.getMsg(), decimalFormat.format(decimalPoint)));
     }
 }

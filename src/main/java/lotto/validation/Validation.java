@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class Validation {
     static final int PAYMENT_UNIT = 1000;
-    static final int LOTTO_MIN = 1;
-    static final int LOTTO_MAX = 45;
+    static final int LOTTO_NUMBER_MIN = 1;
+    static final int LOTTO_NUMBER_MAX = 45;
     static final int LOTTO_SIZE = 6;
     static final String ERROR_MESSAGE_UNIT = "[ERROR] 입력값이 1,000원 단위가 아닙니다.";
     static final String ERROR_MESSAGE_SIZE = "[ERROR] 입력된 숫자가 6개가 아닙니다.";
@@ -30,7 +30,7 @@ public class Validation {
 
     public void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if(number < LOTTO_MIN || LOTTO_MAX < number) {
+            if(number < LOTTO_NUMBER_MIN || LOTTO_NUMBER_MAX < number) {
                 System.out.println(ERROR_MESSAGE_RANGE);
                 throw new IllegalArgumentException(ERROR_MESSAGE_RANGE);
             }

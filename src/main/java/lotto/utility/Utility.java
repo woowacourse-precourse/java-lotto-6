@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Utility {
     static final String ERROR_MESSAGE_PARSE_INT = "[ERROR] 입력값이 정수가 아닙니다.";
+    static final int LOTTO_NUMBER_MIN = 1;
+    static final int LOTTO_NUMBER_MAX = 45;
 
     public int parseInt(String input) {
         try {
@@ -19,7 +21,7 @@ public class Utility {
     }
 
     public List<Integer> getRandomNumbers(int length) {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, length);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, length);
         return numbers;
     }
 

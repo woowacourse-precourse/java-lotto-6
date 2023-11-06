@@ -19,7 +19,7 @@ public class LottoController {
         List<Lotto> lotteries = lottoService.generateLotteries(payment);
         communicator.printLotteriesBought(lotteries);
 
-        Lotto jackpotLotto = confirmJackpotLotto();
+        confirmJackpotLotto();
     }
 
     private BigDecimal settlePayment() {
@@ -48,13 +48,12 @@ public class LottoController {
         return jackpotNumbers;
     }
 
-    private Bonus confirmBonus() {
+    private void confirmBonusAndSave(List<Integer> jackpotNumbers) {
         Bonus bonus = Bonus.emptyBonus();
         while (bonus.isEmpty()) {
             String bonusNumber = communicator.instructBonusNumber();
-            bonus = decideBonusNumber(bonusNumber);
+            bonus = decideAndSave(jackpotNumbers, bonusNumber);
         }
-        return bonus;
     }
 
     private List<Integer> decideJackpotNumbers(String jackpotNumbers) {
@@ -66,18 +65,19 @@ public class LottoController {
         }
     }
 
-    private Bonus decideBonusNumber(String bonusNumber) {
+    private Bonus decideAndSave(List<Integer> numbers, String bonusNumber) {
         try {
-            return lottoService.generateBonus(bonusNumber);
+            Bonus bonus = lottoService.generateBonus(bonusNumber);
+            lottoService.saveJackpotLotto(numbers, bonus);
+            return bonus;
         } catch (IllegalArgumentException exception) {
             communicator.printException(exception);
             return Bonus.emptyBonus();
         }
     }
 
-    private Lotto confirmJackpotLotto() {
+    private void confirmJackpotLotto() {
         List<Integer> jackpotNumbers = confirmJackpotNumbers();
-        Bonus bonus = confirmBonus();
-        return lottoService.saveJackpotLotto(jackpotNumbers, bonus);
+        confirmBonusAndSave(jackpotNumbers);
     }
 }

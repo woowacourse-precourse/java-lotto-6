@@ -35,6 +35,17 @@ class LottoServiceTest {
         );
     }
 
+    static Stream<Arguments> jackpotAndListAndLottoResultProvider() {
+        Lotto jackpot = new Lotto(List.of(1, 2, 3, 4, 5, 6), new Bonus(10));
+        return Stream.of(
+                Arguments.of(jackpot, List.of(1, 2, 3, 7, 8, 9), LottoResult.THREE_MATCHING),
+                Arguments.of(jackpot, List.of(1, 2, 3, 4, 8, 9), LottoResult.FOUR_MATCHING),
+                Arguments.of(jackpot, List.of(1, 2, 3, 4, 5, 9), LottoResult.FIVE_MATCHING),
+                Arguments.of(jackpot, List.of(1, 2, 3, 4, 5, 10), LottoResult.FIVE_AND_BONUS_MATCHING),
+                Arguments.of(jackpot, List.of(1, 2, 3, 4, 5, 6), LottoResult.SIX_MATCHING)
+        );
+    }
+
     @BeforeEach
     void setUp() {
         lottoStorage = new LottoStorage();
@@ -51,7 +62,7 @@ class LottoServiceTest {
         lottoService.generateLotteries(payment);
 
         //then
-        List<Lotto> lotteries = lottoStorage.findAllLotteries();
+        List<Lotto> lotteries = lottoStorage.findAllBoughtLotteries();
         assertThat(lotteries).hasSize(5);
     }
 
@@ -105,5 +116,21 @@ class LottoServiceTest {
         Lotto foundLotto = lottoStorage.findJackpot()
                 .get();
         assertThat(foundLotto).isEqualTo(jackpotLotto);
+    }
+
+    @ParameterizedTest(name = "구매 로또가 {1}이면 {2}의 결과를 반환한다.")
+    @MethodSource("jackpotAndListAndLottoResultProvider")
+    @DisplayName("당첨 로또와 구매 로또를 비교해 결과를 반환한다.")
+    void test_matchLotteries(Lotto jackpotLotto, List<Integer> numbers, LottoResult result) {
+        //given
+        Lotto lotto = new Lotto(numbers);
+        lottoStorage.saveLotto(jackpotLotto);
+        lottoStorage.saveLotto(lotto);
+
+        //when
+        List<LottoResult> results = lottoService.matchLotteries();
+
+        //then
+        assertThat(results.get(0)).isEqualTo(result);
     }
 }

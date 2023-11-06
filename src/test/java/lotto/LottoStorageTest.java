@@ -31,26 +31,28 @@ class LottoStorageTest {
     }
 
     @Test
-    @DisplayName("존재하는 로또가 없으면 빈 리스트를 반환한다.")
+    @DisplayName("존재하는 구매 로또가 없으면 빈 리스트를 반환한다.")
     void test_FindAllLotteriesSuccessful_EmptyList() {
         //when
-        List<Lotto> lotteries = lottoStorage.findAllLotteries();
+        List<Lotto> lotteries = lottoStorage.findAllBoughtLotteries();
 
         //then
         assertThat(lotteries).isEmpty();
     }
 
     @Test
-    @DisplayName("존재하는 로또가 있을 때 로또들의 리스트를 반환한다.")
+    @DisplayName("존재하는 구매 로또가 있을 때 로또들의 리스트를 반환한다.")
     void test_FindAllLotteriesSuccessful_ListOfLotteries() {
         //given
         Lotto firstLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto secondLotto = new Lotto(List.of(45, 44,43,42,41,10));
+        Lotto jackpot = new Lotto(List.of(10, 11, 12, 13, 14, 15), new Bonus(1));
         lottoStorage.saveLotto(firstLotto);
         lottoStorage.saveLotto(secondLotto);
+        lottoStorage.saveLotto(jackpot);
 
         //when
-        List<Lotto> lotteries = lottoStorage.findAllLotteries();
+        List<Lotto> lotteries = lottoStorage.findAllBoughtLotteries();
 
         //then
         assertThat(lotteries).hasSize(2);

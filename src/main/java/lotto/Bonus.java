@@ -26,6 +26,10 @@ public class Bonus {
     }
 
     public boolean isEmpty() {
-        return lottoType == null;
+        return lottoType == null && bonusNumber == null;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
     }
 }

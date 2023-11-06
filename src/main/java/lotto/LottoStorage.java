@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +16,10 @@ public class LottoStorage {
         return lotto;
     }
 
-    public List<Lotto> findAllLotteries() {
-        return Collections.unmodifiableList(lotteries);
+    public List<Lotto> findAllBoughtLotteries() {
+        return lotteries.stream()
+                .filter(lotto -> !lotto.isJackpotLotto())
+                .toList();
     }
 
     public Optional<Lotto> findJackpot() {

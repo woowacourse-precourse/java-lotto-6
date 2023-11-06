@@ -41,12 +41,21 @@ public class LottoService {
     }
 
     public Lotto saveJackpotLotto(List<Integer> jackpotNumbers, Bonus bonus) {
+        validateBonusNumberNotDuplicate(jackpotNumbers, bonus.getBonusNumber());
         Lotto jackpotLotto = new Lotto(jackpotNumbers, bonus);
-        lottoStorage.saveLotto(jackpotLotto);
-        return jackpotLotto;
+        return lottoStorage.saveLotto(jackpotLotto);
     }
 
-    private List<Integer> generateNumbers() {
+    public List<LottoResult> matchLotteries() {
+        Lotto jackpotLotto = lottoStorage.findJackpot()
+                .orElseThrow(() -> new IllegalArgumentException("아직 입력된 당첨 번호가 없습니다."));
+        List<Lotto> lotteries = lottoStorage.findAllBoughtLotteries();
+        return lotteries.stream()
+                .map(lotto -> generateLottoResult(jackpotLotto, lotto))
+                .toList();
+    }
+
+    private List<Integer> generateRandomNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers.stream()
                 .sorted()
@@ -54,9 +63,17 @@ public class LottoService {
     }
 
     private Lotto saveRandomLotto() {
-        List<Integer> numbers = generateNumbers();
+        List<Integer> numbers = generateRandomNumbers();
         Lotto lotto = new Lotto(numbers);
         return lottoStorage.saveLotto(lotto);
+    }
+
+    private List<Integer> returnValidatedNumbers(String[] numbers) {
+        List<Integer> validatedNumbers = Arrays.stream(numbers)
+                .map(this::returnValidatedNumber)
+                .toList();
+        validateDistinct(validatedNumbers);
+        return validatedNumbers;
     }
 
     private Integer returnValidatedNumber(String numberInput) {
@@ -71,14 +88,6 @@ public class LottoService {
         }
     }
 
-    private List<Integer> returnValidatedNumbers(String[] numbers) {
-        List<Integer> validatedNumbers = Arrays.stream(numbers)
-                .map(this::returnValidatedNumber)
-                .toList();
-        validateDistinct(validatedNumbers);
-        return validatedNumbers;
-    }
-
     private void validateDistinct(List<Integer> numbers) {
         long distinctCount = numbers.stream()
                 .distinct()
@@ -86,5 +95,16 @@ public class LottoService {
         if (numbers.size() != distinctCount) {
             throw new IllegalArgumentException("중복이 포함되어 있습니다.");
         }
+    }
+
+    private void validateBonusNumberNotDuplicate(List<Integer> numbers, Integer bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호가 당첨 번호와 중복됩니다.");
+        }
+    }
+
+    private LottoResult generateLottoResult(Lotto jackpotLotto, Lotto lotto) {
+        long count = lotto.countMatchingNumbers(jackpotLotto);
+        return LottoResult.from(count);
     }
 }

@@ -8,8 +8,6 @@ import java.util.stream.Stream;
 import lotto.Rank;
 
 public class LottoScanner {
-    private final LottoMachine lottoMachine = new LottoMachine();
-
     public LottoScanner() {
     }
 

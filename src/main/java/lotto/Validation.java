@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import static lotto.Constant.*;
 
@@ -22,7 +24,25 @@ public class Validation {
         }
     }
 
-    public static List<Integer> validateWinningNumber(String input){
+    public static List<Integer> validateWinningNumber(String input) throws IllegalArgumentException{
+        List<String> splittedInput = validateDivision(input);
+        validateNumberCount(splittedInput);
+        return validateIntegers(splittedInput);
+    }
+
+    private static List<String> validateDivision(String input){
+        if (!input.contains(",")){
+            throw new IllegalArgumentException(INPUT_DIVISION_EXCEPTION_MSG);
+        }
+        List<String> splittedInput = new ArrayList<>();
+        splittedInput.addAll(Arrays.asList(input.split(",")));
+        return splittedInput;
+    }
+
+    private static void validateNumberCount(List<String> input){
+    }
+
+    private static List<Integer> validateIntegers(List<String> input){
         return null;
     }
 }

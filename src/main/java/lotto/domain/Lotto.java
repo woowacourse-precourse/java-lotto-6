@@ -64,4 +64,8 @@ public class Lotto {
 
 		return new Lotto(winningNumbers);
 	}
+
+	public boolean contains(Integer number) {
+		return numbers.contains(number);
+	}
 }

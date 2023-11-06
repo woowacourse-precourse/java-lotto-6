@@ -23,4 +23,8 @@ public class WinningNumbers {
 			throw new IllegalArgumentException(BLANK_WINNING_NUMBERS.getMessage());
 		}
 	}
+
+	public boolean contains(Integer number) {
+		return winningNumbers.contains(number);
+	}
 }

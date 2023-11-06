@@ -24,18 +24,18 @@ public class WinningLotto {
 	}
 
 	private void checkDuplicationBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-		if (winningNumbers.getWinningNumbers().getNumbers().contains(bonusNumber.getBonusNumber())) {
+		if (winningNumbers.contains(bonusNumber.getBonusNumber())) {
 			throw new IllegalArgumentException(OVERLAPPED_BONUS_NUMBER.getMessage());
 		}
 	}
 
 	public int calculateMatchCount(Lotto lotto) {
 		return (int) lotto.getNumbers().stream()
-			.filter(winningNumbers.getWinningNumbers().getNumbers()::contains)
+			.filter(winningNumbers::contains)
 			.count();
 	}
 
 	public boolean isBonusMatch(Lotto lotto) {
-		return lotto.getNumbers().contains(bonusNumber.getBonusNumber());
+		return lotto.contains(bonusNumber.getBonusNumber());
 	}
 }

@@ -13,7 +13,32 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class InputBonusNumberServiceTest {
 
+    InputBonusNumberService inputBonusNumberService;
+    Validator validator;
 
+    @BeforeEach
+    void init() {
+        inputBonusNumberService = new InputBonusNumberService();
+        validator = new Validator();
+    }
+
+    @Test
+    void checkRightBonusNumberInput() {
+//
+//        validator.validateBonusNumberInput(bonusNumberInput);
+//        int convertedBonusNumber = Integer.parseInt(bonusNumberInput);
+//        validator.validateBonusNumberRange(convertedBonusNumber);
+//        validator.validateIsBonusNumberInWinnerNumber(lottoWinNumbers, convertedBonusNumber);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "bb2", "x3", ",4", "", " "})
+    @DisplayName("보너스 번호 입력에 숫자가 아닌 이상한 문자가 오게 된 경우!")
+    void validateBonusNumberInput(String bonusNumberInput) {
+        Assertions.assertThatThrownBy(() -> validator.validateBonusNumberInput(bonusNumberInput))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR]");
+    }
 
 
 

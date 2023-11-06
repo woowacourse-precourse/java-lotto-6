@@ -9,8 +9,17 @@ import lotto.domain.Money;
 public class InputView {
     public Money inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+        return parseMoney(input);
+    }
 
-        return new Money(Integer.parseInt(Console.readLine()));
+    private Money parseMoney(String input) {
+        try {
+            int money = Integer.parseInt(input);
+            return new Money(money);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값을 입력하였습니다.");
+        }
     }
 
     public List<Integer> inputLottoWinningNumbers() {
@@ -43,7 +52,5 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
         }
     }
-
-
 
 }

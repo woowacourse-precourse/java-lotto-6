@@ -18,6 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
 
+        // TODO 에러메시지 만들기
         if (!isRightSize(numbers.size())) {
             throw new IllegalArgumentException();
         }

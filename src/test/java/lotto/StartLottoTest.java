@@ -60,4 +60,16 @@ public class StartLottoTest {
             test.checkBonusNumber(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호와 당첨 번호 사이에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void checkBonusNumberIsDuplicatedNumber() {
+        assertThatThrownBy(() -> {
+            String winningNumbers = "1,2,3,4,5,6";
+            String input = "3";
+            test.checkWinningNumbers(winningNumbers);
+            test.checkBonusNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("보너스 번호와 당첨 번호에는 서로 중복되는 숫자가 없습니다. 다시 입력해주세요.");
+    }
 }

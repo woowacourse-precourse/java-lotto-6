@@ -1,6 +1,8 @@
 package lotto.validator;
 
+import lotto.constant.Constant;
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +11,6 @@ import java.util.regex.Pattern;
 
 public class WinningNumberValidator extends Validator {
     private static final Pattern VALID_LOTTO_NUMBER_REGEXP = Pattern.compile("[0-9]+");
-    private static final String NUMBER_SEPARATOR = ",";
 
     @Override
     public void validate(String winningNumber) throws IllegalArgumentException {
@@ -20,13 +21,13 @@ public class WinningNumberValidator extends Validator {
     }
 
     private void validateSeparator(String winningNumber) throws IllegalArgumentException {
-        if (!winningNumber.contains(NUMBER_SEPARATOR)) {
+        if (!winningNumber.contains(Constant.NUMBER_SEPARATOR.getMessage())) {
             throw new IllegalArgumentException(ErrorMessage.SEPARATOR_ERROR.getMessage());
         }
     }
 
     private void validateInvalidWinningNumbers(String winningNumber) throws IllegalArgumentException {
-        String[] winningLottoNumbers = winningNumber.split(NUMBER_SEPARATOR);
+        String[] winningLottoNumbers = winningNumber.split(Constant.NUMBER_SEPARATOR.getMessage());
         for (String winningNumberStr : winningLottoNumbers) {
             if (!isValidWinningNumber(winningNumberStr)) {
                 throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_ERROR.getMessage());
@@ -46,7 +47,7 @@ public class WinningNumberValidator extends Validator {
     }
 
     private List<Integer> parsingWinningNumber(String winningLottoNumber) {
-        return Arrays.stream(winningLottoNumber.split(","))
+        return Arrays.stream(winningLottoNumber.split(Constant.NUMBER_SEPARATOR.getMessage()))
                 .map(Integer::parseInt)
                 .toList();
     }
@@ -58,20 +59,20 @@ public class WinningNumberValidator extends Validator {
     }
 
     private boolean isValidNumberBound(int winningNumber) {
-        if (winningNumber < 1 || winningNumber > 45) {
+        if (winningNumber < LottoConstant.MIN_LOTTO_NUMBER_BOUND.getValue() || winningNumber > LottoConstant.MAX_LOTTO_NUMBER_BOUND.getValue()) {
             return false;
         }
         return true;
     }
 
     private void validateWinningLottoNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
-        if(winningNumbers.size() != 6) {
+        if(winningNumbers.size() != LottoConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NUM_ERROR.getMessage());
         }
     }
 
     private void validateDupleWinningNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
-        if (countNotDupleLottoNumber(winningNumbers) != 6) {
+        if (countNotDupleLottoNumber(winningNumbers) != LottoConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLE_NUM_ERROR.getMessage());
         }
     }

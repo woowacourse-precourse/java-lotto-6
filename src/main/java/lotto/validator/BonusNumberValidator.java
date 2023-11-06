@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,7 +28,7 @@ public class BonusNumberValidator extends Validator {
     }
 
     private void validateBonusNumberBound(int bonusNumber) throws IllegalArgumentException {
-        if(bonusNumber < 1 || bonusNumber > 45) {
+        if(bonusNumber < LottoConstant.MIN_LOTTO_NUMBER_BOUND.getValue() || bonusNumber > LottoConstant.MAX_LOTTO_NUMBER_BOUND.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_BOUND_ERROR.getMessage());
         }
     }

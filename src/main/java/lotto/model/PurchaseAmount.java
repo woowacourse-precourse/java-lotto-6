@@ -1,10 +1,10 @@
 package lotto.model;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
 import lotto.validator.PurchaseAmountValidator;
 
 public class PurchaseAmount {
-    private static final int LOTTO_AMOUNT_UNIT = 1000;
     private int purchaseAmount;
 
     private PurchaseAmount(int purchaseAmount) throws IllegalArgumentException{
@@ -23,6 +23,6 @@ public class PurchaseAmount {
     }
 
     public int getLottoNum() {
-        return purchaseAmount / LOTTO_AMOUNT_UNIT;
+        return purchaseAmount / LottoConstant.LOTTO_AMOUNT_UNIT.getValue();
     }
 }

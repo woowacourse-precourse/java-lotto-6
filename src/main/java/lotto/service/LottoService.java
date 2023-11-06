@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constant.Constant;
 import lotto.model.ClientInform;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
@@ -47,7 +48,7 @@ public class LottoService {
     }
 
     public void makeWinningLotto(String winningLottoNumber, String bonusNumber) {
-        List<Integer> winningLottoNumbers = Arrays.stream(winningLottoNumber.split(","))
+        List<Integer> winningLottoNumbers = Arrays.stream(winningLottoNumber.split(Constant.NUMBER_SEPARATOR.getMessage()))
                 .map(Integer::parseInt)
                 .toList();
 

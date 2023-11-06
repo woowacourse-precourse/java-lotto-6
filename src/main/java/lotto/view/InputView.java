@@ -43,7 +43,7 @@ public class InputView {
 
     private static void validateComma(String input) {
         if (!COMMAPATTERN.matcher(input).matches()) {
-            throw new NumberFormatException("[ERROR] 올바른 형식으로 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 올바른 형식으로 입력해주세요.");
         }
     }
 

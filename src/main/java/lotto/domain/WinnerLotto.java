@@ -4,14 +4,14 @@ import java.util.List;
 import lotto.exception.NumberOutOfRangeException;
 import lotto.exception.DuplicateNumberException;
 
-public class PlayerLotto {
+public class WinnerLotto {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
     private final Integer bonusNumber;
     private final Lotto lotto;
 
-    public PlayerLotto(List<Integer> playerLotto, Integer bonusNumber) {
+    public WinnerLotto(List<Integer> playerLotto, Integer bonusNumber) {
         lotto = new Lotto(playerLotto);
         validateBonusNumber(playerLotto, bonusNumber);
         this.bonusNumber = bonusNumber;

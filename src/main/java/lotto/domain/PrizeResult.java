@@ -21,9 +21,9 @@ public class PrizeResult {
                 ));
     }
 
-    public static Map<Prize, Long> calculatePrizeResults(Lottos lottos, PlayerLotto playerLotto) {
+    public static Map<Prize, Long> calculatePrizeResults(Lottos lottos, WinnerLotto winnerLotto) {
         return lottos.getLottos().stream()
-                .map(lotto -> findPrize(lotto.countMatch(playerLotto), lotto.countBonusMatch(playerLotto)))
+                .map(lotto -> findPrize(lotto.countMatch(winnerLotto), lotto.countBonusMatch(winnerLotto)))
                 .collect(Collectors.groupingBy(prize -> prize, Collectors.counting()));
     }
 

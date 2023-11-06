@@ -13,7 +13,7 @@ public class PrizeResultTest {
 
     private final int numberOfLottos = 7;
     private final int moneySpent = numberOfLottos * 1000;
-    private final PlayerLotto playerLotto = new PlayerLotto(List.of(1, 2, 3, 4, 5, 6), numberOfLottos);
+    private final WinnerLotto winnerLotto = new WinnerLotto(List.of(1, 2, 3, 4, 5, 6), numberOfLottos);
 
     List<Lotto> lottos = Arrays.asList(
             new Lotto(List.of(1, 2, 3, 4, 5, 6)),
@@ -29,7 +29,7 @@ public class PrizeResultTest {
     @Test
     @DisplayName("당첨 결과를 계산한다.")
     void calculatePrizeResults() {
-        assertThat(PrizeResult.calculatePrizeResults(new Lottos(lottos), playerLotto))
+        assertThat(PrizeResult.calculatePrizeResults(new Lottos(lottos), winnerLotto))
                 .containsExactlyInAnyOrderEntriesOf(Map.of(
                         Prize.FIRST_PLACE, 1L,
                         Prize.SECOND_PLACE, 1L,

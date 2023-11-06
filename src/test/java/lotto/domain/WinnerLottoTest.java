@@ -16,22 +16,22 @@ public class PlayerLottoTest {
     @Test
     void createPlayerLottoWithDuplicateBonusNumber() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerLotto(lottoNumbers, 6));
+                .isThrownBy(() -> new WinnerLotto(lottoNumbers, 6));
     }
 
     @DisplayName("보너스 숫자가 허용된 범위 밖의 숫자면 예외가 발생한다.")
     @Test
     void createPlayerLottoWithBonusNumberOutOfRange() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerLotto(lottoNumbers, 0));
+                .isThrownBy(() -> new WinnerLotto(lottoNumbers, 0));
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerLotto(lottoNumbers, 46));
+                .isThrownBy(() -> new WinnerLotto(lottoNumbers, 46));
     }
 
     @DisplayName("플레이어 로또 생성에 성공한다.")
     @Test
     void createPlayerLottoSuccessfully() {
-        Assertions.assertAll(() -> new PlayerLotto(lottoNumbers, 7));
+        Assertions.assertAll(() -> new WinnerLotto(lottoNumbers, 7));
     }
 
 }

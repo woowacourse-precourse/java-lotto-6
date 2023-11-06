@@ -16,7 +16,7 @@ public record WinningResults(Map<LottoRewardCondition, Integer> results) {
     }
 
     public List<Integer> calculateWinningCounts() {
-       return Arrays.stream(LottoRewardCondition.values())
+        return Arrays.stream(LottoRewardCondition.values())
                 .filter(LottoRewardCondition::isNotFail)
                 .map(condition -> results.getOrDefault(condition, 0))
                 .toList();

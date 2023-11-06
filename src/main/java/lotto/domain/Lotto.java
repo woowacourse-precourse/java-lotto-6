@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -8,12 +9,19 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+        if (Set.copyOf(numbers).size() < Constants.LOTTO_LENGTH) {
+            throw new IllegalArgumentException(Constants.DUPLICATE_NUMBER_ERROR);
         }
     }
 

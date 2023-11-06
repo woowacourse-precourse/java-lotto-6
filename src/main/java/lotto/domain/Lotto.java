@@ -51,7 +51,7 @@ public class Lotto {
         return numbersUnique.size() != numbers.size();
     }
 
-    public static List<Integer> convertToIntegers(String numbers) {
+    public static List<Integer> convertToIntegers(final String numbers) {
         List<String> numbersSplit = Arrays.asList(numbers.split(","));
         List<Integer> numbersConverted = new ArrayList<>();
 

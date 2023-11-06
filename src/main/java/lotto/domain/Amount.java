@@ -17,7 +17,7 @@ public class Amount {
         return this.amount;
     }
 
-    private int convertToInteger(String amount) {
+    private int convertToInteger(final String amount) {
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException e) {

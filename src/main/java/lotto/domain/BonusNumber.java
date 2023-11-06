@@ -16,7 +16,7 @@ public class BonusNumber {
         validate(winningLotto.getNumbers(), this.number);
     }
 
-    private int convertToInteger(String number) {
+    private int convertToInteger(final String number) {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
@@ -24,7 +24,7 @@ public class BonusNumber {
         }
     }
 
-    private void validate(List<Integer> numbers, int number) {
+    private void validate(final List<Integer> numbers, final int number) {
         if (!isInLottoRange(number)) {
             throw new IllegalArgumentException(OUT_OF_RANGE_EXCEPTION_MESSAGE);
         } else if (isContainedInNumbers(numbers, number)) {
@@ -32,14 +32,14 @@ public class BonusNumber {
         }
     }
 
-    private boolean isInLottoRange(int number) {
+    private boolean isInLottoRange(final int number) {
         if (number < LOTTO_RANGE_BEGIN_NUMBER || number > LOTTO_RANGE_END_NUMBER) {
             return false;
         }
         return true;
     }
 
-    private boolean isContainedInNumbers(List<Integer> numbers, int number) {
+    private boolean isContainedInNumbers(final List<Integer> numbers, final int number) {
         return numbers.contains(number);
     }
 }

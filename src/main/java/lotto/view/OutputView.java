@@ -8,7 +8,7 @@ public class OutputView {
         System.out.println("\n" + amount + "개를 구매했습니다.");
     }
 
-    public static void printLottos(Player player) {
+    public static void printLotteries(Player player) {
         for (Lotto lotto : player.generateLotteries()) {
             System.out.println(lotto.getNumbers());
         }

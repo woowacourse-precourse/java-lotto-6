@@ -16,7 +16,7 @@ public class LottoController {
     private void prepareLotto() {
         player = new Player(getAmount());
         OutputView.printAmount(player.convertToUnit());
-        OutputView.printLottos(player);
+        OutputView.printLotteries(player);
     }
 
     private int getAmount() {

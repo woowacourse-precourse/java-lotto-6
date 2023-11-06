@@ -1,10 +1,10 @@
 package lotto.service;
 
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoTicket;
+import lotto.repository.LottoRepository;
 import lotto.util.generator.LottoNumberGenerator;
 
-public class LottoService {
+public class LottoBuyService {
 
     private static final int LOTTO_PRICE = 1000;
     private static final LottoNumberGenerator lottoGenerator = new LottoNumberGenerator();
@@ -16,13 +16,13 @@ public class LottoService {
         return lottoAmount;
     }
 
-    public LottoTicket exchangeLotto(int lottoAmount) {
-        LottoTicket lottoTicket = new LottoTicket();
+    public LottoRepository exchangeLotto(int lottoAmount) {
+        LottoRepository lottoRepository = LottoRepository.getInstance();
         for (int ticket = 0; ticket < lottoAmount; ticket++) {
             Lotto lotto = new Lotto(lottoGenerator.generate());
-            lottoTicket.addLotto(lotto);
+            lottoRepository.addLotto(lotto);
         }
-
-        return lottoTicket;
+        //싱글톤으로 바꿔서 리턴하지않고 lottoWinnerService에서도 사용
+        return lottoRepository;
     }
 }

@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static lotto.controller.ExceptionController.checkExceptionPrice;
 import static lotto.view.ErrorMessage.notDigitExceptionMessage;
 
 public class InputConverter {
     public static int convertPrice(String inputPrice) {
-        return checkDigit(inputPrice);
+        return checkExceptionPrice(inputPrice);
     }
 
     public static List<Integer> convertWinningNumber(String inputWinningNumber) {

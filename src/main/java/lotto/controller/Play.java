@@ -19,29 +19,33 @@ public class Play {
     private static int price;
     private static int count;
     private static HashMap<Rank, Integer> result;
+    private static List<Lotto> lottery;
+    private static int bonus;
+    private static List<Integer> winningNumbers;
+
     public Play() {
-        price = createPrice();
-        count = calLottoCount(price);
-        printBoughtLottoCount(count);
-        List<Lotto> lottery = rotateLotteryCount(count);
-        printLottoRotate(lottery);
-        List<Integer> winningNumbers = createWinningNumber();
-        int bonus = createBonusNumber(winningNumbers);
-        messageAboutWinningStatistic();
-        result = createResult(lottery, winningNumbers, bonus);
-        calResultPlay();
+        boughtLotto();
+        inputWinning();
+        winningResult();
     }
 
     public static void boughtLotto() {
-
+        price = createPrice();
+        count = calLottoCount(price);
+        printBoughtLottoCount(count);
+        lottery = rotateLotteryCount(count);
+        printLottoRotate(lottery);
     }
 
     public static void inputWinning() {
-
+        winningNumbers = createWinningNumber();
+        bonus = createBonusNumber(winningNumbers);
     }
 
     public static void winningResult() {
-
+        messageAboutWinningStatistic();
+        result = createResult(lottery, winningNumbers, bonus);
+        calResultPlay();
     }
 
     public static int createPrice() {

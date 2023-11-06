@@ -17,7 +17,7 @@ public class ErrorMessage {
     }
 
     public static void priceZeroException() {
-        System.out.println(error + " 로또는 한 장에 천원입니다. 한 장이라도 사주세요!");
+        System.out.println(error + " 로또는 한 장에 천원입니다. 한 장이라도 사주세요.");
     }
 
     public static void duplicatedBonusNumber() {

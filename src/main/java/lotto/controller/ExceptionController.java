@@ -4,8 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.controller.InputConverter.convertBonusNumber;
-import static lotto.controller.InputConverter.convertWinningNumber;
+import static lotto.controller.InputConverter.*;
 import static lotto.view.ErrorMessage.*;
 
 public class ExceptionController {
@@ -13,7 +12,13 @@ public class ExceptionController {
     private static final int end = 45;
 
     private static final int size = 6;
+    private static final int minPrice = 1000;
 
+    public static int checkExceptionPrice(String inputPrice) {
+        int price = checkDigit(inputPrice);
+        checkZeroPrice(price);
+        return price;
+    }
     public static List<Integer> checkExceptionWinningNumber(String tmpWinningNumbers) throws IllegalArgumentException {
         List<Integer> winningNumbers = convertWinningNumber(tmpWinningNumbers);
         checkWinningNumbersLength(winningNumbers);
@@ -51,6 +56,13 @@ public class ExceptionController {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.contains(bonus)) {
             duplicatedBonusNumber();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkZeroPrice(int price) throws IllegalArgumentException{
+        if (price < minPrice) {
+            priceZeroException();
             throw new IllegalArgumentException();
         }
     }

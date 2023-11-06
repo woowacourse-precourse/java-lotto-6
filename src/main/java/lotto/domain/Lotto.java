@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,10 +14,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-        Set<Integer> uniqueNums = new HashSet<>(numbers);
-        if (!numbers.equals(uniqueNums)) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException("중복된 번호가 존재해서는 안 됩니다.");
         }
+
 
     }
 

@@ -5,18 +5,16 @@ import java.util.List;
 public class Lottos {
 
     private Lotto lotto;
-    private Bonus bonus;
 
     public Lottos() {
     }
 
-    public Lottos(Lotto lotto, Bonus bonus) {
+    public Lottos(Lotto lotto) {
         this.lotto = lotto;
-        this.bonus = bonus;
     }
 
-    public void collectLottoNumbers(User user, Lotto lotto, Bonus bonus) {
-        user.storePurchasedLotto(new Lottos(lotto, bonus));
+    public void collectLottoNumbers(User user, Lotto lotto) {
+        user.storePurchasedLotto(new Lottos(lotto));
     }
 
     public List<Integer> purchaseLottoNumber(){

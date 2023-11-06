@@ -15,6 +15,21 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if (!checkSameNumber(numbers)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    boolean checkSameNumber(List<Integer> numbers) {
+        for(int number : numbers) {
+            List<Integer> copyList = new ArrayList<>();
+            copyList.addAll(numbers);
+            copyList.remove(copyList.indexOf(number));
+            if(copyList.contains(number)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

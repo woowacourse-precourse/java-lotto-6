@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class WinningNumbers {
 
-    private List<Integer> numbers;
-    private int bonus;
+    private final List<Integer> numbers;
+    private final int bonus;
 
     public WinningNumbers(String numbers, String bonus) {
         validateNumbers(numbers);

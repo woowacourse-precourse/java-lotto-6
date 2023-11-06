@@ -20,8 +20,10 @@ public class Application {
     final static int coinStandard = 1000; 
     static int inputCoin;
     static int bonusNumber;
+    static int totalLottoMoney;
     static List<Integer> inputWinningLotto = new ArrayList<>();
     static List<List<Integer>> lottoTotal = new ArrayList<>();
+    static List<Integer> lottoWinnings = new ArrayList<>();
     
 
     public static void CoinValidate(int inputCoin){
@@ -36,6 +38,7 @@ public class Application {
         inputCoin = Integer.parseInt(Console.readLine());
         CoinValidate(inputCoin);
         inputCoin = inputCoin / coinStandard;
+        System.out.println();
     }
 
     public static List<Integer> RandomLottoNumber() {
@@ -58,6 +61,7 @@ public class Application {
         for(List<Integer> lotto: lottoTotal){
             System.out.println(lotto);
         }
+        System.out.println();
     }
     
     public static int LottoNumberValidate(String lottoNumber){
@@ -80,6 +84,7 @@ public class Application {
         for(String lottoNumber : Console.readLine().split(",")){
             inputWinningLotto.add(LottoNumberValidate(lottoNumber));
         }
+        System.out.println();
     }
 
     public static void DuplicateCheck(){
@@ -94,16 +99,49 @@ public class Application {
         }
     }
 
+    public static int CheckLottoRank(int lottoResult){
+        System.out.println(lottoResult);
+        if (lottoResult == 6)
+            return 4;
+        if (lottoResult == 15)
+            return 3;
+        if (lottoResult == 5)
+            return 2;
+        if (lottoResult == 4 || lottoResult == 14)
+            return 1;
+        if (lottoResult == 3 || lottoResult == 13)
+            return 0;
+        return 5;
+    }
+
+    public static void MyLottoCheck(Lotto lotto){
+        int lottoResult;
+        int rank;
+        for (List<Integer> mylotto: lottoTotal){
+            lottoResult = lotto.LottoCheck(mylotto, bonusNumber, inputWinningLotto);
+            rank = CheckLottoRank(lottoResult);
+            lottoWinnings.set(rank, lottoWinnings.get(rank)+1) ;
+        }
+    }
+
+    public static void LotteryWinningInit(){
+        for(int i=0; i<lotteryWinningRank; i++)
+            lottoWinnings.add(0);
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         GetCoin();
-        System.out.println();
         GetLottos();
-        System.out.println();
         WinningLottoInput();
-        System.out.println();
         BonusNumberInput();
         DuplicateCheck();
+
+        Lotto lotto = new Lotto(inputWinningLotto);
+
+        LotteryWinningInit();
+        MyLottoCheck(lotto);
+        System.out.println(lottoWinnings);
 
     }
 }

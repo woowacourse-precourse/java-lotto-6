@@ -4,15 +4,16 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class GenerateLottoNumber {
     private List<Integer> numbers;
 
     public List<Integer> selectNumber(){
-        numbers = new ArrayList<>();
         numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//        Collections.sort(numbers);
+        List<Integer> numberSorted =new ArrayList<>(numbers);
+        Collections.sort(numberSorted);
         return numbers;
     }
 

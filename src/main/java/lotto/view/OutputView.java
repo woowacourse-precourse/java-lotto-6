@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.WinningRate;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class OutputView {
 
     public void rateOfReturn(double rate){
 
-        System.out.println(RATE_OF_RETURN + rate + "%입니다.");
+        System.out.println(RATE_OF_RETURN + String.format("%.1f",rate) + "%입니다.");
     }
 
 }

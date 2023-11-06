@@ -17,10 +17,11 @@ public class WinningNumber {
 
     public WinningNumber(String inputWinningNumber) {
         validateSplitCheck(inputWinningNumber);
+        this.inputWinningNumber = inputWinningNumber;
         validateIsNumber(inputWinningNumber);
         validateRange(inputWinningNumber);
+        validateCount(inputWinningNumber);
 
-        this.inputWinningNumber = inputWinningNumber;
         winningNumber = new ArrayList<>();
         setWinningNumberList(this.inputWinningNumber);
     }
@@ -32,6 +33,8 @@ public class WinningNumber {
         if (!inputWinningNumber.matches("\\d+(,\\d+){5}")) {
             throw new IllegalArgumentException("[ERROR] 당첨번호 입력 형식이 올바르지 않습니다.");
         }
+
+        numbers = inputWinningNumber.split(",");
     }
 
     private void validateIsNumber(String inputWinningNumber){

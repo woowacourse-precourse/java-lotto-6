@@ -1,5 +1,6 @@
 package lotto.logic;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.view.View;
 
@@ -7,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoLogic implements Logic {
-    private final View view;
+    private static final int COST = 1000;
+    private View view;
     private boolean running = true;
     private List<Lotto> lotteries = new ArrayList<>();
 
@@ -25,6 +27,15 @@ public class LottoLogic implements Logic {
     @Override
     public void run() {
         int payment = getPurchaseAmount();
+        generateLotto(payment);
+    }
+
+    private void generateLotto(int payment) {
+        int count = payment / COST;
+        for (int i = 0; i < count; i++) {
+            lotteries.add(new Lotto(Randoms.pickUniqueNumbersInRange(START_RANGE, END_RANGE, NUMBER_COUNT)));
+        }
+        view.printAllLottery(lotteries);
     }
 
     private int getPurchaseAmount() {

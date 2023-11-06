@@ -22,8 +22,7 @@ public class LottoResult {
     }
 
     private boolean isContainDuplicateNumber(Lotto winningLotto, int bonusNumber) {
-        return winningLotto.getNumbers()
-                .contains(bonusNumber);
+        return winningLotto.checkContainBonusNumber(bonusNumber);
     }
 
     public Map<LottoPrizeStatus, Integer> mappingPrizeResult(List<Lotto> issuedLottos) {
@@ -35,16 +34,12 @@ public class LottoResult {
     private void calculatePrizeResult(Map<LottoPrizeStatus, Integer> prizeResult, List<Lotto> issuedLottos) {
         for (Lotto issuedLotto : issuedLottos) {
             int matchCount = winningLotto.calculateMatchCount(issuedLotto);
-            boolean isContainBonusNumber = checkContainBonusNumber(issuedLotto);
+            boolean isContainBonusNumber = issuedLotto.checkContainBonusNumber(bonusNumber);
             LottoPrizeStatus status = LottoPrizeStatus.getSatisfiedContainsStatus(matchCount, isContainBonusNumber);
             if (status != null) {
                 prizeResult.put(status, prizeResult.get(status) + ADD_COUNT);
             }
         }
-    }
-
-    private boolean checkContainBonusNumber(Lotto issuedLotto) {
-        return issuedLotto.getNumbers().contains(bonusNumber);
     }
 
     private Map<LottoPrizeStatus, Integer> getPrizeResult() {

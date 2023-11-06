@@ -11,7 +11,6 @@ public enum LottoPrizeStatus {
 
     private final int prizeMoney;
     private final int sameCount;
-
     private final String matchInformation;
 
     LottoPrizeStatus(int prizeMoney, int sameCount, String matchInformation) {

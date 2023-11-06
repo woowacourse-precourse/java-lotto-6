@@ -33,19 +33,16 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-
     public int calculateMatchCount(Lotto issuedLotto) {
-        List<Integer> issuedLottoNumbers = issuedLotto.getNumbers();
+        List<Integer> issuedLottoNumbers = issuedLotto.numbers;
         return (int)numbers.stream()
                 .filter(num -> issuedLottoNumbers.contains(num))
                 .count();
     }
 
+    public boolean checkContainBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
     @Override
     public String toString() {
         return numbers.stream()

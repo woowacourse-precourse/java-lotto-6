@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningLottoTest {
 
-    @DisplayName("1이상 45이하의 수가 아닌 당첨 번호는 생성시 예외가 발생합니다.")
+    @DisplayName("1이상 45이하의 수가 아닌 당첨 번호는 생성시 예외가 발생한다.")
     @Test
     void createWinningNumberRangeException() {
         // given
@@ -21,7 +21,7 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨번호가 중복되면 생성시 예외가 발생합니다.")
+    @DisplayName("당첨번호가 중복되면 생성시 예외가 발생한다.")
     @Test
     void createWinningNumberDuplicationException() {
         // given
@@ -32,7 +32,7 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("1이상 45이하의 중복되지 않는 당첨 번호를 생성합니다.")
+    @DisplayName("1이상 45이하의 중복되지 않는 당첨 번호를 생성한다.")
     @Test
     void createWinningNumber() {
         // given
@@ -46,7 +46,7 @@ class WinningLottoTest {
         assertThat(winningNumbers.size()).isEqualTo(6);
     }
 
-    @DisplayName("1이상 45이하의 수가 아닌 보너스 번호는 생성시 예외가 발생합니다.")
+    @DisplayName("1이상 45이하의 수가 아닌 보너스 번호는 생성시 예외가 발생한다.")
     @Test
     void createBonusNumberRangeException() {
         // given
@@ -61,7 +61,7 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨번호와 중복되는 보너스 번호는 생성시 예외가 발생합니다.")
+    @DisplayName("당첨번호와 중복되는 보너스 번호는 생성시 예외가 발생한다.")
     @Test
     void createBonusNumberDuplicationException() {
         // given
@@ -73,7 +73,7 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨번호와 중복되지 않는 1이상 45이하의 보너스 번호를 생성합니다.")
+    @DisplayName("당첨번호와 중복되지 않는 1이상 45이하의 보너스 번호를 생성한다.")
     @Test
     void createBonusNumber() {
         // given

@@ -24,6 +24,17 @@ class LottoGeneratorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또를 생성한다")
+    @Test
+    void generateLotto() {
+        int amount = 5000;
+
+        LottoGenerator lottoGenerator = LottoGenerator.from(amount);
+        List<Lotto> lottos = lottoGenerator.generate();
+
+        lottos.stream().map(lotto -> assertThat(lotto.getClass()).isInstanceOf(Lotto.class));
+    }
+
     @DisplayName("구입 금액만큼 로또를 생성한다")
     @Test
     void generateCorrectNumbersOfLottos() {

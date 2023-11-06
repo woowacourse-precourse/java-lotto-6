@@ -1,6 +1,8 @@
 package lotto.domain;
 
 
+import java.util.NoSuchElementException;
+
 public class Money {
     private int money;
 
@@ -14,7 +16,7 @@ public class Money {
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) < '0' || input.charAt(i) > '9') {
                 System.out.println("[ERROR] 숫자만 입력해주시기 바랍니다.");
-                throw new IllegalArgumentException();
+                throw new NoSuchElementException();
             }
         }
     }

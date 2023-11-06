@@ -20,7 +20,7 @@ public class GameController {
     private final Profit profit = new Profit();
     private Money money;
     private List<Lotto> lottos;
-    private WinningNumber winningNumbers;
+    private WinningNumber winningNumber;
     private Lotto winningLotto;
     private BonusNumber bonusNumber;
     private boolean hasBonusNumber;
@@ -32,8 +32,8 @@ public class GameController {
         lottos = createLotto.getLottos();
         outputView.printLottoNumbers(lottos);
 
-        winningNumbers = inputView.askWinningNumber();
-        winningLotto = new Lotto(winningNumbers.getWinningNumber());
+        winningNumber = inputView.askWinningNumber();
+        winningLotto = new Lotto(winningNumber.getWinningNumber());
 
         outputView.printBlankLine();
         bonusNumber = inputView.askBonusNumber();

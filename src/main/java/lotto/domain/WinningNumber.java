@@ -5,6 +5,7 @@ import java.util.List;
 
 public class WinningNumber {
     private List<Integer> winningNumber;
+
     public WinningNumber(String inputWinning) {
         winningNumber = new ArrayList<>();
         isRightFormat(inputWinning);

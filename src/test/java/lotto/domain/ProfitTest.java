@@ -25,7 +25,7 @@ class ProfitTest {
         gameResult.setRankingNumbers(winningLotto, lotto2, hasBonusNumber);
     }
 
-    @DisplayName("FIVE_PLUS_BONUS(30000000) 와 FOUR_WINS(50000) 를 합친 수익은 30050000 이다")
+    @DisplayName("FIVE_PLUS_BONUS(30000000)와 FOUR_WINS(50000)를 합친 수익은 30050000이다")
     @Test
     void calculateProfit() {
         profit.setProfit(gameResult);

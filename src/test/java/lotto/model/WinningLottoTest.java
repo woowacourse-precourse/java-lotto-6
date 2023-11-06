@@ -59,4 +59,30 @@ class WinningLottoTest {
                 .hasMessage("[ERROR] 보너스 넘버와 로또에 맞는 등수가 없습니다.");
     }
 
+    @DisplayName("주어진 당첨 번호가 로또 번호에 이미 존재하는 값이면 예외를 발생시킨다.")
+    @Test
+    void NumberAlreadyUsedInLottoThrowException() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        //when, then
+        assertThatThrownBy(
+                () -> new WinningLotto(lotto, 6))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또에 이미 있는 번호는 입력할 수 없습니다.");
+    }
+
+    @DisplayName("주어진 당첨 번호가 범위 밖에 있다면 예외를 발생시킨다.")
+    @Test
+    void NumberOutRangeThrowException() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        //when, then
+        assertThatThrownBy(
+                () -> new WinningLotto(lotto, 46))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1에서 45 사이의 숫자만 입력할 수 있습니다.");
+    }
+
 }

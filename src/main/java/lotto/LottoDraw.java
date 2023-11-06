@@ -67,7 +67,7 @@ public class LottoDraw {
     }
 
     public void implementCount(Map<String, Integer> summary, int winCount, String checkBonus) {
-        if (winCount != 5) checkBonus = hasBonus;
+        if (winCount != 5) checkBonus = noBonus;
 
         String getKey = winCount + checkBonus;
         summary.put(getKey, summary.getOrDefault(getKey, 0) + 1);
@@ -77,35 +77,24 @@ public class LottoDraw {
     public void printLottoResults() {
         printUtil.printWinnerStatistics();
         result = new StringBuilder();
-        int lottoPlacePriceIdx = 0;
-        for (LottoRank lottoRank : LottoRank.values()) {
+        for(int index = 0; index < LottoRank.values().length; index++) {
             result.append("\n");
-            if (lottoRank.getBonus().equals(noBonus)) {
-                sumUpResultsHasBonus(lottoRank, lottoPlacePriceIdx);
-                lottoPlacePriceIdx++;
-                continue;
+            LottoRank lottoRank = LottoRank.values()[index];
+            String message = DrawMessage.NO_BONUS_WINNING_RESULT_MESSAGE.getMessage();
+
+            if(lottoRank.getBonus().equals(hasBonus)){
+                message = DrawMessage.BONUS_WINNING_RESULT_MESSAGE.getMessage();
             }
-            sumUpResultsNoBonus(lottoRank, lottoPlacePriceIdx);
-            lottoPlacePriceIdx++;
+            sumUpResultsHasBonus(lottoRank, index, message);
         }
         System.out.println(result);
     }
 
-    public void sumUpResultsHasBonus(LottoRank lottoRank, int lottoPlacePriceIdx) {
+    public void sumUpResultsHasBonus(LottoRank lottoRank, int lottoPlacePriceIdx, String message) {
         int winCount = lottoRank.getWinningCount();
         String bonusCheck = lottoRank.getWinningCount() + lottoRank.getBonus();
 
-        result.append(String.format(drawMessage.BONUS_WINNING_RESULT_MESSAGE.getMessage(),
-                lottoRank.getWinningCount(),
-                lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","),
-                lottoPrizeSummary.get(winCount).get(bonusCheck)));
-    }
-
-    public void sumUpResultsNoBonus(LottoRank lottoRank, int lottoPlacePriceIdx) {
-        int winCount = lottoRank.getWinningCount();
-        String bonusCheck = lottoRank.getWinningCount() + lottoRank.getBonus();
-
-        result.append(String.format(drawMessage.NO_BONUS_WINNING_RESULT_MESSAGE.getMessage(),
+        result.append(String.format(message,
                 lottoRank.getWinningCount(),
                 lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","),
                 lottoPrizeSummary.get(winCount).get(bonusCheck)));

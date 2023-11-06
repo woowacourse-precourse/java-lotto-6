@@ -36,7 +36,7 @@ public class WinningNumbersException {
         Set<String> inputData = new HashSet<>(Arrays.asList(input.split(",")));
 
         if (inputData.size() <= 6) {
-            throw new IllegalArgumentException(String.valueOf(DUPLICATE_INPUT));
+            throw new IllegalArgumentException(DUPLICATE_INPUT.getMessage());
         }
     }
 
@@ -44,7 +44,7 @@ public class WinningNumbersException {
         ArrayList<String> inputData = new ArrayList<>(Arrays.asList(input));
 
         if (!inputData.contains(",")) {
-            throw new IllegalArgumentException(String.valueOf(NON_COMMA));
+            throw new IllegalArgumentException(NON_COMMA.getMessage());
         }
     }
 }

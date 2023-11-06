@@ -6,7 +6,9 @@ import lotto.common.constants.LottoRule;
 import lotto.common.constants.Symbol;
 
 public class Validate {
-    // lotto에서 직접 사용하는 메서드
+    private static final int ZERO = 0;
+
+    // 프로그램 내에서 직접 사용하는 메서드
     public static void consoleBlank(String input) {
         inBlank(input);
     }
@@ -68,7 +70,7 @@ public class Validate {
     }
 
     private static void notThousandUnit(String inputString) {
-        if (Integer.parseInt(inputString) % LottoRule.ONE_LOTTO_TICKET_PRICE.getRule() != 0) {
+        if (Integer.parseInt(inputString) % LottoRule.ONE_LOTTO_TICKET_PRICE.getRule() != ZERO) {
             System.out.println(ErrorMessage.ERROR_NOT_THOUSAND_UNITS.getMessage());
             throw new IllegalArgumentException();
         }

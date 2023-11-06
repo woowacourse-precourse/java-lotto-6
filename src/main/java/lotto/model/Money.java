@@ -41,4 +41,8 @@ public class Money {
     public int calculateTicketCount() {
         return money / DIVISION_UNIT_FOR_INPUT_MONEY;
     }
+
+    public int getMoney() {
+        return money;
+    }
 }

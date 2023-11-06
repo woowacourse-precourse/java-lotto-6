@@ -18,4 +18,15 @@ class GlobalValidatorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> validatePurchaseAmount(purchaseAmount));
     }
+
+    @Test
+    @DisplayName("구입 금액 1000원 단위인지 테스트")
+    void purchaseAmountDividedByThousandTest() {
+        //given
+        String purchaseAmount = "12001";
+
+        // when, then
+        assertThrows(IllegalArgumentException.class,
+                () -> validatePurchaseAmount(purchaseAmount));
+    }
 }

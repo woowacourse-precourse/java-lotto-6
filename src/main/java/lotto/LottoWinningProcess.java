@@ -11,11 +11,6 @@ public class LottoWinningProcess {
         setUpWinningLotto();
     }
 
-    public PurchaseMoney setUpPurchaseMoney() {
-        String purchaseMoney = InputView.inputPurchaseMoney();
-        return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
-    }
-
     public List<Lotto> buyLotto() {
         PurchaseMoney purchaseMoney = setUpPurchaseMoney();
         List<Lotto> lottos = new ArrayList<>();
@@ -29,16 +24,21 @@ public class LottoWinningProcess {
         return lottos;
     }
 
+    private PurchaseMoney setUpPurchaseMoney() {
+        String purchaseMoney = InputView.inputPurchaseMoney();
+        return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
+    }
+
     public WinningLotto setUpWinningLotto() {
-        return new WinningLotto(setUpWinningNumber(), setUpBonusNumber());
+        return new WinningLotto(setUpWinningNumbers(), setUpBonusNumber());
     }
 
-    public Lotto setUpWinningNumber() {
-        String winningNumber = InputView.inputWinningNumber();
-        return new Lotto(Converter.convertWinningNumber(winningNumber));
+    private Lotto setUpWinningNumbers() {
+        String winningNumbers = InputView.inputWinningNumbers();
+        return new Lotto(Converter.convertWinningNumber(winningNumbers));
     }
 
-    public int setUpBonusNumber() {
+    private int setUpBonusNumber() {
         String bonusNumber = InputView.inputBonusNumber();
         return Converter.convertToNumeric(bonusNumber);
     }

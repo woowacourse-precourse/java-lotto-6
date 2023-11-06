@@ -4,8 +4,8 @@ import lotto.utils.StringConvertor;
 
 public class User {
 
-    private int bonus;
-    private Lotto userLotto;
+    private final int bonus;
+    private final Lotto userLotto;
 
     public User(Lotto userLotto, String bonusInput) {
         this.bonus = StringConvertor.stringToInt(bonusInput);
@@ -14,7 +14,7 @@ public class User {
 
     public Rank getRank(Lotto lotto) {
         int matchingNumber = userLotto.countMatchingNumber(lotto);
-        boolean isBonusContain = userLotto.isContain(bonus);
+        boolean isBonusContain = lotto.isContain(bonus);
 
         return Rank.findRank(matchingNumber, isBonusContain);
     }

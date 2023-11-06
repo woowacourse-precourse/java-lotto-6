@@ -24,7 +24,7 @@ public class LottoController {
         run();
     }
     public void run() {
-        String winningNumber = inputView.inputWinningNumber();
+        Lotto winningNumber = lottoService.splitString(inputView.inputWinningNumber());
         int bonus = inputView.inputBonusNumber();
     }
 }

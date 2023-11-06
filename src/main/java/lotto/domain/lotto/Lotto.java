@@ -51,6 +51,10 @@ public class Lotto {
         return informationOfNumbers;
     }
 
+    public Integer getNumber(Integer index) {
+        return numbers.get(index);
+    }
+
     private StringBuilder getInformation(Integer sizeNumbers, List<Integer> organizeNumbers) {
         Integer num = 0;
         StringBuilder informationOfNumbers = new StringBuilder();
@@ -76,10 +80,6 @@ public class Lotto {
 
     private void appendStringBuild(StringBuilder informationOfNumbers, String string) {
         informationOfNumbers.append(string);
-    }
-
-    public Integer getNumber(Integer index) {
-        return numbers.get(index);
     }
 
     private Integer getNum(List<Integer> organizeLotto, Integer i) {

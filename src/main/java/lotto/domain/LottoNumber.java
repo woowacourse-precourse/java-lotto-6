@@ -1,6 +1,7 @@
 package lotto.domain;
 
 public record LottoNumber(int number) implements Comparable<LottoNumber> {
+    public static final String OUT_OF_RANGE = "[ERROR] 1~45 사이의 숫자를 입력해주세요.";
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 45;
 
@@ -10,7 +11,7 @@ public record LottoNumber(int number) implements Comparable<LottoNumber> {
 
     private void validate(int number) {
         if (isOutOfRange(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(OUT_OF_RANGE);
         }
     }
 

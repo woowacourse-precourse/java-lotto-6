@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Lotto {
+    public static final String INVALID_SIZE = "[ERROR] 6개의 숫자를 입력해주세요.";
+    public static final String DUPLICATE_NUMBER = "[ERROR] 중복된 숫자가 올 수 없습니다.";
     public static final int LOTTO_SIZE = 6;
 
     private final List<LottoNumber> numbers;
@@ -27,7 +29,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_SIZE);
         }
     }
 
@@ -35,7 +37,7 @@ public class Lotto {
         HashSet<Integer> distinctNumbers = new HashSet<>();
         for (Integer number : numbers) {
             if (!distinctNumbers.add(number)) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(DUPLICATE_NUMBER);
             }
         }
     }

@@ -19,6 +19,7 @@ public class LottoController {
         int count = money.getCount();
         List<Lotto> lottos = lottoGenerator.generateLottos(count);
         printBuyResult(lottos, count);
+        inputView.requestWinningNumbers();
     }
 
     private Money askMoney() {

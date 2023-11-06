@@ -17,10 +17,8 @@
     - bonusNumber 필드에 보너스 번호를 저장한다. ✅
     - bonusNumber 필드의 유효성을 검사한다. ✅
 #### User class
-    - money 필드에 사용자가 입력한 금액을 저장한다.
-    - money 필드의 유효성을 검사한다.
-    - predictedLottoNumber 필드에 사용자가 입력한 당첨 예상 번호를 저장한다.
-    - predictedLottoNumber 필드의 유효성을 검사한다.
+    - money 필드에 사용자가 입력한 금액을 저장한다. ✅
+    - money 필드의 유효성을 검사한다. ✅
     - 로또를 생성할 때마다 사용자의 money 필드를 감소시킨다.
 #### LottoGame
     - 사용자가 입력한 금액에 따라 로또를 생성한다.

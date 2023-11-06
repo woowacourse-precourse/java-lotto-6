@@ -21,10 +21,14 @@ public class Application {
     private static final String ERROR_MESSAGE_FOR_BONUS_NUMBER_TYPE = "보너스 번호는 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_FOR_BONUS_NUMBER_RANGE = "보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
 
+    private static int purchaseAmount;
+    private static int bonusNumber;
+    private static List<Integer> winningNumbers;
+
     public static void main(String[] args) {
-        int purchaseAmount = getPurchaseAmountWithInput();
-        List<Integer> winningNumbers = getWinningNumbersWithInput();
-        int bonusNumber = getBonusNumberWithInput();
+        purchaseAmount = getPurchaseAmountWithInput();
+        winningNumbers = getWinningNumbersWithInput();
+        bonusNumber = getBonusNumberWithInput();
     }
 
     private static int getPurchaseAmountWithInput() {

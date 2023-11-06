@@ -9,10 +9,6 @@ public class Amount {
         this.amount = amount;
     }
 
-    public int getAmount() {
-        return this.amount;
-    }
-
     private void validate(int amount) {
         validateMinAmount(amount);
         validateUnit(amount);

@@ -10,6 +10,7 @@ public class LottoTargetNumResults {
     private static final Integer BONUS_INDEX_NUM = 6;
     private static final Integer START_PICK_NUM_INDEX = 0;
     private static final Integer END_PICK_NUM_INDEX = 5;
+    private static final Integer SIZE_WIN_NUMBERS = 6;
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
@@ -19,7 +20,7 @@ public class LottoTargetNumResults {
     }
 
     public Boolean isSameWinNums(Integer targetNum) {
-        for (int index = 0; index < 6; index++) {
+        for (int index = 0; index < SIZE_WIN_NUMBERS; index++) {
             if (isContainWinLottoNums(targetNum, index)) {
                 return true;
             }

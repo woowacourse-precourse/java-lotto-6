@@ -7,6 +7,7 @@ public class LottoModel {
     private ArrayList<Lotto> boughtLottos;
     private int bonusNumber;
     private int[] lottoRank = new int[5];
+    private int profit = 0;
 
     public LottoModel() {
         lottoPrice = LottoControl.inputLottoPrice();
@@ -20,6 +21,8 @@ public class LottoModel {
 
         checkLottoRank();
         LottoView.printRankInfo(lottoRank);
+
+        LottoView.printProfitRate(calcLottoProfit());
     }
 
     private ArrayList<Lotto> generateLottos(int lottoPrice) {
@@ -38,14 +41,19 @@ public class LottoModel {
         for(Lotto boughtLotto : boughtLottos) {
             if(checkWonNumber(boughtLotto) == 6) {
                 lottoRank[0]++;
+                profit += 2000000000;
             } else if(checkWonNumber(boughtLotto) == 5 && checkBonusNumber(boughtLotto)) {
                 lottoRank[1]++;
+                profit += 30000000;
             } else if(checkWonNumber(boughtLotto) == 5) {
                 lottoRank[2]++;
+                profit += 1500000;
             } else if(checkWonNumber(boughtLotto) == 4) {
                 lottoRank[3]++;
+                profit += 50000;
             } else if(checkWonNumber(boughtLotto) == 3) {
                 lottoRank[4]++;
+                profit += 5000;
             }
         }
     }
@@ -63,6 +71,10 @@ public class LottoModel {
 
     private boolean checkBonusNumber(Lotto boughtLotto) {
         return boughtLotto.getNumbers().contains(bonusNumber);
+    }
+
+    private double calcLottoProfit() {
+        return Math.round((double)profit / (double)lottoPrice * 100);
     }
 }
 

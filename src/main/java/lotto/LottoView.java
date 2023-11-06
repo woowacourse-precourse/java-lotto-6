@@ -18,4 +18,10 @@ public class LottoView {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoRank[1] + "개");
         System.out.println("6개 일치 (20,000,000,000원) - " + lottoRank[0] + "개");
     }
+
+    public static void printProfitRate(double lottoProfit) {
+        System.out.print("총 수익률은 ");
+        System.out.print(lottoProfit);
+        System.out.println("%입니다.");
+    }
 }

@@ -2,6 +2,7 @@ package lotto.util;
 
 import static lotto.util.constant.GameRule.LOTTO_SIZE;
 import static lotto.util.constant.GameRule.TICKET_PRICE;
+import static lotto.util.content.ErrorMessage.INPUT_SPACE_ERROR;
 import static lotto.util.content.ErrorMessage.INPUT_UNIT_ERROR;
 import static lotto.util.content.ErrorMessage.LOTTO_SIZE_ERROR;
 
@@ -19,6 +20,13 @@ public class Censor {
         if (money % TICKET_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(INPUT_UNIT_ERROR.getContent());
         }
+    }
+
+    public static String commonValid(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(INPUT_SPACE_ERROR.getContent());
+        }
+        return input;
     }
 
 }

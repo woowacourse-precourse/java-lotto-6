@@ -70,7 +70,7 @@ public class Application {
 
         LottoAnswer answer = new LottoAnswer(winningLotto, bonus);
 
-        Map<LottoRanking, Integer> lottoResult = LottoController.calculateLottoResult(answer, userLottos);
+        Map<LottoRanking, Integer> lottoResult = LottoController.calculateLottoRanking(answer, userLottos);
         outputView.printLottoResult(lottoResult);
 
         int totalPrize = LottoController.calculateTotalPrize(lottoResult);

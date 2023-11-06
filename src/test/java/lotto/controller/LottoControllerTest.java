@@ -23,7 +23,7 @@ public class LottoControllerTest {
                 List.of(2, 3, 4, 5, 6, 9)
         );
 
-        LottoRanking result = LottoController.calculateLottoRank(inputAnswer, inputLotto);
+        LottoRanking result = LottoController.calculateLottoRanking(inputAnswer, inputLotto);
 
         assertEquals(LottoRanking.SECOND, result);
     }
@@ -48,7 +48,7 @@ public class LottoControllerTest {
                 List.of(10, 11, 12, 1, 2, 3)
         ));
 
-        Map<LottoRanking, Integer> result = LottoController.calculateLottoResult(inputAnswer, inputLottos);
+        Map<LottoRanking, Integer> result = LottoController.calculateLottoRanking(inputAnswer, inputLottos);
 
         assertEquals(1, result.get(LottoRanking.FIRST));
         assertEquals(1, result.get(LottoRanking.SECOND));

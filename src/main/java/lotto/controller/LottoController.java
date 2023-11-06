@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-    public static Map<LottoRanking, Integer> calculateLottoResult(
+    public static Map<LottoRanking, Integer> calculateLottoRanking(
             LottoAnswer answerLotto,
             List<Lotto> checkLottos
     ) {
@@ -20,14 +20,14 @@ public class LottoController {
         }
 
         for (Lotto checkLotto : checkLottos) {
-            LottoRanking rank = calculateLottoRank(answerLotto, checkLotto);
+            LottoRanking rank = calculateLottoRanking(answerLotto, checkLotto);
             rankCount.put(rank, rankCount.get(rank) + 1);
         }
 
         return rankCount;
     }
 
-    public static LottoRanking calculateLottoRank(
+    public static LottoRanking calculateLottoRanking(
             LottoAnswer answerLotto,
             Lotto checkLotto
     ) {

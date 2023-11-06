@@ -1,11 +1,9 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class WinningRecord {
+public class WonRecord {
     private static Map<String, Integer> prizeCount = new HashMap<>();
     private static int firstPrizeCount = 0;
     private static int secondPrizeCount = 0;

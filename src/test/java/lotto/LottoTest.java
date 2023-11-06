@@ -3,10 +3,10 @@ package lotto;
 import java.util.Arrays;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPurchase;
-import lotto.domain.WinningCalculator;
+import lotto.domain.Purchase;
+import lotto.domain.WinCalculator;
 import lotto.domain.WinningNumber;
-import lotto.domain.WinningRecord;
+import lotto.domain.WonRecord;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"500a", "천 원", "1장"})
     void createPurchaseAmountByNaN(String amount) {
-        assertThatThrownBy(() -> new LottoPurchase(amount))
+        assertThatThrownBy(() -> new Purchase(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -48,7 +48,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"500", "1900", "1000.4", "-1000.4"})
     void createPurchaseAmountIndivisibleBy1000(String amount) {
-        assertThatThrownBy(() -> new LottoPurchase(amount))
+        assertThatThrownBy(() -> new Purchase(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 1,000원으로 나누어 떨어져야 합니다.");
     }
@@ -57,7 +57,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1000", "-4000"})
     void createPurchaseAmountByNonPositiveInteger(String amount) {
-        assertThatThrownBy(() -> new LottoPurchase(amount))
+        assertThatThrownBy(() -> new Purchase(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 최소 구입 금액은 1,000원입니다.");
     }
@@ -111,12 +111,12 @@ class LottoTest {
         List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        WinningCalculator winningCalculator = new WinningCalculator(winningNumber, bonusNumber);
-        WinningRecord winningRecord = new WinningRecord();
+        WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
+        WonRecord wonRecord = new WonRecord();
 
-        winningCalculator.calculator(purchaseNumber);
+        winCalculator.calculator(purchaseNumber);
 
-        assertThat(winningRecord.getFirstPrizeCount()).isEqualTo(1);
+        assertThat(wonRecord.getFirstPrizeCount()).isEqualTo(1);
     }
 
     @DisplayName("당첨 번호와 발행 번호가 5개 일치하고 보너스 번호가 일치하면 2등 count가 올라간다.")
@@ -125,12 +125,12 @@ class LottoTest {
         List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 7);
         List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        WinningCalculator winningCalculator = new WinningCalculator(winningNumber, bonusNumber);
-        WinningRecord winningRecord = new WinningRecord();
+        WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
+        WonRecord wonRecord = new WonRecord();
 
-        winningCalculator.calculator(purchaseNumber);
+        winCalculator.calculator(purchaseNumber);
 
-        assertThat(winningRecord.getSecondPrizeCount()).isEqualTo(1);
+        assertThat(wonRecord.getSecondPrizeCount()).isEqualTo(1);
     }
 
     @DisplayName("당첨 번호와 발행 번호가 5개 일치하고 보너스 번호가 불일치하면 3등 count가 올라간다.")
@@ -139,11 +139,11 @@ class LottoTest {
         List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 8);
         List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        WinningCalculator winningCalculator = new WinningCalculator(winningNumber, bonusNumber);
-        WinningRecord winningRecord = new WinningRecord();
+        WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
+        WonRecord wonRecord = new WonRecord();
 
-        winningCalculator.calculator(purchaseNumber);
+        winCalculator.calculator(purchaseNumber);
 
-        assertThat(winningRecord.getThirdPrizeCount()).isEqualTo(1);
+        assertThat(wonRecord.getThirdPrizeCount()).isEqualTo(1);
     }
 }

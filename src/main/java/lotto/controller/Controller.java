@@ -1,19 +1,19 @@
-package lotto.manager;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPurchase;
+import lotto.domain.Purchase;
 import lotto.domain.RateOfReturn;
-import lotto.domain.WinningCalculator;
+import lotto.domain.WinCalculator;
 import lotto.domain.WinningNumber;
-import lotto.domain.WinningRecord;
+import lotto.domain.WonRecord;
 import lotto.io.LottoInputView;
 import lotto.io.LottoOutputView;
 
-public class LottoManager {
+public class Controller {
     private final LottoInputView inputView = new LottoInputView();
     private final LottoOutputView outputView = new LottoOutputView();
     private List<Lotto> lottoPurchaseNumbers = new ArrayList<>();
@@ -25,17 +25,17 @@ public class LottoManager {
     }
 
     public Integer purchaseManager() {
-        LottoPurchase lottoPurchase = null;
+        Purchase purchase = null;
         boolean ispurchased = false;
         while(!ispurchased) {
             try {
-                lottoPurchase = new LottoPurchase(inputView.readPurchaseAmount());
+                purchase = new Purchase(inputView.readPurchaseAmount());
                 ispurchased = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return lottoPurchase.getLottoPurchase();
+        return purchase.getLottoPurchase();
     }
 
     public void printLottoManager(int purchase) {
@@ -77,16 +77,16 @@ public class LottoManager {
 
     public void winningCalculatorManager(int purchase) {
         List<Integer> winningNumber = winningNumberManager();
-        WinningCalculator winningCalculator
-                = new WinningCalculator(winningNumber, bonusNumberManager(winningNumber));
-        WinningRecord winningRecord = new WinningRecord();
+        WinCalculator winCalculator
+                = new WinCalculator(winningNumber, bonusNumberManager(winningNumber));
+        WonRecord wonRecord = new WonRecord();
         for(Lotto lotto : lottoPurchaseNumbers) {
-            List<Integer> winningStatus = winningCalculator.calculator(lotto.getNumbers());
-            winningRecord.recorder(winningStatus.get(0), winningStatus.get(1));
+            List<Integer> winningStatus = winCalculator.calculator(lotto.getNumbers());
+            wonRecord.recorder(winningStatus.get(0), winningStatus.get(1));
         }
-        outputView.printWinningStatistics(winningRecord.getAllPrizeCount());
+        outputView.printWinningStatistics(wonRecord.getAllPrizeCount());
 
-        RateOfReturn rateOfReturn = new RateOfReturn(purchase, winningRecord.getAllPrizeCount());
+        RateOfReturn rateOfReturn = new RateOfReturn(purchase, wonRecord.getAllPrizeCount());
         outputView.printRateOfReturn(rateOfReturn.getRateOfReturn());
     }
 }

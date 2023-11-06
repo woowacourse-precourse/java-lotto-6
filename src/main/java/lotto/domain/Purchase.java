@@ -1,9 +1,9 @@
 package lotto.domain;
 
-public class LottoPurchase {
+public class Purchase {
     private static int purchaseAmount;
 
-    public LottoPurchase(String amount) {
+    public Purchase(String amount) {
         validate(amount);
         purchaseAmount = Integer.parseInt(amount);
     }

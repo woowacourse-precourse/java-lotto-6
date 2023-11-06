@@ -3,11 +3,11 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.List;
 
-public class WinningCalculator {
+public class WinCalculator {
     private static List<Integer> winningNumber;
     private static Integer bonusNumber;
 
-    public WinningCalculator(List<Integer> winningNumber, Integer bonusNumber) {
+    public WinCalculator(List<Integer> winningNumber, Integer bonusNumber) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
     }

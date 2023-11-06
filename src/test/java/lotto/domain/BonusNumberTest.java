@@ -33,4 +33,10 @@ class BonusNumberTest {
                 .hasMessageContaining(DomainException.ERROR.getMessage());
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 23, 45})
+    void 보너스_번호가_1에서_45_사이_숫자라면_예외를_던지지_않는다(int target) {
+        assertDoesNotThrow(() -> new BonusNumber(target, lotto));
+    }
+
 }

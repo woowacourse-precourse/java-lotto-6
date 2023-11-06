@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -9,9 +8,9 @@ import java.util.Map.Entry;
 public class LottoResult {
     private final Map<Rank, Integer> lottoResult;
 
-    public LottoResult(LottoTicket lottoTicket, LottoWinningNumber lottoWinningNumber) {
-        this.lottoResult = drawLotto(lottoTicket, lottoWinningNumber);
-        lottoResult.remove(Rank.LOSE);
+    public LottoResult(Map<Rank, Integer> lottoResult) {
+        this.lottoResult = lottoResult;
+        this.lottoResult.remove(Rank.LOSE);
     }
 
     public Map<Rank, Integer> getLottoResult() {
@@ -22,7 +21,7 @@ public class LottoResult {
         double totalPrize = 0;
 
         for (Entry<Rank, Integer> rank : lottoResult.entrySet()) {
-            String stripedPrize = rank.getKey().prize().replaceAll(",","");
+            String stripedPrize = rank.getKey().prize().replaceAll(",", "");
             int prize = Integer.parseInt(stripedPrize);
             totalPrize += prize * rank.getValue();
         }
@@ -38,14 +37,14 @@ public class LottoResult {
             winningNumberAmount = getWinningNumberAmount(lotto, lottoWinningNumber);
             hasBonusNumber = hasBonus(lotto, lottoWinningNumber.getBonusNumber());
             lottoResult.put(Rank.getRank(winningNumberAmount, hasBonusNumber),
-                    lottoResult.get(Rank.getRank(winningNumberAmount, hasBonusNumber))+ 1);
+                    lottoResult.get(Rank.getRank(winningNumberAmount, hasBonusNumber)) + 1);
         }
         return lottoResult;
     }
 
     private static Map<Rank, Integer> initLotto() {
         Map<Rank, Integer> lottoResult = new EnumMap<>(Rank.class);
-        for(Rank rank: Rank.values()) {
+        for (Rank rank : Rank.values()) {
             lottoResult.put(rank, 0);
         }
         return lottoResult;

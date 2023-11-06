@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputWinningNumbers;
 
 import java.util.ArrayList;
@@ -11,12 +10,9 @@ public class LottoWinningNumber {
     private final Lotto winningNumbers;
     private final int bonusNumber;
 
-    public LottoWinningNumber() {
-        List<Integer> winningNumbers = generateWinningNumbers();
-        this.winningNumbers = new Lotto(winningNumbers);
-
-        int bonusNumber = inputBonusNumber();
-        hasBonusNumber(bonusNumber);
+    public LottoWinningNumber(Lotto winningNumbers, int bonusNumber) {
+        hasBonusNumber(winningNumbers, bonusNumber);
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
@@ -70,8 +66,8 @@ public class LottoWinningNumber {
         }
     }
 
-    private void hasBonusNumber(int bonusNumber) {
-        if (this.winningNumbers.getNumbers().contains(bonusNumber)) {
+    private void hasBonusNumber(Lotto winningNumbers, int bonusNumber) {
+        if (winningNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 보너스 번호가 있습니다.");
         }
     }

@@ -1,6 +1,8 @@
 package lotto.global.utils.generator;
 
-import static lotto.global.constant.LottoNumberType.*;
+import static lotto.global.constant.LottoNumberType.LENGTH_OF_LOTTO;
+import static lotto.global.constant.LottoNumberType.MAX_RANGE_OF_LOTTO;
+import static lotto.global.constant.LottoNumberType.MIN_RANGE_OF_LOTTO;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;

@@ -1,81 +1,38 @@
 package lotto;
 
 public class LottoFixtures {
-    public static Lotto createSixMatchedWinningLotto() {
+
+    private static Lotto createLotto(int... numbers) {
         LottoNumbers lottoNumbers = new LottoNumbers();
 
-        lottoNumbers.add(new LottoNumber(1));
-        lottoNumbers.add(new LottoNumber(2));
-        lottoNumbers.add(new LottoNumber(3));
-        lottoNumbers.add(new LottoNumber(4));
-        lottoNumbers.add(new LottoNumber(5));
-        lottoNumbers.add(new LottoNumber(6));
+        for (int number : numbers) {
+            lottoNumbers.add(new LottoNumber(number));
+        }
 
         return new Lotto(lottoNumbers);
+    }
+
+    public static Lotto createSixMatchedWinningLotto() {
+        return createLotto(1, 2, 3, 4, 5, 6);
     }
 
     public static Lotto createFiveAndBonusMatchedWinningLotto() {
-        LottoNumbers lottoNumbers = new LottoNumbers();
-
-        lottoNumbers.add(new LottoNumber(1));
-        lottoNumbers.add(new LottoNumber(2));
-        lottoNumbers.add(new LottoNumber(3));
-        lottoNumbers.add(new LottoNumber(4));
-        lottoNumbers.add(new LottoNumber(5));
-        lottoNumbers.add(new LottoNumber(7));
-
-        return new Lotto(lottoNumbers);
+        return createLotto(1, 2, 3, 4, 5, 7);
     }
 
     public static Lotto createFiveMatchedWinningLotto() {
-        LottoNumbers lottoNumbers = new LottoNumbers();
-
-        lottoNumbers.add(new LottoNumber(1));
-        lottoNumbers.add(new LottoNumber(2));
-        lottoNumbers.add(new LottoNumber(3));
-        lottoNumbers.add(new LottoNumber(4));
-        lottoNumbers.add(new LottoNumber(5));
-        lottoNumbers.add(new LottoNumber(8));
-
-        return new Lotto(lottoNumbers);
+        return createLotto(1, 2, 3, 4, 5, 8);
     }
 
     public static Lotto createFourMatchedWinningLotto() {
-        LottoNumbers lottoNumbers = new LottoNumbers();
-
-        lottoNumbers.add(new LottoNumber(1));
-        lottoNumbers.add(new LottoNumber(2));
-        lottoNumbers.add(new LottoNumber(3));
-        lottoNumbers.add(new LottoNumber(4));
-        lottoNumbers.add(new LottoNumber(8));
-        lottoNumbers.add(new LottoNumber(9));
-
-        return new Lotto(lottoNumbers);
+        return createLotto(1, 2, 3, 4, 8, 9);
     }
 
     public static Lotto createThreeMatchedWinningLotto() {
-        LottoNumbers lottoNumbers = new LottoNumbers();
-
-        lottoNumbers.add(new LottoNumber(1));
-        lottoNumbers.add(new LottoNumber(2));
-        lottoNumbers.add(new LottoNumber(3));
-        lottoNumbers.add(new LottoNumber(8));
-        lottoNumbers.add(new LottoNumber(9));
-        lottoNumbers.add(new LottoNumber(10));
-
-        return new Lotto(lottoNumbers);
+        return createLotto(1, 2, 3, 8, 9, 10);
     }
 
     public static Lotto createMissMatchedWinningLotto() {
-        LottoNumbers lottoNumbers = new LottoNumbers();
-
-        lottoNumbers.add(new LottoNumber(1));
-        lottoNumbers.add(new LottoNumber(2));
-        lottoNumbers.add(new LottoNumber(8));
-        lottoNumbers.add(new LottoNumber(9));
-        lottoNumbers.add(new LottoNumber(10));
-        lottoNumbers.add(new LottoNumber(11));
-
-        return new Lotto(lottoNumbers);
+        return createLotto(1, 2, 8, 9, 10, 11);
     }
 }

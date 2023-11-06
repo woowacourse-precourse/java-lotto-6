@@ -24,6 +24,12 @@ public class InputView {
         return LottoPrice;
     }
 
+    public static void storeWinningNumbersArraysToList(List<Integer> WinningNumbers, String InputData) {
+        String[] TemporaryWinningNumbers = InputData.split(",");
+        for (int i = 0; i < TemporaryWinningNumbers.length; i++) {
+            WinningNumbers.add(Integer.valueOf(TemporaryWinningNumbers[i]));
+        }
+    }
 
 
 }

@@ -78,3 +78,7 @@ Inputview클래스 getWinningNumbers메소드
 ``````````````````````````
 CustomizedException클래스 winningNumbersSizeMoreOrLess메소드
 ```````````````````````````````
+11. 배열에 넣었던 당첨 숫자들을 리스트로 옮기는 기능 추가
+``````````````````````````
+InputView클래스 storeWinningNumbersArraysToList메소드
+```````````````````````````````

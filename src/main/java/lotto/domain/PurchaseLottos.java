@@ -11,4 +11,12 @@ public class PurchaseLottos {
         int count = purchasePrice.getCount();
         this.lottos = Lottos.of(count, generator);
     }
+
+    public String getPurchaseLottos() {
+        return lottos.getEachLotto();
+    }
+
+    public int getPurchaseCount() {
+        return purchasePrice.getCount();
+    }
 }

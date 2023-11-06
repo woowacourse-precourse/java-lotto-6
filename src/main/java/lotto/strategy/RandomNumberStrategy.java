@@ -8,9 +8,6 @@ public class RandomNumberStrategy implements NumberGenerationStrategy{
 
     @Override
     public List<Integer> generateNumbers(int count, int min, int max){
-        return Stream.generate(() -> Randoms.pickNumberInRange(min,max))
-                .distinct()
-                .limit(count)
-                .toList();
+        return Randoms.pickUniqueNumbersInRange(min,max,count);
     }
 }

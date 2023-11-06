@@ -11,6 +11,11 @@ public class InputView {
         return input;
     }
 
+    public static String receiveWinningNumber() {
+        print("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
     private static void print(String message) {
         System.out.println(message);
     }

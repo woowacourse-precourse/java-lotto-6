@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Map;
 
 public class Winner {
 
@@ -20,6 +21,9 @@ public class Winner {
         this.bonus = changeInteger(lottoWinningBonus);
     }
 
+    public Map<Integer, Integer> countTotalLottoPrizes(){
+        return lottoResult.getWinningCount();
+    }
     private int changeInteger(String lottoWinningBonus) {
         return Integer.parseInt(lottoWinningBonus);
     }

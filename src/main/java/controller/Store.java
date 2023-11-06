@@ -15,6 +15,7 @@ public class Store {
     List<Lotto> lottos = giveLotto(money);
 
 
+
   }
 
 

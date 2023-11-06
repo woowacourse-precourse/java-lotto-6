@@ -30,9 +30,13 @@
 * [x] 사용자가 구매한 로또들의 번호와 당첨 번호를 비교하여 당첨 통계를 구한다. - compareLottoWinningLotto()
 * [x] 로또 번호와 당첨 번호를 비교하여 결과를 반환한다. - compareNumber()
 * [x] 비교한 결과를 받아 등수로 변환한다. - checkRank()
-* [ ] 당첨 내역을 출력한다. - printResult()
-* [ ] 수익률을 출력한다. 소수점 둘째 자리에서 반올림한다. - printEarningRate()
+* [x] 수익률을 계산한. 소수점 둘째 자리에서 반올림한다. - calculateEarningRatio()
 
+### PrintResult.class
+
+* [x] 당첨 통계를 출력합니다. - winningDetailPrint()
+* [x] 수익률을 출력합니다. - earningRatioPrint()
+  
   
 
 

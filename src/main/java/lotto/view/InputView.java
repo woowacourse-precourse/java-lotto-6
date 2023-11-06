@@ -5,10 +5,10 @@ import lotto.util.validator.Validator;
 import lotto.util.validator.ValidatorFactory;
 
 public class InputView {
-    public static int inputPurchase() {
+    public static String inputPurchase() {
         String rawPurchase = input("구입금액을 입력해 주세요.");
         validateNumber(rawPurchase);
-        return Integer.parseInt(rawPurchase);
+        return rawPurchase;
     }
 
     private static void validateNumber(String value) {

@@ -29,4 +29,10 @@ public class PurchaseTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1000원 단위의 숫자로 입력해야 합니다.");
     }
+    @DisplayName("from은 Purchase 객체를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1000", "12000", "50000"})
+    void check_from(String value) {
+        assertThat(Purchase.from(value)).isInstanceOf(Purchase.class);
+    }
 }

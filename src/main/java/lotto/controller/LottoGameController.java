@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.model.LottoNumberModel;
 import lotto.model.LottoResultModel;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
@@ -43,7 +44,10 @@ public class LottoGameController {
 
         lottoQuantity = lottoGameService.lottoQuantity(lottoPurchaseAmount);
         lotto = lottoGameService.createLotto(lottoQuantity);
-        outputView.purchaseLottoNumbersDisplay(lotto);
+
+        LottoNumberModel lottoNumberModel = createLottoNumberModel(lotto);
+
+        outputView.purchaseLottoNumbersDisplay(lottoNumberModel);
     }
 
     private void inputWinningNumber(){
@@ -69,6 +73,11 @@ public class LottoGameController {
     private void lottoWinningResult(){
         LottoResultModel lottoResultModel = lottoGameService.lottoWinningResultCalculation(lotto, winningNumber, bonusNumber);
         outputView.lottoResultDisplay(lottoResultModel);
+    }
+
+    private LottoNumberModel createLottoNumberModel(List<Lotto> lotto){
+        LottoNumberModel lottoNumberModel =new LottoNumberModel(lotto);
+        return lottoNumberModel;
     }
 
 }

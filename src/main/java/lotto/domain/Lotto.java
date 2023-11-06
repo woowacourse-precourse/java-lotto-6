@@ -19,6 +19,7 @@ public class Lotto {
         validateDuplicate(numbers);
         this.numbers = numbers.stream()
                 .peek(this::validateNumber)
+                .sorted()
                 .toList();
     }
 

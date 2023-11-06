@@ -18,14 +18,6 @@ public class LottoTargetNumResults {
         this.bonusLottoNum = Config.bonusLottoNum(bonusNumber);
     }
 
-    // TODO: 11/5/23 삭제 해도 될꺼 같다. 확인 
-//    public Boolean isSame(Integer targetNum, Integer indexOfSpecial) {
-//        if (isContainScopeOfWinNums(indexOfSpecial)) {
-//            return isSameWinNums(targetNum, indexOfSpecial);
-//        }
-//        return isSameBonusNum(targetNum, indexOfSpecial);
-//    }
-
     /**
      * 당첨 번호 추첨 번호가 같은지 확인한다.
      *

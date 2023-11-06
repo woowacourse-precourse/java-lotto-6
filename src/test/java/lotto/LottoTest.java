@@ -56,4 +56,18 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE);
     }
+
+    @Test
+    void 보너스_번호_입력테스트() {
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
+        winningNumber.setBonusNumber(7);
+        assertThat(7).isEqualTo(winningNumber.getBonusNumber());
+    }
+
+    @Test
+    void 보너스_번호_예외처리_테스트() {
+        assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6)).setBonusNumber(55))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE);
+    }
 }

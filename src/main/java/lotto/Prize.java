@@ -18,23 +18,23 @@ public enum Prize {
         this.information = information;
     }
 
-    public static Prize matchPrize(int matchWinningNumber, int matchBonusNumber) {
+    public static int matchPrize(long matchWinningNumber, long matchBonusNumber) {
         if (matchWinningNumber == Prize.BONUS.count) {
             bonusNumber(matchBonusNumber);
         }
         for (Prize prize : Prize.values()) {
             if (prize.count == matchWinningNumber) {
-                return prize;
+                return prize.amount;
             }
         }
-        return null;
+        return 0;
     }
 
-    public static Prize bonusNumber(int matchBonusNumber) {
+    public static int bonusNumber(long matchBonusNumber) {
         if (matchBonusNumber > 0) {
-            return Prize.BONUS;
+            return Prize.BONUS.amount;
         }
-        return Prize.FIVE;
+        return Prize.FIVE.amount;
     }
 
 }

@@ -11,6 +11,14 @@ public class PaidAmount {
         this.paidAmount = paidAmount;
     }
 
+    public Integer toNumberOfLottoTickets() {
+        return paidAmount / LottoConfig.PRICE_PER_TICKET;
+    }
+
+    public Integer getPaidAmount() {
+        return paidAmount;
+    }
+
     private void validate(Integer paidAmount) {
         if (isZero(paidAmount)) {
             throw new IllegalArgumentException();

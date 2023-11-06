@@ -23,7 +23,7 @@ public enum WinningRank {
         return countOfMatchingNumbers;
     }
 
-    public long getPrizeAmount() {
+    public long getPrize() {
         return prize;
     }
 

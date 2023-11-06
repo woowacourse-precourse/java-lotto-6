@@ -6,7 +6,7 @@ import lotto.domain.Comparator;
 import lotto.domain.Convertor;
 import lotto.domain.Lotto;
 import lotto.domain.Number;
-import lotto.domain.SameNumber;
+import lotto.domain.SameNumberCount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,8 +23,8 @@ public class Game {
         OutputView.printPurchaseResult(lottos);
         createWinnerLotto();
         createBonusNumber();
-        List<SameNumber> sameNumbers = createSameNumbers(lottos, winnerLotto, bonusNumber);
-        OutputView.printWinnerResult(sameNumbers);
+        List<SameNumberCount> sameNumberCounts = createSameNumbers(lottos, winnerLotto, bonusNumber);
+        OutputView.printWinnerResult(sameNumberCounts);
         OutputView.printProfitRate(purchaseAmount);
     }
 
@@ -83,15 +83,15 @@ public class Game {
         }
     }
 
-    private List<SameNumber> createSameNumbers(List<Lotto> lottos, Lotto winnerLotto, int bonusNumber) {
+    private List<SameNumberCount> createSameNumbers(List<Lotto> lottos, Lotto winnerLotto, int bonusNumber) {
         Comparator comparator = new Comparator();
-        List<SameNumber> sameNumbers = new ArrayList<>();
+        List<SameNumberCount> sameNumberCounts = new ArrayList<>();
         for (Lotto lotto : lottos) {
             int sameNumber = comparator.countSameNumber(lotto, winnerLotto);
             boolean hasBonusNumber = comparator.checkBonusNumber(lotto, bonusNumber);
-            sameNumbers.add(new SameNumber(sameNumber, hasBonusNumber));
+            sameNumberCounts.add(new SameNumberCount(sameNumber, hasBonusNumber));
         }
-        return sameNumbers;
+        return sameNumberCounts;
     }
 
 }

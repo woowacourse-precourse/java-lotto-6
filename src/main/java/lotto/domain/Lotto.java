@@ -48,5 +48,4 @@ public class Lotto {
                 .distinct().count();
         return result != numbers.size();
     }
-
 }

@@ -20,11 +20,6 @@ public class WinningCheck {
             Integer rank = checkRank(lotto, lottoDraw);
             rankHashMap.put(rank, rankHashMap.get(rank) + 1);
         }
-        System.out.println(rankHashMap.get(5));
-        System.out.println(rankHashMap.get(4));
-        System.out.println(rankHashMap.get(3));
-        System.out.println(rankHashMap.get(2));
-        System.out.println(rankHashMap.get(1));
         return rankHashMap;
     }
 

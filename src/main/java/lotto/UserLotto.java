@@ -10,6 +10,7 @@ public class UserLotto {
 
     public UserLotto(int ticketNum) {
         this.user = setUser(ticketNum);
+        showUser();
     }
 
     private List<Lotto> setUser(int ticketNum) {

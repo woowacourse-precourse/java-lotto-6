@@ -3,8 +3,13 @@ package lotto.mapper;
 import java.util.List;
 import lotto.controller.dto.output.LottoDto;
 import lotto.controller.dto.output.LottosBuyingResult;
+import lotto.controller.dto.output.LottosDrawingResult;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoDrawingData;
+import lotto.domain.lotto.LottoPrize;
 import lotto.domain.lotto.Lottos;
+import lotto.domain.lotto.boxed.LottoNumber;
+import lotto.domain.lotto.opened.LottoOpened;
 import lotto.domain.lotto.opened.LottosOpened;
 
 /**
@@ -32,12 +37,42 @@ public final class LottoToDtoMapper {
     }
 
     /**
+     * LottoOpened -> LottoDto 변환
+     */
+    private static LottoDto mapFrom(final LottoOpened lottoOpened) {
+        final List<Integer> numbers = lottoOpened.getNumbers()
+                .stream()
+                .map(LottoNumber::getValue)
+                .toList();
+
+        return new LottoDto(numbers);
+    }
+
+    /**
+     * LottosDrawData -> LottosDrawingResult
+     */
+    public static LottosDrawingResult mapFrom(final LottoDrawingData data) {
+        return new LottosDrawingResult(
+                data.get(LottoPrize.FIRST),
+                data.get(LottoPrize.SECOND),
+                data.get(LottoPrize.THIRD),
+                data.get(LottoPrize.FOURTH),
+                data.get(LottoPrize.FIFTH),
+                data.calculateReturnOfRate()
+        );
+    }
+
+    /**
      * Lotto(Domain) -> LottoDto 변환
      */
     private static LottoDto mapFrom(final Lotto lotto) {
         final List<Integer> numbers = lotto.toOpened()
-                .getNumbers();
+                .getNumbers()
+                .stream()
+                .map(LottoNumber::getValue)
+                .toList();
 
         return new LottoDto(numbers);
     }
+
 }

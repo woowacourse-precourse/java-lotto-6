@@ -6,7 +6,7 @@ import lotto.domain.lotto.WinningLotto;
 /**
  * Dto와 Domain 간의 매핑을 담당
  */
-public final class dtoToLottoMapper {
+public final class LottoFromDtoMapper {
 
 
     /**

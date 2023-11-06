@@ -14,19 +14,12 @@ public class LottoWallet {
 
     public LottoWallet() {}
 
-    public void addLotto(int number) {
-        clearWallet();
-        for (int i = ZERO; i < number; i++) {
-            myLotto.add(new Lotto(pickNumbers()));
-        }
+    public void addLotto(List<Integer> lottoNumbers) {
+        myLotto.add(new Lotto(lottoNumbers));
     }
 
-    private void clearWallet() {
+    public void clearWallet() {
         myLotto.clear();
-    }
-
-    private List<Integer> pickNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_SIZE);
     }
 
     public List<Lotto> getLottos() {

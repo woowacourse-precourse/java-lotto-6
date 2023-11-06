@@ -1,11 +1,15 @@
 package lotto.domain;
 
+import static lotto.constant.GeneralConstant.MAX_NUMBER;
+import static lotto.constant.GeneralConstant.MIN_NUMBER;
+import static lotto.constant.GeneralConstant.NUMBERS_SIZE;
 import static lotto.constant.GeneralConstant.ZERO;
 import static lotto.constant.GeneralConstant.LOTTO_PRICE;
 import static lotto.constant.GeneralConstant.PRIZE_RANK_MAX;
 import static lotto.constant.GeneralConstant.PRIZE_RANK_MONEY;
 import static lotto.constant.GeneralConstant.PRIZE_RANK_INDEXES;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,10 +24,25 @@ public enum User {
     private double rateOfReturn;
 
     public void purchaseLotto(int money) {
-        cost = money;
         MoneyValidator.validateMoney(money);
+        cost = money;
         clearPrizeCounts();
-        lottoWallet.addLotto(money / LOTTO_PRICE);
+        lottoWallet.clearWallet();
+        addLottos(cost / LOTTO_PRICE);
+    }
+
+    private void addLottos(int amount) {
+        for(int i = 0; i < amount; i++) {
+            addLotto();
+        }
+    }
+
+    private void addLotto() {
+        lottoWallet.addLotto(pickNumbers());
+    }
+
+    private List<Integer> pickNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_SIZE);
     }
 
     private void clearPrizeCounts() {

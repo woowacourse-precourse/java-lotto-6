@@ -28,11 +28,11 @@ public class Lottos {
     }
 
     private Map<Rank, Integer> initRank() {
-        Map<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
+        Map<Rank, Integer> map = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
-            rankResult.put(rank, 0);
+            map.put(rank, 0);
         }
-        return rankResult;
+        return map;
     }
 
 }

@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -28,8 +27,8 @@ public class LottoService {
     }
 
     public static int getRankOfLotto(Lotto lotto, WinningLotto winningLotto) {
-        Set<Integer> matchNumbers = new HashSet<>();
-        boolean bonusMatch = false;
+        Set<Integer> matchNumbers;
+        boolean bonusMatch;
         List<Integer> lottoNumbers = lotto.getNumbers();
         List<Integer> winningNumbers = winningLotto.getNumbers();
         int bonusNumber = winningLotto.getBonusNumber();

@@ -6,9 +6,7 @@ import lotto.enums.ErrorMessage;
 import lotto.util.Convertor;
 
 public class InputValidator {
-    private static final int ZERO = 0;
     private static final String COMMA = ",";
-    private static final int STANDARD_OF_DIVIDE = 1000;
     private static final Pattern NOT_NUMBER = Pattern.compile(".*[\\D].*");
 
     private InputValidator() {
@@ -17,9 +15,6 @@ public class InputValidator {
     public static void validatePurchasePrice(String input) {
         validateNull(input);
         validateIsNumber(input);
-        validateZero(input);
-        validateIsStartZero(input);
-        validateDivisibleByThousand(input);
     }
 
     public static void validateWinningNumber(String input) {
@@ -45,19 +40,6 @@ public class InputValidator {
         }
     }
 
-    private static void validateZero(String input) {
-        int price = Convertor.convertStringToInt(input);
-        if (price == ZERO) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_ZERO.getMessage());
-        }
-    }
-
-    private static void validateIsStartZero(String input) {
-        if (input.startsWith("0")) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_START_ZERO.getMessage());
-        }
-    }
-
     private static void validateIsNumberSeparatedByComma(String input) {
         String[] numbers = Convertor.splitByComma(input);
         boolean hasNonNumber = Arrays.stream(numbers)
@@ -65,20 +47,6 @@ public class InputValidator {
         if (hasNonNumber) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getMessage());
         }
-    }
-
-    private static void validateDivisibleByThousand(String input) {
-        int price = Convertor.convertStringToInt(input);
-        if (isNotDivisibleByThousand(price)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDE.getMessage());
-        }
-    }
-
-    private static boolean isNotDivisibleByThousand(int price) {
-        if ((price % STANDARD_OF_DIVIDE) != ZERO) {
-            return true;
-        }
-        return false;
     }
 
     private static void validateSeparator(String input) {

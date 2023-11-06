@@ -1,9 +1,12 @@
 package lotto;
 
 
-import static lotto.Constant.unitOfMoney;
-import static lotto.Message.EMPTY_INPUT_ERROR;
-import static lotto.Message.NOT_VALID_NUMBER;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static lotto.Constant.*;
+import static lotto.Message.*;
 
 public class Validator {
 
@@ -27,5 +30,39 @@ public class Validator {
         if(amount % unitOfMoney != 0) throw new IllegalArgumentException(NOT_VALID_NUMBER);
     }
 
+    public static List<Integer> validateSplittedInputLengthIsSix(String input){
+        List<Integer> WinnerNumber = new ArrayList<>();
+
+        String[] splittedInputs = input.split(",");
+        validateLengthExceptBonus(splittedInputs);
+
+        for(String splittedInput : splittedInputs){
+            int number = validateInputIsNumeric(splittedInput);
+            validatePositiveNumber(number);
+            validateNumberInRange(number);
+            WinnerNumber.add(number);
+        }
+
+        return WinnerNumber;
+    }
+
+    public static void validateComposedOfUniqueNumbers(List<Integer> numbers){
+        long unique_number = numbers.stream().distinct().count();
+        if(unique_number < numbers.size()){
+            throw new IllegalArgumentException(NOT_COMPOSED_OF_UNIQUE_NUMBERS);
+        }
+    }
+
+    private static void validateLengthExceptBonus(String... input){
+        if(input.length != Constant.LottoLength-1) {
+            throw new IllegalArgumentException(NOT_VALID_LENGTH);
+        }
+    }
+
+    private static void validateNumberInRange(int number){
+        if(number < minimumLottoNumber || number > maximumLottoNumber){
+            throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER);
+        }
+    }
 
 }

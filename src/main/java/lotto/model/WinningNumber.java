@@ -34,12 +34,17 @@ public class WinningNumber {
     }
 
     private void validateWinningNumbers(List<String> numbers) {
-        if (areAllDigits(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
+
+        if(!isSizeSix(numbers)) {
+            throw new IllegalArgumentException(ExceptionMessage.ONLY_SIZE_IS_SIX);
         }
 
         if (areEmptyOrBlank(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_EMPTY_OR_BLANK);
+        }
+
+        if (!areAllDigits(numbers)) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
         }
 
         if (isDuplicated(numbers)) {
@@ -69,6 +74,10 @@ public class WinningNumber {
         if (isZeroOrMinus(bonus)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_MINUS_OR_ZERO);
         }
+    }
+
+    private boolean isSizeSix(List<String> numbers) {
+        return numbers.size() == 6;
     }
 
     public boolean areAllDigits(List<String> numbers) {

@@ -43,5 +43,6 @@ public class LottoController {
         Map<LottoRank, Integer> rankResult = rankChecker.determineRank(matchingData);
         statisticsController.displayStatistics(rankResult);
         returnsController.displayReturnRate(rankResult, purchaseAmount);
+        Runtime.getRuntime().exit(0);
     }
 }

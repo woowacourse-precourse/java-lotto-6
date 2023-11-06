@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.LOTTO_LENGTH_ERROR_MESSAGE;
 import static lotto.constant.LottoConstant.LOTTO_LENGTH;
 import static lotto.utils.validator.LottoNumberValidator.validateDuplicateNumbers;
 import static lotto.utils.validator.LottoNumberValidator.validateOutOfRange;
@@ -28,7 +29,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_LENGTH_ERROR_MESSAGE);
         }
     }
 }

@@ -25,4 +25,13 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    public int readBonus() {
+        String input = Console.readLine();
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

@@ -3,7 +3,6 @@ package lotto.exception;
 public enum ErrorMessage {
 
     // Validator
-    INPUT_NOT_COMPOSED_OF_NUMBER("[ERROR] 구입 금액은 숫자로 이루어져야 합니다."),
     PURCHASE_AMOUNT_UNDER_THOUSAND("[ERROR] 구입 금액은 1000원 이상이어야 합니다."),
     INDIVISIBLE_PURCHASE_AMOUNT("[ERROR] 구입 금액은 1000원으로 나누어떨어져야 합니다."),
     NOT_EMPTY_OR_BLANK("[ERROR] 공백이 존재하거나 값이 비어있으면 안됩니다."),

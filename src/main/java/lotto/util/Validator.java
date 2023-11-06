@@ -11,11 +11,13 @@ public class Validator {
 
     public static boolean verifyPurchaseAmount(String input) {
         try {
-            verifyComposedOfNumbers(input);
-            verifyAboveThousand(Integer.parseInt(input));
+            int integerInput = Integer.parseInt(input);
+            verifyAboveThousand(integerInput);
             verifyDivisibilityByThousand(Integer.parseInt(input));
             return true;
         } catch (NumberFormatException e) {
+            System.out.println(ErrorMessage.NOT_EXIST_CHARACTER.getMessage());
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -24,9 +26,11 @@ public class Validator {
     public static boolean verifyWinNumber(String input) {
         try {
             verifyEmptyOrBlankExist(InputParser.parseStringList(input));
-            verifyCharExist(input);
+            InputParser.parseIntegerList(input);
             new Lotto(InputParser.parseIntegerList(input));
             return true;
+        } catch (NumberFormatException e) {
+            System.out.println(ErrorMessage.NOT_EXIST_CHARACTER.getMessage());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -36,22 +40,16 @@ public class Validator {
     public static boolean verifyBonusNumber(Lotto winNumber, String input) {
         try {
             verifyEmptyOrBlankExist(input);
-            verifyCharExist(input);
-            verifyDuplicateWithWinNumber(winNumber, Integer.parseInt(input));
-            verifyNumericRange(Integer.parseInt(input));
+            int integerInput = Integer.parseInt(input);
+            verifyDuplicateWithWinNumber(winNumber, integerInput);
+            verifyNumericRange(integerInput);
             return true;
+        } catch (NumberFormatException e) {
+            System.out.println(ErrorMessage.NOT_EXIST_CHARACTER.getMessage());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         return false;
-    }
-
-    private static void verifyComposedOfNumbers(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_COMPOSED_OF_NUMBER.getMessage());
-        }
     }
 
     private static void verifyAboveThousand(int input) {
@@ -69,14 +67,6 @@ public class Validator {
     private static void verifyEmptyOrBlankExist(List<String> input) {
         if (input.contains(EMPTY) || input.contains(SPACE)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_EMPTY_OR_BLANK.getMessage());
-        }
-    }
-
-    private static void verifyCharExist(String input) {
-        try {
-            InputParser.parseIntegerList(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_CHARACTER.getMessage());
         }
     }
 

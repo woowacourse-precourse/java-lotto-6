@@ -12,6 +12,7 @@ public class Game {
     private int AMOUNT;
     private int COUNT_LOTTO;
     private String PRIZE;
+    private int BONUS_NUMBER;
     private InputView inputView;
     private OutputView outputView;
     private final List<Lotto> lottos;
@@ -32,9 +33,12 @@ public class Game {
         createLotto(COUNT_LOTTO);    //로또 생성
         outputView.lottosView(lottos);  //로또 출력
 
-        inputView.prizeNumber();
-        PRIZE = prizeNumberInput(); //당첨 금액 입력
-        changePrizeNumber(PRIZE);   //당첨 금액 변환
+        inputView.prizeNumberView();
+        PRIZE = prizeNumberInput(); //당첨 번호 입력
+        changePrizeNumber(PRIZE);   //당첨 번호 변환
+
+        inputView.bonusNumberView();
+        
 
     }
 

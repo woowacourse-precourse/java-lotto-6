@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.Constants.TICKET_PRICE;
+import static lotto.Constants.Constants.TICKET_PRICE;
 import static lotto.exception.LottoErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
 import static lotto.exception.LottoErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
 

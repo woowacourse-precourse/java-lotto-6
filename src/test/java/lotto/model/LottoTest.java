@@ -1,12 +1,11 @@
-package lotto;
+package lotto.model;
 
-import static lotto.Constants.MAX_RANDOM_NUMBER;
-import static lotto.Constants.MIN_RANDOM_NUMBER;
+import static lotto.Constants.Constants.MAX_RANDOM_NUMBER;
+import static lotto.Constants.Constants.MIN_RANDOM_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -50,5 +49,5 @@ class LottoTest {
             List.of(1, 2, 3, 4, 5, MAX_RANDOM_NUMBER + 1)
         );
     }
-    
+
 }

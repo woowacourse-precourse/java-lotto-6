@@ -1,9 +1,9 @@
 package lotto.exception;
 
-import static lotto.Constants.LOTTO_NUMBER_COUNT;
-import static lotto.Constants.MAX_RANDOM_NUMBER;
-import static lotto.Constants.MIN_RANDOM_NUMBER;
-import static lotto.Constants.TICKET_PRICE;
+import static lotto.Constants.Constants.LOTTO_NUMBER_COUNT;
+import static lotto.Constants.Constants.MAX_RANDOM_NUMBER;
+import static lotto.Constants.Constants.MIN_RANDOM_NUMBER;
+import static lotto.Constants.Constants.TICKET_PRICE;
 
 public enum LottoErrorCode {
     NOT_INTEGER_INPUT("숫자만 입력이 가능합니다."),

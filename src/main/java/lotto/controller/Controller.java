@@ -17,7 +17,7 @@ public class Controller {
         showLottoResult(user);
     }
 
-    public static User initializeLottoes() {
+    private static User initializeLottoes() {
         int money = getValidMoney();
         HashMap<Lotto, Rank> lottos = publishLotto(money);
         User user = new User(money, lottos);
@@ -26,21 +26,22 @@ public class Controller {
         return user;
     }
 
-    public static Winning initializeWinning() {
+    private static Winning initializeWinning() {
         List<Integer> winning_number = getValidWinningNumber();
         int bonusNumber = getValidBonusNumber(winning_number);
 
         return new Winning(new Lotto(winning_number), bonusNumber);
     }
 
-    public static void showLottoResult(User user) {
+    private static void showLottoResult(User user) {
         List<Integer> result = StaticsService.getWinningStatics(user.getLottos());
         UserOutput.ConsolePrintStatistics(result);
+
         double winning_rate = StaticsService.calculateReturnRate(result, user.getNumber() * Constant.LOTTO_PRICE);
         UserOutput.ConsolePrintStatResult(winning_rate);
     }
 
-    public static int getValidBonusNumber(List<Integer> winning) {
+    private static int getValidBonusNumber(List<Integer> winning) {
         while (true) {
             try {
                 String bonus = UserInput.ConsoleInputBonusNumber();
@@ -51,7 +52,7 @@ public class Controller {
         }
     }
 
-    public static List<Integer> getValidWinningNumber() {
+    private static List<Integer> getValidWinningNumber() {
         while (true) {
             try {
                 String number = UserInput.ConsoleInputWinningNumber();
@@ -62,8 +63,7 @@ public class Controller {
         }
     }
 
-
-    public static int getValidMoney() {
+    private static int getValidMoney() {
         while (true) {
             try {
                 String money = UserInput.ConsoleInputBoughtMoney();
@@ -74,7 +74,7 @@ public class Controller {
         }
     }
 
-    public static HashMap<Lotto, Rank> publishLotto(int money) {
+    private static HashMap<Lotto, Rank> publishLotto(int money) {
         HashMap<Lotto, Rank> lottos = new HashMap<>();
 
         for (int i = 0; i < money / Constant.LOTTO_PRICE; i++) {
@@ -85,7 +85,7 @@ public class Controller {
         return lottos;
     }
 
-    public static void checkLottoResult(User user, Winning winning) {
+    private static void checkLottoResult(User user, Winning winning) {
         for (Lotto lotto : user.getLottos().keySet()) {
             Rank rank = LottoService.checkLottoRank(lotto, winning);
             user.setLottoResult(lotto, rank);

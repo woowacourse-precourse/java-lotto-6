@@ -3,26 +3,27 @@ package lotto.service;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.io.write.LottoOutputWriter;
+import lotto.number.Lotto;
 
 public class MultiLottoGenerator {
 
     private final SingleLottoGenerator singleLottoGenerator;
-    private final int lottoNumberCount;
+    private final int lottoCount;
 
-    public MultiLottoGenerator(SingleLottoGenerator singleLottoGenerator, int lottoNumberCount) {
+    public MultiLottoGenerator(SingleLottoGenerator singleLottoGenerator, int lottoCount) {
         this.singleLottoGenerator = singleLottoGenerator;
-        this.lottoNumberCount = lottoNumberCount;
+        this.lottoCount = lottoCount;
     }
 
-    public List<List<Integer>> generate() {
-        LottoOutputWriter.showPurchaseLottoCount(this.lottoNumberCount);
-        List<List<Integer>> lottos = doGenerateLottos();
+    public List<Lotto> generate() {
+        LottoOutputWriter.showPurchaseLottoCount(this.lottoCount);
+        List<Lotto> lottos = doGenerateLottos();
         LottoOutputWriter.showLottos(lottos);
         return lottos;
     }
 
-    private List<List<Integer>> doGenerateLottos() {
-        return IntStream.range(0, lottoNumberCount)
+    private List<Lotto> doGenerateLottos() {
+        return IntStream.range(0, lottoCount)
                 .mapToObj(count -> singleLottoGenerator.generate())
                 .toList();
     }

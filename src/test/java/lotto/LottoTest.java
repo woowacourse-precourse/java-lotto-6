@@ -1,27 +1,34 @@
 package lotto;
 
+import static lotto.exception.ExceptionMessage.DUPLICATED_LOTTO_NUMBERS;
+import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.number.Lotto;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
-    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+
     @Test
-    void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+    void 로또_번호_개수가_6개_이상이면_예외가_발생한다() {
+        //Arrange
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7);
+
+        //Act //Assert
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining(INVALID_LOTTO_NUMBER_SIZE.getMessage());
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+        //Arrange
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
 
-    // 아래에 추가 테스트 작성 가능
+        //Act //Assert
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining(DUPLICATED_LOTTO_NUMBERS.getMessage());
+    }
 }

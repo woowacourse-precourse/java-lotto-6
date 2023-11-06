@@ -1,6 +1,6 @@
-package lotto.io.write;
+package lotto.exception;
 
-import static lotto.io.constant.ExceptionConstant.ERROR_PREFIX;
+import static lotto.exception.ExceptionConstant.ERROR_PREFIX;
 
 public final class ExceptionMessageWriter {
     public static void showExceptionMessage(String message) {

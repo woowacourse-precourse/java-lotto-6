@@ -1,7 +1,7 @@
 package lotto.service;
 
-import static lotto.io.constant.ExceptionConstant.ERROR_PREFIX;
-import static lotto.io.message.ExceptionMessage.INVALID_PURCHASE_AMOUNT_MESSAGE;
+import static lotto.exception.ExceptionConstant.ERROR_PREFIX;
+import static lotto.exception.ExceptionMessage.INVALID_PURCHASE_AMOUNT_MESSAGE;
 import static lotto.io.message.InputMessage.READ_PURCHASE_AMOUNT_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doNothing;

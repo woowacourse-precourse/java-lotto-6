@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import lotto.number.Lotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ class MultiLottoGeneratorTest {
         MultiLottoGenerator generator = new MultiLottoGenerator(new SingleLottoGenerator(), lottoCount);
 
         //Act
-        List<List<Integer>> lottos = generator.generate();
+        List<Lotto> lottos = generator.generate();
 
         //Assert
         assertThat(outputStreamCaptor.toString())
@@ -42,8 +43,8 @@ class MultiLottoGeneratorTest {
 
         assertThat(lottos).hasSize(lottoCount);
 
-        for (List<Integer> lotto : lottos) {
-            assertThat(lotto).hasSize(LOTTO_NUMBER_COUNT)
+        for (Lotto lotto : lottos) {
+            assertThat(lotto.getNumbers()).hasSize(LOTTO_NUMBER_COUNT)
                     .doesNotHaveDuplicates()
                     .allMatch(number -> (LOTTO_START_NUMBER <= number) && (number <= LOTTO_END_NUMBER))
                     .isSorted();
@@ -57,7 +58,7 @@ class MultiLottoGeneratorTest {
         MultiLottoGenerator generator = new MultiLottoGenerator(new SingleLottoGenerator(), lottoCount);
 
         //Act
-        List<List<Integer>> lottos = generator.generate();
+        List<Lotto> lottos = generator.generate();
 
         //Assert
         String output = outputStreamCaptor.toString();
@@ -66,12 +67,16 @@ class MultiLottoGeneratorTest {
         assertThat(output).contains(String.format("%d%s\n", lottoCount, LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage()));
 
         lottos.forEach(lotto ->
-                assertThat(output).contains(lottoToString(lotto))
+                assertThat(output).contains(lottoToString(lotto.getNumbers()))
         );
     }
 
-    private String lottoToString(List<Integer> lotto) {
-        return "[" + String.join(", ", lotto.stream().map(String::valueOf).toArray(String[]::new)) + "]";
+    private String lottoToString(List<Integer> numbers) {
+        return "[" +
+                String.join(", ", numbers.stream()
+                        .map(String::valueOf)
+                        .toArray(String[]::new))
+                + "]";
     }
 
 }

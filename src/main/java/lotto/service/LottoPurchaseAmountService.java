@@ -1,7 +1,7 @@
 package lotto.service;
 
+import lotto.exception.ExceptionMessageWriter;
 import lotto.io.read.InputReader;
-import lotto.io.write.ExceptionMessageWriter;
 import lotto.io.write.LottoOutputWriter;
 import lotto.service.validation.LottoValidator;
 

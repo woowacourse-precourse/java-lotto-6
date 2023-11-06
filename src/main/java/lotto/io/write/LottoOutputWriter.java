@@ -5,6 +5,7 @@ import static lotto.io.message.OutputMessage.LOTTO_PURCHASE_AMOUNT_MESSAGE;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.number.Lotto;
 
 public final class LottoOutputWriter {
     public static void showPurchaseAmountMessage() {
@@ -15,14 +16,14 @@ public final class LottoOutputWriter {
         System.out.printf("%d%s\n", count, LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage());
     }
 
-    public static void showLottos(List<List<Integer>> lottos) {
-        lottos.forEach(lotto -> {
-            System.out.println(lottoToString(lotto));
-        });
+    public static void showLottos(List<Lotto> lottos) {
+        lottos.forEach(lotto ->
+                System.out.println(lottoToString(lotto.getNumbers()))
+        );
     }
 
-    private static String lottoToString(List<Integer> lotto) {
-        return "[" + lotto.stream()
+    private static String lottoToString(List<Integer> numbers) {
+        return "[" + numbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ")) + "]";
     }

@@ -1,6 +1,6 @@
 package lotto.service.validation;
 
-import static lotto.io.message.ExceptionMessage.INVALID_PURCHASE_AMOUNT_MESSAGE;
+import static lotto.exception.ExceptionMessage.INVALID_PURCHASE_AMOUNT_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.params.ParameterizedTest;

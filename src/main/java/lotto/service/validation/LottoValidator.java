@@ -1,6 +1,6 @@
 package lotto.service.validation;
 
-import static lotto.io.message.ExceptionMessage.INVALID_PURCHASE_AMOUNT_MESSAGE;
+import static lotto.exception.ExceptionMessage.INVALID_PURCHASE_AMOUNT_MESSAGE;
 import static lotto.service.LottoConstant.PURCHASE_AMOUNT_UNIT;
 
 public class LottoValidator {

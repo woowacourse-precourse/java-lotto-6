@@ -5,7 +5,7 @@ import static lotto.service.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.service.LottoConstant.LOTTO_START_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
+import lotto.number.Lotto;
 import org.junit.jupiter.api.RepeatedTest;
 
 class SingleLottoGeneratorTest {
@@ -16,10 +16,10 @@ class SingleLottoGeneratorTest {
         SingleLottoGenerator generator = new SingleLottoGenerator();
 
         //Act
-        List<Integer> result = generator.generate();
+        Lotto lotto = generator.generate();
 
         //Assert
-        assertThat(result).hasSize(LOTTO_NUMBER_COUNT)
+        assertThat(lotto.getNumbers()).hasSize(LOTTO_NUMBER_COUNT)
                 .doesNotHaveDuplicates()
                 .allMatch(number -> (LOTTO_START_NUMBER <= number) && (number <= LOTTO_END_NUMBER))
                 .isSorted();

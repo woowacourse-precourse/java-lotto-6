@@ -11,7 +11,7 @@ public class OutputMessage {
     }
 
     private static class OutputMessageHolder {
-        private static OutputMessage outputMessage;
+        private static OutputMessage outputMessage = new OutputMessage();
     }
 
     public static OutputMessage getInstance() {

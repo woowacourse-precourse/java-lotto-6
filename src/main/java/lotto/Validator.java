@@ -35,14 +35,14 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR]");
     }
 
-    // ',,'가 포함되어 있거나 ','로 시작하거나 끝나는지 검증
+    // ,,가 포함되어 있거나 ,로 시작하거나 끝나는지 검증
     public static void checkInvalidComma(String input) {
         if (input.contains(",,") || input.startsWith(",") ||
                 input.endsWith(","))
             throw new IllegalArgumentException("[ERROR]");
     }
 
-    // ','를 기준으로 분리한 배열의 크기가 6인지 검증
+    // ,를 기준으로 분리한 배열의 크기가 6인지 검증
     public static void checkValidSize(String input) {
         if (Arrays.asList(input.split(",")).size() != 6)
             throw new IllegalArgumentException("[ERROR]");

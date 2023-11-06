@@ -57,10 +57,19 @@ class ValidatorTest {
 
     @Test
     @DisplayName(",,가 포함되어 있거나 ,로 시작하거나 끝날 경우 예외 발생")
-    void checkInvalidComma() {
+    void checkInvalidCommaTest() {
         stringTestCases = Arrays.asList(new String[]{"1,,2", ",1,2", "1,2,", ",1", "1,"});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.checkInvalidComma(testCase));
+        }
+    }
+
+    @Test
+    @DisplayName(",를 기준으로 분리한 배열의 크기가 6이 아닐 경우 예외 발생")
+    void checkValidSizeTest() {
+        stringTestCases = Arrays.asList(new String[]{"1,2", "1,2,3", "1,2,3,4", "1,2,3,4,5", "1,2,3,4,5,6,7"});
+        for (String testCase : stringTestCases) {
+            assertThatThrownBy(() -> Validator.checkValidSize(testCase));
         }
     }
 }

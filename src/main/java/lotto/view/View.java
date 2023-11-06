@@ -35,6 +35,7 @@ public final class View {
 
     public static String requestBonusNumber() {
         printlnMessage(BONUS_NUMBER_REQUEST_MESSAGE);
+        return Validator.validateBonusNumber(enterMessage());
     }
 
     private static void printLottosCount(int count) {
@@ -141,6 +142,11 @@ public final class View {
 
         private static boolean hasDuplicatedSeparator(String message) {
             return message.contains(INPUT_SEPARATOR.getSymbol().repeat(2));
+        }
+
+        private static String validateBonusNumber(String message) {
+            validateNumber(message);
+            return message;
         }
     }
 }

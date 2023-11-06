@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import java.util.HashSet;
+import lotto.utils.Validator;
+
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -12,38 +12,15 @@ import static lotto.domain.constant.NumberConstant.*;
 public class Lotto {
     private final List<Integer> numbers;
 
+
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        Validator.validateLotto(numbers);
         this.numbers = numbers;
     }
 
+
     public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        validateSize(numbers);
-        validateDuplicate(numbers);
-        validateNumberInRange(numbers);
-    }
-
-    private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE)
-            throw new IllegalArgumentException();
-    }
-
-    private void validateDuplicate(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-
-        for (Integer n : numbers)
-            if (!uniqueNumbers.add(n))
-                throw new IllegalArgumentException();
-    }
-
-    public static void validateNumberInRange(List<Integer> numbers) {
-        if (numbers.stream()
-                .anyMatch(n -> n < LOTTO_NUMBER_START | n > LOTTO_NUMBER_END))
-            throw new IllegalArgumentException();
     }
 
 
@@ -57,21 +34,22 @@ public class Lotto {
         return new Lotto(pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_SIZE));
     }
 
-    public static MatchResult match(Lotto randomLotto, Lotto winLotto, int bonusNum) {
+
+    public static MatchResult match(Lotto randomLotto, Lotto winningLotto, int bonusNum) {
         List<Integer> randomNumbers = randomLotto.getNumbers();
-        List<Integer> winNumbers = winLotto.getNumbers();
+        List<Integer> winningNumbers = winningLotto.getNumbers();
 
         int matchCount = (int) randomNumbers.stream()
-                .filter(winNumbers::contains)
+                .filter(winningNumbers::contains)
                 .count();
 
-        if (isBonusMatch(randomNumbers, bonusNum, matchCount))
+        if (isBonusMatch(matchCount, randomNumbers, bonusNum))
             return MatchResult.BONUS;
 
         return MatchResult.fromCount(matchCount);
     }
 
-    private static boolean isBonusMatch(List<Integer> randomNumbers, int bonusNum, int matchCount) {
+    private static boolean isBonusMatch(int matchCount, List<Integer> randomNumbers, int bonusNum) {
         return matchCount == BONUS_MATCH_COUNT && randomNumbers.contains(bonusNum);
     }
 }

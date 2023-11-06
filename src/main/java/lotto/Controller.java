@@ -6,9 +6,11 @@ public class Controller {
     public void run() {
         int money = convertMoney(inputMoney());
         int lotto = numberOfLotto(money);
+        Lottos lottos = getLottos(lotto);
 
         System.out.println(money);
         System.out.println(lotto);
+        lottos.getLottos().forEach(System.out::println);
     }
 
     private String inputMoney() {
@@ -22,5 +24,10 @@ public class Controller {
 
     private int numberOfLotto(int money) {
         return money / 1000;
+    }
+
+    private Lottos getLottos(int ticket) {
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        return new Lottos(lottoGenerator.generateLottoGroup(ticket));
     }
 }

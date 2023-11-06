@@ -21,4 +21,7 @@ public class Bonus {
         return bonus >= NumberConst.MIN_RANGE && bonus <= NumberConst.MAX_RANGE;
     }
 
+    public int getBonus() {
+        return bonus;
+    }
 }

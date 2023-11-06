@@ -35,4 +35,8 @@ public class Lotto {
         return numbers.stream()
                 .allMatch(number -> number >= NumberConst.MIN_RANGE && number <= NumberConst.MAX_RANGE);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

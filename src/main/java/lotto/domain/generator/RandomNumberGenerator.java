@@ -20,7 +20,7 @@ public class RandomNumberGenerator implements NumberGenerator {
     }
 
     @Override
-    public List<Integer> generateRandomNumbers(int count) {
+    public List<Integer> generateNumbers(int count) {
         return Randoms.pickUniqueNumbersInRange(START_NUMBER.getValue(), END_NUMBER.getValue(), count);
     }
 }

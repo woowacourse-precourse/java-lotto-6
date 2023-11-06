@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface NumberGenerator {
 
-    List<Integer> generateRandomNumbers(int count);
+    List<Integer> generateNumbers(int count);
 }

@@ -21,7 +21,7 @@ public class Lottos {
 
     private void generateLottos(int lottoAmount) {
         while (lottos.size() < lottoAmount) {
-            lottos.add(new Lotto(numberGenerator.generateRandomNumbers(LottoCondition.COUNT.getValue())));
+            lottos.add(new Lotto(numberGenerator.generateNumbers(LottoCondition.COUNT.getValue())));
         }
     }
 

@@ -6,7 +6,6 @@ import lotto.model.Result;
 import java.util.List;
 
 public class OutputViewImpl implements OutputView {
-
     @Override
     public void printBoughtLotto(List<Lotto> boughtLotto) {
         System.out.printf("%s개를 구매했습니다.%s", boughtLotto.size(), System.lineSeparator());

@@ -9,7 +9,6 @@ public class Rule {
     public static final int MAX_MONEY = 100_000;
     public static final int MONEY_UNIT = 1_000;
 
-
     private Rule() {
     }
 }

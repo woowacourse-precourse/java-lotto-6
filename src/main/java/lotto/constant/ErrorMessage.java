@@ -10,7 +10,6 @@ public enum ErrorMessage {
     INVALID_AMOUNT_RANGE("잘못된 범위의 금액입니다."),
     INVALID_AMOUNT_UNIT("잘못된 단위입니다.");
 
-
     private final String message;
 
     ErrorMessage(String message) {

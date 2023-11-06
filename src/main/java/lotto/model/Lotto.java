@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

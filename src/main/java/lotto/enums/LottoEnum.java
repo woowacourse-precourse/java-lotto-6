@@ -1,11 +1,6 @@
 package lotto.enums;
 
-import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.Comparator;
-
 import static lotto.LottoConst.LOTTO_COUNT;
-import static lotto.LottoConst.LOTTO_PRICE;
 
 public enum LottoEnum {
 

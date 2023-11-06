@@ -72,7 +72,7 @@ public class Player {
     }
 
     private void validateNumberValue(Integer number) {
-        if (number < Lotto.MINIMUM_NUMBER || number > Lotto.MINIMUM_NUMBER) {
+        if (number < Lotto.MINIMUM_NUMBER || number > Lotto.MAXIMUM_NUMBER) {
             throw new IllegalArgumentException();
         }
     }

@@ -3,6 +3,8 @@ package lotto.lotto;
 import java.util.List;
 import lotto.bonus.BonusNumber;
 import lotto.money.Money;
+import lotto.statistics.RankingResults;
+import lotto.statistics.Statistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -58,5 +60,7 @@ public class LottoController {
     private void aggregateResult(List<Lotto> lottos) {
         WinningLotto winningLotto = receiveWinningLotto();
         BonusNumber bonusNumber = receiveBonusNumber();
+        RankingResults results = RankingResults.of(lottos, winningLotto, bonusNumber);
+        Statistics statistics = new Statistics(results.getRankings());
     }
 }

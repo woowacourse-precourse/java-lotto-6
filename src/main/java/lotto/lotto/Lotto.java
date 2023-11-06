@@ -45,8 +45,8 @@ public class Lotto {
         }
     }
 
-    public Integer findMatchCount(Lotto lotto) {
-        return lotto.numbers.stream().filter(numbers::contains).toList().size();
+    public Integer findMatchCount(Lotto winningLotto) {
+        return winningLotto.numbers.stream().filter(numbers::contains).toList().size();
     }
 
     public boolean hasBonusNumber(BonusNumber bonusNumber) {

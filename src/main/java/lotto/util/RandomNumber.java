@@ -8,6 +8,7 @@ public class RandomNumber {
     }
 
     public static List<Integer> generateLotteryNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return numbers.stream().sorted().toList();
     }
 }

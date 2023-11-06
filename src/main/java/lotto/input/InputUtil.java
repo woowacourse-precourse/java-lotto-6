@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
-import lotto.util.StringValidator;
+import lotto.validator.ListValidator;
+import lotto.validator.MoneyValidator;
+import lotto.validator.StringValidator;
 
 public class InputUtil {
     private InputUtil() {
@@ -15,6 +17,8 @@ public class InputUtil {
             System.out.println("구입금액을 입력하세요.");
             final String line = Console.readLine();
             StringValidator.validateOnlyNumber(line);
+            long money = Long.parseLong(line);
+            MoneyValidator.validateMinimumMoney(money);
             return Long.parseLong(line);
         });
     }
@@ -25,16 +29,21 @@ public class InputUtil {
             final String line = Console.readLine();
             StringValidator.validateNotBlank(line);
             final List<String> numberStrings = Arrays.asList(line.split(","));
-            return mapToInt(numberStrings);
+            final List<Integer> numbers = mapToInt(numberStrings);
+            ListValidator.validateNumbersSize(numbers);
+            ListValidator.validateUniqueNumbers(numbers);
+            return numbers;
         });
     }
 
-    public static int inputBonusNumber() {
+    public static int inputBonusNumber(List<Integer> numbers) {
         return inputUntilValidated(() -> {
             System.out.println("보너스 번호를 입력해 주세요.");
             final String line = Console.readLine();
             StringValidator.validateOnlyNumber(line);
-            return Integer.parseInt(line);
+            final int bonusNumber = Integer.parseInt(line);
+            ListValidator.validateNotContains(numbers, bonusNumber);
+            return bonusNumber;
         });
     }
 

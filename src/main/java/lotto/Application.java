@@ -12,7 +12,7 @@ public class Application {
         user.printMyLotto();
 
         final List<Integer> winningNumbers = InputUtil.inputWinningNumbers();
-        final int bonusNumber = InputUtil.inputBonusNumber();
+        final int bonusNumber = InputUtil.inputBonusNumber(winningNumbers);
 
         final Draw draw = new Draw(winningNumbers, bonusNumber);
         user.doDraw(draw);

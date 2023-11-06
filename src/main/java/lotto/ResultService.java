@@ -26,6 +26,13 @@ public class ResultService {
         System.out.println("---");
     }
 
+    public static void printResults(HashMap<Integer, Integer> results) {
+        for (int caseNumber : results.keySet()) {
+            System.out.printf(WinnigCase.MATCH_THREE.getContents() + " - %d개", results.get(caseNumber));
+        }
+    }
+
+
     public static List<Lotto> getResultsOfLottoIssuance(int purchaseNumber) {
         List<Lotto> resultsOfLottoIssuance = new ArrayList<>();
         for (int i = 1; i <= purchaseNumber; i++) {

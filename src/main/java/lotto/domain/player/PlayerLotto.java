@@ -7,8 +7,11 @@ public class PlayerLotto {
     private Lotto lottoNubmers;
     private BonusNumber bonusNumber;
 
-    public PlayerLotto(Lotto lottoNubmers, BonusNumber bonusNumber) {
+    private PurchaseAmount purchaseAmount;
+
+    public PlayerLotto(Lotto lottoNubmers, BonusNumber bonusNumber, PurchaseAmount purchaseAmount) {
         this.lottoNubmers = lottoNubmers;
         this.bonusNumber = bonusNumber;
+        this.purchaseAmount = purchaseAmount;
     }
 }

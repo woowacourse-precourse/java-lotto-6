@@ -23,7 +23,7 @@ public class Number {
 
     private boolean hasLetter(String number) {
         return number.chars()
-                .anyMatch(Character::isLetter);
+                .anyMatch(c -> !Character.isDigit(c));
     }
 
     private void validateNumberRange(int number) {

@@ -8,35 +8,30 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoChecker;
 import lotto.domain.LottoGenerator;
+import lotto.view.InputView;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("구입 금액을 입력해 주세요.");
-        int money = Integer.parseInt(Console.readLine());
+        InputView inputView = new InputView();
+        int money = inputView.getMoney();
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winNumbers = new ArrayList<>();
-        String inputWinNumber = Console.readLine();
-        for (String s : inputWinNumber.split(",")){
-            winNumbers.add(Integer.parseInt(s));
-        }
-        Lotto winNumber = new Lotto(winNumbers);
+        List<Integer> winNumbers = inputView.getWinNumbers();
+        Lotto winTicket = new Lotto(winNumbers);
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-
+        int bonusNumber = inputView.getBonusNumber();
 
         LottoGenerator lottoGenerator = new LottoGenerator();
         List<Lotto> tickets = lottoGenerator.getTickets(money);
+
         System.out.println(tickets.size() + "개를 구매했습니다.");
         for (int i = 0; i < tickets.size() ; i++) {
             System.out.println(tickets.get(i).toString());
         }
+
         LottoChecker lottoChecker = new LottoChecker();
         int totalReward = 0;
         for (int i = 0; i < tickets.size() ; i++) {
-            totalReward = lottoChecker.checkReward(tickets.get(i), winNumber, bonusNumber);
-
+            totalReward = lottoChecker.checkReward(tickets.get(i), winTicket, bonusNumber);
         }
 
         int[] rankCount = lottoChecker.getRankCount();

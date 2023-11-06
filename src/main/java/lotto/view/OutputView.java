@@ -1,6 +1,7 @@
 package lotto.view;
 
 
+import lotto.domain.LottoTicket;
 import lotto.view.constants.RequestMessage;
 import lotto.view.constants.ResponseMessage;
 
@@ -20,8 +21,9 @@ public class OutputView {
         System.out.println(RequestMessage.BONUS_NUMBER.getMessage());
     }
 
-    public static void printResponsePurchaseAmount(final int amount) {
-        String formattedMessage = String.format(ResponseMessage.PURCHASE_AMOUNT.getMessage(), amount);
+    public static void printPurchaseResult(LottoTicket lottoTicket) {
+        String formattedMessage = String.format(ResponseMessage.PURCHASE_COUNT.getMessage(),
+                lottoTicket.getLottoCount());
         System.out.println(formattedMessage);
     }
 

@@ -1,17 +1,26 @@
 package lotto.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.LottoTicket;
 
 public class LottoPurchaseService {
-    private List<Lotto> lottoTicket;
-    private int lottoEntryCount;
+    private static final int LOTTO_PRICE = 1000;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int NUMBER_PER_LOTTO = 6;
+
     public LottoPurchaseService() {
     }
-    public void buyLottoTicket(String purchaseAmount) {
+
+    public LottoTicket buyLottoTicket(String purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
-        lottoEntryCount = Integer.parseInt(purchaseAmount);
-        // 갯수만큼 로또 구매(1. 로또 객체 생성, 2. )
+        int lottoCount = calculateLottoCount(purchaseAmount);
+        // TODO: 갯수만큼 로또 구매(1. 랜덤 번호 생성, 2. lotto 객체 생성 3. 리스트로 저장 4. lottoTicket에 리스트 저장)
+        return makeLottoTicket(lottoCount);
     }
 
     private void validatePurchaseAmount(String purchaseAmount) {
@@ -26,5 +35,27 @@ public class LottoPurchaseService {
         if (amount < 0 || amount % 1000 != 0) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private int calculateLottoCount(String purchaseAmount) {
+        int amount = Integer.parseInt(purchaseAmount);
+        return amount / LOTTO_PRICE;
+    }
+
+    private LottoTicket makeLottoTicket(int lottoEntryCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoEntryCount; i++) {
+            List<Integer> randomNumbers = generateRandomLottoNumbers();
+            Lotto lotto = new Lotto(randomNumbers);
+            lottos.add(lotto);
+        }
+        return new LottoTicket(lottos);
+    }
+
+    private List<Integer> generateRandomLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_PER_LOTTO)
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

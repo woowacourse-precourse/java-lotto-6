@@ -1,7 +1,7 @@
 package lotto.view.constants;
 
 public enum ResponseMessage {
-    PURCHASE_AMOUNT("%d개를 구매했습니다."),
+    PURCHASE_COUNT("%d개를 구매했습니다."),
     WINNING_STATS("당첨 통계\n"
             + "---\n"
             + "3개 일치 (5,000원) - %d개\n"

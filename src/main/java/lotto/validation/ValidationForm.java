@@ -1,7 +1,6 @@
 package lotto.validation;
 
 import lotto.property.ValidationProperty;
-import lotto.validation.validator.CostValidator;
 
 import static lotto.property.ValidationProperty.*;
 import static lotto.validation.validator.WinningValidator.*;
@@ -30,7 +29,7 @@ public class ValidationForm {
         valueIsEmpty(winningNumber);
         valueContainsSpace(winningNumber);
         valueIsNumeric(winningNumber);
-        winningOrBonusIsCorrectRange(winningNumber);
+        winningIsCorrectRange(winningNumber);
     }
     static void verifyForPurchaseCost(String purchaseCost){
         valueIsEmpty(purchaseCost);

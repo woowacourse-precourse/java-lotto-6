@@ -14,12 +14,12 @@ public class Except {
     private static Message outOfRange = Message.moneyOutOfRange;
     private static Message invalidFormat = Message.moneyInvalidFormat;
     private static final String INTEGER_REGEX = "^\\d+(,\\d+)*$";
+    private static final String MONEY_REGEX = "^\\d+$";
 
     public int outOfRangeMoney(String money) {
         int result = outOfRange.getCode();
-        Input input = new Input();
         try {
-            if (!money.matches(INTEGER_REGEX)) {
+            if (!money.matches(MONEY_REGEX)) {
                 throw new IllegalArgumentException();
             }
             result = Integer.parseInt(money);

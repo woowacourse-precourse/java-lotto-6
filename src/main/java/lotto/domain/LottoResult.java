@@ -1,12 +1,12 @@
 package lotto.domain;
 
 import lotto.constant.LottoRank;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
 public class LottoResult {
-    private final Map<LottoRank, Integer> result = new HashMap<>();
+    private final Map<LottoRank, Integer> result = new LinkedHashMap<>();
 
     public LottoResult() {
         Stream.of(LottoRank.values()).forEach(lottoRank -> result.put(lottoRank, 0));
@@ -18,7 +18,7 @@ public class LottoResult {
     }
 
     public Map<LottoRank, Integer> getResult() {
-        return new HashMap<>(result);
+        return new LinkedHashMap<>(result);
     }
 
     public double calculateProfitRate(Payment payment) {

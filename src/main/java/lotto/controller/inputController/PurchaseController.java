@@ -1,5 +1,5 @@
-package lotto.controller;
-import lotto.view.LottoPurchaseInput;
+package lotto.controller.inputController;
+import lotto.view.inputView.LottoPurchaseInput;
 
 public class PurchaseController {
 

@@ -1,4 +1,8 @@
-package lotto.model;
+package lotto.model.lottoGenerator;
+
+import lotto.model.lottoGenerator.Lotto;
+import lotto.model.lottoGenerator.LottoNumberGenerator;
+import lotto.model.lottoGenerator.LottoTicketCalculator;
 
 import java.util.ArrayList;
 import java.util.List;

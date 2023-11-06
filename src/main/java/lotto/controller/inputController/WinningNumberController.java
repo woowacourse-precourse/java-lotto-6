@@ -1,7 +1,7 @@
-package lotto.controller;
+package lotto.controller.inputController;
 
-import lotto.view.LottoBonusWinningNumberInput;
-import lotto.view.LottoWinningNumberInput;
+import lotto.view.inputView.LottoBonusWinningNumberInput;
+import lotto.view.inputView.LottoWinningNumberInput;
 import java.util.List;
 
 public class WinningNumberController {

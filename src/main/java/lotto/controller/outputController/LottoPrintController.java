@@ -1,7 +1,7 @@
-package lotto.controller;
+package lotto.controller.outputController;
 
-import lotto.model.Lotto;
-import lotto.view.LottoPrintOutput;
+import lotto.model.lottoGenerator.Lotto;
+import lotto.view.outputView.LottoPrintOutput;
 
 import java.util.List;
 

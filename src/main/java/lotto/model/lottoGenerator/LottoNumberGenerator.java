@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lottoGenerator;
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
 import java.util.ArrayList;

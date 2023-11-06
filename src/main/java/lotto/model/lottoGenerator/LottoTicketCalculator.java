@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lottoGenerator;
 
 public class LottoTicketCalculator {
     public int calculateNumberOfTickets(int purchaseAmount) {

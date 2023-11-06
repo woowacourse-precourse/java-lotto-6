@@ -1,8 +1,11 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.LottoTicketCreator;
-import lotto.view.LottoBonusWinningNumberInput;
+import lotto.controller.inputController.PurchaseController;
+import lotto.controller.inputController.WinningNumberController;
+import lotto.controller.outputController.LottoPrintController;
+import lotto.model.lottoGenerator.Lotto;
+import lotto.model.lottoGenerator.LottoTicketCreator;
+import lotto.view.inputView.LottoBonusWinningNumberInput;
 
 import java.util.List;
 

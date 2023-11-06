@@ -24,6 +24,10 @@ public enum WinningResult {
         this.money = money;
     }
 
+    public int getWinningCount() {
+        return winningCount;
+    }
+
     public static void printWinningResult() {
         for (WinningResult value : WinningResult.values()) {
             String result = String.format(value.message, value.winningCount);

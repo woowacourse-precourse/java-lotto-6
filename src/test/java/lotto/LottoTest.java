@@ -55,4 +55,12 @@ class LottoTest {
         int matchedNumbers = lotto1.countMatchedNumbers(lotto2);
         assertThat(matchedNumbers).isEqualTo(4);
     }
+
+    @DisplayName("보너스 번호 일치 올바르게 확인하는지 체크")
+    @Test
+    void isBonusMatched(){
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        assertThat(lotto.isBonusMatched(1)).isTrue();
+        assertThat(lotto.isBonusMatched(7)).isFalse();
+    }
 }

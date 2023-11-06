@@ -13,13 +13,13 @@ public enum Ranking {
     private final Integer rank;
     private final Integer matchCount;
     private final Boolean matchBonus;
-    private final String price;
+    private final String prize;
 
-    Ranking(Integer rank, Integer matchCount, Boolean matchBonus, String price) {
+    Ranking(Integer rank, Integer matchCount, Boolean matchBonus, String prize) {
         this.rank = rank;
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
-        this.price = price;
+        this.prize = prize;
     }
 
     public static Ranking getRanking(Integer matchCount, Boolean matchBonus) {
@@ -33,9 +33,13 @@ public enum Ranking {
         return rank;
     }
 
+    public String getPrize() {
+        return prize;
+    }
+
     @Override
     public String toString() {
-        if (rank == 2) return String.format(Constants.PRINT_SECOND_PLACE, matchCount, price);
-        return String.format(Constants.PRINT_RANKING, matchCount, price);
+        if (rank == 2) return String.format(Constants.PRINT_SECOND_PLACE, matchCount, prize);
+        return String.format(Constants.PRINT_RANKING, matchCount, prize);
     }
 }

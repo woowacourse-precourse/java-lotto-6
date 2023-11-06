@@ -11,17 +11,17 @@ public enum Message {
     RESPONSE_MATCHED("%d개 일치%s ($s원) - %d개"),
     RESPONSE_PNL("총 수익률은 %.1f%%입니다.");
 
-    private final String message;
+    private final String content;
 
     Message(String message) {
-        this.message = message;
+        this.content = message;
     }
 
     public void print() {
-        System.out.println(message);
+        System.out.println(content);
     }
 
     public void print(Object... args) {
-        System.out.printf(message + "\n", args);
+        System.out.printf(content + "\n", args);
     }
 }

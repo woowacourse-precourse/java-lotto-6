@@ -35,6 +35,7 @@ public class Application {
             System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");        
             throw new IllegalStateException();
         }              
+        
     }
 
     public static void GetCoin(){
@@ -71,7 +72,13 @@ public class Application {
     }
     
     public static int LottoNumberValidate(String lottoNumber){
-        int lottoNum = Integer.parseInt(lottoNumber);
+        int lottoNum;
+        try{
+            lottoNum = Integer.parseInt(lottoNumber);
+        }catch(Exception e){
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
+        }        
 
         if (lottoNum < lottoMin || lottoNum > lottoMax){
             System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");

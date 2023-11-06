@@ -6,12 +6,14 @@ import validator.Validator;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.LIST;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
@@ -62,8 +64,8 @@ class ApplicationTest extends NsTest {
     @Test
     void 로또가_몇_개_맞았는지_확인() {
         LottoService lottoService = new LottoService();
-        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto2 = new Lotto(List.of(7, 8, 9, 3, 10, 1));
+        Lotto lotto1 = new Lotto(new ArrayList<>(List.of(7, 8, 10, 20, 30, 40)));
+        Lotto lotto2 = new Lotto(new ArrayList<>(List.of(7, 8, 9, 3, 1, 2)));
         int result = lottoService.compare(lotto1, lotto2);
         assertThat(result).isEqualTo(2);
     }
@@ -71,7 +73,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 보너스_숫자가_맞는지_확인1() {
         LottoService lottoService = new LottoService();
-        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto1 = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
         boolean check = lottoService.compareBonusNumber(lotto1, 3);
         assertThat(check).isEqualTo(true);
     }
@@ -79,7 +81,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 보너스_숫자가_맞는지_확인2() {
         LottoService lottoService = new LottoService();
-        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto1 = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
         boolean check = lottoService.compareBonusNumber(lotto1, 7);
         assertThat(check).isEqualTo(false);
     }
@@ -146,11 +148,26 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 가격_입력_메소드(){
+    void 가격_입력_메소드() {
         String priceString = "17000";
         System.setIn(new ByteArrayInputStream(priceString.getBytes()));
-        int price=LottoInput.inputPrice();
+        int price = LottoInput.inputPrice();
         assertThat(price).isEqualTo(17000);
+    }
+
+    @Test
+    void 로또_등수_확인() {
+        LottoService lottoService = new LottoService();
+        Lotto lotto1 = new Lotto(new ArrayList<>(List.of(1, 2, 3, 10, 20, 30)));
+        Lotto lotto2=new Lotto(new ArrayList<>(List.of(1,2,3,5,20,30)));
+        Lotto lotto3=new Lotto(new ArrayList<>(List.of(1,2,3,5,7,10)));
+        Lotto lotto4=new Lotto(new ArrayList<>(List.of(1,2,3,5,7,6)));
+        Lotto lotto5=new Lotto(new ArrayList<>(List.of(1,2,3,5,7,8)));
+        Lotto[] lottos=new Lotto[]{lotto1,lotto2,lotto3,lotto4,lotto5};
+        int bonus=6;
+        Lotto answer=new Lotto(new ArrayList<>(List.of(1,2,3,5,7,8)));
+        int[] result=lottoService.compareAllLotto(lottos,answer,bonus);;
+        assertThat(result).isEqualTo(new int[]{1,1,1,1,1});
     }
 
     @Override

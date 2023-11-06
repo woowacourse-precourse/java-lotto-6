@@ -1,5 +1,7 @@
 package lotto;
 
+import validator.Validator;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -8,6 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Validator.checkDuplication(numbers);
         this.numbers = numbers;
         Collections.sort(numbers);
     }

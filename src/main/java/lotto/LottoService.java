@@ -27,7 +27,22 @@ public class LottoService {
         }
         return correct;
     }
-
+    public int[] compareAllLotto(Lotto[] lottos,Lotto answer,int bonusNum){
+        int[] result=new int[5];
+        for(int i=0;i<lottos.length;i++){
+            int correct=compare(answer,lottos[i]);
+            boolean bonus=compareBonusNumber(lottos[i],bonusNum);
+            increaseResult(result,correct,bonus);
+        }
+        return result;
+    }
+    private void increaseResult(int[] result,int correct,boolean bonus){
+        if(correct==3) result[0]++;
+        else if(correct==4) result[1]++;
+        else if(correct==5&&!bonus) result[2]++;
+        else if(correct==5&&bonus) result[3]++;
+        else if(correct==6) result[4]++;
+    }
     public boolean compareBonusNumber(Lotto answer, int bonusNumber) {
         return answer.getNumbers().contains(bonusNumber);
     }

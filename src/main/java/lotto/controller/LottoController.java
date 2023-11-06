@@ -18,7 +18,9 @@ public class LottoController {
 	
 	void matchLottosToPrizes() {
 		OutputView.printWinningNumberInstruction();
-		
+		List<Integer> winningNumbers = InputData.winningNumber();
+		OutputView.printBonusNumberInstruction();
+		winningNumbers.add(InputData.bonusNumber());
 	}
 	
 	

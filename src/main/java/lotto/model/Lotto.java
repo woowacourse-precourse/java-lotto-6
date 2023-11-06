@@ -1,6 +1,5 @@
 package lotto.model;
 
-import static java.util.Arrays.stream;
 import static lotto.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.ErrorMessage.ERROR_MESSAGE;
 import static lotto.ErrorMessage.OVER_LOTTO_BOUNDARY;
@@ -10,7 +9,6 @@ import static lotto.configuration.LottoConfiguration.LOTTO_BOUNDARY_START_NUMBER
 import static lotto.configuration.LottoConfiguration.LOTTO_SIZE;
 
 import java.util.List;
-import lotto.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -27,8 +25,9 @@ public class Lotto {
     }
 
     private void validateOverSize(List<Integer> numbers) {
+
         if (numbers.size() != LOTTO_SIZE.get()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE.getMessage()+OVER_LOTTO_SIZE.getMessage());
+            throw new IllegalArgumentException(ERROR_MESSAGE.getMessage() + OVER_LOTTO_SIZE.getMessage());
         }
     }
 
@@ -37,15 +36,15 @@ public class Lotto {
                 .distinct()
                 .count();
         if (distinctListSize != numbers.size()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE.getMessage()+DUPLICATE_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(ERROR_MESSAGE.getMessage() + DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
     private void validateInRange(List<Integer> numbers) {
         numbers.forEach(number -> {
             if (number < LOTTO_BOUNDARY_START_NUMBER.get() || number > LOTTO_BOUNDARY_END_NUMBER.get()) {
-                throw new IllegalArgumentException(ERROR_MESSAGE.getMessage()+OVER_LOTTO_BOUNDARY.getMessage());
-            }
-        });
+                    throw new IllegalArgumentException(ERROR_MESSAGE.getMessage() + OVER_LOTTO_BOUNDARY.getMessage());
+                }
+            });
+        }
     }
-}

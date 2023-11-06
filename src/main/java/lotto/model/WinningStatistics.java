@@ -1,7 +1,7 @@
 package lotto.model;
 
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,13 +16,13 @@ public class WinningStatistics {
 	private double totalProfitRate;
 
 	public WinningStatistics() {
-		winnings = new HashMap<>();
+		winnings = new LinkedHashMap<>();
 
-		winnings.put(Rank.FIRST, 0);
-		winnings.put(Rank.SECOND, 0);
-		winnings.put(Rank.THIRD, 0);
-		winnings.put(Rank.FOURTH, 0);
 		winnings.put(Rank.FIFTH, 0);
+		winnings.put(Rank.FOURTH, 0);
+		winnings.put(Rank.THIRD, 0);
+		winnings.put(Rank.SECOND, 0);
+		winnings.put(Rank.FIRST, 0);
 
 		totalWinningAmount = 0;
 		totalProfitRate = 0.0;

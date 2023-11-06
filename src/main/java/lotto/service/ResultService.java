@@ -26,4 +26,7 @@ public class ResultService {
         }
         return check;
     }
+    public boolean compareBonus(Lotto lotto, int bonus) {
+        return lotto.getNumbers().contains(bonus);
+    }
 }

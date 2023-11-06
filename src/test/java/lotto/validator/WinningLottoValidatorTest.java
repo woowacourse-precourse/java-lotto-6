@@ -48,7 +48,7 @@ class WinningLottoValidatorTest {
             // then
             assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input)).isInstanceOf(
                             IllegalArgumentException.class)
-                    .hasMessage(WinningLottoValidator.WRONG_INPUT_WINNING_NUMBERS_MESSAGE);
+                    .hasMessage(WinningLottoValidator.ENTER_NUMBERS_AND_DELIMITERS_ONLY_MESSAGE);
         }
 
         @DisplayName("당첨 번호가 구분자가 '" + WinningLottoValidator.DELIMITER + "' 가 아닐 때 예외 발생")
@@ -61,7 +61,7 @@ class WinningLottoValidatorTest {
             // then
             assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input)).isInstanceOf(
                             IllegalArgumentException.class)
-                    .hasMessage(WinningLottoValidator.WRONG_INPUT_WINNING_NUMBERS_MESSAGE);
+                    .hasMessage(WinningLottoValidator.ENTER_NUMBERS_AND_DELIMITERS_ONLY_MESSAGE);
         }
     }
 

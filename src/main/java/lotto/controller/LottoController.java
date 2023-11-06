@@ -26,6 +26,9 @@ public class LottoController {
         OutputView.printUserLottos(userLottos);
         WinningNumbers winningNumbers = getValidWinningNumbersInput();
         BonusNumber bonusNumber = getValidBonusNumberInput();
+        calculateRankCount(userLottos, winningNumbers, bonusNumber);
+        OutputView.printRankCount(rankCount);
+        long totalPrize = Calculator.calculateTotalPrize(); // 당첨금액 총합
     }
 
     private Money getValidMoneyInput() {

@@ -3,7 +3,6 @@ package lotto;
 import lotto.domain.*;
 import lotto.utility.GameUtility;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -27,9 +26,9 @@ public class WinningCheckTest {
         Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 39, 40)); //4등
         Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 38, 39, 40)); //5등
         List<Lotto> lottoList = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5);
-        User user = new User(payment, lottoList);
+        Customer user = new Customer(payment, lottoList);
         // when
-        GameUtility.checkLottoWinning(user);
+        GameUtility.getUserLottoResult(user);
 //            // then
         assertEquals(user.getLottoResult().getFirst_place(), 1);
         assertEquals(user.getLottoResult().getSecond_place(), 1);

@@ -3,11 +3,10 @@ package lotto.utility;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constants.GameNumberConstants;
 import lotto.constants.Rank;
-import lotto.constants.WinningPrize;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.ResultNumber;
-import lotto.domain.User;
+import lotto.domain.Customer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,59 +39,48 @@ public class GameUtility {
         return lottoNumbers;
     }
 
-    public static void checkLottoWinning(User user) {
+    public static LottoResult getUserLottoResult(Customer user) {
         LottoResult lottoResult = new LottoResult();
         for (Lotto lotto : user.getLottoTickets()) {
             int numberOfMatchingNumbers = findNumberOfCommonElements(lotto.getNumbers(), ResultNumber.getWinningNumber());
-            boolean hasBonusNumber = hasBonusNumberInLotto(ResultNumber.getBonusNumber(), lotto.getNumbers());
-            checkRank(numberOfMatchingNumbers, hasBonusNumber, lottoResult);
+            int hasBonusNumber = 0; //기본으로 dont care이다.
+            if (numberOfMatchingNumbers == Rank.getNumberOfMatchesRequiredFromIndex(2)) {
+                hasBonusNumber = hasBonusNumberInLotto(ResultNumber.getBonusNumber(), lotto.getNumbers());
+            }
+            lottoResult.addNumberOfPrizeFromIndex(getIndexFromConditions(numberOfMatchingNumbers, hasBonusNumber));
         }
-        user.setLottoResult(lottoResult);
+        return lottoResult;
     }
 
+    //로또 숫자 범위만큼의 배열을 만들어서 배열에 로또 번호랑, 당첨번호에 해당하는 숫자 각각 +1하여 결론적으로 +2된 인덱스 개수를 리턴한다.
     private static int findNumberOfCommonElements(List<Integer> firstList, List<Integer> secondList) {
-        int[] array = new int[GameNumberConstants.MAX_LOTTO_NUMBER.getValue() + 1]; //List에 존재하면 값에 해당하는 인덱스 +1된다.
+        int[] array = new int[GameNumberConstants.MAX_LOTTO_NUMBER.getValue() + 1]; //0번 인덱스는 제외
         firstList.stream().forEach(number -> array[number]++);
         secondList.stream().forEach(number -> array[number]++);
         return (int) Arrays.stream(array).filter(number -> number == 2).count();
     }
 
-    private static boolean hasBonusNumberInLotto(int bonusNumber, List<Integer> lottoNumbers) {
-        return lottoNumbers.stream().anyMatch(number -> number == bonusNumber);
+    private static int hasBonusNumberInLotto(int bonusNumber, List<Integer> lottoNumbers) {
+        if (lottoNumbers.stream().anyMatch(number -> number == bonusNumber)) {
+            return 1;
+        }
+        return -1;
     }
 
-    private static void checkRank(int numberOfMatchingNumbers, boolean hasBonusNumber, LottoResult lottoResult) {
-        if (numberOfMatchingNumbers == Rank.FIRST_PLACE_CONTDITION.getNumberOfMatchesRequired()) {
-            lottoResult.addFirst_place();
-        }
-        if (numberOfMatchingNumbers == Rank.SECOND_PLACE_CONTDITION.getNumberOfMatchesRequired()
-                && hasBonusNumber == Rank.SECOND_PLACE_CONTDITION.isHasBonusNumber()) {
-            lottoResult.addSecond_place();
-        }
-        if (numberOfMatchingNumbers == Rank.THIRD_PLACE_CONTDITION.getNumberOfMatchesRequired()
-                && hasBonusNumber == Rank.THIRD_PLACE_CONTDITION.isHasBonusNumber()) {
-            lottoResult.addThird_place();
-        }
-        if (numberOfMatchingNumbers == Rank.FORTH_PLACE_CONTDITION.getNumberOfMatchesRequired()) {
-            lottoResult.addForth_place();
-        }
-        if (numberOfMatchingNumbers == Rank.FIFTH_PLACE_CONTDITION.getNumberOfMatchesRequired()) {
-            lottoResult.addFifth_place();
-        }
+    private static int getIndexFromConditions(int numberOfMatchingNumbers, int hasBonusNumber) {
+        return Rank.getIndexFromConditions(numberOfMatchingNumbers, hasBonusNumber);
     }
 
     public static double calculateRateOfReturn(int winningPrize, int payment) {
         return 100 * (double) winningPrize / (double) payment;
     }
 
-    public static int calculateWinningPrize(User user) {
+    public static int calculateWinningPrize(Customer user) {
         int winningPrize = 0;
         LottoResult lottoResult = user.getLottoResult();
-        winningPrize += lottoResult.getFirst_place() * WinningPrize.FIRST_PLACE_RETURN.getValue();
-        winningPrize += lottoResult.getSecond_place() *WinningPrize.SECOND_PLACE_RETURN.getValue();
-        winningPrize += lottoResult.getThird_place() * WinningPrize.THIRD_PLACE_RETURN.getValue();
-        winningPrize += lottoResult.getForth_place() * WinningPrize.FORTH_PLACE_RETURN.getValue();
-        winningPrize += lottoResult.getFifth_place() * WinningPrize.FIFTH_PLACE_RETURN.getValue();
+        for (int index = 1; index <= GameNumberConstants.NUMBER_OF_WINNING_PRIZE.getValue(); index++) {
+            winningPrize += lottoResult.getNumberOfPrizeFromIndex(index) * Rank.getPrizeFromIndex(index);
+        }
         return winningPrize;
     }
 

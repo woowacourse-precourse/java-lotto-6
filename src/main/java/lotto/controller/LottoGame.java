@@ -20,18 +20,16 @@ public class LottoGame {
 
     public static void run() {
         Payment payment = getPaymentAndValidate();
-        User user = new User(payment, GameUtility.buyTickets(payment.getPayment()));
-        OutputView.printLottoTickets(new LottoTicketsDTO(
-                user.getLottoTickets().size(),
-                user.getLottoTickets())
-        );
+        List<Lotto> tickets = GameUtility.buyTickets(payment.getPayment());
+        Customer customer = new Customer(payment, tickets);
+        printCustomerTickets(customer);
         WinningNumber winningNumber = getWinningNumberAndValidate();
         BonusNumber bonusNumber = getBonusNumberAndValidate();
         ResultNumber.create(winningNumber, bonusNumber);
-        GameUtility.checkLottoWinning(user);
-        user.setWinningPrize(GameUtility.calculateWinningPrize(user));
-        double rateOfReturn = GameUtility.calculateRateOfReturn(user.getWinningPrize(), user.getPayment());
-        OutputView.printWinningStatistics(new WinningStatisticsDTO(user.getLottoResult(), rateOfReturn));
+        customer.setLottoResult(GameUtility.getUserLottoResult(customer));
+        customer.setWinningPrize(GameUtility.calculateWinningPrize(customer));
+        double rateOfReturn = GameUtility.calculateRateOfReturn(customer.getWinningPrize(), customer.getPayment());
+        OutputView.printWinningStatistics(new WinningStatisticsDTO(customer.getLottoResult(), rateOfReturn));
         endGame();
     }
 
@@ -48,6 +46,13 @@ public class LottoGame {
             payment = getPaymentAndValidate();
         }
         return payment;
+    }
+
+    private static void printCustomerTickets(Customer customer) {
+        OutputView.printLottoTickets(new LottoTicketsDTO(
+                customer.getLottoTickets().size(),
+                customer.getLottoTickets())
+        );
     }
 
     private static WinningNumber getWinningNumberAndValidate() {

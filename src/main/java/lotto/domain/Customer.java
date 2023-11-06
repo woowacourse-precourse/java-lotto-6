@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-public class User {
+public class Customer {
 
     private List<Lotto> lottoTickets;
     private Payment payment;
@@ -10,7 +10,7 @@ public class User {
 
     private LottoResult lottoResult = null;
 
-    public User(Payment payment, List<Lotto> lottoTickets) {
+    public Customer(Payment payment, List<Lotto> lottoTickets) {
         this.payment = payment;
         this.lottoTickets = lottoTickets;
     }

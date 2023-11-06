@@ -2,10 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.domain.Lotto;
-import lotto.domain.User;
+import lotto.domain.Customer;
 import lotto.utility.GameUtility;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -25,7 +24,7 @@ public class LottoReleaseTest extends NsTest{
     @CsvSource(value = "10000, 10")
     void 로또_발행테스트(int payment, int lottoAmount) {
         // given
-        User user;
+        Customer user;
         // when
         List<Lotto> tickets = GameUtility.buyTickets(payment);
         // then
@@ -40,7 +39,7 @@ public class LottoReleaseTest extends NsTest{
         // when, then
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    User user;
+                    Customer user;
                     assertEquals(GameUtility.buyTickets(1000).get(0).getNumbers(), LottoNumbers);
                 },
                 Arrays.asList(43, 41, 42, 23, 21, 8)

@@ -27,6 +27,10 @@ public class LottoController {
         OutputView.printWinNumberMessage();
         getWinLottoNumber();
 
+        OutputView.printBonusNumberMessage();
+        getBonusNumber();
+
+
     }
 
     public int getLottoNum(int purchasePrice) {
@@ -43,6 +47,31 @@ public class LottoController {
     public List<Integer> getWinLottoNumber() {
         List<Integer> winNumber = InputView.inputWinNumber();
 
+        try {
+            Validator.winNumberNum(winNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("당첨 번호를 6개 입력해주세요.");
+            getWinLottoNumber();
+        }
+
+        try {
+            Validator.winNumberDuplication(winNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("당첨 번호를 중복 없이 입력해주세요.");
+            getWinLottoNumber();
+        }
+
         return winNumber;
+    }
+
+    public void getBonusNumber() {
+        int bonusNumber = InputView.inputBonusNumber();
+
+        try {
+            Validator.bonusNumberNum(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("1개만 입력하세요.");
+            getLottoNumber();
+        }
     }
 }

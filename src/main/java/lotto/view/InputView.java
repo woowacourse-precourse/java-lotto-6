@@ -28,4 +28,10 @@ public class InputView {
 
         return winNumber;
     }
+
+    public static int inputBonusNumber() {
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        return bonusNumber;
+    }
 }

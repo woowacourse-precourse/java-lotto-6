@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.constant.Rank;
 import lotto.domain.model.Bonus;
 import lotto.domain.model.Lotto;
 import lotto.domain.service.LottoService;
@@ -8,11 +9,13 @@ import lotto.ui.output.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static lotto.controller.constant.ErrorConst.INPUT_NOT_INT;
 import static lotto.controller.constant.ErrorConst.INPUT_NOT_LONG;
 import static lotto.ui.constant.MessageConst.PURCHASE_REQUEST;
+import static lotto.ui.constant.MessageConst.WINNING_DETAILS_NOTICE;
 
 public class LottoController {
 
@@ -40,6 +43,20 @@ public class LottoController {
         Bonus bonus = setUPWinningBonus();
 
         service.generateWinning(main, bonus);
+    }
+
+    public void provideWinningDetails() {
+        OutputView.printMessage(WINNING_DETAILS_NOTICE);
+
+        service.rank();
+
+        Map<Rank, Integer> winningDetails = service.getWinningDetails();
+        for (Map.Entry<Rank, Integer> entry : winningDetails.entrySet()) {
+            String description = entry.getKey().getDescription();
+            Integer count = entry.getValue();
+
+            OutputView.printWinningDetail(description, count);
+        }
     }
 
     private Lotto setUPWinningMain() {

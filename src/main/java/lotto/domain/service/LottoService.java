@@ -68,6 +68,10 @@ public class LottoService {
         return lottoStorage;
     }
 
+    public Map<Rank, Integer> getWinningDetails() {
+        return winningDetails;
+    }
+
     private void buyOneLotto() {
         Lotto lotto = new Lotto(NumberGenerator.generateLottoNumber());
         lottoStorage.add(lotto);

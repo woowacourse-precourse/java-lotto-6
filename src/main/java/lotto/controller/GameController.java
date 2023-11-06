@@ -20,6 +20,6 @@ public class GameController {
     }
 
     public void startGame() {
-
+        int amount = inputView.readAmount();
     }
 }

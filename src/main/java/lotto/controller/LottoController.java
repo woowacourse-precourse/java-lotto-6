@@ -2,8 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Result;
 import lotto.domain.User;
+import lotto.domain.WinLotto;
 import lotto.service.LottoService;
 import lotto.util.Message;
 import lotto.view.InputView;
@@ -14,7 +14,7 @@ public class LottoController {
     private final InputView inputView = InputView.getInstance();
     private final LottoService lottoService = LottoService.getInstance();
     private User user;
-    private Result result;
+    private WinLotto result;
 
     public static LottoController getInstance() {
         return LottoController.LazyHolder.INSTANCE;
@@ -55,6 +55,6 @@ public class LottoController {
 
         outputView.printMessage(Message.GET_LOTTO_BONUS_NUMBER);
         int bonusNumber = inputView.getBonusNumber();
-        result = new Result(resultLotto, bonusNumber);
+        result = new WinLotto(resultLotto, bonusNumber);
     }
 }

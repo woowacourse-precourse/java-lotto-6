@@ -1,8 +1,14 @@
-package lotto;
+package lotto.domain.service;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.Rank;
+import lotto.domain.WinningNumber;
+import lotto.domain.dto.Result;
+import lotto.utils.RandomNumberGenerator;
 
 public class LottoService {
 

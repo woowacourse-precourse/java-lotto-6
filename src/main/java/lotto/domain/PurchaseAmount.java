@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class PurchaseAmount {
     public static final int unit = 1000;

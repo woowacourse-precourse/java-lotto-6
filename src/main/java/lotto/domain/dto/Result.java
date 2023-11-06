@@ -1,6 +1,7 @@
-package lotto;
+package lotto.domain.dto;
 
 import java.util.EnumMap;
+import lotto.domain.Rank;
 
 public class Result {
     private final EnumMap<Rank, Integer> rankToCount;

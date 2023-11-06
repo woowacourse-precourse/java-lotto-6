@@ -33,20 +33,52 @@ import lotto.model.Rank;
 import lotto.model.Register;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.SystemMessage;
 
 
 public class UnifiedController {
-    public void inputAndStoreMoney() {
-        OutputView.printSystemMessage(ASK_MONEY);
+
+    public void promptData(SystemMessage systemMessage) {
+        OutputView.printSystemMessage(systemMessage);
+        waitForValidInput(systemMessage);
+    }
+
+    public void waitForValidInput(SystemMessage systemMessage) {
         boolean valid = false;
         while (!valid) {
-            try {
-                Register.money = new Money(Long.parseLong(InputView.inputData(LONG)));
-                valid = true;
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e);
-            }
+            valid = checkNoException(systemMessage);
         }
+    }
+
+    public boolean checkNoException(SystemMessage systemMessage) {
+        try {
+            storeDataInRegister(systemMessage);
+            return true;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return false;
+        }
+    }
+
+    public void storeDataInRegister(SystemMessage systemMessage) {
+        if (systemMessage == ASK_MONEY) {
+            Register.money = new Money(Long.parseLong(InputView.inputData(LONG)));
+        }
+        if (systemMessage == ASK_WINNING_NUMBERS) {
+            Register.firstPrizeLotto = new Lotto(covertElementStringToInteger(InputView.inputData(INTEGER_LIST)));
+        }
+        if (systemMessage == ASK_BONUS) {
+            Set<Integer> firstPrizeNumbers = new HashSet<>(Register.firstPrizeLotto.getNumbers());
+            Register.bonus = new Bonus(Integer.parseInt(InputView.inputData(INTEGER)), firstPrizeNumbers);
+        }
+    }
+
+    public List<Integer> covertElementStringToInteger(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String element : input.split(",")) {
+            numbers.add(Integer.parseInt(element));
+        }
+        return numbers;
     }
 
     public void printLottoTicketsInfo() {
@@ -60,41 +92,6 @@ public class UnifiedController {
             List<Integer> lottoNumbers = lotto.getNumbers();
             lottoNumbers.sort(Comparator.naturalOrder());
             printLottoNumbers(lottoNumbers);
-        }
-    }
-
-    public void inputAndStoreWinningNumbers() {
-        OutputView.printSystemMessage(ASK_WINNING_NUMBERS);
-        boolean valid = false;
-        while (!valid) {
-            try {
-                Register.firstPrizeLotto = new Lotto(covertElementStringToInteger(InputView.inputData(INTEGER_LIST)));
-                valid = true;
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e);
-            }
-        }
-    }
-
-    public List<Integer> covertElementStringToInteger(String input) {
-        List<Integer> numbers = new ArrayList<>();
-        for (String element : input.split(",")) {
-            numbers.add(Integer.parseInt(element));
-        }
-        return numbers;
-    }
-
-    public void inputAndStoreBonus() {
-        OutputView.printSystemMessage(ASK_BONUS);
-        boolean valid = false;
-        while (!valid) {
-            try {
-                Set<Integer> firstPrizeNumbers = new HashSet<>(Register.firstPrizeLotto.getNumbers());
-                Register.bonus = new Bonus(Integer.parseInt(InputView.inputData(INTEGER)), firstPrizeNumbers);
-                valid = true;
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e);
-            }
         }
     }
 

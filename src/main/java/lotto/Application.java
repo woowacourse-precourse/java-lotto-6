@@ -1,9 +1,10 @@
 package lotto;
 
 import lotto.LottoGameController.LottoGameController;
+import lotto.service.LottoService;
 import lotto.util.Utils;
-import lotto.util.Input;
-import lotto.util.Output;
+import lotto.service.InputService;
+import lotto.service.OutputService;
 
 public class Application {
 
@@ -12,7 +13,7 @@ public class Application {
 
         // TODO: 프로그램 구현
 
-        LottoGameController lottoGameController = new LottoGameController(new Input(), new Output(), new Utils());
+        LottoGameController lottoGameController = new LottoGameController(new InputService(), new OutputService(), new LottoService());
         lottoGameController.start();
     }
 }

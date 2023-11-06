@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.service;
 
 import lotto.domain.Lotto;
 
@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import static lotto.CommonMessages.*;
-import static lotto.LottoGameController.LottoGameController.*;
 import static lotto.MATCHING.*;
+import static lotto.service.LottoService.*;
 
-public class Output {
+public class OutputService {
 
 
     public void printPurchaseAmount(Integer amount) {
@@ -18,9 +18,9 @@ public class Output {
         System.out.println(amount + "개를 구매했습니다.");
     }
 
-    public void printLottoNumbers(List<Lotto> lottos) {
+    public void printLottoNumbers(List<Lotto> lottoes) {
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoes) {
 
             String numbers = lotto.getNumbers().toString();
             System.out.println(String.join(", ", numbers));
@@ -37,5 +37,10 @@ public class Output {
         System.out.println(MATCH_FIVE_BONUS.getMessage(result.get(ANSWER_COUNT_FIVE_BONUS)));
         System.out.println(MATCH_SIX.getMessage(result.get(ANSWER_COUNT_SIX)));
         System.out.println(PROFIT_RATE.getMessage(profit));
+    }
+
+    public void printError(IllegalArgumentException e) {
+
+        System.out.println(e.getMessage());
     }
 }

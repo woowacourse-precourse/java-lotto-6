@@ -1,7 +1,6 @@
-package lotto.util;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validator.InputValidator;
 
 import java.util.HashSet;
 import static lotto.CommonMessages.*;
@@ -10,7 +9,9 @@ import static lotto.validator.InputValidator.validateBonusNumberRange;
 import static lotto.validator.InputValidator.validateToInteger;
 
 
-public class Input {
+public class InputService {
+
+    private final OutputService outputService = new OutputService();
 
     public Integer getPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT.getMessage());
@@ -22,7 +23,7 @@ public class Input {
             return validateCorrectMoney(money);
         } catch (IllegalArgumentException e) {
 
-            System.out.println(e.getMessage());
+            outputService.printError(e);
             getPurchaseAmount();
         }
         return null;
@@ -44,7 +45,7 @@ public class Input {
             return winningNumbers;
         } catch (IllegalArgumentException e) {
 
-            System.out.println(e.getMessage());
+            outputService.printError(e);
             getWinningNumbers();
         }
         return null;
@@ -69,7 +70,7 @@ public class Input {
             return bonusNumber;
         } catch (IllegalArgumentException e) {
 
-            System.out.println(e.getMessage());
+            outputService.printError(e);
             getBonusNumber();
         }
 

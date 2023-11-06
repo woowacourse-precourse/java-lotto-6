@@ -18,7 +18,7 @@ public class LottoIoManager implements IoManager {
     }
 
     public void displayLottosCnt(int cnt) {
-        System.out.println();
+        printEmptyLine();
         System.out.println(cnt + "개를 구매했습니다.");
     }
 
@@ -29,7 +29,7 @@ public class LottoIoManager implements IoManager {
     }
 
     public List<Integer> inputLotto() {
-        System.out.println();
+        printEmptyLine();
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] input = read().split(",");
         List<Integer> lottoNumbers = new ArrayList<>();
@@ -40,13 +40,13 @@ public class LottoIoManager implements IoManager {
     }
 
     public int inputBonus() {
-        System.out.println();
+        printEmptyLine();
         System.out.println("보너스 번호를 입력해 주세요.");
         return stringToInt(read());
     }
 
     public void displayWinningResult(Map<Rank, Integer> result) {
-        System.out.println();
+        printEmptyLine();
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Entry<Rank, Integer> entry : result.entrySet()) {
@@ -55,6 +55,10 @@ public class LottoIoManager implements IoManager {
             }
             System.out.println(Rank.getMsg(entry.getKey()) + " - " + entry.getValue() + "개");
         }
+    }
+
+    private void printEmptyLine() {
+        System.out.println();
     }
 
     public void displayProfitRate(String profitRate) {

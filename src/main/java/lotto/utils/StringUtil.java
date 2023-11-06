@@ -21,4 +21,8 @@ public class StringUtil {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public static String doubleToString(double rateOfReturn) {
+        return "총 수익률은 " + rateOfReturn + "%입니다.";
+    }
 }

@@ -7,15 +7,16 @@ import java.util.List;
 
 public class BonusNumber {
     private final OutputView outputView = new OutputView();
-    public int add(WinningNumbers winningNumbers){
+
+    public int add(WinningNumbers winningNumbers) {
         outputView.inputBonusNumber();
-        while(true){
-            try{
+        while (true) {
+            try {
                 String bonusBall = Console.readLine();
-                if(checkValid(bonusBall) && checkDuplicate(winningNumbers, bonusBall)){
+                if (checkValid(bonusBall) && checkDuplicate(winningNumbers, bonusBall)) {
                     return stoi(bonusBall);
                 }
-            }   catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 다시 입력하세요");
             }
         }
@@ -24,8 +25,8 @@ public class BonusNumber {
     private boolean checkDuplicate(WinningNumbers winningNumbers, String bonusBall) {
         List<Integer> parts = winningNumbers.getWinningNumbers();
 
-        for(int index = 0; index < parts.size(); index++) {
-            if (parts.get(index) == stoi(bonusBall)) {
+        for (Integer part : parts) {
+            if (part == stoi(bonusBall)) {
                 throw new IllegalArgumentException();
             }
         }
@@ -33,13 +34,13 @@ public class BonusNumber {
     }
 
     private boolean checkValid(String bonusBall) {
-        if(Integer.parseInt(bonusBall) > 0 && Integer.parseInt(bonusBall) < 46){
+        if (Integer.parseInt(bonusBall) > 0 && Integer.parseInt(bonusBall) < 46) {
             return true;
         }
         throw new IllegalArgumentException();
     }
 
-    private int stoi(String input){
+    private int stoi(String input) {
         return Integer.parseInt(input);
     }
 }

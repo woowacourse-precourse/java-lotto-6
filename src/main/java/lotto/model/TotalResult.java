@@ -6,7 +6,6 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class TotalResult {
-    private final int SIX = 6;
     private final double HUNDRED = 100.0;
     private int third = 0;
     private int fourth = 0;
@@ -54,11 +53,8 @@ public class TotalResult {
 
     private void compare(List<Lotto> totalLotto, WinningNumbers winningNumbers, int bonusNumber) {
         for (Lotto lotto : totalLotto) {
-            int correct = 0;
-            int bonus = 0;
-
-            correct = countWinning(lotto, winningNumbers);
-            bonus = countBonus(lotto, bonusNumber);
+            int correct = countWinning(lotto, winningNumbers);
+            int bonus = countBonus(lotto, bonusNumber);
             count(correct, bonus);
         }
     }
@@ -100,7 +96,6 @@ public class TotalResult {
                 }
             }
         }
-
         return result;
     }
 }

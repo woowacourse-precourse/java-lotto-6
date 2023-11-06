@@ -3,12 +3,13 @@ package lotto.model;
 import lotto.view.Input;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningNumbers {
+    private static final int MIN = 1;
+    private static final int MAX = 45;
     private static final int WINNING_NUMBERS_LIMIT = 6;
     private static final Input input = new Input();
     private List<Integer> winningNumbers;
@@ -51,7 +52,7 @@ public class WinningNumbers {
 
     private static boolean checkValid(List<Integer> number) {
         for (Integer integer : number) {
-            if (integer < 1 || integer > 45) {
+            if (integer < MIN || integer > MAX) {
                 return false;
             }
         }

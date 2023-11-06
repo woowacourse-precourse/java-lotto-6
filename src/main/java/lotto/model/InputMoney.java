@@ -7,16 +7,17 @@ public class InputMoney {
     private final String NUMBER_FORMAT_EXCEPTION = "숫자만 입력해주세요.";
     private final String UNIT_NOT_THOUSAND = "1000원 단위로 입력하세요.";
     private final OutputView outputView = new OutputView();
-    public int Number(){
+
+    public int Number() {
         String input = Console.readLine();
 
         try {
             int money = Integer.parseInt(input);
-            if(isUnit(money)){
+            if (isUnit(money)) {
                 return Integer.parseInt(input);
             }
             System.out.println("[ERROR] " + UNIT_NOT_THOUSAND);
-        }   catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("[ERROR] " + NUMBER_FORMAT_EXCEPTION);
         }
         return 0;
@@ -26,16 +27,16 @@ public class InputMoney {
         return money % 1000 == 0;
     }
 
-    public int save(){
+    public int save() {
         outputView.inputMoney();
 
-        while(true){
+        while (true) {
             try {
                 int number = Number();
-                if(number != 0){
+                if (number != 0) {
                     return number;
                 }
-            }   catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 숫자를 입력해주세요.");
             }
         }

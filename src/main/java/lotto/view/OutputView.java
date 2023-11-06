@@ -47,7 +47,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printRate(double rate){
+    public void printRate(double rate) {
         String rateResult = String.format(RATE, rate);
         System.out.println(rateResult);
     }

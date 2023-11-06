@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -35,5 +34,4 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
-
 }

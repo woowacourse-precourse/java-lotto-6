@@ -5,10 +5,12 @@ import lotto.model.*;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class LottoGame {
+    private final int MIN = 1;
+    private final int MAX = 45;
+    private final int LOTTO_SIZE = 6;
     private final int THOUSAND = 1000;
     private final OutputView outputView = new OutputView();
     private final InputMoney inputMoney = new InputMoney();
@@ -18,40 +20,32 @@ public class LottoGame {
 
     public void run() {
         int initMoney = inputMoney.save();
-        int bonusNumber = 0;
         countLotto(initMoney / THOUSAND);
         WinningNumbers winningNumbers = makeWinningNumbers();
-        bonusNumber = addBonusNumber(winningNumbers);
+        int bonusNumber = selectBonusNumber(winningNumbers);
         totalResult.print(initMoney, totalLotto, winningNumbers, bonusNumber);
     }
 
-    private int addBonusNumber(WinningNumbers winningNumbers) {
+    private int selectBonusNumber(WinningNumbers winningNumbers) {
         return bonusNumber.add(winningNumbers);
     }
-
 
     private WinningNumbers makeWinningNumbers() {
         outputView.winningNumbers();
         return WinningNumbers.from();
     }
 
-
     private void countLotto(int lottoPaper) {
         outputView.count(lottoPaper);
 
-        for (int i = 0; i < lottoPaper; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        for (int index = 0; index < lottoPaper; index++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_SIZE);
             List<Integer> sortNumbers = new ArrayList<>(numbers);
             Lotto lotto = new Lotto(sortNumbers);
             totalLotto.add(lotto);
 
         }
         outputView.printTotalLotto(totalLotto);
-    }
-
-    private boolean checkNumbers(List<Integer> numbers) {
-        HashSet<Integer> set = new HashSet<>(numbers);
-        return set.size() == 6;
     }
 }
 

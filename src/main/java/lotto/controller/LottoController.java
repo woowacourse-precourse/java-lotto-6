@@ -39,7 +39,7 @@ public class LottoController {
                 purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.displayExceptionMessage(e.getMessage());
             }
         }
     }
@@ -60,7 +60,7 @@ public class LottoController {
                 winnerLotto = new Lotto(numbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.displayExceptionMessage(e.getMessage());
             }
         }
     }
@@ -72,7 +72,7 @@ public class LottoController {
                 bonusNumber = new BonusNumber(winnerLotto, inputBonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.displayExceptionMessage(e.getMessage());
             }
         }
     }

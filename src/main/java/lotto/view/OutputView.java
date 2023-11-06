@@ -22,4 +22,8 @@ public class OutputView {
         System.out.print(RESULT_HEADER + LottoUtil.convertResultToDisplayFormat(rankResult));
         System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
+
+    public static void displayExceptionMessage(String exceptionMessage) {
+        System.out.println(exceptionMessage);
+    }
 }

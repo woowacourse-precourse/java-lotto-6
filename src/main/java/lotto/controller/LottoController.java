@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.errorMessage.ExceptionErrorMessage.INPUT_ONLY_NUMBER_BONUS;
 import static lotto.view.Input.inputAmount;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ import lotto.view.Output;
 
 public class LottoController {
 
-    private final int lotto_One_Price = 1000;
-    private final int percentage = 100;
+    private static final int lotto_One_Price = 1000;
+    private static final int percentage = 100;
 
     private static List<Lotto> lottoAllNumbers;
     private static List<Integer> lottoList;
@@ -62,7 +63,7 @@ public class LottoController {
         Output.input_Winning_Number(); // 당첨 번호 입력하세요.
         List<Integer> numbers = new ArrayList<>(Input.input_Winning_Number());
         Output.input_Bonus_Number(); // 보너스 번호 입력
-        int bonus = Input.input_BonusNumber();
+        int bonus = validateOnlyNumber(Input.input_BonusNumber());
 
         return new Winner(new Lotto(numbers), bonus);
     }
@@ -99,10 +100,18 @@ public class LottoController {
     private void earningRate(Map<Ranking, Integer> statistics, int lottoCount) {
         double earningRate = 0;
         for (Ranking ranking : statistics.keySet()) {
-            earningRate += (double) statistics.get(ranking) * ranking.getWinningPrize() / (lottoCount * lotto_One_Price)
-                    * percentage;
+            earningRate += (double) statistics.get(ranking) * ranking.getWinningPrize() /
+                    (lottoCount * lotto_One_Price) * percentage;
         }
 
         Output.total_EarningRate(earningRate);
+    }
+
+    private int validateOnlyNumber(String bonus) {
+        try {
+            return Integer.parseInt(bonus);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INPUT_ONLY_NUMBER_BONUS);
+        }
     }
 }

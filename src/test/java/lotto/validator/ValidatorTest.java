@@ -68,4 +68,35 @@ class ValidatorTest {
                     .hasMessage(expectedErrorMessage);
         }
     }
+
+    @Nested
+    @DisplayName("Validator.bonusNumber 테스트")
+    class bonusNumberTests {
+        @DisplayName("보너스 번호가 유효한 경우 예외가 발생하지 않는다.")
+        @ParameterizedTest
+        @ValueSource(strings = {"1","6","11","13","25","45",})
+        void 유효한_보너스번호_입력값_테스트(String inputBonusNumber) {
+            String[] winningNumbers = {"7","8","9","10","22","44"};
+            assertThatCode(() -> Validator.bonusNumber(inputBonusNumber,winningNumbers))
+                    .doesNotThrowAnyException();
+        }
+
+        @DisplayName("입력값에 따라 설정한 예외 메시지와 예외를 발생시킨다.")
+        @ParameterizedTest
+        @CsvSource(value = {
+                " : 정수만 입력이 가능합니다.",
+                "a : 정수만 입력이 가능합니다.",
+                "46 : 1~45 범위의 정수만 입력 가능합니다.",
+                "0 : 1~45 범위의 정수만 입력 가능합니다.",
+                "-5 : 1~45 범위의 정수만 입력 가능합니다.",
+                "7 : 보너스 번호가 당첨 번호에 포함되어 있습니다.",
+                "10 : 보너스 번호가 당첨 번호에 포함되어 있습니다.",
+        },delimiter = ':')
+        void 유효하지_않은_보너스번호_입력값_테스트(String inputBonusNumber,String expectedErrorMessage) {
+            String[] winningNumbers = {"7","8","9","10","22","44"};
+            assertThatThrownBy(() -> Validator.bonusNumber(inputBonusNumber,winningNumbers))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(expectedErrorMessage);
+        }
+    }
 }

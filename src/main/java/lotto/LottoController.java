@@ -2,6 +2,8 @@ package lotto;
 
 import lotto.InputView;
 
+import java.util.List;
+
 import static lotto.OutputView.printTicketCount;
 import static lotto.OutputView.printLottoList;
 import static lotto.OutputView.printBlankLine;
@@ -32,8 +34,10 @@ public class LottoController {
     }
 
     private LottoWin getWinningLotto() {
-        InputView.getWinningNumber();
-        
+        List<Integer> winningNumbers = InputView.getWinningNumber();
+        Integer bonusNumber = InputView.getBonusNumber();
+
+        return new LottoWin(winningNumbers, bonusNumber);
     }
 }
 

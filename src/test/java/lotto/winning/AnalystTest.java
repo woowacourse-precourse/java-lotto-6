@@ -17,10 +17,15 @@ import org.junit.jupiter.api.Test;
 class AnalystTest {
     Analyst analyst = new Analyst();
 
+    /**
+     * Mock data for prize calculation tests.
+     * The first list represents the number of matched main lotto numbers for each ticket.
+     * The second list represents the number of matched bonus numbers for each ticket.
+     */
     HashMap<Prize, HashMap<Tally, Integer>> mockUpdatedPrizes =
             analyst.updatePrizes(
-                    List.of(2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6),
-                    List.of(4, 3, 3, 2, 1, 1, 0, 1, 2, 0, 0, 1));
+                    List.of(2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6), // Main number matches per ticket
+                    List.of(4, 3, 3, 2, 1, 1, 0, 1, 2, 0, 0, 1)); // Bonus number matches per ticket
 
     @Test
     public void countPrizeTest() {

@@ -41,7 +41,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [ ] 수익률 출력
 
 ### 비즈니스 로직
-- [ ] 로또 번호의 중복성 검사
+- [X] 로또 번호의 중복성 검사
 - [X] 당첨 번호의 길이 / 중복성 / 범위 검사
 - [X] 보너스 번호의 길이 / 중복성 / 범위 검사
 - [ ] 몇등인지 판단

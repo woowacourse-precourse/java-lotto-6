@@ -7,5 +7,5 @@ import lotto.dto.input.GetWinningNumberDto;
 public interface Input {
     GetLottoCountDto getLottoBuyMoney();
     GetWinningNumberDto getWinningNumber();
-    GetBonusNumberDto getBonusNumber();
+    GetBonusNumberDto getBonusNumber(GetWinningNumberDto getWinningNumberDto);
 }

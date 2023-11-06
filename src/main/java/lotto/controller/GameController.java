@@ -12,6 +12,7 @@ import static lotto.utility.RetryLogic.*;
 
 public class GameController {
 
+    private static final int LOTTO_PRICE = 1000;
     int amount; //로또 구입 총액
     int count; //로또 발행 개수
 
@@ -49,11 +50,10 @@ public class GameController {
         outputView.printLottoHistory(lottoHistory.getLottoHistory());
     }
 
-
     private void init() {
         LottoStore.getInstance().getLotto().clear();
         retryCount(() -> amount = validator.validNumber(inputView.printPurchaseAmount()));
-        count = amount / 1000;
+        count = amount / LOTTO_PRICE;
         outputView.printPurchase(count);
     }
 }

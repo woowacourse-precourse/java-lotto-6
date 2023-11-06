@@ -63,7 +63,7 @@ public class OutputView {
     }
 
     public static void printTotalYield(final double yield) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.0");
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
         String format = decimalFormat.format(yield);
         System.out.printf(TOTAL_YIELD_GUIDE, format);
     }

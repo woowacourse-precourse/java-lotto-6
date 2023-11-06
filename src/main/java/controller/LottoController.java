@@ -39,8 +39,8 @@ public class LottoController {
 
     private void getPriceByUserInput() {
         try {
-            int input = InputView.enterPrice();
-            price = new Price(input);
+            String input = InputView.enterPrice();
+            price = new Price(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {
             getPriceByUserInput();
         }

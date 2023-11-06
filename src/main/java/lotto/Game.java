@@ -12,6 +12,7 @@ public class Game {
     private int AMOUNT;
     private int COUNT_LOTTO;
     private String PRIZE;
+    private String PAST_BONUS_NUMBER;
     private int BONUS_NUMBER;
     private InputView inputView;
     private OutputView outputView;
@@ -38,7 +39,8 @@ public class Game {
         changePrizeNumber(PRIZE);   //당첨 번호 변환
 
         inputView.bonusNumberView();
-        
+        PAST_BONUS_NUMBER = bonusNumberInput(); //보너스 번호 입력
+        BONUS_NUMBER = changeBonusNumber(PAST_BONUS_NUMBER);    //보너스 번호 변환
 
     }
 
@@ -72,5 +74,17 @@ public class Game {
         for (String prizeNumber : prizeNumbers) {
             prizes.add(Integer.parseInt(prizeNumber));
         }
+    }
+
+    public String bonusNumberInput(){
+        //예외 처리 추가해야 함
+
+        return Console.readLine();
+    }
+
+    public int changeBonusNumber(String PAST_BONUS_NUMBER){
+        //예외 처리 추가해야 함
+
+        return Integer.parseInt(PAST_BONUS_NUMBER);
     }
 }

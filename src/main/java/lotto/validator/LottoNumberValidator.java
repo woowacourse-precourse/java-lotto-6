@@ -7,7 +7,7 @@ import java.util.Set;
 public class LottoNumberValidator {
     private static final int MIN_SIZE = 6;
     private static final int MAX_SIZE = 7;
-    private static final String ERROR = "[ERROR] 로또 당첨 번호는 ";
+    private static final String ERROR = "[ERROR] 로또 번호는 ";
     private static final String ERROR_BLANK = ERROR + "공백을 허용하지 않습니다.";
     private static final String ERROR_MIN_SIZE = ERROR + "6개 입니다.";
     private static final String ERROR_MAX_SIZE = ERROR + "6개, 보너스 번호는 1개 입니다.";

@@ -1,2 +1,5 @@
-package lotto.view;public interface OutputView {
+package lotto.view;
+
+public interface OutputView {
+  void printIntroduction(String introduction);
 }

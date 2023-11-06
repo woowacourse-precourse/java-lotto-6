@@ -74,4 +74,14 @@ public class validationTest {
                         IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_NUMBER_OVER_RANGE_ERROR.getMessage());
     }
+
+    @Test
+    @DisplayName("보너스번호 입력시 당첨번호와 중복되는 번호일 경우 예외를 발생시킨다.")
+    void 보너스번호_당첨번호_중복_테스트() {
+        int bonusNumber = 6;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 6, 4, 5, 8);
+        assertThatThrownBy(() -> validateService.validateBonusNumber(bonusNumber,winningNumbers)).isInstanceOf(
+                        IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INPUT_DUPLICATE_BONUS_NUMBER_ERROR.getMessage());
+    }
 }

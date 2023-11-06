@@ -1,4 +1,4 @@
-package io;
+package lotto.io;
 
 import java.io.PrintStream;
 public class Output {

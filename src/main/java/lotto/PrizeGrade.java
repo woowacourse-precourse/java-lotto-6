@@ -18,6 +18,27 @@ public enum PrizeGrade {
         this.additionalMessage = additionalMessage;
     }
 
+
+    public static PrizeGrade of(int matchCount, boolean matchWithBonus) {
+        if (isSecond(matchCount, matchWithBonus)) {
+            return SECOND;
+        }
+        return ofWithoutSecond(matchCount);
+    }
+
+    private static boolean isSecond(int matchCount, boolean matchWithBonus) {
+        return (matchCount == SECOND.matchCount && matchWithBonus);
+    }
+
+    private static PrizeGrade ofWithoutSecond(int matchCount) {
+        for (PrizeGrade prizeGrade : PrizeGrade.values()) {
+            if (prizeGrade != PrizeGrade.SECOND && prizeGrade.getMatchCount() == matchCount) {
+                return prizeGrade;
+            }
+        }
+        return PrizeGrade.NO_PRIZE;
+    }
+
     public int getMatchCount() {
         return this.matchCount;
     }

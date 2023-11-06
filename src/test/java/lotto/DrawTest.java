@@ -82,4 +82,26 @@ public class DrawTest extends Draw{
         assertThatThrownBy(() -> isWithinRange(46))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스번호가_로또번호와_중복되면_예외_발생() {
+
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        //when, then
+        assertThatThrownBy(() -> isDuplicate(lotto, 6))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스번호가_로또번호와_중복되지_않으면_예외_발생_X() {
+
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        //then, when
+        assertThatNoException()
+                .isThrownBy(() -> isDuplicate(lotto, 7));
+    }
 }

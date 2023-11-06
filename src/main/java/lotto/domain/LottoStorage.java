@@ -20,7 +20,17 @@ public class LottoStorage {
     }
 
     public LottoNumberCompareResult compareToWinningLottoNumber(List<Integer> automaticLottoNumber) {
+        int matchingCount = 0;
+        boolean bonusIncluded = false;
 
+        matchingCount = (int) automaticLottoNumber.stream().filter(winningLotto::isWinningNumber).count();
+
+        if(automaticLottoNumber.stream().anyMatch(number -> number.equals(winningLotto.getBonusNumber()))) {
+            matchingCount++;
+            bonusIncluded = true;
+        }
+
+        return LottoNumberCompareResult.of(matchingCount, bonusIncluded);
     }
 
     public Integer getTicketCount() {

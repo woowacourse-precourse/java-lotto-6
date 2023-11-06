@@ -1,2 +1,5 @@
-package lotto.Model;public class LottoProfit {
+package lotto.Model;
+
+public class LottoProfit {
+
 }

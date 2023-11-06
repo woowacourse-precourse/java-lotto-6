@@ -1,8 +1,8 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import lotto.Model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

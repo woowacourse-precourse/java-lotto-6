@@ -1,2 +1,4 @@
-package lotto.Enums;public enum ErrorMessage {
+package lotto.Enums;
+
+public enum ErrorMessage {
 }

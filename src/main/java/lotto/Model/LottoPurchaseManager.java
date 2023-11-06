@@ -1,2 +1,5 @@
-package lotto.Model;public class LottoPurchaseManager {
+package lotto.Model;
+
+public class LottoPurchaseManager {
+
 }

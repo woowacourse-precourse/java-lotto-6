@@ -1,2 +1,5 @@
-package lotto.Util;public interface NumberGenerator {
+package lotto.Util;
+
+public interface NumberGenerator {
+
 }

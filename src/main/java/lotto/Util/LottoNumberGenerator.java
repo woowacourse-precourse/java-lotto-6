@@ -1,2 +1,5 @@
-package lotto.Util;public class LottoNumberGenerator {
+package lotto.Util;
+
+public class LottoNumberGenerator implements NumberGenerator{
+
 }

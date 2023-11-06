@@ -1,2 +1,5 @@
-package lotto.Model;public class LottoValidatorPolicy {
+package lotto.Model;
+
+public class LottoValidatorPolicy implements ValidatorPolicy{
+
 }

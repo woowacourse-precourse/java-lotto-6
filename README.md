@@ -268,7 +268,6 @@ public class Lotto {
 - 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
 - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
 - 단위 테스트 작성이 익숙하지 않다면 test/java/lotto/LottoTest를 참고하여 학습한 후 테스트를 구현한
-- 
 
 
 

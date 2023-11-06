@@ -19,6 +19,7 @@ public class LottoController {
         RankResult rankResult = new RankResult();
         calcLottoResult(rankResult, winningNumber, lottos);
 
+        Rate rate = getRate(money, rankResult);
         OutputView.printResult(rankResult);
     }
 
@@ -52,5 +53,9 @@ public class LottoController {
 
     private void calcLottoResult(RankResult rankResult, WinningNumber winningNumber, Lottos lottos) {
         rankResult.calculateRankResult(winningNumber, lottos);
+    }
+
+    private Rate getRate(Money money, RankResult rankResult) {
+        return new Rate(money, rankResult);
     }
 }

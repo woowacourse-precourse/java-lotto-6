@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
+import lotto.model.validator;
 
 public class Application {
 
@@ -28,21 +29,14 @@ public class Application {
 
     public static void main(String[] args) {
         int totalSpendings = 0;
-        boolean isValidPurchaseAmount = false;
-        while (!isValidPurchaseAmount) {
-            try {
-                System.out.println("로또를 구매할 금액을 입력하세요.");
-                totalSpendings = Integer.parseInt(Console.readLine().trim());
+        String input;
+        do {
+            System.out.println("로또를 구매할 금액을 입력하세요.");
+            input = Console.readLine().trim();
+        } while (!validator.validatePurchaseInput(input));
 
-                if (totalSpendings < LOTTO_PRICE || totalSpendings % LOTTO_PRICE != 0) {
-                    System.out.println("[ERROR] 로또 구매 금액은 " + LOTTO_PRICE + "원 단위로 입력해야 합니다.");
-                } else {
-                    isValidPurchaseAmount = true;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 입력값은 숫자로만 구성되어야 합니다.");
-            }
-        }
+        totalSpendings = Integer.parseInt(input);
+
         int numberOfPurchasedLottos = totalSpendings / LOTTO_PRICE;
         System.out.println(numberOfPurchasedLottos + "개를 구매했습니다.");
 
@@ -67,16 +61,14 @@ public class Application {
             try {
                 System.out.println("당첨 번호를 쉼표로 구분하여 입력하세요.");
                 String winningNumbersInput = Console.readLine();
+                validator.validateLottoNumbers(winningNumbersInput);
 
                 winningNumbers = Arrays.stream(winningNumbersInput.split(","))
                         .map(String::trim)
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
 
-                validateWinningNumbers(winningNumbers);
                 isValidWinningNumbers = true;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 입력값은 숫자로만 구성되어야 합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

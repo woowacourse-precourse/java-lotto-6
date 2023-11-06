@@ -19,7 +19,7 @@ public class BonusNumberExceptionTest {
     @Test
     void 보너스_번호_당첨_번호_중복 () {
         assertThrows(IllegalArgumentException.class, () ->
-                bonusNumberException.duplicateNumber(List.of("1,2,3,4,5,6"),"5"), "[ERROR]입력이 중복되었습니다.");
+                bonusNumberException.duplicateNumber(List.of("1","2","3","4","5","6"),"5"), "[ERROR]입력이 중복되었습니다.");
     }
 
     @Test

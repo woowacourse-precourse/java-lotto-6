@@ -1,5 +1,7 @@
 package lotto.dto;
 
+import lotto.exception.ExceptionMessage;
+
 public class LottoBonusNumberCreateRequest {
     private int bonusNumber;
 
@@ -7,7 +9,7 @@ public class LottoBonusNumberCreateRequest {
         try {
             this.bonusNumber = Integer.parseInt(bonusNumber);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("보너스 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_FORMAT);
         }
     }
 

@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoConstant;
+import lotto.exception.ExceptionMessage;
 import lotto.generator.LottoGenerator;
 
 public class LottoPurchase {
@@ -16,13 +17,11 @@ public class LottoPurchase {
 
     private void validatePurchaseAmount(long purchaseAmount) {
         if (purchaseAmount <= 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 양수여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NON_POSITIVE_PURCHASE_AMOUNT);
         }
 
         if (purchaseAmount % LottoConstant.LOTTO_TICKET_PRICE != 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 " +
-                    LottoConstant.LOTTO_TICKET_PRICE +
-                    "원 단위여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NOT_DIVISIBLE_BY_LOTTO_TICKET_PRICE);
         }
     }
 

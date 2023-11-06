@@ -2,6 +2,7 @@ package lotto.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.exception.ExceptionMessage;
 
 public class LottoWinningNumberCreateRequest {
 
@@ -24,7 +25,7 @@ public class LottoWinningNumberCreateRequest {
         try {
             number = Integer.parseInt(stringNumber);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("당첨 번호는 숫자 형식이여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_FORMAT);
         }
         return number;
     }

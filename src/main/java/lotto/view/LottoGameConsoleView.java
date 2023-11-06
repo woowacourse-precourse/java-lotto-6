@@ -78,6 +78,7 @@ public class LottoGameConsoleView implements LottoGameView {
     @Override
     public void printException(Exception exception) {
         String message = ERROR_MESSAGE_PREFIX + exception.getMessage();
+        System.out.println();
         System.out.println(message);
         System.out.println();
     }

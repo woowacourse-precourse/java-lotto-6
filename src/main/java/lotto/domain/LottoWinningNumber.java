@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoConstant;
+import lotto.exception.ExceptionMessage;
 
 public class LottoWinningNumber {
 
@@ -28,22 +29,20 @@ public class LottoWinningNumber {
                 .toList();
 
         if (distinctNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("당첨 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_DUPLICATED);
         }
     }
 
 
     private static void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("당첨 번호는 " + LottoConstant.LOTTO_NUMBER_COUNT + "개여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT);
         }
     }
 
     private void validNumber(int number) {
         if (number < LottoConstant.LOTTO_START_NUMBER || number > LottoConstant.LOTTO_END_NUMBER) {
-            throw new IllegalArgumentException(
-                    "당첨 번호는 " + LottoConstant.LOTTO_START_NUMBER + " 이상, "
-                            + LottoConstant.LOTTO_END_NUMBER + " 이하여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_OUT_OF_BOUND);
         }
     }
 

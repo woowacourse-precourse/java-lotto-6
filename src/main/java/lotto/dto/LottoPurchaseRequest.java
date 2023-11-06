@@ -1,5 +1,7 @@
 package lotto.dto;
 
+import lotto.exception.ExceptionMessage;
+
 public class LottoPurchaseRequest {
 
     private int purchaseAmount;
@@ -8,7 +10,7 @@ public class LottoPurchaseRequest {
         try {
             this.purchaseAmount = Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("로또 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_FORMAT);
         }
     }
 

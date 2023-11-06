@@ -11,7 +11,8 @@ public enum LottoPrize {
     FIRST_PRIZE(2_000_000_000L, 6, 0),
     NONE(0L, 0, 0);
 
-    private static final DecimalFormat DECIMAL_FORMATTER = new DecimalFormat("###,###");
+    private static final String DECIMAL_FORMAT_PATTERN = "###,###";
+    private static final DecimalFormat DECIMAL_FORMATTER = new DecimalFormat(DECIMAL_FORMAT_PATTERN);
     private final long winningAmount;
     private final int numNumberMatches;
     private final int numBonusNumberMatches;

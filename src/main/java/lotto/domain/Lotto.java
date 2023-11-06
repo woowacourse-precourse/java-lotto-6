@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import lotto.constant.LottoConstant;
+import lotto.exception.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,12 +18,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("로또 번호는 " + LottoConstant.LOTTO_NUMBER_COUNT + "개여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT);
         }
 
         for (int i = 1; i < numbers.size(); ++i) {
             if (Objects.equals(numbers.get(i - 1), numbers.get(i))) {
-                throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_DUPLICATED);
             }
         }
     }

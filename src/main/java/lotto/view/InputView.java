@@ -1,9 +1,6 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
-import lotto.validator.input.InputCommonValidator;
 
 public class InputView {
 
@@ -14,34 +11,16 @@ public class InputView {
 
     public int inputBuyingPrice() {
         System.out.println(INPUT_MONEY_MESSAGE);
-        String inputPrice = readLine().trim();
-        InputCommonValidator.validateNumber(inputPrice);
-        return Integer.parseInt(inputPrice);
+        return InputNumberReader.readNumber();
     }
 
     public List<Integer> inputLottoNumbers() {
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
-        List<String> inputNumbers = Arrays.stream(readLine().split(DELIMITER))
-                .map(String::trim)
-                .toList();
-        InputCommonValidator.validateNumbers(inputNumbers);
-        return convertToNumbers(inputNumbers);
+        return InputNumberReader.readNumbers(DELIMITER);
     }
 
     public int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        String number = readLine();
-        InputCommonValidator.validateNumber(number);
-        return Integer.parseInt(number);
-    }
-
-    private List<Integer> convertToNumbers(final List<String> inputNumbers) {
-        return inputNumbers.stream()
-                .map(Integer::parseInt)
-                .toList();
-    }
-
-    private String readLine() {
-        return Console.readLine();
+        return InputNumberReader.readNumber();
     }
 }

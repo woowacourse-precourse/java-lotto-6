@@ -51,15 +51,17 @@ public class Lotto {
 
     public static Lotto from(String userInput) {
         // TODO 검증 후 바꿔야함
-        List<String> list = toStringList(userInput);
-        validate(list);
+        List<String> userInputList = toStringList(userInput);
+        validate(userInputList);
 
         // TODO 숫자로 바꿔야함.
         return new Lotto(null);
     }
 
     private static void validate(List<String> list) {
-        isDigit(list);
+        validDigit(list);
+        List<Integer> integerList = toIntegerList(list);
+        validRange(integerList);
     }
 
     private static List<String> toStringList(String userInput) {
@@ -68,10 +70,23 @@ public class Lotto {
                 .toList();
     }
 
-    private static void isDigit(List<String> list) {
+    private static void validDigit(List<String> list) {
         boolean isDigit = list.stream().allMatch(s -> s.matches("\\d+"));
         if (!isDigit) {
             throw new IllegalArgumentException("로또 번호는 1~45 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private static List<Integer> toIntegerList(List<String> stringList) {
+        return stringList.stream()
+                .map(Integer::parseInt)
+                .toList();
+    }
+
+    private static void validRange(List<Integer> list) {
+        boolean overRange = list.stream().anyMatch(num -> num > 45);
+        if (overRange) {
+            throw new IllegalArgumentException("로또 번호의 범위는 45입니다!");
         }
     }
 

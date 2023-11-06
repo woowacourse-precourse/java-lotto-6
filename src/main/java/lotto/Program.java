@@ -53,4 +53,9 @@ public class Program {
         }
         this.bonus = bonus;
     }
+
+    public void showResult() {
+        LottoDrawResult drawResult = BroadCastingStation.drawLotto(winning, bonus);
+        UI.printWinningStats(consumerLottos, drawResult);
+    }
 }

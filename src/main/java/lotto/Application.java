@@ -7,7 +7,6 @@ public class Application {
         program.purchaseLottos();
         program.insertWinningNumbers();
         program.insertBonusNumber();
-        //LottoDrawResult drawResult = BroadCastingStation.drawLotto(lotto, bonusNumber);   // UI를 직접사용하는 코드, Program으로 변경 요망
-        //UI.printWinningStats(lottos, drawResult); // UI를 직접사용하는 코드, Program으로 변경 요망
+        program.showResult();
     }
 }

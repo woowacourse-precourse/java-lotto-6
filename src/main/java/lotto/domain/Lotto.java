@@ -13,7 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         sortNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -45,8 +45,9 @@ public class Lotto {
         }
     }
 
-    public void sortNumbers(List<Integer> numbers){
+    public List<Integer> sortNumbers(List<Integer> numbers){
         Arrays.sort(numbers.toArray());
+        return numbers;
     }
 
     @Override

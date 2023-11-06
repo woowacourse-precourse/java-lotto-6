@@ -6,6 +6,7 @@ import lotto.dto.input.builder.WinningCombinationBuilder;
 import lotto.io.input.StdReader;
 import lotto.io.output.StdWriter;
 import lotto.io.output.Writer;
+import lotto.validator.InputValidator;
 
 public class InputView {
     private final StdReader reader;

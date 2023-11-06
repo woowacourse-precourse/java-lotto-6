@@ -150,6 +150,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_중복_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,2,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Override
     public void runMain() {

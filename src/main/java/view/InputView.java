@@ -16,7 +16,7 @@ public class InputView {
     private int inputNumber() {
         try {
             return Integer.parseInt(readLine());
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ExceptionMessage.NON_NUMERIC_INPUT.get());
         }
     }
@@ -27,7 +27,7 @@ public class InputView {
                     .mapToInt(Integer::parseInt)
                     .boxed()
                     .toList();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ExceptionMessage.NON_NUMERIC_INPUT.get());
         }
     }

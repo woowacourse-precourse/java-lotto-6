@@ -22,7 +22,7 @@ public class LottoController {
             ticketCount = lottoMapper.buyTickets(inputView.purchaseAmount());
             outputView.buyLottoes(ticketCount);
             outputView.lottoTickets(lottoMapper.getTickets());
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             outputView.exceptionMessage(e.getMessage());
             buyTickets();
         }
@@ -37,7 +37,7 @@ public class LottoController {
         try {
             outputView.inputWinningNumber();
             lottoMapper.setWinningNumber(inputView.winningNumbers());
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             outputView.exceptionMessage(e.getMessage());
             inputWinningNumbers();
         }
@@ -47,7 +47,7 @@ public class LottoController {
         try {
             outputView.inputBonusNumber();
             lottoMapper.setBonusNumber(inputView.bonusNumber());
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             outputView.exceptionMessage(e.getMessage());
             inputBonusNumber();
         }

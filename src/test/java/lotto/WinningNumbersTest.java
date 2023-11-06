@@ -16,8 +16,7 @@ public class WinningNumbersTest extends WinningNumbers {
     void createWinningNumbersByDuplicatedNumber() {
         String[] invalidInputNumbers = {"1", "2", "3", "4", "5", "5"};
         assertThatThrownBy(() -> {
-            Set<Integer> winningNumbers = new HashSet<>();
-            WinningNumbers.validateInput(invalidInputNumbers, winningNumbers);
+            validateInput(invalidInputNumbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -26,8 +25,7 @@ public class WinningNumbersTest extends WinningNumbers {
     void createWinningNumberByUpperInRange() {
         String[] invalidInputNumbers = {"1", "2", "3", "4", "5", "46"};
         assertThatThrownBy(() -> {
-            Set<Integer> winningNumbers = new HashSet<>();
-            WinningNumbers.validateInput(invalidInputNumbers, winningNumbers);
+            validateInput(invalidInputNumbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -36,8 +34,7 @@ public class WinningNumbersTest extends WinningNumbers {
     void createWinningNumberByUnderInRange() {
         String[] invalidInputNumbers = {"1", "2", "3", "4", "5", "0"};
         assertThatThrownBy(() -> {
-            Set<Integer> winningNumbers = new HashSet<>();
-            WinningNumbers.validateInput(invalidInputNumbers, winningNumbers);
+            validateInput(invalidInputNumbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -46,9 +43,13 @@ public class WinningNumbersTest extends WinningNumbers {
     void createWinningNumberNotNumber() {
         String[] invalidInputNumbers = {"1", "2", "3", "4", "5", "a"};
         assertThatThrownBy(() -> {
-            Set<Integer> winningNumbers = new HashSet<>();
-            WinningNumbers.validateInput(invalidInputNumbers, winningNumbers);
+            validateInput(invalidInputNumbers);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private void validateInput(String[] inputNumbers) {
+        Set<Integer> winningNumbers = new HashSet<>();
+        WinningNumbers.validateInput(inputNumbers, winningNumbers);
     }
 
 }

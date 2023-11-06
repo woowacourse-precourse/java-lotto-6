@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class NumberGenerator {
+public class RandomNumberGenerator {
     private final List<Lotto> lottoList = new ArrayList<>();
 
     public void lottoNumbers(int numOfLottos) {

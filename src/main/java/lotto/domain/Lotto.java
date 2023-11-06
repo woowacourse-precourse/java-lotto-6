@@ -10,6 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicates(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
@@ -22,7 +23,9 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개가 되어야 합니다.");
         }
+    }
 
+    private void validateDuplicates(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>();
         for (int number : numbers) {
             if (!numberSet.add(number)) {

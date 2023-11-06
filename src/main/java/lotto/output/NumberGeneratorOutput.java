@@ -1,12 +1,12 @@
 package lotto.output;
 
 import lotto.domain.Lotto;
-import lotto.domain.NumberGenerator;
+import lotto.domain.RandomNumberGenerator;
 
 import java.util.List;
 
 public class NumberGeneratorOutput {
-    public void printLotteryNumbers(NumberGenerator numbers, int numOfLotto) {
+    public void printLotteryNumbers(RandomNumberGenerator numbers, int numOfLotto) {
         numbers.lottoNumbers(numOfLotto);
         List<Lotto> lotteries = numbers.getLotteries();
 

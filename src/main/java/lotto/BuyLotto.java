@@ -76,13 +76,37 @@ public class BuyLotto {
 
     public List<Integer> lottoRankInit() {
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             result.add(0);
         }
         return result;
     }
 
-    public List<Integer> lottoRank(List<Integer> answer_number, int bonus) {
+    public List<Integer> lottoRankEdit(List<Integer> rank, int rank_num) {
+        if(rank_num==7){
+            rank.set(0,rank.get(0)+1);
+        }
+        if(rank_num==6){
+            rank.set(1,rank.get(1)+1);
+        }
+        if(rank_num==5){
+            rank.set(2,rank.get(2)+1);
+        }
+        if(rank_num==4){
+            rank.set(3,rank.get(3)+1);
+        }
+        if(rank_num==3){
+            rank.set(4,rank.get(4)+1);
+        }
+        return rank;
+    }
 
+    public List<Integer> lottoRank(List<Integer> answer_number, int bonus) {
+        List<Integer> result = lottoRankInit();
+        for (int i = 0; i < lotto.size(); i++) {
+            List<Integer> paper = lotto.get(i).getLotto();
+            int rank = paperRank(paper, answer_number, bonus);
+
+        }
     }
 }

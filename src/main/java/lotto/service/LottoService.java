@@ -19,7 +19,7 @@ public class LottoService {
         return lottos;
     }
 
-    public static Lotto createLotto() {
+    private static Lotto createLotto() {
         List<Integer> uniqueRandomNums = RandomNumberGenerator.generateUniqueRandomValues();
         return new Lotto(uniqueRandomNums);
     }

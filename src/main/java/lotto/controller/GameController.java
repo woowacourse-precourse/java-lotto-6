@@ -1,19 +1,24 @@
 package lotto.controller;
 
-import static lotto.view.InputView.read;
-import static lotto.message.SystemMessage.INPUT_PURCHASE_PRICE;
+import static lotto.message.SystemMessage.OUTPUT_PURCHASE_LOTTO_AMOUNT;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.handler.InputHandler;
-import lotto.util.InputUtil;
-import lotto.validator.InputValidator;
+import lotto.handler.OutputHandler;
+import lotto.service.LottoService;
 import lotto.view.OutputView;
 
 public class GameController {
     private GameController() {
     }
 
-    public static void game(){
+    public static void game() {
         int lottoPurchasePrice = InputHandler.setLottoPurchasePrice();
+        List<Lotto> lottos = LottoService.issueLottoTickets(lottoPurchasePrice);
+        OutputHandler.outputLottosInfo(lottos);
+
+
     }
 
 }

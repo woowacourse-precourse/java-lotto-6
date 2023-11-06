@@ -25,6 +25,12 @@
 프로젝트를 구성할 때에는 도메인 로직에 단위테스트를 구현하는 부분도 신경을 써야합니다.
 </pre>
 # 클래스 구성
+# Game
+    로또 진행을 관리해주는 클래스
+- askMoney
+- askNumber
+- correctNumber
+- run
 # Input
     사용자 입력을 받는 클래스
 - lottoBuyMoney
@@ -32,60 +38,61 @@
 - bonusNumber
 # Output
     출력을 하는 클래스
-- *buyMoneyAsk 
-- *buyNumberPaperAns
-- *answerNumberAsk
-- *bonusNumberAsk
-- *correctStatisPrint
-- *lottoBuyPaperPrint
-- *lottoAllPaperPrint
-- correctPaperTotalPrint
-- correctPaperPrint
-- revenueRatePrint
-- outOfRangeMoney
-- incorrectFormatMoney
-- outOfRangeNumber
-- incorrectFormatNumber
+- buyMoneyAsk
+- buyNumberPaperAns
+- answerNumberAsk
+- bonusNumberAsk
+- correctStatisPrint
+- StatisPrint
 - totalMoney
+- lottoBuyPaperPrint
+- lottoAllPaperPrint
 # Money
-    돈에 관련된 걸 관리하는 클래스
-- buyLotto
-- correctNumber
-- revenueRate
+    수익률 계산해주는 클래스
+- calculateRevenue
 # BuyLotto
     구매한 번호, 당첨번호 관리하는 클래스
-- *checkAllSameNumber
-- *pickNumber
+- buyAllLotto
+- pickNumber
+- checkSameNumber
 - calculateRank
-# Calculate
-    당첨 통계를 계산해주는 클래스
-- calculateRevenueRate
-- calculateRank
-- correctMoney
-# Game
-    로또 진행을 관리해주는 클래스
-- *askMoney
-- askNumber
-- askBonus
-- printCorrect
+- paperRank
+- lottoRankInit
+- lottoRankEdit
+- lottoRank
+# Lotto
+    돈주고 구매한 로또 번호발행해주는 클래스
+- validate
+- pickNumberDuplicate
+- getLotto
 # Exception
     예외 처리를 해주는 클래스
-- *outOfRangeMoney
-- *numberLengthCheck
-- *numberCheckNumber
-- *numberRangeNumber
-- *numberAllCheckNumber
-- *incorrectFormatMoney
-- *numberCheckAll
-- *numberSizeCheck
+- outOfRangeMoney
+- incorrectFormatMoney
+- numberLengthCheck
+- numberCheckNumber
+- numberRangeNumber
+- numberAllCheckNumber
+- numberSizeCheck
+- numberCheckAll
 - bonusCheck
+- duplicateCheckOne
+- duplicateCheck
 
 # Message
-- Message
-- getCode
-- getMessage
+    에러메시지를 모아놓은 enum
+- moneyOutOfRange
+- moneyInvalidFormat
+- numberIncorrectFormat
+- numberOutOfRange
+- numberIncorrectLength
+- numberIncorrect
+- numberDuplicate
 
 # Winning
-- Winning
-- getRank
-- getMessage
+    등수와 관련된 메시지와 금액을 정리함
+- one
+- two
+- three
+- four
+- five

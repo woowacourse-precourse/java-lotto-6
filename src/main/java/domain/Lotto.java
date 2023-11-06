@@ -70,10 +70,9 @@ public class Lotto {
     }
 
     private void isBetweenLottoRange(List<Integer> numbers){
-        if(numbers.stream().allMatch(number ->
-                number < LOTTO_GAME_START_NUMBER || number > LOTTO_GAME_END_NUMBER)){
+        if (numbers.stream().anyMatch(number -> number < LOTTO_GAME_START_NUMBER || number > LOTTO_GAME_END_NUMBER)) {
             ExceptionMessage.IS_RANGE_LOTTO.throwException();
-        };
+        }
     }
 
     private void isSixNumbers(List<Integer> numbers){
@@ -81,6 +80,4 @@ public class Lotto {
             ExceptionMessage.LOTTO_WRONG_NUMBER_OF_VALUE.throwException();
         };
     }
-
-    // TODO: 추가 기능 구현
 }

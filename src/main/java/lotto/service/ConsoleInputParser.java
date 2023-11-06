@@ -16,6 +16,7 @@ public class ConsoleInputParser {
 
     public Lotto toLotto(String input) {
         List<Integer> numbers = Arrays.stream(input.split(LottoConstant.DELIMITER.get()))
+                .map(String::trim)
                 .peek(this::validateInteger)
                 .map(Integer::parseInt)
                 .toList();

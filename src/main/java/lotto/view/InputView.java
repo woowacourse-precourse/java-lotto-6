@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public String getInputFromConsole() {
-        return Console.readLine();
+        String input = Console.readLine();
+        return input.trim();
     }
 }

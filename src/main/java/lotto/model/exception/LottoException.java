@@ -14,7 +14,7 @@ public class LottoException extends IllegalArgumentException {
         super(message);
     }
 
-    public static void checkNumbersException(List<Integer> numbers) {
+    public static void checkNumbersExceptions(List<Integer> numbers) {
         checkNumbersSizeException(numbers);
         checkNumbersDuplicationException(numbers);
         checkNumbersRangeException(numbers);

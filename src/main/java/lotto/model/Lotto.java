@@ -9,7 +9,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoException.checkNumbersException(numbers);
+        LottoException.checkNumbersExceptions(numbers);
         this.numbers = numbers;
     }
 

@@ -20,7 +20,7 @@ public class WinningLotto {
         return determinePrize(matchCount, bonusMatch);
     }
 
-    int isValidBonusNumber(String userBonusNumber, List<Integer> winningNumbers) {
+    public int isValidBonusNumber(String userBonusNumber, List<Integer> winningNumbers) {
         int bonusNumber = getBonusIntegerNumber(userBonusNumber);
         WinningLottoException.checkBonusNumberIntegerExceptions(winningNumbers, bonusNumber);
         return bonusNumber;

@@ -18,9 +18,10 @@ public class LottoController {
                 Integer purchaseAmount = Integer.parseInt(InputView.inputPurchaseAmount());
                 user = new User(purchaseAmount);
                 break;
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+        OutputView.printLottoQuantity(user.getLottoQuantity());
     }
 }

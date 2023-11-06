@@ -26,4 +26,8 @@ public class User {
             usedAmount += 1000;
         }
     }
+
+    public Integer getLottoQuantity() {
+        return lottos.size();
+    }
 }

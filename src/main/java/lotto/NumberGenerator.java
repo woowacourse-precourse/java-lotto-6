@@ -8,8 +8,9 @@ public class NumberGenerator {
     private static final int NUMBER_MAX_VALUE = 45;
     private static final int NUMBER_COUNT = 6;
 
-    public void generate() {
+    public static List<Integer> generate() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(NUMBER_MIN_VALUE, NUMBER_MAX_VALUE,
                 NUMBER_COUNT);
+        return numbers;
     }
 }

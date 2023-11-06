@@ -10,10 +10,6 @@ import java.util.List;
 
 public class LottoApplication {
     private static int LOTTO_PRICE = 1000;
-    private int[] matchingNumbersCounter;
-    private boolean bonusMatch;
-//    private static final BigDecimal[] WINNING_AMOUNT_BY_RANKING = {BigDecimal.valueOf(0), BigDecimal.valueOf(2000000000), BigDecimal.valueOf(30000000), BigDecimal.valueOf(1500000), BigDecimal.valueOf(50000), BigDecimal.valueOf(5000)};
-    private static final long[] WINNING_AMOUNT_BY_RANKING = {0L, 2000000000L, 30000000L, 1500000L, 50000L, 5000L};
 
     void execute() {
         try {
@@ -30,7 +26,6 @@ public class LottoApplication {
 
             Ticket ticket = new Ticket(pickedNumbers, bonus); // 구매자의 티켓
 
-            matchingNumbersCounter = new int[getNumberOfLotto(receivedAmount)];
             List<Result> results = compareTicketAndLottos(ticket, createdLottos);
 
             int[] rankCounter = getRankingCounter(results);
@@ -117,7 +112,7 @@ public class LottoApplication {
         long totalWinningAmount = 0L;
 
         for (int i = 1; i < rankingCounter.length; i++) {
-            totalWinningAmount += (long) rankingCounter[i] * WINNING_AMOUNT_BY_RANKING[i];
+            totalWinningAmount += (long) rankingCounter[i] * Rank.of(i).getPrizeAmount();
         }
 
         return totalWinningAmount;

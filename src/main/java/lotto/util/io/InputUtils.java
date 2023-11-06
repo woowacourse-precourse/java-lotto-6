@@ -49,7 +49,7 @@ public class InputUtils {
         }
     }
 
-    private static void validateInputWinningNumbers(List<String> numbers) {
+    public static void validateInputWinningNumbers(List<String> numbers) {
         for (String number : numbers) {
             validateInputWinningNumber(number);
         }

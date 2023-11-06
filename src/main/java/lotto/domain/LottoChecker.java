@@ -42,7 +42,7 @@ public class LottoChecker {
     public int compare(Lotto purchaseLotto, Lotto winningLotto) {
         int count = 0;
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < Lotto.NUMBER_OF_MEMBERS; i++) {
             if (purchaseLotto.getNumbers().contains(winningLotto.getNumbers().get(i))) {
                 count++;
             }

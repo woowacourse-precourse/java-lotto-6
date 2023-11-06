@@ -1,28 +1,33 @@
 package lotto.domain;
 
+import lotto.ui.Output;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
     public static final int PRICE = 1000;
+    public static final int MIN_VALUE = 1;
+    public static final int MAX_VALUE = 45;
+    public static final int NUMBER_OF_MEMBERS = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리여야 합니다.");
+        if (numbers.size() != NUMBER_OF_MEMBERS) {
+            throw new IllegalArgumentException(Output.MUST_BE_SIX_NUMBER_ERROR);
         }
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호 입니다.");
+            throw new IllegalArgumentException(Output.HAS_DUPLICATE_NUMBER_ERROR);
         }
         for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.get(i) < 1 || numbers.get(i) > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+            if (numbers.get(i) < MIN_VALUE || numbers.get(i) > MAX_VALUE) {
+                throw new IllegalArgumentException(Output.MUST_BE_BONUS_NUMBER_BETWEEN_1_45_ERROR);
             }
         }
     }

@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.*;
 import lotto.ui.Input;
 import lotto.ui.Output;
@@ -61,19 +60,19 @@ public class Controller {
 
     public void checkLotto(List<Integer> winningNumber) {
         if (!lottoChecker.checkLottoNumberRange(winningNumber, 1, 45)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(Output.MUST_BE_NUMBERS_BETWEEN_1_45_ERROR);
         }
         if (!lottoChecker.checkDuplicateLottoNumber(winningNumber)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호 입니다.");
+            throw new IllegalArgumentException(Output.HAS_DUPLICATE_NUMBER_ERROR);
         }
     }
 
     public void checkBonusNumber(List<Integer> winningNumber, int bonusNumber) {
-        if (!lottoChecker.checkBonusNumberRange(bonusNumber, 1, 45)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+        if (!lottoChecker.checkBonusNumberRange(bonusNumber, Lotto.MIN_VALUE, Lotto.MAX_VALUE)) {
+            throw new IllegalArgumentException(Output.MUST_BE_BONUS_NUMBER_BETWEEN_1_45_ERROR);
         }
         if (!lottoChecker.checkDuplicateBonusNumber(winningNumber, bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 보너스 번호 입니다.");
+            throw new IllegalArgumentException(Output.HAS_DUPLICATE_NUMBER_ERROR);
         }
     }
 }

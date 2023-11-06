@@ -4,10 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Constants;
 import lotto.domain.Lotto;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputView {
     public Integer getPrice() {

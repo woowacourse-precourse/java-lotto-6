@@ -1,11 +1,12 @@
 package lotto.validation;
 
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.domain.ConstantValue;
 import lotto.util.ExceptionHandler;
 
 public class InputValidator {
-    private static final int THOUSAND = 1000;
 
     public static void validateUserInput(String input) {
         validateForNonNumericCharacters(input);
@@ -27,7 +28,7 @@ public class InputValidator {
     public static void validateNumberLessThan1000(String input) {
         int number = Integer.parseInt(input);
 
-        if (number < THOUSAND) {
+        if (number < ConstantValue.THOUSAND) {
             ExceptionHandler.throwNumberBelow1000Exception();
         }
     }
@@ -35,7 +36,7 @@ public class InputValidator {
     public static void validateChangeAvailableFor1000(String input) {
         int number = Integer.parseInt(input);
 
-        int remainder = number % THOUSAND;
+        int remainder = number % ConstantValue.THOUSAND;
         if (remainder > 0) {
             ExceptionHandler.throwChangeAvailableException();
         }

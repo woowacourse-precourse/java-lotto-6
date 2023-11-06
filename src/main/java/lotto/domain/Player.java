@@ -1,7 +1,7 @@
 package lotto.domain;
 
+
 public class Player {
-    private static final int THOUSAND = 1000;
     private int money;
 
     public Player(String input) {
@@ -9,7 +9,7 @@ public class Player {
     }
 
     public void divideMoneyByThousand() {
-        int tickets = money / THOUSAND;
+        int tickets = money / ConstantValue.THOUSAND;
         System.out.println(tickets);
     }
 }

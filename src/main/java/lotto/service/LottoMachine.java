@@ -12,6 +12,7 @@ import lotto.domain.dto.BonusNumberDto;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottosDto;
+import lotto.domain.dto.ProfitRateDto;
 import lotto.domain.dto.PurchaseAmountDto;
 import lotto.domain.dto.WinningLottoDto;
 
@@ -55,15 +56,25 @@ public class LottoMachine {
         return new DrawingResultDto(drawingResults.getResults());
     }
 
-    public double calculateProfitRate(final LottosDto lottosDto, final DrawingResultDto drawingResultDto) {
+    public ProfitRateDto calculateProfitRate(final LottosDto lottosDto, final DrawingResultDto drawingResultDto) {
         Set<Entry<Rank, Integer>> results = drawingResultDto.drawingResults().entrySet();
         long totalRevenue = 0;
 
         for (Entry<Rank, Integer> result : results) {
             totalRevenue += (long) result.getKey().getWinningAmount() * result.getValue();
         }
+        
+        return toProfitRateDto(getProfitRate(lottosDto, (double) totalRevenue));
+    }
 
+    private double getProfitRate(LottosDto lottosDto, double totalRevenue) {
         long totalCost = (long) PurchaseAmountDto.PURCHASE_AMOUNT_UNIT * lottosDto.lottos().size();
-        return (double) totalRevenue / totalCost * 100;
+        double profitRate = totalRevenue / totalCost * 100;
+
+        return profitRate;
+    }
+
+    private ProfitRateDto toProfitRateDto(final double profitRate) {
+        return new ProfitRateDto(profitRate);
     }
 }

@@ -9,6 +9,7 @@ import lotto.domain.Rank;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottosDto;
+import lotto.domain.dto.ProfitRateDto;
 import lotto.domain.dto.PurchaseAmountDto;
 
 public class OutputView {
@@ -72,8 +73,8 @@ public class OutputView {
         return decimalFormat.format(winningAmount);
     }
 
-    public void printProfitRate(final double profitRate) {
-        System.out.printf(PROFIT_RATE_MESSAGE, convertorProfitRate(profitRate));
+    public void printProfitRate(final ProfitRateDto profitRateDto) {
+        System.out.printf(PROFIT_RATE_MESSAGE, convertorProfitRate(profitRateDto.profitRate()));
     }
 
     private String convertorProfitRate(final double profitRate) {

@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.dto.BonusNumberDto;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottosDto;
+import lotto.domain.dto.ProfitRateDto;
 import lotto.domain.dto.PurchaseAmountDto;
 import lotto.domain.dto.WinningLottoDto;
 import lotto.service.LottoMachine;
@@ -48,7 +49,7 @@ public class LottoController {
     }
 
     public void profitRate(final LottosDto lottosDto, final DrawingResultDto drawingResultDto) {
-        double profitRate = lottoMachine.calculateProfitRate(lottosDto, drawingResultDto);
-        outputView.printProfitRate(profitRate);
+        ProfitRateDto profitRateDto = lottoMachine.calculateProfitRate(lottosDto, drawingResultDto);
+        outputView.printProfitRate(profitRateDto);
     }
 }

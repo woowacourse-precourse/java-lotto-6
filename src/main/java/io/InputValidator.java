@@ -1,6 +1,7 @@
 package io;
 
 import static io.ValidationErrorMessages.*;
+import static lotto.LottoConstants.LOTTO_PRICE;
 
 public class InputValidator {
 
@@ -13,11 +14,11 @@ public class InputValidator {
             throw new IllegalArgumentException(NOT_INTEGER.getMessage());
         }
 
-        if (lottoPurchaseAmount < 1000) {
+        if (lottoPurchaseAmount < LOTTO_PRICE.getValue()) {
             throw new IllegalArgumentException(BELOW_MINIMUM_PURCHASE_AMOUNT.getMessage());
         }
 
-        if (lottoPurchaseAmount % 1000 != 0) {
+        if (lottoPurchaseAmount % LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(NOT_MULTIPLE_OF_PRICE.getMessage());
         }
     }

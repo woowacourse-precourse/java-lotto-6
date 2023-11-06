@@ -7,7 +7,7 @@ import lotto.domain.num.LottoTargetNumResults;
 import lotto.utill.Utii;
 
 public class Statistic {
-    // TODO: 11/6/23 상수 정리 
+    // TODO: 11/6/23 상수 정리
     private static final Integer MONEY_FIRST_PLACE = 2000000000;
     private static final Integer MONEY_SECOND_PLACE = 30000000;
     private static final Integer MONEY_THIRD_PLACE = 1500000;
@@ -17,6 +17,7 @@ public class Statistic {
     private static final Integer TARGET_COUNT_FIVE = 5;
     private static final Integer TARGET_COUNT_FOUR = 4;
     private static final Integer TARGET_COUNT_THREE = 3;
+    private static final Integer ADD_COUNT = 1;
     private LottoEnvelop lottoEnvelop;
     private Judgment judgment;
     private Integer countOfFirstPlace;
@@ -83,31 +84,31 @@ public class Statistic {
 
     private void isFirstPlace(Integer countSame) {
         if (isSameCount(countSame, TARGET_COUNT_SIX)) {
-            countOfFirstPlace = countOfFirstPlace + 1;
+            countOfFirstPlace = countOfFirstPlace + ADD_COUNT;
         }
     }
 
     private void isSecondPlace(Integer countSame, Boolean isSameBonus) {
         if (isSameCount(countSame, TARGET_COUNT_FIVE) && isSameBonus) {
-            countOfSecondPlace = countOfSecondPlace + 1;
+            countOfSecondPlace = countOfSecondPlace + ADD_COUNT;
         }
     }
 
     private void isThirdPlace(Integer countSame, Boolean isSameBonus) {
         if (isSameCount(countSame, TARGET_COUNT_FIVE) && !isSameBonus) {
-            countOfThirdPlace = countOfThirdPlace + 1;
+            countOfThirdPlace = countOfThirdPlace + ADD_COUNT;
         }
     }
 
     private void isFourthPlace(Integer countSame) {
         if (isSameCount(countSame, TARGET_COUNT_FOUR)) {
-            countOfFourthPlace = countOfFourthPlace + 1;
+            countOfFourthPlace = countOfFourthPlace + ADD_COUNT;
         }
     }
 
     private void isFifthPlace(Integer countSame) {
         if (isSameCount(countSame, TARGET_COUNT_THREE)) {
-            countOfFifthPlace = countOfFifthPlace + 1;
+            countOfFifthPlace = countOfFifthPlace + ADD_COUNT;
         }
     }
 

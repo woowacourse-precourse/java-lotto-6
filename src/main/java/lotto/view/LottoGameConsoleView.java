@@ -24,8 +24,7 @@ public class LottoGameConsoleView implements LottoGameView {
     public void printPurchasedTickets(List<LottoResponse> purchasedLottoTickets) {
         long numLottoTickets = purchasedLottoTickets.size();
 
-        System.out.println();
-        System.out.println(numLottoTickets + "개를 구매했습니다.");
+        System.out.println("\n" + numLottoTickets + "개를 구매했습니다.");
 
         for (LottoResponse lottoTicket : purchasedLottoTickets) {
             System.out.println(lottoTicket.getNumbers());
@@ -34,22 +33,19 @@ public class LottoGameConsoleView implements LottoGameView {
 
     @Override
     public LottoWinningNumberCreateRequest inputLottoWinningNumberCreateRequest() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         return new LottoWinningNumberCreateRequest(Console.readLine());
     }
 
     @Override
     public LottoBonusNumberCreateRequest inputLottoBonusNumberCreateRequest() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         return new LottoBonusNumberCreateRequest(Console.readLine());
     }
 
     @Override
     public void printWinningStatistics(LottoWinningStatistics lottoWinningStatistics) {
-        System.out.println();
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
 
         printLottoPrizeCount(lottoWinningStatistics);
@@ -63,23 +59,19 @@ public class LottoGameConsoleView implements LottoGameView {
             }
 
             int countLottoPrize = lottoWinningStatistics.getCountLottoPrize(lottoPrize);
-            System.out.print(lottoPrize);
-            System.out.println(countLottoPrize + "개");
+            System.out.println(lottoPrize.toString() + countLottoPrize + "개");
         }
     }
 
     private static void printRewardRatioPercent(LottoWinningStatistics lottoWinningStatistics) {
         double rewardRatio = lottoWinningStatistics.getRewardRatio();
         double rewardRatioPercent = (double) Math.round(rewardRatio * 1000) / 10;
-        System.out.printf("총 수익률은 %.1f%%입니다.", rewardRatioPercent);
-        System.out.println();
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rewardRatioPercent);
     }
 
     @Override
     public void printException(Exception exception) {
         String message = ERROR_MESSAGE_PREFIX + exception.getMessage();
-        System.out.println();
-        System.out.println(message);
-        System.out.println();
+        System.out.println("\n" + message + "\n");
     }
 }

@@ -7,6 +7,7 @@ import static lotto.exception.LottoErrorCode.LOTTO_NUMBER_DUPLICATE;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBER_RANGE;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBER_SIZE;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.exception.LottoException;
 
@@ -16,6 +17,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateNumbers(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -49,6 +51,10 @@ public class Lotto {
 
     private boolean isDuplicate(final List<Integer> numbers) {
         return numbers.stream().distinct().count() != numbers.size();
+    }
+
+    public String numbersToString() {
+        return numbers.toString();
     }
 
 }

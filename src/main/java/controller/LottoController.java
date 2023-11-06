@@ -3,6 +3,7 @@ package controller;
 import camp.nextstep.edu.missionutils.Console;
 import domain.LottoSystem;
 import domain.Lottos;
+import java.util.ArrayList;
 import service.LottoService;
 import util.Parser;
 import util.Validate;
@@ -16,10 +17,13 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
     private final int LOTTO_PRICE = 1000;
     public void run(){
-        start(makeLottos(), makeLottoSystem());
+        play(makeLottos(), makeLottoSystem());
     }
-    private void start(Lottos lottos, LottoSystem lottoSystem){
-        lottoService.revealLottery(lottos, lottoSystem);
+    private void play(Lottos lottos, LottoSystem lottoSystem){
+        LottoView.printWinningResult();
+        int[] lottoResult = lottoService.revealLottery(lottos, lottoSystem);
+        LottoView.printLottoResults(lottoResult);
+        LottoView.printTotalReturn(lottoService.getEarningRate(lottoResult, lottos));
     }
     private Lottos makeLottos(){
         Lottos lottos = new Lottos(NumberOfLotto(getTotalMoneyByUserInput()));

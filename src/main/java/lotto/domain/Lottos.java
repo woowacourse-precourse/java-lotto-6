@@ -41,22 +41,23 @@ public class Lottos {
     public void draw(List<Integer> winningNumbers, int bonusNumber) {
         calculateWinningStatistics(winningNumbers, bonusNumber);
         OutputUtils.printResultAnnouncementMessage();
-        calculateWinningStatistics(winningNumbers, bonusNumber);
-        calculateTotalPrize();
+        winningStatics = calculateWinningStatistics(winningNumbers, bonusNumber);
+        totalPrize = calculateTotalPrize();
         printResult();
     }
 
-    public void calculateWinningStatistics(List<Integer> winningNumbers, int bonusNumber) {
-        winningStatics = lottos.stream()
+    public Map<Ranking, Integer> calculateWinningStatistics(List<Integer> winningNumbers, int bonusNumber) {
+        Map<Ranking, Integer> statics = lottos.stream()
                 .collect(groupingBy(
                         lotto -> lotto.getRanking(winningNumbers, bonusNumber),
                         summingInt(lotto -> 1)
                 ));
-        Arrays.stream(Ranking.values()).forEach(ranking -> winningStatics.putIfAbsent(ranking, 0));
+        Arrays.stream(Ranking.values()).forEach(ranking -> statics.putIfAbsent(ranking, 0));
+        return statics;
     }
 
-    public void calculateTotalPrize() {
-        totalPrize = winningStatics.entrySet().stream()
+    public int calculateTotalPrize() {
+        return winningStatics.entrySet().stream()
                 .map(r -> StringUtils.StringToInt(r.getKey().getPrize()) * r.getValue())
                 .reduce(0, Integer::sum);
     }

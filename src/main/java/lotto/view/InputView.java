@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.system.validator.Validator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +20,12 @@ public class InputView {
         InputMessage(String message) {
             this.message = message;
         }
+    }
+
+    private final Validator validator;
+
+    public InputView(Validator validator) {
+        this.validator = validator;
     }
 
     public int inputPurchaseAmount() {

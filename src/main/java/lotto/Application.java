@@ -11,19 +11,26 @@ public class Application {
     private static final String START = "구입금액을 입력해 주세요.";
     private static final int LOTTO_PRICE = 1000;
     private static final String PURCHASE = "개를 구매했습니다.";
-    private static final String WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final int LOTTO_COUNT = 6;
 
+    private static int purchaseAmount;
 
     public static void main(String[] args) {
         System.out.println(START);
-        int amount = Integer.parseInt(readLine());
-        int numberOfLotto = amount / LOTTO_PRICE;
+        purchaseAmount = Integer.parseInt(readLine());
+        int numberOfLotto = purchaseAmount / LOTTO_PRICE;
 
         System.out.println();
         System.out.println(numberOfLotto + PURCHASE);
         List<Lotto> lottos = createLotto(numberOfLotto);
         printLotto(lottos);
+
+        WinningNumber winningNumber = new WinningNumber();
+        winningNumber.inputWinningNumber();
+        winningNumber.compareToLotto(lottos);
+
+        String sum = earningRateCalculation(winningNumber.getMatchWinningNumber(), winningNumber.getMatchBonusNumber());
+        System.out.println("총 수익률은 " + sum + "%입니다.");
     }
 
     public static List<Lotto> createLotto(int numberOfLotto) {
@@ -40,5 +47,13 @@ public class Application {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
+    }
+
+    public static String earningRateCalculation(List<Long> matchWinningNumber, List<Long> matchBonusNumber) {
+        double totalAmount = 0;
+        for (int i = 0; i < LOTTO_COUNT; i++) {
+            totalAmount += Prize.matchPrize(matchWinningNumber.get(i), matchBonusNumber.get(i));
+        }
+        return String.format("%.1f", totalAmount * 100 / purchaseAmount);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -31,8 +32,8 @@ public class Lotto {
     // TODO: 추가 기능 구현
     // Lotto 생성
     public static Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumber.MIN.getValue(),
-                LottoNumber.MAX.getValue(), LottoNumber.COUNT.getValue());
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LottoNumber.MIN.getValue(),
+                LottoNumber.MAX.getValue(), LottoNumber.COUNT.getValue()));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }

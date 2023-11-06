@@ -1,7 +1,9 @@
 package lotto.view;
 
 import lotto.domain.WinResult;
+import lotto.util.WinnerRank;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 public class OutputView {
@@ -33,7 +35,20 @@ public class OutputView {
     }
 
     public void printWinResult(WinResult winResult) {
+        for(WinnerRank winnerRank : WinnerRank.values()){
+            int key = winnerRank.getValue();
+            System.out.printf("%d 개 일치 (%s원) - %d개\n",
+                    winnerRank.getSameNumberCount(),
+                    formatNumberWithCommas(winnerRank.getPrizeMoney()),
+                    winResult.getWinResultValue(key));
+        }
+    }
 
+    private static String formatNumberWithCommas(int winMoney) {
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String winMoneyComma = numberFormat.format(winMoney);
+
+        return winMoneyComma;
     }
 
     public void printProfit(double profit) {

@@ -25,7 +25,7 @@ public class LotteryStore {
 
     }
 
-    private void checkCash(int cash) {
+    public void checkCash(int cash) {
         if (cash % 1000 > 0) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
         }
@@ -37,12 +37,15 @@ public class LotteryStore {
         for (String number : winningNumbers.split(",")) {
             winningNumber.add(checkNumbers(number));
         }
-        if (winningNumber.size() != 6) {
+        checkNumberSize(winningNumber.size());
+    }
+    public void checkNumberSize(int size){
+        if (size != 6) {
             throw new InputMismatchException("[ERROR] 당첨 번호는 6개의 숫자로 구성 되어야 합니다.");
         }
     }
 
-    private int checkNumbers(String number) {
+    public int checkNumbers(String number) {
         int returnNumber;
         try {
             returnNumber = Integer.parseInt(number);

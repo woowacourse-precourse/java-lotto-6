@@ -2,21 +2,18 @@ package lotto.model;
 
 import lotto.util.CommonValidation;
 import lotto.util.Constants;
-import lotto.view.OutputView;
+import lotto.util.PurchaseAmountValidation;
+import java.util.List;
 
 public class LottoPurchase {
-    private final int lottoCount;
+    private final List<Integer> userLotto;
 
-    private LottoPurchase(int lottoCount) {
-        this.lottoCount = lottoCount;
+    private LottoPurchase(List<Integer> userLotto) {
+        this.userLotto = userLotto;
     }
-
-    public static LottoPurchase purchaseLotto(String amount) {
-        CommonValidation.validate(amount);
-        return new LottoPurchase(Integer.parseInt(amount) / Constants.DIVISION_VALUE);
-    }
-
-    public int getLottoCount(){
-        return this.lottoCount;
+    public static int purchaseLottery(String amount) {
+        CommonValidation.validate(String.valueOf(amount));
+        PurchaseAmountValidation.divisibleThousand(amount);
+        return Integer.parseInt(amount) / Constants.DIVISION_VALUE;
     }
 }

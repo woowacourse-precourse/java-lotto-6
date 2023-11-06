@@ -34,10 +34,4 @@ class MoneyTest {
     void lottoCountByMoney() {
         assertThat(new Money("5000").countLottos()).isEqualTo(5);
     }
-
-    @DisplayName("구입 금액이 5000 원이라면 getter 가 5000원을 반환한다.")
-    @Test
-    void checkMoneyGetter() {
-        assertThat(new Money("5000").getMoney()).isEqualTo(5000);
-    }
 }

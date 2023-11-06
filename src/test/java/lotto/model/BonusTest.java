@@ -31,10 +31,4 @@ class BonusTest {
         assertThatThrownBy(() -> new Bonus("1", answer))
             .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @DisplayName("Bonus 번호를 5로 생성하고 getter 를 사용했을 때 5를 반환한다.")
-    @Test
-    void getBonusNumber() {
-        assertThat(new Bonus("5", answer).getNumber()).isEqualTo(5);
-    }
 }

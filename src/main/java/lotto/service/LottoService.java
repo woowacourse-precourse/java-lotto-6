@@ -33,6 +33,13 @@ public class LottoService {
         return winningNumbers;
     }
 
+    public int initBonusNumber(String inputBonusNumber) {
+        int num = Validator.isNumber(inputBonusNumber);
+        Validator.isSmallAndBig(num);
+        Validator.isDuplicatedBonus(winningNumbers, num);
+
+        return num;
+    }
 
 
 }

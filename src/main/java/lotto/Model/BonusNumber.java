@@ -3,6 +3,7 @@ package lotto.Model;
 import java.util.List;
 import lotto.View.ExceptionMessage;
 import lotto.Controller.InputController;
+import lotto.View.OuputView;
 
 public class BonusNumber {
     private final int bonus;
@@ -18,7 +19,7 @@ public class BonusNumber {
             checkForDuplicate(bonus,winningNumbers);
             return bonus;
         }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            OuputView.printErrorMessage(e.getMessage());
             int newBonus = InputController.inputBonusNumber();
             return validate(newBonus,winningNumbers);
         }

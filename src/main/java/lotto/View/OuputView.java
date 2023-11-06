@@ -10,5 +10,8 @@ public class OuputView {
         System.out.println("당첨 통계");
         System.out.println("---");
     }
+    public static void printErrorMessage(String error){
+        System.out.println(error);
+    }
 }
 

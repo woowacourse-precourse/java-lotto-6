@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import lotto.View.ExceptionMessage;
 import lotto.Controller.InputController;
+import lotto.View.OuputView;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,7 +23,7 @@ public class Lotto {
             validateScope(numbers);
             validateDuplicates(numbers);
         } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            OuputView.printErrorMessage(e.getMessage());
             validate(InputController.inputWinningNumbers());
         }
     }

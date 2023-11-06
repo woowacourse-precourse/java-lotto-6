@@ -35,9 +35,9 @@
 
 ### 2️⃣️ 구매한 금액만큼 로또 객체 생성
 
-- 돈 다 떯어질 때까지 반복
-    - [] [LottoNumberGenerator]: `pickUniqueNumbersInRange()`를 이용하여 로또 번호 생성
-    - [] [Lotto]: `LottoNumberGenerator` 에서 생성해준 로또 번호를 받아 객체 생성
+- 돈 다 떨어질 때까지 반복
+    - [x] [LottoNumberGenerator]: `pickUniqueNumbersInRange()`를 이용하여 로또 번호 생성
+    - [x] [Lotto]: `LottoNumberGenerator` 에서 생성해준 로또 번호를 받아 객체 생성
         - [] 로또 번호 오름차순으로 정렬
         - 🚨검증: 에러 메세지 출력 후 다시 입력받기
             - [] 번호가 6개 맞는지

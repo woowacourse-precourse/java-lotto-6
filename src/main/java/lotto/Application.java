@@ -19,6 +19,7 @@ public class Application {
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_COUNT = "로또 번호는 6개 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_DUPLICATE = "로또 번호는 중복되지 않은 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_FOR_BONUS_NUMBER_TYPE = "보너스 번호는 숫자여야 합니다.";
+    private static final String ERROR_MESSAGE_FOR_BONUS_NUMBER_RANGE = "보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
 
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmountWithInput();
@@ -115,6 +116,11 @@ public class Application {
             bonusNumber = Integer.parseInt(bonusNumberInput);
         } catch (NumberFormatException e) {
             printErrorMessage(ERROR_MESSAGE_FOR_BONUS_NUMBER_TYPE);
+            throw new IllegalArgumentException();
+        }
+
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            printErrorMessage(ERROR_MESSAGE_FOR_BONUS_NUMBER_RANGE);
             throw new IllegalArgumentException();
         }
     }

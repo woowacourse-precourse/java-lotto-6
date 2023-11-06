@@ -25,7 +25,7 @@ public enum Prize {
 
     public static Prize getPrizeByMatchCount(int matchCount, boolean isBonusNumberMatch){
         Prize[] prizes = values();
-        if (matchCount == 5){
+        if (matchCount == FIVE.matchCount){
             return isFiveOrFiveBonus(isBonusNumberMatch);
         }
         return prizes[matchCount];

@@ -13,8 +13,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers.stream()
-                .map(LottoNumber::new)
                 .sorted()
+                .map(LottoNumber::new)
                 .toList();
     }
 

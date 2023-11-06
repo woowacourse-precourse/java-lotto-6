@@ -77,6 +77,19 @@ public class Play {
         return null;
     }
 
+    int getBonusNum() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int bonus = Integer.parseInt(Console.readLine());
+                checkEachNumRange(new ArrayList<>(bonus));
+                return bonus;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
     public void startGame() {
         System.out.println(lottoCnt + "개를 구매했습니다.");
         List<Lotto> lottos = new ArrayList<>();
@@ -85,6 +98,7 @@ public class Play {
             System.out.println(numbers);
             lottos.add(new Lotto(numbers));
         }
-        List<Integer> answerNums = getAnswerNums();
+        getAnswerNums();
+        getBonusNum();
     }
 }

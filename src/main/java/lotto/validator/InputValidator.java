@@ -5,6 +5,7 @@ import static lotto.condition.LottoCondition.LOTTO_PRICE;
 import static lotto.condition.LottoCondition.MAXIMUM_LOTTO_NUMBER;
 import static lotto.condition.LottoCondition.MINIMUM_LOTTO_NUMBER;
 import static lotto.condition.Symbols.DELIMITER;
+import static lotto.exception.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.exception.ErrorMessage.EMPTY;
 import static lotto.exception.ErrorMessage.ENDS_WITH_DELIMITER;
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT_INPUT;
@@ -36,6 +37,13 @@ public class InputValidator {
             throw LottoException.of(INVALID_PURCHASE_AMOUNT);
         }
     }
+
+    public static void validateDuplicateNumber(List<Integer> input) {
+        if (input.stream().distinct().count() != input.size()) {
+            throw LottoException.of(DUPLICATE_LOTTO_NUMBER);
+        }
+    }
+
 
     public static void validateLottoNumberCount(final List<Integer> input) {
         if (input.size() != LOTTO_COUNT.getValue()) {

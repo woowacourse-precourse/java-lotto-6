@@ -8,8 +8,8 @@ public class Printer {
     //생성자
 
     //메서드
-    public void showLotteryCount() {
-        // 발행한 로또번호의 수량을 출력
+    void showLotteryCount(int numberOfLottery) {
+        System.out.println(numberOfLottery+"개를 구매했습니다.");
     }
 
     public void showLotteryNumbers() {

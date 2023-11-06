@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.LottoTickets;
-import lotto.domain.Rank;
-import lotto.domain.WinningCondition;
+import lotto.domain.*;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -23,24 +20,24 @@ public class LottoController {
 
     public void run() {
         output.showMoneyInputMessage();
-        int money = repeatReadMoney();
+        Money money = repeatMakeMoney();
 
-        LottoTickets lottoTickets = makeLottoTickets(money);
+        LottoTickets lottoTickets = makeLottoTickets(money.getAmount());
         output.showLottoTickets(lottoTickets);
 
         WinningCondition winningCondition = makeWinningCondition();
         Map<Lotto, Rank> rankByLotto = winningCondition.findRankByLotto(lottoTickets);
         Map<Rank, Integer> winningResult = makeWinningResult(rankByLotto);
-        double totalReturn = winningCondition.calculateTotalReturn(money, winningResult);
+        double totalReturn = winningCondition.calculateTotalReturn(money.getAmount(), winningResult);
         output.showWinningStats(winningResult, totalReturn);
     }
 
-    private int repeatReadMoney() {
+    private Money repeatMakeMoney() {
         try {
-            return toInt(input.readMoney());
+            return new Money(toInt(input.readMoney()));
         } catch (IllegalArgumentException e) {
             output.showError(e.getMessage());
-            return repeatReadMoney();
+            return repeatMakeMoney();
         }
     }
 

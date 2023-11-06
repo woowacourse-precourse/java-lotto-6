@@ -61,6 +61,7 @@ public class LottoController {
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
+                outputView.printNewLine();
             }
         }
         return new Money(purchaseAmount);
@@ -83,6 +84,7 @@ public class LottoController {
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
+                outputView.printNewLine();
             }
         }
         outputView.printNewLine();
@@ -98,6 +100,7 @@ public class LottoController {
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
+                outputView.printNewLine();
             }
         }
 

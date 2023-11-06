@@ -15,4 +15,9 @@ public class GameController {
 
         gameService.saveWinningNumbers(input);
     }
+
+    public void saveBonusNumber(String input) {
+
+        gameService.saveBonusNumber(input);
+    }
 }

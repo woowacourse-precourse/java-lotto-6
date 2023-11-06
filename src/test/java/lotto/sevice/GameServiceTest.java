@@ -78,7 +78,7 @@ public class GameServiceTest extends NsTest{
         return numbers;
     }
 
-    @DisplayName("당첨 번호 입력이 제대로 이루어졌는지 확인")
+    @DisplayName("당첨 번호, 보너스 번호 입력이 제대로 이루어졌는지 확인")
     @Test
     void saveWinningNumbersTest() {
 
@@ -89,15 +89,19 @@ public class GameServiceTest extends NsTest{
 
         winningNumbers.saveWinningNumbers(numbers);
 
+        int bonusNumber = 7;
+
+        winningNumbers.saveBonusNumber(bonusNumber);
+
         List<Integer> numbersTest = winningNumbers.getNumbers();
 
         for(int num : numbersTest){
 
             System.out.print(num+" ");
         }
+
+        System.out.println(winningNumbers.getBonusNumber());
     }
-
-
 
     @Override
     protected void runMain() {

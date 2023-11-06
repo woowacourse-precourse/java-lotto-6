@@ -13,6 +13,7 @@ public class Game {
 
             purchaseLotto();
             saveWinningNumbers();
+            saveBonusNumbers();
 
         }catch (Exception e){
 
@@ -34,6 +35,11 @@ public class Game {
 
             saveWinningNumbers();
         }
+
+        if(errorType.contains("BONUS")) {
+
+            saveBonusNumbers();
+        }
     }
 
     private void purchaseLotto() {
@@ -50,5 +56,13 @@ public class Game {
         String input = Console.readLine();
 
         gameController.saveWinningNumbers(input);
+    }
+
+    private void saveBonusNumbers() {
+
+        System.out.println(Message.BONUS_NUMBER_MESSAGE.getMessage());
+        String input = Console.readLine();
+
+        gameController.saveBonusNumber(input);
     }
 }

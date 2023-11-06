@@ -15,7 +15,8 @@ public class GameService {
     private final int NUMBER_END_RANGE = 45;
     private final int METHOD_PURCHASE_AMOUNT = 1;
     private final int METHOD_SAVE_WINNING_NUMBERS = 2;
-    private final String REGEX_PATTERN_NO_NUMBER = "^[\\d]*$";
+    private final int METHOD_SAVE_BONUS_NUMBER = 3;
+    private final String REGEXP_PATTERN_NO_NUMBER = "^[\\d]*$";
 
     private final Buyer buyer = new Buyer();
     private final WinningNumbers winningNumbers = new WinningNumbers();
@@ -57,6 +58,14 @@ public class GameService {
         winningNumbers.saveWinningNumbers(numbers);
     }
 
+    public void saveBonusNumber(String input) {
+
+        validateInput(input, METHOD_SAVE_BONUS_NUMBER);
+
+        int bonusNumber = Integer.parseInt(input);
+        winningNumbers.saveBonusNumber(bonusNumber);
+    }
+
     public int getPurchaseAmount() {
 
         return buyer.getAmount();
@@ -81,15 +90,16 @@ public class GameService {
 
     private void validateInput(String input, int methodName) {
 
-        String REGEX = REGEX_PATTERN_NO_NUMBER;
+        String REGEXP = REGEXP_PATTERN_NO_NUMBER;
 
         String removeComma = input.replaceAll("\\,", "");
 
-        if (!removeComma.matches(REGEX)) {
+        if (!removeComma.matches(REGEXP)) {
 
             findErrorMethod(methodName);
         }
     }
+
 
     private void findErrorMethod(int methodName) {
 
@@ -101,6 +111,11 @@ public class GameService {
         if (methodName == METHOD_SAVE_WINNING_NUMBERS) {
 
             throw new IllegalArgumentException(Message.INPUT_WINNING_NUMBERS_ERROR_MESSAGE.name());
+        }
+
+        if (methodName == METHOD_SAVE_BONUS_NUMBER) {
+
+            throw new IllegalArgumentException(Message.INPUT_BONUS_NUMBER_ERROR_MESSAGE.name());
         }
     }
 }

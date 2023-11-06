@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.Round;
 import lotto.global.util.InputManager;
@@ -79,7 +80,7 @@ class LottoTest {
         Round round = new Round();
         round.extractor(totalCnt);
         Lotto lotto = new Lotto(winningNum);
-        round.judge(lotto);
+        round.judge(lotto, 22);
 
         assertThat(round.getWinCnts().size()).isEqualTo(totalCnt);
     }
@@ -93,8 +94,52 @@ class LottoTest {
         Round round = new Round();
         round.extractor(totalCnt);
         Lotto lotto = new Lotto(winningNum);
-        round.judge(lotto);
+        round.judge(lotto, 22);
 
         round.showResult();
+    }
+
+    @DisplayName("보너스 번호가 기존 당첨번호에 포함된 숫자이면 예외가 발생한다.")
+    @Test
+    void notContainBonusCntInWinNums() {
+        String bonusNum1 = "4";
+        assertThatThrownBy(() -> InputManager.validateBonusNumber(bonusNum1, Arrays.asList(4, 5, 10, 24, 30, 44)))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        String bonusNum2 = "33";
+        assertThat(InputManager.validateBonusNumber(bonusNum2, Arrays.asList(4, 5, 10, 24, 30, 44)))
+                .isEqualTo(33);
+    }
+
+    @DisplayName("보너스 번호가 1~45 사이의 범위를 벗어나는 숫자이면 예외가 발생한다.")
+    @Test
+    void invalidRangeOfBonusNumber() {
+        String bonusNum1 = "0";
+        assertThatThrownBy(() -> InputManager.validateBonusNumber(bonusNum1, Arrays.asList(4, 5, 10, 24, 30, 44)))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        String bonumsNum2 = "46";
+        assertThatThrownBy(() -> InputManager.validateBonusNumber(bonumsNum2, Arrays.asList(4, 5, 10, 24, 30, 44)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 포함 여부를 반영하여 당첨 개수를 카운트한다.")
+    @Test
+    void judgeWithBonusNumber() {
+        List<Integer> winCnts = Arrays.asList(4, 5, 5, 2, 6);
+        List<Boolean> containsBonus = Arrays.asList(false, false, true, true, true);
+
+        long containBonusCnt = (int) (IntStream.range(0, winCnts.size())
+                .filter(i -> containsBonus.get(i) && winCnts.get(i) == 5)
+                .count());
+        long notContainBonusCnt = winCnts.stream().filter(num -> num == 5).count() - containBonusCnt;
+
+
+        // 조건에 맞게 각 개수를 카운트
+        assertThat(winCnts.stream().filter(num -> num == 3).count()).isEqualTo(0);
+        assertThat(winCnts.stream().filter(num -> num == 4).count()).isEqualTo(1);
+        assertThat(containBonusCnt).isEqualTo(1);
+        assertThat(notContainBonusCnt).isEqualTo(1);
+        assertThat(winCnts.stream().filter(num -> num == 6).count()).isEqualTo(1);
     }
 }

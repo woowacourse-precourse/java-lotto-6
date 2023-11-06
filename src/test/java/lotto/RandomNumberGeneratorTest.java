@@ -24,13 +24,7 @@ public class RandomNumberGeneratorTest {
     @DisplayName("로또 번호 숫자가 중복 되면 예외 발생")
     @Test
     void duplicateNumbers() {
-        LottoNumbers lottoNumbers = new LottoNumbers();
-        lottoNumbers.add(new LottoNumber(10));
-        lottoNumbers.add(new LottoNumber(1));
-        lottoNumbers.add(new LottoNumber(40));
-        lottoNumbers.add(new LottoNumber(35));
-        lottoNumbers.add(new LottoNumber(17));
-        lottoNumbers.add(new LottoNumber(10));
+        LottoNumbers lottoNumbers = LottoNumbersFixtures.createDuplicateLottoNumbers();
 
         NumberGenerator generator = () -> lottoNumbers;
 
@@ -41,12 +35,7 @@ public class RandomNumberGeneratorTest {
     @DisplayName("로또 번호 개수가 6개가 아니라면 예외 발생")
     @Test
     void createOverOrUnderSize() {
-        LottoNumbers lottoNumbers = new LottoNumbers();
-        lottoNumbers.add(new LottoNumber(10));
-        lottoNumbers.add(new LottoNumber(1));
-        lottoNumbers.add(new LottoNumber(40));
-        lottoNumbers.add(new LottoNumber(35));
-        lottoNumbers.add(new LottoNumber(10));
+        LottoNumbers lottoNumbers = LottoNumbersFixtures.createOverSizeLottoNumbers();
 
         NumberGenerator generator = () -> lottoNumbers;
 

@@ -1,8 +1,12 @@
 package lotto.collaboration.lottos;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.io.lottos.DuplicateLottosRandoms;
+import lotto.io.lottos.NotSixLottosRandoms;
+import lotto.io.lottos.SuccessLottosRandoms;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,5 +28,22 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    void make를_통해서_로또번호_생성가능() {
+        assertThatNoException()
+                .isThrownBy(() -> Lotto.make(new SuccessLottosRandoms()));
+    }
+
+    @Test
+    void make를_통해서_중복에대해_예외처리가능() {
+        assertThatThrownBy(() -> Lotto.make(new DuplicateLottosRandoms()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void make를_통해서_숫자개수가맞지않는경우에대해_예외처리가능() {
+        assertThatThrownBy(() -> Lotto.make(new NotSixLottosRandoms()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

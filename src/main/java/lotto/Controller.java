@@ -4,12 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Controller {
     public void run() {
-        int money = convertMoney(inputMoney());
-        int lotto = numberOfLotto(money);
-        Lottos lottos = getLottos(lotto);
+        Money money = getMoney();
+        Lottos lottos = getLottos(money.getTicket());
 
-        System.out.println(money);
-        System.out.println(lotto);
+        System.out.println(money.getTicket());
         lottos.getLottos().forEach(System.out::println);
     }
 
@@ -22,8 +20,9 @@ public class Controller {
         return Integer.parseInt(input);
     }
 
-    private int numberOfLotto(int money) {
-        return money / 1000;
+    private Money getMoney() {
+        int money = convertMoney(inputMoney());
+        return new Money(money);
     }
 
     private Lottos getLottos(int ticket) {

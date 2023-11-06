@@ -33,28 +33,6 @@ public class WinningStatistics {
                 .sum();
     }
 
-    private String getMessage(WinningCriteria winningCriteria) {
-        DecimalFormat decimalFormat = new DecimalFormat(Values.AMOUNT_DECIMAL_FORMAT);
-        String formattedPrizeAmount = decimalFormat.format(winningCriteria.getPrizeAmount());
-        String winningFormat = Messages.WINNING_MESSAGE;
-        if (winningCriteria == WinningCriteria.SECOND) {
-            winningFormat = Messages.WINNING_SECOND_MESSAGE;
-        }
-        return String.format(winningFormat, winningCriteria.getMatchingCount(), formattedPrizeAmount,
-                winningInfo.get(winningCriteria));
-    }
-
-
-    @Override
-    public String toString() {
-        String statistics = Messages.WINNING_STATISTICS + Messages.SEPARATOR_LINE;
-        String result = Arrays.stream(WinningCriteria.values())
-                .filter(criteria -> criteria != WinningCriteria.LOSE)
-                .map(this::getMessage)
-                .collect(Collectors.joining());
-        return statistics + result;
-    }
-
     public Map<WinningCriteria, Integer> getWinningInfo() {
         return winningInfo;
     }

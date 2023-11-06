@@ -23,10 +23,10 @@ public class LottoController {
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         WinningStatistics winningStatistics = getWinningStatistics(purchasedLottos, winningLotto);
+        OutputView.printWinningStatistics(winningStatistics);
 
-        String winningResult = winningStatistics.toString();
         double profitPercentage = getProfit(winningStatistics, purchasedLottos);
-        OutputView.printResult(winningResult, profitPercentage);
+        OutputView.printProFitPercentage(profitPercentage);
     }
 
     private PurchasedLottos createPurchasedLottos() {

@@ -6,11 +6,11 @@ public class UI {
 	LottoService lottoService = new LottoService();
 
 	void on() {
-		int NumberOfLottoTickets = inputMoney();
-
+		long NumberOfLottoTickets = inputMoney();
+		System.out.println(NumberOfLottoTickets + "개를 구매했습니다.");
 	}
 
-	int inputMoney() {
+	long inputMoney() {
 		try {
 			System.out.println("구입금액을 입력해 주세요.");
 			String cost = Console.readLine();

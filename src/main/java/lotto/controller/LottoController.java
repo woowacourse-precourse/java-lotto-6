@@ -17,24 +17,33 @@ public class LottoController {
     public void run() {
         System.out.println(PrintMessages.INPUT_PRICE);
         String purchasePrice = InputHandler.purchasePrice();
-        Lottos lottos = LottoStore.publishLotto(Integer.parseInt(purchasePrice));
+        final Lottos lottos = LottoStore.publishLotto(Integer.parseInt(purchasePrice));
 
         System.out.println(PrintMessages.INPUT_WINNING_NUMBER);
         String winningNumberInput = InputHandler.winningNumber();
-        List<String> beforeWinningNumbers = Arrays.stream(winningNumberInput.split(SEPARATOR)).toList();
+        final List<String> beforeWinningNumbers = Arrays.stream(winningNumberInput.split(SEPARATOR)).toList();
 
         System.out.println(PrintMessages.INPUT_BONUS_NUMBER);
         String bonusNum = InputHandler.bonusNumber(beforeWinningNumbers);
-        WinningNumber winningNumber = new WinningNumber(toIntegers(beforeWinningNumbers), Integer.parseInt(bonusNum));
+        final WinningNumber winningNumber = new WinningNumber(toIntegers(beforeWinningNumbers), Integer.parseInt(bonusNum));
 
-        List<LottoRank> lottoRanks = lottos.checkRank(winningNumber);
-
-        for (LottoRank lottoRank : lottoRanks) {
-            System.out.println(lottoRank);
-        }
+        final List<LottoRank> lottoRanks = lottos.checkRank(winningNumber);
+        double rate = getRateOfReturn(lottoRanks, purchasePrice);
+        System.out.println(rate);
     }
 
+    private double getRateOfReturn(List<LottoRank> lottoRanks, String purchasePrice) {
+        int totalReward = 0;
+        double rateOfReturn;
 
+        for (LottoRank lottoRank : lottoRanks) {
+            totalReward += lottoRank.getReward();
+        }
+
+        rateOfReturn = totalReward / Double.parseDouble(purchasePrice);
+
+        return rateOfReturn;
+    }
 
     private List<Integer> toIntegers(List<String> beforeWinningNumbers) {
         List<Integer> afterWinningNumbers = new ArrayList<>();

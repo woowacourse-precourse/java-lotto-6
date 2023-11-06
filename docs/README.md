@@ -23,10 +23,10 @@
 - 로또 번호는 1~45사이의 Random 값 추출
 - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
 - 1개의 로또는 서로 다른 숫자 6개
-- 로또 번호들과 보너스 번호는 같지 않음
 
 ### 당첨 로또 생성
 - 사용자의 입력을 당첨 로또로 생성
+- 당첨 번호와 보너스 번호는 중복될 수 없음
 
 ### 로또 등수 판별
 - 1등: 6개 번호 일치

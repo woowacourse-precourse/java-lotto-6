@@ -4,10 +4,13 @@ import static lotto.enums.Delimiter.COMMA;
 import static lotto.enums.ErrorMassage.INVALID_NUMBER;
 import static lotto.enums.ErrorMassage.NOT_SEPARATE_BY_DELIMITER;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
 public class Converter {
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,###");
+
     private Converter() {
     }
 
@@ -26,5 +29,9 @@ public class Converter {
         return Arrays.stream(input.split(COMMA.getValue()))
                 .map(Converter::convertToInt)
                 .toList();
+    }
+
+    public static String convertNumberWithComma(int number) {
+        return DECIMAL_FORMAT.format(number);
     }
 }

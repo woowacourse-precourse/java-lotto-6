@@ -1,10 +1,10 @@
 package lotto.ui;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import lotto.domain.LottoTicket;
 import lotto.dto.WinningResult;
 import lotto.enums.Prize;
+import lotto.util.Converter;
 
 public class OutputView {
     public void printError(String errorMessage) {
@@ -23,7 +23,7 @@ public class OutputView {
         Arrays.stream(Prize.PRIZES)
                 .filter(prize -> prize != Prize.NONE)
                 .forEach(p -> System.out.printf(getFormat(p),
-                        p.getMatchedCount(), convertFormat(p.getWinningMoney()), winningResult.countOf(p)));
+                        p.getMatchedCount(), Converter.convertNumberWithComma(p.getWinningMoney()), winningResult.countOf(p)));
     }
 
     private String getFormat(Prize prize) {
@@ -31,11 +31,6 @@ public class OutputView {
             return "%d개 일치, 보너스 볼 일치 (%s원) - %d개%n";
         }
         return "%d개 일치 (%s원) - %d개%n";
-    }
-
-    private String convertFormat(int winningMoney) {
-        DecimalFormat formatter = new DecimalFormat("###,###");
-        return formatter.format(winningMoney);
     }
 
     public void printYield(double yield) {

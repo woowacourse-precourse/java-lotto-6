@@ -18,21 +18,45 @@ public class InputView {
 
     public static List<Integer> inputLottoWinningNum() {
         System.out.println(INPUT_LOTTO_WINNING);
-        return numberList(Console.readLine());
-    }
-
-    public static int inputBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+        try {
+            return numberList(Console.readLine());
+        } catch (Exception e) {
+            // numberList 함수에서 에러가 여러개 나올 수 있기 때문에 Exception으로 catch
+            return inputLottoWinningNum();
+        }
     }
 
     public static List<Integer> numberList(String winningNumber) {
         String[] result = winningNumber.split(",");
         try {
+            if (result.length != 6) {
+                throw new IllegalArgumentException();
+            }
+
             return Arrays.stream(result).map(Integer::parseInt).collect(Collectors.toList());
         } catch (NumberFormatException e) {
             ErrorMessage.typeException();
-            return numberList(Console.readLine());
+            throw new NumberFormatException();
+        } catch (IllegalArgumentException e) {
+            ErrorMessage.sizeException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER);
+        try {
+            int parsedNumber = Integer.parseInt(Console.readLine());
+            if (parsedNumber <= 0 || parsedNumber > 45) {
+                throw new IllegalArgumentException();
+            }
+            return parsedNumber;
+        } catch (NumberFormatException e) {
+            ErrorMessage.typeException();
+            throw new NumberFormatException();
+        } catch (IllegalArgumentException e) {
+            ErrorMessage.rangeException();
+            throw new IllegalArgumentException();
         }
     }
 }

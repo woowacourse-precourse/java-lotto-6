@@ -11,12 +11,12 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    public LottoController() {
-    }
-
+    private static final int LOTTO_PRICE = 1000;
     private static List<Lotto> lottoList;
     private static LottoTarget lottoTarget;
-    private static PlayerLottoAmount playerLottoAmount;
+
+    public LottoController() {
+    }
 
     public void run() {
         try {
@@ -26,16 +26,17 @@ public class LottoController {
         }
     }
 
-    public void start() {
+    private void start() {
         int ticketCount = inputPlayerAmount();
         OutputView.printTicketCount(ticketCount);
 
         lottoList = makeLottoList(ticketCount);
         lottoTarget = makeLottoTarget();
-        lottoResult(ticketCount * 1000);
+        lottoResult(ticketCount * LOTTO_PRICE);
     }
 
     private int inputPlayerAmount() {
+        PlayerLottoAmount playerLottoAmount;
         try {
             playerLottoAmount = new PlayerLottoAmount(InputView.inputPlayerAmount());
         } catch (IllegalArgumentException e) {
@@ -50,14 +51,25 @@ public class LottoController {
     }
 
     private static LottoTarget makeLottoTarget() {
-        List<Integer> integerList = InputView.inputLottoWinningNum();
-        int bonusNumber = InputView.inputBonusNumber();
-
-        Lotto lotto = new Lotto(integerList);
-        return new LottoTarget(lotto, bonusNumber);
+        List<Integer> lottoWinningNumList = makeLottoWinningNumList();
+        int bonusNumber = makeBonusNumber();
+        return new LottoTarget(new Lotto(lottoWinningNumList), bonusNumber);
     }
 
-    public static void lottoResult(int amount) {
+    private static List<Integer> makeLottoWinningNumList() {
+        return InputView.inputLottoWinningNum();
+    }
+
+    private static int makeBonusNumber() {
+        try {
+            return InputView.inputBonusNumber();
+        } catch (Exception e) {
+            // InputView.inputBonusNumber 함수에서 에러가 여러개 나올 수 있기 때문에 Exception으로 catch
+            return makeBonusNumber();
+        }
+    }
+
+    private static void lottoResult(int amount) {
         List<ResultStatus> resultStatuses = LottoUtil.gradingLottoListWithLottoTarget(lottoTarget, lottoList);
         LottoUtil.printResult(resultStatuses, amount);
     }

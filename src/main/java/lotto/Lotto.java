@@ -14,6 +14,13 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if (hasSameNumbers(numbers)) {
+            throw new IllegalArgumentException();
+        }
+        if (areInRange(numbers)) {
+            throw new IllegalArgumentException();
+        }
+
     }
 
     private boolean hasSameNumbers(List<Integer> numbers) {

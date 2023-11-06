@@ -56,4 +56,9 @@ public class Lotto {
         return matchCount;
     }
 
+    @Override
+    public String toString() {
+        return String.join(", ", numbers.toString());
+    }
+
 }

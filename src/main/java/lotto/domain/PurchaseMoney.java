@@ -36,8 +36,6 @@ public class PurchaseMoney {
         if(!isDividedByOneThousand(money)){
             PURCHASE_MONEY_IS_NOT_DIVIDENED_BY_ONE_THOUSAND.throwException();
         }
-
-        // 음수가 입력된 경우
     }
 
     private boolean isEmpty(final String money){

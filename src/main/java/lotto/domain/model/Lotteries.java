@@ -1,7 +1,10 @@
 package lotto.domain.model;
 
 import lotto.constant.RankConstant;
+import lotto.constant.RegularConstant;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,4 +44,23 @@ public class Lotteries {
 
         return statics;
     }
+
+    public double calculateTotalReturnAsPercent(int inputMoney, Map<String, Integer> statistics) {
+        long totalReturn = statistics.get(RankConstant.FIRST) * RankConstant.FIRST_WINNINGS
+                + statistics.get(RankConstant.SECOND) * RankConstant.SECOND_WINNINGS
+                + statistics.get(RankConstant.THIRD) * RankConstant.THIRD_WINNINGS
+                + statistics.get(RankConstant.FOURTH) * RankConstant.FOURTH_WINNINGS
+                + statistics.get(RankConstant.FIFTH) * RankConstant.FIFTH_WINNINGS;
+
+        double profitPercentage = (totalReturn / (double) inputMoney) * 100;
+
+        return roundToTwoDecimalPlaces(profitPercentage);
+    }
+
+    protected double roundToTwoDecimalPlaces(double number) {
+        BigDecimal bd = new BigDecimal(number);
+        bd = bd.setScale(RegularConstant.FIRST_DECIMAL_PLACE, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
 }

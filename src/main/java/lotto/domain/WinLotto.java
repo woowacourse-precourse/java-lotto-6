@@ -23,7 +23,7 @@ public class WinLotto extends Lotto {
     }
 
     private void validateBonusRange(Integer bonus) {
-        if (isInNumberRange(bonus)) {
+        if (!isInNumberRange(bonus)) {
             throw new IllegalArgumentException();
         }
     }

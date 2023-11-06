@@ -2,6 +2,7 @@ package view;
 
 import static util.ErrorMessage.ONLY_CAN_NUMBER;
 import static util.ProgressMessage.INPUT_AMOUNT;
+import static util.ProgressMessage.INPUT_BONUS_NUMBER;
 import static util.ProgressMessage.INPUT_WINNING_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -19,10 +20,10 @@ public class InputView {
 
     private static int validateIsNumber(){
         while(true) {
-            int amount = 0;
+            int number = 0;
             try {
-                amount = Integer.parseInt(getInput());
-                return amount;
+                number = Integer.parseInt(getInput());
+                return number;
             } catch (IllegalArgumentException e) {
                 System.out.println(ONLY_CAN_NUMBER.getErrorMessage());
             }
@@ -48,6 +49,11 @@ public class InputView {
                 System.out.println(ONLY_CAN_NUMBER.getErrorMessage());
             }
         }
+    }
+
+    public static int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER.getProgressMessage());
+        return validateIsNumber();
     }
 
     private static String getInput() {

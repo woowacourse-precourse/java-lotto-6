@@ -68,6 +68,10 @@ public class Lotto {
         return true;
     }
 
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
 
     public static void outputLotto(Lotto lotto) {
         sort(lotto.numbers);

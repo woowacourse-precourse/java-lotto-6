@@ -7,9 +7,12 @@ import static lotto.Controller.LOTTERY_PRICE;
 
 public class Validator {
 
+    public static final Integer CORRECT_COMMA_COUNT = 5;
     public static final Integer FIRST_LOTTERY_NUMBER = 1;
     public static final Integer LAST_LOTTERY_NUMBER = 45;
     public static final Integer MAX_LOTTERY_COUNT = 6;
+    public static final Integer WINNING_NUMBERS_MIN_DUPLICATE_COUNT = 2;
+    public static final Integer BONUS_NUMBER_MIN_DUPLICATE_COUNT = 1;
 
     public static boolean isInputEmpty(String userInput) {
         try {
@@ -22,6 +25,20 @@ public class Validator {
         }
         return false;
     }
+
+    public static boolean isValidCharacter(String userInput) {
+        try {
+            int commaCount = userInput.length() - userInput.replace(",", "").length();
+            if (commaCount != CORRECT_COMMA_COUNT) {
+                throw new IllegalArgumentException(ErrorMessages.IS_EMPTY.writeErrorMessageByCase());
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
 
     public static boolean isNumberOnly(String userInput) {
         if (userInput.equals("")) {
@@ -66,7 +83,7 @@ public class Validator {
 
     public static boolean isNumberOnValidRange(Integer winningNumber) {
         try {
-            if (FIRST_LOTTERY_NUMBER < winningNumber || winningNumber < LAST_LOTTERY_NUMBER) {
+            if (FIRST_LOTTERY_NUMBER > winningNumber || winningNumber > LAST_LOTTERY_NUMBER) {
                 throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_OUT_OF_RANGE.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {
@@ -76,12 +93,23 @@ public class Validator {
         return false;
     }
 
-    public static boolean isNumberDuplicate(Integer winningNUmber, List<Integer> winningNumbers) {
+    public static boolean isWinningNumberDuplicate(Integer checkingNumber, List<Integer> referenceNumbers) {
         try {
+            int duplicateNumberFrequency = Collections.frequency(referenceNumbers, checkingNumber);
+            if (duplicateNumberFrequency >= WINNING_NUMBERS_MIN_DUPLICATE_COUNT) {
+                throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_DUPLICATE.writeErrorMessageByCase());
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
+    }
 
-            int duplicateNumberFrequency = Collections.frequency(winningNumbers, winningNUmber);
-
-            if (duplicateNumberFrequency > 1) {
+    public static boolean isBonusNumberDuplicate(Integer checkingNumber, List<Integer> referenceNumbers) {
+        try {
+            int duplicateNumberFrequency = Collections.frequency(referenceNumbers, checkingNumber);
+            if (duplicateNumberFrequency >= BONUS_NUMBER_MIN_DUPLICATE_COUNT) {
                 throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_DUPLICATE.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {

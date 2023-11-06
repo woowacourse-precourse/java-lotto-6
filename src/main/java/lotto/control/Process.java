@@ -25,8 +25,9 @@ public class Process {
      */
     public void buyLotto() {
         LottoEnvelop lottoEnvelop = null;
+        Integer moneyOfUser = 0;
 
-        Integer moneyOfUser = user.payMoney();
+        moneyOfUser = user.payMoney();
         lottoEnvelop = lottoSeller.sell(moneyOfUser);
         user.takeLottoEnvelop(lottoEnvelop);
     }

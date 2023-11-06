@@ -3,12 +3,12 @@ package lotto.controller;
 import java.util.Map;
 import lotto.controller.dto.LottosResponse;
 import lotto.model.LottoNumber;
+import lotto.model.LottoNumbersGenerator;
 import lotto.model.LottoPrizeCalculator;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.WinningNumber;
 import lotto.model.WinningNumbers;
-import lotto.util.RandomNumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -49,7 +49,7 @@ public class Controller {
     }
 
     private Lottos getLottos(final long money) {
-        return Lottos.createWith(money, new RandomNumbersGenerator());
+        return Lottos.createWith(money, new LottoNumbersGenerator());
     }
 
     private WinningNumbers getWinningNumbers() {

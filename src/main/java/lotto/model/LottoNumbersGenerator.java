@@ -1,9 +1,9 @@
-package lotto.util;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class RandomNumbersGenerator implements NumbersGenerator {
+public class LottoNumbersGenerator implements NumbersGenerator {
 
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;

@@ -41,5 +41,11 @@ public class LottoController {
         }
     }
 
+    private void displayIssuedLottos() {
+        for(Lotto lotto: this.issuedLottos) {
+            lotto.displayLottoNumbers();
+        }
+    }
+
 
 }

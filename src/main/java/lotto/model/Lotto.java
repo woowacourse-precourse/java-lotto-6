@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
 
 public class Lotto {
 
@@ -29,22 +31,23 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_COUNT_MESSAGE);
+        if (numbers.size() != LottoConstant.LOTTO_NUMBERS_LENGTH.get()) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_LENGTH.get());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream()
-                .anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
-            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE_MESSAGE);
+                .anyMatch(number -> number < LottoConstant.MIN_LOTTO_NUMBER.get() ||
+                        number > LottoConstant.MAX_LOTTO_NUMBER.get())) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.get());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != numbers.size()) {
-            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_DUPLICATE_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE.get());
         }
     }
 

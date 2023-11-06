@@ -3,6 +3,7 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.constant.ErrorMessage;
 import lotto.validator.InputValidator;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +42,7 @@ public class PurchaseTest {
     @Test
     void 구입_금액_입력_0일때_실패_테스트() {
         int purchaseMoney = 0;
-        String expectedErrorMessage = Purchase.ERROR_NOT_BIGGER_THAN_ZERO;
+        String expectedErrorMessage = ErrorMessage.PURCHASE_MONEY_NOT_BIGGER_THAN_ZERO.get();
 
         assertThatThrownBy(() -> new Purchase(purchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -62,7 +63,7 @@ public class PurchaseTest {
     @Test
     void 구입_금액_입력_1000원_단위인지_검증_실패_테스트() {
         int purchaseMoney = 123;
-        String expectedErrorMessage = Purchase.ERROR_NOT_MULTIPLE_OF_1000;
+        String expectedErrorMessage = ErrorMessage.PURCHASE_MONEY_NOT_MULTIPLE_OF_1000.get();
 
         assertThatThrownBy(() -> new Purchase(purchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class)

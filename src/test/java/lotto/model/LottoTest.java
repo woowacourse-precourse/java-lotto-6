@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.constant.ErrorMessage;
 import lotto.util.CommaParser;
 import lotto.validator.InputValidator;
 import org.junit.jupiter.api.DisplayName;
@@ -50,7 +51,7 @@ class LottoTest {
     @Test
     void 당첨_번호_숫자_개수_실패_테스트() {
         String input = "1,2,3,4,5";
-        String expectedErrorMessage = Lotto.ERROR_LOTTO_NUMBER_COUNT_MESSAGE;
+        String expectedErrorMessage = ErrorMessage.LOTTO_NUMBER_LENGTH.get();
 
         List<Integer> numbers = createLottoNumbers(input);
 
@@ -62,7 +63,7 @@ class LottoTest {
     @Test
     void 당첨_번호_숫자_범위_실패_테스트() {
         String input = "140,1,2,3,4,5";
-        String expectedErrorMessage = Lotto.ERROR_LOTTO_NUMBER_RANGE_MESSAGE;
+        String expectedErrorMessage = ErrorMessage.LOTTO_NUMBER_RANGE.get();
 
         List<Integer> numbers = createLottoNumbers(input);
 
@@ -74,7 +75,7 @@ class LottoTest {
     @Test
     void 당첨_번호_숫자_중복_실패_테스트() {
         String input = "1,1,2,3,4,5";
-        String expectedErrorMessage = Lotto.ERROR_LOTTO_NUMBER_DUPLICATE_MESSAGE;
+        String expectedErrorMessage = ErrorMessage.LOTTO_NUMBER_DUPLICATE.get();
 
         List<Integer> numbers = createLottoNumbers(input);
 

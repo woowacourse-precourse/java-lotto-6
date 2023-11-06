@@ -1,11 +1,23 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.CustomizedException;
 
 public class InputView {
 
-    static final int LOTTO_PRICE= Integer.parseInt(Console.readLine());
-    public static int getLottoPrice(){
-        return LOTTO_PRICE;
+
+    public static int getLottoPrice() {
+        int LottoPrice;
+        while (true) {
+            try {
+                LottoPrice = Integer.parseInt(Console.readLine());
+                CustomizedException.NotDivisibleByThousandException(LottoPrice);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+        return LottoPrice;
     }
 }

@@ -52,5 +52,9 @@ Lotto클래스 generateRandomLotto메소드
 ```````````````````````````````
 4. 입력받은 가격을 가지고 로또 몇장을 구입하는지 계산해주는 기능 추가
 ``````````````````````````
-Outview클래스 calculateLottoCount메소드
+Outputview클래스 calculateLottoCount메소드
+```````````````````````````````
+5. 입력받은 가격이 1000으로 나누어 떨어지지 않을 때 오류가 나는 기능 추가
+``````````````````````````
+Customized클래스 NotDivisibleByThousandException메소드
 ```````````````````````````````

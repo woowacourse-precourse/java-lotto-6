@@ -31,12 +31,12 @@ class LottoResultTest {
     void calculateEarningsRate() {
         // given
         LottoResult lottoResult = new LottoResult();
-        lottoResult.state.replace(Prize.FIFTH,1);
+        lottoResult.state.replace(Prize.FIFTH,1);   // 5등 5000원, 1개
 
         // when
-        Double earningsRate = lottoResult.calculateEarningsRate(5);
+        Double earningsRate = lottoResult.calculateEarningsRate(5); // 로또 5장
 
         // then
-        assertThat(earningsRate).isEqualTo(100);
+        assertThat(earningsRate).isEqualTo(100); // (5000 / (1000*5)) * 100 = 100 %
     }
 }

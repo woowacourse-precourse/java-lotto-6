@@ -1,6 +1,6 @@
 package lotto.util.message;
 
-public enum WinningStatisticsMessage {
+public enum WinningStatisticsMessage implements MessageFormatter{
 
 	TOP("당첨 통계\n---"),
     DONT_HAVE_BONUS_NUMBER("%,d개 일치 (%,d원) - %d개"),	
@@ -17,7 +17,7 @@ public enum WinningStatisticsMessage {
 		return message;
 	}
 
-	public String getForMatMessage(Object... params) {
+	public String getFormattedMessage(Object... params) {
 		return String.format(getMessage(), params);
 	}
 }

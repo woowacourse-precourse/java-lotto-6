@@ -20,7 +20,6 @@ import lotto.util.WinningLottoConverter;
 import lotto.util.WinningLottoValidator;
 
 public class Application {
-    private static final int EMPTY = 0;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -122,7 +121,7 @@ public class Application {
         if (purchasePrice < LottoConfig.PURCHASE_PRICE_UNIT) {
             throw new BelowMinimumPurchasePriceException(purchasePrice);
         }
-        if (purchasePrice % LottoConfig.PURCHASE_PRICE_UNIT != EMPTY) {
+        if (purchasePrice % LottoConfig.PURCHASE_PRICE_UNIT != 0) {
             throw new NonMultipleOfPriceUnitException(purchasePrice);
         }
     }

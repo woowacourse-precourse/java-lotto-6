@@ -3,6 +3,7 @@ import static lotto.constant.ViewMessage.*;
 
 import lotto.constant.ViewMessage;
 import lotto.domain.Lotto;
+import lotto.domain.ResultLotto;
 
 import java.util.List;
 
@@ -29,6 +30,11 @@ public class OutputView {
     public static void printInputBonusNumber() {
         System.out.println();
         printlnViewMessage(INPUT_BONUS_NUMBER);
+    }
+
+    public static void printMatchLotto(ResultLotto resultLotto) {
+        printlnViewMessage(RESULT_LOTTO);
+        resultLotto.printResult();
     }
 
     private static void printlnViewMessage(ViewMessage message) {

@@ -2,8 +2,10 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.validation.Error;
 
 public class Lotto {
+    private final static int COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -12,8 +14,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != COUNT) {
+            Error error = Error.COUNT_ERROR;
+            throw new IllegalArgumentException(error.message());
         }
     }
 

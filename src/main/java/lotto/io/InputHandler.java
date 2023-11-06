@@ -8,6 +8,11 @@ public class InputHandler {
         return Console.readLine();
     }
 
+    public static String askWinningNumbers() {
+        printMessage(Command.ASK_WINNING_NUMBERS);
+        return Console.readLine();
+    }
+
     private static void printMessage(Command command) {
         System.out.println(command.prompt());
     }

@@ -34,7 +34,7 @@ public class Payment {
     }
 
     private boolean canNotDivision1000(int money) {
-        return money % MAX_PAYMENT.get() != 0;
+        return money % MIN_PAYMENT.get() != 0;
     }
 
     private void throwException(String errorMessage) {

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSixNumbers(numbers);
         validateDuplicateNumbers(numbers);
+        numbers.sort(Integer::compareTo);
         this.numbers = numbers;
     }
 

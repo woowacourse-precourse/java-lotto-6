@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.BonusNumber;
+import lotto.domain.LotteryOffice;
 import lotto.domain.LottoStore;
 import lotto.domain.lotto.Lotto;
 import lotto.view.InputView;
@@ -32,6 +33,8 @@ public class GameController {
         printPurchaseResult(winningTicket);
         BonusNumber bonusNumber = askBonusNumber(winningTicket);
         System.out.println(bonusNumber);
+        LotteryOffice lotteryOffice = new LotteryOffice(lottoStore.getIssuedLotto(), winningTicket, bonusNumber);
+        outputView.printWinningResult(lotteryOffice.getWinningsAndCounts());
     }
 
     private Lotto getWinningTicket() {

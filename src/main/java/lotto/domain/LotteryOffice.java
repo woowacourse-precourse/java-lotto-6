@@ -11,8 +11,8 @@ import lotto.domain.lotto.Lotto;
 
 public class LotteryOffice {
 
-    private static final int FIVE_MATCHES = 5;
-
+    private static final int INITIALIZING_NUM = 0;
+    private static final int INCREMENT = 1;
     private List<Lotto> issuedLotto;
     private Lotto winningTicket;
     private BonusNumber bonusNumber;
@@ -23,12 +23,12 @@ public class LotteryOffice {
         this.bonusNumber = bonusNumber;
     }
 
-    public void printResult() {
+    public Map<Rankings, Integer> getWinningsAndCounts() {
         List<Rankings> winningResult = determineWinning();
-        Map<Rankings,Integer> finalResult = getFinalResult(winningResult);
+        return getFinalResult(winningResult);
     }
 
-    public List<Rankings> determineWinning() {
+    private List<Rankings> determineWinning() {
         List<Rankings> winningResult = new ArrayList<>();
         for (Lotto lotto : issuedLotto) {
             winningResult.add(decideRankings(lotto, winningTicket, bonusNumber));
@@ -36,20 +36,19 @@ public class LotteryOffice {
         return winningResult;
     }
 
-    public Map<Rankings,Integer> getFinalResult(List<Rankings> winningResult) {
-        Map<Rankings,Integer> finalResult = initializedResult();
+    private Map<Rankings,Integer> getFinalResult(List<Rankings> winningResult) {
+        Map<Rankings,Integer> finalResult = initializeResult();
         for (Rankings rankings : winningResult) {
-            finalResult.put(rankings, finalResult.get(rankings) + 1);
+            finalResult.put(rankings, finalResult.get(rankings) + INCREMENT);
         }
         return finalResult;
     }
 
-    private Map<Rankings,Integer> initializedResult() {
+    private Map<Rankings,Integer> initializeResult() {
         Map<Rankings,Integer> result = new LinkedHashMap<>();
         for (Rankings rankings : Rankings.values()) {
-            result.put(rankings, 0);
+            result.put(rankings, INITIALIZING_NUM);
         }
-        result.remove(Rankings.NONE);
         return result;
     }
 

@@ -32,7 +32,6 @@ public class LottoValidatorImpl implements LottoValidator {
 			String lottoNumber = numberSplitter.nextToken();
 			validateIsDigit(lottoNumber);
 			int parseNumber = validateLottoRange(lottoNumber);
-			//중복확인
 			lottoNumbers.add(parseNumber);
 		}
 		return lottoNumbers;

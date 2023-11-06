@@ -8,8 +8,19 @@ public class Lotto {
 	private final List<Integer> numbers;
 
 	public Lotto(List<Integer> numbers) {
+		validateDupliCate(numbers);
 		validateSizeOfCollection(numbers);
 		this.numbers = numbers;
+	}
+
+	private void validateDupliCate(List<Integer> numbers) {
+		boolean isDuplicate = numbers.stream()
+			.distinct()
+			.toList()
+			.size() != 6;
+		if (isDuplicate) {
+			ErrorOperation.DUPLICATE_ERROR.apply();
+		}
 	}
 
 	private void validateSizeOfCollection(List<Integer> numbers) {

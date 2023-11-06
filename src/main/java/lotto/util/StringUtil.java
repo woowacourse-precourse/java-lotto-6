@@ -3,7 +3,6 @@ package lotto.util;
 import static lotto.enums.Delimiter.COMMA;
 import static lotto.enums.ErrorMassage.INVALID_NUMBER;
 import static lotto.enums.ErrorMassage.NOT_SEPARATE_BY_DELIMITER;
-import static lotto.enums.LottoConfig.LOTTO_COUNT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,12 +20,10 @@ public class StringUtil {
     }
 
     public static List<Integer> convertToIntListByDelimiter(final String input) {
-        String[] inputs = input.split(COMMA.getValue());
-        if (inputs.length != LOTTO_COUNT.getValue()) {
+        if (!input.matches(COMMA.getRegex())) {
             throw new IllegalArgumentException(NOT_SEPARATE_BY_DELIMITER.getMassage());
         }
-
-        return Arrays.stream(inputs)
+        return Arrays.stream(input.split(COMMA.getValue()))
                 .map(StringUtil::convertToInt)
                 .toList();
     }

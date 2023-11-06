@@ -1,6 +1,10 @@
-package lotto.model;
+package lotto.controller;
 
-import java.util.Arrays;
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
+import lotto.model.LottoTicket;
+import lotto.model.WinningNumbers;
+
 import java.util.List;
 
 public class LottoReader {
@@ -41,37 +45,5 @@ public class LottoReader {
         return null;
     }
 
-    public static class WinningNumbers {
-        private final List<Integer> winningNumbers;
 
-        public WinningNumbers(String winningNumbers) {
-            validate();
-            this.winningNumbers = Arrays.stream(winningNumbers.split(",")).map(Integer::parseInt).toList();
-        }
-
-        private void validate() {
-
-        }
-
-        public List<Integer> getWinningNumbers() {
-            return this.winningNumbers;
-        }
-    }
-
-    public static class BonusNumber {
-        private final Integer bonusNumber;
-
-        public BonusNumber(String bonusNumber) {
-            validate();
-            this.bonusNumber = Integer.parseInt(bonusNumber);
-        }
-
-        public Integer getBonusNumber() {
-            return bonusNumber;
-        }
-
-        private void validate() {
-
-        }
-    }
 }

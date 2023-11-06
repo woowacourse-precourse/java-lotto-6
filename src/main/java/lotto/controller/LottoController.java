@@ -1,11 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Deposit;
-import lotto.model.LottoMachine;
-import lotto.model.LottoReader;
-import lotto.model.LottoReader.BonusNumber;
-import lotto.model.LottoReader.WinningNumbers;
-import lotto.model.LottoTicket;
+import lotto.model.*;
 import lotto.view.InputView;
 
 import java.util.List;
@@ -36,7 +31,7 @@ public class LottoController {
 
     public LottoTicket purchaseLottoTicket(Deposit deposit) {
         Integer purchaseAmount = deposit.calculateBuyableLottoAmount();
-        LottoTicket lottoTicket = LottoMachine.issue(purchaseAmount);
+        LottoTicket lottoTicket = LottoTicketMachine.issue(purchaseAmount);
         printPurchaseAmount(purchaseAmount);
         printLottoTicket(lottoTicket);
         return lottoTicket;

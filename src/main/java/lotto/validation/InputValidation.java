@@ -48,6 +48,7 @@ public class InputValidation {
         isEmptyValidation(bonusNumber);
         isNumberRangeValidation(bonusNumber);
         checkNumberRange(bonusNumber);
+        checkWinningNumbersDuplication(lottoWinningNumbers, bonusNumber);
     }
 
     private void isEmptyValidation(String input) {
@@ -99,6 +100,12 @@ public class InputValidation {
     private void isDuplicateNumber(String[] lottoNumber) {
         Set<String> checkDuplicationNumber = new HashSet<>(List.of(lottoNumber));
         if (checkDuplicationNumber.size() != 6) {
+            throw new IllegalArgumentException(ERROR + IS_DUPLICATION_LOTTO_NUMBER_MESSAGE);
+        }
+    }
+
+    private void checkWinningNumbersDuplication(List<Integer> lottoWinningNumbers, String bonusNumber) {
+        if(lottoWinningNumbers.contains(Integer.parseInt(bonusNumber))){
             throw new IllegalArgumentException(ERROR + IS_DUPLICATION_LOTTO_NUMBER_MESSAGE);
         }
     }

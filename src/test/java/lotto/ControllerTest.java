@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.util.Utils;
-import lotto.util.Validator;
+import lotto.model.LottoMoneyValidator;
 import org.junit.jupiter.api.Test;
 
 public class ControllerTest {
@@ -16,17 +16,17 @@ public class ControllerTest {
 
     @Test
     void readLottoMoney_숫자_아니면_예외반환() {
-        assertThatThrownBy(() -> Validator.validateInputString("abc")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoMoneyValidator.validateInputString("abc")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void readLottoMoney_공백_이면_예외반환() {
-        assertThatThrownBy(() -> Validator.validateHasInput(" ")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoMoneyValidator.validateHasInput(" ")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void readLottoMoney_null_이면_예외반환() {
-        assertThatThrownBy(() -> Validator.validateHasInput(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoMoneyValidator.validateHasInput(null)).isInstanceOf(IllegalArgumentException.class);
     }
 }
 

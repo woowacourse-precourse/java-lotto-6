@@ -1,9 +1,23 @@
-package lotto.util;
+package lotto.model;
 
-public class Validator {
+public class LottoMoneyValidator {
     private static final String NULL_ERROR_MESSAGE = "[ERROR] 입력값이 null 일 수 없습니다.";
     private static final String BLANK_ERROR_MESSAGE = "[ERROR] 입력값은 빈 값일 수 없습니다.";
     private static final String NUMBER_ERROR_MESSAGE = "[ERROR] 입력값은 숫자여야 합니다.";
+
+    public static void validateMoneyIsValid(String input) {
+        validateInputString(input);
+        validateMoneyIsPositive(input);
+        validateMoneyDivideBy1000(input);
+    }
+
+    public static void validateMoneyIsPositive(String input) {
+
+    }
+
+    public static void validateMoneyDivideBy1000(String input) {
+
+    }
 
     public static void validateInputString(String input) {
         validateHasInput(input);

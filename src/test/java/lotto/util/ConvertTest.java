@@ -1,13 +1,12 @@
 package lotto.util;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class ConvertTest {
 
@@ -65,5 +64,13 @@ public class ConvertTest {
                     .isThrownBy(() -> Convert.stringToIntegerList("1,2,3,f,5,6"))
                     .withMessageContaining("[ERROR]");
         }
+    }
+
+    @DisplayName("세 자리마다 쉼표를 붙이고, 소수점 둘째 자리에서 반올림하는 조건으로 실수를 형식화한다.")
+    @Test
+    void formatDoubleWithCommaAndRound() {
+        String formattedDouble = Convert.formatDoubleWithCommaAndRound(1234567.47);
+
+        assertThat(formattedDouble).isEqualTo("1,234,567.5");
     }
 }

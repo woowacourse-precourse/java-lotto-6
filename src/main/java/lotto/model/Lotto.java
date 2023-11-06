@@ -25,13 +25,13 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
         return numbers.contains(number);
     }
 
+    public Integer get(int index) {
+        return numbers.get(index);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();
-    }
-
-    public Integer get(int index) {
-        return numbers.get(index);
     }
 
     public List<Integer> getNumbers() {

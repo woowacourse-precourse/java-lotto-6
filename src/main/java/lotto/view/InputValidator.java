@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.constant.LottoConstants;
 import lotto.utils.Parser;
 
-// InputView에서 모델의 도움 없이 스스로 할 수 있는 수준의 검증 실행
+// InputView에서 model의 도움 없이 스스로 할 수 있는 수준의 검증 실행
 public class InputValidator {
     public static final String ERROR_MESSAGE_HEADER = "[ERROR]";
     public static final String WHITE_SPACE = " ";
@@ -15,13 +15,6 @@ public class InputValidator {
     public static final String SIZE_OF_LOTTO_IS_NOT_PROPER = "번호의 개수가 6개가 아닙니다.";
     public static final String NUMBER_NOT_IN_RANGE = "올바른 범위의 수가 아닙니다.";
     public static final String HAS_DUPLICATED_NUMBER = "중복 값이 존재합니다.";
-
-    public String createErrorMessage(String message) {
-        return ERROR_MESSAGE_HEADER
-                + WHITE_SPACE
-                + message;
-    }
-
 
     // 구입 금액 입력 검증
     public void validateBudgetInput(String userInput) {
@@ -90,5 +83,11 @@ public class InputValidator {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(createErrorMessage(HAS_DUPLICATED_NUMBER));
         }
+    }
+
+    public String createErrorMessage(String message) {
+        return ERROR_MESSAGE_HEADER
+                + WHITE_SPACE
+                + message;
     }
 }

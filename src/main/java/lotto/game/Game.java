@@ -11,13 +11,22 @@ import lotto.ui.Output;
 
 public class Game {
     public void run() {
-        int count = Store.convertPriceToCount(Input.getPurchasePrice());
+        int count = Store.convertPriceToCount(getUserPurchasePrice());
         Output.printPurchaseCount(count);
         LottoBundle lottoBundle = Store.generateLottoBundle(count);
         Output.printLottoBundle(lottoBundle);
         Result result = makeLottoResult();
         Score score = lottoBundle.checkResult(result);
         Output.printLottoResult(score);
+    }
+
+    private int getUserPurchasePrice() {
+        try {
+            return Input.getPurchasePrice();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return getUserPurchasePrice();
+        }
     }
 
     private Result makeLottoResult() {

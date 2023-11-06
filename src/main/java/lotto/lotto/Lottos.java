@@ -1,6 +1,6 @@
 package lotto.lotto;
 
-import lotto.WinningLottoCounter;
+import lotto.game.WinningLottoCounter;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.game;
 
 public class PurchaseAmount {
 

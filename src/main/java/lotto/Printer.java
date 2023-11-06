@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.game.WinningLottoCounter;
+
 public class Printer {
 
     private static final String FIFTH_PLACE_MESSAGE = "3개 일치 (5,000원) - ";

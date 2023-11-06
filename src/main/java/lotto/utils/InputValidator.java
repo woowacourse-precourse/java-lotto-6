@@ -10,8 +10,7 @@ public class InputValidator {
     private static final int MAX_NUMBER = 45;
     private static final int WINNING_NUMBERS_COUNT = 6;
 
-    public void validatePurchaseAmount(String input) {
-        int money = Integer.parseInt(input);
+    public void validatePurchaseAmount(int money) {
         if (money % MONEY_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.");
         }

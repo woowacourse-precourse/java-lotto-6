@@ -10,11 +10,10 @@ public class InputView {
     private final static String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private final InputParser inputParser = new InputParser();
 
-    public String inputPurchaseAmount() {
+    public int inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
         String purchaseAmount = Console.readLine();
-        inputParser.validatePurchaseAmount(purchaseAmount);
-        return purchaseAmount;
+        return inputParser.validatePurchaseAmount(purchaseAmount);
     }
 
     public List<Integer> inputWinningNumbers() {
@@ -24,6 +23,7 @@ public class InputView {
 
     public int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+        String bonus = Console.readLine();
+        return inputParser.validateBonusNumber(bonus);
     }
 }

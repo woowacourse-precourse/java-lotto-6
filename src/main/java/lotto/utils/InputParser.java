@@ -11,14 +11,15 @@ public class InputParser {
         this.inputValidator = new InputValidator();
     }
 
-    public void validatePurchaseAmount(String input) {
-        inputValidator.validateNonNumeric(input);
-        inputValidator.validatePurchaseAmount(input);
+    public int validatePurchaseAmount(String input) {
+        int money = inputValidator.validateNonNumeric(input);
+        inputValidator.validatePurchaseAmount(money);
+        return money;
     }
 
     public List<Integer> parseAndValidateWinningNumbers(String input) {
         List<Integer> parsedNumbers = parseNumbers(input);
-        validateNumbers(parsedNumbers);
+        validateWinningNumbers(parsedNumbers);
         return parsedNumbers;
     }
 
@@ -34,9 +35,15 @@ public class InputParser {
         return inputValidator.validateNonNumeric(number);
     }
 
-    private void validateNumbers(List<Integer> parsedNumbers) {
+    private void validateWinningNumbers(List<Integer> parsedNumbers) {
         inputValidator.validateNumberRange(parsedNumbers);
         inputValidator.validateDuplicateNumbers(parsedNumbers);
         inputValidator.validateWinningNumbersCount(parsedNumbers);
+    }
+
+    public int validateBonusNumber(String input) {
+        int bonus = inputValidator.validateNonNumeric(input);
+        inputValidator.validateNumberRange(List.of(bonus));
+        return bonus;
     }
 }

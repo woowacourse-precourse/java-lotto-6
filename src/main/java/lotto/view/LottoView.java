@@ -20,13 +20,14 @@ public class LottoView {
         for(Lotto lotto : lotts){
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 
     public void printInputWinningNumber(){
-        System.out.println(Views.INPUT_WINNING_NUMBER_MESSAGE);
+        System.out.println(Views.INPUT_WINNING_NUMBER_MESSAGE.getMessage());
     }
 
     public void printInputBonusNumber(){
-        System.out.println(Views.INPUT_BONUS_NUMBER_MESSAGE);
+        System.out.println(Views.INPUT_BONUS_NUMBER_MESSAGE.getMessage());
     }
 }

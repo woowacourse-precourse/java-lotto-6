@@ -59,7 +59,7 @@ class LottoPrizeTest {
         String secondPrizeString = lottoPrize.toString();
 
         //then
-        assertThat(secondPrizeString).containsPattern("[보너스 불 일치]");
+        assertThat(secondPrizeString).containsPattern("[보너스\s불\s일치]");
     }
 
     @DisplayName("출력하는 문자열이 2등 당첨자라면 '보너스 불 일치'라는 문구가 들어가지 않는다.")
@@ -72,7 +72,7 @@ class LottoPrizeTest {
         String lottoPrizeString = lottoPrize.toString();
 
         //then
-        assertThat(lottoPrizeString).containsPattern("[^보너스 불 일치]");
+        assertThat(lottoPrizeString).containsPattern("[^보너스\s불\s일치]");
     }
 
     @DisplayName("문자열은 상금, 일치 개수를 포함해야한다.")
@@ -86,7 +86,7 @@ class LottoPrizeTest {
 
         //then
         assertThat(lottoPrizeString)
-                .contains(lottoPrize.getPrizeMoney().toString())
+                .contains("1,500,000원")
                 .contains(lottoPrize.getMatchedNumberCount().toString());
     }
 

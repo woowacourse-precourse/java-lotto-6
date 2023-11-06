@@ -33,12 +33,14 @@ public class OutputManager {
     }
 
     public void printMatchAndPrize(List<Result> results) {
-
-        List<Result> prizes = List.of(FIFTH_PRIZE, FOURTH_PRIZE, THIRD_PRIZE, SECOND_PRIZE, FIRST_PRIZE);
-
-        for (Result result : prizes) {
+        for (Result result : Result.values()) {
+            if (result == NO_PRIZE) {
+                continue;
+            }
             String match = result.getMatchingNumbers() + "개 일치";
-            if (result==SECOND_PRIZE) match += ", 보너스 볼 일치" ;
+            if (result==SECOND_PRIZE) {
+                match += ", 보너스 볼 일치" ;
+            }
             String prize = " (" + String.format("%,d", result.getPrize()) + "원) - ";
             String matchingNum = results.stream().filter(r-> r==result).count() + "개";
 

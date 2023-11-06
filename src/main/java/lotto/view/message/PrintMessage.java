@@ -8,7 +8,8 @@ public enum PrintMessage {
     BONUS_NUMBER_INPUT_MESSAGE("보너스 번호를 입력해 주세요."),
 
     // OutputView
-    LOTTO_COUNT_OUTPUT_MESSAGE("개를 구매했습니다.");
+    LOTTO_COUNT_OUTPUT_MESSAGE("개를 구매했습니다."),
+    WIN_STATISTICS_OUTPUT_MESSAGE("당첨 통계\n---");
 
     private final String message;
 

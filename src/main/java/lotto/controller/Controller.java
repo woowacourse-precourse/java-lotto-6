@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Result;
 import lotto.model.User;
 import lotto.policy.LottoPolicy;
 import lotto.policy.WinConditionPolicy;
@@ -59,16 +60,20 @@ public class Controller {
         return 0;
     }
 
-    public void makeResults(List<WinConditionPolicy> results, int winNumberCount, int bonusNumberCount) {
+    public void makeResults(List<WinConditionPolicy> winResult, int winNumberCount, int bonusNumberCount) {
         for (WinConditionPolicy winConditionPolicy : WinConditionPolicy.values()) {
-            WinConditionPolicy result = winConditionPolicy.getMatchWith(winNumberCount, bonusNumberCount);
-            addResultWhenNotNull(results, result);
+            WinConditionPolicy winCondition = winConditionPolicy.getMatchWith(winNumberCount, bonusNumberCount);
+            addResultWhenNotNull(winResult, winCondition);
         }
     }
 
-    private void addResultWhenNotNull(List<WinConditionPolicy> results, WinConditionPolicy result) {
-        if (results != null) {
-            results.add(result);
+    private void addResultWhenNotNull(List<WinConditionPolicy> winResult, WinConditionPolicy winCondition) {
+        if (winResult != null) {
+            winResult.add(winCondition);
         }
+    }
+
+    public void showWinStatistics(Result result) {
+        outputView.printWinStatistics(result);
     }
 }

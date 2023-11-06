@@ -43,7 +43,7 @@ public class LottoServiceTest {
     @Test
     @DisplayName("로또 당첨 여부 확인후 enum으로 리턴")
     void fullLottoService() {
-        assertThat(lottoService.sendAnalyzedResult(lottos, new WinningLotto(List.of(3, 4, 5, 6, 7, 8), 12)))
+        assertThat(lottoService.sendAnalyzedResult(lottos, new WinningLotto(new Lotto(List.of(3, 4, 5, 6, 7, 8)), 12)))
                 .contains(Rank.FOURTH, Rank.FIRST, Rank.SECOND);
     }
 }

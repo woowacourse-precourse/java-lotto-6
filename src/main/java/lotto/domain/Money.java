@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class Money {
     private final int money;
-    public Money(int money) {
+    public Money(int money) throws IllegalArgumentException{
         validate(money);
         this.money = money;
     }

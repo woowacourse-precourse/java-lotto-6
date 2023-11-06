@@ -131,7 +131,7 @@ public class Function {
 	}
 	
 	protected int[] matchNumbers(ArrayList<Integer>[] numbers, ArrayList<Integer> winningNumber, int bonusNumber) {
-		int[] matched= new int[7];
+		int[] matched= new int[8];
 		for(ArrayList<Integer> num:numbers) {
 			int count= eachMatchedNum(num, winningNumber);
 			if(count==5) {
@@ -151,9 +151,18 @@ public class Function {
 		return count;
 	}
 	private int bonusMatch(ArrayList<Integer> number, int bonusNumber, int count) {
-		if(number.equals(bonusNumber)) {
+		if(number.contains(bonusNumber)) {
 			count= 7;
 		}
 		return count;
+	}
+	
+	protected void showWinningDetails(int[] matched) {
+		
+		System.out.println("3개 일치 (5,000원) - "+matched[3]+"개");
+		System.out.println("4개 일치 (50,000원) - "+matched[4]+"개");
+		System.out.println("5개 일치 (1,500,000원) - "+matched[5]+"개");
+		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+matched[7]+"개");
+		System.out.println("6개 일치 (2,000,000,000원) - "+matched[6]+"개");
 	}
 }

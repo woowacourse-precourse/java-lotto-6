@@ -13,7 +13,12 @@ public class Output {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public void bonusNumberAsk(){
+    public void bonusNumberAsk() {
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public void correctStatisPrint() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
     }
 }

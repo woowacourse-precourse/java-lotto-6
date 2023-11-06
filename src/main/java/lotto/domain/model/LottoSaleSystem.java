@@ -1,6 +1,7 @@
 package lotto.domain.model;
 
 import lotto.domain.util.ErrorMessage;
+import lotto.domain.util.InputValidator;
 
 public class LottoSaleSystem {
 
@@ -9,6 +10,8 @@ public class LottoSaleSystem {
 
     public void isValidMoney(String input) {
         try {
+            InputValidator.isNull(input);
+            InputValidator.isEmptyOrBlank(input);
             int purchaseMoney = Integer.parseInt(input);
             isValidMoneyUnit(purchaseMoney);
             this.purchaseMoney = purchaseMoney;

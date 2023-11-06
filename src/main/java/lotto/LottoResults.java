@@ -30,6 +30,7 @@ public class LottoResults {
         Arrays.stream(LottoResult.values())
                 .filter(LottoResult::isWinner)
                 .forEach(result -> appendResultToText(sb, result));
+        sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
 

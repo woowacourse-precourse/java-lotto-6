@@ -37,15 +37,22 @@ class CommunicatorTest {
         );
     }
 
-    static Stream<Arguments> listAndStringProvider() {
+    static Stream<Arguments> listAndStringsProvider() {
         return Stream.of(
                 Arguments.of(
                         List.of(LottoResult.FOUR_MATCHING, LottoResult.FIVE_MATCHING),
-                        "4개 일치 (50,000원) - 1개" + System.lineSeparator() + "5개 일치 (1,500,000원) - 1개"
+                        List.of(
+                                "4개 일치 (50,000원) - 1개",
+                                "5개 일치 (1,500,000원) - 1개",
+                                "총 수익률은 15500.0%입니다."
+                        )
                 ),
                 Arguments.of(
                         List.of(LottoResult.FIVE_MATCHING, LottoResult.FIVE_MATCHING),
-                        "5개 일치 (1,500,000원) - 2개"
+                        List.of(
+                                "5개 일치 (1,500,000원) - 2개",
+                                "총 수익률은 30000.0%입니다."
+                        )
                 )
         );
     }
@@ -127,17 +134,18 @@ class CommunicatorTest {
     }
 
     @ParameterizedTest
-    @MethodSource("listAndStringProvider")
+    @MethodSource("listAndStringsProvider")
     @DisplayName("당첨 내역을 출력한다.")
-    void test_PrintResult(List<LottoResult> results, String expectedMessage) {
+    void test_PrintResult(List<LottoResult> results, List<String> expectedMessages) {
         //given
+        BigDecimal payment = new BigDecimal(10000);
         LottoResults lottoResults = LottoResults.of(results);
 
         //when
-        communicator.printResults(lottoResults);
+        communicator.printResults(payment, lottoResults);
 
         //then
-        assertThat(output()).contains(expectedMessage);
+        expectedMessages.forEach(message -> assertThat(output()).contains(message));
     }
 
     void setIn(String input) {

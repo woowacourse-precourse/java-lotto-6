@@ -45,9 +45,20 @@ public class Communicator {
         lotteries.forEach(this::printLotto);
     }
 
-    public void printResults(LottoResults results) {
+    public void printResults(BigDecimal payment, LottoResults results) {
         printer.print("당첨 통계");
         printer.print(results.toTextFormat());
+        printProfitRate(payment, results);
+    }
+
+    private void printLotto(Lotto lotto) {
+        printer.print(lotto.toTextFormat());
+    }
+
+    private void printProfitRate(BigDecimal payment, LottoResults results) {
+        String profitRate = results.calculateProfitRate(payment)
+                .toString();
+        printer.print("총 수익률은 %s%%입니다.".formatted(profitRate));
     }
 
     private BigDecimal getMoneyWithPrompt(String prompt) {
@@ -79,9 +90,5 @@ public class Communicator {
         if (payment.compareTo(BigDecimal.ZERO) < 1) {
             throw new IllegalArgumentException("0보다 큰 금액을 입력해주세요.");
         }
-    }
-
-    private void printLotto(Lotto lotto) {
-        printer.print(lotto.toTextFormat());
     }
 }

@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import lotto.view.InputView;
-
 public class LottoMachine {
     private LottoPurchase lottoPurchase;
 

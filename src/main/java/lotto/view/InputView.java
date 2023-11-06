@@ -52,4 +52,8 @@ public class InputView {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, SPACE_INCLUDED+input));
         }
     }
+
+    public void finishInput() {
+        Console.close();
+    }
 }

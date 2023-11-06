@@ -3,7 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import lotto.manager.Exception;
+import lotto.manager.LottoException;
 import lotto.validator.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,7 +27,7 @@ public class ValidatePurchaseAmountTest {
         Amount amount = new Amount(purchaseAmount);
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Validator.validatePurchaseAmount(amount))
-                .withMessageContaining(Exception.PURCHASE_AMOUNT_OUT_OF_RANGE.getErrorMessage());
+                .withMessageContaining(LottoException.PURCHASE_AMOUNT_OUT_OF_RANGE.getErrorMessage());
     }
 
     @ParameterizedTest
@@ -37,6 +37,6 @@ public class ValidatePurchaseAmountTest {
         Amount amount = new Amount(purchaseAmount);
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Validator.validatePurchaseAmount(amount))
-                .withMessageContaining(Exception.PURCHASE_AMOUNT_WRONG_UNIT.getErrorMessage());
+                .withMessageContaining(LottoException.PURCHASE_AMOUNT_WRONG_UNIT.getErrorMessage());
     }
 }

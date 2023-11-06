@@ -3,7 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import lotto.manager.Exception;
+import lotto.manager.LottoException;
 import lotto.validator.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,7 +25,7 @@ public class ValidateWinningLottoNumbersTest {
     void 당첨번호_검증_숫자아님_예외처리(String winningLottoNumbers) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Validator.validateWinningLottoNumbers(winningLottoNumbers))
-                .withMessageContaining(Exception.NOT_NUMBER.getErrorMessage());
+                .withMessageContaining(LottoException.NOT_NUMBER.getErrorMessage());
     }
 
     @ParameterizedTest
@@ -34,7 +34,7 @@ public class ValidateWinningLottoNumbersTest {
     void 당첨번호_검증_개수틑림_예외처리(String winningLottoNumbers) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Validator.validateWinningLottoNumbers(winningLottoNumbers))
-                .withMessageContaining(Exception.LOTTO_NUMBERS_COUNT_OUT_OF_RANGE.getErrorMessage());
+                .withMessageContaining(LottoException.LOTTO_NUMBERS_COUNT_OUT_OF_RANGE.getErrorMessage());
     }
 
     @ParameterizedTest
@@ -43,7 +43,7 @@ public class ValidateWinningLottoNumbersTest {
     void 당첨번호_검증_숫자범위초과_예외처리(String winningLottoNumbers) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Validator.validateWinningLottoNumbers(winningLottoNumbers))
-                .withMessageContaining(Exception.LOTTO_NUMBER_OUT_OF_RANGE.getErrorMessage());
+                .withMessageContaining(LottoException.LOTTO_NUMBER_OUT_OF_RANGE.getErrorMessage());
     }
 
     @ParameterizedTest
@@ -52,6 +52,6 @@ public class ValidateWinningLottoNumbersTest {
     void 당첨번호_검증_숫자중복_예외처리(String winningLottoNumbers) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Validator.validateWinningLottoNumbers(winningLottoNumbers))
-                .withMessageContaining(Exception.LOTTO_NUMBER_HAS_DUPLICATES.getErrorMessage());
+                .withMessageContaining(LottoException.LOTTO_NUMBER_HAS_DUPLICATES.getErrorMessage());
     }
 }

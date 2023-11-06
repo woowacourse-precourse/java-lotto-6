@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
-import lotto.manager.Exception;
+import lotto.manager.LottoException;
 import lotto.validator.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("보너스 번호 검증")
 public class ValidateBonusNumberTest {
-    private static List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+    private static final List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
 
     @ParameterizedTest
     @ValueSource(ints = {7, 9, 22, 35, 45})
@@ -28,7 +28,7 @@ public class ValidateBonusNumberTest {
     void 보너스번호_검증_범위초과_예외처리(int bonusNumber) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Validator.validateBonusNumber(bonusNumber, winningLottoNumbers))
-                .withMessageContaining(Exception.LOTTO_NUMBER_OUT_OF_RANGE.getErrorMessage());
+                .withMessageContaining(LottoException.LOTTO_NUMBER_OUT_OF_RANGE.getErrorMessage());
     }
 
     @ParameterizedTest
@@ -37,6 +37,6 @@ public class ValidateBonusNumberTest {
     void 보너스번호_검증_중복_예외처리(int bonusNumber) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Validator.validateBonusNumber(bonusNumber, winningLottoNumbers))
-                .withMessageContaining(Exception.BONUS_NUMBER_IN_WINNING_NUMBERS.getErrorMessage());
+                .withMessageContaining(LottoException.BONUS_NUMBER_IN_WINNING_NUMBERS.getErrorMessage());
     }
 }

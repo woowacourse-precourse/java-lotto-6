@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.manager.Exception;
+import lotto.manager.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ class LottoTest {
     void createLottoByUnderSize() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4)))
-                .withMessageContaining(Exception.LOTTO_NUMBERS_COUNT_OUT_OF_RANGE.getErrorMessage());
+                .withMessageContaining(LottoException.LOTTO_NUMBERS_COUNT_OUT_OF_RANGE.getErrorMessage());
     }
 
     @DisplayName("로또 번호가 1~45를 벗어나면 예외가 발생한다.")
@@ -37,6 +37,6 @@ class LottoTest {
     void createLottoByOutOfRange() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, -11, 455)))
-                .withMessageContaining(Exception.LOTTO_NUMBER_OUT_OF_RANGE.getErrorMessage());
+                .withMessageContaining(LottoException.LOTTO_NUMBER_OUT_OF_RANGE.getErrorMessage());
     }
 }

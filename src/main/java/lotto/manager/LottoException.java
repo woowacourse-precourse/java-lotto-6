@@ -1,6 +1,6 @@
 package lotto.manager;
 
-public enum Exception {
+public enum LottoException {
     PURCHASE_AMOUNT_OUT_OF_RANGE("[ERROR] 구입금액은 1000원 미만일 수 없습니다."),
     PURCHASE_AMOUNT_WRONG_UNIT("[ERROR] 구입금액은 1000원 단위로 입력해주세요."),
     PURCHASE_AMOUNT_NOT_NUMBER("[ERROR] 구입금액은 숫자로 입력해주세요."),
@@ -13,7 +13,7 @@ public enum Exception {
 
     private final String errorMessage;
 
-    Exception(String errorMessage) {
+    LottoException(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

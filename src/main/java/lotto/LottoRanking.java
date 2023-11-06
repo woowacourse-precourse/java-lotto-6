@@ -42,7 +42,7 @@ public enum LottoRanking {
                 .map(lottoRanking -> lottoRanking.prizeMoney)
                 .toList();
         return amounts.stream()
-                .reduce((resultAmount, amount) -> resultAmount.add(amount))
+                .reduce(Amount::add)
                 .orElse(DID_NOT_WIN.prizeMoney);
     }
 }

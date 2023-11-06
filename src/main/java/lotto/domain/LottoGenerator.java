@@ -8,7 +8,7 @@ import static lotto.constants.Value.MIN_LOTTO_NUMBER;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Handling;
+import lotto.utility.Handling;
 
 public class LottoGenerator {
     public static List<Lotto> createLottos(Integer lottoCount) {

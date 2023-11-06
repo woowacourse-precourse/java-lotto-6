@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validator;
 
 import static lotto.constants.Error.COMMA_ERROR;
 import static lotto.constants.Message.COMMA;

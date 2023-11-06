@@ -6,7 +6,7 @@ import static lotto.constants.Error.SIZE_ERROR;
 
 import java.util.HashSet;
 import java.util.List;
-import lotto.Validator;
+import lotto.validator.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;

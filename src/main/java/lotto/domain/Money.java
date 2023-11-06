@@ -2,7 +2,7 @@ package lotto.domain;
 
 import static lotto.constants.Value.THOUSAND;
 
-import lotto.Validator;
+import lotto.validator.Validator;
 
 public class Money {
     private Integer money;

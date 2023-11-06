@@ -1,10 +1,11 @@
-package lotto;
+package lotto.utility;
 
 import static lotto.constants.Message.COMMA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.validator.Validator;
 import lotto.domain.Lotto;
 
 public class Handling {

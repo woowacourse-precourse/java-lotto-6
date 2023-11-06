@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.validation.PurchaseAmountValidator;
+import lotto.validation.WinningNumbersInputValidator;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_MSG = "구입금액을 입력해 주세요.";
@@ -28,7 +29,9 @@ public class InputView {
     public static List<Integer> inputWinningNumbers() {
         System.out.println(WINNING_NUMBERS_MSG);
         try {
-            String[] numbers = Console.readLine().split(",");
+            String input = Console.readLine();
+            WinningNumbersInputValidator.validate(input);
+            String[] numbers = input.split(",");
             return convertToWinningNumbers(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

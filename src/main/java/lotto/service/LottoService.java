@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Result;
 import lotto.domain.WinNum;
 import lotto.enums.LottoEnum;
 import lotto.repository.LottoRepository;
@@ -30,13 +31,7 @@ public class LottoService {
         return temp;
     }
 
-    public void printMyLottoList(List<Lotto> myLottoList) {
-        System.out.println(myLottoList.size()+"개를 구매했습니다.");
-        for (Lotto lotto : myLottoList) {
-            System.out.println(lotto);
-        }
-        System.out.println();
-    }
+
 
     public WinNum createWinNum() {
         List<Integer> winNum = lottoRepository.getWinNum();
@@ -46,7 +41,8 @@ public class LottoService {
 
     public void getResult(List<Lotto> myLottoList, WinNum winNum) {
         for (Lotto lotto : myLottoList) {
-            lotto.countResult(winNum);
+            LottoEnum lottoEnum = lotto.countResult(winNum);
+            Result.resultCount(lottoEnum);
         }
     }
 

@@ -1,6 +1,13 @@
 package lotto.domain;
 
-import java.util.*;
+import lotto.constant.ConstantValue;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import static lotto.message.ExceptionMessage.INPUT_NOT_DISTINCT;
+import static lotto.message.ExceptionMessage.NUMBER_SIZE_NOT_MATCH;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,15 +23,15 @@ public class Lotto {
     }
 
     private void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != ConstantValue.LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(NUMBER_SIZE_NOT_MATCH);
         }
     }
 
     private void validateNumberDuplicate(List<Integer> numbers){
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if(distinctNumbers.size() != numbers.size()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_NOT_DISTINCT);
         }
     }
 

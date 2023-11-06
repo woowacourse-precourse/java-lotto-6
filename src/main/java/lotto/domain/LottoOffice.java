@@ -30,6 +30,14 @@ public class LottoOffice {
         return result;
     }
 
+    public double getYield(int purchaseAmount) {
+        double sum = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            sum += (rank.getWinningAmount() * result.get(rank));
+        }
+        return sum / purchaseAmount * PERCENT;
+    }
+
     private void saveResult(int rightNumber, int bonusNumber) {
         if (rightNumber < LEAST_WINNING_COUNT) return;
         LottoRank rank = LottoRank.findRank(rightNumber, bonusNumber);

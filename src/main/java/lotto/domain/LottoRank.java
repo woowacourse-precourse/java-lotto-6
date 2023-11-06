@@ -27,4 +27,8 @@ public enum LottoRank {
                 .findAny()
                 .orElseThrow();
     }
+
+    public long getWinningAmount() {
+        return winningAmount;
+    }
 }

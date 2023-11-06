@@ -104,4 +104,12 @@ public class PurchaseAmountTest {
         assertThatThrownBy(() -> new PurchaseAmount(inputAmount))
                 .hasMessage(ExceptionMessage.PURCHASE_AMOUNT_IS_NOT_THOUSAND_UNITS.getMessage());
     }
+
+    @DisplayName("로또 구매 개수 반환")
+    @Test
+    void getnumberOfLottoPurchased(){
+        String inputAmount = "14000";
+        PurchaseAmount purchaseAmount = new PurchaseAmount(inputAmount);
+        assertThat(purchaseAmount.getNumberOfLottoPurchased()).isEqualTo(14);
+    }
 }

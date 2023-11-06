@@ -24,6 +24,10 @@ public class PurchaseAmount {
     private final int amount;
     private final int numberOfLottoPurchased;
 
+    public int getNumberOfLottoPurchased(){
+        return numberOfLottoPurchased;
+    }
+
     public int getAmount(){
         return amount;
     }

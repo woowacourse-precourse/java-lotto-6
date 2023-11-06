@@ -6,28 +6,13 @@
 
 
 
-# 도메인 분석
-User -> Console 을 통해 사용자 입력 :: 구입금액 및 당첨번호
-
-FrontDesk -> 구매와 로또당첨에 대한 도우미
-
-Cashier -> 구입금액에 대한 티켓 개수 계산
-
-TicketOffice -> 티켓 요청에 따른 발행처
-
-TicketIssuer -> 티켓 생성
-
-WinningNumberChecker -> 당첨통계 핸들러
-
-WinningPolicy -> 당첨 정책에 따른 {등수:당첨 개수} 계산
-
-WinningPolicyWooWaCourse -> 현재 당첨 정책에 따른 {등수:당첨 개수} 계산 
-
-WinningMoneyCalculator -> 등수에 따른 당첨 금액 계산
-
-RateCalculator -> 수익률 계산
-
-
+# 도메인
+![전체 도메인](전체 도메인.png)
+![컨톨롤러들](컨톨롤러들.png)
+![구매컨트롤러](LotteryPurchaseController.png)
+![발행컨틀로러](LotteryIssueController.png)
+![당첨번호컨트롤러](LotteryAnswerController.png)
+![당첨판단컨트롤러](LotteryCheckController.png)
 
 # 기능구현 리스트
 > (선행)테스트케이스에 대한 (후행)구현에 대한 검증 이후 체크한다.  
@@ -98,6 +83,8 @@ RateCalculator -> 수익률 계산
 - [ ]  Pattern 매칭에 대해서는 새로 생성하지 말고 캐싱할 것
 
 ## 시도사항
+- [ ]  너무 MVC에 종속되어 생각하지 말기
+- [ ]  대신, 최대한 객체지향적 관점으로 유연하게 설계하려고 노력하자
 - [ ]  InputView, OutputView 나누기
 - [ ]  시퀀스다이어그램과 유스케이스를 통해 명확한 도메인 분석 프로세스를 거칠 것
 - [ ]  Tool을 사용하여 추출한 도메인,시퀀스,유스케이스를 README에 기입 => 가독성,리팩토링 향상

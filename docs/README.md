@@ -99,6 +99,9 @@
 - [X] : `LottoTest`
 - [X] : `LottoMachineTest`
 - [X] : `BonusNumberTest`
+- [X] : `WinningLottoTest`
+  - 당첨 번호와 로또 번호 일치 개수 반환 검증
+  - 로또 번호에 보너스 번호의 유무 반환 검증
 - [X] : `WinningNumbersTest`
   - 당첨 번호 예외 검증
   - 당첨 번호, 보너스 번호 중복 예외 검증

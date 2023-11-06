@@ -2,14 +2,19 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
     private static final String MESSAGE_FOR_PURCHASE_AMOUNT_INPUT = "구입금액을 입력해 주세요.";
+    private static final String MESSAGE_FOR_WINNING_NUMBERS_INPUT = "당첨 번호를 입력해 주세요.";
 
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     private static final String ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_INPUT = "구앱금액은 1000원 단위로 숫자를 입력해 주세요.";
 
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmountWithInput();
+        List<Integer> winningNumbers = getWinningNumbersWithInput();
     }
 
     private static int getPurchaseAmountWithInput() {
@@ -35,6 +40,11 @@ public class Application {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private static List<Integer> getWinningNumbersWithInput() {
+        System.out.println(MESSAGE_FOR_WINNING_NUMBERS_INPUT);
+        return new ArrayList<>();
     }
 
     private static void printErrorMessage(String errorMessage) {

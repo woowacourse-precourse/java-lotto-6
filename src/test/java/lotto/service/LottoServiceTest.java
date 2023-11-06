@@ -41,10 +41,34 @@ class LottoServiceTest {
         @DisplayName("로또를 구매할 때 로또 번호가 오름차순으로 정렬되어 저장되는지 검증한다.")
         @Test
         void 로또_번호_정렬_테스트() {
-            when(randomNumberGenerator.uniqueNumbers()).thenReturn(List.of(13,7,22,25,3,10));
+            when(randomNumberGenerator.uniqueNumbers()).thenReturn(List.of(13, 7, 22, 25, 3, 10));
             List<Lotto> purchaseLottos = lottoService.purchase(1);
             Lotto lotto = purchaseLottos.get(0);
             assertThat(lotto.toString()).isEqualTo("[3, 7, 10, 13, 22, 25]");
+        }
+    }
+
+    @Nested
+    @DisplayName("LottoService.initWinningNumbers 테스트")
+    class InitWinningNumbers {
+        @DisplayName("당첨번호를 초기화한 후에 저장된 크기가 6인지 검증한다.")
+        @Test
+        void 당첨번호_초기화_후_크기_테스트() {
+            String[] inputWinningNumbers = {"1","2","3","4","5","6"};
+            lottoService.initWinningNumbers(inputWinningNumbers);
+
+            List<Integer> winningNumbers = lottoService.getWinningNumbers();
+            assertThat(winningNumbers.size()).isEqualTo(6);
+        }
+
+        @DisplayName("당첨번호를 입력받아 정수가 담긴 List로 변환하여 초기화했을 때 요소가 같은지 검증한다.")
+        @Test
+        void 당첨번호_숫자_테스트() {
+            String[] inputWinningNumbers = {"7","2","23","33","42","4"};
+            lottoService.initWinningNumbers(inputWinningNumbers);
+
+            List<Integer> winningNumbers = lottoService.getWinningNumbers();
+            assertThat(winningNumbers).containsExactly(7,2,23,33,42,4);
         }
     }
 }

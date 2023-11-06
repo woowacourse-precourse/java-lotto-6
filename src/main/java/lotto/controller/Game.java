@@ -27,6 +27,7 @@ public class Game {
         Integer lottoCount = buyLotto();
         List<Lotto> lottos = generateLottos(lottoCount);
         Lotto answer = generateAnswer();
+        Integer bonus = generateBonus();
     }
 
     private Integer buyLotto() {
@@ -101,5 +102,12 @@ public class Game {
             result.add(Integer.parseInt(number));
         }
         return result;
+    }
+
+    private Integer generateBonus() {
+        String bonus = message.inputString();
+
+        validator.validateBonus(bonus, START, END);
+        return Integer.parseInt(bonus);
     }
 }

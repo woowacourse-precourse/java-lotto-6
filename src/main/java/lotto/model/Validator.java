@@ -25,4 +25,23 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public void validateBonus(String bonus, Integer start, Integer end) {
+        isBonusNumeric(bonus);
+        isBonusInRange(bonus, start, end);
+    }
+
+    private void isBonusNumeric(String bonus) {
+        if (!bonus.matches(REGULAR_NUMBER)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isBonusInRange(String bonus, Integer start, Integer end) {
+        Integer number = Integer.parseInt(bonus);
+
+        if (number <= start || end <= number) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

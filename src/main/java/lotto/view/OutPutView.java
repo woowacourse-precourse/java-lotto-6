@@ -1,8 +1,10 @@
 package lotto.view;
 
+import static lotto.configuration.OutputConfiguration.INSERT_MONEY;
+
 public class OutPutView {
 
-    public static void printBuyTicket(){
-        System.out.println("구입금액을 입력해 주세요.");
+    public static void printBuyTicket() {
+        System.out.println(INSERT_MONEY.getMessage());
     }
 }

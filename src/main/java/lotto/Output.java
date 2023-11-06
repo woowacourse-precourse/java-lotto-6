@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class Output {
     public static void printLottos(List<Lotto> lottos) {
@@ -11,6 +12,19 @@ public class Output {
             Collections.sort(numbers);
             System.out.println(numbers);
         }
+    }
 
+    public static void printResults(Map<PrizeTier, Long> results, int purchaseAmount) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (PrizeTier prizeTier : PrizeTier.values()) {
+            long count = 0;
+            if (results.containsKey(prizeTier)) {
+                count = results.get(prizeTier);
+            }
+            if (prizeTier != PrizeTier.NONE) { // NONE은 출력하지 않습니다.
+                System.out.println(prizeTier + " - " + count + "개");
+            }
+        }
     }
 }

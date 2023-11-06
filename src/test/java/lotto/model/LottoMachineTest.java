@@ -7,6 +7,8 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import lotto.dto.LottoDto;
+
 class LottoMachineTest {
     @Test
     @DisplayName("전달받은 개수만큼 로또를 생성한다.")
@@ -31,9 +33,9 @@ class LottoMachineTest {
 
         // when
         final Lotto winningLotto = lottoMachine.createWinningLotto(numbers);
-        final List<Integer> result = winningLotto.getNumbers();
+        final LottoDto result = winningLotto.getNumbers();
 
         // then
-        assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(result.numbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }

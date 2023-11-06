@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import lotto.dto.LottoDto;
+
 class LottoManagerTest {
     private static LottoMachine lottoMachine;
 
@@ -41,10 +43,10 @@ class LottoManagerTest {
 
         // when
         final Lotto winningLottoTicket = lottoManager.createWinningLottoTicket(winningNumbers);
-        final List<Integer> result = winningLottoTicket.getNumbers();
+        final LottoDto result = winningLottoTicket.getNumbers();
 
         // then
-        assertThat(result).containsExactly(10, 11, 12, 13, 14, 15);
+        assertThat(result.numbers()).containsExactly(10, 11, 12, 13, 14, 15);
     }
 
     @Test

@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import lotto.dto.LottoDto;
+
 public class Lotto {
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
@@ -40,7 +42,7 @@ public class Lotto {
                 .count();
     }
 
-    public List<Integer> getNumbers() {
-        return List.copyOf(numbers);
+    public LottoDto getNumbers() {
+        return new LottoDto(numbers);
     }
 }

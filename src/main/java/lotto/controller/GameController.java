@@ -11,7 +11,7 @@ public class GameController {
 
     public GameController() {
         this.lottos = new Lottos();
-        this.calculator = new Calculator(payment);
+        this.calculator = new Calculator();
     }
 
     public void run() {
@@ -34,8 +34,9 @@ public class GameController {
         Result result = calculator.calculateResult(lottos.getLottos(),
                 winningNumber.getWinningNumber(),
                 bonusNumber.getBonusNumber());
-
         OutputView.printResult(result);
-        OutputView.printIncomeRate(calculator, result);
+
+        double incomeRate = calculator.calculateIncomeRate(result, payment);
+        OutputView.printIncomeRate(incomeRate);
     }
 }

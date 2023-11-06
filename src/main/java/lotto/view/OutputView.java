@@ -22,8 +22,7 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + ranks.get(1));
     }
 
-    public static void printIncomeRate(Calculator calculator, Result result){
-        double incomeRate = calculator.calculateIncomeRate(result);
+    public static void printIncomeRate(double incomeRate){
         System.out.printf("총 수익률은 %.1f%%입니다.", incomeRate);
     }
 }

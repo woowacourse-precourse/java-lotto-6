@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.domain.Bonus;
 import lotto.model.domain.LottoMachine;
 import lotto.model.domain.LottoResultChecker;
 import lotto.model.domain.Purchase;
@@ -13,6 +14,7 @@ public class LottoGameController {
     private final OutputView outputView;
     private LottoMachine lottoMachine;
     private WinningLotto winningLotto;
+    private Bonus bonus;
     private Purchase purchase;
 
     public LottoGameController(InputView inputView, OutputView outputView) {
@@ -24,21 +26,8 @@ public class LottoGameController {
         purchase = purchaseLottoTickets();
         getLottoTickets();
         getWinningNumbers();
-        //TODO: 보너스 번호 입력 로직 추가
+        getBonusNumber();
         getLotteryStatistics();
-    }
-
-    private Purchase purchaseLottoTickets() {
-        purchase = new Purchase();
-        while (purchase.getInputUntilValid()) {
-            try {
-                String price = inputView.requestPrice();
-                purchase.setOrderInfo(price);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return purchase;
     }
 
     private void getLottoTickets() {
@@ -47,20 +36,33 @@ public class LottoGameController {
         outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
     }
 
+    private Purchase purchaseLottoTickets() {
+        Purchase purchase = new Purchase();
+        purchase.getInput(
+            inputView::requestPrice, // requestPrice() 메서드를 호출하고 결과를 반환하는 람다 표현식
+            (validator, price) -> purchase.setOrderInfo(price)
+        );
+        return purchase;
+    }
+
     private void getWinningNumbers() {
         winningLotto = new WinningLotto();
-        while (winningLotto.getInputUntilValid()) {
-            try {
-                String winningNumbers = inputView.requestWinningNumber();
-                winningLotto.setWinningNumber(winningNumbers);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        winningLotto.getInput(
+            inputView::requestWinningNumber, // requestPrice() 메서드를 호출하고 결과를 반환하는 람다 표현식
+            (validator, numbers) -> winningLotto.setWinningNumber(numbers)
+        );
+    }
+
+    private void getBonusNumber() {
+        bonus = new Bonus();
+        bonus.getInput(
+            inputView::requestBonusNumber, // requestPrice() 메서드를 호출하고 결과를 반환하는 람다 표현식
+            (validator, number) -> bonus.setBonusNumber(winningLotto.getNumbers(), number)
+        );
     }
 
     private void getLotteryStatistics() {
-        LottoResultChecker resultChecker = new LottoResultChecker(lottoMachine.getIssuedLotto(), winningLotto);
+        LottoResultChecker resultChecker = new LottoResultChecker(lottoMachine.getIssuedLotto(), winningLotto, bonus);
         Statistics statistics = new Statistics();
         statistics.makeResultBoard();
         statistics.createData(resultChecker.checkResult());

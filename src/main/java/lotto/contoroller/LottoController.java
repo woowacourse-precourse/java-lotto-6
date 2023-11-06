@@ -12,7 +12,6 @@ import lotto.view.PurchaseListPrinter;
 import lotto.utility.ListTypeChanger;
 import lotto.utility.NumberTypeChanger;
 import lotto.view.InputValue;
-import lotto.view.OutputMessage;
 
 public class LottoController {
     private List<List<Integer>> purchaseList;
@@ -21,19 +20,18 @@ public class LottoController {
 
     public void startLotto() {
         int purchaseAmount = getInputPurchase();
-        // 여기는 purchaseAmount를 인자로 하는 메소드 만들어버리기
-        System.out.printf("%n%s%n", OutputMessage.PURCHASE.getMessage(purchaseAmount / 1000));
-        PurchaseListPrinter.generateAndPrintLottoNumbers(purchaseAmount); // 비교를 위해서 어딘가에 담아두는 식으로 리팩토링 필요할듯
-        // 요기까지
+
+        OutputValue.guidePurchaseList(purchaseAmount);
+        PurchaseListPrinter.generateAndPrintLottoNumbers(purchaseAmount);
         purchaseList = PurchaseListPrinter.getPurchaseList();
+
         lotto = getInputLotto();
         bonus = getInputBonus();
-        // 임시(나중에 메소드화시킬것)
-        LottoPurchaseListComparer test = new LottoPurchaseListComparer();
-        test.compareBundle(purchaseList, lotto, bonus);
-        OutputValue.guidePrize(test.getResultList());
-        // 여기까지? 혹은 마지막 통계까지?
-        OutputValue.guideRate((RateCalculator.converseRate(purchaseAmount, test.getResultList())));
+        LottoPurchaseListComparer comparer = new LottoPurchaseListComparer();
+        comparer.compareBundle(purchaseList, lotto, bonus);
+
+        OutputValue.guidePrize(comparer.getResultList());
+        OutputValue.guideRate((RateCalculator.converseRate(purchaseAmount, comparer.getResultList())));
     }
 
     // 구입 금액 입력

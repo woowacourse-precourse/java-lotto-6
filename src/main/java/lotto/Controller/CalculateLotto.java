@@ -1,6 +1,6 @@
 package lotto.Controller;
 
-import static lotto.MatchNums.*;
+import static lotto.Model.MatchNums.*;
 
 import java.util.List;
 import java.util.Map;

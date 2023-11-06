@@ -2,9 +2,9 @@ package lotto.utils.validator;
 
 import static lotto.constant.ExceptionMessage.NO_EMPTY_ERROR_MESSAGE;
 
-public class Validator {
+public class InputValidator {
 
-    private Validator() {
+    private InputValidator() {
     }
 
     public static void validateEmpty(String name) {

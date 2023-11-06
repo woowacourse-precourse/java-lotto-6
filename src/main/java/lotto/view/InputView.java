@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.BuyAmount;
 import lotto.utils.converter.Converter;
-import lotto.utils.validator.Validator;
+import lotto.utils.validator.InputValidator;
 
 public class InputView {
 
@@ -21,7 +21,7 @@ public class InputView {
         try {
             System.out.println(INPUT_BUY_AMOUNT_MESSAGE);
             String buyAmount = read();
-            Validator.validateEmpty(buyAmount);
+            InputValidator.validateEmpty(buyAmount);
             return new BuyAmount(Long.parseLong(buyAmount));
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ONLY_NUMBER_MESSAGE);
@@ -42,7 +42,7 @@ public class InputView {
         try {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
             String bonusNumber = read();
-            Validator.validateEmpty(bonusNumber);
+            InputValidator.validateEmpty(bonusNumber);
             return Integer.parseInt(bonusNumber);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ONLY_NUMBER_MESSAGE);

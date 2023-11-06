@@ -16,8 +16,8 @@ public class LottoController {
 
     public LottoController() {
         this.validator = new Validator();
-        this.lottoManager = inputPurchaseMoney();
         this.outputView = new OutputView();
+        this.lottoManager = inputPurchaseMoney();
         this.referee = new Referee();
     }
 
@@ -28,8 +28,7 @@ public class LottoController {
         } while (validator.validateMoneyInput(input));
         final int money = Integer.parseInt(input);
         final LottoManager lottoManager = new LottoManager(money);
-        lottoManager.getLottos()
-                .forEach(System.out::println);
+        outputView.printCreateLottoNumbers(lottoManager.getLottos());
         return lottoManager;
     }
 
@@ -46,8 +45,7 @@ public class LottoController {
         referee.judge(lottos, winningLotto);
 
         double rateOfReturn = referee.getRateOfReturn(lottos.size() * 1000);
-        outputView.printPrizeResult(referee);
-        outputView.printResult(rateOfReturn);
+        outputView.printResult(referee, rateOfReturn);
     }
 
     private List<Integer> inputWinningLottoNumbers() {

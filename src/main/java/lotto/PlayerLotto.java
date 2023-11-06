@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerLotto {
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public PlayerLotto() {
         this.lottos = new ArrayList<>();
@@ -18,5 +18,9 @@ public class PlayerLotto {
                     LottoConfig.MAX_LOTTO_NUMBER.getValue(), LottoConfig.TOTAL_LOTTO_NUMBER.getValue());
             lottos.add(new Lotto(lottoNumber));
         }
+    }
+
+    public int getQuantity() {
+        return lottos.size();
     }
 }

@@ -10,11 +10,12 @@ import org.junit.jupiter.api.Test;
 public class WinningNumbersTest {
 
     private WinningNumbers winningNumbers;
-    private String inputWinningNumbers = "1,2,10,29,18,6";
+
     int bonusNumber;
 
     @BeforeEach
     void setUp() {
+        String inputWinningNumbers = "1,2,10,29,18,6";
         WinningNumberHandler winningNumberHandler = new WinningNumberHandler(inputWinningNumbers);
         winningNumberHandler.handle();
         Map<Integer, Integer> sequencedNumbers = winningNumberHandler.getHandledResult();
@@ -27,7 +28,7 @@ public class WinningNumbersTest {
 
     @Test
     void testIsMatchedWithCorrectCase() {
-        int[] sortedWinningNumbers = {1, 2, 6, 10, 18, 29};
+        int[] sortedWinningNumbers = {1, 2, 10, 29, 18, 6};
 
         for (int sequence = 0; sequence < sortedWinningNumbers.length; sequence++) {
             boolean isMatched = winningNumbers.isMatched(sortedWinningNumbers[sequence], sequence);

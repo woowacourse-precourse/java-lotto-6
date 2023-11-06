@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import lotto.constant.GameConstant;
+import lotto.message.ValidateErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,8 +17,20 @@ public class Lotto {
     }
 
     private static void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateSameNumber(numbers, GameConstant.NUMBER_SIZE);
+    }
+
+    private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != GameConstant.NUMBER_SIZE) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateSameNumber(List<Integer> numbers, int size) {
+        Set<Integer> tempNumber = new HashSet<>(numbers);
+        if (tempNumber.size() < size) {
+            throw new IllegalArgumentException(ValidateErrorMessage.LOTTO_SAME_NUMBER_ERROR.getMessage());
         }
     }
     public List<Integer> getNumbers() {

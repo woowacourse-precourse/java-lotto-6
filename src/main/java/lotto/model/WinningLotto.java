@@ -39,4 +39,12 @@ public class WinningLotto {
             throw new IllegalArgumentException(NOT_BONUS_NUMBER_RANGE);
         }
     }
+
+    public Lotto getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }

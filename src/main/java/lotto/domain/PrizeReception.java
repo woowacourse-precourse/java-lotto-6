@@ -1,20 +1,18 @@
 package lotto.domain;
 
 import java.util.Map;
-import java.util.StringJoiner;
 import lotto.domain.wrapper.PurchaseAmount;
-import lotto.utils.LottoConstant;
 import lotto.utils.Prize;
 
 public class PrizeReception {
-    private final Map<Prize, Integer> prizeCounts;
+    private final Map<Prize, Integer> lottosResult;
 
-    public PrizeReception(Map<Prize, Integer> prizeCounts) {
-        this.prizeCounts = prizeCounts;
+    public PrizeReception(Map<Prize, Integer> lottosResult) {
+        this.lottosResult = lottosResult;
     }
 
     public int getPrizeCount(Prize prize) {
-        return prizeCounts.get(prize);
+        return lottosResult.get(prize);
     }
 
     public double getProfitRate(PurchaseAmount purchaseAmount) {
@@ -23,22 +21,10 @@ public class PrizeReception {
 
     private long getAllPrizeProfit() {
         long allPrizeProfit = 0;
-        for (Prize prize : prizeCounts.keySet()) {
-            long prizeProfit = (long) prize.getPrizeProfit() * prizeCounts.get(prize);
+        for (Prize prize : lottosResult.keySet()) {
+            long prizeProfit = (long) prize.getPrizeProfit() * lottosResult.get(prize);
             allPrizeProfit += prizeProfit;
         }
         return allPrizeProfit;
-    }
-
-    // LottoManager 테스트 코드를 위한 메서드
-    @Override
-    public String toString() {
-        StringJoiner stringJoiner = new StringJoiner(LottoConstant.DELIMITER.get());
-        stringJoiner.add(String.valueOf(prizeCounts.get(Prize.FIRST)));
-        stringJoiner.add(String.valueOf(prizeCounts.get(Prize.SECOND)));
-        stringJoiner.add(String.valueOf(prizeCounts.get(Prize.THIRD)));
-        stringJoiner.add(String.valueOf(prizeCounts.get(Prize.FOURTH)));
-        stringJoiner.add(String.valueOf(prizeCounts.get(Prize.FIFTH)));
-        return stringJoiner.toString();
     }
 }

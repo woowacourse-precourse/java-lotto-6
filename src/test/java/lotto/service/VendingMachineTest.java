@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import lotto.Application;
-import lotto.domain.LottosManager;
+import lotto.domain.Lottos;
 import lotto.domain.wrapper.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,8 +21,8 @@ class VendingMachineTest extends NsTest {
         VendingMachine vendingMachine = new VendingMachine(purchaseAmount);
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    LottosManager lottosManager = vendingMachine.getLottos();
-                    System.out.println(lottosManager.toString());
+                    Lottos lottos = vendingMachine.getLottos();
+                    System.out.println(lottos.toString());
                     assertThat(output()).contains(
                             "[8, 21, 23, 41, 42, 43]",
                             "[3, 5, 11, 16, 32, 38]",

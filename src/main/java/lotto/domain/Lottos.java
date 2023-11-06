@@ -9,10 +9,10 @@ import lotto.utils.LottoConstant;
 import lotto.utils.LottoConstantValue;
 import lotto.utils.Prize;
 
-public class LottosManager {
+public class Lottos {
     private final List<Lotto> lottos;
 
-    public LottosManager(List<Lotto> lottos) {
+    public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
@@ -20,21 +20,21 @@ public class LottosManager {
         return lottos.size();
     }
 
-    public PrizeReception getPrizeReception(PrizeChecker prizeChecker) {
-        Map<Prize, Integer> prizeCounts = getInitializedPrizeCounts();
+    public Map<Prize, Integer> getLottosResult(PrizeChecker prizeChecker) {
+        Map<Prize, Integer> lottosResult = getInitializedLottosResult();
         for (Lotto lotto : lottos) {
             Prize prize = prizeChecker.calculatePrize(lotto);
             if (prize.equals(Prize.NO_PRIZE)) {
                 continue;
             }
-            Integer prizeCount = prizeCounts.getOrDefault(prize, LottoConstantValue.DEFAULT_COUNT.get());
+            Integer prizeCount = lottosResult.getOrDefault(prize, LottoConstantValue.DEFAULT_COUNT.get());
             prizeCount++;
-            prizeCounts.put(prize, prizeCount);
+            lottosResult.put(prize, prizeCount);
         }
-        return new PrizeReception(prizeCounts);
+        return lottosResult;
     }
 
-    private Map<Prize, Integer> getInitializedPrizeCounts() {
+    private Map<Prize, Integer> getInitializedLottosResult() {
         Map<Prize, Integer> prizeCounts = new HashMap<>();
         for (Prize prize : Prize.values()) {
             if (prize == Prize.NO_PRIZE) {

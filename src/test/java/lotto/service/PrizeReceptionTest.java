@@ -2,13 +2,15 @@ package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.LottosManager;
+import lotto.domain.Lottos;
 import lotto.domain.PrizeReception;
 import lotto.domain.wrapper.BonusNumber;
-import lotto.domain.wrapper.LottoNumber;
 import lotto.domain.wrapper.PurchaseAmount;
+import lotto.utils.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,14 +20,10 @@ class PrizeReceptionTest {
     @Test
     void getProfitRate() {
         // given
-        Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
-        BonusNumber bonusNumber = new BonusNumber(7, winningLotto);
-        PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
-        LottosManager lottosManager = new LottosManager(List.of(
-                new Lotto(List.of(1,2,3,4,7,8)),
-                new Lotto(List.of(1,2,3,7,8,9))
-        ));
-        PrizeReception prizeReception = lottosManager.getPrizeReception(prizeChecker);
+        Map<Prize, Integer> lottosResult = new HashMap<>();
+        lottosResult.put(Prize.FOURTH, 1);
+        lottosResult.put(Prize.FIFTH, 1);
+        PrizeReception prizeReception = new PrizeReception(lottosResult);
         PurchaseAmount purchaseAmount = new PurchaseAmount(2000);
         double expectedProfitRate = (55000 / (double) 2000) * 100;
         // when

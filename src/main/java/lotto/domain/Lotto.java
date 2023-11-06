@@ -2,14 +2,12 @@ package lotto.domain;
 
 import lotto.validation.Validation;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import static lotto.util.LottoConstants.*;
 
 public class Lotto {
-    public static final int LOTTO_NUMBERS_SIZE = 6;
-    public static final int LOTTO_MAX_NUMBER = 45;
-    public static final int LOTTO_MIN_NUMBER = 1;
+
     private final List<Integer> lottoNumbers;
 
     public Lotto(List<Integer> lottoNumbers) {

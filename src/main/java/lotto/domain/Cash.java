@@ -36,7 +36,7 @@ public class Cash {
         return leftAmount >= UNIT.getSetting();
     }
 
-    public Boolean spend() {
+    public Boolean spendOneUnit() {
         final Boolean afford = isAfford();
         if (afford) {
             spendAmount += UNIT.getSetting();

@@ -50,7 +50,7 @@ class CashTest {
         List<Cash> cashes = cashDummy;
 
         boolean result = cashes.stream()
-                .allMatch(cash -> cash.spend() == true);
+                .allMatch(cash -> cash.spendOneUnit() == true);
 
         assertThat(result).isTrue();
 
@@ -65,9 +65,9 @@ class CashTest {
 
 
         while (cash.isAfford()) {
-            cash.spend();
+            cash.spendOneUnit();
         }
-        Boolean isSpend = cash.spend();
+        Boolean isSpend = cash.spendOneUnit();
 
         assertEquals(false, isSpend);
     }

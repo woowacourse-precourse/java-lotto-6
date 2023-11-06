@@ -18,7 +18,7 @@ public class LottoMachine {
     public Lottos purchaseLottos() {
         List<Lotto> purchasedLottos = new ArrayList<>();
         while (cash.isAfford()) {
-            cash.spend();
+            cash.spendOneUnit();
             Lotto lotto = generateLotto();
             purchasedLottos.add(lotto);
         }

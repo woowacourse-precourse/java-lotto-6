@@ -8,4 +8,9 @@ public class DisplayInput {
         Integer inputMoney = Integer.parseInt(Console.readLine());
         return inputMoney;
     }
+    public String inputLottoNumbers(){
+        String lottoNumbers = Console.readLine();
+        return lottoNumbers;
+    }
+
 }

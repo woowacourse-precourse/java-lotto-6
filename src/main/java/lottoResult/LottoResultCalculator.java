@@ -39,13 +39,11 @@ public class LottoResultCalculator {
         }
     }
 
-    private static int calculateScore(List<Integer> userNumbers, List<Integer> winningNumberList) {
+    private int calculateScore(List<Integer> userNumbers, List<Integer> winningNumberList) {
         int score = 0;
         for (int userNumber : userNumbers) {
-            for (int luckyNumber : winningNumberList) {
-                if (luckyNumber == userNumber) {
-                    score++;
-                }
+            if (winningNumberList.contains(userNumber)) {
+                score++;
             }
         }
         return score;

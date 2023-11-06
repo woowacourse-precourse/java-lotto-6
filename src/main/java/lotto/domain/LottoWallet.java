@@ -51,14 +51,20 @@ public class LottoWallet {
         if(paidAmount == 0) {
             throw new ArithmeticException("투입금액이 0원입니다. 수익률을 계산할 수 없습니다.");
         }
-        double totalPrize = calculateTotalPrice();
+        double totalPrize = calculateTotalPrice(); //총 상금
         double profitRate = (totalPrize / paidAmount) * 100;
 
         return roundToTwoDecimalPlaces(profitRate);
     }
 
     private double roundToTwoDecimalPlaces(double value) {
-        return Math.round(value * 10) / 10.0;
+        return Math.round(value * 100) / 100.0;
+    }
+
+    private double calculateTotalPrice() {
+        return lottoResults.stream()
+                .mapToDouble(LottoResult::getPrice)
+                .sum();
     }
 
 

@@ -1,12 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Comparator;
+import java.util.*;
+
+import static java.util.Collections.*;
 
 public class LottoPick {
     private final List<Integer>[] numbers;
@@ -19,15 +17,15 @@ public class LottoPick {
     }
 
     // 로또 번호 넘기기.
-    public List<Integer>[] lottoPickNumber(){
+    public List<Integer>[] lottoPickNumber() {
         return numbers;
     }
 
-    // 랜덤 6자리 숫자 배열 후 오름차순 정리
+    // 랜덤 6자리 숫자 배열
     public void makeLottoPick() {
         for (int i = 0; i < attempt; i++) {
             numbers[i] = randomCreate();
-//            numbers[i].sort(Comparator.naturalOrder());
+//            Collections.sort(numbers[i]);
         }
     }
 
@@ -35,8 +33,24 @@ public class LottoPick {
     public void outputLottoPick() {
         System.out.println("\n" + attempt + "개를 구매했습니다.");
         for (int i = 0; i < attempt; i++) {
-            System.out.println(numbers[i]);
+            System.out.println(sortResult(numbers[i]));
         }
+    }
+
+    //정렬시 테스트에서 오류가 걸려 수동으로 정렬하기로 함.
+    private String sortResult(List<Integer> arr) {
+        String str = "[";
+        for (int i = 1; i <= 45; i++) {
+            for (Integer number : arr) {
+                if (i == number) {
+                    str += i;
+                    str += ", ";
+                }
+            }
+        }
+        str = str.substring(0, str.length() - 2);
+        str += "]";
+        return str;
     }
 
     // 금액 입증 확인.

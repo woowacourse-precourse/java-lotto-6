@@ -18,42 +18,56 @@ public class WinningNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(List<Number> winningNumbers, Number bonusNumber) {
-        validateNotNull(winningNumbers, bonusNumber);
+    private static void validate(List<Number> winningNumbers, Number bonusNumber) {
+        validateNotNull(winningNumbers);
+        validateNotNull(bonusNumber);
         validateSize(winningNumbers);
         validateDistinct(winningNumbers, bonusNumber);
     }
 
-    private void validateNotNull(List<Number> winningNumbers, Number bonusNumber) {
-        Objects.requireNonNull(winningNumbers);
-        Objects.requireNonNull(bonusNumber);
+    public static void validate(List<Number> winningNumbers) {
+        validateNotNull(winningNumbers);
+        validateSize(winningNumbers);
+        validateDistinct(winningNumbers);
     }
 
-    private void validateSize(List<Number> winningNumbers) {
+    private static void validateNotNull(Object object) {
+        Objects.requireNonNull(object);
+    }
+
+    private static void validateSize(List<Number> winningNumbers) {
         if (isDifferentNumbersSize(winningNumbers.size())) {
             String exceptionMessage = "당첨 번호는 %d자리이어야 합니다".formatted(WINNING_NUMBER_SIZE);
             throw new IllegalArgumentException(exceptionMessage);
         }
     }
 
-    private boolean isDifferentNumbersSize(int size) {
+    private static boolean isDifferentNumbersSize(int size) {
         return size != WINNING_NUMBER_SIZE;
     }
 
-    private void validateDistinct(List<Number> winningNumbers, Number bonusNumber) {
-        if (isOverlapped(winningNumbers, bonusNumber)) {
+    private static void validateDistinct(List<Number> winningNumbers, Number bonusNumber) {
+        List<Number> numbers = concat(winningNumbers, bonusNumber);
+
+        if (isOverlapped(numbers)) {
             throw new IllegalArgumentException("당첨 번호, 보너스 번호는 서로 겹쳐서는 안됩니다");
         }
     }
 
-    private boolean isOverlapped(List<Number> winningNumbers, Number bonusNumber) {
-        List<Number> numbers = new ArrayList<>(winningNumbers);
-        numbers.add(bonusNumber);
-
-        return isOverlapped(numbers);
+    private static void validateDistinct(List<Number> winningNumbers) {
+        if (isOverlapped(winningNumbers)) {
+            throw new IllegalArgumentException("당첨 번호는 서로 겹쳐서는 안됩니다");
+        }
     }
 
-    private boolean isOverlapped(List<Number> numbers) {
+    private static List<Number> concat(List<Number> numbers, Number number) {
+        List<Number> newNumbers = new ArrayList<>(numbers);
+        newNumbers.add(number);
+
+        return newNumbers;
+    }
+
+    private static boolean isOverlapped(List<Number> numbers) {
         int countOfDistinctNumber = (int) numbers.stream().distinct().count();
 
         return numbers.size() > countOfDistinctNumber;

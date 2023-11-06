@@ -16,16 +16,43 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class WinningNumberTest {
 
-    @Nested
-    @DisplayName("당첨 번호 검증 테스트")
-    class ValidationTest {
+    private static final String SIZE_EXCEPTION_MESSAGE = "당첨 번호는 6자리이어야 합니다";
 
-        private static final String SIZE_EXCEPTION_MESSAGE = "당첨 번호는 6자리이어야 합니다";
+    @Nested
+    @DisplayName("당첨 번호 단독 덤증 테스트")
+    class ValidatingWinningNumbersTest {
+        private static final String OVERLAPPED_EXCEPTION_MESSAGE = "당첨 번호는 서로 겹쳐서는 안됩니다";
+
+        @Test
+        @DisplayName("당첨 번호가 6자리가 아니라면, 예외를 던진다")
+        void validateTest_whenWinningNumbersSizeIsNot6_throwException() {
+            List<Number> winningNumbers = toNumberList(List.of(1, 2, 3, 4, 5, 6, 7));
+
+            assertThatThrownBy(() -> WinningNumber.validate(winningNumbers))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(SIZE_EXCEPTION_MESSAGE);
+        }
+
+        @Test
+        @DisplayName("당첨 번호에 중복되는 숫자가 있다면, 예외를 던진다")
+        void validateTest_whenWinningNumbersIsOverlapped_throwException() {
+            List<Number> winningNumbers = toNumberList(List.of(1, 2, 3, 4, 5, 2));
+
+            assertThatThrownBy(() -> WinningNumber.validate(winningNumbers))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(OVERLAPPED_EXCEPTION_MESSAGE);
+        }
+    }
+
+    @Nested
+    @DisplayName("당첨 번호 생성 검증 테스트")
+    class ValidatingCreationTest {
+
         private static final String OVERLAPPED_EXCEPTION_MESSAGE = "당첨 번호, 보너스 번호는 서로 겹쳐서는 안됩니다";
 
         @Test
         @DisplayName("당첨 번호가 6자리가 아니라면, 예외를 던진다")
-        void validationTest_whenWinningNumbersSizeIsNot6_throwException() {
+        void createTest_whenWinningNumbersSizeIsNot6_throwException() {
             List<Number> winningNumbers = toNumberList(List.of(1, 2, 3, 4, 5, 6, 7));
             Number bonusNumber = Number.from(10);
 
@@ -36,7 +63,7 @@ class WinningNumberTest {
 
         @Test
         @DisplayName("당첨 번호에 중복되는 숫자가 있다면, 예외를 던진다")
-        void validationTest_whenWinningNumbersIsOverlapped_throwException() {
+        void createTest_whenWinningNumbersIsOverlapped_throwException() {
             List<Number> winningNumbers = toNumberList(List.of(1, 2, 3, 4, 5, 2));
             Number bonusNumber = Number.from(10);
 
@@ -47,7 +74,7 @@ class WinningNumberTest {
 
         @Test
         @DisplayName("보너스 번호가 당첨 번호와 중복된다면, 예외를 던진다")
-        void validationTest_whenBonusNumberIsOverlappedByWinningNumber_throwException() {
+        void createTest_whenBonusNumberIsOverlappedByWinningNumber_throwException() {
             List<Number> winningNumbers = toNumberList(List.of(1, 2, 3, 4, 5, 6));
             Number bonusNumber = Number.from(4);
 

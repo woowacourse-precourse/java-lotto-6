@@ -34,6 +34,12 @@ public class LottoResult {
         }
     }
 
+    public void addTotalWinningMoney(int number) {
+        if(checkLottoWinner(number)){
+            totalWinningMoney += LottoPrize.findPrizeMoney(number);
+        }
+    }
+
     private boolean checkLottoWinner(int number) {
         return winningCount.containsKey(number);
     }

@@ -30,6 +30,7 @@ public class Winner {
             int sameNumberCount = checkUserLottoNumberCount(userLotto);
 
             lottoResult.addWinningCount(sameNumberCount);
+            lottoResult.addTotalWinningMoney(sameNumberCount);
         }
     }
 

@@ -46,6 +46,7 @@
 - incorrectFormatMoney
 - outOfRangeNumber
 - incorrectFormatNumber
+- totalMoney
 # Money
     돈에 관련된 걸 관리하는 클래스
 - buyLotto
@@ -55,6 +56,7 @@
     구매한 번호, 당첨번호 관리하는 클래스
 - *checkAllSameNumber
 - *pickNumber
+- calculateRank
 # Calculate
     당첨 통계를 계산해주는 클래스
 - calculateRevenueRate

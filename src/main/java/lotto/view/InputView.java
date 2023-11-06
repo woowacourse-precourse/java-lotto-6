@@ -19,7 +19,7 @@ public class InputView {
         return Util.numberList(Console.readLine());
     }
 
-    public static String bonusNumInput() {
+    public static String inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER);
         return Console.readLine();
     }

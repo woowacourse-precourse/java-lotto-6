@@ -34,4 +34,8 @@ public class OutputView {
 
         return LottoMessage.WINNING_STATISTICS_MESSAGE;
     }
+
+    public static void printWinningResultTitle() {
+        System.out.println(LottoMessage.WINNING_STATISTICS_TITLE_MESSAGE.getMessage());
+    }
 }

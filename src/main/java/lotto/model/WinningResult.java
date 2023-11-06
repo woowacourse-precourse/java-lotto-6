@@ -19,6 +19,8 @@ public class WinningResult {
     }
 
     public void displayWinningResult() {
+        OutputView.printWinningResultTitle();
+
         for (LottoRank lottoRank : winningResult.keySet()) {
             OutputView.printLottoRank(lottoRank, getWinningResultValue(lottoRank));
         }

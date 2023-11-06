@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.model.Rank;
+import lotto.domain.Rank;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import static lotto.utils.Constants.DIVISION_UNIT_FOR_INPUT_MONEY;
 import static lotto.utils.Constants.MAXIMUM_INPUT_MONEY;

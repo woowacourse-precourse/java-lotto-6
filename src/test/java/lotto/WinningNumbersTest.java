@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.model.WinningNumbers;
+import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.Test;
 
 public class WinningNumbersTest {

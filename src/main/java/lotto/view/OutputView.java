@@ -34,7 +34,7 @@ public class OutputView {
         List<Lotto> lottoTickets = lottoTicketsDTO.lottoTickets();
         System.out.println(String.format(BOUGHT_N, ticketAmount));
         lottoTickets.stream()
-                .forEach((lottoTicket) -> System.out.println(lottoTicket.getNumbers()));
+                .forEach((lottoTicket) -> System.out.println(lottoTicket.numbers()));
     }
 
     public static void printInputWinningNumber() {

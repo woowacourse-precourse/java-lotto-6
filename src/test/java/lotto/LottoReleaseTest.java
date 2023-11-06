@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.domain.Lotto;
 import lotto.domain.Customer;
-import lotto.utility.GameUtility;
 import lotto.utility.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,7 +40,7 @@ public class LottoReleaseTest extends NsTest{
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     Customer user;
-                    assertEquals(LottoMachine.generateTickets(1000).get(0).getNumbers(), LottoNumbers);
+                    assertEquals(LottoMachine.generateTickets(1000).get(0).numbers(), LottoNumbers);
                 },
                 Arrays.asList(43, 41, 42, 23, 21, 8)
         );

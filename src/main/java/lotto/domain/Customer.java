@@ -7,7 +7,6 @@ public class Customer {
     private List<Lotto> lottoTickets;
     private Payment payment;
     private int earnedMoney = 0;
-
     private WinningResult winningResult = null;
 
     public Customer(Payment payment, List<Lotto> lottoTickets) {

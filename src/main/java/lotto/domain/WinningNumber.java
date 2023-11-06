@@ -5,9 +5,7 @@ import lotto.validator.LottoNumberValidator;
 import java.util.List;
 
 public class WinningNumber {
-
     private static List<Integer> winningNumbers = null;
-
 
     public WinningNumber(List<Integer> winningNumbers) {
         LottoNumberValidator.validateLottoSize(winningNumbers);

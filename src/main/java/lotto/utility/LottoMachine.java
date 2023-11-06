@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoMachine {
+    private LottoMachine() {};
+
     public static List<Lotto> generateTickets(int payment) {
         int ticketAmount = payment / GameNumberConstants.LOTTO_PRICE.getValue();
         return generateLottoNumberRepeatNTimes(ticketAmount);
@@ -20,7 +22,6 @@ public class LottoMachine {
         for (int i = 0; i < repeatNumber; i++) {
             lottoTickets.add(new Lotto(generateLottoNumber()));
         }
-
         return lottoTickets;
     }
 

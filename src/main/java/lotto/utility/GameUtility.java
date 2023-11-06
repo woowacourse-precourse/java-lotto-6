@@ -7,22 +7,18 @@ import lotto.domain.WinningResult;
 import lotto.domain.WinningAndBonusNumber;
 import lotto.domain.Customer;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class GameUtility {
-
     private GameUtility() {}
-
-
 
     public static WinningResult calculateCustomerWinningResult(Customer user) {
         WinningResult winningResult = new WinningResult();
         for (Lotto lotto : user.getLottoTickets()) {
-            int numberOfMatchingNumbers = findNumberOfCommonElements(lotto.getNumbers(), WinningAndBonusNumber.getWinningNumber());
+            int numberOfMatchingNumbers = findNumberOfCommonElements(lotto.numbers(), WinningAndBonusNumber.getWinningNumber());
             int hasBonusNumber = 0;
             if (numberOfMatchingNumbers == Rank.getNumberOfMatchesRequiredFromIndex(2)) {
-                hasBonusNumber = hasBonusNumberInLotto(WinningAndBonusNumber.getBonusNumber(), lotto.getNumbers());
+                hasBonusNumber = hasBonusNumberInLotto(WinningAndBonusNumber.getBonusNumber(), lotto.numbers());
             }
             winningResult.addNumberOfPrizeFromIndex(getIndexFromConditions(numberOfMatchingNumbers, hasBonusNumber));
         }

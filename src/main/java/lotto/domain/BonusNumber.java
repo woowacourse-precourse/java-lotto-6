@@ -10,7 +10,6 @@ public class BonusNumber {
         this.number = number;
     }
 
-
     public static int getNumber() {
         return number;
     }

@@ -4,15 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoMachine {
-
-    private int lottoPurchase;
+    private int lottoCount;
     private List<Lotto> lottos;
     private HashMap<LottoRank, Integer> lottoRanks;
     private int lottoReturn;
     private int lottoReturnRate;
 
-    public LottoMachine(int lottoPurchase, List<Lotto> lottos, HashMap<LottoRank, Integer> lottoRanks) {
-        this.lottoPurchase = lottoPurchase;
+    public LottoMachine(int lottoCount, List<Lotto> lottos, HashMap<LottoRank, Integer> lottoRanks) {
+        this.lottoCount = lottoCount;
         this.lottos = lottos;
         this.lottoRanks = lottoRanks;
         this.lottoReturn = 0;

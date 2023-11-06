@@ -3,18 +3,16 @@ package lotto.domain;
 import java.util.List;
 
 public enum LottoResult {
-    matches3(3, "3개 일치 (5,000원) - ", 5000, 0),
-    matches4(4, "4개 일치 (50,000원) - ", 50000, 0),
-    matches5(5, "5개 일치 (1,500,000원) - ", 1500000, 0),
-    matches5_bonus(5, "5개 일치, 보너스 볼 일치 (30,000,000원) - ", 30000000, 0),
-    matches6(6, "6개 일치 (2,000,000,000원) - ", 2000000000, 0);
+    matches3("3개 일치 (5,000원) - ", 5000, 0),
+    matches4("4개 일치 (50,000원) - ", 50000, 0),
+    matches5("5개 일치 (1,500,000원) - ", 1500000, 0),
+    matches5_bonus("5개 일치, 보너스 볼 일치 (30,000,000원) - ", 30000000, 0),
+    matches6("6개 일치 (2,000,000,000원) - ", 2000000000, 0);
 
-    // 문자열을 저장할 필드
     private String matchesMess;
-    private int matchesN, amount, numOfMatches;
+    private int amount, numOfMatches;
 
-    LottoResult(int matchesN, String matchesMess, int amount, int numOfMatches) {
-        this.matchesN = matchesN;
+    LottoResult(String matchesMess, int amount, int numOfMatches) {
         this.matchesMess = matchesMess;
         this.amount = amount;
         this.numOfMatches = numOfMatches;
@@ -40,7 +38,7 @@ public enum LottoResult {
                 continue;
             }
             cntCorrNum += findIndexInResult(cntCorrNum, bonusNum, eachLotto);
-            
+
             LottoResult lottoResultSaveName = lottoResultValues[cntCorrNum - 3];
             lottoResultSaveName.numOfMatches += 1;
         }
@@ -77,5 +75,4 @@ public enum LottoResult {
         }
         return 0;
     }
-
 }

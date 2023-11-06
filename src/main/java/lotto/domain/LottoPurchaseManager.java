@@ -12,7 +12,7 @@ import lotto.utils.LottoUtil;
 import lotto.utils.Util;
 
 public class LottoPurchaseManager {
-    public void runPurchase() {
+    public void runPurchase(BigDecimal lottoPrice) {
         BigDecimal purchaseAmount = LottoPurchaseInput.inputPurchaseAmount();
 
         BigDecimal numberOfLottoPurchased = Util.getHowManyTimes(purchaseAmount, Lotto.PRICE);

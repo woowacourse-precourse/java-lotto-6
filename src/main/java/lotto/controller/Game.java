@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.constants.ExceptionMessage.IS_DUPLICATE_BONUS_NUMBER;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Comparator;
@@ -23,7 +24,7 @@ public class Game {
     public void start() {
         createPurchaseAmount();
         int purchaseQuantity = purchaseAmount / THOUSAND_UNIT;
-        issueLottos(purchaseQuantity);
+        createLottos(purchaseQuantity);
         OutputView.printPurchaseResult(lottos);
         createWinningLotto();
         createBonusNumber();
@@ -43,13 +44,12 @@ public class Game {
         }
     }
 
-    private void issueLottos(int purchaseQuantity) {
-        List<Lotto> lottos = new ArrayList<>();
+    private void createLottos(int purchaseQuantity) {
+        lottos = new ArrayList<>();
         for (int i = 0; i < purchaseQuantity; i++) {
-            Lotto lotto = new Lotto(Lotto.issueLotto());
-            lottos.add(lotto);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(numbers));
         }
-        this.lottos = lottos;
     }
 
     private void createWinningLotto() {

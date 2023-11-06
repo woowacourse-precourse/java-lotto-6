@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.constants.ExceptionMessage.IS_DUPLICATED;
 import static lotto.constants.ExceptionMessage.IS_INSUFFICIENT;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Lotto {
@@ -18,11 +17,6 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    public static List<Integer> issueLotto() {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return lotto;
     }
 
     @Override

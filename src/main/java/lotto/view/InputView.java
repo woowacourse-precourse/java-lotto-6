@@ -2,10 +2,10 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.util.validator.BonusNumberValidator;
-import lotto.util.validator.PurchaseLottoValidator;
 import lotto.util.Util;
+import lotto.util.validator.BonusNumberValidator;
 import lotto.util.validator.LottoValidator;
+import lotto.util.validator.PurchaseLottoValidator;
 
 public class InputView {
     private static final InputView instance = new InputView();

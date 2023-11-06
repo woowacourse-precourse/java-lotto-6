@@ -40,7 +40,6 @@ public class IssueLottoController implements Controllable {
 
     private List<Integer> createLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers); // 오름차순 정렬
         return numbers;
     }
 }

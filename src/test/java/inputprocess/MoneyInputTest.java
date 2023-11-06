@@ -3,13 +3,10 @@ package inputprocess;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.InputMismatchException;
-
-public class InputTest {
+public class MoneyInputTest {
 
     @DisplayName("구입금액 확인(정수/1000원 단위확인) 메소드 호출")
     @Test

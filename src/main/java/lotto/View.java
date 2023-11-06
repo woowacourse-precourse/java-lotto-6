@@ -10,9 +10,9 @@ public class View {
 
     void printPurchasedLottoAmount(int number){
 
-        String askInputMoney= "\n개를 구매했습니다.";
+        String askInputMoney= "개를 구매했습니다.";
 
-        System.out.println(number+askInputMoney);
+        System.out.println("\n"+number+askInputMoney);
     }
 
     void printPurchasedLottoNumbers(Lotto lotto){

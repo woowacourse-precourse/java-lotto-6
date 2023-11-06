@@ -6,7 +6,6 @@ import static lotto.exception.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.exception.LottoGameException;
 
 public class Lotto {
@@ -51,11 +50,5 @@ public class Lotto {
 
     public List<Integer> getNumberList() {
         return numbers;
-    }
-
-    public String getNumberString() {
-        return numbers.stream()
-                .map(number -> Integer.toString(number))
-                .collect(Collectors.joining(","));
     }
 }

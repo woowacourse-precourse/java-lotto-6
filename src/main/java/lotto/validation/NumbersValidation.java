@@ -3,13 +3,17 @@ package lotto.validation;
 import java.util.List;
 
 import lotto.constant.NumbersOption;
+import lotto.output.ErrorPrinter;
 
 public class NumbersValidation {
+
+	private static final String SEPARATOR = ",";
 
 	public static void validateOnlyNumber(String inputNumber) {
 
 		if (!isNumber(inputNumber)) {
-			throw new IllegalArgumentException("양수의 숫자만 입력해주세요");
+			ErrorPrinter.printOnlyNumberError();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -20,7 +24,8 @@ public class NumbersValidation {
 	public static void validateRange(String inputNumber) {
 
 		if (!inRange(inputNumber)) {
-			throw new IllegalArgumentException("1~45 사이의 숫자만 입력해주세요");
+			ErrorPrinter.printOutOfRange();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -31,8 +36,18 @@ public class NumbersValidation {
 	public static void validateSize(List<Integer> winningNumber) {
 
 		if (winningNumber.size() != NumbersOption.SIZE) {
-			throw new IllegalArgumentException("중복되지 않는 6개의 숫자만 입력해주세요");
+			ErrorPrinter.printOutOfSize();
+			throw new IllegalArgumentException();
 		}
+	}
+
+	public static void validateSeparator(String inputNumber) {
+
+		if (!inputNumber.contains(SEPARATOR)) {
+			ErrorPrinter.printSeparatorError();
+			throw new IllegalArgumentException();
+		}
+
 	}
 
 }

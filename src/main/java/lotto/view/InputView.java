@@ -9,20 +9,26 @@ public class InputView {
     }
 
     public static String inputPurchasePrice() {
-        String input = Console.readLine();
+        String input = AddNewLineAfterReadLine();
         InputValidator.validatePurchasePrice(input);
         return input;
     }
 
     public static String inputWinningNumber() {
-        String input = Console.readLine();
+        String input = AddNewLineAfterReadLine();
         InputValidator.validateWinningNumber(input);
         return input;
     }
 
     public static String inputBonusNumber() {
-        String input = Console.readLine();
+        String input = AddNewLineAfterReadLine();
         InputValidator.validateBonusNumber(input);
+        return input;
+    }
+
+    private static String AddNewLineAfterReadLine() {
+        String input = Console.readLine();
+        OutputView.printNewLine();
         return input;
     }
 }

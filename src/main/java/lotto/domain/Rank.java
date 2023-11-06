@@ -28,4 +28,8 @@ public enum Rank {
                 .findFirst()
                 .orElse(Rank.NONE);
     }
+
+    public Integer getPrizeAmount() {
+        return prizeAmount;
+    }
 }

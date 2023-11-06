@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -15,12 +14,12 @@ public class Application {
     public static void main(String[] args) {
         PurchasePrice purchasePrice = InputView.inputPurchasePrice();
         int purchaseCount = purchasePrice.getPurchaseCount();
-        printPurchaseCount(purchaseCount);
+        OutputView.printPurchaseCount(purchaseCount);
 
-        List<PurchaseNumber> purchaseNumbers = getPurchaseNumbers(purchaseCount);
-        printPurchaseNumber(purchaseNumbers);
+        List<Lotto> lottos = getLottos(purchaseCount);
+        OutputView.printLottos(lottos);
 
-        WinningNumber winningNumber = inputWinningNumber();
+        WinningNumber winningNumber = InputView.inputWinningNumber();
 
         int earnMoney = 0;
         int RANK_1_cnt = 0;
@@ -29,8 +28,8 @@ public class Application {
         int RANK_4_cnt = 0;
         int RANK_5_cnt = 0;
         int RANK_none_cnt = 0;
-        for (PurchaseNumber purchaseNumber : purchaseNumbers) {
-            Rank rank = calculate(purchaseNumber, winningNumber);
+        for (Lotto lotto : lottos) {
+            Rank rank = calculate(lotto, winningNumber);
             if (rank == Rank.RANK_1) {
                 RANK_1_cnt++;
                 earnMoney += Rank.RANK_1.getPrice();
@@ -69,19 +68,19 @@ public class Application {
         System.out.println("총 수익률은 "+ purchasePrice.calculateProfit(earnMoney) + "%입니다.");
     }
 
-    public static Rank calculate(PurchaseNumber purchaseNumber, WinningNumber winningNumber) {
-        List<Integer> purchaseNumbers = purchaseNumber.getNumbersValue();
+    public static Rank calculate(Lotto lotto, WinningNumber winningNumber) {
+        List<Integer> lottos = lotto.getNumbersValue();
         List<Integer> winningNumbers = winningNumber.getNumbersValue();
         int bonusNumber = winningNumber.getBonusNumberValue();
 
         int sameCount = 0;
-        for (Integer number : purchaseNumbers) {
+        for (Integer number : lottos) {
             if (winningNumbers.contains(number)) {
                 sameCount++;
             }
         }
 
-        boolean isBonus = purchaseNumbers.contains(bonusNumber);
+        boolean isBonus = lottos.contains(bonusNumber);
         if (sameCount == 6) {
             return Rank.RANK_1;
         }
@@ -100,65 +99,22 @@ public class Application {
         return Rank.RANK_NONE;
     }
 
-    private static void printPurchaseCount(int purchaseCount) {
-        System.out.println();
-        System.out.println(purchaseCount + "개를 구매했습니다.");
-    }
-
-    private static List<PurchaseNumber> getPurchaseNumbers(int purchaseCount) {
-        List<PurchaseNumber> purchaseNumbers = new ArrayList<>();
+    private static List<Lotto> getLottos(int purchaseCount) {
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchaseCount; i++) {
-            PurchaseNumber purchaseNumber = getRandomPurchaseNumber();
-            purchaseNumbers.add(purchaseNumber);
+            Lotto lotto = getRandomLotto();
+            lottos.add(lotto);
         }
-        return purchaseNumbers;
+        return lottos;
     }
 
-    private static PurchaseNumber getRandomPurchaseNumber() {
+    private static Lotto getRandomLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         List<LottoNumber> lottoNumbers = new ArrayList<>();
         for (int randomNumber : randomNumbers) {
             LottoNumber lottoNumber = new LottoNumber(randomNumber);
             lottoNumbers.add(lottoNumber);
         }
-        return new PurchaseNumber(lottoNumbers);
-    }
-
-    private static WinningNumber inputWinningNumber() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String userInput = Console.readLine();
-        List<LottoNumber> lottoNumbers = new ArrayList<>();
-        for (String userInputSeperated : userInput.split(",")) {
-            LottoNumber lottoNumber = toLottoNumber(userInputSeperated);
-            lottoNumbers.add(lottoNumber);
-        }
-
-        System.out.println();
-        System.out.println("보너스 번호를 입력해주세요.");
-        String userInputBonusNumber = Console.readLine();
-        LottoNumber bonusLottoNumber = toLottoNumber(userInputBonusNumber);
-        return new WinningNumber(lottoNumbers, bonusLottoNumber);
-    }
-
-    private static LottoNumber toLottoNumber(String userInputNumber) {
-        try {
-            int number = Integer.parseInt(userInputNumber);
-            return new LottoNumber(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
-        }
-    }
-
-    private static void printPurchaseNumber(List<PurchaseNumber> purchaseNumbers) {
-        for (PurchaseNumber purchaseNumber : purchaseNumbers) {
-            List<LottoNumber> lottoNumbers = purchaseNumber.getNumbers();
-            List<Integer> numbers = new ArrayList<>();
-            for (LottoNumber lottoNumber : lottoNumbers) {
-                numbers.add(lottoNumber.getNumber());
-            }
-            Collections.sort(numbers);
-            System.out.println(numbers);
-        }
+        return new Lotto(lottoNumbers);
     }
 }

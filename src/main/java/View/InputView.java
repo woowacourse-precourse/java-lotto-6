@@ -1,8 +1,10 @@
 package View;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.WinningNumbers;
 
 public class InputView {
 
@@ -16,8 +18,36 @@ public class InputView {
     public void validatePurchaseAmount(String purchaseAmount) {
         validateNotBlank(purchaseAmount);
         validateInputIsNumeric(purchaseAmount);
-        validateInputInRange(purchaseAmount);
+        validateInputIsPositiveNumber(purchaseAmount);
         validateInputIsMultipleOfThousand(purchaseAmount);
+    }
+
+    public WinningNumbers askWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumbers = Console.readLine();
+        validateWinningNumbers(winningNumbers);
+
+//        System.out.println("보너스 번호를 입력해 주세요.");
+//        String bonusNumber = Console.readLine();
+//        validateBonusNumber(bonusNumber);
+//        return new WinningNumbers(winningNumbers, Integer.parseInt(bonusNumber));
+        return null;
+    }
+
+    public void validateWinningNumbers(String winningNumbers) {
+        List<String> winningNumber = List.of(winningNumbers.split(","));
+        validateNotBlank(winningNumbers);
+        validateNotEndWithDelimiter(winningNumbers);
+        winningNumber.forEach(this::validateInputIsNumeric);
+        winningNumber.forEach(this::validateInputIsPositiveNumber);
+        winningNumber.forEach(this::validateInputInRange);
+        validateNotDuplicated(winningNumber);
+    }
+
+    public void validateBonusNumber(String bonusNumber) {
+        validateNotBlank(bonusNumber);
+        validateInputIsNumeric(bonusNumber);
+        validateInputIsPositiveNumber(bonusNumber);
     }
 
     private void validateNotBlank(String input) {
@@ -40,7 +70,7 @@ public class InputView {
         }
     }
 
-    private void validateInputInRange(String input) {
+    private void validateInputIsPositiveNumber(String input) {
         int purchaseAmount = Integer.parseInt(input);
         if (purchaseAmount < 0) {
             throw new IllegalArgumentException("[ERROR] 0 이상의 숫자를 입력해 주세요.");
@@ -54,16 +84,27 @@ public class InputView {
         }
     }
 
+    private void validateNotEndWithDelimiter(String input) {
+        if (input.endsWith(",")) {
+            throw new IllegalArgumentException("[ERROR] 구분자(,)로 끝날 수 없습니다.");
+        }
+    }
+
+    private void validateInputInRange(String input) {
+        int number = Integer.parseInt(input);
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해 주세요.");
+        }
+    }
+
+    private void validateNotDuplicated(List<String> inputList) {
+        if (inputList.stream().distinct().count() != inputList.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
+        }
+    }
+
     private void printInputMoneyMessage() {
         System.out.println("구입금액을 입력해 주세요.");
-    }
-
-    public void printInputLottoNumberMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-    }
-
-    public void printInputBonusNumberMessage() {
-        System.out.println("보너스 번호를 입력해 주세요.");
     }
 
     public void printResultMessage() {

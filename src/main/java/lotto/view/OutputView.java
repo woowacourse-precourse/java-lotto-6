@@ -31,6 +31,6 @@ public final class OutputView {
     }
 
     public static void showTotalReturnAsPercent(double totalReturn) {
-        System.out.printf((OutputMessage.TOTAL_RETURN.getMessage()) + "%n", totalReturn);
+        System.out.printf((OutputMessage.TOTAL_RETURN_PERCENT.getMessage()) + "%n", totalReturn);
     }
 }

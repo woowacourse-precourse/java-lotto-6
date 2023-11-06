@@ -11,7 +11,6 @@ public class refinedWinning {
         String[] divide_winning = winning.split(",");
         check_winning = new ArrayList<String>(Arrays.asList(divide_winning));
         Is_it_Number();
-        between_number();
     }
 
     public static void Is_it_Number(){
@@ -24,14 +23,6 @@ public class refinedWinning {
             }
         }
         //return flag;
-    }
-
-    public static void between_number(){
-        for (int i=0; i<check_winning.size(); i++){
-            if(Integer.parseInt(check_winning.get(i))>45||Integer.parseInt(check_winning.get(i))<1){
-                throw new IllegalArgumentException();
-            }
-        }
     }
 
     public static List<Integer> change_winning(){

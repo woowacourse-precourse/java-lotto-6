@@ -41,7 +41,11 @@ public class Application {
     public static void Input_winning_num(){
        String Input_winning = PrintView.Input_Winning_Number();
        refinedWinning.Input_Winning(Input_winning);
-       
+    }
+
+    public static void Guessing_lotto(){
+        lotto = new Lotto(refinedWinning.change_winning());
+
     }
 
 }

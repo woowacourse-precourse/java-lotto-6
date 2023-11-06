@@ -1,13 +1,12 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import org.assertj.core.api.Condition;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class LottoTickets extends Condition<LottoTickets> {
+public class LottoTickets {
     private List<Lotto> tickets = new ArrayList<>();
 
     public LottoTickets(int amount) {
@@ -19,6 +18,26 @@ public class LottoTickets extends Condition<LottoTickets> {
 
     public LottoTickets(List<Lotto> lotto){
         this.tickets = lotto;
+    }
+
+    public LottoResults calculateResult(WinningNumber winningNumber, BonusNumber bonusNumber){
+        int firstPlace = 0;
+        int secondPlace = 0;
+        int thirdPlace = 0;
+        int forthPlace = 0;
+        int fifthPlace = 0;
+
+        for(int i=0; i<tickets.size(); i++){
+            int hit = tickets.get(i).countSameNumber(winningNumber);
+            if(hit == 3) fifthPlace++;
+            if(hit == 4) forthPlace++;
+
+            if((hit == 5) && (tickets.get(i).isHitBonusNumber(bonusNumber))) secondPlace++;
+
+            if(hit == 5) thirdPlace++;
+            if(hit == 6) firstPlace++;
+        }
+        return new LottoResults(firstPlace, secondPlace, thirdPlace, forthPlace, fifthPlace);
     }
 
     @Override

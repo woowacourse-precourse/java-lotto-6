@@ -50,12 +50,17 @@ class LottoTicketsTest {
 
 
     @Test
-    @DisplayName("로또 5등 당첨 개수 추출")
-    void won5thPlace(){
+    @DisplayName("로또 당첨 개수 추출")
+    void calculateResult(){
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     LottoTickets lottoTickets = new LottoTickets(8);
-                    assertThat(lottoTickets.calculate5thPlace()).isEqualTo(1);
+                    WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
+                    BonusNumber bonusNumber = new BonusNumber("7");
+
+                    LottoResults expectedResult = new LottoResults( 0, 0, 0, 0, 1);
+
+                    assertThat(lottoTickets.calculateResult(winningNumber, bonusNumber)).isEqualTo(expectedResult);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),

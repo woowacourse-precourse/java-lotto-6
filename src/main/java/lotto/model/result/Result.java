@@ -1,6 +1,6 @@
 package lotto.model.result;
 
-import static lotto.constants.Rule.MIN_MONEY;
+import static lotto.utils.Constant.MIN_MONEY;
 
 import java.util.HashMap;
 import java.util.List;

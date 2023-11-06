@@ -1,6 +1,6 @@
-package lotto.constants;
+package lotto.utils;
 
-public enum Rule {
+public enum Constant {
     MIN_MONEY(1000),
     MIN_LOTTO(1),
     MAX_LOTTO(45),
@@ -8,7 +8,7 @@ public enum Rule {
 
     private final int value;
 
-    Rule(int value) {
+    Constant(int value) {
         this.value = value;
     }
 

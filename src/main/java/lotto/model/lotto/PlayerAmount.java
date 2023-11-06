@@ -1,6 +1,6 @@
 package lotto.model.lotto;
 
-import static lotto.constants.Rule.MIN_MONEY;
+import static lotto.utils.Constant.MIN_MONEY;
 import static lotto.utils.Validator.validateDivisibleAmount;
 import static lotto.utils.Validator.validateMinimumAmount;
 

@@ -1,12 +1,11 @@
 package lotto.utils;
 
-import static lotto.constants.Error.NON_DELIMITER;
-import static lotto.constants.Error.NUMERIC_INVALID;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.InvalidCommaMissingException;
+import lotto.exception.InvalidNonNumericInputException;
 
 public class Reader {
     public static int parseNumberInteger() {
@@ -14,14 +13,14 @@ public class Reader {
             String inputNumber = Console.readLine();
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMERIC_INVALID.getMessage());
+            throw new InvalidNonNumericInputException();
         }
     }
 
     public static List<Integer> parseNumbersInteger() {
         String inputNumbers = Console.readLine();
         if (!inputNumbers.contains(",")) {
-            throw new IllegalArgumentException(NON_DELIMITER.getMessage());
+            throw new InvalidCommaMissingException();
         }
         return convertToNumbers(inputNumbers);
     }
@@ -30,7 +29,7 @@ public class Reader {
         try {
             return Arrays.stream(inputNumbers.split(",")).map(Integer::parseInt).collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMERIC_INVALID.getMessage());
+            throw new InvalidNonNumericInputException();
         }
     }
 }

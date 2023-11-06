@@ -1,7 +1,7 @@
 package lotto.utils;
 
-import static lotto.constants.Rule.MAX_LOTTO;
-import static lotto.constants.Rule.MIN_LOTTO;
+import static lotto.utils.Constant.MAX_LOTTO;
+import static lotto.utils.Constant.MIN_LOTTO;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;

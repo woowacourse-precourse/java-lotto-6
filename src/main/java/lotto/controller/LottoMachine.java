@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;

@@ -1,11 +1,9 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 import java.util.List;
-
-import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class NumberGenerator {
     private static final int MIN_NUMBER = 1;

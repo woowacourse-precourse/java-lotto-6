@@ -1,10 +1,10 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.TreeMap;
 
 public enum WiningType {
     ONE("1등", 6, false, 2000000000),
@@ -40,8 +40,15 @@ public enum WiningType {
     }
 
     public static Map<WiningType, Integer> winingCountToMap() {
-        return Stream.of(values())
-                .collect(Collectors.toMap(winingType -> winingType, winingType -> 0));
+        Map<WiningType, Integer> winingCounterMap = new TreeMap<>(Comparator.reverseOrder());
+        for (WiningType winingType : values()) {
+            winingCounterMap.put(winingType, 0);
+        }
+        return winingCounterMap;
+    }
+
+    public boolean hasBonus() {
+        return hasBonus;
     }
 
     public int getCorrectCount() {

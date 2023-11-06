@@ -32,6 +32,6 @@ public enum ResultWinEnum {
     }
 
     public static String getIndexMessage(int index) {
-        return indexMap.get(index).getMessage();
+        return indexMap.get(index).message;
     }
 }

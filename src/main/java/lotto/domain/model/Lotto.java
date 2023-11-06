@@ -21,7 +21,7 @@ public class Lotto {
         this.numbers = Collections.unmodifiableList(sortNumbers(numbers));
     }
 
-    private void validate(List<Integer> numbers) { // validate validateCountOfNumbers
+    private void validate(final List<Integer> numbers) { // validate validateCountOfNumbers
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("숫자의 개수가 6개를 넘지 않아야 합니다.");
         }
@@ -39,7 +39,7 @@ public class Lotto {
         System.out.println(this.numbers);
     }
 
-    public String calculateRank(WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public String calculateRank(final WinningNumber winningNumber, final BonusNumber bonusNumber) {
         int countOfMatchingNumber = countMatchingNumbers(winningNumber);
 
         if (countOfMatchingNumber == 6) return RankConstant.FIRST;
@@ -57,7 +57,7 @@ public class Lotto {
         return RankConstant.NONE;
     }
 
-    private int countMatchingNumbers(WinningNumber winningNumber) {
+    private int countMatchingNumbers(final WinningNumber winningNumber) {
         List<Integer> winningNumbers = winningNumber.getRegularWinningNumbers();
         int count = 0;
 
@@ -70,7 +70,7 @@ public class Lotto {
         return count;
     }
 
-    private boolean isContainBonusNumber(BonusNumber bonusNumber) {
+    private boolean isContainBonusNumber(final BonusNumber bonusNumber) {
         return numbers.contains(bonusNumber.getBonusNumber());
     }
 }

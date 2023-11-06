@@ -52,11 +52,17 @@ public class UI {
     }
 
     public static List<Integer> inputWinningNumbers() {
+        List<Integer> numbers = null;
         System.out.println("당첨 번호를 입력해주세요.");
         String line = readLine();
         System.out.println();
         String[] split = line.split(",");
-        List<Integer> numbers = Arrays.stream(split).map(Integer::parseInt).collect(Collectors.toList());
+        try {
+            numbers = Arrays.stream(split).map(Integer::parseInt).collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(",문자 사이사이에 숫자를 입력하셔야 합니다.");
+        }
+
         return numbers;
     }
 

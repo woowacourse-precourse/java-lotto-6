@@ -8,4 +8,5 @@ public class ErrorMessage {
     public static final String PURCHASE_AMOUNT_UNIT = COMMON + "로또 구입 금액은 1,000원 단위여야 합니다.";
     public static final String PURCHASE_AMOUNT_ZERO = COMMON + "로또 구입 금액은 0원일 수 없습니다.";
     public static final String NULL = "입력 값이 null일 수 없습니다.";
+    public static final String DUPLICATED_LOTTO = "로또 번호는 중복될 수 없습니다.";
 }

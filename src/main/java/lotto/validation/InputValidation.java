@@ -8,6 +8,7 @@ import lotto.constants.ExceptionMessages;
 
 public class InputValidation {
 
+    private final Set<String> set = new HashSet<>();
 
     public void validatePurchaseAmountInput(String input) {
         isExist(input);
@@ -16,15 +17,22 @@ public class InputValidation {
     }
 
     public void validateWinningNumbersInput(List<String> input) {
-        Set<String> set = new HashSet<>();
 
         isNumbersExist(input);
         for (String item : input) {
             isDigit(item);
-            isDuplicateNumber(set, item);
+            isDuplicateNumber(item);
             isWithinLottoRange(item);
         }
-        isValidLottoNumbersLength(set);
+        isValidLottoNumbersLength();
+
+    }
+
+    public void validateBonusNumberInput(String input) {
+        isExist(input);
+        isDigit(input);
+        isWithinLottoRange(input);
+        isBonusNumberInWinningNumbers(input);
 
     }
 
@@ -54,7 +62,7 @@ public class InputValidation {
         }
     }
 
-    public void isDuplicateNumber(Set<String> set, String input) {
+    public void isDuplicateNumber(String input) {
         if (!set.add(input)) {
             throw new IllegalArgumentException(
                 ExceptionMessages.DUPLICATE_LOTTO_NUMBERS.getMessage());
@@ -68,10 +76,17 @@ public class InputValidation {
         }
     }
 
-    public void isValidLottoNumbersLength(Set<String> input) {
-        if (input.size() != 6) {
+    public void isValidLottoNumbersLength() {
+        if (set.size() != 6) {
             throw new IllegalArgumentException(
                 ExceptionMessages.INVALID_LOTTO_NUMBERS_LENGTH.getMessage());
+        }
+    }
+
+    public void isBonusNumberInWinningNumbers(String input) {
+        if (set.contains(input)) {
+            throw new IllegalArgumentException(
+                ExceptionMessages.DUPLICATE_LOTTO_BONUS.getMessage());
         }
     }
 }

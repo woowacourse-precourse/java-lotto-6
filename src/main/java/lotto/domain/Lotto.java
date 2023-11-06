@@ -1,6 +1,9 @@
 package lotto.domain;
 
-import static lotto.domain.strategy.RandomLottoStrategy.COUNT_LOTTO_NUMBER;
+import static lotto.utils.validator.Validator.validBlank;
+import static lotto.utils.validator.Validator.validLength;
+import static lotto.utils.validator.Validator.validRange;
+import static lotto.utils.validator.Validator.validUniqueValue;
 
 import java.util.List;
 
@@ -8,14 +11,11 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validBlank(numbers);
+        validLength(numbers);
+        validRange(numbers);
+        validUniqueValue(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != COUNT_LOTTO_NUMBER) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public List<Integer> getNumbers() {

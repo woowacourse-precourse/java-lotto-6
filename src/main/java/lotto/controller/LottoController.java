@@ -1,12 +1,11 @@
 package lotto.controller;
 
-import static lotto.utils.constants.LottoConstants.NUMBER_SPLIT_FORMAT;
+import static lotto.utils.LottoNumberParser.parseListStringToListInteger;
+import static lotto.utils.LottoNumberParser.parseStringToInt;
 import static lotto.view.message.OutputMessage.ASK_FOR_BONUS_NUMBER;
 import static lotto.view.message.OutputMessage.ASK_FOR_LOTTO_WINNING_NUMBERS;
 import static lotto.view.message.OutputMessage.ASK_FOR_PURCHASE_PRICE;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.result.LottoCalculateResult;
@@ -28,15 +27,20 @@ public class LottoController {
     }
 
     public void run() {
-        LottoPurchaseResult purchaseResult = generatePurchaseResult();
-        view.displayPurchaseResult(purchaseResult);
+        try {
+            LottoPurchaseResult purchaseResult = generatePurchaseResult();
+            view.displayPurchaseResult(purchaseResult);
 
-        LottoWinningResult winningResult = generateWinningResult();
-        LottoMatchResult matchResult = matchResult(purchaseResult, winningResult);
-        LottoCalculateResult calculateResult = calculateResult(matchResult, purchaseResult);
+            LottoWinningResult winningResult = generateWinningResult();
+            LottoMatchResult matchResult = matchResult(purchaseResult, winningResult);
+            LottoCalculateResult calculateResult = calculateResult(matchResult, purchaseResult);
 
-        LottoResultDto resultDto = LottoResultDto.fromMatchAndCalculateResults(matchResult, calculateResult);
-        view.displayResult(resultDto);
+            LottoResultDto resultDto = LottoResultDto.fromMatchAndCalculateResults(matchResult, calculateResult);
+            view.displayResult(resultDto);
+
+        } catch (IllegalArgumentException e) {
+            view.displayErrorMessage(e);
+        }
     }
 
     private LottoPurchaseResult generatePurchaseResult() {
@@ -59,20 +63,18 @@ public class LottoController {
 
     private Purchase promptPurchase() {
         view.displayMessage(ASK_FOR_PURCHASE_PRICE);
-        int purchasePrice = Integer.parseInt(view.readInput());
+        int purchasePrice = parseStringToInt(view.readInput());
         return new Purchase(purchasePrice);
     }
 
     private List<Integer> promptWinningNumbers() {
         view.displayMessage(ASK_FOR_LOTTO_WINNING_NUMBERS);
-        String input = view.readInput();
-        List<String> inputNumbers = new ArrayList<>(Arrays.asList(input.split(NUMBER_SPLIT_FORMAT)));
-        return inputNumbers.stream().map(Integer::parseInt).toList();
+        return parseListStringToListInteger(view.readInput());
     }
 
     private int promptBonusNumber() {
         view.displayMessage(ASK_FOR_BONUS_NUMBER);
-        return Integer.parseInt(view.readInput());
+        return parseStringToInt(view.readInput());
     }
 
     private LottoMatchResult matchResult(LottoPurchaseResult lottoPurchaseResult, LottoWinningResult lottoWinningResult) {

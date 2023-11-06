@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.utils.constants.ErrorConstants.formatError;
 import static lotto.utils.constants.LottoConstants.MATCH_FIVE_COUNT;
 import static lotto.utils.constants.LottoConstants.MATCH_FOUR_COUNT;
 import static lotto.utils.constants.LottoConstants.MATCH_SIX_COUNT;
@@ -84,4 +85,9 @@ public class LottoView {
         float profitPercentage = calculateResult.getProfitPercent();
         displayFormattedMessage(ANNOUNCE_FOR_TOTAL_PROFIT_PERCENTAGE_FORMAT, profitPercentage);
     }
+
+    public void displayErrorMessage(IllegalArgumentException e) {
+        System.out.println(formatError(e.getMessage()));
+    }
+
 }

@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class Application {
     public static void main(String[] args) {
         int money = inputMoney();
-        List<Integer> lotto = inputLotto();
-        int bonus_lotto = inputBonusLotto(lotto);
+        Lotto input_lotto = inputLotto();
+        BonusLotto bonus_lotto = inputBonusLotto(input_lotto);
     }
 
     public static Integer inputMoney() {
@@ -36,29 +36,19 @@ public class Application {
         }
     }
 
-    public static List<Integer> inputLotto() {
+    public static Lotto inputLotto() {
         while (true) {
             System.out.println("당첨 번호를 입력해 주세요.");
             String input = Console.readLine();
             try {
-                List<String> lotto = List.of(input.split(","));
-                List<Integer> winning_lotto = lotto.stream().map(x -> Integer.parseInt(x))
+                List<String> input_lotto = List.of(input.split(","));
+                List<Integer> winning_lotto = input_lotto.stream().map(x -> Integer.parseInt(x))
                         .collect(Collectors.toList());
                 try {
-                    checkLottoSize(winning_lotto);
-                    try {
-                        checkWinningLottoRange(winning_lotto);
-                        try {
-                            checkWinningLottoDuplicate(winning_lotto);
-                            return winning_lotto;
-                        } catch (IllegalArgumentException e) {
-                            System.out.println("[ERROR] 당첨 로또는 중복되지 않은 수여야 합니다.");
-                        }
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("[ERROR] 당첨 로또는 1에서 45 사이 정수여야 합니다.");
-                    }
+                    Lotto lotto = new Lotto(winning_lotto);
+                    return lotto;
                 } catch (IllegalArgumentException e) {
-                    System.out.println("[ERROR] 당첨 로또는 6개의 정수여야 합니다.");
+                    System.out.println(e.getMessage());
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 당첨 로또는 정수여야 합니다.");
@@ -66,60 +56,22 @@ public class Application {
         }
     }
 
-    public static void checkLottoSize(List<Integer> lotto) {
-        if (lotto.size() < 1 || lotto.size() > 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkLottoRange(int lotto_number) {
-        if (lotto_number < 1 || lotto_number > 45) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkWinningLottoRange(List<Integer> lotto) {
-        for (int i : lotto) {
-            checkLottoRange(i);
-        }
-    }
-
-    public static Integer removeLottoDuplicateSize(List<Integer> lotto) {
-        return lotto.stream().distinct().collect(Collectors.toList()).size();
-    }
-
-    public static void checkWinningLottoDuplicate(List<Integer> lotto) {
-        if (lotto.size() != removeLottoDuplicateSize(lotto)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static Integer inputBonusLotto(List<Integer> lotto) {
+    public static BonusLotto inputBonusLotto(Lotto lotto) {
         while (true) {
             System.out.println("보너스 번호를 입력해 주세요.");
             String input = Console.readLine();
             try {
-                Integer bonus_lotto = Integer.parseInt(input);
+                Integer bonus = Integer.parseInt(input);
                 try {
-                    checkLottoRange(bonus_lotto);
-                    try {
-                        checkBonusLottoDuplicate(lotto, bonus_lotto);
-                        return bonus_lotto;
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("[ERROR] 보너스 로또는 중복되지 않은 수여야 합니다.");
-                    }
+                    BonusLotto bonusLotto = new BonusLotto(bonus);
+                    bonusLotto.validateDuplicate(lotto, bonus);
+                    return bonusLotto;
                 } catch (IllegalArgumentException e) {
-                    System.out.println("[ERROR] 보너스 로또는 1에서 45 사이 정수여야 합니다.");
+                    System.out.println(e.getMessage());
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 보너스 로또는 정수여야 합니다.");
             }
-        }
-    }
-
-    public static void checkBonusLottoDuplicate(List<Integer> lotto, int bonus_lotto) {
-        if (lotto.contains(bonus_lotto)) {
-            throw new IllegalArgumentException();
         }
     }
 }

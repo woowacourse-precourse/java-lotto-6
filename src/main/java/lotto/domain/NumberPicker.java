@@ -61,11 +61,11 @@ public class NumberPicker {
     private void pickBonusNumber(String input) {
         checkIsBonusNumber(input);
         this.bonusNumber = Integer.parseInt(input);
-        checkIsDuplicate(this.bonusNumber,this.winningNumbers);
+        checkIsDuplicate(this.bonusNumber, this.winningNumbers);
         checkLottoNumberRange(this.bonusNumber);
     }
 
-    public void checkIsDuplicate(int bonusNumber,List<Integer> winningNumbers) {
+    public void checkIsDuplicate(int bonusNumber, List<Integer> winningNumbers) {
         Set<Integer> selectedNumbers = new HashSet<>(winningNumbers);
         System.out.println(selectedNumbers);
         selectedNumbers.add(bonusNumber);
@@ -80,10 +80,10 @@ public class NumberPicker {
         }
     }
 
-    public void  checkIsBonusNumber(String input) {
+    public void checkIsBonusNumber(String input) {
         try {
             Integer.parseInt(input);
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 숫자 이외의 값은 입력할 수 없습니다.");
         }
     }

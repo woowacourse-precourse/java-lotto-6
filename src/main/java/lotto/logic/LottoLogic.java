@@ -1,12 +1,9 @@
 package lotto.logic;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.view.View;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoLogic implements Logic {
@@ -32,11 +29,11 @@ public class LottoLogic implements Logic {
 
     private int getPurchaseAmount() {
         int payment = 0;
-        while(payment > 0){
+        while (payment == 0) {
             try {
                 String input = view.getPurchaseAmount();
                 payment = validPayment(input);
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 view.printError(e.getMessage());
             }
         }

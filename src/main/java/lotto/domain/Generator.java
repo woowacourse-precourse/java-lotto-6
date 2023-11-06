@@ -7,6 +7,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class Generator {
+    Printer printer = new Printer();
+
     //상수(static final) 또는 클래스 변수
     private final int LOTTERY_COST = 1000;
 
@@ -18,7 +20,7 @@ public class Generator {
     //생성자
 
     //메서드
-    public int getAmountOfMoney() {
+    public void getAmountOfMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         while(true) {
             try {
@@ -29,7 +31,8 @@ public class Generator {
                 System.out.println(e.getMessage());
             }
         }
-        return numberOfLottery;
+        printer.showLotteryCount(numberOfLottery);
+        createLotto(numberOfLottery);
     }
 
     private int isDivisible(int money) {
@@ -50,9 +53,10 @@ public class Generator {
         }
     }
 
-    public void createLotto(int numberOfLottery) {
+    private void createLotto(int numberOfLottery) {
         while(Lottos.size() != numberOfLottery) {
-            Lottos.add(new Lotto(generateRandomNumbers()));
+            Lotto generatedLotto = new Lotto(generateRandomNumbers());
+            Lottos.add(generatedLotto);
         }
     }
 

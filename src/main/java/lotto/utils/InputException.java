@@ -2,9 +2,7 @@ package lotto.utils;
 
 import lotto.domain.PrintMessage;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class InputException {
 
@@ -14,6 +12,27 @@ public class InputException {
     public static void validatePurchaseAmount(String input) {
         isDigit(input);
         isThousandUnit(Integer.parseInt(input));
+    }
+
+    public static List<Integer> validateWinningNumber(String input) {
+        isContainComma(input);
+        List<Integer> list = new ArrayList<>(validateList(input.split(",")));
+        checkSize(list);
+        isDuplication(list);
+        Collections.sort(list);
+        return list;
+    }
+
+    public static List<Integer> validateList(String[] arr) {
+        List<Integer> list = new ArrayList<>();
+
+        for (String s : arr) {
+            isDigit(s);
+            isBetweenOneAndFourtyfive(Integer.parseInt(s));
+            list.add(Integer.parseInt(s));
+        }
+
+        return list;
     }
 
     public static void isDigit(String input) {

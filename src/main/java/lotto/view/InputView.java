@@ -4,6 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.PrintMessage;
 import lotto.utils.InputException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InputView {
 
     private InputView() {
@@ -23,6 +26,21 @@ public class InputView {
         }
 
         return Integer.parseInt(purchaseAmount);
+    }
+
+    public static List<Integer> inputWinningNumber() {
+        List<Integer> winningNumberList = new ArrayList<>();
+        while (true) {
+            try {
+                String winningNumber = printAndInput(PrintMessage.INPUT_WINNING_NUMBER);
+                winningNumberList = InputException.validateWinningNumber(winningNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return winningNumberList;
     }
 
     public static String printAndInput(String message) {

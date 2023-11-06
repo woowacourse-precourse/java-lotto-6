@@ -1,7 +1,7 @@
 package lotto.exception;
 
 public class ErrorMessage {
-    public static final String NO_INPUT_ERROR = "[ERROR] 값을 입력하세요.";
+    public static final String NO_INPUT_ERROR = "[ERROR] 정확한 값을 입력하세요.";
     public static final String INVALID_AMOUNT_FORMAT_ERROR = "[ERROR] 구입 금액은 로또 가격 단위로 이루어져야 합니다.";
     public static final String INVALID_COUNT_OF_WINNING_NUMBERS_ERROR = "[ERROR] 당첨 번호의 개수는 정확히 6개이어야 합니다.";
     public static final String INVALID_FORMAT_ERROR = "[ERROR] 잘못된 형식의 입력입니다.";

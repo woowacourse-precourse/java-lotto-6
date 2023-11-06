@@ -46,4 +46,8 @@ public class LottoController {
             return requestWinningNumbers();
         }
     }
+
+    public int requestBonusNumber() {
+
+    }
 }

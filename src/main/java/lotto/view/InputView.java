@@ -33,4 +33,16 @@ public class InputView {
             }
         }
     }
+
+    public int bonusNumber(List<Integer> winningNumbers) {
+        while(true) {
+            try {
+                String bonusNumber = Console.readLine();
+                inputValidation.validateBonusNumber(bonusNumber, winningNumbers);
+                return Integer.parseInt(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

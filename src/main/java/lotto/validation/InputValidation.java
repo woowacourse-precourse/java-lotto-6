@@ -9,6 +9,7 @@ import static lotto.constant.ErrorMessage.SIZE_EXCEPTION;
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class InputValidation {
@@ -37,6 +38,16 @@ public class InputValidation {
             validateNumberInRange(winningNumber);
             validateDuplication(winningNumber, distinctWinningNumbers);
         }
+    }
+
+    public void validateBonusNumber(String bonusNumberInput, List<Integer> winningNumbers) {
+        validateBlank(bonusNumberInput);
+        validateDigit(bonusNumberInput);
+
+        Set<Integer> distinctWinningNumbers = new HashSet<>(winningNumbers);
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+        validateNumberInRange(bonusNumber);
+        validateDuplication(bonusNumber, distinctWinningNumbers);
     }
 
     private void validateBlank(String info) {

@@ -101,8 +101,9 @@ public class StartLotto {
     public void inputWinningNumbersForClient() {
         boolean errorOccurred;
         do {
+            String winningNumbersString = Console.readLine();
             try {
-                inputWinningNumbers();
+                checkWinningNumbers(winningNumbersString);
                 errorOccurred = false;
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e);
@@ -111,9 +112,7 @@ public class StartLotto {
         } while (errorOccurred);
     }
 
-    private void inputWinningNumbers() {
-        String winningNumbersString = Console.readLine();
-
+    public void checkWinningNumbers(String winningNumbersString) {
         // String을 ,(쉼표) 단위로 split. String에 공백이 포함되어 있으면 공백을 없엔다.
         String[] splitWinningNumbersString = splitInputString(winningNumbersString);
         // String -> Integer로 변환한다.

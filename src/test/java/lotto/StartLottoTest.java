@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StartLottoTest {
@@ -31,5 +32,14 @@ public class StartLottoTest {
             String input = "101";
             test.checkPurchasePrice(input);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호는 쉼표로 구분된다.")
+    @Test
+    void checkWinningNumberSplit() {
+        assertThatCode(() -> {
+            String input = "1,2, 3,  4, 5,6";
+            test.checkWinningNumbers(input);
+        }).doesNotThrowAnyException();
     }
 }

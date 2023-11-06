@@ -15,7 +15,7 @@ public class LottoList {
         for (int i = 0; i < lottoList.size(); i++) {
             List<Integer> lotto = lottoList.get(i).getNumbers();
             List<String> lottoNumbers = lotto.stream().map(x -> String.valueOf(x))
-                            .collect(Collectors.toList());
+                    .collect(Collectors.toList());
             System.out.println("[" + String.join(", ", lottoNumbers) + "]");
         }
     }

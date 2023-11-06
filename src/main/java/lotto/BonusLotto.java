@@ -1,6 +1,6 @@
 package lotto;
 
-public class BonusLotto{
+public class BonusLotto {
     private final Integer bonus;
 
     public BonusLotto(int bonus) {

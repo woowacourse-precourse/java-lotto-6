@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_COMMA_ERROR_MESSAEGE;
+import static lotto.config.LottoErrorMessage.LOTTO_AMOUNT_MAX_ERROR_MESSAGE;
+import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_COMMA_ERROR_MESSAGE;
 import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_NUMERIC_ERROR_MESSAGE;
 import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_UNIQUE_ERROR_MESSAGE;
 import static lotto.validator.AssertException.assertExceptionTest;
@@ -57,7 +58,7 @@ class WinningLottoValidatorTest {
             // given
             Validator<String> validator = new WinningLottoValidator();
             // when, then
-            assertExceptionTest(validator, input, WINNING_LOTTO_NUMERIC_ERROR_MESSAGE.getMessage());
+            assertExceptionTest(validator, input, LOTTO_AMOUNT_MAX_ERROR_MESSAGE.getMessage());
         }
 
         @DisplayName("연속된 콤마 입력시 예외를 발생시킨다.")
@@ -67,7 +68,7 @@ class WinningLottoValidatorTest {
             Validator<String> validator = new WinningLottoValidator();
             String input = "1,,2,,3,,,,,4,,,5,,6";
             // when, then
-            assertExceptionTest(validator, input, WINNING_LOTTO_COMMA_ERROR_MESSAEGE.getMessage());
+            assertExceptionTest(validator, input, WINNING_LOTTO_COMMA_ERROR_MESSAGE.getMessage());
         }
 
         @DisplayName("맨 처음 또는 맨 마지막에 콤마 입력시 예외를 발생시킨다.")
@@ -77,7 +78,7 @@ class WinningLottoValidatorTest {
             // given
             Validator<String> validator = new WinningLottoValidator();
             // when, then
-            assertExceptionTest(validator, input, WINNING_LOTTO_COMMA_ERROR_MESSAEGE.getMessage());
+            assertExceptionTest(validator, input, WINNING_LOTTO_COMMA_ERROR_MESSAGE.getMessage());
         }
 
         @DisplayName("중복된 번호 입력시 예외를 발생시킨다.")

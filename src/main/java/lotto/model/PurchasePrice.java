@@ -4,7 +4,9 @@ import static lotto.constant.ErrorMessage.MONEY_LESS_THAN_ZERO;
 import static lotto.constant.ErrorMessage.MONEY_WITH_REMAINDER;
 
 public class PurchasePrice {
+    private static final int CENT = 100;
     private static final long LOTTO_PRICE = 1000L;
+    private static final double DECIMAL_PLACES = 10.0;
 
     private final long amount;
 
@@ -34,8 +36,8 @@ public class PurchasePrice {
         return amount / LOTTO_PRICE;
     }
 
-    public double calculateRateOfReturn(final long sum) {
-        double result = ((double) sum / amount) * 100;
-        return Math.round(result * 100) / 100.0;
+    public double calculateRateOfReturn(final long prizeSum) {
+        double result = ((double) prizeSum / amount) * CENT;
+        return Math.round(result * DECIMAL_PLACES) / DECIMAL_PLACES;
     }
 }

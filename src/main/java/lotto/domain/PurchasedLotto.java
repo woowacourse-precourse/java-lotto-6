@@ -9,12 +9,19 @@ import static lotto.utils.PurchaseManager.dividePurchaseAmount;
 
 public class PurchasedLotto {
 
-    private List<Lotto> purchasedLotto;
+    private final List<Lotto> purchasedLotto;
 
-    public List<Lotto> issueLotto(int purchaseAmount, NumberGenerator numberGenerator) {
+    private PurchasedLotto(int purchaseAmount, NumberGenerator numberGenerator) {
+        purchasedLotto = issueLotto(purchaseAmount, numberGenerator);
+    }
+
+    public static PurchasedLotto of(int purchaseAmount, NumberGenerator numberGenerator) {
+        return new PurchasedLotto(purchaseAmount, numberGenerator);
+    }
+
+    private List<Lotto> issueLotto(int purchaseAmount, NumberGenerator numberGenerator) {
         return IntStream.range(0, dividePurchaseAmount(purchaseAmount))
                 .mapToObj(i -> new Lotto(numberGenerator.generateNumber()))
                 .toList();
     }
-
 }

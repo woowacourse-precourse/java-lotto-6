@@ -29,7 +29,7 @@ public class LottoControllerDecorator extends LottoController {
             try {
                 money = super.getMoney();
             } catch (MoneyException | CommonValidationException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         } while (money == null);
 
@@ -42,7 +42,7 @@ public class LottoControllerDecorator extends LottoController {
             try {
                 super.createWinningLotto(winningLotto);
             } catch (CommonValidationException | LottoException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         } while (winningLotto.getLotto() == null);
     }
@@ -53,7 +53,7 @@ public class LottoControllerDecorator extends LottoController {
             try {
                 super.createWinningBonusNumber(winningLotto);
             } catch (CommonValidationException | LottoException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         } while (winningLotto.getBonusNumber() == null);
     }

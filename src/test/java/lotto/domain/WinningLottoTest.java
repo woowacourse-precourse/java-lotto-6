@@ -24,10 +24,21 @@ public class WinningLottoTest {
     }
 
     @Test
-    @DisplayName("입력 값에 숫자나 쉼표 이외의 문자가 들어올 경우 예외가 발생한다.")
-    void inputNotNumberOrComma() {
+    @DisplayName("입력 값에 숫자 이외의 문자가 들어올 경우 예외가 발생한다.")
+    void inputNotNumber() {
         // Given
         String inputWinningLotto = "1,2,3,a,4,5";
+
+        // When & Then
+        assertThatThrownBy(() -> new WinningLotto(inputWinningLotto))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("입력 값에 쉼표 구분자 이외의 문자가 들어올 경우 예외가 발생한다.")
+    void inputNotComma() {
+        // Given
+        String inputWinningLotto = "1.2.3.4.5.6";
 
         // When & Then
         assertThatThrownBy(() -> new WinningLotto(inputWinningLotto))

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,6 +28,19 @@ public class WinningStaticsTest {
         //then
         long expectedValue = 2030050000L;
         assertThat(winningStatistics.showRevenue()).isEqualTo(expectedValue);
+
+    }
+
+    @DisplayName("당첨 등수들이 잘 저장되었는지 테스트")
+    void ranksStoreTest() {
+        WinningStatistics winningStatistics = WinningStatistics.from(winningRanks);
+
+        for (Rank rank : winningRanks) {
+            int count = winningStatistics.showCountOf(rank);
+            assertThat(count).isEqualTo(1);
+        }
+
+
 
     }
 

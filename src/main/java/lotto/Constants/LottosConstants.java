@@ -37,6 +37,10 @@ public enum LottosConstants {
         return this.matchNumber == matchNumber;
     }
 
+    private boolean isBonusPrize(int matchNumber, int prizeMoney){
+        return matchNumber == FIVE_MATCH_BONUS.getMatchNumber()&& prizeMoney == FIVE_MATCH_BONUS.getPrizeMoney();
+    }
+
     public int getMatchNumber() {
         return this.matchNumber;
     }

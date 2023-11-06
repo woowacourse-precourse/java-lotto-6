@@ -45,7 +45,7 @@ public class Controller {
         long resultAmount = results.getTotalAmount();
         long purchaseAmount = calculatePurchaseAmount(receipts);
         double earningRate = resultAmount / purchaseAmount * 100;
-        out.printResults(results, earningRate);
+        out.printResults(results.toList(), earningRate);
     }
 
     private long calculatePurchaseAmount(List<LotteryReceipt> receipts) {

@@ -28,6 +28,9 @@ public class TextFormat {
 
     private static Pattern makePattern(String format) {
         String pattern = format.replace("[", "\\[");
+        pattern = pattern.replace("]", "\\]");
+        pattern = pattern.replace("(", "\\(");
+        pattern = pattern.replace(")", "\\)");
         pattern = pattern.replace("%s", ".{1,}");
         return Pattern.compile(pattern);
     }

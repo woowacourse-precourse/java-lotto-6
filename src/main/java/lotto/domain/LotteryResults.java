@@ -1,13 +1,17 @@
 package lotto.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
+
 
 public class LotteryResults {
     private final Map<LotteryRanking, Integer> results;
 
     private LotteryResults() {
-        this.results = new HashMap<>();
+        this.results = createEmptyLotteryRankingMap();
     }
 
     public LotteryResults(LotteryRanking ranking, int matches) {
@@ -38,7 +42,22 @@ public class LotteryResults {
                 .sum();
     }
 
+    public List<LotteryResult> toList() {
+        return results.entrySet()
+                .stream()
+                .map(entry -> new LotteryResult(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
+    }
+
     private long calculateAmount(Map.Entry<LotteryRanking, Integer> entry) {
         return entry.getKey().getAmount() * entry.getValue();
+    }
+
+    private Map<LotteryRanking, Integer> createEmptyLotteryRankingMap() {
+        Map<LotteryRanking, Integer> result = new TreeMap<>();
+        for (LotteryRanking ranking : LotteryRanking.values()) {
+            result.put(ranking, 0);
+        }
+        return result;
     }
 }

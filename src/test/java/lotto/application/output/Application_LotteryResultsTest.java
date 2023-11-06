@@ -49,6 +49,8 @@ public class Application_LotteryResultsTest extends MyApplicationTest {
         List<String> arguments = LOTTERY_RANKING_RESULT_FORMAT.parse(result);
         String header = arguments.get(0);
 
+        println(header);
+
         if (LOTTERY_RANKING_RESULT_DEFAULT_HEADER_FORMAT.matches(header)
                 || LOTTERY_RANKING_RESULT_SECOND_HEADER_FORMAT.matches(header)) {
             return true;

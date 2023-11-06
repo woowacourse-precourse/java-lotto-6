@@ -8,8 +8,8 @@
 |  입출력  | 로또 구입 금액(purchaseAmount) 입력            | LottoView                   |                                                                            |
 | 객체 생성 | 구매 객체 (LottoPurchase) 생성               | LottoPurchase               |                                                                            |
 |  검증   | 로또 구입 금액(purchaseAmount) 검증            | LottoPurchase               |                                                                            |
-|  계산   | 구매 개수(purchaseCount) 계산                | LottoPurchase               |                                                                            | 
-|  입출력  | 구매 개수 메시지(purchaseCountMessage) 출력     | LottoView, LottoPurchaseDto |                                                                            |
+|  계산   | 구매 개수(quantity) 계산                     | LottoPurchase               |                                                                            | 
+|  입출력  | 구매 개수 메시지(quantity) 출력                 | LottoView, LottoPurchaseDto |                                                                            |
 | 객체 생성 | 구매 개수 만큼 로또(Lottos) 생성                 | LottoService, Lottos        | `Randoms.pickUniqueNumbersInRange()` 이용 <br/> 로또 번호는 중복 없음<br/>로또 번호는 오름차순 |
 |  입출력  | 생성된 로또(pickedLottoNumbers) 출력          | LottoView, LottosDto        |                                                                            |
 |  입출력  | 당첨 번호 입력(winningNumberPrompt) 프롬프트 출력  | LottoView                   |                                                                            |

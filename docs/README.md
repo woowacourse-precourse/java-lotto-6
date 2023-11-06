@@ -142,7 +142,7 @@
 - [ ] 사용자 입력 처리
   - [x] 구입 금액 입력 받기. (로또 1장의 가격은 1000원)
   - [x] 당첨 번호 입력 받기. (번호는 쉼표(,)를 기준으로 구분)
-  - [ ] 보너스 번호 입력 받기.
+  - [x] 보너스 번호 입력 받기.
   - [ ] 잘못된 값을 입력할 경우 `IllegalArgumentException`을 발생시키기.
     - [ ] "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - [ ] `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리.

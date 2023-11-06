@@ -3,7 +3,7 @@ package lotto.input;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.config.AppConfig;
+import lotto.config.Constants;
 import lotto.domain.Lotto;
 
 public class TargetNumberHandler {
@@ -20,11 +20,11 @@ public class TargetNumberHandler {
     }
 
     private Lotto handleInputToLotto() {
-        boolean isInputInvalid = true;
         Lotto target = null;
+        boolean isInputInvalid = true;
         do {
             try {
-                target = getValidLotto();
+                target = getValidTargetNumberInput();
                 isInputInvalid = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(TARGET_ERROR_MESSAGE);
@@ -33,14 +33,14 @@ public class TargetNumberHandler {
         return target;
     }
 
-    private Lotto getValidLotto() {
+    private Lotto getValidTargetNumberInput() {
         String input = Console.readLine();
-        String[] split = input.split(INPUT_DELIMITER, AppConfig.LOTTO_SIZE);
-        List<Integer> list = arrayToList(split);
+        String[] strings = input.split(INPUT_DELIMITER, Constants.LOTTO_SIZE);
+        List<Integer> list = convertToIntegerList(strings);
         return new Lotto(list);
     }
 
-    private List<Integer> arrayToList(String[] split) {
+    private List<Integer> convertToIntegerList(String[] split) {
         return Arrays.stream(split)
                 .map(String::trim)
                 .mapToInt(Integer::parseInt)
@@ -59,8 +59,7 @@ public class TargetNumberHandler {
         int bonus = 0;
         do {
             try {
-                String input = Console.readLine();
-                int tmp = Integer.parseInt(input);
+                int tmp = getValidBonusInput();
                 validateBonus(tmp, target);
                 bonus = tmp;
                 isInputInvalid = false;
@@ -71,12 +70,18 @@ public class TargetNumberHandler {
         return bonus;
     }
 
+    private int getValidBonusInput() {
+        String input = Console.readLine();
+        int tmp = Integer.parseInt(input);
+        return tmp;
+    }
+
     private void validateBonus(int bonus, Lotto target) {
         if (target.contains(bonus)) {
             throw new IllegalArgumentException();
         }
 
-        if (bonus < AppConfig.LOTTO_NUMBER_MIN_RANGE || bonus > AppConfig.LOTTO_NUMBER_MAX_RANGE) {
+        if (bonus < Constants.LOTTO_NUMBER_MIN_RANGE || bonus > Constants.LOTTO_NUMBER_MAX_RANGE) {
             throw new IllegalArgumentException();
         }
     }

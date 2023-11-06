@@ -3,9 +3,12 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.Calculator;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +17,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class LottoViewTest {
 
     LottoView lottoView = new LottoView();
-    Calculator calculator = new Calculator();
+
+    @Test
+    @DisplayName("Lotto.toString()은 오름차순과 문제의 출력형식을 지킨다.")
+    void Lotto_toString_테스트(){
+        //given
+        Lotto lotto = new Lotto(List.of(1,12,31,43,22,6));
+
+        //when
+        String string = lotto.toString();
+
+        //then
+        Assertions.assertThat(string).isEqualTo("[1, 6, 12, 22, 31, 43]");
+    }
 
     @Test
     void 수익률_출력형식_테스트() {

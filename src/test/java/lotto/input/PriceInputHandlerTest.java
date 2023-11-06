@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.NoSuchElementException;
-import lotto.config.AppConfig;
+import lotto.config.Constants;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -42,6 +42,6 @@ class PriceInputHandlerTest {
 
         int amount = priceInputHandler.dividePaymentIntoLottoPrice();
 
-        Assertions.assertThat(amount).isEqualTo(Integer.parseInt(input) / AppConfig.LOTTO_PRICE);
+        Assertions.assertThat(amount).isEqualTo(Integer.parseInt(input) / Constants.LOTTO_PRICE);
     }
 }

@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.config.AppConfig;
+import lotto.config.Constants;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != AppConfig.LOTTO_SIZE) {
+        if (numbers.size() != Constants.LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
@@ -26,8 +26,8 @@ public class Lotto {
     }
 
     private List<Integer> filterRange(List<Integer> numbers) {
-        return numbers.stream().filter(integer -> integer <= AppConfig.LOTTO_NUMBER_MAX_RANGE)
-                .filter(integer -> integer >= AppConfig.LOTTO_NUMBER_MIN_RANGE)
+        return numbers.stream().filter(integer -> integer <= Constants.LOTTO_NUMBER_MAX_RANGE)
+                .filter(integer -> integer >= Constants.LOTTO_NUMBER_MIN_RANGE)
                 .toList();
     }
 

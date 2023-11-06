@@ -3,7 +3,7 @@ package study.prototype;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.config.AppConfig;
+import lotto.config.Constants;
 import lotto.domain.Lotto;
 
 public class TargetNUmberHandlerPrototype {
@@ -23,7 +23,7 @@ public class TargetNUmberHandlerPrototype {
 
     private Lotto validateTargetNumber(String input) {
         try {
-            String[] split = input.split(INPUT_DELIMITER, AppConfig.LOTTO_SIZE);
+            String[] split = input.split(INPUT_DELIMITER, Constants.LOTTO_SIZE);
             List<Integer> target = getIntegerList(split);
             return new Lotto(target);
 
@@ -67,7 +67,7 @@ public class TargetNUmberHandlerPrototype {
             throw new IllegalArgumentException();
         }
 
-        if (bonus < AppConfig.LOTTO_NUMBER_MIN_RANGE || bonus > AppConfig.LOTTO_NUMBER_MAX_RANGE) {
+        if (bonus < Constants.LOTTO_NUMBER_MIN_RANGE || bonus > Constants.LOTTO_NUMBER_MAX_RANGE) {
             throw new IllegalArgumentException();
         }
     }

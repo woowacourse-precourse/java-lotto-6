@@ -10,7 +10,6 @@ public class LottoShop {
     public LottoShop(LottoNumberGenerator lottoNumberGenerator) {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
-
     public List<Lotto> sell(int amount) {
         return IntStream.range(0, amount)
                 .mapToObj(i -> lottoNumberGenerator.generate())

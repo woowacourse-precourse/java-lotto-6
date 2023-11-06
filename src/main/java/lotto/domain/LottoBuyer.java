@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.config.AppConfig;
+import lotto.config.Constants;
 
 public class LottoBuyer {
     private final List<Lotto> lottoTickets;
@@ -39,6 +39,6 @@ public class LottoBuyer {
     }
 
     public int payment() {
-        return lottoTickets.size() * AppConfig.LOTTO_PRICE;
+        return lottoTickets.size() * Constants.LOTTO_PRICE;
     }
 }

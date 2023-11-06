@@ -1,6 +1,6 @@
 package lotto.config;
 
-public class AppConfig {
+public class Constants {
     public static final int LOTTO_PRICE = 1000;
     public static final int LOTTO_NUMBER_MIN_RANGE = 1;
     public static final int LOTTO_NUMBER_MAX_RANGE = 45;

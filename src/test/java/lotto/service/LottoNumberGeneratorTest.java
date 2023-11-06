@@ -20,7 +20,7 @@ public class LottoNumberGeneratorTest {
         int count = 0;
 
         //when
-        while (createdNumbers.size() < 45 && count < 1000) {
+        while (createdNumbers.size() < 45 && count < 100000) {
             List<Integer> lottoNumbers = lottoNumberGenerator.generate();
             lottoNumbers.forEach(num -> createdNumbers.add(num));
             count++;

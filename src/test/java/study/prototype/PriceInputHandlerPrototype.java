@@ -1,7 +1,7 @@
 package study.prototype;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.config.AppConfig;
+import lotto.config.Constants;
 
 class PriceInputHandlerPrototype {
     private static final int ZERO = 0;
@@ -14,7 +14,7 @@ class PriceInputHandlerPrototype {
         System.out.println(PURCHASE_INFO_MESSAGE);
         String input = Console.readLine();
         int price = validatePrice(input);
-        return price / AppConfig.LOTTO_PRICE;
+        return price / Constants.LOTTO_PRICE;
     }
 
     private int validatePrice(String input) {
@@ -37,7 +37,7 @@ class PriceInputHandlerPrototype {
     }
 
     private void validateUnit(int price) {
-        if ((price % AppConfig.LOTTO_PRICE) != ZERO) {
+        if ((price % Constants.LOTTO_PRICE) != ZERO) {
             throw new IllegalArgumentException();
         }
     }

@@ -28,6 +28,8 @@ public class LottoController {
         requestLottoPurchaseAmount();
         requestWinningNumbers();
         requestBonusNumber();
+
+
     }
 
     public void requestLottoPurchaseAmount() {

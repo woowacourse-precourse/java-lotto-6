@@ -1,4 +1,4 @@
-package lotto.view.dto;
+package lotto.dto;
 
 
 public class LottoResult {

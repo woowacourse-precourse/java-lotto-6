@@ -3,6 +3,8 @@ package lotto.domain;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoValue;
 
+import java.math.BigInteger;
+
 public class Price {
     private int price;
 
@@ -34,7 +36,7 @@ public class Price {
     }
 
     private void validatePrice(int price) {
-        if (price >= LottoValue.MAXIMUM_PURCHASE_PRICE.getValue()) {
+        if (price > LottoValue.MAXIMUM_PURCHASE_PRICE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.OVER_MAXIMUM_PRICE.getMessage());
         }
         if (price < LottoValue.PRICE_PER_PIECE.getValue()) {
@@ -47,7 +49,7 @@ public class Price {
 
     private boolean isNotNumber(String str) {
         try {
-            int i = Integer.parseInt(str);
+            BigInteger i = new BigInteger(str);
         } catch (NumberFormatException nfe) {
             return true;
         }

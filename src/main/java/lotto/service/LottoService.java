@@ -7,18 +7,15 @@ import static lotto.meta.Result.FOUR;
 import static lotto.meta.Result.SIX;
 import static lotto.meta.Result.THREE;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.data.Lotto;
 import lotto.data.UserLotto;
+import lotto.io.input.LottoInput;
+import lotto.io.input.MoneyInput;
 import lotto.meta.Result;
-import lotto.validator.LottoValidator;
-import lotto.validator.MoneyValidator;
 
 public class LottoService {
     private List<UserLotto> userLottos;
@@ -49,16 +46,14 @@ public class LottoService {
 
     private void getSpendMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        String spend = Console.readLine();
-        MoneyValidator.validate(spend);
-        spendMoney = Integer.parseInt(spend);
+        spendMoney = MoneyInput.getMoney();
         lottoCnt = spendMoney / 1000;
     }
 
     private void getUserLottos(int cnt) {
         System.out.println("\n" + cnt + "개를 구매했습니다.");
         while (cnt-- > 0) {
-            userLottos.add(new UserLotto(getRandomLotto()));
+            userLottos.add(new UserLotto(LottoInput.getRandomLotto()));
         }
 
         userLottos.forEach(userLotto -> {
@@ -67,25 +62,15 @@ public class LottoService {
         System.out.println();
     }
 
-    private Lotto getRandomLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(numbers);
-    }
-
     private void getLottoNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String[] lottoNumbers = Console.readLine().split(",");
-        LottoValidator.validateNumbers(lottoNumbers);
-        List<Integer> numbers = Arrays.stream(lottoNumbers).map(Integer::parseInt).toList();
-        lotto = new Lotto(numbers);
+        lotto = new Lotto(LottoInput.getLottoNumbers());
         System.out.println();
     }
 
     private void getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        String bonus = Console.readLine();
-        LottoValidator.validateBonusNumber(lotto.getNumbers(), bonus);
-        bonusNumber = Integer.parseInt(bonus);
+        bonusNumber = LottoInput.getBonusLottoNumber(lotto.getNumbers());
     }
 
     private void compareNumbers() {

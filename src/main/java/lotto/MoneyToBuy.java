@@ -8,6 +8,10 @@ public class MoneyToBuy {
         this.value = value;
     }
 
+    public Integer getValue() {
+        return value;
+    }
+
     private void validate(Integer value) {
         if (value <= 0) {
             throw new IllegalArgumentException();

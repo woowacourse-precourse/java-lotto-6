@@ -20,7 +20,6 @@ public class LottoGame {
         generateLottos();
         printBoughtLottos();
         printLottoGrades();
-        //System.out.println("총 수익률은 62.5%입니다.");
     }
 
     private void requestMoneyToBuy() {
@@ -80,7 +79,17 @@ public class LottoGame {
                 threeMatch += 1;
             }
         }
+
         System.out.printf(OutputMessage.LOTTO_GRADE_RESULT.getMessage(), threeMatch, fourMatch, fiveMatch,
                 fiveAndBonusMatch, sixMatch);
+        printRateOfReturn(threeMatch, fourMatch, fiveMatch,
+                fiveAndBonusMatch, sixMatch);
+    }
+
+    private void printRateOfReturn(int threeMatch, int fourMatch, int fiveMatch, int fiveAndBonusMatch, int sixMatch) {
+        Integer totalIncome = Prize.getTotalIncome(threeMatch, fourMatch, fiveMatch,
+                fiveAndBonusMatch, sixMatch);
+        Double rateOfReturn = totalIncome.doubleValue() / moneyToBuy.getValue() * 100;
+        System.out.printf(OutputMessage.RATE_OF_RETURN.getMessage(), String.format("%.1f", rateOfReturn));
     }
 }

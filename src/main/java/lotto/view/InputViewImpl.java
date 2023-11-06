@@ -13,6 +13,10 @@ import static lotto.util.InputValidator.isValidWinningNumbers;
 
 public class InputViewImpl implements InputView {
 
+    private static final String INPUT_PURCHASE_ERROR_MESSAGE = "구입 금액은 숫자로 입력해주세요.";
+    private static final String INPUT_WINNER_NUMBERS_ERROR_MESSAGE = "당첨 번호는 6개의 중복없는 숫자로 이루어져야 합니다.";
+    private static final String INPUT_BONUS_NUMBER_ERROR_MESSAGE = "보너스 번호는 숫자로 입력해주세요.";
+
     @Override
     public Money readUserPurchaseMoney() {
         String purchaseMoney = readLine().trim();
@@ -20,7 +24,7 @@ public class InputViewImpl implements InputView {
             return new Money(Integer.parseInt(purchaseMoney));
         }
 
-        throw new IllegalArgumentException("구입 금액은 숫자로 입력해주세요.");
+        throw new IllegalArgumentException(INPUT_PURCHASE_ERROR_MESSAGE);
     }
 
     @Override
@@ -31,7 +35,7 @@ public class InputViewImpl implements InputView {
                 .collect(Collectors.toList());
 
         if(!isValidWinningNumbers(lottoNumbers)) {
-            throw new IllegalArgumentException("당첨 번호는 6개의 중복없는 숫자로 이루어져야 합니다.");
+            throw new IllegalArgumentException(INPUT_WINNER_NUMBERS_ERROR_MESSAGE);
         }
 
         return lottoNumbers;
@@ -44,6 +48,6 @@ public class InputViewImpl implements InputView {
             return new LottoNumber(Integer.parseInt(input));
         }
 
-        throw new IllegalArgumentException("보너스 번호는 숫자로 입력해주세요.");
+        throw new IllegalArgumentException(INPUT_BONUS_NUMBER_ERROR_MESSAGE);
     }
 }

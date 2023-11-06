@@ -67,8 +67,8 @@
 ## 당첨 확인 기능
 - [x] `LottoUtil::getMatchingNumberCount` 메서드
   - 정답과 일치하는 번호의 개수를 반환한다.
-- [x] `LottoController::calculateLottoMatch` 메서드
-  - 정답 로또, 검사 로또를 인수로 받아 비교 결과를 반환한다.
+- [x] `LottoController::calculateLottoRank` 메서드
+  - 정답 로또, 검사 로또를 인수로 받아 등수를 반환한다.
 
 ## 당첨 내역 출력 기능
 - [x] `LottoOutputView::printLottoResult` 메서드

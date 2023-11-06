@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.constant.LottoMatch;
+import lotto.constant.LottoRank;
 import lotto.domain.dto.LottoAnswer;
 import lotto.domain.dto.LottoNumbers;
 import org.junit.jupiter.api.Test;
@@ -19,8 +19,8 @@ public class LottoControllerTest {
         LottoAnswer answer = new LottoAnswer(new LottoNumbers(inputAnswer), inputBonus);
         LottoNumbers lotto = new LottoNumbers(inputLotto);
 
-        LottoMatch result = LottoController.calculateLottoMatch(answer, lotto);
+        LottoRank result = LottoController.calculateLottoRank(answer, lotto);
 
-        assertEquals(LottoMatch.FIVE_MATCH_WITH_BONUS, result);
+        assertEquals(LottoRank.SECOND, result);
     }
 }

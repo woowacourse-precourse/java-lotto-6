@@ -30,7 +30,7 @@ public class Controller {
     private void checkInputValidation(String inputWinningNumbers, List<String> isSplitWinningNumbers) {
         InputValidator.isNullOrIsEmpty(inputWinningNumbers);
         InputValidator.includeSymbolExceptComma(inputWinningNumbers);
-        InputValidator.isNotDigit(isSplitWinningNumbers);
+        InputValidator.isNotDigits(isSplitWinningNumbers);
     }
 
     private List<Integer> convertedWinningNumbers(List<String> isSplitWinningNumbers) {

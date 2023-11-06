@@ -18,7 +18,7 @@ public class InputValidator {
         }
     }
 
-    public static void isNotDigit(List<String> isSplitWinningNumbers) {
+    public static void isNotDigits(List<String> isSplitWinningNumbers) {
         for (String number : isSplitWinningNumbers) {
             try {
                 Integer.parseInt(number);

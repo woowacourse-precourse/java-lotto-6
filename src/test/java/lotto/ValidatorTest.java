@@ -21,8 +21,17 @@ class ValidatorTest {
 
     @Test
     @DisplayName("입력값이 공백이거나 null일 시 예외 발생")
-    void isSpaceOrNULLTest() {
+    void isBlankOrNULLTest() {
         testCases = Arrays.asList(new String[]{"", null});
+        for (String testCase : testCases) {
+            assertThatThrownBy(() -> validator.validate(testCase));
+        }
+    }
+
+    @Test
+    @DisplayName("공백 문자를 포함할 시 예외 발생")
+    void containSpaceTest() {
+        testCases = Arrays.asList(new String[]{" 1", "1, 2", "1 ", "1,2 "});
         for (String testCase : testCases) {
             assertThatThrownBy(() -> validator.validate(testCase));
         }

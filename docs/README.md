@@ -14,13 +14,14 @@
   + [ ] 예외 처리 : 로또 번호와 중복된 숫자
   + [ ] 예외 처리 : 1개가 아닌 경우
   + [ ] 예외 처리 : 1~45 사이의 수가 아닌 경우
-+ [ ] 로또 번호와 당첨 번호 비교하여 당첨 내역과 수익률 출력하기 - computeResult
++ [ ] 로또 번호와 당첨 번호 비교하여 당첨 내역과 수익률 출력하기
   + single game
     + [x] 로또 번호와 당첨 번호 비교하기 - compareNumbers
       + [x] 로또 번호와 비교 - compareLotto
       + [x] 보너스 번호와 비교 - compareBonus
     + [x] 로또 결과(등수) 계산 - computeResult
-  + [ ] 수익률 계산하기 - computeProfit
+  + [x] 수익률 계산하기
+  + [x] 등수 세기 - countPrize
 
 ### 요구 사항
 + [ ] indent depth 2 이하

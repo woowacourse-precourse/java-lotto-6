@@ -20,11 +20,7 @@ public class Inputter {
         int won;
 
         System.out.println("구입금액을 입력해 주세요.");
-        try {
-            won = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 금액을 입력해주세요.");
-        }
+        won = parseInt(Console.readLine());
         validatePurchase(won);
         return won;
     }
@@ -32,6 +28,14 @@ public class Inputter {
     private void validatePurchase(int won) {
         if (won % MONEY_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] "+ MONEY_UNIT + "원 단위로 입력해주세요.");
+        }
+    }
+
+    private int parseInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해주세요.");
         }
     }
 }

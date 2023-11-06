@@ -1,10 +1,11 @@
 package lotto.model;
 
+import lotto.enums.ExceptionMessage;
+
 public class BonusNumber {
 
     private final int MIN_INCLUSIVE = 1;
     private final int MAX_INCLUSIVE = 45;
-    private final int MAX_SIZE = 2;
 
     private final int value;
 
@@ -19,32 +20,24 @@ public class BonusNumber {
 
     private void validate(String number, Lotto lotto){
         if(isEmpty(number)){
-            throw new IllegalArgumentException();
-        }
-
-        if(isSizeOverTwo(number)){
-            throw new IllegalArgumentException();
+            ExceptionMessage.BONUS_NUMBER_IS_EMPTY.throwException();
         }
 
         if(!isDigit(number)){
-            throw new IllegalArgumentException();
+            ExceptionMessage.BONUS_NUMBER_IS_NOT_NUMBER.throwException();
         }
 
         if(!isBetweenOneAndFortyFive(number)){
-            throw new IllegalArgumentException();
+            ExceptionMessage.BONUS_NUMBER_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.throwException();
         }
 
         if(isDuplicatedWinningLottoNumber(lotto,number)){
-            throw new IllegalArgumentException();
+            ExceptionMessage.BONUS_NUMBER_IS_DUPLICATED_WINNING_NUMBER.throwException();
         }
     }
 
     private boolean isEmpty(String number){
         return number.isBlank() || number == null;
-    }
-
-    private boolean isSizeOverTwo(String number){
-        return number.length() > MAX_SIZE;
     }
 
     private boolean isDigit(String number){

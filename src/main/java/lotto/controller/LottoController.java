@@ -6,17 +6,18 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoService lottoService;
-    private final InputView inputView;
-    private final OutputView outputView;
 
     public LottoController() {
         lottoService = new LottoService();
-        inputView = new InputView();
-        outputView = new OutputView();
     }
 
-    public void startGame() {
+    public void runLottoGame() {
+        // 구입 금액 입력
 
+        // 로또 구매 결과 출력
+        // 당첨 번호 입력
+        // 보너스 번호 입력
+        // 당첨 통계 출력
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -44,5 +45,11 @@ public class LottosTest {
             Arguments.of(new WinningLotto(List.of(1, 2, 9, 10, 44, 45), 43),
                 FOURTH * 1 + FIFTH * 1)
         );
+    }
+
+    @DisplayName("로또의 개수를 반환한다")
+    @Test
+    void getLottoCount() {
+        assertThat(lottos.getLottoCount()).isEqualTo(6);
     }
 }

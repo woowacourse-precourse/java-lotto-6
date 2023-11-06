@@ -51,6 +51,19 @@ class LottoTest {
 
         //then
         Assertions.assertThat(lotto.getNumbers()).isEqualTo(numbersSort);
+    }
 
+    @DisplayName("포함 여부를 체크한다.")
+    @Test
+    void checkLottoContains() {
+        // given
+        List<Integer> numbers = List.of(1, 3, 2, 6, 4, 5);
+        int number = 5;
+
+        // when
+        Lotto lotto = new Lotto(numbers);
+
+        //then
+        Assertions.assertThat(lotto.isContainNum(5)).isTrue();
     }
 }

@@ -1,10 +1,9 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.ErrorMessages;
 
 public class User {
-    private static final int DIVIDE_NUMBER = 1000;
+    public static final int DIVIDE_NUMBER = 1000;
     private long purchaseAmount;
 
     public long getPurchaseAmount() {

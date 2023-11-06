@@ -1,15 +1,14 @@
 package lotto.controller;
 
+import static lotto.domain.User.DIVIDE_NUMBER;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
-    Scanner sc = new Scanner(System.in);
     private List<Lotto> lotto = new ArrayList<>();
     private long purchaseAmount;
     private InputView inputView;
@@ -32,7 +31,7 @@ public class LottoGame {
             String input = inputView.purchaseAmount();
             try {
                 user.setPurchaseAmount(input);
-                purchaseAmount = user.getPurchaseAmount() / 1000;
+                purchaseAmount = user.getPurchaseAmount() / DIVIDE_NUMBER;
                 outputView.printPurchaseAmount(purchaseAmount);
                 break;
             } catch (Exception e) {

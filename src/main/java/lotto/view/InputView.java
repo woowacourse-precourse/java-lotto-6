@@ -4,6 +4,10 @@ import static java.lang.Integer.parseInt;
 import static lotto.utils.Message.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 import lotto.domain.Payment;
 
 
@@ -18,5 +22,13 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public Lotto inputWinningNumbers() {
+        System.out.println(WINNING_NUMBER_INPUT_MESSAGE.getMessage());
+        List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        return new Lotto(winningNumbers);
     }
 }

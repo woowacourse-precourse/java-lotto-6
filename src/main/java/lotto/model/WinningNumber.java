@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import lotto.exception.CanNotConvertToNumberException;
 import lotto.exception.ExistDuplicatedNumberException;
@@ -10,6 +11,7 @@ public class WinningNumber {
 
     private static final String COMMA = ",";
     private static final int LOTTO_NUMBER_COUNT = 6;
+
     private final List<LottoNumber> numbers;
 
     private WinningNumber(final List<LottoNumber> numbers) {
@@ -22,10 +24,12 @@ public class WinningNumber {
         validateSixNumbers(numbers);
         validateDuplicates(numbers);
         List<LottoNumber> convertedNumbers = convertToLottoNumbers(numbers);
+
         return new WinningNumber(convertedNumbers);
     }
 
     private static List<String> splitWithComma(final String numbers) {
+
         return Arrays.stream(numbers.split(COMMA))
                 .toList();
     }
@@ -40,14 +44,9 @@ public class WinningNumber {
     }
 
     private static boolean isNumeric(final String number) {
+
         return number.chars()
                 .allMatch(Character::isDigit);
-    }
-
-    private static List<LottoNumber> convertToLottoNumbers(final List<String> numbers) {
-        return numbers.stream()
-                .map(LottoNumber::createWith)
-                .toList();
     }
 
     private static void validateSixNumbers(final List<String> numbers) {
@@ -70,12 +69,17 @@ public class WinningNumber {
         int distinctCount = (int) numbers.stream()
                 .distinct()
                 .count();
+
         return distinctCount != numbers.size();
     }
 
-    public List<Integer> getNumbers() {
+    private static List<LottoNumber> convertToLottoNumbers(final List<String> numbers) {
         return numbers.stream()
-                .map(LottoNumber::getNumber)
+                .map(LottoNumber::createWith)
                 .toList();
+    }
+
+    public List<LottoNumber> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

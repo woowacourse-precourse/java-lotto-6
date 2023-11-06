@@ -11,55 +11,45 @@ public class Lotto {
 
     private final List<LottoNumber> numbers;
 
-    private Lotto(final List<LottoNumber> numbers) {
+    public Lotto(final List<LottoNumber> numbers) {
+        validateSixNumbers(numbers);
+        validateDuplicates(numbers);
         this.numbers = numbers;
     }
 
-    public static Lotto createWith(final NumbersGenerator numbersGenerator) {
-        List<Integer> numbers = numbersGenerator.generate();
-        validateSixNumbers(numbers);
-        validateDuplicateNumbers(numbers);
-        List<LottoNumber> lottoNumbers = convertToLottoNumbers(numbers);
-        return new Lotto(lottoNumbers);
-    }
-
-    private static List<LottoNumber> convertToLottoNumbers(List<Integer> numbers) {
-        return numbers.stream()
-                .map(number -> LottoNumber.createWith(number.toString()))
-                .toList();
-    }
-
-    private static void validateSixNumbers(final List<Integer> numbers) {
+    private void validateSixNumbers(final List<LottoNumber> numbers) {
         if (!hasSixNumbers(numbers)) {
             throw new InvalidLottoNumberException(numbers.toString());
         }
     }
 
-    private static boolean hasSixNumbers(final List<Integer> numbers) {
+    private boolean hasSixNumbers(final List<LottoNumber> numbers) {
         return numbers.size() == LOTTO_NUMBER_COUNT;
     }
 
-    private static void validateDuplicateNumbers(final List<Integer> numbers) {
-        if (hasDuplicate(numbers)) {
+    private void validateDuplicates(final List<LottoNumber> numbers) {
+        if (hasDuplicates(numbers)) {
             throw new ExistDuplicatedNumberException(numbers.toString());
         }
     }
 
-    private static boolean hasDuplicate(final List<Integer> numbers) {
+    private boolean hasDuplicates(final List<LottoNumber> numbers) {
         int distinctCount = (int) numbers.stream()
                 .distinct()
                 .count();
+
         return distinctCount != numbers.size();
     }
 
-    public int countCorrectNumbers(final List<Integer> numbers) {
+    public int countCorrectNumbers(final List<LottoNumber> numbers) {
+
         return (int) this.numbers.stream()
-                .map(LottoNumber::getNumber)
                 .filter(numbers::contains)
                 .count();
     }
 
     public boolean hasBonusNumber(final int bonusNumber) {
+
         return numbers.stream()
                 .map(LottoNumber::getNumber)
                 .anyMatch(number -> number == bonusNumber);

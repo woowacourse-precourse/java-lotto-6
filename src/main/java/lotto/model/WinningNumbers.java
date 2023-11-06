@@ -9,22 +9,22 @@ public class WinningNumbers {
     private final LottoNumber bonusNumber;
 
     public WinningNumbers(final WinningNumber winningNumber, final LottoNumber bonusNumber) {
-        validateDuplicate(winningNumber.getNumbers(), bonusNumber.getNumber());
+        validateDuplicate(winningNumber.getNumbers(), bonusNumber);
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateDuplicate(final List<Integer> winningNumber, final int bonusNumber) {
+    private void validateDuplicate(final List<LottoNumber> winningNumber, final LottoNumber bonusNumber) {
         if (hasDuplicate(winningNumber, bonusNumber)) {
-            throw new ExistDuplicatedNumberException(winningNumber.toString(), bonusNumber);
+            throw new ExistDuplicatedNumberException(winningNumber.toString(), bonusNumber.toString());
         }
     }
 
-    private boolean hasDuplicate(final List<Integer> winningNumber, final int bonusNumber) {
+    private boolean hasDuplicate(final List<LottoNumber> winningNumber, final LottoNumber bonusNumber) {
         return winningNumber.contains(bonusNumber);
     }
 
-    public List<Integer> getWinningNumber() {
+    public List<LottoNumber> getWinningNumber() {
         return winningNumber.getNumbers();
     }
 

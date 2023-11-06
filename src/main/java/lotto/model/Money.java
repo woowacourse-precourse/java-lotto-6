@@ -20,6 +20,7 @@ public class Money {
         long convertedMoney = convertToNumber(money);
         validateOverThousand(convertedMoney);
         validateDivisibleByThousand(convertedMoney);
+
         return new Money(convertedMoney);
     }
 
@@ -30,6 +31,7 @@ public class Money {
     }
 
     private static boolean isNumeric(final String money) {
+
         return money.chars()
                 .allMatch(Character::isDigit);
     }

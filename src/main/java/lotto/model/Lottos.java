@@ -7,7 +7,6 @@ import java.util.stream.LongStream;
 public class Lottos {
 
     private static final int ZERO = 0;
-    private static final int LOTTO_PRICE = 1_000;
 
     private final List<Lotto> lottos;
 
@@ -15,14 +14,15 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos createWith(final long money, final NumbersGenerator numbersGenerator) {
-        long lottoTicketCount = money / LOTTO_PRICE;
-        return new Lottos(createLottos(lottoTicketCount, numbersGenerator));
+    public static Lottos createWith(final long ticketCount, final NumbersGenerator<LottoNumber> numbersGenerator) {
+        return new Lottos(createLottos(ticketCount, numbersGenerator));
     }
 
-    private static List<Lotto> createLottos(final long lottoTicketCount, final NumbersGenerator numbersGenerator) {
-        return LongStream.range(ZERO, lottoTicketCount)
-                .mapToObj(lotto -> Lotto.createWith(numbersGenerator))
+    private static List<Lotto> createLottos(final long ticketCount,
+                                            final NumbersGenerator<LottoNumber> numbersGenerator) {
+
+        return LongStream.range(ZERO, ticketCount)
+                .mapToObj(count -> new Lotto(numbersGenerator.generate()))
                 .toList();
     }
 

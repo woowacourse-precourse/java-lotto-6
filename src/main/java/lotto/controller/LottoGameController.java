@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.application.LottoService;
+import lotto.application.ProfitCalculator;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -19,17 +20,52 @@ public class LottoGameController {
     }
 
     public void lottoGame() {
-        int input = InputView.readPayMoney();
-        Lottos lottos = lottoService.purchaseLottos(Money.of(input));
+        Money money = generateMoney();
+        Lottos lottos = lottoService.purchaseLottos(money);
         OutputView.printMyLotto(lottos);
-        WinningInfo winningInfo = readWinningInfo();
+        WinningInfo winningInfo = generateWinningInfo();
         LottoResult lottoResult = lottoService.calculateLottoResult(lottos, winningInfo);
         OutputView.printWinningStatistics(lottoResult);
+        double profit = ProfitCalculator.calculateProfitRate(money, lottoResult);
+        OutputView.printProfit(profit);
     }
 
-    private WinningInfo readWinningInfo() {
-        List<Integer> winningNumbers = InputView.readWinningNumbers();
-        int bonusNumber = InputView.readBonusNumber();
-        return WinningInfo.from(winningNumbers, bonusNumber);
+    private Money generateMoney() {
+        try {
+            int input = InputView.readPayMoney();
+            return Money.of(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return generateMoney();
+        }
+    }
+
+    private WinningInfo generateWinningInfo() {
+        List<Integer> winningNumbers = generateWinningNumbers();
+        int bonusNumber = generateBonusNumber();
+        try {
+            return WinningInfo.from(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return generateWinningInfo();
+        }
+    }
+
+    private List<Integer> generateWinningNumbers() {
+        try {
+            return InputView.readWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return generateWinningNumbers();
+        }
+    }
+
+    private int generateBonusNumber() {
+        try {
+            return InputView.readBonusNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return generateBonusNumber();
+        }
     }
 }

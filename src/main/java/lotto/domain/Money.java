@@ -37,4 +37,8 @@ public class Money {
             throw new IllegalArgumentException(ERROR_MULTIPLE_MONEY.getMessage());
         }
     }
+
+    public int calculateNumberOfLottoTickets() {
+        return money / MINIMUM_AMOUNT;
+    }
 }

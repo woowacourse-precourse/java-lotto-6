@@ -1,7 +1,8 @@
 package lotto.view;
 
 import java.util.Scanner;
-import static lotto.util.Instruction.PRINT_INPUT_MONEY;
+
+import static lotto.util.Instruction.INPUT_MONEY_MESSAGE;
 
 public class InputView {
 
@@ -10,7 +11,7 @@ public class InputView {
     }
 
     public static String inputMoney() {
-        System.out.println(PRINT_INPUT_MONEY.getMessage());
+        System.out.println(INPUT_MONEY_MESSAGE.getMessage());
         return scanner.nextLine();
     }
 }

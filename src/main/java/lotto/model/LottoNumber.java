@@ -19,6 +19,7 @@ public class LottoNumber implements Number {
         validateConvertibleToNumber(number);
         int convertedNumber = convertToNumber(number);
         validateNumberInRange(convertedNumber);
+
         return new LottoNumber(convertedNumber);
     }
 
@@ -29,6 +30,7 @@ public class LottoNumber implements Number {
     }
 
     private static boolean isNumeric(final String money) {
+
         return money.chars()
                 .allMatch(Character::isDigit);
     }

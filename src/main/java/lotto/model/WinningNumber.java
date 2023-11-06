@@ -74,6 +74,7 @@ public class WinningNumber {
     }
 
     private static List<LottoNumber> convertToLottoNumbers(final List<String> numbers) {
+
         return numbers.stream()
                 .map(LottoNumber::createWith)
                 .toList();

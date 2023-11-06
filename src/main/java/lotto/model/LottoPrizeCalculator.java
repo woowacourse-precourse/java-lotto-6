@@ -49,6 +49,7 @@ public class LottoPrizeCalculator {
     }
 
     private Map<LottoPrize, Long> groupByLottoPrize() {
+
         return lottos.getLottos().stream()
                 .collect(Collectors.groupingBy(this::getLottoPrize, Collectors.counting()));
     }
@@ -74,6 +75,7 @@ public class LottoPrizeCalculator {
         if (lotto.hasBonusNumber(bonusNumber)) {
             return SECOND_PRIZE;
         }
+
         return THIRD_PRIZE;
     }
 

@@ -17,6 +17,7 @@ public class LottosResponse {
     }
 
     private static List<LottoResponse> convertFrom(final List<Lotto> lottos) {
+
         return lottos.stream()
                 .map(lotto -> LottoResponse.from(lotto.getNumbers()))
                 .toList();

@@ -9,6 +9,7 @@ public class ConsoleInputView implements InputView {
     public String readLine() {
         String input = Console.readLine();
         validateInput(input);
+
         return input;
     }
 

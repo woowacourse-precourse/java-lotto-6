@@ -17,6 +17,7 @@ public class LottoNumbersGenerator implements NumbersGenerator<LottoNumber> {
     }
 
     private List<LottoNumber> convertToLottoNumbers(final List<Integer> numbers) {
+
         return numbers.stream()
                 .map(number -> LottoNumber.createWith(Integer.toString(number)))
                 .toList();

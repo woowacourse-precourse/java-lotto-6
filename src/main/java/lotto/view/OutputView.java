@@ -14,7 +14,7 @@ public interface OutputView {
 
     void printBonusNumberRequestMessage();
 
-    void printWinningStatistics(Map<String, Long> winningCount);
+    void printWinningStatistics(Map<String, Long> winningStatistics);
 
     void printTotalProfit(long totalPrize, long money);
 

@@ -19,11 +19,12 @@ public class ConsoleOutputView implements OutputView {
     public void printPurchasedLottos(final List<LottoResponse> lottos) {
         printNewLine();
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        for (final LottoResponse lottoResponse : lottos) {
+
+        lottos.forEach(lottoResponse -> {
             List<Integer> lotto = new ArrayList<>(lottoResponse.getLotto());
             Collections.sort(lotto);
             System.out.println(lotto);
-        }
+        });
     }
 
     @Override
@@ -39,11 +40,12 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printWinningStatistics(final Map<String, Long> winningCount) {
+    public void printWinningStatistics(final Map<String, Long> winningStatistics) {
         printNewLine();
-        for (Map.Entry<String, Long> entry : winningCount.entrySet()) {
-            System.out.println(entry.getKey() + entry.getValue() + "개");
-        }
+
+        winningStatistics.forEach((description, count) -> {
+            System.out.println(description + count + "개");
+        });
     }
 
     @Override

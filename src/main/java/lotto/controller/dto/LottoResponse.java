@@ -17,6 +17,7 @@ public class LottoResponse {
     }
 
     private static List<Integer> convertFrom(final List<Number> numbers) {
+
         return numbers.stream()
                 .map(Number::getNumber)
                 .toList();

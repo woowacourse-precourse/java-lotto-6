@@ -1,9 +1,5 @@
 package lotto.model;
 
-import lotto.model.Lotto;
-
-import java.util.List;
-
 public class LottoInfo {
     private final Lotto lotto;
     private Integer matchCount;

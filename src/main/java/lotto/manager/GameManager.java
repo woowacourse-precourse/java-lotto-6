@@ -6,6 +6,7 @@ import lotto.lottery.Ticket;
 import lotto.lottery.Winning;
 
 import java.util.List;
+import java.util.Map;
 
 public class GameManager {
 
@@ -20,20 +21,20 @@ public class GameManager {
         Winning winning = getWinningNumbers(inputManager, outputManager);
         List<Integer> winningNumbers = winning.getWinningNumbers();
 
-        Lotto lotto = new Lotto(winningNumbers);
-
-        lotto.matchNumbers(ticketNumbers);
-
         Bonus bonus = getBonusNumber(inputManager, outputManager);
 
+        Lotto lotto = new Lotto(winningNumbers);
+
+        Map<Integer, Integer> winningStatistics = lotto.winningStatistics(ticketNumbers);
+        outputManager.printWinningMessage(winningStatistics);
     }
 
-    private String getBuyingAmount(InputManager inputManager, OutputManager outputManager){
+    private String getBuyingAmount(InputManager inputManager, OutputManager outputManager) {
         outputManager.printInputAmount();
         return inputManager.getUserInput();
     }
 
-    private List<List<Integer>> buyTicket(String buyingAmount, OutputManager outputManager){
+    private List<List<Integer>> buyTicket(String buyingAmount, OutputManager outputManager) {
         Ticket ticket = new Ticket(buyingAmount);
         int ticketCount = ticket.getTicketCount();
         outputManager.printTicketCount(ticketCount);
@@ -42,15 +43,16 @@ public class GameManager {
         return ticketNumbers;
     }
 
-    private Winning getWinningNumbers(InputManager inputManager, OutputManager outputManager){
+    private Winning getWinningNumbers(InputManager inputManager, OutputManager outputManager) {
         outputManager.printWinningNumbers();
         String inputWinningNumbers = inputManager.getUserInput();
         return new Winning(inputWinningNumbers);
     }
 
-    private Bonus getBonusNumber(InputManager inputManager, OutputManager outputManager){
+    private Bonus getBonusNumber(InputManager inputManager, OutputManager outputManager) {
         outputManager.printBonusNumber();
         String bonusNumber = inputManager.getUserInput();
         return new Bonus(bonusNumber);
     }
+
 }

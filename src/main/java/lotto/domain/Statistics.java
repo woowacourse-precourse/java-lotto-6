@@ -37,6 +37,7 @@ public class Statistics {
     }
 
     public void printRank() {
+        System.out.println(Constant.result);
         getRank(Constant.fourth, Rank.FOURTH);
         getRank(Constant.third, Rank.THIRD);
         getRank(Constant.second, Rank.SECOND);

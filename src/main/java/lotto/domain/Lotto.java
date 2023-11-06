@@ -20,9 +20,9 @@ public class Lotto {
         return numbers;
     }
 
-    public void validateBonusNumber(int bonusNumber) {
+    public boolean validateBonusNumber(int bonusNumber) {
         InvalidInput invalidInput = new InvalidInput();
-        invalidInput.duplicateNumberException(numbers, bonusNumber);
+        return invalidInput.duplicateNumberException(numbers, bonusNumber);
     }
 
     public int getSameNumberCount(Lotto myLottoNumbers) {

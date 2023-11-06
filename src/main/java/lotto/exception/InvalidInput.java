@@ -6,10 +6,8 @@ import static lotto.constant.LottoConstant.LOTTO_SIZE;
 import static lotto.constant.LottoConstant.MAX_NUMBER;
 import static lotto.constant.LottoConstant.MIN_NUMBER;
 
-import java.sql.Struct;
 import java.util.Collections;
 import java.util.List;
-import lotto.view.InputView;
 
 public class InvalidInput {
     private static String message;
@@ -30,11 +28,7 @@ public class InvalidInput {
     public boolean duplicateNumberException(List<Integer> numbers, int bonusNumber) {
         message = ExceptionMessage.DUPLICATE_BONUSE_NUMBER.getMessage();
 
-        try {
-            if (numbers.contains(bonusNumber)) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
+        if (numbers.contains(bonusNumber)) {
             System.out.println(message);
             return false;
         }
@@ -60,11 +54,12 @@ public class InvalidInput {
 
         try {
             Integer.parseInt(number);
-            return true;
         } catch (NumberFormatException e) {
             System.out.println(message);
             return false;
         }
+
+        return true;
     }
 
     public boolean sizeExceededException(List<Integer> numbers) {

@@ -7,13 +7,16 @@ import lotto.domain.WinningLotto;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        InputService inputService = new InputService();
+        Input input = new Input();
 
-        int quantity = inputService.payMoney();
+        int quantity = input.cost();
 
         MyLotto myLotto = new MyLotto(quantity);
         myLotto.printGenerateLottoResult();
 
-        Lotto winningLottoWithoutBonus = inputService.winningNumbers();
+        Lotto winningLottoWithoutBonusNum = input.winningNumberWithoutBonus();
+        WinningLotto winningLottoWithBonusNum= input.bonusNumber(winningLottoWithoutBonusNum);
+
+        myLotto.checkResult(winningLottoWithBonusNum);
     }
 }

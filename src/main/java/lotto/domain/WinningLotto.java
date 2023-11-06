@@ -5,11 +5,16 @@ import java.util.List;
 public class WinningLotto {
     private final Lotto winningLottoNumbers;
     private final int bonusNumber;
+    private static boolean isValid = false;
 
     public WinningLotto(Lotto winningNumbers, int bonusNumber) {
         this.winningLottoNumbers = winningNumbers;
         validate(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public boolean isValid() {
+        return isValid;
     }
 
     public int getScore(Lotto myLotto) {
@@ -27,7 +32,7 @@ public class WinningLotto {
         return score;
     }
 
-    private void validate(int bonusNumber){
-        winningLottoNumbers.validateBonusNumber(bonusNumber);
+    private void validate(int bonusNumber) {
+        isValid = winningLottoNumbers.validateBonusNumber(bonusNumber);
     }
 }

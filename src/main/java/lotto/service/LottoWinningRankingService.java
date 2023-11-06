@@ -19,7 +19,7 @@ public class LottoWinningRankingService {
     public EnumMap<LottoWinningRanking, Integer> countWinningRankings(Lottos userLottos, LottoWinningNumbers winningLotto) {
         EnumMap<LottoWinningRanking, Integer> rankingCountMap = new EnumMap<>(LottoWinningRanking.class);
 
-        for (Lotto lotto : userLottos.lottos()) {
+        for (Lotto lotto : userLottos.lottoGroup()) {
             int matchedNumberCount = countMatchedNumbers(lotto, winningLotto);
             boolean needsBonusNumber = hasBonusNumber(lotto, winningLotto);
 

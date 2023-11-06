@@ -28,9 +28,9 @@ class LottosTest {
     void Lottos_는_순서를_보장한다() {
         // 디미터 법칙을 어기지만, 실제 매소드에서 lottos.get()을 쓰지 않음.
         // 또한 lottos 는 record 성질 (불변) 과 List.copyOf로 get을 호출하더라도 내부 소스를 변경하지 못한다.
-        Assertions.assertThat(lottos.lottos().get(0).toString()).isEqualTo("""
+        Assertions.assertThat(lottos.lottoGroup().get(0).toString()).isEqualTo("""
                 [1, 2, 3, 4, 5, 6]""");
-        Assertions.assertThat(lottos.lottos().get(1).toString()).isEqualTo("""
+        Assertions.assertThat(lottos.lottoGroup().get(1).toString()).isEqualTo("""
                 [1, 2, 5, 7, 8, 9]""");
     }
 

@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     public void responseUserNumbersSet(final Lottos lottos) {
-        for (Lotto lotto : lottos.lottos()) {
+        for (Lotto lotto : lottos.lottoGroup()) {
             display(OutputMessage.RESPONSE_USER_NUMBERS_SET, lotto.toString());
         }
     }

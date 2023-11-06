@@ -3,7 +3,7 @@ package lotto.exception;
 import java.util.List;
 
 public class Exceptions {
-    private static final String REGEX = "[\\d+]";
+    private static final String REGEX = "\\d+";
     private static final int THOUSAND = 1000;
     private static final int ZERO = 0;
     private static final int MIN_LOTTO_VALUE = 1;

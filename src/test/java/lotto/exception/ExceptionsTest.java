@@ -1,5 +1,6 @@
 package lotto.exception;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
@@ -17,6 +18,14 @@ public class ExceptionsTest {
     void giveNotNumberInput(String argument) {
         assertThatThrownBy(() -> Exceptions.checkIsNumber(argument))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("숫자 값을 입력하면 정상적으로 가동된다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"12356", "192", "1", "092"})
+    void giveNumberInput(String argument) {
+        assertThatCode(() -> Exceptions.checkIsNumber(argument))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("1000단위 절삭되지 않은 숫자를 입력하면 예외가 발생한다.")

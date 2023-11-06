@@ -13,4 +13,8 @@ public class LottoChecker {
         return count;
     }
 
+    public static boolean checkBonus(Lotto lotto, int bonus) {
+        return lotto.getNumbers().contains(bonus);
+    }
+
 }

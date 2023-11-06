@@ -19,16 +19,19 @@ public class Lottos {
     }
 
     public Map<Rank, Integer> saveRankResult(User user) {
-        Map<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
-        for (Rank rank : Rank.values()) {
-            rankResult.put(rank, 0);
-        }
-
+        Map<Rank, Integer> rankResult = initRank();
         for (Lotto lotto : lottos) {
             Rank rank = user.getRank(lotto);
             rankResult.put(rank, rankResult.get(rank));
         }
+        return rankResult;
+    }
 
+    private Map<Rank, Integer> initRank() {
+        Map<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            rankResult.put(rank, 0);
+        }
         return rankResult;
     }
 

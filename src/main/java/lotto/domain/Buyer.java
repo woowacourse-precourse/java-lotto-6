@@ -15,7 +15,8 @@ public class Buyer {
 
     public void saveAmount(int money) {
 
-        this.amount = amount;
+        validate(money);
+        this.amount = money/UNIT_MONEY;
     }
 
     public void saveNumbers(List<Integer> numbers) {
@@ -38,7 +39,12 @@ public class Buyer {
 
         if(money < UNIT_MONEY) {
 
-            throw new IllegalArgumentException(Message.MINIMUM_PURCHASE_ERROR_MESSAGE.name());
+            throw new IllegalArgumentException(Message.MINIMUM_MONEY_ERROR_MESSAGE.name());
+        }
+
+        if(money > MAXIMUM_MONEY) {
+
+            throw new IllegalArgumentException(Message.MAXIMUM_MONEY_ERROR_MESSAGE.name());
         }
 
         if(money % UNIT_MONEY != 0) {

@@ -6,6 +6,7 @@ import lotto.controller.GameController;
 
 public class Game {
 
+    private final String ERROR_MESSAGE = "[ERROR]";
     private final GameController gameController = new GameController();
 
     public void run(){
@@ -16,7 +17,16 @@ public class Game {
 
         }catch (Exception e){
 
-            System.out.println(e.getMessage());
+            System.out.println(ERROR_MESSAGE);
+            String errorType = e.getMessage();
+            reRunMethod(errorType);
+        }
+    }
+
+    private void reRunMethod(String errorType){
+
+        if(errorType.contains("MONEY")) {
+
             purchaseLotto();
         }
     }

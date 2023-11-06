@@ -13,7 +13,7 @@ public class GameService {
     private final int NUMBER_END_RANGE = 45;
     private final int METHOD_PURCHASE_AMOUNT = 1;
 
-    private final String REGEX_PATTERN_NO_NUMBER = "^[\\D]*$";
+    private final String REGEX_PATTERN_NO_NUMBER = "^[\\d]*$";
 
     private final Buyer buyer = new Buyer();
 

@@ -18,7 +18,6 @@ public class Game {
         return new Lottos(lottos);
     }
 
-
     public int[] createResult(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {
         int[] result = new int[6];
         for (Lotto lotto : lottos.getLottos()) {

@@ -15,7 +15,7 @@ public class Except {
                 throw new IllegalArgumentException();
             }
             result = Integer.parseInt(money);
-
+            result = incorrectFormatMoney(result);
         }catch(IllegalArgumentException iae){
             System.out.println(outOfRange.getMessage());
         }

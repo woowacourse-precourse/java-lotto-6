@@ -23,10 +23,7 @@ public class ProfitRate {
                 .mapToDouble(lottoRank -> (lottoRank.getPrizeMoney() * result.get(lottoRank)))
                 .sum();
 
-        double totalBuyAmount = (double) buyAmount.amount();
-        double profitRate = (reward / totalBuyAmount) * PERCENTAGE;
-
-        return profitRate;
+        return (reward / (double) buyAmount.amount()) * PERCENTAGE;
     }
 
     public Double getRate() {

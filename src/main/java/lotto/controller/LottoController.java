@@ -63,6 +63,31 @@ public class LottoController {
          */
 
 
+        for (int i = 0; i < lottoNum; i++) {
+
+//            System.out.println(lotto.get(i).getRank());
+
+            switch (lotto.get(i).getRank()) {
+                case FIRST:
+                    first += 1;
+                    break;
+                case SECOND:
+                    second += 1;
+                    break;
+                case THIRD:
+                    third += 1;
+                    break;
+                case FOURTH:
+                    fourth += 1;
+                    break;
+                case FIFTH:
+                    fifth += 1;
+                    break;
+            }
+
+        }
+
+
     }
 
     public int getLottoNum(int purchasePrice) {

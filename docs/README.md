@@ -99,8 +99,8 @@
       - MoneyDto getMoneyFromClient()
       - LottoesDto createLottoes(MoneyDto)
     - WinNumbersDto createWinNumbers()
-      - List<Integer> inputWinNumbers()
-      - int inputBonusNumber()
+      - List<Integer> getWinNumbers()
+      - int getBonusNumber()
     - ResultDto getResult()
 
 ## LottoService

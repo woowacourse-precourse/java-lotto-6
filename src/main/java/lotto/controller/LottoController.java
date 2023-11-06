@@ -20,17 +20,17 @@ public class LottoController {
     }
 
     private WinNumbersDto createWinNumbers() {
-        List<Integer> winNumbers = inputWinNumbers();
-        int bonusNumber = inputBonusNumber();
+        List<Integer> winNumbers = getWinNumbers();
+        int bonusNumber = getBonusNumber();
         return new WinNumbersDto(winNumbers, bonusNumber);
     }
 
-    private List<Integer> inputWinNumbers() {
+    private List<Integer> getWinNumbers() {
         outputView.beforeInputWinNumbers();
         return inputView.inputNumbers();
     }
 
-    private int inputBonusNumber() {
+    private int getBonusNumber() {
         outputView.beforeInputBonusNumber();
         return inputView.inputBonusNumber();
     }

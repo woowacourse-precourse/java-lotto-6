@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.util.converter.IntegerConverter;
 import lotto.util.converter.IntegerListConverter;
 import lotto.util.validator.BlankValidator;
+import lotto.util.validator.DigitsOnlyValidator;
 
 public class InputView {
     public int readUserMoney() {
@@ -27,5 +28,6 @@ public class InputView {
 
     private void validate(String value) {
         BlankValidator.validate(value);
+        DigitsOnlyValidator.validate(value);
     }
 }

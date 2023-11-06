@@ -16,7 +16,8 @@ import lotto.view.io.Reader;
 import lotto.view.io.Writer;
 
 public class TerminalUI {
-    private static Pattern answerPattern = Pattern.compile(GameConst.FORMAT_INPUT_ANSWERS);
+    private static Pattern answerNumbersPattern =
+            Pattern.compile(GameConst.FORMAT_INPUT_ANSWERS);
 
     private static final DecimalFormat moneyFormat =
             new DecimalFormat(PrintConst.DECIMAL_FORMAT_MONEY);
@@ -46,7 +47,7 @@ public class TerminalUI {
         Writer.printMessage(PrintConst.GUIDE_LOTTO_NUMBERS);
         return Reader.getNumbersInPattern(
                 input -> input.replaceAll(" ", ""),
-                answerPattern,
+                answerNumbersPattern,
                 GameConst.DELIMITER
         );
     }
@@ -59,14 +60,15 @@ public class TerminalUI {
 
     public void printResult(List<Entry<LottoResult, Integer>> results) {
         Writer.printMessage(PrintConst.TITLE_RESULTS);
+
         for (Map.Entry<LottoResult, Integer> result : results) {
             LottoResult lottoResult = result.getKey();
             int count = result.getValue();
-            Writer.printUsingFormat(PrintConst.FORMAT_RESULT, printLottoResult(lottoResult), count);
+            Writer.printUsingFormat(PrintConst.FORMAT_RESULT, buildLottoResultString(lottoResult), count);
         }
     }
 
-    private String printLottoResult(LottoResult result) {
+    private String buildLottoResultString(LottoResult result) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(PrintConst.FORMAT_COLLECTION_COUNT, result.getCollectCount()));
         if (result.equals(SECOND)) {

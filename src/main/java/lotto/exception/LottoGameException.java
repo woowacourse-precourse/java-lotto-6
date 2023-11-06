@@ -13,8 +13,7 @@ public enum LottoGameException {
 
     WRONG_NUMBER_FORMAT("숫자를 입력해 주세요"),
     WRONG_ANSWERS_FORMAT("입력 형식이 잘못되었습니다. 여섯 개의 숫자를 ,로 구분해 입력해 주세요"),
-    WRONG_MONEY_UNIT(String.format("%d원 단위로 입력해 주세요",
-            GameConst.MONEY_UNIT)),
+    WRONG_MONEY_UNIT(String.format("%d원 단위로 입력해 주세요", GameConst.MONEY_UNIT)),
 
     OVER_PURCHASE_LIMIT(String.format("인당 구매할 수 있는 최대 금액은 %d원 입니다.",
             GameConst.LOTTO_PURCHASE_LIMIT));

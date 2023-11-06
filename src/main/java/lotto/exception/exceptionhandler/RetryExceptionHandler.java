@@ -8,20 +8,6 @@ public class RetryExceptionHandler implements ExceptionHandler {
     TerminalUI ui = new TerminalUI();
 
     @Override
-    public void run(Runnable runnable) {
-        while (true) {
-            try {
-                runnable.run();
-                return;
-            } catch (IllegalArgumentException e) {
-                printException(e);
-            } finally {
-                afterHandlingException();
-            }
-        }
-    }
-
-    @Override
     public <T> T getResult(Supplier<T> supplier) {
         while (true) {
             try {

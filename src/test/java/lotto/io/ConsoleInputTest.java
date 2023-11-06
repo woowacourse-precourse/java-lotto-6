@@ -6,7 +6,8 @@ import java.util.List;
 import lotto.ConsoleTestSuper;
 import org.junit.jupiter.api.Test;
 
-class InputTest extends ConsoleTestSuper {
+class ConsoleInputTest extends ConsoleTestSuper {
+
 
     @Test
     void consoleLine() {
@@ -14,7 +15,7 @@ class InputTest extends ConsoleTestSuper {
 
         String input = enterInput(message);
         setIn(input);
-        String userInput = Input.consoleLine();
+        String userInput = new ConsoleInput().line();
 
         assertThat(userInput).isEqualTo(message);
     }
@@ -26,7 +27,7 @@ class InputTest extends ConsoleTestSuper {
 
         String input = enterInput(testNumberString);
         setIn(input);
-        int userInput = Input.consoleNumber();
+        int userInput = new ConsoleInput().number();
 
         assertThat(userInput).isEqualTo(testNumber);
     }
@@ -38,7 +39,7 @@ class InputTest extends ConsoleTestSuper {
 
         String input = enterInput(testNumberString);
         setIn(input);
-        List<Integer> numbers = Input.consoleNumbers();
+        List<Integer> numbers = new ConsoleInput().numbers();
 
         assertThat(numbers).isEqualTo(testNumbers);
     }
@@ -50,7 +51,7 @@ class InputTest extends ConsoleTestSuper {
 
         String input = enterInput(testNumberString);
         setIn(input);
-        List<Integer> numbers = Input.consoleNumbers(",");
+        List<Integer> numbers = new ConsoleInput().numbers(",");
 
         assertThat(numbers).isEqualTo(testNumbers);
     }
@@ -62,7 +63,7 @@ class InputTest extends ConsoleTestSuper {
 
         String input = enterInput(testString);
         setIn(input);
-        List<String> actualStringList = Input.consoleStrings();
+        List<String> actualStringList = new ConsoleInput().strings();
 
         assertThat(actualStringList).containsExactly(expectedStrings);
 
@@ -75,7 +76,7 @@ class InputTest extends ConsoleTestSuper {
 
         String input = enterInput(testString);
         setIn(input);
-        List<String> actualStringList = Input.consoleStrings(",");
+        List<String> actualStringList = new ConsoleInput().strings(",");
 
         assertThat(actualStringList).containsExactly(expectedStrings);
 

@@ -1,21 +1,26 @@
-package lotto.io.views;
+package lotto.game.io.views;
 
 import java.util.List;
 import java.util.Map;
 import lotto.collaboration.enums.Prize;
 import lotto.collaboration.lottos.Lotto;
-import lotto.io.Input;
+import lotto.game.io.Input;
 import lotto.io.Output;
 
 public class LottoGameView {
 
     public static final String ERROR_HEADER_MESSAGE = "[ERROR] ";
+    public final Input input;
+
+    public LottoGameView(Input input) {
+        this.input = input;
+    }
 
     public int askPurchaseAmount() {
         while (true) {
             Output.consoleLine("구입금액을 입력해 주세요.");
             try {
-                return Input.consoleNumber();
+                return input.number();
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_HEADER_MESSAGE + e.getMessage());
             }
@@ -35,7 +40,7 @@ public class LottoGameView {
         Output.consoleLine("당첨 번호를 입력해 주세요");
         while (true) {
             try {
-                List<Integer> winningNumbers = Input.consoleNumbers(",");
+                List<Integer> winningNumbers = input.numbers(",");
                 validate(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
@@ -73,7 +78,7 @@ public class LottoGameView {
         Output.consoleLine("보너스 번호를 입력해 주세요.");
         while (true) {
             try {
-                int bonusNumber = Input.consoleNumber();
+                int bonusNumber = input.number();
                 occurExceptionIfOutOfRange(bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {

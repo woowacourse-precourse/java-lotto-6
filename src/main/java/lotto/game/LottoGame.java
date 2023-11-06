@@ -5,7 +5,7 @@ import lotto.collaboration.lottos.Lotto;
 import lotto.collaboration.lottos.Lottos;
 import lotto.collaboration.lottos.WinningLotto;
 import lotto.game.io.Randoms;
-import lotto.io.views.LottoGameView;
+import lotto.game.io.views.LottoGameView;
 
 public class LottoGame {
 

@@ -4,26 +4,27 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.PatternSyntaxException;
+import lotto.game.io.Input;
 import lotto.io.enums.InputMessage;
 
-public class Input {
+public final class ConsoleInput implements Input {
 
-    public static final String DEFAULT_SPLIT_REGEX = "";
+    private static final String DEFAULT_SPLIT_REGEX = "";
 
-    public static String consoleLine() {
+    public String line() {
         return Console.readLine();
     }
 
-    public static List<String> consoleStrings() {
-        return consoleStrings(DEFAULT_SPLIT_REGEX);
+    public List<String> strings() {
+        return strings(DEFAULT_SPLIT_REGEX);
     }
 
-    public static List<String> consoleStrings(String regex) {
+    public List<String> strings(String regex) {
         return Arrays.stream(Console.readLine().split(regex))
                 .toList();
     }
 
-    public static int consoleNumber() {
+    public int number() {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
@@ -31,11 +32,11 @@ public class Input {
         }
     }
 
-    public static List<Integer> consoleNumbers() {
-        return consoleNumbers(DEFAULT_SPLIT_REGEX);
+    public List<Integer> numbers() {
+        return numbers(DEFAULT_SPLIT_REGEX);
     }
 
-    public static List<Integer> consoleNumbers(String regex) {
+    public List<Integer> numbers(String regex) {
         try {
             return Arrays.stream(Console.readLine().split(regex))
                     .map(Integer::valueOf)

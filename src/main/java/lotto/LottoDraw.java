@@ -11,6 +11,7 @@ public class LottoDraw {
     private final List<String> lottoPlacePrice = new ArrayList<>(Arrays.asList("5000", "50000", "1500000", "30000000", "2000000000"));
 
     Map<Integer, Map<String, Integer>> lottoPrizeSummary;
+    StringBuilder result;
 
     DrawMessage drawMessage;
     LottoNumber lottoNumber = new LottoNumber();
@@ -26,7 +27,6 @@ public class LottoDraw {
         int bonusNumber = pickBonusNumber(winnerNumbers);
 
         printTotalProfit(printSummarizeWithLottoNumbers(lottoNumbers, winnerNumbers, bonusNumber), lottoNumbers.length);
-
     }
 
     public int getPurchaseAmount() {
@@ -75,27 +75,45 @@ public class LottoDraw {
 
     public void printLottoResults() {
         printUtil.printWinnerStatistics();
+        result = new StringBuilder();
         int lottoPlacePriceIdx = 0;
-        for (int winCount = 3; winCount <= 6; winCount++, lottoPlacePriceIdx++) {
-
-            if (winCount == 5) {
-                int count = lottoPrizeSummary.get(winCount).get("5NoBonus");
-                System.out.printf(drawMessage.NO_BONUS_WINNING_RESULT_MESSAGE.getMessage(), winCount, lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","), count);
+        for (LottoRank lottoRank : LottoRank.values()) {
+            result.append("\n");
+            if (lottoRank.getBonus().equals(noBonus)) {
+                sumUpResultsHasBonus(lottoRank, lottoPlacePriceIdx);
                 lottoPlacePriceIdx++;
-                count = lottoPrizeSummary.get(winCount).get("5Bonus");
-                System.out.printf(drawMessage.BONUS_WINNING_RESULT_MESSAGE.getMessage(), winCount, lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","), count);
                 continue;
             }
-            String str = winCount + "NoBonus";
-            int count = lottoPrizeSummary.get(winCount).get(str);
-            System.out.printf(drawMessage.NO_BONUS_WINNING_RESULT_MESSAGE.getMessage(), winCount, lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","), count);
+            sumUpResultsNoBonus(lottoRank, lottoPlacePriceIdx);
+            lottoPlacePriceIdx++;
         }
+        System.out.println(result);
+    }
+
+    public void sumUpResultsHasBonus(LottoRank lottoRank, int lottoPlacePriceIdx) {
+        int winCount = lottoRank.getWinningCount();
+        String bonusCheck = lottoRank.getWinningCount() + lottoRank.getBonus();
+
+        result.append(String.format(drawMessage.BONUS_WINNING_RESULT_MESSAGE.getMessage(),
+                lottoRank.getWinningCount(),
+                lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","),
+                lottoPrizeSummary.get(winCount).get(bonusCheck)));
+    }
+
+    public void sumUpResultsNoBonus(LottoRank lottoRank, int lottoPlacePriceIdx) {
+        int winCount = lottoRank.getWinningCount();
+        String bonusCheck = lottoRank.getWinningCount() + lottoRank.getBonus();
+
+        result.append(String.format(drawMessage.NO_BONUS_WINNING_RESULT_MESSAGE.getMessage(),
+                lottoRank.getWinningCount(),
+                lottoPlacePrice.get(lottoPlacePriceIdx).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","),
+                lottoPrizeSummary.get(winCount).get(bonusCheck)));
     }
 
     public Map<String, Integer> innerMap() {
         Map<String, Integer> innerMap = new LinkedHashMap<>();
 
-        for(LottoRank lottoRank : LottoRank.values()) {
+        for (LottoRank lottoRank : LottoRank.values()) {
             innerMap.put(lottoRank.getWinningCount() + lottoRank.getBonus(), 0);
         }
         return innerMap;

@@ -18,6 +18,7 @@ public class LottoController {
         String readAmount = inputView.enterLottoPurchaseAmount();
         List<Lotto> lottoNumbers = lottoRamdomNumbers.generateRandomLottoNumbers(readAmount);
         outputView.printIssuedLottoNumbersInAscendingOrder(lottoNumbers);
+        Lotto winningLottoNumber = inputView.enterWinningNumbers();
 
     }
 

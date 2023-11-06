@@ -3,6 +3,8 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoWinningNumber;
 import lotto.domain.ReadPurchaseAmount;
 
 public class InputView {
@@ -20,12 +22,17 @@ public class InputView {
         }
     }
 
-    public String enterWinningNumbers() {
+    public Lotto enterWinningNumbers() {
         while (true) {
-            System.out.println(InputMessage.ENTER_WINNING_NUMBER_PRINT.getMessage());
-            String readWinningNumber = readLine();
+            try {
+                System.out.println(InputMessage.ENTER_WINNING_NUMBER_PRINT.getMessage());
+                String readWinningNumber = readLine();
+                LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(readWinningNumber);
+                return lottoWinningNumber.getReadWinningNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
 
-            return readWinningNumber;
         }
 
     }

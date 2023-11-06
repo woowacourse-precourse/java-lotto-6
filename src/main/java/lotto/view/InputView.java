@@ -22,6 +22,7 @@ public class InputView {
     public int readAmount() {
         try {
             String input = readInput();
+            System.out.println();
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();

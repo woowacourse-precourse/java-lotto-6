@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoSeller {
+public class LottoGenerator {
     private final int LOTTO_PRICE = 1000;
 
-    public ArrayList<Lotto> sellLotto(int amount) {
-        int numberOfLotto = amount / LOTTO_PRICE;
+    public ArrayList<Lotto> generateLottoBundle(int amount) {
+        int lottoCount = amount / LOTTO_PRICE;
 
         ArrayList<Lotto> lottoBundle = new ArrayList<>();
-        for (int i = 0; i < numberOfLotto; i++) {
-            lottoBundle.add(createRandomLotto());
+        for (int i = 0; i < lottoCount; i++) {
+            lottoBundle.add(generateRandomLotto());
         }
 
         return lottoBundle;
     }
 
-    public Lotto createRandomLotto() {
+    public Lotto generateRandomLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return new Lotto(numbers);

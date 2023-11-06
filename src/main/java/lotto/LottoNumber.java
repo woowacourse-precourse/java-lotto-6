@@ -24,6 +24,10 @@ public class LottoNumber implements Comparable<LottoNumber> {
         return number < NUMBER_LOW_BOUND || number > NUMBER_HIGH_BOUND;
     }
 
+    public String getNumberMessage() {
+        return Integer.toString(number);
+    }
+
     @Override
     public boolean equals(Object object) {
         LottoNumber others = (LottoNumber) object;

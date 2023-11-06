@@ -26,12 +26,13 @@ public class InputView {
         return validateNegativeIntegerAndZero(validateInteger(input));
     }
 
-    public void askWinningNumber() {
+    public Lotto askWinningNumber() {
         printWinningNumber();
             String input = Console.readLine();
             validateBlankAndEmptyInteger(input);
             validateFirstCharacter(input);
-            validateLastCharacter(input);;
+            validateLastCharacter(input);
+            return new Lotto(new ArrayList<>(parseNumbers(input)));
     }
 
     public void validateLastCharacter(String input) {
@@ -85,4 +86,11 @@ public class InputView {
         }
         return input;
     }
+
+    private List<Integer> parseNumbers(String input) {
+        return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
 }

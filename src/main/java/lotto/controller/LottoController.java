@@ -32,6 +32,7 @@ public class LottoController {
     public static void inputSelectedNumbers(){
         InputView.requestWinningNumber();
         List<String> selectedNumbers = Arrays.asList(Console.readLine().split(","));
+        Validator.validateLottoIsNum(selectedNumbers);
         Validator.validateLottoNumLimit(selectedNumbers);
         System.out.println(selectedNumbers);
 

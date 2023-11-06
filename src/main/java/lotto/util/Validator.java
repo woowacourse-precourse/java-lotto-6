@@ -37,8 +37,18 @@ public class Validator {
         }
 
     }
-    public static void 쉼표_분리_시_숫자가_아닐_때_예외(){
+    public static void validateLottoIsNum(List<String> selectedNumbers){
+        for(String num: selectedNumbers){
+            validateNumChange(num);
+        }
+    }
 
+    public static void validateNumChange(String num){
+        try{
+            Integer.parseInt(num);
+        }catch (Exception e){
+            throw new IllegalArgumentException("숫자와 쉼표를 입력하세요");
+        }
     }
 
 

@@ -24,7 +24,7 @@ public class InputValidatorTest {
     @DisplayName("구입 금액이 1000원으로 떨어지지 않으면 예외가 발생한다.")
     @Test
     void invalidPurchaseAmountNotDivisible() {
-        String input = "3500";
+        int input = 3500;
         assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1,000원 단위로 입력해주세요.");
@@ -74,6 +74,24 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateWinningNumbersCount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호의 개수를 만족시키지 못합니다.");
+    }
+
+    @DisplayName("보너스 번호가 1~45 범위를 벗어면 예외가 발생한다.")
+    @Test
+    void invalidBonusNumberOutOfRange() {
+        List<Integer> input = List.of(46);
+        assertThatThrownBy(() -> inputValidator.validateNumberRange(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자는 1에서 45 사이어야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아닌 값이면 예외가 발생한다.")
+    @Test
+    void invalidNonNumericInputForBonusNumber() {
+        String input = "hi";
+        assertThatThrownBy(() -> inputValidator.validateNonNumeric(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.");
     }
 
 }

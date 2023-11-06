@@ -56,7 +56,12 @@ public class Application {
     public static void runBonusNumberPart() {
         final String bonusNumberMessage = "\n보너스 번호를 입력해 주세요.";
         Output.message(bonusNumberMessage);
-        bonusNumber = Input.bonusNumber();
+        try {
+            bonusNumber = Input.bonusNumber();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            Output.message(illegalArgumentException.getMessage());
+            runBonusNumberPart();
+        }
     }
 
     public static void runLottoResultPart() {

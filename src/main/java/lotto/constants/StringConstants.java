@@ -7,8 +7,8 @@ public enum StringConstants {
     INPUT_BONUS_MESSAGE("보너스 번호를 입력해 주세요."),
     WINNING_RESULT_MESSAGE("당첨 통계"),
     WINNING_RESULT_SEPARATOR("---"),
-    MATCH_RESULT_MESSAGE("%d개 일치 (%d원) - %d개"),
-    MATCH_RESULT_WITH_BONUS_MESSAGE("%d개 일치, 보너스 볼 일치 (%d원) - %d개"),
+    MATCH_RESULT_MESSAGE("%d개 일치 (%,d원) - %d개"),
+    MATCH_RESULT_WITH_BONUS_MESSAGE("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
     MATCH_RESULT_PROFIT_RATE("총 수익률은 %.1f%%입니다")
     ;
 

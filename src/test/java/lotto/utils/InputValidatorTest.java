@@ -67,7 +67,7 @@ public class InputValidatorTest {
 
         assertThatThrownBy(() -> inputValidator.convertInputToLottoNumbers(testString))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구분자는 쉼표(,)를 사용해주세요.");
+                .hasMessage("[ERROR] 구분자는 쉼표(,)를 사용해 6개의 번호를 입력해주세요.");
     }
 
     @DisplayName("입력값 로또 번호 변환 테스트 - 정상 데이터 - 성공")
@@ -77,5 +77,24 @@ public class InputValidatorTest {
         List<Integer> expectedResult = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         assertThat(inputValidator.convertInputToLottoNumbers(testString)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("입력값 보너스 번호 변환 테스트 - 2개 이상의 데이터 - 오류")
+    @Test
+    void convertBonusNumbersAmountTest() {
+        String testString = "1,2";
+
+        assertThatThrownBy(() -> inputValidator.convertInputToBonusNumber(testString))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 1개의 숫자만 입력해주세요.");
+    }
+
+    @DisplayName("입력값 보너스 번호 변환 테스트 - 정상 데이터 - 성공")
+    @Test
+    void convertCorrectBonusNumbersTest() {
+        String testString = "12";
+        Integer expectedResult = 12;
+
+        assertThat(inputValidator.convertInputToBonusNumber(testString)).isEqualTo(expectedResult);
     }
 }

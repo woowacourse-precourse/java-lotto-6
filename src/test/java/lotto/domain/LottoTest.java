@@ -24,6 +24,34 @@ class LottoTest {
     }
 
     @Test
+    public void 숫자가_2개_일치_보너스_숫자_0개_일치하면_NONE_을_반환한다() throws Exception {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(List.of(1, 2, 11, 12, 13, 14));
+        LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(lottoWinningNumber, 45);
+
+        // when
+        LottoPrize prize = lotto.prize(lottoWinningNumber, lottoBonusNumber);
+
+        //then
+        assertThat(prize).isEqualTo(LottoPrize.NONE);
+    }
+
+    @Test
+    public void 숫자가_2개_일치_보너스_숫자_1개_일치하면_NONE_을_반환한다() throws Exception {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(List.of(1, 2, 11, 12, 13, 14));
+        LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(lottoWinningNumber, 6);
+
+        // when
+        LottoPrize prize = lotto.prize(lottoWinningNumber, lottoBonusNumber);
+
+        //then
+        assertThat(prize).isEqualTo(LottoPrize.NONE);
+    }
+
+    @Test
     public void 숫자가_3개_일치_보너스_숫자_0개_일치하면_5등을_반환한다() throws Exception {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

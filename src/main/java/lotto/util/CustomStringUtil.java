@@ -1,7 +1,7 @@
 package lotto.util;
 
-public class StringUtil {
-    private StringUtil() {
+public class CustomStringUtil {
+    private CustomStringUtil() {
     }
 
     public static boolean isSpaceOrNull(String content) {

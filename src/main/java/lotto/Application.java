@@ -45,7 +45,12 @@ public class Application {
     public static void runWinNumbersPart() {
         final String winNumbersMessage = "\n당첨 번호를 입력해 주세요.";
         Output.message(winNumbersMessage);
-        winNumbers = Input.winNumbers();
+        try {
+            winNumbers = Input.winNumbers();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            Output.message(illegalArgumentException.getMessage());
+            runWinNumbersPart();
+        }
     }
 
     public static void runBonusNumberPart() {

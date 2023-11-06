@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -24,10 +25,11 @@ class LottoMachineTest {
         assertThatThrownBy(() -> lottoMachine.getLottoCount(userMoney)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 개수 확인")
-    @Test
-    void getLottoCountFromPrice() {
-        int result = lottoMachine.getLottoCount(15000);
-        assertThat(result).isEqualTo(15);
+    @DisplayName("금액에 따라 로또 구매 횟수 테스트")
+    @ParameterizedTest(name = "{displayName} ({0}원)")
+    @CsvSource({"15000, 15", "1000, 1", "0, 0"})
+    void getLottoCountFromPrice(int userMoney, int expectedCount) {
+        int result = lottoMachine.getLottoCount(userMoney);
+        assertThat(result).isEqualTo(expectedCount);
     }
 }

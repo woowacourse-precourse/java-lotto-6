@@ -7,13 +7,25 @@ public enum LottoPrizeRank {
     FOURTH(50_000L, 4, 0),
     FIFTH(5_000L, 3, 0);
 
-    private long winningAmount;
-    private int numNumberMatches;
-    private int numBonusNumberMatches;
+    private final long winningAmount;
+    private final int numNumberMatches;
+    private final int numBonusNumberMatches;
 
     LottoPrizeRank(long winningAmount, int numNumberMatches, int numBonusNumberMatches) {
         this.winningAmount = winningAmount;
         this.numNumberMatches = numNumberMatches;
         this.numBonusNumberMatches = numBonusNumberMatches;
+    }
+
+    public long getWinningAmount() {
+        return winningAmount;
+    }
+
+    public int getNumNumberMatches() {
+        return numNumberMatches;
+    }
+
+    public int getNumBonusNumberMatches() {
+        return numBonusNumberMatches;
     }
 }

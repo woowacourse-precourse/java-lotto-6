@@ -28,11 +28,8 @@ class LottoTest {
 
     @Test
     void 당첨_번호와_일치하는_번호_갯수_확인(){
-        List<Integer> lottoNumber = Arrays.asList(1, 2, 30, 40, 50, 60);
-        Lotto userLotto = new Lotto(lottoNumber);
-
-        List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
-        Lotto winningLotto = new Lotto(winningNumber);
+        Lotto userLotto = new Lotto(List.of(1, 2, 30, 40, 50, 60));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertEquals(2, userLotto.countMatchingNumbers(winningLotto));
     }

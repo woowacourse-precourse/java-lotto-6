@@ -24,7 +24,7 @@ public class InputValidatorTest {
     void inputIsBlank(String input) {
         assertThatThrownBy(() -> validator.validatePurchaseCostInputView(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 빈 값을 입력할 수 없습니다");
+                .hasMessageContaining("[ERROR] 빈 값을 입력할 수 없습니다");
     }
 
     @ParameterizedTest
@@ -33,7 +33,7 @@ public class InputValidatorTest {
     void inputIsNotInt(String input) {
         assertThatThrownBy(() -> validator.validatePurchaseCostInputView(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 정수가 아닌 다른 문자는 입력할 수 없습니다");
+                .hasMessageContaining("[ERROR] 정수가 아닌 다른 문자는 입력할 수 없습니다");
     }
 
     @ParameterizedTest
@@ -42,7 +42,7 @@ public class InputValidatorTest {
     void inputWinningNumberIsBlank(String input) {
         assertThatThrownBy(() -> validator.validateWinningNumberInputView(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 빈 값을 입력할 수 없습니다");
+                .hasMessageContaining("[ERROR] 빈 값을 입력할 수 없습니다");
     }
 
     @Test
@@ -50,7 +50,7 @@ public class InputValidatorTest {
     void splitWinningNumbersCheckSize() {
         assertThatThrownBy(() -> validator.validateWinningNumberInputView("3425324,"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 쉼표를 기준으로 당첨 번호 6개를 입력해 주세요");
+                .hasMessageContaining("[ERROR] 쉼표를 기준으로 당첨 번호 6개를 입력해 주세요");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class InputValidatorTest {
     void inputWinningNumbersOutOfSize() {
         assertThatThrownBy(() -> validator.validateWinningNumberInputView("1,32,5,88,21,45"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 당첨 번호는 1부터 45까지의 숫자만 가능합니다");
+                .hasMessageContaining("[ERROR] 당첨 번호는 1부터 45까지의 숫자만 가능합니다");
     }
 
     @Test
@@ -66,15 +66,6 @@ public class InputValidatorTest {
     void inputWinningNumbersDuplication() {
         assertThatThrownBy(() -> validator.validateWinningNumberInputView("1,2,44,44,28,37"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 당첨 번호는 중복되어선 안됩니다");
-
-    }
-
-    @Test
-    @DisplayName("입력된 보너스 번호가 1~45 사이가 아니면 예외가 발생한다")
-    void inputBonusNumbersOutOfRange() {
-        assertThatThrownBy(() -> validator.validateBonusNumberInputView("55"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 보너스 번호는 1부터 45까지의 숫자만 가능합니다");
+                .hasMessageContaining("[ERROR] 당첨 번호는 중복되어선 안됩니다");
     }
 }

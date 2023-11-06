@@ -20,7 +20,7 @@ public class Parser {
         return Integer.parseInt(playerInput);
     }
 
-    public String doubleToSecondDecimalString(double rate) {
+    public String doubleToFirstDecimalPlace(double rate) {
         return String.format("%.1f", rate);
     }
 }

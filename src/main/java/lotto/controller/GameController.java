@@ -90,7 +90,7 @@ public class GameController {
     private void calculateProfitRate(Lottos lottos, Money inputMoney) {
         int totalProfit = lottos.getTotalProfit();
         double profitRate = calculator.getProfitRate(totalProfit, inputMoney.getMoney());
-        outputView.printProfitRate(parser.doubleToSecondDecimalString(profitRate));
+        outputView.printProfitRate(parser.doubleToFirstDecimalPlace(profitRate));
     }
 
     public void play() {

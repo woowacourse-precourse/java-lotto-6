@@ -8,6 +8,7 @@ import java.util.List;
 public class WinningNumber {
     private static final String WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
@@ -41,5 +42,11 @@ public class WinningNumber {
         }
     }
 
+    public List<Long> getMatchWinningNumber() {
+        return matchWinningNumber;
+    }
 
+    public List<Long> getMatchBonusNumber() {
+        return matchBonusNumber;
+    }
 }

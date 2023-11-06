@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.utils.ExceptionMessage.NEGATIVE_NUMBER;
 import static lotto.utils.ExceptionMessage.UNIT_IS_INCORRECT;
 import static lotto.utils.GameNumber.LOTTO_SIZE;
 import static lotto.utils.GameNumber.MAX_RANGE;
@@ -102,6 +103,9 @@ public class LottoGame {
     public void validate(int amount) {
         if (amount % UNIT.getNumber() != 0) {
             throw new IllegalArgumentException(UNIT_IS_INCORRECT.getMessage());
+        }
+        if (amount < 0) {
+            throw new IllegalStateException(NEGATIVE_NUMBER.getMessage());
         }
     }
 }

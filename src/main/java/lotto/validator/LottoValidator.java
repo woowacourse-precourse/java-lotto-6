@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.Option.ErrorMessage.NOT_BONUS_DUPLICATION;
+import static lotto.Option.ErrorMessage.NOT_LOTTO_DUPLICATION;
 import static lotto.Option.ErrorMessage.NOT_SIX_LENGTH;
 import static lotto.Option.ErrorMessage.ONE_TO_FORTY_FIVE;
 
@@ -30,7 +30,7 @@ public class LottoValidator {
 
     private static void validateDuplication(List<Integer> numbers) {
         if (isDuplication(numbers)) {
-            throw new IllegalArgumentException(NOT_BONUS_DUPLICATION.getErrorMessage());
+            throw new IllegalArgumentException(NOT_LOTTO_DUPLICATION.getErrorMessage());
         }
     }
 

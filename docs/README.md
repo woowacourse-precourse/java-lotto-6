@@ -1,0 +1,95 @@
+# 학습 목표
+- Enum 활용
+- 클래스 분리하기
+- 
+
+# 기능 목록
+
+- [ ] 로또 구입 금액을 입력받는다.
+  - [ ] 입력 안내문을 출력한다.
+  - [ ] 입력이 숫자인지 검증한다.
+  - [ ] 예외 발생시 에러 메시지를 출력한다. 
+  - [ ] 에러 발생시 다시 입력 받는다.
+- [ ] 로또
+  - [ ] 6개의 숫자
+  - [ ] 1~45까지의 숫자
+  - [ ] 중복되지 않는 숫자
+  - [ ] 오름차순 정렬
+- [ ] 로또를 구입한다.
+  - [ ] 구입 금액이 1000원 단위인지 검증한다.
+  - [ ] 예외 발생시 에러 메시지를 출력한다.
+  - [ ] 1000원당 한장의 랜덤 로또를 생성한다.
+- [ ] 당첨 번호를 입력 받는다.
+  - [ ] 입력 안내문을 출력한다.
+  - [ ] 입력이 숫자와 쉼표로 이루어져 있는지 검증한다.
+  - [ ] 예외 발생시 에러 메시지를 출력한다.
+  - [ ] 숫자를 쉼표를 기준으로 구분한다.
+  - [ ] 에러 발생시 다시 입력받는다.
+- [ ] 보너스 번호를 입력 받는다.
+  - [ ] 입력 안내문을 출력한다.
+  - [ ] 입력이 숫자로 이루어져 있는지 검증한다.
+- [ ] 당첨번호와 로또를 비교한다.
+  - [ ] 당첨 번호와 몇개의 번호가 일치하는지 확인한다. 
+  - [ ] 보너스 번호가 존재하는지 확인한다.
+- [ ] 비교 결과로 등수를 메긴다.
+- [ ] 수익률을 계산한다.
+  - [ ] 총 상금을 계산한다.
+- [ ] 당첨 내역을 출력한다.
+- [ ] 수익률을 출력한다.
+
+## 객체 목록
+  ### 도메인
+- User 
+  - int spending
+  - SaleLottos lottos
+  - void buyLottos(price)
+  - void checkLottoResult()
+  - double calculateProfitRate()
+- Lotto
+  - Number
+    - int number
+    - of(number)
+    - void validateInRange()
+  - Lotto
+    - List<Number> numbers
+    - void validateDuplicate()
+    - void validateSize()
+  - SaleLotto extends Lotto
+    - static createRandomLotto(RandomNumbersPicker) 
+    - boolean isChecked
+    - LottoRank rank
+    - void checkRank(WinningLotto)
+      - countOfMatch(WinningLotto)
+      - isMatchBonus(WinningLotto)
+  - WinningLotto extends Lotto
+    - bonusNumber
+    - validateBonusNumberUnique()
+    - int countOfMatch(List<Number>)
+    - boolean isMatchBonus(List<Number>)
+  - SaleLottos
+    - List<SaleLotto> lottos
+    - EnumMap<LottoRank, Integer> lottoResult
+    - checkLottoResult(WinningLotto)
+    - calculateTotalPrize()
+  - LottoRank Enum
+    - FIRST
+      - prize
+    - SECOND
+    - THIRD
+    - FOURTH
+    - FIFTH
+    - MISS
+    - MatchResult
+      - countOfMatch
+      - isMatchBonus
+      - equals()
+      - hashCode()
+    - rank<MatchResult, LottoRank>
+    - getRank(countOfMatch, isMatchBonus)
+- Shop
+  - randomNumbersPicker
+  - sellLotto(price)
+    - validatePrice()
+    - createRandomLotto()
+  - drawWinningLotto(numbers, bonusNumber)
+  - 

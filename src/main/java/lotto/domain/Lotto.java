@@ -21,6 +21,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(final List<Integer> numbers) {
         if (!isSixNumbers(numbers)) {
             throw new IllegalArgumentException(WRONG_SIZE_EXCEPTION_MESSAGE);

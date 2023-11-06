@@ -18,6 +18,6 @@ public class Budget {
     }
 
     private boolean canMakeTicket() {
-        return budget % LOTTO_ONE_GAME_PRICE != 0;
+        return budget <= 0 || budget % LOTTO_ONE_GAME_PRICE != 0;
     }
 }

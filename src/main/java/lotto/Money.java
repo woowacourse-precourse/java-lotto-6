@@ -43,4 +43,8 @@ public class Money {
     public int calculateLottoPurchaseSize() {
         return money / UNIT_OF_MONEY;
     }
+
+    public float calculateProfitRate(Long reward) {
+        return (reward / (float) money) * 100;
+    }
 }

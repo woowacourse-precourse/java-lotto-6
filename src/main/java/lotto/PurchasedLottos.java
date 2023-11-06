@@ -7,6 +7,7 @@ import lotto.generator.NumberGenerator;
 
 public class PurchasedLottos {
     private static final int START_INDEX = 0;
+    private static final int UNIT_OF_MONEY = 1000;
 
     private final List<Lotto> purchasedLottos;
 
@@ -35,5 +36,10 @@ public class PurchasedLottos {
         return purchasedLottos.stream()
                 .map(purchasedLotto -> winningLotto.matcheLotto(purchasedLotto))
                 .collect(Collectors.toList());
+    }
+
+    public Money spendMoney() {
+        int i = purchasedLottosCount() * UNIT_OF_MONEY;
+        return new Money(String.valueOf(i));
     }
 }

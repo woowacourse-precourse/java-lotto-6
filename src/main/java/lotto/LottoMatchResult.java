@@ -26,4 +26,11 @@ public class LottoMatchResult {
         return new LottoMatchResult(lottoRankCount, profitRate);
     }
 
+    private static float getProfitRate(Money spendMoney, Map<LottoRank, Integer> collect) {
+        Long prizeSum = 0L;
+        for (Entry<LottoRank, Integer> lottoRankIntegerEntry : collect.entrySet()) {
+            prizeSum += lottoRankIntegerEntry.getKey().getPrize() * lottoRankIntegerEntry.getValue();
+        }
+        return spendMoney.calculateProfitRate(prizeSum);
+    }
 }

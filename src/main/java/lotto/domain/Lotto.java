@@ -5,7 +5,7 @@ import static lotto.utils.ErrorMessage.IS_INVALID_LOTTO_SIZE;
 
 import java.util.List;
 
-public class Lotto extends lotto.domain.LottoNumber {
+public class Lotto extends LottoNumber {
     private List<Integer> numbers;
 
     public Lotto(int lottoNumber) {

@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.DuplicateLottoNumberException;
+import lotto.exception.InvalidRangeLottoNumberException;
 
 public class WinningLotto {
     private static final Integer MIN_RANGE = 1;
@@ -28,13 +30,13 @@ public class WinningLotto {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(winningLotto);
         nonDuplicateNumbers.add(number);
         if (nonDuplicateNumbers.size() != WINNING_LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new DuplicateLottoNumberException();
         }
     }
 
     private void validateRange(Integer number) {
         if (number < MIN_RANGE && number > MAX_RANGE) {
-            throw new IllegalArgumentException();
+            throw new InvalidRangeLottoNumberException();
         }
     }
 

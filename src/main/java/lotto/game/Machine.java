@@ -19,14 +19,14 @@ public class Machine {
 
     public Machine(String moneyInput) {
         int money = validateMoneyNumber(moneyInput);
-        validateMoneyByPrice(money);
+        validateMoneyByAmount(money);
         this.count = money / PRICE;
     }
     public int getCount() {
         return count;
     }
 
-    private static int validateMoneyNumber(String moneyInput) {
+    private int validateMoneyNumber(String moneyInput) {
         int money = 0;
         try {
             money = Integer.parseInt(moneyInput);
@@ -36,7 +36,7 @@ public class Machine {
         return money;
     }
 
-    void validateMoneyByPrice(int money) {
+    private void validateMoneyByAmount(int money) {
         if (money % PRICE != 0) throw new IllegalArgumentException(
                 ErrorCode.INVALID_MONEY_TO_BUY.getDescription()
         );

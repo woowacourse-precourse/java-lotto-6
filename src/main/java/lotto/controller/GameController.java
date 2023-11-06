@@ -38,5 +38,7 @@ public class GameController {
         Result result = calculator.calculateResult(lottos.getLottos(),
                 winningNumber.getWinningNumber(),
                 bonusNumber.getBonusNumber());
+
+        OutputView.printResult(result);
     }
 }

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,13 +23,18 @@ public class NumberValidatorTest {
         );
     }
 
-    @DisplayName("구매금액이 숫자인지 검증한다. 숫자가 아니면 예외를 발생시킨다")
+    @DisplayName("보너스 번호가 당첨 번호에 속해있으면 예외를 발생시킨다")
     @Test
     void validateDuplicateNumber() {
-
+        Assertions.assertAll(
+                () -> Assertions.assertThrows(IllegalArgumentException.class,
+                        () -> numberValidator.validateDuplicateNumber(4, List.of(1, 2, 3, 4, 5, 6))),
+                () -> Assertions.assertDoesNotThrow(
+                        () -> numberValidator.validateDuplicateNumber(1, List.of(2, 3, 4, 5, 6, 7)))
+        );
     }
 
-    @DisplayName("구매금액이 숫자인지 검증한다. 숫자가 아니면 예외를 발생시킨다")
+    @DisplayName("구매 금액이 1000원 단위인지 확인한다. 1000원단위가 아니면 예외를 발생시킨다.")
     @Test
     void validatePurchasePrice() {
 

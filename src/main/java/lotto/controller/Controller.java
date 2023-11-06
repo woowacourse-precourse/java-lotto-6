@@ -18,10 +18,8 @@ public class Controller {
         part1();
         Lotties lotties = part2();
         WinningNumber winningNumber = part3();
-
-
-
     }
+
 
 
     public void part1() {
@@ -37,13 +35,14 @@ public class Controller {
         return lotties;
     }
 
-    public void part3(){
+    public WinningNumber part3(){
         OutputView.printEntertWinningNumber();
         List<Integer> numbers = InputView.inputLottoNumbers();
 
         OutputView.printEnterBounsNumber();
         int bonusNumber = InputView.inputBonusNumber();
 
+        return new WinningNumber(new Lotto(numbers), bonusNumber);
     }
 
     public void part4(){

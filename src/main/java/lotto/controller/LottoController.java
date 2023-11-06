@@ -23,6 +23,8 @@ public class LottoController {
         outputView.printLottoNumbers(lottoBuyer.getLottos());
         Lotto winningNumbers = inputView.inputWinningNumbers();
         BonusNumber bonusNumber = inputView.inputBonusNumber();
+        lottoBuyer.setInputs(winningNumbers,bonusNumber);
+
     }
 
 

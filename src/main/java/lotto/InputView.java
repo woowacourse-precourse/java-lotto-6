@@ -13,7 +13,7 @@ public class InputView {
 
     public static int getPurchaseAmount() {
         try {
-            System.out.println("구입 금액을 입력해 주세요");
+            OutputView.printMessage("구입 금액을 입력해 주세요");
             String input = playerInput().trim();
             if (!input.matches("\\d+")) {
                 throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해 주세요.");
@@ -24,21 +24,19 @@ public class InputView {
             }
             return purchaseAmount;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printMessage(e.getMessage());
             return getPurchaseAmount();
         }
     }
 
     public static List<Integer> getWinningNumbers() {
         try {
-            System.out.println("당첨 번호를 입력해 주세요");
+            OutputView.printMessage("당첨 번호를 입력해 주세요");
             String input = playerInput().trim(); // 입력된 문자열 앞뒤 공백 제거
             String[] numberStrings = input.split(",");
 
-            // 중복된 숫자 체크를 위한 Set
             Set<Integer> uniqueNumbers = new HashSet<>();
 
-            // 입력된 문자열이 숫자이고 중복되지 않는지 확인
             for (String numberString : numberStrings) {
                 int number = Integer.parseInt(numberString);
                 if (number < 1 || number > 45 || !uniqueNumbers.add(number)) {
@@ -52,14 +50,14 @@ public class InputView {
 
             return StringUtil.convertToIntegerList(input, ",");
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printMessage(e.getMessage());
             return getWinningNumbers();
         }
     }
 
     public static int getBonusNumber(Set<Integer> winningNumbers) {
         try {
-            System.out.println("보너스 번호를 입력해 주세요");
+            OutputView.printMessage("보너스 번호를 입력해 주세요");
             int bonusNumber = Integer.parseInt(playerInput().trim());
 
             if (bonusNumber < 1 || bonusNumber > 45) {
@@ -72,7 +70,7 @@ public class InputView {
 
             return bonusNumber;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printMessage(e.getMessage());
             return getBonusNumber(winningNumbers);
         }
     }

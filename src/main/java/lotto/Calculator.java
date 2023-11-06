@@ -74,7 +74,7 @@ public class Calculator {
             winningMoney += obtainMoneyByGrade(grade);
         }
 
-        return Double.valueOf(winningMoney) / purchaseMoney;
+        return Double.valueOf(winningMoney) * 100 / purchaseMoney;
     }
 
     static private Integer obtainMoneyByGrade(Grade grade) {

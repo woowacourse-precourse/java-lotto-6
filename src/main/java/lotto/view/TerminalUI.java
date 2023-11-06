@@ -6,6 +6,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Pattern;
+import lotto.constance.GameConst;
 import lotto.constance.PrintConst;
 import lotto.model.domain.Revenue;
 import lotto.model.domain.lotto.Lotto;
@@ -14,12 +16,22 @@ import lotto.view.io.Reader;
 import lotto.view.io.Writer;
 
 public class TerminalUI {
+    private static Pattern answerPattern = Pattern.compile(GameConst.FORMAT_INPUT_ANSWERS);
+
     private static final DecimalFormat moneyFormat =
             new DecimalFormat(PrintConst.DECIMAL_FORMAT_MONEY);
 
+    public void printEmptyLine() {
+        Writer.printMessage("");
+    }
+
+    public void printException(IllegalArgumentException e) {
+        Writer.printMessage(PrintConst.EXCEPTION_PREFIX + e.getMessage());
+    }
+
     public int getMoney() {
         Writer.printMessage(PrintConst.GUIDE_PURCHASE);
-        return Reader.getMoney();
+        return Reader.getOneNumber();
     }
 
     public void printPurchasedLottos(List<Lotto> lottosDTO) {
@@ -30,15 +42,19 @@ public class TerminalUI {
     }
 
     public List<Integer> getAnswerNumber() {
-        Writer.printEmptyLine();
+        Writer.printMessage("");
         Writer.printMessage(PrintConst.GUIDE_LOTTO_NUMBERS);
-        return Reader.getAnswerNumbers();
+        return Reader.getNumbersInPattern(
+                input -> input.replaceAll(" ", ""),
+                answerPattern,
+                GameConst.DELIMITER
+        );
     }
 
     public Integer getBonusNumber() {
-        Writer.printEmptyLine();
+        Writer.printMessage("");
         Writer.printMessage(PrintConst.GUIDE_BONUS_NUMBERS);
-        return Reader.getBonusNumber();
+        return Reader.getOneNumber();
     }
 
     public void printResult(List<Entry<LottoResult, Integer>> results) {

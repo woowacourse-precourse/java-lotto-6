@@ -1,9 +1,11 @@
 package lotto.exception.exceptionhandler;
 
 import java.util.function.Supplier;
-import lotto.view.io.Writer;
+import lotto.view.TerminalUI;
 
 public class RetryExceptionHandler implements ExceptionHandler {
+
+    TerminalUI ui = new TerminalUI();
 
     @Override
     public void run(Runnable runnable) {
@@ -14,7 +16,7 @@ public class RetryExceptionHandler implements ExceptionHandler {
             } catch (IllegalArgumentException e) {
                 printException(e);
             } finally {
-                System.out.println();
+                afterHandlingException();
             }
         }
     }
@@ -27,12 +29,16 @@ public class RetryExceptionHandler implements ExceptionHandler {
             } catch (IllegalArgumentException e) {
                 printException(e);
             } finally {
-                System.out.println();
+                afterHandlingException();
             }
         }
     }
 
     private void printException(IllegalArgumentException e) {
-        Writer.printException(e);
+        ui.printException(e);
+    }
+
+    private void afterHandlingException() {
+        ui.printEmptyLine();
     }
 }

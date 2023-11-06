@@ -69,4 +69,36 @@ public class LottosTest {
         );
         assertEquals(winningStatics, lottos.getWinningStatics());
     }
+
+    @Test
+    void 당첨금_계산_테스트() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        Lotto lotto1 = mock(Lotto.class);
+        Lotto lotto2 = mock(Lotto.class);
+        Lotto lotto3 = mock(Lotto.class);
+
+        when(lotto1.getRanking(winningNumbers, bonusNumber)).thenReturn(Ranking.FIFTH);
+        when(lotto2.getRanking(winningNumbers, bonusNumber)).thenReturn(Ranking.FIRST);
+        when(lotto3.getRanking(winningNumbers, bonusNumber)).thenReturn(Ranking.SECOND);
+
+        List<Lotto> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottoNumbers.add(new Lotto(List.of(7, 8, 9, 10, 11, 12)));
+        lottoNumbers.add(new Lotto(List.of(13, 14, 15, 16, 17, 18)));
+
+        Lottos lottos = new Lottos(lottoNumbers);
+
+        List<Lotto> mockLottos = lottos.getLottos();
+        mockLottos.set(0, lotto1);
+        mockLottos.set(1, lotto2);
+        mockLottos.set(2, lotto3);
+
+        lottos.calculateWinningStatistics(winningNumbers, bonusNumber);
+        lottos.calculateTotalPrize();
+
+        assertEquals(2030005000, lottos.getTotalPrize());
+
+    }
 }

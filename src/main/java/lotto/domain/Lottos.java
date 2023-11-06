@@ -34,6 +34,10 @@ public class Lottos {
         return winningStatics;
     }
 
+    public int getTotalPrize() {
+        return totalPrize;
+    }
+
     public void draw(List<Integer> winningNumbers, int bonusNumber) {
         calculateWinningStatistics(winningNumbers, bonusNumber);
         OutputUtils.printResultAnnouncementMessage();
@@ -51,7 +55,7 @@ public class Lottos {
         Arrays.stream(Ranking.values()).forEach(ranking -> winningStatics.putIfAbsent(ranking, 0));
     }
 
-    private void calculateTotalPrize() {
+    public void calculateTotalPrize() {
         totalPrize = winningStatics.entrySet().stream()
                 .map(r -> StringUtils.StringToInt(r.getKey().getPrize()) * r.getValue())
                 .reduce(0, Integer::sum);

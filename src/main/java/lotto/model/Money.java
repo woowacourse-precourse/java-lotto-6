@@ -25,6 +25,10 @@ public class Money {
         }
     }
 
+    public Integer getMoney() {
+        return money;
+    }
+
     public Integer numberOfPurchaseAvailable() {
         return money / UNIT;
     }

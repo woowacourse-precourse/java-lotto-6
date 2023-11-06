@@ -88,6 +88,9 @@ public class Except {
         List<Integer> result = new ArrayList<>();
         for (int i = 0; i < check_number.length; i++) {
             int checking = numberCheckNumber(check_number[i]);
+            if (checking < 0) {
+                break;
+            }
             checking = numberRangeNumber(checking);
             if (checking < 0) {
                 break;

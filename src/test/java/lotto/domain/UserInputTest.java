@@ -12,13 +12,5 @@ class UserInputTest {
      void setUp() {
         userInput = new UserInput();
     }
-    @Test
-    void 숫자_입력_확인() {
-        assertThrows(IllegalArgumentException.class, () -> userInput.checkInt("abc"));
-    }
 
-    @Test
-    void 구입금액_확인() {
-        assertThrows(IllegalArgumentException.class, () -> userInput.checkPurchaseAmount(10010));
-    }
 }

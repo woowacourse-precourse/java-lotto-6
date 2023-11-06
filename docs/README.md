@@ -36,7 +36,7 @@
     - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 
 - 사용 예시
-```java
+```java  
  List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);.
 ```
 

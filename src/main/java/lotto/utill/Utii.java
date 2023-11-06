@@ -35,6 +35,9 @@ public class Utii {
     public static Integer InputNumber() {
         String inputStringLine = Console.readLine().trim();
 
+        ValidateException.blankCheck(inputStringLine);
+        
+
         return Integer.valueOf(inputStringLine);
     }
 

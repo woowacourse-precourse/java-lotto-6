@@ -17,22 +17,30 @@ public class Purchase<T> {
     }
 
     private int validatePurchaseMoney(String inputMoney) {
-        int money;
+        int money = parseMoney(inputMoney);
+        validateMinimumLimit(money);
+        validateUnitLimit(money);
+        return money;
+    }
+
+    private int parseMoney(String inputMoney) {
         try {
-            money = Integer.parseInt(inputMoney);
+            return Integer.parseInt(inputMoney);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(PURCHASE_MONEY_NOT_NUMBER);
         }
+    }
 
+    private void validateMinimumLimit(int money) {
         if (money < PURCHASE_MONEY_UNIT) {
             throw new IllegalArgumentException(PURCHASE_MONEY_MINIMUM_LIMIT);
         }
+    }
 
+    private void validateUnitLimit(int money) {
         if (money % PURCHASE_MONEY_UNIT != 0) {
             throw new IllegalArgumentException(PURCHASE_MONEY_UNIT_LIMIT);
         }
-
-        return money;
     }
 
     public void purchaseItems(List<T> items) {

@@ -3,7 +3,8 @@ package lotto.model;
 public enum LottoNumber {
     MIN(1),
     MAX(45),
-    COUNT(6);
+    COUNT(6),
+    PURCHASE_PRICE(1000);
 
     private final int number;
 

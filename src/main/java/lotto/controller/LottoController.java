@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoNumber;
 import lotto.model.LottoResult;
 import lotto.model.WinningLotto;
 import lotto.validator.BonusNumberInputValidator;
@@ -24,7 +25,7 @@ public class LottoController {
     public void run() {
         outputView.askForMoney();
         int money = inputView.inputMoney();
-        int lottoCount = money / 1000;
+        int lottoCount = money / LottoNumber.PURCHASE_PRICE.getNumber();
         outputView.printLottoCount(lottoCount);
         List<Lotto> lottoArrayList = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {

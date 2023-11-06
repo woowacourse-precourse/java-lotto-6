@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum Result {
 
     FIFTH("3개 일치 (5,000원)", 5_000, 3),
@@ -25,13 +27,10 @@ public enum Result {
             return SECOND;
         }
 
-        for (Result result : values()) {
-            if (result.isSameCorrect(correctCount) && result != SECOND) {
-                return result;
-            }
-        }
-
-        return MISS;
+        return Arrays.stream(Result.values())
+                .filter(result -> result.isSameCorrect(correctCount) && result != SECOND)
+                .findFirst()
+                .orElse(MISS);
     }
 
     private boolean isSameCorrect(int correctCount) {

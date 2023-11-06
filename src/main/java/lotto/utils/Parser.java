@@ -14,7 +14,7 @@ public class Parser {
         }
     }
 
-    public static int parseAmountToCoin(Payment purchaseAmount){
-        return purchaseAmount.getAmount()/cost;
+    public static int parseAmountToCoin(Payment payment){
+        return payment.getPayment()/cost;
     }
 }

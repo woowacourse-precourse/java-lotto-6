@@ -11,4 +11,9 @@ public class CustomStringUtil {
     public static boolean isNull(String content) {
         return content == null;
     }
+
+    public static boolean canConvertString2Int(String content) {
+        return content.matches("\\d+");
+    }
+
 }

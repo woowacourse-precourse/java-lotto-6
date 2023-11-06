@@ -10,6 +10,7 @@ import domain.BonusNumber;
 import domain.Lotto;
 import domain.Lottos;
 import domain.Money;
+import domain.RankCount;
 import domain.RateOfReturn;
 import java.util.HashMap;
 import java.util.List;
@@ -25,19 +26,12 @@ public class LottoController {
     private BonusNumber bonusNumber;
     private Lotto winningNumbers;
     private Lottos lottos;
-    private HashMap<Rank, Integer> rankCountsMap;
+    private final RankCount rankCount;
     private RateOfReturn rateOfReturn;
 
 
     public LottoController() {
-        initRankCountsMap();
-    }
-
-    private void initRankCountsMap() {
-        rankCountsMap = new HashMap<>();
-        for (Rank rank : Rank.values()) {
-            rankCountsMap.put(rank, 0);
-        }
+        rankCount = new RankCount();
     }
 
     public void start() {
@@ -82,13 +76,13 @@ public class LottoController {
 
     private void runLottoGame() {
         getWinningNumbersAndBonusNumber();
-        calculateRankCount();
+        rankCount.calculateRankCount(lottos, winningNumbers, bonusNumber);
         calculateRateOfReturn();
     }
 
     private void result() {
         OutputView.resultStart();
-        OutputView.printStatistics(rankCountsMap);
+        OutputView.printStatistics(rankCount.getRankCount());
         OutputView.printRateOfReturn(rateOfReturn.getRate());
     }
 
@@ -130,23 +124,14 @@ public class LottoController {
         }
     }
 
-    private void calculateRankCount() {
-        for (Lotto lotto : lottos.getLottoLists()) {
-            Rank rank = lotto.getRank(winningNumbers.getNumbers(), bonusNumber.getBonusNumber());
-
-            int currentCount = rankCountsMap.getOrDefault(rank, 0);
-            rankCountsMap.put(rank, currentCount + 1);
-        }
-    }
-
     private void calculateRateOfReturn() {
-        long totalIncome = getTotalIncome(rankCountsMap);
+        long totalIncome = getTotalIncome(rankCount.getRankCount());
         rateOfReturn = new RateOfReturn(totalIncome, money.getMoney());
     }
 
-    private static long getTotalIncome(HashMap<Rank, Integer> rankCountsMap) {
+    private static long getTotalIncome(HashMap<Rank, Integer> rankCount) {
         long totalIncome = 0;
-        for (Entry<Rank, Integer> entry : rankCountsMap.entrySet()) {
+        for (Entry<Rank, Integer> entry : rankCount.entrySet()) {
             if (entry.getValue() != 0) {
                 Rank rank = entry.getKey();
                 totalIncome += (long) rank.getPrize() * entry.getValue();

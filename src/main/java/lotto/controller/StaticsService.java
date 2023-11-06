@@ -19,7 +19,7 @@ public class StaticsService {
         return ranking;
     }
 
-    public static void countWinning(List<Integer> ranking, Rank rank) {
+    private static void countWinning(List<Integer> ranking, Rank rank) {
         if (rank == Rank.FIRST) ranking.set(4, ranking.get(4) + 1);
         else if (rank == Rank.SECOND) ranking.set(3, ranking.get(3) + 1);
         else if (rank == Rank.THIRD) ranking.set(2, ranking.get(2) + 1);

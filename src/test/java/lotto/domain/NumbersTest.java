@@ -12,7 +12,7 @@ public class NumbersTest {
         final long input = 1000000;
         final String result = "1,000,000";
 
-        assertThat(numbers.putCommaInNumber(input)).isEqualTo(result);
+        assertThat(numbers.putCommaInNumber(Long.toString(input))).isEqualTo(result);
     }
 
     @Test

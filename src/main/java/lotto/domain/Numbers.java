@@ -9,19 +9,28 @@ public class Numbers {
         return result;
     }
 
-    public String putCommaInNumber(long price) {
-        final String NUMBER_TO_STR = Long.toString(price);
-        final int MAX_INDEX = NUMBER_TO_STR.length();
+    public String putCommaInNumber(String price) {
         StringBuilder result = new StringBuilder();
+        int checkDot = price.indexOf(".");
+        String sliceInputUp = price;
+        String sliceInputdown = "";
+        int maxIndex;
 
-        for (int i = 0; i < MAX_INDEX; i++) {
-            result.append(NUMBER_TO_STR.charAt(i));
-            if ((MAX_INDEX - i) % 3 == 1 && i != MAX_INDEX - 1) {
+        if (checkDot > -1) {
+            sliceInputUp = price.substring(0, checkDot);
+            sliceInputdown = price.substring(checkDot, price.length());
+        }
+
+        maxIndex = sliceInputUp.length();
+
+        for (int i = 0; i < maxIndex; i++) {
+            result.append(price.charAt(i));
+            if ((maxIndex - i) % 3 == 1 && i != maxIndex - 1) {
                 result.append(",");
             }
         }
 
-        return result.toString();
+        return result + sliceInputdown;
     }
 
     public double rateOfReturn(long outputPrice, long inputPrice) {

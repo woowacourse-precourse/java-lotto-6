@@ -19,7 +19,9 @@ public class OutputView {
     }
 
     public void outputTotalResult(double ratioOfReturn) {
-        System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_TOTAL_REWARD), ratioOfReturn);
+        final String changedStr = Double.toString(ratioOfReturn);
+        Numbers numbers = new Numbers();
+        System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_TOTAL_REWARD), numbers.putCommaInNumber(changedStr));
     }
 
     public void outputResult(int MIN_CORRECT_AMOUNT, int MAX_CORRECT_AMOUNT) {
@@ -46,7 +48,7 @@ public class OutputView {
             correctNumber = CORRECT_FIVE_WITH_BONUS;
         }
         System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_MONEY),
-                numbers.putCommaInNumber(reward.get(correctNumber)),
+                numbers.putCommaInNumber(Long.toString(reward.get(correctNumber))),
                 amountReward.get(reward.get(correctNumber)));
         System.out.println("");
     }

@@ -5,6 +5,7 @@ import static lotto.Domain.LottoResult.Rank.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ public class LottoResult {
     Map<Integer, Prize> lottoResult;
 
     public LottoResult() {
-        this.lottoResult = new HashMap<>();
+        this.lottoResult = new LinkedHashMap<>();
         this.lottoResult.put(FIRST.getRank(), FIRST_PRIZE);
         this.lottoResult.put(SECOND.getRank(), SECOND_PRIZE);
         this.lottoResult.put(THIRD.getRank(), THIRD_PRIZE);

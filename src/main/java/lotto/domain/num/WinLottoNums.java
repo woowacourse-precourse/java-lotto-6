@@ -18,16 +18,11 @@ public class WinLottoNums {
         if (isSame(target, lottoNumber)) {
             return true;
         }
-        
+
         return false;
     }
 
     private boolean isSame(Integer num, int valueOfIndexSpecial) {
         return Utii.isSameInt(num, valueOfIndexSpecial);
-    }
-
-    @Override
-    public String toString() {
-        return winLottoNums.toString();
     }
 }

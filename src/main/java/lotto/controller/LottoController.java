@@ -23,20 +23,34 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
-        int lottoCount = purchaseAmount / 1000;
+        int lottoCount = getLottoCount(purchaseAmount);
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_MIN_NUMBER,
-                    LottoConstant.LOTTO_MAX_NUMBER,
-                    LottoConstant.LOTTO_LENGTH);
-            Collections.sort(numbers);
-            outputView.printLottoNumber(numbers);
-            Lotto lotto = new Lotto(numbers);
+            Lotto lotto = getLotto();
             lottos.add(lotto);
         }
 
+        outputView.println();
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
+
+
+    }
+
+    private int getLottoCount(int purchaseAmount) {
+        int lottoCount = purchaseAmount / 1000;
+        outputView.printPurchaseCountMessage(lottoCount);
+        return lottoCount;
+    }
+
+    private Lotto getLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_MIN_NUMBER,
+                LottoConstant.LOTTO_MAX_NUMBER,
+                LottoConstant.LOTTO_LENGTH);
+        Collections.sort(numbers);
+        outputView.printLottoNumber(numbers);
+        Lotto lotto = new Lotto(numbers);
+        return lotto;
     }
 
     private int getPurchaseAmount() {
@@ -47,6 +61,8 @@ public class LottoController {
                 if (purchaseAmount != 0 && purchaseAmount % 1000 != 0) {
                     throw new IllegalArgumentException();
                 }
+
+                outputView.println();
                 return purchaseAmount;
             } catch(IllegalArgumentException e) {
                 outputView.printErrorMessage(ErrorMessage.INVALID_LOTTO_PURCHASE_AMOUNT);
@@ -60,6 +76,7 @@ public class LottoController {
                 outputView.printWinningNumberInputMessage();
                 List<Integer> numbers = inputView.getNumbers();
                 WinningNumber winningNumber = new WinningNumber(numbers);
+                outputView.println();
                 return winningNumber;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(ErrorMessage.INVALID_WINNING_NUMBERS);
@@ -73,6 +90,7 @@ public class LottoController {
                 outputView.printBonusNumberInputMessage();
                 int number = inputView.getNumber();
                 BonusNumber bonusNumber = new BonusNumber(number, winningNumber);
+                outputView.println();
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(ErrorMessage.INVALID_BONUS_NUMBER);

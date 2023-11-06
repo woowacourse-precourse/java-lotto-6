@@ -16,7 +16,8 @@ public class OutputView {
         System.out.println(LOTTO_PURCHASE_AMOUNT_INPUT_MESSAGE);
     }
 
-    public void printPurchaseCountMessage() {
+    public void printPurchaseCountMessage(int number) {
+        System.out.print(number);
         System.out.println(LOTTO_PURCHASE_COUNT_MESSAGE);
     }
 
@@ -44,5 +45,9 @@ public class OutputView {
         }
         stringBuilder.append(numbers.get(numbers.size()-1) + "]");
         System.out.println(stringBuilder.toString());
+    }
+
+    public void println() {
+        System.out.println();
     }
 }

@@ -23,5 +23,9 @@ public class LottoController {
         LottoMachine lottoMachine = lottoService.createLottoMachine(lottoPurchaseReturn);
         lottoView.printPublishedLotto(lottoMachine.getLottos());
 
+        String winningNumber = lottoView.inputLottoWinningNumber();
+        String bonusNumber = lottoView.inputLottoBonusNumber();
+
+
     }
 }

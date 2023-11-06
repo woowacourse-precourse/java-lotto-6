@@ -22,4 +22,14 @@ public class LottoView implements LottoFinalConsts {
             System.out.println(lotto.toString());
         }
     }
+
+    public String inputLottoWinningNumber(){
+        System.out.println(INPUT_WIN_LOTTO);
+        return Console.readLine();
+    }
+
+    public String inputLottoBonusNumber(){
+        System.out.println(INPUT_BONUS_LOTTO);
+        return Console.readLine();
+    }
 }

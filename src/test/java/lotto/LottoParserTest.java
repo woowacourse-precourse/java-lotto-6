@@ -13,4 +13,12 @@ public class LottoParserTest {
         Assertions.assertThatThrownBy(() -> LottoParser.parseWinningInputs(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력으로 주어진 로또 번호중에 1미만의 값이 주어지면 예외가 발생한다.")
+    @Test
+    void parseLottoWithUnderRangeNumber(){
+        String input = "0,2,3,4,5,6";
+        Assertions.assertThatThrownBy(() -> LottoParser.parseWinningInputs(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -25,7 +25,12 @@ public class Lotto {
         }
     }
 
-    public PRIZE SCORE(List<Integer> winNumbers, int bonus){
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public PRIZE Score(List<Integer> winNumbers, int bonus){
         int matchCount=0;
         boolean bonusMatch=false;
 

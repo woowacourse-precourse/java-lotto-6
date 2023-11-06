@@ -49,7 +49,7 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS.getMessage());
         for (Match match : Match.values()) {
             System.out.println(
-                    match.getMessage() + " (" + converterMoney(match.getPrize()) + ") - " + lottoGame.getMatchs()
+                    match.getMessage() + " (" + converterMoney(match.getPrize()) + ") - " + lottoGame.getMatchResults()
                             .get(match.getMessage()) + "개");
         }
     }

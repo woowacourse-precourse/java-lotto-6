@@ -18,20 +18,20 @@ public class LottoGame {
 
     private final User user;
 
-    private HashMap<String, Integer> matchs;
+    private HashMap<String, Integer> matchResults;
 
     private Double rateOfReturn;
 
     public LottoGame(Integer amount) {
         this.user = new User(issuanceLotto(amount));
         validate(amount);
-        generateMatchs();
+        generateMatchResults();
     }
 
-    private void generateMatchs() {
-        matchs = new HashMap<>();
+    private void generateMatchResults() {
+        matchResults = new HashMap<>();
         for (Match match : Match.values()) {
-            matchs.put(match.getMessage(), 0);
+            matchResults.put(match.getMessage(), 0);
         }
     }
 
@@ -55,8 +55,8 @@ public class LottoGame {
         return this.rateOfReturn;
     }
 
-    public Map<String, Integer> getMatchs() {
-        return this.matchs;
+    public Map<String, Integer> getMatchResults() {
+        return this.matchResults;
     }
 
     public void calculationResult(DrawResult drawResult) {
@@ -69,7 +69,7 @@ public class LottoGame {
     public void calculationRateOfReturn() {
         double result = 0;
         for (Match match : Match.values()) {
-            result += matchs.get(match.getMessage()) * match.getPrize();
+            result += matchResults.get(match.getMessage()) * match.getPrize();
         }
         result = Math.round(result / user.issuanceLotto().size() * 10.0);
         this.rateOfReturn = result / 100.0;
@@ -98,7 +98,7 @@ public class LottoGame {
     }
 
     public void updateMatchCount(String message) {
-        matchs.put(message, matchs.get(message) + 1);
+        matchResults.put(message, matchResults.get(message) + 1);
     }
 
     public int countMatch(Lotto lotto, DrawResult drawResult) {

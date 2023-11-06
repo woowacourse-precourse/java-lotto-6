@@ -14,20 +14,24 @@ import org.junit.jupiter.api.Test;
 
 public class LottoResultTest {
 
+    Lotto winningLotto;
+    Bonus bonus;
+
     @BeforeEach
     void setUp() {
+        winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        bonus = new Bonus(7);
     }
 
     @DisplayName("번호가 3개 일치할 경우")
     @Test
     public void correspondThreeNumber() {
         // given
-        Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto issuedlotto = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
 
         // when
         LottoResult lottoResult = new LottoResult(
-                new WinningNumber(winningLotto, 7), Arrays.asList(issuedlotto));
+                new WinningNumber(winningLotto, bonus), Arrays.asList(issuedlotto));
         Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
 
         // then
@@ -39,9 +43,8 @@ public class LottoResultTest {
     @Test
     public void correspondFourNumber() {
         // given
-        Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto issuedlotto = new Lotto(Arrays.asList(3, 4, 5, 6, 10, 11));
-        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, 7), Arrays.asList(issuedlotto));
+        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, bonus), Arrays.asList(issuedlotto));
 
         // when
         Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
@@ -55,9 +58,8 @@ public class LottoResultTest {
     @Test
     public void correspondFiveNumber() {
         // given
-        Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto issuedlotto = new Lotto(Arrays.asList(2, 3, 4, 5, 6, 11));
-        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, 7), Arrays.asList(issuedlotto));
+        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, bonus), Arrays.asList(issuedlotto));
 
         // when
         Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
@@ -71,9 +73,8 @@ public class LottoResultTest {
     @Test
     public void correspondSixNumber() {
         // given
-        Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto issuedlotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, 7), Arrays.asList(issuedlotto));
+        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, bonus), Arrays.asList(issuedlotto));
 
         // when
         Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
@@ -87,7 +88,6 @@ public class LottoResultTest {
     @Test
     public void returnCalculation() {
         // given
-        Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto issuedLotto1 = new Lotto(Arrays.asList(8, 21, 23, 41, 42, 43));
         Lotto issuedLotto2 = new Lotto(Arrays.asList(3, 5, 11, 16, 32, 38));
         Lotto issuedLotto3 = new Lotto(Arrays.asList(7, 11, 16, 35, 36, 44));
@@ -98,7 +98,7 @@ public class LottoResultTest {
         Lotto issuedLotto8 = new Lotto(Arrays.asList(1, 3, 5, 14, 22, 45));
 
         // when
-        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, 7),
+        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, bonus),
                 Arrays.asList(issuedLotto1, issuedLotto2, issuedLotto3, issuedLotto4,
                         issuedLotto5, issuedLotto6, issuedLotto7, issuedLotto8));
         Float price = lottoResult.returnCalculation();

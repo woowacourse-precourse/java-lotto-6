@@ -137,8 +137,9 @@ public class StartLotto {
     public void inputBonusNumberForClient() {
         boolean errorOccurred;
         do {
+            String bonusNumberString = Console.readLine();
             try {
-                inputBonusNumber();
+                checkBonusNumber(bonusNumberString);
                 errorOccurred = false;
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e);
@@ -147,9 +148,7 @@ public class StartLotto {
         } while (errorOccurred);
     }
 
-    private void inputBonusNumber() {
-        String bonusNumberString = Console.readLine();
-
+    public void checkBonusNumber(String bonusNumberString) {
         // String -> Integer로 변환한다.
         int bonusNumber = changeStringToInteger(bonusNumberString);
         // 1 ~ 45 사이의 숫자인지 확인한다.

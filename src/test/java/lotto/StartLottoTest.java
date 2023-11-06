@@ -42,4 +42,13 @@ public class StartLottoTest {
             test.checkWinningNumbers(input);
         }).doesNotThrowAnyException();
     }
+
+    @DisplayName("보너스 번호가 숫자가 아니라면 예외가 발생한다.")
+    @Test
+    void checkBonusNumberNotNumberFormat() {
+        assertThatThrownBy(() -> {
+            String input = "ten";
+            test.checkBonusNumber(input);
+        }).isInstanceOf(NumberFormatException.class);
+    }
 }

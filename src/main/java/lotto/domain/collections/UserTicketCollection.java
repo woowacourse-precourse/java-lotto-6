@@ -1,6 +1,7 @@
 package lotto.domain.collections;
 
 import lotto.Lotto;
+import net.bytebuddy.pool.TypePool;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,5 +20,11 @@ public class UserTicketCollection {
 
     public List<Lotto> getTickets() {
         return Collections.unmodifiableList(tickets);
+    }
+
+    public void printUserTicketList() {
+        for (Lotto ticket : tickets) {
+            System.out.println(ticket);
+        }
     }
 }

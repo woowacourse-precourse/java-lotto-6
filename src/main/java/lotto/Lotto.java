@@ -44,4 +44,18 @@ public class Lotto {
     private LotteryResult makeLotteryResult(int matchCount, int bonusCount) {
         return LotteryResult.getWinnerMoneyOf(matchCount, bonusCount);
     }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        List<String> numberStrings = numbers.stream()
+            .map(String::valueOf)
+            .toList();
+        sb.append("[");
+        sb.append(String.join(",", numberStrings));
+        sb.append("]");
+
+        return sb.toString();
+    }
 }

@@ -5,6 +5,7 @@ import lotto.Lotto;
 import lotto.domain.collections.LotteryResultCollection;
 import lotto.domain.collections.UserTicketCollection;
 import lotto.validator.TypeMismatchValidator;
+import lotto.validator.UserTicketValidator;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class LotteryGame {
 
     public void start() {
         UserTicketCollection userTicketCollection = makeUserTicket();
+        userTicketCollection.printUserTicketList();
         LuckyTicket luckyTicket = makeLuckyTicket();
         LotteryResultCollection lotteryResult = luckyTicket.matchWith(userTicketCollection);
         printResultOf(lotteryResult);
@@ -37,8 +39,9 @@ public class LotteryGame {
     private int getUserPrice() {
         System.out.println("구입 금액을 입력해주세요");
         String input = Console.readLine();
-//        TypeMismatchValidator.validateInputInteger(input);
+        UserTicketValidator.validateTicketPrice(input);
         int price = Integer.parseInt(input);
+
         return price;
     }
 

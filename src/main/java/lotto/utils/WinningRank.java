@@ -34,7 +34,7 @@ public enum WinningRank {
         if (this == SECOND) {
             return getMatchingNumberCount() + "개 일치, 보너스 볼 일치 (" + formattedAmount + ")";
         }
-        return getMatchingNumberCount() + "개 일치, (" + formattedAmount + ")";
+        return getMatchingNumberCount() + "개 일치 (" + formattedAmount + ")";
     }
 
     private String getFormattedAmount() {

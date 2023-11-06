@@ -6,13 +6,10 @@ import lotto.view.InputView;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoPurchase {
-    private int purchaseAmount;
     private LottoNumberException lottoNumberException;
     private InputView inputView;
 
     public LottoPurchase() {
-        purchaseAmount = 0;
-
         lottoNumberException = new LottoNumberException();
         inputView = new InputView();
     }
@@ -32,7 +29,7 @@ public class LottoPurchase {
         return true;
     }
 
-    public void inputAmount() {
+    public int inputAmount() {
         String input;
 
         while (true) {
@@ -44,6 +41,6 @@ public class LottoPurchase {
             }
         }
 
-        purchaseAmount = Integer.parseInt(input);
+        return Integer.parseInt(input);
     }
 }

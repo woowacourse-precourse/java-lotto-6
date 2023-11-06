@@ -8,6 +8,7 @@ public class UserInputValidate {
     static final int minLotteryNum = 1;
     static final int maxLotteryNum = 45;
     static final int lotteryCost = 1000;
+    static final int lotteryNumLength = 6;
 
     static int userMoneyAmount(String userMoney) {
         int userMoneyAmount;
@@ -22,6 +23,45 @@ public class UserInputValidate {
             throw new IllegalArgumentException("[ERROR] 입력 금액은 1000의 배수여야 합니다.");
 
         return userMoneyAmount;
+    }
+
+    static void winLotteryDuplicateAndLength(String winningLotteryInput) {
+        List<String> winningLottery = Arrays.asList(winningLotteryInput.split(","));
+        Set<String> removeDuplicatedNum = new HashSet<>(winningLottery);
+
+        if(winningLottery.size() != removeDuplicatedNum.size())
+            throw new IllegalArgumentException("[ERROR] 당첨 숫자에는 중복된 수가 없어야 합니다.");
+        if (winningLottery.size() != lotteryNumLength)
+            throw new IllegalArgumentException("[ERROR] 당첨 숫자는 6개 입니다.");
+
+        winLotteryRange(winningLotteryInput);
+    }
+
+    static List<String> winLotteryRange(String winningLotteryInput) {
+        List<String> winningLottery = Arrays.asList(winningLotteryInput.split(","));
+
+        int lotteryNum;
+        for (String lottery : winningLottery) {
+            try {
+                lotteryNum = Integer.parseInt(lottery);
+            } catch (NumberFormatException exception) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다");
+            }
+            if (lotteryNum < minLotteryNum || lotteryNum > maxLotteryNum)
+                throw new IllegalArgumentException("[ERROR] 당첨 번호의 범위는 1부터 45까지입니다.");
+        }
+
+        return winningLottery;
+    }
+
+    static List<Integer> makeWinningLottery(List<String> winningLottery) {
+        List<Integer> winningLotteryNumber = new ArrayList<Integer>();
+
+        for (String num: winningLottery) {
+            winningLotteryNumber.add(Integer.parseInt(num));
+        }
+
+        return winningLotteryNumber;
     }
 
 }

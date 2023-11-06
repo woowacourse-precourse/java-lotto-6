@@ -17,11 +17,32 @@ public class DrawController {
 	}
 
 	public void drawLotto(List<Lotto> puchaseLottoList) {
-		LottoWinner lottoWinner = new LottoWinner();
-		Input.winningNumbers().stream()
-			.map(LottoNumber::from)
-			.forEach(lottoWinner::addNormal);
-		lottoWinner.addBonus(LottoNumber.from(Input.bonusNumber()));
+		LottoWinner lottoWinner = getLottoWinner();
+		addBonusNumber(lottoWinner);
 		Output.winningResult(drawService.drawLotto(lottoWinner, puchaseLottoList));
+	}
+
+	private static void addBonusNumber(LottoWinner lottoWinner) {
+		try {
+			int bonusNumber = Input.bonusNumber();
+			lottoWinner.addBonus(LottoNumber.from(bonusNumber));
+			return;
+		} catch (IllegalArgumentException e) {
+			Output.exception(e);
+		}
+		addBonusNumber(lottoWinner);
+	}
+
+	private static LottoWinner getLottoWinner() {
+		try {
+			LottoWinner lottoWinner = new LottoWinner();
+			Input.winningNumbers().stream()
+				.map(LottoNumber::from)
+				.forEach(lottoWinner::addNormal);
+			return lottoWinner;
+		} catch (IllegalArgumentException e) {
+			Output.exception(e);
+		}
+		return getLottoWinner();
 	}
 }

@@ -110,3 +110,7 @@ InputView클래스 getBonusNumber메소드
 ``````````````````````````
 CustomizedException클래스 bonusNumbersNotRange메소드
 ```````````````````````````````
+19. 로또 순위를 나타낸 enum클래스 생성
+``````````````````````````
+LottoRanck클래스
+```````````````````````````````

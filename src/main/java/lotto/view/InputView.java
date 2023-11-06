@@ -13,7 +13,7 @@ public class InputView {
     }
 
     public static void validateAmount(int amount){
-        if (amount % LOTTO_COST != 0) {
+        if (amount % LOTTO_COST != 0 || amount < 0) {
             throw new IllegalArgumentException();
         }
     }

@@ -69,6 +69,10 @@ public class Application {
 		Integer number = null;
 		try {
 			number = Integer.parseInt(Console.readLine());
+
+			if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
+				throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
+			}
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다!");
 		}
@@ -86,6 +90,10 @@ public class Application {
 
 			for (String input : inputList) {
 				Integer number = Integer.parseInt(input);
+
+				if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
+					throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
+				}
 
 				if (numberList.contains(number)) {
 					throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다!");

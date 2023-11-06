@@ -4,11 +4,12 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum LottoRank {
-    FIRST(6, false, 2_000_000_000L, "1등: 6개 번호 일치"),
-    SECOND(5, true, 30_000_000L, "2등: 5개 번호 + 보너스 번호 일치"),
-    THIRD(5, false, 1_500_000L, "3등: 5개 번호 일치"),
-    FOURTH(4, false,50_000L, "4등: 4개 번호 일치 / 50,000원"),
-    FIFTH(3, false,5_000L, "5등: 3개 번호 일치 / 5,000원");
+
+    FIFTH(3, false, 5_000L, PrintMessages.MATCH_3.getMessage()),
+            FOURTH(4, false, 50_000L, PrintMessages.MATCH_4.getMessage()),
+            THIRD(5, false, 1_500_000L, PrintMessages.MATCH_5.getMessage()),
+            SECOND(5, true, 30_000_000L, PrintMessages.MATCH_5_BONUS.getMessage()),
+            FIRST(6, false, 2_000_000_000L, PrintMessages.MATCH_6.getMessage());
 
     private final int matchCount;
     private final boolean matchBonus;
@@ -25,6 +26,11 @@ public enum LottoRank {
     public long getPrizeMoney() {
         return prizeMoney;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
     public static Optional<LottoRank> valueOf(int matchCount, boolean matchBonus) {
         return Arrays.stream(values())
                 .filter(rank -> rank.matchCount == matchCount)

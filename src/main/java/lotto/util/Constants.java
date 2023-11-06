@@ -2,7 +2,9 @@ package lotto.util;
 
 public enum Constants {
 
-    COMMA(",");
+    COMMA(","),
+    LIST_PREFIX("["),
+    LIST_SUFFIX("]");
 
     private final String value;
 

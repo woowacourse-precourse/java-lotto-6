@@ -12,7 +12,6 @@ public class WinningCombinationBuilder {
     private boolean isWinningNumbersNotSet = true;
 
     private WinningCombinationBuilder() {
-
     }
 
     public static WinningCombinationBuilder builder() {
@@ -35,14 +34,14 @@ public class WinningCombinationBuilder {
         return winningNumbers;
     }
 
-    public WinningCombinationBuilder winningNumbers(String input) {
+    public WinningCombinationBuilder withWinningNumbers(String input) {
         List<Integer> winningNumbers = parseInputToList(input);
         this.winningNumbers = winningNumbers;
         this.isWinningNumbersNotSet = false;
         return this;
     }
 
-    public WinningCombinationBuilder bonusNumber(String input) {
+    public WinningCombinationBuilder withBonusNumber(String input) {
         int bonusNumber = parseInputToInt(input);
         this.bonusNumber = bonusNumber;
         this.isBonusNumberNotSet = false;
@@ -50,20 +49,20 @@ public class WinningCombinationBuilder {
     }
 
     public WinningCombinationDto build() {
-        verifyAllFieldSet();
-        verifyBonusIsNotContainWinningNumber();
+        verifyAllFieldAreSet();
+        verifyBonusNotContainedInWinningNumbers();
         return new WinningCombinationDto(winningNumbers, bonusNumber);
     }
 
-    private void verifyAllFieldSet() {
+    private void verifyAllFieldAreSet() {
         if (isWinningNumbersNotSet || isBonusNumberNotSet) {
-            throw new IllegalArgumentException("builder에 누락된 필드가 존재합니다.");
+            throw new IllegalArgumentException("당첨번호 또는 보너스 번호가 설정되지 않았습니다.");
         }
     }
 
-    private void verifyBonusIsNotContainWinningNumber() {
+    private void verifyBonusNotContainedInWinningNumbers() {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("입력한 당첨번호와 동일한 숫자를 입력하면 안 됩니다.");
+            throw new IllegalArgumentException("보너스 번호가 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }

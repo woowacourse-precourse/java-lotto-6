@@ -3,16 +3,29 @@ package lotto.domain;
 import lotto.constant.LottoRank;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 
 public class LottoStatistics {
 
-    private final EnumMap<LottoRank, Integer> result;
+    private final EnumMap<LottoRank, Integer> statistics;
 
-    public LottoStatistics(EnumMap<LottoRank, Integer> result) {
-        result.remove(LottoRank.NOTHING);
-        this.result = result;
+    public LottoStatistics(List<Lotto> lottoPack, Result result) {
+        this.statistics = buildStatistics(lottoPack, result);
+    }
+
+    private EnumMap<LottoRank, Integer> buildStatistics(List<Lotto> lottoPack, Result result) {
+
+        EnumMap<LottoRank, Integer> statistics = new EnumMap<>(LottoRank.class);
+        Arrays.stream(LottoRank.values()).forEach(lottoRank -> statistics.put(lottoRank, 0));
+
+        lottoPack.stream()
+                .map(lotto -> lotto.calculate(result))
+                .forEach(rank -> statistics.put(rank, statistics.get(rank) + 1));
+
+        return statistics;
+
     }
 
     @Override
@@ -20,7 +33,7 @@ public class LottoStatistics {
 
         List<String> response = new ArrayList<>();
 
-        result.forEach((rank, count) -> {
+        statistics.forEach((rank, count) -> {
             response.add(buildLine(rank, count));
         });
 
@@ -33,7 +46,7 @@ public class LottoStatistics {
     }
 
     public int getIncome() {
-        return result.entrySet().stream()
+        return statistics.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }

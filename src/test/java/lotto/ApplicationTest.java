@@ -25,6 +25,14 @@ class ApplicationTest extends NsTest {
     }
 
 
+    @Test
+    void 당첨번호_6개숫자_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000" , "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Test
     void 당첨번호_공백문자_테스트() {

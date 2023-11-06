@@ -26,4 +26,10 @@ public class Validation {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다. 다시 입력해주세요.");
         }
     }
+
+    public void numberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 숫자 범위는 1~45 입니다.");
+        }
+    }
 }

@@ -73,6 +73,7 @@ public class Application {
             try {
                 bonusNumber = inputHandler.getInputNumber();
                 validation.bonusNumberCheck(winningNumber, bonusNumber);
+                validation.numberRange(bonusNumber);
                 validInputNumber = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

@@ -17,6 +17,6 @@ public class LottoSystem {
     }
 
     public int getBonusNumber(){
-        return getBonusNumber();
+        return bonusNumber;
     }
 }

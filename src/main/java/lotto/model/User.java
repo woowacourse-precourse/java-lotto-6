@@ -62,17 +62,17 @@ public class User {
     }
 
     public String getResult() {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (Rank rank : result.keySet()) {
             if (rank != Rank.MISS) {
-                output += rank.getMessage();
-                output += " - ";
-                output += result.get(rank);
-                output += "개\n";
+                output.append(rank.getMessage())
+                        .append(" - ")
+                        .append(result.get(rank))
+                        .append("개\n");
             }
         }
 
-        return output;
+        return output.toString();
     }
 
     public String calculateProfitPercentage(PurchaseAmount purchaseAmount) {

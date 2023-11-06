@@ -8,6 +8,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Application {
+
+    private static final int WIN_LOTTO_SIZE = 6;
+
     private static int inputPurchaseAmount() {
         int purchaseAmount = Integer.parseInt(Console.readLine());
         while (purchaseAmount % 1000 != 0) {
@@ -52,15 +55,35 @@ public class Application {
         for (int i = 0; i < purchaseNumber; i++) {
             myLottos.get(i).printLottoNumbers();
         }
+        System.out.println();
+    }
+
+    private static Lotto inputWinLottoNumbers() {
+        String userInputWinLotto = Console.readLine();
+        List<String> winLottoLetter = Arrays.asList(userInputWinLotto.split(","));
+
+        List<Integer> winLotto = new ArrayList<>();
+        for (int i = 0; i < WIN_LOTTO_SIZE; i++) {
+            winLotto.add(Integer.parseInt(winLottoLetter.get(i)));
+        }
+
+        Lotto winLottoNumber = new Lotto(winLotto);
+        return winLottoNumber;
     }
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
         int purchaseAmount = inputPurchaseAmount();
+
+        System.out.println();
         int purchaseNumber = purchaseAmount / 1000;
         printPurchaseNumber(purchaseNumber);
         List<Lotto> myLottos = generateLottos(purchaseNumber);
         printMyLottos(myLottos, purchaseNumber);
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        Lotto winLotto = inputWinLottoNumbers();
+        winLotto.printLottoNumbers();
     }
 }

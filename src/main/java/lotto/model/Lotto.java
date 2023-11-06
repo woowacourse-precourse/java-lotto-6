@@ -66,12 +66,6 @@ public class Lotto {
                 .anyMatch(number -> number == bonusNumber);
     }
 
-    private int countMatchingNumbers(final List<Integer> winningNumbers) {
-        return (int) numbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
-    }
-
     public List<Number> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

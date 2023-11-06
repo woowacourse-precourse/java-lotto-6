@@ -20,9 +20,13 @@ public class ValidateCheck {
 
     public static void numbersRangeValidate(List<Integer> numbers) {
         for(int number : numbers){
-            if(number<1 || number>45){
-                throw new IllegalArgumentException(Messages.NUMBER_RANGE_ERROR_MESSAGE.getMessage());
-            }
+            numberRangeValidate(number);
+        }
+    }
+
+    public static void numberRangeValidate(int number){
+        if(number<1 || number>45){
+            throw new IllegalArgumentException(Messages.NUMBER_RANGE_ERROR_MESSAGE.getMessage());
         }
     }
 

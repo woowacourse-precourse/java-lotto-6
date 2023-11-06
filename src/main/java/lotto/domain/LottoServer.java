@@ -19,6 +19,17 @@ public final class LottoServer {
         this.generator = generator;
     }
 
+    public void run() {
+        Money money = receiveMoney();
+        Purchase purchase = new LottoStore(new LottoFactory(generator)).sellLottos(money);
+        showGeneratedLottos(purchase.numberOfLottos(), purchase.lottos().getLottos());
+        Lottos generatedLottos = purchase.lottos();
+        Lotto winningNumber = receiveWinningNumber();
+        BonusNumber bonusNumber = receiveBonusNumber(winningNumber);
+        Statistics statistics = new StatisticsCalculator().calculate(generatedLottos, winningNumber, bonusNumber, money);
+        outputPort.printStatistics(statistics);
+    }
+
     private Money receiveMoney() {
         outputPort.printInputPurchaseAmount();
         while (true) {

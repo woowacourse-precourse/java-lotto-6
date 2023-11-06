@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class WinningNumberTest {
     @Test
-    public void testCreateWinningNumberWithDuplicateNumber() {
+    public void testCreateWinningNumberWithBonusNumberDuplicate() {
         List<Integer> numbers = new ArrayList<>();
         numbers.add(1);
         numbers.add(2);
@@ -34,6 +34,19 @@ class WinningNumberTest {
         int bonusNumber = 4;
 
         new WinningNumber(numbers, bonusNumber);
+    }
+
+    @Test
+    public void testCreateWinningNumberWithDuplicateNumber() {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(3);
+        numbers.add(3);
+        int bonusNumber = 4;
+
+        assertThrows(DuplicateNumberException.class, () -> {
+            new WinningNumber(numbers, bonusNumber);
+        });
     }
 
 

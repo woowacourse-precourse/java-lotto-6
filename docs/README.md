@@ -1,20 +1,10 @@
 # 기능 목록
 
----
-
-### 사용자 입력 검증 기능 (예외처리)
-- [x] 로또 구입 금액이 1,000원 단위가 아닐 경우 예외를 처리한다. - invalidLottoPurchaseAmount()
-- [x] 로또 번호는 1~45 범위 내의 숫자만 가능하다. - validateLottoNumberRange()
-- [x] 로또 발행 시, 중복되지 않는 6개의 숫자를 선택한다 - validateLottoNumbersDuplication()
-- [ ] 당첨 번호는 중복되지 않는 6개의 숫자와 추가로 1개의 보너스 번호를 선택한다. - validateWinningNumbersAndBonusNumber()
-### 조건
-- 예외가 발생하면 "[ERROR]"로 시작하는 에러 메시지를 출력하고, 해당 부분의 입력을 다시 받는다.
-
 --- 
 
 ### 입력 기능
 - [x] 로또 구입 금액을 사용자로부터 입력 받는다. - enterLottoPurchaseAmount()
-- [ ] 당첨 번호를 사용자로부터 입력 받는다. - enterWinningNumbers()
+- [x] 당첨 번호를 사용자로부터 입력 받는다. - enterWinningNumbers()
 - [ ] 보너스 번호를 사용자로부터 입력 받는다. - enterBonusNumber()
 
 ---
@@ -28,14 +18,30 @@
 ---
 
 ### 로또 플레이 기능
-- [ ] 로또 번호를 랜덤으로 생성한다. - generateRandomLottoNumbers()
 - [ ] 수익률은 소수점 둘째 자리에서 반올림하여 계산한다. - rateOfReturn()
 - [ ] 당첨된 로또의 내역을 확인한다. - getWinningDetails()
 - [ ] 당첨 내역의 총 수익률을 구한다. - getTotalReturnWinningDetails()
 
 ---
 
-### 도메인 모델
-- lotto - 로또 번호를 관리하는 역할
-- ReadPurchaseAmount - 구매 금액을 관리하는 역할
-- LottoRamdomNumbers - 랜덤 로또 번호 관리하는 역할
+## 도메인 모델
+
+### Lotto - 로또 번호를 관리하는 역할
+  - [x] 로또 번호는 1~45 범위 내의 숫자만 가능한지 체크하는 함수 - validateLottoNumberRange()
+  - [x] 로또 발행 시, 중복되지 않는 6개의 숫자를 체크하는 함수 - validateLottoNumbersDuplication()
+  - [x] 로또 번호의 개수가 6개가 넘어가면 예외가 발생하는 함수 - validate()
+  - [x] 로또 번호 출력 함수 - toString()
+
+### ReadPurchaseAmount - 구매 금액을 관리하는 역할
+  - [x] 로또 구입 금액의 입력 받은 값이 빈 값인지 체크하는 함수 - nullCheckPurchaseAmount()
+  - [x] 로또 구입 금액이 1,000원 단위가 아닐 경우 예외를 처리하는 함수 - invalidLottoPurchaseAmount()
+
+### LottoRamdomNumbers - 랜덤 로또 번호 관리하는 역할
+ - [x] 구입금액에 따른 로또 번호를 랜덤으로 생성하는 함수 - generateRandomLottoNumbers()
+
+### LottoWinningNumber - 로또 당첨 번호 관리 역할
+ - [x] 로또 당첨 번호는 숫자와 콤마 형식을 체크하는 함수 - validateNumberAndCommaFormat();
+ - [x] 문자열을 로또 형식으로 변환하는 함수 - convertStringToLottoFormat();
+
+### lottoBonusNumber - 로또 보너스 번호 관리 역할
+ - [ ] 당첨 번호는 중복되지 않는 6개의 숫자와 추가로 1개의 보너스 번호를 선택한다. - validateWinningNumbersAndBonusNumber()

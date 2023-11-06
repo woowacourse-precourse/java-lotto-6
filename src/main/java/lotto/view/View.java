@@ -45,7 +45,7 @@ public class View {
                 throw LottoException.of(lotto.exception.Message.MONEY_REMAINDER);
             }
             printNewLine();
-            return result / GameSetting.TICKET_PRICE.getValue();
+            return result;
         });
     }
 
@@ -55,6 +55,7 @@ public class View {
             Checker.validateUnique(result);
             Checker.validateSize(result, GameSetting.TICKET_SIZE.getValue());
             Checker.validateRange(result, GameSetting.START_NUMBER.getValue(), GameSetting.END_NUMBER.getValue());
+            printNewLine();
             return result;
         });
     }
@@ -71,6 +72,7 @@ public class View {
             List<Integer> copiedList = new ArrayList<>(ticketNumbers);
             copiedList.add(result);
             Checker.validateUnique(copiedList);
+            printNewLine();
             return result;
         });
     }

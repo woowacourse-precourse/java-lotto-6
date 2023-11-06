@@ -8,7 +8,6 @@ public class Lotto {
     private final List<Integer> lottoNumbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         Collections.sort(numbers);
         this.lottoNumbers = numbers;
     }
@@ -16,13 +15,5 @@ public class Lotto {
     public List<Integer> getLotto(){
         return lottoNumbers;
     }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    // TODO: 추가 기능 구현
 }
 

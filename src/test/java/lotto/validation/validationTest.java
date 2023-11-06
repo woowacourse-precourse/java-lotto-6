@@ -29,5 +29,14 @@ public class validationTest {
                 .hasMessageContaining(ErrorMessage.DIVISIBILITY_CHECK_AMOUNT.getMessage());
     }
 
+    @Test
+    @DisplayName("구입금액은 1000원보다 낮으면 안된다")
+    void 구입금액_모자람_테스트() {
+        int purchasePrice = 500;
+        assertThatThrownBy(() -> validateService.validatePurchasePriceAll(purchasePrice)).isInstanceOf(
+                        IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INSUFFICIENT_PRICE_MESSAGE.getMessage());
+    }
+
 
 }

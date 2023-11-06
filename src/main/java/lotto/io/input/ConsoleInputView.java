@@ -2,11 +2,12 @@ package lotto.io.input;
 
 import static lotto.exception.ExceptionMessage.INVALID_INPUT;
 import static lotto.exception.ExceptionMessage.LOTTO_MONEY_NOT_INTEGER;
-import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.utils.constant.IOConstant.INPUT_DELIMITER;
+import static lotto.utils.string.StringUtils.splitStringByDelimiter;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class ConsoleInputView implements InputView {
@@ -21,12 +22,14 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
-    public String getWinningNumbers() {
+    public List<String> getWinningNumbers() {
         String inputValue = Console.readLine();
         checkIsValidInput(inputValue);
+
         Arrays.stream(inputValue.split(DELIMITER))
                 .forEach(this::validateSimpleNumber);
-        return inputValue;
+
+        return splitStringByDelimiter(inputValue, DELIMITER);
     }
 
     @Override

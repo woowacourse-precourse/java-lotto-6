@@ -1,10 +1,12 @@
 package lotto.io.input;
 
+import java.util.List;
+
 public interface InputView {
 
     String getLottoMoney();
 
-    String getWinningNumbers();
+    List<String> getWinningNumbers();
 
     String getBonusNumber();
 }

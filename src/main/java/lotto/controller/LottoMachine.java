@@ -97,16 +97,37 @@ public class LottoMachine {
     }
 
     public void compareNumber(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers) {
-        int count = 0;
+        int matchCount = 0;
         for (int number : lottoNumbers) {
             if (winningLottoNumbers.contains(number)) {
-                count++;
+                matchCount++;
             }
         }
-        addLottoWinning(count);
+        if (matchCount != 5) {
+            addLottoWinning(matchCount);
+        }
+        if (matchCount == 5) {
+            addSecondWinning(lottoNumbers);
+        }
     }
 
-    public void addLottoWinning(int count) {
-        winningCount.merge(count, 1, Integer::sum);
+    public void addLottoWinning(int matchCount) {
+        if (matchCount == 6) {
+            winningCount.merge(1, 1, Integer::sum);
+        }
+        if (matchCount == 4) {
+            winningCount.merge(4, 1, Integer::sum);
+        }
+        if (matchCount == 3) {
+            winningCount.merge(5, 1, Integer::sum);
+        }
+    }
+
+    public void addSecondWinning(List<Integer> lottoNumbers) {
+        if (lottoNumbers.contains(user.getBonusNumber())) {
+            winningCount.merge(2, 1, Integer::sum);
+            return;
+        }
+        winningCount.merge(3, 1, Integer::sum);
     }
 }

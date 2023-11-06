@@ -15,4 +15,11 @@ public class Intersection {
         }
         return intersectionCount;
     }
+
+    public boolean bonusNum(int bonusNum, List<Set> lottoNum) {
+        if (lottoNum.contains(bonusNum)) {
+            return true;
+        }
+        return false;
+    }
 }

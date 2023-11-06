@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -39,4 +40,16 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(41, 42, 43, 44, 45, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호를 당첨 로또 번호와 비교한다.")
+    @Test
+    void sortLottoInAscendingOrder() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9);
+
+        int matchNumber = lotto.compareWinningLottoNumbers(winningNumbers);
+
+        Assertions.assertThat(matchNumber).isEqualTo(3);
+    }
+
 }

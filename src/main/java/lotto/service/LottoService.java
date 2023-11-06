@@ -66,7 +66,8 @@ public class LottoService {
 	private EnumMap<LottoRank, Integer> countLottoRank(Lottos lottos, AnswerLotto answerLotto) {
 		EnumMap<LottoRank, Integer> lottRankCounter = LottoRank.initializeLottoRankCounter();
 
-		lottos.getLottos().stream().map(lotto -> LottoRank.getMatchedLottoRank(answerLotto, lotto))
+		lottos.getLottos().stream()
+				.map(lotto -> LottoRank.getMatchedLottoRank(answerLotto, lotto))
 				.filter(Objects::nonNull)
 				.forEach(lottoRank -> lottRankCounter.put(lottoRank, lottRankCounter.get(lottoRank) + 1));
 

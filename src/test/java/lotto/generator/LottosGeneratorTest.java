@@ -31,7 +31,7 @@ public class LottosGeneratorTest {
 
 		Lottos lottos = lottosGenerator.generate();
 
-		assertEquals(lottos.size(), expect);
+		assertEquals(lottos.getSize(), expect);
 	}
 
 	static Stream<Arguments> createGenerateMethodParameter() {

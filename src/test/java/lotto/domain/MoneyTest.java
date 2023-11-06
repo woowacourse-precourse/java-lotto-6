@@ -25,7 +25,7 @@ public class MoneyTest {
 	void checkNomalOperation1() {
 		new Money(1000);
 	}
-	
+
 	@DisplayName("돈이 0이하라면 예외가 발생한다.")
 	@ValueSource(ints =  { 0, -10, -100 })
 	@ParameterizedTest

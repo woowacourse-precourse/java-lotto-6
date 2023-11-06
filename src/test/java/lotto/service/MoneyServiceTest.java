@@ -10,21 +10,21 @@ import org.junit.jupiter.api.Test;
 import lotto.domain.Money;
 
 public class MoneyServiceTest {
-	
+
 	private MoneyService moneyService;
 	int money;
-	
-    @BeforeEach
-    void setUp() {
-        moneyService = new MoneyService();
-        money = 5000;
-    }
 
-    @DisplayName("Money 객체 생성 여부 확인")
-    @Test
-    void testCreateMoney() {
-        Money moneyObj = moneyService.createMoney(money);
-        assertNotNull(moneyObj);
-        assertEquals(moneyObj.money(), money);
-    }
+	@BeforeEach
+	void setUp() {
+		moneyService = new MoneyService();
+		money = 5000;
+	}
+
+	@DisplayName("Money 객체 생성 여부 확인")
+	@Test
+	void testCreateMoney() {
+		Money moneyObj = moneyService.createMoney(money);
+		assertNotNull(moneyObj);
+		assertEquals(moneyObj.money(), money);
+	}
 }

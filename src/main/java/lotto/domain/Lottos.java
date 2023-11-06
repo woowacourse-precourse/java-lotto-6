@@ -27,8 +27,8 @@ public class Lottos {
 	public List<Lotto> getLottos() {
 		return Collections.unmodifiableList(lottos);
 	}
-	
-	public int size() {
+
+	public int getSize() {
 		return lottos.size();
 	}
 }

@@ -44,7 +44,7 @@ public class LottoServiceTest {
 		AnswerLotto answerLotto = new AnswerLotto(answerLottoNumbers, new BonusNumber(answerLottoNumbers, 7));
 		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
 				new Lotto(List.of(1, 2, 3, 4, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
-		
+
 		return Stream.of(Arguments.of(answerLotto, lottos, 55000));
 	}
 
@@ -57,13 +57,13 @@ public class LottoServiceTest {
 
 		assertEquals(totalReturn, expect);
 	}
-	
+
 	static Stream<Arguments> createCheckTotalReturnMethodParameter() {
 		Lotto answerLottoNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 		AnswerLotto answerLotto = new AnswerLotto(answerLottoNumbers, new BonusNumber(answerLottoNumbers, 7));
 		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
 				new Lotto(List.of(1, 2, 10, 11, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
-		
+
 		return Stream.of(Arguments.of(answerLotto, lottos, 125));
 	}
 
@@ -81,7 +81,7 @@ public class LottoServiceTest {
 		AnswerLotto answerLotto = new AnswerLotto(answerLottoNumbers, new BonusNumber(answerLottoNumbers, 7));
 		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
 				new Lotto(List.of(1, 2, 3, 4, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
-		
+
 		String expect = """
 				    3개 일치 (5,000원) - 1개
 				    4개 일치 (50,000원) - 1개

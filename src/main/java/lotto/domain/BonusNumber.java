@@ -32,7 +32,7 @@ public class BonusNumber {
 	private boolean isNumberOutOfRange(int number) {
 		return number > Lotto.MAX_NUMBER || number < Lotto.MIN_NUMBER;
 	}
-	
+
 	public int getBonusNumber() {
 		return bonusNumber;
 	}

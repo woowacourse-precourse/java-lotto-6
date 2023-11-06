@@ -11,7 +11,8 @@ public final class LottoNumberGenerator implements Generator<List<Integer>> {
 
 	@Override
 	public List<Integer> generate() {
-		List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.LOTTO_SIZE);
+		List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(
+				Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.LOTTO_SIZE);
 		List<Integer> sortedLottoNumbers = new ArrayList<>(lottoNumbers);
 
 		Collections.sort(sortedLottoNumbers);

@@ -17,4 +17,10 @@ public class BonusNumber {
             throw ExceptionMessage.INTPUT_NUMBER_LENGTH.throwexception();
         }
     }
+
+    private void checkDuplicateInWinningNumbers(List<Integer> winningNumbers){
+        if (winningNumbers.contains(bonusNumber)){
+            throw ExceptionMessage.IN_WINNING_NUMBERS.throwexception();
+        }
+    }
 }

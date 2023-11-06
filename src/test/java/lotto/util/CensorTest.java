@@ -32,14 +32,14 @@ class CensorTest {
 
     @DisplayName("입력 값이 공백이라면, 예외가 발생한다.")
     @Test
-    void commonValidMethodSpaceTest() {
+    void validatePurchaseAmountMethodSpaceTest() {
         String inputNull = null;
         String inputEnter = "";
         String inputSpace = " ";
 
-        assertThrows(IllegalArgumentException.class, () -> Censor.commonValid(inputNull));
-        assertThrows(IllegalArgumentException.class, () -> Censor.commonValid(inputEnter));
-        assertThrows(IllegalArgumentException.class, () -> Censor.commonValid(inputSpace));
+        assertThrows(IllegalArgumentException.class, () -> Censor.validatePurchaseAmount(inputNull));
+        assertThrows(IllegalArgumentException.class, () -> Censor.validatePurchaseAmount(inputEnter));
+        assertThrows(IllegalArgumentException.class, () -> Censor.validatePurchaseAmount(inputSpace));
     }
 
 }

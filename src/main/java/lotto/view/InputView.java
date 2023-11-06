@@ -9,7 +9,7 @@ public class InputView {
 
     public static String purchaseAmount() {
         System.out.println(SET_PURCHASE_AMOUNT.getContent());
-        return Censor.commonValid(Console.readLine());
+        return Censor.validatePurchaseAmount(Console.readLine());
     }
 
 }

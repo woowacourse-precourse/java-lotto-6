@@ -28,8 +28,8 @@ public class InputView {
 
     public int inputBonusNumber(){
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        String userMoney = Console.readLine();
-        return Integer.parseInt(userMoney);
+        String bonusNumber = Console.readLine();
+        return Integer.parseInt(bonusNumber);
     }
 
 }

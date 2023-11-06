@@ -11,7 +11,7 @@ public class GeneratorTest {
     @Test
     void printMessage() {
         int number = Parser.parsePurchaseAmount("8000");
-        List<Lotto> ticket = Generator.publishTicket(number);
+        List<Lotto> ticket = Generator.publishTickets(number);
         for (Lotto lotto : ticket) {
             System.out.println(lotto.getNumbers());
         }

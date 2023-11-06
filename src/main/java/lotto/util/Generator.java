@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 
 public class Generator {
-    public static List<Lotto> publishTicket(int ticketAmount) {
+    public static List<Lotto> publishTickets(int ticketAmount) {
         return IntStream.range(0, ticketAmount)
                 .mapToObj(i -> generateLotto())
                 .collect(Collectors.toList());

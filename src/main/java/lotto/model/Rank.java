@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum Rank {
-    SIX(6, 2000000000, (matchingNumber, isBonusContain) -> matchingNumber == 6),
-    FIVE_BONUS(5, 30000000,  (matchingNumber, isBonusContain) -> matchingNumber == 5 && isBonusContain),
-    FIVE(5, 1500000,  (matchingNumber, isBonusContain) -> matchingNumber == 5 && isBonusContain),
-    FOUR(4, 50000,  (matchingNumber, isBonusContain) -> matchingNumber == 4),
+    ECT(0, 0,  (matchingNumber, isBonusContain) -> matchingNumber < 3),
     THREE(3, 5000,  (matchingNumber, isBonusContain) -> matchingNumber == 3),
-    ECT(0, 0,  (matchingNumber, isBonusContain) -> matchingNumber < 3);
+    FOUR(4, 50000,  (matchingNumber, isBonusContain) -> matchingNumber == 4),
+    FIVE(5, 1500000,  (matchingNumber, isBonusContain) -> matchingNumber == 5 && isBonusContain),
+    FIVE_BONUS(5, 30000000,  (matchingNumber, isBonusContain) -> matchingNumber == 5 && isBonusContain),
+    SIX(6, 2000000000, (matchingNumber, isBonusContain) -> matchingNumber == 6);
 
     private final int matchingNumber;
     private final int prize;
@@ -31,4 +31,9 @@ public enum Rank {
     public int getPrize() {
         return prize;
     }
+
+    public int getMatchingNumber() {
+        return matchingNumber;
+    }
+
 }

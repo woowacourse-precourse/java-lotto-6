@@ -56,7 +56,7 @@ public class LottoController {
         for (LottoResults result : lottoResults) {
             lottoStatistics.put(result, lottoStatistics.getOrDefault(result, 0) + 1);
         }
-        return new LottoResultsDTO(lottoStatistics, buyAmount.getAbleToBuyCount());
+        return new LottoResultsDTO(lottoStatistics, lottoResults.size());
     }
 
     private Lottos createLottosFromAmount() {

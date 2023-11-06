@@ -19,21 +19,19 @@ public class PurchaseAmount {
     }
 
     private void validate(String price) {
-        IsNumber(price);
-        IsPositive(convertStringToInt(price));
+        IsNotEmpty(price);
+        IsInRange(price);
         IsMultipleOfUnit(convertStringToInt(price));
     }
 
-    private void IsNumber(String price) {
-        try {
-            Integer.parseInt(price);
-        } catch (NumberFormatException ex) {
-            ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.throwException();
+    private void IsNotEmpty(String price) {
+        if(price == null || price.isBlank()){
+            ExceptionMessage.INPUT_EMPTY_STRING_MESSAGE.throwException();
         }
     }
 
-    private void IsPositive(int price) {
-        if (price < 0) {
+    private void IsInRange(String price) {
+        if(!price.chars().allMatch(Character::isDigit)){
             ExceptionMessage.INPUT_ZERO_OR_LESS_MESSAGE.throwException();
         }
     }

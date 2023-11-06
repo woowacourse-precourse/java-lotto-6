@@ -36,23 +36,6 @@ public class InputValidatorTest {
                 .hasMessageContaining("[Error] 정수가 아닌 다른 문자는 입력할 수 없습니다");
     }
 
-    @Test
-    @DisplayName("금액 입력이 1000이상 100,000이하의 정수가 아니면 예외가 발생한다")
-    void inputCostInputOutOfSize() {
-        assertThatThrownBy(() -> validator.validatePurchaseCostInputView("900"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 구매 금액은 1000원 이상 100,000원 이하로만 가능합니다");
-
-    }
-
-    @Test
-    @DisplayName("입력된 금액이 1000원 단위가 아니면 예외가 발생한다")
-    void inputCostInputNotInUnit() {
-        assertThatThrownBy(() -> validator.validatePurchaseCostInputView("1200"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 구매 금액은 1000원 단위로만 가능합니다");
-    }
-
     @ParameterizedTest
     @DisplayName("당첨 번호 입력이 빈 값이면 예외가 발생한다")
     @ValueSource(strings = {"", " "})

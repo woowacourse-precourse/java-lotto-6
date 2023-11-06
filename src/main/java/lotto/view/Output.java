@@ -15,4 +15,8 @@ public class Output {
     public static void printPurchaseLottoQuantityMessage(int lottoQuantity){
         System.out.println(lottoQuantity+"개를 구매했습니다.");
     }
+
+    public static void printWinningNumberMessage(){
+        System.out.println(WINNING_NUMBER.message());
+    }
 }

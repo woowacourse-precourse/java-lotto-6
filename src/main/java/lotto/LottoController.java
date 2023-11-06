@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -83,25 +84,26 @@ public class LottoController {
     }
 
     private LottoBonus createBonusNumber(Lotto lotto) {
-        LottoBonus bonusNumber = null;
+        LottoBonus lottoBonus = null;
         boolean loop = true;
 
         while (loop) {
             String inputBonusNumber = input.bonusNumber();
             try {
-                hasSameNumberBetweenWinningAndBonusNumber(lotto.getLotto(), inputBonusNumber);
-                bonusNumber = new LottoBonus(Integer.parseInt(inputBonusNumber));
+                int bonusNumber = toNumber(inputBonusNumber);
+                hasSameNumberBetweenWinningAndBonusNumber(lotto.getLotto(), bonusNumber);
+                lottoBonus = new LottoBonus(bonusNumber);
                 loop = false;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             }
         }
 
-        return bonusNumber;
+        return lottoBonus;
     }
 
-    private void hasSameNumberBetweenWinningAndBonusNumber(List<Integer> winingNumber, String bonusNumber) {
-        if (winingNumber.contains(toNumber(bonusNumber))) {
+    private void hasSameNumberBetweenWinningAndBonusNumber(List<Integer> winingNumber, int bonusNumber) {
+        if (winingNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_BOUS_NUMBER_DUPLICATE.getMessage());
         }
     }

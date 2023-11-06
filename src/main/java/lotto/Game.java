@@ -49,6 +49,9 @@ public class Game {
         System.out.println("보너스 번호를 입력해 주세요.");
         try {
             int bonusNum = Integer.parseInt(readLine());
+            if (bonusNum < 1 || bonusNum > 45) {
+                throw new IllegalArgumentException("번호는 1~45사이 값이여야 합니다.");
+            }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("입력값은 정수여야합니다.");
         }

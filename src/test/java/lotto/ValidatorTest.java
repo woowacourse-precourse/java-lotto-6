@@ -3,10 +3,8 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
 import lotto.model.LottoAmount;
-import lotto.util.Utils;
-import lotto.util.Validator;
+import lotto.model.LottoService;
 import org.junit.jupiter.api.Test;
 
 public class ValidatorTest {
@@ -18,7 +16,7 @@ public class ValidatorTest {
 
     @Test
     void validateBonusNumber_보너스번호_숫자아니면_예외반환() {
-        assertThatThrownBy(() -> Validator.validateBonusNumber("aaa")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoService.validateBonusNumber("aaa")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

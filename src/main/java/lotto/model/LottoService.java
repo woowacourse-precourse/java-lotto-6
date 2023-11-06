@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.util.Utils.splitByComma;
+import static lotto.util.Utils.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -13,8 +13,15 @@ public class LottoService {
     private static final String LOTTO_SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개만 가능합니다.";
     private static final String LOTTO_DUPLICATE_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
 
+    private int bonusNumber;
+
     public LottoService() {
 
+    }
+
+    public static void validateLottoNumber(List<Integer> numbers) {
+        validateLottoSize(numbers);
+        validateLottoDuplicate(numbers);
     }
 
     public static List<Integer> generateLottoNumber() {
@@ -29,15 +36,14 @@ public class LottoService {
         return numbers;
     }
 
-    public static void validateLottoNumber(List<Integer> numbers) {
-        validateLottoSize(numbers);
-        validateLottoDuplicate(numbers);
+    public static int validateBonusNumber(String input) {
+        return Integer.parseInt(input);
     }
 
     private static List<Integer> makeStringToList(String input) {
         List<Integer> lottoNumbers = new ArrayList<>();
         for (String str : splitByComma(input)) {
-            lottoNumbers.add(Integer.parseInt(str));
+            lottoNumbers.add(parseInt(str));
         }
         return lottoNumbers;
     }

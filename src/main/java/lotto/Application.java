@@ -7,7 +7,7 @@ import lotto.view.OutputView;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        MainController mainController = new MainController(InputView.getInstance(), OutputView.getInstance());
+        MainController mainController = new MainController();
         mainController.play();
     }
 }

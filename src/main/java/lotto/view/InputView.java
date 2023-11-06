@@ -4,28 +4,19 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    private static final InputView instance = new InputView();
-
-    public static InputView getInstance() {
-        return instance;
-    }
-
-    private InputView() {
-    }
-
-    public String readLottoNumber() {
+    public static String readLottoNumber() {
         System.out.println(Message.INPUT_LOTTO_NUMBER.message);
         String input = Console.readLine();
         return input;
     }
 
-    public String readBonusNumber() {
+    public static String readBonusNumber() {
         System.out.println(Message.INPUT_BONUS_NUMBER.message);
         String input = Console.readLine();
         return input;
     }
 
-    public String readLottoMoney() {
+    public static String readLottoMoney() {
         System.out.println(Message.INPUT_LOTTO_MONEY.message);
         String input = Console.readLine();
         return input;

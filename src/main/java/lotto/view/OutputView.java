@@ -6,16 +6,7 @@ import lotto.model.LottoAmount;
 
 public class OutputView {
 
-    private static final OutputView instance = new OutputView();
-
-    public static OutputView getInstance() {
-        return instance;
-    }
-
-    private OutputView() {
-    }
-
-    public void printLottoNumber(List<Integer> numbers) {
+    public static void printLottoNumber(List<Integer> numbers) {
         StringBuilder sb = new StringBuilder("[");
         for(int i=0; i<numbers.size()-1; i++) {
             sb.append(numbers.get(i)).append(", ");
@@ -23,7 +14,7 @@ public class OutputView {
         System.out.println(sb.append(numbers.get(numbers.size()-1)).append("]").toString());
     }
 
-    public void printLottoAmount(LottoAmount lottoAmount) {
+    public static void printLottoAmount(LottoAmount lottoAmount) {
         System.out.println(String.format(Message.OUTPUT_LOTTO_AMOUNT.message, lottoAmount.getLottoAmount()));
     }
 

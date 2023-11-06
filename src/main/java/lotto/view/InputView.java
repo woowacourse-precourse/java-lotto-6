@@ -33,17 +33,27 @@ public class InputView {
         System.out.println(NOTICE_INPUT_WINNING_NUMBER);
         String input = Console.readLine();
         List<String> inputNumbers = List.of(input.split(DELIMITER));
-        validateWinningNumbersType(inputNumbers);
-        List<Integer> winningNumbers = stringListToIntList(inputNumbers);
-        Lotto winningLotto = new Lotto(winningNumbers);
+        try {
+            validateWinningNumbersType(inputNumbers);
+            List<Integer> winningNumbers = stringListToIntList(inputNumbers);
+            Lotto winningLotto = new Lotto(winningNumbers);
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            inputWinningNumber();
+        }
     }
 
     public void inputBonusNumber() {
         System.out.println(NOTICE_INPUT_BONUS_NUMBER);
         String input = Console.readLine();
-        validateBonusNumberType(input);
-        int bonusNumber = stringToInt(input);
-        Bonus bonus = new Bonus(bonusNumber);
+        try {
+            validateBonusNumberType(input);
+            int bonusNumber = stringToInt(input);
+            Bonus bonus = new Bonus(bonusNumber);
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            inputBonusNumber();
+        }
     }
 
     private List<Integer> stringListToIntList(List<String> before) {

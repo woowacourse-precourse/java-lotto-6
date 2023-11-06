@@ -24,9 +24,9 @@
 - [ ] 당첨 내역을 출력한다.
 - [ ] 수익률을 출력한다.
 ### 예외
-- [ ] 잘못된 값이 입력된 경우 `IllegalArgumentException`를 발생시킨다.
-  - [ ] "[ERROR]"로 시작하는 에러 메시지 출력 후 그 부분부터 다시 입력받는다.
-  - [ ] `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
+- [x] 잘못된 값이 입력된 경우 `IllegalArgumentException`를 발생시킨다.
+  - [x] "[ERROR]"로 시작하는 에러 메시지 출력 후 그 부분부터 다시 입력받는다.
+  - [x] `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 ## 로또 규칙
 ```
 - 로또 번호의 숫자 범위는 1~45까지이다.

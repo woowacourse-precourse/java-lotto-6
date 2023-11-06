@@ -40,4 +40,8 @@ public class Lotto {
             throw new LottoNumberOutOfRangeException(number);
         }
     }
+
+    public boolean containsNumber(Integer number) {
+        return numbers.contains(number);
+    }
 }

@@ -1,16 +1,15 @@
 package lotto.domain;
 
 import lotto.domain.exception.IllegalLottoPriceException;
+import lotto.domain.exception.LottoRechargeExistException;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 public class LottoMarket {
-    private final int lottoPrice;
     private final LottoFactory lottoFactory;
 
-    public LottoMarket(int lottoPrice, LottoFactory lottoFactory) {
-        this.lottoPrice = lottoPrice;
+    public LottoMarket(LottoFactory lottoFactory) {
         this.lottoFactory = lottoFactory;
     }
 
@@ -33,13 +32,13 @@ public class LottoMarket {
     }
 
     private void validateNoRecharge(int lottoBoughtPrice) {
-        if (lottoBoughtPrice % lottoPrice != 0) {
-            throw new IllegalLottoPriceException();
+        if (lottoBoughtPrice % Lotto.LOTTO_PRICE != 0) {
+            throw new LottoRechargeExistException();
         }
     }
 
     private int getLottoCount(int lottoBoughtPrice) {
-        return lottoBoughtPrice / lottoPrice;
+        return lottoBoughtPrice / Lotto.LOTTO_PRICE;
     }
 
     private List<Lotto> createLottos(int lottoCount) {

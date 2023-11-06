@@ -11,14 +11,12 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoProfitRateCalculatorTest {
-    private static final int LOTTO_PRICE = 1000;
-
     @DisplayName("calculate는 로또 구입 금액과 LottoGrade의 목록을 받아 수익률을 계산한다.")
     @ParameterizedTest
     @MethodSource("getLottoResult")
     void calculate(List<LottoGrade> lottoGrades, String expected) {
         // given
-        LottoProfitRateCalculator calculator = new LottoProfitRateCalculator(LOTTO_PRICE);
+        LottoProfitRateCalculator calculator = new LottoProfitRateCalculator();
 
         // when
         LottoProfitRate profitRate = calculator.calculate(lottoGrades);

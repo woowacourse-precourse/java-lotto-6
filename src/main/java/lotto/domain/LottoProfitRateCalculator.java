@@ -4,11 +4,6 @@ import java.util.List;
 
 public class LottoProfitRateCalculator {
     private static final int PERCENT = 100;
-    private final int lottoPrice;
-
-    public LottoProfitRateCalculator(int lottoPrice) {
-        this.lottoPrice = lottoPrice;
-    }
 
     public LottoProfitRate calculate(List<LottoGrade> lottoGrades) {
         if (lottoGrades.isEmpty()) {
@@ -30,7 +25,7 @@ public class LottoProfitRateCalculator {
     }
 
     private int getLottoBoughtPrice(List<LottoGrade> lottoGrades) {
-        return lottoGrades.size() * lottoPrice;
+        return lottoGrades.size() * Lotto.LOTTO_PRICE;
     }
 
     private double getProfitRate(int totalWinningMoney, int lottoBoughtPrice) {

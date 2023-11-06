@@ -20,10 +20,9 @@ class LottoMarketTest {
         @Test
         void buyLotto() {
             // given
-            int lottoPrice = 1000;
-            LottoMarket lottoMarket = new LottoMarket(lottoPrice, lottoFactory);
+            LottoMarket lottoMarket = new LottoMarket(lottoFactory);
 
-            int lottoBoughtPrice = 10 * lottoPrice;
+            int lottoBoughtPrice = 10 * Lotto.LOTTO_PRICE;
 
             // when
             LottoTicket lottoTicket = lottoMarket.buyLotto(lottoBoughtPrice);
@@ -36,8 +35,7 @@ class LottoMarketTest {
         @Test
         void buyLottoWithNegativePrice() {
             // given
-            int lottoPrice = 1000;
-            LottoMarket lottoMarket = new LottoMarket(lottoPrice, lottoFactory);
+            LottoMarket lottoMarket = new LottoMarket(lottoFactory);
 
             int lottoBoughtPrice = -1;
 
@@ -50,8 +48,7 @@ class LottoMarketTest {
         @Test
         void buyLottoWithNotDivisiblePrice() {
             // given
-            int lottoPrice = 1000;
-            LottoMarket lottoMarket = new LottoMarket(lottoPrice, lottoFactory);
+            LottoMarket lottoMarket = new LottoMarket(lottoFactory);
 
             int lottoBoughtPrice = 1001;
 

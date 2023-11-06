@@ -12,6 +12,10 @@ public class OutputView {
         System.out.println(RequestMessage.PURCHASE_AMOUNT.getMessage());
     }
 
+    public static void printRequestWinningNumber() {
+        System.out.println(RequestMessage.WINNING_NUMBER.getMessage());
+    }
+
     public static void printResponsePurchaseAmount(final int amount) {
         String formattedMessage = String.format(ResponseMessage.PURCHASE_AMOUNT.getMessage(), amount);
         System.out.println(formattedMessage);

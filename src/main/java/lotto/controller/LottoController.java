@@ -20,6 +20,8 @@ public class LottoController {
         OutputView.printResponsePurchaseAmount(1);
 
         // 당첨 번호 입력
+        OutputView.printRequestWinningNumber();
+        InputView.readLine();
 
         // 보너스 번호 입력
 

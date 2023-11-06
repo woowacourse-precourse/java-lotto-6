@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -14,6 +15,12 @@ public class Lotto {
 	private void validate(List<Integer> numbers) {
 		if (numbers.size() != 6) {
 			throw new IllegalArgumentException();
+		}
+
+		for (Integer number : numbers) {
+			if (Collections.frequency(numbers, number) >= 2) {
+				throw new IllegalArgumentException();
+			}
 		}
 	}
 

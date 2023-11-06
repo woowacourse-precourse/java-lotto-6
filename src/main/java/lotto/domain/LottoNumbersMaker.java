@@ -1,10 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.LottoConstant;
 
 public class LottoNumbersMaker {
 
@@ -12,7 +13,7 @@ public class LottoNumbersMaker {
     private static final int LOTTO_END_NUM = LottoConstant.LOTTO_END_NUMBER.getValue();
     private static final int LOTTO_SIZE = LottoConstant.LOTTO_NUMBER_SIZE.getValue();
 
-    static List<Integer> getLottoNumbers() {
+    public static List<Integer> getLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUM, LOTTO_END_NUM, LOTTO_SIZE);
 
         while (validateDuplicateNumbers(numbers)) {

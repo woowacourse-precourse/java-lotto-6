@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.LottoNumbersMaker.getLottoNumbers;
+import static lotto.domain.LottoNumbersMaker.getLottoNumbers;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;

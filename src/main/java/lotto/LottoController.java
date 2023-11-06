@@ -1,6 +1,9 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.Wallet;
+import lotto.domain.WinnerNumbers;
 
 public class LottoController {
 

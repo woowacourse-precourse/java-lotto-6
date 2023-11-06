@@ -1,8 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.LottoConstant;
+import lotto.Message;
 
 public class WinnerNumbers {
 
@@ -14,7 +16,7 @@ public class WinnerNumbers {
     private final List<Integer> numbers;
     private final int bonusNumber;
 
-    WinnerNumbers(List<Integer> numbers, int bonusNumber) {
+    public WinnerNumbers(List<Integer> numbers, int bonusNumber) {
         validate(numbers, bonusNumber);
         this.numbers = numbers;
         this.bonusNumber = bonusNumber;

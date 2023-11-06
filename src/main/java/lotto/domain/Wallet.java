@@ -1,9 +1,11 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.LottoNumbersMaker.getLottoNumbers;
+import static lotto.domain.LottoNumbersMaker.getLottoNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.LottoConstant;
+import lotto.Message;
 
 public class Wallet {
 
@@ -23,12 +25,12 @@ public class Wallet {
         return lottos;
     }
 
-    void addBalance(int money) {
+    public void addBalance(int money) {
         validateNumber(money);
         this.balance = money;
     }
 
-    void buyAllLotto() {
+    public void buyAllLotto() {
 
         while (this.balance > 0) {
             List<Integer> numbers = getLottoNumbers();

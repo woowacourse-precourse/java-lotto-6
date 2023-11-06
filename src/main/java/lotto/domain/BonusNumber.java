@@ -8,7 +8,7 @@ public class BonusNumber {
             try {
                 String input = Console.readLine();
                 ErrorInput errorInput = new ErrorInput();
-                errorInput.bonus_range(Integer.parseInt(input));
+                errorInput.range(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

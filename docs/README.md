@@ -35,6 +35,12 @@ https://user-images.githubusercontent.com/122594223/280687804-57158e77-0dfb-41ed
         - 새로운 인스턴스를 생성하고 반환하는 create 메서드
         - 구매 번호를 랜덤한 값으로 생성하는 `generateBuyLottos` 메서드
         - 구매한 로또 리스트를 반환하는 `getBuyLottos` 메서드
+    - [x] LottoHandler
+        - 로또 당첨 상태를 Enum으로 관리하는 클래스
+        - 일치하는 개수와 enum 상수의 개수가 일치하는 lottoHandler 타입의 enum 상수를 반환하는 `getLottoHandler` 메서드 구현
+        - 일치하는 개수를 반환하는 `getCount` 메서드 구현
+        - 추가적인 문장을 반환하는 `getMessage` 메서드 구현
+        - 당첨 금액을 반환하는 `getPrize` 메서드 구현
     - wrapper Package 
         - [x] Money
             - 구입 금액에 대한 유효성 검사와 구입 금액에 따른 티켓 수 반환을 진행하는 클래스
@@ -90,12 +96,6 @@ https://user-images.githubusercontent.com/122594223/280687804-57158e77-0dfb-41ed
         - ErrorMessage와 함께 `IllegalArgumentException` 예외를 발생시키는 `getException` 메서드
     - [x] ConstantsHandler
         - 프로그램내의 상수들을 관리하는 클래스
-    - [x] LottoHandler
-        - 로또 당첨 상태를 Enum으로 관리하는 클래스
-        - 일치하는 개수와 enum 상수의 개수가 일치하는 lottoHandler 타입의 enum 상수를 반환하는 `getLottoHandler` 메서드 구현
-        - 일치하는 개수를 반환하는 `getCount` 메서드 구현
-        - 추가적인 문장을 반환하는 `getMessage` 메서드 구현
-        - 당첨 금액을 반환하는 `getPrize` 메서드 구현
       
 
 - [x] view Package

@@ -1,12 +1,14 @@
 package lotto.controller;
 
 import lotto.domain.GenerateLotto;
+import lotto.domain.LottoHandler;
 import lotto.domain.LottoJudge;
 import lotto.domain.wrapper.*;
 import lotto.handler.InputHandler;
 import lotto.handler.OutputHandler;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
@@ -27,9 +29,9 @@ public class LottoController {
 
         WinLottoWithBonus winLottoWithBonus = loadBonusNumber(winningLotto);
 
-        LottoResult lottoResult = lottoStatistics(buyLottos, winLottoWithBonus);
+        LottoResult lottoResults = lottoStatistics(buyLottos, winLottoWithBonus);
 
-        lottoProfit(lottoResult);
+        lottoProfit(lottoResults);
     }
 
     private Money loadTicket() {
@@ -82,13 +84,14 @@ public class LottoController {
 
     private LottoResult lottoStatistics(BuyLottos buyLottos, WinLottoWithBonus winLottoWithBonus) {
         LottoJudge lottoJudge = LottoJudge.create(buyLottos, winLottoWithBonus);
-        LottoResult lottoResult = lottoJudge.matchLottoHandler();
+        Map<LottoHandler, Integer> lottoResult = lottoJudge.matchLottoHandler();
+        LottoResult lottoResults = LottoResult.create(lottoResult);
 
-        outputHandler.printLottoResult(lottoResult);
-        return lottoResult;
+        outputHandler.printLottoResult(lottoResults);
+        return lottoResults;
     }
 
-    private void lottoProfit(LottoResult lottoResult) {
-        outputHandler.printProfit(lottoResult);
+    private void lottoProfit(LottoResult lottoResults) {
+        outputHandler.printProfit(lottoResults);
     }
 }

@@ -42,9 +42,9 @@ public class ConsoleOutput implements OutputHandler {
     }
 
     @Override
-    public void printLottoResult(LottoResult lottoResult) {
+    public void printLottoResult(LottoResult lottoResults) {
         DecimalFormat prizeFormat = new DecimalFormat("###,###");
-        Map<LottoHandler, Integer> result = lottoResult.getLottoResult();
+        Map<LottoHandler, Integer> result = lottoResults.getLottoResult();
 
         System.out.println();
         System.out.println("당첨 통계");
@@ -60,7 +60,7 @@ public class ConsoleOutput implements OutputHandler {
     }
 
     @Override
-    public void printProfit(LottoResult lottoResult) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", lottoResult.getProfit());
+    public void printProfit(LottoResult lottoResults) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", lottoResults.getProfit());
     }
 }

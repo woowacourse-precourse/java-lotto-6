@@ -29,4 +29,8 @@ public enum Ranking {
         return ranking.winNumber == winCount &&
                 (ranking != FIVE_PLUS_BONUS || hasBonusNumber);
     }
+
+    public int getPrize() {
+        return prize;
+    }
 }

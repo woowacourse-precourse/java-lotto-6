@@ -12,15 +12,15 @@ public class LottoController {
     }
 
     public void runLottoGame() {
-        buyLottoTickets();
+        buyLottoTicket();
         setWinningNumbers();
         printResults();
     }
 
-    private void buyLottoTickets() {
+    private void buyLottoTicket() {
         // 구입 금액 입력
         OutputView.printRequestPurchaseAmount();
-        InputView.readLine();
+        lottoService.calculateLottoEntryCount(InputView.readLine());
         // 로또 구매 결과 출력
         OutputView.printResponsePurchaseAmount(1);
         // TODO: 구매 로또 번호 출력

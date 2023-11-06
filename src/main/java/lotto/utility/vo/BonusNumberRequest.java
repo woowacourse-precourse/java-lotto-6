@@ -2,6 +2,8 @@ package lotto.utility.vo;
 
 import static lotto.constants.ErrorMessage.NOT_INTEGER;
 
+import lotto.domain.BonusNumber;
+
 public class BonusNumberRequest {
     private final Integer number;
 
@@ -20,5 +22,9 @@ public class BonusNumberRequest {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_INTEGER);
         }
+    }
+
+    public BonusNumber convertToValidBonusNumber() {
+        return new BonusNumber(number);
     }
 }

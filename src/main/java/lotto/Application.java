@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -47,71 +46,100 @@ public class Application {
         return Collections.frequency(lottoMatch, num);
     }
 
-    public static void main(String[] args) {
-        int money = inputPurchaseMoney();
-        int lottoCount = getLottoCount(money);
-
-
-        // TODO: 여기부터 모듈화
-        List<Lotto> lottos = new ArrayList<Lotto>();
-
-        for (int i = 0; i < lottoCount; i++) {
+    private static void lottoIssue(int lottoCnt, List<Lotto> lottos) {
+        for (int i = 0; i < lottoCnt; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             System.out.println(lotto.getNumbers());
             lottos.add(lotto);
         }
+    }
 
+    private static int[] inputPrizeNumber() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        int[] prizeNum = Stream.of(Console.readLine().split(",")).mapToInt(Integer::parseInt).toArray();
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        int bonusNum = Integer.parseInt(Console.readLine());
 
+        return Stream.of(Console.readLine().split(",")).mapToInt(Integer::parseInt).toArray();
+    }
+
+    private static int inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+
+        return Integer.parseInt(Console.readLine());
+    }
+
+    private static int checkPrizeNumber(Lotto l, int[] pn) {
+        int count = 0;
+        for (int p : pn) {
+            if (l.getNumbers().contains(p)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static int checkBonusNumber(Lotto l, int bonusNum, int cnt) {
+        if (l.getNumbers().contains(bonusNum)) {
+            cnt += 100;
+        }
+        return cnt;
+    }
+
+    private static List<Integer> winningStatistics(List<Lotto> lottos, int[] prizeNum, int bonusNum) {
         System.out.println("\n당첨 통계\n---");
 
-        List<Integer> lottoMatchCount = new ArrayList<Integer>();
-        for (Lotto l : lottos) {       // separate
-            int count = 0;
-            for (int p : prizeNum) {
-                if (l.getNumbers().contains(p)) {
-                    count++;
-                }
-            }
-            if (count == 5) {           // separate
-                if (l.getNumbers().contains(bonusNum)) {
-                    count += 100;
-                }
+        List<Integer> lottoMatchCount = new ArrayList<Integer>();                   // 각 로또 당, 당첨번호가 몇개나 겹치는지
+        for (Lotto l : lottos) {
+            int count = checkPrizeNumber(l, prizeNum);
+            if (count == 5) {
+                count = checkBonusNumber(l, bonusNum, count);
             }
             lottoMatchCount.add(count);
         }
 
+        return lottoMatchCount;
+    }
+
+    private static void printWinningResult(List<Integer> lottoMatchCount) {
         DecimalFormat df = new DecimalFormat("###,###");
 
-        int earn = 0;
-        System.out.println(prizeStatus.THREE.getNum() + "개 일치 ("
-                + df.format(prizeStatus.THREE.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, 3) + "개");
-        earn += prizeStatus.THREE.getPrice() * getPrizeCount(lottoMatchCount, 3);
+        for (prizeStatus ps : prizeStatus.values()) {
+            if (ps.equals(prizeStatus.FIVEBONUS)) {
+                System.out.println(ps.getNum() + "개 일치, 보너스 볼 일치 (" + df.format(ps.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, ps.getPrizeNum()) + "개");
+                continue;
+            }
+            System.out.println(ps.getNum() + "개 일치 (" + df.format(ps.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, ps.getPrizeNum()) + "개");
+        }
+    }
 
-        System.out.println(prizeStatus.FOUR.getNum() + "개 일치 ("
-                + df.format(prizeStatus.FOUR.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, 4) + "개");
-        earn += prizeStatus.FOUR.getPrice() * getPrizeCount(lottoMatchCount, 4);
+    private static int getIncome(List<Integer> lottoMatchCount) {
+        int income = 0;
 
-        System.out.println(prizeStatus.FIVE.getNum() + "개 일치 ("
-                + df.format(prizeStatus.FIVE.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, 5) + "개");
-        earn += prizeStatus.FIVE.getPrice() * getPrizeCount(lottoMatchCount, 5);
+        for (prizeStatus ps : prizeStatus.values()) {
+            income += ps.getPrice() * getPrizeCount(lottoMatchCount, ps.getPrizeNum());
+        }
+        return income;
+    }
 
-        System.out.println(prizeStatus.FIVEBONUS.getNum() + "개 일치, 보너스 볼 일치 ("
-                + df.format(prizeStatus.FIVEBONUS.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, 105) + "개");
-        earn += prizeStatus.FIVEBONUS.getPrice() * getPrizeCount(lottoMatchCount, 105);
-
-        System.out.println(prizeStatus.SIX.getNum() + "개 일치 ("
-                + df.format(prizeStatus.SIX.getPrice()) + "원) - " + getPrizeCount(lottoMatchCount, 6) + "개");
-        earn += prizeStatus.SIX.getPrice() * getPrizeCount(lottoMatchCount, 6);
-
-
+    private static void printEarningRate(int income, int money) {
         // 수익률 = 당첨금 / 구입금 * 100) -> 5000/8000 = 0.625 * 100 = 62.5%
-        float earningRate = ((float) earn / money) * 100;
+        float earningRate = ((float) income / money) * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
+    }
+
+    public static void main(String[] args) {
+        int money = inputPurchaseMoney();
+        int lottoCount = getLottoCount(money);
+
+        List<Lotto> lottos = new ArrayList<Lotto>();
+
+        // TODO: 여기부터 모듈화
+        lottoIssue(lottoCount, lottos);
+        int[] prizeNum = inputPrizeNumber();
+        int bonusNum = inputBonusNumber();
+        List<Integer> lottoMatchCount = winningStatistics(lottos, prizeNum, bonusNum);
+        printWinningResult(lottoMatchCount);
+        int income = getIncome(lottoMatchCount);
+        printEarningRate(income, money);
 
     }
 }

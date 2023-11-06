@@ -18,17 +18,18 @@ public class PurchasePrice {
         return price / LOTTO_PRICE;
     }
 
-    public double getReturnRate(int profit){
+    public double getReturnRate(int profit) {
         return Math.round(((double) profit / this.price) * 10000) / 100.0f;
     }
 
     public double calculatePriceRate(List<ResultResponseDto> dtos) {
-        int sum = 0;
-        for (ResultResponseDto dto : dtos) {
-            int temp = dto.getTotalCount() * dto.getWinnerPrice();
-            sum = sum + temp;
-        }
-        return getReturnRate(sum);
+        return getReturnRate(getSum(dtos));
+    }
+
+    private int getSum(List<ResultResponseDto> dtos) {
+        return dtos.stream()
+                .mapToInt(dto -> dto.getTotalCount() * dto.getWinnerPrice())
+                .sum();
     }
 
 

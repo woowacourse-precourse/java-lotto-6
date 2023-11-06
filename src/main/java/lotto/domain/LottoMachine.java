@@ -42,7 +42,6 @@ public class LottoMachine {
     public WinningResults createWinningResults() {
         Lottos userLottos = findUserLottosObject();
         WinningLotto winningLotto = findWinningLottoObject();
-
         List<LottoRewardCondition> compareResults = userLottos.createCompareResults(winningLotto);
         return WinningResults.createFrom(compareResults);
     }

@@ -5,21 +5,21 @@ import java.util.Arrays;
 public enum LottoRewardCondition {
 
     FAIL(0, 0),
-    FIFTH_WINNER(3, 5_000),
-    FOURTH_WINNER(4, 50_000),
-    THIRD_WINNER(5, 1_500_000),
-    SECOND_WINNER(5, 30_000_000),
-    FIRST_WINNER(6, 2_000_000_000);
+    FIFTH_WINNER(3, 5_000L),
+    FOURTH_WINNER(4, 50_000L),
+    THIRD_WINNER(5, 1_500_000L),
+    SECOND_WINNER(5, 30_000_000L),
+    FIRST_WINNER(6, 2_000_000_000L);
 
     private final int winningCount;
-    private final int rewardMoney;
+    private final long rewardMoney;
 
-    LottoRewardCondition(final int winningCount, final int rewardMoney) {
+    LottoRewardCondition(final int winningCount, final long rewardMoney) {
         this.winningCount = winningCount;
         this.rewardMoney = rewardMoney;
     }
 
-    public int getRewardMoney() {
+    public long getRewardMoney() {
         return rewardMoney;
     }
 

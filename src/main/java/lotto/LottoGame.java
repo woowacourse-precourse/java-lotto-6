@@ -29,7 +29,7 @@ public class LottoGame {
         printWinningResult();
     }
 
-    public void buyLottos() {
+    private void buyLottos() {
         int price = inputView.inputBuyingPrice();
         lottoMachine.buyLottos(RandomLottoNumberGenerator.getSupplier(), price);
     }

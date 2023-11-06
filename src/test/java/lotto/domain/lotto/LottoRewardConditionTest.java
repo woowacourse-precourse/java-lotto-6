@@ -12,7 +12,7 @@ class LottoRewardConditionTest {
     @Test
     void getRewardMoney() {
         // given & when
-        int rewardMoney = LottoRewardCondition.FIRST_WINNER.getRewardMoney();
+        long rewardMoney = LottoRewardCondition.FIRST_WINNER.getRewardMoney();
 
         // then
         assertThat(rewardMoney).isEqualTo(2_000_000_000);

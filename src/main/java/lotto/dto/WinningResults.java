@@ -23,7 +23,7 @@ public record WinningResults(Map<LottoRewardCondition, Integer> results) {
     }
 
     public double getProfitRatio() {
-        int totalPrizeMoney = calculateTotalPrizeMoney();
+        long totalPrizeMoney = calculateTotalPrizeMoney();
         int buyingCount = getBuyingCount();
         return calculateProfitRatio(totalPrizeMoney, buyingCount);
     }
@@ -34,13 +34,13 @@ public record WinningResults(Map<LottoRewardCondition, Integer> results) {
                 .sum();
     }
 
-    private int calculateTotalPrizeMoney() {
+    private long calculateTotalPrizeMoney() {
         return results.entrySet().stream()
-                .mapToInt(result -> result.getValue() * result.getKey().getRewardMoney())
+                .mapToLong(result -> result.getValue() * result.getKey().getRewardMoney())
                 .sum();
     }
 
-    private double calculateProfitRatio(final int totalPrizeMoney, final int buyingCount) {
+    private double calculateProfitRatio(final long totalPrizeMoney, final int buyingCount) {
         return totalPrizeMoney / (double) (buyingCount * LottoMoneyCondition.MONEY_UNIT.value()) * 100;
     }
 }

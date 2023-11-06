@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import lotto.constant.LottoRank;
+import lotto.domain.Lotto;
 import lotto.domain.dto.LottoAnswer;
-import lotto.domain.dto.LottoNumbers;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,10 +16,10 @@ public class LottoControllerTest {
     @Test
     void calculateLottoMatch_테스트() {
         LottoAnswer inputAnswer = new LottoAnswer(
-                new LottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                 9
         );
-        LottoNumbers inputLotto = new LottoNumbers(
+        Lotto inputLotto = new Lotto(
                 List.of(2, 3, 4, 5, 6, 9)
         );
 
@@ -31,20 +31,20 @@ public class LottoControllerTest {
     @Test
     void calculateLottoResult_테스트() {
         LottoAnswer inputAnswer = new LottoAnswer(
-                new LottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                 7
         );
-        List<LottoNumbers> inputLottos = new ArrayList<>();
-        inputLottos.add(new LottoNumbers(
+        List<Lotto> inputLottos = new ArrayList<>();
+        inputLottos.add(new Lotto(
                 List.of(1, 2, 3, 4, 5, 6)
         ));
-        inputLottos.add(new LottoNumbers(
+        inputLottos.add(new Lotto(
                 List.of(1, 2, 3, 4, 5, 7)
         ));
-        inputLottos.add(new LottoNumbers(
+        inputLottos.add(new Lotto(
                 List.of(1, 2, 3, 10, 11, 12)
         ));
-        inputLottos.add(new LottoNumbers(
+        inputLottos.add(new Lotto(
                 List.of(10, 11, 12, 1, 2, 3)
         ));
 

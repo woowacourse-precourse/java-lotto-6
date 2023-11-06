@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.constant.LottoRank;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -61,13 +64,20 @@ public class LottoOutputViewTest {
 
     @Test
     void printLottoResult_테스트() {
-        outputView.printLottoResult(5, 4, 3, 2, 1);
+        Map<LottoRank, Integer> input = new HashMap<>();
+        input.put(LottoRank.FIRST, 0);
+        input.put(LottoRank.SECOND, 1);
+        input.put(LottoRank.THIRD, 2);
+        input.put(LottoRank.FOURTH, 3);
+        input.put(LottoRank.FIFTH, 4);
+
+        outputView.printLottoResult(input);
         assertThat(capture.toString()).contains(
-                "3개 일치 (5,000원) - 5개",
-                "4개 일치 (50,000원) - 4개",
-                "5개 일치 (1,500,000원) - 3개",
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개",
-                "6개 일치 (2,000,000,000원) - 1개"
+                "3개 일치 (5,000원) - 4개",
+                "4개 일치 (50,000원) - 3개",
+                "5개 일치 (1,500,000원) - 2개",
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                "6개 일치 (2,000,000,000원) - 0개"
         );
     }
 

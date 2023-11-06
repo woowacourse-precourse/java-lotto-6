@@ -1,9 +1,11 @@
 package lotto.view;
 
+import lotto.constant.LottoRank;
 import lotto.domain.Lotto;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
 
 public class LottoOutputView {
     private static final String MONEY_FORMAT = "###,###원";
@@ -32,21 +34,15 @@ public class LottoOutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void printLottoResult(
-            int matchingThree,
-            int matchingFour,
-            int matchingFive,
-            int matchingFiveWithBonus,
-            int matchingSix
-    ) {
-        DecimalFormat format = new DecimalFormat(MONEY_FORMAT);
+    public void printLottoResult(Map<LottoRank, Integer> result) {
+        DecimalFormat prizeFormat = new DecimalFormat(MONEY_FORMAT);
+        LottoRank[] ranks = {LottoRank.FIFTH, LottoRank.FOURTH, LottoRank.THIRD, LottoRank.SECOND, LottoRank.FIRST};
+
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("%d개 일치 (%s) - %d개\n", 3, format.format(THREE_MATCH_PRIZE), matchingThree);
-        System.out.printf("%d개 일치 (%s) - %d개\n", 4, format.format(FOUR_MATCH_PRIZE), matchingFour);
-        System.out.printf("%d개 일치 (%s) - %d개\n", 5, format.format(FIVE_MATCH_PRIZE), matchingFive);
-        System.out.printf("%d개 일치, 보너스 볼 일치 (%s) - %d개\n", 5, format.format(FIVE_WITH_BONUS_MATCH_PRIZE), matchingFiveWithBonus);
-        System.out.printf("%d개 일치 (%s) - %d개\n", 6, format.format(SIX_MATCH_PRIZE), matchingSix);
+        for (LottoRank rank : ranks) {
+            System.out.printf("%s (%s) - %d개\n", rank.getDescription(), prizeFormat.format(rank.getPrize()), result.get(rank));
+        }
     }
 
     public void printProfit(int before, int after) {

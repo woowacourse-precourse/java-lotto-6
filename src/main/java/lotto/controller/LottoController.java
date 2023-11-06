@@ -2,8 +2,8 @@ package lotto.controller;
 
 import lotto.LottoUtil;
 import lotto.constant.LottoRank;
+import lotto.domain.Lotto;
 import lotto.domain.dto.LottoAnswer;
-import lotto.domain.dto.LottoNumbers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,14 +12,14 @@ import java.util.Map;
 public class LottoController {
     public static Map<LottoRank, Integer> calculateLottoResult(
             LottoAnswer answerLotto,
-            List<LottoNumbers> checkLottos
+            List<Lotto> checkLottos
     ) {
         Map<LottoRank, Integer> rankCount = new HashMap<>();
         for (LottoRank rank : LottoRank.values()) {
             rankCount.put(rank, 0);
         }
 
-        for (LottoNumbers checkLotto : checkLottos) {
+        for (Lotto checkLotto : checkLottos) {
             LottoRank rank = calculateLottoRank(answerLotto, checkLotto);
             rankCount.put(rank, rankCount.get(rank) + 1);
         }
@@ -29,10 +29,10 @@ public class LottoController {
 
     public static LottoRank calculateLottoRank(
             LottoAnswer answerLotto,
-            LottoNumbers checkLotto
+            Lotto checkLotto
     ) {
-        int matchCount = LottoUtil.getMatchingNumberCount(answerLotto.numbers(), checkLotto.numbers());
-        boolean hasBonus = checkLotto.numbers().contains(answerLotto.bonus());
+        int matchCount = LottoUtil.getMatchingNumberCount(answerLotto.getNumbers(), checkLotto.getNumbers());
+        boolean hasBonus = checkLotto.getNumbers().contains(answerLotto.bonus());
 
         return LottoRank.getLottoMatchByCount(matchCount, hasBonus);
     }

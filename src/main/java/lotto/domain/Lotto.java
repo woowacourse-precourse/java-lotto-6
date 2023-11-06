@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.LottoUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,10 @@ public class Lotto {
 
     private boolean isLottoNumber(int number) {
         return LottoUtil.isInRange(number, LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 
     @Override

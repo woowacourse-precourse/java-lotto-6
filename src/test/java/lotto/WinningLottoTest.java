@@ -15,8 +15,8 @@ public class WinningLottoTest {
 
     @DisplayName("보너스 번호가 로또 당첨 번호와 중복되는 경우 예외가 발생한다.")
     @Test
-    void createWithDuplicateBonusNumber(){
-        lotto = new Lotto(List.of(1,2,3,4,5,6));
+    void createWithDuplicateBonusNumber() {
+        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         bonus = Bonus.from("1");
 
         assertThatThrownBy(() -> WinningLotto.of(lotto, bonus))

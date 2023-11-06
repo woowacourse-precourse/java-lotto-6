@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.List;
 import lotto.domain.Budget;
-import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
 import lotto.domain.strategy.UserLottoGenerateStrategy;
@@ -17,14 +15,14 @@ public class LottoGeneratorTest {
     private Lottos lottos;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         lottoGenerator = new LottoGenerator();
         budget = Budget.from("3000");
     }
 
     @DisplayName("유저 로또 생성 전략으로 만들어진 Lottos 의 크기는 getCountOfLottoLines() 의 반환 결과값과 같아야한다.")
     @Test
-    void createLottoByUserLottoStrategy(){
+    void createLottoByUserLottoStrategy() {
         lottoGenerator.setLottoGenerateStrategy(new UserLottoGenerateStrategy());
         lottos = lottoGenerator.generateLottosByBudget(budget);
         Assertions.assertThat(lottos.getLottos().size()).isEqualTo(budget.getCountOfLottoLines());

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.dto.PlayerLottosFormatter;
+import lotto.formatter.PlayerLottosFormatter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;

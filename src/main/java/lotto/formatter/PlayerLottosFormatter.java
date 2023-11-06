@@ -1,4 +1,4 @@
-package lotto.dto;
+package lotto.formatter;
 
 import lotto.constants.ProgressMessage;
 import lotto.domain.Number;

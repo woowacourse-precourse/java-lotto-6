@@ -4,8 +4,8 @@ import lotto.domain.LottoStatistics;
 import lotto.domain.PlayerLottoNumbers;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
-import lotto.dto.PlayerLottosFormatter;
-import lotto.dto.LottoStatisticsResultFormatter;
+import lotto.formatter.PlayerLottosFormatter;
+import lotto.formatter.LottoStatisticsResultFormatter;
 
 public class LottoService {
 

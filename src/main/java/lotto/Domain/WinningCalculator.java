@@ -23,6 +23,16 @@ public class WinningCalculator {
         totalPrizeMoney = 0;
     }
 
+    public void calculateMatchNumbers(List<Lotto> lottoPapers, List<Integer> winningNumbers, int bonusNumber){
+        for (Lotto lotto : lottoPapers){
+            LottosConstants prizeType = LottosConstants
+                    .getPrizeType(getMatchNumbers(lotto.getNumbers(), winningNumbers)
+                            , calculateBonus(lotto.getNumbers(), bonusNumber));
+            winningCount.put(prizeType, winningCount.get(prizeType)+1);
+            plusTotalPrizeMoney(prizeType);
+        }
+    }
+
     private void plusTotalPrizeMoney(LottosConstants prizeType){
         totalPrizeMoney += prizeType.getPrizeMoney();
     }

@@ -32,6 +32,7 @@ public class InputView {
             System.out.println(INPUT_LOTTO_WINNING_NUMBER_MESSAGE);
             String lottoNumber = Console.readLine();
             inputValidation.validationLottoWinningNumber(lottoNumber);
+            System.out.println();
             return lottoNumber;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -45,6 +46,7 @@ public class InputView {
             System.out.println(INPUT_LOTTO_WINNING_Bonus_MESSAGE);
             String bonusNumber = Console.readLine();
             inputValidation.validationLottoWinningBonusNumber(bonusNumber, lottoWinningNumbers);
+            System.out.println();
             return bonusNumber;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());

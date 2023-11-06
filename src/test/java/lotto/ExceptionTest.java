@@ -38,7 +38,7 @@ public class ExceptionTest {
     @ValueSource(strings = {"1,2,3,4,5,5","10,9,45,1,45"})
     void 중복된_로또_번호_입력_테스트(String overlapNumber){
 
-        assertThatThrownBy(() -> inputValidator.numbersValidator(overlapNumber)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputValidator.lottoValidator(overlapNumber)).isInstanceOf(IllegalArgumentException.class);
 
     }
 
@@ -46,7 +46,7 @@ public class ExceptionTest {
     @ValueSource(strings = {"100,2,3,4,5,6","10,9,45,1,0"})
     void 범위를_벗어난_로또_번호_입력_테스트(String overRangeNumber){
 
-        assertThatThrownBy(() -> inputValidator.numbersValidator(overRangeNumber)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputValidator.lottoValidator(overRangeNumber)).isInstanceOf(IllegalArgumentException.class);
 
     }
 
@@ -54,7 +54,7 @@ public class ExceptionTest {
     @ValueSource(strings = {"notNumber,2,3,4,5,6","10,9,45,1,-=","1,2,3,,4,5"})
     void 숫자가_아닌_로또_번호_입력_테스트(String notNumber){
 
-        assertThatThrownBy(() -> inputValidator.numbersValidator(notNumber)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputValidator.lottoValidator(notNumber)).isInstanceOf(IllegalArgumentException.class);
 
     }
 

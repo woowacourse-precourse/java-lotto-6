@@ -61,7 +61,7 @@ public class LottoService {
 
     // 로또를 구매하는데 사용한 금액만으로 수익률을 계산한다
     public float rateReturn() {
-        return myPrizeMoney / (float) numberOfPurchase();
+        return (float) myPrizeMoney / (numberOfPurchase()*10);
     }
 
     // 로또 하나를 비교하는 함수

@@ -53,7 +53,7 @@ public class LottoController {
         printBonus();
         try {
             lottoService.setBonus(Console.readLine());
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             requestBonus();
         }
     }
@@ -71,7 +71,7 @@ public class LottoController {
         printStats();
         printDash();
         int match = 3;
-        for (OutputLine outputLine : OutputLine.values()){
+        for (OutputLine outputLine : OutputLine.values()) {
             if (match == 6) {
                 System.out.printf(outputLine.getCorrect(), Collections.frequency(matchingLotto, 7));
                 continue;

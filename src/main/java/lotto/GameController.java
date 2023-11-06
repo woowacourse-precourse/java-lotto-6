@@ -2,15 +2,19 @@ package lotto;
 
 import lotto.domain.LottoTicket;
 import lotto.service.LottoMachine;
+import lotto.ui.ErrorMessage;
 import lotto.ui.InputView;
 import lotto.ui.OutputMessage;
 import lotto.ui.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GameController {
     private final int TICKET_PRICE = 1000;
+    private static final String commonErrorMessage = ErrorMessage.COMMON_MESSAGE.getMessage();
     private final InputView inputView;
     private final OutputView outputView;
     private LottoTicket lottoTicket;
@@ -45,12 +49,33 @@ public class GameController {
     }
 
     private void setWinningNumbers() {
+        boolean valid = false;
         outputView.displayMessage(OutputMessage.GET_WINNING_NUMBERS);
-        winningNumbers = inputView.getWinningNumbers();
+
+        while (!valid) {
+            winningNumbers = inputView.getWinningNumbers();
+            try {
+                validateDuplicate(winningNumbers);
+                valid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateDuplicate(List<Integer> winningNumbers) throws IllegalArgumentException {
+        Set<Integer> checkSet = new HashSet<>(winningNumbers);
+        if (checkSet.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException(createErrorMessage(ErrorMessage.NUMBER_DUPLICATE_ERROR));
+        }
     }
 
     private void setBonusNumber() {
         outputView.displayMessage(OutputMessage.GET_BONUS_NUMBER);
         bonusNumber = inputView.getBonusNumber();
+    }
+
+    private String createErrorMessage(ErrorMessage errorMessage) {
+        return errorMessage.getMessage() + " " + commonErrorMessage;
     }
 }

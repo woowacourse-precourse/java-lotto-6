@@ -26,8 +26,17 @@ public class InputView {
 
     public List<Integer> getWinningNumbers() {
         List<Integer> winningNumbers = new ArrayList<>();
-        String input = Console.readLine();
+        boolean validInput = false;
 
+        while (!validInput) {
+            String input = Console.readLine();
+            try {
+                winningNumbers = inputValidator.validateWinningNumbers(input);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return winningNumbers;
     }
 

@@ -1,6 +1,7 @@
 package lotto.service;
 
 import static lotto.settings.LottoSettings.LOTTO_NUMBER_SIZE;
+import static lotto.settings.WinningAmount.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ import lotto.domain.Lotto;
 import lotto.repository.BuyLottoRepository;
 import lotto.repository.RankingRepository;
 import lotto.repository.WinningLottoRepository;
+import lotto.settings.WinningAmount;
 import lotto.view.View;
 
 public class LotteryTracker {
@@ -48,5 +50,27 @@ public class LotteryTracker {
             String prize = RankingRepository.getPrizeBy(rank);
             View.result(prize, countLottoIn(rank));
         }
+    }
+
+    public double calculateTotalRevenue() {
+        int totalRevenue =0;
+        for(int rank=5; rank>0;rank--){
+            if(rank==5){
+                totalRevenue += result.get(rank).size()*FIFTH.getIntPrize();
+            }
+            else if(rank==4){
+                totalRevenue += result.get(rank).size()*FOURTH.getIntPrize();
+            }
+            else if(rank==3){
+                totalRevenue += result.get(rank).size()*THIRD.getIntPrize();
+            }
+            else if(rank==2){
+                totalRevenue += result.get(rank).size()*SECOND.getIntPrize();
+            }
+            else if(rank==1){
+                totalRevenue += result.get(rank).size()*FIRST.getIntPrize();
+            }
+        }
+        return totalRevenue;
     }
 }

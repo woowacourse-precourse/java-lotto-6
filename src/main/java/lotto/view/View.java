@@ -7,6 +7,7 @@ import static lotto.settings.Announcement.REQUEST_LOTTO_BONUS_NUMBERS;
 import static lotto.settings.Announcement.REQUEST_LOTTO_WINNING_NUMBERS;
 import static lotto.settings.Announcement.REQUEST_PURCHASE_AMOUNT;
 import static lotto.settings.Announcement.WINNING_STATISTICS;
+import static lotto.settings.WinningSettings.RATE_OF_RETURN;
 
 import java.util.List;
 import lotto.settings.Announcement;
@@ -40,6 +41,9 @@ public class View {
     }
     public static void buyLottos(String lottoNumber){
         System.out.printf(BUY_LOTTO.getPrint(),lottoNumber);}
+    public static void rateOfReturn(double rateOfReturn){
+        System.out.printf(RATE_OF_RETURN.getResult(),rateOfReturn);
+    }
     private static void print(Announcement announcement){
         System.out.println(announcement.getPrint());
     }

@@ -16,13 +16,13 @@ public class PurchaseAmount {
     }
 
     private static void validateUnits(int amount) {
-        if(amount % lOTTO_PRICE.getNumber() !=0){
+        if(amount % PER_lOTTO_PRICE.getNumber() !=0){
             throw new IllegalArgumentException(INVALID_UNIT_FORMAT.getMessage());
         }
     }
 
     public int calculateCount(){
-        return amount/ lOTTO_PRICE.getNumber();
+        return amount/ PER_lOTTO_PRICE.getNumber();
     }
 }
 

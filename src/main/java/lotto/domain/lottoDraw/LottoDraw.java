@@ -12,7 +12,7 @@ public class LottoDraw {
 
     public LottoDraw(List<Integer> winningNumber) {
         validate(winningNumber);
-        this.winningNumber = winningNumber.subList(0, 5);
+        this.winningNumber = winningNumber.subList(0, 6);
         this.bonusNumber = winningNumber.get(6);
     }
 
@@ -45,5 +45,13 @@ public class LottoDraw {
                 .anyMatch(number
                         -> number < LottoConstants.MIN_NUMBER_OF_LOTTO.getValue()
                         || number > LottoConstants.MAX_NUMBER_OF_LOTTO.getValue());
+    }
+
+    public List<Integer> getWinningNumber() {
+        return winningNumber;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
     }
 }

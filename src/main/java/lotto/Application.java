@@ -12,17 +12,26 @@ public class Application {
         User user = new User();
         Global global = new Global();
 
-        int money = user.inputAmountOfMoney();
-        int lottoCount = global.getLottoCount(money);
-        global.getIssuedLottoList(lottoCount);
-        global.printIssuedLottoCountAndList();
+        int lottoPurchaseMoney = purchaseLotto(user);
+        issueLottos(global, lottoPurchaseMoney);
         getWinningLotto(user);
     }
 
+    private static int purchaseLotto(User user) {
+        String purchaseMoney = user.input("구입금액을 입력해 주세요.");
+        return convertStringToInteger(purchaseMoney);
+    }
+
+    private static void issueLottos(Global global, int lottoPurchaseMoney) {
+        int lottoCount = global.getLottoCount(lottoPurchaseMoney);
+        global.getIssuedLottos(lottoCount);
+        global.printIssuedLottoCountAndNumbers();
+    }
+
     private static void getWinningLotto(User user) {
-        String winningNumbers = user.inputWinningNumbers();
-        List<Integer> winningLotto = convertStringToIntegerList(winningNumbers);
-        String bonusNumber = user.inputBonusNumbers();
+        String winningNumber = user.input("\n당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = convertStringToIntegerList(winningNumber);
+        String bonusNumber = user.input("\n보너스 번호를 입력해 주세요.");
         int bonusLotto = convertStringToInteger(bonusNumber);
     }
 

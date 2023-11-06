@@ -22,7 +22,7 @@ class GlobalTest {
     @Test
     void getIssuedLottoList() {
         Global global = new Global();
-        List<Lotto> issuedLottoList = global.getIssuedLottoList(3);
+        List<Lotto> issuedLottoList = global.getIssuedLottos(3);
         int listSize = issuedLottoList.size();
         int expectedSize = 3;
 

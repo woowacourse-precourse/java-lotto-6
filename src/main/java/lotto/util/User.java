@@ -51,7 +51,12 @@ public class User {
     }
 
     public void inputBonusNumber() {
+        String input = Console.readLine();
+        checkBonusNumber(input);
+    }
 
+    public void checkBonusNumber(String input){
+        int bonusNumber = Exception.checkInvalidNumber(input);
     }
 
     public int getPaymentAmount() {

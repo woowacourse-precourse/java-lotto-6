@@ -21,7 +21,9 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public void checkNumber(List<Integer> numbers) {
         Exception.checkDuplicationNumber(numbers);
-        Exception.checkRangeLottoNumber(numbers);
+        for(int number : numbers) {
+            Exception.checkRangeLottoNumber(number);
+        }
     }
 
     public List<Integer> getNumbers() {

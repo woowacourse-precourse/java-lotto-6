@@ -5,8 +5,7 @@
 - [ ] 구입 금액 입력
   - [ ] 입력받은 문자열의 시작과 끝에 공백이 있는 경우 공백 제거
   - [ ] 입력받은 문자열이 정수 형식이 아닌 경우 IllegalArgumentException 발생
-  - [ ] 입력받은 정수가 1000으로 나누어 떨어지지 않는 경우 IllegalArgumentException 발생
-  - [ ] 입력받은 정수가 양수가 아닌 경우 IllegalArgumentException 발생
+  - [ ] 입력받은 구입 금액 검증
 - [ ] 구입 금액에 따라 로또 발행
   - [ ] 구입 금액을 1000으로 나눈 값을 발행할 로또의 개수로 저장
   - [ ] 1 이상 45 이하의 범위에서 중복되지 않는 6개의 정수 생성하여 저장
@@ -16,7 +15,7 @@
   - [ ] 입력받은 문자열의 시작과 끝에 공백이 있는 경우 공백 제거
   - [ ] 입력받은 문자열을 공백과 쉼표 기준으로 분리
   - [ ] 분리한 문자열들이 정수 형식이 아닌 경우 IllegalArgumentException 발생
-  - [ ] 주어진 정수들이 유효한 로또 번호인지 검증
+  - [ ] 입력받은 당첨 번호가 유효한 로또 번호인지 검증
 - [ ] 보너스 번호 입력
   - [ ] 입력받은 문자열의 시작과 끝에 공백이 있는 경우 공백 제거
   - [ ] 입력받은 문자열이 정수 형식이 아닌 경우 IllegalArgumentException 발생
@@ -38,3 +37,6 @@
   - [x] 주어진 정수의 개수가 6개가 아닌 경우 IllegalArgumentException 발생
   - [x] 주어진 정수가 1 이상 45 이하의 범위를 벗어나는 경우 IllegalArgumentException 발생
   - [x] 주어진 정수에 중복되는 값이 있는 경우 IllegalArgumentException 발생
+- [ ] 로또 구입 금액 검증
+  - [ ] 로또 구입 금액이 양수가 아닌 경우 IllegalArgumentException 발생
+  - [ ] 로또 구입 금액이 로또 가격으로 나누어떨어지지 않는 경우 IllegalArgumentException 발생

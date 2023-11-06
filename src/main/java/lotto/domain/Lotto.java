@@ -15,5 +15,8 @@ public class Lotto {
         Censor.validateLotto(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

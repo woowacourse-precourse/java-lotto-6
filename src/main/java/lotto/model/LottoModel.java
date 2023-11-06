@@ -13,6 +13,9 @@ public class LottoModel {
     private final static int START_NUMBER = 1;
     private final static int END_NUMBER = 45;
     private final static int LOTTO_NUMBER_COUNT = 6;
+    private final static int LOTTO_AMOUNT = 1_000;
+    private final static double PERCENTAGE = 100;
+    private final static double ROUND_RANGE = 10.0;
 
     public List<Lotto> getRandomLottos(final int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
@@ -48,4 +51,14 @@ public class LottoModel {
         return lottoMatchCountDto;
     }
 
+    public double calculateRevenue(final List<LottoMatch> lottoMatches, final int purchaseCount) {
+        int amount = 0;
+        for (LottoMatch lottoMatch : lottoMatches) {
+            amount += lottoMatch.getAmount();
+        }
+
+        double purchaseAmount = LOTTO_AMOUNT * purchaseCount;
+        double revenue = (amount / purchaseAmount) * PERCENTAGE;
+        return Math.round(revenue * ROUND_RANGE) / ROUND_RANGE;
+    }
 }

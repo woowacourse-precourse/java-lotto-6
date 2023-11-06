@@ -15,6 +15,7 @@ public class LottoOutputView {
     private static final String LOTTO_RESULT = "\n당첨 통계";
     private static final String DASH = "-";
     private static final String RESULT_TEMPLATE = "%d개 일치 (%,d원) - %d개";
+    private static final String REVENUE_TEMPLATE = "총 수익률은 %.1f%%입니다.";
 
     public void printUserInputPurchaseAmount() {
         System.out.println(USER_INPUT_PURCHASE_AMOUNT);
@@ -58,4 +59,7 @@ public class LottoOutputView {
         return String.format(RESULT_TEMPLATE, lottoMatch.getMatchCount(), lottoMatch.getAmount(), lottoMatchCount);
     }
 
+    public void printLottoRevenue(final double lottoRevenue) {
+        System.out.println(String.format(REVENUE_TEMPLATE, lottoRevenue));
+    }
 }

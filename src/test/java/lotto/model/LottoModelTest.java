@@ -62,4 +62,31 @@ public class LottoModelTest {
         assertThat(result).isEqualTo(response);
     }
 
+    @DisplayName("로또 결과를 합산하고, 수익률을 반환한다.")
+    @Test
+    void calculateRevenueTest() {
+        // given
+        List<LottoMatch> lottoMatches = List.of(NON_PLACE, NON_PLACE, NON_PLACE, NON_PLACE, FIFTH_PLACE, NON_PLACE, NON_PLACE, NON_PLACE);
+        double response = 62.5;
+
+        // when
+        double result = lottoModel.calculateRevenue(lottoMatches, lottoMatches.size());
+
+        // then
+        assertThat(result).isEqualTo(response);
+    }
+
+    @DisplayName("로또 결과를 합산하고, 수익률을 소수점 둘째 자리에 반올림한 뒤 반환한다.")
+    @Test
+    void calculateRevenueTest2() {
+        // given
+        List<LottoMatch> lottoMatches = List.of(FIFTH_PLACE, FIFTH_PLACE, FIFTH_PLACE, NON_PLACE, NON_PLACE, NON_PLACE, NON_PLACE, NON_PLACE, NON_PLACE);
+        double response = 166.7;
+
+        // when
+        double result = lottoModel.calculateRevenue(lottoMatches, lottoMatches.size());
+
+        // then
+        assertThat(result).isEqualTo(response);
+    }
 }

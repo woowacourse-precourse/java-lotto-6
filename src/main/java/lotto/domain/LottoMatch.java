@@ -22,6 +22,9 @@ public enum LottoMatch {
     public int getAmount() {
         return amount;
     }
+    public int getMatchCount() {
+        return matchCount;
+    }
 
     public static LottoMatch getLottoMatch(final int matchCount, final boolean isBonus) {
         if (matchCount == 5 && isBonus) return SECOND_PLACE;

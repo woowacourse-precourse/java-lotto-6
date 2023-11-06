@@ -41,5 +41,7 @@ public class LottoController {
         LottoMatchCountDto lottoMatchCountDto = lottoModel.getLottoMatchCount(lottoMatches);
         lottoOutputView.printLottoResult(lottoMatchCountDto);
 
+        double lottoResultRevenue = lottoModel.calculateRevenue(lottoMatches, purchaseAmount / 1000);
+        lottoOutputView.printLottoRevenue(lottoResultRevenue);
     }
 }

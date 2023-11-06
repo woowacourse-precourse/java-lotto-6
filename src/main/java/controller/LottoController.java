@@ -34,6 +34,7 @@ public class LottoController {
 
     private void initBonusNumber() {
         try{
+            OutputView.printEmptyLine();
             String input = InputView.enterBonusNumbers();
             int bonusNumber = bonusNumberValidator.checkBonusNumberValidation(input);
             winningLotto.setBonusNumber(bonusNumber);
@@ -44,6 +45,7 @@ public class LottoController {
 
     private void initWinningNumber() {
         try {
+            OutputView.printEmptyLine();
             String input = InputView.enterWinningNumbers();
             List<Integer> winningNumber = winningNumberValidator.checkWinningNumberValidation(input);
             winningLotto.setWinningNumber(winningNumber);
@@ -53,6 +55,7 @@ public class LottoController {
     }
 
     private void showLottoTicket() {
+        OutputView.printEmptyLine();
         for(Lotto lotto : lottoRepository.getAllLotto()) {
             OutputView.printLottoTickets(lotto.getNumbers());
         }
@@ -71,6 +74,7 @@ public class LottoController {
 
     private void initPriceByUserInput() {
         try {
+            OutputView.printEmptyLine();
             String input = InputView.enterPrice();
             price = new Price(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {

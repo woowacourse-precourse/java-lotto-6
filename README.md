@@ -189,7 +189,7 @@ BUILD SUCCESSFUL in 0s
 #### 사용 예시
 
 ```java
-List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+List<Integer> numbers = Randoms.sInRange(1, 45, 6);
 ```
 
 ### Lotto 클래스

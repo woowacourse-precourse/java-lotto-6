@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.*;
 
 public class Merchant {
 
@@ -15,6 +15,7 @@ public class Merchant {
     public List<Lotto> getLotteryNumberWith(int price) {
         List<Lotto> result = new ArrayList<>();
         int count = price / 1000;
+        System.out.println(count + "개를 구매했습니다.");
         for (int i = 0; i < count; i++) {
             result.add(getOneLotteryNumber());
         }
@@ -22,13 +23,10 @@ public class Merchant {
     }
 
     private Lotto getOneLotteryNumber() {
-        List<Integer> numberList = new ArrayList<>();
-        for (int i = 1; i < 45; i++) {
-            numberList.add(i);
-        }
-        Collections.shuffle(numberList);
-        List<Integer> numbers = numberList.subList(0, 6);
+        List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new ArrayList<>(uniqueNumbers);
         Collections.sort(numbers);
+
         return new Lotto(numbers);
     }
 

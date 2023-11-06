@@ -30,6 +30,6 @@ public class LotteryResultCollection {
 
         Long useMoney = results.size() * 1000L;
         double totalProfitRate = (double) totalGainMoney / useMoney * 100L;
-        System.out.println(String.format("총 수익률은 %.2f%%입니다.", totalProfitRate));
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", totalProfitRate));
     }
 }

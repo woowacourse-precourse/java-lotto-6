@@ -12,19 +12,36 @@ public class GameController {
     private LottosPurchased lottosPurchased;
 
     public void playGame() {
-        amount = repeatInputAmount();
+        repeatInputAmount();
+        purchaseLottos();
+    }
+
+    private void repeatInputAmount() {
+        while (true) {
+            try {
+                amount = new Amount(inputView.inputAmount());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    private void purchaseLottos() {
         lottosPurchased = new LottosPurchased(amount.getAmount());
         outputView.printNumberOfLottosPurchased(lottosPurchased.getNumberOfLottos());
         outputView.printLottosPurchased(lottosPurchased.getLottos());
     }
 
-    private Amount repeatInputAmount() {
-        while (true) {
-            try {
-                return new Amount(inputView.inputAmount());
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
+    private void repeatInputWinningNumbers() {
+        //
+    }
+
+    private void repeatInputBonusNumber() {
+        //
+    }
+
+    private void getAndPrintResults() {
+        //
     }
 }

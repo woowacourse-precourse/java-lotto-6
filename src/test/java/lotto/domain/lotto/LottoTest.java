@@ -21,7 +21,7 @@ class LottoTest {
     @Test
     void organizeLotto() {
         // when
-        List<Integer> result = lotto.organizeLotto();
+        List<Integer> result = lotto.organizeNumbers();
         System.out.println("result = " + result);
 
         // than

@@ -29,7 +29,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> organizeLotto() {
+    public List<Integer> organizeNumbers() {
         List<Integer> organizeLotto = new ArrayList<>(this.numbers);
 
         Collections.sort(organizeLotto);
@@ -40,9 +40,9 @@ public class Lotto {
     public StringBuilder giveInformation() {
         int sizeNumbers = numbers.size();
         int num = 0;
-        List<Integer> organizeLotto = organizeLotto();
+        List<Integer> organizeNumbers = organizeNumbers();
 
-        StringBuilder informationOfNumbers = getInformation(sizeNumbers, organizeLotto);
+        StringBuilder informationOfNumbers = getInformation(sizeNumbers, organizeNumbers);
 
         return informationOfNumbers;
     }

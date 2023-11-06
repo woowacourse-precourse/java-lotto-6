@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.model.Lotto;
 import lotto.model.Purchase;
 import lotto.model.RandomLotto;
 import lotto.view.InputView;
@@ -42,10 +43,22 @@ public class Application {
         return convertedNum;
     }
 
+
+    public static void winLottoNum(List<Integer> numbers) {
+        try {
+            Lotto lotto = new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            winNum = convertNum(inputView.winNum());
+            winLottoNum(winNum);
+        }
+    }
+
     public static void main(String[] args) {
         purchaseCount(inputView.purchaseAmount());
         outputView.purchasePieces(purchasePieces);
         randomRepeat();
         winNum = convertNum(inputView.winNum());
+        winLottoNum(winNum);
     }
 }

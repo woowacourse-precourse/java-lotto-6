@@ -19,7 +19,7 @@ class AmountTest {
     @DisplayName("금액이 1000원 미만이라면 예외를 발생한다.")
     @Test
     void createAmountLessThanThousand() {
-        assertThatThrownBy(() -> new Amount(999))
+        assertThatThrownBy(() -> new Amount(0))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -69,7 +69,7 @@ class WinningLottoTest {
         assertThatThrownBy(
                 () -> new WinningLotto(lotto, 6))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또에 이미 있는 번호는 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 로또 번호에 중복한 값이 들어갈 수 없습니다.");
     }
 
     @DisplayName("주어진 당첨 번호가 범위 밖에 있다면 예외를 발생시킨다.")

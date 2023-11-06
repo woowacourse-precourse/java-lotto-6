@@ -15,4 +15,12 @@ public class InputValidator {
             ExceptionHandler.throwNonNumericInputException();
         }
     }
+
+    public static void validateNumberLessThan1000(String input) {
+        int number = Integer.parseInt(input);
+
+        if (number < 1000) {
+            ExceptionHandler.throwNumberBelow1000Exception();
+        }
+    }
 }

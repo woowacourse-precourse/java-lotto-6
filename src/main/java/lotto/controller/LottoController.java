@@ -16,5 +16,6 @@ public class LottoController {
         ConsoleOutput.displayUserInputPrompt();
         String input = inputView.getUserPurchaseAmount();
         InputValidator.validateForNonNumericCharacters(input);
+        InputValidator.validateNumberLessThan1000(input);
     }
 }

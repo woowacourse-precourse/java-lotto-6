@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
@@ -8,6 +10,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validaLottoOversizeAndDuplicatedNumber(numbers);
         validate(numbers);
         this.numbers = numbers;
     }
@@ -24,5 +27,16 @@ public class Lotto {
         final int MIN_LOTTO_NUMBER = 1;
         final int MAX_LOTTO_NUMBER = 45;
         final int LOTTO_NUMBER_COUNT = 6;
-        return pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT); }
+        return pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+    }
+
+    private void validaLottoOversizeAndDuplicatedNumber(List<Integer> numbers) {
+        Set<Integer> pickSixLottoNumber = new HashSet<>();
+        pickSixLottoNumber.addAll(numbers);
+        if (pickSixLottoNumber.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
+
+

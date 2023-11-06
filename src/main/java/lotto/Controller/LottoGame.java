@@ -1,7 +1,9 @@
 package lotto.Controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.Domain.BonusNumber;
 import lotto.Domain.CompareResult;
 import lotto.Domain.LottoPurchaseAmount;
@@ -13,7 +15,9 @@ import lotto.View.OutputView;
 
 public class LottoGame {
 
-    public LottoGame() {}
+    public LottoGame() {
+    }
+
     private static LottoPurchaseAmount lottoPurchaseAmount;
     private static BonusNumber bonusNumber;
     private static Lotto lotto;
@@ -36,7 +40,7 @@ public class LottoGame {
         lottoList = makeLottoList(lottoPurchaseCount);
         compareResult = validateBonusNumber();
 
-
+        lottoResult(lottoList, compareResult, lottoPurchaseCount);
 
     }
 
@@ -49,24 +53,20 @@ public class LottoGame {
         }
     }
 
-    private List<Integer> inputLottoNumbers()
-    {
-        try{
+    private List<Integer> inputLottoNumbers() {
+        try {
             lotto = new Lotto(InputView.inputLottoNumbers());
             return lotto.getLottoNumbers();
-        }
-        catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return inputLottoNumbers();
         }
     }
 
-    private static int inputBonusNumber()
-    {
-        try{
+    private static int inputBonusNumber() {
+        try {
             bonusNumber = new BonusNumber(InputView.inputBonusNumber());
             return bonusNumber.conveyBonusNumber();
-        }
-        catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return inputBonusNumber();
         }
     }
@@ -88,12 +88,53 @@ public class LottoGame {
     }
 
     public CompareResult validateBonusNumber() {
-        Lotto lotto = new Lotto(InputView.inputLottoNumbers()));
+        Lotto lotto = new Lotto(InputView.inputLottoNumbers());
         List<Integer> compareNumber = lotto.getLottoNumbers();
         int bonusNum = inputBonusNumber();
         lotto.validateBonusNumberDuplicate(compareNumber, bonusNum);
-        compareResult= new CompareResult(new Lotto(compareNumber), bonusNum);
+        compareResult = new CompareResult(new Lotto(compareNumber), bonusNum);
 
         return compareResult;
     }
+
+    private void lottoResult(List<Lotto> lottoList, CompareResult winningLotto, int amount) {
+        Map<WinningResult, Integer> result = setResult();
+        WinningResult winningResult;
+
+        OutputView.printSuccessResult();
+        for (int i = 0; i < lottoList.size(); i++) {
+            winningResult = winningLotto.compareNumbers(lottoList.get(i));
+            result.put(winningResult, result.get(winningResult) + 1);
+        }
+        printResult(result);
+        printEarningRate(result, amount);
+    }
+
+    private void printResult(Map<WinningResult, Integer> result) {
+        for (int i = WinningResult.values().length - 1; i >= 0; i--) {
+            WinningResult.values()[i].printMessage(result.get(WinningResult.values()[i]));
+        }
+    }
+
+    private void printEarningRate(Map<WinningResult, Integer> result, int lottoAmount) {
+        double profitRate = 0;
+        for (WinningResult winningResult : result.keySet()) {
+            profitRate =
+                    profitRate + ((double) (winningResult.getTotalPrizeAmount()) / (lottoAmount * 1000) * (result.get(
+                            winningResult)) * (100));
+
+        }
+        OutputView.printProfitRate(profitRate);
+    }
+
+    private Map<WinningResult, Integer> setResult() {
+        Map<WinningResult, Integer> result = new LinkedHashMap<>();
+
+        for (WinningResult winningResult : WinningResult.values()) {
+            result.put(winningResult, 0);
+        }
+        return result;
+    }
+
 }
+

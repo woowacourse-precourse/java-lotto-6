@@ -1,8 +1,9 @@
-package lotto.model;
+package lotto.model.input;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.util.InputList;
+import lotto.model.Lotto;
+import lotto.util.input.InputList;
 
 public class InputWinnerNumbers extends InputList<Integer> {
     InputWinnerNumbers(String input) {

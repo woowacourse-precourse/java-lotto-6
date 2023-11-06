@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.input;
 
 public abstract class InputNumber implements InputValidator {
     protected final Integer number;

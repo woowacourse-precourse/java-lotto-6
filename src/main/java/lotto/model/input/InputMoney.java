@@ -1,6 +1,6 @@
-package lotto.model;
+package lotto.model.input;
 
-import lotto.util.InputNumber;
+import lotto.util.input.InputNumber;
 
 public class InputMoney extends InputNumber {
     InputMoney(String input) {

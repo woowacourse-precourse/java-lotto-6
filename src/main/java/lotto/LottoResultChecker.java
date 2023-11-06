@@ -27,14 +27,18 @@ public class LottoResultChecker {
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        printResultOfCheck();
+
+        System.out.printf("총 수익률은 %.1f%%입니다.", calculatePortfolio());
+    }
+
+    private void printResultOfCheck() {
         System.out.println("3개 일치 (5,000원) - " + lottoResultMemo.getOrDefault(Winning.THREE, 0) + "개");
         System.out.println("4개 일치 (50,000원) - " + lottoResultMemo.getOrDefault(Winning.FOUR, 0) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + lottoResultMemo.getOrDefault(Winning.FIVE, 0) + "개");
         System.out.println(
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoResultMemo.getOrDefault(Winning.FIVE_AND_BONUS, 0) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoResultMemo.getOrDefault(Winning.SIX, 0) + "개");
-
-        System.out.printf("총 수익률은 %.1f%%입니다.", calculatePortfolio());
     }
 
     private void checkLottoBundle() {

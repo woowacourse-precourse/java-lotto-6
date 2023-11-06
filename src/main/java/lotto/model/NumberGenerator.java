@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface NumberGenerator {
 
-    List<Integer> generateSortedList();
+    List<Integer> generate();
 }

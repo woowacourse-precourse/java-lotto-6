@@ -17,7 +17,7 @@ public class Lottos {
 
     public static Lottos of(final long buyCount, final NumberGenerator numberGenerator) {
         return IntStream.range(START_INDEX, (int) buyCount)
-                .mapToObj(count -> Lotto.fromNumbers(numberGenerator.generateSortedList()))
+                .mapToObj(count -> Lotto.fromNumbers(numberGenerator.generate()))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Lottos::new));
     }
 

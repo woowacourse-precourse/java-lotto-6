@@ -13,5 +13,10 @@ public class LottoController {
     public Purchase purcahseLottos(String amount) {
         return Purchase.fromPurchaseAmount(amount);
     }
+
+    // 로또 발급
+    public List<Lotto> generateLottoTicket(int purchaseCount) {
+        return Lotto.purchaseLottos(purchaseCount);
+    }
     
 }

@@ -20,6 +20,11 @@ public class IOService {
     private final String ERROR_PRIZE_NUMBER_RANGE = "[ERROR] 당첨 번호는 1이상 45이하입니다.";
     private final String ERROR_PRIZE_NUMBER_DUPLICATE = "[ERROR] 당첨 번호는 중복될 수 없습니다.";
     private final String ERROR_MINIMUM = "[ERROR] 구입 금액이 1000원보다 작을 수는 없습니다.";
+    private final String ERROR_BONUS_NUMBER_CNT = "[ERROR] 1개를 입력해야합니다.";
+    private final String ERROR_BONUS_NUMBER_INTEGER = "[ERROR] 보너스 번호는 정수여야합니다.";
+    private final String ERROR_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호는 1이상 45이하입니다.";
+
+    private final String ERROR_BONUS_NUMBER_DUPLICATED = "[ERROR] 보너스 번호는 기존 번호와 중복될 수 없습니다.";
 
     public void printBeforePurchaseLottoMessage() {
         System.out.println(BEFORE_PURCHASE_LOTTO_MESSAGE);
@@ -74,6 +79,18 @@ public class IOService {
         return Arrays.stream(prizeNumbers.split(",")).map(s -> Integer.parseInt(s)).toList();
     }
 
+    public int scanBonusNumber(List<Integer> prizeNumbers){
+        boolean success = true;
+
+        String bonusNumber;
+        do {
+            bonusNumber = Console.readLine();
+
+            success = validateBonusNumber(prizeNumbers, bonusNumber);
+        } while (!success);
+
+        return Integer.parseInt(bonusNumber);
+    }
 
     public boolean validatePurchaseAmount(String purchaseAmount) {
         try {
@@ -177,5 +194,55 @@ public class IOService {
         }
 
         return false;
+    }
+
+    public boolean validateBonusNumber(List<Integer> prizeNumbers, String bonusNumber){
+        try {
+            validateBonusNumberCnt(bonusNumber);
+            validateBonusNumberInteger(bonusNumber);
+            validateBonusNumberRange(bonusNumber);
+            validateBonusNumberDuplicated(prizeNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void validateBonusNumberCnt(String bonusNumber) {
+        String[] split = bonusNumber.split(",");
+
+        if (split.length != 1) {
+            System.out.println(ERROR_BONUS_NUMBER_CNT);
+            throw new IllegalArgumentException();
+        }
+    }
+    private void validateBonusNumberInteger(String bonusNumber) {
+        try {
+            Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            System.out.println(ERROR_BONUS_NUMBER_INTEGER);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateBonusNumberRange(String bonusNumber) {
+        int number = Integer.parseInt(bonusNumber);
+
+        if (number < 1 || number > 45) {
+            System.out.println(ERROR_BONUS_NUMBER_RANGE);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateBonusNumberDuplicated(List<Integer> prizeNumbers, String bonusNumber) {
+        int target = Integer.parseInt(bonusNumber);
+
+        for (Integer prizeNumber : prizeNumbers) {
+            if(prizeNumber == target){
+                System.out.println(ERROR_BONUS_NUMBER_DUPLICATED);
+                throw new IllegalArgumentException();
+            }
+        }
     }
 }

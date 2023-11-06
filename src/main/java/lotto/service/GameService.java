@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
+import lotto.model.Lotto;
 
 import java.util.List;
 

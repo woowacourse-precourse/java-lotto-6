@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 // 사용자로부터 입력 받은 로또 구입 금액을 관리하기 위한 클래스
 public class Cost {

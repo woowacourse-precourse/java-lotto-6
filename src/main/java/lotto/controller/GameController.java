@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.Game;
-import lotto.domain.Lotto;
-import lotto.domain.Player;
+import lotto.model.Game;
+import lotto.model.Lotto;
+import lotto.model.Player;
 import lotto.service.GameService;
 import lotto.util.NumberFactory;
 import lotto.view.input.InputView;

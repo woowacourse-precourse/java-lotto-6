@@ -1,6 +1,6 @@
 package lotto.view.output;
 
-import lotto.domain.Game;
+import lotto.model.Game;
 
 import java.util.List;
 

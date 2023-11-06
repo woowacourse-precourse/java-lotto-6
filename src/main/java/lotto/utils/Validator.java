@@ -11,10 +11,27 @@ public class Validator {
     private static final int VALIDATE_MONEY_NUMBER = 1000;
 
     public static void validateMoney(String money) {
-        int purchaseMoney = Integer.parseInt(money);
-        if (purchaseMoney%VALIDATE_MONEY_NUMBER != 0) {
+        if (!isNumeric(money)) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+        }
+
+        if (!isThousandUnit(money)) {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해 주세요.");
         }
+    }
+
+    private static boolean isNumeric(String str) {
+        try {
+            int num = Integer.parseInt(str);
+            return str.equals(Integer.toString(num));
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private static boolean isThousandUnit(String str) {
+        int num = Integer.parseInt(str);
+        return num % VALIDATE_MONEY_NUMBER == 0;
     }
 
     public static void validateWinningNumber(List<Integer> numbers) {
@@ -27,9 +44,16 @@ public class Validator {
         }
     }
 
-    public static void validateBonusNumber(String number) {
+    public static void validateBonusNumber(List<Integer> winNumber, String number) {
         int bonusNumber = Integer.parseInt(number);
         validateNumberRange(bonusNumber);
+        validateDuplicateBonusNumber(winNumber, bonusNumber);
+    }
+
+    private static void validateDuplicateBonusNumber(List<Integer> winningNumber, int BonusNumber) {
+        if (winningNumber.contains(BonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+        }
     }
 
     private static void validateNumberCount(List<Integer> numbers) {

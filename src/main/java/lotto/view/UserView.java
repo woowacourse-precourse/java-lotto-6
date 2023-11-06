@@ -1,21 +1,15 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 import lotto.enums.Rank;
 import lotto.model.Lotto;
-import lotto.utils.Validator;
 
 public class UserView {
 
     public static String startMessage() {
         System.out.println("구입금액을 입력해 주세요.");
         String money = Console.readLine();
-        Validator.validateMoney(money);
         System.out.println(money);
         return money;
     }
@@ -35,24 +29,10 @@ public class UserView {
         return Console.readLine();
     }
 
-    public static void showWinNumber(List<Integer> winNumber) {
-        List<String> winList = new ArrayList<>();
-        for (Integer win : winNumber) {
-            winList.add(Integer.toString(win));
-        }
-        String joinedNumber = String.join(",", winList);
-        System.out.println(joinedNumber);
-    }
-
     public static String bonusNumberMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
-        Validator.validateBonusNumber(bonusNumber);
         return bonusNumber;
-    }
-
-    public static void showBonusNumber(int bonusNumber) {
-        System.out.println(bonusNumber);
     }
 
     public static void winStatisticsMessage(List<Rank> rankList) {

@@ -31,7 +31,7 @@ public class OutputView {
         for (LottoValue lottoValue : matchedLottos) {
             total += lottoValue.winningMoney;
         }
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat df = new DecimalFormat("0.0");
         System.out.println("총 수익률은 " + df.format(((float) total/(numOfLotto*1000))*100) + "%입니다.");
     }
 }

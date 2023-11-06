@@ -14,7 +14,7 @@ public class GameResult {
         this.bonusNumber = bonusNumber;
     }
 
-    private int countMatchingNumbers(Lotto lotto, Lotto winningLotto) {
+    protected int countMatchingNumbers(Lotto lotto, Lotto winningLotto) {
         int count = 0;
         List<Integer> lottoNumbers = lotto.getNumbersInAscendingOrder();
         List<Integer> winningNumbers = winningLotto.getNumbersInAscendingOrder();

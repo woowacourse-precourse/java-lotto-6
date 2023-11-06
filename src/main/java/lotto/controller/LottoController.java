@@ -20,23 +20,19 @@ public class LottoController {
     }
 
     public void run() {
-        // 입력
-        MoneyDto money = inputView.inputMoney();
-        // 실행
-        LottosDto lottoTickets = lottoService.purchaseLottoTickets(money);
-        // 출력
-        printPurchasedLottoTickets(lottoTickets);
-
-        // 입력
-        WinningCombinationDto winningNumbers = inputView.inputWinningNumbers();
-        // 실행
-        DrawingResultDto result = lottoService.calculateDrawingResult(winningNumbers);
-        // 출력
-        outputView.printResult(result);
+        purchaseLottoTicketsAndDisplay();
+        calculateAndDisplayDrawingResult();
     }
 
-    private void printPurchasedLottoTickets(LottosDto lottoTickets) {
+    private void purchaseLottoTicketsAndDisplay() {
+        MoneyDto money = inputView.inputMoney();
+        LottosDto lottoTickets = lottoService.purchaseLottoTickets(money);
         outputView.printPurchasedLottoTickets(lottoTickets);
     }
 
+    private void calculateAndDisplayDrawingResult() {
+        WinningCombinationDto winningCombination = inputView.inputWinningNumbers();
+        DrawingResultDto result = lottoService.calculateDrawingResult(winningCombination);
+        outputView.printResult(result);
+    }
 }

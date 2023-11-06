@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
+import lotto.model.PlayerLottos;
 import lotto.model.Purchase;
 import lotto.view.InputView;
 
@@ -10,6 +11,8 @@ public class GameController {
 
     public void start() {
         Purchase purchase = createPurchase();
+
+        PlayerLottos playerLottos = new PlayerLottos(purchase.getLottoAmount());
 
         Lotto winningLotto = createWinningLotto();
         Bonus bonus = createBonus(winningLotto);

@@ -12,4 +12,8 @@ public class PrizeResult {
         Arrays.stream(Prize.values())
                 .forEach(prize -> prizeResult.put(prize, 0));
     }
+
+    public Integer getPrizeCount(Prize prize) {
+        return prizeResult.get(prize);
+    }
 }

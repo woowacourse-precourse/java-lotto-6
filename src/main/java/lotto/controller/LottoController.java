@@ -34,7 +34,13 @@ public class LottoController {
         lottoView.printLottoNumbers(lottos);
 
         // 당첨 번호 입력 받기
-        // 입력 예외 처리(잘못된 입력 시 다시 입력)
+        String winningNumber = lottoView.inputWinningNumber();
+        isValid = validationUtils.validateWinningNumber(winningNumber);
+        while(!isValid) {
+            winningNumber = lottoView.inputWinningNumber();
+            isValid = validationUtils.validateWinningNumber(winningNumber);
+        }
+
         // 보너스 번호 입력 받기
         // 입력 예외 처리(잘못된 입력 시 다시 입력)
 

@@ -26,12 +26,12 @@ public class Input {
             if (inputType == InputType.PURCHASE_AMOUNT){
                 conversionResult = purchaseAmountInput(inputStr);
             }
+            if (inputType == InputType.BONUS_NUMBER){
+                conversionResult = bonusNumberInput(inputStr);
+            }
             /*
             if (inputType == InputType.WINNING_NUMBERS){
                 conversionResult = winningNumbersInput(inputStr);
-            }
-            if (inputType == InputType.BONUS_NUMBER){
-                conversionResult = bonusNumberInput(inputStr);
             }
             */
         }catch(IllegalArgumentException e){
@@ -61,6 +61,26 @@ public class Input {
         }
     }
 
+    public List<Integer> bonusNumberInput(String inputStr){
+        List<Integer> conversionResult = new ArrayList<>();
+        bonusNumberValidate(inputStr);
+        conversionResult.add(Integer.parseInt(inputStr));
+        return conversionResult;
+    }
+
+    private void bonusNumberValidate(String inputStr){
+        if (inputStr.isEmpty()){
+            throw new IllegalArgumentException(ErrorMessage.NULL_STRING.getMessage());
+        }
+        for (int i = 0; i < inputStr.length(); i++) {
+            if (Utils.isNumeric(inputStr.charAt(i)) == false) {
+                throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_CHAR.getMessage());
+            }
+        }
+        if (Integer.parseInt(inputStr) < 1 || 45 < Integer.parseInt(inputStr)){
+            throw new IllegalArgumentException(ErrorMessage.NOT_IN_1_TO_45.getMessage());
+        }
+    }
     /*
     public List<Integer> winningNumbersInput(String inputStr){
 

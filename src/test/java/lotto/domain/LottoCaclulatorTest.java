@@ -10,16 +10,10 @@ class LottoCaclulatorTest {
     @Test
     void calculateRateOfReturn는_당첨수에따른_수익률을_계산한다1() {
         //given
-        List<MatchNumber> matchNumbers = List.of(
-                MatchNumber.FIFTH,
-                MatchNumber.NOTHING,
-                MatchNumber.NOTHING,
-                MatchNumber.NOTHING,
-                MatchNumber.NOTHING,
-                MatchNumber.NOTHING);
+        List<Integer> matchNumbers = List.of(1, 0, 0, 0, 0);
         int money = 8000;
         //when
-        float rateOfReturn = LottoCaclulator.calculateRateOfReturn(matchNumbers, money);
+        double rateOfReturn = LottoCaclulator.calculateRateOfReturn(matchNumbers, money);
         //then
         assertThat(rateOfReturn).isEqualTo(0.625f);
     }
@@ -27,16 +21,10 @@ class LottoCaclulatorTest {
     @Test
     void calculateRateOfReturn는_당첨수에따른_수익률을_계산한다2() {
         //given
-        List<MatchNumber> matchNumbers = List.of(
-                MatchNumber.NOTHING,
-                MatchNumber.FIFTH,
-                MatchNumber.FOURTH,
-                MatchNumber.NOTHING,
-                MatchNumber.NOTHING,
-                MatchNumber.NOTHING);
+        List<Integer> matchNumbers = List.of(1, 1, 0, 0, 0);
         int money = 4000;
         //when
-        float rateOfReturn = LottoCaclulator.calculateRateOfReturn(matchNumbers, money);
+        double rateOfReturn = LottoCaclulator.calculateRateOfReturn(matchNumbers, money);
         //then
         assertThat(rateOfReturn).isEqualTo(13.75f);
     }

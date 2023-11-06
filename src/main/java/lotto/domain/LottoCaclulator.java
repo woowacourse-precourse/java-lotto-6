@@ -4,8 +4,14 @@ import java.util.List;
 
 public class LottoCaclulator {
 
-    public static float calculateRateOfReturn(List<MatchNumber> winningCount, int money) {
-        float sum = winningCount.stream().mapToInt(matchNumber -> matchNumber.getMoney()).sum();
+    public static double calculateRateOfReturn(List<Integer> winningCount, int money) {
+        double sum = 0;
+        int i = 0;
+        for (MatchNumber match : MatchNumber.getMembers()) {
+            int repeat = winningCount.get(i);
+            sum += (match.getMoney() * repeat);
+            i++;
+        }
         return sum / money;
     }
 }

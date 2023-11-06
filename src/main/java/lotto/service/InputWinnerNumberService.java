@@ -12,10 +12,10 @@ public class InputWinnerNumberService {
     public void checkRightWinnerNumbers(Validator validator, String inputWinnerNumbers) {
         List<String> splitedInputWinnerNumbers = List.of(inputWinnerNumbers.split(","));
         validator.validateRightCommaCount(inputWinnerNumbers, splitedInputWinnerNumbers);
-        validator.validateOnlyNumber(splitedInputWinnerNumbers);
+        validator.validateWinnumberOnlyNumber(splitedInputWinnerNumbers);
         winnerNumbers = splitedInputWinnerNumbers.stream().map(Integer::parseInt)
             .collect(Collectors.toList());
-        validator.validateRangeNumber(winnerNumbers);
+        validator.validateWinnumberRangeNumber(winnerNumbers);
         validator.validateNumberLength(winnerNumbers);
     }
 

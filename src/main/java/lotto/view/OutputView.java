@@ -6,6 +6,17 @@ import lotto.domain.Result;
 
 public class OutputView {
 
+    private static final String BEFORE_INPUT_MONEY = "구입금액을 입력해 주세요.";
+    private static final String BEFORE_BUY_LOTTO = "%d개를 구매했습니다.\n";
+    private static final String BEFORE_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final String LOTTO_STATISTICS = "당첨 통계\n---";
+    private static final String SECOND_PRIZE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    private static final String PRIZE = "%d개 일치 (%s원) - %d개\n";
+    private static final String BEFORE_INPUT_WINNUMBER = "당첨 번호를 입력해 주세요.";
+    private static final String YIELD = "총 수익률은 %.1f%%입니다.";
+    private static final String FORMAT = "###,###,###,###";
+
+
     private static OutputView instance;
 
     private OutputView() {
@@ -24,42 +35,50 @@ public class OutputView {
     }
 
     public void printBeforeInputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(BEFORE_INPUT_MONEY);
     }
 
-    public void printTicket(List<Integer> lottos) {
-        System.out.println(lottos.toString());
+    public void printTicket(List<Integer> lotto) {
+        System.out.println(lotto.toString());
     }
 
     public void printBeforeBuyLotto(long count) {
-        System.out.printf("%d개를 구매했습니다.\n", count);
+        System.out.printf(BEFORE_BUY_LOTTO, count);
     }
 
     public void printBeforeInputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(BEFORE_INPUT_BONUS_NUMBER);
     }
 
     public void printResult() {
-        System.out.println("당첨 통계\n---");
+        System.out.println(LOTTO_STATISTICS);
         for (Result value : Result.values()) {
-            DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-            String formattedNum = decimalFormat.format(value.getMoney());
-            if (value.isBonus()) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", value.getSameCount(),
-                    formattedNum, value.getResultCount());
-                continue;
-            }
-            System.out.printf("%d개 일치 (%s원) - %d개\n", value.getSameCount(), formattedNum,
-                value.getResultCount());
+            String formattedNum = changeCurrentFormat(value);
+            printPrize(value, formattedNum);
         }
     }
 
-    public void printBeforeInputWinNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+    private void printPrize(Result value, String formattedNum) {
+        if (value.isBonus()) {
+            System.out.printf(SECOND_PRIZE, value.getSameCount(),
+                formattedNum, value.getResultCount());
+            return;
+        }
+        System.out.printf(PRIZE, value.getSameCount(), formattedNum,
+            value.getResultCount());
     }
 
-    public void printYield(double v1) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", v1);
+    private String changeCurrentFormat(Result value) {
+        DecimalFormat decimalFormat = new DecimalFormat(FORMAT);
+        return decimalFormat.format(value.getMoney());
+    }
+
+    public void printBeforeInputWinNumbers() {
+        System.out.println(BEFORE_INPUT_WINNUMBER);
+    }
+
+    public void printYield(double yield) {
+        System.out.printf(YIELD, yield);
     }
 }
 

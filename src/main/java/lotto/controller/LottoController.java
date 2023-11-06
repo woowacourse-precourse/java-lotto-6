@@ -6,7 +6,6 @@ import static lotto.constant.NumberConstant.ZERO;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.NumberConstant;
 import lotto.domain.LottoTicket;
 import lotto.service.InputBonusNumberService;
 import lotto.service.InputMoneyService;

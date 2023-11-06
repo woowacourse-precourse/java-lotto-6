@@ -14,6 +14,6 @@ public class ProfitRateCalculator {
                 .map(Rank::getPrize)
                 .reduce(0, Integer::sum);
 
-        return  (double) totalGain / money.getMoney();
+        return  (double) totalGain / money.getMoney() * 100;
     }
 }

@@ -7,10 +7,6 @@ import lotto.util.NumbersGenerator;
 
 public class Lotto {
 
-    private static final int THREE = 3;
-    private static final int FOUR = 4;
-    private static final int FIVE = 5;
-    private static final int SIX = 6;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
     private final List<LottoNumber> numbers;
@@ -56,24 +52,17 @@ public class Lotto {
         return distinctCount != numbers.size();
     }
 
-    public boolean isFirstPrizeWinner(final List<Integer> winningNumbers) {
-        return countMatchingNumbers(winningNumbers) == SIX;
+    public int countCorrectNumbers(final List<Integer> numbers) {
+        return (int) this.numbers.stream()
+                .map(LottoNumber::getNumber)
+                .filter(numbers::contains)
+                .count();
     }
 
-    public boolean isSecondPrizeWinner(final List<Integer> winningNumbers, final int bonusNumber) {
-        return countMatchingNumbers(winningNumbers) == FIVE && numbers.contains(bonusNumber);
-    }
-
-    public boolean isThirdPrizeWinner(final List<Integer> winningNumbers) {
-        return countMatchingNumbers(winningNumbers) == FIVE;
-    }
-
-    public boolean isFourthPrizeWinner(final List<Integer> winningNumbers) {
-        return countMatchingNumbers(winningNumbers) == FOUR;
-    }
-
-    public boolean isFifthPrizeWinner(final List<Integer> winningNumbers) {
-        return countMatchingNumbers(winningNumbers) == THREE;
+    public boolean hasBonusNumber(final int bonusNumber) {
+        return numbers.stream()
+                .map(LottoNumber::getNumber)
+                .anyMatch(number -> number == bonusNumber);
     }
 
     private int countMatchingNumbers(final List<Integer> winningNumbers) {

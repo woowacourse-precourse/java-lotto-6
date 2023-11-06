@@ -23,6 +23,7 @@ public class LottoGameController {
         setWinningNumbers();
         setWinningNumbersList();
         setBonusNumber();
+        updateWinningCount();
     }
 
     void inputLottoPurchaseAmount() {
@@ -57,5 +58,13 @@ public class LottoGameController {
 
     public void setBonusNumber() {
         bonusNumber = Integer.parseInt(inputView.inputBonusNumber());
+    }
+
+    public void updateWinningCount() {
+        for (List<Integer> purchasedLottoNumber : lottoGameService.getPurchasedLottoNumbers()) {
+            lottoGameService.updateWinningCount(
+                    lottoGameService.determineWinningRank(purchasedLottoNumber, winningNumbersList, bonusNumber)
+            );
+        }
     }
 }

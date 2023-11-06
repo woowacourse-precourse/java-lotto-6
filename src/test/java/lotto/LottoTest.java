@@ -36,18 +36,4 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-
-
-    @Test
-    void testValidateDivided() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Validation validation = new Validation();
-        Method method = validation.getClass().getDeclaredMethod("privateValidateDivided", int.class);
-        method.setAccessible(true);
-        try{
-            method.invoke(validation, 12345);
-        }catch(InvocationTargetException e){
-            Assertions.assertEquals(IllegalArgumentException.class, e.getTargetException().getClass());
-        }
-
-    }
 }

@@ -172,4 +172,25 @@ class ResultServiceTest {
         assertThat(winningResults.get(ResultService.SIX_CASE_NUMBER)).isEqualTo(1);
     }
 
+    @DisplayName("수익률이 제대로 계산되는지 테스트한다.")
+    @Test
+    void calculateRateOfReturnTest() {
+        // given
+        int purchaseAmount = 2000;
+        int bonusNumber = 2;
+        Lotto lotto = new Lotto(List.of(15, 8, 6, 7, 3, 9));
+        Lotto resultOfLottoIssuance1 = new Lotto(List.of(15, 8, 6, 7, 3, 9));
+        Lotto resultOfLottoIssuance2 = new Lotto(List.of(15, 8, 6, 7, 3, 1));
+        HashMap<Integer, Integer> winningResults = new HashMap<>();
+        List<Lotto> resultsOfLottoIssuance = new ArrayList<>();
+        resultsOfLottoIssuance.add(resultOfLottoIssuance1);
+        resultsOfLottoIssuance.add(resultOfLottoIssuance2);
+        winningResults = ResultService.saveWinningResults(resultsOfLottoIssuance, lotto, bonusNumber);
+
+        // when
+        double rateOfReturn = ResultService.calculateRateOfReturn(purchaseAmount, winningResults);
+
+        // then
+        assertThat(rateOfReturn).isEqualTo(100075000.0);
+    }
 }

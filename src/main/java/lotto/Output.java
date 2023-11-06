@@ -27,7 +27,7 @@ public class Output {
             }
         }
         double profitRate = calculateProfitRate(results, purchaseAmount);
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
     private static double calculateProfitRate(Map<PrizeTier, Long> results, int purchaseAmount) {

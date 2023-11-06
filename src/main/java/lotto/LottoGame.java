@@ -74,20 +74,50 @@ public class LottoGame {
         return winningList;
     }
 
+    public enum Prize {
+        THIRD("3개 일치 (5,000원)", 5000),
+        FOURTH("4개 일치 (50,000원)", 50000),
+        FIFTH("5개 일치 (1,500,000원)", 1500000),
+        BONUS("5개 일치, 보너스 볼 일치 (30,000,000원)", 30000000),
+        SIXTH("6개 일치 (2,000,000,000원)", 2000000000);
+
+        private final String description;
+        private final int prizeAmount;
+
+        Prize(String description, int prizeAmount) {
+            this.description = description;
+            this.prizeAmount = prizeAmount;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public int getPrizeAmount() {
+            return prizeAmount;
+        }
+    }
 
     // 당첨 통계
-    public void winningStats(int[] winningList){
+    public static void winningStats(int[] winningList) {
         System.out.println("당첨 통계\n---");
-        System.out.printf("3개 일치 (5,000원) - %d", winningList[0]);
-        System.out.printf("4개 일치 (50,000원) - %d", winningList[1]);
-        System.out.printf("5개 일치 (1,500,000원) - %d", winningList[2]);
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d", winningList[3]);
-        System.out.printf("6개 일치 (2,000,000,000원) - %d", winningList[4]);
+        for (Prize prize : Prize.values()) {
+            int count = winningList[prize.ordinal()];
+            System.out.printf("%s - %d\n", prize.getDescription(), count);
+        }
     }
 
     // 수익률 출력
-    public void rateOfReturn(int[] winningList) {
+    public static void rateOfReturn(int[] winningList, int draws) {
+        double total = 0;
 
+        for (Prize prize : Prize.values()) {
+            int count = winningList[prize.ordinal()];
+            total += prize.getPrizeAmount() * count;
+        }
+
+        double rate = (total / (draws * 1000));
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rate);
     }
 
     // 예외 상황 출력

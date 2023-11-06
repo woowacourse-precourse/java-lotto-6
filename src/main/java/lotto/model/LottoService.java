@@ -86,4 +86,10 @@ public class LottoService {
         long totalPrize = lottoResults.calculateTotalPrize();
         return ProfitCalculator.calculateLottoReturnRate(totalCost, totalPrize);
     }
+
+    public LottoMachine createLottoMachine(NumberGenerator numberGenerator, PurchaseAmountDto purchaseAmountDto) {
+        String amount = purchaseAmountDto.getAmount();
+        Money money = Money.from(amount);
+        return LottoMachine.of(numberGenerator, money);
+    }
 }

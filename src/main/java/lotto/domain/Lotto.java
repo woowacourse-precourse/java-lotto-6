@@ -31,5 +31,13 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int getNumberOfMatches(List<Integer> winningNumbers) {
+        int count = 0;
+        for (int i = 0; i < numbers.size(); i++) {
+            if (winningNumbers.contains(numbers.get(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

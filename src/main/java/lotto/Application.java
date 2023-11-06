@@ -85,5 +85,9 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         Lotto winLotto = inputWinLottoNumbers();
         winLotto.printLottoNumbers();
+        System.out.println();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int winBonusNumber = Integer.parseInt(Console.readLine());
     }
 }

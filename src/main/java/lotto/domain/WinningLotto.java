@@ -34,4 +34,8 @@ public class WinningLotto {
         }
         return matchCount;
     }
+
+    public boolean lottoBonusNumberMatch(Lotto lottoNumbers) {
+        return lottoNumbers.getNumbers().contains(BONUS_NUMBER);
+    }
 }

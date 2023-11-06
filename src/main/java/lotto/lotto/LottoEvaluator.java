@@ -1,6 +1,7 @@
 package lotto.lotto;
 
 import java.util.List;
+import lotto.util.IntegerUtil;
 
 public class LottoEvaluator {
     public Integer evaluateLottoRank(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
@@ -10,7 +11,7 @@ public class LottoEvaluator {
         boolean isBonusNumberCorrect = lottoNumbers.contains(bonusNumber);
 
         int rank = determineRank(winningCount, isBonusNumberCorrect);
-        return rank;
+        return setValidRank(rank);
     }
 
     private int calculateWinningCount(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
@@ -34,5 +35,12 @@ public class LottoEvaluator {
             return 3;
         }
         return 8 - winningCount;
+    }
+
+    private int setValidRank(int rank) {
+        if (IntegerUtil.checkNumberInRange(rank, 1, 5)) {
+            return rank;
+        }
+        return 0;
     }
 }

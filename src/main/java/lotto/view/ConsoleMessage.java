@@ -10,7 +10,7 @@ public enum ConsoleMessage {
     RESULTS_SUMMARY("당첨 통계"),
     LOTTO_NUMBER_MATCH("%d개 일치 (%s원) - %d개"),
     LOTTO_NUMBER_MATCH_WITH_BONUS_NUMBER("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
-    TOTAL_RETURN("총 수익률은 %.1f%%입니다.");
+    TOTAL_RETURN("총 수익률은 %s%%입니다.");
     
     private final String message;
     

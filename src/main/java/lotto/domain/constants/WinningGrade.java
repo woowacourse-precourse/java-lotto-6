@@ -62,8 +62,7 @@ public enum WinningGrade {
         return matchingBonus.apply(false);
     }
 
-    public String getPrice() {
-        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
-        return decimalFormat.format(price.getPrice());
+    public long getPrice() {
+        return price.getPrice();
     }
 }

@@ -9,6 +9,7 @@ import static lotto.view.ConsoleMessage.SUCCESS_PURCHASE_LOTTO;
 import static lotto.view.ConsoleMessage.TOTAL_RETURN;
 import static lotto.view.SeparatorConstant.RESULT_SUMMARY_SEPARATOR;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.domain.RankingResult;
 
@@ -47,8 +48,8 @@ public class OutputView {
         }
     }
 
-    public static void printResultsProfitability(double profitability) {
-        println(format(TOTAL_RETURN.getMessage(), profitability));
+    public static void printResultsProfitability(BigDecimal profitability) {
+        println(format(TOTAL_RETURN.getMessage(), profitability.toPlainString()));
     }
 
     public static void printErrorMessage(IllegalArgumentException exception) {

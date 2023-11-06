@@ -3,6 +3,8 @@ package lotto.view;
 import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoService;
+
 import java.util.*;
 
 public class OutputView {
@@ -42,6 +44,10 @@ public class OutputView {
     	System.out.println("5개 일치 (1,500,000원) - "+rankCount.getOrDefault("THIRD", 0)+"개");
     	System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+rankCount.getOrDefault("SECOND", 0)+"개");
     	System.out.println("6개 일치 (2,000,000,000원) - "+rankCount.getOrDefault("FIRST", 0)+"개");
+    }
+    
+    public static void printReturnOnInvestment(double roi){
+    	System.out.println("총 수익률은 "+roi+"%입니다.");
     }
     
 }

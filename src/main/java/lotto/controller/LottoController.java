@@ -23,6 +23,9 @@ public class LottoController {
 		OutputView.printBonusNumberInstruction();
 		int bonusNumber = InputData.bonusNumber(winningNumbers);
 		OutputView.printWinningStatistics(LottoService.getTotalWinningRankCount(playerLotto, winningNumbers, bonusNumber));
+		long totalWinningAmount = LottoService.getTotalWinningAmount(playerLotto, winningNumbers, bonusNumber);
+		double roi = LottoService.calculateReturnOnInvestment(totalWinningAmount, playerLotto);
+		OutputView.printReturnOnInvestment(roi);
 	}
 	
 	

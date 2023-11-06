@@ -35,6 +35,7 @@ public class GameController {
         OutputView.announceMultipleLottoNumbers(lottoBuyer.getLottoTickets());
 
         List<Integer> winningLottoNumbers = InputView.requestWinningLottoNumbers();
+        lottoManager.isValidWinningLottoNumbers(winningLottoNumbers);
 
     }
 

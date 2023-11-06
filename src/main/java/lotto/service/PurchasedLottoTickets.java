@@ -8,7 +8,12 @@ import lotto.Lotto;
 import lotto.readUserInput.PurchaseAmount;
 
 public class PurchasedLottoTickets {
-    private List<Lotto> tickets = new ArrayList<>();
+    private List<Lotto> tickets;
+
+    public PurchasedLottoTickets() {
+        this.tickets = new ArrayList<>();
+        register();
+    }
 
     public void register() {
         while (tickets.size() < PurchaseAmount.lottoQuantity) {
@@ -19,14 +24,21 @@ public class PurchasedLottoTickets {
 
     public Map<String, Integer> eachRankCount() {
         Map<String, Integer> counts = new HashMap<>();
+        setZero(counts);
         for (Lotto lotto : tickets) {
             CompareWinningNumbers compareWinningNumbers = new CompareWinningNumbers(lotto);
             String rank = compareWinningNumbers.checkThisTicketRank();
-            if (!counts.containsKey(rank)) {
-                counts.put(rank, 0);
-            }
             counts.put(rank, counts.get(rank) + 1);
         }
         return counts;
+    }
+
+    public void setZero(Map<String, Integer> counts) {
+        counts.put("1st", 0);
+        counts.put("2nd", 0);
+        counts.put("3rd", 0);
+        counts.put("4th", 0);
+        counts.put("5th", 0);
+        counts.put("lose", 0);
     }
 }

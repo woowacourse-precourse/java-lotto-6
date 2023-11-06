@@ -14,7 +14,7 @@ public class PurchaseAmount implements UserInput {
     }
 
     public int singleTypeConversion(String money) {
-        return Integer.parseInt(money);
+        return Integer.parseInt(money) / 1000;
     }
 
 }

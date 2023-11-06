@@ -21,15 +21,16 @@ public class CompareWinningNumbers {
     }
 
     public String checkThisTicketRank() {
-        if (winningCount() == 6) {
+        int count = winningCount();
+        if (count == 6) {
             return "1st";
-        } else if (winningCount() == 5) {
+        } else if (count == 5) {
             CompareBonusNumber compareBonusNumber = new CompareBonusNumber(lotto);
             return compareBonusNumber.isThereBonus();
-        } else if (winningCount() == 4) {
-            return "4nd";
-        } else if (winningCount() == 3) {
-            return "5nd";
+        } else if (count == 4) {
+            return "4th";
+        } else if (count == 3) {
+            return "5th";
         }
         return "lose";
     }

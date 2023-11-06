@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,5 +22,16 @@ class LottoGeneratorTest {
     void purchaseAmountNotMultipleOf1000() {
         assertThatThrownBy(() -> LottoGenerator.from(1800))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액만큼 로또를 생성한다")
+    @Test
+    void generateLotto() {
+        int amount = 5000;
+
+        LottoGenerator lottoGenerator = LottoGenerator.from(amount);
+        List<Lotto> lottos = lottoGenerator.generate();
+
+        assertThat(lottos.size()).isEqualTo(amount / 1000);
     }
 }

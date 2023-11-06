@@ -1,9 +1,10 @@
 package lotto.game.io.views;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.collaboration.enums.Prize;
-import lotto.collaboration.lottos.Lotto;
+import lotto.collaboration.lottos.dto.PlayerLotto;
 import lotto.game.io.Input;
 import lotto.game.io.Output;
 
@@ -29,18 +30,18 @@ public class LottoGameView {
         }
     }
 
-    public void announcePurchaseLottos(List<Lotto> purchaseLottos) {
+    public void announcePurchaseLottos(List<PlayerLotto> purchaseLottos) {
         output.println();
         output.println(purchaseLottos.size() + "개를 구매했습니다.");
-        for (Lotto purchaseLotto : purchaseLottos) {
+        for (PlayerLotto purchaseLotto : purchaseLottos) {
             output.println(purchaseLotto);
         }
     }
 
     public List<Integer> askWinningNumbers() {
         output.println();
-        output.println("당첨 번호를 입력해 주세요");
         while (true) {
+            output.println("당첨 번호를 입력해 주세요");
             try {
                 List<Integer> winningNumbers = input.numbers(",");
                 validate(winningNumbers);
@@ -77,8 +78,8 @@ public class LottoGameView {
 
     public int askBonusNumber() {
         output.println();
-        output.println("보너스 번호를 입력해 주세요.");
         while (true) {
+            output.println("보너스 번호를 입력해 주세요.");
             try {
                 int bonusNumber = input.number();
                 occurExceptionIfOutOfRange(bonusNumber);
@@ -89,7 +90,7 @@ public class LottoGameView {
         }
     }
 
-    public void announceWinningStatistics(int purchaseAmount, Map<Prize, List<Lotto>> prizeListMap) {
+    public void announceWinningStatistics(int purchaseAmount, Map<Prize, List<PlayerLotto>> prizeListMap) {
         output.println();
         output.println("당첨 통계");
         output.println("---");
@@ -98,13 +99,13 @@ public class LottoGameView {
             if (prize == Prize.LOST) {
                 continue;
             }
-            List<Lotto> prizeLottos = prizeListMap.getOrDefault(prize, List.of());
+            List<PlayerLotto> prizeLottos = prizeListMap.getOrDefault(prize, List.of());
             output.println(prize.message() + " - " + prizeLottos.size() + "개");
             totalPrizeMoney += prize.money() * prizeLottos.size();
         }
 
         double result = (double) Math.round(((double) totalPrizeMoney / purchaseAmount) * 1_000) / 10;
-        output.println("총 수익률은 " + result + "%입니다.");
+        output.println("총 수익률은 " + new DecimalFormat("#,###.0").format(result) + "%입니다.");
     }
 
 }

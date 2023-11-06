@@ -5,7 +5,7 @@ import util.ConstantOfLotto;
 
 public class PriceValidator {
 
-    private final int STARNDARD_UNIT = ConstantOfLotto.priceOfLotto;
+    private final int STARNDARD_UNIT = ConstantOfLotto.PRICE_OF_LOTTO;
 
     public void checkPriceValidation(int price) {
         isPricePositive(price);

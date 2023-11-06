@@ -4,10 +4,10 @@ import java.util.EnumMap;
 import lotto.domain.lotto.LottoRank;
 import lotto.domain.money.Money;
 
-public class DrawingResult {
+public class PrizeStatistics {
     private final EnumMap<LottoRank, Integer> drawingResult;
 
-    public DrawingResult(EnumMap<LottoRank, Integer> drawingResult) {
+    public PrizeStatistics(EnumMap<LottoRank, Integer> drawingResult) {
         this.drawingResult = drawingResult;
     }
 

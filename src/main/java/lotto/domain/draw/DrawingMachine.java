@@ -13,9 +13,9 @@ public class DrawingMachine {
 
     }
 
-    public DrawingResult draw(WinningCombination winningCombination, Lottos totalLottoTickets) {
+    public PrizeStatistics draw(WinningCombination winningCombination, Lottos totalLottoTickets) {
         EnumMap<LottoRank, Integer> drawingResult = evaluateDrawingResult(winningCombination, totalLottoTickets);
-        return new DrawingResult(drawingResult);
+        return new PrizeStatistics(drawingResult);
     }
 
     private EnumMap<LottoRank, Integer> evaluateDrawingResult(WinningCombination winningCombination,

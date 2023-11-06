@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.draw.DrawingResult;
+import lotto.domain.draw.PrizeStatistics;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.Lottos;
@@ -68,7 +68,7 @@ class LottoMapperTest {
     @Test
     public void should_Map_DrawingResult_From_DrawingResultDto() {
         // given
-        DrawingResult drawingResult = new DrawingResult(new EnumMap<>(Map.of(
+        PrizeStatistics prizeStatistics = new PrizeStatistics(new EnumMap<>(Map.of(
                 LottoRank.FIRST, 1,
                 LottoRank.SECOND, 2,
                 LottoRank.THIRD, 3,
@@ -77,7 +77,7 @@ class LottoMapperTest {
         )));
 
         // when
-        DrawingResultDto drawingResultDto = LottoMapper.mapFrom(drawingResult);
+        DrawingResultDto drawingResultDto = LottoMapper.mapFrom(prizeStatistics);
 
         // then
         assertThat(drawingResultDto).isInstanceOf(DrawingResultDto.class);

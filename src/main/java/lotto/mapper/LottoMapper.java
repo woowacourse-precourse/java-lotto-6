@@ -2,7 +2,7 @@ package lotto.mapper;
 
 import java.util.EnumMap;
 import java.util.List;
-import lotto.domain.draw.DrawingResult;
+import lotto.domain.draw.PrizeStatistics;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoRank;
@@ -37,15 +37,15 @@ public class LottoMapper {
         return WinningCombination.of(winningNumbers, bonusNumber);
     }
 
-    public static DrawingResultDto mapFrom(DrawingResult drawingResult) {
-        EnumMap<LottoRank, Integer> result = drawingResult.getDrawingResult();
+    public static DrawingResultDto mapFrom(PrizeStatistics prizeStatistics) {
+        EnumMap<LottoRank, Integer> result = prizeStatistics.getDrawingResult();
         return new DrawingResultDto(
                 result.get(LottoRank.FIRST),
                 result.get(LottoRank.SECOND),
                 result.get(LottoRank.THIRD),
                 result.get(LottoRank.FOURTH),
                 result.get(LottoRank.FIFTH),
-                drawingResult.calculateProfitRate()
+                prizeStatistics.calculateProfitRate()
         );
     }
 }

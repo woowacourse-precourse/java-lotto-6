@@ -39,10 +39,10 @@ class DrawingMachineTest {
         expectedResult.put(LottoRank.THIRD, 1);
 
         // when
-        DrawingResult drawingResult = drawingMachine.draw(winningCombination, totalLottoTickets);
+        PrizeStatistics prizeStatistics = drawingMachine.draw(winningCombination, totalLottoTickets);
 
         // then
-        assertThat(drawingResult.getDrawingResult()).isEqualTo(expectedResult);
+        assertThat(prizeStatistics.getDrawingResult()).isEqualTo(expectedResult);
     }
 
     private List<Lotto> generateLottos() {

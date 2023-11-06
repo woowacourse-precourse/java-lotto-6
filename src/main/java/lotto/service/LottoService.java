@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.draw.DrawingMachine;
-import lotto.domain.draw.DrawingResult;
+import lotto.domain.draw.PrizeStatistics;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoStore;
 import lotto.domain.lotto.Lottos;
@@ -37,7 +37,7 @@ public class LottoService {
         WinningCombination winningCombination = LottoMapper.mapFrom(winningCombinationDto);
         List<Lotto> purchasedLottoTickets = lottoRepository.findAll();
         Lottos totalLottoTickets = Lottos.from(purchasedLottoTickets);
-        DrawingResult drawingResult = drawingMachine.draw(winningCombination, totalLottoTickets);
-        return LottoMapper.mapFrom(drawingResult);
+        PrizeStatistics prizeStatistics = drawingMachine.draw(winningCombination, totalLottoTickets);
+        return LottoMapper.mapFrom(prizeStatistics);
     }
 }

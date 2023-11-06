@@ -8,9 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class DrawingResultTest {
+class PrizeStatisticsTest {
 
-    private DrawingResult drawingResult;
+    private PrizeStatistics prizeStatistics;
 
     @BeforeEach
     void setUp() {
@@ -21,14 +21,14 @@ class DrawingResultTest {
         result.put(LottoRank.FIFTH, 1);
         result.put(LottoRank.NONE, 7);
 
-        drawingResult = new DrawingResult(result);
+        prizeStatistics = new PrizeStatistics(result);
     }
 
     @DisplayName("소수점 첫째자리까지 수익률 계산")
     @Test
     void should_calculate_profit() {
         // when
-        double profit = drawingResult.calculateProfitRate();
+        double profit = prizeStatistics.calculateProfitRate();
 
         // then
         assertThat(profit).isEqualTo(62.5);

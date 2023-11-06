@@ -23,4 +23,9 @@ public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨
         return Console.readLine();
     }
 
+    public static String readBonusNumber() {
+        System.out.println(BONUS_NUMBER_PROMPT);
+        return Console.readLine();
+    }
+
 }

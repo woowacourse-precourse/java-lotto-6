@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputView {
+    private static final String PURCHASE_COST_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String NULL_OR_EMPTY_ERROR_MESSAGE = "[ERROR] 공백이나 빈 값은 입력이 불가능합니다.";
     private static final String NOT_ALLOWED_CHARACTER_ERROR_MESSAGE = "[ERROR] 숫자만 입력이 가능합니다.";
     private static final String NAN_ERROR_MESSAGE = "[ERROR] 숫자가 아닌 값은 입력이 불가능합니다.";
@@ -20,13 +22,15 @@ public class InputView {
         return input;
     }
 
-    public static long getNumber() {
+    public static long getPurchaseCost() {
+        System.out.println(PURCHASE_COST_MESSAGE);
         String input = getLine();
 
         return toLong(input);
     }
 
     public static List<Integer> getWinningNumbers() {
+        System.out.println(WINNING_NUMBER_MESSAGE);
         String input = getLine();
         validateCharacter(input);
 

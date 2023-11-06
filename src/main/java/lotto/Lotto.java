@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.config.GameConfig;
 import lotto.domain.LottoNumber;
+import lotto.exception.LottoException;
+import lotto.exception.LottoGameException;
 
 public class Lotto {
 
@@ -23,13 +25,13 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != GameConfig.LOTTO_SIZE) {
-            throw new IllegalArgumentException(); // TODO: custom 예외 만들기
+            throw new LottoGameException(LottoException.INVALID_SIZE);
         }
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != GameConfig.LOTTO_SIZE) {
-            throw new IllegalArgumentException(); // TODO: custom 예외 만들기
+            throw new LottoGameException(LottoException.DUPLICATED_NUMBER);
         }
     }
 

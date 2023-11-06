@@ -21,7 +21,7 @@ public class PrizeChecker {
         }
     }
 
-    public Prize getPrize(Lotto playerLotto) {
+    public Prize calculatePrize(Lotto playerLotto) {
         int sameCount = playerLotto.getSameCount(winningLotto);
         boolean hasBonusNumber = playerLotto.doesHaveLottoNumber(bonusNumber);
         return Prize.getPrizeRank(sameCount, hasBonusNumber);

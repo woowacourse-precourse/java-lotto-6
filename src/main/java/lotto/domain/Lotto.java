@@ -53,16 +53,6 @@ public class Lotto {
                 .size();
     }
 
-    public Prize getPrize(Lotto winningLotto, LottoNumber bonusNumber) {
-        int sameCount = getSameCount(winningLotto);
-        boolean hasBonusNumber = doesHaveBonusNumber(bonusNumber);
-        return Prize.getPrizeRank(sameCount, hasBonusNumber);
-    }
-
-    private boolean doesHaveBonusNumber(LottoNumber bonusNumber) {
-        return numbers.contains(bonusNumber);
-    }
-
     @Override
     public String toString() {
         StringJoiner lottoPrintFormat = new StringJoiner(

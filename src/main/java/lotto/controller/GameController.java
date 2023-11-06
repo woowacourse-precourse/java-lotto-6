@@ -2,8 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.wrapper.LottoNumber;
 import lotto.domain.wrapper.PurchaseAmout;
+import lotto.service.PrizeChecker;
 import lotto.service.VendingMachine;
 import lotto.service.PrizeManager;
 import lotto.utils.Prize;
@@ -20,7 +23,8 @@ public class GameController {
         printLottos(plyerLottos);
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
-        PrizeManager prizeManager = new PrizeManager(winningNumbers, bonusNumber, plyerLottos);
+        PrizeChecker prizeChecker = new PrizeChecker(new Lotto(winningNumbers), new LottoNumber(bonusNumber));
+        PrizeManager prizeManager = new PrizeManager(plyerLottos.getPrizeCounts(prizeChecker));
         printPrizeResults(prizeManager);
         printPrizeProfit(prizeManager, purchaseAmout);
     }
@@ -52,12 +56,12 @@ public class GameController {
 
     private void printPrizeResults(PrizeManager prizeManager) {
         outputView.printPrizeMessageStartMessage();
-        Map<Prize, Integer> prizeCounts = prizeManager.getPrizeCounts();
         for (Prize prize : Prize.values()) {
             if (prize == Prize.NO_PRIZE) {
                 continue;
             }
-            outputView.printPrizeMessages(prize.getSameCount(), prize.getPrizeProfit(), prizeCounts.get(prize));
+            outputView.printPrizeMessages(
+                    prize.getSameCount(), prize.getPrizeProfit(), prizeManager.getPrizeCount(prize));
         }
     }
 

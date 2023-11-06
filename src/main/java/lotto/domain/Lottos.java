@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.domain.wrapper.LottoNumber;
+import lotto.service.PrizeChecker;
 import lotto.utils.LottoConstant;
 import lotto.utils.LottoConstantValue;
 import lotto.utils.Prize;
@@ -16,10 +16,10 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public Map<Prize, Integer> getPrizeCounts(Lotto winningLotto, LottoNumber bonusNumber) {
+    public Map<Prize, Integer> getPrizeCounts(PrizeChecker prizeChecker) {
         Map<Prize, Integer> prizeCounts = getInitializedPrizeCounts();
         for (Lotto lotto : lottos) {
-            Prize prize = lotto.getPrize(winningLotto, bonusNumber);
+            Prize prize = prizeChecker.calculatePrize(lotto);
             if (prize.equals(Prize.NO_PRIZE)) {
                 continue;
             }

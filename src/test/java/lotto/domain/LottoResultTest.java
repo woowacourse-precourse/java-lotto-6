@@ -12,39 +12,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoResultTest {
-
-    @DisplayName("주어진 결과에 대한 통계를 정확히 출력하는지 확인합니다.")
-    @ParameterizedTest(name = "{0}")
-    @MethodSource("argumentsProvider")
-    void getStatistics(
-            String testName,
-            long fifthPrizeCount,
-            long fourthPrizeCount,
-            long thirdPrizeCount,
-            long secondPrizeCount,
-            long winPrizeCount
-    ) {
-        Map<LottoPrizes, Long> expectedPrizes = Map.of(
-                LottoPrizes.THREE_NUMBERS_MATCHED, fifthPrizeCount,
-                LottoPrizes.FOUR_NUMBERS_MATCHED, fourthPrizeCount,
-                LottoPrizes.FIVE_NUMBER_MATCHED, thirdPrizeCount,
-                LottoPrizes.FIVE_NUMBER_AND_BONUS_MATCHED, secondPrizeCount,
-                LottoPrizes.SIX_NUMBER_MATCHED, winPrizeCount
-        );
-        LottoResult lottoResult = new LottoResult(expectedPrizes);
-
-        String expectedMessage = String.format("""
-                        3개 일치 (5,000원) - %d개
-                        4개 일치 (50,000원) - %d개
-                        5개 일치 (1,500,000원) - %d개
-                        5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
-                        6개 일치 (2,000,000,000원) - %d개""",
-                fifthPrizeCount, fourthPrizeCount, thirdPrizeCount,
-                secondPrizeCount, winPrizeCount);
-
-        assertThat(lottoResult.getStatistics()).isEqualTo(expectedMessage);
-    }
-
     @DisplayName("로또 당첨금을 정확하게 얻어내는지 확인합니다.")
     @ParameterizedTest(name = "{0}")
     @MethodSource("argumentsProvider")

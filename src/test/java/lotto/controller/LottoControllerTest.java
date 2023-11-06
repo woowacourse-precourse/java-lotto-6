@@ -84,7 +84,7 @@ class LottoControllerTest extends NsTest {
                         )
                 );
 
-        LottoController lottoController = new LottoController(lottoGenerator);
+        LottoController lottoController = new LottoController(new LottoViewController(), lottoGenerator);
         lottoController.play();
 
         assertThat(out.toString()).contains(

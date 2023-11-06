@@ -47,7 +47,6 @@ class UserLottoTest {
         );
 
         LottoResult expectedResult = new LottoResult(expectedPrizes);
-
         LottoResult actual = userLotto.compareAllLotto(winningLotto);
         assertThat(actual).isEqualTo(expectedResult);
     }
@@ -62,6 +61,6 @@ class UserLottoTest {
                 [2, 4, 5, 6, 24, 41]
                 [3, 4, 5, 33, 39, 43]""";
 
-        assertThat(userLotto.displayAllLotto()).isEqualTo(expected);
+        assertThat(userLotto.toString()).isEqualTo(expected);
     }
 }

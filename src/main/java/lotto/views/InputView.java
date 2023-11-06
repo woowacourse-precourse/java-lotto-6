@@ -1,6 +1,7 @@
 package lotto.views;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.models.WinningNumber;
 import lotto.valid.LottoWinningNumberValidator;
 import lotto.valid.PurchaseMoneyValidator;
 
@@ -24,7 +25,14 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public static List<Integer> inputLottoWinningNumber() {
+    public static WinningNumber inputWinningNumber() {
+        List<Integer> winningNumbers = inputLottoWinningNumber();
+        int bonusNumber = inputBonusNumber();
+        return new WinningNumber(winningNumbers, bonusNumber);
+    }
+
+
+    private static List<Integer> inputLottoWinningNumber() {
         while (true) {
             System.out.println(INPUT_LOTTO_WINNING_NUMBER_MESSAGE);
             try {
@@ -35,7 +43,7 @@ public class InputView {
         }
     }
 
-    public static int inputBonusNumber() {
+    private static int inputBonusNumber() {
         while (true) {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
             try {

@@ -14,7 +14,7 @@ public class ResultView {
     private static final String CORRECT_COUNT = "%d개 일치";
     private static final String BONUS_COUNT = ", 보너스 볼 일치";
     private static final String WIN_PRICE_AND_WIN_COUNT = " (%s원) - %d개";
-    private static final String RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String RETURN_RATE_MESSAGE = "총 수익률은 %,.1f%%입니다.";
 
     public static void printTicket(int ticket) {
         System.out.println();

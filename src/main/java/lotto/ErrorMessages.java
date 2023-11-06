@@ -9,7 +9,7 @@ public enum ErrorMessages {
     ERROR_OUT_OF_RANGE_LOTT_NUMBER("[ERROR] 로또 번호는 " + Config.MIN_LOTTO_NUMBER + "부터 " + Config.MAX_LOTTO_NUMBER
             + " 사이의 숫자여야 합니다."),
     ERROR_WINNING_NUMBER_DUPLICATE("[ERROR] 당첨 번호는 서로 중복되지 않아야 합니다."),
-    ERROR_BOUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    ERROR_BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
 
 
     private final String message;

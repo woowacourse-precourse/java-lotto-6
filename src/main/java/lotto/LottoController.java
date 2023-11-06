@@ -103,7 +103,7 @@ public class LottoController {
 
     private void hasSameNumberBetweenWinningAndBonusNumber(List<Integer> winingNumber, int bonusNumber) {
         if (winingNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_BOUS_NUMBER_DUPLICATE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.ERROR_BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
 

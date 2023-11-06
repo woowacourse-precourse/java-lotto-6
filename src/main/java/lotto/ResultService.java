@@ -24,9 +24,13 @@ public class ResultService {
 
     public static void printResultsOfLottoIssuance(List<Lotto> resultOfLottoIssuance) {
         for (Lotto result : resultOfLottoIssuance) {
-            List<Integer> sortResult = result.sortNumbers(result);
-            System.out.println(sortResult);
+            printSortResult(result);
         }
+    }
+
+    private static void printSortResult(Lotto result) {
+        List<Integer> sortResult = result.sortNumbers(result);
+        System.out.println(sortResult);
     }
 
 

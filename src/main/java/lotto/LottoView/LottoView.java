@@ -11,10 +11,10 @@ public class LottoView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public void showTickets(int countLotto, List<Integer> lottos){
+    public void showLottos(int countLotto, List<List<Integer>> lottos){
         System.out.println();
         System.out.println(countLotto);
-        for(int lotto : lottos){
+        for(List<Integer> lotto : lottos){
             System.out.println(lotto);
         }
     }

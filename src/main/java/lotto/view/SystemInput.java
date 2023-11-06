@@ -1,8 +1,21 @@
 package lotto.view;
 
-public class SystemInput {
+import camp.nextstep.edu.missionutils.Console;
 
-    // 금액을 입력받는다
-    // 유저가 뽑은 로또 수를 입력받는다
-    // 유저가 보너스 번호를 입력받는다
+public class SystemInput {
+    public static String readMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    public static String readWinningLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    public static String readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
 }

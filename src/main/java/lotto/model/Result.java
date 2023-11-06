@@ -20,7 +20,10 @@ public class Result {
         return result;
     }
 
-    public double getRate() {
+    public double getRate(PurchaseAmount purchaseAmount) {
+        int total = calculateTotalAmount();
+
+        rate = (double) purchaseAmount.getAmount() / total * 100;
         return rate;
     }
 
@@ -31,6 +34,13 @@ public class Result {
         }
 
         increaseCount(Matching.of(String.valueOf(count)));
+    }
+
+    private int calculateTotalAmount() {
+        return result.entrySet().stream()
+                .map(entry -> entry.getKey().getMoney() * entry.getValue())
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     private void increaseCount(Matching matching) {

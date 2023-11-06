@@ -3,6 +3,9 @@ package lotto.domain.lotto;
 import static lotto.domain.lotto.LottoConstants.LOTTO_SIZE;
 import static lotto.domain.lotto.LottoConstants.MAX_LOTTO_NUMBER;
 import static lotto.domain.lotto.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.util.ErrorMessage.DUPLICATED_INPUT;
+import static lotto.util.ErrorMessage.INVALID_RANGE;
+import static lotto.util.ErrorMessage.INVALID_SIZE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -27,14 +30,14 @@ public class Lotto {
     // TODO: 추가 기능 구현
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_SIZE.getMessage());
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         Set<Integer> tmp = new HashSet<>(numbers);
         if (tmp.size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATED_INPUT.getMessage());
         }
     }
 
@@ -42,7 +45,7 @@ public class Lotto {
         Stream<Integer> filtered = numbers.stream()
                 .filter(i -> i < MIN_LOTTO_NUMBER.getValue() || i > MAX_LOTTO_NUMBER.getValue());
         if (filtered.findAny().isPresent()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_RANGE.getMessage());
         }
     }
 

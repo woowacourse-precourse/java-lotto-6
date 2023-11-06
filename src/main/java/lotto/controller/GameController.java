@@ -1,7 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.LottoStore;
-import lotto.domain.PurchaseCount;
 import lotto.domain.lotto.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,6 +26,19 @@ public class GameController {
 
         outputView.printPurchaseResultMessage(userPurchaseAmount);
         lottoStore.getIssuedLotto().forEach(this::printPurchaseResult);
+
+        Lotto winningTicket= getWinningTicket();
+        printPurchaseResult(winningTicket);
+    }
+
+    private Lotto getWinningTicket() {
+        try {
+            List<Integer> userInputWinningNumbers = inputView.readWinningNumbers();
+            return new Lotto(userInputWinningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningTicket();
+        }
     }
 
     private void printPurchaseResult(Lotto lotto) {

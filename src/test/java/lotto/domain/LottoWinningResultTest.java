@@ -14,11 +14,11 @@ class LottoWinningResultTest {
     @Test
     public void 수익률을_계산할_수_있다() throws Exception {
         // given
-        Map<LottoPrize, Integer> prizeCountMap = new HashMap<>();
-        prizeCountMap.put(LottoPrize.FIFTH_PRIZE, 1);
-        prizeCountMap.put(LottoPrize.FOURTH_PRIZE, 1);
+        Map<LottoPrize, Integer> prizeCounts = new HashMap<>();
+        prizeCounts.put(LottoPrize.FIFTH_PRIZE, 1);
+        prizeCounts.put(LottoPrize.FOURTH_PRIZE, 1);
 
-        LottoWinningResult lottoWinningResult = new LottoWinningResult(new LottoPurchase(5000L), prizeCountMap);
+        LottoWinningResult lottoWinningResult = new LottoWinningResult(new LottoPurchase(5000L), prizeCounts);
 
         // when
         double ratio = lottoWinningResult.calculateRewardRatio();

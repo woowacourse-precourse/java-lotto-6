@@ -14,20 +14,18 @@ public class LottoWinningNumberCreateRequest {
         String[] numbers = winningNumbers.split(NUMBER_SEPARATOR);
 
         this.numbers = new ArrayList<>();
-        for (String stringNumber : numbers) {
-            int number = validateAndParseNumber(stringNumber);
-            this.numbers.add(number);
+        for (String number : numbers) {
+            validateNumber(number);
+            this.numbers.add(Integer.parseInt(number));
         }
     }
 
-    private static int validateAndParseNumber(String stringNumber) throws IllegalArgumentException {
-        int number;
+    private static void validateNumber(String number) throws IllegalArgumentException {
         try {
-            number = Integer.parseInt(stringNumber);
+            Integer.parseInt(number);
         } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_FORMAT);
         }
-        return number;
     }
 
 

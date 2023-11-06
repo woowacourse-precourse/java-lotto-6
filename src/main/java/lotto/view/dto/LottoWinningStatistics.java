@@ -7,11 +7,11 @@ import lotto.domain.LottoWinningResult;
 public class LottoWinningStatistics {
 
     private final double rewardRatio;
-    private final Map<LottoPrize, Integer> prizeCountMap;
+    private final Map<LottoPrize, Integer> prizeCounts;
 
-    private LottoWinningStatistics(double rewardRatio, Map<LottoPrize, Integer> prizeCountMap) {
+    private LottoWinningStatistics(double rewardRatio, Map<LottoPrize, Integer> prizeCounts) {
         this.rewardRatio = rewardRatio;
-        this.prizeCountMap = prizeCountMap;
+        this.prizeCounts = prizeCounts;
     }
 
     public double getRewardRatio() {
@@ -19,12 +19,12 @@ public class LottoWinningStatistics {
     }
 
     public int getCountLottoPrize(LottoPrize lottoPrize) {
-        return prizeCountMap.getOrDefault(lottoPrize, 0);
+        return prizeCounts.getOrDefault(lottoPrize, 0);
     }
 
     public static LottoWinningStatistics from(LottoWinningResult lottoWinningResult) {
         return new LottoWinningStatistics(
                 lottoWinningResult.calculateRewardRatio(),
-                lottoWinningResult.getTable());
+                lottoWinningResult.getprizeCounts());
     }
 }

@@ -24,12 +24,12 @@ public class LottoGameService {
             List<Lotto> lottoTickets,
             LottoPurchase lottoPurchase, LottoWinningNumber lottoWinningNumber,
             LottoBonusNumber lottoBonusNumber) {
-        Map<LottoPrize, Integer> prizeCountMap = new HashMap<>();
+        Map<LottoPrize, Integer> prizeCounts = new HashMap<>();
         for (Lotto lottoTicket : lottoTickets) {
             LottoPrize lottoPrize = lottoTicket.prize(lottoWinningNumber, lottoBonusNumber);
-            prizeCountMap.put(lottoPrize, prizeCountMap.getOrDefault(lottoPrize, 0) + 1);
+            prizeCounts.put(lottoPrize, prizeCounts.getOrDefault(lottoPrize, 0) + 1);
         }
-        return new LottoWinningResult(lottoPurchase, prizeCountMap);
+        return new LottoWinningResult(lottoPurchase, prizeCounts);
     }
 
     public List<Lotto> purchaseLotto(LottoPurchase lottoPurchase) {

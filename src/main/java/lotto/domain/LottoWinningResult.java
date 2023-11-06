@@ -5,19 +5,19 @@ import java.util.Map;
 public class LottoWinningResult {
 
     private final LottoPurchase lottoPurchase;
-    private final Map<LottoPrize, Integer> prizeCountMap;
+    private final Map<LottoPrize, Integer> prizeCounts;
 
-    public LottoWinningResult(LottoPurchase lottoPurchase, Map<LottoPrize, Integer> prizeCountMap) {
+    public LottoWinningResult(LottoPurchase lottoPurchase, Map<LottoPrize, Integer> prizeCounts) {
         this.lottoPurchase = lottoPurchase;
-        this.prizeCountMap = prizeCountMap;
+        this.prizeCounts = prizeCounts;
     }
 
     private long calculateLottoWinningAmount() {
         long lottoWinningAmount = 0L;
-        for (LottoPrize lottoPrize : prizeCountMap.keySet()) {
-            int numOfWins = prizeCountMap.getOrDefault(lottoPrize, 0);
+        for (LottoPrize lottoPrize : prizeCounts.keySet()) {
+            int numOfWins = prizeCounts.getOrDefault(lottoPrize, 0);
             lottoWinningAmount += lottoPrize.getWinningAmount();
-            this.prizeCountMap.put(lottoPrize, numOfWins);
+            this.prizeCounts.put(lottoPrize, numOfWins);
         }
         return lottoWinningAmount;
     }
@@ -29,7 +29,7 @@ public class LottoWinningResult {
         return (double) lottoWinningAmount / purchaseAmount;
     }
 
-    public Map<LottoPrize, Integer> getTable() {
-        return prizeCountMap;
+    public Map<LottoPrize, Integer> getprizeCounts() {
+        return prizeCounts;
     }
 }

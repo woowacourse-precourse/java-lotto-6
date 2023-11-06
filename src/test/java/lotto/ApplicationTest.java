@@ -94,6 +94,30 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 보너스로또_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "0");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+
+    @Test
+    void 보너스로또_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+
+    @Test
+    void 보너스로또_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "?");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

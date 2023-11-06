@@ -73,7 +73,7 @@ public class Application {
     }
 
     public static void checkLottoRange(int lotto_number) {
-        if (lotto_number < 0 || lotto_number > 45) {
+        if (lotto_number < 1 || lotto_number > 45) {
             throw new IllegalArgumentException();
         }
     }

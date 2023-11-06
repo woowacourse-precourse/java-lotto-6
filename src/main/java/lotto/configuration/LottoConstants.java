@@ -1,4 +1,4 @@
-package lotto.configurations;
+package lotto.configuration;
 
 public class LottoConstants {
     public static final int MAX_LOTTO_NUM = 45;

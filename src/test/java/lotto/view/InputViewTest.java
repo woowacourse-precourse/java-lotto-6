@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
@@ -39,6 +40,13 @@ class InputViewTest {
     }
 
     @Test
+    @DisplayName("당첨 숫자를 입력한다.")
+    void getWinningNumbers() {
+        setInput("1,2,3,4,5,6");
+        assertThat(InputView.getWinningNumbers().size()).isEqualTo(6);
+    }
+
+    @Test
     @DisplayName("당첨 숫자는 정수만 입력할 수 있다.")
     void getWinningNumbersWithNotInteger() {
         setInput("1,2,3,4,5,육");
@@ -58,6 +66,14 @@ class InputViewTest {
     @DisplayName("입력은 콤마로 끝낼 수 없다.")
     void getWinningNumbersWithFinalComma() {
         setInput("1,2,3,4,5,6,");
+        assertThatThrownBy(() -> InputView.getWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("정수는 6개만 입력할 수 있다.")
+    void getWinningNumbersWithNotSixIntegers() {
+        setInput("1,2,3,4,5,6,7");
         assertThatThrownBy(() -> InputView.getWinningNumbers())
                 .isInstanceOf(IllegalArgumentException.class);
     }

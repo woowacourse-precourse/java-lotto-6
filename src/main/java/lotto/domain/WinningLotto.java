@@ -7,8 +7,13 @@ public class WinningLotto extends Lotto{
 
     public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         super(winningNumbers);
-        validateDuplicateBonusNumber(bonusNumber);
+        validate(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validate(int bonusNumber) {
+        validateDuplicateBonusNumber(bonusNumber);
+        validateSingleNumberRange(bonusNumber);
     }
 
     private void validateDuplicateBonusNumber(int bonusNumber) {

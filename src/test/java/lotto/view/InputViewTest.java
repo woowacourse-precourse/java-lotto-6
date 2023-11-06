@@ -53,7 +53,7 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("AB".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy(() -> inputView.inputMoney()).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> inputView.inputBonusNumber()).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -63,7 +63,7 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("1,2,3,4,5,6,7".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy(() -> inputView.inputMoney()).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> inputView.inputWinningNumbers()).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -73,7 +73,7 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("1,2,3,4".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy(() -> inputView.inputMoney()).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> inputView.inputWinningNumbers()).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -83,6 +83,6 @@ class InputViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("1,2,3,4,,".getBytes());
         System.setIn(byteArrayInputStream);
         // when & then
-        Assertions.assertThatThrownBy(() -> inputView.inputMoney()).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> inputView.inputWinningNumbers()).isInstanceOf(IllegalArgumentException.class);
     }
 }

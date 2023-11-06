@@ -12,14 +12,17 @@ public class WinLottoNums {
         this.winLottoNums = winLottoNums;
     }
 
-    public Boolean isSameNumOfIndex(Integer num, Integer indexOfSpecial) {
-        int valueOfIndexSpecial = winLottoNums.get(indexOfSpecial);
-        boolean isSame = Utii.isSameInt(num, valueOfIndexSpecial);
+    public Boolean isSameNumOfIndex(Integer target, Integer indexOfSpecial) {
+        int lottoNumber = winLottoNums.get(indexOfSpecial);
 
-        if (isSame) {
+        if (isSame(target, lottoNumber)) {
             return true;
         }
         return false;
+    }
+
+    private boolean isSame(Integer num, int valueOfIndexSpecial) {
+        return Utii.isSameInt(num, valueOfIndexSpecial);
     }
 
     @Override

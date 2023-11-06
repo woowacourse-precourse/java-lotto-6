@@ -18,6 +18,7 @@ public class OutputView {
 
             List<Integer> numberValues = ticket.getNumbers().stream()
                     .map(LottoNumber::getWinningNumber)
+                    .sorted()
                     .collect(Collectors.toList());
 
             System.out.println(numberValues);

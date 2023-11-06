@@ -8,10 +8,10 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         OuputView outputView = new OuputView();
-        int money = inputView.askPurchaseAmount();
+        int amount = inputView.askPurchaseAmount();
 
         Lottos lottos = new Lottos();
-        lottos.buy(money);
+        lottos.buy(amount);
         outputView.printUserLottoNumbers(lottos.getLottos());
 
     }

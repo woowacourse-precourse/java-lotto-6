@@ -7,7 +7,7 @@ public enum LottoConstant {
     OPENING_BRACKET("["),
     CLOSING_BRACKET("]");
 
-    private String lottoConstant;
+    private final String lottoConstant;
 
     LottoConstant(String lottoConstant) {
         this.lottoConstant = lottoConstant;
@@ -17,7 +17,7 @@ public enum LottoConstant {
         return lottoConstant;
     }
 
-    public String getLottoStringWithSpace() {
+    public String getWithSpace() {
         return lottoConstant + SPACE.get();
     }
 }

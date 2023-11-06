@@ -12,7 +12,7 @@ public enum PrintingMessage {
     DECIMAL_FORMAT("#,###"),
     PROFIT_MESSAGE("총 수익률은 %.1f%%입니다.");
 
-    private String message;
+    private final String message;
 
     PrintingMessage(String message) {
         this.message = message;

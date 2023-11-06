@@ -5,7 +5,6 @@ import java.util.BitSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constants.CommonLetter;
-import lotto.constants.ErrorMessages;
 import lotto.validator.impl.LottoValidator;
 
 public class Lotto {
@@ -40,5 +39,19 @@ public class Lotto {
             bitSet.set(number);
         }
         return bitSet;
+    }
+
+    public int getWinningCount(BitSet winningNumberBitSet) {
+        int winningCount = 0;
+        for (int number : numbers) {
+            if (winningNumberBitSet.get(number)) {
+                winningCount++;
+            }
+        }
+        return winningCount;
+    }
+
+    public boolean containsBonus(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getBonusNumber());
     }
 }

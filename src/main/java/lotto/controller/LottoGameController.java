@@ -2,11 +2,9 @@ package lotto.controller;
 
 import java.util.BitSet;
 import lotto.domain.BonusNumber;
-import lotto.domain.GameResult;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
-import lotto.util.comparer.impl.LottoComparer;
 import lotto.util.generator.impl.LottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,19 +15,16 @@ public class LottoGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoComparer lottoComparer;
     private final LottoGenerator lottoGenerator;
     private Lottos lottos;
     private Lotto winningNumbers;
     private BitSet winningNumbersBitSet;
     private BonusNumber bonusNumber;
-    private GameResult gameResult;
     private Money money;
 
     public LottoGameController() {
         this.inputView = new InputViewImpl();
         this.outputView = new OutputViewImpl();
-        this.lottoComparer = new LottoComparer();
         this.lottoGenerator = new LottoGenerator();
     }
 
@@ -38,6 +33,9 @@ public class LottoGameController {
         generateLotto();
         inputWinningNumbers();
         initBonusNumber();
+        calculateGameResult();
+        printGameResult();
+        printProfit();
     }
 
     void initMoney() {
@@ -70,7 +68,7 @@ public class LottoGameController {
         }
     }
 
-    private void initBonusNumber() {
+    void initBonusNumber() {
         try {
             bonusNumber = new BonusNumber(inputView.inputBonusNumber(), winningNumbersBitSet);
         }
@@ -79,4 +77,23 @@ public class LottoGameController {
             initBonusNumber();
         }
     }
+
+    void calculateGameResult() {
+        lottos.calculateGameResult(winningNumbersBitSet, bonusNumber);
+    }
+
+    void printGameResult() {
+        outputView.printGameResult(lottos);
+    }
+
+    void printProfit() {
+        outputView.printProfit(getProfit());
+    }
+
+    double getProfit() {
+        double prizeMoney = lottos.getPrizeMoney();
+        long money = this.money.getMoney();
+        return prizeMoney / money * 100;
+    }
+
 }

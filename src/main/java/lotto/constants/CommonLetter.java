@@ -3,7 +3,9 @@ package lotto.constants;
 public enum CommonLetter {
     ERROR_PREFIX("[ERROR] "),
     NEW_LINE("\n"),
-    SEPARATOR(",");
+    SEPARATOR(","),
+    HORIZONTAL_LINE("---------"),
+    HYPHEN(" - ");
 
     private final String letter;
 

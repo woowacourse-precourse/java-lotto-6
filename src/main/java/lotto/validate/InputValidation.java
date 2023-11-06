@@ -14,5 +14,10 @@ public class InputValidation {
             throw new IllegalArgumentException(ONLY_1_45_NUMBER);
         }
     }
-
+    // 1000으로 나누떨어지는지 > int로 받아야 하는지 String으로 받아야 하는지
+    public void isDividedOneThousand(int number) {
+        if (number % 1000 != 0) {
+            throw new IllegalArgumentException(ONLY_DIVIDED_THOUSAND);
+        }
+    }
 }

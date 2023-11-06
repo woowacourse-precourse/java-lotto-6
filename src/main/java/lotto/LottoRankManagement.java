@@ -13,4 +13,8 @@ public class LottoRankManagement {
             rankCounts.put(rank, 0);
         }
     }
+
+    public void add(LottoRank rank) {
+        rankCounts.put(rank, rankCounts.get(rank) + 1);
+    }
 }

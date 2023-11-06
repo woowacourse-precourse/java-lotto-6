@@ -40,10 +40,11 @@ public class Lotto {
     }
 
     public boolean isContainsNumbersWithSize(final List<LottoNumber> goalNumbers, final int size) {
-        List<LottoNumber> lottoNumbers = new ArrayList<>(numbers.stream()
-                .map(LottoNumber::withNumber)
+        List<Integer> lottoNumbers = new ArrayList<>(goalNumbers.stream()
+                .map(LottoNumber::getNumber)
                 .toList());
-        lottoNumbers.retainAll(goalNumbers);
+
+        lottoNumbers.retainAll(numbers);
 
         return lottoNumbers.size() == size;
     }

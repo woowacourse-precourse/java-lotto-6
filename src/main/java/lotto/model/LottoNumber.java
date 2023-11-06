@@ -13,12 +13,6 @@ public class LottoNumber {
         this.number = number;
     }
 
-    public static LottoNumber withNumber(final int number) {
-        LottoRule.validateNumberValue(number);
-
-        return new LottoNumber(number);
-    }
-
     public static LottoNumber from(final String numberInput) {
         int number = convertToNumber(numberInput);
         LottoRule.validateNumberValue(number);

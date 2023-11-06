@@ -22,13 +22,9 @@ public class LottoController {
 
     public void run() {
         runReadPurchaseLotto();
+        runWritePurchaseLotto();
+        runReadWinningNum();
 
-        writePurchaseLotto();
-        OutputViews.endOfSection();
-
-        while (readWinningNum()){
-        }
-        OutputViews.endOfSection();
 
         while (readBonusNum()) {
         }
@@ -60,15 +56,26 @@ public class LottoController {
         return false;
     }
 
+    public void runWritePurchaseLotto() {
+        writePurchaseLotto();
+        OutputViews.endOfSection();
+    }
+
     public void writePurchaseLotto() {
         allLotto = MakeLottos.makeLotto(purchaseNum);
         OutputViews.numOfPurchaseLotto(purchaseNum);
         OutputViews.listOfPurchaseLotto(allLotto);
     }
 
+    public void runReadWinningNum() {
+        while (readWinningNum()){
+        }
+        OutputViews.endOfSection();
+    }
+
     public boolean readWinningNum() {
         String winningNumsNotSplit = InputViews.readWinningNum();
-        List<String> winningNums = Arrays.asList(winningNumsNotSplit.replace(" ", "").split(","));
+        List<String> winningNums = ReadWinningNum.splitWinningNums(winningNumsNotSplit);
         List<Integer> winningNumsInput = new ArrayList<>();
         for (String winningNum : winningNums) {
             if (ReadWinningNum.isWinningNumTypeOfInput(winningNum)) {

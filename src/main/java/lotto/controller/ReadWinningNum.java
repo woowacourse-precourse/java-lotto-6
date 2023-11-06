@@ -4,9 +4,14 @@ import lotto.domain.InputWinningNum;
 import lotto.domain.Lotto;
 import lotto.views.Exceptions;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ReadWinningNum {
+    public static List<String> splitWinningNums(String winningNumsNotSplit) {
+        return Arrays.asList(winningNumsNotSplit.replace(" ", "").split(","));
+    }
+
     public static boolean isWinningNumTypeOfInput(String winningNum) {
         try {
             InputWinningNum.inputWinningNumNotInt(winningNum);

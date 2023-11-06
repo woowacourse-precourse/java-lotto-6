@@ -28,10 +28,12 @@ public class Lotto {
         }
     }
 
-    public boolean isMatch(List<Integer> targetNumbers) {
+    public int countMatch(List<Integer> targetNumbers) {
+        int countNumberMatching = 0;
         for (int i = 0; i < numbers.size(); i++) {
-            if (targetNumbers.get(i) != numbers.get(i)) return false;
+            if (targetNumbers.get(i) == numbers.get(i))
+                countNumberMatching++;
         }
-        return true;
+        return countNumberMatching;
     }
 }

@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public enum Exceptions {
+public enum ExceptionMessages {
 
     MESSAGE_PREFIX("[ERROR] "),
     NONE_INPUT("값을 입력하세요."),
@@ -13,7 +13,7 @@ public enum Exceptions {
 
     private final String message;
 
-    Exceptions(String message) {
+    ExceptionMessages(String message) {
         this.message = message;
     }
 

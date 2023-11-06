@@ -10,7 +10,6 @@ import static lotto.constant.LottoConstant.LOTTO_LENGTH;
 
 
 public class UniqueRandomNumbersGenerator implements NumberGenerator {
-
     @Override
     public List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(RANGE_START_NUMBER.getSetting(),

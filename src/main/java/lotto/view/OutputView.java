@@ -6,11 +6,13 @@ import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.util.PatternUnits.PATTERN_FOR_DECIMAL_FORMAT;
+
 public class OutputView {
 
     private final DecimalFormat formatter;
     public OutputView() {
-        formatter = new DecimalFormat("###,###");
+        formatter = new DecimalFormat(PATTERN_FOR_DECIMAL_FORMAT.getPattern());
     }
 
     public void printPurchasedLottos(Lottos lottos) {

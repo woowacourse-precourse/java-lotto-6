@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.exception.InputViewExceptionMessage.WRONG_NUMBER_FORMAT;
 import static lotto.util.CharacterUnits.COMMA;
 import static lotto.util.CharacterUnits.SEPARATOR;
 
@@ -26,7 +27,7 @@ public class Parser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalStateException("[ERROR] 잘못된 숫자 형식입니다.");
+            throw new IllegalStateException(WRONG_NUMBER_FORMAT.getMessage());
         }
     }
 

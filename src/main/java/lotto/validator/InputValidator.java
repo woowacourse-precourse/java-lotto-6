@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static lotto.util.CharacterUnits.COMMA;
-import static lotto.util.CharacterUnits.PATTERN;
+import static lotto.exception.InputViewExceptionMessage.*;
+import static lotto.util.CharacterUnits.*;
+import static lotto.util.PatternUnits.PATTERN_FOR_FINDING_SPECIAL_SIGN;
 
 public class InputValidator {
 
-    private static final Pattern pattern = Pattern.compile(PATTERN.getUnit());
+    private static final Pattern pattern = Pattern.compile(PATTERN_FOR_FINDING_SPECIAL_SIGN.getPattern());
 
     public static void validateNumber(String input) {
         for (char token : input.toCharArray()) {
@@ -20,13 +21,13 @@ public class InputValidator {
 
     private static void isNumberToken(Character token) {
         if (!(Character.isDigit(token))) {
-            throw new IllegalArgumentException("[ERROR] 입력값에 숫자가 아닌 값이 포함되어 있습니다.");
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
     }
 
     public static void validateBlank(String input) {
         if (input.isBlank() || input == null) {
-            throw new IllegalStateException("[ERROR] 입력값을 입력하지 않았습니다.");
+            throw new IllegalStateException(NO_LINE_FOUND.getMessage());
         }
 
     }
@@ -51,7 +52,7 @@ public class InputValidator {
     private static void isSpecialSignToken(String number) {
         if (pattern.matcher(number)
                 .find()) {
-            throw new IllegalArgumentException("[ERROR] 입력값에 구분자인,(쉼표) 이 외의 특수문자를 허용하지 않습니다.");
+            throw new IllegalArgumentException(FOUND_SPECIAL_SIGN.getMessage());
         }
 
     }

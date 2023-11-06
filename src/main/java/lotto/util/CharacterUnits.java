@@ -5,7 +5,6 @@ public enum CharacterUnits {
     SPACE(" "),
     LEFT_BRACKET("["),
     RIGHT_BRACKET("]"),
-    PATTERN("[ !@#$%^&*().?\":{}|<>]"),
     SEPARATOR(",");
 
 

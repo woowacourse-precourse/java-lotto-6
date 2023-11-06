@@ -13,5 +13,6 @@ public class Application {
         LottoController lottoController = new LottoController(inputStream, outputStream);
 
         lottoController.inputMoney();
+        lottoController.buyLottos();
     }
 }

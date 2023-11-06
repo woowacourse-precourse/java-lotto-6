@@ -1,10 +1,11 @@
 package lotto.util;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.Value;
 
 public class Validator {
-    private static final int THOUSAND = 1000;
-    private static final int ZERO = 0;
+    private static final int THOUSAND = Value.THOUSAND.get();
+    private static final int ZERO = Value.ZERO.get();
 
     public static void checkPositive(int number) throws IllegalArgumentException {
         if (number < 0) {

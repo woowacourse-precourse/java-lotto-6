@@ -15,6 +15,14 @@ public class OutputView {
         outputStream.print(Message.INPUT_MONEY.get());
     }
 
+    public void printBuyMessage(int buyCount) {
+        outputStream.print(buyCount + Message.BUY_MESSAGE_WITH_COUNT.get());
+    }
+
+    public void printEmptyLine() {
+        outputStream.print();
+    }
+
     public void print(String message) {
         outputStream.print(message);
     }

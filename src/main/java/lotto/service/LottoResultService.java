@@ -2,27 +2,18 @@ package lotto.service;
 
 import java.util.EnumMap;
 import java.util.List;
-import lotto.Money;
 import lotto.Rank;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
 
-public class LottoService {
+public class LottoResultService {
 
     private final WinningNumbers winningNumbers;
-    private final LottoMachine lottoMachine;
     private final RankCounter rankCounter;
-    private int input;
 
-    public LottoService(WinningNumbers winningNumbers, LottoMachine lottoMachine, RankCounter rankCounter) {
+    public LottoResultService(WinningNumbers winningNumbers, RankCounter rankCounter) {
         this.winningNumbers = winningNumbers;
-        this.lottoMachine = lottoMachine;
         this.rankCounter = rankCounter;
-    }
-
-    public List<Lotto> getLottosWith(Money money) {
-        input = money.amount();
-        return lottoMachine.makeLottosWith(money);
     }
 
     public EnumMap<Rank, Integer> rank(List<Lotto> lottos) {
@@ -32,7 +23,7 @@ public class LottoService {
         return rankCounter.getCountResult();
     }
 
-    public double getRateOfReturn(EnumMap<Rank, Integer> countResult) {
+    public double getRateOfReturn(int input, EnumMap<Rank, Integer> countResult) {
         double output = getTotal(countResult);
         return output / input;
     }

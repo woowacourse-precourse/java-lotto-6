@@ -1,10 +1,8 @@
-package lotto.service;
+package lotto.domain;
 
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.Money;
-import lotto.domain.RandomLottoGenerator;
-import lotto.domain.Lotto;
 
 public class LottoMachine {
     public List<Lotto> makeLottosWith(Money money) {

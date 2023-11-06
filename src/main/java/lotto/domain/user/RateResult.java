@@ -4,7 +4,7 @@ import lotto.utill.Utii;
 
 public class RateResult {
     public Double calculateRate(Integer useMoney, Integer totalWinMoney) {
-        double rate = ((double) totalWinMoney / useMoney) * 100;
+        Double rate = ((double) totalWinMoney / useMoney) * 100;
 
         if (Utii.isSameInt(useMoney, 0)) {
             return 0.0;
@@ -15,7 +15,7 @@ public class RateResult {
 
     public StringBuilder showRate(Integer useMoney, Integer totalWinMoney) {
         StringBuilder result = new StringBuilder();
-        double rate = calculateRate(useMoney, totalWinMoney);
+        Double rate = calculateRate(useMoney, totalWinMoney);
 
         // TODO: 11/6/23 상수 정리 
         result.append("총 수익률은 " + rate + "%입니다.");

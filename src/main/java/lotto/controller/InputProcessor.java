@@ -20,6 +20,7 @@ public class InputProcessor {
   public static List<String> splitWinningNumbers(String input) {
     String[] numberStrings = input.split(",");
     List<String> WinningNumbers = Arrays.asList(numberStrings);
+    LottoWinningNumbersValidator.isNoDuplicateLottoNumbers(WinningNumbers);
     LottoWinningNumbersValidator.isLottoNumbersLengthValid(WinningNumbers);
     InputLottoWinningNumbersValidator.isEmptyString(WinningNumbers);
     LottoWinningNumberValidator.isAllIntegersValid(WinningNumbers);

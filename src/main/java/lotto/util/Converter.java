@@ -11,8 +11,8 @@ public class Converter {
     private Converter() {
     }
 
-    public static List<Integer> convertToLottoNumbers(final String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(DELIMITER))
+    public static List<Integer> convertStringToIntegerListByDelimiter(final String input) {
+        return Arrays.stream(input.split(DELIMITER))
                 .map(number -> getLottoNumber(number.trim()))
                 .toList();
     }

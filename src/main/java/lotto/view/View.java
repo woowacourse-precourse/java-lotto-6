@@ -40,7 +40,7 @@ public class View {
             try {
                 String numbers = inputView.inputWinningNumbers();
                 InputValidator.validateWinningNumbers(numbers);
-                List<Integer> winningNumbers = Converter.convertToLottoNumbers(numbers);
+                List<Integer> winningNumbers = Converter.convertStringToIntegerListByDelimiter(numbers);
                 return Lotto.createWinningLotto(winningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());

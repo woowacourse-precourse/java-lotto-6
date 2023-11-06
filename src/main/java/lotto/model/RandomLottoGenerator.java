@@ -6,7 +6,6 @@ import static lotto.model.LottoAttribute.MIN_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class RandomLottoGenerator implements LottoGenerator {
 
@@ -16,14 +15,10 @@ public class RandomLottoGenerator implements LottoGenerator {
     }
 
     private List<Integer> pickRandomNumbers() {
-        return Stream.generate(this::pickRandomNumber)
-                .distinct()
-                .limit(LOTTO_TICKET_SIZE)
-                .sorted()
-                .toList();
-    }
-
-    private int pickRandomNumber() {
-        return Randoms.pickNumberInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+        return Randoms.pickUniqueNumbersInRange(
+                MIN_LOTTO_NUMBER,
+                MAX_LOTTO_NUMBER,
+                LOTTO_TICKET_SIZE
+        );
     }
 }

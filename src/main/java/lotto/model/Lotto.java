@@ -37,6 +37,7 @@ public class Lotto {
 
     private List<LottoNumber> mapNumbers(final List<Integer> numbers) {
         return numbers.stream()
+                .sorted()
                 .map(LottoNumber::of)
                 .toList();
     }

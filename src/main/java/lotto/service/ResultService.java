@@ -14,7 +14,7 @@ public class ResultService {
 
         // 로또추적기: 산 로또의 번호가 당첨 번호와 몇개 맞는 지 판단하고 그에 따른 등수 매김
         lotteryTracker.matching(buyLottos,winningLotto);
-        lotteryTracker.printResult();
+        lotteryTracker.printResultByRank();
     }
 
     //총 수익률을 계산

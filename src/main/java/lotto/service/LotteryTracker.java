@@ -1,10 +1,10 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
-import lotto.repository.rank.AmountsPerRank;
+import lotto.repository.rank.PrizesPerRank;
 import lotto.repository.BuyLottoRepository;
 import lotto.repository.rank.LottoNumbersPerRank;
-import lotto.repository.rank.PrizesPerRank;
+import lotto.repository.rank.PrintsPerRank;
 import lotto.repository.WinningLottoRepository;
 import lotto.view.View;
 
@@ -14,14 +14,10 @@ public class LotteryTracker {
     }
 
     public static LotteryTracker create(){
+        PrintsPerRank.create();
         PrizesPerRank.create();
-        AmountsPerRank.create();
         LottoNumbersPerRank.create();
         return new LotteryTracker();
-    }
-
-    public int countLottoIn(int rank){
-        return LottoNumbersPerRank.getNumberBy(rank);
     }
 
     public void matching(BuyLottoRepository buyLottos, WinningLottoRepository winningLotto) {
@@ -33,24 +29,34 @@ public class LotteryTracker {
             increaseNumberPerRank(correctNum,buyLotto,bonusNum);
         }
     }
+
     public void increaseNumberPerRank(int cnt, Lotto buyLotto, int bonusNum){
         int rank = buyLotto.findRank(cnt, bonusNum);
         LottoNumbersPerRank.plus(rank);
     }
-
-    public void printResult() {
+    public void printResultByRank() {
         //등수별 결과 출력
         for(int rank=5; rank>0;rank--){
-            String prize = PrizesPerRank.getPrizeBy(rank);
-            View.result(prize, countLottoIn(rank));
+            String prize = printBy(rank);
+            View.result(prize, numberBy(rank));
         }
     }
 
     public double calculateTotalRevenue() {
         int totalRevenue =0;
         for(int rank=5; rank>0;rank--){
-            totalRevenue += LottoNumbersPerRank.getNumberBy(rank) * AmountsPerRank.getAmountBy(rank);
+            totalRevenue += numberBy(rank) * prizeBy(rank);
         }
         return totalRevenue;
+    }
+
+    public int numberBy(int rank){
+        return LottoNumbersPerRank.getNumberBy(rank);
+    }
+    public String printBy(int rank){
+        return PrintsPerRank.getPrintBy(rank);
+    }
+    public int prizeBy(int rank){
+        return PrizesPerRank.getPrizeBy(rank);
     }
 }

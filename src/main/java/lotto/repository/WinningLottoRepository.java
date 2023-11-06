@@ -26,11 +26,11 @@ public class WinningLottoRepository {
         }
     }
 
-    public int getBonusNumber() {
-        return bonusNumber.getNumber();
-    }
-
     public int countMatchingNumber(Lotto buyLotto) {
         return lotto.matching(buyLotto);
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber.getNumber();
     }
 }

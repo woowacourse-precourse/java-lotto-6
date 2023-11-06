@@ -14,11 +14,11 @@ public class LottoNumbersPerRank {
         }
     }
 
-    public static Integer getNumberBy(int rank){
-        return lottoPerRank.get(rank);
-    }
-
     public static void plus(int rank) {
         lottoPerRank.merge(rank, 1, Integer::sum);
+    }
+
+    public static Integer getNumberBy(int rank){
+        return lottoPerRank.get(rank);
     }
 }

@@ -1,24 +1,26 @@
 package lotto.repository.rank;
 
-import static lotto.settings.WinningSettings.FIFTH_PLACE;
-import static lotto.settings.WinningSettings.FIRST_PLACE;
-import static lotto.settings.WinningSettings.FOURTH_PLACE;
-import static lotto.settings.WinningSettings.SECOND_PLACE;
-import static lotto.settings.WinningSettings.THIRD_PLACE;
+import static lotto.settings.WinningAmount.FIFTH;
+import static lotto.settings.WinningAmount.FIRST;
+import static lotto.settings.WinningAmount.FOURTH;
+import static lotto.settings.WinningAmount.SECOND;
+import static lotto.settings.WinningAmount.THIRD;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class PrizesPerRank {
-    private static final Map<Integer, String> prizePerRank = new HashMap<>();
+    private static final Map<Integer, Integer> prizePerRank = new HashMap<>();
+
     public static void create(){
-        prizePerRank.put(5,FIFTH_PLACE.getResult());
-        prizePerRank.put(4,FOURTH_PLACE.getResult());
-        prizePerRank.put(3,THIRD_PLACE.getResult());
-        prizePerRank.put(2,SECOND_PLACE.getResult());
-        prizePerRank.put(1,FIRST_PLACE.getResult());
+        prizePerRank.put(5,FIFTH.getIntPrize());
+        prizePerRank.put(4,FOURTH.getIntPrize());
+        prizePerRank.put(3,THIRD.getIntPrize());
+        prizePerRank.put(2,SECOND.getIntPrize());
+        prizePerRank.put(1,FIRST.getIntPrize());
     }
-    public static String getPrizeBy(int rank){
+
+    public static Integer getPrizeBy(int rank){
         return prizePerRank.get(rank);
     }
 }

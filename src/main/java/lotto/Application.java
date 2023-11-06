@@ -17,10 +17,8 @@ public class Application {
         OutputView outputView = new OutputView();
 
         // 로또 구매
-        String amount = inputView.inputPurchaseAmount();
-        Purchase purchase = lottoController.purcahseLottos(amount);
+        Purchase purchase = purchaseLottsProcess(lottoController, inputView, outputView);
         int purchaseCount = purchase.getPurchaseCount();
-        outputView.printPurchaseCount(purchaseCount);
 
         // 로또 발급
         List<Lotto> lottos = lottoController.generateLottoTicket(purchaseCount);
@@ -39,5 +37,23 @@ public class Application {
         // 발행된 로또들의 수익률 계산
         Double rate = lottoController.calculateProfitRate(result);
         outputView.printProfitRate(rate);
+    }
+
+    private static Purchase purchaseLottsProcess(LottoController lottoController, InputView inputView, OutputView outputView) {
+        Purchase purchase = null;
+        boolean isValidateInput = false;
+
+        while (!isValidateInput){
+            try {
+                String amount = inputView.inputPurchaseAmount();
+                purchase = lottoController.purcahseLottos(amount);
+                outputView.printPurchaseCount(purchase.getPurchaseCount());
+                isValidateInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return purchase;
     }
 }

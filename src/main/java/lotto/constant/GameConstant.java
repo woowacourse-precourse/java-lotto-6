@@ -13,4 +13,5 @@ public class GameConstant {
     public static final int THIRD_REWARD = 1500000;
     public static final int FOURTH_REWARD = 50000;
     public static final int FIFTH_REWARD = 5000;
+    public static final double PROFIT_DECIMAL_POINT = 100.0;
 }

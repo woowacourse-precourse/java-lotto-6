@@ -5,6 +5,7 @@ import lotto.constant.GameConstant;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
+import lotto.dto.GameResultResponse;
 import lotto.dto.LottosResponse;
 import lotto.util.Validator;
 import lotto.view.InputView;
@@ -21,7 +22,7 @@ public class GameController {
         Lottos lottos = buy(payment);
         List<Integer> numbers = getLuckyNumbers();
         int bonusNumber = getBonusNumber(numbers);
-        lottos.match(numbers, bonusNumber);
+        GameResultResponse response = lottos.match(numbers, bonusNumber, payment);
     }
 
     private Lottos buy(int payment) {

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
+import lotto.domain.Lotto;
 import lotto.view.View;
 import lotto.view.constant.Message;
 
@@ -18,6 +19,11 @@ public class Controller {
 
         int count = buyer.getBuyCount();
         view.output(String.format(OUTPUT_BUY, count));
+
+        List<Lotto> lottos = generateLottos(count);
+        for (Lotto lotto : lottos) {
+            view.output(lotto.toString());
+        }
     }
 
     private Buyer getCost() {
@@ -29,4 +35,14 @@ public class Controller {
             return getCost();
         }
     }
+
+    private List<Lotto> generateLottos(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = new Lotto(Lotto.generateLotto());
+            lottos.add(lotto);
+        }
+        return lottos;
+    }
+
 }

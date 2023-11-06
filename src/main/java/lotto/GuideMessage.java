@@ -11,7 +11,7 @@ public class GuideMessage{
 
     private static final String UNIT_EQUAL = "개 일치";
     private static final String UNIT = "개";
-    private static final String GROSS_RETURN = "총 수익률은 %.1f%% 입니다.\n";
+    private static final String GROSS_RETURN = "총 수익률은 %.1f%%입니다.\n";
     private static final String WINNING_STATISTICS = "당첨 통계";
     private static final String BLANK = " ";
     private static final String WON = "원";
@@ -46,13 +46,13 @@ public class GuideMessage{
         String commaSplitNumbers = "";
         commaSplitNumbers += lotto.getNumber(FIRST_LOTTO_INDEX);
         for (int index = 1; index < lotto.getSize() ; index++) {
-            commaSplitNumbers += COMMA+lotto.getNumber(index);
+            commaSplitNumbers += COMMA+BLANK+lotto.getNumber(index);
         }
         return commaSplitNumbers;
     }
 
     public static void ofInputWinningNumber(){
-        System.out.println(GUIDE_MSG_INPUT_WINNING_NUMBER);
+        System.out.println(LINE_BREAK+GUIDE_MSG_INPUT_WINNING_NUMBER);
     }
 
     public static void ofInputBounsNumber(){
@@ -79,7 +79,7 @@ public class GuideMessage{
     }
 
     private static void printFiveMatchBonusResult(Rank rank, Integer numberOfWinner){
-        System.out.println(rank.getNumberOfMatch()+UNIT_EQUAL+COMMA+BONUS_BALL_EQUAL+BLANK+LEFT_PARENTHESES
+        System.out.println(rank.getNumberOfMatch()+UNIT_EQUAL+COMMA+BLANK+BONUS_BALL_EQUAL+BLANK+LEFT_PARENTHESES
                 +rank.getPrizeMoney()+WON+RIGHT_PARENTHESES+BLANK+DASH+BLANK+numberOfWinner+UNIT);
         return;
     }

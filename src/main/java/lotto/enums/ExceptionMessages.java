@@ -19,7 +19,6 @@ public enum ExceptionMessages {
     private static final String ERROR_TAG = "[ERROR] ";
     private final String message;
 
-
     ExceptionMessages(String message){
         this.message = ERROR_TAG + message;
     }

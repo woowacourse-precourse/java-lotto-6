@@ -19,6 +19,5 @@ public class BuyPriceController {
             System.out.println("[ERROR]:1000원 단위로 구매하세요");
             setBuyPrice();
         }
-
     }
 }

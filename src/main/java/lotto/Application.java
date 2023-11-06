@@ -1,7 +1,15 @@
 package lotto;
 
+import lotto.common.Validator;
+import lotto.engine.LottoGame;
+import lotto.view.LottoGameViewer;
+import lotto.view.LottoGameViewerMapper;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoGameViewerMapper lottoGameViewerMapper = new LottoGameViewerMapper();
+        LottoGameViewer lottoGameViewer = new LottoGameViewer(lottoGameViewerMapper);
+        LottoGame lottoGame = new LottoGame(lottoGameViewer);
+        lottoGame.start();
     }
 }

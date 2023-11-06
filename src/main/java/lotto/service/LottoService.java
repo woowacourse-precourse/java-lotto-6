@@ -63,7 +63,7 @@ public class LottoService {
         }
     }
 
-    private static void matchLottoTicket(WinningNumbers winningNumbers, Lotto userLottoNumbers) {
+    public static void matchLottoTicket(WinningNumbers winningNumbers, Lotto userLottoNumbers) {
         boolean hasBonusNumber = false;
         int matchCount = 0;
         int bonusNumber = winningNumbers.bonusNumber();

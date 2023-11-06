@@ -24,7 +24,7 @@ public class Game {
         try {
             return Input.getPurchasePrice();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            Output.printErrorMessage(e.getMessage());
             return getUserPurchasePrice();
         }
     }
@@ -35,7 +35,7 @@ public class Game {
             final int bonusBall = Input.getBonusNumber();
             return new Result(winningLotto, bonusBall);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            Output.printErrorMessage(e.getMessage());
             return makeLottoResult();
         }
     }
@@ -45,7 +45,7 @@ public class Game {
             final List<Integer> userLottoNumber = Input.getUserNumbers();
             return new Lotto(userLottoNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            Output.printErrorMessage(e.getMessage());
             return getUserLotto();
         }
     }

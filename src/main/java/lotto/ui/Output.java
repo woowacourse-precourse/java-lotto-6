@@ -21,6 +21,7 @@ public class Output {
     private static final String LOTTO_RESULT_SECOND_PRIZE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
     private static final String LOTTO_RESULT_FIRST_PRIZE = "6개 일치 (2,000,000,000원) - %d개";
     private static final int DEFAULT_SCORE = 0;
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public static void printPurchaseCount(int count) {
         System.out.println(NEXT_LINE + count + PURCHASE_COUNT_COMMAND);
@@ -62,4 +63,7 @@ public class Output {
                 String.format(LOTTO_RESULT_FIRST_PRIZE, lottoRank.getOrDefault(LottoRank.FIRST_PRIZE, DEFAULT_SCORE)));
     }
 
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(ERROR_PREFIX + errorMessage);
+    }
 }

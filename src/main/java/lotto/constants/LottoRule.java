@@ -31,8 +31,14 @@ public enum LottoRule {
         }
     }
 
-    public static void validateInvestMoney(final int number) {
-        if (number % LOTTO_COST.getValue() != LOTTO_COST_REMAIN_VALUE.getValue()) {
+    public static void validateInvestMoneyMinValue(final int money) {
+        if (money < LottoRule.LOTTO_COST.getValue()) {
+            throw new IllegalArgumentException(MONEY_REMAIN_EXCEPTION.getMessage());
+        }
+    }
+
+    public static void validateInvestMoneyDivide(final int money) {
+        if (money % LOTTO_COST.getValue() != LOTTO_COST_REMAIN_VALUE.getValue()) {
             throw new IllegalArgumentException(MONEY_REMAIN_EXCEPTION.getMessage());
         }
     }

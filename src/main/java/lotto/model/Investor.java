@@ -15,7 +15,7 @@ public class Investor {
     public static Investor createDefault(final String investMoneyInput) {
         Money investMoney = Money.from(investMoneyInput);
         Money profitMoney = Money.createDefault();
-        LottoRule.validateInvestMoney(investMoney.getMoney());
+        LottoRule.validateInvestMoneyDivide(investMoney.getMoney());
 
         return new Investor(investMoney, profitMoney);
     }

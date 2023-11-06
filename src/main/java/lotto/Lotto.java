@@ -38,4 +38,21 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public PrizeTier checkPrize(List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = 0;
+        boolean bonusMatch = false;
+
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+
+        if (numbers.contains(bonusNumber)) {
+            bonusMatch = true;
+        }
+
+        return PrizeTier.getPrizeTier(matchCount, bonusMatch);
+    }
 }

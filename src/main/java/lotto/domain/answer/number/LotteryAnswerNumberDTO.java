@@ -1,4 +1,4 @@
 package lotto.domain.answer.number;
 
-public class LotteryAnswerNumberDTO {
+public record LotteryAnswerNumberDTO() {
 }

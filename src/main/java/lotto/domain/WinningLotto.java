@@ -43,4 +43,8 @@ public class WinningLotto {
         return bonusNumber;
     }
 
+    public boolean isContain(int number) {
+        return winningLotto.isContain(number);
+    }
+
 }

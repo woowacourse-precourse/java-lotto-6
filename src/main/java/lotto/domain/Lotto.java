@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -44,6 +45,26 @@ public class Lotto {
         if(nonDuplicateNumbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
+    public int getMatchLottoNumber(WinningLotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::isContain)
+                .count();
+    }
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 
 }

@@ -22,7 +22,7 @@ public enum Prize {
     FIRST(2_000_000_000
             , 6
             , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 6);
-    
+
     private final int money;
     private final int matchLottoNumber;
     private final BiPredicate<Integer, Boolean> isMatch;

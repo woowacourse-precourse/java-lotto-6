@@ -8,7 +8,8 @@ public class InputView {
   public static int inputMoney() {
     OutputView.printInputMoneyMessage();
     String money = Console.readLine();
-    PurchaseAmountValidator.validateAllIntegers(money);
+    PurchaseAmountValidator.isAllIntegersValid(money);
+    PurchaseAmountValidator.isAmountGreaterThanOrEqualTo1000(money);
     return Integer.parseInt(money);
   }
 

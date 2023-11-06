@@ -7,10 +7,10 @@ import java.util.List;
 
 public class LottoDB {
 
+
     // instance
     private final ArrayList<Integer> userLottoNumbers;
     private final ArrayList<Integer> winningCount;
-    private final ArrayList<Long> winningPrice;
     private int lottoGameCount;
     private int lottoBonusNumber;
     private long lottoTotalPrice;
@@ -19,7 +19,6 @@ public class LottoDB {
     public LottoDB() {
         userLottoNumbers = new ArrayList<>();
         winningCount = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
-        winningPrice = new ArrayList<>(Arrays.asList(2000000000L, 30000000L, 1500000L, 50000L, 5000L));
         lottoGameCount = 0;
         lottoBonusNumber = 0;
         lottoTotalPrice = 0;
@@ -32,10 +31,6 @@ public class LottoDB {
 
     public int getLottoBonusNumber() {
         return lottoBonusNumber;
-    }
-
-    public long getGradeWinningPrice(int index) {
-        return winningPrice.get(index);
     }
 
     public int getNumberOfWinning(int index) {

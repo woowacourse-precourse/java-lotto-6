@@ -107,7 +107,7 @@ public class LottoController {
     public void calculateWinningPrice() {
         long totalPrice = 0;
         for (int index = 0; index < 5; index++) {
-            long price = lottoDB.getGradeWinningPrice(index);
+            long price = Prize.getPrizeAmountByNumber(index);
             int winning = lottoDB.getNumberOfWinning(index);
             totalPrice += price * winning;
         }

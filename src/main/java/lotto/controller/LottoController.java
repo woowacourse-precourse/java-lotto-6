@@ -1,12 +1,16 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Money;
+import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+
+import static lotto.util.Parser.stringToList;
 
 public class LottoController {
 
@@ -19,7 +23,7 @@ public class LottoController {
         int count = money.getCount();
         List<Lotto> lottos = lottoGenerator.generateLottos(count);
         printBuyResult(lottos, count);
-        inputView.requestWinningNumbers();
+        new WinningNumbers(new Lotto(stringToList(Console.readLine())));
     }
 
     private Money askMoney() {

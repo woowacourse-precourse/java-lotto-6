@@ -17,8 +17,9 @@ public class LottoController {
     }
 
     public void run() {
-        List<Lotto> lottos = buyLottos(receiveMoney());
-        aggregateResult(lottos);
+        Money money = receiveMoney();
+        List<Lotto> lottos = buyLottos(money);
+        aggregateResult(lottos, money);
     }
 
     private List<Lotto> buyLottos(Money money) {
@@ -57,10 +58,15 @@ public class LottoController {
         }
     }
 
-    private void aggregateResult(List<Lotto> lottos) {
+    private void aggregateResult(List<Lotto> lottos, Money money) {
         WinningLotto winningLotto = receiveWinningLotto();
         BonusNumber bonusNumber = receiveBonusNumber();
         RankingResults results = RankingResults.of(lottos, winningLotto, bonusNumber);
+        showStatistics(money, results);
+    }
+
+    private void showStatistics(Money money, RankingResults results) {
         Statistics statistics = new Statistics(results.getRankings());
+        OutputView.showStatists(statistics, money);
     }
 }

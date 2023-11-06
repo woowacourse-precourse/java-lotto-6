@@ -29,6 +29,15 @@ public class ProfitCalculator {
         }};
     }
 
+    public String calculateRateOfReturn(int amount) {
+        double rateOfReturn = (totalPrizeMoney / (double) amount) * 100;
+        return String.format("총 수익률은 %.1f%%입니다.", rateOfReturn);
+    }
+
+    public HashMap<WinningHistory, Integer> getWinningHistory(){
+        return winningHistory;
+    }
+
     public void calculateProfit(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber){
         for(Lotto lotto : lottos){
             calculate(getMatchNumbers(lotto, winningNumbers), isMatchBonusNumber(lotto, bonusNumber));

@@ -4,6 +4,7 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -73,5 +74,8 @@ public class LottoController {
     private void printWinngingStatics(){
         ProfitCalculator profitCalculator = new ProfitCalculator();
         profitCalculator.calculateProfit(lotto, winningNumbers, bonusNumber.getBonusNumber());
+        HashMap<WinningHistory, Integer> winningHistories = profitCalculator.getWinningHistory();
+        String rateOfReturn = profitCalculator.calculateRateOfReturn(amount);
+        
     }
 }

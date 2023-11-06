@@ -21,6 +21,7 @@ public class Application {
             }
         }
         count = lottoUtil.getCount(payment);
+        lottoView.printLottoTicketCount(count);
 
 
 

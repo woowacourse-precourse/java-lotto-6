@@ -57,4 +57,14 @@ public class Grader {
     return rank;
   }
 
+  public double calculateEarningRatio(Integer inputMoney, List<Integer> winningDetails) {
+    double earnMoney = winningDetails.get(5) * 5000 + winningDetails.get(4) * 50000 + winningDetails.get(3) * 1500000
+            + winningDetails.get(2) * 30000000 + winningDetails.get(1) * 2000000000;
+    double earningRatio = (earnMoney / inputMoney) * 100.0;
+    earningRatio = Math.round(earningRatio * 10.0) / 10.0;
+    return earningRatio;
+  }
+
+
+
 }

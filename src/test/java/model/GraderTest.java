@@ -25,9 +25,14 @@ class GraderTest {
   @DisplayName("로또 번호화 당첨 번호를 비교한다.")
   @Test
   void compareNumber() {
+    // given
     Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(5, 1, 20, 30, 6, 40)));
     WinningLotto winningLotto = new WinningLotto(new ArrayList<>(Arrays.asList(5, 1, 30, 20, 6, 27)), 40);
+
+    // when
     Integer rank = grader.compareNumber(lotto, winningLotto);
+
+    // then
     assertThat(rank).isEqualTo(2);
   }
 
@@ -51,6 +56,21 @@ class GraderTest {
     List<Integer> expected = new ArrayList<>(Arrays.asList(0, 0, 1, 1, 1, 0));
     assertThat(ranks).isEqualTo(expected);
 
+
+  }
+
+  @DisplayName("구입 금액과 당첨 내역을 비교하여 수익률을 계산한다")
+  @Test
+  void calculateEarningRatio() {
+    // given
+    int inputMoney = 8000;
+    List<Integer> winningDetails = new ArrayList<>(Arrays.asList(0,0,0,0,0,1));
+
+    // when
+    double earningRatio = grader.calculateEarningRatio(inputMoney, winningDetails);
+
+    // then
+    assertThat(earningRatio).isEqualTo(62.5);
 
   }
 

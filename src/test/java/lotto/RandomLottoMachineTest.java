@@ -19,7 +19,7 @@ public class RandomLottoMachineTest {
 
     @DisplayName("로또 생성 테스트")
     @Test
-    void creaetLotto(){
+    void creatELotto(){
         assertThat(lottoMachine.generateLotto()).isInstanceOf(Lotto.class);
     }
 }

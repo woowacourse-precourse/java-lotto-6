@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,6 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.constant.LottoPrize;
+import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
+import lotto.model.LottoMachine;
+import lotto.model.LottoNotRandomGenerator;
+import lotto.model.LottoShop;
+import lotto.model.Player;
+import lotto.model.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -10,5 +10,9 @@ public class Money {
         validator.money(inputMoney);
         this.money = inputMoney;
     }
-    
+
+    public int toLottoAmount() {
+        return Integer.valueOf(money) % 1000;
+    }
+
 }

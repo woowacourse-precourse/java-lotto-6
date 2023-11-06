@@ -1,6 +1,5 @@
 package lotto.model;
 
-import static lotto.model.enums.ErrorMessage.DUPLICATED_NUMBER_MESSAGE;
 import static lotto.model.enums.ErrorMessage.NOT_CORRECT_INPUT_MESSAGE;
 import static lotto.model.enums.ErrorMessage.NOT_INTEGER_INPUT_MESSAGE;
 import static lotto.model.enums.ErrorMessage.OUT_OF_RANGE_NUMBER_MESSAGE;
@@ -68,25 +67,16 @@ public class InputValidatorTest {
     @ValueSource(strings = {"", " ", "0.5", "안녕", "5+1"})
     @DisplayName("정수가 아닐 시 예외 발생")
     void notIntegerNumberInput(String input) {
-        assertThatThrownBy(() -> inputValidator.validateInput(List.of(1, 2, 3, 4, 5, 6), input))
+        assertThatThrownBy(() -> inputValidator.validateInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_INTEGER_INPUT_MESSAGE.getMessage());
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
-    @DisplayName("우승 번호와 중복된 숫자 입력 예외 발생")
-    void duplicateNumberInput(String input) {
-        assertThatThrownBy(() -> inputValidator.validateInput(List.of(1, 2, 3, 4, 5, 6), input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DUPLICATED_NUMBER_MESSAGE.getMessage());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"-100", "-10", "0", "46", "100"})
     @DisplayName("범위 밖의 숫자 예외 발생")
     void outOfRangeNumberInput(String input) {
-        assertThatThrownBy(() -> inputValidator.validateInput(List.of(1, 2, 3, 4, 5, 6), input))
+        assertThatThrownBy(() -> inputValidator.validateInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(OUT_OF_RANGE_NUMBER_MESSAGE.getMessage());
     }

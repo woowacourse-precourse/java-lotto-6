@@ -32,4 +32,12 @@ public class Lotto {
             throw new IllegalArgumentException(DUPLICATED_NUMBER_MESSAGE.getMessage());
         }
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

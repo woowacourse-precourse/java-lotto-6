@@ -2,7 +2,6 @@ package lotto.model;
 
 import static lotto.Constraints.MAX_NUMBER;
 import static lotto.Constraints.MIN_NUMBER;
-import static lotto.model.enums.ErrorMessage.DUPLICATED_NUMBER_MESSAGE;
 import static lotto.model.enums.ErrorMessage.NOT_CORRECT_INPUT_MESSAGE;
 import static lotto.model.enums.ErrorMessage.NOT_INTEGER_INPUT_MESSAGE;
 import static lotto.model.enums.ErrorMessage.OUT_OF_RANGE_NUMBER_MESSAGE;
@@ -41,9 +40,8 @@ public class InputValidator {
     }
 
     // 보너스 번호 검증
-    public int validateInput(List<Integer> winningNumbers, String input) {
+    public int validateInput(String input) {
         int inputNumber = validateInteger(input);
-        validateDuplicate(winningNumbers, inputNumber);
         validateInRangeNumber(inputNumber);
         return inputNumber;
     }
@@ -54,13 +52,6 @@ public class InputValidator {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_INTEGER_INPUT_MESSAGE.getMessage());
-        }
-    }
-
-    // 로또 번호와 중복된 숫자인지 검증
-    private void validateDuplicate(List<Integer> winningNumbers, int inputNumber) {
-        if (winningNumbers.contains(inputNumber)) {
-            throw new IllegalArgumentException(DUPLICATED_NUMBER_MESSAGE.getMessage());
         }
     }
 

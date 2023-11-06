@@ -8,6 +8,7 @@ import lotto.view.constant.Message;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.view.constant.Message.INPUT_MATCH;
 import static lotto.view.constant.Message.OUTPUT_BUY;
 
 public class Controller {
@@ -24,6 +25,8 @@ public class Controller {
         for (Lotto lotto : lottos) {
             view.output(lotto.toString());
         }
+
+        view.output(INPUT_MATCH);
     }
 
     private Buyer getCost() {

@@ -150,4 +150,38 @@ class GameReturnRateCalculatorTest {
         // then
         assertThat(realResult).isEqualTo(expectedResult);
     }
+
+    @DisplayName("수익률 작은 수익률 정상 리턴")
+    @Test
+    void getSmallReturnRate() {
+        // given
+
+        // 로또를 100개 샀다.
+        // 로또는 하나에 1000원이다.
+        // 로또 사는데 100,000 썼다.
+        BigDecimal givenBuyPrice = BigDecimal.valueOf(100 * 1000);
+
+        // 5등 1개
+        Map<Rank, Integer> givenGameResult = Map.of(
+                Rank.RANK_1, 0,
+                Rank.RANK_2, 0,
+                Rank.RANK_3, 0,
+                Rank.RANK_4, 0,
+                Rank.RANK_5, 1,
+                Rank.UNRANK, 99
+        );
+
+        // 5등 : 5,000 원 이 1개 = 5,000
+        // 총합 : 5,000
+
+        // 수익률 계산 : 총합 / 구매금액 * 100(%)
+        // 5,000 / 100,000 * 100 = 5%
+        BigDecimal expectedResult = BigDecimal.valueOf(5).setScale(1, RoundingMode.HALF_UP);
+
+        // when
+        BigDecimal realResult = GameReturnRateCalculator.getReturnRate(givenGameResult, givenBuyPrice);
+
+        // then
+        assertThat(realResult).isEqualTo(expectedResult);
+    }
 }

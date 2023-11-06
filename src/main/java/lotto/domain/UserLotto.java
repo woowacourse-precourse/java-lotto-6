@@ -22,13 +22,14 @@ public record UserLotto(List<Lotto> lottos) {
         return new LottoResult(prizesCountMap);
     }
 
-    public String displayAllLotto() {
+    public long getLottoCount() {
+        return lottos.size();
+    }
+
+    @Override
+    public String toString() {
         return lottos.stream()
                 .map(Lotto::toString)
                 .collect(Collectors.joining(NEW_LINE));
-    }
-
-    public long getLottoCount() {
-        return lottos.size();
     }
 }

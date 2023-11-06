@@ -74,6 +74,11 @@ public class Application {
 
 			for (String input : inputList) {
 				Integer number = Integer.parseInt(input);
+
+				if (numberList.contains(number)) {
+					throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다!");
+				}
+
 				numberList.add(number);
 			}
 		} catch (NumberFormatException e) {

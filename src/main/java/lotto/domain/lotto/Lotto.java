@@ -42,12 +42,12 @@ public class Lotto {
         int num = 0;
         List<Integer> organizeLotto = organizeLotto();
 
-        StringBuilder informationOfNumbers = getInformationOfLotto(sizeNumbers, organizeLotto);
+        StringBuilder informationOfNumbers = getInformation(sizeNumbers, organizeLotto);
 
         return informationOfNumbers;
     }
 
-    private StringBuilder getInformationOfLotto(int sizeNumbers, List<Integer> organizeLotto) {
+    private StringBuilder getInformation(int sizeNumbers, List<Integer> organizeLotto) {
         int num;
         StringBuilder informationOfNumbers = new StringBuilder();
 

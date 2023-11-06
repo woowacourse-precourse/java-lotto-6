@@ -41,6 +41,7 @@ public class InputView {
                 storeWinningNumbersArraysToList(WinningNumbers, InputData);
                 CustomizedException.winningNumbersSizeMoreOrLess(WinningNumbers);
                 CustomizedException.winningNumbersNotRange(WinningNumbers);
+                CustomizedException.winningNumberHasSameNumber(WinningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

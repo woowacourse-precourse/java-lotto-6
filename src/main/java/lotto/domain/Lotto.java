@@ -17,6 +17,8 @@ public class Lotto {
         LottoValidator lottoValidator = new LottoValidator();
 
         lottoValidator.checkSize(numbers);
+        lottoValidator.checkRange(numbers);
+        lottoValidator.checkDuplicateWinningNumbers(numbers);
     }
 
     public int matchSameNumberNum(Lotto lotto) {

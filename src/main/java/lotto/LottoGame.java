@@ -1,11 +1,10 @@
 package lotto;
 
 import lotto.models.LottoManager;
+import lotto.models.LottoResult;
 import lotto.models.WinningNumber;
 import lotto.views.InputView;
 import lotto.views.OutputView;
-
-import java.util.List;
 
 public class LottoGame {
 
@@ -20,8 +19,7 @@ public class LottoGame {
 
         WinningNumber winningNumber = InputView.inputWinningNumber();
 
-
-
+        LottoResult lottoResult = lottoManager.calcLottoResult(winningNumber);
+        OutputView.printLottoResult(lottoResult);
     }
-
 }

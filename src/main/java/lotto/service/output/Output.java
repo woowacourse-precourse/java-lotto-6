@@ -1,6 +1,6 @@
 package lotto.service.output;
 
-import lotto.dto.calculate.GetLottoResultDto;
+import lotto.dto.result.GetLottoResultDto;
 import lotto.dto.generate.GetGeneratedLottosDto;
 
 public interface Output {

@@ -1,6 +1,6 @@
 package lotto.service.resultcheck;
 
-import lotto.dto.calculate.GetLottoResultDto;
+import lotto.dto.result.GetLottoResultDto;
 import lotto.dto.domain.lottos.GetLottosDto;
 import lotto.dto.input.GetBonusNumberDto;
 import lotto.dto.input.GetWinningNumberDto;

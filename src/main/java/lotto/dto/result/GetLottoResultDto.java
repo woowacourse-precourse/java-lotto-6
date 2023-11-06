@@ -1,4 +1,4 @@
-package lotto.dto.calculate;
+package lotto.dto.result;
 
 public class GetLottoResultDto {
     private final int threeHit;
@@ -15,23 +15,38 @@ public class GetLottoResultDto {
         this.sixHit = sixHit;
     }
 
-    public int getThreeHit() {
+    private final int getThreeHit() {
         return threeHit;
     }
 
-    public int getFourHit() {
+    private final int getFourHit() {
         return fourHit;
     }
 
-    public int getFiveHit() {
+    private final int getFiveHit() {
         return fiveHit;
     }
 
-    public int getFiveHitWithBounus() {
+    private final int getFiveHitWithBonus() {
         return fiveHitWithBonus;
     }
 
-    public int getSixHit() {
+    private final int getSixHit() {
         return sixHit;
+    }
+    public int threeHit(){
+        return getThreeHit();
+    }
+    public int fourHit(){
+        return getFourHit();
+    }
+    public int fiveHit(){
+        return getFiveHit();
+    }
+    public int fiveHitWithBonus(){
+        return getFiveHitWithBonus();
+    }
+    public int sixHit(){
+        return getSixHit();
     }
 }

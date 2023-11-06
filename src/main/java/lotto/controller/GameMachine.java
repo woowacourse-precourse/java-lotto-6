@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.message.MessageConstants.ONE_THOUSAND;
+
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
 import lotto.domain.LottoNumberGenerator;
@@ -35,7 +37,7 @@ public class GameMachine {
     }
 
     private int getCount(int inputPrice) {
-        return inputPrice / 1000;
+        return inputPrice / ONE_THOUSAND;
     }
 
     private Lottos printLottoNumbers(int count) {

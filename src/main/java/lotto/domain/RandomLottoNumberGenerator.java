@@ -18,4 +18,5 @@ public class RandomLottoNumberGenerator implements LottoNumberGenerator {
         numbers.sort(Comparator.naturalOrder());
         return numbers;
     }
+    
 }

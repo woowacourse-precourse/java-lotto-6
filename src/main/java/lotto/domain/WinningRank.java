@@ -1,13 +1,24 @@
 package lotto.domain;
 
+import static lotto.message.MessageConstants.MESSAGE_FIFTH;
+import static lotto.message.MessageConstants.MESSAGE_FIRST;
+import static lotto.message.MessageConstants.MESSAGE_FOURTH;
+import static lotto.message.MessageConstants.MESSAGE_SECOND;
+import static lotto.message.MessageConstants.MESSAGE_THIRD;
+import static lotto.message.MessageConstants.PRIZE_FIFTH;
+import static lotto.message.MessageConstants.PRIZE_FIRST;
+import static lotto.message.MessageConstants.PRIZE_FOURTH;
+import static lotto.message.MessageConstants.PRIZE_SECOND;
+import static lotto.message.MessageConstants.PRIZE_THIRD;
+
 import java.text.NumberFormat;
 
 public enum WinningRank {
-    FIFTH(3, "3개 일치 (%s원) - %d개", 5_000),
-    FOURTH(4, "4개 일치 (%s원) - %d개", 50_000),
-    THIRD(5, "5개 일치 (%s원) - %d개", 1_500_000),
-    SECOND(5, "5개 일치, 보너스 볼 일치 (%s원) - %d개", 30_000_000),
-    FIRST(6, "6개 일치 (%s원) - %d개", 2_000_000_000);
+    FIFTH(3, MESSAGE_FIFTH, PRIZE_FIFTH),
+    FOURTH(4, MESSAGE_FOURTH, PRIZE_FOURTH),
+    THIRD(5, MESSAGE_THIRD, PRIZE_THIRD),
+    SECOND(5, MESSAGE_SECOND, PRIZE_SECOND),
+    FIRST(6, MESSAGE_FIRST, PRIZE_FIRST);
 
     private final int matchCount;
     private final String message;
@@ -36,4 +47,5 @@ public enum WinningRank {
     public int getPrizeMoney() {
         return prizeMoney;
     }
+    
 }

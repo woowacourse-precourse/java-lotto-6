@@ -1,5 +1,15 @@
 package lotto.view;
 
+import static lotto.message.ErrorMessage.BONUS_DUPLICATE_EXCEPTION_MESSAGE;
+import static lotto.message.ErrorMessage.COMMA_BASED_EXCEPTION_MESSAGE;
+import static lotto.message.ErrorMessage.INSUFFICIENT_FUNDS_EXCEPTION_MESSAGE;
+import static lotto.message.ErrorMessage.NUMBER_INPUT_EXCEPTION_MESSAGE;
+import static lotto.message.MessageConstants.COMMA;
+import static lotto.message.MessageConstants.INPUT_BONUS_NUMBER_MESSAGE;
+import static lotto.message.MessageConstants.INPUT_PURCHASE_AMOUNT_MESSAGE;
+import static lotto.message.MessageConstants.INPUT_WINNING_NUMBERS_MESSAGE;
+import static lotto.message.MessageConstants.ONE_THOUSAND;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +19,7 @@ import lotto.domain.Lotto;
 public class InputView {
     public int inputPrice() {
         while (true) {
-            System.out.println("구입금액을 입력해 주세요.");
+            System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
 
             try {
                 int inputPrice = parseInputNumber(Console.readLine());
@@ -22,14 +32,14 @@ public class InputView {
     }
 
     private void validatePurchaseAbility(int inputPrince) {
-        if (inputPrince < 1000) {
-            throw new IllegalArgumentException("[ERROR] 금액이 부족하여 로또를 살 수 없습니다.");
+        if (inputPrince < ONE_THOUSAND) {
+            throw new IllegalArgumentException(INSUFFICIENT_FUNDS_EXCEPTION_MESSAGE);
         }
     }
 
     public Lotto getWinningNumbers() {
         while (true) {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
+            System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
 
             try {
                 List<Integer> inputWinningNumbers = inputWinningNumbers();
@@ -42,17 +52,17 @@ public class InputView {
 
     private List<Integer> inputWinningNumbers() {
         try {
-            return Arrays.stream(Console.readLine().split(","))
+            return Arrays.stream(Console.readLine().split(COMMA))
                     .map(number -> parseInputNumber(number.trim()))
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] (,)를 기준으로 입력해주세요.");
+            throw new IllegalArgumentException(COMMA_BASED_EXCEPTION_MESSAGE);
         }
     }
 
     public int getBonusNumber(Lotto winningNumbers) {
         while (true) {
-            System.out.println("\n보너스 번호를 입력해 주세요.");
+            System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
 
             try {
                 int inputBonusNumber = parseInputNumber(Console.readLine());
@@ -68,14 +78,14 @@ public class InputView {
         try {
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 입력 번호는 숫자로 이루어져야 합니다.");
+            throw new NumberFormatException(NUMBER_INPUT_EXCEPTION_MESSAGE);
         }
     }
 
     private void duplicationBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
+            throw new IllegalArgumentException(BONUS_DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
-
+    
 }

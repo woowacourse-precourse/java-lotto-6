@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.message.MessageConstants.ZERO;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +11,7 @@ public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(int count, LottoNumberGenerator lottoNumberGenerator) {
-        this.lottos = IntStream.range(0, count)
+        this.lottos = IntStream.range(ZERO, count)
                 .mapToObj(i -> new Lotto(lottoNumberGenerator.generate()))
                 .collect(Collectors.toList());
     }

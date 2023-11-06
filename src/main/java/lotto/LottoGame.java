@@ -9,10 +9,12 @@ import java.util.List;
 
 public class LottoGame {
     // 로또 발행
-    public int buyLotto(int amount) {
-        int draws = amount/1000;
-        System.out.println(draws+"개를 구매했습니다.");
-        return draws;
+    public int buyLotto() {
+        System.out.println("구입금액을 입력해주세요.");
+        int amount = Integer.parseInt(Console.readLine().strip());
+        int buy = amount/1000;
+        System.out.println(buy+"개를 구매했습니다.");
+        return buy;
     }
 
     // 당첨 번호 추첨
@@ -108,7 +110,7 @@ public class LottoGame {
     }
 
     // 수익률 출력
-    public static void rateOfReturn(int[] winningList, int draws) {
+    public static void rateOfReturn(int[] winningList, int buy) {
         double total = 0;
 
         for (Prize prize : Prize.values()) {
@@ -116,7 +118,7 @@ public class LottoGame {
             total += prize.getPrizeAmount() * count;
         }
 
-        double rate = (total / (draws * 1000));
+        double rate = (total / (buy * 1000));
         System.out.printf("총 수익률은 %.1f%%입니다.\n", rate);
     }
 

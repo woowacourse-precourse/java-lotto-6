@@ -48,6 +48,14 @@ class LottoGeneratorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력된 당첨 번호 마지막에 콤마가 있을 때, 예외 처리")
+    @Test
+    void createWinningLottoByNotNumber() {
+
+        assertThatThrownBy(() -> LottoGenerator.createWinningLotto("1,2,3,4,5,6,"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("입력된 당첨 번호가 로또 번호 범위를 벗어날 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"0,1,2,3,4,5", "100,2,3,4,5,6", "41,42,43,44,45,46"})
@@ -68,7 +76,7 @@ class LottoGeneratorTest {
 
     @DisplayName("입력된 당첨 번호 개수가 6개가 아닐 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"1","1,2,3,4,5","1,2,3,4,5,6,7"})
+    @ValueSource(strings = {"1", "1,2,3,4,5", "1,2,3,4,5,6,7"})
     void createWinningLottoByNotEqualSize(String lottoNumber) {
 
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
@@ -99,7 +107,7 @@ class LottoGeneratorTest {
 
     @DisplayName("입력된 보너스 번호가 숫자가 아닐 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"a",""," "})
+    @ValueSource(strings = {"a", "", " "})
     void createBonusNumberByNotNumber(String bonusNumber) {
 
         // given
@@ -112,7 +120,7 @@ class LottoGeneratorTest {
 
     @DisplayName("입력된 보너스 번호가 양수가 아닐 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"0","-1","1.5"})
+    @ValueSource(strings = {"0", "-1", "1.5"})
     void createBonusNumberByNotPositiveNumber(String bonusNumber) {
 
         // given
@@ -125,7 +133,7 @@ class LottoGeneratorTest {
 
     @DisplayName("입력된 보너스 번호가 로또 번호 범위를 벗어날 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"0","46","100"})
+    @ValueSource(strings = {"0", "46", "100"})
     void createBonusNumberByNotRange(String bonusNumber) {
 
         // given
@@ -150,7 +158,7 @@ class LottoGeneratorTest {
 
     @DisplayName("입력된 보너스 번호 앞에 0이 있을 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"01","00045"})
+    @ValueSource(strings = {"01", "00045"})
     void createBonusNumberByFirstNumberZero(String bonusNumber) {
 
         // given

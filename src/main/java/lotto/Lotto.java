@@ -19,4 +19,14 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    long countMatchingNumbers(Lotto winningLotto) {
+        return winningLotto.numbers.stream()
+                .filter(this.numbers::contains)
+                .count();
+    }
+
+    boolean isInNumbers(int number) {
+        return numbers.contains(number);
+    }
 }

@@ -20,4 +20,10 @@ public class SoldLotto {
     public int getSoldLottoTicketsCount() {
         return lottoTickets.size();
     }
+
+    public List<LottoRanking> checkLottoResults(WinningLotto winningLotto) {
+        return lottoTickets.stream()
+                .map((lottoTicket) -> winningLotto.checkLottoResult(lottoTicket))
+                .toList();
+    }
 }

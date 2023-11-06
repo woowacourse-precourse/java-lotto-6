@@ -11,7 +11,7 @@ public class Calculator {
         return totalPrize;
     }
 
-    public static double calculateEarningRate(int totalPrize, Money money) {
+    public double calculateEarningRate(int totalPrize, Money money) {
         return ((double) totalPrize / money.getMoney()) * 100;
     }
 }

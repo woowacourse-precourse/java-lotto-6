@@ -11,7 +11,7 @@ public class Amount {
     public Amount(int amount) {
         validate(amount);
         this.amount = amount;
-        this.numberOfLottos = 1;
+        this.numberOfLottos = calculateNumberOfLottos(amount);
     }
 
     private void validate(final int amount) {
@@ -20,5 +20,9 @@ public class Amount {
         } else if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(NOT_DIVIDED_BY_PRICE_EXCEPTION_MESSAGE);
         }
+    }
+
+    private int calculateNumberOfLottos(final int amount) {
+        return amount / LOTTO_PRICE;
     }
 }

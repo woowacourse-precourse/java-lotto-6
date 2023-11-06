@@ -27,4 +27,15 @@ public class UserAmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 구입 금액은 공백이 포함될 수 없습니다.");
     }
+
+    @Test
+    void 로또_구입_금액이_1000으로_나누어떨이지지_않으면_IllegalArgumentException_예외처리() {
+        //given
+        String notDivideByStandardUserAmount = "666666";
+
+        //when & then
+        Assertions.assertThatThrownBy(() -> UserAmount.from(notDivideByStandardUserAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 구입 금액은 1000으로 나누어떨어져야 합니다.");
+    }
 }

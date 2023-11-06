@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,9 +13,13 @@ import static lotto.constant.LottoErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESS
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    protected Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto make() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
     private void validate(List<Integer> numbers) {
@@ -32,5 +38,9 @@ public class Lotto {
         if (numbers.size() != set.size()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

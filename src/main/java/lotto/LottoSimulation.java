@@ -5,6 +5,7 @@ import lotto.domain.WinningNumber;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +18,9 @@ public class LottoSimulation {
 
     public void execute() {
         Amount amount = readPurchaseAmount();
-        WinningNumber  winningNumber = readWinningNumber();
+        int count = amount.getCount();
+        outputView.printLottoNumbers(count, makeLottoList(count));
+        WinningNumber winningNumber = readWinningNumber();
         readBonusNumber(winningNumber);
     }
 
@@ -29,6 +32,14 @@ public class LottoSimulation {
                 outputView.printMessage(PURCHASE_AMOUNT_ERROR_MESSAGE);
             }
         }
+    }
+
+    private List<Lotto> makeLottoList(int count) {
+        List<Lotto> lotto = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            lotto.add(Lotto.make());
+        }
+        return lotto;
     }
 
     private WinningNumber readWinningNumber() {

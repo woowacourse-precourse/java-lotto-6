@@ -43,6 +43,8 @@ public class LottoController {
     private void printResult(Lottos lottos, FinalWinningNumber finalWinningNumber) {
         outputView.outputWinningStatistics();
         HashMap<LottoRank, Integer> rankCount = lottos.getLottosResult(finalWinningNumber);
-
+        for(LottoRank rank : rankCount.keySet()) {
+            outputView.outputRankResult(rank.getRankContent(), rankCount.get(rank));
+        }
     }
 }

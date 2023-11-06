@@ -2,8 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +15,12 @@ public class LottoGame {
 
     public void start() {
         int amount = lottoGameView.inputPurchaseAmount();
-        List<Lotto> lotteries = issueLottery(amount);
+        List<Lotto> lotteries = issueLottery(amount / 1000);
         WinningNumbers winningNumbers = lottoGameView.inputWinningNumbers();
         List<Prize> result = lotteries.stream().map(lotto -> lotto.check(winningNumbers)).toList();
         int resultSum = result.stream().mapToInt(Prize::getMoney).sum();
         lottoGameView.printResult(result);
-        double resultRate = (double) resultSum / amount;
-        lottoGameView.printRateReturn(resultRate);
+        lottoGameView.printRateReturn(calculateReturn(resultSum, amount));
     }
 
     public List<Lotto> issueLottery(int amount) {
@@ -40,10 +37,9 @@ public class LottoGame {
         return lotteries;
     }
 
-    public double calculateReturn(int purchase, int prize) {
-        double rateReturn = (double) prize / purchase;
-        BigDecimal decimal = new BigDecimal(rateReturn);
-        decimal = decimal.setScale(2, RoundingMode.HALF_UP); // 두 번째 자리에서 반올림
-        return decimal.doubleValue() * 10;
+    public double calculateReturn(int prize, int purchase) {
+        double rateReturn = (double) prize / purchase * 1000;
+        double result = Math.round(rateReturn);
+        return result / 10;
     }
 }

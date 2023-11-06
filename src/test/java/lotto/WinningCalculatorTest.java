@@ -39,7 +39,7 @@ class WinningCalculatorTest {
 
         WinningCalculator winningCalculator = new WinningCalculator(lottos, withBonus);
 
-        assertEquals(winningCalculator.calculate().toString(),
+        assertEquals(winningCalculator.getResult().toString(),
                 "{THREE=1, FOUR=1, FIVE=1, BONUS=1, SIX=1, NOPE=1}");
 
         System.out.println(winningCalculator.getProfitRate());
@@ -52,8 +52,8 @@ class WinningCalculatorTest {
 
         WinningCalculator winningCalculator = new WinningCalculator(lottos, withBonus);
 
-        winningCalculator.calculate();
+        winningCalculator.getResult();
 
-        assertEquals(winningCalculator.getProfitRate(), "33859250.0%");
+        assertEquals(winningCalculator.getProfitRate(), (double) 33859250.0);
     }
 }

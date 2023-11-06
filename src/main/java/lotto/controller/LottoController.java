@@ -30,7 +30,7 @@ public class LottoController {
         WinningCalculator winningCalculator = new WinningCalculator(lottoMachine.getLottos(),
                 inputWinningLottoWithBonus());
 
-        outputView.displayWinningResult(winningCalculator.calculate());
+        outputView.displayWinningResult(winningCalculator.getResult());
         outputView.displayProfitRate(winningCalculator.getProfitRate());
     }
 

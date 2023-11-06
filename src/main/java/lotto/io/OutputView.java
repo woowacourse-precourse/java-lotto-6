@@ -31,8 +31,8 @@ public class OutputView {
         }
     }
 
-    public void displayProfitRate(String profitRate) {
-        System.out.println("총 수익률은 " + profitRate + "입니다.");
+    public void displayProfitRate(Double profitRate) {
+        System.out.printf("총 수익률은 %s%%입니다.", profitRate);
     }
 
     private void displayEmptyLine() {

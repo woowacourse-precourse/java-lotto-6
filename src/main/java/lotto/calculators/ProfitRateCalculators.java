@@ -13,11 +13,11 @@ public class ProfitRateCalculators {
         this.reward = reward;
     }
 
-    public String getProfitRate() {
+    public double getProfitRate() {
         BigDecimal money = BigDecimal.valueOf(this.money.getMoney()).divide(BigDecimal.valueOf(100));
 
         BigDecimal div = this.reward.divide(money, 1, RoundingMode.HALF_UP);
 
-        return String.format("%s%%", div);
+        return div.doubleValue();
     }
 }

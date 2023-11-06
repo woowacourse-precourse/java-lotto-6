@@ -11,9 +11,11 @@ import java.util.List;
 public class Game {
     private int AMOUNT;
     private int COUNT_LOTTO;
+    private String PRIZE;
     private InputView inputView;
     private OutputView outputView;
     private final List<Lotto> lottos;
+    private List<Integer> prizes;
 
     public Game() {
         inputView = new InputView();
@@ -29,9 +31,11 @@ public class Game {
         outputView.purchasesNumberView(COUNT_LOTTO);
         createLotto(COUNT_LOTTO);    //로또 생성
         outputView.lottosView(lottos);  //로또 출력
-        inputView.prizeNumber();
 
-        
+        inputView.prizeNumber();
+        PRIZE = prizeNumberInput(); //당첨 금액 입력
+        changePrizeNumber(PRIZE);   //당첨 금액 변환
+
     }
 
     public int purchaseAmountInput(){
@@ -51,4 +55,18 @@ public class Game {
         }
     }
 
+    public String prizeNumberInput(){
+        //예외 처리 추가해야 함
+
+        return Console.readLine();
+    }
+
+    public void changePrizeNumber(String PRIZE){
+        String[] prizeNumbers = PRIZE.split(",");
+        //예외 처리 추가해야 함
+
+        for (String prizeNumber : prizeNumbers) {
+            prizes.add(Integer.parseInt(prizeNumber));
+        }
+    }
 }

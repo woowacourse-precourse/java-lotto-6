@@ -1,12 +1,12 @@
 package lotto.model;
 
+import lotto.utils.Constants;
 import lotto.view.ExceptionMessage;
 
-public class PlayerLottoAmount {
-    private static final int LOTTO_MIN_AMOUNT = 1000;
+public class InputLottoValidation {
     private final int amount;
 
-    public PlayerLottoAmount(String amount) {
+    public InputLottoValidation(String amount) {
         int amountNum = validateNumber(amount);
         validateAmount(amountNum);
         this.amount = amountNum;
@@ -18,7 +18,7 @@ public class PlayerLottoAmount {
     }
 
     public int calculateLottoCount() {
-        return amount / 1000;
+        return amount / Constants.LOTTO_TICKET_PRICE;
     }
 
     private static int validateNumber(String amount) {
@@ -38,7 +38,7 @@ public class PlayerLottoAmount {
     }
 
     private void validateDivisible(int amount) {
-        if (amount % LOTTO_MIN_AMOUNT != 0) {
+        if (amount % Constants.LOTTO_TICKET_PRICE != 0) {
             ExceptionMessage.divisibleException();
             throw new IllegalArgumentException();
         }

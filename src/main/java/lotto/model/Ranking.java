@@ -1,5 +1,8 @@
 package lotto.model;
 
+import java.util.List;
+import lotto.utils.Constants;
+
 public enum Ranking {
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원) - ", false),
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - ", true),
@@ -35,5 +38,15 @@ public enum Ranking {
             }
         }
         return NO_PRIZE;
+    }
+
+    public static Ranking determineRanking(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+        long matchCount = lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        boolean matchBonus = matchCount == Constants.MATCH_COUNT_FOR_BONUS && lotto.getNumbers().contains(bonusNumber);
+
+        return Ranking.findByMatchCountAndBonus(matchCount, matchBonus);
     }
 }

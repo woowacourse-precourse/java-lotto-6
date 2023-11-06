@@ -2,12 +2,12 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.BonusNumberValidation;
-import lotto.model.PlayerLottoAmount;
+import lotto.model.InputLottoValidation;
 import lotto.view.InputView;
 
 public class InputController {
     public static int inputPlayerAmount() {
-        PlayerLottoAmount playerLottoAmount = new PlayerLottoAmount(InputView.lottoMoneyInput());
+        InputLottoValidation playerLottoAmount = new InputLottoValidation(InputView.lottoMoneyInput());
         return playerLottoAmount.calculateLottoCount();
     }
 

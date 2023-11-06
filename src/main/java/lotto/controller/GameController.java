@@ -43,14 +43,15 @@ public class GameController {
     }
 
     private void displayWinners() {
-        List<Ranking> rankings = lottoMatchService.checkWinningNumbers(lottoList, winningNumbers, bonusNumber);
+        List<Ranking> rankings = lottoMatchService.calculateWinners(lottoList, winningNumbers, bonusNumber);
+        Map<Ranking, Long> resultMap = lottoMatchService.summarizeResults(rankings);
+        displayResults(resultMap);
+    }
 
-        Map<Ranking, Long> resultMap = rankings.stream()
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
+    private void displayResults(Map<Ranking, Long> resultMap) {
         ResultView.printSuccessResult();
         ResultView.printResults(resultMap);
-        double revenueRate = lottoMatchService.computeRevenueRate(Constants.LOTTO_TICKET_PRICE, ticketCount, resultMap);
+        double revenueRate = lottoMatchService.calculateRevenueRate(Constants.LOTTO_TICKET_PRICE, ticketCount, resultMap);
         ResultView.printRevenueRate(revenueRate);
     }
 }

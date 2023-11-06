@@ -1,8 +1,9 @@
 package lotto;
 
 import lotto.controller.GameController;
-import lotto.domain.Lotto;
-import lotto.domain.Money;
+import lotto.controller.LottoIssueController;
+import lotto.controller.WinningNumberController;
+import lotto.domain.*;
 import lotto.domain.constants.ExceptionMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -31,7 +32,7 @@ class LottoTest {
     @DisplayName("사용자는 로또 구입 금액을 입력할 수 있다.")
     @Test
     void createMoneyByInput() {
-        assertThat(new Money("5000")).isNotNull();
+        assertThat(new Money("3000")).isNotNull();
     }
 
     @DisplayName("로또 구입 금액을 입력할 때 숫자가 아닌 값이 포함되어 있으면 예외가 발생한다.")
@@ -45,8 +46,56 @@ class LottoTest {
     @DisplayName("로또 구입 금액을 입력할 때 1,000원 단위가 아니면 예외가 발생한다.")
     @Test
     void createMoneyByNon1000Units() {
-        assertThatThrownBy(() -> new Money("50"))
+        assertThatThrownBy(() -> new Money("30"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.INPUT_MONEY_NOT_PRICE_UNIT.getMessage());
+    }
+
+    @DisplayName("당첨 번호를 입력할 때 숫자가 아닌 값이 포함되어 있으면 예외가 발생한다.")
+    @Test
+    void setWinningNumbersByNonNumericalValue() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        String playerInput = "A,2,3,4,5,6";
+        WinningNumberController winningNumberController = new WinningNumberController();
+
+        assertThatThrownBy(() -> winningNumberController.setInputToWinningNumbers(winningNumbers, playerInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.NOT_NUMBER.getMessage());
+    }
+
+    @DisplayName("당첨 번호가 1 ~ 45의 범위를 벗어날 경우 예외가 발생한다.")
+    @Test
+    void setWinningNumbersByOutOfRangeNumber() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        String playerInput = "100,2,3,4,5,6";
+        WinningNumberController winningNumberController = new WinningNumberController();
+
+        assertThatThrownBy(() -> winningNumberController.setInputToWinningNumbers(winningNumbers, playerInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.NUMBER_OUT_OF_RANGE.getMessage());
+    }
+
+    @DisplayName("당첨 번호의 개수가 6개가 아니면 예외가 발생한다.")
+    @Test
+    void setWinningNumbersByOverSize() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        String playerInput = "1,2,3,4,5,6,7";
+        WinningNumberController winningNumberController = new WinningNumberController();
+
+        assertThatThrownBy(() -> winningNumberController.setInputToWinningNumbers(winningNumbers, playerInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.WINNING_NUMBERS_COUNT_OUT_OF_RANGE.getMessage());
+    }
+
+    @DisplayName("당첨 번호에 중복된 값이 있으면 예외가 발생한다.")
+    @Test
+    void setWinningNumbersByDuplicateNumber() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        String playerInput = "1,2,3,3,5,6";
+        WinningNumberController winningNumberController = new WinningNumberController();
+
+        assertThatThrownBy(() -> winningNumberController.setInputToWinningNumbers(winningNumbers, playerInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.WINNING_NUMBERS_DUPLICATION.getMessage());
     }
 }

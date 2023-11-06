@@ -36,4 +36,8 @@ public class Price {
         return price > MAX_INPUT;
     }
 
+    public int getLottoCount() {
+        return this.price / LOTTO_PRICE;
+    }
+
 }

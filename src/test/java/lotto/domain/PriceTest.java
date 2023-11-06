@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
@@ -36,6 +37,18 @@ class PriceTest {
     void 로또_구매_가격이_21억을_넘으면_예외를_발생한다() {
         assertThatThrownBy(() -> new Price(2_100_000_001))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_구매_가격에서_계산해_로또_장수_반환에_성공한다() {
+        // given
+        Price price = new Price(2000);
+
+        // when
+        int lottoCount = price.getLottoCount();
+
+        // then
+        assertThat(lottoCount).isEqualTo(2);
     }
 
 }

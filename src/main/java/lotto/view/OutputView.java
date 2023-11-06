@@ -30,7 +30,7 @@ public final class OutputView {
         System.out.printf((OutputMessage.MATCHES_6_FORMAT.getMessage()) + "%n", statistics.get(RankConstant.FIRST));
     }
 
-    public static void showTotalReturn(double totalReturn) {
+    public static void showTotalReturnAsPercent(double totalReturn) {
         System.out.printf((OutputMessage.TOTAL_RETURN.getMessage()) + "%n", totalReturn);
     }
 }

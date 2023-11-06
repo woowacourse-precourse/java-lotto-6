@@ -11,6 +11,7 @@ public class LottoGameController {
     private List<Lotto> lottos = new ArrayList<>();
     User user;
     View view = new View();
+    LottoGame lottoGame;
 
 
 
@@ -18,6 +19,24 @@ public class LottoGameController {
 
         setUser();
         setLotto();
+        setLottoGame();
+
+    }
+
+    private void setLottoGame() {
+
+        Scanner sc = new Scanner(System.in);
+
+        String inputString = sc.nextLine();
+        String[] numbersString = inputString.split(",");
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String numberString: numbersString){
+            numbers.add(Integer.valueOf(numberString));
+        }
+
+        lottoGame = new LottoGame(numbers);
+
     }
 
     private void setLotto() {

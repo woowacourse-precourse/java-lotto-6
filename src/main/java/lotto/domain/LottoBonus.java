@@ -12,6 +12,10 @@ public class LottoBonus {
         this.number = number;
     }
 
+    public int getNumber(){
+        return this.number;
+    }
+
     public void validate(Lotto lotto, int number){
         if(lotto.getNumbers().contains(number)){
             throw new IllegalArgumentException("[ERROR] 입력한 보너스 번호와 중복되는 당첨 번호가 있습니다.");

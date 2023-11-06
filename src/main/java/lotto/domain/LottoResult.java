@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -16,11 +17,27 @@ public class LottoResult {
         return this.lottoResult;
     }
 
-    public static LottoResult calculateLottoResult(LottoSet lottoSet, Lotto lottoWinning, LottoBonus lottoBonus){
+    public static Map<LottoRank, Integer> calculateLottoResult(LottoSet lottoSet, Lotto lottoWinning, LottoBonus lottoBonus){
+        Map<LottoRank, Integer> result = setResult();
         LottoRank rank;
 
         for(int i = 0; i < lottoSet.getLottoSet().size(); i++){
-            rank = lottoWinning.match(lottoSet.get(i))
+            int hit = lottoSet.getLottoSet().get(i).countHit(lottoWinning);
+            boolean matchBonus = lottoSet.getLottoSet().get(i).containNumber(lottoBonus.getNumber());
+
+            rank = LottoRank.valueOf(hit, matchBonus);
+            result.put(rank, result.get(rank) + 1);
         }
+
+        return result;
+    }
+
+    private static Map<LottoRank, Integer> setResult(){
+        Map<LottoRank, Integer> result = new LinkedHashMap<>();
+
+        for(LottoRank rank : LottoRank.values()){
+            result.put(rank, 0);
+        }
+        return result;
     }
 }

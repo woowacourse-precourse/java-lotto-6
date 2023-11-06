@@ -7,6 +7,8 @@ public class Application {
         OutputView.print(Message.PAYMENT_REQUEST);
         OutputView.print(Message.LINE_BREAK);
 
+
+
     }
 
 
@@ -16,6 +18,12 @@ public class Application {
 class OutputView {
     public static void print(String message){
         System.out.print(message);
+    }
+}
+
+class InputView {
+    public static String read() {
+        return Console.readLine();
     }
 }
 

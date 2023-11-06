@@ -51,4 +51,13 @@ public class StartLottoTest {
             test.checkBonusNumber(input);
         }).isInstanceOf(NumberFormatException.class);
     }
+
+    @DisplayName("보너스 번호가 1 ~ 45 사이의 숫자가 아니라면 예외가 발생한다.")
+    @Test
+    void checkBonusNumberOutOfRange() {
+        assertThatThrownBy(() -> {
+            String input = "-20";
+            test.checkBonusNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

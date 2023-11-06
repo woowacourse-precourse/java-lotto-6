@@ -31,7 +31,7 @@ public class LottoController {
     }
 
     private WinningNumbers inputWinningNumbers() {
-        WinningNumbers winningNumbers = WinningNumbers.from(stringToInteger(inputView.inputWinningNumbers()), Integer.parseInt(inputView.inputBonusNumber()));
+        WinningNumbers winningNumbers = WinningNumbers.from(inputView.inputWinningNumbers(), inputView.inputBonusNumber());
         return winningNumbers;
     }
 
@@ -44,15 +44,6 @@ public class LottoController {
     }
 
     private Money inputLottoMoney() {
-        return new Money(Integer.parseInt(inputView.inputMoney()));
-    }
-
-    private List<Integer> stringToInteger(String input) {
-        List<Integer> numbers = new ArrayList<>();
-        String[] split = input.split(",");
-        for (String s : split) {
-            numbers.add(Integer.parseInt(s));
-        }
-        return numbers;
+        return new Money(inputView.inputMoney());
     }
 }

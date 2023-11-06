@@ -16,10 +16,7 @@ public enum WinningInfo {
         this.price = price;
     }
 
-    public static WinningInfo of(LottoResult lottoResult){
-        int matchedCount = lottoResult.matchedCount;
-        boolean isBonusMatched = lottoResult.isBonusMatched;
-
+    public static WinningInfo of(int matchedCount, boolean isBonusMatched){
         if(matchedCount == 6) return SIX_MATCH;
 
         if(matchedCount == 5 && isBonusMatched) return FIVE_AND_BONUS_MATCH;

@@ -14,14 +14,15 @@ import org.junit.jupiter.api.Test;
 
 class LottoStoreTest {
     private final LottoMachine lottoMachine = mock(LottoMachine.class);
-    private final LottoStore lottoStore = new LottoStore(lottoMachine);
+    private final NumberGenerator numberGenerator = mock(NumberGenerator.class);
+    private final LottoStore lottoStore = new LottoStore(lottoMachine, numberGenerator);
 
     @Test
     void 금액에_맞는_개수만큼_로또를_자동으로_발행한다() {
         // given
         int amount = 8000;
         LottoAmount lottoAmount = new LottoAmount(amount);
-        doReturn(lottoFixture()).when(lottoMachine).createLottoByAuto();
+        doReturn(lottoFixture()).when(lottoMachine).createLotto(any());
 
         // when
         List<Lotto> lottos = lottoStore.issueLottoByAuto(lottoAmount);
@@ -35,7 +36,7 @@ class LottoStoreTest {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         Lotto lottoFixture = lottoFixture(numbers);
-        doReturn(lottoFixture).when(lottoMachine).createLottoByManual(any());
+        doReturn(lottoFixture).when(lottoMachine).createLotto(any());
 
         // when
         Lotto lotto = lottoStore.issueWinningLotto(numbers);

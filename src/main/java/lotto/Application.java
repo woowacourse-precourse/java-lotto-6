@@ -1,6 +1,7 @@
 package lotto;
 
 
+import lotto.entity.Lotto;
 import lotto.generator.BonusNumber;
 import lotto.generator.LottoNumber;
 import lotto.io.Read;

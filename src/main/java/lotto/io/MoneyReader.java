@@ -7,7 +7,7 @@ import lotto.exception.ValueException;
 public class Read {
         public static int reader(){
             String value = Console.readLine();
-            System.out.println(value);
+            System.out.println(value+"원");
             ValueException.validateNumber(value);
             int number = Integer.parseInt(value);
             NumberException.money(number);

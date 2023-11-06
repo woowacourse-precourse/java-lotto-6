@@ -1,2 +1,4 @@
-package lotto.controller;public class PrizeController {
+package lotto.controller;
+
+public class PrizeController {
 }

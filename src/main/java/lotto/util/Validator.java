@@ -29,6 +29,18 @@ public class Validator {
         }
     }
 
+    public static void validateLottoNumLimit(List<String> selectedNumbers){
+        for(String num: selectedNumbers){
+            if(Integer.parseInt(num) < 1 || Integer.parseInt(num) >45){
+                throw new IllegalArgumentException("1~45의 숫자만 입력 가능합니다.");
+            }
+        }
+
+    }
+    public static void 쉼표_분리_시_숫자가_아닐_때_예외(){
+
+    }
+
 
 
 }

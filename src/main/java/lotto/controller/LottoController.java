@@ -6,6 +6,7 @@ import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Randoms.*;
@@ -30,7 +31,8 @@ public class LottoController {
 
     public static void inputSelectedNumbers(){
         InputView.requestWinningNumber();
-        String[] selectedNumbers = Console.readLine().split(",");
+        List<String> selectedNumbers = Arrays.asList(Console.readLine().split(","));
+        Validator.validateLottoNumLimit(selectedNumbers);
         System.out.println(selectedNumbers);
 
     }

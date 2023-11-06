@@ -19,6 +19,7 @@ public class OutputView {
         List<Integer> numbers = pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, LOTTO_NUMBER);
         Lotto lotto = new Lotto(numbers);
         System.out.println(numbers);
+        // 당첨 번호와 값 비교 하고, 결과값들을 최종 상금 구하는곳으로 넘기기
     }
 
     public static void winningStatistics(){

@@ -61,8 +61,9 @@ class LottoTest {
         assertThatThrownBy(() ->
                 Validator.validateSameNumberCheckStart(중복된로또번호))
                 .isInstanceOf(IllegalArgumentException.class);
-
     }
+
+
 
 
 }

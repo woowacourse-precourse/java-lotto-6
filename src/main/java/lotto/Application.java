@@ -44,7 +44,8 @@ public class Application {
                                                               lottoBonus);
         lottoResultPrint.lottoResultPrint();
 
-        // LottoOutputPrint에 들어감
+        // 당첨 통계를 출력하는 부분
+
         Yield yieldAttribute = new Yield();
         int investment = buyPriceInfo.getBuyWon();
         long totalPrize = lottoResultPrint.resultTotalPrize();

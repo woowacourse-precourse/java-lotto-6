@@ -17,6 +17,7 @@ public class LottoView {
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 
     public static String requestWinningNumbers() {

@@ -134,8 +134,8 @@ public class Application {
         List<Integer> winningNumbers = gameData.getWinningNumbers();
         gameStatistics.generateMatchingNumberCountList();
         List<Integer> matchingNumberCountList = gameStatistics.getMatchingNumberCountList();
-        gameStatistics.generateRankList();
-        List<Rank> rankList = gameStatistics.getRankList();
+        gameStatistics.generateLotteryRankList();
+        List<Rank> rankList = gameStatistics.getLotteryRankList();
 
         Controller.fillMatchingNumberCountList(lottoList, winningNumbers, matchingNumberCountList);
         Controller.fillRankList(rankList, matchingNumberCountList);

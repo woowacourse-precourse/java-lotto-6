@@ -16,7 +16,7 @@ public class Controller {
 
 
 
-    public static Integer countMatchingNumbersByLotteryNumber(List<Integer> winningNumbers, Integer lotteryNumber) {
+    public static Integer countMatchingNumberBetween(List<Integer> winningNumbers, Integer lotteryNumber) {
         int matchingCount = 0;
         for (Integer winningNumber : winningNumbers) {
             if (lotteryNumber.equals(winningNumber)) {
@@ -26,22 +26,22 @@ public class Controller {
         return matchingCount;
     }
 
-    public static void fillRankList(List<Rank> rankList, List<Integer> matchingNumberCountList) {
+    public static void fillRankList(List<Rank> lotteryRankList, List<Integer> matchingNumberCountList) {
         for (Integer matchingNumberCount : matchingNumberCountList) {
             if (matchingNumberCount.equals(6)) {
-                rankList.add(Rank.FIRST);
+                lotteryRankList.add(Rank.FIRST);
             }
             if (matchingNumberCount.equals(5)) {
-                rankList.add(Rank.THIRD);
+                lotteryRankList.add(Rank.THIRD);
             }
             if (matchingNumberCount.equals(4)) {
-                rankList.add(Rank.FOURTH);
+                lotteryRankList.add(Rank.FOURTH);
             }
             if (matchingNumberCount.equals(3)) {
-                rankList.add(Rank.FIFTH);
+                lotteryRankList.add(Rank.FIFTH);
             }
             if (matchingNumberCount < 3) {
-                rankList.add(Rank.FAIL);
+                lotteryRankList.add(Rank.FAIL);
             }
         }
     }
@@ -69,7 +69,7 @@ public class Controller {
             int countTemp = 0;
             List<Integer> lottoNumbers = lotto.getNumbers();
             for (Integer lottoNumber : lottoNumbers) {
-                countTemp += Controller.countMatchingNumbersByLotteryNumber(winningNumbers, lottoNumber);
+                countTemp += Controller.countMatchingNumberBetween(winningNumbers, lottoNumber);
             }
             matchingNumberCountList.add(countTemp);
         }

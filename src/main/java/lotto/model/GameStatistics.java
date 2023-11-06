@@ -8,7 +8,7 @@ import java.util.List;
 public class GameStatistics {
 
     private List<Integer> matchingNumberCountList;
-    private List<Rank> rankList;
+    private List<Rank> lotteryRankList;
 
     public static final Integer LOTTERY_PRICE = 1_000;
 
@@ -20,12 +20,12 @@ public class GameStatistics {
         return matchingNumberCountList;
     }
 
-    public List<Rank> getRankList() {
-        return rankList;
+    public List<Rank> getLotteryRankList() {
+        return lotteryRankList;
     }
 
-    public void generateRankList() {
-        this.rankList = new ArrayList<>();
+    public void generateLotteryRankList() {
+        this.lotteryRankList = new ArrayList<>();
     }
 
 }

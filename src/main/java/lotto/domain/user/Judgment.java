@@ -19,9 +19,9 @@ public class Judgment {
         Integer numOfLotto = 0;
 
         for (int i = 0; i < SIZE_LOTTO_NUMBERS; i++) {
-            numOfLotto = lotto.getNumber(i);
+            numOfLotto = getLottoNumber(lotto, i);
 
-            if (lottoTargetNumResults.isSameWinNums(numOfLotto)) {
+            if (isSameWinNumbers(numOfLotto)) {
                 countSameWinNum = countSameWinNum + COUNT_NUMBER;
             }
         }
@@ -41,5 +41,13 @@ public class Judgment {
         }
 
         return false;
+    }
+
+    private Integer getLottoNumber(Lotto lotto, int i) {
+        return lotto.getNumber(i);
+    }
+
+    private Boolean isSameWinNumbers(Integer numOfLotto) {
+        return lottoTargetNumResults.isSameWinNums(numOfLotto);
     }
 }

@@ -5,32 +5,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Input {
+    public static List<Integer> winNumbers;
+
     public static int purchaseAmount() throws IllegalArgumentException {
         String amount = Console.readLine();
-        Exception.NotNumberException(amount);
+
+        Exception.notNumber(amount);
+        Exception.notThousandWon(amount);
+
         return Integer.parseInt(amount);
     }
 
     public static List<Integer> winNumbers() {
+        final int limitCount = 6;
         String[] numbers = Console.readLine().split(",");
-        List<Integer> winNumbers = new ArrayList<>();
+        winNumbers = new ArrayList<>();
 
         for (String number : numbers) {
+            Exception.notNumber(number);
+            Exception.overLimitNumberRange(Integer.parseInt(number));
             winNumbers.add(Integer.parseInt(number));
         }
+
+        Exception.overLimitCount(numbers.length, limitCount);
+        Exception.duplicateWinNumbers(winNumbers);
 
         return winNumbers;
     }
 
     public static int bonusNumber() throws IllegalArgumentException {
-        int bonus = 0;
+        String bonus = Console.readLine();
+        Exception.notNumber(bonus);
 
-        try {
-            bonus = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException();
-        }
+        int bonusNumber = Integer.parseInt(bonus);
+        Exception.overLimitNumberRange(bonusNumber);
+        Exception.duplicateBonusNumber(winNumbers, bonusNumber);
 
-        return bonus;
+        return bonusNumber;
     }
 }

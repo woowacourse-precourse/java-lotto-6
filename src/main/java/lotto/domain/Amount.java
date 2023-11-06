@@ -12,7 +12,14 @@ public class Amount {
     }
 
     public void validate(final int amount) {
+        validateAmountNegativeNumber(amount);
         validateAmountEnough(amount);
+    }
+
+    public void validateAmountNegativeNumber(final int amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_IS_NOT_ZERO.getValue());
+        }
     }
 
     public void validateAmountEnough(final int amount) {

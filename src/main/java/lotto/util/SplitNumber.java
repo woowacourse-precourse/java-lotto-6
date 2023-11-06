@@ -8,6 +8,9 @@ public class SplitNumber {
     private static final String UNDER_20_BILLION_REQUIRED = "입력은 20억 이하여야 합니다";
     private static final String NUMBER_REGEX = "[0-9]+";
 
+    private SplitNumber() {
+    }
+
     public static List<Integer> splitNumber(String inputNumber) {
         List<String> splitedNumber = List.of(inputNumber.split(","));
         if (inputNumber.charAt(inputNumber.length() - 1) == ',') {

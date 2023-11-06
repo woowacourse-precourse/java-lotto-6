@@ -11,14 +11,15 @@ public class InputValidateTest {
     private InputValidate inputValidate;
     @BeforeEach
     void setUp(){
-        inputValidate = new InputValidate();
+        ValidateTools validateTools = new ValidateTools();
+        inputValidate = new InputValidate(validateTools);
     }
     @Test
     void 보너스_숫자의_갯수가_1개인지_확인(){
-        assertThrows(IllegalArgumentException.class, () -> inputValidate.validateIsNumber(" 1 2"));
-        assertThrows(IllegalArgumentException.class, () -> inputValidate.validateIsNumber("1,2,3"));
-        assertThrows(IllegalArgumentException.class, () -> inputValidate.validateIsNumber(""));
-        assertEquals("1", inputValidate.validateIsNumber("1"));
+        assertThrows(IllegalArgumentException.class, () -> inputValidate.canNumber(" 1 2"));
+        assertThrows(IllegalArgumentException.class, () -> inputValidate.canNumber("1,2,3"));
+        assertThrows(IllegalArgumentException.class, () -> inputValidate.canNumber(""));
+        assertEquals("1", inputValidate.canNumber("1"));
     }
 
     @Test

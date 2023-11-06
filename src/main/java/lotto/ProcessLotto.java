@@ -14,7 +14,8 @@ public class ProcessLotto {
     }
 
     public void drawLotto(){
-        InputValidate inputValidate = new InputValidate();
+        ValidateTools validateTools = new ValidateTools();
+        InputValidate inputValidate = new InputValidate(validateTools);
         AmountProcessing amountProcessing = new AmountProcessing();
         Generator generator = new Generator();
         CalculateLotto calculateLotto = new CalculateLotto();
@@ -24,7 +25,6 @@ public class ProcessLotto {
         while (!success){
             try{
                 cost = inputValidate.validateCost(inputView.getLine());
-                amountProcessing.isDivided(cost);
                 success = true;
             }
             catch (IllegalArgumentException e){

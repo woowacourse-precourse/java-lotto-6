@@ -24,9 +24,9 @@ public class AmountProcessingTest {
     @DisplayName("1,000원으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
     @Test
     void validateCostByDivided(){
-        AmountProcessing amountProcessing = new AmountProcessing();
-        assertThrows(IllegalArgumentException.class, () -> amountProcessing.isDivided(1100));
-        assertEquals(true, amountProcessing.isDivided(1000));
+        ValidateTools validateTools = new ValidateTools();
+        assertThrows(IllegalArgumentException.class, () -> validateTools.validateDivided(1100));
+        assertEquals(true, validateTools.validateDivided(1000));
     }
 
 }

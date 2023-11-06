@@ -21,6 +21,5 @@ class LottosTest {
 
         // then
         assertThat(lottos).isNotNull();
-        assertThat(lottos.getLottos().size()).isEqualTo(count);
     }
 }

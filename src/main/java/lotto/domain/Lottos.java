@@ -13,10 +13,6 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
-    }
-
     public LottoResponseDtos toResponseDto() {
         List<LottoResponseDto> dtos = lottos.stream()
             .map(lotto -> lotto.toResponseDto())

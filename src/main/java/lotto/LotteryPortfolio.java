@@ -52,6 +52,15 @@ public class LotteryPortfolio {
         return report;
     }
 
+    public DrawResult checkResult(Lotto lotto, Lotto winningLotto, BonusNumber bonusNumber) {
+        return DrawResult.resultOf(lotto.countHitNumbers(winningLotto),
+                lotto.containsBonusNumber(bonusNumber));
+    }
+
+    public List<Lotto> getHoldings() {
+        return holdings;
+    }
+
     private long calculateWinnings(Lotto ticket, Lotto winningLotto, BonusNumber bonusNumber) {
         return DrawResult.resultOf(ticket.countHitNumbers(winningLotto),
                 ticket.containsBonusNumber(bonusNumber)).getWinnings();
@@ -64,10 +73,5 @@ public class LotteryPortfolio {
     private double roundToOneDecimalPlace(double number) {
         DecimalFormat decimalFormat = new DecimalFormat("#.#");
         return Double.parseDouble(decimalFormat.format(number));
-    }
-
-    public DrawResult checkResult(Lotto lotto, Lotto winningLotto, BonusNumber bonusNumber) {
-        return DrawResult.resultOf(lotto.countHitNumbers(winningLotto),
-                lotto.containsBonusNumber(bonusNumber));
     }
 }

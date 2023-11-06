@@ -38,6 +38,10 @@ public class WinningNumbers {
         }
     }
 
+    public boolean contains(int number) {
+        return winningNumbers.contains(number);
+    }
+
     private void validateWinningNumbersCount(List<Integer> winningNumbersIntegerList) {
         if (winningNumbersIntegerList.size() != Constants.LOTTO_NUMBER_COUNTS) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_COUNT_INVALID_ERROR.getMessage());

@@ -18,6 +18,17 @@ public class Lotto {
         return numbers;
     }
 
+    public Integer countMatchedOtherLotto(Lotto lotto){
+        List<Integer> numbers = lotto.getNumbers();
+        int count = 0;
+        for(Integer number : numbers){
+            if(isContainNumber(number)){
+                count++;
+            }
+        }
+        return count;
+    }
+
     private void validateNumbersLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -31,5 +42,9 @@ public class Lotto {
                 throw new IllegalArgumentException(IS_NOT_OVERLAP_SIX_VALIDATOR_ERROR_MESSAGE);
             }
         }
+    }
+
+    private Boolean isContainNumber(Integer number){
+        return numbers.contains(number);
     }
 }

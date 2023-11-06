@@ -12,17 +12,15 @@ public class Number {
     private static final int end = 45;
 
 
-    protected void checkRange(int num) throws IllegalArgumentException {
+    public static void checkRange(int num) throws IllegalArgumentException {
         if ((num < start) || (num > end)) {
-            outOfBoundExceptionMessage();
             throw new IllegalArgumentException();
         }
     }
 
-    public void checkDuplicate(List<Integer> numbers, BonusNumber bonus) throws IllegalArgumentException{
+    public static void checkDuplicate(List<Integer> numbers, int bonus) throws IllegalArgumentException{
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.contains(bonus.getBonusNumber())) {
-            duplicatedBonusNumber();
+        if (uniqueNumbers.contains(bonus)) {
             throw new IllegalArgumentException();
         }
     }

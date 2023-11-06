@@ -14,7 +14,7 @@ public class RandNumber {
         List<Integer> numbers = new ArrayList<>();
         while(true) {
             numbers = makeRandNumber();
-            if (checkDuplicate(numbers)) {
+            if (checkRandDuplicate(numbers)) {
                 break;
             }
 
@@ -22,7 +22,7 @@ public class RandNumber {
         return numbers;
     }
 
-    public static boolean checkDuplicate(List<Integer> numbers) {
+    public static boolean checkRandDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             return false;

@@ -54,7 +54,6 @@ public class Play {
             String tmpPrice = inputPrice();
             try {
                 price = checkPriceException(tmpPrice);
-                //price = new Price(convertPrice(tmpPrice));
                 break;
             } catch (IllegalArgumentException e) {
                 //notDigitExceptionMessage();
@@ -81,8 +80,7 @@ public class Play {
             messageAboutUserBonusNumber();
             String tmpBonusNumber = inputBonusNumber();
             try {
-                bonus = new BonusNumber(convertBonusNumber(tmpBonusNumber));
-                bonus.checkDuplicate(numbers, bonus);
+                bonus =  checkBonusNumberException(numbers, tmpBonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 //System.out.println("[ERROR]");

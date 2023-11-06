@@ -30,7 +30,7 @@ public class RandNumberTest {
         for (int n : makeUniqueNumber()) {
             System.out.println(n);
         }
-        Assertions.assertThat(checkDuplicate(numbers)).isNotEqualTo(numbers);
+        Assertions.assertThat(checkRandDuplicate(numbers)).isNotEqualTo(numbers);
     }
 
 }

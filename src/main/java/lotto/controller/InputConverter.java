@@ -29,7 +29,6 @@ public class InputConverter {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            notDigitExceptionMessage();
             throw e;
         }
     }

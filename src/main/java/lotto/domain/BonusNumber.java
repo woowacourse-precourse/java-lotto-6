@@ -16,7 +16,7 @@ public class BonusNumber {
     private void validateBonusNumber(int bonusNumber, Lotto winningNumbers) {
         List<Integer> numbers = winningNumbers.getNumbers();
         if (numbers.contains(bonusNumber)) {
-            throw Errors.INVALID_BONUS_NUMBER.getException();
+            throw Errors.INVALID_BONUS_NUMBER.getLottoException();
         }
     }
 

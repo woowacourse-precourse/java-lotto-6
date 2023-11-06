@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.Errors;
+import lotto.exception.FormatException;
 
 public class InputView {
     private static final String MSG_ASKING_BUDGET = "구입금액을 입력해 주세요.";
@@ -16,13 +18,33 @@ public class InputView {
     }
 
     public int printAskingBudget() {
-        System.out.println(MSG_ASKING_BUDGET);
-        return Integer.parseInt(getUserInput());
+        int budget;
+        while (true) {
+            try {
+                System.out.println(MSG_ASKING_BUDGET);
+                budget = Integer.parseInt(getUserInput());
+                break;
+            } catch (NumberFormatException e) {
+                FormatException formatException = Errors.IS_NOT_NUMBER.getFormatException();
+                System.out.println(formatException.getMessage());
+            }
+        }
+        return budget;
     }
 
     public List<Integer> printAskingWinningNumbers() {
-        System.out.println(MSG_ASKING_WINNING_NUMBERS);
-        return parseStringToList(getUserInput());
+        List<Integer> winningNumbers;
+        while (true) {
+            try {
+                System.out.println(MSG_ASKING_WINNING_NUMBERS);
+                winningNumbers = parseStringToList(getUserInput());
+                break;
+            } catch (NumberFormatException e) {
+                FormatException formatException = Errors.IS_NOT_NUMBER.getFormatException();
+                System.out.println(formatException.getMessage());
+            }
+        }
+        return winningNumbers;
     }
 
     private List<Integer> parseStringToList(String userInput) {
@@ -33,8 +55,18 @@ public class InputView {
     }
 
     public int printAskingBonusNumber() {
-        System.out.println(MSG_ASKING_BONUS_NUMBER);
-        return Integer.parseInt(getUserInput());
+        int bonusNumber;
+        while (true) {
+            try {
+                System.out.println(MSG_ASKING_BONUS_NUMBER);
+                bonusNumber = Integer.parseInt(getUserInput());
+                break;
+            } catch (NumberFormatException e) {
+                FormatException formatException = Errors.IS_NOT_NUMBER.getFormatException();
+                System.out.println(formatException.getMessage());
+            }
+        }
+        return bonusNumber;
     }
 
     public void close() {

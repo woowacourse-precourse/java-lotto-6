@@ -7,7 +7,9 @@ public class InputView {
 
     public static int askPurchaseAmount() {
         System.out.println(ASK_PURCHASE_AMOUNT);
-        return validateNumber(Console.readLine().trim());
+        String userInput=Console.readLine().trim();
+        System.out.println();
+        return validateNumber(userInput);
     }
 
     public static int validateNumber(String input) {

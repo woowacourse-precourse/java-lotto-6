@@ -2,6 +2,7 @@ package controller;
 
 import model.MyLotto;
 import view.InputView;
+import view.OutPutView;
 
 public class FrontController {
 
@@ -12,6 +13,7 @@ public class FrontController {
 
     public void run() {
         myLotto = buyLotto();
+        OutPutView.printPurchaseResult(myLotto);
     }
 
     private MyLotto buyLotto() {

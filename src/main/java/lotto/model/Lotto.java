@@ -1,7 +1,7 @@
 package lotto.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import lotto.utils.InputValidator;
 
 public class Lotto {
 
@@ -13,13 +13,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        InputValidator.checkLotto(numbers);
     }
 
     public void showLotto() {
         System.out.println(numbers);
+    }
+
+    public void validateBonusNumber(String bonus) {
+        InputValidator.checkBonusNumber(numbers, bonus);
     }
 
 }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public enum Notice {
     ASK_BUDGET("구입 금액을 입력해 주세요."),

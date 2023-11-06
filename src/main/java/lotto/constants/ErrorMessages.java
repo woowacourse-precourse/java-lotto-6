@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public enum ErrorMessages {
     IS_NUMBER_ONLY(" 입력값은 숫자여야 합니다.") {

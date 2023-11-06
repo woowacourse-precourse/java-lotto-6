@@ -1,6 +1,8 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constants.Notice;
+import lotto.constants.Rank;
 
 import java.text.DecimalFormat;
 import java.util.List;

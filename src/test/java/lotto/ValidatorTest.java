@@ -37,7 +37,7 @@ class ValidatorTest {
     }
 
     @Test
-    @DisplayName("숫자가 아닐 경우 예외 발생")
+    @DisplayName("양의 정수가 아닐 경우 예외 발생")
     void isNumberTest() {
         testCases = Arrays.asList(new String[]{"a", "asdf", "120a", "!230"});
         for (String testCase : testCases) {

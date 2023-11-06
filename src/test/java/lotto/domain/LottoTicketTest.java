@@ -1,4 +1,4 @@
-package lotto.dto;
+package lotto.domain;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -13,6 +13,8 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoTicket;
+import lotto.dto.WinningLotto;
+import lotto.dto.WinningResult;
 import lotto.enums.Prize;
 import org.junit.jupiter.api.Test;
 

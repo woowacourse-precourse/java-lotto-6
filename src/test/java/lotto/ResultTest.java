@@ -16,8 +16,8 @@ class ResultTest {
         assertThat(Result.from(5, false)).isEqualTo(THIRD_PRIZE);
         assertThat(Result.from(4, false)).isEqualTo(FOURTH_PRIZE);
         assertThat(Result.from(3, false)).isEqualTo(FIFTH_PRIZE);
-        assertThat(Result.from(2, false)).isEqualTo(NO_PRIZE);
-        assertThat(Result.from(1, false)).isEqualTo(NO_PRIZE);
+        assertThat(Result.from(2, true)).isEqualTo(NO_PRIZE);
+        assertThat(Result.from(1, true)).isEqualTo(NO_PRIZE);
         assertThat(Result.from(0, false)).isEqualTo(NO_PRIZE);
     }
 

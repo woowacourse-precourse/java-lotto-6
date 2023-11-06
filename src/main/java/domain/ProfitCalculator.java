@@ -29,6 +29,17 @@ public class ProfitCalculator {
         }};
     }
 
+    public void printWinningStatistics() {
+
+        for (WinningHistory history : WinningHistory.values()) {
+            int count = winningHistory.get(history);
+            if (count > 0) {
+                System.out.println(history.getMatchNumbers() + "개 일치 (" + history.getPrizeMoney() + "원) - " + count + "개");
+            }
+        }
+    }
+
+
     public String calculateRateOfReturn(int amount) {
         double rateOfReturn = (totalPrizeMoney / (double) amount) * 100;
         return String.format("총 수익률은 %.1f%%입니다.", rateOfReturn);

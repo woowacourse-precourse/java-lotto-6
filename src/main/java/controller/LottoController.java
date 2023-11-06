@@ -76,6 +76,6 @@ public class LottoController {
         profitCalculator.calculateProfit(lotto, winningNumbers, bonusNumber.getBonusNumber());
         HashMap<WinningHistory, Integer> winningHistories = profitCalculator.getWinningHistory();
         String rateOfReturn = profitCalculator.calculateRateOfReturn(amount);
-        
+
     }
 }

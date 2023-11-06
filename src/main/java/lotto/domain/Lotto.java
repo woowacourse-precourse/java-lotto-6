@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import static lotto.exception.ErrorMessage.DUPLICATE_NUMBERS_ERROR;
 import static lotto.exception.ErrorMessage.INVALID_COUNT_OF_WINNING_NUMBERS_ERROR;
 import static lotto.exception.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private static final int LOTTO_COUNT = 6;
@@ -21,6 +24,7 @@ public class Lotto {
             throw new IllegalArgumentException(INVALID_COUNT_OF_WINNING_NUMBERS_ERROR);
         }
         isNumberRangeValid(numbers);
+        isNumberDuplicate(numbers);
     }
 
     private void isNumberRangeValid(List<Integer> numbers) {
@@ -31,5 +35,11 @@ public class Lotto {
         }
     }
 
-
+    private void isNumberDuplicate(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (numbers.size() != set.size()) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBERS_ERROR);
+        }
+    }
+    
 }

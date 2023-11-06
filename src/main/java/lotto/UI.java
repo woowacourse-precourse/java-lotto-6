@@ -13,7 +13,7 @@ public class UI {
 		showComputerLottos(numberOfLottoTickets);
 	}
 
-	long inputMoney() {
+	private long inputMoney() {
 		try {
 			System.out.println("구입금액을 입력해 주세요.");
 			String cost = Console.readLine();
@@ -28,8 +28,12 @@ public class UI {
 	private void showComputerLottos(long numberOfLottoTickets) {
 		try {
 			List<Lotto> lottos = lottoService.issueLottos(numberOfLottoTickets);
+			for (int i = 0; i < lottos.size(); i++) {
+				System.out.println(lottos.get(i).getNumbers());
+			}
 		} catch (IllegalArgumentException e) {
-
+			System.out.println(e.getMessage());
+			on();
 		}
 	}
 }

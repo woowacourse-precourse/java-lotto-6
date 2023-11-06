@@ -12,11 +12,13 @@ public class Lotto {
 		this.numbers = numbers;
 	}
 
-	private void validate(List<Integer> numbers) throws IllegalArgumentException{
+	private void validate(List<Integer> numbers) throws IllegalArgumentException {
 		if (numbers.size() != 6) {
 			throw new IllegalArgumentException(ErrorCode.ELEMENTS_SHOULD_BE_SIX.getErrorMessage());
 		}
 	}
 
-	// TODO: 추가 기능 구현
+	public List<Integer> getNumbers() {
+		return this.numbers;
+	}
 }

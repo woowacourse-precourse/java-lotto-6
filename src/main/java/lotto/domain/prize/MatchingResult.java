@@ -17,7 +17,7 @@ public class MatchingResult {
         final int normalMatchingCount = lotto.countPrizeNumberMatchingCount(prize);
 
         this.prizeMatchingCount = PrizeMatchingCount.from(normalMatchingCount);
-        this.bonusMatching = lotto.isBonusNumberMatching(prize);
+        this.bonusMatching = lotto.hasBonusNumber(prize);
     }
 
     // Static Factory Method

@@ -15,21 +15,21 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @DisplayName("[Domain Layer] Buyer")
 class BuyerTest {
 
-    /**
-     * Buyer 객체 생성자 예외처리
-     * 1. 로또 판매 단위금액(Default : 1000) 미만의 요청
-     * 2. 1회당 로또 최대 판매금액(Default : 10,000,000)을 초과하는 요청
-     * 3. 단위가격으로 나누어 떨어지지 않는 요청
-     */
-    
+
     @Nested
     @DisplayName("[from] 정적 팩토리 메소드 / 생성자 테스트")
     class from {
 
+        /**
+         * Buyer 객체 생성자 예외처리
+         * 1. 로또 판매 단위금액(Default : 1000) 미만의 요청
+         * 2. 1회당 로또 최대 판매금액(Default : 10,000,000)을 초과하는 요청
+         * 3. 단위가격으로 나누어 떨어지지 않는 요청
+         */
 
         @Test
         @DisplayName("[Success] 정상적인 구매 금액 인자로 객체 생성 성공")
-        void Should_Success_When_ValidParameter() {
+        void Should_Success_When_Valid() {
             // given
             final BuyerFixture valid = BuyerFixture.VALID;
             // when && then
@@ -37,14 +37,13 @@ class BuyerTest {
         }
 
         @Test
-        @DisplayName("[Success] 로또 단위 가격 이하 가격 paymentInput으로 예외처리")
+        @DisplayName("[Exception] 1회당 로또 최대 판매금액(Default : 10,000,000)을 초과하는 요청 예외처리")
         void Should_ThrowException_When_SmallerPaymentThanUnitPrice() {
             // given
             final BuyerFixture negative = BuyerFixture.NEGATIVE_INTEGER;
             final BuyerFixture zero = BuyerFixture.ZERO;
             final BuyerFixture tooSmall = BuyerFixture.SMALLER_THAN_UNIT_PRICE;
             // when && then
-
             assertAll(
                     () -> assertThatThrownBy(negative::toEntity)
                             .isInstanceOf(IllegalArgumentException.class)
@@ -59,27 +58,25 @@ class BuyerTest {
         }
 
         @Test
-        @DisplayName("[Success] 1000원 단위로 나누어지지 않는 paymentInput으로 예외처리")
-        void Should_ThrowException_When_CantDivisiblePaymentByUnitPrice() {
-            // given
-            final BuyerFixture cantDivisibleByUnitPrice = BuyerFixture.CANT_DIVISIBLE_BY_UNIT_PRICE;
-
-            // when && then
-            assertThatThrownBy(cantDivisibleByUnitPrice::toEntity)
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(PAYMENT_NOT_DIVISIBLE_BY_UNIT_PRICE.getMessage());
-        }
-
-        @Test
-        @DisplayName("[Success] 1회 최대 구입 가격(Default = 10,000,000) 초과로 예외처리")
+        @DisplayName("[Exception] 1회 최대 구입 가격(Default = 10,000,000) 초과로 예외처리")
         void Should_ThrowException_When_OutOfRangePayment() {
             // given
             final BuyerFixture tooBig = BuyerFixture.TOO_BIG;
-
             // when && then
             assertThatThrownBy(tooBig::toEntity)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage());
+        }
+
+        @Test
+        @DisplayName("[Exception] 단위가격으로 나누어 떨어지지 않는 요청 예외처리")
+        void Should_ThrowException_When_CantDivisiblePaymentByUnitPrice() {
+            // given
+            final BuyerFixture cantDivisibleByUnitPrice = BuyerFixture.CANT_DIVISIBLE_BY_UNIT_PRICE;
+            // when && then
+            assertThatThrownBy(cantDivisibleByUnitPrice::toEntity)
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(PAYMENT_NOT_DIVISIBLE_BY_UNIT_PRICE.getMessage());
         }
     }
 }

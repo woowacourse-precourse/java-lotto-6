@@ -45,13 +45,8 @@ public final class Prize extends NumberChecker {
 
     // Exception Handling Method
     private void validateDuplicatedBonusNumber(final int number) {
-        if (prizeNumbers.isAlreadyContainBonusNumber(number)) {
+        if (prizeNumbers.hasNumber(number)) {
             throw LottoException.from(BONUS_NUMBER_DUPLICATED);
         }
-    }
-
-    // Getter
-    public Lotto getPrizeNumbers() {
-        return prizeNumbers;
     }
 }

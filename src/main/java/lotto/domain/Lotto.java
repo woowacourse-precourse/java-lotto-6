@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.constants.ErrorMessage;
+import lotto.constants.LottoRule;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,7 +16,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoRule.LOTTO_NUMBER_COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NOT_NUMBER.getMessage());
         }
     }

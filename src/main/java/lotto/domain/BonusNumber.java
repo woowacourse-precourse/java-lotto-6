@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.constants.ErrorMessage;
+import lotto.constants.LottoRule;
 
 public class BonusNumber {
     int bonusNumber;
@@ -23,7 +24,7 @@ public class BonusNumber {
 
     private int validateBetweenMinNumberAndMaxNumber(String content) {
         int result = Integer.parseInt(content);
-        if(result < 0 || 45 < result) {
+        if(result < LottoRule.LOTTO_MIN_NUMBER.getNumber() || LottoRule.LOTTO_MAX_NUMBER.getNumber() < result) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NOT_INTERVAL_VALUE.getMessage());
         }
         return result;

@@ -1,11 +1,12 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constants.LottoRule;
 
 import java.util.List;
 
 public class LottoService {
     public static List<Integer> generateRandomLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LottoRule.LOTTO_MIN_NUMBER.getNumber(), LottoRule.LOTTO_MAX_NUMBER.getNumber(), LottoRule.LOTTO_NUMBER_COUNT.getNumber());
     }
 }

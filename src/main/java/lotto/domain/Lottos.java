@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.constants.ErrorMessage;
+import lotto.constants.LottoRule;
 import lotto.service.LottoService;
 
 import java.util.*;
@@ -31,10 +32,10 @@ public class Lottos {
 
     private int validateDivisibilityByLottoPrice(String purchaseAmount) {
         int purchaseResult = Integer.parseInt(purchaseAmount);
-        if(purchaseResult % 1000 != 0) {
+        if(purchaseResult % LottoRule.LOTTO_PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_CANT_DIVIDED_BY_LOTTO_PRICE.getMessage());
         }
-        return purchaseResult / 1000;
+        return purchaseResult / LottoRule.LOTTO_PRICE.getNumber();
     }
 
     private void initEachLotto() {
@@ -77,6 +78,6 @@ public class Lottos {
         for(LottoRank lottoRank : rankCount.keySet()) {
             totalSum += lottoRank.getValue() * rankCount.get(lottoRank);
         }
-        return totalSum / (numberOfLottos * 1000) * 100;
+        return totalSum / (numberOfLottos * LottoRule.LOTTO_PRICE.getNumber()) * 100;
     }
 }

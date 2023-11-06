@@ -13,7 +13,7 @@ public class InputValidator {
     private static final String regEx = "^[0-9]*$";
     private static final String SEPARATOR = ",";
 
-    public int validatePrice(String price) {
+    public int validateMoney(String price) {
         validateInputEmpty(price);
         validateInputBlank(price);
         validateNonNumberInput(price);

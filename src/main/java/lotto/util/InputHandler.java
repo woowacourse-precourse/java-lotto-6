@@ -6,9 +6,9 @@ import java.util.List;
 public class InputHandler {
     private static final InputValidator validator = new InputValidator();
 
-    public int inputPrice() {
+    public int inputMoney() {
         String input = Console.readLine();
-        return validator.validatePrice(input);
+        return validator.validateMoney(input);
     }
 
     public List<String> inputAnswerNumbers() {

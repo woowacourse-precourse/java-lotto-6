@@ -23,4 +23,9 @@ public class LottoException {
             }
         }
     }
+    public void validateLottoNumbersLength(List<Integer> numbers) {
+        if (numbers.size() != Constants.DESIGNATED_LOTTO_LENGTH) {
+            throw new IllegalArgumentException(Constants.ERROR + "로또 번호는 6개이어야 합니다");
+        }
+    }
 }

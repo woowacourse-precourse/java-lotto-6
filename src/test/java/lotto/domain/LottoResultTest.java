@@ -101,7 +101,7 @@ public class LottoResultTest {
         LottoResult lottoResult = new LottoResult(new WinningLotto(winningLotto, bonus),
                 Arrays.asList(issuedLotto1, issuedLotto2, issuedLotto3, issuedLotto4,
                         issuedLotto5, issuedLotto6, issuedLotto7, issuedLotto8));
-        Float price = lottoResult.returnCalculation();
+        Float price = lottoResult.getReturnRate();
 
         // then
         Float expected = 62.5f;

@@ -5,11 +5,11 @@ import java.util.List;
 public class Result {
     private int matchingNumbersCounter;
     private boolean isBonusMatching;
-    private int ranking;
+    private Rank rank;
 
     Result(Ticket ticket, Lotto lotto) {
         compareTicketAndLotto(ticket, lotto);
-        decideRanking();
+        decideRank();
     }
 
     private void compareTicketAndLotto(Ticket ticket, Lotto lotto) {
@@ -28,29 +28,29 @@ public class Result {
         isBonusMatching = (matchingNumbersCounter == 5) && lottoNumbers.contains(bonusNumber);
     }
 
-    private void decideRanking() {
+    private void decideRank() {
         if (matchingNumbersCounter == 6) {
-            ranking = 1;
+            rank = Rank.FIRST;
         }
 
         if (matchingNumbersCounter == 5) {
-            ranking = 3;
+            rank = Rank.THIRD;
 
             if (isBonusMatching) {
-                ranking = 2;
+                rank = Rank.SECOND;
             }
         }
 
         if (matchingNumbersCounter == 4) {
-            ranking = 4;
+            rank = Rank.FOURTH;
         }
 
         if (matchingNumbersCounter == 3) {
-            ranking = 5;
+            rank = Rank.FIFTH;
         }
     }
 
-    public int getRanking() {
-        return ranking;
+    public Rank getRanking() {
+        return rank;
     }
 }

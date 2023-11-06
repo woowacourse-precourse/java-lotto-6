@@ -4,14 +4,9 @@ import View.Input;
 import View.Output;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.MathContext;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.BiConsumer;
 
 public class LottoApplication {
     private static int LOTTO_PRICE = 1000;

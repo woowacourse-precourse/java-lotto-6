@@ -16,12 +16,17 @@ public class WinningStatisticsCalculator {
     public WinningStatistics calculateWinningStatistics() {
         WinningStatistics statistics = new WinningStatistics();
         for (Lotto lotto : purchasedLottos.getLottos()) {
-            int matchCount = countMatchingNumbers(lotto);
-            boolean hasBonus = hasBonusNumber(lotto);
-            WinningCriteria criteria = WinningCriteria.getRating(matchCount, hasBonus);
+            WinningCriteria criteria = calculateWinningCriteria(lotto);
             statistics.addResult(criteria);
         }
         return statistics;
+    }
+
+    private WinningCriteria calculateWinningCriteria(Lotto lotto) {
+        int matchCount = countMatchingNumbers(lotto);
+        boolean hasBonus = hasBonusNumber(lotto);
+        WinningCriteria criteria = WinningCriteria.getRating(matchCount, hasBonus);
+        return criteria;
     }
 
     private int countMatchingNumbers(Lotto lotto) {

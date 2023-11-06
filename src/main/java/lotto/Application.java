@@ -1,11 +1,12 @@
 package lotto;
 
+import static lotto.SystemMessage.INPUT_BONUS;
+import static lotto.SystemMessage.INPUT_PURCHASE_AMOUNT;
+import static lotto.SystemMessage.INPUT_WINNING_LOTTO;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
-    private static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
-    private static final String INPUT_WINNING_LOTTO = "\n당첨 번호를 입력해 주세요.";
-    private static final String INPUT_BONUS = "\n보너스 번호를 입력해 주세요.";
 
     public static void main(String[] args) {
         LottoGenerator lottoGenerator = new LottoGenerator(askPurchaseAmount());
@@ -20,17 +21,17 @@ public class Application {
     }
 
     private static int askPurchaseAmount() {
-        System.out.println(INPUT_PURCHASE_AMOUNT);
+        System.out.println(INPUT_PURCHASE_AMOUNT.getMessage());
         return Integer.parseInt(Console.readLine());
     }
 
     private static String askWinningLotto() {
-        System.out.println(INPUT_WINNING_LOTTO);
+        System.out.println(INPUT_WINNING_LOTTO.getMessage());
         return Console.readLine();
     }
 
     private static int askBonus() {
-        System.out.println(INPUT_BONUS);
+        System.out.println(INPUT_BONUS.getMessage());
         return Integer.parseInt(Console.readLine());
     }
 }

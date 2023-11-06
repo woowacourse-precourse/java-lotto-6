@@ -24,7 +24,7 @@ public class OutputView {
     public void displayWinningLotto(String winnerStatistics) {
         System.out.println(WINNING_STATISTICS_TITLE);
         System.out.println(SEPARATOR);
-        System.out.println(winnerStatistics);
+        System.out.print(winnerStatistics);
     }
 
     public void displayRateOfReturn(BigDecimal yield) {

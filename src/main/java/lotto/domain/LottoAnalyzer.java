@@ -7,31 +7,23 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoAnalyzer {
-    private final List<Lotto> lottos;
     private final Map<LottoRank, Integer> winningStatistics = new EnumMap<>(LottoRank.class);
-    private List<Integer> winningNumbers;
-    private int bonusNumber;
+    private final List<Integer> winningNumbers;
+    private final int bonusNumber;
 
-    public LottoAnalyzer(List<Lotto> lottos) {
-        this.lottos = lottos;
-    }
-
-    public void addWinningNumbers(List<Integer> winningNumbers) {
+    public LottoAnalyzer(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
+        this.bonusNumber = isValidBonus(bonusNumber);
     }
 
-    public void addBonusNumber(int bonusNumber) {
-        validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
-    }
-
-    private void validate(int bonusNumber) {
+    private int isValidBonus(int bonusNumber) {
         if (this.winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_WINNING_NUMBER);
         }
+        return bonusNumber;
     }
 
-    public void analyzeLotto() {
+    public void analyzeLotto(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             int match = (int) winningNumbers.stream().filter(lottoNumbers::contains)

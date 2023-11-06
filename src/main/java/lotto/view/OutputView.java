@@ -26,7 +26,7 @@ public class OutputView {
         }
     }
 
-    public static void printWinnerResult(List<SameNumber> sameNumbers, int purchaseAmount) {
+    public static void printWinnerResult(List<SameNumber> sameNumbers) {
         OutputView.sameNumbers = sameNumbers;
         System.out.println();
         System.out.println(WINNER_RESULT.getMessage());
@@ -35,6 +35,9 @@ public class OutputView {
         System.out.println(THIRD.getMessage() + countThird() + UNIT);
         System.out.println(SECOND.getMessage() + countSecond() + UNIT);
         System.out.println(FIRST.getMessage() + countFirst() + UNIT);
+    }
+
+    public static void printProfitRate(int purchaseAmount) {
         System.out.printf(PROFIT_RATE.getMessage(), calculateProfitRate(purchaseAmount));
     }
 

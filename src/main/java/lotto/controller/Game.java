@@ -12,20 +12,30 @@ import lotto.view.OutputView;
 
 public class Game {
     private static final int THOUSAND_UNIT = 1000;
+    private int purchaseAmount;
+    private Lotto winnerLotto;
+    private int bonusNumber;
 
     public void start() {
-        try {
-            int purchaseAmount = InputView.askPurchaseAmount();
-            int purchaseQuantity = purchaseAmount / THOUSAND_UNIT;
-            List<Lotto> lottos = issueLottos(purchaseQuantity);
-            OutputView.printPurchaseResult(lottos);
-            Lotto winnerLotto = createWinnerLotto();
-            int bonusNumber = createBonusNumber(winnerLotto);
-            List<SameNumber> sameNumbers = createSameNumbers(lottos, winnerLotto, bonusNumber);
-            OutputView.printWinnerResult(sameNumbers, purchaseAmount);
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
-            start();
+        createPurchaseAmount();
+        int purchaseQuantity = purchaseAmount / THOUSAND_UNIT;
+        List<Lotto> lottos = issueLottos(purchaseQuantity);
+        OutputView.printPurchaseResult(lottos);
+        createWinnerLotto();
+        createBonusNumber();
+        List<SameNumber> sameNumbers = createSameNumbers(lottos, winnerLotto, bonusNumber);
+        OutputView.printWinnerResult(sameNumbers);
+        OutputView.printProfitRate(purchaseAmount);
+    }
+
+    private void createPurchaseAmount() {
+        while (true) {
+            try {
+                purchaseAmount = InputView.askPurchaseAmount();
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e);
+            }
         }
     }
 
@@ -38,18 +48,36 @@ public class Game {
         return lottos;
     }
 
-    private Lotto createWinnerLotto() {
+    private void createWinnerLotto() {
+        while (true) {
+            try {
+                winnerLotto = new Lotto(createWinnerNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e);
+            }
+        }
+    }
+
+    private List<Integer> createWinnerNumbers() {
         Convertor convertor = new Convertor();
-        return new Lotto(convertor.convertToNumbers(InputView.askWinnerNumbers()));
+        return convertor.convertToNumbers(InputView.askWinnerNumbers());
     }
 
-    private int createBonusNumber(Lotto winnerLotto) {
-        int bonusNumber = new Number(InputView.askBonusNumber()).getNumber();
-        validateDuplicated(bonusNumber, winnerLotto);
-        return bonusNumber;
+
+    private void createBonusNumber() {
+        while (true) {
+            try {
+                bonusNumber = new Number(InputView.askBonusNumber()).getNumber();
+                validateDuplicated();
+                break;
+            } catch (Exception e) {
+                OutputView.printError(e);
+            }
+        }
     }
 
-    private void validateDuplicated(int bonusNumber, Lotto winnerLotto) {
+    private void validateDuplicated() {
         if (winnerLotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
         }

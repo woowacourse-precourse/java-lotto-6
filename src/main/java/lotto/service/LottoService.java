@@ -16,22 +16,24 @@ public class LottoService {
 
     public void lottoGameProcess(List<LottoTicket> lottoTickets, List<Integer> lottoWinNumbers,
         Integer bonusNumber) {
-        for (int ticketNumber = ZERO.getNumber(); ticketNumber < lottoTickets.size(); ticketNumber++) {
-            nowLottoTicketHasWinNumber(lottoTickets, lottoWinNumbers, ticketNumber);
-            nowLottoTicketHasBonusNumber(lottoTickets, bonusNumber, ticketNumber);
+        for (int ticketNumber = ZERO.getNumber(); ticketNumber < lottoTickets.size();
+            ticketNumber++) {
+            LottoTicket nowLottoTicket = lottoTickets.get(ticketNumber);
+            nowLottoTicketHasWinNumber(nowLottoTicket, lottoWinNumbers);
+            nowLottoTicketHasBonusNumber(nowLottoTicket, bonusNumber);
         }
         recordService.recordResult(lottoTickets);
     }
 
-    private void nowLottoTicketHasWinNumber(List<LottoTicket> lottoTickets, List<Integer> lottoWinNumbers,
-        int ticektNumber) {
+    private void nowLottoTicketHasWinNumber(LottoTicket lottoTicket,
+        List<Integer> lottoWinNumbers) {
         for (Integer lottoWinNumber : lottoWinNumbers) {
-            nowLottoTicketContainWinNumber(lottoTickets, lottoWinNumber, ticektNumber);
+            nowLottoTicketContainWinNumber(lottoTicket, lottoWinNumber);
         }
     }
 
     public double calculateYield(Long result, Long money) {
-        return yieldService.calculateYield(result,money);
+        return yieldService.calculateYield(result, money);
     }
 
     public long calculateFinalMoney() {
@@ -42,18 +44,16 @@ public class LottoService {
         return totalMoney;
     }
 
-    private void nowLottoTicketHasBonusNumber(List<LottoTicket> lottoTickets, Integer bonusNumber,
-        int ticketNumber) {
-        if (lottoTickets.get(ticketNumber).getSameCount() == SAME_COUNT_FIVE.getNumber() && lottoTickets.get(ticketNumber).getNumbers()
+    private void nowLottoTicketHasBonusNumber(LottoTicket lottoTicket, Integer bonusNumber) {
+        if (lottoTicket.getSameCount() == SAME_COUNT_FIVE.getNumber() && lottoTicket.getNumbers()
             .contains(bonusNumber)) {
-            lottoTickets.get(ticketNumber).hasBonus();
+            lottoTicket.hasBonus();
         }
     }
 
-    private void nowLottoTicketContainWinNumber(List<LottoTicket> lottoTickets,
-        Integer lottoWinNumber, int ticketNumber) {
-        if (lottoTickets.get(ticketNumber).getNumbers().contains(lottoWinNumber)) {
-            lottoTickets.get(ticketNumber).addSameCount();
+    private void nowLottoTicketContainWinNumber(LottoTicket lottoTicket, Integer lottoWinNumber) {
+        if (lottoTicket.getNumbers().contains(lottoWinNumber)) {
+            lottoTicket.addSameCount();
         }
     }
 

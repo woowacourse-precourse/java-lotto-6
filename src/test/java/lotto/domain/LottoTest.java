@@ -120,4 +120,14 @@ class LottoTest {
             assertEquals(winningStatistics, WinningStatistics.FIRST);
         }
     }
+
+    @Test
+    @DisplayName("당첨 번호와 보너스 번호가 중복되면 예외가 발생한다.")
+    void throws_When_WinningLottoNumber_And_BonusNumber_Duplicate() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(6);
+
+        assertThatThrownBy(() -> lotto.validateDuplicateWinningLottoNumberAndBonusNumber(bonusNumber)).isInstanceOf(
+                IllegalArgumentException.class);
+    }
 }

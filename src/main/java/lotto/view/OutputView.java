@@ -3,6 +3,11 @@ package lotto.view;
 import java.text.DecimalFormat;
 
 public class OutputView {
+    private static final String ENTER_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+
+    public void printEnterAmountMessage() {
+        System.out.println(ENTER_AMOUNT_MESSAGE);
+    }
     public void printStatsTitle() {
         System.out.println("당첨 통계\n---");
     }

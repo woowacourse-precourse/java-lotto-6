@@ -24,8 +24,9 @@ public class WinningLotto {
         return winningCount;
     }
 
-    public void setBonusNumber(int bonus) {
-        this.bonusNumber = bonus;
+    public void setBonusNumber(String bonus) {
+        Validator validator = new Validator();
+        this.bonusNumber = validator.validBonus(bonus, winningLotto);
     }
 
     public List<Integer> setWinningLotto(String number) {

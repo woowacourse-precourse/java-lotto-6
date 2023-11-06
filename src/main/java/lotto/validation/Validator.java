@@ -10,6 +10,8 @@ public class Validator {
 
     private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_START = 1;
+    private static final int LOTTO_END = 45;
 
     public int validWinning(String winningNumber) {
         int convertWinning = checkType(winningNumber);
@@ -18,11 +20,20 @@ public class Validator {
         return convertWinning;
     }
 
-    public int validBonus(String bonus) {
+    public int validBonus(String bonus, List<Integer> winningLotto) {
         int convertBonus = checkType(bonus);
         checkRange(convertBonus);
+        checkContainLotto(convertBonus, winningLotto);
 
         return convertBonus;
+    }
+
+    private void checkContainLotto(int convertBonus, List<Integer> winningLotto) {
+        if (!winningLotto.contains(convertBonus)) {
+            return;
+        }
+        getDescription(BONUS_DUPLICATE);
+        throw new IllegalArgumentException();
     }
 
     public int validPurchase(String amount) {
@@ -53,7 +64,7 @@ public class Validator {
     }
 
     private boolean isLottoRange(int number) {
-        return number > 0 && number < 46;
+        return number >= LOTTO_START && number <= LOTTO_END;
     }
 
     public void checkRemain(int amount) {

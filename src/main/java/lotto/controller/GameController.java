@@ -30,7 +30,7 @@ public class GameController {
 
     private void winningLotto() {
         retryCount(() -> winningLotto.setWinningLotto(inputView.printWinningNumber()));
-        retryCount(() -> winningLotto.setBonusNumber(validator.validBonus(inputView.printBonusNumber())));
+        retryCount(() -> winningLotto.setBonusNumber(inputView.printBonusNumber()));
 
         winningStatistics();
     }

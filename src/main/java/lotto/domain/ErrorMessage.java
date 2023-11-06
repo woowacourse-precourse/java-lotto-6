@@ -6,7 +6,8 @@ public enum ErrorMessage {
     DUPLICATE("중복되는 숫자가 존재합니다."),
     TYPE_INT("숫자만 입력해주세요."),
     PRICE_REMAIN("천 단위로 입력해주세요."),
-    LOTTO_RANGE("범위는 1 ~ 45로 해주세요.")
+    LOTTO_RANGE("범위는 1 ~ 45로 해주세요."),
+    BONUS_DUPLICATE("보너스 번호는 로또 당첨번호와 다른 번호여야 합니다.")
     ;
 
     private static final String ERROR_MESSAGE = "[ERROR]";

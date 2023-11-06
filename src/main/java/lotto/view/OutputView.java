@@ -7,6 +7,7 @@ import static lotto.constant.OutputText.WINNING_STATISTICS;
 
 import lotto.constant.OutputText;
 import lotto.dto.LottosInfo;
+import lotto.dto.WinningStatistics;
 
 public class OutputView {
 
@@ -23,15 +24,19 @@ public class OutputView {
         printOutputText(ENTER_BONUS_NUMBER);
     }
 
-    public void printWinnerStatistics() {
-        printSpace();
-        printOutputText(WINNING_STATISTICS);
-}
-
     public void printLottosInfo(LottosInfo lottoInfos) {
         printText(lottoInfos.getLottoCountText());
         lottoInfos.numbers().forEach(this::printText);
         printSpace();
+    }
+
+    public void printWinnerStatistics() {
+        printSpace();
+        printOutputText(WINNING_STATISTICS);
+    }
+
+    public void printWinningStatistics(WinningStatistics winningStatistics) {
+        printText(winningStatistics.convertOutputTextFormat());
     }
 
     private void printSpace() {

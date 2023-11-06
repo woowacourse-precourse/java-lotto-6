@@ -20,7 +20,8 @@ public class LottoController {
         outputView.printLottosInfo(lottoOwner.getLottosInfo());
         WinningLotto winningLotto = WinningLotto.of(getWinningLotto(), getBonusNumber());
         outputView.printWinnerStatistics();
-        LottoGameManager lotteryGame = LottoGameManager.of(lottoOwner, winningLotto);
+        LottoGameManager lottoGameManager = LottoGameManager.of(lottoOwner, winningLotto);
+        outputView.printWinningStatistics(lottoGameManager.getWinningStatistics());
     }
 
     private Lotto getWinningLotto() {

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 class WinningStatisticsTest {
     private WinningStatistics winningStatistics;
     private ArrayList<Lotto> lottos;
-    private WinningNumbers winningNumbers;
+    private PrizeNumbers prizeNumbers;
     private int purchaseAmount;
     int expectedTotalWinningAmount;
     double expectedProfitRate;
@@ -38,7 +38,7 @@ class WinningStatisticsTest {
         BonusNumberHandler bonusNumberHandler = new BonusNumberHandler("7");
         bonusNumberHandler.handle();
         int bonusNumber = bonusNumberHandler.getHandledResult();
-        winningNumbers = new WinningNumbers(sequencedNumbers, bonusNumber);
+        prizeNumbers = new PrizeNumbers(sequencedNumbers, bonusNumber);
 
         lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
@@ -51,7 +51,7 @@ class WinningStatisticsTest {
 
     @Test
     void testCalculateStatistics() {
-        winningStatistics.calculateStatistics(winningNumbers, lottos.iterator());
+        winningStatistics.calculateStatistics(prizeNumbers, lottos.iterator());
 
         Map<WinningRank, Integer> expectedWinningRecords = new HashMap<>();
         expectedWinningRecords.put(WinningRank.OUT_OF_RANK, 1);
@@ -76,7 +76,7 @@ class WinningStatisticsTest {
                 + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
                 + "6개 일치 (2,000,000,000원) - 1개\n"
                 + "총 수익률은 " + roundedProfitRate + "%입니다. ";
-        winningStatistics.calculateStatistics(winningNumbers, lottos.iterator());
+        winningStatistics.calculateStatistics(prizeNumbers, lottos.iterator());
 
         Assertions.assertThat(winningStatistics.toString()).isEqualTo(expected);
     }

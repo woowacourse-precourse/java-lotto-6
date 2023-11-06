@@ -37,6 +37,7 @@ public class InputView {
 
     public static void viewNumber(LottoMoney lottoMoney) {
         System.out.println();
+        System.out.println(lottoMoney.getCount() + "개를 구매했습니다.");
         for (List<Integer> number : lottoMoney.getNumbers()) {
             System.out.println(number);
         }

@@ -1,25 +1,25 @@
 package lotto.domain;
 
 public enum Prize {
-    FIRST(6, 2000000000, "6개 일치 (2,000,000,000원) - "),
-    SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
-    THIRD(5, 1500000, "5개 일치 (1,500,000원) - "),
-    FOURTH(4, 50000, "4개 일치 (50,000원) - "),
+    FIRST(0, 2000000000, "6개 일치 (2,000,000,000원) - "),
+    SECOND(7, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
+    THIRD(1, 1500000, "5개 일치 (1,500,000원) - "),
+    FOURTH(2, 50000, "4개 일치 (50,000원) - "),
     FIFTH(3, 5000, "3개 일치 (5,000원) - "),
-    FAIL(0, 0, "");
+    FAIL(4, 0, "");
 
-    private final int count;
+    private final int index;
     private final int price;
     private final String printResult;
 
-    Prize(int count, int price, String printResult) {
-        this.count = count;
+    Prize(int index, int price, String printResult) {
+        this.index = index;
         this.price = price;
         this.printResult = printResult;
     }
 
-    public int getCount() {
-        return count;
+    public int getIndex() {
+        return index;
     }
 
     public int getPrice() {

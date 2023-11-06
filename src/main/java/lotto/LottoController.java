@@ -24,6 +24,6 @@ public class LottoController {
         Lotto lotto = InputView.insertLottoNum();   // 로또 당첨 번호 입력
         InputView.insertBonusNum(lotto);    // 로또 보너스 번호 입력
         OutputView.winningLotto(lotto.getNumbers(), lottoMoney.getNumbers());  // 로또 당첨 여부 확인
-
+        OutputView.viewResult();    // 결과 출력
     }
 }

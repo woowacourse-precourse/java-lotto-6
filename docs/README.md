@@ -27,4 +27,7 @@
     * 로또 번호 체크 : OutputView.winningLotto()
       * checkLotto()
         * 반복문 돌면서 배열에 등수별로 당첨 갯수 저장.
+    * 로또 결과 출력 : OutputView.viewResult()
+      * Enum 타입 Prize를 이용하여 갯수 출력
+      * 수익률 출력 : String.format() 이용
 

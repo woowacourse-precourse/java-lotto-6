@@ -14,11 +14,8 @@ public class Paper {
         this.bonus = bonus;
     }
 
-    public static Paper of(String lotto, String bonus) {
-        List<Integer> numbers = StringUtils.toIntegerList(lotto);
-        int newBonus = StringUtils.toInt(bonus);
-        Lotto newLotto = Lotto.of(numbers);
-        return new Paper(newLotto, Bonus.ofAndCheckDuplicatedNumber(newLotto, newBonus));
+    public static Paper of(Lotto lotto, Bonus bonus) {
+        return new Paper(lotto, bonus);
     }
 
     public Lotto getLotto() {

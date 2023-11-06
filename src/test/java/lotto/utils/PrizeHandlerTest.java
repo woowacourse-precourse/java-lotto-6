@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import lotto.domain.lotto.Bonus;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Paper;
 import lotto.domain.proxy.PrizeHandler;
@@ -15,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PrizeHandlerTest {
 
     PrizeHandler fiveRank;
+    Lotto lotto;
     @BeforeEach
     void setUp() {
         fiveRank = PrizeHandlerImpl.of(3, 5_000, false);
@@ -27,14 +29,16 @@ class PrizeHandlerTest {
         fourRank.setNextPrizeHandler(threeRank);
         threeRank.setNextPrizeHandler(twoRank);
         twoRank.setNextPrizeHandler(oneRank);
+
+        lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @Test
     @DisplayName("당첨 금액 설정하기")
     void test() {
-        Paper paper = Paper.of("1,2,3,4,5,6", "10");
-        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
-        fiveRank.process(paper, lotto);
+        Paper paper = Paper.of(lotto, Bonus.of(10));
+        Lotto randomLotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        fiveRank.process(paper, randomLotto);
 
         String result = fiveRank.printWinningStatistics();
         String expected = """
@@ -50,13 +54,13 @@ class PrizeHandlerTest {
     @Test
     @DisplayName("당첨 금액 확인")
     void test2() {
-        Paper paper = Paper.of("1,2,3,4,5,6", "10");
-        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
-        fiveRank.process(paper, lotto);
+        Paper paper = Paper.of(lotto, Bonus.of(10));
+        Lotto randomLotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        fiveRank.process(paper, randomLotto);
 
-        Lotto secondLotto = Lotto.of(List.of(1, 2, 3, 4, 5, 20));
+        Lotto randomSecondLotto = Lotto.of(List.of(1, 2, 3, 4, 5, 20));
 
-        fiveRank.process(paper, secondLotto);
+        fiveRank.process(paper, randomSecondLotto);
 
         int totalPrizeCount = fiveRank.getTotalPrizeCount();
         assertThat(totalPrizeCount).isEqualTo(2_001_500_000);
@@ -65,9 +69,9 @@ class PrizeHandlerTest {
     @Test
     @DisplayName("당첨 금액 확인 - 하나도 없을 경우")
     void test3() {
-        Paper paper = Paper.of("1,2,3,4,5,6", "10");
-        Lotto lotto = Lotto.of(List.of(20, 21, 22, 23, 24, 25));
-        fiveRank.process(paper, lotto);
+        Paper paper = Paper.of(lotto, Bonus.of(10));
+        Lotto randomLotto = Lotto.of(List.of(20, 21, 22, 23, 24, 25));
+        fiveRank.process(paper, randomLotto);
 
         int totalPrizeCount = fiveRank.getTotalPrizeCount();
         assertThat(totalPrizeCount).isEqualTo(0);
@@ -76,9 +80,9 @@ class PrizeHandlerTest {
     @Test
     @DisplayName("수익률 계산")
     void test4() {
-        Paper paper = Paper.of("1,2,3,4,5,6", "7");
-        Lotto lotto = Lotto.of(List.of(8, 21, 23, 41, 42, 43));
-        fiveRank.process(paper, lotto);
+        Paper paper = Paper.of(lotto, Bonus.of(7));
+        Lotto randomLotto = Lotto.of(List.of(8, 21, 23, 41, 42, 43));
+        fiveRank.process(paper, randomLotto);
 
         Lotto secondLotto = Lotto.of(List.of(3, 5, 11, 16, 32, 38));
         fiveRank.process(paper, secondLotto);

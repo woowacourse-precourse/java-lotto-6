@@ -58,7 +58,6 @@ public class PrizeHandlerImpl implements PrizeHandler {
         return Math.round(profitPercentage * 100.0) / 100.0;
     }
 
-
     @Override
     public String printWinningStatistics() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -81,7 +80,6 @@ public class PrizeHandlerImpl implements PrizeHandler {
      * 각 당첨번호별 당첨 횟수를 출력
      * ex) 1등일 경우 - 1개만 일치
      * 6개 일치 (2,000,000,000원) - 1개
-     * @return
      */
     @Override
     public String toString() {

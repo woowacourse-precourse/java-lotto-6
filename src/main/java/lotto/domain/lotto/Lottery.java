@@ -1,11 +1,15 @@
 package lotto.domain.lotto;
 
+import lotto.domain.proxy.PrizeHandler;
 import lotto.utils.RandomGenerator;
+import lotto.utils.StringUtils;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
+
+import static lotto.utils.StringUtils.toInt;
 
 public class Lottery {
 
@@ -17,8 +21,8 @@ public class Lottery {
         this.lottos = lottos;
     }
 
-    public static Lottery of(int payment, RandomGenerator randomGenerator) {
-        Payment newPayment = Payment.of(payment);
+    public static Lottery of(String payment, RandomGenerator randomGenerator) {
+        Payment newPayment = Payment.of(toInt(payment));
         int lottoCount = newPayment.getLottoCount();
 
         List<Lotto> newLotto = setupLotto(randomGenerator, lottoCount);
@@ -34,6 +38,18 @@ public class Lottery {
 
     public static int matchingCount(Paper paper, Lotto lotto, boolean isBonus) {
         return paper.matchingLotto(lotto, isBonus);
+    }
+
+    public String getLottoCount() {
+        return payment.toString();
+    }
+
+    public void calculate(Paper paper, PrizeHandler prizeHandler) {
+        lottos.forEach(lotto -> prizeHandler.process(paper, lotto));
+    }
+
+    public int getAmount() {
+        return payment.getAmount();
     }
 
     @Override

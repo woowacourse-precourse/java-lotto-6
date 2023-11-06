@@ -35,7 +35,4 @@ public class Count {
         return Objects.hash(number);
     }
 
-    public int getNumber() {
-        return number;
-    }
 }

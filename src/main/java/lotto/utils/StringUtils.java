@@ -14,13 +14,21 @@ public final class StringUtils {
     }
 
     public static List<Integer> toIntegerList(String input) {
-        return Arrays.stream(split(input))
-                .map(Integer::parseInt)
-                .toList();
+        try {
+            return Arrays.stream(split(input))
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS.getMessage());
+        }
     }
 
     public static int toInt(String input) {
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
+        }
     }
 
 }

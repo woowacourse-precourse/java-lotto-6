@@ -22,15 +22,15 @@ class LotteryTest {
     @Test
     @DisplayName("구입 금액 단위 만큼의 로또를 생성한다.")
     void name() {
-        Lottery lottery = Lottery.of(10000, fakeRandomGenerator);
+        Lottery lottery = Lottery.of("10000", fakeRandomGenerator);
 
-        assertThat(lottery).isEqualTo(Lottery.of(10000, fakeRandomGenerator));
+        assertThat(lottery).isEqualTo(Lottery.of("10000", fakeRandomGenerator));
     }
 
     @Test
     @DisplayName("toString 메서드는 로또를 출력한다.")
     void toStringTest() {
-        Lottery lottery = Lottery.of(3000, fakeRandomGenerator);
+        Lottery lottery = Lottery.of("3000", fakeRandomGenerator);
 
         String expected =
                 """

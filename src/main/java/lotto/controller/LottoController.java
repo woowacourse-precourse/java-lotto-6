@@ -17,4 +17,17 @@ public class LottoController {
         this.outputView = new OutputView();
         this.winningLottoStorage = new WinningLottoStorage();
     }
+
+    public void processLotto() {
+        PurchaseAmount purchaseAmount = payOnAmount();
+    }
+
+    private PurchaseAmount payOnAmount() {
+        try {
+            return PurchaseAmount.from(inputView.insertPurchaseAmount());
+        } catch (IllegalArgumentException purchaseAmountError) {
+            System.out.println(purchaseAmountError.getMessage());
+            return payOnAmount();
+        }
+    }
 }

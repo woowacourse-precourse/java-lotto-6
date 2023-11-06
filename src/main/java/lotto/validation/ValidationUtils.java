@@ -27,32 +27,30 @@ public class ValidationUtils {
         StringBuilder stringBuilder = new StringBuilder(winnigNumber);
         StringTokenizer stringTokenizer = new StringTokenizer(winnigNumber, ",");
         List<Integer> tempWinningNumber = new ArrayList<>();
-        String temp_err = "";
+        StringBuilder temp_err = new StringBuilder();
         try {
             //입력이 없는건 아닌지
             if (stringBuilder.isEmpty()) {
-                temp_err += "당첨 번호를 입력해 주세요.";
+                temp_err.append("당첨 번호를 입력해 주세요.");
                 throw new IllegalArgumentException();
             }
             //마지막에 콤마로끝나는지
             if (stringBuilder.substring(winnigNumber.length()-1).equals(",")) {
-                temp_err += "시작과 끝에는 쉼표를 입력할 수 없습니다.";
+                temp_err.append("시작과 끝에는 쉼표를 입력할 수 없습니다.");
                 throw new IllegalArgumentException();
             }
             //시작이 콤마인지
             if (stringBuilder.substring(0, 1).equals(",")) {
-                temp_err += "시작과 끝에는 쉼표를 입력할 수 없습니다.";
+                temp_err.append("시작과 끝에는 쉼표를 입력할 수 없습니다.");
                 throw new IllegalArgumentException();
             }
             //콤마가 연속 두개인지함
             for (int i = 0; i < stringBuilder.length() - 2; i++) {
-                temp_err += "연속된 쉼표는 입력할 수 없습니다.";
-                verifyDoubleComma(stringBuilder, i);
+                verifyDoubleComma(stringBuilder, i, temp_err);
             }
             //콤마옆에 공백이있는지 없는지
             for (int i = 1; i < stringBuilder.length() - 1; i++) {
-                temp_err += "쉼표옆에 공백을 입력할 수 없습니다.";
-                verifySpaceNextToComma(stringBuilder, i);
+                verifySpaceNextToComma(stringBuilder, i, temp_err);
             }
 
             //1~45사이인지
@@ -62,11 +60,11 @@ public class ValidationUtils {
                 token = Integer.parseInt(stringTokenizer.nextToken());
 
                 if (token < 1 || 45 < token) {
-                    temp_err += "1부터 45 사이의 정수만 입력가능 합니다.";
+                    temp_err.append("1부터 45 사이의 정수만 입력가능 합니다.");
                     throw new IllegalArgumentException();
                 }
                 if (tempWinningNumber.contains(token)) {
-                    temp_err += "중복된 숫자는 입력할 수 없습니다.";
+                    temp_err.append("중복된 숫자는 입력할 수 없습니다.");
                     throw new IllegalArgumentException();
                 }
 
@@ -75,7 +73,7 @@ public class ValidationUtils {
 
             //숫자가 6개인지
             if (tempWinningNumber.size() != 6) {
-                temp_err += "당첨 번호는 총 6개를 입력해야 합니다";
+                temp_err.append("당첨 번호는 총 6개를 입력해야 합니다");
                 throw new IllegalArgumentException();
             }
 
@@ -87,20 +85,22 @@ public class ValidationUtils {
         return false;
     }
 
-    private void verifySpaceNextToComma(StringBuilder stringBuilder, int i) {
+    private void verifySpaceNextToComma(StringBuilder stringBuilder, int i, StringBuilder temp_err) {
         if(stringBuilder.substring(i, i + 1).equals(",")) {
-            verifyIllegal(stringBuilder, i);
+            verifyIllegal(stringBuilder, i, temp_err);
         }
     }
 
-    private void verifyIllegal(StringBuilder stringBuilder, int i) {
+    private void verifyIllegal(StringBuilder stringBuilder, int i, StringBuilder temp_err) {
         if (stringBuilder.substring(i - 1, i).equals(",") || stringBuilder.substring(i +1, i +2).equals(" ")) {
+            temp_err.append("쉼표옆에 공백을 입력할 수 없습니다.");
             throw new IllegalArgumentException();
         }
     }
 
-    private void verifyDoubleComma(StringBuilder stringBuilder, int i) {
+    private void verifyDoubleComma(StringBuilder stringBuilder, int i, StringBuilder temp_err) {
         if (stringBuilder.substring(i, i + 2) .equals(",,")) {
+            temp_err.append("연속된 쉼표는 입력할 수 없습니다.");
             throw new IllegalArgumentException();
         }
     }

@@ -5,13 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Cashier {
-    public void sellLotto() {
+    public LottoEnvelope sellLotto() {
         System.out.println("구입금액을 입력해 주세요.");
         Integer money = Integer.valueOf(Console.readLine());
 
         LottoMachine lottoMachine = new LottoMachine();
-        lottoMachine.createLottoEnvelope(calculateLottoPrice(money));
+        LottoEnvelope lottoEnvelope = lottoMachine.createLottoEnvelope(calculateLottoPrice(money));
         System.out.println(calculateLottoPrice(money) + "개를 구매했습니다.");
+
+        return lottoEnvelope;
     }
 
     public Integer calculateLottoPrice(Integer money) {
@@ -33,5 +35,7 @@ public class Cashier {
     }
 
     public Integer getBonusNumber() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+        return Integer.valueOf(Console.readLine());
     }
 }

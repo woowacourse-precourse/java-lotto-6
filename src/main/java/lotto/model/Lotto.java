@@ -35,8 +35,12 @@ public class Lotto {
 
     public long matchCount(Lotto lotto){
         return numbers.stream()
-                .filter(number -> lotto.numbers.contains(number))
+                .filter(lotto::hasNumber)
                 .count();
+    }
+
+    public boolean hasNumber(LottoNumber lottoNumber){
+        return numbers.contains(lottoNumber);
     }
 
 }

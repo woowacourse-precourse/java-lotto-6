@@ -36,6 +36,13 @@ class LottoTest {
         assertThat(lotto.matchCount(targetLotto)).isEqualTo(count);
     }
 
+    @Test
+    @DisplayName("특정 로또 번호가 해당 로또에 존재하는 지 알 수 있다.")
+    void hasNumber(){
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.hasNumber(new LottoNumber(1))).isTrue();
+    }
+
     static Stream<Arguments> matchData() {
         return Stream.of(
                 arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6L),

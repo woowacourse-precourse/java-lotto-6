@@ -11,4 +11,10 @@ public class UserService {
 
         return new User(inputView.readPurchaseMoney());
     }
+
+    public void updateUserRank(User user, int identifyNum) {
+        Rank rank = Rank.lottoRank(identifyNum);
+        user.increaseMoneyOfReturn(rank.getPrize());
+        user.increaseUserRank(identifyNum);
+    }
 }

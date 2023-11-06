@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public enum LottoValue {
@@ -34,4 +35,12 @@ public enum LottoValue {
         }
     }
 
+    public static void showProfit(List<LottoValue> tmp, int numOfLotto) {
+        int total = 0;
+        for (LottoValue lottoValue : tmp) {
+            total += lottoValue.winningMoney;
+        }
+        DecimalFormat df = new DecimalFormat("0.00");
+        System.out.println("총 수익률은 " + df.format(((float) total/(numOfLotto*1000))*100) + "%입니다.");
+    }
 }

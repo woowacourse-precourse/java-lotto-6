@@ -9,6 +9,10 @@ public class LottoMachine {
     private int numOfLotto;
     private final List<Lotto> lottos = new ArrayList<>();
 
+    public int getNumOfLotto() {
+        return this.numOfLotto;
+    }
+
     public void setNumOfLotto(int lottoNum) {
         this.numOfLotto = lottoNum;
     }
@@ -37,4 +41,6 @@ public class LottoMachine {
         }
         return lottoValues;
     }
+
+
 }

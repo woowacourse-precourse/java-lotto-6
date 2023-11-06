@@ -1,6 +1,8 @@
 package lotto.service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.util.Constant;
@@ -15,17 +17,24 @@ public class LottoService {
         private static final LottoService INSTANCE = new LottoService();
     }
 
-    private Lotto getLotto(){
-        return new Lotto(RandomValues.getRandomValues());
+    public Lotto getLotto(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     public List<Lotto> getLottoList(int purchaseNumber) {
         return IntStream.range(0, purchaseNumber)
-                .mapToObj(i -> getLotto())
+                .mapToObj(i -> getLotto(RandomValues.getRandomValues()))
                 .toList();
     }
 
     public int getPurchaseNumber(int input) {
-        return input/Constant.AMOUNT_ONE_LOTTO;
+        return input / Constant.AMOUNT_ONE_LOTTO;
+    }
+
+    public List<Integer> toList(String input) {
+        String[] numbers_str = input.split(Constant.SPLIT_UNIT);
+        return Arrays.stream(numbers_str)
+                .map(Integer::valueOf)
+                .collect(Collectors.toList());
     }
 }

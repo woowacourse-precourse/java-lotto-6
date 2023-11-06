@@ -1,9 +1,12 @@
 package lotto.model.domain;
 
+import static lotto.util.Constants.PURCHASE_PRICE_UNIT;
+import static lotto.util.ExceptionMessage.PURCHASE_INVALID_TYPE;
+import static lotto.util.ExceptionMessage.PURCHASE_INVALID_UNIT;
+
 import lotto.util.InputValidator;
 
 public class Purchase implements InputValidator {
-    private static final int PURCHASE_PRICE_UNIT = 1000;
     private Integer price;
     private Integer ticketCount;
 
@@ -21,13 +24,13 @@ public class Purchase implements InputValidator {
         try {
             return Integer.parseInt(price);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자로만 입력해주세요. 예시) 1000 or 2000 ..");
+            throw new IllegalArgumentException(PURCHASE_INVALID_TYPE.getMessage());
         }
     }
 
     private int validatePriceInThousandUnit(int price) {
         if(price % PURCHASE_PRICE_UNIT != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 " + PURCHASE_PRICE_UNIT + "단위로 입력해주세요.");
+            throw new IllegalArgumentException(PURCHASE_INVALID_UNIT.format(PURCHASE_PRICE_UNIT));
         }
         return price/PURCHASE_PRICE_UNIT;
     }

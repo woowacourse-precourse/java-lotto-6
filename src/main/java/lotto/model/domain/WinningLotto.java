@@ -1,5 +1,13 @@
 package lotto.model.domain;
 
+import static lotto.util.Constants.MAX_NUMBER;
+import static lotto.util.Constants.MIN_NUMBER;
+import static lotto.util.Constants.NUMBERS_SIZE;
+import static lotto.util.ExceptionMessage.COMMON_INVALID_RANGE;
+import static lotto.util.ExceptionMessage.COMMON_INVALID_TYPE;
+import static lotto.util.ExceptionMessage.WINNING_NUMBER_INVALID_DELIMITER;
+import static lotto.util.ExceptionMessage.WINNING_NUMBER_INVALID_SIZE;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,21 +27,21 @@ public class WinningLotto implements InputValidator {
         List<String> inputDividedByComma = validateDelimiterComma(numbers);
         validateSixElements(inputDividedByComma);
         List<Integer> integerNumbers = validateWinningNumberIsNumeric(inputDividedByComma);
-        validateNumberBetweenInRange(integerNumbers, 1, 45);
+        validateNumberBetweenInRange(integerNumbers);
         this.numbers = integerNumbers;
     }
 
     public List<String> validateDelimiterComma(String numbers) {
         if (!numbers.matches(".*,.*")) {
-            throw new IllegalArgumentException("[ERROR] 쉼표로 구분하여 입력해주세요.");
+            throw new IllegalArgumentException(WINNING_NUMBER_INVALID_DELIMITER.getMessage());
         }
         return List.of(numbers.split(","));
     }
 
     public void validateSixElements(List<String> numbers) {
         Set<String> set = new HashSet<>(numbers);
-        if(set.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 서로 다른 6개의 당첨 번호를 입력해주세요.");
+        if(set.size() != NUMBERS_SIZE) {
+            throw new IllegalArgumentException(WINNING_NUMBER_INVALID_SIZE.format(NUMBERS_SIZE));
         }
     }
 
@@ -44,16 +52,16 @@ public class WinningLotto implements InputValidator {
                 int numberToInteger = Integer.parseInt(number);
                 integerNumbers.add(numberToInteger);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+                throw new IllegalArgumentException(COMMON_INVALID_TYPE.getMessage());
             }
         }
         return integerNumbers;
     }
 
-    private void validateNumberBetweenInRange(List<Integer> integerNumbers, int min, int max) {
+    private void validateNumberBetweenInRange(List<Integer> integerNumbers) {
         for(int number : integerNumbers) {
-            if (number < min || number > max) {
-                throw new IllegalArgumentException("[ERROR] 1에서 45사이의 숫자로 입력해주세요.");
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                throw new IllegalArgumentException(COMMON_INVALID_RANGE.format(MIN_NUMBER, MAX_NUMBER));
             }
         }
     }

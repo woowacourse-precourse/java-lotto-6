@@ -1,5 +1,9 @@
 package lotto.model.domain;
 
+import static lotto.util.Constants.MAX_NUMBER;
+import static lotto.util.Constants.MIN_NUMBER;
+import static lotto.util.Constants.NUMBERS_SIZE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +22,7 @@ public class LottoMachine {
         int init = 1;
         while(init <= ticketCount) {
             List<Integer> numbers =
-                new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+                new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_SIZE));
             Collections.sort(numbers);
             issuedLotto.add(new Lotto(numbers));
             init++;

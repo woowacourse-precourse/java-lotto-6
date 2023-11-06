@@ -1,5 +1,11 @@
 package lotto.model.domain;
 
+import static lotto.util.Constants.MAX_NUMBER;
+import static lotto.util.Constants.MIN_NUMBER;
+import static lotto.util.ExceptionMessage.BONUS_ALREADY_CONTAIN_WINNING;
+import static lotto.util.ExceptionMessage.COMMON_INVALID_RANGE;
+import static lotto.util.ExceptionMessage.COMMON_INVALID_TYPE;
+
 import java.util.List;
 import lotto.util.InputValidator;
 
@@ -18,14 +24,14 @@ public class Bonus implements InputValidator {
 
     public void setBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
         int bonus = validateBonusIsNumeric(bonusNumber);
-        validateNumberBetweenInRange(bonus, 1, 45);
+        validateNumberBetweenInRange(bonus);
         validateWinningNumbersContainBonusNumber(winningNumbers, bonus);
         this.number = bonus;
     }
 
-    private void validateNumberBetweenInRange(int bonus, int min, int max) {
-        if(bonus < min || bonus > max) {
-            throw new IllegalArgumentException("[ERROR] 1에서 45사이의 숫자로 입력해주세요.");
+    private void validateNumberBetweenInRange(int bonus) {
+        if(bonus < MIN_NUMBER || bonus > MAX_NUMBER) {
+            throw new IllegalArgumentException(COMMON_INVALID_RANGE.format(MIN_NUMBER, MAX_NUMBER));
         }
     }
 
@@ -33,13 +39,13 @@ public class Bonus implements InputValidator {
         try {
             return Integer.parseInt(bonusNumber.trim());
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(COMMON_INVALID_TYPE.getMessage());
         }
     }
 
     private void validateWinningNumbersContainBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에 포함되지 않는 번호를 입력해주세요.");
+            throw new IllegalArgumentException(BONUS_ALREADY_CONTAIN_WINNING.getMessage());
         }
     }
 

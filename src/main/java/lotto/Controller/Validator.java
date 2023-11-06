@@ -59,15 +59,18 @@ public class Validator {
 
     public static int validateBonusNumber(String input){
         if (Validator.validateInputIsNull(input)) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 널값이 될 수 없습니다.");
+            System.out.println(NULL_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NULL_ERROR_MESSAGE);
         }
 
         if (!Validator.validateInputIsNumeric(input)) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 숫자여야 합니다.");
+            System.out.println(NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NUMBER_ERROR_MESSAGE);
         }
 
         if (!Validator.validateNumberRange(Integer.parseInt(input))) {
-            throw new IllegalArgumentException("[ERROR] 1부터 45사이의 숫자를 입력해주세요.");
+            System.out.println(AMOUNT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(AMOUNT_ERROR_MESSAGE);
         }
 
         return Integer.parseInt(input);

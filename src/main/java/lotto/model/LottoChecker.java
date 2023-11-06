@@ -11,11 +11,19 @@ public class LottoChecker extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public int getMatchCount(Lotto ticket) {
+    public LottoRank checkTicket(Lotto ticket) {
+        int matchCount = getMatchCount(ticket);
+        if (matchCount == 5) {
+            return LottoRank.valueFrom(matchCount, hasBonusNumber(ticket));
+        }
+        return LottoRank.valueFrom(matchCount);
+    }
+
+    private int getMatchCount(Lotto ticket) {
         return (int) getNumberStream().filter(ticket::contain).count();
     }
 
-    public boolean hasBonusNumber(Lotto ticket) {
+    private boolean hasBonusNumber(Lotto ticket) {
         return ticket.contain(bonusNumber);
     }
 

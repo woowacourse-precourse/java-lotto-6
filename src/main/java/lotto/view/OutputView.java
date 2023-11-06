@@ -28,6 +28,11 @@ public class OutputView {
         System.out.println(RIGHT_LOTTO_BRACKET);
     }
 
+    public static void printIssueAbleCount(int issueAbleCount) {
+        printEnter();
+        System.out.printf("%d개를 구매했습니다.", issueAbleCount);
+    }
+
     public static void printWinningStatics(HashMap<Integer, Integer> result) {
         System.out.println("3개 일치 (5,000원) - " + result.getOrDefault(5, 0) + "개");
         System.out.println("4개 일치 (50,000원) - " + result.getOrDefault(4, 0) + "개");
@@ -43,6 +48,10 @@ public class OutputView {
 
     public static void printWinningStaticsInput() {
         System.out.println("당첨 통계\n---");
+    }
+
+    private static void printEnter() {
+        System.out.println();
     }
 
 }

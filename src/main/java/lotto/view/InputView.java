@@ -1,12 +1,13 @@
 package lotto.view;
 
+import static lotto.exception.ExceptionMessage.DUPLICATE_BONUS_NUMBER;
+
 import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.validation.AmountValidator;
 import lotto.util.validation.LottoNumberValidator;
-import lotto.util.validation.WinningLottoValidator;
 
 public class InputView {
     private static final String DELIMITER = ",";
@@ -56,8 +57,9 @@ public class InputView {
     }
 
     private void validateBonusNumber(final int bonusNumber, final List<Integer> winningNumbers) {
-        final WinningLottoValidator validator = new WinningLottoValidator(bonusNumber);
-        validator.validate(winningNumbers);
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.format());
+        }
     }
 
     public List<Integer> readWinningNumbers() {

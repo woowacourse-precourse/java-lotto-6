@@ -1,9 +1,7 @@
 package lotto.validator;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static lotto.constant.ErrorMessage.ENTER_PROPER_NATURAL_NUMBER;
 import static lotto.constant.ErrorMessage.NOT_DIVISIBLE_BY_LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

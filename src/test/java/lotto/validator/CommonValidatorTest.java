@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static lotto.constant.ErrorMessage.ENTER_PROPER_NATURAL_NUMBER;
-import static org.assertj.core.api.Assertions.assertThat;
 
 class CommonValidatorTest {
     @Test

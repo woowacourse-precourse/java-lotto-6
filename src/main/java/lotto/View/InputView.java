@@ -16,12 +16,12 @@ public class InputView {
         return inputPurchaseMoney;
     }
 
-/*    public static String inputLottoNumbers() {
+    public static String inputLottoNumbers() {
 
         System.out.println(INPUT_LOTTO_NUMBER_MESSAGE);
-        String input = Console.readLine();
+        String lottoNumberInput = Console.readLine();
 
-        return input;
+        return lottoNumberInput;
     }
 
 
@@ -35,6 +35,6 @@ public class InputView {
         BonusNumberValidator.validateIsNumberInRange(bonusNumber);
 
         return bonusNumber;
-    }*/
+    }
 
 }

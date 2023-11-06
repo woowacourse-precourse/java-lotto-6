@@ -9,7 +9,7 @@ public class LottoView {
     private String inputWinningNumberMessage = "당첨 번호를 입력해 주세요.";
     private String inputBonusNumberMessage = "당첨 번호를 입력해 주세요.";
 
-    public void printStartMessage() {
+    public void printBuyLottomMoneyMessage() {
         System.out.println(inputBuyLottoMoneyMessage);
     }
 

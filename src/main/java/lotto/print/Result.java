@@ -9,7 +9,7 @@ import lotto.util.User;
 public class Result {
     User user = new User();
     public void printLottoNumber(List<Lotto> lottoNumbers) {
-        System.out.println("\n" + user.getManyLottoTicket() + Message.PURCHASE_LOTTO.getMessage());
+        Message.PURCHASE_LOTTO.getMessage();
         for (Lotto numbers : lottoNumbers) {
             System.out.print("[");
             System.out.print(joinNumber(numbers.getNumbers()));

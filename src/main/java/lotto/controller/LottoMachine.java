@@ -27,7 +27,7 @@ public class LottoMachine {
     }
 
     public void buyLotto() {
-        System.out.println(Message.AMOUNT_INPUT.getMessage());
+        Message.AMOUNT_INPUT.getMessage();
         while (true) {
             try {
                 user.inputPaymentAmount();
@@ -58,7 +58,7 @@ public class LottoMachine {
     }
 
     public void drawWinningNumber() {
-        System.out.println("\n" + Message.WINNING_NUMBERS_INPUT.getMessage());
+        Message.WINNING_NUMBERS_INPUT.getMessage();
         while (true) {
             try {
                 user.inputWinningNumber();
@@ -70,7 +70,7 @@ public class LottoMachine {
     }
 
     public void drawBonusNumber() {
-        System.out.println("\n" + Message.BONUS_INPUT.getMessage());
+        Message.BONUS_INPUT.getMessage();
         while (true) {
             try {
                 user.inputBonusNumber();
@@ -82,7 +82,7 @@ public class LottoMachine {
     }
 
     public void getWinningStatistics() {
-        System.out.println("\n" + Message.WINNING_STATISTICS.getMessage());
+        Message.WINNING_STATISTICS.getMessage();
         System.out.println("---");
         compareLottoTicket();
     }

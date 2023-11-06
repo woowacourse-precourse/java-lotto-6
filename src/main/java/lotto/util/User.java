@@ -73,4 +73,8 @@ public class User {
     public Lotto getWinningNumber() {
         return winningNumber;
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

@@ -35,4 +35,24 @@ class LottoTest {
         Assertions.assertThat(lotto1.calculateMatchCount(lotto2))
                 .isEqualTo(3);
     }
+
+    @DisplayName("로또 번호 안에, 보너스 번호가 있는지 확인한다. 있으면 ture")
+    @Test
+    void checkBonusNumberInLottoNumbers() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        Assertions.assertThat(lotto.checkContainBonusNumber(7))
+                .isFalse();
+    }
+
+
+    @DisplayName("로또 번호 안에, 보너스 번호가 있는지 확인한다. 있으면 ture")
+    @Test
+    void checkBonusNumberNotInLottoNumbers() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        Assertions.assertThat(lotto.checkContainBonusNumber(7))
+                .isFalse();
+    }
+
 }

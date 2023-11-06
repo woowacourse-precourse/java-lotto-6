@@ -16,7 +16,6 @@ public class Application {
 
         List<Lotto> issuedLottos = totalLottoController.issueLottos();
         LottoConsumer consumer = new LottoConsumer(issuedLottos);
-
         totalLottoController.showLottoNumbers(issuedLottos);
         // 3. 당첨 번호를 보너스 번호와 함께 획득한다.
         Lotto winningLotto = totalLottoController.issueWinningLotto();

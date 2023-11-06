@@ -14,8 +14,4 @@ public class LottoConsumer {
         int issueCount = issuedLottos.size();
         return new ResultStatics(prizeResult, issueCount);
     }
-
-    public List<Lotto> getIssuedLottos() {
-        return issuedLottos;
-    }
 }

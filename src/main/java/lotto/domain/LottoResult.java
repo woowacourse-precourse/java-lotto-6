@@ -7,8 +7,8 @@ import lotto.util.ErrorMessages;
 public class LottoResult {
     private final Lotto winningLotto;
     private final int bonusNumber;
-
     private static final int ADD_COUNT = 1;
+    
     public LottoResult(Lotto winningLotto, int bonusNumber) {
         validateBonusNumber(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
@@ -47,10 +47,6 @@ public class LottoResult {
         Arrays.stream(LottoPrizeStatus.values())
                 .forEach((status) -> resultMap.put(status, 0));
         return resultMap;
-    }
-
-    public Lotto getWinningLotto() {
-        return winningLotto;
     }
 
     public int getBonusNumber() {

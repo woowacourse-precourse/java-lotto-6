@@ -7,8 +7,8 @@ public enum ErrorMessages {
     NOT_SIX_NUMBER_ERROR("[ERROR] 로또 번호는 6자리 입니다."),
     MONEY_NOT_NEGATIVE("[ERROR] 금액은 음수일 수 없습니다."),
     DUPLICATE_NUMBER_ERROR("[ERROR] 로또 번호는 중복된 숫자를 가질 수 없습니다."),
-    NOT_MONEY_FORMAT_ERROR("[ERROR] 구입금액을 다시 입력해주세요.");
-
+    NOT_MONEY_FORMAT_ERROR("[ERROR] 구입금액을 다시 입력해주세요."),
+    OVER_OR_UNDER_NUMBER_RANGE_ERROR("[ERROR] 로또 번호는 1 ~ 45 사이 입니다.");
 
     private final String message;
 

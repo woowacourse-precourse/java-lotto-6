@@ -25,6 +25,16 @@ public class Lotto {
         if (isContainSameNumber(numbers)) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER_ERROR.getMessage());
         }
+
+        if (isOverOrUnderRangeNumber(numbers)) {
+            throw new IllegalArgumentException(ErrorMessages.OVER_OR_UNDER_NUMBER_RANGE_ERROR.getMessage());
+        }
+    }
+
+    private boolean isOverOrUnderRangeNumber(List<Integer> numbers) {
+        return numbers.stream()
+                .filter(num -> num < 0 || num > 45)
+                .count() != 0;
     }
 
     private boolean isContainSameNumber(List<Integer> numbers) {

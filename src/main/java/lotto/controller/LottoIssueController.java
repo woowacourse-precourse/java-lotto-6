@@ -23,7 +23,7 @@ public class LottoIssueController {
 
     public List<Lotto> issueLottos(int money) {
         validateMoney(money);
-        int issueCount = getIssueCount(money);
+        int issueCount = calculateIssueCount(money);
         return issueService.issueLottos(issueCount);
     }
 
@@ -35,7 +35,7 @@ public class LottoIssueController {
         return new LottoResult(winningLotto, bonusNumber);
     }
 
-    private int getIssueCount(final int money) {
+    private int calculateIssueCount(final int money) {
         return money / LOTTO_UNIT_PRICE;
     }
 

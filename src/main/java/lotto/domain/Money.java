@@ -3,6 +3,8 @@ package lotto.domain;
 import lotto.execption.MoneyException;
 
 public class Money {
+    private static final Integer ZERO = 0;
+    private static final Integer THOUSAND =1000;
     private final int money;
 
     public Money(int money) {
@@ -11,7 +13,7 @@ public class Money {
     }
 
     private void validateMoney(int money) {
-        if (money <= 0 || money % 1000 != 0) {
+        if (money <= ZERO || money % THOUSAND != 0) {
             throw new MoneyException();
         }
     }
@@ -21,6 +23,6 @@ public class Money {
     }
 
     public int getLottoQuantity() {
-        return money / 1000;
+        return money / THOUSAND;
     }
 }

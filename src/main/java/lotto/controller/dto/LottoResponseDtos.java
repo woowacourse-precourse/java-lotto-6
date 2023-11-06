@@ -10,7 +10,7 @@ public class LottoResponseDtos {
         this.dtos = lottoResponseDtos;
     }
 
-    public List<LottoResponseDto> toLottoResponseDto(){
+    public List<LottoResponseDto> toLottoResponseDto() {
         return dtos;
     }
 }

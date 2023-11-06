@@ -9,6 +9,7 @@ import lotto.controller.dto.ResultResponseDto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
+import lotto.domain.UserLotto;
 import lotto.util.LottoGenerator;
 
 public class LottoService {
@@ -32,12 +33,13 @@ public class LottoService {
         return (int) lottoResults.stream().filter(temp -> temp == result).count();
     }
 
-    public List<LottoResult> returnLottoResult(Lotto userLotto, Lottos generatedLottos,
-            int bonusNumber) {
+    public List<LottoResult> returnLottoResult(UserLotto userLotto, Lottos generatedLottos) {
+        Lotto lotto = userLotto.getLotto();
+        int bonusNumber = userLotto.getBonusNumber();
         List<LottoResult> lottoResults = new ArrayList<>();
         for (int i = 0; i < generatedLottos.size(); i++) {
             Lotto tempLotto = generatedLottos.get(i);
-            int count = tempLotto.countContainsNumber(userLotto);
+            int count = tempLotto.countContainsNumber(lotto);
             boolean hasBonus = isHasBonus(bonusNumber, count, tempLotto);
             lottoResults.add(LottoResult.getResult(count, hasBonus));
         }

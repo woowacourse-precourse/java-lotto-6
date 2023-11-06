@@ -11,7 +11,7 @@ public enum InputMessage {
         this.message = message;
     }
 
-    public String getInputMessage() {
-        return message;
+    public void inputMoneyMessage() {
+        System.out.println(message);
     }
 }

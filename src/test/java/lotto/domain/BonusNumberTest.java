@@ -11,7 +11,7 @@ public class BonusNumberTest {
     @DisplayName("보너스 번호가 1부터 45사이의 숫자가 아니라면 예외 발생")
     @ValueSource(ints = {66})
     void bonusNumberOutOfRange(int bonusNumber) {
-        Assertions.assertThatThrownBy(() -> new BonusNumber().validate(bonusNumber))
+        Assertions.assertThatThrownBy(() -> new BonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

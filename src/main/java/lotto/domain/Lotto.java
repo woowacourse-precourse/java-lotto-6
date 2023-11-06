@@ -24,4 +24,7 @@ public class Lotto {
                 .collect(Collectors.joining(", ", "[", "]"));
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }

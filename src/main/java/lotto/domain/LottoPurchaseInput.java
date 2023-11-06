@@ -10,7 +10,7 @@ public class LottoPurchaseInput {
     public static BigDecimal inputPurchaseAmount() {
         try {
             OutputMessage.ASK_PURCHASE_AMOUNT.printMessage();
-            String input = Console.readLine();
+            String input = Console.readLine().trim();
             validate(input);
             Util.validateNumber(input);
             return new BigDecimal(input);

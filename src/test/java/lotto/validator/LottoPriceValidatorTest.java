@@ -41,6 +41,18 @@ class LottoPriceValidatorTest {
         //when & then
         assertThatThrownBy(() -> LottoPriceValidator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR} 구매 금액은 1000원 단위로 작성되어야 합니다.");
+                .hasMessageContaining("[ERROR] 구매 금액은 1000원 단위로 작성되어야 합니다.");
+    }
+
+    @DisplayName("숫자는 맞지만 0으로 시작하는 잘못된 입력 테스트 ")
+    @Test
+    void 잘못된_입력_예외_테스트_0으로_시작하는_이상한_금액() {
+        //given
+        String input = "09000";
+
+        //when & then
+        assertThatThrownBy(() -> LottoPriceValidator.validate(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 0으로 시작하는 값을 입력하면 안됩니다.");
     }
 }

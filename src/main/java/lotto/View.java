@@ -14,13 +14,15 @@ public class View {
         return Long.parseLong(input);
     }
 
-    public void printUserLottos(List<Lotto> userLottos) {
-        System.out.println(userLottos.size() + "개를 구매했습니다.");
-        userLottos.forEach(this::printLotto);
+    public void printUserLottos(List<String> lottoMessages, long buyAmount) {
+        System.out.println();
+        System.out.println(buyAmount + "개를 구매했습니다.");
+        lottoMessages.forEach(this::printLotto);
+        System.out.println();
     }
 
-    private void printLotto(Lotto lotto) {
-        System.out.println(lotto.getNumbersMessage());
+    private void printLotto(String lottoMessage) {
+        System.out.println(lottoMessage);
     }
 
     public List<Integer> inputWinningNumbers() {
@@ -37,5 +39,4 @@ public class View {
     private List<Integer> toIntegerList(List<String> inputNumbers) {
         return inputNumbers.stream().map(Integer::parseInt).toList();
     }
-
 }

@@ -10,7 +10,7 @@ public class RankTest {
 
     @Test
     @DisplayName("당첨된 등수에 따라 당첨 횟수가 증가하는 테스트")
-    public void increaseCountTest() {
+    void increaseCountTest() {
         final int matchResult = 5;
         final boolean hasBonusNumber = false;
         increaseRankResult(matchResult, hasBonusNumber);
@@ -19,8 +19,8 @@ public class RankTest {
     }
 
     @Test
-    @DisplayName("총 당첨 금액을 확인하는 테스트")
-    public void totalEarningMoneyTest(){
+    @DisplayName("당첨 금액을 확인하는 테스트")
+    void totalEarningMoneyTest(){
         final int matchResult = 4;
         final boolean hasBonusNumber = false;
         increaseRankResult(matchResult, hasBonusNumber);

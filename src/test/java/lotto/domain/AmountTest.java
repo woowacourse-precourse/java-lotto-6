@@ -15,4 +15,11 @@ class AmountTest {
         assertThatThrownBy(() -> new Amount(1001))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("금액이 1000원 미만이라면 예외를 발생한다.")
+    @Test
+    void createAmountLessThanThousand() {
+        assertThatThrownBy(() -> new Amount(999))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }

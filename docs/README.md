@@ -1,13 +1,17 @@
-# 로또
+# 로또면
 
 ## 기능 요구 목록
 - [ ] 사용자로부터 구입 금액을 입력받는다. -> Generator#getAmountOfMoney()
-- [ ] 임의의 숫자 6개를 뽑는다. -> Generator#generateRandomNumbers()
-  - [ ] 숫자 6개를 오름차순으로 정렬한다. -> Generator#sortNumbersToAsc()
+- [ ] 구입금액애 맞는 로또를 생성한다. -> Generator#createLotto()
+  - [ ] 중복되지 않는 임의의 숫자 6개를 뽑는다. -> Generator#generateRandomNumbers()
+- [ ] 숫자 6개를 오름차순으로 정렬한다. -> Lotto#sortNumbersToAsc()
+- [ ] 숫자가 6개인지 검사한다. -> Lotto#validate()
 - [ ] 발행한 로또번호의 수량을 출력한다. -> Printer#showLotteryCount()
 - [ ] 발행한 로또를 출력한다. -> Printer#showLotteryNumbers()
-- [ ] 당첨 번호를 입력받는다. -> WinningNumber#getWinningNumber()
-- [ ] 보너스 번호를 입력받는다. -> WinningNumber#getBonusNumber()
+- [ ] 당첨 번호를 입력받는다.
+  - [ ] 당첨 번호 6개가 중복되는지 검사한다. -> WinningNumber#isDuplicate()
+- [ ] 보너스 번호를 입력받는다.
+  - [ ] 당첨 번호와 보너스 번호가 중복되는지 검사한다. -> BonusNumber#compareWinningAndBonus()
 - [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다. -> Judge#compareLottery()
   - [ ] 몇 개의 번호가 일치하는지 비교한다. -> Judge#compareWinningNumber()
   - [ ] 보너스 번호와 일치하는지 비교한다. -> Judge#compareBonusNumber()

@@ -17,5 +17,4 @@ public enum Prize {
         this.price = price;
         this.money = money;
     }
-
 }

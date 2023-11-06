@@ -21,7 +21,9 @@ public class Controller {
         int count = lottoMachine.getLottoCount(input.getUserMoney());
         output.notifyLottoCount(count);
         purchaseLotto(count);
+    }
 
+    public void getWinningNumberBonusNumber() {
         output.notifyWinningNumbers();
         List<Integer> inputNumber = input.getWinningLottoNumber();
         checkLotto(inputNumber);
@@ -30,11 +32,15 @@ public class Controller {
         int bonusNumber = input.getBonusNumber();
         checkBonusNumber(inputNumber, bonusNumber);
 
-        List<Integer> result = lottoChecker.lottoResult(
-                lottoChecker.compareLottoTickets(lottoTickets, winningNumber, bonusNumber));
+        giveLottoResult(winningNumber, bonusNumber);
+    }
+
+    public void giveLottoResult(Lotto winningNumber, int bonusNumber) {
+        List<Integer> result = lottoChecker.lottoResult(lottoChecker
+                .compareLottoTickets(lottoTickets, winningNumber, bonusNumber));
         output.notifyWinningDetails(result);
 
-        float profitRate = calculator.rateOFProfit(result, count);
+        float profitRate = calculator.rateOFProfit(result, lottoTickets.size());
         output.notifyProfitRate(profitRate);
     }
 

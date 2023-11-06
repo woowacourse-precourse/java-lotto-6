@@ -5,6 +5,7 @@ public class Application {
         Controller controller = new Controller();
         try {
             controller.lottoStart();
+            controller.getWinningNumberBonusNumber();
         } catch (Exception e) {
             System.out.println(e.toString());
         }

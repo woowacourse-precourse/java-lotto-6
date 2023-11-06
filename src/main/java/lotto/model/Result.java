@@ -57,6 +57,12 @@ public class Result {
             sum += (count * price);
         }
 
-        double profitRate = ((double) (sum - buy) / buy) * 100;
+        int purchaseAmount = purchase.getPurchaseCount() * 1000;
+        double profitRate = ((double) (sum - purchaseAmount) / purchaseAmount) * 100;
+
+        // 소수점 둘째 자리에서 반올림
+        profitRate = Math.round(profitRate * 10) / 10.0;
+
+        return 100 + profitRate;
     }
 }

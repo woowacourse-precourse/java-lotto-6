@@ -99,6 +99,33 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("입력한 보너스 번호가 숫자로 이루어지지 않으면 예외가 발생한다.")
+    @Test
+    void bonusNotNum() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력한 보너스 번호가 1부터 45 사이의 숫자가 예외가 발생한다.")
+    @Test
+    void bonusNumRange() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력한 보너스 번호가 입력한 당첨 번호와 중복되면 예외가 발생한다.")
+    @Test
+    void bonusNumDuplicate() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

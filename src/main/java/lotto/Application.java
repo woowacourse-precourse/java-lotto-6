@@ -11,6 +11,7 @@ public class Application {
         int moneyValue = inputMoney();
         List<List<Integer>> lottoNum = createLottoNum(moneyValue);
         inputWinningNumbers();
+        int bonusNum = inputBonusNumber();
     }
 
     public static int inputMoney() {
@@ -64,7 +65,23 @@ public class Application {
             winningNumbers.add(Integer.parseInt(separateWinningNum[i]));
         }
 
-        Lotto lotto = new Lotto(winningNumbers);
+        new Lotto(winningNumbers);
+    }
+
+    public static int inputBonusNumber() {
+        String bonusNumber = "";
+        try {
+            bonusNumber = UI.inputBonusNum();
+
+            if (!isValidBonusNumber(bonusNumber)) {
+                throw new IllegalArgumentException();
+            }
+            return Integer.valueOf(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 올바른 보너스 번호 입력이 아닙니다.");
+            inputBonusNumber();
+            return Integer.valueOf(bonusNumber);
+        }
     }
 
     public static boolean isValidMoney(String money) {
@@ -83,6 +100,31 @@ public class Application {
     public static boolean isValidWinningNum(String[] separateWinningNum) {
         for (int i = 0; i < separateWinningNum.length; i++) {
             if (!Character.isDigit(separateWinningNum[i].charAt(0))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isValidBonusNumber(String bonusNumber) {
+        for (int i = 0; i < bonusNumber.length(); i++) {
+            if (!Character.isDigit(bonusNumber.charAt(i))) {
+                return false;
+            }
+        }
+
+        if (Integer.valueOf(bonusNumber) < 1 || Integer.valueOf(bonusNumber) > 45) {
+            return false;
+        }
+        if (!isValidSameNumber(bonusNumber)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isValidSameNumber(String bonusNumber) {
+        for (int i = 0; i < winningNumbers.size(); i++) {
+            if (Integer.valueOf(bonusNumber).equals(winningNumbers.get(i))) {
                 return false;
             }
         }

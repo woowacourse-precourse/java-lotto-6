@@ -36,6 +36,6 @@ public class Output {
             totalPrize += entry.getKey().getPrizeMoney() * entry.getValue();
         }
 
-        return ((double) totalPrize / purchaseAmount - 1) * 100;
+        return (double) totalPrize / purchaseAmount * 100;
     }
 }

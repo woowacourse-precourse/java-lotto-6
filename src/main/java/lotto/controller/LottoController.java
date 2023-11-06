@@ -6,6 +6,8 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoController {
     private final LottoService lottoService;
     private final InputView inputView;
@@ -19,6 +21,7 @@ public class LottoController {
 
     public void run() {
         runUntilNoException(createPurchaseLottoRunnable());
+        runUntilNoException(createDrawLottoRunnable());
     }
 
     private void runUntilNoException(Runnable runnable) {
@@ -39,6 +42,16 @@ public class LottoController {
             outputView.printNewLine();
             LottoReceiptDto lottoReceipt = lottoService.getLottoReceipt(amount);
             outputView.printLottoReceipt(lottoReceipt);
+            outputView.printNewLine();
+        };
+    }
+
+    private Runnable createDrawLottoRunnable() {
+        return () -> {
+            outputView.print(InformationMessage.GUIDE_INPUT_WINNING_LOTTO_NUMBER.getMessage());
+            List<Integer> numbers = inputView.readMultipleIntLine();
+            lottoService.generateWinningLottoWithoutBonusNumber(numbers);
+            outputView.printNewLine();
         };
     }
 }

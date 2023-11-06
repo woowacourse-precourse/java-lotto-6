@@ -1,37 +1,35 @@
 package lotto.model;
 
-import java.util.List;
-
-import static lotto.model.constant.LottoConfig.ZERO;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LottoResult {
 
-    private Purchase purchase;
-    private WinningNumbers winningNumbers;
+    private final Map<PriceMoney, Integer> result = new HashMap<>();
 
-    public LottoResult(Purchase purchase, WinningNumbers winningNumbers) {
-        this.purchase = purchase;
-        this.winningNumbers = winningNumbers;
+    private LottoResult(Lottos lottos, WinningNumbers winningNumbers) {
+        for (Lotto lotto : lottos.getLottos()) {
+            PriceMoney priceMoney = PriceMoney.of(lotto.sameNumberCounter(winningNumbers), lotto.hasNumber(winningNumbers.getBonusNumber()));
+            result.merge(priceMoney, 1, Integer::sum);
+        }
+    }
+    // of -> from
+    public static LottoResult of(Lottos lottos, WinningNumbers winningNumbers) {
+        return new LottoResult(lottos,winningNumbers);
     }
 
-    public int[] calculateRank() {
-        List<Lotto> lottos = purchase.getLottos();
-        int[] result = new int[7];
-        for (Lotto lotto : lottos) {
-            PriceMoney rank = winningNumbers.calculate(lotto);
-            result[rank.ordinal()]++;
+    public long calculatePrice() {
+        long prize = 0L;
+        for (PriceMoney priceMoney : result.keySet()) {
+            prize += (long) result.get(priceMoney) * priceMoney.getPrice();
         }
-        return result;
+        return prize;
     }
 
-    public Integer calculatePriceSum() {
-        Integer sum = ZERO;
-
-        List<Lotto> lottos = purchase.getLottos();
-        for (Lotto lotto : lottos) {
-            PriceMoney rank = winningNumbers.calculate(lotto);
-            sum += PriceMoney.getPrice(rank);
+    public int getRankCount(PriceMoney priceMoney) {
+        if (result.get(priceMoney) == null) {
+            return 0;
         }
-        return sum;
+        return result.get(priceMoney);
     }
 }

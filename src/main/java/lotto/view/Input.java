@@ -19,6 +19,6 @@ public class Input {
     }
 
     private String read() {
-        return Console.readLine();
+        return inputValidator.validateNotEmpty(Console.readLine());
     }
 }

@@ -1,6 +1,13 @@
 package Output;
 
+import lotto.BuyLotto;
+import lotto.Lotto;
+
+import java.util.List;
+
 public class Output {
+    private static BuyLotto buylotto = new BuyLotto();
+
     public void buyMoneyAsk() {
         System.out.println("구입금액을 입력해 주세요.");
     }
@@ -20,5 +27,18 @@ public class Output {
     public void correctStatisPrint() {
         System.out.println("당첨 통계");
         System.out.println("---");
+    }
+
+    public String lottoBuyPaperPrint(List<Integer> paper) {
+        String result = "[";
+        for (int i = 0; i < paper.size(); i++) {
+            if (i < paper.size() - 1) {
+                result += paper.get(i) + ", ";
+            }
+            if (i == paper.size() - 1) {
+                result += paper.get(i) + "]";
+            }
+        }
+        return result;
     }
 }

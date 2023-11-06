@@ -24,6 +24,10 @@ public class WinningLotto {
                 bonusNumber < ConstantNumber.MINIMUM_WINNING_NUMBER.get()) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_OUT_OF_RANGE.get());
         }
+
+        if (lotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_EQUALS_WINNING_NUMBERS.get());
+        }
     }
 
     public boolean contains(int number) {
@@ -35,7 +39,7 @@ public class WinningLotto {
     }
 
     public void setBonusNumber(int bonusNumber) {
-        vaildateBonusNumber(bonusNumber);
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

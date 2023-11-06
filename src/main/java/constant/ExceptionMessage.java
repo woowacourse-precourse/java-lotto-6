@@ -7,6 +7,7 @@ public enum ExceptionMessage {
     NON_NUMERIC_INPUT("숫자가 입력되어야 합니다."),
     DUPLICATE_WINNING_NUMBERS("당첨 번호는 중복되지 않아야 합니다."),
     MONEY_AMOUNT_IS_NEGATIVE("구입 금액이 0원 이하입니다."),
+    BONUS_NUMBER_EQUALS_WINNING_NUMBERS("보너스 번호는 당첨 번호와 일치하지 않아야 합니다."),
     LESS_MONEY_THAN_THE_TICKET_PRICE(String.format("로또 티켓 가격(%s원) 이상이 필요합니다.",
             new DecimalFormat("###,###")
                     .format(ConstantNumber.LOTTO_TICKET_COST.get())

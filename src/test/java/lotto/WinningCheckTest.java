@@ -19,7 +19,7 @@ public class WinningCheckTest {
         Payment payment = new Payment(5000);
         WinningNumber winningNumber = WinningNumber.create(Arrays.asList(1, 2, 3, 4, 5, 6)); //1등 번호
         BonusNumber bonusNumber = BonusNumber.create(7); //보너스 번호
-        ResultNumber.create(winningNumber, bonusNumber);
+        WinningAndBonusNumber.create(winningNumber, bonusNumber);
         Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); //1등
         Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); //2등
         Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 40)); //3등
@@ -28,13 +28,13 @@ public class WinningCheckTest {
         List<Lotto> lottoList = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5);
         Customer user = new Customer(payment, lottoList);
         // when
-        GameUtility.getUserLottoResult(user);
+        WinningResult winningResult = GameUtility.calculateCustomerWinningResult(user);
 //            // then
-        assertEquals(user.getLottoResult().getFirst_place(), 1);
-        assertEquals(user.getLottoResult().getSecond_place(), 1);
-        assertEquals(user.getLottoResult().getThird_place(), 1);
-        assertEquals(user.getLottoResult().getForth_place(), 1);
-        assertEquals(user.getLottoResult().getFifth_place(), 1);
+        assertEquals(winningResult.getNumberOfPrizeFromIndex(1), 1);
+        assertEquals(winningResult.getNumberOfPrizeFromIndex(2), 1);
+        assertEquals(winningResult.getNumberOfPrizeFromIndex(3), 1);
+        assertEquals(winningResult.getNumberOfPrizeFromIndex(4), 1);
+        assertEquals(winningResult.getNumberOfPrizeFromIndex(5), 1);
     }
 
 

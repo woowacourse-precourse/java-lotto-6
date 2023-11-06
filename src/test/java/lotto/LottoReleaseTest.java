@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.domain.Lotto;
 import lotto.domain.Customer;
 import lotto.utility.GameUtility;
+import lotto.utility.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +27,7 @@ public class LottoReleaseTest extends NsTest{
         // given
         Customer user;
         // when
-        List<Lotto> tickets = GameUtility.buyTickets(payment);
+        List<Lotto> tickets = LottoMachine.generateTickets(payment);
         // then
         assertEquals(tickets.size(), lottoAmount);
     }
@@ -40,7 +41,7 @@ public class LottoReleaseTest extends NsTest{
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     Customer user;
-                    assertEquals(GameUtility.buyTickets(1000).get(0).getNumbers(), LottoNumbers);
+                    assertEquals(LottoMachine.generateTickets(1000).get(0).getNumbers(), LottoNumbers);
                 },
                 Arrays.asList(43, 41, 42, 23, 21, 8)
         );

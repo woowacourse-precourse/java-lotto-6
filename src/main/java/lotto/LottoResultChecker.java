@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoResultChecker {
     private final WinningLotto winningLotto;
@@ -21,4 +22,9 @@ public class LottoResultChecker {
         return Result.from(matchingNumbers, bonus);
     }
 
+    public List<Result> getResults(List<Lotto> lottos) {
+        return lottos.stream()
+                .map(this::check)
+                .collect(Collectors.toList());
+    }
 }

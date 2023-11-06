@@ -73,6 +73,7 @@ public class UserInputHandler {
         return lotto;
     }
 
+    // 숫자가 아닌 경우, 범위 초과인 경우, 중복인 경우 모음
     private void validateUserWinningNumbers(String winningNumbers) {
         String[] numbers = winningNumbers.split(",");
         validateNumbers(numbers);
@@ -80,6 +81,7 @@ public class UserInputHandler {
         validDuplicateNumbers(numbers);
     }
 
+    // 중복인 경우
     private void validDuplicateNumbers(String[] numbers) {
         Set<Long> uniqueNumbers = new HashSet<>();
         for (String s : numbers) {
@@ -91,6 +93,7 @@ public class UserInputHandler {
         }
     }
 
+    // 6개가 아닌 경우
     private void validateLength(String[] numbers) {
         if (numbers.length != 6) {
             throw new IllegalArgumentException(WINNING_NUMBERS_COUNT_ERROR.getMessage());
@@ -142,12 +145,14 @@ public class UserInputHandler {
         return Integer.parseInt(bonusNumber);
     }
 
+    // 보너스번호 예외 모음
     private void validateCheck(String bonusNumber) {
         validateNumbers(bonusNumber);
         isOverLengthNumber(Integer.parseInt(bonusNumber));
         duplicateBonusNumber(Integer.parseInt(bonusNumber));
     }
 
+    // 보너스 번호 중복 확인
     private void duplicateBonusNumber(int bonusNumber) {
         String[] userInput = new String[0];
         userInput = getNotNullStrings(userInput);
@@ -160,6 +165,7 @@ public class UserInputHandler {
         }
     }
 
+    // 입력이 되지 않았는데 먼저 호출될 경우 대비
     private String[] getNotNullStrings(String[] userInput) {
         if (winningNumbers != null) {
             userInput = winningNumbers.split(",");

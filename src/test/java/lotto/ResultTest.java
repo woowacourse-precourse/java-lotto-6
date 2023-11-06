@@ -24,11 +24,11 @@ class ResultTest {
     @DisplayName("결과에 맞는 상금을 반환한다.")
     @Test
     void getPrize() {
-        assertEquals(FIRST_PRIZE.prize(), 2_000_000_000);
-        assertEquals(SECOND_PRIZE.prize(), 30_000_000);
-        assertEquals(THIRD_PRIZE.prize(), 1_500_000);
-        assertEquals(FOURTH_PRIZE.prize(), 50_000);
-        assertEquals(FIFTH_PRIZE.prize(), 5_000);
-        assertEquals(NO_PRIZE.prize(), 0);
+        assertEquals(FIRST_PRIZE.getPrize(), 2_000_000_000);
+        assertEquals(SECOND_PRIZE.getPrize(), 30_000_000);
+        assertEquals(THIRD_PRIZE.getPrize(), 1_500_000);
+        assertEquals(FOURTH_PRIZE.getPrize(), 50_000);
+        assertEquals(FIFTH_PRIZE.getPrize(), 5_000);
+        assertEquals(NO_PRIZE.getPrize(), 0);
     }
 }

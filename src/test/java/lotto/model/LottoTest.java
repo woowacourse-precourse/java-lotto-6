@@ -35,9 +35,39 @@ class LottoTest {
 
         WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
 
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int matchCount = lotto.getMatchCount(winningNumber);
 
         assertThat(matchCount).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있지 않다면 false를 반환한다.")
+    void hasBounus_isFalse() {
+        /**
+         * given : 로또 번호와 보너스 번호가 주어진다.
+         * when : hasBonus 메서드를 호출한다.
+         * then : 보너스 번호(7)가 포함되어 있지 않기 때문에, false를 반환한다.
+         */
+        BonusNumber bonusNumber = new BonusNumber("7");
+
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.hasBonus(bonusNumber)).isFalse();
+    }
+
+    @Test
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있다면 true를 반환한다.")
+    void hasBounus_isTrue() {
+        /**
+         * given : 로또 번호와 보너스 번호가 주어진다.
+         * when : hasBonus 메서드를 호출한다.
+         * then : 보너스 번호(7)가 포함되어 있기 때문에, true를 반환한다.
+         */
+        BonusNumber bonusNumber = new BonusNumber("7");
+
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+
+        assertThat(lotto.hasBonus(bonusNumber)).isTrue();
     }
 }

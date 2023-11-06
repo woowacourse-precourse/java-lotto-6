@@ -103,4 +103,16 @@ class LottoTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    void 로또_결과가_4개_일치인_경우_해당하는_Result를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto compareLotto = new Lotto(List.of(1, 2, 3, 4, 44, 45));
+        BonusNumber bonusNumber = new BonusNumber(7, compareLotto);
+        Result expected = Result.FOUR_MATCH;
+
+        Result actual = lotto.countMatch(compareLotto, bonusNumber);
+
+        assertEquals(expected, actual);
+    }
 }

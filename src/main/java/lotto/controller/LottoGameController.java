@@ -63,7 +63,7 @@ public class LottoGameController {
                     LottoPurchaseRequest lottoPurchaseRequest = view.inputPurchaseRequest();
                     List<Lotto> lottoTickets = service.createLottoPurchase(lottoPurchaseRequest);
                     List<LottoResponse> lottoResponses = lottoTickets.stream()
-                            .map(lotto -> new LottoResponse(lotto.getNumbers()))
+                            .map(LottoResponse::from)
                             .toList();
                     view.printPurchasedTickets(lottoResponses);
                 });

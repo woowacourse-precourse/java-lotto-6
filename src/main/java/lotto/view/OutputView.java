@@ -12,10 +12,10 @@ public class OutputView {
 
     private static final String SHOW_LOTTO = "\n%d개를 구매했습니다.\n";
     private static final String STAT_MESSAGE = "\n당첨 통계\n---";
-    private static final String STAT_RESULT = "%d개 일치 (%s원) - %d개\n";
-    private static final String STAT_RESULT_BONUS = "%d개 일치, 보너스 볼 일치 (%s)원 - %d개\n";
-    private static final String EARNING_RATE = "총 수익률은 %.1f%%입니다.";
-    private static final DecimalFormat MONEY_FORMAT = new DecimalFormat("###,###");
+    private static final String STAT_RESULT = "%d개 일치 (%s원) - %d개";
+    private static final String STAT_RESULT_BONUS = "%d개 일치, 보너스 볼 일치 (%s)원 - %d개";
+    private static final String EARNING_RATE = "총 수익률은 %s%%입니다.";
+    private static final DecimalFormat MONEY_FORMAT = new DecimalFormat("###,###.#");
 
     public void showLottos(Lottos lottos, Money money) {
         System.out.printf(SHOW_LOTTO, money.calNumberOfLotto());
@@ -27,9 +27,10 @@ public class OutputView {
         Map<Rank, Integer> rankResult = lottos.saveRankResult(user);
         System.out.println(STAT_MESSAGE);
         Arrays.stream(rankResult.keySet().toArray(new Rank[0]))
+                .filter(rank -> !rank.equals(Rank.ECT))
                 .forEach(rank -> System.out.println(getLottoStatistics(rank, rankResult)));
 
-        System.out.printf(EARNING_RATE, lottos.calEarnings(rankResult) / money.calNumberOfLotto());
+        System.out.printf(EARNING_RATE, MONEY_FORMAT.format((lottos.calEarnings(rankResult) / money.getMoney()) * 100));
     }
 
     private String getLottoStatistics(Rank rank, Map<Rank, Integer> rankResult) {

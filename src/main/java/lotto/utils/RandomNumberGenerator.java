@@ -10,6 +10,6 @@ public class RandomNumberGenerator {
         return Randoms.pickUniqueNumbersInRange(
                 GameSetting.START_NUMBER.getValue(),
                 GameSetting.END_NUMBER.getValue(),
-                GameSetting.TICKET_SIZE.getValue());
+                GameSetting.TICKET_SIZE.getValue()).stream().sorted().toList();
     }
 }

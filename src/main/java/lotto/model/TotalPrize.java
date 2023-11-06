@@ -18,7 +18,7 @@ public final class TotalPrize {
     public TotalProfitRate calculateTotalProfitRate(InvestMoney investMoney) {
         long totalWinningMoney = calculateTotalWinningMoney();
         TotalWinningMoney winningMoney = TotalWinningMoney.from(totalWinningMoney);
-        double totalProfitRate = investMoney.calculateTotalProfitRate(winningMoney);
+        double totalProfitRate = investMoney.calculateTotalProfitPercentage(winningMoney);
 
         return TotalProfitRate.from(totalProfitRate);
     }

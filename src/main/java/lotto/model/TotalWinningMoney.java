@@ -25,7 +25,7 @@ public final class TotalWinningMoney {
         return new TotalWinningMoney(totalWinningMoney);
     }
 
-    public BigDecimal divide(int money) {
+    public BigDecimal calculateReturnOnInvestment(int money) {
         BigDecimal totalWinningMoney = new BigDecimal(this.totalWinningMoney);
         BigDecimal investMoney = new BigDecimal(money);
 

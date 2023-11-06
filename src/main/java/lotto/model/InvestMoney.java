@@ -57,8 +57,8 @@ public final class InvestMoney {
         return lottoPrice.calculateLottoCount(money);
     }
 
-    public double calculateTotalProfitRate(TotalWinningMoney totalWinningMoney) {
-        BigDecimal dividedMoney = totalWinningMoney.divide(money);
+    public double calculateTotalProfitPercentage(TotalWinningMoney totalWinningMoney) {
+        BigDecimal dividedMoney = totalWinningMoney.calculateReturnOnInvestment(money);
         BigDecimal percentMultiplier = BigDecimal.valueOf(PERCENT_MULTIPLIER);
 
         BigDecimal totalProfitRate = multiply(dividedMoney, percentMultiplier);

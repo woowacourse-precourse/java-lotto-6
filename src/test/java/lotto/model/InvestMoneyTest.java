@@ -78,7 +78,7 @@ class InvestMoneyTest {
         InvestMoney investMoney = InvestMoney.from(money);
         TotalWinningMoney totalWinningMoney = TotalWinningMoney.from(winningMoney);
 
-        double actualProfitRate = investMoney.calculateTotalProfitRate(totalWinningMoney);
+        double actualProfitRate = investMoney.calculateTotalProfitPercentage(totalWinningMoney);
 
         assertThat(actualProfitRate).isEqualTo(expectedProfitRate);
     }

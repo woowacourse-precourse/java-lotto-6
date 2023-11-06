@@ -11,7 +11,7 @@ public class OutputUtil {
         OutputView.print(output);
     }
 
-    private static String formatMessageWithNumber(SystemMessage systemMessage, int num) {
+    public static String formatMessageWithNumber(SystemMessage systemMessage, int num) {
         return String.format(systemMessage.getMessage(), num);
     }
 }

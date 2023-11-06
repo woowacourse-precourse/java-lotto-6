@@ -27,17 +27,17 @@ class LottoTest {
     // 아래에 추가 테스트 작성 가능
     @DisplayName("존재 유무 확인 매소드 테스트.")
     @Test
-    void lottoContains_test(){
-        Lotto L = new Lotto(List.of(1,2,3,4,5,6));
+    void lottoContains_test() {
+        Lotto L = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(L.lottoContains(2)).isEqualTo(true);
         assertThat(L.lottoContains(0)).isEqualTo(false);
     }
 
     @DisplayName("맞춘 숫자 세기 매소드 테스트.")
     @Test
-    void countMatch_test(){
-        Lotto L = new Lotto(List.of(1,2,3,4,5,6));
-        assertThat(L.countMatch(List.of(1,2,3,4,5,6))).isEqualTo(6);
-        assertThat(L.countMatch(List.of(1,11,10,9,8,7))).isEqualTo(1);
+    void countMatch_test() {
+        Lotto L = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(L.countMatch(List.of(1, 2, 3, 4, 5, 6))).isEqualTo(6);
+        assertThat(L.countMatch(List.of(1, 11, 10, 9, 8, 7))).isEqualTo(1);
     }
 }

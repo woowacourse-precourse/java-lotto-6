@@ -32,8 +32,7 @@ class ApplicationTest extends NsTest {
                             "5개 일치 (1,500,000원) - 0개",
                             "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
                             "6개 일치 (2,000,000,000원) - 0개",
-                            "총 수익률은 62.5%입니다."
-                    );
+                            "총 수익률은 62.5%입니다.");
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),
@@ -42,8 +41,7 @@ class ApplicationTest extends NsTest {
                 List.of(13, 14, 16, 38, 42, 45),
                 List.of(7, 11, 30, 40, 42, 43),
                 List.of(2, 13, 22, 32, 38, 45),
-                List.of(1, 3, 5, 14, 22, 45)
-        );
+                List.of(1, 3, 5, 14, 22, 45));
     }
 
     @Test
@@ -56,6 +54,6 @@ class ApplicationTest extends NsTest {
 
     @Override
     public void runMain() {
-        Application.main(new String[]{});
+        Application.main(new String[] {});
     }
 }

@@ -37,7 +37,7 @@ public class LottoValidator implements ModelValidator {
 
     private void validateNull(Lotto lotto) {
         if (lotto == null) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NULL.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NULL_ENTERED.getMessage());
         }
     }
 
@@ -48,8 +48,8 @@ public class LottoValidator implements ModelValidator {
     }
 
     private void validateLottoTicketSize(List<Integer> numbers) {
-        if (numbers.size() != LottoConstants.SIZE_OF_LOTTO_TICKET) {
-            throw new IllegalArgumentException(ErrorMessage.SIZE_OF_LOTTO_IS_NOT_PROPER.getMessage());
+        if (numbers.size() != LottoConstants.SIZE_OF_LOTTO) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_PROPER_SIZE_OF_LOTTO.getMessage());
         }
     }
 

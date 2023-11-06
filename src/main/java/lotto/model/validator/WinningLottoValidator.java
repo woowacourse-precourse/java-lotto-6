@@ -36,7 +36,7 @@ public class WinningLottoValidator implements ModelValidator {
 
     private void validateNull(WinningLotto winningLotto) {
         if (winningLotto == null) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NULL.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NULL_ENTERED.getMessage());
         }
     }
 

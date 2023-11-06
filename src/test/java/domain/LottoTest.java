@@ -27,7 +27,7 @@ class LottoTest {
 
     @DisplayName("로또 번호는 오름차순으로 정렬 된다.")
     @Test
-    void isNumberSortByAscendingOrder() {
+    void lottoNumberSortByAscendingOrder() {
         List<Integer> numbers = new ArrayList<>(List.of(6,4,3,2,1,5));
         Lotto lotto = new Lotto(numbers);
         Collections.sort(numbers);

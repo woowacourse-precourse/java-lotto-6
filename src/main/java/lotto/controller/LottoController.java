@@ -13,15 +13,15 @@ import lotto.domain.MakeLottos;
 import lotto.domain.InputWinningNum;
 
 public class LottoController {
-    int purchaseAmount, purchaseNum, bonusNumInput;
+    int purchaseAmount;
+    int purchaseNum;
+    int bonusNumInput;
     int reciveAmount = 0;
     private static List<List<Integer>> allLotto;
     private static Lotto lotto;
 
     public void run() {
-        while (readPurchaseLotto()) {
-        }
-        OutputViews.endOfSection();
+        runReadPurchaseLotto();
 
         writePurchaseLotto();
         OutputViews.endOfSection();
@@ -38,6 +38,12 @@ public class LottoController {
 //        System.out.println(reciveAmount);
     }
 
+    public void runReadPurchaseLotto() {
+        while (readPurchaseLotto()) {
+        }
+        OutputViews.endOfSection();
+    }
+
     public boolean readPurchaseLotto() {
         String purchaseAmountString = InputViews.readPurchaseAmount();
         if (ReadPurchaseLottoModules.isPurchaseAmountInt(purchaseAmountString)) {
@@ -45,10 +51,9 @@ public class LottoController {
         }
 
         purchaseAmount = Integer.parseInt(purchaseAmountString);
-        if (ReadPurchaseLottoModules.isPurchaseAmountPositive(purchaseAmount)) {
-            return true;
-        }
-        if (ReadPurchaseLottoModules.isPurchaseAmountDivisible1000(purchaseAmount)) {
+        boolean isPositive = ReadPurchaseLottoModules.isPurchaseAmountPositive(purchaseAmount);
+        boolean isDivisible1000 = ReadPurchaseLottoModules.isPurchaseAmountDivisible1000(purchaseAmount);
+        if (isPositive || isDivisible1000) {
             return true;
         }
         purchaseNum = purchaseAmount / 1000;

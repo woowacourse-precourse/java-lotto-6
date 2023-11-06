@@ -4,8 +4,9 @@ public enum Constants {
 
     COMMA(","),
     LIST_PREFIX("["),
-    LIST_SUFFIX("]");
+    LIST_SUFFIX("]"),
 
+    SPACE(" ");
     private final String value;
 
     Constants(String value) {

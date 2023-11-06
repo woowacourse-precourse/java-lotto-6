@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.domain.PrintMessages.*;
 import static lotto.util.Constants.*;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class ConsoleOutputView implements Output {
 
     @Override
     public void printTotalEarningsRate(double earningsRate) {
-        System.out.printf(TOTAL_EARNINGS_RATE.getFormattedEarningRate(earningsRate));
+        System.out.println(TOTAL_EARNINGS_RATE.getFormattedEarningRate(earningsRate));
     }
 
     @Override
@@ -54,7 +55,7 @@ public class ConsoleOutputView implements Output {
                 .map(LottoNumber::getNumber)
                 .map(String::valueOf)
                 .collect(Collectors.joining(
-                        COMMA.getValue(),
+                        COMMA.getValue() + SPACE.getValue(),
                         LIST_PREFIX.getValue(),
                         LIST_SUFFIX.getValue()));
     }

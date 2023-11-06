@@ -62,7 +62,7 @@ class LottoTest {
     @DisplayName("로또 두 개를 비교하여 몇 개의 번호가 일치하는지 계산한다. - 6개 일치")
     @Test
     void calculateLottoNumberWhenMatchedSix() {
-        Lotto lotto1 = new Lotto(TestConstant.normalNumbers);
+        Lotto lotto1 = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         Lotto lotto2 = new Lotto(TestConstant.normalNumbers);
 
         int matchedNumberCount = lotto1.countMatchedNumber(lotto2);
@@ -85,7 +85,7 @@ class LottoTest {
     @Test
     void calculateLottoNumberWhenMatchedThree() {
         Lotto lotto1 = new Lotto(TestConstant.normalNumbers);
-        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 45, 44, 43));
+        Lotto lotto2 = new Lotto(List.of(1, 45, 2, 3, 44, 43));
 
         int matchedNumberCount = lotto1.countMatchedNumber(lotto2);
 

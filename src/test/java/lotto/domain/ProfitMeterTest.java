@@ -10,6 +10,16 @@ import org.junit.jupiter.api.Test;
 
 class ProfitMeterTest {
 
+    private static final int FIFTH_PRIZE_COUNT = 10;
+    private static final int FOURTH_PRIZE_COUNT = 3;
+    private static final int SECOND_PRIZE_COUNT = 2;
+    private static final long TOTAL_TICKETS_FOR_TEST_ONE = 3000;
+    private static final long TOTAL_TICKETS_FOR_TEST_TWO = 1000;
+    private static final long TOTAL_TICKETS_FOR_TEST_THREE = 100000;
+    private static final BigDecimal EXPECTED_YIELD_TEST_ONE = new BigDecimal("2006.7");
+    private static final BigDecimal EXPECTED_YIELD_TEST_TWO = BigDecimal.valueOf(0.0);
+    private static final BigDecimal EXPECTED_YIELD_TEST_THREE = new BigDecimal("2168.0");
+
     private LinkedHashMap<LottoRank, Integer> winnerCount;
 
     @BeforeEach
@@ -21,31 +31,29 @@ class ProfitMeterTest {
     @Test
     void calculateYieldCorrectly() {
         // Given
-        winnerCount.put(LottoRank.FIFTH, 10);
-        winnerCount.put(LottoRank.FOURTH, 3);
-        winnerCount.put(LottoRank.SECOND, 2);
-        long totalTickets = 3000;
-        ProfitMeter profitMeter = new ProfitMeter(winnerCount, totalTickets);
+        winnerCount.put(LottoRank.FIFTH, FIFTH_PRIZE_COUNT);
+        winnerCount.put(LottoRank.FOURTH, FOURTH_PRIZE_COUNT);
+        winnerCount.put(LottoRank.SECOND, SECOND_PRIZE_COUNT);
+        ProfitMeter profitMeter = new ProfitMeter(winnerCount, TOTAL_TICKETS_FOR_TEST_ONE);
 
         // When
         BigDecimal yield = profitMeter.calculateYield();
 
         // Then
-        assertThat(yield).isEqualTo(new BigDecimal("2006.7"));
+        assertThat(yield).isEqualTo(EXPECTED_YIELD_TEST_ONE);
     }
 
     @DisplayName("당첨되지 않았을 경우 수익률은 0이어야 한다")
     @Test
     void calculateYieldWithNoWinners() {
         // Given
-        long totalTickets = 1000;
-        ProfitMeter profitMeter = new ProfitMeter(winnerCount, totalTickets);
+        ProfitMeter profitMeter = new ProfitMeter(winnerCount, TOTAL_TICKETS_FOR_TEST_TWO);
 
         // When
         BigDecimal yield = profitMeter.calculateYield();
 
         // Then
-        assertThat(yield.doubleValue()).isEqualTo(0.0);
+        assertThat(yield).isEqualTo(EXPECTED_YIELD_TEST_TWO);
     }
 
     @DisplayName("모든 랭크에 당첨된 경우도 수익률을 계산할 수 있어야 한다")
@@ -57,15 +65,14 @@ class ProfitMeterTest {
         winnerCount.put(LottoRank.THIRD, 10);  // 1,500,000 * 10 = 15,000,000
         winnerCount.put(LottoRank.SECOND, 5);  // 30,000,000 * 5 = 150,000,000
         winnerCount.put(LottoRank.FIRST, 1);   // 2,000,000,000 * 1 = 2,000,000,000
-        long totalTickets = 100000;            // 100,000 * 1,000 = 100,000,000 (Total spent)
-        ProfitMeter profitMeter = new ProfitMeter(winnerCount, totalTickets);
+        ProfitMeter profitMeter = new ProfitMeter(winnerCount, TOTAL_TICKETS_FOR_TEST_THREE);
 
         // When
         BigDecimal yield = profitMeter.calculateYield();
 
         // Then
-        BigDecimal expectedYield = new BigDecimal("2168.0"); // (2,167,500,000 / 100,000,000) * 100
-        assertThat(yield).isEqualTo(expectedYield);
+        assertThat(yield).isEqualTo(EXPECTED_YIELD_TEST_THREE);
     }
 }
+
 

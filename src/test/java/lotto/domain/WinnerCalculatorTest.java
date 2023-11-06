@@ -10,6 +10,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class WinnerCalculatorTest {
+    private static final int EXPECTED_FIRST_PRIZE_WINNERS = 1;
+    private static final int EXPECTED_SECOND_PRIZE_WINNERS = 1;
+    private static final int EXPECTED_THIRD_PRIZE_WINNERS = 1;
+    private static final int EXPECTED_FOURTH_PRIZE_WINNERS = 1;
+    private static final int EXPECTED_FIFTH_PRIZE_WINNERS = 1;
+    private static final int EXPECTED_NO_PRIZE_WINNERS = 1;
+    private static final int BONUS_NUMBER = 7;
+    private static final int INITIAL_COUNT = 0;
+
     private LottoFactory lottoFactory;
     private Lotto winningLotto;
     private BonusNumber bonusNumber;
@@ -34,7 +43,7 @@ class WinnerCalculatorTest {
         bonusNumber = new BonusNumber(winningLotto, null) {
             @Override
             public int getBonusNumber() {
-                return 7;
+                return BONUS_NUMBER;
             }
         };
         winnerCalculator = new WinnerCalculator(lottoFactory, winningLotto, bonusNumber);
@@ -45,12 +54,12 @@ class WinnerCalculatorTest {
     void testWinnerCalculation() {
         LinkedHashMap<LottoRank, Integer> result = winnerCalculator.calculate();
 
-        assertThat(result.get(LottoRank.FIRST)).isEqualTo(1);
-        assertThat(result.get(LottoRank.SECOND)).isEqualTo(1);
-        assertThat(result.get(LottoRank.THIRD)).isEqualTo(1);
-        assertThat(result.get(LottoRank.FOURTH)).isEqualTo(1);
-        assertThat(result.get(LottoRank.FIFTH)).isEqualTo(1);
-        assertThat(result.get(LottoRank.NONE)).isEqualTo(1);
+        assertThat(result.get(LottoRank.FIRST)).isEqualTo(EXPECTED_FIRST_PRIZE_WINNERS);
+        assertThat(result.get(LottoRank.SECOND)).isEqualTo(EXPECTED_SECOND_PRIZE_WINNERS);
+        assertThat(result.get(LottoRank.THIRD)).isEqualTo(EXPECTED_THIRD_PRIZE_WINNERS);
+        assertThat(result.get(LottoRank.FOURTH)).isEqualTo(EXPECTED_FOURTH_PRIZE_WINNERS);
+        assertThat(result.get(LottoRank.FIFTH)).isEqualTo(EXPECTED_FIFTH_PRIZE_WINNERS);
+        assertThat(result.get(LottoRank.NONE)).isEqualTo(EXPECTED_NO_PRIZE_WINNERS);
     }
 
     @DisplayName("초기 당첨자 수가 모두 0으로 설정되어 있는지 테스트")
@@ -58,10 +67,10 @@ class WinnerCalculatorTest {
     void testInitialWinnerCount() {
         LinkedHashMap<LottoRank, Integer> initNumber = winnerCalculator.getWinnerCount();
 
-        assertThat(initNumber.values()).allMatch(number -> number == 0);
+        assertThat(initNumber.values()).allMatch(number -> number == INITIAL_COUNT);
     }
-
 }
+
 
 
 

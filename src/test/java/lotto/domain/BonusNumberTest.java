@@ -11,6 +11,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BonusNumberTest {
+    private static final String WITHIN_RANGE_BONUS = "7";
+    private static final String OUT_OF_RANGE_BONUS = "46";
+    private static final String DUPLICATE_BONUS = "1";
+    private static final String NON_NUMERIC_BONUS = "a";
+    private static final String OUT_OF_INT_RANGE_BONUS = "3000000000";
+    private static final int EXPECTED_BONUS_NUMBER = 7;
+
     private Lotto lotto;
     private NumberConverter numberConverter;
     private BonusNumber bonusNumber;
@@ -25,15 +32,15 @@ class BonusNumberTest {
     @DisplayName("보너스 번호가 올바른 범위 내에 있는지 검증")
     @Test
     void validateNumberWithinRange() {
-        bonusNumber.validateNumber("7");
-        assertThat(bonusNumber.getBonusNumber()).isEqualTo(7);
+        bonusNumber.validateNumber(WITHIN_RANGE_BONUS);
+        assertThat(bonusNumber.getBonusNumber()).isEqualTo(EXPECTED_BONUS_NUMBER);
     }
 
 
     @DisplayName("보너스 번호가 범위를 벗어났을 때 예외 발생")
     @Test
     void validateNumberOutOfRange() {
-        assertThatThrownBy(() -> bonusNumber.validateNumber("46"))
+        assertThatThrownBy(() -> bonusNumber.validateNumber(OUT_OF_RANGE_BONUS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.INPUT_CORRECT_RANGE.getMessage());
     }
@@ -42,7 +49,7 @@ class BonusNumberTest {
     @DisplayName("보너스 번호가 로또번호와 중복될 때 예외 발생")
     @Test
     void validateNumberIsDuplicate() {
-        assertThatThrownBy(() -> bonusNumber.validateNumber("1"))
+        assertThatThrownBy(() -> bonusNumber.validateNumber(DUPLICATE_BONUS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.DUPLICATE_NUMBERS_LOTTO.getMessage());
     }
@@ -50,7 +57,7 @@ class BonusNumberTest {
     @Test
     @DisplayName("보너스 번호가 문자일 때 예외 발생")
     void validateNumberIsNotNumeric() {
-        assertThatThrownBy(() -> bonusNumber.validateNumber("a"))
+        assertThatThrownBy(() -> bonusNumber.validateNumber(NON_NUMERIC_BONUS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.INPUT_NUMBER.getMessage());
     }
@@ -58,10 +65,11 @@ class BonusNumberTest {
     @Test
     @DisplayName("보너스 번호가 int의 범위를 벗어났을 때 예외 발생")
     void validateNumberIsOutOfInt() {
-        assertThatThrownBy(() -> bonusNumber.validateNumber("3000000000"))
+        assertThatThrownBy(() -> bonusNumber.validateNumber(OUT_OF_INT_RANGE_BONUS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.INVALID_AMOUNT_MESSAGE.getMessage());
     }
 
 }
+
 

@@ -49,6 +49,8 @@ public class InputView {
     }
 
     private static String read() {
-        return Console.readLine().trim();
+        String userInput = Console.readLine().trim();
+        System.out.println();
+        return userInput;
     }
 }

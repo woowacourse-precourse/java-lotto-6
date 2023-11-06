@@ -33,7 +33,7 @@ public enum MatchingCase {
         if (this == FIVE_MATCHING_WITH_BONUS && matchingCount == matchingValue && bonusNumberMatching ) {
             winningCount++;
         }
-        if (this != FIVE_MATCHING_WITH_BONUS && matchingCount == matchingValue ) {
+        if (this != FIVE_MATCHING_WITH_BONUS && matchingCount == matchingValue && !bonusNumberMatching ) {
             winningCount++;
         }
     }

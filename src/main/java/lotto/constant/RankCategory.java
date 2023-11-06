@@ -17,4 +17,23 @@ public enum RankCategory {
         this.prize = prize;
         this.bonusStatus = bonusStatus;
     }
+
+    public static RankCategory of(int matchingNumbers, boolean bonusStatus) {
+        if (matchingNumbers == RankCategory.SECOND.matchingNumbers) {
+            return checkBonusStatus(bonusStatus);
+        }
+        for (RankCategory rankCategory : RankCategory.values()) {
+            if (rankCategory.matchingNumbers == matchingNumbers) {
+                return rankCategory;
+            }
+        }
+        return NONE;
+    }
+
+    private static RankCategory checkBonusStatus(boolean bonusStatus) {
+        if (bonusStatus) {
+            return SECOND;
+        }
+        return THIRD;
+    }
 }

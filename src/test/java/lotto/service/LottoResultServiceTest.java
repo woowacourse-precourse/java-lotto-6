@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static lotto.constant.RankCategory.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoResultServiceTest {
 
@@ -79,24 +78,5 @@ class LottoResultServiceTest {
 
         LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle, winningNumbers, bonusNumber);
         Assertions.assertEquals(1, lottoResult.getResults().get(NONE));
-    }
-
-    @Test
-    void hasBonusState_보너스_넘버가_있으면_참() {
-        BonusNumber bonusNumber = new BonusNumber(1);
-        assertTrue(lottoResultService.hasBonusState(lotto, bonusNumber));
-    }
-
-    @Test
-    void hasBonusState_보너스_넘버가_없으면_거짓() {
-        BonusNumber bonusNumber = new BonusNumber(10);
-        assertFalse(lottoResultService.hasBonusState(lotto, bonusNumber));
-    }
-
-    @Test
-    void getMatchCount_로또_하나씩_정답과_비교한다() {
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 10, 11));
-        Assertions.assertEquals(lottoResultService.getMatchCount(lotto, winningNumbers)
-                , 4);
     }
 }

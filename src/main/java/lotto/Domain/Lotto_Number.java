@@ -17,6 +17,9 @@ public class Lotto_Number{
 			this.Lotto_Number.add(NonDuplicated_RandomNumber_Generator(this.Lotto_Number));
 		}
 	}
+	public List<Integer> getNumber(){
+		return Lotto_Number;
+	}
 		
 	public int NonDuplicated_RandomNumber_Generator(List<Integer> Ticket_Number) {
 		int PickNumber;

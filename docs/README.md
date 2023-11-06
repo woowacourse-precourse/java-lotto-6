@@ -26,3 +26,6 @@
 	1. 모델: 데이터와 로직 관리
 	2. 뷰 : 화면 출력 관리
 	3. 컨트롤러: 모델과 뷰 호출 및 명령 전달
+	
+	
+	git commit -m “feat(Lotto_Number) : Lotto number generator feature added”

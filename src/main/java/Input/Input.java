@@ -27,11 +27,12 @@ public class Input {
     }
 
     public List<Integer> answerNumber() {
+        List<Integer> result;
         do {
             output.answerNumberAsk();
             String number_string = readLine();
-            answer = except.outOfRangeMoney(number_string);
-        } while (answer.size() < 1);
-        return answer;
+            result = except.numberCheckAll(number_string);
+        } while (result.size() != 6);
+        return result;
     }
 }

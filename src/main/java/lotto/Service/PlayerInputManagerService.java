@@ -25,11 +25,11 @@ public class PlayerInputManagerService {
         playerPrice.setUpLottoTickets(getBuyingPay(playerPrice));
     }
 
-    public void showIssuedLottoNumber(PlayerPrice playerNumber) {
-        outputView.printIssuedLottoNumbers(playerNumber);
+    public void showIssuedLottoNumber(PlayerPrice playerPrice) {
+        outputView.printIssuedLottoNumbers(playerPrice);
     }
 
-    public static int getBuyingPay(PlayerPrice playerNumber) {
-        return playerNumber.getBuyingPay();
+    public static int getBuyingPay(PlayerPrice playerPrice) {
+        return playerPrice.getBuyingPay();
     }
 }

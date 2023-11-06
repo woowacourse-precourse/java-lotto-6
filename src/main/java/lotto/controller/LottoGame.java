@@ -17,14 +17,15 @@ public class LottoGame {
 
     public void run() {
         int initMoney = inputMoney.save();
+        int bonusNumber = 0;
         countLotto(initMoney /THOUSAND);
         WinningNumbers winningNumbers = makeWinningNumbers();
-        addBonusNumber(winningNumbers);
-        totalResult.print(initMoney, totalLotto, winningNumbers);
+        bonusNumber = addBonusNumber(winningNumbers);
+        totalResult.print(initMoney, totalLotto, winningNumbers, bonusNumber);
     }
 
-    private void addBonusNumber(WinningNumbers winningNumbers) {
-        bonusNumber.add(winningNumbers);
+    private int addBonusNumber(WinningNumbers winningNumbers) {
+        return bonusNumber.add(winningNumbers);
     }
 
 

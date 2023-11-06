@@ -5,14 +5,13 @@ import lotto.view.OutputView;
 
 public class BonusNumber {
     private final OutputView outputView = new OutputView();
-    public void add(WinningNumbers winningNumbers){
+    public int add(WinningNumbers winningNumbers){
         outputView.inputBonusNumber();
         while(true){
             try{
                 String bonusBall = Console.readLine();
                 if(checkValid(bonusBall) && checkDuplicate(winningNumbers, bonusBall)){
-                    winningNumbers.add(stoi(bonusBall));
-                    break;
+                    return stoi(bonusBall);
                 }
             }   catch (IllegalArgumentException e){
                 System.out.println("[ERROR] 다시 입력하세요");

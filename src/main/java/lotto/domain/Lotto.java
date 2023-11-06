@@ -1,11 +1,12 @@
 package lotto.domain;
 
-import lotto.exception.ExceptionMessage;
-
 import java.util.List;
 
+import static lotto.Constants.LOTTO_COUNT;
+import static lotto.exception.ExceptionMessage.DUPLICATED_LOTTO_NUMBER;
+import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
+
 public class Lotto {
-    private static final int LOTTO_COUNT = 6;
 
     private final List<LottoNumber> numbers;
 
@@ -24,7 +25,7 @@ public class Lotto {
 
     private void validateCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_COUNT) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT.get(LOTTO_COUNT));
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.get(LOTTO_COUNT));
         }
     }
 
@@ -32,7 +33,7 @@ public class Lotto {
         long distinctCount = numbers.stream().distinct().count();
 
         if(numbers.size() != distinctCount) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_LOTTO_NUMBER.get());
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.get());
         }
     }
 }

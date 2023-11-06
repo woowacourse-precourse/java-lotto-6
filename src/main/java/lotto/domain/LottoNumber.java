@@ -2,11 +2,12 @@ package lotto.domain;
 
 import lotto.Utils;
 
+import static lotto.Constants.LOTTO_MAX_NUMBER;
+import static lotto.Constants.LOTTO_MIN_NUMBER;
 import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE;
 
 public class LottoNumber {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
+
 
     private final int number;
 
@@ -22,8 +23,8 @@ public class LottoNumber {
     }
 
     private void validate(int number) {
-        if (MAX_NUMBER < number || number < MIN_NUMBER) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.get(MIN_NUMBER, MAX_NUMBER));
+        if (LOTTO_MAX_NUMBER < number || number < LOTTO_MIN_NUMBER) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.get(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER));
         }
     }
 }

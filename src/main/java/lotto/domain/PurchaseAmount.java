@@ -3,17 +3,18 @@ package lotto.domain;
 import lotto.Utils;
 import lotto.exception.ExceptionMessage;
 
+import static lotto.Constants.DIVIDE_UNIT;
+
 public class PurchaseAmount {
-    private static final int DIVIDE_UNIT = 1000;
     private final int amount;
 
     public PurchaseAmount(String input) {
-        int inputAmount =  Utils.convertStringToInt(input);
+        int inputAmount = Utils.convertStringToInt(input);
         validate(inputAmount);
         this.amount = inputAmount;
     }
 
-    public int calculateLottoCount(){
+    public int calculateLottoCount() {
         return amount / DIVIDE_UNIT;
     }
 

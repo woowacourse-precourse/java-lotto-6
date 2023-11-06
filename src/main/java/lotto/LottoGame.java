@@ -4,6 +4,7 @@ import java.util.List;
 
 public class LottoGame {
     private final UserInterface userInterface = new UserInterface();
+    private final Validator validator = new Validator();
     private List<Lotto> lottos;
 
     // 로또 게임 진행 시작
@@ -30,8 +31,8 @@ public class LottoGame {
     // 발행한 로또 수량 및 번호 출력
     private void showLottos(List<Lotto> lottos) {
         userInterface.showText(lottos.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottos)
-            userInterface.showText(lotto.getNumbers());
+//        for (Lotto lotto : lottos)
+//            userInterface.showText(lotto.getNumbers());
         userInterface.newLine();
     }
 }

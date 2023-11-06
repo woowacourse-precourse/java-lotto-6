@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoAmount;
 import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,9 +17,12 @@ public class MainController {
     public void play() {
         // 로또 구입 금액 입력
         String inputMoney = inputView.readLottoMoney();
+
         // 로또 구매 수량 출력
-        int lottoAmount = Validator.validateMoneyIsValid(inputMoney);
-        outputView.printLottoMoney(lottoAmount);
+        LottoAmount lottoAmount = new LottoAmount(inputMoney);
+        outputView.printLottoAmount(lottoAmount);
+
+
         // 수량만큼 로또 생성 후 로또번호 출력
 
         // 당첨번호 입력

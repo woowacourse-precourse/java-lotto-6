@@ -20,6 +20,14 @@ public class Lottos implements Iterable<Lotto> {
         }
     }
 
+    public String buildLottosString() {
+        StringBuilder builder = new StringBuilder();
+
+        lottos.forEach(lotto -> builder.append(lotto).append("\n"));
+
+        return builder.toString();
+    }
+
     @Override
     public Iterator<Lotto> iterator() {
         return lottos.iterator();

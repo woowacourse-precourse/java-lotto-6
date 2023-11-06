@@ -28,4 +28,9 @@ public class Lotto {
     public boolean isContainBonusNumber(BonusNumber bonusNumber) {
         return numbers.contains(bonusNumber.number());
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

@@ -31,6 +31,7 @@ public class LottoManager {
 
     private Lottos createLottos(PurchaseAmount purchaseAmount) {
         Lottos lottos = new Lottos(purchaseAmount);
+        Output.printMessage(lottos.buildLottosString());
         return lottos;
     }
 

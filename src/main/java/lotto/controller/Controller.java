@@ -10,6 +10,7 @@ import lotto.view.input.Input;
 
 public class Controller {
 
+    private final static String NUMBER_OF_TICKETS_MESSAGE_FORMAT = "%d개를 구매했습니다.";
     private final static String PROFITS_RATE_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
     private final static String RESULT_INSTRUCTION_MESSAGE = "당첨 통계";
     private final static String SEPARATOR_LINE = "---";
@@ -19,7 +20,7 @@ public class Controller {
     private final LottoResult lottoResult;
 
     public Controller() {
-        purchaseAmount = new PurchaseAmount(readAmount());
+        purchaseAmount = createPurchaseAmount();
         lottoManager = new LottoManager(purchaseAmount);
         lottoResult = new LottoResult();
     }
@@ -52,8 +53,11 @@ public class Controller {
         }
     }
 
-    private int readAmount() {
+    private PurchaseAmount createPurchaseAmount() {
         Input input = new AmountInput();
-        return Integer.parseInt(input.readLine());
+        String amountInput = input.readLine();
+        PurchaseAmount purchaseAmount = new PurchaseAmount(Integer.parseInt(amountInput));
+        Output.printMessage(NUMBER_OF_TICKETS_MESSAGE_FORMAT, purchaseAmount.getNumberOfTickets());
+        return purchaseAmount;
     }
 }

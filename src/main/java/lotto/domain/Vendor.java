@@ -22,8 +22,8 @@ public class Vendor {
 
     public int insertMoney() {
         try {
-            String tmp = Console.readLine();
-            return Integer.parseInt(tmp);
+            String inputMoney = Console.readLine();
+            return Integer.parseInt(inputMoney);
         } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessageConstant.NOT_INTEGER);
         }

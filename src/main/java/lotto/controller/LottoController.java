@@ -10,8 +10,8 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
-private final MachineSVC machineSVC;
-private final ClientSVC clientSVC;
+    private final MachineSVC machineSVC;
+    private final ClientSVC clientSVC;
 
     public LottoController() {
         this.machineSVC = new MachineSVC();

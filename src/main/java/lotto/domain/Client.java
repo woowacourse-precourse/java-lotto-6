@@ -26,17 +26,17 @@ public class Client {
 
     public void setBonusNum() {
         InputView.insertBonusNumber();
-        String tmp;
+        String userInput;
         while (true) {
-            tmp = Console.readLine();
+            userInput = Console.readLine();
             try {
-                validateBonusNum(tmp);
+                validateBonusNum(userInput);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        this.bonusNum = Integer.parseInt(tmp);
+        this.bonusNum = Integer.parseInt(userInput);
     }
 
     public Lotto getCilentLotto() {
@@ -57,16 +57,16 @@ public class Client {
         }
     }
 
-    private void validateBonusNum(String tmp) {
+    private void validateBonusNum(String userInput) {
         try{
-            Integer.parseInt(tmp);
+            Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessageConstant.NOT_INTEGER);
         }
-        if (Integer.parseInt(tmp) < 1 || Integer.parseInt(tmp) > 45) {
+        if (Integer.parseInt(userInput) < 1 || Integer.parseInt(userInput) > 45) {
             throw new IllegalArgumentException(ErrorMessageConstant.BETWEEN_1_AND_45);
         }
-        if (this.lotto.getNumbers().contains(Integer.parseInt(tmp))) {
+        if (this.lotto.getNumbers().contains(Integer.parseInt(userInput))) {
             throw new IllegalArgumentException(ErrorMessageConstant.DUPLICATE);
         }
     }

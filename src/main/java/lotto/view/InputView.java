@@ -15,32 +15,22 @@ public class InputView {
         System.out.println(INPUT_MONEY_MESSAGE);
         String input = Console.readLine();
 
-        try {
-            InputValidator.validateEmpty(input);
-            return InputValidator.validateNumber(input);
-        } catch (IllegalArgumentException e) {
-            printErrorMessage(e);
-            return getPurchaseMoney();
-        }
+        InputValidator.validateEmpty(input);
+        return InputValidator.validateNumber(input);
     }
 
     public static List<Integer> getLottoNumbers() {
         System.out.println(INPUT_LOTTO_MESSAGE);
         String input = Console.readLine();
 
-        try {
-            List<String> splitByCommas = CommaParser.parse(input);
+        List<String> splitByCommas = CommaParser.parse(input);
 
-            return splitByCommas.stream()
-                    .map(number -> {
-                        InputValidator.validateEmpty(number);
-                        return InputValidator.validateNumber(number);
-                    })
-                    .collect(Collectors.toList());
-        } catch (IllegalArgumentException e) {
-            printErrorMessage(e);
-            return getLottoNumbers();
-        }
+        return splitByCommas.stream()
+                .map(number -> {
+                    InputValidator.validateEmpty(number);
+                    return InputValidator.validateNumber(number);
+                })
+                .collect(Collectors.toList());
     }
 
     public static void printErrorMessage(IllegalArgumentException e) {

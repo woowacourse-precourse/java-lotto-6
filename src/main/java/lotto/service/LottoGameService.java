@@ -4,9 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.LottoException;
 import lotto.model.Lotto;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoGameService {
 
@@ -45,6 +43,83 @@ public class LottoGameService {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public Map<String,String> lottoWinningResultCalculation(List<Lotto> lotto , List<Integer> winningNumber, int bonusNumber){
+        Map<String,String> lottoWinningResult = new HashMap<>();
+
+        int totalWinningAmount = 0;
+        String totalReturnRate;
+        int lottoQuantity = lotto.size();
+        double totalLottoPurchase = 1000 * lottoQuantity;
+
+        int threeMatches = 0;
+        int fourMatches = 0;
+        int fiveMatches = 0;
+        int fiveBonusMatches = 0;
+        int sixMatches = 0;
+
+        for (int quantity = 0 ; quantity < lottoQuantity ; quantity ++){
+
+            int winningAmount = lottoWinningAmount(lotto.get(quantity).getNumbers(), winningNumber, bonusNumber);
+            totalWinningAmount += winningAmount;
+
+            if(winningAmount == 5000){
+                threeMatches++;
+            }
+
+            if(winningAmount == 50000){
+                fourMatches++;
+            }
+
+            if(winningAmount == 1500000){
+                fiveMatches++;
+            }
+
+            if(winningAmount == 30000000){
+                fiveBonusMatches++;
+            }
+
+            if(winningAmount == 200000000){
+                sixMatches++;
+            }
+
+        }
+        totalReturnRate = String.valueOf((totalWinningAmount/totalLottoPurchase)*100);
+
+        lottoWinningResult.put("총 수익률",totalReturnRate);
+        lottoWinningResult.put("3개일치",String.valueOf(threeMatches));
+        lottoWinningResult.put("4개일치",String.valueOf(fourMatches));
+        lottoWinningResult.put("5개일치",String.valueOf(fiveMatches));
+        lottoWinningResult.put("5개일치_보너스일치",String.valueOf(fiveBonusMatches));
+        lottoWinningResult.put("6개일치",String.valueOf(sixMatches));
+
+        return lottoWinningResult;
+    }
+    private int lottoWinningAmount(List<Integer> lotto ,List<Integer> winningNumber, int bonusNumber){
+        int matchCount = 0;
+        for(int i = 0 ; i < winningNumber.size() ; i++){
+            if(lotto.contains(winningNumber.get(i))){
+                matchCount++;
+            }
+        }
+
+        if(matchCount == 3){
+            return 5000;
+        }
+        if(matchCount == 4){
+            return 50000;
+        }
+        if(matchCount == 5){
+            if(lotto.contains(bonusNumber)){
+                return 30000000;
+            }
+            return 1500000;
+        }
+        if(matchCount == 6){
+            return 200000000;
+        }
+        return 0;
     }
 
     public boolean inputWinningNumberValidation(String inputWinningNumber){

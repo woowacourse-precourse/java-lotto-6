@@ -1,15 +1,9 @@
 package lotto.lotto.domain;
 
-import lotto.domain.Draw;
 import lotto.domain.Rank;
-import lotto.domain.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RankTest {
     @DisplayName("1등 당첨 정보를 반환한다.")

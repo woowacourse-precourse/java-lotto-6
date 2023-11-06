@@ -49,8 +49,8 @@ public class LottoEnvelop {
         information.append(lottoInformation + NEW_LINE);
     }
 
-    private Lotto getLotto(int i) {
-        return lottoEnvelop.get(i);
+    private Lotto getLotto(int index) {
+        return lottoEnvelop.get(index);
     }
 
     public Lotto takeLotto(Integer index) {

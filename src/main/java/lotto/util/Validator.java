@@ -37,6 +37,9 @@ public class Validator {
         }
     }
 
+    public static void isDuplicatedBonus(List<Integer> numbers, int num) {
+        if(numbers.contains(num)) ErrorView.isDuplicatedError();
+    }
 
     public static void isSmallAndBig(int inputNum) {
         if(inputNum < Config.MIN_LOTTO || inputNum > Config.MAX_LOTTO) ErrorView.isSmallAndBigError();

@@ -31,6 +31,7 @@ public class WinningNumbersValidator {
             }
         }
     }
+
     public static void validateDuplicateNumber(List<Integer> winningNumbers) {
         Set<Integer> winningNumbersElements = new HashSet<>(winningNumbers);
         if (winningNumbersElements.size() != winningNumbers.size()) {

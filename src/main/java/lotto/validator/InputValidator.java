@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
     private static final String ERROR_MESSAGE = "[ERROR] ";
+
     public static void isNullOrIsEmpty(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "아무 것도 입력하지 않았습니다.");

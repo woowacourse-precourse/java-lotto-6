@@ -11,7 +11,7 @@ public class LottoAmountGenerator {
         while (true) {
             String input = InputHandler.askAmount();
 
-            if (LottoAmountGenerator.validate(input)) {
+            if (validate(input)) {
                 int number = Integer.parseInt(input);
                 return calculateAmount(number);
             }
@@ -30,9 +30,7 @@ public class LottoAmountGenerator {
     }
 
     private static void handleError(String message) {
-        OutputHandler outputHandler = new OutputHandler();
-
-        outputHandler.printErrorMessage(message);
+        OutputHandler.printErrorMessage(message);
     }
 
     public static int calculateAmount(int number) {

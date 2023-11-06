@@ -2,6 +2,7 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import domain.Lottos;
+import java.util.List;
 import view.constant.ConstantMessage;
 
 public class LottoView {
@@ -31,11 +32,17 @@ public class LottoView {
     public static void printWinningResult(){
         printlnConstantMessage(ConstantMessage.WINNING_RESULT);
         printlnConstantMessage(ConstantMessage.THREE_DASH);
-        // 당첨 통계 출력 (미구현)
+    }
+    public static void printLottoResults(List<Integer> lottoResult){
+        for(int i=0; i<lottoResult.size(); i++){
+            printConstantMessage(ConstantMessage.getLottoResult(i));
+            System.out.printf(lottoResult.get(i).toString());
+            printlnConstantMessage(ConstantMessage.EA);
+        }
     }
     public static void printTotalReturn(double totalReturn){
         printConstantMessage(ConstantMessage.TOTAL_RETURN);
-        System.out.print(" "+totalReturn);
+        System.out.print(totalReturn);
         printlnConstantMessage(ConstantMessage.IPNIDA);
     }
 

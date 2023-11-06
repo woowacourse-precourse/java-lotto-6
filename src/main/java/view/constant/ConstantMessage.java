@@ -27,6 +27,14 @@ public enum ConstantMessage {
         this.message = message;
     }
 
+    private static final ConstantMessage[] LottoResult = {
+            THREE_MATCHES, FOUR_MATCHES, FIVE_MATCHES, FIVE_BONUS_MATCHES,SIX_MATCHES
+    };
+
+    public static ConstantMessage getLottoResult(int i) {
+        return LottoResult[i];
+    }
+
     public String getMessage(){
         return message;
     }

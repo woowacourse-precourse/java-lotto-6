@@ -1,18 +1,27 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.regex.Pattern;
 import lotto.message.ExceptionMessage;
 
 public class Amount {
-
+    private static final String AMOUNT_REGEXP = "^[0-9]+$";
     private final int AMOUNT_MIN = 1000;
     private final int amount;
 
-    public Amount(int amount){
+    public Amount(String input){
+        validateInput(input);
+        int amount = parseAmount(input);
         validateMin(amount);
         validateDivision(amount);
 
         this.amount = amount;
+    }
+
+    private void validateInput(String input){
+        if(!Pattern.matches(AMOUNT_REGEXP,input)){
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_TYPE.getMessage());
+        }
     }
 
     private void validateMin(int amount) {
@@ -25,6 +34,10 @@ public class Amount {
         if(amount%AMOUNT_MIN != 0){
             throw new IllegalArgumentException(ExceptionMessage.INVALID_AMOUNT_DIVISION.getMessage());
         }
+    }
+
+    public int parseAmount(String input){
+        return Integer.parseInt(input);
     }
 
     public int calculatePurchaseCount(int amount){

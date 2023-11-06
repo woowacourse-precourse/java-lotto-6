@@ -8,7 +8,7 @@ public class User {
 
     private int money;
 
-    User (String money){
+    public User (String money){
         this.money = validateMoney(money);
     }
 

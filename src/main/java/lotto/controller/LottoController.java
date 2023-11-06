@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.BonusNumber;
@@ -15,8 +14,13 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    NumberGenerator numberGenerator = new NumberGenerator();
-    Map<Rank, Integer> rankCount = new HashMap<>();
+    private final NumberGenerator numberGenerator;
+    private final Calculator calculator;
+
+    public LottoController() {
+        this.numberGenerator = new NumberGenerator();
+        this.calculator = new Calculator();
+    }
 
     public void start() {
         Money money = getValidMoneyInput();

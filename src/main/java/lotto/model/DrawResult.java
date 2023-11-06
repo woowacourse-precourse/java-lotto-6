@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.utils.ExceptionMessage;
 
 public record DrawResult(Lotto lotto, Integer bonusNumber) {
@@ -11,8 +13,8 @@ public record DrawResult(Lotto lotto, Integer bonusNumber) {
     }
 
     public void validateDuplication() {
-        this.lotto.getNumbers().add(bonusNumber);
-        this.lotto.validateDuplication(this.lotto.getNumbers());
-        this.lotto.getNumbers().remove(bonusNumber);
+        List<Integer> validateNumbers = new ArrayList<>(lotto.getNumbers());
+        validateNumbers.add(bonusNumber);
+        lotto.validateDuplication(validateNumbers);
     }
 }

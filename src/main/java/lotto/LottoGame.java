@@ -14,7 +14,7 @@ public class LottoGame {
         String purcahseAmount = inputView.inputPurchaseAmount();
 
         try {
-            inputValidation.validatePhurchaseAmount(purcahseAmount);
+            purchase.validatePurchaseAmount(purcahseAmount);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             inputView.printInputPurchaseAmountMessage(); // 다시 입력 받기

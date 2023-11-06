@@ -12,7 +12,7 @@ public class Lottos {
     // 로또 List 갯수 validation
     public void validateLottoQuantity() {
         if (lottos.size() != purchase.getQuantity()) {
-            throw new IllegalArgumentException("구매한 로또의 개수가 일치하지 않습니다.");
+            throw new IllegalArgumentException("[ERROR] 구매한 로또의 개수가 일치하지 않습니다.");
         }
     }
 

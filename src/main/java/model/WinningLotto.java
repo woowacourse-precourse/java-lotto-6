@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,8 +17,16 @@ public class WinningLotto {
     validateSize(numbers);
     validateDuplicated(numbers, bonusNumber);
 
-    this.numbers = numbers;
+    this.numbers = sortNumbers(numbers);
     this.bonusNumber = bonusNumber;
+  }
+
+  public List<Integer> getNumbers() {
+    return numbers;
+  }
+
+  public Integer getBonusNumber() {
+    return bonusNumber;
   }
 
   public void  validateNumbersRange(List<Integer> numbers) {
@@ -48,6 +57,11 @@ public class WinningLotto {
     if(duplicateChecker.size() != 7) {
       throw new IllegalArgumentException();
     }
+  }
+
+  public List<Integer> sortNumbers(List<Integer> numbers) {
+    Collections.sort(numbers);
+    return numbers;
   }
 
 

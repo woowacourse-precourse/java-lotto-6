@@ -5,11 +5,7 @@ public enum GameMessage {
     PURCHASED_TICKET_COUNT_MESSAGE("%d개를 구매했습니다."),
     ENTER_WINNING_NUMBERS_MESSAGE("당첨 번호를 입력해 주세요."),
     ENTER_BONUS_NUMBER_MESSAGE("보너스를 입력하세요."),
-    WINNING_STATICS_MESSAGE("당첨 통계"),
-    MATCH_5_BONUS("5개 일치, 보너스 볼 일치 (%,d원) - %d개"),
-    MATCH("%d개 일치 (%,d원) - %d개"),
-    EARNING_RATE("총 수익률은 %s%%입니다.");
-
+    WINNING_STATICS_MESSAGE("당첨 통계");
 
     private final String message;
 

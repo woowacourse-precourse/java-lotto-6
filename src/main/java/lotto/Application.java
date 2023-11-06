@@ -12,7 +12,6 @@ public class Application {
         BonusNumber bonusNumber = new BonusNumber();
         bonusNumber.bonusNumberGenerator();
         int number=Read.reader();
-        System.out.println(number);
 
 
         // TODO: 프로그램 구현

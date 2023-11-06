@@ -6,6 +6,7 @@ public enum ConstantNumber {
     WINNING_NUMBER_COUNT(6),
     COUNT_OF_WINNING_PRIZE(5),
     MATCHING_COUNT_RANK_2(5),
+    LOTTO_TICKET_COST(1000),
     ;
 
     private final int number;

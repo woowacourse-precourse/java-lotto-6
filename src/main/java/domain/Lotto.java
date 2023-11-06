@@ -1,6 +1,7 @@
 package domain;
 
 import constant.ConstantNumber;
+import constant.ExceptionMessage;
 import util.LottoRandomUtil;
 
 import java.util.ArrayList;
@@ -20,14 +21,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.INCORRECT_COUNT_OF_WINNING_NUMBERS.get());
         }
         int uniqueNumberSize = numbers.stream()
                 .distinct()
                 .toList()
                 .size();
         if (uniqueNumberSize != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_WINNING_NUMBERS.get());
         }
     }
 

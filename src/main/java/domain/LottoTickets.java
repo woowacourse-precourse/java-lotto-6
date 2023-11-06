@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoTickets {
-    public static final int TICKET_COST = 1000;
-
     private final List<Lotto> lottoes;
 
     public LottoTickets() {

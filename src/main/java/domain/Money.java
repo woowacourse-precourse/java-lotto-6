@@ -1,5 +1,8 @@
 package domain;
 
+import constant.ConstantNumber;
+import constant.ExceptionMessage;
+
 public class Money {
     private final int money;
 
@@ -9,15 +12,15 @@ public class Money {
     }
 
     public int getTicketCount() {
-        return money / LottoTickets.TICKET_COST;
+        return money / ConstantNumber.LOTTO_TICKET_COST.get();
     }
 
     private void validateMoney(int money) {
-        if (money < LottoTickets.TICKET_COST) {
-            throw new IllegalArgumentException();
+        if (money < ConstantNumber.LOTTO_TICKET_COST.get()) {
+            throw new IllegalArgumentException(ExceptionMessage.LESS_MONEY_THAN_THE_TICKET_PRICE.get());
         }
-        if (money % LottoTickets.TICKET_COST != 0) {
-            throw new IllegalArgumentException();
+        if (money % ConstantNumber.LOTTO_TICKET_COST.get() != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_OTHER_THAN_PRICE_UNIT.get());
         }
     }
 
@@ -28,7 +31,7 @@ public class Money {
 
     private void validateMoney() {
         if (money <= 0) {
-            throw new RuntimeException();
+            throw new RuntimeException(ExceptionMessage.MONEY_AMOUNT_IS_NEGATIVE.get());
         }
     }
 }

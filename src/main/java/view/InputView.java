@@ -1,5 +1,7 @@
 package view;
 
+import constant.ExceptionMessage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class InputView {
         try {
             return Integer.parseInt(readLine());
         } catch (Exception e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.NON_NUMERIC_INPUT.get());
         }
     }
 

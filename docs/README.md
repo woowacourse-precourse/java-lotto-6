@@ -19,10 +19,10 @@
 - [ ] 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다
 
 🚗기능
-- 로또 1장의 가격은 1,000원이다.
-- 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, 
-"[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다. 
-  - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+- [ ] 구입금액에 따라서 로또 구매
+- [ ] 로또의 번호를 중복되지 않게 뽑기
+- [ ] 당범번호와 구매한 로또번호를 비교
+- [ ] 맞춘 갯수에 따라서 등수 설정
 
 🎸신경쓸 것
 - 기능 목록을 재검토한다
@@ -40,6 +40,7 @@
 - 처음부터 큰 단위의 테스트를 만들지 않는다
 - 배열 대신 Java Collection을 사용한다
 - Java에서 제공하는 API를 적극 활용한다
+- Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## 💯 추가된 요구 사항
 - [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다

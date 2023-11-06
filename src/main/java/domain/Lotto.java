@@ -21,6 +21,10 @@ public class Lotto {
 		this.numbers = validatedAndParsedNumbers;
 	}
 
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+
 	private List<Integer> convertStringListToIntegerList(List<String> numbers) {
 		return numbers.stream()
 				.map(Integer::parseInt)

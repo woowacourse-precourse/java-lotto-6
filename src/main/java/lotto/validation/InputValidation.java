@@ -147,9 +147,8 @@ public class InputValidation {
     }
 
     public void validateDuplicateWinnerNumbers(List<Integer> winnerNumbers) {
-        Set<Integer> numbers = new HashSet<>();
 
-        numbers.addAll(winnerNumbers);
+        Set<Integer> numbers = new HashSet<>(winnerNumbers);
 
         if (winnerNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage

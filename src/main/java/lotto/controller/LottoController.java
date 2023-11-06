@@ -39,7 +39,16 @@ public class LottoController {
     }
 
     private Money parseIntToMoney() {
-        return new Money(input.printAskingBudget());
+        Money parsedMoney;
+        while (true) {
+            try {
+                parsedMoney = new Money(input.printAskingBudget());
+                break;
+            } catch (LottoException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return parsedMoney;
     }
 
     private Lotto parseListToLotto() {

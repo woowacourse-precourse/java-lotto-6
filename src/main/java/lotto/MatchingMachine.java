@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class MatchingMachine {
 
@@ -39,5 +37,19 @@ public class MatchingMachine {
             }
         }
         return matchingCounts;
+    }
+
+    public Map<MatchingCount, Integer> getLottoResultAsMap(List<MatchingCount> allMatchingCount){
+        Map<MatchingCount, Integer> map = new HashMap<>();
+        map.put(MatchingCount.THREE,0);
+        map.put(MatchingCount.FOUR,0);
+        map.put(MatchingCount.FIVE,0);
+        map.put(MatchingCount.FIVE_BONUS,0);
+        map.put(MatchingCount.SIX,0);
+        for(MatchingCount matchingCount : allMatchingCount){
+            int count = map.get(matchingCount);
+            map.put(matchingCount, count+1);
+        }
+        return map;
     }
 }

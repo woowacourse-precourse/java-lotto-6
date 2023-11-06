@@ -8,6 +8,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinStatisticsTest {
+
     @Test
     void 발행된_로또_등수별_당첨_갯수로_변환해_저장한다() {
         //given

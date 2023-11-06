@@ -15,6 +15,10 @@ public class Output {
         getInstance().println(message.toString());
     }
 
+    public static void printf(Object fmt, Object... args) {
+        getInstance().printf(fmt.toString(), args);
+    }
+
     public static void print(Object message) {
         getInstance().print(message.toString());
     }

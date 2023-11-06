@@ -1,5 +1,7 @@
-package lotto.controller;
+package lotto.service;
 
+import lotto.controller.InputController;
+import lotto.controller.OutputController;
 import lotto.model.LottoMachine;
 import lotto.model.LottoRandomGenerator;
 import lotto.model.LottoShop;

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class HandlingTest {
 
@@ -40,4 +42,18 @@ class HandlingTest {
         // when, then
         assertThat(Handling.parseNumbers(lotto)).isEqualTo(List.of(1,2,3,4,5,6));
     }
+
+    @DisplayName("변환하는 값이 숫자가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"a,1,2,3,4,5","1, ,3,4,5,6"})
+    void parseNumbersByNotNumber(String userInput) {
+        // given
+        List<String> lotto = Handling.split(userInput);
+
+        // when, then
+        assertThatThrownBy(() -> Handling.parseNumbers(lotto))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }

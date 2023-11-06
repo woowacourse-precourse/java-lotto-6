@@ -30,11 +30,19 @@ public class InputValidateTest {
     @Test
     void 여섯개의_숫자가_List로_변환되는지_확인(){
         assertEquals(List.of("1","2","3","4","5","6"), inputValidate.changeList("1,2,3,4,5,6"));
-        assertEquals(List.of("1","2","3","4","5","6"), inputValidate.changeList("1,2,3,4,5 3,6"));
+        assertEquals(List.of("1","2","3","4","5 3","6"), inputValidate.changeList("1,2,3,4,5 3,6"));
     }
 
     @Test
     void 여섯개의_숫자에_공백이_있는지_확인(){
         assertThrows(IllegalArgumentException.class, () -> inputValidate.changeInt("1,2,3 3,4,5 3,6"));
+    }
+
+    @Test
+    void 당첨번호_숫자_양_끝_공백_처리_확인(){
+        assertEquals(List.of(1,2,3,4,5,6), inputValidate.validateWinningNums("1, 2, 3, 4, 5, 6"));
+        assertEquals(List.of(1,2,3,4,5,6), inputValidate.validateWinningNums("1, 2, 3, 4, 5, 6   "));
+        assertEquals(List.of(1,2,3,4,5,6), inputValidate.validateWinningNums("   1, 2, 3, 4, 5,6"));
+        assertEquals(List.of(1,2,3,4,5,6), inputValidate.validateWinningNums("1,2,3,4,5, 6"));
     }
 }

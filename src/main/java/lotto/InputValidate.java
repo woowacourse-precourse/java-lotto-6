@@ -20,7 +20,7 @@ public class InputValidate {
 
     public List<Integer> validateWinningNums(String input){
         List<String> strNums = changeList(input);
-        return strNums.stream().map(this::canNumber).map(this::changeInt).collect(Collectors.toList());
+        return strNums.stream().map(String::trim).map(this::canNumber).map(this::changeInt).collect(Collectors.toList());
     }
 
     public int validateBonus(String input, List<Integer> winningNums){
@@ -45,7 +45,6 @@ public class InputValidate {
 
     public List<String> changeList(String input){
         List<String> splitNums = Arrays.asList(input.split(","));
-        splitNums.stream().map(this::canNumber);
         return splitNums;
     }
 

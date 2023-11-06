@@ -9,7 +9,7 @@ import java.util.Set;
 public class ValidateTools {
     public void validateSpace(String input){
         if (input.length() != input.replace(" ", "").length()){
-            throw new IllegalArgumentException("[ERROR] 공백이 입력되었습니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자 중간에 공백이 입력되었습니다. 다시 입력해주세요.");
         }
     }
 

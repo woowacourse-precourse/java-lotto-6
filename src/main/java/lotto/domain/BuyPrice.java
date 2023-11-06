@@ -37,4 +37,8 @@ public class BuyPrice {
             throw new IllegalArgumentException(PRICE_NOT_DIVIDED);
         }
     }
+
+    public int getBuyCount() {
+        return price / PRICE_PER_LOTTO;
+    }
 }

@@ -22,7 +22,7 @@
     - [당첨 번호 입력](#로또-당첨-번호)
     - [보너스 번호 입력](#로또-보너스-번호)
     - [당첨 통계 출력](#로또-당첨-통계-출력)
-- [패키지 구조](#패키지 구조)
+- [패키지 구조](#패키지-구조)
 
 ---
 
@@ -81,14 +81,14 @@
     - sameNumberCounter: 같은 숫자 개수 반환 기능
     - hasNumber: 숫자가 포함 되는지 판단 기능
   - LottoResult
-    - calculatePrice: 누적 상금 계산 기능
+    - calculatePriceSum: 누적 상금 계산 기능
     - getRankCount: 당첨 횟수 확인 기능
-  - Lottos : 로또들을 보관하는 기능
-  - Money
+  - LottoStorage : 로또들을 보관하는 기능
+  - LottoMoney
     - availableLottoCount: 구매 가능 로또 개수 계산 기능
   - WinningNumbers
-    - hasNumber: 같은 숫자 개수 반환 기능
-  - PriceMoney: 상금 관련 Enum
+    - hasNumberInWinningNumbers: 당첨 번호와 같은 숫자 개수 반환 기능
+  - LottoRank: 로또 등수 관련 집합
 - view
   - constant
     - viewMessage: 입,출력 뷰 메세지 관리 클래스
@@ -97,5 +97,5 @@
     - inputWinningNumbers: 당첨 번호 입력 기능
     - inputBonusNumber: 보너스 번호 입력 기능
   - OutputView
-    - outputPurchaseLottos: 구매한 로또 목록 출력 기능
-    - outputWinningResult: 구매 통계 출력 기능
+    - outputPurchaseResult: 구매한 로또 목록 출력 기능
+    - outputLottoResult: 구매 통계 출력 기능

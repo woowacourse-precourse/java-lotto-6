@@ -7,15 +7,14 @@ public class BonusNumber {
     private static final String BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 보너스 볼은 로또 번호와 중복될 수 없습니다.";
     private final int bonusNumber;
 
-    public BonusNumber(List<Integer> numbers, int bonusNumber) {
-        validateDuplicate(numbers, bonusNumber);
+    public BonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        validateDuplicate(winningNumbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateDuplicate(List<Integer> numbers, int bonusNumber) {
-        boolean isDuplicated = numbers.stream()
-                .filter(number -> number.equals(bonusNumber))
-                .findFirst().isPresent();
+    private void validateDuplicate(List<Integer> winningNumbers, int bonusNumber) {
+        boolean isDuplicated = winningNumbers.stream()
+                .anyMatch(winningNumber -> winningNumber.equals(bonusNumber));
         if (isDuplicated) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE);
         }

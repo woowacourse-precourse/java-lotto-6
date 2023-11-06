@@ -18,19 +18,19 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
-    public String getPurchasePrice() {
+    public String askPurchasePrice() {
         print(ASK_PURCHASE_PRICE_MESSAGE);
         return getInput();
     }
 
     @Override
-    public String getWinningNumbers() {
+    public String askWinningNumbers() {
         print(ASK_WINNING_NUMBERS_MESSAGE);
         return getInput();
     }
 
     @Override
-    public String getBonusNumber() {
+    public String askBonusNumber() {
         print(ASK_BONUS_NUMBER_MESSAGE);
         return getInput();
     }

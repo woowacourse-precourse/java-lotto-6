@@ -91,4 +91,55 @@ class LottoCheckerTest {
         assertThat(fifth).isEqualTo(Prize.FIFTH);
         assertThat(none).isEqualTo(Prize.NONE);
     }
+
+    @DisplayName("총 당첨금 계산")
+    @Test
+    void calculateTotalPrize() {
+        //given
+        LottoChecker lottoChecker = new LottoChecker(WINNING_NUMBER, BONUS_NUMBER);
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 45)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 33)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 3, 4, 25, 31, 22))
+        );
+
+        //when
+        lottoChecker.insertLottos(lottos);
+        lottoChecker.saveLottosResult();
+        lottoChecker.calculateTotalPrize();
+        long totalPrize = lottoChecker.getTotalPrize();
+
+        //then
+        long expectedPrize = Prize.FIRST.money + Prize.SECOND.money + Prize.THIRD.money + Prize.FIFTH.money;
+        assertThat(totalPrize).isEqualTo(expectedPrize);
+
+    }
+
+    @DisplayName("총 수익률 계산")
+    @Test
+    void calculateProfitRate() {
+        //given
+        LottoChecker lottoChecker = new LottoChecker(WINNING_NUMBER, BONUS_NUMBER);
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(10, 12, 13, 14, 15, 19)),
+                new Lotto(List.of(10, 12, 13, 14, 15, 19)),
+                new Lotto(List.of(10, 12, 13, 14, 15, 19)),
+                new Lotto(List.of(10, 12, 13, 14, 15, 19)),
+                new Lotto(List.of(10, 12, 13, 14, 15, 19)),
+                new Lotto(List.of(10, 12, 13, 14, 15, 19)),
+                new Lotto(List.of(10, 12, 13, 14, 15, 19)),
+                new Lotto(List.of(1, 2, 3, 14, 15, 19))
+        );
+
+        //when
+        lottoChecker.insertLottos(lottos);
+        lottoChecker.saveLottosResult();
+        lottoChecker.calculateTotalPrize();
+        lottoChecker.calculateProfitRate();
+        String profitRate = lottoChecker.getProfitRate();
+
+        //then
+        assertThat(profitRate).isEqualTo("62.5");
+    }
 }

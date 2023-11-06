@@ -25,10 +25,7 @@ public class LottoController {
         runWritePurchaseLotto();
         runReadWinningNum();
         runReadBonusNum();
-
-
-        writeMatchesNumResult();
-//        System.out.println(reciveAmount);
+        runWriteMatchesNumResult();
     }
 
     public void runReadPurchaseLotto() {
@@ -107,6 +104,11 @@ public class LottoController {
         return false;
     }
 
+    public void runWriteMatchesNumResult() {
+        writeMatchesNumResult();
+        writeReturnPer();
+    }
+
     public void writeMatchesNumResult() {
         lotto.lottoResultSearch(allLotto, bonusNumInput);
         OutputViews.startWriteStat();
@@ -116,11 +118,11 @@ public class LottoController {
             OutputViews.wrtieResultStatistic(stsMess, matchNum);
 
             reciveAmount += lottoResultName.getAmount() * matchNum;
-//            System.out.println("reciveAmount : " + reciveAmount);
         }
+    }
+
+    public void writeReturnPer() {
         double per = (double) reciveAmount/purchaseAmount * 100;
-//        System.out.println("purchaseAmount : " + purchaseAmount);
-//        System.out.println("per : " + per);
         OutputViews.wrtieResultRate(per);
     }
 }

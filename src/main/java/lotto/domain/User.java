@@ -37,4 +37,8 @@ public class User {
     public List<Lotto> getLottos() {
         return lottos;
     }
+
+    public Integer getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

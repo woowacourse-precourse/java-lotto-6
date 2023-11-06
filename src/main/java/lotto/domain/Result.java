@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,5 +29,23 @@ public class Result {
         }
         Rank keyRank = Rank.valueOf(count, checkBonusNumber);
         this.result.put(keyRank,this.result.get(keyRank)+1);
+    }
+
+    public Integer getTotalProfit(){
+        Integer totalProfit = 0;
+        for(Rank rank : Rank.values()) {
+            totalProfit += (result.get(rank) * rank.getProfit());
+        }
+        return totalProfit;
+
+    }
+
+    public double getProfitRate(Integer purchaseAmount) {
+        double totalProfit = 0;
+        for(Rank rank : Rank.values()) {
+            totalProfit += (result.get(rank) * rank.getProfit());
+        }
+        double profitRate = totalProfit / purchaseAmount * 100;
+        return profitRate;
     }
 }

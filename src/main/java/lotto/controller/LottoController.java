@@ -53,5 +53,6 @@ public class LottoController {
             result.compare(lotto.getNumbers(), winningNumber.getWinningNumber(), bonusNumber.getBonusNumber());
         }
         OutputView.printResult(result);
+        result.getProfitRate(user.getPurchaseAmount());
     }
 }

@@ -78,7 +78,7 @@ class LottoTest {
     @Test
     void bonusOutOfRange() {
         Validator validator = new Validator();
-        assertThatThrownBy(() -> validator.validateBonus("b2", 1, 45))
+        assertThatThrownBy(() -> validator.validateBonus("46", 1, 45))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

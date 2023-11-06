@@ -6,13 +6,12 @@ public enum CharacterUnits {
     LEFT_BRACKET("["),
     RIGHT_BRACKET("]"),
     SEPARATOR(","),
-    ENTER("\n"),
-    LINE("---");
+    ENTER("\n");
 
 
     private final String unit;
 
-    CharacterUnits(String unit) {
+    CharacterUnits(final String unit) {
         this.unit = unit;
     }
 

@@ -41,6 +41,10 @@ public class OutputView {
                 winningResult.getOrDefault(rank, 0));
     }
 
+    public static void printProfitRate(double profitRate) {
+        System.out.printf(TOTAL_RETURN.getMessage(), profitRate);
+    }
+
     public static void printError(String error) {
         System.out.println(error);
         printLineChanging();

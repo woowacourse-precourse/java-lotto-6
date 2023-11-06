@@ -1,5 +1,6 @@
 package controller;
 
+import domain.BonusNumber;
 import domain.Lotto;
 import domain.PurchaseAmount;
 import domain.PurchaseLottos;
@@ -52,8 +53,8 @@ public class LottoController {
         return new Lotto(InputView.enterWinningNumbers());
     }
 
-    private void setBonusNumber(){
-        InputView.enterBonusNumber();
+    private BonusNumber setBonusNumber(){
+        return new BonusNumber(InputView.enterBonusNumber());
     }
 
     private PurchaseAmount setPurchaseAmount(){

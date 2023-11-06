@@ -67,10 +67,16 @@ public class UI {
     }
 
     public static Integer inputBonusNumber() {
+        Integer bonus;
         System.out.println("보너스 번호를 입력해 주세요.");
         String line = readLine();
         System.out.println();
-        return Integer.parseInt(line);
+        try {
+            bonus = Integer.parseInt(line);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("정수를 입력하지 않았습니다.");
+        }
+        return bonus;
     }
 
     public static void printWinningStats(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {

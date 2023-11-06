@@ -5,6 +5,7 @@ import java.util.List;
 public class Program {
     private List<Lotto> consumerLottos = null;
     private Lotto winning = null;
+    private Integer bonus = null;
 
     public void purchaseLottos() {
         Integer payment = 0;
@@ -37,5 +38,19 @@ public class Program {
         }
 
         this.winning = winning;
+    }
+
+    public void insertBonusNumber() {
+        Integer bonus = null;
+        while (true) {
+            try {
+                bonus = UI.inputBonusNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+                continue;
+            }
+            break;
+        }
+        this.bonus = bonus;
     }
 }

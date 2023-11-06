@@ -3,9 +3,9 @@ package lotto.dto;
 import java.util.Map;
 
 public record ResultResponse(
-        Map<String, Integer> prizeResult
+        Map<Integer, Integer> prizeResult
 ) {
-    public Map<String, Integer> getResponse() {
+    public Map<Integer, Integer> getResponse() {
         return prizeResult;
     }
 }

@@ -30,13 +30,13 @@ class PrizeTest {
         //when
         Prize prize = Prize.create(answerNumbers, allLotto, bonusNumber);
         ResultResponse resultResponse = prize.generateResultResponse();
-        Map<String, Integer> prizeResult = resultResponse.getResponse();
+        Map<Integer, Integer> prizeResult = resultResponse.getResponse();
 
         //then
-        assertEquals(1, prizeResult.get("6개 일치"));
-        assertEquals(1, prizeResult.get("5개 일치, 보너스 볼 일치"));
-        assertEquals(0, prizeResult.get("5개 일치"));
-        assertEquals(0, prizeResult.get("4개 일치"));
-        assertEquals(1, prizeResult.get("3개 일치"));
+        assertEquals(1, prizeResult.get(2_000_000_000));
+        assertEquals(1, prizeResult.get(30_000_000));
+        assertEquals(0, prizeResult.get(1_500_000));
+        assertEquals(0, prizeResult.get(50_000));
+        assertEquals(1, prizeResult.get(5_000));
     }
 }

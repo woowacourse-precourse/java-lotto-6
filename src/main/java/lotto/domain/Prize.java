@@ -1,10 +1,10 @@
 package lotto.domain;
 
-import static lotto.domain.Rank.FIFTH;
-import static lotto.domain.Rank.FIRST;
-import static lotto.domain.Rank.FOURTH;
-import static lotto.domain.Rank.SECOND;
-import static lotto.domain.Rank.THIRD;
+import static lotto.condition.Rank.FIFTH;
+import static lotto.condition.Rank.FIRST;
+import static lotto.condition.Rank.FOURTH;
+import static lotto.condition.Rank.SECOND;
+import static lotto.condition.Rank.THIRD;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.Map;
 import lotto.dto.ResultResponse;
 
 public class Prize {
-    private final Map<String, Integer> prizeResult;
+    private final Map<Integer, Integer> prizeResult;
 
     private Prize(final List<Integer> answerNumbers, final List<List<Integer>> allLotto, final int bonusNumber) {
         this.prizeResult = createPrize(answerNumbers, allLotto, bonusNumber);
@@ -23,9 +23,9 @@ public class Prize {
     }
 
 
-    public Map<String, Integer> createPrize(List<Integer> answerNumbers, List<List<Integer>> allLotto,
+    public Map<Integer, Integer> createPrize(List<Integer> answerNumbers, List<List<Integer>> allLotto,
                                             int bonusNumber) {
-        Map<String, Integer> result = new HashMap<>();
+        Map<Integer, Integer> result = new HashMap<>();
         initMap(result);
         for (List<Integer> lottoNumbers : allLotto) {
             int matchingNumbers = countMatchingNumbers(answerNumbers, lottoNumbers);
@@ -35,7 +35,7 @@ public class Prize {
         return result;
     }
 
-    private void initMap(Map<String, Integer> result) {
+    private void initMap(Map<Integer, Integer> result) {
         result.put(FIFTH.getNumberOfMatches(), 0);
         result.put(FOURTH.getNumberOfMatches(), 0);
         result.put(THIRD.getNumberOfMatches(), 0);
@@ -52,7 +52,7 @@ public class Prize {
         return lottoNumbers.contains(bonusNumber);
     }
 
-    private void determinePrize(Map<String, Integer> result, int matchingNumbers, boolean hasBonusNumber) {
+    private void determinePrize(Map<Integer, Integer> result, int matchingNumbers, boolean hasBonusNumber) {
         addFifthRank(result, matchingNumbers);
         addFourthRank(result, matchingNumbers);
         addThirdRank(result, matchingNumbers, hasBonusNumber);
@@ -60,31 +60,31 @@ public class Prize {
         addFirstRank(result, matchingNumbers);
     }
 
-    private void addFifthRank(Map<String, Integer> result, int matchingNumbers) {
+    private void addFifthRank(Map<Integer, Integer> result, int matchingNumbers) {
         if (matchingNumbers == 3) {
             result.put(FIFTH.getNumberOfMatches(), result.get(FIFTH.getNumberOfMatches()) + 1);
         }
     }
 
-    private void addFourthRank(Map<String, Integer> result, int matchingNumbers) {
+    private void addFourthRank(Map<Integer, Integer> result, int matchingNumbers) {
         if (matchingNumbers == 4) {
             result.put(FOURTH.getNumberOfMatches(), result.get(FOURTH.getNumberOfMatches()) + 1);
         }
     }
 
-    private void addThirdRank(Map<String, Integer> result, int matchingNumbers, boolean hasBonusNumber) {
+    private void addThirdRank(Map<Integer, Integer> result, int matchingNumbers, boolean hasBonusNumber) {
         if (matchingNumbers == 5 && !hasBonusNumber) {
             result.put(THIRD.getNumberOfMatches(), result.get(THIRD.getNumberOfMatches()) + 1);
         }
     }
 
-    private void addSecondRank(Map<String, Integer> result, int matchingNumbers, boolean hasBonusNumber) {
+    private void addSecondRank(Map<Integer, Integer> result, int matchingNumbers, boolean hasBonusNumber) {
         if (matchingNumbers == 5 && hasBonusNumber) {
             result.put(SECOND.getNumberOfMatches(), result.get(SECOND.getNumberOfMatches()) + 1);
         }
     }
 
-    private void addFirstRank(Map<String, Integer> result, int matchingNumbers) {
+    private void addFirstRank(Map<Integer, Integer> result, int matchingNumbers) {
         if (matchingNumbers == 6) {
             result.put(FIRST.getNumberOfMatches(), result.get(FIRST.getNumberOfMatches()) + 1);
         }

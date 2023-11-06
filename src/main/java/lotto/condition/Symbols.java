@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto.condition;
 
 public enum Symbols {
-    DELIMITER(",");
+    DELIMITER(","),
+    SEPARATOR("--");
 
     private final String symbol;
 

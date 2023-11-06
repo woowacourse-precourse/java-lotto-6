@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.domain.LottoCondition.LOTTO_COUNT;
-import static lotto.domain.LottoCondition.MAXIMUM_LOTTO_NUMBER;
-import static lotto.domain.LottoCondition.MINIMUM_LOTTO_NUMBER;
+import static lotto.condition.LottoCondition.LOTTO_COUNT;
+import static lotto.condition.LottoCondition.MAXIMUM_LOTTO_NUMBER;
+import static lotto.condition.LottoCondition.MINIMUM_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -23,7 +23,8 @@ public class UserLotto {
 
     private List<Lotto> createUserLotto(final int input) {
         return IntStream.range(0, input)
-                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER.getValue(), MAXIMUM_LOTTO_NUMBER.getValue(), LOTTO_COUNT.getValue())))
+                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER.getValue(),
+                        MAXIMUM_LOTTO_NUMBER.getValue(), LOTTO_COUNT.getValue())))
                 .toList();
     }
 

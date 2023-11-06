@@ -1,7 +1,7 @@
 package lotto.parser;
 
-import static lotto.domain.LottoCondition.LOTTO_PRICE;
-import static lotto.domain.Symbols.DELIMITER;
+import static lotto.condition.LottoCondition.LOTTO_PRICE;
+import static lotto.condition.Symbols.DELIMITER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +23,7 @@ public class Parser {
         return parsedNumbers;
     }
 
-    public static int parseLottoAmount(final String input) {
+    public static int parseLottoCount(final String input) {
         int parsedAmount = validateEmptyAndParse(input);
         InputValidator.validatePurchaseAmount(parsedAmount);
         return parsedAmount / LOTTO_PRICE.getValue();

@@ -1,10 +1,10 @@
 package lotto.validator;
 
-import static lotto.domain.LottoCondition.LOTTO_COUNT;
-import static lotto.domain.LottoCondition.LOTTO_PRICE;
-import static lotto.domain.LottoCondition.MAXIMUM_LOTTO_NUMBER;
-import static lotto.domain.LottoCondition.MINIMUM_LOTTO_NUMBER;
-import static lotto.domain.Symbols.DELIMITER;
+import static lotto.condition.LottoCondition.LOTTO_COUNT;
+import static lotto.condition.LottoCondition.LOTTO_PRICE;
+import static lotto.condition.LottoCondition.MAXIMUM_LOTTO_NUMBER;
+import static lotto.condition.LottoCondition.MINIMUM_LOTTO_NUMBER;
+import static lotto.condition.Symbols.DELIMITER;
 import static lotto.exception.ErrorMessage.EMPTY;
 import static lotto.exception.ErrorMessage.ENDS_WITH_DELIMITER;
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT_INPUT;

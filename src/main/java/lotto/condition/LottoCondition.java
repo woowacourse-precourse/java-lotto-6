@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.condition;
 
 public enum LottoCondition {
     LOTTO_PRICE(1000),

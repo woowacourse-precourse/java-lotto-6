@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.LottoCondition.LOTTO_COUNT;
+import static lotto.condition.LottoCondition.LOTTO_COUNT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

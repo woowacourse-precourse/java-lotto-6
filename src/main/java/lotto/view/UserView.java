@@ -1,7 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
+import lotto.enums.Rank;
+import lotto.model.Lotto;
 import lotto.utils.Validator;
 
 public class UserView {
@@ -10,17 +13,32 @@ public class UserView {
         System.out.println("구입금액을 입력해 주세요.");
         String money = Console.readLine();
         Validator.validateMoney(money);
+        System.out.println(money);
         return money;
     }
 
-    public static List<Integer> printLotto(List<Integer> lotto) {
-        System.out.println("8개를 구매했습니다.");
-        return lotto;
+    public static void printLottoMessage(int lottoCount) {
+        System.out.println(lottoCount + "개를 구매했습니다.");
+    }
+
+    public static void showLottoList(List<Lotto> lottoList){
+        for (Lotto lotto : lottoList) {
+            System.out.println(lotto);
+        }
     }
 
     public static String winNumberMessage() {
         System.out.println("당첨 번호를 입력해 주세요.");
         return Console.readLine();
+    }
+
+    public static void showWinNumber(List<Integer> winNumber) {
+        List<String> winList = new ArrayList<>();
+        for (Integer win : winNumber) {
+            winList.add(Integer.toString(win));
+        }
+        String joinedNumber = String.join(",", winList);
+        System.out.println(joinedNumber);
     }
 
     public static String bonusNumberMessage() {
@@ -30,13 +48,20 @@ public class UserView {
         return bonusNumber;
     }
 
-    public static void winStatisticsMessage(int count) {
+    public static void showBonusNumber(int bonusNumber) {
+        System.out.println(bonusNumber);
+    }
+
+    public static void winStatisticsMessage(List<Rank> rankList) {
+        System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + count + "개");
-        System.out.println("4개 일치 (5,0000원) - " + count + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + count + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + count + "개");
+
+        for (Rank rank : Rank.values()) {
+            long count = rankList.stream()
+                    .filter(r -> r == rank)
+                    .count();
+            System.out.println(rank.getCountMatch() + "개 일치 (" + rank.getPrize() + "원) - " + count + "개");
+        }
     }
 
     public static void totalYieldMessage(int yield) {

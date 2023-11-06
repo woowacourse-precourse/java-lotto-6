@@ -30,11 +30,11 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     // Lotto 생성
-    public static List<Integer> generateLotto() {
+    public static Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumber.MIN.getValue(),
                 LottoNumber.MAX.getValue(), LottoNumber.COUNT.getValue());
         Collections.sort(numbers);
-        return numbers;
+        return new Lotto(numbers);
     }
 
     // 당첨 번호 확인
@@ -51,5 +51,10 @@ public class Lotto {
     // 보너스 번호 포함 여부 확인
     public boolean containBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

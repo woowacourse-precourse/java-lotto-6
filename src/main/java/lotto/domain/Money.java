@@ -17,7 +17,7 @@ public class Money {
     }
 
     private void validate(final int money) {
-        if (isNotMultipleOfLottoPrice(money)) {
+        if (isNotMultipleOfLottoPrice(money) || isNegativeOrZero(money)) {
             throw new IllegalArgumentException(MONEY_AMOUNT_ERROR_MESSAGE.getMessage());
         }
     }
@@ -25,4 +25,9 @@ public class Money {
     private boolean isNotMultipleOfLottoPrice(int money) {
         return money % LOTTO_PRICE.getConstant() != 0;
     }
+
+    private boolean isNegativeOrZero(int money) {
+        return money <= 0;
+    }
+
 }

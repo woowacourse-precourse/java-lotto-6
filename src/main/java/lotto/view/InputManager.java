@@ -22,4 +22,8 @@ public class InputManager {
         }
         return winningNumbers;
     }
+    public int getBonusNumber(String data) {
+        //예외처리
+        return Integer.parseInt(data);
+    }
 }

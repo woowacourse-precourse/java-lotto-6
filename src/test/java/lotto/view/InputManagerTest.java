@@ -27,4 +27,15 @@ class InputManagerTest {
 
         assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5);
     }
+
+    @DisplayName("입력받은 보너스 번호를 정수 형태로 얻는다.")
+    @Test
+    void getBonusNumber() {
+        String data = "1";
+        InputManager inputManager = new InputManager();
+
+        int bonusNumber = inputManager.getBonusNumber(data);
+
+        assertThat(bonusNumber).isEqualTo(1);
+    }
 }

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     public List<Lotto> createLotto(int purchaseAmount) {
         List<Lotto> lottos = new ArrayList<>();
@@ -17,5 +19,10 @@ public class LottoController {
     }
     public void readLotto(OutputManager outputManager, Lotto lotto) {
         outputManager.printLotto(lotto.getLottoNumbers());
+    }
+
+    public void drawNumber(List<Integer> winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 }

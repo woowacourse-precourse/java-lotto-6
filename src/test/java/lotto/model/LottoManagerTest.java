@@ -28,4 +28,19 @@ class LottoManagerTest {
         // then
         assertThat(lottoTickets).hasSize(14);
     }
+
+    @Test
+    @DisplayName("당첨 로또를 생성한다.")
+    void createWinningLottoTicket() throws Exception {
+        // given
+        final List<Integer> winningNumbers = List.of(10, 11, 12, 13, 14, 15);
+        final LottoManager lottoManager = new LottoManager(lottoMachine);
+
+        // when
+        final Lotto winningLottoTicket = lottoManager.createWinningLottoTicket(winningNumbers);
+        final List<Integer> result = winningLottoTicket.getNumbers();
+
+        // then
+        assertThat(result).containsExactly(10, 11, 12, 13, 14, 15);
+    }
 }

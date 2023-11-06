@@ -7,10 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.Enum.constants.*;
+
 public class Lotto {
-    public static final int MAX_LOTTO_NUMBER = 45;
-    public static final int MIN_LOTTO_NUMBER = 1;
-    public static final int LOTTO_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -24,7 +23,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT.getNumber()) {
             throw new IllegalArgumentException(LottoError.NumberCount.getErrorMessage());
         }
         if(!validateDuplicatedNumber(numbers)){
@@ -42,7 +41,7 @@ public class Lotto {
 
     private boolean validateOverRangeNumber(List<Integer> numbers){
         for(int number : numbers){
-            if(number > MAX_LOTTO_NUMBER || number < MIN_LOTTO_NUMBER){
+            if(number > MAX_LOTTO_NUMBER.getNumber() || number < MIN_LOTTO_NUMBER.getNumber()){
                 return false;
             }
         }

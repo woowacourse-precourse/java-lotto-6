@@ -1,13 +1,14 @@
 package lotto.Service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Enum.LottoError;
 import lotto.Enum.Prize;
 import lotto.Lotto;
 
 import java.util.List;
 import java.util.Map;
 
-import static lotto.Lotto.*;
+import static lotto.Enum.constants.*;
 
 
 public class LottoService {
@@ -22,7 +23,7 @@ public class LottoService {
     //로또 번호 생성 함수
     public List<Integer> createLottoNumber(){
         return Randoms.pickUniqueNumbersInRange(
-                MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+                MIN_LOTTO_NUMBER.getNumber(), MAX_LOTTO_NUMBER.getNumber(), LOTTO_NUMBER_COUNT.getNumber());
     }
 
     // 생성된 로또 번호 리스트와 당첨번호를 비교하는 기는
@@ -46,7 +47,6 @@ public class LottoService {
         return String.format("%.1f",((float)winAmount / (float)lottoAmount * 100f));
     }
 
-
     public int prizeAmount(Map<Prize, Integer> winResult){
         int winAmount = 0;
         for(Prize prize : winResult.keySet()){
@@ -55,8 +55,12 @@ public class LottoService {
         return winAmount;
     }
 
-
-
-
-
+    public void ValidateBonus(int bonus, Lotto winNumber) {
+        if(bonus > MAX_LOTTO_NUMBER.getNumber() || bonus < MIN_LOTTO_NUMBER.getNumber()){
+            throw new IllegalArgumentException(LottoError.NumberRange.getErrorMessage());
+        }
+        if(winNumber.getNumbers().contains(bonus)){
+            throw new IllegalStateException(LottoError.BonusFormat.getErrorMessage());
+        }
+    }
 }

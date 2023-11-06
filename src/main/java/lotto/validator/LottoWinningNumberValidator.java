@@ -25,15 +25,22 @@ public class LottoWinningNumberValidator {
 
   public static void isAllIntegersValid(List<String> WinningNumbers) {
     for (String number : WinningNumbers) {
-      try {
-        if (!number.matches("^[0-9\\s]+$")) {
-          throw new IllegalArgumentException(LOTTO_NUMBER_NOT_NUMBER_MESSAGE);
-        }
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
+      if (!isInteger(number)) {
+        System.out.println(LOTTO_NUMBER_NOT_NUMBER_MESSAGE);
         InputView.inputBonusNumber();
+        return;
       }
     }
   }
+
+  public static boolean isInteger(String s) {
+    try {
+      Integer.parseInt(s.trim());
+      return true;
+    } catch (NumberFormatException e) {
+      return false;
+    }
+  }
+
 
 }

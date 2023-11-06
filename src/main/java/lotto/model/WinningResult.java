@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class WinningResult {
     private final Map<WinningStandard, Integer> winningResult = new HashMap<>();
-    ;
 
     public WinningResult() {
         initialized();

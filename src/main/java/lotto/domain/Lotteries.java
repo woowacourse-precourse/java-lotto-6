@@ -39,4 +39,12 @@ public class Lotteries {
         Collections.sort(randomNumbers);
         return randomNumbers;
     }
+
+    public List<List<Integer>> getNumbersOfLotteries() {
+        List<List<Integer>> lotteriesNumbers = new ArrayList<>();
+        for (Lotto lotto : lotteries) {
+            lotteriesNumbers.add(lotto.getNumbers());
+        }
+        return lotteriesNumbers;
+    }
 }

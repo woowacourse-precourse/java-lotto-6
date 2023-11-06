@@ -31,7 +31,7 @@ public class GameService {
         lotteries = Lotteries.from(purchaseAmount.calculateNumberOfLotteries());
     }
 
-//    public List<Lotto> printLottoNumbers() {
-//        return lotteries.getLotteries();
-//    }
+    public List<List<Integer>> printLottoNumbers() {
+        return lotteries.getNumbersOfLotteries();
+    }
 }

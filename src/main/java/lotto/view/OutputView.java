@@ -1,9 +1,7 @@
 package lotto.view;
 
-import java.util.Collections;
 import java.util.List;
 import lotto.constant.OutputConstant;
-import lotto.domain.Lotto;
 
 public class OutputView {
 
@@ -11,14 +9,9 @@ public class OutputView {
         System.out.printf(OutputConstant.PURCHASE_RESULT.getMessage(), purchaseAmount);
     }
 
-    public void printLottoNumbers(List<Lotto> lotteries) {
-        StringBuilder lottoNumbers = new StringBuilder();
-
-        for (Lotto lotto : lotteries) {
-            lottoNumbers.append("[");
-            lottoNumbers.append(lotteries).append("]");
+    public void printLottoNumbers(List<List<Integer>> lotteriesNumber) {
+        for (List<Integer> lottoNumbers : lotteriesNumber) {
+            System.out.println(lottoNumbers);
         }
-
-        System.out.println(lottoNumbers);
     }
 }

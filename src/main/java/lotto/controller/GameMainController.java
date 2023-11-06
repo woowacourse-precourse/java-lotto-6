@@ -27,7 +27,7 @@ public class GameMainController {
         gameService.createPurchaseAmount(purchaseAmount);
         gameService.createLotteries();
         outputView.printPurchaseAmount(purchaseAmount);
-        //outputView.printLottoNumbers(gameService.printLottoNumbers());
+        outputView.printLottoNumbers(gameService.printLottoNumbers());
     }
 
     private void playGame() {

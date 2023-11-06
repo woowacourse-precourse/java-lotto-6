@@ -36,6 +36,10 @@ public class Lotto implements Comparable<Lotto> {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public boolean isCompareByBonusNumber(int bonusNumber) {
         for(Integer integer : this.numbers) {
             if (integer == bonusNumber) {

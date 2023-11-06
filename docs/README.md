@@ -34,7 +34,7 @@
 
 ### 검증 사항
 
-- [ ] 로또 번호 검증
+- [x] 로또 번호 검증
   - [x] 주어진 정수의 개수가 6개가 아닌 경우 IllegalArgumentException 발생
   - [x] 주어진 정수가 1 이상 45 이하의 범위를 벗어나는 경우 IllegalArgumentException 발생
-  - [ ] 주어진 정수에 중복되는 값이 있는 경우 IllegalArgumentException 발생
+  - [x] 주어진 정수에 중복되는 값이 있는 경우 IllegalArgumentException 발생

@@ -3,7 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoController {
+public class LottoManager {
 
     private final LocalScanner localScanner = new LocalScanner();
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
@@ -11,7 +11,11 @@ public class LottoController {
     private LottoChecker lottoChecker;
 
     public void run() {
-
+        purchaseLottos();
+        //print lottos
+        getLottoChecker();
+        //print 당첨 통계
+        //print 수익률
     }
 
     private void purchaseLottos() {

@@ -16,6 +16,10 @@ public class LottoPapers implements RandomNumberGenerator{
         this.lottoPapers = lottoPapers;
     }
 
+    private Lotto makingLotto(){
+        return new Lotto(sortLottoNumbers(generateRandomNumbers()));
+    }
+
     private List<Integer> sortLottoNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().collect(Collectors.toList());
     }

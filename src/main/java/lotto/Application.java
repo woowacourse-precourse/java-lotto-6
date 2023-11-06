@@ -1,15 +1,8 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import camp.nextstep.edu.missionutils.Randoms;
-
 public class Application {
-
-	private static Integer money;
+	private static User user;
 	private static LotteryCommission lotteryCommission;
-	private static List<Lotto> lottoList = new ArrayList<>();
 	private static LottoResult[] resultCheckList = {
 			LottoResult.THREE,
 			LottoResult.FOUR,
@@ -20,7 +13,6 @@ public class Application {
 
 	public static void main(String[] args) {
 		setMoney();
-		setLottoList();
 		generateLotteryCommision();
 		setBonusNumber();
 		printResult();
@@ -29,11 +21,7 @@ public class Application {
 	private static void setMoney() {
 		try {
 			System.out.println("구입금액을 입력해 주세요.");
-			money = ConsoleReader.readNumber();
-
-			if (money % 1000 != 0) {
-				throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력 가능합니다!");
-			}
+			user = new User(ConsoleReader.readNumber());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			setMoney();
@@ -59,27 +47,17 @@ public class Application {
 		}
 	}
 
-	public static void setLottoList() {
-		Integer lottoCount = money / 1000;
-		System.out.println(lottoCount + "개를 구매했습니다.");
-		for (int i = 0; i < lottoCount; i++) {
-			Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(Constants.LOTTO_MIN_NUMBER, Constants.LOTTO_MAX_NUMBER, Constants.WINNING_NUMBER_LENGTH));
-			System.out.println(lotto);
-			lottoList.add(lotto);
-		}
-	}
-
 	public static void printResult() {
 		Double resultMoney = 0.0;
 		System.out.println("당첨 통계");
 		System.out.println("---");
-		for (Lotto lotto : lottoList) {
+		for (Lotto lotto : user.getLottoList()) {
 			lotto.setResult(lotteryCommission.getWinningNumbers(), lotteryCommission.getBonusNumber());
 		}
 
 		for (LottoResult result : resultCheckList) {
 			int count = 0;
-			for (Lotto lotto : lottoList) {
+			for (Lotto lotto : user.getLottoList()) {
 				if (result.equals(lotto.getResult())) {
 					count++;
 				}
@@ -87,6 +65,6 @@ public class Application {
 			System.out.println(result.message + " - " + count + "개");
 			resultMoney += result.money * count;
 		}
-		System.out.printf("총 수익률은 %.1f%%입니다.%n", resultMoney / money * 100);
+		System.out.printf("총 수익률은 %.1f%%입니다.%n", resultMoney / user.getMoney() * 100);
 	}
 }

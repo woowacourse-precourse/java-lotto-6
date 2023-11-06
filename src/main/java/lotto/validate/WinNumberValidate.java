@@ -8,14 +8,14 @@ import java.util.Arrays;
 
 public class WinNumberValidate {
 
-    public static void validateWinNumber(String winNumber) {
+    public static int[] validateWinNumber(String winNumber) {
         validateWinNumberIsEmpty(winNumber);
         String[] winNumbers = splitWinNumber(winNumber);
         validateWinNumberLength(winNumbers);
-        validateWinNumberIsNumber(winNumbers);
-        validateWinNumberIsRange(winNumbers);
-        validateWinNumberIsNotDuplicate(winNumbers);
-
+        int[] winIntNumbers = validateWinNumberIsNumber(winNumbers);
+        validateWinNumberIsRange(winIntNumbers);
+        validateWinNumberIsNotDuplicate(winIntNumbers);
+        return winIntNumbers;
     }
 
     public static void validateWinNumberIsEmpty(String winNumber) {
@@ -34,32 +34,33 @@ public class WinNumberValidate {
         }
     }
 
-    public static void validateWinNumberIsNumber(String[] winNumbers) {
+    public static int[] validateWinNumberIsNumber(String[] winNumbers) {
+        int[] winIntNumbers = new int[winNumbers.length];
         for (String winNumber : winNumbers) {
             try {
-                Integer.parseInt(winNumber);
+                winIntNumbers[Arrays.asList(winNumbers).indexOf(winNumber)] = Integer.parseInt(winNumber);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_CHAR_ERROR.getMessage());
             }
         }
+        return winIntNumbers;
     }
 
-    public static void validateWinNumberIsRange(String[] winNumbers) {
-        for (String winNumber : winNumbers) {
-            int number = Integer.parseInt(winNumber);
-            if (number < START_LOTTO_NUMBER.getValue() || number > END_LOTTO_NUMBER.getValue()) {
+    public static void validateWinNumberIsRange(int[] winIntNumbers) {
+        for (int winIntNumber : winIntNumbers) {
+            if (winIntNumber < START_LOTTO_NUMBER.getValue() || winIntNumber > END_LOTTO_NUMBER.getValue()) {
                 throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_RANGE_ERROR.getMessage());
             }
         }
     }
 
-    public static void validateWinNumberIsNotDuplicate(String[] winNumbers) {
-        ArrayList<String> winNumberList = new ArrayList<>(Arrays.asList(winNumbers));
-        for (String winNumber : winNumbers) {
-            winNumberList.remove(winNumber);
-            if (winNumberList.contains(winNumber)) {
+    public static void validateWinNumberIsNotDuplicate(int[] winIntNumbers) {
+        ArrayList<Integer> winIntNumbersList = new ArrayList<>();
+        for (int winIntNumber : winIntNumbers) {
+            if (winIntNumbersList.contains(winIntNumber)) {
                 throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_DUPLICATE_ERROR.getMessage());
             }
+            winIntNumbersList.add(winIntNumber);
         }
     }
 

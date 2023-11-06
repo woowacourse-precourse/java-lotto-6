@@ -43,10 +43,27 @@ public class Application {
         //예외처리로 변경할 것.
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonus = Integer.parseInt(Console.readLine());
-        while (numbers.contains(bonus)){
+        while (numbers.contains(bonus)) {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             bonus = Integer.parseInt(Console.readLine());
         }
-        numbers.add(bonus);
+        //numbers.add(bonus);
+
+        //당첨여부
+        int[] rank = new int[6];
+        for (int i = 0; i < lottoTickets; i++) {
+            allTickets[i].retainAll(numbers);
+            if (allTickets[i].size() == 3) {
+                rank[5] += 1;
+            } else if (allTickets[i].size() == 4) {
+                rank[4] += 1;
+            } else if (allTickets[i].size() == 5 && allTickets[i].contains(bonus)) {
+                rank[2] += 1;
+            } else if (allTickets[i].size() == 5) {
+                rank[3] += 1;
+            } else if (allTickets[i].size() == 6) {
+                rank[1] += 1;
+            }
+        }
     }
 }

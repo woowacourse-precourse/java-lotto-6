@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
 import lotto.dto.LottoWinningNumberCreateRequest;
-import lotto.dto.LottoWinningStatisticsResponse;
+import lotto.dto.LottoWinningStatistics;
 
 public class LottoGameConsoleView implements LottoGameView {
 
@@ -45,8 +45,32 @@ public class LottoGameConsoleView implements LottoGameView {
     }
 
     @Override
-    public void printWinningStatistics(LottoWinningStatisticsResponse lottoWinningStatisticsResponse) {
+    public void printWinningStatistics(LottoWinningStatistics lottoWinningStatistics) {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
 
+        printLottoPrizeCount(lottoWinningStatistics);
+        printRewardRatioPercent(lottoWinningStatistics);
+    }
+
+    private static void printLottoPrizeCount(LottoWinningStatistics lottoWinningStatistics) {
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            if (lottoPrize.equals(LottoPrize.NONE)) {
+                continue;
+            }
+
+            int countLottoPrize = lottoWinningStatistics.getCountLottoPrize(lottoPrize);
+            System.out.print(lottoPrize);
+            System.out.println(countLottoPrize + "개");
+        }
+    }
+
+    private static void printRewardRatioPercent(LottoWinningStatistics lottoWinningStatistics) {
+        double rewardRatio = lottoWinningStatistics.getRewardRatio();
+        double rewardRatioPercent = (double) Math.round(rewardRatio * 1000) / 10;
+        System.out.printf("총 수익률은 %.1f%%입니다.", rewardRatioPercent);
+        System.out.println();
     }
 
     @Override

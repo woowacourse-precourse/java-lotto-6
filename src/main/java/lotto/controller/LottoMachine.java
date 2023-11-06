@@ -33,5 +33,12 @@ public class LottoMachine {
         lottos = lottoNumbers.getLottos();
         OutputView.printLottos(lottos);
     }
-    
+
+    private void setAmount() {
+        String amount = InputView.inputPlayerAmount();
+        ticketNumber = Service.setAmount(amount);
+        OutputView.printTicketCount(ticketNumber);
+    }
+
+
 }

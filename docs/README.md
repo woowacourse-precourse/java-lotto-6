@@ -1,7 +1,17 @@
 ## 🎰 로또 게임 기능 목록
 
 - [ ] 로또 게임에 접속 - LottoGame#run()
-    - [ ] 로또 구매 후 발행 - Lotto#purchasedAndPublish()
+    - [x] 로또 게임 준비 - LottoGame#ready()
+    - [ ] 로또 게임 시작 - LottoGame#playLotto()
+- [x] 로또 번호 개수 검증 - Lotto#validate()
+- [x] 로또 번호 중복 검증 - Lotto#validateDuplicatedNumber()
+- [x] 로또 번호 오름차순 정렬 - Lotto#sortNumbers()
+- [x] 현재 발행한 로또 번호 가져오기 - Lotto#getNumbers()
+- [x] 로또 구매 - Buy#createToLotto()
+    - [x] 로또 발행 - Buy#publishOfLotto()
+    - [x] 발행한 로또 수 검증 - Buy#validatePublishSize()
+    - [x] 발행할 로또 수 추가 - Buy#addBuyLottoNumbers()
+- [x] 구매한 로또 가져오기 - Buy#getBuyLottoNumbers()
 - [x] 문자열을 정수로 변환 - Utils#stringToInteger()
 - [x] 문자열을 리스트로 변환 - Utils#stringToList()
 - [x] 문자열 분할 - Utils#stringToSplit()
@@ -20,11 +30,13 @@
     - [x] 보너스 번호 길이 검증 - Bonus#validateBonusLength()
 - [ ] 당첨 내역 출력 - OutputView#printToPrizeDetails()
     - [ ] 수익률 출력(소수점 둘째 자리 반올림) - OutputView#printToEarningRate()
+- [x] 로또 구매 개수 및 발행한 로또 출력 - OutputView#printToBuyLotto()
 - [x] 1,000원으로 나누어 떨어지는지 검증 - ExceptionHandler#notDivisibleBy1000()
 - [x] 로또 번호는 1부터 45 사이의 숫자 값 검증 - ExceptionHandler#notBetween1And45()
 - [x] 당첨 번호가 6개인지 검증 - ExceptionHandler#noLengthOfSix()
 - [x] 당첨 번호 6개가 중복된 숫자가 없는지 검증 - ExceptionHandler#numberInDuplicate()
 - [x] 보너스 번호가 1개인지 검증 - ExceptionHandler#noLengthOfOne()
+- [x] 구매한 로또 수와 발행한 로또 수 검증 - ExceptionHandler#differentBuyFromPublish()
 
 ## ♻️ 로또 게임 기능 테스트 목록
 
@@ -38,3 +50,5 @@
 - [x] 당첨 번호에 중복된 숫자가 있을 때 예외 발생 - PrizeTest#createPrizeNumberInDuplicate()
 - [x] 보너스 번호가 1부터 45사이의 숫자 아닐 때 예외 발생 - BonusTest#createBonusNumberNotBetween1And45()
 - [x] 보너스 번호가 1개가 아닐 때 예외 발생 - BonusTest#createBonusNumberNoLengthOfOne()
+- [x] 구매한 로또 수와 발행한 개수가 같은 경우 성공 - BuyTest#createLottoByPublishSize()
+- [x] 로또 번호가 오름차순 정렬인 경우 성공 - LottoTest#sortedASCToLotto()

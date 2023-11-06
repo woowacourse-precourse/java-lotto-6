@@ -2,6 +2,7 @@ package lotto.model;
 
 import static lotto.util.Utils.splitByComma;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,14 +13,28 @@ public class LottoService {
     private static final String LOTTO_SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개만 가능합니다.";
     private static final String LOTTO_DUPLICATE_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
 
-    public List<Integer> validateLottoNumber(String input) { // 1,2,3,4,5,6
-        List<Integer> lottoNumbers = makeStringToList(input);
-        validateLottoSize(lottoNumbers);
-        validateLottoDuplicate(lottoNumbers);
-        return lottoNumbers;
+    public LottoService() {
+
     }
 
-    private List<Integer> makeStringToList(String input) {
+    public static List<Integer> generateLottoNumber() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        validateLottoNumber(numbers);
+        return numbers;
+    }
+
+    public static List<Integer> validateInputLottoNumber(String input) { // 1,2,3,4,5,6
+        List<Integer> numbers = makeStringToList(input);
+        validateLottoNumber(numbers);
+        return numbers;
+    }
+
+    public static void validateLottoNumber(List<Integer> numbers) {
+        validateLottoSize(numbers);
+        validateLottoDuplicate(numbers);
+    }
+
+    private static List<Integer> makeStringToList(String input) {
         List<Integer> lottoNumbers = new ArrayList<>();
         for (String str : splitByComma(input)) {
             lottoNumbers.add(Integer.parseInt(str));
@@ -27,13 +42,13 @@ public class LottoService {
         return lottoNumbers;
     }
 
-    private void validateLottoSize(List<Integer> numbers) {
+    private static void validateLottoSize(List<Integer> numbers) {
         if (numbers.size()!= LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(LOTTO_SIZE_ERROR_MESSAGE);
         }
     }
 
-    private void validateLottoDuplicate(List<Integer> numbers) {
+    private static void validateLottoDuplicate(List<Integer> numbers) {
         Set<Integer> set = new HashSet<Integer>(numbers);
         if(set.size()!=LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(LOTTO_DUPLICATE_MESSAGE);

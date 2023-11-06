@@ -24,17 +24,17 @@ public class Lotto {
         return numbers;
     }
 
-    private List<Integer> randomNumber() {
+    private static List<Integer> randomNumber() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    private List<Integer> sortNumber(List<Integer> numbers) {
+    private static List<Integer> sortNumber(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();
     }
 
-    public Lotto createLotto() {
+    public static Lotto createLotto() {
         List<Integer> intLottos = randomNumber();
         List<Integer> sortLottos = sortNumber(intLottos);
         return new Lotto(sortLottos);

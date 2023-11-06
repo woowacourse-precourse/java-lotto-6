@@ -1,4 +1,4 @@
-package lotto.model.lottoresult;
+package lotto.model;
 
 public enum WinningInfo {
     THREE_MATCH("3개 일치", 5000),

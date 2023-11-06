@@ -4,7 +4,7 @@ package lotto.model.winningLotto;
 import java.util.List;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoDTO;
-import lotto.model.lottoresult.WinningInfo;
+import lotto.model.WinningInfo;
 
 public class WinningLotto {
     private final Lotto winningNumber;

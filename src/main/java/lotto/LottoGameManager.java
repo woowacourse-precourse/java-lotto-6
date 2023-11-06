@@ -1,8 +1,12 @@
-package lotto.domain;
+package lotto;
 
-import lotto.domain.exception.UserInputValidator;
-import lotto.domain.view.InputView;
-import lotto.domain.view.OutputView;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningStats;
+import lotto.exception.UserInputValidator;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGameManager {
     public void start() {
@@ -13,9 +17,10 @@ public class LottoGameManager {
         winningLotto.createLotto(saveLotto());
         winningLotto.createBonusNumber(saveBonusNumber(winningLotto.getLotto()));
 
-        /**
-         * 당첨 통계 기능 구현 필요
-         */
+        WinningStats winningStats = WinningStats.createWinningStats(lottos.getPurchasePrice(), lottos, winningLotto);
+        OutputView.showWinningStatsIntroduction();
+        OutputView.showWinningStatsResult(winningStats);
+        OutputView.showRateOfReturn(winningStats);
     }
 
     public int saveLottos() {

@@ -80,6 +80,9 @@ public class UI {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("정수를 입력하지 않았습니다.");
         }
+        if (bonus <= 0) {
+            throw new IllegalArgumentException("자연수를 입력하지 않았습니다.");
+        }
         return bonus;
     }
 
@@ -132,7 +135,7 @@ public class UI {
         String returnRateByRound = String.format("%.1f", returnRate);
         System.out.print("총 수익률은 " + returnRateByRound + "%입니다.");
     }
-    
+
     public static void printExceptionCause(Exception e) {
         System.out.println("[ERROR] " + e.getMessage());
     }

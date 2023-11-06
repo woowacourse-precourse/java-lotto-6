@@ -13,26 +13,29 @@ public class ProcessLotto {
         this.outputView = outputView;
     }
 
-    public void drawLotto(){
-        ValidateTools validateTools = new ValidateTools();
-        InputValidate inputValidate = new InputValidate(validateTools);
-        AmountProcessing amountProcessing = new AmountProcessing();
-        Generator generator = new Generator();
-        CalculateLotto calculateLotto = new CalculateLotto();
-        outputView.askPurchaseAmount();
+    public int askCost(InputValidate inputValidate){
         int cost = 0;
         boolean success = false;
         while (!success){
             try{
+                outputView.askPurchaseAmount();
                 cost = inputValidate.validateCost(inputView.getLine());
                 success = true;
             }
             catch (IllegalArgumentException e){
                 System.out.println(e.getMessage()+"\n");
-                outputView.askPurchaseAmount();
             }
         }
+        return cost;
+    }
 
+    public void drawLotto(ValidateTools validateTools){
+        InputValidate inputValidate = new InputValidate(validateTools);
+        AmountProcessing amountProcessing = new AmountProcessing();
+        Generator generator = new Generator();
+        CalculateLotto calculateLotto = new CalculateLotto();
+
+        int cost = askCost(inputValidate);
         int count = amountProcessing.getLottoCount(cost);
         outputView.printNumberPurchase(count);
 
@@ -44,7 +47,7 @@ public class ProcessLotto {
             outputView.printGeneratedNums(generateNums);
             lottos.add(lotto);
         }
-        success = false;
+        boolean success = false;
         outputView.askWinningNums();
         List<Integer> winningNums = new ArrayList<>();
         while (!success){
@@ -82,7 +85,7 @@ public class ProcessLotto {
         countMap.put(5, 0);
         countMap.put(55, 0);
         countMap.put(6, 0);
-        
+
         // TODO: 클래스 만들기
         for (Lotto nums: lottos){
             if (calculateLotto.checkBonus(nums.getNumbers(), winningNums, bonusNum)){

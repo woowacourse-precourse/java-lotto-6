@@ -31,4 +31,8 @@ public enum Rank {
     public boolean matches(int count, boolean hasBonus) {
         return this.matchCount == count && this.matchBonus == hasBonus;
     }
+
+    public long getPrize() {
+        return prize;
+    }
 }

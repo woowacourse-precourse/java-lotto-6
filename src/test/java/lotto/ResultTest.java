@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class ResultTest {
         assertThat(result.getOrDefault(Rank.FIFTH, 0)).isEqualTo(1);
         assertThat(result.getOrDefault(Rank.NOTHING, 0)).isEqualTo(1);
 
+        long expected = 2_000_000_000 + 30_000_000 + 1_500_000 + 50_000 + 5_000;
+        assertEquals(lottoResult.getTotalPrize(), expected);
     }
-
 }

@@ -28,4 +28,10 @@ public class LottoResult {
     public Map<Rank, Integer> getResult() {
         return Collections.unmodifiableMap(result);
     }
+
+    public long getTotalPrize() {
+        return result.keySet().stream()
+                .mapToLong(rank -> rank.getPrize() * result.get(rank))
+                .sum();
+    }
 }

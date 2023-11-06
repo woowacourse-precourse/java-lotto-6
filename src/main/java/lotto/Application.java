@@ -2,6 +2,8 @@ package lotto;
 
 import static lotto.Enum.InputMessage.BUY_HOW_MANY;
 import static lotto.Enum.InputMessage.INPUT_PURCHASE_AMOUNT;
+import static lotto.Enum.InputMessage.INPUT_WINNING_NUMBER;
+import static lotto.Enum.Number.UNIT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -11,6 +13,7 @@ public class Application {
         String input;
         int money;
         int countLotto;
+        List<Integer> winningNumber;
         List<Lotto> lottos;
 
         while (true) {
@@ -26,10 +29,21 @@ public class Application {
             }
         }
 
-        countLotto = money / 1000;
+        countLotto = money / UNIT.getNumber();
         System.out.println("\n" + countLotto + BUY_HOW_MANY.getMessage());
         lottos = LottoProcess.publishLotto(countLotto);
         LottoProcess.printLotto(lottos, countLotto);
+
+        while (true) {
+            try {
+                System.out.println(INPUT_WINNING_NUMBER.getMessage());
+                input = Console.readLine();
+                winningNumber = Exception.checkWinningNumber(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
     }
 }

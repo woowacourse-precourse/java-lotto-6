@@ -27,4 +27,16 @@ public class LottoNumber {
         return this.number == number;
     }
 
+    private static int processStringToInt(String input) {
+        input = input.trim();
+        IntegerValidator.validateInteger(input);
+
+        return Integer.parseInt(input);
+    }
+
+    private void validateInRange(int number) {
+        if (number < MIN_NUMBER_RANGE.getValue() || number > MAX_NUMBER_RANGE.getValue()) {
+            ExceptionUtil.throwInvalidValueException(INVALID_LOTTO_NUMBER_RANGE_MESSAGE.getMessage());
+        }
+    }
 }

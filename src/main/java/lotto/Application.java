@@ -1,7 +1,15 @@
 package lotto;
 
+import lotto.domain.LottoAmount;
+import lotto.view.InputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoAmount playerLottoAmount = new LottoAmount(InputView.inputPlayerAmount());
+
+        int lottoNum=playerLottoAmount.calcLottoNum();
+        System.out.println(lottoNum);
+
+
     }
 }

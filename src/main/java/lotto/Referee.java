@@ -5,8 +5,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import view.Output;
 
 public class Referee {
+    public static void calculateLottoResultAndProfit(List<Lotto> lottoList, List<Integer> winningNumbers,
+                                                     int bonusNumber, int purchaseAmount) {
+        Map<Rank, Long> winningCounts = countLottoRank(lottoList, winningNumbers, bonusNumber);
+        Output.printLottoGameResult();
+
+        long totalPrizeAmount = 0;
+        for (Rank rank : Rank.values()) {
+            long rankCount = winningCounts.getOrDefault(rank, 0L);
+            long prizeAmount = rank.getPrize();
+
+            totalPrizeAmount += (rankCount * prizeAmount);
+            Output.handlePrizeDescription(rank, rankCount, prizeAmount);
+        }
+        double profitRate = (totalPrizeAmount / (double) purchaseAmount) * 100;
+        Output.printLottoProfit(profitRate);
+    }
+    
     private static Map<Rank, Long> countLottoRank(List<Lotto> lottoList, List<Integer> winningNumbers,
                                                   int bonusNumber) {
         return calculateAllLottoPrize(lottoList, winningNumbers, bonusNumber)

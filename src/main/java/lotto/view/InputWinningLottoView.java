@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.exception.InvalidLottoInputFormatException;
+
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -26,7 +28,7 @@ public class InputWinningLottoView extends InputView{
 
     private void validateInput(String inputValue) {
         if(!PATTERN.matcher(inputValue).matches()) {
-            throw new IllegalArgumentException();
+            throw new InvalidLottoInputFormatException();
         }
     }
 

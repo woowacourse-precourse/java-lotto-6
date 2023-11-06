@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.DuplicateLottoNumberException;
+import lotto.exception.InvalidRangeLottoNumberException;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,13 +32,13 @@ public class WinningLotto {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(winningLotto);
         nonDuplicateNumbers.add(number);
         if (nonDuplicateNumbers.size() != WINNING_LOTTO_SIZE) {
-            throw new IllegalStateException();
+            throw new DuplicateLottoNumberException();
         }
     }
 
     private void validateRange(Integer number) {
         if (!(MIN_RANGE <= number && number <= MAX_RANGE)) {
-            throw new IllegalStateException();
+            throw new InvalidRangeLottoNumberException();
         }
     }
 

@@ -30,9 +30,14 @@ public class LottoController {
     }
 
     private Money getLottoMoney() {
-        InputBuyLottoView inputBuyLottoView = new InputBuyLottoView();
-        int money = inputBuyLottoView.getValue();
-        return new Money(money);
+        try {
+            InputBuyLottoView inputBuyLottoView = new InputBuyLottoView();
+            int money = inputBuyLottoView.getValue();
+            return new Money(money);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return getLottoMoney();
+        }
     }
 
     private Lottos getLottos(Money money) {
@@ -41,13 +46,18 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        InputWinningLottoView inputWinningLottoView = new InputWinningLottoView();
-        InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
+        try {
+            InputWinningLottoView inputWinningLottoView = new InputWinningLottoView();
+            InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
 
-        List<Integer> winningNumbers = inputWinningLottoView.getValue();
-        Integer bonusNumber = inputBonusNumberView.getValue();
+            List<Integer> winningNumbers = inputWinningLottoView.getValue();
+            Integer bonusNumber = inputBonusNumberView.getValue();
 
-        return new WinningLotto(winningNumbers, bonusNumber);
+            return new WinningLotto(winningNumbers, bonusNumber);
+        } catch (Exception e) {
+          System.out.println(e.getMessage());
+          return getWinningLotto();
+        }
     }
 
     private void calcLottoResult(PrizeResult prizeResult, WinningLotto winningLotto, Lottos lottos) {

@@ -42,6 +42,9 @@ public class LottoGame {
     }
 
     public void registerWinningBonus(int winningBonus) {
+        if (winningLotto.isExist(winningBonus)) {
+            throw new GlobalException(GlobalError.ALREADY_EXIST_IN_WINNING_NUMBERS);
+        }
         this.winningBonus = winningBonus;
     }
 

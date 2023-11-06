@@ -61,13 +61,13 @@ public class LottoGameRunner {
             try {
                 List<Integer> winningNumbers = receiveWinningNumbers();
                 lottoGame.registerWinningNumbers(winningNumbers);
+                int winningBonus = receiveWinningBonus();
+                lottoGame.registerWinningBonus(winningBonus);
                 isRegistered = true;
             } catch (GlobalException | LottoException exception) {
                 Printer.print(exception.getMessage());
             }
         }
-        int winningBonus = receiveWinningBonus();
-        lottoGame.registerWinningBonus(winningBonus);
     }
 
     private void viewResult() {

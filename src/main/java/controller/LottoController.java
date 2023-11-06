@@ -26,15 +26,16 @@ public class LottoController {
         printNumOfLotto(price.numOfLotto());
         createLotto();
         showLottoTicket();
+        initWinningNumber();
     }
 
-    private List<Integer> initWinningNumber() {
+    private void initWinningNumber() {
         try {
             String input = InputView.enterWinningNumbers();
             List<Integer> winningNumber = winningNumberValidator.checkWinningNumberValidation(input);
-            return winningNumber;
+            winningLotto.setWinningNumber(winningNumber);
         } catch (IllegalArgumentException e) {
-            return initWinningNumber();
+            initWinningNumber();
         }
     }
 

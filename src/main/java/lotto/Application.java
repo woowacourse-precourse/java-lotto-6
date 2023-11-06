@@ -127,7 +127,7 @@ class SingleGame {
 
 class Game{
     public String inputPrice;
-    public int totalProfit = 0;
+    public float totalProfit = 0;
     public int firstPrize = 0;
     public int secondPrize = 0;
     public int thirdPrize = 0;

@@ -1,14 +1,11 @@
 package lotto.controller;
 
-import lotto.domain.Lottos;
+import lotto.view.OutputView;
 
 public class LottoController {
-    private final LottoMarket lottoMarket = new LottoMarket();
-    private final LottoCompare lottoCompare = new LottoCompare();
+    private final OutputView outputView = new OutputView();
 
-    public void play() {
-        lottoMarket.enter();
-        Lottos lottos = lottoMarket.goOut();
-        lottoCompare.access(lottos);
+    public void run() {
+        outputView.printInputPurchaseAmountMessage();
     }
 }

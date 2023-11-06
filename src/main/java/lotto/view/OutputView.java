@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 import java.util.List;
 
 public class OutputView {
-    public void printInputMoneyMessage() {
+    public void printInputPurchaseAmountMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 

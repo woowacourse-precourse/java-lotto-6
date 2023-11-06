@@ -12,13 +12,13 @@ public class Money {
 
     private void isBlank(String money) {
         if (money.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 빈 값을 입력하면 안됩니다.");
+            throw new IllegalArgumentException("빈 값을 입력하면 안됩니다.");
         }
     }
 
     private void isNumeric(String money) {
         if (!money.matches("[0-9]+")) {
-            throw new IllegalArgumentException("[ERROR] 숫자 형식이 아닙니다.");
+            throw new IllegalArgumentException("숫자 형식이 아닙니다.");
         }
     }
 
@@ -32,7 +32,7 @@ public class Money {
 
     public void validateDivideBy1000() {
         if (won % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000 단위의 금액이 아닙니다.");
+            throw new IllegalArgumentException("1000 단위의 금액이 아닙니다.");
         }
     }
 }

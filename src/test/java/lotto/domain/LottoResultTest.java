@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.TestConstant;
 import lotto.constant.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,12 +23,13 @@ class LottoResultTest {
         assertThat(rankCount).isEqualTo(1);
     }
 
-    @DisplayName("당첨 결과는 읽기 전용 컬렉션이다.")
+    @DisplayName("수익률을 계산한다.")
     @Test
-    void resultIsReadOnly() {
-        Map<LottoRank, Integer> result = lottoResult.getResult();
+    void calculateProfitRate() {
+        Payment payment = new Payment(TestConstant.minPaymentAmount);
+        lottoResult.increaseLottoRankCount(LottoRank.THREE_MATCH);
+        double profitRate = lottoResult.calculateProfitRate(payment);
 
-        assertThatThrownBy(() -> result.replace(LottoRank.OUT_RANK, 1))
-                .isInstanceOf(UnsupportedOperationException.class);
+        assertThat(profitRate).isEqualTo(500);
     }
 }

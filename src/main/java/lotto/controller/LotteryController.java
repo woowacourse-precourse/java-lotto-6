@@ -3,11 +3,10 @@ package lotto.controller;
 import lotto.domain.IssueLottery;
 import lotto.domain.JudgeWinningTickets;
 import lotto.domain.Revenue;
+import lotto.validation.ValidInput;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.sql.Array;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +16,7 @@ public class LotteryController {
     private IssueLottery issueLottery;
     private OutputView outputView;
     private JudgeWinningTickets judgeWinningTickets;
+    private ValidInput validInput;
     private int payment;
     private int ticketCount;
     private int bonusNumber;
@@ -32,6 +32,7 @@ public class LotteryController {
         outputView = new OutputView();
         judgeWinningTickets = new JudgeWinningTickets();
         revenue = new Revenue();
+        validInput = new ValidInput();
     }
     public void lottoGameStart() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -47,18 +48,17 @@ public class LotteryController {
         outputView.printRevenueRate(revenueRate);
     }
 
-
+    private String paymentInput;
     private String setValidPayment() {
-        String input = inputView.getUserInput();
+        paymentInput = inputView.getUserInput();
         try {
-            isValidPayment(input);
+            validInput.validPayment(paymentInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             setValidPayment();
         }
-        return input;
+        return paymentInput;
     }
-
     private void setPayment() {
         String input = setValidPayment();
         payment = Integer.parseInt(input);
@@ -66,10 +66,7 @@ public class LotteryController {
         System.out.println();
     }
 
-    private void isValidPayment(String input) {
-        if(!input.matches("\\d+"))
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
-    }
+
     private void setTickets() {
         lotteryTickets = issueLottery.issueTickets(ticketCount);
         outputView.printLotteryTickets(ticketCount, lotteryTickets);

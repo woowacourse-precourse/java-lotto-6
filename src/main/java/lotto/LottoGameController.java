@@ -12,6 +12,7 @@ public class LottoGameController {
 
     private Lotto lotto;
     User user;
+    View view = new View();
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -47,6 +48,8 @@ public class LottoGameController {
     }
 
     private void setUser() throws IOException {
+
+        view.printAskMoneyInput();
 
         StringTokenizer tk = new StringTokenizer(br.readLine());
         int inputMoney = Integer.parseInt(tk.nextToken());

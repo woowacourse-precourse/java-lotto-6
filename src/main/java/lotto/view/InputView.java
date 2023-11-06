@@ -61,4 +61,10 @@ public class InputView {
     private void validateInputWinningNumber(String inputWinningNumber) {
         ValidateLottoNumberFormat.validate(inputWinningNumber);
     }
+
+    public String inputBonusWinningNumber() {
+        String inputBonusWinningNumber;
+        inputBonusWinningNumber = Console.readLine();
+        return inputBonusWinningNumber;
+    }
 }

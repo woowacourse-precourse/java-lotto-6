@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.constant.LottoRank;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -19,8 +18,9 @@ public class LottoResult {
     }
 
     public Map<LottoRank, Integer> getResult() {
-        result.remove(LottoRank.OUT_RANK);
-        return Collections.unmodifiableMap(result);
+        HashMap<LottoRank, Integer> copiedResult = new HashMap<>(result);
+        copiedResult.remove(LottoRank.OUT_RANK);
+        return copiedResult;
     }
 
     public double calculateProfitRate(Payment payment) {
@@ -35,7 +35,6 @@ public class LottoResult {
             int count = result.get(lottoRank);
             totalPrizeMoney += (long) lottoRank.getPrizeMoney() * count;
         }
-
         return totalPrizeMoney;
     }
 }

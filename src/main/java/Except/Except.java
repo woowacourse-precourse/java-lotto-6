@@ -103,11 +103,11 @@ public class Except {
         if (!length_check.equals("")) {
             result = numberAllCheckNumber(length_check);
         }
-        try{
-            if(result.size()<6){
+        try {
+            if (result.size() != 6) {
                 throw new IllegalArgumentException();
             }
-        }catch(IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             System.out.println(numberIncorrectLength.getMessage());
         }
         return result;

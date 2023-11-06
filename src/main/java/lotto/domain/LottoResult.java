@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.enums.LottoPrize;
 
 public class LottoResult {
     private final Map<LottoPrize, Integer> result;

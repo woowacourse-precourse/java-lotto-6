@@ -3,8 +3,8 @@ package study.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.enums.LottoPrize;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPrize;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoWallet;
 import lotto.domain.WinningLotto;

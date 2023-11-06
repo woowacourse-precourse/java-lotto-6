@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 import lotto.domain.Lotto;
-import lotto.domain.*;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.Test;
 
 public class WinningLottoTest {

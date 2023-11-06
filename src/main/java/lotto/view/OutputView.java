@@ -1,10 +1,9 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoPrize;
-import lotto.domain.LottoResult;
-
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.enums.LottoPrize;
+import lotto.domain.LottoResult;
 
 public class OutputView {
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s\n";

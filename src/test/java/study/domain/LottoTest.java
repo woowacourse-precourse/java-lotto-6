@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import lotto.enums.LottoPrize;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPrize;
 import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.Test;
 

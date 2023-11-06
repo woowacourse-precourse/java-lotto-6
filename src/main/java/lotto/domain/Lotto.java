@@ -1,16 +1,17 @@
 package lotto.domain;
 
-import static lotto.domain.LottoPrize.FIRST_PLACE;
-import static lotto.domain.LottoPrize.SECOND_PLACE;
-import static lotto.domain.LottoPrize.THIRD_PLACE;
-import static lotto.domain.LottoPrize.FORTH_PLACE;
-import static lotto.domain.LottoPrize.FIFTH_PLACE;
-import static lotto.domain.LottoPrize.NO_PLACE;
+import static lotto.enums.LottoPrize.FIRST_PLACE;
+import static lotto.enums.LottoPrize.SECOND_PLACE;
+import static lotto.enums.LottoPrize.THIRD_PLACE;
+import static lotto.enums.LottoPrize.FORTH_PLACE;
+import static lotto.enums.LottoPrize.FIFTH_PLACE;
+import static lotto.enums.LottoPrize.NO_PLACE;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.enums.LottoPrize;
 
 public class Lotto {
     private static final int LOTTO_LENGTH = 6;

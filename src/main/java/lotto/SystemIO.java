@@ -13,6 +13,7 @@ public class SystemIO {
     }
 
     public static void requestWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 
     public static List<Integer> readWinningNumbers() {
@@ -26,6 +27,18 @@ public class SystemIO {
             }
         }
         return winningNumbers;
+    }
+
+    public static void requestBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public static int readBonusNumber() {
+        try{
+            return Integer.parseInt(readLine());
+        }catch (NumberFormatException e) {
+            throw new IllegalStateException();
+        }
     }
 
     public static void showTickets(Map<Long, List<Integer>> tickets) {

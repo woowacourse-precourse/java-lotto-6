@@ -16,7 +16,5 @@ public final class Utils {
         return unSortedNumbers;
     }
 
-    public static List<Integer> randomUniqueNumbers(int min, int max, int count) {
-        return Randoms.pickUniqueNumbersInRange(min, max, count);
-    }
+
 }

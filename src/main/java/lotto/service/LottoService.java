@@ -5,10 +5,14 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.User;
-import lotto.utils.Utils;
+import lotto.utils.NumberGenerator;
+import lotto.utils.RandomNumberGenerator;
 
 public class LottoService {
-
+    private final NumberGenerator numberGenerator;
+    public LottoService(NumberGenerator numberGenerator) {
+        this.numberGenerator = new RandomNumberGenerator();
+    }
     public void buyLottoAll(User user) {
         int purchaseAmount = user.getPurchaseAmount();
         int lottoCount = purchaseAmount / 1000;
@@ -23,7 +27,7 @@ public class LottoService {
     }
     private Lotto generateLottoNumber() {
         List<Integer> lottoNumbers = new ArrayList<>(
-                Utils.randomUniqueNumbers(1, 45, 6));
+                numberGenerator.generateNumbers(1, 45, 6));
         return new Lotto(lottoNumbers);
     }
 }

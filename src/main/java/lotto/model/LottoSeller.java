@@ -1,14 +1,13 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoSeller {
-    private final AutoLottoGenerator lottoGenerator;
+    private final LottoGenerator lottoGenerator;
 
-    public LottoSeller(AutoLottoGenerator lottoGenerator) {
+    public LottoSeller(LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
     }
 

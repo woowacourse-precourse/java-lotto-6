@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.console;
 
 import static lotto.view.LottoGameMessage.COUNT_OF_PURCHASED_LOTTO;
 import static lotto.view.LottoGameMessage.REQUEST_BONUS_LOTTO_NUMBER;
@@ -10,20 +10,20 @@ import static lotto.view.LottoGameMessage.WINNING_STATISTICS;
 import lotto.dto.LottoNumbersDTO;
 import lotto.dto.LottoRankResultDTO;
 import lotto.dto.LottoTotalReturnDTO;
-import lotto.model.LottoRankResult;
+import lotto.view.OutputView;
 
-public class ConsoleOutputView {
+public class ConsoleOutputView implements OutputView {
     public void requestPurchaseAmount() {
         System.out.println(REQUEST_PURCHASE_AMOUNT.getMessage());
     }
 
-    public void printCountOfLotto(int count) {
+    public void printCountOfLotto(final int count) {
         printBlankLine();
         System.out.printf(COUNT_OF_PURCHASED_LOTTO.getMessage(), count);
         printBlankLine();
     }
 
-    public void printLottoNumbers(LottoNumbersDTO lottoNumbersDTO) {
+    public void printLottoNumbers(final LottoNumbersDTO lottoNumbersDTO) {
         System.out.println(lottoNumbersDTO.getFormattedLottoNumbers());
     }
 

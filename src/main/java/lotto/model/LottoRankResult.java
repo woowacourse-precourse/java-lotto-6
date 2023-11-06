@@ -24,7 +24,7 @@ public class LottoRankResult {
         result.put(rank, result.get(rank) + 1);
     }
 
-    public float getTotalReturn(int countOfLotto) {
+    public float getTotalReturn(final int countOfLotto) {
         int purchaseAmount = calculatePurchaseAmount(countOfLotto);
         BigInteger totalPrize = calculateTotalPrize();
         return calculateTotalReturn(purchaseAmount, totalPrize);
@@ -39,7 +39,7 @@ public class LottoRankResult {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private int calculatePurchaseAmount(int countOfLotto) {
+    private int calculatePurchaseAmount(final int countOfLotto) {
         return countOfLotto * PURCHASE_AMOUNT_UNIT;
     }
 
@@ -52,7 +52,7 @@ public class LottoRankResult {
                 .reduce(BigInteger.ZERO, BigInteger::add);
     }
 
-    private float calculateTotalReturn(int purchaseAmount, BigInteger totalPrize) {
+    private float calculateTotalReturn(final int purchaseAmount, final BigInteger totalPrize) {
         float totalPrizeFloat = totalPrize.floatValue();
         return (totalPrizeFloat / purchaseAmount) * PERCENT_RATIO_UNIT;
     }

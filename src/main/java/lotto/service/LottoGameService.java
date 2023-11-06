@@ -13,15 +13,19 @@ import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
-import lotto.view.ConsoleInputView;
-import lotto.view.ConsoleOutputView;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGameService {
-    private final ConsoleInputView inputView;
-    private final ConsoleOutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private final LottoRankResult lottoRankResult;
 
-    public LottoGameService(ConsoleInputView inputView, ConsoleOutputView outputView ,LottoRankResult lottoRankResult) {
+    public LottoGameService(
+            final InputView inputView,
+            final OutputView outputView,
+            final LottoRankResult lottoRankResult
+    ) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoRankResult = lottoRankResult;
@@ -30,7 +34,7 @@ public class LottoGameService {
     public int calculateLottoCountOnBuy(final LottoBuyer buyer) {
         outputView.requestPurchaseAmount();
         try {
-            buyer.pay(readPurchaseAmount());
+            buyer.pay(inputView.readIntegerInput());
             return buyer.getCountOfLotto();
         } catch (IllegalArgumentException e) {
             handleIllegalArgumentException(e);
@@ -62,47 +66,36 @@ public class LottoGameService {
         printWinningCountsByRank(result);
     }
 
-    public void printTotalReturn(int countOfLotto) {
-        outputView.printTotalReturn(new LottoTotalReturnDTO(lottoRankResult, countOfLotto));
+    public void printTotalReturn(final int countOfLotto) {
+        LottoTotalReturnDTO result = new LottoTotalReturnDTO(lottoRankResult, countOfLotto);
+        outputView.printTotalReturn(result);
     }
 
     private Lotto getWinningLottoNumbers() {
         outputView.requestWinningLottoNumbers();
         try {
-            return new Lotto(readWinningLotto());
+            return new Lotto(inputView.readWinningLotto());
         } catch (IllegalArgumentException e) {
             handleIllegalArgumentException(e);
             return getWinningLottoNumbers();
         }
     }
 
-    private WinningLotto getWinningLottoByBonusNumber(Lotto lotto) {
+    private WinningLotto getWinningLottoByBonusNumber(final Lotto lotto) {
         outputView.requestBonusLottoNumber();
         try {
-            return new WinningLotto(lotto, readBonusNumber());
+            return new WinningLotto(lotto, inputView.readIntegerInput());
         } catch (IllegalArgumentException e) {
             handleIllegalArgumentException(e);
             return getWinningLottoByBonusNumber(lotto);
         }
     }
 
-    private int readPurchaseAmount() {
-        return inputView.readIntegerInput();
-    }
-
-    private List<Integer> readWinningLotto() {
-        return inputView.readWinningLotto();
-    }
-
-    private int readBonusNumber() {
-        return inputView.readIntegerInput();
-    }
-
     private void handleIllegalArgumentException(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
 
-    private LottoRankResult calculateWinningResult(WinningLotto winningLotto, Lottos lottos) {
+    private LottoRankResult calculateWinningResult(final WinningLotto winningLotto, final Lottos lottos) {
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.findLottoByIndex(i);
             lottoRankResult.countWinningResult(winningLotto, lotto);
@@ -110,7 +103,7 @@ public class LottoGameService {
         return lottoRankResult;
     }
 
-    private void printWinningCountsByRank(LottoRankResult result) {
+    private void printWinningCountsByRank(final LottoRankResult result) {
         List<LottoRank> ranks = Arrays.asList(LottoRank.values());
         IntStream.range(1, ranks.size())
                 .forEach(i -> {

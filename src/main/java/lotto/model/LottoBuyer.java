@@ -26,23 +26,23 @@ public class LottoBuyer {
         return purchaseAmount / PURCHASE_AMOUNT_UNIT;
     }
 
-    private void validateAmountUnit(int purchaseAmount) {
+    private void validateAmountUnit(final int purchaseAmount) {
         if (isNotDividedByPurchaseAmountUnit(purchaseAmount)) {
             NOT_VALID_PURCHASE_AMOUNT_UNIT.throwException();
         }
     }
 
-    private boolean isNotDividedByPurchaseAmountUnit(int purchaseAmount) {
+    private boolean isNotDividedByPurchaseAmountUnit(final int purchaseAmount) {
         return purchaseAmount % PURCHASE_AMOUNT_UNIT != 0;
     }
 
-    private void validateIsLessThanMinimumPurchaseAmount(int purchaseAmount) {
+    private void validateIsLessThanMinimumPurchaseAmount(final int purchaseAmount) {
         if (purchaseAmount < MINIMUM_PURCHASE_AMOUNT) {
             LESS_THAN_MINIMUM_PURCHASE_AMOUNT.throwException();
         }
     }
 
-    private void validateIsMoreThanMaximumPurchaseAmount(int purchaseAmount) {
+    private void validateIsMoreThanMaximumPurchaseAmount(final int purchaseAmount) {
         if (purchaseAmount > MAXIMUM_PURCHASE_AMOUNT) {
             MORE_THAN_MAXIMUM_PURCHASE_AMOUNT.throwException();
         }

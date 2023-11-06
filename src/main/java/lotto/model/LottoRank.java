@@ -18,14 +18,14 @@ public enum LottoRank {
     private final int prize;
     private final String message;
 
-    LottoRank(int matchCount, boolean bonusNumberExists, int prize, String message) {
+    LottoRank(final int matchCount, final boolean bonusNumberExists, final int prize, String message) {
         this.matchCount = matchCount;
         this.bonusNumberExists = bonusNumberExists;
         this.prize = prize;
         this.message = message + DASH_SYMBOL + COUNT_EXPRESSION;
     }
 
-    public static LottoRank findRankByMatchCount(int matchCount, boolean bonusNumberExists) {
+    public static LottoRank findRankByMatchCount(final int matchCount, final boolean bonusNumberExists) {
         return Arrays.stream(LottoRank.values())
                 .filter(lottoRank -> lottoRank.matchCount == matchCount)
                 .filter(lottoRank -> lottoRank.bonusNumberExists == bonusNumberExists)
@@ -33,7 +33,7 @@ public enum LottoRank {
                 .orElse(NONE);
     }
 
-    public static BigInteger calculatePrizeByCount(LottoRank rank, int count) {
+    public static BigInteger calculatePrizeByCount(final LottoRank rank, final int count) {
         BigInteger prize = BigInteger.valueOf(rank.prize);
         return prize.multiply(BigInteger.valueOf(count));
     }

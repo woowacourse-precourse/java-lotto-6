@@ -11,4 +11,9 @@ public class InputView {
         System.out.println(AMOUNT_INPUT_MESSAGE);
         return Console.readLine();
     }
+
+    public String inputWinningNumber() {
+        System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
+        return Console.readLine();
+    }
 }

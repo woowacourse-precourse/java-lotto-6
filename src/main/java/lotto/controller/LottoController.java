@@ -11,21 +11,21 @@ import lotto.model.domain.lotto.Lottos;
 import lotto.model.domain.lotto.lottogenerator.AnswerGenerator;
 import lotto.model.domain.result.LottoResultFactory;
 import lotto.model.domain.result.LottoResults;
-import lotto.view.LottoGameUI;
+import lotto.view.TerminalUI;
 
 public class LottoController {
 
     final private ExceptionHandler handler;
     final private LottoStore store;
-    final private LottoGameUI ui;
+    final private TerminalUI ui;
 
     LottoResultFactory factory = new LottoResultFactory();
     LottoResults lottoResults = new LottoResults();
 
-    public LottoController(ExceptionHandler handler, LottoStore store, LottoGameUI ui) {
+    public LottoController(ExceptionHandler handler, LottoStore store) {
         this.handler = handler;
         this.store = store;
-        this.ui = ui;
+        this.ui = new TerminalUI();
     }
 
     public void run() {

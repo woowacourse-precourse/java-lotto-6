@@ -6,16 +6,13 @@ import lotto.exception.exceptionhandler.RetryExceptionHandler;
 import lotto.model.LottoStore;
 import lotto.model.domain.lotto.lottogenerator.LottoGenerator;
 import lotto.model.domain.lotto.lottogenerator.RandomLottoGenerator;
-import lotto.view.LottoGameUI;
-import lotto.view.TerminalUI;
 
 public class ApplicationConfig {
 
     public final static ExceptionHandler handler = new RetryExceptionHandler();
     public final static LottoGenerator generator = new RandomLottoGenerator();
     public final static LottoStore lottoStore = new LottoStore(generator);
-    public final static LottoGameUI ui = new TerminalUI();
-    public final static LottoController controller = new LottoController(handler, lottoStore, ui);
+    public final static LottoController controller = new LottoController(handler, lottoStore);
 
     private ApplicationConfig() {
     }

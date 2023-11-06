@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.model.domain.Bonus;
 import lotto.model.domain.LottoMachine;
 import lotto.model.domain.LottoResultChecker;
 import lotto.model.domain.Purchase;
@@ -24,13 +23,14 @@ public class LottoGameController {
     public void playing() {
         purchase = purchaseLottoTickets();
         getLottoTickets();
-        enterWinningNumbersAndBonusNumber();
+        getWinningNumbers();
+        //TODO: 보너스 번호 입력 로직 추가
         getLotteryStatistics();
     }
 
     private Purchase purchaseLottoTickets() {
         purchase = new Purchase();
-        while(purchase.getInputUntilValid()) {
+        while (purchase.getInputUntilValid()) {
             try {
                 String price = inputView.requestPrice();
                 purchase.setOrderInfo(price);
@@ -47,11 +47,16 @@ public class LottoGameController {
         outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
     }
 
-    private void enterWinningNumbersAndBonusNumber() {
-        String winningNumbers = inputView.requestWinningNumber();
-        winningLotto = new WinningLotto(winningNumbers);
-        int bonusNumber = inputView.requestBonusNumber();
-        winningLotto.addBonus(new Bonus(bonusNumber));
+    private void getWinningNumbers() {
+        winningLotto = new WinningLotto();
+        while (winningLotto.getInputUntilValid()) {
+            try {
+                String winningNumbers = inputView.requestWinningNumber();
+                winningLotto.setWinningNumber(winningNumbers);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void getLotteryStatistics() {

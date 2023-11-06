@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.SizeException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,8 @@ public class InputLottoNumber {
         String lottoNumbs = Console.readLine();
         System.out.println();
         validate(lottoNumbs);
-        List<Integer> lottonumbers = split(lottoNumbs);
-        return lottonumbers;
+        validateSize(split(lottoNumbs));
+        return split(lottoNumbs);
     }
 
     private void validate(String lottoNumbs) {
@@ -36,6 +37,13 @@ public class InputLottoNumber {
             inputLottoNumber.add(Integer.parseInt(i));
         }
         return inputLottoNumber;
+    }
+
+
+    private void validateSize(List<Integer> lottoNumbs) {
+        if (lottoNumbs.size() != SIZE) {
+            throw new SizeException();
+        }
     }
 
 

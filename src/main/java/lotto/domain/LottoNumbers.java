@@ -7,6 +7,8 @@ import lotto.validation.LottoNumberValidation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoNumbers {
 
@@ -20,10 +22,10 @@ public class LottoNumbers {
         int numberOfLotto = purchaseAmount / 1000;
         printUtil.printNumberOfLotto(numberOfLotto);
 
-        Lotto[] lottos = new Lotto[numberOfLotto];
-        for (int count = 0; count < numberOfLotto; count++) {
-            lottos[count] = pickRandomLottoNumbers();
-        }
+        Lotto[] lottos = IntStream.range(0, numberOfLotto)
+                .mapToObj(count -> pickRandomLottoNumbers())
+                .toArray(Lotto[]::new);
+
         printUtil.printLottoNumbers(sb);
 
         return lottos;
@@ -53,13 +55,10 @@ public class LottoNumbers {
         List<Integer> lottoNumbers = new ArrayList<>(lotto.getLottoNumbers());
         Collections.sort(lottoNumbers);
 
-        sb.append("[");
-        for (int i = 0; i < 6; i++) {
-            if (i == 5) {
-                sb.append(lottoNumbers.get(i)).append("]").append("\n");
-                return;
-            }
-            sb.append(lottoNumbers.get(i)).append(", ");
-        }
+        String result = lottoNumbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
+
+        sb.append(result).append("\n");
     }
 }

@@ -24,12 +24,20 @@ public enum WinningStatistics {
 
     public static WinningStatistics confirm(long correctWinningCount, boolean correctBonusCount) {
         WinningStatistics winningStatistics = Arrays.stream(WinningStatistics.values())
-                .filter(statistics -> statistics.winningTier.contains(correctWinningCount))
-                .filter(statistics -> statistics.correctBonusFlag == correctBonusCount)
+                .filter(statistics -> statistics.isContainsWinningTier(correctWinningCount))
+                .filter(statistics -> statistics.isSameCorrectBonusFlag(correctBonusCount))
                 .findFirst()
                 .orElse(NONE);
 
         return winningStatistics;
+    }
+
+    private boolean isContainsWinningTier(long correctWinningCount) {
+        return this.winningTier.contains(correctWinningCount);
+    }
+
+    private boolean isSameCorrectBonusFlag(boolean correctBonusCount) {
+        return this.correctBonusFlag == correctBonusCount;
     }
 
 }

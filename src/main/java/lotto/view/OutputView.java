@@ -17,4 +17,6 @@ public interface OutputView {
     void writeResult();
 
     void writeBlank();
+
+    void writeWithErrorMessage(String message);
 }

@@ -6,6 +6,8 @@ import java.util.List;
 
 public class OutputViewImpl implements OutputView {
 
+    private static final String HEADER = "[ERROR] ";
+
     @Override
     public void writeLottoPurchaseMoney() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -37,5 +39,10 @@ public class OutputViewImpl implements OutputView {
     @Override
     public void writeBlank() {
         System.out.println();
+    }
+
+    @Override
+    public void writeWithErrorMessage(String message) {
+        System.out.println(HEADER + message);
     }
 }

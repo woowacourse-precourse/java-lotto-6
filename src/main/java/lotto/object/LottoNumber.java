@@ -6,11 +6,15 @@ import java.util.List;
 public class LottoNumber {
 
 	private int lottoIndex = 0;
-	private List<Integer> madeNumber = new ArrayList<>();
-		
+	private List<Integer> computerNumber = new ArrayList<Integer>();
+	
 	public LottoNumber(int lottoIndex, List<Integer> madeNumber) {
 		this.lottoIndex = lottoIndex;
-		this.madeNumber = madeNumber;
+		this.computerNumber = madeNumber;
+	}
+	
+	public List<Integer> getComputerNumber() {
+		return this.computerNumber;
 	}
 	
 //	public String printLottoNumber() {

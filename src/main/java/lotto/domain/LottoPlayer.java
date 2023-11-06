@@ -21,10 +21,9 @@ public class LottoPlayer {
 		String inputNumber = Console.readLine();
 		String[] splitInputNumber = inputNumber.split(","); 
 		for (int i = 0; i < splitInputNumber.length; i++) {
-			int tmp = Integer.parseInt(splitInputNumber[i]);
-			Application.playerNumber.add(tmp);
+			int eachNumber = Integer.parseInt(splitInputNumber[i]);
+			Application.playerNumber.add(eachNumber);
 		}
-		
 		System.out.println("보너스 번호를 입력해 주세요.");
 		Application.playerBonusNumber = Integer.parseInt(Console.readLine());
 	}

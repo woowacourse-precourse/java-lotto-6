@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Service {
     private final Domain DOMAIN = Domain.getInstance();
@@ -57,9 +58,10 @@ public class Service {
         DOMAIN.bonusNumber = bonusNumber;
     }
 
-    public List<String> splitLottoNumbers(String lottoNumber) {
-        return Arrays.asList(lottoNumber.split(","));
+    public List<Integer> makeLotto(String lottoNumber) {
+        return Arrays.stream(lottoNumber.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
-
 
 }

@@ -46,7 +46,7 @@ public class Lotto {
 		}
 	}
 
-	protected boolean isNumberOutOfRange(int number) {
+	private boolean isNumberOutOfRange(int number) {
 		return number > MAX_NUMBER || number < MIN_NUMBER;
 	}
 
@@ -70,5 +70,9 @@ public class Lotto {
 
 	public int getSize() {
 		return numbers.size();
+	}
+	
+	public List<Integer> getLottoNumbers(){
+		return numbers;
 	}
 }

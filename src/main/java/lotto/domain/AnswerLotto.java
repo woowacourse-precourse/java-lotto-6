@@ -1,42 +1,24 @@
 package lotto.domain;
 
-import java.util.List;
+public class AnswerLotto {
 
-import lotto.util.message.ErrorMessage;
-
-public class AnswerLotto extends Lotto {
-
+	private final Lotto answerLottoNumbers;
 	private final BonusNumber bonusNumber;
 
-	public AnswerLotto(List<Integer> numbers, int number) {
-		super(numbers);
-		validateBonusNumber(numbers, number);
-		this.bonusNumber = new BonusNumber(number);
-	}
+	public AnswerLotto(Lotto lotto, BonusNumber bonusNumber) {
+		this.answerLottoNumbers = lotto;
+		this.bonusNumber = bonusNumber;
+	}	
 
-	private void validateBonusNumber(List<Integer> numbers, int number) {
-		validateDuplicateBonusNumber(numbers, number);
-		validateBonusNumberOutOfRange(number);
-	}
-
-	private void validateDuplicateBonusNumber(List<Integer> numbers, int number) {
-		if (numbers.contains(number)) {
-			throw new IllegalArgumentException(ErrorMessage.LOTTO_BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
-		}
-	}
-
-	private void validateBonusNumberOutOfRange(int number) {
-		if (isNumberOutOfRange(number)) {
-			throw new IllegalArgumentException(
-					ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getFormattedMessage(MIN_NUMBER, MAX_NUMBER));
-		}
-	}
-	
 	public int getAnswerLottoNumbersSize(){
-		return this.getSize();
+		return answerLottoNumbers.getSize();
 	}
 	
 	public int getBonusNumber() {
-		return bonusNumber.bonusNumber();
+		return bonusNumber.getBonusNumber();
+	}
+	
+	public boolean isContain(int number) {
+		return answerLottoNumbers.isContain(number);
 	}
 }

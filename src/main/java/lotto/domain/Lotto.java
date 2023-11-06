@@ -7,17 +7,17 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        this.numbers = validate(numbers);;
+        validate(numbers);
+        this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    private List<Integer> validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         try {
             Validate.sixHitLottoNumberValidate(numbers);
-            return numbers;
         } catch (IllegalArgumentException e){
             throw new IllegalArgumentException();
         }

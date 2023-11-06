@@ -19,12 +19,11 @@ public class LottoResult {
                 .map(lotto -> lotto.compareWinningNumbers(winningNumbers, bonus))
                 .toList();
 
-        float averageOfPrice = (float) this.winningLottos.stream()
+        float sumOfPrice = (float) this.winningLottos.stream()
                 .mapToLong(WinningLotto::getPrice)
-                .average()
-                .getAsDouble();
+                .sum();
 
-        this.rateOfReturn = averageOfPrice / 10;
+        this.rateOfReturn = sumOfPrice / (lottos.size() * 10);
 
         return this;
     }

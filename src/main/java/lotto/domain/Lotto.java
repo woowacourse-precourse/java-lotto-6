@@ -16,6 +16,12 @@ public class Lotto {
         return this.numbers;
     }
 
+    public List<Integer> sortLottoNumbers() {
+        return this.numbers.stream()
+                .sorted()
+                .toList();
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -25,7 +31,7 @@ public class Lotto {
     private void validateDuplication(List<Integer> numbers) {
         HashSet<Integer> duplicationChecker = new HashSet<>(numbers);
 
-        if (duplicationChecker.size() != 6) {
+        if (duplicationChecker.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }

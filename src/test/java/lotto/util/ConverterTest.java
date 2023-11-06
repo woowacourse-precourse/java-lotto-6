@@ -9,14 +9,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-class StringUtilTest {
+class ConverterTest {
     @Test
     void 문자열을_숫자로_변환할_수_없을_경우_예외가_발생한다() {
         // given
         String input = "1a";
 
         // when & then
-        assertThatThrownBy(() -> StringUtil.convertToInt(input))
+        assertThatThrownBy(() -> Converter.convertToInt(input))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_NUMBER.getMassage());
     }
@@ -27,7 +27,7 @@ class StringUtilTest {
         String input = "1";
 
         // when
-        int result = StringUtil.convertToInt(input);
+        int result = Converter.convertToInt(input);
 
         // then
         assertThat(result).isEqualTo(1);
@@ -40,7 +40,7 @@ class StringUtilTest {
                 + COMMA.getValue() + "4" + COMMA.getValue() + "5" + COMMA.getValue() + "6";
 
         // when
-        List<Integer> result = StringUtil.convertToIntListByDelimiter(input);
+        List<Integer> result = Converter.convertToIntListByDelimiter(input);
 
         // then
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
@@ -54,7 +54,7 @@ class StringUtilTest {
         String input = "1" + delimiter + "2" + delimiter + "3" + delimiter + "4" + delimiter + "5" + delimiter + "6";
 
         // when & then
-        assertThatThrownBy(() -> StringUtil.convertToIntListByDelimiter(input))
+        assertThatThrownBy(() -> Converter.convertToIntListByDelimiter(input))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_SEPARATE_BY_DELIMITER.getMassage());
     }

@@ -11,7 +11,7 @@ import lotto.dto.WinningLotto;
 import lotto.dto.WinningResult;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
-import lotto.util.StringUtil;
+import lotto.util.Converter;
 
 public class LottoController {
     private final InputView inputView;
@@ -38,7 +38,7 @@ public class LottoController {
     private LottoAmount getLottoAmount() {
         return this.inputWithRetry(() -> {
             String input = inputView.scanLottoAmount();
-            int amount = StringUtil.convertToInt(input);
+            int amount = Converter.convertToInt(input);
             return new LottoAmount(amount);
         });
     }
@@ -59,14 +59,14 @@ public class LottoController {
     private Lotto getLotto() {
         return this.inputWithRetry(() -> {
             String input = inputView.scanWinningLottoNumber();
-            List<Integer> numbers = StringUtil.convertToIntListByDelimiter(input);
+            List<Integer> numbers = Converter.convertToIntListByDelimiter(input);
             return lottoMachine.createLotto(numbers);
         });
     }
 
     private LottoNumber getBonus() {
         String input = inputView.scanBonusNumber();
-        int bonus = StringUtil.convertToInt(input);
+        int bonus = Converter.convertToInt(input);
         return lottoMachine.createLottoNumber(bonus);
     }
 

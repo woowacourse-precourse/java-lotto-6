@@ -23,7 +23,7 @@ public class PrizeResult {
 
     public void calcPrizeResult(WinningLotto winningLotto, Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
-            Prize prize = Prize.getPrize(lotto.getMatchedLottoCount(winningLotto),
+            Prize prize = Prize.getPrize(lotto.getMatchLottoCount(winningLotto),
                     lotto.isContain(winningLotto.getBonusNumber()));
             updatePrizeCount(prize);
         }

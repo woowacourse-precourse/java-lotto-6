@@ -2,11 +2,11 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.Lotto;
-public class LottoStorage {
+public class Lottos {
     Purchase purchase;
-    List<Lotto> lottos;
+    private List<Lotto> lottos;
 
-    public LottoStorage(List<Lotto> lottos) {
+    public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
     // 로또 List 갯수 validation

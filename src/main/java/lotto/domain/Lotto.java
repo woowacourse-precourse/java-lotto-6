@@ -16,7 +16,7 @@ public class Lotto {
         return this.numbers;
     }
 
-    public List<Integer> sortLottoNumbers() {
+    public List<Integer> sortNumbers() {
         return this.numbers.stream()
                 .sorted()
                 .toList();

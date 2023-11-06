@@ -28,9 +28,9 @@ public class OutputView {
     public static void printWinningStatistic(Map<Rank, Integer> result) {
         System.out.println(WINNING_STATISTIC_FORMAT);
 
-        result.remove(Rank.LOSING_TICKET);
         StringBuilder stringBuilder = new StringBuilder();
         DecimalFormat decimalFormat = new DecimalFormat(MONEY_FORMAT);
+        result.remove(Rank.LOSING_TICKET);
         result.forEach((key, value) -> makeWinningStatisticOutput(key, value, stringBuilder, decimalFormat));
 
         System.out.print(stringBuilder);
@@ -58,7 +58,7 @@ public class OutputView {
     }
 
     private static String makeLottoOutput(Lotto lotto) {
-        List<Integer> sortedLottoNumbers = getSortedIntegerList(lotto.getNumbers());
+        List<Integer> sortedLottoNumbers = sortIntegerList(lotto.getNumbers());
         List<String> lottoNumbers = convertIntegersToStrings(sortedLottoNumbers);
         return OPEN_BRACKET + String.join(", ", lottoNumbers) + CLOSE_BRACKET;
     }
@@ -67,7 +67,7 @@ public class OutputView {
         return integers.stream().map(integer -> Integer.toString(integer)).toList();
     }
 
-    private static List<Integer> getSortedIntegerList(List<Integer> integers) {
+    private static List<Integer> sortIntegerList(List<Integer> integers) {
         return integers.stream().sorted().toList();
     }
 }

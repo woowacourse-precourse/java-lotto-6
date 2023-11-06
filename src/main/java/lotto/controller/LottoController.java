@@ -22,6 +22,7 @@ public class LottoController {
         WinningStatistic winningStatistic = generateWinningStatistic(lottoStore.getRanks(winningNumbers));
 
         OutputView.printWinningStatistic(winningStatistic.getResult());
+        
         OutputView.printTotalEarningsRate(amount.calculateEarningsRate(winningStatistic.calculateTotalPrize()));
     }
 

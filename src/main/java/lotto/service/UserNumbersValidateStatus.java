@@ -1,6 +1,6 @@
 package lotto.service;
 
-public enum UserNumbersValidateEnum {
+public enum UserNumbersValidateStatus {
     PRE_NUMBERS_ERROR("[ERROR] 숫자만 입력 가능합니다."),
     PRE_NUMBERS_DELIMITER_ERROR("[ERROR] 구분자와 숫자만 입력 가능합니다."),
     DELIMITER_START_END_ERROR("[ERROR] 구분자로 시작하거나 끝날 수 없습니다."),
@@ -12,7 +12,7 @@ public enum UserNumbersValidateEnum {
 
     private String message;
 
-    UserNumbersValidateEnum(String message) {
+    UserNumbersValidateStatus(String message) {
         this.message = message;
     }
 

@@ -30,7 +30,7 @@ public class ResultWinning {
 
     private static String addString(int match) {
         StringBuilder sb = new StringBuilder();
-        sb.append(ResultWinEnum.getIndexMessage(printCount++));
+        sb.append(ResultWinStatus.getIndexMessage(printCount++));
         sb.append(match);
         sb.append(MESSAGE);
 

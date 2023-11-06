@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.service.UserNumbersValidateEnum;
+import lotto.service.UserNumbersValidateStatus;
 
 public class LuckyNumbers {
     private int bonusNumber;
@@ -19,7 +19,7 @@ public class LuckyNumbers {
 
     private void duplicateValidate(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.DUPLICATE_NUMBERS_BONUS_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.DUPLICATE_NUMBERS_BONUS_ERROR.get());
         }
     }
 

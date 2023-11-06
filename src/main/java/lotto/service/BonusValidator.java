@@ -8,7 +8,7 @@ public class BonusValidator {
     public static int validate(String userInput) {
         // Only number
         if (!userInput.matches(ONLY_NUMBER)) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.PRE_NUMBERS_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.PRE_NUMBERS_ERROR.get());
         }
 
         int bonus = Integer.parseInt(userInput);
@@ -25,13 +25,13 @@ public class BonusValidator {
 
     private static void maxValidate(int bonus) {
         if (bonus > MAX_NUMBER) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.LOTTO_NUMBERS_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
         }
     }
 
     private static void minValidate(int bonus) {
         if (bonus < MIN_NUMBER) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.LOTTO_NUMBERS_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
         }
     }
 }

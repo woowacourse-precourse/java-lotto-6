@@ -18,7 +18,7 @@ public class BonusValidatorTest {
     void testBonusException() {
         assertThatThrownBy(() -> BonusValidator.validate("0"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(UserNumbersValidateEnum.LOTTO_NUMBERS_ERROR.get());
+                .hasMessage(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
     }
 
     @DisplayName("보너스 번호 예외 테스트")
@@ -26,6 +26,6 @@ public class BonusValidatorTest {
     void testBonusException2() {
         assertThatThrownBy(() -> BonusValidator.validate("46"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(UserNumbersValidateEnum.LOTTO_NUMBERS_ERROR.get());
+                .hasMessage(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
     }
 }

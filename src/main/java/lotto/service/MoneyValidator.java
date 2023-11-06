@@ -15,7 +15,7 @@ public class MoneyValidator {
     private static int preChange(String money) {
         // Only number
         if (!money.matches(ONLY_NUMBER)) {
-            throw new IllegalArgumentException(MoneyValidateEnum.PRE_MONEY_ERROR.get());
+            throw new IllegalArgumentException(MoneyValidateStatus.PRE_MONEY_ERROR.get());
         }
         return Integer.parseInt(money);
     }
@@ -28,19 +28,19 @@ public class MoneyValidator {
 
     private static void minValidate(int money) {
         if (money < MIN_MONEY) {
-            throw new IllegalArgumentException(MoneyValidateEnum.MIN_MONEY_ERROR.get());
+            throw new IllegalArgumentException(MoneyValidateStatus.MIN_MONEY_ERROR.get());
         }
     }
 
     private static void didNotUnitValidate(int money) {
         if (money % MIN_MONEY != 0) {
-            throw new IllegalArgumentException(MoneyValidateEnum.UNIT_MONEY_ERROR.get());
+            throw new IllegalArgumentException(MoneyValidateStatus.UNIT_MONEY_ERROR.get());
         }
     }
 
     private static void maxValidate(int money) {
         if (money > MAX_MONEY) {
-            throw new IllegalArgumentException(MoneyValidateEnum.MAX_MONEY_ERROR.get());
+            throw new IllegalArgumentException(MoneyValidateStatus.MAX_MONEY_ERROR.get());
         }
     }
 }

@@ -14,6 +14,6 @@ public class EarningRate {
     }
 
     private int calEarning(int count) {
-        return EarningRateNum.getValueByIndex(count);
+        return EarningRateStatus.getValueByIndex(count);
     }
 }

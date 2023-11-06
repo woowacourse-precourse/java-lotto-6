@@ -2,9 +2,8 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.service.ResultWinEnum;
 
-public enum EarningRateNum {
+public enum EarningRateStatus {
     THREE(3, 5000),
     FOUR(4, 50000),
     FIVE(5, 1500000),
@@ -13,15 +12,15 @@ public enum EarningRateNum {
 
     private int index;
     private int value;
-    private static final Map<Integer, EarningRateNum> indexMap = new HashMap<>();
+    private static final Map<Integer, EarningRateStatus> indexMap = new HashMap<>();
 
     static {
-        for (EarningRateNum win : EarningRateNum.values()) {
+        for (EarningRateStatus win : EarningRateStatus.values()) {
             indexMap.put(win.index, win);
         }
     }
 
-    EarningRateNum(int index, int value) {
+    EarningRateStatus(int index, int value) {
         this.index = index;
         this.value = value;
     }

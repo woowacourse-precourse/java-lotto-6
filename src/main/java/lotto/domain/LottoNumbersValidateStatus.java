@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public enum LottoNumbersValidateEnum {
+public enum LottoNumbersValidateStatus {
     LOTTO_NUMBERS_VALIDATE("^[0-9,]*$"),
     LOTTO_NUMBERS_SIZE_ERROR("[ERROR] 로또 번호는 6개만 입력 가능합니다."),
     LOTTO_NUMBERS_DUPLICATE_ERROR("[ERROR] 로또 번호는 중복될 수 없습니다."),
@@ -9,7 +9,7 @@ public enum LottoNumbersValidateEnum {
 
     private String message;
 
-    LottoNumbersValidateEnum(String message) {
+    LottoNumbersValidateStatus(String message) {
         this.message = message;
     }
 

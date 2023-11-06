@@ -5,11 +5,11 @@ import java.util.List;
 public class OutputView {
 
     public static void buyLottoTicket() {
-        System.out.println(OutputEnum.BUY_LOTTO_TICKET.get());
+        System.out.println(OutputStatus.BUY_LOTTO_TICKET.get());
     }
 
     public static void getLottoCount(int count) {
-        System.out.println(count + OutputEnum.GET_LOTTO_TICKET.get());
+        System.out.println(count + OutputStatus.GET_LOTTO_TICKET.get());
     }
 
     public static void printLottoTicket(List<String> lottoTickets) {
@@ -33,14 +33,14 @@ public class OutputView {
     }
 
     public static void numbersLotto() {
-        System.out.println(OutputEnum.NUMBERS_LOTTO.get());
+        System.out.println(OutputStatus.NUMBERS_LOTTO.get());
     }
 
     public static void bonusLotto() {
-        System.out.println(OutputEnum.BONUS_LOTTO.get());
+        System.out.println(OutputStatus.BONUS_LOTTO.get());
     }
 
     public static void resultLotto() {
-        System.out.println(OutputEnum.RESULT_LOTTO.get());
+        System.out.println(OutputStatus.RESULT_LOTTO.get());
     }
 }

@@ -26,28 +26,28 @@ public class UserNumbersValidator {
     // Only number
     private static void numberValidate(String userInput) {
         if (!userInput.matches(ONLY_NUMBER_DELIMITER)) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.PRE_NUMBERS_DELIMITER_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.PRE_NUMBERS_DELIMITER_ERROR.get());
         }
     }
 
     // Delimiter starting
     private static void delimiterStartValidate(String userInput) {
         if (userInput.startsWith(DELIMITER)) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.DELIMITER_START_END_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.DELIMITER_START_END_ERROR.get());
         }
     }
 
     // Delimiter ending
     private static void delimiterEndValidate(String userInput) {
         if (userInput.endsWith(DELIMITER)) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.DELIMITER_START_END_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.DELIMITER_START_END_ERROR.get());
         }
     }
 
     // Delimiter 뒤에 DELIMITER가 오는지 검증
     private static void delimiterDoubleValidate(String userInput) {
         if (userInput.contains(DELIMITER + DELIMITER)) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.DELIMITER_DOUBLE_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.DELIMITER_DOUBLE_ERROR.get());
         }
     }
 
@@ -64,7 +64,7 @@ public class UserNumbersValidator {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.LOTTO_NUMBERS_SIZE_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_SIZE_ERROR.get());
         }
     }
 
@@ -72,7 +72,7 @@ public class UserNumbersValidator {
         boolean duplicate = numbers.stream().distinct().count() != numbers.size();
 
         if (duplicate) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.LOTTO_NUMBERS_DUPLICATE_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_DUPLICATE_ERROR.get());
         }
     }
 
@@ -83,13 +83,13 @@ public class UserNumbersValidator {
 
     private static void maxValidate(List<Integer> numbers) {
         if (Collections.max(numbers) > MAX_NUMBER) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.LOTTO_NUMBERS_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
         }
     }
 
     private static void minValidate(List<Integer> numbers) {
         if (Collections.min(numbers) < MIN_NUMBER) {
-            throw new IllegalArgumentException(UserNumbersValidateEnum.LOTTO_NUMBERS_ERROR.get());
+            throw new IllegalArgumentException(UserNumbersValidateStatus.LOTTO_NUMBERS_ERROR.get());
         }
     }
 }

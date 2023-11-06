@@ -1,10 +1,9 @@
 package lotto.service;
 
-import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum ResultWinEnum {
+public enum ResultWinStatus {
     RIGHT_THREE(1, "3개 일치 (5,000원) - "),
     RIGHT_FOUR(2, "4개 일치 (50,000원) - "),
     RIGHT_FIVE(3, "5개 일치 (1,500,000원) - "),
@@ -14,15 +13,15 @@ public enum ResultWinEnum {
     private int index;
     private String message;
 
-    private static final Map<Integer, ResultWinEnum> indexMap = new HashMap<>();
+    private static final Map<Integer, ResultWinStatus> indexMap = new HashMap<>();
 
     static {
-        for (ResultWinEnum win : ResultWinEnum.values()) {
+        for (ResultWinStatus win : ResultWinStatus.values()) {
             indexMap.put(win.index, win);
         }
     }
 
-    ResultWinEnum(int index, String message) {
+    ResultWinStatus(int index, String message) {
         this.index = index;
         this.message = message;
     }

@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 로또의 결과를 나타내는 enum 클래스입니다.
+ */
 public enum LottoRank {
         FIRST("6개 일치") {
                 @Override
@@ -54,7 +57,12 @@ public enum LottoRank {
                 this.description = description;
         }
 
-
+        /**
+         * 맞춘 개수에 대한 RANK 를 반환합니다.
+         *
+         * @param count 맞춘 개수
+         * @return RANK
+         */
         public static LottoRank getRank(long count) {
                 if (RANK_KEY.get(count) == null) {
                         return NONE;
@@ -63,6 +71,10 @@ public enum LottoRank {
                 return RANK_KEY.get(count);
         }
 
+        /**
+         * 각 RANK 에 할당된 당첨금을 반환합니다.
+         * @return 당청금
+         */
         public abstract BigDecimal getPrizes();
 
         @Override

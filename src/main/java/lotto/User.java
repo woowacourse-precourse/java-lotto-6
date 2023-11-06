@@ -36,8 +36,9 @@ public class User {
     }
 
     public void doDraw(Draw draw) {
+        final String message = "추첨 정보를 입력하세요.";
         if (draw == null) {
-            throw new IllegalArgumentException("추첨 정보를 입력하세요.");
+            throw new IllegalArgumentException(message);
         }
         validateLottoListNotEmpty();
         final List<Rank> ranks = draw.doDraw(lottos);
@@ -53,9 +54,9 @@ public class User {
     }
 
     private void printProfitRate(List<Rank> ranks) {
+        final String message = "총 수익률은 %.1f%%입니다.";
         validateLottoListNotEmpty();
         final long profits = RankUtil.getProfits(ranks);
-        final String message = "총 수익률은 %.1f%%입니다.";
         System.out.println(String.format(message, (double) profits / money));
     }
 

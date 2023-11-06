@@ -24,21 +24,24 @@ public class Draw {
     }
 
     private void validateWinningNumbers(List<Integer> numbers) {
+        final String message = "당첨 번호의 개수는 6개여야 합니다.";
         if (numbers == null || numbers.size() != 6) {
-            throw new IllegalArgumentException("당첨 번호의 개수는 6개여야 합니다.");
+            throw new IllegalArgumentException(message);
         }
     }
 
     private void validateUniqueNumbers(List<Integer> numbers) {
+        final String message = "로또 번호에 중복된 숫자가 있으면 안됩니다.";
         final long distinctCount = numbers.stream().distinct().count();
         if (numbers.size() != distinctCount) {
-            throw new IllegalArgumentException("당첨 번호에 중복된 숫자가 있으면 안됩니다.");
+            throw new IllegalArgumentException(message);
         }
     }
 
     private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        final String message = "보너스 번호는 당첨 번호와 중복될 수 없습니다.";
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(message);
         }
     }
 }

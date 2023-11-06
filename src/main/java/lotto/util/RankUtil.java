@@ -37,8 +37,9 @@ public class RankUtil {
     }
 
     private static void validateNotEmpty(List<Rank> ranks) {
+        final String message = "추첨 결과가 없습니다.";
         if (ranks == null || ranks.isEmpty()) {
-            throw new IllegalArgumentException("추첨 결과가 없습니다.");
+            throw new IllegalArgumentException(message);
         }
     }
 }

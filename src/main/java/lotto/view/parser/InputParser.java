@@ -2,6 +2,7 @@ package lotto.view.parser;
 
 import lotto.domain.UserMoney;
 import lotto.domain.WinningLottoNumbers;
+import lotto.view.constant.InputConstant;
 import lotto.view.validator.UserMoneyInputValidator;
 import lotto.view.validator.WinningLottoNumbersInputValidator;
 
@@ -15,6 +16,7 @@ public class InputParser {
     }
 
     public UserMoney parseUserMoney(String userMoney){
+        userMoney = removeBlank(userMoney);
         userMoneyInputValidator.validate(userMoney);
         return UserMoney.of(userMoney);
     }
@@ -24,4 +26,10 @@ public class InputParser {
         return WinningLottoNumbers.of(winningLottoNumbers);
     }
 
+    private String removeBlank(String userInput){
+        if(userInput.contains(InputConstant.BLANK_SYMBOL)){
+            userInput = userInput.replace(InputConstant.BLANK_SYMBOL, InputConstant.VOID_SYMBOL);
+        }
+        return userInput;
+    }
 }

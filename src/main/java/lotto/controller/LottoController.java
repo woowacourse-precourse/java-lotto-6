@@ -24,7 +24,7 @@ public class LottoController {
             userMoney = askToInsertUserMoney();
         } catch(LottoInputException e){
             outputView.printErrorMessage(e.getMessage());
-            userMoney = askToInsertUserMoney();
+            playGame();
         }
         askUserToInsertLottoWinningNumbers();
         askUserToInsertBonusNumber();

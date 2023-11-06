@@ -13,12 +13,18 @@ import java.util.stream.Collectors;
 
 public class UI {
     public static Integer inputMoney() {
+        Integer payment = 0;
         System.out.println("구입금액을 입력해 주세요.");
         String line = readLine();
         System.out.println();
-        Integer payment = Integer.parseInt(line);
+        try {
+            payment = Integer.parseInt(line);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("정수를 입력하지 않았습니다.");
+        }
         return payment;
     }
+
 
     public static void printPurchases(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");

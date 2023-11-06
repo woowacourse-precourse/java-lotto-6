@@ -34,4 +34,10 @@ public class Exception {
             winNumbers.add(number);
         }
     }
+
+    public static void duplicateBonusNumber(List<Integer> winNumbers, int bonusNumber) throws IllegalArgumentException {
+        if (winNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 서로 다른 숫자만 입력 가능합니다.\n");
+        }
+    }
 }

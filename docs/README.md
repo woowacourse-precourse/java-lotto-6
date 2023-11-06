@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://i.ibb.co/ScdBqFT/logo-light.png" alt="우아한테크코스" width="250px">
+    <img src="./logo.png" alt="우아한테크코스" width="800px">
 </p>
 
 # 프리코스 3주차 미션 - 로또 미션

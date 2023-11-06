@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class LottoPlayerNumber {
     private final List<Integer> lottoPlayerNumber;
 
-    public LottoPlayerNumber(List<Integer> lottoPlayerNumber) {
+    public LottoPlayerNumber() {
         this.lottoPlayerNumber = generateLottoNumber();
     }
 

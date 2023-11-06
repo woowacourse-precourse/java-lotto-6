@@ -7,39 +7,34 @@ import java.util.Map;
 
 public class WinningResult {
 
-    private final Map<Ranking, Integer> rankingCount = new EnumMap<>(Ranking.class);
+    private final Map<Ranking, Integer> winningResult = new EnumMap<>(Ranking.class);
     private double returnRate;
 
-    public WinningResult(List<Ranking> rankingCount, int purchasePrice) {
+    public WinningResult(List<Ranking> rankings, int purchasePrice) {
+        setInitialCondition();
+        calculateWinningResult(rankings);
+        calculateReturnRate(purchasePrice);
+    }
+
+    private void setInitialCondition() {
         Arrays.stream(Ranking.values())
-                .forEach(ranking -> this.rankingCount.put(ranking, 0));
-
-        rankingCount.stream()
-                .forEach(ranking -> calculateRankingCount(ranking));
-
-        returnRate = calculateReturnRate(purchasePrice);
+                .forEach(ranking -> this.winningResult.put(ranking, 0));
     }
 
-    private void calculateRankingCount(Ranking ranking) {
-
-        if(rankingCount.get(ranking) > 0) {
-            rankingCount.put(ranking, rankingCount.get(ranking) + 1);
-        }
-
-        if(rankingCount.get(ranking) <= 0) {
-            rankingCount.put(ranking, 1);
-        }
+    private void calculateWinningResult(List<Ranking> rankings) {
+        rankings.stream()
+                .forEach(ranking -> winningResult.put(ranking, winningResult.get(ranking) + 1));
     }
 
-    private double calculateReturnRate(int purchasePrice) {
+    private void calculateReturnRate(int purchasePrice) {
         double totalReward = Arrays.stream(Ranking.values())
-                .mapToInt(ranking -> rankingCount.get(ranking) * ranking.getReward())
+                .mapToInt(ranking -> winningResult.get(ranking) * ranking.getReward())
                 .sum();
-        return (totalReward / purchasePrice) * 100;
+        returnRate = (totalReward / purchasePrice) * 100;
     }
 
-    public Map<Ranking, Integer> getRankingCount() {
-        return rankingCount;
+    public Map<Ranking, Integer> getWinningResult() {
+        return winningResult;
     }
 
     public double getReturnRate() {

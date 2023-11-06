@@ -23,16 +23,6 @@ public class Lotto {
         validateDuplicate(numbers);
     }
 
-    public int matchCount(Lotto otherLotto) {
-        int count = 0;
-        for (int number : numbers) {
-            if (otherLotto.isContain(number)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
     public boolean isContain(int number) {
         return numbers.contains(number);
     }

@@ -18,12 +18,22 @@ public class WinningNumbers {
     }
 
     public Prize checkPrize(Lotto otherLotto) {
-        int count = winningLotto.matchCount(otherLotto);
+        int count = matchCount(otherLotto);
         boolean bonusMatch = otherLotto.isContain(bonusNumber);
         if (count == 5 && bonusMatch) {
             return Prize.SECOND;
         }
         return Prize.getByMatch(count);
+    }
+
+    public int matchCount(Lotto otherLotto) {
+        int count = 0;
+        for (int number : otherLotto.getNumbers()) {
+            if (winningLotto.isContain(number)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     private void validateBonusNumber(int bonusNumber) {

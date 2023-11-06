@@ -108,8 +108,8 @@ public class InputView {
             throw new IllegalArgumentException(NOT_NUMBER.getErrorMessage());
         }
 
-        final int bonusNumberInt = Integer.parseInt(number);
-        if (bonusNumberInt < MIN_RANGE || bonusNumberInt > MAX_RANGE) {
+        final int parsedNumber = Integer.parseInt(number);
+        if (parsedNumber < MIN_RANGE || parsedNumber > MAX_RANGE) {
             throw new IllegalArgumentException(OVER_RANGE.getErrorMessage());
         }
     }

@@ -9,7 +9,8 @@ import lotto.domain.MatchNumber;
 public class OutputView {
     private final static String AUTO_BUY_MESSAGE = "%d개를 구매했습니다.";
     private final static String WINNING_COUNT_MESSAGE = "당첨 통계\n---";
-    private final static String RATEOFRESULT_MESSAGE = "총 수익률은 %.2f%입니다.";
+    private final static String RATEOFRESULT_START_MESSAGE = "총 수익률은 %.1f";
+    private final static String RATEOFRESULT_END_MESSAGE = "%입니다.";
 
 
     public static void printException(String errorMessage) {
@@ -17,21 +18,21 @@ public class OutputView {
     }
 
     public static void printAutoLottos(final List<Lotto> autoLottos, int lottoCount) {
-        System.out.printf(String.format(AUTO_BUY_MESSAGE), lottoCount);
+        System.out.printf(String.format(AUTO_BUY_MESSAGE, lottoCount));
         printEmpty();
 
         StringBuilder result;
         for (Lotto lotto : autoLottos) {
             result = new StringBuilder();
             result.append(OutputConstants.LOTTO_PRINT_PREFIX.getConstants());
-            lotto.getLotto().stream().map(String::valueOf).collect(Collectors.joining(","));
+            result.append(lotto.getLotto().stream().map(String::valueOf).collect(Collectors.joining(", ")));
             result.append(OutputConstants.LOTTO_PRINT_SUFFIX.getConstants());
             System.out.print(result);
             printEmpty();
         }
     }
 
-    private static void printResultCount(List<Integer> matchCount) {
+    public static void printResultCount(List<Integer> matchCount) {
         System.out.printf(String.format(WINNING_COUNT_MESSAGE));
         printEmpty();
 
@@ -48,12 +49,15 @@ public class OutputView {
         }
     }
 
-    private static void printRateOfResult(float rateOfResult) {
-        System.out.printf(String.format(RATEOFRESULT_MESSAGE, rateOfResult * 100));
+    public static void printRateOfResult(double rateOfResult) {
+        StringBuilder result = new StringBuilder();
+        result.append(String.format(RATEOFRESULT_START_MESSAGE, rateOfResult * 100));
+        result.append(RATEOFRESULT_END_MESSAGE);
+        System.out.println(result);
         printEmpty();
     }
 
-    private static void printEmpty() {
+    public static void printEmpty() {
         System.out.println();
     }
 

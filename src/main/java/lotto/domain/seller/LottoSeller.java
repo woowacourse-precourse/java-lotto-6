@@ -24,9 +24,17 @@ public class LottoSeller {
         Lotto lotto = null;
 
         for (int index = 0; index < sizeLottoEnvelop; index++) {
-            lotto = Config.lotto();
-            lottoEnvelop.add(lotto);
+            lotto = createLotto();
+            addLottoEnvelop(lotto);
         }
+    }
+
+    private Lotto createLotto() {
+        return Config.lotto();
+    }
+
+    private void addLottoEnvelop(Lotto lotto) {
+        lottoEnvelop.add(lotto);
     }
 
     private int getSizeLottoEnvelop(Integer money) {

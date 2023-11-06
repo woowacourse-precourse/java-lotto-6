@@ -1,18 +1,52 @@
-# 유스케이스 
-
-
-
-# 시퀀스
-
-
-
 # 도메인
-![전체 도메인](전체 도메인.png)
-![컨톨롤러들](컨톨롤러들.png)
-![구매컨트롤러](LotteryPurchaseController.png)
-![발행컨틀로러](LotteryIssueController.png)
-![당첨번호컨트롤러](LotteryAnswerController.png)
-![당첨판단컨트롤러](LotteryCheckController.png)
+## 책임/역할 큰 틀
+![역할 목록](역할 목록.png)
+## 구성도
+> 꼭 최종완성본 이미지를 붙이자!!!!
+> 꼭 최종완성본 이미지를 붙이자!!!!
+> 꼭 최종완성본 이미지를 붙이자!!!!
+> 꼭 최종완성본 이미지를 붙이자!!!!
+> 꼭 최종완성본 이미지를 붙이자!!!!
+> 꼭 최종완성본 이미지를 붙이자!!!!
+
+## 각 도메인 별 설명
+> ***"도메인" : "역할"***
+
+- InputView : 입력뷰
+- OutputView : 출력뷰
+
+- LotteryController : 로또 게임 진행
+- Lottos : 여러 개의 Lotto에 대한 일급 컬렉션 객체
+- Lotto : 여러개의 로또 번호에 대한 일급 컬렉션 객체
+
+- LotteryPurchaseController : 로또 구매 진행
+
+- LotteryCountService : 티켓 개수 처리
+- CashDTO : 금액에 DTO
+- CashValidator : 금액에 대한 검증
+- TicketCountCalculator : 티켓 가격에 따른 티켓 개수 계산
+
+- LotteryIssueService : 로또 발행 처리
+- TicketIssuer : 로또 번호 생성자
+- TicketSizePolicy : 로또 번호 개수 정책
+- TicketNumberRangePolicy : 로또 번호 범위 정책
+  
+- LotteryAnswerController : 로또 당첨 진행
+
+- LotteryAnswerNumberService : 로또 당첨번호 
+- LotteryAnswerNumber : {여러개의 로또 당첨번호},{보너스번호}를 가지고 있는 일급 컬렉션 객체
+- LotteryAnswerNumberDTO : 로또 당첨번호 / 보너스번호 DTO
+- LotteryAnswerNumberValidator : 로또 당첨번호 / 보너스번호 검증
+
+- LotteryAnswerCheckService : 로또 당첨 판단
+- WinningPolicy : 당첨 정책
+- WinningPolicyWooWaCourse : 우아한테크코스 당첨 정책
+- WinningMoneyCalculator : 등수 별 상금 배정
+
+- LotteryRateService : 이익률 처리
+- RateCalculator : 계산 정책에 따른 이익률 계산
+- RatePolicy : 이익률 계산 정책
+
 
 # 기능구현 리스트
 > (선행)테스트케이스에 대한 (후행)구현에 대한 검증 이후 체크한다.  
@@ -117,6 +151,3 @@
 - [ ] ENUM을 적용했는가 ? 
 - [ ] 모든 도메인과 레이어에 테스트를 구현했는가 ?
   > UI 로직은 제외한다.
-
-
-========== After PR, plz consider these,,, ==========

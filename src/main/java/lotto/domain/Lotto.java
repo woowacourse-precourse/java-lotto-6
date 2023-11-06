@@ -12,6 +12,22 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public Integer getMatchingNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
+        Integer matchingNumbers = (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        if (isMatchingWithBonusNumber(bonusNumber)) {
+            matchingNumbers += 1;
+        }
+
+        return matchingNumbers;
+    }
+
+    public boolean isMatchingWithBonusNumber(Integer bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     private void validate(List<Integer> numbers) {
         if (checkNumbersCount(numbers) || hasDuplicates(numbers)) {
             throw new IllegalArgumentException();

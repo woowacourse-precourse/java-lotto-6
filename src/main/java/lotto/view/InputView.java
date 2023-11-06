@@ -19,8 +19,9 @@ public class InputView {
     public void inputPurchasePrice() {
         System.out.println(NOTICE_INPUT_PURCHASE_PRICE);
         String input = Console.readLine();
-        int purchasePrice = stringToInt(input);
         try {
+            validatePurchasePriceType(input);
+            int purchasePrice = stringToInt(input);
             validateDividedByLottoPrice(purchasePrice);
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
@@ -32,7 +33,7 @@ public class InputView {
         System.out.println(NOTICE_INPUT_WINNING_NUMBER);
         String input = Console.readLine();
         List<String> inputNumbers = List.of(input.split(DELIMITER));
-        validateNumbersType(inputNumbers);
+        validateWinningNumbersType(inputNumbers);
         List<Integer> winningNumbers = stringListToIntList(inputNumbers);
         Lotto winningLotto = new Lotto(winningNumbers);
     }
@@ -40,7 +41,7 @@ public class InputView {
     public void inputBonusNumber() {
         System.out.println(NOTICE_INPUT_BONUS_NUMBER);
         String input = Console.readLine();
-        validateNumberType(input);
+        validateBonusNumberType(input);
         int bonusNumber = stringToInt(input);
         Bonus bonus = new Bonus(bonusNumber);
     }
@@ -51,17 +52,27 @@ public class InputView {
                 .toList();
     }
 
-    private void validateNumbersType(List<String> numbers) {
+    private void validateWinningNumbersType(List<String> numbers) {
         for (String number : numbers) {
-            if (isNotNumeric(number)) {
-                Error.NOT_NUMERIC_WINNING_NUMBER.throwError();
-            }
+            validateWinningNumberType(number);
         }
     }
 
-    private void validateNumberType(String number) {
+    private void validateWinningNumberType(String number) {
+        if (isNotNumeric(number)) {
+            Error.NOT_NUMERIC_WINNING_NUMBER.throwError();
+        }
+    }
+
+    private void validateBonusNumberType(String number) {
         if (isNotNumeric(number)) {
             Error.NOT_NUMERIC_BONUS_NUMBER.throwError();
+        }
+    }
+
+    private void validatePurchasePriceType(String number) {
+        if (isNotNumeric(number)) {
+            Error.NOT_NUMERIC_PURCHASE_PRICE.throwError();
         }
     }
 
@@ -79,7 +90,7 @@ public class InputView {
         return price % ONE_LOTTO_PRICE != 0;
     }
 
-    private int stringToInt(String before) {
-        return Integer.parseInt(before);
+    private int stringToInt(String number) {
+        return Integer.parseInt(number);
     }
 }

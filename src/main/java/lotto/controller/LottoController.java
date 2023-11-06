@@ -19,7 +19,7 @@ public class LottoController {
         WinningLotto winningLotto = getWinningLotto();
         List<Integer> winnerNumber = winningLotto.getWinnerNumber();
 
-        int bonusNumber = getBonusNumber(winnerNumber);
+        int bonusNumber = getBonusNumber(winningLotto);
 
         printMatchAndProfitRate(lottos, winnerNumber, bonusNumber, lottoCount);
     }
@@ -57,11 +57,11 @@ public class LottoController {
         }
     }
 
-    private int getBonusNumber(List<Integer> winnerNumber) {
+    private int getBonusNumber(WinningLotto winningLotto) {
         while (true) {
             try {
                 printInputBonusNumber();
-                return new BonusLotto(InputView.inputBonusNumbers(), winnerNumber).getBonusLotto();
+                return new BonusLotto(InputView.inputBonusNumbers(), winningLotto).getBonusLotto();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

@@ -2,8 +2,6 @@ package lotto.domain;
 
 import lotto.constant.LottoConfig;
 
-import java.util.List;
-
 import static lotto.constant.ErrorMessage.*;
 
 public class BonusLotto {
@@ -12,8 +10,8 @@ public class BonusLotto {
 
     private final int bonusNumber;
 
-    public BonusLotto(String inputBonusNumber, List<Integer> winnerNumber) {
-        validate(inputBonusNumber, winnerNumber);
+    public BonusLotto(String inputBonusNumber, WinningLotto winningLotto) {
+        validate(inputBonusNumber, winningLotto);
         this.bonusNumber = Integer.parseInt(inputBonusNumber);
     }
 
@@ -21,12 +19,12 @@ public class BonusLotto {
         return this.bonusNumber;
     }
 
-    private void validate(String bonusNumber, List<Integer> winnerNumber) {
+    private void validate(String bonusNumber, WinningLotto winningLotto) {
         validateSpace(bonusNumber);
         validateNumber(bonusNumber);
         validateFirstNumber(bonusNumber);
         validateRange(bonusNumber);
-        validateDuplicate(bonusNumber, winnerNumber);
+        validateDuplicate(bonusNumber, winningLotto);
     }
 
     private void validateSpace(String bonusNumber) {
@@ -59,10 +57,8 @@ public class BonusLotto {
         }
     }
 
-    private void validateDuplicate(String bonusNumber, List<Integer> winnerNumber) {
+    private void validateDuplicate(String bonusNumber, WinningLotto winningLotto) {
         int number = Integer.parseInt(bonusNumber);
-        if (winnerNumber.contains(number)) {
-            throw new IllegalArgumentException(ERROR_LOTTO_DUPLICATE.toString());
-        }
+        winningLotto.validateBonusNumber(number);
     }
 }

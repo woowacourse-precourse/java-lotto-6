@@ -73,6 +73,12 @@ public class WinningLotto {
                 .toList();
     }
 
+    public void validateBonusNumber(int bonusNumber) {
+        if (winnerNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ERROR_LOTTO_DUPLICATE.toString());
+        }
+    }
+
     private String removeBySpace(String inputWinnerNumbers) {
         return inputWinnerNumbers.replaceAll("\\s*,\\s*", ",");
     }

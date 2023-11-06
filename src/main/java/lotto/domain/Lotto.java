@@ -3,15 +3,13 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.domain.LottoCondition.*;
+
 public class Lotto {
 
-    public static final int START_NUMBER = 1;
-    public static final int END_NUMBER = 45;
-    public static final int COUNT = 6;
-
-    private static final String LOTTO_COUNT_ERROR_MESSAGE = "[ERROR] 로또 번호는 " + COUNT + "개이어야 합니다.";
-    private static final String LOTTO_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 " + START_NUMBER + "부터 " + END_NUMBER + " 사이의 숫자여야 합니다.";
-    private static final String LOTTO_DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
+    private static final String LOTTO_COUNT_ERROR_MESSAGE = "로또 번호는 " + COUNT.getValue() + "개이어야 합니다.";
+    private static final String LOTTO_RANGE_ERROR_MESSAGE = "로또 번호는 " + START_NUMBER.getValue() + "부터 " + END_NUMBER.getValue() + " 사이의 숫자여야 합니다.";
+    private static final String LOTTO_DUPLICATE_ERROR_MESSAGE = "로또 번호는 중복될 수 없습니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,7 +24,7 @@ public class Lotto {
     }
 
     private void validateCount(List<Integer> numbers) {
-        if (numbers.size() != COUNT) {
+        if (numbers.size() != COUNT.getValue()) {
             throw new IllegalArgumentException(LOTTO_COUNT_ERROR_MESSAGE);
         }
     }
@@ -37,7 +35,7 @@ public class Lotto {
     }
 
     private void validateRange(Integer number) {
-        if (number < START_NUMBER || number > END_NUMBER) {
+        if (number < START_NUMBER.getValue() || number > END_NUMBER.getValue()) {
             throw new IllegalArgumentException(LOTTO_RANGE_ERROR_MESSAGE);
         }
     }

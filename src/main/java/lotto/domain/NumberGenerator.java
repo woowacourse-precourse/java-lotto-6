@@ -4,11 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-public class NumberGenerator {
+import static lotto.domain.LottoCondition.*;
 
-    public static final int START_NUMBER = 1;
-    public static final int END_NUMBER = 45;
-    public static final int COUNT = 6;
+public class NumberGenerator {
 
     private NumberGenerator() {
     }
@@ -22,6 +20,6 @@ public class NumberGenerator {
     }
 
     public List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, COUNT);
+        return Randoms.pickUniqueNumbersInRange(START_NUMBER.getValue(), END_NUMBER.getValue(), COUNT.getValue());
     }
 }

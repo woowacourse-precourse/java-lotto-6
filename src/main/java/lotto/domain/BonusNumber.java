@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BonusNumber {
 
-    private static final String BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 보너스 볼은 로또 번호와 중복될 수 없습니다.";
+    private static final String BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE = "보너스 볼은 로또 번호와 중복될 수 없습니다.";
     private final int bonusNumber;
 
     public BonusNumber(List<Integer> winningNumbers, int bonusNumber) {

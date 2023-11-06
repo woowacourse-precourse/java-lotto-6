@@ -24,20 +24,50 @@ public class LottoController {
     }
     public void play() {
         // 구입 금액 입력
-        Money money = inputView.inputMoney();
-        printLottoQuantity(money);
+        boolean validInput = false;
+        Money money = null;
+        while (!validInput) {
+            try {
+                money = inputView.inputMoney();
+                printLottoQuantity(money);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
         //로또 생성
         GenerateLotto generateLotto = new GenerateLotto();
         int count = money.getLottoQuantity();
         List<Lotto> lotto = generateLotto.getLottoNumbers(count);
+
         //발행 로또 출력
         Lottos lottos = new Lottos(lotto);
         printLottoList(lottos);
+
         //당첨 번호 입력
-        List<Integer> winningNumbers = inputView.inputLottoWinningNumbers();
-        Lotto winningLotto = new Lotto(winningNumbers);
+        Lotto winningLotto;
+        List<Integer> winningNumbers;
+        while (true) {
+            try {
+                winningNumbers = inputView.inputLottoWinningNumbers();
+                winningLotto = new Lotto(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         //보너스 번호 입력
-        int bonusNumber = inputView.inputBonusNumber();
+        int bonusNumber;
+        while (true) {
+            try {
+                bonusNumber = inputView.inputBonusNumber(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         Map<Rank, Integer> result = lottoResult.compareLotto(lottos, winningLotto, bonusNumber);
         printResult(result);

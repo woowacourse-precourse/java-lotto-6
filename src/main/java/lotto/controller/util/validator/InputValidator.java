@@ -26,6 +26,12 @@ public class InputValidator {
         drawNumbers.forEach(this::isNumberInRange);
     }
 
+    private void isWinningNumberLengthCorrect(List<Integer> numbers) {
+        if (numbers.size() != LottoConstants.LOTTO_NUMBER_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_LOTTO_NUMBER_LENGTH);
+        }
+    }
+
     private void isDuplicated(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
 
@@ -34,14 +40,16 @@ public class InputValidator {
         }
     }
 
-    private void isWinningNumberLengthCorrect(List<Integer> numbers) {
-        if (numbers.size() != LottoConstants.LOTTO_NUMBER_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_LOTTO_NUMBER_LENGTH);
-        }
+    public void validateBonusNumber(Integer bonusNumber, List<Integer> winningNumbers) {
+        isNumberInRange(bonusNumber);
+
+        isBonusNumberDuplicated(bonusNumber, winningNumbers);
     }
 
-    public void validateBonusNumber(Integer number) {
-        isNumberInRange(number);
+    private void isBonusNumberDuplicated(Integer bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATED);
+        }
     }
 
     private void isNumberInRange(Integer number) {

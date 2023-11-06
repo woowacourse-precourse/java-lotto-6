@@ -8,7 +8,7 @@ public class DisplayView {
 
 
     // Subclass Implements
-    protected void initializaCache() {
+    protected void initializeCache() {
         cache.setLength(0);
     }
 

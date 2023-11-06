@@ -17,6 +17,7 @@ public class Lotto {
 
 
     // Features
+    @Override
     public String toString() {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);

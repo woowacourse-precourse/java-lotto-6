@@ -5,19 +5,19 @@ import lotto.utils.Templates;
 public class DisplayError extends DisplayView {
     // Features
     public void displayBuyError() {
-        initializaCache();
+        initializeCache();
         addToCache(Templates.BUY_ERROR_MESSAGE);
         print();
     }
 
     public void displayWinningError() {
-        initializaCache();
+        initializeCache();
         addToCache(Templates.PRIZING_ERROR_MESSAGE);
         print();
     }
 
     public void displayBonusError() {
-        initializaCache();
+        initializeCache();
         addToCache(Templates.BONUS_ERROR_MESSAGE);
         print();
     }

@@ -6,19 +6,19 @@ import lotto.utils.Templates;
 public class DisplayAnnounce extends DisplayView {
     // Features
     public void displayBoughtTickets(List<String> tickets) {
-        initializaCache();
+        initializeCache();
         buildBoughtString(tickets);
         print();
     }
 
     public void displayRankCounts(List<Integer> counts) {
-        initializaCache();
+        initializeCache();
         buildCountsString(counts);
         print();
     }
 
     public void displayProfitRatio(double profitRatio) {
-        initializaCache();
+        initializeCache();
         buildProfitString(profitRatio);
         print();
     }

@@ -81,13 +81,15 @@
 
 - [x] 로또 클래스 생성
 
+
+    - [x] 로또 중복 번호 검사 기능 추가.
+
 - [x] 로또 자동 생성 번호 클래스 생성
 
     - [x] 로또을 생성한다.
 
         - [x] ```
       List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-      ```
 
 
 - [x] 로또 진행자 클래스 LottoHost

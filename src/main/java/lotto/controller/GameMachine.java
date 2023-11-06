@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumbers;
 import lotto.domain.Lottos;
@@ -21,90 +20,33 @@ public class GameMachine {
     }
 
     public void start() {
-        // 사용자가 구입 금액 입력 , 1000으로 나눈다.
-        int inputPrice = getInputPrice();
+        int inputPrice = inputView.inputPrice();
         int count = getCount(inputPrice);
 
-        // 로또 번호 출력 -> 리팩토링
-        outputView.lottoPurchaseCountMessage(count);
-        Lottos lottos = new Lottos(count, lottoNumbers);
-        outputView.lottoNumbersMessage(lottos);
+        Lottos lottos = printLottoNumbers(count);
 
-        // 사용자가 당첨 번호 6자리를 입력.
-        Lotto winningNumbers = getWinningNumbers();
+        Lotto winningNumbers = inputView.getWinningNumbers();
+        int bonusNumber = inputView.getBonusNumber(winningNumbers);
 
-        // 보너스 번호 입력
-        int inputBonusNumber = getBonusNumber(winningNumbers);
-
-        // 사용자와 번호 비교
-        lottos.compareWithWinningNumbers(winningNumbers, inputBonusNumber);
-        // 당첨 통계, 수익률 출력
-        outputView.winningHistoryMessage();
-        outputView.TotalReturnRateMessage(inputPrice);
-    }
-
-    private int getInputPrice() {
-        while (true) {
-            System.out.println("구입금액을 입력해 주세요.");
-
-            try {
-                int inputPrice = parseAndValidateInput(inputView.inputPrice());
-                validatePurchaseAbility(inputPrice);
-                return inputPrice;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        lottos.compareWithWinningNumbers(winningNumbers, bonusNumber);
+        printWinningStateReturnRate(inputPrice);
     }
 
     private int getCount(int inputPrice) {
         return inputPrice / 1000;
     }
 
+    private Lottos printLottoNumbers(int count) {
+        outputView.lottoPurchaseCountMessage(count);
+        Lottos lottos = new Lottos(count, lottoNumbers);
+        outputView.lottoNumbersMessage(lottos);
 
-    private Lotto getWinningNumbers() {
-        while (true) {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
-
-            try {
-                List<Integer> inputWinningNumbers = inputView.inputWinningNumbers();
-                return new Lotto(inputWinningNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return lottos;
     }
 
-    private int getBonusNumber(Lotto winningNumbers) {
-        while (true) {
-            try {
-                int inputBonusNumber = inputView.inputBonusNumber();
-                duplicationBonusNumber(winningNumbers.getNumbers(), inputBonusNumber);
-                return inputBonusNumber;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private int parseAndValidateInput(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 옳바른 금액을 입력해주세요.");
-        }
-    }
-
-    private void validatePurchaseAbility(int inputPrince) {
-        if (inputPrince < 1000) {
-            throw new IllegalArgumentException("[ERROR] 금액이 부족하여 로또를 살 수 없습니다.");
-        }
-    }
-
-    private void duplicationBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
-        }
+    private void printWinningStateReturnRate(int inputPrice) {
+        outputView.winningHistoryMessage();
+        outputView.TotalReturnRateMessage(inputPrice);
     }
 
 }

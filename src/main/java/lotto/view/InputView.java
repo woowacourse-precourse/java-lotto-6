@@ -31,10 +31,6 @@ public class InputView {
         }
     }
 
-        public static int getBonusNumber(){
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        return bonusNumber;
-        }
     public static List<Integer> getWinningNumbers() {
         List<Integer> WinningNumbers;
         while (true) {
@@ -49,5 +45,9 @@ public class InputView {
             }
         }
         return WinningNumbers;
+    }
+    public static int getBonusNumber(){
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        return bonusNumber;
     }
 }

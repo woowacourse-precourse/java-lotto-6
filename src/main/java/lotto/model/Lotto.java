@@ -15,6 +15,11 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+    private void validateDuplicated(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
 
     // TODO: 추가 기능 구현
 }

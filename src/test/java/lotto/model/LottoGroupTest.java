@@ -43,11 +43,11 @@ class LottoGroupTest {
     @ParameterizedTest
     @MethodSource("totalPrizesDataProvider")
     void 로또_그룹에서_우승번호와_보너스번호와_각각_비교하여_전체_상품결과를_계산한다(
-            WinningCombination winningCombination, LottoGroup lottoGroup, TotalPrize expectedTotalPrize) {
-        TotalPrize actualTotalPrize = lottoGroup.calculateTotalPrizes(winningCombination);
+            WinningCombination winningCombination, LottoGroup lottoGroup, PrizeSummary expectedPrizeSummary) {
+        PrizeSummary actualPrizeSummary = lottoGroup.generatePrizeSummary(winningCombination);
 
-        assertThat(actualTotalPrize).usingRecursiveComparison()
-                .isEqualTo(expectedTotalPrize);
+        assertThat(actualPrizeSummary).usingRecursiveComparison()
+                .isEqualTo(expectedPrizeSummary);
     }
 
     @Test
@@ -59,14 +59,18 @@ class LottoGroupTest {
         LottoGroup lottoGroup = createLottoGroup(
                 Lotto.from(List.of(6, 5, 4, 3, 2, 1))
         );
-        TotalPrize expectedTotalPrize = TotalPrize.from(Map.of(
+        PrizeSummary expectedPrizeSummary = PrizeSummary.from(Map.of(
                 LottoPrize.FIRST_PRIZE, 1L
         ));
 
-        TotalPrize actualTotalPrize = lottoGroup.calculateTotalPrizes(winningCombination);
+        PrizeSummary actualPrizeSummary = lottoGroup.generatePrizeSummary(winningCombination);
 
-        assertThat(actualTotalPrize).usingRecursiveComparison()
-                .isEqualTo(expectedTotalPrize);
+        assertThat(actualPrizeSummary).usingRecursiveComparison()
+                .isEqualTo(expectedPrizeSummary);
+    }
+
+    private LottoGroup createLottoGroup(Lotto... lottos) {
+        return new LottoGroup(List.of(lottos));
     }
 
     @Test
@@ -85,6 +89,10 @@ class LottoGroupTest {
 
         assertThat(protectedLottoGroup).usingRecursiveComparison()
                 .isEqualTo(expectedLottoGroup);
+    }
+
+    private LottoGroup createLottoGroup(List<Lotto> lottos) {
+        return new LottoGroup(lottos);
     }
 
     @Test
@@ -117,7 +125,7 @@ class LottoGroupTest {
                                 Lotto.from(List.of(1, 2, 3, 7, 8, 9)),
                                 Lotto.from(List.of(8, 9, 10, 11, 12, 13))
                         )),
-                        TotalPrize.from(Map.of(
+                        PrizeSummary.from(Map.of(
                                 LottoPrize.FIRST_PRIZE, 1L,
                                 LottoPrize.SECOND_PRIZE, 1L,
                                 LottoPrize.THIRD_PRIZE, 1L,
@@ -127,13 +135,5 @@ class LottoGroupTest {
                         ))
                 )
         );
-    }
-
-    private LottoGroup createLottoGroup(List<Lotto> lottos) {
-        return new LottoGroup(lottos);
-    }
-
-    private LottoGroup createLottoGroup(Lotto... lottos) {
-        return new LottoGroup(List.of(lottos));
     }
 }

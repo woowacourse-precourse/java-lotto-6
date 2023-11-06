@@ -14,13 +14,13 @@ class LottoMachineTest {
     @ParameterizedTest
     @MethodSource("totalPrizesDataProvider")
     void 로또_그룹과_우승자_번호_보너스_번호와_각각_비교하여_전체_상품결과를_계산한다(
-            WinningCombination winningCombination, LottoGroup lottoGroup, TotalPrize expectedTotalPrize) {
+            WinningCombination winningCombination, LottoGroup lottoGroup, PrizeSummary expectedPrizeSummary) {
         LottoMachine lottoMachine = LottoMachine.of(lottoGroup, winningCombination);
 
-        TotalPrize actualTotalPrize = lottoMachine.calculateTotalPrizes();
+        PrizeSummary actualPrizeSummary = lottoMachine.generatePrizeSummary();
 
-        assertThat(actualTotalPrize).usingRecursiveComparison()
-                .isEqualTo(expectedTotalPrize);
+        assertThat(actualPrizeSummary).usingRecursiveComparison()
+                .isEqualTo(expectedPrizeSummary);
     }
 
     private static Stream<Arguments> totalPrizesDataProvider() {
@@ -35,7 +35,7 @@ class LottoMachineTest {
                                 Lotto.from(List.of(1, 2, 3, 7, 8, 9)),
                                 Lotto.from(List.of(8, 9, 10, 11, 12, 13))
                         )),
-                        TotalPrize.from(Map.of(
+                        PrizeSummary.from(Map.of(
                                 LottoPrize.FIRST_PRIZE, 1L,
                                 LottoPrize.SECOND_PRIZE, 1L,
                                 LottoPrize.THIRD_PRIZE, 1L,

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.Test;
 
 class TotalProfitRateTest {
-    
+
     @Test
     void 총_수익률은_음수값을_가질_수_없다() {
         assertThatThrownBy(() -> TotalProfitRate.from(-1.0))

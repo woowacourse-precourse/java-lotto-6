@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.Objects;
 
 public class TotalProfitRate {
-    private static final String TOTAL_PROFIT_RATE_EXCEPTION_FORMAT = "수익률은 %f 이상이어야 합니다.";
+    private static final String TOTAL_PROFIT_RATE_EXCEPTION_FORMAT = "총 수익률은 %f 이상이어야 합니다.";
     private final static double ZERO = 0.0;
     private final double profitRate;
 
@@ -19,12 +19,12 @@ public class TotalProfitRate {
         }
     }
 
-    private boolean isUnderZero(double totalProfit) {
-        return totalProfit < ZERO;
+    private boolean isUnderZero(double profitRate) {
+        return profitRate < ZERO;
     }
 
-    public static TotalProfitRate from(double totalProfit) {
-        return new TotalProfitRate(totalProfit);
+    public static TotalProfitRate from(double profitRate) {
+        return new TotalProfitRate(profitRate);
     }
 
     public double getProfitRate() {

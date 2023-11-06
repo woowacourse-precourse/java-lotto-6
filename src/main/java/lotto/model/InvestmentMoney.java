@@ -3,7 +3,7 @@ package lotto.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public final class InvestMoney {
+public final class InvestmentMoney {
     private static final String NEGATIVE_MONEY_EXCEPTION = "사용자가 투입한 금액에서 음수는 입력할 수 없습니다.";
     private static final String ZERO_MONEY_EXCEPTION_FORMAT = "사용자가 투입한 금액에서 %d원은 입력할 수 없습니다.";
     private static final String MAX_MONEY_EXCEPTION_FORMAT = "사용자가 투입한 금액에서 %,d원 이하로 입력해주세요.";
@@ -13,7 +13,7 @@ public final class InvestMoney {
 
     private final int money;
 
-    private InvestMoney(int money) {
+    private InvestmentMoney(int money) {
         validate(money);
         this.money = money;
     }
@@ -49,24 +49,24 @@ public final class InvestMoney {
         }
     }
 
-    public static InvestMoney from(int money) {
-        return new InvestMoney(money);
+    public static InvestmentMoney from(int money) {
+        return new InvestmentMoney(money);
     }
 
     public PurchasableLottoCount calculatePurchasableLottoCount(LottoPrice lottoPrice) {
         return lottoPrice.calculateLottoCount(money);
     }
 
-    public double calculateTotalProfitPercentage(TotalWinningMoney totalWinningMoney) {
-        BigDecimal dividedMoney = totalWinningMoney.calculateReturnOnInvestment(money);
+    public double calculateTotalProfitRate(TotalPrizeAmount totalPrizeAmount) {
+        BigDecimal prizeToInvestmentRatio = totalPrizeAmount.calculatePrizeToInvestmentRatio(money);
         BigDecimal percentMultiplier = BigDecimal.valueOf(PERCENT_MULTIPLIER);
+        BigDecimal totalProfitRate = multiply(prizeToInvestmentRatio, percentMultiplier);
 
-        BigDecimal totalProfitRate = multiply(dividedMoney, percentMultiplier);
         return totalProfitRate.doubleValue();
     }
 
-    private BigDecimal multiply(BigDecimal dividedMoney, BigDecimal percentMultiplier) {
-        return dividedMoney.multiply(percentMultiplier);
+    private BigDecimal multiply(BigDecimal prizeToInvestmentRatio, BigDecimal percentMultiplier) {
+        return prizeToInvestmentRatio.multiply(percentMultiplier);
     }
 
     @Override
@@ -77,8 +77,8 @@ public final class InvestMoney {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        InvestMoney investMoney = (InvestMoney) o;
-        return money == investMoney.money;
+        InvestmentMoney investmentMoney = (InvestmentMoney) o;
+        return money == investmentMoney.money;
     }
 
     @Override

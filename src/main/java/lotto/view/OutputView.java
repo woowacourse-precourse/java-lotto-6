@@ -5,7 +5,7 @@ import lotto.dto.response.LottoDto;
 import lotto.dto.response.LottoGroupDto;
 import lotto.dto.response.TotalProfitRateDto;
 import lotto.model.LottoPrize;
-import lotto.model.TotalPrize;
+import lotto.model.PrizeSummary;
 
 public class OutputView {
     private static final String EXCEPTION_FORMAT = "[ERROR] %s";
@@ -58,35 +58,35 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printTotalProfit(TotalProfitRateDto totalProfitRate) {
+    public void printTotalProfitRate(TotalProfitRateDto totalProfitRate) {
         double rawTotalProfitRate = totalProfitRate.getTotalProfitRate();
         String totalProfitRateFormatted = String.format(TOTAL_PROFIT_RATE_FORMAT, rawTotalProfitRate);
         String totalProfitRateMessage = String.format(TOTAL_PROFIT_RATE_MESSAGE_FORMAT, totalProfitRateFormatted);
         println(totalProfitRateMessage);
     }
 
-    public void printTotalPrize(TotalPrize totalPrize) {
+    public void printPrizeSummary(PrizeSummary prizeSummary) {
         println(TOTAL_PRIZE_RESULT_MESSAGE);
         for (LottoPrize lottoPrize : LottoPrize.values()) {
-            printWinningPrize(totalPrize, lottoPrize);
+            printWinningPrize(prizeSummary, lottoPrize);
         }
     }
 
-    private void printWinningPrize(TotalPrize totalPrize, LottoPrize lottoPrize) {
+    private void printWinningPrize(PrizeSummary prizeSummary, LottoPrize lottoPrize) {
         if (lottoPrize.isWinningPrize()) {
-            printPrize(totalPrize, lottoPrize);
+            printPrize(prizeSummary, lottoPrize);
         }
     }
 
-    private void printPrize(TotalPrize totalPrize, LottoPrize lottoPrize) {
-        String prizeMessage = formatPrizeMessage(totalPrize, lottoPrize);
+    private void printPrize(PrizeSummary prizeSummary, LottoPrize lottoPrize) {
+        String prizeMessage = formatPrizeMessage(prizeSummary, lottoPrize);
         println(prizeMessage);
     }
 
-    private static String formatPrizeMessage(TotalPrize totalPrize, LottoPrize lottoPrize) {
+    private static String formatPrizeMessage(PrizeSummary prizeSummary, LottoPrize lottoPrize) {
         int numberOfRequiredMatches = lottoPrize.getRequiredMatchingNumbers();
         String prizeAmountFormatted = formatPrizeAmount(lottoPrize);
-        long numberOfPrizesMatched = totalPrize.countMatchesForPrize(lottoPrize);
+        long numberOfPrizesMatched = prizeSummary.getMatchCountForPrize(lottoPrize);
         String prizeMessage = formatNormalPrizeMessage(numberOfRequiredMatches, prizeAmountFormatted,
                 numberOfPrizesMatched);
 

@@ -26,12 +26,12 @@ public final class LottoGroup {
                 .toList();
     }
 
-    public TotalPrize calculateTotalPrizes(WinningCombination winningCombination) {
+    public PrizeSummary generatePrizeSummary(WinningCombination winningCombination) {
         Map<LottoPrize, Long> prizeSummary = purchasedLottos.stream()
                 .map(purchasedLotto -> purchasedLotto.determineLottoPrize(winningCombination))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        return TotalPrize.from(prizeSummary);
+        return PrizeSummary.from(prizeSummary);
     }
 
     public List<Lotto> getPurchasedLottos() {

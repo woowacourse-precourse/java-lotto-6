@@ -3,10 +3,7 @@ package lotto.domain;
 import lotto.constants.ErrorMessage;
 import lotto.service.LottoService;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Lottos {
     int numberOfLottos;
@@ -56,10 +53,19 @@ public class Lottos {
     }
 
     public HashMap<LottoRank, Integer> getLottosResult(FinalWinningNumber finalWinningNumber) {
-        HashMap<LottoRank, Integer> rankCount = new HashMap<>();
+        HashMap<LottoRank, Integer> rankCount = initRankCount();
         for (Lotto lotto : lottos) {
             LottoRank lottoRank = lotto.compareLottoNumberWithFianlWinningNumber(finalWinningNumber);
-            rankCount.put(lottoRank, rankCount.getOrDefault(lottoRank, 0) + 1);
+            rankCount.put(lottoRank, rankCount.get(lottoRank) + 1);
+        }
+        rankCount.remove(LottoRank.OUT_OF_RANK);
+        return rankCount;
+    }
+
+    private HashMap<LottoRank, Integer> initRankCount() {
+        HashMap<LottoRank, Integer> rankCount = new LinkedHashMap<>();
+        for(LottoRank lottoRank : LottoRank.values()) {
+            rankCount.put(lottoRank, 0);
         }
         return rankCount;
     }

@@ -23,9 +23,9 @@ public class LottoService {
 
     public List<Lotto> buyMultipleLotto(String money) {
         List<Lotto> lottoTickets = new ArrayList<>();
-        purchaseAmount = new PurchaseAmount(money);
+        purchaseAmount = PurchaseAmount.from(money);
 
-        for (int i = 0; i < purchaseAmount.getAmount(); ++i) {
+        for (int i = 0; i < purchaseAmount.getQuantity(); ++i) {
             lottoTickets.add(buySingleLotto());
         }
         this.purchasedTickets = lottoTickets;

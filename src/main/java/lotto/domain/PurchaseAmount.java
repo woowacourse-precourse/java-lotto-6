@@ -1,18 +1,24 @@
 package lotto.domain;
 
 import static lotto.constants.ErrorCode.INVALID_PURCHASE_AMOUNT;
+import static lotto.constants.ErrorCode.NOT_DIVIDED;
 import static lotto.constants.ErrorCode.NOT_INTEGER;
 import static lotto.constants.LottoRule.MAX_PRICE;
+import static lotto.constants.LottoRule.MIN_PRICE;
 import static lotto.constants.LottoRule.UNIT_PRICE;
 
 public class PurchaseAmount {
     private int paidMoney;
-    private int purchaseAmount;
+    private int quantity;
 
-    public PurchaseAmount(String input) {
+    private PurchaseAmount(String input) {
         validatePurchaseAmount(input);
         this.paidMoney = convertToInt(input);
-        this.purchaseAmount = getUnitAmount(input);
+        this.quantity = getUnitAmount(input);
+    }
+
+    public static PurchaseAmount from(String input) {
+        return new PurchaseAmount(input);
     }
 
     private int getUnitAmount(String input) {
@@ -21,7 +27,9 @@ public class PurchaseAmount {
 
     private void validatePurchaseAmount(String input) {
         isInteger(input);
-        validateRange(input);
+        int paidMoney = convertToInt(input);
+        validateDividedBy(paidMoney);
+        validateRange(paidMoney);
     }
 
     private int convertToInt(String input) {
@@ -30,15 +38,20 @@ public class PurchaseAmount {
 
     private void isInteger(String input) {
         try {
-            Integer.parseInt(input);
+            convertToInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_INTEGER.getMessage());
         }
     }
 
-    private void validateRange(String input) {
-        int purchase = convertToInt(input);
-        if (purchase > MAX_PRICE.getValue() || purchase <= 0) {
+    private void validateDividedBy(int paidMoney) {
+        if (paidMoney % UNIT_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(NOT_DIVIDED.getMessage());
+        }
+    }
+
+    private void validateRange(int paidMoney) {
+        if (paidMoney > MAX_PRICE.getValue() || paidMoney <= MIN_PRICE.getValue()) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
@@ -47,7 +60,7 @@ public class PurchaseAmount {
         return paidMoney;
     }
 
-    public int getAmount() {
-        return purchaseAmount;
+    public int getQuantity() {
+        return quantity;
     }
 }

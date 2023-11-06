@@ -1,5 +1,9 @@
 package lotto.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
 import lotto.model.Money;
 import lotto.util.Message;
 import lotto.view.InputView;
@@ -15,7 +19,9 @@ public class LottoController {
     }
 
     public void start() {
-        requestMoney();
+        Money money = requestMoney();
+        List<Lotto> randomLotto = makeRandomLotto(money);
+        printGeneratedLotto(randomLotto);
         /*
         구입금액_입력받기(); --> inputView에서 받고, dto로 전달
         로또번호추출();
@@ -32,10 +38,26 @@ public class LottoController {
             try {
                 return new Money(inputView.requestInteger());
             } catch (IllegalArgumentException e) {
-                // outputView 호출
                 outputView.printError(e.getMessage());
             }
         }
     }
 
+    List<Lotto> makeRandomLotto(Money money) {
+        List<Lotto> randomLotto = new ArrayList<>();
+        Integer size = money.numberOfPurchaseAvailable();
+        for (int i = 0; i < size; i++) {
+            Lotto newLotto = LottoGenerator.generateRandomLotto();
+            randomLotto.add(newLotto);
+        }
+        return randomLotto;
+    }
+
+    void printGeneratedLotto(List<Lotto> lotto) {
+        outputView.printMessage(Message.RESULT_MONEY, lotto.size());
+        // TODO: outputView에서 Lotto, List<Integer> 객체를 수정할 수 있다. DTO로 변경하기.
+        for (Lotto obj : lotto) {
+            outputView.printObject(obj);
+        }
+    }
 }

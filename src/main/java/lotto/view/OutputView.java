@@ -17,6 +17,10 @@ public class OutputView {
         System.out.printf(message.getMessage() + "\n", args);
     }
 
+    public void printObject(Object arg) {
+        System.out.println(arg);
+    }
+
     public void printError(String errorMessage) {
         System.out.printf(errorMessageHeader, errorMessage);
     }

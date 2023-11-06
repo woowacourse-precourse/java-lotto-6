@@ -25,6 +25,10 @@ public class Money {
         }
     }
 
+    public Integer numberOfPurchaseAvailable() {
+        return money / UNIT;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

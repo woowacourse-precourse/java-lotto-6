@@ -60,19 +60,35 @@ public class Controller {
 
     public void checkLotto(List<Integer> winningNumber) {
         if (!lottoChecker.checkLottoNumberRange(winningNumber, 1, 45)) {
-            throw new IllegalArgumentException(Output.MUST_BE_NUMBERS_BETWEEN_1_45_ERROR);
+            lottoNumbersMustBeBetweenException();
         }
         if (!lottoChecker.checkDuplicateLottoNumber(winningNumber)) {
-            throw new IllegalArgumentException(Output.HAS_DUPLICATE_NUMBER_ERROR);
+            lottoNumbersHasDuplicateException();
         }
     }
 
     public void checkBonusNumber(List<Integer> winningNumber, int bonusNumber) {
         if (!lottoChecker.checkBonusNumberRange(bonusNumber, Lotto.MIN_VALUE, Lotto.MAX_VALUE)) {
-            throw new IllegalArgumentException(Output.MUST_BE_BONUS_NUMBER_BETWEEN_1_45_ERROR);
+            lottoNumbersMustBeBetweenException();
         }
         if (!lottoChecker.checkDuplicateBonusNumber(winningNumber, bonusNumber)) {
-            throw new IllegalArgumentException(Output.HAS_DUPLICATE_NUMBER_ERROR);
+            lottoNumbersHasDuplicateException();
         }
+    }
+
+    public static void lottoNumbersSixOverException() {
+        throw new IllegalArgumentException(Output.MUST_BE_SIX_NUMBER_ERROR);
+    }
+
+    public static void lottoNumbersHasDuplicateException() {
+        throw new IllegalArgumentException(Output.HAS_DUPLICATE_NUMBER_ERROR);
+    }
+
+    public static void lottoNumbersMustBeBetweenException() {
+        throw new IllegalArgumentException(Output.MUST_BE_NUMBERS_BETWEEN_1_45_ERROR);
+    }
+
+    public static void lottoPurchaseAmountException() {
+        throw new IllegalArgumentException(Output.MUST_INPUT_MONEY_UNITS_OF_1000_WON_ERROR);
     }
 }

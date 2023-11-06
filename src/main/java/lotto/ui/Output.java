@@ -15,7 +15,6 @@ public class Output {
 
     public static final String ERROR = "[ERROR]";
     public static final String MUST_BE_NUMBERS_BETWEEN_1_45_ERROR = ERROR + "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    public static final String MUST_BE_BONUS_NUMBER_BETWEEN_1_45_ERROR = ERROR + "보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final String HAS_DUPLICATE_NUMBER_ERROR = ERROR + "중복된 로또 번호 입니다.";
     public static final String MUST_BE_SIX_NUMBER_ERROR = ERROR + "로또 번호는 6자리여야 합니다.";
     public static final String MUST_INPUT_MONEY_UNITS_OF_1000_WON_ERROR = ERROR + "1000원 단위로 입력해주세요.";

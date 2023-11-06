@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.Controller;
 import lotto.ui.Output;
 
 import java.util.ArrayList;
@@ -20,14 +21,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_OF_MEMBERS) {
-            throw new IllegalArgumentException(Output.MUST_BE_SIX_NUMBER_ERROR);
+            Controller.lottoNumbersSixOverException();
         }
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(Output.HAS_DUPLICATE_NUMBER_ERROR);
+            Controller.lottoNumbersHasDuplicateException();
         }
         for (int i = 0; i < numbers.size(); i++) {
             if (numbers.get(i) < MIN_VALUE || numbers.get(i) > MAX_VALUE) {
-                throw new IllegalArgumentException(Output.MUST_BE_BONUS_NUMBER_BETWEEN_1_45_ERROR);
+                Controller.lottoNumbersMustBeBetweenException();
             }
         }
     }

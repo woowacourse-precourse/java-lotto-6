@@ -26,4 +26,13 @@ public class LottoTickets {
         return tickets.size();
     }
 
+    public LottoResult getLottoResult(LottoChecker lottoChecker) {
+        final LottoResult result = new LottoResult();
+        for (final Lotto ticket : tickets) {
+            final LottoRank lottoRank = lottoChecker.checkTicket(ticket);
+            result.increaseRankCount(lottoRank);
+        }
+        return result;
+    }
+
 }

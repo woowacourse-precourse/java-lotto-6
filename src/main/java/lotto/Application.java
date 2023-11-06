@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.List;
 
+import lotto.controller.NumberGenerator;
+
 public class Application {
     public static void main(String[] args) {
         NumberGenerator numbergenerator = new NumberGenerator();

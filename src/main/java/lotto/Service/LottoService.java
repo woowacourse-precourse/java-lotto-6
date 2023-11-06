@@ -1,6 +1,7 @@
 package lotto.Service;
 
 import static lotto.Util.Constants.LOTTO_PRICE_UNIT;
+import static lotto.Util.Constants.PERCENT;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,12 +32,26 @@ public class LottoService {
     }
 
     public Map<Rank, Integer> createResult() {
-        Map<Rank,Integer> result = new HashMap<>();
+        Map<Rank, Integer> result = new HashMap<>();
         for (Lotto lotto : user.getLottos()) {
             Rank rank = winningLotto.getRankOf(lotto);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
         return result;
+    }
+
+    public double getRevenue(Map<Rank, Integer> result) {
+        double investMoney = user.getMoney();
+        double income = getIncome(result);
+        return (income / investMoney) * PERCENT;
+    }
+
+    private double getIncome(Map<Rank, Integer> result) {
+        double income = 0d;
+        for (Rank rank : result.keySet()) {
+            income += (rank.getPrizeMoney() * result.get(rank));
+        }
+        return income;
     }
 
 

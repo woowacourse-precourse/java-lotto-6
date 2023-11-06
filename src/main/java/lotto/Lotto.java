@@ -39,4 +39,26 @@ public class Lotto {
     public List<Integer> getLottoNumbers() {
         return numbers;
     }
+
+    public int countSameNumber(Lotto winner) {
+        int sameCount = 0;
+
+        for (int number : numbers) {
+            if (winner.getLottoNumbers().contains(number)) {
+                sameCount += 1;
+            }
+        }
+
+        return sameCount;
+    }
+
+    public boolean containsBonusNumber(int bonusNumber) {
+        for (int number : numbers) {
+            if (number == bonusNumber) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

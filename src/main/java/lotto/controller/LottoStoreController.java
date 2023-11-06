@@ -22,6 +22,7 @@ public class LottoStoreController {
 
     private final LottoMachine lottoMachine;
     private Consumer consumer;
+    private WinLotto winLotto;
     private LottoResult lottoResult;
 
     public LottoStoreController() {
@@ -80,13 +81,13 @@ public class LottoStoreController {
     private void buyerLottoPurchase() {
         // 요청 한 갯수 만큼의 로또 생성
         int quantity = consumer.getBuyAvailableQuantity();
-        List<Lotto> createLottoes = lottoMachine.createLottoes(quantity);
+        List<Lotto> createdLottoes = lottoMachine.getPurchaseLottoes(quantity);
 
         // 생성된 로또 출력
-        createLottoesPrint(createLottoes, quantity);
+        createLottoesPrint(createdLottoes, quantity);
 
         // 구입 로또 저장 및 구입 로또 수량 확인
-        consumer.receiveLottoes(createLottoes);
+        consumer.receiveLottoes(createdLottoes);
 
         // 줄 바꿈
         OutputView.newLineOutput();
@@ -152,10 +153,8 @@ public class LottoStoreController {
             int bonusNumber = bonusRequestDto.bonusStringToInteger();
 
             // 당첨 로또 등록
-            WinLotto winLotto = new WinLotto(lotto, bonusNumber);
-
-            lottoMachine.setWinLotto(winLotto);
-
+            winLotto = new WinLotto(lotto, bonusNumber);
+            
             // 줄 바꿈
             OutputView.newLineOutput();
 
@@ -175,7 +174,7 @@ public class LottoStoreController {
         List<LottoPrize> lottoPrizes = new ArrayList<>();
         List<Lotto> lottoes = consumer.getLottoes();
         for (Lotto lotto : lottoes) {
-            lottoPrizes.add(lottoMachine.lottoWinningResult(lotto));
+            lottoPrizes.add(winLotto.lottoComparison(lotto));
         }
 
         // 로또 당첨 결과 등록

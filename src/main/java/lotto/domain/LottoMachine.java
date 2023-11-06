@@ -8,7 +8,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.constants.LottoPrize;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoMachine {
     private static LottoMachine instance;
@@ -37,12 +38,11 @@ public class LottoMachine {
      * @param quantity
      * @return
      */
-    public List<Lotto> createLottoes(int quantity) {
-        List<Lotto> lottoes = new ArrayList<>();
-        while (quantity > 0) {
-            lottoes.add(new Lotto(createLottoNumber()));
-            quantity--;
-        }
+    public List<Lotto> getPurchaseLottoes(int quantity) {
+        List<Lotto> lottoes = IntStream
+                .range(0, quantity)
+                .mapToObj(i -> new Lotto(automaticallyGenerateLottoNumbers()))
+                .collect(Collectors.toList());
 
         return lottoes;
     }
@@ -52,11 +52,11 @@ public class LottoMachine {
      *
      * @return
      */
-    private List<Integer> createLottoNumber() {
+    private List<Integer> automaticallyGenerateLottoNumbers() {
         List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(MIN_RANGE.getConfig(), MAX_RANGE.getConfig(),
                 LOTTO_SIZE.getConfig());
 
-        return lottoSort(lottoNumber);
+        return lottoNumbersSort(lottoNumber);
     }
 
     /**
@@ -64,21 +64,11 @@ public class LottoMachine {
      *
      * @param lottoNumber
      */
-    private List<Integer> lottoSort(List<Integer> lottoNumber) {
+    private List<Integer> lottoNumbersSort(List<Integer> lottoNumber) {
         List<Integer> sortedLottoNumber = new ArrayList<>(lottoNumber);
 
         Collections.sort(sortedLottoNumber); // 오름차순 정렬
 
         return sortedLottoNumber;
-    }
-
-    /**
-     * 로또 당첨 확인
-     *
-     * @param otherLotto
-     * @return int
-     */
-    public LottoPrize lottoWinningResult(Lotto otherLotto) {
-        return winLotto.lottoComparison(otherLotto);
     }
 }

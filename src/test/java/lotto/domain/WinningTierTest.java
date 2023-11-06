@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class WinningTierTest {
@@ -27,10 +26,10 @@ public class WinningTierTest {
 
         WinningTier winningTier = new WinningTier();
         winningTier.estimate(userCorrectWinningsCount, userCorrectBonuses);
-        HashMap<Integer, Integer> winningTierResult = winningTier.getWinningTier();
 
-        Assertions.assertThat(winningTierResult.get(1)).isEqualTo(2);
-        Assertions.assertThat(winningTierResult.get(2)).isEqualTo(1);
+        Assertions.assertThat(winningTier.getWinningTier().get(0).getRank()).isEqualTo(1);
+        Assertions.assertThat(winningTier.getWinningTier().get(1).getRank()).isEqualTo(2);
+        Assertions.assertThat(winningTier.getWinningTier().get(2).getRank()).isEqualTo(1);
     }
 
     @Test

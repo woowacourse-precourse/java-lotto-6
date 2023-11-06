@@ -16,7 +16,7 @@ public class LottoOutputView {
         }
     }
 
-    public void printEachWinnings(LottoPrizeDto lottoPrizeDto) {
+    public void printWinningStatistics(LottoPrizeDto lottoPrizeDto) {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println(PrizeMessage.FIFTH.getMessage()
@@ -29,6 +29,10 @@ public class LottoOutputView {
                 + countText(lottoPrizeDto.getSecond()));
         System.out.println(PrizeMessage.FIRST.getMessage()
                 + countText(lottoPrizeDto.getFirst()));
+    }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
     private String countText(int count) {

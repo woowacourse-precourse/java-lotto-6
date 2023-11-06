@@ -2,8 +2,10 @@ package lotto.service;
 
 import java.util.List;
 import lotto.constant.PrizeCondition;
+import lotto.constant.PrizeMoney;
 import lotto.domain.Lotto;
 import lotto.domain.LottoSet;
+import lotto.domain.Money;
 import lotto.domain.dto.LottoPrizeDto;
 
 public class LottoService {
@@ -40,6 +42,19 @@ public class LottoService {
             }
         }
         return lottoPrizeDto;
+    }
+
+    public double calculateRateOfReturn() {
+        LottoPrizeDto dto = compareLottos();
+        long totalPrizeMoney = dto.getFirst() * PrizeMoney.FIRST.getValue()
+                + dto.getSecond() * PrizeMoney.SECOND.getValue()
+                + dto.getThird() * PrizeMoney.THIRD.getValue()
+                + dto.getFourth() * PrizeMoney.FOURTH.getValue()
+                + dto.getFifth() * PrizeMoney.FIFTH.getValue();
+
+        int purchase = lottoSet.getLottos().size() * Money.EACH_LOTTO;
+
+        return Math.round(THOUSAND * totalPrizeMoney / (double) purchase) / TEN;
     }
 
     private PrizeCondition compareOneLotto(Lotto randomLotto) {

@@ -61,7 +61,7 @@ class LottoOutputViewTest {
             dto.countFifth();
         }
 
-        lottoOutputView.printEachWinnings(dto);
+        lottoOutputView.printWinningStatistics(dto);
 
         assertThat("당첨 통계\n"
                 + "---\n"
@@ -70,6 +70,14 @@ class LottoOutputViewTest {
                 + "5개 일치 (1,500,000원) - 3개\n"
                 + "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개\n"
                 + "6개 일치 (2,000,000,000원) - 1개\n").isEqualTo(outputMessage.toString());
+    }
+
+    @DisplayName("수익률 출력 테스트.")
+    @Test
+    void printRateOfReturn() {
+        double rateOfReturn = 62.5d;
+        lottoOutputView.printRateOfReturn(rateOfReturn);
+        assertThat("총 수익률은 62.5%입니다.\n").isEqualTo(outputMessage.toString());
     }
 
 }

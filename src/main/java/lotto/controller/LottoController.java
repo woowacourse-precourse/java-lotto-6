@@ -21,6 +21,18 @@ public class LottoController {
         lottoService = new LottoService(lottoSet, winningNumbers, bonusNumber);
     }
 
+    public void printStatistics() {
+        lottoView.printWinningStatistics(lottoService.compareLottos());
+    }
+
+    public void printRateOfReturn() {
+        lottoView.printRateOfReturn(calculateRateOfReturn());
+    }
+
+    private double calculateRateOfReturn() {
+        return lottoService.calculateRateOfReturn();
+    }
+
     private boolean winningNumbersContainsBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         return winningNumbers.contains(bonusNumber);
     }

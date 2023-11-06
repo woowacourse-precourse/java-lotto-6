@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.domain.Money;
+import lotto.domain.dto.LottoPrizeDto;
 
 public class LottoView {
     public static final String ERROR = "[ERROR] ";
@@ -34,6 +35,14 @@ public class LottoView {
         } while (bonusNumber == 0);
 
         return bonusNumber;
+    }
+
+    public void printWinningStatistics(LottoPrizeDto dto) {
+        outputView.printWinningStatistics(dto);
+    }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        outputView.printRateOfReturn(rateOfReturn);
     }
 
 }

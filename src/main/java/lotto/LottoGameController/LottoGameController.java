@@ -28,10 +28,9 @@ public class LottoGameController {
         List<Lotto> lottoes = lottoService.createLotto(purchaseAmount);
         outputService.printLottoNumbers(lottoes);
         HashSet<Integer> winningNumbers = inputService.getWinningNumbers();
-        Integer bonusNumber = inputService.getBonusNumber();
+        Integer bonusNumber = inputService.getBonusNumber(winningNumbers);
         HashMap<Integer, Integer> result = lottoService.getResult(lottoes, bonusNumber, winningNumbers);
         double profit = lottoService.calculateProfitRate(purchaseAmount, result);
         outputService.printResult(result, profit);
-
     }
 }

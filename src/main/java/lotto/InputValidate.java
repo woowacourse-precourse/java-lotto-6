@@ -38,8 +38,11 @@ public class InputValidate {
             if (input.length() != input.replace(" ", "").length()){
                 throw new IllegalArgumentException("[ERROR] 공백이 입력되었습니다. 다시 입력해주세요.");
             }
-            if (input.split(",").length > 0){
+            if (input.split(",").length > 1){
                 throw new IllegalArgumentException("[ERROR] 1개 이상이 입력되었습니다. 다시 입력해주세요.");
+            }
+            if (input.contains(".")){
+                throw new IllegalArgumentException("[ERROR] 소수점은 입력할 수 없습니다. 다시 입력해주세요");
             }
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다. 다시 입력해주세요.");
         }

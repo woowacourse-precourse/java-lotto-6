@@ -7,5 +7,6 @@ public class Application {
         OutputView outputView = new OutputView();
         ProcessLotto processLotto = new ProcessLotto(inputView, outputView);
         processLotto.drawLotto();
+
     }
 }

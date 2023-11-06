@@ -45,8 +45,8 @@ public class LottoController {
     }
 
     private int getInputAmount() {
-        inputView.inputAmount();
-        String userInput = readLine().trim();
+        outputView.getInputAmount();
+        String userInput = inputView.inputAmount();
         return Utils.stringToInteger(userInput);
     }
 

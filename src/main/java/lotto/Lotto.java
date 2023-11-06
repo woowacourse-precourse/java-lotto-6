@@ -12,6 +12,18 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+//    public Integer getValueAt(int index) {
+//        return numbers.get(index);
+//    }
+
+    public boolean hasNumber(int number) {
+        return numbers.stream()
+                .mapToInt(Integer::intValue)
+                .filter(member -> member == number)
+                .findAny()
+                .isPresent();
+    }
+
     private void validateLotto(List<Integer> numbers) {
         validateLength(numbers);
         validateDuplicateMember(numbers);

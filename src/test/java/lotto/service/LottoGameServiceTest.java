@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 
+import lotto.model.LottoResultModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -107,19 +108,15 @@ class LottoGameServiceTest {
         List<Integer> winningNumber = new ArrayList<>(Arrays.asList(4,5,6,7,8,9));
 
         int bonusNumber = 10;
-        Map<String, String> result = lottoGameService.lottoWinningResultCalculation(lottos,winningNumber,bonusNumber);
+        LottoResultModel result = lottoGameService.lottoWinningResultCalculation(lottos, winningNumber, bonusNumber);
 
-        assertThat(result).hasSize(6)
-                .contains(
-                        entry("총 수익률","500.0"),
-                        entry("3개일치","1"),
-                        entry("4개일치","0"),
-                        entry("5개일치","0"),
-                        entry("5개일치_보너스일치","0"),
-                        entry("6개일치","0")
-                )
-        ;
 
+        assertThat(result.getTotalReturnRate()).isEqualTo("500.0");
+        assertThat(result.getThreeMatch()).isEqualTo("1");
+        assertThat(result.getFourMatch()).isEqualTo("0");
+        assertThat(result.getFourMatch()).isEqualTo("0");
+        assertThat(result.getFiveBonusMatch()).isEqualTo("0");
+        assertThat(result.getSixMatch()).isEqualTo("0");
     }
 
     //    @Test

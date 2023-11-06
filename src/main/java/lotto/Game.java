@@ -15,5 +15,13 @@ public class Game {
         UserLotto userLotto = new UserLotto(purchaseCount);
         List<Lotto> userLottoNumbers = userLotto.getUserLottos();
         printCompletePurchase(purchaseCount, userLottoNumbers);
+
+        askWinningLotto();
+        Lotto lotto = inputWinningLotto();
+
+        askBonusNumber();
+        int bonusNumber = inputBonusNumber();
+
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
     }
 }

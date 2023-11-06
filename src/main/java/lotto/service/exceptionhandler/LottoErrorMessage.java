@@ -15,6 +15,4 @@ public final class LottoErrorMessage {
       ="[ERROR] 1 ~ 45 사이의 숫자만 선택 하세요";
     public static final String ERROR_LOTTO_NOT_CHOICE_ONE_NUMBER_MESSAGE
       ="[ERROR] 1개의 보너스 번호를 입력해 주세요";
-
-
 }

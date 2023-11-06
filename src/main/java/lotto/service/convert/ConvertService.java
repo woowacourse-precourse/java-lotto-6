@@ -44,7 +44,6 @@ public class ConvertService {
     public int priceChangeBuyNumber (int num){
         return num/MIN_PRICE_TEN_WON;
     }
-    // 나중에 이 ERROR 부분은 익셉션 핸들러에 메시지 추가해야함 -> 받아서 처리할 곳에서
     private static final int ERROR_ZERO_RETURN_DIVISION_FALSE_REST = 0;
     private static final int ERROR_MINUS_RETURN_PARSING_FALSE = -1;
     private static final List<Integer> ERROR_MINUS_LIST_RETURN_PARSING_FALSE = Arrays.asList(-1);

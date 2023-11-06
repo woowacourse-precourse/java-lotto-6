@@ -115,6 +115,4 @@ public class LottoIoService {
         yieldAttribute.setYieldValue(LottoLogicService.yieldCalculation(yieldAttribute));
         print.printLottoYield(yieldAttribute.getYieldValue());
     }
-
-
 }

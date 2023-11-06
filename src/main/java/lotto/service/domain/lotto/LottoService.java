@@ -33,7 +33,6 @@ public class LottoService {
             yieldAttribute.getTotalPrize() - yieldAttribute.getInvestmen()
           ) / yieldAttribute.getInvestmen() * 100;
     }
-
     public LottoResultPrint ticketMatchUserPickNumber
       (List<SeasonLottoResultVO> autoLottoTicket,
        Lotto userLottoNumbers,

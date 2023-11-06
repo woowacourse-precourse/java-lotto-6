@@ -51,16 +51,5 @@ public class Application {
         yieldAttribute.setInvestmen(investment);
         yieldAttribute.setTotalPrize(totalPrize);
         lottoController.LottoYield(yieldAttribute);
-
-/*
-
-        double yield = ((double) totalPrize - investment) / investment * 100;
-        System.out.println("총 수익률은 " + String.format("%.2f",yield) + "%입니다.");
-*/
-
-
-/*
-        yieldAttribute.setInvestmen(investment);
-        yieldAttribute.setTotalPrize(totalPrize);*/
     }
 }

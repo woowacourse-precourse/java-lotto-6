@@ -2,7 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.LottoException;
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 
 import java.util.*;
 

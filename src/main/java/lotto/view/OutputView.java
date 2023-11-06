@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 
 import java.util.List;
 import java.util.Map;

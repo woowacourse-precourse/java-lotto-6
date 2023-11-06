@@ -1,7 +1,6 @@
 package lotto.service;
 
-import lotto.LottoException;
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

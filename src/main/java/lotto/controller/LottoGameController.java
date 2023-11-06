@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

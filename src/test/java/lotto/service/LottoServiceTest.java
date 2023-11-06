@@ -31,4 +31,15 @@ public class LottoServiceTest {
         // then
         assertThat(lottoNumbers).allMatch(number -> number >= MINIMUM_LOTTO_NUMBER && number <= MAXIMUM_LOTTO_NUMBER);
     }
+
+    @DisplayName("랜덤으로 생성된 로또 번호가 중복되지 않는지 확인한다.")
+    @RepeatedTest(1000)
+    void generateLottoNumbersShouldReturnUniqueNumbers() {
+        // given
+        // when
+        LottoService lottoService = new LottoService();
+        List<Integer> lottoNumbers = lottoService.generateLottoNumbers();
+        // then
+        assertThat(lottoNumbers).doesNotHaveDuplicates();
+    }
 }

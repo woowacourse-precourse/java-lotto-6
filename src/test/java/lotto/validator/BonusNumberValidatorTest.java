@@ -32,6 +32,17 @@ class BonusNumberValidatorTest {
     }
 
     @Test
+    void validateBonusNumber_0으로_시작하는_잘못된_입력() {
+        //given
+        String input = "0011";
+        List<Integer> winningNumbers = List.of(1, 3, 7, 23, 43, 44);
+
+        //when & then
+        assertThatThrownBy(() -> BonusNumberValidator.validateBonusNumber(winningNumbers, input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void validateBonusNumber_범위_벗어난_입력_예외_0() {
         //given
         String input = "0";

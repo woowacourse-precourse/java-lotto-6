@@ -19,7 +19,8 @@ public class LottoBonusNumber {
     }
 
     private void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < LottoConstant.LOTTO_START_NUMBER || bonusNumber > LottoConstant.LOTTO_END_NUMBER) {
+        if (bonusNumber < LottoConstant.LOTTO_START_NUMBER ||
+                bonusNumber > LottoConstant.LOTTO_END_NUMBER) {
             throw new IllegalArgumentException(
                     "보너스 번호는 " + LottoConstant.LOTTO_START_NUMBER + " 이상, "
                             + LottoConstant.LOTTO_END_NUMBER + " 이하여야 합니다.");

@@ -33,11 +33,11 @@ class ComputeServiceTest {
     void computeResultFromLottoAndBonusNum() {
         // GIVEN
         List<Lotto> randomLottos = new ArrayList<>();
-        randomLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        randomLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
-        randomLottos.add(new Lotto(List.of(11, 12, 13, 14, 15, 16)));
+        randomLottos.add(Lotto.create(List.of(1, 2, 3, 4, 5, 6)));
+        randomLottos.add(Lotto.create(List.of(1, 2, 3, 4, 5, 7)));
+        randomLottos.add(Lotto.create(List.of(11, 12, 13, 14, 15, 16)));
 
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLotto = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
 
         int bonusNum = 7;
 

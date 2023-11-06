@@ -12,14 +12,14 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> Lotto.create(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Lotto.create(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,8 +35,8 @@ class LottoTest {
     @DisplayName("발행 로또에 대해 정답 로또와 비교하여 MatchResult를 반환한다")
     @Test
     void createMatchResultFromLottos() {
-        Lotto randomLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto randomLotto = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winLotto = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
 
         MatchResult matchResult = Lotto.match(randomLotto, winLotto, 99);
         assertThat(matchResult).isEqualTo(MatchResult.SIX);
@@ -45,8 +45,8 @@ class LottoTest {
     @DisplayName("발행 로또에 대해 보너스 번호까지 고려하여 MatchResult를 반환한다")
     @Test
     void createMatchResultIncludingBonusNum() {
-        Lotto randomLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winLotto = new Lotto(List.of(1, 2, 3, 4, 5, 9));
+        Lotto randomLotto = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winLotto = Lotto.create(List.of(1, 2, 3, 4, 5, 9));
         int bonusNum = 6;
 
         MatchResult matchResult = Lotto.match(randomLotto, winLotto, bonusNum);

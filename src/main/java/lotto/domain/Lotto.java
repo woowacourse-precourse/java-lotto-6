@@ -14,13 +14,18 @@ public class Lotto {
 
 
     public Lotto(List<Integer> numbers) {
-        Validator.validateLotto(numbers);
         this.numbers = numbers;
     }
 
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+
+    public static Lotto create(List<Integer> numbers) {
+        Validator.validateLotto(numbers);
+        return new Lotto(numbers);
     }
 
 
@@ -31,7 +36,10 @@ public class Lotto {
     }
 
     private static Lotto generateRandomLotto() {
-        return new Lotto(pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_SIZE));
+        List<Integer> randomLotto = pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_SIZE);
+        randomLotto.sort(Integer::compareTo);
+
+        return create(randomLotto);
     }
 
 

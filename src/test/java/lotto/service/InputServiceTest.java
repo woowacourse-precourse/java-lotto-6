@@ -1,9 +1,10 @@
 package lotto.service;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import lotto.domain.Lotto;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import static lotto.domain.constant.StringConstant.*;
@@ -11,6 +12,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputServiceTest {
+    private static InputStream original;
+
+    @BeforeAll
+    void setUp() {
+        original = System.in;
+    }
+
+    @AfterAll
+    void tearDown() {
+        System.setIn(original);
+    }
+
     @DisplayName("숫자 타입이 아닌 금액 입력값에 대해 예외 발생")
     @Test
     void readExpenseOfNoneNumberType() {
@@ -42,7 +55,7 @@ class InputServiceTest {
         System.setIn(in);
 
         // WHEN, THEN
-        assertThatThrownBy(InputService::readWinNumbers)
+        assertThatThrownBy(InputService::readWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -54,7 +67,7 @@ class InputServiceTest {
         System.setIn(in);
 
         // WHEN
-        List<Integer> winNumbers = InputService.readWinNumbers();
+        List<Integer> winNumbers = InputService.readWinningNumbers();
 
         // THEN
         assertThat(winNumbers).isSorted();
@@ -64,11 +77,13 @@ class InputServiceTest {
     @Test
     void readBonusNumberOfNoneNumberType() {
         // GIVEN
+        Lotto winningLotto = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
+
         ByteArrayInputStream in = new ByteArrayInputStream(TEST_BONUSNUMBER_TYPE.getBytes());
         System.setIn(in);
 
         // WHEN, THEN
-        assertThatThrownBy(InputService::readBonusNumber)
+        assertThatThrownBy(() -> InputService.readBonusNumber(winningLotto))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -76,11 +91,13 @@ class InputServiceTest {
     @Test
     void readBonusNumberOfNotInRange() {
         // GIVEN
+        Lotto winningLotto = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
+
         ByteArrayInputStream in = new ByteArrayInputStream(TEST_BONUSNUMBER_RANGE.getBytes());
         System.setIn(in);
 
         // WHEN, THEN
-        assertThatThrownBy(InputService::readBonusNumber)
+        assertThatThrownBy(() -> InputService.readBonusNumber(winningLotto))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

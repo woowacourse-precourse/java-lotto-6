@@ -47,4 +47,12 @@ public class LottoResult {
 
         return Math.round(totalPrizeMoney / initialMoney * 100 * 100) / 100.0;
     }
+
+    public HashMap<LottoGrade, Integer> getLottoResult() {
+        return lottoResult;
+    }
+
+    public int getLottoAmount() {
+        return lottoAmount;
+    }
 }

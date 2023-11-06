@@ -37,4 +37,10 @@ public class LottoGameService {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    public long getCollectNumberCount(List<Integer> purchasedLotto, List<Integer> winningLotto) {
+        return winningLotto.stream()
+                .filter(purchasedLotto::contains)
+                .count();
+    }
 }
